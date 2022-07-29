@@ -20,7 +20,7 @@ Node.PorklandConvertGround = Node.ShipwreckedConvertGround or function(self, spa
 
 	-- Get the list of special items for this node
 	local add_fn = {fn = function(...) self:AddEntity(...) end, args = {entitiesOut = entitiesOut, width = width, height = height, rand_offset = false, debug_prefab_list = prefab_list}}
-	local checkFn = function(ground) return IsWaterTile(ground) end
+	local checkFn = function(ground) return Ham_IsWaterTile(ground) end
 	local border = 1
 
 	if self.data.terrain_contents.countstaticlayouts ~= nil then

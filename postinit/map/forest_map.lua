@@ -1,14 +1,9 @@
-local IAENV = env
 GLOBAL.setfenv(1, GLOBAL)
-
-IA_worldtype = "islandsonly"
 
 require("constants")
 require("mathutil")
 
--- IAENV.modimport("main/spawnutil")
-
--- require("map/water")
+local GetIslandCount = require("map/check_island")
 local makecities = require("map/city_builder")
 local makebunch = require("map/bunch_spawner")
 local makeborder = require("map/border_finder")
@@ -51,7 +46,7 @@ TRANSLATE_TO_PREFABS["stungray"] =			{"stungray", "stungray_spawner"}
 TRANSLATE_AND_OVERRIDE["volcano"] =			{"volcano"}
 TRANSLATE_AND_OVERRIDE["seagull"] =			{"seagullspawner"}
 
-local function ValidateGroundTile_Shipwrecked(tile)
+local function ValidateGroundTile_Porkland(tile)
     return WORLD_TILES.IMPASSABLE
 end
 
@@ -76,8 +71,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     WorldSim:SetPointsBarrenOrReservedTile(WORLD_TILES.ROAD)
 	WorldSim:SetResolveNoiseFunction(GetTileForNoiseTile)
 
-    local ValidateGroundTileFn = ValidateGroundTile_Shipwrecked
-	WorldSim:SetValidateGroundTileFunction(ValidateGroundTileFn)
+	WorldSim:SetValidateGroundTileFunction(ValidateGroundTile_Porkland)
 
     local SpawnFunctions = {
         pickspawnprefab = pickspawnprefab,
@@ -255,10 +249,6 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     local translated_prefabs, runtime_overrides = TranslateWorldGenChoices(current_gen_params)
 
-    print("Checking Tags")
-	local obj_layout = require("map/object_layout")
-
-
     print("Populating voronoi...")
 
 	topology_save.root:GlobalPrePopulate(entities, map_width, map_height)
@@ -291,6 +281,14 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 	end
 
     topology_save.root:GlobalPostPopulate(entities, map_width, map_height)
+
+	local island_count = GetIslandCount(map_width, map_height)
+	if island_count ~= 5 then
+		print("PANIC: island num error", island_count)
+		if SKIP_GEN_CHECKS == false then
+			return nil
+		end
+	end
 
     for k, ents in pairs(entities) do
         for i=#ents, 1, -1 do
@@ -568,10 +566,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 	save.map.world_tile_map = GetWorldTileMap()
 
     save.map.topology.overrides = deepcopy(current_gen_params)
-    save.map.topology.ia_worldgen_version = 2
-    -- Feel free to increase this version when making big changes. -M
-    -- Test this during simulation via TheWorld.topology.ia_worldgen_version
-    -- Go through 2 years, updata 1 version to 2 to get better worldgen - Jerry
+
     if save.map.topology.overrides == nil then
         save.map.topology.overrides = {}
 	end
@@ -605,7 +600,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     	if SKIP_GEN_CHECKS == false then
     		return nil
     	else
-    		save.ents.spawnpoint={{x=0,y=0,z=0}}
+    		save.ents.spawnpoint = {{x = 0, y = 0, z = 0}}
     	end
     end
 

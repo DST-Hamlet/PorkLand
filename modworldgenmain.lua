@@ -6,4 +6,4 @@ modimport("scripts/map/tasksets/porklandset")
 modimport("scripts/map/levels/porkland")
 
 -- postinit
--- modimport("postinit/map/levels/shipwrecked")
+modimport("postinit/map/levels/porkland")

@@ -29,7 +29,7 @@ Story.PorklandPlaceTeleportatoParts = Story.ShipwreckedPlaceTeleportatoParts or 
 	end
 
 	local iswaternode = function(node)
-		local water_node = node.data.type == "water" or IsWaterTile(node.data.value)
+		local water_node = node.data.type == "water" or Ham_IsWaterTile(node.data.value)
 		return water_node
 		--return ((setpiece_data.restrict_to == nil or setpiece_data.restrict_to ~= "water") and room.data.type ~= "water") or (setpiece_data.restrict_to and setpiece_data.restrict_to == "water" and (room.data.type == "water" or IsWaterTile(room.data.value)))
 	end
@@ -103,7 +103,7 @@ Story.PorklandInsertAdditionalSetPieces = Story.ShipwreckedInsertAdditionalSetPi
 	local obj_layout = require("map/object_layout")
 
 	local function is_water_ok(room, layout)
-		local water_room = room.data.type == "water" or IsWaterTile(room.data.value)
+		local water_room = room.data.type == "water" or Ham_IsWaterTile(room.data.value)
 		local water_layout = layout and layout.water == true
 		return (water_room and water_layout) or (not water_room and not water_layout)
 	end
@@ -452,7 +452,7 @@ function Story:RestrictNodesByKey(startParentNode, unusedTasks)
 	return lastNode:GetRandomNode()
 end
 
-function Story:GenerateIslandFromTask(task, randomize)
+Story.GenerateIslandFromTask = Story.GenerateIslandFromTask or function (self, task, randomize)
 	if task.room_choices == nil or type(task.room_choices[1]) ~= "table" then
 		return nil
 	end

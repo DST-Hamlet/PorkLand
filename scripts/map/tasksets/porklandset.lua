@@ -53,7 +53,7 @@ AddTaskSet("porkland", {
     water_prefill_setpieces = {},
     ordered_story_setpieces = {},
     numrandom_set_pieces = 0,
-
+    set_pieces = {},
     -- set_pieces = {
     --     ["TeleportatoHamletBaseLayout"] = {count = 1, tasks = {
     --         "Deep_rainforest",
@@ -106,7 +106,7 @@ AddTaskSet("porkland", {
     --     }},
     --     --]]
     -- },
-
+    required_prefabs = {}
     -- required_prefabs = {
     --     "pugalisk_fountain",
     --     "roc_nest",
