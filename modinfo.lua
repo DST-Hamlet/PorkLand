@@ -1,9 +1,10 @@
+---@diagnostic disable: lowercase-global
 
 name = "Hamlet"
 author = "Jerry"
 description = ""
 
-version = "0.1"
+version = "0.0.1"
 forumthread = ""
 api_version = 10
 

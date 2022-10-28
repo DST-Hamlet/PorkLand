@@ -282,13 +282,13 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     topology_save.root:GlobalPostPopulate(entities, map_width, map_height)
 
-	local island_count = GetIslandCount(map_width, map_height)
-	if island_count ~= 5 then
-		print("PANIC: island num error", island_count)
-		if SKIP_GEN_CHECKS == false then
-			return nil
-		end
-	end
+	-- local island_count = GetIslandCount(map_width, map_height)
+	-- if island_count ~= 5 then
+	-- 	print("PANIC: island num error", island_count)
+	-- 	if SKIP_GEN_CHECKS == false then
+	-- 		return nil
+	-- 	end
+	-- end
 
     for k, ents in pairs(entities) do
         for i=#ents, 1, -1 do

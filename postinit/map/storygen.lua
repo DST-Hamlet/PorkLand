@@ -1,6 +1,5 @@
 -- hack storygen functions is very trouble, so we rewrite it  -- Jerry
 
-local IAENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
 require("map/storygen")
