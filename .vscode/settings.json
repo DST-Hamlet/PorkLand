@@ -113,6 +113,12 @@
         "KEYS_ARRAY",
         "LOCKS_ARRAY",
         "Level",
-        "UpvalueHacker"
+        "UpvalueHacker",
+        "SetTileProperty",
+        "ChangeTileRenderOrder",
+        "ChangeMiniMapTileRenderOrder",
+        "TileGroups",
+        "AddPrefabPostInit",
+        "WorldSim"
     ]
 }

@@ -571,6 +571,8 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
         save.map.topology.overrides = {}
 	end
 
+	save.map.topology.hm_worldgen_version = 1
+
 	save.map.width, save.map.height = map_width, map_height
 
 	local start_season = current_gen_params.season_start or "autumn"

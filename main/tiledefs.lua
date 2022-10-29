@@ -47,13 +47,33 @@ local TileRanges =
     LAND = "LAND",
     NOISE = "NOISE",
     OCEAN = "OCEAN",
-    SEA = "SEA",
     IMPASSABLE = "IMPASSABLE",
 }
 
-
-
 local hamlet_tiledefs = {
+    BEARDRUG = {
+        tile_range = TileRanges.LAND,
+        tile_data = {
+            ground_name = "Beard Rug",
+            -- old_static_id = 33,
+        },
+        ground_tile_def  = {
+            name = "carpet",
+            noise_texture = "Ground_beard_hair",
+            runsound = "dontstarve/movement/run_carpet",
+            walksound = "dontstarve/movement/walk_carpet",
+            flashpoint_modifier = 0,
+        },
+        minimap_tile_def = {
+            name = "map_edge",
+            noise_texture = "interior",
+        },
+        --turf_def = {
+        --    name = "beach",
+        --    bank_build = "turf_ia",
+        --},
+
+    },
     RAINFOREST = {
         tile_range = TileRanges.LAND,
         tile_data = {
@@ -66,7 +86,7 @@ local hamlet_tiledefs = {
             runsound = "dontstarve/movement/run_woods",
             walksound = "dontstarve/movement/walk_woods",
             flashpoint_modifier = 0,
-            cannotbedug = true,
+            floor = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -99,11 +119,32 @@ local hamlet_tiledefs = {
         --     bank_build = "turf_ia",
         -- },
     },
+    DEEPRAINFOREST_NOCANOPY = {
+        tile_range = TileRanges.LAND,
+        tile_data = {
+            ground_name = "Jungle Deep",
+        },
+        ground_tile_def  = {
+            name = "jungle_deep",
+            noise_texture = "Ground_noise_jungle_deep",
+            runsound = "dontstarve/movement/run_woods",
+            walksound = "dontstarve/movement/walk_woods",
+            flashpoint_modifier = 0,
+        },
+        minimap_tile_def = {
+            name = "map_edge",
+            noise_texture = "mini_noise_jungle_deep",
+        },
+        -- turf_def = {
+        --     name = "jungle",
+        --     bank_build = "turf_ia",
+        -- },
+    },
     GASJUNGLE = { --note this majestic creature is unused
         tile_range = TileRanges.LAND,
         tile_data = {
             ground_name = "Gas Jungle",
-            old_static_id = 93,
+            -- old_static_id = 93,
         },
         ground_tile_def = {
             name = "jungle_deep",
@@ -307,7 +348,7 @@ local hamlet_tiledefs = {
     -- (after Land in order to keep render order consistent)
     -------------------------------
     LILYPOND = {
-        tile_range = TileRanges.LAND,
+        tile_range = TileRanges.OCEAN,
         tile_data = {
             name = "Lilypond"
         },
@@ -363,23 +404,49 @@ local hamlet_tiledefs = {
 GROUND_FLOODPROOF = rawget(_G, "GROUND_FLOODPROOF")
 if GROUND_FLOODPROOF then
     print("Turn on ia")
-    dumptable(GROUND_FLOODPROOF)
 end
 
 for tile, def in pairs(hamlet_tiledefs) do
     local range = def.tile_range
-    if range == TileRanges.SEA then
-        range = TileRanges.OCEAN
-    elseif type(range) == "function" then
+    if type(range) == "function" then
         range = TileRanges.NOISE
     end
 
     AddTile(tile, range, def.tile_data, def.ground_tile_def, def.minimap_tile_def, def.turf_def)
 
-    if def.tile_range == TileRanges.SEA then
-        TileGroupManager:AddInvalidTile(TileGroups.TransparentOceanTiles, WORLD_TILES[tile])
-        SetTileProperty(WORLD_TILES[tile], "type", TILE_TYPE.WATER)
+    local tile_id = WORLD_TILES[tile]
+
+    if def.tile_range == TileRanges.OCEAN then
+        if TileGroups.TransparentOceanTiles then
+            TileGroupManager:AddInvalidTile(TileGroups.TransparentOceanTiles, WORLD_TILES[tile])
+        end
+
+        SetTileProperty(tile_id, "type", TILE_TYPE.WATER)
+        SetTileProperty(tile_id, "land", false)
+        SetTileProperty(tile_id, "water", true)
+        SetTileProperty(tile_id, "groundcreepdisabled", true)
     elseif type(def.tile_range) == "function" then
-        NoiseFunctions[WORLD_TILES[tile]] = def.tile_range
+        NoiseFunctions[tile_id] = def.tile_range
     end
 end
+
+for prefab, filter in pairs(terrain.filter) do
+    if type(filter) == "table" then
+        table.insert(filter, WORLD_TILES.LILYPOND)
+    end
+end
+
+ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.CARPET, true)
+
+ChangeTileRenderOrder(WORLD_TILES.GASJUNGLE, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.COBBLEROAD, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.LAWN, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.FOUNDATION, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.SUBURB, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.FIELDS, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.RAINFOREST, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.PLAINS, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.PAINTED, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.DEEPRAINFOREST_NOCANOPY, WORLD_TILES.MUD, true)
+ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.MUD, true)
