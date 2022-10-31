@@ -3,7 +3,7 @@ GLOBAL.setfenv(1, GLOBAL)
 require("constants")
 require("mathutil")
 
-local GetIslandCount = require("map/check_island")
+local separate_region = require("map/separate_region")
 local makecities = require("map/city_builder")
 local makebunch = require("map/bunch_spawner")
 local makeborder = require("map/border_finder")
@@ -53,7 +53,6 @@ end
 local SKIP_GEN_CHECKS = false
 local _Generate = forest_map.Generate
 local GetTileForNoiseTile = UpvalueHacker.GetUpvalue(_Generate, "GetTileForNoiseTile")
-local ValidateGroundTile = UpvalueHacker.GetUpvalue(_Generate, "ValidateGroundTile")
 local pickspawnprefab = UpvalueHacker.GetUpvalue(_Generate, "pickspawnprefab")
 local pickspawngroup = UpvalueHacker.GetUpvalue(_Generate, "pickspawngroup")
 local pickspawncountprefabforground = UpvalueHacker.GetUpvalue(_Generate, "pickspawncountprefabforground")
@@ -215,6 +214,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 	for _, node in pairs(nodes) do
 		node:SetTilesViaFunction(entities, map_width, map_height)
 	end
+	separate_region(nodes, 2) -- ensure at least two tiles at intervals between islands
 
     print("Encoding...")
 
@@ -274,21 +274,8 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     save.map.generated.densities = {}
 
     topology_save.root:PopulateVoronoi(SpawnFunctions, entities, map_width, map_height, translated_prefabs, save.map.generated.densities)
-	if story_gen_params.has_ocean then
-		Ocean_SetWorldForOceanGen(WorldSim)
-		-- PopulateOcean(SpawnFunctions, entities, map_width, map_height, storygen.ocean_population, translated_prefabs, ocean_gen_config.ocean_prefill_setpieces_min_land_dist, save.map.topology)
-        MonkeyIsland_GenerateDocks(WorldSim, entities, map_width, map_height)
-	end
 
     topology_save.root:GlobalPostPopulate(entities, map_width, map_height)
-
-	-- local island_count = GetIslandCount(map_width, map_height)
-	-- if island_count ~= 5 then
-	-- 	print("PANIC: island num error", island_count)
-	-- 	if SKIP_GEN_CHECKS == false then
-	-- 		return nil
-	-- 	end
-	-- end
 
     for k, ents in pairs(entities) do
         for i=#ents, 1, -1 do

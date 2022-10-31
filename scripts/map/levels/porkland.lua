@@ -2,8 +2,8 @@ local LEVELTYPE = GLOBAL.LEVELTYPE
 
 AddLevel(LEVELTYPE.SURVIVAL, {
     id = "PORKLAND_DEFAULT",
-    name = "Porkland_level",
-    desc = "Porkland_level",
+    name = "Porkland",
+    desc = "Porkland",
     location = "forest",
     overrides = {
         task_set = "porkland",
@@ -20,6 +20,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 	    deerclops = "never",
 	    bearger = "never",
 
+        summer = "noseason",
 	    perd = "never",  --火鸡
 	    penguins = "never",  -- 企鹅
 	    hunt = "never",  -- 脚印

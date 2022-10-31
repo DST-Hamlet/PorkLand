@@ -184,7 +184,7 @@ Story.PorklandInsertAdditionalSetPieces = Story.ShipwreckedInsertAdditionalSetPi
 	end
 end
 
-Story.PorklandAddBGNodes = Story.ShipwreckedAddBGNodes or function (self, min_count, max_count)
+Story.PorklandAddBGNodes = Story.ShipwreckedAddBGNodes or function(self, min_count, max_count)
 	local tasksnodes = self.rootNode:GetChildren(false)
 	local bg_idx = 0
 
@@ -295,7 +295,7 @@ Story.PorklandAddBGNodes = Story.ShipwreckedAddBGNodes or function (self, min_co
 	end
 end
 
-function Story:RestrictNodesByKey(startParentNode, unusedTasks)
+function Story:PorklandRestrictNodesByKey(startParentNode, unusedTasks)
 	local lastNode = startParentNode
 		print("Startparent node:",startParentNode.id)
 	local usedTasks = {}
@@ -451,7 +451,7 @@ function Story:RestrictNodesByKey(startParentNode, unusedTasks)
 	return lastNode:GetRandomNode()
 end
 
-Story.GenerateIslandFromTask = Story.GenerateIslandFromTask or function (self, task, randomize)
+Story.GenerateIslandFromTask = Story.GenerateIslandFromTask or function(self, task, randomize)
 	if task.room_choices == nil or type(task.room_choices[1]) ~= "table" then
 		return nil
 	end
@@ -611,7 +611,7 @@ function Story:GenerateNodesForPorkland()
 
     --print("Lock and Key")
 
-	self.finalNode = self:RestrictNodesByKey(startParentNode, unusedTasks) --startParentNode
+	self.finalNode = self:PorklandRestrictNodesByKey(startParentNode, unusedTasks) --startParentNode
 
 	local randomStartNode = startParentNode:GetRandomNode()
 
@@ -629,7 +629,7 @@ function Story:GenerateNodesForPorkland()
 					sapling = 1,
 					flint = 1,
 					berrybush = 1,
-					grass = function () return 2 + math.random(2) end
+					grass = function() return 2 + math.random(2) end
 				}
 			}
 		}
@@ -670,13 +670,11 @@ function BuildPorklandStory(tasks, story_gen_params, level)
 		end
 	end
 
-
 	local min_bg = (level.background_node_range and level.background_node_range[1] or 0) + world_size
 	local max_bg = (level.background_node_range and level.background_node_range[2] or 2) + world_size
 
 	story:PorklandAddBGNodes(min_bg, max_bg)
 	story:PorklandInsertAdditionalSetPieces()
-	-- story:InsertAdditionalTreasures()  -- don't use, add treasures in postinit/map/graph  - Jerry
 	story:PorklandPlaceTeleportatoParts()
 
 	return {root = story.rootNode, startNode = story.startNode, GlobalTags = story.GlobalTags, water = story.water_content}, story

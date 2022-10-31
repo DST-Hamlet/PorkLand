@@ -1,6 +1,6 @@
 ---@diagnostic disable: lowercase-global
 
-name = "Hamlet"
+name = "ProkLand"
 author = "Jerry"
 description = ""
 
@@ -17,11 +17,11 @@ icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
 mod_dependencies = {
-    {--GEMCORE
+    {  -- GEMCORE
         workshop = "workshop-1378549454",
         ["GemCore"] = false,
         ["[API] Gem Core - GitLab Version"] = true,
     },
 }
 
-server_filter_tags = {}
+server_filter_tags = {"hamltet", "porkland"}

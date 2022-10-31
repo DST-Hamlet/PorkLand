@@ -42,6 +42,8 @@ GLOBAL.setfenv(1, GLOBAL)
 
 TILE_TYPE = {LAND = 0, WATER = 1}
 
+TileGroups.PLOceanTiles = TileGroups.IAOceanTiles or TileGroupManager:AddTileGroup()
+
 local TileRanges =
 {
     LAND = "LAND",
@@ -419,6 +421,7 @@ for tile, def in pairs(hamlet_tiledefs) do
     if def.tile_range == TileRanges.OCEAN then
         if TileGroups.TransparentOceanTiles then
             TileGroupManager:AddInvalidTile(TileGroups.TransparentOceanTiles, WORLD_TILES[tile])
+            TileGroupManager:AddValidTile(TileGroups.PLOceanTiles, WORLD_TILES[tile])
         end
 
         SetTileProperty(tile_id, "type", TILE_TYPE.WATER)

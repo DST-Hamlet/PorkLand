@@ -119,6 +119,15 @@
         "ChangeMiniMapTileRenderOrder",
         "TileGroups",
         "AddPrefabPostInit",
-        "WorldSim"
+        "WorldSim",
+        "AddLevel",
+        "AddTile",
+        "TILE_SCALE",
+        "GetWorldTileMap",
+        "PlaceWaterLayout",
+        "AncientArchivePass",
+        "BunchSpawnerInit",
+        "BunchSpawnerRun",
+        "dumptable"
     ]
 }
