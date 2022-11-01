@@ -130,6 +130,7 @@
         "BunchSpawnerRun",
         "dumptable",
         "AddMinimapAtlas",
-        "gemrun"
+        "gemrun",
+        "AddStartLocation"
     ]
 }

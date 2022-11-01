@@ -1,6 +1,6 @@
 ---@diagnostic disable: lowercase-global
 
-name = "ProkLand"
+name = "Prok Land"
 author = "Jerry"
 description = ""
 

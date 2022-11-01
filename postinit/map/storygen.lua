@@ -4,7 +4,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 require("map/storygen")
 
-Story.PorklandPlaceTeleportatoParts = Story.ShipwreckedPlaceTeleportatoParts or function(self)
+Story.PorkLandPlaceTeleportatoParts = Story.ShipwreckedPlaceTeleportatoParts or function(self)
 	local RemoveExitTag = function(node)
 		local newtags = {}
 		for i, tag in ipairs(node.data.tags) do
@@ -98,7 +98,7 @@ Story.PorklandPlaceTeleportatoParts = Story.ShipwreckedPlaceTeleportatoParts or 
 	end
 end
 
-Story.PorklandInsertAdditionalSetPieces = Story.ShipwreckedInsertAdditionalSetPieces or function(self, task_nodes)
+Story.PorkLandInsertAdditionalSetPieces = Story.ShipwreckedInsertAdditionalSetPieces or function(self, task_nodes)
 	local obj_layout = require("map/object_layout")
 
 	local function is_water_ok(room, layout)
@@ -184,7 +184,7 @@ Story.PorklandInsertAdditionalSetPieces = Story.ShipwreckedInsertAdditionalSetPi
 	end
 end
 
-Story.PorklandAddBGNodes = Story.ShipwreckedAddBGNodes or function(self, min_count, max_count)
+Story.PorkLandAddBGNodes = Story.ShipwreckedAddBGNodes or function(self, min_count, max_count)
 	local tasksnodes = self.rootNode:GetChildren(false)
 	local bg_idx = 0
 
@@ -295,7 +295,7 @@ Story.PorklandAddBGNodes = Story.ShipwreckedAddBGNodes or function(self, min_cou
 	end
 end
 
-function Story:PorklandRestrictNodesByKey(startParentNode, unusedTasks)
+function Story:PorkLandRestrictNodesByKey(startParentNode, unusedTasks)
 	local lastNode = startParentNode
 		print("Startparent node:",startParentNode.id)
 	local usedTasks = {}
@@ -565,7 +565,7 @@ Story.GenerateIslandFromTask = Story.GenerateIslandFromTask or function(self, ta
 	return task_node
 end
 
-function Story:GenerateNodesForPorkland()
+function Story:GenerateNodesForPorkLand()
 	--print("Story:GenerateNodesFromTasks creating stories")
 
 	local unusedTasks = {}
@@ -611,7 +611,7 @@ function Story:GenerateNodesForPorkland()
 
     --print("Lock and Key")
 
-	self.finalNode = self:PorklandRestrictNodesByKey(startParentNode, unusedTasks) --startParentNode
+	self.finalNode = self:PorkLandRestrictNodesByKey(startParentNode, unusedTasks) --startParentNode
 
 	local randomStartNode = startParentNode:GetRandomNode()
 
@@ -653,11 +653,11 @@ function Story:GenerateNodesForPorkland()
 	startParentNode:AddEdge({node1id = self.startNode.id, node2id = randomStartNode.id})
 end
 
-function BuildPorklandStory(tasks, story_gen_params, level)
-	print("Building Porkland Story", tasks)
+function BuildPorkLandStory(tasks, story_gen_params, level)
+	print("Building PorkLand Story", tasks)
 
 	local story = Story("GAME", tasks, terrain, story_gen_params, level)
-	story:GenerateNodesForPorkland()
+	story:GenerateNodesForPorkLand()
 
 	local world_size = 0
 	if story_gen_params.world_size then
@@ -673,9 +673,9 @@ function BuildPorklandStory(tasks, story_gen_params, level)
 	local min_bg = (level.background_node_range and level.background_node_range[1] or 0) + world_size
 	local max_bg = (level.background_node_range and level.background_node_range[2] or 2) + world_size
 
-	story:PorklandAddBGNodes(min_bg, max_bg)
-	story:PorklandInsertAdditionalSetPieces()
-	story:PorklandPlaceTeleportatoParts()
+	story:PorkLandAddBGNodes(min_bg, max_bg)
+	story:PorkLandInsertAdditionalSetPieces()
+	story:PorkLandPlaceTeleportatoParts()
 
 	return {root = story.rootNode, startNode = story.startNode, GlobalTags = story.GlobalTags, water = story.water_content}, story
 end

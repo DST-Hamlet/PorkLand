@@ -9,7 +9,7 @@ require("map/graphnode")
 --     end
 -- end
 
-Node.PorklandConvertGround = Node.ShipwreckedConvertGround or function(self, spawnFn, entitiesOut, width, height, world_gen_choices)  -- rewrite
+Node.PorkLandConvertGround = Node.ShipwreckedConvertGround or function(self, spawnFn, entitiesOut, width, height, world_gen_choices)  -- rewrite
 	if not self.data.terrain_contents then
 		return
 	end

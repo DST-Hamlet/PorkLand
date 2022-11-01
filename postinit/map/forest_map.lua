@@ -46,7 +46,7 @@ TRANSLATE_TO_PREFABS["stungray"] =			{"stungray", "stungray_spawner"}
 TRANSLATE_AND_OVERRIDE["volcano"] =			{"volcano"}
 TRANSLATE_AND_OVERRIDE["seagull"] =			{"seagullspawner"}
 
-local function ValidateGroundTile_Porkland(tile)
+local function ValidateGroundTile_PorkLand(tile)
     return WORLD_TILES.IMPASSABLE
 end
 
@@ -61,16 +61,16 @@ local TranslateWorldGenChoices = UpvalueHacker.GetUpvalue(_Generate, "TranslateW
 forest_map.Generate = function(prefab, map_width, map_height, tasks, level, level_type, ...)
     assert(level.overrides ~= nil, "Level must have overrides specified.")
 
-	local IsPorkland = level.overrides.isporkland
+	local IsPorkLand = level.overrides.isporkland
 
-    if not IsPorkland then
+    if not IsPorkLand then
         return _Generate(prefab, map_width, map_height, tasks, level, level_type, ...)
     end
 
     WorldSim:SetPointsBarrenOrReservedTile(WORLD_TILES.ROAD)
 	WorldSim:SetResolveNoiseFunction(GetTileForNoiseTile)
 
-	WorldSim:SetValidateGroundTileFunction(ValidateGroundTile_Porkland)
+	WorldSim:SetValidateGroundTileFunction(ValidateGroundTile_PorkLand)
 
     local SpawnFunctions = {
         pickspawnprefab = pickspawnprefab,
@@ -90,7 +90,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     end
 
     if current_gen_params.start_location ~= nil then
-        local start_loc = startlocations.GetStartLocation( current_gen_params.start_location )
+        local start_loc = startlocations.GetStartLocation(current_gen_params.start_location)
         story_gen_params.start_setpeice = type(start_loc.start_setpeice) == "table" and start_loc.start_setpeice[math.random(#start_loc.start_setpeice)] or start_loc.start_setpeice
         story_gen_params.start_node = type(start_loc.start_node) == "table" and start_loc.start_node[math.random(#start_loc.start_node)] or start_loc.start_node
 		if story_gen_params.start_node == nil then
@@ -175,7 +175,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     print("Creating story...")
     require("map/storygen")
-    local topology_save, storygen = BuildPorklandStory(tasks, story_gen_params, level)
+    local topology_save, storygen = BuildPorkLandStory(tasks, story_gen_params, level)
 
 	WorldSim:WorldGen_InitializeNodePoints();
 
@@ -252,7 +252,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     print("Populating voronoi...")
 
 	topology_save.root:GlobalPrePopulate(entities, map_width, map_height)
-    topology_save.root:PorklandConvertGround(SpawnFunctions, entities, map_width, map_height)
+    topology_save.root:PorkLandConvertGround(SpawnFunctions, entities, map_width, map_height)
 	WorldSim:ReplaceSingleNonLandTiles()
 
     if not story_gen_params.keep_disconnected_tiles then
@@ -312,7 +312,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     AncientArchivePass(entities, map_width, map_height, WorldSim)
 
-	-- if IsPorkland then
+	-- if IsPorkLand then
 
 	-- 	-- place jungle border?
 	-- 	local jungle_border_rate = 1
