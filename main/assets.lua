@@ -2,10 +2,13 @@ local resolvefilepath = GLOBAL.resolvefilepath
 local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
+	"peagawk",
+	"peagawk_spawner",
+	"peagawkfeather",
 }
 
 local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
-AddInventoryItemAtlas(resolvefilepath("images/ia_inventoryimages.xml"))
+AddInventoryItemAtlas(resolvefilepath("images/pl_inventoryimages.xml"))
 
 Assets = {
 	Asset("IMAGE", "images/pl_inventoryimages.tex"),

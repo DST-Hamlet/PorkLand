@@ -20,7 +20,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 	    deerclops = "never",
 	    bearger = "never",
 
-        summer = "noseason",
+        spring = "noseason",
 	    perd = "never",  --火鸡
 	    penguins = "never",  -- 企鹅
 	    hunt = "never",  -- 脚印
