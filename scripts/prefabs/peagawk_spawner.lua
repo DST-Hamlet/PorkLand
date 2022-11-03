@@ -6,15 +6,12 @@ local prefabs =
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
-    inst.entity:AddNetwork()
-
-    inst:AddTag("NOBLOCK")
-
     inst.entity:SetPristine()
 
-    if not TheWorld.ismastersim then
-        return inst
-    end
+    inst:AddTag("NOBLOCK")
+    inst:AddTag("CLASSIFIED")
+
+    --[[Non-networked entity]]
 
     inst:AddComponent("childspawner")
     inst.components.childspawner:SetRegenPeriod(TUNING.PEAGAWK_REGEN_TIME)
