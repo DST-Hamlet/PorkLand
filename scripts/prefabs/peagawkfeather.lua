@@ -29,6 +29,10 @@ local function fn()
     inst:AddComponent("tradable")
     inst:AddComponent("stackable")
 
+    MakeSmallBurnable(inst, TUNING.TINY_BURNTIME)
+    MakeSmallPropagator(inst)
+    MakeHauntableLaunch(inst)
+
     return inst
 end
 

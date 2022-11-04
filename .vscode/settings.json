@@ -161,6 +161,9 @@
         "IsSpecialEventActive",
         "EventNode",
         "Wander",
-        "StandStill"
+        "StandStill",
+        "MakeSmallBurnable",
+        "MakeSmallPropagator",
+        "MakeHauntableLaunch"
     ]
 }
