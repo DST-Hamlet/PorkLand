@@ -1,3 +1,4 @@
+require("behaviours/standstill")
 require("behaviours/wander")
 require("behaviours/runaway")
 require("behaviours/doaction")
@@ -15,7 +16,7 @@ local PeagawkBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
 
-local EATFOOD_MUST_TAGS = {"edible_"..FOODTYPE.VEGGIE}
+local EATFOOD_MUST_TAGS = {"edible_" .. FOODTYPE.VEGGIE}
 local EATFOOD_CANT_TAGS = {"INLIMBO"}
 local function EatFoodAction(inst)
     if not inst.is_bush then
@@ -58,11 +59,16 @@ end
 function PeagawkBrain:OnStart()
     local root = PriorityNode(
     {
-        WhileNode(function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
+        WhileNode(function() return self.inst.components.health.takingfiredamage or self.inst.components.hauntable.panic end, "Panic", Panic(self.inst)),
 
-        IfNode(function() return not self.inst.is_bush and not self.inst.components.health:IsDead() end, "ThreatInRange", RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST)),
+        IfNode(function() return not self.inst.components.health:IsDead() end, "ThreatInRange", RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST)),
+
+        WhileNode(function() return self.inst.sg:HasStateTag("attacked") end, "Attacked", Panic(self.inst)),
 
         DoAction(self.inst, EatFoodAction, "Eat Food"),
+
+        IfNode(function() return self.inst.is_bush and not self.inst.components.health:IsDead() end, "Bush", StandStill(self.inst)),
+
         DoAction(self.inst, TransformAction, "Transform", true),
     }, .25)
 

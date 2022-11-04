@@ -1,9 +1,6 @@
 local assets=
 {
-    Asset("ANIM", "anim/peagawk_basic.zip"),
-    Asset("ANIM", "anim/peagawk_actions.zip"),
-    Asset("ANIM", "anim/peagawk_charge.zip"),
-    Asset("ANIM", "anim/peagawk_build.zip"),
+    Asset("ANIM", "anim/peagawk.zip"),
     Asset("ANIM", "anim/eyebush.zip"),
 	-- Asset("SOUND", "sound/perd.fsb"),
 }
@@ -68,7 +65,7 @@ end
 
 local function TransformToAnimal(inst, ignore_state)
     inst.AnimState:SetBank("peagawk")
-    inst.AnimState:SetBuild("peagawk_build")
+    inst.AnimState:SetBuild("peagawk")
     inst.components.inspectable.nameoverride = nil
 
     if not ignore_state then
@@ -147,7 +144,7 @@ local function fn()
     -- MakePoisonableCharacter(inst)
 
     inst.AnimState:SetBank("peagawk")
-    inst.AnimState:SetBuild("peagawk_build")
+    inst.AnimState:SetBuild("peagawk")
     inst.AnimState:Hide("hat")
 
     inst:AddTag("character")

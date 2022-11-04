@@ -158,6 +158,9 @@
         "Task",
         "PLACE_MASK",
         "LAYOUT_POSITION",
-        "IsSpecialEventActive"
+        "IsSpecialEventActive",
+        "EventNode",
+        "Wander",
+        "StandStill"
     ]
 }
