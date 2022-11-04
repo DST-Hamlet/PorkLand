@@ -61,7 +61,7 @@ function PeagawkBrain:OnStart()
     {
         WhileNode(function() return self.inst:HasTag("fire") or self.inst.components.health.takingfiredamage or self.inst.components.hauntable.panic end, "Panic", Panic(self.inst)),
 
-        IfNode(function() return not self.inst.components.health:IsDead() end, "ThreatInRange", RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST)),
+        RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST),
 
         WhileNode(function() return self.inst.sg:HasStateTag("attacked") end, "Attacked", Panic(self.inst)),
 
