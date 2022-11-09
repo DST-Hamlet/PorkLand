@@ -164,6 +164,8 @@
         "StandStill",
         "MakeSmallBurnable",
         "MakeSmallPropagator",
-        "MakeHauntableLaunch"
+        "MakeHauntableLaunch",
+        "MODROOT",
+        "LanguageTranslator"
     ]
 }

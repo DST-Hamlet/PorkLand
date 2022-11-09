@@ -1,0 +1,552 @@
+msgid ""
+msgstr ""
+"Language: it\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT Version: 2.0"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD"
+msgid "Dead-eyed."
+msgstr "Ha smesso per sempre di pavoneggiarsi."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.GENERIC"
+msgid "That bush is alive!"
+msgstr "Quel cespuglio è vivo!"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "It's getting some shut-eye."
+msgstr "Sta facendo un sonnellino."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWKFEATHER"
+msgid "Still blinking."
+msgstr "Occhio a quello che c'è qui."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH"
+msgid "Look! An iris bush."
+msgstr "Guardate! Un cespuglio variopinto."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD"
+msgid "Evidently, it didn't see that coming."
+msgstr "Evidentemente non se l'aspettava."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Curious. Can it see out of all of those ocular quills?"
+msgstr "Curioso! Riesce a vedere attraverso quelle piume oculari?"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Perhaps I can now pluck one of its ocular quills."
+msgstr "Forse ora posso estirpare una delle sue piume oculari."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWKFEATHER"
+msgid "Theoretically, there's an intact nervous system that keeps the eye  moving."
+msgstr "Teoricamente c'è un sistema nervoso intatto che mantiene l'occhio in movimento."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.GENERIC"
+msgid "I'm experiencing the inescapable perception that I'm being watched."
+msgstr "Ho l'inevitabile percezione di essere osservato."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
+msgid "That insight that spied on me was gone."
+msgstr "Quell'intuizione che mi spiava era sparita."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD"
+msgid "Dang. It's dead."
+msgstr "Cavolo. È morto."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Beautiful eyes, dude!"
+msgstr "Ehi, che occhioni!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "You need to shut all your eyes to get proper shut-eye!"
+msgstr "Devi chiudere tutti gli occhi se vuoi davvero \"chiudere un occhio\"!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWKFEATHER"
+msgid "Nature makes such pretty things."
+msgstr "La natura fa delle cose così belle..."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
+msgid "What a cool looking bush!"
+msgstr "Che fico questo cespuglio!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Wow, how many eyes are there?"
+msgstr "Wow, quanti occhi ci sono?"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Warby, we might be able to gather his feathers while he's asleep."
+msgstr "Warby, potremmo riuscire a raccogliere le sue piume mentre dorme."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWKFEATHER"
+msgid "method is valid."
+msgstr "metodo è valido."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
+msgid "This bird can't fly, but turns into a bush!"
+msgstr "Questo uccello non può volare, ma si trasforma in un cespuglio!"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC"
+msgid "See no evil!"
+msgstr "Non vedere il male!"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Shouldn't it be looking at me?"
+msgstr "Non dovrebbe guardarmi?"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWKFEATHER"
+msgid "It's hard to see."
+msgstr "È difficile da vedere."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
+msgid "What a clever disguise."
+msgstr "Che travestimento intelligente."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD"
+msgid "A pointless death."
+msgstr "Una morte inutile."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Those feathers would make a nice table centerpiece."
+msgstr "Quelle piume sarebbero un bel centrotavola."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Those eyes are unnerving."
+msgstr "Quegli occhi sono inquietanti."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWKFEATHER"
+msgid "It's quite soft."
+msgstr "È morbidissima."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
+msgid "It's a bright blue bush."
+msgstr "È un cespuglio di un blu brillante."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD"
+msgid "Even in death its eyes stare into my soul."
+msgstr "Anche da morto i suoi occhi fissano la mia anima."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.GENERIC"
+msgid "It has the eyes of Odin."
+msgstr "Ha gli occhi di Odino."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "I cannot tell if it is awake or sleep."
+msgstr "Non so dire se sia sveglio o se dorma."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWKFEATHER"
+msgid "A priceless beauty."
+msgstr "Una bellezza inestimabile."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
+msgid "Do you think you can hide from me?"
+msgstr "Pensi di poterti nascondere da me?"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD"
+msgid "It's beauty has been snuffed out forever."
+msgstr "La sua bellezza è stata spenta per sempre."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.GENERIC"
+msgid "What a regal-looking beast."
+msgstr "Che bestia dall'aspetto regale."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "It is eye-dol."
+msgstr "Non si può dire che non chiuda occhio."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWKFEATHER"
+msgid "What finery."
+msgstr "Che raffinatezza."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
+msgid "I've my suspicions about that bush."
+msgstr "Ho i miei sospetti su quel cespuglio."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD"
+msgid "I think it's dead."
+msgstr "Credo sia morto."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.GENERIC"
+msgid "You've got more eyes than we do!"
+msgstr "Hai più occhi di noi!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Now I can get a good look at its beautiful feathers."
+msgstr "Ora posso dare una bella occhiata alle sue magnifiche piume."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWKFEATHER"
+msgid "It's pretty."
+msgstr "È grazioso."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
+msgid "Neat. A weird bush!"
+msgstr "Che bello, uno strano cespuglio!"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD"
+msgid "Beautiful death."
+msgstr "Morte e bellezza."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Many eyes witness many horrors in life."
+msgstr "Quanti occhi testimoni dei tanti orrori della vita."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Alas, only a momentary reprieve from life."
+msgstr "Purtroppo la sua è solo una tregua momentanea dalla vita."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWKFEATHER"
+msgid "I spy, with my little eye..."
+msgstr "Occhio alla penna..."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH"
+msgid "Just a bush..."
+msgstr "È solo un cespuglio..."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD"
+msgid "I promise, I will go on without you!"
+msgstr "Prometto: andrò avanti senza di te!"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Has the eyesight for flying but not the wings for it."
+msgstr "La sua vista aguzza è perfetta per il volo, mentre le sue ali..."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Maybe I can just pluck out one of those feathers..."
+msgstr "Se gli strappassi una di quelle piume..."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWKFEATHER"
+msgid "Normally I don't mind feathers, but this one keeps staring at me."
+msgstr "Di solito le piume non mi dicono niente, ma questa continua a fissarmi."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
+msgid "Something's hiding in there."
+msgstr "Lì dentro c'è nascosto qualcosa."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD"
+msgid "Lifeless."
+msgstr "Senza vita."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.GENERIC"
+msgid "A strangely mutated Pavo Cristatus."
+msgstr "Un Pavo cristatus con una strana mutazione."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "It's ocular plumage appears not to need sleep."
+msgstr "Dal piumaggio oculare sembra che non abbia bisogno di dormire."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWKFEATHER"
+msgid "Feather of the male Pavo Cristatus."
+msgstr "Piuma di un esemplare maschio di Pavo cristatus."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
+msgid "I have questions about that bush."
+msgstr "Ho delle domande su quel cespuglio."
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD"
+msgid "IS'T EYES LOOKED IS'T LAST"
+msgstr "HA FATTO PER SEMPRE CIAO CIAO"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.GENERIC"
+msgid "WHAT A ROGUE AND PEASANT SLAVE AM EYE-BIRD!"
+msgstr "QUESTO UCCELLONE GUARDA CON TANTI TANTI OCCHI"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "O GENTLE SLEEP!"
+msgstr "DORMI DORMI!"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWKFEATHER"
+msgid "IS'T A BIRD THING O' PRETTY"
+msgstr "QUESTA È UNA COSA CARINA CARINA PER UCCELLINI"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
+msgid "'TIS NAUGHT A BUSH"
+msgstr "QUESTO NON È UN CESPUGLIO"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD"
+msgid "Very dead."
+msgstr "Più morto di così."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Jeepers peepers!"
+msgstr "Anche l'occhio vuole la sua parte!"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "I wonder what burning feathers smell like."
+msgstr "Chissà che odore hanno le piume bruciate..."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWKFEATHER"
+msgid "Fancy feathers."
+msgstr "Piume fantasia."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
+msgid "A bush. I think."
+msgstr "Un cespuglio. Credo."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Always be vigilant."
+msgstr "Sii sempre vigile."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "It let down its guard."
+msgstr "Ha abbassato la guardia."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWKFEATHER"
+msgid "It's still looking at me."
+msgstr "Mi sta ancora guardando."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
+msgid "A vigilant bush, how strange!"
+msgstr "Un cespuglio vigile, che strano!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD"
+msgid "Is blink-blink no more."
+msgstr "Non si pavoneggia più."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Funny blink-blink bird!"
+msgstr "Divertente uccello che si pavoneggia!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Is sleep, but eyes still blink-blink."
+msgstr "Dorme, ma con gli occhi si pavoneggia."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWKFEATHER"
+msgid "Is blink-blink bird feather."
+msgstr "È la piuma dell'uccello che si pavoneggia."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
+msgid "Is just bush."
+msgstr "È solo un cespuglio."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD"
+msgid "It's a goner."
+msgstr "È andato."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Filthy animal!"
+msgstr "Sporco animale!"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Catching forty winks."
+msgstr "Sta schiacciando un pisolino."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWKFEATHER"
+msgid "It has a foul bird stench."
+msgstr "Puzza di uccello ripugnante."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
+msgid "There's a wretched bird nearby. I feel it."
+msgstr "C'è uno di quei malvagi uccelli nelle vicinanze. Lo sento."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD"
+msgid "It tells no tales."
+msgstr "Se n'è andato."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Arr, them eyes need patches!"
+msgstr "Arr, ha bisogno di qualche benda per occhi!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "She be grabbin' some shuteye."
+msgstr "Si sta riposando un po'."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWKFEATHER"
+msgid "Feather'o'glimmer."
+msgstr "Piume scintillanti."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
+msgid "'Tis unsettlin' t'b'sure."
+msgstr "È inquietante."
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD"
+msgid "Oh dear"
+msgstr "Oh cielo"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Gubble Gubble Tweeter"
+msgstr "Cip cip glugluglu"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Sleeping?"
+msgstr "Dorme?"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWKFEATHER"
+msgid "Gubble Gubble Tweeter clothes"
+msgstr "Vestito di cip cip glugluglu"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH"
+msgid "Looking good!"
+msgstr "Bello!"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC"
+msgid "You must have seen a lot, right?"
+msgstr "Devi aver visto molto, vero?"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "Huh, let's close our eyes and take a break?"
+msgstr "Eh, chiudiamo gli occhi e facciamo una pausa?"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWKFEATHER"
+msgid "Feather of a small peacock."
+msgstr "Piuma di piccolo pavone."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
+msgid "Well, this trick can't fool me."
+msgstr "Bene, questo trucco non può ingannarmi."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC"
+msgid "Big weird bird."
+msgstr "Grande uccello strano."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "The big monster fell asleep?"
+msgstr "Il grande mostro si è addormentato?"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWKFEATHER"
+msgid "There are big monster eyes on it."
+msgstr "Ci sono grandi occhi da mostro su di esso."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
+msgid "Pretty feather bush."
+msgstr "Grazioso cespuglio di piume."
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD"
+msgid "NONFUNCTIONING"
+msgstr "NON FUNZIONA"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.GENERIC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.GENERIC"
+msgid "EXCESSIVE OCULAR MODULES ARE INEFFICIENT"
+msgstr "I MODULI OCULARI ECCESSIVI SONO INEFFICIENTI"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.SLEEPING"
+msgid "IDLING"
+msgstr "INATTIVO"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWKFEATHER
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWKFEATHER"
+msgid "IT HAS BEEN SEPARATED FROM ITS BIRD"
+msgstr "È STATA SEPARATA DAL SUO PENNUTO"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
+msgid "GROUND PART"
+msgstr "ZOLLA DI TERRENO"
+
+#. STRINGS.NAMES.PEAGAWK
+msgctxt "STRINGS.NAMES.PEAGAWK"
+msgid "Peagawk"
+msgstr "Pavoffo"
+
+#. STRINGS.NAMES.PEAGAWKFEATHER
+msgctxt "STRINGS.NAMES.PEAGAWKFEATHER"
+msgid "Peagawk Plume"
+msgstr "Piuma di pavoffo"
+
+#. STRINGS.NAMES.PEAGAWK_BUSH
+msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
+msgid "Blinkbush"
+msgstr "Cespugliocchiolino"
+

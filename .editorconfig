@@ -1,6 +1,6 @@
 root = true
 
-[*.(lua, xml)]
+[*.(lua, xml, po, pot)]
 charset = utf-8
 end_of_line = lf
 indent_style = space
