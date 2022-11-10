@@ -1,10 +1,12 @@
-local TUNING = GLOBAL.TUNING
-local seg_time = TUNING.SEG_TIME 
+GLOBAL.setfenv(1, GLOBAL)
+
+local seg_time = TUNING.SEG_TIME
 local day_time = TUNING.DAY_SEGS_DEFAULT * seg_time
 local dusk_time = TUNING.DUSK_SEGS_DEFAULT * seg_time
 local night_time = TUNING.NIGHT_SEGS_DEFAULT * seg_time
-local wilson_attack = TUNING.SPEAR_DAMAGE
 local total_day_time = TUNING.TOTAL_DAY_TIME
+
+local wilson_attack = TUNING.SPEAR_DAMAGE
 local wilson_health = TUNING.WILSON_HEALTH
 
 local tuning = {
@@ -28,7 +30,7 @@ local tuning = {
 
 for key, value in pairs(tuning) do
     if TUNING[key] then
-        print("waring, override" .. key .. "in TUNING")
+        error("can't override" .. key .. "in TUNING")
     end
 
     TUNING[key] = value

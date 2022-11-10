@@ -8,7 +8,7 @@ local function onfinished(inst)
     inst:Remove()
 end
 
-local function onequip(inst, owner) 
+local function onequip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_object", "swap_shears", "swap_shears")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
@@ -28,18 +28,18 @@ local function fn()
 
     MakeInventoryPhysics(inst)
 	MakeInventoryFloatable(inst)
-    
+
     inst.AnimState:SetBank("shears")
     inst.AnimState:SetBuild("shears")
     inst.AnimState:PlayAnimation("idle")
 
-    inst:AddTag("shears")	
+    inst:AddTag("shears")
 
     inst.entity:SetPristine()
 
 	if not TheWorld.ismastersim then
 		return inst
-	end	
+	end
 
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(TUNING.SHEARS_DAMAGE)
@@ -50,21 +50,21 @@ local function fn()
     inst:AddComponent("finiteuses")
     inst.components.finiteuses:SetMaxUses(TUNING.SHEARS_USES)
     inst.components.finiteuses:SetUses(TUNING.SHEARS_USES)
-    
+
     inst.components.finiteuses:SetOnFinished(onfinished)
     inst.components.finiteuses:SetConsumption(ACTIONS.SHEAR, 1)
 
     inst:AddComponent("equippable")
-	
+
     inst:AddComponent("inspectable")
     inst:AddComponent("inventoryitem")
-	
+
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)
-    
+
     MakeHauntablePanic(inst)
 
     return inst
 end
 
-return Prefab("shears", fn, assets) 
+return Prefab("shears", fn, assets)

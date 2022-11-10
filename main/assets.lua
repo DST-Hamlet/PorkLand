@@ -5,7 +5,6 @@ PrefabFiles = {
 	"peagawk",
 	"peagawk_spawner",
 	"peagawkfeather",
-
 	"shears",
 }
 
