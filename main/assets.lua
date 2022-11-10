@@ -6,7 +6,7 @@ PrefabFiles = {
 	"peagawk_spawner",
 	"peagawkfeather",
 
-	--"shears",
+	"shears",
 }
 
 local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
@@ -17,7 +17,7 @@ Assets = {
     Asset("ATLAS", "images/pl_inventoryimages.xml"),
 	Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  --For minisign
 
-	-- Asset("ANIM", "anim/player_actions_shear.zip"),
+	Asset("ANIM", "anim/player_actions_shear.zip"),
 }
 
 AddMinimapAtlas("images/minimap/pl_minimap.xml")

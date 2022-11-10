@@ -2,7 +2,6 @@ local assets=
 {
     Asset("ANIM", "anim/shears.zip"),
     Asset("ANIM", "anim/swap_shears.zip"),
-    Asset("INV_IMAGE", "shears"),
 }
 
 local function onfinished(inst)
@@ -20,7 +19,7 @@ local function onunequip(inst, owner)
     owner.AnimState:Show("ARM_normal")
 end
 
-local function fn(inst, Sim)
+local function fn(Sim)
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
@@ -30,9 +29,9 @@ local function fn(inst, Sim)
     MakeInventoryPhysics(inst)
 	MakeInventoryFloatable(inst)
     
-    anim:SetBank("shears")
-    anim:SetBuild("shears")
-    anim:PlayAnimation("idle")
+    inst:SetBank("shears")
+    inst:SetBuild("shears")
+    inst:PlayAnimation("idle")
 	
     inst:AddTag("shears")	
 
@@ -52,7 +51,7 @@ local function fn(inst, Sim)
     inst.components.finiteuses:SetMaxUses(TUNING.SHEARS_USES)
     inst.components.finiteuses:SetUses(TUNING.SHEARS_USES)
     
-    inst.components.finiteuses:SetOnFinished( onfinished )
+    inst.components.finiteuses:SetOnFinished(onfinished)
     inst.components.finiteuses:SetConsumption(ACTIONS.SHEAR, 1)
 
     inst:AddComponent("equippable")
@@ -60,12 +59,12 @@ local function fn(inst, Sim)
     inst:AddComponent("inspectable")
     inst:AddComponent("inventoryitem")
 	
-    inst.components.equippable:SetOnEquip( onequip )
-    inst.components.equippable:SetOnUnequip( onunequip )
+    inst.components.equippable:SetOnEquip(onequip)
+    inst.components.equippable:SetOnUnequip(onunequip)
     
     MakeHauntablePanic(inst)
 
     return inst
 end
 
-return Prefab( "common/inventory/shears", fn, assets) 
+return Prefab("shears", fn, assets) 
