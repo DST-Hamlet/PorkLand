@@ -1,4 +1,4 @@
-local assets=
+local assets =
 {
     Asset("ANIM", "anim/shears.zip"),
     Asset("ANIM", "anim/swap_shears.zip"),
@@ -19,7 +19,7 @@ local function onunequip(inst, owner)
     owner.AnimState:Show("ARM_normal")
 end
 
-local function fn(Sim)
+local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
@@ -29,10 +29,10 @@ local function fn(Sim)
     MakeInventoryPhysics(inst)
 	MakeInventoryFloatable(inst)
     
-    inst:SetBank("shears")
-    inst:SetBuild("shears")
-    inst:PlayAnimation("idle")
-	
+    inst.AnimState:SetBank("shears")
+    inst.AnimState:SetBuild("shears")
+    inst.AnimState:PlayAnimation("idle")
+
     inst:AddTag("shears")	
 
     inst.entity:SetPristine()
