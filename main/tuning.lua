@@ -1,3 +1,18 @@
+-- local seg_time = 30 
+-- local total_day_time = seg_time*16
+-- local day_segs = 10
+-- local dusk_segs = 4
+-- local night_segs = 2
+
+-- local day_time = seg_time * day_segs
+-- local dusk_time = seg_time * dusk_segs
+-- local night_time = seg_time * night_segs
+local wilson_attack = 34
+-- local wilson_health = 150
+-- local calories_per_day = 75
+-- local wilson_attack_period = .5
+
+-- local perish_warp = 1--/200
 
 local tuning = {
     PEAGAWK_DAMAGE = 20,
@@ -13,6 +28,10 @@ local tuning = {
     PEAGAWK_RELEASE_TIME = 5,
     PEAGAWK_MAX = 1,
     PEAGAWK_ENABLED = true,
+
+
+    SHEARS_DAMAGE = wilson_attack * .5,
+    SHEARS_USES = 20,
 }
 
 for key, value in pairs(tuning) do

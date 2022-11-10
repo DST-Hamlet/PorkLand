@@ -5,6 +5,8 @@ PrefabFiles = {
 	"peagawk",
 	"peagawk_spawner",
 	"peagawkfeather",
+
+	--"shears",
 }
 
 local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
