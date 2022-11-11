@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "It's quite soft.",
 		PEAGAWK_BUSH = "It's a bright blue bush.",
+		SHEARS = "Good for cutting hedges and grass.",
 	},
 }

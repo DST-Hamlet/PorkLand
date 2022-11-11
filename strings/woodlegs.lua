@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "Feather'o'glimmer.",
 		PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
+		SHEARS = "A cutlass fer tha'bushes.",
 	},
 }

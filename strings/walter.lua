@@ -6,5 +6,6 @@ return {
 		},
 		PEAGAWKFEATHER = "method is valid.",
 		PEAGAWK_BUSH = "This bird can't fly, but turns into a bush!",
+		SHEARS = "Gardener's little helper.",
 	},
 }

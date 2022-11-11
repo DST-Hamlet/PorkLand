@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "Normally I don't mind feathers, but this one keeps staring at me.",
 		PEAGAWK_BUSH = "Something's hiding in there.",
+		SHEARS = "Time to do some yard work.",
 	},
 }

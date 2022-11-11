@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "It's pretty.",
 		PEAGAWK_BUSH = "Neat. A weird bush!",
+		SHEARS = "It's for chores like trimming hedges or cutting grass.",
 	},
 }

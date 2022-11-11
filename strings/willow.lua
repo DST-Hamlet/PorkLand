@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "Fancy feathers.",
 		PEAGAWK_BUSH = "A bush. I think.",
+		SHEARS = "Not as good as fire, but I guess it has its uses.",
 	},
 }

@@ -6,5 +6,6 @@ return {
 		},
 		PEAGAWKFEATHER = "It's still looking at me.",
 		PEAGAWK_BUSH = "A vigilant bush, how strange!",
+		SHEARS = "Shears for gardening.",
 	},
 }

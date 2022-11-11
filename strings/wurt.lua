@@ -6,5 +6,6 @@ return {
 		},
 		PEAGAWKFEATHER = "There are big monster eyes on it.",
 		PEAGAWK_BUSH = "Pretty feather bush.",
+		SHEARS = "Shape the plants.",
 	},
 }

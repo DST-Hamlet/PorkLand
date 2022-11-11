@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "I spy, with my little eye...",
 		PEAGAWK_BUSH = "Just a bush...",
+		SHEARS = "Can it shear my heart?",
 	},
 }

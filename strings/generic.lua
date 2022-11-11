@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "Still blinking.",
 		PEAGAWK_BUSH = "Look! An iris bush.",
+		SHEARS = "Shear-ly delightful.",
 	},
 }

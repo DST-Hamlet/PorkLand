@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
 		PEAGAWK_BUSH = "I have questions about that bush.",
+		SHEARS = "A useful tool for horticultural purposes.",
 	},
 }

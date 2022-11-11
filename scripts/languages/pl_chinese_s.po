@@ -5,6 +5,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT Version: 2.0"
 
+#. STRINGS.ACTIONS.SHEAR
+msgctxt "STRINGS.ACTIONS.SHEAR"
+msgid "Shear"
+msgstr "剪"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD"
 msgid "Dead-eyed."
@@ -30,6 +35,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH"
 msgid "Look! An iris bush."
 msgstr "看！一丛鸢尾灌木。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
+msgid "Shear-ly delightful."
+msgstr "修剪东西时的声音很好听。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD"
 msgid "Evidently, it didn't see that coming."
@@ -47,7 +57,7 @@ msgstr "我现在说不定能拔它一根眼翎。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWKFEATHER
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWKFEATHER"
-msgid "Theoretically, there's an intact nervous system that keeps the eye  moving."
+msgid "Theoretically, there's an intact nervous system that keeps the eye moving."
 msgstr "从理论上讲，这羽毛有完整的神经系统，可以让上面的眼球动起来。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.GENERIC
@@ -59,6 +69,11 @@ msgstr "我感觉我被一种不可避免的洞察力所监视。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
 msgid "That insight that spied on me was gone."
 msgstr "那种监视我的洞察力消失了。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
+msgid "Cutting implements constructed from raw metal."
+msgstr "用生铁制成的切割工具。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD"
@@ -85,6 +100,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a cool looking bush!"
 msgstr "多么酷的一丛灌木啊！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
+msgid "What am I supposed to do with these?"
+msgstr "我应该用它来做什么呢？"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Wow, how many eyes are there?"
@@ -105,6 +125,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
 msgid "This bird can't fly, but turns into a bush!"
 msgstr "这种鸟不会飞，但是会变成灌木丛！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
+msgid "Gardener's little helper."
+msgstr "园丁的小帮手。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "See no evil!"
@@ -124,6 +149,11 @@ msgstr "真是令人难以直视。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a clever disguise."
 msgstr "真是聪明的伪装。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
+msgid "I won't waste my time on this."
+msgstr "我可不会把时间浪费在这上面。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD"
@@ -150,6 +180,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
 msgid "It's a bright blue bush."
 msgstr "亮蓝色的灌木丛。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
+msgid "Good for cutting hedges and grass."
+msgstr "适合用来修剪树篱和草坪."
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD"
 msgid "Even in death its eyes stare into my soul."
@@ -174,6 +209,11 @@ msgstr "一根无价之宝。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
 msgid "Do you think you can hide from me?"
 msgstr "你觉得你能藏起来不让我发现吗？"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
+msgid "A weapon for use against a mighty hedge!"
+msgstr "一件用来对付大树篱的武器！"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD"
@@ -200,6 +240,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
 msgid "I've my suspicions about that bush."
 msgstr "我对那丛灌木表示怀疑。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
+msgid "Aren't there gardeners for this sort of thing?"
+msgstr "不是有园丁干这些事情吗？"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I think it's dead."
@@ -224,6 +269,11 @@ msgstr "它真美。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Neat. A weird bush!"
 msgstr "优美但又有点奇怪的灌木丛！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
+msgid "It's for chores like trimming hedges or cutting grass."
+msgstr "这是用来修剪篱笆或者剪草的。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD"
@@ -250,6 +300,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH"
 msgid "Just a bush..."
 msgstr "只是一个灌木丛…"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
+msgid "Can it shear my heart?"
+msgstr "它能剪下我的心吗？"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I promise, I will go on without you!"
@@ -274,6 +329,11 @@ msgstr "通常来说我不会在意一根羽毛，但是这根羽毛它一直在
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Something's hiding in there."
 msgstr "有东西藏在那里。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
+msgid "Time to do some yard work."
+msgstr "是时候到庭院里修剪园艺树了。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD"
@@ -300,6 +360,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
 msgid "I have questions about that bush."
 msgstr "我对那灌木丛有些疑惑。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
+msgid "A useful tool for horticultural purposes."
+msgstr "有用的园艺工具。"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD"
 msgid "IS'T EYES LOOKED IS'T LAST"
@@ -324,6 +389,11 @@ msgstr "这个鸟羽真是漂亮啊"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
 msgid "'TIS NAUGHT A BUSH"
 msgstr "它不是灌木丛"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
+msgid "FOR THE CUTTINGS OF THE SHRUBS"
+msgstr "为了修剪灌木丛"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD"
@@ -350,6 +420,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
 msgid "A bush. I think."
 msgstr "一株灌木丛，至少我觉得是。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
+msgid "Not as good as fire, but I guess it has its uses."
+msgstr "不如火好，但我想它有它的用途。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Always be vigilant."
@@ -369,6 +444,11 @@ msgstr "它还在看着我。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
 msgid "A vigilant bush, how strange!"
 msgstr "一株会警惕的灌木丛，真是奇怪！"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
+msgid "Shears for gardening."
+msgstr "用于园艺的剪刀。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD"
@@ -395,6 +475,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
 msgid "Is just bush."
 msgstr "仅仅是灌木丛。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
+msgid "Is for cutting plant things."
+msgstr "用来修剪植物。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD"
 msgid "It's a goner."
@@ -419,6 +504,11 @@ msgstr "它散发着一股鸟腥味。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
 msgid "There's a wretched bird nearby. I feel it."
 msgstr "这附近有一只卑鄙的鸟。我能感觉到它。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
+msgid "Don't get jealous, Lucy."
+msgstr "别嫉妒，露西。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD"
@@ -445,6 +535,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
 msgid "'Tis unsettlin' t'b'sure."
 msgstr "这灌木很令人不安。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
+msgid "A cutlass fer tha'bushes."
+msgstr "一把修剪灌木丛的刀。"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD"
 msgid "Oh dear"
@@ -470,6 +565,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH"
 msgid "Looking good!"
 msgstr "看上去不错！"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
+msgid "For hair cuts"
+msgstr "可以剪头发"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC"
 msgid "You must have seen a lot, right?"
@@ -490,6 +590,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
 msgid "Well, this trick can't fool me."
 msgstr "哼，这点把戏骗不过我。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
+msgid "Click, click, leaves fall."
+msgstr "咔嚓咔嚓，枝叶落下。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Big weird bird."
@@ -509,6 +614,11 @@ msgstr "上面有大怪鸟的眼睛。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
 msgid "Pretty feather bush."
 msgstr "漂亮的羽毛灌木。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
+msgid "Shape the plants."
+msgstr "给植物做造型。"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD"
@@ -535,6 +645,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
 msgid "GROUND PART"
 msgstr "地面部分"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
+msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
+msgstr "我可以用它来打败一些植物！"
+
 #. STRINGS.NAMES.PEAGAWK
 msgctxt "STRINGS.NAMES.PEAGAWK"
 msgid "Peagawk"
@@ -549,4 +664,14 @@ msgstr "呆望雀羽毛"
 msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
 msgid "Blinkbush"
 msgstr "眨眼的灌木丛"
+
+#. STRINGS.NAMES.SHEARS
+msgctxt "STRINGS.NAMES.SHEARS"
+msgid "Shears"
+msgstr "剪刀"
+
+#. STRINGS.RECIPE_DESC.SHEARS
+msgctxt "STRINGS.RECIPE_DESC.SHEARS"
+msgid "Cut your way into adventure."
+msgstr "进入你的冒险之路。"
 

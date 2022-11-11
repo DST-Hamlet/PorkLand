@@ -6,5 +6,6 @@ return {
 		},
 		PEAGAWKFEATHER = "Feather of a small peacock.",
 		PEAGAWK_BUSH = "Well, this trick can't fool me.",
+		SHEARS = "Click, click, leaves fall.",
 	},
 }

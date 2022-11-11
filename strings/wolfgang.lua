@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "Is blink-blink bird feather.",
 		PEAGAWK_BUSH = "Is just bush.",
+		SHEARS = "Is for cutting plant things.",
 	},
 }

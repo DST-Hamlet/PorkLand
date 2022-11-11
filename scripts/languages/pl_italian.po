@@ -5,6 +5,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT Version: 2.0"
 
+#. STRINGS.ACTIONS.SHEAR
+msgctxt "STRINGS.ACTIONS.SHEAR"
+msgid "Shear"
+msgstr "Tosa"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD"
 msgid "Dead-eyed."
@@ -30,6 +35,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH"
 msgid "Look! An iris bush."
 msgstr "Guardate! Un cespuglio variopinto."
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
+msgid "Shear-ly delightful."
+msgstr "Ci darei un taglio."
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD"
 msgid "Evidently, it didn't see that coming."
@@ -47,7 +57,7 @@ msgstr "Forse ora posso estirpare una delle sue piume oculari."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWKFEATHER
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWKFEATHER"
-msgid "Theoretically, there's an intact nervous system that keeps the eye  moving."
+msgid "Theoretically, there's an intact nervous system that keeps the eye moving."
 msgstr "Teoricamente c'è un sistema nervoso intatto che mantiene l'occhio in movimento."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.GENERIC
@@ -59,6 +69,11 @@ msgstr "Ho l'inevitabile percezione di essere osservato."
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
 msgid "That insight that spied on me was gone."
 msgstr "Quell'intuizione che mi spiava era sparita."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
+msgid "Cutting implements constructed from raw metal."
+msgstr "Utensile da taglio costruito in metallo grezzo."
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD"
@@ -85,6 +100,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a cool looking bush!"
 msgstr "Che fico questo cespuglio!"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
+msgid "What am I supposed to do with these?"
+msgstr "Che cosa dovrei farci con queste?"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Wow, how many eyes are there?"
@@ -105,6 +125,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
 msgid "This bird can't fly, but turns into a bush!"
 msgstr "Questo uccello non può volare, ma si trasforma in un cespuglio!"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
+msgid "Gardener's little helper."
+msgstr "Il piccolo aiutante del giardiniere."
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "See no evil!"
@@ -124,6 +149,11 @@ msgstr "È difficile da vedere."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a clever disguise."
 msgstr "Che travestimento intelligente."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
+msgid "I won't waste my time on this."
+msgstr "Non perderò tempo con questo."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD"
@@ -150,6 +180,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
 msgid "It's a bright blue bush."
 msgstr "È un cespuglio di un blu brillante."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
+msgid "Good for cutting hedges and grass."
+msgstr "Ottime per potare siepi ed erba."
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD"
 msgid "Even in death its eyes stare into my soul."
@@ -174,6 +209,11 @@ msgstr "Una bellezza inestimabile."
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
 msgid "Do you think you can hide from me?"
 msgstr "Pensi di poterti nascondere da me?"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
+msgid "A weapon for use against a mighty hedge!"
+msgstr "Un'arma da usare contro una potente siepe!"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD"
@@ -200,6 +240,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
 msgid "I've my suspicions about that bush."
 msgstr "Ho i miei sospetti su quel cespuglio."
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
+msgid "Aren't there gardeners for this sort of thing?"
+msgstr "Non ci sono giardinieri per questo genere di cose?"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I think it's dead."
@@ -224,6 +269,11 @@ msgstr "È grazioso."
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Neat. A weird bush!"
 msgstr "Che bello, uno strano cespuglio!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
+msgid "It's for chores like trimming hedges or cutting grass."
+msgstr "Per lavori come potare le siepi o tagliare l'erba."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD"
@@ -250,6 +300,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH"
 msgid "Just a bush..."
 msgstr "È solo un cespuglio..."
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
+msgid "Can it shear my heart?"
+msgstr "Possono tagliare le funi che attanagliano il mio cuore?"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I promise, I will go on without you!"
@@ -274,6 +329,11 @@ msgstr "Di solito le piume non mi dicono niente, ma questa continua a fissarmi."
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Something's hiding in there."
 msgstr "Lì dentro c'è nascosto qualcosa."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
+msgid "Time to do some yard work."
+msgstr "È ora di fare un po' di lavori in giardino."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD"
@@ -300,6 +360,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
 msgid "I have questions about that bush."
 msgstr "Ho delle domande su quel cespuglio."
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
+msgid "A useful tool for horticultural purposes."
+msgstr "Uno strumento utile a scopri orticoli."
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD"
 msgid "IS'T EYES LOOKED IS'T LAST"
@@ -324,6 +389,11 @@ msgstr "QUESTA È UNA COSA CARINA CARINA PER UCCELLINI"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
 msgid "'TIS NAUGHT A BUSH"
 msgstr "QUESTO NON È UN CESPUGLIO"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
+msgid "FOR THE CUTTINGS OF THE SHRUBS"
+msgstr "PER TAGLIARE GLI ARBUSTI"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD"
@@ -350,6 +420,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
 msgid "A bush. I think."
 msgstr "Un cespuglio. Credo."
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
+msgid "Not as good as fire, but I guess it has its uses."
+msgstr "Non sono allo stesso livello del fuoco, ma potrebbero tornarmi utili."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Always be vigilant."
@@ -369,6 +444,11 @@ msgstr "Mi sta ancora guardando."
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
 msgid "A vigilant bush, how strange!"
 msgstr "Un cespuglio vigile, che strano!"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
+msgid "Shears for gardening."
+msgstr "Cesoie per giardinaggio."
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD"
@@ -395,6 +475,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
 msgid "Is just bush."
 msgstr "È solo un cespuglio."
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
+msgid "Is for cutting plant things."
+msgstr "Servono per tagliare le piante."
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD"
 msgid "It's a goner."
@@ -419,6 +504,11 @@ msgstr "Puzza di uccello ripugnante."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
 msgid "There's a wretched bird nearby. I feel it."
 msgstr "C'è uno di quei malvagi uccelli nelle vicinanze. Lo sento."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
+msgid "Don't get jealous, Lucy."
+msgstr "Non fare la gelosa, Lucy."
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD"
@@ -445,6 +535,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
 msgid "'Tis unsettlin' t'b'sure."
 msgstr "È inquietante."
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
+msgid "A cutlass fer tha'bushes."
+msgstr "Una sciabola per i cespugli."
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD"
 msgid "Oh dear"
@@ -470,6 +565,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH"
 msgid "Looking good!"
 msgstr "Bello!"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
+msgid "For hair cuts"
+msgstr "Per tagliare capelli"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC"
 msgid "You must have seen a lot, right?"
@@ -490,6 +590,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
 msgid "Well, this trick can't fool me."
 msgstr "Bene, questo trucco non può ingannarmi."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
+msgid "Click, click, leaves fall."
+msgstr "Clicca, clicca, le foglie cadono."
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Big weird bird."
@@ -509,6 +614,11 @@ msgstr "Ci sono grandi occhi da mostro su di esso."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
 msgid "Pretty feather bush."
 msgstr "Grazioso cespuglio di piume."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
+msgid "Shape the plants."
+msgstr "Dai forma alle piante."
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD"
@@ -535,6 +645,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
 msgid "GROUND PART"
 msgstr "ZOLLA DI TERRENO"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
+msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
+msgstr "CON QUESTE SCONFIGGERÒ UN PO' DI VEGETAZIONE!"
+
 #. STRINGS.NAMES.PEAGAWK
 msgctxt "STRINGS.NAMES.PEAGAWK"
 msgid "Peagawk"
@@ -549,4 +664,14 @@ msgstr "Piuma di pavoffo"
 msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
 msgid "Blinkbush"
 msgstr "Cespugliocchiolino"
+
+#. STRINGS.NAMES.SHEARS
+msgctxt "STRINGS.NAMES.SHEARS"
+msgid "Shears"
+msgstr "Cesoie"
+
+#. STRINGS.RECIPE_DESC.SHEARS
+msgctxt "STRINGS.RECIPE_DESC.SHEARS"
+msgid "Cut your way into adventure."
+msgstr "Le usi per farti strada nell'avventura."
 

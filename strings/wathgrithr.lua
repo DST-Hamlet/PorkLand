@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "A priceless beauty.",
 		PEAGAWK_BUSH = "Do you think you can hide from me?",
+		SHEARS = "A weapon for use against a mighty hedge!",
 	},
 }

@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "Nature makes such pretty things.",
 		PEAGAWK_BUSH = "What a cool looking bush!",
+		SHEARS = "What am I supposed to do with these?",
 	},
 }

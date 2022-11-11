@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "What finery.",
 		PEAGAWK_BUSH = "I've my suspicions about that bush.",
+		SHEARS = "Aren't there gardeners for this sort of thing?",
 	},
 }

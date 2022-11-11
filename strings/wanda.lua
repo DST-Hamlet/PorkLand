@@ -6,5 +6,6 @@ return {
 		},
 		PEAGAWKFEATHER = "It's hard to see.",
 		PEAGAWK_BUSH = "What a clever disguise.",
+		SHEARS = "I won't waste my time on this.",
 	},
 }

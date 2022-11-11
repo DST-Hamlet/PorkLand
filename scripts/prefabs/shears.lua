@@ -4,10 +4,6 @@ local assets =
     Asset("ANIM", "anim/swap_shears.zip"),
 }
 
-local function onfinished(inst)
-    inst:Remove()
-end
-
 local function onequip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_object", "swap_shears", "swap_shears")
     owner.AnimState:Show("ARM_carry")
@@ -41,26 +37,24 @@ local function fn()
 		return inst
 	end
 
+    inst:AddComponent("inspectable")
+    inst:AddComponent("inventoryitem")
+
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(TUNING.SHEARS_DAMAGE)
 
     inst:AddComponent("tool")
     inst.components.tool:SetAction(ACTIONS.SHEAR, 3)
 
+    inst:AddComponent("equippable")
+    inst.components.equippable:SetOnEquip(onequip)
+    inst.components.equippable:SetOnUnequip(onunequip)
+
     inst:AddComponent("finiteuses")
     inst.components.finiteuses:SetMaxUses(TUNING.SHEARS_USES)
     inst.components.finiteuses:SetUses(TUNING.SHEARS_USES)
-
-    inst.components.finiteuses:SetOnFinished(onfinished)
     inst.components.finiteuses:SetConsumption(ACTIONS.SHEAR, 1)
-
-    inst:AddComponent("equippable")
-
-    inst:AddComponent("inspectable")
-    inst:AddComponent("inventoryitem")
-
-    inst.components.equippable:SetOnEquip(onequip)
-    inst.components.equippable:SetOnUnequip(onunequip)
+    inst.components.finiteuses:SetOnFinished(inst.Remove)
 
     MakeHauntablePanic(inst)
 

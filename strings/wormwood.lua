@@ -7,5 +7,6 @@ return {
 		},
 		PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
 		PEAGAWK_BUSH = "Looking good!",
+		SHEARS = "For hair cuts",
 	},
 }
