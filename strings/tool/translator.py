@@ -4,7 +4,7 @@ lua = LuaRuntime()
 translator = Translate().translate
 
 def lua_translator(text, source, target):  # for lua
-    if text[1] == "\"" and text[-1] == "\"":
+    if len(text) > 1 and text[1] == "\"" and text[-1] == "\"":
         text = text[2: -1]  # delete the first and last "
 
     return translator(text, source=source, target=target, fmt="text").translatedText

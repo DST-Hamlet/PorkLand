@@ -100,6 +100,7 @@ ds_string.CHARACTERS.WARBUCKS = nil
 local common = require("common") or {}
 merge_table(ds_string, common, not override)
 for _, character in pairs(characters) do
+    ds_string.CHARACTERS[character:upper()] = ds_string.CHARACTERS[character:upper()] or {}
     merge_table(ds_string.CHARACTERS[character:upper()], require(character) or {}, not override)
 end
 
