@@ -11,6 +11,12 @@ local prefabs =
    	"hacking_tall_grass_fx",
 }
 
+local function get_status(inst, viewer)
+    return not (inst.components.burnable and inst.components.burnable:IsBurning()) and
+            inst.components.hackable and not inst.components.hackable:CanBeHacked() and "PICKED"
+            or nil
+end
+
 local function dig_up(inst, chopper)
     if inst.components.hackable and inst.components.hackable:CanBeHacked() then
         inst.components.lootdropper:SpawnLootPrefab("cutgrass")
@@ -183,6 +189,7 @@ local function grass_tall()
 
     inst:AddComponent("lootdropper")
     inst:AddComponent("inspectable")
+    inst.components.inspectable.getstatus = get_status
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
