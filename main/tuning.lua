@@ -10,6 +10,9 @@ local wilson_attack = TUNING.SPEAR_DAMAGE
 local wilson_health = TUNING.WILSON_HEALTH
 
 local tuning = {
+    MACHETE_DAMAGE = wilson_attack * .88,
+    MACHETE_USES = 100,
+
     PEAGAWK_DAMAGE = 20,
     PEAGAWK_HEALTH = 50,
     PEAGAWK_ATTACK_PERIOD = 3,
@@ -26,11 +29,17 @@ local tuning = {
 
     SHEARS_DAMAGE = wilson_attack * .5,
     SHEARS_USES = 20,
+
+    VINE_REGROW_TIME = total_day_time * 4,
+
+    WEEVOLEDEN_REGEN_TIME = TUNING.SPIDERDEN_REGEN_TIME,
+    WEEVOLEDEN_RELEASE_TIME = TUNING.SPIDERDEN_RELEASE_TIME,
+    WEEVOLEDEN_MAX_WEEVOLES = 3
 }
 
 for key, value in pairs(tuning) do
     if TUNING[key] then
-        error("can't override" .. key .. "in TUNING")
+        print("OVERRIDE: " .. key .. " in TUNING")
     end
 
     TUNING[key] = value

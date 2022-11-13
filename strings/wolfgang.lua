@@ -1,5 +1,12 @@
 return {
 	DESCRIBE = {
+		GOLDENMACHETE = "Hoighty toighty knife!",
+		GRASS_TALL = {
+			BURNING = "Wolfgang is not doing that!",
+			GENERIC = "Very sturdy grass.",
+			PICKED = "Wolfgang is mightiest!",
+		},
+		MACHETE = "Ah! Very good!",
 		PEAGAWK = {
 			DEAD = "Is blink-blink no more.",
 			GENERIC = "Funny blink-blink bird!",

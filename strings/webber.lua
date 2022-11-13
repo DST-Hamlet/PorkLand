@@ -1,5 +1,12 @@
 return {
 	DESCRIBE = {
+		GOLDENMACHETE = "What a beautiful blade!",
+		GRASS_TALL = {
+			BURNING = "Fire!",
+			GENERIC = "It's taller than we are!",
+			PICKED = "It's been picked.",
+		},
+		MACHETE = "Hyah! Hyah!",
 		PEAGAWK = {
 			DEAD = "I think it's dead.",
 			GENERIC = "You've got more eyes than we do!",

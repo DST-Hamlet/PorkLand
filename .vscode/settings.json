@@ -166,6 +166,18 @@
         "MakeSmallPropagator",
         "MakeHauntableLaunch",
         "MODROOT",
-        "LanguageTranslator"
+        "LanguageTranslator",
+        "AddStategraphPostInit",
+        "AddStategraphActionHandler",
+        "AddStategraphState",
+        "CONTROL_CONTROLLER_ALTACTION",
+        "CONTROL_SECONDARY",
+        "GetRandomWithVariance",
+        "AddComponentAction",
+        "EntityScript",
+        "TOOLACTIONS",
+        "MakeMediumBurnable",
+        "Settings",
+        "PI"
     ]
 }
