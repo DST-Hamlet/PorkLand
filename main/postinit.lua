@@ -1,8 +1,10 @@
 -- Update this list when adding files
 local components_post = {
+
 }
 
 local prefabs_post = {
+    "buff_workeffectiveness",
     "world"
 }
 

@@ -1,5 +1,6 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",
 		GOLDENMACHETE = "What else do you do with gold in a jungle island?",
 		GRASS_TALL = {
 			BURNING = "This is not good.",
@@ -14,5 +15,7 @@ return {
 		PEAGAWKFEATHER = "It's hard to see.",
 		PEAGAWK_BUSH = "What a clever disguise.",
 		SHEARS = "I won't waste my time on this.",
+		WEEVOLE = "I remember it biting.",
+		WEEVOLE_CARAPACE = "Evil, exudes a strange smell.",
 	},
 }

@@ -70,7 +70,6 @@
         "TranslateStringTable",
         "IsInFrontEnd",
         "kleiloadlua",
-        "Vector3",
         "net_tinybyte",
         "SoundEmitter",
         "Class",
@@ -178,6 +177,12 @@
         "TOOLACTIONS",
         "MakeMediumBurnable",
         "Settings",
-        "PI"
+        "PI",
+        "MakeSmallBurnableCharacter",
+        "MakeSmallFreezableCharacter",
+        "GetRandomMinMax",
+        "UseShield",
+        "ChaseAndAttack",
+        "FindClosestPlayerToInstOnLand"
     ]
 }

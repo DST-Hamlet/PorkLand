@@ -1,5 +1,6 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",
 		GOLDENMACHETE = "I shall swing you with pride.",
 		GRASS_TALL = {
 			BURNING = "It burns!",
@@ -15,5 +16,7 @@ return {
 		PEAGAWKFEATHER = "A priceless beauty.",
 		PEAGAWK_BUSH = "Do you think you can hide from me?",
 		SHEARS = "A weapon for use against a mighty hedge!",
+		WEEVOLE = "A pest upon this land!",
+		WEEVOLE_CARAPACE = "The skin of my enemy.",
 	},
 }

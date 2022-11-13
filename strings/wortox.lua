@@ -1,5 +1,6 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "I'm getting goosebumps.",
 		GOLDENMACHETE = "Fit for a sophisticated imp!",
 		GRASS_TALL = {
 			BURNING = "Oops, it's burning.",
@@ -14,5 +15,7 @@ return {
 		PEAGAWKFEATHER = "Feather of a small peacock.",
 		PEAGAWK_BUSH = "Well, this trick can't fool me.",
 		SHEARS = "Click, click, leaves fall.",
+		WEEVOLE = "don't bite me!",
+		WEEVOLE_CARAPACE = "What remains of their armor.",
 	},
 }

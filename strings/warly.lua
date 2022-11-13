@@ -1,5 +1,6 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "It still smells of bug.",
 		GOLDENMACHETE = "Fancy slicer.",
 		GRASS_TALL = {
 			BURNING = "Smells like a cookout!",
@@ -15,5 +16,7 @@ return {
 		PEAGAWKFEATHER = "It's quite soft.",
 		PEAGAWK_BUSH = "It's a bright blue bush.",
 		SHEARS = "Good for cutting hedges and grass.",
+		WEEVOLE = "Shoo! Go away!",
+		WEEVOLE_CARAPACE = "The crust of a bug.",
 	},
 }

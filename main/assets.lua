@@ -4,10 +4,12 @@ local TheNet = GLOBAL.TheNet
 PrefabFiles = {
     "grass_tall",
     "machete",
+    "peagawk_spawner",
 	"peagawk",
-	"peagawk_spawner",
 	"peagawkfeather",
 	"shears",
+    "weevole_carapace",
+    "weevole"
 }
 
 local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas

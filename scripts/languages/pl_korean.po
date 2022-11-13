@@ -15,6 +15,11 @@ msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
 msgstr "자르기"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Yeesh. This is kinda creepy."
+msgstr "으윽. 좀 소름 끼친다."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
@@ -69,6 +74,21 @@ msgstr "아! 홍채 덤불이다."
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
 msgid "Shear-ly delightful."
 msgstr "가위가 아주 마음에 들어."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE"
+msgid "Whee!"
+msgstr "이야아아!"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "I'll be careful with this carapace."
+msgstr "이 갑각은 조심해서 다뤄야겠어."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Exoskeleton armor to protect my endoskeleton."
+msgstr "내 내골격을 보호해 주는 외골격 갑옷이다."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE"
@@ -130,6 +150,21 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
 msgid "Cutting implements constructed from raw metal."
 msgstr "미가공 금속으로 만든 절단 도구다."
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE"
+msgid "What a wonderfully persistent species of insect!"
+msgstr "아주 끈질긴 곤충이군!"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Excellent! It's the exoskeleton of a hexapod invertebrate!"
+msgstr "훌륭하군! 육각류 무척추동물의 외골격이야!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Ew. It's all creepy-crawly."
+msgstr "우웩. 징그러운 벌레 같잖아."
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE"
 msgid "I can hack in style."
@@ -185,6 +220,21 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
 msgid "What am I supposed to do with these?"
 msgstr "이걸로 뭘 할 수 있다는 거지?"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE"
+msgid "Annoying little guys."
+msgstr "성가신 녀석들이야."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Ew. Bug skin."
+msgstr "우웩. 벌레 껍질이다."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Are we really going to wear it?"
+msgstr "정말 입어볼까요?"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
@@ -235,6 +285,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
 msgid "Gardener's little helper."
 msgstr "정원사의 작은 도우미."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE"
+msgid "Hey! Got you!"
+msgstr "여기요! 잡았다!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Let's put it away, it might be useful."
+msgstr "유용할 수 있습니다."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE"
+msgid "It doesn't smell that great, but there's no time to dwell on that much."
+msgstr "냄새가 그렇게 좋지는 않지만 그렇게 많이 생각할 시간이 없습니다."
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE"
 msgid "What else do you do with gold in a jungle island?"
@@ -284,6 +349,21 @@ msgstr "얼마나 영리한 변장인가."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
 msgid "I won't waste my time on this."
 msgstr "나는 이것에 시간을 낭비하지 않을 것입니다."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE"
+msgid "I remember it biting."
+msgstr "물었던 기억이 납니다."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Evil, exudes a strange smell."
+msgstr "악, 이상한 냄새가 난다."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE"
+msgid "It still smells of bug."
+msgstr "아직도 벌레 냄새가 나."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE"
@@ -340,6 +420,21 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
 msgid "Good for cutting hedges and grass."
 msgstr "생울타리나 풀을 자르기 좋아."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE"
+msgid "Shoo! Go away!"
+msgstr "훠이! 저리 가!"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "The crust of a bug."
+msgstr "벌레의 껍질이야."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Armor made from the skin of my enemy."
+msgstr "적의 가죽으로 만든 갑옷이군."
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE"
 msgid "I shall swing you with pride."
@@ -394,6 +489,21 @@ msgstr "나한테서 숨을 수 있을 것 같나?"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
 msgid "A weapon for use against a mighty hedge!"
 msgstr "거대한 생울타리에 맞서는 무기군!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE"
+msgid "A pest upon this land!"
+msgstr "이 땅의 해충이다!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "The skin of my enemy."
+msgstr "적의 가죽이군."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE"
+msgid "This is not a good look."
+msgstr "보기 좋진 않군."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE"
@@ -450,6 +560,21 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
 msgid "Aren't there gardeners for this sort of thing?"
 msgstr "이런 건 정원사가 하는 일 아닌가?"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE"
+msgid "Interminable pests."
+msgstr "끝이 없는 해충이군."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Ugh."
+msgstr "윽."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE"
+msgid "For when we need protection."
+msgstr "보호가 필요할 때 쓰인다."
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE"
 msgid "What a beautiful blade!"
@@ -504,6 +629,21 @@ msgstr "특이하고 멋진 덤불이다!"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
 msgid "It's for chores like trimming hedges or cutting grass."
 msgstr "생울타리를 다듬거나 잔디를 깎을 때 사용한다."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE"
+msgid "Those bugs are annoying."
+msgstr "짜증 나는 벌레다."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "It's the outer part of those bugs."
+msgstr "벌레 껍데기다."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Something died so that this armor may exist."
+msgstr "이 갑옷을 만들려고 뭔가가 죽었어."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE"
@@ -560,6 +700,21 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
 msgid "Can it shear my heart?"
 msgstr "이걸로 내 마음을 다듬을 수 있을까?"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE"
+msgid "Its sole existence is to annoy me."
+msgstr "날 귀찮게 하려고 존재하는 생물이야."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Bits of bug carcass."
+msgstr "벌레 시체 조각이야."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE"
+msgid "If only it had those bug wings."
+msgstr "벌레 날개만 있었어도."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE"
 msgid "For the sophisticated adventurer."
@@ -614,6 +769,21 @@ msgstr "안에 뭔가 숨어 있군."
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
 msgid "Time to do some yard work."
 msgstr "정원을 가꿔 볼까?"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE"
+msgid "Aggravating bugs! A complete waste of wings."
+msgstr "성가신 벌레군! 날개가 아깝네."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Light enough to fire out the Pew-matic."
+msgstr "자동 발사 뿔에서 발사하기에 충분할 만큼 가벼워."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Armour made from bug exoskeleton."
+msgstr "곤충의 외골격으로 만든 갑옷이야."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE"
@@ -670,6 +840,21 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
 msgid "A useful tool for horticultural purposes."
 msgstr "원예 할 때 유용한 도구로군."
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE"
+msgid "A Coleoptera. And an annoying one at that."
+msgstr "딱정벌레목 동물이군. 그중에서도 성가신 종이야."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "The exoskeleton of a Coleoptera."
+msgstr "딱정벌레목 동물의 외골격이군."
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE"
+msgid "ADVENTURE CLOTHES FROM ANNOYING BUGS"
+msgstr "성가신 벌레로 만든 모험용 옷이로다"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE"
 msgid "'TIS SHINY TOOL O' SLASHINGS"
@@ -724,6 +909,21 @@ msgstr "덤불이 아니로다"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
 msgid "FOR THE CUTTINGS OF THE SHRUBS"
 msgstr "관목을 자를 때 쓰노라"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE"
+msgid "GO AWAY BUGS"
+msgstr "벌레야, 저리 가거라"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "WILBA BEAT ANNOYING BUGS"
+msgstr "윌바 성가신 벌레 물리쳤노라"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE"
+msgid "This feels gross. I hope it works."
+msgstr "역겨운걸. 효과는 있었으면 좋겠는걸."
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE"
@@ -780,6 +980,21 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
 msgid "Not as good as fire, but I guess it has its uses."
 msgstr "불보다는 못하지만, 나름대로 쓸모가 있겠지."
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE"
+msgid "Stand still so I can burn you."
+msgstr "태워줄 테니 가만히 있어."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Ew."
+msgstr "우웩인걸."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Not very comfortable, just let it go."
+msgstr "그다지 편하지 않습니다. 그냥 놔두세요."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE"
 msgid "This just made my job easier."
@@ -829,6 +1044,21 @@ msgstr "경계하는 덤불, 얼마나 이상한가!"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
 msgid "Shears for gardening."
 msgstr "원예용 가위."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE"
+msgid "Once you've dealt with bedbugs, weevils aren't so bad."
+msgstr "당신이 빈대를 다룬 적이 있다면 바구미는 아무것도 아닙니다."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "It can be regarded as clean."
+msgstr "깨끗하다고 ​​할 수 있습니다."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Wolfgang win!"
+msgstr "볼프강 이겼다!"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE"
@@ -885,6 +1115,21 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
 msgid "Is for cutting plant things."
 msgstr "식물을 자를 때 쓴다."
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE"
+msgid "Pesky bug. Leave Wolfgang alone!"
+msgstr "성가신 벌레다. 볼프강 놔둬!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Is pesky bug skin."
+msgstr "성가신 벌레 껍데기다."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Nice use of bug carcasses."
+msgstr "벌레 시체를 훌륭하게 활용했네."
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE"
 msgid "It chops AND sparkles!"
@@ -939,6 +1184,21 @@ msgstr "지독한 새가 근처에 있네. 나는 느껴져."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
 msgid "Don't get jealous, Lucy."
 msgstr "질투하지 말렴, 루시."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE"
+msgid "Worse than black flies."
+msgstr "파리매보다도 끔찍하잖아."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "That'll teach 'em!"
+msgstr "따끔한 맛을 봐라!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Aye. Finery made o' bug skin."
+msgstr "이야. 벌레 껍질로 만든 근사한 옷이다."
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE"
@@ -995,6 +1255,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
 msgid "A cutlass fer tha'bushes."
 msgstr "덤불을 베는 커틀라스다."
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE"
+msgid "'ave at ye landlubbers!"
+msgstr "각오해라, 육지 것들아!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Longcoat made o' them pesky bugs."
+msgstr "성가신 벌레를 감싸는 껍데기다."
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Bzzter clothes"
+msgstr "앵앵이 옷이야"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE"
 msgid "Pretty Slicer"
@@ -1050,6 +1325,21 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
 msgid "For hair cuts"
 msgstr "머리카락을 자를 때 써"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE"
+msgid "Wee Bzzter"
+msgstr "작은 앵앵이야"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Crunchy"
+msgstr "바삭바삭해"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE"
+msgid "I'm getting goosebumps."
+msgstr "소름이 돋는다."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE"
 msgid "Fit for a sophisticated imp!"
@@ -1100,6 +1390,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
 msgid "Click, click, leaves fall."
 msgstr "클릭, 클릭, 낙엽이 떨어집니다."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE"
+msgid "don't bite me!"
+msgstr "날 물지 마!"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "What remains of their armor."
+msgstr "그들의 갑옷에 남아있는 것."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Nice and comfortable armor."
+msgstr "멋지고 편안한 갑옷."
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE"
 msgid "It better than normal hacker."
@@ -1149,6 +1454,21 @@ msgstr "예쁜 깃털 덤불."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
 msgid "Shape the plants."
 msgstr "식물을 모양을 만드십시오."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE"
+msgid "go away go away!"
+msgstr "가버려 가!"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "hard shell."
+msgstr "단단한 껍질."
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE"
+msgid "BIOLOGICAL COMPUTER CASING"
+msgstr "생물학적 컴퓨터 케이스"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE"
@@ -1205,6 +1525,21 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
 msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
 msgstr "이걸로 식물을 물리칠 것임!"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE"
+msgid "BIOLOGICAL FLESHSACK VIRUS"
+msgstr "생물학적 고기주머니 바이러스"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "THEY HAVE BEEN DEBUGGED"
+msgstr "디버깅함"
+
+#. STRINGS.NAMES.ARMOR_WEEVOLE
+msgctxt "STRINGS.NAMES.ARMOR_WEEVOLE"
+msgid "Weevole Mantle"
+msgstr "바구미쥐 갑옷"
+
 #. STRINGS.NAMES.GOLDENMACHETE
 msgctxt "STRINGS.NAMES.GOLDENMACHETE"
 msgid "Luxury Machete"
@@ -1239,6 +1574,21 @@ msgstr "윙크 덤불"
 msgctxt "STRINGS.NAMES.SHEARS"
 msgid "Shears"
 msgstr "전지가위"
+
+#. STRINGS.NAMES.WEEVOLE
+msgctxt "STRINGS.NAMES.WEEVOLE"
+msgid "Weevole"
+msgstr "바구미쥐"
+
+#. STRINGS.NAMES.WEEVOLE_CARAPACE
+msgctxt "STRINGS.NAMES.WEEVOLE_CARAPACE"
+msgid "Weevole Carapace"
+msgstr "바구미쥐 껍질"
+
+#. STRINGS.RECIPE_DESC.ARMOR_WEEVOLE
+msgctxt "STRINGS.RECIPE_DESC.ARMOR_WEEVOLE"
+msgid "Kinda gross, but surprisingly strong."
+msgstr "징그럽지만, 놀랍도록 튼튼하다."
 
 #. STRINGS.RECIPE_DESC.GOLDENMACHETE
 msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"

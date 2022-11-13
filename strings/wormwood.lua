@@ -1,5 +1,6 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "Bzzter clothes",
 		GOLDENMACHETE = "Pretty Slicer",
 		GRASS_TALL = {
 			BURNING = "No!!",
@@ -15,5 +16,7 @@ return {
 		PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
 		PEAGAWK_BUSH = "Looking good!",
 		SHEARS = "For hair cuts",
+		WEEVOLE = "Wee Bzzter",
+		WEEVOLE_CARAPACE = "Crunchy",
 	},
 }

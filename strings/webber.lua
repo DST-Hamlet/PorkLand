@@ -1,5 +1,6 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "For when we need protection.",
 		GOLDENMACHETE = "What a beautiful blade!",
 		GRASS_TALL = {
 			BURNING = "Fire!",
@@ -15,5 +16,7 @@ return {
 		PEAGAWKFEATHER = "It's pretty.",
 		PEAGAWK_BUSH = "Neat. A weird bush!",
 		SHEARS = "It's for chores like trimming hedges or cutting grass.",
+		WEEVOLE = "Those bugs are annoying.",
+		WEEVOLE_CARAPACE = "It's the outer part of those bugs.",
 	},
 }

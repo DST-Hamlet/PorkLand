@@ -15,6 +15,11 @@ msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
 msgstr "Tosquiar"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Yeesh. This is kinda creepy."
+msgstr "Sim. Isso é meio bizarro."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
@@ -69,6 +74,21 @@ msgstr "Veja! Um arbusto iridescente!"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
 msgid "Shear-ly delightful."
 msgstr "Um tesouro de tesoura."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE"
+msgid "Whee!"
+msgstr "Bzzz!"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "I'll be careful with this carapace."
+msgstr "Preciso ter cuidado com essa carapaça."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Exoskeleton armor to protect my endoskeleton."
+msgstr "Armadura de exoesqueleto para proteger meu endoesqueleto."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE"
@@ -130,6 +150,21 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
 msgid "Cutting implements constructed from raw metal."
 msgstr "Implementos de corte construídos com metal bruto."
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE"
+msgid "What a wonderfully persistent species of insect!"
+msgstr "Que espécie de inseto maravilhosamente resistente!"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Excellent! It's the exoskeleton of a hexapod invertebrate!"
+msgstr "Excelente! O exoesqueleto de um invertebrado hexápode!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Ew. It's all creepy-crawly."
+msgstr "Eca. É muito asqueroso."
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE"
 msgid "I can hack in style."
@@ -185,6 +220,21 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
 msgid "What am I supposed to do with these?"
 msgstr "O que devo fazer com essas coisas?"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE"
+msgid "Annoying little guys."
+msgstr "Que carinhas chatos."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Ew. Bug skin."
+msgstr "Eca. Pele de inseto."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Are we really going to wear it?"
+msgstr "Nós realmente vamos usá-lo?"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
@@ -235,6 +285,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
 msgid "Gardener's little helper."
 msgstr "O ajudante do jardineiro."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE"
+msgid "Hey! Got you!"
+msgstr "Ei! Entendi!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Let's put it away, it might be useful."
+msgstr "Vamos guardá-lo, pode ser útil."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE"
+msgid "It doesn't smell that great, but there's no time to dwell on that much."
+msgstr "Não cheira muito bem, mas não há tempo para pensar muito nisso."
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE"
 msgid "What else do you do with gold in a jungle island?"
@@ -284,6 +349,21 @@ msgstr "Que disfarce inteligente."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
 msgid "I won't waste my time on this."
 msgstr "Não vou perder meu tempo com isso."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE"
+msgid "I remember it biting."
+msgstr "Eu me lembro dele mordendo."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Evil, exudes a strange smell."
+msgstr "Mal, exala um cheiro estranho."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE"
+msgid "It still smells of bug."
+msgstr "Ainda tem cheiro de inseto."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE"
@@ -340,6 +420,21 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
 msgid "Good for cutting hedges and grass."
 msgstr "É ótima para cortar cercas vivas e grama."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE"
+msgid "Shoo! Go away!"
+msgstr "Xô! Sai daqui!"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "The crust of a bug."
+msgstr "A crosta de um bicho."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Armor made from the skin of my enemy."
+msgstr "Armadura feita com a pele do meu inimigo."
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE"
 msgid "I shall swing you with pride."
@@ -394,6 +489,21 @@ msgstr "Acha pode se esconder de mim?"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
 msgid "A weapon for use against a mighty hedge!"
 msgstr "Uma arma para ser usada contra uma cerca viva imponente!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE"
+msgid "A pest upon this land!"
+msgstr "Uma peste sobre esta terra!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "The skin of my enemy."
+msgstr "A pele do meu inimigo."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE"
+msgid "This is not a good look."
+msgstr "Isso não fica bem em mim."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE"
@@ -450,6 +560,21 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
 msgid "Aren't there gardeners for this sort of thing?"
 msgstr "Não tem jardineiros para fazer esse tipo de coisa?"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE"
+msgid "Interminable pests."
+msgstr "Pragas intermináveis."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Ugh."
+msgstr "Ugh."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE"
+msgid "For when we need protection."
+msgstr "Para quando precisarmos de proteção."
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE"
 msgid "What a beautiful blade!"
@@ -504,6 +629,21 @@ msgstr "Bacana. Um arbusto estranho!"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
 msgid "It's for chores like trimming hedges or cutting grass."
 msgstr "Serve para aparar cercas vivas, ou cortar a grama."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE"
+msgid "Those bugs are annoying."
+msgstr "Esses insetos são irritantes."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "It's the outer part of those bugs."
+msgstr "É a parte externa daqueles insetos."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Something died so that this armor may exist."
+msgstr "Algo morreu para que essa armadura pudesse existir."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE"
@@ -560,6 +700,21 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
 msgid "Can it shear my heart?"
 msgstr "Será que consegue podar meu coração?"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE"
+msgid "Its sole existence is to annoy me."
+msgstr "Seu único propósito é me irritar."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Bits of bug carcass."
+msgstr "Pedaços de carcaça de insetos."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE"
+msgid "If only it had those bug wings."
+msgstr "Se ao menos eu tivesse aquelas asas de insetos."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE"
 msgid "For the sophisticated adventurer."
@@ -614,6 +769,21 @@ msgstr "Algo está se escondendo aí."
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
 msgid "Time to do some yard work."
 msgstr "Hora de trabalhar no quintal."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE"
+msgid "Aggravating bugs! A complete waste of wings."
+msgstr "Insetos insuportáveis! Um completo desperdício de asas."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Light enough to fire out the Pew-matic."
+msgstr "Leve o bastante para ser disparada pela Bangmática."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Armour made from bug exoskeleton."
+msgstr "Armadura feita de exoesqueleto de insetos."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE"
@@ -670,6 +840,21 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
 msgid "A useful tool for horticultural purposes."
 msgstr "Uma ferramenta útil para fins hortícolas."
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE"
+msgid "A Coleoptera. And an annoying one at that."
+msgstr "Uma Coleoptera. E uma irritante, ainda por cima."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "The exoskeleton of a Coleoptera."
+msgstr "O exoesqueleto de uma Coleoptera."
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE"
+msgid "ADVENTURE CLOTHES FROM ANNOYING BUGS"
+msgstr "ROUPAS DE AVENTURAS DE INSETOS IRRITANTIS"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE"
 msgid "'TIS SHINY TOOL O' SLASHINGS"
@@ -724,6 +909,21 @@ msgstr "NAUM ÉS ARBUSTOS"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
 msgid "FOR THE CUTTINGS OF THE SHRUBS"
 msgstr "PARA CORTARES ARBUSTOS"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE"
+msgid "GO AWAY BUGS"
+msgstr "VÃORES EMBORA, INSETO"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "WILBA BEAT ANNOYING BUGS"
+msgstr "WILBA DERROTARES INSETO IRRITANTIS"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE"
+msgid "This feels gross. I hope it works."
+msgstr "Isso parece nojento. Espero que dê certo."
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE"
@@ -780,6 +980,21 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
 msgid "Not as good as fire, but I guess it has its uses."
 msgstr "Não é tão bom quanto o fogo, mas acho que tem seus usos."
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE"
+msgid "Stand still so I can burn you."
+msgstr "Fique parado para que eu possa te queimar."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Ew."
+msgstr "Eca."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Not very comfortable, just let it go."
+msgstr "Não é muito confortável, apenas deixe-o ir."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE"
 msgid "This just made my job easier."
@@ -829,6 +1044,21 @@ msgstr "Um arbusto vigilante, que estranho!"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
 msgid "Shears for gardening."
 msgstr "Tesouras para jardinagem."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE"
+msgid "Once you've dealt with bedbugs, weevils aren't so bad."
+msgstr "Os gorgulhos não são nada se você já lidou com percevejos."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "It can be regarded as clean."
+msgstr "Pode ser considerado limpo."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Wolfgang win!"
+msgstr "Vitória de Wolfgang!"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE"
@@ -885,6 +1115,21 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
 msgid "Is for cutting plant things."
 msgstr "É para cortar coisas de plantas."
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE"
+msgid "Pesky bug. Leave Wolfgang alone!"
+msgstr "Inseto irritante. Deixe Wolfgang em paz!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Is pesky bug skin."
+msgstr "É pele de inseto irritante."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Nice use of bug carcasses."
+msgstr "Um bom uso das carcaças de insetos."
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE"
 msgid "It chops AND sparkles!"
@@ -939,6 +1184,21 @@ msgstr "Tem um pássaro miserável por perto. Tô sentindo."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
 msgid "Don't get jealous, Lucy."
 msgstr "Não fique com ciúmes, Lucy."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE"
+msgid "Worse than black flies."
+msgstr "Pior que os borrachudos."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "That'll teach 'em!"
+msgstr "Serviu de lição!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Aye. Finery made o' bug skin."
+msgstr "Arr. Um traje feito de pele de inseto."
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE"
@@ -995,6 +1255,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
 msgid "A cutlass fer tha'bushes."
 msgstr "Um espadim pros arbustos."
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE"
+msgid "'ave at ye landlubbers!"
+msgstr "Defendam-se, marujos de terra firme!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Longcoat made o' them pesky bugs."
+msgstr "Um casaco longo feito daqueles insetos irritantes."
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Bzzter clothes"
+msgstr "Roupas de Bzzteiro."
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE"
 msgid "Pretty Slicer"
@@ -1050,6 +1325,21 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
 msgid "For hair cuts"
 msgstr "Pra cortes de cabelo."
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE"
+msgid "Wee Bzzter"
+msgstr "Bzzterzinho."
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Crunchy"
+msgstr "Crocante."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE"
+msgid "I'm getting goosebumps."
+msgstr "Estou ficando arrepiado."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE"
 msgid "Fit for a sophisticated imp!"
@@ -1100,6 +1390,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
 msgid "Click, click, leaves fall."
 msgstr "Clique, clique, as folhas caem."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE"
+msgid "don't bite me!"
+msgstr "não me morda!"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "What remains of their armor."
+msgstr "O que resta de suas armaduras."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Nice and comfortable armor."
+msgstr "Armadura bonita e confortável."
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE"
 msgid "It better than normal hacker."
@@ -1149,6 +1454,21 @@ msgstr "Belo arbusto de penas."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
 msgid "Shape the plants."
 msgstr "Dê forma às plantas."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE"
+msgid "go away go away!"
+msgstr "vá embora vá embora!"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "hard shell."
+msgstr "casca dura."
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE"
+msgid "BIOLOGICAL COMPUTER CASING"
+msgstr "CAIXA DE COMPUTADOR BIOLÓGICO"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE"
@@ -1205,6 +1525,21 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
 msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
 msgstr "VOU DESTRUIR A VEGETAÇÃO COM ISSO!"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE"
+msgid "BIOLOGICAL FLESHSACK VIRUS"
+msgstr "VÍRUS DE CARNE BIOLÓGICO"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "THEY HAVE BEEN DEBUGGED"
+msgstr "ELES FORAM DEPURADOS"
+
+#. STRINGS.NAMES.ARMOR_WEEVOLE
+msgctxt "STRINGS.NAMES.ARMOR_WEEVOLE"
+msgid "Weevole Mantle"
+msgstr "Manto de Besourato"
+
 #. STRINGS.NAMES.GOLDENMACHETE
 msgctxt "STRINGS.NAMES.GOLDENMACHETE"
 msgid "Luxury Machete"
@@ -1239,6 +1574,21 @@ msgstr "Arbusto de Medrão"
 msgctxt "STRINGS.NAMES.SHEARS"
 msgid "Shears"
 msgstr "Tesoura de Jardim"
+
+#. STRINGS.NAMES.WEEVOLE
+msgctxt "STRINGS.NAMES.WEEVOLE"
+msgid "Weevole"
+msgstr "Besourato"
+
+#. STRINGS.NAMES.WEEVOLE_CARAPACE
+msgctxt "STRINGS.NAMES.WEEVOLE_CARAPACE"
+msgid "Weevole Carapace"
+msgstr "Carapaça de Besourato"
+
+#. STRINGS.RECIPE_DESC.ARMOR_WEEVOLE
+msgctxt "STRINGS.RECIPE_DESC.ARMOR_WEEVOLE"
+msgid "Kinda gross, but surprisingly strong."
+msgstr "Meio nojento, mas surpreendentemente forte."
 
 #. STRINGS.RECIPE_DESC.GOLDENMACHETE
 msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"

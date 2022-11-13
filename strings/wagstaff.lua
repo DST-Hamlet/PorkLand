@@ -1,5 +1,6 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",
 		GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",
 		GRASS_TALL = {
 			BURNING = "Evidently, grass here has the same flammability qualities as at home.",
@@ -18,5 +19,7 @@ return {
 			SLEEPING = "That insight that spied on me was gone.",
 		},
 		SHEARS = "Cutting implements constructed from raw metal.",
+		WEEVOLE = "What a wonderfully persistent species of insect!",
+		WEEVOLE_CARAPACE = "Excellent! It's the exoskeleton of a hexapod invertebrate!",
 	},
 }

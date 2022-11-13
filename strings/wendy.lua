@@ -1,5 +1,6 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "Something died so that this armor may exist.",
 		GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
 		GRASS_TALL = {
 			BURNING = "Death comes to everything.",
@@ -15,5 +16,7 @@ return {
 		PEAGAWKFEATHER = "I spy, with my little eye...",
 		PEAGAWK_BUSH = "Just a bush...",
 		SHEARS = "Can it shear my heart?",
+		WEEVOLE = "Its sole existence is to annoy me.",
+		WEEVOLE_CARAPACE = "Bits of bug carcass.",
 	},
 }

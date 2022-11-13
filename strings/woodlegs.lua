@@ -1,5 +1,6 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",
 		GOLDENMACHETE = "'Tis a mighty 'eavy blade.",
 		GRASS_TALL = {
 			BURNING = "'Tis ablaze!",
@@ -15,5 +16,7 @@ return {
 		PEAGAWKFEATHER = "Feather'o'glimmer.",
 		PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
 		SHEARS = "A cutlass fer tha'bushes.",
+		WEEVOLE = "'ave at ye landlubbers!",
+		WEEVOLE_CARAPACE = "Longcoat made o' them pesky bugs.",
 	},
 }
