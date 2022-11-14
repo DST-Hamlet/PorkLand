@@ -7,7 +7,6 @@ local Bloomable = Class(function(self, inst)
 
      self:WatchWorldState("season", function(it, data)
             self:SeasonChange(data)
-            print("ok")
         end, TheWorld)
 end)
 
@@ -70,7 +69,6 @@ function Bloomable:SeasonChange(data)
         for i,v in ipairs(self.season) do
             if TheWorld.state.season == v then
                 goodseason = true
-                print("yes")
                 break
             end
         end
