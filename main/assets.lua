@@ -9,7 +9,10 @@ PrefabFiles = {
 	"peagawkfeather",
 	"shears",
     "weevole_carapace",
-    "weevole"
+    "weevole",
+	"deep_jungle_fern_noise",  --雨林地板蕨类植物
+	"jungle_border_vine",  --雨林背景藤蔓
+	"asparagus",  --野生芦笋
 }
 
 local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
