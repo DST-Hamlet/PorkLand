@@ -543,7 +543,7 @@ msgstr "呆望雀"
 #. STRINGS.NAMES.PEAGAWKFEATHER
 msgctxt "STRINGS.NAMES.PEAGAWKFEATHER"
 msgid "Peagawk Plume"
-msgstr "呆望羽毛"
+msgstr "呆望雀羽毛"
 
 #. STRINGS.NAMES.PEAGAWK_BUSH
 msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
