@@ -108,6 +108,7 @@ local function fn()
     inst:SetBrain(brain)
 
     -- MakePoisonableCharacter(inst)
+    MakeHauntablePanic(inst)
     MakeSmallBurnableCharacter(inst, "body")
     MakeSmallFreezableCharacter(inst, "body")
 

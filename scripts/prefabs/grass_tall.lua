@@ -223,10 +223,10 @@ local function grass_tall()
     inst.components.playerprox:SetDist(0.75, 1)
 
     -- MakeHackableBlowInWindGust(inst, TUNING.GRASS_WINDBLOWN_SPEED, 0)
-
     MakeMediumBurnable(inst)
     MakeSmallPropagator(inst)
-    -- inst.components.burnable:MakeDragonflyBait(1)
+    MakeHauntableIgnite(inst)
+    -- inst.components.burnable:MakeDragonflyBait(1)  -- dst don't use
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
