@@ -1,6 +1,8 @@
 -- Update this list when adding files
 local components_post = {
-
+    "actionqueuer",
+    "rider_replica",
+    "playercontroller"
 }
 
 local prefabs_post = {

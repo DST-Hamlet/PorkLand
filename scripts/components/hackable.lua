@@ -2,9 +2,14 @@
 
 local function onhackable(self)
     if self.canbehacked and self.caninteractwith then
-        self.inst:AddTag("hack_workable")
+        self.inst:AddTag("HACK_workable")
     else
-        self.inst:RemoveTag("hack_workable")
+        self.inst:RemoveTag("HACK_workable")
+    end
+
+    local shearable = self.inst.components.shearable
+    if shearable then
+        shearable.canshaveable = self.inst:HasTag("HACK_workable")
     end
 end
 
@@ -37,7 +42,7 @@ local Hackable = Class(function(self, inst)
     self.hacksleft = 1
     self.maxhacks = 1
 
-    self.drophacked =  IA_CONFIG.droplootground
+    self.drophacked = IA_CONFIG.droplootground
     self.dropheight = nil
 
     self.paused = false

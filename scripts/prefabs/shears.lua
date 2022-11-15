@@ -57,7 +57,7 @@ local function fn()
     inst.components.finiteuses:SetConsumption(ACTIONS.SHEAR, 1)
     inst.components.finiteuses:SetOnFinished(inst.Remove)
 
-    MakeHauntablePanic(inst)
+    MakeHauntableLaunch(inst)
 
     return inst
 end

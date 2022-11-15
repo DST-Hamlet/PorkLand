@@ -104,15 +104,6 @@ local PL_COMPONENT_ACTIONS =
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right
-        tool = function(inst, doer, target, actions, right)
-            if inst:HasTag("HACK_tool") and target:HasTag("HACK_workable") then
-                table.insert(actions, ACTIONS.HACK)
-            end
-
-            if inst:HasTag("SHEAR_tool") and (target:HasTag("HACK_workable") and inst:HasTag("target") or target:HasTag("SHEAR_workable")) then
-                table.insert(actions, ACTIONS.SHEAR)
-            end
-        end,
     },
 
     POINT = { -- args: inst, doer, pos, actions, right, target
@@ -132,7 +123,7 @@ local PL_COMPONENT_ACTIONS =
             return action == ACTIONS.HACK and inst:HasTag("HACK_workable")
         end,
         shearable = function(inst, action, right)
-            return action == ACTIONS.SHEAR and (inst:HasTag("HACK_workable") and inst:HasTag("shearable") or inst:HasTag("SHEAR_workable"))
+            return action == ACTIONS.SHEAR and inst:HasTag("SHEAR_workable")
         end
     },
 }
