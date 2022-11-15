@@ -2,14 +2,19 @@ local resolvefilepath = GLOBAL.resolvefilepath
 local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
+    "asparagus",
+    "deep_jungle_fern_noise",
     "grass_tall",
+    "jungle_border_vine",
     "machete",
+    "peagawk",
     "peagawk_spawner",
-	"peagawk",
 	"peagawkfeather",
 	"shears",
+    -- "tuber",
+    -- "tubertrees",
     "weevole_carapace",
-    "weevole"
+    "weevole",
 }
 
 local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas

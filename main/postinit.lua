@@ -1,5 +1,6 @@
 -- Update this list when adding files
 local components_post = {
+    "regrowthmanager",
     "actionqueuer",
     "rider_replica",
     "playercontroller"
