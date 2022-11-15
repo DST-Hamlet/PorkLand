@@ -13,38 +13,10 @@ local forest_map = require("map/forest_map")
 local TRANSLATE_TO_PREFABS = forest_map.TRANSLATE_TO_PREFABS
 local TRANSLATE_AND_OVERRIDE = forest_map.TRANSLATE_AND_OVERRIDE
 
-TRANSLATE_TO_PREFABS["crabhole"] =			{"crabhole"}
-TRANSLATE_TO_PREFABS["ox"] =				{"ox"}
-TRANSLATE_TO_PREFABS["solofish"] =			{"solofish"}
-TRANSLATE_TO_PREFABS["jellyfish"] =			{"jellyfish_planted", "jellyfish_spawner"}
-TRANSLATE_TO_PREFABS["fishinhole"] =		{"fishinhole"}
-TRANSLATE_TO_PREFABS["seashell"] =			{"seashell_beached"}
-TRANSLATE_TO_PREFABS["seaweed"] =			{"seaweed_planted"}
-TRANSLATE_TO_PREFABS["obsidian"] =			{"obsidian"}
-TRANSLATE_TO_PREFABS["limpets"] =			{"rock_limpet"}
-TRANSLATE_TO_PREFABS["coral"] =				{"rock_coral"}
-TRANSLATE_TO_PREFABS["coral_brain_rock"] =	{"coral_brain_rock"}
---TRANSLATE_TO_PREFABS["bermudatriangle"] =	{"bermudatriangle_MARKER"}
-TRANSLATE_TO_PREFABS["flup"] =				{"flup", "flupspawner", "flupspawner_sparse", "flupspawner_dense"}
-TRANSLATE_TO_PREFABS["sweet_potato"] =		{"sweet_potato_planted"}
-TRANSLATE_TO_PREFABS["wildbores"] =			{"wildborehouse"}
-TRANSLATE_TO_PREFABS["bush_vine"] =			{"bush_vine", "snakeden"}
-TRANSLATE_TO_PREFABS["bamboo"] =			{"bamboo", "bambootree"}
-TRANSLATE_TO_PREFABS["crate"] =				{"crate"}
-TRANSLATE_TO_PREFABS["tidalpool"] =			{"tidalpool"}
-TRANSLATE_TO_PREFABS["sandhill"] =			{"sanddune"}
-TRANSLATE_TO_PREFABS["poisonhole"] =		{"poisonhole"}
-TRANSLATE_TO_PREFABS["mussel_farm"] =		{"mussel_farm"}
-TRANSLATE_TO_PREFABS["doydoy"] =			{"doydoy", "doydoybaby"}
-TRANSLATE_TO_PREFABS["lobster"] =			{"lobster", "lobsterhole"}
-TRANSLATE_TO_PREFABS["primeape"] =			{"primeape", "primeapebarrel"}
-TRANSLATE_TO_PREFABS["bioluminescence"] =	{"bioluminescence", "bioluminescence_spawner"}
-TRANSLATE_TO_PREFABS["ballphin"] =			{"ballphin", "ballphin_spawner"}
-TRANSLATE_TO_PREFABS["swordfish"] =			{"swordfish", "swordfish_spawner"}
-TRANSLATE_TO_PREFABS["stungray"] =			{"stungray", "stungray_spawner"}
+TRANSLATE_TO_PREFABS["asparagus"] = {"asparagus_planted"}
 
-TRANSLATE_AND_OVERRIDE["volcano"] =			{"volcano"}
-TRANSLATE_AND_OVERRIDE["seagull"] =			{"seagullspawner"}
+TRANSLATE_AND_OVERRIDE["deep_jungle_fern_noise"] = {"deep_jungle_fern_noise", "deep_jungle_fern_noise_plant"}
+--TRANSLATE_TO_PREFABS["bermudatriangle"] =	{"bermudatriangle_MARKER"}
 
 local function ValidateGroundTile_PorkLand(tile)
     return WORLD_TILES.IMPASSABLE

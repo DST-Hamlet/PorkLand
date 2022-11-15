@@ -1,6 +1,6 @@
 -- Update this list when adding files
 local components_post = {
-
+    "regrowthmanager",
 }
 
 local prefabs_post = {

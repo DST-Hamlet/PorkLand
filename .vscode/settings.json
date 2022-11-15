@@ -183,6 +183,8 @@
         "GetRandomMinMax",
         "UseShield",
         "ChaseAndAttack",
-        "FindClosestPlayerToInstOnLand"
+        "FindClosestPlayerToInstOnLand",
+        "AddComponentPostInit",
+        "DefaultBurntFn"
     ]
 }

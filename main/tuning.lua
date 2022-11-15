@@ -49,14 +49,17 @@ local tuning = {
     WEEVOLEDEN_RELEASE_TIME = TUNING.SPIDERDEN_RELEASE_TIME,
     WEEVOLEDEN_MAX_WEEVOLES = 3,
 
-    CLAWPALMTREE_GROW_TIME =
-    {
-        {base=8*day_time, random=0.5*day_time},   --tall to short
-        {base=12*day_time, random=5*day_time},   --short to normal
-        {base=12*day_time, random=5*day_time},   --normal to tall
+    ASPARAGUS_REGROWTH_TIME = day_time * 20,
+    ASPARAGUS_REGROWTH_TIME_MULT = 1,
+
+    CLAWPALMTREE_GROW_TIME = {
+        {base = 8 * day_time, random = 0.5 * day_time},   -- tall to short
+        {base = 12 * day_time, random = 5 * day_time},   -- short to normal
+        {base = 12 * day_time, random = 5 * day_time},   -- normal to tall
     },
+
     TREE_CREAK_RANGE = 16,
-    VINE_REGROW_TIME = total_day_time*4,
+
     JUNGLETREE_CHOPS_SMALL = 5,
     JUNGLETREE_CHOPS_NORMAL = 10,
     JUNGLETREE_CHOPS_TALL = 15,
