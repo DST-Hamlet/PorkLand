@@ -186,5 +186,7 @@
         "FindClosestPlayerToInstOnLand",
         "AddComponentPostInit",
         "DefaultBurntFn"
+        "MakeHauntableIgnite",
+        "addsetter"
     ]
 }
