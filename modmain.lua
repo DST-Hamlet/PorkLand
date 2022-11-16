@@ -20,3 +20,4 @@ modimport("main/actions")
 modimport("main/postinit")
 
 modimport("main/strings")
+--modimport("main/recipes")  --除了城镇规划和室内的制作配方都弄好了，但一直崩溃，好像不是我能搞定的。——lulu
