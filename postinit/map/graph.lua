@@ -1,8 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
-
 require("map/network")
 
-Graph.PorkLandConvertGround = Graph.ShipwreckedConvertGround or function(self, map, spawnFN, entities, check_col)
+Graph.PorkLandConvertGround = function(self, map, spawnFN, entities, check_col)
 	local nodes = self:GetNodes(true)
 	for k, node in pairs(nodes) do
 		node:PorkLandConvertGround(map, spawnFN, entities, check_col)

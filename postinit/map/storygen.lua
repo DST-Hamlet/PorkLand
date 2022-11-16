@@ -1,10 +1,9 @@
 -- hack storygen functions is very trouble, so we rewrite it  -- Jerry
 
 GLOBAL.setfenv(1, GLOBAL)
-
 require("map/storygen")
 
-Story.PorkLandPlaceTeleportatoParts = Story.ShipwreckedPlaceTeleportatoParts or function(self)
+Story.PorkLandPlaceTeleportatoParts = function(self)
 	local RemoveExitTag = function(node)
 		local newtags = {}
 		for i, tag in ipairs(node.data.tags) do
@@ -98,7 +97,7 @@ Story.PorkLandPlaceTeleportatoParts = Story.ShipwreckedPlaceTeleportatoParts or 
 	end
 end
 
-Story.PorkLandInsertAdditionalSetPieces = Story.ShipwreckedInsertAdditionalSetPieces or function(self, task_nodes)
+Story.PorkLandInsertAdditionalSetPieces = function(self, task_nodes)
 	local obj_layout = require("map/object_layout")
 
 	local function is_water_ok(room, layout)
@@ -184,7 +183,7 @@ Story.PorkLandInsertAdditionalSetPieces = Story.ShipwreckedInsertAdditionalSetPi
 	end
 end
 
-Story.PorkLandAddBGNodes = Story.ShipwreckedAddBGNodes or function(self, min_count, max_count)
+Story.PorkLandAddBGNodes = function(self, min_count, max_count)
 	local tasksnodes = self.rootNode:GetChildren(false)
 	local bg_idx = 0
 
