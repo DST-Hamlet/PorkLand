@@ -107,8 +107,8 @@ local function fn()
     inst:SetStateGraph("SGweevole")
     inst:SetBrain(brain)
 
-    -- MakePoisonableCharacter(inst)
     MakeHauntablePanic(inst)
+    MakePoisonableCharacter(inst)
     MakeSmallBurnableCharacter(inst, "body")
     MakeSmallFreezableCharacter(inst, "body")
 

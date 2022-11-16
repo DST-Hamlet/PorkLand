@@ -141,7 +141,6 @@ local function fn()
     inst.Transform:SetFourFaced()
 
     MakeCharacterPhysics(inst, 50, .5)
-    -- MakePoisonableCharacter(inst)
 
     inst.AnimState:SetBank("peagawk")
     inst.AnimState:SetBuild("peagawk")
@@ -208,7 +207,7 @@ local function fn()
     inst:AddComponent("inspectable")
 
     MakeHauntablePanic(inst)
-
+    MakePoisonableCharacter(inst)
     MakeMediumBurnableCharacter(inst, "pig_torso")
     MakeMediumFreezableCharacter(inst, "pig_torso")
 

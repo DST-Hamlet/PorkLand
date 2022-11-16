@@ -14,8 +14,11 @@ PL_CONFIG = {
 modimport("main/tuning")
 modimport("main/constants")
 modimport("main/assets")
-modimport("main/fx")
 modimport("main/util")
+modimport("main/fx")
+modimport("main/standardcomponents")
+modimport("main/commands")
+
 modimport("main/actions")
 modimport("main/postinit")
 

@@ -10,6 +10,7 @@ PrefabFiles = {
     "peagawk",
     "peagawk_spawner",
 	"peagawkfeather",
+    "poisonbubble",
 	"shears",
     -- "tuber",
     -- "tubertrees",
@@ -24,6 +25,9 @@ Assets = {
 	Asset("IMAGE", "images/pl_inventoryimages.tex"),
     Asset("ATLAS", "images/pl_inventoryimages.xml"),
 	Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  --For minisign
+
+    Asset("ATLAS", "images/overlays/fx3.xml"),
+    Asset("IMAGE", "images/overlays/fx3.tex"),
 
 	Asset("ANIM", "anim/player_actions_shear.zip"),
 }
