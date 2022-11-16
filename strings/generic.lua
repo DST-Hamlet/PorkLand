@@ -1,5 +1,13 @@
 return {
 	DESCRIBE = {
+		ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",
+		GOLDENMACHETE = "Hack in style!",
+		GRASS_TALL = {
+			BURNING = "A grass fire!",
+			GENERIC = "It's too tough to pick with my hands.",
+			PICKED = "Looks like I got it all.",
+		},
+		MACHETE = "I like the cut of this blade.",
 		PEAGAWK = {
 			DEAD = "Dead-eyed.",
 			GENERIC = "That bush is alive!",
@@ -7,5 +15,8 @@ return {
 		},
 		PEAGAWKFEATHER = "Still blinking.",
 		PEAGAWK_BUSH = "Look! An iris bush.",
+		SHEARS = "Shear-ly delightful.",
+		WEEVOLE = "Whee!",
+		WEEVOLE_CARAPACE = "I'll be careful with this carapace.",
 	},
 }

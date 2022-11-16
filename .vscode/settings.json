@@ -70,7 +70,6 @@
         "TranslateStringTable",
         "IsInFrontEnd",
         "kleiloadlua",
-        "Vector3",
         "net_tinybyte",
         "SoundEmitter",
         "Class",
@@ -166,6 +165,28 @@
         "MakeSmallPropagator",
         "MakeHauntableLaunch",
         "MODROOT",
-        "LanguageTranslator"
+        "LanguageTranslator",
+        "AddStategraphPostInit",
+        "AddStategraphActionHandler",
+        "AddStategraphState",
+        "CONTROL_CONTROLLER_ALTACTION",
+        "CONTROL_SECONDARY",
+        "GetRandomWithVariance",
+        "AddComponentAction",
+        "EntityScript",
+        "TOOLACTIONS",
+        "MakeMediumBurnable",
+        "Settings",
+        "PI",
+        "MakeSmallBurnableCharacter",
+        "MakeSmallFreezableCharacter",
+        "GetRandomMinMax",
+        "UseShield",
+        "ChaseAndAttack",
+        "FindClosestPlayerToInstOnLand",
+        "AddComponentPostInit",
+        "DefaultBurntFn"
+        "MakeHauntableIgnite",
+        "addsetter"
     ]
 }

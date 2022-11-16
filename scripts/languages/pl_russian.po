@@ -5,6 +5,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT Version: 2.0"
 
+#. STRINGS.ACTIONS.HACK
+msgctxt "STRINGS.ACTIONS.HACK"
+msgid "Hack"
+msgstr "Рубить"
+
+#. STRINGS.ACTIONS.SHEAR
+msgctxt "STRINGS.ACTIONS.SHEAR"
+msgid "Shear"
+msgstr "Подстричь"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Yeesh. This is kinda creepy."
+msgstr "У-у-х. Жутковатенько."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE"
+msgid "Hack in style!"
+msgstr "Кромсать с шиком!"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRASS_TALL.BURNING"
+msgid "A grass fire!"
+msgstr "Трава горит!"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "It's too tough to pick with my hands."
+msgstr "Голыми руками тут не справиться."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Looks like I got it all."
+msgstr "Ни травинки."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE"
+msgid "I like the cut of this blade."
+msgstr "Мне нравится форма этого лезвия."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD"
 msgid "Dead-eyed."
@@ -30,6 +70,51 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH"
 msgid "Look! An iris bush."
 msgstr "Ничего себе! Куст с глазами."
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
+msgid "Shear-ly delightful."
+msgstr "Время стричь!"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE"
+msgid "Whee!"
+msgstr "Букашка!"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "I'll be careful with this carapace."
+msgstr "Хитиновый панцирь — кулинарный хит!"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Exoskeleton armor to protect my endoskeleton."
+msgstr "Внешний бронированный скелет для защиты внутреннего скелета."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE"
+msgid "Gold is so plentiful here I can use it in household tools."
+msgstr "Золота здесь так много, что я могу изготавливать из него инструменты."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Evidently, grass here has the same flammability qualities as at home."
+msgstr "Очевидно, трава здесь горит так же, как и в моем мире."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "The obstinacy of this grass requires something sharper than my hands."
+msgstr "Прочность этой травы вынуждает меня искать подходящий инструмент."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Previously experience suggests this will grow back."
+msgstr "Мой опыт позволяет утверждать, что она вырастет снова."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE"
+msgid "A pragmatic tool for slashing objects."
+msgstr "Практичный инструмент для разрубания."
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD"
 msgid "Evidently, it didn't see that coming."
@@ -47,7 +132,7 @@ msgstr "Возможно, теперь мне удастся выдернуть 
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWKFEATHER
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWKFEATHER"
-msgid "Theoretically, there's an intact nervous system that keeps the eye  moving."
+msgid "Theoretically, there's an intact nervous system that keeps the eye moving."
 msgstr "Теоретически это целостная нервная система позволяет глазу вращаться."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.GENERIC
@@ -59,6 +144,51 @@ msgstr "Я испытываю устойчивое чувство, что за �
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
 msgid "That insight that spied on me was gone."
 msgstr "Прозрение, которое шпионило за мной, исчезло."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
+msgid "Cutting implements constructed from raw metal."
+msgstr "Режущее орудие из необработанного металла."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE"
+msgid "What a wonderfully persistent species of insect!"
+msgstr "Какое на удивление живучее насекомое!"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Excellent! It's the exoskeleton of a hexapod invertebrate!"
+msgstr "Невероятно! Внешний скелет шестиногого беспозвоночного!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Ew. It's all creepy-crawly."
+msgstr "Фу. Крипотень."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE"
+msgid "I can hack in style."
+msgstr "Я могу стильно рубить."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GRASS_TALL.BURNING"
+msgid "It'd probably be a lot of work to put it out."
+msgstr "Чтобы это потушить, придется потрудиться."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "It's too much work to pick it with my hands."
+msgstr "Собирать руками слишком долго."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GRASS_TALL.PICKED"
+msgid "I deserve a nap after that."
+msgstr "После этого меня ждет заслуженный сон."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE"
+msgid "What a hack job."
+msgstr "Люблю рубить."
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD"
@@ -85,6 +215,51 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a cool looking bush!"
 msgstr "Какой крутой куст!"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
+msgid "What am I supposed to do with these?"
+msgstr "И что мне с ними делать?"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE"
+msgid "Annoying little guys."
+msgstr "Бесючая мелочь."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Ew. Bug skin."
+msgstr "Фу. Жучиная шкура."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Are we really going to wear it?"
+msgstr "Мы действительно собираемся носить его?"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE"
+msgid "Hack in style!"
+msgstr "Взломайте стильно!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Hey! Brush fires will destroy rainforests!"
+msgstr "Привет! Лесные пожары уничтожают тропические леса!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "A lush patch of grass. Must be a lot of bugs in it."
+msgstr "Пышный участок травы. Должно быть много ошибок в нем."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Collect again after a while."
+msgstr "Собрать снова через некоторое время."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE"
+msgid "I like the cut of this blade."
+msgstr "Мне нравится огранка этого лезвия."
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Wow, how many eyes are there?"
@@ -105,6 +280,51 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
 msgid "This bird can't fly, but turns into a bush!"
 msgstr "Эта птица не умеет летать, а превращается в куст!"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
+msgid "Gardener's little helper."
+msgstr "Маленький помощник садовника."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE"
+msgid "Hey! Got you!"
+msgstr "Привет! Попался!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Let's put it away, it might be useful."
+msgstr "Отложим, может пригодится."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE"
+msgid "It doesn't smell that great, but there's no time to dwell on that much."
+msgstr "Пахнет не так уж сильно, но времени на это останавливаться нет."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE"
+msgid "What else do you do with gold in a jungle island?"
+msgstr "Что еще делать с золотом на острове в джунглях?"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GRASS_TALL.BURNING"
+msgid "This is not good."
+msgstr "Это не хорошо."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Grasses this tough are indeed uncommon."
+msgstr "Такая жесткая трава действительно редкость."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Over time, it will grow back."
+msgstr "Со временем он снова отрастет."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE"
+msgid "It's for chopping, simple as that."
+msgstr "Это для рубки, вот так просто."
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "See no evil!"
@@ -124,6 +344,51 @@ msgstr "Это трудно увидеть."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a clever disguise."
 msgstr "Какая хитрая маскировка."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
+msgid "I won't waste my time on this."
+msgstr "Я не буду тратить на это время."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE"
+msgid "I remember it biting."
+msgstr "Я помню, как он кусал."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Evil, exudes a strange smell."
+msgstr "Злая, источает странный запах."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE"
+msgid "It still smells of bug."
+msgstr "Жучиный запах не выветрился."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE"
+msgid "Fancy slicer."
+msgstr "Красивый резак."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Smells like a cookout!"
+msgstr "Пахнет, как барбекю!"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Too long to cut with my hands."
+msgstr "Слишком высокая, руками не сорвать."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GRASS_TALL.PICKED"
+msgid "It will have to grow back."
+msgstr "Подожду, чтобы выросла заново."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE"
+msgid "I could chop many an onion with this!"
+msgstr "Сколько лука можно им нарезать!"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD"
@@ -150,6 +415,51 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
 msgid "It's a bright blue bush."
 msgstr "Ярко-синий куст."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
+msgid "Good for cutting hedges and grass."
+msgstr "Пригодится для стрижки изгородей и травы."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE"
+msgid "Shoo! Go away!"
+msgstr "Брысь! Пошел вон!"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "The crust of a bug."
+msgstr "Жучиный хруст."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Armor made from the skin of my enemy."
+msgstr "Доспех из шкур моих врагов."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE"
+msgid "I shall swing you with pride."
+msgstr "Буду махать тобой гордо."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRASS_TALL.BURNING"
+msgid "It burns!"
+msgstr "Аж жжется!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Surely it is the grass of Jotunheim!"
+msgstr "Это трава из Йотунхейма!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRASS_TALL.PICKED"
+msgid "I have defeated it!"
+msgstr "Я сразила ее!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE"
+msgid "A fine length of blade."
+msgstr "Подходящая длина лезвия."
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD"
 msgid "Even in death its eyes stare into my soul."
@@ -174,6 +484,51 @@ msgstr "Бесценная красота."
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
 msgid "Do you think you can hide from me?"
 msgstr "Думаешь, что спрячешься от меня?"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
+msgid "A weapon for use against a mighty hedge!"
+msgstr "Оружие, способное справиться с могучей оградой!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE"
+msgid "A pest upon this land!"
+msgstr "Паразитирует на этой земле!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "The skin of my enemy."
+msgstr "Шкура моего врага."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE"
+msgid "This is not a good look."
+msgstr "Выглядит не очень."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE"
+msgid "I've always wanted to hack things in luxury."
+msgstr "Всегда хотел рубить все подряд с шиком."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Well, there you have it."
+msgstr "Ну вот, что поделать."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Oh, joyous occasion. I've found grass."
+msgstr "Какое счастье. Я нашел траву."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRASS_TALL.PICKED"
+msgid "I don't require any more grass, thank you."
+msgstr "Спасибо, мне не надо больше травы."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE"
+msgid "Truthfully I was always a hack."
+msgstr "По правде говоря, я всегда любил рубить."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD"
@@ -200,6 +555,51 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
 msgid "I've my suspicions about that bush."
 msgstr "Этот куст кажется мне подозрительным."
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
+msgid "Aren't there gardeners for this sort of thing?"
+msgstr "Для этого вообще-то есть садовники."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE"
+msgid "Interminable pests."
+msgstr "Назойливые вредители."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Ugh."
+msgstr "Фу."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE"
+msgid "For when we need protection."
+msgstr "На случай, если нам понадобится защита..."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE"
+msgid "What a beautiful blade!"
+msgstr "Какой красивый клинок!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Fire!"
+msgstr "Огонь!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "It's taller than we are!"
+msgstr "Она выше нас!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRASS_TALL.PICKED"
+msgid "It's been picked."
+msgstr "Его сорвали."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE"
+msgid "Hyah! Hyah!"
+msgstr "Хия! Хия!"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I think it's dead."
@@ -224,6 +624,51 @@ msgstr "Мило."
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Neat. A weird bush!"
 msgstr "Какой странный кустик."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
+msgid "It's for chores like trimming hedges or cutting grass."
+msgstr "Ими можно подрезать изгородь или подстричь газон."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE"
+msgid "Those bugs are annoying."
+msgstr "Надоели мне эти жуки."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "It's the outer part of those bugs."
+msgstr "Это жучиный панцирь."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Something died so that this armor may exist."
+msgstr "Что-то умерло, чтобы эта броня не дала умереть мне."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE"
+msgid "What a fancy blade to ruin bamboo with!"
+msgstr "Какое замечательное орудие для рубки бамбука!"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Death comes to everything."
+msgstr "Смерть забирает все и всех."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Alas, I'm too weak to pick it."
+msgstr "Увы, я слишком слаба, чтобы ее сорвать."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GRASS_TALL.PICKED"
+msgid "All things end."
+msgstr "Всему приходит конец."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE"
+msgid "This is a lot of blade."
+msgstr "Какое длинное лезвие."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD"
@@ -250,6 +695,51 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH"
 msgid "Just a bush..."
 msgstr "Обычный куст..."
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
+msgid "Can it shear my heart?"
+msgstr "Смогут ли они укоротить мою жизнь?"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE"
+msgid "Its sole existence is to annoy me."
+msgstr "Его единственное предназначение — раздражать меня."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Bits of bug carcass."
+msgstr "Кусочки жучиного панциря."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE"
+msgid "If only it had those bug wings."
+msgstr "Сюда бы еще крылья."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE"
+msgid "For the sophisticated adventurer."
+msgstr "Для искателя приключений из высшего общества."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRASS_TALL.BURNING"
+msgid "All those bugs have nowhere to hide now."
+msgstr "Жукам теперь негде прятаться."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Tall grass like that is going to need a machete."
+msgstr "Такую высокую траву только мачете возьмет."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRASS_TALL.PICKED"
+msgid "It'll be overgrown in no time."
+msgstr "Совсем скоро она вырастет снова."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE"
+msgid "Machete. Designed for adventure."
+msgstr "Мачете. Создан для приключений."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I promise, I will go on without you!"
@@ -274,6 +764,51 @@ msgstr "Никогда не думала, что перья способны т�
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Something's hiding in there."
 msgstr "Там кто-то прячется."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
+msgid "Time to do some yard work."
+msgstr "Пора заняться стрижкой."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE"
+msgid "Aggravating bugs! A complete waste of wings."
+msgstr "Проклятущие жуки! Не заслуживаете вы крылья."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Light enough to fire out the Pew-matic."
+msgstr "Достаточно легкий, чтобы выстрелить им из пиу-матики."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Armour made from bug exoskeleton."
+msgstr "Броня из экзоскелета жука."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE"
+msgid "The most malleable of metals, but let's see how it slices."
+msgstr "Самый мягкий из металлов, но давайте посмотрим, как он режет."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Illuminating!"
+msgstr "Возгорание!"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "I need an implement for that."
+msgstr "Без орудия тут не справиться."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRASS_TALL.PICKED"
+msgid "That required not insignificant effort."
+msgstr "Для этого потребовалось изрядно поработать."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE"
+msgid "Used for hacking through the brush."
+msgstr "Используется для прорубания дороги сквозь кустарник."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD"
@@ -300,6 +835,51 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
 msgid "I have questions about that bush."
 msgstr "У меня есть пара вопросов к этому кусту."
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
+msgid "A useful tool for horticultural purposes."
+msgstr "Полезный инструмент для сельскохозяйственных работ."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE"
+msgid "A Coleoptera. And an annoying one at that."
+msgstr "Весьма надоедливое жесткокрылое."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "The exoskeleton of a Coleoptera."
+msgstr "Экзоскелет жесткокрылого."
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE"
+msgid "ADVENTURE CLOTHES FROM ANNOYING BUGS"
+msgstr "ОДЕЖДА ДЛЯ СКИТАНИЙ ИЗ НАДОЕДЛИВЫХ ЖУКОВ"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE"
+msgid "'TIS SHINY TOOL O' SLASHINGS"
+msgstr "ЗЛАТОЙ ОГРОМНЫЙ НОЖ"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GRASS_TALL.BURNING"
+msgid "FWOOSH'DING"
+msgstr "ОГОНЬ ТРЕЩИТ"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "AS LONG AS THE DAY IS MERRY"
+msgstr "РАСТЕТ БЕЗ УСТАЛИ ОНА"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GRASS_TALL.PICKED"
+msgid "THE LONG AND SHORT OF IT"
+msgstr "ВСЕ ДО ПОСЛЕДНЕГО СТЕБЕЛЬКА"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE"
+msgid "YON SLASHY TOOL"
+msgstr "ОСТРЫЙ ИНСТРУМЕНТ"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD"
 msgid "IS'T EYES LOOKED IS'T LAST"
@@ -324,6 +904,51 @@ msgstr "СИЯ ЧАСТЬ ПТИЦЫ ПРОСТО ПРЕЛЕСТЬ"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
 msgid "'TIS NAUGHT A BUSH"
 msgstr "СИЕ НЕ КУСТ"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
+msgid "FOR THE CUTTINGS OF THE SHRUBS"
+msgstr "СИЕ ДЛЯ ОБРЕЗКИ КУСТОВ"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE"
+msgid "GO AWAY BUGS"
+msgstr "ИДИТЕ ПРОЧЬ, ЖУКИ"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "WILBA BEAT ANNOYING BUGS"
+msgstr "УИЛБА СРАЗИЛА МЕРЗКОГО ЖУКА"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE"
+msgid "This feels gross. I hope it works."
+msgstr "На ощупь та еще гадость. Надеюсь, она хотя бы работает."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE"
+msgid "I don't want to scuff it up."
+msgstr "Не хотелось бы его износить."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRASS_TALL.BURNING"
+msgid "I win."
+msgstr "Я победила."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "This grass is tough!"
+msgstr "Какая жесткая трава!"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Not tough enough!"
+msgstr "Жесткости ей все же не хватило."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE"
+msgid "Or I could just burn my way through."
+msgstr "Можно прожечь себе путь."
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD"
@@ -350,6 +975,51 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
 msgid "A bush. I think."
 msgstr "По-моему, это куст."
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
+msgid "Not as good as fire, but I guess it has its uses."
+msgstr "С зажигалкой не сравнить, но какая-то польза от них все же есть."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE"
+msgid "Stand still so I can burn you."
+msgstr "Стой спокойно, чтобы я могла тебя поджечь."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Ew."
+msgstr "Фу."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Not very comfortable, just let it go."
+msgstr "Не очень удобно, просто отпусти."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE"
+msgid "This just made my job easier."
+msgstr "Это только упростило мне работу."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GRASS_TALL.BURNING"
+msgid "A Grass fire!"
+msgstr "Травяной огонь!"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "That's some... very tall grass."
+msgstr "Это какая-то... очень высокая трава."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GRASS_TALL.PICKED"
+msgid "All work is done."
+msgstr "Вся работа сделана."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE"
+msgid "Hack and slash! Working's always fun."
+msgstr "Руби и режь! Работать всегда весело."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Always be vigilant."
@@ -369,6 +1039,51 @@ msgstr "Оно все еще смотрит на меня."
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
 msgid "A vigilant bush, how strange!"
 msgstr "Бдительный куст, как странно!"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
+msgid "Shears for gardening."
+msgstr "Ножницы для сада."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE"
+msgid "Once you've dealt with bedbugs, weevils aren't so bad."
+msgstr "Долгоносики ничто, если вы когда-либо имели дело с постельными клопами."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "It can be regarded as clean."
+msgstr "Его можно считать чистым."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Wolfgang win!"
+msgstr "Вольфганг победил!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE"
+msgid "Hoighty toighty knife!"
+msgstr "Фу-ты ну-ты, какой нож!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Wolfgang is not doing that!"
+msgstr "Вольфганг не будет это делать!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Very sturdy grass."
+msgstr "Очень крепкая трава."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Wolfgang is mightiest!"
+msgstr "Вольфганг — самый могучий!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE"
+msgid "Ah! Very good!"
+msgstr "Ай! Очень хорошо!"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD"
@@ -395,6 +1110,51 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
 msgid "Is just bush."
 msgstr "Просто куст."
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
+msgid "Is for cutting plant things."
+msgstr "Чтобы резать растения."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE"
+msgid "Pesky bug. Leave Wolfgang alone!"
+msgstr "Отстань от Вольфганга, гадкий жук!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Is pesky bug skin."
+msgstr "Шкура гадкого жука."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Nice use of bug carcasses."
+msgstr "Вот и нашлось применение жучиным панцирям."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE"
+msgid "It chops AND sparkles!"
+msgstr "Он рубит И сверкает!"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRASS_TALL.BURNING"
+msgid "It caught fire."
+msgstr "Она горит."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Don't worry your head aboot this one, Lucy."
+msgstr "Не заморачивайся на этот счет, Люси."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Got all I could."
+msgstr "Собрал все, что мог."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE"
+msgid "Ooh, that's a thing for chopping."
+msgstr "Ого, вот этой штукой реально можно рубить."
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD"
 msgid "It's a goner."
@@ -419,6 +1179,51 @@ msgstr "Пахнет птичьим пометом."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
 msgid "There's a wretched bird nearby. I feel it."
 msgstr "Где-то здесь прячется гадкая птица, я чувствую это."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
+msgid "Don't get jealous, Lucy."
+msgstr "Люси, не ревнуй."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE"
+msgid "Worse than black flies."
+msgstr "Они даже хуже черных мух."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "That'll teach 'em!"
+msgstr "Это будет им уроком!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Aye. Finery made o' bug skin."
+msgstr "Эге. Наряд из жучиной шкуры."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE"
+msgid "'Tis a mighty 'eavy blade."
+msgstr "Мощное и тяжелое лезвие."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRASS_TALL.BURNING"
+msgid "'Tis ablaze!"
+msgstr "Как пылает!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "As tall'as th'sky."
+msgstr "До небес."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Plunder'd."
+msgstr "Срезана под корень."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE"
+msgid "Ye be slicin'!"
+msgstr "Порежу на кусочки, йар-р!"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD"
@@ -445,6 +1250,51 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
 msgid "'Tis unsettlin' t'b'sure."
 msgstr "Да уж, как-то не по себе."
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
+msgid "A cutlass fer tha'bushes."
+msgstr "Кортик для кустов."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE"
+msgid "'ave at ye landlubbers!"
+msgstr "Да чтоб вам, сухопутные крысы!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Longcoat made o' them pesky bugs."
+msgstr "Плащ из этих надоедливых жуков."
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Bzzter clothes"
+msgstr "Одежда из жужжалки"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE"
+msgid "Pretty Slicer"
+msgstr "Красивая резалка"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRASS_TALL.BURNING"
+msgid "No!!"
+msgstr "Нет!"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "You're so tall!"
+msgstr "Ты такая высокая!"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Keep growing!"
+msgstr "Продолжай расти!"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE"
+msgid "Slicer. For friend haircuts"
+msgstr "Резалка. Чтобы стричь друзей"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD"
 msgid "Oh dear"
@@ -470,6 +1320,51 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH"
 msgid "Looking good!"
 msgstr "Смотрится неплохо!"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
+msgid "For hair cuts"
+msgstr "Чтобы подрезать волосы"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE"
+msgid "Wee Bzzter"
+msgstr "Носатая жужжалка"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "Crunchy"
+msgstr "Хрустяшка"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE"
+msgid "I'm getting goosebumps."
+msgstr "У меня мурашки по коже."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE"
+msgid "Fit for a sophisticated imp!"
+msgstr "Подходит для изощренного чертенка!"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Oops, it's burning."
+msgstr "Упс, горит."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Solid tall grass, really nice."
+msgstr "Сплошная высокая трава, очень красиво."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRASS_TALL.PICKED"
+msgid "Gone, all gone."
+msgstr "Ушли, все ушли."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE"
+msgid "To chop and slash!"
+msgstr "Рубить и рубить!"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC"
 msgid "You must have seen a lot, right?"
@@ -490,6 +1385,51 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
 msgid "Well, this trick can't fool me."
 msgstr "Ну, этот трюк не может обмануть меня."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
+msgid "Click, click, leaves fall."
+msgstr "Щелчок, щелк, листья падают."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE"
+msgid "don't bite me!"
+msgstr "не кусай меня!"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "What remains of their armor."
+msgstr "Что осталось от их доспехов."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE"
+msgid "Nice and comfortable armor."
+msgstr "Хорошая и удобная броня."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE"
+msgid "It better than normal hacker."
+msgstr "Это лучше, чем обычный хакер."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GRASS_TALL.BURNING"
+msgid "Fire! Is fire!"
+msgstr "Огонь! Это огонь!"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "Greer... can't move."
+msgstr "Грир... не могу двигаться."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GRASS_TALL.PICKED"
+msgid "It has been cut clean."
+msgstr "Он был вырезан начисто."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE"
+msgid "Plant hacker."
+msgstr "Хакер растений."
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Big weird bird."
@@ -509,6 +1449,51 @@ msgstr "На нем большие чудовищные глаза."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
 msgid "Pretty feather bush."
 msgstr "Красивый перьевой куст."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
+msgid "Shape the plants."
+msgstr "Сформируйте растения."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE"
+msgid "go away go away!"
+msgstr "уходи уходи!"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "hard shell."
+msgstr "твердая скорлупа."
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE"
+msgid "BIOLOGICAL COMPUTER CASING"
+msgstr "КОРПУС БИОЛОГИЧЕСКОГО КОМПЬЮТЕРА"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE"
+msgid "AN OSTENTATIOUS HACKING DEVICE"
+msgstr "ДЕМОНСТРАЦИОННОЕ УСТРОЙСТВО КРОМСАНИЯ"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GRASS_TALL.BURNING
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GRASS_TALL.BURNING"
+msgid "GROUND PARTS ON FIRE"
+msgstr "ЭЛЕМЕНТ ЗЕМЛИ ГОРИТ"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GRASS_TALL.GENERIC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GRASS_TALL.GENERIC"
+msgid "TOWERING GROUND PARTS"
+msgstr "ВЫСОКИЕ ЭЛЕМЕНТЫ ЗЕМЛИ"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GRASS_TALL.PICKED
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GRASS_TALL.PICKED"
+msgid "GROUND PARTS PREVIOUSLY ACQUIRED"
+msgstr "ЭТИ ЭЛЕМЕНТЫ ЗЕМЛИ УЖЕ СОБРАНЫ"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE"
+msgid "A LONG BLADE FOR EXPERT HACKING"
+msgstr "ДЛИННОЕ ЛЕЗВИЕ ДЛЯ ОПЫТНЫХ ХАКЕРОВ"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD"
@@ -535,6 +1520,41 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
 msgid "GROUND PART"
 msgstr "ДЕТАЛЬ ПЕЙЗАЖА"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
+msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
+msgstr "ОНИ ПОМОГУТ МНЕ ОДЕРЖАТЬ ПОБЕДУ НАД РАСТИТЕЛЬНОСТЬЮ!"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE"
+msgid "BIOLOGICAL FLESHSACK VIRUS"
+msgstr "БИОЛОГИЧЕСКИЙ ВИРУС В ВИДЕ МЕШКА ПЛОТИ"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE_CARAPACE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE_CARAPACE"
+msgid "THEY HAVE BEEN DEBUGGED"
+msgstr "ОШИБКА ПРИРОДЫ ИСПРАВЛЕНА"
+
+#. STRINGS.NAMES.ARMOR_WEEVOLE
+msgctxt "STRINGS.NAMES.ARMOR_WEEVOLE"
+msgid "Weevole Mantle"
+msgstr "Мантия полевки"
+
+#. STRINGS.NAMES.GOLDENMACHETE
+msgctxt "STRINGS.NAMES.GOLDENMACHETE"
+msgid "Luxury Machete"
+msgstr "Роскошный мачете"
+
+#. STRINGS.NAMES.GRASS_TALL
+msgctxt "STRINGS.NAMES.GRASS_TALL"
+msgid "Tall Grass"
+msgstr "Высокая трава"
+
+#. STRINGS.NAMES.MACHETE
+msgctxt "STRINGS.NAMES.MACHETE"
+msgid "Machete"
+msgstr "Мачете"
+
 #. STRINGS.NAMES.PEAGAWK
 msgctxt "STRINGS.NAMES.PEAGAWK"
 msgid "Peagawk"
@@ -549,4 +1569,39 @@ msgstr "Перо глазастого павлина"
 msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
 msgid "Blinkbush"
 msgstr "Куст с глазами"
+
+#. STRINGS.NAMES.SHEARS
+msgctxt "STRINGS.NAMES.SHEARS"
+msgid "Shears"
+msgstr "Ножницы"
+
+#. STRINGS.NAMES.WEEVOLE
+msgctxt "STRINGS.NAMES.WEEVOLE"
+msgid "Weevole"
+msgstr "Жук-полевка"
+
+#. STRINGS.NAMES.WEEVOLE_CARAPACE
+msgctxt "STRINGS.NAMES.WEEVOLE_CARAPACE"
+msgid "Weevole Carapace"
+msgstr "Панцирь полевки"
+
+#. STRINGS.RECIPE_DESC.ARMOR_WEEVOLE
+msgctxt "STRINGS.RECIPE_DESC.ARMOR_WEEVOLE"
+msgid "Kinda gross, but surprisingly strong."
+msgstr "Мерзкая на вид, но на удивление прочная."
+
+#. STRINGS.RECIPE_DESC.GOLDENMACHETE
+msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"
+msgid "Hack stuff in STYLE!"
+msgstr "Руби с блеском!"
+
+#. STRINGS.RECIPE_DESC.MACHETE
+msgctxt "STRINGS.RECIPE_DESC.MACHETE"
+msgid "Hack stuff!"
+msgstr "Руби!"
+
+#. STRINGS.RECIPE_DESC.SHEARS
+msgctxt "STRINGS.RECIPE_DESC.SHEARS"
+msgid "Cut your way into adventure."
+msgstr "Помогут выстричь путь к приключениям."
 

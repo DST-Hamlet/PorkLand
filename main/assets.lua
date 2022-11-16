@@ -2,9 +2,19 @@ local resolvefilepath = GLOBAL.resolvefilepath
 local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
-	"peagawk",
-	"peagawk_spawner",
+    "asparagus",
+    "deep_jungle_fern_noise",
+    "grass_tall",
+    "jungle_border_vine",
+    "machete",
+    "peagawk",
+    "peagawk_spawner",
 	"peagawkfeather",
+	"shears",
+    -- "tuber",
+    -- "tubertrees",
+    "weevole_carapace",
+    "weevole",
 }
 
 local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
@@ -14,6 +24,8 @@ Assets = {
 	Asset("IMAGE", "images/pl_inventoryimages.tex"),
     Asset("ATLAS", "images/pl_inventoryimages.xml"),
 	Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  --For minisign
+
+	Asset("ANIM", "anim/player_actions_shear.zip"),
 }
 
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
