@@ -1,4 +1,4 @@
-AddPrefabPostInitAny = AddPrefabPostInitAny
+local AddPrefabPostInitAny = AddPrefabPostInitAny
 GLOBAL.setfenv(1, GLOBAL)
 
 local poisonimmune_prefabs = table.invert({
