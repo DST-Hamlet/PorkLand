@@ -1,6 +1,7 @@
 return {
 	DESCRIBE = {
 		ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",
+		ASPARAGUS_PLANTED = "A cluster of edible spring vegetables!",
 		GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",
 		GRASS_TALL = {
 			BURNING = "Evidently, grass here has the same flammability qualities as at home.",

@@ -1,6 +1,7 @@
 return {
 	DESCRIBE = {
 		ARMOR_WEEVOLE = "It still smells of bug.",
+		ASPARAGUS_PLANTED = "I should snatch those up.",
 		GOLDENMACHETE = "Fancy slicer.",
 		GRASS_TALL = {
 			BURNING = "Smells like a cookout!",

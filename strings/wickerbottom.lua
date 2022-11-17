@@ -1,6 +1,7 @@
 return {
 	DESCRIBE = {
 		ARMOR_WEEVOLE = "Armour made from bug exoskeleton.",
+		ASPARAGUS_PLANTED = "Asparagus. Otherwise known as sparrow grass.",
 		GOLDENMACHETE = "The most malleable of metals, but let's see how it slices.",
 		GRASS_TALL = {
 			BURNING = "Illuminating!",

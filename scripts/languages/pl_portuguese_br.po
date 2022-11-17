@@ -20,6 +20,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Yeesh. This is kinda creepy."
 msgstr "Sim. Isso é meio bizarro."
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "I should pick those!"
+msgstr "É melhor colher esses!"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
@@ -89,6 +94,11 @@ msgstr "Preciso ter cuidado com essa carapaça."
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Exoskeleton armor to protect my endoskeleton."
 msgstr "Armadura de exoesqueleto para proteger meu endoesqueleto."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "A cluster of edible spring vegetables!"
+msgstr "Um cacho de vegetais comestíveis de primavera!"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE"
@@ -165,6 +175,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Ew. It's all creepy-crawly."
 msgstr "Eca. É muito asqueroso."
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Food!"
+msgstr "Rango!"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE"
 msgid "I can hack in style."
@@ -235,6 +250,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Are we really going to wear it?"
 msgstr "Nós realmente vamos usá-lo?"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Miss Winona might like it, pick some."
+msgstr "A senhorita Winona pode gostar, escolha alguns."
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
@@ -300,6 +320,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE"
 msgid "It doesn't smell that great, but there's no time to dwell on that much."
 msgstr "Não cheira muito bem, mas não há tempo para pensar muito nisso."
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "I should pick some and go back to eat."
+msgstr "Eu deveria pegar alguns e voltar para comer."
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE"
 msgid "What else do you do with gold in a jungle island?"
@@ -364,6 +389,11 @@ msgstr "Mal, exala um cheiro estranho."
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE"
 msgid "It still smells of bug."
 msgstr "Ainda tem cheiro de inseto."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "I should snatch those up."
+msgstr "Eu deveria pegar isso."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE"
@@ -435,6 +465,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Armor made from the skin of my enemy."
 msgstr "Armadura feita com a pele do meu inimigo."
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Useless vegetation!"
+msgstr "Vegetação inútil!"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE"
 msgid "I shall swing you with pride."
@@ -504,6 +539,11 @@ msgstr "A pele do meu inimigo."
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE"
 msgid "This is not a good look."
 msgstr "Isso não fica bem em mim."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Food. Just growing out of the ground."
+msgstr "Comida. Crescendo do solo."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE"
@@ -575,6 +615,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE"
 msgid "For when we need protection."
 msgstr "Para quando precisarmos de proteção."
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "We should pick those."
+msgstr "Deveríamos colher esses."
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE"
 msgid "What a beautiful blade!"
@@ -644,6 +689,11 @@ msgstr "É a parte externa daqueles insetos."
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Something died so that this armor may exist."
 msgstr "Algo morreu para que essa armadura pudesse existir."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "I should rip those out of the ground."
+msgstr "É melhor arrancá-las do chão."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE"
@@ -715,6 +765,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE"
 msgid "If only it had those bug wings."
 msgstr "Se ao menos eu tivesse aquelas asas de insetos."
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "That looks like food! Let's hope it tastes like food."
+msgstr "Parece comida! Vamos torcer para que tenha gosto de comida."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE"
 msgid "For the sophisticated adventurer."
@@ -784,6 +839,11 @@ msgstr "Leve o bastante para ser disparada pela Bangmática."
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Armour made from bug exoskeleton."
 msgstr "Armadura feita de exoesqueleto de insetos."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Asparagus. Otherwise known as sparrow grass."
+msgstr "Aspargo. Também conhecido como capim pardal."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE"
@@ -855,6 +915,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE"
 msgid "ADVENTURE CLOTHES FROM ANNOYING BUGS"
 msgstr "ROUPAS DE AVENTURAS DE INSETOS IRRITANTIS"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "HATH A FUNNY HAT"
+msgstr "TENERES UM CHAPÉUS ENGRAÇADIS"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE"
 msgid "'TIS SHINY TOOL O' SLASHINGS"
@@ -924,6 +989,11 @@ msgstr "WILBA DERROTARES INSETO IRRITANTIS"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE"
 msgid "This feels gross. I hope it works."
 msgstr "Isso parece nojento. Espero que dê certo."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Haha! Found you!"
+msgstr "Haha! Achei você!"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE"
@@ -995,6 +1065,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Not very comfortable, just let it go."
 msgstr "Não é muito confortável, apenas deixe-o ir."
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Wholesome green vegetables."
+msgstr "Legumes verdes saudáveis."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE"
 msgid "This just made my job easier."
@@ -1059,6 +1134,11 @@ msgstr "Pode ser considerado limpo."
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Wolfgang win!"
 msgstr "Vitória de Wolfgang!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Haha. Is like tiny vegetable hats."
+msgstr "Haha. É como pequenos chapéus de vegetais."
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE"
@@ -1130,6 +1210,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Nice use of bug carcasses."
 msgstr "Um bom uso das carcaças de insetos."
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "They're like little trees to chop down."
+msgstr "São que nem pequenas árvores para derrubar."
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE"
 msgid "It chops AND sparkles!"
@@ -1199,6 +1284,11 @@ msgstr "Serviu de lição!"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Aye. Finery made o' bug skin."
 msgstr "Arr. Um traje feito de pele de inseto."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Tiny masts growin' from the ground."
+msgstr "Mastros pequeninos brotando do solo."
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE"
@@ -1270,6 +1360,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Bzzter clothes"
 msgstr "Roupas de Bzzteiro."
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Hello there!"
+msgstr "Olá!"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE"
 msgid "Pretty Slicer"
@@ -1340,6 +1435,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE"
 msgid "I'm getting goosebumps."
 msgstr "Estou ficando arrepiado."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "A spear that grows out of the earth."
+msgstr "Uma lança que cresce da terra."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE"
 msgid "Fit for a sophisticated imp!"
@@ -1405,6 +1505,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Nice and comfortable armor."
 msgstr "Armadura bonita e confortável."
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "Green stick stick, smells good."
+msgstr "Vara verde, cheira bem."
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE"
 msgid "It better than normal hacker."
@@ -1469,6 +1574,11 @@ msgstr "casca dura."
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE"
 msgid "BIOLOGICAL COMPUTER CASING"
 msgstr "CAIXA DE COMPUTADOR BIOLÓGICO"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ASPARAGUS_PLANTED
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ASPARAGUS_PLANTED"
+msgid "SMALL TREES OF ENERGY"
+msgstr "PEQUENAS ÁRVORES DE ENERGIA"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE"
@@ -1539,6 +1649,11 @@ msgstr "ELES FORAM DEPURADOS"
 msgctxt "STRINGS.NAMES.ARMOR_WEEVOLE"
 msgid "Weevole Mantle"
 msgstr "Manto de Besourato"
+
+#. STRINGS.NAMES.ASPARAGUS_PLANTED
+msgctxt "STRINGS.NAMES.ASPARAGUS_PLANTED"
+msgid "Asparagus"
+msgstr "Aspargo"
 
 #. STRINGS.NAMES.GOLDENMACHETE
 msgctxt "STRINGS.NAMES.GOLDENMACHETE"

@@ -1,6 +1,7 @@
 return {
 	DESCRIBE = {
 		ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",
+		ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
 		GOLDENMACHETE = "'Tis a mighty 'eavy blade.",
 		GRASS_TALL = {
 			BURNING = "'Tis ablaze!",

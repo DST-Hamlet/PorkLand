@@ -1,6 +1,7 @@
 return {
 	DESCRIBE = {
 		ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",
+		ASPARAGUS_PLANTED = "Useless vegetation!",
 		GOLDENMACHETE = "I shall swing you with pride.",
 		GRASS_TALL = {
 			BURNING = "It burns!",

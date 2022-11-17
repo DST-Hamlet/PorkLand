@@ -5,6 +5,7 @@ return {
 	},
 	NAMES = {
 		ARMOR_WEEVOLE = "Weevole Mantle",
+		ASPARAGUS_PLANTED = "Asparagus",
 		GOLDENMACHETE = "Luxury Machete",
 		GRASS_TALL = "Tall Grass",
 		MACHETE = "Machete",

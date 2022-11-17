@@ -1,6 +1,7 @@
 return {
 	DESCRIBE = {
 		ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",
+		ASPARAGUS_PLANTED = "I should pick some and go back to eat.",
 		GOLDENMACHETE = "What else do you do with gold in a jungle island?",
 		GRASS_TALL = {
 			BURNING = "This is not good.",

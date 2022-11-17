@@ -1,6 +1,7 @@
 return {
 	DESCRIBE = {
 		ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",
+		ASPARAGUS_PLANTED = "I should pick those!",
 		GOLDENMACHETE = "Hack in style!",
 		GRASS_TALL = {
 			BURNING = "A grass fire!",

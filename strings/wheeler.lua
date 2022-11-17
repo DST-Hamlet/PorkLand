@@ -1,6 +1,7 @@
 return {
 	DESCRIBE = {
 		ARMOR_WEEVOLE = "If only it had those bug wings.",
+		ASPARAGUS_PLANTED = "That looks like food! Let's hope it tastes like food.",
 		GOLDENMACHETE = "For the sophisticated adventurer.",
 		GRASS_TALL = {
 			BURNING = "All those bugs have nowhere to hide now.",

@@ -1,6 +1,7 @@
 return {
 	DESCRIBE = {
 		ARMOR_WEEVOLE = "Something died so that this armor may exist.",
+		ASPARAGUS_PLANTED = "I should rip those out of the ground.",
 		GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
 		GRASS_TALL = {
 			BURNING = "Death comes to everything.",
