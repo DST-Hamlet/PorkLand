@@ -3,6 +3,7 @@ local components_post = {
     "actionqueuer",
     "combat",
     "health",
+    "lootdropper",
     "playercontroller",
     "regrowthmanager",
     "rider_replica",
@@ -10,7 +11,9 @@ local components_post = {
 
 local prefabs_post = {
     "buff_workeffectiveness",
+    "player",
     "player_classified",
+    "woodie",
     "world"
 }
 

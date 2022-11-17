@@ -1,7 +1,10 @@
 GLOBAL.setfenv(1, GLOBAL)
 
 function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, attack_period_penalty, speed_penalty, hunger_burn, sanity_scale)
-    inst:AddComponent("poisonable")
+    if not inst.components.poisonable then
+        inst:AddComponent("poisonable")
+    end
+
     inst.components.poisonable:AddPoisonFX("poisonbubble", offset or Vector3(0, 0, 0), sym)
 
     if fxstyle == nil or fxstyle == "loop" then

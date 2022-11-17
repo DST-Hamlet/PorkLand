@@ -185,8 +185,10 @@
         "ChaseAndAttack",
         "FindClosestPlayerToInstOnLand",
         "AddComponentPostInit",
-        "DefaultBurntFn"
+        "DefaultBurntFn",
         "MakeHauntableIgnite",
-        "addsetter"
+        "addsetter",
+        "AddPrefabPostInitAny",
+        "AddPlayerPostInit"
     ]
 }
