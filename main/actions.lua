@@ -5,6 +5,7 @@ GLOBAL.setfenv(1, GLOBAL)
 local PL_ACTIONS = {
     HACK = Action({mindistance = 1.75, silent_fail = true}),
     SHEAR = Action({distance = 1.75}),
+    DISLODGE = Action({}),
     PEAGAWK_TRANSFORM = Action({}),
 }
 
@@ -67,6 +68,18 @@ ACTIONS.SHEAR.validfn = function(act)
         (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.SHEAR)
 end
 
+ACTIONS.DISLODGE.fn = function(act)
+    if act.target and act.target.components.dislodgeable then
+        act.target.components.dislodgeable:Dislodge(act.doer)
+        return true
+    end
+end
+
+ACTIONS.DISLODGE.validfn = function(act)
+    return (act.target.components.dislodgeable and act.target.components.dislodgeable:CanBeDislodged()) or
+        (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.DISLODGE)
+end
+
 ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
     return true -- Dummy action for flup hiding
 end
@@ -124,6 +137,9 @@ local PL_COMPONENT_ACTIONS =
         end,
         shearable = function(inst, action, right)
             return action == ACTIONS.SHEAR and inst:HasTag("SHEAR_workable")
+        end,
+        dislodgeable = function(inst, action, right)
+            return action == ACTIONS.DISLODGE and inst:HasTag("DISLODGE_workable")
         end
     },
 }

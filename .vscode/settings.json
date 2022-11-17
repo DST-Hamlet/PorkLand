@@ -185,8 +185,12 @@
         "ChaseAndAttack",
         "FindClosestPlayerToInstOnLand",
         "AddComponentPostInit",
-        "DefaultBurntFn"
+        "DefaultBurntFn",
         "MakeHauntableIgnite",
-        "addsetter"
+        "addsetter",
+        "ConsoleCommandPlayer()",
+        "MakeObstaclePhysics",
+        "MakeHauntableWork",
+        "SEASONS",
     ]
 }

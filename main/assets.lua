@@ -16,6 +16,9 @@ PrefabFiles = {
     -- "tubertrees",
     "weevole_carapace",
     "weevole",
+    "littlehammer",
+    "pig_ruins",
+    "relics",
 }
 
 local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
@@ -30,6 +33,7 @@ Assets = {
     Asset("IMAGE", "images/overlays/fx3.tex"),
 
 	Asset("ANIM", "anim/player_actions_shear.zip"),
+    Asset("ANIM", "anim/player_actions_tap.zip"),
 }
 
 AddMinimapAtlas("images/minimap/pl_minimap.xml")

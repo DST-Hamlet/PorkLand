@@ -30,6 +30,9 @@ local tuning = {
     SHEARS_DAMAGE = wilson_attack * .5,
     SHEARS_USES = 20,
 
+    LITTLE_HAMMER_DAMAGE = wilson_attack*0.3,
+    LITTLE_HAMMER_USES = 10,
+
     VINE_REGROW_TIME = total_day_time * 4,
 
     WEEVOLE_WALK_SPEED = 5,
