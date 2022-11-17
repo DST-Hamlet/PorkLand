@@ -32,6 +32,7 @@ Assets = {
     Asset("ATLAS", "images/overlays/fx3.xml"),
     Asset("IMAGE", "images/overlays/fx3.tex"),
 
+    Asset("ANIM", "anim/player_actions_hack.zip"),
 	Asset("ANIM", "anim/player_actions_shear.zip"),
     Asset("ANIM", "anim/player_actions_tap.zip"),
 }

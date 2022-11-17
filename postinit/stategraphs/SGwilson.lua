@@ -29,38 +29,24 @@ local states = {
         tags = {"prehack", "working"},
 
         onenter = function(inst)
+            inst.components.locomotor:Stop()
+
             local buffaction = inst:GetBufferedAction()
             local tool = buffaction ~= nil and buffaction.invobject or nil
             local hacksymbols = tool ~= nil and tool.hack_overridesymbols or nil
+
             if hacksymbols ~= nil then
-                if inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS) ~= nil then
-                    inst.sg.statemem.override = inst.AnimState:GetSymbolOverrideTable("swap_object")
-                end
                 hacksymbols[3] = tool:GetSkinBuild()
                 if hacksymbols[3] ~= nil then
-                    inst.AnimState:OverrideItemSkinSymbol("swap_object", hacksymbols[3], hacksymbols[1], tool.GUID, hacksymbols[2])
+                    inst.AnimState:OverrideItemSkinSymbol("swap_machete", hacksymbols[3], hacksymbols[1], tool.GUID, hacksymbols[2])
                 else
-                    inst.AnimState:OverrideSymbol("swap_object", hacksymbols[1], hacksymbols[2])
+                    inst.AnimState:OverrideSymbol("swap_machete", hacksymbols[1], hacksymbols[2])
                 end
-            elseif tool ~= nil then
-                print("ERROR: Hacking tool is missing hack_overridesymbols")
-            end
-
-            inst.components.locomotor:Stop()
-            inst.AnimState:PlayAnimation("chop_pre")
-        end,
-
-        onexit = function(inst)
-            local override = inst.sg.statemem.override
-            if override ~= nil then
-                if override[3] ~= nil then
-                    inst.AnimState:OverrideItemSkinSymbol("swap_object", override[3], override[1], override[4], override[2])
-                else
-                    inst.AnimState:OverrideSymbol("swap_object", override[1], override[2])
-                end
+                inst.AnimState:PlayAnimation("hack_pre")
             else
-                inst.AnimState:ClearOverrideSymbol("swap_object")
+                inst.AnimState:PlayAnimation("chop_pre")
             end
+
         end,
 
         events = {
@@ -81,31 +67,19 @@ local states = {
             inst.sg.statemem.action = inst:GetBufferedAction()
             local tool = inst.sg.statemem.action ~= nil and inst.sg.statemem.action.invobject or nil
             local hacksymbols = tool ~= nil and tool.hack_overridesymbols or nil
+
+            -- Note this is used to make sure the tool symbol is still the machete even when inventory hacking
             if hacksymbols ~= nil then
-                if inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS) ~= nil then
-                    inst.sg.statemem.override = inst.AnimState:GetSymbolOverrideTable("swap_object")
-                end
+                -- This code only needs to run when hacking a coconut but im running it regardless to prevent hiding issues
                 hacksymbols[3] = tool:GetSkinBuild()
                 if hacksymbols[3] ~= nil then
-                    inst.AnimState:OverrideItemSkinSymbol("swap_object", hacksymbols[3], hacksymbols[1], tool.GUID, hacksymbols[2])
+                    inst.AnimState:OverrideItemSkinSymbol("swap_machete", hacksymbols[3], hacksymbols[1], tool.GUID, hacksymbols[2])
                 else
-                    inst.AnimState:OverrideSymbol("swap_object", hacksymbols[1], hacksymbols[2])
+                    inst.AnimState:OverrideSymbol("swap_machete", hacksymbols[1], hacksymbols[2])
                 end
-            elseif tool ~= nil then
-                print("ERROR: Hacking tool is missing hack_overridesymbols")
-            end
-
-            inst.AnimState:PlayAnimation("chop_loop")
-        end,
-
-        onexit = function(inst)
-            local override = inst.sg.statemem.override
-            if override ~= nil then
-                if override[3] ~= nil then
-                    inst.AnimState:OverrideItemSkinSymbol("swap_object", override[3], override[1], override[4], override[2])
-                else
-                    inst.AnimState:OverrideSymbol("swap_object", override[1], override[2])
-                end
+                inst.AnimState:PlayAnimation("hack_loop")
+            else
+                inst.AnimState:PlayAnimation("chop_loop")
             end
         end,
 
@@ -149,7 +123,6 @@ local states = {
 			end),
         },
     },
-
 
     State{
         name = "shear_start",
