@@ -78,13 +78,13 @@ end
 local function normal()
     local inst = pristinefn()
 
+    inst.hack_overridesymbols = {"swap_machete", "swap_machete"}
+
     inst.entity:SetPristine()
 
 	if not TheWorld.ismastersim then
 		return inst
 	end
-
-    inst.hack_overridesymbols = {"swap_machete", "swap_machete"}
 
 	masterfn(inst)
 
@@ -101,13 +101,13 @@ local function golden()
 
     inst.AnimState:SetBuild("goldenmachete")
 
+    inst.hack_overridesymbols = {"swap_goldenmachete", "swap_goldenmachete"}
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
-
-    inst.hack_overridesymbols = {"swap_goldenmachete", "swap_goldenmachete"}
 
 	masterfn(inst)
 

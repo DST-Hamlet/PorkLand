@@ -25,8 +25,22 @@ local states = {
             inst.components.locomotor:Stop()
 
             if not inst:HasTag("working") then
-                inst.AnimState:PlayAnimation("chop_pre")
-                inst.AnimState:PushAnimation("chop_lag", false)
+                local action = inst:GetBufferedAction()
+                local tool = action ~= nil and action.invobject or nil
+                local hacksymbols = tool ~= nil and tool.hack_overridesymbols or nil
+                if hacksymbols ~= nil then
+                    hacksymbols[3] = tool:GetSkinBuild()
+                    if hacksymbols[3] ~= nil then
+                        inst.AnimState:OverrideItemSkinSymbol("swap_machete", hacksymbols[3], hacksymbols[1], tool.GUID, hacksymbols[2])
+                    else
+                        inst.AnimState:OverrideSymbol("swap_machete", hacksymbols[1], hacksymbols[2])
+                    end
+                    inst.AnimState:PlayAnimation("hack_pre")
+                    inst.AnimState:PushAnimation("hack_lag", false)
+                else
+                    inst.AnimState:PlayAnimation("chop_pre")
+                    inst.AnimState:PushAnimation("chop_lag", false)
+                end
             end
 
             inst:PerformPreviewBufferedAction()
