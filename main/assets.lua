@@ -40,6 +40,9 @@ Assets = {
     Asset("ATLAS", "images/overlays/fx3.xml"),
     Asset("IMAGE", "images/overlays/fx3.tex"),
 
+    --Loading this here because the meatrack needs them
+    Asset("ANIM", "anim/meat_rack_food_sw.zip"),
+
 	Asset("ANIM", "anim/player_actions_shear.zip"),
     Asset("ANIM", "anim/player_actions_tap.zip"),
 
