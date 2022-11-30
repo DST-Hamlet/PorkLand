@@ -192,5 +192,13 @@
         "MakeObstaclePhysics",
         "MakeHauntableWork",
         "SEASONS",
+        "GROUND",
+        "DefaultIgniteFn",
+        "AddPrefabPostInitAny",
+        "FindWalkableOffset",
+        "MakeLargeFreezableCharacter",
+        "MakeSnowCovered",
+        "JoinArrays",
+        "MakeMediumPropagator",
     ]
 }

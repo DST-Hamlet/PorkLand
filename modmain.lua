@@ -18,7 +18,7 @@ modimport("main/util")
 modimport("main/fx")
 modimport("main/standardcomponents")
 modimport("main/commands")
-
+modimport("main/containers")
 modimport("main/actions")
 modimport("main/postinit")
 

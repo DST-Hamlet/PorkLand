@@ -84,4 +84,8 @@ function Dislodgeable:SetOnDislodgedFn(fn)
 	self.ondislodgedfn = fn
 end
 
+function Dislodgeable:OnRemoveFromEntity()
+    self.inst:RemoveTag("DISLODGE_workable")
+end
+
 return Dislodgeable

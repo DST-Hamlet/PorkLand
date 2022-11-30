@@ -70,7 +70,7 @@ SetSharedLootTable( 'ruins_gianthead',
 local function setdislodged(inst)
 	inst.dislodged = true
 	inst.AnimState:PlayAnimation("extract_success")
-    inst:RemoveTag("DISLODGE_workable")
+    inst.components.dislodgeable:OnRemoveFromEntity()
 	-- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_EXTRACTED"])
 end
 

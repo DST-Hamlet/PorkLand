@@ -1,4 +1,6 @@
 local AddPrefabPostInit = AddPrefabPostInit
+local COLLISION = GLOBAL.COLLISION
+local TileGroups = GLOBAL.TileGroups
 GLOBAL.setfenv(1, GLOBAL)
 
 AddPrefabPostInit("world", function(inst)
@@ -32,5 +34,7 @@ AddPrefabPostInit("world", function(inst)
         end
         return _tile_physics_init ~= nil and _tile_physics_init(inst, ...)
     end
+    inst:AddTag("plateau")
 
+    -- inst:AddComponent("roottrunkinventory")
 end)

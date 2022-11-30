@@ -1,32 +1,32 @@
--- local function getstatus(inst)
---     if inst.components.sinkable and inst.components.sinkable.sunken then
---         return "SUNKEN"
---     end
--- end
+local function getstatus(inst)
+    if inst.components.sinkable and inst.components.sinkable.sunken then
+        return "SUNKEN"
+    end
+end
 
--- local function bubble(inst)
---     inst.task = nil
---     -- hacky, need to force a floatable anim change
---     inst.components.floatable:UpdateAnimations(inst.relicnum.."_water", inst.relicnum)
+local function bubble(inst)
+    inst.task = nil
+    -- hacky, need to force a floatable anim change
+    inst.components.floatable:UpdateAnimations(inst.relicnum.."_water", inst.relicnum)
 
---     if inst.components.sinkable.sunken then
---         inst.components.floatable:UpdateAnimations( inst.relicnum.."_bubble", inst.relicnum)
---     end
+    if inst.components.sinkable.sunken then
+        inst.components.floatable:UpdateAnimations( inst.relicnum.."_bubble", inst.relicnum)
+    end
 
---     if inst.components.floatable.onwater then
---         inst.AnimState:PushAnimation( inst.relicnum.."_water")
---     else
---         inst.AnimState:PushAnimation(inst.relicnum)
---     end
+    if inst.components.floatable.onwater then
+        inst.AnimState:PushAnimation( inst.relicnum.."_water")
+    else
+        inst.AnimState:PushAnimation(inst.relicnum)
+    end
 
---     if inst.entity:IsAwake() then
---         inst:DoTaskInTime(4+math.random()*10, function() bubble(inst) end)
---     end
--- end
+    if inst.entity:IsAwake() then
+        inst:DoTaskInTime(4+math.random()*10, function() bubble(inst) end)
+    end
+end
 
--- local function onwake(inst)
---     inst.task = inst:DoTaskInTime(4+math.random()*10, function() bubble(inst) end)
--- end
+local function onwake(inst)
+    inst.task = inst:DoTaskInTime(4+math.random()*10, function() bubble(inst) end)
+end
 
 local function MakeRelic(num)
 

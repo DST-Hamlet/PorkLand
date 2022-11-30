@@ -1,3 +1,8 @@
+local modimport = modimport
+GLOBAL.setfenv(1, GLOBAL)
+--------------------------------------------------------------------------
+-- PostInits
+--------------------------------------------------------------------------
 -- Update this list when adding files
 local components_post = {
     "actionqueuer",
@@ -6,12 +11,14 @@ local components_post = {
     "playercontroller",
     "regrowthmanager",
     "rider_replica",
+    "homeseeker",
 }
 
 local prefabs_post = {
     "buff_workeffectiveness",
     "player_classified",
-    "world"
+    "world",
+    "meatrack"
 }
 
 local batch_prefabs_post = {
@@ -31,6 +38,9 @@ local brains_post = {
 }
 
 local class_post = {
+}
+
+local widgets_post = {
 }
 
 modimport("postinit/entityscript")
@@ -58,6 +68,10 @@ end
 
 for _, file_name in pairs(brains_post) do
     modimport("postinit/brains/" .. file_name)
+end
+
+for _, file_name in pairs(widgets_post) do
+    modimport("postinit/widgets/"  ..  file_name)
 end
 
 for _, file_name in pairs(class_post) do
