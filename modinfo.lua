@@ -4,7 +4,7 @@ local function en_zh(en, zh)  -- Other languages don't work
     return (locale == "zh" or locale == "zhr" or locale == "zht") and zh or en
 end
 
-name = "Prok Land"
+name = "Pork Land"
 author = "Jerry"
 description = ""
 

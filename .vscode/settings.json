@@ -188,6 +188,18 @@
         "DefaultBurntFn",
         "MakeHauntableIgnite",
         "addsetter",
+        "ConsoleCommandPlayer()",
+        "MakeObstaclePhysics",
+        "MakeHauntableWork",
+        "SEASONS",
+        "GROUND",
+        "DefaultIgniteFn",
+        "AddPrefabPostInitAny",
+        "FindWalkableOffset",
+        "MakeLargeFreezableCharacter",
+        "MakeSnowCovered",
+        "JoinArrays",
+        "MakeMediumPropagator",
         "AddPrefabPostInitAny",
         "AddPlayerPostInit"
     ]

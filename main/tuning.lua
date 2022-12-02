@@ -30,7 +30,69 @@ local tuning = {
     SHEARS_DAMAGE = wilson_attack * .5,
     SHEARS_USES = 20,
 
+    LITTLE_HAMMER_DAMAGE = wilson_attack*0.3,
+    LITTLE_HAMMER_USES = 10,
+
+    WALKING_STICK_PERISHTIME = total_day_time*3,
+    WALKING_STICK_SPEED_MULT = 1.3,
+    WALKING_STICK_DAMAGE = wilson_attack*.6,
+
+    HALBERD_DAMAGE = wilson_attack*1.3,
+    HALBERD_USES = 100,
+
+    CORK_BAT_DAMAGE = wilson_attack * 1.5,
+    CORK_BAT_USES = 20,
+
     VINE_REGROW_TIME = total_day_time * 4,
+
+    FLYTRAP_CHILD_HEALTH = 250,
+    FLYTRAP_CHILD_DAMAGE = 15,
+    FLYTRAP_CHILD_SPEED = 4,
+
+    FLYTRAP_TARGET_DIST = 8,
+    FLYTRAP_KEEP_TARGET_DIST= 15,
+    FLYTRAP_ATTACK_PERIOD =3,
+    FLYTRAP_TEEN_HEALTH = 300,
+    FLYTRAP_TEEN_DAMAGE = 20,
+    FLYTRAP_TEEN_SPEED = 3.5,
+    FLYTRAP_HEALTH = 350,
+    FLYTRAP_DAMAGE = 25,
+    FLYTRAP_SPEED = 3,
+
+    ADULT_FLYTRAP_HEALTH = 400,
+    ADULT_FLYTRAP_DAMAGE = 30,
+    ADULT_FLYTRAP_ATTACK_PERIOD = 5,
+    ADULT_FLYTRAP_ATTACK_DIST = 4,
+    ADULT_FLYTRAP_STOPATTACK_DIST = 6,
+
+    POG_ATTACK_RANGE = 3,
+    POG_MELEE_RANGE = 2.5,
+    POG_TARGET_DIST = 25,
+    POG_WALK_SPEED = 2,
+    POG_RUN_SPEED = 4.5,
+    POG_DAMAGE = 25,
+    POG_HEALTH = 150,
+    POG_ATTACK_PERIOD = 2,
+
+    POG_REGEN_TIME = total_day_time * 20,
+    POG_RELEASE_TIME = 5,
+    POG_MAX = 2,
+
+    MIN_POGNAP_INTERVAL = 30,
+    MAX_POGNAP_INTERVAL = 120,
+    MIN_POGNAP_LENGTH = 20,
+    MAX_POGNAP_LENGTH = 40,
+
+    POG_LOYALTY_MAXTIME = total_day_time,
+    POG_LOYALTY_PER_ITEM = total_day_time*.1,
+    POG_EAT_DELAY = 0.5,
+    POG_SEE_FOOD = 30,
+
+    HONEY_CHEST_MINE = 6,
+    HONEY_CHEST_MINE_MED = 4,
+    HONEY_CHEST_MINE_LOW = 2,
+
+    PERISH_SALTBOX_MULT_HUGE = .0001,
 
     WEEVOLE_WALK_SPEED = 5,
     WEEVOLE_HEALTH = 150,
@@ -87,6 +149,11 @@ local tuning = {
         {time = 2.70 * total_day_time, damage_scale = 1.50, interval_scale = 0.7, fxlevel = 3}, -- 41.14 DMG
         {time = 2.90 * total_day_time, damage_scale = 2.00, interval_scale = 0.5, fxlevel = 4}, -- 38.40 DMG
     },
+
+    --appeasementvalue
+    WRATH_SMALL = -8,
+
+    APPEASEMENT_TINY = 4,
 }
 
 for key, value in pairs(tuning) do

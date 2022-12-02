@@ -86,6 +86,8 @@ local function normal()
 		return inst
 	end
 
+    inst.hack_overridesymbols = {"swap_machete", "swap_machete"}
+
 	masterfn(inst)
 
     return inst
