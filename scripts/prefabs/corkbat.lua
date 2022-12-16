@@ -35,7 +35,7 @@ local function fn()
 
 	inst:AddTag("bat")
 	inst:AddTag("corkbat")
-	inst:AddTag("slowattack")
+	-- inst:AddTag("slowattack")
 
     inst.entity:SetPristine()
 

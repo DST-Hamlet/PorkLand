@@ -32,6 +32,14 @@ function Combat:RemovePeriodModifier(key)
     self.attack_period_modifiers[key] = nil
 end
 
+function Combat:CanBeAttacked(attacker)
+	local can_be_attacked = true
+	if self.canbeattackedfn then
+		can_be_attacked = self.canbeattackedfn(self.inst, attacker)
+	end
+	return can_be_attacked
+end
+
 function Combat:GetIsAttackPoison(attacker)
     local poisonAttack = false
     local poisonGasAttack = false

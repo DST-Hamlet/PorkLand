@@ -7,6 +7,8 @@ require "behaviours/leash"
 require "behaviours/doaction"
 require "behaviours/chaseandattack"
 
+local BrainCommon = require "brains/braincommon"
+
 local MIN_FOLLOW_DIST = 0
 local MAX_FOLLOW_DIST = 12
 local TARGET_FOLLOW_DIST = 6
@@ -144,7 +146,8 @@ function PogBrain:OnStart()
     local root =
     PriorityNode(
     {
-        WhileNode(function() return self.inst:HasTag("fire") or self.inst.components.health.takingfiredamage or self.inst.components.hauntable.panic end, "Panic", Panic(self.inst)),
+        BrainCommon.PanicTrigger(self.inst),
+        WhileNode(function() return self.inst:HasTag("fire") or self.inst.components.health.takingfiredamage end, "Panic", Panic(self.inst)),
         DoAction(self.inst, function() return EatFoodAction(self.inst) end, "Eat", true),
 
         -- IfNode ( function() return GetAporkalypse() and GetAporkalypse():IsActive() end, "AporkalypseActive",

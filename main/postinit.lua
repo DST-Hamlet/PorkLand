@@ -7,6 +7,9 @@ local components_post = {
     "playercontroller",
     "regrowthmanager",
     "rider_replica",
+    "eater",
+    "inventory",
+    "inventoryitem",
 }
 
 local prefabs_post = {
@@ -14,7 +17,8 @@ local prefabs_post = {
     "player",
     "player_classified",
     "woodie",
-    "world"
+    "world",
+    "warningshadow",
 }
 
 local batch_prefabs_post = {

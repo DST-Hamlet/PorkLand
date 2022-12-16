@@ -1,5 +1,6 @@
 local AddStategraphState = AddStategraphState
 local AddStategraphActionHandler = AddStategraphActionHandler
+local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local TIMEOUT = 2
@@ -105,5 +106,26 @@ for _, state in ipairs(states) do
     AddStategraphState("wilson_client", state)
 end
 
--- AddStategraphPostInit("wilson", function(sg)
+----------------------------------------------------------------------------------------------
+
+-- AddStategraphPostInit("wilson_client", function(sg)
+
+--     do
+--         local _attack_onenter = sg.states.attack.onenter
+--         sg.states.attack.onenter = function(inst, data)
+
+--             local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+--             if equip and equip:HasTag("halberd") then
+--                 SetSoundAlias("dontstarve/wilson/attack_weapon", "pl/common/items/weapon/halberd")
+--             elseif equip and equip:HasTag("corkbat") then
+--                 SetSoundAlias("dontstarve/wilson/attack_weapon", "pl/common/items/weapon/corkbat")
+--             end
+
+--             _attack_onenter(inst, data)
+
+--             SetSoundAlias("dontstarve/wilson/attack_weapon", nil)
+
+--         end
+--     end
+
 -- end)

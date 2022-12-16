@@ -81,7 +81,7 @@ local function fn()
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
-    -- inst.components.inventoryitem:SetOnRemovedFn(OnRemoved)
+    inst.components.inventoryitem:SetOnRemovedFn(OnRemoved)
 
     return inst
 end

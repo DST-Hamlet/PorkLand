@@ -2,20 +2,43 @@ local resolvefilepath = GLOBAL.resolvefilepath
 local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
-    "asparagus",
-    "deep_jungle_fern_noise",
-    "grass_tall",
-    "jungle_border_vine",
-    "machete",
-    "peagawk",
-    "peagawk_spawner",
-	"peagawkfeather",
-    "poisonbubble",
-	"shears",
+    -- "adult_flytrap",
+    -- "asparagus",
+    "corkbat",
+    -- "deep_jungle_fern_noise",
+    -- "grass_tall",
+    -- "halberd",
+    -- "jungle_border_vine",
+    -- "machete",
+    -- "mean_flytrap",
+    -- "nectar_pod",
+    -- "peagawk",
+    -- "peagawkfeather",
+    -- "peagawk_spawner",
+    -- "pog",
+    -- "pog_spawner",
+    -- "poisonbubble",
+    -- "shears",
     -- "tuber",
     -- "tubertrees",
-    "weevole_carapace",
-    "weevole",
+    -- "venus_stalk",
+    -- "vine",
+    -- "walkingstick",
+    -- "weevole",
+    -- "weevole_carapace",
+    -- "chitin",
+    -- "antman",
+    -- "antman_warrior",
+    -- "antman_warrior_egg",
+    -- "antlarva",
+    -- "antcombhome",
+    -- "anthill_lamp",
+    -- "giantgrub",
+    -- "anthill_stalactite",
+    -- "antqueen",
+    -- "antqueen_throne",
+    -- "antqueen_spawner",
+    "pheromonestone",
 }
 
 local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
@@ -29,6 +52,13 @@ Assets = {
     Asset("ATLAS", "images/overlays/fx3.xml"),
     Asset("IMAGE", "images/overlays/fx3.tex"),
 
+    --Loading this here because the meatrack needs them
+    Asset("ANIM", "anim/meat_rack_food_sw.zip"),
+
+    --Loading minimap
+    Asset("ATLAS", "images/minimap/pl_minimap.xml"),
+    Asset("IMAGE", "images/minimap/pl_minimap.tex"),
+
     Asset("ANIM", "anim/player_actions_hack.zip"),
 	Asset("ANIM", "anim/player_actions_shear.zip"),
 }
@@ -36,5 +66,6 @@ Assets = {
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
 
 if not TheNet:IsDedicated() then
-	-- table.insert(Assets, Asset("SOUND", "sound/"))
+    -- table.insert(Assets, Asset("SOUND", "sound/pl.fsb"))
+    -- table.insert(Assets, Asset("SOUNDPACKAGE", "sound/pl.fev"))
 end

@@ -7,6 +7,8 @@ require "behaviours/faceentity"
 require "behaviours/doaction"
 require "behaviours/standstill"
 
+local BrainCommon = require "brains/braincommon"
+
 local FlytrapBrain = Class(Brain, function(self, inst)
 	Brain._ctor(self, inst)
 end)
@@ -27,7 +29,8 @@ function FlytrapBrain:OnStart()
 
 	local root = PriorityNode(
 	{
-        WhileNode(function() return self.inst:HasTag("fire") or self.inst.components.health.takingfiredamage or self.inst.components.hauntable.panic end, "Panic", Panic(self.inst)),
+        BrainCommon.PanicTrigger(self.inst),
+        WhileNode(function() return self.inst:HasTag("fire") or self.inst.components.health.takingfiredamage end, "Panic", Panic(self.inst)),
 
 		DoAction(self.inst, function() return EatFoodAction(self.inst) end ),
 

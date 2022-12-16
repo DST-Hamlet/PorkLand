@@ -133,20 +133,20 @@ local function OnPlayerFar(inst)
     inst:RemoveTag("can_beg")
 end
 
--- local function beginaporkalypse(inst)
---     inst.AnimState:SetBuild("pog_feral_build")
--- end
+local function beginaporkalypse(inst)
+    inst.AnimState:SetBuild("pog_feral_build")
+end
 
--- local function endaporkalypse(inst)
---     inst.AnimState:SetBuild("pog_basic")
--- end
+local function endaporkalypse(inst)
+    inst.AnimState:SetBuild("pog_basic")
+end
 
--- local function exitlimbo(inst)
---     local aporkalypse = GetAporkalypse()
---     if not (aporkalypse and aporkalypse:IsActive()) then
---         inst.AnimState:SetBuild("pog_feral_build")
---     end
--- end
+local function exitlimbo(inst)
+    local aporkalypse = GetAporkalypse()
+    if not (aporkalypse and aporkalypse:IsActive()) then
+        inst.AnimState:SetBuild("pog_feral_build")
+    end
+end
 
 local function fn()
 	local inst = CreateEntity()
@@ -247,9 +247,9 @@ local function fn()
 	inst:SetBrain(brain)
 	inst:SetStateGraph("SGpog")
 
-	-- inst:ListenForEvent("beginaporkalypse", beginaporkalypse, TheWorld)
-	-- inst:ListenForEvent("endaporkalypse", endaporkalypse, TheWorld)
-	-- inst:ListenForEvent("exitlimbo", exitlimbo)
+	inst:ListenForEvent("beginaporkalypse", beginaporkalypse, TheWorld)
+	inst:ListenForEvent("endaporkalypse", endaporkalypse, TheWorld)
+	inst:ListenForEvent("exitlimbo", exitlimbo)
 
 	return inst
 end
