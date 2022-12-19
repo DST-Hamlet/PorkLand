@@ -1,5 +1,7 @@
 local AddStategraphState = AddStategraphState
 local AddStategraphActionHandler = AddStategraphActionHandler
+local AddStategraphEvent = AddStategraphEvent
+local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local actionhandlers = {
@@ -16,6 +18,26 @@ local actionhandlers = {
             else
                 return "shear_start"
             end
+        end
+    end),
+}
+
+local events = {
+    -- Happens when the Ant Queen uses her song attack
+    EventHandler ("sanity_stun",
+    function(inst, data)
+        if not inst.components.inventory:IsItemNameEquipped("earmuffshat") then
+            inst.sanity_stunned = true
+            inst.sg:GoToState("sanity_stun")
+            inst.components.sanity:DoDelta(-TUNING.SANITY_LARGE)
+
+            inst:DoTaskInTime(data.duration, function()
+                if inst.sg.currentstate.name == "sanity_stun" then
+                    inst.sg:GoToState("idle")
+                    inst.sanity_stunned = false
+                    inst:PushEvent("sanity_stun_over")
+                end
+            end)
         end
     end),
 }
@@ -207,6 +229,25 @@ local states = {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
+
+    --蚁后的音乐能够使玩家神志不清
+    State{
+        name = "sanity_stun",
+        tags = { "busy" },
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("idle_sanity_pre", false)
+            inst.AnimState:PushAnimation("idle_sanity_loop", true)
+        end,
+
+        events=
+        {
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end ),
+            -- EventHandler("animover", function(inst) inst.sg:GoToState("idle") end ),
+        },
+    },
+
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -217,6 +258,31 @@ for _, state in ipairs(states) do
     AddStategraphState("wilson", state)
 end
 
+for _, event in ipairs(events) do
+    AddStategraphEvent("wilson", event)
+end
+
+----------------------------------------------------------------------------------------------
+
 -- AddStategraphPostInit("wilson", function(sg)
+
+--     do
+--         local _attack_onenter = sg.states.attack.onenter
+--         sg.states.attack.onenter = function(inst, data)
+
+--             local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+--             if equip and equip:HasTag("halberd") then
+--                 SetSoundAlias("dontstarve/wilson/attack_weapon", "pl/common/items/weapon/halberd")
+--             elseif equip and equip:HasTag("corkbat") then
+--                 SetSoundAlias("dontstarve/wilson/attack_weapon", "pl/common/items/weapon/corkbat")
+--             end
+
+--             _attack_onenter(inst, data)
+
+--             SetSoundAlias("dontstarve/wilson/attack_weapon", nil)
+
+--         end
+--     end
+
 -- end)
 

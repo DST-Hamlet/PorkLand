@@ -49,8 +49,8 @@ local function fn()
     inst.components.pickable.quickpick = true
 
 	MakeSmallBurnable(inst)
-    inst.components.burnable:SetOnBurntFn(OnBurnt)
     MakeSmallPropagator(inst)
+    inst.components.burnable:SetOnBurntFn(OnBurnt)
 
     inst:AddComponent("hauntable")
     inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)

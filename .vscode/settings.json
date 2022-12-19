@@ -1,4 +1,5 @@
 {
+    "editor.fontFamily": "Consolas, monospace, ink Free, 'Courier New'",
     "Lua.diagnostics.disable": [
         "deprecated",
         "undefined-field",
@@ -188,7 +189,20 @@
         "DefaultBurntFn",
         "MakeHauntableIgnite",
         "addsetter",
+        "ConsoleCommandPlayer()",
+        "MakeObstaclePhysics",
+        "MakeHauntableWork",
+        "SEASONS",
+        "GROUND",
+        "DefaultIgniteFn",
         "AddPrefabPostInitAny",
-        "AddPlayerPostInit"
+        "FindWalkableOffset",
+        "MakeLargeFreezableCharacter",
+        "MakeSnowCovered",
+        "JoinArrays",
+        "MakeMediumPropagator",
+        "AddPrefabPostInitAny",
+        "AddPlayerPostInit",
+        "trace"
     ]
 }

@@ -6,6 +6,8 @@ local PL_ACTIONS = {
     HACK = Action({mindistance = 1.75, silent_fail = true}),
     SHEAR = Action({distance = 1.75}),
     PEAGAWK_TRANSFORM = Action({}),
+    BARK = Action({}),
+    RANSACK = Action({}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -71,7 +73,13 @@ ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
     return true -- Dummy action for flup hiding
 end
 
+ACTIONS.BARK.fn = function(act)
+    return true
+end
 
+ACTIONS.RANSACK.fn = function(act)
+    return true
+end
 
 
 -- Patch for hackable things
@@ -124,7 +132,7 @@ local PL_COMPONENT_ACTIONS =
         end,
         shearable = function(inst, action, right)
             return action == ACTIONS.SHEAR and inst:HasTag("SHEAR_workable")
-        end
+        end,
     },
 }
 
