@@ -120,6 +120,9 @@ local function fn()
 
 	inst:ListenForEvent( "onremove", onremove, inst)
 
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)
+
 	MakeSnowCovered(inst, .01)
 	return inst
 end

@@ -24,6 +24,9 @@ local function fn()
         return inst
     end
 
+    inst:AddComponent("inspectable")
+    inst:AddComponent("inventoryitem")
+
     inst:AddComponent("stackable")
     inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
@@ -33,12 +36,9 @@ local function fn()
     inst:AddComponent("appeasement")
     inst.components.appeasement.appeasementvalue = TUNING.WRATH_SMALL
 
+    MakeHauntableLaunch(inst)
     MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
     MakeSmallPropagator(inst)
-
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("inventoryitem")
 
     return inst
 end

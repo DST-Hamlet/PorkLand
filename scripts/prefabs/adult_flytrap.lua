@@ -167,6 +167,14 @@ local function fn()
         return inst
     end
 
+    inst:AddComponent("inspectable")
+
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetChanceLootTable('adult_flytrap')
+
+    inst:AddComponent("sanityaura")
+    inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED
+
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.ADULT_FLYTRAP_HEALTH)
 
@@ -177,33 +185,23 @@ local function fn()
     inst.components.combat:SetRetargetFunction(GetRandomWithVariance(2, 0.5), retargetfn)
     inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
 
-    MakeHauntablePanic(inst)
-    MakeLargeFreezableCharacter(inst)
-    MakeMediumBurnableCharacter(inst, "stem")
-
-	inst:AddComponent("sanityaura")
-    inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED
-
-    inst.OnSave = onsave
-    inst.OnLoad = onload
-
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetChanceLootTable('adult_flytrap')
-
     inst:ListenForEvent("newcombattarget", OnNewTarget)
     inst:ListenForEvent("attacked", OnAttacked)
 
     inst:SetStateGraph("SGadultflytrap")
 
     inst.startGrowTask = startGrowTask
+    inst.onSpawn = onSpawn
+    inst.OnSave = onsave
+    inst.OnLoad = onload
+
+    inst:DoTaskInTime(0,function() onSpawn(inst) end)
 
     startGrowTask(inst)
 
-    inst.onSpawn = onSpawn
-
-    inst:DoTaskInTime(0,function() onSpawn(inst) end)
+    MakeHauntablePanic(inst)
+    MakeLargeFreezableCharacter(inst)
+    MakeMediumBurnableCharacter(inst, "stem")
 
     return inst
 end

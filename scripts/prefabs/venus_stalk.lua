@@ -64,6 +64,7 @@ local function flytrapstalk(inst)
     inst:AddComponent("appeasement")
     inst.components.appeasement.appeasementvalue = TUNING.APPEASEMENT_TINY
 
+    MakeHauntableLaunch(inst)
     MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
 

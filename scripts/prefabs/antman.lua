@@ -6,9 +6,7 @@ local assets =
 	Asset("ANIM", "anim/antman_basic.zip"),
 	Asset("ANIM", "anim/antman_attacks.zip"),
 	Asset("ANIM", "anim/antman_actions.zip"),
-
     Asset("ANIM", "anim/antman_translucent_build.zip"),
-	--Asset("ANIM", "anim/antman_build.zip"),
 }
 
 local prefabs =
@@ -277,10 +275,6 @@ local function onload(inst, data)
     end
 end
 
-local function SetNormalAnt(inst)
-
-end
-
 local function common()
 	local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -359,8 +353,6 @@ local function common()
     inst.eattype = math.random(4)
     setEatType(inst,inst.eattype)
 	inst.components.eater:SetCanEatHorrible()
-    -- table.insert(inst.components.eater.foodprefs, "RAW")
-    -- table.insert(inst.components.eater.ablefoods, "RAW")
     inst.components.eater.strongstomach = true -- can eat monster meat!
     inst.components.eater:SetOnEatFn(OnEat)
 
@@ -377,7 +369,6 @@ local function common()
     inst.components.talker.ontalk = ontalk
     inst.components.talker.fontsize = 35
     inst.components.talker.font = TALKINGFONT
-    -- inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
     inst.components.talker.offset = Vector3(0, -400, 0)
     inst.components.talker:StopIgnoringAll()
 

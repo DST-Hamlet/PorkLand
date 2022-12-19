@@ -178,18 +178,15 @@ local function fn()
         return inst
     end
 
+	inst:AddComponent("inventory")
+	inst:AddComponent("knownlocations")
+    inst:AddComponent("herdmember")
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("health")
 	inst.components.health:SetMaxHealth(TUNING.POG_HEALTH)
 
-	inst:AddComponent("combat")
-	inst.components.combat:SetDefaultDamage(TUNING.POG_DAMAGE)
-	inst.components.combat:SetRange(TUNING.POG_ATTACK_RANGE)
-    inst.components.combat:SetAttackPeriod(TUNING.POG_ATTACK_PERIOD)
-    inst.components.combat:SetKeepTargetFunction(KeepTargetFn)
-    inst.components.combat:SetRetargetFunction(3, RetargetFn)
-    inst.components.combat:SetHurtSound("pl/creatures/pog/hit")
+
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst.components.combat.battlecryinterval = 20
@@ -204,7 +201,14 @@ local function fn()
     inst.components.eater:SetCanEatHorrible()
     inst.components.eater.strongstomach = true -- can eat monster meat!
 
-	inst:AddComponent("inventory")
+	inst:AddComponent("locomotor")
+	inst.components.locomotor.walkspeed = TUNING.POG_WALK_SPEED
+	inst.components.locomotor.runspeed = TUNING.POG_RUN_SPEED
+
+    inst:AddComponent("playerprox")
+    inst.components.playerprox:SetDist(4,6)
+    inst.components.playerprox:SetOnPlayerNear(OnPlayerNear)
+    inst.components.playerprox:SetOnPlayerFar(OnPlayerFar)
 
 	inst:AddComponent("trader")
     inst.components.trader:SetAcceptTest(ShouldAcceptItem)
@@ -212,10 +216,13 @@ local function fn()
     inst.components.trader.onrefuse = OnRefuseItem
     inst.components.trader.deleteitemonaccept = false
 
-    inst:AddComponent("playerprox")
-    inst.components.playerprox:SetDist(4,6)
-    inst.components.playerprox:SetOnPlayerNear(OnPlayerNear)
-    inst.components.playerprox:SetOnPlayerFar(OnPlayerFar)
+	inst:AddComponent("combat")
+	inst.components.combat:SetDefaultDamage(TUNING.POG_DAMAGE)
+	inst.components.combat:SetRange(TUNING.POG_ATTACK_RANGE)
+    inst.components.combat:SetAttackPeriod(TUNING.POG_ATTACK_PERIOD)
+    inst.components.combat:SetKeepTargetFunction(KeepTargetFn)
+    inst.components.combat:SetRetargetFunction(3, RetargetFn)
+    inst.components.combat:SetHurtSound("pl/creatures/pog/hit")
 
 	inst:AddComponent("sleeper")
     --inst.cmponents.sleepoer:SetResistance(3)
@@ -227,22 +234,9 @@ local function fn()
     inst.components.sleeper:SetWakeTest(WakeTest)
     inst.components.sleeper:SetSleepTest(SleepTest)
 
-	inst:AddComponent("locomotor")
-	inst.components.locomotor.walkspeed = TUNING.POG_WALK_SPEED
-	inst.components.locomotor.runspeed = TUNING.POG_RUN_SPEED
-
-	inst:AddComponent("knownlocations")
-    inst:AddComponent("herdmember")
-
     MakeHauntablePanic(inst)
 	MakeSmallBurnableCharacter(inst, "pog_chest", Vector3(1,0,1))
 	MakeSmallFreezableCharacter(inst)
-
---[[
-	inst.special_action = function (act)
-        inst.sg:GoToState("desk_pre")
-    end
-]]
 
 	inst:SetBrain(brain)
 	inst:SetStateGraph("SGpog")

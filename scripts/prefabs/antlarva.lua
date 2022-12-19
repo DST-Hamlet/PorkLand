@@ -53,6 +53,9 @@ local function larava_fn()
 	inst:SetStateGraph("SGantlarva")
 	inst:DoTaskInTime(0.5, OnHit)
 
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)
+
 	return inst
 end
 require "prefabutil"

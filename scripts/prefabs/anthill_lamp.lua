@@ -81,6 +81,9 @@ local function fn()
 
     inst.Light:Enable(not (aporkalypse and aporkalypse:IsActive()))
 
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)
+
 	return inst
 end
 

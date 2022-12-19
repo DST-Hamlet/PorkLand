@@ -165,6 +165,9 @@ local function fn()
     inst:ListenForEvent("animover", animover)
 	TheWorld:ListenForEvent("doorused", inst.ondoorused)
 
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)
+
 	return inst
 end
 

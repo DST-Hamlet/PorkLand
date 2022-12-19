@@ -63,16 +63,15 @@ local function fn()
         return inst
     end
 
-    inst:AddComponent("edible")
-    inst.components.edible.healthvalue = TUNING.HEALING_SMALL
-    inst.components.edible.hungervalue = TUNING.CALORIES_TINY
+    inst:AddComponent("tradable")
+    inst:AddComponent("inspectable")
 
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
-    inst:AddComponent("tradable")
-
-    inst:AddComponent("inspectable")
+    inst:AddComponent("edible")
+    inst.components.edible.healthvalue = TUNING.HEALING_SMALL
+    inst.components.edible.hungervalue = TUNING.CALORIES_TINY
 
 	inst:AddComponent("perishable")
 	inst.components.perishable:SetPerishTime(TUNING.PERISH_SUPERSLOW)
@@ -82,6 +81,8 @@ local function fn()
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
     inst.components.inventoryitem:SetOnRemovedFn(OnRemoved)
+
+    MakeHauntableLaunch(inst)
 
     return inst
 end

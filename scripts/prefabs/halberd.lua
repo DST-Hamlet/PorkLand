@@ -62,6 +62,8 @@ local function fn()
 	inst:AddComponent("inspectable")
     inst:AddComponent("inventoryitem")
 
+    MakeHauntableLaunch(inst)
+
 	return inst
 end
 

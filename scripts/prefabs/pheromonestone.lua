@@ -48,6 +48,8 @@ local function fn(inst)
     inst.components.inventoryitem:SetOnPutInInventoryFn(onPutInInventory)
     inst.components.inventoryitem:SetOnRemovedFn(OnRemoved)
 
+    MakeHauntableLaunch(inst)
+
     return inst
 end
 

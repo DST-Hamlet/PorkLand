@@ -72,4 +72,22 @@ function ChangeToUndergroundCharacterPhysics(inst)
     phy:CollidesWith(COLLISION.WORLD)
     phy:CollidesWith(COLLISION.OBSTACLES)
     phy:CollidesWith(COLLISION.GROUND)
+    return phy
+end
+
+function MakeAmphibiousCharacterPhysics(inst, mass, rad)
+    local phy = inst.entity:AddPhysics()
+    phy:SetMass(mass)
+    phy:SetCapsule(rad, 1)
+    phy:SetFriction(0)
+    phy:SetDamping(5)
+    phy:SetCollisionGroup(COLLISION.CHARACTERS)
+    phy:ClearCollisionMask()
+    phy:CollidesWith(COLLISION.LIMITS)
+    phy:CollidesWith(COLLISION.OBSTACLES)
+    phy:CollidesWith(COLLISION.CHARACTERS)
+	phy:CollidesWith(COLLISION.SMALLOBSTACLES)
+    phy:CollidesWith(COLLISION.GROUND)
+    inst:AddTag("amphibious")
+    return phy
 end

@@ -186,6 +186,9 @@ local function fn()
 
     inst:DoPeriodicTask(30, function(inst) maintainantpop(inst) end )
 
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)
+
     return inst
 end
 

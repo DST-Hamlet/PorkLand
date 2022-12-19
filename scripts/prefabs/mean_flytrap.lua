@@ -237,25 +237,31 @@ local function fn()
     end
 
 	inst:AddComponent("knownlocations")
+	inst:AddComponent("follower")
+	inst:AddComponent("inspectable")
 
 	inst:AddComponent("locomotor")
 	inst.components.locomotor.runspeed = TUNING.FLYTRAP_CHILD_SPEED
 
-	inst:SetStateGraph("SGflytrap")
+	inst:AddComponent("lootdropper")
+	inst.components.lootdropper:SetChanceLootTable('mean_flytrap')
 
-	local brain = require "brains/flytrapbrain"
-	inst:SetBrain(brain)
+	inst:AddComponent("sanityaura")
+	inst.components.sanityaura.aurafn = SanityAura
 
-	inst:AddComponent("follower")
+	inst:AddComponent("health")
+	inst.components.health:SetMaxHealth(TUNING.FLYTRAP_CHILD_HEALTH)
+
+    inst:AddComponent("sleeper")
+    inst.components.sleeper:SetResistance(2)
+    inst.components.sleeper:SetSleepTest(ShouldSleep)
+    inst.components.sleeper:SetWakeTest(ShouldWake)
 
 	inst:AddComponent("eater")
 	inst.components.eater:SetDiet({FOODTYPE.MEAT},{FOODTYPE.MEAT})
 	inst.components.eater:SetCanEatHorrible()
 	inst.components.eater.oneatfn = OnEat
 	inst.components.eater.strongstomach = true
-
-	inst:AddComponent("health")
-	inst.components.health:SetMaxHealth(TUNING.FLYTRAP_CHILD_HEALTH)
 
 	inst:AddComponent("combat")
 	inst.components.combat:SetDefaultDamage(TUNING.FLYTRAP_CHILD_DAMAGE)
@@ -264,18 +270,10 @@ local function fn()
 	inst.components.combat:SetKeepTargetFunction(KeepTarget)
 	inst.components.combat:SetRange(2,3)
 
-	inst:AddComponent("lootdropper")
-	inst.components.lootdropper:SetChanceLootTable('mean_flytrap')
+	inst:SetStateGraph("SGflytrap")
 
-	inst:AddComponent("inspectable")
-
-	inst:AddComponent("sanityaura")
-	inst.components.sanityaura.aurafn = SanityAura
-
-    inst:AddComponent("sleeper")
-    inst.components.sleeper:SetResistance(2)
-    inst.components.sleeper:SetSleepTest(ShouldSleep)
-    inst.components.sleeper:SetWakeTest(ShouldWake)
+	local brain = require "brains/flytrapbrain"
+	inst:SetBrain(brain)
 
 	inst:ListenForEvent("newcombattarget", OnNewTarget)
 

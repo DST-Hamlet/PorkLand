@@ -170,7 +170,7 @@ local function fn()
     end
 
     inst:AddComponent("locomotor")
-
+    inst:AddComponent("inspectable")
     inst:AddComponent("sleeper")
     -- inst.components.sleeper.onlysleepsfromitems = true
 
@@ -184,8 +184,6 @@ local function fn()
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot)
-
-    inst:AddComponent("inspectable")
 
     local brain = require "brains/antqueenbrain"
     inst:SetBrain(brain)

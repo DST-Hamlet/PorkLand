@@ -18,6 +18,15 @@ local function onunequip(inst, owner)
     inst.components.fueled:StopConsuming()
 end
 
+local player = ThePlayer
+local function locomote(inst)
+    if player.sg and player.sg:HasStateTag("moving") and inst.equipped then
+        inst.components.fueled:StartConsuming()
+    else
+        inst.components.fueled:StopConsuming()
+    end
+end
+
 local function onwornout(inst)
     inst:Remove()
 end
@@ -63,15 +72,9 @@ local function fn()
     inst.components.fueled:InitializeFuelLevel(TUNING.WALKING_STICK_PERISHTIME)
     inst.components.fueled:SetDepletedFn(onwornout)
 
-    local player = ThePlayer
-    inst:ListenForEvent("locomote", function()
-            if player.sg and player.sg:HasStateTag("moving") and inst.equipped then
-                inst.components.fueled:StartConsuming()
-            else
-                inst.components.fueled:StopConsuming()
-        end
-    end)
+    inst:ListenForEvent("locomote", locomote)
 
+    MakeHauntableLaunch(inst)
     MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
     MakeHauntableLaunch(inst)

@@ -191,6 +191,7 @@ local function fn()
     inst.OnRemoveEntity = OnRemove
     inst:ListenForEvent("enterlimbo", OnRemove)
 
+    MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
 	MakeSmallBurnableCharacter(inst, "chest")
 	MakeTinyFreezableCharacter(inst, "chest")
