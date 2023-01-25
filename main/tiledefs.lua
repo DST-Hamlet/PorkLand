@@ -405,7 +405,6 @@ local hamlet_tiledefs = {
 --Non flooring floodproof tiles
 GROUND_FLOODPROOF = rawget(_G, "GROUND_FLOODPROOF")
 if GROUND_FLOODPROOF then
-    print("Turn on ia")
 end
 
 for tile, def in pairs(hamlet_tiledefs) do
@@ -420,8 +419,8 @@ for tile, def in pairs(hamlet_tiledefs) do
 
     if def.tile_range == TileRanges.OCEAN then
         if TileGroups.TransparentOceanTiles then
-            TileGroupManager:AddInvalidTile(TileGroups.TransparentOceanTiles, WORLD_TILES[tile])
-            TileGroupManager:AddValidTile(TileGroups.PLOceanTiles, WORLD_TILES[tile])
+            TileGroupManager:AddInvalidTile(TileGroups.TransparentOceanTiles, tile_id)
+            TileGroupManager:AddValidTile(TileGroups.PLOceanTiles, tile_id)
         end
 
         SetTileProperty(tile_id, "type", TILE_TYPE.WATER)

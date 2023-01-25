@@ -89,7 +89,6 @@ local states = {
             end
         end,
 
-
         ontimeout = function(inst)
             inst:ClearBufferedAction()
             inst.sg:GoToState("idle")

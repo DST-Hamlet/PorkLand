@@ -1,20 +1,18 @@
----@diagnostic disable: lowercase-global
-
 function deepcopy(object)
-    local function Func(_object)
+    local function fn(_object)
         if type(_object) ~= "table" then
             return _object
         end
-        local NewTable = {}
 
+        local newtable = {}
         for k, v in pairs(_object) do
-            NewTable[Func(k)] = Func(v)
+            newtable[fn(k)] = fn(v)
         end
 
-        return setmetatable(NewTable, getmetatable(_object))
+        return setmetatable(newtable, getmetatable(_object))
     end
 
-    return Func(object)
+    return fn(object)
 end
 
 function pairs_by_keys(t)
@@ -32,39 +30,6 @@ function pairs_by_keys(t)
         i = i + 1
         return list[i], t[list[i]]
     end
-end
-
-function pairs_string(str)
-    local i = 0
-    return function()
-        i = i + 1
-        if i <= #str then
-            return i, str:sub(i,i)
-        end
-    end
-end
-
-function split_string(str, tag)
-    local _start, _end = str:find(tag)
-    if _start and _end then
-        return str:sub(_end + 1)
-    end
-end
-
-function remove_quotes(str)
-    if str:sub(1, 1) == "\"" and str:sub(-1, -1) == "\"" then
-        str = str:sub(2, -2)
-    end
-
-    return str
-end
-
-function add_quotes(str)
-    if str:sub(1, 1) == "\"" and str:sub(-1, -1) == "\"" then
-        return str
-    end
-
-    return "\"" .. str .. "\""
 end
 
 function dumptable(obj, indent, recurse_levels)
@@ -94,22 +59,14 @@ function dumptable(obj, indent, recurse_levels)
     end
 end
 
-local function is_array(t)
-    if type(t) ~= "table" then
-        return false
-    end
-
-    if not next(t) then
+function is_array(t)
+    if type(t) ~= "table" or not next(t) then
         return false
     end
 
     local n = #t
     for i, v in pairs(t) do
-        if type(i) ~= "number" then
-            return false
-        end
-
-        if i > n then
+        if type(i) ~= "number" or i <= 0 or i > n then
             return false
         end
     end
@@ -134,7 +91,7 @@ function merge_table(target, add_table, override)
 
 			merge_table(target[k], v, override)
 		else
-			if is_array(target) then
+			if is_array(target) and not override then
 				table.insert(target, v)
 			elseif not target[k] or override then
 				target[k] = v
@@ -143,13 +100,14 @@ function merge_table(target, add_table, override)
 	end
 end
 
-function get_string(target, new, key)
-    new = new or {}
+function get_string(target, key, over_key)
+    local new = {}
+    over_key = over_key or key
     for k, v in pairs(target) do
         if k == key then
-            new[k] = v
+            new[over_key] = v
         elseif type(v) == "table" then
-            local _new = get_string(target[k], nil, key)
+            local _new = get_string(target[k], key, over_key)
             if next(_new) then
                 new[k] = _new
             end
@@ -162,7 +120,7 @@ function table_to_string(t, indent)
     indent = indent or 1
     local dent = ""
     for i = 1, indent do
-        dent = dent .. "\t"
+        dent = dent .. "    "
     end
 
     local str = ""
@@ -181,7 +139,7 @@ function table_to_string(t, indent)
 
     local end_dent = ""
     for i = 1, indent - 1 do
-        end_dent = end_dent .. "\t"
+        end_dent = end_dent .. "    "
     end
 
     local pack = "{\n" .. str .. end_dent .. "}"
@@ -194,103 +152,60 @@ end
 
 function table_index_to_str(t, index_str)
     local package = {}
-    for k, v in pairs_by_keys(t) do
-        local _index_str = index_str  -- don't modify orange index_str
-        _index_str = _index_str .. "."  .. k
+    for k, v in pairs(t) do
+        local _index_str = index_str .. "."  .. k  -- don't modify orange index_str
 
         if type(v) == "table" then
             local _package = table_index_to_str(v, _index_str)
             merge_table(package, _package)
         else
-            package[_index_str] = v
+            package["msgctxt \"" .. _index_str .. "\""] = v
         end
     end
 
     return package
 end
 
-function index_str_to_table(index_str, str)
-    index_str = remove_quotes(index_str)
-    str = remove_quotes(str)
-
-    local t = {}
-
-    local indexs = {}
-    local function get_indexs(s)
-        for i, char in pairs_string(s) do
-            if char == "." then
-                table.insert(indexs, s:sub(1 , i - 1))
-                get_indexs(s:sub(i + 1))
-                index_str = index_str:sub(i + 1)
-                return
-            end
-        end
-    end
-    get_indexs(index_str)
-    table.insert(indexs, index_str)
-
-    local len = #indexs
-    local levels = t
-    for i = 1, len - 1 do
-        local index = indexs[i]
-        if not levels[index] then
-            levels[index] = {}
-            levels = levels[index]
-        end
-    end
-    levels[indexs[len]] = str
-    return t
-end
-
-function load_file(file_path)
-    local file = io.open(file_path, "r")
-    local file_table = {}
-    while true do
-        local str = file:read()
-        if not str then
-            file:close()
-            return file_table
-        end
-
-        table.insert(file_table, str)
-    end
-end
-
 function load_pofile(file_path, indexs)
-    local file_table = load_file(file_path)
+    local file = io.open(file_path, "r")
     local po_table = {}
-    for line, str in ipairs(file_table) do
-        local index_str = split_string(str, "msgctxt ")
-        if index_str then
-            index_str = remove_quotes(index_str)
-            if not indexs or indexs[index_str] then
-                if index_str then
-                    po_table[index_str] = {}
-                    local i = 1
-                    while true do
-                        local _str = file_table[line + i]
-                        if _str then
-                            local msgid = split_string(_str, "msgid ")
-                            if msgid then
-                                po_table[index_str].msgid = remove_quotes(msgid)
-                            end
 
-                            local msgstr = split_string(_str, "msgstr ")
-                            if msgstr then
-                                po_table[index_str].msgstr = remove_quotes(msgstr)
-                                break
-                            end
-                        else
-                            break
-                        end
-                        i = i + 1
-                    end
-                end
+    local started = false
+    local workline = ""
+    for line in file:lines() do
+        if line:find("msgctxt") and (not indexs or indexs[line]) then
+            workline = line
+            started = true
+        end
+
+        if started then
+            if line:find("msgstr") then
+                po_table[workline] = line
+                started = false
             end
         end
     end
+
+    file:close()
 
     return po_table
+end
+
+function load_ds_string(path)
+    local result = loadfile(path .. "common.lua")
+
+    local data_strings = result and result() or {}
+
+    data_strings.CHARACTERS = data_strings.CHARACTERS or {}
+
+    for _, character in ipairs(characters) do
+        local _result = loadfile(path .. character .. ".lua")
+        if _result then
+            data_strings.CHARACTERS[character:upper()] = _result()
+        end
+    end
+
+    return data_strings
 end
 
 function translate_table(t, translate_fn)
@@ -305,4 +220,10 @@ function translate_table(t, translate_fn)
     end
 
     return t
+end
+
+function write_lua_table(path, t)
+    local file = io.open(path, "w+")
+    file:write("return " .. table_to_string(t))
+    file:close()
 end

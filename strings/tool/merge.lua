@@ -1,24 +1,41 @@
--- env
-require("fns")
-require("input")
-
-local scripts_path = ds_path .. "/data/scripts"
-package.path = package.path .. ";../?.lua"
-package.path = package.path .. ";" .. scripts_path .. '/?.lua'
-POT_GENERATION = true
-require("strings")
-
--- local _require = require
--- function require(...)
---     local results = _require(...)
-
---     if type(results) ~= "table" then
---         return {}
---     end
---     return results
--- end
-
 local translator = python.eval("lua_translator")
+
+require("input")
+require("fns")
+
+characters = {
+    "generic",  -- wilson
+	"willow",
+	"wolfgang",
+	"wendy",
+	"wx78",
+	"wickerbottom",
+	"woodie",
+	-- "wes",
+	"waxwell",
+	"wathgrithr",
+	"webber",
+	"wormwood",
+	"warly",
+
+    -- sw character
+	"walani",
+	-- "wilbur",  -- monkey,no speech
+	"woodlegs",
+
+	-- hamlet character
+    "wheeler",
+    "wilba",
+    "wagstaff",
+    -- "warbucks"  -- discard
+
+    -- dst_new_character
+    "winona",
+    "wortox",
+    "wurt",
+    "walter",
+    "wanda",
+}
 
 local languages = {
     -- en = "strings.pot",
@@ -34,171 +51,121 @@ local languages = {
 	["zh-TW"] = "chinese_t",  -- traditional chinese
 }
 
-local characters = {
-    "generic",  -- wilson
-	"willow",
-	"wolfgang",
-	"wendy",
-	"wx78",
-	"wickerbottom",
-	"woodie",
-	-- "wes",
-	"waxwell",
-	"wathgrithr",
-	"webber",
-	"wormwood",
-	"warly",
-}
-
-local ds_characters = {
-	-- sw character
-	"walani",
-	-- "wilbur",  -- monkey,no speech
-	"woodlegs",
-
-	-- pork character
-    "wheeler",
-    "wilba",
-    "wagstaff",
-    -- "warbucks"  -- discard
-}
-
-local dst_new_character = {
-    "winona",
-    "wortox",
-    "wurt",
-    "walter",
-    "wanda",
-}
-
-for _, character in pairs(ds_characters) do
-    table.insert(characters, character)
-end
-
-for _, character in pairs(dst_new_character) do
-    table.insert(characters, character)
-end
-
-local new_strings_language = new_strings.language
-new_strings.language = nil
-
-local new_en_strings = {}
-local new_index_strs = table_index_to_str(new_strings, "STRINGS")
-local new_en_index_strs = {}
-if new_strings_language ~= "en" then
-    new_en_strings = translate_table(deepcopy(new_strings), function(str) return translator(str, new_strings_language, "en") end)
-    new_en_index_strs = table_index_to_str(new_en_strings, "STRINGS")
-else
-    new_en_strings = new_strings
-    new_en_index_strs = new_index_strs
-end
-
-local ds_string = get_string(STRINGS, nil, string.upper(string_key))
-ds_string.CHARACTERS = ds_string.CHARACTERS or {}
-ds_string.CHARACTERS.WARBUCKS = nil
-
-local common = require("common") or {}
-merge_table(ds_string, common, not override)
-for _, character in pairs(characters) do
-    ds_string.CHARACTERS[character:upper()] = ds_string.CHARACTERS[character:upper()] or {}
-    merge_table(ds_string.CHARACTERS[character:upper()], require(character) or {}, not override)
-end
-
------ merge po file -----
-local en_index_strs = table_index_to_str(ds_string, "STRINGS")
-merge_table(en_index_strs, new_en_index_strs, override)
+local geted_strings = {}
+local overed_indexs = {}
+local invert_overed_indexs = {}
+local data_strings = load_ds_string(output_path)  -- this mod old string
+merge_table(geted_strings, data_strings)
 
 local translates = {}
 for l, file_name in pairs(languages) do
-    translates[l] = load_pofile(scripts_path .. "/languages/" .. file_name .. ".po", en_index_strs)
-    merge_table(translates[l], load_pofile("../../scripts/languages/" .. "pl_" .. file_name .. ".po", en_index_strs), not override)
+    translates[l] = {}
+    merge_table(translates[l], load_pofile(output_popath .. file_name .. ".po"), true)  -- this mod old translate
+end
+
+for _, _data in ipairs(data) do
+    local data_strings = _data[1]
+    local po_path = _data[2]
+    local override = _data[3]
+
+    if type(_data[1])== "string" then  -- load lua table
+        data_strings = load_ds_string(_data[1])
+    end
+
+    if languages[po_path] then  -- if input other language, translat to en
+        local _data_strings = deepcopy(data_strings)
+        local data_index = table_index_to_str(_data_strings, "STRINGS")  -- keep old language
+        for msgctxt, msgstr in pairs(data_index) do
+            data_index[msgctxt] = "msgstr \"" .. msgstr .. "\""
+        end
+        merge_table(translates[po_path], data_index, override)
+        translate_table(data_strings, function(str) return translator(str, po_path, "en") end)
+    end
+
+    for key, over_key in pairs(keys) do  -- get strings by key
+        local key_strings = get_string(data_strings, key:upper(), over_key:upper())
+        if key:upper() ~= over_key:upper() then
+            local overed_strings = get_string(data_strings, key:upper())
+            local overed_key_indexs = table_index_to_str(overed_strings, "STRINGS")
+            local invert_overed_key_indexs = {}
+            for msgctxt, msgstr in pairs(overed_key_indexs) do
+                local over_str = string.gsub(msgctxt, key:upper(), over_key:upper())
+                invert_overed_key_indexs[over_str] = msgctxt
+            end
+            merge_table(invert_overed_indexs, invert_overed_key_indexs, override)
+            merge_table(overed_indexs, overed_key_indexs, override)
+        end
+
+        merge_table(geted_strings, key_strings, override)
+    end
+end
+
+local string_indexs = table_index_to_str(geted_strings, "STRINGS")
+for _, _data in ipairs(data) do
+    local po_path = _data[2]
+    local override = _data[3]
+
+    if not languages[po_path] then
+        for l, file_name in pairs(languages) do
+            merge_table(translates[l], load_pofile(po_path .. file_name .. ".po", string_indexs), override)  -- get translate
+            merge_table(translates[l], load_pofile(po_path .. file_name .. ".po", overed_indexs), override)  -- get translate
+        end
+    end
 end
 
 languages["en"] = "strings"
 for l, file_name in pairs(languages) do
+    -- write po file
     local package = ""
-    if l == "en" then  -- head
-        package = package .. add_quotes("Application: Dont' Starve\\n") .. "\n"
-        package = package .. add_quotes("POT Version: 2.0\\n") .. "\n" .. "\n"
+
+    -- head
+    if l == "en" then
+        package = package .. "\"Application: Dont' Starve\\n\"" .. "\n"
+        package = package .. "\"POT Version: 2.0\\n\"" .. "\n\n"
     else
         package = package .. "msgid \"\"" .. "\n"
         package = package .. "msgstr \"\"" .. "\n"
-        package = package .. add_quotes("Language: " .. l .. "\\n") .. "\n"
-        package = package .. add_quotes("Content-Type: text/plain; charset=utf-8\\n") .. "\n"
-        package = package .. add_quotes("Content-Transfer-Encoding: 8bit\\n") .. "\n"
-        package = package .. add_quotes("POT Version: 2.0") .. "\n" .. "\n"
+        package = package .. "\"Language: " .. l .. "\\n\"" .. "\n"
+        package = package .. "\"Content-Type: text/plain; charset=utf-8\\n\"" .. "\n"
+        package = package .. "\"Content-Transfer-Encoding: 8bit\\n\"" .. "\n"
+        package = package .. "\"POT Version: 2.0\"" .. "\n\n"
     end
 
-    for index_str, msgid in pairs_by_keys(en_index_strs) do
-        package = package .. "#. " .. index_str  .. "\n"
-        package = package .. "msgctxt " .. add_quotes(index_str) .. "\n"
-        package = package .. "msgid " .. add_quotes(msgid) .. "\n"
+    for msgctxt, msgid in pairs_by_keys(string_indexs) do
+        if l ~= "en" and not translates[l][msgctxt] and not translates[l][invert_overed_indexs[msgctxt]] then  -- if not translate in po file, use Google Translate
+            print("could not find", l, msgctxt, "use Google Translate")
 
-        local msgstr = translates[l] and translates[l][index_str] and translates[l][index_str].msgstr
-        local _file_name = "pl_" .. file_name .. ".po"
-        if not msgstr or msgid ~= translates[l][index_str].msgid then
-            if l == "en" then -- pot
-                msgstr = ""
-                _file_name = file_name .. ".pot"
-            else
-                if l == new_strings_language and new_index_strs[index_str] then
-                    msgstr = new_index_strs[index_str]
-                else
-                    print("could not find", index_str, file_name, "use Google Translate")
-                    local soure = "en"
-                    local strs = msgid
-                    if l == "zh-TW" then
-                        if translates["zh-CN"][index_str] or new_strings_language == "zh-CN" then
-                            soure = "zh-CN"
-                            strs = new_index_strs[index_str] or translates["zh-CN"][index_str].msgstr
-                        end
-                    end
-                    msgstr = translator(strs, soure, l)
-                end
+            local soure = "en"
+            local strs = msgid
+            if l == "zh-TW" and translates["zh-CN"][msgctxt] then
+                soure = "zh-CN"
+                strs = string.gsub(translates["zh-CN"][msgctxt], "msgstr \"", "")
+                strs = string.gsub(strs, "\"", "")
             end
+
+            translates[l][msgctxt] = "msgstr \"" .. translator(strs, soure, l) .. "\""
         end
 
-        package = package .. "msgstr " .. add_quotes(msgstr) .. "\n" .. "\n"
+        local index_str = string.gsub(msgctxt, "msgctxt \"", "")
+        index_str = string.gsub(index_str, "\"", "")
 
-        local pl_file = io.open("../../scripts/languages/" .. _file_name, "w+")
-        pl_file:write(package)
-        pl_file:close()
+        package = package .. "#. " .. index_str  .. "\n"
+        package = package .. msgctxt .. "\n"
+        package = package .. "msgid " .. "\"" .. msgid .. "\"".. "\n"
+        package = package .. (l == "en" and "msgstr \"\"" or translates[l][msgctxt] or translates[l][invert_overed_indexs[msgctxt]]) .. "\n\n"
     end
-end
------ merge po file -----
 
-
------ merge lua file -----
-merge_table(ds_string, new_en_strings, override)
-
-local CHARACTERS = nil
-if ds_string.CHARACTERS and next(ds_string.CHARACTERS) then  -- separate
-    CHARACTERS = ds_string.CHARACTERS
-    ds_string.CHARACTERS = nil
-else
-    print("no characters string")
+    local po_file_name = l == "en" and "strings.pot" or (file_prefix .. file_name .. ".po")
+    local pl_file = io.open(output_potpath .. po_file_name, "w+")
+    pl_file:write(package)
+    pl_file:close()
 end
 
-local common_file = io.open("../common.lua", "w+")
-common_file:write("return " .. table_to_string(ds_string))
-common_file:close()
+local CHARACTERS = geted_strings.CHARACTERS
+geted_strings.CHARACTERS = nil
 
-if CHARACTERS then
-    for _, character in pairs(characters) do
-        local _character = string.upper(character)
-        if CHARACTERS[_character] and next(CHARACTERS[_character]) then
-
-            local originals = require(character) or {}
-            merge_table(originals, CHARACTERS[_character], override)
-            dumptable()
-
-            local file = io.open("../" .. character .. ".lua", "w+")
-            file:write("return " .. table_to_string(originals))
-            file:close()
-            print("success add " .. character .. " " .. string_key .. " string")
-        else
-            print("Waring! message " .. string_key .. " string in " .. character)
-        end
-    end
+-- write lua file
+write_lua_table(output_path .. "common.lua", geted_strings)
+for _, character in pairs(characters) do
+    write_lua_table(output_path .. character .. ".lua", CHARACTERS[string.upper(character)])
 end
------ merge lua file -----

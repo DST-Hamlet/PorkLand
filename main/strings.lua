@@ -57,21 +57,13 @@ local newspeech = {
 }
 
 local function is_array(t)
-    if type(t) ~= "table" then
-        return false
-    end
-
-    if not next(t) then
+    if type(t) ~= "table" or not next(t) then
         return false
     end
 
     local n = #t
     for i, v in pairs(t) do
-        if type(i) ~= "number" then
-            return false
-        end
-
-        if i > n then
+        if type(i) ~= "number" or i <= 0 or i > n then
             return false
         end
     end
@@ -96,7 +88,7 @@ local function merge_table(target, add_table, override)
 
 			merge_table(target[k], v, override)
 		else
-			if is_array(target) then
+			if is_array(target) and not override then
 				table.insert(target, v)
 			elseif not target[k] or override then
 				target[k] = v
