@@ -92,11 +92,11 @@ end
 
 
 
--- SCENE		using an object in the world
--- USEITEM		using an inventory item on an object in the world
--- POINT		using an inventory item on a point in the world
--- EQUIPPED		using an equiped item on yourself or a target object in the world
--- INVENTORY	using an inventory item
+-- SCENE        using an object in the world
+-- USEITEM      using an inventory item on an object in the world
+-- POINT        using an inventory item on a point in the world
+-- EQUIPPED     using an equiped item on yourself or a target object in the world
+-- INVENTORY    using an inventory item
 local PL_COMPONENT_ACTIONS =
 {
     SCENE = { -- args: inst, doer, actions, right

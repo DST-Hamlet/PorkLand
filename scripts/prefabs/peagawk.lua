@@ -2,7 +2,7 @@ local assets=
 {
     Asset("ANIM", "anim/peagawk.zip"),
     Asset("ANIM", "anim/eyebush.zip"),
-	-- Asset("SOUND", "sound/perd.fsb"),
+    -- Asset("SOUND", "sound/perd.fsb"),
 }
 
 local prefabs =
@@ -133,8 +133,8 @@ local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddDynamicShadow()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
 
     inst.DynamicShadow:SetSize(1.5, .75)

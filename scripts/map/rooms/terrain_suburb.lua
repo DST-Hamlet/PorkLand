@@ -5,10 +5,10 @@ AddRoom("BG_suburb_base", {
     contents = {
         distributepercent = 0.1,
         distributeprefabs = {
-			rocks = 1,
-			grass = 1,
-			spoiled_food = 1,
-			twigs = 1,
+            rocks = 1,
+            grass = 1,
+            spoiled_food = 1,
+            twigs = 1,
         },
     }
 })
@@ -16,10 +16,10 @@ AddRoom("BG_suburb_base", {
 local suburb_contents =  {
     distributepercent = 0.1,
     distributeprefabs = {
-		rocks = 1,
-		grass = 1,
-		spoiled_food = 1,
-		twigs = 1,
+        rocks = 1,
+        grass = 1,
+        spoiled_food = 1,
+        twigs = 1,
     },
 }
 

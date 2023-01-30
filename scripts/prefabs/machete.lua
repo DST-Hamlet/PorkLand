@@ -11,7 +11,7 @@ local machete_golden_assets = {
 }
 
 local function onequip(inst, owner)
-	inst.hack_overridesymbols[3] = inst:GetSkinBuild()
+    inst.hack_overridesymbols[3] = inst:GetSkinBuild()
 
     if inst.hack_overridesymbols[3] ~= nil then
         owner.AnimState:OverrideItemSkinSymbol("swap_object", inst.hack_overridesymbols[3], inst.hack_overridesymbols[1], inst.GUID, inst.hack_overridesymbols[2])
@@ -42,11 +42,13 @@ local function pristinefn()
 
     inst:AddTag("sharp")
     inst:AddTag("machete")
+    -- weapon (from weapon component) added to pristine state for optimization
+    inst:AddTag("weapon")
 
-	MakeInventoryFloatable(inst)
-	-- inst.components.floater:UpdateAnimations("idle_water", "idle")
+    MakeInventoryFloatable(inst)
+    -- inst.components.floater:UpdateAnimations("idle_water", "idle")
 
-	return inst
+    return inst
 end
 
 local function masterfn(inst)
@@ -82,11 +84,11 @@ local function normal()
 
     inst.entity:SetPristine()
 
-	if not TheWorld.ismastersim then
-		return inst
-	end
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
-	masterfn(inst)
+    masterfn(inst)
 
     return inst
 end
@@ -109,7 +111,7 @@ local function golden()
         return inst
     end
 
-	masterfn(inst)
+    masterfn(inst)
 
     inst.components.finiteuses:SetConsumption(ACTIONS.HACK, 1 / TUNING.GOLDENTOOLFACTOR)
     inst.components.weapon.attackwear = 1 / TUNING.GOLDENTOOLFACTOR

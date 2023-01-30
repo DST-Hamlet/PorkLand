@@ -57,63 +57,63 @@ function Poisonable:IsPoisonBlockerEquiped()
 end
 
 function Poisonable:IsPoisonGasBlockerEquiped()
-	if IsPoisonDisabled() then
-		return true
-	end
+    if IsPoisonDisabled() then
+        return true
+    end
 
-	if self.blockall then
-		return true
-	end
+    if self.blockall then
+        return true
+    end
 
-	-- check armour
-	if self.inst.components.inventory then
-		for _, equipslot in pairs(self.inst.components.inventory.equipslots) do
-			if equipslot.components.equippable and equipslot.components.equippable:IsPoisonGasBlocker() then
-				return true
-			end
-		end
-	end
+    -- check armour
+    if self.inst.components.inventory then
+        for _, equipslot in pairs(self.inst.components.inventory.equipslots) do
+            if equipslot.components.equippable and equipslot.components.equippable:IsPoisonGasBlocker() then
+                return true
+            end
+        end
+    end
 
-	return false
+    return false
 end
 
 function Poisonable:CanBePoisoned(gas)
-	if IsPoisonDisabled() then
-		return false
-	end
+    if IsPoisonDisabled() then
+        return false
+    end
 
-	if self.poisoned or self.blockall then
-		-- already poisoned
-		return false
-	end
+    if self.poisoned or self.blockall then
+        -- already poisoned
+        return false
+    end
 
-	-- Normal poison, check normal blockers
-	if not gas and self:IsPoisonBlockerEquiped() then
-		return false
-	end
+    -- Normal poison, check normal blockers
+    if not gas and self:IsPoisonBlockerEquiped() then
+        return false
+    end
 
-	-- Gas poison, check gas blockers
-	if gas and self:IsPoisonGasBlockerEquiped() then
-		return false
-	end
+    -- Gas poison, check gas blockers
+    if gas and self:IsPoisonGasBlockerEquiped() then
+        return false
+    end
 
-	if self.immune then
-		return false
-	end
+    if self.immune then
+        return false
+    end
 
-	return true
+    return true
 end
 
 function Poisonable:SetOnPoisonedFn(fn)
-	self.onpoisoned = fn
+    self.onpoisoned = fn
 end
 
 function Poisonable:SetOnPoisonDoneFn(fn)
-	self.onpoisondone = fn
+    self.onpoisondone = fn
 end
 
 function Poisonable:SetOnCuredFn(fn)
-	self.oncured = fn
+    self.oncured = fn
 end
 
 -- Add an effect to be spawned when poisoning
@@ -125,64 +125,64 @@ function Poisonable:AddPoisonFX(prefab, offset, followsymbol)
 end
 
 function Poisonable:IsPoisoned()
-	return self.poisoned
+    return self.poisoned
 end
 
 function Poisonable:GetDebugString()
-	return string.format("%s ", self.poisoned and "POISONED" or "NOT POISONED")
+    return string.format("%s ", self.poisoned and "POISONED" or "NOT POISONED")
 end
 
 function Poisonable:OnRemoveEntity()
-	self:KillFX()
-	if self.task then
-	  	self.task:Cancel()
-	  	self.task = nil
-	end
+    self:KillFX()
+    if self.task then
+          self.task:Cancel()
+          self.task = nil
+    end
 end
 
 function Poisonable:Poison(isGas, loadTime, strength)
-	if loadTime or self:CanBePoisoned(isGas) then
-	  	self.severity = strength and math.max(strength, self.severity) or self.severity
-	  	self.inst:AddTag("poison")
-	  	self.poisoned = true
-	  	self.start_time = loadTime and (GetTime() - loadTime) or GetTime()
+    if loadTime or self:CanBePoisoned(isGas) then
+          self.severity = strength and math.max(strength, self.severity) or self.severity
+          self.inst:AddTag("poison")
+          self.poisoned = true
+          self.start_time = loadTime and (GetTime() - loadTime) or GetTime()
 
-	  	if self.duration > 0 and self.show_fx then
-			self:SpawnFX()
-	  	end
+          if self.duration > 0 and self.show_fx then
+            self:SpawnFX()
+          end
 
-	  	if self.onpoisoned then
-			self.onpoisoned(self.inst)
-	  	end
+          if self.onpoisoned then
+            self.onpoisoned(self.inst)
+          end
 
-	  	if self.inst.components.areapoisoner and self.duration > 0 then
-			self.inst.components.areapoisoner:StartSpreading(loadTime and -loadTime or self.duration)
-	  	end
+          if self.inst.components.areapoisoner and self.duration > 0 then
+            self.inst.components.areapoisoner:StartSpreading(loadTime and -loadTime or self.duration)
+          end
 
-	  	if self.task then
-			self.task:Cancel()
-			self.task = nil
-	  	end
+          if self.task then
+            self.task:Cancel()
+            self.task = nil
+          end
 
-	  	self:DoPoison()
-	end
+          self:DoPoison()
+    end
 end
 
 function Poisonable:GetDamageRampScale()
-	if not self.start_time then
-	  	return 0
-	else
-	  	local elapsed_time = GetTime() - self.start_time
-	  	local scale = 1
-	  	for _, data in pairs(TUNING.POISON_DAMAGE_RAMP) do
+    if not self.start_time then
+          return 0
+    else
+          local elapsed_time = GetTime() - self.start_time
+          local scale = 1
+          for _, data in pairs(TUNING.POISON_DAMAGE_RAMP) do
             if elapsed_time > data.time then
                 scale = data.damage_scale
             else
                 break
             end
         end
-	    return scale
-	end
+        return scale
+    end
 end
 
 function Poisonable:GetIntervalRampScale()

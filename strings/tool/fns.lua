@@ -33,20 +33,20 @@ function pairs_by_keys(t)
 end
 
 function dumptable(obj, indent, recurse_levels)
-	indent = indent or 1
-	local i_recurse_levels = recurse_levels or 10
+    indent = indent or 1
+    local i_recurse_levels = recurse_levels or 10
     if obj then
-		local dent = ""
-		if indent then
-			for i = 1, indent do
+        local dent = ""
+        if indent then
+            for i = 1, indent do
                 dent = dent .. "\t"
             end
-		end
+        end
 
-    	if type(obj) == "string" then
-    		print(obj)
-    		return
-    	end
+        if type(obj) == "string" then
+            print(obj)
+            return
+        end
 
         for k, v in pairs(obj) do
             if type(v) == "table" and i_recurse_levels > 0 then
@@ -75,29 +75,29 @@ function is_array(t)
 end
 
 function merge_table(target, add_table, override)
-	target = target or {}
+    target = target or {}
 
-	for k, v in pairs(add_table) do
-		if type(v) == "table" then
-			if not target[k] then
-				target[k] = {}
-			elseif type(target[k]) ~= "table" then
-				if override then
-					target[k] = {}
-				else
-					error("Can not override" .. k .. " to a table")
-				end
-			end
+    for k, v in pairs(add_table) do
+        if type(v) == "table" then
+            if not target[k] then
+                target[k] = {}
+            elseif type(target[k]) ~= "table" then
+                if override then
+                    target[k] = {}
+                else
+                    error("Can not override" .. k .. " to a table")
+                end
+            end
 
-			merge_table(target[k], v, override)
-		else
-			if is_array(target) and not override then
-				table.insert(target, v)
-			elseif not target[k] or override then
-				target[k] = v
-			end
-		end
-	end
+            merge_table(target[k], v, override)
+        else
+            if is_array(target) and not override then
+                table.insert(target, v)
+            elseif not target[k] or override then
+                target[k] = v
+            end
+        end
+    end
 end
 
 function get_string(target, key, over_key)

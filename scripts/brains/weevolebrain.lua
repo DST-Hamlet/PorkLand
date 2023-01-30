@@ -66,21 +66,22 @@ end)
 function WeevoleBrain:OnStart()
     local root = PriorityNode(
     {
-		WhileNode(function() return not self.inst.sg:HasStateTag("jumping") end, "AttackAndWander",
-			PriorityNode(
-			{
+        WhileNode(
+            function() return not self.inst.sg:HasStateTag("jumping") end, "AttackAndWander",
+            PriorityNode(
+            {
                 UseShield(self.inst, DAMAGE_UNTIL_SHIELD, SHIELD_TIME, AVOID_PROJECTILE_ATTACKS),
-				WhileNode(function() return self.inst.components.combat.target == nil or not self.inst.components.combat:InCooldown() end, "AttackMomentarily", ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST)),
-				WhileNode(function() return self.inst.components.combat.target and self.inst.components.combat:InCooldown() end, "Dodge", RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST)),
+                WhileNode(function() return self.inst.components.combat.target == nil or not self.inst.components.combat:InCooldown() end, "AttackMomentarily", ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST)),
+                WhileNode(function() return self.inst.components.combat.target and self.inst.components.combat:InCooldown() end, "Dodge", RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST)),
                 DoAction(self.inst, function() return EatFoodAction(self.inst) end),
                 EventNode(self.inst, "gohome", DoAction(self.inst, GoHomeAction, "go home", true)),
                 WhileNode(function() return TheWorld.state.isday end, "IsDay", DoAction(self.inst, GoHomeAction, "go home", true)),
                 WhileNode(function() return GetHome(self.inst) end, "HasHome", Wander(self.inst, GetHomePos, 8)),
                 -- Wander(self.inst, GetWanderPoint, 20),
-				Wander(self.inst, GetWanderPoint, MAX_WANDER_DIST, {minwalktime = .5, randwalktime = math.random() < 0.5 and .5 or 1, minwaittime = math.random() < 0.5 and 0 or 1, randwaittime = .2,}),
-			}, .25)
-		)
-	}, .25)
+                Wander(self.inst, GetWanderPoint, MAX_WANDER_DIST, {minwalktime = .5, randwalktime = math.random() < 0.5 and .5 or 1, minwaittime = math.random() < 0.5 and 0 or 1, randwaittime = .2,}),
+            }, .25)
+        )
+    }, .25)
 
     self.bt = BT(self.inst, root)
 end

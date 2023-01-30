@@ -1,14 +1,14 @@
 local assets =
 {
-	Asset("ANIM", "anim/feather_peagawk.zip"),
+    Asset("ANIM", "anim/feather_peagawk.zip"),
 }
 
 local function fn()
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddNetwork()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
     MakeInventoryFloatable(inst)

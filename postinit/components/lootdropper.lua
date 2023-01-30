@@ -10,5 +10,5 @@ function LootDropper:SpawnLootPrefab(loot, pt, ...)
         item.components.perishable:ReducePercent(TUNING.POISON_PERISH_PENALTY)
     end
 
-	return item
+    return item
 end

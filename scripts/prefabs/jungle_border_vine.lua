@@ -1,17 +1,17 @@
 local assets =
 {
-	Asset("ANIM", "anim/vines_rainforest_border.zip"),
+    Asset("ANIM", "anim/vines_rainforest_border.zip"),
 }
 
 local function onsave(inst, data)
-	data.animchoice = inst.animchoice
+    data.animchoice = inst.animchoice
 end
 
 local function onload(inst, data)
     if data and data.animchoice then
         inst.animchoice = data.animchoice
-	    inst.AnimState:PlayAnimation("idle_" .. inst.animchoice)
-	end
+        inst.AnimState:PlayAnimation("idle_" .. inst.animchoice)
+    end
 end
 
 local function plantfn()
@@ -31,9 +31,9 @@ local function plantfn()
 
     inst.entity:SetPristine()
 
-	if not TheWorld.ismastersim then
-		return inst
-	end
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
     inst.OnSave = onsave
     inst.OnLoad = onload

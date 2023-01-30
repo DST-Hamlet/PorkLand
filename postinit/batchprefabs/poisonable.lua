@@ -4,8 +4,8 @@ GLOBAL.setfenv(1, GLOBAL)
 local poisonimmune_prefabs = table.invert({
     "wx78",
     "bernie_active",
-	"bernie_big",
-	"ivy_snare",
+    "bernie_big",
+    "ivy_snare",
 })
 
 local poisonimmune_tags = {

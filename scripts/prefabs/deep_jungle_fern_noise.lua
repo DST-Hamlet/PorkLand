@@ -1,12 +1,12 @@
 local assets =
 {
-	Asset("ANIM", "anim/fern_plant.zip"),
+    Asset("ANIM", "anim/fern_plant.zip"),
     Asset("ANIM", "anim/fern2_plant.zip"),
 }
 
 local function fn()
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
 
     inst:AddTag("NOBLOCK")
     inst:AddTag("CLASSIFIED")
@@ -20,14 +20,14 @@ local function fn()
 end
 
 local function onsave(inst, data)
-	data.anim_name = inst.anim_name
+    data.anim_name = inst.anim_name
 end
 
 local function onload(inst, data)
     if data and data.anim_name then
         inst.anim_name = data.anim_name
-	    inst.AnimState:PlayAnimation(inst.anim_name)
-	end
+        inst.AnimState:PlayAnimation(inst.anim_name)
+    end
 end
 
 local function plantfn()

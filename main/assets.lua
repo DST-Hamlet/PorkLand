@@ -9,9 +9,9 @@ PrefabFiles = {
     "machete",
     "peagawk",
     "peagawk_spawner",
-	"peagawkfeather",
+    "peagawkfeather",
     "poisonbubble",
-	"shears",
+    "shears",
     -- "tuber",
     -- "tubertrees",
     "weevole_carapace",
@@ -22,19 +22,19 @@ local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
 AddInventoryItemAtlas(resolvefilepath("images/pl_inventoryimages.xml"))
 
 Assets = {
-	Asset("IMAGE", "images/pl_inventoryimages.tex"),
+    Asset("IMAGE", "images/pl_inventoryimages.tex"),
     Asset("ATLAS", "images/pl_inventoryimages.xml"),
-	Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  --For minisign
+    Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  --For minisign
 
     Asset("ATLAS", "images/overlays/fx3.xml"),
     Asset("IMAGE", "images/overlays/fx3.tex"),
 
     Asset("ANIM", "anim/player_actions_hack.zip"),
-	Asset("ANIM", "anim/player_actions_shear.zip"),
+    Asset("ANIM", "anim/player_actions_shear.zip"),
 }
 
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
 
 if not TheNet:IsDedicated() then
-	-- table.insert(Assets, Asset("SOUND", "sound/"))
+    -- table.insert(Assets, Asset("SOUND", "sound/"))
 end

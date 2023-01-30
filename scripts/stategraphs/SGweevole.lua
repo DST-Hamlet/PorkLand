@@ -189,13 +189,13 @@ local states =
             TimeEvent(9 * FRAMES, function(inst)
                 inst.DynamicShadow:Enable(false)
                 inst.sg:AddStateTag("invisible")
-			end),
+            end),
         },
 
         events =
         {
             EventHandler("animover", function(inst)
-				inst:PerformBufferedAction()
+                inst:PerformBufferedAction()
             end),
         },
 
@@ -214,24 +214,24 @@ local states =
             inst.AnimState:PlayAnimation("unburrow")
             inst.AnimState:SetDeltaTimeMultiplier(GetRandomWithVariance(.9, .2))
 
-			if inst.components.combat ~= nil and inst.components.combat.target ~= nil then
-			    inst:ForceFacePoint(inst.components.combat.target:GetPosition())
-			end
+            if inst.components.combat ~= nil and inst.components.combat.target ~= nil then
+                inst:ForceFacePoint(inst.components.combat.target:GetPosition())
+            end
         end,
 
-		onexit = function(inst)
+        onexit = function(inst)
             inst.SoundEmitter:KillSound("move")
-			inst.AnimState:SetDeltaTimeMultiplier(1)
-			inst.DynamicShadow:Enable(true)
-		end,
+            inst.AnimState:SetDeltaTimeMultiplier(1)
+            inst.DynamicShadow:Enable(true)
+        end,
 
-		timeline =
+        timeline =
         {
             TimeEvent(0, function(inst)
-				if inst.components.combat ~= nil and inst.components.combat.target ~= nil then
-					inst:ForceFacePoint(inst.components.combat.target:GetPosition())
-				end
-			end),
+                if inst.components.combat ~= nil and inst.components.combat.target ~= nil then
+                    inst:ForceFacePoint(inst.components.combat.target:GetPosition())
+                end
+            end),
             TimeEvent(32 * FRAMES, function(inst) inst.DynamicShadow:Enable(true) end),
         },
 
@@ -249,9 +249,9 @@ local states =
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("taunt")
 
-			if inst.components.combat ~= nil and inst.components.combat.target ~= nil then
-			    inst:ForceFacePoint(inst.components.combat.target:GetPosition())
-			end
+            if inst.components.combat ~= nil and inst.components.combat.target ~= nil then
+                inst:ForceFacePoint(inst.components.combat.target:GetPosition())
+            end
 
         end,
 
@@ -281,13 +281,13 @@ local states =
         end,
 
         onexit = function(inst)
-			if not inst.sg.statemem.onground then
-				local x, y, z = inst.Transform:GetWorldPosition()
-				inst.Physics:Stop()
-				inst.Physics:Teleport(x, 0, z)
-				inst.DynamicShadow:Enable(true)
-				inst.components.health:SetInvincible(false)
-			end
+            if not inst.sg.statemem.onground then
+                local x, y, z = inst.Transform:GetWorldPosition()
+                inst.Physics:Stop()
+                inst.Physics:Teleport(x, 0, z)
+                inst.DynamicShadow:Enable(true)
+                inst.components.health:SetInvincible(false)
+            end
         end,
 
         onupdate = function(inst)
@@ -300,7 +300,7 @@ local states =
                 inst.Physics:Teleport(x, 0, z)
                 inst.DynamicShadow:Enable(true)
                 inst.components.health:SetInvincible(false)
-				inst.sg.statemem.onground = true
+                inst.sg.statemem.onground = true
                 inst.sg:GoToState("enter_pst")
             end
         end,
@@ -394,9 +394,9 @@ local states =
             inst.AnimState:PlayAnimation("leap_attack")
             inst.sg.statemem.target = target
 
-			if target ~= nil and target:IsValid() then
-				inst:ForceFacePoint(target:GetPosition())
-			end
+            if target ~= nil and target:IsValid() then
+                inst:ForceFacePoint(target:GetPosition())
+            end
         end,
 
         onexit = function(inst)
@@ -417,15 +417,15 @@ local states =
             end),
 
             TimeEvent(11 * FRAMES, function(inst)
-				inst.Physics:SetMotorVelOverride(20,0,0)
-			end),
+                inst.Physics:SetMotorVelOverride(20,0,0)
+            end),
             TimeEvent(18 * FRAMES, function(inst)
-				inst.components.combat:DoAttack(inst.sg.statemem.target)
-			end),
+                inst.components.combat:DoAttack(inst.sg.statemem.target)
+            end),
             TimeEvent(19 * FRAMES, function(inst)
-				inst.Physics:ClearMotorVelOverride()
-	            inst.Physics:Stop()
-			end),
+                inst.Physics:ClearMotorVelOverride()
+                inst.Physics:Stop()
+            end),
         },
 
         events =
@@ -460,14 +460,14 @@ local states =
             inst.AnimState:PushAnimation("taunt", false)
         end,
 
-		-- onexit = function(inst)
+        -- onexit = function(inst)
             -- inst:ClearBufferedAction()
-		-- end,
+        -- end,
 
         timeline =
         {
             TimeEvent(27 * FRAMES, function(inst) inst:PerformBufferedAction() inst:ClearBufferedAction() end),
-		},
+        },
 
         events =
         {

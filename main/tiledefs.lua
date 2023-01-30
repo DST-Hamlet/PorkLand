@@ -32,17 +32,19 @@ turf_def {
     [bank_build] - the bank and build containing the animation, if undefined bank_build will use the value "turf"
 }
 -]]
+
 local GroundTiles = require("worldtiledefs")
 local NoiseFunctions = require("noisetilefunctions")
-local SetTileProperty = SetTileProperty
 local ChangeTileRenderOrder = ChangeTileRenderOrder
 local ChangeMiniMapTileRenderOrder = ChangeMiniMapTileRenderOrder
 local AddTile = AddTile
 GLOBAL.setfenv(1, GLOBAL)
 
-TILE_TYPE = {LAND = 0, WATER = 1}
+local is_worldgen = rawget(_G, "WORLDGEN_MAIN") ~= nil
 
-TileGroups.PLOceanTiles = TileGroups.IAOceanTiles or TileGroupManager:AddTileGroup()
+if not is_worldgen then
+    TileGroups.PLOceanTiles = TileGroups.IAOceanTiles or TileGroupManager:AddTileGroup()
+end
 
 local TileRanges =
 {
@@ -52,7 +54,7 @@ local TileRanges =
     IMPASSABLE = "IMPASSABLE",
 }
 
-local hamlet_tiledefs = {
+local pl_tiledefs = {
     BEARDRUG = {
         tile_range = TileRanges.LAND,
         tile_data = {
@@ -402,12 +404,13 @@ local hamlet_tiledefs = {
 
 }
 
---Non flooring floodproof tiles
-GROUND_FLOODPROOF = rawget(_G, "GROUND_FLOODPROOF")
-if GROUND_FLOODPROOF then
-end
+IA_OCEAN_TILES = rawget(_G, "IA_OCEAN_TILES") or {}
+IA_LAND_TILES = rawget(_G, "IA_LAND_TILES") or {}
 
-for tile, def in pairs(hamlet_tiledefs) do
+PL_OCEAN_TILES = IA_OCEAN_TILES
+PL_LAND_TILES = IA_LAND_TILES
+
+for tile, def in pairs(pl_tiledefs) do
     local range = def.tile_range
     if type(range) == "function" then
         range = TileRanges.NOISE
@@ -418,26 +421,34 @@ for tile, def in pairs(hamlet_tiledefs) do
     local tile_id = WORLD_TILES[tile]
 
     if def.tile_range == TileRanges.OCEAN then
-        if TileGroups.TransparentOceanTiles then
+        if not is_worldgen then
             TileGroupManager:AddInvalidTile(TileGroups.TransparentOceanTiles, tile_id)
             TileGroupManager:AddValidTile(TileGroups.PLOceanTiles, tile_id)
         end
 
-        SetTileProperty(tile_id, "type", TILE_TYPE.WATER)
-        SetTileProperty(tile_id, "land", false)
-        SetTileProperty(tile_id, "water", true)
-        SetTileProperty(tile_id, "groundcreepdisabled", true)
+        table.insert(PL_OCEAN_TILES, tile_id)
+    elseif def.tile_range == TileRanges.LAND then
+        table.insert(PL_LAND_TILES, tile_id)
     elseif type(def.tile_range) == "function" then
         NoiseFunctions[tile_id] = def.tile_range
     end
 end
 
+-- Non flooring floodproof tiles
+GROUND_FLOODPROOF = rawget(_G, "GROUND_FLOODPROOF")
+if GROUND_FLOODPROOF then
+end
+
 for prefab, filter in pairs(terrain.filter) do
     if type(filter) == "table" then
         table.insert(filter, WORLD_TILES.LILYPOND)
+        -- if table.contains(filter, WORLD_TILES.CARPET) then
+        --     table.insert(filter, WORLD_TILES.SNAKESKIN)
+        -- end
     end
 end
 
+-- Priority turf
 ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.CARPET, true)
 
 ChangeTileRenderOrder(WORLD_TILES.GASJUNGLE, WORLD_TILES.MUD, true)

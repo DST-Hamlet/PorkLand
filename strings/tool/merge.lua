@@ -5,25 +5,25 @@ require("fns")
 
 characters = {
     "generic",  -- wilson
-	"willow",
-	"wolfgang",
-	"wendy",
-	"wx78",
-	"wickerbottom",
-	"woodie",
-	-- "wes",
-	"waxwell",
-	"wathgrithr",
-	"webber",
-	"wormwood",
-	"warly",
+    "willow",
+    "wolfgang",
+    "wendy",
+    "wx78",
+    "wickerbottom",
+    "woodie",
+    -- "wes",
+    "waxwell",
+    "wathgrithr",
+    "webber",
+    "wormwood",
+    "warly",
 
     -- sw character
-	"walani",
-	-- "wilbur",  -- monkey,no speech
-	"woodlegs",
+    "walani",
+    -- "wilbur",  -- monkey,no speech
+    "woodlegs",
 
-	-- hamlet character
+    -- hamlet character
     "wheeler",
     "wilba",
     "wagstaff",
@@ -39,16 +39,16 @@ characters = {
 
 local languages = {
     -- en = "strings.pot",
-	de = "german",  -- german
-	es = "spanish",  -- spanish
-	fr = "french",  -- french
-	it = "italian",  -- italian
-	ko = "korean",  -- korean
-	pt = "portuguese_br",  -- portuguese and brazilian portuguese
-	pl = "polish",  -- polish
-	ru = "russian",  -- russian
-	["zh-CN"] = "chinese_s",  -- chinese
-	["zh-TW"] = "chinese_t",  -- traditional chinese
+    de = "german",  -- german
+    es = "spanish",  -- spanish
+    fr = "french",  -- french
+    it = "italian",  -- italian
+    ko = "korean",  -- korean
+    pt = "portuguese_br",  -- portuguese and brazilian portuguese
+    pl = "polish",  -- polish
+    ru = "russian",  -- russian
+    ["zh-CN"] = "chinese_s",  -- chinese
+    ["zh-TW"] = "chinese_t",  -- traditional chinese
 }
 
 local geted_strings = {}

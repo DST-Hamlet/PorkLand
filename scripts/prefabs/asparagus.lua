@@ -1,11 +1,11 @@
 local assets =
 {
-	Asset("ANIM", "anim/asparagus.zip"),
+    Asset("ANIM", "anim/asparagus.zip"),
 }
 
 local prefabs =
 {
-	"asparagus",
+    "asparagus",
 }
 
 local function onpicked(inst)
@@ -13,17 +13,17 @@ local function onpicked(inst)
 end
 
 local function OnBurnt(inst)
-	TheWorld:PushEvent("beginregrowth", inst)
+    TheWorld:PushEvent("beginregrowth", inst)
     DefaultBurntFn(inst)
 end
 
 local function fn()
     -- Asparagus you eat is defined in veggies.lua
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     inst.Transform:SetScale(1.3, 1.3, 1.3)
@@ -35,20 +35,20 @@ local function fn()
 
     inst.entity:SetPristine()
 
-	if not TheWorld.ismastersim then
-		return inst
-	end
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
     inst:AddComponent("inspectable")
 
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
     inst.components.pickable:SetUp("asparagus", 10)
-	inst.components.pickable.onpickedfn = onpicked
-	inst.components.pickable.remove_when_picked = true
+    inst.components.pickable.onpickedfn = onpicked
+    inst.components.pickable.remove_when_picked = true
     inst.components.pickable.quickpick = true
 
-	MakeSmallBurnable(inst)
+    MakeSmallBurnable(inst)
     inst.components.burnable:SetOnBurntFn(OnBurnt)
     MakeSmallPropagator(inst)
 

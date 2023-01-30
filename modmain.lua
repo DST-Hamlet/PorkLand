@@ -7,7 +7,7 @@ IA_CONFIG = rawget(_G, "IA_CONFIG") or {
 }
 
 PL_CONFIG = {
-	-- Some of these may be treated as client-side, as indicated by the bool
+    -- Some of these may be treated as client-side, as indicated by the bool
     locale = GetModConfigData("locale", true),
 }
 

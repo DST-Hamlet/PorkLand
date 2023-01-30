@@ -41,7 +41,7 @@ local states=
 
         onenter = function(inst)
             if not inst.is_bush then
-    			inst.Physics:Stop()
+                inst.Physics:Stop()
                 Gobble(inst)
                 inst.AnimState:PlayAnimation("idle_loop")
             else
@@ -64,7 +64,7 @@ local states=
         },
     },
 
-	State{
+    State{
         name = "death",
         tags = {"busy"},
 
@@ -221,13 +221,13 @@ CommonStates.AddWalkStates(states,
 {
     starttimeline =
     {
-		TimeEvent(0 * FRAMES, Gobble),
+        TimeEvent(0 * FRAMES, Gobble),
     },
 
-	walktimeline = {
-		TimeEvent(0 * FRAMES, PlayFootstep),
-		TimeEvent(12 * FRAMES, PlayFootstep),
-	},
+    walktimeline = {
+        TimeEvent(0 * FRAMES, PlayFootstep),
+        TimeEvent(12 * FRAMES, PlayFootstep),
+    },
 })
 
 CommonStates.AddRunStates(
@@ -261,12 +261,12 @@ CommonStates.AddSleepStates(states,
 {
     starttimeline =
     {
-		TimeEvent(0 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/Peakcock/sleep") end),
+        TimeEvent(0 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/Peakcock/sleep") end),
     },
 
-	sleeptimeline = {
+    sleeptimeline = {
         TimeEvent(40 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/Peakcock/sleep") end),
-	},
+    },
 })
 
 -- CommonStates.AddIdle(states, "idle")

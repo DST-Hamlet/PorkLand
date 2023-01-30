@@ -1,6 +1,6 @@
 AddRoom("BG_deeprainforest_base", {
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.5,
@@ -19,8 +19,8 @@ AddRoom("BG_deeprainforest_base", {
             randomruin = 0.02,
             randomdust = 0.02,
             pig_ruins_torch = 0.02,
-			-- pig_ruins_artichoke = 0.01,
-			-- pig_ruins_head = 0.01,
+            -- pig_ruins_artichoke = 0.01,
+            -- pig_ruins_head = 0.01,
             mean_flytrap = 0.05,
             rock_flippable = 0.1,
             radish_planted = 0.5,
@@ -34,7 +34,7 @@ AddRoom("BG_deeprainforest_base", {
 
 AddRoom("deeprainforest_spider_monkey_nest", {
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.25, --.3
@@ -50,8 +50,8 @@ AddRoom("deeprainforest_spider_monkey_nest", {
             randomruin = 0.02,
             randomdust = 0.02,
             pig_ruins_torch = 0.02,
-			-- pig_ruins_artichoke = 0.01,
-			-- pig_ruins_head = 0.01,
+            -- pig_ruins_artichoke = 0.01,
+            -- pig_ruins_head = 0.01,
             rock_flippable = 0.1,
             radish_planted = 0.5,
         },
@@ -64,7 +64,7 @@ AddRoom("deeprainforest_spider_monkey_nest", {
 
 AddRoom("deeprainforest_flytrap_grove", {
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.25, --.3
@@ -96,7 +96,7 @@ AddRoom("deeprainforest_flytrap_grove", {
 
 AddRoom("deeprainforest_fireflygrove", {
     colour = {r = 1, g = 1, b = 0.2, a = 0.3},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.25, --0.25, --.3
@@ -114,8 +114,8 @@ AddRoom("deeprainforest_fireflygrove", {
             randomruin = 0.02,
             randomdust = 0.02,
             pig_ruins_torch = 0.02,
-			-- pig_ruins_artichoke = 0.01,
-			-- pig_ruins_head = 0.01,
+            -- pig_ruins_artichoke = 0.01,
+            -- pig_ruins_head = 0.01,
             rock_flippable = 0.1,
             radish_planted = 0.5,
         },
@@ -128,7 +128,7 @@ AddRoom("deeprainforest_fireflygrove", {
 
 AddRoom("deeprainforest_gas", {
     colour = {r = 1, g = 0.6, b = 0.2, a = 0.3},
-	value = WORLD_TILES.GASJUNGLE,
+    value = WORLD_TILES.GASJUNGLE,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.45,  --.45
@@ -153,7 +153,7 @@ AddRoom("deeprainforest_gas", {
 
 AddRoom("deeprainforest_gas_flytrap_grove", {
     colour = {r = 1, g = 0.6, b = 0.2, a = 0.3},
-	value = WORLD_TILES.GASJUNGLE,
+    value = WORLD_TILES.GASJUNGLE,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.5,  --.45
@@ -183,7 +183,7 @@ AddRoom("deeprainforest_gas_flytrap_grove", {
 
 AddRoom("deeprainforest_ruins_entrance", {
     colour = {r = 1, g = 0.1, b = 0.2, a = 0.5},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.25, --.3
@@ -204,9 +204,9 @@ AddRoom("deeprainforest_ruins_entrance", {
             radish_planted = 0.5,
         },
         countprefabs = {
-			-- pig_ruins_torch = 3,
-			-- pig_ruins_entrance = 1,
-			-- pig_ruins_artichoke = 1,
+            -- pig_ruins_torch = 3,
+            -- pig_ruins_entrance = 1,
+            -- pig_ruins_artichoke = 1,
         },
 
     }
@@ -214,7 +214,7 @@ AddRoom("deeprainforest_ruins_entrance", {
 
 AddRoom("deeprainforest_ruins_exit", {
     colour = {r = 0.2, g = 0.1, b = 1, a = 0.5},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.25, --.3
@@ -235,9 +235,9 @@ AddRoom("deeprainforest_ruins_exit", {
             radish_planted = 0.5,
         },
         countprefabs = {
-			-- pig_ruins_torch = 3,
-			-- pig_ruins_exit = 1,
-			-- pig_ruins_head = 1,
+            -- pig_ruins_torch = 3,
+            -- pig_ruins_exit = 1,
+            -- pig_ruins_head = 1,
         },
 
     }
@@ -245,7 +245,7 @@ AddRoom("deeprainforest_ruins_exit", {
 
 AddRoom("deeprainforest_anthill", {
     colour = {r = 1, g = 0, b = 1, a = 0.3},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.25, --.3
@@ -276,7 +276,7 @@ AddRoom("deeprainforest_anthill", {
 
 AddRoom("deeprainforest_mandrakeman", {
     colour = {r = 1, g = 0, b = 1, a = 0.3},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.25, --.3
@@ -306,7 +306,7 @@ AddRoom("deeprainforest_mandrakeman", {
 
 AddRoom("deeprainforest_anthill_exit", {
     colour = {r = 1, g = 0, b = 1, a = 0.3},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Canopy"},    contents = {
         distributepercent = 0.25, --.3
         distributeprefabs = {
@@ -335,7 +335,7 @@ AddRoom("deeprainforest_anthill_exit", {
 
 AddRoom("deeprainforest_base_nobatcave", {
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3},
-	value = WORLD_TILES.DEEPRAINFOREST,
+    value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.5,
@@ -354,8 +354,8 @@ AddRoom("deeprainforest_base_nobatcave", {
             randomruin = 0.02,
             randomdust = 0.02,
             pig_ruins_torch = 0.02,
-			-- pig_ruins_artichoke = 0.01,
-			-- pig_ruins_head = 0.01,
+            -- pig_ruins_artichoke = 0.01,
+            -- pig_ruins_head = 0.01,
             mean_flytrap = 0.05,
             rock_flippable = 0.1,
             radish_planted = 0.5,

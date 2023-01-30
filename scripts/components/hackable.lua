@@ -253,7 +253,7 @@ function Hackable:OnSave()
         transplanted = self.transplanted and true or nil,
         paused = self.paused and true or nil,
         caninteractwith = self.caninteractwith and true or nil,
-		hacksleft = self.hacksleft,
+        hacksleft = self.hacksleft,
     }
 
     if self.cycles_left ~= self.max_cycles then
@@ -279,7 +279,7 @@ function Hackable:OnLoad(data)
     self.transplanted = data.transplanted or false
     self.cycles_left = data.cycles_left or self.cycles_left
     self.max_cycles = data.max_cycles or self.max_cycles
-	self.hacksleft = data.hacksleft or self.hacksleft
+    self.hacksleft = data.hacksleft or self.hacksleft
 
     if data.hacked or data.time ~= nil then
         if self:IsBarren() and self.makebarrenfn ~= nil then
@@ -398,77 +398,77 @@ end
 function Hackable:Hack(hacker, numworks, shear_mult, from_shears)
     if self.canbehacked and self.caninteractwith then
 
-    	self.hacksleft = self.hacksleft - numworks
+        self.hacksleft = self.hacksleft - numworks
 
         if hacker ~= nil then
             hacker:PushEvent("working", {hack_target = self.inst}) -- send data under a different name because the reason hackable exists is to allow two actions at the same time (in most cases ACTIONS.HACK and ACTIONS.DIG) and listeners that check this data will simply run the code based on workables ACTION.DIG (for example mightyness gain for wolfgang) -Half
         end
-    	-- Check work left here and fire callback and early out if there's still more work to do
-    	 if self.onhackedfn then
+        -- Check work left here and fire callback and early out if there's still more work to do
+         if self.onhackedfn then
             self.onhackedfn(self.inst, hacker, self.hacksleft, from_shears)
         end
 
         if(self.hacksleft <= 0) then
-			if self.transplanted and self.cycles_left ~= nil then
-				self.cycles_left = math.max(0, self.cycles_left - 1)
-			end
+            if self.transplanted and self.cycles_left ~= nil then
+                self.cycles_left = math.max(0, self.cycles_left - 1)
+            end
 
-			if self.protected_cycles ~= nil then
-				self.protected_cycles = self.protected_cycles - 1
-				if self.protected_cycles < 0 then
-					self.protected_cycles = nil
-					if self.inst.components.witherable ~= nil then
-						self.inst.components.witherable:Enable(true)
-					end
-				end
-			end
+            if self.protected_cycles ~= nil then
+                self.protected_cycles = self.protected_cycles - 1
+                if self.protected_cycles < 0 then
+                    self.protected_cycles = nil
+                    if self.inst.components.witherable ~= nil then
+                        self.inst.components.witherable:Enable(true)
+                    end
+                end
+            end
 
-			local loot = nil
+            local loot = nil
             shear_mult = shear_mult or 1
-			if self.product ~= nil then
-				if hacker ~= nil and hacker:HasTag("player") and hacker.components.inventory ~= nil and not self.drophacked then -- mobs (wildbores) shouldnt hack items into there inventory now -Half
-					loot = SpawnPrefab(self.product)
-					if loot ~= nil then
-						if loot.components.inventoryitem ~= nil then
-							loot.components.inventoryitem:InheritMoisture(TheWorld.state.wetness, TheWorld.state.iswet)
-						end
+            if self.product ~= nil then
+                if hacker ~= nil and hacker:HasTag("player") and hacker.components.inventory ~= nil and not self.drophacked then -- mobs (wildbores) shouldnt hack items into there inventory now -Half
+                    loot = SpawnPrefab(self.product)
+                    if loot ~= nil then
+                        if loot.components.inventoryitem ~= nil then
+                            loot.components.inventoryitem:InheritMoisture(TheWorld.state.wetness, TheWorld.state.iswet)
+                        end
                         local numtoharvest = self.numtoharvest * shear_mult
-						if numtoharvest > 1 and loot.components.stackable ~= nil then
-							loot.components.stackable:SetStackSize(numtoharvest)
-						end
-						hacker:PushEvent("hacksomething", {object = self.inst, loot = loot})
-						hacker.components.inventory:GiveItem(loot, nil, self.inst:GetPosition())
-					end
-				elseif self.inst.components.lootdropper ~= nil then
-					local num = (self.numtoharvest or 1) * shear_mult
-					local pt = self.inst:GetPosition()
-					pt.y = pt.y + (self.dropheight or 0)
-					for i = 1, num do
-						self.inst.components.lootdropper:SpawnLootPrefab(self.product, pt)
-					end
-				end
-			end
+                        if numtoharvest > 1 and loot.components.stackable ~= nil then
+                            loot.components.stackable:SetStackSize(numtoharvest)
+                        end
+                        hacker:PushEvent("hacksomething", {object = self.inst, loot = loot})
+                        hacker.components.inventory:GiveItem(loot, nil, self.inst:GetPosition())
+                    end
+                elseif self.inst.components.lootdropper ~= nil then
+                    local num = (self.numtoharvest or 1) * shear_mult
+                    local pt = self.inst:GetPosition()
+                    pt.y = pt.y + (self.dropheight or 0)
+                    for i = 1, num do
+                        self.inst.components.lootdropper:SpawnLootPrefab(self.product, pt)
+                    end
+                end
+            end
 
-			if self.onfinishfn ~= nil then
-				self.onfinishfn(self.inst, hacker, loot)
-			end
+            if self.onfinishfn ~= nil then
+                self.onfinishfn(self.inst, hacker, loot)
+            end
 
-			self.canbehacked = false
+            self.canbehacked = false
 
-			if self.baseregentime ~= nil and not (self.paused or self:IsBarren() or self.inst:HasTag("withered")) then
-				if TheWorld.state.isspring then
-					self.regentime = self.baseregentime * TUNING.SPRING_GROWTH_MODIFIER
-				end
+            if self.baseregentime ~= nil and not (self.paused or self:IsBarren() or self.inst:HasTag("withered")) then
+                if TheWorld.state.isspring then
+                    self.regentime = self.baseregentime * TUNING.SPRING_GROWTH_MODIFIER
+                end
 
-				if self.task ~= nil then
-					self.task:Cancel()
-				end
-				self.task = self.inst:DoTaskInTime(self.regentime, OnRegen)
-				self.targettime = GetTime() + self.regentime
-			end
+                if self.task ~= nil then
+                    self.task:Cancel()
+                end
+                self.task = self.inst:DoTaskInTime(self.regentime, OnRegen)
+                self.targettime = GetTime() + self.regentime
+            end
 
-			self.inst:PushEvent("hacked", {hacker = hacker, loot = loot, plant = self.inst})
-		end
+            self.inst:PushEvent("hacked", {hacker = hacker, loot = loot, plant = self.inst})
+        end
     end
 end
 

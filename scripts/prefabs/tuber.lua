@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/tuber_crop.zip"),
+    Asset("ANIM", "anim/tuber_crop.zip"),
     Asset("ANIM", "anim/tuber_bloom_crop.zip"),
 }
 
@@ -11,9 +11,9 @@ local function oneaten(inst, eater)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
@@ -33,7 +33,7 @@ local function fn(Sim)
     end
 
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_LARGEITEM
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_LARGEITEM
 
 
 
@@ -55,7 +55,7 @@ local function fn(Sim)
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = TUNING.SMALL_FUEL
 
-	MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
+    MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
 
     inst:AddComponent("inventoryitem")

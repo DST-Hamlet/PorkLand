@@ -32,8 +32,8 @@ end
 local function OnAttacked(inst, data)
     inst.components.combat:SetTarget(data.attacker)
     inst.components.combat:ShareTarget(data.attacker, TUNING.WEEVOLE_SHARE_TARGET_RANGE, function(dude)
-		return dude:HasTag("weevole") and not dude.components.health:IsDead()
-	end, TUNING.WEEVOLE_SHARE_MAX_NUM)
+        return dude:HasTag("weevole") and not dude.components.health:IsDead()
+    end, TUNING.WEEVOLE_SHARE_MAX_NUM)
 end
 
 local function OnFlyIn(inst)
@@ -112,7 +112,7 @@ local function fn()
     MakeSmallBurnableCharacter(inst, "body")
     MakeSmallFreezableCharacter(inst, "body")
 
-	inst:ListenForEvent("fly_in", OnFlyIn) -- matches enter_loop logic so it does not happen a frame late
+    inst:ListenForEvent("fly_in", OnFlyIn) -- matches enter_loop logic so it does not happen a frame late
     inst:ListenForEvent("attacked", OnAttacked)
 
     return inst
