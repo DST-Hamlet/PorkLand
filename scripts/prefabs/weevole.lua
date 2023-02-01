@@ -85,6 +85,10 @@ local function fn()
     inst.components.locomotor:SetTriggersCreep(false)
     inst.components.locomotor.pathcaps = {ignorecreep = true}
     inst.components.locomotor.walkspeed = TUNING.WEEVOLE_WALK_SPEED
+    -- boat hopping enable.
+    inst.components.locomotor:SetAllowPlatformHopping(true)
+    inst:AddComponent("embarker")
+    inst:AddComponent("drownable")
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("weevole_loot")

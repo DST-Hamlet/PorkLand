@@ -10,7 +10,9 @@ local actionhandlers =
 local events =
 {
     EventHandler("entershield", function(inst, data)
-        inst.sg:GoToState("burrow_sheild")
+        if not inst:GetCurrentPlatform() then
+            inst.sg:GoToState("burrow_sheild")
+        end
     end),
     EventHandler("exitshield", function(inst, data)
         inst.sg:GoToState("emerge")
@@ -38,6 +40,7 @@ local events =
     end),
     EventHandler("death", function(inst) inst.sg:GoToState("death") end),
     CommonHandlers.OnFreeze(),
+    CommonHandlers.OnHop(),
 
     EventHandler("locomote", function(inst)
         if not inst.sg:HasStateTag("busy") then
@@ -477,5 +480,26 @@ local states =
 }
 
 CommonStates.AddFrozenStates(states)
+CommonStates.AddHopStates(states, true)
+CommonStates.AddSinkAndWashAsoreStates(states)
+
+-- make the pst animation play normally
+for _, state in pairs(states) do
+    if state.name == "hop_pst" then
+        state.onenter = function(inst, data)
+            inst.AnimState:PlayAnimation("jump_pst", false)
+            inst.sg.statemem.nextstate = "hop_pst_complete"
+        end
+
+        for _, event in pairs(state.events) do
+            if event.name == "animover" then
+                event.fn = function(inst)
+                    inst.components.embarker:Embark()
+                    inst.sg:GoToState(inst.sg.statemem.nextstate)
+                end
+            end
+        end
+    end
+end
 
 return StateGraph("weevole", states, events, "emerge", actionhandlers)
