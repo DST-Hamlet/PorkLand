@@ -52,7 +52,7 @@ end
 
 local function EatFoodAction(inst)
     local target = FindEntity(inst, SEE_FOOD_DIST, function(item)
-        return inst.components.eater:CanEat(item) and item:IsOnValidGround() and not item:GetIsOnWater(item.Transform:GetWorldPosition())
+        return inst.components.eater:CanEat(item) and item:IsOnValidGround() and not IsOnOcean(item)
     end)
     if target then
         return BufferedAction(inst, target, ACTIONS.EAT)
