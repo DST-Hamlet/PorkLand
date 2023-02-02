@@ -5,6 +5,7 @@ PrefabFiles = {
     "asparagus",
     "deep_jungle_fern_noise",
     "grass_tall",
+    "pl_wave_shore",
     "jungle_border_vine",
     "machete",
     "peagawk",

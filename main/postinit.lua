@@ -7,6 +7,7 @@ local components_post = {
     "playercontroller",
     "regrowthmanager",
     "rider_replica",
+    "wavemanager",
 }
 
 local prefabs_post = {
