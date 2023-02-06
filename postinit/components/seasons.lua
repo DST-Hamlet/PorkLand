@@ -606,7 +606,7 @@ AddComponentPostInit("seasons", function(self)
             autumn = TUNING.TEMPERATE_LENGTH,
             winter = TUNING.HUMID_LENGTH,
             spring = 0,
-            summer = TUNING.APORKALYPSE_LENGTH,
+            summer = TUNING.LUSH_LENGTH,
         }
     })
 
