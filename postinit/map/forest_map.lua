@@ -525,12 +525,11 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     save.map.world_tile_map = GetWorldTileMap()
 
     save.map.topology.overrides = deepcopy(current_gen_params)
+    save.map.topology.pl_worldgen_version = 1  -- Feel free to increase this version when making big changes
 
     if save.map.topology.overrides == nil then
         save.map.topology.overrides = {}
     end
-
-    save.map.topology.hm_worldgen_version = 1
 
     save.map.width, save.map.height = map_width, map_height
 

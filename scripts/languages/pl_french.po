@@ -1720,3 +1720,38 @@ msgctxt "STRINGS.RECIPE_DESC.SHEARS"
 msgid "Cut your way into adventure."
 msgstr "Pour se frayer un chemin vers l'aventure."
 
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.HUMID
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.HUMID"
+msgid "Humid"
+msgstr "Saison humide"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.LUSH
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.LUSH"
+msgid "Lush"
+msgstr "Saison luxuriante"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.PL_CLOCKTYPE
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.PL_CLOCKTYPE"
+msgid "Clock Type"
+msgstr "Type d'horloge"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.TEMPERATE
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.TEMPERATE"
+msgid "Temperate"
+msgstr "Saison tempérée"
+
+#. STRINGS.UI.SANDBOXMENU.CLOCKTYPE_DEFAULT
+msgctxt "STRINGS.UI.SANDBOXMENU.CLOCKTYPE_DEFAULT"
+msgid "Default"
+msgstr "Par défaut"
+
+#. STRINGS.UI.SANDBOXMENU.CLOCKTYPE_PORKLAND
+msgctxt "STRINGS.UI.SANDBOXMENU.CLOCKTYPE_PORKLAND"
+msgid "Plateau"
+msgstr "Plateau"
+
+#. STRINGS.UI.SANDBOXMENU.CUSTOMIZATIONPREFIX_PL
+msgctxt "STRINGS.UI.SANDBOXMENU.CUSTOMIZATIONPREFIX_PL"
+msgid "Hamlet"
+msgstr "Hamlet"
+

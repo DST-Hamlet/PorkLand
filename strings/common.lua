@@ -22,4 +22,17 @@ return {
         MACHETE = "Hack stuff!",
         SHEARS = "Cut your way into adventure.",
     },
+    UI = {
+        CUSTOMIZATIONSCREEN = {
+            HUMID = "Humid",
+            LUSH = "Lush",
+            PL_CLOCKTYPE = "Clock Type",
+            TEMPERATE = "Temperate",
+        },
+        SANDBOXMENU = {
+            CLOCKTYPE_DEFAULT = "Default",
+            CLOCKTYPE_PORKLAND = "Plateau",
+            CUSTOMIZATIONPREFIX_PL = "Hamlet",
+        },
+    },
 }
