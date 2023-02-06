@@ -105,7 +105,7 @@ for _, _data in ipairs(data) do
     local po_path = _data[2]
     local override = _data[3]
 
-    if not languages[po_path] then
+    if not languages[po_path] and po_path ~= "en" then
         for l, file_name in pairs(languages) do
             merge_table(translates[l], load_pofile(po_path .. file_name .. ".po", string_indexs), override)  -- get translate
             merge_table(translates[l], load_pofile(po_path .. file_name .. ".po", overed_indexs), override)  -- get translate
