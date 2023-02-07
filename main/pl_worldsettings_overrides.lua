@@ -13,6 +13,13 @@ local SEASON_VERYHARSH_LENGTHS =
     verylongseason = TUNING.SEASON_LENGTH_VERYHARSH_VERYLONG,
 }
 
+applyoverrides_post.isporkland = function(difficulty)
+    if difficulty == true then
+        TheWorld:AddTag("porkland")
+    end
+end
+
+
 applyoverrides_post.temperate = function(difficulty)
     if difficulty == "random" then
         TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "autumn", length = GetRandomItem(SEASON_VERYHARSH_LENGTHS), random = true})

@@ -1,7 +1,7 @@
 local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
-AddPrefabPostInit("world", function(inst)
+AddPrefabPostInit("forest", function(inst)
     local _tile_physics_init = inst.tile_physics_init
     inst.tile_physics_init = function(inst, ...)
         print("new_tile_physics_init", inst:HasTag("forest"))
@@ -32,5 +32,4 @@ AddPrefabPostInit("world", function(inst)
         end
         return _tile_physics_init ~= nil and _tile_physics_init(inst, ...)
     end
-
 end)
