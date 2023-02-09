@@ -4,7 +4,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
     id = "PORKLAND_DEFAULT",
     name = "Pork Land",
     desc = "Pork Land",
-    location = "forest",
+    location = "porkland",
     overrides = {
         task_set = "porkland",
         start_location = "PorkLandStart",

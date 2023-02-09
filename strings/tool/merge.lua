@@ -100,6 +100,7 @@ for _, _data in ipairs(data) do
     end
 end
 
+geted_strings.CHARACTERS.WARBUCKS = nil
 local string_indexs = table_index_to_str(geted_strings, "STRINGS")
 for _, _data in ipairs(data) do
     local po_path = _data[2]

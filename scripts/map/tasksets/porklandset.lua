@@ -2,7 +2,7 @@ local STRINGS = GLOBAL.STRINGS
 
 AddTaskSet("porkland", {
     name = "porkland_set",
-    location = "forest",  -- need change
+    location = "porkland",
 
     -- valid_start_tasks = {"BG_rainforest_base"},
     tasks = {

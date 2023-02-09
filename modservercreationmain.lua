@@ -12,6 +12,7 @@ end
 local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
+local Menu = require("widgets/menu")
 local ImageButton = require("widgets/imagebutton")
 
 local size_descriptions = PLENV.GetCustomizeDescription("size_descriptions")
@@ -60,11 +61,6 @@ local function add_group_and_item(category, name, text, desc, atlas, order, item
     end
 end
 
-local clocktype = {
-    {text = STRINGS.UI.SANDBOXMENU.CLOCKTYPE_DEFAULT, data = "default"},
-    {text = STRINGS.UI.SANDBOXMENU.CLOCKTYPE_PORKLAND, data = "plateau"},
-}
-
 local season_length_descriptions = {
     {text = STRINGS.UI.SANDBOXMENU.SLIDENEVER, data = "noseason"},
     {text = STRINGS.UI.SANDBOXMENU.SLIDEVERYSHORT, data = "veryshortseason"},
@@ -76,22 +72,119 @@ local season_length_descriptions = {
 }
 
 local pl_customize_table = {
-    pl_settings_global = {
+    porkland_settings_global = {
         order = 0,
         category = LEVELCATEGORY.SETTINGS,
-        text = STRINGS.UI.SANDBOXMENU.CUSTOMIZATIONPREFIX_PL .. STRINGS.UI.SANDBOXMENU.CHOICEGLOBAL,
+        text = STRINGS.UI.SANDBOXMENU.LOCATIONTABNAME.PORKLAND .. STRINGS.UI.SANDBOXMENU.CHOICEGLOBAL,
         items = {
-            pl_clocktype  = {value = "default", image = "blank_world.tex", desc = clocktype, order = 1, world = {"forest", "cave"}},
-            temperate     = {value = "default", image = "temperate.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 2, master_controlled = true},
-            humid         = {value = "default", image = "humid.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 3, master_controlled = true},
-            lush          = {value = "default", image = "lush.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 4, master_controlled = true},
+            temperate  = {value = "default", image = "temperate.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 2, master_controlled = true},
+            humid      = {value = "default", image = "humid.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 3, master_controlled = true},
+            lush       = {value = "default", image = "lush.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 4, master_controlled = true},
             -- aporkalypse = {value = "default", image = "dry.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 5, master_controlled = true},
         }
     },
+}
+
+local custonsiz_items = {
+    [LEVELCATEGORY.WORLDGEN] = {
+        monsters = {
+            "grass_tall_patch",
+        },
+        animals = {
+            "peagawk",
+        },
+        resources = {
+            "asparagus",
+            "grass_tall"
+        }
+    },
+    [LEVELCATEGORY.SETTINGS] = {
+        monsters = {
+            weevole_setting = {image = "weevole.tex"},
+        },
+        animals = {
+            peagawk_setting = {image = "peagawk.tex"},
+        },
+        resources = {
+            asparagus_regrowth = {image = "asparagus.tex"},
+        }
+    }
 }
 
 for name, data in pairs(pl_customize_table) do
     add_group_and_item(data.category, name, data.text, data.desc, data.atlas, data.order, data.items)
 end
 
-PLCustomizeTable = pl_customize_table
+for category, category_data in pairs(custonsiz_items) do
+    for group, group_data in pairs(category_data) do
+        for item, data in pairs(group_data) do
+            local name = item
+            local itemsettings = data
+            if type(data) == "string" then
+                name = itemsettings
+                itemsettings = {}
+            end
+
+            itemsettings.image = itemsettings.image or name .. ".tex"
+            itemsettings.value = itemsettings.value or "default"
+            itemsettings.world = itemsettings.world or {"porkland"}
+            itemsettings.atlas = pl_atlas
+            PLENV.AddCustomizeItem(category, group, name, itemsettings)
+        end
+    end
+end
+
+-- PLCustomizeTable = pl_customize_table
+local function SetLevelLocations(servercreationscreen, location)
+    servercreationscreen:SetLevelLocations({location, "cave"})
+    local text = servercreationscreen.world_tabs[1]:GetLocationTabName()
+    servercreationscreen.world_config_tabs.menu.items[2]:SetText(text)
+end
+
+scheduler:ExecuteInTime(0, function()  -- Delay a frame so we can get ServerCreationScreen when entering a existing world
+    local servercreationscreen = TheFrontEnd:GetOpenScreenOfType("ServerCreationScreen")
+
+    if not (KnownModIndex:IsModEnabled(PLENV.modname) and servercreationscreen and servercreationscreen.world_tabs and servercreationscreen.world_tabs[1]) then
+        return
+    end
+
+    SetLevelLocations(servercreationscreen, "porkland")
+
+    local world_tab = servercreationscreen.world_tabs[1]
+
+    if not world_tab.world_locations then
+        world_tab.world_locations = {FOREST = true, PORKLAND = true, CAVE = true}
+
+        local menuitems = {}
+        for location in pairs(world_tab.world_locations) do
+            table.insert(menuitems, {text = STRINGS.UI.SANDBOXMENU.LOCATIONTABNAME[location], cb = function() SetLevelLocations(servercreationscreen, location:lower()) end, style = "carny_long"})
+        end
+        world_tab.choose_world_menu = world_tab:AddChild(Menu(menuitems, 100))
+
+    elseif not world_tab.world_locations.PORKLAND then
+        world_tab.world_locations.PORKLAND = true
+        world_tab.choose_world_menu:AddItem(STRINGS.UI.SANDBOXMENU.LOCATIONTABNAME.PORKLAND, function() SetLevelLocations(servercreationscreen, "porkland") end)
+    end
+
+    world_tab.choose_world_menu:Hide()
+
+    if not world_tab.choose_world_button then
+        world_tab.choose_world_button = world_tab:AddChild(ImageButton("images/global_redux.xml", "button_carny_long_normal.tex", "button_carny_long_hover.tex", "button_carny_long_disabled.tex", "button_carny_long_down.tex"))
+
+        world_tab.choose_world_button.image:SetScale(.49)
+        world_tab.choose_world_button:SetFont(CHATFONT)
+        world_tab.choose_world_button.text:SetColour(0, 0, 0, 1)
+        world_tab.choose_world_button:SetOnClick(function(self, ...)
+            if world_tab.choose_world_menu.shown then
+                world_tab.choose_world_menu:Hide()
+            else
+                world_tab.choose_world_menu:Show()
+            end
+        end)
+        world_tab.choose_world_button:SetTextSize(19.6)
+        world_tab.choose_world_button:SetText(STRINGS.UI.SANDBOXMENU.CHOOSEWORLD)
+        world_tab.choose_world_button:SetPosition(430, 290)
+    end
+
+    world_tab.choose_world_button:Show()
+end)

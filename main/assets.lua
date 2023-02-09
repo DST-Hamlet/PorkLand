@@ -12,6 +12,8 @@ PrefabFiles = {
     "peagawk_spawner",
     "peagawkfeather",
     "poisonbubble",
+    "porkland_network",
+    "porkland",
     "shears",
     -- "tuber",
     -- "tubertrees",

@@ -24,15 +24,25 @@ return {
     },
     UI = {
         CUSTOMIZATIONSCREEN = {
+            ASPARAGUS = "Asparagus",
+            ASPARAGUS_REGROWTH = "Asparagus",
+            GRASS_TALL = "Tall Grass",
+            GRASS_TALL_PATCH = "Infected Tall Grass",
             HUMID = "Humid",
             LUSH = "Lush",
+            PEAGAWK = "Peagawk",
+            PEAGAWK_SETTING = "Peagawk",
             PL_CLOCKTYPE = "Clock Type",
             TEMPERATE = "Temperate",
+            WEEVOLE_SETTING = "Weevole",
         },
         SANDBOXMENU = {
+            CHOOSEWORLD = "Choose World",
             CLOCKTYPE_DEFAULT = "Default",
             CLOCKTYPE_PORKLAND = "Plateau",
-            CUSTOMIZATIONPREFIX_PL = "Hamlet",
+            LOCATIONTABNAME = {
+                PORKLAND = "Porkland",
+            },
         },
     },
 }

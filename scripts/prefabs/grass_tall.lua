@@ -8,7 +8,7 @@ local prefabs =
     "weevole",
     "cutgrass",
     "dug_grass",
-       "hacking_tall_grass_fx",
+    "hacking_tall_grass_fx",
 }
 
 local function get_status(inst, viewer)
@@ -216,6 +216,11 @@ local function grass_tall()
     inst.components.childspawner:SetSpawnPeriod(TUNING.WEEVOLEDEN_RELEASE_TIME)
     inst.components.childspawner:SetMaxChildren(TUNING.WEEVOLEDEN_MAX_WEEVOLES)
     inst.components.childspawner:SetSpawnedFn(OnSpawnWeevole)
+    WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.WEEVOLEDEN_RELEASE_TIME, TUNING.WEEVOLEDEN_ENABLE)
+    WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.WEEVOLEDEN_REGEN_TIME, TUNING.WEEVOLEDEN_ENABLE)
+    if not TUNING.WEEVOLEDEN_ENABLE then
+        inst.components.childspawner.childreninside = 0
+    end
 
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetOnPlayerNear(OnPlayerNear)

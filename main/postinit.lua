@@ -17,8 +17,6 @@ local components_post = {
 
 local prefabs_post = {
     "buff_workeffectiveness",
-    "forest_network",
-    "forest",
     "player",
     "player_classified",
     "woodie",
@@ -41,6 +39,10 @@ local brains_post = {
 }
 
 local class_post = {
+}
+
+local sim_post = {
+    "map", -- Map is not a proper component, so we edit it here instead.
 }
 
 modimport("postinit/entityscript")
@@ -73,3 +75,9 @@ end
 for _, file_name in ipairs(class_post) do
     modimport("postinit/"  ..  file_name)
 end
+
+AddSimPostInit(function()
+    for _, file_name in pairs(sim_post) do
+        modimport("postinit/sim/" .. file_name)
+    end
+end)
