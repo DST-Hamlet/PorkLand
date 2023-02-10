@@ -6,6 +6,8 @@ OnUnloadMod = function()
     end
 
     servercreationscreen:SetLevelLocations()
+    local text = servercreationscreen.world_tabs[1]:GetLocationTabName()
+    servercreationscreen.world_config_tabs.menu.items[2]:SetText(text)
 
     local world_tab = servercreationscreen.world_tabs[1]
 

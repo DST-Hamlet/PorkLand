@@ -14,6 +14,9 @@ local TRANSLATE_TO_PREFABS = forest_map.TRANSLATE_TO_PREFABS
 local TRANSLATE_AND_OVERRIDE = forest_map.TRANSLATE_AND_OVERRIDE
 
 TRANSLATE_TO_PREFABS["asparagus"] = {"asparagus_planted"}
+TRANSLATE_TO_PREFABS["peagawk_spawner"] = {"peagawk_spawner"}
+TRANSLATE_TO_PREFABS["grass_tall_patch"] = {"grass_tall_patch"}
+TRANSLATE_TO_PREFABS["grass_tall"] = {"grass_tall"}
 
 TRANSLATE_AND_OVERRIDE["deep_jungle_fern_noise"] = {"deep_jungle_fern_noise", "deep_jungle_fern_noise_plant"}
 --TRANSLATE_TO_PREFABS["bermudatriangle"] =    {"bermudatriangle_MARKER"}

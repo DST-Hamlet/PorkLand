@@ -91,7 +91,7 @@ local custonsiz_items = {
             "grass_tall_patch",
         },
         animals = {
-            "peagawk",
+            ["peagawk_spawner"] = {image = "peagawk.tex"}
         },
         resources = {
             "asparagus",
