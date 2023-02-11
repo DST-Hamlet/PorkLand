@@ -8,6 +8,10 @@ AddComponentPostInit("worldstate", function(self, inst)
     --------------------------------------------------------------------------
     assert(inst == TheWorld, "Invalid world")
 
+    if TheWorld:HasTag("porkland") then
+        return
+    end
+
     -- Private
     local data = self.data
 
@@ -23,6 +27,7 @@ AddComponentPostInit("worldstate", function(self, inst)
     --------------------------------------------------------------------------
 
     local function OnPlateauTemperatureTick(src, temperature)
+        SetVariable("temperature", temperature)
         SetVariable("plateautemperature", temperature)
     end
 
@@ -38,18 +43,8 @@ AddComponentPostInit("worldstate", function(self, inst)
 
     data.plateautemperature = TUNING.STARTING_TEMP
 
-    local mt = {
-        __index = function(t, k)
-            if k == "temperature" and TheWorld:HasTag("porkland") then
-                k = "plateautemperature"
-            end
-
-            return data[k]
-        end,
-        __newindex = data
-    }
-    self.data = setmetatable({}, mt)
-
+    local OnTemperatureTick = inst:GetEventCallbacks("temperaturetick", nil, "scripts/components/worldstate.lua")
+    inst:RemoveEventCallback("temperaturetick", OnTemperatureTick)
     inst:ListenForEvent("plateautemperaturetick", OnPlateauTemperatureTick)
 
     -- inst:ListenForEvent("snowcoveredchanged", function(inst, show)
