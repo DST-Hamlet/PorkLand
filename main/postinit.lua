@@ -76,8 +76,8 @@ for _, file_name in ipairs(class_post) do
     modimport("postinit/"  ..  file_name)
 end
 
-AddSimPostInit(function()
-    for _, file_name in pairs(sim_post) do
-        modimport("postinit/sim/" .. file_name)
-    end
-end)
+-- AddSimPostInit(function()
+--     for _, file_name in pairs(sim_post) do
+--         modimport("postinit/sim/" .. file_name)
+--     end
+-- end)
