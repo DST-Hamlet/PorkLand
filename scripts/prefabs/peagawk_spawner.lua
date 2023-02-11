@@ -20,9 +20,9 @@ local function fn()
     inst.components.childspawner.childname = "peagawk"
     inst.components.childspawner.spawnoffscreen = true
     inst.components.childspawner:StartSpawning()
-    WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.PEAGAWK_RELEASE_TIME, TUNING.PEAGAWK_ENABLE)
-    WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.PEAGAWK_REGEN_TIME, TUNING.PEAGAWK_ENABLE)
-    if not TUNING.PEAGAWK_ENABLE then
+    WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.PEAGAWK_RELEASE_TIME, TUNING.PEAGAWK_ENABLED)
+    WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.PEAGAWK_REGEN_TIME, TUNING.PEAGAWK_ENABLED)
+    if not TUNING.PEAGAWK_ENABLED then
         inst.components.childspawner.childreninside = 0
     end
 

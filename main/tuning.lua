@@ -21,6 +21,9 @@ local tuning = {
     LUSH_LENGTH = 10,
     APORKALYPSE_LENGTH = 10,
 
+    APORKALYPSE_WARING_TIME = 7 * day_time,
+    APORKALYPSE_PERIOD_LENGTH = 60 * day_time,
+
     MACHETE_DAMAGE = wilson_attack * .88,
     MACHETE_USES = 100,
 
@@ -43,7 +46,7 @@ local tuning = {
 
     VINE_REGROW_TIME = total_day_time * 4,
 
-    WEEVOLEDEN_ENABLE = true,
+    WEEVOLE_ENABLED = true,
     WEEVOLE_WALK_SPEED = 5,
     WEEVOLE_HEALTH = 150,
     WEEVOLE_DAMAGE = 6,

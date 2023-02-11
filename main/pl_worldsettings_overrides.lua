@@ -53,14 +53,14 @@ applyoverrides_post.peagawk_setting = function(difficulty)
     local tuning_vars =
     {
         never = {
-            PEAGAWK_ENABLE = false,
+            PEAGAWK_ENABLED = false,
         },
         few = {
             PEAGAWK_REGEN_TIME = TUNING.DAY_TIME_DEFAULT * 15,
         },
         --[[
         default = {
-            PEAGAWK_ENABLE = true,
+            PEAGAWK_ENABLED = true,
             PEAGAWK_REGEN_TIME = TUNING.DAY_TIME_DEFAULT * 10,
         },
         --]]
@@ -78,14 +78,14 @@ applyoverrides_post.weevole_setting = function(difficulty)
     local tuning_vars =
     {
         never = {
-            WEEVOLE_ENABLE = false,
+            WEEVOLE_ENABLED = false,
         },
         few = {
             WEEVOLEDEN_REGEN_TIME = TUNING.SEG_TIME * 6,
         },
         --[[
         default = {
-            WEEVOLE_ENABLE = true,
+            WEEVOLE_ENABLED = true,
             WEEVOLEDEN_REGEN_TIME = TUNING.SEG_TIME * 3,
         },
         --]]

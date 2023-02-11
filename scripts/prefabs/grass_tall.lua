@@ -216,9 +216,9 @@ local function grass_tall()
     inst.components.childspawner:SetSpawnPeriod(TUNING.WEEVOLEDEN_RELEASE_TIME)
     inst.components.childspawner:SetMaxChildren(TUNING.WEEVOLEDEN_MAX_WEEVOLES)
     inst.components.childspawner:SetSpawnedFn(OnSpawnWeevole)
-    WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.WEEVOLEDEN_RELEASE_TIME, TUNING.WEEVOLEDEN_ENABLE)
-    WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.WEEVOLEDEN_REGEN_TIME, TUNING.WEEVOLEDEN_ENABLE)
-    if not TUNING.WEEVOLEDEN_ENABLE then
+    WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.WEEVOLEDEN_RELEASE_TIME, TUNING.WEEVOLE_ENABLED)
+    WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.WEEVOLEDEN_REGEN_TIME, TUNING.WEEVOLE_ENABLED)
+    if not TUNING.WEEVOLE_ENABLED then
         inst.components.childspawner.childreninside = 0
     end
 
