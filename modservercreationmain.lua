@@ -15,40 +15,19 @@ GLOBAL.setfenv(1, GLOBAL)
 local Menu = require("widgets/menu")
 local ImageButton = require("widgets/imagebutton")
 
-local size_descriptions = PLENV.GetCustomizeDescription("size_descriptions")
-local yesno_descriptions = PLENV.GetCustomizeDescription("yesno_descriptions")
-local enableddisabled_descriptions = PLENV.GetCustomizeDescription("enableddisabled_descriptions")
-
-local frequency_descriptions = {
-    { text = STRINGS.UI.SANDBOXMENU.SLIDENEVER,    data = "never" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDERARE,     data = "rare" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT,  data = "default" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEOFTEN,    data = "often" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEALWAYS,   data = "always" },
-}
-
-local worldgen_frequency_descriptions = {
-    { text = STRINGS.UI.SANDBOXMENU.SLIDENEVER, data = "never" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDERARE, data = "rare" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEUNCOMMON, data = "uncommon" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEOFTEN, data = "often" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEMOSTLY, data = "mostly" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEALWAYS, data = "always" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEINSANE, data = "insane" },
-}
-
-local speed_descriptions = {
-    { text = STRINGS.UI.SANDBOXMENU.SLIDENEVER, data = "never" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEVERYSLOW, data = "veryslow" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDESLOW, data = "slow" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEFAST, data = "fast" },
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEVERYFAST, data = "veryfast" },
-}
+local Customize = require("map/customize")
 
 local worldgen_atlas = "images/worldgen_customization.xml"
 local pl_atlas = "images/hud/customization_porkland.xml"
+
+local function GetUpvalue(fn, name)
+	local i = 1
+	while debug.getupvalue(fn, i) and debug.getupvalue(fn, i) ~= name do
+		i = i + 1
+	end
+	local _, value = debug.getupvalue(fn, i)
+	return value, i
+end
 
 local function add_group_and_item(category, name, text, desc, atlas, order, items)
     if text then  -- assume that if the group has a text string its new
@@ -61,14 +40,22 @@ local function add_group_and_item(category, name, text, desc, atlas, order, item
     end
 end
 
+local frequency_descriptions = {
+    {text = STRINGS.UI.SANDBOXMENU.SLIDENEVER,    data = "never"},
+    {text = STRINGS.UI.SANDBOXMENU.SLIDERARE,     data = "rare"},
+    {text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT,  data = "default"},
+    {text = STRINGS.UI.SANDBOXMENU.SLIDEOFTEN,    data = "often"},
+    {text = STRINGS.UI.SANDBOXMENU.SLIDEALWAYS,   data = "always"},
+}
+
 local season_length_descriptions = {
-    {text = STRINGS.UI.SANDBOXMENU.SLIDENEVER, data = "noseason"},
+    {text = STRINGS.UI.SANDBOXMENU.SLIDENEVER,     data = "noseason"},
     {text = STRINGS.UI.SANDBOXMENU.SLIDEVERYSHORT, data = "veryshortseason"},
-    {text = STRINGS.UI.SANDBOXMENU.SLIDESHORT, data = "shortseason"},
-    {text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default"},
-    {text = STRINGS.UI.SANDBOXMENU.SLIDELONG, data = "longseason"},
-    {text = STRINGS.UI.SANDBOXMENU.SLIDEVERYLONG, data = "verylongseason"},
-    {text = STRINGS.UI.SANDBOXMENU.RANDOM, data = "random"},
+    {text = STRINGS.UI.SANDBOXMENU.SLIDESHORT,     data = "shortseason"},
+    {text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT,   data = "default"},
+    {text = STRINGS.UI.SANDBOXMENU.SLIDELONG,      data = "longseason"},
+    {text = STRINGS.UI.SANDBOXMENU.SLIDEVERYLONG,  data = "verylongseason"},
+    {text = STRINGS.UI.SANDBOXMENU.RANDOM,         data = "random"},
 }
 
 local pl_customize_table = {
@@ -95,7 +82,11 @@ local custonsiz_items = {
         },
         resources = {
             "asparagus",
-            "grass_tall"
+            "grass_tall",
+        },
+        misc = {
+            ["jungle_border_vine"] = {desc = frequency_descriptions},
+            ["deep_jungle_fern_noise"] = {desc = frequency_descriptions},
         }
     },
     [LEVELCATEGORY.SETTINGS] = {
@@ -110,6 +101,28 @@ local custonsiz_items = {
         }
     }
 }
+
+local change_items = {  -- change dst settings
+    worldgen = {
+        resources = {"rock", "sapling", "grass", "flowers", "reeds", "mushroom"},
+        misc = {"task_set", "start_location", "world_size", "touchstone", "boons"},
+    },
+    world_settings = {
+        resources = {"flowers_regrowth", "reeds_regrowth"},
+        animals = {"butterfly"}
+    }
+}
+
+local WORLDGEN_GROUP = GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
+local WORLDSETTINGS_GROUP = GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
+for category, category_data in pairs(change_items) do
+    local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
+    for group, items in pairs(category_data) do
+        for _, item in ipairs(items) do
+            table.insert(GROUP[group].items[item].world, "porkland")
+        end
+    end
+end
 
 for name, data in pairs(pl_customize_table) do
     add_group_and_item(data.category, name, data.text, data.desc, data.atlas, data.order, data.items)
@@ -134,7 +147,7 @@ for category, category_data in pairs(custonsiz_items) do
     end
 end
 
--- PLCustomizeTable = pl_customize_table
+
 local function SetLevelLocations(servercreationscreen, location)
     servercreationscreen:SetLevelLocations({location, "cave"})
     local text = servercreationscreen.world_tabs[1]:GetLocationTabName()
@@ -148,9 +161,16 @@ scheduler:ExecuteInTime(0, function()  -- Delay a frame so we can get ServerCrea
         return
     end
 
-    SetLevelLocations(servercreationscreen, "porkland")
-
     local world_tab = servercreationscreen.world_tabs[1]
+
+    if not servercreationscreen:CanResume() then  -- Only when first time creating the world then
+        SetLevelLocations(servercreationscreen, "porkland")
+    elseif world_tab:GetLocation() ~= SERVER_LEVEL_LOCATIONS[1] then
+        SERVER_LEVEL_LOCATIONS[1] = world_tab:GetLocation()
+        servercreationscreen.world_tabs[1]:RefreshOptionItems()
+        local text = servercreationscreen.world_tabs[1]:GetLocationTabName()
+        servercreationscreen.world_config_tabs.menu.items[2]:SetText(text)
+    end
 
     if not world_tab.world_locations then
         world_tab.world_locations = {FOREST = true, PORKLAND = true, CAVE = true}

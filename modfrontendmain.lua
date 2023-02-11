@@ -1,6 +1,8 @@
 OnUnloadMod = function()
     local servercreationscreen = GLOBAL.TheFrontEnd:GetOpenScreenOfType("ServerCreationScreen")
 
+    GLOBAL.SERVER_LEVEL_LOCATIONS[1] = "forest"
+
     if not (servercreationscreen and servercreationscreen.world_tabs and servercreationscreen.world_tabs[1])  then
         return
     end

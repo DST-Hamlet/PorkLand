@@ -19,6 +19,7 @@ TRANSLATE_TO_PREFABS["grass_tall_patch"] = {"grass_tall_patch"}
 TRANSLATE_TO_PREFABS["grass_tall"] = {"grass_tall"}
 
 TRANSLATE_AND_OVERRIDE["deep_jungle_fern_noise"] = {"deep_jungle_fern_noise", "deep_jungle_fern_noise_plant"}
+TRANSLATE_AND_OVERRIDE["jungle_border_vine"] ={"jungle_border_vine"}
 --TRANSLATE_TO_PREFABS["bermudatriangle"] =    {"bermudatriangle_MARKER"}
 
 local function ValidateGroundTile_PorkLand(tile)
@@ -41,6 +42,8 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     if not IsPorkLand then
         return _Generate(prefab, map_width, map_height, tasks, level, level_type, ...)
     end
+
+    TRANSLATE_TO_PREFABS["grass"] = {"grass", "grass_tall", "grass_tall_patch"}
 
     WorldSim:SetPointsBarrenOrReservedTile(WORLD_TILES.ROAD)
     WorldSim:SetResolveNoiseFunction(GetTileForNoiseTile)
