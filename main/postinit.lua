@@ -4,7 +4,7 @@ local components_post = {
     "clock",
     "combat",
     "health",
-    "isinventoryitem",
+    "inventoryitem",
     "lootdropper",
     "playercontroller",
     "regrowthmanager",
