@@ -134,18 +134,18 @@ local function OnSpawnWeevole(inst)
     end
 end
 
-local function OnPlayerNear(inst)
-    if not inst.playernear then
+local function OnNear(inst)
+    if not inst.near then
         if inst.components.hackable and inst.components.hackable:CanBeHacked() then
             inst.AnimState:PlayAnimation("rustle")
             inst.AnimState:PushAnimation("idle", true)
         end
     end
-    inst.playernear = true
+    inst.near = true
 end
 
-local function OnPlayerFar(inst)
-    inst.playernear = false
+local function OnFar(inst)
+    inst.near = false
 end
 
 local function OnSave(inst, data)
@@ -222,10 +222,10 @@ local function grass_tall()
         inst.components.childspawner.childreninside = 0
     end
 
-    inst:AddComponent("playerprox")
-    inst.components.playerprox:SetOnPlayerNear(OnPlayerNear)
-    inst.components.playerprox:SetOnPlayerFar(OnPlayerFar)
-    inst.components.playerprox:SetDist(0.75, 1)
+    inst:AddComponent("creatureprox")
+    inst.components.creatureprox:SetOnNear(OnNear)
+    inst.components.creatureprox:SetOnFar(OnFar)
+    inst.components.creatureprox:SetDist(0.75, 1)
 
     MakeHackableBlowInWindGust(inst, TUNING.GRASS_WINDBLOWN_SPEED, 0)
     MakeMediumBurnable(inst)

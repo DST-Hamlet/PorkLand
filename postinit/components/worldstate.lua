@@ -8,7 +8,7 @@ AddComponentPostInit("worldstate", function(self, inst)
     --------------------------------------------------------------------------
     assert(inst == TheWorld, "Invalid world")
 
-    if TheWorld:HasTag("porkland") then
+    if not TheWorld:HasTag("porkland") then
         return
     end
 
