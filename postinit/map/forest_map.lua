@@ -5,11 +5,12 @@ require("mathutil")
 
 local separate_region = require("map/separate_region")
 local makecities = require("map/city_builder")
-local makebunch = require("map/bunch_spawner")
 local makeborder = require("map/border_finder")
+local makebunch = require("map/pl_bunch_spawner")
 local makeBrambleSites = require("map/bramble_spawner")
 local startlocations = require("map/startlocations")
 local forest_map = require("map/forest_map")
+local MULTIPLY = forest_map.MULTIPLY
 local TRANSLATE_TO_PREFABS = forest_map.TRANSLATE_TO_PREFABS
 local TRANSLATE_AND_OVERRIDE = forest_map.TRANSLATE_AND_OVERRIDE
 
@@ -290,25 +291,16 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     AncientArchivePass(entities, map_width, map_height, WorldSim)
 
-    -- if IsPorkLand then
+    -- place jungle border
+    local jungle_border_rate = current_gen_params["jungle_border_vine"] and MULTIPLY[current_gen_params["jungle_border_vine"]] or 1
+    if jungle_border_rate > 0 then
+        makeborder(entities, topology_save, WorldSim, map_width, map_height, "jungle_border_vine", {WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.GASJUNGLE, WORLD_TILES.PIGRUINS}, 0.40 * jungle_border_rate)
+    end
 
-    --     -- place jungle border?
-    --     local jungle_border_rate = 1
-    --     if current_gen_params and current_gen_params["jungle_border_vine"] then
-    --         jungle_border_rate = current_gen_params["jungle_border_vine"]
-    --     end
-    --     if jungle_border_rate > 0 then
-    --         makeborder(entities, topology_save, WorldSim, map_width, map_height, "jungle_border_vine", {WORLD_TILES.DEEPRAINFOREST,WORLD_TILES.GASJUNGLE,WORLD_TILES.PIGRUINS}, 0.40* jungle_border_rate)
-    --     end
+    -- make the city here.
+    -- print("BUILDING PIG CULTURE")
 
-    --     --make the city here.
-    --     print("*******************************")
-    --     print("")
-    --     print("     BUILDING PIG CULTURE")
-    --     print("")
-    --     print("*******************************")
-
-    --     entities = makecities(entities,topology_save, WorldSim, map_width, map_height, current_gen_params)
+    --     entities = makecities(entities, topology_save, WorldSim, map_width, map_height, current_gen_params)
 
     --     --Process tallgrass, jungle fernnoise and other prefabs that spawn groups.
     --     if entities["grass_tall_patch"] then
@@ -340,11 +332,11 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     --         end
     --     end
 
-    --     if entities["deep_jungle_fern_noise"] then
-    --         for i,ent in ipairs(entities["deep_jungle_fern_noise"]) do
-    --             makebunch(entities, topology_save, WorldSim, map_width, map_height, "deep_jungle_fern_noise_plant", 12, math.random(5,15),ent.x,ent.z, {WORLD_TILES.DEEPRAINFOREST})
-    --         end
-    --     end
+    if entities["deep_jungle_fern_noise"] then
+        for _, ent in ipairs(entities["deep_jungle_fern_noise"]) do
+            makebunch(entities, topology_save, WorldSim, map_width, map_height, "deep_jungle_fern_noise_plant", 12, math.random(5, 15), ent.x, ent.z, {WORLD_TILES.DEEPRAINFOREST})
+        end
+    end
 
     --     if entities["teatree_piko_nest_patch"] then
     --         for i,ent in ipairs(entities["teatree_piko_nest_patch"]) do
@@ -487,8 +479,6 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     --     end
 
     --     entities = makeBrambleSites(entities,topology_save, WorldSim, map_width, map_height)
-    -- end
-
 
     local double_check = {}
     for i, prefab in ipairs(level.required_prefabs or {}) do
