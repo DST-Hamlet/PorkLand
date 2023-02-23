@@ -3,7 +3,7 @@ AddRoom("BG_battleground_base", {
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .22, -- .22, --.26
+        distributepercent = .22,  --.26
         distributeprefabs = {
             rainforesttree = 0.1,
             flower_rainforest = 0.7,
@@ -25,7 +25,7 @@ AddRoom("battleground_ribs", {
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .22, -- .22, --.26
+        distributepercent = .22,  --.26
         distributeprefabs = {
             rainforesttree = 0.1,
             flower_rainforest = 0.7,
@@ -48,7 +48,7 @@ AddRoom("battleground_claw", {
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .22, -- .22, --.26
+        distributepercent = .22,  --.26
         distributeprefabs = {
             rainforesttree = 0.1,
             flower_rainforest = 0.7,
@@ -71,7 +71,7 @@ AddRoom("battleground_leg", {
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .22, -- .22, --.26
+        distributepercent = .22,  --.26
         distributeprefabs = {
             rainforesttree = 0.1,
             flower_rainforest = 0.7,
@@ -94,7 +94,7 @@ AddRoom("battleground_head", {
     value = WORLD_TILES.BATTLEGROUND_RAINFOREST_NOISE,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .22, -- .22, --.26
+        distributepercent = .22,  --.26
         distributeprefabs = {
             rainforesttree = 0.1,
             flower_rainforest = 0.7,

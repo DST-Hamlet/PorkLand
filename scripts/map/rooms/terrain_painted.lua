@@ -3,7 +3,7 @@ AddRoom("BG_painted_base", {
     value = WORLD_TILES.PAINTED,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .15, --.26
+        distributepercent = .15,  -- .26
         distributeprefabs = {
             tubertree = 1,
             gnatmound = 0.1,
@@ -28,7 +28,7 @@ AddRoom("painted_base_nobatcave", {
     value = WORLD_TILES.PAINTED,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .15, --.26
+        distributepercent = .15,  -- .26
         distributeprefabs = {
             tubertree = 1,
             gnatmound = 0.1,

@@ -1,5 +1,5 @@
 local cultivated_contnets =  {
-    distributepercent = 0.06,  ---0.1
+    distributepercent = 0.06,  -- 0.1
     distributeprefabs = {
         rock1 = 0.01,
         teatree = 0.1,
@@ -32,7 +32,7 @@ AddRoom("piko_land", {
     value = WORLD_TILES.FIELDS,
     tags = {"ExitPiece", "Cultivated"},
     contents = {
-        distributepercent = 0.06, --0.1
+        distributepercent = 0.06,  -- 0.1
         distributeprefabs = {
             rock1 = 0.01,
             teatree = 2.0,

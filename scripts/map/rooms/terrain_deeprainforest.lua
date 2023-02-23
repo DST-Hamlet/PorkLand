@@ -5,8 +5,8 @@ AddRoom("BG_deeprainforest_base", {
     contents = {
         distributepercent = 0.5,
         distributeprefabs = {
-            rainforesttree = 2,--4,
-            tree_pillar = 0.5,--0.5,
+            rainforesttree = 2,  -- 4,
+            tree_pillar = 0.5,  -- 0.5,
             nettle = 0.12,
             flower_rainforest = 1,
             -- berrybush = 1,
@@ -37,10 +37,10 @@ AddRoom("deeprainforest_spider_monkey_nest", {
     value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
-        distributepercent = 0.25, --.3
+        distributepercent = 0.25,  -- .3
         distributeprefabs = {
-            rainforesttree = 3,--4,
-            tree_pillar = 1,--0.5,
+            rainforesttree = 3,  -- 4,
+            tree_pillar = 1,  -- 0.5,
             nettle = 0.12,
             flower_rainforest = 1,
             lightrays_jungle = 1.2,
@@ -67,10 +67,10 @@ AddRoom("deeprainforest_flytrap_grove", {
     value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
-        distributepercent = 0.25, --.3
+        distributepercent = 0.25,  -- .3
         distributeprefabs = {
             rainforesttree = 4,
-            tree_pillar = 1,--0.5,
+            tree_pillar = 1,  -- 0.5,
             nettle = 0.12,
             flower_rainforest = 1,
             lightrays_jungle = 1.2,
@@ -99,10 +99,10 @@ AddRoom("deeprainforest_fireflygrove", {
     value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
-        distributepercent = 0.25, --0.25, --.3
+        distributepercent = 0.25,  -- 0.25,  -- .3
         distributeprefabs = {
             rainforesttree = 4,
-            tree_pillar = 1,--0.5,
+            tree_pillar = 1,  -- 0.5,
             nettle = 0.12,
             flower_rainforest = 1,
             lightrays_jungle = 1.2,
@@ -131,7 +131,7 @@ AddRoom("deeprainforest_gas", {
     value = WORLD_TILES.GASJUNGLE,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
-        distributepercent = 0.45,  --.45
+        distributepercent = 0.45,
         distributeprefabs = {
             rainforesttree_rot = 4,
             tree_pillar = 0.5,
@@ -156,7 +156,7 @@ AddRoom("deeprainforest_gas_flytrap_grove", {
     value = WORLD_TILES.GASJUNGLE,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
-        distributepercent = 0.5,  --.45
+        distributepercent = 0.5,  -- .45
         distributeprefabs = {
             rainforesttree_rot = 2,
             tree_pillar = 0.5,
@@ -166,7 +166,7 @@ AddRoom("deeprainforest_gas_flytrap_grove", {
             blue_mushroom = 0.3,
             -- berrybush = 1,
             lightrays_jungle = 1.2,
-            --mistarea = 6,
+            -- mistarea = 6,
             randomrelic = 0.02,
             randomruin = 0.02,
             randomdust = 0.02,
@@ -186,7 +186,7 @@ AddRoom("deeprainforest_ruins_entrance", {
     value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
-        distributepercent = 0.25, --.3
+        distributepercent = 0.25,  -- .3
         distributeprefabs = {
             rainforesttree = 4,
             tree_pillar = 1,
@@ -217,7 +217,7 @@ AddRoom("deeprainforest_ruins_exit", {
     value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
-        distributepercent = 0.25, --.3
+        distributepercent = 0.25,  -- .3
         distributeprefabs = {
             rainforesttree = 4,
             tree_pillar = 1,
@@ -248,7 +248,7 @@ AddRoom("deeprainforest_anthill", {
     value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
-        distributepercent = 0.25, --.3
+        distributepercent = 0.25,  -- .3
         distributeprefabs = {
             rainforesttree = 4,
             tree_pillar = 1,
@@ -279,7 +279,7 @@ AddRoom("deeprainforest_mandrakeman", {
     value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
-        distributepercent = 0.25, --.3
+        distributepercent = 0.25,  -- .3
         distributeprefabs = {
             rainforesttree = 4,
             tree_pillar = 1,
@@ -308,7 +308,7 @@ AddRoom("deeprainforest_anthill_exit", {
     colour = {r = 1, g = 0, b = 1, a = 0.3},
     value = WORLD_TILES.DEEPRAINFOREST,
     tags = {"ExitPiece", "Canopy"},    contents = {
-        distributepercent = 0.25, --.3
+        distributepercent = 0.25,  -- .3
         distributeprefabs = {
             rainforesttree = 4,
             tree_pillar = 1,
@@ -340,8 +340,8 @@ AddRoom("deeprainforest_base_nobatcave", {
     contents = {
         distributepercent = 0.5,
         distributeprefabs = {
-            rainforesttree = 2,--4,
-            tree_pillar = 0.5,--0.5,
+            rainforesttree = 2,  -- 4,
+            tree_pillar = 0.5,  -- 0.5,
             nettle = 0.12,
             flower_rainforest = 1,
             -- berrybush = 1,

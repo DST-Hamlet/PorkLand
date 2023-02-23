@@ -3,7 +3,7 @@ AddRoom("BG_plains_base", {
     value = WORLD_TILES.PLAINS,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .25, --.22, --.26
+        distributepercent = .25, -- .22, -- .26
         distributeprefabs = {
             clawpalmtree = 0.5,
             grass_tall = 1,
@@ -31,12 +31,12 @@ AddRoom("plains_tallgrass", {
     value = WORLD_TILES.PLAINS,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .15,-- .15, -- .3
+        distributepercent = .15,  -- .3
         distributeprefabs = {
             clawpalmtree = .25,
             grass_tall = 1,
             flower_rainforest = 0.05,
-                    --        randomrelic = 0.0016,
+            -- randomrelic = 0.0016,
             --randomruin = 0.0025,
             randomdust = 0.0025,
             rock_flippable = 0.08,
@@ -56,7 +56,7 @@ AddRoom("plains_ruins", {
     value = WORLD_TILES.PLAINS,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .25,-- .15, -- .3
+        distributepercent = .25,  -- .15, -- .3
         distributeprefabs = {
             clawpalmtree = .25,
             grass_tall = 1,
@@ -82,7 +82,7 @@ AddRoom("plains_pogs", {
     value = WORLD_TILES.PLAINS,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .25,-- .15, -- .3
+        distributepercent = .25,  -- .15, -- .3
         distributeprefabs = {
             clawpalmtree = .25,
             grass_tall = 1,
@@ -106,7 +106,7 @@ AddRoom("plains_base_nobatcave", {
     value = WORLD_TILES.PLAINS,
     tags = {"ExitPiece", "Bramble"},
     contents = {
-        distributepercent = .25, --.22, --.26
+        distributepercent = .25,  --.22, --.26
         distributeprefabs = {
             clawpalmtree = 0.5,
             grass_tall = 1,
