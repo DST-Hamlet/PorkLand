@@ -2,6 +2,7 @@ local resolvefilepath = GLOBAL.resolvefilepath
 local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
+    "aporkalypse_clock",
     "asparagus",
     "deep_jungle_fern_noise",
     "grass_tall",
