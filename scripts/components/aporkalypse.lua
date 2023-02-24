@@ -60,8 +60,9 @@ return Class(function(self, inst)
         print("开始毁灭季")
 
         if first_aporkalypse then
-            remainingtime_in_aporkalypse = APORKALYPSE_LENGTH
+
         else
+            remainingtime_in_aporkalypse = APORKALYPSE_LENGTH
         end
 
         aporkalypse_active:set(true)

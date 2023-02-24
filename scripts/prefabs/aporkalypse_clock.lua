@@ -66,12 +66,13 @@ local function OnClockTick(inst, data)
     local aporkalypse = TheWorld.net and TheWorld.net.components.aporkalypse
 
     if aporkalypse then
+        time_utill_aporkalypse = math.max(aporkalypse:GetTimeUntilAporkalypse(), 0)
+
         if inst.rewind then
             -- if aporkalypse:IsActive() then
             --     aporkalypse:EndAporkalypse()
             -- end
 
-            time_utill_aporkalypse = math.max(aporkalypse:GetTimeUntilAporkalypse(), 0)
             -- I'd like to use dt but update for season-switch can mess with it bigtime
             -- local dt = math.clamp(data.dt, 0, 2 * TheSim:GetTickTime())
             -- time_utill_aporkalypse = time_utill_aporkalypse - inst.rewind_mult * dt * 250
@@ -86,7 +87,7 @@ local function OnClockTick(inst, data)
 end
 
 local function OnBeginAporkalypse(inst, data)
-    inst:playclockanimation("on")
+    inst:PlayClockAnimation("on")
 
     inst.SoundEmitter:KillSound("totem_sound")
     inst.SoundEmitter:KillSound("base_sound")
