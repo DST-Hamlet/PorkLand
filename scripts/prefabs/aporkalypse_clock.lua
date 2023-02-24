@@ -155,7 +155,7 @@ local function DoPostInit(inst)
     local isaporkalypse = TheWorld.net and TheWorld.net.components.aporkalypse and TheWorld.net.components.aporkalypse:IsActive()
     if isaporkalypse then
         inst.AnimState:PlayAnimation("idle_on")
-        inst:playclockanimation("on")
+        inst:PlayClockAnimation("on")
     end
 end
 
