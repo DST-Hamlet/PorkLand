@@ -44,15 +44,7 @@ return Class(function(self, inst)
         return aporkalypse_active:value()
     end
 
-    if _ismastersim then function self:GetTimeUntilAporkalypse()
-        return time_until_aporkalypse
-    end end
-
-    --------------------------------------------------------------------------
-    --[[ Private member functions ]]
-    --------------------------------------------------------------------------
-
-    local BeginAporkalypse = _ismastersim and function()
+    if _ismastersim then function self:BeginAporkalypse()
         if aporkalypse_active:value() then
             return
         end
@@ -68,9 +60,9 @@ return Class(function(self, inst)
         aporkalypse_active:set(true)
 
         _world:PushEvent("beginaporkalypse")
-    end or nil
+    end end
 
-    local EndAporkalypse = _ismastersim and function()
+    if _ismastersim then function self:EndAporkalypse()
         if not aporkalypse_active:value() then
             return
         end
@@ -82,12 +74,32 @@ return Class(function(self, inst)
         aporkalypse_active:set(false)
 
         _world:PushEvent("endaporkalypse")
-    end or nil
+    end end
+
+    if _ismastersim then function self:ScheduleAporkalypse(delta)
+        local daytime = APORKALYPSE_PERIOD_LENGTH
+        while delta > daytime do
+            delta = delta % daytime
+        end
+
+        while delta < 0 do
+            delta = delta + daytime
+        end
+
+        time_until_aporkalypse = delta
+    end end
+
+    if _ismastersim then function self:GetTimeUntilAporkalypse()
+        return time_until_aporkalypse
+    end end
+
+    --------------------------------------------------------------------------
+    --[[ Private member functions ]]
+    --------------------------------------------------------------------------
 
     --------------------------------------------------------------------------
     --[[ Private event handlers ]]
     --------------------------------------------------------------------------
-
 
     --------------------------------------------------------------------------
     --[[ Initialization ]]
@@ -97,8 +109,6 @@ return Class(function(self, inst)
     aporkalypse_active:set(false)
 
     -- Register events
-    -- inst:ListenForEvent("beginaporkalypse", OnBeginAporkalypse, _world)
-    -- inst:ListenForEvent("endaporkalypse", OnClockTick, _world)
 
     if _ismastersim then
         inst:StartUpdatingComponent(self)
@@ -117,7 +127,7 @@ return Class(function(self, inst)
                 remainingtime_in_aporkalypse = remainingtime_in_aporkalypse - dt
 
                 if remainingtime_in_aporkalypse <= 0 then
-                    EndAporkalypse()
+                    self:EndAporkalypse()
 
                     self:OnUpdate(-remainingtime_in_aporkalypse)
                     return
@@ -134,13 +144,15 @@ return Class(function(self, inst)
                 end
             else
                 near_aporkalypse = false
-                BeginAporkalypse()
+                self:BeginAporkalypse()
 
                 self:OnUpdate(-time_until_aporkalypse)
                 return
             end
 
         end
+
+        _world:PushEvent("aporkalypse_clocktick", {time_until_aporkalypse = time_until_aporkalypse, remainingtime_in_aporkalypse = remainingtime_in_aporkalypse, dt = dt})
     end end
 
     self.LongUpdate = self.OnUpdate
@@ -152,6 +164,7 @@ return Class(function(self, inst)
     if _ismastersim then function self:OnSave()
         return {
             first_aporkalypse = first_aporkalypse,
+            time_until_aporkalypse = time_until_aporkalypse,
             remainingtime_in_aporkalypse = remainingtime_in_aporkalypse,
             aporkalypse_active = aporkalypse_active:value()
         }
@@ -169,6 +182,10 @@ return Class(function(self, inst)
 
         if data.aporkalypse_active == true then
             aporkalypse_active:set(true)
+        end
+
+        if data.time_until_aporkalypse then
+            time_until_aporkalypse = data.time_until_aporkalypse
         end
     end end
 

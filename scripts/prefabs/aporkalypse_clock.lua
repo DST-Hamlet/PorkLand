@@ -61,27 +61,23 @@ local function PlayClockAnimation(inst, anim)
     end
 end
 
-local function OnClockTick(inst, data)
-    local time_utill_aporkalypse = 0
+local function OnAporkalypseClockTick(inst, data)
+    local time_until_aporkalypse = data.time_until_aporkalypse or 0
     local aporkalypse = TheWorld.net and TheWorld.net.components.aporkalypse
 
     if aporkalypse then
-        time_utill_aporkalypse = math.max(aporkalypse:GetTimeUntilAporkalypse(), 0)
-
         if inst.rewind then
-            -- if aporkalypse:IsActive() then
-            --     aporkalypse:EndAporkalypse()
-            -- end
-
-            -- I'd like to use dt but update for season-switch can mess with it bigtime
+            if aporkalypse:IsActive() then
+                aporkalypse:EndAporkalypse()
+            end
             -- local dt = math.clamp(data.dt, 0, 2 * TheSim:GetTickTime())
-            -- time_utill_aporkalypse = time_utill_aporkalypse - inst.rewind_mult * dt * 250
-            -- aporkalypse:ScheduleAporkalypse(GetClock():GetTotalTime() + time_utill_aporkalypse)
+            time_until_aporkalypse = time_until_aporkalypse - inst.rewind_mult * FRAMES * 250
+            aporkalypse:ScheduleAporkalypse(time_until_aporkalypse)
         end
     end
 
     for i, clock in ipairs(inst.clocks) do
-        local angle = time_utill_aporkalypse / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[i]
+        local angle = time_until_aporkalypse / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[i]
         set_rotation(clock, angle)
     end
 end
@@ -189,8 +185,8 @@ local function aporkalypse_clock_fn()
 
     inst:AddComponent("inspectable")
 
-    inst.OnClockTick = OnClockTick
-    inst:ListenForEvent("clocktick", function(src, data) inst:OnClockTick(data) end, TheWorld)
+    inst.OnAporkalypseClockTick = OnAporkalypseClockTick
+    inst:ListenForEvent("aporkalypse_clocktick", function(src, data) inst:OnAporkalypseClockTick(data) end, TheWorld)
 
     inst.OnBeginAporkalypse = OnBeginAporkalypse
     inst:ListenForEvent("beginaporkalypse", function(src, data) inst:OnBeginAporkalypse(data) end, TheWorld)
@@ -232,7 +228,7 @@ local function OnNear(inst)
         inst.down = true
 
         if inst.aporkalypse_clock then
-            inst.aporkalypse_clock.rewind_mult = 1
+            inst.aporkalypse_clock.rewind_mult = inst.rewind_mult
             inst.aporkalypse_clock:StartRewind()
         end
     end
@@ -254,7 +250,7 @@ local function FindTest(fined, inst)
     return not fined:HasTag("flying")
 end
 
-local function Makeplate(name, build)
+local function Makeplate(name, build, rewind_mult)
     local assets =
     {
         Asset("ANIM", "anim/pressure_plate.zip"),
@@ -284,6 +280,7 @@ local function Makeplate(name, build)
 
         inst.persists = false
 
+        inst.rewind_mult = rewind_mult
         inst.down = false
 
         inst:AddComponent("creatureprox")
@@ -336,8 +333,8 @@ end
 
 return Prefab("common/objects/aporkalypse_clock", aporkalypse_clock_fn, aporkalypse_clock_assets),
     Prefab("common/objects/aporkalypse_marker", aporkalypse_marker_fn, aporkalypse_marker_assets),
-    Makeplate("aporkalypse_rewind_plate", "pressure_plate_forwards_build"),
-    Makeplate("aporkalypse_fastforward_plate", "pressure_plate_backwards_build"),
+    Makeplate("aporkalypse_rewind_plate", "pressure_plate_forwards_build", -1),
+    Makeplate("aporkalypse_fastforward_plate", "pressure_plate_backwards_build", 1),
     MakeClock(1),
     MakeClock(2),
     MakeClock(3)
