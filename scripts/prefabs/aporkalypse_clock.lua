@@ -28,7 +28,7 @@ local function set_rotation(inst, angle)
 end
 
 local function SetRewindMult(inst, rewind_mult)
-    inst.rewind_mult = rewind_mult
+    inst.rewind_mult = (inst.rewind_mult or 0) + rewind_mult
 
     if inst.rewind_mult == 0 then  -- stop rewind
         inst.SoundEmitter:KillSound("rewind_sound")
@@ -57,18 +57,14 @@ end
 
 local function OnAporkalypseClockTick(inst, data)
     local time_until_aporkalypse = math.max(data.time_until_aporkalypse or 0, 0)
-    local aporkalypse = TheWorld.net and TheWorld.net.components.aporkalypse
-
-    if aporkalypse then
-        if inst.rewind then
-            if aporkalypse:IsActive() then
-                aporkalypse:EndAporkalypse()
-            end
-
-            -- local dt = math.clamp(data.dt, 0, 2 * TheSim:GetTickTime())
-            time_until_aporkalypse = time_until_aporkalypse - inst.rewind_mult * data.dt * 250
-            aporkalypse:ScheduleAporkalypse(time_until_aporkalypse)
+    if inst.rewind then
+        if TheWorld.state.isaporkalypse then
+            TheWorld:PushEvent("endaporkalypse")
         end
+
+        -- local dt = math.clamp(data.dt, 0, 2 * TheSim:GetTickTime())
+        time_until_aporkalypse = time_until_aporkalypse - inst.rewind_mult * data.dt * 250
+        TheWorld:PushEvent("scheduleaporkalypse", time_until_aporkalypse)
     end
 
     for i, clock in ipairs(inst.clocks) do
@@ -77,7 +73,7 @@ local function OnAporkalypseClockTick(inst, data)
     end
 end
 
-local function OnBeginAporkalypse(inst, data)
+local function OnStartAporkalypse(inst, data)
     inst:PlayClockAnimation("on")
 
     inst.SoundEmitter:KillSound("totem_sound")
@@ -90,7 +86,7 @@ local function OnBeginAporkalypse(inst, data)
     inst.AnimState:PushAnimation("idle_on")
 end
 
-local function OnEndAporkalypse(inst, data)
+local function OnStopAporkalypse(inst, data)
     inst:PlayClockAnimation("off")
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
@@ -144,8 +140,7 @@ local function DoPostInit(inst)
         table.insert(inst.plates, plate)
     end
 
-    local isaporkalypse = TheWorld.net and TheWorld.net.components.aporkalypse and TheWorld.net.components.aporkalypse:IsActive()
-    if isaporkalypse then
+    if TheWorld.state.isaporkalypse then
         inst.SoundEmitter:KillSound("totem_sound")
         inst.SoundEmitter:KillSound("base_sound")
 
@@ -169,10 +164,9 @@ local function aporkalypse_clock_fn()
     inst.AnimState:SetBuild("aporkalypse_totem")
     inst.AnimState:PlayAnimation("idle_loop", true)
 
-    if not TheNet:IsDedicated() then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
-    end
+
+    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
+    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
 
     inst.entity:SetPristine()
 
@@ -191,11 +185,8 @@ local function aporkalypse_clock_fn()
     inst.OnAporkalypseClockTick = OnAporkalypseClockTick
     inst:ListenForEvent("aporkalypseclocktick", function(src, data) inst:OnAporkalypseClockTick(data) end, TheWorld)
 
-    inst.OnBeginAporkalypse = OnBeginAporkalypse
-    inst:ListenForEvent("beginaporkalypse", function(src, data) inst:OnBeginAporkalypse(data) end, TheWorld)
-
-    inst.OnEndAporkalypse = OnEndAporkalypse
-    inst:ListenForEvent("endaporkalypse", function(src, data) inst:OnEndAporkalypse(data) end, TheWorld)
+    inst:WatchWorldState("startaporkalypse", OnStartAporkalypse)
+    inst:WatchWorldState("stopaporkalypse", OnStopAporkalypse)
 
     inst:DoTaskInTime(0, DoPostInit)
 
@@ -237,7 +228,7 @@ local function SetOnPlayerNear(inst)
 
         local aporkalypse_clock = inst.aporkalypse_clock
         if aporkalypse_clock then
-            aporkalypse_clock:SetRewindMult((aporkalypse_clock.rewind_mult or 0) + inst.rewind_mult)  -- to fix trigger two plate at the same time
+            aporkalypse_clock:SetRewindMult(inst.rewind_mult)
         end
     end
 end
@@ -250,15 +241,7 @@ local function SetOnPlayerFar(inst)
 
         local aporkalypse_clock = inst.aporkalypse_clock
         if aporkalypse_clock then
-            local rewind_mult = 0
-
-            for _, plate in ipairs(aporkalypse_clock.plates or {}) do  -- to fix trigger two plate at the same time
-                if plate ~= inst and plate.down then
-                    rewind_mult = rewind_mult + plate.rewind_mult
-                end
-            end
-
-            aporkalypse_clock:SetRewindMult(rewind_mult)
+            aporkalypse_clock:SetRewindMult(-inst.rewind_mult)
         end
     end
 end

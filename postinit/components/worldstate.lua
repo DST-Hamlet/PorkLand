@@ -31,6 +31,10 @@ AddComponentPostInit("worldstate", function(self, inst)
         SetVariable("plateautemperature", temperature)
     end
 
+    local function OnAporkalypseaChange(src, isaporkalypse)
+        SetVariable("isaporkalypse", isaporkalypse, "aporkalypse")
+    end
+
     --------------------------------------------------------------------------
     --[[ Initialization ]]
     --------------------------------------------------------------------------
@@ -42,10 +46,13 @@ AddComponentPostInit("worldstate", function(self, inst)
     --]]
 
     data.plateautemperature = TUNING.STARTING_TEMP
+    data.isaporkalypse = false
 
     local OnTemperatureTick = inst:GetEventCallbacks("temperaturetick", nil, "scripts/components/worldstate.lua")
     inst:RemoveEventCallback("temperaturetick", OnTemperatureTick)
     inst:ListenForEvent("plateautemperaturetick", OnPlateauTemperatureTick)
+
+    inst:ListenForEvent("aporkalypschange", OnAporkalypseaChange)
 
     -- inst:ListenForEvent("snowcoveredchanged", function(inst, show)
     --     TheSim:HideAnimOnEntitiesWithTag("Climate_island", "snow")
