@@ -152,7 +152,7 @@ return Class(function(self, inst)
 
         end
 
-        _world:PushEvent("aporkalypse_clocktick", {time_until_aporkalypse = time_until_aporkalypse, remainingtime_in_aporkalypse = remainingtime_in_aporkalypse, dt = dt})
+        _world:PushEvent("aporkalypseclocktick", {time_until_aporkalypse = time_until_aporkalypse, remainingtime_in_aporkalypse = remainingtime_in_aporkalypse, dt = dt})
     end end
 
     self.LongUpdate = self.OnUpdate
@@ -164,9 +164,9 @@ return Class(function(self, inst)
     if _ismastersim then function self:OnSave()
         return {
             first_aporkalypse = first_aporkalypse,
+            aporkalypse_active = aporkalypse_active:value(),
             time_until_aporkalypse = time_until_aporkalypse,
-            remainingtime_in_aporkalypse = remainingtime_in_aporkalypse,
-            aporkalypse_active = aporkalypse_active:value()
+            remainingtime_in_aporkalypse = remainingtime_in_aporkalypse
         }
     end end
 
@@ -176,17 +176,12 @@ return Class(function(self, inst)
             first_aporkalypse = false
         end
 
-        if data.remainingtime_in_aporkalypse then
-            remainingtime_in_aporkalypse = data.remainingtime_in_aporkalypse
-        end
-
         if data.aporkalypse_active == true then
             aporkalypse_active:set(true)
         end
 
-        if data.time_until_aporkalypse then
-            time_until_aporkalypse = data.time_until_aporkalypse
-        end
+        remainingtime_in_aporkalypse = data.remainingtime_in_aporkalypse
+        time_until_aporkalypse = data.time_until_aporkalypse
     end end
 
 end)

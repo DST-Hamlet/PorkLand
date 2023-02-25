@@ -1,11 +1,11 @@
 local aporkalypse_clock_assets =
 {
-    Asset("ANIM", "anim/porkalypse_totem.zip")
+    Asset("ANIM", "anim/aporkalypse_totem.zip")
 }
 
 local aporkalypse_marker_assets =
 {
-    Asset("ANIM", "anim/porkalypse_clock_marker.zip")
+    Asset("ANIM", "anim/aporkalypse_clock_marker.zip")
 }
 
 local clock_prefabs =
@@ -27,31 +27,25 @@ local function set_rotation(inst, angle)
     inst.Transform:SetRotation(angle + 90)
 end
 
-local function StartRewind(inst)
-    if inst.rewind then
-        return
+local function SetRewindMult(inst, rewind_mult)
+    inst.rewind_mult = rewind_mult
+
+    if inst.rewind_mult == 0 then  -- stop rewind
+        inst.SoundEmitter:KillSound("rewind_sound")
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
+
+        inst.rewind = false
+    else  -- start rewind
+        inst.SoundEmitter:KillSound("base_sound")
+
+        if inst.rewind_mult < 0 then
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_backwards_LP", "rewind_sound")
+        elseif inst.rewind_mult > 0 then
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_fast_LP", "rewind_sound")
+        end
+
+        inst.rewind = true
     end
-
-    inst.SoundEmitter:KillSound("base_sound")
-
-    if inst.rewind_mult < 0 then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_backwards_LP", "rewind_sound")
-    else
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_fast_LP", "rewind_sound")
-    end
-
-    inst.rewind = true
-end
-
-local function StopRewind(inst)
-    if not inst.rewind then
-        return
-    end
-
-    inst.SoundEmitter:KillSound("rewind_sound")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
-
-    inst.rewind = false
 end
 
 local function PlayClockAnimation(inst, anim)
@@ -62,7 +56,7 @@ local function PlayClockAnimation(inst, anim)
 end
 
 local function OnAporkalypseClockTick(inst, data)
-    local time_until_aporkalypse = data.time_until_aporkalypse or 0
+    local time_until_aporkalypse = math.max(data.time_until_aporkalypse or 0, 0)
     local aporkalypse = TheWorld.net and TheWorld.net.components.aporkalypse
 
     if aporkalypse then
@@ -70,8 +64,9 @@ local function OnAporkalypseClockTick(inst, data)
             if aporkalypse:IsActive() then
                 aporkalypse:EndAporkalypse()
             end
+
             -- local dt = math.clamp(data.dt, 0, 2 * TheSim:GetTickTime())
-            time_until_aporkalypse = time_until_aporkalypse - inst.rewind_mult * FRAMES * 250
+            time_until_aporkalypse = time_until_aporkalypse - inst.rewind_mult * data.dt * 250
             aporkalypse:ScheduleAporkalypse(time_until_aporkalypse)
         end
     end
@@ -106,19 +101,20 @@ local function OnEndAporkalypse(inst, data)
 end
 
 local function OnRemoveEntity(inst)
-    if not inst.aporkalypse_clock then
+    local aporkalypse_clock = inst.aporkalypse_clocks
+    if not aporkalypse_clock then
         return
     end
 
-    for i, clock in ipairs(inst.aporkalypse_clockclocks.clocks or {}) do
+    for i, clock in ipairs(aporkalypse_clock.clocks or {}) do
         if clock == inst then
-            table.remove(inst.clocks, i)
+            table.remove(aporkalypse_clock.clocks, i)
         end
     end
 
-    for i, plate in ipairs(inst.aporkalypse_clock.plates or {}) do
+    for i, plate in ipairs(aporkalypse_clock.plates or {}) do
         if plate == inst then
-            table.remove(inst.clocks, i)
+            table.remove(aporkalypse_clock.clocks, i)
         end
     end
 end
@@ -150,6 +146,9 @@ local function DoPostInit(inst)
 
     local isaporkalypse = TheWorld.net and TheWorld.net.components.aporkalypse and TheWorld.net.components.aporkalypse:IsActive()
     if isaporkalypse then
+        inst.SoundEmitter:KillSound("totem_sound")
+        inst.SoundEmitter:KillSound("base_sound")
+
         inst.AnimState:PlayAnimation("idle_on")
         inst:PlayClockAnimation("on")
     end
@@ -161,15 +160,19 @@ local function aporkalypse_clock_fn()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
+    inst.entity:AddNetwork()
+
     inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("porkalypse_clock.tex")
+    inst.MiniMapEntity:SetIcon("aporkalypse_clock.tex")
 
     inst.AnimState:SetBank("totem")
-    inst.AnimState:SetBuild("porkalypse_totem")
+    inst.AnimState:SetBuild("aporkalypse_totem")
     inst.AnimState:PlayAnimation("idle_loop", true)
 
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
+    if not TheNet:IsDedicated() then
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
+    end
 
     inst.entity:SetPristine()
 
@@ -179,14 +182,14 @@ local function aporkalypse_clock_fn()
 
     inst.clocks = {}
     inst.plates = {}
-    inst.StartRewind = StartRewind
-    inst.StopRewind = StopRewind
+    inst.rewind_mult = 0
+    inst.SetRewindMult = SetRewindMult
     inst.PlayClockAnimation = PlayClockAnimation
 
     inst:AddComponent("inspectable")
 
     inst.OnAporkalypseClockTick = OnAporkalypseClockTick
-    inst:ListenForEvent("aporkalypse_clocktick", function(src, data) inst:OnAporkalypseClockTick(data) end, TheWorld)
+    inst:ListenForEvent("aporkalypseclocktick", function(src, data) inst:OnAporkalypseClockTick(data) end, TheWorld)
 
     inst.OnBeginAporkalypse = OnBeginAporkalypse
     inst:ListenForEvent("beginaporkalypse", function(src, data) inst:OnBeginAporkalypse(data) end, TheWorld)
@@ -196,6 +199,8 @@ local function aporkalypse_clock_fn()
 
     inst:DoTaskInTime(0, DoPostInit)
 
+    MakeHauntableWork(inst)
+
     return inst
 end
 
@@ -204,8 +209,9 @@ local function aporkalypse_marker_fn()
 
     inst.entity:AddTransform()
 	inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
 
-    inst.AnimState:SetBuild("porkalypse_clock_marker")
+    inst.AnimState:SetBuild("aporkalypse_clock_marker")
 	inst.AnimState:SetBank("clock_marker")
 	inst.AnimState:PlayAnimation("idle")
 
@@ -215,39 +221,46 @@ local function aporkalypse_marker_fn()
     inst.AnimState:SetSortOrder(3)
     inst.AnimState:SetFinalOffset(0)
 
+    inst.entity:SetPristine()
+
     inst.persists = false
 
     return inst
 end
 
-local function OnNear(inst)
+local function SetOnPlayerNear(inst)
     if not inst.down then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/pressure_plate/hit")
         inst.AnimState:PlayAnimation("popdown")
         inst.AnimState:PushAnimation("down_idle")
         inst.down = true
 
-        if inst.aporkalypse_clock then
-            inst.aporkalypse_clock.rewind_mult = inst.rewind_mult
-            inst.aporkalypse_clock:StartRewind()
+        local aporkalypse_clock = inst.aporkalypse_clock
+        if aporkalypse_clock then
+            aporkalypse_clock:SetRewindMult((aporkalypse_clock.rewind_mult or 0) + inst.rewind_mult)  -- to fix trigger two plate at the same time
         end
     end
 end
 
-local function OnFar(inst)
+local function SetOnPlayerFar(inst)
     if inst.down then
         inst.AnimState:PlayAnimation("popup")
         inst.AnimState:PushAnimation("up_idle")
         inst.down = false
 
-        if inst.aporkalypse_clock then
-            inst.aporkalypse_clock:StopRewind()
+        local aporkalypse_clock = inst.aporkalypse_clock
+        if aporkalypse_clock then
+            local rewind_mult = 0
+
+            for _, plate in ipairs(aporkalypse_clock.plates or {}) do  -- to fix trigger two plate at the same time
+                if plate ~= inst and plate.down then
+                    rewind_mult = rewind_mult + plate.rewind_mult
+                end
+            end
+
+            aporkalypse_clock:SetRewindMult(rewind_mult)
         end
     end
-end
-
-local function FindTest(fined, inst)
-    return not fined:HasTag("flying")
 end
 
 local function Makeplate(name, build, rewind_mult)
@@ -263,6 +276,7 @@ local function Makeplate(name, build, rewind_mult)
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
         inst.entity:AddSoundEmitter()
+        inst.entity:AddNetwork()
 
         inst.AnimState:SetBank("pressure_plate")
         inst.AnimState:SetBuild(build)
@@ -274,6 +288,8 @@ local function Makeplate(name, build, rewind_mult)
         inst:AddTag("structure")
         inst:AddTag("weighdownable")  -- ?
 
+        inst.entity:SetPristine()
+
         if not TheWorld.ismastersim then
             return inst
         end
@@ -283,12 +299,11 @@ local function Makeplate(name, build, rewind_mult)
         inst.rewind_mult = rewind_mult
         inst.down = false
 
-        inst:AddComponent("creatureprox")
-        inst.components.creatureprox.inventorytrigger = true
-        inst.components.creatureprox:SetDist(0.8, 0.9)
-        inst.components.creatureprox:SetOnNear(OnNear)
-        inst.components.creatureprox:SetOnFar(OnFar)
-        inst.components.creatureprox:SetFindTestFn(FindTest)
+        inst:AddComponent("playerprox")
+        inst.components.playerprox.alivemode = true
+        inst.components.playerprox:SetDist(0.8, 0.9)
+        inst.components.playerprox:SetOnPlayerNear(SetOnPlayerNear)
+        inst.components.playerprox:SetOnPlayerFar(SetOnPlayerFar)
 
         return inst
     end
@@ -299,7 +314,7 @@ end
 local function MakeClock(clock_num)
     local name = "aporkalypse_clock" .. clock_num
     local bank = "clock_0" .. clock_num
-    local build = "porkalypse_clock_0" .. clock_num
+    local build = "aporkalypse_clock_0" .. clock_num
     local sort_order = clock_num
 
     local assets = {
@@ -311,6 +326,7 @@ local function MakeClock(clock_num)
 
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
+        inst.entity:AddNetwork()
 
         inst:AddTag("OnFloor")
 
@@ -322,6 +338,8 @@ local function MakeClock(clock_num)
         inst.AnimState:SetFinalOffset(sort_order)
         inst.AnimState:SetLayer(LAYER_BACKGROUND)
         inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+
+        inst.entity:SetPristine()
 
         inst.persists = false
 
