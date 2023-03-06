@@ -150,8 +150,10 @@ local function MakeClock(self, clocktype)
     local _world = TheWorld
     local _ismastersim = _world.ismastersim
     local _ismastershard = _world.ismastershard
+    local _isplateau = clocktype == "plateau"
+    local _aporkalypse = nil
     local _mooomphasecycle = 1
-    local _moonphaselocked = false -- Note: This does not save/load
+    local _moonphaselocked = false  -- Note: This does not save/load
     local _aporkalypseactive = false
 
     local _segsdirty = true
@@ -206,12 +208,25 @@ local function MakeClock(self, clocktype)
         MOON_PHASE_STYLES[style] = #MOON_PHASE_STYLE_NAMES
     end
 
-    if _ismastershard and clocktype == "plateau" then function self:BeginAporkalypse()
+    if _ismastersim and _isplateau then function self:BeginAporkalypse()
         _aporkalypseactive = true
+
+        for i = #MOON_PHASE_CYCLES/2, #MOON_PHASE_CYCLES do
+            if MOON_PHASE_CYCLES[i] == MOON_PHASES["full"] then
+                _moonphase:set(MOON_PHASE_CYCLES[i])
+                break
+            end
+        end
+
+        _mooniswaxing:set(false)
+
+        _moonphasestyle:set(MOON_PHASE_STYLES["blood"] - 1)
     end end
 
-    if _ismastershard and clocktype == "plateau" then function self:EndAporkalypse()
+    if _ismastersim and _isplateau then function self:EndAporkalypse()
         _aporkalypseactive = false
+
+        _moonphasestyle:set(MOON_PHASE_STYLES["default"] - 1)
     end end
 
     --------------------------------------------------------------------------
@@ -234,18 +249,16 @@ local function MakeClock(self, clocktype)
     end
 
     local function GetMoonPhase()
-        if clocktype == "plateau" then
-            if _aporkalypseactive then
-                local mooomphasecycle = 0
-                for i = #MOON_PHASE_CYCLES/2, #MOON_PHASE_CYCLES do
-                    if MOON_PHASE_CYCLES[i] == MOON_PHASES["full"] then
-                        mooomphasecycle = i
-                        break
-                    end
+        if _aporkalypseactive then
+            local mooomphasecycle = 0
+            for i = #MOON_PHASE_CYCLES/2, #MOON_PHASE_CYCLES do
+                if MOON_PHASE_CYCLES[i] == MOON_PHASES["full"] then
+                    mooomphasecycle = i
+                    break
                 end
-
-                return MOON_PHASE_CYCLES[mooomphasecycle], false
             end
+
+            return MOON_PHASE_CYCLES[mooomphasecycle], false
         end
 
         local waxing = _mooomphasecycle < #MOON_PHASE_CYCLES / 2
@@ -350,6 +363,10 @@ local function MakeClock(self, clocktype)
     end or nil
 
     local OnSetMoonPhaseStyle = _ismastersim and function(world, data)
+        if _aporkalypseactive then
+            return
+        end
+
         _moonphasestyle:set(((data ~= nil and data.style ~= nil) and MOON_PHASE_STYLES[data.style] or MOON_PHASE_STYLES.default) - 1)
     end or nil
 
@@ -416,6 +433,21 @@ local function MakeClock(self, clocktype)
     end
 
     --------------------------------------------------------------------------
+    --[[ Post initialization ]]
+    --------------------------------------------------------------------------
+
+    local _OnPostInit = self.OnPostInit
+    function self:OnPostInit(...)
+        if _OnPostInit then
+            _OnPostInit(self, ...)
+        end
+
+        if _isplateau then
+            _aporkalypse = inst.components.aporkalypse
+        end
+    end
+
+    --------------------------------------------------------------------------
     --[[ Update ]]
     --------------------------------------------------------------------------
 
@@ -443,15 +475,6 @@ local function MakeClock(self, clocktype)
 
         local remainingtimeinphase = _remainingtimeinphase:value() - dt
 
-        local aporkalypse = inst.components.aporkalypse
-        if aporkalypse and clocktype == "plateau" then  -- update aporkalypse before clock for season
-            if remainingtimeinphase > 0 then
-                aporkalypse:OnUpdate(dt)
-            else
-                aporkalypse:OnUpdate(_remainingtimeinphase:value())
-            end
-        end
-
         if remainingtimeinphase > 0 then
             -- Advance time in czurrent phase
             local numsegsinphase = _segs[_phase:value()]:value()
@@ -469,7 +492,15 @@ local function MakeClock(self, clocktype)
                 remainingtimeinphase = numsegsinphase > 0 and nextseg / numsegsinphase * _totaltimeinphase:value() or 0
                 _remainingtimeinphase:set_local(math.min(remainingtimeinphase + .001, _remainingtimeinphase:value()))
             end
+
+            if _aporkalypse then
+                _aporkalypse:OnUpdate(dt)
+            end
         elseif _ismastershard then
+            if _aporkalypse then
+                _aporkalypse:OnUpdate(_remainingtimeinphase:value())
+            end
+
             -- Advance to next phase
             _remainingtimeinphase:set_local(0)
 
@@ -506,6 +537,10 @@ local function MakeClock(self, clocktype)
         else
             -- Clients and secondary shards must wait at end of phase for a server sync
             _remainingtimeinphase:set_local(math.min(.001, _remainingtimeinphase:value()))
+
+            if _aporkalypse then
+                _aporkalypse:OnUpdate(dt)
+            end
         end
 
         if _segsdirty then
@@ -742,7 +777,7 @@ end
 
 local function AddMoonPhaseStyle(self, style, ...)
     for clocktype in pairs(self.clocks) do
-        self["AddMoonPhaseStyle_" .. clocktype](style, ...)
+        self["AddMoonPhaseStyle_" .. clocktype](self, style, ...)
     end
 end
 
@@ -773,5 +808,6 @@ AddComponentPostInit("clock", function(self, inst)
 
     local _clocktype = _world.topology.pl_worldgen_version and _world.topology and _world.topology.overrides and _world.topology.overrides.pl_clocktype or "default"
     self:MakeClock("plateau")
+    self:AddMoonPhaseStyle("blood")
     self:SetClock(_clocktype)
 end)

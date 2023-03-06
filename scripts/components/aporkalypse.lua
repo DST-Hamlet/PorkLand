@@ -30,12 +30,12 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     local BeginAporkalypse = _ismastersim and function()
-        if inst.components.seasons and inst.components.seasons.BeginAporkalypse then
-            inst.components.seasons:BeginAporkalypse(first_aporkalypse)
-        end
-
         if inst.components.clock and inst.components.clock.BeginAporkalypse then
             inst.components.clock:BeginAporkalypse()
+        end
+
+        if inst.components.seasons and inst.components.seasons.BeginAporkalypse then
+            inst.components.seasons:BeginAporkalypse(first_aporkalypse)
         end
 
         _timeuntilaporkalypse:set(0)
@@ -43,12 +43,12 @@ return Class(function(self, inst)
     end or nil
 
     local EndAporkalypse = _ismastersim and function()
-        if inst.components.seasons and inst.components.seasons.EndAporkalypse then
-            inst.components.seasons:EndAporkalypse()
-        end
-
         if inst.components.clock and inst.components.clock.EndAporkalypse then
             inst.components.clock:EndAporkalypse()
+        end
+
+        if inst.components.seasons and inst.components.seasons.EndAporkalypse then
+            inst.components.seasons:EndAporkalypse()
         end
 
         first_aporkalypse = false
@@ -73,7 +73,7 @@ return Class(function(self, inst)
         if _ismastershard then
             BeginAporkalypse()
         else
-            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SwitchAporkalypse"], true)
+            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SwitchAporkalypse"], 1, true)
         end
     end or nil
 
@@ -81,7 +81,7 @@ return Class(function(self, inst)
         if _ismastershard then
             EndAporkalypse()
         else
-            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SwitchAporkalypse"], false)
+            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SwitchAporkalypse"], 1, false)
         end
     end or nil
 

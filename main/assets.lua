@@ -26,13 +26,19 @@ local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
 AddInventoryItemAtlas(resolvefilepath("images/pl_inventoryimages.xml"))
 
 Assets = {
+    -- inventoryimages
     Asset("IMAGE", "images/pl_inventoryimages.tex"),
     Asset("ATLAS", "images/pl_inventoryimages.xml"),
-    Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  --For minisign
+    Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  -- for minisign
 
+    -- hud
+    Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),
+
+    -- fx
     Asset("ATLAS", "images/overlays/fx3.xml"),
     Asset("IMAGE", "images/overlays/fx3.tex"),
 
+    -- player_actions
     Asset("ANIM", "anim/player_actions_hack.zip"),
     Asset("ANIM", "anim/player_actions_shear.zip"),
 }

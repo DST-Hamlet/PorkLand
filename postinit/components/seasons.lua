@@ -62,6 +62,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
     local _world = TheWorld
     local _ismastersim = _world.ismastersim
     local _ismastershard = _world.ismastershard
+    local _isplateau = clock_type == "plateau"
 
     -- Master simulation
     local _mode
@@ -69,7 +70,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
     local _segs
     local _segmod
     local _alwaysaporkalypse = false
-    local _isaporkalypse = false
+    local _aporkalypseactive = false
     local _preaporkalypseseasondata = {}
     local _israndom = {}
 
@@ -170,7 +171,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
 
         segs = GetModifiedSegs(segs, _segmod)
 
-        if clock_type == "plateau" and _isaporkalypse then
+        if _aporkalypseactive then
             segs = {day = 0, dusk = 0, night = 16}
         end
 
@@ -188,7 +189,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
             end
         end
 
-        if clock_type == "plateau" and _isaporkalypse and _alwaysaporkalypse and SEASON_NAMES[_season:value()] == "autumn" then
+        if _aporkalypseactive and _alwaysaporkalypse and SEASON_NAMES[_season:value()] == "autumn" then
             _mode = MODES.always
         elseif numactiveseasons == 1 then
             if allowedseason == _season:value() then
@@ -295,7 +296,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
                 _remainingdaysinseason:set(_totaldaysinseason:value())
                 _premode = false
 
-                if clock_type == "plateau" and _isaporkalypse and not _alwaysaporkalypse then
+                if _aporkalypseactive and not _alwaysaporkalypse then
                     _world:PushEvent("ms_stopaporkalypse")
                 end
             end
@@ -341,7 +342,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
                 _elapseddaysinseason:set(math.max(_totaldaysinseason:value() - 1, 0))
                 _remainingdaysinseason:set(1)
 
-                if clock_type == "plateau" and _isaporkalypse and not _alwaysaporkalypse then
+                if _aporkalypseactive and not _alwaysaporkalypse then
                     _world:PushEvent("ms_stopaporkalypse")
                 end
             end
@@ -383,7 +384,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
             _elapseddaysinseason:set(0)
         end
 
-        if clock_type == "plateau" and _isaporkalypse and not _alwaysaporkalypse then
+        if _aporkalypseactive and not _alwaysaporkalypse then
             _world:PushEvent("ms_stopaporkalypse")
         end
 
@@ -463,10 +464,10 @@ local function MakeSeasons(self, clock_type, seasons_data)
     --[[ Public member functions ]]
     --------------------------------------------------------------------------
 
-    if _ismastersim and clock_type == "plateau" then function self:BeginAporkalypse(first_aporkalypse)
+    if _ismastersim and _isplateau then function self:BeginAporkalypse(first_aporkalypse)
         _preaporkalypseseasondata = self:OnSave_plateau()
 
-        _isaporkalypse = true
+        _aporkalypseactive = true
         _alwaysaporkalypse = first_aporkalypse
 
         if not _alwaysaporkalypse then
@@ -481,8 +482,8 @@ local function MakeSeasons(self, clock_type, seasons_data)
         PushSeasonClockSegs()
     end end
 
-    if _ismastersim and clock_type == "plateau" then function self:EndAporkalypse()
-        _isaporkalypse = false
+    if _ismastersim and _isplateau then function self:EndAporkalypse()
+        _aporkalypseactive = false
         _alwaysaporkalypse = false
 
         self:OnLoad_plateau(_preaporkalypseseasondata)
@@ -532,7 +533,6 @@ local function MakeSeasons(self, clock_type, seasons_data)
             inst:ListenForEvent("secondary_seasonsupdate_" .. clock_type, OnSeasonsUpdate, _world)
         end
     end
-
 
     --------------------------------------------------------------------------
     --[[ Save/Load ]]
