@@ -27,27 +27,6 @@ local function set_rotation(inst, angle)
     inst.Transform:SetRotation(angle + 90)
 end
 
-local function SetRewindMult(inst, rewind_mult)
-    inst.rewind_mult = (inst.rewind_mult or 0) + rewind_mult
-
-    if inst.rewind_mult == 0 then  -- stop rewind
-        inst.SoundEmitter:KillSound("rewind_sound")
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
-
-        inst.rewind = false
-    else  -- start rewind
-        inst.SoundEmitter:KillSound("base_sound")
-
-        if inst.rewind_mult < 0 then
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_backwards_LP", "rewind_sound")
-        elseif inst.rewind_mult > 0 then
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_fast_LP", "rewind_sound")
-        end
-
-        inst.rewind = true
-    end
-end
-
 local function PlayClockAnimation(inst, anim)
     for _, clock in ipairs(inst.clocks or {}) do
         clock.AnimState:PlayAnimation(anim .. "_shake", false)
@@ -55,20 +34,33 @@ local function PlayClockAnimation(inst, anim)
     end
 end
 
-local function OnAporkalypseClockTick(inst, data)
-    local time_until_aporkalypse = math.max(data.time_until_aporkalypse or 0, 0)
-    if inst.rewind then
-        if TheWorld.state.isaporkalypse then
-            TheWorld:PushEvent("endaporkalypse")
+local function OnRewindMultChange(inst, rewind_mult)
+    if rewind_mult == 0 then  -- stop rewind
+        inst.SoundEmitter:KillSound("rewind_sound")
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
+
+        inst.rewind = false
+    else  -- start rewind
+        inst.SoundEmitter:KillSound("base_sound")
+
+        if rewind_mult < 0 then
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_backwards_LP", "rewind_sound")
+        elseif rewind_mult > 0 then
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_fast_LP", "rewind_sound")
         end
 
-        -- local dt = math.clamp(data.dt, 0, 2 * TheSim:GetTickTime())
-        time_until_aporkalypse = time_until_aporkalypse - inst.rewind_mult * data.dt * 250
-        TheWorld:PushEvent("scheduleaporkalypse", time_until_aporkalypse)
+        inst.rewind = true
+    end
+end
+
+local function OnAporkalypseClockTick(inst, data)
+    if TheWorld.state.isaporkalypse and inst.rewind then
+        TheWorld:PushEvent("ms_stopaporkalypse")
     end
 
+    local timeuntilaporkalypse = math.max(data.timeuntilaporkalypse or 0, 0)
     for i, clock in ipairs(inst.clocks) do
-        local angle = time_until_aporkalypse / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[i]
+        local angle = timeuntilaporkalypse / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[i]
         set_rotation(clock, angle)
     end
 end
@@ -176,11 +168,13 @@ local function aporkalypse_clock_fn()
 
     inst.clocks = {}
     inst.plates = {}
-    inst.rewind_mult = 0
-    inst.SetRewindMult = SetRewindMult
+    inst.rewind = false
     inst.PlayClockAnimation = PlayClockAnimation
 
     inst:AddComponent("inspectable")
+
+    inst.OnRewindMultChange = OnRewindMultChange
+    inst:ListenForEvent("rewindmultchange", function(src, rewind_mult) inst:OnRewindMultChange(rewind_mult) end, TheWorld)
 
     inst.OnAporkalypseClockTick = OnAporkalypseClockTick
     inst:ListenForEvent("aporkalypseclocktick", function(src, data) inst:OnAporkalypseClockTick(data) end, TheWorld)
@@ -226,10 +220,7 @@ local function SetOnPlayerNear(inst)
         inst.AnimState:PushAnimation("down_idle")
         inst.down = true
 
-        local aporkalypse_clock = inst.aporkalypse_clock
-        if aporkalypse_clock then
-            aporkalypse_clock:SetRewindMult(inst.rewind_mult)
-        end
+        TheWorld:PushEvent("ms_setrewindmult", inst.rewind_mult)
     end
 end
 
@@ -239,10 +230,7 @@ local function SetOnPlayerFar(inst)
         inst.AnimState:PushAnimation("up_idle")
         inst.down = false
 
-        local aporkalypse_clock = inst.aporkalypse_clock
-        if aporkalypse_clock then
-            aporkalypse_clock:SetRewindMult(-inst.rewind_mult)
-        end
+        TheWorld:PushEvent("ms_setrewindmult", -inst.rewind_mult)
     end
 end
 

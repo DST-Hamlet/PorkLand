@@ -21,6 +21,8 @@ local prefabs_post = {
     "player",
     "player_classified",
     "woodie",
+    "world_network",
+    "shard_network",
 }
 
 local batch_prefabs_post = {
