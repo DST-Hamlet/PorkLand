@@ -21,6 +21,8 @@ local prefabs_post = {
     "player",
     "player_classified",
     "woodie",
+    "world_network",
+    "shard_network",
 }
 
 local batch_prefabs_post = {
@@ -39,7 +41,8 @@ local stategraphs_post = {
 local brains_post = {
 }
 
-local class_post = {
+local widgets = {
+    "uiclock"
 }
 
 local sim_post = {
@@ -73,8 +76,8 @@ for _, file_name in ipairs(brains_post) do
     modimport("postinit/brains/" .. file_name)
 end
 
-for _, file_name in ipairs(class_post) do
-    modimport("postinit/"  ..  file_name)
+for _, file_name in ipairs(widgets) do
+    modimport("postinit/widgets/"  ..  file_name)
 end
 
 -- AddSimPostInit(function()

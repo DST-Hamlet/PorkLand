@@ -13,7 +13,7 @@ local function OnUpdate(inst, self)
 
     local ents = TheSim:FindEntities(x, y, z, range, nil, nil, must_one_tags)
     for i = #ents, 1, -1 do
-        if self.findtestfn and not self.findtestfn(ents[i], inst) then
+        if (self.findtestfn and not self.findtestfn(ents[i], inst)) or self.alivemode == IsEntityDeadOrGhost(ents[i]) then
             table.remove(ents, i)
         end
     end
@@ -54,6 +54,7 @@ local CreatureProx = Class(function(self, inst)
     self.far = 3
     self.isclose = false
     self.inventorytrigger = false
+    self.alivemode = true
     self.period = 10 * FRAMES
     self.findtestfn = nil
     self.inproxfn = nil
@@ -80,6 +81,10 @@ end
 
 function CreatureProx:SetInventoryTrigger(inventorytrigger)
     self.inventorytrigger = inventorytrigger
+end
+
+function CreatureProx:SetPlayerAliveMode(alivemode)
+    self.alivemode = alivemode
 end
 
 function CreatureProx:SetFindTestFn(fn)

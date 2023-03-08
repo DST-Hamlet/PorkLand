@@ -1,5 +1,6 @@
 return {
     DESCRIBE = {
+        APORKALYPSE_CLOCK = "Wonderful! I wonder if I could make the world end sooner.",
         ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",
         ASPARAGUS_PLANTED = "A cluster of edible spring vegetables!",
         GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",

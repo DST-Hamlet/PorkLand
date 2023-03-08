@@ -8,10 +8,6 @@ AddComponentPostInit("worldstate", function(self, inst)
     --------------------------------------------------------------------------
     assert(inst == TheWorld, "Invalid world")
 
-    if not TheWorld:HasTag("porkland") then
-        return
-    end
-
     -- Private
     local data = self.data
 
@@ -31,6 +27,10 @@ AddComponentPostInit("worldstate", function(self, inst)
         SetVariable("plateautemperature", temperature)
     end
 
+    local function OnAporkalypseChange(src, isaporkalypse)
+        SetVariable("isaporkalypse", isaporkalypse, "aporkalypse")
+    end
+
     --------------------------------------------------------------------------
     --[[ Initialization ]]
     --------------------------------------------------------------------------
@@ -42,10 +42,15 @@ AddComponentPostInit("worldstate", function(self, inst)
     --]]
 
     data.plateautemperature = TUNING.STARTING_TEMP
+    data.isaporkalypse = false
 
-    local OnTemperatureTick = inst:GetEventCallbacks("temperaturetick", nil, "scripts/components/worldstate.lua")
-    inst:RemoveEventCallback("temperaturetick", OnTemperatureTick)
-    inst:ListenForEvent("plateautemperaturetick", OnPlateauTemperatureTick)
+    if TheWorld:HasTag("porkland") then
+        local OnTemperatureTick = inst:GetEventCallbacks("temperaturetick", nil, "scripts/components/worldstate.lua")
+        inst:RemoveEventCallback("temperaturetick", OnTemperatureTick)
+        inst:ListenForEvent("plateautemperaturetick", OnPlateauTemperatureTick)
+    end
+
+    inst:ListenForEvent("aporkalypsechange", OnAporkalypseChange)
 
     -- inst:ListenForEvent("snowcoveredchanged", function(inst, show)
     --     TheSim:HideAnimOnEntitiesWithTag("Climate_island", "snow")

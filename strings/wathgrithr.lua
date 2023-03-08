@@ -1,5 +1,6 @@
 return {
     DESCRIBE = {
+        APORKALYPSE_CLOCK = "It controls Ragnarok!",
         ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",
         ASPARAGUS_PLANTED = "Useless vegetation!",
         GOLDENMACHETE = "I shall swing you with pride.",

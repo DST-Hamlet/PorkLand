@@ -24,6 +24,7 @@ modimport("main/fx")
 modimport("main/strings")
 
 modimport("main/pl_worldsettings_overrides")
+modimport("main/RPC")
 modimport("main/actions")
 modimport("main/postinit")
 

@@ -56,19 +56,19 @@ applyoverrides_post.peagawk_setting = function(difficulty)
             PEAGAWK_ENABLED = false,
         },
         few = {
-            PEAGAWK_REGEN_TIME = TUNING.DAY_TIME_DEFAULT * 15,
+            PEAGAWK_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 15,
         },
         --[[
         default = {
             PEAGAWK_ENABLED = true,
-            PEAGAWK_REGEN_TIME = TUNING.DAY_TIME_DEFAULT * 10,
+            PEAGAWK_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 10,
         },
         --]]
         many = {
-            PEAGAWK_REGEN_TIME = TUNING.DAY_TIME_DEFAULT * 5,
+            PEAGAWK_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 5,
         },
         always = {
-            PEAGAWK_REGEN_TIME = TUNING.DAY_TIME_DEFAULT * 1,
+            PEAGAWK_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 1,
         },
     }
     OverrideTuningVariables(tuning_vars[difficulty])

@@ -1,5 +1,6 @@
 return {
     DESCRIBE = {
+        APORKALYPSE_CLOCK = "Keeping track of their movements...very clever idea.",
         ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",
         ASPARAGUS_PLANTED = "I should pick some and go back to eat.",
         GOLDENMACHETE = "What else do you do with gold in a jungle island?",

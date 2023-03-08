@@ -20,14 +20,14 @@ local function MakeShardClock(self, clocktype)
     --[[ Member variables ]]
     --------------------------------------------------------------------------
 
-    --Public
+    -- Public
     local inst = self.inst
 
-    --Private
+    -- Private
     local _world = TheWorld
     local _ismastershard = _world.ismastershard
 
-    --Network
+    -- Network
     local _segs = {}
     for i = 1, NUM_PHASES do
         table.insert(_segs, net_smallbyte(inst.GUID, "shard_clock_" .. clocktype .. ".segs["..tostring(i).."]"))
@@ -113,11 +113,11 @@ local function MakeShardClock(self, clocktype)
     --------------------------------------------------------------------------
 
     if _ismastershard then
-        --Register master shard events
+        -- Register master shard events
         inst:ListenForEvent("forcesyncclock", OnForceSync, _world)
         inst:ListenForEvent("master_clockupdate_" .. clocktype, OnClockUpdate, _world)
     else
-        --Register network variable sync events
+        -- Register network variable sync events
         inst:ListenForEvent("clockdirty_" .. clocktype, OnClockDirty)
     end
 
