@@ -1,5 +1,6 @@
 return {
     DESCRIBE = {
+        APORKALYPSE_CLOCK = "If only I could turn time back to before I crashed here.",
         ARMOR_WEEVOLE = "If only it had those bug wings.",
         ASPARAGUS_PLANTED = "That looks like food! Let's hope it tastes like food.",
         GOLDENMACHETE = "For the sophisticated adventurer.",

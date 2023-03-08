@@ -15,6 +15,11 @@ msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
 msgstr "Tosa"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Looks scientifically apocalyptic."
+msgstr "Sembra scientificamente apocalittico."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Yeesh. This is kinda creepy."
@@ -89,6 +94,11 @@ msgstr "Whee!"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "I'll be careful with this carapace."
 msgstr "Farei attenzione con questo carapace."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Wonderful! I wonder if I could make the world end sooner."
+msgstr "Meraviglioso! Mi chiedo se potrei far finire il mondo prima."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE"
@@ -170,6 +180,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Excellent! It's the exoskeleton of a hexapod invertebrate!"
 msgstr "Eccellente! È l'esoscheletro di un invertebrato esapode!"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "I hate clocks."
+msgstr "Odio gli orologi."
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Ew. It's all creepy-crawly."
@@ -245,6 +260,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Ew. Bug skin."
 msgstr "Che schifo: la pelle di un insetto."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Oh no! It's a doomsday prophecy!"
+msgstr "Oh no! È una profezia del giorno del giudizio!"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Are we really going to wear it?"
@@ -315,6 +335,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Let's put it away, it might be useful."
 msgstr "Mettiamolo via, potrebbe essere utile."
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Keeping track of their movements...very clever idea."
+msgstr "Tenere traccia dei loro movimenti... un'idea molto intelligente."
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE"
 msgid "It doesn't smell that great, but there's no time to dwell on that much."
@@ -384,6 +409,11 @@ msgstr "Ricordo che mordeva."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Evil, exudes a strange smell."
 msgstr "Male, emana uno strano odore."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Like the knobs on a stove, it must be turned just right."
+msgstr "Come le manopole di un fornello: deve essere girato verso destra."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE"
@@ -460,6 +490,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "The crust of a bug."
 msgstr "La crosta di un insetto."
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "It controls Ragnarok!"
+msgstr "Controlla il Ragnarok!"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Armor made from the skin of my enemy."
@@ -534,6 +569,11 @@ msgstr "Una piaga su questa terra!"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "The skin of my enemy."
 msgstr "La pelle del mio nemico."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "I do like this..."
+msgstr "Mi piace questo..."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE"
@@ -610,6 +650,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Ugh."
 msgstr "Ugh."
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "It's like a puzzle!"
+msgstr "È come un puzzle!"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE"
 msgid "For when we need protection."
@@ -684,6 +729,11 @@ msgstr "Quegli insetti sono una scocciatura."
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "It's the outer part of those bugs."
 msgstr "È la parte esterna di quegli insetti."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Clockwork for the end of times."
+msgstr "Un orologio per la fine dei tempi."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE"
@@ -760,6 +810,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Bits of bug carcass."
 msgstr "I pezzi della carcassa di un insetto."
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "If only I could turn time back to before I crashed here."
+msgstr "Se solo potessi tornare indietro a prima di arrivare qui."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE"
 msgid "If only it had those bug wings."
@@ -834,6 +889,11 @@ msgstr "Insetti fastidiosi! Siete un totale spreco di ali."
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Light enough to fire out the Pew-matic."
 msgstr "Abbastanza leggero da poter essere sparato con la pembetta."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Ah. Quite a complex form of clockwork."
+msgstr "Ah. Una forma piuttosto complessa di arte orologiera."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE"
@@ -910,6 +970,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "The exoskeleton of a Coleoptera."
 msgstr "L'esoscheletro di un coleottero."
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "TIME AND THE HOUR RUNS THROUGH IT"
+msgstr "LE ORE E I MINUTI SONO POCHI"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE"
 msgid "ADVENTURE CLOTHES FROM ANNOYING BUGS"
@@ -984,6 +1049,11 @@ msgstr "VIA, INSETTI"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "WILBA BEAT ANNOYING BUGS"
 msgstr "WILBA UCCIDE GLI INSETTI FASTIDIOSI"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Looks ominous. I like it."
+msgstr "Ha un aspetto minaccioso. Mi piace."
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE"
@@ -1060,6 +1130,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Ew."
 msgstr "Bleah."
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "A fairly complex set of instrumentation."
+msgstr "Una strumentazione abbastanza complessa."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Not very comfortable, just let it go."
@@ -1129,6 +1204,11 @@ msgstr "I punteruoli non sono niente se hai mai avuto a che fare con le cimici d
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "It can be regarded as clean."
 msgstr "Può essere considerato pulito."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Is clock of scary things."
+msgstr "È un orologio di cose spaventose."
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE"
@@ -1205,6 +1285,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Is pesky bug skin."
 msgstr "È la pelle dell'insetto fastidioso."
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Looks like it's the end of days."
+msgstr "Sembra che sia arrivata la fine dei giorni."
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Nice use of bug carcasses."
@@ -1279,6 +1364,11 @@ msgstr "Peggio delle mosche nere."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "That'll teach 'em!"
 msgstr "Così imparano!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Tha time be nigh!"
+msgstr "È giunta l'ora!"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE"
@@ -1355,6 +1445,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Longcoat made o' them pesky bugs."
 msgstr "Un cappotto di insetti fastidiosi."
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Tic Tock"
+msgstr "Tic toc"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Bzzter clothes"
@@ -1430,6 +1525,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Crunchy"
 msgstr "Croccante"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Magic on such a large scale, man, this is going to be fun."
+msgstr "Magia su così vasta scala, amico, sarà divertente."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE"
 msgid "I'm getting goosebumps."
@@ -1500,6 +1600,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "What remains of their armor."
 msgstr "Ciò che rimane della loro armatura."
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "Stuff form bad story!"
+msgstr "Roba da brutta storia!"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE"
 msgid "Nice and comfortable armor."
@@ -1569,6 +1674,11 @@ msgstr "vai via vai via!"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "hard shell."
 msgstr "corazza dura."
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.APORKALYPSE_CLOCK
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.APORKALYPSE_CLOCK"
+msgid "MY ANCIENT BRETHREN"
+msgstr "ANTICHI FRATELLI"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE"
@@ -1644,6 +1754,11 @@ msgstr "VIRUS BIOLOGICO DEI SACCHI DI CARNE"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "THEY HAVE BEEN DEBUGGED"
 msgstr "SONO STATI SOTTOPOSTI A DEBUGGING"
+
+#. STRINGS.NAMES.APORKALYPSE_CLOCK
+msgctxt "STRINGS.NAMES.APORKALYPSE_CLOCK"
+msgid "Aporkalypse Calendar"
+msgstr "Calendario Aporcalisse"
 
 #. STRINGS.NAMES.ARMOR_WEEVOLE
 msgctxt "STRINGS.NAMES.ARMOR_WEEVOLE"
@@ -1730,6 +1845,11 @@ msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.ASPARAGUS_REGROWTH"
 msgid "Asparagus"
 msgstr "Asparagi"
 
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.DEEP_JUNGLE_FERN_NOISE
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.DEEP_JUNGLE_FERN_NOISE"
+msgid "Jungle Floor Ferns"
+msgstr "Felci della giungla"
+
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL"
 msgid "Tall Grass"
@@ -1754,11 +1874,6 @@ msgstr "Liane pensili giungla"
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.LUSH"
 msgid "Lush"
 msgstr "Lussureggiante"
-
-#. STRINGS.UI.CUSTOMIZATIONSCREEN.DEEP_JUNGLE_FERN_NOISE
-msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.DEEP_JUNGLE_FERN_NOISE"
-msgid "Jungle Floor Ferns"
-msgstr "Felci della giungla"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.PEAGAWK_SETTING
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.PEAGAWK_SETTING"

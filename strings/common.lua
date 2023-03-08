@@ -4,6 +4,7 @@ return {
         SHEAR = "Shear",
     },
     NAMES = {
+        APORKALYPSE_CLOCK = "Aporkalypse Calendar",
         ARMOR_WEEVOLE = "Weevole Mantle",
         ASPARAGUS_PLANTED = "Asparagus",
         GOLDENMACHETE = "Luxury Machete",

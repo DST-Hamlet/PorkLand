@@ -1,5 +1,6 @@
 return {
     DESCRIBE = {
+        APORKALYPSE_CLOCK = "Looks like it's the end of days.",
         ARMOR_WEEVOLE = "Nice use of bug carcasses.",
         ASPARAGUS_PLANTED = "They're like little trees to chop down.",
         GOLDENMACHETE = "It chops AND sparkles!",
