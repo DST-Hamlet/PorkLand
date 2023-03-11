@@ -14,7 +14,7 @@ local prefabs =
 }
 
 local function custom_postinit(inst)
-    inst:AddComponent("weather")
+    inst:AddComponent("plateauweather")
     inst:AddComponent("worldplateautemperature")
 end
 

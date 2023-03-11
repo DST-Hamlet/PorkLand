@@ -1,6 +1,7 @@
 local modimport = modimport
 GLOBAL.setfenv(1, GLOBAL)
 
+modimport("main/tuning")
 modimport("main/tiledefs")
 modimport("main/spawnutil")
 

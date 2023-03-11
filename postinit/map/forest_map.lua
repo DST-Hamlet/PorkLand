@@ -23,6 +23,19 @@ TRANSLATE_AND_OVERRIDE["deep_jungle_fern_noise"] = {"deep_jungle_fern_noise", "d
 TRANSLATE_AND_OVERRIDE["jungle_border_vine"] ={"jungle_border_vine"}
 --TRANSLATE_TO_PREFABS["bermudatriangle"] =    {"bermudatriangle_MARKER"}
 
+local SEASONS = forest_map.SEASONS
+for season, seasonfn in pairs(SEASONS) do
+    SEASONS[season] = function(_season)
+        local data = seasonfn(_season)
+        local seasons = data.seasons
+        seasons.seasonplateau = _season
+        seasons.elapseddaysinseason = 0
+        seasons.totaldaysinseasonplateau = _season == "autumn" and TUNING.SEASON_VERYHARSH_DEFAULT * 2 or TUNING.SEASON_VERYHARSH_DEFAULT
+        seasons.remainingdaysinseasonplateau = TUNING.SEASON_VERYHARSH_DEFAULT
+        return data
+    end
+end
+
 local function ValidateGroundTile_PorkLand(tile)
     return WORLD_TILES.IMPASSABLE
 end
@@ -536,7 +549,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
         start_season = forest_map.DEFAULT_SEASON
     end
 
-    local componentdata = forest_map.SEASONS[start_season](start_season)
+    local componentdata = SEASONS[start_season](start_season)
 
     if save.world_network == nil then
         save.world_network = {persistdata = {}}

@@ -182,16 +182,14 @@ local function MakeSeasons(self, clock_type, seasons_data)
 
         local numactiveseasons = 0
         local allowedseason = nil
-        for i,length in ipairs(_lengths) do
+        for i, length in ipairs(_lengths) do
             if length:value() > 0 then
                 numactiveseasons = numactiveseasons + 1
                 allowedseason = i
             end
         end
 
-        if _aporkalypseactive and _alwaysaporkalypse and SEASON_NAMES[_season:value()] == "autumn" then
-            _mode = MODES.always
-        elseif numactiveseasons == 1 then
+        if numactiveseasons == 1 then
             if allowedseason == _season:value() then
                 _mode = MODES.always
             else
@@ -261,6 +259,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
             progress = 1 - (_totaldaysinseason:value() > 0 and _remainingdaysinseason:value() / _totaldaysinseason:value() or 0),
             elapseddaysinseason = _elapseddaysinseason:value(),
             remainingdaysinseason = _endlessdaysinseason:value() and ENDLESS_DAYS or _remainingdaysinseason:value(),
+            isaporkalypse = _aporkalypseactive,
         }
         _world:PushEvent("seasontick_" .. clock_type, data)
 
@@ -470,15 +469,28 @@ local function MakeSeasons(self, clock_type, seasons_data)
         _aporkalypseactive = true
         _alwaysaporkalypse = first_aporkalypse
 
+        local season = SEASONS["autumn"]
+
         if not _alwaysaporkalypse then
-            OnSetSeasonLength(_world, {season = "autumn", length = TUNING.APORKALYPSE_LENGTH})
+            _lengths[season]:set(TUNING.APORKALYPSE_LENGTH)
         end
 
-        local season = SEASONS["autumn"]
         _season:set_local(season)
         _season:set(season)
-        _elapseddaysinseason:set(0)
-        UpdateSeasonMode()
+
+        if _alwaysaporkalypse then
+            _mode = MODES.always
+            _premode = false
+            _totaldaysinseason:set(2)
+            _remainingdaysinseason:set(1)
+            _endlessdaysinseason:set(true)
+        else
+            _totaldaysinseason:set(_lengths[_season:value()]:value())
+            _elapseddaysinseason:set(0)
+            _remainingdaysinseason:set(_totaldaysinseason:value())
+            _premode = false
+        end
+
         PushSeasonClockSegs()
     end end
 
@@ -683,10 +695,15 @@ local function SetSeasons(self, clock_type, seasons_data)
 
     self.current_clock = clock_type
 
-    local suffix = self.current_clock == "default" and "" or ("_" .. self.current_clock)
     for _, event in ipairs(events) do
-        TheWorld:AddPushEventPostFn(event, SilenceEvent)
-        TheWorld:AddPushEventPostFn(event .. suffix, function() return event end)
+        for clock in pairs(self.clocks) do
+            local suffix = clock == "default" and "" or ("_" .. self.current_clock)
+            if clock ~= self.current_clock then
+                TheWorld:AddPushEventPostFn(event, SilenceEvent)
+            else
+                TheWorld:AddPushEventPostFn(event .. suffix, function() return event end)
+            end
+        end
     end
 end
 
