@@ -40,6 +40,13 @@ local function add_group_and_item(category, name, text, desc, atlas, order, item
     end
 end
 
+local season_start_descriptions = {
+	{text = STRINGS.UI.SANDBOXMENU.PORKLAND_DEFAULT, data = "default"},
+	{text = STRINGS.UI.SANDBOXMENU.HUMID, data = "winter"},
+	{text = STRINGS.UI.SANDBOXMENU.LUSH, data = "summer"},
+	{text = STRINGS.UI.SANDBOXMENU.RANDOM, data = "autumn|winter|summer"},
+}
+
 local frequency_descriptions = {
     {text = STRINGS.UI.SANDBOXMENU.SLIDENEVER,    data = "never"},
     {text = STRINGS.UI.SANDBOXMENU.SLIDERARE,     data = "rare"},
@@ -74,6 +81,9 @@ local pl_customize_table = {
 
 local custonsiz_items = {
     [LEVELCATEGORY.WORLDGEN] = {
+        ["global"] = {
+            porkland_season_start = {image = "season_start.tex", options_remap = {img = "blank_season_red.tex", atlas = "images/customisation.xml"}, desc = season_start_descriptions, master_controlled = true, order = 2}
+        },
         monsters = {
             "grass_tall_patch",
         },
