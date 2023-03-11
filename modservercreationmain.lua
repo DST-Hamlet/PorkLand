@@ -109,7 +109,8 @@ local change_items = {  -- change dst settings
     },
     world_settings = {
         resources = {"flowers_regrowth", "reeds_regrowth"},
-        animals = {"butterfly"}
+        animals = {"butterfly"},
+        misc = {"lightning", "weather"}
     }
 }
 
