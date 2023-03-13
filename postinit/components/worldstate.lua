@@ -49,13 +49,13 @@ AddComponentPostInit("worldstate", function(self, inst)
         World state variables are initialized to default values that can be
         used by entities if there are no world components controlling those
         variables.  e.g. If there is no season component on the world, then
-        everything will run in autumn state.
+        everything will run in temperate state.
     --]]
 
     data.plateautemperature = TUNING.STARTING_TEMP
-    data.islush = true
+    data.istemperate = true
     data.ishumid = false
-    data.isspring = false
+    data.islush = false
     data.isaporkalypse = false
 
     if TheWorld:HasTag("porkland") then

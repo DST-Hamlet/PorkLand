@@ -9,6 +9,6 @@ AddComponentPostInit("regrowthmanager", function(self, inst)
     local _worldstate = TheWorld.state
 
     self:SetRegrowthForType("asparagus_planted", TUNING.ASPARAGUS_REGROWTH_TIME, "asparagus_planted", function()
-        return not (_worldstate.issummer) and (TUNING.ASPARAGUS_REGROWTH_TIME_MULT * 0.5) or TUNING.ASPARAGUS_REGROWTH_TIME_MULT
+        return not (_worldstate.islush) and (TUNING.ASPARAGUS_REGROWTH_TIME_MULT * 0.5) or TUNING.ASPARAGUS_REGROWTH_TIME_MULT
     end)
 end)

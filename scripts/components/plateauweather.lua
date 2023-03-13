@@ -680,7 +680,7 @@ return Class(function(self, inst)
             _rainfx:PostInit()
         end
 
-        if _season == "summer" then
+        if _season == "lush" then
             _pollenfx:PostInit()
         end
     end end
@@ -800,7 +800,7 @@ return Class(function(self, inst)
 
         -- Update pollen
         if _hasfx then
-            if _season ~= "summer" or (ThePlayer ~= nil and _world.components.sandstorms ~= nil and _world.components.sandstorms:IsInSandstorm(ThePlayer)) then
+            if _season ~= "lush" or (ThePlayer ~= nil and _world.components.sandstorms ~= nil and _world.components.sandstorms:IsInSandstorm(ThePlayer)) then
                 _pollenfx.particles_per_tick = 0
             elseif _seasonprogress < .2 then
                 local ramp = _seasonprogress / .2

@@ -546,7 +546,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     save.map.width, save.map.height = map_width, map_height
 
-    local start_season = current_gen_params.porkland_season_start or "autumn"
+    local start_season = current_gen_params.season_start or "autumn"
     if string.find(start_season, "|", nil, true) then
         start_season = GetRandomItem(string.split(start_season, "|"))
     elseif start_season == "default" then
