@@ -10,39 +10,56 @@ return Class(function(self, inst)
     -- Public
     self.inst = inst
     self.rewind_mult = 0
+
     local _world = TheWorld
 
     -- Private
     local _ismastersim = _world.ismastersim
     local _ismastershard = _world.ismastershard
+    local _clock = inst.components.clock
+    local _seasons = inst.components.seasons
+
     local NEAR_TIME = TUNING.APORKALYPSE_NEAR_TIME
     local APORKALYPSE_PERIOD_LENGTH = TUNING.APORKALYPSE_PERIOD_LENGTH
 
-    local first_aporkalypse = true
+    -- Master simulation
+    local active_aporkalypse
+    local first_aporkalypse
     local near_aporkalypse = false
 
     -- Network
     local _timeuntilaporkalypse = net_float(inst.GUID, "timeuntil.aporkalypse")
-    local _aporkalypseactive = net_bool(inst.GUID, "aporkalypse.active", "aporkalypseactivedirty")
 
     --------------------------------------------------------------------------
     --[[ Private member functions ]]
     --------------------------------------------------------------------------
 
     local BeginAporkalypse = _ismastersim and function()
-        if inst.components.clock and inst.components.clock.BeginAporkalypse then
-            inst.components.clock:BeginAporkalypse()
+        if active_aporkalypse then
+            return
         end
 
-        if inst.components.seasons and inst.components.seasons.BeginAporkalypse then
-            inst.components.seasons:BeginAporkalypse(first_aporkalypse)
-        end
-
+        active_aporkalypse = true
         _timeuntilaporkalypse:set(0)
-        _aporkalypseactive:set(true)
+
+        if _clock and _clock.BeginAporkalypse then
+            _clock:BeginAporkalypse()
+        end
+
+        if _seasons and _seasons.BeginAporkalypse then
+            _seasons:BeginAporkalypse(first_aporkalypse)
+        end
     end or nil
 
     local EndAporkalypse = _ismastersim and function()
+        if not active_aporkalypse then
+            return
+        end
+
+        active_aporkalypse = false
+        first_aporkalypse = false
+        _timeuntilaporkalypse:set(APORKALYPSE_PERIOD_LENGTH)
+
         if inst.components.clock and inst.components.clock.EndAporkalypse then
             inst.components.clock:EndAporkalypse()
         end
@@ -50,10 +67,6 @@ return Class(function(self, inst)
         if inst.components.seasons and inst.components.seasons.EndAporkalypse then
             inst.components.seasons:EndAporkalypse()
         end
-
-        first_aporkalypse = false
-        _timeuntilaporkalypse:set(APORKALYPSE_PERIOD_LENGTH)
-        _aporkalypseactive:set(false)
     end or nil
 
     local ForceResync = _ismastersim and function(netvar)
@@ -64,10 +77,6 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
     --[[ Private event handlers ]]
     --------------------------------------------------------------------------
-
-    local function OnAporkalypseActiveDirty()
-        _world:PushEvent("aporkalypsechange", _aporkalypseactive:value())
-    end
 
     local StartAporkalypse = _ismastersim and function()
         if _ismastershard then
@@ -94,16 +103,16 @@ return Class(function(self, inst)
     end or nil
 
     local OnSimUnpaused = _ismastersim and function()
-        ForceResync(_aporkalypseactive)  -- Force resync values
+        ForceResync(_timeuntilaporkalypse)  -- Force resync values
     end or nil
 
     local OnAporkalypseUpdate = _ismastersim and not _ismastershard and function(src, data)
         _timeuntilaporkalypse:set(data.timeuntilaporkalypse)
 
-        if _aporkalypseactive:value() ~= data.aporkalypseactive then
-            _aporkalypseactive:set(data.aporkalypseactive)
+        if active_aporkalypse ~= data.activeaporkalypse then
+            active_aporkalypse = data.activeaporkalypse
 
-            if data.aporkalypseactive then
+            if data.activeaporkalypse then
                 BeginAporkalypse()
             else
                 EndAporkalypse()
@@ -121,12 +130,11 @@ return Class(function(self, inst)
 
     -- Initialize network variables
     _timeuntilaporkalypse:set(APORKALYPSE_PERIOD_LENGTH)
-    _aporkalypseactive:set(false)
-
-    -- Register events
-    inst:ListenForEvent("aporkalypseactivedirty", OnAporkalypseActiveDirty)
 
     if _ismastersim then
+        active_aporkalypse = false
+        first_aporkalypse = true
+
         -- Register master events
         inst:ListenForEvent("ms_startaporkalypse", StartAporkalypse, _world)
         inst:ListenForEvent("ms_stopaporkalypse", StopAporkalypse, _world)
@@ -137,6 +145,15 @@ return Class(function(self, inst)
             -- Register secondary shard events
             inst:ListenForEvent("secondary_aporkalypseupdate", OnAporkalypseUpdate, _world)
         end
+    end
+
+    --------------------------------------------------------------------------
+    --[[ Post initialization ]]
+    --------------------------------------------------------------------------
+
+    function self:OnPostInit(...)
+        _clock = inst.components.clock
+        _seasons = inst.components.seasons
     end
 
     --------------------------------------------------------------------------
@@ -166,7 +183,7 @@ return Class(function(self, inst)
             near_aporkalypse = false
 
             if _ismastershard then
-                if not _aporkalypseactive:value() then
+                if not active_aporkalypse then
                     BeginAporkalypse()
                 end
             else
@@ -177,7 +194,7 @@ return Class(function(self, inst)
         end
 
         if _ismastershard then
-            _world:PushEvent("master_aporkalypseupdate", {timeuntilaporkalypse = timeuntilaporkalypse, aporkalypseactive = _aporkalypseactive:value(), rewindmult = self.rewind_mult})
+            _world:PushEvent("master_aporkalypseupdate", {timeuntilaporkalypse = timeuntilaporkalypse, activeaporkalypse = active_aporkalypse, rewindmult = self.rewind_mult})
         end
 
         _world:PushEvent("aporkalypseclocktick", {timeuntilaporkalypse = timeuntilaporkalypse})
@@ -189,9 +206,9 @@ return Class(function(self, inst)
 
     if _ismastersim then function self:OnSave()
         return {
-            aporkalypseactive = _aporkalypseactive:value(),
-            time_until_aporkalypse = _timeuntilaporkalypse:value(),
+            active_aporkalypse = active_aporkalypse,
             first_aporkalypse = first_aporkalypse,
+            time_until_aporkalypse = _timeuntilaporkalypse:value(),
         }
     end end
 
@@ -201,7 +218,7 @@ return Class(function(self, inst)
 
         _timeuntilaporkalypse:set(data.time_until_aporkalypse or APORKALYPSE_PERIOD_LENGTH)
 
-        if data.aporkalypseactive == true then
+        if data.active_aporkalypse == true then
             BeginAporkalypse()
         end
     end end

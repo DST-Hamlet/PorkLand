@@ -42,9 +42,9 @@ end
 
 local season_start_descriptions = {
 	{text = STRINGS.UI.SANDBOXMENU.PORKLAND_DEFAULT, data = "default"},
-	{text = STRINGS.UI.SANDBOXMENU.HUMID, data = "winter"},
-	{text = STRINGS.UI.SANDBOXMENU.LUSH, data = "summer"},
-	{text = STRINGS.UI.SANDBOXMENU.RANDOM, data = "autumn|winter|summer"},
+	{text = STRINGS.UI.SANDBOXMENU.HUMID, data = "humid"},
+	{text = STRINGS.UI.SANDBOXMENU.LUSH, data = "lush"},
+	{text = STRINGS.UI.SANDBOXMENU.RANDOM, data = "temperate|humid|lush"},
 }
 
 local frequency_descriptions = {
@@ -65,7 +65,7 @@ local season_length_descriptions = {
     {text = STRINGS.UI.SANDBOXMENU.RANDOM,         data = "random"},
 }
 
-local pl_customize_table = {
+local pl_customize_table = {  -- we customize
     porkland_settings_global = {
         order = 0,
         category = LEVELCATEGORY.SETTINGS,
@@ -79,7 +79,7 @@ local pl_customize_table = {
     },
 }
 
-local custonsiz_items = {
+local custonsiz_items = {  -- add in dst custonsiz
     [LEVELCATEGORY.WORLDGEN] = {
         ["global"] = {
             porkland_season_start = {image = "season_start.tex", options_remap = {img = "blank_season_red.tex", atlas = "images/customisation.xml"}, desc = season_start_descriptions, master_controlled = true, order = 2}
@@ -112,7 +112,7 @@ local custonsiz_items = {
     }
 }
 
-local change_items = {  -- change dst settings
+local change_items = {  -- change dst custonsiz settings
     worldgen = {
         resources = {"rock", "sapling", "grass", "flowers", "reeds", "mushroom"},
         misc = {"task_set", "start_location", "world_size", "touchstone", "boons"},

@@ -42,6 +42,7 @@ local brains_post = {
 }
 
 local widgets = {
+    "seasonclock",
     "uiclock"
 }
 

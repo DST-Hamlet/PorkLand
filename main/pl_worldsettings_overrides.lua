@@ -27,25 +27,25 @@ local SEASON_VERYHARSH_LENGTHS =
 
 applyoverrides_post.temperate = function(difficulty)
     if difficulty == "random" then
-        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "autumn", length = GetRandomItem(SEASON_VERYHARSH_LENGTHS), random = true})
+        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "temperate", length = GetRandomItem(SEASON_VERYHARSH_LENGTHS), random = true})
     else
-        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "autumn", length = SEASON_VERYHARSH_LENGTHS[difficulty]})
+        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "temperate", length = SEASON_VERYHARSH_LENGTHS[difficulty]})
     end
 end
 
 applyoverrides_post.humid = function(difficulty)
     if difficulty == "random" then
-        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "winter", length = GetRandomItem(SEASON_VERYHARSH_LENGTHS), random = true})
+        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "humid", length = GetRandomItem(SEASON_VERYHARSH_LENGTHS), random = true})
     else
-        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "winter", length = SEASON_VERYHARSH_LENGTHS[difficulty]})
+        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "humid", length = SEASON_VERYHARSH_LENGTHS[difficulty]})
     end
 end
 
 applyoverrides_post.lush = function(difficulty)
     if difficulty == "random" then
-        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "summer", length = GetRandomItem(SEASON_VERYHARSH_LENGTHS), random = true})
+        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "lush", length = GetRandomItem(SEASON_VERYHARSH_LENGTHS), random = true})
     else
-        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "summer", length = SEASON_VERYHARSH_LENGTHS[difficulty]})
+        TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "lush", length = SEASON_VERYHARSH_LENGTHS[difficulty]})
     end
 end
 

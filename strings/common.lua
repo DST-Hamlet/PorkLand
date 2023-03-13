@@ -52,5 +52,13 @@ return {
             PORKLAND_DEFAULT = "Temperate",
             TEMPERATE = "Temperate",
         },
+        SERVERLISTINGSCREEN = {
+            SEASONS = {
+                APORKALYPSE = "Aporkalypse",
+                HUMID = "Humid",
+                LUSH = "Lush",
+                TEMPERATE = "Temperate",
+            },
+        },
     },
 }

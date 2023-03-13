@@ -20,7 +20,7 @@ return Class(function(self, inst)
 
     -- Network
     local _rewindmult = net_shortint(inst.GUID, "shard_aporkalypse._rewindmult", "aporkalypsedirty")
-    local _aporkalypseactive = net_bool(inst.GUID, "shard_aporkalypse._active", "aporkalypsedirty")
+    local _activeaporkalypse = net_bool(inst.GUID, "shard_aporkalypse._active", "aporkalypsedirty")
     local _timeuntilaporkalypse = net_float(inst.GUID, "shard_aporkalypse._timeuntilaporkalypse", "aporkalypsedirty")
 
     --------------------------------------------------------------------------
@@ -37,8 +37,8 @@ return Class(function(self, inst)
             last_timeuntilaporkalypse = timeuntilaporkalypse
         end
 
-        if _aporkalypseactive:value() ~= data.aporkalypseactive then
-            _aporkalypseactive:set(data.aporkalypseactive)
+        if _activeaporkalypse:value() ~= data.activeaporkalypse then
+            _activeaporkalypse:set(data.activeaporkalypse)
         end
 
         if _rewindmult:value() ~= data.rewindmult then
@@ -47,7 +47,7 @@ return Class(function(self, inst)
     end or nil
 
     local OnAporkalypseDirty = not _ismastershard and function()
-        _world:PushEvent("secondary_aporkalypseupdate", {timeuntilaporkalypse = _timeuntilaporkalypse:value(), aporkalypseactive = _aporkalypseactive:value(), rewindmult = _rewindmult:value()})
+        _world:PushEvent("secondary_aporkalypseupdate", {timeuntilaporkalypse = _timeuntilaporkalypse:value(), activeaporkalypse = _activeaporkalypse:value(), rewindmult = _rewindmult:value()})
     end or nil
 
     --------------------------------------------------------------------------

@@ -48,7 +48,7 @@ local _globaltemperaturelocus = 0
 
 -- Light
 local _daylight = true
-local _season = "autumn"
+local _season = "temperate"
 
 -- Network
 local _noisetime = net_float(inst.GUID, "worldplateautemperature._noisetime")
@@ -63,9 +63,8 @@ local ForceResync = _ismastersim and function(netvar)
 end or nil
 
 local function CalculateSeasonTemperature(season, progress)
-    return (season == "winter" and math.sin(PI * progress) * (MIN_TEMPERATURE - HUMID_CROSSOVER_TEMPERATURE) + HUMID_CROSSOVER_TEMPERATURE)
-        or (season == "spring" and APORKALYPSE_TEMPERATURE)
-        or (season == "summer" and Lerp(HUMID_CROSSOVER_TEMPERATURE, LUSH_CROSSOVER_TEMPERATURE, progress))
+    return (season == "humid" and math.sin(PI * progress) * (MIN_TEMPERATURE - HUMID_CROSSOVER_TEMPERATURE) + HUMID_CROSSOVER_TEMPERATURE)
+        or (season == "lush" and Lerp(HUMID_CROSSOVER_TEMPERATURE, LUSH_CROSSOVER_TEMPERATURE, progress))
         or Lerp(LUSH_CROSSOVER_TEMPERATURE, HUMID_CROSSOVER_TEMPERATURE, progress)
 end
 
@@ -186,7 +185,7 @@ end end
 
 if _ismastersim then function self:OnLoad(data)
     _daylight = data.daylight == true
-    _season = data.season or "autumn"
+    _season = data.season or "temperate"
     _seasontemperature = data.seasontemperature or CalculateSeasonTemperature(_season, .5)
     _phasetemperature = data.phasetemperature or CalculatePhaseTemperature(_daylight and "day" or "dusk", 0)
     _noisetime:set(data.noisetime or 0)
