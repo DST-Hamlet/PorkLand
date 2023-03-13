@@ -1,6 +1,7 @@
 local AddClassPostConstruct = AddClassPostConstruct
 GLOBAL.setfenv(1, GLOBAL)
 
+-- compatible Combined Status mod
 if not softresolvefilepath("scripts/widgets/seasonclock.lua") then
     return
 end

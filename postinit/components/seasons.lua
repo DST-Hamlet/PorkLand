@@ -735,7 +735,7 @@ AddComponentPostInit("seasons", function(self)
             temperate = TUNING.TEMPERATE_LENGTH,
             humid = TUNING.HUMID_LENGTH,
             lush = TUNING.LUSH_LENGTH,
-            aporkalypse = 0
+            aporkalypse = 0  -- change whit start
         }
     })
 
