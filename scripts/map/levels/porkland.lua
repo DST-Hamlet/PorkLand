@@ -20,7 +20,6 @@ AddLevel(LEVELTYPE.SURVIVAL, {
         deerclops = "never",
         bearger = "never",
 
-        -- spring = "noseason",
         perd = "never",  --火鸡
         penguins = "never",  -- 企鹅
         hunt = "never",  -- 脚印
@@ -31,8 +30,6 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 
         -- {"start_setpeice",    "PorkLandStart"},
         -- {"start_node",        "BG_rainforest_base"},
-        -- {"spring",            "noseason"},
-        -- {"summer",            "noseason"},
 
         pl_clocktype = "plateau",
     },

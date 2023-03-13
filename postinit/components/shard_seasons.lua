@@ -13,7 +13,7 @@ local function MakeShardSeasons(self, clock_type)
     --[[ Constants ]]
     --------------------------------------------------------------------------
 
-    local NUM_SEASONS = 4 --keep in sync with seasons.lua SEASON_NAMES table
+    local NUM_SEASONS = 4 -- keep in sync with seasons.lua SEASON_NAMES table
 
     --------------------------------------------------------------------------
     --[[ Member variables ]]

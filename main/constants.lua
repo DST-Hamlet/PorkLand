@@ -3,6 +3,11 @@ GLOBAL.setfenv(1, GLOBAL)
 TOOLACTIONS.HACK = true
 TOOLACTIONS.SHEAR = true
 
+SEASONS.TEMPERATE = "temperate"
+SEASONS.HUMID = "humid"
+SEASONS.LUSH = "lush"
+SEASONS.APORKALYPSE = "aporkalypse"
+
 if rawget(_G, "GetNextAvaliableCollisionMask") and not COLLISION.PERMEABLE_GROUND then
     COLLISION.PERMEABLE_GROUND = GetNextAvaliableCollisionMask()
     COLLISION.GROUND = COLLISION.GROUND + COLLISION.PERMEABLE_GROUND

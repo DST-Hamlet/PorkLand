@@ -27,9 +27,20 @@ AddComponentPostInit("worldstate", function(self, inst)
         SetVariable("plateautemperature", temperature)
     end
 
-    local function OnAporkalypseChange(src, isaporkalypse)
-        SetVariable("isaporkalypse", isaporkalypse, "aporkalypse")
+    local function OnSeasonTick(src, data)
+        SetVariable("istemperate", data.season == "temperate", "temperate")
+        SetVariable("ishumid", data.season == "humid", "humid")
+        SetVariable("islush", data.season == "lush", "lush")
+        SetVariable("isaporkalypse", data.season == "aporkalypse", "aporkalypse")
     end
+
+    local function OnSeasonLengthsChanged(src, data)
+        SetVariable("temperatelength", data.temperate)
+        SetVariable("humidlength", data.humid)
+        SetVariable("lushlength", data.lush)
+        SetVariable("aporkalypselength", data.aporkalypse)
+    end
+
 
     --------------------------------------------------------------------------
     --[[ Initialization ]]
@@ -38,10 +49,13 @@ AddComponentPostInit("worldstate", function(self, inst)
         World state variables are initialized to default values that can be
         used by entities if there are no world components controlling those
         variables.  e.g. If there is no season component on the world, then
-        everything will run in autumn state.
+        everything will run in temperate state.
     --]]
 
     data.plateautemperature = TUNING.STARTING_TEMP
+    data.istemperate = true
+    data.ishumid = false
+    data.islush = false
     data.isaporkalypse = false
 
     if TheWorld:HasTag("porkland") then
@@ -50,7 +64,8 @@ AddComponentPostInit("worldstate", function(self, inst)
         inst:ListenForEvent("plateautemperaturetick", OnPlateauTemperatureTick)
     end
 
-    inst:ListenForEvent("aporkalypsechange", OnAporkalypseChange)
+    inst:ListenForEvent("seasontick", OnSeasonTick)
+    inst:ListenForEvent("seasonlengthschanged", OnSeasonLengthsChanged)
 
     -- inst:ListenForEvent("snowcoveredchanged", function(inst, show)
     --     TheSim:HideAnimOnEntitiesWithTag("Climate_island", "snow")

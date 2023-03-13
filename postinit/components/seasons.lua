@@ -21,7 +21,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
     -- [[ Constants ]]
     --------------------------------------------------------------------------
 
-    local SEASON_NAMES =
+    local SEASON_NAMES = seasons_data.names or
     {
         "autumn",
         "winter",
@@ -41,10 +41,10 @@ local function MakeSeasons(self, clock_type, seasons_data)
     local NUM_CLOCK_SEGS = 16
     local DEFAULT_CLOCK_SEGS = seasons_data.segs or
     {
-        autumn = { day = 8, dusk = 6, night = 2 },
-        winter = { day = 5, dusk = 5, night = 6 },
-        spring = { day = 5, dusk = 8, night = 3 },
-        summer = { day = 11, dusk = 1, night = 4 },
+        autumn = {day = 8, dusk = 6, night = 2},
+        winter = {day = 5, dusk = 5, night = 6},
+        spring = {day = 5, dusk = 8, night = 3},
+        summer = {day = 11, dusk = 1, night = 4},
     }
 
     local ENDLESS_PRE_DAYS = 10
@@ -69,8 +69,6 @@ local function MakeSeasons(self, clock_type, seasons_data)
     local _premode
     local _segs
     local _segmod
-    local _alwaysaporkalypse = false
-    local _aporkalypseactive = false
     local _preaporkalypseseasondata = {}
     local _israndom = {}
 
@@ -95,6 +93,11 @@ local function MakeSeasons(self, clock_type, seasons_data)
         end
 
         local season = _season:value()
+
+        if SEASON_NAMES[season] == "aporkalypse" then
+            return season
+        end
+
         while true do
             season = season > 1 and season - 1 or #SEASON_NAMES
             if _lengths[season]:value() > 0 or season == _season:value() then
@@ -111,6 +114,11 @@ local function MakeSeasons(self, clock_type, seasons_data)
         end
 
         local season = _season:value()
+
+        if SEASON_NAMES[season] == "aporkalypse" then
+            return season
+        end
+
         while true do
             season = (season % #SEASON_NAMES) + 1
             if _lengths[season]:value() > 0 or season == _season:value() then
@@ -171,10 +179,6 @@ local function MakeSeasons(self, clock_type, seasons_data)
 
         segs = GetModifiedSegs(segs, _segmod)
 
-        if _aporkalypseactive then
-            segs = {day = 0, dusk = 0, night = 16}
-        end
-
         _world:PushEvent("ms_setclocksegs_" .. clock_type, segs)
     end or nil
 
@@ -217,7 +221,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
                 _remainingdaysinseason:set(ENDLESS_PRE_DAYS)
                 _endlessdaysinseason:set(false)
             else
-                if _season:value() == SEASONS.summer or _season:value() == SEASONS.winter then
+                if _season:value() == SEASONS.summer or _season:value() == SEASONS.winter or _season:value() == SEASONS.temperate then
                     _totaldaysinseason:set(_lengths[_season:value()]:value())
                     _remainingdaysinseason:set(math.ceil(_totaldaysinseason:value()))
                 else
@@ -259,7 +263,6 @@ local function MakeSeasons(self, clock_type, seasons_data)
             progress = 1 - (_totaldaysinseason:value() > 0 and _remainingdaysinseason:value() / _totaldaysinseason:value() or 0),
             elapseddaysinseason = _elapseddaysinseason:value(),
             remainingdaysinseason = _endlessdaysinseason:value() and ENDLESS_DAYS or _remainingdaysinseason:value(),
-            isaporkalypse = _aporkalypseactive,
         }
         _world:PushEvent("seasontick_" .. clock_type, data)
 
@@ -289,14 +292,14 @@ local function MakeSeasons(self, clock_type, seasons_data)
                 _remainingdaysinseason:set(_remainingdaysinseason:value() - 1)
             else
                 -- Advance to next season
-                _season:set(GetNextSeason())
-                _totaldaysinseason:set(_lengths[_season:value()]:value())
-                _elapseddaysinseason:set(0)
-                _remainingdaysinseason:set(_totaldaysinseason:value())
-                _premode = false
-
-                if _aporkalypseactive and not _alwaysaporkalypse then
+                if SEASON_NAMES[_season:value()] == "aporkalypse" then
                     _world:PushEvent("ms_stopaporkalypse")
+                else
+                    _season:set(GetNextSeason())
+                    _totaldaysinseason:set(_lengths[_season:value()]:value())
+                    _elapseddaysinseason:set(0)
+                    _remainingdaysinseason:set(_totaldaysinseason:value())
+                    _premode = false
                 end
             end
         elseif _mode == MODES.endless then
@@ -335,14 +338,14 @@ local function MakeSeasons(self, clock_type, seasons_data)
                 -- Regress current season
                 _remainingdaysinseason:set(_remainingdaysinseason:value() + 1)
             else
-                -- Retreat to previous season
-                _season:set(GetPrevSeason())
-                _totaldaysinseason:set(_lengths[_season:value()]:value())
-                _elapseddaysinseason:set(math.max(_totaldaysinseason:value() - 1, 0))
-                _remainingdaysinseason:set(1)
-
-                if _aporkalypseactive and not _alwaysaporkalypse then
+                if SEASON_NAMES[_season:value()] == "aporkalypse" then
                     _world:PushEvent("ms_stopaporkalypse")
+                else
+                    -- Retreat to previous season
+                    _season:set(GetPrevSeason())
+                    _totaldaysinseason:set(_lengths[_season:value()]:value())
+                    _elapseddaysinseason:set(math.max(_totaldaysinseason:value() - 1, 0))
+                    _remainingdaysinseason:set(1)
                 end
             end
         elseif _mode == MODES.endless then
@@ -381,10 +384,6 @@ local function MakeSeasons(self, clock_type, seasons_data)
         if _season:value() ~= season then
             _season:set(season)
             _elapseddaysinseason:set(0)
-        end
-
-        if _aporkalypseactive and not _alwaysaporkalypse then
-            _world:PushEvent("ms_stopaporkalypse")
         end
 
         UpdateSeasonMode()
@@ -464,21 +463,18 @@ local function MakeSeasons(self, clock_type, seasons_data)
     --------------------------------------------------------------------------
 
     if _ismastersim and _isplateau then function self:BeginAporkalypse(first_aporkalypse)
-        _preaporkalypseseasondata = self:OnSave_plateau()
-
-        _aporkalypseactive = true
-        _alwaysaporkalypse = first_aporkalypse
-
-        local season = SEASONS["autumn"]
-
-        if not _alwaysaporkalypse then
-            _lengths[season]:set(TUNING.APORKALYPSE_LENGTH)
+        if SEASON_NAMES[_season:value()] == "aporkalypse" then
+            return
         end
 
+        _preaporkalypseseasondata = self:OnSave_plateau()
+
+        local season = SEASONS["aporkalypse"]
+        _lengths[season]:set(TUNING.APORKALYPSE_LENGTH)
         _season:set_local(season)
         _season:set(season)
 
-        if _alwaysaporkalypse then
+        if first_aporkalypse then
             _mode = MODES.always
             _premode = false
             _totaldaysinseason:set(2)
@@ -495,8 +491,9 @@ local function MakeSeasons(self, clock_type, seasons_data)
     end end
 
     if _ismastersim and _isplateau then function self:EndAporkalypse()
-        _aporkalypseactive = false
-        _alwaysaporkalypse = false
+        if SEASON_NAMES[_season:value()] ~= "aporkalypse" then
+            return
+        end
 
         self:OnLoad_plateau(_preaporkalypseseasondata)
     end end
@@ -506,7 +503,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
     --------------------------------------------------------------------------
 
     -- Initialize network variables
-    _season:set(SEASONS.autumn)
+    _season:set(SEASONS[SEASON_NAMES[1]])
     _totaldaysinseason:set(TUNING.SEASON_LENGTH_FRIENDLY_DEFAULT * 2)
     _remainingdaysinseason:set(TUNING.SEASON_LENGTH_FRIENDLY_DEFAULT)
     _elapseddaysinseason:set(0)
@@ -597,7 +594,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
 
         _premode = data.premode == true
         _mode = MODES[data.mode] or MODES.cycle
-        _season:set(SEASONS[data.season] or SEASONS.autumn)
+        _season:set(SEASONS[data.season] or SEASONS[SEASON_NAMES[1]])
         _totaldaysinseason:set(data.totaldaysinseason or _lengths[_season:value()]:value())
         _elapseddaysinseason:set(data.elapseddaysinseason or 0)
         _remainingdaysinseason:set(math.min(data.remainingdaysinseason or _totaldaysinseason:value(), _totaldaysinseason:value()))
@@ -661,7 +658,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
 
             _premode = data["premode" .. clock_type] == true
             _mode = MODES[data["mode" .. clock_type]] or MODES.cycle
-            _season:set(SEASONS[data["season" .. clock_type]] or SEASONS.autumn)
+            _season:set(SEASONS[data["season" .. clock_type]] or SEASONS[SEASON_NAMES[1]])
             _totaldaysinseason:set(data["totaldaysinseason" .. clock_type] or _lengths[_season:value()]:value())
             _elapseddaysinseason:set(data["elapseddaysinseason" .. clock_type] or 0)
             _remainingdaysinseason:set(math.min(data["remainingdaysinseason" .. clock_type] or _totaldaysinseason:value(), _totaldaysinseason:value()))
@@ -722,17 +719,23 @@ AddComponentPostInit("seasons", function(self)
     self.MakeSeasons = MakeSeasons
 
     self:MakeSeasons("plateau", {
+        names = {
+            "temperate",
+            "humid",
+            "lush",
+            "aporkalypse",
+        },
         segs = {
-            autumn = {day = 10, dusk = 4, night = 2},
-            winter = {day = 8, dusk = 5, night = 3},
-            spring = {day = 8, dusk = 4, night = 4},
-            summer = {day = 8, dusk = 4, night = 4},
+            temperate = {day = 10, dusk = 4, night = 2},
+            humid = {day = 8, dusk = 5, night = 3},
+            lush = {day = 8, dusk = 4, night = 4},
+            aporkalypse = {day = 0, dusk = 0, night = 16}
         },
         lengths = {
-            autumn = TUNING.TEMPERATE_LENGTH,
-            winter = TUNING.HUMID_LENGTH,
-            spring = 0,
-            summer = TUNING.LUSH_LENGTH,
+            temperate = TUNING.TEMPERATE_LENGTH,
+            humid = TUNING.HUMID_LENGTH,
+            lush = TUNING.LUSH_LENGTH,
+            aporkalypse = 0  -- change whit start
         }
     })
 

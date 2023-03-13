@@ -23,18 +23,22 @@ TRANSLATE_AND_OVERRIDE["deep_jungle_fern_noise"] = {"deep_jungle_fern_noise", "d
 TRANSLATE_AND_OVERRIDE["jungle_border_vine"] ={"jungle_border_vine"}
 --TRANSLATE_TO_PREFABS["bermudatriangle"] =    {"bermudatriangle_MARKER"}
 
-local SEASONS = forest_map.SEASONS
-for season, seasonfn in pairs(SEASONS) do
-    SEASONS[season] = function(_season)
-        local data = seasonfn(_season)
+local function seasonfn(friendly)
+	return function(season, data)
         local seasons = data.seasons
-        seasons.seasonplateau = _season
+        seasons.seasonplateau = season
         seasons.elapseddaysinseason = 0
-        seasons.totaldaysinseasonplateau = _season == "autumn" and TUNING.SEASON_VERYHARSH_DEFAULT * 2 or TUNING.SEASON_VERYHARSH_DEFAULT
+        seasons.totaldaysinseasonplateau = friendly and TUNING.SEASON_VERYHARSH_DEFAULT * 2 or TUNING.SEASON_VERYHARSH_DEFAULT
         seasons.remainingdaysinseasonplateau = TUNING.SEASON_VERYHARSH_DEFAULT
-        return data
-    end
+
+		return data
+	end
 end
+
+local SEASONS = forest_map.SEASONS
+SEASONS["temperate"] = seasonfn(true)
+SEASONS["humid"] = seasonfn(false)
+SEASONS["lush"] = seasonfn(false)
 
 local function ValidateGroundTile_PorkLand(tile)
     return WORLD_TILES.IMPASSABLE
@@ -542,14 +546,22 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     save.map.width, save.map.height = map_width, map_height
 
-    local start_season = current_gen_params.porkland_season_start or "autumn"
+    local start_season = current_gen_params.season_start or "autumn"
     if string.find(start_season, "|", nil, true) then
         start_season = GetRandomItem(string.split(start_season, "|"))
     elseif start_season == "default" then
         start_season = forest_map.DEFAULT_SEASON
     end
 
+    local pl_start_season = current_gen_params.porkland_season_start or "temperate"
+    if string.find(pl_start_season, "|", nil, true) then
+        pl_start_season = GetRandomItem(string.split(pl_start_season, "|"))
+    elseif pl_start_season == "default" then
+        pl_start_season = "temperate"
+    end
+
     local componentdata = SEASONS[start_season](start_season)
+    componentdata = SEASONS[pl_start_season](pl_start_season, componentdata)
 
     if save.world_network == nil then
         save.world_network = {persistdata = {}}

@@ -2,16 +2,12 @@ local assets =
 {
     Asset("SCRIPT", "scripts/prefabs/world.lua"),
 
-    Asset("IMAGE", "levels/textures/snow.tex"),
-    Asset("IMAGE", "levels/textures/mud.tex"),
-
     Asset("IMAGE", "images/wave.tex"),
     Asset("IMAGE", "images/wave_shadow.tex"),
     Asset("IMAGE", "images/could/fog_cloud.tex"),
 
     Asset("PKGREF", "levels/models/waterfalls.bin"),
 
-    Asset("ANIM", "anim/snow.zip"),
     Asset("ANIM", "anim/lightning.zip"),
 
     Asset("ANIM", "anim/swimming_ripple.zip"), -- common water fx symbols
@@ -64,8 +60,8 @@ local function common_postinit(inst)
     -- Dedicated server does not require these components
     -- NOTE: ambient lighting is required by light watchers
     if not TheNet:IsDedicated() then
-        inst:AddComponent("dynamicmusic")
-        inst:AddComponent("ambientsound")
+        -- inst:AddComponent("dynamicmusic")
+        -- inst:AddComponent("ambientsound")
         inst:AddComponent("dsp")
         -- inst:AddComponent("colourcube")
         inst:AddComponent("hallucinations")

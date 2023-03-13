@@ -39,10 +39,9 @@ return Class(function(self, inst)
     local MIN_PRECIP_RATE = .1
 
     local PROGRESS_MULTIPLIERS = {
-        autumn = 1,
-        winter = 1.5,
-        spring = 1,
-        summer = 1,
+        temperate = 1,
+        humid = 1.5,
+        lush = 1,
         aporkalypse = 1
     }
 
@@ -51,17 +50,15 @@ return Class(function(self, inst)
     -- so the values have been slightly modified to be more immersive
     local MOISTURE_RATES = {
         MIN = {
-            autumn = .25,  -- temperate
-            winter = 3,  -- humid
-            spring = 3,  -- no spring irkland
-            summer = 0,  -- lush, in ds it's 0
+            temperate = .25,
+            humid = 3,
+            lush = 0,
             aporkalypse = .1
         },
         MAX = {
-            autumn = 1.0,  -- temperate
-            winter = 3.75,  -- humid
-            spring = 3.75,  -- no spring in porkland
-            summer = -0.2,  -- lush, in ds it's 0
+            temperate = 1.0,
+            humid = 3.75,
+            lush = -0.2,  -- in ds it's 0
             aporkalypse = .5
         }
     }
@@ -69,19 +66,17 @@ return Class(function(self, inst)
 
     local MOISTURE_CEIL_MULTIPLIERS =
     {
-        autumn = {min = 2, max = 5.5},
-        winter = {min = 1, max = 4},
-        spring = {min = 5.5, max = 11},
-        summer = {min = 2, max = 5.5},
+        temperate = {min = 2, max = 5.5},
+        humid = {min = 1, max = 4},
+        lush = {min = 2, max = 5.5},
         aporkalypse = {min = 2, max = 8},
     }
 
     local MOISTURE_FLOOR_MULTIPLIERS =
     {
-        autumn = 1,
-        winter = 0.5,
-        spring = 0.25,
-        summer = 1,
+        temperate = 1,
+        humid = 0.5,
+        lush = 1,
         aporkalypse = 1
     }
 
@@ -103,10 +98,9 @@ return Class(function(self, inst)
 
     local PEAK_PRECIPITATION_RANGES =
     {
-        autumn = {min = .1, max = .66},
-        winter = {min = 1, max = 2},
-        spring = {min = .50, max = 1.00},
-        summer = {min = .05, max = .15},
+        temperate = {min = .1, max = .66},
+        humid = {min = 1, max = 2},
+        lush = {min = .05, max = .15},
         aporkalypse = {min = .1, max = .66},
     }
 
@@ -143,18 +137,16 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     local SEASON_DYNRANGE_DAY = {
-        autumn = .05,
-        winter = .05,
-        spring = .4,
-        summer = .05,
+        temperate = .05,
+        humid = .05,
+        lush = .05,
         aporkalypse = .05
     }
 
     local SEASON_DYNRANGE_NIGHT = {  -- dusk and night
-        autumn = 0,
-        winter = 0,
-        spring = .25,
-        summer = 0,
+        temperate = 0,
+        humid = 0,
+        lush = 0,
         aporkalypse = 0
     }
 
@@ -162,19 +154,19 @@ return Class(function(self, inst)
     --[[ Member variables ]]
     --------------------------------------------------------------------------
 
-    --Public
+    -- Public
     self.inst = inst
 
-    --Private
+    -- Private
     local _world = TheWorld
     local _map = _world.Map
     local _ismastersim = _world.ismastersim
     local _activatedplayer = nil
 
-    --Temperature cache
+    -- Temperature cache
     local _temperature = TUNING.STARTING_TEMP
 
-    --Precipiation
+    -- Precipiation
     local _rainsound = false
     local _treerainsound = false
     local _umbrellarainsound = false
@@ -186,11 +178,11 @@ return Class(function(self, inst)
     local _rainfx = _hasfx and SpawnPrefab("rain") or nil
     local _pollenfx = _hasfx and SpawnPrefab("pollen") or nil
 
-    --Light
+    -- Light
     local _daylight = true
-    local _season = "autumn"
+    local _season = "temperate"
 
-    --Master simulation
+    -- Master simulation
     local _moisturerateval
     local _moisturerateoffset
     local _moistureratemultiplier
@@ -397,17 +389,13 @@ return Class(function(self, inst)
         _seasonprogress = data.progress
 
         if _ismastersim then
-            if data.isaporkalypse then
-                _season = "aporkalypse"
-            end
-
             local p = 1 - math.sin(PI * data.progress * PROGRESS_MULTIPLIERS[_season])
             _moisturerateval = MOISTURE_RATES.MIN[_season] + p * (MOISTURE_RATES.MAX[_season] - MOISTURE_RATES.MIN[_season])
             _moisturerateoffset = 0
 
             _moisturerate:set(CalculateMoistureRate())
-            _moistureceilmultiplier = MOISTURE_CEIL_MULTIPLIERS[_season] or MOISTURE_CEIL_MULTIPLIERS.autumn
-            _moisturefloormultiplier = MOISTURE_FLOOR_MULTIPLIERS[_season] or MOISTURE_FLOOR_MULTIPLIERS.autumn
+            _moistureceilmultiplier = MOISTURE_CEIL_MULTIPLIERS[_season] or MOISTURE_CEIL_MULTIPLIERS.temperate
+            _moisturefloormultiplier = MOISTURE_FLOOR_MULTIPLIERS[_season] or MOISTURE_FLOOR_MULTIPLIERS.temperate
         end
     end
 
@@ -692,7 +680,7 @@ return Class(function(self, inst)
             _rainfx:PostInit()
         end
 
-        if _season == "summer" then
+        if _season == "lush" then
             _pollenfx:PostInit()
         end
     end end
@@ -812,7 +800,7 @@ return Class(function(self, inst)
 
         -- Update pollen
         if _hasfx then
-            if _season ~= "summer" or (ThePlayer ~= nil and _world.components.sandstorms ~= nil and _world.components.sandstorms:IsInSandstorm(ThePlayer)) then
+            if _season ~= "lush" or (ThePlayer ~= nil and _world.components.sandstorms ~= nil and _world.components.sandstorms:IsInSandstorm(ThePlayer)) then
                 _pollenfx.particles_per_tick = 0
             elseif _seasonprogress < .2 then
                 local ramp = _seasonprogress / .2
@@ -855,7 +843,7 @@ return Class(function(self, inst)
             end
         end
 
-        SetGroundOverlay(GROUND_OVERLAYS.puddles, _wetness:value() * 3 / 100) -- wetness goes from 0-100
+        -- SetGroundOverlay(GROUND_OVERLAYS.puddles, _wetness:value() * 3 / 100) -- wetness goes from 0-100
 
         PushWeather()
     end
@@ -897,7 +885,7 @@ return Class(function(self, inst)
     if _ismastersim then function self:OnLoad(data)
         _temperature = data.temperature or TUNING.STARTING_TEMP
         _daylight = data.daylight == true
-        _season = data.season or "autumn"
+        _season = data.season or "temperate"
         _noisetime:set(data.noisetime or 0)
         _moisturerateval = data.moisturerateval or 1
         _moisturerateoffset = data.moisturerateoffset or 0

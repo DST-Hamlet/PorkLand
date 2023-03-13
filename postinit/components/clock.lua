@@ -154,7 +154,7 @@ local function MakeClock(self, clocktype)
     local _aporkalypse = nil
     local _mooomphasecycle = 1
     local _moonphaselocked = false  -- Note: This does not save/load
-    local _aporkalypseactive = false
+    local _activeaporkalypse = false
 
     local _segsdirty = true
     local _cyclesdirty = true
@@ -209,7 +209,11 @@ local function MakeClock(self, clocktype)
     end
 
     if _ismastersim and _isplateau then function self:BeginAporkalypse()
-        _aporkalypseactive = true
+        if _activeaporkalypse then
+            return
+        end
+
+        _activeaporkalypse = true
 
         for i = #MOON_PHASE_CYCLES/2, #MOON_PHASE_CYCLES do
             if MOON_PHASE_CYCLES[i] == MOON_PHASES["full"] then
@@ -219,14 +223,17 @@ local function MakeClock(self, clocktype)
         end
 
         _mooniswaxing:set(false)
-
-        _moonphasestyle:set(MOON_PHASE_STYLES["blood"] - 1)
+        _moonphasestyle:set(MOON_PHASE_STYLES.blood - 1)
     end end
 
     if _ismastersim and _isplateau then function self:EndAporkalypse()
-        _aporkalypseactive = false
+        if not _activeaporkalypse then
+            return
+        end
 
-        _moonphasestyle:set(MOON_PHASE_STYLES["default"] - 1)
+        _activeaporkalypse = false
+
+        _moonphasestyle:set(MOON_PHASE_STYLES.default - 1)
     end end
 
     --------------------------------------------------------------------------
@@ -249,7 +256,7 @@ local function MakeClock(self, clocktype)
     end
 
     local function GetMoonPhase()
-        if _aporkalypseactive then
+        if _activeaporkalypse then
             local mooomphasecycle = 0
             for i = #MOON_PHASE_CYCLES/2, #MOON_PHASE_CYCLES do
                 if MOON_PHASE_CYCLES[i] == MOON_PHASES["full"] then
@@ -363,7 +370,7 @@ local function MakeClock(self, clocktype)
     end or nil
 
     local OnSetMoonPhaseStyle = _ismastersim and function(world, data)
-        if _aporkalypseactive then
+        if _activeaporkalypse then
             return
         end
 
