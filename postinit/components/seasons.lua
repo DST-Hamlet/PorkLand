@@ -78,6 +78,14 @@ local function MakeSeasons(self, clock_type, seasons_data)
     local _elapseddaysinseason = net_ushortint(inst.GUID, "seasons_" .. clock_type .. "._elapseddaysinseason", "seasondirty_" .. clock_type)
     local _remainingdaysinseason = net_byte(inst.GUID, "seasons_" .. clock_type .. "._remainingdaysinseason", "seasondirty_" .. clock_type)
     local _endlessdaysinseason = net_bool(inst.GUID, "seasons_" .. clock_type .. "._endlessdaysinseason", "seasondirty_" .. clock_type)
+
+    local _preaporkalypseseason
+    local _preaporkalypseseasonprogress
+    if _isplateau then
+        _preaporkalypseseason = net_tinybyte(inst.GUID, "seasons_" .. clock_type .. "._preaporkalypseseason", "seasondirty_" .. clock_type)
+        _preaporkalypseseasonprogress = net_float(inst.GUID, "seasons_" .. clock_type .. "._preaporkalypseseasonprogress", "seasondirty_" .. clock_type)
+    end
+
     local _lengths = {}
     for i, v in ipairs(SEASON_NAMES) do
         _lengths[i] = net_byte(inst.GUID, "seasons_" .. clock_type .. "._lengths." .. v, "lengthsdirty_" .. clock_type)
@@ -264,6 +272,12 @@ local function MakeSeasons(self, clock_type, seasons_data)
             elapseddaysinseason = _elapseddaysinseason:value(),
             remainingdaysinseason = _endlessdaysinseason:value() and ENDLESS_DAYS or _remainingdaysinseason:value(),
         }
+
+        if _isplateau then
+            data.preaporkalypseseason = SEASON_NAMES[_preaporkalypseseason:value()]
+            data.preaporkalypseseasonprogress = _preaporkalypseseasonprogress:value()
+        end
+
         _world:PushEvent("seasontick_" .. clock_type, data)
 
         if _ismastershard then
@@ -469,6 +483,13 @@ local function MakeSeasons(self, clock_type, seasons_data)
 
         _preaporkalypseseasondata = self:OnSave_plateau()
 
+        local totaldaysinseason = _preaporkalypseseasondata.totaldaysinseason or 0
+        local remainingdaysinseason = _preaporkalypseseasondata.remainingdaysinseason or 0
+        _preaporkalypseseasondata.preseasonprogress = 1 - (totaldaysinseason > 0 and remainingdaysinseason / totaldaysinseason or 0)
+
+        _preaporkalypseseason:set(SEASONS[_preaporkalypseseasondata.season])
+        _preaporkalypseseasonprogress:set(_preaporkalypseseasondata.preseasonprogress)
+
         local season = SEASONS["aporkalypse"]
         _lengths[season]:set(TUNING.APORKALYPSE_LENGTH)
         _season:set_local(season)
@@ -508,6 +529,12 @@ local function MakeSeasons(self, clock_type, seasons_data)
     _remainingdaysinseason:set(TUNING.SEASON_LENGTH_FRIENDLY_DEFAULT)
     _elapseddaysinseason:set(0)
     _endlessdaysinseason:set(false)
+
+    if _isplateau then
+        _preaporkalypseseason:set(SEASONS[SEASON_NAMES[1]])
+        _preaporkalypseseasonprogress:set(0)
+    end
+
     for i, v in ipairs(_lengths) do
         v:set((seasons_data.lengths and seasons_data.lengths[SEASON_NAMES[i]]) or TUNING[string.upper(SEASON_NAMES[i]) .. "_LENGTH"] or 0)
     end
@@ -635,6 +662,10 @@ local function MakeSeasons(self, clock_type, seasons_data)
         local _OnLoad = self.OnLoad
         function self:OnLoad(data, ...)
             _preaporkalypseseasondata = data["preaporkalypseseasondata"] or {}
+            if _isplateau then
+                _preaporkalypseseason:set(SEASONS[_preaporkalypseseasondata.season] or SEASONS[SEASON_NAMES[1]])
+                _preaporkalypseseasonprogress:set(_preaporkalypseseasondata.preseasonprogress or 0)
+            end
 
             for i, v in ipairs(SEASON_NAMES) do
                 local segs = {}

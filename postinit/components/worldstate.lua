@@ -32,6 +32,8 @@ AddComponentPostInit("worldstate", function(self, inst)
         SetVariable("ishumid", data.season == "humid", "humid")
         SetVariable("islush", data.season == "lush", "lush")
         SetVariable("isaporkalypse", data.season == "aporkalypse", "aporkalypse")
+        SetVariable("preaporkalypseseason", data.preaporkalypseseason)
+        SetVariable("preaporkalypseseasonprogress", data.preaporkalypseseasonprogress)
     end
 
     local function OnSeasonLengthsChanged(src, data)
@@ -57,6 +59,8 @@ AddComponentPostInit("worldstate", function(self, inst)
     data.ishumid = false
     data.islush = false
     data.isaporkalypse = false
+    data.preaporkalypseseason = "temperate"
+    data.preaporkalypseseasonprogress = 0
 
     if TheWorld:HasTag("porkland") then
         local OnTemperatureTick = inst:GetEventCallbacks("temperaturetick", nil, "scripts/components/worldstate.lua")

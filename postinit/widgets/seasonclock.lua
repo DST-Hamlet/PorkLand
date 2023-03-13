@@ -55,20 +55,8 @@ function SeasonClock:OnCyclesChanged(...)
     local NUM_SEGS = 32
     local progress = 0
     local i = 1
-    local season = SEASONS.TEMPERATE
-    local percent = 0
-
-    if TheWorld.net and TheWorld.net.components.seasons then
-        local preaporkalypseseasondata = TheWorld.net.components.seasons:OnSave().preaporkalypseseasondata
-
-        if preaporkalypseseasondata then
-            local totaldaysinseason = preaporkalypseseasondata.totaldaysinseason or 0
-            local remainingdaysinseason = preaporkalypseseasondata.remainingdaysinseason or 0
-
-            season = preaporkalypseseasondata.season or season
-            percent = 1 - (totaldaysinseason > 0 and remainingdaysinseason / totaldaysinseason or 0)
-        end
-    end
+    local season = TheWorld.state.preaporkalypseseason or SEASONS.TEMPERATE
+    local percent = TheWorld.state.preaporkalypseseasonprogress or 0
 
     while season ~= self.seasons[i] and self.seasons[i] do
         progress = progress + self.seasonsegments[self.seasons[i]]
@@ -91,3 +79,4 @@ function SeasonClock:OnCyclesChanged(...)
         self:OnLoseFocus()
     end
 end
+gemrun("hidefn", SeasonClock.OnCyclesChanged, _OnCyclesChanged)

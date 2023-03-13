@@ -223,7 +223,7 @@ local function MakeClock(self, clocktype)
         end
 
         _mooniswaxing:set(false)
-        _moonphasestyle:set(MOON_PHASE_STYLES.blood - 1)
+        _moonphasestyle:set(MOON_PHASE_STYLES["blood"] - 1)
     end end
 
     if _ismastersim and _isplateau then function self:EndAporkalypse()
