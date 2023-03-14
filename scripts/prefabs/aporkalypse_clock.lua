@@ -149,13 +149,14 @@ local function aporkalypse_clock_fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
+    MakeObstaclePhysics(inst, .45)
+
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("aporkalypse_clock.tex")
 
     inst.AnimState:SetBank("totem")
     inst.AnimState:SetBuild("aporkalypse_totem")
     inst.AnimState:PlayAnimation("idle_loop", true)
-
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")

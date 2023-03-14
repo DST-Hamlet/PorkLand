@@ -27,7 +27,6 @@ return Class(function(self, inst)
 
     local OnAporkalypseUpdate = _ismastershard and function(src, data)
         local timeuntilaporkalypse = data.timeuntilaporkalypse
-
         _timeuntilaporkalypse:set_local(timeuntilaporkalypse)
         _timeuntilaporkalypse:set(timeuntilaporkalypse)
 
