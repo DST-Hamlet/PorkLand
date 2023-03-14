@@ -188,16 +188,16 @@ return Class(function(self, inst)
                 end
             else
                 -- Clients and secondary shards must wait server sync
-                _timeuntilaporkalypse:set_local(math.max(.001, timeuntilaporkalypse))
+                _timeuntilaporkalypse:set_local(0)
             end
 
         end
 
         if _ismastershard then
-            _world:PushEvent("master_aporkalypseupdate", {timeuntilaporkalypse = timeuntilaporkalypse, activeaporkalypse = active_aporkalypse, rewindmult = self.rewind_mult})
+            _world:PushEvent("master_aporkalypseupdate", {timeuntilaporkalypse = _timeuntilaporkalypse:value(), activeaporkalypse = active_aporkalypse, rewindmult = self.rewind_mult})
         end
 
-        _world:PushEvent("aporkalypseclocktick", {timeuntilaporkalypse = timeuntilaporkalypse})
+        _world:PushEvent("aporkalypseclocktick", {timeuntilaporkalypse = _timeuntilaporkalypse:value()})
     end
 
     --------------------------------------------------------------------------

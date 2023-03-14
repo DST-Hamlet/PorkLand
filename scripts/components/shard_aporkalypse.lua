@@ -16,8 +16,6 @@ return Class(function(self, inst)
     local _world = TheWorld
     local _ismastershard = _world.ismastershard
 
-    local seg_time = TUNING.SEG_TIME
-
     -- Network
     local _rewindmult = net_shortint(inst.GUID, "shard_aporkalypse._rewindmult", "aporkalypsedirty")
     local _activeaporkalypse = net_bool(inst.GUID, "shard_aporkalypse._active", "aporkalypsedirty")
@@ -27,15 +25,11 @@ return Class(function(self, inst)
     --[[ Private event listeners ]]
     --------------------------------------------------------------------------
 
-    local last_timeuntilaporkalypse = 0
     local OnAporkalypseUpdate = _ismastershard and function(src, data)
         local timeuntilaporkalypse = data.timeuntilaporkalypse
 
         _timeuntilaporkalypse:set_local(timeuntilaporkalypse)
-        if math.abs(timeuntilaporkalypse - last_timeuntilaporkalypse) >= seg_time then
-            _timeuntilaporkalypse:set(timeuntilaporkalypse)
-            last_timeuntilaporkalypse = timeuntilaporkalypse
-        end
+        _timeuntilaporkalypse:set(timeuntilaporkalypse)
 
         if _activeaporkalypse:value() ~= data.activeaporkalypse then
             _activeaporkalypse:set(data.activeaporkalypse)
