@@ -52,8 +52,8 @@ function Combat:GetIsAttackPoison(attacker)
     return poisonAttack, poisonGasAttack
 end
 
-local _GetAttacked = UpvalueHacker.GetUpvalue(Combat.GetAttacked, "_GetAttacked") or Combat.GetAttacked
-Combat.GetAttacked = function (self, attacker, damage, weapon, stimuli, ...)
+local _GetAttacked = Combat.GetAttacked
+if not IA_ENABLED then Combat.GetAttacked = function(self, attacker, damage, weapon, stimuli, ...)
     local poisonAttack, poisonGasAttack = self:GetIsAttackPoison(attacker)
 
     if poisonGasAttack and self.inst.components.poisonable then
@@ -96,15 +96,15 @@ Combat.GetAttacked = function (self, attacker, damage, weapon, stimuli, ...)
     if notblocked and attacker and poisonAttack and self.inst.components and self.inst.components.poisonable then
         self.inst.components.poisonable:Poison()
     end
-end
+end end
 
-local _CalcDamage = UpvalueHacker.GetUpvalue(Combat.CalcDamage, "_CalcDamage") or Combat.CalcDamage
-Combat.CalcDamage = function(self, target, weapon, multiplier, ...)
+local _CalcDamage = Combat.CalcDamage
+if not IA_ENABLED then Combat.CalcDamage = function(self, target, weapon, multiplier, ...)
     local dmg = _CalcDamage(self, target, weapon, multiplier, ...)
     local bonus = self.damagebonus or 0 -- not affected by multipliers
 
     return (dmg - bonus) * self:GetDamageModifier() + bonus
-end
+end end
 
 AddComponentPostInit("combat", function(self)
     self.poisonstrength = 1

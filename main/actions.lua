@@ -18,7 +18,7 @@ end
 
 
 ----set up the action functions
-local _DoToolWork = UpvalueHacker.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
+local _DoToolWork = Pl_Util.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
 local function DoToolWork(act, workaction, ...)
     if act.target.components.hackable ~= nil and act.target.components.hackable:CanBeHacked() and workaction == ACTIONS.HACK then
         if act.invobject and act.invobject.components.obsidiantool then
@@ -44,7 +44,8 @@ local function DoToolWork(act, workaction, ...)
     end
     return _DoToolWork(act, workaction, ...)
 end
-UpvalueHacker.SetUpvalue(ACTIONS.CHOP.fn, DoToolWork, "DoToolWork")
+Pl_Util.SetUpvalue(ACTIONS.CHOP.fn, DoToolWork, "DoToolWork")
+
 ACTIONS.HACK.fn = function(act)
     DoToolWork(act, ACTIONS.HACK)
     return true
@@ -138,7 +139,7 @@ end
 
 
 -- hack
-local COMPONENT_ACTIONS = UpvalueHacker.GetUpvalue(EntityScript.CollectActions, "COMPONENT_ACTIONS")
+local COMPONENT_ACTIONS = Pl_Util.GetUpvalue(EntityScript.CollectActions, "COMPONENT_ACTIONS")
 local SCENE = COMPONENT_ACTIONS.SCENE
 local USEITEM = COMPONENT_ACTIONS.USEITEM
 local POINT = COMPONENT_ACTIONS.POINT

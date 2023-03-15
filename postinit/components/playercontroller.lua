@@ -1,7 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 local PlayerController = require("components/playercontroller")
 
-local _GetPickupAction = UpvalueHacker.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
+local _GetPickupAction = Pl_Util.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
 local GetPickupAction = function(self, target, tool, ...)
     if target:HasTag("smolder") then
         return ACTIONS.SMOTHER
@@ -18,4 +18,4 @@ local GetPickupAction = function(self, target, tool, ...)
 
     return _GetPickupAction(self, target, tool, ...)
 end
-UpvalueHacker.SetUpvalue(PlayerController.GetActionButtonAction, GetPickupAction, "GetPickupAction")
+Pl_Util.SetUpvalue(PlayerController.GetActionButtonAction, GetPickupAction, "GetPickupAction")

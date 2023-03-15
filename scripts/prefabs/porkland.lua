@@ -37,7 +37,7 @@ local function tile_physics_init(inst, ...)
     )
     -- standard impassable collider
     inst.Map:AddTileCollisionSet(
-        COLLISION.PERMEABLE_GROUND, -- maybe split permable into its own sub group in the future?
+        COLLISION.GROUND,
         TileGroups.ImpassableTiles, true,
         TileGroups.ImpassableTiles, false,
         0.25, 128

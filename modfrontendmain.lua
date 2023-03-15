@@ -1,7 +1,10 @@
-OnUnloadMod = function()
-    local servercreationscreen = GLOBAL.TheFrontEnd:GetOpenScreenOfType("ServerCreationScreen")
+local PLENV = env
+GLOBAL.setfenv(1, GLOBAL)
 
-    GLOBAL.SERVER_LEVEL_LOCATIONS[1] = "forest"
+local function OnUnloadPL()
+    local servercreationscreen = TheFrontEnd:GetOpenScreenOfType("ServerCreationScreen")
+
+    SERVER_LEVEL_LOCATIONS[1] = "forest"
 
     if not (servercreationscreen and servercreationscreen.world_tabs and servercreationscreen.world_tabs[1])  then
         return
@@ -21,3 +24,14 @@ OnUnloadMod = function()
         world_tab.choose_world_button:Hide()
     end
 end
+
+local _FrontendUnloadMod = ModManager.FrontendUnloadMod
+function ModManager:FrontendUnloadMod(modname, ...)
+    if not modname or modname == PLENV.modname then  -- if modname is nil, unload all mod
+        OnUnloadPL()
+        ModManager.FrontendUnloadMod = _FrontendUnloadMod
+    end
+
+    return _FrontendUnloadMod(self, modname, ...)
+end
+Pl_Util.HideHackFn(ModManager.FrontendUnloadMod, _FrontendUnloadMod)

@@ -15,7 +15,7 @@ function EntityScript:AddPushEventPostFn(event, fn, source)
 end
 
 local _PushEvent = EntityScript.PushEvent
-function EntityScript:PushEvent(event, data, ...)
+if not IA_ENABLED then function EntityScript:PushEvent(event, data, ...)
     local eventfn = self.pushevent_postfn ~= nil and self.pushevent_postfn[event] or nil
 
     if eventfn ~= nil then
@@ -30,7 +30,7 @@ function EntityScript:PushEvent(event, data, ...)
     end
 
     _PushEvent(self, event, data, ...)
-end
+end end
 
 function EntityScript:GetEventCallbacks(event, source, source_file)
     source = source or self

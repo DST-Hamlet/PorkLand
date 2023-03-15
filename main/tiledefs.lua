@@ -40,6 +40,12 @@ local ChangeMiniMapTileRenderOrder = ChangeMiniMapTileRenderOrder
 local AddTile = AddTile
 GLOBAL.setfenv(1, GLOBAL)
 
+IA_OCEAN_TILES = rawget(_G, "IA_OCEAN_TILES") or {}
+IA_LAND_TILES = rawget(_G, "IA_LAND_TILES") or {}
+
+PL_OCEAN_TILES = IA_OCEAN_TILES
+PL_LAND_TILES = IA_LAND_TILES
+
 local is_worldgen = rawget(_G, "WORLDGEN_MAIN") ~= nil
 
 if not is_worldgen then
@@ -403,12 +409,6 @@ local pl_tiledefs = {
     },
 
 }
-
-IA_OCEAN_TILES = rawget(_G, "IA_OCEAN_TILES") or {}
-IA_LAND_TILES = rawget(_G, "IA_LAND_TILES") or {}
-
-PL_OCEAN_TILES = IA_OCEAN_TILES
-PL_LAND_TILES = IA_LAND_TILES
 
 for tile, def in pairs(pl_tiledefs) do
     local range = def.tile_range

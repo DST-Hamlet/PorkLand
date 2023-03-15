@@ -15,6 +15,7 @@ PL_CONFIG = {
 modimport("main/tuning")
 modimport("main/constants")
 
+modimport("main/pl_util")
 modimport("main/util")
 modimport("main/commands")
 modimport("main/standardcomponents")

@@ -44,7 +44,7 @@ function SeasonClock:OnSeasonLengthsChanged(data, ...)
         return _OnSeasonLengthsChanged(self, data, ...)
     end
 end
-gemrun("hidefn", SeasonClock.OnSeasonLengthsChanged, _OnSeasonLengthsChanged)
+Pl_Util.HideHackFn(SeasonClock.OnSeasonLengthsChanged, _OnSeasonLengthsChanged)
 
 local _OnCyclesChanged = SeasonClock.OnCyclesChanged
 function SeasonClock:OnCyclesChanged(...)
@@ -79,4 +79,4 @@ function SeasonClock:OnCyclesChanged(...)
         self:OnLoseFocus()
     end
 end
-gemrun("hidefn", SeasonClock.OnCyclesChanged, _OnCyclesChanged)
+Pl_Util.HideHackFn(SeasonClock.OnCyclesChanged, _OnCyclesChanged)

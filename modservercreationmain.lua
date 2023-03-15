@@ -12,6 +12,9 @@ end
 local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
+PLENV.modimport("main/pl_util")
+PLENV.modimport("modfrontendmain")
+
 local Menu = require("widgets/menu")
 local ImageButton = require("widgets/imagebutton")
 
@@ -19,15 +22,6 @@ local Customize = require("map/customize")
 
 local worldgen_atlas = "images/worldgen_customization.xml"
 local pl_atlas = "images/hud/customization_porkland.xml"
-
-local function GetUpvalue(fn, name)
-	local i = 1
-	while debug.getupvalue(fn, i) and debug.getupvalue(fn, i) ~= name do
-		i = i + 1
-	end
-	local _, value = debug.getupvalue(fn, i)
-	return value, i
-end
 
 local function add_group_and_item(category, name, text, desc, atlas, order, items)
     if text then  -- assume that if the group has a text string its new
@@ -124,8 +118,8 @@ local change_items = {  -- change dst custonsiz settings
     }
 }
 
-local WORLDGEN_GROUP = GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
-local WORLDSETTINGS_GROUP = GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
+local WORLDGEN_GROUP = Pl_Util.GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
+local WORLDSETTINGS_GROUP = Pl_Util.GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
 for category, category_data in pairs(change_items) do
     local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
     for group, items in pairs(category_data) do

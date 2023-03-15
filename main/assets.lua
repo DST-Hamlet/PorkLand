@@ -22,8 +22,7 @@ PrefabFiles = {
     "weevole",
 }
 
-local AddInventoryItemAtlas = gemrun("tools/misc").Local.AddInventoryItemAtlas
-AddInventoryItemAtlas(resolvefilepath("images/pl_inventoryimages.xml"))
+Pl_Util.RegisterInventoryItemAtlas(resolvefilepath("images/pl_inventoryimages.xml"))
 
 Assets = {
     -- inventoryimages
@@ -35,8 +34,12 @@ Assets = {
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),
 
     -- fx
+    -- poison
     Asset("ATLAS", "images/overlays/fx3.xml"),
     Asset("IMAGE", "images/overlays/fx3.tex"),
+    -- fog
+    Asset("ATLAS", "images/overlays/fx5.xml"),
+    Asset("IMAGE", "images/overlays/fx5.tex"),
 
     -- player_actions
     Asset("ANIM", "anim/player_actions_hack.zip"),

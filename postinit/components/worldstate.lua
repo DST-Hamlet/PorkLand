@@ -16,7 +16,7 @@ AddComponentPostInit("worldstate", function(self, inst)
     --------------------------------------------------------------------------
 
     local OnTemperatureTick = inst:GetEventCallbacks("temperaturetick", TheWorld, "scripts/components/worldstate.lua")
-    local SetVariable = UpvalueHacker.GetUpvalue(OnTemperatureTick, "SetVariable")
+    local SetVariable = Pl_Util.GetUpvalue(OnTemperatureTick, "SetVariable")
 
     --------------------------------------------------------------------------
     --[[ Private event handlers ]]

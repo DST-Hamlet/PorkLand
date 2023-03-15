@@ -1,5 +1,3 @@
----@diagnostic disable: lowercase-global
-
 local function en_zh(en, zh)  -- Other languages don't work
     return (locale == "zh" or locale == "zhr" or locale == "zht") and zh or en
 end
@@ -20,14 +18,6 @@ priority = -1
 
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
-
-mod_dependencies = {
-    {  -- GEMCORE
-        workshop = "workshop-1378549454",
-        ["GemCore"] = false,
-        ["[API] Gem Core - GitLab Version"] = true,
-    },
-}
 
 server_filter_tags = {"hamltet", "porkland"}
 

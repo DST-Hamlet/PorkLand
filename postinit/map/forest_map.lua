@@ -46,11 +46,11 @@ end
 
 local SKIP_GEN_CHECKS = false
 local _Generate = forest_map.Generate
-local GetTileForNoiseTile = UpvalueHacker.GetUpvalue(_Generate, "GetTileForNoiseTile")
-local pickspawnprefab = UpvalueHacker.GetUpvalue(_Generate, "pickspawnprefab")
-local pickspawngroup = UpvalueHacker.GetUpvalue(_Generate, "pickspawngroup")
-local pickspawncountprefabforground = UpvalueHacker.GetUpvalue(_Generate, "pickspawncountprefabforground")
-local TranslateWorldGenChoices = UpvalueHacker.GetUpvalue(_Generate, "TranslateWorldGenChoices")
+local GetTileForNoiseTile = Pl_Util.GetUpvalue(_Generate, "GetTileForNoiseTile")
+local pickspawnprefab = Pl_Util.GetUpvalue(_Generate, "pickspawnprefab")
+local pickspawngroup = Pl_Util.GetUpvalue(_Generate, "pickspawngroup")
+local pickspawncountprefabforground = Pl_Util.GetUpvalue(_Generate, "pickspawncountprefabforground")
+local TranslateWorldGenChoices = Pl_Util.GetUpvalue(_Generate, "TranslateWorldGenChoices")
 
 forest_map.Generate = function(prefab, map_width, map_height, tasks, level, level_type, ...)
     assert(level.overrides ~= nil, "Level must have overrides specified.")
