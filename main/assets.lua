@@ -38,8 +38,8 @@ Assets = {
     Asset("ATLAS", "images/overlays/fx3.xml"),
     Asset("IMAGE", "images/overlays/fx3.tex"),
     -- fog
-    Asset("ATLAS", "images/overlays/fx5.xml"),
-    Asset("IMAGE", "images/overlays/fx5.tex"),
+    -- Asset("ATLAS", "images/overlays/fx5.xml"),
+    -- Asset("IMAGE", "images/overlays/fx5.tex"),
 
     -- player_actions
     Asset("ANIM", "anim/player_actions_hack.zip"),
