@@ -1,5 +1,6 @@
-local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
+
+local ColourCube = require("components/colourcube")
 
 local PL_SEASON_COLOURCUBES = {
     [SEASONS.TEMPERATE] = {
@@ -28,8 +29,8 @@ local PL_SEASON_COLOURCUBES = {
     },
 }
 
-AddComponentPostInit("colourcube", function(self, inst)
-    local OnSeasonTick = inst:GetEventCallbacks("seasontick", nil, "scripts/components/colourcube.lua")
+function ColourCube:AddPlSeasonColourCube()
+    local OnSeasonTick = self.inst:GetEventCallbacks("seasontick", nil, "scripts/components/colourcube.lua")
 
     local SEASON_COLOURCUBES = nil
 
@@ -38,7 +39,7 @@ AddComponentPostInit("colourcube", function(self, inst)
     end
 
     if not SEASON_COLOURCUBES then  -- try again
-        local OnPlayerActivated = inst:GetEventCallbacks("playeractivated", nil, "scripts/components/colourcube.lua")
+        local OnPlayerActivated = self.inst:GetEventCallbacks("playeractivated", nil, "scripts/components/colourcube.lua")
         if OnPlayerActivated then
             SEASON_COLOURCUBES = Pl_Util.GetUpvalue(OnPlayerActivated, "SEASON_COLOURCUBES", 10)  -- OnPlayerActivated->OnOverrideCCTable->UpdateAmbientCCTable->SEASON_COLOURCUBES
         end
@@ -49,4 +50,4 @@ AddComponentPostInit("colourcube", function(self, inst)
             SEASON_COLOURCUBES[season] = data
         end
     end
-end)
+end
