@@ -22,7 +22,7 @@ PrefabFiles = {
     "weevole",
 }
 
-Pl_Util.RegisterInventoryItemAtlas(resolvefilepath("images/pl_inventoryimages.xml"))
+Pl_Util.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")
 
 Assets = {
     -- inventoryimages

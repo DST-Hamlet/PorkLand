@@ -2,6 +2,48 @@ local assets =
 {
     Asset("SCRIPT", "scripts/prefabs/world.lua"),
 
+    -- colourcube
+    Asset("IMAGE", "images/colour_cubes/day05_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/dusk03_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/night03_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/snow_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/snowdusk_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/night04_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/summer_day_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/summer_dusk_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/summer_night_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/spring_day_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/spring_dusk_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/spring_night_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/insane_day_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/insane_dusk_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/insane_night_cc.tex"),
+	Asset("IMAGE", "images/colour_cubes/lunacy_regular_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/purple_moon_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/moonstorm_cc.tex"),
+
+    -- porkland colourcube
+    Asset("IMAGE", "images/colour_cubes/pork_temperate_day_cc.tex"),
+	Asset("IMAGE", "images/colour_cubes/pork_temperate_dusk_cc.tex"),
+	Asset("IMAGE", "images/colour_cubes/pork_temperate_night_cc.tex"),
+	Asset("IMAGE", "images/colour_cubes/pork_temperate_fullmoon_cc.tex"),
+    -- Asset("IMAGE", "images/colour_cubes/pork_temperate_bloodmoon_cc.tex"),
+
+	Asset("IMAGE", "images/colour_cubes/pork_cold_day_cc.tex"),
+	Asset("IMAGE", "images/colour_cubes/pork_cold_dusk_cc.tex"),
+	Asset("IMAGE", "images/colour_cubes/pork_cold_night_cc.tex"),
+	Asset("IMAGE", "images/colour_cubes/pork_cold_fullmoon_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_cold_bloodmoon_cc.tex"),
+
+	-- Asset("IMAGE", "images/colour_cubes/pork_warm_day_cc.tex"),
+	-- Asset("IMAGE", "images/colour_cubes/pork_warm_dusk_cc.tex"),
+	-- Asset("IMAGE", "images/colour_cubes/pork_warm_night_cc.tex"),
+	Asset("IMAGE", "images/colour_cubes/pork_warm_fullmoon_cc.tex"),
+    -- Asset("IMAGE", "images/colour_cubes/pork_warm_bloodmoon_cc.tex"),
+
+	Asset("IMAGE", "images/colour_cubes/pork_lush_dusk_test.tex"),
+	Asset("IMAGE", "images/colour_cubes/pork_lush_day_test.tex"),
+
     Asset("IMAGE", "images/wave.tex"),
     Asset("IMAGE", "images/wave_shadow.tex"),
     Asset("IMAGE", "images/could/fog_cloud.tex"),
@@ -63,7 +105,7 @@ local function common_postinit(inst)
         -- inst:AddComponent("dynamicmusic")
         -- inst:AddComponent("ambientsound")
         inst:AddComponent("dsp")
-        -- inst:AddComponent("colourcube")
+        inst:AddComponent("colourcube")
         inst:AddComponent("hallucinations")
         inst:AddComponent("wavemanager")
         inst.Map:SetUndergroundFadeHeight(0)

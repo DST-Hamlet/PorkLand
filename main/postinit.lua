@@ -2,6 +2,7 @@
 local components_post = {
     "actionqueuer",
     "clock",
+    "colourcube",
     "combat",
     "health",
     "inventoryitem",
