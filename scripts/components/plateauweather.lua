@@ -870,8 +870,8 @@ return Class(function(self, inst)
                 if _ismastersim then
                     _fogtime:set(FOG_TRANSITION_TIME)
                     _fogstate:set(FOG_STATE.LIFTING)
-                    _fullfog = false
                 end
+                _fullfog = false
             end
 
             if _fogstate:value() == FOG_STATE.LIFTING then

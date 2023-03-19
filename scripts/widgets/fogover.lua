@@ -83,7 +83,11 @@ function FogOver:OnUpdate(dt)
         self:Show()
     end
 
-    local x, y, z = TheSim:GetAmbientColour()
+    local x, y, z = 0, 0, 0
+    if TheWorld.components.ambientlighting then
+        x, y, z = TheWorld.components.ambientlighting:GetRealColour()
+    end
+
     x = math.min(x * 1.5, 1)
     y = math.min(y * 1.5, 1)
     z = math.min(z * 1.5, 1)
