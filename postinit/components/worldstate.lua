@@ -68,7 +68,7 @@ AddComponentPostInit("worldstate", function(self, inst)
     data.preaporkalypseseason = "temperate"
     data.preaporkalypseseasonprogress = 0
     data.fullfog = false
-    data.fogstate = FOG_STATE.SETTING
+    data.fogstate = FOG_STATE.CLEAR
     data.fogtime = 0
     data.fog_transition_time = 10
 
