@@ -446,6 +446,9 @@ return Class(function(self, inst)
         if _hasfx then
             _rainfx.entity:SetParent(nil)
             _pollenfx.entity:SetParent(nil)
+            if player == ThePlayer then
+                _fullfog = false
+            end
         end
     end
 
@@ -849,12 +852,11 @@ return Class(function(self, inst)
                         end
                     end
                 end
-            elseif not _fullfog then  -- on load
+            elseif not _fullfog then  -- on load or change character
                 if _hasfx then
                     if ThePlayer ~= nil then
                         _fullfog = true
                         ThePlayer:PushEvent("setfog")
-                        ThePlayer:PushEvent("startfoggrog")
                     end
                 else
                     _fullfog = true

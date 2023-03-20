@@ -44,7 +44,7 @@ AddComponentPostInit("worldstate", function(self, inst)
     end
 
     local function OnPlateauWeatherTick(src, data)
-        SetVariable("fullfog", data.fullfog)
+        SetVariable("fullfog", data.fogstate == FOG_STATE.FOGGY)
         SetVariable("fogstate", data.fogstate)
         SetVariable("fogtime", data.fogtime)
         SetVariable("fog_transition_time", data.fog_transition_time)

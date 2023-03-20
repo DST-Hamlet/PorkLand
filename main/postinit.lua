@@ -5,6 +5,7 @@ local components_post = {
     "clock",
     "colourcube",
     "combat",
+    "grogginess",
     "health",
     "inventory",
     "inventoryitem",
