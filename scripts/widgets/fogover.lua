@@ -31,7 +31,6 @@ function FogOver:StartFog()
         self.alphagoal = 1
 
         self:StartUpdating()
-        self:Show()
     end
 end
 
@@ -49,7 +48,6 @@ function FogOver:SetFog(off)
         self.foggy = true
         self.alpha = 1
         self:StartUpdating()
-        self:Show()
     end
 end
 
@@ -77,12 +75,6 @@ end
 function FogOver:OnUpdate(dt)
     self:UpdateAlpha(dt)
 
-    if self.owner.replica.inventory:EquipHasTag("clearfog") then -- or TheCamera.interior
-        self:Hide()
-    else
-        self:Show()
-    end
-
     local x, y, z = 0, 0, 0
     if TheWorld.components.ambientlighting then
         x, y, z = TheWorld.components.ambientlighting:GetRealColour()
@@ -97,6 +89,12 @@ function FogOver:OnUpdate(dt)
     if self.alpha == 0 and self.alphagoal == 0 then
         self:Hide()
         self:StopUpdating()
+    end
+
+    if self.owner.replica.inventory:EquipHasTag("clearfog") then -- or TheCamera.interior
+        self:Hide()
+    else
+        self:Show()
     end
 end
 
