@@ -115,6 +115,13 @@ return Class(function(self, inst)
         humid = 900
     }
 
+    local FOG_MODE_NAMES =
+    {
+        "dynamic",
+        "never",
+    }
+    local FOG_MODES = table.invert(FOG_MODE_NAMES)
+
     local FOG_TRANSITION_TIME = 10
 
     --------------------------------------------------------------------------
@@ -204,6 +211,7 @@ return Class(function(self, inst)
     local _moistureratemultiplier
     local _moistureceilmultiplier
     local _moisturefloormultiplier
+    local _fogmode
     local _lightningmode
     local _minlightningdelay
     local _maxlightningdelay
@@ -486,6 +494,10 @@ return Class(function(self, inst)
         _moisturerate:set(CalculateMoistureRate())
     end or nil
 
+    local OnSetFogMode = _ismastersim and function(src, mode)
+        _fogmode = FOG_MODES[mode] or FOG_MODES.dynamic
+    end or nil
+
     local OnDeltaMoisture = _ismastersim and function(src, delta)
         _moisture:set(math.min(math.max(_moisture:value() + delta, _moisturefloor:value()), _moistureceil:value()))
     end or nil
@@ -661,6 +673,7 @@ return Class(function(self, inst)
         _moistureratemultiplier = 1
         _moistureceilmultiplier = {min = 1, max = 2}
         _moisturefloormultiplier = 1
+        _fogmode = FOG_MODES.dynamic
         _lightningmode = LIGHTNING_MODES.rain
         _minlightningdelay = nil
         _maxlightningdelay = nil
@@ -687,6 +700,7 @@ return Class(function(self, inst)
         inst:ListenForEvent("ms_forceprecipitation", OnForcePrecipitation, _world)
         inst:ListenForEvent("ms_setprecipitationmode", OnSetPrecipitationMode, _world)
         inst:ListenForEvent("ms_setmoisturescale", OnSetMoistureScale, _world)
+        inst:ListenForEvent("ms_setfogmode", OnSetFogMode, _world)
         inst:ListenForEvent("ms_deltamoisture", OnDeltaMoisture, _world)
         inst:ListenForEvent("ms_deltamoistureceil", OnDeltaMoistureCeil, _world)
         inst:ListenForEvent("ms_deltawetness", OnDeltaWetness, _world)
@@ -829,7 +843,7 @@ return Class(function(self, inst)
         -- Update fog
         -- fog is created instead of rain during the humid season when it should rain and the atmo moisture is above a threshold
         -- client fog state wait for server sync
-        if FOG_MOISTURE_CEIL[_season] and _moisture:value() >= FOG_MOISTURE_CEIL[_season] and _preciptype:value() ~= PRECIP_TYPES.none then
+        if FOG_MOISTURE_CEIL[_season] and _moisture:value() >= FOG_MOISTURE_CEIL[_season] and _preciptype:value() == PRECIP_TYPES.rain and _fogmode ~= FOG_MODES.never then
             if _fogstate:value() ~= FOG_STATE.FOGGY then
                 if _fogstate:value() ~= FOG_STATE.SETTING then
                     if _ismastersim then
