@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "Ha! Wolfgang beat the heat!",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "Wolfgang don't like %s in this heat.",
+        "Is too muggy.",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "Is clock of scary things.",
         ARMOR_WEEVOLE = "Wolfgang win!",

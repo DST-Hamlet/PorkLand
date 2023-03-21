@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "Ah! Th'air be cool again.",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "Arrgh! It be hot!",
+        "This %s is makin' me sweat me britches.",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "Tha time be nigh!",
         ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",

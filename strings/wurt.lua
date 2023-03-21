@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "Huh, cool off.",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "%s is hot!",
+        "I don't want to wear %s anymore!",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "Stuff form bad story!",
         ARMOR_WEEVOLE = "Nice and comfortable armor.",

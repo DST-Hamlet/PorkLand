@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "Freedom, this is me!",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "I can't stand %s anymore!",
+        "Take off %s.",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "Magic on such a large scale, man, this is going to be fun.",
         ARMOR_WEEVOLE = "I'm getting goosebumps.",

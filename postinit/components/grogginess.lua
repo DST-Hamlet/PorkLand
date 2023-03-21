@@ -5,7 +5,7 @@ local Grogginess = require("components/grogginess")
 
 local _OnUpdate = Grogginess.OnUpdate
 function Grogginess:OnUpdate(...)
-    if self.grog_amount <= 0 and self.foggygroggy and self:HasOverHeatinggear() then  -- not TheCamera.interior
+    if self.grog_amount <= 0 and self.foggygroggy then  -- not TheCamera.interior
         if not self.inst:HasTag("groggy") then
             self.inst:AddTag("groggy")
         end
@@ -18,6 +18,14 @@ function Grogginess:OnUpdate(...)
     end
 end
 
+local _RemoveEventCallback = Grogginess.OnRemoveFromEntity
+function Grogginess:OnRemoveFromEntity(...)
+    self.SetFogyGroggy(self.inst, false)
+    self.foggygroggy = false
+
+    _RemoveEventCallback(self, ...)
+end
+
 function Grogginess:HasOverHeatinggear()
     if self.inst:HasTag("venting") then
         return
@@ -28,31 +36,43 @@ function Grogginess:HasOverHeatinggear()
 
         local hotitems = {}
         for esslot, item in pairs(self.inst.components.inventory.equipslots) do
-            if esslot ~= EQUIPSLOTS.HANDS and not item:HasTag("vented") then
+            if (esslot ~= EQUIPSLOTS.HANDS and esslot ~= EQUIPSLOTS.BEARD) and not item:HasTag("vented") then
                 table.insert(hotitems, item)
             end
         end
 
         if #hotitems > 0 then
             return hotitems
-        else
-            if self.inst:HasTag("groggy") then
-                self.inst.components.talker:Say(GetString(self.inst, "ANNOUNCE_DEHUMID"))
-            end
         end
     end
 end
 
-function Grogginess:OnEquip(data)
+function Grogginess.OnEquipChange(inst, data)
+    local self = inst.components.grogginess
+
+    local hotitems = self:HasOverHeatinggear()
+
+    if self.foggygroggy then
+        self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil  -- if equip venting
+
+        if not self.foggygroggy then
+            if inst.components.talker then
+                inst.components.talker:Say(GetString(inst, "ANNOUNCE_DEHUMID"))
+            end
+            return
+        end
+    end
+
+    self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil
+
     if not self.foggygroggy then
         return
     end
 
-    self.inst:StartUpdatingComponent(self)
+    inst:StartUpdatingComponent(self)
 
-    local hotitems = self:HasOverHeatinggear()
-    if hotitems and #hotitems > 0 then
-        local string = hotitems[1].name
+    local string = hotitems[1].name
+    if hotitems then
         if data and data.item then
             string = nil
             for eslot, item in ipairs(hotitems)do
@@ -62,24 +82,29 @@ function Grogginess:OnEquip(data)
                 end
             end
         end
-        if string then
-            self.inst.components.talker:Say(string.format(GetString(self.inst, "ANNOUNCE_TOO_HUMID"), string))
+        if string and inst.components.talker then
+            inst.components.talker:Say(string.format(GetString(inst, "ANNOUNCE_TOO_HUMID"), string))
         end
     end
 end
 
-function Grogginess:SetFogyGroggy(enable)
-    self.foggygroggy = enable
-    if enable and not self.inst:HasTag("groggy") then
-        self.inst:StartUpdatingComponent(self)
-        self:OnEquip()
+function Grogginess.SetFogyGroggy(inst, enable)
+    local self = inst.components.grogginess
+
+    if enable then
+        inst:ListenForEvent("equip", self.OnEquipChange)
+        inst:ListenForEvent("unequip", self.OnEquipChange)
+        self.OnEquipChange(inst)
+    else
+        inst:RemoveEventCallback("equip", self.OnEquipChange)
+        inst:RemoveEventCallback("unequip", self.OnEquipChange)
+        self.OnEquipChange(inst)
     end
 end
 
 AddComponentPostInit("grogginess", function(self, inst)
     self.foggygroggy = false
 
-    inst:ListenForEvent("equip", function(inst, data) self:OnEquip(data) end)
-    inst:WatchWorldState("fullfog", function(src, fullfog) self:SetFogyGroggy(fullfog) end)
-    self:SetFogyGroggy(TheWorld.state.fullfog)
+    inst:WatchWorldState("fullfog", self.SetFogyGroggy)
+    self.SetFogyGroggy(self.inst, TheWorld.state.fullfog)
 end)

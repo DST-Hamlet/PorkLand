@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "Ah... that breeze is nice.",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "This %s is unbearable.",
+        "This %s makes it too hot.",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "Ah. Quite a complex form of clockwork.",
         ARMOR_WEEVOLE = "Armour made from bug exoskeleton.",

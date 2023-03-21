@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "Whew. I forgot what it felt like to breathe.",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "This %s is suffocating.",
+        "This %s is just too hot!",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "If only I could turn time back to before I crashed here.",
         ARMOR_WEEVOLE = "If only it had those bug wings.",

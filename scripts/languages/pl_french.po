@@ -15,6 +15,21 @@ msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
 msgstr "Couper"
 
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_DEHUMID.1"
+msgid "Ah, so much better."
+msgstr "Ah, c'est bien mieux."
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.1"
+msgid "This %s is so heavy."
+msgstr "Ce %s est trop lourd."
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.2"
+msgid "This %s is too hot."
+msgstr "Ce %s est trop chaud."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Looks scientifically apocalyptic."
@@ -94,6 +109,21 @@ msgstr "Youpi !"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "I'll be careful with this carapace."
 msgstr "Prudence avec cette carapace."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_DEHUMID.1"
+msgid "Ahhh. The season has turned."
+msgstr "Ahhh. Nous avons changé de saison."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.1"
+msgid "This %s really weighs me down."
+msgstr "Ce %s me ralentit beaucoup."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.2"
+msgid "The humid air is making this %s heavy."
+msgstr "L'air humide alourdit ce %s."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.APORKALYPSE_CLOCK"
@@ -180,6 +210,21 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Excellent! It's the exoskeleton of a hexapod invertebrate!"
 msgstr "Excellent ! Ceci est l'exosquelette d'un invertébré hexapode !"
 
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_DEHUMID.1"
+msgid "Ah... A nice cool breeze."
+msgstr "Ah... Un bon vent frais."
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.1"
+msgid "Ugh. This %s is soooo muggy."
+msgstr "Beuh. Ce %s est troooop lourd."
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.2"
+msgid "This %s is really warm."
+msgstr "Ce %s est vraiment chaud."
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "I hate clocks."
@@ -260,6 +305,21 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Ew. Bug skin."
 msgstr "Pouah. De la peau d'insecte."
 
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_DEHUMID.1"
+msgid "Still more comfortable this way."
+msgstr "Encore plus confortable ainsi."
+
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.1"
+msgid "I'm bored."
+msgstr "Je m'ennuie."
+
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.2"
+msgid "%s is not breathable at all."
+msgstr "%s n'est pas du tout respirant."
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Oh no! It's a doomsday prophecy!"
@@ -335,6 +395,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Let's put it away, it might be useful."
 msgstr "Rangeons-le, ça pourrait être utile."
 
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_DEHUMID.1"
+msgid "Ha, feeling better."
+msgstr "Ha, ça va mieux."
+
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.1"
+msgid "Wearing %s is a shame."
+msgstr "Porter %s est une honte."
+
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.2"
+msgid "This terrible weather... I really shouldn't be wearing %s."
+msgstr "Ce temps terrible... Je ne devrais vraiment pas porter %s."
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Keeping track of their movements...very clever idea."
@@ -409,6 +484,21 @@ msgstr "Je me souviens qu'il mordait."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Evil, exudes a strange smell."
 msgstr "Evil, dégage une odeur étrange."
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_DEHUMID.1"
+msgid "Ah, I feel better now."
+msgstr "Ah, je me sens mieux."
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.1"
+msgid "Mon dieu! This %s is humid."
+msgstr "Mon dieu ! Ce %s est humide."
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.2"
+msgid "Whew. This %s is hot."
+msgstr "Ouf. Ce %s est chaud."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.APORKALYPSE_CLOCK"
@@ -490,6 +580,21 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "The crust of a bug."
 msgstr "La croûte d'un insecte."
 
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_DEHUMID.1"
+msgid "The haze has lifted."
+msgstr "Le bröuillard s'est levé !"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.1"
+msgid "This %s is crushing my spirit."
+msgstr "Ce %s anéantit mön esprit."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.2"
+msgid "This %s burns like Sol."
+msgstr "Ce %s brûle tel le söleil."
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "It controls Ragnarok!"
@@ -569,6 +674,21 @@ msgstr "Un parasite dans cette cöntrée !"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "The skin of my enemy."
 msgstr "La peau de mön ennemi."
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_DEHUMID.1"
+msgid "Ah! That feels better."
+msgstr "Ah ! Voilà qui est mieux."
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.1"
+msgid "This %s is too much."
+msgstr "Ce %s est insupportable."
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.2"
+msgid "This %s is hotter than I like."
+msgstr "Ce %s est trop chaud à mon goût."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.APORKALYPSE_CLOCK"
@@ -650,6 +770,21 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Ugh."
 msgstr "Beurk."
 
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_DEHUMID.1"
+msgid "Whew! Not so hot anymore."
+msgstr "Ouf ! Il fait plus aussi chaud."
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.1"
+msgid "Ugh. We're really baking in this %s."
+msgstr "Argh. On crève de chaud dans ce %s."
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.2"
+msgid "Wow! This %s is making us hot."
+msgstr "Ouah ! Ce %s donne un coup de chaud."
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "It's like a puzzle!"
@@ -729,6 +864,21 @@ msgstr "Ces insectes sont fatigants."
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "It's the outer part of those bugs."
 msgstr "C'est ce que les insectes ont à l'extérieur."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_DEHUMID.1"
+msgid "The heat has lifted but my heart has not."
+msgstr "Il fait plus chaud, mais pas dans mon cœur."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.1"
+msgid "This %s is heavier in the heat."
+msgstr "Ce %s pèse plus lourd par cette chaleur."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.2"
+msgid "This %s is too hot. It weighs on my soul."
+msgstr "Ce %s est brûlant. Son poids écrase mon âme."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.APORKALYPSE_CLOCK"
@@ -810,6 +960,21 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Bits of bug carcass."
 msgstr "Des morceaux de carcasse d'insecte."
 
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_DEHUMID.1"
+msgid "Whew. I forgot what it felt like to breathe."
+msgstr "Ouf. J'avais oublié ce que c'était de respirer un bon coup."
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.1"
+msgid "This %s is suffocating."
+msgstr "On suffoque avec ce %s."
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.2"
+msgid "This %s is just too hot!"
+msgstr "Ce %s est vraiment trop chaud !"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "If only I could turn time back to before I crashed here."
@@ -889,6 +1054,21 @@ msgstr "Saletés d'insectes ! C'est gâché, de vous avoir donné des ailes."
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Light enough to fire out the Pew-matic."
 msgstr "Assez léger pour servir de muntion de Piou-matic."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_DEHUMID.1"
+msgid "Ah... that breeze is nice."
+msgstr "Ah... cette brise est agréable."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.1"
+msgid "This %s is unbearable."
+msgstr "Cet accessoire (%s) est insupportable."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.2"
+msgid "This %s makes it too hot."
+msgstr "Cet accessoire (%s) me donne trop chaud."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.APORKALYPSE_CLOCK"
@@ -970,6 +1150,26 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "The exoskeleton of a Coleoptera."
 msgstr "L'exosquelette d'un coléoptère."
 
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_DEHUMID.1"
+msgid "WILBA HAS'T COOLED"
+msgstr "WILBA EST RAFRAÎCHIE !"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_DEHUMID.2
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_DEHUMID.2"
+msgid "AHH. WILBA 'TIS BETTER"
+msgstr "AHH, WILBA VA MIEUX"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.1"
+msgid "WILBA AM TOO MUCH I' THE HEAT"
+msgstr "WILBA EST TROP EXPOSÉE À LA CHALEUR"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.2"
+msgid "THE AIR 'TIS FULL OF HEAT"
+msgstr "L'AIR EST TROP CHAUD"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "TIME AND THE HOUR RUNS THROUGH IT"
@@ -1049,6 +1249,21 @@ msgstr "OUSTE LES BESTIOLES"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "WILBA BEAT ANNOYING BUGS"
 msgstr "WILBA COGNE LES BESTIOLES AGAÇANTES"
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_DEHUMID.1"
+msgid "Ahh...it's cooled down."
+msgstr "Ahh... Ça s'est rafraîchi."
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.1"
+msgid "It's burning hot. But not in a good way."
+msgstr "Il fait une chaleur mortelle. Mortelle au sens ''qui peut tuer''."
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.2"
+msgid "It's too hot."
+msgstr "Il fait trop chaud."
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.APORKALYPSE_CLOCK"
@@ -1130,6 +1345,21 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Ew."
 msgstr "Beurk."
 
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_DEHUMID.1"
+msgid "This is much more comfortable."
+msgstr "C'est beaucoup plus confortable."
+
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.1"
+msgid "%s is not breathable at all."
+msgstr "%s n'est pas du tout respirant."
+
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.2"
+msgid "This %s is so boring that I can't breathe."
+msgstr "Ce %s est tellement ennuyeux que je ne peux plus respirer."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "A fairly complex set of instrumentation."
@@ -1204,6 +1434,21 @@ msgstr "Les charançons ne sont rien si vous avez déjà eu affaire à des punai
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "It can be regarded as clean."
 msgstr "Il peut être considéré comme propre."
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_DEHUMID.1"
+msgid "Ha! Wolfgang beat the heat!"
+msgstr "Ha ! Wolfgang est plus fort que la chaleur !"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.1"
+msgid "Wolfgang don't like %s in this heat."
+msgstr "Wolfgang n'aime pas cet accessoire (%s) avec cette chaleur."
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.2"
+msgid "Is too muggy."
+msgstr "Il fait trop lourd et humide."
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.APORKALYPSE_CLOCK"
@@ -1285,6 +1530,21 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Is pesky bug skin."
 msgstr "C'est la carapace de la bestiole enquiquinante."
 
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_DEHUMID.1"
+msgid "That feels better."
+msgstr "C'est mieux comme ça."
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.1"
+msgid "It's blazing with this %s."
+msgstr "J'ai beaucoup trop chaud avec cet accessoire (%s)."
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.2"
+msgid "Whew! this %s is hot, eh?"
+msgstr "Fiou, cet accessoire (%s) donne sacrément chaud, hein ?"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Looks like it's the end of days."
@@ -1364,6 +1624,21 @@ msgstr "Cette bestiole est encore pire que les mouches noires."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "That'll teach 'em!"
 msgstr "Ça lui apprendra !"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_DEHUMID.1"
+msgid "Ah! Th'air be cool again."
+msgstr "Ah ! Y fait meilleur."
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.1"
+msgid "Arrgh! It be hot!"
+msgstr "Arrgh ! C'est qu'y fait chaud !"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.2"
+msgid "This %s is makin' me sweat me britches."
+msgstr "Cet accessoire (%s) m'fait suer de la poupe."
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.APORKALYPSE_CLOCK"
@@ -1445,6 +1720,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Longcoat made o' them pesky bugs."
 msgstr "Un manteau long fabriqué à partir d'ces fichues bestioles."
 
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_DEHUMID.1"
+msgid "Cooler now"
+msgstr "J'ai moins chaud maintenant."
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.1"
+msgid "%s is heavy"
+msgstr "Cet accessoire (%s) est trop lourd."
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.2"
+msgid "%s too hot"
+msgstr "Cet accessoire (%s) donne trop chaud."
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Tic Tock"
@@ -1525,6 +1815,21 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Crunchy"
 msgstr "C'est croquant."
 
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_DEHUMID.1"
+msgid "Freedom, this is me!"
+msgstr "Liberté, c'est moi !"
+
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_TOO_HUMID.1"
+msgid "I can't stand %s anymore!"
+msgstr "Je ne supporte plus %s !"
+
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_TOO_HUMID.2"
+msgid "Take off %s."
+msgstr "Décollez %s."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Magic on such a large scale, man, this is going to be fun."
@@ -1600,6 +1905,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "What remains of their armor."
 msgstr "Ce qui reste de leur armure."
 
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_DEHUMID.1"
+msgid "Huh, cool off."
+msgstr "Heu, calme-toi."
+
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.1"
+msgid "%s is hot!"
+msgstr "%s est chaud !"
+
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.2"
+msgid "I don't want to wear %s anymore!"
+msgstr "Je ne veux plus porter %s !"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Stuff form bad story!"
@@ -1674,6 +1994,21 @@ msgstr "va-t'en va-t'en !"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "hard shell."
 msgstr "coquille dure."
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_DEHUMID.1
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_DEHUMID.1"
+msgid "HUMIDEX HAS LOWERED TO ACCEPTABLE LEVELS"
+msgstr "INDICE D'HUMIDITÉ DÉSORMAIS ACCEPTABLE."
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.1
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.1"
+msgid "IT IS HOT"
+msgstr "IL FAIT CHAUD."
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.2
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.2"
+msgid "HUMIDEX REACHING LEVELS GREATER THAN 40"
+msgstr "INDICE D'HUMIDITÉ SUPÉRIEUR À 40."
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.APORKALYPSE_CLOCK"
