@@ -20,7 +20,8 @@ end
 
 local _RemoveEventCallback = Grogginess.OnRemoveFromEntity
 function Grogginess:OnRemoveFromEntity(...)
-    self.SetFogyGroggy(self.inst, false)
+    self.inst:RemoveEventCallback("equip", self.OnEquipChange)
+    self.inst:RemoveEventCallback("unequip", self.OnEquipChange)
     self.foggygroggy = false
 
     _RemoveEventCallback(self, ...)
@@ -71,19 +72,22 @@ function Grogginess.OnEquipChange(inst, data)
 
     inst:StartUpdatingComponent(self)
 
-    local string = hotitems[1].name
+    local name = hotitems[1]:GetBasicDisplayName()
     if hotitems then
         if data and data.item then
-            string = nil
+            name = nil
             for eslot, item in ipairs(hotitems)do
                 if item == data.item then
-                    string = item.name
+                    name = item.name
                     break
                 end
             end
         end
-        if string and inst.components.talker then
-            inst.components.talker:Say(string.format(GetString(inst, "ANNOUNCE_TOO_HUMID"), string))
+        if name and inst.components.talker then
+            if name == "MISSING NAME" then
+                name = hotitems[1]:GetDisplayName()
+            end
+            inst.components.talker:Say(string.format(GetString(inst, "ANNOUNCE_TOO_HUMID"), name))
         end
     end
 end
