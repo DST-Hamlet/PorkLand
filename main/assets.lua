@@ -20,6 +20,11 @@ PrefabFiles = {
     -- "tubertrees",
     "weevole_carapace",
     "weevole",
+    "rabid_beetle",
+    "glowfly_cocoon",
+    "glowfly",
+    "tree_pillar",
+    "flower_rainforest",
 }
 
 Pl_Util.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")
