@@ -37,7 +37,8 @@ function Grogginess:HasOverHeatinggear()
 
         local hotitems = {}
         for esslot, item in pairs(self.inst.components.inventory.equipslots) do
-            if (esslot ~= EQUIPSLOTS.HANDS and esslot ~= EQUIPSLOTS.BEARD) and not item:HasTag("vented") then
+            if (esslot ~= EQUIPSLOTS.HANDS and esslot ~= EQUIPSLOTS.BEARD) and
+            not (item:HasTag("vented") or item:HasTag("heavy")) then  -- Heacy item don't grogginess, Because had
                 table.insert(hotitems, item)
             end
         end
