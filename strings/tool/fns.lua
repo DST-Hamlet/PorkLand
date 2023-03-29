@@ -91,7 +91,7 @@ function merge_table(target, add_table, override)
 
             merge_table(target[k], v, override)
         else
-            if is_array(target) and not override then
+            if is_array(target) and not override and target[k] ~= v then
                 table.insert(target, v)
             elseif not target[k] or override then
                 target[k] = v
@@ -133,7 +133,12 @@ function table_to_string(t, indent)
             if type(v) == "string" then
                 value = "\"" .. v .. "\""
             end
-            str = str .. dent .. k .. " = " .. value .. "," .. "\n"
+
+            if type(k) == "number" then
+                str = str .. dent .. value .. "," .. "\n"
+            else
+                str = str .. dent .. k .. " = " .. value .. "," .. "\n"
+            end
         end
     end
 

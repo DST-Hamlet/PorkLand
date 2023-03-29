@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "The haze has lifted.",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "This %s is crushing my spirit.",
+        "This %s burns like Sol.",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "It controls Ragnarok!",
         ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",

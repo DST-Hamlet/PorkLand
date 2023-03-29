@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "The heat has lifted but my heart has not.",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "This %s is heavier in the heat.",
+        "This %s is too hot. It weighs on my soul.",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "Clockwork for the end of times.",
         ARMOR_WEEVOLE = "Something died so that this armor may exist.",

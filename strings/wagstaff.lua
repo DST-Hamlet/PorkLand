@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "Ahhh. The season has turned.",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "This %s really weighs me down.",
+        "The humid air is making this %s heavy.",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "Wonderful! I wonder if I could make the world end sooner.",
         ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",

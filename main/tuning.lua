@@ -102,6 +102,8 @@ local tuning = {
         {time = 2.70 * total_day_time, damage_scale = 1.50, interval_scale = 0.7, fxlevel = 3}, -- 41.14 DMG
         {time = 2.90 * total_day_time, damage_scale = 2.00, interval_scale = 0.5, fxlevel = 4}, -- 38.40 DMG
     },
+
+    FOG_MOISTURE_RATE_SCALE = 0.6
 }
 
 for key, value in pairs(tuning) do

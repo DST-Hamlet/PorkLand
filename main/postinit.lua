@@ -1,12 +1,16 @@
 -- Update this list when adding files
 local components_post = {
     "actionqueuer",
+    "ambientlighting",
     "clock",
     "colourcube",
     "combat",
+    "grogginess",
     "health",
+    "inventory",
     "inventoryitem",
     "lootdropper",
+    "moisture",
     "playercontroller",
     "regrowthmanager",
     "rider_replica",
