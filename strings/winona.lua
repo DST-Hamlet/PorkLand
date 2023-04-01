@@ -1,4 +1,11 @@
 return {
+    ANNOUNCE_DEHUMID = {
+        "This is much more comfortable.",
+    },
+    ANNOUNCE_TOO_HUMID = {
+        "%s is not breathable at all.",
+        "This %s is so boring that I can't breathe.",
+    },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "A fairly complex set of instrumentation.",
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",

@@ -36,15 +36,11 @@ Assets = {
     Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  -- for minisign
 
     -- hud
-    Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),
-
-    -- fx
-    -- poison
-    Asset("ATLAS", "images/overlays/fx3.xml"),
+    Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison
     Asset("IMAGE", "images/overlays/fx3.tex"),
-    -- fog
-    -- Asset("ATLAS", "images/overlays/fx5.xml"),
-    -- Asset("IMAGE", "images/overlays/fx5.tex"),
+    Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
+    Asset("IMAGE", "images/overlays/fx5.tex"),
+    Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 
     -- player_actions
     Asset("ANIM", "anim/player_actions_hack.zip"),

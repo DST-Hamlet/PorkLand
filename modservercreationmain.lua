@@ -102,7 +102,13 @@ local custonsiz_items = {  -- add in dst custonsiz
         },
         resources = {
             asparagus_regrowth = {image = "asparagus.tex"},
-        }
+        },
+        misc = {
+            fog = {desc = {
+                {text = STRINGS.UI.SANDBOXMENU.SLIDENEVER, data = "never"},
+                {text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default"},
+            }},
+        },
     }
 }
 

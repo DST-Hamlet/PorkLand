@@ -125,3 +125,11 @@ applyoverrides_post.asparagus_regrowth = function(difficulty)
     }
     OverrideTuningVariables(tuning_vars[difficulty])
 end
+
+applyoverrides_post.fog = function(difficulty)
+    if difficulty == "never" then
+        TheWorld:PushEvent("ms_setfogmode", "never")
+    elseif difficulty == "default" then
+        TheWorld:PushEvent("ms_setfogmode", "dynamic")
+    end
+end

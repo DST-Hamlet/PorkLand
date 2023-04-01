@@ -43,6 +43,12 @@ AddComponentPostInit("worldstate", function(self, inst)
         SetVariable("aporkalypselength", data.aporkalypse)
     end
 
+    local function OnPlateauWeatherTick(src, data)
+        SetVariable("fullfog", data.fogstate == FOG_STATE.FOGGY)
+        SetVariable("fogstate", data.fogstate)
+        SetVariable("fogtime", data.fogtime)
+        SetVariable("fog_transition_time", data.fog_transition_time)
+    end
 
     --------------------------------------------------------------------------
     --[[ Initialization ]]
@@ -61,6 +67,10 @@ AddComponentPostInit("worldstate", function(self, inst)
     data.isaporkalypse = false
     data.preaporkalypseseason = "temperate"
     data.preaporkalypseseasonprogress = 0
+    data.fullfog = false
+    data.fogstate = FOG_STATE.CLEAR
+    data.fogtime = 0
+    data.fog_transition_time = 10
 
     if TheWorld:HasTag("porkland") then
         local OnTemperatureTick = inst:GetEventCallbacks("temperaturetick", nil, "scripts/components/worldstate.lua")
@@ -70,9 +80,5 @@ AddComponentPostInit("worldstate", function(self, inst)
 
     inst:ListenForEvent("seasontick", OnSeasonTick)
     inst:ListenForEvent("seasonlengthschanged", OnSeasonLengthsChanged)
-
-    -- inst:ListenForEvent("snowcoveredchanged", function(inst, show)
-    --     TheSim:HideAnimOnEntitiesWithTag("Climate_island", "snow")
-    --     TheSim:HideAnimOnEntitiesWithTag("Climate_volcano", "snow")
-    -- end)
+    inst:ListenForEvent("plateauweathertick", OnPlateauWeatherTick)
 end)
