@@ -7,99 +7,89 @@ return Class(function(self, inst)
 assert(TheWorld.ismastersim, "GlowflySpawner should not exist on client")
 
 --------------------------------------------------------------------------
+--[[ Private constants ]]
+--------------------------------------------------------------------------
+
+local SEG_TIME = TUNING.SEG_TIME
+
+local GLOWFLYCOCOON_TIMERNAME = "glowfly_spawncocoons"
+
+local BASEDELAY_DEFAULT = TUNING.GLOWFLY_BASEDELAY_DEFAULT
+local BASEDELAY_MIN = TUNING.GLOWFLY_BASEDELAY_MIN
+local BASEDELAY_MAX = TUNING.GLOWFLY_BASEDELAY_MAX
+
+local DELAY_DEFAULT = TUNING.GLOWFLY_DELAY_DEFAULT
+local DELAY_MIN = TUNING.GLOWFLY_DELAY_MIN
+local DELAY_MAX = TUNING.GLOWFLY_DELAY_MAX
+
+local GLOWFLY_AMOUNT_DEFAULT = TUNING.GLOWFLY_DEFAULT
+local GLOWFLY_AMOUNT_MIN = TUNING.GLOWFLY_MIN
+local GLOWFLY_AMOUNT_MAX = TUNING.GLOWFLY_MAX
+
+--------------------------------------------------------------------------
 --[[ Member variables ]]
 --------------------------------------------------------------------------
 
---Public
+-- Public
 self.inst = inst
 
---Private
+-- Private
 local _world = TheWorld
-local _worldstate = _world.state
+local _worldsettingstimer = _world.components.worldsettingstimer
 
 local _updating = false
+local _cycle = false
 
 local _activeplayers = {}
 local _scheduledtasks = {}
+local _glowflys = {}
 
-local glowflys = {}
-
-local glowflycocoontask
-local glowflycocoontaskinfo
-local glowflyhatchtask
-local glowflyhatchtaskinfo
-
-local glowflydata = {
-    glowfly_amount = TUNING.GLOWFLYFLIES,
-    glowfly_amount_default = TUNING.DEFAULT_GLOWFLY,
-    glowfly_amount_max = TUNING.MAX_GLOWFLY,
-    glowfly_amount_min = TUNING.MIN_GLOWFLY
-}
+local _delay = DELAY_DEFAULT
+local _basedelay = BASEDELAY_DEFAULT
+local _glowfly_amount = GLOWFLY_AMOUNT_DEFAULT
 
 --------------------------------------------------------------------------
 --[[ Private member functions ]]
 --------------------------------------------------------------------------
 
--- 获取生成点
+local MUST_TAGS = {"flower_rainforest"}
 local function GetSpawnPoint(player)
-	local rad = 25
+    local rad = 25
     local mindistance = 36
-	local x,y,z = player.Transform:GetWorldPosition()
-    local MUST_TAGS = {"flower_rainforest"}
-	local flowers = TheSim:FindEntities(x,y,z, rad, MUST_TAGS)
+    local x, y, z = player.Transform:GetWorldPosition()
+    local flowers = TheSim:FindEntities(x, y, z, rad, MUST_TAGS)
 
-    for i, v in ipairs(flowers) do
-        while v ~= nil and player:GetDistanceSqToInst(v) <= mindistance do
+    for i, flower in ipairs(flowers) do
+        while flower ~= nil and player:GetDistanceSqToInst(flower) <= mindistance do
             table.remove(flowers, i)
-            v = flowers[i]
+            flower = flowers[i]
         end
     end
 
     return next(flowers) ~= nil and flowers[math.random(1, #flowers)] or nil
 end
 
--- 设置茧化倒计时
-local function SetBugCocoonTimer(inst)
-	inst.SetCocoonTask(inst)
-end
-
--- 开始茧化倒计时,推送spawncocoons
 local function StartCocoonTimer()
-	glowflydata.glowfly_amount = glowflydata.glowfly_amount_min
+    _glowfly_amount = GLOWFLY_AMOUNT_MIN
+    _delay = DELAY_MAX
+    _basedelay = BASEDELAY_MAX
 
-	for glowfly, _ in pairs(glowflys) do
-        if glowfly then
-            SetBugCocoonTimer(glowfly)
-        end
-	end
+    for glowfly in pairs(_glowflys) do
+        glowfly:SetCocoonTask()
+    end
 
     _world:PushEvent("spawncocoons")
 end
 
-local function SetGlowflyCocoontask(inst, time)
-	glowflycocoontask, glowflycocoontaskinfo = inst:ResumeTask(time, function()
-        StartCocoonTimer()
-    end)
-end
-
--- 设置萤火虫孵化
-local function SetGlowflyhatchtask(inst, time)
-	glowflyhatchtask, glowflyhatchtaskinfo = inst:ResumeTask(time, function()
-        _world:PushEvent("glowflyhatch")
-    end)
-end
-
--- 在玩家周围生成萤火虫
+local MUST_TAGS = {"glowfly"}
 local function SpawnGlowflyForPlayer(player, reschedule)
-    local pt = player:GetPosition()
-    local radius = 64
-    local MUST_TAGS = {"glowfly"}
-    local glowflys = TheSim:FindEntities(pt.x, pt.y, pt.z, radius, MUST_TAGS)
+    local x, y, z = player.Transform:GetWorldPosition()
+    local glowflys = TheSim:FindEntities(x, y, z, 64, MUST_TAGS)
 
-    if #glowflys < glowflydata.glowfly_amount then
-        local glowfly = SpawnPrefab("glowfly")
+    if #glowflys < _glowfly_amount then
         local spawnflower = GetSpawnPoint(player)
         if spawnflower ~= nil then
+            local glowfly = SpawnPrefab("glowfly")
             if glowfly.components.pollinator ~= nil then
                 glowfly.components.pollinator:Pollinate(spawnflower)
             end
@@ -115,8 +105,8 @@ end
 
 local function ScheduleSpawn(player, initialspawn)
     if _scheduledtasks[player] == nil then
-        local basedelay = initialspawn and 0.3 or 10
-        _scheduledtasks[player] = player:DoTaskInTime(basedelay + math.random() * 10, SpawnGlowflyForPlayer, ScheduleSpawn)
+        local basedelay = initialspawn and 0.3 or _basedelay
+        _scheduledtasks[player] = player:DoTaskInTime(basedelay + math.random() * _delay, SpawnGlowflyForPlayer, ScheduleSpawn)
     end
 end
 
@@ -128,38 +118,42 @@ local function CancelSpawn(player)
 end
 
 local function ToggleUpdate(force)
-    if glowflydata.glowfly_amount > 0 and not TheWorld.state.ishumid then
+    if _glowfly_amount > 0 then
         if not _updating then
             _updating = true
-            for k, v in ipairs(_activeplayers) do
-                ScheduleSpawn(v, true)
+            for _, player in ipairs(_activeplayers) do
+                ScheduleSpawn(player, true)
             end
         elseif force then
-            for k, v in ipairs(_activeplayers) do
-                CancelSpawn(v)
-                ScheduleSpawn(v, true)
+            for _, player in ipairs(_activeplayers) do
+                CancelSpawn(player)
+                ScheduleSpawn(player, true)
             end
         end
     elseif _updating then
-        _updating = true
-        for k, v in ipairs(_activeplayers) do
-            CancelSpawn(v)
+        _updating = false
+        for _, player in ipairs(_activeplayers) do
+            CancelSpawn(player)
         end
     end
 end
 
 local function AutoRemoveTarget(inst, target)
-    if glowflys[target] ~= nil and target:IsAsleep() and not target:HasTag("cocoonspawn") then
+    if _glowflys[target] ~= nil and target:IsAsleep() and not target:HasTag("cocoonspawn") then
         target:Remove()
     end
+end
+
+local function OnGlowflySleep(target)
+    inst:DoTaskInTime(0, AutoRemoveTarget, target)
 end
 
 --------------------------------------------------------------------------
 --[[ Private event handlers ]]
 --------------------------------------------------------------------------
 
-local function OnGlowflySleep(target)
-    inst:DoTaskInTime(0, AutoRemoveTarget, target)
+local function OnSetGlowflyCycle(src, enabled)
+    _cycle = enabled
 end
 
 local function OnPlayerJoined(src, player)
@@ -184,27 +178,63 @@ local function OnPlayerLeft(src, player)
     end
 end
 
+local function OnSeasonTick(src, data)
+    if not _cycle then
+        _glowfly_amount = GLOWFLY_AMOUNT_DEFAULT
+        _delay = DELAY_DEFAULT
+        _basedelay = BASEDELAY_DEFAULT
+
+        return
+    end
+
+    if data.season == "temperate" then
+        local seasonprogress = data.progress
+        if seasonprogress > 0.3 and seasonprogress <= 0.8 then
+            seasonprogress = seasonprogress + 0.2
+            local diff_percent =  1 - math.sin(PI * seasonprogress)
+            _glowfly_amount = math.floor(GLOWFLY_AMOUNT_DEFAULT + (diff_percent * (GLOWFLY_AMOUNT_MAX - GLOWFLY_AMOUNT_DEFAULT)))
+            _delay = math.floor(DELAY_DEFAULT + (diff_percent * (DELAY_MIN - DELAY_DEFAULT)))
+            _basedelay = math.floor(BASEDELAY_DEFAULT + (diff_percent * (BASEDELAY_MIN - BASEDELAY_DEFAULT)))
+        elseif seasonprogress > 0.88 then
+            if not _worldsettingstimer:ActiveTimerExists(GLOWFLYCOCOON_TIMERNAME) then
+                _worldsettingstimer:StartTimer(GLOWFLYCOCOON_TIMERNAME, 2 * SEG_TIME + 2 * SEG_TIME * math.random())
+            end
+        end
+    elseif data.season == "humid" then
+        if _glowfly_amount ~= GLOWFLY_AMOUNT_MIN then
+            _glowfly_amount = GLOWFLY_AMOUNT_MIN
+            _delay = DELAY_MAX
+            _basedelay = BASEDELAY_MAX
+        end
+    elseif _glowfly_amount ~= GLOWFLY_AMOUNT_DEFAULT then
+        _glowfly_amount = GLOWFLY_AMOUNT_DEFAULT
+        _delay = DELAY_DEFAULT
+        _basedelay = BASEDELAY_DEFAULT
+    end
+end
+
 --------------------------------------------------------------------------
 --[[ Initialization ]]
 --------------------------------------------------------------------------
 
---Initialize variables
+-- Initialize variables
 for _, v in ipairs(AllPlayers) do
     table.insert(_activeplayers, v)
 end
 
---Register events
+-- Register events
+inst:ListenForEvent("ms_setglowflycycle", OnSetGlowflyCycle, _world)
 inst:ListenForEvent("ms_playerjoined", OnPlayerJoined, _world)
 inst:ListenForEvent("ms_playerleft", OnPlayerLeft, _world)
-
--- 每一帧调用OnUpdate函数
-inst:StartUpdatingComponent(self)
+inst:ListenForEvent("seasontick", OnSeasonTick, _world)
 
 --------------------------------------------------------------------------
 --[[ Post initialization ]]
 --------------------------------------------------------------------------
 
 function self:OnPostInit()
+    _worldsettingstimer:AddTimer(GLOWFLYCOCOON_TIMERNAME, 4 * SEG_TIME, true, StartCocoonTimer)
+
     ToggleUpdate(true)
 end
 
@@ -212,8 +242,8 @@ end
 --[[ Public getters and setters ]]
 --------------------------------------------------------------------------
 
-function self:StartTrackingFn(inst)
-    if glowflys[inst] == nil then
+function self.StartTrackingFn(inst)
+    if _glowflys[inst] == nil then
         local restore = inst.persists and 1 or 0
         inst.persists = false
         if inst.components.homeseeker == nil then
@@ -221,89 +251,48 @@ function self:StartTrackingFn(inst)
         else
             restore = restore + 2
         end
-        glowflys[inst] = restore
+        _glowflys[inst] = restore
         inst:ListenForEvent("entitysleep", OnGlowflySleep, inst)
     end
 end
 
 function self:StartTracking(glowfly)
-    self:StartTrackingFn(glowfly)
+    self.StartTrackingFn(glowfly)
 end
 
-function self:StopTrackingFn(inst)
-    local restore = glowflys[inst]
+function self.StopTrackingFn(inst)
+    local restore = _glowflys[inst]
     if restore ~= nil then
         inst.persists = restore == 1 or restore == 3
         if restore < 2 then
             inst:RemoveComponent("homeseeker")
         end
-        glowflys[inst] = nil
+        _glowflys[inst] = nil
         inst:RemoveEventCallback("entitysleep", OnGlowflySleep, inst)
     end
 end
 
 function self:StopTracking(glowfly)
-    self:StopTrackingFn(glowfly)
+    self.StopTrackingFn(glowfly)
 end
-
-function self:OnUpdate()
-    if _worldstate.istemperate then
-        local pct = _worldstate.seasonprogress
-        if pct > 0.3 and pct <= 0.8 then
-            local seasonprogress = pct + 0.2
-            local diff_percent =  1 - math.sin(PI * seasonprogress)
-            glowflydata.glowfly_amount = math.floor(glowflydata.glowfly_amount_default + (diff_percent * (glowflydata.glowfly_amount_max - glowflydata.glowfly_amount_default)))
-        elseif pct > 0.88 then
-            if not glowflycocoontask then
-                SetGlowflyCocoontask(self.inst, 2 * TUNING.SEG_TIME + (math.random() * TUNING.SEG_TIME * 2))
-            end
-        end
-    elseif _worldstate.ishumid then
-        if glowflydata.glowfly_amount ~= glowflydata.glowfly_amount_min then
-            glowflydata.glowfly_amount = glowflydata.glowfly_amount_min
-        end
-
-        if not glowflyhatchtask then
-            SetGlowflyhatchtask(self.inst, 5)
-        end
-    elseif glowflydata.glowfly_amount ~= glowflydata.glowfly_amount_default then
-        glowflydata.glowfly_amount = glowflydata.glowfly_amount_default
-    end
-end
-
--- self.LongUpdate = self.OnUpdate
 
 --------------------------------------------------------------------------
 --[[ Save/Load ]]
 --------------------------------------------------------------------------
 
 function self:OnSave()
-	local data ={
-    	glowfly_amount = glowflydata.glowfly_amount,
-	}
-
-	if glowflycocoontask then
-		data.glowflycocoontask = self.inst:TimeRemainingInTask(glowflycocoontaskinfo)
-	end
-
-	if glowflyhatchtask then
-		data.glowflyhatchtask = self.inst:TimeRemainingInTask(glowflyhatchtaskinfo)
-	end
-
-	return data
+    return {
+        glowfly_amount = _glowfly_amount,
+        basedelay = _basedelay,
+        delay = _delay
+    }
 end
 
 function self:OnLoad(data)
     if data ~= nil then
-        glowflydata.glowfly_amount = data.glowfly_amount or TUNING.DEFAULT_GLOWFLY
-
-        if data.glowflycocoontask then
-            SetGlowflyCocoontask(self.inst, data.glowflycocoontask)
-        end
-
-        if data.glowflyhatchtask then
-            SetGlowflyhatchtask(self.inst, data.glowflyhatchtask)
-        end
+        _glowfly_amount = data.glowfly_amount or GLOWFLY_AMOUNT_DEFAULT
+        _basedelay = data.basedelay or BASEDELAY_DEFAULT
+        _delay = data.delay or DELAY_DEFAULT
     end
 
     ToggleUpdate(true)
@@ -315,10 +304,10 @@ end
 
 function self:GetDebugString()
     local numglowflies = 0
-    for k, v in pairs(glowflys) do
+    for k, v in pairs(_glowflys) do
         numglowflies = numglowflies + 1
     end
-    return string.format("updating:%s numglowflys:%d/%d", tostring(_updating), numglowflies, glowflydata.glowfly_amount)
+    return string.format("updating:%s numglowflys:%d/%d", tostring(_updating), numglowflies, _glowfly_amount, _basedelay, _delay)
 end
 
 --------------------------------------------------------------------------

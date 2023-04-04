@@ -15,6 +15,10 @@ GLOBAL.setfenv(1, GLOBAL)
 PLENV.modimport("main/pl_util")
 PLENV.modimport("modfrontendmain")
 
+--------------------------------------------------------------------------
+--[[ customization ]]
+--------------------------------------------------------------------------
+
 local Menu = require("widgets/menu")
 local ImageButton = require("widgets/imagebutton")
 
@@ -35,10 +39,10 @@ local function add_group_and_item(category, name, text, desc, atlas, order, item
 end
 
 local season_start_descriptions = {
-	{text = STRINGS.UI.SANDBOXMENU.PORKLAND_DEFAULT, data = "default"},
-	{text = STRINGS.UI.SANDBOXMENU.HUMID, data = "humid"},
-	{text = STRINGS.UI.SANDBOXMENU.LUSH, data = "lush"},
-	{text = STRINGS.UI.SANDBOXMENU.RANDOM, data = "temperate|humid|lush"},
+    {text = STRINGS.UI.SANDBOXMENU.PORKLAND_DEFAULT, data = "default"},
+    {text = STRINGS.UI.SANDBOXMENU.HUMID, data = "humid"},
+    {text = STRINGS.UI.SANDBOXMENU.LUSH, data = "lush"},
+    {text = STRINGS.UI.SANDBOXMENU.RANDOM, data = "temperate|humid|lush"},
 }
 
 local frequency_descriptions = {
@@ -99,15 +103,14 @@ local custonsiz_items = {  -- add in dst custonsiz
         },
         animals = {
             peagawk_setting = {image = "peagawk.tex"},
+            glowfly_setting = {image = "glowflies.tex"},
         },
         resources = {
             asparagus_regrowth = {image = "asparagus.tex"},
         },
         misc = {
-            fog = {desc = {
-                {text = STRINGS.UI.SANDBOXMENU.SLIDENEVER, data = "never"},
-                {text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default"},
-            }},
+            fog = {desc = {{text = STRINGS.UI.SANDBOXMENU.SLIDENEVER, data = "never"}, {text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default"}}},
+            glowflycycle = {image = "glowfly_life_cycle.tex", desc = {{text = STRINGS.UI.SANDBOXMENU.SLIDENEVER, data = "never"}, {text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default"}}},
         },
     }
 }
@@ -126,7 +129,7 @@ local change_items = {  -- change dst custonsiz settings
 
 local WORLDGEN_GROUP = Pl_Util.GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
 local WORLDSETTINGS_GROUP = Pl_Util.GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
-for category, category_data in pairs(change_items) do
+for category, category_data in pairs(change_items) do  -- use dst custonsiz settings for porkland
     local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
     for group, items in pairs(category_data) do
         for _, item in ipairs(items) do
@@ -135,11 +138,11 @@ for category, category_data in pairs(change_items) do
     end
 end
 
-for name, data in pairs(pl_customize_table) do
+for name, data in pairs(pl_customize_table) do  -- add we customize
     add_group_and_item(data.category, name, data.text, data.desc, data.atlas, data.order, data.items)
 end
 
-for category, category_data in pairs(custonsiz_items) do
+for category, category_data in pairs(custonsiz_items) do  -- -- add to dst custonsiz
     for group, group_data in pairs(category_data) do
         for item, data in pairs(group_data) do
             local name = item
@@ -158,6 +161,9 @@ for category, category_data in pairs(custonsiz_items) do
     end
 end
 
+--------------------------------------------------------------------------
+--[[ load level ]]
+--------------------------------------------------------------------------
 
 local function SetLevelLocations(servercreationscreen, location)
     servercreationscreen:SetLevelLocations({location, "cave"})

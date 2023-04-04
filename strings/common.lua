@@ -29,6 +29,8 @@ return {
             ASPARAGUS_REGROWTH = "Asparagus",
             DEEP_JUNGLE_FERN_NOISE = "Jungle Floor Ferns",
             FOG = "Fog",
+            GLOWFLY_SETTING = "Glowfly",
+            GLOWFLYCYCLE = "Glowfly Cycle",
             GRASS_TALL = "Tall Grass",
             GRASS_TALL_PATCH = "Infected Tall Grass",
             HUMID = "Humid",
