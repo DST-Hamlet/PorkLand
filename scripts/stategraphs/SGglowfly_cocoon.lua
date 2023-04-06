@@ -16,15 +16,6 @@ local events = {
     end),
 }
 
-local function SpawnRabidBeetle(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local rotation = inst.Transform:GetRotation()
-    local rabid_beetle = SpawnPrefab("rabid_beetle")
-    rabid_beetle.Transform:GetRotation(rotation)
-    rabid_beetle.Transform:SetPosition(x, y, z)
-    rabid_beetle.sg:GoToState("hatch")
-end
-
 local states = {
     State{
         name = "idle",
@@ -52,7 +43,16 @@ local states = {
         end,
 
         timeline = {
-            TimeEvent(28 * FRAMES, function(inst) SpawnRabidBeetle(inst) end),
+            TimeEvent(28 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve/creatures/mosquito/mosquito_explo")
+
+                local x, y, z = inst.Transform:GetWorldPosition()
+                local rotation = inst.Transform:GetRotation()
+                local rabid_beetle = SpawnPrefab("rabid_beetle")
+                rabid_beetle.Transform:GetRotation(rotation)
+                rabid_beetle.Transform:SetPosition(x, y, z)
+                rabid_beetle.sg:GoToState("hatch")
+            end),
         },
 
         events = {
@@ -99,6 +99,7 @@ local states = {
         tags = {"cocoon", "busy"},
 
         onenter = function(inst)
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/death")
             inst.AnimState:PlayAnimation("cocoon_death")
 
             RemovePhysicsColliders(inst)

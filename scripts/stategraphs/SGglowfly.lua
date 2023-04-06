@@ -45,15 +45,6 @@ local events = {
     end),
 }
 
-local function ChangeToCocoon(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local rotation = inst.Transform:GetRotation()
-    inst:Remove()
-    local cocoon = SpawnPrefab("glowfly_cocoon")
-    cocoon.Transform:SetRotation(rotation)
-    cocoon.Transform:SetPosition(x, y, z)
-end
-
 local states = {
     State{
         name = "death",
@@ -188,7 +179,12 @@ local states = {
 
         events = {
             EventHandler("animover", function(inst)
-                ChangeToCocoon(inst)
+                local x, y, z = inst.Transform:GetWorldPosition()
+                local rotation = inst.Transform:GetRotation()
+                inst:Remove()
+                local cocoon = SpawnPrefab("glowfly_cocoon")
+                cocoon.Transform:SetRotation(rotation)
+                cocoon.Transform:SetPosition(x, y, z)
             end),
         },
     },
