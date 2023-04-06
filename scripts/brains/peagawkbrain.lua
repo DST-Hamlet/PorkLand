@@ -4,6 +4,8 @@ require("behaviours/runaway")
 require("behaviours/doaction")
 require("behaviours/panic")
 
+local BrainCommon = require("brains/braincommon")
+
 local STOP_RUN_DIST = 20
 local SEE_PLAYER_DIST = 8
 local HIDE_PLAYER_DIST = 16
@@ -27,7 +29,7 @@ local function EatFoodAction(inst)
         if not target then
             target = FindEntity(inst, SEE_FOOD_DIST, function(item) return inst.components.eater:CanEat(item) and item:IsOnPassablePoint() end, EATFOOD_MUST_TAGS, EATFOOD_CANT_TAGS)
             if target then
-                --check for scary things near the food
+                -- check for scary things near the food
                 local predator = GetClosestInstWithTag("scarytoprey", target, SEE_PLAYER_DIST)
                 if predator then target = nil end
             end
@@ -59,7 +61,7 @@ end
 function PeagawkBrain:OnStart()
     local root = PriorityNode(
     {
-        WhileNode(function() return self.inst:HasTag("fire") or self.inst.components.health.takingfiredamage or self.inst.components.hauntable.panic end, "Panic", Panic(self.inst)),
+        BrainCommon.PanicTrigger(self.inst),
 
         RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST),
 
