@@ -33,17 +33,26 @@ local events = {
 
     EventHandler("locomote", function(inst)
         if not inst.sg:HasStateTag("busy") then
-			local wants_to_move = inst.components.locomotor:WantsToMoveForward()
-			if not inst.sg:HasStateTag("attack") then
-				if wants_to_move then
-					inst.sg:GoToState("moving")
-				else
-					inst.sg:GoToState("idle")
-				end
-			end
+            local wants_to_move = inst.components.locomotor:WantsToMoveForward()
+            if not inst.sg:HasStateTag("attack") then
+                if wants_to_move then
+                    inst.sg:GoToState("moving")
+                else
+                    inst.sg:GoToState("idle")
+                end
+            end
         end
     end),
 }
+
+local function ChangeToCocoon(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local rotation = inst.Transform:GetRotation()
+    inst:Remove()
+    local cocoon = SpawnPrefab("glowfly_cocoon")
+    cocoon.Transform:SetRotation(rotation)
+    cocoon.Transform:SetPosition(x, y, z)
+end
 
 local states = {
     State{
@@ -51,14 +60,13 @@ local states = {
         tags = {"busy"},
 
         onenter = function(inst)
-		    inst.SoundEmitter:PlaySound(inst.sounds.death)
-            inst.components.locomotor:StopMoving()
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/death")
             inst.AnimState:PlayAnimation("death")
-
-			RemovePhysicsColliders(inst)
-			if inst.components.lootdropper ~= nil then
-				inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition()))
-			end
+            inst.Physics:Stop()
+            RemovePhysicsColliders(inst)
+            if inst.components.lootdropper ~= nil then
+                inst.components.lootdropper:DropLoot(inst:GetPosition())
+            end
         end,
     },
 
@@ -72,7 +80,7 @@ local states = {
         end,
 
         events = {
-            EventHandler("animover", function (inst)
+            EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle")
             end),
         }
@@ -87,13 +95,13 @@ local states = {
             inst.AnimState:PlayAnimation("walk_loop", false)
         end,
 
-        timeline= {
-            -- TimeEvent(3*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
-            -- TimeEvent(9*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
-            -- TimeEvent(15*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
+        timeline = {
+            TimeEvent(3 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
+            TimeEvent(9 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
+            TimeEvent(15 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover", function (inst)
                 inst.sg:GoToState("moving")
@@ -111,11 +119,11 @@ local states = {
         end,
 
         timeline = {
-            -- TimeEvent(3*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
-            -- TimeEvent(6*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
-            -- TimeEvent(9*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
-            -- TimeEvent(12*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
-            -- TimeEvent(15*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
+            TimeEvent(3 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
+            TimeEvent(6 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
+            TimeEvent(9 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
+            TimeEvent(12 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
+            TimeEvent(15 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/buzz") end),
         },
 
         events = {
@@ -136,10 +144,10 @@ local states = {
         end,
 
         timeline = {
-            TimeEvent(10*FRAMES, function(inst)
-                inst.SoundEmitter:PlaySound(inst.sounds.attack)
+            TimeEvent(10 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve/creatures/mosquito/mosquito_attack")
             end),
-            TimeEvent(15*FRAMES, function(inst)
+            TimeEvent(15 * FRAMES, function(inst)
                 inst.components.combat:DoAttack()
             end),
         },
@@ -156,7 +164,7 @@ local states = {
         tags = {"busy"},
 
         onenter = function(inst)
-            inst.SoundEmitter:PlaySound(inst.sounds.hit)
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/hit")
             inst.AnimState:PlayAnimation("hit")
             inst.Physics:Stop()
         end,
@@ -176,8 +184,13 @@ local states = {
         onenter = function(inst)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("cocoon_idle_pre")
-            inst.ChangeToCocoon(inst, true)
         end,
+
+        events = {
+            EventHandler("animover", function(inst)
+                ChangeToCocoon(inst)
+            end),
+        },
     },
 }
 

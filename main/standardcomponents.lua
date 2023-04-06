@@ -67,16 +67,3 @@ function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, att
         end
     end)
 end
-
-function MakeCocoonPhysics(inst)
-    local phy = inst.entity:AddPhysics()
-    phy:SetMass(100)
-    phy:SetCapsule(0.5, 1)
-    phy:SetFriction(1)
-    phy:SetDamping(5)
-    -- phy:SetCollisionGroup(COLLISION.CHARACTERS)
-    phy:ClearCollisionMask()
-    phy:CollidesWith(COLLISION.GROUND)
-    -- phy:CollidesWith(COLLISION.CHARACTERS)
-    return phy
-end

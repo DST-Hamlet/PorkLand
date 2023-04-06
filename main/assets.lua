@@ -1,10 +1,11 @@
-local resolvefilepath = GLOBAL.resolvefilepath
 local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
     "aporkalypse_clock",
     "asparagus",
     "deep_jungle_fern_noise",
+    "flower_rainforest",
+    "glowfly",
     "grass_tall",
     "pl_wave_shore",
     "jungle_border_vine",
@@ -14,17 +15,14 @@ PrefabFiles = {
     "peagawkfeather",
     "poisonbubble",
     "porkland_network",
+    "rabid_beetle",
     "porkland",
     "shears",
+    "tree_pillar",
     -- "tuber",
     -- "tubertrees",
     "weevole_carapace",
     "weevole",
-    "rabid_beetle",
-    "glowfly_cocoon",
-    "glowfly",
-    "tree_pillar",
-    "flower_rainforest",
 }
 
 Pl_Util.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")

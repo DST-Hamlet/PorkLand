@@ -12,11 +12,13 @@ local components_post = {
     "lootdropper",
     "moisture",
     "playercontroller",
+    "pollinator",
     "regrowthmanager",
     "rider_replica",
     "seasons",
     "shard_clock",
     "shard_seasons",
+    "sleeper",
     "wavemanager",
     "worldstate"
 }

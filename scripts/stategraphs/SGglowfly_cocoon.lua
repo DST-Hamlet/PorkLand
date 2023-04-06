@@ -8,15 +8,22 @@ local events = {
     end),
 
     EventHandler("hatch", function(inst)
-        if inst:HasTag("cocoon") then
-            inst.sg:GoToState("cocoon_pst")
-        end
+        inst.sg:GoToState("cocoon_pst")
     end),
 
     EventHandler("death", function(inst)
         inst.sg:GoToState("death")
     end),
 }
+
+local function SpawnRabidBeetle(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local rotation = inst.Transform:GetRotation()
+    local rabid_beetle = SpawnPrefab("rabid_beetle")
+    rabid_beetle.Transform:GetRotation(rotation)
+    rabid_beetle.Transform:SetPosition(x, y, z)
+    rabid_beetle.sg:GoToState("hatch")
+end
 
 local states = {
     State{
@@ -29,7 +36,7 @@ local states = {
         end,
 
         events = {
-            EventHandler("animover", function (inst)
+            EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle")
             end),
         }
@@ -37,13 +44,16 @@ local states = {
 
     State{
         name = "cocoon_pst",
-        tags = {"cocoon","busy"},
+        tags = {"cocoon", "busy"},
 
         onenter = function(inst)
             inst.Physics:Stop()
-            inst.SpawnRabidBeetle(inst)
             inst.AnimState:PlayAnimation("cocoon_idle_pst")
         end,
+
+        timeline = {
+            TimeEvent(28 * FRAMES, function(inst) SpawnRabidBeetle(inst) end),
+        },
 
         events = {
             EventHandler("animover", function(inst)
@@ -54,7 +64,7 @@ local states = {
 
     State{
         name = "cocoon_expire",
-        tags = {"cocoon","busy"},
+        tags = {"cocoon", "busy"},
 
         onenter = function(inst)
             inst.AnimState:PlayAnimation("cocoon_idle_pst")
@@ -69,15 +79,15 @@ local states = {
 
     State{
         name = "cocoon_hit",
-        tags = {"cocoon","busy"},
+        tags = {"cocoon", "busy"},
 
         onenter = function(inst)
-            inst.SoundEmitter:PlaySound("pl/creatures/glowfly/hit")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/hit")
             inst.AnimState:PlayAnimation("cocoon_hit")
             inst.Physics:Stop()
         end,
 
-        events= {
+        events = {
             EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle")
             end),
@@ -86,17 +96,17 @@ local states = {
 
     State{
         name = "death",
-        tags = {"cocoon","busy"},
+        tags = {"cocoon", "busy"},
 
         onenter = function(inst)
             inst.AnimState:PlayAnimation("cocoon_death")
 
             RemovePhysicsColliders(inst)
             if inst.components.lootdropper ~= nil then
-                inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition()))
+                inst.components.lootdropper:DropLoot(inst:GetPosition())
             end
         end,
     },
 }
 
-return StateGraph("glowflycocoon", states, events, "idle")
+return StateGraph("glowfly_cocoon", states, events, "idle")
