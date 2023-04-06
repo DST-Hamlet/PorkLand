@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "Looks like it's the end of days.",
         ARMOR_WEEVOLE = "Nice use of bug carcasses.",
         ASPARAGUS_PLANTED = "They're like little trees to chop down.",
+        GLOWFLY = {
+            DEAD = "Dead.",
+            GENERIC = "Thanks for lightin' the way, buddy.",
+            SLEEPING = "A well-deserved nap.",
+        },
+        GLOWFLY_COCOON = "That looks comfy, eh?",
         GOLDENMACHETE = "It chops AND sparkles!",
         GRASS_TALL = {
             BURNING = "It caught fire.",

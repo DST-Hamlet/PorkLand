@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "Keeping track of their movements...very clever idea.",
         ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",
         ASPARAGUS_PLANTED = "I should pick some and go back to eat.",
+        GLOWFLY = {
+            DEAD = "Maybe that's for the best.",
+            GENERIC = "I still like them the way they are now.",
+            SLEEPING = "Sleep well now.",
+        },
+        GLOWFLY_COCOON = "We'd better get out of here before it breaks out of its cocoon.",
         GOLDENMACHETE = "What else do you do with gold in a jungle island?",
         GRASS_TALL = {
             BURNING = "This is not good.",

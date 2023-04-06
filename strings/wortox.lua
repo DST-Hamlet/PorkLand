@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "Magic on such a large scale, man, this is going to be fun.",
         ARMOR_WEEVOLE = "I'm getting goosebumps.",
         ASPARAGUS_PLANTED = "A spear that grows out of the earth.",
+        GLOWFLY = {
+            DEAD = "sorry.",
+            GENERIC = "Shiny little guy.",
+            SLEEPING = "Have a good dream.",
+        },
+        GLOWFLY_COCOON = "What will become of it?",
         GOLDENMACHETE = "Fit for a sophisticated imp!",
         GRASS_TALL = {
             BURNING = "Oops, it's burning.",

@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "Clockwork for the end of times.",
         ARMOR_WEEVOLE = "Something died so that this armor may exist.",
         ASPARAGUS_PLANTED = "I should rip those out of the ground.",
+        GLOWFLY = {
+            DEAD = "Its light hath been extinguished forever.",
+            GENERIC = "A small light in a dark world.",
+            SLEEPING = "Having dark dreams, no doubt.",
+        },
+        GLOWFLY_COCOON = "If I could climb into a cocoon I would never emerge.",
         GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
         GRASS_TALL = {
             BURNING = "Death comes to everything.",

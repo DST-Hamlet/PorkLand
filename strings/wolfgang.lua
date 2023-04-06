@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "Is clock of scary things.",
         ARMOR_WEEVOLE = "Wolfgang win!",
         ASPARAGUS_PLANTED = "Haha. Is like tiny vegetable hats.",
+        GLOWFLY = {
+            DEAD = "Light bug is lights out.",
+            GENERIC = "Is light bug.",
+            SLEEPING = "Light bug is dark.",
+        },
+        GLOWFLY_COCOON = "Bug look cozy.",
         GOLDENMACHETE = "Hoighty toighty knife!",
         GRASS_TALL = {
             BURNING = "Wolfgang is not doing that!",

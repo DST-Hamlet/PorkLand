@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "I do like this...",
         ARMOR_WEEVOLE = "This is not a good look.",
         ASPARAGUS_PLANTED = "Food. Just growing out of the ground.",
+        GLOWFLY = {
+            DEAD = "Lights out.",
+            GENERIC = "Disgusting, but helpful.",
+            SLEEPING = "That light is rather too lethargic.",
+        },
+        GLOWFLY_COCOON = "Ah, metamorphosis...",
         GOLDENMACHETE = "I've always wanted to hack things in luxury.",
         GRASS_TALL = {
             BURNING = "Well, there you have it.",

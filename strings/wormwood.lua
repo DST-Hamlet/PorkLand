@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "Tic Tock",
         ARMOR_WEEVOLE = "Bzzter clothes",
         ASPARAGUS_PLANTED = "Hello there!",
+        GLOWFLY = {
+            DEAD = "(sob)",
+            GENERIC = "Bzzter with bright peepers",
+            SLEEPING = "No light",
+        },
+        GLOWFLY_COCOON = "Changing",
         GOLDENMACHETE = "Pretty Slicer",
         GRASS_TALL = {
             BURNING = "No!!",

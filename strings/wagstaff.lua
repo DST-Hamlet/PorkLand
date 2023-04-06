@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "Wonderful! I wonder if I could make the world end sooner.",
         ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",
         ASPARAGUS_PLANTED = "A cluster of edible spring vegetables!",
+        GLOWFLY = {
+            DEAD = "Cadaverous.",
+            GENERIC = "The luminous oculus on this pterygota is inspiring!",
+            SLEEPING = "Evidently, its bioluminescence is dormant too.",
+        },
+        GLOWFLY_COCOON = "It appears to be undergoing some kind of transubstantiation.",
         GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",
         GRASS_TALL = {
             BURNING = "Evidently, grass here has the same flammability qualities as at home.",

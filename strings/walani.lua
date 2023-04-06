@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "I hate clocks.",
         ARMOR_WEEVOLE = "Ew. It's all creepy-crawly.",
         ASPARAGUS_PLANTED = "Food!",
+        GLOWFLY = {
+            DEAD = "I wish it hadn't died.",
+            GENERIC = "I could lay down and watch them all night.",
+            SLEEPING = "Lights out!",
+        },
+        GLOWFLY_COCOON = "I need a sleeping bag like that.",
         GOLDENMACHETE = "I can hack in style.",
         GRASS_TALL = {
             BURNING = "It'd probably be a lot of work to put it out.",

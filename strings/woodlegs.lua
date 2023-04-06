@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "Tha time be nigh!",
         ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",
         ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
+        GLOWFLY = {
+            DEAD = "Tells no tales.",
+            GENERIC = "A fly'o'glow!",
+            SLEEPING = "Becalm'd.",
+        },
+        GLOWFLY_COCOON = "'e be sleepin' it off.",
         GOLDENMACHETE = "'Tis a mighty 'eavy blade.",
         GRASS_TALL = {
             BURNING = "'Tis ablaze!",

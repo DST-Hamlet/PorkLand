@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "It controls Ragnarok!",
         ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",
         ASPARAGUS_PLANTED = "Useless vegetation!",
+        GLOWFLY = {
+            DEAD = "Alas, it is dead.",
+            GENERIC = "Fly free, small friend.",
+            SLEEPING = "A slumber consumes it.",
+        },
+        GLOWFLY_COCOON = "It has armored itself for sleep.",
         GOLDENMACHETE = "I shall swing you with pride.",
         GRASS_TALL = {
             BURNING = "It burns!",

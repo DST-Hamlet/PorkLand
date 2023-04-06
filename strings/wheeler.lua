@@ -10,6 +10,12 @@ return {
         APORKALYPSE_CLOCK = "If only I could turn time back to before I crashed here.",
         ARMOR_WEEVOLE = "If only it had those bug wings.",
         ASPARAGUS_PLANTED = "That looks like food! Let's hope it tastes like food.",
+        GLOWFLY = {
+            DEAD = "I guess it can't fly me out of here now.",
+            GENERIC = "A flyer and a glower. My new best friend.",
+            SLEEPING = "Wake up and glow for me!",
+        },
+        GLOWFLY_COCOON = "Aww... It's wrapped up all nice and cozy.",
         GOLDENMACHETE = "For the sophisticated adventurer.",
         GRASS_TALL = {
             BURNING = "All those bugs have nowhere to hide now.",
