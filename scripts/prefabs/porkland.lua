@@ -18,31 +18,31 @@ local assets =
     Asset("IMAGE", "images/colour_cubes/insane_day_cc.tex"),
     Asset("IMAGE", "images/colour_cubes/insane_dusk_cc.tex"),
     Asset("IMAGE", "images/colour_cubes/insane_night_cc.tex"),
-	Asset("IMAGE", "images/colour_cubes/lunacy_regular_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/lunacy_regular_cc.tex"),
     Asset("IMAGE", "images/colour_cubes/purple_moon_cc.tex"),
     Asset("IMAGE", "images/colour_cubes/moonstorm_cc.tex"),
 
     -- porkland colourcube
     Asset("IMAGE", "images/colour_cubes/pork_temperate_day_cc.tex"),
-	Asset("IMAGE", "images/colour_cubes/pork_temperate_dusk_cc.tex"),
-	Asset("IMAGE", "images/colour_cubes/pork_temperate_night_cc.tex"),
-	Asset("IMAGE", "images/colour_cubes/pork_temperate_fullmoon_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_temperate_dusk_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_temperate_night_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_temperate_fullmoon_cc.tex"),
     -- Asset("IMAGE", "images/colour_cubes/pork_temperate_bloodmoon_cc.tex"),
 
-	Asset("IMAGE", "images/colour_cubes/pork_cold_day_cc.tex"),
-	Asset("IMAGE", "images/colour_cubes/pork_cold_dusk_cc.tex"),
-	Asset("IMAGE", "images/colour_cubes/pork_cold_night_cc.tex"),
-	Asset("IMAGE", "images/colour_cubes/pork_cold_fullmoon_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_cold_day_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_cold_dusk_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_cold_night_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_cold_fullmoon_cc.tex"),
     Asset("IMAGE", "images/colour_cubes/pork_cold_bloodmoon_cc.tex"),
 
-	-- Asset("IMAGE", "images/colour_cubes/pork_warm_day_cc.tex"),
-	-- Asset("IMAGE", "images/colour_cubes/pork_warm_dusk_cc.tex"),
-	-- Asset("IMAGE", "images/colour_cubes/pork_warm_night_cc.tex"),
-	Asset("IMAGE", "images/colour_cubes/pork_warm_fullmoon_cc.tex"),
+    -- Asset("IMAGE", "images/colour_cubes/pork_warm_day_cc.tex"),
+    -- Asset("IMAGE", "images/colour_cubes/pork_warm_dusk_cc.tex"),
+    -- Asset("IMAGE", "images/colour_cubes/pork_warm_night_cc.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_warm_fullmoon_cc.tex"),
     -- Asset("IMAGE", "images/colour_cubes/pork_warm_bloodmoon_cc.tex"),
 
-	Asset("IMAGE", "images/colour_cubes/pork_lush_dusk_test.tex"),
-	Asset("IMAGE", "images/colour_cubes/pork_lush_day_test.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_lush_dusk_test.tex"),
+    Asset("IMAGE", "images/colour_cubes/pork_lush_day_test.tex"),
 
     Asset("IMAGE", "images/wave.tex"),
     Asset("IMAGE", "images/wave_shadow.tex"),
@@ -53,6 +53,9 @@ local assets =
     Asset("ANIM", "anim/lightning.zip"),
 
     Asset("ANIM", "anim/swimming_ripple.zip"), -- common water fx symbols
+
+    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev"),
+    Asset("SOUND", "sound/DLC003_sfx.fsb"),
 }
 
 local prefabs =
