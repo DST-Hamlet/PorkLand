@@ -44,14 +44,16 @@ local states = {
 
         timeline = {
             TimeEvent(28 * FRAMES, function(inst)
-                inst.SoundEmitter:PlaySound("dontstarve/creatures/mosquito/mosquito_explo")
+                if not inst.sg:HasStateTag("death") then
+                    inst.SoundEmitter:PlaySound("dontstarve/creatures/mosquito/mosquito_explo")
 
-                local x, y, z = inst.Transform:GetWorldPosition()
-                local rotation = inst.Transform:GetRotation()
-                local rabid_beetle = SpawnPrefab("rabid_beetle")
-                rabid_beetle.Transform:GetRotation(rotation)
-                rabid_beetle.Transform:SetPosition(x, y, z)
-                rabid_beetle.sg:GoToState("hatch")
+                    local x, y, z = inst.Transform:GetWorldPosition()
+                    local rotation = inst.Transform:GetRotation()
+                    local rabid_beetle = SpawnPrefab("rabid_beetle")
+                    rabid_beetle.Transform:GetRotation(rotation)
+                    rabid_beetle.Transform:SetPosition(x, y, z)
+                    rabid_beetle.sg:GoToState("hatch")
+                end
             end),
         },
 
@@ -60,6 +62,10 @@ local states = {
                 inst:Remove()
             end),
         },
+
+        onexit = function(inst)
+            inst:Remove()
+        end,
     },
 
     State{
@@ -70,11 +76,15 @@ local states = {
             inst.AnimState:PlayAnimation("cocoon_idle_pst")
         end,
 
-        events= {
+        events = {
             EventHandler("animover", function(inst)
                 inst:Remove()
             end),
         },
+
+        onexit = function(inst)
+            inst:Remove()
+        end,
     },
 
     State{
@@ -96,7 +106,7 @@ local states = {
 
     State{
         name = "death",
-        tags = {"cocoon", "busy"},
+        tags = {"cocoon", "busy", "death"},
 
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/glowfly/death")
