@@ -70,20 +70,22 @@ local function OnDeath(inst)
     end)
 end
 
+local function OnChangePhase(inst)
+    inst:DoTaskInTime(2 + math.random(), UpdateLight)
+end
+
 local function OnChangeArea(inst, data)
     if data and data.tags and table.contains(data.tags, "Canopy") then
         if not inst:HasTag("under_leaf_canopy") then
             inst:AddTag("under_leaf_canopy")
             inst:PushEvent("onchangecanopyzone", true)
+            OnChangePhase(inst)
         end
     elseif inst:HasTag("under_leaf_canopy") then
         inst:RemoveTag("under_leaf_canopy")
         inst:PushEvent("onchangecanopyzone", false)
+        OnChangePhase(inst)
     end
-end
-
-local function OnChangePhase(inst)
-    inst:DoTaskInTime(2 + math.random(), UpdateLight)
 end
 
 local function commonfn()
@@ -139,7 +141,6 @@ local function commonfn()
 
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("changearea", OnChangeArea)
-    inst:ListenForEvent("onchangecanopyzone", OnChangePhase)
     inst:WatchWorldState("phase", OnChangePhase)
 
     inst:DoTaskInTime(0, UpdateLight)
