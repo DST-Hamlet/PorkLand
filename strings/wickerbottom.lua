@@ -10,6 +10,7 @@ return {
         APORKALYPSE_CLOCK = "Ah. Quite a complex form of clockwork.",
         ARMOR_WEEVOLE = "Armour made from bug exoskeleton.",
         ASPARAGUS_PLANTED = "Asparagus. Otherwise known as sparrow grass.",
+        FLOWER_RAINFOREST = "Floral cross-pollination produces some fascinating specimens.",
         GLOWFLY = {
             DEAD = "Its existence has reached an end.",
             GENERIC = "A bioluminescent insecta.",

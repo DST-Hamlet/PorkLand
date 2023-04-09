@@ -45,6 +45,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick those!"
 msgstr "É melhor colher esses!"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It smells vaguely tolerable."
+msgstr "Tem um cheiro vagamente tolerável."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD"
 msgid "Lights out forever."
@@ -159,6 +164,11 @@ msgstr "Armadura de exoesqueleto para proteger meu endoesqueleto."
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A cluster of edible spring vegetables!"
 msgstr "Um cacho de vegetais comestíveis de primavera!"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Curious. Picking these has a positive effect on my psyche."
+msgstr "Curioso. Colher estas flores exerce um efeito positivo na minha psique."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD"
@@ -280,6 +290,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food!"
 msgstr "Rango!"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.FLOWER_RAINFOREST"
+msgid "I love these."
+msgstr "Adora essas."
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.DEAD"
 msgid "I wish it hadn't died."
@@ -395,6 +410,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Miss Winona might like it, pick some."
 msgstr "A senhorita Winona pode gostar, escolha alguns."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.FLOWER_RAINFOREST"
+msgid "oh! That's the kind of flower in jungle adventure stories."
+msgstr "oh! Esse é o tipo de flor nas histórias de aventura na selva."
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.DEAD"
 msgid "Oh, dead."
@@ -505,6 +525,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick some and go back to eat."
 msgstr "Eu deveria pegar alguns e voltar para comer."
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Why am I wasting time staring at it?"
+msgstr "Por que estou perdendo tempo olhando para ele?"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.DEAD"
 msgid "Maybe that's for the best."
@@ -614,6 +639,11 @@ msgstr "Ainda tem cheiro de inseto."
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should snatch those up."
 msgstr "Eu deveria pegar isso."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Edible?"
+msgstr "É comestível?"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD"
@@ -730,6 +760,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Useless vegetation!"
 msgstr "Vegetação inútil!"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.FLOWER_RAINFOREST"
+msgid "A blossom most lovely."
+msgstr "Uma flor adorável."
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD"
 msgid "Alas, it is dead."
@@ -844,6 +879,11 @@ msgstr "Isso não fica bem em mim."
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food. Just growing out of the ground."
 msgstr "Comida. Crescendo do solo."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It's no rose."
+msgstr "Não é nenhuma rosa."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.DEAD"
@@ -960,6 +1000,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "We should pick those."
 msgstr "Deveríamos colher esses."
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.FLOWER_RAINFOREST"
+msgid "This flower is neat!"
+msgstr "Essa flor é bacana!"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD"
 msgid "Oh no! It died!"
@@ -1074,6 +1119,11 @@ msgstr "Algo morreu para que essa armadura pudesse existir."
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should rip those out of the ground."
 msgstr "É melhor arrancá-las do chão."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It, too, will wither and die one day."
+msgstr "Ela, também, irá murchar e morrer um dia."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.DEAD"
@@ -1190,6 +1240,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "That looks like food! Let's hope it tastes like food."
 msgstr "Parece comida! Vamos torcer para que tenha gosto de comida."
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.FLOWER_RAINFOREST"
+msgid "You can never have too many flowers. Or projectiles."
+msgstr "Nunca dá para ter flores demais. Ou projéteis."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD"
 msgid "I guess it can't fly me out of here now."
@@ -1304,6 +1359,11 @@ msgstr "Armadura feita de exoesqueleto de insetos."
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Asparagus. Otherwise known as sparrow grass."
 msgstr "Aspargo. Também conhecido como capim pardal."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Floral cross-pollination produces some fascinating specimens."
+msgstr "A polinização floral cruzada produz alguns espécimes fascinantes."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD"
@@ -1425,6 +1485,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "HATH A FUNNY HAT"
 msgstr "TENERES UM CHAPÉUS ENGRAÇADIS"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.FLOWER_RAINFOREST"
+msgid "MANY COLOR'D FLOWERS FOR WILBA"
+msgstr "MUITAS FLOR COLORIDIS PARA WILBA"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.DEAD"
 msgid "'TIS SQUISH'DED"
@@ -1539,6 +1604,11 @@ msgstr "Isso parece nojento. Espero que dê certo."
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha! Found you!"
 msgstr "Haha! Achei você!"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It's kinda ugly. But it burns."
+msgstr "É meio feia. Mas queima."
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.DEAD"
@@ -1655,6 +1725,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Wholesome green vegetables."
 msgstr "Legumes verdes saudáveis."
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.FLOWER_RAINFOREST"
+msgid "I have never seen such flowers."
+msgstr "Nunca vi tais flores."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.DEAD"
 msgid "It's broken."
@@ -1764,6 +1839,11 @@ msgstr "Vitória de Wolfgang!"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha. Is like tiny vegetable hats."
 msgstr "Haha. É como pequenos chapéus de vegetais."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Little smelly flower."
+msgstr "Pequena flor fedorenta."
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD"
@@ -1880,6 +1960,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "They're like little trees to chop down."
 msgstr "São que nem pequenas árvores para derrubar."
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It's a pretty lil' thing."
+msgstr "É uma coisinha bonita."
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD"
 msgid "Dead."
@@ -1994,6 +2079,11 @@ msgstr "Arr. Um traje feito de pele de inseto."
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Tiny masts growin' from the ground."
 msgstr "Mastros pequeninos brotando do solo."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Ol'Woodlegs na'got use fer'it."
+msgstr "Isso é inútil pro véi Woodlegs."
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.DEAD"
@@ -2110,6 +2200,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Hello there!"
 msgstr "Olá!"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Dirt made a friend"
+msgstr "A terra fez uma amiga!"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.DEAD"
 msgid "(sob)"
@@ -2225,6 +2320,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A spear that grows out of the earth."
 msgstr "Uma lança que cresce da terra."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.FLOWER_RAINFOREST"
+msgid "There is a wild beauty."
+msgstr "Há uma beleza selvagem."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.DEAD"
 msgid "sorry."
@@ -2334,6 +2434,11 @@ msgstr "Armadura bonita e confortável."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Green stick stick, smells good."
 msgstr "Vara verde, cheira bem."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.FLOWER_RAINFOREST"
+msgid "A slightly prettier plant is still ugly."
+msgstr "Uma planta um pouco mais bonita ainda é feia."
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.DEAD"
@@ -2445,6 +2550,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "SMALL TREES OF ENERGY"
 msgstr "PEQUENAS ÁRVORES DE ENERGIA"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.FLOWER_RAINFOREST"
+msgid "I HATE IT"
+msgstr "ODEIO ISSO"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD"
 msgid "IT HAS BEEN TURNED OFF"
@@ -2544,6 +2654,11 @@ msgstr "Manto de Besourato"
 msgctxt "STRINGS.NAMES.ASPARAGUS_PLANTED"
 msgid "Asparagus"
 msgstr "Aspargo"
+
+#. STRINGS.NAMES.FLOWER_RAINFOREST
+msgctxt "STRINGS.NAMES.FLOWER_RAINFOREST"
+msgid "Exotic Flower"
+msgstr "Flor Exótica"
 
 #. STRINGS.NAMES.GLOWFLY
 msgctxt "STRINGS.NAMES.GLOWFLY"

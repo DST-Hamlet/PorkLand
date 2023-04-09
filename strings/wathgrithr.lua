@@ -10,6 +10,7 @@ return {
         APORKALYPSE_CLOCK = "It controls Ragnarok!",
         ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",
         ASPARAGUS_PLANTED = "Useless vegetation!",
+        FLOWER_RAINFOREST = "A blossom most lovely.",
         GLOWFLY = {
             DEAD = "Alas, it is dead.",
             GENERIC = "Fly free, small friend.",

@@ -45,6 +45,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick those!"
 msgstr "Нужно ее собрать!"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It smells vaguely tolerable."
+msgstr "Едва выносимый запах."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD"
 msgid "Lights out forever."
@@ -159,6 +164,11 @@ msgstr "Внешний бронированный скелет для защит
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A cluster of edible spring vegetables!"
 msgstr "Массив съедобных побегов!"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Curious. Picking these has a positive effect on my psyche."
+msgstr "Любопытно. Когда я их собираю, моя психика успокаивается."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD"
@@ -280,6 +290,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food!"
 msgstr "Еда!"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.FLOWER_RAINFOREST"
+msgid "I love these."
+msgstr "Какие классные."
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.DEAD"
 msgid "I wish it hadn't died."
@@ -395,6 +410,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Miss Winona might like it, pick some."
 msgstr "Мисс Вайноне может понравиться, выбери что-нибудь."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.FLOWER_RAINFOREST"
+msgid "oh! That's the kind of flower in jungle adventure stories."
+msgstr "ой! Это своего рода цветок в приключенческих рассказах о джунглях."
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.DEAD"
 msgid "Oh, dead."
@@ -505,6 +525,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick some and go back to eat."
 msgstr "Я должен выбрать некоторые и вернуться, чтобы поесть."
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Why am I wasting time staring at it?"
+msgstr "Почему я трачу время на его просмотр?"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.DEAD"
 msgid "Maybe that's for the best."
@@ -614,6 +639,11 @@ msgstr "Жучиный запах не выветрился."
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should snatch those up."
 msgstr "Надо бы собрать."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Edible?"
+msgstr "Это съедобно?"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD"
@@ -730,6 +760,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Useless vegetation!"
 msgstr "Бесполезный овощ!"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.FLOWER_RAINFOREST"
+msgid "A blossom most lovely."
+msgstr "Цветок, полный очарования."
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD"
 msgid "Alas, it is dead."
@@ -844,6 +879,11 @@ msgstr "Выглядит не очень."
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food. Just growing out of the ground."
 msgstr "Еда. Просто растет в земле."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It's no rose."
+msgstr "Это не роза."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.DEAD"
@@ -960,6 +1000,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "We should pick those."
 msgstr "Нужно ее собрать."
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.FLOWER_RAINFOREST"
+msgid "This flower is neat!"
+msgstr "Очень красивый цветок!"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD"
 msgid "Oh no! It died!"
@@ -1074,6 +1119,11 @@ msgstr "Что-то умерло, чтобы эта броня не дала у�
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should rip those out of the ground."
 msgstr "Нужно вырвать их с корнем."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It, too, will wither and die one day."
+msgstr "Когда-нибудь и этот лес иссохнет и погибнет."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.DEAD"
@@ -1190,6 +1240,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "That looks like food! Let's hope it tastes like food."
 msgstr "Выглядит как еда. Надеюсь, и на вкус как еда."
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.FLOWER_RAINFOREST"
+msgid "You can never have too many flowers. Or projectiles."
+msgstr "Цветов никогда не бывает слишком много, как и пуль."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD"
 msgid "I guess it can't fly me out of here now."
@@ -1304,6 +1359,11 @@ msgstr "Броня из экзоскелета жука."
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Asparagus. Otherwise known as sparrow grass."
 msgstr "Спаржа. В просторечье — «заячий холодок»."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Floral cross-pollination produces some fascinating specimens."
+msgstr "Перекрестное опыление флоры дает очаровательные гибриды."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD"
@@ -1425,6 +1485,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "HATH A FUNNY HAT"
 msgstr "У НЕГО СМЕШНАЯ ШАПКА"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.FLOWER_RAINFOREST"
+msgid "MANY COLOR'D FLOWERS FOR WILBA"
+msgstr "ДОРОГА УИЛБЫ УСТЛАНА ЦВЕТАМИ"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.DEAD"
 msgid "'TIS SQUISH'DED"
@@ -1539,6 +1604,11 @@ msgstr "На ощупь та еще гадость. Надеюсь, она хо�
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha! Found you!"
 msgstr "Ха! Нашла!"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It's kinda ugly. But it burns."
+msgstr "Довольно страшный, но горит хорошо."
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.DEAD"
@@ -1655,6 +1725,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Wholesome green vegetables."
 msgstr "Полезные зеленые овощи."
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.FLOWER_RAINFOREST"
+msgid "I have never seen such flowers."
+msgstr "Я никогда не видела таких цветов."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.DEAD"
 msgid "It's broken."
@@ -1764,6 +1839,11 @@ msgstr "Вольфганг победил!"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha. Is like tiny vegetable hats."
 msgstr "Ха! Мелкие овощные шляпки."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Little smelly flower."
+msgstr "Мелкий вонючий цветок."
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD"
@@ -1880,6 +1960,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "They're like little trees to chop down."
 msgstr "Похожи на маленькие деревья, которые можно срубить."
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It's a pretty lil' thing."
+msgstr "Маленький кусочек красоты."
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD"
 msgid "Dead."
@@ -1994,6 +2079,11 @@ msgstr "Эге. Наряд из жучиной шкуры."
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Tiny masts growin' from the ground."
 msgstr "Это же мачты, которые растут в земле."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Ol'Woodlegs na'got use fer'it."
+msgstr "Старине Вудлегсу это не нужно."
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.DEAD"
@@ -2110,6 +2200,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Hello there!"
 msgstr "Привет-привет!"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Dirt made a friend"
+msgstr "У земли появился друг"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.DEAD"
 msgid "(sob)"
@@ -2225,6 +2320,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A spear that grows out of the earth."
 msgstr "Копье, растущее из земли."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.FLOWER_RAINFOREST"
+msgid "There is a wild beauty."
+msgstr "Есть дикая красота."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.DEAD"
 msgid "sorry."
@@ -2334,6 +2434,11 @@ msgstr "Хорошая и удобная броня."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Green stick stick, smells good."
 msgstr "Зеленая палочка, хорошо пахнет."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.FLOWER_RAINFOREST"
+msgid "A slightly prettier plant is still ugly."
+msgstr "Чуть более красивое растение все равно некрасиво."
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.DEAD"
@@ -2445,6 +2550,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "SMALL TREES OF ENERGY"
 msgstr "МАЛЕНЬКИЕ ПИТАТЕЛЬНЫЕ ДЕРЕВЬЯ"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.FLOWER_RAINFOREST"
+msgid "I HATE IT"
+msgstr "НЕНАВИЖУ"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD"
 msgid "IT HAS BEEN TURNED OFF"
@@ -2544,6 +2654,11 @@ msgstr "Мантия полевки"
 msgctxt "STRINGS.NAMES.ASPARAGUS_PLANTED"
 msgid "Asparagus"
 msgstr "Спаржа"
+
+#. STRINGS.NAMES.FLOWER_RAINFOREST
+msgctxt "STRINGS.NAMES.FLOWER_RAINFOREST"
+msgid "Exotic Flower"
+msgstr "Экзотический цветок"
 
 #. STRINGS.NAMES.GLOWFLY
 msgctxt "STRINGS.NAMES.GLOWFLY"

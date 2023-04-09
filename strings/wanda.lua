@@ -10,6 +10,7 @@ return {
         APORKALYPSE_CLOCK = "Keeping track of their movements...very clever idea.",
         ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",
         ASPARAGUS_PLANTED = "I should pick some and go back to eat.",
+        FLOWER_RAINFOREST = "Why am I wasting time staring at it?",
         GLOWFLY = {
             DEAD = "Maybe that's for the best.",
             GENERIC = "I still like them the way they are now.",

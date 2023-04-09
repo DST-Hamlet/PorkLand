@@ -10,6 +10,7 @@ return {
         APORKALYPSE_CLOCK = "Looks ominous. I like it.",
         ARMOR_WEEVOLE = "This feels gross. I hope it works.",
         ASPARAGUS_PLANTED = "Haha! Found you!",
+        FLOWER_RAINFOREST = "It's kinda ugly. But it burns.",
         GLOWFLY = {
             DEAD = "Squashed.",
             GENERIC = "Looks slimy.",

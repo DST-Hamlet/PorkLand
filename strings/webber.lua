@@ -10,6 +10,7 @@ return {
         APORKALYPSE_CLOCK = "It's like a puzzle!",
         ARMOR_WEEVOLE = "For when we need protection.",
         ASPARAGUS_PLANTED = "We should pick those.",
+        FLOWER_RAINFOREST = "This flower is neat!",
         GLOWFLY = {
             DEAD = "Oh no! It died!",
             GENERIC = "Nice little buggy bug.",
