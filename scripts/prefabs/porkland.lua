@@ -121,8 +121,7 @@ end
 local function master_postinit(inst)
     -- Spawners
     inst:AddComponent("birdspawner")
-    -- 在哈姆雷特，玩家周围的花不会生成蝴蝶
-    -- inst:AddComponent("butterflyspawner")
+    inst:AddComponent("butterflyspawner")
     inst:AddComponent("glowflyspawner")
 
     inst:AddComponent("worlddeciduoustreeupdater")
