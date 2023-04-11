@@ -1,14 +1,11 @@
-require "brains/rabid_beetlebrain"
-require "stategraphs/SGrabid_beetle"
-
-local assets=
+local assets =
 {
-	Asset("ANIM", "anim/rabid_beetle.zip"),
+    Asset("ANIM", "anim/rabid_beetle.zip"),
 }
 
 local prefabs =
 {
-	"chitin",
+    "chitin",
     "lightbulb",
 }
 
@@ -24,19 +21,32 @@ SetSharedLootTable('rabid_beetle_inventory',
     {'chitin', 0.6},
 })
 
-local WAKE_TO_FOLLOW_DISTANCE = 8
-local SLEEP_NEAR_HOME_DISTANCE = 10
-local SHARE_TARGET_DIST = 30
-
-local function ShouldWakeUp(inst)
-    return DefaultWakeTest(inst) or (inst.components.follower and inst.components.follower.leader and not inst.components.follower:IsNearLeader(WAKE_TO_FOLLOW_DISTANCE))
-end
+local brain = require("brains/rabid_beetlebrain")
 
 local function ShouldSleep(inst)
-    return not TheWorld.state.isday
-    and not (inst.components.combat ~= nil and inst.components.combat.target)
-    and not (inst.components.burnable ~= nil and inst.components.burnable:IsBurning() )
-    and (not inst.components.homeseeker ~= nil or inst:IsNear(inst.components.homeseeker.home, SLEEP_NEAR_HOME_DISTANCE))
+    return not TheWorld.state.isday and StandardSleepChecks(inst)
+end
+
+local function OnDropped(inst)
+    inst.components.lootdropper:SetChanceLootTable('rabid_beetle')
+    inst.sg:GoToState("idle")
+end
+
+local function OnPickedUp(inst)
+    inst.components.lootdropper:SetChanceLootTable('rabid_beetle_inventory')
+end
+
+local CANT_TAGS = {"FX", "NOCLICK", "INLIMBO", "wall", "rabid_beetle", "glowfly", "cocoon", "structure"}
+local function RetargetFn(inst)
+    return FindEntity(inst, TUNING.RABID_BEETLE_TARGET_DIST, function(guy)
+        return inst.components.combat:CanTarget(guy)
+    end, nil, CANT_TAGS)
+end
+
+local function KeepTarget(inst, target)
+    return inst.components.combat:CanTarget(target) and
+        inst:IsValid() and target:IsValid() and
+        inst:IsNear(target, TUNING.RABID_BEETLE_FOLLOWER_TARGET_KEEP)
 end
 
 local function OnNewTarget(inst, data)
@@ -45,106 +55,43 @@ local function OnNewTarget(inst, data)
     end
 end
 
-local function RetargetFn(inst)
-    local dist = TUNING.RABID_BEETLE_TARGET_DIST
-    local CANT_TAGS = {"FX", "NOCLICK","INLIMBO", "wall", "rabid_beetle","glowfly", "cocoon", "structure", "aquatic"}
-    return FindEntity(inst, dist, function(guy)
-		local shouldtarget = inst.components.combat:CanTarget(guy)
-        return shouldtarget
-    end, nil, CANT_TAGS)
-end
-
-local function KeepTarget(inst, target)
-    local shouldkeep = inst.components.combat:CanTarget(target) and inst:IsNear(target, TUNING.RABID_BEETLE_FOLLOWER_TARGET_KEEP)
-    return shouldkeep
-end
-
+local SHARE_TARGET_DIST = 30
 local function OnAttacked(inst, data)
-    inst.components.combat:SetTarget(data.attacker)
-    inst.components.combat:ShareTarget(data.attacker, SHARE_TARGET_DIST, function(dude) return dude:HasTag("rabid_beetle") and not dude.components.health:IsDead() end, 5)
+    if data and data.attacker then
+        inst.components.combat:SetTarget(data.attacker)
+        inst.components.combat:ShareTarget(data.attacker, SHARE_TARGET_DIST, function(dude) return dude:HasTag("rabid_beetle") and not dude.components.health:IsDead() end, 5)
+    end
 end
 
 local function OnAttackOther(inst, data)
-    inst.components.combat:ShareTarget(data.target, SHARE_TARGET_DIST, function(dude) return dude:HasTag("rabid_beetle") and not dude.components.health:IsDead() end, 5)
-end
-
-local function DoReturn(inst)
-    if inst.components.homeseeker ~= nil and inst.components.homeseeker:HasHome()  then
-        if inst.components.homeseeker.home.components.childspawner then
-            inst.components.homeseeker.home.components.childspawner:GoHome(inst)
-        end
+    if data and data.target then
+        inst.components.combat:ShareTarget(data.target, SHARE_TARGET_DIST, function(dude) return dude:HasTag("rabid_beetle") and not dude.components.health:IsDead() end, 5)
     end
 end
 
-local function OnEntitySleep(inst)
-    if not TheWorld.state.isday then
-        DoReturn(inst)
-    end
-end
-
-local function StartLifespan(inst, time)
-    if not time then
-        time = TUNING.TOTAL_DAY_TIME + (math.random()*3*TUNING.SEG_TIME) - (2*TUNING.SEG_TIME)
-    end
-    if inst.task then
-        inst.task:Cancel()
-        inst.task = nil
-    end
-    inst.task, inst.taskinfo = inst:ResumeTask(time, function()
+local function OnTimerDone(inst, data)
+    if data and data.name == "endlife" then
         inst.components.health:Kill()
-    end)
-end
-
-local function OnSave(inst, data)
-    if inst.taskinfo ~= nil then
-        data.timeleft = inst:TimeRemainingInTask(inst.taskinfo)
     end
 end
 
-local function OnLoad(inst, data)
-    if data.timeleft ~= nil then
-        StartLifespan(inst, data.timeleft)
-    end
-end
-
-local function OnLongUpdate(inst, dt)
-    if inst.taskinfo ~= nil then
-        local timeleft = inst:TimeRemainingInTask(inst.taskinfo)
-        timeleft = math.max(timeleft - dt,0)
-        if timeleft then
-            StartLifespan(inst, timeleft)
+local function OnChangeArea(inst, data)
+    if data and data.tags and table.contains(data.tags, "Gas_Jungle") then
+    	if inst.components.poisonable then
+            inst.components.poisonable:Poison(true, nil, true)
         end
     end
 end
 
-local function OnDropped(inst)
-    inst.components.lootdropper:SetChanceLootTable('rabid_beetle')
-    inst.sg:GoToState("idle")
-
-    if inst.brain ~= nil then
-        inst.brain:Start()
-    end
-    if inst.sg ~= nil then
-        inst.sg:Start()
-    end
-end
-
-local function OnPickedUp(inst)
-    inst.components.lootdropper:SetChanceLootTable('rabid_beetle_inventory')
-end
-
-local function fncommon()
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddDynamicShadow()
+local function fn()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
 
-    inst.DynamicShadow:SetSize( 2.5, 1.5 )
-    inst.Transform:SetFourFaced()
-
-	inst:AddTag("scarytoprey")
+    inst:AddTag("scarytoprey")
     inst:AddTag("monster")
     inst:AddTag("animal")
     inst:AddTag("insect")
@@ -155,7 +102,10 @@ local function fncommon()
 
     MakeCharacterPhysics(inst, 5, .5)
 
-    inst.Transform:SetScale(0.6,0.6,0.6)
+    inst.DynamicShadow:SetSize(2.5, 1.5)
+
+    inst.Transform:SetFourFaced()
+    inst.Transform:SetScale(0.6, 0.6, 0.6)
 
     inst.AnimState:SetBank("rabid_beetle")
     inst.AnimState:SetBuild("rabid_beetle")
@@ -167,12 +117,16 @@ local function fncommon()
         return inst
     end
 
+    inst:AddComponent("embarker")
+    inst:AddComponent("drownable")
+    inst:AddComponent("areaaware")
     inst:AddComponent("inspectable")
-    inst:AddComponent("follower")
+    -- inst:AddComponent("follower")
 
-    -- 需不需要上船呢？
+    -- locomotor must be constructed before the stategraph!
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = TUNING.RABID_BEETLE_SPEED
+    inst.components.locomotor:SetAllowPlatformHopping(true)
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED
@@ -182,18 +136,25 @@ local function fncommon()
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.RABID_BEETLE_HEALTH)
-    inst.components.health.murdersound = "pl/creatures/enemy/rabid_beetle/death"
+    inst.components.health.murdersound = "dontstarve_DLC003/creatures/enemy/rabid_beetle/death"
 
     inst:AddComponent("eater")
     -- inst.components.eater:SetCarnivore()
     inst.components.eater:SetDiet({FOODTYPE.MEAT}, {FOODTYPE.MEAT})
-	inst.components.eater:SetCanEatHorrible()
-    inst.components.eater.strongstomach = true -- can eat monster meat!
+    inst.components.eater:SetCanEatHorrible()
+    inst.components.eater:SetStrongStomach(true)  -- can eat monster meat!
+
+    inst:AddComponent("sleeper")
+    inst.components.sleeper:SetResistance(3)
+    inst.components.sleeper.testperiod = GetRandomWithVariance(6, 2)
+    inst.components.sleeper:SetSleepTest(ShouldSleep)
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
     inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickedUp)
     inst.components.inventoryitem.canbepickedup = false
+    inst.components.inventoryitem.canbepickedupalive = false
+    inst.components.inventoryitem.nobounce = true
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.RABID_BEETLE_DAMAGE)
@@ -201,35 +162,26 @@ local function fncommon()
     inst.components.combat:SetRetargetFunction(3, RetargetFn)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
     inst.components.combat:SetRange(2)
-    inst.components.combat:SetHurtSound("pl/creatures/enemy/rabid_beetle/hurt")
+    inst.components.combat:SetHurtSound("dontstarve_DLC003/creatures/enemy/rabid_beetle/hurt")
 
-    inst:AddComponent("sleeper")
-    inst.components.sleeper:SetResistance(3)
-    inst.components.sleeper.testperiod = GetRandomWithVariance(6, 2)
-    inst.components.sleeper:SetSleepTest(ShouldSleep)
-    inst.components.sleeper:SetWakeTest(ShouldWakeUp)
+    inst:AddComponent("timer")
+    inst.components.timer:StartTimer("endlife", TUNING.TOTAL_DAY_TIME + (3 * math.random() - 2) * TUNING.SEG_TIME)
 
     inst:SetStateGraph("SGrabid_beetle")
-    local brain = require "brains/rabid_beetlebrain"
     inst:SetBrain(brain)
-
-    inst.OnEntitySleep = OnEntitySleep
-    inst.OnSave = OnSave
-    inst.OnLoad = OnLoad
-    inst.OnLongUpdate = OnLongUpdate
-
-    MakeHauntablePanic(inst)
-    MakePoisonableCharacter(inst)
-    MakeMediumFreezableCharacter(inst, "bottom")
-    MakeMediumBurnableCharacter(inst, "bottom")
 
     inst:ListenForEvent("newcombattarget", OnNewTarget)
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("onattackother", OnAttackOther)
+    inst:ListenForEvent("timerdone", OnTimerDone)
+    -- inst:ListenForEvent("changearea", OnChangeArea)
 
-    StartLifespan(inst)
+    MakeHauntablePanic(inst)
+    MakePoisonableCharacter(inst, "bottom")
+    MakeMediumFreezableCharacter(inst, "bottom")
+    MakeMediumBurnableCharacter(inst, "bottom")
 
     return inst
 end
 
-return Prefab("rabid_beetle", fncommon, assets, prefabs)
+return Prefab("rabid_beetle", fn, assets, prefabs)
