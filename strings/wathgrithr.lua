@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "A priceless beauty.",
         PEAGAWK_BUSH = "Do you think you can hide from me?",
         SHEARS = "A weapon for use against a mighty hedge!",
+        TREE_PILLAR = "Surely I stand before Yggdrasil!",
         WEEVOLE = "A pest upon this land!",
         WEEVOLE_CARAPACE = "The skin of my enemy.",
     },

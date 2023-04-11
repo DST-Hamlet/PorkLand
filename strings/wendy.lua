@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "I spy, with my little eye...",
         PEAGAWK_BUSH = "Just a bush...",
         SHEARS = "Can it shear my heart?",
+        TREE_PILLAR = "Ancient, and full of life.",
         WEEVOLE = "Its sole existence is to annoy me.",
         WEEVOLE_CARAPACE = "Bits of bug carcass.",
     },

@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
         SHEARS = "Shear-ly delightful.",
+        TREE_PILLAR = "It totally blocks out the sun.",
         WEEVOLE = "Whee!",
         WEEVOLE_CARAPACE = "I'll be careful with this carapace.",
     },

@@ -35,6 +35,7 @@ return {
             SLEEPING = "That insight that spied on me was gone.",
         },
         SHEARS = "Cutting implements constructed from raw metal.",
+        TREE_PILLAR = "The circumference of this tree's trunk is unusually large.",
         WEEVOLE = "What a wonderfully persistent species of insect!",
         WEEVOLE_CARAPACE = "Excellent! It's the exoskeleton of a hexapod invertebrate!",
     },

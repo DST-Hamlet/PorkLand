@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "Feather'o'glimmer.",
         PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
         SHEARS = "A cutlass fer tha'bushes.",
+        TREE_PILLAR = "Vessel i'th'makin'.",
         WEEVOLE = "'ave at ye landlubbers!",
         WEEVOLE_CARAPACE = "Longcoat made o' them pesky bugs.",
     },

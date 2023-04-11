@@ -31,6 +31,7 @@ return {
         PEAGAWKFEATHER = "method is valid.",
         PEAGAWK_BUSH = "This bird can't fly, but turns into a bush!",
         SHEARS = "Gardener's little helper.",
+        TREE_PILLAR = "Such a big tree, even werebeaver can't eat it all.",
         WEEVOLE = "Hey! Got you!",
         WEEVOLE_CARAPACE = "Let's put it away, it might be useful.",
     },

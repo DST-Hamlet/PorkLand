@@ -17,6 +17,7 @@ return {
         PEAGAWKFEATHER = "Peagawk Plume",
         PEAGAWK_BUSH = "Blinkbush",
         SHEARS = "Shears",
+        TREE_PILLAR = "Great Leafy Stalk",
         WEEVOLE = "Weevole",
         WEEVOLE_CARAPACE = "Weevole Carapace",
     },

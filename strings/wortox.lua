@@ -31,6 +31,7 @@ return {
         PEAGAWKFEATHER = "Feather of a small peacock.",
         PEAGAWK_BUSH = "Well, this trick can't fool me.",
         SHEARS = "Click, click, leaves fall.",
+        TREE_PILLAR = "Blot out the sun.",
         WEEVOLE = "don't bite me!",
         WEEVOLE_CARAPACE = "What remains of their armor.",
     },

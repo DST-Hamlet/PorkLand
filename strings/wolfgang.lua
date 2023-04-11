@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "Is blink-blink bird feather.",
         PEAGAWK_BUSH = "Is just bush.",
         SHEARS = "Is for cutting plant things.",
+        TREE_PILLAR = "Mightiest tree!",
         WEEVOLE = "Pesky bug. Leave Wolfgang alone!",
         WEEVOLE_CARAPACE = "Is pesky bug skin.",
     },

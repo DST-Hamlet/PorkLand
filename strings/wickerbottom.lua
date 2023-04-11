@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
         PEAGAWK_BUSH = "I have questions about that bush.",
         SHEARS = "A useful tool for horticultural purposes.",
+        TREE_PILLAR = "Certainly from an old growth tree.",
         WEEVOLE = "A Coleoptera. And an annoying one at that.",
         WEEVOLE_CARAPACE = "The exoskeleton of a Coleoptera.",
     },

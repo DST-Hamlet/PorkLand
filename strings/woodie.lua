@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "It has a foul bird stench.",
         PEAGAWK_BUSH = "There's a wretched bird nearby. I feel it.",
         SHEARS = "Don't get jealous, Lucy.",
+        TREE_PILLAR = "That's a real beaut.",
         WEEVOLE = "Worse than black flies.",
         WEEVOLE_CARAPACE = "That'll teach 'em!",
     },

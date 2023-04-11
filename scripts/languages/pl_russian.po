@@ -125,6 +125,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
 msgid "Shear-ly delightful."
 msgstr "Время стричь!"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR"
+msgid "It totally blocks out the sun."
+msgstr "Отлично загораживает солнце."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE"
 msgid "Whee!"
@@ -250,6 +255,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
 msgid "Cutting implements constructed from raw metal."
 msgstr "Режущее орудие из необработанного металла."
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR"
+msgid "The circumference of this tree's trunk is unusually large."
+msgstr "Это дерево обладает необычно широким стволом."
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE"
 msgid "What a wonderfully persistent species of insect!"
@@ -370,6 +380,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
 msgid "What am I supposed to do with these?"
 msgstr "И что мне с ними делать?"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR"
+msgid "What a great tree!"
+msgstr "Прекрасное дерево!"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE"
 msgid "Annoying little guys."
@@ -485,6 +500,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
 msgid "Gardener's little helper."
 msgstr "Маленький помощник садовника."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR"
+msgid "Such a big tree, even werebeaver can't eat it all."
+msgstr "Такое большое дерево, даже бобры не могут его съесть целиком."
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE"
 msgid "Hey! Got you!"
@@ -599,6 +619,11 @@ msgstr "Какая хитрая маскировка."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
 msgid "I won't waste my time on this."
 msgstr "Я не буду тратить на это время."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR"
+msgid "Thankfully it doesn't completely block the sun."
+msgstr "К счастью, он не полностью закрывает солнце."
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE"
@@ -720,6 +745,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
 msgid "Good for cutting hedges and grass."
 msgstr "Пригодится для стрижки изгородей и травы."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR"
+msgid "What a marvel."
+msgstr "Что за удивительный феномен!"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE"
 msgid "Shoo! Go away!"
@@ -839,6 +869,11 @@ msgstr "Думаешь, что спрячешься от меня?"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
 msgid "A weapon for use against a mighty hedge!"
 msgstr "Оружие, способное справиться с могучей оградой!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR"
+msgid "Surely I stand before Yggdrasil!"
+msgstr "Я стою перед Иггдрасилем!"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE"
@@ -960,6 +995,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
 msgid "Aren't there gardeners for this sort of thing?"
 msgstr "Для этого вообще-то есть садовники."
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR"
+msgid "This tree is unusually large."
+msgstr "Необычно большое дерево."
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE"
 msgid "Interminable pests."
@@ -1079,6 +1119,11 @@ msgstr "Какой странный кустик."
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
 msgid "It's for chores like trimming hedges or cutting grass."
 msgstr "Ими можно подрезать изгородь или подстричь газон."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR"
+msgid "It's probably super old."
+msgstr "Оно очень, очень древнее."
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE"
@@ -1200,6 +1245,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
 msgid "Can it shear my heart?"
 msgstr "Смогут ли они укоротить мою жизнь?"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR"
+msgid "Ancient, and full of life."
+msgstr "Древнее, но полное жизни."
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE"
 msgid "Its sole existence is to annoy me."
@@ -1320,6 +1370,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
 msgid "Time to do some yard work."
 msgstr "Пора заняться стрижкой."
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR"
+msgid "That's a big tree."
+msgstr "Какое большое дерево."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE"
 msgid "Aggravating bugs! A complete waste of wings."
@@ -1439,6 +1494,11 @@ msgstr "У меня есть пара вопросов к этому кусту.
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
 msgid "A useful tool for horticultural purposes."
 msgstr "Полезный инструмент для сельскохозяйственных работ."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR"
+msgid "Certainly from an old growth tree."
+msgstr "Этому дереву явно очень много лет."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE"
@@ -1565,6 +1625,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
 msgid "FOR THE CUTTINGS OF THE SHRUBS"
 msgstr "СИЕ ДЛЯ ОБРЕЗКИ КУСТОВ"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR"
+msgid "'TIS STRONG TREE"
+msgstr "ДЕРЕВО СИЕ ВОИСТИНУ ОГРОМНО"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE"
 msgid "GO AWAY BUGS"
@@ -1685,6 +1750,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
 msgid "Not as good as fire, but I guess it has its uses."
 msgstr "С зажигалкой не сравнить, но какая-то польза от них все же есть."
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR"
+msgid "That's a big ol' tree."
+msgstr "Большое старое дерево."
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE"
 msgid "Stand still so I can burn you."
@@ -1799,6 +1869,11 @@ msgstr "Бдительный куст, как странно!"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
 msgid "Shears for gardening."
 msgstr "Ножницы для сада."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR"
+msgid "It stretches to the end of my field of vision."
+msgstr "Он простирается до конца моего поля зрения."
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE"
@@ -1920,6 +1995,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
 msgid "Is for cutting plant things."
 msgstr "Чтобы резать растения."
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR"
+msgid "Mightiest tree!"
+msgstr "Могучее дерево!"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE"
 msgid "Pesky bug. Leave Wolfgang alone!"
@@ -2039,6 +2119,11 @@ msgstr "Где-то здесь прячется гадкая птица, я чу
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
 msgid "Don't get jealous, Lucy."
 msgstr "Люси, не ревнуй."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR"
+msgid "That's a real beaut."
+msgstr "Красота какая."
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE"
@@ -2160,6 +2245,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
 msgid "A cutlass fer tha'bushes."
 msgstr "Кортик для кустов."
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR"
+msgid "Vessel i'th'makin'."
+msgstr "Будущее судно растет."
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE"
 msgid "'ave at ye landlubbers!"
@@ -2280,6 +2370,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
 msgid "For hair cuts"
 msgstr "Чтобы подрезать волосы"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR"
+msgid "Big friend?"
+msgstr "Большой друг?"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE"
 msgid "Wee Bzzter"
@@ -2395,6 +2490,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
 msgid "Click, click, leaves fall."
 msgstr "Щелчок, щелк, листья падают."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR"
+msgid "Blot out the sun."
+msgstr "Заткни солнце."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE"
 msgid "don't bite me!"
@@ -2509,6 +2609,11 @@ msgstr "Красивый перьевой куст."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
 msgid "Shape the plants."
 msgstr "Сформируйте растения."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR"
+msgid "A huge tree."
+msgstr "Огромное дерево."
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE"
@@ -2630,6 +2735,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
 msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
 msgstr "ОНИ ПОМОГУТ МНЕ ОДЕРЖАТЬ ПОБЕДУ НАД РАСТИТЕЛЬНОСТЬЮ!"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR"
+msgid "IT IS LARGE AND MADE OF WOOD"
+msgstr "БОЛЬШАЯ И СДЕЛАНА ИЗ ДЕРЕВА"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE"
 msgid "BIOLOGICAL FLESHSACK VIRUS"
@@ -2704,6 +2814,11 @@ msgstr "Куст с глазами"
 msgctxt "STRINGS.NAMES.SHEARS"
 msgid "Shears"
 msgstr "Ножницы"
+
+#. STRINGS.NAMES.TREE_PILLAR
+msgctxt "STRINGS.NAMES.TREE_PILLAR"
+msgid "Great Leafy Stalk"
+msgstr "Огромный стебель с листьями"
 
 #. STRINGS.NAMES.WEEVOLE
 msgctxt "STRINGS.NAMES.WEEVOLE"

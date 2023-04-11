@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
         SHEARS = "For hair cuts",
+        TREE_PILLAR = "Big friend?",
         WEEVOLE = "Wee Bzzter",
         WEEVOLE_CARAPACE = "Crunchy",
     },

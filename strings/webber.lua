@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "It's pretty.",
         PEAGAWK_BUSH = "Neat. A weird bush!",
         SHEARS = "It's for chores like trimming hedges or cutting grass.",
+        TREE_PILLAR = "It's probably super old.",
         WEEVOLE = "Those bugs are annoying.",
         WEEVOLE_CARAPACE = "It's the outer part of those bugs.",
     },

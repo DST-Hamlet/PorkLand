@@ -125,6 +125,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
 msgid "Shear-ly delightful."
 msgstr "Um tesouro de tesoura."
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR"
+msgid "It totally blocks out the sun."
+msgstr "Bloqueia completamente o sol."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE"
 msgid "Whee!"
@@ -250,6 +255,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
 msgid "Cutting implements constructed from raw metal."
 msgstr "Implementos de corte construídos com metal bruto."
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR"
+msgid "The circumference of this tree's trunk is unusually large."
+msgstr "A circunferência do tronco dessa árvore possui uma grandeza incomum."
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE"
 msgid "What a wonderfully persistent species of insect!"
@@ -370,6 +380,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
 msgid "What am I supposed to do with these?"
 msgstr "O que devo fazer com essas coisas?"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR"
+msgid "What a great tree!"
+msgstr "Que árvore linda!"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE"
 msgid "Annoying little guys."
@@ -485,6 +500,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
 msgid "Gardener's little helper."
 msgstr "O ajudante do jardineiro."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR"
+msgid "Such a big tree, even werebeaver can't eat it all."
+msgstr "Uma árvore tão grande que nem os castores conseguem comê-la toda."
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE"
 msgid "Hey! Got you!"
@@ -599,6 +619,11 @@ msgstr "Que disfarce inteligente."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
 msgid "I won't waste my time on this."
 msgstr "Não vou perder meu tempo com isso."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR"
+msgid "Thankfully it doesn't completely block the sun."
+msgstr "Felizmente, não bloqueia completamente o sol."
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE"
@@ -720,6 +745,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
 msgid "Good for cutting hedges and grass."
 msgstr "É ótima para cortar cercas vivas e grama."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR"
+msgid "What a marvel."
+msgstr "Que maravilha."
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE"
 msgid "Shoo! Go away!"
@@ -839,6 +869,11 @@ msgstr "Acha pode se esconder de mim?"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
 msgid "A weapon for use against a mighty hedge!"
 msgstr "Uma arma para ser usada contra uma cerca viva imponente!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR"
+msgid "Surely I stand before Yggdrasil!"
+msgstr "Sem dúvida, estou diante da Yggdrasil!"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE"
@@ -960,6 +995,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
 msgid "Aren't there gardeners for this sort of thing?"
 msgstr "Não tem jardineiros para fazer esse tipo de coisa?"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR"
+msgid "This tree is unusually large."
+msgstr "Esta árvore é extraordinariamente grande."
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE"
 msgid "Interminable pests."
@@ -1079,6 +1119,11 @@ msgstr "Bacana. Um arbusto estranho!"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
 msgid "It's for chores like trimming hedges or cutting grass."
 msgstr "Serve para aparar cercas vivas, ou cortar a grama."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR"
+msgid "It's probably super old."
+msgstr "Provavelmente é superantigo."
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE"
@@ -1200,6 +1245,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
 msgid "Can it shear my heart?"
 msgstr "Será que consegue podar meu coração?"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR"
+msgid "Ancient, and full of life."
+msgstr "Antiga e cheia de vida."
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE"
 msgid "Its sole existence is to annoy me."
@@ -1320,6 +1370,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
 msgid "Time to do some yard work."
 msgstr "Hora de trabalhar no quintal."
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR"
+msgid "That's a big tree."
+msgstr "Essa árvore é grande."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE"
 msgid "Aggravating bugs! A complete waste of wings."
@@ -1439,6 +1494,11 @@ msgstr "Tenho dúvidas sobre esse arbusto."
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
 msgid "A useful tool for horticultural purposes."
 msgstr "Uma ferramenta útil para fins hortícolas."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR"
+msgid "Certainly from an old growth tree."
+msgstr "Certamente, advém de uma árvore antiga."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE"
@@ -1565,6 +1625,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
 msgid "FOR THE CUTTINGS OF THE SHRUBS"
 msgstr "PARA CORTARES ARBUSTOS"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR"
+msgid "'TIS STRONG TREE"
+msgstr "ÉS UMA ÁRVORES FORTIS"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE"
 msgid "GO AWAY BUGS"
@@ -1685,6 +1750,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
 msgid "Not as good as fire, but I guess it has its uses."
 msgstr "Não é tão bom quanto o fogo, mas acho que tem seus usos."
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR"
+msgid "That's a big ol' tree."
+msgstr "Essa é uma árvore antiga e grande."
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE"
 msgid "Stand still so I can burn you."
@@ -1799,6 +1869,11 @@ msgstr "Um arbusto vigilante, que estranho!"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
 msgid "Shears for gardening."
 msgstr "Tesouras para jardinagem."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR"
+msgid "It stretches to the end of my field of vision."
+msgstr "Ela se estende até o fim do meu campo de visão."
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE"
@@ -1920,6 +1995,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
 msgid "Is for cutting plant things."
 msgstr "É para cortar coisas de plantas."
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR"
+msgid "Mightiest tree!"
+msgstr "Mais poderosa árvore de todas!"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE"
 msgid "Pesky bug. Leave Wolfgang alone!"
@@ -2039,6 +2119,11 @@ msgstr "Tem um pássaro miserável por perto. Tô sentindo."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
 msgid "Don't get jealous, Lucy."
 msgstr "Não fique com ciúmes, Lucy."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR"
+msgid "That's a real beaut."
+msgstr "Essa é uma beleuza de verdade."
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE"
@@ -2160,6 +2245,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
 msgid "A cutlass fer tha'bushes."
 msgstr "Um espadim pros arbustos."
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR"
+msgid "Vessel i'th'makin'."
+msgstr "Uma embarcação sendo construída."
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE"
 msgid "'ave at ye landlubbers!"
@@ -2280,6 +2370,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
 msgid "For hair cuts"
 msgstr "Pra cortes de cabelo."
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR"
+msgid "Big friend?"
+msgstr "Amigona?"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE"
 msgid "Wee Bzzter"
@@ -2395,6 +2490,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
 msgid "Click, click, leaves fall."
 msgstr "Clique, clique, as folhas caem."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR"
+msgid "Blot out the sun."
+msgstr "Bloqueie o sol."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE"
 msgid "don't bite me!"
@@ -2509,6 +2609,11 @@ msgstr "Belo arbusto de penas."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
 msgid "Shape the plants."
 msgstr "Dê forma às plantas."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR"
+msgid "A huge tree."
+msgstr "Uma árvore enorme."
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE"
@@ -2630,6 +2735,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
 msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
 msgstr "VOU DESTRUIR A VEGETAÇÃO COM ISSO!"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR"
+msgid "IT IS LARGE AND MADE OF WOOD"
+msgstr "É GRANDE E FEITO DE MADEIRA"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE"
 msgid "BIOLOGICAL FLESHSACK VIRUS"
@@ -2704,6 +2814,11 @@ msgstr "Arbusto de Medrão"
 msgctxt "STRINGS.NAMES.SHEARS"
 msgid "Shears"
 msgstr "Tesoura de Jardim"
+
+#. STRINGS.NAMES.TREE_PILLAR
+msgctxt "STRINGS.NAMES.TREE_PILLAR"
+msgid "Great Leafy Stalk"
+msgstr "Talo Folhoso Grande"
 
 #. STRINGS.NAMES.WEEVOLE
 msgctxt "STRINGS.NAMES.WEEVOLE"

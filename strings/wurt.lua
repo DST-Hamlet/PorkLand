@@ -31,6 +31,7 @@ return {
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
         SHEARS = "Shape the plants.",
+        TREE_PILLAR = "A huge tree.",
         WEEVOLE = "go away go away!",
         WEEVOLE_CARAPACE = "hard shell.",
     },

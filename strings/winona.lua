@@ -31,6 +31,7 @@ return {
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
         SHEARS = "Shears for gardening.",
+        TREE_PILLAR = "It stretches to the end of my field of vision.",
         WEEVOLE = "Once you've dealt with bedbugs, weevils aren't so bad.",
         WEEVOLE_CARAPACE = "It can be regarded as clean.",
     },

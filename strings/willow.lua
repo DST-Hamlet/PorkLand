@@ -32,6 +32,7 @@ return {
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
         SHEARS = "Not as good as fire, but I guess it has its uses.",
+        TREE_PILLAR = "That's a big ol' tree.",
         WEEVOLE = "Stand still so I can burn you.",
         WEEVOLE_CARAPACE = "Ew.",
     },
