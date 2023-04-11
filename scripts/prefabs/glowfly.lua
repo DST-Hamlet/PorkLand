@@ -195,6 +195,7 @@ local function SetCocoonTask(inst, time)
 end
 
 local function BeginCocoonStage(inst)
+    inst.cocoon_task, inst.cocoon_taskinfo = nil, nil
     inst:AddTag("wantstococoon")
 end
 
@@ -286,11 +287,14 @@ local function OnNear(inst)
     end
 end
 
+local function CocoonExpire(inst)
+    inst.expiretask, inst.expiretaskinfo = nil, nil
+    inst.sg:GoToState("cocoon_expire")
+end
+
 local function OnChangeSeason(inst, season)
     if season ~= SEASONS.HUMID then
-        inst.expiretask, inst.expiretaskinfo = inst:ResumeTask(2 * TUNING.SEG_TIME + math.random() * 3, function()
-            inst.sg:GoToState("cocoon_expire")
-        end)
+        inst.expiretask, inst.expiretaskinfo = inst:ResumeTask(2 * TUNING.SEG_TIME + math.random() * 3, CocoonExpire)
     else
         inst:AddTag("readytohatch")
     end
@@ -312,9 +316,7 @@ local function OnCocoonLoad(inst, data)
     end
 
     if data.expiretasktime ~= nil then
-        inst.expiretask, inst.expiretaskinfo = inst:ResumeTask(data.expiretasktime, function()
-            inst.sg:GoToState("cocoon_expire")
-        end)
+        inst.expiretask, inst.expiretaskinfo = inst:ResumeTask(data.expiretasktime, CocoonExpire(inst))
     end
 end
 
@@ -338,7 +340,6 @@ local function cocoonfn()
     inst:SetStateGraph("SGglowfly_cocoon")
 
     inst:WatchWorldState("season", OnChangeSeason)
-    OnChangeSeason(inst, TheWorld.state.season)
 
     inst.OnSave = OnCocoonSave
     inst.OnLoad = OnCocoonLoad
