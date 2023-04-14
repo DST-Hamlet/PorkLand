@@ -117,7 +117,6 @@ local function fn()
         return inst
     end
 
-    inst:AddComponent("embarker")
     inst:AddComponent("drownable")
     inst:AddComponent("areaaware")
     inst:AddComponent("inspectable")
@@ -127,6 +126,9 @@ local function fn()
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = TUNING.RABID_BEETLE_SPEED
     inst.components.locomotor:SetAllowPlatformHopping(true)
+
+    inst:AddComponent("embarker")
+    inst.components.embarker.embark_speed = inst.components.locomotor.runspeed + 2
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED

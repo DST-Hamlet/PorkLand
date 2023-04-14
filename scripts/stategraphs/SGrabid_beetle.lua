@@ -248,6 +248,6 @@ local states = {
 
 CommonStates.AddSleepStates(states)
 CommonStates.AddFrozenStates(states)
-CommonStates.AddHopStates(states, true, {pre = "run_pre", loop = "run_loop", pst = "run_pst"})
+CommonStates.AddHopStates(states)
 
 return StateGraph("rabid_beetle", states, events, "taunt", actionhandlers)

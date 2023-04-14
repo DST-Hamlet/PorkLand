@@ -34,11 +34,17 @@ function Rabid_Beetle_Brain:OnStart()
 
     local root = PriorityNode(
     {
-        BrainCommon.PanicTrigger(self.inst),
-        AttackWall(self.inst),
-        ChaseAndAttack(self.inst, 100),
-        DoAction(self.inst, EatFoodAction, "eat food", true),
-        Wander(self.inst, GetWanderPoint, 20),
+        WhileNode(
+            function() return not self.inst.sg:HasStateTag("jumping") end, "AttackAndWander",
+            PriorityNode(
+            {
+                BrainCommon.PanicTrigger(self.inst),
+                AttackWall(self.inst),
+                ChaseAndAttack(self.inst, 100),
+                DoAction(self.inst, EatFoodAction, "eat food", true),
+                Wander(self.inst, GetWanderPoint, 20),
+            }, .25)
+        )
     }, .25)
 
     self.bt = BT(self.inst, root)
