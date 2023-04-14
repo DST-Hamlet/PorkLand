@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
+        RABID_BEETLE = {
+            DEAD = "Looks dead to me.",
+            GENERIC = "What're you so mad about?",
+            SLEEPING = "I should draw a mustache on its mustache while it sleeps.",
+        },
         SHEARS = "Not as good as fire, but I guess it has its uses.",
         TREE_PILLAR = "That's a big ol' tree.",
         WEEVOLE = "Stand still so I can burn you.",

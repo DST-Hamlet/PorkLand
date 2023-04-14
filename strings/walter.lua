@@ -30,6 +30,11 @@ return {
         },
         PEAGAWKFEATHER = "method is valid.",
         PEAGAWK_BUSH = "This bird can't fly, but turns into a bush!",
+        RABID_BEETLE = {
+            DEAD = "Oh, dead.",
+            GENERIC = "Wow, look how active they are!",
+            SLEEPING = "it's sleeping,",
+        },
         SHEARS = "Gardener's little helper.",
         TREE_PILLAR = "Such a big tree, even werebeaver can't eat it all.",
         WEEVOLE = "Hey! Got you!",

@@ -120,6 +120,21 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH"
 msgid "Look! An iris bush."
 msgstr "Ничего себе! Куст с глазами."
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "A late beetle."
+msgstr "Покойный жучок."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Looks deranged."
+msgstr "Какой-то он бешеный."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "In a slumber."
+msgstr "Дремлет, красавец."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
 msgid "Shear-ly delightful."
@@ -250,6 +265,21 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
 msgid "That insight that spied on me was gone."
 msgstr "Прозрение, которое шпионило за мной, исчезло."
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "An occurrance of invertebrate respiratory failure."
+msgstr "У этого беспозвоночного случилась респираторная недостаточность."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Evidently, it acquires facial hair when it matures."
+msgstr "Приобретает растительность на лице в период взросления."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "It's respiratory structures are vibrating."
+msgstr "У него вибрирует респираторная система."
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
 msgid "Cutting implements constructed from raw metal."
@@ -375,6 +405,21 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a cool looking bush!"
 msgstr "Какой крутой куст!"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "That's a bummer."
+msgstr "Какая жалость."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Dude, you need to chill!"
+msgstr "Чувак, уймись!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "That's it. Now just stay asleep."
+msgstr "Вот так. Спи дальше."
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
 msgid "What am I supposed to do with these?"
@@ -495,6 +540,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
 msgid "This bird can't fly, but turns into a bush!"
 msgstr "Эта птица не умеет летать, а превращается в куст!"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Oh, dead."
+msgstr "О, мертв."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Wow, look how active they are!"
+msgstr "Вау, посмотрите, какие они активные!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "it's sleeping,"
+msgstr "он спит,"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
 msgid "Gardener's little helper."
@@ -614,6 +674,21 @@ msgstr "Это трудно увидеть."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a clever disguise."
 msgstr "Какая хитрая маскировка."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "There is one less pest in the world."
+msgstr "В мире на одного вредителя меньше."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "vermin! go away!"
+msgstr "паразит! Уходите!"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Huh, I can take a breath."
+msgstr "Ха, я могу перевести дух."
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
@@ -740,6 +815,21 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
 msgid "It's a bright blue bush."
 msgstr "Ярко-синий куст."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "A shame. Not even edible."
+msgstr "Даже не съесть. Какая жалость."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "It is like me when I am hungry."
+msgstr "В точности как я, когда голоден."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "What a curious way to sleep!"
+msgstr "Как он интересно спит!"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
 msgid "Good for cutting hedges and grass."
@@ -864,6 +954,21 @@ msgstr "Бесценная красота."
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
 msgid "Do you think you can hide from me?"
 msgstr "Думаешь, что спрячешься от меня?"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "It has died in battle."
+msgstr "Он погиб в бою."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Evil beast. You have met your match!"
+msgstr "Коварное чудище, ты встретило достойную противницу!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Slumber consumes it!"
+msgstr "Его поразил сон!"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
@@ -990,6 +1095,21 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
 msgid "I've my suspicions about that bush."
 msgstr "Этот куст кажется мне подозрительным."
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "The grim reaper has been here."
+msgstr "Здесь побывал мрачный жнец."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "What is he all worked up about?"
+msgstr "Что-то он весь на взводе."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "A noisy sleeper."
+msgstr "Беспокойно спит."
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
 msgid "Aren't there gardeners for this sort of thing?"
@@ -1114,6 +1234,21 @@ msgstr "Мило."
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Neat. A weird bush!"
 msgstr "Какой странный кустик."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Well, that's unfortunate."
+msgstr "Ну, это печально."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "That guy's got a lot of energy!"
+msgstr "Энергии ему не занимать!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Haha! A bug with a mustache!"
+msgstr "Ха! Усатый жук!"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
@@ -1240,6 +1375,21 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH"
 msgid "Just a bush..."
 msgstr "Обычный куст..."
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Lifeless."
+msgstr "Признаков жизни нет."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "As rabid as death itself."
+msgstr "Бешеный, как ритм жизни."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Sleep is not a permanent escape from life."
+msgstr "Во сне можно лишь ненадолго сбежать от этой жизни."
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
 msgid "Can it shear my heart?"
@@ -1365,6 +1515,21 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Something's hiding in there."
 msgstr "Там кто-то прячется."
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Not too sorry about that."
+msgstr "Я об этом не сожалею."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Probably just agitated because it can't fly well."
+msgstr "Он бесится, потому что летает плохо."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Quite the snorer."
+msgstr "Вот это храп."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
 msgid "Time to do some yard work."
@@ -1489,6 +1654,21 @@ msgstr "Перо самца павлина обыкновенного."
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
 msgid "I have questions about that bush."
 msgstr "У меня есть пара вопросов к этому кусту."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Expired."
+msgstr "Вот и все."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Certainly not a species I know of!"
+msgstr "Этот вид мне совершенно точно неизвестен."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Dormant."
+msgstr "В забытьи."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
@@ -1620,6 +1800,21 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
 msgid "'TIS NAUGHT A BUSH"
 msgstr "СИЕ НЕ КУСТ"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "IN YON UNDISCOVER'D COUNTRY"
+msgstr "УШЕЛ В СТРАНУ ИНУЮ"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "FULL OF SOUND AND FURY"
+msgstr "ЗВУКАМИ И ЯРОСТЬЮ ПОЛНИТСЯ ОН"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "O GENTLE SLEEPIES"
+msgstr "ПУСТЬ СОН СПОКОЕН БУДЕТ ТВОЙ"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
 msgid "FOR THE CUTTINGS OF THE SHRUBS"
@@ -1745,6 +1940,21 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
 msgid "A bush. I think."
 msgstr "По-моему, это куст."
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Looks dead to me."
+msgstr "Он явно мертв."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "What're you so mad about?"
+msgstr "Что тебя так разозлило?"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "I should draw a mustache on its mustache while it sleeps."
+msgstr "Нужно нарисовать ему на усах усы, пока он спит."
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
 msgid "Not as good as fire, but I guess it has its uses."
@@ -1864,6 +2074,21 @@ msgstr "Оно все еще смотрит на меня."
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
 msgid "A vigilant bush, how strange!"
 msgstr "Бдительный куст, как странно!"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Ah, it stopped."
+msgstr "А, остановилось."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "What are you all excited about?"
+msgstr "Чем вы все взволнованы?"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Calm down!"
+msgstr "Успокоиться!"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
@@ -1990,6 +2215,21 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
 msgid "Is just bush."
 msgstr "Просто куст."
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Is stomped."
+msgstr "Расплющен."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Wolfgang will stomp bad beetle!"
+msgstr "Вольфганг расплющит жука-негодяя!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Hehe. Is funny mustache."
+msgstr "Хе-хе. Смешные усики."
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
 msgid "Is for cutting plant things."
@@ -2114,6 +2354,21 @@ msgstr "Пахнет птичьим пометом."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
 msgid "There's a wretched bird nearby. I feel it."
 msgstr "Где-то здесь прячется гадкая птица, я чувствую это."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "For the best."
+msgstr "И к лучшему."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Seems mighty angry."
+msgstr "Его переполняет злоба."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Let sleeping bugs lie, I say."
+msgstr "Не буди спящего жука, как говорится."
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
@@ -2240,6 +2495,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
 msgid "'Tis unsettlin' t'b'sure."
 msgstr "Да уж, как-то не по себе."
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Aye, 'tis fer'tha best."
+msgstr "Ар-р, все к лучшему."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Ornery buggie."
+msgstr "Своенравный жучок."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Thar she blows!"
+msgstr "Ща рванет!"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
 msgid "A cutlass fer tha'bushes."
@@ -2365,6 +2635,21 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH"
 msgid "Looking good!"
 msgstr "Смотрится неплохо!"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Too bad"
+msgstr "Жалко"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Why so mad, Bzzter?"
+msgstr "Почему ты злишься, жужжалка?"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Let it sleep"
+msgstr "Пусть спит"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
 msgid "For hair cuts"
@@ -2485,6 +2770,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
 msgid "Well, this trick can't fool me."
 msgstr "Ну, этот трюк не может обмануть меня."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "it's a pity."
+msgstr "жаль."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Really energetic, do you want to dance?"
+msgstr "Очень энергично, хочешь потанцевать?"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Then intermission."
+msgstr "Потом антракт."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
 msgid "Click, click, leaves fall."
@@ -2604,6 +2904,21 @@ msgstr "На нем большие чудовищные глаза."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
 msgid "Pretty feather bush."
 msgstr "Красивый перьевой куст."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "died."
+msgstr "умер."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "The little bug is going crazy!"
+msgstr "Маленький жучок сходит с ума!"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "The little bug was quiet."
+msgstr "Маленький жук молчал."
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
@@ -2730,6 +3045,21 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
 msgid "GROUND PART"
 msgstr "ДЕТАЛЬ ПЕЙЗАЖА"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "TERMINATED"
+msgstr "УНИЧТОЖЕНО"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "YOU HAVE EXCESSIVE FACIAL HAIR"
+msgstr "ИЗБЫТОЧНАЯ ЛИЦЕВАЯ РАСТИТЕЛЬНОСТЬ"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "REGENERATING TERROR"
+msgstr "ВОСПОЛНЯЕТ ЗАПАСЫ УЖАСА"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
 msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
@@ -2809,6 +3139,11 @@ msgstr "Перо глазастого павлина"
 msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
 msgid "Blinkbush"
 msgstr "Куст с глазами"
+
+#. STRINGS.NAMES.RABID_BEETLE
+msgctxt "STRINGS.NAMES.RABID_BEETLE"
+msgid "Rabid Beetle"
+msgstr "Бешеный жук"
 
 #. STRINGS.NAMES.SHEARS
 msgctxt "STRINGS.NAMES.SHEARS"

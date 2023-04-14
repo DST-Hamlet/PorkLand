@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "A priceless beauty.",
         PEAGAWK_BUSH = "Do you think you can hide from me?",
+        RABID_BEETLE = {
+            DEAD = "It has died in battle.",
+            GENERIC = "Evil beast. You have met your match!",
+            SLEEPING = "Slumber consumes it!",
+        },
         SHEARS = "A weapon for use against a mighty hedge!",
         TREE_PILLAR = "Surely I stand before Yggdrasil!",
         WEEVOLE = "A pest upon this land!",

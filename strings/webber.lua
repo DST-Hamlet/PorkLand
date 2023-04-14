@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "It's pretty.",
         PEAGAWK_BUSH = "Neat. A weird bush!",
+        RABID_BEETLE = {
+            DEAD = "Well, that's unfortunate.",
+            GENERIC = "That guy's got a lot of energy!",
+            SLEEPING = "Haha! A bug with a mustache!",
+        },
         SHEARS = "It's for chores like trimming hedges or cutting grass.",
         TREE_PILLAR = "It's probably super old.",
         WEEVOLE = "Those bugs are annoying.",

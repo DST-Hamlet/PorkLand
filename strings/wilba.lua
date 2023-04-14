@@ -32,6 +32,11 @@ return {
         },
         PEAGAWKFEATHER = "IS'T A BIRD THING O' PRETTY",
         PEAGAWK_BUSH = "'TIS NAUGHT A BUSH",
+        RABID_BEETLE = {
+            DEAD = "IN YON UNDISCOVER'D COUNTRY",
+            GENERIC = "FULL OF SOUND AND FURY",
+            SLEEPING = "O GENTLE SLEEPIES",
+        },
         SHEARS = "FOR THE CUTTINGS OF THE SHRUBS",
         TREE_PILLAR = "'TIS STRONG TREE",
         WEEVOLE = "GO AWAY BUGS",

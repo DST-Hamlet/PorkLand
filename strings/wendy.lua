@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "I spy, with my little eye...",
         PEAGAWK_BUSH = "Just a bush...",
+        RABID_BEETLE = {
+            DEAD = "Lifeless.",
+            GENERIC = "As rabid as death itself.",
+            SLEEPING = "Sleep is not a permanent escape from life.",
+        },
         SHEARS = "Can it shear my heart?",
         TREE_PILLAR = "Ancient, and full of life.",
         WEEVOLE = "Its sole existence is to annoy me.",

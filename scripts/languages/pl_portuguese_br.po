@@ -120,6 +120,21 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH"
 msgid "Look! An iris bush."
 msgstr "Veja! Um arbusto iridescente!"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "A late beetle."
+msgstr "Um besouro falecido."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Looks deranged."
+msgstr "Parece enlouquecido."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "In a slumber."
+msgstr "Em torpor."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
 msgid "Shear-ly delightful."
@@ -250,6 +265,21 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
 msgid "That insight that spied on me was gone."
 msgstr "Aquele insight que me espionou se foi."
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "An occurrance of invertebrate respiratory failure."
+msgstr "Uma ocorrência de insuficiência respiratória invertebrada."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Evidently, it acquires facial hair when it matures."
+msgstr "É evidente que ele adquire pelos faciais ao amadurecer."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "It's respiratory structures are vibrating."
+msgstr "Suas estruturas respiratórias estão vibrando."
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
 msgid "Cutting implements constructed from raw metal."
@@ -375,6 +405,21 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a cool looking bush!"
 msgstr "Que arbusto maneiro!"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "That's a bummer."
+msgstr "Ih, deu ruim."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Dude, you need to chill!"
+msgstr "Cara, você tem que se acalmar!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "That's it. Now just stay asleep."
+msgstr "Isso aí. Agora é só continuar dormindo."
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
 msgid "What am I supposed to do with these?"
@@ -495,6 +540,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
 msgid "This bird can't fly, but turns into a bush!"
 msgstr "Este pássaro não pode voar, mas se transforma em um arbusto!"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Oh, dead."
+msgstr "Ah, morto."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Wow, look how active they are!"
+msgstr "Uau, olha como eles são ativos!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "it's sleeping,"
+msgstr "está dormindo,"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
 msgid "Gardener's little helper."
@@ -614,6 +674,21 @@ msgstr "É difícil de ver."
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a clever disguise."
 msgstr "Que disfarce inteligente."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "There is one less pest in the world."
+msgstr "Há uma praga a menos no mundo."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "vermin! go away!"
+msgstr "verme! vá embora!"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Huh, I can take a breath."
+msgstr "Huh, eu posso respirar."
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
@@ -740,6 +815,21 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
 msgid "It's a bright blue bush."
 msgstr "É um arbusto azul e brilhante!"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "A shame. Not even edible."
+msgstr "Que pena. Nem é comestível."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "It is like me when I am hungry."
+msgstr "É como eu fico quando tô com fome."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "What a curious way to sleep!"
+msgstr "Que maneira curiosa de dormir!"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
 msgid "Good for cutting hedges and grass."
@@ -864,6 +954,21 @@ msgstr "Uma beleza inestimável."
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
 msgid "Do you think you can hide from me?"
 msgstr "Acha pode se esconder de mim?"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "It has died in battle."
+msgstr "Ele morreu em combate."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Evil beast. You have met your match!"
+msgstr "Fera maligna. Você encontrou uma adversária à sua altura!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Slumber consumes it!"
+msgstr "Consumida pelo sono!"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
@@ -990,6 +1095,21 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
 msgid "I've my suspicions about that bush."
 msgstr "Tenho minhas suspeitas em relação a essa moita."
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "The grim reaper has been here."
+msgstr "O ceifador passou por aqui."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "What is he all worked up about?"
+msgstr "Por que ele está tão nervoso assim?"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "A noisy sleeper."
+msgstr "Como ronca."
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
 msgid "Aren't there gardeners for this sort of thing?"
@@ -1114,6 +1234,21 @@ msgstr "É bonita."
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Neat. A weird bush!"
 msgstr "Bacana. Um arbusto estranho!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Well, that's unfortunate."
+msgstr "Nossa, que lamentável."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "That guy's got a lot of energy!"
+msgstr "Esse cara tem muita energia!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Haha! A bug with a mustache!"
+msgstr "Haha! Um inseto com bigode!"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
@@ -1240,6 +1375,21 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH"
 msgid "Just a bush..."
 msgstr "É apenas um arbusto..."
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Lifeless."
+msgstr "Sem vida."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "As rabid as death itself."
+msgstr "Tão furioso quanto a própria morte."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Sleep is not a permanent escape from life."
+msgstr "O sono não é uma fuga permanente da vida."
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
 msgid "Can it shear my heart?"
@@ -1365,6 +1515,21 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Something's hiding in there."
 msgstr "Algo está se escondendo aí."
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Not too sorry about that."
+msgstr "Não estou me sentindo muito mal com isso."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Probably just agitated because it can't fly well."
+msgstr "Provavelmente só está agitado porque não sabe voar bem."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Quite the snorer."
+msgstr "Ronca bastate."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
 msgid "Time to do some yard work."
@@ -1489,6 +1654,21 @@ msgstr "Pena do macho Pavo Cristatus."
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
 msgid "I have questions about that bush."
 msgstr "Tenho dúvidas sobre esse arbusto."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Expired."
+msgstr "Expirou."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Certainly not a species I know of!"
+msgstr "Certamente não é uma espécie que conheço!"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Dormant."
+msgstr "Dormente."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
@@ -1620,6 +1800,21 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
 msgid "'TIS NAUGHT A BUSH"
 msgstr "NAUM ÉS ARBUSTOS"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "IN YON UNDISCOVER'D COUNTRY"
+msgstr "EM AIS PAÍSES DESCONHECIDIS"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "FULL OF SOUND AND FURY"
+msgstr "CHEIOS DE SONS E FÚRIAS!"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "O GENTLE SLEEPIES"
+msgstr "ÓH, SONHUZINHOS QUERIDIS"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
 msgid "FOR THE CUTTINGS OF THE SHRUBS"
@@ -1745,6 +1940,21 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
 msgid "A bush. I think."
 msgstr "Um arbusto. Eu acho."
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Looks dead to me."
+msgstr "Parece morto para mim."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "What're you so mad about?"
+msgstr "Por que você ficou tão brabo?"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "I should draw a mustache on its mustache while it sleeps."
+msgstr "Eu deveria desenhar um bigode no bigode dele enquanto está dormindo."
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
 msgid "Not as good as fire, but I guess it has its uses."
@@ -1864,6 +2074,21 @@ msgstr "Ainda está olhando para mim."
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
 msgid "A vigilant bush, how strange!"
 msgstr "Um arbusto vigilante, que estranho!"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Ah, it stopped."
+msgstr "Ai parou."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "What are you all excited about?"
+msgstr "Por que você está todo animado?"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Calm down!"
+msgstr "Acalmar!"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
@@ -1990,6 +2215,21 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
 msgid "Is just bush."
 msgstr "É só arbusto."
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Is stomped."
+msgstr "É pisado."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Wolfgang will stomp bad beetle!"
+msgstr "Wolfgang vai pisar besouro ruim!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Hehe. Is funny mustache."
+msgstr "Hehe. É bigode engraçado."
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
 msgid "Is for cutting plant things."
@@ -2114,6 +2354,21 @@ msgstr "Tem um mau cheiro de pássaro."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
 msgid "There's a wretched bird nearby. I feel it."
 msgstr "Tem um pássaro miserável por perto. Tô sentindo."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "For the best."
+msgstr "Vai ser melhor assim."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Seems mighty angry."
+msgstr "Parece muito zangado."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Let sleeping bugs lie, I say."
+msgstr "Melhor deixar os insetos dormirem, eu digo."
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
@@ -2240,6 +2495,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
 msgid "'Tis unsettlin' t'b'sure."
 msgstr "É mui perturbador."
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Aye, 'tis fer'tha best."
+msgstr "Arr, melhor assim."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Ornery buggie."
+msgstr "Inseto intratável."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Thar she blows!"
+msgstr "Lá se explode ela!"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
 msgid "A cutlass fer tha'bushes."
@@ -2365,6 +2635,21 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH"
 msgid "Looking good!"
 msgstr "Que bonito!"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Too bad"
+msgstr "Que pena."
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Why so mad, Bzzter?"
+msgstr "Por que tá tão brabo, Bzzter?"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Let it sleep"
+msgstr "Deixe dormir."
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
 msgid "For hair cuts"
@@ -2485,6 +2770,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
 msgid "Well, this trick can't fool me."
 msgstr "Bem, este truque não pode me enganar."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "it's a pity."
+msgstr "é uma pena."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Really energetic, do you want to dance?"
+msgstr "Muito enérgico, você quer dançar?"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Then intermission."
+msgstr "Então intervalo."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
 msgid "Click, click, leaves fall."
@@ -2604,6 +2904,21 @@ msgstr "Há grandes olhos de monstro nele."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
 msgid "Pretty feather bush."
 msgstr "Belo arbusto de penas."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "died."
+msgstr "morreu."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "The little bug is going crazy!"
+msgstr "O bichinho está ficando louco!"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "The little bug was quiet."
+msgstr "O bichinho estava quieto."
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
@@ -2730,6 +3045,21 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
 msgid "GROUND PART"
 msgstr "PEÇA DO CHÃO"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "TERMINATED"
+msgstr "EXTERMINADO"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "YOU HAVE EXCESSIVE FACIAL HAIR"
+msgstr "VOCÊ TEM CABELO FACIAL EXCESSIVO"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "REGENERATING TERROR"
+msgstr "TERROR REGENERANTE"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
 msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
@@ -2809,6 +3139,11 @@ msgstr "Pluma de Medrão"
 msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
 msgid "Blinkbush"
 msgstr "Arbusto de Medrão"
+
+#. STRINGS.NAMES.RABID_BEETLE
+msgctxt "STRINGS.NAMES.RABID_BEETLE"
+msgid "Rabid Beetle"
+msgstr "Besouro Raivoso"
 
 #. STRINGS.NAMES.SHEARS
 msgctxt "STRINGS.NAMES.SHEARS"

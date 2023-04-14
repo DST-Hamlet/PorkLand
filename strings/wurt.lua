@@ -30,6 +30,11 @@ return {
         },
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
+        RABID_BEETLE = {
+            DEAD = "died.",
+            GENERIC = "The little bug is going crazy!",
+            SLEEPING = "The little bug was quiet.",
+        },
         SHEARS = "Shape the plants.",
         TREE_PILLAR = "A huge tree.",
         WEEVOLE = "go away go away!",

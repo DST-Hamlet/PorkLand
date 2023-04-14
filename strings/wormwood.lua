@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
+        RABID_BEETLE = {
+            DEAD = "Too bad",
+            GENERIC = "Why so mad, Bzzter?",
+            SLEEPING = "Let it sleep",
+        },
         SHEARS = "For hair cuts",
         TREE_PILLAR = "Big friend?",
         WEEVOLE = "Wee Bzzter",

@@ -30,6 +30,11 @@ return {
         },
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
+        RABID_BEETLE = {
+            DEAD = "Ah, it stopped.",
+            GENERIC = "What are you all excited about?",
+            SLEEPING = "Calm down!",
+        },
         SHEARS = "Shears for gardening.",
         TREE_PILLAR = "It stretches to the end of my field of vision.",
         WEEVOLE = "Once you've dealt with bedbugs, weevils aren't so bad.",

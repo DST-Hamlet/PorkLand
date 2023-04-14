@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "It's quite soft.",
         PEAGAWK_BUSH = "It's a bright blue bush.",
+        RABID_BEETLE = {
+            DEAD = "A shame. Not even edible.",
+            GENERIC = "It is like me when I am hungry.",
+            SLEEPING = "What a curious way to sleep!",
+        },
         SHEARS = "Good for cutting hedges and grass.",
         TREE_PILLAR = "What a marvel.",
         WEEVOLE = "Shoo! Go away!",

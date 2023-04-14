@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
         PEAGAWK_BUSH = "I have questions about that bush.",
+        RABID_BEETLE = {
+            DEAD = "Expired.",
+            GENERIC = "Certainly not a species I know of!",
+            SLEEPING = "Dormant.",
+        },
         SHEARS = "A useful tool for horticultural purposes.",
         TREE_PILLAR = "Certainly from an old growth tree.",
         WEEVOLE = "A Coleoptera. And an annoying one at that.",

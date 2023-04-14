@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "Nature makes such pretty things.",
         PEAGAWK_BUSH = "What a cool looking bush!",
+        RABID_BEETLE = {
+            DEAD = "That's a bummer.",
+            GENERIC = "Dude, you need to chill!",
+            SLEEPING = "That's it. Now just stay asleep.",
+        },
         SHEARS = "What am I supposed to do with these?",
         TREE_PILLAR = "What a great tree!",
         WEEVOLE = "Annoying little guys.",

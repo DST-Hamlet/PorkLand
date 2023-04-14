@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "What finery.",
         PEAGAWK_BUSH = "I've my suspicions about that bush.",
+        RABID_BEETLE = {
+            DEAD = "The grim reaper has been here.",
+            GENERIC = "What is he all worked up about?",
+            SLEEPING = "A noisy sleeper.",
+        },
         SHEARS = "Aren't there gardeners for this sort of thing?",
         TREE_PILLAR = "This tree is unusually large.",
         WEEVOLE = "Interminable pests.",

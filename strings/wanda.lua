@@ -30,6 +30,11 @@ return {
         },
         PEAGAWKFEATHER = "It's hard to see.",
         PEAGAWK_BUSH = "What a clever disguise.",
+        RABID_BEETLE = {
+            DEAD = "There is one less pest in the world.",
+            GENERIC = "vermin! go away!",
+            SLEEPING = "Huh, I can take a breath.",
+        },
         SHEARS = "I won't waste my time on this.",
         TREE_PILLAR = "Thankfully it doesn't completely block the sun.",
         WEEVOLE = "I remember it biting.",

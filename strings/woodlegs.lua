@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "Feather'o'glimmer.",
         PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
+        RABID_BEETLE = {
+            DEAD = "Aye, 'tis fer'tha best.",
+            GENERIC = "Ornery buggie.",
+            SLEEPING = "Thar she blows!",
+        },
         SHEARS = "A cutlass fer tha'bushes.",
         TREE_PILLAR = "Vessel i'th'makin'.",
         WEEVOLE = "'ave at ye landlubbers!",

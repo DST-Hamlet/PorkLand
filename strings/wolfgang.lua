@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "Is blink-blink bird feather.",
         PEAGAWK_BUSH = "Is just bush.",
+        RABID_BEETLE = {
+            DEAD = "Is stomped.",
+            GENERIC = "Wolfgang will stomp bad beetle!",
+            SLEEPING = "Hehe. Is funny mustache.",
+        },
         SHEARS = "Is for cutting plant things.",
         TREE_PILLAR = "Mightiest tree!",
         WEEVOLE = "Pesky bug. Leave Wolfgang alone!",

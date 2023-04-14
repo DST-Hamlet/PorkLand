@@ -30,6 +30,11 @@ return {
         },
         PEAGAWKFEATHER = "Feather of a small peacock.",
         PEAGAWK_BUSH = "Well, this trick can't fool me.",
+        RABID_BEETLE = {
+            DEAD = "it's a pity.",
+            GENERIC = "Really energetic, do you want to dance?",
+            SLEEPING = "Then intermission.",
+        },
         SHEARS = "Click, click, leaves fall.",
         TREE_PILLAR = "Blot out the sun.",
         WEEVOLE = "don't bite me!",

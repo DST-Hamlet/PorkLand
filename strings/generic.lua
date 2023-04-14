@@ -31,6 +31,11 @@ return {
         },
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
+        RABID_BEETLE = {
+            DEAD = "A late beetle.",
+            GENERIC = "Looks deranged.",
+            SLEEPING = "In a slumber.",
+        },
         SHEARS = "Shear-ly delightful.",
         TREE_PILLAR = "It totally blocks out the sun.",
         WEEVOLE = "Whee!",
