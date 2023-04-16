@@ -26,9 +26,11 @@ PrefabFiles = {
     "weevole",
 }
 
-Pl_Util.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")
-
 Assets = {
+    -- minimap
+    Asset("IMAGE", "images/minimap/pl_minimap.tex"),
+    Asset("ATLAS", "images/minimap/pl_minimap.xml"),
+
     -- inventoryimages
     Asset("IMAGE", "images/pl_inventoryimages.tex"),
     Asset("ATLAS", "images/pl_inventoryimages.xml"),
@@ -46,6 +48,7 @@ Assets = {
     Asset("ANIM", "anim/player_actions_shear.zip"),
 }
 
+Pl_Util.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
 
 if not TheNet:IsDedicated() then
