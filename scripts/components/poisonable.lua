@@ -1,3 +1,12 @@
+local function OnKilled(inst)
+    local poisonable = inst.components.poisonable
+
+    if poisonable then
+        poisonable:KillFX()
+    end
+end
+
+
 -- Binary state problematic for non-players? should have a timer that gets set to infinite for players and some discrete time for non-players
 local Poisonable = Class(function(self, inst)
     self.inst = inst
@@ -28,7 +37,7 @@ local Poisonable = Class(function(self, inst)
 
     self.blockall = nil
 
-    -- self.inst:ListenForEvent("death", OnKilled)
+    self.inst:ListenForEvent("death", OnKilled)
 end)
 
 local function IsPoisonDisabled()
@@ -117,9 +126,9 @@ function Poisonable:SetOnCuredFn(fn)
 end
 
 -- Add an effect to be spawned when poisoning
--- @param prefab The prefab to spawn as the effect
--- @param offset The offset from the poisoning entity/symbol that the effect should appear at
--- @param followsymbol Optional symbol for the effect to follow
+---@param prefab The prefab to spawn as the effect
+---@param offset The offset from the poisoning entity/symbol that the effect should appear at
+---@param followsymbol Optional symbol for the effect to follow
 function Poisonable:AddPoisonFX(prefab, offset, followsymbol)
     table.insert(self.fxdata, {prefab = prefab, x = offset.x, y = offset.y, z = offset.z, follow = followsymbol})
 end
@@ -135,46 +144,46 @@ end
 function Poisonable:OnRemoveEntity()
     self:KillFX()
     if self.task then
-          self.task:Cancel()
-          self.task = nil
+        self.task:Cancel()
+        self.task = nil
     end
 end
 
 function Poisonable:Poison(isGas, loadTime, strength)
     if loadTime or self:CanBePoisoned(isGas) then
-          self.severity = strength and math.max(strength, self.severity) or self.severity
-          self.inst:AddTag("poison")
-          self.poisoned = true
-          self.start_time = loadTime and (GetTime() - loadTime) or GetTime()
+        self.severity = strength and math.max(strength, self.severity) or self.severity
+        self.inst:AddTag("poison")
+        self.poisoned = true
+        self.start_time = loadTime and (GetTime() - loadTime) or GetTime()
 
-          if self.duration > 0 and self.show_fx then
+        if self.duration > 0 and self.show_fx then
             self:SpawnFX()
-          end
+        end
 
-          if self.onpoisoned then
+        if self.onpoisoned then
             self.onpoisoned(self.inst)
-          end
+        end
 
-          if self.inst.components.areapoisoner and self.duration > 0 then
+        if self.inst.components.areapoisoner and self.duration > 0 then
             self.inst.components.areapoisoner:StartSpreading(loadTime and -loadTime or self.duration)
-          end
+        end
 
-          if self.task then
+        if self.task then
             self.task:Cancel()
             self.task = nil
-          end
+        end
 
-          self:DoPoison()
+        self:DoPoison()
     end
 end
 
 function Poisonable:GetDamageRampScale()
     if not self.start_time then
-          return 0
+        return 0
     else
-          local elapsed_time = GetTime() - self.start_time
-          local scale = 1
-          for _, data in pairs(TUNING.POISON_DAMAGE_RAMP) do
+        local elapsed_time = GetTime() - self.start_time
+        local scale = 1
+        for _, data in pairs(TUNING.POISON_DAMAGE_RAMP) do
             if elapsed_time > data.time then
                 scale = data.damage_scale
             else
@@ -223,7 +232,6 @@ end
 
 function Poisonable:DoPoison(dt)
     if self.poisoned then
-
         -- print("Execute Poisonable:DoPoison on " .. tostring(self.inst) .. " -> duration = " .. tostring(self.duration) .. " / start time = " .. tostring(self.start_time) .. " / dt = " .. tostring(GetTime() - self.start_time))
 
         local ramp_scale = self:GetDamageRampScale()
@@ -232,7 +240,7 @@ function Poisonable:DoPoison(dt)
             if self.start_time and GetTime() - self.start_time >= self.duration then
                 if dt and self.inst.components.health and self.inst.components.health.vulnerabletopoisondamage then
                     local intervals = math.floor(dt / self.interval)
-                    local damage = self.damage_per_interval * intervals * self.severity --Ignore ramp scale here since we're doing a bunch of catch up
+                    local damage = self.damage_per_interval * intervals * self.severity  -- Ignore ramp scale here since we're doing a bunch of catch up
                     self.inst.components.health:DoPoisonDamage(damage)
                     self.inst:PushEvent("poisondamage", {damage = damage})
                 end
@@ -342,9 +350,9 @@ function Poisonable:SpawnFX()
             if fx then
                 fx.Transform:SetScale(self.inst.Transform:GetScale())
             if self.immune then
-                fx.AnimState:SetMultColour(183/255,33/255,63/255,0.5)
+                fx.AnimState:SetMultColour(183/255, 33/255, 63/255, 0.5)
             else
-                fx.AnimState:SetMultColour(1,1,1,1)
+                fx.AnimState:SetMultColour(1, 1, 1, 1)
             end
 
             if data.follow then
@@ -379,19 +387,21 @@ end
 -- srosen need to save/load immune data too
 function Poisonable:OnSave()
     return {
+        severity = self.severity,
         poisoned = self.poisoned,
         poisontimeelapsed = self.start_time and (GetTime() - self.start_time) or nil,
     }
 end
 
 function Poisonable:OnLoad(data)
-    if data.poisoned and data.poisontimeelapsed then
+    if data and data.poisoned and data.poisontimeelapsed and data.severity then
         if data.poisontimeelapsed > 0 then
             self:Poison(false, data.poisontimeelapsed)
             self.inst:DoTaskInTime(0, function(inst)
                 if inst.player_classified then inst.player_classified.ispoisoned:set(true) end
             end)
         end
+        self.severity = data.severity
     end
 end
 

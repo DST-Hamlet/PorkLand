@@ -23,6 +23,9 @@ local function AddMapTags(map_tags)
         ["Canopy"] = function(tagdata)
             return "TAG", "Canopy"
         end,
+        ["Gas_Jungle"] = function(tagdata)
+            return "TAG", "Gas_Jungle"
+        end
     }
 
     for tag, fn in pairs(pl_map_tags) do

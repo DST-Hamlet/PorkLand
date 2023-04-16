@@ -78,7 +78,7 @@ end
 local function OnChangeArea(inst, data)
     if data and data.tags and table.contains(data.tags, "Gas_Jungle") then
     	if inst.components.poisonable then
-            inst.components.poisonable:Poison(true, nil, true)
+            inst.components.poisonable:Poison(true, nil, 30)
         end
     end
 end
@@ -176,7 +176,7 @@ local function fn()
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("onattackother", OnAttackOther)
     inst:ListenForEvent("timerdone", OnTimerDone)
-    -- inst:ListenForEvent("changearea", OnChangeArea)
+    inst:ListenForEvent("changearea", OnChangeArea)
 
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst, "bottom")
