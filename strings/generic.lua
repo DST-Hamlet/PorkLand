@@ -10,6 +10,7 @@ return {
         APORKALYPSE_CLOCK = "Looks scientifically apocalyptic.",
         ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",
         ASPARAGUS_PLANTED = "I should pick those!",
+        CHITIN = "Bug coating.",
         FLOWER_RAINFOREST = "It smells vaguely tolerable.",
         GLOWFLY = {
             DEAD = "Lights out forever.",

@@ -10,6 +10,7 @@ return {
         APORKALYPSE_CLOCK = "Tha time be nigh!",
         ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",
         ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
+        CHITIN = "A harden'd hull.",
         FLOWER_RAINFOREST = "Ol'Woodlegs na'got use fer'it.",
         GLOWFLY = {
             DEAD = "Tells no tales.",

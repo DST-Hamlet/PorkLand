@@ -10,6 +10,7 @@ return {
         APORKALYPSE_CLOCK = "Wonderful! I wonder if I could make the world end sooner.",
         ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",
         ASPARAGUS_PLANTED = "A cluster of edible spring vegetables!",
+        CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
         FLOWER_RAINFOREST = "Curious. Picking these has a positive effect on my psyche.",
         GLOWFLY = {
             DEAD = "Cadaverous.",

@@ -7,6 +7,7 @@ return {
         APORKALYPSE_CLOCK = "Aporkalypse Calendar",
         ARMOR_WEEVOLE = "Weevole Mantle",
         ASPARAGUS_PLANTED = "Asparagus",
+        CHITIN = "Chitin",
         FLOWER_RAINFOREST = "Exotic Flower",
         GLOWFLY = "Glowfly",
         GLOWFLY_COCOON = "Glowfly Cocoon",

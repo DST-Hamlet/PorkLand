@@ -10,6 +10,7 @@ return {
         APORKALYPSE_CLOCK = "Clockwork for the end of times.",
         ARMOR_WEEVOLE = "Something died so that this armor may exist.",
         ASPARAGUS_PLANTED = "I should rip those out of the ground.",
+        CHITIN = "This shell is poor protection from life's horrors.",
         FLOWER_RAINFOREST = "It, too, will wither and die one day.",
         GLOWFLY = {
             DEAD = "Its light hath been extinguished forever.",
