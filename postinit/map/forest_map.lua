@@ -24,15 +24,15 @@ TRANSLATE_AND_OVERRIDE["jungle_border_vine"] ={"jungle_border_vine"}
 --TRANSLATE_TO_PREFABS["bermudatriangle"] =    {"bermudatriangle_MARKER"}
 
 local function seasonfn(friendly)
-	return function(season, data)
+    return function(season, data)
         local seasons = data.seasons
         seasons.seasonplateau = season
         seasons.elapseddaysinseason = 0
         seasons.totaldaysinseasonplateau = friendly and TUNING.SEASON_VERYHARSH_DEFAULT * 2 or TUNING.SEASON_VERYHARSH_DEFAULT
         seasons.remainingdaysinseasonplateau = TUNING.SEASON_VERYHARSH_DEFAULT
 
-		return data
-	end
+        return data
+    end
 end
 
 local SEASONS = forest_map.SEASONS

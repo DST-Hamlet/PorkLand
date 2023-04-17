@@ -70,8 +70,8 @@ function SeasonClock:OnCyclesChanged(...)
     end
 
     local segments = self.seasonsegments[season]
-	progress = progress + segments * percent
-	progress = progress / NUM_SEGS
+    progress = progress + segments * percent
+    progress = progress / NUM_SEGS
     self._hands:SetRotation(progress * 360)
     if self._have_focus then
         self:OnGainFocus()

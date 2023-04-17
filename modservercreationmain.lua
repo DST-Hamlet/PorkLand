@@ -35,10 +35,10 @@ local function add_group_and_item(category, name, text, desc, atlas, order, item
 end
 
 local season_start_descriptions = {
-	{text = STRINGS.UI.SANDBOXMENU.PORKLAND_DEFAULT, data = "default"},
-	{text = STRINGS.UI.SANDBOXMENU.HUMID, data = "humid"},
-	{text = STRINGS.UI.SANDBOXMENU.LUSH, data = "lush"},
-	{text = STRINGS.UI.SANDBOXMENU.RANDOM, data = "temperate|humid|lush"},
+    {text = STRINGS.UI.SANDBOXMENU.PORKLAND_DEFAULT, data = "default"},
+    {text = STRINGS.UI.SANDBOXMENU.HUMID, data = "humid"},
+    {text = STRINGS.UI.SANDBOXMENU.LUSH, data = "lush"},
+    {text = STRINGS.UI.SANDBOXMENU.RANDOM, data = "temperate|humid|lush"},
 }
 
 local frequency_descriptions = {
