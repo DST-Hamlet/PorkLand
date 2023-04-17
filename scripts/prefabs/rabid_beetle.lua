@@ -77,7 +77,7 @@ end
 
 local function OnChangeArea(inst, data)
     if data and data.tags and table.contains(data.tags, "Gas_Jungle") then
-    	if inst.components.poisonable then
+        if inst.components.poisonable then
             inst.components.poisonable:Poison(true, nil, 30)
         end
     end
