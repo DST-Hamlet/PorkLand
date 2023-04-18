@@ -1,18 +1,24 @@
 -- Update this list when adding files
 local components_post = {
     "actionqueuer",
+    "ambientlighting",
     "clock",
     "colourcube",
     "combat",
+    "grogginess",
     "health",
+    "inventory",
     "inventoryitem",
     "lootdropper",
+    "moisture",
     "playercontroller",
+    "pollinator",
     "regrowthmanager",
     "rider_replica",
     "seasons",
     "shard_clock",
     "shard_seasons",
+    "sleeper",
     "wavemanager",
     "worldstate"
 }

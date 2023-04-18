@@ -64,6 +64,31 @@ local tuning = {
     WEEVOLEDEN_RELEASE_TIME = 5,
     WEEVOLEDEN_MAX_WEEVOLES = 3,
 
+    GLOWFLY_COCOON_HEALTH = 300,
+
+    GLOWFLY_WALK_SPEED = 6,
+    GLOWFLY_RUN_SPEED = 8,
+
+    GLOWFLY_DELAY_DEFAULT = 5,
+    GLOWFLY_DELAY_MIN = 2,
+    GLOWFLY_DELAY_MAX = 50,
+
+    GLOWFLY_BASEDELAY_DEFAULT = 5,
+    GLOWFLY_BASEDELAY_MIN = 0,
+    GLOWFLY_BASEDELAY_MAX = 50,
+
+    GLOWFLY_DEFAULT = 7,
+    GLOWFLY_MAX = 14,
+    GLOWFLY_MIN = 0,
+
+    RABID_BEETLE_HEALTH = 60,
+    RABID_BEETLE_DAMAGE =  10,
+    RABID_BEETLE_ATTACK_PERIOD = 2,
+    RABID_BEETLE_TARGET_DIST = 20,
+    RABID_BEETLE_SPEED = 12,
+    RABID_BEETLE_FOLLOWER_TARGET_DIST = 10,
+    RABID_BEETLE_FOLLOWER_TARGET_KEEP = 20,
+
     ASPARAGUS_REGROWTH_TIME = day_time * 20,
     ASPARAGUS_REGROWTH_TIME_MULT = 1,
 
@@ -102,6 +127,8 @@ local tuning = {
         {time = 2.70 * total_day_time, damage_scale = 1.50, interval_scale = 0.7, fxlevel = 3}, -- 41.14 DMG
         {time = 2.90 * total_day_time, damage_scale = 2.00, interval_scale = 0.5, fxlevel = 4}, -- 38.40 DMG
     },
+
+    FOG_MOISTURE_RATE_SCALE = 0.6
 }
 
 for key, value in pairs(tuning) do

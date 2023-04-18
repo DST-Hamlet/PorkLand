@@ -105,6 +105,26 @@ return Class(function(self, inst)
     }
 
     --------------------------------------------------------------------------
+    --[[ Fog constants ]]
+    --------------------------------------------------------------------------
+
+    -- fog is a rain type, when humid season, it will moisture greater than 900, will start fog and stop rain fx
+    local FOG_STATE = FOG_STATE
+
+    local FOG_MOISTURE_CEIL = {
+        humid = 900
+    }
+
+    local FOG_MODE_NAMES =
+    {
+        "dynamic",
+        "never",
+    }
+    local FOG_MODES = table.invert(FOG_MODE_NAMES)
+
+    local FOG_TRANSITION_TIME = 10
+
+    --------------------------------------------------------------------------
     --[[ Wetness constants ]]
     --------------------------------------------------------------------------
 
@@ -173,6 +193,9 @@ return Class(function(self, inst)
     local _seasonprogress = 0
     local _groundoverlay = nil
 
+    -- Fog
+    local _fullfog = false
+
     -- Dedicated server does not need to spawn the local fx
     local _hasfx = not TheNet:IsDedicated()
     local _rainfx = _hasfx and SpawnPrefab("rain") or nil
@@ -188,6 +211,7 @@ return Class(function(self, inst)
     local _moistureratemultiplier
     local _moistureceilmultiplier
     local _moisturefloormultiplier
+    local _fogmode
     local _lightningmode
     local _minlightningdelay
     local _maxlightningdelay
@@ -201,6 +225,8 @@ return Class(function(self, inst)
     local _moisturerate = net_float(inst.GUID, "weather._moisturerate")
     local _moistureceil = net_float(inst.GUID, "weather._moistureceil", "moistureceildirty")
     local _moisturefloor = net_float(inst.GUID, "weather._moisturefloor")
+    local _fogtime = net_float(inst.GUID, "weather._fogtime")
+    local _fogstate = net_tinybyte(inst.GUID, "weather._fogstate")
     local _precipmode = net_tinybyte(inst.GUID, "weather._precipmode")
     local _preciptype = net_tinybyte(inst.GUID, "weather._preciptype", "preciptypedirty")
     local _peakprecipitationrate = net_float(inst.GUID, "weather._peakprecipitationrate")
@@ -361,9 +387,9 @@ return Class(function(self, inst)
     end
 
     local function CalculateWetnessRate(temperature, preciprate)
-        return  -- Positive wetness rate when it's raining
+        return  -- Positive wetness rate when it's raining or fog
             (_preciptype:value() == PRECIP_TYPES.rain and easing.inSine(preciprate, MIN_WETNESS_RATE, MAX_WETNESS_RATE, 1))
-            -- Negative drying rate when it's not raining
+            -- Negative drying rate when it's not raining or fog
             or -math.clamp(easing.linear(temperature, MIN_DRYING_RATE, MAX_DRYING_RATE, OPTIMAL_DRYING_TEMPERATURE) + easing.inExpo(_wetness:value(), 0, 1, MAX_WETNESS), .01, 1)
     end
 
@@ -371,6 +397,10 @@ return Class(function(self, inst)
         local data =
         {
             moisture = _moisture:value(),
+            fullfog = _fullfog,
+            fogstate = _fogstate:value(),
+            fogtime = _fogtime:value(),
+            fog_transition_time = FOG_TRANSITION_TIME,
             pop = CalculatePOP(),
             precipitationrate = CalculatePrecipitationRate(),
             snowlevel = 0,
@@ -378,6 +408,7 @@ return Class(function(self, inst)
             light = CalculateLight(),
         }
         _world:PushEvent("weathertick", data)
+        _world:PushEvent("plateauweathertick", data)
     end
 
     --------------------------------------------------------------------------
@@ -423,6 +454,9 @@ return Class(function(self, inst)
         if _hasfx then
             _rainfx.entity:SetParent(nil)
             _pollenfx.entity:SetParent(nil)
+            if player == ThePlayer then
+                _fullfog = false
+            end
         end
     end
 
@@ -458,6 +492,10 @@ return Class(function(self, inst)
     local OnSetMoistureScale = _ismastersim and function(src, data)
         _moistureratemultiplier = data or _moistureratemultiplier
         _moisturerate:set(CalculateMoistureRate())
+    end or nil
+
+    local OnSetFogMode = _ismastersim and function(src, mode)
+        _fogmode = FOG_MODES[mode] or FOG_MODES.dynamic
     end or nil
 
     local OnDeltaMoisture = _ismastersim and function(src, delta)
@@ -598,6 +636,8 @@ return Class(function(self, inst)
     _moisturerate:set(0)
     _moistureceil:set(0)
     _moisturefloor:set(0)
+    _fogtime:set(0)
+    _fogstate:set(FOG_STATE.CLEAR)
     _precipmode:set(PRECIP_MODES.dynamic)
     _preciptype:set(PRECIP_TYPES.none)
     _peakprecipitationrate:set(1)
@@ -633,6 +673,7 @@ return Class(function(self, inst)
         _moistureratemultiplier = 1
         _moistureceilmultiplier = {min = 1, max = 2}
         _moisturefloormultiplier = 1
+        _fogmode = FOG_MODES.dynamic
         _lightningmode = LIGHTNING_MODES.rain
         _minlightningdelay = nil
         _maxlightningdelay = nil
@@ -659,6 +700,7 @@ return Class(function(self, inst)
         inst:ListenForEvent("ms_forceprecipitation", OnForcePrecipitation, _world)
         inst:ListenForEvent("ms_setprecipitationmode", OnSetPrecipitationMode, _world)
         inst:ListenForEvent("ms_setmoisturescale", OnSetMoistureScale, _world)
+        inst:ListenForEvent("ms_setfogmode", OnSetFogMode, _world)
         inst:ListenForEvent("ms_deltamoisture", OnDeltaMoisture, _world)
         inst:ListenForEvent("ms_deltamoistureceil", OnDeltaMoistureCeil, _world)
         inst:ListenForEvent("ms_deltawetness", OnDeltaWetness, _world)
@@ -763,7 +805,7 @@ return Class(function(self, inst)
         end
 
         -- Update precipitation effects
-        if _preciptype:value() == PRECIP_TYPES.rain then
+        if _preciptype:value() == PRECIP_TYPES.rain and not _fullfog then
             local preciprate_sound = preciprate
             if _activatedplayer == nil then
                 StartTreeRainSound(0)
@@ -798,6 +840,68 @@ return Class(function(self, inst)
             end
         end
 
+        -- Update fog
+        -- fog is created instead of rain during the humid season when it should rain and the atmo moisture is above a threshold
+        -- client fog state wait for server sync
+        if FOG_MOISTURE_CEIL[_season] and _moisture:value() >= FOG_MOISTURE_CEIL[_season] and _preciptype:value() == PRECIP_TYPES.rain and _fogmode ~= FOG_MODES.never then
+            if _fogstate:value() ~= FOG_STATE.FOGGY then
+                if _fogstate:value() ~= FOG_STATE.SETTING then
+                    if _ismastersim then
+                        _fogtime:set(FOG_TRANSITION_TIME)
+                        _fogstate:set(FOG_STATE.SETTING)
+                    end
+                end
+
+                if _fogstate:value() == FOG_STATE.SETTING then
+                    SetWithPeriodicSync(_fogtime, _fogtime:value() - dt, FRAMES, _ismastersim)
+                    if _fogtime:value() <= 5 and _hasfx and ThePlayer ~= nil then
+                        ThePlayer:PushEvent("startfog")
+                    end
+
+                    if _fogtime:value() <= 0 then
+                        _fullfog = true
+                        if _ismastersim then
+                            _fogtime:set(0)
+                            _fogstate:set(FOG_STATE.FOGGY)
+                        end
+                    end
+                end
+            elseif not _fullfog then  -- on load or change character
+                if _hasfx then
+                    if ThePlayer ~= nil then
+                        _fullfog = true
+                        ThePlayer:PushEvent("setfog")
+                    end
+                else
+                    _fullfog = true
+                end
+            end
+        elseif _fogstate:value() ~= FOG_STATE.CLEAR then
+            if _fogstate:value() ~= FOG_STATE.LIFTING then
+                TheSim:ClearDSP(.5)
+                if _hasfx and ThePlayer then
+                    ThePlayer:PushEvent("stopfog")
+                end
+
+                if _ismastersim then
+                    _fogtime:set(FOG_TRANSITION_TIME)
+                    _fogstate:set(FOG_STATE.LIFTING)
+                end
+                _fullfog = false
+            end
+
+            if _fogstate:value() == FOG_STATE.LIFTING then
+                SetWithPeriodicSync(_fogtime, _fogtime:value() - dt, FRAMES, _ismastersim)
+
+                if _fogtime:value() <= 0 then
+                    if _ismastersim then
+                        _fogtime:set(0)
+                        _fogstate:set(FOG_STATE.CLEAR)
+                    end
+                end
+            end
+        end
+
         -- Update pollen
         if _hasfx then
             if _season ~= "lush" or (ThePlayer ~= nil and _world.components.sandstorms ~= nil and _world.components.sandstorms:IsInSandstorm(ThePlayer)) then
@@ -814,7 +918,6 @@ return Class(function(self, inst)
         end
 
         if _ismastersim then
-
             -- Update lightning
             if _lightningmode == LIGHTNING_MODES.always or
                 LIGHTNING_MODE_NAMES[_lightningmode] == PRECIP_TYPE_NAMES[_preciptype:value()] or
@@ -870,6 +973,7 @@ return Class(function(self, inst)
             moistureceilmultiplier = _moistureceilmultiplier,
             moisturefloormultiplier = _moisturefloormultiplier,
             moistureceil = _moistureceil:value(),
+            fogstate = _fogstate:value(),
             precipmode = PRECIP_MODE_NAMES[_precipmode:value()],
             preciptype = PRECIP_TYPE_NAMES[_preciptype:value()],
             peakprecipitationrate = _peakprecipitationrate:value(),
@@ -896,6 +1000,7 @@ return Class(function(self, inst)
         _moistureceilmultiplier = data.moistureceilmultiplier or {min = 1, max = 2}
         _moisturefloormultiplier = data.moisturefloormultiplier or 1
         _moistureceil:set(data.moistureceil or RandomizeMoistureCeil())
+        _fogstate:set(data.fogstate or FOG_STATE.CLEAR)
         _precipmode:set(PRECIP_MODES[data.precipmode] or PRECIP_MODES.dynamic)
         _preciptype:set(PRECIP_TYPES[data.preciptype] or PRECIP_TYPES.none)
         _peakprecipitationrate:set(data.peakprecipitationrate or 1)
@@ -921,6 +1026,7 @@ return Class(function(self, inst)
             string.format("temperature:%2.2f",_temperature),
             string.format("moisture:%2.2f(%2.2f/%2.2f) + %2.2f", _moisture:value(), _moisturefloor:value(), _moistureceil:value(), _moisturerate:value()),
             string.format("preciprate:(%2.2f of %2.2f)", preciprate, _peakprecipitationrate:value()),
+            string.format("fog:%2.5f", _fogstate:value()),
             string.format("wetness:%2.2f(%s%2.2f)%s", _wetness:value(), wetrate > 0 and "+" or "", wetrate, _wet:value() and " WET" or ""),
             string.format("light:%2.5f", CalculateLight()),
         }

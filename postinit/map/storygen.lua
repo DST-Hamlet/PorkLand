@@ -3,6 +3,8 @@
 GLOBAL.setfenv(1, GLOBAL)
 require("map/storygen")
 
+local AddMapTags = require("map/pl_map_tags")
+
 Story.PorkLandPlaceTeleportatoParts = function(self)
     local RemoveExitTag = function(node)
         local newtags = {}
@@ -656,6 +658,7 @@ function BuildPorkLandStory(tasks, story_gen_params, level)
     print("Building PorkLand Story", tasks)
 
     local story = Story("GAME", tasks, terrain, story_gen_params, level)
+    AddMapTags(story.map_tags)
     story:GenerateNodesForPorkLand()
 
     local world_size = 0

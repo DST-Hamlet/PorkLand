@@ -12,9 +12,17 @@ local function OnStopAporkalypse(self)
             half = self._mooniswaxing and "moon_half_wax" or "moon_half",
         }
 
-        self._moon_builds.blood = self._moon_builds.default
+        self._moonphasebuild = self._moon_builds.default
         self:OnMoonPhaseStyleChanged({style = "default"})
         self._moonanim:GetAnimState():OverrideSymbol("swap_moon", self._moonphasebuild, moon_syms[self._moonphase] or "moon_full")
+    end
+end
+
+local function OnStartAporkalypse(self)
+    if TheWorld:HasTag("porkland") then
+        self._moonphase = "moon_full"
+        self._moonphasebuild = self._moon_builds.blood
+        self:ShowMoon()
     end
 end
 
@@ -22,5 +30,7 @@ AddClassPostConstruct("widgets/uiclock", function(self)
     self._moon_builds.blood = "moon_aporkalypse_phases"
 
     self.OnStopAporkalypse = OnStopAporkalypse
+    self.OnStartAporkalypse = OnStartAporkalypse
+    self.inst:WatchWorldState("startaporkalypse", function() self:OnStartAporkalypse() end)
     self.inst:WatchWorldState("stopaporkalypse", function() self:OnStopAporkalypse() end)  -- fix something stop aporkalypse moon anim error
 end)

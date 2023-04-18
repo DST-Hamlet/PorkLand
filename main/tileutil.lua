@@ -1,6 +1,6 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-function GetWorldPosition(x, y, z)
+local function GetWorldPosition(x, y, z)
     if type(x) == "table" then
         if x.x then
             x, y, z = x.x, x.y, x.z
@@ -34,12 +34,12 @@ end
 
 function CheckTileAtPoint(x, y, z, check, ...)
     x, y, z = GetWorldPosition(x, y, z)
-	return CheckTileType({x = x, y = y, z = z}, check, ...)
+    return CheckTileType({x = x, y = y, z = z}, check, ...)
 end
 
 function IsOnFlood(x, y, z)
     x, y, z = GetWorldPosition(x, y, z)
-	return TheWorld.components.flooding and TheWorld.components.flooding:OnFlood(x, y, z)
+    return TheWorld.components.flooding and TheWorld.components.flooding:OnFlood(x, y, z)
 end
 
 function IsOnOcean(x, y, z, onflood, ignoreboat)
@@ -73,18 +73,18 @@ end
 
 function IsSurroundedByTile(x, y, z, radius, check, ...)
     x, y, z = GetWorldPosition(x, y, z)
-	radius = radius or 1
-	for i = -radius, radius do
-		if not CheckTileAtPoint(x - radius, y, z + i, check, ...) or not CheckTileAtPoint(x + radius, y, z + i, check, ...) then
-			return false
-		end
-	end
-	for i = -(radius - 1), radius - 1 do
-		if not CheckTileAtPoint(x + i, y, z - radius, check, ...) or not CheckTileAtPoint(x + i, y, z + radius, check, ...) then
-			return false
-		end
-	end
-	return true
+    radius = radius or 1
+    for i = -radius, radius do
+        if not CheckTileAtPoint(x - radius, y, z + i, check, ...) or not CheckTileAtPoint(x + radius, y, z + i, check, ...) then
+            return false
+        end
+    end
+    for i = -(radius - 1), radius - 1 do
+        if not CheckTileAtPoint(x + i, y, z - radius, check, ...) or not CheckTileAtPoint(x + i, y, z + radius, check, ...) then
+            return false
+        end
+    end
+    return true
 end
 
 function IsSurroundedByWater(x, y, z, radius, onflood, ignoreboat)
@@ -97,19 +97,19 @@ end
 
 function IsCloseToTile(x, y, z, radius, check, ...)
     x, y, z = GetWorldPosition(x, y, z)
-	radius = radius or 1
-	for i = -radius, radius do
-		if CheckTileAtPoint(x - radius, y, z + i, check, ...) or CheckTileAtPoint(x + radius, y, z + i, check, ...) then
-			return true
-		end
-	end
-	for i = -(radius - 1), radius - 1 do
-		if CheckTileAtPoint(x + i, y, z - radius, check, ...) or CheckTileAtPoint(x + i, y, z + radius, check, ...) then
-			return true
-		end
-	end
+    radius = radius or 1
+    for i = -radius, radius do
+        if CheckTileAtPoint(x - radius, y, z + i, check, ...) or CheckTileAtPoint(x + radius, y, z + i, check, ...) then
+            return true
+        end
+    end
+    for i = -(radius - 1), radius - 1 do
+        if CheckTileAtPoint(x + i, y, z - radius, check, ...) or CheckTileAtPoint(x + i, y, z + radius, check, ...) then
+            return true
+        end
+    end
 
-	return false
+    return false
 end
 
 function IsCloseToLand(x, y, z, radius, noflood)

@@ -7,6 +7,13 @@ local function onrewindmult(self)
 end
 
 return Class(function(self, inst)
+    local NEAR_TIME = TUNING.APORKALYPSE_NEAR_TIME
+    local APORKALYPSE_PERIOD_LENGTH = TUNING.APORKALYPSE_PERIOD_LENGTH
+
+    --------------------------------------------------------------------------
+    --[[ Constants ]]
+    --------------------------------------------------------------------------
+
     -- Public
     self.inst = inst
     self.rewind_mult = 0
@@ -18,9 +25,6 @@ return Class(function(self, inst)
     local _ismastershard = _world.ismastershard
     local _clock = inst.components.clock
     local _seasons = inst.components.seasons
-
-    local NEAR_TIME = TUNING.APORKALYPSE_NEAR_TIME
-    local APORKALYPSE_PERIOD_LENGTH = TUNING.APORKALYPSE_PERIOD_LENGTH
 
     -- Master simulation
     local active_aporkalypse
