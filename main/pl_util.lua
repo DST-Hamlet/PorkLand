@@ -30,7 +30,7 @@ function Pl_Util.GetUpvalue(fn, name, recurse_levels)
     local source_fn = fn
     local i = 1
 
-	while true do
+    while true do
         local _name, value = debug.getupvalue(fn, i)
         if _name == nil then
             return
@@ -44,7 +44,7 @@ function Pl_Util.GetUpvalue(fn, name, recurse_levels)
         end
 
         i = i + 1
-	end
+    end
 end
 
 function Pl_Util.SetUpvalue(fn, value, name, recurse_levels)
@@ -57,9 +57,9 @@ function Pl_Util.RegisterInventoryItemAtlas(atlas_path)
 
     local file = io.open(atlas, "r")
     local data = file:read("*all")
-	file:close()
+    file:close()
 
-	local str = string.gsub(data, "%s+", "")
+    local str = string.gsub(data, "%s+", "")
     local _, _, elements = string.find(str, "<Elements>(.-)</Elements>")
 
     for s in string.gmatch(elements, "<Element(.-)/>") do

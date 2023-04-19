@@ -11,7 +11,7 @@ local events =
 {
     EventHandler("entershield", function(inst, data)
         if not inst:GetCurrentPlatform() then
-            inst.sg:GoToState("burrow_sheild")
+            inst.sg:GoToState("burrow_shield")
         end
     end),
     EventHandler("exitshield", function(inst, data)
@@ -154,7 +154,7 @@ local states =
 
 
     State{
-        name = "burrow_sheild",
+        name = "burrow_shield",
         tags = {"busy","shielding"},
 
         onenter = function(inst)

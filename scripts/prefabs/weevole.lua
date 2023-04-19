@@ -30,10 +30,12 @@ local function Retarget(inst)
 end
 
 local function OnAttacked(inst, data)
-    inst.components.combat:SetTarget(data.attacker)
-    inst.components.combat:ShareTarget(data.attacker, TUNING.WEEVOLE_SHARE_TARGET_RANGE, function(dude)
-        return dude:HasTag("weevole") and not dude.components.health:IsDead()
-    end, TUNING.WEEVOLE_SHARE_MAX_NUM)
+    if data then
+        inst.components.combat:SetTarget(data.attacker)
+        inst.components.combat:ShareTarget(data.attacker, TUNING.WEEVOLE_SHARE_TARGET_RANGE, function(dude)
+            return dude:HasTag("weevole") and not dude.components.health:IsDead()
+        end, TUNING.WEEVOLE_SHARE_MAX_NUM)
+    end
 end
 
 local function OnFlyIn(inst)

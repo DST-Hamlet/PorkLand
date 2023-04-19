@@ -194,15 +194,15 @@ local function aporkalypse_marker_fn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBuild("aporkalypse_clock_marker")
-	inst.AnimState:SetBank("clock_marker")
-	inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetBank("clock_marker")
+    inst.AnimState:PlayAnimation("idle")
 
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-	inst.AnimState:SetLayer(LAYER_BACKGROUND)
+    inst.AnimState:SetLayer(LAYER_BACKGROUND)
 
     inst.AnimState:SetSortOrder(3)
     inst.AnimState:SetFinalOffset(0)
