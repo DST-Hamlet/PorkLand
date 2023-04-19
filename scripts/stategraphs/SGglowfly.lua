@@ -18,31 +18,23 @@ local events = {
         end
     end),
 
-    EventHandler("doattack", function(inst)
-        if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("busy") then
-            inst.sg:GoToState("attack")
-        end
-    end),
-
     EventHandler("death", function(inst)
         inst.sg:GoToState("death")
     end),
 
-    CommonHandlers.OnSleep(),
-    CommonHandlers.OnFreeze(),
-
     EventHandler("locomote", function(inst)
         if not inst.sg:HasStateTag("busy") then
             local wants_to_move = inst.components.locomotor:WantsToMoveForward()
-            if not inst.sg:HasStateTag("attack") then
-                if wants_to_move then
-                    inst.sg:GoToState("moving")
-                else
-                    inst.sg:GoToState("idle")
-                end
+            if wants_to_move then
+                inst.sg:GoToState("moving")
+            else
+                inst.sg:GoToState("idle")
             end
         end
     end),
+
+    CommonHandlers.OnSleep(),
+    CommonHandlers.OnFreeze(),
 }
 
 local states = {
@@ -122,32 +114,6 @@ local states = {
                 inst.sg:GoToState("idle")
             end),
         }
-    },
-
-    State{
-        name = "attack",
-        tags = {"attack"},
-
-        onenter = function(inst)
-            inst.Physics:Stop()
-            inst.components.combat:StartAttack()
-            inst.AnimState:PlayAnimation("atk")
-        end,
-
-        timeline = {
-            TimeEvent(10 * FRAMES, function(inst)
-                inst.SoundEmitter:PlaySound("dontstarve/creatures/mosquito/mosquito_attack")
-            end),
-            TimeEvent(15 * FRAMES, function(inst)
-                inst.components.combat:DoAttack()
-            end),
-        },
-
-        events = {
-            EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle")
-            end),
-        },
     },
 
     State{
