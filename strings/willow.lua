@@ -10,6 +10,14 @@ return {
         APORKALYPSE_CLOCK = "Looks ominous. I like it.",
         ARMOR_WEEVOLE = "This feels gross. I hope it works.",
         ASPARAGUS_PLANTED = "Haha! Found you!",
+        CHITIN = "Bug skin.",
+        FLOWER_RAINFOREST = "It's kinda ugly. But it burns.",
+        GLOWFLY = {
+            DEAD = "Squashed.",
+            GENERIC = "Looks slimy.",
+            SLEEPING = "(Psst... you're gross.)",
+        },
+        GLOWFLY_COCOON = "Doing a bad job of hiding from me.",
         GOLDENMACHETE = "I don't want to scuff it up.",
         GRASS_TALL = {
             BURNING = "I win.",
@@ -24,7 +32,13 @@ return {
         },
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
+        RABID_BEETLE = {
+            DEAD = "Looks dead to me.",
+            GENERIC = "What're you so mad about?",
+            SLEEPING = "I should draw a mustache on its mustache while it sleeps.",
+        },
         SHEARS = "Not as good as fire, but I guess it has its uses.",
+        TREE_PILLAR = "That's a big ol' tree.",
         WEEVOLE = "Stand still so I can burn you.",
         WEEVOLE_CARAPACE = "Ew.",
     },

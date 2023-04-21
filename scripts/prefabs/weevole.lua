@@ -87,8 +87,8 @@ local function fn()
     inst.components.locomotor:SetTriggersCreep(false)
     inst.components.locomotor.pathcaps = {ignorecreep = true}
     inst.components.locomotor.walkspeed = TUNING.WEEVOLE_WALK_SPEED
-    -- boat hopping enable.
-    inst.components.locomotor:SetAllowPlatformHopping(true)
+    inst.components.locomotor:SetAllowPlatformHopping(true)  -- boat hopping enable.
+
     inst:AddComponent("embarker")
     inst:AddComponent("drownable")
 

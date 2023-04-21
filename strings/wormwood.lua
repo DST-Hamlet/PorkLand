@@ -10,6 +10,14 @@ return {
         APORKALYPSE_CLOCK = "Tic Tock",
         ARMOR_WEEVOLE = "Bzzter clothes",
         ASPARAGUS_PLANTED = "Hello there!",
+        CHITIN = "Bzzter clothes",
+        FLOWER_RAINFOREST = "Dirt made a friend",
+        GLOWFLY = {
+            DEAD = "(sob)",
+            GENERIC = "Bzzter with bright peepers",
+            SLEEPING = "No light",
+        },
+        GLOWFLY_COCOON = "Changing",
         GOLDENMACHETE = "Pretty Slicer",
         GRASS_TALL = {
             BURNING = "No!!",
@@ -24,7 +32,13 @@ return {
         },
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
+        RABID_BEETLE = {
+            DEAD = "Too bad",
+            GENERIC = "Why so mad, Bzzter?",
+            SLEEPING = "Let it sleep",
+        },
         SHEARS = "For hair cuts",
+        TREE_PILLAR = "Big friend?",
         WEEVOLE = "Wee Bzzter",
         WEEVOLE_CARAPACE = "Crunchy",
     },

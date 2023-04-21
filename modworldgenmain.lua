@@ -26,7 +26,6 @@ modimport("postinit/map/task")
 -- modimport("postinit/map/level")
 modimport("postinit/map/graph")
 modimport("postinit/map/node")
-modimport("postinit/map/maptags")
 modimport("postinit/map/storygen")
 modimport("postinit/map/forest_map")
 

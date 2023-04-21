@@ -175,7 +175,7 @@ local function grass_tall()
     inst.AnimState:SetMultColour(color, color, color, 1)
 
     inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("grass.tex")
+    inst.MiniMapEntity:SetIcon("grass.png")
 
     inst:AddTag("gustable")
     inst:AddTag("grass_tall")

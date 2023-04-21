@@ -10,6 +10,14 @@ return {
         APORKALYPSE_CLOCK = "Looks like it's the end of days.",
         ARMOR_WEEVOLE = "Nice use of bug carcasses.",
         ASPARAGUS_PLANTED = "They're like little trees to chop down.",
+        CHITIN = "It's got some heft to it.",
+        FLOWER_RAINFOREST = "It's a pretty lil' thing.",
+        GLOWFLY = {
+            DEAD = "Dead.",
+            GENERIC = "Thanks for lightin' the way, buddy.",
+            SLEEPING = "A well-deserved nap.",
+        },
+        GLOWFLY_COCOON = "That looks comfy, eh?",
         GOLDENMACHETE = "It chops AND sparkles!",
         GRASS_TALL = {
             BURNING = "It caught fire.",
@@ -24,7 +32,13 @@ return {
         },
         PEAGAWKFEATHER = "It has a foul bird stench.",
         PEAGAWK_BUSH = "There's a wretched bird nearby. I feel it.",
+        RABID_BEETLE = {
+            DEAD = "For the best.",
+            GENERIC = "Seems mighty angry.",
+            SLEEPING = "Let sleeping bugs lie, I say.",
+        },
         SHEARS = "Don't get jealous, Lucy.",
+        TREE_PILLAR = "That's a real beaut.",
         WEEVOLE = "Worse than black flies.",
         WEEVOLE_CARAPACE = "That'll teach 'em!",
     },

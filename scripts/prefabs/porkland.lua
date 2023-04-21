@@ -53,6 +53,9 @@ local assets =
     Asset("ANIM", "anim/lightning.zip"),
 
     Asset("ANIM", "anim/swimming_ripple.zip"), -- common water fx symbols
+
+    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev"),
+    Asset("SOUND", "sound/DLC003_sfx.fsb"),
 }
 
 local prefabs =
@@ -119,6 +122,7 @@ local function master_postinit(inst)
     -- Spawners
     inst:AddComponent("birdspawner")
     inst:AddComponent("butterflyspawner")
+    inst:AddComponent("glowflyspawner")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")

@@ -8,15 +8,6 @@ local prefabs =
     "asparagus",
 }
 
-local function onpicked(inst)
-    TheWorld:PushEvent("beginregrowth", inst)
-end
-
-local function OnBurnt(inst)
-    TheWorld:PushEvent("beginregrowth", inst)
-    DefaultBurntFn(inst)
-end
-
 local function fn()
     -- Asparagus you eat is defined in veggies.lua
     local inst = CreateEntity()
@@ -44,13 +35,12 @@ local function fn()
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
     inst.components.pickable:SetUp("asparagus", 10)
-    inst.components.pickable.onpickedfn = onpicked
     inst.components.pickable.remove_when_picked = true
     inst.components.pickable.quickpick = true
 
     MakeSmallBurnable(inst)
-    inst.components.burnable:SetOnBurntFn(OnBurnt)
     MakeSmallPropagator(inst)
+    AddToRegrowthManager(inst)
 
     inst:AddComponent("hauntable")
     inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)

@@ -45,6 +45,36 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick those!"
 msgstr "O, trzeba to zebrać!"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN"
+msgid "Bug coating."
+msgstr "Powłoka robala."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It smells vaguely tolerable."
+msgstr "Powiedzmy, że pachnie akceptowalnie."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD"
+msgid "Lights out forever."
+msgstr "Światełko życia zgasło."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.GENERIC"
+msgid "A light aflight."
+msgstr "Latające światełko."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Out like a light."
+msgstr "Zgasła niczym światło."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY_COCOON"
+msgid "Snug as a bug."
+msgstr "Jak w kokonie."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
@@ -95,10 +125,30 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH"
 msgid "Look! An iris bush."
 msgstr "O! Ten krzak ma oczy."
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "A late beetle."
+msgstr "Martwy żuczek."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Looks deranged."
+msgstr "Wygląda na niepoczytalnego."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "In a slumber."
+msgstr "Drzemie."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
 msgid "Shear-ly delightful."
 msgstr "Tną, aż miło."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR"
+msgid "It totally blocks out the sun."
+msgstr "Całkowicie zasłania słońce."
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE"
@@ -139,6 +189,36 @@ msgstr "Egzoszkielet chroniący mój endoszkielet."
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A cluster of edible spring vegetables!"
 msgstr "Kępka jadalnych, wiosennych warzyw!"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN"
+msgid "Wonderful! The exoskeleton of a deceased insect!"
+msgstr "Fenomenalne! Egzoszkielet martwego owada!"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Curious. Picking these has a positive effect on my psyche."
+msgstr "Interesujące. Zbieranie ich ma pozytywny wpływ na moją psychikę."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD"
+msgid "Cadaverous."
+msgstr "Trupioblady."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.GENERIC"
+msgid "The luminous oculus on this pterygota is inspiring!"
+msgstr "Kiedy patrzę w błyszczące oczy tego owada uskrzydlonego coś mi przychodzi na myśl..."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Evidently, its bioluminescence is dormant too."
+msgstr "Ewidentnie jego bioluminescencja również jest w spoczynku."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY_COCOON"
+msgid "It appears to be undergoing some kind of transubstantiation."
+msgstr "Chyba jest w trakcie przeistoczenia. "
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE"
@@ -195,10 +275,30 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
 msgid "That insight that spied on me was gone."
 msgstr "Ten wgląd, który mnie szpiegował, zniknął."
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "An occurrance of invertebrate respiratory failure."
+msgstr "Przypadek niewydolności oddechowej bezkręgowca."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Evidently, it acquires facial hair when it matures."
+msgstr "Ewidentnie w procesie dorastania pojawia mu się zarost."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "It's respiratory structures are vibrating."
+msgstr "Jego struktury oddechowe głośno wibrują."
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
 msgid "Cutting implements constructed from raw metal."
 msgstr "Przyrząd do cięcia z nieobrobionego metalu."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR"
+msgid "The circumference of this tree's trunk is unusually large."
+msgstr "Obwód tego pnia jest nadzwyczaj duży."
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE"
@@ -239,6 +339,36 @@ msgstr "Fuj. Jest jakieś robaczywe."
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food!"
 msgstr "Szamka!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN"
+msgid "Probably wouldn't make a good surfboard."
+msgstr "Raczej nie nada się na deskę."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.FLOWER_RAINFOREST"
+msgid "I love these."
+msgstr "Uwielbiam je."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.DEAD"
+msgid "I wish it hadn't died."
+msgstr "Szkoda, że zdechło."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.GENERIC"
+msgid "I could lay down and watch them all night."
+msgstr "Mogłabym tak leżeć i patrzeć na nie całą noc."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Lights out!"
+msgstr "Ktoś zgasił światło."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY_COCOON"
+msgid "I need a sleeping bag like that."
+msgstr "Trzeba mi takiego śpiworka."
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE"
@@ -290,10 +420,30 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a cool looking bush!"
 msgstr "Ale fajny krzaczor!"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "That's a bummer."
+msgstr "A niech to."
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Dude, you need to chill!"
+msgstr "Koleś, musisz nieco wyluzować!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "That's it. Now just stay asleep."
+msgstr "O to chodziło. I nie wstawaj."
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
 msgid "What am I supposed to do with these?"
 msgstr "I co mam z tym niby zrobić?"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR"
+msgid "What a great tree!"
+msgstr "Ale świetne drzewo!"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE"
@@ -334,6 +484,36 @@ msgstr "Czy naprawdę go założymy?"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Miss Winona might like it, pick some."
 msgstr "Pannie Winonie może się spodobać, wybierz trochę."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN"
+msgid "Check out the pattern on this! Warby!"
+msgstr "Sprawdź ten wzór! Warby!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.FLOWER_RAINFOREST"
+msgid "oh! That's the kind of flower in jungle adventure stories."
+msgstr "Oh! To taki kwiat w opowieściach o przygodach w dżungli."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.DEAD"
+msgid "Oh, dead."
+msgstr "Och, martwy."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Whoa, look at the light they emit!"
+msgstr "Wow, spójrz na światło, które emitują!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "it is sleeping."
+msgstr "to jest spanie."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GLOWFLY_COCOON"
+msgid "A cocoon, what could be inside?"
+msgstr "Kokon, co może być w środku?"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE"
@@ -380,10 +560,30 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
 msgid "This bird can't fly, but turns into a bush!"
 msgstr "Ten ptak nie potrafi latać, zamienia się w krzak!"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Oh, dead."
+msgstr "Och, martwy."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Wow, look how active they are!"
+msgstr "Wow, zobacz, jakie są aktywne!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "it's sleeping,"
+msgstr "to śpi,"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
 msgid "Gardener's little helper."
 msgstr "Mały pomocnik ogrodnika."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR"
+msgid "Such a big tree, even werebeaver can't eat it all."
+msgstr "Takie duże drzewo, że nawet bobry nie są w stanie wszystkiego zjeść."
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE"
@@ -424,6 +624,36 @@ msgstr "Nie pachnie zbyt dobrze, ale nie ma czasu, żeby się nad tym rozwodzić
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick some and go back to eat."
 msgstr "Powinienem wybrać trochę i wrócić do jedzenia."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.CHITIN"
+msgid "I don't understand what's the point of this?"
+msgstr "nie rozumiem o co w tym chodzi?"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Why am I wasting time staring at it?"
+msgstr "Po co marnuję czas na gapienie się w to?"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.DEAD"
+msgid "Maybe that's for the best."
+msgstr "Może tak jest najlepiej."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.GENERIC"
+msgid "I still like them the way they are now."
+msgstr "Nadal podobają mi się takie, jakie są teraz."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Sleep well now."
+msgstr "Śpij dobrze teraz."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GLOWFLY_COCOON"
+msgid "We'd better get out of here before it breaks out of its cocoon."
+msgstr "Lepiej wynośmy się stąd, zanim wyrwie się z kokonu."
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE"
@@ -470,10 +700,30 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a clever disguise."
 msgstr "Co za sprytne przebranie."
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "There is one less pest in the world."
+msgstr "Na świecie jest o jednego szkodnika mniej."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "vermin! go away!"
+msgstr "robactwo! Idź stąd!"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Huh, I can take a breath."
+msgstr "Uff, mogę odetchnąć."
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
 msgid "I won't waste my time on this."
 msgstr "Nie będę tracić na to czasu."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR"
+msgid "Thankfully it doesn't completely block the sun."
+msgstr "Na szczęście nie blokuje całkowicie słońca."
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE"
@@ -514,6 +764,36 @@ msgstr "Nadal śmierdzi robalem."
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should snatch those up."
 msgstr "Powinienem je zabrać."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN"
+msgid "Completely inedible."
+msgstr "Zupełnie niejadalne."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Edible?"
+msgstr "Jadalne?"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD"
+msgid "Such a shame. And not even edible."
+msgstr "Co za szkoda. A nawet nie jest jadalny."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Light the way, mon amie."
+msgstr "Oświeć mi drogę, mon amie."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "May your dreams be full of light."
+msgstr "Oby przyśniło ci się coś jasnego."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY_COCOON"
+msgid "It's wrapped itself like a cabbage roll."
+msgstr "Zwinięty ciasno jak gołąbek."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE"
@@ -565,10 +845,30 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
 msgid "It's a bright blue bush."
 msgstr "Jasnoniebieski krzak."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "A shame. Not even edible."
+msgstr "Co za szkoda. A nawet nie jest jadalny."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "It is like me when I am hungry."
+msgstr "Zachowuje się jak ja, kiedy jestem głodny."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "What a curious way to sleep!"
+msgstr "Cóż za nietypowa pozycja do spania!"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
 msgid "Good for cutting hedges and grass."
 msgstr "Dobre do cięcia trawy i żywopłotu."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR"
+msgid "What a marvel."
+msgstr "Zadziwiające."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE"
@@ -609,6 +909,36 @@ msgstr "Pancerz ze skór mych wrogów."
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Useless vegetation!"
 msgstr "Nędzna roślina!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN"
+msgid "The feeble armor of the bug."
+msgstr "Marny pancerz nędznego robaka."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.FLOWER_RAINFOREST"
+msgid "A blossom most lovely."
+msgstr "Urokliwe kwiecie."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD"
+msgid "Alas, it is dead."
+msgstr "Niestety, zginął."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Fly free, small friend."
+msgstr "Leć, mój druhu."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "A slumber consumes it."
+msgstr "Pochłonął go sen."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY_COCOON"
+msgid "It has armored itself for sleep."
+msgstr "Opancerzył się do snu."
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE"
@@ -660,10 +990,30 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
 msgid "Do you think you can hide from me?"
 msgstr "Myślisz, że się przede mną ukryjesz?"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "It has died in battle."
+msgstr "Poległ w bitwie."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Evil beast. You have met your match!"
+msgstr "Plugawa bestio, oto natrafiłaś na godną siebie przeciwniczkę!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Slumber consumes it!"
+msgstr "Pochłonął go sen!"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
 msgid "A weapon for use against a mighty hedge!"
 msgstr "Broń przeciwko potężnemu żywopłotowi!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR"
+msgid "Surely I stand before Yggdrasil!"
+msgstr "Ani chybi to Yggdrasil!"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE"
@@ -704,6 +1054,36 @@ msgstr "Nie wygląda dobrze."
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food. Just growing out of the ground."
 msgstr "Jedzenie. Po prostu tak sobie wyrasta."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN"
+msgid "We all have our defenses."
+msgstr "Wszyscy mamy jakieś warstwy."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It's no rose."
+msgstr "To nie jest róża."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.DEAD"
+msgid "Lights out."
+msgstr "Ktoś zgasił światło."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Disgusting, but helpful."
+msgstr "Obrzydliwe, ale przydatne."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "That light is rather too lethargic."
+msgstr "To światełko jest trochę zbyt senne."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY_COCOON"
+msgid "Ah, metamorphosis..."
+msgstr "Ach, metamorfoza."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE"
@@ -755,10 +1135,30 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
 msgid "I've my suspicions about that bush."
 msgstr "Mam pewne podejrzenia co do tego krzaka."
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "The grim reaper has been here."
+msgstr "Ponury żniwiarz tędy przeszedł."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "What is he all worked up about?"
+msgstr "Czym on się tak gorączkuje?"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "A noisy sleeper."
+msgstr "Ale chrapie."
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
 msgid "Aren't there gardeners for this sort of thing?"
 msgstr "Nie ma do tego jakichś ogrodników?"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR"
+msgid "This tree is unusually large."
+msgstr "To drzewo jest wyjątkowo wielkie."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE"
@@ -799,6 +1199,36 @@ msgstr "Jak będziemy chcieli więcej ochrony."
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "We should pick those."
 msgstr "O, trzeba to zebrać."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN"
+msgid "Hope no one's missing that."
+msgstr "Mam nadzieję, że nikomu nie będzie tego brakować."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.FLOWER_RAINFOREST"
+msgid "This flower is neat!"
+msgstr "Ten kwiatek jest super!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD"
+msgid "Oh no! It died!"
+msgstr "Och, nie! Umarł!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Nice little buggy bug."
+msgstr "Dobry robaczek."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Lights out."
+msgstr "Ktoś zgasił światło."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY_COCOON"
+msgid "That looks cozy."
+msgstr "Wygląda wygodniusio."
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE"
@@ -850,10 +1280,30 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Neat. A weird bush!"
 msgstr "Dziwaczny krzak. Super!"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Well, that's unfortunate."
+msgstr "Ojej, a to pech."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "That guy's got a lot of energy!"
+msgstr "Nie brak mu energii!"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Haha! A bug with a mustache!"
+msgstr "Ha, ha! Robal z wąsami!"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
 msgid "It's for chores like trimming hedges or cutting grass."
 msgstr "Do cięcia trawy albo żywopłotów."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR"
+msgid "It's probably super old."
+msgstr "Pewnie jest superstare."
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE"
@@ -894,6 +1344,36 @@ msgstr "Życie zostało poświęcone, aby mógł powstać ten pancerz."
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should rip those out of the ground."
 msgstr "Powinnam je wyrwać z ziemi."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN"
+msgid "This shell is poor protection from life's horrors."
+msgstr "Ta skorupa to licha ochrona przed potwornościami tego świata."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It, too, will wither and die one day."
+msgstr "Też kiedyś zwiędnie i umrze."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.DEAD"
+msgid "Its light hath been extinguished forever."
+msgstr "Jego światło zgasło na zawsze."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.GENERIC"
+msgid "A small light in a dark world."
+msgstr "Małe światełko w mrocznym tunelu życia."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Having dark dreams, no doubt."
+msgstr "Zapewne ma mroczne sny."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY_COCOON"
+msgid "If I could climb into a cocoon I would never emerge."
+msgstr "Gdybym mogła otulić się kokonem, nigdy bym z niego nie wyszła."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE"
@@ -945,10 +1425,30 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH"
 msgid "Just a bush..."
 msgstr "Tylko krzak..."
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Lifeless."
+msgstr "Bez życia."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "As rabid as death itself."
+msgstr "Wściekły jak sama śmierć."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Sleep is not a permanent escape from life."
+msgstr "Sen to tymczasowa ucieczka od życia."
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
 msgid "Can it shear my heart?"
 msgstr "Czy ogołocą me serce?"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR"
+msgid "Ancient, and full of life."
+msgstr "Pradawne, lecz pełne życia."
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE"
@@ -989,6 +1489,36 @@ msgstr "Gdybym tylko miała takie skrzydełka."
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "That looks like food! Let's hope it tastes like food."
 msgstr "Wygląda jak jedzenie! Miejmy nadzieję, że tak też smakuje."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN"
+msgid "I'm going to need more of these."
+msgstr "Przyda mi się tego więcej."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.FLOWER_RAINFOREST"
+msgid "You can never have too many flowers. Or projectiles."
+msgstr "Kwiatów nigdy za wiele. Podobnie jak pocisków."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD"
+msgid "I guess it can't fly me out of here now."
+msgstr "Obstawiam, że już mi nie pomoże stąd odlecieć."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.GENERIC"
+msgid "A flyer and a glower. My new best friend."
+msgstr "Lata i świeci. Mój nowy najlepszy przyjaciel."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Wake up and glow for me!"
+msgstr "Obudź się i przyświeć mi tutaj!"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY_COCOON"
+msgid "Aww... It's wrapped up all nice and cozy."
+msgstr "Ooo, zawinięty w cieplutki kokonik."
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE"
@@ -1040,10 +1570,30 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Something's hiding in there."
 msgstr "Coś się tutaj kryje."
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Not too sorry about that."
+msgstr "Nie jest mi go przesadnie szkoda."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Probably just agitated because it can't fly well."
+msgstr "Pewnie się wścieka, bo słabo lata."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Quite the snorer."
+msgstr "Nieźle chrapie."
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
 msgid "Time to do some yard work."
 msgstr "Czas na pracę w ogródku."
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR"
+msgid "That's a big tree."
+msgstr "Ale duże drzewo!"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE"
@@ -1084,6 +1634,36 @@ msgstr "Zbroja z owadziego egzoszkieletu."
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Asparagus. Otherwise known as sparrow grass."
 msgstr "Szparag. Zwany również jako Asparagus officinalis."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN"
+msgid "The exoskeleton of an arthropod."
+msgstr "Egzoszkielet stawonoga."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Floral cross-pollination produces some fascinating specimens."
+msgstr "W wyniku zapylenia krzyżowego powstają fascynujące okazy."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD"
+msgid "Its existence has reached an end."
+msgstr "Jego żywot dobiegł końca."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.GENERIC"
+msgid "A bioluminescent insecta."
+msgstr "Bioluminescencyjny owad."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Curious. Its bioluminescence requires wakefulness."
+msgstr "Interesujące. Jest bioluminescencyjny tylko, gdy nie śpi."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY_COCOON"
+msgid "Fascinating! It has moved on to the chrysalis stage."
+msgstr "Fascynujące! Przeszedł do stadium poczwarki."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE"
@@ -1135,10 +1715,30 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
 msgid "I have questions about that bush."
 msgstr "Mam wątpliwości dotyczące tego krzewu."
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Expired."
+msgstr "Skonał."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Certainly not a species I know of!"
+msgstr "Nie wygląda jak żaden ze znanych mi gatunków!"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Dormant."
+msgstr "W spoczynku."
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
 msgid "A useful tool for horticultural purposes."
 msgstr "Narzędzie przydatne w ogrodnictwie."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR"
+msgid "Certainly from an old growth tree."
+msgstr "To drzewo jest z pewnością bardzo stare."
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE"
@@ -1184,6 +1784,36 @@ msgstr "ODZIENIE PRZYGODY Z DRAŻNIĄCYCH ROBAKÓW"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "HATH A FUNNY HAT"
 msgstr "ZABAWNE NAKRYCIE GŁOWY POSIADA"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN"
+msgid "YON BUGGY ARMOR"
+msgstr "PANCERZ ROBACZY"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.FLOWER_RAINFOREST"
+msgid "MANY COLOR'D FLOWERS FOR WILBA"
+msgstr "MOC BARWNYCH KWIATÓW DLA WILBY"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.DEAD"
+msgid "'TIS SQUISH'DED"
+msgstr "OFIARA ZMIAŻDŻENIA"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.GENERIC"
+msgid "IS'T A BUG O' GLOWY BUTT"
+msgstr "OTÓŻ JEST ROBAK O ŚWIECĄCYM ZADKU"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "O GENTLE SLEEP!"
+msgstr "O SŁODKI ŚNIE!"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY_COCOON"
+msgid "WRAPP'DED IN A BUGGY BLANKET"
+msgstr "ZAWINIĘTY ON W ROBACZY KOCYK"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE"
@@ -1235,10 +1865,30 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
 msgid "'TIS NAUGHT A BUSH"
 msgstr "OTÓŻ NIE JEST KRZAK"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "IN YON UNDISCOVER'D COUNTRY"
+msgstr "BŁĄDZI WTENCZAS PO KRAINACH NIEODKRYTYCH"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "FULL OF SOUND AND FURY"
+msgstr "PEŁEN WŚCIEKŁOŚCI I WRZASKU"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "O GENTLE SLEEPIES"
+msgstr "O SŁODKIE ŚPIULKI!"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
 msgid "FOR THE CUTTINGS OF THE SHRUBS"
 msgstr "DO CZYNIENIA CIĘCIA KRZAKÓW"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR"
+msgid "'TIS STRONG TREE"
+msgstr "OTÓŻ JEST MOCNE DRZEWO"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE"
@@ -1279,6 +1929,36 @@ msgstr "Obrzydliwe. Mam nadzieję, że chociaż działa."
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha! Found you!"
 msgstr "Ha! Znalazłam cię!"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN"
+msgid "Bug skin."
+msgstr "Skóra z robala."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It's kinda ugly. But it burns."
+msgstr "Trochę brzydki. Ale łatwopalny."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.DEAD"
+msgid "Squashed."
+msgstr "Zgnieciony."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Looks slimy."
+msgstr "Ale obleśny."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "(Psst... you're gross.)"
+msgstr "(Psst... jesteś ohydny)."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY_COCOON"
+msgid "Doing a bad job of hiding from me."
+msgstr "Chce się przede mną schować, ale bezskutecznie."
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE"
@@ -1330,10 +2010,30 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
 msgid "A bush. I think."
 msgstr "Krzak. Chyba."
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Looks dead to me."
+msgstr "Na moje oko martwy."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "What're you so mad about?"
+msgstr "Czemu się tak wściekasz?"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "I should draw a mustache on its mustache while it sleeps."
+msgstr "Póki śpi, muszę mu dorysować wąsy na wąsach."
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
 msgid "Not as good as fire, but I guess it has its uses."
 msgstr "Nie tak fajne jak płomienie, ale do czegoś się przydadzą."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR"
+msgid "That's a big ol' tree."
+msgstr "Duże, stare drzewo."
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE"
@@ -1374,6 +2074,36 @@ msgstr "Niezbyt wygodne, po prostu odpuść."
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Wholesome green vegetables."
 msgstr "Zdrowe zielone warzywa."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.CHITIN"
+msgid "I don't know what this can be used for."
+msgstr "Nie wiem do czego to może służyć."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.FLOWER_RAINFOREST"
+msgid "I have never seen such flowers."
+msgstr "Nigdy nie widziałam takich kwiatów."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.DEAD"
+msgid "It's broken."
+msgstr "Jest uszkodzony."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Flying spotlights."
+msgstr "Latające reflektory."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "It's time for maintenance."
+msgstr "Czas na konserwację."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GLOWFLY_COCOON"
+msgid "Change is happening."
+msgstr "Następuje zmiana."
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE"
@@ -1420,10 +2150,30 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
 msgid "A vigilant bush, how strange!"
 msgstr "Czujny krzak, jakie to dziwne!"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Ah, it stopped."
+msgstr "Ach, zatrzymało się."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "What are you all excited about?"
+msgstr "Czym wszyscy jesteście podekscytowani?"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Calm down!"
+msgstr "Uspokoić się!"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
 msgid "Shears for gardening."
 msgstr "Nożyce do prac ogrodniczych."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR"
+msgid "It stretches to the end of my field of vision."
+msgstr "Rozciąga się do końca mojego pola widzenia."
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE"
@@ -1464,6 +2214,36 @@ msgstr "Wolfgang wygrywa!"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha. Is like tiny vegetable hats."
 msgstr "Ha, ha. Małe, warzywne kapelutki."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN"
+msgid "Icky bug pieces."
+msgstr "Wstrętne kawałki robala."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Little smelly flower."
+msgstr "Mały, pachnący kwiatek."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD"
+msgid "Light bug is lights out."
+msgstr "Świecący robal zgasł."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Is light bug."
+msgstr "Świecący robal."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Light bug is dark."
+msgstr "Świecący robal nie świeci."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY_COCOON"
+msgid "Bug look cozy."
+msgstr "Robal ma przytulnie."
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE"
@@ -1515,10 +2295,30 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
 msgid "Is just bush."
 msgstr "Tylko krzak."
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Is stomped."
+msgstr "Zdeptany."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Wolfgang will stomp bad beetle!"
+msgstr "Wolfgang zdepcze złego żuka!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Hehe. Is funny mustache."
+msgstr "He, he. Śmieszny wąs."
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
 msgid "Is for cutting plant things."
 msgstr "Do cięcia roślinek."
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR"
+msgid "Mightiest tree!"
+msgstr "Najpotężniejsze drzewo!"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE"
@@ -1559,6 +2359,36 @@ msgstr "Świetny sposób na wykorzystanie zdechłego owada."
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "They're like little trees to chop down."
 msgstr "Małe drzewka, w sam raz do ścięcia."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN"
+msgid "It's got some heft to it."
+msgstr "Troszkę waży."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.FLOWER_RAINFOREST"
+msgid "It's a pretty lil' thing."
+msgstr "Ładniutki."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD"
+msgid "Dead."
+msgstr "Nie działa."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Thanks for lightin' the way, buddy."
+msgstr "Dzięki za światło, kolego."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "A well-deserved nap."
+msgstr "Zasłużona drzemka."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY_COCOON"
+msgid "That looks comfy, eh?"
+msgstr "Chyba ci wygodnie, co nie?"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE"
@@ -1610,10 +2440,30 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
 msgid "There's a wretched bird nearby. I feel it."
 msgstr "W pobliżu jest jakiś żałosny ptaszor. Czuję to."
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "For the best."
+msgstr "Teraz będzie mu lepiej."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Seems mighty angry."
+msgstr "Wygląda, jakby był wkurzony."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Let sleeping bugs lie, I say."
+msgstr "Śpiącym robalom trzeba dać spać."
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
 msgid "Don't get jealous, Lucy."
 msgstr "Lucy, nie bądź zazdrosna."
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR"
+msgid "That's a real beaut."
+msgstr "Przepiękne."
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE"
@@ -1654,6 +2504,36 @@ msgstr "Tak jest. Strój ze skóry robaka."
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Tiny masts growin' from the ground."
 msgstr "Małe maszty wyrastające z ziemi."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN"
+msgid "A harden'd hull."
+msgstr "Stwardniały kadłub robaka."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Ol'Woodlegs na'got use fer'it."
+msgstr "Stary Woodlegs nie wie, co z tym zrobić."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.DEAD"
+msgid "Tells no tales."
+msgstr "Nie udaje."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.GENERIC"
+msgid "A fly'o'glow!"
+msgstr "Świecący owad!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Becalm'd."
+msgstr "Osiadł na mieliźnie."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY_COCOON"
+msgid "'e be sleepin' it off."
+msgstr "Odsypia sobie."
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE"
@@ -1705,10 +2585,30 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
 msgid "'Tis unsettlin' t'b'sure."
 msgstr "Zdecydowanie niepokojący."
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Aye, 'tis fer'tha best."
+msgstr "Tak jest lepiej..."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Ornery buggie."
+msgstr "Uparty robaczek."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Thar she blows!"
+msgstr "Ognia!"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
 msgid "A cutlass fer tha'bushes."
 msgstr "Kordelas do krzaków."
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR"
+msgid "Vessel i'th'makin'."
+msgstr "Rośnie materiał na okręt."
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE"
@@ -1749,6 +2649,36 @@ msgstr "Strój z bzyków"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Hello there!"
 msgstr "Cześć!"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN"
+msgid "Bzzter clothes"
+msgstr "Strój bzyków"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.FLOWER_RAINFOREST"
+msgid "Dirt made a friend"
+msgstr "Ziemia ma przyjaciela"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.DEAD"
+msgid "(sob)"
+msgstr "Chlip"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Bzzter with bright peepers"
+msgstr "Bzyk o jasnych patrzałkach"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "No light"
+msgstr "Nie świeci"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY_COCOON"
+msgid "Changing"
+msgstr "Zmienia się"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE"
@@ -1800,10 +2730,30 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH"
 msgid "Looking good!"
 msgstr "Przystojniak!"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "Too bad"
+msgstr "Szkoda"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Why so mad, Bzzter?"
+msgstr "Co tak się wściekasz, bzyku?"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Let it sleep"
+msgstr "Niech sobie śpi"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
 msgid "For hair cuts"
 msgstr "Do obcinania włosów"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR"
+msgid "Big friend?"
+msgstr "Duży przyjaciel?"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE"
@@ -1844,6 +2794,36 @@ msgstr "Dostaję gęsiej skórki."
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A spear that grows out of the earth."
 msgstr "Włócznia, która wyrasta z ziemi."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.CHITIN"
+msgid "The shell of those guys."
+msgstr "Skorupa tych facetów."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.FLOWER_RAINFOREST"
+msgid "There is a wild beauty."
+msgstr "Jest dzikie piękno."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.DEAD"
+msgid "sorry."
+msgstr "Przepraszam."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.GENERIC"
+msgid "Shiny little guy."
+msgstr "Błyszczący mały facet."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "Have a good dream."
+msgstr "Miłych snów."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GLOWFLY_COCOON"
+msgid "What will become of it?"
+msgstr "Co z tego będzie?"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE"
@@ -1890,10 +2870,30 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
 msgid "Well, this trick can't fool me."
 msgstr "Cóż, ta sztuczka nie może mnie oszukać."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "it's a pity."
+msgstr "szkoda."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "Really energetic, do you want to dance?"
+msgstr "Naprawdę energiczny, chcesz zatańczyć?"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "Then intermission."
+msgstr "Potem przerwa."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
 msgid "Click, click, leaves fall."
 msgstr "Klik, klik, liście opadają."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR"
+msgid "Blot out the sun."
+msgstr "Zasłoń słońce."
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE"
@@ -1934,6 +2934,36 @@ msgstr "Ładna i wygodna zbroja."
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Green stick stick, smells good."
 msgstr "Zielony sztyft w sztyfcie, ładnie pachnie."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.CHITIN"
+msgid "Tough hide."
+msgstr "Twarda kryjówka."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.FLOWER_RAINFOREST"
+msgid "A slightly prettier plant is still ugly."
+msgstr "Nieco ładniejsza roślina nadal jest brzydka."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.DEAD"
+msgid "died."
+msgstr "zmarł."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.GENERIC"
+msgid "How do they glow?"
+msgstr "Jak się świecą?"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "sleeping."
+msgstr "spanie."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GLOWFLY_COCOON"
+msgid "The little bug wrapped itself up."
+msgstr "Mały robak się zapakował."
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE"
@@ -1980,10 +3010,30 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
 msgid "Pretty feather bush."
 msgstr "Ładny krzew z piór."
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "died."
+msgstr "zmarł."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "The little bug is going crazy!"
+msgstr "Mały robak szaleje!"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "The little bug was quiet."
+msgstr "Mały robak milczał."
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
 msgid "Shape the plants."
 msgstr "Uformuj rośliny."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR"
+msgid "A huge tree."
+msgstr "Ogromne drzewo."
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE"
@@ -2024,6 +3074,36 @@ msgstr "BIOLOGICZNA OBUDOWA DLA KOMPUTERA"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "SMALL TREES OF ENERGY"
 msgstr "MAŁE DRZEWKA ENERGII"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN"
+msgid "INFERIOR ORGANIC BODY PLATING"
+msgstr "PANCERZ PODRZĘDNEGO ORGANIZMU"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.FLOWER_RAINFOREST
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.FLOWER_RAINFOREST"
+msgid "I HATE IT"
+msgstr "NIENAWIDZĘ TEGO"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD"
+msgid "IT HAS BEEN TURNED OFF"
+msgstr "ZOSTAŁ WYŁĄCZONY"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.GENERIC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.GENERIC"
+msgid "IT IS RELEASING PHOTONS"
+msgstr "EMITUJE FOTONY"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.SLEEPING"
+msgid "REGENERATING PHOTONS"
+msgstr "REGENERACJA FOTONÓW W TOKU"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY_COCOON
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY_COCOON"
+msgid "UNDERGOING UPGRADE"
+msgstr "PRZECHODZI MODERNIZACJĘ"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE"
@@ -2075,10 +3155,30 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
 msgid "GROUND PART"
 msgstr "KOMPONENT ZIEMNY"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.DEAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.DEAD"
+msgid "TERMINATED"
+msgstr "JEGO PROCES ZOSTAŁ ZAKOŃCZONY"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.GENERIC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.GENERIC"
+msgid "YOU HAVE EXCESSIVE FACIAL HAIR"
+msgstr "POSIADASZ NADMIERNE OWŁOSIENIE NA TWARZY"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.SLEEPING
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.SLEEPING"
+msgid "REGENERATING TERROR"
+msgstr "REGENERACJA GROZY W TOKU"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
 msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
 msgstr "Z ICH POMOCĄ POKONAM ROŚLINNOŚĆ!"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR"
+msgid "IT IS LARGE AND MADE OF WOOD"
+msgstr "DUŻA I DREWNIANA"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE"
@@ -2104,6 +3204,26 @@ msgstr "Płaszcz z chrabąszcza ryjówki"
 msgctxt "STRINGS.NAMES.ASPARAGUS_PLANTED"
 msgid "Asparagus"
 msgstr "Szparagi"
+
+#. STRINGS.NAMES.CHITIN
+msgctxt "STRINGS.NAMES.CHITIN"
+msgid "Chitin"
+msgstr "Chityna"
+
+#. STRINGS.NAMES.FLOWER_RAINFOREST
+msgctxt "STRINGS.NAMES.FLOWER_RAINFOREST"
+msgid "Exotic Flower"
+msgstr "Egzotyczny kwiat"
+
+#. STRINGS.NAMES.GLOWFLY
+msgctxt "STRINGS.NAMES.GLOWFLY"
+msgid "Glowfly"
+msgstr "Świetlik"
+
+#. STRINGS.NAMES.GLOWFLY_COCOON
+msgctxt "STRINGS.NAMES.GLOWFLY_COCOON"
+msgid "Glowfly Cocoon"
+msgstr "Kokon świetlika"
 
 #. STRINGS.NAMES.GOLDENMACHETE
 msgctxt "STRINGS.NAMES.GOLDENMACHETE"
@@ -2135,10 +3255,20 @@ msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
 msgid "Blinkbush"
 msgstr "Mrugający krzew"
 
+#. STRINGS.NAMES.RABID_BEETLE
+msgctxt "STRINGS.NAMES.RABID_BEETLE"
+msgid "Rabid Beetle"
+msgstr "Wściekły żuk"
+
 #. STRINGS.NAMES.SHEARS
 msgctxt "STRINGS.NAMES.SHEARS"
 msgid "Shears"
 msgstr "Nożyce"
+
+#. STRINGS.NAMES.TREE_PILLAR
+msgctxt "STRINGS.NAMES.TREE_PILLAR"
+msgid "Great Leafy Stalk"
+msgstr "Wielka liściasta łodyga"
 
 #. STRINGS.NAMES.WEEVOLE
 msgctxt "STRINGS.NAMES.WEEVOLE"
@@ -2185,6 +3315,21 @@ msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.DEEP_JUNGLE_FERN_NOISE"
 msgid "Jungle Floor Ferns"
 msgstr "Ciernie w poszyciu dżungli"
 
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.FOG
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.FOG"
+msgid "Fog"
+msgstr "Mgła"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.GLOWFLYCYCLE
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GLOWFLYCYCLE"
+msgid "Glowfly Cycle"
+msgstr "Cykl świetlików"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.GLOWFLY_SETTING
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GLOWFLY_SETTING"
+msgid "Glowfly"
+msgstr "Świetlik"
+
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL"
 msgid "Tall Grass"
@@ -2209,11 +3354,6 @@ msgstr "Pnącza w sklepieniu dżungli"
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.LUSH"
 msgid "Lush"
 msgstr "Urodzajność"
-
-#. STRINGS.UI.CUSTOMIZATIONSCREEN.FOG
-msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.FOG"
-msgid "Fog"
-msgstr "Mgła"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.PEAGAWK_SETTING
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.PEAGAWK_SETTING"

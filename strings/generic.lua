@@ -10,6 +10,14 @@ return {
         APORKALYPSE_CLOCK = "Looks scientifically apocalyptic.",
         ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",
         ASPARAGUS_PLANTED = "I should pick those!",
+        CHITIN = "Bug coating.",
+        FLOWER_RAINFOREST = "It smells vaguely tolerable.",
+        GLOWFLY = {
+            DEAD = "Lights out forever.",
+            GENERIC = "A light aflight.",
+            SLEEPING = "Out like a light.",
+        },
+        GLOWFLY_COCOON = "Snug as a bug.",
         GOLDENMACHETE = "Hack in style!",
         GRASS_TALL = {
             BURNING = "A grass fire!",
@@ -24,7 +32,13 @@ return {
         },
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
+        RABID_BEETLE = {
+            DEAD = "A late beetle.",
+            GENERIC = "Looks deranged.",
+            SLEEPING = "In a slumber.",
+        },
         SHEARS = "Shear-ly delightful.",
+        TREE_PILLAR = "It totally blocks out the sun.",
         WEEVOLE = "Whee!",
         WEEVOLE_CARAPACE = "I'll be careful with this carapace.",
     },

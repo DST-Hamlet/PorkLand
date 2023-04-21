@@ -10,6 +10,14 @@ return {
         APORKALYPSE_CLOCK = "Stuff form bad story!",
         ARMOR_WEEVOLE = "Nice and comfortable armor.",
         ASPARAGUS_PLANTED = "Green stick stick, smells good.",
+        CHITIN = "Tough hide.",
+        FLOWER_RAINFOREST = "A slightly prettier plant is still ugly.",
+        GLOWFLY = {
+            DEAD = "died.",
+            GENERIC = "How do they glow?",
+            SLEEPING = "sleeping.",
+        },
+        GLOWFLY_COCOON = "The little bug wrapped itself up.",
         GOLDENMACHETE = "It better than normal hacker.",
         GRASS_TALL = {
             BURNING = "Fire! Is fire!",
@@ -23,7 +31,13 @@ return {
         },
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
+        RABID_BEETLE = {
+            DEAD = "died.",
+            GENERIC = "The little bug is going crazy!",
+            SLEEPING = "The little bug was quiet.",
+        },
         SHEARS = "Shape the plants.",
+        TREE_PILLAR = "A huge tree.",
         WEEVOLE = "go away go away!",
         WEEVOLE_CARAPACE = "hard shell.",
     },

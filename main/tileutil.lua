@@ -1,6 +1,6 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-function GetWorldPosition(x, y, z)
+local function GetWorldPosition(x, y, z)
     if type(x) == "table" then
         if x.x then
             x, y, z = x.x, x.y, x.z

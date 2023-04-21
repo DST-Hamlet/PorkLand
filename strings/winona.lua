@@ -10,6 +10,14 @@ return {
         APORKALYPSE_CLOCK = "A fairly complex set of instrumentation.",
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",
         ASPARAGUS_PLANTED = "Wholesome green vegetables.",
+        CHITIN = "I don't know what this can be used for.",
+        FLOWER_RAINFOREST = "I have never seen such flowers.",
+        GLOWFLY = {
+            DEAD = "It's broken.",
+            GENERIC = "Flying spotlights.",
+            SLEEPING = "It's time for maintenance.",
+        },
+        GLOWFLY_COCOON = "Change is happening.",
         GOLDENMACHETE = "This just made my job easier.",
         GRASS_TALL = {
             BURNING = "A Grass fire!",
@@ -23,7 +31,13 @@ return {
         },
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
+        RABID_BEETLE = {
+            DEAD = "Ah, it stopped.",
+            GENERIC = "What are you all excited about?",
+            SLEEPING = "Calm down!",
+        },
         SHEARS = "Shears for gardening.",
+        TREE_PILLAR = "It stretches to the end of my field of vision.",
         WEEVOLE = "Once you've dealt with bedbugs, weevils aren't so bad.",
         WEEVOLE_CARAPACE = "It can be regarded as clean.",
     },

@@ -10,6 +10,14 @@ return {
         APORKALYPSE_CLOCK = "Is clock of scary things.",
         ARMOR_WEEVOLE = "Wolfgang win!",
         ASPARAGUS_PLANTED = "Haha. Is like tiny vegetable hats.",
+        CHITIN = "Icky bug pieces.",
+        FLOWER_RAINFOREST = "Little smelly flower.",
+        GLOWFLY = {
+            DEAD = "Light bug is lights out.",
+            GENERIC = "Is light bug.",
+            SLEEPING = "Light bug is dark.",
+        },
+        GLOWFLY_COCOON = "Bug look cozy.",
         GOLDENMACHETE = "Hoighty toighty knife!",
         GRASS_TALL = {
             BURNING = "Wolfgang is not doing that!",
@@ -24,7 +32,13 @@ return {
         },
         PEAGAWKFEATHER = "Is blink-blink bird feather.",
         PEAGAWK_BUSH = "Is just bush.",
+        RABID_BEETLE = {
+            DEAD = "Is stomped.",
+            GENERIC = "Wolfgang will stomp bad beetle!",
+            SLEEPING = "Hehe. Is funny mustache.",
+        },
         SHEARS = "Is for cutting plant things.",
+        TREE_PILLAR = "Mightiest tree!",
         WEEVOLE = "Pesky bug. Leave Wolfgang alone!",
         WEEVOLE_CARAPACE = "Is pesky bug skin.",
     },
