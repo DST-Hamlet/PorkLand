@@ -727,7 +727,7 @@ local function SetSeasons(self, clock_type, seasons_data)
         for clock in pairs(self.clocks) do
             local suffix = clock == "default" and "" or ("_" .. self.current_clock)
             if clock ~= self.current_clock then
-                TheWorld:AddPushEventPostFn(event, SilenceEvent)
+                TheWorld:AddPushEventPostFn(event .. suffix, SilenceEvent)
             else
                 TheWorld:AddPushEventPostFn(event .. suffix, function() return event end)
             end
