@@ -45,6 +45,7 @@ return {
             PEAGAWK_SETTING = "Peagawk",
             PEAGAWK_SPAWNER = "Peagawk",
             PL_CLOCKTYPE = "Clock Type",
+            POISON = "Poison",
             PORKLAND_SEASON_START = "Porkland Starting Season",
             TEMPERATE = "Temperate",
             WEEVOLE_SETTING = "Weevole",

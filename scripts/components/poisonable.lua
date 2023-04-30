@@ -6,7 +6,6 @@ local function OnKilled(inst)
     end
 end
 
-
 -- Binary state problematic for non-players? should have a timer that gets set to infinite for players and some discrete time for non-players
 local Poisonable = Class(function(self, inst)
     self.inst = inst
@@ -40,15 +39,7 @@ local Poisonable = Class(function(self, inst)
     self.inst:ListenForEvent("death", OnKilled)
 end)
 
-local function IsPoisonDisabled()
-    return TheWorld and TheWorld.components.globalsettings and TheWorld.components.globalsettings.settings.poisondisabled and TheWorld.components.globalsettings.settings.poisondisabled == true
-end
-
 function Poisonable:IsPoisonBlockerEquiped()
-    if IsPoisonDisabled() then
-        return true
-    end
-
     if self.blockall then
         return true
     end
@@ -66,10 +57,6 @@ function Poisonable:IsPoisonBlockerEquiped()
 end
 
 function Poisonable:IsPoisonGasBlockerEquiped()
-    if IsPoisonDisabled() then
-        return true
-    end
-
     if self.blockall then
         return true
     end
@@ -87,7 +74,7 @@ function Poisonable:IsPoisonGasBlockerEquiped()
 end
 
 function Poisonable:CanBePoisoned(gas)
-    if IsPoisonDisabled() then
+    if TheWorld and TheWorld.components.worldsettings and TheWorld.components.worldsettings:GetSetting("poison") == false then
         return false
     end
 
