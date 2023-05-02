@@ -113,17 +113,11 @@ end
 
 local function OnSave(inst, data)
     data.feathers = inst.feathers
-    data.is_bush = inst.is_bush
 end
 
 local function OnLoad(inst, data)
     if data then
         inst.feathers = data.feathers
-        inst.is_bush = data.is_bush
-    end
-
-    if inst.is_bush then
-        TransformToBush(inst)
     end
 
     refreshart(inst)

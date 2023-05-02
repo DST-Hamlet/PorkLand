@@ -33,7 +33,7 @@ local function Gobble(inst)
     -- end
 end
 
-local states=
+local states =
 {
     State{
         name = "idle",
@@ -120,7 +120,7 @@ local states=
         events =
         {
             EventHandler("animover", function(inst)
-                inst.TransformToBush(inst, true)
+                inst.TransformToBush(inst)
                 inst.sg:GoToState("idle")
             end),
         },
