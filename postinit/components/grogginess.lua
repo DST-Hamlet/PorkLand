@@ -52,6 +52,10 @@ end
 function Grogginess.OnEquipChange(inst, data)
     local self = inst.components.grogginess
 
+    if not self then
+        return
+    end
+
     local hotitems = self:HasOverHeatinggear()
 
     if self.foggygroggy then
@@ -95,6 +99,10 @@ end
 
 function Grogginess.SetFogyGroggy(inst, enable)
     local self = inst.components.grogginess
+
+    if not self then
+        return
+    end
 
     if enable then
         inst:ListenForEvent("equip", self.OnEquipChange)

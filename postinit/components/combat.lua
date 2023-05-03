@@ -1,4 +1,3 @@
-local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local Combat = require("components/combat")
@@ -13,7 +12,7 @@ end
 
 function Combat:GetDamageModifier()
     local mod = 1
-    for k, v in pairs(self.attack_damage_modifiers) do
+    for _, v in pairs(self.attack_damage_modifiers) do
         mod = mod + v
     end
     return mod
@@ -91,22 +90,26 @@ if not IA_ENABLED then Combat.GetAttacked = function(self, attacker, damage, wea
         return not blocked
     end
 
-    local notblocked = _GetAttacked(self, attacker, damage, weapon, stimuli, ...)
+    local rets = {_GetAttacked(self, attacker, damage, weapon, stimuli, ...)}
 
-    if notblocked and attacker and poisonAttack and self.inst.components and self.inst.components.poisonable then
+    if rets[1] and attacker and poisonAttack and self.inst.components and self.inst.components.poisonable then
         self.inst.components.poisonable:Poison()
     end
+
+    return unpack(rets)
 end end
 
 local _CalcDamage = Combat.CalcDamage
 if not IA_ENABLED then Combat.CalcDamage = function(self, target, weapon, multiplier, ...)
-    local dmg = _CalcDamage(self, target, weapon, multiplier, ...)
-    local bonus = self.damagebonus or 0 -- not affected by multipliers
+    local rets = {_CalcDamage(self, target, weapon, multiplier, ...)}
+    local bonus = self.damagebonus or 0  -- not affected by multipliers
 
-    return (dmg - bonus) * self:GetDamageModifier() + bonus
+    local dmg = rets[1]
+    dmg = (dmg - bonus) * self:GetDamageModifier() + bonus
+    return unpack(rets)
 end end
 
-AddComponentPostInit("combat", function(self)
+AddComponentPostInit("combat", function(self, inst)
     self.poisonstrength = 1
 
     self.poisonous = nil

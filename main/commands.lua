@@ -1,5 +1,3 @@
----@diagnostic disable: lowercase-global
-
 GLOBAL.setfenv(1, GLOBAL)
 
 function c_checktile()
