@@ -74,7 +74,7 @@ function Poisonable:IsPoisonGasBlockerEquiped()
 end
 
 function Poisonable:CanBePoisoned(gas)
-    if TheWorld and TheWorld.components.worldsettings and TheWorld.components.worldsettings:GetSetting("poison") == false then
+    if not GetWorldSetting("poison", true) then
         return false
     end
 
