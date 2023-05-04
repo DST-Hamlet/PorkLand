@@ -1,5 +1,6 @@
 local AddStategraphState = AddStategraphState
 local AddStategraphActionHandler = AddStategraphActionHandler
+local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local actionhandlers = {
@@ -21,6 +22,34 @@ local actionhandlers = {
 }
 
 local states = {
+    State{
+        name = "mounted_poison_idle",
+        tags = {"idle", "canrotate"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+
+            if inst.components.poisonable and inst.components.poisonable:IsPoisoned() then
+                inst.AnimState:PlayAnimation("idle_poison_pre")
+                inst.AnimState:PushAnimation("idle_poison_loop")
+                inst.AnimState:PushAnimation("idle_poison_pst", false)
+            end
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
     State{
         name = "hack_start",
         tags = {"prehack", "working"},
@@ -217,6 +246,27 @@ for _, state in ipairs(states) do
     AddStategraphState("wilson", state)
 end
 
--- AddStategraphPostInit("wilson", function(sg)
--- end)
+AddStategraphPostInit("wilson", function(sg)
+    local _mounted_idle_onenter = sg.states["mounted_idle"].onenter
+    sg.states["mounted_idle"].onenter = function(inst, ...)
+        local equippedArmor = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BODY)
+        if (equippedArmor ~= nil and equippedArmor:HasTag("band")) or
+            not (inst.components.poisonable and inst.components.poisonable:IsPoisoned()) then
+            return _mounted_idle_onenter and _mounted_idle_onenter(inst, ...)
+        else
+            inst.sg:GoToState("mounted_poison_idle")
+        end
+    end
+
+    local _funnyidle_onenter = sg.states["funnyidle"].onenter
+    sg.states["funnyidle"].onenter = function(inst, ...)
+        if inst.components.poisonable and inst.components.poisonable:IsPoisoned() then
+            inst.AnimState:PlayAnimation("idle_poison_pre")
+            inst.AnimState:PushAnimation("idle_poison_loop")
+            inst.AnimState:PushAnimation("idle_poison_pst", false)
+        elseif _funnyidle_onenter then
+            _funnyidle_onenter(inst, ...)
+        end
+    end
+end)
 

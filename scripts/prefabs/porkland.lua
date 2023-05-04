@@ -60,9 +60,11 @@ local assets =
 
 local prefabs =
 {
+    "beefalo",
     "cave_entrance",
     "rain",
-    "pollen"
+    "pollen",
+    "porkland_network",
 }
 
 local function tile_physics_init(inst, ...)
