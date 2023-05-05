@@ -44,6 +44,8 @@ Assets = {
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 
     -- player_actions
+    Asset("ANIM", "anim/player_idles_poison.zip"),
+    Asset("ANIM", "anim/player_mount_idles_poison.zip"),
     Asset("ANIM", "anim/player_actions_hack.zip"),
     Asset("ANIM", "anim/player_actions_shear.zip"),
 }
