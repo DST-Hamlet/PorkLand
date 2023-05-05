@@ -27,20 +27,10 @@ local states = {
         tags = {"idle", "canrotate"},
 
         onenter = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetFourFaced()
-            end
-
             if inst.components.poisonable and inst.components.poisonable:IsPoisoned() then
                 inst.AnimState:PlayAnimation("idle_poison_pre")
                 inst.AnimState:PushAnimation("idle_poison_loop")
                 inst.AnimState:PushAnimation("idle_poison_pst", false)
-            end
-        end,
-
-        onexit = function(inst)
-            if inst.components.rider:IsRiding() then
-                inst.Transform:SetSixFaced()
             end
         end,
 
