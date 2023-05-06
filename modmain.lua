@@ -1,5 +1,6 @@
 local modimport = modimport
 local GetModConfigData = GetModConfigData
+local AddReplicableComponent = AddReplicableComponent
 GLOBAL.setfenv(1, GLOBAL)
 
 IA_ENABLED = rawget(_G, "IA_CONFIG") ~= nil
@@ -29,3 +30,4 @@ modimport("main/RPC")
 modimport("main/actions")
 modimport("main/postinit")
 
+AddReplicableComponent("hayfever")

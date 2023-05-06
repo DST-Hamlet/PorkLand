@@ -4,6 +4,6 @@ local AllLayouts = require("map/layouts").Layouts
 require("constants")
 
 local ground_types = {
-	--Translates tile type index from constants.lua into tiled tileset.
-	--Order they appear here is the order they will be used in tiled.
+    --Translates tile type index from constants.lua into tiled tileset.
+    --Order they appear here is the order they will be used in tiled.
 }

@@ -1,4 +1,5 @@
 local AddStategraphState = AddStategraphState
+local AddStategraphEvent = AddStategraphEvent
 local AddStategraphActionHandler = AddStategraphActionHandler
 local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
@@ -21,25 +22,20 @@ local actionhandlers = {
     end),
 }
 
-local states = {
-    State{
-        name = "mounted_poison_idle",
-        tags = {"idle", "canrotate"},
-
-        onenter = function(inst)
-            if inst.components.poisonable and inst.components.poisonable:IsPoisoned() then
-                inst.AnimState:PlayAnimation("idle_poison_pre")
-                inst.AnimState:PushAnimation("idle_poison_loop")
-                inst.AnimState:PushAnimation("idle_poison_pst", false)
+local eventhandlers = {
+    EventHandler("sneeze", function(inst, data)
+        if not inst.components.health:IsDead() and not inst.components.health:IsInvincible() then
+            if inst.sg:HasStateTag("busy") then
+                inst.sg.statemem.wantstosneeze = true
+            else
+                inst.sg:GoToState("sneeze")
             end
-        end,
 
-        events =
-        {
-            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
-        },
-    },
+        end
+    end),
+}
 
+local states = {
     State{
         name = "hack_start",
         tags = {"prehack", "working"},
@@ -226,10 +222,80 @@ local states = {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
+
+    State{
+        name = "mounted_poison_idle",
+        tags = {"idle", "canrotate"},
+
+        onenter = function(inst)
+            if inst.components.poisonable and inst.components.poisonable:IsPoisoned() then
+                inst.AnimState:PlayAnimation("idle_poison_pre")
+                inst.AnimState:PushAnimation("idle_poison_loop")
+                inst.AnimState:PushAnimation("idle_poison_pst", false)
+            end
+        end,
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
+    State{
+        name = "sneeze",
+        tags = {"busy", "sneeze", "nopredict"},
+
+        onenter = function(inst)
+            if inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown() then
+                inst.sg:GoToState("sink_fast")
+                return
+            end
+
+            inst.sg.statemem.wantstosneeze = false
+
+            inst.SoundEmitter:PlaySound("dontstarve/wilson/hit", nil, .02)
+            inst.AnimState:PlayAnimation("sneeze")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/sneeze")
+            inst:ClearBufferedAction()
+
+            if inst.prefab ~= "wes" then
+                local sound_name = inst.soundsname or inst.prefab
+                local path = inst.talker_path_override or "dontstarve/characters/"
+
+                local sound_event = path .. sound_name .. "/hurt"
+                inst.SoundEmitter:PlaySound(inst.hurtsoundoverride or sound_event)
+            end
+
+            inst.components.locomotor:Stop()
+            inst.components.locomotor:Clear()
+
+            inst.components.talker:Say(GetString(inst, "ANNOUNCE_SNEEZE"))
+        end,
+
+        events =
+        {
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
+        },
+
+        timeline =
+        {
+            TimeEvent(10 * FRAMES, function(inst)
+                if inst.components.hayfever then
+                    inst.components.hayfever:DoSneezeEffects()
+                end
+                inst.sg:RemoveStateTag("busy")
+            end),
+        },
+
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
     AddStategraphActionHandler("wilson", actionhandler)
+end
+
+for _, eventhandler in ipairs(eventhandlers) do
+    AddStategraphEvent("wilson", eventhandler)
 end
 
 for _, state in ipairs(states) do
@@ -237,14 +303,39 @@ for _, state in ipairs(states) do
 end
 
 AddStategraphPostInit("wilson", function(sg)
+    local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
+    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
+        if not inst.sg:HasStateTag("sneeze") then
+            return _attack_deststate and _attack_deststate(inst, ...)
+        end
+    end
+
+    local _idle_onenter = sg.states["idle"].onenter
+    sg.states["idle"].onenter = function(inst, ...)
+        if not (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then
+            if inst.sgwantstosneeze then
+                inst.components.locomotor:Stop()
+                inst.components.locomotor:Clear()
+
+                inst.sg:GoToState("sneeze")
+            end
+        else
+            return _idle_onenter and _idle_onenter(inst, ...)
+        end
+    end
+
     local _mounted_idle_onenter = sg.states["mounted_idle"].onenter
     sg.states["mounted_idle"].onenter = function(inst, ...)
         local equippedArmor = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BODY)
-        if (equippedArmor ~= nil and equippedArmor:HasTag("band")) or
-            not (inst.components.poisonable and inst.components.poisonable:IsPoisoned()) then
-            return _mounted_idle_onenter and _mounted_idle_onenter(inst, ...)
+
+        if not (equippedArmor ~= nil and equippedArmor:HasTag("band")) then
+            if inst.sg.statemem.wantstosneeze then
+                inst.sg:GoToState("sneeze")
+            elseif inst.components.poisonable and inst.components.poisonable:IsPoisoned() then
+                inst.sg:GoToState("mounted_poison_idle")
+            end
         else
-            inst.sg:GoToState("mounted_poison_idle")
+            return _mounted_idle_onenter and _mounted_idle_onenter(inst, ...)
         end
     end
 
@@ -255,7 +346,7 @@ AddStategraphPostInit("wilson", function(sg)
             inst.AnimState:PushAnimation("idle_poison_loop")
             inst.AnimState:PushAnimation("idle_poison_pst", false)
         elseif _funnyidle_onenter then
-            _funnyidle_onenter(inst, ...)
+            return _funnyidle_onenter and _funnyidle_onenter(inst, ...)
         end
     end
 end)

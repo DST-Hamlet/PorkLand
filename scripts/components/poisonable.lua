@@ -2,7 +2,16 @@ local function OnKilled(inst)
     local poisonable = inst.components.poisonable
 
     if poisonable then
+        if inst:HasTag("player") then
+            poisonable:SetBlockAll(true)
+        end
         poisonable:KillFX()
+    end
+end
+
+local function OnRespawnFromGhost(inst, data)
+    if inst.components.poisonable and not inst:HasTag("beaver") then
+        inst.components.poisonable:SetBlockAll(false)
     end
 end
 
@@ -37,6 +46,10 @@ local Poisonable = Class(function(self, inst)
     self.blockall = nil
 
     self.inst:ListenForEvent("death", OnKilled)
+
+    if self.inst:HasTag("player") then
+        self.inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)
+    end
 end)
 
 function Poisonable:IsPoisonBlockerEquiped()
@@ -113,9 +126,9 @@ function Poisonable:SetOnCuredFn(fn)
 end
 
 -- Add an effect to be spawned when poisoning
----@param prefab The prefab to spawn as the effect
----@param offset The offset from the poisoning entity/symbol that the effect should appear at
----@param followsymbol Optional symbol for the effect to follow
+-- @param prefab The prefab to spawn as the effect
+-- @param offset The offset from the poisoning entity/symbol that the effect should appear at
+-- @param followsymbol Optional symbol for the effect to follow
 function Poisonable:AddPoisonFX(prefab, offset, followsymbol)
     table.insert(self.fxdata, {prefab = prefab, x = offset.x, y = offset.y, z = offset.z, follow = followsymbol})
 end
@@ -368,6 +381,12 @@ function Poisonable:OnRemoveFromEntity()
     if self.task then
         self.task:Cancel()
         self.task = nil
+    end
+
+    self.inst:RemoveEventCallback("death", OnKilled)
+
+    if self.inst:HasTag("player") then
+        self.inst:RemoveEventCallback("respawnfromghost", OnRespawnFromGhost)
     end
 end
 
