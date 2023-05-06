@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ha! Wolfgang beat the heat!",
     },
+    ANNOUNCE_HAYFEVER = "Allergies strong like Wolfgang!",
+    ANNOUNCE_HAYFEVER_OFF = "Ha! Wolfgang beat allergies!",
+    ANNOUNCE_SNEEZE = "Achoo! Excuse Wolfgang.",
     ANNOUNCE_TOO_HUMID = {
         "Wolfgang don't like %s in this heat.",
         "Is too muggy.",

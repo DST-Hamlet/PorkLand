@@ -7,6 +7,9 @@ return {
         "I don't want to wear %s anymore!",
     },
     DESCRIBE = {
+        ANNOUNCE_HAYFEVER = "Gullah. The gills are so uncomfortable...",
+        ANNOUNCE_HAYFEVER_OFF = "oh! The gills are finally comfortable!",
+        ANNOUNCE_SNEEZE = "Heh-hoo, ha-choo! ! !",
         APORKALYPSE_CLOCK = "Stuff form bad story!",
         ARMOR_WEEVOLE = "Nice and comfortable armor.",
         ASPARAGUS_PLANTED = "Green stick stick, smells good.",

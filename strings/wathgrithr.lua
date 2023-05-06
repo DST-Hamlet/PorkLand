@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "The haze has lifted.",
     },
+    ANNOUNCE_HAYFEVER = "Mine nostrils chafe with itchiness!",
+    ANNOUNCE_HAYFEVER_OFF = "The smoke has cleared!",
+    ANNOUNCE_SNEEZE = "aaAAAH...cho!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is crushing my spirit.",
         "This %s burns like Sol.",

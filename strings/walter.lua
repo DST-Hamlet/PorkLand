@@ -7,6 +7,9 @@ return {
         "%s is not breathable at all.",
     },
     DESCRIBE = {
+        ANNOUNCE_HAYFEVER = "There's something in the air...my nose is itching.",
+        ANNOUNCE_HAYFEVER_OFF = "My nose is so much better and it's finally gone!",
+        ANNOUNCE_SNEEZE = "Ah Choo!",
         APORKALYPSE_CLOCK = "Oh no! It's a doomsday prophecy!",
         ARMOR_WEEVOLE = "Are we really going to wear it?",
         ASPARAGUS_PLANTED = "Miss Winona might like it, pick some.",

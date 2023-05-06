@@ -20,6 +20,21 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_DEHUMID.1"
 msgid "Ah, so much better."
 msgstr "A, znacznie lepiej."
 
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER"
+msgid "My nose feels.. itchy."
+msgstr "Mój nos... swędzi."
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER_OFF"
+msgid "I don't want to claw my eyes out anymore."
+msgstr "Nie chcę już wydrapywać sobie oczu."
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_SNEEZE"
+msgid "AHHH CHOOOO!"
+msgstr "AAAPSIIIIIK!"
+
 #. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is so heavy."
@@ -164,6 +179,21 @@ msgstr "Lepiej uważać z tym pancerzykiem."
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_DEHUMID.1"
 msgid "Ahhh. The season has turned."
 msgstr "Ach. Pora roku się zmieniła."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER"
+msgid "Evidence would suggest it's allergy season."
+msgstr "Dane wskazują na alergię sezonową."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah! Evidentaly, it's no longer allergy season."
+msgstr "Ach! Ewidentnie sezon na alergie już się skończył."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_SNEEZE"
+msgid "aH-CHOOOOOOOOOO!"
+msgstr "APSIIIIIIIIK!"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.1"
@@ -314,6 +344,21 @@ msgstr "Fenomenalne! To egzoszkielet sześcionogiego stawonoga!"
 msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_DEHUMID.1"
 msgid "Ah... A nice cool breeze."
 msgstr "Ach... Przyjemny wiaterek."
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER"
+msgid "Allergy season."
+msgstr "Coś tu pyli."
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER_OFF"
+msgid "Hey! I feel better!"
+msgstr "Hej! Już mi lepiej!"
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_SNEEZE"
+msgid "ahhh... ahhhh...ahhhhhCHOOO!"
+msgstr "Aaa... AaaaAAA... AAAPSIK!"
 
 #. STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.1"
@@ -470,6 +515,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.2"
 msgid "%s is not breathable at all."
 msgstr "%s w ogóle nie oddycha."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "There's something in the air...my nose is itching."
+msgstr "Coś wisi w powietrzu... swędzi mnie nos."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "My nose is so much better and it's finally gone!"
+msgstr "Mój nos jest o wiele lepszy i wreszcie go nie ma!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "Ah Choo!"
+msgstr "Ach Choo!"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Oh no! It's a doomsday prophecy!"
@@ -610,6 +670,21 @@ msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.2"
 msgid "This terrible weather... I really shouldn't be wearing %s."
 msgstr "Ta okropna pogoda... Naprawdę nie powinienem nosić %s."
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "Don't these plants do anything else but pollinate all over the place?"
+msgstr "Czy te rośliny nie robią nic innego poza zapylaniem wszędzie?"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "Whoops! it is finally over!"
+msgstr "Ups! wreszcie koniec!"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "Ah Choo!"
+msgstr "Ach Choo!"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Keeping track of their movements...very clever idea."
@@ -739,6 +814,21 @@ msgstr "Zło, wydziela dziwny zapach."
 msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_DEHUMID.1"
 msgid "Ah, I feel better now."
 msgstr "Ach, już mi lepiej."
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER"
+msgid "Ugh! My allergies!"
+msgstr "Uch! Dostałem alergii!"
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER_OFF"
+msgid "I think... my nose has cleared!"
+msgstr "Chyba... mój nos się przeczyścił!"
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_SNEEZE"
+msgid "Atchoum!"
+msgstr "Apsiu!"
 
 #. STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.1"
@@ -885,6 +975,21 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_DEHUMID.1"
 msgid "The haze has lifted."
 msgstr "Opary się podniosły."
 
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER"
+msgid "Mine nostrils chafe with itchiness!"
+msgstr "Moje nozdrza są podrażnione!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER_OFF"
+msgid "The smoke has cleared!"
+msgstr "Dym się rozwiał!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_SNEEZE"
+msgid "aaAAAH...cho!"
+msgstr "AaaaAAA...psiu!"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is crushing my spirit."
@@ -1029,6 +1134,21 @@ msgstr "Skóra z mego wroga."
 msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_DEHUMID.1"
 msgid "Ah! That feels better."
 msgstr "Ach! Teraz lepiej."
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER"
+msgid "Ugh. Allergies."
+msgstr "Uch. Alergia."
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah... I can breathe again."
+msgstr "Ach... Znów mogę oddychać."
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_SNEEZE"
+msgid "ah...CHOOOO!"
+msgstr "Aa...PSIIIIK!"
 
 #. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.1"
@@ -1175,6 +1295,21 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_DEHUMID.1"
 msgid "Whew! Not so hot anymore."
 msgstr "Uff. Już nie tak gorąco."
 
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER"
+msgid "Sniff. Sniff. We must have allergies."
+msgstr "Niuch, niuch. Chyba mamy na coś alergię."
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER_OFF"
+msgid "Wow! I think our allergies are gone!"
+msgstr "Łał! Chyba już nie mamy alergii!"
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_SNEEZE"
+msgid "a...choooOOOOOOO!"
+msgstr "A... PSIIIIIIIK!"
+
 #. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.1"
 msgid "Ugh. We're really baking in this %s."
@@ -1319,6 +1454,21 @@ msgstr "Zewnętrzna część robala."
 msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_DEHUMID.1"
 msgid "The heat has lifted but my heart has not."
 msgstr "Upał przestał dokuczać, ale moje serce - nie."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER"
+msgid "Ugh. Even my sinuses are suffering."
+msgstr "Uch. Nawet moim zatokom nie oszczędzono cierpienia."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER_OFF"
+msgid "My sinuses are clear, but suffering continues."
+msgstr "Zatoki są czyste, ale cierpienie nie ustało."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_SNEEZE"
+msgid "achoo! achoo! sniff."
+msgstr "Apsik! Apsik! Smark."
 
 #. STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.1"
@@ -1465,6 +1615,21 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_DEHUMID.1"
 msgid "Whew. I forgot what it felt like to breathe."
 msgstr "Uff. Zapomniałam, jak to jest móc oddychać."
 
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER"
+msgid "Allergiesch. What allergiesch?"
+msgstr "Alergia? Jaka alergia?"
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER_OFF"
+msgid "My face stopped leaking. Allergy season must be over."
+msgstr "Przestało mi cieknąć z twarzy. Sezon na pyłki musiał się skończyć."
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_SNEEZE"
+msgid "AchooOO!"
+msgstr "Apsik!"
+
 #. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is suffocating."
@@ -1609,6 +1774,21 @@ msgstr "Na tyle lekkie, że nadadzą się do pifpafki."
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_DEHUMID.1"
 msgid "Ah... that breeze is nice."
 msgstr "Ach, cóż za przyjemny zefirek."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER"
+msgid "Sniff sniff. Must be hayfever season."
+msgstr "Apsik! Rozpoczął się sezon alergii na pyłki."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ahh... Finally I can breathe."
+msgstr "Ach, wreszcie mogę oddychać."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_SNEEZE"
+msgid "Ahh... CHOOOOOOOOO!"
+msgstr "Aaaa... PSIK!"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.1"
@@ -1760,6 +1940,21 @@ msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_DEHUMID.2"
 msgid "AHH. WILBA 'TIS BETTER"
 msgstr "ACH. WILBA ODCZUŁA ULGĘ"
 
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER"
+msgid "SN--ORT. WILBA IS'T STUFFY"
+msgstr "SMARKI OPANOWAŁY WILBOWE NOZDRZA"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER_OFF"
+msgid "SNIFFS. WILBA NOSE IS'T NAUGHT STUFFY NO MORES!"
+msgstr "WILBOWE NOZDRZA SPOD SMARKOWEJ NIEDOLI WYZWOLONE!"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_SNEEZE"
+msgid "SNORT, 'NEEZE, A-CHOOEY!"
+msgstr "PRYCH, KICH, APSIK!"
+
 #. STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.1"
 msgid "WILBA AM TOO MUCH I' THE HEAT"
@@ -1904,6 +2099,21 @@ msgstr "WILBA POKONAŁA DRAŻNIĄCE ROBAKI"
 msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_DEHUMID.1"
 msgid "Ahh...it's cooled down."
 msgstr "Ach, ochłodziło się."
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER"
+msgid "My sinuses are burning."
+msgstr "Zatoki mi płoną."
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER_OFF"
+msgid "Sniff! I feel better now!"
+msgstr "Już mi lepiej!"
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_SNEEZE"
+msgid "Achoo!!"
+msgstr "Apsik!"
 
 #. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.1"
@@ -2060,6 +2270,21 @@ msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is so boring that I can't breathe."
 msgstr "To %s jest tak nudne, że nie mogę oddychać."
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "My nose is itchy..."
+msgstr "swędzi mnie nos..."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "Huh, finally comfortable."
+msgstr "Uff, wreszcie wygodnie."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "Ah chirp!"
+msgstr "Ach chichot!"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "A fairly complex set of instrumentation."
@@ -2189,6 +2414,21 @@ msgstr "Można go uznać za czysty."
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_DEHUMID.1"
 msgid "Ha! Wolfgang beat the heat!"
 msgstr "Ha! Wolfgang pokonał gorąc!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER"
+msgid "Allergies strong like Wolfgang!"
+msgstr "Alergia mocna jak Wolfgang."
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ha! Wolfgang beat allergies!"
+msgstr "Ha! Wolfgang pokonał alergię!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_SNEEZE"
+msgid "Achoo! Excuse Wolfgang."
+msgstr "Apsik! Wolfgang przeprasza."
 
 #. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.1"
@@ -2335,6 +2575,21 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_DEHUMID.1"
 msgid "That feels better."
 msgstr "Teraz lepiej."
 
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER"
+msgid "You have allergies like me, Lucy?"
+msgstr "Lucy, ty też masz alergie?"
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah! Clean air again."
+msgstr "Ach, wreszcie czyste powietrze."
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_SNEEZE"
+msgid "Achoo! Excuse me. Sorry."
+msgstr "Apsik! Przepraszam."
+
 #. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.1"
 msgid "It's blazing with this %s."
@@ -2480,6 +2735,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_DEHUMID.1"
 msgid "Ah! Th'air be cool again."
 msgstr "Ach! Znów jest chłodno."
 
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER"
+msgid "Me nose be itchier than a sliver in me pegleg."
+msgstr "Nos mnie swędzi bardziej niż srebro w nodze."
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah! Th'air be clear again!"
+msgstr "Ach! Powietrze znów jest czyste!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_SNEEZE"
+msgid "Ahh-pheww!!"
+msgstr "Aaa... psik!"
+
 #. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.1"
 msgid "Arrgh! It be hot!"
@@ -2624,6 +2894,21 @@ msgstr "Płaszcz ze skór tych nieznośnych robaków."
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_DEHUMID.1"
 msgid "Cooler now"
 msgstr "Już chłodniej"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER"
+msgid "Happy time is coming!"
+msgstr "Nadchodzą radosne dni!"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER_OFF"
+msgid "Oh. Happy time gone"
+msgstr "Och. Radosne dni się skończyły"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_SNEEZE"
+msgid "Hiccup!"
+msgstr "Apsiu!"
 
 #. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.1"
@@ -2780,6 +3065,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_TOO_HUMID.2"
 msgid "Take off %s."
 msgstr "Zdejmij %s."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "Oops, so much pollen, it's going to be uncomfortable."
+msgstr "Ups, tyle pyłków, będzie nieprzyjemnie."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "The pollen is gone. finally."
+msgstr "Pyłek zniknął. Wreszcie."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "(breathing) Ah chirp! Ahhhhhh!"
+msgstr "(oddychanie) Ach ćwierkanie! Ahhhhhh!"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Magic on such a large scale, man, this is going to be fun."
@@ -2920,6 +3220,21 @@ msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.2"
 msgid "I don't want to wear %s anymore!"
 msgstr "Nie chcę już nosić %s!"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "Gullah. The gills are so uncomfortable..."
+msgstr "Gullah. Skrzela są takie niewygodne..."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "oh! The gills are finally comfortable!"
+msgstr "Oh! Skrzela są wreszcie wygodne!"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "Heh-hoo, ha-choo! ! !"
+msgstr "Heh-hoo, ha-choo! ! !"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Stuff form bad story!"
@@ -3049,6 +3364,21 @@ msgstr "twarda skorupa."
 msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_DEHUMID.1"
 msgid "HUMIDEX HAS LOWERED TO ACCEPTABLE LEVELS"
 msgstr "WILGOTNOŚĆ SPADŁA DO AKCEPTOWALNEGO POZIOMU"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER"
+msgid "ERROR. ENVIRONMENTAL DETRITUS CLOGGING NASAL UNIT"
+msgstr "BŁĄD: CZĄSTKI ŚRODOWISKA BLOKUJĄ JEDNOSTKĘ NOSOWĄ"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER_OFF"
+msgid "DETRITUS HAS CLEARED FROM ENVIRONMENT"
+msgstr "ZAGROŻENIE CZĄSTKAMI ŚRODOWISKA MINĘŁO"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_SNEEZE"
+msgid "COMMENCE NASAL UNIT CLEARING: AH-CHOO!"
+msgstr "ROZPOCZYNAM SEKWENCJĘ OCZYSZCZANIA JEDNOSTKI NOSOWEJ: APSIK!"
 
 #. STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.1"

@@ -7,6 +7,9 @@ return {
         "Take off %s.",
     },
     DESCRIBE = {
+        ANNOUNCE_HAYFEVER = "Oops, so much pollen, it's going to be uncomfortable.",
+        ANNOUNCE_HAYFEVER_OFF = "The pollen is gone. finally.",
+        ANNOUNCE_SNEEZE = "(breathing) Ah chirp! Ahhhhhh!",
         APORKALYPSE_CLOCK = "Magic on such a large scale, man, this is going to be fun.",
         ARMOR_WEEVOLE = "I'm getting goosebumps.",
         ASPARAGUS_PLANTED = "A spear that grows out of the earth.",

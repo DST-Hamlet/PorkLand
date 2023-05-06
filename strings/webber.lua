@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Whew! Not so hot anymore.",
     },
+    ANNOUNCE_HAYFEVER = "Sniff. Sniff. We must have allergies.",
+    ANNOUNCE_HAYFEVER_OFF = "Wow! I think our allergies are gone!",
+    ANNOUNCE_SNEEZE = "a...choooOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "Ugh. We're really baking in this %s.",
         "Wow! This %s is making us hot.",

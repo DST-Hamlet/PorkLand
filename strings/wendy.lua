@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "The heat has lifted but my heart has not.",
     },
+    ANNOUNCE_HAYFEVER = "Ugh. Even my sinuses are suffering.",
+    ANNOUNCE_HAYFEVER_OFF = "My sinuses are clear, but suffering continues.",
+    ANNOUNCE_SNEEZE = "achoo! achoo! sniff.",
     ANNOUNCE_TOO_HUMID = {
         "This %s is heavier in the heat.",
         "This %s is too hot. It weighs on my soul.",

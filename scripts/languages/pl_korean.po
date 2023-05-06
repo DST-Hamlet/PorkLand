@@ -20,6 +20,21 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_DEHUMID.1"
 msgid "Ah, so much better."
 msgstr "아, 훨씬 낫네."
 
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER"
+msgid "My nose feels.. itchy."
+msgstr "코가... 근질거려."
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER_OFF"
+msgid "I don't want to claw my eyes out anymore."
+msgstr "눈 좀 그만 긁고 싶어."
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_SNEEZE"
+msgid "AHHH CHOOOO!"
+msgstr "에에에취!"
+
 #. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is so heavy."
@@ -164,6 +179,21 @@ msgstr "이 갑각은 조심해서 다뤄야겠어."
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_DEHUMID.1"
 msgid "Ahhh. The season has turned."
 msgstr "아. 계절이 바뀌었다."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER"
+msgid "Evidence would suggest it's allergy season."
+msgstr "알레르기의 계절이 온 듯하다."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah! Evidentaly, it's no longer allergy season."
+msgstr "아! 이제 알레르기의 계절이 지나간 것 같다."
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_SNEEZE"
+msgid "aH-CHOOOOOOOOOO!"
+msgstr "에취이이이이이이!"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.1"
@@ -314,6 +344,21 @@ msgstr "훌륭하군! 육각류 무척추동물의 외골격이야!"
 msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_DEHUMID.1"
 msgid "Ah... A nice cool breeze."
 msgstr "아... 시원하고 쾌적한 바람이다."
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER"
+msgid "Allergy season."
+msgstr "알레르기의 계절이야."
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER_OFF"
+msgid "Hey! I feel better!"
+msgstr "오! 괜찮아진 것 같아!"
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_SNEEZE"
+msgid "ahhh... ahhhh...ahhhhhCHOOO!"
+msgstr "에... 에에... 에에에취이이이!"
 
 #. STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.1"
@@ -470,6 +515,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.2"
 msgid "%s is not breathable at all."
 msgstr "%s는 전혀 숨을 쉴 수 없습니다."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "There's something in the air...my nose is itching."
+msgstr "공기 중에 뭔가 있어... 코가 가렵다."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "My nose is so much better and it's finally gone!"
+msgstr "코가 훨씬 좋아져서 드디어 없어졌어요!"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "Ah Choo!"
+msgstr "아 추!"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Oh no! It's a doomsday prophecy!"
@@ -610,6 +670,21 @@ msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.2"
 msgid "This terrible weather... I really shouldn't be wearing %s."
 msgstr "이 지독한 날씨... %s를 입지 말았어야 했어."
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "Don't these plants do anything else but pollinate all over the place?"
+msgstr "이 식물들은 아무 일도 하지 않고 모든 곳에서 수분을 합니까?"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "Whoops! it is finally over!"
+msgstr "이런! 드디어 끝났다!"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "Ah Choo!"
+msgstr "아 추!"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Keeping track of their movements...very clever idea."
@@ -739,6 +814,21 @@ msgstr "악, 이상한 냄새가 난다."
 msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_DEHUMID.1"
 msgid "Ah, I feel better now."
 msgstr "아, 이제 좀 살겠네."
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER"
+msgid "Ugh! My allergies!"
+msgstr "윽! 알레르기가!"
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER_OFF"
+msgid "I think... my nose has cleared!"
+msgstr "코가... 뻥 뚫린 것 같아!"
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_SNEEZE"
+msgid "Atchoum!"
+msgstr "에취!"
 
 #. STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.1"
@@ -885,6 +975,21 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_DEHUMID.1"
 msgid "The haze has lifted."
 msgstr "안개가 걷혔다."
 
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER"
+msgid "Mine nostrils chafe with itchiness!"
+msgstr "콧속이 근질거린다!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER_OFF"
+msgid "The smoke has cleared!"
+msgstr "연기가 사라졌다!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_SNEEZE"
+msgid "aaAAAH...cho!"
+msgstr "에에에... 취!"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is crushing my spirit."
@@ -1029,6 +1134,21 @@ msgstr "적의 가죽이군."
 msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_DEHUMID.1"
 msgid "Ah! That feels better."
 msgstr "아! 훨씬 낫군."
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER"
+msgid "Ugh. Allergies."
+msgstr "윽. 이놈의 알레르기."
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah... I can breathe again."
+msgstr "아... 이제 숨 좀 쉬겠어."
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_SNEEZE"
+msgid "ah...CHOOOO!"
+msgstr "에... 취이이이!"
 
 #. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.1"
@@ -1175,6 +1295,21 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_DEHUMID.1"
 msgid "Whew! Not so hot anymore."
 msgstr "휴! 이제 그다지 덥지 않다."
 
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER"
+msgid "Sniff. Sniff. We must have allergies."
+msgstr "훌쩍훌쩍. 알레르기가 생긴 것 같다."
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER_OFF"
+msgid "Wow! I think our allergies are gone!"
+msgstr "와! 알레르기가 사라졌다!"
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_SNEEZE"
+msgid "a...choooOOOOOOO!"
+msgstr "에... 에취!"
+
 #. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.1"
 msgid "Ugh. We're really baking in this %s."
@@ -1319,6 +1454,21 @@ msgstr "벌레 껍데기다."
 msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_DEHUMID.1"
 msgid "The heat has lifted but my heart has not."
 msgstr "더위는 깨어났지만 내 마음은 깨어나지 않았어."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER"
+msgid "Ugh. Even my sinuses are suffering."
+msgstr "윽, 코까지 괴로워."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER_OFF"
+msgid "My sinuses are clear, but suffering continues."
+msgstr "코는 뚫렸지만, 고통은 계속되지."
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_SNEEZE"
+msgid "achoo! achoo! sniff."
+msgstr "에취! 에취! 훌쩍."
 
 #. STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.1"
@@ -1465,6 +1615,21 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_DEHUMID.1"
 msgid "Whew. I forgot what it felt like to breathe."
 msgstr "휴, 숨을 쉬는 느낌이 어떤지 잊어버렸어."
 
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER"
+msgid "Allergiesch. What allergiesch?"
+msgstr "알레르기다. 무슨 알레르기지?"
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER_OFF"
+msgid "My face stopped leaking. Allergy season must be over."
+msgstr "이제 얼굴에서 물이 안 나오네. 알레르기 계절이 끝났나 보군."
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_SNEEZE"
+msgid "AchooOO!"
+msgstr "에취이이!"
+
 #. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is suffocating."
@@ -1609,6 +1774,21 @@ msgstr "자동 발사 뿔에서 발사하기에 충분할 만큼 가벼워."
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_DEHUMID.1"
 msgid "Ah... that breeze is nice."
 msgstr "아아... 바람이 기분 좋네."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER"
+msgid "Sniff sniff. Must be hayfever season."
+msgstr "훌쩍훌쩍. 건초열 계절인가 보네."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ahh... Finally I can breathe."
+msgstr "아아... 이제야 숨을 쉴 수 있군."
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_SNEEZE"
+msgid "Ahh... CHOOOOOOOOO!"
+msgstr "에에... 취이이이이!"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.1"
@@ -1760,6 +1940,21 @@ msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_DEHUMID.2"
 msgid "AHH. WILBA 'TIS BETTER"
 msgstr "아아, 윌바가 조아졌도다"
 
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER"
+msgid "SN--ORT. WILBA IS'T STUFFY"
+msgstr "킁킁, 윌바 코가 막혔도다"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER_OFF"
+msgid "SNIFFS. WILBA NOSE IS'T NAUGHT STUFFY NO MORES!"
+msgstr "훌쩍, 윌바 코 인제 안 막혔도다!"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_SNEEZE"
+msgid "SNORT, 'NEEZE, A-CHOOEY!"
+msgstr "킁킁, 훌쩍, 에취!"
+
 #. STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.1"
 msgid "WILBA AM TOO MUCH I' THE HEAT"
@@ -1904,6 +2099,21 @@ msgstr "윌바 성가신 벌레 물리쳤노라"
 msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_DEHUMID.1"
 msgid "Ahh...it's cooled down."
 msgstr "아아... 시원해졌어."
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER"
+msgid "My sinuses are burning."
+msgstr "콧속이 화끈거려."
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER_OFF"
+msgid "Sniff! I feel better now!"
+msgstr "킁킁! 이제 좀 살겠네!"
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_SNEEZE"
+msgid "Achoo!!"
+msgstr "에취!!"
 
 #. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.1"
@@ -2060,6 +2270,21 @@ msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is so boring that I can't breathe."
 msgstr "이 %s는 너무 지루해서 숨을 쉴 수 없습니다."
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "My nose is itchy..."
+msgstr "코가 간지럽다..."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "Huh, finally comfortable."
+msgstr "헉, 드디어 편하다."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "Ah chirp!"
+msgstr "아 짹짹!"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "A fairly complex set of instrumentation."
@@ -2189,6 +2414,21 @@ msgstr "깨끗하다고 ​​할 수 있습니다."
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_DEHUMID.1"
 msgid "Ha! Wolfgang beat the heat!"
 msgstr "하! 볼프강 더위 이겨냈다!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER"
+msgid "Allergies strong like Wolfgang!"
+msgstr "알레르기 볼프강처럼 힘세다!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ha! Wolfgang beat allergies!"
+msgstr "하! 볼프강 알레르기 이겨냈다!"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_SNEEZE"
+msgid "Achoo! Excuse Wolfgang."
+msgstr "에취! 볼프강 실례한다."
 
 #. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.1"
@@ -2335,6 +2575,21 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_DEHUMID.1"
 msgid "That feels better."
 msgstr "훨씬 낫네."
 
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER"
+msgid "You have allergies like me, Lucy?"
+msgstr "너도 나처럼 알레르기가 있니, 루시?"
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah! Clean air again."
+msgstr "아! 공기가 깨끗해졌네."
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_SNEEZE"
+msgid "Achoo! Excuse me. Sorry."
+msgstr "에취! 실례. 미안해."
+
 #. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.1"
 msgid "It's blazing with this %s."
@@ -2480,6 +2735,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_DEHUMID.1"
 msgid "Ah! Th'air be cool again."
 msgstr "아! 공기가 다시 시원해졌다."
 
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER"
+msgid "Me nose be itchier than a sliver in me pegleg."
+msgstr "의족 안에 있는 은화보다 코가 더 간지럽다."
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah! Th'air be clear again!"
+msgstr "아! 공기가 다시 깨끗해졌다!"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_SNEEZE"
+msgid "Ahh-pheww!!"
+msgstr "으에취이!!"
+
 #. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.1"
 msgid "Arrgh! It be hot!"
@@ -2624,6 +2894,21 @@ msgstr "성가신 벌레를 감싸는 껍데기다."
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_DEHUMID.1"
 msgid "Cooler now"
 msgstr "시원해졌어"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER"
+msgid "Happy time is coming!"
+msgstr "즐거운 시간이 다가와!"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER_OFF"
+msgid "Oh. Happy time gone"
+msgstr "아. 즐거운 시간이 끝났어"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_SNEEZE"
+msgid "Hiccup!"
+msgstr "딸꾹!"
 
 #. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.1"
@@ -2780,6 +3065,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_TOO_HUMID.2"
 msgid "Take off %s."
 msgstr "%s를 이륙하세요."
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "Oops, so much pollen, it's going to be uncomfortable."
+msgstr "아, 꽃가루가 너무 많아서 불편할 것 같아요."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "The pollen is gone. finally."
+msgstr "꽃가루가 사라졌습니다. 마지막으로."
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "(breathing) Ah chirp! Ahhhhhh!"
+msgstr "(숨) 아 짹짹! 아아아!"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Magic on such a large scale, man, this is going to be fun."
@@ -2920,6 +3220,21 @@ msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.2"
 msgid "I don't want to wear %s anymore!"
 msgstr "더 이상 %s을(를) 착용하고 싶지 않습니다!"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_HAYFEVER"
+msgid "Gullah. The gills are so uncomfortable..."
+msgstr "굴라. 아가미 너무 불편해..."
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_HAYFEVER_OFF"
+msgid "oh! The gills are finally comfortable!"
+msgstr "오! 마침내 아가미가 편안해졌습니다!"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANNOUNCE_SNEEZE"
+msgid "Heh-hoo, ha-choo! ! !"
+msgstr "후후, 하츄! ! !"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Stuff form bad story!"
@@ -3049,6 +3364,21 @@ msgstr "단단한 껍질."
 msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_DEHUMID.1"
 msgid "HUMIDEX HAS LOWERED TO ACCEPTABLE LEVELS"
 msgstr "불쾌 지수가 허용 가능한 수준으로 낮아짐"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER"
+msgid "ERROR. ENVIRONMENTAL DETRITUS CLOGGING NASAL UNIT"
+msgstr "오류. 환경 폐기물이 비강 장치를 막음"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER_OFF"
+msgid "DETRITUS HAS CLEARED FROM ENVIRONMENT"
+msgstr "주변 환경에서 폐기물이 제거됨"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_SNEEZE"
+msgid "COMMENCE NASAL UNIT CLEARING: AH-CHOO!"
+msgstr "비강 장치 세척 시작: 에-취!"
 
 #. STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.1"

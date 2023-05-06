@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ahhh. The season has turned.",
     },
+    ANNOUNCE_HAYFEVER = "Evidence would suggest it's allergy season.",
+    ANNOUNCE_HAYFEVER_OFF = "Ah! Evidentaly, it's no longer allergy season.",
+    ANNOUNCE_SNEEZE = "aH-CHOOOOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s really weighs me down.",
         "The humid air is making this %s heavy.",
