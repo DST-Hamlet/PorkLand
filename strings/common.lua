@@ -39,6 +39,7 @@ return {
             GLOWFLY_SETTING = "Glowfly",
             GRASS_TALL = "Tall Grass",
             GRASS_TALL_PATCH = "Infected Tall Grass",
+            HAYFEVER = "Hayfever",
             HUMID = "Humid",
             JUNGLE_BORDER_VINE = "Jungle Canopy Vines",
             LUSH = "Lush",
