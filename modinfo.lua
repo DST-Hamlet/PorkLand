@@ -46,5 +46,31 @@ configuration_options = {
             {description = "中文 (繁体)", data = "tc"},
         },
         default = false,
-    }
+    },
+    {
+        name = "Dung Pile Frequency",
+        options =
+        {
+            {description = "None", data = 0},
+            {description = "Rare", data = 0.005},
+            {description = "Uncommon", data = 0.01},
+            {description = "Normal", data = 0.02},
+            {description = "Often", data = 0.03},
+            {description = "Always", data = 0.1},
+        },
+        default = 0.02,
+    },
+    {
+        name = "Pog Frequency",
+        options =
+        {
+            {description = "None", data = 0},
+            {description = "Rare", data = 0.001},
+            {description = "Uncommon", data = 0.005},
+            {description = "Normal", data = 0.01},
+            {description = "Often", data = 0.02},
+            {description = "Always", data = 0.03},
+        },
+        default = 0,
+    },
 }

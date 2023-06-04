@@ -24,6 +24,12 @@ PrefabFiles = {
     -- "tubertrees",
     "weevole_carapace",
     "weevole",
+    --mod stuff dung
+    "dungbeetle",
+	"dungball",
+	"dungpile",
+	"pog",
+	"pogherd", 
 }
 
 Assets = {
@@ -48,10 +54,20 @@ Assets = {
     Asset("ANIM", "anim/player_mount_idles_poison.zip"),
     Asset("ANIM", "anim/player_actions_hack.zip"),
     Asset("ANIM", "anim/player_actions_shear.zip"),
+
+    -- mod stuff
+    Asset("IMAGE", "map_icons/minimap_hamlet.tex"),
+	Asset("MINIMAP_IMAGE", "map_icons/minimap_hamlet.tex"),
+	Asset("ATLAS", "map_icons/minimap_hamlet.xml"),
+	Asset("IMAGE", "images/inventoryimages/inventoryimages_hamlet.tex"),
+	Asset("ATLAS", "images/inventoryimages/inventoryimages_hamlet.xml"),
+	Asset("IMAGE", "images/inventoryimages/inventoryimages_hamlet_2.tex"),
+	Asset("ATLAS", "images/inventoryimages/inventoryimages_hamlet_2.xml"),
 }
 
 Pl_Util.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
+AddMinimapAtlas("map_icons/minimap_hamlet.xml") -- duplicate might need to delete
 
 if not TheNet:IsDedicated() then
     -- table.insert(Assets, Asset("SOUND", "sound/"))
