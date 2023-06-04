@@ -46,5 +46,5 @@ configuration_options = {
             {description = "中文 (繁体)", data = "tc"},
         },
         default = false,
-    }
+    },
 }

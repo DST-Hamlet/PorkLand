@@ -29,3 +29,24 @@ modimport("main/RPC")
 modimport("main/actions")
 modimport("main/postinit")
 
+STRINGS.NAMES.DUNGBEETLE = "Dung Beetle"
+STRINGS.NAMES.DUNGBALL = "Dung Ball"
+STRINGS.NAMES.DUNGPILE = "Dung Pile"
+STRINGS.NAMES.POG = "Pog"
+STRINGS.NAMES.CORK = "Cork"
+STRINGS.NAMES.CLAWPALMTREE = "Claw Palm Tree"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUNGBEETLE =
+{
+	GENERIC = "She's on a roll.",
+	UNDUNGED = "She needs to get her dung together.",
+	SLEEPING = "She's pooped.",
+	DEAD = "Dung for.",
+}
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUNGBALL = "Most definitely poop."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUNGPILE = 
+	{
+		GENERIC = "It's a pile of dung.",
+		PICKED = "Dung and dung.",
+	}
+
