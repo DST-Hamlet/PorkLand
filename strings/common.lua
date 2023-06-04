@@ -51,6 +51,7 @@ return {
             WEEVOLE_SETTING = "Weevole",
             POG_SETTING = "Pog",
             DUNG_BEETLE_SETTING = "Dung Beetle",
+            HIPPOPOTAMOOSE_SETTING = "Hippopotamoose",
         },
         SANDBOXMENU = {
             CHOOSEWORLD = "Choose World",

@@ -18,6 +18,11 @@ TRANSLATE_TO_PREFABS["asparagus"] = {"asparagus_planted"}
 TRANSLATE_TO_PREFABS["peagawk_spawner"] = {"peagawk_spawner"}
 TRANSLATE_TO_PREFABS["grass_tall_patch"] = {"grass_tall_patch"}
 TRANSLATE_TO_PREFABS["grass_tall"] = {"grass_tall"}
+TRANSLATE_TO_PREFABS["lilypad"] = {"lilypad"}
+TRANSLATE_TO_PREFABS["lotus"] = {"lotus"}
+TRANSLATE_TO_PREFABS["hippopotamoose"] = {"hippopotamoose"}
+TRANSLATE_AND_OVERRIDE["frog_poison"] = {"frog_poison"}
+TRANSLATE_AND_OVERRIDE["bill"] = {"bill"}
 
 TRANSLATE_AND_OVERRIDE["deep_jungle_fern_noise"] = {"deep_jungle_fern_noise", "deep_jungle_fern_noise_plant"}
 TRANSLATE_AND_OVERRIDE["jungle_border_vine"] ={"jungle_border_vine"}

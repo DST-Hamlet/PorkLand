@@ -49,4 +49,4 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUNGPILE =
 		GENERIC = "It's a pile of dung.",
 		PICKED = "Dung and dung.",
 	}
-
+STRINGS.NAMES.HIPPOPOTAMOOSE = "hippopotamoose"

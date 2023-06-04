@@ -173,7 +173,34 @@ local tuning = {
     PALMTREEGUARD_BURN_TIME = 10,
     PALMTREEGUARD_BURN_DAMAGE_PERCENT = 1/8,
     HAMLET_ADDONS_MOD = {enabled = true},
-    
+    HIPPO_DAMAGE = 50,
+    HIPPO_HEALTH = 500,
+    HIPPO_ATTACK_PERIOD = 2,
+    HIPPO_WALK_SPEED = 5,
+    HIPPO_RUN_SPEED = 6,
+    HIPPO_TARGET_DIST = 12,
+    ZEB_MATING_SEASON_BABYDELAY = total_day_time*1.5,  --used for hippo
+	ZEB_MATING_SEASON_BABYDELAY_VARIANCE = 0.5*total_day_time,	 --used for hippo
+    --lilly ponds
+    POND_FROGS = 4,
+	POND_REGEN_TIME = day_time/2,
+	POND_SPAWN_TIME = day_time/4,
+    MOSQUITO_MAX_SPAWN = 1,
+	MOSQUITO_REGEN_TIME = day_time/2,
+	FROG_POISON_MAX_SPAWN = 1,
+	FROG_POISON_REGEN_TIME = day_time/2,
+    LOTUS_REGROW_TIME = total_day_time*5,
+    BILL_SPAWN_CHANCE = 0.2,
+    BILL_TUMBLE_SPEED = 8,
+	BILL_RUN_SPEED = 5,
+	BILL_DAMAGE = wilson_attack * 0.5,
+	BILL_HEALTH = 250,
+	BILL_ATTACK_PERIOD = 3,
+	BILL_TARGET_DIST = 50,
+	BILL_AGGRO_DIST = 15,
+	BILL_EAT_DELAY = 3.5,
+	BILL_SPAWN_CHANCE = 0.2,
+
 }
 
 for key, value in pairs(tuning) do
