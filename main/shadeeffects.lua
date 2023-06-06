@@ -36,7 +36,7 @@ IAENV.AddSimPostInit(function()
         return _ShadeEffectUpdate(dt, ...)
     end
 
-    -- Nope doesnt work, ugh what a pain im going to bully zark into allowing modshader postinits for this!!!
+    -- Nope doesnt work, gotta find a different location to modify it
     -- local _EnableShadeRenderer = EnableShadeRenderer
     -- function EnableShadeRenderer(enable, ...)
 

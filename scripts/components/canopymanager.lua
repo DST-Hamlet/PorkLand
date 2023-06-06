@@ -117,7 +117,6 @@ self.OnRemoveFromEntity = self.OnRemoveEntity
 --------------------------------------------------------------------------
 
 function self:OnUpdate(dt)
-    print("isupdating")
     local player = ThePlayer
     if player == nil then return end
 
