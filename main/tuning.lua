@@ -128,7 +128,16 @@ local tuning = {
         {time = 2.90 * total_day_time, damage_scale = 2.00, interval_scale = 0.5, fxlevel = 4}, -- 38.40 DMG
     },
 
-    FOG_MOISTURE_RATE_SCALE = 0.6
+    FOG_MOISTURE_RATE_SCALE = 0.6,
+
+    -- Note: in DS the following two values are originally 1 / 1.5 and 1 / 2.0 but then get overriden manually in the porkland prefab -Half
+    RAINFOREST_CANOPY_ROTATION_SPEED = 1 / 5,	    -- 0.2 seconds per rotation
+    RAINFOREST_CANOPY_TRANSLATION_SPEED = 1 / 5,	-- 0.2 seconds per translation
+    RAINFOREST_CANOPY_MAX_ROTATION = 20,			-- max 20 degrees from base rotation
+    RAINFOREST_CANOPY_MAX_TRANSLATION = 1,		    -- max 1 world unit from base position
+    RAINFOREST_CANOPY_SCALE = 6,				    -- scale for the texture
+    RAINFOREST_CANOPY_MIN_STRENGTH = 0.2,		    -- blend min strength - modulated with avg ambient
+    RAINFOREST_CANOPY_MAX_STRENGTH = 0.7,		    -- blend max strength - modulated with avg ambient
 }
 
 for key, value in pairs(tuning) do
