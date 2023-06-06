@@ -41,6 +41,9 @@ local tuning = {
     PEAGAWK_MAX = 1,
     PEAGAWK_ENABLED = true,
 
+    LITTLE_HAMMER_DAMAGE = wilson_attack*0.3,
+    LITTLE_HAMMER_USES = 10,
+
     SHEARS_DAMAGE = wilson_attack * .5,
     SHEARS_USES = 20,
 
