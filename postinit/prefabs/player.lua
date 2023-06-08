@@ -6,6 +6,8 @@ AddPlayerPostInit(function(inst)
         return
     end
 
+    inst:AddComponent("infestable")
+
     inst:ListenForEvent("death",function(self, data)
         if self.components.poisonable then
             self.components.poisonable:SetBlockAll(true)

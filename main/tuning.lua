@@ -128,7 +128,35 @@ local tuning = {
         {time = 2.90 * total_day_time, damage_scale = 2.00, interval_scale = 0.5, fxlevel = 4}, -- 38.40 DMG
     },
 
-    FOG_MOISTURE_RATE_SCALE = 0.6
+    FOG_MOISTURE_RATE_SCALE = 0.6,
+
+    WINDBLOWN_SCALE_MIN =
+    {
+        LIGHT = 0.1,
+        MEDIUM = 0.1,
+        HEAVY = 0.01
+    },
+    WINDBLOWN_SCALE_MAX =
+    {
+        LIGHT = 1.0,
+        MEDIUM = 0.25,
+        HEAVY = 0.05
+    },
+
+    WINDPROOFNESS_SMALL = 0.2,
+    WINDPROOFNESS_SMALLMED = 0.35,
+    WINDPROOFNESS_MED = 0.5,
+    WINDPROOFNESS_LARGE = 0.7,
+    WINDPROOFNESS_HUGE = 0.9,
+    WINDPROOFNESS_ABSOLUTE = 1,
+
+    GNATMOUND_REGEN_TIME = seg_time * 4,
+    GNATMOUND_RELEASE_TIME = seg_time,
+    GNATMOUND_MAX_WORK	= 6,
+    GNATMOUND_MAX_CHILDREN	= 1,
+
+    GNAT_WALK_SPEED = 2,
+    GNAT_RUN_SPEED = 7,
 }
 
 for key, value in pairs(tuning) do
