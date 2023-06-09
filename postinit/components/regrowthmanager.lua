@@ -18,4 +18,8 @@ AddComponentPostInit("regrowthmanager", function(self, inst)
             or (_worldstate.isspring and 2 * TUNING.FLOWER_REGROWTH_TIME_MULT)  -- double speed in spring
             or TUNING.FLOWER_REGROWTH_TIME_MULT
     end)
+
+    self:SetRegrowthForType("tubertree", TUNING.TUBERTREE_REGROWTH_TIME, "tubertree", function()
+        return not (_worldstate.islush) and 0 or TUNING.TUBERTREE_REGROWTH_TIME_MULT
+    end)
 end)

@@ -586,7 +586,7 @@ local function makefn(build, stage, data)
         MakeObstaclePhysics(inst, .25)
 
         local minimap = inst.entity:AddMiniMapEntity()
-        minimap:SetIcon("tuber_trees.png")
+        minimap:SetIcon("tuber_trees.tex")
 
         minimap:SetPriority(-1)
 
@@ -673,7 +673,7 @@ local function makefn(build, stage, data)
         inst.components.bloomable:SetCanBloom(canbloom)
         inst.components.bloomable:SetStartBloomFn(startbloom)
         inst.components.bloomable:SetStopBloomFn(stopbloom)
-        inst.components.bloomable.season = {SEASONS.SUMMER}
+        inst.components.bloomable.season = {SEASONS.LUSH}
 
         ---------------------
         --PushSway(inst)

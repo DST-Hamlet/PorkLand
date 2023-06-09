@@ -15,7 +15,7 @@ function Infester:Uninfest()
 	if self.target then
 		self.target:RemoveChild(self.inst)
 		local pos =Vector3(self.target.Transform:GetWorldPosition())
-		self.inst.Transform:SetPosition(pos.x,pos.y,pos.z)
+        self.inst.Physics:Teleport(pos.x,pos.y,pos.z)
 
 		self.target.components.infestable:uninfest(self.inst)
 

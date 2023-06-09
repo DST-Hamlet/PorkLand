@@ -8,6 +8,7 @@ local PL_ACTIONS = {
     PEAGAWK_TRANSFORM = Action({}),
     INFEST = Action({},nil, nil, nil, 0.5),
     SPECIAL_ACTION = Action({},nil, nil, nil, 1.2),
+    SPECIAL_ACTION2 = Action({},nil, nil, nil, 1.2),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -86,6 +87,13 @@ end
 ACTIONS.SPECIAL_ACTION.fn = function(act)
 	if act.doer.special_action then
 		act.doer.special_action(act)
+		return true
+	end
+end
+
+ACTIONS.SPECIAL_ACTION2.fn = function(act)
+	if act.doer.special_action2 then
+		act.doer.special_action2(act)
 		return true
 	end
 end

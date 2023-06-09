@@ -157,6 +157,20 @@ local tuning = {
 
     GNAT_WALK_SPEED = 2,
     GNAT_RUN_SPEED = 7,
+
+    THUNDERBIRD_RUN_SPEED = 5.5,
+    THUNDERBIRD_WALK_SPEED = 2,
+
+    PANGOLDEN_HEALTH = 500,
+    PANGOLDEN_DAMAGE = 34,
+    PANGOLDEN_TARGET_DIST = 5,
+
+    PANGOLDEN_CHASE_DIST = 30,
+    PANGOLDEN_BALL_DEFENCE = 0.75,
+
+    TUBERTREE_REGROWTH_TIME = total_day_time * 5,
+    TUBERTREE_REGROWTH_TIME_MULT = 1,
+
 }
 
 for key, value in pairs(tuning) do

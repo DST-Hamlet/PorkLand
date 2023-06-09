@@ -2,6 +2,7 @@
 local components_post = {
     "actionqueuer",
     "ambientlighting",
+    "battleborn",
     "clock",
     "colourcube",
     "combat",
@@ -20,10 +21,12 @@ local components_post = {
     "shard_seasons",
     "sleeper",
     "wavemanager",
+    "weapon",
     "worldstate"
 }
 
 local prefabs_post = {
+    "batbat",
     "buff_workeffectiveness",
     "player",
     "player_classified",
