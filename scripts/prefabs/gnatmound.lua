@@ -80,7 +80,9 @@ local function fn(Sim)
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 
+
     inst.entity:AddSoundEmitter()
+    inst.entity:AddNetwork()
 
     MakeObstaclePhysics(inst, .5)
 

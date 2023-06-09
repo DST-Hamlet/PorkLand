@@ -113,6 +113,7 @@ local function fn(Sim)
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
 	inst.entity:AddDynamicShadow()
+    inst.entity:AddNetwork()
 	inst.DynamicShadow:SetSize( 2, .6 )
 
     inst.entity:SetPristine()
