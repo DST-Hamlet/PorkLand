@@ -27,7 +27,8 @@ PrefabFiles = {
     "pl_rocks",
     "pig_ruins",
     "littlehammer",
-    "relics"
+    "relics",
+    "pl_hats",
 }
 
 Assets = {

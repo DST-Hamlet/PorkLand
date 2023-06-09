@@ -47,6 +47,9 @@ local tuning = {
     SHEARS_DAMAGE = wilson_attack * .5,
     SHEARS_USES = 20,
 
+    PITHHAT_PERISHTIME = total_day_time*8,
+    GASMASK_PERISHTIME = total_day_time*3,
+
     VINE_REGROW_TIME = total_day_time * 4,
 
     WEEVOLE_ENABLED = true,
