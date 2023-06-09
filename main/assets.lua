@@ -24,6 +24,11 @@ PrefabFiles = {
     -- "tubertrees",
     "weevole_carapace",
     "weevole",
+    "pl_rocks",
+    "pig_ruins",
+    "littlehammer",
+    "relics",
+    "pl_hats",
 }
 
 Assets = {
@@ -48,6 +53,7 @@ Assets = {
     Asset("ANIM", "anim/player_mount_idles_poison.zip"),
     Asset("ANIM", "anim/player_actions_hack.zip"),
     Asset("ANIM", "anim/player_actions_shear.zip"),
+    Asset("ANIM", "anim/player_actions_tap.zip"),
 }
 
 Pl_Util.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")

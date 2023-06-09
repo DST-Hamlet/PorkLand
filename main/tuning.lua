@@ -41,8 +41,14 @@ local tuning = {
     PEAGAWK_MAX = 1,
     PEAGAWK_ENABLED = true,
 
+    LITTLE_HAMMER_DAMAGE = wilson_attack*0.3,
+    LITTLE_HAMMER_USES = 10,
+
     SHEARS_DAMAGE = wilson_attack * .5,
     SHEARS_USES = 20,
+
+    PITHHAT_PERISHTIME = total_day_time*8,
+    GASMASK_PERISHTIME = total_day_time*3,
 
     VINE_REGROW_TIME = total_day_time * 4,
 

@@ -25,3 +25,26 @@ function c_poison()
         end
     end
 end
+
+function c_allplayerrevealmap()
+	local size = 2 * TheWorld.Map:GetSize()
+	for _, player in pairs(AllPlayers) do
+		for x = -size, size, 32 do
+			for z = -size, size, 32 do
+				player.player_classified.MapExplorer:RevealArea(x, 0, z)
+			end
+		end
+	end
+end
+
+function c_revealmap()
+	local size = 2 * TheWorld.Map:GetSize()
+    local player = ConsoleCommandPlayer()
+    if player ~= nil then
+        for x = -size, size, 32 do
+            for z = -size, size, 32 do
+                player.player_classified.MapExplorer:RevealArea(x, 0, z)
+            end
+        end
+    end
+end
