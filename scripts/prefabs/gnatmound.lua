@@ -86,21 +86,21 @@ local function fn(Sim)
 
     MakeObstaclePhysics(inst, .5)
 
-	local minimap = inst.entity:AddMiniMapEntity()
-	minimap:SetIcon( "gnat_mound.png" )
-
 	anim:SetBank("gnat_mound")
 	anim:SetBuild("gnat_mound")
 	anim:PlayAnimation("full")
+
+	local minimap = inst.entity:AddMiniMapEntity()
+	minimap:SetIcon("gnat_mound.tex")
+
+    inst:AddTag("structure")
+    inst:AddTag("gnatmound")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
-
-    inst:AddTag("structure")
-    inst:AddTag("gnatmound")
 
     -------------------
 	inst:AddComponent("workable")

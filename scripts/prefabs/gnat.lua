@@ -114,33 +114,12 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
+
 	inst.DynamicShadow:SetSize( 2, .6 )
 
-    inst.entity:SetPristine()
+    inst.Transform:SetFourFaced()
 
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-	----------
-
-	inst:AddTag("gnat")
-	inst:AddTag("flying")
-	inst:AddTag("insect")
-	inst:AddTag("animal")
-	inst:AddTag("smallcreature")
-	inst:AddTag("avoidonhit")
-	inst:AddTag("no_durability_loss_on_hit")
-    inst:AddTag("hostile")
-
-
-    inst:AddTag("burnable") -- needs this to be frozen by flingomatic
-
-    inst:AddTag("lastresort") -- for auto attacking
-
-	MakePoisonableCharacter(inst)
-	MakeCharacterPhysics(inst, 1, .25)
-	inst.Transform:SetFourFaced()
+    MakeCharacterPhysics(inst, 1, .25)
 
 	inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
 	inst.Physics:ClearCollisionMask()
@@ -156,6 +135,31 @@ local function fn(Sim)
 	inst.AnimState:SetRayTestOnBB(true);
 
 	------------
+
+	inst:AddTag("gnat")
+	inst:AddTag("flying")
+	inst:AddTag("insect")
+	inst:AddTag("animal")
+	inst:AddTag("smallcreature")
+	inst:AddTag("avoidonhit")
+	inst:AddTag("no_durability_loss_on_hit")
+    inst:AddTag("hostile")
+
+
+    inst:AddTag("burnable") -- needs this to be frozen by flingomatic
+
+    inst:AddTag("lastresort") -- for auto attacking
+
+    inst.entity:SetPristine()
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+	----------
+
+	MakePoisonableCharacter(inst)
+
 
 	inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
 	inst.components.locomotor:EnableGroundSpeedMultiplier(false)
