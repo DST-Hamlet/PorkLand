@@ -9,6 +9,7 @@ local PL_ACTIONS = {
     INFEST = Action({},nil, nil, nil, 0.5),
     SPECIAL_ACTION = Action({},nil, nil, nil, 1.2),
     SPECIAL_ACTION2 = Action({},nil, nil, nil, 1.2),
+    LAVASPIT = Action({},0, false, false, 2),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -95,6 +96,37 @@ ACTIONS.SPECIAL_ACTION2.fn = function(act)
 	if act.doer.special_action2 then
 		act.doer.special_action2(act)
 		return true
+	end
+end
+
+ACTIONS.LAVASPIT.fn = function(act)
+	if act.doer and act.target and act.doer.prefab == "dragonfly" then
+		local spit = SpawnPrefab("lavaspit")
+		local x,y,z = act.doer.Transform:GetWorldPosition()
+		local downvec = TheCamera:GetDownVec()
+		local offsetangle = math.atan2(downvec.z, downvec.x) * (180/math.pi)
+		if act.doer.AnimState:GetCurrentFacing() == 0 then --Facing right
+			offsetangle = offsetangle + 70
+		else --Facing left
+			offsetangle = offsetangle - 70
+		end
+		while offsetangle > 180 do offsetangle = offsetangle - 360 end
+		while offsetangle < -180 do offsetangle = offsetangle + 360 end
+		local offsetvec = Vector3(math.cos(offsetangle*DEGREES), -.3, math.sin(offsetangle*DEGREES)) * 1.7
+		spit.Transform:SetPosition(x+offsetvec.x, y+offsetvec.y, z+offsetvec.z)
+		spit.Transform:SetRotation(act.doer.Transform:GetRotation())
+	end
+	if act.doer and act.target and act.doer.prefab == "dragoon" then
+		local spit = SpawnPrefab("dragoonspit")
+		local x,y,z = act.doer.Transform:GetWorldPosition()
+		local downvec = TheCamera:GetDownVec()
+		local offsetangle = math.atan2(downvec.z, downvec.x) * (180/math.pi)
+
+		while offsetangle > 180 do offsetangle = offsetangle - 360 end
+		while offsetangle < -180 do offsetangle = offsetangle + 360 end
+		local offsetvec = Vector3(math.cos(offsetangle*DEGREES), -.3, math.sin(offsetangle*DEGREES)) * 1.7
+		spit.Transform:SetPosition(x+offsetvec.x, y+offsetvec.y, z+offsetvec.z)
+		spit.Transform:SetRotation(act.doer.Transform:GetRotation())
 	end
 end
 

@@ -8,6 +8,20 @@ local pl_fx = {
         build = "hacking_tall_grass_fx",
         anim = "idle",
     },
+    {
+    	name = "chop_mangrove_pink",
+    	bank = "chop_mangrove",
+    	build = "chop_mangrove_pink",
+    	anim = "chop",
+    	dlc = true,
+	},
+    {
+    	name = "fall_mangrove_pink",
+    	bank = "chop_mangrove",
+    	build = "chop_mangrove_pink",
+    	anim = "fall",
+    	dlc = true,
+	},
 }
 
 -- Sneakily add these to the FX table
