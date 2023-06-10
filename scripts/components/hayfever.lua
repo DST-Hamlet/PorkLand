@@ -101,18 +101,20 @@ function Hayfever:OnUpdate(dt)
 end
 
 function Hayfever:Enable()
-    if not GetWorldSetting("hayfever", true) then
-        return
+    if not self.inst:HasTag("hayfeverimune") then
+        if not GetWorldSetting("hayfever", true) then
+            return
+        end
+
+        if not self.enabled then
+                -- print("Hayvever Started")
+
+            self.inst.components.talker:Say(GetString(self.inst, "ANNOUNCE_HAYFEVER"))
+            self.enabled = true
+        end
+
+        self.inst:StartUpdatingComponent(self)
     end
-
-    if not self.enabled then
-            -- print("Hayvever Started")
-
-        self.inst.components.talker:Say(GetString(self.inst, "ANNOUNCE_HAYFEVER"))
-        self.enabled = true
-    end
-
-    self.inst:StartUpdatingComponent(self)
 end
 
 function Hayfever:Disable()

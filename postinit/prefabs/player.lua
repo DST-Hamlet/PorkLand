@@ -1,4 +1,4 @@
-local AddPlayerPostInit = AddPlayerPostInit
+local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
 local function OnDeath(inst, data)
@@ -8,18 +8,16 @@ local function OnDeath(inst, data)
 end
 
 local function OnRespawnFromGhost(inst, data)
-    if inst.components.hayfever ~= nil and not inst:HasTag("hayfeverimune") then
+    if inst.components.hayfever ~= nil then
         inst.components.hayfever:Enable()
     end
 end
 
-AddPlayerPostInit(function(inst)
-    if not TheWorld.ismastersim then
-        return
+PLENV.AddPlayerPostInit(function(inst)
+    if TheWorld.ismastersim then
+        inst:AddComponent("hayfever")
+
+        inst:ListenForEvent("death", OnDeath)
+        inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)
     end
-
-    inst:AddComponent("hayfever")
-
-    inst:ListenForEvent("death", OnDeath)
-    inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)
 end)
