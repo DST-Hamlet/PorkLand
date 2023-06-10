@@ -31,7 +31,9 @@ function Hayfever:GetNextSneezTimeInitial()
 end
 
 function Hayfever:SetNextSneezeTime(newtime)
-    self.nextsneeze = math.min(self.nextsneeze, newtime)
+    if self.nextsneeze < newtime then
+        self.nextsneeze = newtime
+    end
 end
 
 local MUST_TAGS = {"prevents_hayfever"}
@@ -47,7 +49,7 @@ function Hayfever:CanSneeze()
 end
 
 function Hayfever:DoSneezeEffects()
-    if self.inst.components.sanity then
+    if self.inst.components.sanity ~= nil then
         self.inst.components.sanity:DoDelta(-TUNING.SANITY_SUPERTINY * 3)
     end
 
@@ -164,7 +166,7 @@ function Hayfever:OnLoad(data)
 end
 
 function Hayfever:GetDebugString()
-    return "nextsneeze" .. self.nextsneeze
+    return string.format("nextsneeze: %s", self.nextsneeze)
 end
 
 return Hayfever

@@ -20,7 +20,9 @@ local components_post = {
     "shard_seasons",
     "sleeper",
     "wavemanager",
-    "worldstate"
+    "worldstate",
+    "edible",
+    "areaaware",
 }
 
 local prefabs_post = {
@@ -30,6 +32,7 @@ local prefabs_post = {
     "woodie",
     "world_network",
     "shard_network",
+    "wormwood",
 }
 
 local batch_prefabs_post = {
