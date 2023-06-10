@@ -30,7 +30,6 @@ local eventhandlers = {
             else
                 inst.sg:GoToState("sneeze")
             end
-
         end
     end),
 }
@@ -313,14 +312,16 @@ AddStategraphPostInit("wilson", function(sg)
     local _idle_onenter = sg.states["idle"].onenter
     sg.states["idle"].onenter = function(inst, ...)
         if not (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then
-            if inst.sgwantstosneeze then
+            if inst.sg.statemem.wantstosneeze then
                 inst.components.locomotor:Stop()
                 inst.components.locomotor:Clear()
 
                 inst.sg:GoToState("sneeze")
             end
-        else
-            return _idle_onenter and _idle_onenter(inst, ...)
+        end
+
+        if _idle_onenter ~= nil then
+            return _idle_onenter(inst, ...)
         end
     end
 
@@ -334,8 +335,10 @@ AddStategraphPostInit("wilson", function(sg)
             elseif inst.components.poisonable and inst.components.poisonable:IsPoisoned() then
                 inst.sg:GoToState("mounted_poison_idle")
             end
-        else
-            return _mounted_idle_onenter and _mounted_idle_onenter(inst, ...)
+        end
+
+        if _mounted_idle_onenter ~= nil then
+            return _mounted_idle_onenter(inst, ...)
         end
     end
 
@@ -345,8 +348,10 @@ AddStategraphPostInit("wilson", function(sg)
             inst.AnimState:PlayAnimation("idle_poison_pre")
             inst.AnimState:PushAnimation("idle_poison_loop")
             inst.AnimState:PushAnimation("idle_poison_pst", false)
-        elseif _funnyidle_onenter then
-            return _funnyidle_onenter and _funnyidle_onenter(inst, ...)
+        end
+
+        if _funnyidle_onenter ~= nil then
+            return _funnyidle_onenter(inst, ...)
         end
     end
 end)

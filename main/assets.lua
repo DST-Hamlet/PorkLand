@@ -24,6 +24,7 @@ PrefabFiles = {
     -- "tubertrees",
     "weevole_carapace",
     "weevole",
+    "nettle",
 }
 
 Assets = {
