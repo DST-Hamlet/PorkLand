@@ -76,8 +76,12 @@ end
 
 local function OnAddMember(inst, member)
     local newmembertree = GetNewHomeTree(inst)
-    if inst.homeTree then
+    if newmembertree then
         member.components.knownlocations:RememberLocation("home", Point(newmembertree.Transform:GetWorldPosition()), false)
+    elseif inst.homeTree then
+        member.components.knownlocations:RememberLocation("home", Point(inst.homeTree.Transform:GetWorldPosition()), false)
+    else
+        member.components.knownlocations:RememberLocation("home", inst.components.knownlocations:GetLocation("home"), false)
     end
 end
 
@@ -94,6 +98,8 @@ local function RefreshHomeTree(inst)
         if inst.homeTree then
             -- Cross reference the spider monkey tree with the herd
             inst.homeTree.spiderMonkeyHerd = inst
+
+            inst.components.knownlocations:RememberLocation("home", Point(inst.homeTree.Transform:GetWorldPosition()), false)
 
             -- Ensure that all of the herd members remember the home tree location.
             RefreshHerdMemberHomeLocations(inst)
@@ -142,6 +148,8 @@ local function fn(Sim)
     inst.components.periodicspawner:SetDensityInRange(20, 6)
     inst.components.periodicspawner:SetOnlySpawnOffscreen(true)
     inst.components.periodicspawner:Start()
+
+    inst:AddComponent("knownlocations")
 
     inst.RefreshHomeTreeFn = RefreshHomeTree
     inst.RefreshHomeTreeTask = inst:DoPeriodicTask(5, inst.RefreshHomeTreeFn)
