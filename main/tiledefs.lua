@@ -360,7 +360,7 @@ local pl_tiledefs = {
     LILYPOND = {
         tile_range = TileRanges.OCEAN,
         tile_data = {
-            name = "Lilypond"
+            ground_name = "Lilypond"
         },
         ground_tile_def  = {
             name = "water_medium",
@@ -409,6 +409,9 @@ local pl_tiledefs = {
     },
 
 }
+
+PL_OCEAN_TILES = {}
+PL_LAND_TILES = {}
 
 for tile, def in pairs(pl_tiledefs) do
     local range = def.tile_range
@@ -463,3 +466,35 @@ ChangeTileRenderOrder(WORLD_TILES.PLAINS, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PAINTED, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.DEEPRAINFOREST_NOCANOPY, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.MUD, true)
+
+local _Initialize = GroundTiles.Initialize
+local function Initialize(...)
+    local minimap_table = GroundTiles.minimap
+    local ground_table = GroundTiles.ground
+    --Minimap
+    local minimap_first
+    for i, ground in pairs(minimap_table) do
+        if ground[1] ~= nil then
+            minimap_first = ground[1]
+            break
+        end
+    end
+    --Ground
+    local ground_last
+    for i=#ground_table, 1, -1 do
+        local ground = ground_table[i]
+        if ground[1] ~= nil then
+            ground_last = ground[1]
+            break
+        end
+    end
+    for i=#PL_OCEAN_TILES, 1, -1 do
+        local tile = PL_OCEAN_TILES[i]
+        if tile ~= ground_last then
+            ChangeTileRenderOrder(tile, ground_last, true)
+            ground_last = tile
+        end
+    end
+    return _Initialize(...)
+end
+GroundTiles.Initialize = Initialize

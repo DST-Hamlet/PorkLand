@@ -14,3 +14,29 @@ FOG_STATE = {
     LIFTING = 3,
     CLEAR = 4,
 }
+
+
+-- Luckily we dont need to change much due to oceanblending
+IA_OCEAN_PREFABS = {
+    ["splash_green_small"] = "splash_white_small",
+    ["splash_green"] = "splash_white",
+    ["splash_green_large"] = "splash_white_large",
+    -- ["crab_king_waterspout"] = "splash_white_large",
+    ["wave_med"] = "wave_rogue",
+    ["wave_splash"] = "splash_water_wave",
+}
+DST_OCEAN_PREFABS = {
+    ["splash_white_small"] = "splash_green_small",
+    ["splash_white"] = "splash_green",
+    ["splash_white_large"] = "splash_green_large",
+    ["bombsplash"] = "splash_green_large",
+    ["wave_ripple"] = "wave_med",
+    ["wave_rogue"] = "wave_med",
+    ["splash_water_wave"] = "wave_splash",
+}
+
+if rawget(_G, "GetNextAvaliableCollisionMask") then
+    COLLISION.PERMEABLE_GROUND = GetNextAvaliableCollisionMask()
+    COLLISION.GROUND = COLLISION.GROUND + COLLISION.PERMEABLE_GROUND
+    COLLISION.WORLD = COLLISION.WORLD + COLLISION.PERMEABLE_GROUND
+end

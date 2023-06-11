@@ -26,7 +26,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 
         isporkland = true,
         no_joining_islands = false,
-        has_ocean = false,
+        has_ocean = true,
 
         -- {"start_setpeice",    "PorkLandStart"},
         -- {"start_node",        "BG_rainforest_base"},

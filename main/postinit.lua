@@ -21,7 +21,9 @@ local components_post = {
     "sleeper",
     "wavemanager",
     "worldstate",
-    "amphibiouscreature"
+    "amphibiouscreature",
+    "thief",
+    "floater"
 }
 
 local prefabs_post = {

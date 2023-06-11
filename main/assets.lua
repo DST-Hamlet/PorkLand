@@ -42,7 +42,8 @@ PrefabFiles = {
     "reeds_water",
     "frog_poison",
     "froglegs_poison",
-    "venomgland"
+    "venomgland",
+    "pl_wave"
 }
 
 Assets = {

@@ -1,3 +1,6 @@
+local IAENV = env
+GLOBAL.setfenv(1, GLOBAL)
+
 local Thief = Class(function(self, inst)
     self.inst = inst
     self.stolenitems = {}
@@ -21,13 +24,13 @@ end
 function Thief:StealItem(victim, itemtosteal, attack, food, setspeed)
     if victim.components.inventory and not victim.components.inventory.nosteal then
         local item = nil
-        if itemtosteal then 
+        if itemtosteal then
             item = itemtosteal
         else
             if food then
                 item = victim.components.inventory:FindItem(
                     function(item)
-                        return 
+                        return
                             self.inst.components.eater:AbleToEat(item)
                             and (
                                     not item:HasTag("nosteal")
@@ -59,7 +62,7 @@ function Thief:StealItem(victim, itemtosteal, attack, food, setspeed)
         local item = itemtosteal or victim.components.container:FindItem(function(item) return not item:HasTag("nosteal") end)
 
         if attack then
-            if victim.components.equippable and victim.components.inventoryitem and victim.components.inventoryitem.owner then 
+            if victim.components.equippable and victim.components.inventoryitem and victim.components.inventoryitem.owner then
                 self.inst.components.combat:DoAttack(victim.components.inventoryitem.owner)
             end
         end
@@ -71,5 +74,3 @@ function Thief:StealItem(victim, itemtosteal, attack, food, setspeed)
         end
     end
 end
-
-return Thief
