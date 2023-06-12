@@ -19,9 +19,7 @@ local Shearable = Class(function(self, inst)
     inst:DoTaskInTime(0, function()
         if inst.components.hackable then
             self.canshaveable = inst:HasTag("HACK_workable")
-        elseif inst.canshear then
-            self.canshaveable = inst:canshear()
-        end
+		end
     end)
 end,
 nil,
@@ -70,10 +68,6 @@ function Shearable:Shear(shearer, numworks)
         if self.onshearfn then
             self.onshearfn(self.inst, shearer)
         end
-
-        if self.inst.onshear then
-            self.inst.onshear(self.inst, shearer)
-        end
     end
 end
 
@@ -82,9 +76,6 @@ function Shearable:OnRemoveFromEntity()
 end
 
 function Shearable:CanShear()
-    if self.inst.canshear then
-        return self.inst:canshear()
-    end
     return self.canshaveable
 end
 

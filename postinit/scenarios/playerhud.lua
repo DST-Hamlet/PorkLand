@@ -2,6 +2,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local FogOver = require("widgets/fogover")
 local PoisonOver = require("widgets/poisonover")
+local BatSonar = require "widgets/batsonar"
 
 local PlayerHud = require("screens/playerhud")
 
@@ -12,7 +13,9 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.poisonover = self.overlayroot:AddChild(PoisonOver(owner))
 
     self.fogover = self.overlayroot:AddChild(FogOver(owner))
+	self.batview = self.overlayroot:AddChild(BatSonar(owner))
     self.fogover:Hide()
+    self.batview:Hide()
     self.inst:ListenForEvent("startfog", function(inst, data) return self.fogover:StartFog() end, self.owner)
     self.inst:ListenForEvent("stopfog", function(inst, data) return self.fogover:StopFog() end, self.owner)
     self.inst:ListenForEvent("setfog", function(inst, data) return self.fogover:SetFog() end, self.owner)

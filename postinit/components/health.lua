@@ -11,7 +11,20 @@ function Health:DoPoisonDamage(amount, doer)
     end
 end
 
+function Health:DoGasDamage(amount, doer)
+	if not self.invincible and self.vulnerabletogasdamage and self.gas_damage_scale > 0 then
+		if amount > 0 then
+			self:DoDelta(-amount*self.gas_damage_scale, false, "gas")
+		end
+	end
+end
+
 AddComponentPostInit("health", function(self)
-    self.vulnerabletopoisondamage = true
-    self.poison_damage_scale = 1
+    -- poison damage
+	self.vulnerabletopoisondamage = true
+	self.poison_damage_scale = 1
+
+	-- gas damage
+	self.vulnerabletogasdamage = true
+	self.gas_damage_scale = 1
 end)

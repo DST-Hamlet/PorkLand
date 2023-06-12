@@ -22,11 +22,11 @@ local events=
     EventHandler("death", function(inst) inst.sg:GoToState("death") end),
     EventHandler("attacked", function(inst)
             if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("attack") then
-                 if inst.components.health:GetPercent() >= 0.75 and not inst.sg:HasStateTag("ball") then
+                 if inst.components.health:GetPercent() >= 0.5 and not inst.sg:HasStateTag("ball") then
                     inst.sg:GoToState("ball_pre")
-                elseif inst.components.health:GetPercent() < 0.75 and inst.sg:HasStateTag("ball") then
+                elseif inst.components.health:GetPercent() < 0.5 and inst.sg:HasStateTag("ball") then
                     inst.sg:GoToState("idle","ball_pst")
-                elseif inst.components.health:GetPercent() >= 0.75 and inst.sg:HasStateTag("ball") then
+                elseif inst.components.health:GetPercent() >= 0.5 and inst.sg:HasStateTag("ball") then
                     inst.sg:GoToState("ball_hit")
                 else
                     inst.sg:GoToState("hit")

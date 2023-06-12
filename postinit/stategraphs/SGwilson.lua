@@ -19,6 +19,7 @@ local actionhandlers = {
             end
         end
     end),
+    ActionHandler(ACTIONS.DISLODGE, "tap"),
 }
 
 local states = {
@@ -225,6 +226,62 @@ local states = {
             EventHandler("unequip", function(inst) inst.sg:GoToState("idle")  end),
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
+    },
+
+    State{
+        name = "tap",
+        tags = {"working", "busy"},
+
+        timeline = {
+            TimeEvent(4*FRAMES, function(inst)
+                inst.sg:RemoveStateTag("busy")
+            end),
+        },
+
+        onenter = function(inst, timeout)
+            inst.sg:SetTimeout(timeout or 1)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("tamp_pre")
+        end,
+
+        events = {
+            EventHandler("animover", function(inst) inst.sg:GoToState("tap_loop") end ),
+        },
+    },
+
+    State{
+        name = "tap_loop",
+        tags = {"working"},
+
+        onenter = function(inst, timeout)
+            inst.sg:SetTimeout(timeout or 1)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PushAnimation("tamp_loop",true)
+        end,
+
+        timeline = {
+            TimeEvent(1*FRAMES, function(inst)
+               inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/tamping_tool")
+            end),
+            TimeEvent(8*FRAMES, function(inst)
+               inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/tamping_tool")
+            end),
+            TimeEvent(16*FRAMES, function(inst)
+               inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/tamping_tool")
+            end),
+            TimeEvent(24*FRAMES, function(inst)
+               inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/tamping_tool")
+            end),
+            TimeEvent(32*FRAMES, function(inst)
+               inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/tamping_tool")
+            end),
+        },
+
+        ontimeout= function(inst)
+            inst.AnimState:PlayAnimation("tamp_pst")
+            inst.sg:GoToState("idle", false)
+            inst:PerformBufferedAction()
+        end,
     },
 }
 

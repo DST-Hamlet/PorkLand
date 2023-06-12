@@ -7,8 +7,8 @@ local assets =
 	Asset("ANIM", "anim/scorpion_build.zip"),
 	Asset("SOUND", "sound/spider.fsb"),
 }
-
-
+    
+    
 local prefabs =
 {
 	"chitin",
@@ -33,8 +33,8 @@ local function NormalRetarget(inst)
     if inst.components.knownlocations:GetLocation("investigate") then
         targetDist = TUNING.SCORPION_INVESTIGATETARGET_DIST
     end
-    return FindEntity(inst, targetDist,
-        function(guy)
+    return FindEntity(inst, targetDist, 
+        function(guy) 
             if inst.components.combat:CanTarget(guy) then
                 return guy:HasTag("character") or guy:HasTag("pig")
             end
@@ -57,7 +57,7 @@ end
 
 local function ShouldSleep(inst)
     return false
---[[
+--[[    
     return GetClock():IsDay()
            and not (inst.components.combat and inst.components.combat.target)
            and not (inst.components.homeseeker and inst.components.homeseeker:HasHome() )
@@ -87,7 +87,7 @@ end
 
 local function StartDay(inst)
 	if inst:IsAsleep() then
-		DoReturn(inst)
+		DoReturn(inst)	
 	end
 end
 
@@ -117,102 +117,102 @@ local function StartNight(inst)
 end
 
 local function create_scorpion(Sim)
-
+    
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddLightWatcher()
-    inst.entity:AddNetwork()
-
+	inst.entity:AddNetwork()
     local shadow = inst.entity:AddDynamicShadow()
     shadow:SetSize( 1.5, .5 )
     inst.Transform:SetFourFaced()
 
     ----------
-
+    
     inst:AddTag("monster")
-    inst:AddTag("animal")
+    inst:AddTag("animal")    
     inst:AddTag("insect")
     inst:AddTag("hostile")
-    inst:AddTag("scarytoprey")
+    inst:AddTag("scarytoprey")    
     inst:AddTag("scorpion")
-    inst:AddTag("canbetrapped")
+    inst:AddTag("canbetrapped")    
 
     MakeCharacterPhysics(inst, 10, .5)
+    -- MakePoisonableCharacter(inst)
 
     inst.AnimState:SetBank("scorpion")
     inst.AnimState:SetBuild("scorpion_build")
     inst.AnimState:PlayAnimation("idle")
+	
+	inst.entity:SetPristine()
 
-    inst.entity:SetPristine()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    MakePoisonableCharacter(inst)
-
+	if not TheWorld.ismastersim then
+		return inst
+	end
+    
     -- locomotor must be constructed before the stategraph!
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = TUNING.SCORPION_WALK_SPEED
     inst.components.locomotor.runspeed = TUNING.SCORPION_RUN_SPEED
 
-
+    
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable('scorpion')
-
-    ---------------------
+    
+    ---------------------            
     MakeMediumBurnableCharacter(inst, "scorpion_body")
-    MakeMediumFreezableCharacter(inst, "scorpion_body")
+    MakeMediumFreezableCharacter(inst, "scorpion_body")    
     inst.components.burnable.flammability = TUNING.SCORPION_FLAMMABILITY
-    ---------------------
-
+    ---------------------       
+    
 
     inst:AddComponent("follower")
 
     ------------------
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.SCORPION_HEALTH)
+    -- inst.components.health:SetMaxHealth(200) -- 200 by default, I haven't added tuning stuff
     ------------------
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "scorpion_body"
-    inst.components.combat:SetKeepTargetFunction(keeptargetfn)
+    inst.components.combat:SetKeepTargetFunction(keeptargetfn)    
     inst.components.combat:SetDefaultDamage(TUNING.SCORPION_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.SCORPION_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(1, NormalRetarget)
     inst.components.combat:SetHurtSound("dontstarve/creatures/spider/hit_response")
     inst.components.combat:SetRange(TUNING.SCORPION_ATTACK_RANGE, TUNING.SCORPION_ATTACK_RANGE)
     ------------------
-
+    
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetResistance(2)
     inst.components.sleeper:SetSleepTest(ShouldSleep)
     inst.components.sleeper:SetWakeTest(ShouldWake)
     ------------------
-
+    
     inst:AddComponent("knownlocations")
     ------------------
-
+    
     inst:AddComponent("eater")
-    inst.components.eater:SetDiet({ FOODTYPE.MEAT }, { FOODTYPE.MEAT })
+    -- inst.components.eater:SetCarnivore()
+	inst.components.eater:SetDiet({ FOODTYPE.MEAT }, { FOODTYPE.MEAT })
     inst.components.eater:SetCanEatHorrible()
-    inst.components.eater:SetStrongStomach(true) -- can eat monster meat!
-    inst.components.eater:SetCanEatRawMeat(true)
-
+    -- inst.components.eater.strongstomach = true -- can eat monster meat!
+	inst.components.eater:SetStrongStomach(true)
+    
     ------------------
-
+    
     inst:AddComponent("inspectable")
-
+    
     ------------------
-
+    
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_SMALL
-
+    
     inst:SetStateGraph("SGscorpion")
-    local brain = require "brains/scorpionbrain"
-    inst:SetBrain(brain)
+    local brain = require "brains/spiderbrain"
+    inst:SetBrain(brain)  
     inst:ListenForEvent("attacked", OnAttacked)
 
 

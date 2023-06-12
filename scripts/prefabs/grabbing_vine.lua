@@ -1,4 +1,3 @@
-require "brains/grabbing_vinebrain"
 require "stategraphs/SGgrabbing_vine"
 
 local assets=
@@ -42,11 +41,11 @@ local function OnGoingHome(inst)
 end
 
 local function shadownon(inst)
-	inst.shadow:SetSize( 1.5, .75 )
+	inst.shadow:SetSize(1.5, .75)
 end
 
 local function shadowoff(inst)
-	inst.shadow:SetSize( 0,0 )
+	inst.shadow:SetSize(0, 0)
 end
 
 
@@ -100,18 +99,24 @@ end
 
 local function commonfn(Sim)
 	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
+	
+	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
-	local physics = inst.entity:AddPhysics()
-	local sound = inst.entity:AddSoundEmitter()
+	inst.entity:AddPhysics()
+	inst.entity:AddSoundEmitter()
+	inst.entity:AddNetwork()
+	
 	inst.shadow = inst.entity:AddDynamicShadow()
-    inst.entity:AddNetwork()
-
-	inst.shadow:SetSize( 1.5, .75 )
+	inst.shadow:SetSize(1.5, .75)
+	
 	--inst.Transform:SetFourFaced()
 
 	inst.shadownon = shadownon
 	inst.shadowoff = shadowoff
+	
+	inst:AddTag("flying")
+	inst:AddTag("hangingvine")
+	inst:AddTag("animal")
 
 	inst.AnimState:SetBank("exitrope")
 	inst.AnimState:SetBuild("copycreep_build")
@@ -132,12 +137,6 @@ local function commonfn(Sim)
 	inst.components.locomotor.runspeed = 8
 
 	inst:SetStateGraph("SGgrabbing_vine")
-
-
-	inst:AddTag("flying")
-
-	inst:AddTag("hangingvine")
-	inst:AddTag("animal")
 
 	local brain = require "brains/grabbing_vinebrain"
 	inst:SetBrain(brain)
@@ -176,7 +175,7 @@ local function commonfn(Sim)
     inst.components.distancefade:Setup(25,15)
 
  	inst:AddComponent("eater")
-     inst.components.eater:SetDiet({ FOODGROUP.OMNI }, { FOODGROUP.OMNI })
+    inst.components.eater:SetDiet({ FOODGROUP.OMNI }, { FOODGROUP.OMNI })
 
 	inst:AddComponent("inspectable")
 
@@ -194,4 +193,4 @@ local function commonfn(Sim)
 	return inst
 end
 
-return Prefab( "forest/animals/grabbing_vine", commonfn, assets, prefabs)
+return Prefab("grabbing_vine", commonfn, assets, prefabs)

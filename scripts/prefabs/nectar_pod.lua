@@ -31,7 +31,10 @@ local function OnPutInInventory(inst, owner)
     if owner.prefab == "antchest" then
         inst:DoTaskInTime(TUNING.TOTAL_DAY_TIME * 0.1, function() TransformToHoney(inst, owner) end)
         inst.components.perishable:StopPerishing()
-    end
+    else
+		inst:CancelAllPendingTasks()
+        inst.components.perishable:StartPerishing()
+	end
 end
 
 local function OnRemoved(inst, owner)
@@ -41,28 +44,30 @@ local function OnRemoved(inst, owner)
     end
 end
 
-local function fn(Sim)
+local function fn()
 	local inst = CreateEntity()
+	
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst, "idle_water", "idle")
-
-    inst:AddTag("nectar")
-
+    
     inst.AnimState:SetBuild("nectar_pod")
     inst.AnimState:SetBank("nectar_pod")
     inst.AnimState:PlayAnimation("idle")
-
+	
+	inst:AddTag("nectar")
+		
+    MakeInventoryFloatable(inst, "med", nil, 0.8)
+    
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
-
-    inst:AddComponent("edible")
+	
+	inst:AddComponent("edible")
     inst.components.edible.healthvalue = TUNING.HEALING_SMALL
     inst.components.edible.hungervalue = TUNING.CALORIES_TINY
 
@@ -72,18 +77,20 @@ local function fn(Sim)
     inst:AddComponent("tradable")
 
     inst:AddComponent("inspectable")
-
+    
 	inst:AddComponent("perishable")
 	inst.components.perishable:SetPerishTime(TUNING.PERISH_SUPERSLOW)
 	inst.components.perishable:StartPerishing()
 	inst.components.perishable.onperishreplacement = "spoiled_food"
-
-
+    
+    
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
-    inst.components.inventoryitem:SetOnRemovedFn(OnRemoved)
-
+    --inst.components.inventoryitem:SetOnRemovedFn(OnRemoved)
+	
+	MakeHauntableLaunchAndPerish(inst)
+    
     return inst
 end
 
-return Prefab( "common/inventory/nectar_pod", fn, assets, prefabs)
+return Prefab( "common/inventory/nectar_pod", fn, assets, prefabs) 

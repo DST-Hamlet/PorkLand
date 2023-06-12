@@ -16,13 +16,13 @@ local function onnear(inst)
 	inst.AnimState:PlayAnimation("down")
     inst.AnimState:PushAnimation("idle_loop", true)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/drop")
-    inst.shadow:SetSize( 1.5, .75 )
+    inst.shadow:SetSize(1.5, .75)
 end
 
 local function onfar(inst)
     inst.AnimState:PlayAnimation("up")
     inst.SoundEmitter:PlaySound("dontstarve/cave/rope_up")
-    inst.shadow:SetSize( 0,0 )
+    inst.shadow:SetSize(0,0)
 end
 
 local function round(x)
@@ -166,13 +166,9 @@ local function patchfn(Sim)
 	return inst
 end
 
-local function canshear (inst)
-    return true
-end
-
-local function onshear (inst)
+local function onshearfn (inst)
     if inst.spawnpatch then
-        inst.spawnpatch.spawnNewVine(inst.spawnpatch,inst.prefab)
+        inst.spawnpatch.spawnNewVine(inst.spawnpatch, inst.prefab)
     end
 
     inst:Remove()
@@ -180,14 +176,15 @@ end
 
 local function commonfn(Sim)
 	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
+	
+	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
-	local physics = inst.entity:AddPhysics()
-	local sound = inst.entity:AddSoundEmitter()
-	inst.shadow = inst.entity:AddDynamicShadow()
+	inst.entity:AddPhysics()
+	inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
-
-	inst.shadow:SetSize( 1.5, .75 )
+	
+	inst.shadow = inst.entity:AddDynamicShadow()
+	inst.shadow:SetSize(1.5, .75)
 
 	inst.AnimState:SetBank("exitrope")
 	inst:AddTag("hangingvine")
@@ -233,8 +230,8 @@ local function commonfn(Sim)
 
     inst:AddComponent("shearable")
     inst.components.shearable:SetProduct("rope", 1)
-    inst.canshear = canshear
-    inst.onshear = onshear
+	inst.components.shearable:SetOnShearFn(onshearfn)
+	inst.components.shearable.canshaveable = true
 
 --[[
     inst:AddComponent("distancefade")
@@ -248,5 +245,5 @@ local function commonfn(Sim)
 	return inst
 end
 
-return Prefab( "forest/animals/hanging_vine", commonfn, assets, prefabs),
-	   Prefab("forest/objects/hanging_vine_patch", patchfn, assets, prefabs)
+return Prefab("hanging_vine", commonfn, assets, prefabs),
+	   Prefab("hanging_vine_patch", patchfn, assets, prefabs)

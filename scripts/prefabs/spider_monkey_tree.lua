@@ -242,7 +242,7 @@ local function chop_tree(inst, chopper, chops)
 
     -- tell any nearby leifs to wake up
     local pt = Vector3(inst.Transform:GetWorldPosition())
-    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, TUNING.PALMTREEGUARD_REAWAKEN_RADIUS, {"treeguard"})
+    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, TUNING.LEIF_REAWAKEN_RADIUS, {"treeguard"})
     for k, v in pairs(ents) do
         if v.components.sleeper and v.components.sleeper:IsAsleep() then
             v:DoTaskInTime(math.random(), function() v.components.sleeper:WakeUp() end)

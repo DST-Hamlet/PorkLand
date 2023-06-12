@@ -2,10 +2,11 @@
 local components_post = {
     "actionqueuer",
     "ambientlighting",
-    "battleborn",
+	"battleborn",
     "clock",
     "colourcube",
     "combat",
+    "equippable",
     "grogginess",
     "health",
     "inventory",
@@ -13,6 +14,7 @@ local components_post = {
     "lootdropper",
     "moisture",
     "pickable",
+	"plantregrowth", -- I Add but need add in tuning regrow speed
     "playercontroller",
     "pollinator",
     "regrowthmanager",
@@ -21,18 +23,23 @@ local components_post = {
     "shard_clock",
     "shard_seasons",
     "sleeper",
+    "stackable",
+	"thief",
     "wavemanager",
-    "weapon",
-    "worldstate"
+	"weapon",
+    "worldstate",
+	"amphibiouscreature",
+    "floater",
 }
 
 local prefabs_post = {
     "batbat",
-    "buff_workeffectiveness",
+	"buff_workeffectiveness",
     "player",
     "player_classified",
     "woodie",
     "world_network",
+    "variants_pl",
     "shard_network",
 }
 

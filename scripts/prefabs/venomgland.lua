@@ -1,56 +1,60 @@
 local assets=
 {
-	Asset("ANIM", "anim/venom_gland.zip"),
+  Asset("ANIM", "anim/venom_gland.zip"),
 }
 
 local function OnCure(inst, target)
-    if target.components.health then
-        local damage = TUNING.VENOM_GLAND_DAMAGE
-        local currenthealth = target.components.health.currenthealth
-        damage = math.clamp(math.min(TUNING.VENOM_GLAND_DAMAGE, currenthealth - TUNING.VENOM_GLAND_MIN_HEALTH), 0, TUNING.VENOM_GLAND_DAMAGE)
-        target.components.health:DoPoisonDamage(damage)
-        target:PushEvent("poisondamage", {damage=damage})
-    end
+  if target.components.health then
+    local currenthealth = target.components.health.currenthealth
+    local damage = math.clamp(currenthealth - TUNING.VENOM_GLAND_MIN_HEALTH, 0, TUNING.VENOM_GLAND_DAMAGE )
+    target.components.health:DoPoisonDamage(damage)
+    target:PushEvent("poisondamage", {damage=damage})
+  end
 end
 
-local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-    inst.entity:AddNetwork()
+local function fn()
+  local inst = CreateEntity()
+  inst.entity:AddTransform()
+  inst.entity:AddAnimState()
+  inst.entity:AddNetwork()
 
-    MakeInventoryPhysics(inst)
+  MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("venom_gland")
-    inst.AnimState:SetBuild("venom_gland")
-    inst.AnimState:PlayAnimation("idle")
+  inst:AddTag("cattoy")
+  inst:AddTag("venomgland")
 
-    MakeInventoryFloatable(inst, "idle_water", "idle")
+  inst.AnimState:SetBank("venom_gland")
+  inst.AnimState:SetBuild("venom_gland")
+  inst.AnimState:PlayAnimation("idle")
 
-    inst.entity:SetPristine()
+	MakeInventoryFloatable(inst)
+	--inst.components.floater:UpdateAnimations("idle_water", "idle")
+	
+  inst.entity:SetPristine()
 
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
-
-    inst:AddComponent("stackable")
-
-	MakeSmallBurnable(inst, TUNING.TINY_BURNTIME)
-    MakeSmallPropagator(inst)
-
-    inst:AddComponent("inspectable")
-    inst:AddComponent("inventoryitem")
-
-    inst:AddTag("cattoy")
-    inst:AddTag("venomgland")
-    inst:AddComponent("tradable")
-
-    inst:AddComponent("poisonhealer")
-    inst.components.poisonhealer.oncure = OnCure
-
+  if not TheWorld.ismastersim then
     return inst
+  end
+
+  --MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
+
+  inst:AddComponent("stackable")
+
+  MakeSmallBurnable(inst, TUNING.TINY_BURNTIME)
+  MakeSmallPropagator(inst)
+
+  inst:AddComponent("inspectable")    
+  
+  inst:AddComponent("inventoryitem")
+
+  inst:AddComponent("tradable")
+
+  inst:AddComponent("poisonhealer")
+  inst.components.poisonhealer.oncure = OnCure
+
+  MakeHauntableLaunch(inst)
+
+  return inst
 end
 
-return Prefab( "common/inventory/venomgland", fn, assets)
+return Prefab( "venomgland", fn, assets)

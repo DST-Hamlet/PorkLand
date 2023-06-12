@@ -31,19 +31,18 @@ local function GetHomePos(inst)
 end
 
 local function GetWanderPoint(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-	local target = GetHome(inst) or FindClosestPlayerInRangeSq( x, y, z, 16 * 16, true)
+	local target = GetHome(inst) or GetPlayer()
 
 	if target then
 		return target:GetPosition()
-	end
+	end 
 end
 
 local function ShouldSpitFn(inst)
 	if inst:HasTag("lavaspitter") then
 		if inst.sg:HasStateTag("sleeping") or inst.num_targets_vomited >= TUNING.DRAGONFLY_VOMIT_TARGETS_FOR_SATISFIED or inst.hassleepdestination then return false end
 		if not inst.recently_frozen and not inst.flame_on then
-			if not inst.last_spit_time then
+			if not inst.last_spit_time then 
 				if inst:GetTimeAlive() > 5 then
 					return true
 				end
@@ -68,7 +67,7 @@ local function LavaSpitAction(inst)
 	end
 end
 
-local function FindLavaSpitTargetAction(inst)
+local function FindLavaSpitTargetAction(inst) 
 	if inst.sg:HasStateTag("sleeping") or inst.num_targets_vomited >= TUNING.DRAGONFLY_VOMIT_TARGETS_FOR_SATISFIED or inst.hassleepdestination then return false end
 	if inst.last_spit_time and ((GetTime() - inst.last_spit_time) < 5) then return false end
 
@@ -82,14 +81,14 @@ local function FindLavaSpitTargetAction(inst)
 	local tagpriority = {"dragonflybait_highprio", "dragonflybait_medprio", "dragonflybait_lowprio"}
 	local prio = 1
 	local currtag = nil
-
+	
 	local pt = inst:GetPosition()
 	local ents = nil
 
 	while not target and prio <= #tagpriority do
 		currtag = {tagpriority[prio]}
 		ents = TheSim:FindEntities(pt.x, pt.y, pt.z, SEE_BAIT_DIST, currtag, {"fire"})
-
+	
 		for k,v in pairs(ents) do
 			if v and v.components.burnable and (not v.components.inventoryitem or not v.components.inventoryitem:IsHeld()) then
 				if not target or (distsq(pt, Vector3(v.Transform:GetWorldPosition())) < distsq(pt, Vector3(target.Transform:GetWorldPosition()))) then
@@ -110,40 +109,27 @@ local function FindLavaSpitTargetAction(inst)
 end
 
 local function GoHomeAction(inst)
-	local home = inst.components.homeseeker and inst.components.homeseeker.home
-    if
-		home and
-		home:IsValid() and
-		home.components.hackable and
-		home.components.hackable:CanBeHacked()
-	then
-        return BufferedAction(inst, home, ACTIONS.GOHOME)
-    end
-end
-
-local function HarvestAction(inst)
-	if not inst:HasTag("snake_amphibious") then return end
-
-    local target = FindEntity(inst, SEE_DIST, function(item) return item.components.breeder and item.components.breeder.volume > 0 end)
-    if target then
-        return BufferedAction(inst, target, ACTIONS.HARVEST)
+    if inst.components.homeseeker and 
+       inst.components.homeseeker.home and 
+       inst.components.homeseeker.home:IsValid() then
+        return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
     end
 end
 
 function SnakeBrain:OnStart()
-
+	
 	local root = PriorityNode(
 	{
 		WhileNode(function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst) ),
-
+		
 		ChaseAndAttack(self.inst, 8),
 
-		EventNode(self.inst, "gohome",
+		EventNode(self.inst, "gohome", 
             DoAction(self.inst, GoHomeAction, "go home", true )),
+        -- WhileNode(function() return GetClock() and GetClock():IsDay() end, "IsDay",
         WhileNode(function() return TheWorld.state.isday end, "IsDay",
             DoAction(self.inst, GoHomeAction, "go home", true )),
 
-			DoAction(self.inst, HarvestAction, "harvest", true ),
 		DoAction(self.inst, EatFoodAction, "eat food", true ),
 		WhileNode(function() return ShouldSpitFn(self.inst) end, "Spit",
             DoAction(self.inst, LavaSpitAction)),
@@ -152,9 +138,9 @@ function SnakeBrain:OnStart()
 		Wander(self.inst, GetWanderPoint, 20),
 
 	}, .25)
-
+	
 	self.bt = BT(self.inst, root)
-
+	
 end
 
 return SnakeBrain

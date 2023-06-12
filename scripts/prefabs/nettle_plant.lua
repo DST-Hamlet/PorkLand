@@ -295,7 +295,7 @@ local function makefn(stage)
             checkcanbepicked(inst)
         end)
 
-	    MakePickableBlowInWindGust(inst, TUNING.GRASS_WINDBLOWN_SPEED, TUNING.GRASS_WINDBLOWN_FALL_CHANCE)
+	    --MakePickableBlowInWindGust(inst, TUNING.GRASS_WINDBLOWN_SPEED, TUNING.GRASS_WINDBLOWN_FALL_CHANCE)
 
 	    ---------------------
 	    MakeMediumBurnable(inst)

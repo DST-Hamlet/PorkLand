@@ -358,14 +358,14 @@ local function chop_tree(inst, chopper, chops)
 	inst.AnimState:PushAnimation(inst.anims.sway1, true)
 
 	--tell any nearby leifs to wake up
-	local pt = Vector3(inst.Transform:GetWorldPosition())
-	local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, TUNING.PALMTREEGUARD_REAWAKEN_RADIUS, {"treeguard"})
-	for k,v in pairs(ents) do
-		if v.components.sleeper and v.components.sleeper:IsAsleep() then
-			v:DoTaskInTime(math.random(), function() v.components.sleeper:WakeUp() end)
-		end
-		v.components.combat:SuggestTarget(chopper)
-	end
+	--local pt = Vector3(inst.Transform:GetWorldPosition())
+	--local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, TUNING.PALMTREEGUARD_REAWAKEN_RADIUS, {"treeguard"})
+	--for k,v in pairs(ents) do
+	--	if v.components.sleeper and v.components.sleeper:IsAsleep() then
+	--		v:DoTaskInTime(math.random(), function() v.components.sleeper:WakeUp() end)
+	--	end
+	--	v.components.combat:SuggestTarget(chopper)
+	--end
 end
 
 local function testforbloomingdrop(inst,pt)

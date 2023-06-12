@@ -43,9 +43,11 @@ local function NormalRetarget(inst)
     end, nil, notags)
 end
 
-local function OnGasChange(inst, onGas)
-	if onGas then
+
+local function OnGasChange(inst, data)
+	if data and data.tags and table.contains(data.tags, "Gas_Jungle") then
 		inst:DoTaskInTime(1, function()
+				inst.components.health.invincible = false
 				inst.components.health:Kill()
 				didplayerseebugsdie(inst)
 			end
@@ -115,7 +117,7 @@ local function fn(Sim)
 	inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
 
-	inst.DynamicShadow:SetSize( 2, .6 )
+	inst.DynamicShadow:SetSize(2, .6)
 
     inst.Transform:SetFourFaced()
 
@@ -214,10 +216,8 @@ local function fn(Sim)
 
 	------------------
 
-	inst:AddComponent("tiletracker")
-	inst.components.tiletracker:SetOnGasChangeFn(OnGasChange)
-	inst.components.tiletracker:Start()
-	inst.OnGasChange = OnGasChange
+	inst:AddComponent("areaaware")
+	inst:ListenForEvent("changearea", OnGasChange)
 
 	------------------
 
@@ -247,4 +247,4 @@ local function fn(Sim)
 	return inst
 end
 
-return Prefab( "forest/common/gnat", fn, assets, prefabs)
+return Prefab("gnat", fn, assets, prefabs)

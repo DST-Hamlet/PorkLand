@@ -41,5 +41,17 @@ return {
         TREE_PILLAR = "It totally blocks out the sun.",
         WEEVOLE = "Whee!",
         WEEVOLE_CARAPACE = "I'll be careful with this carapace.",
+		
+		DUNGBALL = "Most definitely poop.",
+		DUNGBEETLE = {
+			GENERIC = "She's on a roll.",
+			UNDUNGED = "She needs to get her dung together.",
+			SLEEPING = "She's pooped.",
+			DEAD = "Dung for.",
+		},
+		DUNGPILE = {
+			GENERIC = "It's a pile of dung.",
+			PICKED = "Dung and dung.",
+		},
     },
 }

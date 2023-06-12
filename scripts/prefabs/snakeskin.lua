@@ -28,7 +28,7 @@ local function fn(Sim)
         return inst
     end
 
-    MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
+    -- MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
 
     inst:AddComponent("stackable")
     inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
@@ -36,13 +36,13 @@ local function fn(Sim)
 
 	MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
     MakeSmallPropagator(inst)
-    --inst.components.burnable:MakeDragonflyBait(3)
 
     ---------------------
 
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.imagename = name
 
     inst:AddComponent("appeasement")
     inst.components.appeasement.appeasementvalue = TUNING.APPEASEMENT_TINY

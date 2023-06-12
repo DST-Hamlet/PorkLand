@@ -6,10 +6,14 @@ local PL_ACTIONS = {
     HACK = Action({mindistance = 1.75, silent_fail = true}),
     SHEAR = Action({distance = 1.75}),
     PEAGAWK_TRANSFORM = Action({}),
-    INFEST = Action({},nil, nil, nil, 0.5),
-    SPECIAL_ACTION = Action({},nil, nil, nil, 1.2),
-    SPECIAL_ACTION2 = Action({},nil, nil, nil, 1.2),
-    LAVASPIT = Action({},0, false, false, 2),
+    DIGDUNG = Action({mount_valid=true}),
+    MOUNTDUNG = Action({}),
+    DISLODGE = Action({distance = 1,priority = 1}),
+    SPECIAL_ACTION = Action({distance = 1.2}),
+    SPECIAL_ACTION2 = Action({distance = 1.2}),
+    BARK = Action({distance = 3}),
+    RANSACK = Action({distance = 0.5}),
+	INFEST = Action({distance = 0.5}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -17,9 +21,6 @@ for name, ACTION in pairs(PL_ACTIONS) do
     ACTION.str = STRINGS.ACTIONS[name] or "PL_ACTION"
     AddAction(ACTION)
 end
-
-
-
 
 ----set up the action functions
 local _DoToolWork = Pl_Util.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
@@ -76,18 +77,65 @@ ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
     return true -- Dummy action for flup hiding
 end
 
-ACTIONS.INFEST.fn = function(act)
+ACTIONS.DIGDUNG.fn = function(act)
+	act.target.components.workable:WorkedBy(act.doer, 1)
+	return true
+end
 
+ACTIONS.MOUNTDUNG.fn = function(act)
+	act.doer.dung_target:Remove()
+	act.doer:AddTag("hasdung") 
+	act.doer.dung_target = nil
+	return true
+end
+
+-----------------------------------------------------------------------------------------
+ACTIONS.DISLODGE.fn = function(act)
+	if act.target.components.dislodgeable then
+		act.target.components.dislodgeable:Dislodge(act.doer)
+		-- action with inventory object already explicitly calls OnUsedAsItem
+		if not act.invobject and act.doer and act.doer.components.inventory and act.doer.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS) then
+			local invobject = act.doer.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+			if invobject.components.finiteuses then
+				invobject.components.finiteuses:OnUsedAsItem(ACTIONS.DISLODGE)
+			end
+		end
+		return true
+	end
+end
+
+AddComponentAction("EQUIPPED", "dislodger", function(inst, doer, target, actions, right)
+    -- if target.components.dislodgeable then
+    if target:HasTag("dislodgeable") then
+        if not right then
+            table.insert(actions, ACTIONS.DISLODGE)
+        end
+    end
+end)
+
+ACTIONS.DISLODGE.validfn = function(act)
+    return (act.target.components.dislodgeable and act.target.components.dislodgeable:CanBeDislodged()) or
+        (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.DISLODGE)
+end
+
+-- AddComponentAction("SCENE", "dislodgable", function(inst, doer, actions, right)
+    -- -- if target.components.dislodgeable then
+        -- if not right then
+            -- table.insert(actions, ACTIONS.DISLODGE)
+        -- end
+    -- -- end
+-- end)
+-----------------------------------------------------------------------------------------
+ACTIONS.INFEST.fn = function(act)
 	if not act.doer.infesting then
 		act.doer.components.infester:Infest(act.target)
 	end
-
 	return true
 end
 
 ACTIONS.SPECIAL_ACTION.fn = function(act)
-	if act.doer.special_action then
-		act.doer.special_action(act)
+	if act.doer.SpecialAction then
+		act.doer.SpecialAction(act)
 		return true
 	end
 end
@@ -98,39 +146,7 @@ ACTIONS.SPECIAL_ACTION2.fn = function(act)
 		return true
 	end
 end
-
-ACTIONS.LAVASPIT.fn = function(act)
-	if act.doer and act.target and act.doer.prefab == "dragonfly" then
-		local spit = SpawnPrefab("lavaspit")
-		local x,y,z = act.doer.Transform:GetWorldPosition()
-		local downvec = TheCamera:GetDownVec()
-		local offsetangle = math.atan2(downvec.z, downvec.x) * (180/math.pi)
-		if act.doer.AnimState:GetCurrentFacing() == 0 then --Facing right
-			offsetangle = offsetangle + 70
-		else --Facing left
-			offsetangle = offsetangle - 70
-		end
-		while offsetangle > 180 do offsetangle = offsetangle - 360 end
-		while offsetangle < -180 do offsetangle = offsetangle + 360 end
-		local offsetvec = Vector3(math.cos(offsetangle*DEGREES), -.3, math.sin(offsetangle*DEGREES)) * 1.7
-		spit.Transform:SetPosition(x+offsetvec.x, y+offsetvec.y, z+offsetvec.z)
-		spit.Transform:SetRotation(act.doer.Transform:GetRotation())
-	end
-	if act.doer and act.target and act.doer.prefab == "dragoon" then
-		local spit = SpawnPrefab("dragoonspit")
-		local x,y,z = act.doer.Transform:GetWorldPosition()
-		local downvec = TheCamera:GetDownVec()
-		local offsetangle = math.atan2(downvec.z, downvec.x) * (180/math.pi)
-
-		while offsetangle > 180 do offsetangle = offsetangle - 360 end
-		while offsetangle < -180 do offsetangle = offsetangle + 360 end
-		local offsetvec = Vector3(math.cos(offsetangle*DEGREES), -.3, math.sin(offsetangle*DEGREES)) * 1.7
-		spit.Transform:SetPosition(x+offsetvec.x, y+offsetvec.y, z+offsetvec.z)
-		spit.Transform:SetRotation(act.doer.Transform:GetRotation())
-	end
-end
-
-
+-----------------------------------------------------------------------------------------
 
 -- Patch for hackable things
 local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
@@ -146,9 +162,60 @@ function ACTIONS.FERTILIZE.fn(act, ...)
         return true
     end
 end
+-----------------------------------------------------------------------------------------
+function ACTIONS.COOK.strfn(act)
+	local obj = act.target
+	if obj.components.melter then
+		return "SMELT"
+	end
+end 
 
+-- Patch for smelter things
+local _COOKfn = ACTIONS.COOK.fn
+function ACTIONS.COOK.fn(act)
+    if act.target.components.melter then
+		if act.target.components.melter:IsCooking() then
+            --Already cooking
+            return true
+        end
+        local container = act.target.components.container
+        if container ~= nil and container:IsOpenedByOthers(act.doer) then
+            return false, "INUSE"
+        elseif not act.target.components.melter:CanCook() then
+            return false
+        end
+        act.target.components.melter:StartCooking(act.doer)
+        return true
+	end
+	
+	return _COOKfn(act)
+end
 
+local _HARVESTvalidfn = ACTIONS.HARVEST.validfn
+function ACTIONS.HARVEST.validfn(act, ...)
+    if act.target and act.target.components.melter then --Dont continue to harvest if it cannot be harvested, fixes a crash trying to spawn a nil -Half
+		return act.target:HasTag("donecooking")
+    else
+        return (_HARVESTvalidfn and _HARVESTvalidfn(act, ...)) or true --if a validfn is added use that or send back true so everything works normally
+    end
+end
 
+local _HARVESTfn = ACTIONS.HARVEST.fn
+function ACTIONS.HARVEST.fn(act)
+     if act.target.components.melter then
+        return act.target.components.melter:Harvest(act.doer)	
+	else
+		return _HARVESTfn(act)
+	end
+end
+
+AddComponentAction("SCENE", "melter", function(inst, doer, actions, right)
+    if inst:HasTag("donecooking") and doer.replica.inventory then
+        table.insert(actions, ACTIONS.HARVEST)
+    end
+end)
+
+-----------------------------------------------------------------------------------------
 
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
@@ -182,7 +249,10 @@ local PL_COMPONENT_ACTIONS =
         end,
         shearable = function(inst, action, right)
             return action == ACTIONS.SHEAR and inst:HasTag("SHEAR_workable")
-        end
+        end,
+        dislodgeable = function(inst, action, right)
+            return action == ACTIONS.DISLODGE and inst:HasTag("DISLODGE_workable")
+		end
     },
 }
 

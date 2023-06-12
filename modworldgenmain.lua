@@ -29,7 +29,7 @@ modimport("postinit/map/node")
 modimport("postinit/map/storygen")
 modimport("postinit/map/forest_map")
 
--- require("map/porkland_layouts")
+require("map/porkland_layouts")
 -- require("map/porkland_boons")
 -- require("map/porkland_traps")
 

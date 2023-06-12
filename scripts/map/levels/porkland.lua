@@ -2,8 +2,8 @@ local LEVELTYPE = GLOBAL.LEVELTYPE
 
 AddLevel(LEVELTYPE.SURVIVAL, {
     id = "PORKLAND_DEFAULT",
-    name = "Pork Land",
-    desc = "Pork Land",
+    name = "Porkland",
+    desc = "Porkand",
     location = "porkland",
     overrides = {
         task_set = "porkland",
@@ -26,7 +26,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 
         isporkland = true,
         no_joining_islands = false,
-        has_ocean = false,
+        has_ocean = true,
 
         -- {"start_setpeice",    "PorkLandStart"},
         -- {"start_node",        "BG_rainforest_base"},

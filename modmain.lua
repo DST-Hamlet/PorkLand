@@ -29,3 +29,10 @@ modimport("main/RPC")
 modimport("main/actions")
 modimport("main/postinit")
 
+
+modimport("main/recipes")
+modimport("main/containers")
+modimport("main/prefabskin")
+modimport("main/cooking")
+
+modimport("main/shadeeffects")

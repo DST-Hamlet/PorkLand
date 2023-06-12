@@ -22,7 +22,7 @@ SetSharedLootTable('adult_flytrap', {
     {'nectar_pod',  0.3},
 })
 
-local function FindFood(inst,guy)
+local function FindFood(inst, guy)
 	if guy.components.inventory ~= nil then
 		return guy.components.inventory:FindItem(function(item)
             return inst.components.eater:CanEat(item)

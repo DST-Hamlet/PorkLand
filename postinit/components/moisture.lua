@@ -15,6 +15,7 @@ function Moisture:GetMoistureRate(...)
     end
 
     if sprinkler_rate < 0 and not TheWorld.state.fullfog then
+	--if not TheWorld.state.fullfog then
         return _GetMoistureRate(self, ...)
     end
 
@@ -36,5 +37,5 @@ function Moisture:GetMoistureRate(...)
     end
 
     local rate = easing.inSine(TheWorld.state.precipitationrate, self.minMoistureRate, self.maxMoistureRate, 1) + sprinkler_rate
-    return rate * (1 - waterproofmult) * (TheWorld.state.fullfog and TUNING.FOG_MOISTURE_RATE_SCALE or 1)  -- fog moisture rate
+    return rate * (1 - waterproofmult) * (TheWorld.state.fullfog and TUNING.FOG_MOISTURE_RATE_SCALE or 1)  -- fog moisture rateend
 end

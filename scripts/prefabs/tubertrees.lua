@@ -81,12 +81,11 @@ local old_anims =
 local function dig_up_stump(inst, chopper)
     inst:Remove()
     inst.components.lootdropper:SpawnLootPrefab("tuber_crop")
---[[
+
     if inst:HasTag("mystery") and inst.components.mystery.investigated then
         inst.components.lootdropper:SpawnLootPrefab(inst.components.mystery.reward)
         inst:RemoveTag("mystery")
     end
-    ]]
 end
 
 local function chop_down_burnt_tree(inst, chopper)
