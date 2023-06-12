@@ -26,12 +26,10 @@ end)
 
 
 local function FoodNear(inst)
-    print("FoodNear_1")
     local x,y,z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x,y,z,5,nil,NO_TAGS)
 
     for i=#ents,1,-1 do
-        print("FoodNear_2")
         if not ents[i] or ents[i]:IsInLimbo() or not inst.components.eater:CanEat(ents[i]) then
             table.remove(ents,i)
         end

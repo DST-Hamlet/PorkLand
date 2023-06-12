@@ -19,6 +19,8 @@ PrefabFiles = {
     "jungle_border_vine",
     "jungle_tree_burr",
     "machete",
+    "nettle",
+    "nettle_plant",
     "pangolden",
     "peagawk",
     "peagawk_spawner",

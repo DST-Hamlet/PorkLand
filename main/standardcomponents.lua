@@ -3,6 +3,10 @@ GLOBAL.setfenv(1, GLOBAL)
 function MakeHackableBlowInWindGust()
 end
 
+function MakePickableBlowInWindGust()
+
+end
+
 function MakeBlowInHurricane()
 end
 

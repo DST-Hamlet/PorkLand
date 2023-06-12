@@ -12,6 +12,7 @@ local components_post = {
     "inventoryitem",
     "lootdropper",
     "moisture",
+    "pickable",
     "playercontroller",
     "pollinator",
     "regrowthmanager",

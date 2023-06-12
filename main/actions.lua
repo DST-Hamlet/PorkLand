@@ -202,3 +202,12 @@ local USEITEM = COMPONENT_ACTIONS.USEITEM
 local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
+
+_wateryprotection = COMPONENT_ACTIONS.EQUIPPED.wateryprotection
+function EQUIPPED.wateryprotection(inst, doer, target, actions, right, ...)
+    if right and target:HasTag("waterneeded") then
+        table.insert(actions, ACTIONS.POUR_WATER)
+    else
+        _wateryprotection(inst, doer, target, actions, right, ...)
+    end
+end

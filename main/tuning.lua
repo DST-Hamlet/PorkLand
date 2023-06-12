@@ -253,6 +253,10 @@ local tuning = {
     HANGING_VINE_SPAWN_MIN = 8,
     HANGING_VINE_SPAWN_MAX = 16,
 
+    NETTLE_REGROW_TIME = total_day_time*3,
+    NETTLE_MOISTURE_WET_THRESHOLD = 20,
+    NETTLE_MOISTURE_DRY_THRESHOLD = 10,
+
 }
 
 for key, value in pairs(tuning) do
