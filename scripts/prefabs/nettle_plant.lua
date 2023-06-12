@@ -145,22 +145,20 @@ local function setwet(inst)
 end
 
 local function setdry(inst)
-    if inst.wet then
-        inst.AnimState:ClearOverrideBuild("nettle_budding_build")
-        inst.AnimState:ClearOverrideBuild("nettle_bulb_build")
-        print("ismoist_1")
-    else
+    inst.wet = nil
+    if inst.moist then
         inst.AnimState:ClearOverrideBuild("nettle_bulb_build")
         inst.AnimState:AddOverrideBuild("nettle_budding_build")
+    else
+        inst.AnimState:ClearOverrideBuild("nettle_budding_build")
+        inst.AnimState:AddOverrideBuild("nettle_bulb_build")
     end
-    inst.moist = true
 end
 
 local function setmoist(inst)
     if inst.wet then
         inst.AnimState:ClearOverrideBuild("nettle_budding_build")
         inst.AnimState:ClearOverrideBuild("nettle_bulb_build")
-        print("ismoist_1")
     else
         inst.AnimState:ClearOverrideBuild("nettle_bulb_build")
         inst.AnimState:AddOverrideBuild("nettle_budding_build")
@@ -173,7 +171,6 @@ local function setnomoist(inst)
     if inst.wet then
         inst.AnimState:ClearOverrideBuild("nettle_budding_build")
         inst.AnimState:ClearOverrideBuild("nettle_bulb_build")
-        print("isnotmoist_1")
     else
         inst.AnimState:ClearOverrideBuild("nettle_budding_build")
         inst.AnimState:AddOverrideBuild("nettle_bulb_build")

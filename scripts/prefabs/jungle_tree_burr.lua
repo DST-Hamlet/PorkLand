@@ -14,15 +14,9 @@ end
 
 local notags = {'NOBLOCK', 'player', 'FX'}
 local function test_ground(inst, pt)
-	local ground_OK = inst:GetIsOnLand(pt.x, pt.y, pt.z)
-    local tiletype = GetGroundTypeAtPosition(pt)
-    ground_OK = ground_OK and
-						tiletype ~= WORLD_TILES.ROCKY and tiletype ~= WORLD_TILES.ROAD and tiletype ~= WORLD_TILES.IMPASSABLE and tiletype ~= WORLD_TILES.INTERIOR and
-                        tiletype ~= WORLD_TILES.UNDERROCK and tiletype ~= WORLD_TILES.WOODFLOOR and
-                        tiletype ~= WORLD_TILES.FOUNDATION and tiletype ~= WORLD_TILES.COBBLEROAD and
-                        tiletype ~= WORLD_TILES.LAWN and tiletype ~= WORLD_TILES.FIELDS and
-                        tiletype ~= WORLD_TILES.CARPET and tiletype ~= WORLD_TILES.CHECKER and tiletype < WORLD_TILES.UNDERWORLD_TILES
-
+	local ground_OK = inst:IsOnValidGround()
+    local tiletype = TheWorld.Map:GetTileAtPoint(pt.x,0,pt.z)
+    ground_OK = ground_OK and inst.components.deployable:CanDeploy(pt)
     if ground_OK then
         local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4, nil, notags) -- or we could include a flag to the search?
         local min_spacing = inst.components.deployable.min_spacing or 2
@@ -53,7 +47,7 @@ local function hatchtree(inst)
     if #ents < 4 and test_ground(inst, pt) and not inst:IsInLimbo() then
         ondeploy(inst, pt)
     else
-        if inst:GetIsOnWater() then
+        if not inst:IsOnValidGround() then
             inst.AnimState:PlayAnimation("disappear_water")
         else
             inst.AnimState:PlayAnimation("disappear")
@@ -178,8 +172,8 @@ local function fn(Sim)
 
     inst.displaynamefn = displaynamefn
 
-    inst:ListenForEvent("seasonChange", function(it, data)
-        if data.season ~= SEASONS.LUSH and not inst:HasTag("jungletree") and not inst:IsInLimbo() then
+    inst:WatchWorldState("season", function(it, data)
+        if data.season ~= SEASONS.LUSH and not inst:IsInLimbo() then
             inst.taskgrow, inst.taskgrowinfo = inst:ResumeTask( math.random()* TUNING.TOTAL_DAY_TIME/2, hatchtree)
         end
     end, TheWorld)
