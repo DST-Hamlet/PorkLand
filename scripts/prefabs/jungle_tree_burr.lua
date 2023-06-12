@@ -4,52 +4,11 @@ local assets =
 	Asset("ANIM", "anim/burr.zip"),
 }
 
-local function growtree(inst)
-	print ("GROWTREE")
-    inst.growtask = nil
-    inst.growtime = nil
-
-    local ground = TheWorld
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local treetype = "rainforesttree_short"
-
-    if ground.Map and ground.Map:GetTileAtPoint(x, y, z) == GROUND.GASJUNGLE then
-        treetype = "rainforesttree_rot_short"
-    end
-
-    local tree = SpawnPrefab(treetype)
-
-    if tree then
-		tree.Transform:SetPosition(inst.Transform:GetWorldPosition() )
-        tree:growfromseed()--PushEvent("growfromseed")
-        inst:Remove()
-	end
-end
-
-local function digup(inst, digger)
-    inst.components.lootdropper:DropLoot()
-    inst:Remove()
-end
-
-local function plant(inst, growtime)
-    inst:RemoveComponent("inventoryitem")
-    inst:RemoveComponent("locomotor")
-    RemovePhysicsColliders(inst)
-    RemoveBlowInHurricane(inst)
-    inst.AnimState:PlayAnimation("sprout")
-    inst.AnimState:PushAnimation("idle_planted")
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/plant_tree")
-    inst.growtime = GetTime() + growtime
-    print ("PLANT", growtime)
-    inst.growtask = inst:DoTaskInTime(growtime, growtree)
-
-    inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot({"twigs"})
-
-    inst:AddComponent("workable")
-    inst.components.workable:SetWorkAction(ACTIONS.DIG)
-    inst.components.workable:SetOnFinishCallback(digup)
-    inst.components.workable:SetWorkLeft(1)
+local function plant(pt, growtime)
+    local sapling = SpawnPrefab("jungle_tree_burr_sapling")
+    sapling:StartGrowing()
+    sapling.Transform:SetPosition(pt:Get())
+    sapling.SoundEmitter:PlaySound("dontstarve/wilson/plant_tree")
 end
 
 
@@ -82,15 +41,10 @@ end
 
 local function ondeploy(inst, pt)
     inst = inst.components.stackable:Get()
+    inst:Remove()
 
-    if inst.components.inventoryitem then
-        inst.components.inventoryitem:OnRemoved()
-    end
-
-    inst.Transform:SetPosition(pt:Get() )
     local timeToGrow = GetRandomWithVariance(TUNING.PINECONE_GROWTIME.base, TUNING.PINECONE_GROWTIME.random)
-    plant(inst, timeToGrow)
-    inst:AddTag("jungletree")
+    plant(pt, timeToGrow)
 end
 
 local function hatchtree(inst)
@@ -212,8 +166,6 @@ local function fn(Sim)
     inst.components.appeasement.appeasementvalue = TUNING.WRATH_SMALL
 
 	MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
-	inst:ListenForEvent("onignite", stopgrowing)
-    inst:ListenForEvent("onextinguish", restartgrowing)
     MakeSmallPropagator(inst)
     --inst.components.burnable:MakeDragonflyBait(3)
 
