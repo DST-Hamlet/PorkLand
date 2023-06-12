@@ -15,6 +15,7 @@ PrefabFiles = {
     "hanging_vine",
     "iron",
     "pl_feathers",
+    "pl_plantables",
     "pl_wave_shore",
     "jungle_border_vine",
     "jungle_tree_burr",
