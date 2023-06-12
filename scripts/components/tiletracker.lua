@@ -24,20 +24,20 @@ function TileTracker:Stop()
 end
 
 local function IsWater(tile)
-	return tile == GROUND.OCEAN_MEDIUM or
-		tile == GROUND.OCEAN_DEEP or
-		tile == GROUND.OCEAN_SHALLOW or
-		tile == GROUND.OCEAN_SHORE or
-		tile == GROUND.OCEAN_CORAL or
-		tile == GROUND.OCEAN_CORAL_SHORE or
-		tile == GROUND.OCEAN_SHIPGRAVEYARD or
-		tile == GROUND.MANGROVE or
-		tile == GROUND.MANGROVE_SHORE or
-		tile == GROUND.LILYPOND
+	return tile == WORLD_TILES.OCEAN_MEDIUM or
+		tile == WORLD_TILES.OCEAN_DEEP or
+		tile == WORLD_TILES.OCEAN_SHALLOW or
+		tile == WORLD_TILES.OCEAN_SHORE or
+		tile == WORLD_TILES.OCEAN_CORAL or
+		tile == WORLD_TILES.OCEAN_CORAL_SHORE or
+		tile == WORLD_TILES.OCEAN_SHIPGRAVEYARD or
+		tile == WORLD_TILES.MANGROVE or
+		tile == WORLD_TILES.MANGROVE_SHORE or
+		tile == WORLD_TILES.LILYPOND
 end
 
 local function IsGas(tile)
-	return tile == GROUND.GASJUNGLE
+	return tile == WORLD_TILES.GASJUNGLE
 end
 
 function TileTracker:OnUpdate(dt)

@@ -257,6 +257,9 @@ local tuning = {
     NETTLE_MOISTURE_WET_THRESHOLD = 20,
     NETTLE_MOISTURE_DRY_THRESHOLD = 10,
 
+    MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY = 0.5,
+    SPRINKLER_MAX_FUEL_TIME = total_day_time,
+
 }
 
 for key, value in pairs(tuning) do

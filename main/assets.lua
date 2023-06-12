@@ -38,6 +38,7 @@ PrefabFiles = {
     "snake",
     "snakeoil",
     "snakeskin",
+    "sprinkler",
     "spider_monkey",
     "spider_monkey_tree",
     "spider_monkey_herd",
@@ -47,6 +48,8 @@ PrefabFiles = {
     "tuber",
     "tubertrees",
     "venomgland",
+    "water_pipe",
+    "water_spray",
     "weevole_carapace",
     "weevole",
 }
