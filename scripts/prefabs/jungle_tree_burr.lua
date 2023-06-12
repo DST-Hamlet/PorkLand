@@ -17,11 +17,11 @@ local function test_ground(inst, pt)
 	local ground_OK = inst:GetIsOnLand(pt.x, pt.y, pt.z)
     local tiletype = GetGroundTypeAtPosition(pt)
     ground_OK = ground_OK and
-						tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and tiletype ~= GROUND.INTERIOR and
-                        tiletype ~= GROUND.UNDERROCK and tiletype ~= GROUND.WOODFLOOR and
-                        tiletype ~= GROUND.FOUNDATION and tiletype ~= GROUND.COBBLEROAD and
-                        tiletype ~= GROUND.LAWN and tiletype ~= GROUND.FIELDS and
-                        tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND
+						tiletype ~= WORLD_TILES.ROCKY and tiletype ~= WORLD_TILES.ROAD and tiletype ~= WORLD_TILES.IMPASSABLE and tiletype ~= WORLD_TILES.INTERIOR and
+                        tiletype ~= WORLD_TILES.UNDERROCK and tiletype ~= WORLD_TILES.WOODFLOOR and
+                        tiletype ~= WORLD_TILES.FOUNDATION and tiletype ~= WORLD_TILES.COBBLEROAD and
+                        tiletype ~= WORLD_TILES.LAWN and tiletype ~= WORLD_TILES.FIELDS and
+                        tiletype ~= WORLD_TILES.CARPET and tiletype ~= WORLD_TILES.CHECKER and tiletype < WORLD_TILES.UNDERWORLD_TILES
 
     if ground_OK then
         local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4, nil, notags) -- or we could include a flag to the search?
