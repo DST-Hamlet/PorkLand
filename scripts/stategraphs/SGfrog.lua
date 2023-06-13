@@ -270,7 +270,7 @@ local states=
 
             -- The Y position prevents them from targeting the player on spawn by the herald.
             if inst:HasTag("aporkalypse_cleanup") and inst.components.combat then
-                inst.components.combat:SuggestTarget(GetPlayer())
+                inst.components.combat:SuggestTarget(ThePlayer)
             end
         end,
     },    

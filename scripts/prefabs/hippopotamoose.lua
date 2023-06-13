@@ -16,6 +16,8 @@ local prefabs =
     "meat",
     "hippoherd",
     "hippo_antler",
+    "groundpound_fx", --I added these
+    "groundpoundring_fx",
 }
 
 SetSharedLootTable( 'hippopotamoose',

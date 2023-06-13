@@ -54,7 +54,7 @@ local function UpdateTumble(inst)
 end
 
 local function KeepTarget(inst, target)
-    return inst.components.combat:CanTarget(target) and (target == GetPlayer())
+    return inst.components.combat:CanTarget(target) and (target == ThePlayer)
 end
 
 

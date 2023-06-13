@@ -410,9 +410,6 @@ local pl_tiledefs = {
 
 }
 
-PL_OCEAN_TILES = {}
-PL_LAND_TILES = {}
-
 for tile, def in pairs(pl_tiledefs) do
     local range = def.tile_range
     if type(range) == "function" then
