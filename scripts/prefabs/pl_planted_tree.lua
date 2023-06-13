@@ -8,6 +8,16 @@ local jungle_tree_prefabs =
     "rainforesttree_short",
 }
 
+local teatree_assets =
+{
+    Asset("ANIM", "anim/teatree_nut.zip"),
+}
+
+local teatree_prefabs =
+{
+  --  "acorn_cooked",
+    "spoiled_food"
+}
 
 local function growtree(inst)
     local tree = SpawnPrefab(inst.growprefab)
@@ -98,5 +108,6 @@ local function sapling_fn(build, anim, growprefab, tag, fireproof, overrideloot)
     return fn
 end
 
-return Prefab("jungle_tree_burr_sapling", sapling_fn("burr", "idle_planted", "rainforesttree_short", "jungletree"), jungle_tree_assets, jungle_tree_prefabs)
+return Prefab("jungle_tree_burr_sapling", sapling_fn("burr", "idle_planted", "rainforesttree_short", "jungletree"), jungle_tree_assets, jungle_tree_prefabs),
+Prefab("teatree_sapling", sapling_fn("teatree_nut", "idle_planted", "teatree", "teatree"), teatree_assets, teatree_prefabs)
 

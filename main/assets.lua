@@ -21,7 +21,7 @@ PrefabFiles = {
     "tree_pillar",
     "weevole_carapace",
     "weevole",
-    
+
 	-- by Godless --
     --"pl_pocketdimensioncontainer_defs", -- i use override
 	"halberd",
@@ -47,7 +47,7 @@ PrefabFiles = {
     "clawpalmtree_sapling",
     "rock_flippable",
     "roc_nest",
-	
+
     "smashingpot",
     "bramble_bulb",
     "inv_bamboo",
@@ -66,7 +66,7 @@ PrefabFiles = {
     "porklandintro",
     --"boatrepairkit",
     --"boattorch",
-	
+
 	-- by J0chem and n00bita
 	"dungbeetle",
 	"dungball",
@@ -84,7 +84,7 @@ PrefabFiles = {
     "reeds_water",
     "frog_poison",
 	"pl_wave",
-	
+
 	-- By Noctice / Ardent
 	"pl_feathers",
 	"gnatmound",
@@ -113,7 +113,7 @@ PrefabFiles = {
     "sprinkler",
     "water_pipe",
     "water_spray",
-	
+
 	-- By Darian Stephens
 	"oincs",
 	"relics",
@@ -132,7 +132,7 @@ PrefabFiles = {
 	"laser",
 	"laser_ring",
 	"reconstruction_project",
-	
+
 	"pig_ruins_creeping_vines",
 	--"pig_ruins_dart",
 	--"pig_ruins_dart_statue",
@@ -140,6 +140,10 @@ PrefabFiles = {
 	--"pig_ruins_pressure_plate",
 	"pig_ruins_spear_trap",
 	"pig_ruins_torch",
+
+    "teatrees",
+    "teatree_nut",
+    "piko",
 }
 
 Assets = {
@@ -165,10 +169,10 @@ Assets = {
     Asset("ANIM", "anim/player_actions_hack.zip"),
     Asset("ANIM", "anim/player_actions_shear.zip"),
 	Asset("ANIM", "anim/player_actions_tap.zip"),
-	
+
 	-- turf_item
     Asset("ANIM", "anim/turf_pl.zip"),
-	
+
 	-- variant animations
 	Asset("ANIM", "anim/log_rainforest.zip"),
 	Asset("ANIM", "anim/hat_snakeskin_scaly.zip"),
