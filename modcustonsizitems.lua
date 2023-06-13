@@ -89,6 +89,9 @@ local custonsiz_items = {  -- add in dst custonsiz
         animals = {
             peagawk_setting = {image = "peagawk.tex"},
             glowfly_setting = {image = "glowflies.tex"},
+            dung_beetle_setting = {image = "dung_beetles.tex"},
+            pog_setting = {image = "pogs.tex"},
+            hippopotamoose_setting = {image = "hippopotamoose.tex"},
         },
         resources = {
             asparagus_regrowth = {image = "asparagus.tex"},

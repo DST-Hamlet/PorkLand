@@ -49,6 +49,9 @@ return {
             PORKLAND_SEASON_START = "Porkland Starting Season",
             TEMPERATE = "Temperate",
             WEEVOLE_SETTING = "Weevole",
+            POG_SETTING = "Pog",
+            DUNG_BEETLE_SETTING = "Dung Beetle",
+            HIPPOPOTAMOOSE_SETTING = "Hippopotamoose",
         },
         SANDBOXMENU = {
             CHOOSEWORLD = "Choose World",

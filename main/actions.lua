@@ -135,7 +135,33 @@ for actiontype, actons in pairs(PL_COMPONENT_ACTIONS) do
     end
 end
 
+--Dung mod stuff
+local true_fn = function() return true end
 
+local digdung = AddAction(
+	"DIGDUNG",
+	"Dig",
+	function(act)
+		act.target.components.workable:WorkedBy(act.doer, 1)
+	end
+)
+digdung.mount_valid = true
+
+local mountdung = AddAction(
+	"MOUNTDUNG",
+	"Mount dung",
+	function(act)
+		act.doer.dung_target:Remove()
+		act.doer:AddTag("hasdung") 
+		act.doer.dung_target = nil
+	end
+)
+
+local bark = AddAction("BARK", "Bark", true_fn)
+bark.distance = 3
+
+local ransack = AddAction("RANSACK", "Ransack", true_fn)
+ransack.distance = 0.5
 
 
 -- hack

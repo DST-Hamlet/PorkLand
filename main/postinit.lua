@@ -20,7 +20,10 @@ local components_post = {
     "shard_seasons",
     "sleeper",
     "wavemanager",
-    "worldstate"
+    "worldstate",
+    "amphibiouscreature",
+    "thief",
+    "floater"
 }
 
 local prefabs_post = {

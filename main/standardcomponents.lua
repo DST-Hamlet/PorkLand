@@ -3,6 +3,20 @@ GLOBAL.setfenv(1, GLOBAL)
 function MakeHackableBlowInWindGust()
 end
 
+function MakeAmphibiousCharacterPhysics(inst, mass, rad)
+    local phys = inst.entity:AddPhysics()
+    phys:SetMass(mass)
+    phys:SetCapsule(rad, 1)
+    phys:SetFriction(0)
+    phys:SetDamping(5)
+    phys:SetCollisionGroup(COLLISION.CHARACTERS)
+    phys:ClearCollisionMask()
+    phys:CollidesWith((TheWorld.has_ocean and COLLISION.GROUND) or COLLISION.WORLD)
+    phys:CollidesWith(COLLISION.OBSTACLES)
+    phys:CollidesWith(COLLISION.CHARACTERS)
+    return phys
+end
+
 function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, attack_period_penalty, speed_penalty, hunger_burn, sanity_scale)
     if not inst.components.poisonable then
         inst:AddComponent("poisonable")
