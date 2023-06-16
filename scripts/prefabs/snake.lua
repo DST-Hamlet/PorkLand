@@ -255,9 +255,9 @@ local function fn(Sim)
 	-- inst.components.sleeper:SetWakeTest(ShouldWakeUp)
 	inst:ListenForEvent("newcombattarget", OnNewTarget)
 
-	-- inst:ListenForEvent( "dusktime", function() OnNight( inst ) end, GetWorld())
-	-- inst:ListenForEvent( "nighttime", function() OnNight( inst ) end, GetWorld())
-	-- inst:ListenForEvent( "daytime", function() OnDay( inst ) end, GetWorld())
+	-- inst:ListenForEvent( "dusktime", function() OnNight( inst ) end, TheWorld)
+	-- inst:ListenForEvent( "nighttime", function() OnNight( inst ) end, TheWorld)
+	-- inst:ListenForEvent( "daytime", function() OnDay( inst ) end, TheWorld)
 	inst.OnEntitySleep = OnEntitySleep
 
 	inst.OnSave = OnSave

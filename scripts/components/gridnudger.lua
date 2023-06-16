@@ -1,7 +1,7 @@
 local Gridnudger = Class(function(self, inst)
     self.inst = inst
 
-    self.inst.gridnudgetask = self.inst:DoTaskInTime(0,function() self:fixposition() end)
+    self.inst.gridnudgetask = self.inst:DoTaskInTime(0, function() self:fixposition() end)
 end)
 
 function Gridnudger:OnSave()    

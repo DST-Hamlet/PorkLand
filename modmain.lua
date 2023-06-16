@@ -1,5 +1,15 @@
 local modimport = modimport
 local GetModConfigData = GetModConfigData
+local AddPrototyperDef = AddPrototyperDef
+
+
+local CustomTechTree = gemrun("tools/customtechtree")
+
+-- Create the custom techtrees
+CustomTechTree.AddNewTechType("CITY")
+GLOBAL.TECH.CITY_TWO = {CITY = 2}
+CustomTechTree.AddPrototyperTree("CITY", {CITY = 2})
+
 GLOBAL.setfenv(1, GLOBAL)
 
 IA_ENABLED = rawget(_G, "IA_CONFIG") ~= nil
@@ -36,3 +46,9 @@ modimport("main/prefabskin")
 modimport("main/cooking")
 
 modimport("main/shadeeffects")
+
+
+PROTOTYPER_DEFS.hogusporkusator = PROTOTYPER_DEFS.researchlab4
+
+AddPrototyperDef("key_to_city", {icon_atlas = "images/hud/pl_hud.xml", icon_image = "tab_city.tex", is_crafting_station = true, action_str = "CITY", filter_text = "City"})
+PROTOTYPER_DEFS.key_to_city.filter_text = STRINGS.UI.CRAFTING_STATION_FILTERS.CITY --make it use the string now that its been loaded

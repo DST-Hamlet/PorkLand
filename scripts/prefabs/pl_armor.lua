@@ -255,7 +255,7 @@ local function ontakefuel(inst, fuelvalue)
 end
 
 local function onempty(inst)
-    GetPlayer():RemoveTag("not_hit_stunned")
+    ThePlayer:RemoveTag("not_hit_stunned")
 end
 
 local function vortexcloak_fn()

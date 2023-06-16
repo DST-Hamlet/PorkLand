@@ -230,10 +230,10 @@ local function fn()
 	inst:SetStateGraph("SGpog")
 
 	-- @hamlet -- currently fullmoon is used as a substitute for aporkalypse.
-	inst:ListenForEvent("fullmoon", function() inst.AnimState:SetBuild("pog_feral_build") end, GetWorld())
-	inst:ListenForEvent("daytime", function() inst.AnimState:SetBuild("pog_basic") end, GetWorld())
-	-- inst:ListenForEvent("beginaporkalypse", function() inst.AnimState:SetBuild("pog_feral_build") end, GetWorld())
-	-- inst:ListenForEvent("endaporkalypse", function() inst.AnimState:SetBuild("pog_basic") end, GetWorld())
+	inst:ListenForEvent("fullmoon", function() inst.AnimState:SetBuild("pog_feral_build") end, TheWorld)
+	inst:ListenForEvent("daytime", function() inst.AnimState:SetBuild("pog_basic") end, TheWorld)
+	-- inst:ListenForEvent("beginaporkalypse", function() inst.AnimState:SetBuild("pog_feral_build") end, TheWorld)
+	-- inst:ListenForEvent("endaporkalypse", function() inst.AnimState:SetBuild("pog_basic") end, TheWorld)
 	-- inst:ListenForEvent("exitlimbo", function(inst)
     --     local aporkalypse = GetAporkalypse()
     --     if aporkalypse and aporkalypse:IsActive() then

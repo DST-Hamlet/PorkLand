@@ -358,7 +358,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
         end
     end
 
-    if entities["teatree_piko_nest_patch"] then
+	if entities["teatree_piko_nest_patch"] then
         for i,ent in ipairs(entities["teatree_piko_nest_patch"]) do
             makebunch(entities, topology_save, WorldSim, map_width, map_height, "teatree_piko_nest", 18, math.random(4,8),ent.x,ent.z)
         end

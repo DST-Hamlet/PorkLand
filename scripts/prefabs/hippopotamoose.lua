@@ -16,6 +16,8 @@ local prefabs =
     "meat",
     "hippoherd",
     "hippo_antler",
+	"groundpound_fx", --I added these
+    "groundpoundring_fx",
 }
 
 SetSharedLootTable( 'hippopotamoose',
@@ -103,7 +105,7 @@ local function Retarget(inst)
             return (guy:HasTag("character") or guy:HasTag("monster"))
                    and not (inst.components.follower and inst.components.follower.leader == guy)
                    and not (guy:HasTag("hippopotamoose") and (guy.components.follower and not guy.components.follower.leader))
-                   and not ((inst.components.follower and inst.components.follower.leader == GetPlayer()) and (guy.components.follower and guy.components.follower.leader == GetPlayer()))
+                   and not ((inst.components.follower and inst.components.follower.leader == ThePlayer) and (guy.components.follower and guy.components.follower.leader == ThePlayer))
                    and inst.components.combat:CanTarget(guy)
     end)
 

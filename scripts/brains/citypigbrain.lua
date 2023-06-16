@@ -47,12 +47,11 @@ local FAR_ENOUGH = 40
 local BIG_NUMBER = 9999
 
 local function getSpeechType(inst, speech)
-    local line = speech.DEFAULT
-
     if inst.talkertype and speech[inst.talkertype] then
-        line = speech[inst.talkertype]
-    end
-    return line
+        return speech[inst.talkertype]
+    else
+		return speech["DEFAULT"]
+	end
 end
 
 local function getString(speech)
@@ -249,13 +248,14 @@ end
 
 local function PoopTip(inst)
     inst.tipping = true
-    return BufferedAction(inst, GetPlayer(), ACTIONS.SPECIAL_ACTION)
+	print("WORK, POOP", GetClosestInstWithTag("player", inst, 80))
+    return BufferedAction(inst, GetClosestInstWithTag("player", inst, 80), ACTIONS.SPECIAL_ACTION)
 end
 
 
 local function PayTax(inst)
     inst.taxing = true
-    -- return BufferedAction(inst, GetPlayer(), ACTIONS.SPECIAL_ACTION)
+    -- return BufferedAction(inst, ThePlayer, ACTIONS.SPECIAL_ACTION)
     return BufferedAction(inst, GetClosestInstWithTag("mayor", inst, 80), ACTIONS.SPECIAL_ACTION)
 end
 
@@ -263,7 +263,7 @@ end
 
 local function DailyGift(inst)
     inst.daily_gifting = true
-    return BufferedAction(inst, GetPlayer(), ACTIONS.SPECIAL_ACTION)
+    return BufferedAction(inst, GetClosestInstWithTag("player", inst, 80), ACTIONS.SPECIAL_ACTION)
 end
 
 local function ShopkeeperSitAtDesk(inst)
@@ -396,7 +396,7 @@ local function ExtinguishfireAction(inst)
             local pt = inst:GetPosition()
             local tiletype = GetGroundTypeAtPosition(pt)
 
-            if tiletype == GROUND.SUBURB or tiletype == GROUND.FOUNDATION or tiletype == GROUND.COBBLEROAD or tiletype == GROUND.LAWN or tiletype == GROUND.FIELDS then
+            if tiletype == WORLD_TILES.SUBURB or tiletype == WORLD_TILES.FOUNDATION or tiletype == WORLD_TILES.COBBLEROAD or tiletype == WORLD_TILES.LAWN or tiletype == WORLD_TILES.FIELDS then
                 target = ent
                 break
             end
@@ -442,7 +442,8 @@ function getfacespeech(inst)
         return speech        
     else
         local speech = getSpeechType(inst, STRINGS.CITY_PIG_TALK_LOOKATWILSON)
-        if GetPlayer():HasTag("pigroyalty") then
+		local player = GetClosestInstWithTag("player", inst, START_FACE_DIST)
+        if player and player:HasTag("pigroyalty") then
             speech =  STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY
         end
         
@@ -492,7 +493,7 @@ function CityPigBrain:OnStart()
                 RunAway(self.inst, "spider", 4, 8)),
             
             ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FIND_MEAT),
-                DoAction(self.inst, FindFoodAction )),
+                DoAction(self.inst, FindFoodAction)),
             
             -- after hours shop pig wants you to leave
             IfNode(function() return self.inst:HasTag("shopkeep") or self.inst:HasTag("pigqueen") end, "shopkeeper closing",
@@ -531,16 +532,14 @@ function CityPigBrain:OnStart()
                 Follow(self.inst, GetLeader, MIN_FOLLOW_DIST, TARGET_FOLLOW_DIST, MAX_FOLLOW_DIST)),
             IfNode(function() return GetLeader(self.inst) end, "has leader",
                 ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FOLLOWWILSON),
-                    FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn ))),
+                    FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn))),
             -- END FOLLOWER CODE
-
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
-                WhileNode(function() return shouldpanicwithspeech(self.inst) end, "Threat Panic",
-                    Panic(self.inst) ),"alarmed"),
-
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
-                WhileNode( function() return (self.inst.components.combat.target and not self.inst:HasTag("guard")) end, "Dodge",
-                    RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST) ), "alarmed" ),                                
+			WhileNode(function() return shouldpanicwithspeech(self.inst) end, "Threat Panic",
+				ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
+                    Panic(self.inst)),"alarmed"),
+			WhileNode( function() return (self.inst.components.combat.target and not self.inst:HasTag("guard")) end, "Dodge",
+				ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
+                    RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST)),"alarmed"),                                
 
             ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
                 RunAway(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST ),"alarmed"),
@@ -561,8 +560,8 @@ function CityPigBrain:OnStart()
                     local target = GetFaceTargetFn(self.inst)
                     
                     if target and (target:HasTag("pigroyalty") or (TheWorld.components.aporkalypse and TheWorld.components.aporkalypse:GetFiestaActive()) )and
-                       (not self.inst.daily_gift or (GetClock():GetTotalTime() - self.inst.daily_gift > (TUNING.TOTAL_DAY_TIME * 1.5))) then
-                            self.inst.daily_gift = GetClock():GetTotalTime()
+                       (not self.inst.daily_gift or (TheWorld.state.cycles - self.inst.daily_gift > (TUNING.TOTAL_DAY_TIME * 1.5))) then
+                            self.inst.daily_gift = TheWorld.state.cycles
                             return math.random() < 0.3
                     end
                     return false

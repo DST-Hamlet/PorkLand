@@ -44,7 +44,7 @@ local phasefunctions =
     end,
 
     night = function(inst, instant) 
-        -- if GetWorld().components.clock:GetMoonPhase() == "full" then
+        -- if TheWorld.components.clock:GetMoonPhase() == "full" then
         if TheWorld.state.isfullmoon then
             local time = 4 
             if instant then 
@@ -176,9 +176,9 @@ local function makefn(fadeout)
 
         inst:AddTag("NOCLICK")
 
-        -- inst:ListenForEvent("daytime", function() timechange(inst) end, GetWorld())
-        -- inst:ListenForEvent("dusktime", function() timechange(inst) end, GetWorld())
-        -- inst:ListenForEvent("nighttime", function() timechange(inst) end, GetWorld())
+        -- inst:ListenForEvent("daytime", function() timechange(inst) end, TheWorld)
+        -- inst:ListenForEvent("dusktime", function() timechange(inst) end, TheWorld)
+        -- inst:ListenForEvent("nighttime", function() timechange(inst) end, TheWorld)
 		
 		inst:WatchWorldState("phase", UpdateTime)
 		UpdateTime(inst, TheWorld.state.phase)
@@ -218,7 +218,7 @@ local function makefn(fadeout)
         if fadeout then
             inst:ListenForEvent( "onchangecanopyzone", function()
                 updatevis(inst)
-            -- end, GetWorld())
+            -- end, TheWorld)
             end, TheWorld)
             inst.extradistancefade_current = 0            
         else

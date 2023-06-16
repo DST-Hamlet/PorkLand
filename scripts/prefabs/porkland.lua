@@ -133,6 +133,9 @@ local function master_postinit(inst)
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")
+	
+	inst:AddComponent("economy")
+	inst:AddComponent("periodicpoopmanager")
 
     inst:AddComponent("hunter")
     inst:AddComponent("lureplantspawner")

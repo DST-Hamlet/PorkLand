@@ -43,7 +43,7 @@ local function test_ground(inst, pt)
     local tiletype = GetGroundTypeAtPosition(pt)
     local ground_OK = tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and
                         tiletype ~= GROUND.UNDERROCK and tiletype ~= GROUND.WOODFLOOR and 
-                        tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND and not GetWorld().Map:IsWater(tiletype)
+                        tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND and not TheWorld.Map:IsWater(tiletype)
     
     if ground_OK then
         local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4, nil, notags) -- or we could include a flag to the search?

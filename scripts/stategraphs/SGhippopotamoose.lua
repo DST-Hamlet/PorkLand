@@ -20,7 +20,7 @@ local events=
                                 end
                             end),
     EventHandler("doleapattack", function(inst,data)
-                                if inst.components.health and not inst.components.health:IsDead() and not inst.sg:HasStateTag("busy") then
+                                if inst.components.health and not inst.components.health:IsDead() then --and not inst.sg:HasStateTag("busy")
                                     inst.sg:GoToState("leap_attack_pre", data.target)
                                 end
                             end),
@@ -132,8 +132,8 @@ local states=
         end,
 
         onupdate = function(inst)
-            -- local percent = inst.AnimState:GetPercent() TODO fix important
-            local percent = 0
+            -- local percent = inst.AnimState:GetPercent() TODO this doesnt work
+            local percent = inst.AnimState:GetCurrentAnimationTime()/inst.AnimState:GetCurrentAnimationLength()
             local xdiff = inst.sg.statemem.targetpos.x - inst.sg.statemem.startpos.x
             local zdiff = inst.sg.statemem.targetpos.z - inst.sg.statemem.startpos.z
 

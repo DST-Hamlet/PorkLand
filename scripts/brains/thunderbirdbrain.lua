@@ -82,7 +82,7 @@ local function GoHomeAction(inst)
 end
 
 local function IsValidGround(pos)
-    local ground = GetWorld()
+    local ground = TheWorld
 
     if ground and pos then
         local tile = ground.Map:GetTileAtPoint(pos.x, pos.y, pos.z)

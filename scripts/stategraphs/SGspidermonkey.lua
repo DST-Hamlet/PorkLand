@@ -59,7 +59,7 @@ local states =
             EventHandler("animover", function(inst) 
 
                 if (inst.components.combat.target and
-                    inst.components.combat.target == GetPlayer()) or inst:HasTag("agitated") then
+                    inst.components.combat.target == ThePlayer) or inst:HasTag("agitated") then
 
                     if math.random() < 0.1 then
                         inst.sg:GoToState("taunt")

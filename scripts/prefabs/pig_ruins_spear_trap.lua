@@ -45,7 +45,7 @@ local function setextendeddata(inst, extended)
         inst.name = STRINGS.NAMES.PIG_RUINS_SPEAR_TRAP_TRIGGERED
         inst.Physics:SetActive(true)       
         if inst.MiniMapEntity then
-            inst.MiniMapEntity:SetIcon("spear_trap.png")          
+            inst.MiniMapEntity:SetIcon("spear_trap.tex")          
         end
     else
         inst:AddTag("NOCLICK")
@@ -131,7 +131,7 @@ local function OnKilled(inst)
     debris.Transform:SetPosition(inst.Transform:GetWorldPosition())
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/traps/speartrap_break")    
     if inst:HasTag("INTERIOR_LIMBO") then
-        local interiorSpawner = GetWorld().components.interiorspawner
+        local interiorSpawner = TheWorld.components.interiorspawner
         local interior = interiorSpawner:getPropInterior(inst)
         interiorSpawner:injectprefab(debris,interior)
     end
@@ -147,7 +147,7 @@ local function burnt(inst)
     debris.AnimState:PlayAnimation("burnt")
     debris.Transform:SetPosition(inst.Transform:GetWorldPosition())    
     if inst:HasTag("INTERIOR_LIMBO") then
-        local interiorSpawner = GetWorld().components.interiorspawner
+        local interiorSpawner = TheWorld.components.interiorspawner
         local interior = interiorSpawner:getPropInterior(inst)
         interiorSpawner:injectprefab(debris,interior)
     end

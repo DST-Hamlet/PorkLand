@@ -31,7 +31,7 @@ local function GetHomePos(inst)
 end
 
 local function GetWanderPoint(inst)
-	local target = GetHome(inst) or GetPlayer()
+	local target = GetHome(inst) or ThePlayer
 
 	if target then
 		return target:GetPosition()

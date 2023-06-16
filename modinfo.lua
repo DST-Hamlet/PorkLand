@@ -21,6 +21,14 @@ icon = "modicon.tex"
 
 server_filter_tags = {"hamltet", "porkland"}
 
+mod_dependencies = {
+    {--GEMCORE
+        workshop = "workshop-1378549454",
+        ["GemCore"] = false,
+        ["[API] Gem Core - GitLab Version"] = true,
+    },
+}
+
 local function Breaker(title_en, title_zh)  --hover does not work, as this item cannot be hovered
     return {name = en_zh(title_en, title_zh) , options = {{description = "", data = false}}, default = false}
 end

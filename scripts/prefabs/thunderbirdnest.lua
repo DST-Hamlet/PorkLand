@@ -85,4 +85,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab( "common/objects/thunderbirdnest", fn, assets, prefabs)
+return Prefab("thunderbirdnest", fn, assets, prefabs)

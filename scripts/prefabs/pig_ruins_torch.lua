@@ -113,7 +113,7 @@ local function fn(Sim)
     inst:AddComponent("burnable")
     --inst.components.burnable:SetFXLevel(2)
 
-    inst.components.burnable:AddBurnFX("campfirefire", Vector3(0,0,0), "fire_marker" )
+    inst.components.burnable:AddBurnFX("campfirefire", Vector3(0,20,0), "fire_marker" )
     -- inst.components.burnable:MakeNotWildfireStarter()    
 	inst:AddTag("wildfireprotected")
     inst:ListenForEvent("onextinguish", onextinguish)
@@ -182,7 +182,7 @@ end
 local function pillarfn(Sim)
     local inst = fn(Sim)
     local minimap = inst.entity:AddMiniMapEntity()
-    minimap:SetIcon("ruins_torch.png")
+    minimap:SetIcon("ruins_torch.tex")
     return inst
 end
 

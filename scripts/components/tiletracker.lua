@@ -52,7 +52,7 @@ function TileTracker:OnUpdate(dt)
 		end
 
 		if self.onwaterchangefn or self.inst:HasTag("amphibious") then
-			-- local onwater = GetWorld().Map:IsWater(tile)
+			-- local onwater = TheWorld.Map:IsWater(tile)
 			local onwater = IsWater(tile)
 
 			if onwater ~= self.onwater then

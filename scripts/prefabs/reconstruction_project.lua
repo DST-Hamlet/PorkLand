@@ -210,7 +210,7 @@ local function getstatus(inst)
 end
 
 function GetSpawnPoint(inst, pt)
-    -- if GetPlayer():HasTag("aquatic") then 
+    -- if ThePlayer:HasTag("aquatic") then 
         -- return 
     -- end 
 
@@ -221,7 +221,7 @@ function GetSpawnPoint(inst, pt)
     if offset then
         local pos = pt+offset
 
-        local ground = GetWorld()
+        local ground = TheWorld
         local tile = GROUND.GRASS
         if ground and ground.Map then
             tile = inst:GetCurrentTileType(pos:Get())
@@ -255,7 +255,7 @@ local function spawnFixer(inst)
 			nearestPlayerInst = v
 		end
 	end
-    -- if inst:GetDistanceSqToInst(GetPlayer()) > AUTO_REPAIRDIST * AUTO_REPAIRDIST then
+    -- if inst:GetDistanceSqToInst(ThePlayer) > AUTO_REPAIRDIST * AUTO_REPAIRDIST then
     if nearestPlayerDist > AUTO_REPAIRDIST * AUTO_REPAIRDIST then
         fix(inst)        
     else
@@ -275,7 +275,7 @@ local function spawnFixer(inst)
                         end
                     end
                 else
-                    -- local pt = Vector3(GetPlayer().Transform:GetWorldPosition()) 
+                    -- local pt = Vector3(ThePlayer.Transform:GetWorldPosition()) 
                     local pt = Vector3(nearestPlayerInst.Transform:GetWorldPosition()) 
                     local spawn_pt = GetSpawnPoint(inst, pt)
                     if spawn_pt then

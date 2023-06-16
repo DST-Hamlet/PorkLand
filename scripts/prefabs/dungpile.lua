@@ -42,7 +42,7 @@ local function ondug(inst, worker)
     local pt = Point(inst.Transform:GetWorldPosition())    
     
 
-    if worker == GetPlayer()  then
+    if worker == ThePlayer  then
         for i=1, inst.components.pickable.cycles_left do   
             local loots = inst.components.lootdropper:GenerateLoot()
             inst.components.lootdropper:DropLoot(pt, loots)        
@@ -82,8 +82,8 @@ local function onpickedfn(inst, picker)
     inst.components.lootdropper:DropLoot(pt, loots)
 
     if picker.components.sanity then
-        if picker.components.talker and picker == GetPlayer() then
-            GetPlayer().components.talker:Say(GetString(GetPlayer().prefab, "ANNOUNCE_PICKPOOP"))
+        if picker.components.talker and picker == ThePlayer then
+            ThePlayer.components.talker:Say(GetString(ThePlayer.prefab, "ANNOUNCE_PICKPOOP"))
         end
         if picker:HasTag("plantkin") then
             picker.components.sanity:DoDelta(10)

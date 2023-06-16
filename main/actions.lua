@@ -8,12 +8,14 @@ local PL_ACTIONS = {
     PEAGAWK_TRANSFORM = Action({}),
     DIGDUNG = Action({mount_valid=true}),
     MOUNTDUNG = Action({}),
-    DISLODGE = Action({distance = 1,priority = 1}),
+    DISLODGE = Action({}),
     SPECIAL_ACTION = Action({distance = 1.2}),
     SPECIAL_ACTION2 = Action({distance = 1.2}),
     BARK = Action({distance = 3}),
     RANSACK = Action({distance = 0.5}),
 	INFEST = Action({distance = 0.5}),
+	STOCK = Action({}),
+	FIX = Action({}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -134,8 +136,8 @@ ACTIONS.INFEST.fn = function(act)
 end
 
 ACTIONS.SPECIAL_ACTION.fn = function(act)
-	if act.doer.SpecialAction then
-		act.doer.SpecialAction(act)
+	if act.doer.special_action then
+		act.doer.special_action(act)
 		return true
 	end
 end
@@ -147,7 +149,22 @@ ACTIONS.SPECIAL_ACTION2.fn = function(act)
 	end
 end
 -----------------------------------------------------------------------------------------
-
+ACTIONS.FIX.fn = function(act)
+	if act.target then
+		local target = act.target
+		local numworks = 1
+		target.components.workable:WorkedBy(act.doer, numworks)
+	--	return target:fix(act.doer)		
+	end
+end
+ACTIONS.STOCK.fn = function(act)
+	if act.target then		
+		act.target.restock(act.target,true)
+		act.doer.changestock = nil
+		return true
+	end
+end
+-----------------------------------------------------------------------------------------
 -- Patch for hackable things
 local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
 function ACTIONS.FERTILIZE.fn(act, ...)
@@ -163,6 +180,16 @@ function ACTIONS.FERTILIZE.fn(act, ...)
     end
 end
 -----------------------------------------------------------------------------------------
+function ACTIONS.PICK.strfn(act)
+	local obj = act.target
+	if obj:HasTag("pick_digin") then
+		return "DIGIN"
+	end
+	if obj:HasTag("flippable") then
+		return "FLIP"
+	end
+end
+
 function ACTIONS.COOK.strfn(act)
 	local obj = act.target
 	if obj.components.melter then

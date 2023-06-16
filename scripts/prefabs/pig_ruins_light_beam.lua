@@ -121,7 +121,7 @@ local phasefunctions =
     end,
 
     night = function(inst, instant) 
-        -- if GetWorld().components.clock:GetMoonPhase() == "full" then
+        -- if TheWorld.components.clock:GetMoonPhase() == "full" then
         if TheWorld.state.isfullmoon then
             local time = 4 
             if instant then 
@@ -206,9 +206,9 @@ local function fn(Sim)
     
     --------------------
 
-    -- inst:ListenForEvent("daytime", function() timechange(inst) end, GetWorld())
-    -- inst:ListenForEvent("dusktime", function() timechange(inst) end, GetWorld())
-    -- inst:ListenForEvent("nighttime", function() timechange(inst) end, GetWorld())
+    -- inst:ListenForEvent("daytime", function() timechange(inst) end, TheWorld)
+    -- inst:ListenForEvent("dusktime", function() timechange(inst) end, TheWorld)
+    -- inst:ListenForEvent("nighttime", function() timechange(inst) end, TheWorld)
 	-- inst:WatchWorldState("phase", timechange)
 	inst:WatchWorldState("phase", UpdateTime)
     UpdateTime(inst, TheWorld.state.phase)

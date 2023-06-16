@@ -17,23 +17,18 @@ local tuning = {
     SEASON_VERYHARSH_DEFAULT = 10,
     SEASON_LENGTH_VERYHARSH_LONG = 15,
     SEASON_LENGTH_VERYHARSH_VERYLONG = 20,
-
     TEMPERATE_LENGTH = 10,
     HUMID_LENGTH = 10,
     LUSH_LENGTH = 10,
     APORKALYPSE_LENGTH = 20,
-
     APORKALYPSE_NEAR_TIME = 7 * total_day_time,
     APORKALYPSE_PERIOD_LENGTH = 60 * total_day_time,
-
     MACHETE_DAMAGE = wilson_attack * .88,
     MACHETE_USES = 100,
-
 	ARMOR_SNAKESKIN_PERISHTIME = total_day_time*8, --was 10
 	SNAKESKINHAT_PERISHTIME = total_day_time*8, --was 10
 
 	VINE_REGROW_TIME = total_day_time * 4,
-
 	JUNGLETREESEED_GROWTIME = {base=4.5*day_time, random=0.75*day_time},
 	JUNGLETREE_GROW_TIME =
 	{
@@ -41,50 +36,36 @@ local tuning = {
 		{base=8*day_time, random=5*day_time},   --short to normal
 		{base=8*day_time, random=5*day_time},   --normal to tall
 	},
-
-
 	----------
     GLOWFLY_COCOON_HEALTH = 300,
-
     GLOWFLY_WALK_SPEED = 6,
     GLOWFLY_RUN_SPEED = 8,
-
     GLOWFLY_DELAY_DEFAULT = 5,
     GLOWFLY_DELAY_MIN = 2,
     GLOWFLY_DELAY_MAX = 50,
-
     GLOWFLY_BASEDELAY_DEFAULT = 5,
     GLOWFLY_BASEDELAY_MIN = 0,
     GLOWFLY_BASEDELAY_MAX = 50,
-
     GLOWFLY_DEFAULT = 7,
     GLOWFLY_MAX = 14,
     GLOWFLY_MIN = 0,
-
     ASPARAGUS_REGROWTH_TIME = day_time * 20,
     ASPARAGUS_REGROWTH_TIME_MULT = 1,
-
 	ALOE_REGROWTH_TIME = day_time * 20,
     ALOE_REGROWTH_TIME_MULT = 1,
-
 	RADISH_REGROWTH_TIME = day_time * 20,
     RADISH_REGROWTH_TIME_MULT = 1,
-
 	TUBERTREE_REGROWTH_TIME = total_day_time * 5,
     TUBERTREE_REGROWTH_TIME_MULT = 1,
-
     TREE_CREAK_RANGE = 16,
-
     JUNGLETREE_CHOPS_SMALL = 5,
     JUNGLETREE_CHOPS_NORMAL = 10,
     JUNGLETREE_CHOPS_TALL = 15,
     JUNGLETREE_WINDBLOWN_SPEED = 0.2,
     JUNGLETREE_WINDBLOWN_FALL_CHANCE = 0.01,
-
 	-- standard poison vars
 	VENOM_GLAND_DAMAGE = 75,
 	VENOM_GLAND_MIN_HEALTH = 5,
-
     POISON_PERISH_PENALTY = 0.5,
     POISON_HUNGER_DRAIN_MOD = 0.80,
     POISON_DAMAGE_MOD = -0.25,
@@ -106,9 +87,7 @@ local tuning = {
         {time = 2.70 * total_day_time, damage_scale = 1.50, interval_scale = 0.7, fxlevel = 3}, -- 41.14 DMG
         {time = 2.90 * total_day_time, damage_scale = 2.00, interval_scale = 0.5, fxlevel = 4}, -- 38.40 DMG
     },
-
     FOG_MOISTURE_RATE_SCALE = 0.6,
-
 	-----------------
 	-- AUTO TUNING --
 	-----------------
@@ -120,7 +99,6 @@ local tuning = {
 	MAGNIFYING_GLASS_DAMAGE = wilson_attack *.125,
 	CORK_BAT_DAMAGE = wilson_attack * 1.5,
 	BRUSH_DAMAGE = wilson_attack*.8,
-
 	TRUSTY_SHOOTER_DAMAGE_HIGH = 60,
 	TRUSTY_SHOOTER_DAMAGE_MEDIUM = 45,
 	TRUSTY_SHOOTER_DAMAGE_LOW = wilson_attack,
@@ -171,7 +149,6 @@ local tuning = {
 			"seaweed",
 		},
 	},
-
 	LITTLE_HAMMER_DAMAGE = wilson_attack*0.3,
 	SHEARS_DAMAGE = wilson_attack * .5,
 	SHEARS_USES = 20,
@@ -181,7 +158,6 @@ local tuning = {
 	WALKING_STICK_SPEED_MULT = 1.3,
 	PIG_GUARD_DEFEND_DIST = 20,
 	CITY_PIG_GUARD_TARGET_DIST = 20,
-
 	PIG_BANDIT_DAMAGE = 33,
 	PIG_BANDIT_HEALTH = 250,
 	PIG_BANDIT_ATTACK_PERIOD = 3,
@@ -191,14 +167,9 @@ local tuning = {
 	PIG_BANDIT_MIN_POOP_PERIOD = seg_time * .5,
 	PIG_BANDIT_RUN_SPEED = 7,
 	PIG_BANDIT_WALK_SPEED = 3,
-
-
-
 	THUNDERBIRD_RUN_SPEED = 5.5,
 	THUNDERBIRD_WALK_SPEED = 2,
-
 	LIGHTING_HITTARGET_CHANCE = 0.3,
-
 	HONEY_LANTERN_MINE = 6,
 	HONEY_LANTERN_MINE_MED = 4,
 	HONEY_LANTERN_MINE_LOW = 2,
@@ -206,12 +177,10 @@ local tuning = {
 	HONEY_CHEST_MINE_MED = 4,
 	HONEY_CHEST_MINE_LOW = 2,
 	ROCKS_MINE_GIANT = 10,
-
 	SCARER_SPEED = 2.5,
 	GASMASK_PERISHTIME = total_day_time*3,
 	PEAGAWKHAT_PERISHTIME = total_day_time*0.9,
 	PITHHAT_PERISHTIME = total_day_time*8,
-
 	--PORKLAND HATS
 	BANDITHAT_PERISHTIME = total_day_time*1,
 	THUNDERHAT_PERISHTIME = total_day_time*4,
@@ -220,15 +189,12 @@ local tuning = {
 	BATHAT_PERISHTIME = total_day_time*2,
 	HAYFEVERHAT_PERISHTIME = total_day_time*5,
 	WALKING_STICK_PERISHTIME = total_day_time*3,
-
 	FLIPPABLE_ROCK_REPOPULATE_TIME = total_day_time*8,
 	FLIPPABLE_ROCK_REPOPULATE_VARIANCE = total_day_time*2,
-
 	ARMORVORTEX = wilson_health*3,
 	ARMORVORTEX_ABSORPTION = 1,
 	ARMORVORTEX_DMG_AS_SANITY = 0.20,
 	ARMORVORTEX_REFUEL_PERCENT = 0.10,
-
 	RESEARCH_COST_CHEAP = 30,
 	PERISH_APORKALYPSE_MULT = 1.5,
 	SANITY_PLAYERHOUSE_GAIN = 100/(day_time*32),
@@ -243,7 +209,6 @@ local tuning = {
 		{maxsanity=.4, maxeyes=4},
 		{maxsanity=.2, maxeyes=6},
 	},
-
 	DIVINING_DISTANCES = {
 		{maxdist=50, describe="hot", pingtime=1},
 		{maxdist=100, describe="warmer", pingtime=2},
@@ -252,7 +217,6 @@ local tuning = {
 	},
 	DIVINING_MAXDIST = 300,
 	APORKALYPSE_GROWTH_MODIFIER = 1.5,
-
 	WARBUCKS_HEALTH = 150,
 	WARBUCKS_HUNGER = 120,
 	WARBUCKS_SANITY = 200,
@@ -265,22 +229,18 @@ local tuning = {
 	WHEELER_SANITY = 200,
 	WHEELER_DODGE_COOLDOWN = 1.5,
 	DODGE_TIMEOUT = 0.25,
-
 	DECID_MONSTER_DAY_THRESHOLDS = { 20, 35, 70 },
 	DECID_MONSTER_SPAWN_CHANCE_BASE = .033,
 	MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY = 0.5,
 	BABYOX_GROW_TIME = {base=3*day_time, random=2*day_time},
-
 	GAS_DAMAGE_PER_INTERVAL = 5, -- the amount of health damage gas causes per interval
 	GAS_INTERVAL = 1, -- how frequently damage is applied
 	POISON_PERISH_PENALTY = 0.5,
-
 	CORKBOAT_HEALTH = 80,
 	CORKBOAT_PERISHTIME = total_day_time*3,
 	CORKBOAT_SANITY_DRAIN = 0,-- -0.08,
 	CORKBOAT_SPEED = -2,
 	CORKBOAT_LEAKING_HEALTH = 30,
-
 	PLATEAU_LUSH_START_TEMP = 40, --50
 	PLATEAU_LUSH_DEVIATE_TEMP = 0, --30
 	PLATEAU_LUSH_DAY_TEMP_INCREASE = 20,
@@ -296,24 +256,20 @@ local tuning = {
 	PLATEAU_DAY_TEMP = 10, --Peak temp change during the day
 	PLATEAU_NIGHT_TEMP = -5, --Peak temp change during the night
 	PLATEAU_HURRICANE_TEMP = -10, --Peak temp change during a hurricane
-	PLATEAU_HURRICANE_WIND_TEMP = -10, --Peak temp change during hurricane wind gusts 'wind chill'
+	PLATEAU_HURRICANE_WIND_TEMP = -10, --Peak temp change during hurricane wind gusts 'wind chill'		
 
 	WIND_GUSTDELAY_MIN_LUSH = 15,
 	WIND_GUSTDELAY_MAX_LUSH = 720,
-
 	HYDRO_BONUS_COOL_RATE = 4,
 	FLOTSAM_BATCH_SIZE = { min = 2, max = 5 },
 	FLOTSAM_SPAWN_RADIUS = 35,
-
 	BLUNDERBUSS_ATTACK_RANGE = 9,
 	BLUNDERBUSS_HIT_RANGE = 11,
-
-	DUNG_BEETLE_RUN_SPEED = 6, --7
-	DUNG_BEETLE_WALK_SPEED = 3.5,    --3
+	DUNG_BEETLE_RUN_SPEED = 6, --7  
+	DUNG_BEETLE_WALK_SPEED = 3.5,    --3		
 	DUNG_BEETLE_HEALTH = 60,
-
 	SPIDER_MONKEY_SPEED_AGITATED = 5.5,  --4
-	SPIDER_MONKEY_SPEED = 5.5, --2
+	SPIDER_MONKEY_SPEED = 5.5, --2		
 	SPIDER_MONKEY_HEALTH = 550,
 	SPIDER_MONKEY_DAMAGE = 60,
 	SPIDER_MONKEY_ATTACK_PERIOD = 2,
@@ -325,10 +281,8 @@ local tuning = {
 	SPIDER_MONKEY_DEFEND_DIST = 12,
 	SPIDER_MONKEY_MATING_SEASON_BABYDELAY = total_day_time*1.5,
 	SPIDER_MONKEY_MATING_SEASON_BABYDELAY_VARIANCE = 0.5*total_day_time,
-
 	RUINS_ENTRANCE_VINES_HACKS = 4,
 	RUINS_DOOR_VINES_HACKS = 2,
-
 	GRABBING_VINE_HEALTH = 100,
 	GRABBING_VINE_DAMAGE = 10,
 	GRABBING_VINE_ATTACK_PERIOD = 1,
@@ -337,7 +291,6 @@ local tuning = {
 	GRABBING_VINE_SPAWN_MAX = 9,
 	HANGING_VINE_SPAWN_MIN = 8,
 	HANGING_VINE_SPAWN_MAX = 16,
-
 	ZEB_DAMAGE = 20,
 	ZEB_ATTACK_RANGE = 3,
 	ZEB_ATTACK_PERIOD = 2,
@@ -348,7 +301,6 @@ local tuning = {
 	ZEB_FOLLOW_TIME = 30,
 	ZEB_MATING_SEASON_BABYDELAY = total_day_time*1.5,
 	ZEB_MATING_SEASON_BABYDELAY_VARIANCE = 0.5*total_day_time,
-
 	SCORPION_HEALTH = 200,
 	SCORPION_DAMAGE = 20,
 	SCORPION_ATTACK_PERIOD = 3,
@@ -362,7 +314,6 @@ local tuning = {
 	SCORPION_STING_RANGE = 2,
 	SCORPION_WALK_SPEED = 3,
 	SCORPION_RUN_SPEED = 5,
-
 	SNAKE_SPEED = 3,
  	SNAKE_TARGET_DIST = 8,
  	SNAKE_KEEP_TARGET_DIST= 15,
@@ -381,7 +332,6 @@ local tuning = {
  	SNAKEDEN_MAX_SNAKES = 3,
  	SNAKEDEN_CHECK_DIST = 20,
  	SNAKEDEN_TRAP_DIST = 2,
-
 	BILL_TUMBLE_SPEED = 8,
 	BILL_RUN_SPEED = 5,
 	BILL_DAMAGE = wilson_attack * 0.5,
@@ -391,14 +341,12 @@ local tuning = {
 	BILL_AGGRO_DIST = 15,
 	BILL_EAT_DELAY = 3.5,
 	BILL_SPAWN_CHANCE = 0.2,
-
 	GIANT_GRUB_WALK_SPEED = 2,
 	GIANT_GRUB_DAMAGE = 44,
 	GIANT_GRUB_HEALTH = 600,
 	GIANT_GRUB_ATTACK_PERIOD = 3,
 	GIANT_GRUB_ATTACK_RANGE = 3,
 	GIANT_GRUB_TARGET_DIST = 25,
-
 	ANTMAN_DAMAGE = wilson_attack * 2/3,
 	ANTMAN_HEALTH = 250,
 	ANTMAN_ATTACK_PERIOD = 3,
@@ -431,7 +379,6 @@ local tuning = {
 	CHICKEN_HEALTH = 100,
 	CHICKEN_RESPAWN_TIME = day_time*4,
 	CHICKEN_RUN_SPEED = 4,
-
 	PIKO_HEALTH = 100,
 	PIKO_RESPAWN_TIME = day_time*4,
 	PIKO_RUN_SPEED = 4,
@@ -439,7 +386,6 @@ local tuning = {
 	PIKO_ATTACK_PERIOD = 2,
 	PIKO_TARGET_DIST = 20,
 	PIKO_RABID_SANITY_THRESHOLD = 0.8,
-
 	RABID_BEETLE_HEALTH = 60,
 	RABID_BEETLE_DAMAGE =  10,
 	RABID_BEETLE_ATTACK_PERIOD = 2,
@@ -447,9 +393,7 @@ local tuning = {
 	RABID_BEETLE_SPEED = 12,
 	RABID_BEETLE_FOLLOWER_TARGET_DIST = 10,
 	RABID_BEETLE_FOLLOWER_TARGET_KEEP = 20,
-
 	DECO_RUINS_BEAM_WORK = 6,
-
 	PEAGAWK_DAMAGE = 20,
 	PEAGAWK_HEALTH = 50,
 	PEAGAWK_ATTACK_PERIOD = 3,
@@ -463,7 +407,6 @@ local tuning = {
     PEAGAWK_RELEASE_TIME = 5,
     PEAGAWK_MAX = 1,
     PEAGAWK_ENABLED = true,
-
 	VAMPIREBAT_HEALTH = 130,
 	VAMPIREBAT_DAMAGE = 25,
 	VAMPIREBAT_ATTACK_PERIOD = 1.8,
@@ -481,15 +424,12 @@ local tuning = {
 	FLYTRAP_TARGET_DIST = 8,
 	FLYTRAP_KEEP_TARGET_DIST= 15,
 	FLYTRAP_ATTACK_PERIOD = 3,
-
 	ADULT_FLYTRAP_HEALTH = 400,
 	ADULT_FLYTRAP_DAMAGE = 30,
 	ADULT_FLYTRAP_ATTACK_PERIOD = 5,
 	ADULT_FLYTRAP_ATTACK_DIST = 4,
 	ADULT_FLYTRAP_STOPATTACK_DIST = 6,
-
 	LOTUS_REGROW_TIME = total_day_time*5,
-
 	MANDRAKEMAN_DAMAGE = 40,
 	MANDRAKEMAN_HEALTH = 200,
 	MANDRAKEMAN_ATTACK_PERIOD = 2,
@@ -501,19 +441,15 @@ local tuning = {
 	MANDRAKEMAN_SEE_MANDRAKE_DIST = 8,
 	MANDRAKEMAN_TARGET_DIST = 10,
 	MANDRAKEMAN_DEFEND_DIST = 30,
-
 	HOME_RESEARCH_MACHINE_DIST = 30,
 	BRAMBLE_THORN_DAMAGE = 3,
-
 	FOG_GROGGY_SPEED_MOD = .7,
-
 	HIPPO_DAMAGE = 50,
 	HIPPO_HEALTH = 500,
 	HIPPO_ATTACK_PERIOD = 2,
 	HIPPO_WALK_SPEED = 5,
 	HIPPO_RUN_SPEED = 6,
 	HIPPO_TARGET_DIST = 12,
-
 	PUGALISK_HEALTH = 3000,
 	PUGALISK_ATTACK_PERIOD = 3,
 	PUGALISK_MELEE_RANGE = 6,
@@ -521,7 +457,6 @@ local tuning = {
 	PUGALISK_TARGET_DIST = 40,
 	PUGALISK_TAIL_TARGET_DIST = 6,
 	PUGALISK_RUINS_PILLAR_WORK = 3,
-
 	DISARMINGKIT_USES = 10,
 	SPEAR_TRAP_HEALTH = 100,
 	SPEAR_TRAP_DAMNAGE = wilson_attack,
@@ -530,7 +465,6 @@ local tuning = {
 		{base = 12 * day_time, random = 5 * day_time},  --short to normal
 		{base = 12 * day_time, random = 5 * day_time},  --normal to tall
 	},
-
     WEEVOLE_WALK_SPEED = 5,
     WEEVOLE_HEALTH = 150,
     WEEVOLE_DAMAGE = 6,
@@ -545,14 +479,11 @@ local tuning = {
     WEEVOLE_SHARE_TARGET_RANGE = 30,
     WEEVOLE_SHARE_MAX_NUM = 10,
 	WEEVOLE_ENABLED = true,
-
     WEEVOLEDEN_REGEN_TIME = TUNING.SEG_TIME * 3,
     WEEVOLEDEN_RELEASE_TIME = 5,
     WEEVOLEDEN_MAX_WEEVOLES = 3,
-
 	ARMOR_WEEVOLE_DURABILITY = wilson_health*6,
 	ARMOR_WEEVOLE_ABSORPTION = .65,
-
 	CANDLEHAT_LIGHTTIME = night_time*2,
 	ANTMASKHAT_PERISHTIME = total_day_time*10,
 	ANTSUIT_PERISHTIME = total_day_time*10,
@@ -562,7 +493,6 @@ local tuning = {
 	ROBOT_LEG_DAMAGE = wilson_attack*2,
 	LASER_DAMAGE = 20,
 	PAN_USES = 30,
-
 	POG_ATTACK_RANGE = 3,
 	POG_MELEE_RANGE = 2.5,
 	POG_TARGET_DIST = 25,
@@ -573,14 +503,12 @@ local tuning = {
 	POG_ATTACK_PERIOD = 2,
 	POG_EAT_DELAY = 0.5,
 	POG_SEE_FOOD = 30,
-
 	MIN_POGNAP_INTERVAL = 30,
 	MAX_POGNAP_INTERVAL = 120,
 	MIN_POGNAP_LENGTH = 20,
 	MAX_POGNAP_LENGTH = 40,
 	POG_LOYALTY_MAXTIME = total_day_time,
 	POG_LOYALTY_PER_ITEM = total_day_time*.1,
-
 	PANGOLDEN_HEALTH = 500,
 	PANGOLDEN_DAMAGE = 34,
 	PANGOLDEN_TARGET_DIST = 5,
@@ -601,19 +529,16 @@ local tuning = {
 	ROC_SPEED = 20,
 	ROC_SHADOWRANGE = 8,
 	ROC_LEGDSIT = 6,
-
 	GNATMOUND_REGEN_TIME = seg_time * 4,
 	GNATMOUND_RELEASE_TIME = seg_time,
 	GNATMOUND_MAX_WORK	= 6,
 	GNATMOUND_MAX_CHILDREN	= 1,
-
 	GNAT_WALK_SPEED = 2,
 	GNAT_RUN_SPEED = 7,
-
 	ROBIN_HATCH_TIME = total_day_time * 3,
 	ARMORMETAL = wilson_health*8,
 	ARMORMETAL_ABSORPTION = .85,
-	ARMORMETAL_SLOW = -0.10,
+	ARMORMETAL_SLOW = 0.90,
 	ARMOR_KNIGHT = wilson_health*8,
 	ARMOR_KNIGHT_ABSORPTION = .85,
 	SPRINKLER_MAX_FUEL_TIME = total_day_time,
@@ -663,7 +588,6 @@ local tuning = {
 			STRENGTH = 0.16,
 		},
 	},
-
 	NEARSIGHTED_ACTION_RANGE = 4,
 	ANCIENT_HULK_DAMAGE = 200,
 	ANCIENT_HULK_MINE_DAMAGE = 100,
@@ -672,7 +596,6 @@ local tuning = {
 	IRON_LORD_DAMAGE = wilson_attack*2,
 	IRON_LORD_TIME = 3*60,
 	INFUSED_IRON_PERISHTIME = total_day_time*2,
-
 	-- Note: in DS the following two values are 1.5 and 2.0 by default but they get overriden manually in the porkland prefab -Half
     RAINFOREST_CANOPY_ROTATION_SPEED = 5,	        -- 5 seconds per rotation
     RAINFOREST_CANOPY_TRANSLATION_SPEED = 5,	    -- 5 seconds per translation
@@ -682,37 +605,23 @@ local tuning = {
     RAINFOREST_CANOPY_MIN_STRENGTH = 0.2,		    -- blend min strength - modulated with avg ambient
     RAINFOREST_CANOPY_MAX_STRENGTH = 0.7,		    -- blend max strength - modulated with avg ambient
 
-    WIND_GUSTDELAY_MIN_LUSH = 15,
-    WIND_GUSTDELAY_MAX_LUSH = 720,
+	WIND_GUSTDELAY_MIN_LUSH = 15,
+	WIND_GUSTDELAY_MAX_LUSH = 720,
 
-    WINDBLOWN_DESTROY_DIST = 15, --distance from player wind blown prefabs can be destroyed, fall over, get picked, etc
-    WINDBLOWN_SCALE_MIN =
-    {
-        LIGHT = 0.1,
-        MEDIUM = 0.1,
-        HEAVY = 0.01
-    },
-    WINDBLOWN_SCALE_MAX =
-    {
-        LIGHT = 1.0,
-        MEDIUM = 0.25,
-        HEAVY = 0.05
-    },
+	WINDBLOWN_DESTROY_DIST = 15, --distance from player wind blown prefabs can be destroyed, fall over, get picked, etc
+	WINDBLOWN_SCALE_MIN =
+	{
+		LIGHT = 0.1,
+		MEDIUM = 0.1,
+		HEAVY = 0.01
+	},
+	WINDBLOWN_SCALE_MAX =
+	{
+		LIGHT = 1.0,
+		MEDIUM = 0.25,
+		HEAVY = 0.05
+	},
 
-    WINDPROOFNESS_SMALL = 0.2,
-    WINDPROOFNESS_SMALLMED = 0.35,
-    WINDPROOFNESS_MED = 0.5,
-    WINDPROOFNESS_LARGE = 0.7,
-    WINDPROOFNESS_HUGE = 0.9,
-    WINDPROOFNESS_ABSOLUTE = 1,
-
-    PIKO_HEALTH = 100,
-    PIKO_RESPAWN_TIME = day_time*4,
-    PIKO_RUN_SPEED = 4,
-    PIKO_DAMAGE = 2,
-    PIKO_ATTACK_PERIOD = 2,
-    PIKO_TARGET_DIST = 20,
-    PIKO_RABID_SANITY_THRESHOLD = 0.8,
 }
 
 for key, value in pairs(tuning) do

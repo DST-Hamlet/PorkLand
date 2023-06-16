@@ -61,29 +61,29 @@ local TileRanges =
 }
 
 local pl_tiledefs = {
-    BEARDRUG = {		-- ADD in DST
-        tile_range = TileRanges.LAND,
-        tile_data = {
-            ground_name = "Beard Rug",
-            -- old_static_id = 33,
-        },
-        ground_tile_def  = {
-            name = "carpet",
-            noise_texture = "Ground_beard_hair",
-            runsound = "dontstarve/movement/run_carpet",
-            walksound = "dontstarve/movement/walk_carpet",
-            flashpoint_modifier = 0,
-        },
-        minimap_tile_def = {
-            name = "map_edge",
-            noise_texture = "interior",
-        },
-        --turf_def = {
-        --    name = "beard_hair",
-        --    bank_build = "turf_pl",
-        --},
-
-    },
+    --BEARDRUG = {		-- ADD in DST
+    --    tile_range = TileRanges.LAND,
+    --    tile_data = {
+    --        ground_name = "Beard Rug",
+    --        -- old_static_id = 33,
+    --    },
+    --    ground_tile_def  = {
+    --        name = "carpet",
+    --        noise_texture = "Ground_beard_hair",
+    --        runsound = "dontstarve/movement/run_carpet",
+    --        walksound = "dontstarve/movement/walk_carpet",
+    --        flashpoint_modifier = 0,
+    --    },
+    --    minimap_tile_def = {
+    --        name = "map_edge",
+    --        noise_texture = "interior",
+    --    },
+    --    --turf_def = {
+    --    --    name = "beard_hair",
+    --    --    bank_build = "turf_pl",
+    --    --},
+	--
+    --},
     RAINFOREST = {
         tile_range = TileRanges.LAND,
         tile_data = {
@@ -206,7 +206,7 @@ local pl_tiledefs = {
             noise_texture = "Ground_bog",
             runsound = "dontstarve/movement/run_sand",
             walksound = "dontstarve/movement/walk_sand",
-            mudsound = "run_sand"
+            mudsound = "dontstarve/movement/run_sand"
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -229,7 +229,7 @@ local pl_tiledefs = {
             noise_texture = "noise_mossy_blossom",
             runsound = "dontstarve/movement/run_dirt",
             walksound = "dontstarve/movement/walk_dirt",
-            snowsound = "run_ice",
+            snowsound = "dontstarve/movement/run_ice",
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -274,7 +274,7 @@ local pl_tiledefs = {
             noise_texture = "noise_ruinsbrick_scaled",
             runsound = "dontstarve/movement/run_slate",
             walksound = "dontstarve/movement/walk_slate",
-            snowsound = "run_ice",
+            snowsound = "dontstarve/movement/run_ice",
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -295,9 +295,9 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "stoneroad",
             noise_texture = "Ground_noise_cobbleroad",
-            runsound = "dontstarve/movement/run_rock",
-            walksound = "dontstarve/movement/walk_rock",
-            snowsound = "run_ice",
+            runsound = "run_rock/movement/run_rock",
+            walksound = "run_rock/movement/walk_rock",
+            snowsound = "dontstarve/movement/run_ice",
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -317,8 +317,8 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "pebble",
             noise_texture = "ground_noise_checkeredlawn",
-            runsound = "run_grass",
-            walksound = "walk_grass"
+            runsound = "dontstarve/movement/run_grass",
+            walksound = "dontstarve/movement/walk_grass"
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -338,9 +338,9 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "blocky",
             noise_texture = "ground_ruins_slab",
-            runsound = "run_dirt",
-            walksound = "walk_dirt",
-            snowsound="run_ice",
+            runsound = "dontstarve/movement/run_dirt",
+            walksound = "dontstarve/movement/walk_dirt",
+            snowsound="dontstarve/movement/run_ice",
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -426,8 +426,6 @@ local pl_tiledefs = {
     },
 
 }
-PL_OCEAN_TILES = {}
-PL_LAND_TILES = {}
 
 for tile, def in pairs(pl_tiledefs) do
     local range = def.tile_range

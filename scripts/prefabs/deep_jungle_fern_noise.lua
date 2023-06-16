@@ -64,5 +64,5 @@ local function plantfn()
     return inst
 end
 
-return Prefab("forest/objects/deep_jungle_fern_noise", fn, assets),
-    Prefab("forest/objects/deep_jungle_fern_noise_plant", plantfn, assets)
+return Prefab("deep_jungle_fern_noise", fn, assets),
+    Prefab("deep_jungle_fern_noise_plant", plantfn, assets)

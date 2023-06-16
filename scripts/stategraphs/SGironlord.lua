@@ -567,7 +567,7 @@ local function shoot(inst)
 	print("DS - Inside Shooting function")
     if inst.fullcharge then
 		print("Full charge, do big ball?")
-        -- local player = GetPlayer()
+        -- local player = ThePlayer
         local player = inst
         local rotation = player.Transform:GetRotation()
         local beam = SpawnPrefab("ancient_hulk_orb")
@@ -596,7 +596,7 @@ local function shoot(inst)
         beam.owner = inst    
     else
 		print("Not full charge, small ball it is!")
-        -- local player = GetPlayer()
+        -- local player = ThePlayer
         local player = inst
         local rotation = player.Transform:GetRotation()
         local beam = SpawnPrefab("ancient_hulk_orb_small")

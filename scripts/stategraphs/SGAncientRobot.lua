@@ -1164,10 +1164,10 @@ local states=
 					-- TheWorld:PushEvent("ms_sendlightningstrike", inst.Transform:GetWorldPosition())
 					local pos = inst:GetPosition()
 					TheWorld:PushEvent("ms_sendlightningstrike", pos)
-                        -- GetPlayer().SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
-                        -- GetPlayer().components.playercontroller:ShakeCamera(inst, "FULL", 0.7, 0.02, .5, 40)
+                        -- ThePlayer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
+                        -- ThePlayer.components.playercontroller:ShakeCamera(inst, "FULL", 0.7, 0.02, .5, 40)
                         inst.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
-                        -- GetPlayer().components.playercontroller:ShakeCamera(inst, "FULL", 0.7, 0.02, .5, 40)
+                        -- ThePlayer.components.playercontroller:ShakeCamera(inst, "FULL", 0.7, 0.02, .5, 40)
                 end
             end),
         },

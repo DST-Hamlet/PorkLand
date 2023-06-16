@@ -322,4 +322,4 @@ local function makefn(stage)
     return fn
 end
 
-return Prefab("forest/objects/nettle", makefn(0), assets, prefabs)
+return Prefab("nettle", makefn(0), assets, prefabs)

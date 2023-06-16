@@ -104,7 +104,7 @@ function MakeHedgeType(data)
 	end
 
 	local function test_wall(inst, pt)
-		local map = GetWorld().Map
+		local map = TheWorld.Map
 		local tiletype = GetGroundTypeAtPosition(pt)
 		local ground_OK = tiletype ~= GROUND.IMPASSABLE and not map:IsWater(tiletype) and IsPointInInteriorBounds(pt, 1)
 		
@@ -122,7 +122,7 @@ function MakeHedgeType(data)
 				end
 			end
 
-			local playerPos = GetPlayer():GetPosition()
+			local playerPos = ThePlayer:GetPosition()
 			local xDiff = playerPos.x - pt.x 
 			local zDiff = playerPos.z - pt.z 
 			local dsq = xDiff * xDiff + zDiff * zDiff
@@ -175,7 +175,7 @@ function MakeHedgeType(data)
 		inst.Physics:CollidesWith(COLLISION.WAVES)
 		inst.Physics:CollidesWith(COLLISION.INTWALL)
 		inst.Physics:SetActive(true)
-	    local ground = GetWorld()
+	    local ground = TheWorld
 	    if ground then
 	    	local pt = Point(inst.Transform:GetWorldPosition())
 			--print("    at: ", pt)
@@ -193,7 +193,7 @@ function MakeHedgeType(data)
 			end
 		end)
 	
-	    local ground = GetWorld()
+	    local ground = TheWorld
 	    if ground then
 	    	local pt = Point(inst.Transform:GetWorldPosition())
 	    	ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)

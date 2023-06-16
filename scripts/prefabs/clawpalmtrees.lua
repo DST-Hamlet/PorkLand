@@ -615,9 +615,9 @@ end
 
 local function OnGustFall(inst)
 	if inst:HasTag("burnt") then
-		chop_down_burnt_tree(inst, GetPlayer())
+		chop_down_burnt_tree(inst, ThePlayer)
 	else
-		chop_down_tree(inst, GetPlayer())
+		chop_down_tree(inst, ThePlayer)
 	end
 end
 

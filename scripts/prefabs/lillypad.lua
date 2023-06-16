@@ -99,26 +99,27 @@ local function refreshimage(inst)
 	end
 end
 
+-- Directly porting hamlet code doesn't work below is a quick implementation Onwake and Onsleep entity needs to be handled better.
 local function dayfn(inst)
-	-- if inst.components.childspawner.childname == "frog_poison" then		
-	if inst.components.childspawner.childname == "mosquito" then		
-		inst.components.childspawner:StartSpawning()					
-	end
-		if inst.components.childspawner.childname == "mosquito" then
+	if inst.components.childspawner.childname == "mosquito" then
 		inst.components.childspawner:StopSpawning()    		
 	    ReturnChildren(inst)			
 	end
+	inst.components.childspawner.childname = "frog_poison"		
+	inst.components.childspawner:SetRegenPeriod(TUNING.FROG_POISON_REGEN_TIME)
+	inst.components.childspawner:SetMaxChildren(TUNING.FROG_POISON_MAX_SPAWN)
+	inst.components.childspawner:StartSpawning()					
 end
 
 local function duskfn(inst)
-	 if inst.components.childspawner.childname == "frog_poison" then  --TODO fix
-		inst.components.childspawner:StartSpawning()
-    end
+	inst.components.childspawner.childname = "mosquito"
+	inst.components.childspawner:SetRegenPeriod(TUNING.FROG_POISON_REGEN_TIME)
+	inst.components.childspawner:SetMaxChildren(TUNING.FROG_POISON_MAX_SPAWN)
+	inst.components.childspawner:StartSpawning()
 end
 
 local function nightfn(inst)
-	-- if inst.components.childspawner.childname == "frog_poison" then
-	if inst.components.childspawner.childname == "frog_poison" then --TODO fix
+	if inst.components.childspawner.childname == "frog_poison" then
 		inst.components.childspawner:StopSpawning()    		
 	    ReturnChildren(inst)	
     end		
@@ -188,8 +189,8 @@ local function fn(pondtype)
     inst.rotation = math.random(360)
     refreshimage(inst)
 
-	anim:SetOrientation(ANIM_ORIENTATION.OnGround)
-	anim:SetLayer(LAYER_BACKGROUND)
+	anim:SetOrientation( ANIM_ORIENTATION.OnGround )
+	anim:SetLayer( LAYER_BACKGROUND )
 	anim:SetSortOrder( 3 )
 
 	inst:AddComponent("waveobstacle")
@@ -216,10 +217,21 @@ local function fn(pondtype)
 		inst.components.childspawner:SetMaxChildren(TUNING.FROG_POISON_MAX_SPAWN)
 	end
 
-	inst:WatchWorldState("isdusk", duskfn)
-    inst:WatchWorldState("isday", dayfn)
-	inst:WatchWorldState("isnight", nightfn)
-	
+	-- inst:WatchWorldState("isdusk", duskfn)
+    -- inst:WatchWorldState("isday", dayfn)
+	-- inst:WatchWorldState("isnight", nightfn)
+
+	inst:WatchWorldState("phase", function()
+		if TheWorld.state.isdusk then
+			duskfn(inst)
+		end
+		if TheWorld.state.isday then
+			dayfn(inst)
+		end
+		if TheWorld.state.isnight then
+			nightfn(inst)
+		end
+	end)
 
 	inst.frozen = false
 
@@ -241,4 +253,4 @@ end
 --     _daylight = phase == "day"
 -- end
 -- local _world = TheWorld
-return Prefab("lilypad", fn, assets, prefabs)
+return Prefab( "lilypad", fn, assets, prefabs)

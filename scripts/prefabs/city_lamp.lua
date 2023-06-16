@@ -12,7 +12,7 @@ local LAMP_DIST = 16
 local LAMP_DIST_SQ = LAMP_DIST * LAMP_DIST
 
 local function UpdateAudio(inst)
-    -- local player = GetPlayer()
+    -- local player = ThePlayer
 
     -- local instPosition = Vector3(inst.Transform:GetWorldPosition())
     -- local playerPosition = Vector3(player.Transform:GetWorldPosition())
@@ -148,7 +148,7 @@ end
 
 
 local function setobstical(inst)
-    -- local ground = GetWorld()
+    -- local ground = TheWorld
     local ground = TheWorld
     if ground then
         local pt = Point(inst.Transform:GetWorldPosition())
@@ -157,7 +157,7 @@ local function setobstical(inst)
 end
 
 local function clearobstacle(inst)
-    -- local ground = GetWorld()
+    -- local ground = TheWorld
     local ground = TheWorld
     if ground then
         local pt = Point(inst.Transform:GetWorldPosition())
@@ -221,7 +221,7 @@ end
 
 local function makeobstacle(inst)
 
-    -- local ground = GetWorld()
+    -- local ground = TheWorld
     local ground = TheWorld
     if ground then
         local pt = Point(inst.Transform:GetWorldPosition())
@@ -232,7 +232,7 @@ end
 
 local function clearobstacle(inst)
 
-    -- local ground = GetWorld()
+    -- local ground = TheWorld
     local ground = TheWorld
     if ground then
         local pt = Point(inst.Transform:GetWorldPosition())
@@ -299,10 +299,10 @@ local function fn(Sim)
 
     -- inst:ListenForEvent( "daytime", function()
         -- inst:DoTaskInTime(1/30, function() updatelight(inst) end)
-    -- end, GetWorld())
+    -- end, TheWorld)
     -- inst:ListenForEvent( "dusktime", function()
         -- inst:DoTaskInTime(1/30, function() updatelight(inst) end)
-    -- end, GetWorld())
+    -- end, TheWorld)
 	inst:WatchWorldState("phase", UpdateTime)
 
     inst:ListenForEvent("onbuilt", onbuilt)

@@ -35,7 +35,7 @@ end
 
 local function UpdateAggro(inst)
 	local threatWasNearby = inst.threatNearby
-	local player = GetPlayer()
+	local player = ThePlayer
 
 	local instPosition = Vector3(inst.Transform:GetWorldPosition())
 	local playerPosition = Vector3(player.Transform:GetWorldPosition())
@@ -68,7 +68,7 @@ local function OnWaterChange(inst, onwater)
 end
 
 local function KeepTarget(inst, target)
-    return inst.components.combat:CanTarget(target) and (target == GetPlayer())
+    return inst.components.combat:CanTarget(target) and (target == ThePlayer)
 end
 
 local function OnEntityWake(inst)

@@ -94,7 +94,7 @@ local function doresurrect(inst, dude)
 		dude.components.poisonable:Cure()
 	end 
 
-	-- if(dude == GetPlayer()) then --Would this ever be false? 
+	-- if(dude == ThePlayer) then --Would this ever be false? 
 	-- In this case, yes, Hamlet programmer, because there can be multiple players and we need to only operate on the resurrecting one
 		if dude.components.driver then -- Extra check, won't exist without the driving system
 			if dude.components.driver:GetIsDriving() then 
@@ -129,18 +129,18 @@ local function doresurrect(inst, dude)
     end
 
 	if TheCamera.interior or inst.interior then
-		-- GetPlayer().Transform:SetRotation(0)
+		-- ThePlayer.Transform:SetRotation(0)
 		local interiorSpawner = TheWorld.components.interiorspawner
-		-- interiorSpawner:PlayTransition(GetPlayer(), nil, inst.interior, inst)	
+		-- interiorSpawner:PlayTransition(ThePlayer, nil, inst.interior, inst)	
 		interiorSpawner:PlayTransition(dude, nil, inst.interior, inst)		
 	else		
-	    -- GetPlayer().Transform:SetRotation(inst.Transform:GetRotation())
+	    -- ThePlayer.Transform:SetRotation(inst.Transform:GetRotation())
 	    dude.Transform:SetRotation(inst.Transform:GetRotation())
 	end
 	
 	-- if not inst.interior then
 		-- if TheCamera.interior then -- This should be where the thing moves the player outside? Maybe?
-			-- local interiorSpawner = GetWorld().components.interiorspawner
+			-- local interiorSpawner = TheWorld.components.interiorspawner
 			-- interiorSpawner.exteriorCamera:SetDistance(12)
 		-- else
 			-- TheCamera:SetDistance(12)	
@@ -236,7 +236,7 @@ local function onplanted(inst,fountain)
         inst.fountain = fountain
     end
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/flower_of_life/plant")
-	-- inst.components.resurrector:OnBuilt(GetPlayer())
+	-- inst.components.resurrector:OnBuilt(ThePlayer)
 end
 
 local function onsave(inst, data)
@@ -265,7 +265,7 @@ local function OnRemoved(inst)
 	-- SaveGameIndex:DeregisterResurrector(inst) -- I don't think this is needed?
 	-- Remove penalty if not used
 	-- if not inst.components.resurrector.used then
-		-- local player = GetPlayer()
+		-- local player = ThePlayer
 		-- if player and player.components.health then
 			-- player.components.health:RecalculatePenalty()
 		-- end
@@ -283,7 +283,7 @@ local function CalcSanityAura(inst, observer)
 end
 
 local function sparkle(inst, player)
-	-- local player = GetPlayer()
+	-- local player = ThePlayer
 
 	local sparkle = SpawnPrefab("lifeplant_sparkle")
 	sparkle.Transform:SetPosition(player.Transform:GetWorldPosition())	
@@ -293,7 +293,7 @@ end
 -- local nearTasks = {}
 
 local function drain(inst, player)
-	-- local player = GetPlayer()
+	-- local player = ThePlayer
 	player.components.hunger:DoDelta(-1)   
 end
 

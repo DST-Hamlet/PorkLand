@@ -442,7 +442,7 @@ local states=
 
         onenter = function(inst)
             local speechset = getSpeechType(inst, STRINGS.CITY_PIG_TALK_POOPTIP)
-            if GetPlayer():HasTag("pigroyalty") then
+            if ThePlayer:HasTag("pigroyalty") then
                 speechset = getSpeechType(inst, STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP)
             end
 
@@ -455,7 +455,7 @@ local states=
         {
             TimeEvent(13*FRAMES, 
                 function(inst)
-                    GetPlayer().components.inventory:GiveItem(
+                    ThePlayer.components.inventory:GiveItem(
                         SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
                 end ),
         },
@@ -493,7 +493,7 @@ local states=
                 function(inst)
                     inst:RemoveTag("paytax")
                     inst.taxing = false
-                    -- GetPlayer().components.inventory:GiveItem(
+                    -- ThePlayer.components.inventory:GiveItem(
 					-- local pt = inst.Transform:GetWorldPosition()
 					-- local x = pt.x
 					-- local y = pt.y
@@ -539,7 +539,7 @@ local states=
                 function(inst)
                     local resources = { "flint", "log", "rocks", "cutgrass", "seeds", "twigs" }
 
-                    GetPlayer().components.inventory:GiveItem(
+                    ThePlayer.components.inventory:GiveItem(
                         SpawnPrefab(resources [math.random(1, #resources)]),
                         nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
                 end ),

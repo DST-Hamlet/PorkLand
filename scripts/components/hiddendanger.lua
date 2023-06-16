@@ -9,7 +9,7 @@ end)
 
 function  Hiddendanger:TestShouldShowDanger()
     -- if not self.disabled then
-        -- local player = GetPlayer()
+        -- local player = ThePlayer
         -- local inventory = player.components.inventory
 
         -- local head = inventory:GetEquippedItem(EQUIPSLOTS.HEAD)

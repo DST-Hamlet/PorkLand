@@ -1,15 +1,8 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-function MakeHackableBlowInWindGust()
-end
-
-function MakeBlowInHurricane()
-
-end
-
-function RemoveBlowInHurricane()
-
-end
+function MakeHackableBlowInWindGust() end
+function MakeBlowInHurricane() end
+function RemoveBlowInHurricane() end
 
 function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, attack_period_penalty, speed_penalty, hunger_burn, sanity_scale)
     if not inst.components.poisonable then

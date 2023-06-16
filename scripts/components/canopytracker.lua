@@ -21,7 +21,6 @@ end
 
 function CanopyTracker:UpdateUnderCanopy()
     local under_canopy = self.inst.components.areaaware ~= nil and self.inst.components.areaaware:CurrentlyInTag("Canopy")
-    print("try", not self:IsUnderCanopy(), under_canopy)
 	if not self:IsUnderCanopy() and under_canopy then
         self._under_canopy:set(true)
         self.inst:PushEvent("canopyin")

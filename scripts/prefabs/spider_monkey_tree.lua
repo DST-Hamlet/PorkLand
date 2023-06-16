@@ -506,9 +506,9 @@ end
 
 local function OnGustFall(inst)
     if inst:HasTag("burnt") then
-        chop_down_burnt_tree(inst, GetPlayer())
+        chop_down_burnt_tree(inst, ThePlayer)
     else
-        chop_down_tree(inst, GetPlayer())
+        chop_down_tree(inst, ThePlayer)
     end
 end
 
@@ -655,7 +655,7 @@ local function makefn(build, stage, data)
 end
 
 local function tree(name, build, stage, data)
-    return Prefab("jungle/objects/trees/"..name, makefn(build, stage, data), assets, prefabs)
+    return Prefab(name, makefn(build, stage, data), assets, prefabs)
 end
 
 return tree("spider_monkey_tree", "normal", 0),

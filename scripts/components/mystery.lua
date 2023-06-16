@@ -99,13 +99,13 @@ end
 
 function Mystery:Investigate(doer)	
 	if self.reward then
-		GetPlayer().components.talker:Say(GetString(GetPlayer().prefab, "ANNOUNCE_MYSTERY_FOUND"))
+		ThePlayer.components.talker:Say(GetString(ThePlayer.prefab, "ANNOUNCE_MYSTERY_FOUND"))
 		self.investigated = true
 		if self.inst.components.hiddendanger then
 			self.inst.components.hiddendanger:ChangeFx("identified_marker_fx")
 		end
 	else
-		GetPlayer().components.talker:Say(GetString(GetPlayer().prefab, "ANNOUNCE_MYSTERY_NOREWARD"))
+		ThePlayer.components.talker:Say(GetString(ThePlayer.prefab, "ANNOUNCE_MYSTERY_NOREWARD"))
 		self.inst:RemoveTag("mystery")
 		if self.inst.components.hiddendanger then
 			self.inst.components.hiddendanger:Clear()

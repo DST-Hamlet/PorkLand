@@ -253,5 +253,5 @@ local function grass_tall_patch()
     return inst
 end
 
-return Prefab("forest/objects/grass_tall", grass_tall, assets, prefabs),
-    Prefab("forest/objects/grass_tall_patch", grass_tall_patch, assets, prefabs)
+return Prefab("grass_tall", grass_tall, assets, prefabs),
+    Prefab("grass_tall_patch", grass_tall_patch, assets, prefabs)

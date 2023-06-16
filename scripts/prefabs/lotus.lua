@@ -2,7 +2,6 @@ local assets =
 {
 	Asset("ANIM", "anim/lotus.zip"),
 	Asset("SOUND", "sound/common.fsb"),
-    Asset("MINIMAP_IMAGE", "lotus"),    
 }
 
 local prefabs =
@@ -30,7 +29,7 @@ local function onpickedfn(inst)
 
         for posIndex = 1, 4 do
             local nearbyPosition = nearbyPositions[posIndex]
-            local tile = GetWorld().Map:GetTileAtPoint(nearbyPosition[1], y, nearbyPosition[2])
+            local tile = TheWorld.Map:GetTileAtPoint(nearbyPosition[1], y, nearbyPosition[2])
 
             if IsOceanTile(tile) then
                 bill.Transform:SetPosition(nearbyPosition[1], y, nearbyPosition[2])
@@ -104,7 +103,7 @@ local function fn(Sim)
     anim:SetMultColour(color, color, color, 1)
 
     local minimap = inst.entity:AddMiniMapEntity()
-    minimap:SetIcon( "lotus.tex" )    
+    minimap:SetIcon("lotus.tex")    
 
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
@@ -154,4 +153,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab( "forest/objects/lotus", fn, assets, prefabs)
+return Prefab("lotus", fn, assets, prefabs)

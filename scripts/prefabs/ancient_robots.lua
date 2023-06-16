@@ -182,7 +182,7 @@ local function commonfn()
 
     inst.Transform:SetFourFaced()
 
-    inst.MiniMapEntity:SetIcon("metal_spider.png")
+    inst.MiniMapEntity:SetIcon("metal_spider.tex")
 
     inst.collisionradius = 1.2
     MakeCharacterPhysics(inst, 99999, inst.collisionradius)
@@ -251,7 +251,7 @@ local function commonfn()
     inst.UPDATETIME = UPDATETIME
     inst.hits = 0
 
-    inst.SpecialAction = MergeAction
+    inst.special_action = MergeAction
     
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

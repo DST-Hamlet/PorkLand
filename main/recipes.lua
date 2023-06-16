@@ -58,7 +58,6 @@ AddRecipe2("antler",			{Ingredient("bill_quill", 3), Ingredient("hippo_antler", 
 AddRecipe2("bathat",			{Ingredient("pigskin", 2), Ingredient("batwing", 1), Ingredient("compass", 1)},  				TECH.SCIENCE_TWO, nil, {"LIGHT"})
 AddRecipe2("candlehat",			{Ingredient("cork", 4), Ingredient("iron", 2)}, 												TECH.SCIENCE_ONE, nil, {"LIGHT"})
 
-
 AddRecipe2("clawpalmtree_sapling",	{Ingredient("cork", 1), Ingredient("poop", 1)},  											TECH.SCIENCE_ONE, nil, {"REFINE"})
 AddRecipe2("goldnugget",		{Ingredient("gold_dust", 6)},  																	TECH.SCIENCE_ONE, nil, {"REFINE"})
 AddRecipe2("venomgland",		{Ingredient("froglegs_poison", 3)},  															TECH.SCIENCE_TWO, nil, {"REFINE"})
@@ -86,7 +85,7 @@ AddRecipe2("gasmaskhat",		{Ingredient("peagawkfeather", 4), Ingredient("fabric",
 AddRecipe2("snakeskinhat", 		{Ingredient("snakeskin_scaly", 1), Ingredient("strawhat", 1), Ingredient("boneshard", 1)},		TECH.SCIENCE_TWO, {image="snakeskinhat_scaly.tex"}, {"CLOTHING"})
 AddRecipe2("armor_snakeskin", 	{Ingredient("snakeskin_scaly", 2), Ingredient("vine", 2), Ingredient("boneshard", 2)}, 			TECH.SCIENCE_ONE, {image="armor_snakeskin_scaly.tex"}, {"CLOTHING"})
 
-AddRecipe2("hogusporkusator",	{Ingredient("pigskin", 4), Ingredient("boards", 4), Ingredient("feather_robin_winter", 4)},		TECH.MAGIC_ONE,   nil, {"MAGIC"})
+AddRecipe2("hogusporkusator",	{Ingredient("pigskin", 4), Ingredient("boards", 4), Ingredient("feather_robin_winter", 4)},		TECH.MAGIC_ONE,   {placer="hogusporkusator_placer"}, {"MAGIC"})
 AddRecipe2("armorvortexcloak",	{Ingredient("ancient_remnant", 5), Ingredient("armor_sanity", 1)},								TECH.LOST, 		  nil, {"MAGIC", "ARMOUR", "CONTAINERS"})
 AddRecipe2("antler_corrupted",  {Ingredient("antler", 1), Ingredient("ancient_remnant", 2)}, 									TECH.MAGIC_TWO,   nil, {"MAGIC"})
 AddRecipe2("living_artifact",	{Ingredient("infused_iron", 6), Ingredient("waterdrop", 1)},									TECH.LOST, 		  nil, {"MAGIC", "ARMOUR"})
@@ -191,8 +190,8 @@ AddRecipe2("lawnornament_5",	 		{Ingredient("oinc", 10)},																TECH.CI
 AddRecipe2("lawnornament_6",	 		{Ingredient("oinc", 10)},																TECH.CITY_TWO, {nounlock=true, min_spacing=1, placer="lawnornament_6_placer"}, 			{"CRAFTING_STATION"})
 AddRecipe2("lawnornament_7",	 		{Ingredient("oinc", 10)},																TECH.CITY_TWO, {nounlock=true, min_spacing=1, placer="lawnornament_7_placer"}, 			{"CRAFTING_STATION"})
 
-
---[[AddRecipe2("player_house_cottage_craft",		{Ingredient("oinc",10)}, TECH.HOME_TWO, {nounlock=true}, 																									{"CRAFTING_STATION"})
+--[[
+AddRecipe2("player_house_cottage_craft",		{Ingredient("oinc",10)}, TECH.HOME_TWO, {nounlock=true}, 																									{"CRAFTING_STATION"})
 AddRecipe2("player_house_tudor_craft",			{Ingredient("oinc",10)}, TECH.HOME_TWO, {nounlock=true}, 																									{"CRAFTING_STATION"})
 AddRecipe2("player_house_gothic_craft",			{Ingredient("oinc",10)}, TECH.HOME_TWO, {nounlock=true}, 																									{"CRAFTING_STATION"})
 AddRecipe2("player_house_brick_craft",			{Ingredient("oinc",10)}, TECH.HOME_TWO, {nounlock=true}, 																									{"CRAFTING_STATION"})

@@ -353,8 +353,8 @@ local function commonfn()
 			end
 		end)
 
-	--inst:ListenForEvent("startfog", function() inst.pause = true end, GetPlayer())
-	--inst:ListenForEvent("stopfog", function() inst.pause = false end, GetPlayer())
+	--inst:ListenForEvent("startfog", function() inst.pause = true end, ThePlayer)
+	--inst:ListenForEvent("stopfog", function() inst.pause = false end, ThePlayer)
 
 	return inst
 end
@@ -396,6 +396,6 @@ local function makeripple(speed)
 	return ripplefn
 end
 
-return Prefab( "marsh/objects/sedimentpuddle", commonfn, assets, prefabs),
-	   Prefab( "marsh/objects/puddle_ripple_fast_fx", makeripple("fast"), assets, prefabs),
-	   Prefab( "marsh/objects/puddle_ripple_slow_fx", makeripple("slow"), assets, prefabs)
+return Prefab("sedimentpuddle", commonfn, assets, prefabs),
+	   Prefab("puddle_ripple_fast_fx", makeripple("fast"), assets, prefabs),
+	   Prefab("puddle_ripple_slow_fx", makeripple("slow"), assets, prefabs)

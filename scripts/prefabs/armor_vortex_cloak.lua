@@ -76,7 +76,7 @@ local function ontakefuel(inst, fuel)
         inst.components.armor:SetCondition(0)
     end
 
-    local equipper = GetPlayer()
+    local equipper = ThePlayer
 
     if not equipper:HasTag("not_hit_stunned") and inst.components.equippable.equipper == equipper then
         equipper:AddTag("not_hit_stunned")
@@ -92,7 +92,7 @@ local function ontakefuel(inst, fuel)
 end
 
 local function onempty(inst)
-    GetPlayer():RemoveTag("not_hit_stunned")
+    ThePlayer:RemoveTag("not_hit_stunned")
 end
 
 local function fn()

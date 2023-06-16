@@ -246,8 +246,8 @@ local states =
                     SpawnPrefab("collapse_big").Transform:SetPosition(inst.Transform:GetWorldPosition()) 
                 end),
             TimeEvent(23*FRAMES, function(inst) 
-                    if GetWorld().components.banditmanager then
-                        GetWorld().components.banditmanager:deactivatebandit(inst)
+                    if TheWorld.components.banditmanager then
+                        TheWorld.components.banditmanager:deactivatebandit(inst)
                     end
                     inst:PerformBufferedAction()                    
                     inst:RemoveFromScene()
