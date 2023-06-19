@@ -22,12 +22,17 @@ SetSharedLootTable('adult_flytrap', {
     {'nectar_pod',  0.3},
 })
 
-local function FindFood(inst, guy)
-	if guy.components.inventory ~= nil then
-		return guy.components.inventory:FindItem(function(item)
-            return inst.components.eater:CanEat(item)
-		end)
-	end
+local function FindFood(inst,guy)
+    if guy.components.inventory then
+        return guy.components.inventory:FindItem(
+            function(item)   
+                if item and item.components.edible then
+                    if FOODTYPE.MEAT == item.components.edible.foodtype or FOODTYPE.MEAT == item.components.edible.secondaryfoodtype then                           
+                        return true
+                    end
+                end
+            end)
+    end
 end
 
 local function SpawnMeanFlytrap(inst)
