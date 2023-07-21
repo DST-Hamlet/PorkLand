@@ -22,7 +22,6 @@ modimport("main/standardcomponents")
 
 modimport("main/assets")
 modimport("main/fx")
-modimport("main/shadeeffects")
 modimport("main/strings")
 
 modimport("main/pl_worldsettings_overrides")

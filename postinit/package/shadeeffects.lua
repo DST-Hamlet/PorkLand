@@ -5,6 +5,7 @@ if TheNet:IsDedicated() then
     local nullfunc = function() end
     SpawnRainforestCanopy = nullfunc
     DespawnRainforestCanopy = nullfunc
+    ShadeRendererEnabled = nil
     return
 end
 
@@ -26,25 +27,23 @@ function DespawnRainforestCanopy(id)
     ShadeRenderer:RemoveShade(ShadeTypes.RainforestCanopy, id)
 end
 
--- Ugh, unlike literally EVERY other shader, shadereffects runs AFTER all other shaders including modshader postinits -Half
-IAENV.AddSimPostInit(function()
-    local _ShadeEffectUpdate = ShadeEffectUpdate
-    function ShadeEffectUpdate(dt, ...)
-        local r, g, b = TheSim:GetAmbientColour()
-    
-        ShadeRenderer:SetShadeStrength(ShadeTypes.RainforestCanopy, Lerp(TUNING.RAINFOREST_CANOPY_MIN_STRENGTH, TUNING.RAINFOREST_CANOPY_MAX_STRENGTH, ((r + g + b) / 3) / 255))
-        return _ShadeEffectUpdate(dt, ...)
+local _ShadeEffectUpdate = ShadeEffectUpdate
+function ShadeEffectUpdate(dt, ...)
+    local r, g, b = TheSim:GetAmbientColour()
+
+    ShadeRenderer:SetShadeStrength(ShadeTypes.RainforestCanopy, Lerp(TUNING.RAINFOREST_CANOPY_MIN_STRENGTH, TUNING.RAINFOREST_CANOPY_MAX_STRENGTH, ((r + g + b) / 3) / 255))
+    return _ShadeEffectUpdate(dt, ...)
+end
+
+ShadeRendererEnabled = false
+local _EnableShadeRenderer = EnableShadeRenderer
+function EnableShadeRenderer(enable, ...)
+
+    ShadeRendererEnabled = enable
+    local _world = TheWorld
+    if _world ~= nil and _world.components.canopymanager ~= nil then
+        _world.components.canopymanager:SetEnabled(enable)
     end
 
-    -- Nope doesnt work, gotta find a different location to modify it
-    -- local _EnableShadeRenderer = EnableShadeRenderer
-    -- function EnableShadeRenderer(enable, ...)
-
-    --     local _world = TheWorld
-    --     if _world ~= nil and _world.components.canopymanager ~= nil then
-    --         _world.components.canopymanager:SetEnabled(enable)
-    --     end
-
-    --     return _EnableShadeRenderer(enable, ...)
-    -- end
-end)
+    return _EnableShadeRenderer(enable, ...)
+end

@@ -1,3 +1,10 @@
+local unpack = GLOBAL.unpack
+local kleifileexists = GLOBAL.kleifileexists
+local package = GLOBAL.package
+local IAROOT = MODROOT
+local modimport = modimport
+local IAENV = env
+
 -- Update this list when adding files
 local components_post = {
     "actionqueuer",
@@ -57,6 +64,11 @@ local sim_post = {
     "map",  -- Map is not a proper component, so we edit it here instead.
 }
 
+local package_post = {
+    -- ["components/map"] = "map",
+    ["shadeeffects"] = "shadeeffects",
+}
+
 modimport("postinit/entityscript")
 modimport("postinit/animstate")
 
@@ -93,3 +105,14 @@ end
 --         modimport("postinit/sim/" .. file_name)
 --     end
 -- end)
+local _require = GLOBAL.require
+function GLOBAL.require(modulename, ...)
+    local post_modulename = package_post[modulename] or nil
+    local should_load = post_modulename and package.loaded[modulename] == nil and kleifileexists("scripts/"..modulename..".lua") and kleifileexists(IAROOT.."postinit/package/"..post_modulename..".lua")
+    local rets = {_require(modulename, ...)}
+    if should_load then
+        print("loading module post", "scripts/"..modulename, IAROOT.."postinit/package/"..post_modulename)
+        modimport("postinit/package/" .. post_modulename)
+    end
+    return unpack(rets)
+end

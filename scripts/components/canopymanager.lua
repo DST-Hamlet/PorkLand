@@ -26,7 +26,7 @@ self.inst = inst
 --[[ Private Member Variables ]]
 --------------------------------------------------------------------------
 
-local _isenabled = true
+local _isenabled = ShadeRendererEnabled
 
 local _world = TheWorld
 local _map = _world.Map
