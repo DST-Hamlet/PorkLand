@@ -37,4 +37,4 @@ local function fn()
     return inst
 end
 
-return Prefab("chitin", fn, assets)
+return Prefab("objects/chitin", fn, assets)

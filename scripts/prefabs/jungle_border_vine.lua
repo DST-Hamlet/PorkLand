@@ -41,4 +41,4 @@ local function plantfn()
     return inst
 end
 
-return Prefab("jungle_border_vine", plantfn, assets)
+return Prefab("forest/objects/jungle_border_vine", plantfn, assets)

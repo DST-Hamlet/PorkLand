@@ -124,7 +124,7 @@ local states =
         {
 
             TimeEvent(10 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/weevole/idle") end),
-         },
+        },
 
         onenter = function(inst, start_anim)
             inst.Physics:Stop()

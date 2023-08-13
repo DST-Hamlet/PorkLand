@@ -2,15 +2,21 @@ return {
     ANNOUNCE_DEHUMID = {
         "Whew. I forgot what it felt like to breathe.",
     },
+    ANNOUNCE_HAYFEVER = "Allergiesch. What allergiesch?",
+    ANNOUNCE_HAYFEVER_OFF = "My face stopped leaking. Allergy season must be over.",
+    ANNOUNCE_SNEEZE = "AchooOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is suffocating.",
         "This %s is just too hot!",
     },
     DESCRIBE = {
+        ALLOY = "Heavy metal made heavier.",
         APORKALYPSE_CLOCK = "If only I could turn time back to before I crashed here.",
+        ARMOR_METALPLATE = "Oof. It's heavier than ballast.",
         ARMOR_WEEVOLE = "If only it had those bug wings.",
         ASPARAGUS_PLANTED = "That looks like food! Let's hope it tastes like food.",
         CHITIN = "I'm going to need more of these.",
+        CUTNETTLE = "Smells like relief.",
         FLOWER_RAINFOREST = "You can never have too many flowers. Or projectiles.",
         GLOWFLY = {
             DEAD = "I guess it can't fly me out of here now.",
@@ -18,13 +24,12 @@ return {
             SLEEPING = "Wake up and glow for me!",
         },
         GLOWFLY_COCOON = "Aww... It's wrapped up all nice and cozy.",
-        GOLDENMACHETE = "For the sophisticated adventurer.",
         GRASS_TALL = {
             BURNING = "All those bugs have nowhere to hide now.",
             GENERIC = "Tall grass like that is going to need a machete.",
             PICKED = "It'll be overgrown in no time.",
         },
-        MACHETE = "Machete. Designed for adventure.",
+        HALBERD = "The must-have multi-tool for adventurers.",
         PEAGAWK = {
             DEAD = "I promise, I will go on without you!",
             GENERIC = "Has the eyesight for flying but not the wings for it.",

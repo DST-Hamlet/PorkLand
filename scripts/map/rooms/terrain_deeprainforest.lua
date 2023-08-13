@@ -129,7 +129,7 @@ AddRoom("deeprainforest_fireflygrove", {
 AddRoom("deeprainforest_gas", {
     colour = {r = 1, g = 0.6, b = 0.2, a = 0.3},
     value = WORLD_TILES.GASJUNGLE,
-    tags = {"ExitPiece", "Bramble", "Canopy", "Gas_Jungle"},
+    tags = {"ExitPiece", "Bramble", "Canopy"},
     contents = {
         distributepercent = 0.45,
         distributeprefabs = {
@@ -184,7 +184,7 @@ AddRoom("deeprainforest_gas_flytrap_grove", {
 AddRoom("deeprainforest_ruins_entrance", {
     colour = {r = 1, g = 0.1, b = 0.2, a = 0.5},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Bramble", "Canopy", "Gas_Jungle"},
     contents = {
         distributepercent = 0.25,  -- .3
         distributeprefabs = {

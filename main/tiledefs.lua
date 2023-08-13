@@ -33,57 +33,40 @@ turf_def {
 }
 -]]
 
-local GroundTiles = require("worldtiledefs")
+
 local NoiseFunctions = require("noisetilefunctions")
 local ChangeTileRenderOrder = ChangeTileRenderOrder
-local ChangeMiniMapTileRenderOrder = ChangeMiniMapTileRenderOrder
 local AddTile = AddTile
 GLOBAL.setfenv(1, GLOBAL)
 
-IA_OCEAN_TILES = rawget(_G, "IA_OCEAN_TILES") or {}
-IA_LAND_TILES = rawget(_G, "IA_LAND_TILES") or {}
-
-PL_OCEAN_TILES = IA_OCEAN_TILES
-PL_LAND_TILES = IA_LAND_TILES
-
 local is_worldgen = rawget(_G, "WORLDGEN_MAIN") ~= nil
 
-if not is_worldgen then
-    TileGroups.PLOceanTiles = TileGroups.IAOceanTiles or TileGroupManager:AddTileGroup()
-end
-
-local TileRanges =
-{
-    LAND = "LAND",
-    NOISE = "NOISE",
-    OCEAN = "OCEAN",
-    IMPASSABLE = "IMPASSABLE",
-}
-
+local TileRanges = IACore.TileRanges
 local pl_tiledefs = {
-    --BEARDRUG = {		-- ADD in DST
-    --    tile_range = TileRanges.LAND,
-    --    tile_data = {
-    --        ground_name = "Beard Rug",
-    --        -- old_static_id = 33,
-    --    },
-    --    ground_tile_def  = {
-    --        name = "carpet",
-    --        noise_texture = "Ground_beard_hair",
-    --        runsound = "dontstarve/movement/run_carpet",
-    --        walksound = "dontstarve/movement/walk_carpet",
-    --        flashpoint_modifier = 0,
-    --    },
-    --    minimap_tile_def = {
-    --        name = "map_edge",
-    --        noise_texture = "interior",
-    --    },
-    --    --turf_def = {
-    --    --    name = "beard_hair",
-    --    --    bank_build = "turf_pl",
-    --    --},
-	--
-    --},
+    -- dst had this
+    -- BEARDRUG = {
+    --     tile_range = TileRanges.LAND,
+    --     tile_data = {
+    --         ground_name = "Beard Rug",
+    --         -- old_static_id = 33,
+    --     },
+    --     ground_tile_def  = {
+    --         name = "carpet",
+    --         noise_texture = "Ground_beard_hair",
+    --         runsound = "dontstarve/movement/run_carpet",
+    --         walksound = "dontstarve/movement/walk_carpet",
+    --         flashpoint_modifier = 0,
+    --     },
+    --     minimap_tile_def = {
+    --         name = "map_edge",
+    --         noise_texture = "interior",
+    --     },
+    --     --turf_def = {
+    --     --    name = "beach",
+    --     --    bank_build = "turf_ia",
+    --     --},
+
+    -- },
     RAINFOREST = {
         tile_range = TileRanges.LAND,
         tile_data = {
@@ -102,10 +85,10 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_noise_rainforest",
         },
-        turf_def = {
-            name = "rainforest",
-            bank_build = "turf_pl",
-        },
+        --turf_def = {
+        --    name = "beach",
+        --    bank_build = "turf_ia",
+        --},
     },
     DEEPRAINFOREST = {
         tile_range = TileRanges.LAND,
@@ -119,15 +102,14 @@ local pl_tiledefs = {
             runsound = "dontstarve/movement/run_woods",
             walksound = "dontstarve/movement/walk_woods",
             flashpoint_modifier = 0,
-			cannotbedug = true,
         },
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_noise_jungle_deep",
         },
         -- turf_def = {
-        --     name = "deepjungle",
-        --     bank_build = "turf_pl",
+        --     name = "jungle",
+        --     bank_build = "turf_ia",
         -- },
     },
     DEEPRAINFOREST_NOCANOPY = {
@@ -146,11 +128,10 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_noise_jungle_deep",
         },
-         turf_def = {
-             name = "deeprainforest_nocanopy", -- Inventory item
-			 anim = "deepjungle", -- Ground item
-			 bank_build = "turf_pl",
-         },
+        -- turf_def = {
+        --     name = "jungle",
+        --     bank_build = "turf_ia",
+        -- },
     },
     GASJUNGLE = { --note this majestic creature is unused
         tile_range = TileRanges.LAND,
@@ -163,15 +144,14 @@ local pl_tiledefs = {
             noise_texture = "ground_noise_gas",
             runsound = "dontstarve/movement/run_moss",
             walksound = "dontstarve/movement/walk_moss",
-			cannotbedug = true,
         },
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_gasbiome_noise",
         },
         -- turf_def = {
-        --     name = "gasjungle",
-        --     bank_build = "turf_pl",
+        --     name = "swamp",
+        --     bank_build = "turf_ia",
         -- },
     },
     PLAINS = {
@@ -190,10 +170,10 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_plains_noise",
         },
-         turf_def = {
-             name = "plains",
-             bank_build = "turf_pl",
-         },
+        -- turf_def = {
+        --     name = "meadow",
+        --     bank_build = "turf_ia",
+        -- },
     },
     PAINTED = {
         tile_range = TileRanges.LAND,
@@ -206,17 +186,16 @@ local pl_tiledefs = {
             noise_texture = "Ground_bog",
             runsound = "dontstarve/movement/run_sand",
             walksound = "dontstarve/movement/walk_sand",
-            mudsound = "dontstarve/movement/run_sand"
+            mudsound = "run_sand"
         },
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_bog_noise",
         },
-         turf_def = {
-             name = "painted", -- Inventory item
-             anim = "bog", -- Ground item
-             bank_build = "turf_pl",
-         },
+        -- turf_def = {
+        --     name = "meadow",
+        --     bank_build = "turf_ia",
+        -- },
     },
     SUBURB = {
         tile_range = TileRanges.LAND,
@@ -229,17 +208,16 @@ local pl_tiledefs = {
             noise_texture = "noise_mossy_blossom",
             runsound = "dontstarve/movement/run_dirt",
             walksound = "dontstarve/movement/walk_dirt",
-            snowsound = "dontstarve/movement/run_ice",
+            snowsound = "run_ice",
         },
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_noise_mossy_blossom",
         },
-         turf_def = {
-             name = "moss",
-             anim = "mossy_blossom",
-             bank_build = "turf_pl",
-         },
+        -- turf_def = {
+        --     name = "meadow",
+        --     bank_build = "turf_ia",
+        -- },
     },
     FIELDS = {
         tile_range = TileRanges.LAND,
@@ -257,11 +235,10 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_noise_farmland",
         },
-         turf_def = {
-             name = "fields",
-             anim = "farmland",
-             bank_build = "turf_pl",
-         },
+        -- turf_def = {
+        --     name = "meadow",
+        --     bank_build = "turf_ia",
+        -- },
     },
     FOUNDATION = {
         tile_range = TileRanges.LAND,
@@ -274,17 +251,16 @@ local pl_tiledefs = {
             noise_texture = "noise_ruinsbrick_scaled",
             runsound = "dontstarve/movement/run_slate",
             walksound = "dontstarve/movement/walk_slate",
-            snowsound = "dontstarve/movement/run_ice",
+            snowsound = "run_ice",
         },
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_fanstone_noise",
         },
-         turf_def = {
-             name = "foundation",
-             anim = "fanstone",
-             bank_build = "turf_pl",
-         },
+        -- turf_def = {
+        --     name = "meadow",
+        --     bank_build = "turf_ia",
+        -- },
     },
     COBBLEROAD = {
         tile_range = TileRanges.LAND,
@@ -295,18 +271,18 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "stoneroad",
             noise_texture = "Ground_noise_cobbleroad",
-            runsound = "run_rock/movement/run_rock",
-            walksound = "run_rock/movement/walk_rock",
-            snowsound = "dontstarve/movement/run_ice",
+            runsound = "dontstarve/movement/run_rock",
+            walksound = "dontstarve/movement/walk_rock",
+            snowsound = "run_ice",
         },
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_brickroad_noise",
         },
-         turf_def = {
-             name = "cobbleroad",
-             bank_build = "turf_pl",
-         },
+        -- turf_def = {
+        --     name = "meadow",
+        --     bank_build = "turf_ia",
+        -- },
     },
     LAWN = {
         tile_range = TileRanges.LAND,
@@ -317,17 +293,12 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "pebble",
             noise_texture = "ground_noise_checkeredlawn",
-            runsound = "dontstarve/movement/run_grass",
-            walksound = "dontstarve/movement/walk_grass"
+            runsound = "run_grass",
+            walksound = "walk_grass"
         },
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_grasslawn_noise",
-        },
-		turf_def = {
-             name = "lawn",
-             anim = "checkeredlawn",
-             bank_build = "turf_pl",
         },
     },
     PIGRUINS = {
@@ -338,18 +309,14 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "blocky",
             noise_texture = "ground_ruins_slab",
-            runsound = "dontstarve/movement/run_dirt",
-            walksound = "dontstarve/movement/walk_dirt",
-            snowsound="dontstarve/movement/run_ice",
+            runsound = "run_dirt",
+            walksound = "walk_dirt",
+            snowsound="run_ice",
         },
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_ruins_slab"
-        },
-		-- turf_def = {
-        --      name = "pig_ruins",
-        --      bank_build = "turf_pl",
-        -- },
+        }
     },
     PIGRUINS_NOCANOPY = {
         tile_range = TileRanges.LAND,
@@ -366,18 +333,17 @@ local pl_tiledefs = {
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_ruins_slab"
-        },
+        }
     },
 
     -------------------------------
     -- OCEAN/SEA
     -- (after Land in order to keep render order consistent)
     -------------------------------
-	
     LILYPOND = {
         tile_range = TileRanges.OCEAN,
         tile_data = {
-            ground_name = "Lilypond"
+            name = "Lilypond"
         },
         ground_tile_def  = {
             name = "water_medium",
@@ -415,7 +381,7 @@ local pl_tiledefs = {
     -- NOISE
     -- (only for worldgen)
     -------------------------------
-    -- I don't see any code about this tile,this Imitated according to the effect
+    -- I don't see any code about this tile, this Imitated according to the effect
     BATTLEGROUND_RAINFOREST_NOISE = {
         tile_range = function (noise)
             if noise < 0.5 then
@@ -427,34 +393,10 @@ local pl_tiledefs = {
 
 }
 
-for tile, def in pairs(pl_tiledefs) do
-    local range = def.tile_range
-    if type(range) == "function" then
-        range = TileRanges.NOISE
-    end
-
-    AddTile(tile, range, def.tile_data, def.ground_tile_def, def.minimap_tile_def, def.turf_def)
-
-    local tile_id = WORLD_TILES[tile]
-
-    if def.tile_range == TileRanges.OCEAN then
-        if not is_worldgen then
-            TileGroupManager:AddInvalidTile(TileGroups.TransparentOceanTiles, tile_id)
-            TileGroupManager:AddValidTile(TileGroups.PLOceanTiles, tile_id)
-        end
-
-        table.insert(PL_OCEAN_TILES, tile_id)
-    elseif def.tile_range == TileRanges.LAND then
-        table.insert(PL_LAND_TILES, tile_id)
-    elseif type(def.tile_range) == "function" then
-        NoiseFunctions[tile_id] = def.tile_range
-    end
-end
+IACore.IA_Add_Tile(pl_tiledefs, AddTile)
 
 -- Non flooring floodproof tiles
-GROUND_FLOODPROOF = rawget(_G, "GROUND_FLOODPROOF")
-if GROUND_FLOODPROOF then
-end
+GROUND_FLOODPROOF = rawget(_G, "GROUND_FLOODPROOF") or {}
 
 for prefab, filter in pairs(terrain.filter) do
     if type(filter) == "table" then
@@ -466,8 +408,7 @@ for prefab, filter in pairs(terrain.filter) do
 end
 
 -- Priority turf
-ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.CARPET, true)
-
+-- in ds, tile priority after the mud tile
 ChangeTileRenderOrder(WORLD_TILES.GASJUNGLE, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.COBBLEROAD, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.LAWN, WORLD_TILES.MUD, true)
@@ -480,35 +421,3 @@ ChangeTileRenderOrder(WORLD_TILES.PLAINS, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PAINTED, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.DEEPRAINFOREST_NOCANOPY, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.MUD, true)
-
-local _Initialize = GroundTiles.Initialize
-local function Initialize(...)
-    local minimap_table = GroundTiles.minimap
-    local ground_table = GroundTiles.ground
-    --Minimap
-    local minimap_first
-    for i, ground in pairs(minimap_table) do
-        if ground[1] ~= nil then
-            minimap_first = ground[1]
-            break
-        end
-    end
-    --Ground
-    local ground_last
-    for i=#ground_table, 1, -1 do
-        local ground = ground_table[i]
-        if ground[1] ~= nil then
-            ground_last = ground[1]
-            break
-        end
-    end
-    for i=#PL_OCEAN_TILES, 1, -1 do
-        local tile = PL_OCEAN_TILES[i]
-        if tile ~= ground_last then
-            ChangeTileRenderOrder(tile, ground_last, true)
-            ground_last = tile
-        end
-    end
-    return _Initialize(...)
-end
-GroundTiles.Initialize = Initialize

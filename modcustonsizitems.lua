@@ -89,9 +89,6 @@ local custonsiz_items = {  -- add in dst custonsiz
         animals = {
             peagawk_setting = {image = "peagawk.tex"},
             glowfly_setting = {image = "glowflies.tex"},
-			dung_beetle_setting = {image = "dung_beetles.tex"},
-            pog_setting = {image = "pogs.tex"},
-            hippopotamoose_setting = {image = "hippopotamoose.tex"},
         },
         resources = {
             asparagus_regrowth = {image = "asparagus.tex"},
@@ -99,8 +96,7 @@ local custonsiz_items = {  -- add in dst custonsiz
         misc = {
             fog = {desc = enable_descriptions},
             glowflycycle = {image = "glowfly_life_cycle.tex", desc = enable_descriptions},
-            poison = {desc = enable_descriptions},
-			lost_relics = {desc = frequency_descriptions},
+            hayfever = {desc = enable_descriptions},
         },
     }
 }
@@ -128,8 +124,8 @@ local function add_group_and_item(category, name, text, desc, atlas, order, item
     end
 end
 
-local WORLDGEN_GROUP = Pl_Util.GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
-local WORLDSETTINGS_GROUP = Pl_Util.GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
+local WORLDGEN_GROUP = ToolUtil.GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
+local WORLDSETTINGS_GROUP = ToolUtil.GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
 for category, category_data in pairs(change_items) do  -- use dst custonsiz settings for porkland
     local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
     for group, items in pairs(category_data) do

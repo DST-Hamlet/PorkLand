@@ -204,9 +204,7 @@ applyoverrides_post.glowflycycle = function(difficulty)
     end
 end
 
-applyoverrides_post.poison = function(difficulty)
-    local worldsettings = TheWorld.components.worldsettings
-    if worldsettings then
-        worldsettings:SetSetting("poison", difficulty == "default")
-    end
+applyoverrides_post.hayfever = function(difficulty)
+    difficulty = difficulty == "default"
+    TheWorld:PushEvent("ms_setworldsetting", {setting = "hayfever", value = difficulty})
 end

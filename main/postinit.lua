@@ -1,50 +1,28 @@
 -- Update this list when adding files
 local components_post = {
-    "actionqueuer",
     "ambientlighting",
-	"battleborn",
     "clock",
     "colourcube",
-    "combat",
-    "equippable",
     "grogginess",
-    "health",
     "inventory",
-    "inventoryitem",
-    "lootdropper",
     "moisture",
-    "pickable",
-	"plantregrowth", -- I Add but need add in tuning regrow speed
-    "playercontroller",
     "pollinator",
     "regrowthmanager",
-    "rider_replica",
     "seasons",
     "shard_clock",
     "shard_seasons",
-    "sleeper",
-    "stackable",
-	"thief",
     "wavemanager",
-	"weapon",
     "worldstate",
-	"amphibiouscreature",
-    "floater",
+    "edible",
 }
 
 local prefabs_post = {
-    "batbat",
-	"buff_workeffectiveness",
     "player",
     "player_classified",
-    "woodie",
     "world_network",
-    "variants_pl",
     "shard_network",
-}
-
-local batch_prefabs_post = {
-    "poisonable"
+    "woodie",
+    "wormwood",
 }
 
 local scenarios_post = {
@@ -77,10 +55,6 @@ end
 
 for _, file_name in ipairs(prefabs_post) do
     modimport("postinit/prefabs/" .. file_name)
-end
-
-for _, file_name in ipairs(batch_prefabs_post) do
-    modimport("postinit/batchprefabs/" .. file_name)
 end
 
 for _, file_name in ipairs(scenarios_post) do

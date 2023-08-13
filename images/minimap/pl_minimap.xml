@@ -1,149 +1,134 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Atlas>
-	<Texture filename="pl_minimap.tex" />
-	<Elements>
-		<Element name="ant_cave_door.tex" u1="0.001" u2="0.0615" v1="0.9385" v2="0.999"/>
-		<Element name="ant_cave_lantern.tex" u1="0.0635" u2="0.124" v1="0.9385" v2="0.999"/>
-		<Element name="ant_chest.tex" u1="0.001" u2="0.0615" v1="0.876" v2="0.9365"/>
-		<Element name="ant_chest_honey.tex" u1="0.0635" u2="0.124" v1="0.876" v2="0.9365"/>
-		<Element name="ant_chest_nectar.tex" u1="0.126" u2="0.1865" v1="0.9385" v2="0.999"/>
-		<Element name="ant_hill_entrance.tex" u1="0.1885" u2="0.249" v1="0.9385" v2="0.999"/>
-		<Element name="ant_house.tex" u1="0.126" u2="0.1865" v1="0.876" v2="0.9365"/>
-		<Element name="ant_queen_entrance.tex" u1="0.1885" u2="0.249" v1="0.876" v2="0.9365"/>
-		<Element name="armor_vortex_cloak.tex" u1="0.001" u2="0.0615" v1="0.8135" v2="0.874"/>
-		<Element name="balloon_wreckage.tex" u1="0.0635" u2="0.124" v1="0.8135" v2="0.874"/>
-		<Element name="basefan.tex" u1="0.126" u2="0.1865" v1="0.8135" v2="0.874"/>
-		<Element name="bramble.tex" u1="0.1885" u2="0.249" v1="0.8135" v2="0.874"/>
-		<Element name="bramble_core.tex" u1="0.001" u2="0.0615" v1="0.751" v2="0.8115"/>
-		<Element name="cargo.tex" u1="0.0635" u2="0.124" v1="0.751" v2="0.8115"/>
-		<Element name="claw_tree.tex" u1="0.126" u2="0.1865" v1="0.751" v2="0.8115"/>
-		<Element name="claw_tree_burnt.tex" u1="0.1885" u2="0.249" v1="0.751" v2="0.8115"/>
-		<Element name="claw_tree_stump.tex" u1="0.251" u2="0.3115" v1="0.9385" v2="0.999"/>
-		<Element name="coracle_boat.tex" u1="0.3135" u2="0.374" v1="0.9385" v2="0.999"/>
-		<Element name="cork_chest.tex" u1="0.376" u2="0.4365" v1="0.9385" v2="0.999"/>
-		<Element name="dung_pile.tex" u1="0.4385" u2="0.499" v1="0.9385" v2="0.999"/>
-		<Element name="elderdrake_house.tex" u1="0.251" u2="0.3115" v1="0.876" v2="0.9365"/>
-		<Element name="gnat_mound.tex" u1="0.3135" u2="0.374" v1="0.876" v2="0.9365"/>
-		<Element name="gold_puddle.tex" u1="0.376" u2="0.4365" v1="0.876" v2="0.9365"/>
-		<Element name="hogusporkusator.tex" u1="0.4385" u2="0.499" v1="0.876" v2="0.9365"/>
-		<Element name="lawnornament_1.tex" u1="0.251" u2="0.3115" v1="0.8135" v2="0.874"/>
-		<Element name="lawnornament_2.tex" u1="0.3135" u2="0.374" v1="0.8135" v2="0.874"/>
-		<Element name="lawnornament_3.tex" u1="0.376" u2="0.4365" v1="0.8135" v2="0.874"/>
-		<Element name="lawnornament_4.tex" u1="0.4385" u2="0.499" v1="0.8135" v2="0.874"/>
-		<Element name="lawnornament_5.tex" u1="0.251" u2="0.3115" v1="0.751" v2="0.8115"/>
-		<Element name="lawnornament_6.tex" u1="0.3135" u2="0.374" v1="0.751" v2="0.8115"/>
-		<Element name="lawnornament_7.tex" u1="0.376" u2="0.4365" v1="0.751" v2="0.8115"/>
-		<Element name="lifeplant.tex" u1="0.4385" u2="0.499" v1="0.751" v2="0.8115"/>
-		<Element name="lily_pad.tex" u1="0.001" u2="0.0615" v1="0.6885" v2="0.749"/>
-		<Element name="lograft.tex" u1="0.0635" u2="0.124" v1="0.6885" v2="0.749"/>
-		<Element name="lotus.tex" u1="0.126" u2="0.1865" v1="0.6885" v2="0.749"/>
-		<Element name="mean_flytrap.tex" u1="0.1885" u2="0.249" v1="0.6885" v2="0.749"/>
-		<Element name="metal_claw.tex" u1="0.251" u2="0.3115" v1="0.6885" v2="0.749"/>
-		<Element name="metal_head.tex" u1="0.3135" u2="0.374" v1="0.6885" v2="0.749"/>
-		<Element name="metal_leg.tex" u1="0.376" u2="0.4365" v1="0.6885" v2="0.749"/>
-		<Element name="metal_spider.tex" u1="0.4385" u2="0.499" v1="0.6885" v2="0.749"/>
-		<Element name="nettle.tex" u1="0.001" u2="0.0615" v1="0.626" v2="0.6865"/>
-		<Element name="peekhen.tex" u1="0.0635" u2="0.124" v1="0.626" v2="0.6865"/>
-		<Element name="pheromone_stone.tex" u1="0.126" u2="0.1865" v1="0.626" v2="0.6865"/>
-		<Element name="pig_farmhouse.tex" u1="0.1885" u2="0.249" v1="0.626" v2="0.6865"/>
-		<Element name="pig_guard_tower.tex" u1="0.251" u2="0.3115" v1="0.626" v2="0.6865"/>
-		<Element name="pig_house_sale.tex" u1="0.3135" u2="0.374" v1="0.626" v2="0.6865"/>
-		<Element name="pig_palace.tex" u1="0.376" u2="0.4365" v1="0.626" v2="0.6865"/>
-		<Element name="pig_ruins_dart_statue.tex" u1="0.4385" u2="0.499" v1="0.626" v2="0.6865"/>
-		<Element name="pig_ruins_door_int.tex" u1="0.001" u2="0.0615" v1="0.5635" v2="0.624"/>
-		<Element name="pig_ruins_entrance.tex" u1="0.0635" u2="0.124" v1="0.5635" v2="0.624"/>
-		<Element name="pig_ruins_exit_int.tex" u1="0.126" u2="0.1865" v1="0.5635" v2="0.624"/>
-		<Element name="pig_ruins_pillar.tex" u1="0.1885" u2="0.249" v1="0.5635" v2="0.624"/>
-		<Element name="pig_ruins_pot.tex" u1="0.251" u2="0.3115" v1="0.5635" v2="0.624"/>
-		<Element name="pig_ruins_side_door_int.tex" u1="0.3135" u2="0.374" v1="0.5635" v2="0.624"/>
-		<Element name="pig_ruins_side_door_int_2.tex" u1="0.376" u2="0.4365" v1="0.5635" v2="0.624"/>
-		<Element name="pig_ruins_tree_roots_int.tex" u1="0.4385" u2="0.499" v1="0.5635" v2="0.624"/>
-		<Element name="pig_ruins_well.tex" u1="0.001" u2="0.0615" v1="0.501" v2="0.5615"/>
-		<Element name="pig_ruins_well_vortex.tex" u1="0.0635" u2="0.124" v1="0.501" v2="0.5615"/>
-		<Element name="pig_shop_academy.tex" u1="0.126" u2="0.1865" v1="0.501" v2="0.5615"/>
-		<Element name="pig_shop_antiquities.tex" u1="0.1885" u2="0.249" v1="0.501" v2="0.5615"/>
-		<Element name="pig_shop_arcane.tex" u1="0.251" u2="0.3115" v1="0.501" v2="0.5615"/>
-		<Element name="pig_shop_bank.tex" u1="0.3135" u2="0.374" v1="0.501" v2="0.5615"/>
-		<Element name="pig_shop_cityhall.tex" u1="0.376" u2="0.4365" v1="0.501" v2="0.5615"/>
-		<Element name="pig_shop_deli.tex" u1="0.4385" u2="0.499" v1="0.501" v2="0.5615"/>
-		<Element name="pig_shop_florist.tex" u1="0.501" u2="0.5615" v1="0.9385" v2="0.999"/>
-		<Element name="pig_shop_general.tex" u1="0.5635" u2="0.624" v1="0.9385" v2="0.999"/>
-		<Element name="pig_shop_hatshop.tex" u1="0.626" u2="0.6865" v1="0.9385" v2="0.999"/>
-		<Element name="pig_shop_hoofspa.tex" u1="0.6885" u2="0.749" v1="0.9385" v2="0.999"/>
-		<Element name="pig_shop_produce.tex" u1="0.751" u2="0.8115" v1="0.9385" v2="0.999"/>
-		<Element name="pig_shop_tinker.tex" u1="0.8135" u2="0.874" v1="0.9385" v2="0.999"/>
-		<Element name="pig_shop_weapons.tex" u1="0.876" u2="0.9365" v1="0.9385" v2="0.999"/>
-		<Element name="pig_tower_royal.tex" u1="0.9385" u2="0.999" v1="0.9385" v2="0.999"/>
-		<Element name="pig_townhouse.tex" u1="0.501" u2="0.5615" v1="0.876" v2="0.9365"/>
-		<Element name="tree_pillar.tex" u1="0.5635" u2="0.624" v1="0.876" v2="0.9365"/>
-		<Element name="player_frontdoor.tex" u1="0.626" u2="0.6865" v1="0.876" v2="0.9365"/>
-		<Element name="player_house_brick.tex" u1="0.6885" u2="0.749" v1="0.876" v2="0.9365"/>
-		<Element name="player_house_cottage.tex" u1="0.751" u2="0.8115" v1="0.876" v2="0.9365"/>
-		<Element name="player_house_gothic.tex" u1="0.8135" u2="0.874" v1="0.876" v2="0.9365"/>
-		<Element name="player_house_manor.tex" u1="0.876" u2="0.999" v1="0.8135" v2="0.9365"/>
-		<Element name="player_house_tudor.tex" u1="0.501" u2="0.5615" v1="0.8135" v2="0.874"/>
-		<Element name="player_house_turret.tex" u1="0.5635" u2="0.624" v1="0.8135" v2="0.874"/>
-		<Element name="player_house_villa.tex" u1="0.626" u2="0.6865" v1="0.8135" v2="0.874"/>
-		<Element name="porkalypse_clock.tex" u1="0.6885" u2="0.749" v1="0.8135" v2="0.874"/>
-		<Element name="portal_ham.tex" u1="0.751" u2="0.8115" v1="0.8135" v2="0.874"/>
-		<Element name="reeds_in_water.tex" u1="0.8135" u2="0.874" v1="0.8135" v2="0.874"/>
-		<Element name="ro_bin.tex" u1="0.501" u2="0.5615" v1="0.751" v2="0.8115"/>
-		<Element name="roc_junk_branch1.tex" u1="0.5635" u2="0.624" v1="0.751" v2="0.8115"/>
-		<Element name="roc_junk_branch2.tex" u1="0.626" u2="0.6865" v1="0.751" v2="0.8115"/>
-		<Element name="roc_junk_bush.tex" u1="0.6885" u2="0.749" v1="0.751" v2="0.8115"/>
-		<Element name="roc_junk_house.tex" u1="0.751" u2="0.8115" v1="0.751" v2="0.8115"/>
-		<Element name="roc_junk_rusty_lamp.tex" u1="0.8135" u2="0.874" v1="0.751" v2="0.8115"/>
-		<Element name="roc_junk_tree1.tex" u1="0.876" u2="0.9365" v1="0.751" v2="0.8115"/>
-		<Element name="roc_junk_tree2.tex" u1="0.9385" u2="0.999" v1="0.751" v2="0.8115"/>
-		<Element name="roc_junk_trunk.tex" u1="0.501" u2="0.5615" v1="0.6885" v2="0.749"/>
-		<Element name="rock_antcave.tex" u1="0.5635" u2="0.624" v1="0.6885" v2="0.749"/>
-		<Element name="rock_batcave.tex" u1="0.626" u2="0.6865" v1="0.6885" v2="0.749"/>
-		<Element name="rock_flipping.tex" u1="0.6885" u2="0.749" v1="0.6885" v2="0.749"/>
-		<Element name="root_chest_child.tex" u1="0.751" u2="0.8115" v1="0.6885" v2="0.749"/>
-		<Element name="rowboat.tex" u1="0.8135" u2="0.874" v1="0.6885" v2="0.749"/>
-		<Element name="ruins_artichoke.tex" u1="0.876" u2="0.9365" v1="0.6885" v2="0.749"/>
-		<Element name="ruins_giant_head.tex" u1="0.9385" u2="0.999" v1="0.6885" v2="0.749"/>
-		<Element name="ruins_torch.tex" u1="0.501" u2="0.5615" v1="0.626" v2="0.6865"/>
-		<Element name="shelf_ruins.tex" u1="0.5635" u2="0.624" v1="0.626" v2="0.6865"/>
-		<Element name="silvernecklace.tex" u1="0.626" u2="0.6865" v1="0.626" v2="0.6865"/>
-		<Element name="smelter.tex" u1="0.6885" u2="0.749" v1="0.626" v2="0.6865"/>
-		<Element name="snake_skull_buried.tex" u1="0.751" u2="0.8115" v1="0.626" v2="0.6865"/>
-		<Element name="spear_trap.tex" u1="0.8135" u2="0.874" v1="0.626" v2="0.6865"/>
-		<Element name="spiderTree.tex" u1="0.876" u2="0.9365" v1="0.626" v2="0.6865"/>
-		<Element name="sprinkler.tex" u1="0.9385" u2="0.999" v1="0.626" v2="0.6865"/>
-		<Element name="statue_pig_ruins_ant.tex" u1="0.501" u2="0.5615" v1="0.5635" v2="0.624"/>
-		<Element name="statue_pig_ruins_idol.tex" u1="0.5635" u2="0.624" v1="0.5635" v2="0.624"/>
-		<Element name="statue_pig_ruins_idol_blue.tex" u1="0.626" u2="0.6865" v1="0.5635" v2="0.624"/>
-		<Element name="statue_pig_ruins_mushroom.tex" u1="0.6885" u2="0.749" v1="0.5635" v2="0.624"/>
-		<Element name="statue_pig_ruins_pig.tex" u1="0.751" u2="0.8115" v1="0.5635" v2="0.624"/>
-		<Element name="statue_pig_ruins_plaque.tex" u1="0.8135" u2="0.874" v1="0.5635" v2="0.624"/>
-		<Element name="teatree.tex" u1="0.876" u2="0.9365" v1="0.5635" v2="0.624"/>
-		<Element name="teatree_burnt.tex" u1="0.9385" u2="0.999" v1="0.5635" v2="0.624"/>
-		<Element name="teatree_stump.tex" u1="0.501" u2="0.5615" v1="0.501" v2="0.5615"/>
-		<Element name="telipad.tex" u1="0.5635" u2="0.624" v1="0.501" v2="0.5615"/>
-		<Element name="thunderbird.tex" u1="0.626" u2="0.6865" v1="0.501" v2="0.5615"/>
-		<Element name="thunderbirdnest.tex" u1="0.6885" u2="0.749" v1="0.501" v2="0.5615"/>
-		<Element name="topiary_1.tex" u1="0.751" u2="0.8115" v1="0.501" v2="0.5615"/>
-		<Element name="topiary_2.tex" u1="0.8135" u2="0.874" v1="0.501" v2="0.5615"/>
-		<Element name="topiary_3.tex" u1="0.876" u2="0.9365" v1="0.501" v2="0.5615"/>
-		<Element name="topiary_4.tex" u1="0.9385" u2="0.999" v1="0.501" v2="0.5615"/>
-		<Element name="tracker.tex" u1="0.001" u2="0.0615" v1="0.4385" v2="0.499"/>
-		<Element name="tree_rainforest.tex" u1="0.0635" u2="0.124" v1="0.4385" v2="0.499"/>
-		<Element name="tree_rainforest_burnt.tex" u1="0.126" u2="0.1865" v1="0.4385" v2="0.499"/>
-		<Element name="tree_rainforest_stump.tex" u1="0.1885" u2="0.249" v1="0.4385" v2="0.499"/>
-		<Element name="trusty_shooter.tex" u1="0.251" u2="0.3115" v1="0.4385" v2="0.499"/>
-		<Element name="tuber_trees.tex" u1="0.3135" u2="0.374" v1="0.4385" v2="0.499"/>
-		<Element name="tuber_trees_burnt.tex" u1="0.376" u2="0.4365" v1="0.4385" v2="0.499"/>
-		<Element name="tuber_trees_stump.tex" u1="0.4385" u2="0.499" v1="0.4385" v2="0.499"/>
-		<Element name="vamp_bat_cave.tex" u1="0.501" u2="0.5615" v1="0.4385" v2="0.499"/>
-		<Element name="vamp_bat_cave_exit.tex" u1="0.5635" u2="0.624" v1="0.4385" v2="0.499"/>
-		<Element name="vamp_cave_burrow.tex" u1="0.626" u2="0.6865" v1="0.4385" v2="0.499"/>
-		<Element name="vamp_cave_pillar.tex" u1="0.6885" u2="0.749" v1="0.4385" v2="0.499"/>
-		<Element name="wagstaff.tex" u1="0.751" u2="0.8115" v1="0.4385" v2="0.499"/>
-		<Element name="wagstaff_thumper.tex" u1="0.8135" u2="0.874" v1="0.4385" v2="0.499"/>
-		<Element name="warbucks.tex" u1="0.876" u2="0.9365" v1="0.4385" v2="0.499"/>
-		<Element name="wheeler.tex" u1="0.9385" u2="0.999" v1="0.4385" v2="0.499"/>
-		<Element name="wilba.tex" u1="0.001" u2="0.0615" v1="0.376" v2="0.4365"/>
-		<Element name="xspot.tex" u1="0.0635" u2="0.124" v1="0.376" v2="0.4365"/>
-	</Elements>
+    <Texture filename="pl_minimap.tex" />
+    <Elements>
+        <Element name="vamp_bat_cave.tex" u1="0.68798828125" u2="0.74951171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="statue_pig_ruins_plaque.tex" u1="0.81298828125" u2="0.87451171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="spiderTree.tex" u1="0.25048828125" u2="0.31201171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="pig_shop_deli.tex" u1="0.81298828125" u2="0.87451171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="elderdrake_house.tex" u1="0.31298828125" u2="0.37451171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="player_house_brick.tex" u1="0.50048828125" u2="0.56201171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="lawnornament_6.tex" u1="0.87548828125" u2="0.93701171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="ant_hill_entrance.tex" u1="0.43798828125" u2="0.49951171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="player_frontdoor.tex" u1="0.43798828125" u2="0.49951171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="pig_shop_florist.tex" u1="0.87548828125" u2="0.93701171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="ro_bin.tex" u1="0.75048828125" u2="0.81201171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="pig_palace.tex" u1="0.75048828125" u2="0.81201171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="pig_shop_general.tex" u1="0.93798828125" u2="0.99951171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="bramble.tex" u1="0.81298828125" u2="0.87451171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="lily_pad.tex" u1="0.06298828125" u2="0.12451171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="sprinkler.tex" u1="0.31298828125" u2="0.37451171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="tuber_trees.tex" u1="0.62548828125" u2="0.68701171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="lotus.tex" u1="0.12548828125" u2="0.18701171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="warbucks.tex" u1="0.06298828125" u2="0.12451171875" v1="0.43798828125" v2="0.49951171875" />
+        <Element name="ruins_artichoke.tex" u1="0.81298828125" u2="0.87451171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="pig_ruins_side_door_int_2.tex" u1="0.25048828125" u2="0.31201171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="aporkalypse_clock.tex" u1="0.87548828125" u2="0.93701171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="roc_junk_bush.tex" u1="0.31298828125" u2="0.37451171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="roc_junk_branch1.tex" u1="0.18798828125" u2="0.24951171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="pig_ruins_exit_int.tex" u1="0.00048828125" u2="0.06201171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="tracker.tex" u1="0.43798828125" u2="0.49951171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="lawnornament_7.tex" u1="0.93798828125" u2="0.99951171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="pig_ruins_door_int.tex" u1="0.87548828125" u2="0.93701171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="lawnornament_2.tex" u1="0.62548828125" u2="0.68701171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="ant_chest.tex" u1="0.25048828125" u2="0.31201171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="pig_townhouse.tex" u1="0.31298828125" u2="0.37451171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="teleportato_hamlet_base.tex" u1="0.93798828125" u2="0.99951171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="statue_pig_ruins_ant.tex" u1="0.50048828125" u2="0.56201171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="shelf_ruins.tex" u1="0.00048828125" u2="0.06201171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="armor_vortex_cloak.tex" u1="0.62548828125" u2="0.68701171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="ant_cave_lantern.tex" u1="0.18798828125" u2="0.24951171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="telipad.tex" u1="0.00048828125" u2="0.06201171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="topiary_4.tex" u1="0.37548828125" u2="0.43701171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="pig_ruins_well.tex" u1="0.37548828125" u2="0.43701171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="rock_batcave.tex" u1="0.06298828125" u2="0.12451171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="stalagmite.tex" u1="0.37548828125" u2="0.43701171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="cork_chest.tex" u1="0.18798828125" u2="0.24951171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="pig_ruins_side_door_int.tex" u1="0.18798828125" u2="0.24951171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="statue_pig_ruins_mushroom.tex" u1="0.68798828125" u2="0.74951171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="pig_shop_weapons.tex" u1="0.25048828125" u2="0.31201171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="pig_ruins_pillar.tex" u1="0.06298828125" u2="0.12451171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="ant_house.tex" u1="0.50048828125" u2="0.56201171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="nettle.tex" u1="0.50048828125" u2="0.56201171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="player_house_cottage.tex" u1="0.56298828125" u2="0.62451171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="dung_pile.tex" u1="0.25048828125" u2="0.31201171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="player_house_tudor.tex" u1="0.68798828125" u2="0.74951171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="roc_junk_rusty_lamp.tex" u1="0.43798828125" u2="0.49951171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="vamp_bat_cave_exit.tex" u1="0.75048828125" u2="0.81201171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="statue_pig_ruins_idol_blue.tex" u1="0.62548828125" u2="0.68701171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="lawnornament_3.tex" u1="0.68798828125" u2="0.74951171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="pig_shop_tinker.tex" u1="0.18798828125" u2="0.24951171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="rock_flipping.tex" u1="0.12548828125" u2="0.18701171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="pig_shop_hatshop.tex" u1="0.00048828125" u2="0.06201171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="pig_shop_hoofspa.tex" u1="0.06298828125" u2="0.12451171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="metal_spider.tex" u1="0.43798828125" u2="0.49951171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="tree_pillar.tex" u1="0.37548828125" u2="0.43701171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="player_house_manor.tex" u1="0.00048828125" u2="0.12451171875" v1="0.87548828125" v2="0.99951171875" />
+        <Element name="topiary_1.tex" u1="0.18798828125" u2="0.24951171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="gnat_mound.tex" u1="0.37548828125" u2="0.43701171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="pig_shop_antiquities.tex" u1="0.56298828125" u2="0.62451171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="pig_guard_tower.tex" u1="0.62548828125" u2="0.68701171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="spear_trap.tex" u1="0.18798828125" u2="0.24951171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="wilba.tex" u1="0.18798828125" u2="0.24951171875" v1="0.43798828125" v2="0.49951171875" />
+        <Element name="hogusporkusator.tex" u1="0.50048828125" u2="0.56201171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="basefan.tex" u1="0.75048828125" u2="0.81201171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="metal_head.tex" u1="0.31298828125" u2="0.37451171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="pig_house_sale.tex" u1="0.68798828125" u2="0.74951171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="metal_claw.tex" u1="0.25048828125" u2="0.31201171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="wagstaff_thumper.tex" u1="0.00048828125" u2="0.06201171875" v1="0.43798828125" v2="0.49951171875" />
+        <Element name="pig_shop_cityhall.tex" u1="0.75048828125" u2="0.81201171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="thunderbirdnest.tex" u1="0.12548828125" u2="0.18701171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="pig_ruins_entrance.tex" u1="0.93798828125" u2="0.99951171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="ruins_torch.tex" u1="0.93798828125" u2="0.99951171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="peekhen.tex" u1="0.56298828125" u2="0.62451171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="ant_queen_entrance.tex" u1="0.56298828125" u2="0.62451171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="lawnornament_1.tex" u1="0.56298828125" u2="0.62451171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="portal_ham.tex" u1="0.93798828125" u2="0.99951171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="claw_tree.tex" u1="0.93798828125" u2="0.99951171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="pig_ruins_tree_roots_int.tex" u1="0.31298828125" u2="0.37451171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="stalagmite_tall.tex" u1="0.43798828125" u2="0.49951171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="pig_ruins_dart_statue.tex" u1="0.81298828125" u2="0.87451171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="silvernecklace.tex" u1="0.06298828125" u2="0.12451171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="topiary_3.tex" u1="0.31298828125" u2="0.37451171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="lawnornament_5.tex" u1="0.81298828125" u2="0.87451171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="pig_ruins_well_vortex.tex" u1="0.43798828125" u2="0.49951171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="ant_chest_honey.tex" u1="0.31298828125" u2="0.37451171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="lawnornament_4.tex" u1="0.75048828125" u2="0.81201171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="wheeler.tex" u1="0.12548828125" u2="0.18701171875" v1="0.43798828125" v2="0.49951171875" />
+        <Element name="roc_junk_branch2.tex" u1="0.25048828125" u2="0.31201171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="wagstaff.tex" u1="0.93798828125" u2="0.99951171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="thunderbird.tex" u1="0.06298828125" u2="0.12451171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="pig_shop_academy.tex" u1="0.50048828125" u2="0.56201171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="metal_leg.tex" u1="0.37548828125" u2="0.43701171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="roc_junk_tree1.tex" u1="0.50048828125" u2="0.56201171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="pig_shop_bank.tex" u1="0.68798828125" u2="0.74951171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="root_chest_child.tex" u1="0.68798828125" u2="0.74951171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="vamp_cave_pillar.tex" u1="0.87548828125" u2="0.93701171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="lifeplant.tex" u1="0.00048828125" u2="0.06201171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="smelter.tex" u1="0.12548828125" u2="0.18701171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="roc_junk_trunk.tex" u1="0.62548828125" u2="0.68701171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="balloon_wreckage.tex" u1="0.68798828125" u2="0.74951171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="vamp_cave_burrow.tex" u1="0.81298828125" u2="0.87451171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="ruins_giant_head.tex" u1="0.87548828125" u2="0.93701171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="tree_rainforest.tex" u1="0.50048828125" u2="0.56201171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="pig_shop_arcane.tex" u1="0.62548828125" u2="0.68701171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="mean_flytrap.tex" u1="0.18798828125" u2="0.24951171875" v1="0.81298828125" v2="0.87451171875" />
+        <Element name="pig_ruins_pot.tex" u1="0.12548828125" u2="0.18701171875" v1="0.75048828125" v2="0.81201171875" />
+        <Element name="player_house_gothic.tex" u1="0.62548828125" u2="0.68701171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="statue_pig_ruins_pig.tex" u1="0.75048828125" u2="0.81201171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="roc_junk_house.tex" u1="0.37548828125" u2="0.43701171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="pig_shop_produce.tex" u1="0.12548828125" u2="0.18701171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="gold_puddle.tex" u1="0.43798828125" u2="0.49951171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="rock_antcave.tex" u1="0.00048828125" u2="0.06201171875" v1="0.62548828125" v2="0.68701171875" />
+        <Element name="topiary_2.tex" u1="0.25048828125" u2="0.31201171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="player_house_turret.tex" u1="0.75048828125" u2="0.81201171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="player_house_villa.tex" u1="0.81298828125" u2="0.87451171875" v1="0.68798828125" v2="0.74951171875" />
+        <Element name="trusty_shooter.tex" u1="0.56298828125" u2="0.62451171875" v1="0.50048828125" v2="0.56201171875" />
+        <Element name="bramble_core.tex" u1="0.87548828125" u2="0.93701171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="ant_cave_door.tex" u1="0.12548828125" u2="0.18701171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="coracle_boat.tex" u1="0.12548828125" u2="0.18701171875" v1="0.87548828125" v2="0.93701171875" />
+        <Element name="ant_chest_nectar.tex" u1="0.37548828125" u2="0.43701171875" v1="0.93798828125" v2="0.99951171875" />
+        <Element name="statue_pig_ruins_idol.tex" u1="0.56298828125" u2="0.62451171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="teatree.tex" u1="0.87548828125" u2="0.93701171875" v1="0.56298828125" v2="0.62451171875" />
+        <Element name="roc_junk_tree2.tex" u1="0.56298828125" u2="0.62451171875" v1="0.62548828125" v2="0.68701171875" />
+    </Elements>
 </Atlas>

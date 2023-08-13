@@ -6,7 +6,5 @@ AddPrefabPostInitAny(function(inst)
         return
     end
 
-	inst:AddComponent("economy")
-	inst:AddComponent("periodicpoopmanager")
     inst:AddComponent("aporkalypse")
 end)

@@ -2,15 +2,21 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ah, I feel better now.",
     },
+    ANNOUNCE_HAYFEVER = "Ugh! My allergies!",
+    ANNOUNCE_HAYFEVER_OFF = "I think... my nose has cleared!",
+    ANNOUNCE_SNEEZE = "Atchoum!",
     ANNOUNCE_TOO_HUMID = {
         "Mon dieu! This %s is humid.",
         "Whew. This %s is hot.",
     },
     DESCRIBE = {
+        ALLOY = "Metal cooked to perfection.",
         APORKALYPSE_CLOCK = "Like the knobs on a stove, it must be turned just right.",
+        ARMOR_METALPLATE = "Like an armor made of tin cans.",
         ARMOR_WEEVOLE = "It still smells of bug.",
         ASPARAGUS_PLANTED = "I should snatch those up.",
         CHITIN = "Completely inedible.",
+        CUTNETTLE = "Great for clearing the sinuses!",
         FLOWER_RAINFOREST = "Edible?",
         GLOWFLY = {
             DEAD = "Such a shame. And not even edible.",
@@ -18,13 +24,12 @@ return {
             SLEEPING = "May your dreams be full of light.",
         },
         GLOWFLY_COCOON = "It's wrapped itself like a cabbage roll.",
-        GOLDENMACHETE = "Fancy slicer.",
         GRASS_TALL = {
             BURNING = "Smells like a cookout!",
             GENERIC = "Too long to cut with my hands.",
             PICKED = "It will have to grow back.",
         },
-        MACHETE = "I could chop many an onion with this!",
+        HALBERD = "I dislike fighting.",
         PEAGAWK = {
             DEAD = "A pointless death.",
             GENERIC = "Those feathers would make a nice table centerpiece.",

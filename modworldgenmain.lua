@@ -1,7 +1,7 @@
--- must use modimport. Otherwise, it collapse will when mod is tuen on again
 local modimport = modimport
 GLOBAL.setfenv(1, GLOBAL)
 
+-- must use modimport to add, because dst bug
 modimport("scripts/map/locations/porkland")
 modimport("scripts/map/startlocations/porkland")
 modimport("scripts/map/tasksets/porklandset")
@@ -13,23 +13,15 @@ if IsTheFrontEnd then
 end
 -- when start worldgen
 
--- postinit
+require("map/pl_lockandkey")
+require("map/pl_map_tags")
+require("map/porkland_map")
 
-modimport("main/pl_util")
+-- postinit
 modimport("main/tuning")
 modimport("main/tiledefs")
-modimport("main/spawnutil")
 
-require("map/porkland_lockandkey")
-
-modimport("postinit/map/task")
--- modimport("postinit/map/level")
-modimport("postinit/map/graph")
-modimport("postinit/map/node")
-modimport("postinit/map/storygen")
-modimport("postinit/map/forest_map")
-
-require("map/porkland_layouts")
+-- require("map/porkland_layouts")
 -- require("map/porkland_boons")
 -- require("map/porkland_traps")
 

@@ -2,15 +2,21 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ah! Th'air be cool again.",
     },
+    ANNOUNCE_HAYFEVER = "Me nose be itchier than a sliver in me pegleg.",
+    ANNOUNCE_HAYFEVER_OFF = "Ah! Th'air be clear again!",
+    ANNOUNCE_SNEEZE = "Ahh-pheww!!",
     ANNOUNCE_TOO_HUMID = {
         "Arrgh! It be hot!",
         "This %s is makin' me sweat me britches.",
     },
     DESCRIBE = {
+        ALLOY = "Ahoy, alloy!",
         APORKALYPSE_CLOCK = "Tha time be nigh!",
+        ARMOR_METALPLATE = "Not good fer swimmin' in.",
         ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",
         ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
         CHITIN = "A harden'd hull.",
+        CUTNETTLE = "Cleans tha' nose as good as sea air.",
         FLOWER_RAINFOREST = "Ol'Woodlegs na'got use fer'it.",
         GLOWFLY = {
             DEAD = "Tells no tales.",
@@ -18,13 +24,12 @@ return {
             SLEEPING = "Becalm'd.",
         },
         GLOWFLY_COCOON = "'e be sleepin' it off.",
-        GOLDENMACHETE = "'Tis a mighty 'eavy blade.",
         GRASS_TALL = {
             BURNING = "'Tis ablaze!",
             GENERIC = "As tall'as th'sky.",
             PICKED = "Plunder'd.",
         },
-        MACHETE = "Ye be slicin'!",
+        HALBERD = "T'ain't no cutlass.",
         PEAGAWK = {
             DEAD = "It tells no tales.",
             GENERIC = "Arr, them eyes need patches!",

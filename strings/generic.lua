@@ -2,15 +2,21 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ah, so much better.",
     },
+    ANNOUNCE_HAYFEVER = "My nose feels.. itchy.",
+    ANNOUNCE_HAYFEVER_OFF = "I don't want to claw my eyes out anymore.",
+    ANNOUNCE_SNEEZE = "AHHH CHOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is so heavy.",
         "This %s is too hot.",
     },
     DESCRIBE = {
+        ALLOY = "Ahoy there, alloy!",
         APORKALYPSE_CLOCK = "Looks scientifically apocalyptic.",
+        ARMOR_METALPLATE = "Science says I'm safe in here.",
         ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",
         ASPARAGUS_PLANTED = "I should pick those!",
         CHITIN = "Bug coating.",
+        CUTNETTLE = "Science says the sharp edges are good for my lungs.",
         FLOWER_RAINFOREST = "It smells vaguely tolerable.",
         GLOWFLY = {
             DEAD = "Lights out forever.",
@@ -18,13 +24,12 @@ return {
             SLEEPING = "Out like a light.",
         },
         GLOWFLY_COCOON = "Snug as a bug.",
-        GOLDENMACHETE = "Hack in style!",
         GRASS_TALL = {
             BURNING = "A grass fire!",
             GENERIC = "It's too tough to pick with my hands.",
             PICKED = "Looks like I got it all.",
         },
-        MACHETE = "I like the cut of this blade.",
+        HALBERD = "Now I can't be caught off-guard.",
         PEAGAWK = {
             DEAD = "Dead-eyed.",
             GENERIC = "That bush is alive!",
@@ -41,17 +46,5 @@ return {
         TREE_PILLAR = "It totally blocks out the sun.",
         WEEVOLE = "Whee!",
         WEEVOLE_CARAPACE = "I'll be careful with this carapace.",
-		
-		DUNGBALL = "Most definitely poop.",
-		DUNGBEETLE = {
-			GENERIC = "She's on a roll.",
-			UNDUNGED = "She needs to get her dung together.",
-			SLEEPING = "She's pooped.",
-			DEAD = "Dung for.",
-		},
-		DUNGPILE = {
-			GENERIC = "It's a pile of dung.",
-			PICKED = "Dung and dung.",
-		},
     },
 }

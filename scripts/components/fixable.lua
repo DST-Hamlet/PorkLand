@@ -51,9 +51,8 @@ function Fixable:OnRemoveEntity()
 
         if self.prefabname then
             fixer:SetPrefabNameOverride(self.prefabname)
-        else
-            fixer:SetPrefabNameOverride(self.inst.prefab)
         end
+        
         fixer.reconstruction_stages = self.reconstruction_stages
     end
 end

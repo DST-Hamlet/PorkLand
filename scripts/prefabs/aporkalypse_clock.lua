@@ -280,7 +280,7 @@ local function Makeplate(name, build, rewind_mult)
         return inst
     end
 
-    return Prefab(name, fn, assets)
+    return Prefab("common/objects/" .. name, fn, assets)
 end
 
 local function MakeClock(clock_num)
@@ -318,11 +318,11 @@ local function MakeClock(clock_num)
         return inst
     end
 
-    return Prefab(name, fn, assets)
+    return Prefab("common/objects/" .. name, fn, assets)
 end
 
-return Prefab("aporkalypse_clock", aporkalypse_clock_fn, aporkalypse_clock_assets),
-    Prefab("aporkalypse_marker", aporkalypse_marker_fn, aporkalypse_marker_assets),
+return Prefab("common/objects/aporkalypse_clock", aporkalypse_clock_fn, aporkalypse_clock_assets),
+    Prefab("common/objects/aporkalypse_marker", aporkalypse_marker_fn, aporkalypse_marker_assets),
     Makeplate("aporkalypse_rewind_plate", "pressure_plate_forwards_build", -1),
     Makeplate("aporkalypse_fastforward_plate", "pressure_plate_backwards_build", 1),
     MakeClock(1),

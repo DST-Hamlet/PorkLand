@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# This hook converts tabs to 4 spaces in *.lua files.
+
+for file in `git diff --cached --name-only --diff-filter=ACM`; do
+    if [[ $file =~ \.lua$ ]]; then
+        expand -t 4 < $file > $file.new  # Convert tabs to 4 spaces.
+        mv $file.new $file  # Replace the original file with the converted file.
+        git add $file
+    fi
+done

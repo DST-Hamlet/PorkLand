@@ -2,15 +2,21 @@ return {
     ANNOUNCE_DEHUMID = {
         "Whew! Not so hot anymore.",
     },
+    ANNOUNCE_HAYFEVER = "Sniff. Sniff. We must have allergies.",
+    ANNOUNCE_HAYFEVER_OFF = "Wow! I think our allergies are gone!",
+    ANNOUNCE_SNEEZE = "a...choooOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "Ugh. We're really baking in this %s.",
         "Wow! This %s is making us hot.",
     },
     DESCRIBE = {
+        ALLOY = "Gosh. That's a lot of metal.",
         APORKALYPSE_CLOCK = "It's like a puzzle!",
+        ARMOR_METALPLATE = "Sir Webber at your service!",
         ARMOR_WEEVOLE = "For when we need protection.",
         ASPARAGUS_PLANTED = "We should pick those.",
         CHITIN = "Hope no one's missing that.",
+        CUTNETTLE = "These nettles smell really strong.",
         FLOWER_RAINFOREST = "This flower is neat!",
         GLOWFLY = {
             DEAD = "Oh no! It died!",
@@ -18,13 +24,12 @@ return {
             SLEEPING = "Lights out.",
         },
         GLOWFLY_COCOON = "That looks cozy.",
-        GOLDENMACHETE = "What a beautiful blade!",
         GRASS_TALL = {
             BURNING = "Fire!",
             GENERIC = "It's taller than we are!",
             PICKED = "It's been picked.",
         },
-        MACHETE = "Hyah! Hyah!",
+        HALBERD = "Swoosh!",
         PEAGAWK = {
             DEAD = "I think it's dead.",
             GENERIC = "You've got more eyes than we do!",

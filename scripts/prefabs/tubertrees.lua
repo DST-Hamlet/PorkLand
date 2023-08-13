@@ -81,11 +81,12 @@ local old_anims =
 local function dig_up_stump(inst, chopper)
     inst:Remove()
     inst.components.lootdropper:SpawnLootPrefab("tuber_crop")
-
+--[[
     if inst:HasTag("mystery") and inst.components.mystery.investigated then
         inst.components.lootdropper:SpawnLootPrefab(inst.components.mystery.reward)
         inst:RemoveTag("mystery")
     end
+    ]]
 end
 
 local function chop_down_burnt_tree(inst, chopper)
@@ -235,11 +236,11 @@ local growth_stages =
 {
     {
         name="short",
-         time = function(inst) return GetRandomWithVariance(TUNING.CLAWPALMTREE_GROW_TIME[1].base, TUNING.CLAWPALMTREE_GROW_TIME[1].random) end,
-         fn = function(inst) SetShort(inst) end,
-         growfn = function(inst) GrowShort(inst) end,
-         leifscale=.7
-     },
+        time = function(inst) return GetRandomWithVariance(TUNING.CLAWPALMTREE_GROW_TIME[1].base, TUNING.CLAWPALMTREE_GROW_TIME[1].random) end,
+        fn = function(inst) SetShort(inst) end,
+        growfn = function(inst) GrowShort(inst) end,
+        leifscale=.7
+    },
 
     {
         name="tall",
@@ -325,7 +326,7 @@ end
 local function onload(inst, data)
     if data then
         if not data.build or builds[data.build] == nil then
-             doTransformNormal(inst)
+            doTransformNormal(inst)
         else
             inst.build = data.build
         end
@@ -451,16 +452,16 @@ end
 
 local function OnGustFall(inst)
     if inst:HasTag("burnt") then
-        chop_down_burnt_tree(inst, ThePlayer)
+        chop_down_burnt_tree(inst, GetPlayer())
     end
 end
 
 local function canbloom(inst)
-     if not inst:HasTag("stump") and not inst:HasTag("rotten") then
-         return true
-     else
-         return false
-     end
+    if not inst:HasTag("stump") and not inst:HasTag("rotten") then
+        return true
+    else
+        return false
+    end
 end
 
 local function startbloom(inst)
@@ -585,7 +586,7 @@ local function makefn(build, stage, data)
         MakeObstaclePhysics(inst, .25)
 
         local minimap = inst.entity:AddMiniMapEntity()
-        minimap:SetIcon("tuber_trees.tex")
+        minimap:SetIcon("tuber_trees.png")
 
         minimap:SetPriority(-1)
 
@@ -672,7 +673,7 @@ local function makefn(build, stage, data)
         inst.components.bloomable:SetCanBloom(canbloom)
         inst.components.bloomable:SetStartBloomFn(startbloom)
         inst.components.bloomable:SetStopBloomFn(stopbloom)
-        inst.components.bloomable.season = {SEASONS.LUSH}
+        inst.components.bloomable.season = {SEASONS.SUMMER}
 
         ---------------------
         --PushSway(inst)
@@ -721,7 +722,7 @@ local function makefn(build, stage, data)
 end
 
 local function tree(name, build, stage, data)
-    return Prefab(name, makefn(build, stage, data), assets, prefabs)
+    return Prefab("forest/objects/trees/"..name, makefn(build, stage, data), assets, prefabs)
 end
 
 return tree("tubertree", "normal", 0),

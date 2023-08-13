@@ -1,14 +1,15 @@
+
 local prefabs = {
     "ash",
 }
 
 local function onHammered(inst, worker)
     local x, y, z = inst.Transform:GetWorldPosition()
-    for i = 1,math.random(3, 4) do
+    for i=1,math.random(3,4) do
         local fx = SpawnPrefab("robot_leaf_fx")
-        fx.Transform:SetPosition(x + (math.random() * 2) , y + math.random() * 0.5, z + (math.random() * 2))
+        fx.Transform:SetPosition(x + (math.random()*2) , y+math.random()*0.5, z + (math.random()*2))
         if math.random() < 0.5 then
-            fx.Transform:SetScale(-1, 1, -1)
+            fx.Transform:SetScale(-1,1,-1)
         end
     end
 
@@ -25,8 +26,8 @@ local function onHit(inst, worker)
 	inst.AnimState:PushAnimation("idle", false)
 
     local fx = SpawnPrefab("robot_leaf_fx")
-    local x, y, z = inst.Transform:GetWorldPosition()
-    fx.Transform:SetPosition(x, y + math.random() * 0.5, z)
+    local x, y, z= inst.Transform:GetWorldPosition()
+    fx.Transform:SetPosition(x, y + math.random()*0.5, z)
             
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/vine_hack")
 end
@@ -40,33 +41,33 @@ end
 local function MakeLawnornament(n)
     local assets = {
         Asset("ANIM", "anim/topiary0"..n..".zip"),
-        --Asset("MINIMAP_IMAGE", "lawnornaments_"..n),
-        --Asset("INV_IMAGE", "lawnornament_"..n),
+        Asset("MINIMAP_IMAGE", "lawnornaments_"..n),
+        Asset("INV_IMAGE", "lawnornament_"..n),
     }
 
     local function fn(Sim)
         local inst = CreateEntity()
-        inst.entity:AddTransform()
-        inst.entity:AddAnimState()
-		inst.entity:AddSoundEmitter()
-		inst.entity:AddNetwork()
+        local trans = inst.entity:AddTransform()
+        local anim = inst.entity:AddAnimState() 
+        inst.entity:AddSoundEmitter()
+        inst.entity:AddNetwork()
      
         MakeObstaclePhysics(inst, .5)
 
-        inst.entity:AddMiniMapEntity()
-        inst.MiniMapEntity:SetIcon( "lawnornament_"..n..".tex" )
+        local minimap = inst.entity:AddMiniMapEntity()
+        minimap:SetIcon( "lawnornament_"..n..".png" )
 
         inst:AddTag("structure")
 
-        inst.AnimState:SetBank("topiary0".. n)
-        inst.AnimState:SetBuild("topiary0".. n)
-        inst.AnimState:PlayAnimation("idle")
+        anim:SetBank("topiary0".. n)
+        anim:SetBuild("topiary0".. n)
+        anim:PlayAnimation("idle")
 
-		inst.entity:SetPristine()
+        inst.entity:SetPristine()
 
-		if not TheWorld.ismastersim then
-			return inst
-		end
+        if not TheWorld.ismastersim then
+            return inst
+        end
 
         inst:AddComponent("lootdropper")
         inst:AddComponent("workable")
@@ -80,7 +81,7 @@ local function MakeLawnornament(n)
         
         MakeSnowCovered(inst)
 
-        inst:ListenForEvent("onbuilt", onBuilt)
+        inst:ListenForEvent( "onbuilt", onBuilt)
 
         inst:AddComponent("fixable")
         inst.components.fixable:AddRecinstructionStageData("burnt", "topiary0".. n, "topiary0".. n)
@@ -99,7 +100,7 @@ local function MakeLawnornament(n)
 end
 
 local function MakeLawnornamentPlacer(n)
-    return MakePlacer("lawnornament_"..n.."_placer", "topiary0"..n, "topiary0"..n, "idle")
+    return MakePlacer("common/lawnornament_"..n.."_placer", "topiary0"..n, "topiary0"..n, "idle")
 end
 
 local ret = {}

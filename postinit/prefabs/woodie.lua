@@ -1,15 +1,15 @@
 local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
-local function startwereplayer(inst, data)
-    if inst.components.poisonable then
-        inst.components.poisonable:SetBlockAll(true)
+local function StartWerePlayer(inst, data)
+    if inst.components.hayfever then
+        inst.components.hayfever.imune = true
     end
 end
 
-local function stopwereplayer(inst, data)
-    if inst.components.poisonable and not inst:HasTag("playerghost") then
-        inst.components.poisonable:SetBlockAll(false)
+local function StopWerePlayer(inst, data)
+    if inst.components.hayfever then
+        inst.components.hayfever.imune = false
     end
 end
 
@@ -18,6 +18,6 @@ AddPrefabPostInit("woodie", function(inst)
         return
     end
 
-    inst:ListenForEvent("startwereplayer", startwereplayer)
-    inst:ListenForEvent("stopwereplayer", stopwereplayer)
+    inst:ListenForEvent("startwereplayer", StartWerePlayer)
+    inst:ListenForEvent("stopwereplayer", StopWerePlayer)
 end)

@@ -1,4 +1,4 @@
-ds_path = "F:/STEAM/steamapps/common/dont_starve"  -- don't dont_starve file path, need DLC003
+ds_path = "D:/Steam/steamapps/common/dont_starve"  -- don't dont_starve file path, need DLC003
 
 package.path = package.path .. ";../?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
@@ -57,4 +57,3 @@ data = {  -- lua file path = po file path
         override = false,
     }
 }
-

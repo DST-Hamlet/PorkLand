@@ -79,7 +79,7 @@ local function tile_physics_init(inst, ...)
     inst.Map:AddTileCollisionSet(
         COLLISION.LAND_OCEAN_LIMITS,
         TileGroups.LandTiles, true,
-        TileGroups.PLOceanTiles, true,
+        TileGroups.IAOceanTiles, true,
         0.25, 64
     )
     -- standard impassable collider
@@ -111,14 +111,8 @@ local function common_postinit(inst)
         -- inst:AddComponent("ambientsound")
         inst:AddComponent("dsp")
         inst:AddComponent("colourcube")
-        inst.components.colourcube:AddPlSeasonColourCube()
         inst:AddComponent("hallucinations")
         inst:AddComponent("wavemanager")
-		inst:AddComponent("canopymanager")
-        local rainforest_shade = {spawn = SpawnRainforestCanopy, despawn = DespawnRainforestCanopy}
-        inst.components.canopymanager:AddShadeTile(WORLD_TILES.DEEPRAINFOREST, rainforest_shade)
-        inst.components.canopymanager:AddShadeTile(WORLD_TILES.PIGRUINS, rainforest_shade)
-        inst.components.canopymanager:AddShadeTile(WORLD_TILES.GASJUNGLE, rainforest_shade)
         inst.Map:SetUndergroundFadeHeight(0)
         inst.Map:AlwaysDrawWaves(true)
         inst.Map:DoOceanRender(true)
@@ -126,6 +120,8 @@ local function common_postinit(inst)
 end
 
 local function master_postinit(inst)
+    inst.has_ia_ocean = true
+
     -- Spawners
     inst:AddComponent("birdspawner")
     inst:AddComponent("butterflyspawner")
@@ -133,9 +129,6 @@ local function master_postinit(inst)
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")
-	
-	inst:AddComponent("economy")
-	inst:AddComponent("periodicpoopmanager")
 
     inst:AddComponent("hunter")
     inst:AddComponent("lureplantspawner")

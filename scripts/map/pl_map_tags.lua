@@ -1,7 +1,7 @@
-local function AddMapTags(map_tags)
-    local pl_map_datda = {}
+local AddMapTag = require("map/addmaptags")
 
-    local pl_map_tags = {
+local map_tags = {
+    Tag = {
         ["City_Foundation"] = function(tagdata)
             return "GLOBALTAG", "City_Foundation"
         end,
@@ -26,15 +26,8 @@ local function AddMapTags(map_tags)
         ["Gas_Jungle"] = function(tagdata)
             return "TAG", "Gas_Jungle"
         end
-    }
+    },
+    TagData = {}
+}
 
-    for tag, fn in pairs(pl_map_tags) do
-        map_tags.Tag[tag] = fn
-    end
-
-    for tag, data in pairs(pl_map_datda) do
-        map_tags.TagData[tag] = data
-    end
-end
-
-return AddMapTags
+AddMapTag(nil, map_tags)

@@ -2,15 +2,21 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ha! Wolfgang beat the heat!",
     },
+    ANNOUNCE_HAYFEVER = "Allergies strong like Wolfgang!",
+    ANNOUNCE_HAYFEVER_OFF = "Ha! Wolfgang beat allergies!",
+    ANNOUNCE_SNEEZE = "Achoo! Excuse Wolfgang.",
     ANNOUNCE_TOO_HUMID = {
         "Wolfgang don't like %s in this heat.",
         "Is too muggy.",
     },
     DESCRIBE = {
+        ALLOY = "Fire make it strong like Wolfgang.",
         APORKALYPSE_CLOCK = "Is clock of scary things.",
+        ARMOR_METALPLATE = "No one beat Wolfgang now!",
         ARMOR_WEEVOLE = "Wolfgang win!",
         ASPARAGUS_PLANTED = "Haha. Is like tiny vegetable hats.",
         CHITIN = "Icky bug pieces.",
+        CUTNETTLE = "Is good for clearing nose.",
         FLOWER_RAINFOREST = "Little smelly flower.",
         GLOWFLY = {
             DEAD = "Light bug is lights out.",
@@ -18,13 +24,12 @@ return {
             SLEEPING = "Light bug is dark.",
         },
         GLOWFLY_COCOON = "Bug look cozy.",
-        GOLDENMACHETE = "Hoighty toighty knife!",
         GRASS_TALL = {
             BURNING = "Wolfgang is not doing that!",
             GENERIC = "Very sturdy grass.",
             PICKED = "Wolfgang is mightiest!",
         },
-        MACHETE = "Ah! Very good!",
+        HALBERD = "Sword is for weak no-muscle men.",
         PEAGAWK = {
             DEAD = "Is blink-blink no more.",
             GENERIC = "Funny blink-blink bird!",

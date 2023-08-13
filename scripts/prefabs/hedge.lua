@@ -35,10 +35,14 @@ local function FixUpRotation(inst)
 end
 
 function MakeHedgeType(data)
+
 	local assets =
 	{
 		Asset("ANIM", "anim/hedge.zip"),
 		Asset("ANIM", "anim/hedge"..data.hedgetype.."_build.zip"),
+		Asset("INV_IMAGE", "hedge_block_item"),
+		Asset("INV_IMAGE", "hedge_cone_item"),		
+		Asset("INV_IMAGE", "hedge_layered_item"),		
 	}
 
 	local prefabs =
@@ -46,26 +50,27 @@ function MakeHedgeType(data)
 		"collapse_small",
 	}
 
+
 	local function quantizeposition(pt)
 		local retval = Vector3(math.floor(pt.x)+.5, 0, math.floor(pt.z)+.5)
 		return retval
 	end 
 
 	local function ondeploywall(inst, pt, deployer)
-	
+		--inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spider_egg_sack")
 		local wall = SpawnPrefab(data.name) 
-		if wall ~= nil then
-            local x = math.floor(pt.x) + .5
-            local z = math.floor(pt.z) + .5
-            wall.Physics:SetCollides(false)
-            wall.Physics:Teleport(x, 0, z)
-            wall.Physics:SetCollides(true)
-            inst.components.stackable:Get():Remove()
+		if wall then 
+			pt = quantizeposition(pt)
+			wall.Physics:SetCollides(false)
+			wall.Physics:Teleport(pt.x, pt.y, pt.z) 
+			wall.Physics:SetCollides(true)
+			inst.components.stackable:Get():Remove()
 
-            if data.buildsound ~= nil then
-                wall.SoundEmitter:PlaySound(data.buildsound)
-            end
-        end		
+		    local ground = GetWorld()
+		    if ground then
+		    	ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
+		    end
+		end 		
 	end
 
 	local function onhacked(inst, worker)
@@ -98,15 +103,19 @@ function MakeHedgeType(data)
 		inst:Remove()
 	end
 
-	--[[local function ongusthammerfn(inst)
+	local function ongusthammerfn(inst)
 	    --onhammered(inst, nil)
 	    inst.components.health:DoDelta(-data.windblown_damage, false, "wind")
 	end
 
+
+
 	local function test_wall(inst, pt)
-		local map = TheWorld.Map
+		local map = GetWorld().Map
 		local tiletype = GetGroundTypeAtPosition(pt)
 		local ground_OK = tiletype ~= GROUND.IMPASSABLE and not map:IsWater(tiletype) and IsPointInInteriorBounds(pt, 1)
+		
+
 		
 		if ground_OK then
 			local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 2, nil, {"NOBLOCK", "player", "FX", "INLIMBO", "DECOR"}) -- or we could include a flag to the search?
@@ -122,7 +131,7 @@ function MakeHedgeType(data)
 				end
 			end
 
-			local playerPos = ThePlayer:GetPosition()
+			local playerPos = GetPlayer():GetPosition()
 			local xDiff = playerPos.x - pt.x 
 			local zDiff = playerPos.z - pt.z 
 			local dsq = xDiff * xDiff + zDiff * zDiff
@@ -135,36 +144,10 @@ function MakeHedgeType(data)
 		end
 		return false
 		
-	end]]
-
-	local function OnIsPathFindingDirty(inst)
-		if inst._ispathfinding:value() then
-			if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
-				inst._pfpos = inst:GetPosition()
-				TheWorld.Pathfinder:AddWall(inst._pfpos:Get())
-			end
-		elseif inst._pfpos ~= nil then
-			TheWorld.Pathfinder:RemoveWall(inst._pfpos:Get())
-			inst._pfpos = nil
-		end
-	end
-
-	local function InitializePathFinding(inst)
-		inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
-		OnIsPathFindingDirty(inst)
 	end
 
 	local function makeobstacle(inst)
-		inst.Physics:SetActive(true)
-		inst._ispathfinding:set(true)
-	end
-
-	local function clearobstacle(inst)
-		inst.Physics:SetActive(false)
-		inst._ispathfinding:set(false)
-	end
-
-	--[[local function makeobstacle(inst)
+		-- print('makeobstacle walls.lua')
 	
 		inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)	
 	    inst.Physics:ClearCollisionMask()
@@ -175,14 +158,14 @@ function MakeHedgeType(data)
 		inst.Physics:CollidesWith(COLLISION.WAVES)
 		inst.Physics:CollidesWith(COLLISION.INTWALL)
 		inst.Physics:SetActive(true)
-	    local ground = TheWorld
+	    local ground = GetWorld()
 	    if ground then
 	    	local pt = Point(inst.Transform:GetWorldPosition())
 			--print("    at: ", pt)
 	    	ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
 	    end
 	end
-	
+
 	local function clearobstacle(inst)
 		-- Alia: 
 		-- Since we are removing the wall anytway we may as well not bother setting the physics    
@@ -192,8 +175,8 @@ function MakeHedgeType(data)
 				inst.Physics:SetActive(false)
 			end
 		end)
-	
-	    local ground = TheWorld
+
+	    local ground = GetWorld()
 	    if ground then
 	    	local pt = Point(inst.Transform:GetWorldPosition())
 	    	ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)
@@ -211,31 +194,24 @@ function MakeHedgeType(data)
 		else
 			inst.AnimState:PlayAnimation(anim_to_play)		
 		end
-	end]]
+	end
 	
 	local function itemfn(Sim)
 
 		local inst = CreateEntity()
+		inst:AddTag("wallbuilder")
 		
 		inst.entity:AddTransform()
 		inst.entity:AddAnimState()
-        inst.entity:AddNetwork()
-		
 		MakeInventoryPhysics(inst)
-		
-		inst:AddTag("wallbuilder")
 	    
 		inst.AnimState:SetBank("hedge")
 		inst.AnimState:SetBuild("hedge"..data.hedgetype.."_build")
 		inst.AnimState:PlayAnimation("idle")
 
-		MakeInventoryFloatable(inst)
 		
-		inst.entity:SetPristine()
+		MakeInventoryFloatable(inst, "idle_water", "idle")
 
-        if not TheWorld.ismastersim then
-            return inst
-        end
 
 		inst:AddComponent("stackable")
 		inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
@@ -249,17 +225,20 @@ function MakeHedgeType(data)
 			
 			inst:AddComponent("fuel")
 			inst.components.fuel.fuelvalue = TUNING.SMALL_FUEL
+
+			inst:AddComponent("appeasement")
+    		inst.components.appeasement.appeasementvalue = TUNING.WRATH_SMALL
+
+			inst.components.burnable:MakeDragonflyBait(3)
 		end
 		
 		inst:AddComponent("deployable")
 		inst.components.deployable.ondeploy = ondeploywall
-        inst.components.deployable:SetDeployMode(DEPLOYMODE.WALL)
-
-		--inst.components.deployable.test = test_wall
-		--inst.components.deployable.min_spacing = 0
-		--inst.components.deployable.placer = data.name.."_placer"
-		--inst.components.deployable:SetQuantizeFunction(quantizeposition)
-		--inst.components.deployable.deploydistance = 1.5
+		inst.components.deployable.test = test_wall
+		inst.components.deployable.min_spacing = 0
+		inst.components.deployable.placer = data.name.."_placer"
+		inst.components.deployable:SetQuantizeFunction(quantizeposition)
+		inst.components.deployable.deploydistance = 1.5
 		
 		return inst
 	end
@@ -274,141 +253,122 @@ function MakeHedgeType(data)
 	end
 
 	local function onrepaired(inst)
-		inst.SoundEmitter:PlaySound("dontstarve/common/place_structure_straw")		
+		if data.buildsound then
+			inst.SoundEmitter:PlaySound(data.buildsound)		
+		end
 		makeobstacle(inst)
 	end
 
-	local function ongrowth(inst)
+	local function age(inst)
 		inst.AnimState:PlayAnimation("growth2", false)		
-		inst.components.shearable.canshaveable = true
+		inst.shaveable = true
 	end
 
-	local function onshear(inst)
+	local function unage(inst)
 		inst.AnimState:PlayAnimation("growth1", false)		
-		inst.components.shearable.canshaveable = nil
+		inst.shaveable = nil
 		inst.setAgeTask(inst)
 	end
-	
-	local function canshave(inst, shaver, shaving_implement)
-		return inst:HasTag("SHEAR_workable")
+
+	local function shave(inst, shaver)
+		if inst.shaveable then			
+			unage(inst)
+			shaver.components.inventory:GiveItem(  SpawnPrefab("clippings"), nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+		end
 	end
-	
+
+	local function onshear(inst, shearer)
+		unage(inst)
+	end
+
+	local function canshear(inst)
+		return inst.shaveable
+	end
 
 	local function onsave(inst, data)		
 	    if inst.task then
 	        data.timeleft = inst:TimeRemainingInTask(inst.taskinfo)
 	    end
-	    if inst.components.shearable:CanShear() then
-	    	data.canshear = true
+	    if inst.shaveable then
+	    	data.shaveable = true
 	    end
 	end
 
 	local function onload(inst, data)
 		-- This is run everytime the hedges are loaded into the world, including the fisrt. But the result is overridden by the save data afterwards. 
-		if math.random() < 0.05 or 
-			(data and data.canshear) then
-			print("LOAD HEDGE", data.canshear)
-			ongrowth(inst)
+		if math.random() < 0.05 then
+			age(inst)
 		else
-			onshear(inst)
+			inst.setAgeTask(inst) 
 		end
+
 		if data then
+			if data.shaveable then
+				age(inst)
+			else
+				unage(inst)
+			end
 			if data.timeleft then
-				inst.setAgeTask(inst, data.timeleft)
-			end
-			
-			if data.gridnudge then
-				local function normalize(coord)
-
-					local temp = coord%0.5
-					coord = coord + 0.5 - temp
-
-					if  coord%1 == 0 then
-						coord = coord -0.5
-					end
-
-					return coord
-				end
-
-				local pt = Vector3(inst.Transform:GetWorldPosition())
-				pt.x = normalize(pt.x)
-				pt.z = normalize(pt.z)
-				inst.Transform:SetPosition(pt.x,pt.y,pt.z)
-			end
+			    inst.setAgeTask(inst, data.timeleft)
+			end  	
 		end
+		
 		makeobstacle(inst)
 	end
 
 	local function onremoveentity(inst)
-		inst._ispathfinding:set_local(false)
-		OnIsPathFindingDirty(inst)
-		--clearobstacle(inst)
+		clearobstacle(inst)
+	end
+
+	local function testage(inst)
+		if math.random() < 0.03 then
+			age(inst)
+		else
+			inst.setAgeTask(inst)
+		end
 	end
 
 	local function setAgeTask(inst, time)
-		if inst.task then 
-			inst.taskinfo = nil
-			inst.task:Cancel()
-			inst.task = nil
-		end
+		if inst.task then inst.taskinfo = nil inst.task:Cancel() inst.task = nil  end
 		if not time then 
-			time = TUNING.TOTAL_DAY_TIME / 2 + (math.random() * TUNING.TOTAL_DAY_TIME)
+			time = TUNING.TOTAL_DAY_TIME/2 + (math.random()* TUNING.TOTAL_DAY_TIME)
 		end
-		inst.task, inst.taskinfo = inst:ResumeTask(time, function(inst)
-			if math.random() < 0.03 then ongrowth(inst)
-			else inst.setAgeTask(inst)
-			end
-		end, inst)  
+		inst.task, inst.taskinfo = inst:ResumeTask( time, function() testage(inst) end)  
 	end
 
 	local function getstatus(inst)
-	    if inst.components.shearable:CanShear() then
+	    if inst.shaveable then
 	      	return "SHAVEABLE"
 	    end	    
 	end
 
 	local function fn(Sim)
 		local inst = CreateEntity()
-		
-		inst.entity:AddTransform()
-		inst.entity:AddAnimState()
+		local trans = inst.entity:AddTransform()
+		local anim = inst.entity:AddAnimState()
 		inst.entity:AddSoundEmitter()
-        inst.entity:AddNetwork()
-		
-		inst.Transform:SetEightFaced()
-		
-		MakeObstaclePhysics(inst, .5)
-        inst.Physics:SetDontRemoveOnSleep(true)
-		
-		inst:AddTag("wall")		
-		inst:AddTag("grass")
+		trans:SetEightFaced()
+		--trans:SetScale(1.3,1.3,1.3)
+		inst:AddTag("wall")
 		inst:AddTag("structure")
+		MakeObstaclePhysics(inst, .5)    
+        inst.Physics:SetDontRemoveOnSleep(true)
 
-		inst.AnimState:SetBank("hedge")
-		inst.AnimState:SetBuild("hedge"..data.hedgetype.."_build")
-	    inst.AnimState:PlayAnimation("growth1", false)
+		anim:SetBank("hedge")
+		anim:SetBuild("hedge"..data.hedgetype.."_build")
+	    anim:PlayAnimation("growth1", false)
 	    
-		MakeSnowCoveredPristine(inst)
-		
-		inst._pfpos = nil
-		inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
-        makeobstacle(inst)
-		
-		inst:DoTaskInTime(0, InitializePathFinding)
-		
-		inst.OnRemoveEntity = onremoveentity
-		
-		inst.entity:SetPristine()
-
-        if not TheWorld.ismastersim then
-            return inst
-        end
-		
 		inst:AddComponent("inspectable")
 		inst.components.inspectable.getstatus = getstatus
 		inst:AddComponent("lootdropper")
+		
+		for k,v in ipairs(data.tags) do
+		    inst:AddTag(v)
+		end
 
-		inst.SoundEmitter:PlaySound("dontstarve/common/place_structure_straw")		
+		if data.buildsound then
+			inst.SoundEmitter:PlaySound(data.buildsound)		
+		end
 		
 		inst:AddComponent("workable")
 		inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
@@ -416,46 +376,48 @@ function MakeHedgeType(data)
 		inst.components.workable:SetOnFinishCallback(onhacked)
 		inst.components.workable:SetOnWorkCallback(onhit) 
 		
+
         inst:AddComponent("fixable")
         inst.components.fixable:AddRecinstructionStageData("broken","hedge","hedge"..data.hedgetype.."_build")
         inst.components.fixable:SetPrefabName("hedge")
-        inst.components.fixable.reconstructedanims = {play ="place", push = "growth1"}
+        inst.components.fixable.reconstructedanims ={play ="place", push = "growth1" }
         inst.components.fixable.reconstructionprefab = data.name
 
-        --inst:ListenForEvent("entitywake", FixUpRotation)
-	    
+        inst:ListenForEvent("entitywake", FixUpRotation)
+
+		inst.OnSave = onsave
+	    inst.OnLoad = onload
+	    inst.OnRemoveEntity = onremoveentity
+		
 		inst:SetPrefabNameOverride("hedge")
 
-		--inst:AddComponent("gridnudger")
+		inst:AddComponent("gridnudger")
 
+		MakeSnowCovered(inst)
+
+		inst.shave = shave
 		inst.setAgeTask = setAgeTask
 
 		MakeMediumBurnable(inst, nil, nil, true)
         MakeMediumPropagator(inst)
-		MakeHauntableWork(inst)
         inst:ListenForEvent("burntup", inst.Remove)
 
 		inst:AddComponent("shearable")
 		inst.components.shearable:SetProduct("clippings", 2)
-		inst.components.shearable:SetOnShearFn(onshear)
-		
-		inst:AddComponent("shaveable")
-		inst.components.shaveable:SetPrize("clippings", 1)
-        inst.components.shaveable.can_shave_test = canshave
-        inst.components.shaveable.on_shaved = onshear
-		
+
+		inst.onshear = onshear
+		inst.canshear = canshear
+
+		inst:DoTaskInTime(0, makeobstacle)
 
 		inst:DoTaskInTime(0.5,function() 
-			if not inst.components.shearable:CanShear() and not inst.task then
+			if not inst.shaveable and not inst.task then
 				setAgeTask(inst)
 			end
 		end)
 
 	    inst.returntointeriorscene = makeobstacle
     	inst.removefrominteriorscene = clearobstacle
-		
-		inst.OnSave = onsave
-	    inst.OnLoad = onload
 
 		return inst
 	end
@@ -468,17 +430,17 @@ function MakeHedgeType(data)
 		return inst
 	end
 
-	return Prefab(data.name, fn, assets, prefabs),	 	 
-		   Prefab(data.name.."_item", itemfn, assets, {data.name, data.name.."_item_placer", "collapse_small"}),
-		   MakePlacer(data.name.."_item_placer", "hedge", "hedge"..data.hedgetype, "growth1", false, false, true, nil, nil, "eight") 
+	return Prefab( "common/"..data.name, fn, assets, prefabs),	 	 
+		   Prefab( "common/"..data.name.."_item", itemfn, assets, {data.name, data.name.."_placer", "collapse_small"}),
+		   MakePlacer("common/"..data.name.."_placer", "hedge", "hedge"..data.hedgetype.."_build", "growth1", false, false, true, nil, nil, nil, "eight") 
 	end
 
 
 local hedgeprefabs = {}
 local hedgedata = {
-			{name = "hedge_block", hedgetype = 1, loot = "cutgrass", maxloots = 2, maxhealth=TUNING.HAYWALL_HEALTH, flammable = true, buildsound="dontstarve/common/place_structure_straw"},
-			{name = "hedge_cone", hedgetype = 2, loot = "cutgrass", maxloots = 2, maxhealth=TUNING.HAYWALL_HEALTH, flammable = true, buildsound="dontstarve/common/place_structure_straw",},
-			{name = "hedge_layered", hedgetype = 3, loot = "cutgrass", maxloots = 2, maxhealth=TUNING.HAYWALL_HEALTH, flammable = true, buildsound="dontstarve/common/place_structure_straw",},
+			{name = "hedge_block", hedgetype = 1, tags={"grass"}, loot = "cutgrass", maxloots = 2, maxhealth=TUNING.HAYWALL_HEALTH, buildsound="dontstarve/common/place_structure_straw", destroysound="dontstarve/common/destroy_straw"},
+			{name = "hedge_cone", hedgetype = 2, tags={"grass"}, loot = "cutgrass", maxloots = 2, maxhealth=TUNING.HAYWALL_HEALTH, flammable = true, buildsound="dontstarve/common/place_structure_straw", destroysound="dontstarve/common/destroy_straw", windblown_speed=TUNING.WALLWOOD_WINDBLOWN_SPEED, windblown_fall_chance=TUNING.WALLWOOD_WINDBLOWN_DAMAGE_CHANCE, windblown_damage=TUNING.WALLWOOD_WINDBLOWN_DAMAGE},
+			{name = "hedge_layered", hedgetype = 3, tags={"grass"}, loot = "cutgrass", maxloots = 2, maxhealth=TUNING.HAYWALL_HEALTH, flammable = true, buildsound="dontstarve/common/place_structure_straw", destroysound="dontstarve/common/destroy_straw", windblown_speed=TUNING.WALLHAY_WINDBLOWN_SPEED, windblown_fall_chance=TUNING.WALLHAY_WINDBLOWN_DAMAGE_CHANCE, windblown_damage=TUNING.WALLHAY_WINDBLOWN_DAMAGE},
 		}
 
 for k,v in pairs(hedgedata) do

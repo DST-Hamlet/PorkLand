@@ -5,9 +5,9 @@ local Bloomable = Class(function(self, inst)
     self.time = 0
     self.timevarriance = TUNING.TOTAL_DAY_TIME/2
 
-     self:WatchWorldState("season", function(it, data)
-            self:SeasonChange(data)
-        end, TheWorld)
+    self:WatchWorldState("season", function(it, data)
+        self:SeasonChange(data)
+    end, TheWorld)
 end)
 
 function Bloomable:SetCanBloom(fn)
@@ -83,7 +83,7 @@ end
 function Bloomable:CanBloom()
     local canbloom = true
     if self.canbloom then
-       canbloom = self.canbloom(self.inst)
+        canbloom = self.canbloom(self.inst)
     end
     return canbloom
 end
