@@ -236,11 +236,11 @@ local growth_stages =
 {
     {
         name="short",
-         time = function(inst) return GetRandomWithVariance(TUNING.CLAWPALMTREE_GROW_TIME[1].base, TUNING.CLAWPALMTREE_GROW_TIME[1].random) end,
-         fn = function(inst) SetShort(inst) end,
-         growfn = function(inst) GrowShort(inst) end,
-         leifscale=.7
-     },
+        time = function(inst) return GetRandomWithVariance(TUNING.CLAWPALMTREE_GROW_TIME[1].base, TUNING.CLAWPALMTREE_GROW_TIME[1].random) end,
+        fn = function(inst) SetShort(inst) end,
+        growfn = function(inst) GrowShort(inst) end,
+        leifscale=.7
+    },
 
     {
         name="tall",
@@ -326,7 +326,7 @@ end
 local function onload(inst, data)
     if data then
         if not data.build or builds[data.build] == nil then
-             doTransformNormal(inst)
+            doTransformNormal(inst)
         else
             inst.build = data.build
         end
@@ -457,11 +457,11 @@ local function OnGustFall(inst)
 end
 
 local function canbloom(inst)
-     if not inst:HasTag("stump") and not inst:HasTag("rotten") then
-         return true
-     else
-         return false
-     end
+    if not inst:HasTag("stump") and not inst:HasTag("rotten") then
+        return true
+    else
+        return false
+    end
 end
 
 local function startbloom(inst)

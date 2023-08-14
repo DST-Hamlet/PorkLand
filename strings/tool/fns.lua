@@ -117,6 +117,10 @@ function get_string(target, key, over_key)
 end
 
 function table_to_string(t, indent)
+    if not t or not next(t) then
+        return "{},"
+    end
+
     indent = indent or 1
     local dent = ""
     for i = 1, indent do
@@ -173,6 +177,12 @@ end
 
 function load_pofile(file_path, indexs)
     local file = io.open(file_path, "r")
+    if not file then
+        file = io.open(file_path, "w")
+        file:close()
+    end
+    file = io.open(file_path, "r")
+
     local po_table = {}
 
     local started = false
@@ -230,5 +240,6 @@ end
 function write_lua_table(path, t)
     local file = io.open(path, "w+")
     file:write("return " .. table_to_string(t))
+    file:write("\n")
     file:close()
 end

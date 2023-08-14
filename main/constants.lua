@@ -1,8 +1,5 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-TOOLACTIONS.HACK = true
-TOOLACTIONS.SHEAR = true
-
 SEASONS.TEMPERATE = "temperate"
 SEASONS.HUMID = "humid"
 SEASONS.LUSH = "lush"

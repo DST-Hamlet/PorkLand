@@ -7,10 +7,16 @@ return {
         "This %s is so boring that I can't breathe.",
     },
     DESCRIBE = {
+        ALLOY = "Proper processing makes it better.",
+        ANNOUNCE_HAYFEVER = "My nose is itchy...",
+        ANNOUNCE_HAYFEVER_OFF = "Huh, finally comfortable.",
+        ANNOUNCE_SNEEZE = "Ah chirp!",
         APORKALYPSE_CLOCK = "A fairly complex set of instrumentation.",
+        ARMOR_METALPLATE = "Bulky, but surprisingly well-protected.",
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",
         ASPARAGUS_PLANTED = "Wholesome green vegetables.",
         CHITIN = "I don't know what this can be used for.",
+        CUTNETTLE = "Keep your breath flowing and refresh your mind.",
         FLOWER_RAINFOREST = "I have never seen such flowers.",
         GLOWFLY = {
             DEAD = "It's broken.",
@@ -18,13 +24,12 @@ return {
             SLEEPING = "It's time for maintenance.",
         },
         GLOWFLY_COCOON = "Change is happening.",
-        GOLDENMACHETE = "This just made my job easier.",
         GRASS_TALL = {
             BURNING = "A Grass fire!",
             GENERIC = "That's some... very tall grass.",
             PICKED = "All work is done.",
         },
-        MACHETE = "Hack and slash! Working's always fun.",
+        HALBERD = "More suited to combat than to work.",
         PEAGAWK = {
             GENERIC = "Always be vigilant.",
             SLEEPING = "It let down its guard.",

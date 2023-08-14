@@ -79,7 +79,7 @@ local function tile_physics_init(inst, ...)
     inst.Map:AddTileCollisionSet(
         COLLISION.LAND_OCEAN_LIMITS,
         TileGroups.LandTiles, true,
-        TileGroups.PLOceanTiles, true,
+        TileGroups.IAOceanTiles, true,
         0.25, 64
     )
     -- standard impassable collider
@@ -111,7 +111,6 @@ local function common_postinit(inst)
         -- inst:AddComponent("ambientsound")
         inst:AddComponent("dsp")
         inst:AddComponent("colourcube")
-        inst.components.colourcube:AddPlSeasonColourCube()
         inst:AddComponent("hallucinations")
         inst:AddComponent("wavemanager")
         inst.Map:SetUndergroundFadeHeight(0)
@@ -121,6 +120,8 @@ local function common_postinit(inst)
 end
 
 local function master_postinit(inst)
+    inst.has_ia_ocean = true
+
     -- Spawners
     inst:AddComponent("birdspawner")
     inst:AddComponent("butterflyspawner")

@@ -1,39 +1,31 @@
 -- Update this list when adding files
 local components_post = {
-    "actionqueuer",
     "ambientlighting",
+    "battleborn",
     "clock",
     "colourcube",
-    "combat",
     "grogginess",
-    "health",
     "inventory",
-    "inventoryitem",
-    "lootdropper",
     "moisture",
-    "playercontroller",
     "pollinator",
     "regrowthmanager",
-    "rider_replica",
     "seasons",
     "shard_clock",
     "shard_seasons",
-    "sleeper",
     "wavemanager",
-    "worldstate"
+    "weapon",
+    "worldstate",
+    "edible",
 }
 
 local prefabs_post = {
-    "buff_workeffectiveness",
+    "batbat",
     "player",
     "player_classified",
-    "woodie",
     "world_network",
     "shard_network",
-}
-
-local batch_prefabs_post = {
-    "poisonable"
+    "woodie",
+    "wormwood",
 }
 
 local scenarios_post = {
@@ -66,10 +58,6 @@ end
 
 for _, file_name in ipairs(prefabs_post) do
     modimport("postinit/prefabs/" .. file_name)
-end
-
-for _, file_name in ipairs(batch_prefabs_post) do
-    modimport("postinit/batchprefabs/" .. file_name)
 end
 
 for _, file_name in ipairs(scenarios_post) do

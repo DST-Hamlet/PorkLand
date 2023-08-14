@@ -1,22 +1,29 @@
 local TheNet = GLOBAL.TheNet
+local ToolUtil = GLOBAL.ToolUtil
 
 PrefabFiles = {
+    "alloy",
     "aporkalypse_clock",
-    "asparagus",
+    "armor_metalplate",
+    "asparagus_planted",
     "chitin",
     "deep_jungle_fern_noise",
     "flower_rainforest",
     "glowfly",
+    "gnatmound",
+    "gnat",
     "grass_tall",
+    "lawnornaments",
+    "halberd",
     "pl_wave_shore",
     "jungle_border_vine",
-    "machete",
+    "nettle",
     "peagawk",
     "peagawk_spawner",
     "peagawkfeather",
-    "poisonbubble",
     "porkland_network",
     "rabid_beetle",
+    "reconstruction_project",
     "porkland",
     "shears",
     "tree_pillar",
@@ -37,20 +44,19 @@ Assets = {
     Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  -- for minisign
 
     -- hud
-    Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison
-    Asset("IMAGE", "images/overlays/fx3.tex"),
+    Asset("ATLAS", "images/overlays/fx4.xml"),  -- pollen(hayfever)
+    Asset("IMAGE", "images/overlays/fx4.tex"),
     Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
     Asset("IMAGE", "images/overlays/fx5.tex"),
+
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 
     -- player_actions
-    Asset("ANIM", "anim/player_idles_poison.zip"),
-    Asset("ANIM", "anim/player_mount_idles_poison.zip"),
-    Asset("ANIM", "anim/player_actions_hack.zip"),
-    Asset("ANIM", "anim/player_actions_shear.zip"),
+    Asset("ANIM", "anim/player_sneeze.zip"),
+    Asset("ANIM", "anim/player_mount_sneeze.zip"),
 }
 
-Pl_Util.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")
+ToolUtil.RegisterImageAtlas("images/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
 
 if not TheNet:IsDedicated() then

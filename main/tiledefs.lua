@@ -33,57 +33,40 @@ turf_def {
 }
 -]]
 
-local GroundTiles = require("worldtiledefs")
+
 local NoiseFunctions = require("noisetilefunctions")
 local ChangeTileRenderOrder = ChangeTileRenderOrder
-local ChangeMiniMapTileRenderOrder = ChangeMiniMapTileRenderOrder
 local AddTile = AddTile
 GLOBAL.setfenv(1, GLOBAL)
 
-IA_OCEAN_TILES = rawget(_G, "IA_OCEAN_TILES") or {}
-IA_LAND_TILES = rawget(_G, "IA_LAND_TILES") or {}
-
-PL_OCEAN_TILES = IA_OCEAN_TILES
-PL_LAND_TILES = IA_LAND_TILES
-
 local is_worldgen = rawget(_G, "WORLDGEN_MAIN") ~= nil
 
-if not is_worldgen then
-    TileGroups.PLOceanTiles = TileGroups.IAOceanTiles or TileGroupManager:AddTileGroup()
-end
-
-local TileRanges =
-{
-    LAND = "LAND",
-    NOISE = "NOISE",
-    OCEAN = "OCEAN",
-    IMPASSABLE = "IMPASSABLE",
-}
-
+local TileRanges = IACore.TileRanges
 local pl_tiledefs = {
-    BEARDRUG = {
-        tile_range = TileRanges.LAND,
-        tile_data = {
-            ground_name = "Beard Rug",
-            -- old_static_id = 33,
-        },
-        ground_tile_def  = {
-            name = "carpet",
-            noise_texture = "Ground_beard_hair",
-            runsound = "dontstarve/movement/run_carpet",
-            walksound = "dontstarve/movement/walk_carpet",
-            flashpoint_modifier = 0,
-        },
-        minimap_tile_def = {
-            name = "map_edge",
-            noise_texture = "interior",
-        },
-        --turf_def = {
-        --    name = "beach",
-        --    bank_build = "turf_ia",
-        --},
+    -- dst had this
+    -- BEARDRUG = {
+    --     tile_range = TileRanges.LAND,
+    --     tile_data = {
+    --         ground_name = "Beard Rug",
+    --         -- old_static_id = 33,
+    --     },
+    --     ground_tile_def  = {
+    --         name = "carpet",
+    --         noise_texture = "Ground_beard_hair",
+    --         runsound = "dontstarve/movement/run_carpet",
+    --         walksound = "dontstarve/movement/walk_carpet",
+    --         flashpoint_modifier = 0,
+    --     },
+    --     minimap_tile_def = {
+    --         name = "map_edge",
+    --         noise_texture = "interior",
+    --     },
+    --     --turf_def = {
+    --     --    name = "beach",
+    --     --    bank_build = "turf_ia",
+    --     --},
 
-    },
+    -- },
     RAINFOREST = {
         tile_range = TileRanges.LAND,
         tile_data = {
@@ -398,7 +381,7 @@ local pl_tiledefs = {
     -- NOISE
     -- (only for worldgen)
     -------------------------------
-    -- I don't see any code about this tile,this Imitated according to the effect
+    -- I don't see any code about this tile, this Imitated according to the effect
     BATTLEGROUND_RAINFOREST_NOISE = {
         tile_range = function (noise)
             if noise < 0.5 then
@@ -410,34 +393,10 @@ local pl_tiledefs = {
 
 }
 
-for tile, def in pairs(pl_tiledefs) do
-    local range = def.tile_range
-    if type(range) == "function" then
-        range = TileRanges.NOISE
-    end
-
-    AddTile(tile, range, def.tile_data, def.ground_tile_def, def.minimap_tile_def, def.turf_def)
-
-    local tile_id = WORLD_TILES[tile]
-
-    if def.tile_range == TileRanges.OCEAN then
-        if not is_worldgen then
-            TileGroupManager:AddInvalidTile(TileGroups.TransparentOceanTiles, tile_id)
-            TileGroupManager:AddValidTile(TileGroups.PLOceanTiles, tile_id)
-        end
-
-        table.insert(PL_OCEAN_TILES, tile_id)
-    elseif def.tile_range == TileRanges.LAND then
-        table.insert(PL_LAND_TILES, tile_id)
-    elseif type(def.tile_range) == "function" then
-        NoiseFunctions[tile_id] = def.tile_range
-    end
-end
+IACore.IA_Add_Tile(pl_tiledefs, AddTile)
 
 -- Non flooring floodproof tiles
-GROUND_FLOODPROOF = rawget(_G, "GROUND_FLOODPROOF")
-if GROUND_FLOODPROOF then
-end
+GROUND_FLOODPROOF = rawget(_G, "GROUND_FLOODPROOF") or {}
 
 for prefab, filter in pairs(terrain.filter) do
     if type(filter) == "table" then
@@ -449,8 +408,7 @@ for prefab, filter in pairs(terrain.filter) do
 end
 
 -- Priority turf
-ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.CARPET, true)
-
+-- in ds, tile priority after the mud tile
 ChangeTileRenderOrder(WORLD_TILES.GASJUNGLE, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.COBBLEROAD, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.LAWN, WORLD_TILES.MUD, true)

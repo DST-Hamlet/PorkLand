@@ -2,15 +2,21 @@ return {
     ANNOUNCE_DEHUMID = {
         "The heat has lifted but my heart has not.",
     },
+    ANNOUNCE_HAYFEVER = "Ugh. Even my sinuses are suffering.",
+    ANNOUNCE_HAYFEVER_OFF = "My sinuses are clear, but suffering continues.",
+    ANNOUNCE_SNEEZE = "achoo! achoo! sniff.",
     ANNOUNCE_TOO_HUMID = {
         "This %s is heavier in the heat.",
         "This %s is too hot. It weighs on my soul.",
     },
     DESCRIBE = {
+        ALLOY = "Cold and hard, like my existence.",
         APORKALYPSE_CLOCK = "Clockwork for the end of times.",
+        ARMOR_METALPLATE = "Like a metal coffin that keeps me alive.",
         ARMOR_WEEVOLE = "Something died so that this armor may exist.",
         ASPARAGUS_PLANTED = "I should rip those out of the ground.",
         CHITIN = "This shell is poor protection from life's horrors.",
+        CUTNETTLE = "I suppose these will cure blocked sinuses.",
         FLOWER_RAINFOREST = "It, too, will wither and die one day.",
         GLOWFLY = {
             DEAD = "Its light hath been extinguished forever.",
@@ -18,13 +24,12 @@ return {
             SLEEPING = "Having dark dreams, no doubt.",
         },
         GLOWFLY_COCOON = "If I could climb into a cocoon I would never emerge.",
-        GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
         GRASS_TALL = {
             BURNING = "Death comes to everything.",
             GENERIC = "Alas, I'm too weak to pick it.",
             PICKED = "All things end.",
         },
-        MACHETE = "This is a lot of blade.",
+        HALBERD = "A terrible weapon for a terrible world.",
         PEAGAWK = {
             DEAD = "Beautiful death.",
             GENERIC = "Many eyes witness many horrors in life.",

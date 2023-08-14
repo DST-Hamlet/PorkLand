@@ -24,9 +24,6 @@ local tuning = {
     APORKALYPSE_NEAR_TIME = 7 * total_day_time,
     APORKALYPSE_PERIOD_LENGTH = 60 * total_day_time,
 
-    MACHETE_DAMAGE = wilson_attack * .88,
-    MACHETE_USES = 100,
-
     PEAGAWK_DAMAGE = 20,
     PEAGAWK_HEALTH = 50,
     PEAGAWK_ATTACK_PERIOD = 3,
@@ -93,7 +90,7 @@ local tuning = {
     ASPARAGUS_REGROWTH_TIME_MULT = 1,
 
     CLAWPALMTREE_GROW_TIME = {
-        {base = 8 * day_time, random = 0.5 * day_time},   -- tall to short
+        {base = 8 * day_time, random = 0.5 * day_time},  -- tall to short
         {base = 12 * day_time, random = 5 * day_time},   -- short to normal
         {base = 12 * day_time, random = 5 * day_time},   -- normal to tall
     },
@@ -106,29 +103,22 @@ local tuning = {
     JUNGLETREE_WINDBLOWN_SPEED = 0.2,
     JUNGLETREE_WINDBLOWN_FALL_CHANCE = 0.01,
 
-    POISON_PERISH_PENALTY = 0.5,
-    POISON_HUNGER_DRAIN_MOD = 0.80,
-    POISON_DAMAGE_MOD = -0.25,
-    POISON_ATTACK_PERIOD_MOD = 0.25,
-    POISON_SPEED_MOD = 0.75,
-    POISON_SANITY_SCALE = 0.05, -- sanity hit = poison hit * POISON_SANITY_SCALE  set to 0 to turn off
+    FOG_MOISTURE_RATE_SCALE = 0.6,
 
-    POISON_IMMUNE_DURATION = total_day_time, -- the time you are immune to poison after taking antivenom
-    POISON_DURATION = 120, -- the time in seconds that poison normally endures
-    POISON_DAMAGE_PER_INTERVAL = 2, -- the amount of health damage poison causes per interval
-    POISON_INTERVAL = 10, -- how frequently damage is applied
+    ARMORMETAL = wilson_health * 8,
+    ARMORMETAL_ABSORPTION = .85,
+    ARMORMETAL_SLOW = 0.9,  -- -0.10,
 
-    POISON_DAMAGE_RAMP = {-- Elapsed time must be greater than the time value for the associated damage_scale/fxlevel value to be used
-        -- (total damage after 3 days: 289.54)
-        {time = 0.00 * total_day_time, damage_scale = 0.50, interval_scale = 1.0, fxlevel = 1}, -- 48.00 DMG
-        {time = 1.00 * total_day_time, damage_scale = 0.75, interval_scale = 1.0, fxlevel = 1}, -- 54.00 DMG
-        {time = 1.75 * total_day_time, damage_scale = 1.00, interval_scale = 1.0, fxlevel = 2}, -- 48.00 DMG
-        {time = 2.25 * total_day_time, damage_scale = 1.25, interval_scale = 0.9, fxlevel = 2}, -- 60.00 DMG
-        {time = 2.70 * total_day_time, damage_scale = 1.50, interval_scale = 0.7, fxlevel = 3}, -- 41.14 DMG
-        {time = 2.90 * total_day_time, damage_scale = 2.00, interval_scale = 0.5, fxlevel = 4}, -- 38.40 DMG
-    },
+    HALBERD_DAMAGE = wilson_attack * 1.3,
+    HALBERD_USES = 100,
 
-    FOG_MOISTURE_RATE_SCALE = 0.6
+    GNATMOUND_REGEN_TIME = seg_time * 4,
+    GNATMOUND_RELEASE_TIME = seg_time,
+    GNATMOUND_MAX_WORK	= 6,
+    GNATMOUND_MAX_CHILDREN	= 1,
+
+    GNAT_WALK_SPEED = 2,
+    GNAT_RUN_SPEED = 7,
 }
 
 for key, value in pairs(tuning) do

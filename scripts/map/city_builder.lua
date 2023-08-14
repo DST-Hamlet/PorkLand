@@ -296,8 +296,8 @@ local function clearground(pt)
         local reserved = false
         for i,rprefab in ipairs(REQUIRED_PREFABS)do
             if prefab == rprefab then
-               reserved = true
-               break
+                reserved = true
+                break
             end
         end
 
@@ -322,7 +322,7 @@ local function placeTileCity(pt)
     for i=-6,6 do
         for t=-6,6 do
             local newpt = {x=pt.x + i,z=pt.z + t}
-           --print("TESTING THE TILE TYPE",WorldSim:GetTile(newpt.x, newpt.z))
+            --print("TESTING THE TILE TYPE",WorldSim:GetTile(newpt.x, newpt.z))
             if WorldSim:GetTile(newpt.x, newpt.z) > 1 then
                 if math.random() < 0.15 or (t<math.abs(4) and i< math.abs(4) ) then
                     if testTile(newpt,VALID_TILES)  then
@@ -773,7 +773,7 @@ local function createcity(city)
         local data = opendirs[idx]
         makeroad(data.pt,data.dir,true, city)
         if data.newpt then
-           -- AddTempEnts(spawners,data.newpt.x,data.newpt.z,"onemanband",city.cityID)
+            -- AddTempEnts(spawners,data.newpt.x,data.newpt.z,"onemanband",city.cityID)
             grid,opendirs = addDirs(data.newpt,grid,opendirs)
             maxintersections = maxintersections -1
         end
@@ -1051,7 +1051,7 @@ function makecities(entities, topology_save, worldsim, map_width, map_height, se
         makeParks(city)
         setbuildings(city)
         makeFarms(city.farmnodes,city)
-     --   makeFarms(city.farmnodes,city, 25, FARM_FILLER_CHOICES )
+        -- makeFarms(city.farmnodes,city, 25, FARM_FILLER_CHOICES )
     end
 
     removeShopSpawners()

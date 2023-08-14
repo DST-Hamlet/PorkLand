@@ -7,10 +7,16 @@ return {
         "I don't want to wear %s anymore!",
     },
     DESCRIBE = {
+        ALLOY = "The stone became harder.",
+        ANNOUNCE_HAYFEVER = "Gullah. The gills are so uncomfortable...",
+        ANNOUNCE_HAYFEVER_OFF = "oh! The gills are finally comfortable!",
+        ANNOUNCE_SNEEZE = "Heh-hoo, ha-choo! ! !",
         APORKALYPSE_CLOCK = "Stuff form bad story!",
+        ARMOR_METALPLATE = "Sturdy, but heavy.",
         ARMOR_WEEVOLE = "Nice and comfortable armor.",
         ASPARAGUS_PLANTED = "Green stick stick, smells good.",
         CHITIN = "Tough hide.",
+        CUTNETTLE = "It into my nose!",
         FLOWER_RAINFOREST = "A slightly prettier plant is still ugly.",
         GLOWFLY = {
             DEAD = "died.",
@@ -18,13 +24,12 @@ return {
             SLEEPING = "sleeping.",
         },
         GLOWFLY_COCOON = "The little bug wrapped itself up.",
-        GOLDENMACHETE = "It better than normal hacker.",
         GRASS_TALL = {
             BURNING = "Fire! Is fire!",
             GENERIC = "Greer... can't move.",
             PICKED = "It has been cut clean.",
         },
-        MACHETE = "Plant hacker.",
+        HALBERD = "Strange weapon used by Pigfolk.",
         PEAGAWK = {
             GENERIC = "Big weird bird.",
             SLEEPING = "The big monster fell asleep?",

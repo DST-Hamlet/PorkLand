@@ -16,7 +16,7 @@ AddComponentPostInit("worldstate", function(self, inst)
     --------------------------------------------------------------------------
 
     local OnTemperatureTick = inst:GetEventCallbacks("temperaturetick", TheWorld, "scripts/components/worldstate.lua")
-    local SetVariable = Pl_Util.GetUpvalue(OnTemperatureTick, "SetVariable")
+    local SetVariable = ToolUtil.GetUpvalue(OnTemperatureTick, "SetVariable")
 
     --------------------------------------------------------------------------
     --[[ Private event handlers ]]
@@ -48,6 +48,7 @@ AddComponentPostInit("worldstate", function(self, inst)
         SetVariable("fogstate", data.fogstate)
         SetVariable("fogtime", data.fogtime)
         SetVariable("fog_transition_time", data.fog_transition_time)
+        SetVariable("ishayfever", data.ishayfever)
     end
 
     --------------------------------------------------------------------------

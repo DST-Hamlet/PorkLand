@@ -8,6 +8,12 @@ local pl_fx = {
         build = "hacking_tall_grass_fx",
         anim = "idle",
     },
+    {
+        name = "robot_leaf_fx",
+        bank = "robot_leaf_fx",
+        build = "robot_leaf_fx",
+        anim = "idle",
+	},
 }
 
 -- Sneakily add these to the FX table
