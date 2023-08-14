@@ -4,6 +4,8 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local PL_ACTIONS = {
     PEAGAWK_TRANSFORM = Action({}),
+    INFEST = Action({},nil, nil, nil, 0.5),
+    SPECIAL_ACTION = Action({},nil, nil, nil, 1.2),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -14,6 +16,22 @@ end
 
 ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
     return true -- Dummy action for flup hiding
+end
+
+ACTIONS.INFEST.fn = function(act)
+
+	if not act.doer.infesting then
+		act.doer.components.infester:Infest(act.target)
+	end
+
+	return true
+end
+
+ACTIONS.SPECIAL_ACTION.fn = function(act)
+	if act.doer.special_action then
+		act.doer.special_action(act)
+		return true
+	end
 end
 
 -- SCENE        using an object in the world

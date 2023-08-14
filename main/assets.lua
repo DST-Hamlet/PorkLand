@@ -10,6 +10,8 @@ PrefabFiles = {
     "deep_jungle_fern_noise",
     "flower_rainforest",
     "glowfly",
+    "gnatmound",
+    "gnat",
     "grass_tall",
     "lawnornaments",
     "halberd",

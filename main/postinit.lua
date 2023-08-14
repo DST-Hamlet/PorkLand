@@ -1,6 +1,7 @@
 -- Update this list when adding files
 local components_post = {
     "ambientlighting",
+    "battleborn",
     "clock",
     "colourcube",
     "grogginess",
@@ -12,11 +13,13 @@ local components_post = {
     "shard_clock",
     "shard_seasons",
     "wavemanager",
+    "weapon",
     "worldstate",
     "edible",
 }
 
 local prefabs_post = {
+    "batbat",
     "player",
     "player_classified",
     "world_network",

@@ -111,6 +111,14 @@ local tuning = {
 
     HALBERD_DAMAGE = wilson_attack * 1.3,
     HALBERD_USES = 100,
+
+    GNATMOUND_REGEN_TIME = seg_time * 4,
+    GNATMOUND_RELEASE_TIME = seg_time,
+    GNATMOUND_MAX_WORK	= 6,
+    GNATMOUND_MAX_CHILDREN	= 1,
+
+    GNAT_WALK_SPEED = 2,
+    GNAT_RUN_SPEED = 7,
 }
 
 for key, value in pairs(tuning) do
