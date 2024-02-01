@@ -42,7 +42,7 @@ local Hackable = Class(function(self, inst)
     self.hacksleft = 1
     self.maxhacks = 1
 
-    self.drophacked = IA_CONFIG.droplootground
+    self.drophacked = PL_CONFIG.droplootground
     self.dropheight = nil
 
     self.paused = false
