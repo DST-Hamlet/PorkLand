@@ -32,25 +32,19 @@ turf_def {
     [bank_build] - the bank and build containing the animation, if undefined bank_build will use the value "turf"
 }
 -]]
-
 local GroundTiles = require("worldtiledefs")
 local NoiseFunctions = require("noisetilefunctions")
 local ChangeTileRenderOrder = ChangeTileRenderOrder
-local ChangeMiniMapTileRenderOrder = ChangeMiniMapTileRenderOrder
 local AddTile = AddTile
 GLOBAL.setfenv(1, GLOBAL)
 
-IA_OCEAN_TILES = rawget(_G, "IA_OCEAN_TILES") or {}
-IA_LAND_TILES = rawget(_G, "IA_LAND_TILES") or {}
-
-PL_OCEAN_TILES = IA_OCEAN_TILES
-PL_LAND_TILES = IA_LAND_TILES
-
 local is_worldgen = rawget(_G, "WORLDGEN_MAIN") ~= nil
-
 if not is_worldgen then
-    TileGroups.PLOceanTiles = TileGroups.IAOceanTiles or TileGroupManager:AddTileGroup()
+    TileGroups.PlOceanTiles = TileGroupManager:AddTileGroup()
 end
+
+PL_OCEAN_TILES = {}
+PL_LAND_TILES = {}
 
 local TileRanges =
 {
@@ -423,7 +417,7 @@ for tile, def in pairs(pl_tiledefs) do
     if def.tile_range == TileRanges.OCEAN then
         if not is_worldgen then
             TileGroupManager:AddInvalidTile(TileGroups.TransparentOceanTiles, tile_id)
-            TileGroupManager:AddValidTile(TileGroups.PLOceanTiles, tile_id)
+            TileGroupManager:AddValidTile(TileGroups.PlOceanTiles, tile_id)
         end
 
         table.insert(PL_OCEAN_TILES, tile_id)
@@ -432,11 +426,6 @@ for tile, def in pairs(pl_tiledefs) do
     elseif type(def.tile_range) == "function" then
         NoiseFunctions[tile_id] = def.tile_range
     end
-end
-
--- Non flooring floodproof tiles
-GROUND_FLOODPROOF = rawget(_G, "GROUND_FLOODPROOF")
-if GROUND_FLOODPROOF then
 end
 
 for prefab, filter in pairs(terrain.filter) do

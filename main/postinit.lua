@@ -1,5 +1,9 @@
+local modimport = modimport
+GLOBAL.setfenv(1, GLOBAL)
+
+
 -- Update this list when adding files
-local components_post = {
+local component_posts = {
     "actionqueuer",
     "ambientlighting",
     "clock",
@@ -23,7 +27,7 @@ local components_post = {
     "worldstate"
 }
 
-local prefabs_post = {
+local prefab_posts = {
     "buff_workeffectiveness",
     "player",
     "player_classified",
@@ -32,64 +36,68 @@ local prefabs_post = {
     "shard_network",
 }
 
-local batch_prefabs_post = {
+local multipleprefab_posts = {
     "poisonable"
 }
 
-local scenarios_post = {
+local scenario_posts = {
     "playerhud"
 }
 
-local stategraphs_post = {
+local stategraph_posts = {
     "wilson",
     "wilson_client"
 }
 
-local brains_post = {
+local brain_posts = {
 }
 
-local widgets = {
+local widget_posts = {
     "seasonclock",
     "uiclock"
 }
 
-local sim_post = {
-    "map",  -- Map is not a proper component, so we edit it here instead.
+local module_posts = {
+    ["components/map"] = "map",
 }
+
+local _require = require
+---@param module_name string
+function require(module_name, ...)
+    local ret = { _require(module_name, ...) }
+    if module_posts[module_name] and package.loaded[module_name] == nil then -- only load when first
+        modimport("postinit/modules/" .. module_posts[module_name])
+    end
+    return unpack(ret)
+end
 
 modimport("postinit/entityscript")
 modimport("postinit/animstate")
 
-for _, file_name in ipairs(components_post) do
+for _, file_name in ipairs(component_posts) do
     modimport("postinit/components/" .. file_name)
 end
 
-for _, file_name in ipairs(prefabs_post) do
+for _, file_name in ipairs(prefab_posts) do
     modimport("postinit/prefabs/" .. file_name)
 end
 
-for _, file_name in ipairs(batch_prefabs_post) do
-    modimport("postinit/batchprefabs/" .. file_name)
+for _, file_name in ipairs(multipleprefab_posts) do
+    modimport("postinit/multipleprefabs/" .. file_name)
 end
 
-for _, file_name in ipairs(scenarios_post) do
+for _, file_name in ipairs(scenario_posts) do
     modimport("postinit/scenarios/" .. file_name)
 end
 
-for _, file_name in ipairs(stategraphs_post) do
+for _, file_name in ipairs(stategraph_posts) do
     modimport("postinit/stategraphs/SG" .. file_name)
 end
 
-for _, file_name in ipairs(brains_post) do
+for _, file_name in ipairs(brain_posts) do
     modimport("postinit/brains/" .. file_name)
 end
 
-for _, file_name in ipairs(widgets) do
-    modimport("postinit/widgets/"  ..  file_name)
+for _, file_name in ipairs(widget_posts) do
+    modimport("postinit/widgets/" .. file_name)
 end
-
--- AddSimPostInit(function()
---     for _, file_name in pairs(sim_post) do
---         modimport("postinit/sim/" .. file_name)
---     end
--- end)

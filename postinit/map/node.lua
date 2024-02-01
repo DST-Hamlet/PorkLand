@@ -8,51 +8,24 @@ require("map/graphnode")
 --     end
 -- end
 
-Node.PorkLandConvertGround = function(self, spawnFn, entitiesOut, width, height, world_gen_choices)  -- rewrite
-    if not self.data.terrain_contents then
-        return
-    end
+local checkFn = function(ground) return IsOceanTile(ground) end
+local _ConvertGround = Node.ConvertGround
+function Node:ConvertGround(...)
+    local no_water = self.data.type == nil or self.data.type ~= "water"
 
     local obj_layout = require("map/object_layout")
-    local prefab_list = {}
-
-    -- Get the list of special items for this node
-    local add_fn = {fn = function(...) self:AddEntity(...) end, args = {entitiesOut = entitiesOut, width = width, height = height, rand_offset = false, debug_prefab_list = prefab_list}}
-    local checkFn = function(ground) return IsOceanTile(ground) end
-    local border = 1
-
-    if self.data.terrain_contents.countstaticlayouts ~= nil then
-        for k,count in pairs(self.data.terrain_contents.countstaticlayouts) do
-            if type(count) == "function" then
-                count = count()
-            end
-
-            local layout = obj_layout.LayoutForDefinition(k)
-            local prefabs = obj_layout.ConvertLayoutToEntitylist(layout)
-
-            if layout.water and (self.data.type == nil or self.data.type ~= "water") then
-                for i = 1, count do
-                    PlaceWaterLayout(layout, prefabs, add_fn, checkFn)
-                end
-            else
-                layout.border = layout.border or border
-                for i = 1, count do
-                    obj_layout.ReserveAndPlaceLayout(self.id, layout, prefabs, add_fn)
-                end
-            end
+    local _Convert = obj_layout.Convert
+    function obj_layout.Convert(node_id, item, addEntity, ...)
+        local layout = obj_layout.LayoutForDefinition(item)
+        if layout.water and no_water then
+            PlaceWaterLayout(layout, prefabs, addEntity, checkFn)
+        else
+            -- layout.border = layout.border or 1  -- dst no this
+            _Convert(node_id, item, addEntity, ...)
         end
     end
 
-    if self.data.terrain_contents_extra and self.data.terrain_contents_extra.static_layouts then
-        for i, layoutname in pairs(self.data.terrain_contents_extra.static_layouts) do
-            local layout = obj_layout.LayoutForDefinition(layoutname)
-            local prefabs = obj_layout.ConvertLayoutToEntitylist(layout)
-            if layout.water and (self.data.type == nil or self.data.type ~= "water") then
-                PlaceWaterLayout(layout, prefabs, add_fn, checkFn)
-            else
-                layout.border = layout.border or border
-                obj_layout.ReserveAndPlaceLayout(self.id, layout, prefabs, add_fn)
-            end
-        end
-    end
+    _ConvertGround(self, ...)
+
+    obj_layout.Convert = _Convert
 end

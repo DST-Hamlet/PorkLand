@@ -4,26 +4,27 @@ require("constants")
 require("mathutil")
 
 local separate_region = require("map/separate_region")
-local makecities = require("map/city_builder")
-local makeborder = require("map/border_finder")
-local makebunch = require("map/pl_bunch_spawner")
-local makeBrambleSites = require("map/bramble_spawner")
+-- local makecities = require("map/city_builder")
+local make_border = require("map/border_finder")
+local make_bunch = require("map/pl_bunch_spawner")
+-- local make_bramble_sites = require("map/bramble_spawner")
 local startlocations = require("map/startlocations")
 local forest_map = require("map/forest_map")
+local BuildPorkLandStory = require("map/pl_storygen")
 local MULTIPLY = forest_map.MULTIPLY
 local TRANSLATE_TO_PREFABS = forest_map.TRANSLATE_TO_PREFABS
 local TRANSLATE_AND_OVERRIDE = forest_map.TRANSLATE_AND_OVERRIDE
 
-TRANSLATE_TO_PREFABS["asparagus"] = {"asparagus_planted"}
-TRANSLATE_TO_PREFABS["peagawk_spawner"] = {"peagawk_spawner"}
-TRANSLATE_TO_PREFABS["grass_tall_patch"] = {"grass_tall_patch"}
-TRANSLATE_TO_PREFABS["grass_tall"] = {"grass_tall"}
+TRANSLATE_TO_PREFABS["asparagus"] = { "asparagus_planted" }
+TRANSLATE_TO_PREFABS["peagawk_spawner"] = { "peagawk_spawner" }
+TRANSLATE_TO_PREFABS["grass_tall_patch"] = { "grass_tall_patch" }
+TRANSLATE_TO_PREFABS["grass_tall"] = { "grass_tall" }
 
-TRANSLATE_AND_OVERRIDE["deep_jungle_fern_noise"] = {"deep_jungle_fern_noise", "deep_jungle_fern_noise_plant"}
-TRANSLATE_AND_OVERRIDE["jungle_border_vine"] ={"jungle_border_vine"}
+TRANSLATE_AND_OVERRIDE["deep_jungle_fern_noise"] = { "deep_jungle_fern_noise", "deep_jungle_fern_noise_plant" }
+TRANSLATE_AND_OVERRIDE["jungle_border_vine"] = { "jungle_border_vine" }
 --TRANSLATE_TO_PREFABS["bermudatriangle"] =    {"bermudatriangle_MARKER"}
 
-local function seasonfn(friendly)
+local function season_fn(friendly)
     return function(season, data)
         local seasons = data.seasons
         seasons.seasonplateau = season
@@ -36,11 +37,11 @@ local function seasonfn(friendly)
 end
 
 local SEASONS = forest_map.SEASONS
-SEASONS["temperate"] = seasonfn(true)
-SEASONS["humid"] = seasonfn(false)
-SEASONS["lush"] = seasonfn(false)
+SEASONS["temperate"] = season_fn(true)
+SEASONS["humid"] = season_fn(false)
+SEASONS["lush"] = season_fn(false)
 
-local function ValidateGroundTile_PorkLand(tile)
+local function validate_ground_tile(tile)
     return WORLD_TILES.IMPASSABLE
 end
 
@@ -55,8 +56,7 @@ local TranslateWorldGenChoices = ToolUtil.GetUpvalue(_Generate, "TranslateWorldG
 forest_map.Generate = function(prefab, map_width, map_height, tasks, level, level_type, ...)
     assert(level.overrides ~= nil, "Level must have overrides specified.")
 
-    local IsPorkLand = level.overrides.isporkland
-
+    local IsPorkLand = level.location == "porkland"
     if not IsPorkLand then
         return _Generate(prefab, map_width, map_height, tasks, level, level_type, ...)
     end
@@ -66,7 +66,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     WorldSim:SetPointsBarrenOrReservedTile(WORLD_TILES.ROAD)
     WorldSim:SetResolveNoiseFunction(GetTileForNoiseTile)
 
-    WorldSim:SetValidateGroundTileFunction(ValidateGroundTile_PorkLand)
+    WorldSim:SetValidateGroundTileFunction(validate_ground_tile)
 
     local SpawnFunctions = {
         pickspawnprefab = pickspawnprefab,
@@ -248,7 +248,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     print("Populating voronoi...")
 
     topology_save.root:GlobalPrePopulate(entities, map_width, map_height)
-    topology_save.root:PorkLandConvertGround(SpawnFunctions, entities, map_width, map_height)
+    topology_save.root:ConvertGround(SpawnFunctions, entities, map_width, map_height)
     WorldSim:ReplaceSingleNonLandTiles()
 
     if not story_gen_params.keep_disconnected_tiles then
@@ -311,7 +311,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     -- place jungle border
     local jungle_border_rate = current_gen_params["jungle_border_vine"] and MULTIPLY[current_gen_params["jungle_border_vine"]] or 1
     if jungle_border_rate > 0 then
-        makeborder(entities, topology_save, WorldSim, map_width, map_height, "jungle_border_vine", {WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.GASJUNGLE, WORLD_TILES.PIGRUINS}, 0.40 * jungle_border_rate)
+        make_border(entities, topology_save, WorldSim, map_width, map_height, "jungle_border_vine", {WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.GASJUNGLE, WORLD_TILES.PIGRUINS}, 0.40 * jungle_border_rate)
     end
 
     -- make the city here.
@@ -351,7 +351,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     if entities["deep_jungle_fern_noise"] then
         for _, ent in ipairs(entities["deep_jungle_fern_noise"]) do
-            makebunch(entities, topology_save, WorldSim, map_width, map_height, "deep_jungle_fern_noise_plant", 12, math.random(5, 15), ent.x, ent.z, {WORLD_TILES.DEEPRAINFOREST})
+            make_bunch(entities, topology_save, WorldSim, map_width, map_height, "deep_jungle_fern_noise_plant", 12, math.random(5, 15), ent.x, ent.z, {WORLD_TILES.DEEPRAINFOREST})
         end
     end
 

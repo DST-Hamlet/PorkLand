@@ -53,7 +53,7 @@ function Combat:GetIsAttackPoison(attacker)
 end
 
 local _GetAttacked = Combat.GetAttacked
-if not IA_ENABLED then Combat.GetAttacked = function(self, attacker, damage, weapon, stimuli, ...)
+function Combat:GetAttacked(attacker, damage, weapon, stimuli, ...)
     local poisonAttack, poisonGasAttack = self:GetIsAttackPoison(attacker)
 
     if poisonGasAttack and self.inst.components.poisonable then
@@ -98,17 +98,17 @@ if not IA_ENABLED then Combat.GetAttacked = function(self, attacker, damage, wea
     end
 
     return unpack(rets)
-end end
+end
 
 local _CalcDamage = Combat.CalcDamage
-if not IA_ENABLED then Combat.CalcDamage = function(self, target, weapon, multiplier, ...)
+function Combat:CalcDamage(target, weapon, multiplier, ...)
     local rets = {_CalcDamage(self, target, weapon, multiplier, ...)}
     local bonus = self.damagebonus or 0  -- not affected by multipliers
 
     local dmg = rets[1]
     dmg = (dmg - bonus) * self:GetDamageModifier() + bonus
     return unpack(rets)
-end end
+end
 
 AddComponentPostInit("combat", function(self, inst)
     self.poisonstrength = 1

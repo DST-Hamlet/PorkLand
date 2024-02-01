@@ -11,7 +11,7 @@ AddLocation({
         roads = "never",
         keep_disconnected_tiles = true,
         no_wormholes_to_disconnected_tiles = true,
-        no_joining_islands = false,
+        no_joining_islands = true,
         has_ocean = false,
     },
     required_prefabs = {

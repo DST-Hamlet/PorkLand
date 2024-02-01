@@ -1,40 +1,37 @@
 local borders = {}
 local entities = {}
-local WIDTH = 0
-local HEIGHT = 0
+local width = 0
+local height = 0
 
-local function setConstants(setentities, setwidth, setheight)
-    entities = setentities
-    WIDTH = setwidth
-    HEIGHT = setheight
+local function set_constants(set_entities, set_width, set_height)
+    entities = set_entities
+    width = set_width
+    height = set_height
 end
 
-local function setEntity(prop, x, z)
+local function set_entity(prop, x, z)
     if entities[prop] == nil then
         entities[prop] = {}
     end
-
-    local scenario = nil
-
     local save_data = {x = x , z = z}
     table.insert(entities[prop], save_data)
 end
 
-local function exportSpawnersToEntites()
+local function export_spawners_to_entites()
     for _, item in ipairs(borders)do
-        setEntity(item.prefab, item.x, item.z)
+        set_entity(item.prefab, item.x, item.z)
     end
 end
 
-local function AddTempEnts(data, x, z, prefab)
+local function add_temp_ents(data, x, z, prefab)
     local entity = {x = x, z = z, prefab = prefab}
     table.insert(data, entity)
 
     return data
 end
 
-local function testtile(WorldSim, valid_tile_types, x,y)
-    local original_tile_type = WorldSim:GetTile(math.floor(x), math.floor(y))
+local function test_tile(world_sim, valid_tile_types, x,y)
+    local original_tile_type = world_sim:GetTile(math.floor(x), math.floor(y))
     -- print("TILE", original_tile_type)
 
     local valid = false
@@ -48,29 +45,29 @@ local function testtile(WorldSim, valid_tile_types, x,y)
     return valid
 end
 
-local function makeborder(entities, topology_save, worldsim, map_width, map_height, prefab, valid_tile_types, chance)
+local function make_border(set_entities, topology_save, world_sim, map_width, map_height, prefab, valid_tile_types, chance)
     borders = {}
-    setConstants(entities, map_width, map_height)
+    set_constants(set_entities, map_width, map_height)
 
-    for x = -(WIDTH / 2) * TILE_SCALE, (WIDTH / 2) * TILE_SCALE, TILE_SCALE do
-        for z = -(HEIGHT / 2) * TILE_SCALE, (HEIGHT / 2) * TILE_SCALE, TILE_SCALE do
+    for x = -(width / 2) * TILE_SCALE, (width / 2) * TILE_SCALE, TILE_SCALE do
+        for z = -(height / 2) * TILE_SCALE, (height / 2) * TILE_SCALE, TILE_SCALE do
 
-            local tilex = math.floor((WIDTH / 2) + 0.5 + (x / TILE_SCALE))
-            local tilez = math.floor((HEIGHT / 2) + 0.5 + (z / TILE_SCALE))
+            local tilex = math.floor((width / 2) + 0.5 + (x / TILE_SCALE))
+            local tilez = math.floor((height / 2) + 0.5 + (z / TILE_SCALE))
 
-            if testtile(worldsim, valid_tile_types, tilex, tilez) then
+            if test_tile(world_sim, valid_tile_types, tilex, tilez) then
                 local valid = false
 
-                if not testtile(worldsim, valid_tile_types, tilex + 1, tilez) then
+                if not test_tile(world_sim, valid_tile_types, tilex + 1, tilez) then
                     valid = true
                 end
-                if not valid and not testtile(worldsim, valid_tile_types, tilex - 1, tilez) then
+                if not valid and not test_tile(world_sim, valid_tile_types, tilex - 1, tilez) then
                     valid = true
                 end
-                if not valid and not testtile(worldsim, valid_tile_types, tilex, tilez + 1) then
+                if not valid and not test_tile(world_sim, valid_tile_types, tilex, tilez + 1) then
                     valid = true
                 end
-                if not valid and not testtile(worldsim, valid_tile_types, tilex, tilez - 1) then
+                if not valid and not test_tile(world_sim, valid_tile_types, tilex, tilez - 1) then
                     valid = true
                 end
 
@@ -83,15 +80,15 @@ local function makeborder(entities, topology_save, worldsim, map_width, map_heig
                 end
 
                 if valid and (math.random() < chance or totalnear < 2) and totalnear < 6 then
-                    AddTempEnts(borders, x, z, prefab)
+                    add_temp_ents(borders, x, z, prefab)
                 end
             end
         end
     end
 
-    exportSpawnersToEntites()
+    export_spawners_to_entites()
 
-    return entities
+    return set_entities
 end
 
-return makeborder
+return make_border

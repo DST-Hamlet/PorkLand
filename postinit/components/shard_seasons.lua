@@ -115,9 +115,6 @@ local function MakeShardSeasons(self, clock_type)
 end
 
 AddComponentPostInit("shard_seasons", function(self)
-    if not IA_ENABLED then
-        self.MakeShardSeasons = MakeShardSeasons
-    end
-
+    self.MakeShardSeasons = MakeShardSeasons
     self:MakeShardSeasons("plateau")
 end)

@@ -714,10 +714,10 @@ local function MakeClock(self, clocktype)
         print(clocktype .. " totaltimeinphase ",  _totaltimeinphase:value())
         print(clocktype .. " remainingtimeinphase ",  _remainingtimeinphase:value())
         print(clocktype .. " total segs phase ",  _totaltimeinphase:value()/TUNING.SEG_TIME)
-        print(clocktype .. " remaining segs inphase ",  _remainingtimeinphase:value()/TUNING.SEG_TIME)
+        print(clocktype .. " remaining segs inphase ",  _remainingtimeinphase:value() / TUNING.SEG_TIME)
 
         local to_night =  _remainingtimeinphase:value() + (PHASE_NAMES[_phase:value()] == "day" and _segs[2]:value() or 0) * TUNING.SEG_TIME
-        print(clocktype .. " Time Until Night:", to_night, to_night/TUNING.SEG_TIME)
+        print(clocktype .. " Time Until Night:", to_night, to_night / TUNING.SEG_TIME)
     end
 
     self["GetDebugString_" .. clocktype] = function()
@@ -788,32 +788,34 @@ local function AddMoonPhaseStyle(self, style, ...)
     end
 end
 
+---@class clock
+---@field GetTimeUntilPhase function
+
 AddComponentPostInit("clock", function(self, inst)
     local _world = TheWorld
     local _ismastershard = _world.ismastershard
 
-    if not IA_ENABLED then
-        self.current_clock = "default"
-        self.clocks = {}
+    self.current_clock = "default"
+    self.clocks = {}
 
-        MakeDefaultClock(self, inst)
+    MakeDefaultClock(self, inst)
 
-        self.SetClock = SetClock
-        self.GetTimeUntilPhase = GetTimeUntilPhase
-        self.AddMoonPhaseStyle = AddMoonPhaseStyle
+    self.SetClock = SetClock
+    self.GetTimeUntilPhase = GetTimeUntilPhase
+    self.AddMoonPhaseStyle = AddMoonPhaseStyle
 
-        self.OnClockUpdate = _ismastershard and function (src, data)
-            for clocktype in pairs(self.clocks) do
-                if clocktype ~= self.current_clock then
-                    self["OnUpdate_" .. clocktype](self, 0, data)
-                end
+    self.OnClockUpdate = _ismastershard and function (src, data)
+        for clocktype in pairs(self.clocks) do
+            if clocktype ~= self.current_clock then
+                self["OnUpdate_" .. clocktype](self, 0, data)
             end
-        end or nil
-    end
+        end
+    end or nil
+
 
     self.MakeClock = MakeClock
 
-    local _clocktype = _world.topology.pl_worldgen_version and _world.topology and _world.topology.overrides and _world.topology.overrides.pl_clocktype or "default"
+    local _clocktype = _world:HasTag("porkalnd") and "plateau" or "default"
     self:MakeClock("plateau")
     self:AddMoonPhaseStyle("blood")
     self:SetClock(_clocktype)

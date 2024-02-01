@@ -1,7 +1,6 @@
-local function AddMapTags(map_tags)
-    local pl_map_datda = {}
 
-    local pl_map_tags = {
+local pl_maptags = {
+    Tag = {
         ["City_Foundation"] = function(tagdata)
             return "GLOBALTAG", "City_Foundation"
         end,
@@ -26,15 +25,18 @@ local function AddMapTags(map_tags)
         ["Gas_Jungle"] = function(tagdata)
             return "TAG", "Gas_Jungle"
         end
-    }
+    },
+    TagData = {}
+}
 
-    for tag, fn in pairs(pl_map_tags) do
+function add_pl_maptags(map_tags)
+    for tag, fn in pairs(pl_maptags.Tag) do
         map_tags.Tag[tag] = fn
     end
 
-    for tag, data in pairs(pl_map_datda) do
+    for tag, data in pairs(pl_maptags.TagData) do
         map_tags.TagData[tag] = data
     end
 end
 
-return AddMapTags
+return add_pl_maptags

@@ -738,15 +738,10 @@ end
 AddComponentPostInit("seasons", function(self)
     local _world = TheWorld
 
-    if not IA_ENABLED then
-        self.current_clock = "default"
-        self.clocks = {
-            ["default"] = true
-        }
+    self.current_clock = "default"
+    self.clocks = {["default"] = true}
 
-        self.SetSeasons = SetSeasons
-    end
-
+    self.SetSeasons = SetSeasons
     self.MakeSeasons = MakeSeasons
 
     self:MakeSeasons("plateau", {
@@ -770,6 +765,7 @@ AddComponentPostInit("seasons", function(self)
         }
     })
 
-    local _clocktype = _world.topology.pl_worldgen_version and _world.topology and _world.topology.overrides and _world.topology.overrides.pl_clocktype or "default"
-    self:SetSeasons(_clocktype)
+    if TheWorld:HasTag("porkland") then
+        self:SetSeasons("plateau")
+    end
 end)

@@ -130,21 +130,17 @@ end
 AddComponentPostInit("shard_clock", function(self, inst)
     local _world = TheWorld
 
-    if not IA_ENABLED then
-        if _world.ismastershard then
-            local OnClockUpdate = inst:GetEventCallbacks("master_clockupdate", _world, "scripts/components/shard_clock.lua")
-            local _remainingtimeinphase = ToolUtil.GetUpvalue(OnClockUpdate, "_remainingtimeinphase")
+    if _world.ismastershard then
+        local OnClockUpdate = inst:GetEventCallbacks("master_clockupdate", _world, "scripts/components/shard_clock.lua")
+        local _remainingtimeinphase = ToolUtil.GetUpvalue(OnClockUpdate, "_remainingtimeinphase")
 
-            local OnForceSync = function()
-                _remainingtimeinphase:set_local(_remainingtimeinphase:value())
-                _remainingtimeinphase:set(_remainingtimeinphase:value())
-            end
-
-            inst:ListenForEvent("forcesyncclock", OnForceSync, _world)
+        local OnForceSync = function()
+            _remainingtimeinphase:set_local(_remainingtimeinphase:value())
+            _remainingtimeinphase:set(_remainingtimeinphase:value())
         end
 
-        self.MakeShardClock = MakeShardClock
+        inst:ListenForEvent("forcesyncclock", OnForceSync, _world)
     end
-
+    self.MakeShardClock = MakeShardClock
     self:MakeShardClock("plateau")
 end)

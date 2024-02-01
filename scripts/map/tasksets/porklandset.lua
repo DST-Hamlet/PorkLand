@@ -48,10 +48,6 @@ AddTaskSet("porkland", {
     },
 
     numoptionaltasks = 0,
-    selectedtasks = {},
-    water_content = {},
-    water_prefill_setpieces = {},
-    ordered_story_setpieces = {},
     numrandom_set_pieces = 0,
     set_pieces = {},
     -- set_pieces = {

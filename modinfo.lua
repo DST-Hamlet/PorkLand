@@ -1,8 +1,11 @@
-local function en_zh(en, zh)  -- Other languages don't work
+---@param en string
+---@param zh string
+---@return string
+local function en_zh(en, zh) -- Other languages don't work
     return (locale == "zh" or locale == "zhr" or locale == "zht") and zh or en
 end
 
-name = "Pork Land"
+name = "porkland"
 author = "Jerry"
 description = ""
 
@@ -14,15 +17,17 @@ api_version_dst = 10
 dst_compatible = true
 client_only_mod = false
 all_clients_require_mod = true
-priority = -1
 
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
-server_filter_tags = {"hamltet", "porkland"}
+server_filter_tags = { "hamltet", "porkland" }
 
-local function Breaker(title_en, title_zh)  --hover does not work, as this item cannot be hovered
-    return {name = en_zh(title_en, title_zh) , options = {{description = "", data = false}}, default = false}
+---@param title_en string
+---@param title_zh string
+---@return mod_configuration
+local function Breaker(title_en, title_zh) -- hover does not work, as this item cannot be hovered
+    return { name = en_zh(title_en, title_zh), options = { {description = "", data = false} }, default = false }
 end
 
 configuration_options = {
@@ -36,8 +41,7 @@ configuration_options = {
             {description = "Auto", data = false},
             {description = "English", data = "en"},
             {description = "中文 (简体)", data = "sc"},
-            {description = "中文 (繁体)", data = "tc"},
         },
         default = false,
-    }
+    },
 }

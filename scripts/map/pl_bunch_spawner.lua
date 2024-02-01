@@ -1,9 +1,9 @@
 local bunch = {}
 local entities = {}
-local WIDTH = 0
-local HEIGHT = 0
+local width = 0
+local height = 0
 
-local BUNCH_BLOCKERS = {
+local bunch_blockers = {
     "porkland_intro_basket",
     "porkland_intro_balloon",
     "porkland_intro_trunk",
@@ -13,43 +13,30 @@ local BUNCH_BLOCKERS = {
     "porkland_intro_scrape",
 }
 
-local function setConstants(setentities, setwidth, setheight)
-    entities = setentities
-    WIDTH = setwidth
-    HEIGHT = setheight
+local function set_constants(set_entities, set_width, set_height)
+    entities = set_entities
+    width = set_width
+    height = set_height
 end
 
-local function setEntity(prop, x, z)
+local function set_entity(prop, x, z)
     if entities[prop] == nil then
         entities[prop] = {}
     end
-
-    local scenario = nil
-
-    -- local save_data = {x = (x - WIDTH / 2.0) * TILE_SCALE , z = (z - HEIGHT / 2.0) * TILE_SCALE}
     local save_data = {x = x , z = z}
     table.insert(entities[prop], save_data)
 end
 
-local function exportSpawnersToEntites()
+local function export_spawners_to_entites()
     for _, item in ipairs(bunch)do
-        setEntity(item.prefab, item.x, item.z)
+        set_entity(item.prefab, item.x, item.z)
     end
 end
 
-local function getdiv1tile(x, y, z)
-    local fx, fy, fz = x, y, z
-
-    fx = x - math.fmod(x, 1)
-    fz = z - math.fmod(z, 1)
-
-    return fx, fy, fz
-end
-
-local function checkIfValidGround(x, z, valid_tile_types, water)
+local function check_valid_ground(x, z, valid_tile_types, water)
     -- 0.25 was added here because maybe the point thigns are measured from is 1 game unit off? Seems to work?
-    x = (WIDTH / 2) + 0.5 + (x / TILE_SCALE)
-    z = (HEIGHT / 2) + 0.5 + (z / TILE_SCALE)
+    x = (width / 2) + 0.5 + (x / TILE_SCALE)
+    z = (height / 2) + 0.5 + (z / TILE_SCALE)
     -- print("PROCESSED", math.floor(x), math.floor(z))
 
     local original_tile_type = WorldSim:GetTile(math.floor(x), math.floor(z))
@@ -74,14 +61,14 @@ local function checkIfValidGround(x, z, valid_tile_types, water)
     end
 end
 
-local function AddTempEnts(data, x, z, prefab)
+local function add_temp_ents(data, x, z, prefab)
     local entity = {x = x, z = z, prefab = prefab}
     table.insert(data, entity)
 
     return data
 end
 
-local function findEntsInRange(x, z, range)
+local function find_ents_in_range(x, z, range)
     local ents = {}
 
     local dist = range * range
@@ -97,24 +84,24 @@ local function findEntsInRange(x, z, range)
     return ents
 end
 
-local function checkforblockingitems(x, z, range)
-    local spawnOK = true
+local function check_blocking_items(x, z, range)
+    local can_spawn = true
 
-    for _, prefab in ipairs(BUNCH_BLOCKERS) do
+    for _, prefab in ipairs(bunch_blockers) do
         local dist = 4 * 4
         if entities[prefab] then
             for t, ent in ipairs(entities[prefab]) do
-                local xdif = math.abs(x - ent.x)
-                local zdif = math.abs(z - ent.z)
-                if (xdif * xdif) + (zdif * zdif) < dist then
-                    spawnOK = false
+                local x_dif = math.abs(x - ent.x)
+                local z_dif = math.abs(z - ent.z)
+                if (x_dif * x_dif) + (z_dif * z_dif) < dist then
+                    can_spawn = false
                 end
             end
         else
             print(">>> BUNCH SPAWN ERROR?", prefab)
         end
     end
-    return spawnOK
+    return can_spawn
 end
 
 local function round(x)
@@ -123,29 +110,29 @@ local function round(x)
     return num / 10
 end
 
-local function placeitemoffgrids(x1, z1, range, prefab, valid_tile_types, water)
+local function place_item_offgrids(x1, z1, range, prefab, valid_tile_types, water)
     local offgrid = false
     local inc = 1
     local x, z = nil, nil
 
     while offgrid == false do
-        local radiusMax = range
-        local rad = math.random() * radiusMax
-        local xdiff = math.random() * rad
-        local zdiff = math.sqrt((rad * rad) - (xdiff * xdiff))
+        local max_radius = range
+        local rad = math.random() * max_radius
+        local x_diff = math.random() * rad
+        local z_diff = math.sqrt((rad * rad) - (x_diff * x_diff))
 
         if math.random() > 0.5 then
-            xdiff = -xdiff
+            x_diff = -x_diff
         end
 
         if math.random() > 0.5 then
-            zdiff = -zdiff
+            z_diff = -z_diff
         end
 
-        x = x1 + xdiff
-        z = z1 + zdiff
+        x = x1 + x_diff
+        z = z1 + z_diff
 
-        local ents = findEntsInRange(x, z, range)
+        local ents = find_ents_in_range(x, z, range)
         local test = true
 
         for _, ent in ipairs(ents) do
@@ -159,21 +146,21 @@ local function placeitemoffgrids(x1, z1, range, prefab, valid_tile_types, water)
         inc = inc + 1
     end
 
-    if x and z and checkIfValidGround(x, z, valid_tile_types, water) and checkforblockingitems(x, z) then
-        AddTempEnts(bunch, x, z, prefab)
+    if x and z and check_valid_ground(x, z, valid_tile_types, water) and check_blocking_items(x, z) then
+        add_temp_ents(bunch, x, z, prefab)
     end
 end
 
-local function makebunch(entities, topology_save, worldsim, map_width, map_height, prefab, range, number, x, z, valid_tile_types, water)
+local function make_bunch(set_entities, topology_save, world_sim, map_width, map_height, prefab, range, number, x, z, valid_tile_types, water)
     bunch = {}
-    setConstants(entities, map_width, map_height)
+    set_constants(set_entities, map_width, map_height)
 
     for i = 1, number do
-        placeitemoffgrids(x, z, range, prefab, valid_tile_types, water)
+        place_item_offgrids(x, z, range, prefab, valid_tile_types, water)
     end
 
-    exportSpawnersToEntites()
-    return entities
+    export_spawners_to_entites()
+    return set_entities
 end
 
-return makebunch
+return make_bunch
