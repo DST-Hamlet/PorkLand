@@ -112,13 +112,13 @@ local function import(module_name)
     end
 end
 
-merge_table(STRINGS, import("common"))
+ToolUtil.merge_table(STRINGS, import("common"))
 
 local IsTheFrontEnd = rawget(_G, "TheFrontEnd") and rawget(_G, "IsInFrontEnd") and IsInFrontEnd()
 if not IsTheFrontEnd then
     -- add character speech
     for _, character in pairs(speech) do
-        merge_table(STRINGS.CHARACTERS[string.upper(character)], import(character))
+        ToolUtil.merge_table(STRINGS.CHARACTERS[string.upper(character)], import(character))
     end
 
     for _, character in pairs(newspeech) do
@@ -138,7 +138,7 @@ if desiredlang and languages[desiredlang] then
     local temp_lang = desiredlang .. "_temp"
 
     LanguageTranslator:LoadPOFile("scripts/languages/pl_" .. languages[desiredlang] .. ".po", temp_lang)
-    merge_table(LanguageTranslator.languages[desiredlang], LanguageTranslator.languages[temp_lang])
+    ToolUtil.merge_table(LanguageTranslator.languages[desiredlang], LanguageTranslator.languages[temp_lang])
     TranslateStringTable(STRINGS)
     LanguageTranslator.languages[temp_lang] = nil
     LanguageTranslator.defaultlang = desiredlang

@@ -15,7 +15,7 @@ PL_CONFIG = {
 modimport("main/tuning")
 modimport("main/constants")
 
-modimport("main/pl_util")
+modimport("main/toolutil")
 modimport("main/util")
 modimport("main/commands")
 modimport("main/standardcomponents")
@@ -28,4 +28,3 @@ modimport("main/pl_worldsettings_overrides")
 modimport("main/RPC")
 modimport("main/actions")
 modimport("main/postinit")
-

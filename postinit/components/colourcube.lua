@@ -35,13 +35,13 @@ function ColourCube:AddPlSeasonColourCube()
     local SEASON_COLOURCUBES = nil
 
     if OnSeasonTick then
-        SEASON_COLOURCUBES = Pl_Util.GetUpvalue(OnSeasonTick, "SEASON_COLOURCUBES", 10)  -- OnSeasonTick->UpdateAmbientCCTable->SEASON_COLOURCUBES
+        SEASON_COLOURCUBES = ToolUtil.GetUpvalue(OnSeasonTick, "UpdateAmbientCCTable.SEASON_COLOURCUBES")
     end
 
     if not SEASON_COLOURCUBES then  -- try again
         local OnPlayerActivated = self.inst:GetEventCallbacks("playeractivated", nil, "scripts/components/colourcube.lua")
         if OnPlayerActivated then
-            SEASON_COLOURCUBES = Pl_Util.GetUpvalue(OnPlayerActivated, "SEASON_COLOURCUBES", 10)  -- OnPlayerActivated->OnOverrideCCTable->UpdateAmbientCCTable->SEASON_COLOURCUBES
+            SEASON_COLOURCUBES = ToolUtil.GetUpvalue(OnPlayerActivated, "OnOverrideCCTable.UpdateAmbientCCTable.SEASON_COLOURCUBES")
         end
     end
 

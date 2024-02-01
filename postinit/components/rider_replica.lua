@@ -1,7 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 local Rider_Replica = require("components/rider_replica")
 
-local _GetPickupAction = Pl_Util.GetUpvalue(Rider_Replica.SetActionFilter, "GetPickupAction", 1)
+local _GetPickupAction = ToolUtil.GetUpvalue(Rider_Replica.SetActionFilter, "ActionButtonOverride.GetPickupAction")
 local GetPickupAction = function(self, target, tool, ...)
     if target:HasTag("smolder") then
         return ACTIONS.SMOTHER
@@ -18,4 +18,4 @@ local GetPickupAction = function(self, target, tool, ...)
 
     return _GetPickupAction(self, target, tool, ...)
 end
-Pl_Util.SetUpvalue(Rider_Replica.SetActionFilter, GetPickupAction, "GetPickupAction", 1)
+ToolUtil.SetUpvalue(Rider_Replica.SetActionFilter, GetPickupAction, "ActionButtonOverride.GetPickupAction")

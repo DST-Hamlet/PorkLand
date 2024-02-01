@@ -133,7 +133,7 @@ AddComponentPostInit("shard_clock", function(self, inst)
     if not IA_ENABLED then
         if _world.ismastershard then
             local OnClockUpdate = inst:GetEventCallbacks("master_clockupdate", _world, "scripts/components/shard_clock.lua")
-            local _remainingtimeinphase = Pl_Util.GetUpvalue(OnClockUpdate, "_remainingtimeinphase")
+            local _remainingtimeinphase = ToolUtil.GetUpvalue(OnClockUpdate, "_remainingtimeinphase")
 
             local OnForceSync = function()
                 _remainingtimeinphase:set_local(_remainingtimeinphase:value())

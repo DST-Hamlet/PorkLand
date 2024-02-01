@@ -124,8 +124,8 @@ local function add_group_and_item(category, name, text, desc, atlas, order, item
     end
 end
 
-local WORLDGEN_GROUP = Pl_Util.GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
-local WORLDSETTINGS_GROUP = Pl_Util.GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
+local WORLDGEN_GROUP = ToolUtil.GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
+local WORLDSETTINGS_GROUP = ToolUtil.GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
 for category, category_data in pairs(change_items) do  -- use dst custonsiz settings for porkland
     local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
     for group, items in pairs(category_data) do

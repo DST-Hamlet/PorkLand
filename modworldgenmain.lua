@@ -15,7 +15,7 @@ end
 
 -- postinit
 
-modimport("main/pl_util")
+modimport("main/toolutil")
 modimport("main/tuning")
 modimport("main/tiledefs")
 modimport("main/spawnutil")

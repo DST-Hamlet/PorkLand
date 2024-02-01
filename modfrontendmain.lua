@@ -34,4 +34,4 @@ function ModManager:FrontendUnloadMod(modname, ...)
 
     return _FrontendUnloadMod(self, modname, ...)
 end
-Pl_Util.HideHackFn(ModManager.FrontendUnloadMod, _FrontendUnloadMod)
+ToolUtil.HideHackFn(ModManager.FrontendUnloadMod, _FrontendUnloadMod)
