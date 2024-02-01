@@ -5,22 +5,22 @@ require("translator")
 
 local languages = {
     -- en = "strings.pot",
-    de = "german",  -- german
-    es = "spanish",  -- spanish
-    fr = "french",  -- french
-    it = "italian",  -- italian
-    ko = "korean",  -- korean
-    pt = "portuguese_br",  -- portuguese and brazilian portuguese
-    br = "portuguese_br",  -- brazilian portuguese
-    pl = "polish",  -- polish
-    ru = "russian",  -- russian
+
+    -- de = "german",  -- german
+    -- es = "spanish",  -- spanish
+    -- fr = "french",  -- french
+    -- it = "italian",  -- italian
+    -- ko = "korean",  -- korean
+    -- pt = "portuguese_br",  -- portuguese and brazilian portuguese
+    -- br = "portuguese_br",  -- brazilian portuguese
+    -- pl = "polish",  -- polish
+    -- ru = "russian",  -- russian
     zh = "chinese_s",  -- chinese
-    chs = "chinese_s", --chinese mod
-    sc = "chinese_s", --simple chinese
-    tc = "chinese_t", --traditional chinese
+    chs = "chinese_s", -- chinese mod
+    sc = "chinese_s", -- simple chinese
+    tc = "chinese_t", -- traditional chinese
     cht = "chinese_t",  -- traditional chinese
 }
-
 
 local speech = {
     "generic",
@@ -55,47 +55,6 @@ local newspeech = {
     "wagstaff",
     -- "warbucks"  -- discard
 }
-
-local function is_array(t)
-    if type(t) ~= "table" or not next(t) then
-        return false
-    end
-
-    local n = #t
-    for i, v in pairs(t) do
-        if type(i) ~= "number" or i <= 0 or i > n then
-            return false
-        end
-    end
-
-    return true
-end
-
-local function merge_table(target, add_table, override)
-    target = target or {}
-
-    for k, v in pairs(add_table) do
-        if type(v) == "table" then
-            if not target[k] then
-                target[k] = {}
-            elseif type(target[k]) ~= "table" then
-                if override then
-                    target[k] = {}
-                else
-                    error("Can not override" .. k .. " to a table")
-                end
-            end
-
-            merge_table(target[k], v, override)
-        else
-            if is_array(target) and not override then
-                table.insert(target, v)
-            elseif not target[k] or override then
-                target[k] = v
-            end
-        end
-    end
-end
 
 local function import(module_name)
     module_name = module_name .. ".lua"

@@ -34,14 +34,7 @@ configuration_options = {
         options =
         {
             {description = "Auto", data = false},
-            {description = "Deutsch", data = "de"},
-            {description = "Español", data = "es"},
-            {description = "Français", data = "fr"},
-            {description = "Italiano", data = "it"},
-            {description = "한국어", data = "ko"},
-            {description = "Polski", data = "pl"},
-            {description = "Português", data = "pt"},
-            {description = "Русский", data = "ru"},
+            {description = "English", data = "en"},
             {description = "中文 (简体)", data = "sc"},
             {description = "中文 (繁体)", data = "tc"},
         },
