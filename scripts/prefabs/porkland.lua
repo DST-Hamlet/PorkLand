@@ -79,8 +79,15 @@ local function tile_physics_init(inst, ...)
     inst.Map:AddTileCollisionSet(
         COLLISION.LAND_OCEAN_LIMITS,
         TileGroups.LandTiles, true,
-        TileGroups.PLOceanTiles, true,
+        TileGroups.PlOceanTiles, true,
         0.25, 64
+    )
+    -- PL's ocean impassable collider
+    inst.Map:AddTileCollisionSet(
+        COLLISION.LAND_OCEAN_LIMITS,
+        TileGroups.ImpassableTiles, true,
+        TileGroups.PlOceanTiles, true,
+        0.25, 128
     )
     -- standard impassable collider
     inst.Map:AddTileCollisionSet(
