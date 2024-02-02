@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ahhh. The season has turned.",
     },
+    ANNOUNCE_HAYFEVER = "Evidence would suggest it's allergy season.",
+    ANNOUNCE_HAYFEVER_OFF = "Ah! Evidentaly, it's no longer allergy season.",
+    ANNOUNCE_SNEEZE = "aH-CHOOOOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s really weighs me down.",
         "The humid air is making this %s heavy.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",
         ASPARAGUS_PLANTED = "A cluster of edible spring vegetables!",
         CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
+        CUTNETTLE = "A large leaf nettle plant native to these parts. Also it smells funny.",
         FLOWER_RAINFOREST = "Curious. Picking these has a positive effect on my psyche.",
         GLOWFLY = {
             DEAD = "Cadaverous.",

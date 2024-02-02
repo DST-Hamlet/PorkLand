@@ -11,6 +11,7 @@ PrefabFiles = {
     "pl_wave_shore",
     "jungle_border_vine",
     "machete",
+    "nettle",
     "peagawk",
     "peagawk_spawner",
     "peagawkfeather",
@@ -39,8 +40,11 @@ Assets = {
     -- hud
     Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison
     Asset("IMAGE", "images/overlays/fx3.tex"),
+    Asset("ATLAS", "images/overlays/fx4.xml"),  -- pollen(hayfever)
+    Asset("IMAGE", "images/overlays/fx4.tex"),
     Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
     Asset("IMAGE", "images/overlays/fx5.tex"),
+
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 
     -- player_actions
@@ -48,6 +52,8 @@ Assets = {
     Asset("ANIM", "anim/player_mount_idles_poison.zip"),
     Asset("ANIM", "anim/player_actions_hack.zip"),
     Asset("ANIM", "anim/player_actions_shear.zip"),
+    Asset("ANIM", "anim/player_sneeze.zip"),
+    Asset("ANIM", "anim/player_mount_sneeze.zip"),
 }
 
 ToolUtil.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")

@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ah, I feel better now.",
     },
+    ANNOUNCE_HAYFEVER = "Ugh! My allergies!",
+    ANNOUNCE_HAYFEVER_OFF = "I think... my nose has cleared!",
+    ANNOUNCE_SNEEZE = "Atchoum!",
     ANNOUNCE_TOO_HUMID = {
         "Mon dieu! This %s is humid.",
         "Whew. This %s is hot.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "It still smells of bug.",
         ASPARAGUS_PLANTED = "I should snatch those up.",
         CHITIN = "Completely inedible.",
+        CUTNETTLE = "Great for clearing the sinuses!",
         FLOWER_RAINFOREST = "Edible?",
         GLOWFLY = {
             DEAD = "Such a shame. And not even edible.",

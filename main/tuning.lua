@@ -93,7 +93,7 @@ local tuning = {
     ASPARAGUS_REGROWTH_TIME_MULT = 1,
 
     CLAWPALMTREE_GROW_TIME = {
-        {base = 8 * day_time, random = 0.5 * day_time},   -- tall to short
+        {base = 8 * day_time, random = 0.5 * day_time},  -- tall to short
         {base = 12 * day_time, random = 5 * day_time},   -- short to normal
         {base = 12 * day_time, random = 5 * day_time},   -- normal to tall
     },

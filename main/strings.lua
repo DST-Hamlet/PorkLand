@@ -18,8 +18,8 @@ local languages = {
     zh = "chinese_s",  -- chinese
     chs = "chinese_s", -- chinese mod
     sc = "chinese_s", -- simple chinese
-    tc = "chinese_t", -- traditional chinese
-    cht = "chinese_t",  -- traditional chinese
+    tc = "chinese_s", -- simple chinese
+    cht = "chinese_s",  -- simple chinese
 }
 
 local speech = {

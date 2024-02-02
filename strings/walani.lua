@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ah... A nice cool breeze.",
     },
+    ANNOUNCE_HAYFEVER = "Allergy season.",
+    ANNOUNCE_HAYFEVER_OFF = "Hey! I feel better!",
+    ANNOUNCE_SNEEZE = "ahhh... ahhhh...ahhhhhCHOOO!",
     ANNOUNCE_TOO_HUMID = {
         "Ugh. This %s is soooo muggy.",
         "This %s is really warm.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "Ew. It's all creepy-crawly.",
         ASPARAGUS_PLANTED = "Food!",
         CHITIN = "Probably wouldn't make a good surfboard.",
+        CUTNETTLE = "Whew! Really cleans your sinuses!",
         FLOWER_RAINFOREST = "I love these.",
         GLOWFLY = {
             DEAD = "I wish it hadn't died.",

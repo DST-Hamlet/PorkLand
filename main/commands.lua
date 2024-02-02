@@ -25,3 +25,10 @@ function c_poison()
         end
     end
 end
+
+function c_gotostate(state)
+    local player = ConsoleCommandPlayer()
+    if type(state) == "string" then
+        player.sg:GoToState(state)
+    end
+end

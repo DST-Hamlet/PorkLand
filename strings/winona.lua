@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "This is much more comfortable.",
     },
+    ANNOUNCE_HAYFEVER = "My nose is itchy...",
+    ANNOUNCE_HAYFEVER_OFF = "Huh, finally comfortable.",
+    ANNOUNCE_SNEEZE = "Ah chirp!",
     ANNOUNCE_TOO_HUMID = {
         "%s is not breathable at all.",
         "This %s is so boring that I can't breathe.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",
         ASPARAGUS_PLANTED = "Wholesome green vegetables.",
         CHITIN = "I don't know what this can be used for.",
+        CUTNETTLE = "Keep your breath flowing and refresh your mind.",
         FLOWER_RAINFOREST = "I have never seen such flowers.",
         GLOWFLY = {
             DEAD = "It's broken.",

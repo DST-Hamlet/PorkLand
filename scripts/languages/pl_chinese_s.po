@@ -15,10 +15,30 @@ msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
 msgstr "剪"
 
+#. STRINGS.ACTIONS.SMELT
+msgctxt "STRINGS.ACTIONS.SMELT"
+msgid "Smelt"
+msgstr "冶炼"
+
 #. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_DEHUMID.1"
 msgid "Ah, so much better."
 msgstr "啊，好多了。"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER"
+msgid "My nose feels.. itchy."
+msgstr "我的鼻子...好痒。"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_HAYFEVER_OFF"
+msgid "I don't want to claw my eyes out anymore."
+msgstr "我的眼睛终于能自然睁开，不需要用手掰开眼皮了。"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_SNEEZE"
+msgid "AHHH CHOOOO!"
+msgstr "啊啊啊啊嘁！"
 
 #. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.1"
@@ -30,10 +50,20 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is too hot."
 msgstr "这%s太闷热了。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ALLOY"
+msgid "Ahoy there, alloy!"
+msgstr "那是合金，合金！"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Looks scientifically apocalyptic."
 msgstr "看起来很科学的末日。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_METALPLATE"
+msgid "Science says I'm safe in here."
+msgstr "科学说我穿上这个会很安全。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ARMOR_WEEVOLE"
@@ -45,10 +75,20 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick those!"
 msgstr "我应该采摘它们！"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BASEFAN"
+msgid "Fan-tastic."
+msgstr "风-趣。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN"
 msgid "Bug coating."
 msgstr "虫子的外衣。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CUTNETTLE"
+msgid "Science says the sharp edges are good for my lungs."
+msgstr "科学说这个带刺边的小叶子对我的肺有好处。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.FLOWER_RAINFOREST"
@@ -100,6 +140,16 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
 msgstr "我喜欢这把刀的切口。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALBERD"
+msgid "Now I can't be caught off-guard."
+msgstr "现在我不是手无寸铁的了。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON"
+msgid "Isn't it ironic?"
+msgstr "老铁，这不搞笑吗？"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD"
 msgid "Dead-eyed."
@@ -145,6 +195,26 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEARS"
 msgid "Shear-ly delightful."
 msgstr "修剪东西时的声音很好听。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.BURNT"
+msgid "The smelter got smelted."
+msgstr "冶炼厂被冶炼了。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "This is going to take a while."
+msgstr "这还需要一点时间。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.DONE"
+msgid "It's done!"
+msgstr "搞定！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.EMPTY"
+msgid "I smelt that!"
+msgstr "我闻到了冶炼的气味！"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR"
 msgid "It totally blocks out the sun."
@@ -165,6 +235,21 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_DEHUMID.1"
 msgid "Ahhh. The season has turned."
 msgstr "啊。季节已经变了。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER"
+msgid "Evidence would suggest it's allergy season."
+msgstr "很显然现在是会引发过敏的季节。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah! Evidentaly, it's no longer allergy season."
+msgstr "啊哈！很显然，会引发过敏的季节已经过了。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_SNEEZE"
+msgid "aH-CHOOOOOOOOOO!"
+msgstr "啊-啾啾啾啾！"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s really weighs me down."
@@ -175,10 +260,20 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.2"
 msgid "The humid air is making this %s heavy."
 msgstr "潮湿的空气让这个%s变得很沉。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ALLOY"
+msgid "Ah, refined metal. As good as any factory could produce."
+msgstr "啊哈，精炼好的金属。和工厂生产的一样好。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Wonderful! I wonder if I could make the world end sooner."
 msgstr "绝妙啊！我想知道我能不能让这个世界早日终结。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_METALPLATE"
+msgid "The riveting in this suit is quite sophisticated."
+msgstr "这套装备的铆接相当复杂。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ARMOR_WEEVOLE"
@@ -190,10 +285,20 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A cluster of edible spring vegetables!"
 msgstr "一簇可食用的春季蔬菜！"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BASEFAN"
+msgid "Magnificent! What a marvel of engineering!"
+msgstr "真棒啊！多么神奇的工程啊！"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN"
 msgid "Wonderful! The exoskeleton of a deceased insect!"
 msgstr "绝妙啊！这是一只死掉的昆虫的外骨骼！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CUTNETTLE"
+msgid "A large leaf nettle plant native to these parts. Also it smells funny."
+msgstr "这个地方原产的大叶荨麻。闻起来非常有趣。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.FLOWER_RAINFOREST"
@@ -245,6 +350,16 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE"
 msgid "A pragmatic tool for slashing objects."
 msgstr "一个非常实用的切割工具。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.HALBERD"
+msgid "A marvelously versatile instrument capable of causing incredible harm!"
+msgstr "一种多功能的器具，能造成不可思议的伤害。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON"
+msgid "Marvelous! Iron is invaluable for manufacturing the tools I need!"
+msgstr "了不起！铁是我制造器具的必需品，铁是无价的！"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD"
 msgid "Evidently, it didn't see that coming."
@@ -295,6 +410,26 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SHEARS"
 msgid "Cutting implements constructed from raw metal."
 msgstr "用生铁制成的切割工具。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.BURNT"
+msgid "Smelting is a dangerous business in here."
+msgstr "冶炼在这里也是一项危险工程。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "I can't wait to watch more about the properties of these metals."
+msgstr "我迫不及待进一步了解这些金属的性质了。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.DONE"
+msgid "Done already? Remarkable!"
+msgstr "这就完成了？太妙了！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.EMPTY"
+msgid "Magnificent! Perhaps I can build a factory here as well."
+msgstr "真棒啊！也许我也可以在这里建一个工厂。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR"
 msgid "The circumference of this tree's trunk is unusually large."
@@ -315,6 +450,21 @@ msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_DEHUMID.1"
 msgid "Ah... A nice cool breeze."
 msgstr "啊...凉爽的微风。"
 
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER"
+msgid "Allergy season."
+msgstr "会过敏的季节！"
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_HAYFEVER_OFF"
+msgid "Hey! I feel better!"
+msgstr "嘿！我感觉好多了！"
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_SNEEZE"
+msgid "ahhh... ahhhh...ahhhhhCHOOO!"
+msgstr "啊哈...啊哈哈...啊哈哈哈啾！"
+
 #. STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.1"
 msgid "Ugh. This %s is soooo muggy."
@@ -325,10 +475,20 @@ msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is really warm."
 msgstr "这%s相当的热。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ALLOY"
+msgid "Hope this is worth all the trouble."
+msgstr "希望这值得我费这么大劲。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "I hate clocks."
 msgstr "我讨厌闹钟。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_METALPLATE"
+msgid "I feel like a soda can."
+msgstr "我觉得像是易拉罐。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ARMOR_WEEVOLE"
@@ -340,10 +500,20 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food!"
 msgstr "食物！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BASEFAN"
+msgid "A nice breeze."
+msgstr "宜人的微风。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN"
 msgid "Probably wouldn't make a good surfboard."
 msgstr "可能做不出好的冲浪板。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CUTNETTLE"
+msgid "Whew! Really cleans your sinuses!"
+msgstr "噢！能真正的清理你的鼻腔！"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.FLOWER_RAINFOREST"
@@ -395,6 +565,16 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE"
 msgid "What a hack job."
 msgstr "开砍。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.HALBERD"
+msgid "You could poke an eye out on this thing!"
+msgstr "你可以拿它去耀武扬威！"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON"
+msgid "This has gotta be good for something."
+msgstr "它会在某些地方派上用场的。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD"
 msgid "Dang. It's dead."
@@ -440,6 +620,26 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SHEARS"
 msgid "What am I supposed to do with these?"
 msgstr "我应该用它来做什么呢？"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.BURNT"
+msgid "This is what you get for trying too hard."
+msgstr "这就是你急功近利的结果。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "It burns itself red."
+msgstr "它把自己烧得通红。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.DONE"
+msgid "Well done, bro."
+msgstr "做的好，兄弟们。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.EMPTY"
+msgid "I'll just let that do all the work for me."
+msgstr "就让它来为我完成全部的冶炼工作。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR"
 msgid "What a great tree!"
@@ -460,6 +660,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_DEHUMID.1"
 msgid "Still more comfortable this way."
 msgstr "还是这样更舒服。"
 
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_HAYFEVER"
+msgid "There's something in the air...my nose is itching."
+msgstr "空气中有什么东西...我的鼻子好痒。"
+
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_HAYFEVER_OFF"
+msgid "My nose is so much better and it's finally gone!"
+msgstr "我的鼻子好多了，它终于没了！"
+
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_SNEEZE"
+msgid "Ah Choo!"
+msgstr "阿嚏！"
+
 #. STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.1"
 msgid "I'm bored."
@@ -470,10 +685,20 @@ msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.2"
 msgid "%s is not breathable at all."
 msgstr "%s一点都不透气。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ALLOY"
+msgid "It's steel! Look at the steel I made!"
+msgstr "是钢铁！看我炼出的钢铁！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Oh no! It's a doomsday prophecy!"
 msgstr "哦不！是末日预言！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_METALPLATE"
+msgid "Nothing can hurt me with this on!"
+msgstr "穿上这个就没有东西能伤到我了！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ARMOR_WEEVOLE"
@@ -485,10 +710,20 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Miss Winona might like it, pick some."
 msgstr "薇诺娜小姐可能会喜欢，摘一点吧。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN"
+msgid "Ah, it's so comfortable, Warby, you can also enjoy it."
+msgstr "啊，真舒服，沃比你也来吹吹。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN"
 msgid "Check out the pattern on this! Warby!"
 msgstr "看看这上面的花纹！沃比！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.CUTNETTLE"
+msgid "Ow! It got me."
+msgstr "嗷！它划到我了。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.FLOWER_RAINFOREST"
@@ -540,6 +775,16 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
 msgstr "我喜欢这把刀的切割。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.HALBERD"
+msgid "A huge ax!"
+msgstr "一把巨大的斧头！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON"
+msgid "Is that iron?"
+msgstr "那是铁吗？"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Wow, how many eyes are there?"
@@ -580,6 +825,26 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SHEARS"
 msgid "Gardener's little helper."
 msgstr "园丁的小帮手。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.BURNT"
+msgid "It's uh... extra done!"
+msgstr "烧的有点过了！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "What's going on here? I want to take a closer look."
+msgstr "这里面发生了什么？我想仔细看看。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.DONE"
+msgid "Check out what we've come up with!"
+msgstr "看看我们炼出了什么！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.EMPTY"
+msgid "A lrage iron pot. got it? Iron pot."
+msgstr "一口大铁锅，懂吗？铁锅。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR"
 msgid "Such a big tree, even werebeaver can't eat it all."
@@ -600,6 +865,21 @@ msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_DEHUMID.1"
 msgid "Ha, feeling better."
 msgstr "哈，感觉好多了。"
 
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_HAYFEVER"
+msgid "Don't these plants do anything else but pollinate all over the place?"
+msgstr "这些植物除了到处撒粉没别的事干了吗？"
+
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_HAYFEVER_OFF"
+msgid "Whoops! it is finally over!"
+msgstr "呼哈！终于结束了！"
+
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_SNEEZE"
+msgid "Ah Choo!"
+msgstr "阿嚏！"
+
 #. STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.1"
 msgid "Wearing %s is a shame."
@@ -610,10 +890,20 @@ msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.2"
 msgid "This terrible weather... I really shouldn't be wearing %s."
 msgstr "这鬼天气...真不该穿%s的。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ALLOY"
+msgid "Strong refined metal."
+msgstr "坚固的精炼金属。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Keeping track of their movements...very clever idea."
 msgstr "掌握他们的动向...非常聪明的想法。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_METALPLATE"
+msgid "I still prefer magic."
+msgstr "我还是更喜欢魔法。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ARMOR_WEEVOLE"
@@ -625,10 +915,20 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick some and go back to eat."
 msgstr "我应该摘点回去吃。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BASEFAN"
+msgid "Very interesting structure, but unfortunately not refined enough."
+msgstr "非常有趣的结构，可惜还不够精细。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.CHITIN"
 msgid "I don't understand what's the point of this?"
 msgstr "我不明白这有什么意义？"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.CUTNETTLE"
+msgid "This keeps us breathing smoothly."
+msgstr "这能让我们保持呼吸顺畅。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.FLOWER_RAINFOREST"
@@ -680,6 +980,16 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE"
 msgid "It's for chopping, simple as that."
 msgstr "就是用来切菜的，就这么简单。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.HALBERD"
+msgid "I'm not planning on murdering grove of trees."
+msgstr "我的对手可不是一片树林。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON"
+msgid "An essential material for accurate timepieces."
+msgstr "精确钟表的必备材料。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "See no evil!"
@@ -720,6 +1030,26 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SHEARS"
 msgid "I won't waste my time on this."
 msgstr "我可不会把时间浪费在这上面。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.BURNT"
+msgid "We've made the most of it."
+msgstr "我们有好好使用它吗。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Good thing it won't take me too much time."
+msgstr "好在这不会花费我太多时间。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.DONE"
+msgid "Got it!"
+msgstr "完事！"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.EMPTY"
+msgid "Melt the metals together."
+msgstr "把金属熔化到一起。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR"
 msgid "Thankfully it doesn't completely block the sun."
@@ -740,6 +1070,21 @@ msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_DEHUMID.1"
 msgid "Ah, I feel better now."
 msgstr "呼，我感觉好多了。"
 
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER"
+msgid "Ugh! My allergies!"
+msgstr "啊！我过敏了！"
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_HAYFEVER_OFF"
+msgid "I think... my nose has cleared!"
+msgstr "我感觉...我的鼻腔干净了！"
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_SNEEZE"
+msgid "Atchoum!"
+msgstr "啊嚏！"
+
 #. STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.1"
 msgid "Mon dieu! This %s is humid."
@@ -750,10 +1095,20 @@ msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.2"
 msgid "Whew. This %s is hot."
 msgstr "唷！这个%s太热了。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ALLOY"
+msgid "Metal cooked to perfection."
+msgstr "被完美料理的金属。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Like the knobs on a stove, it must be turned just right."
 msgstr "就像炉子的旋钮一样, 它必须转动到恰好的位置。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_METALPLATE"
+msgid "Like an armor made of tin cans."
+msgstr "像是一个用锡罐做的盔甲。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ARMOR_WEEVOLE"
@@ -765,10 +1120,20 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should snatch those up."
 msgstr "我应该把那些捡起来。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BASEFAN"
+msgid "Good ventilation in the kitchen is an must."
+msgstr "厨房必须通风良好。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN"
 msgid "Completely inedible."
 msgstr "完全不能吃。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CUTNETTLE"
+msgid "Great for clearing the sinuses!"
+msgstr "很适合用来清理鼻腔！"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.FLOWER_RAINFOREST"
@@ -820,6 +1185,16 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE"
 msgid "I could chop many an onion with this!"
 msgstr "有了这个，我可以切很多洋葱！"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.HALBERD"
+msgid "I dislike fighting."
+msgstr "我讨厌打斗。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON"
+msgid "I wonder what I could cook up with this."
+msgstr "我好奇我能用这个烹饪出什么。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD"
 msgid "A pointless death."
@@ -865,6 +1240,26 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SHEARS"
 msgid "Good for cutting hedges and grass."
 msgstr "适合用来修剪树篱和草坪."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.BURNT"
+msgid "I'm better at cooking food than metal."
+msgstr "我更擅长烹饪食物，而不是金属。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "The flavors are fusing."
+msgstr "风味正在熔合。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.DONE"
+msgid "Fresh out of the oven! Be careful with the scalding."
+msgstr "新鲜出炉！小心烫。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.EMPTY"
+msgid "'Smelt' bad, if you ask me."
+msgstr "闻起来不是很好。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR"
 msgid "What a marvel."
@@ -885,6 +1280,21 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_DEHUMID.1"
 msgid "The haze has lifted."
 msgstr "雾气终于散去了。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER"
+msgid "Mine nostrils chafe with itchiness!"
+msgstr "我的鼻子又痛又痒！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_HAYFEVER_OFF"
+msgid "The smoke has cleared!"
+msgstr "花粉终于散去了！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_SNEEZE"
+msgid "aaAAAH...cho!"
+msgstr "啊...啾！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is crushing my spirit."
@@ -895,10 +1305,20 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s burns like Sol."
 msgstr "这%s像太阳一样燃烧着。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ALLOY"
+msgid "A metal worthy of the Sons of Ivaldi."
+msgstr "配得上伊瓦第之子的金属。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "It controls Ragnarok!"
 msgstr "它控制着诸神黄昏！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_METALPLATE"
+msgid "Armor worthy of my deeds."
+msgstr "能配得上我的盔甲。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WEEVOLE"
@@ -910,10 +1330,20 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Useless vegetation!"
 msgstr "没用的蔬菜！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BASEFAN"
+msgid "Conquers the heat!"
+msgstr "驱散高温!"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN"
 msgid "The feeble armor of the bug."
 msgstr "虫子的脆弱盔甲。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CUTNETTLE"
+msgid "Its smell has vanquish mine sinuses."
+msgstr "它的气味击败了我的鼻窦。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.FLOWER_RAINFOREST"
@@ -965,6 +1395,16 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE"
 msgid "A fine length of blade."
 msgstr "长度适中的刀。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.HALBERD"
+msgid "Tis no spear, yet is still valorous!"
+msgstr "这不是长矛，但是它依然很英勇！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON"
+msgid "Material for metalwork."
+msgstr "制造金属制品的材料。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD"
 msgid "Even in death its eyes stare into my soul."
@@ -1010,6 +1450,26 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SHEARS"
 msgid "A weapon for use against a mighty hedge!"
 msgstr "一件用来对付大树篱的武器！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.BURNT"
+msgid "My role is more warrior than artizan."
+msgstr "我的角色是战士而不是工匠。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Patience is an essential quality of a good fighter."
+msgstr "耐心是优秀战士的必备品质。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.DONE"
+msgid "Now make me a sharp edge!"
+msgstr "现在请为我铸造利刃吧！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.EMPTY"
+msgid "The tools of dwarves."
+msgstr "矮人的工具。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR"
 msgid "Surely I stand before Yggdrasil!"
@@ -1030,6 +1490,21 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_DEHUMID.1"
 msgid "Ah! That feels better."
 msgstr "啊！感觉好多了。"
 
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER"
+msgid "Ugh. Allergies."
+msgstr "啊，是过敏。"
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah... I can breathe again."
+msgstr "啊...我又能呼吸了。"
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_SNEEZE"
+msgid "ah...CHOOOO!"
+msgstr "啊...啾！"
+
 #. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is too much."
@@ -1040,10 +1515,20 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is hotter than I like."
 msgstr "这个%s比我喜欢的更热。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ALLOY"
+msgid "Durable."
+msgstr "耐用。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "I do like this..."
 msgstr "我很喜欢这个..."
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_METALPLATE"
+msgid "Not very pliant but it does the job."
+msgstr "不是很舒服，但它确实很有效。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WEEVOLE"
@@ -1055,10 +1540,20 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food. Just growing out of the ground."
 msgstr "食物。刚从地里长出来。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BASEFAN"
+msgid "Ah. Civilization."
+msgstr "哈，现代文明。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN"
 msgid "We all have our defenses."
 msgstr "我们都有自己的防御。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CUTNETTLE"
+msgid "Useful."
+msgstr "有用。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.FLOWER_RAINFOREST"
@@ -1110,6 +1605,16 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE"
 msgid "Truthfully I was always a hack."
 msgstr "说实话，我用刀的功夫一直不怎么样。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.HALBERD"
+msgid "A blade as sharp as my wit."
+msgstr "像我的智慧一般锐利的利刃。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON"
+msgid "A solid mineral."
+msgstr "一块坚固的矿物质。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD"
 msgid "It's beauty has been snuffed out forever."
@@ -1155,6 +1660,26 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEARS"
 msgid "Aren't there gardeners for this sort of thing?"
 msgstr "不是有园丁干这些事情吗？"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.BURNT"
+msgid "Back to the Stone Age."
+msgstr "重返石器时代。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Watch it! Don't let the fire go out."
+msgstr "看好了！别让火熄灭。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.DONE"
+msgid "Difficult results."
+msgstr "艰难的成果。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.EMPTY"
+msgid "Finally we're catching up to the Iron Age."
+msgstr "我们终于步入了铁器时代。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR"
 msgid "This tree is unusually large."
@@ -1175,6 +1700,21 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_DEHUMID.1"
 msgid "Whew! Not so hot anymore."
 msgstr "呼！不再这么热了。"
 
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER"
+msgid "Sniff. Sniff. We must have allergies."
+msgstr "呼。呼。我们一定过敏了。"
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_HAYFEVER_OFF"
+msgid "Wow! I think our allergies are gone!"
+msgstr "哇！我想我们的过敏好了。"
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_SNEEZE"
+msgid "a...choooOOOOOOO!"
+msgstr "啊...嚏呦呦唔！"
+
 #. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.1"
 msgid "Ugh. We're really baking in this %s."
@@ -1185,10 +1725,20 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.2"
 msgid "Wow! This %s is making us hot."
 msgstr "哇哦！这%s让我们好热。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ALLOY"
+msgid "Gosh. That's a lot of metal."
+msgstr "天哪。真是很大一块金属。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "It's like a puzzle!"
 msgstr "就像一个拼图！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_METALPLATE"
+msgid "Sir Webber at your service!"
+msgstr "我们现在是韦伯公爵啦！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WEEVOLE"
@@ -1200,10 +1750,20 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "We should pick those."
 msgstr "我们应该捡走它们。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BASEFAN"
+msgid "That breeze feels nice on our fur."
+msgstr "微风吹过毛皮的感觉很惬意。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN"
 msgid "Hope no one's missing that."
 msgstr "希望没人会弄丢这个。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CUTNETTLE"
+msgid "These nettles smell really strong."
+msgstr "这些荨麻味道真的很重。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.FLOWER_RAINFOREST"
@@ -1255,6 +1815,16 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE"
 msgid "Hyah! Hyah!"
 msgstr "嘿！哈！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.HALBERD"
+msgid "Swoosh!"
+msgstr "刷刷！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON"
+msgid "We could make all kinds of neat stuff with this."
+msgstr "我打赌我们可以用这做各种各样的东西。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I think it's dead."
@@ -1300,6 +1870,26 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SHEARS"
 msgid "It's for chores like trimming hedges or cutting grass."
 msgstr "这是用来修剪篱笆或者剪草的。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.BURNT"
+msgid "All burned up."
+msgstr "全烧光了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Yeesh, that's hot!"
+msgstr "呀，好烫！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.DONE"
+msgid "It's finished."
+msgstr "完成了！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.EMPTY"
+msgid "Make material with material."
+msgstr "用材料制作材料。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR"
 msgid "It's probably super old."
@@ -1320,6 +1910,21 @@ msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_DEHUMID.1"
 msgid "The heat has lifted but my heart has not."
 msgstr "温度在升高，但我的心依旧冰冷。"
 
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER"
+msgid "Ugh. Even my sinuses are suffering."
+msgstr "啊。连我的鼻子都在受苦。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_HAYFEVER_OFF"
+msgid "My sinuses are clear, but suffering continues."
+msgstr "我的鼻子舒服多了，但苦难还在继续。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_SNEEZE"
+msgid "achoo! achoo! sniff."
+msgstr "啊啾！啊啾！吸吸。"
+
 #. STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is heavier in the heat."
@@ -1330,10 +1935,20 @@ msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is too hot. It weighs on my soul."
 msgstr "这%s太热了，它重压着我的灵魂。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ALLOY"
+msgid "Cold and hard, like my existence."
+msgstr "冰冷又坚硬，就像我的存在"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Clockwork for the end of times."
 msgstr "计算终结之时的钟表。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_METALPLATE"
+msgid "Like a metal coffin that keeps me alive."
+msgstr "就像一个能让我活着的金属棺材。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ARMOR_WEEVOLE"
@@ -1345,10 +1960,20 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should rip those out of the ground."
 msgstr "我应该把它们从地里挖出来。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BASEFAN"
+msgid "Alas the relief it brings is only temporary."
+msgstr "哎，这只能缓解片刻。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN"
 msgid "This shell is poor protection from life's horrors."
 msgstr "这种外壳难以抵挡生活的恐怖。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CUTNETTLE"
+msgid "I suppose these will cure blocked sinuses."
+msgstr "我想这些可以治疗鼻塞。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.FLOWER_RAINFOREST"
@@ -1400,6 +2025,16 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE"
 msgid "This is a lot of blade."
 msgstr "刀刃很长。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.HALBERD"
+msgid "A terrible weapon for a terrible world."
+msgstr "对抗恐怖世界的恐怖武器。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON"
+msgid "Iron. Like my heart."
+msgstr "坚硬的铁，像我的心脏一样。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD"
 msgid "Beautiful death."
@@ -1445,6 +2080,26 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEARS"
 msgid "Can it shear my heart?"
 msgstr "它能剪下我的心吗？"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.BURNT"
+msgid "It blazes with more passion than I know."
+msgstr "它燃烧得比我想的更加激烈。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "They struggle in the fire and brimstone."
+msgstr "它们在地狱的业火中挣扎。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.DONE"
+msgid "Born of fire."
+msgstr "浴火重生。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.EMPTY"
+msgid "Burn who are trapped in it..."
+msgstr "灼伤深陷其中的人们..."
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR"
 msgid "Ancient, and full of life."
@@ -1465,6 +2120,21 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_DEHUMID.1"
 msgid "Whew. I forgot what it felt like to breathe."
 msgstr "噢。我都快忘记呼吸的感觉了。"
 
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER"
+msgid "Allergiesch. What allergiesch?"
+msgstr "过敏。什么是过敏？"
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_HAYFEVER_OFF"
+msgid "My face stopped leaking. Allergy season must be over."
+msgstr "我不再咳了。会过敏的季节一定结束了。"
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_SNEEZE"
+msgid "AchooOO!"
+msgstr "啊啾！"
+
 #. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is suffocating."
@@ -1475,10 +2145,20 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is just too hot!"
 msgstr "这%s真是太热了！"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ALLOY"
+msgid "Heavy metal made heavier."
+msgstr "重金属变得更沉了。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "If only I could turn time back to before I crashed here."
 msgstr "要是我可以让时光倒流在我的热气球坠毁前就好了。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_METALPLATE"
+msgid "Oof. It's heavier than ballast."
+msgstr "噢。它比热气球里的压舱物重。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ARMOR_WEEVOLE"
@@ -1490,10 +2170,20 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "That looks like food! Let's hope it tastes like food."
 msgstr "看起来它像是食物！希望吃起来的时候也像是食物。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BASEFAN"
+msgid "A plane propeller would be better."
+msgstr "要是用飞机的螺旋桨当叶片就更好了。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN"
 msgid "I'm going to need more of these."
 msgstr "我需要更多这个。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CUTNETTLE"
+msgid "Smells like relief."
+msgstr "它的气味能让我减轻过敏。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.FLOWER_RAINFOREST"
@@ -1545,6 +2235,16 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE"
 msgid "Machete. Designed for adventure."
 msgstr "砍刀。专为冒险而造。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.HALBERD"
+msgid "The must-have multi-tool for adventurers."
+msgstr "冒险家必备的多功能工具。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON"
+msgid "Well it's not good balloon material."
+msgstr "它不是一个造热气球的好材料。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I promise, I will go on without you!"
@@ -1590,6 +2290,26 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SHEARS"
 msgid "Time to do some yard work."
 msgstr "是时候到庭院里修剪园艺树了。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.BURNT"
+msgid "No one ever accused me of being a good blacksmith."
+msgstr "从来没有人指责过我不是一个好铁匠。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "It'll be done in short order."
+msgstr "很快就会结束。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.DONE"
+msgid "Legendary adventurers forge legendary equipment, which sounds pretty good."
+msgstr "传奇冒险家铸造传奇装备，听起来还不错。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.EMPTY"
+msgid "It takes the heavy metal and makes it heavier."
+msgstr "它需要一些重金属才能练出更重的金属。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR"
 msgid "That's a big tree."
@@ -1610,6 +2330,21 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_DEHUMID.1"
 msgid "Ah... that breeze is nice."
 msgstr "啊...那阵微风真舒服。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER"
+msgid "Sniff sniff. Must be hayfever season."
+msgstr "嗅嗅。一定是花粉症高发季。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ahh... Finally I can breathe."
+msgstr "啊...我终于能呼吸了。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_SNEEZE"
+msgid "Ahh... CHOOOOOOOOO!"
+msgstr "啊...嚏！"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.1"
 msgid "This %s is unbearable."
@@ -1620,10 +2355,20 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s makes it too hot."
 msgstr "这个%s太热了。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ALLOY"
+msgid "Iron that has gone through metallic bonding."
+msgstr "通过金属键结合的铁。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Ah. Quite a complex form of clockwork."
 msgstr "啊。相当复杂的钟表装置。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_METALPLATE"
+msgid "What era is this design from?"
+msgstr "这种设计来自哪个时代？"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ARMOR_WEEVOLE"
@@ -1635,10 +2380,20 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Asparagus. Otherwise known as sparrow grass."
 msgstr "芦笋。又称麻雀草。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BASEFAN"
+msgid "Restorative."
+msgstr "恢复装置。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN"
 msgid "The exoskeleton of an arthropod."
 msgstr "一只节肢动物的外骨骼。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CUTNETTLE"
+msgid "These are quite good for the sinuses."
+msgstr "它们有益于鼻窦炎。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.FLOWER_RAINFOREST"
@@ -1690,6 +2445,16 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE"
 msgid "Used for hacking through the brush."
 msgstr "用于在灌木丛中开路。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.HALBERD"
+msgid "It is a cruel and versatile weapon."
+msgstr "一把残忍而又实用的武器。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON"
+msgid "Ferrum."
+msgstr "铁。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD"
 msgid "Lifeless."
@@ -1735,6 +2500,26 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEARS"
 msgid "A useful tool for horticultural purposes."
 msgstr "有用的园艺工具。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.BURNT"
+msgid "Is anyone hurt?"
+msgstr "有人受伤了吗？"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "The metal is melting into liquid state."
+msgstr "金属正在熔化成液态。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.DONE"
+msgid "Recooling and done."
+msgstr "再冷却，完成！"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.EMPTY"
+msgid "A metalsmithing tool."
+msgstr "金属锻造熔炼工具。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR"
 msgid "Certainly from an old growth tree."
@@ -1760,6 +2545,21 @@ msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_DEHUMID.2"
 msgid "AHH. WILBA 'TIS BETTER"
 msgstr "啊啊啊，薇尔芭感觉好多了"
 
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER"
+msgid "SN--ORT. WILBA IS'T STUFFY"
+msgstr "呼...呼。薇尔芭喘不过气"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_HAYFEVER_OFF"
+msgid "SNIFFS. WILBA NOSE IS'T NAUGHT STUFFY NO MORES!"
+msgstr "呼...呼。薇尔芭的鼻子没那么堵了！"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_SNEEZE"
+msgid "SNORT, 'NEEZE, A-CHOOEY!"
+msgstr "唔，喷嚏，哈啾！"
+
 #. STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.1"
 msgid "WILBA AM TOO MUCH I' THE HEAT"
@@ -1770,10 +2570,20 @@ msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.2"
 msgid "THE AIR 'TIS FULL OF HEAT"
 msgstr "空气中充满了热量"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ALLOY"
+msgid "IS'T BLOCK O' HARD METALS"
+msgstr "这是一块坚硬的金属"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "TIME AND THE HOUR RUNS THROUGH IT"
 msgstr "时间与机遇总会有"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_METALPLATE"
+msgid "TO TAKE ARMS"
+msgstr "采取武力"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ARMOR_WEEVOLE"
@@ -1785,10 +2595,20 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "HATH A FUNNY HAT"
 msgstr "它有一顶有趣的帽子"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BASEFAN"
+msgid "BLOW WINDS!"
+msgstr "吹吧 风啊！"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN"
 msgid "YON BUGGY ARMOR"
 msgstr "那是虫子的护甲"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CUTNETTLE"
+msgid "DOST UNSTUFF'DED MINE SNOUTS"
+msgstr "它能使我的鼻子放松"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.FLOWER_RAINFOREST"
@@ -1840,6 +2660,16 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE"
 msgid "YON SLASHY TOOL"
 msgstr "那是切割的工具"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.HALBERD"
+msgid "WILBA SHALL SLICE AND CHOP!"
+msgstr "薇尔芭应该切割和劈砍！"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON"
+msgid "'TIS METAL O' THE ZAPPY BIRD"
+msgstr "这是活泼的鸟儿身上的金属"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD"
 msgid "IS'T EYES LOOKED IS'T LAST"
@@ -1885,6 +2715,26 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
 msgid "FOR THE CUTTINGS OF THE SHRUBS"
 msgstr "为了修剪灌木丛"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.BURNT"
+msgid "'TIS FWOOSHED"
+msgstr "它烧焦了"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "METAL FWOOSH WITHIN!"
+msgstr "金属在里面燃烧！"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.DONE"
+msgid "'TIS DONE"
+msgstr "弄完了"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.EMPTY"
+msgid "'TIS FWOOSHY MACHINES"
+msgstr "这是个滚烫的机器"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR"
 msgid "'TIS STRONG TREE"
@@ -1905,6 +2755,21 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_DEHUMID.1"
 msgid "Ahh...it's cooled down."
 msgstr "啊...它在冷却了。"
 
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER"
+msgid "My sinuses are burning."
+msgstr "我的鼻子在燃烧。"
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_HAYFEVER_OFF"
+msgid "Sniff! I feel better now!"
+msgstr "嗅！我觉得好多了！"
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_SNEEZE"
+msgid "Achoo!!"
+msgstr "啊嚏！！"
+
 #. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.1"
 msgid "It's burning hot. But not in a good way."
@@ -1915,10 +2780,20 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.2"
 msgid "It's too hot."
 msgstr "太热了。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ALLOY"
+msgid "Fire makes everything better."
+msgstr "火可以让一切东西变得更好。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Looks ominous. I like it."
 msgstr "看上去很不祥。我喜欢。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_METALPLATE"
+msgid "I feel like a tin can."
+msgstr "我感觉跟个铁罐子似的。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ARMOR_WEEVOLE"
@@ -1930,10 +2805,20 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha! Found you!"
 msgstr "哈哈！找到你了！"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BASEFAN"
+msgid "Fan the flames."
+msgstr "煽风点火。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN"
 msgid "Bug skin."
 msgstr "虫子的皮肤。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CUTNETTLE"
+msgid "It smells funny."
+msgstr "闻起来怪怪的。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.FLOWER_RAINFOREST"
@@ -1985,6 +2870,16 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE"
 msgid "Or I could just burn my way through."
 msgstr "或者我可以烧出一条路来。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.HALBERD"
+msgid "Weapons are only good if they're twice your size."
+msgstr "比你大两倍的武器才是好武器。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON"
+msgid "I can't burn it with just my lighter."
+msgstr "我的打火机点不着它。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD"
 msgid "Very dead."
@@ -2030,6 +2925,26 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEARS"
 msgid "Not as good as fire, but I guess it has its uses."
 msgstr "不如火好，但我想它有它的用途。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.BURNT"
+msgid "Okay, that's a liitle bit too far."
+msgstr "好吧，这是有一点点过火了。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "The fire is doing its thing!"
+msgstr "火的工作就快完成了！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.DONE"
+msgid "When are we do this again?"
+msgstr "我们什么时候再来一次？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.EMPTY"
+msgid "Oh yeah! Now I can burn metal."
+msgstr "哦耶！现在我能烧金属了！"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR"
 msgid "That's a big ol' tree."
@@ -2050,6 +2965,21 @@ msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_DEHUMID.1"
 msgid "This is much more comfortable."
 msgstr "这样就舒服多了。"
 
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_HAYFEVER"
+msgid "My nose is itchy..."
+msgstr "我的鼻子好痒..."
+
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_HAYFEVER_OFF"
+msgid "Huh, finally comfortable."
+msgstr "呼，终于舒服了。"
+
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_SNEEZE"
+msgid "Ah chirp!"
+msgstr "啊啾！"
+
 #. STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.1"
 msgid "%s is not breathable at all."
@@ -2060,10 +2990,20 @@ msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is so boring that I can't breathe."
 msgstr "这%s闷得我要喘不过气来了。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ALLOY"
+msgid "Proper processing makes it better."
+msgstr "适当的加工让它变得更好。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "A fairly complex set of instrumentation."
 msgstr "一套相当复杂的仪表装置。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_METALPLATE"
+msgid "Bulky, but surprisingly well-protected."
+msgstr "笨重，但防护效果出奇地好。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ARMOR_WEEVOLE"
@@ -2075,10 +3015,20 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Wholesome green vegetables."
 msgstr "有益健康的绿色蔬菜。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BASEFAN"
+msgid "I'm sure bossman would be very interested in it."
+msgstr "老板一定会感兴趣的。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.CHITIN"
 msgid "I don't know what this can be used for."
 msgstr "我不知道这能拿来做什么。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.CUTNETTLE"
+msgid "Keep your breath flowing and refresh your mind."
+msgstr "保持呼吸通畅、提神醒脑。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.FLOWER_RAINFOREST"
@@ -2130,6 +3080,16 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE"
 msgid "Hack and slash! Working's always fun."
 msgstr "砍杀！工作总是充满乐趣。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.HALBERD"
+msgid "More suited to combat than to work."
+msgstr "更适合战斗而不是工作。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON"
+msgid "Invaluable material for manufacturing useful tools."
+msgstr "用于制造有用工具的宝贵材料。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Always be vigilant."
@@ -2170,6 +3130,26 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SHEARS"
 msgid "Shears for gardening."
 msgstr "用于园艺的剪刀。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.BURNT"
+msgid "Forgot fire rules, didn't you?"
+msgstr "忘记了消防守则，是不是？"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Rome was not built in a day."
+msgstr "罗马不是一天建成的。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.DONE"
+msgid "knock off!"
+msgstr "下工！"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.EMPTY"
+msgid "Process the metallic material."
+msgstr "对金属进行加工。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR"
 msgid "It stretches to the end of my field of vision."
@@ -2190,6 +3170,21 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_DEHUMID.1"
 msgid "Ha! Wolfgang beat the heat!"
 msgstr "啊哈！沃尔夫冈战胜了热浪！"
 
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER"
+msgid "Allergies strong like Wolfgang!"
+msgstr "过敏可没有沃尔夫冈强大！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ha! Wolfgang beat allergies!"
+msgstr "哈哈！沃尔夫冈打败了过敏！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_SNEEZE"
+msgid "Achoo! Excuse Wolfgang."
+msgstr "啊嚏！饶了沃尔夫冈吧。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.1"
 msgid "Wolfgang don't like %s in this heat."
@@ -2200,10 +3195,20 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.2"
 msgid "Is too muggy."
 msgstr "太热了。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ALLOY"
+msgid "Fire make it strong like Wolfgang."
+msgstr "火焰让他和沃尔夫冈一样强大。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Is clock of scary things."
 msgstr "计算可怕的东西。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_METALPLATE"
+msgid "No one beat Wolfgang now!"
+msgstr "现在没人能咬沃尔夫冈了！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ARMOR_WEEVOLE"
@@ -2215,10 +3220,20 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha. Is like tiny vegetable hats."
 msgstr "哈哈，这就像小小的蔬菜帽子一样。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BASEFAN"
+msgid "Is cool on Wolfgang skin."
+msgstr "沃尔夫冈感到很凉快。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN"
 msgid "Icky bug pieces."
 msgstr "恶心的虫子碎片。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CUTNETTLE"
+msgid "Is good for clearing nose."
+msgstr "清理鼻子很好用。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.FLOWER_RAINFOREST"
@@ -2270,6 +3285,16 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE"
 msgid "Ah! Very good!"
 msgstr "啊！太好了！"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.HALBERD"
+msgid "Sword is for weak no-muscle men."
+msgstr "只有弱小又没有肌肉的人才会用剑。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON"
+msgid "Iron is strong like Wolfgang."
+msgstr "铁就和沃尔夫冈一样强壮。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD"
 msgid "Is blink-blink no more."
@@ -2315,6 +3340,26 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEARS"
 msgid "Is for cutting plant things."
 msgstr "用来修剪植物。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.BURNT"
+msgid "Smelter is dead."
+msgstr "炉子没了。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Is almost melt!"
+msgstr "快融化了！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.DONE"
+msgid "Fire make metal bricks."
+msgstr "火让金属变成小方块。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.EMPTY"
+msgid "Wolfgang lifted it without difficulty."
+msgstr "沃尔夫冈抬起它毫不费力。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR"
 msgid "Mightiest tree!"
@@ -2335,6 +3380,21 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_DEHUMID.1"
 msgid "That feels better."
 msgstr "这样感觉好多了。"
 
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER"
+msgid "You have allergies like me, Lucy?"
+msgstr "你和我一样过敏吗，露西？"
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah! Clean air again."
+msgstr "啊！新鲜空气。"
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_SNEEZE"
+msgid "Achoo! Excuse me. Sorry."
+msgstr "阿嚏！抱歉，原谅我。"
+
 #. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.1"
 msgid "It's blazing with this %s."
@@ -2345,10 +3405,20 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.2"
 msgid "Whew! this %s is hot, eh?"
 msgstr "哇！这%s真的很热啊，嗯？"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ALLOY"
+msgid "It's like a block of wood made out of metal."
+msgstr "就像一个金属做的木头。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Looks like it's the end of days."
 msgstr "看来世界要毁灭了"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_METALPLATE"
+msgid "Feel a little funny in this."
+msgstr "有点好笑。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ARMOR_WEEVOLE"
@@ -2360,10 +3430,20 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "They're like little trees to chop down."
 msgstr "他们就像即将被砍倒的小树一样。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BASEFAN"
+msgid "Yep. That's a nice breeze."
+msgstr "嗯。一阵微风。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN"
 msgid "It's got some heft to it."
 msgstr "它有点分量。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CUTNETTLE"
+msgid "It has a smell to it."
+msgstr "它散发出一种气味。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.FLOWER_RAINFOREST"
@@ -2415,6 +3495,16 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE"
 msgid "Ooh, that's a thing for chopping."
 msgstr "哇哦，它可以用来砍东西。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.HALBERD"
+msgid "Well, it's no axe."
+msgstr "额，这不是斧头。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON"
+msgid "Can't chop this too well."
+msgstr "不能把它切地很平整。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD"
 msgid "It's a goner."
@@ -2460,6 +3550,26 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEARS"
 msgid "Don't get jealous, Lucy."
 msgstr "别嫉妒，露西。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.BURNT"
+msgid "How did it get burned?!"
+msgstr "它怎么会烧着呢？！"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Oh boy! Here it comes!"
+msgstr "我的乖乖！马上就好了！"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.DONE"
+msgid "Hrumph. A big production for a little metal."
+msgstr "哼。为一点金属的兴师动众。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.EMPTY"
+msgid "It's like a giant maple syrup bucket."
+msgstr "就像一个巨大的糖浆桶。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR"
 msgid "That's a real beaut."
@@ -2480,6 +3590,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_DEHUMID.1"
 msgid "Ah! Th'air be cool again."
 msgstr "啊！一阵风吹过让空气变凉爽了。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER"
+msgid "Me nose be itchier than a sliver in me pegleg."
+msgstr "俺的鼻子好痒比俺的木腿进了东西还难受。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_HAYFEVER_OFF"
+msgid "Ah! Th'air be clear again!"
+msgstr "啊！空气再次变清新了！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_SNEEZE"
+msgid "Ahh-pheww!!"
+msgstr "阿嚏！！"
+
 #. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.1"
 msgid "Arrgh! It be hot!"
@@ -2490,10 +3615,20 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is makin' me sweat me britches."
 msgstr "这%s让俺汗流浃背。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ALLOY"
+msgid "Ahoy, alloy!"
+msgstr "喂，合金！"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Tha time be nigh!"
 msgstr "时间差不多要到了！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_METALPLATE"
+msgid "Not good fer swimmin' in."
+msgstr "穿这个没法游泳。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ARMOR_WEEVOLE"
@@ -2505,10 +3640,20 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Tiny masts growin' from the ground."
 msgstr "地上长出的小菜杆。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BASEFAN"
+msgid "A cool wind blows from thee!"
+msgstr "凉爽的风向你身上吹来！"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN"
 msgid "A harden'd hull."
 msgstr "一个坚硬的外壳。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CUTNETTLE"
+msgid "Cleans tha' nose as good as sea air."
+msgstr "这就好似和能清理鼻窦的海风一样。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.FLOWER_RAINFOREST"
@@ -2560,6 +3705,16 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE"
 msgid "Ye be slicin'!"
 msgstr "肆意地砍吧！"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.HALBERD"
+msgid "T'ain't no cutlass."
+msgstr "这不是海盗短剑。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON"
+msgid "'Tis not gold, but a treasure nonetheless."
+msgstr "这不是黄金，但至少是个宝贝。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD"
 msgid "It tells no tales."
@@ -2605,6 +3760,26 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SHEARS"
 msgid "A cutlass fer tha'bushes."
 msgstr "一把修剪灌木丛的刀。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.BURNT"
+msgid "Blast the bore!"
+msgstr "炸膛！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Ye'll be done soon 'nuff."
+msgstr "很快就会烧好了。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.DONE"
+msgid "She's ready ta fire!"
+msgstr "她准备好开炮了！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.EMPTY"
+msgid "A cannon fer makin' metals."
+msgstr "一架冶炼钢铁的炮台。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR"
 msgid "Vessel i'th'makin'."
@@ -2625,6 +3800,21 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_DEHUMID.1"
 msgid "Cooler now"
 msgstr "现在更凉了"
 
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER"
+msgid "Happy time is coming!"
+msgstr "欢乐时光就要开始了！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_HAYFEVER_OFF"
+msgid "Oh. Happy time gone"
+msgstr "哦。欢乐时光结束了"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_SNEEZE"
+msgid "Hiccup!"
+msgstr "嗝！"
+
 #. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.1"
 msgid "%s is heavy"
@@ -2635,10 +3825,20 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.2"
 msgid "%s too hot"
 msgstr "%s太热了"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ALLOY"
+msgid "Bar of Clink Rock"
+msgstr "一条叮当响的石头"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Tic Tock"
 msgstr "滴答"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_METALPLATE"
+msgid "Clink Rock clothes"
+msgstr "叮当响的石头衣服"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ARMOR_WEEVOLE"
@@ -2650,10 +3850,20 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Hello there!"
 msgstr "你好！"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BASEFAN"
+msgid "Wind"
+msgstr "上发条"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN"
 msgid "Bzzter clothes"
 msgstr "滋滋们的衣服"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CUTNETTLE"
+msgid "(sniiiiiff)"
+msgstr "（嗅嗅）"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.FLOWER_RAINFOREST"
@@ -2705,6 +3915,16 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE"
 msgid "Slicer. For friend haircuts"
 msgstr "切割工具，给朋友剪头发用的"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.HALBERD"
+msgid "Twirly Tail Fight Stick"
+msgstr "卷尾巴的战斗棒"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON"
+msgid "Clinky Rock"
+msgstr "熟料岩"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD"
 msgid "Oh dear"
@@ -2750,6 +3970,26 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SHEARS"
 msgid "For hair cuts"
 msgstr "可以剪头发"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.BURNT"
+msgid "Nothing"
+msgstr "全都没了"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Hot! Hot!"
+msgstr "太热了！太热了！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.DONE"
+msgid "Done!"
+msgstr "好了！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.EMPTY"
+msgid "Clinky rock cooker"
+msgstr "煮叮当响石头的锅"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR"
 msgid "Big friend?"
@@ -2770,6 +4010,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_DEHUMID.1"
 msgid "Freedom, this is me!"
 msgstr "自由自在，这才是我！"
 
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_HAYFEVER"
+msgid "Oops, so much pollen, it's going to be uncomfortable."
+msgstr "哎呀，好多花粉，要难受了。"
+
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_HAYFEVER_OFF"
+msgid "The pollen is gone. finally."
+msgstr "花粉走光光了。终于。"
+
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_SNEEZE"
+msgid "(breathing) Ah chirp! Ahhhhhh!"
+msgstr "（吸气）啊啾！啊啊啊啾！"
+
 #. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_TOO_HUMID.1"
 msgid "I can't stand %s anymore!"
@@ -2785,6 +4040,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Magic on such a large scale, man, this is going to be fun."
 msgstr "好大规模的魔法，天啊，这会很好玩的。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_METALPLATE"
+msgid "What a horrible torture."
+msgstr "真是个可怕的酷刑。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ARMOR_WEEVOLE"
 msgid "I'm getting goosebumps."
@@ -2795,10 +4055,20 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A spear that grows out of the earth."
 msgstr "从土里长出的长矛。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BASEFAN"
+msgid "The breeze is blowing, so happy."
+msgstr "微风拂面，好不快活。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.CHITIN"
 msgid "The shell of those guys."
 msgstr "那些家伙的外壳。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.CUTNETTLE"
+msgid "Just smelling it blows my nose."
+msgstr "光是闻一闻就能让我的鼻子通气了。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.FLOWER_RAINFOREST"
@@ -2850,6 +4120,16 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE"
 msgid "To chop and slash!"
 msgstr "砍和砍！"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.HALBERD"
+msgid "What a vicious weapon."
+msgstr "真是把恶毒的武器。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON"
+msgid "Oooh. Almost burned me."
+msgstr "哦。差点烧死我了。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC"
 msgid "You must have seen a lot, right?"
@@ -2890,6 +4170,26 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SHEARS"
 msgid "Click, click, leaves fall."
 msgstr "咔嚓咔嚓，枝叶落下。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.BURNT"
+msgid "I didn't know they were hot to stone."
+msgstr "我不知道它们热得像石头一样。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "They are hotter now."
+msgstr "它们现在更烫了。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.DONE"
+msgid "It doesn't make them any better."
+msgstr "这并没有让它们变得更好。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.EMPTY"
+msgid "Put the iron you hate in and burn it."
+msgstr "把讨厌的铁放进去烧。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR"
 msgid "Blot out the sun."
@@ -2910,6 +4210,21 @@ msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_DEHUMID.1"
 msgid "Huh, cool off."
 msgstr "呼，凉快了。"
 
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_HAYFEVER"
+msgid "Gullah. The gills are so uncomfortable..."
+msgstr "格勒。鳃好难受..."
+
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_HAYFEVER_OFF"
+msgid "oh! The gills are finally comfortable!"
+msgstr "噢！鳃终于舒服了！"
+
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_SNEEZE"
+msgid "Heh-hoo, ha-choo! ! !"
+msgstr "呵——呼，哈嚏呦！！！"
+
 #. STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.1"
 msgid "%s is hot!"
@@ -2920,10 +4235,20 @@ msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.2"
 msgid "I don't want to wear %s anymore!"
 msgstr "不想穿%s了！"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ALLOY"
+msgid "The stone became harder."
+msgstr "石头变得更硬了。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Stuff form bad story!"
 msgstr "坏故事里的东西！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_METALPLATE"
+msgid "Sturdy, but heavy."
+msgstr "坚固，但好重。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ARMOR_WEEVOLE"
@@ -2935,10 +4260,20 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Green stick stick, smells good."
 msgstr "绿棒棒，闻起来不错。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BASEFAN"
+msgid "Water ran away! florpt!"
+msgstr "水都跑掉了！浮浪噗的！"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.CHITIN"
 msgid "Tough hide."
 msgstr "坚硬的皮。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.CUTNETTLE"
+msgid "It into my nose!"
+msgstr "它钻进我的鼻子里了！"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.FLOWER_RAINFOREST"
@@ -2990,6 +4325,16 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE"
 msgid "Plant hacker."
 msgstr "植物砍刀。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.HALBERD"
+msgid "Strange weapon used by Pigfolk."
+msgstr "猪人用的奇怪武器。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.IRON"
+msgid "Red hard rock."
+msgstr "红色坚硬的岩石。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Big weird bird."
@@ -3030,6 +4375,26 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SHEARS"
 msgid "Shape the plants."
 msgstr "给植物做造型。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.BURNT"
+msgid "Glurph, ruined."
+msgstr "格浪浮，毁掉了。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "Hot! Hot! Hot!"
+msgstr "烫烫烫！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.DONE"
+msgid "Done!"
+msgstr "完成了！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.EMPTY"
+msgid "What to put in it?"
+msgstr "放什么东西进去？"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR"
 msgid "A huge tree."
@@ -3050,6 +4415,21 @@ msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_DEHUMID.1"
 msgid "HUMIDEX HAS LOWERED TO ACCEPTABLE LEVELS"
 msgstr "潮湿度已降低至可接受水平"
 
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER"
+msgid "ERROR. ENVIRONMENTAL DETRITUS CLOGGING NASAL UNIT"
+msgstr "错误。环境中的漂浮物堵塞呼吸单元"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER_OFF
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_HAYFEVER_OFF"
+msgid "DETRITUS HAS CLEARED FROM ENVIRONMENT"
+msgstr "环境中的漂浮物已被清除"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_SNEEZE
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_SNEEZE"
+msgid "COMMENCE NASAL UNIT CLEARING: AH-CHOO!"
+msgstr "启动呼吸单元清理：阿-嚏！"
+
 #. STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.1
 msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.1"
 msgid "IT IS HOT"
@@ -3060,10 +4440,20 @@ msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.2"
 msgid "HUMIDEX REACHING LEVELS GREATER THAN 40"
 msgstr "潮湿等级达到四十级以上"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ALLOY
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ALLOY"
+msgid "PRECIOUS METAL"
+msgstr "珍贵的金属"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "MY ANCIENT BRETHREN"
 msgstr "我的古代兄弟"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_METALPLATE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_METALPLATE"
+msgid "ROBOT SKIN ARMOR"
+msgstr "机器人外层装甲"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ARMOR_WEEVOLE"
@@ -3075,10 +4465,20 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "SMALL TREES OF ENERGY"
 msgstr "能量小树苗"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BASEFAN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BASEFAN"
+msgid "COOLING FAN"
+msgstr "冷却风扇"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN"
 msgid "INFERIOR ORGANIC BODY PLATING"
 msgstr "质量低劣的有机体表镀层"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.CUTNETTLE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CUTNETTLE"
+msgid "I CAN USE THIS TO SERVICE MY OLFACTORY UNIT"
+msgstr "我能用它来保护我的嗅觉单元"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.FLOWER_RAINFOREST
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.FLOWER_RAINFOREST"
@@ -3130,6 +4530,16 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE"
 msgid "A LONG BLADE FOR EXPERT HACKING"
 msgstr "用于进行专业劈砍的长刀"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.HALBERD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.HALBERD"
+msgid "AN EVIL KILLING IMPLEMENT"
+msgstr "一个邪恶的杀戮工具"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.IRON
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.IRON"
+msgid "HELLO FRIEND"
+msgstr "你好，朋友"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD"
 msgid "NONFUNCTIONING"
@@ -3175,6 +4585,26 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SHEARS"
 msgid "I WILL DEFEAT SOME VEGETATION WITH THIS!"
 msgstr "我可以用它来打败一些植物！"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.BURNT
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.BURNT"
+msgid "SORRY, FRIEND"
+msgstr "遗憾，我的朋友"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.COOKING_SHORT
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.COOKING_SHORT"
+msgid "FRIEND ARE OUTPIT AT MAXIMUM POWER"
+msgstr "朋友正以最大功率输出"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.DONE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.DONE"
+msgid "RECEIVED RETRUN VALUE"
+msgstr "收到返回值"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.EMPTY
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.EMPTY"
+msgid "HELLO, FRIEND"
+msgstr "你好，朋友"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR"
 msgid "IT IS LARGE AND MADE OF WOOD"
@@ -3190,10 +4620,20 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "THEY HAVE BEEN DEBUGGED"
 msgstr "他们已经被排除了"
 
+#. STRINGS.NAMES.ALLOY
+msgctxt "STRINGS.NAMES.ALLOY"
+msgid "Alloy"
+msgstr "合金"
+
 #. STRINGS.NAMES.APORKALYPSE_CLOCK
 msgctxt "STRINGS.NAMES.APORKALYPSE_CLOCK"
 msgid "Aporkalypse Calendar"
 msgstr "灾变日历"
+
+#. STRINGS.NAMES.ARMOR_METALPLATE
+msgctxt "STRINGS.NAMES.ARMOR_METALPLATE"
+msgid "Tin Suit"
+msgstr "铁罐甲"
 
 #. STRINGS.NAMES.ARMOR_WEEVOLE
 msgctxt "STRINGS.NAMES.ARMOR_WEEVOLE"
@@ -3205,10 +4645,20 @@ msgctxt "STRINGS.NAMES.ASPARAGUS_PLANTED"
 msgid "Asparagus"
 msgstr "芦笋苗"
 
+#. STRINGS.NAMES.BASEFAN
+msgctxt "STRINGS.NAMES.BASEFAN"
+msgid "Oscillating Fan"
+msgstr "摆动风扇"
+
 #. STRINGS.NAMES.CHITIN
 msgctxt "STRINGS.NAMES.CHITIN"
 msgid "Chitin"
 msgstr "甲壳质"
+
+#. STRINGS.NAMES.CUTNETTLE
+msgctxt "STRINGS.NAMES.CUTNETTLE"
+msgid "Nettle"
+msgstr "荨麻"
 
 #. STRINGS.NAMES.FLOWER_RAINFOREST
 msgctxt "STRINGS.NAMES.FLOWER_RAINFOREST"
@@ -3240,6 +4690,16 @@ msgctxt "STRINGS.NAMES.MACHETE"
 msgid "Machete"
 msgstr "砍刀"
 
+#. STRINGS.NAMES.HALBERD
+msgctxt "STRINGS.NAMES.HALBERD"
+msgid "Halberd"
+msgstr "戟"
+
+#. STRINGS.NAMES.IRON
+msgctxt "STRINGS.NAMES.IRON"
+msgid "Iron Ore"
+msgstr "铁矿石"
+
 #. STRINGS.NAMES.PEAGAWK
 msgctxt "STRINGS.NAMES.PEAGAWK"
 msgid "Peagawk"
@@ -3265,6 +4725,11 @@ msgctxt "STRINGS.NAMES.SHEARS"
 msgid "Shears"
 msgstr "剪刀"
 
+#. STRINGS.NAMES.SMELTER
+msgctxt "STRINGS.NAMES.SMELTER"
+msgid "Smelter"
+msgstr "炼钢炉"
+
 #. STRINGS.NAMES.TREE_PILLAR
 msgctxt "STRINGS.NAMES.TREE_PILLAR"
 msgid "Great Leafy Stalk"
@@ -3279,6 +4744,11 @@ msgstr "象鼻鼠虫"
 msgctxt "STRINGS.NAMES.WEEVOLE_CARAPACE"
 msgid "Weevole Carapace"
 msgstr "象鼻鼠虫壳"
+
+#. STRINGS.RECIPE_DESC.ARMOR_METALPLATE
+msgctxt "STRINGS.RECIPE_DESC.ARMOR_METALPLATE"
+msgid "Strong and sturdy."
+msgstr "强大而坚固。"
 
 #. STRINGS.RECIPE_DESC.ARMOR_WEEVOLE
 msgctxt "STRINGS.RECIPE_DESC.ARMOR_WEEVOLE"
@@ -3295,10 +4765,25 @@ msgctxt "STRINGS.RECIPE_DESC.MACHETE"
 msgid "Hack stuff!"
 msgstr "砍东西！"
 
+#. STRINGS.RECIPE_DESC.BASEFAN
+msgctxt "STRINGS.RECIPE_DESC.BASEFAN"
+msgid "Relieves hay fever, keeps you dry."
+msgstr "缓解花粉症，保持干\n燥。"
+
+#. STRINGS.RECIPE_DESC.HALBERD
+msgctxt "STRINGS.RECIPE_DESC.HALBERD"
+msgid "Pointy and hurty."
+msgstr "锋利而伤人。"
+
 #. STRINGS.RECIPE_DESC.SHEARS
 msgctxt "STRINGS.RECIPE_DESC.SHEARS"
 msgid "Cut your way into adventure."
 msgstr "进入你的冒险之路。"
+
+#. STRINGS.RECIPE_DESC.SMELTER
+msgctxt "STRINGS.RECIPE_DESC.SMELTER"
+msgid "Turn Iron into Alloy."
+msgstr "将铁制成合金。"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.ASPARAGUS
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.ASPARAGUS"
@@ -3339,6 +4824,11 @@ msgstr "高草"
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL_PATCH"
 msgid "Infected Tall Grass"
 msgstr "被感染的高草"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.HAYFEVER
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.HAYFEVER"
+msgid "Hayfever"
+msgstr "花粉症"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.HUMID
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.HUMID"
@@ -3449,4 +4939,3 @@ msgstr "繁茂季"
 msgctxt "STRINGS.UI.SERVERLISTINGSCREEN.SEASONS.TEMPERATE"
 msgid "Temperate"
 msgstr "平和季"
-

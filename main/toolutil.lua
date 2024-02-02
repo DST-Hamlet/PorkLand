@@ -5,7 +5,7 @@ ToolUtil = {}
 PLENV.ToolUtil = ToolUtil
 
 local hidefns = {}
-function ToolUtil.HideHackFn(hidefn, realfn)
+function ToolUtil.HideFn(hidefn, realfn)
     hidefns[hidefn] = realfn
 end
 
@@ -14,14 +14,14 @@ function debug.getupvalue(fn, ...)
     local rets = {_debug_getupvalue(hidefns[fn] or fn, ...)}
     return unpack(rets)
 end
-ToolUtil.HideHackFn(debug.getupvalue, _debug_getupvalue)
+ToolUtil.HideFn(debug.getupvalue, _debug_getupvalue)
 
 local _debug_setupvalue = debug.setupvalue
 function debug.setupvalue(fn, ...)
     local rets = {_debug_setupvalue(hidefns[fn] or fn, ...)}
     return unpack(rets)
 end
-ToolUtil.HideHackFn(debug.setupvalue, _debug_setupvalue)
+ToolUtil.HideFn(debug.setupvalue, _debug_setupvalue)
 
 --Tool designed by Rezecib.
 ---@param fn function

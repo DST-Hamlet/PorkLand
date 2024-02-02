@@ -1,7 +1,6 @@
 local modimport = modimport
 GLOBAL.setfenv(1, GLOBAL)
 
-
 -- Update this list when adding files
 local component_posts = {
     "actionqueuer",
@@ -9,6 +8,7 @@ local component_posts = {
     "clock",
     "colourcube",
     "combat",
+    "edible",
     "grogginess",
     "health",
     "inventory",
@@ -24,7 +24,7 @@ local component_posts = {
     "shard_seasons",
     "sleeper",
     "wavemanager",
-    "worldstate"
+    "worldstate",
 }
 
 local prefab_posts = {
@@ -34,6 +34,7 @@ local prefab_posts = {
     "woodie",
     "world_network",
     "shard_network",
+    "wormwood",
 }
 
 local multipleprefab_posts = {

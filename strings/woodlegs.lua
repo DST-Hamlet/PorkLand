@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ah! Th'air be cool again.",
     },
+    ANNOUNCE_HAYFEVER = "Me nose be itchier than a sliver in me pegleg.",
+    ANNOUNCE_HAYFEVER_OFF = "Ah! Th'air be clear again!",
+    ANNOUNCE_SNEEZE = "Ahh-pheww!!",
     ANNOUNCE_TOO_HUMID = {
         "Arrgh! It be hot!",
         "This %s is makin' me sweat me britches.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",
         ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
         CHITIN = "A harden'd hull.",
+        CUTNETTLE = "Cleans tha' nose as good as sea air.",
         FLOWER_RAINFOREST = "Ol'Woodlegs na'got use fer'it.",
         GLOWFLY = {
             DEAD = "Tells no tales.",

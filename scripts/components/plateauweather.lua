@@ -212,6 +212,7 @@ return Class(function(self, inst)
     local _moistureceilmultiplier
     local _moisturefloormultiplier
     local _fogmode
+    local _ishayfever
     local _lightningmode
     local _minlightningdelay
     local _maxlightningdelay
@@ -401,6 +402,7 @@ return Class(function(self, inst)
             fogstate = _fogstate:value(),
             fogtime = _fogtime:value(),
             fog_transition_time = FOG_TRANSITION_TIME,
+            ishayfever = _ishayfever,
             pop = CalculatePOP(),
             precipitationrate = CalculatePrecipitationRate(),
             snowlevel = 0,
@@ -427,6 +429,14 @@ return Class(function(self, inst)
             _moisturerate:set(CalculateMoistureRate())
             _moistureceilmultiplier = MOISTURE_CEIL_MULTIPLIERS[_season] or MOISTURE_CEIL_MULTIPLIERS.temperate
             _moisturefloormultiplier = MOISTURE_FLOOR_MULTIPLIERS[_season] or MOISTURE_FLOOR_MULTIPLIERS.temperate
+
+            if data.season == "lush" then
+                if data.progress > 0.1 then
+                    _ishayfever = true
+                end
+            elseif data.progress > 0.02 or data.season == "aporkalypse" then
+                _ishayfever = false
+            end
         end
     end
 
@@ -674,6 +684,7 @@ return Class(function(self, inst)
         _moistureceilmultiplier = {min = 1, max = 2}
         _moisturefloormultiplier = 1
         _fogmode = FOG_MODES.dynamic
+        _ishayfever = false
         _lightningmode = LIGHTNING_MODES.rain
         _minlightningdelay = nil
         _maxlightningdelay = nil
@@ -974,6 +985,7 @@ return Class(function(self, inst)
             moisturefloormultiplier = _moisturefloormultiplier,
             moistureceil = _moistureceil:value(),
             fogstate = _fogstate:value(),
+            ishayfever = _ishayfever,
             precipmode = PRECIP_MODE_NAMES[_precipmode:value()],
             preciptype = PRECIP_TYPE_NAMES[_preciptype:value()],
             peakprecipitationrate = _peakprecipitationrate:value(),
@@ -1001,6 +1013,7 @@ return Class(function(self, inst)
         _moisturefloormultiplier = data.moisturefloormultiplier or 1
         _moistureceil:set(data.moistureceil or RandomizeMoistureCeil())
         _fogstate:set(data.fogstate or FOG_STATE.CLEAR)
+        _ishayfever = data._ishayfever or false
         _precipmode:set(PRECIP_MODES[data.precipmode] or PRECIP_MODES.dynamic)
         _preciptype:set(PRECIP_TYPES[data.preciptype] or PRECIP_TYPES.none)
         _peakprecipitationrate:set(data.peakprecipitationrate or 1)

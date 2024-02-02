@@ -14,6 +14,8 @@ forumthread = ""
 api_version = 10
 api_version_dst = 10
 
+priority = -1
+
 dst_compatible = true
 client_only_mod = false
 all_clients_require_mod = true

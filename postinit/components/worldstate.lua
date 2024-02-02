@@ -48,6 +48,7 @@ AddComponentPostInit("worldstate", function(self, inst)
         SetVariable("fogstate", data.fogstate)
         SetVariable("fogtime", data.fogtime)
         SetVariable("fog_transition_time", data.fog_transition_time)
+        SetVariable("ishayfever", data.ishayfever)
     end
 
     --------------------------------------------------------------------------

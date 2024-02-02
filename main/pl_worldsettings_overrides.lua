@@ -210,3 +210,8 @@ applyoverrides_post.poison = function(difficulty)
         worldsettings:SetSetting("poison", difficulty == "default")
     end
 end
+
+applyoverrides_post.hayfever = function(difficulty)
+    difficulty = difficulty == "default"
+    TheWorld:PushEvent("ms_setworldsetting", {setting = "hayfever", value = difficulty})
+end

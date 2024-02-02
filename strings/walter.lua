@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Still more comfortable this way.",
     },
+    ANNOUNCE_HAYFEVER = "There's something in the air...my nose is itching.",
+    ANNOUNCE_HAYFEVER_OFF = "My nose is so much better and it's finally gone!",
+    ANNOUNCE_SNEEZE = "Ah Choo!",
     ANNOUNCE_TOO_HUMID = {
         "I'm bored.",
         "%s is not breathable at all.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "Are we really going to wear it?",
         ASPARAGUS_PLANTED = "Miss Winona might like it, pick some.",
         CHITIN = "Check out the pattern on this! Warby!",
+        CUTNETTLE = "Ow! It got me.",
         FLOWER_RAINFOREST = "oh! That's the kind of flower in jungle adventure stories.",
         GLOWFLY = {
             DEAD = "Oh, dead.",

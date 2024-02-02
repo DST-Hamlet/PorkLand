@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Whew. I forgot what it felt like to breathe.",
     },
+    ANNOUNCE_HAYFEVER = "Allergiesch. What allergiesch?",
+    ANNOUNCE_HAYFEVER_OFF = "My face stopped leaking. Allergy season must be over.",
+    ANNOUNCE_SNEEZE = "AchooOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is suffocating.",
         "This %s is just too hot!",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "If only it had those bug wings.",
         ASPARAGUS_PLANTED = "That looks like food! Let's hope it tastes like food.",
         CHITIN = "I'm going to need more of these.",
+        CUTNETTLE = "Smells like relief.",
         FLOWER_RAINFOREST = "You can never have too many flowers. Or projectiles.",
         GLOWFLY = {
             DEAD = "I guess it can't fly me out of here now.",

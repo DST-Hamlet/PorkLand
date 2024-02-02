@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ha! Wolfgang beat the heat!",
     },
+    ANNOUNCE_HAYFEVER = "Allergies strong like Wolfgang!",
+    ANNOUNCE_HAYFEVER_OFF = "Ha! Wolfgang beat allergies!",
+    ANNOUNCE_SNEEZE = "Achoo! Excuse Wolfgang.",
     ANNOUNCE_TOO_HUMID = {
         "Wolfgang don't like %s in this heat.",
         "Is too muggy.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "Wolfgang win!",
         ASPARAGUS_PLANTED = "Haha. Is like tiny vegetable hats.",
         CHITIN = "Icky bug pieces.",
+        CUTNETTLE = "Is good for clearing nose.",
         FLOWER_RAINFOREST = "Little smelly flower.",
         GLOWFLY = {
             DEAD = "Light bug is lights out.",

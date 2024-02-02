@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "The haze has lifted.",
     },
+    ANNOUNCE_HAYFEVER = "Mine nostrils chafe with itchiness!",
+    ANNOUNCE_HAYFEVER_OFF = "The smoke has cleared!",
+    ANNOUNCE_SNEEZE = "aaAAAH...cho!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is crushing my spirit.",
         "This %s burns like Sol.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",
         ASPARAGUS_PLANTED = "Useless vegetation!",
         CHITIN = "The feeble armor of the bug.",
+        CUTNETTLE = "Its smell has vanquish mine sinuses.",
         FLOWER_RAINFOREST = "A blossom most lovely.",
         GLOWFLY = {
             DEAD = "Alas, it is dead.",

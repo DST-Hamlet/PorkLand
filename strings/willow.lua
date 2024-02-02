@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ahh...it's cooled down.",
     },
+    ANNOUNCE_HAYFEVER = "My sinuses are burning.",
+    ANNOUNCE_HAYFEVER_OFF = "Sniff! I feel better now!",
+    ANNOUNCE_SNEEZE = "Achoo!!",
     ANNOUNCE_TOO_HUMID = {
         "It's burning hot. But not in a good way.",
         "It's too hot.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "This feels gross. I hope it works.",
         ASPARAGUS_PLANTED = "Haha! Found you!",
         CHITIN = "Bug skin.",
+        CUTNETTLE = "It smells funny.",
         FLOWER_RAINFOREST = "It's kinda ugly. But it burns.",
         GLOWFLY = {
             DEAD = "Squashed.",

@@ -2,6 +2,9 @@ return {
     ANNOUNCE_DEHUMID = {
         "Ah... that breeze is nice.",
     },
+    ANNOUNCE_HAYFEVER = "Sniff sniff. Must be hayfever season.",
+    ANNOUNCE_HAYFEVER_OFF = "Ahh... Finally I can breathe.",
+    ANNOUNCE_SNEEZE = "Ahh... CHOOOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is unbearable.",
         "This %s makes it too hot.",
@@ -11,6 +14,7 @@ return {
         ARMOR_WEEVOLE = "Armour made from bug exoskeleton.",
         ASPARAGUS_PLANTED = "Asparagus. Otherwise known as sparrow grass.",
         CHITIN = "The exoskeleton of an arthropod.",
+        CUTNETTLE = "These are quite good for the sinuses.",
         FLOWER_RAINFOREST = "Floral cross-pollination produces some fascinating specimens.",
         GLOWFLY = {
             DEAD = "Its existence has reached an end.",
