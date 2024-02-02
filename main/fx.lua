@@ -7,6 +7,7 @@ local pl_fx = {
         bank = "hacking_fx",
         build = "hacking_tall_grass_fx",
         anim = "idle",
+        tint = Vector3(.6, .7, .6),
     },
 }
 
