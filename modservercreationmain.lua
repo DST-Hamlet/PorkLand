@@ -3,9 +3,9 @@ local modimport = modimport
 GLOBAL.setfenv(1, GLOBAL)
 
 modimport("main/toolutil")
--- modimport("main/strings")
+modimport("main/strings")
 modimport("modfrontendmain")
--- modimport("modcustonsizitems")
+modimport("modcustonsizitems")
 
 local TEMPLATES = require("widgets/redux/templates")
 local PopupDialogScreen = require("screens/redux/popupdialog")
