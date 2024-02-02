@@ -1,26 +1,9 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-local function GetWorldPosition(x, y, z)
-    if type(x) == "table" then
-        if x.x then
-            x, y, z = x.x, x.y, x.z
-        elseif x.Transform then
-            x, y, z = x.Transform:GetWorldPosition()
-        end
-    end
-
-    return x, y, z
-end
-
+---@param tile number | nil
+---@param check function | table | string
+---@param ... any
 function CheckTileType(tile, check, ...)
-    if type(tile) == "table" then
-        local x, y, z = GetWorldPosition(tile)
-        if type(check) == "function" then
-            return check(x, y, z, ...)
-        end
-        tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    end
-
     if type(check) == "function" then
         return check(tile, ...)
     elseif type(check) == "table" then
@@ -32,71 +15,100 @@ function CheckTileType(tile, check, ...)
     return tile == check
 end
 
+---@param x number
+---@param y number
+---@param z number
+---@param check function | table | string
+---@param ... any
 function CheckTileAtPoint(x, y, z, check, ...)
-    x, y, z = GetWorldPosition(x, y, z)
-    return CheckTileType({x = x, y = y, z = z}, check, ...)
-end
-
-function IsOnFlood(x, y, z)
-    x, y, z = GetWorldPosition(x, y, z)
-    return TheWorld.components.flooding and TheWorld.components.flooding:OnFlood(x, y, z)
-end
-
-function IsOnOcean(x, y, z, onflood, ignoreboat)
-    x, y, z = GetWorldPosition(x, y, z)
-    return TheWorld.Map:IsOceanAtPoint(x, y, z, ignoreboat) or (onflood and IsOnFlood(x, y, z))
-end
-
-function IsOnPLOcean(x, y, z, onflood)
-    return CheckTileAtPoint(x, y, z, PL_OCEAN_TILES) or (onflood and IsOnFlood(x, y, z))
-end
-
-function IsOnLand(x, y, z, noflood)
-    x, y, z = GetWorldPosition(x, y, z)
-    if noflood and IsOnFlood(x, y, z) then
-        return false
+    if type(check) == "function" then
+        return check(x, y, z, ...)
     end
-
     local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    return CheckTileType(tile, IsLandTile)
+    return CheckTileType(tile, check, ...)
 end
 
-function IsOnPLLand(x, y, z, noflood)
-    x, y, z = GetWorldPosition(x, y, z)
-    if noflood and IsOnFlood(x, y, z) then
-        return false
-    end
-
-    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    return CheckTileType(tile, PL_LAND_TILES)
+---@param x number
+---@param y number
+---@param z number
+function IsOnPlOcean(x, y, z)
+    return CheckTileAtPoint(x, y, z, PL_OCEAN_TILES)
 end
 
+---@param x number
+---@param y number
+---@param z number
+function IsOnPlLand(x, y, z)
+    return CheckTileType(x, y, z, PL_LAND_TILES)
+end
+
+---@param x number
+---@param y number
+---@param z number
+---@param radius number default 1
+---@param check function | table | string
 function IsSurroundedByTile(x, y, z, radius, check, ...)
-    x, y, z = GetWorldPosition(x, y, z)
     radius = radius or 1
-    for i = -radius, radius do
-        if not CheckTileAtPoint(x - radius, y, z + i, check, ...) or not CheckTileAtPoint(x + radius, y, z + i, check, ...) then
-            return false
-        end
+
+    local num_edge_points = math.ceil((radius*2) / 4) - 1
+
+    -- test the corners first
+    if not CheckTileAtPoint(x + radius, y, z + radius, check, ...) then return false end
+    if not CheckTileAtPoint(x - radius, y, z + radius, check, ...) then return false end
+    if not CheckTileAtPoint(x + radius, y, z - radius, check, ...) then return false end
+    if not CheckTileAtPoint(x - radius, y, z - radius, check, ...) then return false end
+
+    -- if the radius is less than 1(2 after the +1), it won't have any edges to test and we can end the testing here.
+    if num_edge_points == 0 then return true end
+
+    local dist = (radius * 2) / (num_edge_points + 1)
+    -- test the edges next
+    for i = 1, num_edge_points do
+        local idist = dist * i
+        if not CheckTileAtPoint(x - radius + idist, y, z + radius, check, ...) then return false end
+        if not CheckTileAtPoint(x - radius + idist, y, z - radius, check, ...) then return false end
+        if not CheckTileAtPoint(x - radius, y, z - radius + idist, check, ...) then return false end
+        if not CheckTileAtPoint(x + radius, y, z - radius + idist, check, ...) then return false end
     end
-    for i = -(radius - 1), radius - 1 do
-        if not CheckTileAtPoint(x + i, y, z - radius, check, ...) or not CheckTileAtPoint(x + i, y, z + radius, check, ...) then
-            return false
+
+    -- test interior points last
+    for i = 1, num_edge_points do
+        local idist = dist * i
+        for j = 1, num_edge_points do
+            local jdist = dist * j
+            if not CheckTileAtPoint(x - radius + idist, y, z - radius + jdist, check, ...) then return false end
         end
     end
     return true
 end
 
-function IsSurroundedByWater(x, y, z, radius, onflood, ignoreboat)
-    return IsSurroundedByTile(x, y, z, radius, IsOnOcean, onflood, ignoreboat)
+---@param x number
+---@param y number
+---@param z number
+---@param radius number default 1
+---@param ignoreboat boolean
+function IsSurroundedByWater(x, y, z, radius, ignoreboat)
+    return IsSurroundedByTile(x, y, z, radius, function(_x, _y, _z)
+        return TheWorld.Map:IsOceanTileAtPoint(_x, _y, _z, ignoreboat)
+    end)
 end
 
-function IsSurroundedByLand(x, y, z, radius, noflood)
-    return IsSurroundedByTile(x, y, z, radius, IsOnLand, noflood)
+---@param x number
+---@param y number
+---@param z number
+---@param radius number default 1
+function IsSurroundedByLand(x, y, z, radius)
+    return IsSurroundedByTile(x, y, z, radius, function(_x, _y, _z)
+        return TheWorld.Map:IsLandTileAtPoint(_x, _y, _z)
+    end)
 end
 
+---@param x number
+---@param y number
+---@param z number
+---@param radius number default 1
+---@param check function | table | string
 function IsCloseToTile(x, y, z, radius, check, ...)
-    x, y, z = GetWorldPosition(x, y, z)
     radius = radius or 1
     for i = -radius, radius do
         if CheckTileAtPoint(x - radius, y, z + i, check, ...) or CheckTileAtPoint(x + radius, y, z + i, check, ...) then
@@ -112,14 +124,23 @@ function IsCloseToTile(x, y, z, radius, check, ...)
     return false
 end
 
-function IsCloseToLand(x, y, z, radius, noflood)
-    return IsCloseToTile(x, y, z, radius, IsOnLand, noflood)
+---@param x number
+---@param y number
+---@param z number
+---@param radius number default 1
+---@param ignoreboat boolean
+function IsCloseToWater(x, y, z, radius, ignoreboat)
+    return IsCloseToTile(x, y, z, radius, function (_x, _y, _z)
+        return TheWorld.Map:IsOceanTileAtPoint(_x, _y, _z, ignoreboat)
+    end)
 end
 
-function IsCloseToPLLand(x, y, z, radius, noflood)
-    return IsCloseToTile(x, y, z, radius, IsOnPLLand, noflood)
-end
-
-function IsCloseToPLWater(x, y, z, radius, noflood)
-    return IsCloseToTile(x, y, z, radius, IsOnPLOcean, noflood)
+---@param x number
+---@param y number
+---@param z number
+---@param radius number default 1
+function IsCloseToLand(x, y, z, radius)
+    return IsCloseToTile(x, y, z, radius, function(_x, _y, _z)
+        return TheWorld.Map:IsLandTileAtPoint(_x, _y, _z)
+    end)
 end

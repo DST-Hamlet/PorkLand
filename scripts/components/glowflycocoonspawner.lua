@@ -44,9 +44,10 @@ return Class(function(self, inst)
                 local suboffset = FindWalkableOffset(newpoint, radius, start_angle, 10)
                 if suboffset ~= nil then
                     local spawnpt = newpoint + suboffset
-                    if IsSurroundedByLand(spawnpt, nil, nil, 3) then
+                    local x, y, z = spawnpt:Get()
+                    if IsSurroundedByLand(x, y, z, 3) then
                         local cocoon = SpawnPrefab("glowfly_cocoon")
-                        cocoon.Physics:Teleport(spawnpt:Get())
+                        cocoon.Physics:Teleport(x, y, z)
                     end
                 end
             end

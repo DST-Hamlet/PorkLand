@@ -25,7 +25,11 @@ local GlowflyBrain = Class(Brain, function(self, inst)
 end)
 
 local function CanStartCocooning(inst)
-    return inst.wantstococoon and IsSurroundedByLand(inst, nil, nil, 3)
+    if inst.wantstococoon then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        return IsSurroundedByLand(x, y, z, 3)
+    end
+    return false
 end
 
 local function StartCocooning(inst)
