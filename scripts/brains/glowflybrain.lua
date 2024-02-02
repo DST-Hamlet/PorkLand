@@ -5,7 +5,6 @@ local BrainCommon = require("brains/braincommon")
 
 local MAX_LEASH_DIST = 40
 local MAX_WANDER_DIST = 40
-local RUN_AWAY_DIST = 4
 local STOP_RUN_AWAY_DIST = 8
 local RUN_AWAY_DIST = 5
 
@@ -26,7 +25,7 @@ local GlowflyBrain = Class(Brain, function(self, inst)
 end)
 
 local function CanStartCocooning(inst)
-    return inst:HasTag("wantstococoon") and IsSurroundedByLand(inst, nil, nil, 3)
+    return inst.wantstococoon and IsSurroundedByLand(inst, nil, nil, 3)
 end
 
 local function StartCocooning(inst)

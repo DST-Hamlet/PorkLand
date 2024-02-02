@@ -196,7 +196,7 @@ end
 
 local function BeginCocoonStage(inst)
     inst.cocoon_task, inst.cocoon_taskinfo = nil, nil
-    inst:AddTag("wantstococoon")
+    inst.wantstococoon = true
 end
 
 local function OnGlowflySave(inst, data)
