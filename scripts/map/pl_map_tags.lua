@@ -29,7 +29,7 @@ local pl_maptags = {
     TagData = {}
 }
 
-function add_pl_maptags(map_tags)
+local function AddPlMaptags(map_tags)
     for tag, fn in pairs(pl_maptags.Tag) do
         map_tags.Tag[tag] = fn
     end
@@ -39,4 +39,4 @@ function add_pl_maptags(map_tags)
     end
 end
 
-return add_pl_maptags
+return AddPlMaptags

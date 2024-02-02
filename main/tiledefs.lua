@@ -32,6 +32,7 @@ turf_def {
     [bank_build] - the bank and build containing the animation, if undefined bank_build will use the value "turf"
 }
 -]]
+
 local GroundTiles = require("worldtiledefs")
 local NoiseFunctions = require("noisetilefunctions")
 local ChangeTileRenderOrder = ChangeTileRenderOrder
@@ -55,29 +56,29 @@ local TileRanges =
 }
 
 local pl_tiledefs = {
-    BEARDRUG = {
-        tile_range = TileRanges.LAND,
-        tile_data = {
-            ground_name = "Beard Rug",
-            -- old_static_id = 33,
-        },
-        ground_tile_def  = {
-            name = "carpet",
-            noise_texture = "Ground_beard_hair",
-            runsound = "dontstarve/movement/run_carpet",
-            walksound = "dontstarve/movement/walk_carpet",
-            flashpoint_modifier = 0,
-        },
-        minimap_tile_def = {
-            name = "map_edge",
-            noise_texture = "interior",
-        },
-        --turf_def = {
-        --    name = "beach",
-        --    bank_build = "turf_ia",
-        --},
-
-    },
+    -- dst had this
+    -- BEARDRUG = {
+    --     tile_range = TileRanges.LAND,
+    --     tile_data = {
+    --         ground_name = "Beard Rug",
+    --         -- old_static_id = 33,
+    --     },
+    --     ground_tile_def  = {
+    --         name = "carpet",
+    --         noise_texture = "Ground_beard_hair",
+    --         runsound = "dontstarve/movement/run_carpet",
+    --         walksound = "dontstarve/movement/walk_carpet",
+    --         flashpoint_modifier = 0,
+    --     },
+    --     minimap_tile_def = {
+    --         name = "map_edge",
+    --         noise_texture = "interior",
+    --     },
+    --     --turf_def = {
+    --     --    name = "beach",
+    --     --    bank_build = "turf_ia",
+    --     --},
+    -- },
     RAINFOREST = {
         tile_range = TileRanges.LAND,
         tile_data = {
@@ -392,7 +393,7 @@ local pl_tiledefs = {
     -- NOISE
     -- (only for worldgen)
     -------------------------------
-    -- I don't see any code about this tile,this Imitated according to the effect
+    -- I don't see any code about this tile, this Imitated according to the effect  - by Jerry
     BATTLEGROUND_RAINFOREST_NOISE = {
         tile_range = function (noise)
             if noise < 0.5 then
@@ -438,8 +439,8 @@ for prefab, filter in pairs(terrain.filter) do
 end
 
 -- Priority turf
+-- in ds, tile priority after the mud tile
 ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.CARPET, true)
-
 ChangeTileRenderOrder(WORLD_TILES.GASJUNGLE, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.COBBLEROAD, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.LAWN, WORLD_TILES.MUD, true)
@@ -451,4 +452,4 @@ ChangeTileRenderOrder(WORLD_TILES.RAINFOREST, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PLAINS, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.PAINTED, WORLD_TILES.MUD, true)
 ChangeTileRenderOrder(WORLD_TILES.DEEPRAINFOREST_NOCANOPY, WORLD_TILES.MUD, true)
-ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.MUD, true)
+-- ChangeTileRenderOrder(WORLD_TILES.PIGRUINS, WORLD_TILES.MUD, true)

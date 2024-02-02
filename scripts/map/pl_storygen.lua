@@ -1,6 +1,6 @@
 -- hack storygen functions is very trouble, so we rewrite it  -- Jerry
 require("map/storygen")
-local add_pl_maptags = require("map/pl_map_tags")
+local AddPlMaptags = require("map/pl_map_tags")
 
 function Story:GenerateIslandFromTask(task, randomize)
     if task.room_choices == nil or type(task.room_choices[1]) ~= "table" then
@@ -653,7 +653,7 @@ local function BuildPorkLandStory(tasks, story_gen_params, level)
     print("Building PorkLand Story", tasks)
 
     local story = Story("GAME", tasks, terrain, story_gen_params, level)
-    add_pl_maptags(story.map_tags)
+    AddPlMaptags(story.map_tags)
     story:Pl_GenerateNodesFromTasks(RestrictNodesByKey)
 
     local world_size = 0

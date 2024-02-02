@@ -1,6 +1,6 @@
 require("map/lockandkey")
 
-local function add_simple_key_lock(name)
+local function AddSimpleKeyAndLock(name)
     if KEYS[name] then
         return
     end
@@ -12,42 +12,42 @@ local function add_simple_key_lock(name)
     LOCKS_KEYS[LOCKS[name]] = {KEYS[name]}
 end
 
-add_simple_key_lock("JUNGLE_DEPTH_1")
-add_simple_key_lock("JUNGLE_DEPTH_2")
-add_simple_key_lock("JUNGLE_DEPTH_3")
+AddSimpleKeyAndLock("JUNGLE_DEPTH_1")
+AddSimpleKeyAndLock("JUNGLE_DEPTH_2")
+AddSimpleKeyAndLock("JUNGLE_DEPTH_3")
 
-add_simple_key_lock("CIVILIZATION_1")
-add_simple_key_lock("CIVILIZATION_2")
+AddSimpleKeyAndLock("CIVILIZATION_1")
+AddSimpleKeyAndLock("CIVILIZATION_2")
 
-add_simple_key_lock("RUINS_ENTRANCE_1")
-add_simple_key_lock("RUINS_EXIT_1")
+AddSimpleKeyAndLock("RUINS_ENTRANCE_1")
+AddSimpleKeyAndLock("RUINS_EXIT_1")
 
-add_simple_key_lock("OTHER_CIVILIZATION_1")
-add_simple_key_lock("OTHER_CIVILIZATION_2")
+AddSimpleKeyAndLock("OTHER_CIVILIZATION_1")
+AddSimpleKeyAndLock("OTHER_CIVILIZATION_2")
 
-add_simple_key_lock("OTHER_JUNGLE_DEPTH_1")
-add_simple_key_lock("OTHER_JUNGLE_DEPTH_2")
+AddSimpleKeyAndLock("OTHER_JUNGLE_DEPTH_1")
+AddSimpleKeyAndLock("OTHER_JUNGLE_DEPTH_2")
 
-add_simple_key_lock("LOST_JUNGLE_DEPTH_1")
-add_simple_key_lock("LOST_JUNGLE_DEPTH_2")
+AddSimpleKeyAndLock("LOST_JUNGLE_DEPTH_1")
+AddSimpleKeyAndLock("LOST_JUNGLE_DEPTH_2")
 
-add_simple_key_lock("WILD_JUNGLE_DEPTH_1")
-add_simple_key_lock("WILD_JUNGLE_DEPTH_2")
-add_simple_key_lock("WILD_JUNGLE_DEPTH_3")
+AddSimpleKeyAndLock("WILD_JUNGLE_DEPTH_1")
+AddSimpleKeyAndLock("WILD_JUNGLE_DEPTH_2")
+AddSimpleKeyAndLock("WILD_JUNGLE_DEPTH_3")
 
-add_simple_key_lock("PINACLE")
-add_simple_key_lock("IMPASS")
+AddSimpleKeyAndLock("PINACLE")
+AddSimpleKeyAndLock("IMPASS")
 
-add_simple_key_lock("ISLAND_1")
-add_simple_key_lock("ISLAND_2")
-add_simple_key_lock("ISLAND_3")
-add_simple_key_lock("ISLAND_4")
-add_simple_key_lock("ISLAND_5")
+AddSimpleKeyAndLock("ISLAND_1")
+AddSimpleKeyAndLock("ISLAND_2")
+AddSimpleKeyAndLock("ISLAND_3")
+AddSimpleKeyAndLock("ISLAND_4")
+AddSimpleKeyAndLock("ISLAND_5")
 
-add_simple_key_lock("INTERIOR")
+AddSimpleKeyAndLock("INTERIOR")
 
-add_simple_key_lock("LAND_DIVIDE_1")
-add_simple_key_lock("LAND_DIVIDE_2")
-add_simple_key_lock("LAND_DIVIDE_3")
-add_simple_key_lock("LAND_DIVIDE_4")
-add_simple_key_lock("LAND_DIVIDE_5")
+AddSimpleKeyAndLock("LAND_DIVIDE_1")
+AddSimpleKeyAndLock("LAND_DIVIDE_2")
+AddSimpleKeyAndLock("LAND_DIVIDE_3")
+AddSimpleKeyAndLock("LAND_DIVIDE_4")
+AddSimpleKeyAndLock("LAND_DIVIDE_5")

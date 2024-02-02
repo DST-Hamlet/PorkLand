@@ -44,7 +44,7 @@ function SeasonClock:OnSeasonLengthsChanged(data, ...)
         return _OnSeasonLengthsChanged(self, data, ...)
     end
 end
-ToolUtil.HideHackFn(SeasonClock.OnSeasonLengthsChanged, _OnSeasonLengthsChanged)
+ToolUtil.HideFn(SeasonClock.OnSeasonLengthsChanged, _OnSeasonLengthsChanged)
 
 local _OnCyclesChanged = SeasonClock.OnCyclesChanged
 function SeasonClock:OnCyclesChanged(...)
@@ -79,4 +79,4 @@ function SeasonClock:OnCyclesChanged(...)
         self:OnLoseFocus()
     end
 end
-ToolUtil.HideHackFn(SeasonClock.OnCyclesChanged, _OnCyclesChanged)
+ToolUtil.HideFn(SeasonClock.OnCyclesChanged, _OnCyclesChanged)

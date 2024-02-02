@@ -2,7 +2,7 @@ local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
     "aporkalypse_clock",
-    "asparagus",
+    "asparagus_planted",
     "chitin",
     "deep_jungle_fern_noise",
     "flower_rainforest",

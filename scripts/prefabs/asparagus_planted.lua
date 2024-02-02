@@ -1,6 +1,6 @@
 local assets =
 {
-    Asset("ANIM", "anim/asparagus.zip"),
+    Asset("ANIM", "anim/asparagus_planted.zip"),
 }
 
 local prefabs =
@@ -19,9 +19,9 @@ local function fn()
 
     inst.Transform:SetScale(1.3, 1.3, 1.3)
 
-    inst.AnimState:SetBank("asparagus")
-    inst.AnimState:SetBuild("asparagus")
-    inst.AnimState:PlayAnimation("planted")
+    inst.AnimState:SetBank("asparagus_planted")
+    inst.AnimState:SetBuild("asparagus_planted")
+    inst.AnimState:PlayAnimation("idle")
     inst.AnimState:SetRayTestOnBB(true)
 
     inst.entity:SetPristine()
