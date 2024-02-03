@@ -158,6 +158,7 @@ local states =
         tags = {"busy","shielding"},
 
         onenter = function(inst)
+            inst:RemoveTag("canbetrapped")
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("burrow")
         end,
@@ -172,6 +173,10 @@ local states =
                 end
             end),
         },
+
+        onexit = function(inst)
+            inst:AddTag("canbetrapped")
+        end,
     },
 
     State{
@@ -179,6 +184,7 @@ local states =
         tags = {"busy"},
 
         onenter = function(inst)
+            inst:RemoveTag("canbetrapped")
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("burrow")
         end,
