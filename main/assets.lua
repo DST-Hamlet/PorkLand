@@ -1,13 +1,17 @@
 local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
+    "alloy",
     "aporkalypse_clock",
+    "armor_metalplate",
     "asparagus_planted",
     "chitin",
     "deep_jungle_fern_noise",
     "flower_rainforest",
     "glowfly",
     "grass_tall",
+    "halberd",
+    "iron",
     "pl_wave_shore",
     "jungle_border_vine",
     "machete",
@@ -20,11 +24,13 @@ PrefabFiles = {
     "rabid_beetle",
     "porkland",
     "shears",
+    "smelter",
     "tree_pillar",
     -- "tuber",
     -- "tubertrees",
     "weevole_carapace",
     "weevole",
+    "basefan",
 }
 
 Assets = {
@@ -54,11 +60,23 @@ Assets = {
     Asset("ANIM", "anim/player_actions_shear.zip"),
     Asset("ANIM", "anim/player_sneeze.zip"),
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
+
+    -- floater
+    Asset("ANIM", "anim/ripple_build.zip"),
 }
 
 ToolUtil.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
 
+local sounds = {
+    Asset("SOUND", "sound/DLC003_AMB_stream.fsb"),
+    Asset("SOUND", "sound/DLC003_music_stream.fsb"),
+    Asset("SOUND", "sound/DLC003_sfx.fsb"),
+    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev")
+}
+
 if not TheNet:IsDedicated() then
-    -- table.insert(Assets, Asset("SOUND", "sound/"))
+    for _, asset in ipairs(sounds) do
+        table.insert(Assets, asset)
+    end
 end

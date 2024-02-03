@@ -17,7 +17,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryFloatable(inst)
-    -- MakeInventoryFloatable(inst, "idle_water", "idle")
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
     inst.entity:SetPristine()
 

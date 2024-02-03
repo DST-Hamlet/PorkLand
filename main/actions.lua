@@ -90,8 +90,23 @@ function ACTIONS.FERTILIZE.fn(act, ...)
     end
 end
 
+local _STORE_stroverridefn = ACTIONS.STORE.stroverridefn
+function ACTIONS.STORE.stroverridefn(act, ...)
+    if act.target and act.target:HasTag("smelter") then
+        return STRINGS.ACTIONS.SMELT
+    elseif _STORE_stroverridefn then
+        return _STORE_stroverridefn(act, ...)
+    end
+end
 
-
+local _COOK_stroverridefn = ACTIONS.COOK.stroverridefn
+function ACTIONS.COOK.stroverridefn(act, ...)
+    if act.target and act.target:HasTag("smelter") then
+        return STRINGS.ACTIONS.SMELT
+    elseif _COOK_stroverridefn then
+        return _COOK_stroverridefn(act, ...)
+    end
+end
 
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world

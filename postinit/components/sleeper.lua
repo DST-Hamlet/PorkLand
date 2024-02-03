@@ -15,5 +15,8 @@ function StandardWakeChecks(inst, ...)
     if inst.components.sleeper.onlysleepsfromitems then
         return true
     end
+    if inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned() then
+        return true
+    end
     return _StandardWakeChecks(inst, ...)
 end

@@ -24,14 +24,14 @@ local function fn()
 
     MakeInventoryPhysics(inst)
     MakeInventoryFloatable(inst)
-    -- MakeInventoryFloatable(inst, "idle_water", "idle")
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
     inst.AnimState:SetBank("shears")
     inst.AnimState:SetBuild("shears")
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("shears")
-
+    inst:AddTag("smeltable") -- Smelter
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

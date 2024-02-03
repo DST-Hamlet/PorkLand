@@ -1,6 +1,6 @@
-
-local CREATURE_MUST_ONE_TAGS = {"character", "animal", "monster", "stationarymonster", "insect", "smallcreature", "structure", "seacreature"}
-local INVENTORY_MUST_ONE_TAGS = {"character", "animal", "monster","smallcreature", "insect", "isinventoryitem"}
+local CANT_TAGS = {"INTERIOR_LIMBO", "FX", "NOCLICK", "DECOR", "INLIMBO"}
+local CREATURE_MUST_ONE_TAGS = {"character", "animal", "monster", "stationarymonster", "insect", "smallcreature", "structure", "oceanfish", "smalloceancreature"}
+local INVENTORY_MUST_ONE_TAGS = {"character", "animal", "monster","smallcreature", "insect", "_inventoryitem"}
 local function OnUpdate(inst, self)
     if not self.enabled then
         return
@@ -11,7 +11,7 @@ local function OnUpdate(inst, self)
     local range = self.isclose and self.far or self.near
     local must_one_tags = self.inventorytrigger and INVENTORY_MUST_ONE_TAGS or CREATURE_MUST_ONE_TAGS
 
-    local ents = TheSim:FindEntities(x, y, z, range, nil, nil, must_one_tags)
+    local ents = TheSim:FindEntities(x, y, z, range, nil, CANT_TAGS, must_one_tags)
     for i = #ents, 1, -1 do
         if (self.findtestfn and not self.findtestfn(ents[i], inst)) or self.alivemode == IsEntityDeadOrGhost(ents[i]) then
             table.remove(ents, i)

@@ -1,27 +1,5 @@
 local assets =
 {
-    Asset("SCRIPT", "scripts/prefabs/world.lua"),
-
-    -- colourcube
-    Asset("IMAGE", "images/colour_cubes/day05_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/dusk03_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/night03_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/snow_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/snowdusk_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/night04_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/summer_day_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/summer_dusk_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/summer_night_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/spring_day_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/spring_dusk_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/spring_night_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/insane_day_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/insane_dusk_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/insane_night_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/lunacy_regular_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/purple_moon_cc.tex"),
-    Asset("IMAGE", "images/colour_cubes/moonstorm_cc.tex"),
-
     -- porkland colourcube
     Asset("IMAGE", "images/colour_cubes/pork_temperate_day_cc.tex"),
     Asset("IMAGE", "images/colour_cubes/pork_temperate_dusk_cc.tex"),
@@ -44,28 +22,22 @@ local assets =
     Asset("IMAGE", "images/colour_cubes/pork_lush_dusk_test.tex"),
     Asset("IMAGE", "images/colour_cubes/pork_lush_day_test.tex"),
 
-    Asset("IMAGE", "images/wave.tex"),
-    Asset("IMAGE", "images/wave_shadow.tex"),
     Asset("IMAGE", "images/could/fog_cloud.tex"),
 
-    Asset("PKGREF", "levels/models/waterfalls.bin"),
-
-    Asset("ANIM", "anim/lightning.zip"),
-
-    Asset("ANIM", "anim/swimming_ripple.zip"), -- common water fx symbols
-
-    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev"),
-    Asset("SOUND", "sound/DLC003_sfx.fsb"),
 }
 
 local prefabs =
 {
-    "beefalo",
-    "cave_entrance",
-    "rain",
-    "pollen",
     "porkland_network",
 }
+
+for _, asset in pairs(Prefabs["forest"].assets) do
+    table.insert(assets, asset)
+end
+
+for _, prefab in pairs(Prefabs["forest"].deps) do
+    table.insert(prefabs, prefab)
+end
 
 local function tile_physics_init(inst, ...)
     -- a slightly modified version of the forest map's primary collider.
@@ -99,6 +71,8 @@ local function tile_physics_init(inst, ...)
 end
 
 local function common_postinit(inst)
+    inst.has_pl_ocean = true
+
     -- Add waves
     inst.entity:AddWaveComponent()
     inst.WaveComponent:SetWaveParams(13.5, 2.5, -1)  -- wave texture u repeat, forward distance between waves

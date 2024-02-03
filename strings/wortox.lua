@@ -11,8 +11,10 @@ return {
     },
     DESCRIBE = {
         APORKALYPSE_CLOCK = "Magic on such a large scale, man, this is going to be fun.",
+        ARMOR_METALPLATE = "What a horrible torture.",
         ARMOR_WEEVOLE = "I'm getting goosebumps.",
         ASPARAGUS_PLANTED = "A spear that grows out of the earth.",
+        BASEFAN = "The breeze is blowing, so happy.",
         CHITIN = "The shell of those guys.",
         CUTNETTLE = "Just smelling it blows my nose.",
         FLOWER_RAINFOREST = "There is a wild beauty.",
@@ -29,6 +31,8 @@ return {
             PICKED = "Gone, all gone.",
         },
         MACHETE = "To chop and slash!",
+        HALBERD = "What a vicious weapon.",
+        IRON = "Oooh. Almost burned me.",
         PEAGAWK = {
             GENERIC = "You must have seen a lot, right?",
             SLEEPING = "Huh, let's close our eyes and take a break?",
@@ -41,6 +45,12 @@ return {
             SLEEPING = "Then intermission.",
         },
         SHEARS = "Click, click, leaves fall.",
+        SMELTER = {
+            BURNT = "I didn't know they were hot to stone.",
+            COOKING_SHORT = "They are hotter now.",
+            DONE = "It doesn't make them any better.",
+            EMPTY = "Put the iron you hate in and burn it.",
+        },
         TREE_PILLAR = "Blot out the sun.",
         WEEVOLE = "don't bite me!",
         WEEVOLE_CARAPACE = "What remains of their armor.",

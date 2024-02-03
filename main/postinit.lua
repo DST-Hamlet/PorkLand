@@ -9,6 +9,7 @@ local component_posts = {
     "colourcube",
     "combat",
     "edible",
+    "floater",
     "grogginess",
     "health",
     "inventory",
@@ -23,6 +24,7 @@ local component_posts = {
     "shard_clock",
     "shard_seasons",
     "sleeper",
+    "waterproofer",
     "wavemanager",
     "worldstate",
 }
@@ -38,16 +40,16 @@ local prefab_posts = {
 }
 
 local multipleprefab_posts = {
-    "poisonable"
+    "poisonable",
 }
 
 local scenario_posts = {
-    "playerhud"
+    "playerhud",
 }
 
 local stategraph_posts = {
     "wilson",
-    "wilson_client"
+    "wilson_client",
 }
 
 local brain_posts = {

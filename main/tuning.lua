@@ -140,7 +140,16 @@ local tuning = {
         LIGHT = 1.0,
         MEDIUM = 0.25,
         HEAVY = 0.05,
-    }
+    },
+
+    ARMORMETAL = wilson_health * 8,
+    ARMORMETAL_ABSORPTION = .85,
+    ARMORMETAL_SLOW = 0.9,  -- -0.10,
+
+    HALBERD_DAMAGE = wilson_attack * 1.3,
+    HALBERD_USES = 100,
+
+    HYDRO_BONUS_COOL_RATE = 4,
 }
 
 for key, value in pairs(tuning) do

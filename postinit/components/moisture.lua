@@ -8,24 +8,19 @@ function Moisture:GetMoistureRate(...)
     if not TheWorld.state.fullfog then
         return _GetMoistureRate(self, ...)
     end
+    return self:_GetMoistureRateAssumingRain() * TUNING.FOG_MOISTURE_RATE_SCALE  -- fog moisture rate
+end
 
-    local waterproofmult =
-        (   self.inst.components.sheltered ~= nil and
-            self.inst.components.sheltered.sheltered and
-            self.inst.components.sheltered.waterproofness or 0
-        ) +
-        (   self.inst.components.inventory ~= nil and
-            self.inst.components.inventory:GetFogWaterproofness() or 0
-        ) +
-        (   self.inherentWaterproofness or 0
-        ) +
-        (
-            self.waterproofnessmodifiers:Get() or 0
-        )
-    if waterproofmult >= 1 then
-        return 0
+local MUST_TAGS = {"blows_air"}
+local _GetDryingRate = Moisture.GetDryingRate
+function Moisture:GetDryingRate(...)
+    local rate = _GetDryingRate(self, ...)
+
+    local x, y, z = self.inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, 30, MUST_TAGS)
+
+    if #ents > 0  then
+        rate = rate + TUNING.HYDRO_BONUS_COOL_RATE
     end
-
-    local rate = easing.inSine(TheWorld.state.precipitationrate, self.minMoistureRate, self.maxMoistureRate, 1)
-    return rate * (1 - waterproofmult) * TUNING.FOG_MOISTURE_RATE_SCALE  -- fog moisture rate
+    return rate
 end
