@@ -125,9 +125,9 @@ local function fn()
     inst.components.workable:SetOnFinishCallback(onhammered)
     inst.components.workable:SetOnWorkCallback(onhit)
 
-    inst:AddComponent("floodable")
-    inst.components.floodable.onStartFlooded = OnFloodedStart
-    inst.components.floodable:SetFX("shock_machines_fx")
+    -- inst:AddComponent("floodable")
+    -- inst.components.floodable.onStartFlooded = OnFloodedStart
+    -- inst.components.floodable:SetFX("shock_machines_fx")
 
     inst:AddComponent("fueled")
     inst.components.fueled:SetDepletedFn(OnFuelEmpty)
