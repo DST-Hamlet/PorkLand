@@ -6,6 +6,8 @@ local PL_ACTIONS = {
     HACK = Action({mindistance = 1.75, silent_fail = true}),
     SHEAR = Action({distance = 1.75}),
     PEAGAWK_TRANSFORM = Action({}),
+    DIGDUNG = Action({mount_enabled = true}),
+    MOUNTDUNG = Action({}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -70,6 +72,19 @@ end
 
 ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
     return true -- Dummy action for flup hiding
+end
+
+ACTIONS.DIGDUNG.fn = function(act)
+    act.target.components.workable:WorkedBy(act.doer, 1)
+    return true
+end
+
+ACTIONS.MOUNTDUNG.fn = function(act)
+    local doer = act.doer
+    doer.dung_target:Remove()
+    doer:AddTag("hasdung")
+    doer.dung_target = nil
+    return true
 end
 
 
