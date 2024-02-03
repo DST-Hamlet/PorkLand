@@ -196,13 +196,13 @@ function ChooseWorldSreen:OnControl(control, down)
 end
 
 function ChooseWorldSreen:GetHelpText()
-	local controller_id = TheInput:GetControllerID()
+    local controller_id = TheInput:GetControllerID()
     local t = {}
 
     table.insert(t, TheInput:GetLocalizedControl(controller_id, CONTROL_CANCEL) .. " " .. STRINGS.UI.HELP.CANCEL)
     table.insert(t, TheInput:GetLocalizedControl(controller_id, CONTROL_PAUSE) .. " " .. apply_str)
 
-	return table.concat(t, "  ")
+    return table.concat(t, "  ")
 end
 
 function ChooseWorldSreen:_Close()
