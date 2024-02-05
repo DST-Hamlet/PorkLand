@@ -30,6 +30,31 @@ local SEASON_VERYHARSH_LENGTHS =
 --[[ WORLDSETTINGS PRE ]]
 --------------------------------------------------------------------------
 
+applyoverrides_pre.dungbeetle_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            DUNGBEETLE_ENABLED = false,
+        },
+        rare = {
+            DUNGBEETLE_REGEN_TIME = TUNING.SEG_TIME * 8,
+        },
+        --[[
+        default = {
+            DUNGBEETLE_ENABLED = true,
+            PEAGAWK_REGEN_TIME = TUNING.SEG_TIME * 4,
+        },
+        --]]
+        often = {
+            DUNGBEETLE_REGEN_TIME = TUNING.SEG_TIME * 2,
+        },
+        always = {
+            DUNGBEETLE_REGEN_TIME = TUNING.SEG_TIME * 1,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 applyoverrides_pre.peagawk_setting = function(difficulty)
     local tuning_vars =
     {
@@ -147,6 +172,7 @@ applyoverrides_pre.hanging_vine_setting = function(difficulty)
         },
         --[[
         default = {
+            HANGING_VINE_ENABLED = true
             GRABBING_VINE_SPAWN_MIN = 6,
             GRABBING_VINE_SPAWN_MAX = 9,
             HANGING_VINE_SPAWN_MIN = 8,

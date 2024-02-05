@@ -76,6 +76,7 @@ local custonsiz_items = {  -- add in dst custonsiz
         },
         resources = {
             "asparagus",
+            "dungpile",
             "grass_tall",
             hanging_vine_patch = {image = "hanging_vine.tex"}
         },
@@ -89,6 +90,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             weevole_setting = {image = "weevole.tex"},
         },
         animals = {
+            dungbeetle_setting = {image = "dungbeetle.tex"},
             peagawk_setting = {image = "peagawk.tex"},
             glowfly_setting = {image = "glowflies.tex"},
             hanging_vine_setting = {image = "grabbing_vine.tex"},

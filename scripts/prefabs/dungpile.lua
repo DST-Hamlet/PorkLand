@@ -186,13 +186,13 @@ local function fn()
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "dungbeetle"
-    inst.components.childspawner:SetRegenPeriod(TUNING.DUNGPILE_REGEN_TIME)
-    inst.components.childspawner:SetSpawnPeriod(TUNING.DUNGPILE_RELEASE_TIME)
-    inst.components.childspawner:SetMaxChildren(TUNING.DUNGPILE_MAXCHILDREN)
+    inst.components.childspawner:SetRegenPeriod(TUNING.DUNGBEETLE_REGEN_TIME)
+    inst.components.childspawner:SetSpawnPeriod(TUNING.DUNGBEETLE_RELEASE_TIME)
+    inst.components.childspawner:SetMaxChildren(TUNING.DUNGBEETLE_MAXCHILDREN)
     inst.components.childspawner:StartSpawning()
-    WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.DUNGPILE_RELEASE_TIME, TUNING.DUNGPILE_ENABLED)
-    WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.DUNGPILE_REGEN_TIME, TUNING.DUNGPILE_ENABLED)
-    if not TUNING.DUNGPILE_ENABLED then
+    WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.DUNGBEETLE_RELEASE_TIME, TUNING.DUNGBEETLE_ENABLED)
+    WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.DUNGBEETLE_REGEN_TIME, TUNING.DUNGBEETLE_ENABLED)
+    if not TUNING.DUNGBEETLE_ENABLED then
         inst.components.childspawner.childreninside = 0
     end
 

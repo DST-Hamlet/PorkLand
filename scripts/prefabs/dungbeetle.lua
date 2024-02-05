@@ -99,7 +99,7 @@ local function fn()
     inst.components.inspectable.getstatus = GetStatus
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(TUNING.DUNG_BEETLE_HEALTH)
+    inst.components.health:SetMaxHealth(TUNING.DUNGBEETLE_HEALTH)
     inst.components.health.murdersound = "dontstarve/rabbit/scream_short"
 
     inst:AddComponent("combat")
@@ -108,9 +108,9 @@ local function fn()
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("dungbeetle")
 
-    inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.runspeed = TUNING.DUNG_BEETLE_RUN_SPEED
-    inst.components.locomotor.walkspeed = TUNING.DUNG_BEETLE_WALK_SPEED
+    inst:AddComponent("locomotor")  -- locomotor must be constructed before the stategraph
+    inst.components.locomotor.runspeed = TUNING.DUNGBEETLE_RUN_SPEED
+    inst.components.locomotor.walkspeed = TUNING.DUNGBEETLE_WALK_SPEED
 
     inst:ListenForEvent("attacked", OnAttacked)
 
