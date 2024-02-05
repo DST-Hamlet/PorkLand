@@ -83,6 +83,7 @@ local tuning = {
 
     RABID_BEETLE_HEALTH = 60,
     RABID_BEETLE_DAMAGE =  10,
+    RABID_BEETLE_ATTACK_RANGE = 2,
     RABID_BEETLE_ATTACK_PERIOD = 2,
     RABID_BEETLE_TARGET_DIST = 20,
     RABID_BEETLE_SPEED = 12,
@@ -157,11 +158,13 @@ local tuning = {
 
     DUNGPILE_MAXCHILDREN = 1,
     DUNGPILE_REGEN_TIME = seg_time * 4,
-    DUNGPILE_RELEASE_TIME = seg_time * 0.5,
+    DUNGPILE_RELEASE_TIME = seg_time,
     DUNGPILE_ENABLED = true,
 
     GRABBING_VINE_HEALTH = 100,
     GRABBING_VINE_DAMAGE = 10,
+    GRABBING_VINE_ATTACK_RANGE = 3,
+    GRABBING_VINE_HIT_RANGE = 4,
     GRABBING_VINE_ATTACK_PERIOD = 1,
     GRABBING_VINE_TARGET_DIST = 3,
 
@@ -170,6 +173,9 @@ local tuning = {
 
     HANGING_VINE_SPAWN_MIN = 8,
     HANGING_VINE_SPAWN_MAX = 16,
+
+    VINE_REGEN_TIME_MIN = total_day_time * 2,
+    VINE_REGEN_TIME_MAX = total_day_time * 3
 }
 
 for key, value in pairs(tuning) do

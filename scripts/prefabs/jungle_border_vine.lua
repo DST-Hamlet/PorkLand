@@ -30,8 +30,8 @@ local function plantfn()
     inst:AddTag("NOCLICK")
 
     if not TheNet:IsDedicated() then
-    	inst:AddComponent("distancefade")
-    	inst.components.distancefade:Setup(15,25)
+        inst:AddComponent("distancefade")
+        inst.components.distancefade:Setup(15,25)
     end
 
     inst.entity:SetPristine()

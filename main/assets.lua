@@ -15,6 +15,7 @@ PrefabFiles = {
     "grabbing_vine",
     "grass_tall",
     "halberd",
+    "hanging_vine_patch",
     "hanging_vine",
     "iron",
     "pl_wave_shore",

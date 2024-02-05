@@ -1,7 +1,7 @@
-require "behaviours/wander"
-require "behaviours/runaway"
-require "behaviours/doaction"
-require "behaviours/panic"
+require("behaviours/wander")
+require("behaviours/runaway")
+require("behaviours/doaction")
+require("behaviours/panic")
 
 local BrainCommon = require("brains/braincommon")
 

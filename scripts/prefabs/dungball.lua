@@ -20,11 +20,12 @@ local function OnPickUp(inst, picker)
 
     inst.AnimState:PlayAnimation("break")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/dungball_break")
+    inst.DynamicShadow:Enable(false)
     inst.persists = false
     inst:ListenForEvent("animover", inst.Remove)
     inst:ListenForEvent("entitysleep", inst.Remove)
 
-    return true --This makes the inventoryitem component not actually give the tumbleweed to the player
+    return true -- This makes the inventoryitem component not actually give the tumbleweed to the player
 end
 
 local function MakeLoot(inst)
@@ -78,7 +79,6 @@ end
 local function OnHauntFn(inst, haunter)
     if math.random() <= TUNING.HAUNT_CHANCE_OCCASIONAL then
         OnPickUp(inst)
-        inst:Remove()
     end
     return true
 end
@@ -94,7 +94,7 @@ local function fn()
     inst.Transform:SetFourFaced()
     inst.DynamicShadow:SetSize(1.7, .8)
 
-    MakeCharacterPhysics(inst, .5, .5)
+    MakeCharacterPhysics(inst, .5, 1)
     inst.Physics:SetFriction(1)
 
     inst:AddTag("dungball")
@@ -112,16 +112,14 @@ local function fn()
     inst:AddComponent("inspectable")
     inst:AddComponent("lootdropper")
 
-    inst:AddComponent("hauntable")
-    inst.components.hauntable:SetOnHauntFn(OnHauntFn)
-
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
     inst.components.pickable.onpickedfn = OnPickUp
     inst.components.pickable.canbepicked = true
     inst.components.pickable.witherable = false
 
-    inst.MakeLoot = MakeLoot
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetOnHauntFn(OnHauntFn)
 
     MakeSmallPropagator(inst)
     inst.components.propagator.flashpoint = 5 + math.random() * 3

@@ -1,6 +1,3 @@
-require("stategraphs/SGdungbeetle")
-require("brains/dungbeetlebrain")
-
 local assets = {
     Asset("ANIM", "anim/dung_beetle_basic.zip"),
     Asset("ANIM", "anim/dung_beetle_build.zip"),
@@ -15,8 +12,8 @@ local prefabs = {
 local brain = require("brains/dungbeetlebrain")
 
 SetSharedLootTable("dungbeetle", {
-    {"monstermeat",  1},
-    {"chitin",  0.5},
+    {"monstermeat", 1},
+    {"chitin", 0.5},
 })
 
 local function FalloffDung(inst)
@@ -46,6 +43,7 @@ end
 local function OnLoad(inst, data)
     if data.lost_dung then
         inst:RemoveTag("hasdung")
+        inst.AnimState:PlayAnimation("ball_idle")
     end
 end
 
@@ -84,11 +82,7 @@ local function fn()
 
     inst.AnimState:SetBank("dung_beetle")
     inst.AnimState:SetBuild("dung_beetle_build")
-    if inst:HasTag("hasdung") then
-        inst.AnimState:PlayAnimation("ball_idle")
-    else
-        inst.AnimState:PlayAnimation("idle")
-    end
+    inst.AnimState:PlayAnimation("ball_idle")
 
     inst.entity:SetPristine()
 
@@ -104,15 +98,15 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
 
+    inst:AddComponent("health")
+    inst.components.health:SetMaxHealth(TUNING.DUNG_BEETLE_HEALTH)
+    inst.components.health.murdersound = "dontstarve/rabbit/scream_short"
+
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "body"
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("dungbeetle")
-
-    inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(TUNING.DUNG_BEETLE_HEALTH)
-    inst.components.health.murdersound = "dontstarve/rabbit/scream_short"
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.runspeed = TUNING.DUNG_BEETLE_RUN_SPEED

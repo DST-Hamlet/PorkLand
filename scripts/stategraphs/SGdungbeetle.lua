@@ -1,5 +1,9 @@
 require("stategraphs/commonstates")
 
+local MAX_JUMPIN_DIST = 3
+local MAX_JUMPIN_DIST_SQ = MAX_JUMPIN_DIST * MAX_JUMPIN_DIST
+local MAX_JUMPIN_SPEED = 6
+
 local actionhandlers = {
     ActionHandler(ACTIONS.DIGDUNG, "dig"),
     ActionHandler(ACTIONS.MOUNTDUNG, "jump"),
@@ -80,12 +84,12 @@ local states = {
             inst.Physics:Stop()
             if playanim then
                 inst.AnimState:PlayAnimation(playanim)
-                inst.AnimState:PushAnimation(ProcessAnim(inst,"idle"), true)
+                inst.AnimState:PushAnimation(ProcessAnim(inst, "idle"), true)
             else
-                inst.AnimState:PlayAnimation(ProcessAnim(inst,"idle"), true)
+                inst.AnimState:PlayAnimation(ProcessAnim(inst, "idle"), true)
             end
-            inst.SoundEmitter:PlaySound ("dontstarve_DLC003/creatures/dungbeetle/idle")
-            inst.sg:SetTimeout(1 + math.random() * 1)
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/idle")
+            inst.sg:SetTimeout(1 + math.random())
         end,
     },
 
@@ -143,14 +147,14 @@ local states = {
         end,
 
         timeline = {
-            TimeEvent(10*FRAMES, function(inst)
+            TimeEvent(10 * FRAMES, function(inst)
                 if inst:HasTag("hasdung") then
                     inst.SoundEmitter:PlaySound("dontstarve/movement/run_marsh_small")
                 else
                     PlayFootstep(inst)
                 end
             end),
-            TimeEvent(11*FRAMES, function(inst)
+            TimeEvent(11 * FRAMES, function(inst)
                 if inst:HasTag("hasdung") then
                     inst.SoundEmitter:PlaySound("dontstarve/movement/run_marsh_small")
                 else
@@ -181,7 +185,7 @@ local states = {
         tags = {"busy"},
 
         onenter = function(inst)
-            inst.AnimState:PlayAnimation( "dig_loop", true)
+            inst.AnimState:PlayAnimation("dig_loop", true)
             inst.sg:SetTimeout(2 * math.random() + .5)
         end,
 
@@ -217,14 +221,11 @@ local states = {
             inst.SoundEmitter:PlaySound("dontstarve/common/craftable/tent_sleep")
 
             local pos = inst.dung_target:GetPosition()
-            local MAX_JUMPIN_DIST = 3
-            local MAX_JUMPIN_DIST_SQ = MAX_JUMPIN_DIST*MAX_JUMPIN_DIST
-            local MAX_JUMPIN_SPEED = 6
             local dist
             if pos ~= nil then
                 inst:ForceFacePoint(pos)
                 local distsq = inst:GetDistanceSqToPoint(pos)
-                if distsq <= 0.25*0.25 then
+                if distsq <= 0.25 * 0.25 then
                     dist = 0
                     inst.sg.statemem.speed = 0
                 elseif distsq >= MAX_JUMPIN_DIST_SQ then
@@ -311,8 +312,8 @@ local states = {
         tags = {"moving", "running", "canrotate"},
 
         onenter = function(inst)
-            inst.AnimState:PlayAnimation(ProcessAnim(inst,"run_pre"))
-            inst.AnimState:PushAnimation(ProcessAnim(inst,"run_loop"), true)
+            inst.AnimState:PlayAnimation(ProcessAnim(inst, "run_pre"))
+            inst.AnimState:PushAnimation(ProcessAnim(inst, "run_loop"), true)
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/rollingbball_LP","dungroll")
             inst.SoundEmitter:SetParameter("dungroll", "speed", 1)
             inst.components.locomotor:RunForward()
@@ -330,7 +331,7 @@ local states = {
         tags = {"moving", "running", "canrotate"},
 
         onenter = function(inst)
-            inst.AnimState:PushAnimation(ProcessAnim(inst,"run_loop"))
+            inst.AnimState:PushAnimation(ProcessAnim(inst, "run_loop"))
             inst.components.locomotor:RunForward()
         end,
 
@@ -355,8 +356,8 @@ local states = {
         end,
 
         timeline= {
-            TimeEvent(10*FRAMES, function(inst) PlayFootstep(inst) end),
-            TimeEvent(11*FRAMES, function(inst) PlayFootstep(inst) end),
+            TimeEvent(10 * FRAMES, function(inst) PlayFootstep(inst) end),
+            TimeEvent(11 * FRAMES, function(inst) PlayFootstep(inst) end),
         },
     },
 
@@ -386,8 +387,8 @@ local states = {
         end,
 
         timeline = {
-            TimeEvent(10*FRAMES, function(inst) PlayFootstep(inst) end ),
-            TimeEvent(11*FRAMES, function(inst) PlayFootstep(inst) end ),
+            TimeEvent(10 * FRAMES, function(inst) PlayFootstep(inst) end ),
+            TimeEvent(11 * FRAMES, function(inst) PlayFootstep(inst) end ),
         },
 
         events = {
@@ -424,11 +425,11 @@ local states = {
             inst.AnimState:PlayAnimation("death")
             inst.Physics:Stop()
             RemovePhysicsColliders(inst)
-            inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition()))
+            inst.components.lootdropper:DropLoot(inst:GetPosition())
         end,
 
         timeline = {
-            TimeEvent(3*FRAMES,function(inst)
+            TimeEvent(3 * FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/death")
             end),
         },
@@ -445,26 +446,25 @@ local states = {
         end,
 
         onupdate = function(inst)
-            local pt = inst:GetPosition()
-            if pt.y < 2 then
+            local x, y, z = inst.Transform:GetWorldPosition()
+            if y < 2 then
                 inst.Physics:SetMotorVel(0,0,0)
             end
 
-            if pt.y <= .1 then
-                pt.y = 0
+            if y <= .1 then
+                y = 0
 
                 inst.Physics:Stop()
                 inst.Physics:SetDamping(5)
-                inst.Physics:Teleport(pt.x,pt.y,pt.z)
+                inst.Physics:Teleport(x, y, z)
                 inst.DynamicShadow:Enable(true)
                 inst.sg:GoToState("stunned")
             end
         end,
 
         onexit = function(inst)
-            local pt = inst:GetPosition()
-            pt.y = 0
-            inst.Transform:SetPosition(pt:Get())
+            local x, _, z = inst.Transform:GetWorldPosition()
+            inst.Transform:SetPosition(x, 0, z)
         end,
     },
 
@@ -506,7 +506,7 @@ local states = {
 
             inst.Physics:Stop()
             inst:ClearBufferedAction()
-            inst.AnimState:PlayAnimation( "fall_off_pre" )
+            inst.AnimState:PlayAnimation("fall_off_pre")
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/crash")
             inst.components.locomotor.runspeed = -TUNING.DUNG_BEETLE_RUN_SPEED
             inst.components.locomotor:RunForward()
@@ -588,7 +588,7 @@ local states = {
 
         onenter = function(inst)
             inst.components.locomotor:StopMoving()
-            inst.AnimState:PlayAnimation(ProcessAnim(inst,"sleep_pre"))
+            inst.AnimState:PlayAnimation(ProcessAnim(inst, "sleep_pre"))
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/yawn")
         end,
 
@@ -607,7 +607,7 @@ local states = {
         tags = {"busy", "sleeping"},
 
         onenter = function(inst)
-            inst.AnimState:PlayAnimation(ProcessAnim(inst,"sleep_loop"))
+            inst.AnimState:PlayAnimation(ProcessAnim(inst, "sleep_loop"))
         end,
 
         events = {
@@ -620,7 +620,7 @@ local states = {
         },
 
         timeline = {
-            TimeEvent(3*FRAMES, function(inst)
+            TimeEvent(3 * FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/breath_out")
             end),
         },
@@ -632,7 +632,7 @@ local states = {
 
         onenter = function(inst)
             inst.components.locomotor:StopMoving()
-            inst.AnimState:PlayAnimation(ProcessAnim(inst,"sleep_pst"))
+            inst.AnimState:PlayAnimation(ProcessAnim(inst, "sleep_pst"))
             if inst.components.sleeper and inst.components.sleeper:IsAsleep() then
                 inst.components.sleeper:WakeUp()
             end
@@ -646,6 +646,24 @@ local states = {
     },
 
     State{
+        name = "forcesleep",
+        tags = {"busy", "sleeping"},
+
+        onenter = function(inst)
+            inst.components.locomotor:StopMoving()
+            inst.AnimState:PlayAnimation(ProcessAnim(inst, "sleep_loop"), true)
+
+        end,
+
+        timeline =
+        {
+            TimeEvent (5 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/breath_out")
+            end),
+        }
+    },
+
+    State{
         name = "frozen",
         tags = {"busy", "frozen"},
 
@@ -653,7 +671,7 @@ local states = {
             if inst.components.locomotor then
                 inst.components.locomotor:StopMoving()
             end
-            inst.AnimState:PlayAnimation(ProcessAnim(inst,"frozen"), true)
+            inst.AnimState:PlayAnimation(ProcessAnim(inst, "frozen"), true)
             inst.SoundEmitter:PlaySound("dontstarve/common/freezecreature")
             inst.AnimState:OverrideSymbol("swap_frozen", "frozen", "frozen")
         end,
@@ -684,7 +702,7 @@ local states = {
             if inst.components.locomotor then
                 inst.components.locomotor:StopMoving()
             end
-            inst.AnimState:PlayAnimation(ProcessAnim(inst,"frozen_loop_pst"), true)
+            inst.AnimState:PlayAnimation(ProcessAnim(inst, "frozen_loop_pst"), true)
             inst.SoundEmitter:PlaySound("dontstarve/common/freezethaw", "thawing")
             inst.AnimState:OverrideSymbol("swap_frozen", "frozen", "frozen")
         end,
