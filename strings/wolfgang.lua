@@ -18,6 +18,7 @@ return {
         BASEFAN = "Is cool on Wolfgang skin.",
         CHITIN = "Icky bug pieces.",
         CUTNETTLE = "Is good for clearing nose.",
+        DUNGBALL = "Is ball of poop.",
         FLOWER_RAINFOREST = "Little smelly flower.",
         GLOWFLY = {
             DEAD = "Light bug is lights out.",

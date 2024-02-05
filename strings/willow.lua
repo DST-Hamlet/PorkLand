@@ -18,6 +18,7 @@ return {
         BASEFAN = "Fan the flames.",
         CHITIN = "Bug skin.",
         CUTNETTLE = "It smells funny.",
+        DUNGBALL = "Can't even set it on fire.",
         FLOWER_RAINFOREST = "It's kinda ugly. But it burns.",
         GLOWFLY = {
             DEAD = "Squashed.",

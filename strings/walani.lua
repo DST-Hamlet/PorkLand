@@ -18,6 +18,7 @@ return {
         BASEFAN = "A nice breeze.",
         CHITIN = "Probably wouldn't make a good surfboard.",
         CUTNETTLE = "Whew! Really cleans your sinuses!",
+        DUNGBALL = "Should've leashed it.",
         FLOWER_RAINFOREST = "I love these.",
         GLOWFLY = {
             DEAD = "I wish it hadn't died.",

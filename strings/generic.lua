@@ -18,6 +18,7 @@ return {
         BASEFAN = "Fan-tastic.",
         CHITIN = "Bug coating.",
         CUTNETTLE = "Science says the sharp edges are good for my lungs.",
+        DUNGBALL = "Most definitely poop.",
         FLOWER_RAINFOREST = "It smells vaguely tolerable.",
         GLOWFLY = {
             DEAD = "Lights out forever.",

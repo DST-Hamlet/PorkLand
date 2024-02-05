@@ -18,6 +18,7 @@ return {
         BASEFAN = "Ah. Civilization.",
         CHITIN = "We all have our defenses.",
         CUTNETTLE = "Useful.",
+        DUNGBALL = "I refuse to touch that.",
         FLOWER_RAINFOREST = "It's no rose.",
         GLOWFLY = {
             DEAD = "Lights out.",
