@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Gullah. The gills are so uncomfortable...",
     ANNOUNCE_HAYFEVER_OFF = "oh! The gills are finally comfortable!",
+    ANNOUNCE_PICKPOOP = {
+        "Dirty water!",
+        "Glurgh...",
+        "No next time!",
+    },
     ANNOUNCE_SNEEZE = "Heh-hoo, ha-choo! ! !",
     ANNOUNCE_TOO_HUMID = {
         "%s is hot!",

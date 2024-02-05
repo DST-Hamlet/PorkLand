@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Allergies strong like Wolfgang!",
     ANNOUNCE_HAYFEVER_OFF = "Ha! Wolfgang beat allergies!",
+    ANNOUNCE_PICKPOOP = {
+        "Bah!",
+        "Ew!",
+        "Wolfgang is disgusted!",
+    },
     ANNOUNCE_SNEEZE = "Achoo! Excuse Wolfgang.",
     ANNOUNCE_TOO_HUMID = {
         "Wolfgang don't like %s in this heat.",

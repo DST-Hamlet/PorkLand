@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Me nose be itchier than a sliver in me pegleg.",
     ANNOUNCE_HAYFEVER_OFF = "Ah! Th'air be clear again!",
+    ANNOUNCE_PICKPOOP = {
+        "Arrgh!",
+        "Avast!",
+        "Ye repulsive thing!",
+    },
     ANNOUNCE_SNEEZE = "Ahh-pheww!!",
     ANNOUNCE_TOO_HUMID = {
         "Arrgh! It be hot!",

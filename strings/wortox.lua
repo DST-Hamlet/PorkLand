@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Oops, so much pollen, it's going to be uncomfortable.",
     ANNOUNCE_HAYFEVER_OFF = "The pollen is gone. finally.",
+    ANNOUNCE_PICKPOOP = {
+        "Disgusting!",
+        "It's still warm!",
+        "My paws!",
+    },
     ANNOUNCE_SNEEZE = "(breathing) Ah chirp! Ahhhhhh!",
     ANNOUNCE_TOO_HUMID = {
         "I can't stand %s anymore!",

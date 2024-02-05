@@ -4,6 +4,12 @@ return {
     },
     ANNOUNCE_HAYFEVER = "My nose feels.. itchy.",
     ANNOUNCE_HAYFEVER_OFF = "I don't want to claw my eyes out anymore.",
+    ANNOUNCE_PICKPOOP = {
+        "Eugg!",
+        "Gross!",
+        "Ick!",
+        "I got some on my hands!",
+    },
     ANNOUNCE_SNEEZE = "AHHH CHOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is so heavy.",

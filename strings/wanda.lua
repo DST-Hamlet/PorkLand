@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Don't these plants do anything else but pollinate all over the place?",
     ANNOUNCE_HAYFEVER_OFF = "Whoops! it is finally over!",
+    ANNOUNCE_PICKPOOP = {
+        "Why would I do that?",
+        "There must be something wrong with my mind.",
+        "(Retching)",
+    },
     ANNOUNCE_SNEEZE = "Ah Choo!",
     ANNOUNCE_TOO_HUMID = {
         "Wearing %s is a shame.",

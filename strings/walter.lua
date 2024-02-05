@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "There's something in the air...my nose is itching.",
     ANNOUNCE_HAYFEVER_OFF = "My nose is so much better and it's finally gone!",
+    ANNOUNCE_PICKPOOP = {
+        "Pine Pioneers must be hardworking...but...",
+        "This is really unhygienic!",
+        "do not come! Warby!",
+    },
     ANNOUNCE_SNEEZE = "Ah Choo!",
     ANNOUNCE_TOO_HUMID = {
         "I'm bored.",

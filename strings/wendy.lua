@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Ugh. Even my sinuses are suffering.",
     ANNOUNCE_HAYFEVER_OFF = "My sinuses are clear, but suffering continues.",
+    ANNOUNCE_PICKPOOP = {
+        "Sigh.",
+        "Ew.",
+        "Everything is suffering.",
+    },
     ANNOUNCE_SNEEZE = "achoo! achoo! sniff.",
     ANNOUNCE_TOO_HUMID = {
         "This %s is heavier in the heat.",

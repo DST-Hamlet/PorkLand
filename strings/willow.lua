@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "My sinuses are burning.",
     ANNOUNCE_HAYFEVER_OFF = "Sniff! I feel better now!",
+    ANNOUNCE_PICKPOOP = {
+        "Ick!",
+        "Gross!",
+        "Burn it all!!",
+    },
     ANNOUNCE_SNEEZE = "Achoo!!",
     ANNOUNCE_TOO_HUMID = {
         "It's burning hot. But not in a good way.",
