@@ -19,6 +19,12 @@ return {
         CHITIN = "We all have our defenses.",
         CUTNETTLE = "Useful.",
         DUNGBALL = "I refuse to touch that.",
+        DUNGBEETLE = {
+            DEAD = "It has come to a feculent end.",
+            GENERIC = "What a filthy creature.",
+            SLEEPING = "The time is right to strike.",
+            UNDUNGED = "Sans dungball, I see.",
+        },
         FLOWER_RAINFOREST = "It's no rose.",
         GLOWFLY = {
             DEAD = "Lights out.",

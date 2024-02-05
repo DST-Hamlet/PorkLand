@@ -19,6 +19,12 @@ return {
         CHITIN = "I don't understand what's the point of this?",
         CUTNETTLE = "This keeps us breathing smoothly.",
         DUNGBALL = "I won't touch it.",
+        DUNGBEETLE = {
+            DEAD = "She ends up being part of those.",
+            GENERIC = "That's gross.",
+            SLEEPING = "She is resting.",
+            UNDUNGED = "She'll find another one.",
+        },
         FLOWER_RAINFOREST = "Why am I wasting time staring at it?",
         GLOWFLY = {
             DEAD = "Maybe that's for the best.",

@@ -19,6 +19,12 @@ return {
         CHITIN = "Completely inedible.",
         CUTNETTLE = "Great for clearing the sinuses!",
         DUNGBALL = "Non.",
+        DUNGBEETLE = {
+            DEAD = "Such is life.",
+            GENERIC = "Not how I would spend my days.",
+            SLEEPING = "Dormez bien, mon amie.",
+            UNDUNGED = "She's fallen.",
+        },
         FLOWER_RAINFOREST = "Edible?",
         GLOWFLY = {
             DEAD = "Such a shame. And not even edible.",

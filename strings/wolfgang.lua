@@ -19,6 +19,12 @@ return {
         CHITIN = "Icky bug pieces.",
         CUTNETTLE = "Is good for clearing nose.",
         DUNGBALL = "Is ball of poop.",
+        DUNGBEETLE = {
+            DEAD = "Is dead. Is still stink.",
+            GENERIC = "Bug runs on ball of poop.",
+            SLEEPING = "Is pooped.",
+            UNDUNGED = "Bug fell off ball of poop.",
+        },
         FLOWER_RAINFOREST = "Little smelly flower.",
         GLOWFLY = {
             DEAD = "Light bug is lights out.",

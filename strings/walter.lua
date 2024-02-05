@@ -19,6 +19,12 @@ return {
         CHITIN = "Check out the pattern on this! Warby!",
         CUTNETTLE = "Ow! It got me.",
         DUNGBALL = "How did she... nevermind.",
+        DUNGBEETLE = {
+            DEAD = "Hello?",
+            GENERIC = "I need a very huge bottle to hold her!",
+            SLEEPING = "She is sleeping.",
+            UNDUNGED = "She's not with that dung ball. Good timing.",
+        },
         FLOWER_RAINFOREST = "oh! That's the kind of flower in jungle adventure stories.",
         GLOWFLY = {
             DEAD = "Oh, dead.",

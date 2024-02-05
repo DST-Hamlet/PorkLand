@@ -19,6 +19,12 @@ return {
         CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
         CUTNETTLE = "A large leaf nettle plant native to these parts. Also it smells funny.",
         DUNGBALL = "Excellent! The act of rolling has picked up a motley of paraphernalia.",
+        DUNGBEETLE = {
+            DEAD = "Expired. But it appears that is a recent occurrence.",
+            GENERIC = "Such agility! The way he's able to navigate on that sphere of poop!",
+            SLEEPING = "A dormant dung dancer.",
+            UNDUNGED = "Presumably, he's seeking a replacement for his poop sphere.",
+        },
         FLOWER_RAINFOREST = "Curious. Picking these has a positive effect on my psyche.",
         GLOWFLY = {
             DEAD = "Cadaverous.",

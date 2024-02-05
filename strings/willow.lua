@@ -19,6 +19,12 @@ return {
         CHITIN = "Bug skin.",
         CUTNETTLE = "It smells funny.",
         DUNGBALL = "Can't even set it on fire.",
+        DUNGBEETLE = {
+            DEAD = "Squashed.",
+            GENERIC = "Beat it, smelly beetle!",
+            SLEEPING = "How do you sleep with that smell?",
+            UNDUNGED = "You better run.",
+        },
         FLOWER_RAINFOREST = "It's kinda ugly. But it burns.",
         GLOWFLY = {
             DEAD = "Squashed.",

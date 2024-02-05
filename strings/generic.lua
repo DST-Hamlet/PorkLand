@@ -19,6 +19,12 @@ return {
         CHITIN = "Bug coating.",
         CUTNETTLE = "Science says the sharp edges are good for my lungs.",
         DUNGBALL = "Most definitely poop.",
+        DUNGBEETLE = {
+            DEAD = "Dung for.",
+            GENERIC = "She's on a roll.",
+            SLEEPING = "She's pooped.",
+            UNDUNGED = "She needs to get her dung together.",
+        },
         FLOWER_RAINFOREST = "It smells vaguely tolerable.",
         GLOWFLY = {
             DEAD = "Lights out forever.",

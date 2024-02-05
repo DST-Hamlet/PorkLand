@@ -19,6 +19,12 @@ return {
         CHITIN = "Tough hide.",
         CUTNETTLE = "It into my nose!",
         DUNGBALL = "Crud ball.",
+        DUNGBEETLE = {
+            DEAD = "It not moving anymore.",
+            GENERIC = "Beautiful, but stinky.",
+            SLEEPING = "Just fell asleep.",
+            UNDUNGED = "Still stinks.",
+        },
         FLOWER_RAINFOREST = "A slightly prettier plant is still ugly.",
         GLOWFLY = {
             DEAD = "died.",
