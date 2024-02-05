@@ -54,15 +54,15 @@ local function PlaceOffGrids(inst, radiusMax, prefab, tags)
 end
 
 local function SpawnVine(inst, prefab)
-    -- if TheWorld:IsWorldGenOptionNever(prefab) then  -- 世界设置相关，该部分未完成
-    --     return
-    -- end
-
     local rad = prefab == "grabbing_vine" and 12 or 14
     PlaceOffGrids(inst, rad, prefab, {"hangingvine"})
 end
 
 local function SpawnVines(inst)
+    if not TUNING.HANGING_VINE_ENABLED then
+        return
+    end
+
     for i = 1, math.random(TUNING.HANGING_VINE_SPAWN_MIN, TUNING.HANGING_VINE_SPAWN_MAX) do
         SpawnVine(inst, "hanging_vine")
     end

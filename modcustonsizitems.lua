@@ -16,6 +16,7 @@ GLOBAL.setfenv(1, GLOBAL)
 local Customize = require("map/customize")
 
 local worldgen_atlas = "images/worldgen_customization.xml"
+local worldgen_item_atlas = "images/customisation.xml"
 local pl_atlas = "images/hud/customization_porkland.xml"
 
 local season_start_descriptions = {
@@ -54,10 +55,10 @@ local pl_customize_table = {  -- we customize
         category = LEVELCATEGORY.SETTINGS,
         text = STRINGS.UI.SANDBOXMENU.LOCATIONTABNAME.PORKLAND .. STRINGS.UI.SANDBOXMENU.CHOICEGLOBAL,
         items = {
-            temperate  = {value = "default", image = "temperate.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 2, master_controlled = true},
-            humid      = {value = "default", image = "humid.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 3, master_controlled = true},
-            lush       = {value = "default", image = "lush.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 4, master_controlled = true},
-            -- aporkalypse = {value = "default", image = "dry.tex", options_remap = {img = "blank_season_yellow.tex", atlas = "images/customisation.xml"}, desc = season_length_descriptions, order = 5, master_controlled = true},
+            temperate  = {value = "default", image = "temperate.tex", options_remap = {img = "blank_season_yellow.tex", atlas = worldgen_item_atlas}, desc = season_length_descriptions, order = 2, master_controlled = true},
+            humid      = {value = "default", image = "humid.tex", options_remap = {img = "blank_season_yellow.tex", atlas = worldgen_item_atlas}, desc = season_length_descriptions, order = 3, master_controlled = true},
+            lush       = {value = "default", image = "lush.tex", options_remap = {img = "blank_season_yellow.tex", atlas = worldgen_item_atlas}, desc = season_length_descriptions, order = 4, master_controlled = true},
+            -- aporkalypse = {value = "default", image = "dry.tex", options_remap = {img = "blank_season_yellow.tex", atlas = worldgen_item_atlas}, desc = season_length_descriptions, order = 5, master_controlled = true},
         }
     },
 }
@@ -65,7 +66,7 @@ local pl_customize_table = {  -- we customize
 local custonsiz_items = {  -- add in dst custonsiz
     [LEVELCATEGORY.WORLDGEN] = {
         ["global"] = {  -- global is keywords
-            porkland_season_start = {image = "season_start.tex", options_remap = {img = "blank_season_red.tex", atlas = "images/customisation.xml"}, desc = season_start_descriptions, master_controlled = true, order = 2}
+            porkland_season_start = {image = "season_start.tex", options_remap = {img = "blank_season_red.tex", atlas = worldgen_item_atlas}, desc = season_start_descriptions, master_controlled = true, order = 2}
         },
         monsters = {
             "grass_tall_patch",
@@ -76,6 +77,7 @@ local custonsiz_items = {  -- add in dst custonsiz
         resources = {
             "asparagus",
             "grass_tall",
+            hanging_vine_patch = {image = "hanging_vine.tex"}
         },
         misc = {
             jungle_border_vine = {desc = frequency_descriptions},
@@ -89,6 +91,7 @@ local custonsiz_items = {  -- add in dst custonsiz
         animals = {
             peagawk_setting = {image = "peagawk.tex"},
             glowfly_setting = {image = "glowflies.tex"},
+            hanging_vine_setting = {image = "grabbing_vine.tex"},
         },
         resources = {
             asparagus_regrowth = {image = "asparagus.tex"},

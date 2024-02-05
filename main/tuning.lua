@@ -170,12 +170,12 @@ local tuning = {
 
     GRABBING_VINE_SPAWN_MIN = 6,
     GRABBING_VINE_SPAWN_MAX = 9,
-
     HANGING_VINE_SPAWN_MIN = 8,
     HANGING_VINE_SPAWN_MAX = 16,
+    HANGING_VINE_ENABLED = true,
 
     VINE_REGEN_TIME_MIN = total_day_time * 2,
-    VINE_REGEN_TIME_MAX = total_day_time * 3
+    VINE_REGEN_TIME_MAX = total_day_time * 3,
 }
 
 for key, value in pairs(tuning) do
