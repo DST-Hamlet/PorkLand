@@ -46,7 +46,7 @@ local function OnWorkCallback(inst)
     inst.AnimState:PlayAnimation("hit", false)
 end
 
-local function OnPickedFn(inst, picker)
+local function OnPicked(inst, picker)
     local pt = inst:GetPosition()
     local sanity = picker.components.sanity
     inst.SoundEmitter:PlaySound("dontstarve/common/food_rot")
@@ -65,13 +65,13 @@ local function OnPickedFn(inst, picker)
     end
 end
 
-local function MakeFullFn(inst)
+local function MakeFull(inst)
     if inst.components.pickable.cycles_left <= 0 then
         inst.components.workable:SetWorkLeft(1)
     end
 end
 
-local function MakeBarrenFn(inst)
+local function MakeBarren(inst)
     inst:RemoveTag("dungpile")
     inst.persists = false
     inst.components.workable.workleft = 0
@@ -79,7 +79,7 @@ local function MakeBarrenFn(inst)
     inst.SoundEmitter:PlaySound("dontstarve/common/food_rot")
 end
 
-local function GetRegenTimeFn(inst)
+local function GetRegenTime(inst)
     return 0
 end
 
@@ -173,15 +173,16 @@ local function fn()
     inst.components.workable:SetOnFinishCallback(OnFinishCallback)
     inst.components.workable:SetOnWorkCallback(OnWorkCallback)
 
-    inst:AddComponent("pickable").
+    inst:AddComponent("pickable")
+    inst.components.pickable.picksound = "dontstarve/wilson/harvest_berries"
     inst.components.pickable.max_cycles = 3
     inst.components.pickable.cycles_left = inst.components.pickable.max_cycles
     inst.components.pickable.transplanted = true
     inst.components.pickable:SetUp(nil, 0)
-    inst.components.pickable.onpickedfn = OnPickedFn
-    inst.components.pickable.getregentimefn = GetRegenTimeFn
-    inst.components.pickable.makefullfn = MakeFullFn
-    inst.components.pickable.makebarrenfn = MakeBarrenFn
+    inst.components.pickable.onpickedfn = OnPicked
+    inst.components.pickable.getregentimefn = GetRegenTime
+    inst.components.pickable.makefullfn = MakeFull
+    inst.components.pickable.makebarrenfn = MakeBarren
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "dungbeetle"
