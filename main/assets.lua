@@ -31,6 +31,8 @@ PrefabFiles = {
     "weevole_carapace",
     "weevole",
     "basefan",
+    "windtrail",
+    "windswirl",
 }
 
 Assets = {

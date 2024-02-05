@@ -5,6 +5,7 @@ GLOBAL.setfenv(1, GLOBAL)
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
+    "blowinwind",
     "clock",
     "colourcube",
     "combat",
@@ -30,12 +31,16 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "blowinhurricane",
+    "blowinwindgust",
     "buff_workeffectiveness",
+    "firepit",
     "player",
     "player_classified",
     "woodie",
     "world_network",
     "shard_network",
+    "walls",
     "wormwood",
 }
 

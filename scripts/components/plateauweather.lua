@@ -417,6 +417,14 @@ return Class(function(self, inst)
     --[[ Private event handlers ]]
     --------------------------------------------------------------------------
 
+    local function OnseasonChange(src, new_season)
+        if new_season == SEASONS.LUSH then
+            _world.components.plateauwind:StartWind()
+        else
+            _world.components.plateauwind:StopWind()
+        end
+    end
+
     local function OnSeasonTick(src, data)
         _season = data.season
         _seasonprogress = data.progress
@@ -676,6 +684,8 @@ return Class(function(self, inst)
     inst:ListenForEvent("playeractivated", OnPlayerActivated, _world)
     inst:ListenForEvent("playerdeactivated", OnPlayerDeactivated, _world)
 
+    inst:WatchWorldState("season", OnseasonChange)
+
     if _ismastersim then
         -- Initialize master simulation variables
         _moisturerateval = 1
@@ -910,6 +920,12 @@ return Class(function(self, inst)
                         _fogstate:set(FOG_STATE.CLEAR)
                     end
                 end
+            end
+        end
+
+        if _season == SEASONS.LUSH then
+            if _world.components.plateauwind then
+                _world.components.plateauwind.UpdateDynamicWind(dt, _seasonprogress)
             end
         end
 
