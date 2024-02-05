@@ -25,6 +25,10 @@ return {
             SLEEPING = "Rest is a must.",
             UNDUNGED = "It looks like the loss of a loved one.",
         },
+        DUNGPILE = {
+            GENERIC = "Ugh, gross.",
+            PICKED = "I thought it was over?",
+        },
         FLOWER_RAINFOREST = "I have never seen such flowers.",
         GLOWFLY = {
             DEAD = "It's broken.",

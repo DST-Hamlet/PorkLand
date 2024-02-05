@@ -25,6 +25,10 @@ return {
             SLEEPING = "Too much o' the grog?",
             UNDUNGED = "Th'foul stench follows ye.",
         },
+        DUNGPILE = {
+            GENERIC = "Foul.",
+            PICKED = "Argh! Sweet seawat'r could'na cleanse me now.",
+        },
         FLOWER_RAINFOREST = "Ol'Woodlegs na'got use fer'it.",
         GLOWFLY = {
             DEAD = "Tells no tales.",

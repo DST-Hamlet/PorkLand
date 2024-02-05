@@ -25,6 +25,10 @@ return {
             SLEEPING = "May her dreams be as foul as the spheres she rides.",
             UNDUNGED = "She has been thrown from her foul mount!",
         },
+        DUNGPILE = {
+            GENERIC = "Surely this came from a giant's backside!",
+            PICKED = "It has been picked through.",
+        },
         FLOWER_RAINFOREST = "A blossom most lovely.",
         GLOWFLY = {
             DEAD = "Alas, it is dead.",

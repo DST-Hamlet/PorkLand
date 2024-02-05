@@ -25,6 +25,10 @@ return {
             SLEEPING = "IT SHUT DOWN",
             UNDUNGED = "NO LONGER CONTAINS WASTE",
         },
+        DUNGPILE = {
+            GENERIC = "MEATSACKS ARE REPULSIVE",
+            PICKED = "I AM SLIGHTLY REPULSIVE TOO",
+        },
         FLOWER_RAINFOREST = "I HATE IT",
         GLOWFLY = {
             DEAD = "IT HAS BEEN TURNED OFF",

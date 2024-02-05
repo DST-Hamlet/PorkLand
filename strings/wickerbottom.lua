@@ -25,6 +25,10 @@ return {
             SLEEPING = "At rest.",
             UNDUNGED = "She's lost her dung.",
         },
+        DUNGPILE = {
+            GENERIC = "Scarabaeidae will make short work of it.",
+            PICKED = "Odious, yet useful.",
+        },
         FLOWER_RAINFOREST = "Floral cross-pollination produces some fascinating specimens.",
         GLOWFLY = {
             DEAD = "Its existence has reached an end.",

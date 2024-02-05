@@ -25,6 +25,10 @@ return {
             SLEEPING = "Shhh...",
             UNDUNGED = "Where's poop?",
         },
+        DUNGPILE = {
+            GENERIC = "Poop!",
+            PICKED = "Aw. No more poop",
+        },
         FLOWER_RAINFOREST = "Dirt made a friend",
         GLOWFLY = {
             DEAD = "(sob)",

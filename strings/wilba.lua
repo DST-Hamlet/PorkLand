@@ -26,6 +26,10 @@ return {
             SLEEPING = "SLEEP NO MORE!",
             UNDUNGED = "HAS'T NAUGHT THE PLOPS",
         },
+        DUNGPILE = {
+            GENERIC = "WILBA AM SICK WHEN SHE LOOK ON THEE",
+            PICKED = "HAST BEEN PICK'DED THROUGH",
+        },
         FLOWER_RAINFOREST = "MANY COLOR'D FLOWERS FOR WILBA",
         GLOWFLY = {
             DEAD = "'TIS SQUISH'DED",

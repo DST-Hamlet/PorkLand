@@ -25,6 +25,10 @@ return {
             SLEEPING = "How do you sleep with that smell?",
             UNDUNGED = "You better run.",
         },
+        DUNGPILE = {
+            GENERIC = "Haha, that pile's huge!",
+            PICKED = "What? I needed it.",
+        },
         FLOWER_RAINFOREST = "It's kinda ugly. But it burns.",
         GLOWFLY = {
             DEAD = "Squashed.",

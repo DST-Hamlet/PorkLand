@@ -24,6 +24,10 @@ return {
             SLEEPING = "I thought they would have a loud purring sound.",
             UNDUNGED = "Please stop do that.",
         },
+        DUNGPILE = {
+            GENERIC = "The stench is overwhelming...",
+            PICKED = "Still there?",
+        },
         FLOWER_RAINFOREST = "There is a wild beauty.",
         GLOWFLY = {
             DEAD = "sorry.",

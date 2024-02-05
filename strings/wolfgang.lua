@@ -25,6 +25,10 @@ return {
             SLEEPING = "Is pooped.",
             UNDUNGED = "Bug fell off ball of poop.",
         },
+        DUNGPILE = {
+            GENERIC = "Is more smelly than armpit.",
+            PICKED = "All gone. For now.",
+        },
         FLOWER_RAINFOREST = "Little smelly flower.",
         GLOWFLY = {
             DEAD = "Light bug is lights out.",
