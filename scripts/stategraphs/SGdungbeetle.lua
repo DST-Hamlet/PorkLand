@@ -508,7 +508,7 @@ local states = {
             inst:ClearBufferedAction()
             inst.AnimState:PlayAnimation("fall_off_pre")
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/dungbeetle/crash")
-            inst.components.locomotor.runspeed = -TUNING.DUNG_BEETLE_RUN_SPEED
+            inst.components.locomotor.runspeed = -TUNING.DUNGBEETLE_RUN_SPEED
             inst.components.locomotor:RunForward()
 
             if dead then
@@ -523,7 +523,7 @@ local states = {
         },
 
         onexit = function(inst)
-            inst.components.locomotor.runspeed = TUNING.DUNG_BEETLE_RUN_SPEED
+            inst.components.locomotor.runspeed = TUNING.DUNGBEETLE_RUN_SPEED
             inst.Physics:Stop()
         end,
     },
