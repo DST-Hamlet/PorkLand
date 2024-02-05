@@ -31,9 +31,9 @@ return {
             GENERIC = "The obstinacy of this grass requires something sharper than my hands.",
             PICKED = "Previously experience suggests this will grow back.",
         },
-        MACHETE = "A pragmatic tool for slashing objects.",
         HALBERD = "A marvelously versatile instrument capable of causing incredible harm!",
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
+        MACHETE = "A pragmatic tool for slashing objects.",
         PEAGAWK = {
             DEAD = "Evidently, it didn't see that coming.",
             GENERIC = "Curious. Can it see out of all of those ocular quills?",

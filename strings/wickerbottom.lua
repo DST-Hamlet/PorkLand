@@ -31,9 +31,9 @@ return {
             GENERIC = "I need an implement for that.",
             PICKED = "That required not insignificant effort.",
         },
-        MACHETE = "Used for hacking through the brush.",
         HALBERD = "It is a cruel and versatile weapon.",
         IRON = "Ferrum.",
+        MACHETE = "Used for hacking through the brush.",
         PEAGAWK = {
             DEAD = "Lifeless.",
             GENERIC = "A strangely mutated Pavo Cristatus.",

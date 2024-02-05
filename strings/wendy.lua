@@ -31,9 +31,9 @@ return {
             GENERIC = "Alas, I'm too weak to pick it.",
             PICKED = "All things end.",
         },
-        MACHETE = "This is a lot of blade.",
         HALBERD = "A terrible weapon for a terrible world.",
         IRON = "Iron. Like my heart.",
+        MACHETE = "This is a lot of blade.",
         PEAGAWK = {
             DEAD = "Beautiful death.",
             GENERIC = "Many eyes witness many horrors in life.",

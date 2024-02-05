@@ -31,9 +31,9 @@ return {
             GENERIC = "It's too tough to pick with my hands.",
             PICKED = "Looks like I got it all.",
         },
-        MACHETE = "I like the cut of this blade.",
         HALBERD = "Now I can't be caught off-guard.",
         IRON = "Isn't it ironic?",
+        MACHETE = "I like the cut of this blade.",
         PEAGAWK = {
             DEAD = "Dead-eyed.",
             GENERIC = "That bush is alive!",

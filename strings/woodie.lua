@@ -31,9 +31,9 @@ return {
             GENERIC = "Don't worry your head aboot this one, Lucy.",
             PICKED = "Got all I could.",
         },
-        MACHETE = "Ooh, that's a thing for chopping.",
         HALBERD = "Well, it's no axe.",
         IRON = "Can't chop this too well.",
+        MACHETE = "Ooh, that's a thing for chopping.",
         PEAGAWK = {
             DEAD = "It's a goner.",
             GENERIC = "Filthy animal!",

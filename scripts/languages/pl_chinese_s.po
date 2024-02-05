@@ -135,11 +135,6 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Looks like I got it all."
 msgstr "看起来我把它们全摘完了。"
 
-#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE"
-msgid "I like the cut of this blade."
-msgstr "我喜欢这把刀的切口。"
-
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALBERD"
 msgid "Now I can't be caught off-guard."
@@ -149,6 +144,11 @@ msgstr "现在我不是手无寸铁的了。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON"
 msgid "Isn't it ironic?"
 msgstr "老铁，这不搞笑吗？"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE"
+msgid "I like the cut of this blade."
+msgstr "我喜欢这把刀的切口。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD"
@@ -345,11 +345,6 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Previously experience suggests this will grow back."
 msgstr "根据之前的经验，它很快会再长回来的。"
 
-#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE"
-msgid "A pragmatic tool for slashing objects."
-msgstr "一个非常实用的切割工具。"
-
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.HALBERD"
 msgid "A marvelously versatile instrument capable of causing incredible harm!"
@@ -359,6 +354,11 @@ msgstr "一种多功能的器具，能造成不可思议的伤害。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON"
 msgid "Marvelous! Iron is invaluable for manufacturing the tools I need!"
 msgstr "了不起！铁是我制造器具的必需品，铁是无价的！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE"
+msgid "A pragmatic tool for slashing objects."
+msgstr "一个非常实用的切割工具。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD"
@@ -560,11 +560,6 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GRASS_TALL.PICKED"
 msgid "I deserve a nap after that."
 msgstr "采完之后我应该小睡一会儿。"
 
-#. STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE"
-msgid "What a hack job."
-msgstr "开砍。"
-
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.HALBERD"
 msgid "You could poke an eye out on this thing!"
@@ -574,6 +569,11 @@ msgstr "你可以拿它去耀武扬威！"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON"
 msgid "This has gotta be good for something."
 msgstr "它会在某些地方派上用场的。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE"
+msgid "What a hack job."
+msgstr "开砍。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD"
@@ -770,11 +770,6 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Collect again after a while."
 msgstr "过一段时间再来采集吧。"
 
-#. STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE"
-msgid "I like the cut of this blade."
-msgstr "我喜欢这把刀的切割。"
-
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.HALBERD"
 msgid "A huge ax!"
@@ -784,6 +779,11 @@ msgstr "一把巨大的斧头！"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON"
 msgid "Is that iron?"
 msgstr "那是铁吗？"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE"
+msgid "I like the cut of this blade."
+msgstr "我喜欢这把刀的切割。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC"
@@ -975,11 +975,6 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Over time, it will grow back."
 msgstr "假以时日，它还会长回来的。"
 
-#. STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE"
-msgid "It's for chopping, simple as that."
-msgstr "就是用来切菜的，就这么简单。"
-
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.HALBERD"
 msgid "I'm not planning on murdering grove of trees."
@@ -989,6 +984,11 @@ msgstr "我的对手可不是一片树林。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON"
 msgid "An essential material for accurate timepieces."
 msgstr "精确钟表的必备材料。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE"
+msgid "It's for chopping, simple as that."
+msgstr "就是用来切菜的，就这么简单。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC"
@@ -1180,11 +1180,6 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GRASS_TALL.PICKED"
 msgid "It will have to grow back."
 msgstr "它会长回来的。"
 
-#. STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE"
-msgid "I could chop many an onion with this!"
-msgstr "有了这个，我可以切很多洋葱！"
-
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.HALBERD"
 msgid "I dislike fighting."
@@ -1194,6 +1189,11 @@ msgstr "我讨厌打斗。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON"
 msgid "I wonder what I could cook up with this."
 msgstr "我好奇我能用这个烹饪出什么。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE"
+msgid "I could chop many an onion with this!"
+msgstr "有了这个，我可以切很多洋葱！"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD"
@@ -1390,11 +1390,6 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRASS_TALL.PICKED"
 msgid "I have defeated it!"
 msgstr "我征服了它！"
 
-#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE"
-msgid "A fine length of blade."
-msgstr "长度适中的刀。"
-
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.HALBERD"
 msgid "Tis no spear, yet is still valorous!"
@@ -1404,6 +1399,11 @@ msgstr "这不是长矛，但是它依然很英勇！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON"
 msgid "Material for metalwork."
 msgstr "制造金属制品的材料。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE"
+msgid "A fine length of blade."
+msgstr "长度适中的刀。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD"
@@ -1600,11 +1600,6 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRASS_TALL.PICKED"
 msgid "I don't require any more grass, thank you."
 msgstr "我不需要更多的草了，谢谢。"
 
-#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE"
-msgid "Truthfully I was always a hack."
-msgstr "说实话，我用刀的功夫一直不怎么样。"
-
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.HALBERD"
 msgid "A blade as sharp as my wit."
@@ -1614,6 +1609,11 @@ msgstr "像我的智慧一般锐利的利刃。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON"
 msgid "A solid mineral."
 msgstr "一块坚固的矿物质。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE"
+msgid "Truthfully I was always a hack."
+msgstr "说实话，我用刀的功夫一直不怎么样。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD"
@@ -1810,11 +1810,6 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRASS_TALL.PICKED"
 msgid "It's been picked."
 msgstr "它被选中了。"
 
-#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE"
-msgid "Hyah! Hyah!"
-msgstr "嘿！哈！"
-
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.HALBERD"
 msgid "Swoosh!"
@@ -1824,6 +1819,11 @@ msgstr "刷刷！"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON"
 msgid "We could make all kinds of neat stuff with this."
 msgstr "我打赌我们可以用这做各种各样的东西。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE"
+msgid "Hyah! Hyah!"
+msgstr "嘿！哈！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD"
@@ -2020,11 +2020,6 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GRASS_TALL.PICKED"
 msgid "All things end."
 msgstr "一切都结束了。"
 
-#. STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE"
-msgid "This is a lot of blade."
-msgstr "刀刃很长。"
-
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.HALBERD"
 msgid "A terrible weapon for a terrible world."
@@ -2034,6 +2029,11 @@ msgstr "对抗恐怖世界的恐怖武器。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON"
 msgid "Iron. Like my heart."
 msgstr "坚硬的铁，像我的心脏一样。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE"
+msgid "This is a lot of blade."
+msgstr "刀刃很长。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD"
@@ -2230,11 +2230,6 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRASS_TALL.PICKED"
 msgid "It'll be overgrown in no time."
 msgstr "很快就能长回来的。"
 
-#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE"
-msgid "Machete. Designed for adventure."
-msgstr "砍刀。专为冒险而造。"
-
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.HALBERD"
 msgid "The must-have multi-tool for adventurers."
@@ -2244,6 +2239,11 @@ msgstr "冒险家必备的多功能工具。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON"
 msgid "Well it's not good balloon material."
 msgstr "它不是一个造热气球的好材料。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE"
+msgid "Machete. Designed for adventure."
+msgstr "砍刀。专为冒险而造。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD"
@@ -2440,11 +2440,6 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRASS_TALL.PICKED"
 msgid "That required not insignificant effort."
 msgstr "这可费了不少力气。"
 
-#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE"
-msgid "Used for hacking through the brush."
-msgstr "用于在灌木丛中开路。"
-
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.HALBERD"
 msgid "It is a cruel and versatile weapon."
@@ -2454,6 +2449,11 @@ msgstr "一把残忍而又实用的武器。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON"
 msgid "Ferrum."
 msgstr "铁。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE"
+msgid "Used for hacking through the brush."
+msgstr "用于在灌木丛中开路。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD"
@@ -2655,11 +2655,6 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GRASS_TALL.PICKED"
 msgid "THE LONG AND SHORT OF IT"
 msgstr "总而言之它从长变短了"
 
-#. STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE"
-msgid "YON SLASHY TOOL"
-msgstr "那是切割的工具"
-
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.HALBERD"
 msgid "WILBA SHALL SLICE AND CHOP!"
@@ -2669,6 +2664,11 @@ msgstr "薇尔芭应该切割和劈砍！"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON"
 msgid "'TIS METAL O' THE ZAPPY BIRD"
 msgstr "这是活泼的鸟儿身上的金属"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE"
+msgid "YON SLASHY TOOL"
+msgstr "那是切割的工具"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD"
@@ -2865,11 +2865,6 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Not tough enough!"
 msgstr "还不够强硬！"
 
-#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE"
-msgid "Or I could just burn my way through."
-msgstr "或者我可以烧出一条路来。"
-
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.HALBERD"
 msgid "Weapons are only good if they're twice your size."
@@ -2879,6 +2874,11 @@ msgstr "比你大两倍的武器才是好武器。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON"
 msgid "I can't burn it with just my lighter."
 msgstr "我的打火机点不着它。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE"
+msgid "Or I could just burn my way through."
+msgstr "或者我可以烧出一条路来。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD"
@@ -3075,11 +3075,6 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GRASS_TALL.PICKED"
 msgid "All work is done."
 msgstr "所有的工作都完成了。"
 
-#. STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE"
-msgid "Hack and slash! Working's always fun."
-msgstr "砍杀！工作总是充满乐趣。"
-
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.HALBERD"
 msgid "More suited to combat than to work."
@@ -3089,6 +3084,11 @@ msgstr "更适合战斗而不是工作。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON"
 msgid "Invaluable material for manufacturing useful tools."
 msgstr "用于制造有用工具的宝贵材料。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE"
+msgid "Hack and slash! Working's always fun."
+msgstr "砍杀！工作总是充满乐趣。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC"
@@ -3280,11 +3280,6 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Wolfgang is mightiest!"
 msgstr "沃尔夫冈才是最强大的！"
 
-#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE"
-msgid "Ah! Very good!"
-msgstr "啊！太好了！"
-
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.HALBERD"
 msgid "Sword is for weak no-muscle men."
@@ -3294,6 +3289,11 @@ msgstr "只有弱小又没有肌肉的人才会用剑。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON"
 msgid "Iron is strong like Wolfgang."
 msgstr "铁就和沃尔夫冈一样强壮。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE"
+msgid "Ah! Very good!"
+msgstr "啊！太好了！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD"
@@ -3490,11 +3490,6 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Got all I could."
 msgstr "我尽量把他们都拿到手了。"
 
-#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE"
-msgid "Ooh, that's a thing for chopping."
-msgstr "哇哦，它可以用来砍东西。"
-
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.HALBERD"
 msgid "Well, it's no axe."
@@ -3504,6 +3499,11 @@ msgstr "额，这不是斧头。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON"
 msgid "Can't chop this too well."
 msgstr "不能把它切地很平整。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE"
+msgid "Ooh, that's a thing for chopping."
+msgstr "哇哦，它可以用来砍东西。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD"
@@ -3700,11 +3700,6 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Plunder'd."
 msgstr "被洗劫了。"
 
-#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE"
-msgid "Ye be slicin'!"
-msgstr "肆意地砍吧！"
-
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.HALBERD"
 msgid "T'ain't no cutlass."
@@ -3714,6 +3709,11 @@ msgstr "这不是海盗短剑。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON"
 msgid "'Tis not gold, but a treasure nonetheless."
 msgstr "这不是黄金，但至少是个宝贝。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE"
+msgid "Ye be slicin'!"
+msgstr "肆意地砍吧！"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD"
@@ -3910,11 +3910,6 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Keep growing!"
 msgstr "继续长吧！"
 
-#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE"
-msgid "Slicer. For friend haircuts"
-msgstr "切割工具，给朋友剪头发用的"
-
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.HALBERD"
 msgid "Twirly Tail Fight Stick"
@@ -3924,6 +3919,11 @@ msgstr "卷尾巴的战斗棒"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON"
 msgid "Clinky Rock"
 msgstr "熟料岩"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE"
+msgid "Slicer. For friend haircuts"
+msgstr "切割工具，给朋友剪头发用的"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD"
@@ -4115,11 +4115,6 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRASS_TALL.PICKED"
 msgid "Gone, all gone."
 msgstr "没了，全没了。"
 
-#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE"
-msgid "To chop and slash!"
-msgstr "砍和砍！"
-
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.HALBERD"
 msgid "What a vicious weapon."
@@ -4129,6 +4124,11 @@ msgstr "真是把恶毒的武器。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON"
 msgid "Oooh. Almost burned me."
 msgstr "哦。差点烧死我了。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE"
+msgid "To chop and slash!"
+msgstr "砍和砍！"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC"
@@ -4320,11 +4320,6 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GRASS_TALL.PICKED"
 msgid "It has been cut clean."
 msgstr "已经割干净了。"
 
-#. STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE"
-msgid "Plant hacker."
-msgstr "植物砍刀。"
-
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.HALBERD"
 msgid "Strange weapon used by Pigfolk."
@@ -4334,6 +4329,11 @@ msgstr "猪人用的奇怪武器。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.IRON"
 msgid "Red hard rock."
 msgstr "红色坚硬的岩石。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE"
+msgid "Plant hacker."
+msgstr "植物砍刀。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC"
@@ -4525,11 +4525,6 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GRASS_TALL.PICKED"
 msgid "GROUND PARTS PREVIOUSLY ACQUIRED"
 msgstr "获得原地面部分"
 
-#. STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE
-msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE"
-msgid "A LONG BLADE FOR EXPERT HACKING"
-msgstr "用于进行专业劈砍的长刀"
-
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.HALBERD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.HALBERD"
 msgid "AN EVIL KILLING IMPLEMENT"
@@ -4539,6 +4534,11 @@ msgstr "一个邪恶的杀戮工具"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.IRON"
 msgid "HELLO FRIEND"
 msgstr "你好，朋友"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE"
+msgid "A LONG BLADE FOR EXPERT HACKING"
+msgstr "用于进行专业劈砍的长刀"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD"
@@ -4685,11 +4685,6 @@ msgctxt "STRINGS.NAMES.GRASS_TALL"
 msgid "Tall Grass"
 msgstr "高草"
 
-#. STRINGS.NAMES.MACHETE
-msgctxt "STRINGS.NAMES.MACHETE"
-msgid "Machete"
-msgstr "砍刀"
-
 #. STRINGS.NAMES.HALBERD
 msgctxt "STRINGS.NAMES.HALBERD"
 msgid "Halberd"
@@ -4699,6 +4694,11 @@ msgstr "戟"
 msgctxt "STRINGS.NAMES.IRON"
 msgid "Iron Ore"
 msgstr "铁矿石"
+
+#. STRINGS.NAMES.MACHETE
+msgctxt "STRINGS.NAMES.MACHETE"
+msgid "Machete"
+msgstr "砍刀"
 
 #. STRINGS.NAMES.PEAGAWK
 msgctxt "STRINGS.NAMES.PEAGAWK"
@@ -4755,25 +4755,25 @@ msgctxt "STRINGS.RECIPE_DESC.ARMOR_WEEVOLE"
 msgid "Kinda gross, but surprisingly strong."
 msgstr "有点恶心，但出奇的\n强。"
 
-#. STRINGS.RECIPE_DESC.GOLDENMACHETE
-msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"
-msgid "Hack stuff in STYLE!"
-msgstr "砍东西也要有格调！"
-
-#. STRINGS.RECIPE_DESC.MACHETE
-msgctxt "STRINGS.RECIPE_DESC.MACHETE"
-msgid "Hack stuff!"
-msgstr "砍东西！"
-
 #. STRINGS.RECIPE_DESC.BASEFAN
 msgctxt "STRINGS.RECIPE_DESC.BASEFAN"
 msgid "Relieves hay fever, keeps you dry."
 msgstr "缓解花粉症，保持干\n燥。"
 
+#. STRINGS.RECIPE_DESC.GOLDENMACHETE
+msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"
+msgid "Hack stuff in STYLE!"
+msgstr "砍东西也要有格调！"
+
 #. STRINGS.RECIPE_DESC.HALBERD
 msgctxt "STRINGS.RECIPE_DESC.HALBERD"
 msgid "Pointy and hurty."
 msgstr "锋利而伤人。"
+
+#. STRINGS.RECIPE_DESC.MACHETE
+msgctxt "STRINGS.RECIPE_DESC.MACHETE"
+msgid "Hack stuff!"
+msgstr "砍东西！"
 
 #. STRINGS.RECIPE_DESC.SHEARS
 msgctxt "STRINGS.RECIPE_DESC.SHEARS"
@@ -4939,3 +4939,4 @@ msgstr "繁茂季"
 msgctxt "STRINGS.UI.SERVERLISTINGSCREEN.SEASONS.TEMPERATE"
 msgid "Temperate"
 msgstr "平和季"
+

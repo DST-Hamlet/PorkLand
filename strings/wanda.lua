@@ -31,9 +31,9 @@ return {
             GENERIC = "Grasses this tough are indeed uncommon.",
             PICKED = "Over time, it will grow back.",
         },
-        MACHETE = "It's for chopping, simple as that.",
         HALBERD = "I'm not planning on murdering grove of trees.",
         IRON = "An essential material for accurate timepieces.",
+        MACHETE = "It's for chopping, simple as that.",
         PEAGAWK = {
             GENERIC = "See no evil!",
             SLEEPING = "Shouldn't it be looking at me?",

@@ -31,9 +31,9 @@ return {
             GENERIC = "Oh, joyous occasion. I've found grass.",
             PICKED = "I don't require any more grass, thank you.",
         },
-        MACHETE = "Truthfully I was always a hack.",
         HALBERD = "A blade as sharp as my wit.",
         IRON = "A solid mineral.",
+        MACHETE = "Truthfully I was always a hack.",
         PEAGAWK = {
             DEAD = "It's beauty has been snuffed out forever.",
             GENERIC = "What a regal-looking beast.",

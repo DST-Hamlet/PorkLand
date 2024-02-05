@@ -31,9 +31,9 @@ return {
             GENERIC = "You're so tall!",
             PICKED = "Keep growing!",
         },
-        MACHETE = "Slicer. For friend haircuts",
         HALBERD = "Twirly Tail Fight Stick",
         IRON = "Clinky Rock",
+        MACHETE = "Slicer. For friend haircuts",
         PEAGAWK = {
             DEAD = "Oh dear",
             GENERIC = "Gubble Gubble Tweeter",

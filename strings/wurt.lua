@@ -31,9 +31,9 @@ return {
             GENERIC = "Greer... can't move.",
             PICKED = "It has been cut clean.",
         },
-        MACHETE = "Plant hacker.",
         HALBERD = "Strange weapon used by Pigfolk.",
         IRON = "Red hard rock.",
+        MACHETE = "Plant hacker.",
         PEAGAWK = {
             GENERIC = "Big weird bird.",
             SLEEPING = "The big monster fell asleep?",

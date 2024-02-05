@@ -31,9 +31,9 @@ return {
             GENERIC = "Too long to cut with my hands.",
             PICKED = "It will have to grow back.",
         },
-        MACHETE = "I could chop many an onion with this!",
         HALBERD = "I dislike fighting.",
         IRON = "I wonder what I could cook up with this.",
+        MACHETE = "I could chop many an onion with this!",
         PEAGAWK = {
             DEAD = "A pointless death.",
             GENERIC = "Those feathers would make a nice table centerpiece.",
