@@ -123,6 +123,15 @@ function ACTIONS.COOK.stroverridefn(act, ...)
     end
 end
 
+local _PICK_strfn = ACTIONS.PICK.strfn
+ACTIONS.PICK.strfn = function(act, ...)
+    if act.target and act.target:HasTag("pickable_digin_str") then
+        return "DIGIN"
+    elseif _PICK_strfn then
+        return _PICK_strfn(act, ...)
+    end
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world

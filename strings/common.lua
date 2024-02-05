@@ -1,6 +1,9 @@
 return {
     ACTIONS = {
         HACK = "Hack",
+        PICK = {
+            DIGIN = "Dig in",
+        },
         SHEAR = "Shear",
         SMELT = "Smelt",
     },

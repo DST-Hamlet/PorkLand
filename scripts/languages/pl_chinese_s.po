@@ -10,6 +10,11 @@ msgctxt "STRINGS.ACTIONS.HACK"
 msgid "Hack"
 msgstr "砍"
 
+#. STRINGS.ACTIONS.PICK.DIGIN
+msgctxt "STRINGS.ACTIONS.PICK.DIGIN"
+msgid "Dig in"
+msgstr "挖掘"
+
 #. STRINGS.ACTIONS.SHEAR
 msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
@@ -6319,3 +6324,4 @@ msgstr "繁茂季"
 msgctxt "STRINGS.UI.SERVERLISTINGSCREEN.SEASONS.TEMPERATE"
 msgid "Temperate"
 msgstr "平和季"
+

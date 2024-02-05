@@ -145,7 +145,7 @@ local function fn()
     inst.MiniMapEntity:SetIcon("dung_pile.tex")
 
     inst:AddTag("dungpile")
-    inst:AddTag("pick_digin")
+    inst:AddTag("pickable_digin_str")
 
     inst.AnimState:SetBank("dung_pile")
     inst.AnimState:SetBuild("dung_pile")
