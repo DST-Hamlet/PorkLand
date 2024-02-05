@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "Aww... It's wrapped up all nice and cozy.",
         GOLDENMACHETE = "For the sophisticated adventurer.",
+        GRABBING_VINE = "If I didn't know any better, I'd think that vine wants my stuff.",
         GRASS_TALL = {
             BURNING = "All those bugs have nowhere to hide now.",
             GENERIC = "Tall grass like that is going to need a machete.",
             PICKED = "It'll be overgrown in no time.",
         },
         HALBERD = "The must-have multi-tool for adventurers.",
+        HANGING_VINE = "Vines. Gotta love 'em.",
         IRON = "Well it's not good balloon material.",
         MACHETE = "Machete. Designed for adventure.",
         PEAGAWK = {

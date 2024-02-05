@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "We'd better get out of here before it breaks out of its cocoon.",
         GOLDENMACHETE = "What else do you do with gold in a jungle island?",
+        GRABBING_VINE = "I really hope it was just a regular plant.",
         GRASS_TALL = {
             BURNING = "This is not good.",
             GENERIC = "Grasses this tough are indeed uncommon.",
             PICKED = "Over time, it will grow back.",
         },
         HALBERD = "I'm not planning on murdering grove of trees.",
+        HANGING_VINE = "I really hope it was just a regular plant.",
         IRON = "An essential material for accurate timepieces.",
         MACHETE = "It's for chopping, simple as that.",
         PEAGAWK = {

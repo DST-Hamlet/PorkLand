@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "The little bug wrapped itself up.",
         GOLDENMACHETE = "It better than normal hacker.",
+        GRABBING_VINE = "They're on top here.",
         GRASS_TALL = {
             BURNING = "Fire! Is fire!",
             GENERIC = "Greer... can't move.",
             PICKED = "It has been cut clean.",
         },
         HALBERD = "Strange weapon used by Pigfolk.",
+        HANGING_VINE = "They're on top here.",
         IRON = "Red hard rock.",
         MACHETE = "Plant hacker.",
         PEAGAWK = {

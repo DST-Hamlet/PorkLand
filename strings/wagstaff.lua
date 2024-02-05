@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "It appears to be undergoing some kind of transubstantiation.",
         GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",
+        GRABBING_VINE = "Kleptomaniac vegetation. How wonderful!",
         GRASS_TALL = {
             BURNING = "Evidently, grass here has the same flammability qualities as at home.",
             GENERIC = "The obstinacy of this grass requires something sharper than my hands.",
             PICKED = "Previously experience suggests this will grow back.",
         },
         HALBERD = "A marvelously versatile instrument capable of causing incredible harm!",
+        HANGING_VINE = "Kleptomaniac vegetation. How wonderful!",
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
         MACHETE = "A pragmatic tool for slashing objects.",
         PEAGAWK = {

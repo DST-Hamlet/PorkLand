@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "Bug look cozy.",
         GOLDENMACHETE = "Hoighty toighty knife!",
+        GRABBING_VINE = "Watch out for that tree!",
         GRASS_TALL = {
             BURNING = "Wolfgang is not doing that!",
             GENERIC = "Very sturdy grass.",
             PICKED = "Wolfgang is mightiest!",
         },
         HALBERD = "Sword is for weak no-muscle men.",
+        HANGING_VINE = "Watch out for that tree!",
         IRON = "Iron is strong like Wolfgang.",
         MACHETE = "Ah! Very good!",
         PEAGAWK = {

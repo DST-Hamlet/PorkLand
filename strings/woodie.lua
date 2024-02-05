@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "That looks comfy, eh?",
         GOLDENMACHETE = "It chops AND sparkles!",
+        GRABBING_VINE = "Don't trust that.",
         GRASS_TALL = {
             BURNING = "It caught fire.",
             GENERIC = "Don't worry your head aboot this one, Lucy.",
             PICKED = "Got all I could.",
         },
         HALBERD = "Well, it's no axe.",
+        HANGING_VINE = "Don't trust that.",
         IRON = "Can't chop this too well.",
         MACHETE = "Ooh, that's a thing for chopping.",
         PEAGAWK = {

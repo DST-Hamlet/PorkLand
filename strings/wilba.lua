@@ -43,12 +43,14 @@ return {
         },
         GLOWFLY_COCOON = "WRAPP'DED IN A BUGGY BLANKET",
         GOLDENMACHETE = "'TIS SHINY TOOL O' SLASHINGS",
+        GRABBING_VINE = "IT HOLDS FAST!",
         GRASS_TALL = {
             BURNING = "FWOOSH'DING",
             GENERIC = "AS LONG AS THE DAY IS MERRY",
             PICKED = "THE LONG AND SHORT OF IT",
         },
         HALBERD = "WILBA SHALL SLICE AND CHOP!",
+        HANGING_VINE = "HANG'D VINE",
         IRON = "'TIS METAL O' THE ZAPPY BIRD",
         MACHETE = "YON SLASHY TOOL",
         PEAGAWK = {

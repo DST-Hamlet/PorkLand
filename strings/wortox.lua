@@ -41,12 +41,14 @@ return {
         },
         GLOWFLY_COCOON = "What will become of it?",
         GOLDENMACHETE = "Fit for a sophisticated imp!",
+        GRABBING_VINE = "Hello, what do you want?",
         GRASS_TALL = {
             BURNING = "Oops, it's burning.",
             GENERIC = "Solid tall grass, really nice.",
             PICKED = "Gone, all gone.",
         },
         HALBERD = "What a vicious weapon.",
+        HANGING_VINE = "Hello, what do you want?",
         IRON = "Oooh. Almost burned me.",
         MACHETE = "To chop and slash!",
         PEAGAWK = {

@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "If I could climb into a cocoon I would never emerge.",
         GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
+        GRABBING_VINE = "The jungle's noose.",
         GRASS_TALL = {
             BURNING = "Death comes to everything.",
             GENERIC = "Alas, I'm too weak to pick it.",
             PICKED = "All things end.",
         },
         HALBERD = "A terrible weapon for a terrible world.",
+        HANGING_VINE = "The jungle's noose.",
         IRON = "Iron. Like my heart.",
         MACHETE = "This is a lot of blade.",
         PEAGAWK = {

@@ -43,12 +43,14 @@ return {
         },
         GLOWFLY_COCOON = "Ah, metamorphosis...",
         GOLDENMACHETE = "I've always wanted to hack things in luxury.",
+        GRABBING_VINE = "I know the ropes.",
         GRASS_TALL = {
             BURNING = "Well, there you have it.",
             GENERIC = "Oh, joyous occasion. I've found grass.",
             PICKED = "I don't require any more grass, thank you.",
         },
         HALBERD = "A blade as sharp as my wit.",
+        HANGING_VINE = "I know the ropes.",
         IRON = "A solid mineral.",
         MACHETE = "Truthfully I was always a hack.",
         PEAGAWK = {

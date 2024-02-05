@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "It has armored itself for sleep.",
         GOLDENMACHETE = "I shall swing you with pride.",
+        GRABBING_VINE = "Ropes hang from the heavens!",
         GRASS_TALL = {
             BURNING = "It burns!",
             GENERIC = "Surely it is the grass of Jotunheim!",
             PICKED = "I have defeated it!",
         },
         HALBERD = "Tis no spear, yet is still valorous!",
+        HANGING_VINE = "Ropes hang from the heavens!",
         IRON = "Material for metalwork.",
         MACHETE = "A fine length of blade.",
         PEAGAWK = {

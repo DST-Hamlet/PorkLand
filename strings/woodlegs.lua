@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "'e be sleepin' it off.",
         GOLDENMACHETE = "'Tis a mighty 'eavy blade.",
+        GRABBING_VINE = "Them be th'ropes.",
         GRASS_TALL = {
             BURNING = "'Tis ablaze!",
             GENERIC = "As tall'as th'sky.",
             PICKED = "Plunder'd.",
         },
         HALBERD = "T'ain't no cutlass.",
+        HANGING_VINE = "Them be th'ropes.",
         IRON = "'Tis not gold, but a treasure nonetheless.",
         MACHETE = "Ye be slicin'!",
         PEAGAWK = {

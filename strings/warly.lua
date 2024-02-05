@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "It's wrapped itself like a cabbage roll.",
         GOLDENMACHETE = "Fancy slicer.",
+        GRABBING_VINE = "How eerie.",
         GRASS_TALL = {
             BURNING = "Smells like a cookout!",
             GENERIC = "Too long to cut with my hands.",
             PICKED = "It will have to grow back.",
         },
         HALBERD = "I dislike fighting.",
+        HANGING_VINE = "How eerie.",
         IRON = "I wonder what I could cook up with this.",
         MACHETE = "I could chop many an onion with this!",
         PEAGAWK = {

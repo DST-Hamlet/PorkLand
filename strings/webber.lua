@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "That looks cozy.",
         GOLDENMACHETE = "What a beautiful blade!",
+        GRABBING_VINE = "Cool! Vines!",
         GRASS_TALL = {
             BURNING = "Fire!",
             GENERIC = "It's taller than we are!",
             PICKED = "It's been picked.",
         },
         HALBERD = "Swoosh!",
+        HANGING_VINE = "Cool! Vines!",
         IRON = "We could make all kinds of neat stuff with this.",
         MACHETE = "Hyah! Hyah!",
         PEAGAWK = {

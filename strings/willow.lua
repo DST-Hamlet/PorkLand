@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "Doing a bad job of hiding from me.",
         GOLDENMACHETE = "I don't want to scuff it up.",
+        GRABBING_VINE = "Ugh, vines!",
         GRASS_TALL = {
             BURNING = "I win.",
             GENERIC = "This grass is tough!",
             PICKED = "Not tough enough!",
         },
         HALBERD = "Weapons are only good if they're twice your size.",
+        HANGING_VINE = "Ugh, vines!",
         IRON = "I can't burn it with just my lighter.",
         MACHETE = "Or I could just burn my way through.",
         PEAGAWK = {

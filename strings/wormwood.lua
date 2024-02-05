@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "Changing",
         GOLDENMACHETE = "Pretty Slicer",
+        GRABBING_VINE = "Wants stuff",
         GRASS_TALL = {
             BURNING = "No!!",
             GENERIC = "You're so tall!",
             PICKED = "Keep growing!",
         },
         HALBERD = "Twirly Tail Fight Stick",
+        HANGING_VINE = "Wants stuff",
         IRON = "Clinky Rock",
         MACHETE = "Slicer. For friend haircuts",
         PEAGAWK = {

@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "Fascinating! It has moved on to the chrysalis stage.",
         GOLDENMACHETE = "The most malleable of metals, but let's see how it slices.",
+        GRABBING_VINE = "Hanging vines from the forest canopy.",
         GRASS_TALL = {
             BURNING = "Illuminating!",
             GENERIC = "I need an implement for that.",
             PICKED = "That required not insignificant effort.",
         },
         HALBERD = "It is a cruel and versatile weapon.",
+        HANGING_VINE = "Hanging vines from the forest canopy.",
         IRON = "Ferrum.",
         MACHETE = "Used for hacking through the brush.",
         PEAGAWK = {

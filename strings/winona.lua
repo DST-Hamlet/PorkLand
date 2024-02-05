@@ -42,12 +42,14 @@ return {
         },
         GLOWFLY_COCOON = "Change is happening.",
         GOLDENMACHETE = "This just made my job easier.",
+        GRABBING_VINE = "I saw a strong rope.",
         GRASS_TALL = {
             BURNING = "A Grass fire!",
             GENERIC = "That's some... very tall grass.",
             PICKED = "All work is done.",
         },
         HALBERD = "More suited to combat than to work.",
+        HANGING_VINE = "I saw a strong rope.",
         IRON = "Invaluable material for manufacturing useful tools.",
         MACHETE = "Hack and slash! Working's always fun.",
         PEAGAWK = {
