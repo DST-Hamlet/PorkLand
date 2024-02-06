@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Oops, so much pollen, it's going to be uncomfortable.",
     ANNOUNCE_HAYFEVER_OFF = "The pollen is gone. finally.",
+    ANNOUNCE_PICKPOOP = {
+        "Disgusting!",
+        "It's still warm!",
+        "My paws!",
+    },
     ANNOUNCE_SNEEZE = "(breathing) Ah chirp! Ahhhhhh!",
     ANNOUNCE_TOO_HUMID = {
         "I can't stand %s anymore!",
@@ -17,6 +22,17 @@ return {
         BASEFAN = "The breeze is blowing, so happy.",
         CHITIN = "The shell of those guys.",
         CUTNETTLE = "Just smelling it blows my nose.",
+        DUNGBALL = "Why would anyone like it?",
+        DUNGBEETLE = {
+            DEAD = "Sorry, ma'am.",
+            GENERIC = "Is that... poop?",
+            SLEEPING = "I thought they would have a loud purring sound.",
+            UNDUNGED = "Please stop do that.",
+        },
+        DUNGPILE = {
+            GENERIC = "The stench is overwhelming...",
+            PICKED = "Still there?",
+        },
         FLOWER_RAINFOREST = "There is a wild beauty.",
         GLOWFLY = {
             DEAD = "sorry.",
@@ -25,14 +41,16 @@ return {
         },
         GLOWFLY_COCOON = "What will become of it?",
         GOLDENMACHETE = "Fit for a sophisticated imp!",
+        GRABBING_VINE = "Hello, what do you want?",
         GRASS_TALL = {
             BURNING = "Oops, it's burning.",
             GENERIC = "Solid tall grass, really nice.",
             PICKED = "Gone, all gone.",
         },
-        MACHETE = "To chop and slash!",
         HALBERD = "What a vicious weapon.",
+        HANGING_VINE = "Hello, what do you want?",
         IRON = "Oooh. Almost burned me.",
+        MACHETE = "To chop and slash!",
         PEAGAWK = {
             GENERIC = "You must have seen a lot, right?",
             SLEEPING = "Huh, let's close our eyes and take a break?",
