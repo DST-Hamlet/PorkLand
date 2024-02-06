@@ -1,5 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+---@param minscale number
+---@param maxscale number
 function MakeBlowInHurricane(inst, minscale, maxscale)
 
     if not TheWorld:HasTag("porkland") then
@@ -10,10 +12,17 @@ function MakeBlowInHurricane(inst, minscale, maxscale)
         inst:AddComponent("blowinwind")
     end
 
-    inst.components.blowinwind:SetAverageSpeed(TUNING.WILSON_RUN_SPEED * 2)
+    inst.components.blowinwind:SetAverageSpeed(TUNING.WILSON_RUN_SPEED - 1)
     inst.components.blowinwind:SetMaxSpeedMult(minscale or 0.1)
     inst.components.blowinwind:SetMinSpeedMult(maxscale or 1.0)
     inst.components.blowinwind:Start()
+
+    -- inst.Physics:SetCollisionCallback(function(_, other)
+    --     local x, y, z = inst.Physics:GetMotorVel()
+    --     if other.prefab == "world" and  x > 0 then
+    --         inst.Physics:ClearCollidesWith(COLLISION.GROUND)
+    --     end
+    -- end)
 end
 
 function RemoveBlowInHurricane(inst)

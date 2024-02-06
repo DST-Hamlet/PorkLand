@@ -3,7 +3,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 AddComponentPostInit("worldwind", function(self)
 	self.windfx_spawn_rate = 0
-	self.windfx_spawn_pre_sec = 16 -- TODO scale with player number
+	self.windfx_spawn_pre_sec = 16 -- TODO(ziwbi): scale with player number
 
     function self:SpawnWindSwirl(x, y, z, speed, angle)
         local swirl = SpawnPrefab("windswirl")
@@ -15,8 +15,8 @@ AddComponentPostInit("worldwind", function(self)
     local OnUpdate = self.OnUpdate
     function self:OnUpdate(dt)
         OnUpdate(self, dt)
-        local windspeed = TheWorld.components.plateauwind:GetWindSpeed()
-        if windspeed > 0.01 and TheWorld.components.plateauwind:GetIsWindy() then
+        local windspeed = TheWorld.net.components.plateauwind:GetWindSpeed()
+        if windspeed > 0.01 and TheWorld.net.components.plateauwind:GetIsWindy() then
             self.windfx_spawn_rate = self.windfx_spawn_rate + self.windfx_spawn_pre_sec * dt
             if self.windfx_spawn_rate > 1.0 then
                 for _, player in pairs(AllPlayers) do

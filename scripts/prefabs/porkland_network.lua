@@ -16,6 +16,7 @@ local prefabs =
 local function custom_postinit(inst)
     inst:AddComponent("plateauweather")
     inst:AddComponent("worldplateautemperature")
+    inst:AddComponent("plateauwind")
 end
 
 return MakeWorldNetwork("porkland_network", prefabs, assets, custom_postinit)

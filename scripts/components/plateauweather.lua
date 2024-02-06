@@ -419,9 +419,9 @@ return Class(function(self, inst)
 
     local function OnseasonChange(src, new_season)
         if new_season == SEASONS.LUSH then
-            _world.components.plateauwind:StartWind()
+            _world.net.components.plateauwind:StartWind()
         else
-            _world.components.plateauwind:StopWind()
+            _world.net.components.plateauwind:StopWind()
         end
     end
 
@@ -924,8 +924,8 @@ return Class(function(self, inst)
         end
 
         if _season == SEASONS.LUSH then
-            if _world.components.plateauwind then
-                _world.components.plateauwind.UpdateDynamicWind(dt, _seasonprogress)
+            if _world.net.components.plateauwind then
+                _world.net.components.plateauwind.UpdateDynamicWind(dt, _seasonprogress)
             end
         end
 

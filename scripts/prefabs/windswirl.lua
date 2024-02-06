@@ -26,7 +26,7 @@ local function fn(Sim)
 	inst:ListenForEvent("entitysleep", inst.Remove)
 
     inst:DoPeriodicTask(0, function() -- hack hack hack
-        local speed = math.clamp(TheWorld.components.plateauwind:GetWindSpeed(), 0.0, 1.0)
+        local speed = math.clamp(TheWorld.net.components.plateauwind:GetWindSpeed(), 0.0, 1.0)
         inst.AnimState:SetMultColour(1, 1, 1, speed)
         if speed < 0.01 then
             inst:Remove()

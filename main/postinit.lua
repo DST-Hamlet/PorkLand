@@ -15,6 +15,7 @@ local component_posts = {
     "health",
     "inventory",
     "inventoryitem",
+    "locomotor",
     "lootdropper",
     "moisture",
     "playercontroller",

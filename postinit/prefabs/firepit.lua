@@ -7,8 +7,8 @@ local function updatefuelrate(inst)
     if TheWorld.state.israining and not inst.components.rainimmunity then
         rate = rate + TUNING.FIREPIT_RAIN_RATE * TheWorld.state.precipitationrate or 1
     end
-    if TheWorld.components.plateauwind and TheWorld.components.plateauwind:GetIsWindy() then
-        rate = rate + TheWorld.components.plateauwind:GetWindSpeed() * TUNING.FIREPIT_WIND_RATE
+    if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy() then
+        rate = rate + TheWorld.net.components.plateauwind:GetWindSpeed() * TUNING.FIREPIT_WIND_RATE
     end
     inst.components.fueled.rate = rate
 end

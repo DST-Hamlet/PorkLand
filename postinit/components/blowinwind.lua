@@ -72,9 +72,9 @@ AddComponentPostInit("blowinwind", function(self)
         end
 
         if TheWorld:HasTag("porkland") then
-            if TheWorld.components.plateauwind and TheWorld.components.plateauwind:GetIsWindy() then
-                local windspeed = TheWorld.components.plateauwind:GetWindSpeed() -- from 0 to 1
-                local windangle = TheWorld.components.worldwind:GetWindAngle() * DEGREES
+            if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy() then
+                local windspeed = TheWorld.net.components.plateauwind:GetWindSpeed() -- from 0 to 1
+                local windangle = TheWorld.net.components.worldwind:GetWindAngle() * DEGREES
                 self.velocity = Vector3(windspeed * math.cos(windangle), 0.0, windspeed * math.sin(windangle))
             else
                 self.velocity = self.velocity + (self.windVector * dt)
@@ -126,7 +126,6 @@ AddComponentPostInit("blowinwind", function(self)
 
         local x,y,z = self.inst.Transform:GetWorldPosition()
         local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-        -- TODO world limits
         if TileGroupManager:IsOceanTile(tile) then
             if self.inst.components.burnable and self.inst.components.burnable:IsBurning() then
                 self.inst.components.burnable:Extinguish() --Do this before anything that required the inventory item component, it gets removed when something is lit on fire and re-added when it's extinguished 
