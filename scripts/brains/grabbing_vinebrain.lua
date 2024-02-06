@@ -46,7 +46,7 @@ end
 local function GoEatFood(inst)
     if not IsUp(inst) then
         local target = FoodNear(inst)
-        if target and not target:IsInLimbo()  then
+        if target and not target:IsInLimbo() and target:IsValid() then
             return BufferedAction(inst, target, ACTIONS.EAT)
         end
     end
