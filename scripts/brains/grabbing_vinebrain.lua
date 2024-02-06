@@ -45,20 +45,9 @@ end
 
 local function GoEatFood(inst)
     if not IsUp(inst) then
-        local target = inst.foodtarget
-        if not target or not target:IsInLimbo() then
-            target = FoodNear(inst)
-        end
+        local target = FoodNear(inst)
         if target and not target:IsInLimbo()  then
-            inst.foodtarget = target
-            local target_pos = target:GetPosition()
-            local pos = inst:GetPosition()
-
-            if target_pos and distsq(target_pos, pos) > EAT_DIST * EAT_DIST then
-                return BufferedAction(inst, nil, ACTIONS.WALKTO, nil, target_pos, nil, 0.2)
-            else
-                return BufferedAction(inst, target, ACTIONS.EAT)
-            end
+            return BufferedAction(inst, target, ACTIONS.EAT)
         end
     end
     return false
@@ -67,7 +56,7 @@ end
 function GrabbingvineBrain:OnStart()
     local root = PriorityNode(
     {
-        WhileNode(function() return ((self.inst.foodtarget and not self.inst.foodtarget:IsInLimbo()) or FoodNear(self.inst)) and not IsUp(self.inst) end, "GoEatFood",
+        WhileNode(function() return FoodNear(self.inst) and not IsUp(self.inst) end, "GoEatFood",
             DoAction(self.inst, function() return GoEatFood(self.inst) end, "eat food", true, math.random(5, 8))),
         WhileNode(function() return not IsUp(self.inst) end, "StandAndAttack",
             StandAndAttack(self.inst)),
