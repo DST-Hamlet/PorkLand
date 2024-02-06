@@ -4,6 +4,7 @@ require("behaviours/standstill")
 
 local GO_HOME_DIST = 1
 local EAT_DIST = 0.5
+local SEE_DIST = 5
 
 local NO_TAGS = {"FX", "NOCLICK", "DECOR", "INLIMBO"}
 
@@ -30,7 +31,7 @@ end)
 
 local function FoodNear(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, 5, nil, NO_TAGS)
+    local ents = TheSim:FindEntities(x, y, z, SEE_DIST, nil, NO_TAGS)
 
     for i = #ents, 1, -1 do
         if not ents[i] or ents[i]:IsInLimbo() or not inst.components.eater:CanEat(ents[i]) then
