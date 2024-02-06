@@ -63,6 +63,9 @@ Assets = {
     Asset("ANIM", "anim/player_sneeze.zip"),
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
 
+    Asset("ANIM", "anim/grass_blown.zip"),
+    Asset("ANIM", "anim/sapling_blown.zip"),
+
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),
 }

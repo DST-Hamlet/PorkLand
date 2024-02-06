@@ -74,13 +74,14 @@ AddComponentPostInit("blowinwind", function(self)
         if TheWorld:HasTag("porkland") then
             if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy() then
                 local windspeed = TheWorld.net.components.plateauwind:GetWindSpeed() -- from 0 to 1
-                local windangle = TheWorld.net.components.worldwind:GetWindAngle() * DEGREES
+                local windangle = TheWorld.net.components.plateauwind:GetWindAngle() * DEGREES
                 self.velocity = Vector3(windspeed * math.cos(windangle), 0.0, windspeed * math.sin(windangle))
             else
-                self.velocity = self.velocity + (self.windVector * dt)
+                self:Stop()
+                return
             end
         else
-            self:Stop()
+            self.velocity = self.velocity + (self.windVector * dt)
             return
         end
 
