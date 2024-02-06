@@ -27,7 +27,7 @@ local function ShadowOff(inst)
 end
 
 local function KeepTargetFn(inst, target)
-    return inst.components.combat:CanTarget(target) and inst:IsNear(target, GRABBING_VINE_HIT_RANGE + 2)
+    return inst.components.combat:CanTarget(target) and inst:IsNear(target, TUNING.GRABBING_VINE_HIT_RANGE + 2)
 end
 
 local NoTags = {"FX", "NOCLICK", "INLIMBO"}
