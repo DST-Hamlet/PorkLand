@@ -27,7 +27,7 @@ local function ShadowOff(inst)
 end
 
 local function KeepTargetFn(inst, target)
-    return inst.components.combat:CanTarget(target) and inst:IsNear(target, 30)
+    return inst.components.combat:CanTarget(target) and inst:IsNear(target, GRABBING_VINE_HIT_RANGE + 2)
 end
 
 local NoTags = {"FX", "NOCLICK", "INLIMBO"}
@@ -149,7 +149,7 @@ local function commonfn(Sim)
     inst.components.combat:SetDefaultDamage(TUNING.GRABBING_VINE_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.GRABBING_VINE_ATTACK_PERIOD)
     inst.components.combat:SetRange(TUNING.GRABBING_VINE_ATTACK_RANGE, TUNING.GRABBING_VINE_HIT_RANGE)
-    inst.components.combat:SetRetargetFunction(1, RetargetFn)
+    inst.components.combat:SetRetargetFunction(0.5, RetargetFn)
     inst.components.combat:SetKeepTargetFunction(KeepTargetFn)
     inst.components.combat.onhitotherfn = OnHitOther
 
