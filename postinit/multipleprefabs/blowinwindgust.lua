@@ -2,17 +2,14 @@ local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 AddPrefabPostInit("grass", function (inst)
-    -- inst.AnimState:AddOverrideBuild("grass_blown")
     MakePickableBlowInWindGust(inst, TUNING.GRASS_WINDBLOWN_SPEED, TUNING.GRASS_WINDBLOWN_FALL_CHANCE)
 end)
 
 AddPrefabPostInit("depleted_grass", function (inst)
-    -- inst.AnimState:AddOverrideBuild("grass_blown")
     MakePickableBlowInWindGust(inst, TUNING.GRASS_WINDBLOWN_SPEED, TUNING.GRASS_WINDBLOWN_FALL_CHANCE)
 end)
 
 AddPrefabPostInit("sapling", function (inst)
-    -- inst.AnimState:AddOverrideBuild("sapling_blown")
     MakePickableBlowInWindGust(inst, TUNING.SAPLING_WINDBLOWN_SPEED, TUNING.SAPLING_WINDBLOWN_FALL_CHANCE)
 end)
 
@@ -63,7 +60,7 @@ local function OnGustStart(inst, windspeed)
         --     AddToNearSpotEmitter(inst, "treeherd", "tree_creak_emitter", TUNING.TREE_CREAK_RANGE)
         -- end
         inst.AnimState:PlayAnimation("blown_pre_".. stage_lookup_table[inst.components.growable.stage], false)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wind_tree_creak")
+        -- inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wind_tree_creak")
         inst:ListenForEvent("animover", OnGustAnimDone)
     end)
 end
