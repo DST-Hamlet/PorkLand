@@ -44,6 +44,9 @@ local multipleprefab_posts = {
 }
 
 local scenario_posts = {
+}
+
+local screens_posts = {
     "playerhud",
 }
 
@@ -91,6 +94,10 @@ end
 
 for _, file_name in ipairs(scenario_posts) do
     modimport("postinit/scenarios/" .. file_name)
+end
+
+for _, file_name in ipairs(screens_posts) do
+    modimport("postinit/screens/" .. file_name)
 end
 
 for _, file_name in ipairs(stategraph_posts) do
