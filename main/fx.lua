@@ -40,6 +40,12 @@ local pl_fx = {
     	anim = "idle_sink",
         sound = "dontstarve_DLC002/common/item_sink"
 	},
+    {
+    	name = "splash_clouds_drop",
+    	bank = "splash_clouds_drop",
+    	build = "splash_clouds_drop",
+    	anim = "idle_sink",
+	},
 }
 
 -- Sneakily add these to the FX table

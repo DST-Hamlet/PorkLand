@@ -63,7 +63,7 @@ local function tile_physics_init(inst, ...)
     )
     -- standard impassable collider
     inst.Map:AddTileCollisionSet(
-        COLLISION.GROUND,
+        COLLISION.VOID_LIMITS,
         TileGroups.ImpassableTiles, true,
         TileGroups.ImpassableTiles, false,
         0.25, 128

@@ -144,7 +144,9 @@ AddComponentPostInit("blowinwind", function(self)
                     end
                 end)
                 self.inst:StopUpdatingComponent(self)
-            end 
+            end
+        elseif TileGroupManager:IsImpassableTile(tile) then
+            self.inst.components.inventoryitem:OnHitCloud()
         end
     end
 end)

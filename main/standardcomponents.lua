@@ -16,13 +16,6 @@ function MakeBlowInHurricane(inst, minscale, maxscale)
     inst.components.blowinwind:SetMaxSpeedMult(minscale or 0.1)
     inst.components.blowinwind:SetMinSpeedMult(maxscale or 1.0)
     inst.components.blowinwind:Start()
-
-    -- inst.Physics:SetCollisionCallback(function(_, other)
-    --     local x, y, z = inst.Physics:GetMotorVel()
-    --     if other.prefab == "world" and  x > 0 then
-    --         inst.Physics:ClearCollidesWith(COLLISION.GROUND)
-    --     end
-    -- end)
 end
 
 function RemoveBlowInHurricane(inst)
@@ -225,6 +218,7 @@ function MakeInventoryPhysics(inst, mass, rad)
     local physics = _MakeInventoryPhysics(inst, mass, rad)
     if TheWorld:HasTag("porkland") then
         physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
     end
     return physics
 end

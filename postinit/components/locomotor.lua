@@ -4,7 +4,6 @@ GLOBAL.setfenv(1, GLOBAL)
 local function GetWindSpeed()
     local wind_speed = 1
 
-    -- TODO(ziwbi): Add windspeedimmune tag to entities
     if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy() and not self.inst:HasTag("windspeedimmune") then 
         -- get a wind speed adjustment
         local windangle = self.inst.Transform:GetRotation() - TheWorld.net.components.plateauwind:GetWindAngle()

@@ -32,10 +32,7 @@ local component_posts = {
 }
 
 local prefab_posts = {
-    "blowinhurricane",
-    "blowinwindgust",
     "buff_workeffectiveness",
-    "firepit",
     "player",
     "player_classified",
     "woodie",
@@ -46,6 +43,9 @@ local prefab_posts = {
 }
 
 local multipleprefab_posts = {
+    "blowinhurricane",
+    "blowinwindgust",
+    "firepit",
     "poisonable",
 }
 
