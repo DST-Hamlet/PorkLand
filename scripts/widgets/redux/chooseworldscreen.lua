@@ -27,8 +27,8 @@ STRINGS.UI.CUSTOMIZATIONSCREEN.PRESETLEVELDESC = {
     CAVE = STRINGS.UI.CUSTOMIZATIONSCREEN.PRESETLEVELDESC.DST_CAVE,
 }
 
-local ChooseWorldSreen = Class(Screen, function(self, parent_widget, currentworld, i, SetLevelLocations, WorldLocations)
-    Screen._ctor(self, "ChooseWorldSreen")
+local ChooseWorldScreen = Class(Screen, function(self, parent_widget, currentworld, i, SetLevelLocations, WorldLocations)
+    Screen._ctor(self, "ChooseWorldScreen")
 
     self.parent_widget = parent_widget
     self.onconfirmfn = SetLevelLocations
@@ -159,30 +159,30 @@ local ChooseWorldSreen = Class(Screen, function(self, parent_widget, currentworl
     self.default_focus = self.scroll_list
 end)
 
-function ChooseWorldSreen:OnWorldButton(world)
+function ChooseWorldScreen:OnWorldButton(world)
     self:OnSelectWorld(world.data)
     self:Refresh()
 end
 
-function ChooseWorldSreen:Refresh()
+function ChooseWorldScreen:Refresh()
     self.scroll_list:RefreshView()
 end
 
-function ChooseWorldSreen:OnCancel()
+function ChooseWorldScreen:OnCancel()
     self:_Close()
 end
 
-function ChooseWorldSreen:OnConfirmWorld()
+function ChooseWorldScreen:OnConfirmWorld()
     self:_Close()
     self.onconfirmfn(self.parent_widget.servercreationscreen, self.selectedworld, self.index)
 end
 
-function ChooseWorldSreen:OnSelectWorld(world)
+function ChooseWorldScreen:OnSelectWorld(world)
     self.selectedworld = world
 end
 
-function ChooseWorldSreen:OnControl(control, down)
-    if ChooseWorldSreen._base.OnControl(self, control, down) then return true end
+function ChooseWorldScreen:OnControl(control, down)
+    if ChooseWorldScreen._base.OnControl(self, control, down) then return true end
 
     if not down then
         if control == CONTROL_CANCEL then
@@ -195,7 +195,7 @@ function ChooseWorldSreen:OnControl(control, down)
     end
 end
 
-function ChooseWorldSreen:GetHelpText()
+function ChooseWorldScreen:GetHelpText()
     local controller_id = TheInput:GetControllerID()
     local t = {}
 
@@ -205,8 +205,8 @@ function ChooseWorldSreen:GetHelpText()
     return table.concat(t, "  ")
 end
 
-function ChooseWorldSreen:_Close()
+function ChooseWorldScreen:_Close()
     TheFrontEnd:PopScreen()
 end
 
-return ChooseWorldSreen
+return ChooseWorldScreen

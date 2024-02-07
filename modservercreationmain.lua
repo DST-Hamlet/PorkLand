@@ -8,8 +8,7 @@ modimport("modfrontendmain")
 modimport("modcustonsizitems")
 
 local TEMPLATES = require("widgets/redux/templates")
-local PopupDialogScreen = require("screens/redux/popupdialog")
-local ChooseWorldSreen = require("widgets/redux/chooseworldscreen")
+local ChooseWorldScreen = require("widgets/redux/chooseworldscreen")
 
 local world_locations = {
     [1] = {FOREST = true, PORKLAND = true, CAVE = true},
@@ -30,7 +29,7 @@ local function OnWorldButton(world_tab, i)
         world_tab:GetParentScreen().last_focus = TheFrontEnd:GetFocusWidget()
     end
     local currentworld = world_tab:GetLocation()
-    local chooseworldscreen = ChooseWorldSreen(world_tab, currentworld, i, SetLevelLocations, world_locations)
+    local chooseworldscreen = ChooseWorldScreen(world_tab, currentworld, i, SetLevelLocations, world_locations)
     TheFrontEnd:PushScreen(chooseworldscreen)
 end
 
