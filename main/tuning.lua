@@ -191,8 +191,12 @@ local tuning = {
     DECIDUOUS_WINDBLOWN_SPEED = 0.2,
     DECIDUOUS_WINDBLOWN_FALL_CHANCE = 0.01,
 
-    BLOWINWIND_ITEM_ENABLED = true -- DELETEME Temporary control for blowinwind items
+    BLOWINWIND_ITEM_ENABLED = true, -- DELETEME Temporary control for blowinwind items
 
+    PANGOLDEN_HEALTH = 500,
+    PANGOLDEN_BALL_DEFENCE = 0.75,
+    PANGOLDEN_WALK_SPEED = 2.5,
+    PANGOLDEN_RUN_SPEED = 8,
 }
 
 for key, value in pairs(tuning) do
