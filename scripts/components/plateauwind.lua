@@ -145,7 +145,7 @@ return Class(function(self, inst)
             _wind_angle:set(data.angle)
         end)
     end
-    
+
     --------------------------------------------------------------------------
     --[[ Save/Load ]]
     --------------------------------------------------------------------------
@@ -176,7 +176,7 @@ return Class(function(self, inst)
 
     function self:GetDebugString()
         return string.format("Windy: %s, Gust State: %d, Gust Timer: %0.2f, Gust Period: %0.2f, Gust Speed: %0.2f, Gust Peak: %0.2f",
-            _windy:value(), _wind_state, _wind_gust_timer, _wind_gust_period, _wind_gust_speed:value(), _wind_gust_peak)
+            tostring(_windy:value()), _wind_state, _wind_gust_timer, _wind_gust_period, _wind_gust_speed:value(), _wind_gust_peak)
     end
 
     --------------------------------------------------------------------------

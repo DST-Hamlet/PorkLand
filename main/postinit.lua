@@ -29,6 +29,7 @@ local component_posts = {
     "waterproofer",
     "wavemanager",
     "worldstate",
+    "worldwind",
 }
 
 local prefab_posts = {

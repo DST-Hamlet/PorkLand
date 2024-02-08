@@ -12,7 +12,7 @@ function MakeBlowInHurricane(inst, minscale, maxscale)
         inst:AddComponent("blowinwind")
     end
 
-    inst.components.blowinwind:SetAverageSpeed(TUNING.WILSON_RUN_SPEED - 1)
+    inst.components.blowinwind:SetAverageSpeed(5 * TUNING.WILSON_RUN_SPEED)
     inst.components.blowinwind:SetMaxSpeedMult(minscale or 0.1)
     inst.components.blowinwind:SetMinSpeedMult(maxscale or 1.0)
     inst.components.blowinwind:Start()
