@@ -11,7 +11,6 @@ local function OnDislodged(inst)
     local x,y,z = inst.Transform:GetWorldPosition()
     ruins_statue.Transform:SetPosition(x,y,z)
 
-    inst.persists = false
     inst:DoTaskInTime(0, inst.Remove)
 end
 

@@ -20,6 +20,7 @@ PrefabFiles = {
     "hanging_vine",
     "iron",
     "pl_wave_shore",
+    "pig_ruins",
     "jungle_border_vine",
     "machete",
     "nettle",

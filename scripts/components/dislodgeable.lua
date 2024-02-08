@@ -1,5 +1,5 @@
-local ondislodgeable = function(self, ondislodgeable)
-    if ondislodgeable and self.caninteractwith then
+local ondislodgeable = function(self)
+    if self:CanBeDislodged() and self.caninteractwith then
         self.inst:AddTag("DISLODGE_workable")
     else
         self.inst:RemoveTag("DISLODGE_workable")
@@ -22,7 +22,8 @@ local Dislodgeable = Class(function(self, inst)
 end,
 nil,
 {
-    canbedislodged = ondislodgeable
+    canbedislodged = ondislodgeable,
+    caninteractwith = ondislodgeable,
 })
 
 function Dislodgeable:OnRemoveFromEntity()
@@ -47,6 +48,10 @@ function Dislodgeable:SetDropFromSymbol(symbolname)
     self.dropsymbol = symbolname
 end
 
+function Dislodgeable:SetOnLoadFn(fn)
+    self.onloadfn = fn
+end
+
 function Dislodgeable:GetLootDropPosition()
     return self.dropsymbol and Vector3(self.inst.AnimState:GetSymbolPosition(self.dropsymbol, 0,0,0)) or nil
 end
@@ -59,24 +64,25 @@ function Dislodgeable:Dislodge(dislodger)
     if self:CanBeDislodged() and self.caninteractwith then
         local pt = self:GetLootDropPosition()
         local alwaysinfront = (pt == nil)
-        local loot = nil
 
         for i = 1, self.product_num do
-            loot = SpawnPrefab(self.product)
-            self.inst.components.lootdropper:DropLootPrefab(loot, pt, nil, nil, alwaysinfront)
-        end
+            local loot = self.inst.components.lootdropper:DropLootPrefab(SpawnPrefab(self.product), pt, nil, nil, alwaysinfront)
 
-        if self.ondislodgedfn then
-            self.ondislodgedfn(self.inst, dislodger, loot)
-        end
+            self.canbedislodged = false
 
-        self.inst:PushEvent("dislodged", {dislodger = dislodger, loot = loot})
+            if self.ondislodgedfn then
+                self.ondislodgedfn(self.inst, dislodger, loot)
+            end
+
+            self.inst:PushEvent("dislodged", {dislodger = dislodger, loot = loot})
+        end
     end
 end
 
 function Dislodgeable:OnSave()
     local data = {
         caninteractwith = self.caninteractwith,
+        canbedislodged = self.canbedislodged,
     }
 
     return next(data) ~= nil and data or nil
@@ -85,6 +91,10 @@ end
 function Dislodgeable:OnLoad(data)
     if data ~= nil then
         self.caninteractwith = data.caninteractwith
+        self.canbedislodged = data.canbedislodged
+        if not data.canbedislodged and self.onloadfn ~= nil then
+            self.onloadfn(self.inst, data)
+        end
     end
 end
 
