@@ -14,6 +14,9 @@ local actionhandlers = {
     ActionHandler(ACTIONS.SHEAR, function(inst)
         return not inst.sg:HasStateTag("preshear") and "shear_start" or nil
     end),
+    ActionHandler(ACTIONS.DISLODGE, function(inst)
+        return not inst.sg:HasStateTag("pretap") and "tap_start" or nil
+    end),
 }
 
 local states = {
@@ -85,6 +88,39 @@ local states = {
                 end
             elseif inst.bufferedaction == nil then
                 inst.AnimState:PlayAnimation("pickaxe_pst")
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end
+    },
+
+    State{
+        name = "tap_start",
+        tags = {"pretap", "working"},
+        server_states = {"tap_start", "tap", "tap_end"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+
+            if not inst:HasTag("working") then
+                inst.AnimState:PlayAnimation("tamp_pre")
+            end
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("working") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("tamp_pst")
                 inst.sg:GoToState("idle")
             end
         end,

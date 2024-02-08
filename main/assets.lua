@@ -5,6 +5,7 @@ PrefabFiles = {
     "aporkalypse_clock",
     "armor_metalplate",
     "asparagus_planted",
+    "ballpein_hammer",
     "chitin",
     "deep_jungle_fern_noise",
     "dungball",
@@ -66,6 +67,7 @@ Assets = {
     Asset("ANIM", "anim/player_actions_shear.zip"),
     Asset("ANIM", "anim/player_sneeze.zip"),
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
+    Asset("ANIM", "anim/player_actions_tap.zip"),
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),

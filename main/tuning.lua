@@ -24,6 +24,9 @@ local tuning = {
     APORKALYPSE_NEAR_TIME = 7 * total_day_time,
     APORKALYPSE_PERIOD_LENGTH = 60 * total_day_time,
 
+    BALLPEIN_HAMMER_DAMAGE = wilson_attack*0.3,
+    BALLPEIN_HAMMER_USES = 10,
+
     MACHETE_DAMAGE = wilson_attack * .88,
     MACHETE_USES = 100,
 
