@@ -21,17 +21,14 @@ SetSharedLootTable("pangolden",
 local DRUNK_GOLD = 1/8
 local EATEN_GOLD = 1/3
 
-local function special_action(act)
-    if act.doer.puddle and act.doer.puddle.stage > 0 then
-        act.doer.puddle:shrink()
-        act.doer.goldlevel = act.doer.goldlevel + DRUNK_GOLD
-    end
+local function OnSave(inst, data)
+    data.gold_level = inst.gold_level
 end
 
-local function special_action2(act)
-    local gold = SpawnPrefab("goldnugget")
-    local x, y, z = act.doer.Transform:GetWorldPosition()
-    gold.Transform:SetPosition(x, y, z)
+local function OnLoad(inst, data)
+    if data and data.gold_level then
+        inst.gold_level = data.gold_level
+    end
 end
 
 local function fn()
@@ -62,11 +59,10 @@ local function fn()
     end
 
     inst:AddComponent("eater")
-    inst.components.eater.foodprefs = {"GOLDDUST"}
-    inst.components.eater.ablefoods = {"GOLDUST"}
-    inst.components.eater.oneatfn = function()
-        inst.goldlevel = inst.goldlevel + EATEN_GOLD
-    end
+    inst.components.eater:SetDiet({FOODGROUP.GOLDDUST}, {FOODGROUP.GOLDDUST})
+    inst.components.eater:SetOnEatFn(function()
+        inst.gold_level = inst.gold_level + EATEN_GOLD
+    end)
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pang_bod"
@@ -80,9 +76,6 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("knownlocations")
-
-    inst.special_action = special_action
-    inst.special_action2 = special_action2
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.walkspeed = TUNING.PANGOLDEN_WALK_SPEED
@@ -99,17 +92,10 @@ local function fn()
     MakeLargeBurnableCharacter(inst, "swap_fire")
     MakeLargeFreezableCharacter(inst, "pang_bod")
 
-    inst.goldlevel = 0
+    inst.gold_level = 0
 
-    inst.OnSave = function(inst, data)
-        data.goldlevel = inst.goldlevel
-    end
-
-    inst.OnLoad = function(inst, data)
-        if data and data.goldlevel then
-            inst.goldlevel = data.goldlevel
-        end
-    end
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     return inst
 end

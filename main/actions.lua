@@ -6,6 +6,8 @@ local PL_ACTIONS = {
     HACK = Action({mindistance = 1.75, silent_fail = true}),
     SHEAR = Action({distance = 1.75}),
     PEAGAWK_TRANSFORM = Action({}),
+    PANGOLDEN_DRINK = Action({distance = 1.2}),
+    PANGOLDEN_POOP = Action({distance = 1.2}),    
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -72,6 +74,22 @@ ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
     return true -- Dummy action for flup hiding
 end
 
+ACTIONS.PANGOLDEN_DRINK.fn = function(act)
+    if act.doer.puddle and act.doer.puddle.stage > 0 then
+        act.doer.puddle:shrink()
+        act.doer.gold_level = act.doer.gold_level + DRUNK_GOLD
+    end
+
+    return true
+end
+
+ACTIONS.PANGOLDEN_POOP.fn = function(act)
+    local gold = SpawnPrefab("goldnugget")
+    local x, y, z = act.doer.Transform:GetWorldPosition()
+    gold.Transform:SetPosition(x, y, z)
+	
+    return true
+end
 
 
 

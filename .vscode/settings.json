@@ -1,10 +1,4 @@
 {
     "Lua.diagnostics.globals": [
-        "MakeLargeFreezableCharacter",
-        "TUNING",
-        "MakeCharacterPhysics",
-        "SpawnPrefab",
-        "CreateEntity",
-        "SetSharedLootTable"
     ]
 }
