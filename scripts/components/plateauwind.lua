@@ -29,14 +29,13 @@ return Class(function(self, inst)
     -- Network
     local _windy = net_bool(inst.GUID, "wind._windy")
     local _wind_gust_speed = net_float(inst.GUID, "wind._wind_gust_speed")
-    -- ziwbi: This is required for locomotor compoent, and is not saved
-    local _wind_angle = net_ushortint(inst.GUID, "wind._wind_angle")
+    local _wind_angle = net_ushortint(inst.GUID, "wind._wind_angle") -- NOTE(ziwbi): This is required for locomotor component, and is not saved
 
     --------------------------------------------------------------------------
     --[[ Private member functions ]]
     --------------------------------------------------------------------------
 
-    -- ziwbi: The reason to not use DoTaskInTime here is wind speed ramps up gradually, not at discrete levels
+    -- NOTE(ziwbi): The reason to not use DoTaskInTime here is wind speed ramps up gradually, not at discrete levels
     local function UpdateHurricaneWind(dt, percent, windstart, windend)
         if windstart <= percent and percent <= windend then
             _wind_gust_timer = _wind_gust_timer + dt
