@@ -145,10 +145,6 @@ local BlowInHUrricaneHeavy = {
     "rocks",
 }
 
-if not TUNING.BLOWINWIND_ITEM_ENABLED then
-    return
-end
-
 for _, prefab in pairs(BlowInHUrricaneLight) do
     AddPrefabPostInit(prefab, function(inst)
         MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)

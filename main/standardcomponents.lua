@@ -2,24 +2,24 @@ GLOBAL.setfenv(1, GLOBAL)
 
 ---@param minscale number
 ---@param maxscale number
-function MakeBlowInHurricane(inst, minscale, maxscale)
+function MakeBlowInHurricane(inst, min_scale, max_scale)
 
     if not TheWorld:HasTag("porkland") then
         return
     end
 
-    if not inst.components.blowinwind then
-        inst:AddComponent("blowinwind")
+    if not inst.components.pl_blowinwind then
+        inst:AddComponent("pl_blowinwind")
     end
 
-    inst.components.blowinwind:SetAverageSpeed(5 * TUNING.WILSON_RUN_SPEED)
-    inst.components.blowinwind:SetMaxSpeedMult(minscale or 0.1)
-    inst.components.blowinwind:SetMinSpeedMult(maxscale or 1.0)
-    inst.components.blowinwind:Start()
+    inst.components.pl_blowinwind:SetAverageSpeed(TUNING.WILSON_RUN_SPEED - 1)
+    inst.components.pl_blowinwind:SetMaxSpeedMultiplier(min_scale or 0.1)
+    inst.components.pl_blowinwind:SetMinSpeedMultiplier(max_scale or 1.0)
+    inst.components.pl_blowinwind:Start()
 end
 
 function RemoveBlowInHurricane(inst)
-    inst:RemoveComponent("blowinwind")
+    inst:RemoveComponent("pl_blowinwind")
 end
 
 function MakePickableBlowInWindGust(inst, wind_speed, destroy_chance)

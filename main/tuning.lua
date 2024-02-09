@@ -190,9 +190,6 @@ local tuning = {
     EVERGREEN_WINDBLOWN_FALL_CHANCE = 0.01,
     DECIDUOUS_WINDBLOWN_SPEED = 0.2,
     DECIDUOUS_WINDBLOWN_FALL_CHANCE = 0.01,
-
-    BLOWINWIND_ITEM_ENABLED = true -- DELETEME Temporary control for blowinwind items
-
 }
 
 for key, value in pairs(tuning) do
