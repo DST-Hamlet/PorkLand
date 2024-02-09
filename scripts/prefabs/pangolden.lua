@@ -18,7 +18,6 @@ SetSharedLootTable("pangolden",
     {"meat",            1.00},
 })
 
-local DRUNK_GOLD = 1/8
 local EATEN_GOLD = 1/3
 
 local function OnSave(inst, data)

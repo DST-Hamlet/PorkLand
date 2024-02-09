@@ -5,6 +5,11 @@ local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.PAN, function(inst)
+        if not inst.sg:HasStateTag("panning") then
+            return "pan_start"
+        end
+    end),
     ActionHandler(ACTIONS.HACK, function(inst)
         if inst:HasTag("beaver") then
             return not inst.sg:HasStateTag("gnawing") and "gnaw" or nil
@@ -50,6 +55,61 @@ local states = {
         events =
         {
             EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
+    State{
+        name = "pan_start",
+        tags = {"prepan", "panning", "working"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("pan_pre")
+        end,
+
+        events=
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("pan") end),
+        },
+    },
+
+    State{
+        name = "pan",
+        tags = {"prepan", "panning", "working"},
+
+        onenter = function(inst)
+            inst.sg.statemem.action = inst:GetBufferedAction()
+            inst.AnimState:PlayAnimation("pan_loop", true)
+            inst.sg:SetTimeout(1 + math.random())
+        end,
+
+        timeline=
+        {
+            TimeEvent(6 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(14 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+
+            TimeEvent((6 + 15) * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent((14 + 15) * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+
+            TimeEvent((6 + 30) * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent((14 + 30) * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+
+            TimeEvent((6 + 45) * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent((14 + 45) * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+
+            TimeEvent((6 + 60) * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent((14 + 60) * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+        },
+
+        ontimeout = function(inst)
+            inst:PerformBufferedAction()
+            inst.sg:GoToState("idle", "pan_pst")
+        end,
+
+        events=
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle", "pan_pst") end ),
         },
     },
 

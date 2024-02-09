@@ -5,9 +5,10 @@ GLOBAL.setfenv(1, GLOBAL)
 local PL_ACTIONS = {
     HACK = Action({mindistance = 1.75, silent_fail = true}),
     SHEAR = Action({distance = 1.75}),
-    PEAGAWK_TRANSFORM = Action({}),
+    PAN = Action({distance = 1}),
     PANGOLDEN_DRINK = Action({distance = 1.2}),
-    PANGOLDEN_POOP = Action({distance = 1.2}),    
+    PANGOLDEN_POOP = Action({distance = 1.2}),
+    PEAGAWK_TRANSFORM = Action({}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -74,9 +75,34 @@ ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
     return true -- Dummy action for flup hiding
 end
 
+ACTIONS.PAN.fn = function(act)
+    if act.target.components.workable and
+        act.target.components.workable:CanBeWorked() and
+        act.target.components.workable:GetWorkAction() == ACTIONS.PAN then
+
+        local effectiveness = (act.invobject
+            and act.invobject.components.tool
+            and act.invobject.components.tool:GetEffectiveness(ACTIONS.PAN))
+            or (act.doer
+            and act.doer.components.worker
+            and act.doer.components.worker:GetEffectiveness(ACTIONS.PAN))
+            or 1
+        local multiplier = act.doer.components.workmultiplier
+            and act.doer.components.workmultiplier:GetMultiplier(ACTIONS.PAN) or 1
+
+		local numworks = effectiveness * multiplier
+        act.target.components.workable:WorkedBy(act.doer, numworks)
+
+        return true
+    end
+
+	return false
+end
+
+local DRUNK_GOLD = 1/8
 ACTIONS.PANGOLDEN_DRINK.fn = function(act)
     if act.doer.puddle and act.doer.puddle.stage > 0 then
-        act.doer.puddle:shrink()
+        act.doer.puddle:Shrink()
         act.doer.gold_level = act.doer.gold_level + DRUNK_GOLD
     end
 
@@ -84,10 +110,9 @@ ACTIONS.PANGOLDEN_DRINK.fn = function(act)
 end
 
 ACTIONS.PANGOLDEN_POOP.fn = function(act)
-    local gold = SpawnPrefab("goldnugget")
     local x, y, z = act.doer.Transform:GetWorldPosition()
-    gold.Transform:SetPosition(x, y, z)
-	
+    SpawnPrefab("goldnugget").Transform:SetPosition(x, y, z)
+
     return true
 end
 

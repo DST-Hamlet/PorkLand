@@ -2,8 +2,8 @@ require("stategraphs/commonstates")
 
 local actionhandlers =
 {
-    ActionHandler(ACTIONS.SPECIAL_ACTION, "drink_pre"),
-    ActionHandler(ACTIONS.SPECIAL_ACTION2, "poop"),
+    ActionHandler(ACTIONS.PANGOLDEN_DRINK, "drink_pre"),
+    ActionHandler(ACTIONS.PANGOLDEN_POOP, "poop"),
     ActionHandler(ACTIONS.EAT, "eat"),
 }
 

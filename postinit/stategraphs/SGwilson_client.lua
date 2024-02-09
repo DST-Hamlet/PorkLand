@@ -5,6 +5,11 @@ GLOBAL.setfenv(1, GLOBAL)
 local TIMEOUT = 2
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.PAN, function(inst)
+        if not inst.sg:HasStateTag("panning") then
+            return "pan_start"
+        end
+    end),
     ActionHandler(ACTIONS.HACK, function(inst)
         if inst:HasTag("beaver") then
             return not inst.sg:HasStateTag("gnawing") and "gnaw" or nil
@@ -17,6 +22,22 @@ local actionhandlers = {
 }
 
 local states = {
+    State{
+        name = "pan_start",
+        tags = {"prepan", "panning", "working"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("pan_pre")
+        end,
+
+        events=
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("pan") end),
+        },
+    },
+
     State{
         name = "hack_start",
         tags = {"prehack", "hacking", "working"},

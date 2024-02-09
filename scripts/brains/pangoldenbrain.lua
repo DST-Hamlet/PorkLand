@@ -53,14 +53,14 @@ local function DrinkAction(inst)
     get_puddle(inst)
 
     if inst.puddle and inst.puddle.stage > 0 then
-        return BufferedAction(inst, inst.puddle, ACTIONS.SPECIAL_ACTION)
+        return BufferedAction(inst, inst.puddle, ACTIONS.PANGOLDEN_DRINK)
     end
 end
 
 local function PoopAction(inst)
-    if inst.goldlevel >= 1 then
-        inst.goldlevel = inst.goldlevel -1
-        return BufferedAction(inst, inst.puddle, ACTIONS.SPECIAL_ACTION2)
+    if inst.gold_level >= 1 then
+        inst.gold_level = inst.gold_level -1
+        return BufferedAction(inst, inst.puddle, ACTIONS.PANGOLDEN_POOP)
     end
 end
 

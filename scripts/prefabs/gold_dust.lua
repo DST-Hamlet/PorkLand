@@ -30,7 +30,7 @@ local function fn()
 
     MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")	
+	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
     inst.AnimState:SetBank("gold_dust")
     inst.AnimState:SetBuild("gold_dust")
     inst.AnimState:PlayAnimation("idle")
@@ -54,9 +54,9 @@ local function fn()
     inst.components.edible.hungervalue = 1
 
     inst:AddComponent("tradable")
-    
+
     inst:AddComponent("inspectable")
-    
+
     inst:AddComponent("stackable")
 
     inst:AddComponent("inventoryitem")
@@ -65,9 +65,9 @@ local function fn()
 
     inst.shine = shine
 
-    inst:shine()    
-    
+    inst:shine()
+
     return inst
 end
 
-return Prefab("gold_dust", fn, assets) 
+return Prefab("gold_dust", fn, assets)

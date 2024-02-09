@@ -193,6 +193,8 @@ local tuning = {
 
     BLOWINWIND_ITEM_ENABLED = true, -- DELETEME Temporary control for blowinwind items
 
+    PAN_USES = 30,
+
     PANGOLDEN_HEALTH = 500,
     PANGOLDEN_BALL_DEFENCE = 0.75,
     PANGOLDEN_WALK_SPEED = 2.5,
