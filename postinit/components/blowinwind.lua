@@ -145,13 +145,12 @@ AddComponentPostInit("blowinwind", function(self)
                 end)
                 self.inst:StopUpdatingComponent(self)
             end
-        elseif TileGroupManager:IsImpassableTile(tile) then
+        elseif TileGroupManager:IsImpassableTile(tile) and not TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
             self.inst.components.inventoryitem:OnHitCloud()
         end
     end
+
+    function self:GetDebugString()
+        return string.format("WindAngle: %4.4f, currentAngle: %3.3f, Velocity:%s", self.windAngle, self.currentAngle, tostring(self.velocity))
+    end
 end)
-
-
-
-
-
