@@ -925,7 +925,7 @@ return Class(function(self, inst)
 
         if _season == SEASONS.LUSH then
             if _world.net.components.plateauwind then
-                _world.net.components.plateauwind.UpdateDynamicWind(dt, _seasonprogress)
+                _world.net.components.plateauwind:UpdateDynamicWind(dt, _seasonprogress)
             end
         end
 
