@@ -3,6 +3,9 @@ GLOBAL.setfenv(1, GLOBAL)
 ---@param minscale number
 ---@param maxscale number
 function MakeBlowInHurricane(inst, min_scale, max_scale)
+    if not TheWorld.ismastersim then
+        return
+    end
 
     if not TheWorld:HasTag("porkland") then
         return
@@ -23,6 +26,10 @@ function RemoveBlowInHurricane(inst)
 end
 
 function MakePickableBlowInWindGust(inst, wind_speed, destroy_chance)
+    if not TheWorld.ismastersim then
+        return
+    end
+
     inst.onblownpstdone = function(inst)
         if inst.components.pickable and
             inst.components.pickable:CanBePicked() and

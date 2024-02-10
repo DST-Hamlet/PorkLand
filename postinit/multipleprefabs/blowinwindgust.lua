@@ -71,6 +71,10 @@ end
 
 local function make_tree_blowinwindgust(tree, type)
     AddPrefabPostInit(tree, function(inst)
+        if not TheWorld.ismastersim then
+            return
+        end
+
         if not inst.components.blowinwindgust then
             inst:AddComponent("blowinwindgust")
         end

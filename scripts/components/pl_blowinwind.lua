@@ -122,9 +122,9 @@ end
 function BlowInWind:SpawnWindTrail(dt)
     self.time_since_spawn = self.time_since_spawn + dt
     if self.time_since_spawn > self.spawn_period and math.random() < 0.8 then
-        local wake = SpawnPrefab( "windtrail")
+        local wake = SpawnPrefab("windtrail")
         local x, y, z = self.inst.Transform:GetWorldPosition()
-        wake.Transform:SetPosition( x, y, z )
+        wake.Transform:SetPosition(x, y, z)
         wake.Transform:SetRotation(self.inst.Transform:GetRotation())
 
         self.time_since_spawn = 0

@@ -5,6 +5,7 @@ local assets =
 
 local function fn()
 	local inst = CreateEntity()
+
 	inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddNetwork()
@@ -18,7 +19,7 @@ local function fn()
 	inst:AddTag("NOCLICK")
 
     if not TheWorld.ismastersim then
-        return
+        return inst
     end
 
 	inst.persists = false

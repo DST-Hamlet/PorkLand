@@ -36,8 +36,8 @@ AddComponentPostInit("inventoryitem", function(self, inst)
                 end
             end
         else
-            --local fx = SpawnPrefab("splash_clouds_drop")
-            --fx.Transform:SetPosition(x, y, z)
+            local fx = SpawnPrefab("splash_clouds_drop")
+            fx.Transform:SetPosition(x, y, z)
             self.inst:Remove()
         end
     end
