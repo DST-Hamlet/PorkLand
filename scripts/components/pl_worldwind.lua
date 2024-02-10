@@ -63,7 +63,7 @@ function WorldWind:SpawnWindSwirl(x, y, z, speed, angle)
 end
 
 function WorldWind:OnUpdate(dt)
-    if not self.inst then 
+    if not self.inst then
         self:Stop()
         return
     end
@@ -92,6 +92,10 @@ function WorldWind:OnUpdate(dt)
             end
         end
     end
+end
+
+function WorldWind:LongUpdate(dt)
+    self:OnUpdate(dt)
 end
 
 return WorldWind
