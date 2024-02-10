@@ -1,6 +1,3 @@
-local MIN_TIME_TO_WIND_CHANGE = 16 * TUNING.SEG_TIME
-local MAX_TIME_TO_WIND_CHANGE = 16 * TUNING.SEG_TIME
-
 local WorldWind = Class(function(self, inst)
     self.inst = inst
 
