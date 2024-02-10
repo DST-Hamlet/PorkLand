@@ -87,21 +87,21 @@ local function make_tree_blowinwindgust(tree, type)
 
         local onload = inst.OnLoad
         inst.OnLoad = function(inst, data)
-            onload(inst, data)
-            if data.stump or data.burnt then
+            if onload then onload(inst, data) end
+            if data and (data.stump or data.burnt) then
                 inst:RemoveComponent("blowinwindgust")
             end
         end
 
         local onburnt = inst.components.burnable.onburnt
         inst.components.burnable:SetOnBurntFn(function(inst)
-            onburnt(inst)
+            if onburnt then onburnt(inst) end
             inst:RemoveComponent("blowinwindgust")
         end)
 
         local onfinish = inst.components.workable.onfinish
         inst.components.workable:SetOnFinishCallback(function(inst, chopper)
-            onfinish(inst, chopper)
+            if onfinish then onfinish(inst, chopper) end
             inst:RemoveComponent("blowinwindgust")
         end)
     end)

@@ -23,7 +23,7 @@ local function UpdateTask(inst, dt)
     end
 
     local self = inst.components.blowinwindgust
-    local windspeed = TheWorld.net.components.plateauwind:GetWindSpeed()
+    local windspeed = TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetWindSpeed() or 0
     if self.state == 0 then
         if windspeed > self.windspeedthreshold then
             if math.random() < self.destroychance and inst:IsNearPlayer(TUNING.WINDBLOWN_DESTROY_DIST) then

@@ -35,6 +35,12 @@ local BlowInWind = Class(function(self, inst)
     self.inst:ListenForEvent("onpickup", function(it, data)
         self:Stop()
     end)
+
+    self.inst:WatchWorldState("season", function(inst, season)
+        if season == SEASONS.LUSH then
+            self:Start()
+        end
+    end)
 end)
 
 function BlowInWind:OnRemoveEntity()
