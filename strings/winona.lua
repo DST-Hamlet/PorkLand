@@ -59,6 +59,7 @@ return {
         },
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
+        PIG_RUINS_IDOL = "There must be some way to remove the top part.",
         RABID_BEETLE = {
             DEAD = "Ah, it stopped.",
             GENERIC = "What are you all excited about?",

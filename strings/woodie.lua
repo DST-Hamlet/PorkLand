@@ -60,6 +60,7 @@ return {
         },
         PEAGAWKFEATHER = "It has a foul bird stench.",
         PEAGAWK_BUSH = "There's a wretched bird nearby. I feel it.",
+        PIG_RUINS_IDOL = "Be nice if we could get that top part off.",
         RABID_BEETLE = {
             DEAD = "For the best.",
             GENERIC = "Seems mighty angry.",

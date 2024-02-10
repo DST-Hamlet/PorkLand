@@ -63,6 +63,7 @@ return {
             GENERIC = "I'm experiencing the inescapable perception that I'm being watched.",
             SLEEPING = "That insight that spied on me was gone.",
         },
+        PIG_RUINS_IDOL = "Theoretically, it can be detached from its base.",
         RABID_BEETLE = {
             DEAD = "An occurrance of invertebrate respiratory failure.",
             GENERIC = "Evidently, it acquires facial hair when it matures.",

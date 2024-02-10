@@ -59,6 +59,7 @@ return {
         },
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
+        PIG_RUINS_IDOL = "A pig figure, not a fish figure.",
         RABID_BEETLE = {
             DEAD = "died.",
             GENERIC = "The little bug is going crazy!",

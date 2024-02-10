@@ -58,6 +58,7 @@ return {
         },
         PEAGAWKFEATHER = "Feather of a small peacock.",
         PEAGAWK_BUSH = "Well, this trick can't fool me.",
+        PIG_RUINS_IDOL = "The little statue above is nice, let's take it away.",
         RABID_BEETLE = {
             DEAD = "it's a pity.",
             GENERIC = "Really energetic, do you want to dance?",

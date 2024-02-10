@@ -61,6 +61,7 @@ return {
         },
         PEAGAWKFEATHER = "Nature makes such pretty things.",
         PEAGAWK_BUSH = "What a cool looking bush!",
+        PIG_RUINS_IDOL = "How do I get that top part off?",
         RABID_BEETLE = {
             DEAD = "That's a bummer.",
             GENERIC = "Dude, you need to chill!",

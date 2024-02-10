@@ -61,6 +61,7 @@ return {
         },
         PEAGAWKFEATHER = "What finery.",
         PEAGAWK_BUSH = "I've my suspicions about that bush.",
+        PIG_RUINS_IDOL = "Hmmm. How do I get that statue off?",
         RABID_BEETLE = {
             DEAD = "The grim reaper has been here.",
             GENERIC = "What is he all worked up about?",

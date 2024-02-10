@@ -59,6 +59,7 @@ return {
         },
         PEAGAWKFEATHER = "method is valid.",
         PEAGAWK_BUSH = "This bird can't fly, but turns into a bush!",
+        PIG_RUINS_IDOL = "Look what we found, Warby!",
         RABID_BEETLE = {
             DEAD = "Oh, dead.",
             GENERIC = "Wow, look how active they are!",

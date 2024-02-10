@@ -60,6 +60,7 @@ return {
         },
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
+        PIG_RUINS_IDOL = "I should take that off and sell it to a pig.",
         RABID_BEETLE = {
             DEAD = "Looks dead to me.",
             GENERIC = "What're you so mad about?",

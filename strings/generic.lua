@@ -61,6 +61,7 @@ return {
         },
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
+        PIG_RUINS_IDOL = "These ruins have been ruined.",
         RABID_BEETLE = {
             DEAD = "A late beetle.",
             GENERIC = "Looks deranged.",

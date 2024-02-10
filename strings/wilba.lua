@@ -61,6 +61,7 @@ return {
         },
         PEAGAWKFEATHER = "IS'T A BIRD THING O' PRETTY",
         PEAGAWK_BUSH = "'TIS NAUGHT A BUSH",
+        PIG_RUINS_IDOL = "WILBA LIKETH THE TOP PART",
         RABID_BEETLE = {
             DEAD = "IN YON UNDISCOVER'D COUNTRY",
             GENERIC = "FULL OF SOUND AND FURY",

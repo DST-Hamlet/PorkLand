@@ -60,6 +60,7 @@ return {
         },
         PEAGAWKFEATHER = "IT HAS BEEN SEPARATED FROM ITS BIRD",
         PEAGAWK_BUSH = "GROUND PART",
+        PIG_RUINS_IDOL = "I WILL DESTROY IT!",
         RABID_BEETLE = {
             DEAD = "TERMINATED",
             GENERIC = "YOU HAVE EXCESSIVE FACIAL HAIR",

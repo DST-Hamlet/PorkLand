@@ -60,6 +60,7 @@ return {
         },
         PEAGAWKFEATHER = "I spy, with my little eye...",
         PEAGAWK_BUSH = "Just a bush...",
+        PIG_RUINS_IDOL = "An artifact of a long dead culture.",
         RABID_BEETLE = {
             DEAD = "Lifeless.",
             GENERIC = "As rabid as death itself.",

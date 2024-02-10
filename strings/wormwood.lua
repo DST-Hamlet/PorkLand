@@ -60,6 +60,7 @@ return {
         },
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
+        PIG_RUINS_IDOL = "Twirly Tail rock",
         RABID_BEETLE = {
             DEAD = "Too bad",
             GENERIC = "Why so mad, Bzzter?",

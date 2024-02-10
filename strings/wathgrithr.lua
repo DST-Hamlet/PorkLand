@@ -60,6 +60,7 @@ return {
         },
         PEAGAWKFEATHER = "A priceless beauty.",
         PEAGAWK_BUSH = "Do you think you can hide from me?",
+        PIG_RUINS_IDOL = "I will dethron it and sell it to a pig.",
         RABID_BEETLE = {
             DEAD = "It has died in battle.",
             GENERIC = "Evil beast. You have met your match!",

@@ -60,6 +60,7 @@ return {
         },
         PEAGAWKFEATHER = "Normally I don't mind feathers, but this one keeps staring at me.",
         PEAGAWK_BUSH = "Something's hiding in there.",
+        PIG_RUINS_IDOL = "I'll need to get that totem free to take it back to the pigs.",
         RABID_BEETLE = {
             DEAD = "Not too sorry about that.",
             GENERIC = "Probably just agitated because it can't fly well.",

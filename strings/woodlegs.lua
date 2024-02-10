@@ -60,6 +60,7 @@ return {
         },
         PEAGAWKFEATHER = "Feather'o'glimmer.",
         PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
+        PIG_RUINS_IDOL = "Tha' treasure atop there.",
         RABID_BEETLE = {
             DEAD = "Aye, 'tis fer'tha best.",
             GENERIC = "Ornery buggie.",

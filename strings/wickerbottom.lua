@@ -60,6 +60,7 @@ return {
         },
         PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
         PEAGAWK_BUSH = "I have questions about that bush.",
+        PIG_RUINS_IDOL = "The top part would make an invaluable bartering tool.",
         RABID_BEETLE = {
             DEAD = "Expired.",
             GENERIC = "Certainly not a species I know of!",
