@@ -20,7 +20,7 @@ function WindVisuals:OnUpdate(dt)
         windfx_spawn_rate = windfx_spawn_rate + windfx_spawn_per_sec * dt
         if windfx_spawn_rate > 1.0 then
 
-            local px, py, pz = player.Transform:GetWorldPosition()
+            local px, py, pz = self.inst.Transform:GetWorldPosition()
             local dx, dz = 16 * UnitRand(), 16 * UnitRand()
             local x, y, z = px + dx, py, pz + dz
             local angle = TheWorld.net.components.plateauwind:GetWindAngle()
@@ -30,3 +30,5 @@ function WindVisuals:OnUpdate(dt)
         end
     end
 end
+
+return WindVisuals
