@@ -20,6 +20,7 @@ return {
         ARMOR_METALPLATE = "Sir Webber at your service!",
         ARMOR_WEEVOLE = "For when we need protection.",
         ASPARAGUS_PLANTED = "We should pick those.",
+        BALLPEIN_HAMMER = "A tiny hammer, like in a dinosaur digging kit.",
         BASEFAN = "That breeze feels nice on our fur.",
         CHITIN = "Hope no one's missing that.",
         CUTNETTLE = "These nettles smell really strong.",

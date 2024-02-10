@@ -19,6 +19,7 @@ return {
         ARMOR_METALPLATE = "What a horrible torture.",
         ARMOR_WEEVOLE = "I'm getting goosebumps.",
         ASPARAGUS_PLANTED = "A spear that grows out of the earth.",
+        BALLPEIN_HAMMER = "The loot is calling!",
         BASEFAN = "The breeze is blowing, so happy.",
         CHITIN = "The shell of those guys.",
         CUTNETTLE = "Just smelling it blows my nose.",

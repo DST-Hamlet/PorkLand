@@ -20,6 +20,7 @@ return {
         ARMOR_METALPLATE = "Not good fer swimmin' in.",
         ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",
         ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
+        BALLPEIN_HAMMER = "Fer diggin' treasures from'tha artifacts.",
         BASEFAN = "A cool wind blows from thee!",
         CHITIN = "A harden'd hull.",
         CUTNETTLE = "Cleans tha' nose as good as sea air.",

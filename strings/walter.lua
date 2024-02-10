@@ -20,6 +20,7 @@ return {
         ARMOR_METALPLATE = "Nothing can hurt me with this on!",
         ARMOR_WEEVOLE = "Are we really going to wear it?",
         ASPARAGUS_PLANTED = "Miss Winona might like it, pick some.",
+        BALLPEIN_HAMMER = "I can now take those cute little figurines home.",
         BASEFAN = "Ah, it's so comfortable, Warby, you can also enjoy it.",
         CHITIN = "Check out the pattern on this! Warby!",
         CUTNETTLE = "Ow! It got me.",

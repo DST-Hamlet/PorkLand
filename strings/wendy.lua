@@ -20,6 +20,7 @@ return {
         ARMOR_METALPLATE = "Like a metal coffin that keeps me alive.",
         ARMOR_WEEVOLE = "Something died so that this armor may exist.",
         ASPARAGUS_PLANTED = "I should rip those out of the ground.",
+        BALLPEIN_HAMMER = "For delicate smashing.",
         BASEFAN = "Alas the relief it brings is only temporary.",
         CHITIN = "This shell is poor protection from life's horrors.",
         CUTNETTLE = "I suppose these will cure blocked sinuses.",

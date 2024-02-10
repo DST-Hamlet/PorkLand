@@ -20,6 +20,7 @@ return {
         ARMOR_METALPLATE = "I feel like a tin can.",
         ARMOR_WEEVOLE = "This feels gross. I hope it works.",
         ASPARAGUS_PLANTED = "Haha! Found you!",
+        BALLPEIN_HAMMER = "This only smashes little bits off things.",
         BASEFAN = "Fan the flames.",
         CHITIN = "Bug skin.",
         CUTNETTLE = "It smells funny.",

@@ -20,6 +20,7 @@ return {
         ARMOR_METALPLATE = "What era is this design from?",
         ARMOR_WEEVOLE = "Armour made from bug exoskeleton.",
         ASPARAGUS_PLANTED = "Asparagus. Otherwise known as sparrow grass.",
+        BALLPEIN_HAMMER = "I could use this for more delicate jobs.",
         BASEFAN = "Restorative.",
         CHITIN = "The exoskeleton of an arthropod.",
         CUTNETTLE = "These are quite good for the sinuses.",

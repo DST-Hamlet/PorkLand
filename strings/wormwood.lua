@@ -20,6 +20,7 @@ return {
         ARMOR_METALPLATE = "Clink Rock clothes",
         ARMOR_WEEVOLE = "Bzzter clothes",
         ASPARAGUS_PLANTED = "Hello there!",
+        BALLPEIN_HAMMER = "Teeny Smasher",
         BASEFAN = "Wind",
         CHITIN = "Bzzter clothes",
         CUTNETTLE = "(sniiiiiff)",

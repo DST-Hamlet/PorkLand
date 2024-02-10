@@ -13,6 +13,7 @@ return {
         ARMOR_METALPLATE = "Tin Suit",
         ARMOR_WEEVOLE = "Weevole Mantle",
         ASPARAGUS_PLANTED = "Asparagus",
+        BALLPEIN_HAMMER = "Ball Pein Hammer",
         BASEFAN = "Oscillating Fan",
         CHITIN = "Chitin",
         CUTNETTLE = "Nettle",
@@ -42,6 +43,7 @@ return {
     RECIPE_DESC = {
         ARMOR_METALPLATE = "Strong and sturdy.",
         ARMOR_WEEVOLE = "Kinda gross, but surprisingly strong.",
+        BALLPEIN_HAMMER = "For when you wanna wreck things gently.",
         BASEFAN = "Relieves hay fever, keeps you dry.",
         GOLDENMACHETE = "Hack stuff in STYLE!",
         HALBERD = "Pointy and hurty.",

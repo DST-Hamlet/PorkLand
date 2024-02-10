@@ -20,6 +20,7 @@ return {
         ARMOR_METALPLATE = "Armor worthy of my deeds.",
         ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",
         ASPARAGUS_PLANTED = "Useless vegetation!",
+        BALLPEIN_HAMMER = "This hammer is only good for bashing tiny things.",
         BASEFAN = "Conquers the heat!",
         CHITIN = "The feeble armor of the bug.",
         CUTNETTLE = "Its smell has vanquish mine sinuses.",

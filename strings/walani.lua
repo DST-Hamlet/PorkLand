@@ -21,6 +21,7 @@ return {
         ARMOR_METALPLATE = "I feel like a soda can.",
         ARMOR_WEEVOLE = "Ew. It's all creepy-crawly.",
         ASPARAGUS_PLANTED = "Food!",
+        BALLPEIN_HAMMER = "Aw... it's a cute little hammer.",
         BASEFAN = "A nice breeze.",
         CHITIN = "Probably wouldn't make a good surfboard.",
         CUTNETTLE = "Whew! Really cleans your sinuses!",

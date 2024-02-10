@@ -100,6 +100,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick those!"
 msgstr "我应该采摘它们！"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BALLPEIN_HAMMER"
+msgid "It's a tiny little hammer."
+msgstr "这是一把小锤子。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BASEFAN"
 msgid "Fan-tastic."
@@ -369,6 +374,11 @@ msgstr "外骨骼盔甲保护我的内骨骼。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A cluster of edible spring vegetables!"
 msgstr "一簇可食用的春季蔬菜！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BALLPEIN_HAMMER"
+msgid "A diminutive tool, ideal for negotiating the removal of gems."
+msgstr "一个小巧的工具，很适合用来拆卸宝石。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BASEFAN"
@@ -650,6 +660,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food!"
 msgstr "食物！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Aw... it's a cute little hammer."
+msgstr "嗯...一把可爱的小锤子。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BASEFAN"
 msgid "A nice breeze."
@@ -920,6 +935,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Miss Winona might like it, pick some."
 msgstr "薇诺娜小姐可能会喜欢，摘一点吧。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BALLPEIN_HAMMER"
+msgid "I can now take those cute little figurines home."
+msgstr "我现在能把那些可爱的小雕像带回家了。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN"
 msgid "Ah, it's so comfortable, Warby, you can also enjoy it."
@@ -1185,6 +1205,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick some and go back to eat."
 msgstr "我应该摘点回去吃。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Fine work, I am best at fine work."
+msgstr "精细活，我最擅长精细活。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BASEFAN"
 msgid "Very interesting structure, but unfortunately not refined enough."
@@ -1449,6 +1474,11 @@ msgstr "它还留有一股虫子味儿。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should snatch those up."
 msgstr "我应该把那些捡起来。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BALLPEIN_HAMMER"
+msgid "This will tenderize jewels out of statues."
+msgstr "这可以把雕像上的珠宝敲下来。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BASEFAN"
@@ -1719,6 +1749,11 @@ msgstr "这是用我敌人的鳞片制成的盔甲。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Useless vegetation!"
 msgstr "没用的蔬菜！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BALLPEIN_HAMMER"
+msgid "This hammer is only good for bashing tiny things."
+msgstr "这把锤子只适合敲小东西。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BASEFAN"
@@ -1995,6 +2030,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food. Just growing out of the ground."
 msgstr "食物。刚从地里长出来。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BALLPEIN_HAMMER"
+msgid "For more subtler smashing jobs."
+msgstr "用于更精细的破坏工作。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BASEFAN"
 msgid "Ah. Civilization."
@@ -2264,6 +2304,11 @@ msgstr "为了在必要时能保护我们。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "We should pick those."
 msgstr "我们应该捡走它们。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BALLPEIN_HAMMER"
+msgid "A tiny hammer, like in a dinosaur digging kit."
+msgstr "一把小锤子，就像恐龙挖掘套装里的一样。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BASEFAN"
@@ -2535,6 +2580,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should rip those out of the ground."
 msgstr "我应该把它们从地里挖出来。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BALLPEIN_HAMMER"
+msgid "For delicate smashing."
+msgstr "用于精细的粉碎。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BASEFAN"
 msgid "Alas the relief it brings is only temporary."
@@ -2805,6 +2855,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "That looks like food! Let's hope it tastes like food."
 msgstr "看起来它像是食物！希望吃起来的时候也像是食物。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BALLPEIN_HAMMER"
+msgid "So cute and convenient."
+msgstr "非常可爱又非常实用。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BASEFAN"
 msgid "A plane propeller would be better."
@@ -3074,6 +3129,11 @@ msgstr "用昆虫外骨骼做的盔甲。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Asparagus. Otherwise known as sparrow grass."
 msgstr "芦笋。又称麻雀草。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BALLPEIN_HAMMER"
+msgid "I could use this for more delicate jobs."
+msgstr "我能用它做一些细活。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BASEFAN"
@@ -3350,6 +3410,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "HATH A FUNNY HAT"
 msgstr "它有一顶有趣的帽子"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BALLPEIN_HAMMER"
+msgid "FORTH MINE TEENY SMASHINGS"
+msgstr "用于开采的小粉碎锤"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BASEFAN"
 msgid "BLOW WINDS!"
@@ -3619,6 +3684,11 @@ msgstr "感觉怪恶心的。希望它有用。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha! Found you!"
 msgstr "哈哈！找到你了！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BALLPEIN_HAMMER"
+msgid "This only smashes little bits off things."
+msgstr "这只能破坏一些东西。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BASEFAN"
@@ -3890,6 +3960,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Wholesome green vegetables."
 msgstr "有益健康的绿色蔬菜。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BALLPEIN_HAMMER"
+msgid "This way I can get them out without damaging them."
+msgstr "这样我就能在不损坏它们的情况下把它们取出来了。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BASEFAN"
 msgid "I'm sure bossman would be very interested in it."
@@ -4154,6 +4229,11 @@ msgstr "沃尔夫冈赢了！"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha. Is like tiny vegetable hats."
 msgstr "哈哈，这就像小小的蔬菜帽子一样。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Wolfgang not good with subtlety."
+msgstr "沃尔夫冈和细微处合不来的。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BASEFAN"
@@ -4425,6 +4505,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "They're like little trees to chop down."
 msgstr "他们就像即将被砍倒的小树一样。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Subtle."
+msgstr "如果你需要温柔的抚摸，就用这个吧。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BASEFAN"
 msgid "Yep. That's a nice breeze."
@@ -4694,6 +4779,11 @@ msgstr "是的。用虫子的外皮做的衣服。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Tiny masts growin' from the ground."
 msgstr "地上长出的小菜杆。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Fer diggin' treasures from'tha artifacts."
+msgstr "为了把古遗物中的宝藏凿下来。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BASEFAN"
@@ -4965,6 +5055,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Hello there!"
 msgstr "你好！"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Teeny Smasher"
+msgstr "小小的敲击器"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BASEFAN"
 msgid "Wind"
@@ -5229,6 +5324,11 @@ msgstr "要起鸡皮疙瘩了。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A spear that grows out of the earth."
 msgstr "从土里长出的长矛。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BALLPEIN_HAMMER"
+msgid "The loot is calling!"
+msgstr "战利品在召唤！"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BASEFAN"
@@ -5495,6 +5595,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Green stick stick, smells good."
 msgstr "绿棒棒，闻起来不错。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Pry away everything!"
+msgstr "撬走一切！"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BASEFAN"
 msgid "Water ran away! florpt!"
@@ -5760,6 +5865,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "SMALL TREES OF ENERGY"
 msgstr "能量小树苗"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BALLPEIN_HAMMER"
+msgid "DELICATE SMASHING ACCESSORY ACQUIRED"
+msgstr "粉碎配件已获取"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BASEFAN"
 msgid "COOLING FAN"
@@ -5985,6 +6095,11 @@ msgctxt "STRINGS.NAMES.ASPARAGUS_PLANTED"
 msgid "Asparagus"
 msgstr "芦笋苗"
 
+#. STRINGS.NAMES.BALLPEIN_HAMMER
+msgctxt "STRINGS.NAMES.BALLPEIN_HAMMER"
+msgid "Ball Pein Hammer"
+msgstr "圆头锤"
+
 #. STRINGS.NAMES.BASEFAN
 msgctxt "STRINGS.NAMES.BASEFAN"
 msgid "Oscillating Fan"
@@ -6119,6 +6234,11 @@ msgstr "强大而坚固。"
 msgctxt "STRINGS.RECIPE_DESC.ARMOR_WEEVOLE"
 msgid "Kinda gross, but surprisingly strong."
 msgstr "有点恶心，但出奇的\n强。"
+
+#. STRINGS.RECIPE_DESC.BALLPEIN_HAMMER
+msgctxt "STRINGS.RECIPE_DESC.BALLPEIN_HAMMER"
+msgid "For when you wanna wreck things gently."
+msgstr "当你想轻轻地弄坏一\n些东西时。"
 
 #. STRINGS.RECIPE_DESC.BASEFAN
 msgctxt "STRINGS.RECIPE_DESC.BASEFAN"
