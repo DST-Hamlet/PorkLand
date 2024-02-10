@@ -13,6 +13,11 @@ local WorldWind = Class(function(self, inst)
     self.windfx_spawn_rate = 0
     self.windfx_spawn_pre_sec = 16
 
+    self.inst:ListenForEvent("ms_cyclecomplete", function()
+        self.angle = math.random(0, 360)
+        self.inst:PushEvent("windchange", {angle = self.angle, velocity = self.velocity})
+    end)
+
     self.inst:StartUpdatingComponent(self)
 end)
 
@@ -28,14 +33,12 @@ function WorldWind:OnSave()
     return
     {
         angle = self.angle,
-        time_to_wind_change = self.time_to_wind_change
     }
 end
 
 function WorldWind:OnLoad(data)
     if data then
         self.angle = data.angle or self.angle
-        self.time_to_wind_change = data.time_to_wind_change or self.time_to_wind_change
     end
 end
 
@@ -68,15 +71,6 @@ function WorldWind:OnUpdate(dt)
         return
     end
 
-    self.time_to_wind_change = self.time_to_wind_change - dt
-
-    if self.time_to_wind_change <= 0 then
-        self.angle = math.random(0, 360)
-        self.inst:PushEvent("windchange", {angle = self.angle, velocity = self.velocity})
-
-        self.time_to_wind_change = math.random(MIN_TIME_TO_WIND_CHANGE, MAX_TIME_TO_WIND_CHANGE)
-    end
-
     local windspeed = TheWorld.net.components.plateauwind:GetWindSpeed()
     if windspeed > 0.01 and TheWorld.net.components.plateauwind:GetIsWindy() then
         self.windfx_spawn_rate = self.windfx_spawn_rate + self.windfx_spawn_pre_sec * dt
@@ -92,10 +86,6 @@ function WorldWind:OnUpdate(dt)
             end
         end
     end
-end
-
-function WorldWind:LongUpdate(dt)
-    self:OnUpdate(dt)
 end
 
 return WorldWind
