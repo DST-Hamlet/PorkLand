@@ -259,6 +259,9 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.no_wet_prefix = true
 
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)
+
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 

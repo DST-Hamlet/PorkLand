@@ -5,7 +5,6 @@ GLOBAL.setfenv(1, GLOBAL)
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
-    "blowinwind",
     "clock",
     "colourcube",
     "combat",
@@ -15,7 +14,6 @@ local component_posts = {
     "health",
     "inventory",
     "inventoryitem",
-    "locomotor",
     "lootdropper",
     "moisture",
     "playercontroller",
@@ -29,7 +27,6 @@ local component_posts = {
     "waterproofer",
     "wavemanager",
     "worldstate",
-    "worldwind",
 }
 
 local prefab_posts = {
@@ -44,9 +41,6 @@ local prefab_posts = {
 }
 
 local multipleprefab_posts = {
-    "blowinhurricane",
-    "blowinwindgust",
-    "firepit",
     "poisonable",
 }
 

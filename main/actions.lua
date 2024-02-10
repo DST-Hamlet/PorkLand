@@ -101,12 +101,13 @@ end
 
 local DRUNK_GOLD = 1/8
 ACTIONS.PANGOLDEN_DRINK.fn = function(act)
-    if act.doer.puddle and act.doer.puddle.stage > 0 then
+    if act.doer.puddle and act.doer.puddle:IsValid() and act.doer.puddle.stage > 0 then
         act.doer.puddle:Shrink()
         act.doer.gold_level = act.doer.gold_level + DRUNK_GOLD
+        return true
     end
 
-    return true
+    return false
 end
 
 ACTIONS.PANGOLDEN_POOP.fn = function(act)

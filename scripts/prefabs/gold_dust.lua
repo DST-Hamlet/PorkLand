@@ -47,6 +47,7 @@ local function fn()
         return inst
     end
 
+    MakeHauntableLaunch(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
 
     inst:AddComponent("edible")
