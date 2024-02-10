@@ -60,7 +60,7 @@ end
 local function PoopAction(inst)
     if inst.gold_level >= 1 then
         inst.gold_level = inst.gold_level -1
-        return BufferedAction(inst, inst:GetPosition(), ACTIONS.PANGOLDEN_POOP)
+        return BufferedAction(inst, inst, ACTIONS.PANGOLDEN_POOP)
     end
 end
 

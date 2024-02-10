@@ -42,7 +42,7 @@ function Ripplespawner:OnUpdate(dt)
     local ents = {}
 
     if self.range > 0 then
-        ents = TheSim:FindEntities(x, y, z, self.range, nil, {"flying", "INLIMBO", "FX", "playerghost", "DECOR"}, 
+        ents = TheSim:FindEntities(x, y, z, self.range, nil, {"flying", "INLIMBO", "FX", "playerghost", "DECOR", "brightmare", "nightmarecreature", "shadowcreature"}, 
             {"monster", "animal", "character", "isinventoryitem", "tree", "structure"})
     end
 

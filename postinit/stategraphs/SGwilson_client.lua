@@ -25,17 +25,33 @@ local states = {
     State{
         name = "pan_start",
         tags = {"prepan", "panning", "working"},
+		server_states = {"pan_start", "pan"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
-            inst.AnimState:PlayAnimation("pan_pre")
+			if not inst.sg:ServerStateMatches() then
+                inst.AnimState:PlayAnimation("pan_pre")
+                inst.AnimState:PushAnimation("pan_loop", false) -- TODO: make pan_lag anim
+            end
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
         end,
 
-        events=
-        {
-            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
-            EventHandler("animover", function(inst) inst.sg:GoToState("pan") end),
-        },
+        onupdate = function(inst)
+			if inst.sg:ServerStateMatches() then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end,
     },
 
     State{

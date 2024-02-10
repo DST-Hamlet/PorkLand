@@ -25,6 +25,7 @@ local function fn()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
+	inst.entity:AddNetwork()
 
 	MakeInventoryPhysics(inst)
 
@@ -61,6 +62,7 @@ local function fn()
 	inst.components.equippable:SetOnEquip( onequip )
 	inst.components.equippable:SetOnUnequip( onunequip)
 
+	MakeHauntableLaunch(inst)
 	MakeInventoryFloatable(inst)
     inst.components.floater:UpdateAnimations("idle_water", "idle")
 
