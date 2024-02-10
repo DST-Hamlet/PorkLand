@@ -22,15 +22,12 @@ local function OnRespawnFromGhost(inst, data)
 end
 
 AddPlayerPostInit(function(inst)
-    if not TheNet:IsDedicated() then
+    if not TheWorld.ismastersim then
         if inst == ThePlayer then
             inst:DoTaskInTime(0, function()
                 inst:AddComponent("windvisuals")
             end)
         end 
-    end
-
-    if not TheWorld.ismastersim then
         return
     end
 
