@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Don't these plants do anything else but pollinate all over the place?",
     ANNOUNCE_HAYFEVER_OFF = "Whoops! it is finally over!",
+    ANNOUNCE_PICKPOOP = {
+        "Why would I do that?",
+        "There must be something wrong with my mind.",
+        "(Retching)",
+    },
     ANNOUNCE_SNEEZE = "Ah Choo!",
     ANNOUNCE_TOO_HUMID = {
         "Wearing %s is a shame.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Very interesting structure, but unfortunately not refined enough.",
         CHITIN = "I don't understand what's the point of this?",
         CUTNETTLE = "This keeps us breathing smoothly.",
+        DUNGBALL = "I won't touch it.",
+        DUNGBEETLE = {
+            DEAD = "She ends up being part of those.",
+            GENERIC = "That's gross.",
+            SLEEPING = "She is resting.",
+            UNDUNGED = "She'll find another one.",
+        },
+        DUNGPILE = {
+            GENERIC = "It's definitely not worth any of my time.",
+            PICKED = "Let's just get it over with.",
+        },
         FLOWER_RAINFOREST = "Why am I wasting time staring at it?",
         GLOWFLY = {
             DEAD = "Maybe that's for the best.",
@@ -26,14 +42,16 @@ return {
         },
         GLOWFLY_COCOON = "We'd better get out of here before it breaks out of its cocoon.",
         GOLDENMACHETE = "What else do you do with gold in a jungle island?",
+        GRABBING_VINE = "I really hope it was just a regular plant.",
         GRASS_TALL = {
             BURNING = "This is not good.",
             GENERIC = "Grasses this tough are indeed uncommon.",
             PICKED = "Over time, it will grow back.",
         },
-        MACHETE = "It's for chopping, simple as that.",
         HALBERD = "I'm not planning on murdering grove of trees.",
+        HANGING_VINE = "I really hope it was just a regular plant.",
         IRON = "An essential material for accurate timepieces.",
+        MACHETE = "It's for chopping, simple as that.",
         PEAGAWK = {
             GENERIC = "See no evil!",
             SLEEPING = "Shouldn't it be looking at me?",

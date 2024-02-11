@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "My sinuses are burning.",
     ANNOUNCE_HAYFEVER_OFF = "Sniff! I feel better now!",
+    ANNOUNCE_PICKPOOP = {
+        "Ick!",
+        "Gross!",
+        "Burn it all!!",
+    },
     ANNOUNCE_SNEEZE = "Achoo!!",
     ANNOUNCE_TOO_HUMID = {
         "It's burning hot. But not in a good way.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Fan the flames.",
         CHITIN = "Bug skin.",
         CUTNETTLE = "It smells funny.",
+        DUNGBALL = "Can't even set it on fire.",
+        DUNGBEETLE = {
+            DEAD = "Squashed.",
+            GENERIC = "Beat it, smelly beetle!",
+            SLEEPING = "How do you sleep with that smell?",
+            UNDUNGED = "You better run.",
+        },
+        DUNGPILE = {
+            GENERIC = "Haha, that pile's huge!",
+            PICKED = "What? I needed it.",
+        },
         FLOWER_RAINFOREST = "It's kinda ugly. But it burns.",
         GLOWFLY = {
             DEAD = "Squashed.",
@@ -26,14 +42,16 @@ return {
         },
         GLOWFLY_COCOON = "Doing a bad job of hiding from me.",
         GOLDENMACHETE = "I don't want to scuff it up.",
+        GRABBING_VINE = "Ugh, vines!",
         GRASS_TALL = {
             BURNING = "I win.",
             GENERIC = "This grass is tough!",
             PICKED = "Not tough enough!",
         },
-        MACHETE = "Or I could just burn my way through.",
         HALBERD = "Weapons are only good if they're twice your size.",
+        HANGING_VINE = "Ugh, vines!",
         IRON = "I can't burn it with just my lighter.",
+        MACHETE = "Or I could just burn my way through.",
         PEAGAWK = {
             DEAD = "Very dead.",
             GENERIC = "Jeepers peepers!",

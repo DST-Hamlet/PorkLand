@@ -9,6 +9,8 @@ local PL_ACTIONS = {
     PANGOLDEN_DRINK = Action({distance = 1.2}),
     PANGOLDEN_POOP = Action({distance = 1.2}),
     PEAGAWK_TRANSFORM = Action({}),
+    DIGDUNG = Action({mount_enabled = true}),
+    MOUNTDUNG = Action({}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -117,7 +119,18 @@ ACTIONS.PANGOLDEN_POOP.fn = function(act)
     return true
 end
 
+ACTIONS.DIGDUNG.fn = function(act)
+    act.target.components.workable:WorkedBy(act.doer, 1)
+    return true
+end
 
+ACTIONS.MOUNTDUNG.fn = function(act)
+    local doer = act.doer
+    doer.dung_target:Remove()
+    doer:AddTag("hasdung")
+    doer.dung_target = nil
+    return true
+end
 
 -- Patch for hackable things
 local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
@@ -149,6 +162,15 @@ function ACTIONS.COOK.stroverridefn(act, ...)
         return STRINGS.ACTIONS.SMELT
     elseif _COOK_stroverridefn then
         return _COOK_stroverridefn(act, ...)
+    end
+end
+
+local _PICK_strfn = ACTIONS.PICK.strfn
+ACTIONS.PICK.strfn = function(act, ...)
+    if act.target and act.target:HasTag("pickable_digin_str") then
+        return "DIGIN"
+    elseif _PICK_strfn then
+        return _PICK_strfn(act, ...)
     end
 end
 

@@ -311,10 +311,10 @@ local function fn()
     inst:ListenForEvent("onbuilt", onbuilt)
 
     MakeSnowCovered(inst, .01)
-	MakeMediumBurnable(inst, nil, nil, true)
-	MakeSmallPropagator(inst)
+    MakeMediumBurnable(inst, nil, nil, true)
+    MakeSmallPropagator(inst)
 
-	inst.returntointeriorscene = returntointeriorscene
+    inst.returntointeriorscene = returntointeriorscene
     inst.OnSave = onsave
     inst.OnLoad = onload
 

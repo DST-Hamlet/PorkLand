@@ -39,6 +39,7 @@ for _, prefab in pairs(Prefabs["forest"].deps) do
     table.insert(prefabs, prefab)
 end
 
+-- https://forums.kleientertainment.com/forums/topic/140904-tiles-changes-and-more/
 local function tile_physics_init(inst, ...)
     -- a slightly modified version of the forest map's primary collider.
     inst.Map:AddTileCollisionSet(

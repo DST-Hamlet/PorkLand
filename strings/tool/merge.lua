@@ -39,16 +39,16 @@ characters = {
 
 local languages = {
     -- en = "strings.pot",
-    de = "german",  -- german
-    es = "spanish",  -- spanish
-    fr = "french",  -- french
-    it = "italian",  -- italian
-    ko = "korean",  -- korean
-    pt = "portuguese_br",  -- portuguese and brazilian portuguese
-    pl = "polish",  -- polish
-    ru = "russian",  -- russian
+    -- de = "german",  -- german
+    -- es = "spanish",  -- spanish
+    -- fr = "french",  -- french
+    -- it = "italian",  -- italian
+    -- ko = "korean",  -- korean
+    -- pt = "portuguese_br",  -- portuguese and brazilian portuguese
+    -- pl = "polish",  -- polish
+    -- ru = "russian",  -- russian
     ["zh-CN"] = "chinese_s",  -- chinese
-    ["zh-TW"] = "chinese_t",  -- traditional chinese
+    -- ["zh-TW"] = "chinese_t",  -- traditional chinese
 }
 
 local geted_strings = {}

@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "There's something in the air...my nose is itching.",
     ANNOUNCE_HAYFEVER_OFF = "My nose is so much better and it's finally gone!",
+    ANNOUNCE_PICKPOOP = {
+        "Pine Pioneers must be hardworking...but...",
+        "This is really unhygienic!",
+        "do not come! Warby!",
+    },
     ANNOUNCE_SNEEZE = "Ah Choo!",
     ANNOUNCE_TOO_HUMID = {
         "I'm bored.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Ah, it's so comfortable, Warby, you can also enjoy it.",
         CHITIN = "Check out the pattern on this! Warby!",
         CUTNETTLE = "Ow! It got me.",
+        DUNGBALL = "How did she... nevermind.",
+        DUNGBEETLE = {
+            DEAD = "Hello?",
+            GENERIC = "I need a very huge bottle to hold her!",
+            SLEEPING = "She is sleeping.",
+            UNDUNGED = "She's not with that dung ball. Good timing.",
+        },
+        DUNGPILE = {
+            GENERIC = "What giant creature left this?",
+            PICKED = "Eww!",
+        },
         FLOWER_RAINFOREST = "oh! That's the kind of flower in jungle adventure stories.",
         GLOWFLY = {
             DEAD = "Oh, dead.",
@@ -26,14 +42,16 @@ return {
         },
         GLOWFLY_COCOON = "A cocoon, what could be inside?",
         GOLDENMACHETE = "Hack in style!",
+        GRABBING_VINE = "What kind of monster up there?",
         GRASS_TALL = {
             BURNING = "Hey! Brush fires will destroy rainforests!",
             GENERIC = "A lush patch of grass. Must be a lot of bugs in it.",
             PICKED = "Collect again after a while.",
         },
-        MACHETE = "I like the cut of this blade.",
         HALBERD = "A huge ax!",
+        HANGING_VINE = "What kind of monster up there?",
         IRON = "Is that iron?",
+        MACHETE = "I like the cut of this blade.",
         PEAGAWK = {
             GENERIC = "Wow, how many eyes are there?",
             SLEEPING = "Warby, we might be able to gather his feathers while he's asleep.",

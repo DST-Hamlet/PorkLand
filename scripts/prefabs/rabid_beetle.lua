@@ -163,7 +163,7 @@ local function fn()
     inst.components.combat:SetAttackPeriod(TUNING.RABID_BEETLE_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, RetargetFn)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
-    inst.components.combat:SetRange(2)
+    inst.components.combat:SetRange(TUNING.RABID_BEETLE_ATTACK_RANGE)
     inst.components.combat:SetHurtSound("dontstarve_DLC003/creatures/enemy/rabid_beetle/hurt")
 
     inst:AddComponent("timer")

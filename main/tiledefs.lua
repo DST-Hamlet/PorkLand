@@ -1,4 +1,5 @@
 --[[
+-- https://forums.kleientertainment.com/forums/topic/140904-tiles-changes-and-more/
 tile_name - the name of the tile, this is how you'll refer to your tile in the WORLD_TILES table.
 tile_range - the string defining the range of possible ids for the tile.
 the following ranges exist: "LAND", "NOISE", "OCEAN", "IMPASSABLE"
