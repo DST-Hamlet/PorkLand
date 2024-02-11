@@ -163,8 +163,7 @@ local function SetAsRabid(inst, rabid)
     update_light(inst)
 end
 
-local function transformtest(inst, phase)
-    print("Transfor test")
+local function OnPhaseChange(inst, phase)
     if phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood") then
         if not inst.is_rabid then
             inst:DoTaskInTime(1 + (math.random() * 1), SetAsRabid, inst, true)
@@ -175,6 +174,7 @@ local function transformtest(inst, phase)
         end
     end
 end
+
 
 local function OnSave(inst, data)
     if inst.lighton then
@@ -304,7 +304,7 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
-    inst:ListenForEvent("phasechanged", function(source, phase) transformtest(inst, phase) end, TheWorld)
+    inst:WatchWorldState("phase", OnPhaseChange)
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("dropitem", OnDrop)
@@ -314,7 +314,7 @@ local function fn()
 
     -- When a piko is first created, ensure that it isn't rabid.
     SetAsRabid(inst, false)
-    transformtest(inst)
+    OnPhaseChange(inst, TheWorld.state.phase)
 
     return inst
 end
