@@ -31,7 +31,7 @@ local states = {
             inst.components.locomotor:Stop()
 			if not inst.sg:ServerStateMatches() then
                 inst.AnimState:PlayAnimation("pan_pre")
-                inst.AnimState:PushAnimation("pan_loop", false) -- TODO: make pan_lag anim
+                inst.AnimState:PushAnimation("pan_loop", true) -- TODO: make pan_lag anim
             end
 
             inst:PerformPreviewBufferedAction()
@@ -44,7 +44,8 @@ local states = {
                     inst.sg:GoToState("idle", "noanim")
                 end
             elseif inst.bufferedaction == nil then
-                inst.sg:GoToState("idle")
+                inst.AnimState:PlayAnimation("pan_pst")
+                inst.sg:GoToState("idle", true)
             end
         end,
 
