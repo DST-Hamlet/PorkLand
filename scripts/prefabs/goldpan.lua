@@ -28,6 +28,8 @@ local function fn()
 	inst.entity:AddNetwork()
 
 	MakeInventoryPhysics(inst)
+	MakeInventoryFloatable(inst)
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
 	inst.AnimState:SetBank("pan")
 	inst.AnimState:SetBuild("pan")
@@ -63,8 +65,6 @@ local function fn()
 	inst.components.equippable:SetOnUnequip( onunequip)
 
 	MakeHauntableLaunch(inst)
-	MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
 	return inst
 end

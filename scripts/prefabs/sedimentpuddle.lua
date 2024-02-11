@@ -31,21 +31,20 @@ local shrink_anim_lookup_table = {"disappear", "med_to_small", "big_to_med"}
 local range_lookup_table = {0, 1.6, 2.6, 3.5}
 
 local function SetStage(inst, stage, preanim)
+    inst.stage = math.calmp(stage, 0, 3) -- just in case
+    inst.components.workable:SetWorkLeft(inst.stage)
+    inst.components.ripplespawner:SetRange(range_lookup_table[inst.stage + 1]) -- lua index starts at 1
 
-    inst.stage = stage
-    inst.components.workable:SetWorkLeft(stage)
-    inst.components.ripplespawner:SetRange(range_lookup_table[stage + 1]) -- lua index starts at 1
-
-    if stage > 0 then
+    if inst.stage > 0 then
         inst:Show()
         inst:RemoveTag("NOCLICK")
         inst.MiniMapEntity:SetEnabled(true)
 
         if preanim then
-            inst.AnimState:PlayAnimation( preanim )
-            inst.AnimState:PushAnimation( getanim(inst, "idle"), true )
+            inst.AnimState:PlayAnimation(preanim)
+            inst.AnimState:PushAnimation(getanim(inst, "idle"), true)
         else
-            inst.AnimState:PlayAnimation( getanim(inst, "idle"), true )
+            inst.AnimState:PlayAnimation(getanim(inst, "idle"), true)
         end
     else
         inst.components.workable:SetWorkable(false)
@@ -54,19 +53,15 @@ local function SetStage(inst, stage, preanim)
         inst.MiniMapEntity:SetEnabled(false)
 
         if preanim then
-            inst.AnimState:PlayAnimation( preanim )
+            inst.AnimState:PlayAnimation(preanim)
         else
-            inst.AnimState:PlayAnimation( getanim(inst, "idle"), true )
+            inst.AnimState:PlayAnimation(getanim(inst, "idle"), true)
             inst:Hide()
         end
     end
 end
 
 local function Grow(inst)
-    if inst.pause then
-        return
-    end
-
     if inst.stage == 0 then
         inst.water_collected = 0
     end
@@ -87,10 +82,6 @@ local function get_new_water_limit(inst)
 end
 
 local function CollectRain(inst)
-    if inst.pause then
-        return
-    end
-
     inst.water_collected = inst.water_collected + 1
     if inst.water_collected > inst.waterlimit then
         inst.water_collected = 0
@@ -143,18 +134,26 @@ local function OnWorkCallback(inst, worker, workleft)
     inst:Shrink()
 end
 
-local function start_grow(inst, data)
+local function start_grow(inst)
     if (inst.stage and inst.stage > 0) or math.random() < 0.2 then
         inst.growing = true
         generate_task(inst)
     end
 end
 
-local function stop_grow(inst, data)
+local function stop_grow(inst)
     inst.growing = false
     if inst.grow_task then
         inst.grow_task:Cancel()
         inst.grow_task = nil
+    end
+end
+
+local function OnIsRaining(inst, is_raining)
+    if is_raining then
+        start_grow(inst)
+    else
+        stop_grow(inst)
     end
 end
 
@@ -267,8 +266,8 @@ local function fn()
 
     inst:DoTaskInTime(0, initialsetup)
 
-    inst:ListenForEvent("rainstart", function() start_grow(inst) end, TheWorld)
-    inst:ListenForEvent("rainstop", function() stop_grow(inst) end, TheWorld)
+    inst:WatchWorldState("israining", OnIsRaining)
+    OnIsRaining(inst, TheWorld.state.raining)
     inst:ListenForEvent("animover", onanimover)
 
     return inst
