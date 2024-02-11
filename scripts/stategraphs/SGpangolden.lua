@@ -365,6 +365,7 @@ local states=
         timeline=
         {
             TimeEvent(11 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
+            TimeEvent(32 * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/mouth") end),
         },
 
         events=

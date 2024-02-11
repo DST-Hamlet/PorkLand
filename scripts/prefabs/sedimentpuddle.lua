@@ -219,7 +219,7 @@ local function fn()
     inst.entity:AddNetwork()
     inst.entity:AddMiniMapEntity()
 
-    inst.MiniMapEntity:SetIcon("gold_puddle.png")
+    inst.MiniMapEntity:SetIcon("gold_puddle.tex")
 
     inst.AnimState:SetBuild("gold_puddle")
     inst.AnimState:SetBank("gold_puddle")
