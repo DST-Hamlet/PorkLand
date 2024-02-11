@@ -20,18 +20,6 @@ local prefabs =
     "green_leaves_chop",
 }
 
-local teatree_data = {
-    leavesbuild = "teatree_build",
-    prefab_name = "teatree",
-    normal_loot = {"log", "twigs", "teatree_nut"},
-    short_loot = {"log"},
-    tall_loot = {"log", "log", "twigs", "teatree_nut", "teatree_nut"},
-    drop_nut = true,
-    fx = "green_leaves",
-    chopfx = "green_leaves_chop",
-    shelter = true,
-}
-
 local function getstatus(inst)
     if inst:HasTag("burnt") then
         return "BURNT"
@@ -39,6 +27,10 @@ local function getstatus(inst)
         return "CHOPPED"
     end
 end
+
+local short_loot = {"log"}
+local normal_loot = {"log", "twigs", "teatree_nut"}
+local tall_loot = {"log", "log", "twigs", "teatree_nut", "teatree_nut"}
 
 --#region animation
 
@@ -70,8 +62,8 @@ local function makeanims(stage)
 end
 
 local short_anims = makeanims("short")
-local tall_anims = makeanims("tall")
 local normal_anims = makeanims("normal")
+local tall_anims = makeanims("tall")
 
 local function SpawnLeafFX(inst, waittime, chop)
     if inst:HasTag("fire") or inst:HasTag("stump") or inst:HasTag("burnt") or inst:IsAsleep() then
@@ -84,8 +76,7 @@ local function SpawnLeafFX(inst, waittime, chop)
         return
     end
 
-    local fx = (chop and teatree_data.chopfx) and SpawnPrefab(teatree_data.chopfx)
-        or (teatree_data.fx and SpawnPrefab(teatree_data.fx)) or nil
+    local fx = chop and SpawnPrefab("green_leaves_chop") or SpawnPrefab("green_leaves")
 
     if fx then
         local x, y, z= inst.Transform:GetWorldPosition()
@@ -106,78 +97,13 @@ local function PushSway(inst)
 end
 
 local function Sway(inst, ...)
-    if inst.sg:HasStateTag("burning") or inst:HasTag("stump") then return end
+    if inst:HasTag("burning") or inst:HasTag("stump") then return end
 
     PushSway(inst)
 end
 --#endregion
 
 --#region growable component
-
-local function GrowLeavesFn(inst)
-    if inst:HasTag("stump") or inst:HasTag("burnt") or inst:HasTag("fire") then
-        inst:RemoveEventCallback("animover", GrowLeavesFn)
-        return
-    end
-
-    if teatree_data.leavesbuild then
-        inst.AnimState:OverrideSymbol("swap_leaves", teatree_data.leavesbuild, "swap_leaves")
-    else
-        inst.AnimState:ClearOverrideSymbol("swap_leaves")
-    end
-
-    if inst.components.growable then
-        if inst.components.growable.stage == 1 then
-            inst.components.lootdropper:SetLoot(teatree_data.short_loot)
-        elseif inst.components.growable.stage == 2 then
-            inst.components.lootdropper:SetLoot(teatree_data.normal_loot)
-        else
-            inst.components.lootdropper:SetLoot(teatree_data.tall_loot)
-        end
-    end
-
-    inst.leaf_state = inst.target_leaf_state
-    inst.AnimState:Show("mouseover")
-
-    Sway(inst)
-end
-
-local function OnChangeLeaves(inst)
-    if inst:HasTag("stump") or inst:HasTag("burnt") or inst:HasTag("fire") then
-        inst.targetleaveschangetime = nil
-        inst.leaveschangetask = nil
-        return
-    end
-
-    if inst.components.workable and inst.components.workable.lastworktime and inst.components.workable.lastworktime < GetTime() - 10 then
-        inst.targetleaveschangetime = GetTime() + 11
-        inst.leaveschangetask = inst:DoTaskInTime(11, OnChangeLeaves)
-        return
-    else
-        inst.targetleaveschangetime = nil
-        inst.leaveschangetask = nil
-    end
-
-    inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
-    inst.build = "normal"
-
-
-
-    if teatree_data.leavesbuild then
-        inst.AnimState:OverrideSymbol("swap_leaves", teatree_data.leavesbuild, "swap_leaves")
-    else
-        inst.AnimState:ClearOverrideSymbol("swap_leaves")
-    end
-    inst.AnimState:PlayAnimation(inst.anims.growleaves)
-    inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow")
-    inst:ListenForEvent("animover", GrowLeavesFn)
-
-    if teatree_data.shelter then
-        if not inst:HasTag("shelter") then inst:AddTag("shelter") end
-    else
-        while inst:HasTag("shelter") do inst:RemoveTag("shelter") end
-    end
-end
 
 local function ChangeSizeFn(inst)
     inst:RemoveEventCallback("animover", ChangeSizeFn)
@@ -205,7 +131,7 @@ local growth_stages = {
             if inst.components.workable then
                inst.components.workable:SetWorkLeft(TUNING.DECIDUOUS_CHOPS_SMALL)
             end
-            inst.components.lootdropper:SetLoot(teatree_data.short_loot)
+            inst.components.lootdropper:SetLoot(short_loot)
         end,
         growfn = function(inst)
             inst.AnimState:PlayAnimation("grow_tall_to_short")
@@ -223,7 +149,7 @@ local growth_stages = {
             if inst.components.workable then
                 inst.components.workable:SetWorkLeft(TUNING.DECIDUOUS_CHOPS_NORMAL)
             end
-            inst.components.lootdropper:SetLoot(teatree_data.normal_loot)
+            inst.components.lootdropper:SetLoot(normal_loot)
         end,
         growfn =  function(inst)
             inst.AnimState:PlayAnimation("grow_short_to_normal")
@@ -241,7 +167,7 @@ local growth_stages = {
             if inst.components.workable then
                 inst.components.workable:SetWorkLeft(TUNING.DECIDUOUS_CHOPS_TALL)
             end
-            inst.components.lootdropper:SetLoot(teatree_data.tall_loot)
+            inst.components.lootdropper:SetLoot(tall_loot)
         end,
         growfn = function(inst)
             inst.AnimState:PlayAnimation("grow_normal_to_tall")
@@ -262,9 +188,9 @@ local function detachchild(inst)
 end
 
 local function chop_tree(inst, chopper, chopsleft, numchops)
-    if not (chopper ~= nil and chopper:HasTag("playerghost")) then
+    if not (chopper and chopper:HasTag("playerghost")) then
         inst.SoundEmitter:PlaySound(
-            chopper ~= nil and chopper:HasTag("beaver") and
+            chopper and chopper:HasTag("beaver") and
             "dontstarve/characters/woodie/beaver_chop_tree" or
             "dontstarve/wilson/use_axe_tree"
         )
@@ -287,22 +213,18 @@ end
 
 local function chop_down_tree(inst, chopper)
     inst:RemoveComponent("burnable")
-    MakeSmallBurnable(inst)
     inst:RemoveComponent("propagator")
-    MakeSmallPropagator(inst)
     inst:RemoveComponent("workable")
-    --inst:RemoveComponent("blowinwindgust")
+    -- inst:RemoveComponent("blowinwindgust")
     inst:RemoveComponent("hauntable")
+
+    MakeSmallBurnable(inst)
+    MakeSmallPropagator(inst)
     MakeHauntableIgnite(inst)
 
-    while inst:HasTag("shelter") do inst:RemoveTag("shelter") end
-    while inst:HasTag("cattoyairborne") do inst:RemoveTag("cattoyairborne") end
+    inst:RemoveTag("shelter")
+    inst:RemoveTag("cattoyairborne")
     inst:AddTag("stump")
-
-    if inst.leaveschangetask then
-        inst.leaveschangetask:Cancel()
-        inst.leaveschangetask = nil
-    end
 
     inst.SoundEmitter:PlaySound("dontstarve/forest/treefall")
 
@@ -327,19 +249,14 @@ local function chop_down_tree(inst, chopper)
 
     detachchild(inst)
 
-    inst:DoTaskInTime(.4, function()
-        local scale = (inst.components.growable and inst.components.growable.stage > 2) and .5 or .25
+    inst:DoTaskInTime(0.4, function()
+        local scale = (inst.components.growable and inst.components.growable.stage > 2) and 0.5 or 0.25
         ShakeAllCameras(CAMERASHAKE.FULL, 0.25, 0.03, scale, inst, 6)
     end)
 
     RemovePhysicsColliders(inst)
     inst.AnimState:PushAnimation(inst.anims.stump)
     inst.MiniMapEntity:SetIcon("teatree_stump.tex")
-
-    if inst.leaveschangetask then
-        inst.leaveschangetask:Cancel()
-        inst.leaveschangetask = nil
-    end
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
@@ -368,18 +285,7 @@ end
 local function growfromseed (inst)
     inst.components.growable:SetStage(1)
 
-    if TheWorld.state.season then
-        inst.build = "normal"
-        inst.leaf_state = "normal"
-        inst.target_leaf_state = "normal"
-    end
-
-    if teatree_data.leavesbuild then
-        inst.AnimState:OverrideSymbol("swap_leaves", teatree_data.leavesbuild, "swap_leaves")
-    else
-        inst.AnimState:ClearOverrideSymbol("swap_leaves")
-    end
-
+    inst.AnimState:OverrideSymbol("swap_leaves", "teatree_build", "swap_leaves")
     inst.AnimState:PlayAnimation("grow_seed_to_short")
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow")
     inst.anims = short_anims
@@ -407,15 +313,12 @@ local function OnBurnt(inst, immediate)
         inst:RemoveComponent("spawner")
         inst:RemoveComponent("hauntable")
 
-        while inst:HasTag("shelter") do inst:RemoveTag("shelter") end
-        while inst:HasTag("cattoyairborne") do inst:RemoveTag("cattoyairborne") end
-
+        inst:RemoveTag("shelter")
+        inst:RemoveTag("cattoyairborne")
         inst:RemoveTag("fire")
 
         inst.components.lootdropper:SetLoot({})
-        if teatree_data.drop_nut then
-            inst.components.lootdropper:AddChanceLoot("teatree_nut", 0.1)
-        end
+        inst.components.lootdropper:AddChanceLoot("teatree_nut", 0.1)
 
         if inst.components.workable then
             inst.components.workable:SetWorkLeft(1)
@@ -423,13 +326,7 @@ local function OnBurnt(inst, immediate)
             inst.components.workable:SetOnFinishCallback(chop_down_burnt_tree)
         end
 
-        if inst.leaveschangetask then
-            inst.leaveschangetask:Cancel()
-            inst.leaveschangetask = nil
-        end
-
         detachchild(inst)
-
 
         MakeHauntableWork(inst)
 
@@ -454,17 +351,8 @@ local function OnBurnt(inst, immediate)
     inst.AnimState:SetRayTestOnBB(true);
 end
 
-local function tree_burnt(inst)
-    OnBurnt(inst)
-
-    if inst.leaveschangetask then
-        inst.leaveschangetask:Cancel()
-        inst.leaveschangetask = nil
-    end
-end
-
 local function OnIgnite(inst)
-    BurnInventoryItems(inst)
+    BurnInventoryItems(inst) -- TODO on extinguished
 
     if inst.components.spawner then
         local child = inst.components.spawner.child
@@ -554,7 +442,7 @@ local function OnEntityWake(inst)
             else
                 MakeLargeBurnable(inst)
                 inst.components.burnable:SetFXLevel(5)
-                inst.components.burnable:SetOnBurntFn(tree_burnt)
+                inst.components.burnable:SetOnBurntFn(OnBurnt)
                 inst.components.burnable:SetOnIgniteFn(OnIgnite)
                 inst.components.burnable.extinguishimmediately = false
             end
@@ -570,11 +458,6 @@ local function OnEntityWake(inst)
     end
 
     if not inst:HasTag("burnt") and inst:HasTag("fire") then
-        inst.sg:GoToState("empty")
-        if not inst:HasTag("stump") then
-            inst.AnimState:ClearOverrideSymbol("legs")
-            inst.AnimState:ClearOverrideSymbol("legs_mouseover")
-        end
         inst.AnimState:SetBank("tree_leaf")
         OnBurnt(inst, true)
     end
@@ -589,34 +472,14 @@ end
 local function OnSave(inst, data)
     data.burnt = inst:HasTag("burnt") or inst:HasTag("fire")
     data.stump = inst:HasTag("stump")
-    data.build = inst.build
-    data.target_leaf_state = inst.target_leaf_state
-    data.leaf_state = inst.leaf_state
-
-    if inst.leaveschangetask and inst.targetleaveschangetime then
-        data.leaveschangetime = inst.targetleaveschangetime - GetTime()
-    end
 end
 
 local function OnLoad(inst, data)
     if not data then
-        if inst.build ~= "normal" or inst.leaf_state ~= inst.target_leaf_state then
-            OnChangeLeaves(inst)
-        else
-            inst.AnimState:Show("mouseover")
-            Sway(inst)
-        end
+        inst.AnimState:Show("mouseover")
+        Sway(inst)
         return
     end
-
-    if data.spawner then
-        SetUpSpawner(inst)
-    end
-
-    inst.build = data.build or "normal"
-
-    inst.target_leaf_state = data.target_leaf_state
-    inst.leaf_state = data.leaf_state
 
     if inst.components.growable then
         if inst.components.growable.stage == 1 then
@@ -634,89 +497,40 @@ local function OnLoad(inst, data)
         inst:AddTag("fire") -- Add the fire tag here: OnEntityWake will handle it actually doing burnt logic
         inst.MiniMapEntity:SetIcon("teatree_burnt.tex")
     elseif data.stump then
-        while inst:HasTag("shelter") do inst:RemoveTag("shelter") end
-        while inst:HasTag("cattoyairborne") do inst:RemoveTag("cattoyairborne") end
+        inst:RemoveTag("shelter")
+        inst:RemoveTag("cattoyairborne")
+
         inst:RemoveComponent("burnable")
-        if not inst:HasTag("stump") then inst:AddTag("stump") end
-
-        inst.AnimState:PlayAnimation(inst.anims.stump)
-        inst.MiniMapEntity:SetIcon("teatree_stump.png")
-
-        MakeSmallBurnable(inst)
         inst:RemoveComponent("workable")
         inst:RemoveComponent("propagator")
         inst:RemoveComponent("growable")
         -- inst:RemoveComponent("blowinwindgust")
+
+        inst.AnimState:PlayAnimation(inst.anims.stump)
+        inst.MiniMapEntity:SetIcon("teatree_stump.png")
+
         RemovePhysicsColliders(inst)
+        MakeSmallBurnable(inst)
+
+        if not inst:HasTag("stump") then 
+            inst:AddTag("stump") 
+        end
 
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.DIG)
         inst.components.workable:SetOnFinishCallback(dig_up_stump)
         inst.components.workable:SetWorkLeft(1)
     else
-        if inst.build ~= "normal" or inst.leaf_state ~= inst.target_leaf_state then
-            OnChangeLeaves(inst)
-        else
-            inst.AnimState:Show("mouseover")
-            Sway(inst)
-        end
+        inst.AnimState:Show("mouseover")
+        Sway(inst)
     end
 
-    if data and data.leaveschangetime then
-        inst.leaveschangetask = inst:DoTaskInTime(data.leaveschangetime, OnChangeLeaves)
-    end
 end
 --#endregion
 
---#region wind
+local stage_lookup_table = {"short", "normal", "tall"}
 
-local function OnGustAnimDone(inst)
-    if inst:HasTag("stump") or inst:HasTag("burnt") then
-        inst:RemoveEventCallback("animover", OnGustAnimDone)
-        return
-    end
-    if inst.components.blowinwindgust and inst.components.blowinwindgust:IsGusting() then
-        local anim = math.random(1,2)
-        inst.AnimState:PlayAnimation(inst.anims["blown"..tostring(anim)], false)
-    else
-        inst:DoTaskInTime(math.random()/2, function(inst)
-            if not inst:HasTag("stump") and not inst:HasTag("burnt") then
-                inst.AnimState:PlayAnimation(inst.anims.blown_pst, false)
-                PushSway(inst)
-            end
-            inst:RemoveEventCallback("animover", OnGustAnimDone)
-        end)
-    end
-end
-
-local function OnGustStart(inst, windspeed)
-    if inst:HasTag("stump") or inst:HasTag("burnt") then
-        return
-    end
-    inst:DoTaskInTime(math.random()/2, function(inst)
-        if inst:HasTag("stump") or inst:HasTag("burnt") then
-            return
-        end
-        if inst.spotemitter == nil then
-            AddToNearSpotEmitter(inst, "treeherd", "tree_creak_emitter", TUNING.TREE_CREAK_RANGE)
-        end
-        inst.AnimState:PlayAnimation(inst.anims.blown_pre, false)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wind_tree_creak")
-        inst:ListenForEvent("animover", OnGustAnimDone)
-    end)
-end
-
-local function OnGustFall(inst)
-    if inst:HasTag("burnt") then
-        chop_down_burnt_tree(inst, GetPlayer())
-    else
-        chop_down_tree(inst, GetPlayer())
-    end
-end
-
---#endregion
-
-local function MakeTeaTree(name, build, stage, data)
+local function MakeTeaTree(name, stage, data)
     local function fn()
         local inst = CreateEntity()
 
@@ -725,7 +539,7 @@ local function MakeTeaTree(name, build, stage, data)
         inst.entity:AddSoundEmitter()
         inst.entity:AddNetwork()
 
-        MakeObstaclePhysics(inst, .25)
+        MakeObstaclePhysics(inst, 0.25)
 
         inst.entity:AddMiniMapEntity()
         inst.MiniMapEntity:SetIcon("teatree.tex")
@@ -738,15 +552,14 @@ local function MakeTeaTree(name, build, stage, data)
         inst:AddTag("workable")
         inst:AddTag("cattoyairborne")
 
-        inst.build = build
-        inst.color = 0.7 + math.random() * 0.3
+        local growth_stage = stage > 0 and stage or math.random(1, 3)
+        local color = 0.7 + math.random() * 0.3 -- Is this line neccessary?
 
         inst.AnimState:SetBank("tree_leaf")
         inst.AnimState:SetBuild("teatree_trunk_build")
-        if teatree_data.leavesbuild then
-            inst.AnimState:OverrideSymbol("swap_leaves", teatree_data.leavesbuild, "swap_leaves")
-        end
-        inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
+        inst.AnimState:PlayAnimation("idle_" .. stage_lookup_table[growth_stage])
+        inst.AnimState:OverrideSymbol("swap_leaves", "teatree_build", "swap_leaves")
+        inst.AnimState:SetMultColour(color, color, color, 1)
 
         inst.entity:SetPristine()
 
@@ -772,12 +585,15 @@ local function MakeTeaTree(name, build, stage, data)
 
         inst:AddComponent("growable")
         inst.components.growable.stages = growth_stages
-        inst.components.growable:SetStage(stage > 0 and stage or math.random(1, 3))
+        inst.components.growable:SetStage(growth_stage)
         inst.components.growable.loopstages = true
         inst.components.growable.springgrowth = true
         inst.components.growable:StartGrowing()
 
         --[[
+        --Note: this should be called after assigning onload
+        MakeTreeBlowInWindGust(inst, "DECIDUOUS")
+
         inst:AddComponent("blowinwindgust")
         inst.components.blowinwindgust:SetWindSpeedThreshold(TUNING.DECIDUOUS_WINDBLOWN_SPEED)
         inst.components.blowinwindgust:SetDestroyChance(TUNING.DECIDUOUS_WINDBLOWN_FALL_CHANCE)
@@ -791,11 +607,10 @@ local function MakeTeaTree(name, build, stage, data)
         MakeLargePropagator(inst)
         MakeLargeBurnable(inst)
         inst.components.burnable:SetFXLevel(5)
-        inst.components.burnable:SetOnBurntFn(tree_burnt)
+        inst.components.burnable:SetOnBurntFn(OnBurnt)
         inst.components.burnable.extinguishimmediately = false
         inst.components.burnable:SetOnIgniteFn(OnIgnite)
 
-        inst.leaf_state = "normal"
         inst.lastleaffxtime = 0
         inst.leaffxinterval = math.random(TUNING.MIN_SWAY_FX_FREQUENCY, TUNING.MAX_SWAY_FX_FREQUENCY)
 
@@ -839,10 +654,7 @@ local function MakeTeaTree(name, build, stage, data)
             SetUpSpawner(inst)
         end
 
-        inst:SetStateGraph("SGdeciduoustree")
-        inst.sg:GoToState("empty")
-
-        inst:SetPrefabName(teatree_data.prefab_name)
+        inst:SetPrefabName("teatree")
         inst.AnimState:SetTime(math.random() * 2)
 
         inst:ListenForEvent("sway", inst.Sway)
@@ -853,10 +665,10 @@ local function MakeTeaTree(name, build, stage, data)
     return Prefab(name, fn, assets, prefabs)
 end
 
-return  MakeTeaTree("teatree", "normal", 0),
-        MakeTeaTree("teatree_short", "normal", 1),
-        MakeTeaTree("teatree_normal", "normal", 2),
-        MakeTeaTree("teatree_tall", "normal", 3),
-        MakeTeaTree("teatree_burnt", "normal", 0, "burnt"),
-        MakeTeaTree("teatree_stump", "normal", 0, "stump"),
-        MakeTeaTree("teatree_piko_nest", "normal", 0, "piko_nest")
+return  MakeTeaTree("teatree", 0),
+        MakeTeaTree("teatree_short", 1),
+        MakeTeaTree("teatree_normal", 2),
+        MakeTeaTree("teatree_tall", 3),
+        MakeTeaTree("teatree_burnt", 0, "burnt"),
+        MakeTeaTree("teatree_stump", 0, "stump"),
+        MakeTeaTree("teatree_piko_nest", 0, "piko_nest")
