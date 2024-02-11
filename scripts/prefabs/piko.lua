@@ -8,8 +8,6 @@ local assets =
 
     Asset("ANIM", "anim/orange_squirrel_cheeks_build.zip"),
     Asset("ANIM", "anim/orange_squirrel_build.zip"),
-
-	Asset("INV_IMAGE", "piko_orange"),
 }
 
 local prefabs =
@@ -20,7 +18,7 @@ local prefabs =
 
 local brain = require "brains/pikobrain"
 
-local function update_build(inst, cheeks)
+local function UpdateBuild(inst, cheeks)
     local build = "squirrel_build"
 
     if cheeks then
@@ -45,14 +43,6 @@ end
 local function OnDrop(inst)
     refresh_build(inst)
     inst.sg:GoToState("stunned")
-end
-
-local function OnWake(inst)
-    -- TODO: Decide what happens when a piko wakes.
-end
-
-local function GetCookableProduct(inst)
-    return "cookedsmallmeat"
 end
 
 local function OnCooked(inst)
@@ -174,6 +164,7 @@ local function SetAsRabid(inst, rabid)
 end
 
 local function transformtest(inst, phase)
+    print("Transfor test")
     if phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood") then
         if not inst.is_rabid then
             inst:DoTaskInTime(1 + (math.random() * 1), SetAsRabid, inst, true)
@@ -183,6 +174,27 @@ local function transformtest(inst, phase)
             inst:DoTaskInTime(1 + (math.random() * 1), SetAsRabid, inst, false)
         end
     end
+end
+
+local function OnSave(inst, data)
+    if inst.lighton then
+        data.lighton = inst.lighton
+    end
+
+    data.orange = inst:HasTag("orange")    
+end
+
+local function OnLoad(inst, data)
+    if data and data.lighton then
+        fadein(inst)
+        inst.Light:Enable(true)
+        inst.Light:SetIntensity(INTENSITY)
+        inst.AnimState:Show("eye_red")
+        inst.AnimState:Show("eye2_red")
+        inst.lighton = true
+    end
+
+    refresh_build(inst)
 end
 
 local function fn()
@@ -215,7 +227,7 @@ local function fn()
 
     inst:AddTag("animal")
     inst:AddTag("canbetrapped")
-    inst:AddTag("cannotstealequipped") -- TODO: steal spiders
+    inst:AddTag("cannotstealequipped")
     inst:AddTag("catfood")
     inst:AddTag("cattoy")
     inst:AddTag("piko")
@@ -236,7 +248,7 @@ local function fn()
     -- Squirrels (ie. pikos), have the same diet as birds, mainly seeds,
     -- which is why this is being set on a non-avian creature.
     inst:AddComponent("eater")
-    inst.components.eater:SetDiet({ FOODTYPE.SEEDS }, { FOODTYPE.SEEDS })
+    inst.components.eater:SetDiet({FOODTYPE.SEEDS}, {FOODTYPE.SEEDS})
 
     inst:AddComponent("inventory")
 
@@ -248,7 +260,7 @@ local function fn()
     inst:AddComponent("sanityaura")
 
     inst:AddComponent("cookable")
-    inst.components.cookable.product = GetCookableProduct
+    inst.components.cookable.product = "cookedsmallmeat"
     inst.components.cookable:SetOnCookedFn(OnCooked)
 
     inst:AddComponent("knownlocations")
@@ -287,40 +299,10 @@ local function fn()
     MakeHauntablePanic(inst)
 
     inst.is_rabid = false
-    inst.data = {}
 
-    inst.OnEntityWake = OnWake
-    inst.UpdateBuild = update_build
-
-    inst.OnSave = function(inst, data)
-        -- TODO: Determine if there will be another "rabid" condition for the piko and save it here.
-        -- Use the rabbit as an example of how to do this, given that the rabbit has various models.
-        if inst.lighton then
-            data.lighton = inst.lighton
-        end
-
-        data.orange = inst:HasTag("orange")
-    end
-
-    inst.OnLoad = function(inst, data)
-        if data and data.lighton then
-            fadein(inst)
-            inst.Light:Enable(true)
-            inst.Light:SetIntensity(INTENSITY)
-            inst.AnimState:Show("eye_red")
-            inst.AnimState:Show("eye2_red")
-            inst.lighton = true
-        end
-
-        if inst.spawntask then
-            inst.spawntask:Cancel()
-            inst.spawntask = nil
-        end
-
-        refresh_build(inst)
-        -- TODO: Determine if there will be another "rabid" condition for the piko and set it on load here.
-        -- Use the rabbit as an example of how to do this, given that the rabbit has various models.
-    end
+    inst.UpdateBuild = UpdateBuild
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     inst:ListenForEvent("phasechanged", function(source, phase) transformtest(inst, phase) end, TheWorld)
     inst:ListenForEvent("attacked", OnAttacked)
