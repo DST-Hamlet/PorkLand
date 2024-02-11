@@ -84,8 +84,7 @@ local states =
         name = "idle",
         tags = {"idle", "canrotate"},
 
-        timeline =
-        {
+        timeline = {
             TimeEvent(16 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/piko/idle") end),
             TimeEvent(18 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/piko/idle") end),
             TimeEvent(20 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/piko/idle") end),
@@ -113,15 +112,15 @@ local states =
             inst.AnimState:PlayAnimation("attack")
         end,
 
-        timeline =
-        {
+        timeline = {
             TimeEvent(10 * FRAMES, function(inst) inst.components.combat:DoAttack() end),
             TimeEvent(2 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/piko/attack")  end),
         },
 
-        events =
-        {
-            EventHandler("animover", function(inst, data) inst.sg:GoToState("idle") end),
+        events = {
+            EventHandler("animover", function(inst, data) 
+                inst.sg:GoToState("idle") 
+            end),
         },
     },
 
@@ -135,9 +134,10 @@ local states =
             inst:PerformBufferedAction()
         end,
 
-        events =
-        {
-            EventHandler("animover", function(inst, data) inst.sg:GoToState("idle") end),
+        events = {
+            EventHandler("animover", function(inst, data) 
+                inst.sg:GoToState("idle") 
+            end),
         }
     },
 
@@ -149,8 +149,7 @@ local states =
             inst.AnimState:PlayAnimation("climbuptree")
         end,
 
-        events =
-        {
+        events = {
             EventHandler("animover", function(inst, data)
                 inst:PerformBufferedAction()
                 inst.sg:GoToState("idle")
@@ -167,8 +166,7 @@ local states =
             inst.AnimState:PlayAnimation("climbdowntree")
         end,
 
-        events =
-        {
+        events = {
             EventHandler("animover", function(inst, data)
                 inst.sg:GoToState("idle")
             end),
@@ -202,8 +200,7 @@ local states =
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/piko/steal")
         end,
 
-        events =
-        {
+        events = {
             EventHandler("animover", function(inst, data)
                 inst:PerformBufferedAction()
                 inst.sg:GoToState("pickup_pst")
@@ -221,9 +218,10 @@ local states =
             inst.AnimState:PlayAnimation("eat_pst", false)
         end,
 
-        events =
-        {
-            EventHandler("animover", function(inst, data) inst.sg:GoToState("idle") end),
+        events = {
+            EventHandler("animover", function(inst, data) 
+                inst.sg:GoToState("idle") 
+            end),
         }
     },
 
@@ -231,8 +229,7 @@ local states =
         name = "hop",
         tags = {"moving", "canrotate", "hopping"},
 
-        timeline =
-        {
+        timeline = {
             TimeEvent(5*FRAMES, function(inst)
                 inst.Physics:Stop()
                 inst.SoundEmitter:PlaySound("dontstarve/rabbit/hop")
@@ -345,7 +342,9 @@ local states =
             end
         end,
 
-        ontimeout = function(inst) inst.sg:GoToState("idle") end,
+        ontimeout = function(inst) 
+            inst.sg:GoToState("idle") 
+        end,
     },
 
     State{
@@ -359,7 +358,9 @@ local states =
             inst.sg:SetTimeout(1)
         end,
 
-        ontimeout = function(inst) inst.sg:GoToState("idle") end,
+        ontimeout = function(inst) 
+            inst.sg:GoToState("idle") 
+        end,
     },
 
     State{
@@ -372,9 +373,10 @@ local states =
             inst.Physics:Stop()
         end,
 
-        events =
-        {
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
+        events = {
+            EventHandler("animover", function(inst) 
+                inst.sg:GoToState("idle") 
+            end),
         },
     },
 }
