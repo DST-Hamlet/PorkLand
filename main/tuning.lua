@@ -150,6 +150,13 @@ local tuning = {
     HALBERD_USES = 100,
 
     HYDRO_BONUS_COOL_RATE = 4,
+
+    PIKO_HEALTH = 100,
+    PIKO_RESPAWN_TIME = day_time * 4,
+    PIKO_RUN_SPEED = 4,
+    PIKO_DAMAGE = 2,
+    PIKO_ATTACK_PERIOD = 2,
+    PIKO_TARGET_DIST = 20,
 }
 
 for key, value in pairs(tuning) do

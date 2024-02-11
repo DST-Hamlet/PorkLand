@@ -31,6 +31,11 @@ PrefabFiles = {
     "weevole_carapace",
     "weevole",
     "basefan",
+
+    "piko",
+    "pl_planted_tree",
+    "teatrees",
+    "teatree_nut",
 }
 
 Assets = {
