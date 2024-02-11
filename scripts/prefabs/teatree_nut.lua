@@ -25,11 +25,11 @@ local function ondeploy(inst, point)
 end
 
 local function fn()
-	local inst = CreateEntity()
-	
+    local inst = CreateEntity()
+
     inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
@@ -72,7 +72,7 @@ local function fn()
     inst:AddComponent("bait")
 
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
     inst:AddComponent("inspectable")
 
@@ -82,7 +82,7 @@ local function fn()
     inst.components.deployable:SetDeployMode(DEPLOYMODE.PLANT)
     inst.components.deployable.ondeploy = ondeploy
 
-	MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
+    MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
 
@@ -139,4 +139,4 @@ end
 
 return Prefab("teatree_nut", fn, assets, prefabs),
        Prefab("teatree_nut_cooked", fn_cooked, assets),
-	   MakePlacer("teatree_nut_placer", "teatree_nut", "teatree_nut", "idle_planted")
+       MakePlacer("teatree_nut_placer", "teatree_nut", "teatree_nut", "idle_planted")

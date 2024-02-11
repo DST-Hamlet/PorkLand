@@ -555,6 +555,7 @@ local function OnEntityWake(inst)
                 MakeLargeBurnable(inst)
                 inst.components.burnable:SetFXLevel(5)
                 inst.components.burnable:SetOnBurntFn(tree_burnt)
+                inst.components.burnable:SetOnIgniteFn(OnIgnite)
                 inst.components.burnable.extinguishimmediately = false
             end
         end
