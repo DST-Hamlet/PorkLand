@@ -36,7 +36,6 @@ local prefab_posts = {
     "woodie",
     "world_network",
     "shard_network",
-    "walls",
     "wormwood",
 }
 

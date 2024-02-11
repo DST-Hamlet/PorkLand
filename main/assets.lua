@@ -66,15 +66,6 @@ Assets = {
     Asset("ANIM", "anim/player_sneeze.zip"),
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
 
-    Asset("ANIM", "anim/grass_blown.zip"),
-    Asset("ANIM", "anim/sapling_blown.zip"),
-    Asset("ANIM", "anim/evergreen_short_blown.zip"),
-    Asset("ANIM", "anim/evergreen_tall_blown.zip"),
-    Asset("ANIM", "anim/grass_inwater.zip"),
-    Asset("ANIM", "anim/tree_leaf_normal_blown.zip"),
-    Asset("ANIM", "anim/tree_leaf_short_blown.zip"),
-    Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
-
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),
 }
