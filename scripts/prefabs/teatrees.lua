@@ -65,29 +65,23 @@ local short_anims = makeanims("short")
 local normal_anims = makeanims("normal")
 local tall_anims = makeanims("tall")
 
-local function SpawnLeafFX(inst, waittime, chop)
+local function SpawnLeafFX(inst, chop)
     if inst:HasTag("fire") or inst:HasTag("stump") or inst:HasTag("burnt") or inst:IsAsleep() then
         return
     end
-    if waittime then
-        inst:DoTaskInTime(waittime, function(inst, chop)
-            SpawnLeafFX(inst, nil, chop)
-        end)
-        return
-    end
 
-    local fx = chop and SpawnPrefab("green_leaves_chop") or SpawnPrefab("green_leaves")
+    local fx = SpawnPrefab(chop and "green_leaves_chop" or "green_leaves")
 
     if fx then
         local x, y, z= inst.Transform:GetWorldPosition()
-        if inst.components.growable and inst.components.growable.stage == 1 then
-            y = y + 0 --Short FX height
-        elseif inst.components.growable and inst.components.growable.stage == 2 then
-            y = y - .3 --Normal FX height
-        elseif inst.components.growable and inst.components.growable.stage == 3 then
-            y = y + 0 --Tall FX height
+
+        -- FX height is slightly higher for normal stage
+        y = y + (inst.components.growable and inst.components.growable.stage == 2 and 0.3 or 0)
+        --Randomize height a bit for chop FX
+        if chop then
+            y = y + (math.random() * 2)
         end
-        if chop then y = y + (math.random() * 2) end --Randomize height a bit for chop FX
+
         fx.Transform:SetPosition(x, y, z)
     end
 end
@@ -196,7 +190,7 @@ local function chop_tree(inst, chopper, chopsleft, numchops)
         )
     end
 
-    SpawnLeafFX(inst, nil, true)
+    SpawnLeafFX(inst, true)
 
     if inst.components.spawner and inst.components.spawner:IsOccupied() then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/piko/in_tree")
@@ -299,14 +293,14 @@ end
 
 local function BurnInventoryItems(inst)
     if inst.components.inventory then
-        local burnableItems = inst.components.inventory:GetItems(function(k, v) return v.components.burnable end)
+        local burnableItems = inst.components.inventory:FindItems(function(v) return v.components.burnable end)
         for index, burnableItem in ipairs(burnableItems) do
             burnableItem.components.burnable:Ignite(true)
         end
     end
 end
 
-local function OnBurnt(inst, immediate)
+local function OnBurnt(inst)
     local function onburntchanges(inst)
         inst:RemoveComponent("growable")
         -- inst:RemoveComponent("blowinwindgust")
@@ -343,11 +337,8 @@ local function OnBurnt(inst, immediate)
     end
 
     inst:AddTag("burnt")
-    if immediate then
-        onburntchanges(inst)
-    else
-        inst:DoTaskInTime(0.5, onburntchanges)
-    end
+    inst:DoTaskInTime(0.5, onburntchanges)
+
     inst.AnimState:SetRayTestOnBB(true);
 end
 
@@ -379,7 +370,7 @@ end
 
 local function OnOccupied(inst,child)
     if child.components.inventory:NumItems() > 0 then
-        for i, item in ipairs(child.components.inventory:GetItems(function() return true end)) do
+        for i, item in ipairs(child.components.inventory:FindItems(function() return true end)) do
             child.components.inventory:DropItem(item)
             inst.components.inventory:GiveItem(item)
         end
@@ -407,9 +398,10 @@ local function OnPhaseChange(inst, phase)
 end
 
 local function SetUpSpawner(inst)
-    inst:AddTag("dumpchildrenonignite")
+    if not inst.components.spawner then
+        inst:AddComponent("spawner")
+    end
 
-    inst:AddComponent("spawner")
     inst.components.spawner:Configure("piko", 10) --TUNING.PIKO_RESPAWN_TIME
     inst.components.spawner.childfn = GetNewChildPrefab
     inst.components.spawner:SetOnVacateFn(OnVacated)
@@ -459,7 +451,7 @@ local function OnEntityWake(inst)
 
     if not inst:HasTag("burnt") and inst:HasTag("fire") then
         inst.AnimState:SetBank("tree_leaf")
-        OnBurnt(inst, true)
+        OnBurnt(inst)
     end
 
     if not inst.components.inspectable then
@@ -472,6 +464,7 @@ end
 local function OnSave(inst, data)
     data.burnt = inst:HasTag("burnt") or inst:HasTag("fire")
     data.stump = inst:HasTag("stump")
+    data.spawner = inst.components.spawner ~= nil
 end
 
 local function OnLoad(inst, data)
@@ -512,8 +505,8 @@ local function OnLoad(inst, data)
         RemovePhysicsColliders(inst)
         MakeSmallBurnable(inst)
 
-        if not inst:HasTag("stump") then 
-            inst:AddTag("stump") 
+        if not inst:HasTag("stump") then
+            inst:AddTag("stump")
         end
 
         inst:AddComponent("workable")
@@ -525,6 +518,9 @@ local function OnLoad(inst, data)
         Sway(inst)
     end
 
+    if data.spawner then
+        inst:SetUpSpawner()
+    end
 end
 --#endregion
 
@@ -633,7 +629,7 @@ local function MakeTeaTree(name, stage, data)
             inst:RemoveComponent("workable")
             inst:RemoveComponent("propagator")
             inst:RemoveComponent("growable")
-            inst:RemoveComponent("blowinwindgust")
+            --inst:RemoveComponent("blowinwindgust")
 
             inst:AddTag("stump")
 

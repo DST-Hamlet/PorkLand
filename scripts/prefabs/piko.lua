@@ -146,13 +146,9 @@ end
 
 local function OnPhaseChange(inst, phase)
     if phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood") then
-        if not inst.is_rabid then
-            inst:DoTaskInTime(1 + math.random(), inst.SetAsRabid, inst, true)
-        end
+        inst:DoTaskInTime(1 + math.random(), function() inst:SetAsRabid(true) end)
     else
-        if inst.is_rabid then
-            inst:DoTaskInTime(1 + math.random(), inst.SetAsRabid, inst, false)
-        end
+        inst:DoTaskInTime(1 + math.random(), function() inst:SetAsRabid(false) end)
     end
 end
 
@@ -300,7 +296,7 @@ local function fn()
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("dropitem", OnDrop)
     inst:ListenForEvent("exitlimbo", update_light)
-    inst:ListenForEvent("onpickup", OnPickup)
+    inst:ListenForEvent("onpickupitem", OnPickup)
     inst:ListenForEvent("onwenthome", OnWentHome)
 
     -- When a piko is first created, ensure that it isn't rabid.
@@ -325,4 +321,4 @@ local function orangefn()
 end
 
 return Prefab("piko", fn, assets, prefabs),
-        Prefab("piko_orange", orangefn, assets, prefabs)
+       Prefab("piko_orange", orangefn, assets, prefabs)
