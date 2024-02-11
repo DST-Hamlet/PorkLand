@@ -82,13 +82,3 @@ function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, att
         end
     end)
 end
-
-local _MakeInventoryPhysics = MakeInventoryPhysics
-function MakeInventoryPhysics(inst, mass, rad)
-    local physics = _MakeInventoryPhysics(inst, mass, rad)
-    if TheWorld:HasTag("porkland") then
-        physics:ClearCollidesWith(COLLISION.LIMITS)
-        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
-    end
-    return physics
-end
