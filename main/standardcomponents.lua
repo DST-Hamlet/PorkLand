@@ -95,7 +95,7 @@ end
 function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
     inst.onblownpstdone = function(inst)
         if inst.components.hackable and
-            inst.components.hackable:CanBeHacked() and 
+            inst.components.hackable:CanBeHacked() and
             (
                 inst.AnimState:IsCurrentAnimation("blown_pst") or
                 inst.AnimState:IsCurrentAnimation("blown_loop") or
@@ -153,6 +153,99 @@ function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
     inst.components.blowinwindgust:SetGustEndFn(inst.onblownpstdone)
     inst.components.blowinwindgust:SetDestroyFn(inst.ongusthack)
     inst.components.blowinwindgust:Start()
+end
+
+
+local stage_lookup_table = {
+    "short",
+    "normal",
+    "tall",
+    "old",
+}
+
+---NOTE: You MUST call this function after defining OnLoad, OnBurntFn and OnFinishCallback
+---@param tree_type string EVERGREEN, DECIDUOUS or JUNGLETREE 
+function MakeTreeblowInWindGust(inst, tree_type)
+    local function PushSway(inst)
+        if math.random() > .5 then
+            inst.AnimState:PushAnimation(inst.anims.sway1, true)
+        else
+            inst.AnimState:PushAnimation(inst.anims.sway2, true)
+        end
+    end
+
+    local function OnGustAnimDone(inst)
+        if inst:HasTag("stump") or inst:HasTag("burnt") then
+            inst:RemoveEventCallback("animover", OnGustAnimDone)
+            return
+        end
+
+        if inst.components.blowinwindgust and inst.components.blowinwindgust:IsGusting() then
+            local anim = math.random(1, 2)
+            inst.AnimState:PlayAnimation("blown_loop_" .. stage_lookup_table[inst.components.growable.stage] .. tostring(anim), false)
+        else
+            inst:DoTaskInTime(math.random() / 2, function(inst)
+                if not inst:HasTag("stump") and not inst:HasTag("burnt") then
+                    inst.AnimState:PlayAnimation("blown_pst_".. stage_lookup_table[inst.components.growable.stage], false)
+                    PushSway(inst)
+                end
+                inst:RemoveEventCallback("animover", OnGustAnimDone)
+            end)
+        end
+    end
+
+    local function OnGustStart(inst, windspeed)
+        if inst:HasTag("stump") or inst:HasTag("burnt") then
+            return
+        end
+        inst:DoTaskInTime(math.random() / 2, function(inst)
+            if inst:HasTag("stump") or inst:HasTag("burnt") then
+                return
+            end
+
+            -- TODO: Tree fall sound
+            -- if inst.spotemitter == nil then
+            --     AddToNearSpotEmitter(inst, "treeherd", "tree_creak_emitter", TUNING.TREE_CREAK_RANGE)
+            -- end
+            inst.AnimState:PlayAnimation("blown_pre_".. stage_lookup_table[inst.components.growable.stage], false)
+            -- inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wind_tree_creak")
+            inst:ListenForEvent("animover", OnGustAnimDone)
+        end)
+    end
+
+    local function OnGustFall(inst)
+        inst.components.workable.onfinish(inst, TheWorld)
+    end
+
+    if not inst.components.blowinwindgust then
+        inst:AddComponent("blowinwindgust")
+    end
+
+    inst.components.blowinwindgust:SetWindSpeedThreshold(TUNING[tree_type .. "_WINDBLOWN_SPEED"])
+    inst.components.blowinwindgust:SetDestroyChance(TUNING[tree_type .. "_WINDBLOWN_FALL_CHANCE"])
+    inst.components.blowinwindgust:SetGustStartFn(OnGustStart)
+    inst.components.blowinwindgust:SetDestroyFn(OnGustFall)
+    inst.components.blowinwindgust:Start()
+
+    local onload = inst.OnLoad
+    inst.OnLoad = function(inst, data)
+        if onload then onload(inst, data) end
+        if data and (data.stump or data.burnt) then
+            inst:RemoveComponent("blowinwindgust")
+        end
+    end
+
+    local onburnt = inst.components.burnable.onburnt
+    inst.components.burnable:SetOnBurntFn(function(inst)
+        if onburnt then onburnt(inst) end
+        inst:RemoveComponent("blowinwindgust")
+    end)
+
+    local onfinish = inst.components.workable.onfinish
+    inst.components.workable:SetOnFinishCallback(function(inst, chopper)
+        if onfinish then onfinish(inst, chopper) end
+        inst:RemoveComponent("blowinwindgust")
+    end)
 end
 
 function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, attack_period_penalty, speed_penalty, hunger_burn, sanity_scale)

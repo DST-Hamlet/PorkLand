@@ -4,8 +4,12 @@ GLOBAL.setfenv(1, GLOBAL)
 local function GetWindSpeed(self)
     local wind_speed = 1
 
-    if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy() and not self.inst:HasTag("windspeedimmune") then 
-        -- get a wind speed adjustment
+    if TheWorld.net.components.plateauwind 
+        and TheWorld.net.components.plateauwind:GetIsWindy() 
+        and not self.inst:HasTag("windspeedimmune") 
+        and not self.ints:HasTag("playerghost") then 
+        
+            -- get a wind speed adjustment
         local windangle = self.inst.Transform:GetRotation() - TheWorld.net.components.plateauwind:GetWindAngle()
         local windproofness = 1.0 -- ziwbi: There are no wind proof items in Hamelt... yet
         local windfactor = TUNING.WIND_PUSH_MULTIPLIER * windproofness * TheWorld.net.components.plateauwind:GetWindSpeed() * math.cos(windangle * DEGREES) + 1.0

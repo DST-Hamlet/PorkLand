@@ -137,12 +137,12 @@ return Class(function(self, inst)
 
     _windy:set(false)
     _wind_gust_speed:set(0)
-    _wind_angle:set(0)
 
     if _world.ismastersim then
         self.inst:ListenForEvent("windchange", function(source, data)
             _wind_angle:set(data.angle)
         end, _world)
+        _wind_angle:set(_world.components.pl_worldwind.angle)
     end
 
     --------------------------------------------------------------------------
