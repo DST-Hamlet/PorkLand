@@ -21,9 +21,15 @@ local function onupdatefueled(inst)
 end
 
 AddPrefabPostInit("firepit", function(inst)
+    if not TheWorld.ismastersim then
+        return
+    end
     inst.components.fueled:SetUpdateFn(onupdatefueled)
 end)
 
 AddPrefabPostInit("campfire", function(inst)
+    if not TheWorld.ismastersim then
+        return
+    end
     inst.components.fueled:SetUpdateFn(onupdatefueled)
 end)
