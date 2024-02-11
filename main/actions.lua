@@ -51,6 +51,8 @@ local function DoToolWork(act, workaction, ...)
 end
 ToolUtil.SetUpvalue(ACTIONS.CHOP.fn, DoToolWork, "DoToolWork")
 
+local _ValidToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.validfn, "ValidToolWork")
+
 ACTIONS.HACK.fn = function(act)
     DoToolWork(act, ACTIONS.HACK)
     return true
@@ -78,27 +80,12 @@ ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
 end
 
 ACTIONS.PAN.fn = function(act)
-    if act.target.components.workable and
-        act.target.components.workable:CanBeWorked() and
-        act.target.components.workable:GetWorkAction() == ACTIONS.PAN then
+    DoToolWork(act, ACTIONS.PAN)
+    return true
+end
 
-        local effectiveness = (act.invobject
-            and act.invobject.components.tool
-            and act.invobject.components.tool:GetEffectiveness(ACTIONS.PAN))
-            or (act.doer
-            and act.doer.components.worker
-            and act.doer.components.worker:GetEffectiveness(ACTIONS.PAN))
-            or 1
-        local multiplier = act.doer.components.workmultiplier
-            and act.doer.components.workmultiplier:GetMultiplier(ACTIONS.PAN) or 1
-
-		local numworks = effectiveness * multiplier
-        act.target.components.workable:WorkedBy(act.doer, numworks)
-
-        return true
-    end
-
-	return false
+ACTIONS.PAN.validfn = function(act)
+    return _ValidToolWork(act, ACTIONS.PAN)
 end
 
 local DRUNK_GOLD = 1/8
