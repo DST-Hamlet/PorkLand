@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "You have allergies like me, Lucy?",
     ANNOUNCE_HAYFEVER_OFF = "Ah! Clean air again.",
+    ANNOUNCE_PICKPOOP = {
+        "Ew!",
+        "Blah!",
+        "That's gross, eh?",
+    },
     ANNOUNCE_SNEEZE = "Achoo! Excuse me. Sorry.",
     ANNOUNCE_TOO_HUMID = {
         "It's blazing with this %s.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Yep. That's a nice breeze.",
         CHITIN = "It's got some heft to it.",
         CUTNETTLE = "It has a smell to it.",
+        DUNGBALL = "Dung to go.",
+        DUNGBEETLE = {
+            DEAD = "It's a goner.",
+            GENERIC = "There's a bit of a stink.",
+            SLEEPING = "Getting some shut eye.",
+            UNDUNGED = "I don't think she liked that.",
+        },
+        DUNGPILE = {
+            GENERIC = "Dung gone it.",
+            PICKED = "There'll be more.",
+        },
         FLOWER_RAINFOREST = "It's a pretty lil' thing.",
         GLOWFLY = {
             DEAD = "Dead.",
@@ -26,14 +42,16 @@ return {
         },
         GLOWFLY_COCOON = "That looks comfy, eh?",
         GOLDENMACHETE = "It chops AND sparkles!",
+        GRABBING_VINE = "Don't trust that.",
         GRASS_TALL = {
             BURNING = "It caught fire.",
             GENERIC = "Don't worry your head aboot this one, Lucy.",
             PICKED = "Got all I could.",
         },
-        MACHETE = "Ooh, that's a thing for chopping.",
         HALBERD = "Well, it's no axe.",
+        HANGING_VINE = "Don't trust that.",
         IRON = "Can't chop this too well.",
+        MACHETE = "Ooh, that's a thing for chopping.",
         PEAGAWK = {
             DEAD = "It's a goner.",
             GENERIC = "Filthy animal!",

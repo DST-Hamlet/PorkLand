@@ -155,7 +155,7 @@ local states =
 
     State{
         name = "burrow_shield",
-        tags = {"busy","shielding"},
+        tags = {"busy", "shielding"},
 
         onenter = function(inst)
             inst:RemoveTag("canbetrapped")

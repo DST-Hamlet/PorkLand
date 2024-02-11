@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Evidence would suggest it's allergy season.",
     ANNOUNCE_HAYFEVER_OFF = "Ah! Evidentaly, it's no longer allergy season.",
+    ANNOUNCE_PICKPOOP = {
+        "What's that?",
+        "Oh! That's interesting!",
+        "I found something!",
+    },
     ANNOUNCE_SNEEZE = "aH-CHOOOOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s really weighs me down.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Magnificent! What a marvel of engineering!",
         CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
         CUTNETTLE = "A large leaf nettle plant native to these parts. Also it smells funny.",
+        DUNGBALL = "Excellent! The act of rolling has picked up a motley of paraphernalia.",
+        DUNGBEETLE = {
+            DEAD = "Expired. But it appears that is a recent occurrence.",
+            GENERIC = "Such agility! The way he's able to navigate on that sphere of poop!",
+            SLEEPING = "A dormant dung dancer.",
+            UNDUNGED = "Presumably, he's seeking a replacement for his poop sphere.",
+        },
+        DUNGPILE = {
+            GENERIC = "Some creature has produced an excessive amount of excrement!",
+            PICKED = "The road of discovery has many hurdles.",
+        },
         FLOWER_RAINFOREST = "Curious. Picking these has a positive effect on my psyche.",
         GLOWFLY = {
             DEAD = "Cadaverous.",
@@ -26,14 +42,16 @@ return {
         },
         GLOWFLY_COCOON = "It appears to be undergoing some kind of transubstantiation.",
         GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",
+        GRABBING_VINE = "Kleptomaniac vegetation. How wonderful!",
         GRASS_TALL = {
             BURNING = "Evidently, grass here has the same flammability qualities as at home.",
             GENERIC = "The obstinacy of this grass requires something sharper than my hands.",
             PICKED = "Previously experience suggests this will grow back.",
         },
-        MACHETE = "A pragmatic tool for slashing objects.",
         HALBERD = "A marvelously versatile instrument capable of causing incredible harm!",
+        HANGING_VINE = "Kleptomaniac vegetation. How wonderful!",
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
+        MACHETE = "A pragmatic tool for slashing objects.",
         PEAGAWK = {
             DEAD = "Evidently, it didn't see that coming.",
             GENERIC = "Curious. Can it see out of all of those ocular quills?",

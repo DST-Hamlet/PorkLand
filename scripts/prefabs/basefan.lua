@@ -27,35 +27,40 @@ local function OnFuelEmpty(inst)
     inst.components.machine:TurnOff()
 end
 
-local function OnFuelSectionChange(newsection, oldsection, inst)
-    local fuelanim = inst.components.fueled:GetCurrentSection()
-end
+-- local function OnFuelSectionChange(newsection, oldsection, inst)
+--     local fuelanim = inst.components.fueled:GetCurrentSection()
+-- end
 
 local function CanInteract(inst)
     return not inst.components.fueled:IsEmpty() and not inst.components.floodable.flooded
 end
 
-local function onhammered(inst, worker)
+local function OnHammered(inst, worker)
     inst.SoundEmitter:KillSound("idleloop")
     inst.components.lootdropper:DropLoot()
-    local fx  = SpawnPrefab("collapse_small")
+    local fx = SpawnPrefab("collapse_small")
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
     fx:SetMaterial("metal")
     inst:Remove()
 end
 
-local function onhit(inst, worker)
+local function OnHit(inst, worker)
     if not inst.sg:HasStateTag("busy") then
         inst.sg:GoToState("hit")
     end
 end
 
-local function getstatus(inst, viewer)
-    return inst.components.fueled ~= nil
-    and inst.components.fueled.currentfuel / inst.components.fueled.maxfuel <= .25
-    and "LOWFUEL"
-    or "ON"
-end
+-- local function GetStatus(inst, viewer)
+--     if inst.on then
+--         return inst.components.fueled ~= nil
+--         and inst.components.fueled.currentfuel / inst.components.fueled.maxfuel <= .25
+--         and "LOWFUEL"
+--         or "ON"
+--     else
+--         return "OFF"
+--     end
+
+-- end
 
 local function OnSave(inst, data)
     data.on = inst.on
@@ -65,18 +70,18 @@ local function OnLoad(inst, data)
     inst.on = data.on or false
 end
 
-local function onbuilt(inst)
+local function OnBuilt(inst)
     inst.AnimState:PlayAnimation("place")
     inst.AnimState:PushAnimation("off")
 end
 
-local function OnFloodedStart(inst)
-    if inst.on then
-        TurnOff(inst, true)
-    end
-end
+-- local function OnFloodedStart(inst)
+--     if inst.on then
+--         TurnOff(inst, true)
+--     end
+-- end
 
-local function ontakefuelfn(inst)
+local function OnTakeFuel(inst)
     inst.SoundEmitter:PlaySound("dontstarve_DLC001/common/machine_fuel")
     if inst.on == false then
         inst.components.machine:TurnOn()
@@ -111,7 +116,7 @@ local function fn()
     inst:AddComponent("lootdropper")
 
     inst:AddComponent("inspectable")
-    inst.components.inspectable.getstatus = getstatus
+    -- inst.components.inspectable.getstatus = GetStatus
 
     inst:AddComponent("machine")
     inst.components.machine.turnonfn = TurnOn
@@ -122,19 +127,19 @@ local function fn()
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
     inst.components.workable:SetWorkLeft(4)
-    inst.components.workable:SetOnFinishCallback(onhammered)
-    inst.components.workable:SetOnWorkCallback(onhit)
+    inst.components.workable:SetOnFinishCallback(OnHammered)
+    inst.components.workable:SetOnWorkCallback(OnHit)
 
-    inst:AddComponent("floodable")
-    inst.components.floodable.onStartFlooded = OnFloodedStart
-    inst.components.floodable:SetFX("shock_machines_fx")
+    -- inst:AddComponent("floodable")
+    -- inst.components.floodable.onStartFlooded = OnFloodedStart
+    -- inst.components.floodable:SetFX("shock_machines_fx")
 
     inst:AddComponent("fueled")
     inst.components.fueled:SetDepletedFn(OnFuelEmpty)
     inst.components.fueled.accepting = true
     inst.components.fueled:SetSections(10)
-    inst.components.fueled:SetTakeFuelFn(ontakefuelfn)
-    inst.components.fueled:SetSectionCallback(OnFuelSectionChange)
+    inst.components.fueled:SetTakeFuelFn(OnTakeFuel)
+    -- inst.components.fueled:SetSectionCallback(OnFuelSectionChange)
     inst.components.fueled:InitializeFuelLevel(TUNING.FIRESUPPRESSOR_MAX_FUEL_TIME)
     inst.components.fueled.bonusmult = 5
     inst.components.fueled.secondaryfueltype = FUELTYPE.CHEMICAL
@@ -144,7 +149,7 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
-    inst:ListenForEvent("onbuilt", onbuilt)
+    inst:ListenForEvent("onbuilt", OnBuilt)
 
     MakeHauntableWork(inst)
 

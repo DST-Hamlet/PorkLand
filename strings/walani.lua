@@ -4,6 +4,12 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Allergy season.",
     ANNOUNCE_HAYFEVER_OFF = "Hey! I feel better!",
+    ANNOUNCE_PICKPOOP = {
+        "Dude!",
+        "Grody!",
+        "Blah!",
+        "This stinks!",
+    },
     ANNOUNCE_SNEEZE = "ahhh... ahhhh...ahhhhhCHOOO!",
     ANNOUNCE_TOO_HUMID = {
         "Ugh. This %s is soooo muggy.",
@@ -18,6 +24,17 @@ return {
         BASEFAN = "A nice breeze.",
         CHITIN = "Probably wouldn't make a good surfboard.",
         CUTNETTLE = "Whew! Really cleans your sinuses!",
+        DUNGBALL = "Should've leashed it.",
+        DUNGBEETLE = {
+            DEAD = "Aww... All dunged out.",
+            GENERIC = "It's a grade-A dung surfer.",
+            SLEEPING = "That's the right attitude.",
+            UNDUNGED = "Someone's grubbing.",
+        },
+        DUNGPILE = {
+            GENERIC = "Mushburger.",
+            PICKED = "Nothing left.",
+        },
         FLOWER_RAINFOREST = "I love these.",
         GLOWFLY = {
             DEAD = "I wish it hadn't died.",
@@ -26,14 +43,16 @@ return {
         },
         GLOWFLY_COCOON = "I need a sleeping bag like that.",
         GOLDENMACHETE = "I can hack in style.",
+        GRABBING_VINE = "That seems dangerous.",
         GRASS_TALL = {
             BURNING = "It'd probably be a lot of work to put it out.",
             GENERIC = "It's too much work to pick it with my hands.",
             PICKED = "I deserve a nap after that.",
         },
-        MACHETE = "What a hack job.",
         HALBERD = "You could poke an eye out on this thing!",
+        HANGING_VINE = "That seems dangerous.",
         IRON = "This has gotta be good for something.",
+        MACHETE = "What a hack job.",
         PEAGAWK = {
             DEAD = "Dang. It's dead.",
             GENERIC = "Beautiful eyes, dude!",
