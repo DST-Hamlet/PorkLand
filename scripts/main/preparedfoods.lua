@@ -13,6 +13,9 @@ local foods = {
         spoiled_product = "icedtea",
         yotp = true,
         oneatenfn = function(inst, eater)
+            if eater:HasDebuff("buff_speed_icedtea") then
+                eater:RemoveDebuff("buff_speed_icedtea")
+            end
             eater:AddDebuff("buff_speed_tea", "buff_speed_tea")
        	end,
     },
@@ -30,6 +33,9 @@ local foods = {
         cooktime = 0.5,
         yotp = true,
         oneatenfn = function(inst, eater)
+            if eater:HasDebuff("buff_speed_tea") then
+                eater:RemoveDebuff("buff_speed_tea")
+            end
             eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")
        	end,
     },

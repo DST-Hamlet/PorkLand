@@ -28,6 +28,18 @@ local function getstatus(inst)
     end
 end
 
+local function start_spawning(inst)
+    if inst.components.spawner then
+        inst.components.spawner:SpawnWithDelay(2 + math.random(20))
+    end
+end
+
+local function stop_spawning(inst)
+    if inst.components.spawner then
+        inst.components.spawner:CancelSpawning()
+    end
+end
+
 local short_loot = {"log"}
 local normal_loot = {"log", "twigs", "teatree_nut"}
 local tall_loot = {"log", "log", "twigs", "teatree_nut", "teatree_nut"}
@@ -87,7 +99,7 @@ local function SpawnLeafFX(inst, chop)
 end
 
 local function PushSway(inst)
-    inst.AnimState:PushAnimation(math.random() > .5 and inst.anims.sway1 or inst.anims.sway2, true)
+    inst.AnimState:PushAnimation(math.random() > 0.5 and inst.anims.sway1 or inst.anims.sway2, true)
 end
 
 local function Sway(inst, ...)
@@ -240,7 +252,6 @@ local function chop_down_tree(inst, chopper)
     if inst.components.spawner and inst.components.spawner:IsOccupied() then
         inst.components.spawner:ReleaseChild()
     end
-    inst.paused = true
 
     detachchild(inst)
 
@@ -261,6 +272,9 @@ local function chop_down_tree(inst, chopper)
     if inst.components.growable then
         inst.components.growable:StopGrowing()
     end
+
+    inst:StopWatchingWorldState("phase", inst.OnPhaseChange)
+    stop_spawning(inst)
 end
 
 local function chop_down_burnt_tree(inst, chopper)
@@ -321,7 +335,6 @@ local function OnBurnt(inst)
         end
 
         detachchild(inst)
-        inst.paused = true
 
         MakeHauntableWork(inst)
 
@@ -338,6 +351,8 @@ local function OnBurnt(inst)
     end
 
     inst:AddTag("burnt")
+    inst:StopWatchingWorldState("phase", inst.OnPhaseChange)
+    stop_spawning(inst)
     inst:DoTaskInTime(0.5, onburntchanges)
 
     inst.AnimState:SetRayTestOnBB(true);
@@ -378,22 +393,6 @@ local function OnOccupied(inst,child)
     end
 end
 
-local function start_spawning(inst)
-    if inst.paused then
-        return
-    end
-
-    if inst.components.spawner then
-        inst.components.spawner:SpawnWithDelay(2 + math.random(20))
-    end
-end
-
-local function stop_spawning(inst)
-    if inst.components.spawner then
-        inst.components.spawner:CancelSpawning()
-    end
-end
-
 local function OnPhaseChange(inst, phase)
     if phase == "day" or (TheWorld.state.moonphase == "new" and phase == "night") then
         start_spawning(inst)
@@ -403,11 +402,11 @@ local function OnPhaseChange(inst, phase)
 end
 
 local function SetUpSpawner(inst)
-    inst.paused = true
     inst.components.spawner:Configure("piko", 10) --TUNING.PIKO_RESPAWN_TIME
     inst.components.spawner.childfn = GetNewChildPrefab
     inst.components.spawner:SetOnVacateFn(OnVacated)
     inst.components.spawner:SetOnOccupiedFn(OnOccupied)
+
 
     inst:WatchWorldState("phase", OnPhaseChange)
 end
@@ -466,7 +465,6 @@ end
 local function OnSave(inst, data)
     data.burnt = inst:HasTag("burnt") or inst:HasTag("fire")
     data.stump = inst:HasTag("stump")
-    data.paused = inst.paused
 end
 
 local function OnLoad(inst, data)
@@ -491,6 +489,8 @@ local function OnLoad(inst, data)
     if data.burnt then
         inst:AddTag("fire") -- Add the fire tag here: OnEntityWake will handle it actually doing burnt logic
         inst.MiniMapEntity:SetIcon("teatree_burnt.tex")
+        inst.StopWatchingWorldState("phase", inst.OnPhaseChange)
+        stop_spawning(inst)
     elseif data.stump then
         inst:RemoveTag("shelter")
         inst:RemoveTag("cattoyairborne")
@@ -515,12 +515,13 @@ local function OnLoad(inst, data)
         inst.components.workable:SetWorkAction(ACTIONS.DIG)
         inst.components.workable:SetOnFinishCallback(dig_up_stump)
         inst.components.workable:SetWorkLeft(1)
+
+        inst.StopWatchingWorldState("phase", inst.OnPhaseChange)
+        stop_spawning(inst)
     else
         inst.AnimState:Show("mouseover")
         Sway(inst)
     end
-
-    inst.paused = data.paused or true
 end
 --#endregion
 
@@ -586,6 +587,8 @@ local function MakeTeaTree(name, stage, data)
         inst.components.growable.springgrowth = true
         inst.components.growable:StartGrowing()
 
+
+
         --[[
         --Note: this should be called after assigning onload
         MakeTreeBlowInWindGust(inst, "DECIDUOUS")
@@ -613,6 +616,7 @@ local function MakeTeaTree(name, stage, data)
         inst.SpawnLeafFX = SpawnLeafFX
         inst.growfromseed = growfromseed
         inst.SetUpSpawner = SetUpSpawner
+        inst.OnPhaseChange = OnPhaseChange
         inst.OnEntitySleep = OnEntitySleep
         inst.OnEntityWake = OnEntityWake
         inst.Sway = Sway
@@ -648,8 +652,9 @@ local function MakeTeaTree(name, stage, data)
 
         inst:AddComponent("spawner")
         inst:SetUpSpawner()
-        if data == "piko_nest" then
-            inst.paused = false
+        if data ~= "piko_nest" then
+            inst:StopWatchingWorldState("phase", OnPhaseChange)
+            stop_spawning(inst)
         end
 
         inst:SetPrefabName("teatree")
