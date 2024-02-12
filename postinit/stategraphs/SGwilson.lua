@@ -209,7 +209,13 @@ local states = {
 
         events=
         {
-            EventHandler("unequip", function(inst) inst.sg:GoToState("idle", "pan_pst") end ),
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.AnimState:PlayAnimation("pan_pst")
+                    inst.sg:GoToState("idle", true)
+                end
+            end),
         },
     },
 
