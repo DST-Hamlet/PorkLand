@@ -5,6 +5,9 @@ GLOBAL.setfenv(1, GLOBAL)
 local PL_ACTIONS = {
     HACK = Action({mindistance = 1.75, silent_fail = true}),
     SHEAR = Action({distance = 1.75}),
+    PAN = Action({distance = 1}),
+    PANGOLDEN_DRINK = Action({distance = 1.2}),
+    PANGOLDEN_POOP = Action({distance = 1.2}),
     PEAGAWK_TRANSFORM = Action({}),
 }
 
@@ -18,6 +21,7 @@ end
 
 
 ----set up the action functions
+local _ValidToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.validfn, "ValidToolWork")
 local _DoToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
 local function DoToolWork(act, workaction, ...)
     if act.target.components.hackable ~= nil and act.target.components.hackable:CanBeHacked() and workaction == ACTIONS.HACK then
@@ -54,6 +58,15 @@ end
 ACTIONS.HACK.validfn = function(act) -- this fixes hacking a nonvalid target when holding the mouse
     return (act.target.components.hackable and act.target.components.hackable:CanBeHacked()) or
         (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.HACK)
+end
+
+ACTIONS.PAN.fn = function(act)
+    DoToolWork(act, ACTIONS.PAN)
+    return true
+end
+
+ACTIONS.PAN.validfn = function(act)
+    return _ValidToolWork(act, ACTIONS.PAN)
 end
 
 ACTIONS.SHEAR.fn = function(act)
