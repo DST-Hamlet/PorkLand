@@ -8,12 +8,13 @@ local foods = {
         hunger = TUNING.CALORIES_SMALL,
         perishtime = TUNING.PERISH_ONE_DAY,
         sanity = TUNING.SANITY_LARGE,
-        caffeinedelta = TUNING.CAFFEINE_FOOD_BONUS_SPEED/2,
-        caffeineduration = TUNING.FOOD_SPEED_LONG/2,
         temperaturebump = 15,
         cooktime = 0.5,
         spoiled_product = "icedtea",
         yotp = true,
+        oneatenfn = function(inst, eater)
+            eater:AddDebuff("buff_speed_tea", "buff_speed_tea")
+       	end,
     },
 
     icedtea =
@@ -25,11 +26,12 @@ local foods = {
         hunger = TUNING.CALORIES_SMALL,
         perishtime = TUNING.PERISH_FAST,
         sanity = TUNING.SANITY_LARGE,
-        caffeinedelta = TUNING.CAFFEINE_FOOD_BONUS_SPEED/3,
-        caffeineduration = TUNING.FOOD_SPEED_LONG/3,
         temperaturebump = -10,
         cooktime = 0.5,
         yotp = true,
+        oneatenfn = function(inst, eater)
+            eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")
+       	end,
     },
 }
 

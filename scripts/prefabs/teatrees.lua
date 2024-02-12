@@ -240,6 +240,7 @@ local function chop_down_tree(inst, chopper)
     if inst.components.spawner and inst.components.spawner:IsOccupied() then
         inst.components.spawner:ReleaseChild()
     end
+    inst.paused = true
 
     detachchild(inst)
 
@@ -304,7 +305,6 @@ local function OnBurnt(inst)
     local function onburntchanges(inst)
         inst:RemoveComponent("growable")
         -- inst:RemoveComponent("blowinwindgust")
-        inst:RemoveComponent("spawner")
         inst:RemoveComponent("hauntable")
 
         inst:RemoveTag("shelter")
@@ -321,6 +321,7 @@ local function OnBurnt(inst)
         end
 
         detachchild(inst)
+        inst.paused = true
 
         MakeHauntableWork(inst)
 
@@ -378,6 +379,10 @@ local function OnOccupied(inst,child)
 end
 
 local function start_spawning(inst)
+    if inst.paused then
+        return
+    end
+
     if inst.components.spawner then
         inst.components.spawner:SpawnWithDelay(2 + math.random(20))
     end
@@ -398,10 +403,7 @@ local function OnPhaseChange(inst, phase)
 end
 
 local function SetUpSpawner(inst)
-    if not inst.components.spawner then
-        inst:AddComponent("spawner")
-    end
-
+    inst.paused = true
     inst.components.spawner:Configure("piko", 10) --TUNING.PIKO_RESPAWN_TIME
     inst.components.spawner.childfn = GetNewChildPrefab
     inst.components.spawner:SetOnVacateFn(OnVacated)
@@ -464,7 +466,7 @@ end
 local function OnSave(inst, data)
     data.burnt = inst:HasTag("burnt") or inst:HasTag("fire")
     data.stump = inst:HasTag("stump")
-    data.spawner = inst.components.spawner
+    data.paused = inst.paused
 end
 
 local function OnLoad(inst, data)
@@ -518,9 +520,7 @@ local function OnLoad(inst, data)
         Sway(inst)
     end
 
-    if data.spawner then
-        inst:SetUpSpawner()
-    end
+    inst.paused = data.paused or true
 end
 --#endregion
 
@@ -646,8 +646,10 @@ local function MakeTeaTree(name, stage, data)
             inst.components.workable:SetWorkLeft(1)
         end
 
+        inst:AddComponent("spawner")
+        inst:SetUpSpawner()
         if data == "piko_nest" then
-            SetUpSpawner(inst)
+            inst.paused = false
         end
 
         inst:SetPrefabName("teatree")

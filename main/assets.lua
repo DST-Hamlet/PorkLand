@@ -37,6 +37,7 @@ PrefabFiles = {
     "teatrees",
     "teatree_nut",
     "pl_preparedfoods",
+    "pl_foodbuffs",
 }
 
 Assets = {

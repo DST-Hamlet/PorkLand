@@ -84,6 +84,7 @@ local function findhome(inst)
         if not home.components.spawner then
             home:AddComponent("spawner")
             home:SetUpSpawner()
+            home.paused = false
             home.components.spawner:CancelSpawning()
             home.components.spawner:TakeOwnership(inst)
             if inst.find_home_task then
