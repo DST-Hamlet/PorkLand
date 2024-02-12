@@ -167,7 +167,7 @@ local states = {
             inst.AnimState:PlayAnimation("pan_pre")
         end,
 
-        events=
+        events =
         {
             EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
             EventHandler("animover", function(inst) inst.sg:GoToState("pan") end),
@@ -204,10 +204,11 @@ local states = {
 
         ontimeout = function(inst)
             inst:PerformBufferedAction()
-            inst.sg:GoToState("idle", "pan_pst")
+            inst.AnimState:PlayAnimation("pan_pst")
+            inst.sg:GoToState("idle", true)
         end,
 
-        events=
+        events =
         {
             EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
             EventHandler("animover", function(inst)

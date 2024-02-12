@@ -151,6 +151,7 @@ local tuning = {
 
     HYDRO_BONUS_COOL_RATE = 4,
 
+    PAN_DAMAGE = wilson_attack*.8,
     PAN_USES = 30,
 
     PANGOLDEN_HEALTH = 500,

@@ -1,9 +1,7 @@
 local assets =
 {
     Asset("ANIM", "anim/gold_puddle.zip"),
-    Asset("MINIMAP_IMAGE", "gold_puddle"),
     Asset("ANIM", "anim/water_ring_fx.zip"),
-
 }
 
 local prefabs =
@@ -11,121 +9,62 @@ local prefabs =
     "gold_dust",
 }
 
-local SAFE_EDGE_RANGE = 7
-local SAFE_PUDDLE_RANGE = 7
+local STAGES = {
+    {
+        name = "empty",
+        anim = "dryup",
+        shrink_anim = "disappear",
+        workable = 0,
+        range = 0,
+    },
+    {
+        name = "small",
+        anim = "small_idle",
+        grow_anim = "appear",
+        shrink_anim = "med_to_small",
+        workable = 1,
+        range = 1.6,
+    },
+    {
+        name = "med",
+        anim = "med_idle",
+        grow_anim = "small_to_med",
+        shrink_anim = "big_to_med",
+        workable = 2,
+        range = 2.6,
+    },
+    {
+        name = "big",
+        anim = "big_idle",
+        grow_anim = "med_to_big",
+        workable = 3,
+        range = 3.5,
+    },
+}
 
-local function getanim(inst, state)
-    local size = "big"
-
-    if inst.stage == 1 then
-        size = "small"
-    elseif inst.stage == 2 then
-        size = "med"
-    end
-
-    return size .."_" .. state
-end
-
-local grow_anim_lookup_table = {"appear", "small_to_med", "med_to_big"}
-local shrink_anim_lookup_table = {"disappear", "med_to_small", "big_to_med"}
-local range_lookup_table = {0, 1.6, 2.6, 3.5}
-
-local function SetStage(inst, stage, preanim)
-    inst.stage = math.clamp(stage, 0, 3) -- just in case
-    inst.components.workable:SetWorkLeft(inst.stage)
-    inst.components.ripplespawner:SetRange(range_lookup_table[inst.stage + 1]) -- lua index starts at 1
-
-    if inst.stage > 0 then
-        inst:Show()
-        inst:RemoveTag("NOCLICK")
-        inst.MiniMapEntity:SetEnabled(true)
-
-        if preanim then
-            inst.AnimState:PlayAnimation(preanim)
-            inst.AnimState:PushAnimation(getanim(inst, "idle"), true)
-        else
-            inst.AnimState:PlayAnimation(getanim(inst, "idle"), true)
-        end
-    else
-        inst.components.workable:SetWorkable(false)
-
-        inst:AddTag("NOCLICK")
-        inst.MiniMapEntity:SetEnabled(false)
-
-        if preanim then
-            inst.AnimState:PlayAnimation(preanim)
-        else
-            inst.AnimState:PlayAnimation(getanim(inst, "idle"), true)
-            inst:Hide()
-        end
-    end
-end
-
-local function Grow(inst)
-    if inst.stage == 0 then
-        inst.water_collected = 0
-    end
-
-    inst:SetStage(inst.stage + 1, grow_anim_lookup_table[inst.stage +1])
-end
-
-local function Shrink(inst)
-    if inst.stage == 1 then
-        inst.water_collected = 0
-    end
-
-    inst:SetStage(inst.stage - 1, shrink_anim_lookup_table[inst.stage])
-end
-
-local function get_new_water_limit(inst)
+local function GetNewWaterLimit(inst)
     return 36 + (math.random() * 8)
 end
 
 local function CollectRain(inst)
     inst.water_collected = inst.water_collected + 1
-    if inst.water_collected > inst.waterlimit then
+    if inst.water_collected > inst.water_limit then
         inst.water_collected = 0
-        inst:Grow()
-        inst.water_limit = get_new_water_limit(inst)
+        inst.water_limit = GetNewWaterLimit(inst)
+        Grow(inst)
     end
 end
 
-local function generate_task(inst)
+local function StartGrow(inst)
+    inst.growing = true
     inst.grow_task = inst:DoPeriodicTask(5, CollectRain)
 end
 
-local function OnSave(inst, data)
-    data.stage = inst.stage
-    data.growing = inst.growing
-    data.water_collected = inst.water_collected
-    data.water_limit = inst.water_limit
-
-    data.spawned = inst.spawned
-    data.rotation = inst.Transform:GetRotation()
-end
-
-local function OnLoad(inst, data)
-    if not data then
-        return
-    end
-
-    inst.stage = data.stage
-    inst:SetStage(inst.stage)
-
-    inst.water_collected = data.water_collected
-    inst.water_limit = data.water_limit
-
-    inst.growing = data.growing
-    if inst.growing then
-        generate_task(inst)
-    end
-
-    if data.spawned then
-        inst.spawned = true
-    end
-
-    if data.rotation then
-        inst.Transform:SetRotation(data.rotation)
+local function StopGrow(inst)
+    inst.growing = false
+    if inst.grow_task then
+        inst.grow_task:Cancel()
+        inst.grow_task = nil
     end
 end
 
@@ -134,36 +73,70 @@ local function OnWorkCallback(inst, worker, workleft)
     inst:Shrink()
 end
 
-local function start_grow(inst)
-    if (inst.stage and inst.stage > 0) or math.random() < 0.2 then
-        inst.growing = true
-        generate_task(inst)
+local function SetStage(inst, stage, hide)
+    inst.stage = stage
+
+    local STAGE = STAGES[inst.stage]
+    inst.components.workable:SetWorkLeft(STAGE.workable)
+    inst.components.ripplespawner:SetRange(STAGE.range)
+
+    if inst.stage > 1 then
+        inst:Show()
+        inst:RemoveTag("NOCLICK")
+        inst.MiniMapEntity:SetEnabled(true)
+        inst.components.workable:SetWorkable(true)
+    else
+        if hide then
+            inst.AnimState:PlayAnimation("dryup")
+            inst:Hide()
+        end
+        inst:AddTag("NOCLICK")
+        inst.MiniMapEntity:SetEnabled(false)
+        inst.components.workable:SetWorkable(false)
+    end
+
+    return STAGE
+end
+
+local function Grow(inst)
+    local stage = SetStage(inst, inst.stage + 1)
+
+    inst.AnimState:PlayAnimation(stage.grow_anim)
+    inst.AnimState:PushAnimation(stage.anim, true)
+
+    if inst.stage == #STAGES then
+        StopGrow(inst)
     end
 end
 
-local function stop_grow(inst)
-    inst.growing = false
-    if inst.grow_task then
-        inst.grow_task:Cancel()
-        inst.grow_task = nil
-    end
+local function Shrink(inst)
+    local stage = SetStage(inst, inst.stage - 1)
+
+    inst.water_collected = 0
+
+    inst.AnimState:PlayAnimation(stage.shrink_anim)
+    inst.AnimState:PushAnimation(stage.anim, true)
 end
 
 local function OnIsRaining(inst, is_raining)
     if is_raining then
-        start_grow(inst)
+        if (inst.stage < #STAGES) and (inst.stage > 1 or math.random() < 0.2) then
+            StartGrow(inst)
+        end
     else
-        stop_grow(inst)
+        StopGrow(inst)
     end
 end
 
-local function onanimover(inst, data)
+local function OnAnimover(inst, data)
     if inst.AnimState:IsCurrentAnimation("disappear") then
         inst:Hide()
     end
 end
 
-local function reposition(inst)
+local SAFE_EDGE_RANGE = 7
+local SAFE_PUDDLE_RANGE = 7
+local function Reposition(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local  angle, opposite_angle, tile_x, tile_z
 
@@ -190,22 +163,58 @@ local function reposition(inst)
         inst.Transform:SetPosition(x, 0, z)
     end
 
-    inst.spawned = true
-
     local ents = TheSim:FindEntities(x, 0, z, SAFE_PUDDLE_RANGE, {"sedimentpuddle"})
     if #ents > 1 then
         -- Overlapping other puddles!
         inst:Remove()
     end
+
+    inst.spawned = true
 end
 
-local function initialsetup(inst)
+local function Init(inst)
     if not inst.stage then
-        inst:SetStage(math.random(0, 3))
+        SetStage(inst, math.random(1, 4), true)
     end
 
     if not inst.spawned then
-        reposition(inst)
+        Reposition(inst)
+    end
+end
+
+local function OnSave(inst, data)
+    data.water_collected = inst.water_collected
+    data.water_limit = inst.water_limit
+    data.stage = inst.stage
+    data.growing = inst.growing
+    data.spawned = inst.spawned
+    data.rotation = inst.Transform:GetRotation()
+end
+
+local function OnLoad(inst, data)
+    if not data then
+        return
+    end
+
+    inst.water_collected = data.water_collected
+    inst.water_limit = data.water_limit
+
+    inst.stage = data.stage
+    if inst.stage then
+        SetStage(inst, inst.stage, true)
+    end
+
+    inst.growing = data.growing
+    if inst.growing then
+        StartGrow(inst)
+    end
+
+    if data.spawned then
+        inst.spawned = true
+    end
+
+    if data.rotation then
+        inst.Transform:SetRotation(data.rotation)
     end
 end
 
@@ -227,11 +236,13 @@ local function fn()
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(2)
 
-    inst.Transform:SetRotation(math.random()*360)
+    inst.Transform:SetRotation(math.random() * 360)
 
     inst:AddTag("sedimentpuddle")
     inst:AddTag("NOBLOCK")
     inst:AddTag("OnFloor")
+
+    inst.no_wet_prefix = true
 
     inst.entity:SetPristine()
 
@@ -240,11 +251,9 @@ local function fn()
     end
 
     inst.water_collected = 0
-    inst.water_limit = get_new_water_limit(inst)
+    inst.water_limit = GetNewWaterLimit(inst)
 
-    inst.Shrink = Shrink
-    inst.Grow = Grow
-    inst.SetStage = SetStage
+    inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")
 
@@ -255,20 +264,18 @@ local function fn()
     inst.components.workable:SetWorkLeft(3)
     inst.components.workable:SetOnWorkCallback(OnWorkCallback)
 
-    inst:AddComponent("inspectable")
-    inst.no_wet_prefix = true
-
     inst:AddComponent("hauntable")
     inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)
 
+    inst.Shrink = Shrink
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
-    inst:DoTaskInTime(0, initialsetup)
-
-    inst:WatchWorldState("israining", OnIsRaining)
     OnIsRaining(inst, TheWorld.state.raining)
-    inst:ListenForEvent("animover", onanimover)
+    inst:WatchWorldState("israining", OnIsRaining)
+    inst:ListenForEvent("animover", OnAnimover)
+
+    inst:DoTaskInTime(0, Init)
 
     return inst
 end
@@ -310,5 +317,5 @@ local function MakeRipple(speed)
 end
 
 return Prefab("sedimentpuddle", fn, assets, prefabs),
-       MakeRipple("fast"),
-       MakeRipple("slow")
+    MakeRipple("fast"),
+    MakeRipple("slow")

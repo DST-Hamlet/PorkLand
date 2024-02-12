@@ -71,11 +71,11 @@ local states = {
     State{
         name = "pan_start",
         tags = {"prepan", "panning", "working"},
-		server_states = {"pan_start", "pan"},
+        server_states = {"pan_start", "pan"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
-			if not inst.sg:ServerStateMatches() then
+            if not inst.sg:ServerStateMatches() then
                 inst.AnimState:PlayAnimation("pan_pre")
                 inst.AnimState:PushAnimation("pan_loop", true) -- TODO: make pan_lag anim
             end
@@ -85,7 +85,7 @@ local states = {
         end,
 
         onupdate = function(inst)
-			if inst.sg:ServerStateMatches() then
+            if inst.sg:ServerStateMatches() then
                 if inst.entity:FlattenMovementPrediction() then
                     inst.sg:GoToState("idle", "noanim")
                 end

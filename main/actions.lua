@@ -13,7 +13,7 @@ local PL_ACTIONS = {
 
 for name, ACTION in pairs(PL_ACTIONS) do
     ACTION.id = name
-    ACTION.str = STRINGS.ACTIONS[name] or "PL_ACTION"
+    ACTION.str = STRINGS.ACTIONS[name] or name
     AddAction(ACTION)
 end
 
@@ -85,11 +85,10 @@ ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
     return true -- Dummy action for flup hiding
 end
 
-local DRUNK_GOLD = 1/8
 ACTIONS.PANGOLDEN_DRINK.fn = function(act)
-    if act.doer.puddle and act.doer.puddle:IsValid() and act.doer.puddle.stage > 0 then
+    if act.doer.puddle and act.doer.puddle:IsValid() and act.doer.puddle.components.workable and act.doer.puddle.components.workable:CanBeWorked() then
         act.doer.puddle:Shrink()
-        act.doer.gold_level = act.doer.gold_level + DRUNK_GOLD
+        act.doer:OnDrunk()
         return true
     end
 
