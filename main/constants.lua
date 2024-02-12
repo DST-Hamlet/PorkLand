@@ -15,3 +15,12 @@ FOG_STATE = {
     LIFTING = 3,
     CLEAR = 4,
 }
+
+FOODTYPE.GOLDDUST = "GOLDDUST"
+FOODGROUP.GOLDDUST = {
+    name = "GOLDDUST",
+    types =
+    {
+        FOODTYPE.GOLDDUST,
+    },
+}
