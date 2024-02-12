@@ -85,7 +85,23 @@ ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
     return true -- Dummy action for flup hiding
 end
 
+local DRUNK_GOLD = 1/8
+ACTIONS.PANGOLDEN_DRINK.fn = function(act)
+    if act.doer.puddle and act.doer.puddle:IsValid() and act.doer.puddle.stage > 0 then
+        act.doer.puddle:Shrink()
+        act.doer.gold_level = act.doer.gold_level + DRUNK_GOLD
+        return true
+    end
 
+    return false
+end
+
+ACTIONS.PANGOLDEN_POOP.fn = function(act)
+    local x, y, z = act.doer.Transform:GetWorldPosition()
+    SpawnPrefab("goldnugget").Transform:SetPosition(x, y, z)
+
+    return true
+end
 
 
 -- Patch for hackable things

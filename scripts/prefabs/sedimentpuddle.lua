@@ -31,7 +31,7 @@ local shrink_anim_lookup_table = {"disappear", "med_to_small", "big_to_med"}
 local range_lookup_table = {0, 1.6, 2.6, 3.5}
 
 local function SetStage(inst, stage, preanim)
-    inst.stage = math.calmp(stage, 0, 3) -- just in case
+    inst.stage = math.clamp(stage, 0, 3) -- just in case
     inst.components.workable:SetWorkLeft(inst.stage)
     inst.components.ripplespawner:SetRange(range_lookup_table[inst.stage + 1]) -- lua index starts at 1
 
