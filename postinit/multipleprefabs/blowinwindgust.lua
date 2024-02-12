@@ -38,7 +38,7 @@ for _, tree in pairs(evergreens) do
             return
         end
 
-        MakeTreeblowInWindGust(tree, "EVERGREEN")
+        MakeTreeblowInWindGust(inst, "EVERGREEN")
     end)
 end
 
@@ -48,6 +48,6 @@ for _, tree in pairs(deciduoustrees) do
             return
         end
 
-        MakeTreeblowInWindGust(tree, "DECIDUOUS")
+        MakeTreeblowInWindGust(inst, "DECIDUOUS")
     end)
 end
