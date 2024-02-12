@@ -58,6 +58,7 @@ local function PickupAction(inst)
                 and item:IsOnValidGround()
                 and not item:HasTag("trap")
                 and not item:HasTag("irreplaceable")
+                and not item:HasTag("piko")
             return isValidPickupItem
         end)
 

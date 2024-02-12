@@ -1,5 +1,11 @@
 local AddCookerRecipe = AddCookerRecipe
+local AddIngredientValues = AddIngredientValues
 GLOBAL.setfenv(1, GLOBAL)
+
+local foods = require("main/preparedfoods")
+for k,recipe in pairs (foods) do
+	AddCookerRecipe("cookpot", recipe)
+end
 
 AddCookerRecipe("smelter", {
     name = "alloy",
@@ -10,3 +16,5 @@ AddCookerRecipe("smelter", {
     end,
     no_cookbook = true
 })
+
+AddIngredientValues({"piko_orange"}, {filter = 1})

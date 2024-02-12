@@ -500,7 +500,7 @@ local function OnLoad(inst, data)
         -- inst:RemoveComponent("blowinwindgust")
 
         inst.AnimState:PlayAnimation(inst.anims.stump)
-        inst.MiniMapEntity:SetIcon("teatree_stump.png")
+        inst.MiniMapEntity:SetIcon("teatree_stump.tex")
 
         RemovePhysicsColliders(inst)
         MakeSmallBurnable(inst)

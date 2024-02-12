@@ -82,6 +82,7 @@ local function fn()
     inst.components.deployable:SetDeployMode(DEPLOYMODE.PLANT)
     inst.components.deployable.ondeploy = ondeploy
 
+    MakeHauntableLaunch(inst)
     MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
@@ -131,6 +132,7 @@ local function fn_cooked()
 
     inst:AddComponent("inventoryitem")
 
+    MakeHauntableLaunch(inst)
     MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
 

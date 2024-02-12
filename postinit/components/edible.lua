@@ -8,5 +8,10 @@ function Edible:OnEaten(eater, ...)
         eater.components.hayfever:SetNextSneezeTime(self.antihistamine)
     end
 
+	if eater and self.caffeinedelta and self.caffeineduration and eater.components.locomotor then
+		eater.components.locomotor:SetExternalSpeedMultiplier("CAFFEINE", self.caffeinedelta, self.caffeineduration)
+        self.caffeine_timer = self.caffeineduration
+	end
+
     _OnEaten(self, eater, ...)
 end

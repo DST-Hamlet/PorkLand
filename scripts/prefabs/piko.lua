@@ -23,7 +23,7 @@ local function Retarget(inst)
 end
 
 local function KeepTarget(inst, target)
-    return inst.components.combat:CanTarget(target)
+    return inst.components.combat:CanTarget(target) and inst.is_rabid
 end
 
 --#region animation
@@ -135,7 +135,7 @@ local function OnDeath(inst)
     inst.Light:Enable(false)
 end
 
-local function OnDrop(inst)
+local function OnDropped(inst)
     refresh_build(inst)
     inst.sg:GoToState("stunned")
 end
@@ -145,7 +145,7 @@ local function OnPickup(inst)
 end
 
 local function OnPhaseChange(inst, phase)
-    if phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood") then
+    if TheWorld.state.phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood") then
         inst:DoTaskInTime(1 + math.random(), function() inst:SetAsRabid(true) end)
     else
         inst:DoTaskInTime(1 + math.random(), function() inst:SetAsRabid(false) end)
@@ -240,6 +240,7 @@ local function fn()
     inst:AddComponent("inventory")
 
     inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
     inst.components.inventoryitem.nobounce = true
     inst.components.inventoryitem.canbepickedup = false
     inst.force_onwenthome_message = true
@@ -281,7 +282,7 @@ local function fn()
 
     MakeSmallBurnableCharacter(inst, "chest")
     MakeTinyFreezableCharacter(inst, "chest")
-    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME * 2, nil, OnDrop)
+    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME * 2, nil, OnDropped)
     MakeHauntablePanic(inst)
 
     inst.is_rabid = false
@@ -292,9 +293,10 @@ local function fn()
     inst.OnLoad = OnLoad
 
     inst:WatchWorldState("phase", OnPhaseChange)
+    inst:WatchWorldState("moonphase", OnPhaseChange)
+
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
-    inst:ListenForEvent("dropitem", OnDrop)
     inst:ListenForEvent("exitlimbo", update_light)
     inst:ListenForEvent("onpickupitem", OnPickup)
     inst:ListenForEvent("onwenthome", OnWentHome)

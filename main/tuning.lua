@@ -157,6 +157,12 @@ local tuning = {
     PIKO_DAMAGE = 2,
     PIKO_ATTACK_PERIOD = 2,
     PIKO_TARGET_DIST = 20,
+
+    CAFFEINE_FOOD_BONUS_SPEED = 5, -- player base speed plus this, 6 is normal walk speed
+    FOOD_SPEED_BRIEF = 0, -- eating coffeebeans gives you the bonus for this many seconds
+    FOOD_SPEED_AVERAGE = 30, -- eating roasted coffee beans
+    FOOD_SPEED_MED = 60, -- eating tropicalbouillabaisse (effects)
+    FOOD_SPEED_LONG = total_day_time / 2, -- drinking coffee
 }
 
 for key, value in pairs(tuning) do
