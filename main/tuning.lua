@@ -150,6 +150,13 @@ local tuning = {
     HALBERD_USES = 100,
 
     HYDRO_BONUS_COOL_RATE = 4,
+
+    PAN_USES = 30,
+
+    PANGOLDEN_HEALTH = 500,
+    PANGOLDEN_BALL_DEFENCE = 0.75,
+    PANGOLDEN_WALK_SPEED = 2.5,
+    PANGOLDEN_RUN_SPEED = 8,
 }
 
 for key, value in pairs(tuning) do
