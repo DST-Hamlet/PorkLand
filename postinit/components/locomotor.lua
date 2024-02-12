@@ -7,7 +7,7 @@ local function GetWindSpeed(self)
     if TheWorld.net.components.plateauwind 
         and TheWorld.net.components.plateauwind:GetIsWindy() 
         and not self.inst:HasTag("windspeedimmune") 
-        and not self.ints:HasTag("playerghost") then 
+        and not self.inst:HasTag("playerghost") then 
         
             -- get a wind speed adjustment
         local windangle = self.inst.Transform:GetRotation() - TheWorld.net.components.plateauwind:GetWindAngle()

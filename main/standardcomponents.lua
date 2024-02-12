@@ -217,10 +217,7 @@ function MakeTreeblowInWindGust(inst, tree_type)
         inst.components.workable.onfinish(inst, TheWorld)
     end
 
-    if not inst.components.blowinwindgust then
-        inst:AddComponent("blowinwindgust")
-    end
-
+    inst:AddComponent("blowinwindgust")
     inst.components.blowinwindgust:SetWindSpeedThreshold(TUNING[tree_type .. "_WINDBLOWN_SPEED"])
     inst.components.blowinwindgust:SetDestroyChance(TUNING[tree_type .. "_WINDBLOWN_FALL_CHANCE"])
     inst.components.blowinwindgust:SetGustStartFn(OnGustStart)
