@@ -464,7 +464,7 @@ end
 local function OnSave(inst, data)
     data.burnt = inst:HasTag("burnt") or inst:HasTag("fire")
     data.stump = inst:HasTag("stump")
-    data.spawner = inst.components.spawner ~= nil
+    data.spawner = inst.components.spawner
 end
 
 local function OnLoad(inst, data)
