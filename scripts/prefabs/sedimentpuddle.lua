@@ -75,7 +75,6 @@ local function GetNewWaterLimit(inst)
 end
 
 local function StopGrow(inst)
-    inst.growing = false
     if inst.grow_task then
         inst.grow_task:Cancel()
         inst.grow_task = nil
@@ -103,22 +102,14 @@ local function CollectRain(inst)
 end
 
 local function StartGrow(inst)
-    inst.growing = true
-    inst.grow_task = inst:DoPeriodicTask(5, CollectRain)
+    if inst.grow_task == nil then
+        inst.grow_task = inst:DoPeriodicTask(5, CollectRain)
+    end
 end
 
 local function OnWorkCallback(inst, worker, workleft)
     inst.components.lootdropper:SpawnLootPrefab("gold_dust")
     inst:Shrink()
-end
-
-local function Shrink(inst)
-    local stage = SetStage(inst, inst.stage - 1)
-
-    inst.water_collected = 0
-
-    inst.AnimState:PlayAnimation(stage.shrink_anim)
-    inst.AnimState:PushAnimation(stage.anim, true)
 end
 
 local function OnIsRaining(inst, is_raining)
@@ -130,6 +121,18 @@ local function OnIsRaining(inst, is_raining)
         StopGrow(inst)
     end
 end
+
+local function Shrink(inst)
+    local stage = SetStage(inst, inst.stage - 1)
+
+    inst.water_collected = 0
+
+    inst.AnimState:PlayAnimation(stage.shrink_anim)
+    inst.AnimState:PushAnimation(stage.anim, true)
+
+    OnIsRaining(inst, TheWorld.state.raining)
+end
+
 
 local function OnAnimover(inst, data)
     if inst.AnimState:IsCurrentAnimation("disappear") then
@@ -183,13 +186,14 @@ local function Init(inst)
     if not inst.spawned then
         Reposition(inst)
     end
+
+    OnIsRaining(inst, TheWorld.state.raining)
 end
 
 local function OnSave(inst, data)
     data.water_collected = inst.water_collected
     data.water_limit = inst.water_limit
     data.stage = inst.stage
-    data.growing = inst.growing
     data.spawned = inst.spawned
     data.rotation = inst.Transform:GetRotation()
 end
@@ -205,11 +209,6 @@ local function OnLoad(inst, data)
     inst.stage = data.stage
     if inst.stage then
         SetStage(inst, inst.stage, true)
-    end
-
-    inst.growing = data.growing
-    if inst.growing then
-        StartGrow(inst)
     end
 
     if data.spawned then
@@ -274,7 +273,6 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
-    OnIsRaining(inst, TheWorld.state.raining)
     inst:WatchWorldState("israining", OnIsRaining)
     inst:ListenForEvent("animover", OnAnimover)
 
