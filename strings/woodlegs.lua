@@ -49,6 +49,7 @@ return {
             GENERIC = "Ornery buggie.",
             SLEEPING = "Thar she blows!",
         },
+        SEDIMENTPUDDLE = "Alas, not big enough to sail in.",
         SHEARS = "A cutlass fer tha'bushes.",
         SMELTER = {
             BURNT = "Blast the bore!",

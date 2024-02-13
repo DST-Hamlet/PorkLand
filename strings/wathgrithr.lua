@@ -49,6 +49,7 @@ return {
             GENERIC = "Evil beast. You have met your match!",
             SLEEPING = "Slumber consumes it!",
         },
+        SEDIMENTPUDDLE = "Its tiny gold pieces will be mine!",
         SHEARS = "A weapon for use against a mighty hedge!",
         SMELTER = {
             BURNT = "My role is more warrior than artizan.",

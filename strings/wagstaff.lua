@@ -52,6 +52,7 @@ return {
             GENERIC = "Evidently, it acquires facial hair when it matures.",
             SLEEPING = "It's respiratory structures are vibrating.",
         },
+        SEDIMENTPUDDLE = "Evidence would suggest there's gold down there!",
         SHEARS = "Cutting implements constructed from raw metal.",
         SMELTER = {
             BURNT = "Smelting is a dangerous business in here.",

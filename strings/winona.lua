@@ -48,6 +48,7 @@ return {
             GENERIC = "What are you all excited about?",
             SLEEPING = "Calm down!",
         },
+        SEDIMENTPUDDLE = "The metal content is seriously over the limit.",
         SHEARS = "Shears for gardening.",
         SMELTER = {
             BURNT = "Forgot fire rules, didn't you?",

@@ -49,6 +49,7 @@ return {
             GENERIC = "Dude, you need to chill!",
             SLEEPING = "That's it. Now just stay asleep.",
         },
+        SEDIMENTPUDDLE = "There's sparkly things down there!",
         SHEARS = "What am I supposed to do with these?",
         SMELTER = {
             BURNT = "This is what you get for trying too hard.",

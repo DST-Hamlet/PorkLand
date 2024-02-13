@@ -49,6 +49,7 @@ return {
             GENERIC = "What is he all worked up about?",
             SLEEPING = "A noisy sleeper.",
         },
+        SEDIMENTPUDDLE = "There's something sparkling inside there.",
         SHEARS = "Aren't there gardeners for this sort of thing?",
         SMELTER = {
             BURNT = "Back to the Stone Age.",

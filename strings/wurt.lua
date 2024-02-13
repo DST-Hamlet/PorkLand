@@ -48,6 +48,7 @@ return {
             GENERIC = "The little bug is going crazy!",
             SLEEPING = "The little bug was quiet.",
         },
+        SEDIMENTPUDDLE = "Water are ... shining?",
         SHEARS = "Shape the plants.",
         SMELTER = {
             BURNT = "Glurph, ruined.",

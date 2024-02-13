@@ -49,6 +49,7 @@ return {
             GENERIC = "Looks deranged.",
             SLEEPING = "In a slumber.",
         },
+        SEDIMENTPUDDLE = "Pool's gold.",
         SHEARS = "Shear-ly delightful.",
         SMELTER = {
             BURNT = "The smelter got smelted.",

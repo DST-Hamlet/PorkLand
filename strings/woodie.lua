@@ -49,6 +49,7 @@ return {
             GENERIC = "Seems mighty angry.",
             SLEEPING = "Let sleeping bugs lie, I say.",
         },
+        SEDIMENTPUDDLE = "What's that shiny stuff in there?",
         SHEARS = "Don't get jealous, Lucy.",
         SMELTER = {
             BURNT = "How did it get burned?!",

@@ -49,6 +49,7 @@ return {
             GENERIC = "Probably just agitated because it can't fly well.",
             SLEEPING = "Quite the snorer.",
         },
+        SEDIMENTPUDDLE = "A sparkly pool. A little too sparkly.",
         SHEARS = "Time to do some yard work.",
         SMELTER = {
             BURNT = "No one ever accused me of being a good blacksmith.",

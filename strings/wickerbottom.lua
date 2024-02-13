@@ -49,6 +49,7 @@ return {
             GENERIC = "Certainly not a species I know of!",
             SLEEPING = "Dormant.",
         },
+        SEDIMENTPUDDLE = "Contains some lustrous sentiment.",
         SHEARS = "A useful tool for horticultural purposes.",
         SMELTER = {
             BURNT = "Is anyone hurt?",

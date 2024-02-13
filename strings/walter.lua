@@ -48,6 +48,7 @@ return {
             GENERIC = "Wow, look how active they are!",
             SLEEPING = "it's sleeping,",
         },
+        SEDIMENTPUDDLE = "Is that gold in there?",
         SHEARS = "Gardener's little helper.",
         SMELTER = {
             BURNT = "It's uh... extra done!",

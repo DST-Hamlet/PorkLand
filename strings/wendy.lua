@@ -49,6 +49,7 @@ return {
             GENERIC = "As rabid as death itself.",
             SLEEPING = "Sleep is not a permanent escape from life.",
         },
+        SEDIMENTPUDDLE = "Contains unreachable shiny things.",
         SHEARS = "Can it shear my heart?",
         SMELTER = {
             BURNT = "It blazes with more passion than I know.",

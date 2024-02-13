@@ -49,6 +49,7 @@ return {
             GENERIC = "That guy's got a lot of energy!",
             SLEEPING = "Haha! A bug with a mustache!",
         },
+        SEDIMENTPUDDLE = "It's full of sparkly stuff.",
         SHEARS = "It's for chores like trimming hedges or cutting grass.",
         SMELTER = {
             BURNT = "All burned up.",

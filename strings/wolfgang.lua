@@ -49,6 +49,7 @@ return {
             GENERIC = "Wolfgang will stomp bad beetle!",
             SLEEPING = "Hehe. Is funny mustache.",
         },
+        SEDIMENTPUDDLE = "Hello little sparklies!",
         SHEARS = "Is for cutting plant things.",
         SMELTER = {
             BURNT = "Smelter is dead.",
