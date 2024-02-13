@@ -7,31 +7,30 @@ local actionhandlers =
     ActionHandler(ACTIONS.EAT, "eat"),
 }
 
-local events=
+local events =
 {
     CommonHandlers.OnStep(),
-    CommonHandlers.OnLocomote(true,true),
+    CommonHandlers.OnLocomote(true, true),
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
 
     EventHandler("death", function(inst) inst.sg:GoToState("death") end),
     EventHandler("attacked", function(inst)
-            if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("attack") then
-                 if inst.components.health:GetPercent() >= 0.5 and not inst.sg:HasStateTag("ball") then
-                    inst.sg:GoToState("ball_pre")
-                elseif inst.components.health:GetPercent() < 0.5 and inst.sg:HasStateTag("ball") then
-                    inst.sg:GoToState("idle","ball_pst")
-                elseif inst.components.health:GetPercent() >= 0.5 and inst.sg:HasStateTag("ball") then
-                    inst.sg:GoToState("ball_hit")
-                else
-                    inst.sg:GoToState("hit")
-                end
+        if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("attack") then
+            if inst.components.health:GetPercent() >= 0.5 and not inst.sg:HasStateTag("ball") then
+                inst.sg:GoToState("ball_pre")
+            elseif inst.components.health:GetPercent() < 0.5 and inst.sg:HasStateTag("ball") then
+                inst.sg:GoToState("idle","ball_pst")
+            elseif inst.components.health:GetPercent() >= 0.5 and inst.sg:HasStateTag("ball") then
+                inst.sg:GoToState("ball_hit")
+            else
+                inst.sg:GoToState("hit")
             end
-        end),
-    EventHandler("loseloyalty", function(inst) if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("attack") then inst.sg:GoToState("shake") end end),
+        end
+    end),
 }
 
-local states=
+local states =
 {
     State{
         name = "idle",
@@ -50,7 +49,6 @@ local states=
                 inst.AnimState:PlayAnimation("idle_loop", true)
                 inst.sg:SetTimeout(2 + 2 * math.random())
             end
-
         end,
 
         ontimeout = function(inst)
@@ -67,7 +65,7 @@ local states=
             inst.AnimState:PlayAnimation("shake")
         end,
 
-       timeline=
+       timeline =
         {
             TimeEvent(17 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/shake") end),
             TimeEvent(20 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
@@ -76,7 +74,7 @@ local states=
             TimeEvent(37 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
@@ -103,7 +101,7 @@ local states=
             TimeEvent(57 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/lick") end),
         },
 
-        events=
+        events =
         {
             EventHandler("animqueueover", function(inst) inst.sg:GoToState("preen_pst") end),
         },
@@ -117,13 +115,13 @@ local states=
             inst.AnimState:PlayAnimation("preen_pst")
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(0 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/lick") end),
             TimeEvent(11 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
         },
 
-        events=
+        events =
         {
             EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
         },
@@ -140,7 +138,7 @@ local states=
             inst:AddTag("avoidonhit")
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(3 * FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement","scales")
@@ -166,7 +164,7 @@ local states=
             inst.components.health:SetAbsorptionAmount(0)
         end,
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("ball") end),
         },
@@ -180,7 +178,7 @@ local states=
             inst.components.health:SetAbsorptionAmount(TUNING.PANGOLDEN_BALL_DEFENCE)
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("ball_idle", true)
-            inst.sg:SetTimeout(10 + (5 * math.random()) )
+            inst.sg:SetTimeout(10 + (5 * math.random()))
             inst:AddTag("avoidonhit")
         end,
 
@@ -231,7 +229,7 @@ local states=
 
         },
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
@@ -252,7 +250,7 @@ local states=
             inst.components.health:SetAbsorptionAmount(0)
         end,
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("ball") end),
         },
@@ -263,7 +261,7 @@ local states=
         tags = {"busy"},
 
         onenter = function(inst)
-			inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/death")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/death")
             inst.AnimState:PlayAnimation("death")
             inst.Physics:Stop()
             RemovePhysicsColliders(inst)
@@ -280,7 +278,7 @@ local states=
             inst.AnimState:PlayAnimation("drink_pre")
         end,
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("drink_loop") end),
         },
@@ -293,16 +291,16 @@ local states=
         onenter = function(inst)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("drink_loop", true)
-           inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/mouth")
-           inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/suck")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/mouth")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/suck")
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(12 * FRAMES, function(inst) inst:PerformBufferedAction() end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle", "drink_pst")
@@ -320,7 +318,7 @@ local states=
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/poop")
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(6 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
             TimeEvent(9 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
@@ -336,7 +334,7 @@ local states=
             TimeEvent(43 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
             TimeEvent(56 * FRAMES, function(inst)inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/step") end),
             TimeEvent(58 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
-            TimeEvent(59 * FRAMES, PlayFootstep ),
+            TimeEvent(59 * FRAMES, PlayFootstep),
             TimeEvent(67 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
             TimeEvent(68 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/step") end),
             TimeEvent(70 * FRAMES, PlayFootstep),
@@ -344,7 +342,7 @@ local states=
             TimeEvent(81 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
         },
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle")
@@ -362,13 +360,13 @@ local states=
             inst.AnimState:PushAnimation("drink_loop", false)
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(11 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
             TimeEvent(32 * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/mouth") end),
         },
 
-        events=
+        events =
         {
             EventHandler("animqueueover", function(inst)
                 inst:PerformBufferedAction()
@@ -394,7 +392,7 @@ CommonStates.AddWalkStates(
                 inst.SoundEmitter:SetParameter("steps", "intensity", math.random())
             end),
 
-            TimeEvent(2 * FRAMES, PlayFootstep ),
+            TimeEvent(2 * FRAMES, PlayFootstep),
 
             TimeEvent(12 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
 
@@ -434,7 +432,7 @@ CommonStates.AddRunStates(
                 inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/pangolden/walk", {timeoffset = math.random()})
             end),
 
-            TimeEvent(2*FRAMES, function(inst)
+            TimeEvent(2 * FRAMES, function(inst)
             inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/pangolden/walk", {timeoffset = math.random()})
             end),
 

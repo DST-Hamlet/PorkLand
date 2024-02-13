@@ -1,10 +1,10 @@
-local assets=
+local assets =
 {
-	Asset("ANIM", "anim/pango_basic.zip"),
+    Asset("ANIM", "anim/pango_basic.zip"),
     Asset("ANIM", "anim/pango_action.zip"),
 }
 
-local brain = require "brains/pangoldenbrain"
+local brain = require("brains/pangoldenbrain")
 
 local prefabs =
 {
@@ -18,7 +18,16 @@ SetSharedLootTable("pangolden",
     {"meat",            1.00},
 })
 
-local EATEN_GOLD = 1/3
+local EATEN_GOLD = 1 / 3
+local DRUNK_GOLD = 1 / 8
+
+local function OnEat(inst)
+    inst.gold_level = inst.gold_level + EATEN_GOLD
+end
+
+local function OnDrunk(inst)
+    inst.gold_level = inst.gold_level + DRUNK_GOLD
+end
 
 local function OnSave(inst, data)
     data.gold_level = inst.gold_level
@@ -31,19 +40,20 @@ local function OnLoad(inst, data)
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddDynamicShadow()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
 
     inst.Transform:SetFourFaced()
+    inst.DynamicShadow:SetSize(6, 2)
+
     inst.AnimState:SetBank("pango")
     inst.AnimState:SetBuild("pango_action")
     inst.AnimState:PlayAnimation("idle_loop", true)
-	inst.DynamicShadow:SetSize(6, 2)
 
     MakeCharacterPhysics(inst, 100, 0.5)
 
@@ -57,11 +67,15 @@ local function fn()
         return inst
     end
 
+    inst.gold_level = 0
+
+    inst:AddComponent("inspectable")
+
+    inst:AddComponent("knownlocations")
+
     inst:AddComponent("eater")
     inst.components.eater:SetDiet({FOODGROUP.GOLDDUST}, {FOODGROUP.GOLDDUST})
-    inst.components.eater:SetOnEatFn(function()
-        inst.gold_level = inst.gold_level + EATEN_GOLD
-    end)
+    inst.components.eater:SetOnEatFn(OnEat)
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pang_bod"
@@ -72,11 +86,7 @@ local function fn()
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("pangolden")
 
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("knownlocations")
-
-    inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
+    inst:AddComponent("locomotor")  -- locomotor must be constructed before the stategraph
     inst.components.locomotor.walkspeed = TUNING.PANGOLDEN_WALK_SPEED
     inst.components.locomotor.runspeed = TUNING.PANGOLDEN_RUN_SPEED
 
@@ -90,9 +100,7 @@ local function fn()
     MakePoisonableCharacter(inst)
     MakeLargeBurnableCharacter(inst, "swap_fire")
     MakeLargeFreezableCharacter(inst, "pang_bod")
-
-    inst.gold_level = 0
-
+    inst.OnDrunk = OnDrunk
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 

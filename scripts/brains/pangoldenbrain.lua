@@ -1,7 +1,7 @@
-require "behaviours/wander"
-require "behaviours/faceentity"
-require "behaviours/panic"
-require "behaviours/follow"
+require("behaviours/wander")
+require("behaviours/faceentity")
+require("behaviours/panic")
+require("behaviours/follow")
 
 local BrainCommon = require("brains/braincommon")
 
@@ -11,15 +11,15 @@ local AVOID_PLAYER_DIST = 7
 local AVOID_PLAYER_STOP = 9
 local SEE_PUDDLE_DIST = 15
 
-local function get_puddle(inst)
-    if inst.puddle and inst.puddle.stage >= 1 then
+local function GetPuddle(inst)
+    if inst.puddle and inst.puddle.stage >= 2 then
         return
     end
 
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, SEE_PUDDLE_DIST, {"sedimentpuddle"})
 
-    local stage = -1
+    local stage = 0
     local puddles = {}
 
     for _, ent in ipairs(ents) do
@@ -36,23 +36,23 @@ local function get_puddle(inst)
         inst.puddle = puddles[math.random(1, #puddles)]
     end
 
-    return inst.puddle -- a pointless return?
+    return inst.puddle  -- a pointless return?
 end
 
-local function get_home(inst)
-    get_puddle(inst)
+local function GetHome(inst)
+    GetPuddle(inst)
 
     if inst.puddle then
-        return Vector3(inst.puddle.Transform:GetWorldPosition())
+        return inst.puddle:GetPosition()
     else
-        return Vector3(inst.Transform:GetWorldPosition())
+        return inst:GetPosition()
     end
 end
 
 local function DrinkAction(inst)
-    get_puddle(inst)
+    GetPuddle(inst)
 
-    if inst.puddle and inst.puddle.stage > 0 then
+    if inst.puddle and inst.puddle.components.workable and inst.puddle.components.workable:CanBeWorked() then
         return BufferedAction(inst, inst.puddle, ACTIONS.PANGOLDEN_DRINK)
     end
 end
@@ -94,7 +94,7 @@ function Pangolden:OnStart()
 
                 DoAction(self.inst, function() return DrinkAction(self.inst) end, "Drink"),
 
-                Wander(self.inst, function() return get_home(self.inst) end, WANDER_DIST)
+                Wander(self.inst, function() return GetHome(self.inst) end, WANDER_DIST)
             }),
     }, 0.25)
 
