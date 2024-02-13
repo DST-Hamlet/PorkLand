@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "We'd better get out of here before it breaks out of its cocoon.",
         GOLDENMACHETE = "What else do you do with gold in a jungle island?",
+        GOLDPAN = "I dread to think how long this will take.",
         GOLD_DUST = "I need to collect lot of them.",
         GRASS_TALL = {
             BURNING = "This is not good.",

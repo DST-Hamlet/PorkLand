@@ -27,6 +27,7 @@ return {
         },
         GLOWFLY_COCOON = "WRAPP'DED IN A BUGGY BLANKET",
         GOLDENMACHETE = "'TIS SHINY TOOL O' SLASHINGS",
+        GOLDPAN = "'TIS A PAN FOR GLITTERIES",
         GOLD_DUST = "'TIS DIRT O' SPARKLIES",
         GRASS_TALL = {
             BURNING = "FWOOSH'DING",

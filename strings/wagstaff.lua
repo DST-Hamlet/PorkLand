@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "It appears to be undergoing some kind of transubstantiation.",
         GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",
+        GOLDPAN = "I do hope the holes were meant to be there.",
         GOLD_DUST = "Evidently, it's the preferred sustenance of those long nosed quadrupeds.",
         GRASS_TALL = {
             BURNING = "Evidently, grass here has the same flammability qualities as at home.",

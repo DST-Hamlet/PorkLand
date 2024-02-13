@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "'e be sleepin' it off.",
         GOLDENMACHETE = "'Tis a mighty 'eavy blade.",
+        GOLDPAN = "Fer fishin' fer gold.",
         GOLD_DUST = "Aye! 'Tis treasure dust!",
         GRASS_TALL = {
             BURNING = "'Tis ablaze!",

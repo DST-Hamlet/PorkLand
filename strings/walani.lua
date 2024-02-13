@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "I need a sleeping bag like that.",
         GOLDENMACHETE = "I can hack in style.",
+        GOLDPAN = "You mean I gotta work for my gold?",
         GOLD_DUST = "Fairy dust!",
         GRASS_TALL = {
             BURNING = "It'd probably be a lot of work to put it out.",

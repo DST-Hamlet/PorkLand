@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "Doing a bad job of hiding from me.",
         GOLDENMACHETE = "I don't want to scuff it up.",
+        GOLDPAN = "You mean I have to do work?",
         GOLD_DUST = "It's probably not worth much.",
         GRASS_TALL = {
             BURNING = "I win.",

@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "Bug look cozy.",
         GOLDENMACHETE = "Hoighty toighty knife!",
+        GOLDPAN = "Is for eating from?",
         GOLD_DUST = "Wolfgang like. Is shiny.",
         GRASS_TALL = {
             BURNING = "Wolfgang is not doing that!",

@@ -125,6 +125,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
 msgstr "有格调地砍！"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDPAN"
+msgid "Critics panned it."
+msgstr "批评家因为淘不到金而批评了它。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLD_DUST"
 msgid "Aw... it's hardly worth anything."
@@ -339,6 +344,11 @@ msgstr "它似乎正在茧里进行着某种羽化。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE"
 msgid "Gold is so plentiful here I can use it in household tools."
 msgstr "这里的黄金丰富到我可以用它制作家用工具。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDPAN"
+msgid "I do hope the holes were meant to be there."
+msgstr "我希望这些孔是注定就在那儿的。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLD_DUST"
@@ -560,6 +570,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE"
 msgid "I can hack in style."
 msgstr "我可以有格调地砍。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDPAN"
+msgid "You mean I gotta work for my gold?"
+msgstr "你是说我努力干活能淘到黄金？"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLD_DUST"
 msgid "Fairy dust!"
@@ -775,6 +790,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
 msgstr "时尚的砍刀！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDPAN"
+msgid "Are you ready? Woby."
+msgstr "准备好了吗？沃比！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLD_DUST"
 msgid "Smallest gold are still gold."
@@ -985,6 +1005,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE"
 msgid "What else do you do with gold in a jungle island?"
 msgstr "你还用丛林岛上的黄金做什么？"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDPAN"
+msgid "I dread to think how long this will take."
+msgstr "我不敢想象这需要多长时间。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLD_DUST"
 msgid "I need to collect lot of them."
@@ -1194,6 +1219,11 @@ msgstr "它把自己裹得像个生菜肉卷。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE"
 msgid "Fancy slicer."
 msgstr "花哨的切片机。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDPAN"
+msgid "I have better pans."
+msgstr "我有更好的盘子。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLD_DUST"
@@ -1410,6 +1440,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE"
 msgid "I shall swing you with pride."
 msgstr "我应该自豪地挥舞着你。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDPAN"
+msgid "It will vanquish the pieces of tiny gold!"
+msgstr "它将打败那些小金块！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLD_DUST"
 msgid "Golden dust."
@@ -1624,6 +1659,11 @@ msgstr "啊哈，它在羽化..."
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE"
 msgid "I've always wanted to hack things in luxury."
 msgstr "我一直想像个土豪一样的砍东西。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDPAN"
+msgid "Must I do everything myself?"
+msgstr "我必须亲自做所有事吗？"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLD_DUST"
@@ -1840,6 +1880,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE"
 msgid "What a beautiful blade!"
 msgstr "好漂亮的砍刀！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDPAN"
+msgid "Hey, now we can be prospectors."
+msgstr "嘿，现在我们可以当个淘金者了。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLD_DUST"
 msgid "Wow! I wonder if it's worth anything."
@@ -2054,6 +2099,11 @@ msgstr "如果我能爬进茧里我就再也不出来了。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE"
 msgid "What a fancy blade to ruin bamboo with!"
 msgstr "用这把刀劈竹子多么奢华！"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDPAN"
+msgid "Offers too much hope."
+msgstr "给人过多希望。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLD_DUST"
@@ -2270,6 +2320,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE"
 msgid "For the sophisticated adventurer."
 msgstr "这把黄金砍刀是制给老练的冒险家的。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDPAN"
+msgid "Swell. A pan with holes in it."
+msgstr "好吧。一个带孔洞的盘。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLD_DUST"
 msgid "Hardly worth holding onto. If I could find more of it though..."
@@ -2484,6 +2539,11 @@ msgstr "令人着迷！它已经进入蛹期了。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE"
 msgid "The most malleable of metals, but let's see how it slices."
 msgstr "黄金是最具可塑性的金属，不过还是先看看它砍东西的效果吧。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDPAN"
+msgid "This should be useful for finding valuable minerals."
+msgstr "这应该非常适合找寻有价值的矿物。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLD_DUST"
@@ -2705,6 +2765,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE"
 msgid "'TIS SHINY TOOL O' SLASHINGS"
 msgstr "闪闪发亮的劈砍工具"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDPAN"
+msgid "'TIS A PAN FOR GLITTERIES"
+msgstr "这是一个寻找金光闪闪的盘子"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLD_DUST"
 msgid "'TIS DIRT O' SPARKLIES"
@@ -2919,6 +2984,11 @@ msgstr "你没有藏好还是让我发现了。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE"
 msgid "I don't want to scuff it up."
 msgstr "我不想它被划伤。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDPAN"
+msgid "You mean I have to do work?"
+msgstr "你的意思是我必须得干活？"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLD_DUST"
@@ -3135,6 +3205,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE"
 msgid "This just made my job easier."
 msgstr "这只是让我的工作更轻松。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDPAN"
+msgid "Separate the metal."
+msgstr "将金属分离出来。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLD_DUST"
 msgid "gold! My luck has come!"
@@ -3344,6 +3419,11 @@ msgstr "看起来虫子睡在这个茧里很舒适。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE"
 msgid "Hoighty toighty knife!"
 msgstr "奢华的刀！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDPAN"
+msgid "Is for eating from?"
+msgstr "可以吃吗？"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLD_DUST"
@@ -3560,6 +3640,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE"
 msgid "It chops AND sparkles!"
 msgstr "它不仅能砍树，而且闪闪发光！"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDPAN"
+msgid "Haven't done any prospectin' in a while."
+msgstr "有段时间没有去规划未来了。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLD_DUST"
 msgid "Look at all that gold!"
@@ -3774,6 +3859,11 @@ msgstr "他关在里面睡觉。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE"
 msgid "'Tis a mighty 'eavy blade."
 msgstr "这是一把相当重的砍刀。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDPAN"
+msgid "Fer fishin' fer gold."
+msgstr "用来捕黄金用的。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLD_DUST"
@@ -3990,6 +4080,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE"
 msgid "Pretty Slicer"
 msgstr "漂亮的切片机"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDPAN"
+msgid "Gets Shiny from puddle"
+msgstr "拿出水坑里闪闪发光的东西"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLD_DUST"
 msgid "Shiny dirt"
@@ -4199,6 +4294,11 @@ msgstr "会变成什么样呢？"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE"
 msgid "Fit for a sophisticated imp!"
 msgstr "适合老练的小鬼！"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDPAN"
+msgid "A big slotted spoon, for gold and glory."
+msgstr "一个大漏勺，为了黄金和荣耀。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLD_DUST"
@@ -4410,6 +4510,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE"
 msgid "It better than normal hacker."
 msgstr "它比普通砍刀更好。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDPAN"
+msgid "Pick rocks in water up."
+msgstr "捡起水里的东西。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLD_DUST"
 msgid "Shining..."
@@ -4620,6 +4725,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE"
 msgid "AN OSTENTATIOUS HACKING DEVICE"
 msgstr "浮华的劈砍装置"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDPAN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDPAN"
+msgid "GOLD GATHERING ACCESSORY"
+msgstr "黄金收集配件"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GOLD_DUST
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLD_DUST"
 msgid "TINY POWDER OF MALLEABLE METAL"
@@ -4795,6 +4905,11 @@ msgctxt "STRINGS.NAMES.GOLDENMACHETE"
 msgid "Luxury Machete"
 msgstr "黄金砍刀"
 
+#. STRINGS.NAMES.GOLDPAN
+msgctxt "STRINGS.NAMES.GOLDPAN"
+msgid "Gold Pan"
+msgstr "淘金盘"
+
 #. STRINGS.NAMES.GOLD_DUST
 msgctxt "STRINGS.NAMES.GOLD_DUST"
 msgid "Gold Dust"
@@ -4884,6 +4999,11 @@ msgstr "缓解花粉症，保持干\n燥。"
 msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"
 msgid "Hack stuff in STYLE!"
 msgstr "砍东西也要有格调！"
+
+#. STRINGS.RECIPE_DESC.GOLDPAN
+msgctxt "STRINGS.RECIPE_DESC.GOLDPAN"
+msgid "Pans gold actually."
+msgstr "实际上这是用来淘金\n的。"
 
 #. STRINGS.RECIPE_DESC.HALBERD
 msgctxt "STRINGS.RECIPE_DESC.HALBERD"

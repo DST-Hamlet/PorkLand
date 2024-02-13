@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "Fascinating! It has moved on to the chrysalis stage.",
         GOLDENMACHETE = "The most malleable of metals, but let's see how it slices.",
+        GOLDPAN = "This should be useful for finding valuable minerals.",
         GOLD_DUST = "Small particles of the shiniest element.",
         GRASS_TALL = {
             BURNING = "Illuminating!",

@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "It has armored itself for sleep.",
         GOLDENMACHETE = "I shall swing you with pride.",
+        GOLDPAN = "It will vanquish the pieces of tiny gold!",
         GOLD_DUST = "Golden dust.",
         GRASS_TALL = {
             BURNING = "It burns!",

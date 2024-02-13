@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "Change is happening.",
         GOLDENMACHETE = "This just made my job easier.",
+        GOLDPAN = "Separate the metal.",
         GOLD_DUST = "gold! My luck has come!",
         GRASS_TALL = {
             BURNING = "A Grass fire!",
