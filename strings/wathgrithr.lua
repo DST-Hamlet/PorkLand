@@ -36,6 +36,7 @@ return {
         HALBERD = "Tis no spear, yet is still valorous!",
         IRON = "Material for metalwork.",
         MACHETE = "A fine length of blade.",
+        PANGOLDEN = "Surely a cousin of Gullinbursti!",
         PEAGAWK = {
             DEAD = "Even in death its eyes stare into my soul.",
             GENERIC = "It has the eyes of Odin.",

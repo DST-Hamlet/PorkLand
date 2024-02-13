@@ -36,6 +36,7 @@ return {
         HALBERD = "A huge ax!",
         IRON = "Is that iron?",
         MACHETE = "I like the cut of this blade.",
+        PANGOLDEN = "A born gold rusher.",
         PEAGAWK = {
             GENERIC = "Wow, how many eyes are there?",
             SLEEPING = "Warby, we might be able to gather his feathers while he's asleep.",

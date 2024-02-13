@@ -36,6 +36,7 @@ return {
         HALBERD = "I'm not planning on murdering grove of trees.",
         IRON = "An essential material for accurate timepieces.",
         MACHETE = "It's for chopping, simple as that.",
+        PANGOLDEN = "It has an extravagant recipe.",
         PEAGAWK = {
             GENERIC = "See no evil!",
             SLEEPING = "Shouldn't it be looking at me?",

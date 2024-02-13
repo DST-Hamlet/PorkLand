@@ -36,6 +36,7 @@ return {
         HALBERD = "Twirly Tail Fight Stick",
         IRON = "Clinky Rock",
         MACHETE = "Slicer. For friend haircuts",
+        PANGOLDEN = "Shiny Pooper",
         PEAGAWK = {
             DEAD = "Oh dear",
             GENERIC = "Gubble Gubble Tweeter",

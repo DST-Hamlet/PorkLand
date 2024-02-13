@@ -36,6 +36,7 @@ return {
         HALBERD = "I dislike fighting.",
         IRON = "I wonder what I could cook up with this.",
         MACHETE = "I could chop many an onion with this!",
+        PANGOLDEN = "Already has a nice golden braise.",
         PEAGAWK = {
             DEAD = "A pointless death.",
             GENERIC = "Those feathers would make a nice table centerpiece.",

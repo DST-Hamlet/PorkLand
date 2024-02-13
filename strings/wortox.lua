@@ -35,6 +35,7 @@ return {
         HALBERD = "What a vicious weapon.",
         IRON = "Oooh. Almost burned me.",
         MACHETE = "To chop and slash!",
+        PANGOLDEN = "How are you today? Any outcome?",
         PEAGAWK = {
             GENERIC = "You must have seen a lot, right?",
             SLEEPING = "Huh, let's close our eyes and take a break?",

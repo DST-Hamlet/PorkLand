@@ -36,6 +36,7 @@ return {
         HALBERD = "Now I can't be caught off-guard.",
         IRON = "Isn't it ironic?",
         MACHETE = "I like the cut of this blade.",
+        PANGOLDEN = "It likes rich food.",
         PEAGAWK = {
             DEAD = "Dead-eyed.",
             GENERIC = "That bush is alive!",

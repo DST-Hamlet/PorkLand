@@ -36,6 +36,7 @@ return {
         HALBERD = "More suited to combat than to work.",
         IRON = "Invaluable material for manufacturing useful tools.",
         MACHETE = "Hack and slash! Working's always fun.",
+        PANGOLDEN = "Living metallurgical.",
         PEAGAWK = {
             GENERIC = "Always be vigilant.",
             SLEEPING = "It let down its guard.",

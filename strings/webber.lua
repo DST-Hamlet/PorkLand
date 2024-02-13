@@ -36,6 +36,7 @@ return {
         HALBERD = "Swoosh!",
         IRON = "We could make all kinds of neat stuff with this.",
         MACHETE = "Hyah! Hyah!",
+        PANGOLDEN = "I think he eats gold.",
         PEAGAWK = {
             DEAD = "I think it's dead.",
             GENERIC = "You've got more eyes than we do!",

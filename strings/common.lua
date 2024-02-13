@@ -24,6 +24,7 @@ return {
         HALBERD = "Halberd",
         IRON = "Iron Ore",
         MACHETE = "Machete",
+        PANGOLDEN = "Pangolden",
         PEAGAWK = "Peagawk",
         PEAGAWKFEATHER = "Peagawk Plume",
         PEAGAWK_BUSH = "Blinkbush",

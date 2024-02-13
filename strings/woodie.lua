@@ -36,6 +36,7 @@ return {
         HALBERD = "Well, it's no axe.",
         IRON = "Can't chop this too well.",
         MACHETE = "Ooh, that's a thing for chopping.",
+        PANGOLDEN = "Looks expensive.",
         PEAGAWK = {
             DEAD = "It's a goner.",
             GENERIC = "Filthy animal!",

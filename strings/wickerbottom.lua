@@ -36,6 +36,7 @@ return {
         HALBERD = "It is a cruel and versatile weapon.",
         IRON = "Ferrum.",
         MACHETE = "Used for hacking through the brush.",
+        PANGOLDEN = "Aurum vermilingua.",
         PEAGAWK = {
             DEAD = "Lifeless.",
             GENERIC = "A strangely mutated Pavo Cristatus.",
