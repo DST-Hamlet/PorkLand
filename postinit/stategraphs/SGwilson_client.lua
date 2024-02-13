@@ -77,7 +77,7 @@ local states = {
             inst.components.locomotor:Stop()
             if not inst.sg:ServerStateMatches() then
                 inst.AnimState:PlayAnimation("pan_pre")
-                -- inst.AnimState:PushAnimation("pan_loop", false) -- TODO: make pan_lag anim
+                inst.AnimState:PushAnimation("pan_loop", false) -- TODO: make pan_lag anim
             end
 
             inst:PerformPreviewBufferedAction()

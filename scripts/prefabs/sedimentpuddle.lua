@@ -42,37 +42,6 @@ local STAGES = {
     },
 }
 
-local function GetNewWaterLimit(inst)
-    return 36 + (math.random() * 8)
-end
-
-local function CollectRain(inst)
-    inst.water_collected = inst.water_collected + 1
-    if inst.water_collected > inst.water_limit then
-        inst.water_collected = 0
-        inst.water_limit = GetNewWaterLimit(inst)
-        Grow(inst)
-    end
-end
-
-local function StartGrow(inst)
-    inst.growing = true
-    inst.grow_task = inst:DoPeriodicTask(5, CollectRain)
-end
-
-local function StopGrow(inst)
-    inst.growing = false
-    if inst.grow_task then
-        inst.grow_task:Cancel()
-        inst.grow_task = nil
-    end
-end
-
-local function OnWorkCallback(inst, worker, workleft)
-    inst.components.lootdropper:SpawnLootPrefab("gold_dust")
-    inst:Shrink()
-end
-
 local function SetStage(inst, stage, init)
     inst.stage = stage
 
@@ -101,6 +70,18 @@ local function SetStage(inst, stage, init)
     return STAGE
 end
 
+local function GetNewWaterLimit(inst)
+    return 36 + (math.random() * 8)
+end
+
+local function StopGrow(inst)
+    inst.growing = false
+    if inst.grow_task then
+        inst.grow_task:Cancel()
+        inst.grow_task = nil
+    end
+end
+
 local function Grow(inst)
     local stage = SetStage(inst, inst.stage + 1)
 
@@ -110,6 +91,25 @@ local function Grow(inst)
     if inst.stage == #STAGES then
         StopGrow(inst)
     end
+end
+
+local function CollectRain(inst)
+    inst.water_collected = inst.water_collected + 1
+    if inst.water_collected > inst.water_limit then
+        inst.water_collected = 0
+        inst.water_limit = GetNewWaterLimit(inst)
+        Grow(inst)
+    end
+end
+
+local function StartGrow(inst)
+    inst.growing = true
+    inst.grow_task = inst:DoPeriodicTask(5, CollectRain)
+end
+
+local function OnWorkCallback(inst, worker, workleft)
+    inst.components.lootdropper:SpawnLootPrefab("gold_dust")
+    inst:Shrink()
 end
 
 local function Shrink(inst)
