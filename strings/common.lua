@@ -61,6 +61,7 @@ return {
             HUMID = "Humid",
             JUNGLE_BORDER_VINE = "Jungle Canopy Vines",
             LUSH = "Lush",
+            PANGOLDEN = "Pangolden",
             PEAGAWK_SETTING = "Peagawk",
             PEAGAWK_SPAWNER = "Peagawk",
             PL_CLOCKTYPE = "Clock Type",
