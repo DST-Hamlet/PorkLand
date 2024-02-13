@@ -30,7 +30,6 @@ local function OnDrunk(inst)
 end
 
 local SLEEP_NEAR_ENEMY_DISTANCE = 14
-
 local function ShouldSleep(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     return DefaultSleepTest(inst) and not IsAnyPlayerInRange(x, y, z, SLEEP_NEAR_ENEMY_DISTANCE)
@@ -106,8 +105,9 @@ local function fn()
 
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
-    MakeLargeBurnableCharacter(inst, "swap_fire")
+    MakeLargeBurnableCharacter(inst, "pang_face")
     MakeLargeFreezableCharacter(inst, "pang_bod")
+
     inst.OnDrunk = OnDrunk
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
