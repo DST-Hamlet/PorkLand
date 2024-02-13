@@ -11,64 +11,40 @@ local AVOID_PLAYER_DIST = 7
 local AVOID_PLAYER_STOP = 9
 local SEE_PUDDLE_DIST = 15
 
-local function GetPuddle(inst)
-    if inst.puddle and inst.puddle.stage >= 2 then
-        return
-    end
-
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, SEE_PUDDLE_DIST, {"sedimentpuddle"})
-
-    local stage = 0
-    local puddles = {}
-
-    for _, ent in ipairs(ents) do
-        if ent.stage and ent.stage >= stage then
-            if ent.stage > stage then
-                puddles = {}
-                stage = ent.stage
-            end
-            table.insert(puddles, ent)
-        end
-    end
-
-    if #puddles > 0 then
-        inst.puddle = puddles[math.random(1, #puddles)]
-    end
-
-    return inst.puddle  -- a pointless return?
+local MUST_TAGS = {"sedimentpuddle"}
+local function GetPuddle(inst, test_fn)
+    return FindEntity(inst, SEE_FOOD_DIST, test_fn, MUST_TAGS)
 end
 
 local function GetHome(inst)
-    GetPuddle(inst)
-
-    if inst.puddle then
-        return inst.puddle:GetPosition()
-    else
-        return inst:GetPosition()
+    if not inst.puddle then
+        inst.puddle = GetPuddle(inst)
+        return inst.puddle and inst.puddle:GetPosition() or inst:GetPosition()
     end
 end
 
 local function DrinkAction(inst)
-    GetPuddle(inst)
+    local puddle = GetPuddle(inst, function(item)
+        return item.components.workable:CanBeWorked()
+    end)
 
-    if inst.puddle and inst.puddle.components.workable and inst.puddle.components.workable:CanBeWorked() then
-        return BufferedAction(inst, inst.puddle, ACTIONS.PANGOLDEN_DRINK)
+    if puddle then
+        return BufferedAction(inst, puddle, ACTIONS.PANGOLDEN_DRINK)
     end
 end
 
 local function PoopAction(inst)
     if inst.gold_level >= 1 then
-        inst.gold_level = inst.gold_level -1
+        inst.gold_level = inst.gold_level - 1
         return BufferedAction(inst, inst, ACTIONS.PANGOLDEN_POOP)
     end
 end
 
+local CANT_TAGS = {"FX", "NOCLICK", "DECOR", "INLIMBO"}
 local function EatFoodAction(inst)
-    local notags = {"FX", "NOCLICK", "DECOR","INLIMBO", "aquatic"}
     local target = FindEntity(inst, SEE_FOOD_DIST, function(item)
-            return inst.components.eater:CanEat(item) and item:IsOnValidGround() and item:GetTimeAlive() > TUNING.SPIDER_EAT_DELAY
-        end, nil, notags)
+        return inst.components.eater:CanEat(item) and item:IsOnValidGround() and item:GetTimeAlive() > TUNING.SPIDER_EAT_DELAY
+    end, nil, CANT_TAGS)
 
     if target then
         return BufferedAction(inst, target, ACTIONS.EAT)
@@ -85,15 +61,10 @@ function Pangolden:OnStart()
         WhileNode(function() return not self.inst.sg:HasStateTag("ball") end, "BalledUp",
             PriorityNode{
                 BrainCommon.PanicTrigger(self.inst),
-
                 RunAway(self.inst, "scarytoprey", AVOID_PLAYER_DIST, AVOID_PLAYER_STOP),
-
                 DoAction(self.inst, function() return PoopAction(self.inst) end, "Poop"),
-
                 DoAction(self.inst, function() return EatFoodAction(self.inst) end, "Eat"),
-
                 DoAction(self.inst, function() return DrinkAction(self.inst) end, "Drink"),
-
                 Wander(self.inst, function() return GetHome(self.inst) end, WANDER_DIST)
             }),
     }, 0.25)

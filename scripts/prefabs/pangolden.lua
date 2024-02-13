@@ -29,6 +29,13 @@ local function OnDrunk(inst)
     inst.gold_level = inst.gold_level + DRUNK_GOLD
 end
 
+local SLEEP_NEAR_ENEMY_DISTANCE = 14
+
+local function ShouldSleep(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    return DefaultSleepTest(inst) and not IsAnyPlayerInRange(x, y, z, SLEEP_NEAR_ENEMY_DISTANCE)
+end
+
 local function OnSave(inst, data)
     data.gold_level = inst.gold_level
 end
@@ -92,6 +99,7 @@ local function fn()
 
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetResistance(3)
+    inst.components.sleeper:SetSleepTest(ShouldSleep)
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGpangolden")

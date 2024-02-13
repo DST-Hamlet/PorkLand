@@ -86,8 +86,8 @@ ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
 end
 
 ACTIONS.PANGOLDEN_DRINK.fn = function(act)
-    if act.doer.puddle and act.doer.puddle:IsValid() and act.doer.puddle.components.workable and act.doer.puddle.components.workable:CanBeWorked() then
-        act.doer.puddle:Shrink()
+    if act.target and act.target.components.workable and act.target.components.workable:CanBeWorked() then
+        act.target:Shrink()
         act.doer:OnDrunk()
         return true
     end
@@ -98,7 +98,6 @@ end
 ACTIONS.PANGOLDEN_POOP.fn = function(act)
     local x, y, z = act.doer.Transform:GetWorldPosition()
     SpawnPrefab("goldnugget").Transform:SetPosition(x, y, z)
-
     return true
 end
 

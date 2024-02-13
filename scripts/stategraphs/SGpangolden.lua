@@ -92,7 +92,7 @@ local states =
             end
         end,
 
-        timeline=
+        timeline =
         {
             TimeEvent(5 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/movement/bodyfall_dirt", nil, 0.5) end),
             TimeEvent(6 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/pangolden/movement") end),
