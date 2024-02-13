@@ -1,8 +1,8 @@
-require "behaviours/wander"
-require "behaviours/runaway"
-require "behaviours/doaction"
-require "behaviours/panic"
-require "behaviours/chaseandattack"
+require("behaviours/wander")
+require("behaviours/runaway")
+require("behaviours/doaction")
+require("behaviours/panic")
+require("behaviours/chaseandattack")
 
 local BrainCommon = require("brains/braincommon")
 
@@ -31,7 +31,7 @@ end
 
 local function EatFoodAction(inst)
     local target = FindEntity(inst, SEE_BAIT_DIST, function(item)
-        return inst.components.eater:CanEat(item) and item.components.bait 
+        return inst.components.eater:CanEat(item) and item.components.bait
             and not (item.components.inventoryitem and item.components.inventoryitem.owner)
     end)
 
@@ -69,7 +69,7 @@ local function PickupAction(inst)
 end
 
 local function findhome(inst)
-    local x,y,z = inst.Transform:GetWorldPosition()
+    local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 30, {"teatree"}, {"stump", "burnt"})
     local home
 
@@ -81,15 +81,12 @@ local function findhome(inst)
     end
 
     if home then
-        if not home.components.spawner then
-            home:AddComponent("spawner")
-            home:SetUpSpawner()
-            home.components.spawner:CancelSpawning()
-            home.components.spawner:TakeOwnership(inst)
-            if inst.find_home_task then
-                inst.find_home_task:Cancel()
-                inst.find_home_task = nil       
-            end
+        home:SetUpSpawner()
+        home.components.spawner:CancelSpawning()
+        home.components.spawner:TakeOwnership(inst)
+        if inst.find_home_task then
+            inst.find_home_task:Cancel()
+            inst.find_home_task = nil
         end
     end
 end

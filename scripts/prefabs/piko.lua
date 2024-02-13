@@ -76,11 +76,13 @@ end
 
 local function update_light(inst)
     if inst.is_rabid then
-        if not inst.lighton then
-            inst:DoTaskInTime(math.random() * 2, fadein)
-        else
-            inst.Light:Enable(true)
-            inst.Light:SetIntensity(INTENSITY)
+        if not inst.components.inventoryitem.owner then
+            if not inst.lighton then
+                inst:DoTaskInTime(math.random() * 2, fadein)
+            else
+                inst.Light:Enable(true)
+                inst.Light:SetIntensity(INTENSITY)
+            end
         end
 
         inst.AnimState:Show("eye_red")
@@ -280,8 +282,8 @@ local function fn()
     inst:SetBrain(brain)
     inst:SetStateGraph("SGpiko")
 
-    MakeSmallBurnableCharacter(inst, "chest")
-    MakeTinyFreezableCharacter(inst, "chest")
+    MakeSmallBurnableCharacter(inst, "torso")
+    MakeTinyFreezableCharacter(inst, "torso")
     MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME * 2, nil, OnDropped)
     MakeHauntablePanic(inst)
 

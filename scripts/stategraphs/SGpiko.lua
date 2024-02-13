@@ -12,9 +12,10 @@ local events =
 {
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
-    EventHandler("attacked", function(inst) if inst.components.health:GetPercent() > 0 then inst.sg:GoToState("hit") end end),
-    EventHandler("doattack", function(inst, data) if not inst.components.health:IsDead() and (inst.sg:HasStateTag("hit") or not inst.sg:HasStateTag("busy")) then inst.sg:GoToState("attack", data.target) end end),
-    EventHandler("death", function(inst) inst.sg:GoToState("death") end),
+    CommonHandlers.OnAttacked(),
+    CommonHandlers.OnAttack(),
+    CommonHandlers.OnDeath(),
+
     EventHandler("trapped", function(inst) inst.sg:GoToState("trapped") end),
     EventHandler("locomote", function(inst)
         if not inst.sg:HasStateTag("idle") and not inst.sg:HasStateTag("moving") then return end
@@ -43,7 +44,7 @@ local states =
 {
     State{
         name = "look",
-        tags = {"idle", "canrotate" },
+        tags = {"idle", "canrotate"},
 
         onenter = function(inst)
             inst.data.lookingup = nil
@@ -58,7 +59,7 @@ local states =
                 inst.AnimState:PushAnimation("lookdown_loop", true)
             end
 
-            inst.sg:SetTimeout(1 + math.random()*1)
+            inst.sg:SetTimeout(1 + math.random())
         end,
 
         ontimeout = function(inst)
@@ -118,8 +119,8 @@ local states =
         },
 
         events = {
-            EventHandler("animover", function(inst, data) 
-                inst.sg:GoToState("idle") 
+            EventHandler("animover", function(inst, data)
+                inst.sg:GoToState("idle")
             end),
         },
     },
@@ -135,14 +136,15 @@ local states =
         end,
 
         events = {
-            EventHandler("animover", function(inst, data) 
-                inst.sg:GoToState("idle") 
+            EventHandler("animover", function(inst, data)
+                inst.sg:GoToState("idle")
             end),
         }
     },
 
     State{
         name = "ascendtree",
+        tags = {"busy"},
 
         onenter = function(inst, playanim)
             inst.Physics:Stop()
@@ -219,8 +221,8 @@ local states =
         end,
 
         events = {
-            EventHandler("animover", function(inst, data) 
-                inst.sg:GoToState("idle") 
+            EventHandler("animover", function(inst, data)
+                inst.sg:GoToState("idle")
             end),
         }
     },
@@ -230,7 +232,7 @@ local states =
         tags = {"moving", "canrotate", "hopping"},
 
         timeline = {
-            TimeEvent(5*FRAMES, function(inst)
+            TimeEvent(5 * FRAMES, function(inst)
                 inst.Physics:Stop()
                 inst.SoundEmitter:PlaySound("dontstarve/rabbit/hop")
             end ),
@@ -342,8 +344,8 @@ local states =
             end
         end,
 
-        ontimeout = function(inst) 
-            inst.sg:GoToState("idle") 
+        ontimeout = function(inst)
+            inst.sg:GoToState("idle")
         end,
     },
 
@@ -358,8 +360,8 @@ local states =
             inst.sg:SetTimeout(1)
         end,
 
-        ontimeout = function(inst) 
-            inst.sg:GoToState("idle") 
+        ontimeout = function(inst)
+            inst.sg:GoToState("idle")
         end,
     },
 
@@ -374,8 +376,8 @@ local states =
         end,
 
         events = {
-            EventHandler("animover", function(inst) 
-                inst.sg:GoToState("idle") 
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
             end),
         },
     },

@@ -8,7 +8,6 @@ local function MakePreparedFood(data)
 	local foodassets =
 	{
 		Asset("ANIM", "anim/cook_pot_food2.zip"),
-		Asset("INV_IMAGE", data.name),
 	}
 
     local function fn()
@@ -23,9 +22,8 @@ local function MakePreparedFood(data)
         inst.components.floater:UpdateAnimations("idle_water", "idle")
 
 		inst.AnimState:SetBuild("cook_pot_food")
-		inst.AnimState:SetBank("cook_pot_food2")
+		inst.AnimState:SetBank("food")
         inst.AnimState:PlayAnimation(data.name, false)
-        inst.AnimState:OverrideSymbol("swap_food", "cook_pot_food", data.name)
 
         inst:AddTag("preparedfood")
 
