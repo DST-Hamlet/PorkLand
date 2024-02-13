@@ -190,6 +190,8 @@ local tuning = {
     EVERGREEN_WINDBLOWN_FALL_CHANCE = 0.01,
     DECIDUOUS_WINDBLOWN_SPEED = 0.2,
     DECIDUOUS_WINDBLOWN_FALL_CHANCE = 0.01,
+
+    FIREPIT_WIND_RATE = 10,
 }
 
 for key, value in pairs(tuning) do
