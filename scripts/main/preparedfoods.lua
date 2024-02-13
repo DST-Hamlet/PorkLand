@@ -17,7 +17,7 @@ local foods = {
                 eater:RemoveDebuff("buff_speed_icedtea")
             end
             eater:AddDebuff("buff_speed_tea", "buff_speed_tea")
-       	end,
+        end,
     },
 
     icedtea =
@@ -37,7 +37,7 @@ local foods = {
                 eater:RemoveDebuff("buff_speed_tea")
             end
             eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")
-       	end,
+        end,
     },
 }
 
@@ -47,6 +47,7 @@ for k, v in pairs(foods) do
     v.priority = v.priority or 0
 
     v.cookbook_category = "cookpot"
+    v.overridebuild = "pl_cook_pot_food"
 end
 
 return foods

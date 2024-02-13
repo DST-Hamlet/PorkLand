@@ -212,7 +212,6 @@ local function fn()
     inst.Light:Enable(false)
 
     MakeCharacterPhysics(inst, 1, 0.12)
-    MakePoisonableCharacter(inst)
 
     inst:AddTag("animal")
     inst:AddTag("canbetrapped")
@@ -286,6 +285,7 @@ local function fn()
     MakeTinyFreezableCharacter(inst, "torso")
     MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME * 2, nil, OnDropped)
     MakeHauntablePanic(inst)
+    MakePoisonableCharacter(inst)
 
     inst.is_rabid = false
 
