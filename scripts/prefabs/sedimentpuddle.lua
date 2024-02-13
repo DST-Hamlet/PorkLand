@@ -14,7 +14,7 @@ local STAGES = {
         name = "empty",
         anim = "dryup",
         shrink_anim = "disappear",
-        workable = 0,
+        workleft = 0,
         range = 0,
     },
     {
@@ -22,7 +22,7 @@ local STAGES = {
         anim = "small_idle",
         grow_anim = "appear",
         shrink_anim = "med_to_small",
-        workable = 1,
+        workleft = 1,
         range = 1.6,
     },
     {
@@ -30,14 +30,14 @@ local STAGES = {
         anim = "med_idle",
         grow_anim = "small_to_med",
         shrink_anim = "big_to_med",
-        workable = 2,
+        workleft = 2,
         range = 2.6,
     },
     {
         name = "big",
         anim = "big_idle",
         grow_anim = "med_to_big",
-        workable = 3,
+        workleft = 3,
         range = 3.5,
     },
 }
@@ -73,11 +73,11 @@ local function OnWorkCallback(inst, worker, workleft)
     inst:Shrink()
 end
 
-local function SetStage(inst, stage, hide)
+local function SetStage(inst, stage, init)
     inst.stage = stage
 
     local STAGE = STAGES[inst.stage]
-    inst.components.workable:SetWorkLeft(STAGE.workable)
+    inst.components.workable:SetWorkLeft(STAGE.workleft)
     inst.components.ripplespawner:SetRange(STAGE.range)
 
     if inst.stage > 1 then
@@ -86,13 +86,16 @@ local function SetStage(inst, stage, hide)
         inst.MiniMapEntity:SetEnabled(true)
         inst.components.workable:SetWorkable(true)
     else
-        if hide then
-            inst.AnimState:PlayAnimation("dryup")
+        if init then
             inst:Hide()
         end
         inst:AddTag("NOCLICK")
         inst.MiniMapEntity:SetEnabled(false)
         inst.components.workable:SetWorkable(false)
+    end
+
+    if init then
+        inst.AnimState:PlayAnimation(STAGE.anim)
     end
 
     return STAGE
