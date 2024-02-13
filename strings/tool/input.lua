@@ -7,7 +7,7 @@ keys = {  -- copy key = over key
     ["KEY"] = "NEW_KEY",
 }
 
-input_strings = {
+cn_input_strings = {
     CHARACTERS = {
         WINONA = {
             DESCRIBE = {
@@ -82,7 +82,7 @@ data = {  -- lua file path = po file path
         override = false,
     },
     {
-        input_strings,  -- input string
+        cn_input_strings,  -- input string
         "zh-CN",  -- input language , use Google Translate
         override = false,
     },
