@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "Fascinating! It has moved on to the chrysalis stage.",
         GOLDENMACHETE = "The most malleable of metals, but let's see how it slices.",
+        GOLD_DUST = "Small particles of the shiniest element.",
         GRASS_TALL = {
             BURNING = "Illuminating!",
             GENERIC = "I need an implement for that.",

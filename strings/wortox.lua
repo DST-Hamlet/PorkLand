@@ -25,6 +25,7 @@ return {
         },
         GLOWFLY_COCOON = "What will become of it?",
         GOLDENMACHETE = "Fit for a sophisticated imp!",
+        GOLD_DUST = "Many mortals try to use it to fill the void in their souls.",
         GRASS_TALL = {
             BURNING = "Oops, it's burning.",
             GENERIC = "Solid tall grass, really nice.",

@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "That looks comfy, eh?",
         GOLDENMACHETE = "It chops AND sparkles!",
+        GOLD_DUST = "Look at all that gold!",
         GRASS_TALL = {
             BURNING = "It caught fire.",
             GENERIC = "Don't worry your head aboot this one, Lucy.",

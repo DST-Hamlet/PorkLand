@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "The little bug wrapped itself up.",
         GOLDENMACHETE = "It better than normal hacker.",
+        GOLD_DUST = "Shining...",
         GRASS_TALL = {
             BURNING = "Fire! Is fire!",
             GENERIC = "Greer... can't move.",

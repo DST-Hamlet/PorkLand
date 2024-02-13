@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "Ah, metamorphosis...",
         GOLDENMACHETE = "I've always wanted to hack things in luxury.",
+        GOLD_DUST = "I suppose any gold is good gold.",
         GRASS_TALL = {
             BURNING = "Well, there you have it.",
             GENERIC = "Oh, joyous occasion. I've found grass.",

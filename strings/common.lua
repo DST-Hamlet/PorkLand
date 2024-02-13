@@ -18,6 +18,7 @@ return {
         GLOWFLY = "Glowfly",
         GLOWFLY_COCOON = "Glowfly Cocoon",
         GOLDENMACHETE = "Luxury Machete",
+        GOLD_DUST = "Gold Dust",
         GRASS_TALL = "Tall Grass",
         HALBERD = "Halberd",
         IRON = "Iron Ore",

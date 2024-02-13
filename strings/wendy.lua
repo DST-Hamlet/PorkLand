@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "If I could climb into a cocoon I would never emerge.",
         GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
+        GOLD_DUST = "Death is not sparkly.",
         GRASS_TALL = {
             BURNING = "Death comes to everything.",
             GENERIC = "Alas, I'm too weak to pick it.",

@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "Aww... It's wrapped up all nice and cozy.",
         GOLDENMACHETE = "For the sophisticated adventurer.",
+        GOLD_DUST = "Hardly worth holding onto. If I could find more of it though...",
         GRASS_TALL = {
             BURNING = "All those bugs have nowhere to hide now.",
             GENERIC = "Tall grass like that is going to need a machete.",

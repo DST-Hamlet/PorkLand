@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "A cocoon, what could be inside?",
         GOLDENMACHETE = "Hack in style!",
+        GOLD_DUST = "Smallest gold are still gold.",
         GRASS_TALL = {
             BURNING = "Hey! Brush fires will destroy rainforests!",
             GENERIC = "A lush patch of grass. Must be a lot of bugs in it.",

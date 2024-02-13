@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "It's wrapped itself like a cabbage roll.",
         GOLDENMACHETE = "Fancy slicer.",
+        GOLD_DUST = "Perhaps that nosy fellow would like to eat this.",
         GRASS_TALL = {
             BURNING = "Smells like a cookout!",
             GENERIC = "Too long to cut with my hands.",

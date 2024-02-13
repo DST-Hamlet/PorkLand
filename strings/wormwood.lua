@@ -26,6 +26,7 @@ return {
         },
         GLOWFLY_COCOON = "Changing",
         GOLDENMACHETE = "Pretty Slicer",
+        GOLD_DUST = "Shiny dirt",
         GRASS_TALL = {
             BURNING = "No!!",
             GENERIC = "You're so tall!",

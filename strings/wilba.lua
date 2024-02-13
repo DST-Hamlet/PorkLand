@@ -27,6 +27,7 @@ return {
         },
         GLOWFLY_COCOON = "WRAPP'DED IN A BUGGY BLANKET",
         GOLDENMACHETE = "'TIS SHINY TOOL O' SLASHINGS",
+        GOLD_DUST = "'TIS DIRT O' SPARKLIES",
         GRASS_TALL = {
             BURNING = "FWOOSH'DING",
             GENERIC = "AS LONG AS THE DAY IS MERRY",
