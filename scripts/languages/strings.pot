@@ -6,6 +6,11 @@ msgctxt "STRINGS.ACTIONS.HACK"
 msgid "Hack"
 msgstr ""
 
+#. STRINGS.ACTIONS.PAN
+msgctxt "STRINGS.ACTIONS.PAN"
+msgid "Pan"
+msgstr ""
+
 #. STRINGS.ACTIONS.SHEAR
 msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
