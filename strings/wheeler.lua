@@ -31,9 +31,9 @@ return {
             GENERIC = "Tall grass like that is going to need a machete.",
             PICKED = "It'll be overgrown in no time.",
         },
-        MACHETE = "Machete. Designed for adventure.",
         HALBERD = "The must-have multi-tool for adventurers.",
         IRON = "Well it's not good balloon material.",
+        MACHETE = "Machete. Designed for adventure.",
         PEAGAWK = {
             DEAD = "I promise, I will go on without you!",
             GENERIC = "Has the eyesight for flying but not the wings for it.",

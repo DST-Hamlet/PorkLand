@@ -31,9 +31,9 @@ return {
             GENERIC = "It's taller than we are!",
             PICKED = "It's been picked.",
         },
-        MACHETE = "Hyah! Hyah!",
         HALBERD = "Swoosh!",
         IRON = "We could make all kinds of neat stuff with this.",
+        MACHETE = "Hyah! Hyah!",
         PEAGAWK = {
             DEAD = "I think it's dead.",
             GENERIC = "You've got more eyes than we do!",

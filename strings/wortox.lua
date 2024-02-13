@@ -30,9 +30,9 @@ return {
             GENERIC = "Solid tall grass, really nice.",
             PICKED = "Gone, all gone.",
         },
-        MACHETE = "To chop and slash!",
         HALBERD = "What a vicious weapon.",
         IRON = "Oooh. Almost burned me.",
+        MACHETE = "To chop and slash!",
         PEAGAWK = {
             GENERIC = "You must have seen a lot, right?",
             SLEEPING = "Huh, let's close our eyes and take a break?",

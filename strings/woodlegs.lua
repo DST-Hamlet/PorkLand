@@ -31,9 +31,9 @@ return {
             GENERIC = "As tall'as th'sky.",
             PICKED = "Plunder'd.",
         },
-        MACHETE = "Ye be slicin'!",
         HALBERD = "T'ain't no cutlass.",
         IRON = "'Tis not gold, but a treasure nonetheless.",
+        MACHETE = "Ye be slicin'!",
         PEAGAWK = {
             DEAD = "It tells no tales.",
             GENERIC = "Arr, them eyes need patches!",

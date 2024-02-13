@@ -31,9 +31,9 @@ return {
             GENERIC = "Surely it is the grass of Jotunheim!",
             PICKED = "I have defeated it!",
         },
-        MACHETE = "A fine length of blade.",
         HALBERD = "Tis no spear, yet is still valorous!",
         IRON = "Material for metalwork.",
+        MACHETE = "A fine length of blade.",
         PEAGAWK = {
             DEAD = "Even in death its eyes stare into my soul.",
             GENERIC = "It has the eyes of Odin.",

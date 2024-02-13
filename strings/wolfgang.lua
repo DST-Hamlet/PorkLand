@@ -31,9 +31,9 @@ return {
             GENERIC = "Very sturdy grass.",
             PICKED = "Wolfgang is mightiest!",
         },
-        MACHETE = "Ah! Very good!",
         HALBERD = "Sword is for weak no-muscle men.",
         IRON = "Iron is strong like Wolfgang.",
+        MACHETE = "Ah! Very good!",
         PEAGAWK = {
             DEAD = "Is blink-blink no more.",
             GENERIC = "Funny blink-blink bird!",

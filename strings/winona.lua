@@ -31,9 +31,9 @@ return {
             GENERIC = "That's some... very tall grass.",
             PICKED = "All work is done.",
         },
-        MACHETE = "Hack and slash! Working's always fun.",
         HALBERD = "More suited to combat than to work.",
         IRON = "Invaluable material for manufacturing useful tools.",
+        MACHETE = "Hack and slash! Working's always fun.",
         PEAGAWK = {
             GENERIC = "Always be vigilant.",
             SLEEPING = "It let down its guard.",

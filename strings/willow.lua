@@ -31,9 +31,9 @@ return {
             GENERIC = "This grass is tough!",
             PICKED = "Not tough enough!",
         },
-        MACHETE = "Or I could just burn my way through.",
         HALBERD = "Weapons are only good if they're twice your size.",
         IRON = "I can't burn it with just my lighter.",
+        MACHETE = "Or I could just burn my way through.",
         PEAGAWK = {
             DEAD = "Very dead.",
             GENERIC = "Jeepers peepers!",
