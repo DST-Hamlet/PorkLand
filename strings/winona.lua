@@ -26,14 +26,17 @@ return {
         },
         GLOWFLY_COCOON = "Change is happening.",
         GOLDENMACHETE = "This just made my job easier.",
+        GOLDPAN = "Separate the metal.",
+        GOLD_DUST = "gold! My luck has come!",
         GRASS_TALL = {
             BURNING = "A Grass fire!",
             GENERIC = "That's some... very tall grass.",
             PICKED = "All work is done.",
         },
-        MACHETE = "Hack and slash! Working's always fun.",
         HALBERD = "More suited to combat than to work.",
         IRON = "Invaluable material for manufacturing useful tools.",
+        MACHETE = "Hack and slash! Working's always fun.",
+        PANGOLDEN = "Living metallurgical.",
         PEAGAWK = {
             GENERIC = "Always be vigilant.",
             SLEEPING = "It let down its guard.",
@@ -45,6 +48,7 @@ return {
             GENERIC = "What are you all excited about?",
             SLEEPING = "Calm down!",
         },
+        SEDIMENTPUDDLE = "The metal content is seriously over the limit.",
         SHEARS = "Shears for gardening.",
         SMELTER = {
             BURNT = "Forgot fire rules, didn't you?",

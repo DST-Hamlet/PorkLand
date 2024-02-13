@@ -11,6 +11,11 @@ local actionhandlers = {
         end
         return not inst.sg:HasStateTag("prehack") and "hack_start" or nil
     end),
+    ActionHandler(ACTIONS.PAN, function(inst)
+        if not inst.sg:HasStateTag("panning") then
+            return "pan_start"
+        end
+    end),
     ActionHandler(ACTIONS.SHEAR, function(inst)
         return not inst.sg:HasStateTag("preshear") and "shear_start" or nil
     end),
@@ -61,6 +66,40 @@ local states = {
             inst:ClearBufferedAction()
             inst.sg:GoToState("idle")
         end
+    },
+
+    State{
+        name = "pan_start",
+        tags = {"prepan", "panning", "working"},
+        server_states = {"pan_start", "pan"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            if not inst.sg:ServerStateMatches() then
+                inst.AnimState:PlayAnimation("pan_pre")
+                inst.AnimState:PushAnimation("pan_loop", false) -- TODO: make pan_lag anim
+            end
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst.sg:ServerStateMatches() then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("pan_pst")
+                inst.sg:GoToState("idle", true)
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.AnimState:PlayAnimation("pan_pst")
+            inst.sg:GoToState("idle", true)
+        end,
     },
 
     State{

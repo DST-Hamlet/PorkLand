@@ -1,6 +1,6 @@
 local assets =
 {
-    Asset("ANIM", "anim/alloy.zip"),
+    Asset("ANIM", "anim/gold_dust.zip"),
 }
 
 local function Shine(inst)
@@ -8,13 +8,15 @@ local function Shine(inst)
         inst.shine_task:Cancel()
         inst.shine_task = nil
     end
-    if inst.components.floater:IsFloating() then
+
+    if inst.components.floater and inst.components.floater:IsFloating() then
         inst.AnimState:PlayAnimation("sparkle_water")
         inst.AnimState:PushAnimation("idle_water")
     else
         inst.AnimState:PlayAnimation("sparkle")
         inst.AnimState:PushAnimation("idle")
     end
+
     inst.shine_task = inst:DoTaskInTime(4 + math.random() * 5, Shine)
 end
 
@@ -31,9 +33,8 @@ local function fn()
     inst.components.floater:UpdateAnimations("idle_water", "idle")
 
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-
-    inst.AnimState:SetBank("alloy")
-    inst.AnimState:SetBuild("alloy")
+    inst.AnimState:SetBank("gold_dust")
+    inst.AnimState:SetBuild("gold_dust")
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("molebait")
@@ -45,19 +46,19 @@ local function fn()
         return inst
     end
 
-    inst:AddComponent("tradable")
-
     inst:AddComponent("inspectable")
 
-    inst:AddComponent("inventoryitem")
-
-    inst:AddComponent("edible")
-    inst.components.edible.foodtype = FOODTYPE.ELEMENTAL
-    inst.components.edible.hungervalue = 2
+    inst:AddComponent("tradable")
 
     inst:AddComponent("stackable")
 
     inst:AddComponent("bait")
+
+    inst:AddComponent("inventoryitem")
+
+    inst:AddComponent("edible")
+    inst.components.edible.foodtype = FOODTYPE.GOLDDUST
+    inst.components.edible.hungervalue = 1
 
     Shine(inst)
 
@@ -67,4 +68,4 @@ local function fn()
     return inst
 end
 
-return Prefab("alloy", fn, assets)
+return Prefab("gold_dust", fn, assets)

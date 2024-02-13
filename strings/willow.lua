@@ -26,14 +26,17 @@ return {
         },
         GLOWFLY_COCOON = "Doing a bad job of hiding from me.",
         GOLDENMACHETE = "I don't want to scuff it up.",
+        GOLDPAN = "You mean I have to do work?",
+        GOLD_DUST = "It's probably not worth much.",
         GRASS_TALL = {
             BURNING = "I win.",
             GENERIC = "This grass is tough!",
             PICKED = "Not tough enough!",
         },
-        MACHETE = "Or I could just burn my way through.",
         HALBERD = "Weapons are only good if they're twice your size.",
         IRON = "I can't burn it with just my lighter.",
+        MACHETE = "Or I could just burn my way through.",
+        PANGOLDEN = "Yeesh, he's sucking up all the gold!",
         PEAGAWK = {
             DEAD = "Very dead.",
             GENERIC = "Jeepers peepers!",
@@ -46,6 +49,7 @@ return {
             GENERIC = "What're you so mad about?",
             SLEEPING = "I should draw a mustache on its mustache while it sleeps.",
         },
+        SEDIMENTPUDDLE = "Yeesh, there's a lot of sparkles in there.",
         SHEARS = "Not as good as fire, but I guess it has its uses.",
         SMELTER = {
             BURNT = "Okay, that's a liitle bit too far.",

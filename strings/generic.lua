@@ -26,14 +26,17 @@ return {
         },
         GLOWFLY_COCOON = "Snug as a bug.",
         GOLDENMACHETE = "Hack in style!",
+        GOLDPAN = "Critics panned it.",
+        GOLD_DUST = "Aw... it's hardly worth anything.",
         GRASS_TALL = {
             BURNING = "A grass fire!",
             GENERIC = "It's too tough to pick with my hands.",
             PICKED = "Looks like I got it all.",
         },
-        MACHETE = "I like the cut of this blade.",
         HALBERD = "Now I can't be caught off-guard.",
         IRON = "Isn't it ironic?",
+        MACHETE = "I like the cut of this blade.",
+        PANGOLDEN = "It likes rich food.",
         PEAGAWK = {
             DEAD = "Dead-eyed.",
             GENERIC = "That bush is alive!",
@@ -46,6 +49,7 @@ return {
             GENERIC = "Looks deranged.",
             SLEEPING = "In a slumber.",
         },
+        SEDIMENTPUDDLE = "Pool's gold.",
         SHEARS = "Shear-ly delightful.",
         SMELTER = {
             BURNT = "The smelter got smelted.",

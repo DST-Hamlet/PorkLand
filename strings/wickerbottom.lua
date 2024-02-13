@@ -26,14 +26,17 @@ return {
         },
         GLOWFLY_COCOON = "Fascinating! It has moved on to the chrysalis stage.",
         GOLDENMACHETE = "The most malleable of metals, but let's see how it slices.",
+        GOLDPAN = "This should be useful for finding valuable minerals.",
+        GOLD_DUST = "Small particles of the shiniest element.",
         GRASS_TALL = {
             BURNING = "Illuminating!",
             GENERIC = "I need an implement for that.",
             PICKED = "That required not insignificant effort.",
         },
-        MACHETE = "Used for hacking through the brush.",
         HALBERD = "It is a cruel and versatile weapon.",
         IRON = "Ferrum.",
+        MACHETE = "Used for hacking through the brush.",
+        PANGOLDEN = "Aurum vermilingua.",
         PEAGAWK = {
             DEAD = "Lifeless.",
             GENERIC = "A strangely mutated Pavo Cristatus.",
@@ -46,6 +49,7 @@ return {
             GENERIC = "Certainly not a species I know of!",
             SLEEPING = "Dormant.",
         },
+        SEDIMENTPUDDLE = "Contains some lustrous sentiment.",
         SHEARS = "A useful tool for horticultural purposes.",
         SMELTER = {
             BURNT = "Is anyone hurt?",

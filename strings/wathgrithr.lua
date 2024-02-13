@@ -26,14 +26,17 @@ return {
         },
         GLOWFLY_COCOON = "It has armored itself for sleep.",
         GOLDENMACHETE = "I shall swing you with pride.",
+        GOLDPAN = "It will vanquish the pieces of tiny gold!",
+        GOLD_DUST = "Golden dust.",
         GRASS_TALL = {
             BURNING = "It burns!",
             GENERIC = "Surely it is the grass of Jotunheim!",
             PICKED = "I have defeated it!",
         },
-        MACHETE = "A fine length of blade.",
         HALBERD = "Tis no spear, yet is still valorous!",
         IRON = "Material for metalwork.",
+        MACHETE = "A fine length of blade.",
+        PANGOLDEN = "Surely a cousin of Gullinbursti!",
         PEAGAWK = {
             DEAD = "Even in death its eyes stare into my soul.",
             GENERIC = "It has the eyes of Odin.",
@@ -46,6 +49,7 @@ return {
             GENERIC = "Evil beast. You have met your match!",
             SLEEPING = "Slumber consumes it!",
         },
+        SEDIMENTPUDDLE = "Its tiny gold pieces will be mine!",
         SHEARS = "A weapon for use against a mighty hedge!",
         SMELTER = {
             BURNT = "My role is more warrior than artizan.",

@@ -26,14 +26,17 @@ return {
         },
         GLOWFLY_COCOON = "Ah, metamorphosis...",
         GOLDENMACHETE = "I've always wanted to hack things in luxury.",
+        GOLDPAN = "Must I do everything myself?",
+        GOLD_DUST = "I suppose any gold is good gold.",
         GRASS_TALL = {
             BURNING = "Well, there you have it.",
             GENERIC = "Oh, joyous occasion. I've found grass.",
             PICKED = "I don't require any more grass, thank you.",
         },
-        MACHETE = "Truthfully I was always a hack.",
         HALBERD = "A blade as sharp as my wit.",
         IRON = "A solid mineral.",
+        MACHETE = "Truthfully I was always a hack.",
+        PANGOLDEN = "He has expensive tastes.",
         PEAGAWK = {
             DEAD = "It's beauty has been snuffed out forever.",
             GENERIC = "What a regal-looking beast.",
@@ -46,6 +49,7 @@ return {
             GENERIC = "What is he all worked up about?",
             SLEEPING = "A noisy sleeper.",
         },
+        SEDIMENTPUDDLE = "There's something sparkling inside there.",
         SHEARS = "Aren't there gardeners for this sort of thing?",
         SMELTER = {
             BURNT = "Back to the Stone Age.",

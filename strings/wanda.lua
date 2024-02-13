@@ -26,14 +26,17 @@ return {
         },
         GLOWFLY_COCOON = "We'd better get out of here before it breaks out of its cocoon.",
         GOLDENMACHETE = "What else do you do with gold in a jungle island?",
+        GOLDPAN = "I dread to think how long this will take.",
+        GOLD_DUST = "I need to collect lot of them.",
         GRASS_TALL = {
             BURNING = "This is not good.",
             GENERIC = "Grasses this tough are indeed uncommon.",
             PICKED = "Over time, it will grow back.",
         },
-        MACHETE = "It's for chopping, simple as that.",
         HALBERD = "I'm not planning on murdering grove of trees.",
         IRON = "An essential material for accurate timepieces.",
+        MACHETE = "It's for chopping, simple as that.",
+        PANGOLDEN = "It has an extravagant recipe.",
         PEAGAWK = {
             GENERIC = "See no evil!",
             SLEEPING = "Shouldn't it be looking at me?",
@@ -45,6 +48,7 @@ return {
             GENERIC = "vermin! go away!",
             SLEEPING = "Huh, I can take a breath.",
         },
+        SEDIMENTPUDDLE = "Water isn't the only thing reflecting sunlight here.",
         SHEARS = "I won't waste my time on this.",
         SMELTER = {
             BURNT = "We've made the most of it.",
