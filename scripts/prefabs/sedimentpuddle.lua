@@ -95,7 +95,7 @@ local function SetStage(inst, stage, init)
     end
 
     if init then
-        inst.AnimState:PlayAnimation(STAGE.anim)
+        inst.AnimState:PlayAnimation(STAGE.anim, true)
     end
 
     return STAGE
