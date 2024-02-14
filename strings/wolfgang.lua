@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "Hoighty toighty knife!",
         GOLDPAN = "Is for eating from?",
         GOLD_DUST = "Wolfgang like. Is shiny.",
+        GRABBING_VINE = "Watch out for that tree!",
         GRASS_TALL = {
             BURNING = "Wolfgang is not doing that!",
             GENERIC = "Very sturdy grass.",

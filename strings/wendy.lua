@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
         GOLDPAN = "Offers too much hope.",
         GOLD_DUST = "Death is not sparkly.",
+        GRABBING_VINE = "The jungle's noose.",
         GRASS_TALL = {
             BURNING = "Death comes to everything.",
             GENERIC = "Alas, I'm too weak to pick it.",

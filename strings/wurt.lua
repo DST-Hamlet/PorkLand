@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "It better than normal hacker.",
         GOLDPAN = "Pick rocks in water up.",
         GOLD_DUST = "Shining...",
+        GRABBING_VINE = "They're on top here.",
         GRASS_TALL = {
             BURNING = "Fire! Is fire!",
             GENERIC = "Greer... can't move.",

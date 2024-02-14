@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "Pretty Slicer",
         GOLDPAN = "Gets Shiny from puddle",
         GOLD_DUST = "Shiny dirt",
+        GRABBING_VINE = "Wants stuff",
         GRASS_TALL = {
             BURNING = "No!!",
             GENERIC = "You're so tall!",

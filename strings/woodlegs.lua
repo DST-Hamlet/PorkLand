@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "'Tis a mighty 'eavy blade.",
         GOLDPAN = "Fer fishin' fer gold.",
         GOLD_DUST = "Aye! 'Tis treasure dust!",
+        GRABBING_VINE = "Them be th'ropes.",
         GRASS_TALL = {
             BURNING = "'Tis ablaze!",
             GENERIC = "As tall'as th'sky.",

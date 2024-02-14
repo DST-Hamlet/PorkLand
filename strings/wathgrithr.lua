@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "I shall swing you with pride.",
         GOLDPAN = "It will vanquish the pieces of tiny gold!",
         GOLD_DUST = "Golden dust.",
+        GRABBING_VINE = "Ropes hang from the heavens!",
         GRASS_TALL = {
             BURNING = "It burns!",
             GENERIC = "Surely it is the grass of Jotunheim!",

@@ -45,6 +45,7 @@ return {
         GOLDENMACHETE = "I've always wanted to hack things in luxury.",
         GOLDPAN = "Must I do everything myself?",
         GOLD_DUST = "I suppose any gold is good gold.",
+        GRABBING_VINE = "I know the ropes.",
         GRASS_TALL = {
             BURNING = "Well, there you have it.",
             GENERIC = "Oh, joyous occasion. I've found grass.",

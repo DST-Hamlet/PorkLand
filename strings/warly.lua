@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "Fancy slicer.",
         GOLDPAN = "I have better pans.",
         GOLD_DUST = "Perhaps that nosy fellow would like to eat this.",
+        GRABBING_VINE = "How eerie.",
         GRASS_TALL = {
             BURNING = "Smells like a cookout!",
             GENERIC = "Too long to cut with my hands.",

@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "Hack in style!",
         GOLDPAN = "Are you ready? Woby.",
         GOLD_DUST = "Smallest gold are still gold.",
+        GRABBING_VINE = "What kind of monster up there?",
         GRASS_TALL = {
             BURNING = "Hey! Brush fires will destroy rainforests!",
             GENERIC = "A lush patch of grass. Must be a lot of bugs in it.",

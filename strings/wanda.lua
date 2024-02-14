@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "What else do you do with gold in a jungle island?",
         GOLDPAN = "I dread to think how long this will take.",
         GOLD_DUST = "I need to collect lot of them.",
+        GRABBING_VINE = "I really hope it was just a regular plant.",
         GRASS_TALL = {
             BURNING = "This is not good.",
             GENERIC = "Grasses this tough are indeed uncommon.",

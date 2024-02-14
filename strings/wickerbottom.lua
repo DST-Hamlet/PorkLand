@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "The most malleable of metals, but let's see how it slices.",
         GOLDPAN = "This should be useful for finding valuable minerals.",
         GOLD_DUST = "Small particles of the shiniest element.",
+        GRABBING_VINE = "Hanging vines from the forest canopy.",
         GRASS_TALL = {
             BURNING = "Illuminating!",
             GENERIC = "I need an implement for that.",

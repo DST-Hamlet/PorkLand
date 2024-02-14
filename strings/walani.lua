@@ -45,6 +45,7 @@ return {
         GOLDENMACHETE = "I can hack in style.",
         GOLDPAN = "You mean I gotta work for my gold?",
         GOLD_DUST = "Fairy dust!",
+        GRABBING_VINE = "That seems dangerous.",
         GRASS_TALL = {
             BURNING = "It'd probably be a lot of work to put it out.",
             GENERIC = "It's too much work to pick it with my hands.",

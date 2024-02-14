@@ -23,6 +23,7 @@ return {
         GOLDENMACHETE = "Luxury Machete",
         GOLDPAN = "Gold Pan",
         GOLD_DUST = "Gold Dust",
+        GRABBING_VINE = "Hanging Vine",
         GRASS_TALL = "Tall Grass",
         HALBERD = "Halberd",
         IRON = "Iron Ore",

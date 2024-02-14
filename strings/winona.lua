@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "This just made my job easier.",
         GOLDPAN = "Separate the metal.",
         GOLD_DUST = "gold! My luck has come!",
+        GRABBING_VINE = "I saw a strong rope.",
         GRASS_TALL = {
             BURNING = "A Grass fire!",
             GENERIC = "That's some... very tall grass.",

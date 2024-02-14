@@ -44,6 +44,7 @@ return {
         GOLDENMACHETE = "It chops AND sparkles!",
         GOLDPAN = "Haven't done any prospectin' in a while.",
         GOLD_DUST = "Look at all that gold!",
+        GRABBING_VINE = "Don't trust that.",
         GRASS_TALL = {
             BURNING = "It caught fire.",
             GENERIC = "Don't worry your head aboot this one, Lucy.",

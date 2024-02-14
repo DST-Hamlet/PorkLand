@@ -43,6 +43,7 @@ return {
         GOLDENMACHETE = "Fit for a sophisticated imp!",
         GOLDPAN = "A big slotted spoon, for gold and glory.",
         GOLD_DUST = "Many mortals try to use it to fill the void in their souls.",
+        GRABBING_VINE = "Hello, what do you want?",
         GRASS_TALL = {
             BURNING = "Oops, it's burning.",
             GENERIC = "Solid tall grass, really nice.",
