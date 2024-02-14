@@ -23,7 +23,7 @@ local function MakePreparedFood(data)
         inst.components.floater:UpdateAnimations("idle_water", "idle")
 
         inst.AnimState:SetBuild("pl_cook_pot_food")
-        inst.AnimState:SetBank("food")
+        inst.AnimState:SetBank(data.is_shipwreck_food and "sw_food" or "pl_food")
         inst.AnimState:PlayAnimation(data.name, false)
 
         inst:AddTag("preparedfood")
@@ -44,8 +44,8 @@ local function MakePreparedFood(data)
         inst.components.edible.temperaturedelta = data.temperature or 0
         inst.components.edible.temperatureduration = data.temperatureduration or 0
         inst.components.edible.nochill = data.nochill or nil
-        inst.components.edible:SetOnEatenFn(data.oneatenfn)
         inst.components.edible.antihistamine = data.antihistamine or 0
+        inst.components.edible:SetOnEatenFn(data.oneatenfn)
 
         inst.yotp_override = data.yotp
         --[[ TODO: Add fiesta stuff	

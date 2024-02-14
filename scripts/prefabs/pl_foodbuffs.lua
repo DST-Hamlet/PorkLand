@@ -2,21 +2,27 @@
 ---------------------- Attach and dettach functions ---------------------
 -------------------------------------------------------------------------
 
+local function speed_coffee_attach(inst, target)
+    if target.components.locomotor then
+        target.components.locomotor:SetSpeedModifier_Additive("CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED)
+    end
+end
+
 local function speed_tea_attach(inst, target)
     if target.components.locomotor then
-        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/2)
+        target.components.locomotor:SetSpeedModifier_Additive("CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/2)
     end
 end
 
 local function speed_icedtea_attach(inst, target)
     if target.components.locomotor then
-        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/3)
+        target.components.locomotor:SetSpeedModifier_Additive("CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/3)
     end
 end
 
-local function speed_tea_detach(inst, target)
+local function speed_caffeine_detach(inst, target)
     if target.components.locomotor then
-        target.components.locomotor:RemoveExternalSpeedMultiplier(inst, "CAFFEINE")
+        target.components.locomotor:RemoveSpeedModifier_Additive("CAFFEINE")
     end
 end
 
@@ -96,5 +102,6 @@ local function MakeBuff(name, onattachedfn, onextendedfn, ondetachedfn, duration
     return Prefab("buff_"..name, fn, nil, prefabs)
 end
 
-return MakeBuff("speed_tea", speed_tea_attach, nil, speed_tea_detach, TUNING.FOOD_SPEED_LONG/2, 1, {}),
-       MakeBuff("speed_icedtea", speed_icedtea_attach, nil, speed_tea_detach, TUNING.FOOD_SPEED_LONG/3, 1, {})
+return  MakeBuff("speed_coffee", speed_coffee_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG, 1, {}),
+        MakeBuff("speed_tea", speed_tea_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG/2, 1, {}),
+        MakeBuff("speed_icedtea", speed_icedtea_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG/3, 1, {})

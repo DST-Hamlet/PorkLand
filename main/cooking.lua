@@ -20,4 +20,6 @@ AddCookerRecipe("smelter", {
     no_cookbook = true
 })
 
+AddIngredientValues({"coffeebeans"}, {fruit = 0.5})
+AddIngredientValues({"coffeebeans_cooked"}, {fruit = 1})
 AddIngredientValues({"piko_orange"}, {})

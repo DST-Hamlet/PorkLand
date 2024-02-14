@@ -1,4 +1,23 @@
 local foods = {
+    coffee =
+    {
+        test = function(cooker, names, tags) return names.coffeebeans_cooked and (names.coffeebeans_cooked == 4 or (names.coffeebeans_cooked == 3 and (tags.dairy or tags.sweetener)))	end,
+        priority = 30,
+        foodtype = FOODTYPE.VEGGIE,
+        secondaryfoodtype = FOODTYPE.GOODIES,
+        health = TUNING.HEALING_SMALL,
+        hunger = TUNING.CALORIES_TINY,
+        perishtime = TUNING.PERISH_MED,
+        sanity = -TUNING.SANITY_TINY,
+        cooktime = 0.5,
+        oneatenfn = function(inst, eater) -- These buffs override each other
+            eater:RemoveDebuff("buff_speed_tea")
+            eater:RemoveDebuff("buff_speed_icedtea")
+            eater:AddDebuff("buff_speed_coffee", "buff_speed_coffee")
+        end,
+        is_shipwreck_food = true,
+    },
+
     tea =
     {
         test = function(cooker, names, tags) return names.piko_orange and names.piko_orange >= 2 and tags.sweetener and not tags.meat and not tags.veggie and not tags.inedible end,
@@ -15,9 +34,8 @@ local foods = {
         spoiled_product = "icedtea",
         yotp = true,
         oneatenfn = function(inst, eater)
-            if eater:HasDebuff("buff_speed_icedtea") then
-                eater:RemoveDebuff("buff_speed_icedtea")
-            end
+            eater:RemoveDebuff("buff_speed_icedtea")
+            eater:RemoveDebuff("buff_speed_coffee")
             eater:AddDebuff("buff_speed_tea", "buff_speed_tea")
         end,
     },
@@ -37,9 +55,8 @@ local foods = {
         cooktime = 0.5,
         yotp = true,
         oneatenfn = function(inst, eater)
-            if eater:HasDebuff("buff_speed_tea") then
-                eater:RemoveDebuff("buff_speed_tea")
-            end
+            eater:RemoveDebuff("buff_speed_tea")
+            eater:RemoveDebuff("buff_speed_coffee")
             eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")
         end,
     },
