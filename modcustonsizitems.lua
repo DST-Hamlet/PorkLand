@@ -72,6 +72,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             "grass_tall_patch",
         },
         animals = {
+            pangolden = {image = "pangolden.tex"},
             "dungpile",
             hanging_vine_patch = {image = "hanging_vine.tex"},
             peagawk_spawner = {image = "peagawk.tex"}
