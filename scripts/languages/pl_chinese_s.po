@@ -15,6 +15,11 @@ msgctxt "STRINGS.ACTIONS.PAN"
 msgid "Pan"
 msgstr "淘"
 
+#. STRINGS.ACTIONS.PICK.DIGIN
+msgctxt "STRINGS.ACTIONS.PICK.DIGIN"
+msgid "Dig in"
+msgstr "挖掘"
+
 #. STRINGS.ACTIONS.SHEAR
 msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
