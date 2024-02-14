@@ -4,6 +4,12 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Allergy season.",
     ANNOUNCE_HAYFEVER_OFF = "Hey! I feel better!",
+    ANNOUNCE_PICKPOOP = {
+        "Dude!",
+        "Grody!",
+        "Blah!",
+        "This stinks!",
+    },
     ANNOUNCE_SNEEZE = "ahhh... ahhhh...ahhhhhCHOOO!",
     ANNOUNCE_TOO_HUMID = {
         "Ugh. This %s is soooo muggy.",

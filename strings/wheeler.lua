@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Allergiesch. What allergiesch?",
     ANNOUNCE_HAYFEVER_OFF = "My face stopped leaking. Allergy season must be over.",
+    ANNOUNCE_PICKPOOP = {
+        "Swell.",
+        "Just great.",
+        "I'll put this in my memoir.",
+    },
     ANNOUNCE_SNEEZE = "AchooOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is suffocating.",

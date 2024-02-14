@@ -11,6 +11,11 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Proper processing makes it better.",
+        ANNOUNCE_PICKPOOP = {
+            "Alas!",
+            "So dirty!",
+            "Unbearable!",
+        },
         APORKALYPSE_CLOCK = "A fairly complex set of instrumentation.",
         ARMOR_METALPLATE = "Bulky, but surprisingly well-protected.",
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",

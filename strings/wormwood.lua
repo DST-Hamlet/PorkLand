@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Happy time is coming!",
     ANNOUNCE_HAYFEVER_OFF = "Oh. Happy time gone",
+    ANNOUNCE_PICKPOOP = {
+        "Wheee!",
+        "Yay!",
+        "Woohoo!",
+    },
     ANNOUNCE_SNEEZE = "Hiccup!",
     ANNOUNCE_TOO_HUMID = {
         "%s is heavy",

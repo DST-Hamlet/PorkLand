@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Sniff sniff. Must be hayfever season.",
     ANNOUNCE_HAYFEVER_OFF = "Ahh... Finally I can breathe.",
+    ANNOUNCE_PICKPOOP = {
+        "I never!",
+        "Disgusting!",
+        "What a horrid smell!",
+    },
     ANNOUNCE_SNEEZE = "Ahh... CHOOOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is unbearable.",

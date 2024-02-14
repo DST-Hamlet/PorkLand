@@ -11,6 +11,11 @@ return {
     },
     DESCRIBE = {
         ALLOY = "The stone became harder.",
+        ANNOUNCE_PICKPOOP = {
+            "Dirty water!",
+            "Glurgh...",
+            "No next time!",
+        },
         APORKALYPSE_CLOCK = "Stuff form bad story!",
         ARMOR_METALPLATE = "Sturdy, but heavy.",
         ARMOR_WEEVOLE = "Nice and comfortable armor.",

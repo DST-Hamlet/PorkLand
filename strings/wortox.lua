@@ -10,6 +10,11 @@ return {
         "Take off %s.",
     },
     DESCRIBE = {
+        ANNOUNCE_PICKPOOP = {
+            "Disgusting!",
+            "It's still warm!",
+            "My paws!",
+        },
         APORKALYPSE_CLOCK = "Magic on such a large scale, man, this is going to be fun.",
         ARMOR_METALPLATE = "What a horrible torture.",
         ARMOR_WEEVOLE = "I'm getting goosebumps.",

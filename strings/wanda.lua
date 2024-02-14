@@ -11,6 +11,11 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Strong refined metal.",
+        ANNOUNCE_PICKPOOP = {
+            "Why would I do that?",
+            "There must be something wrong with my mind.",
+            "(Retching)",
+        },
         APORKALYPSE_CLOCK = "Keeping track of their movements...very clever idea.",
         ARMOR_METALPLATE = "I still prefer magic.",
         ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",

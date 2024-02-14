@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Evidence would suggest it's allergy season.",
     ANNOUNCE_HAYFEVER_OFF = "Ah! Evidentaly, it's no longer allergy season.",
+    ANNOUNCE_PICKPOOP = {
+        "What's that?",
+        "Oh! That's interesting!",
+        "I found something!",
+    },
     ANNOUNCE_SNEEZE = "aH-CHOOOOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s really weighs me down.",
