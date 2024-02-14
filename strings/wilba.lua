@@ -52,6 +52,7 @@ return {
             PICKED = "THE LONG AND SHORT OF IT",
         },
         HALBERD = "WILBA SHALL SLICE AND CHOP!",
+        HANGING_VINE = "HANG'D VINE",
         IRON = "'TIS METAL O' THE ZAPPY BIRD",
         MACHETE = "YON SLASHY TOOL",
         PANGOLDEN = "NOSE HIMSELF TO BE A FOOL",

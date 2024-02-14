@@ -52,6 +52,7 @@ return {
             PICKED = "Looks like I got it all.",
         },
         HALBERD = "Now I can't be caught off-guard.",
+        HANGING_VINE = "Always hanging around.",
         IRON = "Isn't it ironic?",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "It likes rich food.",

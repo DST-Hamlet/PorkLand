@@ -51,6 +51,7 @@ return {
             PICKED = "It's been picked.",
         },
         HALBERD = "Swoosh!",
+        HANGING_VINE = "Cool! Vines!",
         IRON = "We could make all kinds of neat stuff with this.",
         MACHETE = "Hyah! Hyah!",
         PANGOLDEN = "I think he eats gold.",

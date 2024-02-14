@@ -51,6 +51,7 @@ return {
             PICKED = "Previously experience suggests this will grow back.",
         },
         HALBERD = "A marvelously versatile instrument capable of causing incredible harm!",
+        HANGING_VINE = "Kleptomaniac vegetation. How wonderful!",
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
         MACHETE = "A pragmatic tool for slashing objects.",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",

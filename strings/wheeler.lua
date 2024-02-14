@@ -51,6 +51,7 @@ return {
             PICKED = "It'll be overgrown in no time.",
         },
         HALBERD = "The must-have multi-tool for adventurers.",
+        HANGING_VINE = "Vines. Gotta love 'em.",
         IRON = "Well it's not good balloon material.",
         MACHETE = "Machete. Designed for adventure.",
         PANGOLDEN = "I don't actually mind picking up his poop.",

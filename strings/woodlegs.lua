@@ -51,6 +51,7 @@ return {
             PICKED = "Plunder'd.",
         },
         HALBERD = "T'ain't no cutlass.",
+        HANGING_VINE = "Them be th'ropes.",
         IRON = "'Tis not gold, but a treasure nonetheless.",
         MACHETE = "Ye be slicin'!",
         PANGOLDEN = "Eatin' up all tha treasure!",

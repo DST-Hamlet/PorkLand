@@ -51,6 +51,7 @@ return {
             PICKED = "All things end.",
         },
         HALBERD = "A terrible weapon for a terrible world.",
+        HANGING_VINE = "The jungle's noose.",
         IRON = "Iron. Like my heart.",
         MACHETE = "This is a lot of blade.",
         PANGOLDEN = "A fool and his gold.",

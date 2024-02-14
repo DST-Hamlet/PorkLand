@@ -50,6 +50,7 @@ return {
             PICKED = "Gone, all gone.",
         },
         HALBERD = "What a vicious weapon.",
+        HANGING_VINE = "Hello, what do you want?",
         IRON = "Oooh. Almost burned me.",
         MACHETE = "To chop and slash!",
         PANGOLDEN = "How are you today? Any outcome?",

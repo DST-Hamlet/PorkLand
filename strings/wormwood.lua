@@ -51,6 +51,7 @@ return {
             PICKED = "Keep growing!",
         },
         HALBERD = "Twirly Tail Fight Stick",
+        HANGING_VINE = "Wants stuff",
         IRON = "Clinky Rock",
         MACHETE = "Slicer. For friend haircuts",
         PANGOLDEN = "Shiny Pooper",

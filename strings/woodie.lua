@@ -51,6 +51,7 @@ return {
             PICKED = "Got all I could.",
         },
         HALBERD = "Well, it's no axe.",
+        HANGING_VINE = "Don't trust that.",
         IRON = "Can't chop this too well.",
         MACHETE = "Ooh, that's a thing for chopping.",
         PANGOLDEN = "Looks expensive.",

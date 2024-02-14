@@ -51,6 +51,7 @@ return {
             PICKED = "Collect again after a while.",
         },
         HALBERD = "A huge ax!",
+        HANGING_VINE = "What kind of monster up there?",
         IRON = "Is that iron?",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "A born gold rusher.",

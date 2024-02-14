@@ -215,6 +215,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALBERD"
 msgid "Now I can't be caught off-guard."
 msgstr "现在我不是手无寸铁的了。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.HANGING_VINE"
+msgid "Always hanging around."
+msgstr "总是悬挂在那里。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON"
 msgid "Isn't it ironic?"
@@ -499,6 +504,11 @@ msgstr "根据之前的经验，它很快会再长回来的。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.HALBERD"
 msgid "A marvelously versatile instrument capable of causing incredible harm!"
 msgstr "一种多功能的器具，能造成不可思议的伤害。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.HANGING_VINE"
+msgid "Kleptomaniac vegetation. How wonderful!"
+msgstr "多么绝妙！有盗窃癖的植被。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON"
@@ -795,6 +805,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.HALBERD"
 msgid "You could poke an eye out on this thing!"
 msgstr "你可以拿它去耀武扬威！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.HANGING_VINE"
+msgid "That seems dangerous."
+msgstr "那看起来很危险。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON"
 msgid "This has gotta be good for something."
@@ -1080,6 +1095,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.HALBERD"
 msgid "A huge ax!"
 msgstr "一把巨大的斧头！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.HANGING_VINE"
+msgid "What kind of monster up there?"
+msgstr "有什么怪物在上面吗？"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON"
 msgid "Is that iron?"
@@ -1360,6 +1380,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.HALBERD"
 msgid "I'm not planning on murdering grove of trees."
 msgstr "我的对手可不是一片树林。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.HANGING_VINE"
+msgid "I really hope it was just a regular plant."
+msgstr "我真的很希望它只是普通的植物。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON"
 msgid "An essential material for accurate timepieces."
@@ -1639,6 +1664,11 @@ msgstr "它会长回来的。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.HALBERD"
 msgid "I dislike fighting."
 msgstr "我讨厌打斗。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.HANGING_VINE"
+msgid "How eerie."
+msgstr "真可怕。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON"
@@ -1924,6 +1954,11 @@ msgstr "我征服了它！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.HALBERD"
 msgid "Tis no spear, yet is still valorous!"
 msgstr "这不是长矛，但是它依然很英勇！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.HANGING_VINE"
+msgid "Ropes hang from the heavens!"
+msgstr "从天堂垂下的绳索"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON"
@@ -2215,6 +2250,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.HALBERD"
 msgid "A blade as sharp as my wit."
 msgstr "像我的智慧一般锐利的利刃。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.HANGING_VINE"
+msgid "I know the ropes."
+msgstr "还不是条绳嘛。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON"
 msgid "A solid mineral."
@@ -2499,6 +2539,11 @@ msgstr "它被选中了。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.HALBERD"
 msgid "Swoosh!"
 msgstr "刷刷！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.HANGING_VINE"
+msgid "Cool! Vines!"
+msgstr "酷！藤蔓！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON"
@@ -2785,6 +2830,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.HALBERD"
 msgid "A terrible weapon for a terrible world."
 msgstr "对抗恐怖世界的恐怖武器。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.HANGING_VINE"
+msgid "The jungle's noose."
+msgstr "丛林的绞索。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON"
 msgid "Iron. Like my heart."
@@ -3070,6 +3120,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.HALBERD"
 msgid "The must-have multi-tool for adventurers."
 msgstr "冒险家必备的多功能工具。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.HANGING_VINE"
+msgid "Vines. Gotta love 'em."
+msgstr "藤蔓。你得爱上它们才行。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON"
 msgid "Well it's not good balloon material."
@@ -3354,6 +3409,11 @@ msgstr "这可费了不少力气。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.HALBERD"
 msgid "It is a cruel and versatile weapon."
 msgstr "一把残忍而又实用的武器。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.HANGING_VINE"
+msgid "Hanging vines from the forest canopy."
+msgstr "森林树冠上垂下的藤蔓。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON"
@@ -3645,6 +3705,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.HALBERD"
 msgid "WILBA SHALL SLICE AND CHOP!"
 msgstr "薇尔芭应该切割和劈砍！"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.HANGING_VINE"
+msgid "HANG'D VINE"
+msgstr "挂着的藤蔓"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON"
 msgid "'TIS METAL O' THE ZAPPY BIRD"
@@ -3929,6 +3994,11 @@ msgstr "还不够强硬！"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.HALBERD"
 msgid "Weapons are only good if they're twice your size."
 msgstr "比你大两倍的武器才是好武器。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.HANGING_VINE"
+msgid "Ugh, vines!"
+msgstr "啊，藤蔓！"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON"
@@ -4215,6 +4285,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.HALBERD"
 msgid "More suited to combat than to work."
 msgstr "更适合战斗而不是工作。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.HANGING_VINE"
+msgid "I saw a strong rope."
+msgstr "我看到了一条结实的绳索。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON"
 msgid "Invaluable material for manufacturing useful tools."
@@ -4494,6 +4569,11 @@ msgstr "沃尔夫冈才是最强大的！"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.HALBERD"
 msgid "Sword is for weak no-muscle men."
 msgstr "只有弱小又没有肌肉的人才会用剑。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.HANGING_VINE"
+msgid "Watch out for that tree!"
+msgstr "小心那棵树！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON"
@@ -4780,6 +4860,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.HALBERD"
 msgid "Well, it's no axe."
 msgstr "额，这不是斧头。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.HANGING_VINE"
+msgid "Don't trust that."
+msgstr "不要相信那东西。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON"
 msgid "Can't chop this too well."
@@ -5064,6 +5149,11 @@ msgstr "被洗劫了。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.HALBERD"
 msgid "T'ain't no cutlass."
 msgstr "这不是海盗短剑。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.HANGING_VINE"
+msgid "Them be th'ropes."
+msgstr "它们和绳子一样。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON"
@@ -5350,6 +5440,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.HALBERD"
 msgid "Twirly Tail Fight Stick"
 msgstr "卷尾巴的战斗棒"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.HANGING_VINE"
+msgid "Wants stuff"
+msgstr "想要东西"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON"
 msgid "Clinky Rock"
@@ -5629,6 +5724,11 @@ msgstr "没了，全没了。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.HALBERD"
 msgid "What a vicious weapon."
 msgstr "真是把恶毒的武器。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.HANGING_VINE"
+msgid "Hello, what do you want?"
+msgstr "你好，想要什么？"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON"
@@ -5910,6 +6010,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.HALBERD"
 msgid "Strange weapon used by Pigfolk."
 msgstr "猪人用的奇怪武器。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.HANGING_VINE"
+msgid "They're on top here."
+msgstr "这里的在头顶上。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.IRON"
 msgid "Red hard rock."
@@ -6190,6 +6295,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.HALBERD"
 msgid "AN EVIL KILLING IMPLEMENT"
 msgstr "一个邪恶的杀戮工具"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.HANGING_VINE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.HANGING_VINE"
+msgid "HANGING PART"
+msgstr "悬挂部分"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.IRON"
 msgid "HELLO FRIEND"
@@ -6389,6 +6499,11 @@ msgstr "高草"
 msgctxt "STRINGS.NAMES.HALBERD"
 msgid "Halberd"
 msgstr "戟"
+
+#. STRINGS.NAMES.HANGING_VINE
+msgctxt "STRINGS.NAMES.HANGING_VINE"
+msgid "Hanging Vine"
+msgstr "垂下的藤蔓"
 
 #. STRINGS.NAMES.IRON
 msgctxt "STRINGS.NAMES.IRON"

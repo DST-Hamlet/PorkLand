@@ -26,6 +26,7 @@ return {
         GRABBING_VINE = "Hanging Vine",
         GRASS_TALL = "Tall Grass",
         HALBERD = "Halberd",
+        HANGING_VINE = "Hanging Vine",
         IRON = "Iron Ore",
         MACHETE = "Machete",
         PANGOLDEN = "Pangolden",

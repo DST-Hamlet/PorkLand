@@ -51,6 +51,7 @@ return {
             PICKED = "It will have to grow back.",
         },
         HALBERD = "I dislike fighting.",
+        HANGING_VINE = "How eerie.",
         IRON = "I wonder what I could cook up with this.",
         MACHETE = "I could chop many an onion with this!",
         PANGOLDEN = "Already has a nice golden braise.",

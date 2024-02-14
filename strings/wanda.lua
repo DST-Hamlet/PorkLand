@@ -51,6 +51,7 @@ return {
             PICKED = "Over time, it will grow back.",
         },
         HALBERD = "I'm not planning on murdering grove of trees.",
+        HANGING_VINE = "I really hope it was just a regular plant.",
         IRON = "An essential material for accurate timepieces.",
         MACHETE = "It's for chopping, simple as that.",
         PANGOLDEN = "It has an extravagant recipe.",

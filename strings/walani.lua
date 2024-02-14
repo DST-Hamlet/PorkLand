@@ -52,6 +52,7 @@ return {
             PICKED = "I deserve a nap after that.",
         },
         HALBERD = "You could poke an eye out on this thing!",
+        HANGING_VINE = "That seems dangerous.",
         IRON = "This has gotta be good for something.",
         MACHETE = "What a hack job.",
         PANGOLDEN = "Shiny.",

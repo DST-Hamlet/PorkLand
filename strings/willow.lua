@@ -51,6 +51,7 @@ return {
             PICKED = "Not tough enough!",
         },
         HALBERD = "Weapons are only good if they're twice your size.",
+        HANGING_VINE = "Ugh, vines!",
         IRON = "I can't burn it with just my lighter.",
         MACHETE = "Or I could just burn my way through.",
         PANGOLDEN = "Yeesh, he's sucking up all the gold!",

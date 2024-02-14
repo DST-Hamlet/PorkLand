@@ -51,6 +51,7 @@ return {
             PICKED = "I have defeated it!",
         },
         HALBERD = "Tis no spear, yet is still valorous!",
+        HANGING_VINE = "Ropes hang from the heavens!",
         IRON = "Material for metalwork.",
         MACHETE = "A fine length of blade.",
         PANGOLDEN = "Surely a cousin of Gullinbursti!",

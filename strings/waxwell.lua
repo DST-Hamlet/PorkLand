@@ -52,6 +52,7 @@ return {
             PICKED = "I don't require any more grass, thank you.",
         },
         HALBERD = "A blade as sharp as my wit.",
+        HANGING_VINE = "I know the ropes.",
         IRON = "A solid mineral.",
         MACHETE = "Truthfully I was always a hack.",
         PANGOLDEN = "He has expensive tastes.",

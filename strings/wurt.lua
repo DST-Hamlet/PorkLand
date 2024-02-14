@@ -51,6 +51,7 @@ return {
             PICKED = "It has been cut clean.",
         },
         HALBERD = "Strange weapon used by Pigfolk.",
+        HANGING_VINE = "They're on top here.",
         IRON = "Red hard rock.",
         MACHETE = "Plant hacker.",
         PANGOLDEN = "Don't drink them all!",

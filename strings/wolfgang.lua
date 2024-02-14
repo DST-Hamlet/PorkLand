@@ -51,6 +51,7 @@ return {
             PICKED = "Wolfgang is mightiest!",
         },
         HALBERD = "Sword is for weak no-muscle men.",
+        HANGING_VINE = "Watch out for that tree!",
         IRON = "Iron is strong like Wolfgang.",
         MACHETE = "Ah! Very good!",
         PANGOLDEN = "Hehe. Haves big nose.",

@@ -51,6 +51,7 @@ return {
             PICKED = "That required not insignificant effort.",
         },
         HALBERD = "It is a cruel and versatile weapon.",
+        HANGING_VINE = "Hanging vines from the forest canopy.",
         IRON = "Ferrum.",
         MACHETE = "Used for hacking through the brush.",
         PANGOLDEN = "Aurum vermilingua.",
