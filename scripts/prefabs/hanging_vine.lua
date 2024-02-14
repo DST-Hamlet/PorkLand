@@ -12,18 +12,19 @@ local prefabs =
 }
 
 local function OnNear(inst)
-    inst.near = true
-    inst:RemoveTag("fireimmune")
-    inst.AnimState:PlayAnimation("down")
-    inst.AnimState:PushAnimation("idle_loop", true)
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/drop")
-    inst.DynamicShadow:SetSize(1.5, .75)
+    if not inst.near then
+        inst.near = true
+        inst:RemoveTag("fireimmune")
+        inst.AnimState:PlayAnimation("down")
+        inst.AnimState:PushAnimation("idle_loop", true)
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/grabbing_vine/drop")
+        inst.DynamicShadow:SetSize(1.5, .75)
+    end
 end
 
 local function OnFar(inst)
-    inst.near = false
-
-    if not inst.components.burnable:IsBurning() then
+    if not inst.components.burnable:IsBurning() and inst.near then
+        inst.near = false
         inst:AddTag("fireimmune")
         inst.AnimState:PlayAnimation("up")
         inst.SoundEmitter:PlaySound("dontstarve/cave/rope_up")
@@ -32,7 +33,7 @@ local function OnFar(inst)
 end
 
 local function OnExtinguish(inst)
-    if not inst.near then
+    if not inst:IsNearPlayer(16) then
         OnFar(inst)
     end
 end
@@ -85,6 +86,7 @@ local function fn()
     inst.components.burnable:SetBurnTime(10)
     inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 20, 0), "swap_fire")
     inst.components.burnable:SetOnExtinguishFn(OnExtinguish)
+    inst.components.burnable:SetOnBurntFn(DefaultBurntFn)
     MakeSmallPropagator(inst)
     MakeHauntableIgnite(inst)
 
