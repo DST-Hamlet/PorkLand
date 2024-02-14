@@ -25,6 +25,10 @@ return {
             SLEEPING = "She's pooped.",
             UNDUNGED = "She needs to get her dung together.",
         },
+        DUNGPILE = {
+            GENERIC = "It's a pile of dung.",
+            PICKED = "Dung and dung.",
+        },
         FLOWER_RAINFOREST = "It smells vaguely tolerable.",
         GLOWFLY = {
             DEAD = "Lights out forever.",

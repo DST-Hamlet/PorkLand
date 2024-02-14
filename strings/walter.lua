@@ -25,6 +25,10 @@ return {
             SLEEPING = "She is sleeping.",
             UNDUNGED = "She's not with that dung ball. Good timing.",
         },
+        DUNGPILE = {
+            GENERIC = "What giant creature left this?",
+            PICKED = "Eww!",
+        },
         FLOWER_RAINFOREST = "oh! That's the kind of flower in jungle adventure stories.",
         GLOWFLY = {
             DEAD = "Oh, dead.",

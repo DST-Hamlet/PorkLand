@@ -25,6 +25,10 @@ return {
             SLEEPING = "A dormant dung dancer.",
             UNDUNGED = "Presumably, he's seeking a replacement for his poop sphere.",
         },
+        DUNGPILE = {
+            GENERIC = "Some creature has produced an excessive amount of excrement!",
+            PICKED = "The road of discovery has many hurdles.",
+        },
         FLOWER_RAINFOREST = "Curious. Picking these has a positive effect on my psyche.",
         GLOWFLY = {
             DEAD = "Cadaverous.",

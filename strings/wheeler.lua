@@ -25,6 +25,10 @@ return {
             SLEEPING = "Just screaming to be stepped on.",
             UNDUNGED = "At least it smells a little better now.",
         },
+        DUNGPILE = {
+            GENERIC = "Normally I'm all for getting my hands dirty but...",
+            PICKED = "What happens in the jungle, stays in the jungle.",
+        },
         FLOWER_RAINFOREST = "You can never have too many flowers. Or projectiles.",
         GLOWFLY = {
             DEAD = "I guess it can't fly me out of here now.",

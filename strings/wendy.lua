@@ -25,6 +25,10 @@ return {
             SLEEPING = "Even the hideous sleep sounder than I.",
             UNDUNGED = "Alas, she has fallen from her grotesque perch.",
         },
+        DUNGPILE = {
+            GENERIC = "There's dreadfulness everywhere.",
+            PICKED = "That was... unpleasant.",
+        },
         FLOWER_RAINFOREST = "It, too, will wither and die one day.",
         GLOWFLY = {
             DEAD = "Its light hath been extinguished forever.",

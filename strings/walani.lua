@@ -25,6 +25,10 @@ return {
             SLEEPING = "That's the right attitude.",
             UNDUNGED = "Someone's grubbing.",
         },
+        DUNGPILE = {
+            GENERIC = "Mushburger.",
+            PICKED = "Nothing left.",
+        },
         FLOWER_RAINFOREST = "I love these.",
         GLOWFLY = {
             DEAD = "I wish it hadn't died.",
