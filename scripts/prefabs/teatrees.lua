@@ -162,12 +162,18 @@ local function StopSpawning(inst)
 end
 
 local function detachchild(inst)
-    if inst.components.spawner and inst.components.spawner.child then
-        local child = inst.components.spawner.child
+    local spawner = inst.components.spawner
+    if spawner and spawner.child then
+        local child = spawner.child
         if child.components.knownlocations then
             child.components.knownlocations:ForgetLocation("home")
         end
         child:RemoveComponent("homeseeker")
+
+        inst:RemoveEventCallback("ontrapped", spawner._onchildkilled, spawner.child)
+        inst:RemoveEventCallback("death", spawner._onchildkilled, spawner.child)
+        inst:RemoveEventCallback("detachchild", spawner._onchildkilled, spawner.child)
+        spawner.child = nil
     end
 end
 
@@ -261,12 +267,12 @@ local function OnWorkCallback(inst, chopper)
     end
 
     inst.AnimState:PlayAnimation(STAGES[inst.components.growable.stage].anims.chop)
-    PushSway(inst, inst.components.growable.stage)    
+    PushSway(inst, inst.components.growable.stage)
 end
 
 local function OnFinishCallbackStump(inst, digger)
     inst:Remove()
-    inst.components.lootdropper:SpawnLootPrefab("log") 
+    inst.components.lootdropper:SpawnLootPrefab("log")
 end
 
 local function OnFinishCallback(inst, chopper)
@@ -323,7 +329,7 @@ local function OnFinishCallback(inst, chopper)
         inst.components.growable:StopGrowing()
     end
 
-    inst:StopWatchingWorldState("phase", inst.OnPhaseChange)    
+    inst:StopWatchingWorldState("phase", OnPhaseChange)
     inst.components.spawner:CancelSpawning()
 end
 
@@ -341,7 +347,7 @@ local function OnFinishCallbackBurnt(inst, chopper)
 
     inst.components.inventory:DropEverything(false, false)
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
-    inst.components.lootdropper:DropLoot()   
+    inst.components.lootdropper:DropLoot()
 end
 
 local function burn_inventory_items(inst)
@@ -352,7 +358,7 @@ local function burn_inventory_items(inst)
     local burnable_items = inst.components.inventory:FindItems(function(v) return v.components.burnable end)
     for _, item in pairs(burnable_items) do
         item.components.burnable:Ignite(true)
-    end    
+    end
 end
 
 local function OnBurnt(inst)
@@ -375,11 +381,11 @@ local function OnBurnt(inst)
             inst.components.workable:SetOnFinishCallback(OnFinishCallbackBurnt)
         end
 
-        -- detachchild(inst)
+        detachchild(inst)
 
         MakeHauntableWork(inst)
 
-        inst.AnimState:PlayAnimation(STAGES[stage].anims.burnt, true) -- todo
+        inst.AnimState:PlayAnimation(STAGES[stage].anims.burnt, true)
         inst.MiniMapEntity:SetIcon("teatree_burnt.tex")
         inst:DoTaskInTime(3 * FRAMES, function(inst)
             if inst.components.burnable and inst.components.propagator then
@@ -629,7 +635,7 @@ local function MakeTeaTree(name, stage, state)
         return inst
     end
 
-    return Prefab(name, fn, assets, prefabs)    
+    return Prefab(name, fn, assets, prefabs)
 end
 
 return  MakeTeaTree("teatree", 0),

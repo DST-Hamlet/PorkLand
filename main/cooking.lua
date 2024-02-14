@@ -20,4 +20,4 @@ AddCookerRecipe("smelter", {
     no_cookbook = true
 })
 
-AddIngredientValues({"piko_orange"}, {filter = 1})
+AddIngredientValues({"piko_orange"}, {})

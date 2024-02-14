@@ -1,14 +1,13 @@
 local foods = {
     tea =
     {
-        test = function(cooker, names, tags) return tags.filter and tags.filter >= 2 and tags.sweetener and not tags.meat and not tags.veggie and not tags.inedible end,
+        test = function(cooker, names, tags) return names.piko_orange and names.piko_orange >= 2 and tags.sweetener and not tags.meat and not tags.veggie and not tags.inedible end,
         priority = 25,
         foodtype = "VEGGIE",
         health = TUNING.HEALING_SMALL,
         hunger = TUNING.CALORIES_SMALL,
         perishtime = TUNING.PERISH_ONE_DAY,
         sanity = TUNING.SANITY_LARGE,
-        temperaturebump = 15,
         cooktime = 0.5,
         spoiled_product = "icedtea",
         yotp = true,
@@ -17,19 +16,21 @@ local foods = {
                 eater:RemoveDebuff("buff_speed_icedtea")
             end
             eater:AddDebuff("buff_speed_tea", "buff_speed_tea")
+            if eater.components.temperature then
+                eater.components.temperature:DoDelta(15)
+            end
         end,
     },
 
     icedtea =
     {
-        test = function(cooker, names, tags) return tags.filter and tags.filter >= 2 and tags.sweetener and tags.frozen end,
+        test = function(cooker, names, tags) return names.piko_orange and names.piko_orange >= 2 and tags.sweetener and tags.frozen end,
         priority = 30,
         foodtype = "VEGGIE",
         health = TUNING.HEALING_SMALL,
         hunger = TUNING.CALORIES_SMALL,
         perishtime = TUNING.PERISH_FAST,
         sanity = TUNING.SANITY_LARGE,
-        temperaturebump = -10,
         cooktime = 0.5,
         yotp = true,
         oneatenfn = function(inst, eater)
@@ -37,6 +38,9 @@ local foods = {
                 eater:RemoveDebuff("buff_speed_tea")
             end
             eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")
+            if eater.components.temperature then
+                eater.components.temperature:DoDelta(-10)
+            end
         end,
     },
 }

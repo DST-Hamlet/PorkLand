@@ -156,6 +156,9 @@ local states =
                 inst:PerformBufferedAction()
                 inst.sg:GoToState("idle")
             end),
+            EventHandler("attacked", function(inst, data)
+                inst:ClearBufferedAction()
+            end)
         }
     },
 
@@ -301,7 +304,6 @@ local states =
             inst.Physics:SetDamping(0)
             inst.Physics:SetMotorVel(0, -20 + math.random() * 10, 0)
             inst.AnimState:PlayAnimation("stunned_loop", true)
-            inst:CheckTransformState()
         end,
 
         onupdate = function(inst)
