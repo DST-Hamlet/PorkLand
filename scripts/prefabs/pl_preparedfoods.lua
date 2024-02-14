@@ -45,8 +45,6 @@ local function MakePreparedFood(data)
         inst.components.edible.temperatureduration = data.temperatureduration or 0
         inst.components.edible.nochill = data.nochill or nil
         inst.components.edible:SetOnEatenFn(data.oneatenfn)
-
-        -- TODO insta temperature change
         inst.components.edible.antihistamine = data.antihistamine or 0
 
         inst.yotp_override = data.yotp
