@@ -172,7 +172,8 @@ local function commonfn(Sim)
     inst.components.burnable:SetFXLevel(3)
     inst.components.burnable:SetBurnTime(10)
     inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 20, 0), "swap_fire")
-    MakeHauntableIgnite(inst)
+    MakeSmallPropagator(inst)
+    MakeHauntablePanic(inst)
 
     inst:DoTaskInTime(0, InIt)
 

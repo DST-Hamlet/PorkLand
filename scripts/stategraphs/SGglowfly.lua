@@ -51,7 +51,7 @@ local states = {
             inst.Physics:Stop()
             RemovePhysicsColliders(inst)
             if inst.components.lootdropper ~= nil then
-                inst.components.lootdropper:DropLoot(inst:GetPosition())
+                inst.components.lootdropper:DropLoot()
             end
         end,
     },

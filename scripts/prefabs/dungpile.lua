@@ -35,7 +35,7 @@ local function OnFinishCallback(inst, worker)
         SpawnDungball(inst)
     else
         for i = 1, inst.components.pickable.cycles_left do
-            inst.components.lootdropper:DropLoot(inst:GetPosition())
+            inst.components.lootdropper:DropLoot()
         end
     end
 
@@ -47,17 +47,17 @@ local function OnWorkCallback(inst)
 end
 
 local function OnPicked(inst, picker)
-    local pt = inst:GetPosition()
-    local sanity = picker.components.sanity
     inst.SoundEmitter:PlaySound("dontstarve/common/food_rot")
-    inst.components.lootdropper:DropLoot(pt)
+    inst.components.lootdropper:DropLoot()
 
-    if picker and sanity then
+    if picker then
         if picker.components.talker and picker:HasTag("player") then
             picker.components.talker:Say(GetString(picker, "ANNOUNCE_PICKPOOP"))
         end
-        local delta = picker:HasTag("plantkin") and 10 or -10
-        sanity:DoDelta(delta)
+        if picker.components.sanity then
+            local delta = picker:HasTag("plantkin") and 10 or -10
+            picker.components.sanity:DoDelta(delta)
+        end
     end
 
     if inst.components.pickable.cycles_left <= 0 then
