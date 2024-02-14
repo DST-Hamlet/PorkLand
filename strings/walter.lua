@@ -18,6 +18,7 @@ return {
         BASEFAN = "Ah, it's so comfortable, Warby, you can also enjoy it.",
         CHITIN = "Check out the pattern on this! Warby!",
         CUTNETTLE = "Ow! It got me.",
+        DUNGBALL = "How did she... nevermind.",
         FLOWER_RAINFOREST = "oh! That's the kind of flower in jungle adventure stories.",
         GLOWFLY = {
             DEAD = "Oh, dead.",

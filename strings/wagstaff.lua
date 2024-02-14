@@ -18,6 +18,7 @@ return {
         BASEFAN = "Magnificent! What a marvel of engineering!",
         CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
         CUTNETTLE = "A large leaf nettle plant native to these parts. Also it smells funny.",
+        DUNGBALL = "Excellent! The act of rolling has picked up a motley of paraphernalia.",
         FLOWER_RAINFOREST = "Curious. Picking these has a positive effect on my psyche.",
         GLOWFLY = {
             DEAD = "Cadaverous.",

@@ -18,6 +18,7 @@ return {
         BASEFAN = "A plane propeller would be better.",
         CHITIN = "I'm going to need more of these.",
         CUTNETTLE = "Smells like relief.",
+        DUNGBALL = "Huh. It's almost like nobody wants a ball of poop.",
         FLOWER_RAINFOREST = "You can never have too many flowers. Or projectiles.",
         GLOWFLY = {
             DEAD = "I guess it can't fly me out of here now.",

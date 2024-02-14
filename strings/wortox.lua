@@ -17,6 +17,7 @@ return {
         BASEFAN = "The breeze is blowing, so happy.",
         CHITIN = "The shell of those guys.",
         CUTNETTLE = "Just smelling it blows my nose.",
+        DUNGBALL = "Why would anyone like it?",
         FLOWER_RAINFOREST = "There is a wild beauty.",
         GLOWFLY = {
             DEAD = "sorry.",

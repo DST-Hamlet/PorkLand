@@ -18,6 +18,7 @@ return {
         BASEFAN = "Water ran away! florpt!",
         CHITIN = "Tough hide.",
         CUTNETTLE = "It into my nose!",
+        DUNGBALL = "Crud ball.",
         FLOWER_RAINFOREST = "A slightly prettier plant is still ugly.",
         GLOWFLY = {
             DEAD = "died.",

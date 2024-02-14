@@ -18,6 +18,7 @@ return {
         BASEFAN = "A cool wind blows from thee!",
         CHITIN = "A harden'd hull.",
         CUTNETTLE = "Cleans tha' nose as good as sea air.",
+        DUNGBALL = "Throw it o'erboard!",
         FLOWER_RAINFOREST = "Ol'Woodlegs na'got use fer'it.",
         GLOWFLY = {
             DEAD = "Tells no tales.",

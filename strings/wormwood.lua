@@ -18,6 +18,7 @@ return {
         BASEFAN = "Wind",
         CHITIN = "Bzzter clothes",
         CUTNETTLE = "(sniiiiiff)",
+        DUNGBALL = "Yay! Ball of poop!",
         FLOWER_RAINFOREST = "Dirt made a friend",
         GLOWFLY = {
             DEAD = "(sob)",

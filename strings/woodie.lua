@@ -18,6 +18,7 @@ return {
         BASEFAN = "Yep. That's a nice breeze.",
         CHITIN = "It's got some heft to it.",
         CUTNETTLE = "It has a smell to it.",
+        DUNGBALL = "Dung to go.",
         FLOWER_RAINFOREST = "It's a pretty lil' thing.",
         GLOWFLY = {
             DEAD = "Dead.",

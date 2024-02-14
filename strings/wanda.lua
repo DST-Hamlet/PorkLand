@@ -18,6 +18,7 @@ return {
         BASEFAN = "Very interesting structure, but unfortunately not refined enough.",
         CHITIN = "I don't understand what's the point of this?",
         CUTNETTLE = "This keeps us breathing smoothly.",
+        DUNGBALL = "I won't touch it.",
         FLOWER_RAINFOREST = "Why am I wasting time staring at it?",
         GLOWFLY = {
             DEAD = "Maybe that's for the best.",

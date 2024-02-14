@@ -18,6 +18,7 @@ return {
         BASEFAN = "Conquers the heat!",
         CHITIN = "The feeble armor of the bug.",
         CUTNETTLE = "Its smell has vanquish mine sinuses.",
+        DUNGBALL = "What sickness is this?",
         FLOWER_RAINFOREST = "A blossom most lovely.",
         GLOWFLY = {
             DEAD = "Alas, it is dead.",

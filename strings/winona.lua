@@ -18,6 +18,7 @@ return {
         BASEFAN = "I'm sure bossman would be very interested in it.",
         CHITIN = "I don't know what this can be used for.",
         CUTNETTLE = "Keep your breath flowing and refresh your mind.",
+        DUNGBALL = "I would never touch it.",
         FLOWER_RAINFOREST = "I have never seen such flowers.",
         GLOWFLY = {
             DEAD = "It's broken.",

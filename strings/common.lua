@@ -14,6 +14,7 @@ return {
         BASEFAN = "Oscillating Fan",
         CHITIN = "Chitin",
         CUTNETTLE = "Nettle",
+        DUNGBALL = "Dung Ball",
         FLOWER_RAINFOREST = "Exotic Flower",
         GLOWFLY = "Glowfly",
         GLOWFLY_COCOON = "Glowfly Cocoon",

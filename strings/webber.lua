@@ -18,6 +18,7 @@ return {
         BASEFAN = "That breeze feels nice on our fur.",
         CHITIN = "Hope no one's missing that.",
         CUTNETTLE = "These nettles smell really strong.",
+        DUNGBALL = "Yuck!",
         FLOWER_RAINFOREST = "This flower is neat!",
         GLOWFLY = {
             DEAD = "Oh no! It died!",
