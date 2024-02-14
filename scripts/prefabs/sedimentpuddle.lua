@@ -12,7 +12,6 @@ local prefabs =
 local STAGES = {
     {
         name = "empty",
-        anim = "dryup",
         shrink_anim = "disappear",
         workleft = 0,
         range = 0,
@@ -64,7 +63,11 @@ local function SetStage(inst, stage, init)
     end
 
     if init then
-        inst.AnimState:PlayAnimation(STAGE.anim, true)
+        if STAGE.anim then
+            inst.AnimState:PlayAnimation(STAGE.anim, true)
+        else
+            inst.AnimState:PlayAnimation(STAGE.shrink_anim)
+        end
     end
 
     return STAGE
@@ -85,7 +88,9 @@ local function Grow(inst)
     local stage = SetStage(inst, inst.stage + 1)
 
     inst.AnimState:PlayAnimation(stage.grow_anim)
-    inst.AnimState:PushAnimation(stage.anim, true)
+    if stage.anim then
+        inst.AnimState:PushAnimation(stage.anim, true)
+    end
 
     if inst.stage == #STAGES then
         StopGrow(inst)
@@ -128,7 +133,9 @@ local function Shrink(inst)
     inst.water_collected = 0
 
     inst.AnimState:PlayAnimation(stage.shrink_anim)
-    inst.AnimState:PushAnimation(stage.anim, true)
+    if stage.anim then
+        inst.AnimState:PushAnimation(stage.anim, true)
+    end
 
     OnIsRaining(inst, TheWorld.state.raining)
 end

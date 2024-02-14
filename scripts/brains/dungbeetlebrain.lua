@@ -14,39 +14,39 @@ local AVOID_PLAYER_STOP = 6
 local SEE_DUNG_DIST = 10
 local MAX_WANDER_DIST = 50
 
+local function CantAction(inst, target)
+    if inst.sg:HasStateTag("busy") or inst:HasTag("hasdung") then
+        return
+    end
+end
+
+local DUNGPILE_TAGS = {"dungpile"}
+local function DigDungAction(inst)
+    if CantAction(inst) then
+        return
+    end
+
+    local target = FindEntity(inst, SEE_DUNG_DIST, nil, DUNGPILE_TAGS)
+    if target ~= nil then
+        return BufferedAction(inst, target, ACTIONS.DIGDUNG)
+    end
+end
+
+local DUNGPILE_TAGS = {"dungball"}
+local function MountDungAction(inst)
+    if CantAction(inst) then
+        return
+    end
+
+    local target = FindEntity(inst, SEE_DUNG_DIST, nil, DUNGPILE_TAGS)
+    if target ~= nil then
+        return BufferedAction(inst, target, ACTIONS.MOUNTDUNG)
+    end
+end
+
 local DungBeetleBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
-
-local function DigDungAction(inst)
-    if inst.sg:HasStateTag("busy") then
-        return
-    end
-
-    local target = FindEntity(inst, SEE_DUNG_DIST, function(item) return not inst:HasTag("hasdung") and item:HasTag("dungpile") end)
-    if target ~= nil then
-        local act = BufferedAction(inst, target, ACTIONS.DIGDUNG)
-        act.validfn = function() return not inst:HasTag("hasdung") and target:HasTag("dungpile") end
-        return act
-    end
-end
-
-local function MountDungAction(inst)
-    if inst.sg:HasStateTag("busy") then
-        return
-    end
-
-    local target = FindEntity(inst, SEE_DUNG_DIST, function(item)
-        return not inst:HasTag("hasdung") and item:HasTag("dungball")
-    end)
-
-    if target ~= nil then
-        inst.dung_target = target
-        local act = BufferedAction(inst, target, ACTIONS.MOUNTDUNG)
-        act.validfn = function() return not inst:HasTag("hasdung") and target:HasTag("dungball") end
-        return act
-    end
-end
 
 function DungBeetleBrain:OnStart()
     local root = PriorityNode({

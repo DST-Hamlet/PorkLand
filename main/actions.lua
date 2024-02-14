@@ -108,12 +108,24 @@ ACTIONS.DIGDUNG.fn = function(act)
     return true
 end
 
+ACTIONS.DIGDUNG.validfn = function(act)
+    if act.doer and act.target and act.doer:IsValid() and act.target:IsValid() then
+        return not act.doer:HasTag("hasdung") and act.target:HasTag("dungpile")
+    end
+end
+
 ACTIONS.MOUNTDUNG.fn = function(act)
-    local doer = act.doer
-    doer.dung_target:Remove()
-    doer:AddTag("hasdung")
-    doer.dung_target = nil
-    return true
+    if act.doer and act.target and act.doer:IsValid() and act.target:IsValid() then
+        act.target:Remove()
+        act.doer:AddTag("hasdung")
+        return true
+    end
+end
+
+ACTIONS.MOUNTDUNG.validfn = function(act)
+    if act.doer and act.target and act.doer:IsValid() and act.target:IsValid() then
+        return not act.doer:HasTag("hasdung") and act.target:HasTag("dungball")
+    end
 end
 
 

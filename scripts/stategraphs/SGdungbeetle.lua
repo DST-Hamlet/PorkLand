@@ -220,26 +220,23 @@ local states = {
             inst.AnimState:PlayAnimation("ball_get_on")
             inst.SoundEmitter:PlaySound("dontstarve/common/craftable/tent_sleep")
 
-            local pos = inst.dung_target:GetPosition()
-            local dist
-            if pos ~= nil then
+            local action = inst:GetBufferedAction()
+            local target = action.target
+            if target ~= nil and target:IsValid() then
+                local pos = target:GetPosition()
                 inst:ForceFacePoint(pos)
                 local distsq = inst:GetDistanceSqToPoint(pos)
+
                 if distsq <= 0.25 * 0.25 then
-                    dist = 0
                     inst.sg.statemem.speed = 0
                 elseif distsq >= MAX_JUMPIN_DIST_SQ then
-                    dist = MAX_JUMPIN_DIST
                     inst.sg.statemem.speed = MAX_JUMPIN_SPEED
                 else
-                    dist = math.sqrt(distsq)
+                    local dist = math.sqrt(distsq)
                     inst.sg.statemem.speed = MAX_JUMPIN_SPEED * dist / MAX_JUMPIN_DIST
                 end
-            else
-                inst.sg.statemem.speed = 0
-                dist = 0
+                inst.Physics:SetMotorVel(inst.sg.statemem.speed * .5, 0, 0)
             end
-            inst.Physics:SetMotorVel(inst.sg.statemem.speed * .5, 0, 0)
         end,
 
         onexit = function(inst)
@@ -387,8 +384,8 @@ local states = {
         end,
 
         timeline = {
-            TimeEvent(10 * FRAMES, function(inst) PlayFootstep(inst) end ),
-            TimeEvent(11 * FRAMES, function(inst) PlayFootstep(inst) end ),
+            TimeEvent(10 * FRAMES, function(inst) PlayFootstep(inst) end),
+            TimeEvent(11 * FRAMES, function(inst) PlayFootstep(inst) end),
         },
 
         events = {
@@ -448,7 +445,7 @@ local states = {
         onupdate = function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
             if y < 2 then
-                inst.Physics:SetMotorVel(0,0,0)
+                inst.Physics:SetMotorVel(0, 0, 0)
             end
 
             if y <= .1 then

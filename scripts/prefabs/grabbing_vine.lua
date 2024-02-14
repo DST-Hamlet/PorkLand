@@ -14,12 +14,12 @@ local brain = require("brains/grabbing_vinebrain")
 
 SetSharedLootTable("grabbing_vine",
 {
-    {"plantmeat",  0.4},
-    {"rope",  0.4},
+    {"plantmeat", 0.4},
+    {"rope", 0.4},
 })
 
 local function ShadownOn(inst)
-    inst.DynamicShadow:SetSize(1.5, .75)
+    inst.DynamicShadow:SetSize(1.5, 0.75)
 end
 
 local function ShadowOff(inst)
@@ -132,7 +132,7 @@ local function commonfn(Sim)
     inst:AddComponent("knownlocations")
     inst:AddComponent("inspectable")
 
-    inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
+    inst:AddComponent("locomotor")  -- locomotor must be constructed before the stategraph
     inst.components.locomotor.walkspeed = 4
     inst.components.locomotor.runspeed = 8
 
@@ -168,6 +168,10 @@ local function commonfn(Sim)
     inst.LoadPostPass = LoadPostPass
     inst.OnRemoveEntity = OnRemoveEntity
 
+    inst:AddComponent("burnable")
+    inst.components.burnable:SetFXLevel(3)
+    inst.components.burnable:SetBurnTime(10)
+    inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 20, 0), "swap_fire")
     MakeHauntableIgnite(inst)
 
     inst:DoTaskInTime(0, InIt)

@@ -19,8 +19,8 @@ end
 local function GetHome(inst)
     if not inst.puddle then
         inst.puddle = GetPuddle(inst)
-        return inst.puddle and inst.puddle:GetPosition() or inst:GetPosition()
     end
+    return inst.puddle and inst.puddle:GetPosition() or inst:GetPosition()
 end
 
 local function DrinkAction(inst)

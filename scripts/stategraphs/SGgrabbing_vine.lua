@@ -66,6 +66,7 @@ local states=
         name = "up",
         tags = {"idle", "busy", "noattack", "up"},
         onenter = function(inst, playanim)
+            inst:AddTag("fireimmune")
             inst:AddTag("noattack")
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("up")
@@ -95,6 +96,7 @@ local states=
         name = "down",
         tags = {"busy"},
         onenter = function(inst, playanim)
+            inst:RemoveTag("fireimmune")
             inst:RemoveTag("noattack")
             inst:ShadownOn()
             inst.Physics:Stop()

@@ -34,6 +34,12 @@ local function GetStatus(inst, viewer)
     end
 end
 
+local SLEEP_NEAR_ENEMY_DISTANCE = 14
+local function ShouldSleep(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    return DefaultSleepTest(inst) and not IsAnyPlayerInRange(x, y, z, SLEEP_NEAR_ENEMY_DISTANCE)
+end
+
 local function OnSave(inst, data)
     if not inst:HasTag("hasdung") then
         data.lost_dung = true
@@ -93,10 +99,12 @@ local function fn()
     inst.Physics:SetCollisionCallback(OnCollide)
 
     inst:AddComponent("knownlocations")
-    inst:AddComponent("sleeper")
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
+
+    inst:AddComponent("sleeper")
+    inst.components.sleeper:SetSleepTest(ShouldSleep)
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.DUNGBEETLE_HEALTH)
