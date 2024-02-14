@@ -91,7 +91,7 @@ local function InIt(inst)
     inst.components.knownlocations:RememberLocation("home", Point(inst.Transform:GetWorldPosition()), true)
 end
 
-local function commonfn(Sim)
+local function commonfn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
@@ -169,6 +169,7 @@ local function commonfn(Sim)
     inst.OnRemoveEntity = OnRemoveEntity
 
     inst:AddComponent("burnable")
+    inst.components.burnable.canlight = false
     inst.components.burnable:SetFXLevel(3)
     inst.components.burnable:SetBurnTime(10)
     inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 20, 0), "swap_fire")
