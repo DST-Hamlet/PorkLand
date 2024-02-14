@@ -19,6 +19,12 @@ return {
         CHITIN = "I'm going to need more of these.",
         CUTNETTLE = "Smells like relief.",
         DUNGBALL = "Huh. It's almost like nobody wants a ball of poop.",
+        DUNGBEETLE = {
+            DEAD = "Someone should write a eulogy. Not me, but someone.",
+            GENERIC = "Swell. A giant bug on a giant ball of poop.",
+            SLEEPING = "Just screaming to be stepped on.",
+            UNDUNGED = "At least it smells a little better now.",
+        },
         FLOWER_RAINFOREST = "You can never have too many flowers. Or projectiles.",
         GLOWFLY = {
             DEAD = "I guess it can't fly me out of here now.",

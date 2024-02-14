@@ -19,6 +19,12 @@ return {
         CHITIN = "It's got some heft to it.",
         CUTNETTLE = "It has a smell to it.",
         DUNGBALL = "Dung to go.",
+        DUNGBEETLE = {
+            DEAD = "It's a goner.",
+            GENERIC = "There's a bit of a stink.",
+            SLEEPING = "Getting some shut eye.",
+            UNDUNGED = "I don't think she liked that.",
+        },
         FLOWER_RAINFOREST = "It's a pretty lil' thing.",
         GLOWFLY = {
             DEAD = "Dead.",

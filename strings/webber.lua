@@ -19,6 +19,12 @@ return {
         CHITIN = "Hope no one's missing that.",
         CUTNETTLE = "These nettles smell really strong.",
         DUNGBALL = "Yuck!",
+        DUNGBEETLE = {
+            DEAD = "Awww.",
+            GENERIC = "Is that... poop?",
+            SLEEPING = "She dozed off.",
+            UNDUNGED = "She fell off her poop ball.",
+        },
         FLOWER_RAINFOREST = "This flower is neat!",
         GLOWFLY = {
             DEAD = "Oh no! It died!",

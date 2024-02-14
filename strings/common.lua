@@ -15,6 +15,7 @@ return {
         CHITIN = "Chitin",
         CUTNETTLE = "Nettle",
         DUNGBALL = "Dung Ball",
+        DUNGBEETLE = "Dung Beetle",
         FLOWER_RAINFOREST = "Exotic Flower",
         GLOWFLY = "Glowfly",
         GLOWFLY_COCOON = "Glowfly Cocoon",

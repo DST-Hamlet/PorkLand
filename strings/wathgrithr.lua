@@ -19,6 +19,12 @@ return {
         CHITIN = "The feeble armor of the bug.",
         CUTNETTLE = "Its smell has vanquish mine sinuses.",
         DUNGBALL = "What sickness is this?",
+        DUNGBEETLE = {
+            DEAD = "She has fallen in battle.",
+            GENERIC = "A mounted foe!",
+            SLEEPING = "May her dreams be as foul as the spheres she rides.",
+            UNDUNGED = "She has been thrown from her foul mount!",
+        },
         FLOWER_RAINFOREST = "A blossom most lovely.",
         GLOWFLY = {
             DEAD = "Alas, it is dead.",

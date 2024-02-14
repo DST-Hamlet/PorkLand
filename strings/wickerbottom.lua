@@ -19,6 +19,12 @@ return {
         CHITIN = "The exoskeleton of an arthropod.",
         CUTNETTLE = "These are quite good for the sinuses.",
         DUNGBALL = "A perfectly spherical specimen of feces.",
+        DUNGBEETLE = {
+            DEAD = "A Scarabaeidae cadaver.",
+            GENERIC = "Scarabaeidae with her droppings.",
+            SLEEPING = "At rest.",
+            UNDUNGED = "She's lost her dung.",
+        },
         FLOWER_RAINFOREST = "Floral cross-pollination produces some fascinating specimens.",
         GLOWFLY = {
             DEAD = "Its existence has reached an end.",

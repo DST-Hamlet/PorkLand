@@ -19,6 +19,12 @@ return {
         CHITIN = "Probably wouldn't make a good surfboard.",
         CUTNETTLE = "Whew! Really cleans your sinuses!",
         DUNGBALL = "Should've leashed it.",
+        DUNGBEETLE = {
+            DEAD = "Aww... All dunged out.",
+            GENERIC = "It's a grade-A dung surfer.",
+            SLEEPING = "That's the right attitude.",
+            UNDUNGED = "Someone's grubbing.",
+        },
         FLOWER_RAINFOREST = "I love these.",
         GLOWFLY = {
             DEAD = "I wish it hadn't died.",

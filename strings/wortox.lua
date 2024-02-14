@@ -18,6 +18,12 @@ return {
         CHITIN = "The shell of those guys.",
         CUTNETTLE = "Just smelling it blows my nose.",
         DUNGBALL = "Why would anyone like it?",
+        DUNGBEETLE = {
+            DEAD = "Sorry, ma'am.",
+            GENERIC = "Is that... poop?",
+            SLEEPING = "I thought they would have a loud purring sound.",
+            UNDUNGED = "Please stop do that.",
+        },
         FLOWER_RAINFOREST = "There is a wild beauty.",
         GLOWFLY = {
             DEAD = "sorry.",

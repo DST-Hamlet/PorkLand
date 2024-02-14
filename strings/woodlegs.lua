@@ -19,6 +19,12 @@ return {
         CHITIN = "A harden'd hull.",
         CUTNETTLE = "Cleans tha' nose as good as sea air.",
         DUNGBALL = "Throw it o'erboard!",
+        DUNGBEETLE = {
+            DEAD = "'tas been run through!",
+            GENERIC = "Cre'ture o' tha dung.",
+            SLEEPING = "Too much o' the grog?",
+            UNDUNGED = "Th'foul stench follows ye.",
+        },
         FLOWER_RAINFOREST = "Ol'Woodlegs na'got use fer'it.",
         GLOWFLY = {
             DEAD = "Tells no tales.",

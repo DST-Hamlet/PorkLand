@@ -19,6 +19,12 @@ return {
         CHITIN = "Bzzter clothes",
         CUTNETTLE = "(sniiiiiff)",
         DUNGBALL = "Yay! Ball of poop!",
+        DUNGBEETLE = {
+            DEAD = "Poor poop rider",
+            GENERIC = "You like poop too?!",
+            SLEEPING = "Shhh...",
+            UNDUNGED = "Where's poop?",
+        },
         FLOWER_RAINFOREST = "Dirt made a friend",
         GLOWFLY = {
             DEAD = "(sob)",
