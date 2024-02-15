@@ -6890,6 +6890,11 @@ msgctxt "STRINGS.NAMES.PIG_RUINS_PLAQUE"
 msgid "Eroding Totem"
 msgstr "风化的图腾"
 
+#. STRINGS.NAMES.PIG_RUINS_SOW
+msgctxt "STRINGS.NAMES.PIG_RUINS_SOW"
+msgid "The Blue Sow"
+msgstr "蓝色母猪"
+
 #. STRINGS.NAMES.RABID_BEETLE
 msgctxt "STRINGS.NAMES.RABID_BEETLE"
 msgid "Rabid Beetle"

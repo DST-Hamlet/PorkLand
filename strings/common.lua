@@ -40,6 +40,7 @@ return {
         PIG_RUINS_IDOL = "Tempting Idol",
         PIG_RUINS_MUSHROOM = "The Jeweled Truffle",
         PIG_RUINS_PLAQUE = "Eroding Totem",
+        PIG_RUINS_SOW = "The Blue Sow",
         RABID_BEETLE = "Rabid Beetle",
         SEDIMENTPUDDLE = "Sparkling Pool",
         SHEARS = "Shears",
