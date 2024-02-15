@@ -6,6 +6,11 @@ local assets =
     Asset("ANIM", "anim/vine02_build.zip"),
 }
 
+local assets_fx = {
+    Asset("ANIM", "anim/vine01_break_fx.zip"),
+    Asset("ANIM", "anim/vine02_break_fx.zip"),
+}
+
 local prefabs =
 {
     "grabbing_vine",
@@ -39,6 +44,11 @@ local function OnExtinguish(inst)
 end
 
 local function OnRemoveEntity(inst)
+    local fx = SpawnPrefab(inst.vine .. "_break_fx")
+    if fx then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        fx.Transform:SetPosition(x, y, z)
+    end
     if inst.spawn_patch then
         inst.spawn_patch:SpawnNewVine(inst.prefab, inst.GUID)
     end
@@ -57,8 +67,8 @@ local function fn()
 
     inst:AddTag("hangingvine")
 
-    local build = math.random() < 0.5 and "vine01_build" or "vine02_build"
-    inst.AnimState:SetBuild(build)
+    inst.vine = math.random() < 0.5 and "vine01" or "vine02"
+    inst.AnimState:SetBuild(inst.vine .. "_build")
     inst.AnimState:SetBank("exitrope")
     inst.AnimState:PlayAnimation("up")
 
@@ -93,4 +103,43 @@ local function fn()
     return inst
 end
 
-return Prefab("hanging_vine", fn, assets, prefabs)
+local function MakeBreakFX(vine)
+    local function fx_fn()
+        local inst = CreateEntity()
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddSoundEmitter()
+        inst.entity:AddNetwork()
+
+        inst.AnimState:SetBuild(vine .. "_break_fx")
+        inst.AnimState:SetBank("exitrope")
+        inst.AnimState:PlayAnimation("break")
+        inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds")
+
+        inst:AddTag("FX")
+
+        inst.entity:SetPristine()
+
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
+        inst:DoTaskInTime(0.05, function() inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds") end)
+        inst:DoTaskInTime(0.10, function() inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds") end)
+        inst:DoTaskInTime(0.15, function() inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds") end)
+        inst:DoTaskInTime(0.20, function() inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds") end)
+
+        inst:ListenForEvent("animover", inst.Remove)
+        inst:ListenForEvent("entitysleep", inst.Remove)
+
+        inst.persists = false
+
+        return inst
+    end
+
+    return Prefab(vine .. "_break_fx", fx_fn, assets_fx)
+end
+
+return Prefab("hanging_vine", fn, assets, prefabs),
+    MakeBreakFX("vine01"),
+    MakeBreakFX("vine02")

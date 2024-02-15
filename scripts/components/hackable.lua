@@ -42,7 +42,7 @@ local Hackable = Class(function(self, inst)
     self.hacksleft = 1
     self.maxhacks = 1
 
-    self.drophacked = PL_CONFIG.droplootground
+    self.drop = true
     self.dropheight = nil
 
     self.paused = false
@@ -395,7 +395,7 @@ function Hackable:MakeEmpty()
     end
 end
 
-function Hackable:Hack(hacker, numworks, shear_mult, from_shears)
+function Hackable:Hack(hacker, numworks, shear_product_num, drop, from_shears)
     if self.canbehacked and self.caninteractwith then
 
         self.hacksleft = self.hacksleft - numworks
@@ -424,15 +424,19 @@ function Hackable:Hack(hacker, numworks, shear_mult, from_shears)
             end
 
             local loot = nil
-            shear_mult = shear_mult or 1
             if self.product ~= nil then
-                if hacker ~= nil and hacker:HasTag("player") and hacker.components.inventory ~= nil and not self.drophacked then -- mobs (wildbores) shouldnt hack items into there inventory now -Half
+                print("什么", drop)
+                if drop == nil then
+                    drop = self.drop
+                end
+                print("什么", drop)
+                if hacker ~= nil and hacker:HasTag("player") and hacker.components.inventory ~= nil and not drop then
                     loot = SpawnPrefab(self.product)
                     if loot ~= nil then
                         if loot.components.inventoryitem ~= nil then
                             loot.components.inventoryitem:InheritMoisture(TheWorld.state.wetness, TheWorld.state.iswet)
                         end
-                        local numtoharvest = self.numtoharvest * shear_mult
+                        local numtoharvest = shear_product_num or self.numtoharvest
                         if numtoharvest > 1 and loot.components.stackable ~= nil then
                             loot.components.stackable:SetStackSize(numtoharvest)
                         end
@@ -440,7 +444,7 @@ function Hackable:Hack(hacker, numworks, shear_mult, from_shears)
                         hacker.components.inventory:GiveItem(loot, nil, self.inst:GetPosition())
                     end
                 elseif self.inst.components.lootdropper ~= nil then
-                    local num = (self.numtoharvest or 1) * shear_mult
+                    local num = shear_product_num or self.numtoharvest or 1
                     local pt = self.inst:GetPosition()
                     pt.y = pt.y + (self.dropheight or 0)
                     for i = 1, num do
