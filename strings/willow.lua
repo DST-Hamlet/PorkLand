@@ -73,6 +73,11 @@ return {
             GENERIC = "What're you so mad about?",
             SLEEPING = "I should draw a mustache on its mustache while it sleeps.",
         },
+        RELIC_1 = "Its grin creeps me out.",
+        RELIC_2 = "It's really old.",
+        RELIC_3 = "Snooty.",
+        RELIC_4 = "Looks fancier than those other old things.",
+        RELIC_5 = "Ugh. Can't get those jewels out.",
         SEDIMENTPUDDLE = "Yeesh, there's a lot of sparkles in there.",
         SHEARS = "Not as good as fire, but I guess it has its uses.",
         SMELTER = {

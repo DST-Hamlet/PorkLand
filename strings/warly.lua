@@ -73,6 +73,11 @@ return {
             GENERIC = "It is like me when I am hungry.",
             SLEEPING = "What a curious way to sleep!",
         },
+        RELIC_1 = "What strange textures.",
+        RELIC_2 = "An odd little fellow.",
+        RELIC_3 = "I bet it picks up all sorts of aromas.",
+        RELIC_4 = "This would make a pretty centerpiece.",
+        RELIC_5 = "If only it were a real truffle.",
         SEDIMENTPUDDLE = "It's been seasoned with gold.",
         SHEARS = "Good for cutting hedges and grass.",
         SMELTER = {

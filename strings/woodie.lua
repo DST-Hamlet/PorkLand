@@ -73,6 +73,11 @@ return {
             GENERIC = "Seems mighty angry.",
             SLEEPING = "Let sleeping bugs lie, I say.",
         },
+        RELIC_1 = "This has been around awhile.",
+        RELIC_2 = "Hey there, little buddy.",
+        RELIC_3 = "Who nose what that is, eh?",
+        RELIC_4 = "Must have been some important lady.",
+        RELIC_5 = "Oh. This one looks valuable.",
         SEDIMENTPUDDLE = "What's that shiny stuff in there?",
         SHEARS = "Don't get jealous, Lucy.",
         SMELTER = {

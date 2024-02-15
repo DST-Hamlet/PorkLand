@@ -70,6 +70,11 @@ return {
             GENERIC = "vermin! go away!",
             SLEEPING = "Huh, I can take a breath.",
         },
+        RELIC_1 = "Not everyone can span a long time.",
+        RELIC_2 = "It must have been the work of an ancient pig man.",
+        RELIC_3 = "Big stone nose.",
+        RELIC_4 = "Let's go get the reward quickly.",
+        RELIC_5 = "This is it, and I can exchange it for great rewards.",
         SEDIMENTPUDDLE = "Water isn't the only thing reflecting sunlight here.",
         SHEARS = "I won't waste my time on this.",
         SMELTER = {

@@ -73,6 +73,11 @@ return {
             GENERIC = "As rabid as death itself.",
             SLEEPING = "Sleep is not a permanent escape from life.",
         },
+        RELIC_1 = "Everything is lost to time, eventually.",
+        RELIC_2 = "The remains of a long dead age...",
+        RELIC_3 = "A long forgotten relic.",
+        RELIC_4 = "Looks like someone who died long ago.",
+        RELIC_5 = "Even this doesn't cheer me up.",
         SEDIMENTPUDDLE = "Contains unreachable shiny things.",
         SHEARS = "Can it shear my heart?",
         SMELTER = {

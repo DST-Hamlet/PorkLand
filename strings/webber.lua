@@ -73,6 +73,11 @@ return {
             GENERIC = "That guy's got a lot of energy!",
             SLEEPING = "Haha! A bug with a mustache!",
         },
+        RELIC_1 = "Wonder if someone would want this.",
+        RELIC_2 = "This is probably important to someone.",
+        RELIC_3 = "Someone would treasure this.",
+        RELIC_4 = "Looks like it belongs to a Queen or something.",
+        RELIC_5 = "Wow. This looks pretty valuable.",
         SEDIMENTPUDDLE = "It's full of sparkly stuff.",
         SHEARS = "It's for chores like trimming hedges or cutting grass.",
         SMELTER = {

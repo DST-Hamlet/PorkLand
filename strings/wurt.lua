@@ -70,6 +70,11 @@ return {
             GENERIC = "The little bug is going crazy!",
             SLEEPING = "The little bug was quiet.",
         },
+        RELIC_1 = "The pigs give me money in exchange for their own things, okay!",
+        RELIC_2 = "The pigs give me money in exchange for their own things, okay!",
+        RELIC_3 = "The spoils of war!",
+        RELIC_4 = "A different pig man, why?",
+        RELIC_5 = "Not edible, but sparkling.",
         SEDIMENTPUDDLE = "Water are ... shining?",
         SHEARS = "Shape the plants.",
         SMELTER = {

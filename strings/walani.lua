@@ -74,6 +74,26 @@ return {
             GENERIC = "Dude, you need to chill!",
             SLEEPING = "That's it. Now just stay asleep.",
         },
+        RELIC_1 = {
+            GENERIC = "I should return this to the pig-dudes.",
+            SUNKEN = "Someone dropped their ancient action figure.",
+        },
+        RELIC_2 = {
+            GENERIC = "Cool! What is it?",
+            SUNKEN = "Someone should fish that out.",
+        },
+        RELIC_3 = {
+            GENERIC = "Someone would probably want this.",
+            SUNKEN = "Huh. Who would drop that in the water?",
+        },
+        RELIC_4 = {
+            GENERIC = "Woah. Looks fancy.",
+            SUNKEN = "There's something shiny down there.",
+        },
+        RELIC_5 = {
+            GENERIC = "Not your regular old relic.",
+            SUNKEN = "Is it worth fishing that out?",
+        },
         SEDIMENTPUDDLE = "There's sparkly things down there!",
         SHEARS = "What am I supposed to do with these?",
         SMELTER = {

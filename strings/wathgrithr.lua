@@ -73,6 +73,11 @@ return {
             GENERIC = "Evil beast. You have met your match!",
             SLEEPING = "Slumber consumes it!",
         },
+        RELIC_1 = "Surely it holds great power.",
+        RELIC_2 = "It must possess incredible magics.",
+        RELIC_3 = "A gift for the pigs, bestowed by the gods.",
+        RELIC_4 = "Decoration fit for Hela.",
+        RELIC_5 = "Surely this treasure shall win me fortune.",
         SEDIMENTPUDDLE = "Its tiny gold pieces will be mine!",
         SHEARS = "A weapon for use against a mighty hedge!",
         SMELTER = {

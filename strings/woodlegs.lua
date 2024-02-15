@@ -73,6 +73,11 @@ return {
             GENERIC = "Ornery buggie.",
             SLEEPING = "Thar she blows!",
         },
+        RELIC_1 = "Long fergott'n treas're.",
+        RELIC_2 = "'oary treas're!",
+        RELIC_3 = "Treasure b'this!",
+        RELIC_4 = "A queenly tre'sure.",
+        RELIC_5 = "t'be worth more than'a pretty penny.",
         SEDIMENTPUDDLE = "Alas, not big enough to sail in.",
         SHEARS = "A cutlass fer tha'bushes.",
         SMELTER = {

@@ -73,6 +73,11 @@ return {
             GENERIC = "Wolfgang will stomp bad beetle!",
             SLEEPING = "Hehe. Is funny mustache.",
         },
+        RELIC_1 = "Is like little pig men.",
+        RELIC_2 = "Is thing from little pig men.",
+        RELIC_3 = "Is stone piggie nose.",
+        RELIC_4 = "Is not mighty. Is fancy.",
+        RELIC_5 = "Has the shiny rocks in it.",
         SEDIMENTPUDDLE = "Hello little sparklies!",
         SHEARS = "Is for cutting plant things.",
         SMELTER = {

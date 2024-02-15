@@ -70,6 +70,11 @@ return {
             GENERIC = "What are you all excited about?",
             SLEEPING = "Calm down!",
         },
+        RELIC_1 = "There will be rich people who want this.",
+        RELIC_2 = "I guess it would have some cultural value.",
+        RELIC_3 = "After all, it is a cultural relic, and maybe the pigs will want it.",
+        RELIC_4 = "This one looks different, maybe she's special.",
+        RELIC_5 = "It is inlaid with many precious stones and must be very valuable.",
         SEDIMENTPUDDLE = "The metal content is seriously over the limit.",
         SHEARS = "Shears for gardening.",
         SMELTER = {

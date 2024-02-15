@@ -73,6 +73,20 @@ return {
             GENERIC = "Probably just agitated because it can't fly well.",
             SLEEPING = "Quite the snorer.",
         },
+        RELIC_1 = {
+            GENERIC = "Looks like something the pig history buffs would like.",
+            SUNKEN = "I'll need something to fish it out with.",
+        },
+        RELIC_2 = {
+            GENERIC = "Pig history. Someone's bound to love this.",
+            SUNKEN = "I'm hoping that's not a really big fish.",
+        },
+        RELIC_3 = {
+            GENERIC = "This belongs in a museum.",
+            SUNKEN = "How am I going to get it out of there?",
+        },
+        RELIC_4 = "Looks fancy. And royal. And it looks like a pig.",
+        RELIC_5 = "Well it's valuable to someone.",
         SEDIMENTPUDDLE = "A sparkly pool. A little too sparkly.",
         SHEARS = "Time to do some yard work.",
         SMELTER = {

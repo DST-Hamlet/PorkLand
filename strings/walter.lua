@@ -70,6 +70,11 @@ return {
             GENERIC = "Wow, look how active they are!",
             SLEEPING = "it's sleeping,",
         },
+        RELIC_1 = "A small pig statue.",
+        RELIC_2 = "What do you think they will write? Warby?",
+        RELIC_3 = "A huge nose.",
+        RELIC_4 = "Very royal.",
+        RELIC_5 = "Looks precious.",
         SEDIMENTPUDDLE = "Is that gold in there?",
         SHEARS = "Gardener's little helper.",
         SMELTER = {

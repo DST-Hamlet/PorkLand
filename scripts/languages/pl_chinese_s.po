@@ -310,6 +310,56 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "In a slumber."
 msgstr "它正在熟睡。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_1.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_1.GENERIC"
+msgid "A priceless piece of history."
+msgstr "这是一段无价的历史。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_1.SUNKEN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_1.SUNKEN"
+msgid "Ancient litter."
+msgstr "古代的垃圾。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_2.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_2.GENERIC"
+msgid "The relic of an ancient culture."
+msgstr "古代文化的遗迹。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_2.SUNKEN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_2.SUNKEN"
+msgid "It's green and submarine."
+msgstr "水下的绿色遗物。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_3.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_3.GENERIC"
+msgid "Looks valuable."
+msgstr "看起来很值钱。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_3.SUNKEN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_3.SUNKEN"
+msgid "I'll have to fish it out."
+msgstr "我得把它捞出来。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_4.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_4.GENERIC"
+msgid "A regal relic."
+msgstr "一件皇室遗物。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_4.SUNKEN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_4.SUNKEN"
+msgid "Something fishy down there."
+msgstr "这下面有什么可疑的东西。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_5.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_5.GENERIC"
+msgid "It's an old fancy feast."
+msgstr "一个古代的花哨遗物。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_5.SUNKEN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RELIC_5.SUNKEN"
+msgid "I found something."
+msgstr "我发现了一些东西。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Pool's gold."
@@ -634,6 +684,46 @@ msgstr "很显然，它成年时会长出毛发来。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "It's respiratory structures are vibrating."
 msgstr "它的呼吸器官在振动着。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_1.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_1.GENERIC"
+msgid "In theory this was a respectably jubilant fellow in the pig's history."
+msgstr "从理论上讲，这个喜气洋洋的家伙在猪人历史中很值得人尊敬。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_1.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_1.SUNKEN"
+msgid "My observations lead me to conclude I should fish that out."
+msgstr "我的观察结果使我得出结论，我应该把它捞出来。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_2.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_2.GENERIC"
+msgid "Fascinating! Evidently, they had a runic writing system."
+msgstr "真迷人！很显然，它们有一套文字书写系统。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_2.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_2.SUNKEN"
+msgid "My curiosity won't rest until I obtain that mysterious object!"
+msgstr " 我的好奇心不会就此作罢，直到我得到那个神秘的物体！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_3.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_3.GENERIC"
+msgid "Theoretically, it's a fragment of a larger sculpture."
+msgstr "从理论上讲，它是一个大雕塑的碎片。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_3.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_3.SUNKEN"
+msgid "Evidence would suggests there's something down there."
+msgstr "有证据表明下面沉着东西。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_4"
+msgid "A stone representation of some sort of royalty. Quite an unusual color too!"
+msgstr "代表某个皇室的石头。颜色也很不寻常！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RELIC_5"
+msgid "The ornamentation of this ancient artifact suggests it's of enormous value."
+msgstr "从这件古代艺术品的装饰来看，它的价值就不菲。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SEDIMENTPUDDLE"
@@ -960,6 +1050,56 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "That's it. Now just stay asleep."
 msgstr "就是那样。安稳地睡觉吧。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_1.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_1.GENERIC"
+msgid "I should return this to the pig-dudes."
+msgstr "我应该把这个还给猪伙计们。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_1.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_1.SUNKEN"
+msgid "Someone dropped their ancient action figure."
+msgstr "有人丢掉了他们古老的人形塑像。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_2.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_2.GENERIC"
+msgid "Cool! What is it?"
+msgstr "太酷了！那是什么？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_2.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_2.SUNKEN"
+msgid "Someone should fish that out."
+msgstr "需要有人把它捞出来。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_3.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_3.GENERIC"
+msgid "Someone would probably want this."
+msgstr "我觉得有人想要这个。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_3.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_3.SUNKEN"
+msgid "Huh. Who would drop that in the water?"
+msgstr "呼。谁会把它扔进水里？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_4.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_4.GENERIC"
+msgid "Woah. Looks fancy."
+msgstr "哇啊，看着挺花哨的。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_4.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_4.SUNKEN"
+msgid "There's something shiny down there."
+msgstr "有什么东西在下面闪光。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_5.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_5.GENERIC"
+msgid "Not your regular old relic."
+msgstr "不寻常的老古董。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_5.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RELIC_5.SUNKEN"
+msgid "Is it worth fishing that out?"
+msgstr "把它捞出来值得吗？"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SEDIMENTPUDDLE"
 msgid "There's sparkly things down there!"
@@ -1265,6 +1405,31 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "it's sleeping,"
 msgstr "它在睡觉，"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_1"
+msgid "A small pig statue."
+msgstr "一尊小小的猪人像。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_2"
+msgid "What do you think they will write? Warby?"
+msgstr "你觉得它们会写什么呢？沃比？"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_3"
+msgid "A huge nose."
+msgstr "一个巨大的鼻子。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_4"
+msgid "Very royal."
+msgstr "非常有皇家风范。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RELIC_5"
+msgid "Looks precious."
+msgstr "看起来很宝贵。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Is that gold in there?"
@@ -1569,6 +1734,31 @@ msgstr "害虫！快走开！"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Huh, I can take a breath."
 msgstr "呼，可以喘口气了。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_1"
+msgid "Not everyone can span a long time."
+msgstr "并不是谁都能跨越漫长的时间。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_2"
+msgid "It must have been the work of an ancient pig man."
+msgstr "想必是古代猪人的手笔。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_3"
+msgid "Big stone nose."
+msgstr "大石脸的鼻子。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_4"
+msgid "Let's go get the reward quickly."
+msgstr "我们快去领赏吧。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RELIC_5"
+msgid "This is it, and I can exchange it for great rewards."
+msgstr "就是它，我能用它换取丰厚的奖励。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SEDIMENTPUDDLE"
@@ -1890,6 +2080,31 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "What a curious way to sleep!"
 msgstr "好奇怪的睡觉方式！"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_1"
+msgid "What strange textures."
+msgstr "好奇怪的质地。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_2"
+msgid "An odd little fellow."
+msgstr "一只怪怪的小跟班。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_3"
+msgid "I bet it picks up all sorts of aromas."
+msgstr "我打赌，它集所有香气于一身。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_4"
+msgid "This would make a pretty centerpiece."
+msgstr "这会是个很棒的餐桌装饰。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RELIC_5"
+msgid "If only it were a real truffle."
+msgstr "要是真的松露就好了。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SEDIMENTPUDDLE"
 msgid "It's been seasoned with gold."
@@ -2209,6 +2424,31 @@ msgstr "恶兽，我是你的对手！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Slumber consumes it!"
 msgstr "它睡着了！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_1"
+msgid "Surely it holds great power."
+msgstr "肯定拥有巨大的力量"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_2"
+msgid "It must possess incredible magics."
+msgstr "它一定拥有不可思议的魔力"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_3"
+msgid "A gift for the pigs, bestowed by the gods."
+msgstr "诸神赐予猪的馈赠。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_4"
+msgid "Decoration fit for Hela."
+msgstr "适合海拉的装饰。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RELIC_5"
+msgid "Surely this treasure shall win me fortune."
+msgstr "这些财宝一定会给我带来好运。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SEDIMENTPUDDLE"
@@ -2535,6 +2775,46 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "A noisy sleeper."
 msgstr "睡着了还这么聒噪。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_1.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_1.GENERIC"
+msgid "Someone might desire this."
+msgstr "有人可能想要这个。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_1.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_1.SUNKEN"
+msgid "Looks like a drowned man."
+msgstr "看起来像溺水的人。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_2.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_2.GENERIC"
+msgid "This might catch a pretty penny."
+msgstr "这可能会赚一大笔钱。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_2.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_2.SUNKEN"
+msgid "I suppose I'll have to fish it out."
+msgstr "我想我得把它捞出来。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_3.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_3.GENERIC"
+msgid "Where's the rest of the face?"
+msgstr "剩下的脸呢？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_3.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_3.SUNKEN"
+msgid "Must I get my hands dirty?"
+msgstr "我必须把手弄脏吗？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_4"
+msgid "Looks regal."
+msgstr "看起来是皇家的风格。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RELIC_5"
+msgid "It's absurd what passes as valuable around here."
+msgstr "在这里被认为有价值的东西都是荒谬的。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SEDIMENTPUDDLE"
 msgid "There's something sparkling inside there."
@@ -2854,6 +3134,31 @@ msgstr "那些家伙们兴奋过头了！"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Haha! A bug with a mustache!"
 msgstr "哈哈！留着小胡子的虫子！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_1"
+msgid "Wonder if someone would want this."
+msgstr "我想知道会有人想要这个吗。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_2"
+msgid "This is probably important to someone."
+msgstr "这可能对某些人很重要。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_3"
+msgid "Someone would treasure this."
+msgstr "有人会把它当宝贝的。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_4"
+msgid "Looks like it belongs to a Queen or something."
+msgstr "看起来好像是女王或者谁的藏品。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RELIC_5"
+msgid "Wow. This looks pretty valuable."
+msgstr "哇哦。这看起来很值钱。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SEDIMENTPUDDLE"
@@ -3175,6 +3480,31 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Sleep is not a permanent escape from life."
 msgstr "睡眠只能短暂得逃避生活。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_1"
+msgid "Everything is lost to time, eventually."
+msgstr "万物终究会迷失在时间的长河中。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_2"
+msgid "The remains of a long dead age..."
+msgstr "一个死去的久远时代的回忆"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_3"
+msgid "A long forgotten relic."
+msgstr "一件被忘却的遗物。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_4"
+msgid "Looks like someone who died long ago."
+msgstr "看起来像是很久以前死了的人。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RELIC_5"
+msgid "Even this doesn't cheer me up."
+msgstr "即使这样也不能让我高兴起来。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Contains unreachable shiny things."
@@ -3495,6 +3825,46 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Quite the snorer."
 msgstr "鼾声相当大。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_1.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_1.GENERIC"
+msgid "Looks like something the pig history buffs would like."
+msgstr "看起来这像是猪人历史迷们想要的东西。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_1.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_1.SUNKEN"
+msgid "I'll need something to fish it out with."
+msgstr "我需要用什么东西把它捞上来。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_2.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_2.GENERIC"
+msgid "Pig history. Someone's bound to love this."
+msgstr "猪人的历史。一定会有人喜欢的。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_2.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_2.SUNKEN"
+msgid "I'm hoping that's not a really big fish."
+msgstr "我希望钓上来的不是一条真的大鱼。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_3.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_3.GENERIC"
+msgid "This belongs in a museum."
+msgstr "这个东西属于博物馆。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_3.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_3.SUNKEN"
+msgid "How am I going to get it out of there?"
+msgstr "我怎么把它从这里弄出去呢？"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_4"
+msgid "Looks fancy. And royal. And it looks like a pig."
+msgstr "看起来很花哨。还很皇家。还很像一头猪。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RELIC_5"
+msgid "Well it's valuable to someone."
+msgstr "嗯，对某些人来说这很有价值。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SEDIMENTPUDDLE"
 msgid "A sparkly pool. A little too sparkly."
@@ -3814,6 +4184,31 @@ msgstr "这不属于我所知道的物种！"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Dormant."
 msgstr "休眠期。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_1"
+msgid "A priceless piece of Porcine history."
+msgstr "一段无价的猪史。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_2"
+msgid "I must return it to the pigs."
+msgstr "我必须把它还给猪。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_3"
+msgid "This belongs in the hoofs of the culture from which it originated."
+msgstr "这属于蹄类动物的文化起源。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_4"
+msgid "Looks distinctly regal."
+msgstr "看起来很有帝王之相。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RELIC_5"
+msgid "Quite a unique specimen."
+msgstr "非常独特的标本。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SEDIMENTPUDDLE"
@@ -4140,6 +4535,31 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "O GENTLE SLEEPIES"
 msgstr "啊 睡得很安稳"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_1"
+msgid "A FELLOW OF INFINITE JEST"
+msgstr "这家伙太可笑了吧"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_2"
+msgid "WHENFORE THAT FROM?"
+msgstr "它是从哪里来的？"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_3"
+msgid "IT SPEAKS LESS THAN IT NOSE-EST"
+msgstr "它嘴的部分比鼻子还少"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_4"
+msgid "IT LOOK'ETH LIKE MAMA"
+msgstr "它看起来像妈妈"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RELIC_5"
+msgid "(SNIFF SNIFF) DOTH NAUGHT SMELLETH"
+msgstr "（嗅嗅）没有什么气味"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SEDIMENTPUDDLE"
 msgid "ALL THAT GLITTERS 'TIS GOLD"
@@ -4460,6 +4880,31 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "I should draw a mustache on its mustache while it sleeps."
 msgstr "我应该在它睡觉的时候挂它的胡子。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_1"
+msgid "Its grin creeps me out."
+msgstr "它的笑容让我感到沮丧。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_2"
+msgid "It's really old."
+msgstr "它真的很老。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_3"
+msgid "Snooty."
+msgstr "傲慢的。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_4"
+msgid "Looks fancier than those other old things."
+msgstr "看起来比其它旧东西更漂亮。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RELIC_5"
+msgid "Ugh. Can't get those jewels out."
+msgstr "啊。我弄不出那些珠宝。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Yeesh, there's a lot of sparkles in there."
@@ -4764,6 +5209,31 @@ msgstr "你们到底在兴奋什么？"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Calm down!"
 msgstr "好好冷静一下！"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_1"
+msgid "There will be rich people who want this."
+msgstr "会有有钱人想要这个的。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_2"
+msgid "I guess it would have some cultural value."
+msgstr "我猜它会有一些文化价值。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_3"
+msgid "After all, it is a cultural relic, and maybe the pigs will want it."
+msgstr "终究是文物，没准猪人会想要。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_4"
+msgid "This one looks different, maybe she's special."
+msgstr "这个看起来不太一样，也许她很特殊。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RELIC_5"
+msgid "It is inlaid with many precious stones and must be very valuable."
+msgstr "镶嵌了许多宝石，一定很值钱。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SEDIMENTPUDDLE"
@@ -5085,6 +5555,31 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Hehe. Is funny mustache."
 msgstr "呵呵，很有趣的胡子。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_1"
+msgid "Is like little pig men."
+msgstr "看起来很像小猪人们。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_2"
+msgid "Is thing from little pig men."
+msgstr "小猪人们的东西。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_3"
+msgid "Is stone piggie nose."
+msgstr "石头做的小猪鼻子。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_4"
+msgid "Is not mighty. Is fancy."
+msgstr "并不强大。但美丽。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RELIC_5"
+msgid "Has the shiny rocks in it."
+msgstr "里面有闪亮的岩石。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Hello little sparklies!"
@@ -5404,6 +5899,31 @@ msgstr "看上去非常生气。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Let sleeping bugs lie, I say."
 msgstr "我是说，让熟睡的虫子躺着吧。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_1"
+msgid "This has been around awhile."
+msgstr "这有些年头了。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_2"
+msgid "Hey there, little buddy."
+msgstr "你好啊，小家伙。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_3"
+msgid "Who nose what that is, eh?"
+msgstr "有谁知道这是啥，嗯？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_4"
+msgid "Must have been some important lady."
+msgstr "一定是某位重要的女士。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RELIC_5"
+msgid "Oh. This one looks valuable."
+msgstr "哦。这个看起来很值钱。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SEDIMENTPUDDLE"
@@ -5725,6 +6245,31 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Thar she blows!"
 msgstr "她在那里呼吸着！"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_1"
+msgid "Long fergott'n treas're."
+msgstr "被遗忘很久的宝藏。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_2"
+msgid "'oary treas're!"
+msgstr "遗失很久的宝藏！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_3"
+msgid "Treasure b'this!"
+msgstr "这就是宝藏！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_4"
+msgid "A queenly tre'sure."
+msgstr "一个像猪女王的宝藏。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RELIC_5"
+msgid "t'be worth more than'a pretty penny."
+msgstr "它比一大笔钱还贵重。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Alas, not big enough to sail in."
@@ -6045,6 +6590,46 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Let it sleep"
 msgstr "让它睡觉吧"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_1.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_1.GENERIC"
+msgid "Happy rock!"
+msgstr "开心的石头！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_1.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_1.SUNKEN"
+msgid "Swimming"
+msgstr "在游泳"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_2.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_2.GENERIC"
+msgid "Old Twirly Tail thing"
+msgstr "古老的卷尾巴的东西"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_2.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_2.SUNKEN"
+msgid "Something hiding?"
+msgstr "藏着什么东西？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_3.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_3.GENERIC"
+msgid "Lost sniffer?"
+msgstr "弄丢的吸气器？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_3.SUNKEN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_3.SUNKEN"
+msgid "See you!"
+msgstr "看见你了！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_4"
+msgid "Ohh... pretty rock"
+msgstr "噢...很漂亮的石头"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RELIC_5"
+msgid "Fancy old thing"
+msgstr "花哨的古老东西"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Shiny puddle"
@@ -6344,6 +6929,31 @@ msgstr "真有精力，来跳支舞吗？"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Then intermission."
 msgstr "那就中场休息。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_1"
+msgid "Use ancient statuettes for decoration."
+msgstr "古代的小雕像，拿来装饰吧。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_2"
+msgid "Let me see...'Question marks, shooting stars, pine trees. 'Haha, just kidding."
+msgstr "我看看...'问号，流星，松树。'哈哈，开玩笑的。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_3"
+msgid "The big nose of a big pig head."
+msgstr "大猪头的大鼻头。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_4"
+msgid "It looks very royal."
+msgstr "看上去就非常皇家。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RELIC_5"
+msgid "Lots of gems, but no magic."
+msgstr "很多宝石，但没有魔法。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SEDIMENTPUDDLE"
@@ -6649,6 +7259,31 @@ msgstr "小虫子在发疯！"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "The little bug was quiet."
 msgstr "小虫子安静了。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_1"
+msgid "The pigs give me money in exchange for their own things, okay!"
+msgstr "猪人给我钱换它们自己的东西，好！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_2"
+msgid "The pigs give me money in exchange for their own things, okay!"
+msgstr "猪人给我钱换它们自己的东西，好！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_3"
+msgid "The spoils of war!"
+msgstr "战利品！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_4"
+msgid "A different pig man, why?"
+msgstr "一个不一样的猪人，为什么？"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RELIC_5"
+msgid "Not edible, but sparkling."
+msgstr "不能吃，但闪闪发光。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SEDIMENTPUDDLE"
@@ -6970,6 +7605,31 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "REGENERATING TERROR"
 msgstr "恐怖再生中"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_1
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_1"
+msgid "ROCK PART"
+msgstr "一块石头"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_2
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_2"
+msgid "ROCK PART"
+msgstr "一块石头"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_3
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_3"
+msgid "ROCK PART"
+msgstr "一块石头"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_4
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_4"
+msgid "ROCK OF SOME VALUE"
+msgstr "有价值的石头"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_5
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RELIC_5"
+msgid "ROCK OF SOME VALUE"
+msgstr "有价值的石头"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SEDIMENTPUDDLE"
 msgid "WATER IS HINDERING ME FROM FINANCIAL GAIN"
@@ -7194,6 +7854,31 @@ msgstr "蓝色母猪"
 msgctxt "STRINGS.NAMES.RABID_BEETLE"
 msgid "Rabid Beetle"
 msgstr "疯狂甲虫"
+
+#. STRINGS.NAMES.RELIC_1
+msgctxt "STRINGS.NAMES.RELIC_1"
+msgid "Lost Idol"
+msgstr "遗失的塑像"
+
+#. STRINGS.NAMES.RELIC_2
+msgctxt "STRINGS.NAMES.RELIC_2"
+msgid "Lost Totem"
+msgstr "遗失的图腾"
+
+#. STRINGS.NAMES.RELIC_3
+msgctxt "STRINGS.NAMES.RELIC_3"
+msgid "Relic Fragment"
+msgstr "遗迹碎片"
+
+#. STRINGS.NAMES.RELIC_4
+msgctxt "STRINGS.NAMES.RELIC_4"
+msgid "The Blue Sow"
+msgstr "蓝色母猪"
+
+#. STRINGS.NAMES.RELIC_5
+msgctxt "STRINGS.NAMES.RELIC_5"
+msgid "The Jeweled Truffle"
+msgstr "宝石松露"
 
 #. STRINGS.NAMES.SEDIMENTPUDDLE
 msgctxt "STRINGS.NAMES.SEDIMENTPUDDLE"

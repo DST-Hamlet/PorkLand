@@ -73,6 +73,20 @@ return {
             GENERIC = "Why so mad, Bzzter?",
             SLEEPING = "Let it sleep",
         },
+        RELIC_1 = {
+            GENERIC = "Happy rock!",
+            SUNKEN = "Swimming",
+        },
+        RELIC_2 = {
+            GENERIC = "Old Twirly Tail thing",
+            SUNKEN = "Something hiding?",
+        },
+        RELIC_3 = {
+            GENERIC = "Lost sniffer?",
+            SUNKEN = "See you!",
+        },
+        RELIC_4 = "Ohh... pretty rock",
+        RELIC_5 = "Fancy old thing",
         SEDIMENTPUDDLE = "Shiny puddle",
         SHEARS = "For hair cuts",
         SMELTER = {

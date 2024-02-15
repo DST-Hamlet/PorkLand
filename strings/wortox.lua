@@ -69,6 +69,11 @@ return {
             GENERIC = "Really energetic, do you want to dance?",
             SLEEPING = "Then intermission.",
         },
+        RELIC_1 = "Use ancient statuettes for decoration.",
+        RELIC_2 = "Let me see...'Question marks, shooting stars, pine trees. 'Haha, just kidding.",
+        RELIC_3 = "The big nose of a big pig head.",
+        RELIC_4 = "It looks very royal.",
+        RELIC_5 = "Lots of gems, but no magic.",
         SEDIMENTPUDDLE = "These are not for drink.",
         SHEARS = "Click, click, leaves fall.",
         SMELTER = {

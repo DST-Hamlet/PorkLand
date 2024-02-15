@@ -214,7 +214,7 @@ local function MakeRuin(name, data)
         inst.AnimState:SetMultColour(color, color, color, 1)
 
         inst:AddComponent("inspectable")
-        inst.components.inspectable.nameoverride = "ROCK"
+        -- inst.components.inspectable.nameoverride = "ROCK"
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
@@ -264,8 +264,8 @@ local ruin_data = {
         loot = "relic_3",
         loot_table = "ruins_giant_head",
         master_postinit = function(inst)
-            -- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
-            inst.components.inspectable.nameoverride = nil
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
+            -- inst.components.inspectable.nameoverride = nil
         end
     },
     pig_ruins_pig = {
@@ -276,10 +276,10 @@ local ruin_data = {
         loot = "goldnugget",
         loot_num = 2,
         master_postinit = function(inst)
-            -- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
             inst.OnEntityWake = OnEntityWake
             inst.OnRemoveEntity = OnRemoveEntity
-            inst.components.inspectable.nameoverride = nil
+            -- inst.components.inspectable.nameoverride = nil
         end
     },
     pig_ruins_ant = {
@@ -290,7 +290,7 @@ local ruin_data = {
         loot = "goldnugget",
         loot_num = 2,
         master_postinit = function(inst)
-            -- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
             inst.OnEntityWake = OnEntityWake
             inst.OnRemoveEntity = OnRemoveEntity
         end
@@ -303,8 +303,8 @@ local ruin_data = {
         minimapicon = "statue_pig_ruins_idol",
         loot = "relic_1",
         master_postinit = function(inst)
-            -- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_IDOL"])
-            inst.components.inspectable.nameoverride = nil
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_IDOL"])
+            -- inst.components.inspectable.nameoverride = nil
         end
     },
     pig_ruins_plaque = {
@@ -315,7 +315,7 @@ local ruin_data = {
         minimapicon = "statue_pig_ruins_plaque",
         loot = "relic_2",
         master_postinit = function(inst)
-            -- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_PLAQUE"])
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_PLAQUE"])
             inst.components.inspectable.nameoverride = nil
         end
     },
@@ -326,7 +326,7 @@ local ruin_data = {
         minimapicon = "ruins_artichoke",
         loot_table = "ruins_artichoke",
         master_postinit = function(inst)
-            -- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_ARTICHOKE"])
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_ARTICHOKE"])
             inst:RemoveComponent("dislodgeable")
         end
     },
@@ -338,7 +338,7 @@ local ruin_data = {
         minimapicon = "statue_pig_ruins_mushroom",
         loot = "relic_5",
         master_postinit = function(inst)
-            -- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_MUSHROOM"])
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_MUSHROOM"])
         end
     },
     pig_ruins_sow = {
@@ -349,7 +349,7 @@ local ruin_data = {
         minimapicon = "statue_pig_ruins_idol_blue",
         loot = "relic_4",
         master_postinit = function(inst)
-            -- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_SOW"])
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_SOW"])
         end
     },
     rock_basalt = {
@@ -377,7 +377,7 @@ local ruin_data = {
         end,
         master_postinit = function(inst)
             inst:RemoveComponent("dislodgeable")
-            -- inst.components.named:SetName(STRINGS.NAMES["ANTQUEEN_THRONE"])
+            inst.components.named:SetName(STRINGS.NAMES["ANTQUEEN_THRONE"])
             inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE_GIANT)
             inst:ListenForEvent("onremove", function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()

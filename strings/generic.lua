@@ -74,6 +74,26 @@ return {
             GENERIC = "Looks deranged.",
             SLEEPING = "In a slumber.",
         },
+        RELIC_1 = {
+            GENERIC = "A priceless piece of history.",
+            SUNKEN = "Ancient litter.",
+        },
+        RELIC_2 = {
+            GENERIC = "The relic of an ancient culture.",
+            SUNKEN = "It's green and submarine.",
+        },
+        RELIC_3 = {
+            GENERIC = "Looks valuable.",
+            SUNKEN = "I'll have to fish it out.",
+        },
+        RELIC_4 = {
+            GENERIC = "A regal relic.",
+            SUNKEN = "Something fishy down there.",
+        },
+        RELIC_5 = {
+            GENERIC = "It's an old fancy feast.",
+            SUNKEN = "I found something.",
+        },
         SEDIMENTPUDDLE = "Pool's gold.",
         SHEARS = "Shear-ly delightful.",
         SMELTER = {

@@ -74,6 +74,20 @@ return {
             GENERIC = "What is he all worked up about?",
             SLEEPING = "A noisy sleeper.",
         },
+        RELIC_1 = {
+            GENERIC = "Someone might desire this.",
+            SUNKEN = "Looks like a drowned man.",
+        },
+        RELIC_2 = {
+            GENERIC = "This might catch a pretty penny.",
+            SUNKEN = "I suppose I'll have to fish it out.",
+        },
+        RELIC_3 = {
+            GENERIC = "Where's the rest of the face?",
+            SUNKEN = "Must I get my hands dirty?",
+        },
+        RELIC_4 = "Looks regal.",
+        RELIC_5 = "It's absurd what passes as valuable around here.",
         SEDIMENTPUDDLE = "There's something sparkling inside there.",
         SHEARS = "Aren't there gardeners for this sort of thing?",
         SMELTER = {

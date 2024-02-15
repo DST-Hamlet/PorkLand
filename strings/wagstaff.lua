@@ -76,6 +76,20 @@ return {
             GENERIC = "Evidently, it acquires facial hair when it matures.",
             SLEEPING = "It's respiratory structures are vibrating.",
         },
+        RELIC_1 = {
+            GENERIC = "In theory this was a respectably jubilant fellow in the pig's history.",
+            SUNKEN = "My observations lead me to conclude I should fish that out.",
+        },
+        RELIC_2 = {
+            GENERIC = "Fascinating! Evidently, they had a runic writing system.",
+            SUNKEN = "My curiosity won't rest until I obtain that mysterious object!",
+        },
+        RELIC_3 = {
+            GENERIC = "Theoretically, it's a fragment of a larger sculpture.",
+            SUNKEN = "Evidence would suggests there's something down there.",
+        },
+        RELIC_4 = "A stone representation of some sort of royalty. Quite an unusual color too!",
+        RELIC_5 = "The ornamentation of this ancient artifact suggests it's of enormous value.",
         SEDIMENTPUDDLE = "Evidence would suggest there's gold down there!",
         SHEARS = "Cutting implements constructed from raw metal.",
         SMELTER = {

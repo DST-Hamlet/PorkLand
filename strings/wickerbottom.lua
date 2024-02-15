@@ -73,6 +73,11 @@ return {
             GENERIC = "Certainly not a species I know of!",
             SLEEPING = "Dormant.",
         },
+        RELIC_1 = "A priceless piece of Porcine history.",
+        RELIC_2 = "I must return it to the pigs.",
+        RELIC_3 = "This belongs in the hoofs of the culture from which it originated.",
+        RELIC_4 = "Looks distinctly regal.",
+        RELIC_5 = "Quite a unique specimen.",
         SEDIMENTPUDDLE = "Contains some lustrous sentiment.",
         SHEARS = "A useful tool for horticultural purposes.",
         SMELTER = {
