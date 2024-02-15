@@ -63,6 +63,7 @@ return {
         },
         PEAGAWKFEATHER = "It has a foul bird stench.",
         PEAGAWK_BUSH = "There's a wretched bird nearby. I feel it.",
+        PIG_RUINS_HEAD = "Someone missing a head?",
         PIG_RUINS_IDOL = "Be nice if we could get that top part off.",
         PIG_RUINS_PLAQUE = "It's one of those statues the pigs like.",
         RABID_BEETLE = {

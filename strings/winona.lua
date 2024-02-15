@@ -62,6 +62,7 @@ return {
         },
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
+        PIG_RUINS_HEAD = "There must be some way to remove the middle part.",
         PIG_RUINS_IDOL = "There must be some way to remove the top part.",
         PIG_RUINS_PLAQUE = "There must be some way to remove the top part.",
         RABID_BEETLE = {

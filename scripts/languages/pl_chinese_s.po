@@ -270,6 +270,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH"
 msgid "Look! An iris bush."
 msgstr "看！一丛鸢尾灌木。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Looks like a headache."
+msgstr "看起来很头疼。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_IDOL"
 msgid "These ruins have been ruined."
@@ -579,6 +584,11 @@ msgstr "我感觉我被一种不可避免的洞察力所监视。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
 msgid "That insight that spied on me was gone."
 msgstr "那种监视我的洞察力消失了。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Evidence would suggest he's an important figure in the pig's past."
+msgstr "有证据表明他是猪中的一个重要人物"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_IDOL"
@@ -890,6 +900,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a cool looking bush!"
 msgstr "多么酷的一丛灌木啊！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_HEAD"
+msgid "A little bit creepy."
+msgstr "有点吓人。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_IDOL"
 msgid "How do I get that top part off?"
@@ -1190,6 +1205,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
 msgid "This bird can't fly, but turns into a bush!"
 msgstr "这种鸟不会飞，但是会变成灌木丛！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Warby! It's bigger than you!"
+msgstr "沃比！它比你还要大！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Look what we found, Warby!"
@@ -1489,6 +1509,11 @@ msgstr "真是令人难以直视。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a clever disguise."
 msgstr "真是聪明的伪装。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Huge stone pig face."
+msgstr "巨大的石头猪脸。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_IDOL"
@@ -1795,6 +1820,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
 msgid "It's a bright blue bush."
 msgstr "亮蓝色的灌木丛。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_HEAD"
+msgid "I suppose pigs lived here once."
+msgstr "我猜曾经有猪住在这儿。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Those pig fellows might like that."
@@ -2099,6 +2129,11 @@ msgstr "一根无价之宝。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
 msgid "Do you think you can hide from me?"
 msgstr "你觉得你能藏起来不让我发现吗？"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_HEAD"
+msgid "A frost giant head, turned to stone!"
+msgstr "一个化作岩石的森林巨人头颅！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_IDOL"
@@ -2410,6 +2445,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
 msgid "I've my suspicions about that bush."
 msgstr "我对那丛灌木表示怀疑。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_HEAD"
+msgid "It's been beheaded."
+msgstr "它已经身首异处。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Hmmm. How do I get that statue off?"
@@ -2714,6 +2754,11 @@ msgstr "它真美。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Neat. A weird bush!"
 msgstr "优美但又有点奇怪的灌木丛！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_HEAD"
+msgid "We think it's a bit creepy."
+msgstr "我们觉得它有点吓人。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_IDOL"
@@ -3020,6 +3065,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH"
 msgid "Just a bush..."
 msgstr "只是一个灌木丛…"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Whoever built it has long gone."
+msgstr "无论谁建造的，它早已经被毁灭了。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_IDOL"
 msgid "An artifact of a long dead culture."
@@ -3325,6 +3375,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Something's hiding in there."
 msgstr "有东西藏在那里。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Missing something... like its body."
+msgstr "少了点什么...例如身体。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I'll need to get that totem free to take it back to the pigs."
@@ -3629,6 +3684,11 @@ msgstr "雄性蓝孔雀的羽毛。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
 msgid "I have questions about that bush."
 msgstr "我对那灌木丛有些疑惑。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_HEAD"
+msgid "An early Porcine civilization once dwelt here."
+msgstr "一个早期的猪文明曾居住在此。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_IDOL"
@@ -3940,6 +4000,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
 msgid "'TIS NAUGHT A BUSH"
 msgstr "它不是灌木丛"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_HEAD"
+msgid "WHOFORE OFF'D WITH HIS HEAD?"
+msgstr "谁砍下了它的脑袋？"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_IDOL"
 msgid "WILBA LIKETH THE TOP PART"
@@ -4245,6 +4310,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
 msgid "A bush. I think."
 msgstr "一株灌木丛，至少我觉得是。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Doesn't look very flammable."
+msgstr "看起来不易燃。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I should take that off and sell it to a pig."
@@ -4544,6 +4614,11 @@ msgstr "它还在看着我。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
 msgid "A vigilant bush, how strange!"
 msgstr "一株会警惕的灌木丛，真是奇怪！"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_HEAD"
+msgid "There must be some way to remove the middle part."
+msgstr "一定有什么办法把中间那部分卸下来。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_IDOL"
@@ -4850,6 +4925,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
 msgid "Is just bush."
 msgstr "仅仅是灌木丛。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Is big and mighty head. Like Wolfgang!"
+msgstr "脑袋又大又壮，和沃尔夫冈一样！"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Piggies might like those."
@@ -5154,6 +5234,11 @@ msgstr "它散发着一股鸟腥味。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
 msgid "There's a wretched bird nearby. I feel it."
 msgstr "这附近有一只卑鄙的鸟。我能感觉到它。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Someone missing a head?"
+msgstr "有人丢了个脑袋吗？"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_IDOL"
@@ -5460,6 +5545,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
 msgid "'Tis unsettlin' t'b'sure."
 msgstr "这灌木很令人不安。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Thar be th'head."
+msgstr "这应该是头部。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Tha' treasure atop there."
@@ -5765,6 +5855,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH"
 msgid "Looking good!"
 msgstr "看上去不错！"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Must have big rock brain"
+msgstr "必须得有个大石头脑袋"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Twirly Tail rock"
@@ -6059,6 +6154,11 @@ msgstr "小孔雀的羽毛。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
 msgid "Well, this trick can't fool me."
 msgstr "哼，这点把戏骗不过我。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Someone else has an umbrella, but it has a big head!"
+msgstr "别人有伞，它有大头！"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_IDOL"
@@ -6359,6 +6459,11 @@ msgstr "上面有大怪鸟的眼睛。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
 msgid "Pretty feather bush."
 msgstr "漂亮的羽毛灌木。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_HEAD"
+msgid "Giant pig face."
+msgstr "巨大的猪人脸。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_IDOL"
@@ -6665,6 +6770,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
 msgid "GROUND PART"
 msgstr "地面部分"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_HEAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_HEAD"
+msgid "HEAD MECHANISM"
+msgstr "头部装置"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I WILL DESTROY IT!"
@@ -6874,6 +6984,11 @@ msgstr "呆望雀羽毛"
 msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
 msgid "Blinkbush"
 msgstr "眨眼的灌木丛"
+
+#. STRINGS.NAMES.PIG_RUINS_HEAD
+msgctxt "STRINGS.NAMES.PIG_RUINS_HEAD"
+msgid "Crumbling Visage"
+msgstr "残破的雕像"
 
 #. STRINGS.NAMES.PIG_RUINS_IDOL
 msgctxt "STRINGS.NAMES.PIG_RUINS_IDOL"

@@ -62,6 +62,7 @@ return {
         },
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
+        PIG_RUINS_HEAD = "Giant pig face.",
         PIG_RUINS_IDOL = "A pig figure, not a fish figure.",
         PIG_RUINS_PLAQUE = "Is this also made by pigs?",
         RABID_BEETLE = {
