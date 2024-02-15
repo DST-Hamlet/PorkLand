@@ -104,3 +104,15 @@ function Floater:OnLandedClient(...)
         self.showing_effect = true
     end
 end
+
+local function OnHitWater(inst)
+    if inst.components.sinkable ~= nil and (not inst.components.inventoryitem or not inst.components.inventoryitem:IsHeld()) then
+        inst.components.sinkable:OnHitWater()
+    end
+end
+
+PLENV.AddComponentPostInit("floater", function(self)
+    if TheNet:GetIsMasterSimulation() then
+        self.inst:ListenForEvent("floater_startfloating", OnHitWater)
+    end
+end)

@@ -4,14 +4,14 @@ package.path = package.path .. ";../?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-    ["PIG_RUINS_IDOL"] = "PIG_RUINS_IDOL",
+    ["PIG_RUINS_PLAQUE"] = "PIG_RUINS_PLAQUE",
 }
 
 input_strings = {
     CHARACTERS = {
         WINONA = {
             DESCRIBE = {
-                PIG_RUINS_IDOL = "一定有什么办法把上面那部分卸下来。",
+                PIG_RUINS_PLAQUE = "一定有什么办法把上面那部分卸下来。",
             },
         },
         WORTOX = {

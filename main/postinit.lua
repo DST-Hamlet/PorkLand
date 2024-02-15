@@ -10,6 +10,7 @@ local component_posts = {
     "combat",
     "edible",
     "floater",
+    "fishingrod",
     "grogginess",
     "health",
     "inventory",

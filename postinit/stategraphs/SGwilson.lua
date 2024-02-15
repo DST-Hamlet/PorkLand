@@ -389,6 +389,70 @@ local states = {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
+
+    State{
+        name = "fishing_retrieve",
+        --tags = {"prefish", "fishing", "boating"},
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("fishing_pre") -- 14
+            inst.AnimState:PushAnimation("fishing_cast") -- 8-11, new in DST, contains part of old fishing_pre
+            inst.AnimState:PushAnimation("bite_heavy_pre") -- 5
+            inst.AnimState:PushAnimation("bite_heavy_loop") -- 14
+            inst.AnimState:PushAnimation("fish_catch", false)
+
+            local sinkable = inst.bufferedaction.target.components.sinkable
+            if inst.bufferedaction.target ~= nil and sinkable ~= nil and sinkable.swapbuild and sinkable.swapsymbol then
+                inst.AnimState:OverrideSymbol("fish01", sinkable.swapbuild, sinkable.swapsymbol)
+            else
+                inst.AnimState:OverrideSymbol("fish01", "graves_water_crate", "fish01")
+            end
+
+            inst.sg.statemem.tool = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+        end,
+
+        onexit = function(inst)
+            inst.AnimState:ClearOverrideSymbol("fish01")
+        end,
+
+        timeline =
+        {
+            TimeEvent(13*FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_cast", nil, nil, true)
+            end),
+            TimeEvent(15*FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_baitsplash", nil, nil, true)
+                inst:PerformBufferedAction()
+            end),
+            TimeEvent(49*FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishcaught", nil, nil, true)
+            end),
+            TimeEvent(55*FRAMES, function(inst)
+                local fishingrod = inst.sg.statemem.tool ~= nil and inst.sg.statemem.tool.components.fishingrod
+                if fishingrod ~= nil then
+                    fishingrod.target:PushEvent("retrieve")
+                end
+            end),
+            TimeEvent(64*FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishland", nil, nil, true)
+            end),
+            TimeEvent(65*FRAMES, function(inst)
+                local fishingrod = inst.sg.statemem.tool ~= nil and inst.sg.statemem.tool.components.fishingrod
+                if fishingrod ~= nil then
+                    fishingrod:Retrieve()
+                end
+            end),
+        },
+
+        events=
+        {
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end ),
+        },
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -409,6 +473,16 @@ AddStategraphPostInit("wilson", function(sg)
         if not inst.sg:HasStateTag("sneeze") then
             return _attack_deststate and _attack_deststate(inst, ...)
         end
+    end
+
+    local _fish_actionhandler = sg.actionhandlers[ACTIONS.FISH].deststate
+    sg.actionhandlers[ACTIONS.FISH].deststate = function(inst, action, ...)
+        if action.target and action.target.components.workable
+        and action.target.components.workable:GetWorkAction() == ACTIONS.FISH
+        and action.target.components.workable:CanBeWorked() then
+            return "fishing_retrieve"
+        end
+        return _fish_actionhandler and _fish_actionhandler(inst, action, ...)
     end
 
     local _idle_onenter = sg.states["idle"].onenter

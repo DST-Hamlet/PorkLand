@@ -390,9 +390,9 @@ local ruin_data = {
     }
 }
 
-local pig_ruins = {}
+local rets = {}
 for k, v in pairs(ruin_data) do
-    table.insert(pig_ruins, MakeRuin(k, v))
+    table.insert(rets, MakeRuin(k, v))
 end
 
-return unpack(pig_ruins)
+return unpack(rets)
