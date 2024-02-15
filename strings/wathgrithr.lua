@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Mine nostrils chafe with itchiness!",
     ANNOUNCE_HAYFEVER_OFF = "The smoke has cleared!",
+    ANNOUNCE_PICKPOOP = {
+        "Alas!",
+        "Alack!",
+        "It disturbs mine soul!",
+    },
     ANNOUNCE_SNEEZE = "aaAAAH...cho!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is crushing my spirit.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Conquers the heat!",
         CHITIN = "The feeble armor of the bug.",
         CUTNETTLE = "Its smell has vanquish mine sinuses.",
+        DUNGBALL = "What sickness is this?",
+        DUNGBEETLE = {
+            DEAD = "She has fallen in battle.",
+            GENERIC = "A mounted foe!",
+            SLEEPING = "May her dreams be as foul as the spheres she rides.",
+            UNDUNGED = "She has been thrown from her foul mount!",
+        },
+        DUNGPILE = {
+            GENERIC = "Surely this came from a giant's backside!",
+            PICKED = "It has been picked through.",
+        },
         FLOWER_RAINFOREST = "A blossom most lovely.",
         GLOWFLY = {
             DEAD = "Alas, it is dead.",
@@ -28,12 +44,14 @@ return {
         GOLDENMACHETE = "I shall swing you with pride.",
         GOLDPAN = "It will vanquish the pieces of tiny gold!",
         GOLD_DUST = "Golden dust.",
+        GRABBING_VINE = "Ropes hang from the heavens!",
         GRASS_TALL = {
             BURNING = "It burns!",
             GENERIC = "Surely it is the grass of Jotunheim!",
             PICKED = "I have defeated it!",
         },
         HALBERD = "Tis no spear, yet is still valorous!",
+        HANGING_VINE = "Ropes hang from the heavens!",
         IRON = "Material for metalwork.",
         MACHETE = "A fine length of blade.",
         PANGOLDEN = "Surely a cousin of Gullinbursti!",

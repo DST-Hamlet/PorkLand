@@ -11,6 +11,11 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Strong refined metal.",
+        ANNOUNCE_PICKPOOP = {
+            "Why would I do that?",
+            "There must be something wrong with my mind.",
+            "(Retching)",
+        },
         APORKALYPSE_CLOCK = "Keeping track of their movements...very clever idea.",
         ARMOR_METALPLATE = "I still prefer magic.",
         ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Very interesting structure, but unfortunately not refined enough.",
         CHITIN = "I don't understand what's the point of this?",
         CUTNETTLE = "This keeps us breathing smoothly.",
+        DUNGBALL = "I won't touch it.",
+        DUNGBEETLE = {
+            DEAD = "She ends up being part of those.",
+            GENERIC = "That's gross.",
+            SLEEPING = "She is resting.",
+            UNDUNGED = "She'll find another one.",
+        },
+        DUNGPILE = {
+            GENERIC = "It's definitely not worth any of my time.",
+            PICKED = "Let's just get it over with.",
+        },
         FLOWER_RAINFOREST = "Why am I wasting time staring at it?",
         GLOWFLY = {
             DEAD = "Maybe that's for the best.",
@@ -28,12 +44,14 @@ return {
         GOLDENMACHETE = "What else do you do with gold in a jungle island?",
         GOLDPAN = "I dread to think how long this will take.",
         GOLD_DUST = "I need to collect lot of them.",
+        GRABBING_VINE = "I really hope it was just a regular plant.",
         GRASS_TALL = {
             BURNING = "This is not good.",
             GENERIC = "Grasses this tough are indeed uncommon.",
             PICKED = "Over time, it will grow back.",
         },
         HALBERD = "I'm not planning on murdering grove of trees.",
+        HANGING_VINE = "I really hope it was just a regular plant.",
         IRON = "An essential material for accurate timepieces.",
         MACHETE = "It's for chopping, simple as that.",
         PANGOLDEN = "It has an extravagant recipe.",

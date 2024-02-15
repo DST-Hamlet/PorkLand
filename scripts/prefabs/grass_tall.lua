@@ -208,7 +208,7 @@ local function grass_tall()
     inst.components.hackable:SetMakeEmptyFn(MakeEmpty)
 
     inst:AddComponent("shearable")
-    inst.components.shearable:SetProduct("cutgrass", 2)
+    inst.components.shearable:SetUp("cutgrass", 2)
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "weevole"

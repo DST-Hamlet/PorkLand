@@ -11,6 +11,11 @@ return {
     },
     DESCRIBE = {
         ALLOY = "It's steel! Look at the steel I made!",
+        ANNOUNCE_PICKPOOP = {
+            "Pine Pioneers must be hardworking...but...",
+            "This is really unhygienic!",
+            "do not come! Warby!",
+        },
         APORKALYPSE_CLOCK = "Oh no! It's a doomsday prophecy!",
         ARMOR_METALPLATE = "Nothing can hurt me with this on!",
         ARMOR_WEEVOLE = "Are we really going to wear it?",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Ah, it's so comfortable, Warby, you can also enjoy it.",
         CHITIN = "Check out the pattern on this! Warby!",
         CUTNETTLE = "Ow! It got me.",
+        DUNGBALL = "How did she... nevermind.",
+        DUNGBEETLE = {
+            DEAD = "Hello?",
+            GENERIC = "I need a very huge bottle to hold her!",
+            SLEEPING = "She is sleeping.",
+            UNDUNGED = "She's not with that dung ball. Good timing.",
+        },
+        DUNGPILE = {
+            GENERIC = "What giant creature left this?",
+            PICKED = "Eww!",
+        },
         FLOWER_RAINFOREST = "oh! That's the kind of flower in jungle adventure stories.",
         GLOWFLY = {
             DEAD = "Oh, dead.",
@@ -28,12 +44,14 @@ return {
         GOLDENMACHETE = "Hack in style!",
         GOLDPAN = "Are you ready? Woby.",
         GOLD_DUST = "Smallest gold are still gold.",
+        GRABBING_VINE = "What kind of monster up there?",
         GRASS_TALL = {
             BURNING = "Hey! Brush fires will destroy rainforests!",
             GENERIC = "A lush patch of grass. Must be a lot of bugs in it.",
             PICKED = "Collect again after a while.",
         },
         HALBERD = "A huge ax!",
+        HANGING_VINE = "What kind of monster up there?",
         IRON = "Is that iron?",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "A born gold rusher.",
