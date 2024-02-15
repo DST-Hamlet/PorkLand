@@ -63,6 +63,7 @@ return {
         },
         PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
         PEAGAWK_BUSH = "I have questions about that bush.",
+        PIG_RUINS_ARTICHOKE = "It must have had some significance to the pigs.",
         PIG_RUINS_HEAD = "An early Porcine civilization once dwelt here.",
         PIG_RUINS_IDOL = "The top part would make an invaluable bartering tool.",
         PIG_RUINS_PLAQUE = "How do I separate it from the base?",

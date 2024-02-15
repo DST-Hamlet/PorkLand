@@ -63,6 +63,7 @@ return {
         },
         PEAGAWKFEATHER = "I spy, with my little eye...",
         PEAGAWK_BUSH = "Just a bush...",
+        PIG_RUINS_ARTICHOKE = "What a curious thing.",
         PIG_RUINS_HEAD = "Whoever built it has long gone.",
         PIG_RUINS_IDOL = "An artifact of a long dead culture.",
         PIG_RUINS_PLAQUE = "I could make money off its destruction.",

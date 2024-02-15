@@ -63,6 +63,7 @@ return {
         },
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
+        PIG_RUINS_ARTICHOKE = "Friend? Nope, rock",
         PIG_RUINS_HEAD = "Must have big rock brain",
         PIG_RUINS_IDOL = "Twirly Tail rock",
         PIG_RUINS_PLAQUE = "Twirly Tail rock",

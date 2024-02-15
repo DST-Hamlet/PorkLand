@@ -63,6 +63,7 @@ return {
         },
         PEAGAWKFEATHER = "It's quite soft.",
         PEAGAWK_BUSH = "It's a bright blue bush.",
+        PIG_RUINS_ARTICHOKE = "Clearly a food loving culture dwelled here.",
         PIG_RUINS_HEAD = "I suppose pigs lived here once.",
         PIG_RUINS_IDOL = "Those pig fellows might like that.",
         PIG_RUINS_PLAQUE = "Just a pinch of statue.",

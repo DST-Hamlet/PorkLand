@@ -63,6 +63,7 @@ return {
         },
         PEAGAWKFEATHER = "It's pretty.",
         PEAGAWK_BUSH = "Neat. A weird bush!",
+        PIG_RUINS_ARTICHOKE = "Looks like it'd be fun to climb.",
         PIG_RUINS_HEAD = "We think it's a bit creepy.",
         PIG_RUINS_IDOL = "Those pigs would probably really love that.",
         PIG_RUINS_PLAQUE = "We should take that back to the pig village.",

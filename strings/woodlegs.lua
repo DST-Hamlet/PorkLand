@@ -63,6 +63,7 @@ return {
         },
         PEAGAWKFEATHER = "Feather'o'glimmer.",
         PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
+        PIG_RUINS_ARTICHOKE = "Thar be treas're in't.",
         PIG_RUINS_HEAD = "Thar be th'head.",
         PIG_RUINS_IDOL = "Tha' treasure atop there.",
         PIG_RUINS_PLAQUE = "Tha' treasure needs a diggin' out.",
