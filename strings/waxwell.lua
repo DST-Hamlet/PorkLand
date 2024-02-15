@@ -17,6 +17,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Durable.",
+        ANTQUEEN_THRONE = "Might be something interesting in there.",
         APORKALYPSE_CLOCK = "I do like this...",
         ARMOR_METALPLATE = "Not very pliant but it does the job.",
         ARMOR_WEEVOLE = "This is not a good look.",

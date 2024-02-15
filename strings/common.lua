@@ -10,6 +10,7 @@ return {
     },
     NAMES = {
         ALLOY = "Alloy",
+        ANTQUEEN_THRONE = "Stalacmite Throne",
         APORKALYPSE_CLOCK = "Aporkalypse Calendar",
         ARMOR_METALPLATE = "Tin Suit",
         ARMOR_WEEVOLE = "Weevole Mantle",

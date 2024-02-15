@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "A metal worthy of the Sons of Ivaldi.",
+        ANTQUEEN_THRONE = "It will be plundered!",
         APORKALYPSE_CLOCK = "It controls Ragnarok!",
         ARMOR_METALPLATE = "Armor worthy of my deeds.",
         ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",

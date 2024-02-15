@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Metal cooked to perfection.",
+        ANTQUEEN_THRONE = "There are many cherries hidden in that fruit salad.",
         APORKALYPSE_CLOCK = "Like the knobs on a stove, it must be turned just right.",
         ARMOR_METALPLATE = "Like an armor made of tin cans.",
         ARMOR_WEEVOLE = "It still smells of bug.",

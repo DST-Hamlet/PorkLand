@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Ahoy, alloy!",
+        ANTQUEEN_THRONE = "Thar be treas're within.",
         APORKALYPSE_CLOCK = "Tha time be nigh!",
         ARMOR_METALPLATE = "Not good fer swimmin' in.",
         ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",

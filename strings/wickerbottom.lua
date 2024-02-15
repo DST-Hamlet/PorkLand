@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Iron that has gone through metallic bonding.",
+        ANTQUEEN_THRONE = "I should like to examine that a little closer.",
         APORKALYPSE_CLOCK = "Ah. Quite a complex form of clockwork.",
         ARMOR_METALPLATE = "What era is this design from?",
         ARMOR_WEEVOLE = "Armour made from bug exoskeleton.",

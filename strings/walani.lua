@@ -17,6 +17,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Hope this is worth all the trouble.",
+        ANTQUEEN_THRONE = "I think there's stuff stuck in there.",
         APORKALYPSE_CLOCK = "I hate clocks.",
         ARMOR_METALPLATE = "I feel like a soda can.",
         ARMOR_WEEVOLE = "Ew. It's all creepy-crawly.",

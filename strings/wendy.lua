@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Cold and hard, like my existence.",
+        ANTQUEEN_THRONE = "There are mysteries hidden within there.",
         APORKALYPSE_CLOCK = "Clockwork for the end of times.",
         ARMOR_METALPLATE = "Like a metal coffin that keeps me alive.",
         ARMOR_WEEVOLE = "Something died so that this armor may exist.",

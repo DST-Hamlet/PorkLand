@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Ah, refined metal. As good as any factory could produce.",
+        ANTQUEEN_THRONE = "Theoretically, the queen would be sitting on a reserve of valuables.",
         APORKALYPSE_CLOCK = "Wonderful! I wonder if I could make the world end sooner.",
         ARMOR_METALPLATE = "The riveting in this suit is quite sophisticated.",
         ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",

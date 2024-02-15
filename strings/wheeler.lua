@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Heavy metal made heavier.",
+        ANTQUEEN_THRONE = "I bet she was guarding some kind of treasure.",
         APORKALYPSE_CLOCK = "If only I could turn time back to before I crashed here.",
         ARMOR_METALPLATE = "Oof. It's heavier than ballast.",
         ARMOR_WEEVOLE = "If only it had those bug wings.",

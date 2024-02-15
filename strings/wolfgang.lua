@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Fire make it strong like Wolfgang.",
+        ANTQUEEN_THRONE = "Stuff hiding in there.",
         APORKALYPSE_CLOCK = "Is clock of scary things.",
         ARMOR_METALPLATE = "No one beat Wolfgang now!",
         ARMOR_WEEVOLE = "Wolfgang win!",

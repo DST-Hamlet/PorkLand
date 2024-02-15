@@ -17,6 +17,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Ahoy there, alloy!",
+        ANTQUEEN_THRONE = "I should break that. For science.",
         APORKALYPSE_CLOCK = "Looks scientifically apocalyptic.",
         ARMOR_METALPLATE = "Science says I'm safe in here.",
         ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",

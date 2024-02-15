@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Bar of Clink Rock",
+        ANTQUEEN_THRONE = "Looks comfy",
         APORKALYPSE_CLOCK = "Tic Tock",
         ARMOR_METALPLATE = "Clink Rock clothes",
         ARMOR_WEEVOLE = "Bzzter clothes",

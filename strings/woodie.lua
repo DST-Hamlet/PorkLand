@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "It's like a block of wood made out of metal.",
+        ANTQUEEN_THRONE = "There's stuff in there, eh?",
         APORKALYPSE_CLOCK = "Looks like it's the end of days.",
         ARMOR_METALPLATE = "Feel a little funny in this.",
         ARMOR_WEEVOLE = "Nice use of bug carcasses.",
