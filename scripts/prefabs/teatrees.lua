@@ -338,7 +338,7 @@ local function OnFinishCallbackBurnt(inst, chopper)
 
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeCrumble")
     inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")
-    inst.AnimState:PlayAnimation(STAGES[inst.components.growable.stage].anims.chop_burnt)
+    inst.AnimState:PlayAnimation(STAGES[inst.stage].anims.chop_burnt)
     RemovePhysicsColliders(inst)
 
     inst.persists = false
@@ -363,7 +363,7 @@ end
 
 local function OnBurnt(inst)
     local function onburntchanges(inst)
-        local stage = inst.components.growable.stage
+        inst.stage = inst.components.growable.stage
         inst:RemoveTag("shelter")
         inst:RemoveTag("cattoyairborne")
         inst:RemoveTag("fire")
@@ -385,7 +385,7 @@ local function OnBurnt(inst)
 
         MakeHauntableWork(inst)
 
-        inst.AnimState:PlayAnimation(STAGES[stage].anims.burnt, true)
+        inst.AnimState:PlayAnimation(STAGES[inst.stage].anims.burnt, true)
         inst.MiniMapEntity:SetIcon("teatree_burnt.tex")
         inst:DoTaskInTime(3 * FRAMES, function(inst)
             if inst.components.burnable and inst.components.propagator then
@@ -470,6 +470,7 @@ end
 local function OnSave(inst, data)
     data.burnt = inst:HasTag("burnt") or inst:HasTag("fire")
     data.stump = inst:HasTag("stump")
+    data.stage = inst.stage
 end
 
 local function OnLoad(inst, data)
@@ -480,6 +481,7 @@ local function OnLoad(inst, data)
     end
 
     if data.burnt then
+        inst.stage = data.stage or 1
         inst:AddTag("fire") -- Add the fire tag here: OnEntityWake will handle it actually doing burnt logic
         inst.MiniMapEntity:SetIcon("teatree_burnt.tex")
         inst.StopWatchingWorldState("phase", inst.OnPhaseChange)

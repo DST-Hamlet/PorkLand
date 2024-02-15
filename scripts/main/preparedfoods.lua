@@ -11,6 +11,7 @@ local foods = {
         sanity = -TUNING.SANITY_TINY,
         cooktime = 0.5,
         oneatenfn = function(inst, eater) -- These buffs override each other
+            eater:RemoveDebuff("buff_speed_coffee_beans")
             eater:RemoveDebuff("buff_speed_tea")
             eater:RemoveDebuff("buff_speed_icedtea")
             eater:AddDebuff("buff_speed_coffee", "buff_speed_coffee")
@@ -34,6 +35,7 @@ local foods = {
         spoiled_product = "icedtea",
         yotp = true,
         oneatenfn = function(inst, eater)
+            eater:RemoveDebuff("buff_speed_coffee_beans")
             eater:RemoveDebuff("buff_speed_icedtea")
             eater:RemoveDebuff("buff_speed_coffee")
             eater:AddDebuff("buff_speed_tea", "buff_speed_tea")
@@ -55,6 +57,7 @@ local foods = {
         cooktime = 0.5,
         yotp = true,
         oneatenfn = function(inst, eater)
+            eater:RemoveDebuff("buff_speed_coffee_beans")
             eater:RemoveDebuff("buff_speed_tea")
             eater:RemoveDebuff("buff_speed_coffee")
             eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")

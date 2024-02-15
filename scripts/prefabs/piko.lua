@@ -76,7 +76,8 @@ end
 
 local function update_light(inst)
     if inst.is_rabid then
-        if not inst.components.inventoryitem.owner and not inst.homeseeker.home.components.spawner:IsOccupied() then
+        if not inst.components.inventoryitem.owner 
+            and (not inst.components.homeseeker or not inst.components.homeseeker.home.components.spawner:IsOccupied()) then
             if not inst.lighton then
                 inst:DoTaskInTime(math.random() * 2, fadein)
             else

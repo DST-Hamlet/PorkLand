@@ -47,9 +47,9 @@ local function MakePreparedFood(data)
         inst.components.edible.antihistamine = data.antihistamine or 0
         inst.components.edible:SetOnEatenFn(data.oneatenfn)
 
-        inst.yotp_override = data.yotp
         --[[ TODO: Add fiesta stuff	
-        local function setfiesta(active)
+        inst.yotp_override = data.yotp
+        local function OnFiestaChange(inst, active)
             if active then
                 inst.AnimState:AddOverrideBuild("cook_pot_food_yotp")
                 inst.components.inventoryitem:ChangeImageName(data.name .. "_yotp")
@@ -60,12 +60,8 @@ local function MakePreparedFood(data)
         end
 
         if inst.yotp_override then
-            inst:ListenForEvent("beginfiesta", function() setfiesta(true) end, GetWorld())
-            inst:ListenForEvent("endfiesta", function() setfiesta(false) end, GetWorld())
-
-            if GetAporkalypse() and GetAporkalypse():GetFiestaActive() then
-                setfiesta(true)
-            end
+            inst:WatchWorldState("fiesta", OnFiestaChange)
+            OnFiestaChange(inst, TheWorld.state.fiesta)
         end]]
 
         inst:AddComponent("inspectable")

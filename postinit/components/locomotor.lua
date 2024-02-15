@@ -20,7 +20,7 @@ function LocoMotor:SetSpeedModifier_Additive(key, addition)
 end
 
 function LocoMotor:RemoveSpeedModifier_Additive(key)
-    self._speed_modifier_additive = self._speed_modifier_additive - self._modifiers_addictive[key]
+    self._speed_modifier_additive = self._speed_modifier_additive - (self._modifiers_addictive[key] or 0)
     self._modifiers_addictive[key] = nil
 end
 

@@ -124,10 +124,14 @@ local function MakeVeggie(name)
         inst.components.edible.foodtype = FOODTYPE.VEGGIE
         inst.components.edible.secondaryfoodtype = PL_VEGGIES[name].secondary_foodtype
 
-		if name == "coffeebeans" then
-			inst.components.edible.caffeinedelta = TUNING.CAFFEINE_FOOD_BONUS_SPEED
-			inst.components.edible.caffeineduration = TUNING.FOOD_SPEED_AVERAGE
-		end
+        if name == "coffeebeans" then
+            inst.components.edible:SetOnEatenFn(function(inst, eater)
+                eater:RemoveDebuff("buff_speed_coffee")
+                eater:RemoveDebuff("buff_speed_tea")
+                eater:RemoveDebuff("buff_speed_icedtea")
+                eater:AddDebuff("buff_speed_coffee_beans", "buff_speed_coffee_beans")
+            end)
+        end
 
         inst:AddComponent("stackable")
         inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

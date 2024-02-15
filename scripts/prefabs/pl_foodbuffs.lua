@@ -2,6 +2,12 @@
 ---------------------- Attach and dettach functions ---------------------
 -------------------------------------------------------------------------
 
+local function speed_coffee_beans_attach(inst, target)
+    if target.components.locomotor then
+        target.components.locomotor:SetSpeedModifier_Additive("CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED)
+    end
+end
+
 local function speed_coffee_attach(inst, target)
     if target.components.locomotor then
         target.components.locomotor:SetSpeedModifier_Additive("CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED)
@@ -102,6 +108,7 @@ local function MakeBuff(name, onattachedfn, onextendedfn, ondetachedfn, duration
     return Prefab("buff_"..name, fn, nil, prefabs)
 end
 
-return  MakeBuff("speed_coffee", speed_coffee_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG, 1, {}),
+return  MakeBuff("speed_coffee_beans", speed_coffee_beans_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_AVERAGE, 1, {}),
+        MakeBuff("speed_coffee", speed_coffee_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG, 1, {}),
         MakeBuff("speed_tea", speed_tea_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG/2, 1, {}),
         MakeBuff("speed_icedtea", speed_icedtea_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG/3, 1, {})
