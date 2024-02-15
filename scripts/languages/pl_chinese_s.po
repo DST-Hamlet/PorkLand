@@ -7935,6 +7935,11 @@ msgctxt "STRINGS.NAMES.PIG_RUINS_ARTICHOKE"
 msgid "Crumbling Carved Stone"
 msgstr "残破的雕像"
 
+#. STRINGS.NAMES.PIG_RUINS_EXTRACTED
+msgctxt "STRINGS.NAMES.PIG_RUINS_EXTRACTED"
+msgid "Chiseled Stone"
+msgstr "石雕"
+
 #. STRINGS.NAMES.PIG_RUINS_HEAD
 msgctxt "STRINGS.NAMES.PIG_RUINS_HEAD"
 msgid "Crumbling Visage"

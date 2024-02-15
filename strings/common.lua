@@ -39,6 +39,7 @@ return {
         PEAGAWKFEATHER = "Peagawk Plume",
         PEAGAWK_BUSH = "Blinkbush",
         PIG_RUINS_ARTICHOKE = "Crumbling Carved Stone",
+        PIG_RUINS_EXTRACTED = "Chiseled Stone",
         PIG_RUINS_HEAD = "Crumbling Visage",
         PIG_RUINS_IDOL = "Tempting Idol",
         PIG_RUINS_MUSHROOM = "The Jeweled Truffle",
