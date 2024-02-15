@@ -6880,6 +6880,11 @@ msgctxt "STRINGS.NAMES.PIG_RUINS_IDOL"
 msgid "Tempting Idol"
 msgstr "吸引人的石像"
 
+#. STRINGS.NAMES.PIG_RUINS_MUSHROOM
+msgctxt "STRINGS.NAMES.PIG_RUINS_MUSHROOM"
+msgid "The Jeweled Truffle"
+msgstr "宝石松露"
+
 #. STRINGS.NAMES.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.NAMES.PIG_RUINS_PLAQUE"
 msgid "Eroding Totem"

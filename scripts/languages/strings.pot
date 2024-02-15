@@ -6876,6 +6876,11 @@ msgctxt "STRINGS.NAMES.PIG_RUINS_IDOL"
 msgid "Tempting Idol"
 msgstr ""
 
+#. STRINGS.NAMES.PIG_RUINS_MUSHROOM
+msgctxt "STRINGS.NAMES.PIG_RUINS_MUSHROOM"
+msgid "The Jeweled Truffle"
+msgstr ""
+
 #. STRINGS.NAMES.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.NAMES.PIG_RUINS_PLAQUE"
 msgid "Eroding Totem"
