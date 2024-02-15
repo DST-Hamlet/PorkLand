@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "If I could climb into a cocoon I would never emerge.",
         GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
-        GRABBING_VINE = "The jungle's noose.",
         GOLDPAN = "Offers too much hope.",
         GOLD_DUST = "Death is not sparkly.",
+        GRABBING_VINE = "The jungle's noose.",
         GRASS_TALL = {
             BURNING = "Death comes to everything.",
             GENERIC = "Alas, I'm too weak to pick it.",
@@ -64,6 +64,7 @@ return {
         PEAGAWKFEATHER = "I spy, with my little eye...",
         PEAGAWK_BUSH = "Just a bush...",
         PIG_RUINS_IDOL = "An artifact of a long dead culture.",
+        PIG_RUINS_PLAQUE = "I could make money off its destruction.",
         RABID_BEETLE = {
             DEAD = "Lifeless.",
             GENERIC = "As rabid as death itself.",

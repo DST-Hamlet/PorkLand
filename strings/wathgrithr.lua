@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "It has armored itself for sleep.",
         GOLDENMACHETE = "I shall swing you with pride.",
-        GRABBING_VINE = "Ropes hang from the heavens!",
         GOLDPAN = "It will vanquish the pieces of tiny gold!",
         GOLD_DUST = "Golden dust.",
+        GRABBING_VINE = "Ropes hang from the heavens!",
         GRASS_TALL = {
             BURNING = "It burns!",
             GENERIC = "Surely it is the grass of Jotunheim!",
@@ -64,6 +64,7 @@ return {
         PEAGAWKFEATHER = "A priceless beauty.",
         PEAGAWK_BUSH = "Do you think you can hide from me?",
         PIG_RUINS_IDOL = "I will dethron it and sell it to a pig.",
+        PIG_RUINS_PLAQUE = "I will take it with me!",
         RABID_BEETLE = {
             DEAD = "It has died in battle.",
             GENERIC = "Evil beast. You have met your match!",

@@ -10,17 +10,15 @@ msgctxt "STRINGS.ACTIONS.HACK"
 msgid "Hack"
 msgstr "砍"
 
-<<<<<<< HEAD
-#. STRINGS.ACTIONS.PICK.DIGIN
-msgctxt "STRINGS.ACTIONS.PICK.DIGIN"
-msgid "Dig in"
-msgstr "挖掘"
-=======
 #. STRINGS.ACTIONS.PAN
 msgctxt "STRINGS.ACTIONS.PAN"
 msgid "Pan"
 msgstr "淘"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.ACTIONS.PICK.DIGIN
+msgctxt "STRINGS.ACTIONS.PICK.DIGIN"
+msgid "Dig in"
+msgstr "挖掘"
 
 #. STRINGS.ACTIONS.SHEAR
 msgctxt "STRINGS.ACTIONS.SHEAR"
@@ -192,12 +190,6 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
 msgstr "有格调地砍！"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRABBING_VINE"
-msgid "Always hanging around."
-msgstr "总是悬挂在那里。"
-=======
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDPAN"
 msgid "Critics panned it."
@@ -207,7 +199,11 @@ msgstr "批评家因为淘不到金而批评了它。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLD_DUST"
 msgid "Aw... it's hardly worth anything."
 msgstr "哦...它几乎一文不值。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRABBING_VINE"
+msgid "Always hanging around."
+msgstr "总是悬挂在那里。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GRASS_TALL.BURNING"
@@ -244,14 +240,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
 msgstr "我喜欢这把刀的切口。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PANGOLDEN"
 msgid "It likes rich food."
 msgstr "它喜欢值钱的食物。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK.DEAD"
 msgid "Dead-eyed."
@@ -281,6 +274,11 @@ msgstr "看！一丛鸢尾灌木。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_IDOL"
 msgid "These ruins have been ruined."
 msgstr "这些遗迹已经被毁掉了。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "I could probably sell that to one of those pigs."
+msgstr "我大概会把它卖给猪人们中的一个吧。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD"
@@ -497,12 +495,6 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDENMACHETE"
 msgid "Gold is so plentiful here I can use it in household tools."
 msgstr "这里的黄金丰富到我可以用它制作家用工具。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRABBING_VINE"
-msgid "Kleptomaniac vegetation. How wonderful!"
-msgstr "多么绝妙！有盗窃癖的植被。"
-=======
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLDPAN"
 msgid "I do hope the holes were meant to be there."
@@ -512,7 +504,11 @@ msgstr "我希望这些孔是注定就在那儿的。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GOLD_DUST"
 msgid "Evidently, it's the preferred sustenance of those long nosed quadrupeds."
 msgstr "很显然，这是长鼻四足动物的首选食物。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRABBING_VINE"
+msgid "Kleptomaniac vegetation. How wonderful!"
+msgstr "多么绝妙！有盗窃癖的植被。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GRASS_TALL.BURNING"
@@ -549,14 +545,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE"
 msgid "A pragmatic tool for slashing objects."
 msgstr "一个非常实用的切割工具。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PANGOLDEN"
 msgid "Evidently, it poops gold. Fascinating!"
 msgstr "很显然，它会拉黄金。真迷人！"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK.DEAD"
 msgid "Evidently, it didn't see that coming."
@@ -591,6 +584,11 @@ msgstr "那种监视我的洞察力消失了。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Theoretically, it can be detached from its base."
 msgstr "从理论上讲，它可以从它的底座上分离出来。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "Evidently, I'll need something to sever it from the base."
+msgstr "显然，我需要一些工具把它从底座上分离出来。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.DEAD"
@@ -812,12 +810,6 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDENMACHETE"
 msgid "I can hack in style."
 msgstr "我可以有格调地砍。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GRABBING_VINE"
-msgid "That seems dangerous."
-msgstr "那看起来很危险。"
-=======
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLDPAN"
 msgid "You mean I gotta work for my gold?"
@@ -827,7 +819,11 @@ msgstr "你是说我努力干活能淘到黄金？"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GOLD_DUST"
 msgid "Fairy dust!"
 msgstr "精灵的仙尘！"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GRABBING_VINE"
+msgid "That seems dangerous."
+msgstr "那看起来很危险。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GRASS_TALL.BURNING"
@@ -864,14 +860,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE"
 msgid "What a hack job."
 msgstr "开砍。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PANGOLDEN"
 msgid "Shiny."
 msgstr "有光泽的。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK.DEAD"
 msgid "Dang. It's dead."
@@ -901,6 +894,11 @@ msgstr "多么酷的一丛灌木啊！"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_IDOL"
 msgid "How do I get that top part off?"
 msgstr "我怎样才能把顶上那块弄下来？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "It'll take some work to get that top part off."
+msgstr "把顶上那一块弄下来需要花一些功夫。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.DEAD"
@@ -1117,12 +1115,6 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDENMACHETE"
 msgid "Hack in style!"
 msgstr "时尚的砍刀！"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GRABBING_VINE"
-msgid "What kind of monster up there?"
-msgstr "有什么怪物在上面吗？"
-=======
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLDPAN"
 msgid "Are you ready? Woby."
@@ -1132,7 +1124,11 @@ msgstr "准备好了吗？沃比！"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GOLD_DUST"
 msgid "Smallest gold are still gold."
 msgstr "再小的金子也是金子。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GRABBING_VINE"
+msgid "What kind of monster up there?"
+msgstr "有什么怪物在上面吗？"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.GRASS_TALL.BURNING"
@@ -1169,14 +1165,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
 msgstr "我喜欢这把刀的切割。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PANGOLDEN"
 msgid "A born gold rusher."
 msgstr "天生的淘金者。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Wow, how many eyes are there?"
@@ -1201,6 +1194,11 @@ msgstr "这种鸟不会飞，但是会变成灌木丛！"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Look what we found, Warby!"
 msgstr "看看我们发现了什么，沃比！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "It's a totem!"
+msgstr "是一个图腾！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD"
@@ -1417,12 +1415,6 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDENMACHETE"
 msgid "What else do you do with gold in a jungle island?"
 msgstr "你还用丛林岛上的黄金做什么？"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GRABBING_VINE"
-msgid "I really hope it was just a regular plant."
-msgstr "我真的很希望它只是普通的植物。"
-=======
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLDPAN"
 msgid "I dread to think how long this will take."
@@ -1432,7 +1424,11 @@ msgstr "我不敢想象这需要多长时间。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GOLD_DUST"
 msgid "I need to collect lot of them."
 msgstr "我还需要收集很多它们才行。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GRABBING_VINE"
+msgid "I really hope it was just a regular plant."
+msgstr "我真的很希望它只是普通的植物。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.GRASS_TALL.BURNING"
@@ -1469,14 +1465,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE"
 msgid "It's for chopping, simple as that."
 msgstr "就是用来切菜的，就这么简单。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PANGOLDEN"
 msgid "It has an extravagant recipe."
 msgstr "它们的食谱非常奢侈。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "See no evil!"
@@ -1501,6 +1494,11 @@ msgstr "真是聪明的伪装。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I thought it would be deeper...oh, that's another one."
 msgstr "我还以为会更深...噢，那是另一个。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "I'm curious what it means, but forget it."
+msgstr "我很好奇它有什么含义，但还是算了吧。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD"
@@ -1717,12 +1715,6 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDENMACHETE"
 msgid "Fancy slicer."
 msgstr "花哨的切片机。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GRABBING_VINE"
-msgid "How eerie."
-msgstr "真可怕。"
-=======
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLDPAN"
 msgid "I have better pans."
@@ -1732,7 +1724,11 @@ msgstr "我有更好的盘子。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GOLD_DUST"
 msgid "Perhaps that nosy fellow would like to eat this."
 msgstr "也许那个爱管闲事的家伙会喜欢吃这个。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GRABBING_VINE"
+msgid "How eerie."
+msgstr "真可怕。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GRASS_TALL.BURNING"
@@ -1769,14 +1765,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE"
 msgid "I could chop many an onion with this!"
 msgstr "有了这个，我可以切很多洋葱！"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PANGOLDEN"
 msgid "Already has a nice golden braise."
 msgstr "我早就有了一个很棒的黄金炖锅了。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK.DEAD"
 msgid "A pointless death."
@@ -1806,6 +1799,11 @@ msgstr "亮蓝色的灌木丛。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Those pig fellows might like that."
 msgstr "那些猪伙计们可能会喜欢这个。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "Just a pinch of statue."
+msgstr "只是雕像上面的一小撮。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.DEAD"
@@ -2022,12 +2020,6 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENMACHETE"
 msgid "I shall swing you with pride."
 msgstr "我应该自豪地挥舞着你。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRABBING_VINE"
-msgid "Ropes hang from the heavens!"
-msgstr "从天堂垂下的绳索！"
-=======
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDPAN"
 msgid "It will vanquish the pieces of tiny gold!"
@@ -2037,7 +2029,11 @@ msgstr "它将打败那些小金块！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLD_DUST"
 msgid "Golden dust."
 msgstr "金尘。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRABBING_VINE"
+msgid "Ropes hang from the heavens!"
+msgstr "从天堂垂下的绳索！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GRASS_TALL.BURNING"
@@ -2074,14 +2070,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE"
 msgid "A fine length of blade."
 msgstr "长度适中的刀。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PANGOLDEN"
 msgid "Surely a cousin of Gullinbursti!"
 msgstr "一定是古林博斯帝的表亲！"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK.DEAD"
 msgid "Even in death its eyes stare into my soul."
@@ -2111,6 +2104,11 @@ msgstr "你觉得你能藏起来不让我发现吗？"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I will dethron it and sell it to a pig."
 msgstr "我要把它弄下来卖给猪。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "I will take it with me!"
+msgstr "我要把它拿走！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.DEAD"
@@ -2332,12 +2330,6 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENMACHETE"
 msgid "I've always wanted to hack things in luxury."
 msgstr "我一直想像个土豪一样的砍东西。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRABBING_VINE"
-msgid "I know the ropes."
-msgstr "还不是条绳嘛。"
-=======
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDPAN"
 msgid "Must I do everything myself?"
@@ -2347,7 +2339,11 @@ msgstr "我必须亲自做所有事吗？"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLD_DUST"
 msgid "I suppose any gold is good gold."
 msgstr "只要是金子都会发光的。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRABBING_VINE"
+msgid "I know the ropes."
+msgstr "还不是条绳嘛。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GRASS_TALL.BURNING"
@@ -2384,14 +2380,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE"
 msgid "Truthfully I was always a hack."
 msgstr "说实话，我用刀的功夫一直不怎么样。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PANGOLDEN"
 msgid "He has expensive tastes."
 msgstr "他的品味很昂贵。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK.DEAD"
 msgid "It's beauty has been snuffed out forever."
@@ -2421,6 +2414,11 @@ msgstr "我对那丛灌木表示怀疑。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Hmmm. How do I get that statue off?"
 msgstr "呃。我该怎么把这雕像弄下来？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "It must be worth something to those pigs."
+msgstr "对那些猪来说这肯定值不少钱。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.DEAD"
@@ -2637,12 +2635,6 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENMACHETE"
 msgid "What a beautiful blade!"
 msgstr "好漂亮的砍刀！"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRABBING_VINE"
-msgid "Cool! Vines!"
-msgstr "酷！藤蔓！"
-=======
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDPAN"
 msgid "Hey, now we can be prospectors."
@@ -2652,7 +2644,11 @@ msgstr "嘿，现在我们可以当个淘金者了。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLD_DUST"
 msgid "Wow! I wonder if it's worth anything."
 msgstr "哇哦！我想知道它值多少。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRABBING_VINE"
+msgid "Cool! Vines!"
+msgstr "酷！藤蔓！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GRASS_TALL.BURNING"
@@ -2689,14 +2685,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE"
 msgid "Hyah! Hyah!"
 msgstr "嘿！哈！"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PANGOLDEN"
 msgid "I think he eats gold."
 msgstr "我想他吃金子。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I think it's dead."
@@ -2726,6 +2719,11 @@ msgstr "优美但又有点奇怪的灌木丛！"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Those pigs would probably really love that."
 msgstr "那些猪人可能真的十分喜欢那种雕像。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "We should take that back to the pig village."
+msgstr "我们应该把它带回猪村庄。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.DEAD"
@@ -2942,12 +2940,6 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENMACHETE"
 msgid "What a fancy blade to ruin bamboo with!"
 msgstr "用这把刀劈竹子多么奢华！"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GRABBING_VINE"
-msgid "The jungle's noose."
-msgstr "丛林的绞索。"
-=======
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDPAN"
 msgid "Offers too much hope."
@@ -2957,7 +2949,11 @@ msgstr "给人过多希望。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLD_DUST"
 msgid "Death is not sparkly."
 msgstr "死亡并不会闪闪发光。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GRABBING_VINE"
+msgid "The jungle's noose."
+msgstr "丛林的绞索。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GRASS_TALL.BURNING"
@@ -2994,14 +2990,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE"
 msgid "This is a lot of blade."
 msgstr "刀刃很长。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PANGOLDEN"
 msgid "A fool and his gold."
 msgstr "一个蠢货和他的金子。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK.DEAD"
 msgid "Beautiful death."
@@ -3031,6 +3024,11 @@ msgstr "只是一个灌木丛…"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_IDOL"
 msgid "An artifact of a long dead culture."
 msgstr "死去的古老文明产物。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "I could make money off its destruction."
+msgstr "我可以从它那里赚钱。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.DEAD"
@@ -3247,12 +3245,6 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDENMACHETE"
 msgid "For the sophisticated adventurer."
 msgstr "这把黄金砍刀是制给老练的冒险家的。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRABBING_VINE"
-msgid "If I didn't know any better, I'd think that vine wants my stuff."
-msgstr "我要是不知道就好了，我觉得那根藤蔓想抢我的东西。"
-=======
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLDPAN"
 msgid "Swell. A pan with holes in it."
@@ -3262,7 +3254,11 @@ msgstr "好吧。一个带孔洞的盘。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GOLD_DUST"
 msgid "Hardly worth holding onto. If I could find more of it though..."
 msgstr "没有太大的价值。要是我能弄到更多的话..."
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRABBING_VINE"
+msgid "If I didn't know any better, I'd think that vine wants my stuff."
+msgstr "我要是不知道就好了，我觉得那根藤蔓想抢我的东西。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GRASS_TALL.BURNING"
@@ -3299,14 +3295,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE"
 msgid "Machete. Designed for adventure."
 msgstr "砍刀。专为冒险而造。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PANGOLDEN"
 msgid "I don't actually mind picking up his poop."
 msgstr "我真的不介意捡它的便便。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK.DEAD"
 msgid "I promise, I will go on without you!"
@@ -3336,6 +3329,11 @@ msgstr "有东西藏在那里。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I'll need to get that totem free to take it back to the pigs."
 msgstr "我得把那个图腾拿出来送还给猪人。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "The pigs only want the top part. How do I get it free?"
+msgstr "猪人们只想要顶上那部分。我怎么才能轻松拿到呢？"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.DEAD"
@@ -3552,12 +3550,6 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENMACHETE"
 msgid "The most malleable of metals, but let's see how it slices."
 msgstr "黄金是最具可塑性的金属，不过还是先看看它砍东西的效果吧。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRABBING_VINE"
-msgid "Hanging vines from the forest canopy."
-msgstr "森林树冠上垂下的藤蔓。"
-=======
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDPAN"
 msgid "This should be useful for finding valuable minerals."
@@ -3567,7 +3559,11 @@ msgstr "这应该非常适合找寻有价值的矿物。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLD_DUST"
 msgid "Small particles of the shiniest element."
 msgstr "闪亮元素的细小颗粒。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRABBING_VINE"
+msgid "Hanging vines from the forest canopy."
+msgstr "森林树冠上垂下的藤蔓。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GRASS_TALL.BURNING"
@@ -3604,14 +3600,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE"
 msgid "Used for hacking through the brush."
 msgstr "用于在灌木丛中开路。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PANGOLDEN"
 msgid "Aurum vermilingua."
 msgstr "食金蠕舌类生物。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK.DEAD"
 msgid "Lifeless."
@@ -3641,6 +3634,11 @@ msgstr "我对那灌木丛有些疑惑。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_IDOL"
 msgid "The top part would make an invaluable bartering tool."
 msgstr "最上面的部分将是无价的交换工具。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "How do I separate it from the base?"
+msgstr "我该怎么把它和底座分开呢？"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.DEAD"
@@ -3862,12 +3860,6 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDENMACHETE"
 msgid "'TIS SHINY TOOL O' SLASHINGS"
 msgstr "闪闪发亮的劈砍工具"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GRABBING_VINE"
-msgid "IT HOLDS FAST!"
-msgstr "它抓人很紧很快！"
-=======
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLDPAN"
 msgid "'TIS A PAN FOR GLITTERIES"
@@ -3877,7 +3869,11 @@ msgstr "这是一个寻找金光闪闪的盘子"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GOLD_DUST"
 msgid "'TIS DIRT O' SPARKLIES"
 msgstr "这块土里有闪闪的东西"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GRABBING_VINE"
+msgid "IT HOLDS FAST!"
+msgstr "它抓人很紧很快！"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GRASS_TALL.BURNING"
@@ -3914,14 +3910,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE"
 msgid "YON SLASHY TOOL"
 msgstr "那是切割的工具"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PANGOLDEN"
 msgid "NOSE HIMSELF TO BE A FOOL"
 msgstr "他的鼻子让他像是个傻瓜"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK.DEAD"
 msgid "IS'T EYES LOOKED IS'T LAST"
@@ -3951,6 +3944,11 @@ msgstr "它不是灌木丛"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_IDOL"
 msgid "WILBA LIKETH THE TOP PART"
 msgstr "薇尔芭喜欢最上面的部分"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "HOWFORE WILBA GETS THE PRETTY PARTS OFF?"
+msgstr "薇尔芭怎样才能把漂亮的那部分弄下来？"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.DEAD"
@@ -4167,12 +4165,6 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENMACHETE"
 msgid "I don't want to scuff it up."
 msgstr "我不想它被划伤。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRABBING_VINE"
-msgid "Ugh, vines!"
-msgstr "啊，藤蔓！"
-=======
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDPAN"
 msgid "You mean I have to do work?"
@@ -4182,7 +4174,11 @@ msgstr "你的意思是我必须得干活？"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLD_DUST"
 msgid "It's probably not worth much."
 msgstr "这可能不值得。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRABBING_VINE"
+msgid "Ugh, vines!"
+msgstr "啊，藤蔓！"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GRASS_TALL.BURNING"
@@ -4219,14 +4215,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE"
 msgid "Or I could just burn my way through."
 msgstr "或者我可以烧出一条路来。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PANGOLDEN"
 msgid "Yeesh, he's sucking up all the gold!"
 msgstr "噫，他吸走了所有金子！"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK.DEAD"
 msgid "Very dead."
@@ -4256,6 +4249,11 @@ msgstr "一株灌木丛，至少我觉得是。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I should take that off and sell it to a pig."
 msgstr "我应该把它拿下来卖给猪。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "If I could break it, I could sell it."
+msgstr "如果我能打破它，我就能卖掉它。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.DEAD"
@@ -4472,12 +4470,6 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDENMACHETE"
 msgid "This just made my job easier."
 msgstr "这只是让我的工作更轻松。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GRABBING_VINE"
-msgid "I saw a strong rope."
-msgstr "我看到了一条结实的绳索。"
-=======
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLDPAN"
 msgid "Separate the metal."
@@ -4487,7 +4479,11 @@ msgstr "将金属分离出来。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GOLD_DUST"
 msgid "gold! My luck has come!"
 msgstr "黄金！我的好运气来了！"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GRABBING_VINE"
+msgid "I saw a strong rope."
+msgstr "我看到了一条结实的绳索。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.GRASS_TALL.BURNING"
@@ -4524,14 +4520,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE"
 msgid "Hack and slash! Working's always fun."
 msgstr "砍杀！工作总是充满乐趣。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PANGOLDEN"
 msgid "Living metallurgical."
 msgstr "活生生的冶金炉。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Always be vigilant."
@@ -4554,6 +4547,11 @@ msgstr "一株会警惕的灌木丛，真是奇怪！"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_IDOL"
+msgid "There must be some way to remove the top part."
+msgstr "一定有什么办法把上面那部分卸下来。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "There must be some way to remove the top part."
 msgstr "一定有什么办法把上面那部分卸下来。"
 
@@ -4772,12 +4770,6 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENMACHETE"
 msgid "Hoighty toighty knife!"
 msgstr "奢华的刀！"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRABBING_VINE"
-msgid "Watch out for that tree!"
-msgstr "小心那棵树。"
-=======
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDPAN"
 msgid "Is for eating from?"
@@ -4787,7 +4779,11 @@ msgstr "可以吃吗？"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLD_DUST"
 msgid "Wolfgang like. Is shiny."
 msgstr "沃尔夫冈喜欢这个，闪闪发光的。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRABBING_VINE"
+msgid "Watch out for that tree!"
+msgstr "小心那棵树。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GRASS_TALL.BURNING"
@@ -4824,14 +4820,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE"
 msgid "Ah! Very good!"
 msgstr "啊！太好了！"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PANGOLDEN"
 msgid "Hehe. Haves big nose."
 msgstr "呵呵，有个大鼻子。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK.DEAD"
 msgid "Is blink-blink no more."
@@ -4861,6 +4854,11 @@ msgstr "仅仅是灌木丛。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Piggies might like those."
 msgstr "小猪们可能喜欢这些。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "Is piggy thing."
+msgstr "是小猪的东西"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.DEAD"
@@ -5077,12 +5075,6 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENMACHETE"
 msgid "It chops AND sparkles!"
 msgstr "它不仅能砍树，而且闪闪发光！"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRABBING_VINE"
-msgid "Don't trust that."
-msgstr "不要相信那东西。"
-=======
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDPAN"
 msgid "Haven't done any prospectin' in a while."
@@ -5092,7 +5084,11 @@ msgstr "有段时间没有去规划未来了。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLD_DUST"
 msgid "Look at all that gold!"
 msgstr "看看那堆金子。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRABBING_VINE"
+msgid "Don't trust that."
+msgstr "不要相信那东西。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GRASS_TALL.BURNING"
@@ -5129,14 +5125,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE"
 msgid "Ooh, that's a thing for chopping."
 msgstr "哇哦，它可以用来砍东西。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PANGOLDEN"
 msgid "Looks expensive."
 msgstr "看起来很昂贵。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK.DEAD"
 msgid "It's a goner."
@@ -5166,6 +5159,11 @@ msgstr "这附近有一只卑鄙的鸟。我能感觉到它。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Be nice if we could get that top part off."
 msgstr "如果我们能把上面的部分弄掉就好了。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "It's one of those statues the pigs like."
+msgstr "这是猪喜欢的雕像之一。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.DEAD"
@@ -5382,12 +5380,6 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDENMACHETE"
 msgid "'Tis a mighty 'eavy blade."
 msgstr "这是一把相当重的砍刀。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRABBING_VINE"
-msgid "Them be th'ropes."
-msgstr "它们和绳子一样。"
-=======
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLDPAN"
 msgid "Fer fishin' fer gold."
@@ -5397,7 +5389,11 @@ msgstr "用来捕黄金用的。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GOLD_DUST"
 msgid "Aye! 'Tis treasure dust!"
 msgstr "是的！这是宝藏砂子！"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRABBING_VINE"
+msgid "Them be th'ropes."
+msgstr "它们和绳子一样。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GRASS_TALL.BURNING"
@@ -5434,14 +5430,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE"
 msgid "Ye be slicin'!"
 msgstr "肆意地砍吧！"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PANGOLDEN"
 msgid "Eatin' up all tha treasure!"
 msgstr "它把宝藏都吃光了！"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK.DEAD"
 msgid "It tells no tales."
@@ -5471,6 +5464,11 @@ msgstr "这灌木很令人不安。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Tha' treasure atop there."
 msgstr "那上面有宝藏"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "Tha' treasure needs a diggin' out."
+msgstr "需要把这宝珠掘出来。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.DEAD"
@@ -5687,12 +5685,6 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDENMACHETE"
 msgid "Pretty Slicer"
 msgstr "漂亮的切片机"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRABBING_VINE"
-msgid "Wants stuff"
-msgstr "想要东西"
-=======
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLDPAN"
 msgid "Gets Shiny from puddle"
@@ -5702,7 +5694,11 @@ msgstr "拿出水坑里闪闪发光的东西"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GOLD_DUST"
 msgid "Shiny dirt"
 msgstr "闪闪发光的土"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRABBING_VINE"
+msgid "Wants stuff"
+msgstr "想要东西"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GRASS_TALL.BURNING"
@@ -5739,14 +5735,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE"
 msgid "Slicer. For friend haircuts"
 msgstr "切割工具，给朋友剪头发用的"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PANGOLDEN"
 msgid "Shiny Pooper"
 msgstr "闪亮的便便兽"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK.DEAD"
 msgid "Oh dear"
@@ -5774,6 +5767,11 @@ msgstr "看上去不错！"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_IDOL
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_IDOL"
+msgid "Twirly Tail rock"
+msgstr "卷尾巴的石头"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "Twirly Tail rock"
 msgstr "卷尾巴的石头"
 
@@ -5987,12 +5985,6 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDENMACHETE"
 msgid "Fit for a sophisticated imp!"
 msgstr "适合老练的小鬼！"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRABBING_VINE"
-msgid "Hello, what do you want?"
-msgstr "你好，你想要什么？"
-=======
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLDPAN"
 msgid "A big slotted spoon, for gold and glory."
@@ -6002,7 +5994,11 @@ msgstr "一个大漏勺，为了黄金和荣耀。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GOLD_DUST"
 msgid "Many mortals try to use it to fill the void in their souls."
 msgstr "很多凡人试图用它填补灵魂的空虚。"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRABBING_VINE"
+msgid "Hello, what do you want?"
+msgstr "你好，你想要什么？"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.GRASS_TALL.BURNING"
@@ -6039,14 +6035,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE"
 msgid "To chop and slash!"
 msgstr "砍和砍！"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PANGOLDEN"
 msgid "How are you today? Any outcome?"
 msgstr "今天过得怎么样？有什么收获吗？"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK.GENERIC"
 msgid "You must have seen a lot, right?"
@@ -6071,6 +6064,11 @@ msgstr "哼，这点把戏骗不过我。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_IDOL"
 msgid "The little statue above is nice, let's take it away."
 msgstr "上面的小雕像不错啊，我们把它拿走吧。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "Hey! Little tree, guess what is written on it?"
+msgstr "嘿！小树，猜猜这上面写的是什么？"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD"
@@ -6287,12 +6285,6 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDENMACHETE"
 msgid "It better than normal hacker."
 msgstr "它比普通砍刀更好。"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WURT.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GRABBING_VINE"
-msgid "They're on top here."
-msgstr "这里的在头顶上。"
-=======
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLDPAN"
 msgid "Pick rocks in water up."
@@ -6302,7 +6294,11 @@ msgstr "捡起水里的东西。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GOLD_DUST"
 msgid "Shining..."
 msgstr "闪闪闪..."
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GRABBING_VINE"
+msgid "They're on top here."
+msgstr "这里的在头顶上。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.GRASS_TALL.BURNING"
@@ -6339,14 +6335,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE"
 msgid "Plant hacker."
 msgstr "植物砍刀。"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PANGOLDEN"
 msgid "Don't drink them all!"
 msgstr "不要都喝光了！"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK.GENERIC"
 msgid "Big weird bird."
@@ -6371,6 +6364,11 @@ msgstr "漂亮的羽毛灌木。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_IDOL"
 msgid "A pig figure, not a fish figure."
 msgstr "一个猪人像，而不是鱼人。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "Is this also made by pigs?"
+msgstr "这也是猪人造的吗？"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD"
@@ -6587,12 +6585,6 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENMACHETE"
 msgid "AN OSTENTATIOUS HACKING DEVICE"
 msgstr "浮华的劈砍装置"
 
-<<<<<<< HEAD
-#. STRINGS.CHARACTERS.WX78.DESCRIBE.GRABBING_VINE
-msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GRABBING_VINE"
-msgid "HANGING PART"
-msgstr "悬挂部分"
-=======
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDPAN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDPAN"
 msgid "GOLD GATHERING ACCESSORY"
@@ -6602,7 +6594,11 @@ msgstr "黄金收集配件"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GOLD_DUST"
 msgid "TINY POWDER OF MALLEABLE METAL"
 msgstr "可锻造金属的微小能源"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GRABBING_VINE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GRABBING_VINE"
+msgid "HANGING PART"
+msgstr "悬挂部分"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GRASS_TALL.BURNING
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GRASS_TALL.BURNING"
@@ -6639,14 +6635,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE"
 msgid "A LONG BLADE FOR EXPERT HACKING"
 msgstr "用于进行专业劈砍的长刀"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PANGOLDEN"
 msgid "AN ORGANIC WITH A TASTE FOR METAL. CONCERNING"
 msgstr "食金属的有机物。值得引起关注"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK.DEAD"
 msgid "NONFUNCTIONING"
@@ -6676,6 +6669,11 @@ msgstr "地面部分"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I WILL DESTROY IT!"
 msgstr "我要毁了它！"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_PLAQUE"
+msgid "I WILL DESTROY IT!"
+msgstr "我会毁了它！"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.DEAD"
@@ -6817,12 +6815,6 @@ msgctxt "STRINGS.NAMES.GOLDENMACHETE"
 msgid "Luxury Machete"
 msgstr "黄金砍刀"
 
-<<<<<<< HEAD
-#. STRINGS.NAMES.GRABBING_VINE
-msgctxt "STRINGS.NAMES.GRABBING_VINE"
-msgid "Hanging Vine"
-msgstr "垂下的藤蔓"
-=======
 #. STRINGS.NAMES.GOLDPAN
 msgctxt "STRINGS.NAMES.GOLDPAN"
 msgid "Gold Pan"
@@ -6832,7 +6824,11 @@ msgstr "淘金盘"
 msgctxt "STRINGS.NAMES.GOLD_DUST"
 msgid "Gold Dust"
 msgstr "砂金"
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
+
+#. STRINGS.NAMES.GRABBING_VINE
+msgctxt "STRINGS.NAMES.GRABBING_VINE"
+msgid "Hanging Vine"
+msgstr "垂下的藤蔓"
 
 #. STRINGS.NAMES.GRASS_TALL
 msgctxt "STRINGS.NAMES.GRASS_TALL"
@@ -6859,14 +6855,11 @@ msgctxt "STRINGS.NAMES.MACHETE"
 msgid "Machete"
 msgstr "砍刀"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.NAMES.PANGOLDEN
 msgctxt "STRINGS.NAMES.PANGOLDEN"
 msgid "Pangolden"
 msgstr "淘金兽"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.NAMES.PEAGAWK
 msgctxt "STRINGS.NAMES.PEAGAWK"
 msgid "Peagawk"
@@ -6886,6 +6879,11 @@ msgstr "眨眼的灌木丛"
 msgctxt "STRINGS.NAMES.PIG_RUINS_IDOL"
 msgid "Tempting Idol"
 msgstr "吸引人的石像"
+
+#. STRINGS.NAMES.PIG_RUINS_PLAQUE
+msgctxt "STRINGS.NAMES.PIG_RUINS_PLAQUE"
+msgid "Eroding Totem"
+msgstr "风化的图腾"
 
 #. STRINGS.NAMES.RABID_BEETLE
 msgctxt "STRINGS.NAMES.RABID_BEETLE"
@@ -6932,14 +6930,11 @@ msgctxt "STRINGS.RECIPE_DESC.ARMOR_WEEVOLE"
 msgid "Kinda gross, but surprisingly strong."
 msgstr "有点恶心，但出奇的\n强。"
 
-<<<<<<< HEAD
 #. STRINGS.RECIPE_DESC.BALLPEIN_HAMMER
 msgctxt "STRINGS.RECIPE_DESC.BALLPEIN_HAMMER"
 msgid "For when you wanna wreck things gently."
 msgstr "当你想轻轻地弄坏一\n些东西时。"
 
-=======
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.RECIPE_DESC.BASEFAN
 msgctxt "STRINGS.RECIPE_DESC.BASEFAN"
 msgid "Relieves hay fever, keeps you dry."
@@ -6950,14 +6945,11 @@ msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"
 msgid "Hack stuff in STYLE!"
 msgstr "砍东西也要有格调！"
 
-<<<<<<< HEAD
-=======
 #. STRINGS.RECIPE_DESC.GOLDPAN
 msgctxt "STRINGS.RECIPE_DESC.GOLDPAN"
 msgid "Pans gold actually."
 msgstr "实际上这是用来淘金\n的。"
 
->>>>>>> ec8f7ad539938c0a0571fbe758c0e18d05fef051
 #. STRINGS.RECIPE_DESC.HALBERD
 msgctxt "STRINGS.RECIPE_DESC.HALBERD"
 msgid "Pointy and hurty."

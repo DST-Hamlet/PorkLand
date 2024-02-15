@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "Aww... It's wrapped up all nice and cozy.",
         GOLDENMACHETE = "For the sophisticated adventurer.",
-        GRABBING_VINE = "If I didn't know any better, I'd think that vine wants my stuff.",
         GOLDPAN = "Swell. A pan with holes in it.",
         GOLD_DUST = "Hardly worth holding onto. If I could find more of it though...",
+        GRABBING_VINE = "If I didn't know any better, I'd think that vine wants my stuff.",
         GRASS_TALL = {
             BURNING = "All those bugs have nowhere to hide now.",
             GENERIC = "Tall grass like that is going to need a machete.",
@@ -64,6 +64,7 @@ return {
         PEAGAWKFEATHER = "Normally I don't mind feathers, but this one keeps staring at me.",
         PEAGAWK_BUSH = "Something's hiding in there.",
         PIG_RUINS_IDOL = "I'll need to get that totem free to take it back to the pigs.",
+        PIG_RUINS_PLAQUE = "The pigs only want the top part. How do I get it free?",
         RABID_BEETLE = {
             DEAD = "Not too sorry about that.",
             GENERIC = "Probably just agitated because it can't fly well.",

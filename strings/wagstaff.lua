@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "It appears to be undergoing some kind of transubstantiation.",
         GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",
-        GRABBING_VINE = "Kleptomaniac vegetation. How wonderful!",
         GOLDPAN = "I do hope the holes were meant to be there.",
         GOLD_DUST = "Evidently, it's the preferred sustenance of those long nosed quadrupeds.",
+        GRABBING_VINE = "Kleptomaniac vegetation. How wonderful!",
         GRASS_TALL = {
             BURNING = "Evidently, grass here has the same flammability qualities as at home.",
             GENERIC = "The obstinacy of this grass requires something sharper than my hands.",
@@ -67,6 +67,7 @@ return {
             SLEEPING = "That insight that spied on me was gone.",
         },
         PIG_RUINS_IDOL = "Theoretically, it can be detached from its base.",
+        PIG_RUINS_PLAQUE = "Evidently, I'll need something to sever it from the base.",
         RABID_BEETLE = {
             DEAD = "An occurrance of invertebrate respiratory failure.",
             GENERIC = "Evidently, it acquires facial hair when it matures.",

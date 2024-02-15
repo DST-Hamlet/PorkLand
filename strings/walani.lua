@@ -44,9 +44,9 @@ return {
         },
         GLOWFLY_COCOON = "I need a sleeping bag like that.",
         GOLDENMACHETE = "I can hack in style.",
-        GRABBING_VINE = "That seems dangerous.",
         GOLDPAN = "You mean I gotta work for my gold?",
         GOLD_DUST = "Fairy dust!",
+        GRABBING_VINE = "That seems dangerous.",
         GRASS_TALL = {
             BURNING = "It'd probably be a lot of work to put it out.",
             GENERIC = "It's too much work to pick it with my hands.",
@@ -65,6 +65,7 @@ return {
         PEAGAWKFEATHER = "Nature makes such pretty things.",
         PEAGAWK_BUSH = "What a cool looking bush!",
         PIG_RUINS_IDOL = "How do I get that top part off?",
+        PIG_RUINS_PLAQUE = "It'll take some work to get that top part off.",
         RABID_BEETLE = {
             DEAD = "That's a bummer.",
             GENERIC = "Dude, you need to chill!",

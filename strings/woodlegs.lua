@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "'e be sleepin' it off.",
         GOLDENMACHETE = "'Tis a mighty 'eavy blade.",
-        GRABBING_VINE = "Them be th'ropes.",
         GOLDPAN = "Fer fishin' fer gold.",
         GOLD_DUST = "Aye! 'Tis treasure dust!",
+        GRABBING_VINE = "Them be th'ropes.",
         GRASS_TALL = {
             BURNING = "'Tis ablaze!",
             GENERIC = "As tall'as th'sky.",
@@ -64,6 +64,7 @@ return {
         PEAGAWKFEATHER = "Feather'o'glimmer.",
         PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
         PIG_RUINS_IDOL = "Tha' treasure atop there.",
+        PIG_RUINS_PLAQUE = "Tha' treasure needs a diggin' out.",
         RABID_BEETLE = {
             DEAD = "Aye, 'tis fer'tha best.",
             GENERIC = "Ornery buggie.",

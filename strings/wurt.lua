@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "The little bug wrapped itself up.",
         GOLDENMACHETE = "It better than normal hacker.",
-        GRABBING_VINE = "They're on top here.",
         GOLDPAN = "Pick rocks in water up.",
         GOLD_DUST = "Shining...",
+        GRABBING_VINE = "They're on top here.",
         GRASS_TALL = {
             BURNING = "Fire! Is fire!",
             GENERIC = "Greer... can't move.",
@@ -63,6 +63,7 @@ return {
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
         PIG_RUINS_IDOL = "A pig figure, not a fish figure.",
+        PIG_RUINS_PLAQUE = "Is this also made by pigs?",
         RABID_BEETLE = {
             DEAD = "died.",
             GENERIC = "The little bug is going crazy!",

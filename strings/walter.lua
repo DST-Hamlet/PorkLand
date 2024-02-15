@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "A cocoon, what could be inside?",
         GOLDENMACHETE = "Hack in style!",
-        GRABBING_VINE = "What kind of monster up there?",
         GOLDPAN = "Are you ready? Woby.",
         GOLD_DUST = "Smallest gold are still gold.",
+        GRABBING_VINE = "What kind of monster up there?",
         GRASS_TALL = {
             BURNING = "Hey! Brush fires will destroy rainforests!",
             GENERIC = "A lush patch of grass. Must be a lot of bugs in it.",
@@ -63,6 +63,7 @@ return {
         PEAGAWKFEATHER = "method is valid.",
         PEAGAWK_BUSH = "This bird can't fly, but turns into a bush!",
         PIG_RUINS_IDOL = "Look what we found, Warby!",
+        PIG_RUINS_PLAQUE = "It's a totem!",
         RABID_BEETLE = {
             DEAD = "Oh, dead.",
             GENERIC = "Wow, look how active they are!",

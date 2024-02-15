@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "Fascinating! It has moved on to the chrysalis stage.",
         GOLDENMACHETE = "The most malleable of metals, but let's see how it slices.",
-        GRABBING_VINE = "Hanging vines from the forest canopy.",
         GOLDPAN = "This should be useful for finding valuable minerals.",
         GOLD_DUST = "Small particles of the shiniest element.",
+        GRABBING_VINE = "Hanging vines from the forest canopy.",
         GRASS_TALL = {
             BURNING = "Illuminating!",
             GENERIC = "I need an implement for that.",
@@ -64,6 +64,7 @@ return {
         PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
         PEAGAWK_BUSH = "I have questions about that bush.",
         PIG_RUINS_IDOL = "The top part would make an invaluable bartering tool.",
+        PIG_RUINS_PLAQUE = "How do I separate it from the base?",
         RABID_BEETLE = {
             DEAD = "Expired.",
             GENERIC = "Certainly not a species I know of!",

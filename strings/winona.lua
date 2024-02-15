@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "Change is happening.",
         GOLDENMACHETE = "This just made my job easier.",
-        GRABBING_VINE = "I saw a strong rope.",
         GOLDPAN = "Separate the metal.",
         GOLD_DUST = "gold! My luck has come!",
+        GRABBING_VINE = "I saw a strong rope.",
         GRASS_TALL = {
             BURNING = "A Grass fire!",
             GENERIC = "That's some... very tall grass.",
@@ -63,6 +63,7 @@ return {
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
         PIG_RUINS_IDOL = "There must be some way to remove the top part.",
+        PIG_RUINS_PLAQUE = "There must be some way to remove the top part.",
         RABID_BEETLE = {
             DEAD = "Ah, it stopped.",
             GENERIC = "What are you all excited about?",

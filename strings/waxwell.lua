@@ -44,9 +44,9 @@ return {
         },
         GLOWFLY_COCOON = "Ah, metamorphosis...",
         GOLDENMACHETE = "I've always wanted to hack things in luxury.",
-        GRABBING_VINE = "I know the ropes.",
         GOLDPAN = "Must I do everything myself?",
         GOLD_DUST = "I suppose any gold is good gold.",
+        GRABBING_VINE = "I know the ropes.",
         GRASS_TALL = {
             BURNING = "Well, there you have it.",
             GENERIC = "Oh, joyous occasion. I've found grass.",
@@ -65,6 +65,7 @@ return {
         PEAGAWKFEATHER = "What finery.",
         PEAGAWK_BUSH = "I've my suspicions about that bush.",
         PIG_RUINS_IDOL = "Hmmm. How do I get that statue off?",
+        PIG_RUINS_PLAQUE = "It must be worth something to those pigs.",
         RABID_BEETLE = {
             DEAD = "The grim reaper has been here.",
             GENERIC = "What is he all worked up about?",

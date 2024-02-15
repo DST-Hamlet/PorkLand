@@ -44,9 +44,9 @@ return {
         },
         GLOWFLY_COCOON = "Snug as a bug.",
         GOLDENMACHETE = "Hack in style!",
-        GRABBING_VINE = "Always hanging around.",
         GOLDPAN = "Critics panned it.",
         GOLD_DUST = "Aw... it's hardly worth anything.",
+        GRABBING_VINE = "Always hanging around.",
         GRASS_TALL = {
             BURNING = "A grass fire!",
             GENERIC = "It's too tough to pick with my hands.",
@@ -65,6 +65,7 @@ return {
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
         PIG_RUINS_IDOL = "These ruins have been ruined.",
+        PIG_RUINS_PLAQUE = "I could probably sell that to one of those pigs.",
         RABID_BEETLE = {
             DEAD = "A late beetle.",
             GENERIC = "Looks deranged.",

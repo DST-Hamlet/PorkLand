@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "We'd better get out of here before it breaks out of its cocoon.",
         GOLDENMACHETE = "What else do you do with gold in a jungle island?",
-        GRABBING_VINE = "I really hope it was just a regular plant.",
         GOLDPAN = "I dread to think how long this will take.",
         GOLD_DUST = "I need to collect lot of them.",
+        GRABBING_VINE = "I really hope it was just a regular plant.",
         GRASS_TALL = {
             BURNING = "This is not good.",
             GENERIC = "Grasses this tough are indeed uncommon.",
@@ -63,6 +63,7 @@ return {
         PEAGAWKFEATHER = "It's hard to see.",
         PEAGAWK_BUSH = "What a clever disguise.",
         PIG_RUINS_IDOL = "I thought it would be deeper...oh, that's another one.",
+        PIG_RUINS_PLAQUE = "I'm curious what it means, but forget it.",
         RABID_BEETLE = {
             DEAD = "There is one less pest in the world.",
             GENERIC = "vermin! go away!",

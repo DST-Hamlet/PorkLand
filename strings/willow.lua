@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "Doing a bad job of hiding from me.",
         GOLDENMACHETE = "I don't want to scuff it up.",
-        GRABBING_VINE = "Ugh, vines!",
         GOLDPAN = "You mean I have to do work?",
         GOLD_DUST = "It's probably not worth much.",
+        GRABBING_VINE = "Ugh, vines!",
         GRASS_TALL = {
             BURNING = "I win.",
             GENERIC = "This grass is tough!",
@@ -64,6 +64,7 @@ return {
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
         PIG_RUINS_IDOL = "I should take that off and sell it to a pig.",
+        PIG_RUINS_PLAQUE = "If I could break it, I could sell it.",
         RABID_BEETLE = {
             DEAD = "Looks dead to me.",
             GENERIC = "What're you so mad about?",

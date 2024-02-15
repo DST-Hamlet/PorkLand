@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "That looks cozy.",
         GOLDENMACHETE = "What a beautiful blade!",
-        GRABBING_VINE = "Cool! Vines!",
         GOLDPAN = "Hey, now we can be prospectors.",
         GOLD_DUST = "Wow! I wonder if it's worth anything.",
+        GRABBING_VINE = "Cool! Vines!",
         GRASS_TALL = {
             BURNING = "Fire!",
             GENERIC = "It's taller than we are!",
@@ -64,6 +64,7 @@ return {
         PEAGAWKFEATHER = "It's pretty.",
         PEAGAWK_BUSH = "Neat. A weird bush!",
         PIG_RUINS_IDOL = "Those pigs would probably really love that.",
+        PIG_RUINS_PLAQUE = "We should take that back to the pig village.",
         RABID_BEETLE = {
             DEAD = "Well, that's unfortunate.",
             GENERIC = "That guy's got a lot of energy!",

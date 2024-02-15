@@ -42,9 +42,9 @@ return {
         },
         GLOWFLY_COCOON = "What will become of it?",
         GOLDENMACHETE = "Fit for a sophisticated imp!",
-        GRABBING_VINE = "Hello, what do you want?",
         GOLDPAN = "A big slotted spoon, for gold and glory.",
         GOLD_DUST = "Many mortals try to use it to fill the void in their souls.",
+        GRABBING_VINE = "Hello, what do you want?",
         GRASS_TALL = {
             BURNING = "Oops, it's burning.",
             GENERIC = "Solid tall grass, really nice.",
@@ -62,6 +62,7 @@ return {
         PEAGAWKFEATHER = "Feather of a small peacock.",
         PEAGAWK_BUSH = "Well, this trick can't fool me.",
         PIG_RUINS_IDOL = "The little statue above is nice, let's take it away.",
+        PIG_RUINS_PLAQUE = "Hey! Little tree, guess what is written on it?",
         RABID_BEETLE = {
             DEAD = "it's a pity.",
             GENERIC = "Really energetic, do you want to dance?",

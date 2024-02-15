@@ -43,9 +43,9 @@ return {
         },
         GLOWFLY_COCOON = "Changing",
         GOLDENMACHETE = "Pretty Slicer",
-        GRABBING_VINE = "Wants stuff",
         GOLDPAN = "Gets Shiny from puddle",
         GOLD_DUST = "Shiny dirt",
+        GRABBING_VINE = "Wants stuff",
         GRASS_TALL = {
             BURNING = "No!!",
             GENERIC = "You're so tall!",
@@ -64,6 +64,7 @@ return {
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
         PIG_RUINS_IDOL = "Twirly Tail rock",
+        PIG_RUINS_PLAQUE = "Twirly Tail rock",
         RABID_BEETLE = {
             DEAD = "Too bad",
             GENERIC = "Why so mad, Bzzter?",
