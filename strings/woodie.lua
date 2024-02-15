@@ -67,6 +67,7 @@ return {
         PIG_RUINS_ARTICHOKE = "Doesn't look too tasty.",
         PIG_RUINS_HEAD = "Someone missing a head?",
         PIG_RUINS_IDOL = "Be nice if we could get that top part off.",
+        PIG_RUINS_PIG = "Happy little guy.",
         PIG_RUINS_PLAQUE = "It's one of those statues the pigs like.",
         RABID_BEETLE = {
             DEAD = "For the best.",

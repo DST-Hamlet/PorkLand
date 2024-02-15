@@ -67,6 +67,7 @@ return {
         PIG_RUINS_ARTICHOKE = "Thar be treas're in't.",
         PIG_RUINS_HEAD = "Thar be th'head.",
         PIG_RUINS_IDOL = "Tha' treasure atop there.",
+        PIG_RUINS_PIG = "What'r ye smilin' at?",
         PIG_RUINS_PLAQUE = "Tha' treasure needs a diggin' out.",
         RABID_BEETLE = {
             DEAD = "Aye, 'tis fer'tha best.",

@@ -265,7 +265,6 @@ local ruin_data = {
         loot_table = "ruins_giant_head",
         master_postinit = function(inst)
             inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
-            -- inst.components.inspectable.nameoverride = nil
         end
     },
     pig_ruins_pig = {
@@ -279,7 +278,6 @@ local ruin_data = {
             inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
             inst.OnEntityWake = OnEntityWake
             inst.OnRemoveEntity = OnRemoveEntity
-            -- inst.components.inspectable.nameoverride = nil
         end
     },
     pig_ruins_ant = {
@@ -304,7 +302,6 @@ local ruin_data = {
         loot = "relic_1",
         master_postinit = function(inst)
             inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_IDOL"])
-            -- inst.components.inspectable.nameoverride = nil
         end
     },
     pig_ruins_plaque = {
@@ -316,7 +313,6 @@ local ruin_data = {
         loot = "relic_2",
         master_postinit = function(inst)
             inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_PLAQUE"])
-            inst.components.inspectable.nameoverride = nil
         end
     },
     pig_ruins_artichoke = {
@@ -362,7 +358,7 @@ local ruin_data = {
         end,
         master_postinit = function(inst)
             inst:RemoveComponent("dislodgeable")
-            inst:RemoveComponent("named")
+            inst.components.inspectable.nameoverride = "ROCK"
         end
     },
     antqueen_throne = {

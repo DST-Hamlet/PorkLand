@@ -70,6 +70,7 @@ return {
         PIG_RUINS_ARTICHOKE = "An elegant depiction of a giant vegetable.",
         PIG_RUINS_HEAD = "Evidence would suggest he's an important figure in the pig's past.",
         PIG_RUINS_IDOL = "Theoretically, it can be detached from its base.",
+        PIG_RUINS_PIG = "A stone representation of a jubilant pig.",
         PIG_RUINS_PLAQUE = "Evidently, I'll need something to sever it from the base.",
         RABID_BEETLE = {
             DEAD = "An occurrance of invertebrate respiratory failure.",

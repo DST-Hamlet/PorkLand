@@ -67,6 +67,7 @@ return {
         PIG_RUINS_ARTICHOKE = "Friend? Nope, rock",
         PIG_RUINS_HEAD = "Must have big rock brain",
         PIG_RUINS_IDOL = "Twirly Tail rock",
+        PIG_RUINS_PIG = "Twirly Tail rock",
         PIG_RUINS_PLAQUE = "Twirly Tail rock",
         RABID_BEETLE = {
             DEAD = "Too bad",

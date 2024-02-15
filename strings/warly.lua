@@ -67,6 +67,7 @@ return {
         PIG_RUINS_ARTICHOKE = "Clearly a food loving culture dwelled here.",
         PIG_RUINS_HEAD = "I suppose pigs lived here once.",
         PIG_RUINS_IDOL = "Those pig fellows might like that.",
+        PIG_RUINS_PIG = "Ah. Look at those golden teeth!",
         PIG_RUINS_PLAQUE = "Just a pinch of statue.",
         RABID_BEETLE = {
             DEAD = "A shame. Not even edible.",

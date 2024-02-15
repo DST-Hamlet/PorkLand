@@ -67,6 +67,7 @@ return {
         PIG_RUINS_ARTICHOKE = "Is odd statue.",
         PIG_RUINS_HEAD = "Is big and mighty head. Like Wolfgang!",
         PIG_RUINS_IDOL = "Piggies might like those.",
+        PIG_RUINS_PIG = "Wolfgang like his teeth.",
         PIG_RUINS_PLAQUE = "Is piggy thing.",
         RABID_BEETLE = {
             DEAD = "Is stomped.",

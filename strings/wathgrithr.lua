@@ -67,6 +67,7 @@ return {
         PIG_RUINS_ARTICHOKE = "A terrible monument to non-meat!",
         PIG_RUINS_HEAD = "A frost giant head, turned to stone!",
         PIG_RUINS_IDOL = "I will dethron it and sell it to a pig.",
+        PIG_RUINS_PIG = "Its golden grinning teeth mock me!",
         PIG_RUINS_PLAQUE = "I will take it with me!",
         RABID_BEETLE = {
             DEAD = "It has died in battle.",

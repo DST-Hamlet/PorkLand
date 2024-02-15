@@ -290,6 +290,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_IDOL"
 msgid "These ruins have been ruined."
 msgstr "这些遗迹已经被毁掉了。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_PIG"
+msgid "Why is he so happy?"
+msgstr "他为什么在笑呢？"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "I could probably sell that to one of those pigs."
@@ -665,6 +670,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Theoretically, it can be detached from its base."
 msgstr "从理论上讲，它可以从它的底座上分离出来。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_PIG"
+msgid "A stone representation of a jubilant pig."
+msgstr "一块石头，描述了一头欢乐的猪。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "Evidently, I'll need something to sever it from the base."
@@ -1030,6 +1040,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_IDOL"
 msgid "How do I get that top part off?"
 msgstr "我怎样才能把顶上那块弄下来？"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_PIG"
+msgid "He's a smiley guy."
+msgstr "他是一个微笑着的家伙。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "It'll take some work to get that top part off."
@@ -1385,6 +1400,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Look what we found, Warby!"
 msgstr "看看我们发现了什么，沃比！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_PIG"
+msgid "Look how happy it is smiling!"
+msgstr "看它笑得多开心啊！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "It's a totem!"
@@ -1714,6 +1734,11 @@ msgstr "巨大的石头猪脸。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I thought it would be deeper...oh, that's another one."
 msgstr "我还以为会更深...噢，那是另一个。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_PIG"
+msgid "What is it laughing at?"
+msgstr "它在笑什么？"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_PLAQUE"
@@ -2060,6 +2085,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Those pig fellows might like that."
 msgstr "那些猪伙计们可能会喜欢这个。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_PIG"
+msgid "Ah. Look at those golden teeth!"
+msgstr "啊. 看看那些金色的牙齿!"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "Just a pinch of statue."
@@ -2404,6 +2434,11 @@ msgstr "一个化作岩石的森林巨人头颅！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I will dethron it and sell it to a pig."
 msgstr "我要把它弄下来卖给猪。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_PIG"
+msgid "Its golden grinning teeth mock me!"
+msgstr "它露出那金色的牙齿嘲笑我!"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_PLAQUE"
@@ -2754,6 +2789,11 @@ msgstr "它已经身首异处。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Hmmm. How do I get that statue off?"
 msgstr "呃。我该怎么把这雕像弄下来？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_PIG"
+msgid "What's he got to smile about?"
+msgstr "他在笑什么？"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_PLAQUE"
@@ -3115,6 +3155,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Those pigs would probably really love that."
 msgstr "那些猪人可能真的十分喜欢那种雕像。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_PIG"
+msgid "He's got shiny teeth."
+msgstr "他有颗闪亮的牙齿。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "We should take that back to the pig village."
@@ -3460,6 +3505,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_IDOL"
 msgid "An artifact of a long dead culture."
 msgstr "死去的古老文明产物。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_PIG"
+msgid "His smile can't warm my heart."
+msgstr "他的笑容无法温暖我的内心。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "I could make money off its destruction."
@@ -3804,6 +3854,11 @@ msgstr "少了点什么...例如身体。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I'll need to get that totem free to take it back to the pigs."
 msgstr "我得把那个图腾拿出来送还给猪人。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_PIG"
+msgid "Oooh! Look at those golden teeth!"
+msgstr "噢！你看看那些金牙！"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_PLAQUE"
@@ -4165,6 +4220,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_IDOL"
 msgid "The top part would make an invaluable bartering tool."
 msgstr "最上面的部分将是无价的交换工具。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_PIG"
+msgid "It's dentition is quite radiant."
+msgstr "它的牙齿相当显眼。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "How do I separate it from the base?"
@@ -4515,6 +4575,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_IDOL"
 msgid "WILBA LIKETH THE TOP PART"
 msgstr "薇尔芭喜欢最上面的部分"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_PIG"
+msgid "HATH THE SPARKLIES TEETH"
+msgstr "它有闪闪发光的牙齿"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "HOWFORE WILBA GETS THE PRETTY PARTS OFF?"
@@ -4860,6 +4925,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I should take that off and sell it to a pig."
 msgstr "我应该把它拿下来卖给猪。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_PIG"
+msgid "Why is he smiling?"
+msgstr "他在笑什么？"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "If I could break it, I could sell it."
@@ -5189,6 +5259,11 @@ msgstr "一定有什么办法把中间那部分卸下来。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_IDOL"
 msgid "There must be some way to remove the top part."
 msgstr "一定有什么办法把上面那部分卸下来。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_PIG"
+msgid "It's a bit too showy."
+msgstr "未免太过于张扬了。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_PLAQUE"
@@ -5535,6 +5610,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Piggies might like those."
 msgstr "小猪们可能喜欢这些。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_PIG"
+msgid "Wolfgang like his teeth."
+msgstr "沃尔夫冈喜欢他的牙齿。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "Is piggy thing."
@@ -5879,6 +5959,11 @@ msgstr "有人丢了个脑袋吗？"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Be nice if we could get that top part off."
 msgstr "如果我们能把上面的部分弄掉就好了。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_PIG"
+msgid "Happy little guy."
+msgstr "快乐的小伙计。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_PLAQUE"
@@ -6225,6 +6310,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Tha' treasure atop there."
 msgstr "那上面有宝藏"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_PIG"
+msgid "What'r ye smilin' at?"
+msgstr "你在笑什么?"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "Tha' treasure needs a diggin' out."
@@ -6570,6 +6660,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Twirly Tail rock"
 msgstr "卷尾巴的石头"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_PIG"
+msgid "Twirly Tail rock"
+msgstr "卷尾巴的石头"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "Twirly Tail rock"
@@ -6910,6 +7005,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_IDOL"
 msgid "The little statue above is nice, let's take it away."
 msgstr "上面的小雕像不错啊，我们把它拿走吧。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_PIG"
+msgid "Always smile."
+msgstr "笑口常开啊。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "Hey! Little tree, guess what is written on it?"
@@ -7239,6 +7339,11 @@ msgstr "巨大的猪人脸。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_IDOL"
 msgid "A pig figure, not a fish figure."
 msgstr "一个猪人像，而不是鱼人。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_PIG"
+msgid "Watch me take away the pig's teeth!"
+msgstr "看我把猪人的牙齿拿走！"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_PLAQUE"
@@ -7585,6 +7690,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I WILL DESTROY IT!"
 msgstr "我要毁了它！"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_PIG
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_PIG"
+msgid "ITS SMILE MOCKS ME"
+msgstr "它的微笑嘲笑我"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "I WILL DESTROY IT!"
@@ -7839,6 +7949,11 @@ msgstr "吸引人的石像"
 msgctxt "STRINGS.NAMES.PIG_RUINS_MUSHROOM"
 msgid "The Jeweled Truffle"
 msgstr "宝石松露"
+
+#. STRINGS.NAMES.PIG_RUINS_PIG
+msgctxt "STRINGS.NAMES.PIG_RUINS_PIG"
+msgid "Crumbling Icon"
+msgstr "残破的硬币"
 
 #. STRINGS.NAMES.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.NAMES.PIG_RUINS_PLAQUE"
