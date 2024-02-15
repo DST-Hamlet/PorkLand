@@ -44,6 +44,8 @@ return {
         GLOWFLY_COCOON = "A cocoon, what could be inside?",
         GOLDENMACHETE = "Hack in style!",
         GRABBING_VINE = "What kind of monster up there?",
+        GOLDPAN = "Are you ready? Woby.",
+        GOLD_DUST = "Smallest gold are still gold.",
         GRASS_TALL = {
             BURNING = "Hey! Brush fires will destroy rainforests!",
             GENERIC = "A lush patch of grass. Must be a lot of bugs in it.",
@@ -53,6 +55,7 @@ return {
         HANGING_VINE = "What kind of monster up there?",
         IRON = "Is that iron?",
         MACHETE = "I like the cut of this blade.",
+        PANGOLDEN = "A born gold rusher.",
         PEAGAWK = {
             GENERIC = "Wow, how many eyes are there?",
             SLEEPING = "Warby, we might be able to gather his feathers while he's asleep.",
@@ -65,6 +68,7 @@ return {
             GENERIC = "Wow, look how active they are!",
             SLEEPING = "it's sleeping,",
         },
+        SEDIMENTPUDDLE = "Is that gold in there?",
         SHEARS = "Gardener's little helper.",
         SMELTER = {
             BURNT = "It's uh... extra done!",

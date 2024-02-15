@@ -44,6 +44,8 @@ return {
         GLOWFLY_COCOON = "It's wrapped itself like a cabbage roll.",
         GOLDENMACHETE = "Fancy slicer.",
         GRABBING_VINE = "How eerie.",
+        GOLDPAN = "I have better pans.",
+        GOLD_DUST = "Perhaps that nosy fellow would like to eat this.",
         GRASS_TALL = {
             BURNING = "Smells like a cookout!",
             GENERIC = "Too long to cut with my hands.",
@@ -53,6 +55,7 @@ return {
         HANGING_VINE = "How eerie.",
         IRON = "I wonder what I could cook up with this.",
         MACHETE = "I could chop many an onion with this!",
+        PANGOLDEN = "Already has a nice golden braise.",
         PEAGAWK = {
             DEAD = "A pointless death.",
             GENERIC = "Those feathers would make a nice table centerpiece.",
@@ -66,6 +69,7 @@ return {
             GENERIC = "It is like me when I am hungry.",
             SLEEPING = "What a curious way to sleep!",
         },
+        SEDIMENTPUDDLE = "It's been seasoned with gold.",
         SHEARS = "Good for cutting hedges and grass.",
         SMELTER = {
             BURNT = "I'm better at cooking food than metal.",

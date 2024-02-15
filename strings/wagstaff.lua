@@ -44,6 +44,8 @@ return {
         GLOWFLY_COCOON = "It appears to be undergoing some kind of transubstantiation.",
         GOLDENMACHETE = "Gold is so plentiful here I can use it in household tools.",
         GRABBING_VINE = "Kleptomaniac vegetation. How wonderful!",
+        GOLDPAN = "I do hope the holes were meant to be there.",
+        GOLD_DUST = "Evidently, it's the preferred sustenance of those long nosed quadrupeds.",
         GRASS_TALL = {
             BURNING = "Evidently, grass here has the same flammability qualities as at home.",
             GENERIC = "The obstinacy of this grass requires something sharper than my hands.",
@@ -53,6 +55,7 @@ return {
         HANGING_VINE = "Kleptomaniac vegetation. How wonderful!",
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
         MACHETE = "A pragmatic tool for slashing objects.",
+        PANGOLDEN = "Evidently, it poops gold. Fascinating!",
         PEAGAWK = {
             DEAD = "Evidently, it didn't see that coming.",
             GENERIC = "Curious. Can it see out of all of those ocular quills?",
@@ -69,6 +72,7 @@ return {
             GENERIC = "Evidently, it acquires facial hair when it matures.",
             SLEEPING = "It's respiratory structures are vibrating.",
         },
+        SEDIMENTPUDDLE = "Evidence would suggest there's gold down there!",
         SHEARS = "Cutting implements constructed from raw metal.",
         SMELTER = {
             BURNT = "Smelting is a dangerous business in here.",

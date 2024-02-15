@@ -765,7 +765,6 @@ AddComponentPostInit("seasons", function(self)
         }
     })
 
-    if TheWorld:HasTag("porkland") then
-        self:SetSeasons("plateau")
-    end
+    local _clocktype = _world:HasTag("porkland") and "plateau" or "default"
+    self:SetSeasons(_clocktype)
 end)

@@ -179,6 +179,13 @@ local tuning = {
 
     VINE_REGEN_TIME_MIN = total_day_time * 2,
     VINE_REGEN_TIME_MAX = total_day_time * 3,
+    PAN_DAMAGE = wilson_attack*.8,
+    PAN_USES = 30,
+
+    PANGOLDEN_HEALTH = 500,
+    PANGOLDEN_BALL_DEFENCE = 0.75,
+    PANGOLDEN_WALK_SPEED = 2.5,
+    PANGOLDEN_RUN_SPEED = 8,
 }
 
 for key, value in pairs(tuning) do

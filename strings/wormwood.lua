@@ -44,6 +44,8 @@ return {
         GLOWFLY_COCOON = "Changing",
         GOLDENMACHETE = "Pretty Slicer",
         GRABBING_VINE = "Wants stuff",
+        GOLDPAN = "Gets Shiny from puddle",
+        GOLD_DUST = "Shiny dirt",
         GRASS_TALL = {
             BURNING = "No!!",
             GENERIC = "You're so tall!",
@@ -53,6 +55,7 @@ return {
         HANGING_VINE = "Wants stuff",
         IRON = "Clinky Rock",
         MACHETE = "Slicer. For friend haircuts",
+        PANGOLDEN = "Shiny Pooper",
         PEAGAWK = {
             DEAD = "Oh dear",
             GENERIC = "Gubble Gubble Tweeter",
@@ -66,6 +69,7 @@ return {
             GENERIC = "Why so mad, Bzzter?",
             SLEEPING = "Let it sleep",
         },
+        SEDIMENTPUDDLE = "Shiny puddle",
         SHEARS = "For hair cuts",
         SMELTER = {
             BURNT = "Nothing",

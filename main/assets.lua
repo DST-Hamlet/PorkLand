@@ -14,6 +14,8 @@ PrefabFiles = {
     "flower_rainforest",
     "glowfly",
     "grabbing_vine",
+    "gold_dust",
+    "goldpan",
     "grass_tall",
     "halberd",
     "hanging_vine_patch",
@@ -24,6 +26,7 @@ PrefabFiles = {
     "jungle_border_vine",
     "machete",
     "nettle",
+    "pangolden",
     "peagawk",
     "peagawk_spawner",
     "peagawkfeather",
@@ -32,6 +35,8 @@ PrefabFiles = {
     "relics",
     "rabid_beetle",
     "porkland",
+    "rabid_beetle",
+    "sedimentpuddle",
     "shears",
     "smelter",
     "tree_pillar",
@@ -70,6 +75,7 @@ Assets = {
     Asset("ANIM", "anim/player_sneeze.zip"),
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
     Asset("ANIM", "anim/player_actions_tap.zip"),
+    Asset("ANIM", "anim/player_actions_panning.zip"),
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),

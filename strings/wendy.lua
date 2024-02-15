@@ -44,6 +44,8 @@ return {
         GLOWFLY_COCOON = "If I could climb into a cocoon I would never emerge.",
         GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
         GRABBING_VINE = "The jungle's noose.",
+        GOLDPAN = "Offers too much hope.",
+        GOLD_DUST = "Death is not sparkly.",
         GRASS_TALL = {
             BURNING = "Death comes to everything.",
             GENERIC = "Alas, I'm too weak to pick it.",
@@ -53,6 +55,7 @@ return {
         HANGING_VINE = "The jungle's noose.",
         IRON = "Iron. Like my heart.",
         MACHETE = "This is a lot of blade.",
+        PANGOLDEN = "A fool and his gold.",
         PEAGAWK = {
             DEAD = "Beautiful death.",
             GENERIC = "Many eyes witness many horrors in life.",
@@ -66,6 +69,7 @@ return {
             GENERIC = "As rabid as death itself.",
             SLEEPING = "Sleep is not a permanent escape from life.",
         },
+        SEDIMENTPUDDLE = "Contains unreachable shiny things.",
         SHEARS = "Can it shear my heart?",
         SMELTER = {
             BURNT = "It blazes with more passion than I know.",

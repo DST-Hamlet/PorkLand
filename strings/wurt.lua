@@ -44,6 +44,8 @@ return {
         GLOWFLY_COCOON = "The little bug wrapped itself up.",
         GOLDENMACHETE = "It better than normal hacker.",
         GRABBING_VINE = "They're on top here.",
+        GOLDPAN = "Pick rocks in water up.",
+        GOLD_DUST = "Shining...",
         GRASS_TALL = {
             BURNING = "Fire! Is fire!",
             GENERIC = "Greer... can't move.",
@@ -53,6 +55,7 @@ return {
         HANGING_VINE = "They're on top here.",
         IRON = "Red hard rock.",
         MACHETE = "Plant hacker.",
+        PANGOLDEN = "Don't drink them all!",
         PEAGAWK = {
             GENERIC = "Big weird bird.",
             SLEEPING = "The big monster fell asleep?",
@@ -65,6 +68,7 @@ return {
             GENERIC = "The little bug is going crazy!",
             SLEEPING = "The little bug was quiet.",
         },
+        SEDIMENTPUDDLE = "Water are ... shining?",
         SHEARS = "Shape the plants.",
         SMELTER = {
             BURNT = "Glurph, ruined.",

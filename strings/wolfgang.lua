@@ -44,6 +44,8 @@ return {
         GLOWFLY_COCOON = "Bug look cozy.",
         GOLDENMACHETE = "Hoighty toighty knife!",
         GRABBING_VINE = "Watch out for that tree!",
+        GOLDPAN = "Is for eating from?",
+        GOLD_DUST = "Wolfgang like. Is shiny.",
         GRASS_TALL = {
             BURNING = "Wolfgang is not doing that!",
             GENERIC = "Very sturdy grass.",
@@ -53,6 +55,7 @@ return {
         HANGING_VINE = "Watch out for that tree!",
         IRON = "Iron is strong like Wolfgang.",
         MACHETE = "Ah! Very good!",
+        PANGOLDEN = "Hehe. Haves big nose.",
         PEAGAWK = {
             DEAD = "Is blink-blink no more.",
             GENERIC = "Funny blink-blink bird!",
@@ -66,6 +69,7 @@ return {
             GENERIC = "Wolfgang will stomp bad beetle!",
             SLEEPING = "Hehe. Is funny mustache.",
         },
+        SEDIMENTPUDDLE = "Hello little sparklies!",
         SHEARS = "Is for cutting plant things.",
         SMELTER = {
             BURNT = "Smelter is dead.",

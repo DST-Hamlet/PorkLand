@@ -44,6 +44,8 @@ return {
         GLOWFLY_COCOON = "Aww... It's wrapped up all nice and cozy.",
         GOLDENMACHETE = "For the sophisticated adventurer.",
         GRABBING_VINE = "If I didn't know any better, I'd think that vine wants my stuff.",
+        GOLDPAN = "Swell. A pan with holes in it.",
+        GOLD_DUST = "Hardly worth holding onto. If I could find more of it though...",
         GRASS_TALL = {
             BURNING = "All those bugs have nowhere to hide now.",
             GENERIC = "Tall grass like that is going to need a machete.",
@@ -53,6 +55,7 @@ return {
         HANGING_VINE = "Vines. Gotta love 'em.",
         IRON = "Well it's not good balloon material.",
         MACHETE = "Machete. Designed for adventure.",
+        PANGOLDEN = "I don't actually mind picking up his poop.",
         PEAGAWK = {
             DEAD = "I promise, I will go on without you!",
             GENERIC = "Has the eyesight for flying but not the wings for it.",
@@ -66,6 +69,7 @@ return {
             GENERIC = "Probably just agitated because it can't fly well.",
             SLEEPING = "Quite the snorer.",
         },
+        SEDIMENTPUDDLE = "A sparkly pool. A little too sparkly.",
         SHEARS = "Time to do some yard work.",
         SMELTER = {
             BURNT = "No one ever accused me of being a good blacksmith.",

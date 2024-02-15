@@ -43,6 +43,8 @@ return {
         GLOWFLY_COCOON = "What will become of it?",
         GOLDENMACHETE = "Fit for a sophisticated imp!",
         GRABBING_VINE = "Hello, what do you want?",
+        GOLDPAN = "A big slotted spoon, for gold and glory.",
+        GOLD_DUST = "Many mortals try to use it to fill the void in their souls.",
         GRASS_TALL = {
             BURNING = "Oops, it's burning.",
             GENERIC = "Solid tall grass, really nice.",
@@ -52,6 +54,7 @@ return {
         HANGING_VINE = "Hello, what do you want?",
         IRON = "Oooh. Almost burned me.",
         MACHETE = "To chop and slash!",
+        PANGOLDEN = "How are you today? Any outcome?",
         PEAGAWK = {
             GENERIC = "You must have seen a lot, right?",
             SLEEPING = "Huh, let's close our eyes and take a break?",
@@ -64,6 +67,7 @@ return {
             GENERIC = "Really energetic, do you want to dance?",
             SLEEPING = "Then intermission.",
         },
+        SEDIMENTPUDDLE = "These are not for drink.",
         SHEARS = "Click, click, leaves fall.",
         SMELTER = {
             BURNT = "I didn't know they were hot to stone.",

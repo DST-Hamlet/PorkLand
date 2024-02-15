@@ -45,6 +45,8 @@ return {
         GLOWFLY_COCOON = "I need a sleeping bag like that.",
         GOLDENMACHETE = "I can hack in style.",
         GRABBING_VINE = "That seems dangerous.",
+        GOLDPAN = "You mean I gotta work for my gold?",
+        GOLD_DUST = "Fairy dust!",
         GRASS_TALL = {
             BURNING = "It'd probably be a lot of work to put it out.",
             GENERIC = "It's too much work to pick it with my hands.",
@@ -54,6 +56,7 @@ return {
         HANGING_VINE = "That seems dangerous.",
         IRON = "This has gotta be good for something.",
         MACHETE = "What a hack job.",
+        PANGOLDEN = "Shiny.",
         PEAGAWK = {
             DEAD = "Dang. It's dead.",
             GENERIC = "Beautiful eyes, dude!",
@@ -67,6 +70,7 @@ return {
             GENERIC = "Dude, you need to chill!",
             SLEEPING = "That's it. Now just stay asleep.",
         },
+        SEDIMENTPUDDLE = "There's sparkly things down there!",
         SHEARS = "What am I supposed to do with these?",
         SMELTER = {
             BURNT = "This is what you get for trying too hard.",
