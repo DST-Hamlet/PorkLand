@@ -287,26 +287,13 @@ local states = {
             EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
             EventHandler("animover", function(inst)
                 if inst.AnimState:AnimDone() then
-                    -- inst.AnimState:PlayAnimation("chop_pst")
-                    inst.sg:GoToState("shear_end")
+                    inst.AnimState:PlayAnimation("cut_pst")
+                    inst.sg:GoToState("idle", true)
                 end
             end),
         },
     },
 
-    State{
-        name = "shear_end",
-        tags = {"working"},
-        onenter = function(inst)
-            inst.AnimState:PlayAnimation("cut_pst")
-        end,
-
-        events =
-        {
-            EventHandler("unequip", function(inst) inst.sg:GoToState("idle")  end),
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
-        },
-    },
     State{
         name = "sneeze",
         tags = {"busy", "sneeze", "nopredict"},
@@ -350,7 +337,9 @@ local states = {
         events =
         {
             EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle")
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
             end),
         },
     },

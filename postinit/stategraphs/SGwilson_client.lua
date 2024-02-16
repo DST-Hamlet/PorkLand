@@ -97,8 +97,7 @@ local states = {
 
         ontimeout = function(inst)
             inst:ClearBufferedAction()
-            inst.AnimState:PlayAnimation("pan_pst")
-            inst.sg:GoToState("idle", true)
+            inst.sg:GoToState("idle")
         end,
     },
 
@@ -123,8 +122,8 @@ local states = {
                     inst.sg:GoToState("idle", "noanim")
                 end
             elseif inst.bufferedaction == nil then
-                inst.AnimState:PlayAnimation("pickaxe_pst")
-                inst.sg:GoToState("idle")
+                inst.AnimState:PlayAnimation("cut_pst")
+                inst.sg:GoToState("idle", true)
             end
         end,
 
