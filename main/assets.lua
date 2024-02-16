@@ -26,7 +26,7 @@ PrefabFiles = {
     "nettle",
     "pangolden",
     "peagawk",
-    "peagawk_spawner",
+    -- "peagawk_spawner",
     "peagawkfeather",
     "poisonbubble",
     "porkland_network",

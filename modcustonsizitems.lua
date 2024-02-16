@@ -75,7 +75,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             pangolden = {image = "pangolden.tex"},
             "dungpile",
             hanging_vine_patch = {image = "hanging_vine.tex"},
-            peagawk_spawner = {image = "peagawk.tex"}
+            peagawk = {image = "peagawk.tex"}
         },
         resources = {
             "asparagus",
@@ -92,7 +92,7 @@ local custonsiz_items = {  -- add in dst custonsiz
         },
         animals = {
             dungbeetle_setting = {image = "dungbeetle.tex"},
-            peagawk_setting = {image = "peagawk.tex"},
+            -- peagawk_setting = {image = "peagawk.tex"},
             glowfly_setting = {image = "glowflies.tex"},
             hanging_vine_setting = {image = "grabbing_vine.tex"},
         },
