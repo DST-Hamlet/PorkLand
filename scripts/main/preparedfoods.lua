@@ -10,7 +10,8 @@ local foods = {
         perishtime = TUNING.PERISH_MED,
         sanity = -TUNING.SANITY_TINY,
         cooktime = 0.5,
-        oneatenfn = function(inst, eater) -- These buffs override each other
+        oneatenfn = function(inst, eater) 
+            -- These buffs override each other, but RemoveExternalSpeedMultiplier needs the source in order to remove a buff
             eater:RemoveDebuff("buff_speed_coffee_beans")
             eater:RemoveDebuff("buff_speed_tea")
             eater:RemoveDebuff("buff_speed_icedtea")

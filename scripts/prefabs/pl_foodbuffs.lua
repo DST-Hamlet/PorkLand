@@ -4,31 +4,31 @@
 
 local function speed_coffee_beans_attach(inst, target)
     if target.components.locomotor then
-        target.components.locomotor:SetSpeedModifier_Additive("CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED)
+        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED)
     end
 end
 
 local function speed_coffee_attach(inst, target)
     if target.components.locomotor then
-        target.components.locomotor:SetSpeedModifier_Additive("CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED)
+        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED)
     end
 end
 
 local function speed_tea_attach(inst, target)
     if target.components.locomotor then
-        target.components.locomotor:SetSpeedModifier_Additive("CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/2)
+        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/2)
     end
 end
 
 local function speed_icedtea_attach(inst, target)
     if target.components.locomotor then
-        target.components.locomotor:SetSpeedModifier_Additive("CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/3)
+        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/3)
     end
 end
 
-local function speed_caffeine_detach(inst, target)
+local function speed_caffeine_detach(inst, target, data)
     if target.components.locomotor then
-        target.components.locomotor:RemoveSpeedModifier_Additive("CAFFEINE")
+        target.components.locomotor:RemoveExternalSpeedMultiplier(inst, "CAFFEINE")
     end
 end
 
