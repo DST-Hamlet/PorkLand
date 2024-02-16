@@ -48,9 +48,7 @@ local function PlaceOffGrids(inst, radiusMax, prefab, tags)
         local plant = SpawnPrefab(prefab)
         plant.Transform:SetPosition(x, y, z)
         plant.spawn_patch = inst
-        return true
     end
-        return false
 end
 
 local function SpawnVine(inst, prefab)

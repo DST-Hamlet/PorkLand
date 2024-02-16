@@ -47,15 +47,6 @@ local function OnFar(inst)
     inst.near = nil
 end
 
-local function OnSave(inst, data)
-    local references = {}
-    if inst.spawn_patch then
-        data.spawn_patch = inst.spawn_patch.GUID
-        references = {data.leader}
-    end
-    return references
-end
-
 local function OnHitOther(inst, other, damage)
     inst.components.thief:StealItem(other, nil, nil, true)
 end
@@ -69,13 +60,20 @@ local function OnTeleported(inst)
     inst.components.health:Kill()
 end
 
-local function LoadPostPass(inst,ents, data)
-    if data then
-        if data.spawn_patch then
-            local spawn_patch = ents[data.spawn_patch]
-            if spawn_patch then
-                inst.spawn_patch = spawn_patch.entity
-            end
+local function OnSave(inst, data)
+    local ents = {}
+    if inst.spawn_patch then
+        data.spawn_patch = inst.spawn_patch.GUID
+        table.insert(ents, inst.spawn_patch.GUID)
+    end
+    return ents
+end
+
+local function LoadPostPass(inst, ents, data)
+    if data and data.spawn_patch then
+        local spawn_patch = ents[data.spawn_patch]
+        if spawn_patch then
+            inst.spawn_patch = spawn_patch.entity
         end
     end
 end
@@ -88,7 +86,7 @@ end
 
 local function InIt(inst)
     inst.sg:GoToState("idle_up")
-    inst.components.knownlocations:RememberLocation("home", Point(inst.Transform:GetWorldPosition()), true)
+    inst.components.knownlocations:RememberLocation("home", inst:GetPosition(), true)
 end
 
 local function commonfn()

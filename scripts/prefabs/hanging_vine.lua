@@ -54,6 +54,24 @@ local function OnRemoveEntity(inst)
     end
 end
 
+local function OnSave(inst, data)
+    local ents = {}
+    if inst.spawn_patch then
+        data.spawn_patch = inst.spawn_patch.GUID
+        table.insert(ents, inst.spawn_patch.GUID)
+    end
+    return ents
+end
+
+local function LoadPostPass(inst, ents, data)
+    if data and data.spawn_patch then
+        local spawn_patch = ents[data.spawn_patch]
+        if spawn_patch then
+            inst.spawn_patch = spawn_patch.entity
+        end
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -89,6 +107,8 @@ local function fn()
     inst.components.shearable:SetUp("rope", 1)
     inst.components.shearable:SetOnShearFn(inst.Remove)
 
+    inst.OnSave = OnSave
+    inst.LoadPostPass = LoadPostPass
     inst.OnRemoveEntity = OnRemoveEntity
 
     inst:AddComponent("burnable")
