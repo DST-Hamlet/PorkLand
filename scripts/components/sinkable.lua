@@ -39,7 +39,7 @@ function Sinkable:OnHitWater()
 	if self.inst:IsOnOcean() then
 		self.sunken = true
 		self.oldname = self.inst.name
-		-- self.inst.name = STRINGS.NAMES.SUNKEN_RELIC
+		self.inst.name = STRINGS.NAMES.SUNKEN_RELIC
         self.inst:AddComponent("workable")
         self.inst.components.workable:SetWorkAction(ACTIONS.FISH)
         self.inst.components.workable:SetWorkLeft(1)

@@ -8076,6 +8076,11 @@ msgctxt "STRINGS.RECIPE_DESC.SMELTER"
 msgid "Turn Iron into Alloy."
 msgstr ""
 
+#. STRINGS.NAMES.SUNKEN_RELIC
+msgctxt "STRINGS.NAMES.SUNKEN_RELIC"
+msgid "Sunken Object"
+msgstr ""
+
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.ASPARAGUS
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.ASPARAGUS"
 msgid "Asparagus"

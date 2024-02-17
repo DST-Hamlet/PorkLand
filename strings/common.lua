@@ -55,6 +55,7 @@ return {
         SEDIMENTPUDDLE = "Sparkling Pool",
         SHEARS = "Shears",
         SMELTER = "Smelter",
+        SUNKEN_RELIC = "Sunken Object",
         TREE_PILLAR = "Great Leafy Stalk",
         WEEVOLE = "Weevole",
         WEEVOLE_CARAPACE = "Weevole Carapace",
