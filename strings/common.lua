@@ -1,5 +1,9 @@
 return {
     ACTIONS = {
+        FISH = {
+            GENERIC = "Fish",
+            RETRIEVE = "Retrieve",
+        },
         HACK = "Hack",
         PAN = "Pan",
         PICK = {

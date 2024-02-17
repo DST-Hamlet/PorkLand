@@ -129,6 +129,11 @@ ACTIONS.PANGOLDEN_POOP.fn = function(act)
     return true
 end
 
+ACTIONS.FISH.strfn = function(act)
+	if act.target and (act.target.components.workable or act.target.components.sinkable) then
+		return "RETRIEVE"
+	end
+end
 
 -- Patch for hackable things
 local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
