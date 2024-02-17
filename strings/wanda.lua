@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Strong refined metal.",
+        ANTQUEEN_THRONE = "Let's see what treasure she's hiding.",
         APORKALYPSE_CLOCK = "Keeping track of their movements...very clever idea.",
         ARMOR_METALPLATE = "I still prefer magic.",
         ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",

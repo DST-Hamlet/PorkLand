@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "It's steel! Look at the steel I made!",
+        ANTQUEEN_THRONE = "Warby! Get off of that!",
         APORKALYPSE_CLOCK = "Oh no! It's a doomsday prophecy!",
         ARMOR_METALPLATE = "Nothing can hurt me with this on!",
         ARMOR_WEEVOLE = "Are we really going to wear it?",

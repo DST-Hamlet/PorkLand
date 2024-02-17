@@ -16,6 +16,7 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Proper processing makes it better.",
+        ANTQUEEN_THRONE = "The Queen's treasury.",
         APORKALYPSE_CLOCK = "A fairly complex set of instrumentation.",
         ARMOR_METALPLATE = "Bulky, but surprisingly well-protected.",
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",

@@ -15,6 +15,7 @@ return {
         "Take off %s.",
     },
     DESCRIBE = {
+        ANTQUEEN_THRONE = "Guess what's underneath?",
         APORKALYPSE_CLOCK = "Magic on such a large scale, man, this is going to be fun.",
         ARMOR_METALPLATE = "What a horrible torture.",
         ARMOR_WEEVOLE = "I'm getting goosebumps.",
