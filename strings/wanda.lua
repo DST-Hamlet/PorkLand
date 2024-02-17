@@ -66,6 +66,7 @@ return {
         PIG_RUINS_IDOL = "I thought it would be deeper...oh, that's another one.",
         PIG_RUINS_PIG = "What is it laughing at?",
         PIG_RUINS_PLAQUE = "I'm curious what it means, but forget it.",
+        PIG_RUINS_SOW = "This one comes in a unique colorway.",
         RABID_BEETLE = {
             DEAD = "There is one less pest in the world.",
             GENERIC = "vermin! go away!",

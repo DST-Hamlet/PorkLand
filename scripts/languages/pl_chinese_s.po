@@ -1410,6 +1410,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "It's a totem!"
 msgstr "是一个图腾！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_SOW
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_SOW"
+msgid "Very royal."
+msgstr "非常有皇家风范。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.DEAD"
 msgid "Oh, dead."
@@ -1744,6 +1749,11 @@ msgstr "它在笑什么？"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "I'm curious what it means, but forget it."
 msgstr "我很好奇它有什么含义，但还是算了吧。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_SOW
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_SOW"
+msgid "This one comes in a unique colorway."
+msgstr "这一个采用了独特的配色。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.DEAD"
@@ -5270,6 +5280,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "There must be some way to remove the top part."
 msgstr "一定有什么办法把上面那部分卸下来。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_SOW
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_SOW"
+msgid "This one looks different, let's bring it back."
+msgstr "这个看起来不太一样，我们把它带回去吧。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.DEAD"
 msgid "Ah, it stopped."
@@ -7015,6 +7030,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "Hey! Little tree, guess what is written on it?"
 msgstr "嘿！小树，猜猜这上面写的是什么？"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_SOW
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_SOW"
+msgid "Hey, who is she?"
+msgstr "嘿，她是谁？"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.DEAD"
 msgid "it's a pity."
@@ -7349,6 +7369,11 @@ msgstr "看我把猪人的牙齿拿走！"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "Is this also made by pigs?"
 msgstr "这也是猪人造的吗？"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_SOW
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_SOW"
+msgid "A different pig man."
+msgstr "一个不一样的猪人。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.DEAD"
@@ -8015,6 +8040,11 @@ msgctxt "STRINGS.NAMES.SMELTER"
 msgid "Smelter"
 msgstr "炼钢炉"
 
+#. STRINGS.NAMES.SUNKEN_RELIC
+msgctxt "STRINGS.NAMES.SUNKEN_RELIC"
+msgid "Sunken Object"
+msgstr "沉没的物品"
+
 #. STRINGS.NAMES.TREE_PILLAR
 msgctxt "STRINGS.NAMES.TREE_PILLAR"
 msgid "Great Leafy Stalk"
@@ -8079,11 +8109,6 @@ msgstr "进入你的冒险之路。"
 msgctxt "STRINGS.RECIPE_DESC.SMELTER"
 msgid "Turn Iron into Alloy."
 msgstr "将铁制成合金。"
-
-#. STRINGS.NAMES.SUNKEN_RELIC
-msgctxt "STRINGS.NAMES.SUNKEN_RELIC"
-msgid "Sunken Object"
-msgstr "沉没的物品"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.ASPARAGUS
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.ASPARAGUS"

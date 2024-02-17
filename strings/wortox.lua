@@ -65,6 +65,7 @@ return {
         PIG_RUINS_IDOL = "The little statue above is nice, let's take it away.",
         PIG_RUINS_PIG = "Always smile.",
         PIG_RUINS_PLAQUE = "Hey! Little tree, guess what is written on it?",
+        PIG_RUINS_SOW = "Hey, who is she?",
         RABID_BEETLE = {
             DEAD = "it's a pity.",
             GENERIC = "Really energetic, do you want to dance?",

@@ -66,6 +66,7 @@ return {
         PIG_RUINS_IDOL = "Look what we found, Warby!",
         PIG_RUINS_PIG = "Look how happy it is smiling!",
         PIG_RUINS_PLAQUE = "It's a totem!",
+        PIG_RUINS_SOW = "Very royal.",
         RABID_BEETLE = {
             DEAD = "Oh, dead.",
             GENERIC = "Wow, look how active they are!",

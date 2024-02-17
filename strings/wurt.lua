@@ -66,6 +66,7 @@ return {
         PIG_RUINS_IDOL = "A pig figure, not a fish figure.",
         PIG_RUINS_PIG = "Watch me take away the pig's teeth!",
         PIG_RUINS_PLAQUE = "Is this also made by pigs?",
+        PIG_RUINS_SOW = "A different pig man.",
         RABID_BEETLE = {
             DEAD = "died.",
             GENERIC = "The little bug is going crazy!",
