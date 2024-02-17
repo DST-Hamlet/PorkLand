@@ -64,6 +64,7 @@ return {
         PEAGAWK_BUSH = "What a clever disguise.",
         PIG_RUINS_HEAD = "Huge stone pig face.",
         PIG_RUINS_IDOL = "I thought it would be deeper...oh, that's another one.",
+        PIG_RUINS_MUSHROOM = "This is it, and I can exchange it for great rewards.",
         PIG_RUINS_PIG = "What is it laughing at?",
         PIG_RUINS_PLAQUE = "I'm curious what it means, but forget it.",
         PIG_RUINS_SOW = "This one comes in a unique colorway.",

@@ -63,6 +63,7 @@ return {
         PEAGAWK_BUSH = "Well, this trick can't fool me.",
         PIG_RUINS_HEAD = "Someone else has an umbrella, but it has a big head!",
         PIG_RUINS_IDOL = "The little statue above is nice, let's take it away.",
+        PIG_RUINS_MUSHROOM = "Lots of gems, but no magic.",
         PIG_RUINS_PIG = "Always smile.",
         PIG_RUINS_PLAQUE = "Hey! Little tree, guess what is written on it?",
         PIG_RUINS_SOW = "Hey, who is she?",

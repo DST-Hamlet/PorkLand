@@ -290,6 +290,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_IDOL"
 msgid "These ruins have been ruined."
 msgstr "这些遗迹已经被毁掉了。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_MUSHROOM
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_MUSHROOM"
+msgid "A vivid display of... what they like."
+msgstr "惟妙惟肖的展示了...他们喜欢的东西。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_PIG
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_PIG"
 msgid "Why is he so happy?"
@@ -299,6 +304,11 @@ msgstr "他为什么在笑呢？"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_PLAQUE"
 msgid "I could probably sell that to one of those pigs."
 msgstr "我大概会把它卖给猪人们中的一个吧。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_SOW
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_SOW"
+msgid "A superb piece of local craft."
+msgstr "一个精湛的本地工艺品。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.DEAD"
@@ -1400,6 +1410,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_IDOL"
 msgid "Look what we found, Warby!"
 msgstr "看看我们发现了什么，沃比！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_MUSHROOM
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_MUSHROOM"
+msgid "Wow, a carved stone...mushroom?"
+msgstr "哇哦，一个石雕的...蘑菇？"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_PIG
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_PIG"
 msgid "Look how happy it is smiling!"
@@ -1739,6 +1754,11 @@ msgstr "巨大的石头猪脸。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_IDOL"
 msgid "I thought it would be deeper...oh, that's another one."
 msgstr "我还以为会更深...噢，那是另一个。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_MUSHROOM
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_MUSHROOM"
+msgid "This is it, and I can exchange it for great rewards."
+msgstr "就是它，我能用它换取丰厚的奖励。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_PIG
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_PIG"
@@ -5270,6 +5290,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_IDOL"
 msgid "There must be some way to remove the top part."
 msgstr "一定有什么办法把上面那部分卸下来。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_MUSHROOM
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_MUSHROOM"
+msgid "It is inlaid with many precious stones and must be very valuable."
+msgstr "镶嵌了许多宝石，一定很值钱。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_PIG
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_PIG"
 msgid "It's a bit too showy."
@@ -7020,6 +7045,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_IDOL"
 msgid "The little statue above is nice, let's take it away."
 msgstr "上面的小雕像不错啊，我们把它拿走吧。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_MUSHROOM
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_MUSHROOM"
+msgid "Lots of gems, but no magic."
+msgstr "很多宝石，但没有魔法。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_PIG
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_PIG"
 msgid "Always smile."
@@ -7359,6 +7389,11 @@ msgstr "巨大的猪人脸。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_IDOL"
 msgid "A pig figure, not a fish figure."
 msgstr "一个猪人像，而不是鱼人。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_MUSHROOM
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_MUSHROOM"
+msgid "Food made of stone."
+msgstr "石头做的食物。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_PIG
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_PIG"
