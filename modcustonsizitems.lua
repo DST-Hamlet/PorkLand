@@ -83,6 +83,8 @@ local custonsiz_items = {  -- add in dst custonsiz
         misc = {
             jungle_border_vine = {desc = frequency_descriptions},
             deep_jungle_fern_noise = {desc = frequency_descriptions},
+            lost_relics = {desc = frequency_descriptions},
+            ruined_sculptures = {image = "lost_sculptures.tex", desc = frequency_descriptions}
         }
     },
     [LEVELCATEGORY.SETTINGS] = {
