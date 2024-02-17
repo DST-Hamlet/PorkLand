@@ -1400,6 +1400,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
 msgid "This bird can't fly, but turns into a bush!"
 msgstr "这种鸟不会飞，但是会变成灌木丛！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Is this a bamboo shoot or something?"
+msgstr "这是笋还是什么？"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_HEAD"
 msgid "Warby! It's bigger than you!"
@@ -1744,6 +1749,11 @@ msgstr "真是令人难以直视。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a clever disguise."
 msgstr "真是聪明的伪装。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Stones carved into vegetables."
+msgstr "被雕刻成蔬菜的石头。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_HEAD"
@@ -5280,6 +5290,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
 msgid "A vigilant bush, how strange!"
 msgstr "一株会警惕的灌木丛，真是奇怪！"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "It seems they really like artichokes."
+msgstr "看来它们是真的很喜欢洋蓟。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_HEAD"
 msgid "There must be some way to remove the middle part."
@@ -7035,6 +7050,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
 msgid "Well, this trick can't fool me."
 msgstr "哼，这点把戏骗不过我。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "A giant vegetable."
+msgstr "一棵巨型蔬菜。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_HEAD"
 msgid "Someone else has an umbrella, but it has a big head!"
@@ -7379,6 +7399,11 @@ msgstr "上面有大怪鸟的眼睛。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
 msgid "Pretty feather bush."
 msgstr "漂亮的羽毛灌木。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "This shape is everywhere."
+msgstr "到处都是这个形状。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_HEAD"

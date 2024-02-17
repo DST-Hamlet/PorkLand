@@ -62,6 +62,7 @@ return {
         },
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
+        PIG_RUINS_ARTICHOKE = "It seems they really like artichokes.",
         PIG_RUINS_HEAD = "There must be some way to remove the middle part.",
         PIG_RUINS_IDOL = "There must be some way to remove the top part.",
         PIG_RUINS_MUSHROOM = "It is inlaid with many precious stones and must be very valuable.",
