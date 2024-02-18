@@ -14,25 +14,21 @@ local SEE_BAIT_DIST = 20
 local MAX_WANDER_DIST = 20
 local SEE_STOLEN_ITEM_DIST = 10
 local MAX_CHASE_TIME = 8
+local FIND_HOME_DIST = 30
+
+local function HasHome(inst)
+    return inst.components.homeseeker and inst.components.homeseeker:HasHome() and not inst.components.homeseeker.home:HasTag("burnt")
+end
 
 local function GoHomeAction(inst)
-    if inst.components.homeseeker and inst.components.homeseeker:HasHome() then
-        if inst.components.homeseeker.home:HasOneOfTags({"stump", "burnt", "fire"}) then
-            inst.components.homeseeker.home:RemoveComponent("spawner")
-            inst:RemoveComponent("homeseeker")
-            return
-        end
-
-        if not inst.sg:HasStateTag("trapped") then
-            return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
-        end
+    if not inst.sg:HasStateTag("trapped") and HasHome(inst) then
+        return BufferedAction(inst, inst.components.homeseeker:GetHome(), ACTIONS.GOHOME)
     end
 end
 
 local function EatFoodAction(inst)
     local target = FindEntity(inst, SEE_BAIT_DIST, function(item)
-        return inst.components.eater:CanEat(item) and item.components.bait
-            and not (item.components.inventoryitem and item.components.inventoryitem.owner)
+        return inst.components.eater:CanEat(item)
     end)
 
     if target then
@@ -45,22 +41,16 @@ local function EatFoodAction(inst)
     end
 end
 
+local PICKUP_MUST_TAGS = { "_inventoryitem" }
+local NO_PICKUP_TAGS = { "INLIMBO", "catchable", "fire", "irreplaceable", "heavy", "outofreach", "spider", "piko", "trap", "_container", "smolder" }
 local function PickupAction(inst)
     if inst.components.inventory:NumItems() < 1 then
         local target = FindEntity(inst, SEE_STOLEN_ITEM_DIST, function(item)
-            local x,y,z = item.Transform:GetWorldPosition()
-            local isValidPosition = x and y and z
-            local isValidPickupItem = isValidPosition
-                and item.components.inventoryitem
+            return item.components.inventoryitem
                 and not item.components.inventoryitem.owner
                 and item.components.inventoryitem.canbepickedup
-                and item.components.container == nil
                 and item:IsOnValidGround()
-                and not item:HasTag("trap")
-                and not item:HasTag("irreplaceable")
-                and not item:HasTag("piko")
-            return isValidPickupItem
-        end)
+        end, PICKUP_MUST_TAGS, NO_PICKUP_TAGS)
 
         if target then
             return BufferedAction(inst, target, ACTIONS.PICKUP)
@@ -68,37 +58,22 @@ local function PickupAction(inst)
     end
 end
 
-local function findhome(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, 30, {"teatree"}, {"stump", "burnt"})
-    local home
-
-    for _, ent in ipairs(ents)do
-        if not ent.components.spawner or not ent.components.spawner.child then
-            home = ent
-            break
-        end
+local MUST_TAGS = {"teatree"}
+local CANT_AGS = {"stump", "burnt"}
+local function FindHome(inst)
+    if HasHome(inst) then
+        return false
     end
+
+    local home = FindEntity(inst, FIND_HOME_DIST, function(item)
+        return not (item.components.spawner and item.components.spawner.child ~= nil)
+    end, MUST_TAGS, CANT_AGS)
 
     if home then
-        home:SetUpSpawner()
-        home.components.spawner:CancelSpawning()
-        home.components.spawner:TakeOwnership(inst)
-        if inst.find_home_task then
-            inst.find_home_task:Cancel()
-            inst.find_home_task = nil
-        end
+        home:MakePikoNest(inst)
     end
-end
 
-local function CheckForHome(inst)
-    if not inst.components.homeseeker then
-        if not inst.find_home_task then
-            inst.find_home_task = inst:DoPeriodicTask(10, findhome)
-        end
-
-        return true
-    end
+    return true
 end
 
 local PikoBrain = Class(Brain, function(self, inst)
@@ -110,7 +85,7 @@ function PikoBrain:OnStart()
     {
         BrainCommon.PanicTrigger(self.inst),
 
-        WhileNode(function() return self.inst.components.inventory:NumItems() > 0 and self.inst.components.homeseeker end, "run off with prize",
+        WhileNode(function() return self.inst.components.inventory:NumItems() > 0 and HasHome(self.inst) end, "run off with prize",
             DoAction(self.inst, GoHomeAction, "go home", true)),
 
         DoAction(self.inst, PickupAction, "searching for prize", true),
@@ -120,14 +95,18 @@ function PikoBrain:OnStart()
         RunAway(self.inst, "scarytoprey", AVOID_PLAYER_DIST, AVOID_PLAYER_STOP),
 
         RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST, nil, true),
-            EventNode(self.inst, "gohome", DoAction(self.inst, GoHomeAction, "go home", true )),
+            EventNode(self.inst, "gohome", DoAction(self.inst, GoHomeAction, "go home", true)),
 
-        WhileNode(function() return TheWorld.state and not TheWorld.state.isday and (not TheWorld.state.isnight or TheWorld.state.moonphase ~= "new" ) end, "IsNight",
-            DoAction(self.inst, GoHomeAction, "go home", true )),
+        WhileNode(function()
+            if TheWorld.state.phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood") then
+                return false
+            end
+            return not TheWorld.state.isday end, "IsNight",
+            DoAction(self.inst, GoHomeAction, "go home", true)),
 
         DoAction(self.inst, EatFoodAction),
 
-        WhileNode(function() return CheckForHome(self.inst) end, "wander to find home", Wander(self.inst)),
+        WhileNode(function() return FindHome(self.inst) end, "wander to find home", Wander(self.inst)),
 
         Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
     }, 0.25)

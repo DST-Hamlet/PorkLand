@@ -1,5 +1,3 @@
-local INTENSITY = .5
-
 local assets =
 {
     Asset("ANIM", "anim/ds_squirrel_basic.zip"),
@@ -16,6 +14,10 @@ local prefabs =
     "cookedsmallmeat",
 }
 
+local brain = require("brains/pikobrain")
+
+local INTENSITY = .5
+
 local function Retarget(inst)
     return FindEntity(inst, TUNING.PIKO_TARGET_DIST, function(guy)
         return not guy:HasTag("piko") and inst.components.combat:CanTarget(guy) and guy.components.inventory and (guy.components.inventory:NumItems() > 0)
@@ -26,8 +28,7 @@ local function KeepTarget(inst, target)
     return inst.components.combat:CanTarget(target) and inst.is_rabid
 end
 
---#region animation
-
+-- region animation
 local function UpdateBuild(inst, cheeks)
     local build = "squirrel_build"
 
@@ -42,11 +43,11 @@ local function UpdateBuild(inst, cheeks)
     inst.AnimState:SetBuild(build)
 end
 
-local function refresh_build(inst)
-    inst:UpdateBuild(inst.components.inventory:NumItems() > 0)
+local function RefreshBuild(inst)
+    UpdateBuild(inst, inst.components.inventory:NumItems() > 0)
 end
 
-local function fadein(inst)
+local function FadeIn(inst)
     inst.components.fader:StopAll()
 
     inst.AnimState:Show("eye_red")
@@ -61,7 +62,7 @@ local function fadein(inst)
     end
 end
 
-local function fadeout(inst)
+local function FadeOut(inst)
     inst.components.fader:StopAll()
 
     inst.AnimState:Hide("eye_red")
@@ -70,16 +71,16 @@ local function fadeout(inst)
     if inst:IsAsleep() then
         inst.Light:SetIntensity(0)
     else
-        inst.components.fader:Fade(INTENSITY, 0, 0.75 + math.random() * 1, function(v) inst.Light:SetIntensity(v) end)
+        inst.components.fader:Fade(INTENSITY, 0, 0.75 + math.random(), function(v) inst.Light:SetIntensity(v) end)
     end
 end
 
-local function update_light(inst)
+local function UpdateLight(inst)
     if inst.is_rabid then
-        if not inst.components.inventoryitem.owner 
-            and (not inst.components.homeseeker or not inst.components.homeseeker.home.components.spawner:IsOccupied()) then
+        local onhome = inst.components.homeseeker and inst.components.homeseeker.home and inst.components.homeseeker.home.components.spawner:IsOccupied()
+        if not inst.components.inventoryitem.owner and not onhome then
             if not inst.lighton then
-                inst:DoTaskInTime(math.random() * 2, fadein)
+                inst:DoTaskInTime(math.random() * 2, FadeIn)
             else
                 inst.Light:Enable(true)
                 inst.Light:SetIntensity(INTENSITY)
@@ -92,7 +93,7 @@ local function update_light(inst)
         inst.lighton = true
     else
         if inst.lighton then
-            inst:DoTaskInTime(math.random() * 2, fadeout)
+            inst:DoTaskInTime(math.random() * 2, FadeOut)
         else
             inst.Light:Enable(false)
             inst.Light:SetIntensity(0)
@@ -107,26 +108,23 @@ end
 
 local function SetAsRabid(inst, rabid)
     inst.is_rabid = rabid
-    inst.components.sleeper.nocturnal = rabid
-    update_light(inst)
+    inst.components.sleeper:SetNocturnal(rabid)
+    UpdateLight(inst)
 end
---#endregion
+-- endregion
 
---#region event handlers
-
+-- region event handlers
+local MUST_TAGS = {"piko"}
 local function OnAttacked(inst, data)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, 30, {'piko'})
+    local ents = TheSim:FindEntities(x, y, z, 30, MUST_TAGS)
 
-    local num_friends = 0
-    local maxnum = 5
-    for k, v in pairs(ents) do
-        v:PushEvent("gohome")
-        num_friends = num_friends + 1
-
-        if num_friends > maxnum then
+    local max_friend_num = 5
+    for i = 1, max_friend_num do
+        if not ents[i] then
             break
         end
+        ents[i]:PushEvent("gohome")
     end
 end
 
@@ -139,19 +137,23 @@ local function OnDeath(inst)
 end
 
 local function OnDropped(inst)
-    refresh_build(inst)
+    RefreshBuild(inst)
     inst.sg:GoToState("stunned")
 end
 
 local function OnPickup(inst)
-    inst:UpdateBuild(true)
+    UpdateBuild(inst, true)
 end
 
-local function OnPhaseChange(inst, phase)
+local function OnPhaseChange(inst)
     if TheWorld.state.phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood") then
-        inst:DoTaskInTime(1 + math.random(), function() inst:SetAsRabid(true) end)
+        if not inst.is_rabid then
+            inst:DoTaskInTime(1 + math.random(), SetAsRabid, true)
+        end
     else
-        inst:DoTaskInTime(1 + math.random(), function() inst:SetAsRabid(false) end)
+        if inst.is_rabid then
+            inst:DoTaskInTime(1 + math.random(), SetAsRabid, false)
+        end
     end
 end
 
@@ -163,29 +165,11 @@ local function OnWentHome(inst)
 
     if tree.components.inventory then
         inst.components.inventory:TransferInventory(tree)
-        inst:UpdateBuild(false)
+        UpdateBuild(inst, false)
     end
 end
 
-local function OnSave(inst, data)
-    data.lighton = inst.lighton
-end
-
-local function OnLoad(inst, data)
-    if data and data.lighton then
-        fadein(inst)
-        inst.Light:Enable(true)
-        inst.Light:SetIntensity(INTENSITY)
-        inst.AnimState:Show("eye_red")
-        inst.AnimState:Show("eye2_red")
-        inst.lighton = true
-    end
-
-    refresh_build(inst)
-end
---#endregion
-
-local brain = require "brains/pikobrain"
+-- endregion
 
 local function fn()
     local inst = CreateEntity()
@@ -229,9 +213,27 @@ local function fn()
         return inst
     end
 
+    inst.is_rabid = false
+
+    inst:AddComponent("thief")
+
     inst:AddComponent("fader")
 
-    inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
+    inst:AddComponent("inventory")
+
+    -- inst:AddComponent("sanityaura")
+
+    inst:AddComponent("homeseeker")
+
+    inst:AddComponent("knownlocations")
+
+    inst:AddComponent("tradable")
+
+    inst:AddComponent("inspectable")
+
+    inst:AddComponent("sleeper")
+
+    inst:AddComponent("locomotor")  -- locomotor must be constructed before the stategraph
     inst.components.locomotor.runspeed = TUNING.PIKO_RUN_SPEED
 
     -- Squirrels (ie. pikos), have the same diet as birds, mainly seeds,
@@ -239,21 +241,14 @@ local function fn()
     inst:AddComponent("eater")
     inst.components.eater:SetDiet({FOODTYPE.SEEDS}, {FOODTYPE.SEEDS})
 
-    inst:AddComponent("inventory")
-
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
+    -- inst.components.inventoryitem:SetOnDroppedFn(OnDropped)  -- Done in MakeFeedableSmallLivestock
     inst.components.inventoryitem.nobounce = true
     inst.components.inventoryitem.canbepickedup = false
-    inst.force_onwenthome_message = true
-
-    inst:AddComponent("sanityaura")
 
     inst:AddComponent("cookable")
     inst.components.cookable.product = "cookedsmallmeat"
     inst.components.cookable:SetOnCookedFn(OnCooked)
-
-    inst:AddComponent("knownlocations")
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.PIKO_DAMAGE)
@@ -264,8 +259,6 @@ local function fn()
     inst.components.combat.hiteffectsymbol = "chest"
     inst.components.combat.onhitotherfn = function(inst, other) inst.components.thief:StealItem(other) end
 
-    inst:AddComponent("thief")
-
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.PIKO_HEALTH)
     inst.components.health.murdersound = "dontstarve_DLC003/creatures/piko/death"
@@ -273,14 +266,21 @@ local function fn()
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"smallmeat"})
 
-    inst:AddComponent("tradable")
-
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("sleeper")
-
     inst:SetBrain(brain)
     inst:SetStateGraph("SGpiko")
+
+    inst:WatchWorldState("phase", OnPhaseChange)
+    inst:WatchWorldState("moonphase", OnPhaseChange)
+
+    inst:ListenForEvent("attacked", OnAttacked)
+    inst:ListenForEvent("death", OnDeath)
+    inst:ListenForEvent("exitlimbo", UpdateLight)
+    inst:ListenForEvent("onpickupitem", OnPickup)
+
+    inst.force_onwenthome_message = true  -- for onwenthome event
+    inst:ListenForEvent("onwenthome", OnWentHome)
+
+    inst.OnLoad = RefreshBuild
 
     MakeSmallBurnableCharacter(inst, "torso")
     MakeTinyFreezableCharacter(inst, "torso")
@@ -288,25 +288,10 @@ local function fn()
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
 
-    inst.is_rabid = false
-
-    inst.SetAsRabid = SetAsRabid
-    inst.UpdateBuild = UpdateBuild
-    inst.OnSave = OnSave
-    inst.OnLoad = OnLoad
-
-    inst:WatchWorldState("phase", OnPhaseChange)
-    inst:WatchWorldState("moonphase", OnPhaseChange)
-
-    inst:ListenForEvent("attacked", OnAttacked)
-    inst:ListenForEvent("death", OnDeath)
-    inst:ListenForEvent("exitlimbo", update_light)
-    inst:ListenForEvent("onpickupitem", OnPickup)
-    inst:ListenForEvent("onwenthome", OnWentHome)
-
     -- When a piko is first created, ensure that it isn't rabid.
-    inst:SetAsRabid(false)
-    OnPhaseChange(inst, TheWorld.state.phase)
+    SetAsRabid(inst, false)
+
+    OnPhaseChange(inst)
 
     return inst
 end
@@ -320,7 +305,7 @@ local function orangefn()
         return inst
     end
 
-    inst:UpdateBuild()
+    UpdateBuild(inst)
 
     return inst
 end

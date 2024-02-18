@@ -815,7 +815,7 @@ AddComponentPostInit("clock", function(self, inst)
 
     self.MakeClock = MakeClock
 
-    local _clocktype = _world:HasTag("porkalnd") and "plateau" or "default"
+    local _clocktype = _world:HasTag("porkland") and "plateau" or "default"
     self:MakeClock("plateau")
     self:AddMoonPhaseStyle("blood")
     self:SetClock(_clocktype)

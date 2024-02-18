@@ -163,6 +163,18 @@ local tuning = {
     FOOD_SPEED_AVERAGE = 30, -- eating roasted coffee beans
     FOOD_SPEED_MED = 60, -- eating tropicalbouillabaisse (effects)
     FOOD_SPEED_LONG = total_day_time / 2, -- drinking coffee
+
+    TEATREE_CHOPS_SHORT = 5,
+    TEATREE_CHOPS_NORMAL = 10,
+    TEATREE_CHOPS_TALL = 15,
+
+    TEATREE_GROW_TIME =
+    {
+        {base = 1.5 * day_time, random = 0.5 * day_time},   --short
+        {base = 5 * day_time,   random = 2 * day_time},   --normal
+        {base = 5 * day_time,   random = 2 * day_time},   --tall
+        {base = 1 * day_time,   random = 0.5 * day_time}   --old
+    },
 }
 
 for key, value in pairs(tuning) do
