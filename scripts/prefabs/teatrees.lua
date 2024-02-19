@@ -157,6 +157,28 @@ local function MakePikoNest(inst, piko)
     end
 end
 
+local function DeleteChild(inst)
+    local spawner = inst.components.spawner
+    if spawner then
+        if inst.components.spawner:IsOccupied() then
+            inst.components.spawner:ReleaseChild()
+        end
+        inst.components.spawner:CancelSpawning()
+
+        local child = spawner.child
+        if child then
+            if child.components.knownlocations then
+                child.components.knownlocations:ForgetLocation("home")
+            end
+            child:RemoveComponent("homeseeker")
+
+            inst:RemoveEventCallback("ontrapped", spawner._onchildkilled, child)
+            inst:RemoveEventCallback("death", spawner._onchildkilled, child)
+            inst:RemoveEventCallback("detachchild", spawner._onchildkilled, child)
+        end
+    end
+end
+
 local function DestroyPikoNest(inst)
     if inst.is_piko_nest then
         inst.is_piko_nest = false
@@ -164,25 +186,7 @@ local function DestroyPikoNest(inst)
         inst:StopWatchingWorldState("phase", OnPhaseChange)
         inst:StopWatchingWorldState("moonphase", OnPhaseChange)
 
-        local spawner = inst.components.spawner
-        if spawner then
-            if inst.components.spawner:IsOccupied() then
-                inst.components.spawner:ReleaseChild()
-            end
-            inst.components.spawner:CancelSpawning()
-
-            local child = spawner.child
-            if child then
-                if child.components.knownlocations then
-                    child.components.knownlocations:ForgetLocation("home")
-                end
-                child:RemoveComponent("homeseeker")
-
-                inst:RemoveEventCallback("ontrapped", spawner._onchildkilled, child)
-                inst:RemoveEventCallback("death", spawner._onchildkilled, child)
-                inst:RemoveEventCallback("detachchild", spawner._onchildkilled, child)
-            end
-        end
+        DeleteChild(inst)
     end
 end
 
@@ -343,16 +347,13 @@ local function OnBurnt(inst, immediate)
 end
 
 local function OnIgnite(inst)
-    if inst.components.inventory then
-        local items = inst.components.inventory:FindItems(function(item) return item.components.burnable end)
-        for _, item in ipairs(items) do
-            item.components.burnable:Ignite(true)
-        end
-    end
-
-    if inst.components.spawner and inst.components.spawner:IsOccupied() then
-        inst.components.spawner:ReleaseChild()
-    end
+    -- if inst.components.inventory then
+    --     local items = inst.components.inventory:FindItems(function(item) return item.components.burnable end)
+    --     for _, item in ipairs(items) do
+    --         item.components.burnable:Ignite(true)
+    --     end
+    -- end
+    DeleteChild(inst)
 end
 
 local function MakeTreeBurnable(inst)

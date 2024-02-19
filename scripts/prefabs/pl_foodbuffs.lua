@@ -110,5 +110,5 @@ end
 
 return  MakeBuff("speed_coffee_beans", speed_coffee_beans_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_AVERAGE, 1, {}),
         MakeBuff("speed_coffee", speed_coffee_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG, 1, {}),
-        MakeBuff("speed_tea", speed_tea_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG/2, 1, {}),
-        MakeBuff("speed_icedtea", speed_icedtea_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG/3, 1, {})
+        MakeBuff("speed_tea", speed_tea_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG / 2, 1, {}),
+        MakeBuff("speed_icedtea", speed_icedtea_attach, nil, speed_caffeine_detach, TUNING.FOOD_SPEED_LONG / 3, 1, {})

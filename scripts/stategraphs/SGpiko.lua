@@ -18,18 +18,21 @@ local events =
 
     EventHandler("trapped", function(inst) inst.sg:GoToState("trapped") end),
     EventHandler("locomote", function(inst)
-        if not inst.sg:HasStateTag("idle") and not inst.sg:HasStateTag("moving") then return end
+        local is_moving = inst.sg:HasStateTag("moving")
+        local is_running = inst.sg:HasStateTag("running")
+        local is_idling = inst.sg:HasStateTag("idle")
 
-        if not inst.components.locomotor:WantsToMoveForward() then
-            if not inst.sg:HasStateTag("idle") then
-                if not inst.sg:HasStateTag("running") then
-                    inst.sg:GoToState("idle")
-                end
+        if not is_idling and not is_moving then
+            return
+        end
 
-                inst.sg:GoToState("idle")
-            end
+        local should_move = inst.components.locomotor:WantsToMoveForward()
+        local should_run = inst.components.locomotor:WantsToRun()
+
+        if not should_move then
+            inst.sg:GoToState("idle")
         elseif inst.components.locomotor:WantsToRun() then
-            if not inst.sg:HasStateTag("running") then
+            if not is_running then
                 inst.sg:GoToState("run")
             end
         else
@@ -47,13 +50,10 @@ local states =
         tags = {"idle", "canrotate"},
 
         onenter = function(inst)
-            inst.data.lookingup = nil
-            inst.data.donelooking = nil
-
             if math.random() > .5 then
                 inst.AnimState:PlayAnimation("lookup_pre")
                 inst.AnimState:PushAnimation("lookup_loop", true)
-                inst.data.lookingup = true
+                inst.sg.statemem.lookingup = true
             else
                 inst.AnimState:PlayAnimation("lookdown_pre")
                 inst.AnimState:PushAnimation("lookdown_loop", true)
@@ -63,8 +63,8 @@ local states =
         end,
 
         ontimeout = function(inst)
-            inst.data.donelooking = true
-            if inst.data.lookingup then
+            inst.sg.statemem.donelooking = true
+            if inst.sg.statemem.lookingup then
                 inst.AnimState:PlayAnimation("lookup_pst")
             else
                 inst.AnimState:PlayAnimation("lookdown_pst")
@@ -74,7 +74,7 @@ local states =
         events =
         {
             EventHandler("animover", function(inst, data)
-                if inst.data.donelooking then
+                if inst.sg.statemem.donelooking then
                     inst.sg:GoToState("idle")
                 end
             end),
@@ -115,7 +115,7 @@ local states =
 
         timeline = {
             TimeEvent(10 * FRAMES, function(inst) inst.components.combat:DoAttack() end),
-            TimeEvent(2 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/piko/attack")  end),
+            TimeEvent(2 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/piko/attack") end),
         },
 
         events = {

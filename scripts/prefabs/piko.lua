@@ -167,6 +167,8 @@ local function OnWentHome(inst)
         inst.components.inventory:TransferInventory(tree)
         UpdateBuild(inst, false)
     end
+
+    UpdateLight(inst)
 end
 
 -- endregion

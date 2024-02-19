@@ -22,7 +22,7 @@ end
 
 local function GoHomeAction(inst)
     if not inst.sg:HasStateTag("trapped") and HasHome(inst) then
-        return BufferedAction(inst, inst.components.homeseeker:GetHome(), ACTIONS.GOHOME)
+        return BufferedAction(inst, inst.components.homeseeker:GetHome(), ACTIONS.GOHOME, nil, nil, nil, 0)
     end
 end
 

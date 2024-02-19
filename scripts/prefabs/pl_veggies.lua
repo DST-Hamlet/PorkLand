@@ -20,17 +20,17 @@ PL_VEGGIES = {
 local function MakeVeggie(name)
     local assets =
     {
-        Asset("ANIM", "anim/"..name..".zip"),
+        Asset("ANIM", "anim/" .. name .. ".zip"),
     }
 
     local assets_cooked =
     {
-        Asset("ANIM", "anim/"..name..".zip"),
+        Asset("ANIM", "anim/" .. name .. ".zip"),
     }
 
     local prefabs =
     {
-        name .."_cooked",
+        name .. "_cooked",
         "spoiled_food",
     }
 
@@ -83,7 +83,7 @@ local function MakeVeggie(name)
         inst:AddComponent("tradable")
 
         inst:AddComponent("cookable")
-        inst.components.cookable.product = name.."_cooked"
+        inst.components.cookable.product = name .. "_cooked"
 
         MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
