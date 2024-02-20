@@ -140,7 +140,7 @@ applyoverrides_pre.piko_setting = function(difficulty)
             PIKO_ENABLED = false,
         },
         rare = {
-            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 2,
+            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 8,
         },
         --[[
         default = {
@@ -149,10 +149,10 @@ applyoverrides_pre.piko_setting = function(difficulty)
         },
         --]]
         often = {
-            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 6,
+            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 2,
         },
         always = {
-            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 8,
+            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME,
         },
     }
     OverrideTuningVariables(tuning_vars[difficulty])
