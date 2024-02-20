@@ -157,6 +157,7 @@ local tuning = {
     PIKO_DAMAGE = 2,
     PIKO_ATTACK_PERIOD = 2,
     PIKO_TARGET_DIST = 20,
+    PIKO_ENABLED = true,
 
     CAFFEINE_FOOD_BONUS_SPEED = 5, -- player base speed plus this, 6 is normal walk speed
     FOOD_SPEED_BRIEF = 0, -- eating coffeebeans gives you the bonus for this many seconds

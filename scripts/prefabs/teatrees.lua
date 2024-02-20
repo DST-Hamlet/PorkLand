@@ -414,6 +414,10 @@ local function OnSave(inst, data)
     data.is_piko_nest = inst.is_piko_nest
 end
 
+local function OnPreLoad(inst, data)
+    WorldSettings_Spawner_PreLoad(inst, data, TUNING.PIKO_RESPAWN_TIME)
+end
+
 local function OnLoad(inst, data)
     if not data then
         return
@@ -503,6 +507,7 @@ local function MakeTeaTree(name, stage, state)
         inst.growfromseed = GrowFromSeed
 
         inst:AddComponent("spawner")
+        WorldSettings_Spawner_SpawnDelay(inst, TUNING.PIKO_RESPAWN_TIME, TUNING.PIKO_ENABLED)
         inst.components.spawner.delay = TUNING.PIKO_RESPAWN_TIME  -- This "delay" is actually respawn time
         inst.components.spawner.childfn = GetNewChildPrefab
         inst.components.spawner:SetOnVacateFn(OnVacated)
@@ -512,6 +517,7 @@ local function MakeTeaTree(name, stage, state)
         inst.OnEntitySleep = OnEntitySleep
         inst.OnEntityWake = OnEntityWake
         inst.OnSave = OnSave
+        inst.OnPreLoad = OnPreLoad
         inst.OnLoad = OnLoad
 
         --MakeTreeBlowInWindGust(inst, "DECIDUOUS")

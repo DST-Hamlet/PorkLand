@@ -133,6 +133,31 @@ applyoverrides_pre.glowfly_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+applyoverrides_pre.piko_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            PIKO_ENABLED = false,
+        },
+        rare = {
+            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 2,
+        },
+        --[[
+        default = {
+            PIKO_ENABLED = true,
+            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 4,
+        },
+        --]]
+        often = {
+            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 6,
+        },
+        always = {
+            PIKO_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 8,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 applyoverrides_pre.asparagus_regrowth = function(difficulty)
     local tuning_vars =
     {
