@@ -20,7 +20,7 @@ local function MakePreparedFood(data)
 
         MakeInventoryPhysics(inst)
         MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations("idle_water", "idle")
+        inst.components.floater:UpdateAnimations(data.name .. "_water", data.name)
 
         inst.AnimState:SetBuild("pl_cook_pot_food")
         inst.AnimState:SetBank(data.is_shipwreck_food and "sw_food" or "pl_food")
@@ -47,7 +47,7 @@ local function MakePreparedFood(data)
         inst.components.edible.antihistamine = data.antihistamine or 0
         inst.components.edible:SetOnEatenFn(data.oneatenfn)
 
-        --[[ TODO: Add fiesta stuff	
+        --[[ TODO: Add fiesta stuff
         inst.yotp_override = data.yotp
         local function OnFiestaChange(inst, active)
             if active then
