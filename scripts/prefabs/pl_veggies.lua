@@ -43,6 +43,7 @@ local function MakeVeggie(name)
 
         MakeInventoryPhysics(inst)
         MakeInventoryFloatable(inst)
+        inst.components.floater:UpdateAnimations("idle_water", "idle")
 
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)
@@ -101,6 +102,7 @@ local function MakeVeggie(name)
 
         MakeInventoryPhysics(inst)
         MakeInventoryFloatable(inst)
+        inst.components.floater:UpdateAnimations("cooked_water", "idle")
 
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)

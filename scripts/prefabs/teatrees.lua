@@ -128,9 +128,12 @@ end
 local function OnPhaseChange(inst)
     local is_rabid_phase = TheWorld.state.phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood")
     if TheWorld.state.phase == "day" or is_rabid_phase then
-        inst.components.spawner:SpawnWithDelay(2 + math.random(20))
+        if not inst.components.spawner:IsSpawnPending() and not inst.components.worldsettingstimer.paused then
+            inst.components.spawner:SpawnWithDelay(2 + math.random(20))
+        end
     else
         inst.components.spawner:CancelSpawning()
+        inst.components.worldsettingstimer.paused = false
     end
 end
 
