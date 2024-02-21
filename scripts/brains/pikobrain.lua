@@ -50,6 +50,7 @@ end
 local function EatFoodAction(inst)
     local target = FindEntity(inst, SEE_BAIT_DIST, function(item)
         return inst.components.eater:CanEat(item)
+            and item:IsOnValidGround()
     end)
 
     if target then
@@ -65,6 +66,10 @@ end
 local PICKUP_MUST_TAGS = { "_inventoryitem" }
 local NO_PICKUP_TAGS = { "INLIMBO", "catchable", "fire", "irreplaceable", "heavy", "outofreach", "spider", "piko", "trap", "_container", "smolder" }
 local function PickupAction(inst)
+    if inst.sg:HasStateTag("trapped") then
+        return
+    end
+
     if inst.components.inventory:NumItems() < 1 then
         local target = FindEntity(inst, SEE_STOLEN_ITEM_DIST, function(item)
             return item.components.inventoryitem

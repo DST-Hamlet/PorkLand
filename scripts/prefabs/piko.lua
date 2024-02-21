@@ -258,6 +258,7 @@ local function fn()
     -- inst.components.inventoryitem:SetOnDroppedFn(OnDropped)  -- Done in MakeFeedableSmallLivestock
     inst.components.inventoryitem.nobounce = true
     inst.components.inventoryitem.canbepickedup = false
+    inst.components.inventoryitem:SetSinks(true)
 
     inst:AddComponent("cookable")
     inst.components.cookable.product = "cookedsmallmeat"
@@ -277,7 +278,7 @@ local function fn()
     inst.components.health.murdersound = "dontstarve_DLC003/creatures/piko/death"
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetChanceLootTable({"piko"})
+    inst.components.lootdropper:SetChanceLootTable("piko")
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGpiko")
