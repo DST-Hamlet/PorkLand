@@ -71,7 +71,7 @@ local function import(module_name)
     end
 end
 
-ToolUtil.merge_table(STRINGS, import("common"))
+ToolUtil.merge_table(STRINGS, import("common"), true)
 
 local IsTheFrontEnd = rawget(_G, "TheFrontEnd") and rawget(_G, "IsInFrontEnd") and IsInFrontEnd()
 if not IsTheFrontEnd then

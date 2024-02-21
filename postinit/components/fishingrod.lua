@@ -23,6 +23,9 @@ function FishingRod:Retrieve()
         self.target.components.workable:WorkedBy(self.fisherman, numworks)
         self.inst:PushEvent("fishingcollect")
         self.target:PushEvent("fishingcollect")
+        if self.target.components.sinkable then
+            self.target:Hide()
+        end
         self:StopFishing()
     end
 end

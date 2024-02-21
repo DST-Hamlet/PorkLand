@@ -11,7 +11,7 @@ local Sinkable = Class(function(self, inst)
 
     self.oldname = inst.name
     self.sunken = nil
-    self.inst:ListenForEvent("retrieve", function() self:OnFished() end)
+    self.inst:ListenForEvent("retrieve", function() self:OnRetrieved() end)
 end,
 nil,
 {
@@ -21,17 +21,16 @@ nil,
 function Sinkable:OnRemoveFromEntity()
     self.inst:RemoveTag("fishable")
 
-    self.inst:RemoveEventCallback("retrieve", function() self:OnFished() end)
+    self.inst:RemoveEventCallback("retrieve", function() self:OnRetrieved() end)
 end
 
 function Sinkable:InSunkening()
     return self.sunken
 end
 
-function Sinkable:OnFished()
-	self.inst:Hide()
-	self.inst.name = self.oldname
+function Sinkable:OnRetrieved()
     self.sunken = false
+    self.inst.name = self.oldname
     self.inst.components.inventoryitem.canbepickedup = true
 end
 
@@ -40,7 +39,9 @@ function Sinkable:OnHitWater()
 		self.sunken = true
 		self.oldname = self.inst.name
 		self.inst.name = STRINGS.NAMES.SUNKEN_RELIC
-        self.inst:AddComponent("workable")
+        if not self.inst.components.workable then
+            self.inst:AddComponent("workable")
+        end
         self.inst.components.workable:SetWorkAction(ACTIONS.FISH)
         self.inst.components.workable:SetWorkLeft(1)
         self.inst.components.workable:SetOnFinishCallback(function(inst, worker)
