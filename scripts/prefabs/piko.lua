@@ -287,7 +287,7 @@ local function fn()
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
-    inst:ListenForEvent("exitlimbo", UpdateLight)
+    inst:ListenForEvent("ondropped", UpdateLight)
     inst:ListenForEvent("trapped", OnPickupedorTrapped)
     inst:ListenForEvent("onpickupitem", OnPickup)
 
@@ -295,6 +295,7 @@ local function fn()
     inst:ListenForEvent("onwenthome", OnWentHome)
 
     inst.OnLoad = RefreshBuild
+    inst.UpdateLight = UpdateLight -- called in teatrees.lua
 
     MakeSmallBurnableCharacter(inst, "torso")
     MakeTinyFreezableCharacter(inst, "torso")

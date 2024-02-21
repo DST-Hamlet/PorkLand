@@ -122,6 +122,7 @@ end
 
 local function OnVacated(inst, child)
     child.sg:GoToState("descendtree")
+    child:UpdateLight()
 end
 
 local function OnPhaseChange(inst)
