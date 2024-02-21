@@ -11,11 +11,11 @@ end
 
 local function WindVisualsFn(inst)
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    -- if TheWorld.net.components.plateauwind:GetWindSpeed() < 0.01 then
-    --     inst:Remove()
-    -- else
-        -- inst.AnimState:SetMultColour(1, 1, 1,  math.clamp(TheWorld.net.components.plateauwind:GetWindSpeed(), 0.0, 1.0))
-    -- end
+    if TheWorld.net.components.plateauwind:GetWindSpeed() < 0.01 then
+        inst:Remove()
+    else
+        inst.AnimState:SetMultColour(1, 1, 1,  math.clamp(TheWorld.net.components.plateauwind:GetWindSpeed(), 0.0, 1.0))
+    end
 end
 
 local pl_fx = {

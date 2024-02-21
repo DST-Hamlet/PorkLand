@@ -12,7 +12,7 @@ local WorldWind = Class(function(self, inst)
 
     self.inst:ListenForEvent("ms_cyclecomplete", function()
         self.angle = math.random(0, 360)
-        self.inst:PushEvent("windchange", {angle = self.angle, velocity = self.velocity})
+        self.inst:PushEvent("pl_windchange", {angle = self.angle, velocity = self.velocity})
     end)
 
     self.inst:StartUpdatingComponent(self)

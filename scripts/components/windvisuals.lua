@@ -19,7 +19,6 @@ function WindVisuals:OnUpdate(dt)
     if windspeed > 0.01 and TheWorld.net.components.plateauwind:GetIsWindy() then
         windfx_spawn_rate = windfx_spawn_rate + windfx_spawn_per_sec * dt
         if windfx_spawn_rate > 1.0 then
-
             local px, py, pz = self.inst.Transform:GetWorldPosition()
             local dx, dz = 16 * UnitRand(), 16 * UnitRand()
             local x, y, z = px + dx, py, pz + dz
