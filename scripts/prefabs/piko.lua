@@ -76,21 +76,21 @@ local function FadeOut(inst)
 end
 
 local function UpdateLight(inst)
-    if inst.is_rabid then
-        local onhome = inst.components.homeseeker and inst.components.homeseeker.home and inst.components.homeseeker.home.components.spawner:IsOccupied()
-        if not inst.components.inventoryitem.owner and not onhome then
-            if not inst.lighton then
-                inst:DoTaskInTime(math.random() * 2, FadeIn)
-            else
-                inst.Light:Enable(true)
-                inst.Light:SetIntensity(INTENSITY)
-            end
+    local outside = not inst.components.homeseeker or not inst.components.homeseeker.home or not inst.components.homeseeker.home.components.spawner:IsOccupied()
+    outside = not inst.components.inventoryitem.owner and outside
+
+    if inst.is_rabid and outside then
+        if not inst.lighton then
+            inst:DoTaskInTime(math.random() * 2, FadeIn)
+        else
+            inst.Light:Enable(true)
+            inst.Light:SetIntensity(INTENSITY)
         end
+
+        inst.lighton = true
 
         inst.AnimState:Show("eye_red")
         inst.AnimState:Show("eye2_red")
-
-        inst.lighton = true
     else
         if inst.lighton then
             inst:DoTaskInTime(math.random() * 2, FadeOut)
@@ -138,6 +138,7 @@ end
 
 local function OnDropped(inst)
     RefreshBuild(inst)
+    UpdateLight(inst)
     inst.sg:GoToState("stunned")
 end
 

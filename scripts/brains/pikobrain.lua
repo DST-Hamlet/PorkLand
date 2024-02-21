@@ -20,8 +20,29 @@ local function HasHome(inst)
     return inst.components.homeseeker and inst.components.homeseeker:HasHome() and not inst.components.homeseeker.home:HasTag("burnt")
 end
 
+local MUST_TAGS = {"teatree"}
+local CANT_AGS = {"stump", "burnt"}
+local function FindHome(inst)
+    if HasHome(inst) then
+        return false
+    end
+
+    local home = FindEntity(inst, FIND_HOME_DIST, function(item)
+        return not (item.components.spawner and item.components.spawner.child ~= nil)
+    end, MUST_TAGS, CANT_AGS)
+
+    if home then
+        home:MakePikoNest(inst)
+    end
+
+    return true
+end
+
 local function GoHomeAction(inst)
-    if not inst.sg:HasStateTag("trapped") and HasHome(inst) then
+    if not inst.sg:HasStateTag("trapped") then
+        if not HasHome(inst) then
+            FindHome(inst)
+        end
         return BufferedAction(inst, inst.components.homeseeker:GetHome(), ACTIONS.GOHOME, nil, nil, nil, 0)
     end
 end
@@ -56,24 +77,6 @@ local function PickupAction(inst)
             return BufferedAction(inst, target, ACTIONS.PICKUP)
         end
     end
-end
-
-local MUST_TAGS = {"teatree"}
-local CANT_AGS = {"stump", "burnt"}
-local function FindHome(inst)
-    if HasHome(inst) then
-        return false
-    end
-
-    local home = FindEntity(inst, FIND_HOME_DIST, function(item)
-        return not (item.components.spawner and item.components.spawner.child ~= nil)
-    end, MUST_TAGS, CANT_AGS)
-
-    if home then
-        home:MakePikoNest(inst)
-    end
-
-    return true
 end
 
 local PikoBrain = Class(Brain, function(self, inst)

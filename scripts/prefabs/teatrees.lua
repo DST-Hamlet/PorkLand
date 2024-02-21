@@ -167,6 +167,8 @@ local function DeleteChild(inst)
 
         local child = spawner.child
         if child then
+            spawner.child = nil
+
             if child.components.knownlocations then
                 child.components.knownlocations:ForgetLocation("home")
             end
