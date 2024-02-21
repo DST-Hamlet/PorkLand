@@ -32,6 +32,7 @@ local component_posts = {
 
 local prefab_posts = {
     "buff_workeffectiveness",
+    "cannonballs",
     "player",
     "player_classified",
     "woodie",
@@ -39,6 +40,7 @@ local prefab_posts = {
     "shard_network",
     "statueruins",
     "wormwood",
+    "trident",
 }
 
 local multipleprefab_posts = {
