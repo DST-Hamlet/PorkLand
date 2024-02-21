@@ -14,6 +14,11 @@ local prefabs =
     "cookedsmallmeat",
 }
 
+SetSharedLootTable("piko",
+{
+    {"smallmeat", 1},
+})
+
 local brain = require("brains/pikobrain")
 
 local INTENSITY = .5
@@ -142,6 +147,10 @@ local function OnDropped(inst)
     inst.sg:GoToState("stunned")
 end
 
+local function OnPickupedorTrapped(inst)
+    inst.components.inventory:DropEverything(false, false)
+end
+
 local function OnPickup(inst)
     UpdateBuild(inst, true)
 end
@@ -245,6 +254,7 @@ local function fn()
     inst.components.eater:SetDiet({FOODTYPE.SEEDS}, {FOODTYPE.SEEDS})
 
     inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem:SetOnPickupFn(OnPickupedorTrapped)
     -- inst.components.inventoryitem:SetOnDroppedFn(OnDropped)  -- Done in MakeFeedableSmallLivestock
     inst.components.inventoryitem.nobounce = true
     inst.components.inventoryitem.canbepickedup = false
@@ -267,7 +277,7 @@ local function fn()
     inst.components.health.murdersound = "dontstarve_DLC003/creatures/piko/death"
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot({"smallmeat"})
+    inst.components.lootdropper:SetChanceLootTable({"piko"})
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGpiko")
@@ -278,6 +288,7 @@ local function fn()
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("exitlimbo", UpdateLight)
+    inst:ListenForEvent("trapped", OnPickupedorTrapped)
     inst:ListenForEvent("onpickupitem", OnPickup)
 
     inst.force_onwenthome_message = true  -- for onwenthome event
