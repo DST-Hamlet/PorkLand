@@ -3,13 +3,14 @@ local foods = {
     {
         test = function(cooker, names, tags) return names.coffeebeans_cooked and (names.coffeebeans_cooked == 4 or (names.coffeebeans_cooked == 3 and (tags.dairy or tags.sweetener)))	end,
         priority = 30,
-        foodtype = FOODTYPE.VEGGIE,
-        secondaryfoodtype = FOODTYPE.GOODIES,
+        foodtype = FOODTYPE.GOODIES,
+        secondaryfoodtype = FOODTYPE.VEGGIE,
         health = TUNING.HEALING_SMALL,
         hunger = TUNING.CALORIES_TINY,
         perishtime = TUNING.PERISH_MED,
         sanity = -TUNING.SANITY_TINY,
         cooktime = 0.5,
+        oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_SPEED_BOOST,
         oneatenfn = function(inst, eater) 
             -- These buffs override each other, but RemoveExternalSpeedMultiplier needs the source in order to remove a buff
             eater:RemoveDebuff("buff_speed_coffee_beans")
@@ -18,14 +19,14 @@ local foods = {
             eater:AddDebuff("buff_speed_coffee", "buff_speed_coffee")
         end,
         is_shipwreck_food = true,
+        card_def = {ingredients = {{"coffeebeans_cooked", 3}, {"honey", 1}} },
     },
 
     tea =
     {
         test = function(cooker, names, tags) return names.piko_orange and names.piko_orange >= 2 and tags.sweetener and not tags.meat and not tags.veggie and not tags.inedible end,
         priority = 25,
-        foodtype = FOODTYPE.VEGGIE,
-        secondaryfoodtype = FOODTYPE.GOODIES,
+        foodtype = FOODTYPE.VEGGIE, -- still veggie, otherwise what's the point of Wigfird?
         health = TUNING.HEALING_SMALL,
         hunger = TUNING.CALORIES_SMALL,
         perishtime = TUNING.PERISH_ONE_DAY,
@@ -33,6 +34,7 @@ local foods = {
         temperature = TUNING.HOT_FOOD_BONUS_TEMP,
         temperatureduration = TUNING.FOOD_TEMP_LONG,
         cooktime = 0.5,
+        oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_SPEED_BOOST,
         spoiled_product = "icedtea",
         yotp = true,
         oneatenfn = function(inst, eater)
@@ -47,8 +49,7 @@ local foods = {
     {
         test = function(cooker, names, tags) return names.piko_orange and names.piko_orange >= 2 and tags.sweetener and tags.frozen end,
         priority = 30,
-        foodtype = FOODTYPE.VEGGIE,
-        secondaryfoodtype = FOODTYPE.GOODIES,
+        foodtype = FOODTYPE.VEGGIE, -- still veggie, otherwise what's the point of Wigfird?
         health = TUNING.HEALING_SMALL,
         hunger = TUNING.CALORIES_SMALL,
         perishtime = TUNING.PERISH_FAST,
@@ -56,6 +57,7 @@ local foods = {
         temperature = TUNING.COLD_FOOD_BONUS_TEMP,
         temperatureduration = TUNING.FOOD_TEMP_BRIEF * 1.5,
         cooktime = 0.5,
+        oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_SPEED_BOOST,
         yotp = true,
         oneatenfn = function(inst, eater)
             eater:RemoveDebuff("buff_speed_coffee_beans")
