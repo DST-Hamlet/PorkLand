@@ -81,6 +81,8 @@ local function MakeRelic(num)
         inst.OnRemoveEntity = OnRemoveEntity
         inst.relicnum = num
 
+        MakeHauntableLaunch(inst)
+
         return inst
     end
 
