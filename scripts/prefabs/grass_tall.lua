@@ -94,11 +94,7 @@ local function OnHack(inst, target, hacksleft, from_shears)
         end
     else
         inst.AnimState:PlayAnimation("chop")
-        inst.AnimState:PushAnimation("idle",true)
-    end
-
-    if inst.components.pickable then
-        inst.components.pickable:MakeEmpty()
+        inst.AnimState:PushAnimation("idle", true)
     end
 
     if not from_shears then

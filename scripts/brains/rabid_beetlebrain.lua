@@ -24,7 +24,7 @@ end
 
 local function GetWanderPoint(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local target = FindPlayersInRange(x, y, z, FIND_DIST, true)
+    local target = FindClosestPlayerInRange(x, y, z, FIND_DIST, true)
     return target and target:GetPosition() or nil
 end
 

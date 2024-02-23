@@ -9,16 +9,16 @@ local prefabs =
     "lightbulb",
 }
 
-SetSharedLootTable('rabid_beetle',
+SetSharedLootTable("rabid_beetle",
 {
-    {'chitin', 0.2},
-    {'lightbulb', 0.08},
+    {"chitin", 0.2},
+    {"lightbulb", 0.08},
 })
 
-SetSharedLootTable('rabid_beetle_inventory',
+SetSharedLootTable("rabid_beetle_inventory",
 {
-    {'lightbulb', 1},
-    {'chitin', 0.6},
+    {"lightbulb", 1},
+    {"chitin", 0.6},
 })
 
 local brain = require("brains/rabid_beetlebrain")
@@ -28,12 +28,12 @@ local function ShouldSleep(inst)
 end
 
 local function OnDropped(inst)
-    inst.components.lootdropper:SetChanceLootTable('rabid_beetle')
+    inst.components.lootdropper:SetChanceLootTable("rabid_beetle")
     inst.sg:GoToState("idle")
 end
 
 local function OnPickedUp(inst)
-    inst.components.lootdropper:SetChanceLootTable('rabid_beetle_inventory')
+    inst.components.lootdropper:SetChanceLootTable("rabid_beetle_inventory")
 end
 
 local CANT_TAGS = {"FX", "NOCLICK", "INLIMBO", "wall", "rabid_beetle", "glowfly", "cocoon", "structure"}
@@ -134,7 +134,7 @@ local function fn()
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetChanceLootTable('rabid_beetle')
+    inst.components.lootdropper:SetChanceLootTable("rabid_beetle")
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.RABID_BEETLE_HEALTH)
