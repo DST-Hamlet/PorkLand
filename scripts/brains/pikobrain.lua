@@ -43,7 +43,7 @@ local function GoHomeAction(inst)
         if not HasHome(inst) then
             FindHome(inst)
         end
-        return BufferedAction(inst, inst.components.homeseeker:GetHome(), ACTIONS.GOHOME, nil, nil, nil, 0)
+        return BufferedAction(inst, inst.components.homeseeker and inst.components.homeseeker:GetHome(), ACTIONS.GOHOME, nil, nil, nil, 0)
     end
 end
 

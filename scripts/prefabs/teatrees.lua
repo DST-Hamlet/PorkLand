@@ -366,21 +366,13 @@ local function OnIgnite(inst)
     DeleteChild(inst)
 end
 
-local function OnExtinguish(inst)
-    if inst.components.spawner then
-        if inst.components.worldsettingstimer:ActiveTimerExists(SPAWNER_STARTDELAY_TIMERNAME) then -- if we have a paused timer, resume it
-            inst.components.worldsettingstimer:ResumeTimer(SPAWNER_STARTDELAY_TIMERNAME)
-        end
-    end
-end
-
 local function MakeTreeBurnable(inst)
     MakeLargeBurnable(inst)
     inst.components.burnable.extinguishimmediately = false
     inst.components.burnable:SetFXLevel(5)
     inst.components.burnable:SetOnBurntFn(OnBurnt)
     inst.components.burnable:SetOnIgniteFn(OnIgnite)
-    inst.components.burnable:SetOnExtinguishFn(OnExtinguish)
+    inst.components.burnable:SetOnExtinguishFn(OnPhaseChange)
 end
 
 local function OnEntitySleep(inst)
