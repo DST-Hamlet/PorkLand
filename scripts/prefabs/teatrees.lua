@@ -125,15 +125,18 @@ local function OnVacated(inst, child)
     child:UpdateLight()
 end
 
+local SPAWNER_STARTDELAY_TIMERNAME = "Spawner_SpawnDelay"
 local function OnPhaseChange(inst)
     local is_rabid_phase = TheWorld.state.phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood")
     if TheWorld.state.phase == "day" or is_rabid_phase then
-        if not inst.components.spawner:IsSpawnPending() and not inst.components.worldsettingstimer.paused then
-            inst.components.spawner:SpawnWithDelay(2 + math.random(20))
+        if inst.components.worldsettingstimer:ActiveTimerExists(SPAWNER_STARTDELAY_TIMERNAME) then -- if we have a paused timer, resume it
+            inst.components.worldsettingstimer:ResumeTimer(SPAWNER_STARTDELAY_TIMERNAME)
+        else
+            inst.components.worldsettingstimer:StopTimer(SPAWNER_STARTDELAY_TIMERNAME)
+            inst.components.worldsettingstimer:StartTimer(SPAWNER_STARTDELAY_TIMERNAME, 2 + math.random(20)) -- otherwise spawn piko
         end
     else
-        inst.components.spawner:CancelSpawning()
-        inst.components.worldsettingstimer.paused = false
+        inst.components.worldsettingstimer:PauseTimer(SPAWNER_STARTDELAY_TIMERNAME)
     end
 end
 
@@ -149,7 +152,7 @@ end
 
 local function MakePikoNest(inst, piko)
     if piko then
-        inst.components.spawner:CancelSpawning()
+        inst.components.worldsettingstimer:PauseTimer(SPAWNER_STARTDELAY_TIMERNAME)
         inst.components.spawner:TakeOwnership(piko)
     end
 
@@ -167,7 +170,7 @@ local function DeleteChild(inst)
         if inst.components.spawner:IsOccupied() then
             inst.components.spawner:ReleaseChild()
         end
-        inst.components.spawner:CancelSpawning()
+        inst.components.worldsettingstimer:PauseTimer(SPAWNER_STARTDELAY_TIMERNAME)
 
         local child = spawner.child
         if child then
@@ -181,6 +184,7 @@ local function DeleteChild(inst)
             inst:RemoveEventCallback("ontrapped", spawner._onchildkilled, child)
             inst:RemoveEventCallback("death", spawner._onchildkilled, child)
             inst:RemoveEventCallback("detachchild", spawner._onchildkilled, child)
+            inst:RemoveEventCallback("onremove", spawner._onchildkilled, spawner.child)
         end
     end
 end
