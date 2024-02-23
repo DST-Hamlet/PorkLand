@@ -38,7 +38,7 @@ end
 
 local function GetWanderPoint(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local target = GetHome(inst) or FindPlayersInRange(x, y, z, 64, true)
+    local target = GetHome(inst) or FindClosestPlayerInRange(x, y, z, 64, true)
 
     if target then
         return target:GetPosition()
