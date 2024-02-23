@@ -28,7 +28,7 @@ local function FindHome(inst)
     end
 
     local home = FindEntity(inst, FIND_HOME_DIST, function(item)
-        return not (item.components.spawner and item.components.spawner.child ~= nil)
+        return not (item.components.spawner and item.components.spawner.child ~= nil) and not (inst.components.burnable and item.components.burnable:IsBurning())
     end, MUST_TAGS, CANT_AGS)
 
     if home then
