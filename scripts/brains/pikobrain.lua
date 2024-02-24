@@ -109,7 +109,7 @@ function PikoBrain:OnStart()
             if TheWorld.state.phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood") then
                 return false
             end
-            return not TheWorld.state.isday end, "IsNight",
+            return not TheWorld.state.isday and HasHome(self.inst)  end, "IsNight",
             DoAction(self.inst, GoHomeAction, "go home", true)),
 
         DoAction(self.inst, EatFoodAction),

@@ -366,13 +366,24 @@ local function OnIgnite(inst)
     DeleteChild(inst)
 end
 
+local function OnExtinguish(inst)
+    local is_rabid_phase = TheWorld.state.phase == "night" and (TheWorld.state.moonphase == "full" or TheWorld.state.moonphase == "blood")
+    if TheWorld.state.phase == "day" or is_rabid_phase then
+        if inst.components.worldsettingstimer:ActiveTimerExists(SPAWNER_STARTDELAY_TIMERNAME) then -- if we have a paused timer, resume it
+            inst.components.worldsettingstimer:ResumeTimer(SPAWNER_STARTDELAY_TIMERNAME)
+        end
+    else
+        inst.components.worldsettingstimer:PauseTimer(SPAWNER_STARTDELAY_TIMERNAME)
+    end
+end
+
 local function MakeTreeBurnable(inst)
     MakeLargeBurnable(inst)
     inst.components.burnable.extinguishimmediately = false
     inst.components.burnable:SetFXLevel(5)
     inst.components.burnable:SetOnBurntFn(OnBurnt)
     inst.components.burnable:SetOnIgniteFn(OnIgnite)
-    inst.components.burnable:SetOnExtinguishFn(OnPhaseChange)
+    inst.components.burnable:SetOnExtinguishFn(OnExtinguish)
 end
 
 local function OnEntitySleep(inst)
@@ -516,6 +527,9 @@ local function MakeTeaTree(name, stage, state)
         inst.components.growable.springgrowth = true
         inst.components.growable:StartGrowing()
         inst.growfromseed = GrowFromSeed
+
+        inst:AddComponent("simplemagicgrower")
+        inst.components.simplemagicgrower:SetLastStage(#inst.components.growable.stages)
 
         inst:AddComponent("spawner")
         WorldSettings_Spawner_SpawnDelay(inst, TUNING.PIKO_RESPAWN_TIME, TUNING.PIKO_ENABLED)
