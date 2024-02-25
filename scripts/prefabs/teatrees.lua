@@ -452,6 +452,7 @@ local function OnLoad(inst, data)
     local is_burnt = data.burnt or inst:HasTag("burnt")
     if data.stump then
         MakeStump(inst)
+        inst.AnimState:PlayAnimation(anims[inst.stage].stump)
         if is_burnt then
             DefaultBurntFn(inst)
         end
@@ -491,7 +492,7 @@ local function MakeTeaTree(name, stage, state)
         inst:AddTag("cattoyairborne")
 
         inst.stage = stage == 0 and math.random(1, 3) or stage
-        local color = 0.7 + math.random() * 0.3 -- Is this line neccessary?
+        local color = 0.7 + math.random() * 0.3
 
         inst.AnimState:SetBank("tree_leaf")
         inst.AnimState:SetBuild("teatree_trunk_build")
