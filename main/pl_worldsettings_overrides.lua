@@ -36,6 +36,31 @@ local total_day_time = TUNING.TOTAL_DAY_TIME
 --[[ WORLDSETTINGS PRE ]]
 --------------------------------------------------------------------------
 
+applyoverrides_pre.dungbeetle_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            DUNGBEETLE_ENABLED = false,
+        },
+        rare = {
+            DUNGBEETLE_REGEN_TIME = TUNING.SEG_TIME * 8,
+        },
+        --[[
+        default = {
+            DUNGBEETLE_ENABLED = true,
+            PEAGAWK_REGEN_TIME = TUNING.SEG_TIME * 4,
+        },
+        --]]
+        often = {
+            DUNGBEETLE_REGEN_TIME = TUNING.SEG_TIME * 2,
+        },
+        always = {
+            DUNGBEETLE_REGEN_TIME = TUNING.SEG_TIME * 1,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 applyoverrides_pre.peagawk_setting = function(difficulty)
     local tuning_vars =
     {
@@ -139,6 +164,7 @@ applyoverrides_pre.glowfly_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+
 applyoverrides_pre.piko_setting = function(difficulty)
     local tuning_vars =
     {
@@ -159,6 +185,43 @@ applyoverrides_pre.piko_setting = function(difficulty)
         },
         always = {
             PIKO_RESPAWN_TIME = day_time,
+        }
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
+applyoverrides_pre.hanging_vine_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            HANGING_VINE_ENABLED = false
+        },
+        rare = {
+            GRABBING_VINE_SPAWN_MIN = 3,
+            GRABBING_VINE_SPAWN_MAX = 5,
+            HANGING_VINE_SPAWN_MIN = 4,
+            HANGING_VINE_SPAWN_MAX = 8,
+        },
+        --[[
+        default = {
+            HANGING_VINE_ENABLED = true
+            GRABBING_VINE_SPAWN_MIN = 6,
+            GRABBING_VINE_SPAWN_MAX = 9,
+            HANGING_VINE_SPAWN_MIN = 8,
+            HANGING_VINE_SPAWN_MAX = 16,
+        },
+        --]]
+        often = {
+            GRABBING_VINE_SPAWN_MIN = 9,
+            GRABBING_VINE_SPAWN_MAX = 14,
+            HANGING_VINE_SPAWN_MIN = 12,
+            HANGING_VINE_SPAWN_MAX = 24,
+        },
+        always = {
+            GRABBING_VINE_SPAWN_MIN = 18,
+            GRABBING_VINE_SPAWN_MAX = 27,
+            HANGING_VINE_SPAWN_MIN = 24,
+            HANGING_VINE_SPAWN_MAX = 48,
         },
     }
     OverrideTuningVariables(tuning_vars[difficulty])

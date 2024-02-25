@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Ugh! My allergies!",
     ANNOUNCE_HAYFEVER_OFF = "I think... my nose has cleared!",
+    ANNOUNCE_PICKPOOP = {
+        "Blech!",
+        "Blagh!",
+        "Beurk!",
+    },
     ANNOUNCE_SNEEZE = "Atchoum!",
     ANNOUNCE_TOO_HUMID = {
         "Mon dieu! This %s is humid.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Good ventilation in the kitchen is an must.",
         CHITIN = "Completely inedible.",
         CUTNETTLE = "Great for clearing the sinuses!",
+        DUNGBALL = "Non.",
+        DUNGBEETLE = {
+            DEAD = "Such is life.",
+            GENERIC = "Not how I would spend my days.",
+            SLEEPING = "Dormez bien, mon amie.",
+            UNDUNGED = "She's fallen.",
+        },
+        DUNGPILE = {
+            GENERIC = "The smell is so strong I can taste it.",
+            PICKED = "That was not food safe.",
+        },
         FLOWER_RAINFOREST = "Edible?",
         GLOWFLY = {
             DEAD = "Such a shame. And not even edible.",
@@ -26,14 +42,19 @@ return {
         },
         GLOWFLY_COCOON = "It's wrapped itself like a cabbage roll.",
         GOLDENMACHETE = "Fancy slicer.",
+        GOLDPAN = "I have better pans.",
+        GOLD_DUST = "Perhaps that nosy fellow would like to eat this.",
+        GRABBING_VINE = "How eerie.",
         GRASS_TALL = {
             BURNING = "Smells like a cookout!",
             GENERIC = "Too long to cut with my hands.",
             PICKED = "It will have to grow back.",
         },
-        MACHETE = "I could chop many an onion with this!",
         HALBERD = "I dislike fighting.",
+        HANGING_VINE = "How eerie.",
         IRON = "I wonder what I could cook up with this.",
+        MACHETE = "I could chop many an onion with this!",
+        PANGOLDEN = "Already has a nice golden braise.",
         PEAGAWK = {
             DEAD = "A pointless death.",
             GENERIC = "Those feathers would make a nice table centerpiece.",
@@ -46,6 +67,7 @@ return {
             GENERIC = "It is like me when I am hungry.",
             SLEEPING = "What a curious way to sleep!",
         },
+        SEDIMENTPUDDLE = "It's been seasoned with gold.",
         SHEARS = "Good for cutting hedges and grass.",
         SMELTER = {
             BURNT = "I'm better at cooking food than metal.",

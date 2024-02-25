@@ -11,17 +11,21 @@ end
 
 local _debug_getupvalue = debug.getupvalue
 function debug.getupvalue(fn, ...)
-    local rets = {_debug_getupvalue(hidefns[fn] or fn, ...)}
-    return unpack(rets)
+    return _debug_getupvalue(hidefns[fn] or fn, ...)
 end
 ToolUtil.HideFn(debug.getupvalue, _debug_getupvalue)
 
 local _debug_setupvalue = debug.setupvalue
 function debug.setupvalue(fn, ...)
-    local rets = {_debug_setupvalue(hidefns[fn] or fn, ...)}
-    return unpack(rets)
+    return _debug_setupvalue(hidefns[fn] or fn, ...)
 end
 ToolUtil.HideFn(debug.setupvalue, _debug_setupvalue)
+
+local _debug_getinfo = debug.getinfo
+function debug.getinfo(fn, ...)
+    return _debug_getinfo(hidefns[fn] or fn, ...)
+end
+ToolUtil.HideFn(debug.getinfo, _debug_getinfo)
 
 --Tool designed by Rezecib.
 ---@param fn function

@@ -71,7 +71,7 @@ local states =
             inst.AnimState:PushAnimation("dead")
             inst.Physics:Stop()
             RemovePhysicsColliders(inst)
-            inst.components.lootdropper:DropLoot(inst:GetPosition())
+            inst.components.lootdropper:DropLoot()
         end,
     },
 
@@ -155,7 +155,7 @@ local states =
 
     State{
         name = "burrow_shield",
-        tags = {"busy","shielding"},
+        tags = {"busy", "shielding"},
 
         onenter = function(inst)
             inst:RemoveTag("canbetrapped")

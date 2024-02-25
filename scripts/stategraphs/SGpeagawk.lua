@@ -71,7 +71,7 @@ local states =
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/Peakcock/death")
             inst.components.locomotor:StopMoving()
-            inst.components.lootdropper:DropLoot(inst:GetPosition())
+            inst.components.lootdropper:DropLoot()
             RemovePhysicsColliders(inst)
 
             if inst.is_bush then

@@ -788,9 +788,6 @@ local function AddMoonPhaseStyle(self, style, ...)
     end
 end
 
----@class clock
----@field GetTimeUntilPhase function
-
 AddComponentPostInit("clock", function(self, inst)
     local _world = TheWorld
     local _ismastershard = _world.ismastershard
@@ -811,7 +808,6 @@ AddComponentPostInit("clock", function(self, inst)
             end
         end
     end or nil
-
 
     self.MakeClock = MakeClock
 

@@ -10,6 +10,11 @@ return {
         "Take off %s.",
     },
     DESCRIBE = {
+        ANNOUNCE_PICKPOOP = {
+            "Disgusting!",
+            "It's still warm!",
+            "My paws!",
+        },
         APORKALYPSE_CLOCK = "Magic on such a large scale, man, this is going to be fun.",
         ARMOR_METALPLATE = "What a horrible torture.",
         ARMOR_WEEVOLE = "I'm getting goosebumps.",
@@ -17,6 +22,17 @@ return {
         BASEFAN = "The breeze is blowing, so happy.",
         CHITIN = "The shell of those guys.",
         CUTNETTLE = "Just smelling it blows my nose.",
+        DUNGBALL = "Why would anyone like it?",
+        DUNGBEETLE = {
+            DEAD = "Sorry, ma'am.",
+            GENERIC = "Is that... poop?",
+            SLEEPING = "I thought they would have a loud purring sound.",
+            UNDUNGED = "Please stop do that.",
+        },
+        DUNGPILE = {
+            GENERIC = "The stench is overwhelming...",
+            PICKED = "Still there?",
+        },
         FLOWER_RAINFOREST = "There is a wild beauty.",
         GLOWFLY = {
             DEAD = "sorry.",
@@ -25,14 +41,19 @@ return {
         },
         GLOWFLY_COCOON = "What will become of it?",
         GOLDENMACHETE = "Fit for a sophisticated imp!",
+        GOLDPAN = "A big slotted spoon, for gold and glory.",
+        GOLD_DUST = "Many mortals try to use it to fill the void in their souls.",
+        GRABBING_VINE = "Hello, what do you want?",
         GRASS_TALL = {
             BURNING = "Oops, it's burning.",
             GENERIC = "Solid tall grass, really nice.",
             PICKED = "Gone, all gone.",
         },
-        MACHETE = "To chop and slash!",
         HALBERD = "What a vicious weapon.",
+        HANGING_VINE = "Hello, what do you want?",
         IRON = "Oooh. Almost burned me.",
+        MACHETE = "To chop and slash!",
+        PANGOLDEN = "How are you today? Any outcome?",
         PEAGAWK = {
             GENERIC = "You must have seen a lot, right?",
             SLEEPING = "Huh, let's close our eyes and take a break?",
@@ -44,6 +65,7 @@ return {
             GENERIC = "Really energetic, do you want to dance?",
             SLEEPING = "Then intermission.",
         },
+        SEDIMENTPUDDLE = "These are not for drink.",
         SHEARS = "Click, click, leaves fall.",
         SMELTER = {
             BURNT = "I didn't know they were hot to stone.",

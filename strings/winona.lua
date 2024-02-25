@@ -11,6 +11,11 @@ return {
     },
     DESCRIBE = {
         ALLOY = "Proper processing makes it better.",
+        ANNOUNCE_PICKPOOP = {
+            "Alas!",
+            "So dirty!",
+            "Unbearable!",
+        },
         APORKALYPSE_CLOCK = "A fairly complex set of instrumentation.",
         ARMOR_METALPLATE = "Bulky, but surprisingly well-protected.",
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "I'm sure bossman would be very interested in it.",
         CHITIN = "I don't know what this can be used for.",
         CUTNETTLE = "Keep your breath flowing and refresh your mind.",
+        DUNGBALL = "I would never touch it.",
+        DUNGBEETLE = {
+            DEAD = "Is she dead?",
+            GENERIC = "No matter how many times you see it, it’s hard to accept.",
+            SLEEPING = "Rest is a must.",
+            UNDUNGED = "It looks like the loss of a loved one.",
+        },
+        DUNGPILE = {
+            GENERIC = "Ugh, gross.",
+            PICKED = "I thought it was over...",
+        },
         FLOWER_RAINFOREST = "I have never seen such flowers.",
         GLOWFLY = {
             DEAD = "It's broken.",
@@ -26,14 +42,19 @@ return {
         },
         GLOWFLY_COCOON = "Change is happening.",
         GOLDENMACHETE = "This just made my job easier.",
+        GOLDPAN = "Separate the metal.",
+        GOLD_DUST = "gold! My luck has come!",
+        GRABBING_VINE = "I saw a strong rope.",
         GRASS_TALL = {
             BURNING = "A Grass fire!",
             GENERIC = "That's some... very tall grass.",
             PICKED = "All work is done.",
         },
-        MACHETE = "Hack and slash! Working's always fun.",
         HALBERD = "More suited to combat than to work.",
+        HANGING_VINE = "I saw a strong rope.",
         IRON = "Invaluable material for manufacturing useful tools.",
+        MACHETE = "Hack and slash! Working's always fun.",
+        PANGOLDEN = "Living metallurgical.",
         PEAGAWK = {
             GENERIC = "Always be vigilant.",
             SLEEPING = "It let down its guard.",
@@ -45,6 +66,7 @@ return {
             GENERIC = "What are you all excited about?",
             SLEEPING = "Calm down!",
         },
+        SEDIMENTPUDDLE = "The metal content is seriously over the limit.",
         SHEARS = "Shears for gardening.",
         SMELTER = {
             BURNT = "Forgot fire rules, didn't you?",

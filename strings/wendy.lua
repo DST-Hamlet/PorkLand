@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Ugh. Even my sinuses are suffering.",
     ANNOUNCE_HAYFEVER_OFF = "My sinuses are clear, but suffering continues.",
+    ANNOUNCE_PICKPOOP = {
+        "Sigh.",
+        "Ew.",
+        "Everything is suffering.",
+    },
     ANNOUNCE_SNEEZE = "achoo! achoo! sniff.",
     ANNOUNCE_TOO_HUMID = {
         "This %s is heavier in the heat.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Alas the relief it brings is only temporary.",
         CHITIN = "This shell is poor protection from life's horrors.",
         CUTNETTLE = "I suppose these will cure blocked sinuses.",
+        DUNGBALL = "Grotesque.",
+        DUNGBEETLE = {
+            DEAD = "How I envy you.",
+            GENERIC = "A symbol of the ugliness of this world.",
+            SLEEPING = "Even the hideous sleep sounder than I.",
+            UNDUNGED = "Alas, she has fallen from her grotesque perch.",
+        },
+        DUNGPILE = {
+            GENERIC = "There's dreadfulness everywhere.",
+            PICKED = "That was... unpleasant.",
+        },
         FLOWER_RAINFOREST = "It, too, will wither and die one day.",
         GLOWFLY = {
             DEAD = "Its light hath been extinguished forever.",
@@ -26,14 +42,19 @@ return {
         },
         GLOWFLY_COCOON = "If I could climb into a cocoon I would never emerge.",
         GOLDENMACHETE = "What a fancy blade to ruin bamboo with!",
+        GOLDPAN = "Offers too much hope.",
+        GOLD_DUST = "Death is not sparkly.",
+        GRABBING_VINE = "The jungle's noose.",
         GRASS_TALL = {
             BURNING = "Death comes to everything.",
             GENERIC = "Alas, I'm too weak to pick it.",
             PICKED = "All things end.",
         },
-        MACHETE = "This is a lot of blade.",
         HALBERD = "A terrible weapon for a terrible world.",
+        HANGING_VINE = "The jungle's noose.",
         IRON = "Iron. Like my heart.",
+        MACHETE = "This is a lot of blade.",
+        PANGOLDEN = "A fool and his gold.",
         PEAGAWK = {
             DEAD = "Beautiful death.",
             GENERIC = "Many eyes witness many horrors in life.",
@@ -46,6 +67,7 @@ return {
             GENERIC = "As rabid as death itself.",
             SLEEPING = "Sleep is not a permanent escape from life.",
         },
+        SEDIMENTPUDDLE = "Contains unreachable shiny things.",
         SHEARS = "Can it shear my heart?",
         SMELTER = {
             BURNT = "It blazes with more passion than I know.",

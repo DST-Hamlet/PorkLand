@@ -34,12 +34,12 @@ local pl_fx = {
         fn = TintOceantFx,
     },
     {
-    	name = "splash_water_sink",
-    	bank = "splash_water_drop",
-    	build = "splash_water_drop",
-    	anim = "idle_sink",
+        name = "splash_water_sink",
+        bank = "splash_water_drop",
+        build = "splash_water_drop",
+        anim = "idle_sink",
         sound = "dontstarve_DLC002/common/item_sink"
-	},
+    },
 }
 
 -- Sneakily add these to the FX table

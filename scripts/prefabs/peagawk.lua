@@ -1,4 +1,4 @@
-local assets=
+local assets =
 {
     Asset("ANIM", "anim/peagawk.zip"),
     Asset("ANIM", "anim/eyebush.zip"),
@@ -111,6 +111,12 @@ local function StartRegenTimer(inst, regentime)
     end
 end
 
+local SLEEP_NEAR_ENEMY_DISTANCE = 14
+local function ShouldSleep(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    return DefaultSleepTest(inst) and not IsAnyPlayerInRange(x, y, z, SLEEP_NEAR_ENEMY_DISTANCE)
+end
+
 local function OnSave(inst, data)
     data.feathers = inst.feathers
 end
@@ -184,7 +190,7 @@ local function fn()
     inst.components.eater:SetCanEatRaw()
 
     inst:AddComponent("sleeper")
-    inst.components.sleeper:SetWakeTest(function() return true end)  -- always wake up if we're asleep
+    inst.components.sleeper:SetSleepTest(ShouldSleep)
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.PERD_HEALTH)

@@ -83,6 +83,7 @@ local tuning = {
 
     RABID_BEETLE_HEALTH = 60,
     RABID_BEETLE_DAMAGE =  10,
+    RABID_BEETLE_ATTACK_RANGE = 2,
     RABID_BEETLE_ATTACK_PERIOD = 2,
     RABID_BEETLE_TARGET_DIST = 20,
     RABID_BEETLE_SPEED = 12,
@@ -176,6 +177,39 @@ local tuning = {
         {base = 5 * day_time,   random = 2 * day_time},   --tall
         {base = 1 * day_time,   random = 0.5 * day_time}   --old
     },
+
+    PAN_DAMAGE = wilson_attack*.8,
+    PAN_USES = 30,
+
+    PANGOLDEN_HEALTH = 500,
+    PANGOLDEN_BALL_DEFENCE = 0.75,
+    PANGOLDEN_WALK_SPEED = 2.5,
+    PANGOLDEN_RUN_SPEED = 8,
+
+    DUNGBEETLE_RUN_SPEED = 6,
+    DUNGBEETLE_WALK_SPEED = 3.5,
+    DUNGBEETLE_HEALTH = 60,
+
+    DUNGBEETLE_MAXCHILDREN = 1,
+    DUNGBEETLE_REGEN_TIME = seg_time * 4,
+    DUNGBEETLE_RELEASE_TIME = seg_time,
+    DUNGBEETLE_ENABLED = true,
+
+    GRABBING_VINE_HEALTH = 100,
+    GRABBING_VINE_DAMAGE = 10,
+    GRABBING_VINE_ATTACK_RANGE = 3,
+    GRABBING_VINE_HIT_RANGE = 4,
+    GRABBING_VINE_ATTACK_PERIOD = 1,
+    GRABBING_VINE_TARGET_DIST = 3,
+
+    GRABBING_VINE_SPAWN_MIN = 6,
+    GRABBING_VINE_SPAWN_MAX = 9,
+    HANGING_VINE_SPAWN_MIN = 8,
+    HANGING_VINE_SPAWN_MAX = 16,
+    HANGING_VINE_ENABLED = true,
+
+    VINE_REGEN_TIME_MIN = total_day_time * 2,
+    VINE_REGEN_TIME_MAX = total_day_time * 3,
 }
 
 for key, value in pairs(tuning) do

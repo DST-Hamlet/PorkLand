@@ -11,6 +11,7 @@ require("behaviours/standstill")
 local BrainCommon = require("brains/braincommon")
 
 local SEE_DIST = 30
+local FIND_DIST = 64
 
 local function EatFoodAction(inst)
     local target = FindEntity(inst, SEE_DIST, function(item)
@@ -22,7 +23,8 @@ local function EatFoodAction(inst)
 end
 
 local function GetWanderPoint(inst)
-    local target = inst:GetNearestPlayer(true)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local target = FindClosestPlayerInRange(x, y, z, FIND_DIST, true)
     return target and target:GetPosition() or nil
 end
 

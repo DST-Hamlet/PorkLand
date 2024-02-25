@@ -11,6 +11,11 @@ return {
     },
     DESCRIBE = {
         ALLOY = "The stone became harder.",
+        ANNOUNCE_PICKPOOP = {
+            "Dirty water!",
+            "Glurgh...",
+            "No next time!",
+        },
         APORKALYPSE_CLOCK = "Stuff form bad story!",
         ARMOR_METALPLATE = "Sturdy, but heavy.",
         ARMOR_WEEVOLE = "Nice and comfortable armor.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Water ran away! florpt!",
         CHITIN = "Tough hide.",
         CUTNETTLE = "It into my nose!",
+        DUNGBALL = "Crud ball.",
+        DUNGBEETLE = {
+            DEAD = "It not moving anymore.",
+            GENERIC = "Beautiful, but stinky.",
+            SLEEPING = "Just fell asleep.",
+            UNDUNGED = "Still stinks.",
+        },
+        DUNGPILE = {
+            GENERIC = "Smelly crud.",
+            PICKED = "No more.",
+        },
         FLOWER_RAINFOREST = "A slightly prettier plant is still ugly.",
         GLOWFLY = {
             DEAD = "died.",
@@ -26,14 +42,19 @@ return {
         },
         GLOWFLY_COCOON = "The little bug wrapped itself up.",
         GOLDENMACHETE = "It better than normal hacker.",
+        GOLDPAN = "Pick rocks in water up.",
+        GOLD_DUST = "Shining...",
+        GRABBING_VINE = "They're on top here.",
         GRASS_TALL = {
             BURNING = "Fire! Is fire!",
             GENERIC = "Greer... can't move.",
             PICKED = "It has been cut clean.",
         },
-        MACHETE = "Plant hacker.",
         HALBERD = "Strange weapon used by Pigfolk.",
+        HANGING_VINE = "They're on top here.",
         IRON = "Red hard rock.",
+        MACHETE = "Plant hacker.",
+        PANGOLDEN = "Don't drink them all!",
         PEAGAWK = {
             GENERIC = "Big weird bird.",
             SLEEPING = "The big monster fell asleep?",
@@ -45,6 +66,7 @@ return {
             GENERIC = "The little bug is going crazy!",
             SLEEPING = "The little bug was quiet.",
         },
+        SEDIMENTPUDDLE = "Water are ... shining?",
         SHEARS = "Shape the plants.",
         SMELTER = {
             BURNT = "Glurph, ruined.",

@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Sniff sniff. Must be hayfever season.",
     ANNOUNCE_HAYFEVER_OFF = "Ahh... Finally I can breathe.",
+    ANNOUNCE_PICKPOOP = {
+        "I never!",
+        "Disgusting!",
+        "What a horrid smell!",
+    },
     ANNOUNCE_SNEEZE = "Ahh... CHOOOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is unbearable.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "Restorative.",
         CHITIN = "The exoskeleton of an arthropod.",
         CUTNETTLE = "These are quite good for the sinuses.",
+        DUNGBALL = "A perfectly spherical specimen of feces.",
+        DUNGBEETLE = {
+            DEAD = "A Scarabaeidae cadaver.",
+            GENERIC = "Scarabaeidae with her droppings.",
+            SLEEPING = "At rest.",
+            UNDUNGED = "She's lost her dung.",
+        },
+        DUNGPILE = {
+            GENERIC = "Scarabaeidae will make short work of it.",
+            PICKED = "Odious, yet useful.",
+        },
         FLOWER_RAINFOREST = "Floral cross-pollination produces some fascinating specimens.",
         GLOWFLY = {
             DEAD = "Its existence has reached an end.",
@@ -26,14 +42,19 @@ return {
         },
         GLOWFLY_COCOON = "Fascinating! It has moved on to the chrysalis stage.",
         GOLDENMACHETE = "The most malleable of metals, but let's see how it slices.",
+        GOLDPAN = "This should be useful for finding valuable minerals.",
+        GOLD_DUST = "Small particles of the shiniest element.",
+        GRABBING_VINE = "Hanging vines from the forest canopy.",
         GRASS_TALL = {
             BURNING = "Illuminating!",
             GENERIC = "I need an implement for that.",
             PICKED = "That required not insignificant effort.",
         },
-        MACHETE = "Used for hacking through the brush.",
         HALBERD = "It is a cruel and versatile weapon.",
+        HANGING_VINE = "Hanging vines from the forest canopy.",
         IRON = "Ferrum.",
+        MACHETE = "Used for hacking through the brush.",
+        PANGOLDEN = "Aurum vermilingua.",
         PEAGAWK = {
             DEAD = "Lifeless.",
             GENERIC = "A strangely mutated Pavo Cristatus.",
@@ -46,6 +67,7 @@ return {
             GENERIC = "Certainly not a species I know of!",
             SLEEPING = "Dormant.",
         },
+        SEDIMENTPUDDLE = "Contains some lustrous sentiment.",
         SHEARS = "A useful tool for horticultural purposes.",
         SMELTER = {
             BURNT = "Is anyone hurt?",

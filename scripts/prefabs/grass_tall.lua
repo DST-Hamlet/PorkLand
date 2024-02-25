@@ -94,11 +94,7 @@ local function OnHack(inst, target, hacksleft, from_shears)
         end
     else
         inst.AnimState:PlayAnimation("chop")
-        inst.AnimState:PushAnimation("idle",true)
-    end
-
-    if inst.components.pickable then
-        inst.components.pickable:MakeEmpty()
+        inst.AnimState:PushAnimation("idle", true)
     end
 
     if not from_shears then
@@ -208,7 +204,7 @@ local function grass_tall()
     inst.components.hackable:SetMakeEmptyFn(MakeEmpty)
 
     inst:AddComponent("shearable")
-    inst.components.shearable:SetProduct("cutgrass", 2)
+    inst.components.shearable:SetUp("cutgrass", 2)
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "weevole"

@@ -3,8 +3,11 @@ local assets =
     Asset("ANIM", "anim/alloy.zip"),
 }
 
-local function shine(inst)
-    inst.task = nil
+local function Shine(inst)
+    if inst.shine_task then
+        inst.shine_task:Cancel()
+        inst.shine_task = nil
+    end
     if inst.components.floater:IsFloating() then
         inst.AnimState:PlayAnimation("sparkle_water")
         inst.AnimState:PushAnimation("idle_water")
@@ -12,7 +15,7 @@ local function shine(inst)
         inst.AnimState:PlayAnimation("sparkle")
         inst.AnimState:PushAnimation("idle")
     end
-    inst.task = inst:DoTaskInTime(4 + math.random() * 5, shine)
+    inst.shine_task = inst:DoTaskInTime(4 + math.random() * 5, Shine)
 end
 
 local function fn()
@@ -56,7 +59,7 @@ local function fn()
 
     inst:AddComponent("bait")
 
-    shine(inst)
+    Shine(inst)
 
     MakeHauntableLaunch(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)

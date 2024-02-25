@@ -9,16 +9,16 @@ local prefabs =
     "lightbulb",
 }
 
-SetSharedLootTable('rabid_beetle',
+SetSharedLootTable("rabid_beetle",
 {
-    {'chitin', 0.2},
-    {'lightbulb', 0.08},
+    {"chitin", 0.2},
+    {"lightbulb", 0.08},
 })
 
-SetSharedLootTable('rabid_beetle_inventory',
+SetSharedLootTable("rabid_beetle_inventory",
 {
-    {'lightbulb', 1},
-    {'chitin', 0.6},
+    {"lightbulb", 1},
+    {"chitin", 0.6},
 })
 
 local brain = require("brains/rabid_beetlebrain")
@@ -28,12 +28,12 @@ local function ShouldSleep(inst)
 end
 
 local function OnDropped(inst)
-    inst.components.lootdropper:SetChanceLootTable('rabid_beetle')
+    inst.components.lootdropper:SetChanceLootTable("rabid_beetle")
     inst.sg:GoToState("idle")
 end
 
 local function OnPickedUp(inst)
-    inst.components.lootdropper:SetChanceLootTable('rabid_beetle_inventory')
+    inst.components.lootdropper:SetChanceLootTable("rabid_beetle_inventory")
 end
 
 local CANT_TAGS = {"FX", "NOCLICK", "INLIMBO", "wall", "rabid_beetle", "glowfly", "cocoon", "structure"}
@@ -134,7 +134,7 @@ local function fn()
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetChanceLootTable('rabid_beetle')
+    inst.components.lootdropper:SetChanceLootTable("rabid_beetle")
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.RABID_BEETLE_HEALTH)
@@ -163,7 +163,7 @@ local function fn()
     inst.components.combat:SetAttackPeriod(TUNING.RABID_BEETLE_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, RetargetFn)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
-    inst.components.combat:SetRange(2)
+    inst.components.combat:SetRange(TUNING.RABID_BEETLE_ATTACK_RANGE)
     inst.components.combat:SetHurtSound("dontstarve_DLC003/creatures/enemy/rabid_beetle/hurt")
 
     inst:AddComponent("timer")

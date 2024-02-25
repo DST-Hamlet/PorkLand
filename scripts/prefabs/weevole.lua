@@ -24,7 +24,7 @@ local function KeepTarget(inst, target)
         and not target.components.health:IsDead()
 end
 
-local RETARGET_CANT_TAGS = {"FX", "NOCLICK","INLIMBO", "wall", "weevole", "structure", "aquatic"}
+local RETARGET_CANT_TAGS = {"FX", "NOCLICK","INLIMBO", "wall", "weevole", "structure"}
 local function Retarget(inst)
     return FindEntity(inst, TUNING.WEEVOLE_TARGET_DIST, function(guy) return inst.components.combat:CanTarget(guy) end, nil, RETARGET_CANT_TAGS)
 end

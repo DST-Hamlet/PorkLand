@@ -9,11 +9,12 @@ end
 local Shearable = Class(function(self, inst)
     self.inst = inst
 
-    self.drop = nil
-    self.product = nil
-    self.product_amt = 0
-    self.canshaveable = nil
+    self.drop = false
+    self.drop_height = 0
+    self.product_num = 1
+    self.canshaveable = true
 
+    self.product = nil
     self.onshearfn = nil
 
     inst:DoTaskInTime(0, function()
@@ -27,41 +28,51 @@ nil,
     canshaveable = onshaveable
 })
 
-function Shearable:SetProduct(product, product_amt, drop)
+function Shearable:SetUp(product, product_num, drop)
+    self.canshaveable = true
     self.product = product
-    self.product_amt = product_amt or 2
-    self.drop = drop
+    self.product_num = product_num or 2
+    self.drop = drop or false
+end
+
+local function SpawnProduct(prefab)
+    local product = SpawnPrefab(prefab)
+    if product.components.inventoryitem ~= nil then
+        product.components.inventoryitem:InheritMoisture(TheWorld.state.wetness, TheWorld.state.iswet)
+    end
+    return product
 end
 
 function Shearable:Shear(shearer, numworks)
+    if not self.product then
+        return
+    end
+
     if self.inst.components.hackable then
         numworks = self.inst.components.hackable.hacksleft
-        self.inst.components.hackable:Hack(shearer, numworks, self.product_amt, true)
+        self.inst.components.hackable:Hack(shearer, numworks, self.product_num, self.drop, true)
     else
-        if self.drop then
-            if self.inst.components.lootdropper then
-                local num = self.product_amt
-                local pt = self.inst:GetPosition()
-                pt.y = pt.y + (self.dropheight or 0)
-
-                for i = 1, num do
-                    self.inst.components.lootdropper:SpawnLootPrefab(self.product, pt)
+        local pt = self.inst:GetPosition()
+        if not self.drop and shearer and shearer.components.inventory then
+            local product = SpawnProduct(self.product)
+            if product then
+                if self.product_num > 1 then
+                    if product.components.stackable then
+                        product.components.stackable:SetStackSize(self.product_num)
+                    else
+                        for i = 1, self.product_num - 1 do
+                            local _product = SpawnProduct(self.product)
+                            shearer.components.inventory:GiveItem(_product, nil, pt)
+                        end
+                    end
                 end
+                shearer.components.inventory:GiveItem(product, nil, pt)
             end
-        else
-            if self.product_amt then
-                local product = SpawnPrefab(self.product)
-                if product then
-                    if product.components.inventoryitem ~= nil then
-                        product.components.inventoryitem:InheritMoisture(TheWorld.state.wetness, TheWorld.state.iswet)
-                    end
+        elseif self.inst.components.lootdropper then
+            pt.y = pt.y + self.drop_height
 
-                    local numtoharvest = self.product_amt
-                    if numtoharvest > 1 and product.components.stackable ~= nil then
-                        product.components.stackable:SetStackSize(numtoharvest)
-                    end
-                    shearer.components.inventory:GiveItem(product, nil, self.inst:GetPosition())
-                end
+            for i = 1, self.product_num do
+                self.inst.components.lootdropper:SpawnLootPrefab(self.product, pt)
             end
         end
 

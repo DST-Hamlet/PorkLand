@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Sniff. Sniff. We must have allergies.",
     ANNOUNCE_HAYFEVER_OFF = "Wow! I think our allergies are gone!",
+    ANNOUNCE_PICKPOOP = {
+        "Blah!",
+        "Eww!",
+        "Yucky!",
+    },
     ANNOUNCE_SNEEZE = "a...choooOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "Ugh. We're really baking in this %s.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "That breeze feels nice on our fur.",
         CHITIN = "Hope no one's missing that.",
         CUTNETTLE = "These nettles smell really strong.",
+        DUNGBALL = "Yuck!",
+        DUNGBEETLE = {
+            DEAD = "Awww.",
+            GENERIC = "Is that... poop?",
+            SLEEPING = "She dozed off.",
+            UNDUNGED = "She fell off her poop ball.",
+        },
+        DUNGPILE = {
+            GENERIC = "Oh, poop!",
+            PICKED = "No poop.",
+        },
         FLOWER_RAINFOREST = "This flower is neat!",
         GLOWFLY = {
             DEAD = "Oh no! It died!",
@@ -26,14 +42,19 @@ return {
         },
         GLOWFLY_COCOON = "That looks cozy.",
         GOLDENMACHETE = "What a beautiful blade!",
+        GOLDPAN = "Hey, now we can be prospectors.",
+        GOLD_DUST = "Wow! I wonder if it's worth anything.",
+        GRABBING_VINE = "Cool! Vines!",
         GRASS_TALL = {
             BURNING = "Fire!",
             GENERIC = "It's taller than we are!",
             PICKED = "It's been picked.",
         },
-        MACHETE = "Hyah! Hyah!",
         HALBERD = "Swoosh!",
+        HANGING_VINE = "Cool! Vines!",
         IRON = "We could make all kinds of neat stuff with this.",
+        MACHETE = "Hyah! Hyah!",
+        PANGOLDEN = "I think he eats gold.",
         PEAGAWK = {
             DEAD = "I think it's dead.",
             GENERIC = "You've got more eyes than we do!",
@@ -46,6 +67,7 @@ return {
             GENERIC = "That guy's got a lot of energy!",
             SLEEPING = "Haha! A bug with a mustache!",
         },
+        SEDIMENTPUDDLE = "It's full of sparkly stuff.",
         SHEARS = "It's for chores like trimming hedges or cutting grass.",
         SMELTER = {
             BURNT = "All burned up.",

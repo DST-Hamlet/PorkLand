@@ -26,7 +26,6 @@ AddLevel(LEVELTYPE.SURVIVAL, {
         hunt = "never",  -- 脚印
 
         no_joining_islands = false,
-        has_ocean = false,
 
         -- {"start_setpeice",    "PorkLandStart"},
         -- {"start_node",        "BG_rainforest_base"},

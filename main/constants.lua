@@ -1,6 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 
 TOOLACTIONS.HACK = true
+TOOLACTIONS.PAN = true
 TOOLACTIONS.SHEAR = true
 
 SEASONS.TEMPERATE = "temperate"
@@ -13,4 +14,13 @@ FOG_STATE = {
     FOGGY = 2,
     LIFTING = 3,
     CLEAR = 4,
+}
+
+FOODTYPE.GOLDDUST = "GOLDDUST"
+FOODGROUP.GOLDDUST = {
+    name = "GOLDDUST",
+    types =
+    {
+        FOODTYPE.GOLDDUST,
+    },
 }

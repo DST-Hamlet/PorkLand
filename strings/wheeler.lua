@@ -4,6 +4,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Allergiesch. What allergiesch?",
     ANNOUNCE_HAYFEVER_OFF = "My face stopped leaking. Allergy season must be over.",
+    ANNOUNCE_PICKPOOP = {
+        "Swell.",
+        "Just great.",
+        "I'll put this in my memoir.",
+    },
     ANNOUNCE_SNEEZE = "AchooOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is suffocating.",
@@ -18,6 +23,17 @@ return {
         BASEFAN = "A plane propeller would be better.",
         CHITIN = "I'm going to need more of these.",
         CUTNETTLE = "Smells like relief.",
+        DUNGBALL = "Huh. It's almost like nobody wants a ball of poop.",
+        DUNGBEETLE = {
+            DEAD = "Someone should write a eulogy. Not me, but someone.",
+            GENERIC = "Swell. A giant bug on a giant ball of poop.",
+            SLEEPING = "Just screaming to be stepped on.",
+            UNDUNGED = "At least it smells a little better now.",
+        },
+        DUNGPILE = {
+            GENERIC = "Normally I'm all for getting my hands dirty but...",
+            PICKED = "What happens in the jungle, stays in the jungle.",
+        },
         FLOWER_RAINFOREST = "You can never have too many flowers. Or projectiles.",
         GLOWFLY = {
             DEAD = "I guess it can't fly me out of here now.",
@@ -26,14 +42,19 @@ return {
         },
         GLOWFLY_COCOON = "Aww... It's wrapped up all nice and cozy.",
         GOLDENMACHETE = "For the sophisticated adventurer.",
+        GOLDPAN = "Swell. A pan with holes in it.",
+        GOLD_DUST = "Hardly worth holding onto. If I could find more of it though...",
+        GRABBING_VINE = "If I didn't know any better, I'd think that vine wants my stuff.",
         GRASS_TALL = {
             BURNING = "All those bugs have nowhere to hide now.",
             GENERIC = "Tall grass like that is going to need a machete.",
             PICKED = "It'll be overgrown in no time.",
         },
-        MACHETE = "Machete. Designed for adventure.",
         HALBERD = "The must-have multi-tool for adventurers.",
+        HANGING_VINE = "Vines. Gotta love 'em.",
         IRON = "Well it's not good balloon material.",
+        MACHETE = "Machete. Designed for adventure.",
+        PANGOLDEN = "I don't actually mind picking up his poop.",
         PEAGAWK = {
             DEAD = "I promise, I will go on without you!",
             GENERIC = "Has the eyesight for flying but not the wings for it.",
@@ -46,6 +67,7 @@ return {
             GENERIC = "Probably just agitated because it can't fly well.",
             SLEEPING = "Quite the snorer.",
         },
+        SEDIMENTPUDDLE = "A sparkly pool. A little too sparkly.",
         SHEARS = "Time to do some yard work.",
         SMELTER = {
             BURNT = "No one ever accused me of being a good blacksmith.",

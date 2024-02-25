@@ -11,6 +11,11 @@ local actionhandlers = {
         end
         return not inst.sg:HasStateTag("prehack") and (inst.sg:HasStateTag("hacking") and "hack" or "hack_start") or nil
     end),
+    ActionHandler(ACTIONS.PAN, function(inst)
+        if not inst.sg:HasStateTag("panning") then
+            return "pan_start"
+        end
+    end),
     ActionHandler(ACTIONS.SHEAR, function(inst)
         if not inst.sg:HasStateTag("preshear") then
             if inst.sg:HasStateTag("shearing") then
@@ -154,6 +159,69 @@ local states = {
     },
 
     State{
+        name = "pan_start",
+        tags = {"prepan", "working"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("pan_pre")
+        end,
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg.statemem.panning = true
+                    inst.sg:GoToState("pan")
+                end
+            end),
+        },
+
+        onexit = function(inst)
+            if not inst.sg.statemem.panning then
+                inst:RemoveTag("prepan")
+            end
+        end,
+    },
+
+    State{
+        name = "pan",
+        tags = {"prepan", "panning", "working"},
+
+        onenter = function(inst)
+            inst.sg.statemem.action = inst:GetBufferedAction()
+            inst.AnimState:PlayAnimation("pan_loop", true)
+            inst.sg:SetTimeout(1 + math.random())
+        end,
+
+        timeline=
+        {
+            TimeEvent(6 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(14 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(21 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(29 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(36 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(44 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(51 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(59 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(66 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+            TimeEvent(74 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/pool/pan") end),
+        },
+
+        ontimeout = function(inst)
+            inst:PerformBufferedAction()
+            inst.AnimState:PlayAnimation("pan_pst")
+            inst.sg:GoToState("idle", true)
+        end,
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
+    State{
         name = "shear_start",
         tags = {"preshear", "working"},
 
@@ -219,26 +287,13 @@ local states = {
             EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
             EventHandler("animover", function(inst)
                 if inst.AnimState:AnimDone() then
-                    -- inst.AnimState:PlayAnimation("chop_pst")
-                    inst.sg:GoToState("shear_end")
+                    inst.AnimState:PlayAnimation("cut_pst")
+                    inst.sg:GoToState("idle", true)
                 end
             end),
         },
     },
 
-    State{
-        name = "shear_end",
-        tags = {"working"},
-        onenter = function(inst)
-            inst.AnimState:PlayAnimation("cut_pst")
-        end,
-
-        events =
-        {
-            EventHandler("unequip", function(inst) inst.sg:GoToState("idle")  end),
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
-        },
-    },
     State{
         name = "sneeze",
         tags = {"busy", "sneeze", "nopredict"},
@@ -282,7 +337,9 @@ local states = {
         events =
         {
             EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle")
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
             end),
         },
     },
