@@ -120,6 +120,29 @@ local function GetNewChildPrefab()
     return math.random() < 0.2 and "piko_orange" or "piko"
 end
 
+local function SpawnOffsetOverride(inst)
+    local function NoHoles(pt)
+        return not TheWorld.Map:IsPointNearHole(pt)
+    end
+
+    local x, y, z = inst.Transform:GetWorldPosition()
+
+    local rad = 0.0 + inst:GetPhysicsRadius(0) + inst.components.spawner.child:GetPhysicsRadius(0)
+    local start_angle = math.random() * 2 *PI
+
+    local offset = FindWalkableOffset(Vector3(x, 0, z), start_angle, rad, 8, false, true, NoHoles, false, false)
+    if offset == nil then
+        -- well it's gotta go somewhere!
+        x = x + rad * math.cos(start_angle)
+        z = z - rad * math.sin(start_angle)
+    else
+        x = x + offset.x
+        z = z + offset.z
+    end
+
+    return x, y, z
+end
+
 local function OnVacated(inst, child)
     child.sg:GoToState("descendtree")
     child:UpdateLight()
@@ -540,6 +563,7 @@ local function MakeTeaTree(name, stage, state)
         inst.components.spawner.childfn = GetNewChildPrefab
         inst.components.spawner:SetOnVacateFn(OnVacated)
         inst.components.spawner:SetOnOccupiedFn(OnOccupied)
+        inst.components.spawner.overridespawnlocation = SpawnOffsetOverride
 
         inst.MakePikoNest = MakePikoNest
         inst.OnEntitySleep = OnEntitySleep
