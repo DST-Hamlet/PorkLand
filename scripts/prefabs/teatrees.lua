@@ -40,7 +40,7 @@ SetSharedLootTable("teatree_tall",
     {"teatree_nut", 1.0},
 })
 
-SetSharedLootTable("palmconetree_burnt",
+SetSharedLootTable("teatree_burnt",
 {
     {"charcoal", 1.0},
     {"teatree_nut", 0.1}
@@ -170,7 +170,6 @@ local function DeleteChild(inst)
         if inst.components.spawner:IsOccupied() then
             inst.components.spawner:ReleaseChild()
         end
-        inst.components.worldsettingstimer:PauseTimer(SPAWNER_STARTDELAY_TIMERNAME)
 
         local child = spawner.child
         if child then
@@ -197,6 +196,7 @@ local function DestroyPikoNest(inst)
         inst:StopWatchingWorldState("moonphase", OnPhaseChange)
 
         DeleteChild(inst)
+        inst.components.worldsettingstimer:StopTimer(SPAWNER_STARTDELAY_TIMERNAME)
     end
 end
 
@@ -340,11 +340,12 @@ local function OnBurntChanges(inst)
 end
 
 local function OnBurnt(inst, immediate)
-    if immediate then
+    -- NOTE(ziwbi): Burnable.onburnt only accepts 1 argument actually
+    -- if immediate then
         OnBurntChanges(inst)
-    else
-        inst:DoTaskInTime(0.5, OnBurntChanges)
-    end
+    -- else
+    --     inst:DoTaskInTime(0.5, OnBurntChanges)
+    -- end
 
     inst:AddTag("burnt")
 
@@ -364,6 +365,7 @@ local function OnIgnite(inst)
     --     end
     -- end
     DeleteChild(inst)
+    inst.components.worldsettingstimer:PauseTimer(SPAWNER_STARTDELAY_TIMERNAME)
 end
 
 local function OnExtinguish(inst)
@@ -378,7 +380,7 @@ local function OnExtinguish(inst)
 end
 
 local function MakeTreeBurnable(inst)
-    MakeLargeBurnable(inst)
+    MakeLargeBurnable(inst, TUNING.TREE_BURN_TIME)
     inst.components.burnable.extinguishimmediately = false
     inst.components.burnable:SetFXLevel(5)
     inst.components.burnable:SetOnBurntFn(OnBurnt)
