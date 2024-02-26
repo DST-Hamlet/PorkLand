@@ -21,12 +21,6 @@ function debug.setupvalue(fn, ...)
 end
 ToolUtil.HideFn(debug.setupvalue, _debug_setupvalue)
 
-local _debug_getinfo = debug.getinfo
-function debug.getinfo(fn, ...)
-    return _debug_getinfo(hidefns[fn] or fn, ...)
-end
-ToolUtil.HideFn(debug.getinfo, _debug_getinfo)
-
 --Tool designed by Rezecib.
 ---@param fn function
 ---@param name string

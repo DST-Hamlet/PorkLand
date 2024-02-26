@@ -51,7 +51,7 @@ function EntityScript:GetEventCallbacks(event, source, source_file)
     for _, fn in ipairs(self.event_listening[event][source]) do
         if source_file then
             local info = debug.getinfo(fn, "S")
-            if info and (info.source == source_file or info.source == "@" .. source_file) then  -- @ when enable luajit2 debuggee
+            if info and (info.source == source_file) then
                 return fn
             end
         else
