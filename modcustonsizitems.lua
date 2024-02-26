@@ -95,6 +95,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             -- peagawk_setting = {image = "peagawk.tex"},
             glowfly_setting = {image = "glowflies.tex"},
             hanging_vine_setting = {image = "grabbing_vine.tex"},
+            piko_setting = {image = "orange_pikos.tex"},
         },
         resources = {
             asparagus_regrowth = {image = "asparagus.tex"},

@@ -152,6 +152,32 @@ local tuning = {
 
     HYDRO_BONUS_COOL_RATE = 4,
 
+    PIKO_HEALTH = 100,
+    PIKO_RESPAWN_TIME = day_time * 4,
+    PIKO_RUN_SPEED = 4,
+    PIKO_DAMAGE = 2,
+    PIKO_ATTACK_PERIOD = 2,
+    PIKO_TARGET_DIST = 20,
+    PIKO_ENABLED = true,
+
+    CAFFEINE_FOOD_BONUS_SPEED = 5, -- player base speed plus this, 6 is normal walk speed
+    FOOD_SPEED_BRIEF = 0, -- eating coffeebeans gives you the bonus for this many seconds
+    FOOD_SPEED_AVERAGE = 30, -- eating roasted coffee beans
+    FOOD_SPEED_MED = 60, -- eating tropicalbouillabaisse (effects)
+    FOOD_SPEED_LONG = total_day_time / 2, -- drinking coffee
+
+    TEATREE_CHOPS_SHORT = 5,
+    TEATREE_CHOPS_NORMAL = 10,
+    TEATREE_CHOPS_TALL = 15,
+
+    TEATREE_GROW_TIME =
+    {
+        {base = 1.5 * day_time, random = 0.5 * day_time},   --short
+        {base = 5 * day_time,   random = 2 * day_time},   --normal
+        {base = 5 * day_time,   random = 2 * day_time},   --tall
+        {base = 1 * day_time,   random = 0.5 * day_time}   --old
+    },
+
     PAN_DAMAGE = wilson_attack*.8,
     PAN_USES = 30,
 

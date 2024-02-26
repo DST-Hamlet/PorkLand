@@ -320,7 +320,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     -- make the city here.
     -- print("BUILDING PIG CULTURE")
 
-    --     entities = makecities(entities, topology_save, WorldSim, map_width, map_height, current_gen_params)
+    -- entities = makecities(entities, topology_save, WorldSim, map_width, map_height, current_gen_params)
 
     --     --Process tallgrass, jungle fernnoise and other prefabs that spawn groups.
     --     if entities["grass_tall_patch"] then
@@ -358,11 +358,11 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
         end
     end
 
-    --     if entities["teatree_piko_nest_patch"] then
-    --         for i,ent in ipairs(entities["teatree_piko_nest_patch"]) do
-    --             makebunch(entities, topology_save, WorldSim, map_width, map_height, "teatree_piko_nest", 18, math.random(4,8),ent.x,ent.z)
-    --         end
-    --     end
+    if entities["teatree_piko_nest_patch"] then
+        for i, ent in ipairs(entities["teatree_piko_nest_patch"]) do
+            make_bunch(entities, topology_save, WorldSim, map_width, map_height, "teatree_piko_nest", 18, math.random(4, 8), ent.x, ent.z)
+        end
+    end
 
     --     if entities["asparagus_patch"] then
     --         for i,ent in ipairs(entities["asparagus_patch"]) do

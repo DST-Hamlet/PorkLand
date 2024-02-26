@@ -26,6 +26,12 @@ local SEASON_VERYHARSH_LENGTHS =
     verylongseason = TUNING.SEASON_LENGTH_VERYHARSH_VERYLONG,
 }
 
+local seg_time = TUNING.SEG_TIME
+local day_time = TUNING.DAY_SEGS_DEFAULT * seg_time
+local dusk_time = TUNING.DUSK_SEGS_DEFAULT * seg_time
+local night_time = TUNING.NIGHT_SEGS_DEFAULT * seg_time
+local total_day_time = TUNING.TOTAL_DAY_TIME
+
 --------------------------------------------------------------------------
 --[[ WORLDSETTINGS PRE ]]
 --------------------------------------------------------------------------
@@ -62,19 +68,19 @@ applyoverrides_pre.peagawk_setting = function(difficulty)
             PEAGAWK_ENABLED = false,
         },
         rare = {
-            PEAGAWK_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 15,
+            PEAGAWK_REGEN_TIME = total_day_time * 15,
         },
         --[[
         default = {
             PEAGAWK_ENABLED = true,
-            PEAGAWK_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 10,
+            PEAGAWK_REGEN_TIME = total_day_time * 10,
         },
         --]]
         often = {
-            PEAGAWK_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 5,
+            PEAGAWK_REGEN_TIME = total_day_time * 5,
         },
         always = {
-            PEAGAWK_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 1,
+            PEAGAWK_REGEN_TIME = total_day_time * 1,
         },
     }
     OverrideTuningVariables(tuning_vars[difficulty])
@@ -87,19 +93,19 @@ applyoverrides_pre.weevole_setting = function(difficulty)
             WEEVOLE_ENABLED = false,
         },
         rare = {
-            WEEVOLEDEN_REGEN_TIME = TUNING.SEG_TIME * 6,
+            WEEVOLEDEN_REGEN_TIME = seg_time * 6,
         },
         --[[
         default = {
             WEEVOLE_ENABLED = true,
-            WEEVOLEDEN_REGEN_TIME = TUNING.SEG_TIME * 3,
+            WEEVOLEDEN_REGEN_TIME = seg_time * 3,
         },
         --]]
         often = {
-            WEEVOLEDEN_REGEN_TIME = TUNING.SEG_TIME * 1.5,
+            WEEVOLEDEN_REGEN_TIME = seg_time * 1.5,
         },
         always = {
-            WEEVOLEDEN_REGEN_TIME = TUNING.SEG_TIME * 0.75,
+            WEEVOLEDEN_REGEN_TIME = seg_time * 0.75,
         },
     }
     OverrideTuningVariables(tuning_vars[difficulty])
@@ -154,6 +160,32 @@ applyoverrides_pre.glowfly_setting = function(difficulty)
             GLOWFLY_DEFAULT = 14,
             GLOWFLY_MAX = 18,
         },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
+
+applyoverrides_pre.piko_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            PIKO_ENABLED = false,
+        },
+        rare = {
+            PIKO_RESPAWN_TIME = day_time * 8,
+        },
+        --[[
+        default = {
+            PIKO_ENABLED = true,
+            PIKO_RESPAWN_TIME = day_time * 4,
+        },
+        --]]
+        often = {
+            PIKO_RESPAWN_TIME = day_time * 2,
+        },
+        always = {
+            PIKO_RESPAWN_TIME = day_time,
+        }
     }
     OverrideTuningVariables(tuning_vars[difficulty])
 end
