@@ -26,5 +26,8 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.ispoisoned = inst.ispoisoned or net_bool(inst.GUID, "poisonable.ispoisoned")
     inst.poisonpulse = inst.poisonpulse or net_bool(inst.GUID, "poisonable.poisonpulse", "poisonpulsedirty")
 
+    inst.externalspeedmultiplier_decelerate = net_float(inst.GUID, "locomotor.externalspeedmultiplier_decelerate")
+    inst.externalspeedmultiplier_decelerate:set(1)
+
     inst:DoTaskInTime(0, RegisterNetListeners)
 end)
