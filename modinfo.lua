@@ -25,6 +25,11 @@ icon = "modicon.tex"
 
 server_filter_tags = { "hamltet", "porkland" }
 
+folder_name = folder_name or "workshop-"
+if not folder_name:find("workshop-") then
+    name = name .. "-[" .. folder_name .."]"
+end
+
 ---@param title_en string
 ---@param title_zh string
 ---@return mod_configuration

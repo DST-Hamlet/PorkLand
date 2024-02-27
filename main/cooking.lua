@@ -4,7 +4,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local foods = require("main/preparedfoods")
 for k,recipe in pairs (foods) do
-	AddCookerRecipe("cookpot", recipe)
+    AddCookerRecipe("cookpot", recipe)
     AddCookerRecipe("portablecookpot", recipe)
     AddCookerRecipe("archive_cookpot", recipe)
 end

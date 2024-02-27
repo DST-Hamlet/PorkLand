@@ -1,7 +1,7 @@
 local foods = {
     coffee =
     {
-        test = function(cooker, names, tags) return names.coffeebeans_cooked and (names.coffeebeans_cooked == 4 or (names.coffeebeans_cooked == 3 and (tags.dairy or tags.sweetener)))	end,
+        test = function(cooker, names, tags) return names.coffeebeans_cooked and (names.coffeebeans_cooked == 4 or (names.coffeebeans_cooked == 3 and (tags.dairy or tags.sweetener))) end,
         priority = 30,
         foodtype = FOODTYPE.GOODIES,
         secondaryfoodtype = FOODTYPE.VEGGIE,
@@ -11,7 +11,7 @@ local foods = {
         sanity = -TUNING.SANITY_TINY,
         cooktime = 0.5,
         oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_SPEED_BOOST,
-        oneatenfn = function(inst, eater) 
+        oneatenfn = function(inst, eater)
             -- These buffs override each other, but RemoveExternalSpeedMultiplier needs the source in order to remove a buff
             eater:RemoveDebuff("buff_speed_coffee_beans")
             eater:RemoveDebuff("buff_speed_tea")

@@ -14,7 +14,7 @@ local function MakeVegStats(seedweight, hunger, health, perish_time, sanity, coo
 end
 
 PL_VEGGIES = {
-    coffeebeans = MakeVegStats(0, TUNING.CALORIES_TINY,	0, TUNING.PERISH_FAST, 0, TUNING.CALORIES_TINY,	0, TUNING.PERISH_SLOW, -TUNING.SANITY_TINY),
+    coffeebeans = MakeVegStats(0, TUNING.CALORIES_TINY, 0, TUNING.PERISH_FAST, 0, TUNING.CALORIES_TINY, 0, TUNING.PERISH_SLOW, -TUNING.SANITY_TINY),
 }
 
 local function MakeVeggie(name)
@@ -164,9 +164,9 @@ end
 local prefs = {}
 for veggiename, veggiedata in pairs(PL_VEGGIES) do
     local veggies = MakeVeggie(veggiename)
-	for _, v in ipairs(veggies) do
-		table.insert(prefs, v)
-	end
+    for _, v in ipairs(veggies) do
+        table.insert(prefs, v)
+    end
 end
 
 return unpack(prefs)
