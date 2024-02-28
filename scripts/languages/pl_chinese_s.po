@@ -340,6 +340,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.EMPTY"
 msgid "I smelt that!"
 msgstr "我闻到了冶炼的气味！"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE"
+msgid "What a lovely tree."
+msgstr "多么可爱的树啊。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE_NUT"
 msgid "Stops the seasonal sneezing."
@@ -349,6 +354,11 @@ msgstr "快阻止季节性喷嚏吧。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Take that, tiny tree!"
 msgstr "接招吧，小树！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE_SAPLING"
+msgid "It's a little puny."
+msgstr "它微不足道。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR"
@@ -675,6 +685,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.EMPTY"
 msgid "Magnificent! Perhaps I can build a factory here as well."
 msgstr "真棒啊！也许我也可以在这里建一个工厂。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE"
+msgid "Theoretically, its smell attracts those small rodents. Intriguing..."
+msgstr "从理论上讲，它的气味能吸引小型啮齿类动物。真有趣..."
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE_NUT"
 msgid "My stomach condition prevents me from partaking in its health benefits."
@@ -684,6 +699,11 @@ msgstr "我的胃病使我无法享受它对健康的好处。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Of a chewy consistency. Evidently, it's good for you."
 msgstr "很黏很有嚼劲。很明显，它对你的身体有益。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE_SAPLING"
+msgid "Displays the same rapid growth rate of the other trees here."
+msgstr "它展示了与这里其他树一样的生长速度。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR"
@@ -1010,6 +1030,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.EMPTY"
 msgid "I'll just let that do all the work for me."
 msgstr "就让它来为我完成全部的冶炼工作。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE"
+msgid "Hey little tree!"
+msgstr "嘿，小树！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE_NUT"
 msgid "I heard it's good for allergies."
@@ -1019,6 +1044,11 @@ msgstr "我听说它对过敏有好处。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "A good meal for little effort."
 msgstr "不费力气就能吃到一顿好饭。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE_SAPLING"
+msgid "One day you'll be big and strong."
+msgstr "总有一天你会变得又大又壮。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR"
@@ -1335,6 +1365,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.EMPTY"
 msgid "A lrage iron pot. got it? Iron pot."
 msgstr "一口大铁锅，懂吗？铁锅。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE"
+msgid "Hey, is there a squirrel in the tree?"
+msgstr "嘿，树上是不是有松鼠！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE_NUT"
 msgid "Mom used to try this on me."
@@ -1344,6 +1379,11 @@ msgstr "妈妈以前曾试过让我吃这个。"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "It actually tastes pretty good this way."
 msgstr "这样尝起来其实还不错。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE_SAPLING"
+msgid "We are still a long way from a cozy squirrel home."
+msgstr "离一个温馨的松鼠之家还差点时日。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR"
@@ -1660,6 +1700,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.EMPTY"
 msgid "Melt the metals together."
 msgstr "把金属熔化到一起。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE"
+msgid "I have some impression of the shape of these leaves."
+msgstr "我对这些叶子的形状有点印象。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE_NUT"
 msgid "A crude way to combat pollen in the air."
@@ -1669,6 +1714,11 @@ msgstr "对抗空气中花粉的简陋方法。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "I appreciate the attempt, but this is just waste of time."
 msgstr "我很欣赏进行尝试，但在这上面只是浪费时间。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE_SAPLING"
+msgid "I should come back after it grows up."
+msgstr "我应该在它长大之后再来。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR"
@@ -1990,6 +2040,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.EMPTY"
 msgid "'Smelt' bad, if you ask me."
 msgstr "闻起来不是很好。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE"
+msgid "I could to so many things with tea tree leaves."
+msgstr "我可以用茶叶做很多事。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE_NUT"
 msgid "More useful as medicine than in my recipe."
@@ -1999,6 +2054,11 @@ msgstr "比起食物还是当作药物更好。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Not the finest of fine foods."
 msgstr "不是优质食品里最优质的。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE_SAPLING"
+msgid "Keep growing. You'll get there."
+msgstr "接着长吧。你会有个好归属的。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR"
@@ -2320,6 +2380,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.EMPTY"
 msgid "The tools of dwarves."
 msgstr "矮人的工具。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE"
+msgid "This tree is adequate."
+msgstr "这棵树还行吧。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE_NUT"
 msgid "Its lack of meat offends me."
@@ -2329,6 +2394,11 @@ msgstr "它不是肉我很不爽。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Even touched by fire, I will not consume it!"
 msgstr "即使它被火烤过，我也是不会吃它的！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE_SAPLING"
+msgid "A tree still weak with youth."
+msgstr "一棵年幼而弱小的树。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR"
@@ -2655,6 +2725,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.EMPTY"
 msgid "Finally we're catching up to the Iron Age."
 msgstr "我们终于步入了铁器时代。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE"
+msgid "It's a tree. What did I expect."
+msgstr "那就是棵树。我在期待什么。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE_NUT"
 msgid "I'll need this for hayfever season."
@@ -2664,6 +2739,11 @@ msgstr "在有花粉症的季节里我很需要这个。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "I'll eat it but I won't like it."
 msgstr "我会吃的，哪怕我并不喜欢。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE_SAPLING"
+msgid "Oh, just grow already."
+msgstr "哦，已经长起来了。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR"
@@ -2985,6 +3065,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.EMPTY"
 msgid "Make material with material."
 msgstr "用材料制作材料。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE"
+msgid "Hey there, tea tree."
+msgstr "看那，茶树。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE_NUT"
 msgid "It helps with our sneezes."
@@ -2994,6 +3079,11 @@ msgstr "有助于治疗打喷嚏。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Yummy."
 msgstr "好吃。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE_SAPLING"
+msgid "It's gonna grow up big and strong."
+msgstr "它会长得又大又壮。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR"
@@ -3315,6 +3405,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.EMPTY"
 msgid "Burn who are trapped in it..."
 msgstr "灼伤深陷其中的人们..."
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE"
+msgid "I can sit under it and contemplate life's futility."
+msgstr "我能坐在下面思考些生命中的没有价值的事情。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE_NUT"
 msgid "Makes life barely more livable in allergy season."
@@ -3324,6 +3419,11 @@ msgstr "在过敏的季节里让生命变得更有价值。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "I killed it to prolong my own life."
 msgstr "我杀了它来延续自己的生命。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE_SAPLING"
+msgid "Ah, to be young and full of promise."
+msgstr "啊，年轻而又充满希望。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR"
@@ -3645,6 +3745,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.EMPTY"
 msgid "It takes the heavy metal and makes it heavier."
 msgstr "它需要一些重金属才能练出更重的金属。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE"
+msgid "But how do I make tea from it?"
+msgstr "但是我要怎么用它来泡茶呢？"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE_NUT"
 msgid "Good enough to eat. Or fire out the Pew-matic."
@@ -3654,6 +3759,11 @@ msgstr "够用来吃了。或者用它当气枪喇叭的子弹。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "For chewing or pew-ing."
 msgstr "被我嚼或者被我发射。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE_SAPLING"
+msgid "It's a baby tree. It'll grow."
+msgstr "一棵树宝宝。它会长大的。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR"
@@ -3975,6 +4085,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.EMPTY"
 msgid "A metalsmithing tool."
 msgstr "金属锻造熔炼工具。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE"
+msgid "A fine example of Camellia Sinensis."
+msgstr "一个极佳的野茶树实例。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE_NUT"
 msgid "A good antihistamine."
@@ -3984,6 +4099,11 @@ msgstr "一种非常好的抗组织胺的药。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "I'd prefer a proper cup of tea."
 msgstr "我想喝杯像样的茶。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE_SAPLING"
+msgid "It's growing nicely."
+msgstr "它长得很好。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR"
@@ -4310,6 +4430,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.EMPTY"
 msgid "'TIS FWOOSHY MACHINES"
 msgstr "这是个滚烫的机器"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE"
+msgid "YON SQUIRRELS DOST LIKETH YON TREE"
+msgstr "那只松鼠很喜欢那种树"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE_NUT"
 msgid "TO EAT OR NOT TO EAT"
@@ -4319,6 +4444,11 @@ msgstr "吃还是不吃，这是个问题"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "FWOOSH'DED NUT O' THE SQUIRRELY TREE"
 msgstr "煮熟后的松鼠树上的坚果"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE_SAPLING"
+msgid "'TIS A CUTE-ETH BABY TREE"
+msgstr "这是一棵可爱的树苗"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR"
@@ -4640,6 +4770,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.EMPTY"
 msgid "Oh yeah! Now I can burn metal."
 msgstr "哦耶！现在我能烧金属了！"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE"
+msgid "It'll burn. That's all I care about."
+msgstr "它能燃烧。我只关心这一点。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE_NUT"
 msgid "I'd burn it but it helps my allergies."
@@ -4649,6 +4784,11 @@ msgstr "我想烧了它，但是它对我的过敏很有帮助。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "I set it on fire so now I can eat it."
 msgstr "我把它放进了火里了，现在我可以吃了。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE_SAPLING"
+msgid "It's not even worth burning."
+msgstr "烧掉这个东西真浪费我的火。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR"
@@ -4965,6 +5105,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.EMPTY"
 msgid "Process the metallic material."
 msgstr "对金属进行加工。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE"
+msgid "Enough to whole workshop's tea supply."
+msgstr "足以撑起一个车间的茶水供应。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE_NUT"
 msgid "Save my nose from fire and water."
@@ -4974,6 +5119,11 @@ msgstr "拯救我的鼻子于水火之中。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Heat enhances its effects."
 msgstr "加热改善了它的药效。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE_SAPLING"
+msgid "Our tea supply for next season."
+msgstr "我们下个季节的茶水供应。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR"
@@ -5295,6 +5445,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.EMPTY"
 msgid "Wolfgang lifted it without difficulty."
 msgstr "沃尔夫冈抬起它毫不费力。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE"
+msgid "Is strong but not strong like Wolfgang."
+msgstr "他很强壮，但没有沃尔夫冈强壮。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE_NUT"
 msgid "Is good for Wolfgang's mighty sneezes."
@@ -5304,6 +5459,11 @@ msgstr "这能缓解沃尔夫冈的大喷嚏。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Wolfgang eat tiny tree baby."
 msgstr "沃尔夫冈吃小小的树苗。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE_SAPLING"
+msgid "Is tiny little big tree."
+msgstr "一棵小小的树。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR"
@@ -5625,6 +5785,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.EMPTY"
 msgid "It's like a giant maple syrup bucket."
 msgstr "就像一个巨大的糖浆桶。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE"
+msgid "Welp. Better get choppin'."
+msgstr "嗯，最好砍掉。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE_NUT"
 msgid "Helps with allergies, eh."
@@ -5634,6 +5799,11 @@ msgstr "可以治疗过敏，是吧。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Too late to plant this now."
 msgstr "现在没法再种下去了。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE_SAPLING"
+msgid "It's better if you let them grow a little."
+msgstr "最好等它们长大点再砍。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR"
@@ -5955,6 +6125,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.EMPTY"
 msgid "A cannon fer makin' metals."
 msgstr "一架冶炼钢铁的炮台。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE"
+msgid "'Tis a growin' ship mast."
+msgstr "这是一棵正在长大的桅杆。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE_NUT"
 msgid "A botan'cal barber-surgeon."
@@ -5964,6 +6139,11 @@ msgstr "一粒植物中的医匠。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Grub."
 msgstr "食物。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE_SAPLING"
+msgid "'e'll be a fine one."
+msgstr "你会长成一棵好树的。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR"
@@ -6285,6 +6465,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.EMPTY"
 msgid "Clinky rock cooker"
 msgstr "煮叮当响石头的锅"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE"
+msgid "Let them sleep"
+msgstr "它们睡着了吗？"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE_NUT"
 msgid "Want in belly? Or dirt?"
@@ -6294,6 +6479,11 @@ msgstr "想进肚子里吗？还是土地里？"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Not for dirt now"
 msgstr "现在不是给土地的了"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE_SAPLING"
+msgid "Hello, little friend"
+msgstr "你好，小朋友"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR"
@@ -6605,6 +6795,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.EMPTY"
 msgid "Put the iron you hate in and burn it."
 msgstr "把讨厌的铁放进去烧。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE"
+msgid "The foundation of the squirrel kingdom."
+msgstr "松鼠王国的根基。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE_NUT"
 msgid "Very nice nuts and clears up my nose."
@@ -6614,6 +6809,11 @@ msgstr "非常好坚果，使我的鼻子通畅。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Does this really make it better?"
 msgstr "这真的会让它变得更好吗？"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE_SAPLING"
+msgid "The future is promising."
+msgstr "未来可期。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR"
@@ -6930,6 +7130,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.EMPTY"
 msgid "What to put in it?"
 msgstr "放什么东西进去？"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE"
+msgid "Strange leaves there."
+msgstr "有奇怪的叶子。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE_NUT"
 msgid "Florp. Smell strong."
@@ -6939,6 +7144,11 @@ msgstr "浮浪噗。好大的味道。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "Crunch. Crunch. Crunch."
 msgstr "嘎嘣，嘎嘣，嘎嘣脆。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE_SAPLING"
+msgid "Baby Tree."
+msgstr "树宝宝。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR"
@@ -7260,6 +7470,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.EMPTY"
 msgid "HELLO, FRIEND"
 msgstr "你好，朋友"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE"
+msgid "WOODEN IMMOBILE LIFEFORM"
+msgstr "木质不可动生命体"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE_NUT
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE_NUT"
 msgid "MULTI-USE ENERGY CONTAINER"
@@ -7269,6 +7484,11 @@ msgstr "多用途的能量容器"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE_NUT_COOKED"
 msgid "BIOLOGICAL ENERGY PACKET"
 msgstr "生物能量包裹"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE_SAPLING
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE_SAPLING"
+msgid "HAHA. IT IS SO WEAK"
+msgstr "哈哈。它真弱小"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR"
@@ -7450,6 +7670,11 @@ msgctxt "STRINGS.NAMES.SMELTER"
 msgid "Smelter"
 msgstr "炼钢炉"
 
+#. STRINGS.NAMES.TEATREE
+msgctxt "STRINGS.NAMES.TEATREE"
+msgid "Tea Tree"
+msgstr "茶树"
+
 #. STRINGS.NAMES.TEATREE_NUT
 msgctxt "STRINGS.NAMES.TEATREE_NUT"
 msgid "Seed Pod"
@@ -7459,6 +7684,11 @@ msgstr "茶籽"
 msgctxt "STRINGS.NAMES.TEATREE_NUT_COOKED"
 msgid "Cooked Seed Pod"
 msgstr "熟茶籽"
+
+#. STRINGS.NAMES.TEATREE_SAPLING
+msgctxt "STRINGS.NAMES.TEATREE_SAPLING"
+msgid "Tea Tree Sapling"
+msgstr "茶树苗"
 
 #. STRINGS.NAMES.TREE_PILLAR
 msgctxt "STRINGS.NAMES.TREE_PILLAR"
