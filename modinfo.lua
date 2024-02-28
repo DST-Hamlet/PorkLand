@@ -5,9 +5,9 @@ local function en_zh(en, zh) -- Other languages don't work
     return (locale == "zh" or locale == "zhr" or locale == "zht") and zh or en
 end
 
-name = "porkland"
+name = "Above the Clouds"
 author = "Jerry"
-description = ""
+description = "WIP"
 
 version = "0.0.1"
 forumthread = ""
@@ -38,7 +38,7 @@ local function Breaker(title_en, title_zh) -- hover does not work, as this item 
 end
 
 configuration_options = {
-    Breaker("Misc.", "杂项"),
+    Breaker("Misc", "杂项"),
     {
         name = "locale",
         label = en_zh("Translation", "翻译"),
@@ -47,7 +47,7 @@ configuration_options = {
         {
             {description = "Auto", data = false},
             {description = "English", data = "en"},
-            {description = "中文 (简体)", data = "sc"},
+            {description = "中文（简体）", data = "sc"},
         },
         default = false,
     },
