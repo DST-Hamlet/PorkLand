@@ -225,6 +225,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.HANGING_VINE"
 msgid "Always hanging around."
 msgstr "总是悬挂在那里。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ICEDTEA"
+msgid "I scream for iced tea."
+msgstr "我为冰茶狂。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON"
 msgid "Isn't it ironic?"
@@ -339,6 +344,11 @@ msgstr "搞定！"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.EMPTY"
 msgid "I smelt that!"
 msgstr "我闻到了冶炼的气味！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEA"
+msgid "Tea time!"
+msgstr "茶点时间！"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE"
@@ -565,6 +575,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.HANGING_VINE"
 msgid "Kleptomaniac vegetation. How wonderful!"
 msgstr "多么绝妙！有盗窃癖的植被。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ICEDTEA"
+msgid "Evidence would suggest my tea got cold."
+msgstr "很显然有证据表明我的茶凉掉了。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON"
 msgid "Marvelous! Iron is invaluable for manufacturing the tools I need!"
@@ -684,6 +699,11 @@ msgstr "这就完成了？太妙了！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.EMPTY"
 msgid "Magnificent! Perhaps I can build a factory here as well."
 msgstr "真棒啊！也许我也可以在这里建一个工厂。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEA"
+msgid "A rodent based broth that tastes remarkably like tea!"
+msgstr "基于啮齿类动物的肉汤，尝起来非常像茶！"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE"
@@ -915,6 +935,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.HANGING_VINE"
 msgid "That seems dangerous."
 msgstr "那看起来很危险。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ICEDTEA"
+msgid "Ah... hits the spot."
+msgstr "啊哈...正是喝茶的好时候。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON"
 msgid "This has gotta be good for something."
@@ -1029,6 +1054,11 @@ msgstr "做的好，兄弟们。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.EMPTY"
 msgid "I'll just let that do all the work for me."
 msgstr "就让它来为我完成全部的冶炼工作。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TEA"
+msgid "Caffeine!"
+msgstr "内含咖啡因！"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE"
@@ -1255,6 +1285,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.HANGING_VINE"
 msgid "What kind of monster up there?"
 msgstr "有什么怪物在上面吗？"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ICEDTEA"
+msgid "It just got better."
+msgstr "它反而变得更好喝了。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON"
 msgid "Is that iron?"
@@ -1364,6 +1399,11 @@ msgstr "看看我们炼出了什么！"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.EMPTY"
 msgid "A lrage iron pot. got it? Iron pot."
 msgstr "一口大铁锅，懂吗？铁锅。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEA"
+msgid "It's tea time now! Woby!"
+msgstr "喝茶时间到！沃比！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE"
@@ -1590,6 +1630,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.HANGING_VINE"
 msgid "I really hope it was just a regular plant."
 msgstr "我真的很希望它只是普通的植物。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ICEDTEA"
+msgid "Right on time, Now I can taste it."
+msgstr "时间正好，是时候品尝它了。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON"
 msgid "An essential material for accurate timepieces."
@@ -1699,6 +1744,11 @@ msgstr "完事！"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.EMPTY"
 msgid "Melt the metals together."
 msgstr "把金属熔化到一起。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TEA"
+msgid "It's always tea time, somewhere."
+msgstr "我总会给下午茶留着时间。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE"
@@ -1925,6 +1975,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.HANGING_VINE"
 msgid "How eerie."
 msgstr "真可怕。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ICEDTEA"
+msgid "Ah. Refreshing."
+msgstr "啊. 令人神清气爽."
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON"
 msgid "I wonder what I could cook up with this."
@@ -2039,6 +2094,11 @@ msgstr "新鲜出炉！小心烫。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.EMPTY"
 msgid "'Smelt' bad, if you ask me."
 msgstr "闻起来不是很好。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TEA"
+msgid "Tea! Oh how I missed you!"
+msgstr "茶！哦我想死你了！"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE"
@@ -2265,6 +2325,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.HANGING_VINE"
 msgid "Ropes hang from the heavens!"
 msgstr "从天堂垂下的绳索"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ICEDTEA"
+msgid "It contains no the meat!"
+msgstr "这里面没有肉！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON"
 msgid "Material for metalwork."
@@ -2379,6 +2444,11 @@ msgstr "现在请为我铸造利刃吧！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.EMPTY"
 msgid "The tools of dwarves."
 msgstr "矮人的工具。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEA"
+msgid "I shall not consume it!"
+msgstr "我是不会喝它的！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE"
@@ -2610,6 +2680,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.HANGING_VINE"
 msgid "I know the ropes."
 msgstr "还不是条绳嘛。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ICEDTEA"
+msgid "Refreshing."
+msgstr "提神醒脑。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON"
 msgid "A solid mineral."
@@ -2724,6 +2799,11 @@ msgstr "艰难的成果。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.EMPTY"
 msgid "Finally we're catching up to the Iron Age."
 msgstr "我们终于步入了铁器时代。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEA"
+msgid "A spot of tea."
+msgstr "一些茶。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE"
@@ -2950,6 +3030,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.HANGING_VINE"
 msgid "Cool! Vines!"
 msgstr "酷！藤蔓！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ICEDTEA"
+msgid "Delicious!"
+msgstr "太好吃了！"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON"
 msgid "We could make all kinds of neat stuff with this."
@@ -3064,6 +3149,11 @@ msgstr "完成了！"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.EMPTY"
 msgid "Make material with material."
 msgstr "用材料制作材料。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEA"
+msgid "Let's have a tea party!"
+msgstr "让我们开茶会吧！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE"
@@ -3290,6 +3380,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.HANGING_VINE"
 msgid "The jungle's noose."
 msgstr "丛林的绞索。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ICEDTEA"
+msgid "Refreshing, but it still does not relieve my grief."
+msgstr "提神醒脑，但抹除不去我的悲伤。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON"
 msgid "Iron. Like my heart."
@@ -3404,6 +3499,11 @@ msgstr "浴火重生。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.EMPTY"
 msgid "Burn who are trapped in it..."
 msgstr "灼伤深陷其中的人们..."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TEA"
+msgid "Abigail loved tea parties."
+msgstr "阿比盖尔喜欢茶会。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE"
@@ -3630,6 +3730,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.HANGING_VINE"
 msgid "Vines. Gotta love 'em."
 msgstr "藤蔓。你得爱上它们才行。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ICEDTEA"
+msgid "I prefer it cold anyway."
+msgstr "我不管，我喜欢喝冷饮。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON"
 msgid "Well it's not good balloon material."
@@ -3744,6 +3849,11 @@ msgstr "传奇冒险家铸造传奇装备，听起来还不错。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.EMPTY"
 msgid "It takes the heavy metal and makes it heavier."
 msgstr "它需要一些重金属才能练出更重的金属。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEA"
+msgid "You can barely taste the rodent."
+msgstr "你几乎尝不到那只啮齿类动物的味道。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE"
@@ -3970,6 +4080,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.HANGING_VINE"
 msgid "Hanging vines from the forest canopy."
 msgstr "森林树冠上垂下的藤蔓。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ICEDTEA"
+msgid "Invigorating."
+msgstr "使人精力充沛。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON"
 msgid "Ferrum."
@@ -4084,6 +4199,11 @@ msgstr "再冷却，完成！"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.EMPTY"
 msgid "A metalsmithing tool."
 msgstr "金属锻造熔炼工具。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEA"
+msgid "Give me tea and a good book."
+msgstr "给我来一杯茶和一本好书。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE"
@@ -4315,6 +4435,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.HANGING_VINE"
 msgid "HANG'D VINE"
 msgstr "挂着的藤蔓"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ICEDTEA"
+msgid "AH... IT REFRESH-ETH"
+msgstr "啊。。它让我消除疲劳"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON"
 msgid "'TIS METAL O' THE ZAPPY BIRD"
@@ -4429,6 +4554,11 @@ msgstr "弄完了"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.EMPTY"
 msgid "'TIS FWOOSHY MACHINES"
 msgstr "这是个滚烫的机器"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TEA"
+msgid "IT DOST A DRINK O' FANCY PANTSY"
+msgstr "它是一种花哨的聚会上的饮料"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE"
@@ -4655,6 +4785,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.HANGING_VINE"
 msgid "Ugh, vines!"
 msgstr "啊，藤蔓！"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ICEDTEA"
+msgid "I prefer hot things."
+msgstr "我更喜欢热的东西"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON"
 msgid "I can't burn it with just my lighter."
@@ -4769,6 +4904,11 @@ msgstr "我们什么时候再来一次？"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.EMPTY"
 msgid "Oh yeah! Now I can burn metal."
 msgstr "哦耶！现在我能烧金属了！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEA"
+msgid "Fire makes everything better."
+msgstr "火可以让一切东西变得更好。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE"
@@ -4995,6 +5135,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.HANGING_VINE"
 msgid "I saw a strong rope."
 msgstr "我看到了一条结实的绳索。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ICEDTEA"
+msgid "What a enjoyment."
+msgstr "真是一种享受。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON"
 msgid "Invaluable material for manufacturing useful tools."
@@ -5104,6 +5249,11 @@ msgstr "下工！"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.EMPTY"
 msgid "Process the metallic material."
 msgstr "对金属进行加工。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEA"
+msgid "A good pot of tea sets the spirit of the day."
+msgstr "一壶好茶精神一整天。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE"
@@ -5330,6 +5480,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.HANGING_VINE"
 msgid "Watch out for that tree!"
 msgstr "小心那棵树！"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ICEDTEA"
+msgid "Is cool. Like Wolfgang."
+msgstr "很棒，像沃尔夫冈样。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON"
 msgid "Iron is strong like Wolfgang."
@@ -5444,6 +5599,11 @@ msgstr "火让金属变成小方块。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.EMPTY"
 msgid "Wolfgang lifted it without difficulty."
 msgstr "沃尔夫冈抬起它毫不费力。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEA"
+msgid "Wolfgang love tea time!"
+msgstr "沃尔夫冈喜欢喝茶时间！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE"
@@ -5670,6 +5830,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.HANGING_VINE"
 msgid "Don't trust that."
 msgstr "不要相信那东西。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ICEDTEA"
+msgid "Nice and refreshing."
+msgstr "甜美清凉。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON"
 msgid "Can't chop this too well."
@@ -5784,6 +5949,11 @@ msgstr "哼。为一点金属的兴师动众。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.EMPTY"
 msgid "It's like a giant maple syrup bucket."
 msgstr "就像一个巨大的糖浆桶。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEA"
+msgid "I could go for some tea."
+msgstr "我可以煮些茶。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE"
@@ -6010,6 +6180,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.HANGING_VINE"
 msgid "Them be th'ropes."
 msgstr "它们和绳子一样。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ICEDTEA"
+msgid "'Tis relief ta be sure."
+msgstr "这杯茶当然能解乏。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON"
 msgid "'Tis not gold, but a treasure nonetheless."
@@ -6124,6 +6299,11 @@ msgstr "她准备好开炮了！"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.EMPTY"
 msgid "A cannon fer makin' metals."
 msgstr "一架冶炼钢铁的炮台。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEA"
+msgid "Ah, a fine brew."
+msgstr "啊，一杯佳酿。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE"
@@ -6350,6 +6530,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.HANGING_VINE"
 msgid "Wants stuff"
 msgstr "想要东西"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ICEDTEA"
+msgid "Cold Zippy water"
+msgstr "冷的白开水"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON"
 msgid "Clinky Rock"
@@ -6464,6 +6649,11 @@ msgstr "好了！"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.EMPTY"
 msgid "Clinky rock cooker"
 msgstr "煮叮当响石头的锅"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEA"
+msgid "Warm Zippy water"
+msgstr "热情活泼的水"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE"
@@ -6685,6 +6875,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.HANGING_VINE"
 msgid "Hello, what do you want?"
 msgstr "你好，想要什么？"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ICEDTEA"
+msgid "Cold gives it flavor."
+msgstr "温度使它别具风味。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON"
 msgid "Oooh. Almost burned me."
@@ -6794,6 +6989,11 @@ msgstr "这并没有让它们变得更好。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.EMPTY"
 msgid "Put the iron you hate in and burn it."
 msgstr "把讨厌的铁放进去烧。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEA"
+msgid "Mortal's drink."
+msgstr "凡人们的饮料。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE"
@@ -7020,6 +7220,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.HANGING_VINE"
 msgid "They're on top here."
 msgstr "这里的在头顶上。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ICEDTEA"
+msgid "Cold leaf water."
+msgstr "凉叶子水。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.IRON"
 msgid "Red hard rock."
@@ -7129,6 +7334,11 @@ msgstr "完成了！"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.EMPTY"
 msgid "What to put in it?"
 msgstr "放什么东西进去？"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEA"
+msgid "Leaf water."
+msgstr "叶子水。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE"
@@ -7355,6 +7565,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.HANGING_VINE"
 msgid "HANGING PART"
 msgstr "悬挂部分"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ICEDTEA
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ICEDTEA"
+msgid "A REFRESHING DRINK MADE FROM MY ENEMY"
+msgstr "我的敌人做的清爽饮料"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.IRON"
 msgid "HELLO FRIEND"
@@ -7469,6 +7684,11 @@ msgstr "收到返回值"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.EMPTY"
 msgid "HELLO, FRIEND"
 msgstr "你好，朋友"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.TEA
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TEA"
+msgid "LIQUID ACQUIRED FROM A MEAT MACHINE"
+msgstr "从肉质机器中获得液体"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE"
@@ -7610,6 +7830,11 @@ msgctxt "STRINGS.NAMES.HANGING_VINE"
 msgid "Hanging Vine"
 msgstr "垂下的藤蔓"
 
+#. STRINGS.NAMES.ICEDTEA
+msgctxt "STRINGS.NAMES.ICEDTEA"
+msgid "Iced Tea"
+msgstr "冰茶"
+
 #. STRINGS.NAMES.IRON
 msgctxt "STRINGS.NAMES.IRON"
 msgid "Iron Ore"
@@ -7669,6 +7894,11 @@ msgstr "剪刀"
 msgctxt "STRINGS.NAMES.SMELTER"
 msgid "Smelter"
 msgstr "炼钢炉"
+
+#. STRINGS.NAMES.TEA
+msgctxt "STRINGS.NAMES.TEA"
+msgid "Tea"
+msgstr "茶"
 
 #. STRINGS.NAMES.TEATREE
 msgctxt "STRINGS.NAMES.TEATREE"
