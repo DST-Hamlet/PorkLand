@@ -76,6 +76,7 @@ local function seed_fn()
     inst:AddTag("icebox_valid")
     inst:AddTag("cattoy")
     inst:AddTag("show_spoilage")
+    inst:AddTag("deployedplant")
 
     inst.components.floater:UpdateAnimations("idle_water", "idle")
 
