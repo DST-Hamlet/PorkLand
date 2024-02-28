@@ -21,6 +21,7 @@ return {
         ASPARAGUS_PLANTED = "A spear that grows out of the earth.",
         BASEFAN = "The breeze is blowing, so happy.",
         CHITIN = "The shell of those guys.",
+        COFFEE = "Sure to put a pep in someone's step!",
         CUTNETTLE = "Just smelling it blows my nose.",
         DUNGBALL = "Why would anyone like it?",
         DUNGBEETLE = {

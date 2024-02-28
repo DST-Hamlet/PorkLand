@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Hello there!",
         BASEFAN = "Wind",
         CHITIN = "Bzzter clothes",
+        COFFEE = "Wheee!!!",
         CUTNETTLE = "(sniiiiiff)",
         DUNGBALL = "Yay! Ball of poop!",
         DUNGBEETLE = {

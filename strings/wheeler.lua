@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "That looks like food! Let's hope it tastes like food.",
         BASEFAN = "A plane propeller would be better.",
         CHITIN = "I'm going to need more of these.",
+        COFFEE = "Because there's no better time to be jumpy than when you're on an adventure.",
         CUTNETTLE = "Smells like relief.",
         DUNGBALL = "Huh. It's almost like nobody wants a ball of poop.",
         DUNGBEETLE = {

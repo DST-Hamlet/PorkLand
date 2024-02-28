@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
         BASEFAN = "A cool wind blows from thee!",
         CHITIN = "A harden'd hull.",
+        COFFEE = "Arrr thet be th'real treasure.",
         CUTNETTLE = "Cleans tha' nose as good as sea air.",
         DUNGBALL = "Throw it o'erboard!",
         DUNGBEETLE = {

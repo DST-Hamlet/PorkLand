@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "I should rip those out of the ground.",
         BASEFAN = "Alas the relief it brings is only temporary.",
         CHITIN = "This shell is poor protection from life's horrors.",
+        COFFEE = "Dark. Bitter...",
         CUTNETTLE = "I suppose these will cure blocked sinuses.",
         DUNGBALL = "Grotesque.",
         DUNGBEETLE = {

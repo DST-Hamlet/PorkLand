@@ -23,6 +23,7 @@ return {
         ASPARAGUS_PLANTED = "I should pick those!",
         BASEFAN = "Fan-tastic.",
         CHITIN = "Bug coating.",
+        COFFEE = "Smells delicious and energizing!",
         CUTNETTLE = "Science says the sharp edges are good for my lungs.",
         DUNGBALL = "Most definitely poop.",
         DUNGBEETLE = {

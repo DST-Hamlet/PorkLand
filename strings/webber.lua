@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "We should pick those.",
         BASEFAN = "That breeze feels nice on our fur.",
         CHITIN = "Hope no one's missing that.",
+        COFFEE = "Bitter.",
         CUTNETTLE = "These nettles smell really strong.",
         DUNGBALL = "Yuck!",
         DUNGBEETLE = {

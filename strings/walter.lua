@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Miss Winona might like it, pick some.",
         BASEFAN = "Ah, it's so comfortable, Warby, you can also enjoy it.",
         CHITIN = "Check out the pattern on this! Warby!",
+        COFFEE = "Mom would kill me if she caught me drinking this.",
         CUTNETTLE = "Ow! It got me.",
         DUNGBALL = "How did she... nevermind.",
         DUNGBEETLE = {

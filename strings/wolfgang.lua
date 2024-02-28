@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Haha. Is like tiny vegetable hats.",
         BASEFAN = "Is cool on Wolfgang skin.",
         CHITIN = "Icky bug pieces.",
+        COFFEE = "Strong, like Wolfgang!",
         CUTNETTLE = "Is good for clearing nose.",
         DUNGBALL = "Is ball of poop.",
         DUNGBEETLE = {

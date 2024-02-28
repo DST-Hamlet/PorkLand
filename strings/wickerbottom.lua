@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Asparagus. Otherwise known as sparrow grass.",
         BASEFAN = "Restorative.",
         CHITIN = "The exoskeleton of an arthropod.",
+        COFFEE = "I do love a cup of coffee and a good book.",
         CUTNETTLE = "These are quite good for the sinuses.",
         DUNGBALL = "A perfectly spherical specimen of feces.",
         DUNGBEETLE = {

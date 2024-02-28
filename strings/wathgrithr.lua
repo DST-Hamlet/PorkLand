@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Useless vegetation!",
         BASEFAN = "Conquers the heat!",
         CHITIN = "The feeble armor of the bug.",
+        COFFEE = "Bitter and pulse-pounding.",
         CUTNETTLE = "Its smell has vanquish mine sinuses.",
         DUNGBALL = "What sickness is this?",
         DUNGBEETLE = {

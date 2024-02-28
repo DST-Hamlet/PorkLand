@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "I should snatch those up.",
         BASEFAN = "Good ventilation in the kitchen is an must.",
         CHITIN = "Completely inedible.",
+        COFFEE = "Magnifique!",
         CUTNETTLE = "Great for clearing the sinuses!",
         DUNGBALL = "Non.",
         DUNGBEETLE = {

@@ -115,6 +115,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN"
 msgid "Bug coating."
 msgstr "虫子的外衣。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.COFFEE"
+msgid "Smells delicious and energizing!"
+msgstr "闻起来很美味并令人充满活力！"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CUTNETTLE"
 msgid "Science says the sharp edges are good for my lungs."
@@ -464,6 +469,11 @@ msgstr "真棒啊！多么神奇的工程啊！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN"
 msgid "Wonderful! The exoskeleton of a deceased insect!"
 msgstr "绝妙啊！这是一只死掉的昆虫的外骨骼！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.COFFEE"
+msgid "Interesting. Caffeinated beverages have a heightened effect here."
+msgstr "有意思。含有咖啡因的饮料在这里功效会更高。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CUTNETTLE"
@@ -825,6 +835,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN"
 msgid "Probably wouldn't make a good surfboard."
 msgstr "可能做不出好的冲浪板。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.COFFEE"
+msgid "Smells amazing!"
+msgstr "好香啊！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CUTNETTLE"
 msgid "Whew! Really cleans your sinuses!"
@@ -1175,6 +1190,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN"
 msgid "Check out the pattern on this! Warby!"
 msgstr "看看这上面的花纹！沃比！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.COFFEE"
+msgid "Mom would kill me if she caught me drinking this."
+msgstr "如果妈妈发现我喝这个，她会杀了我。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.CUTNETTLE"
 msgid "Ow! It got me."
@@ -1520,6 +1540,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.CHITIN"
 msgid "I don't understand what's the point of this?"
 msgstr "我不明白这有什么意义？"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.COFFEE"
+msgid "Perfect for those long nights at the workshop back home."
+msgstr "非常适合在家里的工作室度过漫长的夜晚。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.CUTNETTLE"
 msgid "This keeps us breathing smoothly."
@@ -1864,6 +1889,11 @@ msgstr "厨房必须通风良好。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN"
 msgid "Completely inedible."
 msgstr "完全不能吃。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.COFFEE"
+msgid "Magnifique!"
+msgstr "好棒！"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CUTNETTLE"
@@ -2214,6 +2244,11 @@ msgstr "驱散高温!"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN"
 msgid "The feeble armor of the bug."
 msgstr "虫子的脆弱盔甲。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COFFEE"
+msgid "Bitter and pulse-pounding."
+msgstr "味道苦，还会加速脉搏跳动。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CUTNETTLE"
@@ -2570,6 +2605,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN"
 msgid "We all have our defenses."
 msgstr "我们都有自己的防御。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COFFEE"
+msgid "I look forward to this."
+msgstr "我非常期待。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CUTNETTLE"
 msgid "Useful."
@@ -2919,6 +2959,11 @@ msgstr "微风吹过毛皮的感觉很惬意。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN"
 msgid "Hope no one's missing that."
 msgstr "希望没人会弄丢这个。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.COFFEE"
+msgid "Bitter."
+msgstr "好苦。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CUTNETTLE"
@@ -3270,6 +3315,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN"
 msgid "This shell is poor protection from life's horrors."
 msgstr "这种外壳难以抵挡生活的恐怖。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.COFFEE"
+msgid "Dark. Bitter..."
+msgstr "又黑又苦..."
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CUTNETTLE"
 msgid "I suppose these will cure blocked sinuses."
@@ -3620,6 +3670,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN"
 msgid "I'm going to need more of these."
 msgstr "我需要更多这个。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.COFFEE"
+msgid "Because there's no better time to be jumpy than when you're on an adventure."
+msgstr "因为你在冒险的时候就是喝它的最好时机。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CUTNETTLE"
 msgid "Smells like relief."
@@ -3969,6 +4024,11 @@ msgstr "恢复装置。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN"
 msgid "The exoskeleton of an arthropod."
 msgstr "一只节肢动物的外骨骼。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COFFEE"
+msgid "I do love a cup of coffee and a good book."
+msgstr "我喜欢一边喝咖啡一边看书。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CUTNETTLE"
@@ -4325,6 +4385,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN"
 msgid "YON BUGGY ARMOR"
 msgstr "那是虫子的护甲"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.COFFEE"
+msgid "'TIS ZOOM DRINK"
+msgstr "这种饮料令人兴奋"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CUTNETTLE"
 msgid "DOST UNSTUFF'DED MINE SNOUTS"
@@ -4674,6 +4739,11 @@ msgstr "煽风点火。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN"
 msgid "Bug skin."
 msgstr "虫子的皮肤。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.COFFEE"
+msgid "I suddenly feel motivated."
+msgstr "我突然感觉有动力了。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CUTNETTLE"
@@ -5025,6 +5095,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.CHITIN"
 msgid "I don't know what this can be used for."
 msgstr "我不知道这能拿来做什么。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.COFFEE"
+msgid "Essential for any hard worker!"
+msgstr "对于任何努力工作的人来说都是必不可少的！"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.CUTNETTLE"
 msgid "Keep your breath flowing and refresh your mind."
@@ -5369,6 +5444,11 @@ msgstr "沃尔夫冈感到很凉快。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN"
 msgid "Icky bug pieces."
 msgstr "恶心的虫子碎片。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COFFEE"
+msgid "Strong, like Wolfgang!"
+msgstr "强劲，像沃尔夫冈一样！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CUTNETTLE"
@@ -5720,6 +5800,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN"
 msgid "It's got some heft to it."
 msgstr "它有点分量。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.COFFEE"
+msgid "Good old joe."
+msgstr "不错的咖啡。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CUTNETTLE"
 msgid "It has a smell to it."
@@ -6069,6 +6154,11 @@ msgstr "凉爽的风向你身上吹来！"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN"
 msgid "A harden'd hull."
 msgstr "一个坚硬的外壳。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.COFFEE"
+msgid "Arrr thet be th'real treasure."
+msgstr "啊啊啊 那才是真正的宝藏。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CUTNETTLE"
@@ -6420,6 +6510,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN"
 msgid "Bzzter clothes"
 msgstr "滋滋们的衣服"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COFFEE"
+msgid "Wheee!!!"
+msgstr "好喝！！！"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CUTNETTLE"
 msgid "(sniiiiiff)"
@@ -6764,6 +6859,11 @@ msgstr "微风拂面，好不快活。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.CHITIN"
 msgid "The shell of those guys."
 msgstr "那些家伙的外壳。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.COFFEE"
+msgid "Sure to put a pep in someone's step!"
+msgstr "一定要为某人的步伐注入动力！"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.CUTNETTLE"
@@ -7110,6 +7210,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.CHITIN"
 msgid "Tough hide."
 msgstr "坚硬的皮。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.COFFEE"
+msgid "Flurph... this make head hurt."
+msgstr "扑通扑通……这让人头疼。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.CUTNETTLE"
 msgid "It into my nose!"
@@ -7455,6 +7560,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN"
 msgid "INFERIOR ORGANIC BODY PLATING"
 msgstr "质量低劣的有机体表镀层"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.COFFEE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.COFFEE"
+msgid "IT'S JUST HOT BEAN JUICE"
+msgstr "那只是热豆汁"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.CUTNETTLE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CUTNETTLE"
 msgid "I CAN USE THIS TO SERVICE MY OLFACTORY UNIT"
@@ -7759,6 +7869,11 @@ msgstr "摆动风扇"
 msgctxt "STRINGS.NAMES.CHITIN"
 msgid "Chitin"
 msgstr "甲壳质"
+
+#. STRINGS.NAMES.COFFEE
+msgctxt "STRINGS.NAMES.COFFEE"
+msgid "Coffee"
+msgstr "咖啡"
 
 #. STRINGS.NAMES.CUTNETTLE
 msgctxt "STRINGS.NAMES.CUTNETTLE"

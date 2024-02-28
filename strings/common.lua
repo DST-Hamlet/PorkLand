@@ -16,6 +16,7 @@ return {
         ASPARAGUS_PLANTED = "Asparagus",
         BASEFAN = "Oscillating Fan",
         CHITIN = "Chitin",
+        COFFEE = "Coffee",
         CUTNETTLE = "Nettle",
         DUNGBALL = "Dung Ball",
         DUNGBEETLE = "Dung Beetle",

@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Wholesome green vegetables.",
         BASEFAN = "I'm sure bossman would be very interested in it.",
         CHITIN = "I don't know what this can be used for.",
+        COFFEE = "Essential for any hard worker!",
         CUTNETTLE = "Keep your breath flowing and refresh your mind.",
         DUNGBALL = "I would never touch it.",
         DUNGBEETLE = {
