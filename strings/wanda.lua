@@ -23,6 +23,8 @@ return {
         BASEFAN = "Very interesting structure, but unfortunately not refined enough.",
         CHITIN = "I don't understand what's the point of this?",
         COFFEE = "Perfect for those long nights at the workshop back home.",
+        COFFEEBEANS = "A quick roasting will get me something good to sip on.",
+        COFFEEBEANS_COOKED = "I could pop these in my mouth or take the time to boil them.",
         CUTNETTLE = "This keeps us breathing smoothly.",
         DUNGBALL = "I won't touch it.",
         DUNGBEETLE = {

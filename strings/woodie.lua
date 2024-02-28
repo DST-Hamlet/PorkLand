@@ -23,6 +23,8 @@ return {
         BASEFAN = "Yep. That's a nice breeze.",
         CHITIN = "It's got some heft to it.",
         COFFEE = "Good old joe.",
+        COFFEEBEANS = "I should cook these up.",
+        COFFEEBEANS_COOKED = "Canadians love their coffee.",
         CUTNETTLE = "It has a smell to it.",
         DUNGBALL = "Dung to go.",
         DUNGBEETLE = {

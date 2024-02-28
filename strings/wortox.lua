@@ -22,6 +22,8 @@ return {
         BASEFAN = "The breeze is blowing, so happy.",
         CHITIN = "The shell of those guys.",
         COFFEE = "Sure to put a pep in someone's step!",
+        COFFEEBEANS = "Beans from a fiery bush we picked.",
+        COFFEEBEANS_COOKED = "The fire brings out the magic within.",
         CUTNETTLE = "Just smelling it blows my nose.",
         DUNGBALL = "Why would anyone like it?",
         DUNGBEETLE = {

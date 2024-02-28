@@ -23,6 +23,8 @@ return {
         BASEFAN = "Water ran away! florpt!",
         CHITIN = "Tough hide.",
         COFFEE = "Flurph... this make head hurt.",
+        COFFEEBEANS = "Yummy snacks!",
+        COFFEEBEANS_COOKED = "No longer yummy, flort!",
         CUTNETTLE = "It into my nose!",
         DUNGBALL = "Crud ball.",
         DUNGBEETLE = {

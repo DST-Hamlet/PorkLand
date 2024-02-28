@@ -23,6 +23,8 @@ return {
         BASEFAN = "I'm sure bossman would be very interested in it.",
         CHITIN = "I don't know what this can be used for.",
         COFFEE = "Essential for any hard worker!",
+        COFFEEBEANS = "I should toss them over a fire.",
+        COFFEEBEANS_COOKED = "Ah, the smell of coffee beans in the morning!",
         CUTNETTLE = "Keep your breath flowing and refresh your mind.",
         DUNGBALL = "I would never touch it.",
         DUNGBEETLE = {

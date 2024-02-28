@@ -23,6 +23,8 @@ return {
         BASEFAN = "Is cool on Wolfgang skin.",
         CHITIN = "Icky bug pieces.",
         COFFEE = "Strong, like Wolfgang!",
+        COFFEEBEANS = "Tiny beans give Wolfgang strength!",
+        COFFEEBEANS_COOKED = "Is bitter beans!",
         CUTNETTLE = "Is good for clearing nose.",
         DUNGBALL = "Is ball of poop.",
         DUNGBEETLE = {

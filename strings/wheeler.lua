@@ -23,6 +23,8 @@ return {
         BASEFAN = "A plane propeller would be better.",
         CHITIN = "I'm going to need more of these.",
         COFFEE = "Because there's no better time to be jumpy than when you're on an adventure.",
+        COFFEEBEANS = "Small enough to fit in the Pew-matic.",
+        COFFEEBEANS_COOKED = "I eat these all the time during overnight flights.",
         CUTNETTLE = "Smells like relief.",
         DUNGBALL = "Huh. It's almost like nobody wants a ball of poop.",
         DUNGBEETLE = {

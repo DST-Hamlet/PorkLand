@@ -24,6 +24,8 @@ return {
         BASEFAN = "Ah. Civilization.",
         CHITIN = "We all have our defenses.",
         COFFEE = "I look forward to this.",
+        COFFEEBEANS = "It's strange to see them this color.",
+        COFFEEBEANS_COOKED = "Better than raw, but perhaps there's a better way to prepare them?",
         CUTNETTLE = "Useful.",
         DUNGBALL = "I refuse to touch that.",
         DUNGBEETLE = {

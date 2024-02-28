@@ -17,6 +17,8 @@ return {
         BASEFAN = "Oscillating Fan",
         CHITIN = "Chitin",
         COFFEE = "Coffee",
+        COFFEEBEANS = "Coffee Beans",
+        COFFEEBEANS_COOKED = "Roasted Coffee Beans",
         CUTNETTLE = "Nettle",
         DUNGBALL = "Dung Ball",
         DUNGBEETLE = "Dung Beetle",

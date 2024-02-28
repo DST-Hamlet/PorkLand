@@ -23,6 +23,8 @@ return {
         BASEFAN = "Restorative.",
         CHITIN = "The exoskeleton of an arthropod.",
         COFFEE = "I do love a cup of coffee and a good book.",
+        COFFEEBEANS = "Very high in caffeine.",
+        COFFEEBEANS_COOKED = "Ahh, that roast smells delightful.",
         CUTNETTLE = "These are quite good for the sinuses.",
         DUNGBALL = "A perfectly spherical specimen of feces.",
         DUNGBEETLE = {

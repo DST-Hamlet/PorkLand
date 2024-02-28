@@ -23,6 +23,8 @@ return {
         BASEFAN = "Conquers the heat!",
         CHITIN = "The feeble armor of the bug.",
         COFFEE = "Bitter and pulse-pounding.",
+        COFFEEBEANS = "I take mine black.",
+        COFFEEBEANS_COOKED = "It smells energizing.",
         CUTNETTLE = "Its smell has vanquish mine sinuses.",
         DUNGBALL = "What sickness is this?",
         DUNGBEETLE = {

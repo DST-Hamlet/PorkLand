@@ -24,6 +24,8 @@ return {
         BASEFAN = "A nice breeze.",
         CHITIN = "Probably wouldn't make a good surfboard.",
         COFFEE = "Smells amazing!",
+        COFFEEBEANS = "Come to mama!",
+        COFFEEBEANS_COOKED = "Peppy!",
         CUTNETTLE = "Whew! Really cleans your sinuses!",
         DUNGBALL = "Should've leashed it.",
         DUNGBEETLE = {

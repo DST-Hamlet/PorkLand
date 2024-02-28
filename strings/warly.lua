@@ -23,6 +23,8 @@ return {
         BASEFAN = "Good ventilation in the kitchen is an must.",
         CHITIN = "Completely inedible.",
         COFFEE = "Magnifique!",
+        COFFEEBEANS = "Glorious!",
+        COFFEEBEANS_COOKED = "Could use hot water...!",
         CUTNETTLE = "Great for clearing the sinuses!",
         DUNGBALL = "Non.",
         DUNGBEETLE = {

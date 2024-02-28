@@ -24,6 +24,8 @@ return {
         BASEFAN = "Fan-tastic.",
         CHITIN = "Bug coating.",
         COFFEE = "Smells delicious and energizing!",
+        COFFEEBEANS = "They could use some roasting.",
+        COFFEEBEANS_COOKED = "Heat definitely improved them.",
         CUTNETTLE = "Science says the sharp edges are good for my lungs.",
         DUNGBALL = "Most definitely poop.",
         DUNGBEETLE = {

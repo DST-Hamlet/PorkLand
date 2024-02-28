@@ -23,6 +23,8 @@ return {
         BASEFAN = "That breeze feels nice on our fur.",
         CHITIN = "Hope no one's missing that.",
         COFFEE = "Bitter.",
+        COFFEEBEANS = "These smell very... adult.",
+        COFFEEBEANS_COOKED = "These make me feel funny.",
         CUTNETTLE = "These nettles smell really strong.",
         DUNGBALL = "Yuck!",
         DUNGBEETLE = {

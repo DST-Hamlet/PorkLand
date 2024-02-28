@@ -23,6 +23,8 @@ return {
         BASEFAN = "A cool wind blows from thee!",
         CHITIN = "A harden'd hull.",
         COFFEE = "Arrr thet be th'real treasure.",
+        COFFEEBEANS = "Just add water.",
+        COFFEEBEANS_COOKED = "No hot water?",
         CUTNETTLE = "Cleans tha' nose as good as sea air.",
         DUNGBALL = "Throw it o'erboard!",
         DUNGBEETLE = {

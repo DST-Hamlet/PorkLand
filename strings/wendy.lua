@@ -23,6 +23,8 @@ return {
         BASEFAN = "Alas the relief it brings is only temporary.",
         CHITIN = "This shell is poor protection from life's horrors.",
         COFFEE = "Dark. Bitter...",
+        COFFEEBEANS = "These look stimulating.",
+        COFFEEBEANS_COOKED = "Who knew the will to live came in bean form?",
         CUTNETTLE = "I suppose these will cure blocked sinuses.",
         DUNGBALL = "Grotesque.",
         DUNGBEETLE = {

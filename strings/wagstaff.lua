@@ -23,6 +23,8 @@ return {
         BASEFAN = "Magnificent! What a marvel of engineering!",
         CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
         COFFEE = "Interesting. Caffeinated beverages have a heightened effect here.",
+        COFFEEBEANS = "I will need to roast it before I can consume it without ill effect.",
+        COFFEEBEANS_COOKED = "Has an ephemeral effect on my adrenal gland.",
         CUTNETTLE = "A large leaf nettle plant native to these parts. Also it smells funny.",
         DUNGBALL = "Excellent! The act of rolling has picked up a motley of paraphernalia.",
         DUNGBEETLE = {
