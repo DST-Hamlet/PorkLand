@@ -74,6 +74,8 @@ return {
             DONE = "Done!",
             EMPTY = "What to put in it?",
         },
+        TEATREE_NUT = "Florp. Smell strong.",
+        TEATREE_NUT_COOKED = "Crunch. Crunch. Crunch.",
         TREE_PILLAR = "A huge tree.",
         WEEVOLE = "go away go away!",
         WEEVOLE_CARAPACE = "hard shell.",

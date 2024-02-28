@@ -74,6 +74,8 @@ return {
             DONE = "Check out what we've come up with!",
             EMPTY = "A lrage iron pot. got it? Iron pot.",
         },
+        TEATREE_NUT = "Mom used to try this on me.",
+        TEATREE_NUT_COOKED = "It actually tastes pretty good this way.",
         TREE_PILLAR = "Such a big tree, even werebeaver can't eat it all.",
         WEEVOLE = "Hey! Got you!",
         WEEVOLE_CARAPACE = "Let's put it away, it might be useful.",

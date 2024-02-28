@@ -76,6 +76,8 @@ return {
             DONE = "Difficult results.",
             EMPTY = "Finally we're catching up to the Iron Age.",
         },
+        TEATREE_NUT = "I'll need this for hayfever season.",
+        TEATREE_NUT_COOKED = "I'll eat it but I won't like it.",
         TREE_PILLAR = "This tree is unusually large.",
         WEEVOLE = "Interminable pests.",
         WEEVOLE_CARAPACE = "Ugh.",

@@ -76,6 +76,8 @@ return {
             DONE = "It's done!",
             EMPTY = "I smelt that!",
         },
+        TEATREE_NUT = "Stops the seasonal sneezing.",
+        TEATREE_NUT_COOKED = "Take that, tiny tree!",
         TREE_PILLAR = "It totally blocks out the sun.",
         WEEVOLE = "Whee!",
         WEEVOLE_CARAPACE = "I'll be careful with this carapace.",

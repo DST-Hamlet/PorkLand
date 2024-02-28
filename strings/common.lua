@@ -40,6 +40,8 @@ return {
         SEDIMENTPUDDLE = "Sparkling Pool",
         SHEARS = "Shears",
         SMELTER = "Smelter",
+        TEATREE_NUT = "Seed Pod",
+        TEATREE_NUT_COOKED = "Cooked Seed Pod",
         TREE_PILLAR = "Great Leafy Stalk",
         WEEVOLE = "Weevole",
         WEEVOLE_CARAPACE = "Weevole Carapace",

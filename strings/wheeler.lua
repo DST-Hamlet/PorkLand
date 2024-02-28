@@ -75,6 +75,8 @@ return {
             DONE = "Legendary adventurers forge legendary equipment, which sounds pretty good.",
             EMPTY = "It takes the heavy metal and makes it heavier.",
         },
+        TEATREE_NUT = "Good enough to eat. Or fire out the Pew-matic.",
+        TEATREE_NUT_COOKED = "For chewing or pew-ing.",
         TREE_PILLAR = "That's a big tree.",
         WEEVOLE = "Aggravating bugs! A complete waste of wings.",
         WEEVOLE_CARAPACE = "Light enough to fire out the Pew-matic.",

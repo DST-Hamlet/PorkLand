@@ -75,6 +75,8 @@ return {
             DONE = "Recooling and done.",
             EMPTY = "A metalsmithing tool.",
         },
+        TEATREE_NUT = "A good antihistamine.",
+        TEATREE_NUT_COOKED = "I'd prefer a proper cup of tea.",
         TREE_PILLAR = "Certainly from an old growth tree.",
         WEEVOLE = "A Coleoptera. And an annoying one at that.",
         WEEVOLE_CARAPACE = "The exoskeleton of a Coleoptera.",

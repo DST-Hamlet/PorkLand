@@ -75,6 +75,8 @@ return {
             DONE = "She's ready ta fire!",
             EMPTY = "A cannon fer makin' metals.",
         },
+        TEATREE_NUT = "A botan'cal barber-surgeon.",
+        TEATREE_NUT_COOKED = "Grub.",
         TREE_PILLAR = "Vessel i'th'makin'.",
         WEEVOLE = "'ave at ye landlubbers!",
         WEEVOLE_CARAPACE = "Longcoat made o' them pesky bugs.",

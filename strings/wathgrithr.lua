@@ -75,6 +75,8 @@ return {
             DONE = "Now make me a sharp edge!",
             EMPTY = "The tools of dwarves.",
         },
+        TEATREE_NUT = "Its lack of meat offends me.",
+        TEATREE_NUT_COOKED = "Even touched by fire, I will not consume it!",
         TREE_PILLAR = "Surely I stand before Yggdrasil!",
         WEEVOLE = "A pest upon this land!",
         WEEVOLE_CARAPACE = "The skin of my enemy.",

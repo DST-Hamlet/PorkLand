@@ -78,6 +78,8 @@ return {
             DONE = "Done already? Remarkable!",
             EMPTY = "Magnificent! Perhaps I can build a factory here as well.",
         },
+        TEATREE_NUT = "My stomach condition prevents me from partaking in its health benefits.",
+        TEATREE_NUT_COOKED = "Of a chewy consistency. Evidently, it's good for you.",
         TREE_PILLAR = "The circumference of this tree's trunk is unusually large.",
         WEEVOLE = "What a wonderfully persistent species of insect!",
         WEEVOLE_CARAPACE = "Excellent! It's the exoskeleton of a hexapod invertebrate!",

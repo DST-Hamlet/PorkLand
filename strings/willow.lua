@@ -75,6 +75,8 @@ return {
             DONE = "When are we do this again?",
             EMPTY = "Oh yeah! Now I can burn metal.",
         },
+        TEATREE_NUT = "I'd burn it but it helps my allergies.",
+        TEATREE_NUT_COOKED = "I set it on fire so now I can eat it.",
         TREE_PILLAR = "That's a big ol' tree.",
         WEEVOLE = "Stand still so I can burn you.",
         WEEVOLE_CARAPACE = "Ew.",

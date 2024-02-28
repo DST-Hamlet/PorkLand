@@ -75,6 +75,8 @@ return {
             DONE = "Hrumph. A big production for a little metal.",
             EMPTY = "It's like a giant maple syrup bucket.",
         },
+        TEATREE_NUT = "Helps with allergies, eh.",
+        TEATREE_NUT_COOKED = "Too late to plant this now.",
         TREE_PILLAR = "That's a real beaut.",
         WEEVOLE = "Worse than black flies.",
         WEEVOLE_CARAPACE = "That'll teach 'em!",

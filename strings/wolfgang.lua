@@ -75,6 +75,8 @@ return {
             DONE = "Fire make metal bricks.",
             EMPTY = "Wolfgang lifted it without difficulty.",
         },
+        TEATREE_NUT = "Is good for Wolfgang's mighty sneezes.",
+        TEATREE_NUT_COOKED = "Wolfgang eat tiny tree baby.",
         TREE_PILLAR = "Mightiest tree!",
         WEEVOLE = "Pesky bug. Leave Wolfgang alone!",
         WEEVOLE_CARAPACE = "Is pesky bug skin.",

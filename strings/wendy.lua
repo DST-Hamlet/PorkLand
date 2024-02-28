@@ -75,6 +75,8 @@ return {
             DONE = "Born of fire.",
             EMPTY = "Burn who are trapped in it...",
         },
+        TEATREE_NUT = "Makes life barely more livable in allergy season.",
+        TEATREE_NUT_COOKED = "I killed it to prolong my own life.",
         TREE_PILLAR = "Ancient, and full of life.",
         WEEVOLE = "Its sole existence is to annoy me.",
         WEEVOLE_CARAPACE = "Bits of bug carcass.",

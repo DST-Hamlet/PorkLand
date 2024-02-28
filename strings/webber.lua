@@ -75,6 +75,8 @@ return {
             DONE = "It's finished.",
             EMPTY = "Make material with material.",
         },
+        TEATREE_NUT = "It helps with our sneezes.",
+        TEATREE_NUT_COOKED = "Yummy.",
         TREE_PILLAR = "It's probably super old.",
         WEEVOLE = "Those bugs are annoying.",
         WEEVOLE_CARAPACE = "It's the outer part of those bugs.",

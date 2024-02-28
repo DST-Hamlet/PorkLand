@@ -76,6 +76,8 @@ return {
             DONE = "Well done, bro.",
             EMPTY = "I'll just let that do all the work for me.",
         },
+        TEATREE_NUT = "I heard it's good for allergies.",
+        TEATREE_NUT_COOKED = "A good meal for little effort.",
         TREE_PILLAR = "What a great tree!",
         WEEVOLE = "Annoying little guys.",
         WEEVOLE_CARAPACE = "Ew. Bug skin.",

@@ -73,6 +73,8 @@ return {
             DONE = "It doesn't make them any better.",
             EMPTY = "Put the iron you hate in and burn it.",
         },
+        TEATREE_NUT = "Very nice nuts and clears up my nose.",
+        TEATREE_NUT_COOKED = "Does this really make it better?",
         TREE_PILLAR = "Blot out the sun.",
         WEEVOLE = "don't bite me!",
         WEEVOLE_CARAPACE = "What remains of their armor.",

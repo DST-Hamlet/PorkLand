@@ -75,6 +75,8 @@ return {
             DONE = "Done!",
             EMPTY = "Clinky rock cooker",
         },
+        TEATREE_NUT = "Want in belly? Or dirt?",
+        TEATREE_NUT_COOKED = "Not for dirt now",
         TREE_PILLAR = "Big friend?",
         WEEVOLE = "Wee Bzzter",
         WEEVOLE_CARAPACE = "Crunchy",

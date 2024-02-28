@@ -74,6 +74,8 @@ return {
             DONE = "knock off!",
             EMPTY = "Process the metallic material.",
         },
+        TEATREE_NUT = "Save my nose from fire and water.",
+        TEATREE_NUT_COOKED = "Heat enhances its effects.",
         TREE_PILLAR = "It stretches to the end of my field of vision.",
         WEEVOLE = "Once you've dealt with bedbugs, weevils aren't so bad.",
         WEEVOLE_CARAPACE = "It can be regarded as clean.",

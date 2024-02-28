@@ -75,6 +75,8 @@ return {
             DONE = "Fresh out of the oven! Be careful with the scalding.",
             EMPTY = "'Smelt' bad, if you ask me.",
         },
+        TEATREE_NUT = "More useful as medicine than in my recipe.",
+        TEATREE_NUT_COOKED = "Not the finest of fine foods.",
         TREE_PILLAR = "What a marvel.",
         WEEVOLE = "Shoo! Go away!",
         WEEVOLE_CARAPACE = "The crust of a bug.",
