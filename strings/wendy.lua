@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "I spy, with my little eye...",
         PEAGAWK_BUSH = "Just a bush...",
+        PIKO = {
+            DEAD = "Even the innocent must die.",
+            GENERIC = "Too naive to know pain.",
+            SLEEPING = "Such a innocent sleep.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Even the innocent must die.",
+            GENERIC = "You exist to amuse others.",
+            SLEEPING = "Such a innocent sleep.",
+        },
         RABID_BEETLE = {
             DEAD = "Lifeless.",
             GENERIC = "As rabid as death itself.",

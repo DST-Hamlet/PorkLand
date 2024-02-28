@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
+        PIKO = {
+            DEAD = "Aw...",
+            GENERIC = "Fluffy Nabber",
+            SLEEPING = "Sleeping. Shh...",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Aw...",
+            GENERIC = "Fluffy Nabber",
+            SLEEPING = "Sleeping. Shh...",
+        },
         RABID_BEETLE = {
             DEAD = "Too bad",
             GENERIC = "Why so mad, Bzzter?",

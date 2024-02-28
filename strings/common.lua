@@ -36,6 +36,8 @@ return {
         PEAGAWK = "Peagawk",
         PEAGAWKFEATHER = "Peagawk Plume",
         PEAGAWK_BUSH = "Blinkbush",
+        PIKO = "Piko",
+        PIKO_ORANGE = "Orange Piko",
         RABID_BEETLE = "Rabid Beetle",
         SEDIMENTPUDDLE = "Sparkling Pool",
         SHEARS = "Shears",

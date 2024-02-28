@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "Normally I don't mind feathers, but this one keeps staring at me.",
         PEAGAWK_BUSH = "Something's hiding in there.",
+        PIKO = {
+            DEAD = "Sad. It only wanted to steal things.",
+            GENERIC = "Has more storage space in its cheeks than I do in my pockets.",
+            SLEEPING = "At least it doesn't steal in its sleep.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Sad. It only wanted to steal things.",
+            GENERIC = "Has a strangely caffeinated smell.",
+            SLEEPING = "At least it doesn't steal in its sleep.",
+        },
         RABID_BEETLE = {
             DEAD = "Not too sorry about that.",
             GENERIC = "Probably just agitated because it can't fly well.",

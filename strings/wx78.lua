@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "IT HAS BEEN SEPARATED FROM ITS BIRD",
         PEAGAWK_BUSH = "GROUND PART",
+        PIKO = {
+            DEAD = "NONFUNCTIONING",
+            GENERIC = "A NUT GATHERING MEAT MACHINE",
+            SLEEPING = "IN SLEEP MODE",
+        },
+        PIKO_ORANGE = {
+            DEAD = "NONFUNCTIONING",
+            GENERIC = "MEAT MACHINE WITH BREWING PROPERTIES",
+            SLEEPING = "IN SLEEP MODE",
+        },
         RABID_BEETLE = {
             DEAD = "TERMINATED",
             GENERIC = "YOU HAVE EXCESSIVE FACIAL HAIR",

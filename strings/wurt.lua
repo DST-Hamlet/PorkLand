@@ -61,6 +61,16 @@ return {
         },
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
+        PIKO = {
+            DEAD = "Glurp! Hold on!",
+            GENERIC = "Hi! squirrel.",
+            SLEEPING = "Sleep tight!",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Glurp! Hold on!",
+            GENERIC = "Hello. How are you today?",
+            SLEEPING = "Sleep tight!",
+        },
         RABID_BEETLE = {
             DEAD = "died.",
             GENERIC = "The little bug is going crazy!",

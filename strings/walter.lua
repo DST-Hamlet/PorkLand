@@ -61,6 +61,16 @@ return {
         },
         PEAGAWKFEATHER = "method is valid.",
         PEAGAWK_BUSH = "This bird can't fly, but turns into a bush!",
+        PIKO = {
+            DEAD = "Poor little guy.",
+            GENERIC = "I want to know what they usually do?",
+            SLEEPING = "It fell asleep.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Poor little guy.",
+            GENERIC = "I must catch it!",
+            SLEEPING = "It fell asleep.",
+        },
         RABID_BEETLE = {
             DEAD = "Oh, dead.",
             GENERIC = "Wow, look how active they are!",

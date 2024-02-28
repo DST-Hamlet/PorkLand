@@ -61,6 +61,16 @@ return {
         },
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
+        PIKO = {
+            DEAD = "died.",
+            GENERIC = "An annoying thief.",
+            SLEEPING = "Recharge your batteries for more trouble.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "died.",
+            GENERIC = "It eats almost anything.",
+            SLEEPING = "Recharge your batteries for more trouble.",
+        },
         RABID_BEETLE = {
             DEAD = "Ah, it stopped.",
             GENERIC = "What are you all excited about?",

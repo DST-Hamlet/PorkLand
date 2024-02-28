@@ -61,6 +61,16 @@ return {
         },
         PEAGAWKFEATHER = "It's hard to see.",
         PEAGAWK_BUSH = "What a clever disguise.",
+        PIKO = {
+            DEAD = "They are quiet... forever.",
+            GENERIC = "It better not mess with my stuff.",
+            SLEEPING = "It's kind of cute if they just quiet.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "They are quiet... forever.",
+            GENERIC = "Is this a rare coat color?",
+            SLEEPING = "It's kind of cute if they just quiet.",
+        },
         RABID_BEETLE = {
             DEAD = "There is one less pest in the world.",
             GENERIC = "vermin! go away!",

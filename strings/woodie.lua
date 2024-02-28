@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "It has a foul bird stench.",
         PEAGAWK_BUSH = "There's a wretched bird nearby. I feel it.",
+        PIKO = {
+            DEAD = "Poor little critter...",
+            GENERIC = "They like trees almost as much as us.",
+            SLEEPING = "All tuckered out.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Poor little critter...",
+            GENERIC = "They like trees almost as much as us.",
+            SLEEPING = "All tuckered out.",
+        },
         RABID_BEETLE = {
             DEAD = "For the best.",
             GENERIC = "Seems mighty angry.",

@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "A priceless beauty.",
         PEAGAWK_BUSH = "Do you think you can hide from me?",
+        PIKO = {
+            DEAD = "It has fallen.",
+            GENERIC = "Do you crave battle?",
+            SLEEPING = "It slumbers unwisely.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "It has fallen.",
+            GENERIC = "It is made of meat!",
+            SLEEPING = "It slumbers unwisely.",
+        },
         RABID_BEETLE = {
             DEAD = "It has died in battle.",
             GENERIC = "Evil beast. You have met your match!",

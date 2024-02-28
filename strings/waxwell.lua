@@ -63,6 +63,16 @@ return {
         },
         PEAGAWKFEATHER = "What finery.",
         PEAGAWK_BUSH = "I've my suspicions about that bush.",
+        PIKO = {
+            DEAD = "It has been exterminated.",
+            GENERIC = "Shoo, vermin.",
+            SLEEPING = "The pest is asleep.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "It has been exterminated.",
+            GENERIC = "How amusing.",
+            SLEEPING = "The pest is asleep.",
+        },
         RABID_BEETLE = {
             DEAD = "The grim reaper has been here.",
             GENERIC = "What is he all worked up about?",

@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
+        PIKO = {
+            DEAD = "Didn't run fast enough.",
+            GENERIC = "Squirrelly little guy.",
+            SLEEPING = "I bet I could catch it now.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Didn't run fast enough.",
+            GENERIC = "Squirrelly little guy.",
+            SLEEPING = "I bet I could catch it now.",
+        },
         RABID_BEETLE = {
             DEAD = "Looks dead to me.",
             GENERIC = "What're you so mad about?",

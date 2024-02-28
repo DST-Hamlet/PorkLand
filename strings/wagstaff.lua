@@ -65,6 +65,16 @@ return {
             GENERIC = "I'm experiencing the inescapable perception that I'm being watched.",
             SLEEPING = "That insight that spied on me was gone.",
         },
+        PIKO = {
+            DEAD = "Recently demised.",
+            GENERIC = "The amazing storage space of their small cheeks defies all laws of physics!",
+            SLEEPING = "Evidently, tired from a day of scurrying. And stealing.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Recently demised.",
+            GENERIC = "Smells of tea. Perhaps a consequence of its proximity to tea trees?",
+            SLEEPING = "Evidently, tired from a day of scurrying. And stealing.",
+        },
         RABID_BEETLE = {
             DEAD = "An occurrance of invertebrate respiratory failure.",
             GENERIC = "Evidently, it acquires facial hair when it matures.",

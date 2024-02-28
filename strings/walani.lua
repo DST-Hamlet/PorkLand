@@ -63,6 +63,16 @@ return {
         },
         PEAGAWKFEATHER = "Nature makes such pretty things.",
         PEAGAWK_BUSH = "What a cool looking bush!",
+        PIKO = {
+            DEAD = "No! Little buddy!",
+            GENERIC = "It's a little buddy!",
+            SLEEPING = "I wish I could join you, buddy.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "No! Little buddy!",
+            GENERIC = "Oh, I get it.",
+            SLEEPING = "I wish I could join you, buddy.",
+        },
         RABID_BEETLE = {
             DEAD = "That's a bummer.",
             GENERIC = "Dude, you need to chill!",

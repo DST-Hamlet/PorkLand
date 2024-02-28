@@ -60,6 +60,16 @@ return {
         },
         PEAGAWKFEATHER = "Feather of a small peacock.",
         PEAGAWK_BUSH = "Well, this trick can't fool me.",
+        PIKO = {
+            DEAD = "That's not what dhyana's supposed to be.",
+            GENERIC = "No one can mess with the squirrel.",
+            SLEEPING = "It must be dreaming of giant pine cones.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "That's not what dhyana's supposed to be.",
+            GENERIC = "Hey, hey, I got nothing on my hand.",
+            SLEEPING = "It must be dreaming of giant pine cones.",
+        },
         RABID_BEETLE = {
             DEAD = "it's a pity.",
             GENERIC = "Really energetic, do you want to dance?",

@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "It's quite soft.",
         PEAGAWK_BUSH = "It's a bright blue bush.",
+        PIKO = {
+            DEAD = "An unfortunate end.",
+            GENERIC = "Bonjour, mon amie.",
+            SLEEPING = "Dreaming of nuts, no doubt.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "An unfortunate end.",
+            GENERIC = "I prefer English Breakfast.",
+            SLEEPING = "Dreaming of nuts, no doubt.",
+        },
         RABID_BEETLE = {
             DEAD = "A shame. Not even edible.",
             GENERIC = "It is like me when I am hungry.",

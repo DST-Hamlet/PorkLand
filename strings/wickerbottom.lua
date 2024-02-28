@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
         PEAGAWK_BUSH = "I have questions about that bush.",
+        PIKO = {
+            DEAD = "I feel a touch of grief at its passing.",
+            GENERIC = "A charming mammalian fuzzball.",
+            SLEEPING = "It is asleep.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "I feel a touch of grief at its passing.",
+            GENERIC = "An amusingly named mammalian fuzzball.",
+            SLEEPING = "It is asleep.",
+        },
         RABID_BEETLE = {
             DEAD = "Expired.",
             GENERIC = "Certainly not a species I know of!",

@@ -63,6 +63,16 @@ return {
         },
         PEAGAWKFEATHER = "IS'T A BIRD THING O' PRETTY",
         PEAGAWK_BUSH = "'TIS NAUGHT A BUSH",
+        PIKO = {
+            DEAD = "HATH STOLEN LAST O' WILBA STUFFS",
+            GENERIC = "FELLOWS OF INFINITE JEST",
+            SLEEPING = "O GENTLE SLEEP!",
+        },
+        PIKO_ORANGE = {
+            DEAD = "HATH STOLEN LAST O' WILBA STUFFS",
+            GENERIC = "OF MOST EXCELLENT FANCY TAILS",
+            SLEEPING = "O GENTLE SLEEP!",
+        },
         RABID_BEETLE = {
             DEAD = "IN YON UNDISCOVER'D COUNTRY",
             GENERIC = "FULL OF SOUND AND FURY",

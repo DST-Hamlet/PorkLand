@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "Feather'o'glimmer.",
         PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
+        PIKO = {
+            DEAD = "Tells no tales.",
+            GENERIC = "Thievin' scoundr'l.",
+            SLEEPING = "Grabbin' some shuteye.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Tells no tales.",
+            GENERIC = "Aye, 'tis a useful brood.",
+            SLEEPING = "Grabbin' some shuteye.",
+        },
         RABID_BEETLE = {
             DEAD = "Aye, 'tis fer'tha best.",
             GENERIC = "Ornery buggie.",

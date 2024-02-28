@@ -63,6 +63,16 @@ return {
         },
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
+        PIKO = {
+            DEAD = "I feel kinda bad.",
+            GENERIC = "He's a bit of a nut job.",
+            SLEEPING = "Probably dreaming of trees.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "I feel kinda bad.",
+            GENERIC = "For some reason I'm craving tea.",
+            SLEEPING = "Probably dreaming of trees.",
+        },
         RABID_BEETLE = {
             DEAD = "A late beetle.",
             GENERIC = "Looks deranged.",

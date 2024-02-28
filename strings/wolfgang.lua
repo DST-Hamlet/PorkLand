@@ -62,6 +62,16 @@ return {
         },
         PEAGAWKFEATHER = "Is blink-blink bird feather.",
         PEAGAWK_BUSH = "Is just bush.",
+        PIKO = {
+            DEAD = "Is tiny fluff dead part.",
+            GENERIC = "Tiny, weak fluff.",
+            SLEEPING = "Tiny fluff is sleep time.",
+        },
+        PIKO_ORANGE = {
+            DEAD = "Is tiny orange fluff dead part.",
+            GENERIC = "Tiny, weak orange fluff.",
+            SLEEPING = "Tiny orange fluff is sleep time.",
+        },
         RABID_BEETLE = {
             DEAD = "Is stomped.",
             GENERIC = "Wolfgang will stomp bad beetle!",
