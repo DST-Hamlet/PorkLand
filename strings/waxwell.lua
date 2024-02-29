@@ -94,7 +94,7 @@ return {
         TEATREE = "It's a tree. What did I expect.",
         TEATREE_NUT = "I'll need this for hayfever season.",
         TEATREE_NUT_COOKED = "I'll eat it but I won't like it.",
-        TEATREE_SAPLING = "Oh, just grow already.",
+        TEATREE_NUT_SAPLING = "Oh, just grow already.",
         TREE_PILLAR = "This tree is unusually large.",
         WEEVOLE = "Interminable pests.",
         WEEVOLE_CARAPACE = "Ugh.",

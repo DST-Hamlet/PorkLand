@@ -93,7 +93,7 @@ return {
         TEATREE = "Welp. Better get choppin'.",
         TEATREE_NUT = "Helps with allergies, eh.",
         TEATREE_NUT_COOKED = "Too late to plant this now.",
-        TEATREE_SAPLING = "It's better if you let them grow a little.",
+        TEATREE_NUT_SAPLING = "It's better if you let them grow a little.",
         TREE_PILLAR = "That's a real beaut.",
         WEEVOLE = "Worse than black flies.",
         WEEVOLE_CARAPACE = "That'll teach 'em!",

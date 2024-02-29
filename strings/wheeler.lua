@@ -93,7 +93,7 @@ return {
         TEATREE = "But how do I make tea from it?",
         TEATREE_NUT = "Good enough to eat. Or fire out the Pew-matic.",
         TEATREE_NUT_COOKED = "For chewing or pew-ing.",
-        TEATREE_SAPLING = "It's a baby tree. It'll grow.",
+        TEATREE_NUT_SAPLING = "It's a baby tree. It'll grow.",
         TREE_PILLAR = "That's a big tree.",
         WEEVOLE = "Aggravating bugs! A complete waste of wings.",
         WEEVOLE_CARAPACE = "Light enough to fire out the Pew-matic.",

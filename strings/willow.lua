@@ -93,7 +93,7 @@ return {
         TEATREE = "It'll burn. That's all I care about.",
         TEATREE_NUT = "I'd burn it but it helps my allergies.",
         TEATREE_NUT_COOKED = "I set it on fire so now I can eat it.",
-        TEATREE_SAPLING = "It's not even worth burning.",
+        TEATREE_NUT_SAPLING = "It's not even worth burning.",
         TREE_PILLAR = "That's a big ol' tree.",
         WEEVOLE = "Stand still so I can burn you.",
         WEEVOLE_CARAPACE = "Ew.",

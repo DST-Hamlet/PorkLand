@@ -93,7 +93,7 @@ return {
         TEATREE = "This tree is adequate.",
         TEATREE_NUT = "Its lack of meat offends me.",
         TEATREE_NUT_COOKED = "Even touched by fire, I will not consume it!",
-        TEATREE_SAPLING = "A tree still weak with youth.",
+        TEATREE_NUT_SAPLING = "A tree still weak with youth.",
         TREE_PILLAR = "Surely I stand before Yggdrasil!",
         WEEVOLE = "A pest upon this land!",
         WEEVOLE_CARAPACE = "The skin of my enemy.",

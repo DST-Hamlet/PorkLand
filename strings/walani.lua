@@ -94,7 +94,7 @@ return {
         TEATREE = "Hey little tree!",
         TEATREE_NUT = "I heard it's good for allergies.",
         TEATREE_NUT_COOKED = "A good meal for little effort.",
-        TEATREE_SAPLING = "One day you'll be big and strong.",
+        TEATREE_NUT_SAPLING = "One day you'll be big and strong.",
         TREE_PILLAR = "What a great tree!",
         WEEVOLE = "Annoying little guys.",
         WEEVOLE_CARAPACE = "Ew. Bug skin.",

@@ -8487,7 +8487,7 @@ msgstr "潮湿季"
 
 #. STRINGS.UI.SANDBOXMENU.LOCATIONTABNAME.PORKLAND
 msgctxt "STRINGS.UI.SANDBOXMENU.LOCATIONTABNAME.PORKLAND"
-msgid "Porkland"
+msgid "Hamlet"
 msgstr "猪镇"
 
 #. STRINGS.UI.SANDBOXMENU.LUSH
@@ -8524,3 +8524,4 @@ msgstr "繁茂季"
 msgctxt "STRINGS.UI.SERVERLISTINGSCREEN.SEASONS.TEMPERATE"
 msgid "Temperate"
 msgstr "平和季"
+

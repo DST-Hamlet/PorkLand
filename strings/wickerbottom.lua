@@ -93,7 +93,7 @@ return {
         TEATREE = "A fine example of Camellia Sinensis.",
         TEATREE_NUT = "A good antihistamine.",
         TEATREE_NUT_COOKED = "I'd prefer a proper cup of tea.",
-        TEATREE_SAPLING = "It's growing nicely.",
+        TEATREE_NUT_SAPLING = "It's growing nicely.",
         TREE_PILLAR = "Certainly from an old growth tree.",
         WEEVOLE = "A Coleoptera. And an annoying one at that.",
         WEEVOLE_CARAPACE = "The exoskeleton of a Coleoptera.",

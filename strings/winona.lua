@@ -92,7 +92,7 @@ return {
         TEATREE = "Enough to whole workshop's tea supply.",
         TEATREE_NUT = "Save my nose from fire and water.",
         TEATREE_NUT_COOKED = "Heat enhances its effects.",
-        TEATREE_SAPLING = "Our tea supply for next season.",
+        TEATREE_NUT_SAPLING = "Our tea supply for next season.",
         TREE_PILLAR = "It stretches to the end of my field of vision.",
         WEEVOLE = "Once you've dealt with bedbugs, weevils aren't so bad.",
         WEEVOLE_CARAPACE = "It can be regarded as clean.",

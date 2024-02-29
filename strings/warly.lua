@@ -93,7 +93,7 @@ return {
         TEATREE = "I could to so many things with tea tree leaves.",
         TEATREE_NUT = "More useful as medicine than in my recipe.",
         TEATREE_NUT_COOKED = "Not the finest of fine foods.",
-        TEATREE_SAPLING = "Keep growing. You'll get there.",
+        TEATREE_NUT_SAPLING = "Keep growing. You'll get there.",
         TREE_PILLAR = "What a marvel.",
         WEEVOLE = "Shoo! Go away!",
         WEEVOLE_CARAPACE = "The crust of a bug.",

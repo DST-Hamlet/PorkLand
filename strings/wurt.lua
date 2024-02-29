@@ -92,7 +92,7 @@ return {
         TEATREE = "Strange leaves there.",
         TEATREE_NUT = "Florp. Smell strong.",
         TEATREE_NUT_COOKED = "Crunch. Crunch. Crunch.",
-        TEATREE_SAPLING = "Baby Tree.",
+        TEATREE_NUT_SAPLING = "Baby Tree.",
         TREE_PILLAR = "A huge tree.",
         WEEVOLE = "go away go away!",
         WEEVOLE_CARAPACE = "hard shell.",

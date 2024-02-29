@@ -1,12 +1,16 @@
 local modimport = modimport
 GLOBAL.setfenv(1, GLOBAL)
 
+local IsTheFrontEnd = rawget(_G, "TheFrontEnd") and rawget(_G, "IsInFrontEnd") and IsInFrontEnd()
+if IsTheFrontEnd then
+    modimport("main/strings")
+end
+
 modimport("scripts/map/locations/porkland")
 modimport("scripts/map/startlocations/porkland")
 modimport("scripts/map/tasksets/porklandset")
 modimport("scripts/map/levels/porkland")
 
-local IsTheFrontEnd = rawget(_G, "TheFrontEnd") and rawget(_G, "IsInFrontEnd") and IsInFrontEnd()
 if IsTheFrontEnd then return end
 
 require("map/pl_lockandkey")
