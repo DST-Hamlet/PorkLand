@@ -68,8 +68,9 @@ local module_posts = {
 local _require = require
 ---@param module_name string
 function require(module_name, ...)
+    local no_loaded = package.loaded[module_name] == nil
     local ret = { _require(module_name, ...) }
-    if module_posts[module_name] and package.loaded[module_name] == nil then -- only load when first
+    if module_posts[module_name] and no_loaded then -- only load when first
         modimport("postinit/modules/" .. module_posts[module_name])
     end
     return unpack(ret)
