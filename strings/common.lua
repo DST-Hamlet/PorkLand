@@ -67,7 +67,13 @@ return {
         SMELTER = "Turn Iron into Alloy.",
     },
     UI = {
+        COOKBOOK = {
+            FOOD_EFFECTS_ANTIHISTAMINE = "Clear the airway",
+            FOOD_EFFECTS_SPEED_BOOST = "Accelerates movement",
+        },
         CUSTOMIZATIONSCREEN = {
+            PRESETLEVELS = {PORKLAND = "Hamlet",},
+            PRESETLEVELDESC = {PORKLAND = "A deeply dangerous jungle?",},
             ASPARAGUS = "Asparagus",
             ASPARAGUS_REGROWTH = "Asparagus",
             DEEP_JUNGLE_FERN_NOISE = "Jungle Floor Ferns",
@@ -86,10 +92,10 @@ return {
             LUSH = "Lush",
             PANGOLDEN = "Pangolden",
             PEAGAWK = "Peagawk",
-            PEAGAWK_SETTING = "Peagawk",
+            PIKO_SETTING = "Piko",
             PL_CLOCKTYPE = "Clock Type",
             POISON = "Poison",
-            PORKLAND_SEASON_START = "Porkland Starting Season",
+            PORKLAND_SEASON_START = "Hamlet Starting Season",
             TEMPERATE = "Temperate",
             WEEVOLE_SETTING = "Weevole",
         },
@@ -99,7 +105,7 @@ return {
             CLOCKTYPE_PORKLAND = "Plateau",
             HUMID = "Humid",
             LOCATIONTABNAME = {
-                PORKLAND = "Porkland",
+                PORKLAND = "Hamlet",
             },
             LUSH = "Lush",
             PORKLAND_DEFAULT = "Temperate",
