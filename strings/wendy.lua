@@ -93,7 +93,7 @@ return {
         TEATREE = "I can sit under it and contemplate life's futility.",
         TEATREE_NUT = "Makes life barely more livable in allergy season.",
         TEATREE_NUT_COOKED = "I killed it to prolong my own life.",
-        TEATREE_SAPLING = "Ah, to be young and full of promise.",
+        TEATREE_NUT_SAPLING = "Ah, to be young and full of promise.",
         TREE_PILLAR = "Ancient, and full of life.",
         WEEVOLE = "Its sole existence is to annoy me.",
         WEEVOLE_CARAPACE = "Bits of bug carcass.",

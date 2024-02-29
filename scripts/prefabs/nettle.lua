@@ -31,8 +31,8 @@ local function fn()
     inst:AddComponent("stackable")
     inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
-    inst:AddComponent("appeasement")
-    inst.components.appeasement.appeasementvalue = TUNING.WRATH_SMALL
+    -- inst:AddComponent("appeasement")
+    -- inst.components.appeasement.appeasementvalue = TUNING.WRATH_SMALL
 
     inst:AddComponent("edible")
     inst.components.edible.foodtype = FOODTYPE.VEGGIE

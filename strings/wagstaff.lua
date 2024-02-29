@@ -96,7 +96,7 @@ return {
         TEATREE = "Theoretically, its smell attracts those small rodents. Intriguing...",
         TEATREE_NUT = "My stomach condition prevents me from partaking in its health benefits.",
         TEATREE_NUT_COOKED = "Of a chewy consistency. Evidently, it's good for you.",
-        TEATREE_SAPLING = "Displays the same rapid growth rate of the other trees here.",
+        TEATREE_NUT_SAPLING = "Displays the same rapid growth rate of the other trees here.",
         TREE_PILLAR = "The circumference of this tree's trunk is unusually large.",
         WEEVOLE = "What a wonderfully persistent species of insect!",
         WEEVOLE_CARAPACE = "Excellent! It's the exoskeleton of a hexapod invertebrate!",

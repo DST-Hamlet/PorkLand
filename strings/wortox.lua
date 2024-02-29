@@ -91,7 +91,7 @@ return {
         TEATREE = "The foundation of the squirrel kingdom.",
         TEATREE_NUT = "Very nice nuts and clears up my nose.",
         TEATREE_NUT_COOKED = "Does this really make it better?",
-        TEATREE_SAPLING = "The future is promising.",
+        TEATREE_NUT_SAPLING = "The future is promising.",
         TREE_PILLAR = "Blot out the sun.",
         WEEVOLE = "don't bite me!",
         WEEVOLE_CARAPACE = "What remains of their armor.",

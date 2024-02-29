@@ -93,7 +93,7 @@ return {
         TEATREE = "Is strong but not strong like Wolfgang.",
         TEATREE_NUT = "Is good for Wolfgang's mighty sneezes.",
         TEATREE_NUT_COOKED = "Wolfgang eat tiny tree baby.",
-        TEATREE_SAPLING = "Is tiny little big tree.",
+        TEATREE_NUT_SAPLING = "Is tiny little big tree.",
         TREE_PILLAR = "Mightiest tree!",
         WEEVOLE = "Pesky bug. Leave Wolfgang alone!",
         WEEVOLE_CARAPACE = "Is pesky bug skin.",

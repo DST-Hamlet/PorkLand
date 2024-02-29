@@ -92,7 +92,7 @@ return {
         TEATREE = "Hey, is there a squirrel in the tree?",
         TEATREE_NUT = "Mom used to try this on me.",
         TEATREE_NUT_COOKED = "It actually tastes pretty good this way.",
-        TEATREE_SAPLING = "We are still a long way from a cozy squirrel home.",
+        TEATREE_NUT_SAPLING = "We are still a long way from a cozy squirrel home.",
         TREE_PILLAR = "Such a big tree, even werebeaver can't eat it all.",
         WEEVOLE = "Hey! Got you!",
         WEEVOLE_CARAPACE = "Let's put it away, it might be useful.",

@@ -93,7 +93,7 @@ return {
         TEATREE = "'Tis a growin' ship mast.",
         TEATREE_NUT = "A botan'cal barber-surgeon.",
         TEATREE_NUT_COOKED = "Grub.",
-        TEATREE_SAPLING = "'e'll be a fine one.",
+        TEATREE_NUT_SAPLING = "'e'll be a fine one.",
         TREE_PILLAR = "Vessel i'th'makin'.",
         WEEVOLE = "'ave at ye landlubbers!",
         WEEVOLE_CARAPACE = "Longcoat made o' them pesky bugs.",

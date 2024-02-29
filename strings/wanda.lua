@@ -92,7 +92,7 @@ return {
         TEATREE = "I have some impression of the shape of these leaves.",
         TEATREE_NUT = "A crude way to combat pollen in the air.",
         TEATREE_NUT_COOKED = "I appreciate the attempt, but this is just waste of time.",
-        TEATREE_SAPLING = "I should come back after it grows up.",
+        TEATREE_NUT_SAPLING = "I should come back after it grows up.",
         TREE_PILLAR = "Thankfully it doesn't completely block the sun.",
         WEEVOLE = "I remember it biting.",
         WEEVOLE_CARAPACE = "Evil, exudes a strange smell.",

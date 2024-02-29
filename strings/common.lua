@@ -50,7 +50,7 @@ return {
         TEATREE = "Tea Tree",
         TEATREE_NUT = "Seed Pod",
         TEATREE_NUT_COOKED = "Cooked Seed Pod",
-        TEATREE_SAPLING = "Tea Tree Sapling",
+        TEATREE_NUT_SAPLING = "Tea Tree Sapling",
         TREE_PILLAR = "Great Leafy Stalk",
         WEEVOLE = "Weevole",
         WEEVOLE_CARAPACE = "Weevole Carapace",
@@ -96,6 +96,12 @@ return {
             PL_CLOCKTYPE = "Clock Type",
             POISON = "Poison",
             PORKLAND_SEASON_START = "Hamlet Starting Season",
+            PRESETLEVELDESC = {
+                PORKLAND = "A deeply dangerous jungle?",
+            },
+            PRESETLEVELS = {
+                PORKLAND = "Hamlet",
+            },
             TEMPERATE = "Temperate",
             WEEVOLE_SETTING = "Weevole",
         },
