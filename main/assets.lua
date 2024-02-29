@@ -5,6 +5,7 @@ PrefabFiles = {
     "aporkalypse_clock",
     "armor_metalplate",
     "asparagus_planted",
+    "basefan",
     "chitin",
     "deep_jungle_fern_noise",
     "dungball",
@@ -27,6 +28,11 @@ PrefabFiles = {
     "pangolden",
     "peagawk",
     -- "peagawk_spawner",
+    "piko",
+    "pl_planted_tree",
+    "pl_preparedfoods",
+    "pl_veggies",
+    "pl_foodbuffs",
     "peagawkfeather",
     "poisonbubble",
     "porkland_network",
@@ -35,31 +41,25 @@ PrefabFiles = {
     "sedimentpuddle",
     "shears",
     "smelter",
+    "teatree_nut",
+    "teatrees",
     "tree_pillar",
     -- "tuber",
     -- "tubertrees",
     "weevole_carapace",
     "weevole",
-    "basefan",
-
-    "piko",
-    "pl_planted_tree",
-    "teatrees",
-    "teatree_nut",
-    "pl_preparedfoods",
-    "pl_foodbuffs",
-    "pl_veggies",
 }
 
 Assets = {
     -- minimap
-    Asset("IMAGE", "images/minimap/pl_minimap.tex"),
     Asset("ATLAS", "images/minimap/pl_minimap.xml"),
 
     -- inventoryimages
-    Asset("IMAGE", "images/pl_inventoryimages.tex"),
-    Asset("ATLAS", "images/pl_inventoryimages.xml"),
-    Asset("ATLAS_BUILD", "images/pl_inventoryimages.xml", 256),  -- for minisign
+    Asset("ATLAS", "images/hud/pl_inventoryimages.xml"),
+    Asset("ATLAS_BUILD", "images/hud/pl_inventoryimages.xml", 256),  -- for minisign
+
+    -- crafting menu icons
+    Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
 
     -- hud
     Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison
@@ -84,7 +84,7 @@ Assets = {
     Asset("ANIM", "anim/ripple_build.zip"),
 }
 
-ToolUtil.RegisterInventoryItemAtlas("images/pl_inventoryimages.xml")
+ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
 
 local sounds = {

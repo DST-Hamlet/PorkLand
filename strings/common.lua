@@ -71,6 +71,10 @@ return {
             FOOD_EFFECTS_ANTIHISTAMINE = "Clear the airway",
             FOOD_EFFECTS_SPEED_BOOST = "Accelerates movement",
         },
+        CRAFTING_FILTERS = {
+            ARCHAEOLOGY = "Treasure Hunting",
+            NAUTICAL = "Nautical",
+        },
         CUSTOMIZATIONSCREEN = {
             ASPARAGUS = "Asparagus",
             ASPARAGUS_REGROWTH = "Asparagus",

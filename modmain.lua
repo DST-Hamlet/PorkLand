@@ -3,8 +3,7 @@ local GetModConfigData = GetModConfigData
 GLOBAL.setfenv(1, GLOBAL)
 
 PL_CONFIG = {
-        -- Some of these may be treated as client-side, as indicated by the bool
-    locale = GetModConfigData("locale", true),
+    locale = GetModConfigData("locale", true), -- Some of these may be treated as client-side, as indicated by the bool
 }
 
 -- modimport("main/toolutil")
