@@ -70,3 +70,19 @@ function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, att
         end
     end)
 end
+
+function MakeAmphibiousCharacterPhysics(inst, mass, radius)
+    -- inst.entity:AddPhysics()
+    -- inst.Physics:SetMass(mass)
+    -- inst.Physics:SetCapsule(radius, 1)
+    -- inst.Physics:SetFriction(0)
+    -- inst.Physics:SetDamping(5)
+    -- inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
+    -- inst.Physics:ClearCollisionMask()
+    -- inst.Physics:CollidesWith(GetWorldCollision())
+    -- inst.Physics:CollidesWith(COLLISION.OBSTACLES)
+    -- inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+	-- inst.Physics:CollidesWith(COLLISION.WAVES)
+    -- inst.Physics:CollidesWith(COLLISION.INTWALL)
+    -- inst:AddTag("amphibious")
+end
