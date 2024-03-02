@@ -6,6 +6,7 @@ PrefabFiles = {
     "armor_metalplate",
     "asparagus_planted",
     "basefan",
+    "boats",
     "chitin",
     "deep_jungle_fern_noise",
     "dungball",
@@ -79,6 +80,7 @@ Assets = {
     Asset("ANIM", "anim/player_sneeze.zip"),
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
     Asset("ANIM", "anim/player_actions_panning.zip"),
+    Asset("ANIM", "anim/player_boat_onoff.zip"),
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),

@@ -8,6 +8,7 @@ local component_posts = {
     "clock",
     "colourcube",
     "combat",
+    "drownable",
     "edible",
     "floater",
     "grogginess",

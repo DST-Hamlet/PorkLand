@@ -11,6 +11,8 @@ local PL_ACTIONS = {
     PEAGAWK_TRANSFORM = Action({}),
     DIGDUNG = Action({mount_enabled = true}),
     MOUNTDUNG = Action({}),
+    EMBARK = Action({priority = 1, distance = 6}),
+    DISEMBARK = Action({priority = 1, distance = 2.5, invalid_hold_action=true}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -128,6 +130,19 @@ ACTIONS.MOUNTDUNG.validfn = function(act)
     end
 end
 
+ACTIONS.EMBARK.strfn = function(act)
+    local obj = act.target
+    if obj:HasTag("surfboard") then
+        return "SURF"
+    end
+end
+
+ACTIONS.EMBARK.fn = function(act)
+    if act.target.components.sailable then
+        act.doer.components.sailor:Embark(act.target)
+        return true
+    end
+end
 
 -- Patch for hackable things
 local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
@@ -179,10 +194,17 @@ end
 local PL_COMPONENT_ACTIONS =
 {
     SCENE = { -- args: inst, doer, actions, right
-
+        sailable = function(inst, doer, actions, right)
+            if inst:HasTag("sailable") and not (doer.replica.rider and doer.replica.rider:IsRiding()) then
+                if not right then
+                    table.insert(actions, ACTIONS.EMBARK)
+                end
+            end
+        end
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right
+
     },
 
     POINT = { -- args: inst, doer, pos, actions, right, target
@@ -195,8 +217,8 @@ local PL_COMPONENT_ACTIONS =
 
     INVENTORY = { -- args: inst, doer, actions, right
 
-
     },
+
     ISVALID = { -- args: inst, action, right
         hackable = function(inst, action, right)
             return action == ACTIONS.HACK and inst:HasTag("HACK_workable")

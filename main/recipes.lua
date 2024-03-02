@@ -57,3 +57,5 @@ SortAfter("goldpan", "goldenpitchfork", "TOOLS")
 AddRecipe2("basefan", {Ingredient("alloy", 2), Ingredient("transistor", 2), Ingredient("gears", 1)}, TECH.SCIENCE_TWO, {placer = "basefan_placer"}, {"STRUCTURES", "RAIN"})
 SortBefore("basefan", "firesuppressor", "STRUCTURES")
 SortBefore("basefan", "rainometer", "RAIN")
+
+AddRecipe2("lograft", {Ingredient("log", 6), Ingredient("cutgrass", 4)}, TECH.NONE, {placer = "lograft_placer", build_mode = BUILDMODE.AQUATIC}, {"NAUTICAL"})
