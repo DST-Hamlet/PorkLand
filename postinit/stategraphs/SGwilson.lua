@@ -27,6 +27,15 @@ local actionhandlers = {
             end
         end
     end),
+    ActionHandler(ACTIONS.CUREPOISON, function(inst, action)
+        local target = action.target
+
+        if not target or target == inst then
+            return "curepoison"
+        else
+            return "give"
+        end
+    end),
 }
 
 local eventhandlers = {
@@ -454,6 +463,51 @@ local states = {
                     inst.sg:GoToState("idle")
                 end
             end),
+        },
+    },
+ 
+    State{
+        name = "curepoison",
+        tags = {"busy"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("quick_eat")
+        end,
+
+        timeline =
+        {
+            TimeEvent(12 * FRAMES, function(inst)
+                inst:PerformBufferedAction()
+                inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/player_drink")
+                inst.sg:RemoveStateTag("busy")
+            end),
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst) inst.sg:GoToState("celebrate") end),
+        },
+    },
+
+    State{
+        name = "celebrate",
+        tags = {"idle"},
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("research")
+        end,
+
+        timeline =
+        {
+            TimeEvent(8 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/antivenom_whoosh") end),
+            TimeEvent(13 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/heelclick") end),
+            TimeEvent(21 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/heelclick") end),
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
         },
     },
 }
