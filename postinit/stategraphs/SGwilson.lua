@@ -5,6 +5,8 @@ local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.EMBARK, "embark"),
+    ActionHandler(ACTIONS.DISEMBARK, "disembark"),
     ActionHandler(ACTIONS.HACK, function(inst)
         if inst:HasTag("beaver") then
             return not inst.sg:HasStateTag("gnawing") and "gnaw" or nil
@@ -354,6 +356,117 @@ local states = {
     },
 
     State{
+        name = "embark",
+        tags = {"canrotate", "boating", "busy", "nomorph", "nopredict"},
+        onenter = function(inst)
+            local action = inst:GetBufferedAction()
+            if action.target and action.target.components.sailable and action.target.components.sailable:CanSail() then
+                action.target.components.sailable.isembarking = true
+                if inst.components.sailor and inst.components.sailor:IsSailing() then
+                    inst.components.sailor:Disembark(nil, true)
+                else
+                    inst.sg:GoToState("jumponboatstart")
+                end
+            else
+                inst.sg:GoToState("idle")
+                inst:PushEvent("actionfailed", { action = action, reason = "INUSE" })
+                inst:ClearBufferedAction()
+            end
+        end,
+    },
+
+    State{
+        name = "jumponboatstart",
+        tags = { "doing", "nointerupt", "canrotate", "busy", "nomorph", "nopredict", "temp_invincible"},
+        onenter = function(inst)
+            if inst.Physics.ClearCollidesWith then
+                inst.Physics:ClearCollidesWith(COLLISION.LIMITS) -- R08_ROT_TURNOFTIDES
+            end
+            inst.components.locomotor:StopMoving()
+            inst.AnimState:PlayAnimation("jumpboat")
+            inst.SoundEmitter:PlaySound("ia/common/boatjump_whoosh")
+
+            local action = inst:GetBufferedAction()
+            inst.sg.statemem.startpos = inst:GetPosition()
+            inst.sg.statemem.targetpos = action.target and action.target:GetPosition()
+
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(false)
+                inst.components.playercontroller:RemotePausePrediction()
+            end
+        end,
+
+        onexit = function(inst)
+            if inst.Physics.ClearCollidesWith then
+                inst.Physics:CollidesWith(COLLISION.LIMITS) -- R08_ROT_TURNOFTIDES
+            end
+
+            inst.components.locomotor:Stop()
+
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(true)
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(7 * FRAMES, function(inst)
+                inst:ForceFacePoint(inst.sg.statemem.targetpos:Get())
+                local dist = inst:GetPosition():Dist(inst.sg.statemem.targetpos)
+                local speed = dist / (18 / 30)
+                inst.Physics:SetMotorVelOverride(speed, 0, 0)
+            end),
+        },
+
+        events = {
+            EventHandler("animover", function(inst)
+                if inst.components.playercontroller ~= nil then
+                    inst.components.playercontroller:Enable(true)
+                end
+
+                inst.sg:RemoveStateTag("temp_invincible")
+                inst.Transform:SetPosition(inst.sg.statemem.targetpos:Get())
+                inst.Physics:Stop()
+
+                inst.components.locomotor:Stop()
+                inst:PerformBufferedAction()
+            end),
+        },
+    },
+
+    State{
+        name = "jumpboatland",
+        tags = { "doing", "nointerupt", "busy", "canrotate", "invisible", "nomorph", "nopredict", "temp_invincible"},
+
+        onenter = function(inst, pos)
+            if inst.Physics.ClearCollidesWith then
+                inst.Physics:CollidesWith(COLLISION.LIMITS) -- R08_ROT_TURNOFTIDES
+            end
+
+            inst.Physics:Stop()
+            inst.AnimState:PlayAnimation("landboat")
+            local boat = inst.components.sailor.boat
+            if boat and boat.landsound then
+                inst.SoundEmitter:PlaySound(boat.landsound)
+            end
+        end,
+
+        onexit = function(inst)
+            if inst.components.drydrownable ~= nil and inst.components.drydrownable:ShouldDrown() then
+                inst:PushEvent("onhitcoastline")
+            end
+        end,
+
+        events = {
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
+    },
+ 
+    State{
         name = "curepoison",
         tags = {"busy"},
 
@@ -379,7 +492,7 @@ local states = {
 
     State{
         name = "celebrate",
-        tags ={"idle"},
+        tags = {"idle"},
         onenter = function(inst)
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("research")

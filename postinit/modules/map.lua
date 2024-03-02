@@ -138,13 +138,13 @@ function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
     return _IsAboveGroundAtPoint(self, x, y, z, ...)
 end
 
--- local _CanDeployRecipeAtPoint = Map.CanDeployRecipeAtPoint
--- function Map:CanDeployRecipeAtPoint(pt, recipe, rot, ...)
---     if recipe.build_mode == BUILDMODE.AQUATIC then
---         local pt_x, pt_y, pt_z = pt:Get()
---         local is_valid_ground = self:ReverseIsVisualWaterAtPoint(pt_x, pt_y, pt_z)
---         return is_valid_ground and (recipe.testfn == nil or recipe.testfn(pt, rot))
---     end
+local _CanDeployRecipeAtPoint = Map.CanDeployRecipeAtPoint
+function Map:CanDeployRecipeAtPoint(pt, recipe, rot, ...)
+    if recipe.build_mode == BUILDMODE.AQUATIC then
+        local pt_x, pt_y, pt_z = pt:Get()
+        local is_valid_ground = self:ReverseIsVisualWaterAtPoint(pt_x, pt_y, pt_z)
+        return is_valid_ground and (recipe.testfn == nil or recipe.testfn(pt, rot))
+    end
 
---     return _CanDeployRecipeAtPoint(self, pt, recipe, rot, ...)
--- end
+    return _CanDeployRecipeAtPoint(self, pt, recipe, rot, ...)
+end

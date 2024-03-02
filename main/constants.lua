@@ -17,10 +17,5 @@ FOG_STATE = {
 }
 
 FOODTYPE.GOLDDUST = "GOLDDUST"
-FOODGROUP.GOLDDUST = {
-    name = "GOLDDUST",
-    types =
-    {
-        FOODTYPE.GOLDDUST,
-    },
-}
+
+BUILDMODE.AQUATIC = 3

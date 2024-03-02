@@ -30,6 +30,7 @@ AddPlayerPostInit(function(inst)
         inst:AddComponent("hayfever")
     end
 
+    inst:AddComponent("sailor")
 
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)
