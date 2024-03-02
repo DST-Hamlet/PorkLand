@@ -9,8 +9,9 @@ local PL_ACTIONS = {
     PANGOLDEN_DRINK = Action({distance = 1.2}),
     PANGOLDEN_POOP = Action({distance = 1.2}),
     PEAGAWK_TRANSFORM = Action({}),
-    DIGDUNG = Action({mount_enabled = true}),
+    DIGDUNG = Action({mount_valid = true}),
     MOUNTDUNG = Action({}),
+    CUREPOISON = Action({mount_valid = true}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -128,6 +129,18 @@ ACTIONS.MOUNTDUNG.validfn = function(act)
     end
 end
 
+ACTIONS.CUREPOISON.strfn = function(act)
+    if act.invobject and act.invobject:HasTag("venomgland") then
+        return "GLAND"
+    end
+end
+
+ACTIONS.CUREPOISON.fn = function(act)
+    if act.invobject and act.invobject.components.poisonhealer then
+        local target = act.target or act.doer
+        return act.invobject.components.poisonhealer:Cure(target)
+    end
+end
 
 -- Patch for hackable things
 local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
@@ -183,6 +196,15 @@ local PL_COMPONENT_ACTIONS =
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right
+        poisonhealer = function (inst, doer, target, actions, right)
+            if target and target:HasTag("poisonable") then
+                if target:HasTag("poison") or (target:HasTag("player") and
+                    ((target.components.poisonable and target.components.poisonable:IsPoisoned()) or
+                    (target.player_classified and target.player_classified.ispoisoned:value()))) then
+                    table.insert(actions, ACTIONS.CUREPOISON)
+                end
+            end
+        end,
     },
 
     POINT = { -- args: inst, doer, pos, actions, right, target
@@ -194,8 +216,13 @@ local PL_COMPONENT_ACTIONS =
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
-
-
+        poisonhealer = function(inst, doer, actions, right)
+            if doer:HasTag("poisonable") and (doer:HasTag("player") and
+                ((doer.components.poisonable and doer.components.poisonable:IsPoisoned()) or
+                (doer.player_classified and doer.player_classified.ispoisoned:value()))) then
+                table.insert(actions, ACTIONS.CUREPOISON)
+            end
+        end,
     },
     ISVALID = { -- args: inst, action, right
         hackable = function(inst, action, right)

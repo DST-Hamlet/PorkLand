@@ -219,7 +219,7 @@ local tuning = {
     SNAKE_ATTACK_PERIOD = 3,
     SNAKE_POISON_CHANCE = 0.25,
     SNAKE_POISON_START_DAY = 3, -- the day that poison snakes have a chance to show up
-    SNAKEDEN_REGEN_TIME = 3*seg_time,
+    SNAKEDEN_REGEN_TIME = 3 * seg_time,
     SNAKEDEN_RELEASE_TIME = 5,
     SNAKE_JUNGLETREE_CHANCE = 0.5, -- chance of a normal snake
     SNAKE_JUNGLETREE_POISON_CHANCE = 0.25, -- chance of a poison snake
@@ -230,6 +230,14 @@ local tuning = {
     SNAKEDEN_CHECK_DIST = 20,
     SNAKEDEN_TRAP_DIST = 2,
 
+    HIPPO_DAMAGE = 50,
+    HIPPO_HEALTH = 500,
+    HIPPO_ATTACK_PERIOD = 2,
+    HIPPO_WALK_SPEED = 5,
+    HIPPO_RUN_SPEED = 6,
+    HIPPO_TARGET_DIST = 12,
+    HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 1.5,
+    HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.5,
 }
 
 for key, value in pairs(tuning) do

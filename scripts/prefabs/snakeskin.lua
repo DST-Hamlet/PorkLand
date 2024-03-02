@@ -22,7 +22,8 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst, "idle_water", "idle")
+    MakeInventoryFloatable(inst)
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
     inst.entity:SetPristine()
 
@@ -33,12 +34,16 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
+    if TheWorld:HasTag("porkland") then
+        inst.components.inventoryitem:ChangeImageName("snakeskin_scaly")
+    end
 
     inst:AddComponent("stackable")
     inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
     MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
+    MakeHauntableLaunch(inst)
     MakeSmallPropagator(inst)
 
     return inst

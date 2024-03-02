@@ -111,7 +111,7 @@ local function fn()
     inst:AddTag("snake_amphibious")
     -- inst:AddTag("breederpredator") This is for fishfarm, should I remove this?
 
-    MakeCharacterPhysics(inst, 1, 0.5)
+    MakeAmphibiousCharacterPhysics(inst, 1, 0.5)
 
     inst.entity:SetPristine()
 
@@ -127,7 +127,7 @@ local function fn()
     inst:AddComponent("follower")
 
     inst:AddComponent("eater")
-    inst.components.eater:SetDiet({ FOODTYPE.MEAT }, { FOODTYPE.MEAT })
+    inst.components.eater:SetDiet({FOODTYPE.MEAT }, { FOODTYPE.MEAT})
     inst.components.eater:SetCanEatHorrible()
     inst.components.eater.strongstomach = true -- can eat monster meat!
 
@@ -161,7 +161,7 @@ local function fn()
     inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
 
     MakeMediumFreezableCharacter(inst, "body")
-    MakeMediumBurnableCharacter(inst, "body")
+    MakeMediumBurnableCharacter(inst) --, "body")
     MakeHauntablePanic(inst)
 
     inst:SetBrain(brain)

@@ -34,6 +34,7 @@ local function fn()
     inst:AddComponent("poisonhealer")
     inst.components.poisonhealer.enabled = false
 
+    MakeHauntableLaunch(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.HEAVY, TUNING.WINDBLOWN_SCALE_MAX.HEAVY)
 
     return inst
