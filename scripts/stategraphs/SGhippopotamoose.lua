@@ -89,7 +89,6 @@ local states=
     },
 
     State{
-
         name = "leap_attack_pre",
         tags = {"attack", "canrotate", "busy", "leapattack"},
 
@@ -100,12 +99,11 @@ local states=
             inst.sg.statemem.targetpos = Vector3(target.Transform:GetWorldPosition())
         end,
 
-        events=
+        events =
         {
-            EventHandler("animover", function(inst) inst.sg:GoToState("leap_attack",{startpos = inst.sg.statemem.startpos, targetpos = inst.sg.statemem.targetpos}) end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("leap_attack", {startpos = inst.sg.statemem.startpos, targetpos = inst.sg.statemem.targetpos}) end),
         },
     },
-
 
     State{
 
@@ -170,6 +168,10 @@ local states=
             inst.AnimState:PlayAnimation("jump_atk_pst")
 
             inst.components.combat.lastattacktime = GetTime()
+        end,
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:OnUpdate()
         end,
 
         events =

@@ -72,15 +72,19 @@ end
 local function OnEnterWater(inst)
     inst.DynamicShadow:Enable(false)
 
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("submerge", noanim)
+    if not inst.sg:HasStateTag("leapattack") then
+        local noanim = inst:GetTimeAlive() < 1
+        inst.sg:GoToState("submerge", noanim)
+    end
 end
 
 local function OnExitWater(inst)
     inst.DynamicShadow:Enable(true)
 
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("emerge", noanim)
+    if not inst.sg:HasStateTag("leapattack") then
+        local noanim = inst:GetTimeAlive() < 1
+        inst.sg:GoToState("emerge", noanim)
+    end
 end
 
 local function fn()
