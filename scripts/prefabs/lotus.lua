@@ -29,7 +29,7 @@ local function OnPicked(inst)
     end
 
     local lotus_position = inst:GetPosition()
-    local offset = FindSwimmableOffset(lotus_position, 0, BILL_SPAWN_DIST, nil, nil, false, nil, false)
+    local offset = FindSwimmableOffset(lotus_position, math.random() * PI * 2, BILL_SPAWN_DIST, nil, nil, false, nil, false)
 
     if offset then
         local spawn_point = lotus_position + offset

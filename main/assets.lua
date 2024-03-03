@@ -29,6 +29,7 @@ PrefabFiles = {
     "iron",
     "pl_wave_shore",
     "jungle_border_vine",
+    "lilypad",
     "lotus",
     "lotus_flower",
     "machete",

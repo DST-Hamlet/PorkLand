@@ -254,6 +254,11 @@ local tuning = {
     BILL_SPAWN_CHANCE = 0.2,
 
     LOTUS_REGROW_TIME = total_day_time * 5,
+
+    MOSQUITO_MAX_SPAWN = 1,
+    MOSQUITO_REGEN_TIME = day_time/2,
+    FROG_POISON_MAX_SPAWN = 1,
+    FROG_POISON_REGEN_TIME = day_time/2,
 }
 
 for key, value in pairs(tuning) do
