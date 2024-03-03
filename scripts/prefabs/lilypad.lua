@@ -19,10 +19,10 @@ function MakeLilypadPhysics(inst, rad)
     inst.Physics:SetCapsule(rad,0.01)
     inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
     inst.Physics:ClearCollisionMask()
-    -- inst.Physics:CollidesWith(COLLISION.ITEMS)
+    inst.Physics:CollidesWith(COLLISION.ITEMS)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-    -- inst.Physics:CollidesWith(COLLISION.WAVES)
-    -- inst.Physics:CollidesWith(COLLISION.INTWALL)
+    inst.Physics:CollidesWith(COLLISION.WAVES)
+    inst.Physics:CollidesWith(COLLISION.WORLD)
 end
 
 local SIZES = {
@@ -123,6 +123,7 @@ local function fn()
     RefreshBuild(inst)
 
     inst:AddTag("lilypad")
+    inst:AddTag("waveobstacle")
 
     inst.entity:SetPristine()
 

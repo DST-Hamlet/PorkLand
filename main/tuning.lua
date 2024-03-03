@@ -259,6 +259,11 @@ local tuning = {
     MOSQUITO_REGEN_TIME = day_time/2,
     FROG_POISON_MAX_SPAWN = 1,
     FROG_POISON_REGEN_TIME = day_time/2,
+
+    WAVE_HIT_MOISTURE = 15,
+    WAVE_HIT_DAMAGE = 5,
+    ROGUEWAVE_HIT_MOISTURE = 25,
+    ROGUEWAVE_HIT_DAMAGE = 10,
 }
 
 for key, value in pairs(tuning) do

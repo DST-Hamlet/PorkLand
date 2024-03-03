@@ -60,6 +60,7 @@ PrefabFiles = {
     "tree_pillar",
     -- "tuber",
     -- "tubertrees",
+    "wave_ripple",
     "venomgland",
     "weevole_carapace",
     "weevole",
