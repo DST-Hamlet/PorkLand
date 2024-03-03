@@ -26,6 +26,13 @@ local pl_fx = {
         fn = FinalOffset1,
     },
     {
+    	name = "splash_water",
+    	bank = "splash_water",
+    	build = "splash_water",
+    	anim = "idle",
+        fn = TintOceantFx,
+	},
+    {
         name = "splash_water_drop",
         bank = "splash_water_drop",
         build = "splash_water_drop",

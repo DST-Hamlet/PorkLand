@@ -129,6 +129,10 @@ local tuning = {
         {time = 2.90 * total_day_time, damage_scale = 2.00, interval_scale = 0.5, fxlevel = 4}, -- 38.40 DMG
     },
 
+    -- standard poison vars
+    VENOM_GLAND_DAMAGE = 75,
+    VENOM_GLAND_MIN_HEALTH = 5,
+
     FOG_MOISTURE_RATE_SCALE = 0.6,
 
     WINDBLOWN_DESTROY_DIST = 15,  -- distance from player wind blown prefabs can be destroyed, fall over, get picked, etc
@@ -238,6 +242,28 @@ local tuning = {
     HIPPO_TARGET_DIST = 12,
     HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 1.5,
     HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.5,
+
+    BILL_TUMBLE_SPEED = 8,
+    BILL_RUN_SPEED = 5,
+    BILL_DAMAGE = wilson_attack * 0.5,
+    BILL_HEALTH = 250,
+    BILL_ATTACK_PERIOD = 3,
+    BILL_TARGET_DIST = 50,
+    BILL_AGGRO_DIST = 15,
+    BILL_EAT_DELAY = 3.5,
+    BILL_SPAWN_CHANCE = 0.2,
+
+    LOTUS_REGROW_TIME = total_day_time * 5,
+
+    MOSQUITO_MAX_SPAWN = 1,
+    MOSQUITO_REGEN_TIME = day_time/2,
+    FROG_POISON_MAX_SPAWN = 1,
+    FROG_POISON_REGEN_TIME = day_time/2,
+
+    WAVE_HIT_MOISTURE = 15,
+    WAVE_HIT_DAMAGE = 5,
+    ROGUEWAVE_HIT_MOISTURE = 25,
+    ROGUEWAVE_HIT_DAMAGE = 10,
 }
 
 for key, value in pairs(tuning) do

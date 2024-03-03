@@ -141,6 +141,8 @@ ACTIONS.CUREPOISON.fn = function(act)
     if act.invobject and act.invobject.components.poisonhealer then
         local target = act.target or act.doer
         return act.invobject.components.poisonhealer:Cure(target)
+    end
+end
 
 ACTIONS.EMBARK.strfn = function(act)
     local obj = act.target

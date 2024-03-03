@@ -157,7 +157,7 @@ local states=
 
         onenter = function(inst, target)
             local x, y, z = inst.Transform:GetWorldPosition()
-            if not TheWorld.Map:IsOceanTileAtPoint(x, y ,z) then
+            if not TheWorld.Map:IsOceanTileAtPoint(x, y, z) then
                 inst.components.groundpounder:GroundPound()
                 inst.SoundEmitter:PlaySound("dontstarve_DLC001/creatures/bearger/groundpound",nil, 0.5)
             end

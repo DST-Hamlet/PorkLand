@@ -10,43 +10,43 @@ function GetWorldSetting(setting, default)
 end
 
 function SpawnWaves(inst, num_waves, total_angle, wave_speed, wave_prefab, initialOffset, idleTime, instantActive, random_angle)
-    -- wave_prefab = wave_prefab or "rogue_wave"
-    -- total_angle = math.clamp(total_angle, 1, 360)
+    wave_prefab = wave_prefab or "rogue_wave"
+    total_angle = math.clamp(total_angle, 1, 360)
 
-    -- local pos = inst:GetPosition()
-    -- local start_angle = (random_angle and math.random(-180, 180)) or inst.Transform:GetRotation()
-    -- local angle_per_wave = total_angle/(num_waves - 1)
+    local pos = inst:GetPosition()
+    local start_angle = (random_angle and math.random(-180, 180)) or inst.Transform:GetRotation()
+    local angle_per_wave = total_angle/(num_waves - 1)
 
-    -- if total_angle == 360 then
-    --     angle_per_wave = total_angle/num_waves
-    -- end
+    if total_angle == 360 then
+        angle_per_wave = total_angle/num_waves
+    end
 
-    -- for i = 0, num_waves - 1 do
-    --     local wave = SpawnPrefab(wave_prefab)
+    for i = 0, num_waves - 1 do
+        local wave = SpawnPrefab(wave_prefab)
 
-    --     local angle = (start_angle - (total_angle/2)) + (i * angle_per_wave)
-    --     local rad = initialOffset or (inst.Physics and inst.Physics:GetRadius()) or 0
-    --     local total_rad = rad + wave.Physics:GetRadius() + 0.1
-    --     local offset = Vector3(math.cos(angle * DEGREES), 0, -math.sin(angle * DEGREES)):Normalize()
-    --     local wavepos = pos + (offset * total_rad)
+        local angle = (start_angle - (total_angle/2)) + (i * angle_per_wave)
+        local rad = initialOffset or (inst.Physics and inst.Physics:GetRadius()) or 0
+        local total_rad = rad + wave.Physics:GetRadius() + 0.1
+        local offset = Vector3(math.cos(angle * DEGREES), 0, -math.sin(angle * DEGREES)):Normalize()
+        local wavepos = pos + (offset * total_rad)
 
-    --     if inst:GetIsOnWater(wavepos:Get()) then
-    --         wave.Transform:SetPosition(wavepos:Get())
+        if TheWorld.Map:IsOceanTileAtPoint(wavepos.x, wavepos.y, wavepos.z) then
+            wave.Transform:SetPosition(wavepos:Get())
 
-    --         local speed = wave_speed or 6
-    --         wave.Transform:SetRotation(angle)
-    --         wave.Physics:SetMotorVel(speed, 0, 0)
-    --         wave.idle_time = idleTime or 5
+            local speed = wave_speed or 6
+            wave.Transform:SetRotation(angle)
+            wave.Physics:SetMotorVel(speed, 0, 0)
+            wave.idle_time = idleTime or 5
 
-    --         if instantActive then
-    --             wave.sg:GoToState("idle")
-    --         end
+            if instantActive then
+                wave.sg:GoToState("idle")
+            end
 
-    --         if wave.soundtidal then
-    --             wave.SoundEmitter:PlaySound("dontstarve_DLC002/common/rogue_waves/"..wave.soundtidal)
-    --         end
-    --     else
-    --         wave:Remove()
-    --     end
-    -- end
+            if wave.soundtidal then
+                wave.SoundEmitter:PlaySound("dontstarve_DLC002/common/rogue_waves/"..wave.soundtidal)
+            end
+        else
+            wave:Remove()
+        end
+    end
 end
