@@ -22,7 +22,8 @@ local events=
                 inst.sg:GoToState("idle")
             end
         else
-            if inst.onwater then
+            local x, y, z = inst.Transform:GetWorldPosition()
+            if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                 if not inst.sg:HasStateTag("swimming") then
                     inst.sg:GoToState("swim")
                 end
@@ -204,7 +205,7 @@ local states=
         {
             TimeEvent(18 * FRAMES, function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()
-                if not TheWorld.Map:IsOceanTileAtPoint(x, y, z) then
+                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                     inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/water/small_submerge")
                 end
             end),
@@ -213,7 +214,7 @@ local states=
             TimeEvent(25 * FRAMES, function(inst) inst.components.combat:DoAttack() end),
             TimeEvent(38 * FRAMES, function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()
-                if not TheWorld.Map:IsOceanTileAtPoint(x, y, z) then
+                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                     inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/water/small_splash")
                 end
             end),
@@ -437,4 +438,4 @@ CommonStates.AddSleepStates(states,
 })
 CommonStates.AddFrozenStates(states)
 
-return StateGraph("frog", states, events, "idle", actionhandlers)
+return StateGraph("pl_frog", states, events, "idle", actionhandlers)

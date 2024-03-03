@@ -173,8 +173,8 @@ local function fn()
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("goinghome", OnGoingHome)
 
-    -- burnable?
     MakeTinyFreezableCharacter(inst, "frogsack")
+    MakeSmallBurnableCharacter(inst, "frogsack")
     MakeHauntablePanic(inst)
 
     inst.OnSave = OnSave

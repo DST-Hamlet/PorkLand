@@ -106,7 +106,6 @@ local states=
     },
 
     State{
-
         name = "leap_attack",
         tags = {"attack", "canrotate", "busy", "leapattack"},
 
@@ -149,7 +148,6 @@ local states=
             EventHandler("animover", function(inst) inst.sg:GoToState("leap_attack_pst") end),
         },
     },
-
 
     State{
         name = "leap_attack_pst",
@@ -323,12 +321,14 @@ CommonStates.AddWalkStates(states, {
             TimeEvent(7 * FRAMES, function(inst) inst.components.locomotor:WalkForward() end),
             TimeEvent(10 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/in") end),
             TimeEvent(19*FRAMES, function(inst)
-                if not inst.onwater then
+                local x, y, z = inst.Transform:GetWorldPosition()
+                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
                 end
             end ),
             TimeEvent(20 * FRAMES, function(inst)
-                if not inst.onwater then
+                local x, y, z = inst.Transform:GetWorldPosition()
+                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                     if inst:HasTag("lightshake") then
                         TheCamera:Shake("VERTICAL", 0.3, 0.05, 0.05)
                     else
@@ -356,13 +356,15 @@ CommonStates.AddRunStates(states,{
         TimeEvent(7 * FRAMES, function(inst) inst.components.locomotor:WalkForward() end),
         TimeEvent(10 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/in") end),
         TimeEvent(19 * FRAMES, function(inst)
-            if not inst.onwater then
+            local x, y, z = inst.Transform:GetWorldPosition()
+            if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
             end
         end ),
 
         TimeEvent(20 * FRAMES, function(inst)
-            if not inst.onwater then
+            local x, y, z = inst.Transform:GetWorldPosition()
+            if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                 if inst:HasTag("lightshake") then
                     TheCamera:Shake("VERTICAL", 0.3, 0.05, 0.05)
                 else
