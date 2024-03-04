@@ -24,15 +24,8 @@ local events=
         end
     end),
 
-    -- Put these two in CommonHandlers?
-    EventHandler("switch_to_water", function(inst)
-        local noanim = inst:GetTimeAlive() < 1
-        inst.sg:GoToState("submerge", noanim)
-    end),
-    EventHandler("switch_to_water", function(inst)
-        local noanim = inst:GetTimeAlive() < 1
-        inst.sg:GoToState("emerge", noanim)
-    end),
+    CommonHandlers.OnExitWater(),
+    CommonHandlers.OnEnterWater(),
 }
 
 local states=
@@ -250,6 +243,8 @@ local states=
         tags = {"canrotate", "busy"},
 
         onenter = function(inst, noanim)
+            inst.components.knownlocations:RememberLocation("landing_point", inst:GetPosition())
+
             if noanim then
                 inst.AnimState:SetBank("hippo")
                 inst.sg:GoToState("idle")
@@ -291,6 +286,8 @@ local states=
         tags = {"canrotate", "busy"},
 
         onenter = function(inst, noanim)
+            inst.components.knownlocations:ForgetLocation("landing_point")
+
             if noanim then
                 inst.AnimState:SetBank("hippo_water")
                 inst.sg:GoToState("idle")

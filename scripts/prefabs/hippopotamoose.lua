@@ -1,4 +1,4 @@
-local assets=
+local assets =
 {
 	Asset("ANIM", "anim/hippo_basic.zip"),
     Asset("ANIM", "anim/hippo_attacks.zip"),
@@ -25,34 +25,32 @@ SetSharedLootTable("hippopotamoose",
 
 local brain = require("brains/hippopotamoosebrain")
 
-local SLEEP_DIST_FROMHOME = 1
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 40
 
-local function ShouldSleep(inst)
-    local home_position = inst.components.knownlocations:GetLocation("home")
-    local x, y, z = inst.Transform:GetWorldPosition()
+local WAKE_TO_FACE_DISTANCE = 10
+local SLEEP_NEAR_ENEMY_DISTANCE = 12
 
-    return (home_position and VecUtil_DistSq(home_position.x, home_position.z, x, z) <= SLEEP_DIST_FROMHOME * SLEEP_DIST_FROMHOME)
-        and not (inst.components.combat ~= nil and inst.components.combat.target ~= nil)
-        and not (inst.components.burnable ~= nil and inst.components.burnable:IsBurning())
-        and not (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen())
-        and not (inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned())
-        and not inst.sg:HasStateTag("busy")
-        and TheWorld.state.isnight
-end
-
-local function ShouldWake(inst)
-    local home_position = inst.components.knownlocations:GetLocation("home")
-    local x, y, z = inst.Transform:GetWorldPosition()
-
-    return (home_position and VecUtil_DistSq(home_position.x, home_position.z, x, z) > SLEEP_DIST_FROMHOME * SLEEP_DIST_FROMHOME)
-        or (inst.components.combat ~= nil and inst.components.combat.target ~= nil)
+local function ShouldWakeUp(inst)
+    local target = GetClosestInstWithTag("character", inst, WAKE_TO_FACE_DISTANCE)
+    return  (inst.components.combat ~= nil and inst.components.combat.target ~= nil)
         or (inst.components.burnable ~= nil and inst.components.burnable:IsBurning())
         or (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen())
         or (inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned())
-        or (inst.components.health ~= nil and inst.components.health.takingfiredamage)
-        or not TheWorld.state.isnight
+        or (TheWorld.state.isday and target and not target:HasTag("playerghost") and not target:HasTag("notarget"))
+        or TheWorld.state.isdusk
+end
+
+local function ShouldSleep(inst)
+    local target = GetClosestInstWithTag("character", inst, SLEEP_NEAR_ENEMY_DISTANCE)
+    return not (inst.components.combat ~= nil and inst.components.combat.target ~= nil)
+    and not (inst.components.burnable ~= nil and inst.components.burnable:IsBurning())
+    and not (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen())
+    and not(inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned())
+    and not inst.sg:HasStateTag("busy")
+    and not (target and not target:HasTag("playerghost"))
+    and inst.components.amphibiouscreature.in_water
+    or TheWorld.state.isnight
 end
 
 local function OnAttacked(inst, data)
@@ -83,13 +81,14 @@ local function fn()
     inst:AddTag("huff_idle")
     inst:AddTag("wavemaker")
     inst:AddTag("lightshake")
-    -- inst:AddTag("groundpoundimmune")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst:AddComponent("knownlocations")
 
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = TUNING.HIPPO_WALK_SPEED
@@ -100,7 +99,8 @@ local function fn()
     inst.components.lootdropper:SetChanceLootTable("hippopotamoose")
 
     inst:AddComponent("sleeper")
-    inst.components.sleeper:SetDefaultTests()
+    inst.components.sleeper:SetSleepTest(ShouldSleep)
+    inst.components.sleeper:SetWakeTest(ShouldWakeUp)
     inst.components.sleeper:SetResistance(3)
 
     inst:AddComponent("combat")
@@ -120,8 +120,6 @@ local function fn()
     table.insert(inst.components.groundpounder.noTags, "hippopotamoose")
 
     inst:AddComponent("inspectable")
-
-    inst:AddComponent("knownlocations")
 
     inst:AddComponent("herdmember")
     inst.components.herdmember:SetHerdPrefab("hippoherd")

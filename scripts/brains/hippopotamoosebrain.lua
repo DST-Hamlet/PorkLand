@@ -7,60 +7,27 @@ require("behaviours/chaseandattack")
 
 local BrainCommon = require("brains/braincommon")
 
-local START_FACE_DIST = 4
-local KEEP_FACE_DIST = 6
-local WANDER_DIST_DAY = 20
-local WANDER_DIST_NIGHT = 5
-local GO_HOME_DIST = 40
+local START_FACE_DIST = 10
+local KEEP_FACE_DIST = 12
+local WANDER_DIST_DAY = 32
+local WANDER_DIST_DUSK = 16
 local MAX_JUMP_ATTACK_RANGE = 9
 local MAX_CHASE_TIME = 6
-local CHASE_GIVEUP_DIST = 10
+local MAX_WANDER_DIST = 32
 
 local function GetWanderDistance(inst)
-    return TheWorld.state.isday and WANDER_DIST_DAY or WANDER_DIST_NIGHT
-end
-
-local function GoHomeAction(inst)
-    local home_position = inst.components.knownlocations:GetLocation("home")
-    if home_position and not inst.components.combat.target then
-        return BufferedAction(inst, nil, ACTIONS.WALKTO, nil, home_position, nil, 0.2)
-    end
+    return TheWorld.state.isdusk and WANDER_DIST_DUSK or WANDER_DIST_DAY
 end
 
 local function GetFaceTargetFn(inst)
-    local home_position = inst.components.knownlocations:GetLocation("home")
-    local x, y, z = inst.Transform:GetWorldPosition()
-
-    if (home_position and VecUtil_DistSq(home_position.x, home_position.z, x, z) > GO_HOME_DIST * GO_HOME_DIST) then
-        return
-    end
-
-    local target = GetClosestInstWithTag("player", inst, START_FACE_DIST)
+    local target = GetClosestInstWithTag("character", inst, START_FACE_DIST)
     if target and not target:HasTag("notarget") and not target:HasTag("playerghost") then
         return target
     end
 end
 
 local function KeepFaceTargetFn(inst, target)
-    local home_position = inst.components.knownlocations:GetLocation("home")
-    local x, y, z = inst.Transform:GetWorldPosition()
-
-    if (home_position and VecUtil_DistSq(home_position.x, home_position.z, x, z) > GO_HOME_DIST * GO_HOME_DIST) then
-        return
-    end
-
-    return inst:GetDistanceSqToInst(target) <= KEEP_FACE_DIST * KEEP_FACE_DIST and not target:HasTag("notarget")
-end
-
-local function ShouldGoHome(inst)
-    local home_position = inst.components.knownlocations:GetLocation("home")
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local distsq_from_home = home_position and VecUtil_DistSq(home_position.x, home_position.z, x, z)
-    if not distsq_from_home then
-        return
-    end
-
-    return (distsq_from_home > GO_HOME_DIST * GO_HOME_DIST) or (distsq_from_home > CHASE_GIVEUP_DIST * CHASE_GIVEUP_DIST and inst.components.combat.target == nil)
+    return inst:GetDistanceSqToInst(target) <= KEEP_FACE_DIST * KEEP_FACE_DIST and not target:HasTag("notarget") and not target:HasTag("playerghost")
 end
 
 local function ShouldJumpAttack(inst)
@@ -89,11 +56,51 @@ local function DoJumpAttack(inst)
     end
 end
 
+local function GetWanderPosition(inst)
+    local landing_point = inst.components.knownlocations and inst.components.knownlocations:GetLocation("landing_point")
+    local my_position =  inst:GetPosition()
+    if landing_point and distsq(landing_point, my_position) > MAX_WANDER_DIST * MAX_WANDER_DIST then
+        inst.components.knownlocations:ForgetLocation("landing_point")
+        return my_position
+    end
+
+    return landing_point or my_position
+end
+
+local function ShouldLookForWater(inst)
+    return not inst.components.amphibiouscreature.in_water
+end
+
+local function IsWaterPosition(point)
+    -- Use IsOceanTileAtPoint for more space 
+    return TheWorld.Map:IsOceanTileAtPoint(point.x, point.y, point.z)
+end
+
 local HippopotamooseBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
 
 function HippopotamooseBrain:OnStart()
+    local day = WhileNode(function() return TheWorld.state.isday end, "IsDay",
+        PriorityNode{
+            WhileNode(function() return ShouldLookForWater(self.inst) end, "ShouldLookForWater",
+                Wander(self.inst, GetWanderPosition, GetWanderDistance, nil, nil, nil, IsWaterPosition)),
+
+            FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
+            StandStill(self.inst)
+        }, 0.5)
+
+    local dusk = WhileNode(function() return TheWorld.state.isdusk end, "IsDusk",
+        PriorityNode{
+            Wander(self.inst, nil, GetWanderDistance),
+            StandStill(self.inst)
+        }, 0.25)
+
+    local night = WhileNode(function() return TheWorld.state.isdusk end, "IsDusk",
+    PriorityNode{
+        StandStill(self.inst)
+    }, 0.25)
+
     local root = PriorityNode(
     {
         BrainCommon.PanicTrigger(self.inst),
@@ -104,21 +111,12 @@ function HippopotamooseBrain:OnStart()
 
         ChaseAndAttack(self.inst, MAX_CHASE_TIME),
 
-        WhileNode(function() return ShouldGoHome(self.inst) end, "ShouldGoHome", DoAction(self.inst, GoHomeAction, "Go Home", false)),
-
-        FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
-
-        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, GetWanderDistance),
-
-        StandStill(self.inst)
-
+        day,
+        dusk,
+        night,
     }, 0.25)
 
     self.bt = BT(self.inst, root)
-end
-
-function HippopotamooseBrain:OnInitializationComplete()
-    self.inst.components.knownlocations:RememberLocation("home", self.inst:GetPosition(), true)
 end
 
 return HippopotamooseBrain

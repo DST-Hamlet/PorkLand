@@ -54,6 +54,7 @@ local scenario_posts = {
 }
 
 local stategraph_posts = {
+    "commonstates",
     "wilson",
     "wilson_client",
 }

@@ -15,15 +15,8 @@ local events =
     CommonHandlers.OnLocomote(true, false),
     CommonHandlers.OnSleep(),
 
-    -- Put these two in CommonHandlers?
-    EventHandler("switch_to_water", function(inst)
-        local noanim = inst:GetTimeAlive() < 1
-        inst.sg:GoToState("submerge", noanim)
-    end),
-    EventHandler("switch_to_water", function(inst)
-        local noanim = inst:GetTimeAlive() < 1
-        inst.sg:GoToState("emerge", noanim)
-    end),
+    CommonHandlers.OnExitWater(),
+    CommonHandlers.OnEnterWater(),
 }
 
 local states =
