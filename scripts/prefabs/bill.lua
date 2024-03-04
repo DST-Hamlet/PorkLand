@@ -114,10 +114,10 @@ local function fn()
 
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = TUNING.BILL_RUN_SPEED
+    inst.components.locomotor.pathcaps = {allowocean = true}
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.BILL_HEALTH)
-    inst.components.health.murdersound = "dontstarve/rabbit/scream_short"
 
     inst:AddComponent("inspectable")
 
@@ -153,7 +153,6 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
-    inst:DoTaskInTime(0, function() inst.components.knownlocations:RememberLocation("home", Point(inst.Transform:GetWorldPosition()), true) end)
     inst:DoPeriodicTask(1, UpdateAggro)
 
     inst:ListenForEvent("attacked", OnAttacked)

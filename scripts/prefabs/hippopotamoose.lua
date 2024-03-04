@@ -26,7 +26,6 @@ SetSharedLootTable("hippopotamoose",
 local brain = require("brains/hippopotamoosebrain")
 
 local SLEEP_DIST_FROMHOME = 1
-local SLEEP_DIST_FROMTHREAT = 20
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 40
 
@@ -34,32 +33,24 @@ local function ShouldSleep(inst)
     local home_position = inst.components.knownlocations:GetLocation("home")
     local x, y, z = inst.Transform:GetWorldPosition()
 
-    if not (home_position and VecUtil_DistSq(home_position.x, home_position.z, x, z) <= SLEEP_DIST_FROMHOME * SLEEP_DIST_FROMHOME)
-       or (inst.components.combat and inst.components.combat.target)
-       or (inst.components.burnable and inst.components.burnable:IsBurning())
-       or (inst.components.freezable and inst.components.freezable:IsFrozen())
-       or inst.sg:HasStateTag("busy") then
-        return false
-    end
-
-    local nearestEnt = GetClosestInstWithTag("character", inst, SLEEP_DIST_FROMTHREAT)
-    return nearestEnt == nil
+    return (home_position and VecUtil_DistSq(home_position.x, home_position.z, x, z) <= SLEEP_DIST_FROMHOME * SLEEP_DIST_FROMHOME)
+        and not (inst.components.combat ~= nil and inst.components.combat.target ~= nil)
+        and not (inst.components.burnable ~= nil and inst.components.burnable:IsBurning())
+        and not (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen())
+        and not (inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned())
+        and not inst.sg:HasStateTag("busy")
 end
 
 local function ShouldWake(inst)
     local home_position = inst.components.knownlocations:GetLocation("home")
     local x, y, z = inst.Transform:GetWorldPosition()
 
-    if not (home_position and VecUtil_DistSq(home_position.x, home_position.z, x, z) <= SLEEP_DIST_FROMHOME * SLEEP_DIST_FROMHOME)
-       or (inst.components.combat and inst.components.combat.target)
-       or (inst.components.burnable and inst.components.burnable:IsBurning())
-       or (inst.components.freezable and inst.components.freezable:IsFrozen())
-       or inst.sg:HasStateTag("busy") then
-        return true
-    end
-
-    local nearestEnt = GetClosestInstWithTag("character", inst, SLEEP_DIST_FROMTHREAT)
-    return nearestEnt ~= nil
+    return (home_position and VecUtil_DistSq(home_position.x, home_position.z, x, z) > SLEEP_DIST_FROMHOME * SLEEP_DIST_FROMHOME)
+        or (inst.components.combat ~= nil and inst.components.combat.target ~= nil)
+        or (inst.components.burnable ~= nil and inst.components.burnable:IsBurning())
+        or (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen())
+        or (inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned())
+        or (inst.components.health ~= nil and inst.components.health.takingfiredamage)
 end
 
 local function OnAttacked(inst, data)
@@ -72,19 +63,29 @@ end
 local function OnEnterWater(inst)
     inst.DynamicShadow:Enable(false)
 
-    if not inst.sg:HasStateTag("leapattack") then
-        local noanim = inst:GetTimeAlive() < 1
-        inst.sg:GoToState("submerge", noanim)
+    if (inst.components.freezable and inst.components.freezable:IsFrozen())
+        or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
+        or inst.sg:HasStateTag("leapattack") then
+        inst.AnimState:SetBank("hippo_water")
+        return
     end
+
+    local noanim = inst:GetTimeAlive() < 1
+    inst.sg:GoToState("submerge", noanim)
 end
 
 local function OnExitWater(inst)
     inst.DynamicShadow:Enable(true)
 
-    if not inst.sg:HasStateTag("leapattack") then
-        local noanim = inst:GetTimeAlive() < 1
-        inst.sg:GoToState("emerge", noanim)
+    if (inst.components.freezable and inst.components.freezable:IsFrozen())
+        or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
+        or inst.sg:HasStateTag("leapattack") then
+        inst.AnimState:SetBank("hippo")
+        return
     end
+
+    local noanim = inst:GetTimeAlive() < 1
+    inst.sg:GoToState("emerge", noanim)
 end
 
 local function fn()
@@ -118,7 +119,8 @@ local function fn()
 
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = TUNING.HIPPO_WALK_SPEED
-    inst.components.locomotor.runspeed =  TUNING.HIPPO_RUN_SPEED
+    inst.components.locomotor.runspeed = TUNING.HIPPO_RUN_SPEED
+    inst.components.locomotor.pathcaps = {allowocean = true}
 
     inst:AddComponent("amphibiouscreature")
     inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
@@ -135,11 +137,11 @@ local function fn()
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "innerds"
     inst.components.combat:SetAttackPeriod(2)
+    inst.components.combat:SetDefaultDamage(TUNING.HIPPO_DAMAGE)
+    inst.components.combat:SetAttackPeriod(TUNING.HIPPO_ATTACK_PERIOD)
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.HIPPO_HEALTH)
-    inst.components.combat:SetDefaultDamage(TUNING.HIPPO_DAMAGE)
-    inst.components.combat:SetAttackPeriod(TUNING.HIPPO_ATTACK_PERIOD)
 
     inst:AddComponent("groundpounder")
     inst.components.groundpounder.destroyer = true
@@ -162,7 +164,6 @@ local function fn()
     MakeLargeBurnableCharacter(inst, "innerds")
     MakeMediumFreezableCharacter(inst, "innerds")
 
-    inst:DoTaskInTime(2 * FRAMES, function() inst.components.knownlocations:RememberLocation("home", Vector3(inst.Transform:GetWorldPosition()), true) end)
     inst:ListenForEvent("attacked", OnAttacked)
 
     return inst

@@ -1,20 +1,25 @@
-require "behaviours/standstill"
-require "behaviours/runaway"
-require "behaviours/doaction"
-require "behaviours/panic"
-require "behaviours/chaseandram"
-require "behaviours/attackwall"
-require "behaviours/chaseandattack"
+require("behaviours/standstill")
+require("behaviours/runaway")
+require("behaviours/doaction")
+require("behaviours/panic")
+require("behaviours/chaseandram")
+require("behaviours/attackwall")
+require("behaviours/chaseandattack")
 
 local BrainCommon = require("brains/braincommon")
 
-local START_FACE_DIST = 14
-local KEEP_FACE_DIST = 16
-local WANDER_DIST = 20
+local START_FACE_DIST = 4
+local KEEP_FACE_DIST = 6
+local WANDER_DIST_DAY = 20
+local WANDER_DIST_NIGHT = 5
 local GO_HOME_DIST = 40
 local MAX_JUMP_ATTACK_RANGE = 9
 local MAX_CHASE_TIME = 6
 local CHASE_GIVEUP_DIST = 10
+
+local function GetWanderDistance(inst)
+    return TheWorld.state.isday and WANDER_DIST_DAY or WANDER_DIST_NIGHT
+end
 
 local function GoHomeAction(inst)
     local home_position = inst.components.knownlocations:GetLocation("home")
@@ -104,13 +109,17 @@ function HippopotamooseBrain:OnStart()
 
         FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
 
-        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, WANDER_DIST),
+        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, GetWanderDistance),
 
         StandStill(self.inst)
 
     }, 0.25)
 
     self.bt = BT(self.inst, root)
+end
+
+function HippopotamooseBrain:OnInitializationComplete()
+    self.inst.components.knownlocations:RememberLocation("home", self.inst:GetPosition(), true)
 end
 
 return HippopotamooseBrain

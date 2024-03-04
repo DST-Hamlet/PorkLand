@@ -152,6 +152,8 @@ local function fn()
         inst.components.childspawner:SetMaxChildren(TUNING.FROG_POISON_MAX_SPAWN)
     end
 
+    MakeHauntable(inst)
+
     inst:WatchWorldState("phase", OnPhaseChange)
     OnPhaseChange(inst, TheWorld.state.phase)
 

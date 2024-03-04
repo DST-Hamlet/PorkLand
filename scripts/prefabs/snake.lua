@@ -23,16 +23,6 @@ SetSharedLootTable("snake",
 
 local SHARE_TARGET_DIST = 30
 
-local function ShouldSleep(inst)
-    return TheWorld.state.isday
-        and not (inst.components.combat and inst.components.combat.target)
-        and not (inst.components.burnable and inst.components.burnable:IsBurning() )
-        and not (inst.components.freezable and inst.components.freezable:IsFrozen() )
-        and not (inst.components.teamattacker and inst.components.teamattacker.inteam)
-        and not inst.sg:HasStateTag("busy")
-        -- and not inst:HasTag("attackingbreeder") This is for fishfarm, should I remove this?
-end
-
 local function OnNewTarget(inst, data)
     if inst.components.sleeper:IsAsleep() then
         inst.components.sleeper:WakeUp()
@@ -73,12 +63,24 @@ end
 local function OnEnterWater(inst)
     inst.DynamicShadow:Enable(false)
 
+    if (inst.components.freezable and inst.components.freezable:IsFrozen())
+        or (inst.components.sleeper and inst.components.sleeper:IsAsleep()) then
+        inst.AnimState:SetBank("snake_water")
+        return
+    end
+
     local noanim = inst:GetTimeAlive() < 1
     inst.sg:GoToState("submerge", noanim)
 end
 
 local function OnExitWater(inst)
     inst.DynamicShadow:Enable(true)
+
+    if (inst.components.freezable and inst.components.freezable:IsFrozen())
+        or (inst.components.sleeper and inst.components.sleeper:IsAsleep()) then
+        inst.AnimState:SetBank("snake")
+        return
+    end
 
     local noanim = inst:GetTimeAlive() < 1
     inst.sg:GoToState("emerge", noanim)
@@ -109,7 +111,6 @@ local function fn()
     inst:AddTag("canbetrapped")
     inst:AddTag("amphibious")
     inst:AddTag("snake_amphibious")
-    -- inst:AddTag("breederpredator") This is for fishfarm, should I remove this?
 
     MakeAmphibiousCharacterPhysics(inst, 1, 0.5)
 
@@ -123,11 +124,12 @@ local function fn()
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.runspeed = TUNING.SNAKE_SPEED
+    inst.components.locomotor.pathcaps = {allowocean = true}
 
     inst:AddComponent("follower")
 
     inst:AddComponent("eater")
-    inst.components.eater:SetDiet({FOODTYPE.MEAT }, { FOODTYPE.MEAT})
+    inst.components.eater:SetDiet({FOODTYPE.MEAT}, {FOODTYPE.MEAT})
     inst.components.eater:SetCanEatHorrible()
     inst.components.eater.strongstomach = true -- can eat monster meat!
 
@@ -154,7 +156,6 @@ local function fn()
 
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetNocturnal(true)
-    inst.components.sleeper:SetSleepTest(ShouldSleep)
 
     inst:AddComponent("amphibiouscreature")
     inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
@@ -174,4 +175,4 @@ local function fn()
     return inst
 end
 
-return Prefab("monsters/snake_amphibious", fn, assets, prefabs)
+return Prefab("snake_amphibious", fn, assets, prefabs)

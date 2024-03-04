@@ -13,6 +13,7 @@ local function fn()
 
     MakeInventoryPhysics(inst)
     MakeInventoryFloatable(inst)
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
     inst.AnimState:SetBank("snakeoil")
     inst.AnimState:SetBuild("snakeoil")

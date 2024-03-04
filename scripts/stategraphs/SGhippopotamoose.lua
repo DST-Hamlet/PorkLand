@@ -90,7 +90,7 @@ local states=
 
     State{
         name = "leap_attack_pre",
-        tags = {"attack", "canrotate", "busy", "leapattack"},
+        tags = {"attack", "canrotate", "busy", "leapattack_pre"},
 
         onenter = function(inst, target)
             inst.components.locomotor:Stop()
@@ -156,20 +156,26 @@ local states=
         onenter = function(inst, target)
             local x, y, z = inst.Transform:GetWorldPosition()
             if not TheWorld.Map:IsOceanTileAtPoint(x, y, z) then
-                inst.components.groundpounder:GroundPound()
-                inst.SoundEmitter:PlaySound("dontstarve_DLC001/creatures/bearger/groundpound",nil, 0.5)
+                local entities_hit = {}
+                inst.components.groundpounder:GroundPound(nil, entities_hit)
+                inst.SoundEmitter:PlaySound("dontstarve_DLC001/creatures/bearger/groundpound", nil, 0.5)
+
+                -- first ground pound has a delay of 0s, the rest is "inst.components.groundpounder.ringDelay"
+                inst:DoTaskInTime(math.max(inst.components.groundpounder.numRings - 1, 0) * inst.components.groundpounder.ringDelay, function()
+                    if not next(entities_hit) then
+                        inst:PushEvent("onmissother")
+                    end
+                end)
             end
 
             SpawnWaves(inst, 12, 360, 4)
 
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("jump_atk_pst")
-
-            inst.components.combat.lastattacktime = GetTime()
         end,
 
         onexit = function(inst)
-            inst.components.amphibiouscreature:OnUpdate()
+            inst.components.combat.lastattacktime = GetTime()
         end,
 
         events =
