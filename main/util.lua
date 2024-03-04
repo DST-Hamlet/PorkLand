@@ -50,3 +50,16 @@ function SpawnWaves(inst, num_waves, total_angle, wave_speed, wave_prefab, initi
         end
     end
 end
+
+---FindWalkableOffset and allow_water but not allow_boats
+---@param position Vector3
+---@param start_angle number
+---@param radius number
+---@param attempts number
+---@param check_los boolean
+---@param ignore_walls boolean
+---@param customcheckfn function
+---@return Vector3
+function FindAmphibiousOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn)
+    return FindWalkableOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, true, false)
+end

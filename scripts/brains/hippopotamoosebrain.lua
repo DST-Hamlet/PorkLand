@@ -2,7 +2,6 @@ require("behaviours/standstill")
 require("behaviours/runaway")
 require("behaviours/doaction")
 require("behaviours/panic")
-require("behaviours/chaseandram")
 require("behaviours/attackwall")
 require("behaviours/chaseandattack")
 

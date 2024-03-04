@@ -39,6 +39,7 @@ local function ShouldSleep(inst)
         and not (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen())
         and not (inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned())
         and not inst.sg:HasStateTag("busy")
+        and TheWorld.state.isnight
 end
 
 local function ShouldWake(inst)
@@ -51,6 +52,7 @@ local function ShouldWake(inst)
         or (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen())
         or (inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned())
         or (inst.components.health ~= nil and inst.components.health.takingfiredamage)
+        or not TheWorld.state.isnight
 end
 
 local function OnAttacked(inst, data)
@@ -109,7 +111,7 @@ local function fn()
     inst:AddTag("huff_idle")
     inst:AddTag("wavemaker")
     inst:AddTag("lightshake")
-    inst:AddTag("groundpoundimmune")
+    -- inst:AddTag("groundpoundimmune")
 
     inst.entity:SetPristine()
 
@@ -148,6 +150,7 @@ local function fn()
     inst.components.groundpounder.damageRings = 2
     inst.components.groundpounder.destructionRings = 1
     inst.components.groundpounder.numRings = 2
+    table.insert(inst.components.groundpounder.noTags, "hippopotamoose")
 
     inst:AddComponent("inspectable")
 

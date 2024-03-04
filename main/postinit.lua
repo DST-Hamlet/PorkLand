@@ -2,6 +2,10 @@ local modimport = modimport
 GLOBAL.setfenv(1, GLOBAL)
 
 -- Update this list when adding files
+local behaviour_posts = {
+    "wander",
+}
+
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
@@ -79,6 +83,10 @@ end
 
 modimport("postinit/entityscript")
 modimport("postinit/animstate")
+
+for _, file_name in ipairs(behaviour_posts) do
+    modimport("postinit/behaviours/" .. file_name)
+end
 
 for _, file_name in ipairs(component_posts) do
     modimport("postinit/components/" .. file_name)
