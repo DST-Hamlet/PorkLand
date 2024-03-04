@@ -6,7 +6,7 @@ local actionhandlers =
     ActionHandler(ACTIONS.HARVEST, "eat"),
 }
 
-local events=
+local events =
 {
     CommonHandlers.OnAttack(),
     CommonHandlers.OnAttacked(),
@@ -14,9 +14,19 @@ local events=
     CommonHandlers.OnFreeze(),
     CommonHandlers.OnLocomote(true, false),
     CommonHandlers.OnSleep(),
+
+    -- Put these two in CommonHandlers?
+    EventHandler("switch_to_water", function(inst)
+        local noanim = inst:GetTimeAlive() < 1
+        inst.sg:GoToState("submerge", noanim)
+    end),
+    EventHandler("switch_to_water", function(inst)
+        local noanim = inst:GetTimeAlive() < 1
+        inst.sg:GoToState("emerge", noanim)
+    end),
 }
 
-local states=
+local states =
 {
     State{
         name = "idle",

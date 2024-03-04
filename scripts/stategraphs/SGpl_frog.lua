@@ -43,6 +43,20 @@ local events=
             inst.sg:GoToState("trapped")
         end
     end),
+
+    -- Put these two in CommonHandlers?
+    EventHandler("switch_to_water", function(inst)
+        inst.components.locomotor.walkspeed = 3
+
+        local noanim = inst:GetTimeAlive() < 1
+        inst.sg:GoToState("submerge", noanim)
+    end),
+    EventHandler("switch_to_water", function(inst)
+        inst.components.locomotor.walkspeed = 4
+
+        local noanim = inst:GetTimeAlive() < 1
+        inst.sg:GoToState("emerge", noanim)
+    end),
 }
 
 local FROG_TAGS = {"frog"}

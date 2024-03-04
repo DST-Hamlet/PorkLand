@@ -87,3 +87,42 @@ function MakeAmphibiousCharacterPhysics(inst, mass, radius)
     inst.Physics:ClearCollidesWith(COLLISION.LAND_OCEAN_LIMITS)
     inst:AddTag("amphibious")
 end
+
+function MakeAmphibious(inst, land_bank, water_bank, testfn)
+    testfn = testfn or function(inst)
+        return not (inst.components.freezable and inst.components.freezable:IsFrozen())
+            and not (inst.components.sleeper and inst.components.sleeper:IsAsleep())
+    end
+
+    local function OnEnterWater(inst)
+        inst.DynamicShadow:Enable(false)
+        if inst.components.burnable then
+            inst.components.burnable:Extinguish()
+        end
+
+        -- Test whether this has to be silent
+        if not testfn(inst) then
+            inst.AnimState:SetBank(water_bank)
+            return
+        end
+
+        -- animation is handled in stategraph event
+        inst:PushEvent("switch_to_water")
+    end
+
+    local function OnExitWater(inst)
+        inst.DynamicShadow:Enable(true)
+
+        if not testfn(inst) then
+            inst.AnimState:SetBank(land_bank)
+            return
+        end
+
+        -- animation is handled in stategraph event
+        inst:PushEvent("switch_to_land")
+    end
+
+    inst:AddComponent("amphibiouscreature")
+    inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
+    inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
+end

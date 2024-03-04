@@ -62,34 +62,6 @@ local function OnAttacked(inst, data)
     inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent) return ent:HasTag("hippopotamoose") end, MAX_TARGET_SHARES)
 end
 
-local function OnEnterWater(inst)
-    inst.DynamicShadow:Enable(false)
-
-    if (inst.components.freezable and inst.components.freezable:IsFrozen())
-        or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
-        or inst.sg:HasStateTag("leapattack") then
-        inst.AnimState:SetBank("hippo_water")
-        return
-    end
-
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("submerge", noanim)
-end
-
-local function OnExitWater(inst)
-    inst.DynamicShadow:Enable(true)
-
-    if (inst.components.freezable and inst.components.freezable:IsFrozen())
-        or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
-        or inst.sg:HasStateTag("leapattack") then
-        inst.AnimState:SetBank("hippo")
-        return
-    end
-
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("emerge", noanim)
-end
-
 local function fn()
 	local inst = CreateEntity()
 
@@ -124,16 +96,11 @@ local function fn()
     inst.components.locomotor.runspeed = TUNING.HIPPO_RUN_SPEED
     inst.components.locomotor.pathcaps = {allowocean = true}
 
-    inst:AddComponent("amphibiouscreature")
-    inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
-    inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
-
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("hippopotamoose")
 
     inst:AddComponent("sleeper")
-    inst.components.sleeper:SetWakeTest(ShouldWake)
-    inst.components.sleeper:SetSleepTest(ShouldSleep)
+    inst.components.sleeper:SetDefaultTests()
     inst.components.sleeper:SetResistance(3)
 
     inst:AddComponent("combat")
@@ -162,6 +129,11 @@ local function fn()
     inst:SetBrain(brain)
     inst:SetStateGraph("SGhippopotamoose")
 
+    MakeAmphibious(inst, "hippo", "hippo_water", function(inst)
+        return not (inst.components.freezable and inst.components.freezable:IsFrozen())
+            and not (inst.components.sleeper and inst.components.sleeper:IsAsleep())
+            and not inst.sg:HasStateTag("leapattack")
+    end)
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
     MakeLargeBurnableCharacter(inst, "innerds")

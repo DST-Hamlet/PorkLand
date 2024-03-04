@@ -79,34 +79,6 @@ local function OnLoad(inst, data)
     end
 end
 
-local function OnEnterWater(inst)
-    inst.DynamicShadow:Enable(false)
-    inst.components.locomotor.walkspeed = 3
-
-    if (inst.components.freezable and inst.components.freezable:IsFrozen())
-        or (inst.components.sleeper and inst.components.sleeper:IsAsleep()) then
-        inst.AnimState:SetBank("frog_water")
-        return
-    end
-
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("submerge", noanim)
-end
-
-local function OnExitWater(inst)
-    inst.DynamicShadow:Enable(true)
-    inst.components.locomotor.walkspeed = 4
-
-    if (inst.components.freezable and inst.components.freezable:IsFrozen())
-        or (inst.components.sleeper and inst.components.sleeper:IsAsleep()) then
-        inst.AnimState:SetBank("frog")
-        return
-    end
-
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("emerge", noanim)
-end
-
 local function fn()
     local inst = CreateEntity()
 
@@ -177,10 +149,7 @@ local function fn()
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetSleepTest(ShouldSleep)
 
-    inst:AddComponent("amphibiouscreature")
-    inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
-    inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
-
+    MakeAmphibious(inst, "frog", "frog_water")
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("goinghome", OnGoingHome)
 

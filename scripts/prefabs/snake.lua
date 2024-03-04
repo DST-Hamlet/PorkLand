@@ -60,32 +60,6 @@ local function SanityAura(inst, observer) -- Add this as a postinit to webber in
     return -TUNING.SANITYAURA_SMALL
 end
 
-local function OnEnterWater(inst)
-    inst.DynamicShadow:Enable(false)
-
-    if (inst.components.freezable and inst.components.freezable:IsFrozen())
-        or (inst.components.sleeper and inst.components.sleeper:IsAsleep()) then
-        inst.AnimState:SetBank("snake_water")
-        return
-    end
-
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("submerge", noanim)
-end
-
-local function OnExitWater(inst)
-    inst.DynamicShadow:Enable(true)
-
-    if (inst.components.freezable and inst.components.freezable:IsFrozen())
-        or (inst.components.sleeper and inst.components.sleeper:IsAsleep()) then
-        inst.AnimState:SetBank("snake")
-        return
-    end
-
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("emerge", noanim)
-end
-
 local function fn()
     local inst = CreateEntity()
 
@@ -157,10 +131,7 @@ local function fn()
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetNocturnal(true)
 
-    inst:AddComponent("amphibiouscreature")
-    inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
-    inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
-
+    MakeAmphibious(inst, "snake", "snake_water")
     MakeMediumFreezableCharacter(inst, "body")
     MakeMediumBurnableCharacter(inst) --, "body")
     MakeHauntablePanic(inst)
