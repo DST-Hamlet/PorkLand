@@ -14,6 +14,29 @@ local WANDER_DIST_DUSK = 16
 local MAX_JUMP_ATTACK_RANGE = 9
 local MAX_CHASE_TIME = 6
 local MAX_WANDER_DIST = 32
+local WANDER_TIMES = {
+    minwalktime = 3,
+    randwalktime = 1,
+    minwaittime = 0,
+    randwaittime = 0.1,
+}
+
+local function not_land(position)
+    local px, py, pz = position:Get()
+    return TheWorld.Map:IsOceanAtPoint(px, py, pz, false)
+end
+
+local function find_ocean_position(inst)
+    if inst.components.knownlocations:GetLocation("landing_point") == nil then
+        local ip = inst:GetPosition()
+        local offset, c_angle, deflected = FindWalkableOffset(ip, math.random() * 2 * PI, MAX_WANDER_DIST, nil, true, false, not_land, true, false)
+        if offset then
+            inst.components.knownlocations:RememberLocation("landing_point", ip + offset)
+        end
+    end
+
+    return false
+end
 
 local function GetWanderDistance(inst)
     return TheWorld.state.isdusk and WANDER_DIST_DUSK or WANDER_DIST_DAY
@@ -71,11 +94,6 @@ local function ShouldLookForWater(inst)
     return not inst.components.amphibiouscreature.in_water
 end
 
-local function IsWaterPosition(point)
-    -- Use IsOceanTileAtPoint for more space 
-    return TheWorld.Map:IsOceanTileAtPoint(point.x, point.y, point.z)
-end
-
 local HippopotamooseBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
@@ -83,16 +101,17 @@ end)
 function HippopotamooseBrain:OnStart()
     local day = WhileNode(function() return TheWorld.state.isday end, "IsDay",
         PriorityNode{
-            WhileNode(function() return ShouldLookForWater(self.inst) end, "ShouldLookForWater",
-                Wander(self.inst, GetWanderPosition, GetWanderDistance, nil, nil, nil, IsWaterPosition)),
-
+            NotDecorator(ActionNode(function() find_ocean_position(self.inst) end)),
+            WhileNode(function() return ShouldLookForWater(self.inst) end, "Looking For Water",
+                Leash(self.inst, GetWanderPosition, 0.5, 0.5)),
             FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
+            Wander(self.inst, nil, WANDER_DIST_DAY, WANDER_TIMES),
             StandStill(self.inst)
         }, 0.5)
 
     local dusk = WhileNode(function() return TheWorld.state.isdusk end, "IsDusk",
         PriorityNode{
-            Wander(self.inst, nil, GetWanderDistance),
+            Wander(self.inst, GetWanderPosition, GetWanderDistance),
             StandStill(self.inst)
         }, 0.25)
 

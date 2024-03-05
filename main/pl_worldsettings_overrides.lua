@@ -254,6 +254,31 @@ applyoverrides_pre.asparagus_regrowth = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+applyoverrides_pre.hippopotamoose_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            HIPPO_ENABLED = false,
+        },
+        rare = {
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 4,
+        },
+        --[[
+        default = {
+            HIPPO_ENABLED = true,
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 3,
+        },
+        --]]
+        often = {
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 2,
+        },
+        always = {
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 1,
+        }
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 --------------------------------------------------------------------------
 --[[ WORLDSETTINGS POST ]]
 --------------------------------------------------------------------------

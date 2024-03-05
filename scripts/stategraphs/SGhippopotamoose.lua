@@ -243,8 +243,6 @@ local states=
         tags = {"canrotate", "busy"},
 
         onenter = function(inst, noanim)
-            inst.components.knownlocations:RememberLocation("landing_point", inst:GetPosition())
-
             if noanim then
                 inst.AnimState:SetBank("hippo")
                 inst.sg:GoToState("idle")
@@ -286,8 +284,6 @@ local states=
         tags = {"canrotate", "busy"},
 
         onenter = function(inst, noanim)
-            inst.components.knownlocations:ForgetLocation("landing_point")
-
             if noanim then
                 inst.AnimState:SetBank("hippo_water")
                 inst.sg:GoToState("idle")

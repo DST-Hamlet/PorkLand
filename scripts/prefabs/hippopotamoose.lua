@@ -36,7 +36,7 @@ local function ShouldWakeUp(inst)
         or (inst.components.burnable ~= nil and inst.components.burnable:IsBurning())
         or (inst.components.freezable ~= nil and inst.components.freezable:IsFrozen())
         or (inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned())
-        or (TheWorld.state.isday and target and not target:HasTag("playerghost") and not target:HasTag("notarget"))
+        or (TheWorld.state.isday and (target and not target:HasTag("playerghost") and not target:HasTag("notarget") or not inst.components.amphibiouscreature.in_water))
         or TheWorld.state.isdusk
 end
 
@@ -127,7 +127,9 @@ local function fn()
     MakeAmphibious(inst, "hippo", "hippo_water", function(inst)
         return (inst.components.freezable and inst.components.freezable:IsFrozen())
             or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
-            or inst.sg:HasStateTag("leapattack")
+            or inst.sg:HasStateTag("leapattack"),
+        function(inst) inst.components.knownlocations:RememberLocation("landing_point", inst:GetPosition()) end,
+        function(inst) inst.components.knownlocations:ForgetLocation("landing_point") end
     end)
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
@@ -157,7 +159,12 @@ local function fn_newborn()
         return inst
     end
 
+    inst.is_dummy_prefab = true
+
     inst.OnEntitySleep = function()
+        if TheWorld.components.hippospawner then
+            TheWorld.components.hippospawner:RemoveHippo(inst, true)
+        end
         ReplacePrefab(inst, "hippopotamoose")
     end
 

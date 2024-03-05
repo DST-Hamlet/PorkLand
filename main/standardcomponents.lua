@@ -88,14 +88,26 @@ function MakeAmphibiousCharacterPhysics(inst, mass, radius)
     inst:AddTag("amphibious")
 end
 
-function MakeAmphibious(inst, land_bank, water_bank, should_silent)
+---@param land_bank string
+---@param water_bank string
+---@param should_silent function
+---@param on_enter_water function|nil
+---@param on_exit_water function|nil
+function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_water, on_exit_water)
     should_silent = should_silent or function(inst)
         return (inst.components.freezable and inst.components.freezable:IsFrozen())
             or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
     end
 
     local function OnEnterWater(inst)
-        inst.DynamicShadow:Enable(false)
+        if on_enter_water then
+            on_enter_water(inst)
+        end
+
+        if inst.DynamicShadow then
+            inst.DynamicShadow:Enable(false)
+        end
+
         if inst.components.burnable then
             inst.components.burnable:Extinguish()
         end
@@ -111,7 +123,13 @@ function MakeAmphibious(inst, land_bank, water_bank, should_silent)
     end
 
     local function OnExitWater(inst)
-        inst.DynamicShadow:Enable(true)
+        if on_exit_water then
+            on_exit_water(inst)
+        end
+
+        if inst.DynamicShadow then
+            inst.DynamicShadow:Enable(true)
+        end
 
         if should_silent(inst) then
             inst.AnimState:SetBank(land_bank)
