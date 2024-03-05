@@ -54,7 +54,6 @@ local scenario_posts = {
 }
 
 local stategraph_posts = {
-    "commonstates",
     "wilson",
     "wilson_client",
 }
@@ -84,6 +83,7 @@ end
 
 modimport("postinit/entityscript")
 modimport("postinit/animstate")
+modimport("postinit/stategraphs/commonstates")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

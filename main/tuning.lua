@@ -240,8 +240,8 @@ local tuning = {
     HIPPO_WALK_SPEED = 5,
     HIPPO_RUN_SPEED = 6,
     HIPPO_TARGET_DIST = 12,
-    HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 1.5,
-    HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.5,
+    HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 3,
+    HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 1,
 
     BILL_TUMBLE_SPEED = 8,
     BILL_RUN_SPEED = 5,

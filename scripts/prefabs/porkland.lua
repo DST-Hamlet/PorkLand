@@ -117,6 +117,7 @@ local function master_postinit(inst)
     inst:AddComponent("brightmarespawner")
     inst:AddComponent("worldwind")
 
+    inst:AddComponent("hippospawner")
     inst:AddComponent("regrowthmanager")
     -- inst:AddComponent("desolationspawner")
     -- inst:AddComponent("forestpetrification")

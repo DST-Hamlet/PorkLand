@@ -1,16 +1,15 @@
 local assets =
 {
-	Asset("ANIM", "anim/hippo_basic.zip"),
+    Asset("ANIM", "anim/hippo_basic.zip"),
     Asset("ANIM", "anim/hippo_attacks.zip"),
     Asset("ANIM", "anim/hippo_water.zip"),
     Asset("ANIM", "anim/hippo_water_attacks.zip"),
-	Asset("ANIM", "anim/hippo_build.zip"),
+    Asset("ANIM", "anim/hippo_build.zip"),
 }
 
 local prefabs =
 {
     "meat",
-    "hippoherd",
     "hippo_antler",
 }
 
@@ -50,6 +49,7 @@ local function ShouldSleep(inst)
     and not inst.sg:HasStateTag("busy")
     and not (target and not target:HasTag("playerghost"))
     and inst.components.amphibiouscreature.in_water
+    and not TheWorld.state.isdusk
     or TheWorld.state.isnight
 end
 
@@ -61,17 +61,17 @@ local function OnAttacked(inst, data)
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
-	inst.entity:AddDynamicShadow()
+    inst.entity:AddDynamicShadow()
 
     inst.AnimState:SetBank("hippo")
     inst.AnimState:SetBuild("hippo_build")
-	inst.DynamicShadow:SetSize( 3, 1.25 )
+    inst.DynamicShadow:SetSize( 3, 1.25 )
     inst.Transform:SetFourFaced()
 
     MakeAmphibiousCharacterPhysics(inst, 50, 1.5)
@@ -121,16 +121,13 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
-    inst:AddComponent("herdmember")
-    inst.components.herdmember:SetHerdPrefab("hippoherd")
-
     inst:SetBrain(brain)
     inst:SetStateGraph("SGhippopotamoose")
 
     MakeAmphibious(inst, "hippo", "hippo_water", function(inst)
-        return not (inst.components.freezable and inst.components.freezable:IsFrozen())
-            and not (inst.components.sleeper and inst.components.sleeper:IsAsleep())
-            and not inst.sg:HasStateTag("leapattack")
+        return (inst.components.freezable and inst.components.freezable:IsFrozen())
+            or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
+            or inst.sg:HasStateTag("leapattack")
     end)
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
@@ -139,7 +136,33 @@ local function fn()
 
     inst:ListenForEvent("attacked", OnAttacked)
 
+    inst:DoTaskInTime(0, function()
+        if TheWorld.components.hippospawner then
+            TheWorld.components.hippospawner:AddHippo(inst)
+        end
+    end)
+
     return inst
 end
 
-return Prefab("hippopotamoose", fn, assets, prefabs)
+-- Dummy prefab for hippo spawner
+local function fn_newborn()
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+
+    inst.entity:SetPristine()
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+    inst.OnEntitySleep = function()
+        ReplacePrefab(inst, "hippopotamoose")
+    end
+
+    return inst
+end
+
+return Prefab("hippopotamoose", fn, assets, prefabs),
+       Prefab("hippopotamoose_newborn", fn_newborn, {}, {"hippopotamoose"})
