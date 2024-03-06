@@ -45,6 +45,7 @@ end
 
 local function OnHippoRemoved(hippo)
     _worldsettingstimer:StopTimer(GetTimerName(hippo))
+    _hippos[hippo] = nil
 end
 
 local function CanSpawnNewHippo(hippo)
@@ -58,11 +59,11 @@ local function CanSpawnNewHippo(hippo)
 
     local hippos_in_range = 0
     local mate
-    for _, _hippo in pairs(_hippos) do
-        if not _hippo.is_dummy_prefab and _hippo ~= hippo then
+    for _hippo in pairs(_hippos) do
+        if _hippo ~= hippo then
             if hippo:GetDistanceSqToInst(_hippo) <= FIND_HIPPO_MATE_RANGE * FIND_HIPPO_MATE_RANGE then
                 hippos_in_range = hippos_in_range + 1
-                if not mate and _worldsettingstimer:GetTimeLeft(GetTimerName(_hippo)) <= SPAWN_DELAY then
+                if not mate and not _hippo.is_dummy_prefab and _worldsettingstimer:GetTimeLeft(GetTimerName(_hippo)) <= SPAWN_DELAY then
                     mate = _hippo
                 end
             elseif hippo:GetDistanceSqToInst(_hippo) <= FIND_HIPPO_MEMBER_RANGE * FIND_HIPPO_MEMBER_RANGE then
@@ -74,20 +75,14 @@ local function CanSpawnNewHippo(hippo)
         end
     end
 
-    local offset, ents
-    local x, y, z = hippo.Transform:GetWorldPosition()
-    for _ = 1, 10 do
-        offset = FindSwimmableOffset(Vector3(x, y, z), math.random() * 2 * PI, SPAWN_HIPPO_RADIUS)
-        or FindWalkableOffset(Vector3(x, y, z), math.random() * 2 * PI, SPAWN_HIPPO_RADIUS)
-        or Vector3(0, 0, 0)
-
-        ents = TheSim:FindEntities(x, y, z, MIN_HIPPO_DISTANCE, {"hippopotamoose"})
-        if not next(ents) then
-            break
-        end
-
-        offset = nil
+    local function is_valid_spawn_point(point)
+        local ents = TheSim:FindEntities(point.x, point.y, point.z, MIN_HIPPO_DISTANCE, {"hippopotamoose"})
+        return not next(ents)
     end
+    local x, y, z = hippo.Transform:GetWorldPosition()
+    local offset = FindSwimmableOffset(Vector3(x, y, z), math.random() * 2 * PI, SPAWN_HIPPO_RADIUS, 10, true, false, is_valid_spawn_point)
+        or FindWalkableOffset(Vector3(x, y, z), math.random() * 2 * PI, SPAWN_HIPPO_RADIUS, 10, true, false, is_valid_spawn_point)
+        or nil
 
     if mate ~= nil and hippos_in_range < 5 and offset ~= nil then
         return true, mate, offset

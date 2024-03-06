@@ -101,11 +101,12 @@ end)
 function HippopotamooseBrain:OnStart()
     local day = WhileNode(function() return TheWorld.state.isday end, "IsDay",
         PriorityNode{
-            NotDecorator(ActionNode(function() find_ocean_position(self.inst) end)),
+            WhileNode(function() return ShouldLookForWater(self.inst) end, "Looking For Landing Point",
+                NotDecorator(ActionNode(function() find_ocean_position(self.inst) end))),
             WhileNode(function() return ShouldLookForWater(self.inst) end, "Looking For Water",
                 Leash(self.inst, GetWanderPosition, 0.5, 0.5)),
             FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
-            Wander(self.inst, nil, WANDER_DIST_DAY, WANDER_TIMES),
+            --Wander(self.inst, nil, WANDER_DIST_DAY, WANDER_TIMES),
             StandStill(self.inst)
         }, 0.5)
 
