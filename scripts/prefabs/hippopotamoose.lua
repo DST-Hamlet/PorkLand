@@ -60,6 +60,20 @@ local function OnAttacked(inst, data)
     inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent) return ent:HasTag("hippopotamoose") end, MAX_TARGET_SHARES)
 end
 
+local function ShouldSilent(inst)
+    return (inst.components.freezable and inst.components.freezable:IsFrozen())
+        or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
+        or inst.sg:HasStateTag("leapattack")
+end
+
+local function OnEnterWater(inst)
+    inst.components.knownlocations:ForgetLocation("landing_point")
+end
+
+local function OnExitWater(inst)
+    inst.components.knownlocations:RememberLocation("landing_point", inst:GetPosition())
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -124,13 +138,7 @@ local function fn()
     inst:SetBrain(brain)
     inst:SetStateGraph("SGhippopotamoose")
 
-    MakeAmphibious(inst, "hippo", "hippo_water", function(inst)
-        return (inst.components.freezable and inst.components.freezable:IsFrozen())
-            or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
-            or inst.sg:HasStateTag("leapattack"),
-        function(inst) inst.components.knownlocations:RememberLocation("landing_point", inst:GetPosition()) end,
-        function(inst) inst.components.knownlocations:ForgetLocation("landing_point") end
-    end)
+    MakeAmphibious(inst, "hippo", "hippo_water", ShouldSilent, OnEnterWater, OnExitWater)
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
     MakeLargeBurnableCharacter(inst, "innerds")
@@ -152,6 +160,8 @@ local function fn_newborn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
+
+    inst:AddTag("hippopotamoose")
 
     inst.entity:SetPristine()
 

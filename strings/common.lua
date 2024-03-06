@@ -78,7 +78,7 @@ return {
         CUSTOMIZATIONSCREEN = {
             ASPARAGUS = "Asparagus",
             ASPARAGUS_REGROWTH = "Asparagus",
-            BILL = "Platapine",
+            BILL_SETTING = "Platapine",
             DEEP_JUNGLE_FERN_NOISE = "Jungle Floor Ferns",
             DUNGBEETLE_SETTING = "Dung Beetle",
             DUNGPILE = "Dung Pile",

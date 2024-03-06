@@ -261,19 +261,23 @@ applyoverrides_pre.hippopotamoose_setting = function(difficulty)
             HIPPO_ENABLED = false,
         },
         rare = {
-            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 4,
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 6,
+            HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 2,
         },
         --[[
         default = {
             HIPPO_ENABLED = true,
             HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 3,
+            HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 1.0,
         },
         --]]
         often = {
-            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 2,
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 1.5,
+            HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.5,
         },
         always = {
-            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 1,
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 0.75,
+            HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.25,
         }
     }
     OverrideTuningVariables(tuning_vars[difficulty])
