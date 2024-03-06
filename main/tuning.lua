@@ -263,7 +263,7 @@ local tuning = {
 
     FROG_POISON_MAX_SPAWN = 1,
     FROG_POISON_REGEN_TIME = day_time/2,
-    FROG_POISON_RELEASE_TIME = true,
+    FROG_POISON_RELEASE_TIME = day_time/4,
     FROG_POISON_ENABLED = true,
 
     WAVE_HIT_MOISTURE = 15,

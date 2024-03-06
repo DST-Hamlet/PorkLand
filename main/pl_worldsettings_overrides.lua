@@ -254,6 +254,39 @@ applyoverrides_pre.asparagus_regrowth = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+applyoverrides_pre.frog_poison_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            FROG_POISON_ENABLED = false,
+        },
+        few = {
+            FROG_POISON_REGEN_TIME = day_time/1,
+            FROG_POISON_RELEASE_TIME = day_time/2,
+            FROG_POISON_MAX_SPAWN = 1,
+        },
+        --[[
+        default = {
+            FROG_POISON_REGEN_TIME = day_time/2,
+            FROG_POISON_RELEASE_TIME = day_time/4,
+            FROG_POISON_MAX_SPAWN = 1,
+            FROG_POISON_ENABLED = true,
+        },
+        --]]
+        many = {
+            FROG_POISON_REGEN_TIME = day_time/4,
+            FROG_POISON_RELEASE_TIME = day_time/8,
+            FROG_POISON_MAX_SPAWN = 2,
+        },
+        always = {
+            FROG_POISON_REGEN_TIME = day_time/6,
+            FROG_POISON_RELEASE_TIME = day_time/12,
+            FROG_POISON_MAX_SPAWN = 3,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 applyoverrides_pre.hippopotamoose_setting = function(difficulty)
     local tuning_vars =
     {

@@ -158,7 +158,7 @@ local function fn()
         inst.components.childspawner.childname = "frog_poison"
         inst.components.childspawner:SetRegenPeriod(TUNING.FROG_POISON_REGEN_TIME)
         inst.components.childspawner:SetMaxChildren(TUNING.FROG_POISON_MAX_SPAWN)
-        WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.FROG_POISON_REGEN_TIME, TUNING.FROG_POISON_ENABLED)
+        WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.FROG_POISON_RELEASE_TIME, TUNING.FROG_POISON_ENABLED)
         WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.FROG_POISON_REGEN_TIME, TUNING.FROG_POISON_ENABLED)
         if not TUNING.FROG_POISON_ENABLED then
             inst.components.childspawner.childreninside = 0
