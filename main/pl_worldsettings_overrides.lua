@@ -320,8 +320,6 @@ applyoverrides_pre.mosquito_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
---[[TUNING.BILL_SPAWN_CHANCE]]
-
 applyoverrides_pre.bill_setting = function(difficulty)
     local tuning_vars =
     {
