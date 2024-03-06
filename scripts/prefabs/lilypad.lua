@@ -92,6 +92,10 @@ local function OnLoad(inst, data, newents)
     RefreshBuild(inst)
 end
 
+local function OnPreLoad(inst, data)
+    WorldSettings_Spawner_PreLoad(inst, data, data.childname == "mosquito" and TUNING.MOSQUITO_REGEN_TIME or TUNING.FROG_POISON_REGEN_TIME)
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -136,7 +140,6 @@ local function fn()
     -- inst:AddComponent("waveobstacle") -- This component was only ever on mangroves
 
     inst:AddComponent("childspawner")
-    inst.components.childspawner:SetMaxChildren(math.random(1, 2))
     inst.components.childspawner:SetSpawnedFn(OnSpawned)
     inst.components.childspawner.allowwater = true
     inst.components.childspawner.spawnonwateroffset = 1
@@ -146,10 +149,20 @@ local function fn()
         inst.components.childspawner.childname = "mosquito"
         inst.components.childspawner:SetRegenPeriod(TUNING.MOSQUITO_REGEN_TIME)
         inst.components.childspawner:SetMaxChildren(TUNING.MOSQUITO_MAX_SPAWN)
+        WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.MOSQUITO_RELEASE_TIME, TUNING.MOSQUITO_ENABLED)
+        WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.MOSQUITO_REGEN_TIME, TUNING.MOSQUITO_ENABLED)
+        if not TUNING.MOSQUITO_ENABLED then
+            inst.components.childspawner.childreninside = 0
+        end
     else
         inst.components.childspawner.childname = "frog_poison"
         inst.components.childspawner:SetRegenPeriod(TUNING.FROG_POISON_REGEN_TIME)
         inst.components.childspawner:SetMaxChildren(TUNING.FROG_POISON_MAX_SPAWN)
+        WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.FROG_POISON_REGEN_TIME, TUNING.FROG_POISON_ENABLED)
+        WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.FROG_POISON_REGEN_TIME, TUNING.FROG_POISON_ENABLED)
+        if not TUNING.FROG_POISON_ENABLED then
+            inst.components.childspawner.childreninside = 0
+        end
     end
 
     MakeHauntable(inst)
@@ -159,6 +172,7 @@ local function fn()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+    inst.OnPreLoad = OnPreLoad
 
     return inst
 end

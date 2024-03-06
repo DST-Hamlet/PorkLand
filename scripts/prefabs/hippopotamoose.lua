@@ -68,6 +68,7 @@ end
 
 local function OnEnterWater(inst)
     inst.components.knownlocations:ForgetLocation("landing_point")
+    inst.components.knownlocations:ForgetLocation("water_nearby")
 end
 
 local function OnExitWater(inst)

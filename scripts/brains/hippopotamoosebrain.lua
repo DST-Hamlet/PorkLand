@@ -13,12 +13,14 @@ local WANDER_DIST_DAY = 32
 local WANDER_DIST_DUSK = 16
 local MAX_JUMP_ATTACK_RANGE = 9
 local MAX_CHASE_TIME = 6
-local MAX_WANDER_DIST = 32
+local MAX_WANDER_DIST = 48
+local FIND_WATER_DIST = 32
+local FIND_WATER_EXTRA_OFFSET = 4
 local WANDER_TIMES = {
     minwalktime = 3,
     randwalktime = 1,
-    minwaittime = 0,
-    randwaittime = 0.1,
+    minwaittime = 5,
+    randwaittime = 1,
 }
 
 local function not_land(position)
@@ -26,16 +28,29 @@ local function not_land(position)
     return TheWorld.Map:IsOceanAtPoint(px, py, pz, false)
 end
 
-local function find_ocean_position(inst)
-    if inst.components.knownlocations:GetLocation("landing_point") == nil then
+local function FindWaterPosition(inst)
+    if inst.components.knownlocations:GetLocation("water_nearby") == nil then
         local ip = inst:GetPosition()
-        local offset, c_angle, deflected = FindWalkableOffset(ip, math.random() * 2 * PI, MAX_WANDER_DIST, nil, true, false, not_land, true, false)
+        local offset = FindWalkableOffset(ip, math.random() * 2 * PI, FIND_WATER_DIST, nil, true, false, not_land, true, false)
         if offset then
-            inst.components.knownlocations:RememberLocation("landing_point", ip + offset)
+            -- A second offset so the final position is furthur away from land
+            local second_offset = FindWalkableOffset(ip + offset, math.random() * 2 * PI, FIND_WATER_EXTRA_OFFSET, nil, true, false, not_land, true, false) or Vector3(0, 0, 0)
+            inst.components.knownlocations:RememberLocation("water_nearby", ip + offset + second_offset)
         end
     end
 
     return false
+end
+
+local function GetWaterNearby(inst)
+    local water_nearby = inst.components.knownlocations and inst.components.knownlocations:GetLocation("water_nearby")
+    local my_position =  inst:GetPosition()
+    if water_nearby and distsq(water_nearby, my_position) > FIND_WATER_DIST * FIND_WATER_DIST then
+        inst.components.knownlocations:ForgetLocation("water_nearby")
+        return my_position
+    end
+
+    return water_nearby or my_position
 end
 
 local function GetWanderDistance(inst)
@@ -102,11 +117,11 @@ function HippopotamooseBrain:OnStart()
     local day = WhileNode(function() return TheWorld.state.isday end, "IsDay",
         PriorityNode{
             WhileNode(function() return ShouldLookForWater(self.inst) end, "Looking For Landing Point",
-                NotDecorator(ActionNode(function() find_ocean_position(self.inst) end))),
+                NotDecorator(ActionNode(function() FindWaterPosition(self.inst) end))),
             WhileNode(function() return ShouldLookForWater(self.inst) end, "Looking For Water",
-                Leash(self.inst, GetWanderPosition, 0.5, 0.5)),
+                Leash(self.inst, GetWaterNearby, 0.5, 0.5)),
             FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
-            --Wander(self.inst, nil, WANDER_DIST_DAY, WANDER_TIMES),
+            Wander(self.inst, GetWanderPosition, GetWanderDistance, WANDER_TIMES),
             StandStill(self.inst)
         }, 0.5)
 
