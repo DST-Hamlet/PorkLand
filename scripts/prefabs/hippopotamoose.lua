@@ -86,7 +86,7 @@ local function fn()
 
     inst.AnimState:SetBank("hippo")
     inst.AnimState:SetBuild("hippo_build")
-    inst.DynamicShadow:SetSize( 3, 1.25 )
+    inst.DynamicShadow:SetSize(3, 1.25)
     inst.Transform:SetFourFaced()
 
     MakeAmphibiousCharacterPhysics(inst, 50, 1.5)

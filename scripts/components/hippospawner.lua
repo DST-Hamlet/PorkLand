@@ -81,8 +81,6 @@ local function CanSpawnNewHippo(hippo)
     end
     local x, y, z = hippo.Transform:GetWorldPosition()
     local offset = FindSwimmableOffset(Vector3(x, y, z), math.random() * 2 * PI, SPAWN_HIPPO_RADIUS, 10, true, false, is_valid_spawn_point)
-        or FindWalkableOffset(Vector3(x, y, z), math.random() * 2 * PI, SPAWN_HIPPO_RADIUS, 10, true, false, is_valid_spawn_point)
-        or nil
 
     if mate ~= nil and hippos_in_range < 5 and offset ~= nil then
         return true, mate, offset

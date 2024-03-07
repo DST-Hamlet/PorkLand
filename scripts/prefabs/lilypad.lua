@@ -16,7 +16,7 @@ function MakeLilypadPhysics(inst, rad)
 
     inst.entity:AddPhysics()
     inst.Physics:SetMass(0)
-    inst.Physics:SetCapsule(rad,0.01)
+    inst.Physics:SetCapsule(rad, 0.01)
     inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.ITEMS)
@@ -28,7 +28,7 @@ end
 local SIZES = {
     small = 2,
     med = 3,
-    big = 4.2,
+    big = 5.2,
 }
 local function RefreshBuild(inst)
     inst.AnimState:PlayAnimation(inst.size .. "_idle", true)
@@ -38,7 +38,7 @@ local function RefreshBuild(inst)
 end
 
 local function ReturnChildren(inst)
-    for k,child in pairs(inst.components.childspawner.childrenoutside) do
+    for k, child in pairs(inst.components.childspawner.childrenoutside) do
         if child.components.homeseeker then
             child.components.homeseeker:GoHome()
         end
