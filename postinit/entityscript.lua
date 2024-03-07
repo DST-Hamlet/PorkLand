@@ -59,3 +59,8 @@ function EntityScript:GetEventCallbacks(event, source, source_file)
         end
     end
 end
+
+function EntityScript:IsSailing()
+    return (self.components.sailor ~= nil and self.components.sailor:IsSailing())
+        or (self:HasTag("sailing") and self:HasTag("_sailor"))
+end

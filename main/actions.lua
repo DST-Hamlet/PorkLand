@@ -159,6 +159,16 @@ ACTIONS.EMBARK.fn = function(act)
     end
 end
 
+ACTIONS.DISEMBARK.fn = function(act)
+    if act.doer.components.sailor then
+        if act.doer.components.sailor:IsSailing() then
+            local pos = act.GetActionPoint and act:GetActionPoint() or act.pos
+            act.doer.components.sailor:Disembark(pos)
+            return true
+        end
+    end
+end
+
 -- Patch for hackable things
 local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
 function ACTIONS.FERTILIZE.fn(act, ...)

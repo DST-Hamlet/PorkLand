@@ -376,6 +376,14 @@ local states = {
     },
 
     State{
+        name = "disembark",
+        tags = {"canrotate", "boating", "busy", "nomorph", "nopredict"},
+        onenter = function(inst)
+            inst:PerformBufferedAction()
+        end,
+    },
+
+    State{
         name = "jumponboatstart",
         tags = { "doing", "nointerupt", "canrotate", "busy", "nomorph", "nopredict", "temp_invincible"},
         onenter = function(inst)
@@ -384,7 +392,7 @@ local states = {
             end
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("jumpboat")
-            inst.SoundEmitter:PlaySound("ia/common/boatjump_whoosh")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boatjump_whoosh")
 
             local action = inst:GetBufferedAction()
             inst.sg.statemem.startpos = inst:GetPosition()
@@ -465,7 +473,88 @@ local states = {
             end),
         },
     },
- 
+
+    State{
+        name = "jumpoffboatstart",
+        tags = {"doing", "nointerupt", "busy", "canrotate", "nomorph", "nopredict", "temp_invincible"},
+
+        onenter = function(inst, pos)
+            if inst.Physics.ClearCollidesWith then
+                inst.Physics:ClearCollidesWith(COLLISION.LIMITS) -- R08_ROT_TURNOFTIDES
+            end
+            inst.components.locomotor:StopMoving()
+            -- inst.components.locomotor:EnableGroundSpeedMultiplier(false)
+            inst.AnimState:PlayAnimation("jumpboat")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boatjump_whoosh")
+
+            inst.sg.statemem.startpos = inst:GetPosition()
+            inst.sg.statemem.targetpos = pos
+
+            inst:PushEvent("ms_closepopups")
+
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(false)
+                inst.components.playercontroller:RemotePausePrediction()
+            end
+        end,
+
+        onexit = function(inst)
+            -- This shouldn"t actually be reached
+            if inst.Physics.ClearCollidesWith then
+                inst.Physics:CollidesWith(COLLISION.LIMITS) -- R08_ROT_TURNOFTIDES
+            end
+            inst.components.locomotor:Stop()
+            -- inst.components.locomotor:EnableGroundSpeedMultiplier(true)
+
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(true)
+            end
+        end,
+
+        timeline = {
+            -- Make the action cancel-able until this?
+            TimeEvent(7 * FRAMES, function(inst)
+                inst:ForceFacePoint(inst.sg.statemem.targetpos:Get())
+                local dist = inst:GetPosition():Dist(inst.sg.statemem.targetpos)
+                local speed = dist / (18 / 30)
+                inst.Physics:SetMotorVelOverride(speed, 0, 0)
+            end),
+        },
+
+        events = {
+            EventHandler("animover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.Transform:SetPosition(inst.sg.statemem.targetpos:Get())
+                    inst.sg:GoToState("jumpoffboatland")
+                end
+            end),
+        },
+    },
+
+    State{
+        name = "jumpoffboatland",
+        tags = {"doing", "nointerupt", "busy", "canrotate", "nomorph", "nopredict", "temp_invincible"},
+
+        onenter = function(inst, pos)
+            if inst.Physics.ClearCollidesWith then
+                inst.Physics:CollidesWith(COLLISION.LIMITS) -- R08_ROT_TURNOFTIDES
+            end
+            inst.Physics:Stop()
+            inst.AnimState:PlayAnimation("land", false)
+            inst.SoundEmitter:PlaySound("ia/common/boatjump_to_land")
+            PlayFootstep(inst)
+        end,
+
+        events = {
+            EventHandler("animqueueover", function(inst)
+                inst:PerformBufferedAction()
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
+    },
+
     State{
         name = "curepoison",
         tags = {"busy"},

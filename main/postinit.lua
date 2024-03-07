@@ -18,6 +18,7 @@ local component_posts = {
     "locomotor",
     "lootdropper",
     "moisture",
+    "playeractionpicker",
     "playercontroller",
     "pollinator",
     "regrowthmanager",
