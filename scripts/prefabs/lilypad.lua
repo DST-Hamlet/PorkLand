@@ -57,7 +57,7 @@ local function OnPhaseChange(inst, phase)
     if inst.components.childspawner.childname == "frog_poison" then
         if phase == "day" then
             inst.components.childspawner:StartSpawning()
-        elseif phase == "night" then
+        else
             inst.components.childspawner:StopSpawning()
             ReturnChildren(inst)
         end
@@ -67,7 +67,7 @@ local function OnPhaseChange(inst, phase)
         if phase == "day" then
             inst.components.childspawner:StopSpawning()
             ReturnChildren(inst)
-        elseif phase == "dusk" then
+        else
             inst.components.childspawner:StartSpawning()
         end
     end
