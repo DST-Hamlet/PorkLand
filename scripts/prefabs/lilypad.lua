@@ -87,6 +87,9 @@ local function OnLoad(inst, data, newents)
         if data.childname then
             inst.components.childspawner.childname = data.childname
         end
+        if data.rotaion then
+            inst.rotation = data.rotation
+        end
     end
 
     RefreshBuild(inst)
