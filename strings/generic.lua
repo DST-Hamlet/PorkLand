@@ -59,6 +59,8 @@ return {
         ICEDTEA = "I scream for iced tea.",
         IRON = "Isn't it ironic?",
         MACHETE = "I like the cut of this blade.",
+        MANDRAKEMAN = "Large and screamy.",
+        MANDRAKEHOUSE = "It looks... screamy.",
         PANGOLDEN = "It likes rich food.",
         PEAGAWK = {
             DEAD = "Dead-eyed.",
