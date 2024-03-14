@@ -46,16 +46,19 @@ local function findfood(inst, target)
     end)
 end
 
-local RETARGET_NO_TAGS = {"flytrap"}
+local RETARGET_DIST = 6
+local RETARGET_DIST_WORMWOOD = 8
+local KEEP_TARGET_DIST = 8
+local RETARGET_NO_TAGS = {"FX", "NOCLICK", "INLIMBO", "wall", "flytrap", "structure", "aquatic", "notarget"}
 local RETARGET_ONE_OF_TAGS = {"character", "monster", "animal"}
 
 local function RetargetFn(inst)
-    return FindEntity(inst, TUNING.ADULT_FLYTRAP_ATTACK_DIST, function(ent)
-        if ent:HasTag("plantkin") and (ent:GetDistanceSqToInst(inst) > TUNING.FLYTRAP_TARGET_DIST * TUNING.FLYTRAP_TARGET_DIST or not findfood(inst, ent)) then
+    return FindEntity(inst, RETARGET_DIST, function(ent)
+        if ent:HasTag("plantkin") and (ent:GetDistanceSqToInst(inst) > RETARGET_DIST_WORMWOOD * RETARGET_DIST_WORMWOOD or not findfood(inst, ent)) then
             return false
         end
 
-        return ent.components.combat and ent.components.health and not ent.components.health:IsDead()
+        return inst.components.combat:CanTarget(ent)
     end, nil, RETARGET_NO_TAGS, RETARGET_ONE_OF_TAGS)
 end
 
@@ -66,7 +69,7 @@ local function KeepTargetFn(inst, target)
 
     if target and target:IsValid() and target.components.health and not target.components.health:IsDead() then
         local distsq = target:GetDistanceSqToInst(inst)
-        return distsq < TUNING.ADULT_FLYTRAP_STOPATTACK_DIST * TUNING.ADULT_FLYTRAP_STOPATTACK_DIST
+        return distsq < KEEP_TARGET_DIST * KEEP_TARGET_DIST
     else
         return false
     end
@@ -84,11 +87,10 @@ end
 local function OnTimerDone(inst, data)
     local pt = Vector3(inst.Transform:GetWorldPosition())
     local radius = 15
-    -- check tile?
     local offset = FindWalkableOffset(pt, math.random() * 2 * PI, radius, 20, true, false) -- try avoiding walls
 
     if offset then
-        local ents = TheSim:FindEntities(pt.x, 0, pt.z, radius, {"flytrap"}) -- This leads to infinite regrow?
+        local ents = TheSim:FindEntities(pt.x, 0, pt.z, radius, {"flytrap"})
         if #ents < 5 then
             local plant = SpawnPrefab("mean_flytrap")
             plant.Transform:SetPosition(pt.x + offset.x, 0, pt.z + offset.z)
@@ -171,7 +173,7 @@ local function fn()
     inst.components.combat:SetRange(TUNING.ADULT_FLYTRAP_ATTACK_DIST)
     inst.components.combat:SetDefaultDamage(TUNING.ADULT_FLYTRAP_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.ADULT_FLYTRAP_ATTACK_PERIOD)
-    inst.components.combat:SetRetargetFunction(GetRandomWithVariance(2, 0.5), RetargetFn)
+    inst.components.combat:SetRetargetFunction(GetRandomWithVariance(0.45, 0.15), RetargetFn)
     inst.components.combat:SetKeepTargetFunction(KeepTargetFn)
 
     inst:AddComponent("inspectable")

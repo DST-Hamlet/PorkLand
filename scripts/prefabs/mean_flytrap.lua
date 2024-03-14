@@ -31,13 +31,13 @@ local function findfood(inst, target)
     end)
 end
 
-local RETARGET_NO_TAGS = {"FX", "NOCLICK","INLIMBO", "wall", "flytrap", "structure", "aquatic"}
-local function RetargetFn(inst)
-    local dist = TUNING.FLYTRAP_TARGET_DIST
+local RETARGET_DIST = 8
+local RETARGET_NO_TAGS = {"FX", "NOCLICK", "INLIMBO", "wall", "flytrap", "structure", "aquatic", "notarget"}
 
-    return FindEntity(inst, dist, function(ent)
+local function RetargetFn(inst)
+    return FindEntity(inst, RETARGET_DIST, function(ent)
         if (ent:HasTag("plantkin") or ent:HasTag("chess"))
-            and (ent:GetDistanceSqToInst(inst) > dist * dist or not findfood(inst, ent)) then
+            and (ent:GetDistanceSqToInst(inst) > RETARGET_DIST * RETARGET_DIST or not findfood(inst, ent)) then
             return false
         end
 
