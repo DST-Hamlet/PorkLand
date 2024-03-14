@@ -10,6 +10,11 @@ return {
         "Ick!",
         "I got some on my hands!",
     },
+    ANNOUNCE_PUGALISK_INVULNERABLE = {
+        "Its hide is too tough!",
+        "A tough nut to crack.",
+        "Break, darn you!"
+    },
     ANNOUNCE_SNEEZE = "AHHH CHOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is so heavy.",

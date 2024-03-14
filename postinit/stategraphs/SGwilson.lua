@@ -39,6 +39,18 @@ local eventhandlers = {
     end),
 }
 
+local plant_symbols =
+{
+    "waterpuddle",
+    "sparkle",
+    "puddle",
+    "plant",
+    "lunar_mote3",
+    "lunar_mote",
+    "glow",
+    "blink"
+}
+
 local states = {
     State{
         name = "mounted_poison_idle",
@@ -343,6 +355,62 @@ local states = {
             end),
         },
     },
+
+    State{
+        name = "rebirth_floweroflife",
+        tags = {"nopredict", "silentmorph"},
+
+        onenter = function(inst, source)
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(false)
+            end
+            inst.AnimState:PlayAnimation("rebirth2")
+
+            local skin_build = source and source:GetSkinBuild() or nil
+            if skin_build ~= nil then
+                for k,v in pairs(plant_symbols) do
+                    inst.AnimState:OverrideItemSkinSymbol(v, skin_build, v, inst.GUID, "lifeplant")
+                end
+            else
+                for k,v in pairs(plant_symbols) do
+                    inst.AnimState:OverrideSymbol(v, "lifeplant", v)
+                end
+            end
+
+            inst.components.health:SetInvincible(true)
+            inst:ShowHUD(false)
+            inst:SetCameraDistance(12) -- TODO: Do not set to 12 if interior
+        end,
+
+        timeline =
+        {
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
+
+        onexit = function(inst)
+            for k, v in pairs(plant_symbols) do
+                inst.AnimState:ClearOverrideSymbol(v)
+            end
+
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(true)
+            end
+
+            inst.components.health:SetInvincible(false)
+            inst:ShowHUD(true)
+            inst:SetCameraDistance()
+
+            SerializeUserSession(inst)
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -410,4 +478,6 @@ AddStategraphPostInit("wilson", function(sg)
             _funnyidle_onenter(inst, ...)
         end
     end
+
+    sg.states["castspell"].tags["spell"] = true -- For bonestaff
 end)
