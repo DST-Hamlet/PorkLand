@@ -70,7 +70,7 @@ local function HealthRedirect(inst, amount, overtime, cause, ignore_invincible, 
         inst:PushEvent("dohitanim")
         if inst.host.components.health and not inst.host.components.health:IsDead() then
             inst.host.components.health:DoDelta(amount, overtime, "vulnerable_segment", ignore_invincible, afflicter, true)
-            inst.host:PushEvent("attacked")
+            inst.host:PushEvent("attacked", {vulnerable_segment = true})
         end
 
         return true

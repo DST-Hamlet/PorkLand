@@ -12,9 +12,9 @@ local Segmented = Class(function(self, inst)
     self.state = STATES.IDLE
     self.groundpoint_start = nil
     self.groundpoint_end = nil
-    self.segmentprefab = "pugalisk_segment"
+    self.segment_prefab = "pugalisk_segment"
     self.nextseg = 0
-    self.segtimeMax = 1 --1.5
+    self.segtimeMax = 1
     self.loopcomplete = false
     self.ease = 1
 
@@ -36,17 +36,14 @@ function Segmented:Start(angle, segtimeMax, advancetime)
     local pos =  Vector3(self.inst.Transform:GetWorldPosition())
     self:SetGroundStart(pos)
 
-    if not angle then
-        angle = -PI/2
-     end
-
+    angle = angle or -PI/2
     self.inst.angle = angle
 
     local radius = 6
 
-    local offset = Vector3(radius * math.cos( angle ), 0, -radius * math.sin( angle ))
+    local offset = Vector3(radius * math.cos(angle), 0, -radius * math.sin(angle))
 
-    pos= pos + offset
+    pos = pos + offset
     self:SetGroundTarget(pos)
 
     local exit = SpawnPrefab("pugalisk_body")
@@ -58,16 +55,12 @@ function Segmented:Start(angle, segtimeMax, advancetime)
     exit.startpt = self.inst
     exit.host = self.inst.host
 
-   -- if self.startfn then
-   -- 	self.startfn(self.inst, pos)
-   -- end
-
     self.state = STATES.MOVING
     self.inst:StartUpdatingComponent(self)
     if advancetime then
         while advancetime > 0 do
             local dt = 1/30
-            self:OnUpdate( dt )
+            self:OnUpdate(dt)
             advancetime = advancetime - dt
         end
     end
@@ -101,7 +94,7 @@ function Segmented:SetGroundStart(point)
     self.groundpoint_start = point
 end
 
-function Segmented:removeSegment(segment)
+function Segmented:RemoveSegment(segment)
     for i, testsegment in ipairs(self.segments)do
         if segment == testsegment then
             table.remove(self.segments,i)
@@ -113,6 +106,7 @@ function Segmented:removeSegment(segment)
         self.vulnerablesegments = self.vulnerablesegments - 1
     end
 
+    self.inst.exitpt:AddTag("notarget")
     self.inst.exitpt.AnimState:PlayAnimation("dirt_segment_in_pst")
     self.inst.exitpt.AnimState:OverrideSymbol("segment_swap",segment.build, "segment_swap")
 
@@ -130,9 +124,9 @@ function Segmented:removeSegment(segment)
     segment:Remove()
 end
 
-function Segmented:removeAllSegments()
+function Segmented:RemoveAllSegments()
     for i=#self.segments, 1, -1 do
-        self:removeSegment(self.segments[i])
+        self:RemoveSegment(self.segments[i])
     end
 end
 
@@ -163,12 +157,10 @@ end
 
 function Segmented:addSegment(tail)
     if not self.tailfinished  then
-
-        local segment = SpawnPrefab(self.segmentprefab)
+        local segment = SpawnPrefab(self.segment_prefab)
         segment.host = self.inst.host
         segment.playerpickerproxy = self.inst
 
-        --segment.Transform:SetPosition(self.groundpoint_start.x,self.groundpoint_start.y,self.groundpoint_start.z)
         segment.segtime = self.segtimeMax * 0.01
 
             local p1 = Vector3(self.groundpoint_end.x,0,self.groundpoint_end.z)
@@ -248,7 +240,7 @@ function Segmented:onhit()
     self.hit = 1
 end
 
-function Segmented:getSegment(index)
+function Segmented:GetSegment(index)
     local step = 1
 
     for i,segment in ipairs(self.segments)do
@@ -259,12 +251,10 @@ function Segmented:getSegment(index)
     end
 end
 
-function Segmented:scaleSegment(index, scale)
-
-    local segment = self:getSegment(index)
+function Segmented:ScaleSegment(index, scale)
+    local segment = self:GetSegment(index)
     if segment then
-        local s = scale
-        segment.Transform:SetScale(s,s,s)
+        segment.Transform:SetScale(scale, scale, scale)
     end
 end
 
@@ -272,8 +262,8 @@ function Segmented:killsegment(segment)
     if self.segment_deathfn then
         self.segment_deathfn(segment)
     end
-    --local bone = SpawnPrefab("boneshard")
-    self:removeSegment(segment)
+
+    self:RemoveSegment(segment)
 end
 
 function Segmented:switchtotail()
@@ -285,7 +275,7 @@ function Segmented:switchtotail()
     newtail.wantstotaunt = nil
     local pt = Vector3(self.inst.exitpt.Transform:GetWorldPosition())
     newtail.Transform:SetPosition(pt.x,pt.y,pt.z)
-    self:removeAllSegments()
+    self:RemoveAllSegments()
     self.inst.host.components.multibody.tail = newtail
     self.inst:PushEvent("bodyfinished")
 end
@@ -297,205 +287,203 @@ function Segmented:SetToEnd()
     end
 end
 
-function Segmented:OnUpdate( dt )
-    for i, segment in ipairs(self.segments)do
+function Segmented:OnUpdate(dt)
+    for _, segment in ipairs(self.segments)do
         segment.percentdist = segment.segtime/self.segtimeMax
         self:updatesegmentart(segment,segment.percentdist)
     end
 
-    if self.state ~= STATES.DEAD then
+    if self.state == STATES.DEAD then
+        return
+    end
 
-        local rate = 1/30
-        local speed = 0
 
-        -- CALCULATE THE EASE
-        if self.state == STATES.MOVING then
-            self.ease = math.min(self.ease + rate,1)
-        else
-            self.ease = math.max(self.ease - rate,0)
-        end
+    local rate = 1/30
+    local speed = 0
 
-        speed = self.ease
+    -- CALCULATE THE EASE
+    if self.state == STATES.MOVING then
+        self.ease = math.min(self.ease + rate, 1)
+    else
+        self.ease = math.max(self.ease - rate, 0)
+    end
 
-        -- if this body has been told its the end, just have it run out until it's gone. If it should stop, it will stop as a tail.
-        if self.lastrun then -- self.tailfinished and self.state == STATES.IDLE 
-            speed = 1
-        end
+    speed = self.ease
 
-        self.inst.SoundEmitter:SetParameter("speed", "intensity", speed)
-        --self.inst.exitpt.SoundEmitter:SetParameter("speed", "intensity", speed)
+    -- if this body has been told its the end, just have it run out until it's gone. If it should stop, it will stop as a tail.
+    if self.lastrun then
+        speed = 1
+    end
 
-        -- PROCESS THE EASE
-        if self.groundpoint_end then
-            for i, segment in ipairs(self.segments)do
+    self.inst.SoundEmitter:SetParameter("speed", "intensity", speed)
 
-                local p1 = Vector3(self.groundpoint_end.x,0,self.groundpoint_end.z)
-                local p0 = Vector3(self.groundpoint_start.x,0,self.groundpoint_start.z)
+    -- PROCESS THE EASE
+    if self.groundpoint_end then
+        for _, segment in ipairs(self.segments)do
 
-                local pdelta = p1 - p0
+            local p1 = Vector3(self.groundpoint_end.x, 0, self.groundpoint_end.z)
+            local p0 = Vector3(self.groundpoint_start.x, 0, self.groundpoint_start.z)
 
-                segment.segtime = math.min(segment.segtime + (dt * speed) , self.segtimeMax)
+            local pdelta = p1 - p0
 
-                local t = segment.segtime/self.segtimeMax
+            segment.segtime = math.min(segment.segtime + (dt * speed) , self.segtimeMax)
 
-                local pf = (pdelta * t) + p0
+            local t = segment.segtime/self.segtimeMax
 
-                --pf.y =  math.sin( PI * t) * 3				               										
+            local pf = (pdelta * t) + p0
 
-                segment.setheight = pf.y
+            segment.setheight = pf.y
 
-                segment.Transform:SetPosition(pf.x,pf.y,pf.z)
+            segment.Transform:SetPosition(pf.x, pf.y, pf.z)
 
-                if t > 0.5 then
-                    segment.playerpickerproxy = self.inst.exitpt
-                end
-
-                if t > 0.7 and segment.tail and self.inst:HasTag("switchToTailProp")  then
-                    self:switchtotail()
-                end
-
-                if t > 0.98 then
-                    if not self.loopcomplete then
-                        --print("BODY COMPLETE EVENT")
-                        self.inst:PushEvent("bodycomplete")
-                        self.loopcomplete = true
-                    end
-
-                    self:removeSegment(segment)
-                end
-
+            if t > 0.5 then
+                segment.playerpickerproxy = self.inst.exitpt
             end
-        end
 
-        if self.state == STATES.IDLE then
-            if self.segments and #self.segments > 0 then
-
-                local function positionandscale(segment, scale, height)
-                    if scale then
-                        segment.scalegoal = scale
-                    end
-                    if height then
-                        segment.heightgoal = segment.setheight * height
-                    end
-                end
-
-                local SEGMENTIDLETIME = 0.1
-
-                if not self.idletimer then
-                    self.idletimer = SEGMENTIDLETIME + (math.random() *1)
-                    self.idlesegment = 1
-                end
-
-                self.idletimer = self.idletimer - dt
-
-                if self.idletimer < 0 then
-
-                    if self.segments[self.idlesegment -1] then
-                        positionandscale(self.segments[self.idlesegment -1], 1.5, 1)
-                    end
-                    if self.segments[self.idlesegment +1] then
-                        positionandscale(self.segments[self.idlesegment +1], 1.5, 1)
-                    end
-                    if self.segments[self.idlesegment] then
-                        positionandscale(self.segments[self.idlesegment], 1.5, 1)
-                    end
-
-                    self.idlesegment = self.idlesegment +1
-                    self.idletimer = SEGMENTIDLETIME
-                    if self.idlesegment > #self.segments  then
-                        self.idlesegment = 1
-                        self.idletimer = SEGMENTIDLETIME  -- + (math.random()*1.5)
-                    end
-                end
-
-                local HEIGHT_SUB = 0.97
-                local HEIGHT = 0.95
-
-                local SCALE_SUB = 1.55  --1.52
-                local SCALE = 1.6  -- 1.55
-
-                if self.segments[self.idlesegment -1] then
-                    positionandscale(self.segments[self.idlesegment -1], SCALE_SUB, HEIGHT_SUB)
-                end
-
-                if self.segments[self.idlesegment +1] then
-                    positionandscale(self.segments[self.idlesegment +1], SCALE_SUB, HEIGHT_SUB)
-                end
-
-                if self.segments[self.idlesegment] then
-                    positionandscale(self.segments[self.idlesegment], SCALE, HEIGHT)
-                end
-
-                for i, segment in ipairs(self.segments)do
-
-                    local SCALE_VEL = 0.008
-                    if segment.scalegoal then
-
-                        local scale = segment.Transform:GetScale()
-
-                        if scale ~= segment.scalegoal then
-                            if scale > segment.scalegoal then
-                                scale = math.max(scale - SCALE_VEL, segment.scalegoal )
-                            else
-                                scale = math.min(scale + SCALE_VEL, segment.scalegoal )
-                                if scale == segment.scalegoal then
-                                    segment.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/scales")
-                                end
-                            end
-                        end
-                        segment.Transform:SetScale(scale,scale,scale)
-                    end
-
-                    local HEIGHT_VEL = 0.005
-
-                    if segment.heightgoal then
-                        local pf = segment:GetPosition()
-                        if pf.y ~= segment.heightgoal then
-                            if pf.y > segment.heightgoal then
-                                pf.y = math.max(pf.y - HEIGHT_VEL,segment.heightgoal)
-                            else
-                                pf.y = math.min(pf.y + HEIGHT_VEL,segment.heightgoal)
-                            end
-                        end
-                        segment.Transform:SetPosition(pf.x,pf.y,pf.z)
-                    end
-
-                end
+            if t > 0.7 and segment.tail and self.inst:HasTag("switchToTailProp") then
+                self:switchtotail()
             end
-        else
-            self.idletimer = nil
-            self.idlesegment = nil
-        end
 
-        if self.hit and self.hit > 0 then
-            for i, segment in ipairs(self.segments)do
-                local s = 1.5
-                s = Remap(self.hit, 1, 0, 1, 1.5)
-                segment.Transform:SetScale(s,s,s)
+            if t > 0.98 then
+                if not self.loopcomplete then
+                    self.inst:PushEvent("bodycomplete")
+                    self.loopcomplete = true
+                end
 
-                local pf = segment:GetPosition()
-                pf.y = 0
-
-                segment.Transform:SetPosition(pf.x,pf.y,pf.z)
+                self:RemoveSegment(segment)
             end
-            self.hit = self.hit -(dt*5)
-        end
 
-        if self.nextseg <= 0 then
-            self:addSegment(self.lastrun)
-            self.nextseg = 1/15
-        else
-            self.nextseg = self.nextseg  - (dt * speed)		-- self.ease
-        end
-
-        if self.segmentstotal <= 0 and self.lastrun then
-            self.inst.exitpt.AnimState:PlayAnimation("dirt_collapse")
-            self.inst.exitpt:ListenForEvent("animover", function(localinst, data)
-                localinst:Remove()
-            end)
-            self.inst:PushEvent("bodyfinished")
         end
     end
+
+    if self.state == STATES.IDLE then
+        if self.segments and #self.segments > 0 then
+
+            local function positionandscale(segment, scale, height)
+                if scale then
+                    segment.scalegoal = scale
+                end
+                if height then
+                    segment.heightgoal = segment.setheight * height
+                end
+            end
+
+            local SEGMENTIDLETIME = 0.1
+
+            if not self.idletimer then
+                self.idletimer = SEGMENTIDLETIME + (math.random() *1)
+                self.idlesegment = 1
+            end
+
+            self.idletimer = self.idletimer - dt
+
+            if self.idletimer < 0 then
+
+                if self.segments[self.idlesegment -1] then
+                    positionandscale(self.segments[self.idlesegment -1], 1.5, 1)
+                end
+                if self.segments[self.idlesegment +1] then
+                    positionandscale(self.segments[self.idlesegment +1], 1.5, 1)
+                end
+                if self.segments[self.idlesegment] then
+                    positionandscale(self.segments[self.idlesegment], 1.5, 1)
+                end
+
+                self.idlesegment = self.idlesegment +1
+                self.idletimer = SEGMENTIDLETIME
+                if self.idlesegment > #self.segments  then
+                    self.idlesegment = 1
+                    self.idletimer = SEGMENTIDLETIME  -- + (math.random()*1.5)
+                end
+            end
+
+            local HEIGHT_SUB = 0.97
+            local HEIGHT = 0.95
+
+            local SCALE_SUB = 1.55  --1.52
+            local SCALE = 1.6  -- 1.55
+
+            if self.segments[self.idlesegment -1] then
+                positionandscale(self.segments[self.idlesegment -1], SCALE_SUB, HEIGHT_SUB)
+            end
+
+            if self.segments[self.idlesegment +1] then
+                positionandscale(self.segments[self.idlesegment +1], SCALE_SUB, HEIGHT_SUB)
+            end
+
+            if self.segments[self.idlesegment] then
+                positionandscale(self.segments[self.idlesegment], SCALE, HEIGHT)
+            end
+
+            for i, segment in ipairs(self.segments)do
+
+                local SCALE_VEL = 0.008
+                if segment.scalegoal then
+
+                    local scale = segment.Transform:GetScale()
+
+                    if scale ~= segment.scalegoal then
+                        if scale > segment.scalegoal then
+                            scale = math.max(scale - SCALE_VEL, segment.scalegoal )
+                        else
+                            scale = math.min(scale + SCALE_VEL, segment.scalegoal )
+                            if scale == segment.scalegoal then
+                                segment.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/scales")
+                            end
+                        end
+                    end
+                    segment.Transform:SetScale(scale,scale,scale)
+                end
+
+                local HEIGHT_VEL = 0.005
+
+                if segment.heightgoal then
+                    local pf = segment:GetPosition()
+                    if pf.y ~= segment.heightgoal then
+                        if pf.y > segment.heightgoal then
+                            pf.y = math.max(pf.y - HEIGHT_VEL,segment.heightgoal)
+                        else
+                            pf.y = math.min(pf.y + HEIGHT_VEL,segment.heightgoal)
+                        end
+                    end
+                    segment.Transform:SetPosition(pf.x,pf.y,pf.z)
+                end
+
+            end
+        end
+    else
+        self.idletimer = nil
+        self.idlesegment = nil
+    end
+
+    if self.hit and self.hit > 0 then
+        local x, y, z
+        for i, segment in ipairs(self.segments)do
+            local s = 1.5
+            s = Remap(self.hit, 1, 0, 1, 1.5)
+            segment.Transform:SetScale(s,s,s)
+
+            x, y, z = segment.Transform:GetWorldPosition()
+            segment.Transform:SetPosition(x, 0, z)
+        end
+        self.hit = self.hit -dt * 5
+    end
+
+    if self.nextseg <= 0 then
+        self:addSegment(self.lastrun)
+        self.nextseg = 1/15
+    else
+        self.nextseg = self.nextseg - (dt * speed)
+    end
+
+    if self.segmentstotal <= 0 and self.lastrun then
+        self.inst.exitpt.AnimState:PlayAnimation("dirt_collapse")
+        self.inst.exitpt:ListenForEvent("animover", function(localinst, data)
+            localinst:Remove()
+        end)
+        self.inst:PushEvent("bodyfinished")
+    end
+
 end
 
 return Segmented

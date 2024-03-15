@@ -65,7 +65,7 @@ local function FindDirectionToDive(inst, target)
     local pt = inst:GetPosition()
     local angle = target and (target:GetAngleToPoint(pt.x, pt.y, pt.z) * DEGREES - PI) or math.random()*2*PI
 
-    local offset, endangle = FindMoveablePosition(pt, angle, 6, 24, true)
+    local offset, endangle = FindMoveablePosition(pt, angle, 6, 10, true)
 
     return endangle
 end
@@ -75,7 +75,7 @@ local function FindSafeLocation(pt, angle)
     local range = 6
 
     while not offset do
-        offset = FindMoveablePosition(pt, angle * DEGREES, range, 24, true)
+        offset = FindMoveablePosition(pt, angle * DEGREES, range, 10, true)
         range = range + 1
     end
 

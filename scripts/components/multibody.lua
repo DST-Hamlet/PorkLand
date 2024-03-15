@@ -7,7 +7,9 @@ local STATES = {
 local function kill_body(body)
     local health = body and body.components.health
     if health and health.currenthealth > 0 then
-        health:SetVal(0)
+        body:DoTaskInTime(0, function() -- wait for health replica to be constructed
+            health:SetVal(0)
+        end)
     end
 end
 

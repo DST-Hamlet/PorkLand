@@ -58,8 +58,8 @@ local events=
         inst.sg:GoToState("gaze")
     end),
 
-    EventHandler("attacked", function(inst)
-        if inst.sg:HasStateTag("idle") and not inst:HasTag("tail") then
+    EventHandler("attacked", function(inst, data)
+        if inst.sg:HasStateTag("idle") and not inst:HasTag("tail") and data.vulnerable_segment then
             inst.sg:GoToState("hit")
         end
     end),
