@@ -76,6 +76,7 @@ local function fn()
     inst.components.deployable:SetDeployMode(DEPLOYMODE.PLANT)
     inst.components.deployable.ondeploy = OnDeploy
 
+    MakeHauntableLaunch(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
 
     inst:ListenForEvent("onremove", OnRemove)

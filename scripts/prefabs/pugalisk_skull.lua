@@ -30,6 +30,8 @@ local function fn()
 
     inst:AddComponent("inventoryitem")
 
+    MakeHauntableLaunch(inst)
+
     return inst
 end
 

@@ -126,13 +126,14 @@ local function segmentfn()
     inst:AddTag("noteleport")
 
     inst.name = STRINGS.NAMES.PUGALISK
-    inst.persists = false
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst.persists = false
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(0)
@@ -151,8 +152,6 @@ local function segmentfn()
     inst.components.lootdropper:SetChanceLootTable("pugalisk_segment")
     inst.components.lootdropper.lootdropangle = 360
     inst.components.lootdropper.speed = 3 + math.random() * 3
-
-    MakeHauntable(inst)
 
     return inst
 end
@@ -261,8 +260,6 @@ local function bodyfn()
     inst:AddComponent("segmented")
     inst.components.segmented.segment_deathfn = segment_deathfn
 
-    MakeHauntable(inst)
-
     inst:ListenForEvent("bodycomplete", OnBodyComplete_Body)
     inst:ListenForEvent("bodyfinished", function()
         if inst.host then
@@ -354,8 +351,6 @@ local function tailfn()
 
     inst:SetBrain(tail_brain)
     inst:SetStateGraph("SGpugalisk_head")
-
-    MakeHauntable(inst)
 
     return inst
 end
@@ -496,8 +491,6 @@ local function fn()
     inst:SetBrain(head_brain)
     inst:SetStateGraph("SGpugalisk_head")
 
-    MakeHauntable(inst)
-
     inst:ListenForEvent("bodycomplete", OnBodyComplete)
     inst:ListenForEvent("bodyfinished", function(inst, data) inst.components.multibody:RemoveBody(data.body) end)
     inst:ListenForEvent("death", OnDeath)
@@ -570,8 +563,6 @@ local function corpsefn()
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"pugalisk_skull"})
-
-    MakeHauntable(inst)
 
     return inst
 end

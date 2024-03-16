@@ -82,6 +82,8 @@ local function fn()
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("pugalisk_pillar")
 
+    MakeHauntable(inst)
+
     inst:DoTaskInTime(0, RotatePillar)
 
     inst.LoadPostPass = OnLoadPostPass

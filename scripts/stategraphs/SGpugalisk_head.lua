@@ -121,9 +121,9 @@ local states=
         {
             EventHandler("animover", function(inst)
                 if not inst:HasTag("tail") then
+                    local x, y, z = inst.Transform:GetWorldPosition()
                     local corpse = SpawnPrefab("pugalisk_corpse")
-                    local pt = Vector3(inst.Transform:GetWorldPosition())
-                    corpse.Transform:SetPosition(pt.x,pt.y,pt.z)
+                    corpse.Transform:SetPosition(x, y, z)
                     inst:Remove()
                 end
             end),
@@ -155,9 +155,9 @@ local states=
         {
             EventHandler("animover", function(inst)
                 if not inst:HasTag("tail") then
+                    local x, y, z = inst.Transform:GetWorldPosition()
                     local corpse = SpawnPrefab("pugalisk_corpse")
-                    local pt = Vector3(inst.Transform:GetWorldPosition())
-                    corpse.Transform:SetPosition(pt.x,pt.y,pt.z)
+                    corpse.Transform:SetPosition(x, y, z)
                     inst:Remove()
                 end
             end),
@@ -400,9 +400,6 @@ local states=
 
         events =
         {
-            EventHandler("animover", function(inst)
-                --inst.sg:GoToState("gaze_pst")                
-            end),
         },
     },
 
@@ -459,7 +456,7 @@ local states=
 
     State{
         name = "startmove",
-        tags = {"busy","backup"},
+        tags = {"busy", "backup"},
 
         onenter = function(inst, start_anim)
             inst:PushEvent("startmove")

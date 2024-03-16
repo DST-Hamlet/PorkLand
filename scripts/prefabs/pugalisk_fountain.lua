@@ -35,7 +35,7 @@ local function OnActivate(inst, doer)
 
     local drop = SpawnPrefab("waterdrop")
     drop.fountain = inst
-    doer.components.inventory:GiveItem(drop, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+    doer.components.inventory:GiveItem(drop) --, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
 
     local ent = TheSim:FindFirstEntityWithTag("pugalisk_trap_door")
     if ent then
@@ -149,6 +149,8 @@ local function fn()
             OnDeactivate(inst)
         end
     end)
+
+    MakeHauntable(inst)
 
     return inst
 end

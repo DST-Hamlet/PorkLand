@@ -1,10 +1,9 @@
-require "prefabutil"
+require("prefabutil")
 
 local assets =
 {
     Asset("ANIM", "anim/lifeplant.zip"),
     Asset("ANIM", "anim/lifeplant_fx.zip"),
-    Asset("MINIMAP_IMAGE", "lifeplant"),
 }
 
 local prefabs =
@@ -37,15 +36,18 @@ local function UpdateAnimations(inst)
 end
 
 local function Sparkle(inst)
-    local player = inst.components.playerprox.target
+    local target = inst.components:GetNearestPlayer()
 
     local lifeplant_sparkle = SpawnPrefab("lifeplant_sparkle")
-    lifeplant_sparkle.Transform:SetPosition(player.Transform:GetWorldPosition())
+    lifeplant_sparkle.Transform:SetPosition(target.Transform:GetWorldPosition())
 end
 
 local function DrainHunger(inst)
-    local player = inst.components.playerprox.target
-    player.components.hunger:DoDelta(-1)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local players = FindPlayersInRange(x, y, z, 6, true)
+    for _, player in pairs(players) do
+        player.components.hunger:DoDelta(-1)
+    end
 end
 
 local function OnNear(inst)
@@ -240,7 +242,6 @@ local function fn()
     inst.components.playerprox:SetDist(6, 7)
     inst.components.playerprox:SetOnPlayerNear(OnNear)
     inst.components.playerprox:SetOnPlayerFar(OnFar)
-    inst.components.playerprox:SetTargetMode(inst.components.playerprox.AllPlayers)
 
     MakeLargePropagator(inst)
 

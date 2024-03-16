@@ -1,3 +1,7 @@
+local GAZE_DIST_MIN = 8
+local GAZE_DIST_MAX = 20
+local PUGALISK_MOVE_DIST = 6 -- If you treat pugalisk as a wave function then this is half its wavelength
+
 local function FindCurrentTarget(inst)
     -- looks for a combat target, if none, sets target as home if range is too far
 
@@ -63,7 +67,7 @@ end
 
 local function FindDirectionToDive(inst, target)
     local pt = inst:GetPosition()
-    local angle = target and (target:GetAngleToPoint(pt.x, pt.y, pt.z) * DEGREES - PI) or math.random()*2*PI
+    local angle = target and (target:GetAngleToPoint(pt.x, pt.y, pt.z) * DEGREES - PI) or math.random() * 2 * PI
 
     local offset, endangle = FindMoveablePosition(pt, angle, 6, 10, true)
 
@@ -104,31 +108,28 @@ local function DetermineAction(inst)
     local wasgazing = inst.wantstogaze
     inst.wantstogaze = nil
 
-    local dist = nil
-
     local rando = math.random()
     if rando < 0.0001  then -- questionable
         inst.wantstotaunt = true
     end
 
-    if target then
-        dist = inst:GetDistanceSqToInst(target)
-    end
+    local dist = target and inst:GetDistanceSqToInst(target)
 
-    if dist and target.components.freezable and not target.components.freezable:IsFrozen( ) and dist > 8*8 and dist < 20*20 then     --and not head:HasTag("now_segmented")                        
-        local gazechange = 0
+    if dist and target.components.freezable and not target.components.freezable:IsFrozen()
+        and dist > GAZE_DIST_MIN * GAZE_DIST_MIN and dist < GAZE_DIST_MAX * GAZE_DIST_MAX then
+        local gaze_chance = 0
         local health = inst.components.health:GetPercent()
         if health < 0.2 then
-            gazechange = 0.75
+            gaze_chance = 0.75
         elseif health < 0.4 then
-            gazechange = 0.5
+            gaze_chance = 0.5
         elseif health < 0.6 then
-            gazechange = 0.3
+            gaze_chance = 0.3
         elseif health < 0.8 then
-            gazechange = 0.1
+            gaze_chance = 0.1
         end
 
-        if wasgazing or math.random() < gazechange then
+        if wasgazing or math.random() < gaze_chance then
            inst:PushEvent("stopmove")
            inst.wantstogaze = true
             if inst.sg:HasStateTag("underground") then
@@ -137,22 +138,16 @@ local function DetermineAction(inst)
         end
     end
 
-    if dist and dist < 6*6 and target ~= inst.home then
+    -- If we are close enough to combat target, stop moving and get out from ground
+    if dist and dist < PUGALISK_MOVE_DIST * PUGALISK_MOVE_DIST and target ~= inst.home then
         if inst.sg:HasStateTag("underground") then
             inst:PushEvent("emerge")
         end
         inst:PushEvent("stopmove")
+    -- If we are more than half a wavelength distance away, keep moving to target
     elseif not inst.wantstogaze and not inst.wantstotaunt then
-
-        local angle = nil
+        local angle = FindDirectionToDive(inst, target)
         inst.movecommited = true
-
-        -- if no target, then direction is random.
-       -- if target then       
-            angle = FindDirectionToDive(inst,target)
-       -- else
-       --     angle = math.random()*2*PI
-       -- end 
 
         if angle then
             inst.Transform:SetRotation(angle/DEGREES)
@@ -161,9 +156,9 @@ local function DetermineAction(inst)
 
             if inst.sg:HasStateTag("underground") then
                 local pos = Vector3(inst.Transform:GetWorldPosition())
-                inst.components.multibody:SpawnBody(inst.angle,0,pos)
+                inst.components.multibody:SpawnBody(inst.angle, 0, pos)
             else
-                inst.wantstopremove = true        
+                inst.wantstopremove = true
             end
         else
             inst:PushEvent("backup")

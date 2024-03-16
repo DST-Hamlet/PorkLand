@@ -140,6 +140,8 @@ local function fn()
 
     inst.endcast = endbonecast
 
+    MakeHauntableLaunchAndPerish(inst)
+
     return inst
 end
 

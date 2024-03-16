@@ -130,7 +130,7 @@ function Segmented:RemoveAllSegments()
     end
 end
 
-function Segmented:updatesegmentart(segment, percentdist)
+function Segmented:UpdateSegmentBuild(segment, percentdist)
     local anim = "test_segment"
     local build = "python_segment_build"
 
@@ -151,7 +151,7 @@ function Segmented:updatesegmentart(segment, percentdist)
 
     segment.build = build
     if percentdist then
-        segment.AnimState:SetPercent(anim,percentdist)
+        segment.AnimState:SetPercent(anim, percentdist)
     end
 end
 
@@ -216,7 +216,7 @@ function Segmented:addSegment(tail)
             segment.vulnerable = true
             self.vulnerablesegments = self.vulnerablesegments + 1
         end
-        self:updatesegmentart(segment,0)
+        self:UpdateSegmentBuild(segment,0)
     end
 end
 
@@ -289,14 +289,12 @@ end
 
 function Segmented:OnUpdate(dt)
     for _, segment in ipairs(self.segments)do
-        segment.percentdist = segment.segtime/self.segtimeMax
-        self:updatesegmentart(segment,segment.percentdist)
+        self:UpdateSegmentBuild(segment, segment.segtime/self.segtimeMax)
     end
 
     if self.state == STATES.DEAD then
         return
     end
-
 
     local rate = 1/30
     local speed = 0
@@ -308,33 +306,32 @@ function Segmented:OnUpdate(dt)
         self.ease = math.max(self.ease - rate, 0)
     end
 
-    speed = self.ease
-
     -- if this body has been told its the end, just have it run out until it's gone. If it should stop, it will stop as a tail.
-    if self.lastrun then
-        speed = 1
-    end
+    speed = self.lastrun and 1 or self.ease
 
     self.inst.SoundEmitter:SetParameter("speed", "intensity", speed)
 
     -- PROCESS THE EASE
     if self.groundpoint_end then
-        for _, segment in ipairs(self.segments)do
+        for _, segment in ipairs(self.segments) do
+            local end_point = Vector3(self.groundpoint_end.x, 0, self.groundpoint_end.z)
+            local start_point = Vector3(self.groundpoint_start.x, 0, self.groundpoint_start.z)
 
-            local p1 = Vector3(self.groundpoint_end.x, 0, self.groundpoint_end.z)
-            local p0 = Vector3(self.groundpoint_start.x, 0, self.groundpoint_start.z)
-
-            local pdelta = p1 - p0
+            local pdelta = end_point - start_point
 
             segment.segtime = math.min(segment.segtime + (dt * speed) , self.segtimeMax)
 
-            local t = segment.segtime/self.segtimeMax
+            local t = segment.segtime/self.segtimeMax -- t is kind of a percentage
 
-            local pf = (pdelta * t) + p0
+            local pf = (pdelta * t) + start_point
 
             segment.setheight = pf.y
 
-            segment.Transform:SetPosition(pf.x, pf.y, pf.z)
+            if segment.Physics then
+                segment.Physics:Teleport(pf.x, pf.y, pf.z)
+            else
+                segment.Transform:SetPosition(pf.x, pf.y, pf.z)
+            end
 
             if t > 0.5 then
                 segment.playerpickerproxy = self.inst.exitpt
@@ -350,15 +347,15 @@ function Segmented:OnUpdate(dt)
                     self.loopcomplete = true
                 end
 
-                self:RemoveSegment(segment)
+                --segment:PushEvent("switchtounderground")
+                self:RemoveSegment(segment) -- here, switch to underground
             end
-
         end
     end
 
+    --[[
     if self.state == STATES.IDLE then
         if self.segments and #self.segments > 0 then
-
             local function positionandscale(segment, scale, height)
                 if scale then
                     segment.scalegoal = scale
@@ -378,7 +375,6 @@ function Segmented:OnUpdate(dt)
             self.idletimer = self.idletimer - dt
 
             if self.idletimer < 0 then
-
                 if self.segments[self.idlesegment -1] then
                     positionandscale(self.segments[self.idlesegment -1], 1.5, 1)
                 end
@@ -400,8 +396,8 @@ function Segmented:OnUpdate(dt)
             local HEIGHT_SUB = 0.97
             local HEIGHT = 0.95
 
-            local SCALE_SUB = 1.55  --1.52
-            local SCALE = 1.6  -- 1.55
+            local SCALE_SUB = 1.55
+            local SCALE = 1.6
 
             if self.segments[self.idlesegment -1] then
                 positionandscale(self.segments[self.idlesegment -1], SCALE_SUB, HEIGHT_SUB)
@@ -416,10 +412,8 @@ function Segmented:OnUpdate(dt)
             end
 
             for i, segment in ipairs(self.segments)do
-
                 local SCALE_VEL = 0.008
                 if segment.scalegoal then
-
                     local scale = segment.Transform:GetScale()
 
                     if scale ~= segment.scalegoal then
@@ -446,15 +440,19 @@ function Segmented:OnUpdate(dt)
                             pf.y = math.min(pf.y + HEIGHT_VEL,segment.heightgoal)
                         end
                     end
-                    segment.Transform:SetPosition(pf.x,pf.y,pf.z)
+                    if segment.Physics then
+                        segment.Physics:Teleport(pf.x, pf.y, pf.z)
+                    else
+                        segment.Transform:SetPosition(pf.x, pf.y, pf.z)
+                    end
                 end
-
             end
         end
     else
         self.idletimer = nil
         self.idlesegment = nil
     end
+    ]]
 
     if self.hit and self.hit > 0 then
         local x, y, z
@@ -464,7 +462,11 @@ function Segmented:OnUpdate(dt)
             segment.Transform:SetScale(s,s,s)
 
             x, y, z = segment.Transform:GetWorldPosition()
-            segment.Transform:SetPosition(x, 0, z)
+            if segment.Physics then
+                segment.Physics:Teleport(x, 0, z)
+            else
+                segment.Transform:SetPosition(x, 0, z)
+            end
         end
         self.hit = self.hit -dt * 5
     end
@@ -483,7 +485,6 @@ function Segmented:OnUpdate(dt)
         end)
         self.inst:PushEvent("bodyfinished")
     end
-
 end
 
 return Segmented
