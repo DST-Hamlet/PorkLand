@@ -36,10 +36,13 @@ local function UpdateAnimations(inst)
 end
 
 local function Sparkle(inst)
-    local target = inst.components:GetNearestPlayer()
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local target = FindClosestPlayerInRange(x, y, z, 8, true)
 
-    local lifeplant_sparkle = SpawnPrefab("lifeplant_sparkle")
-    lifeplant_sparkle.Transform:SetPosition(target.Transform:GetWorldPosition())
+    if target then
+        local lifeplant_sparkle = SpawnPrefab("lifeplant_sparkle")
+        lifeplant_sparkle.Transform:SetPosition(target.Transform:GetWorldPosition())      
+    end
 end
 
 local function DrainHunger(inst)
