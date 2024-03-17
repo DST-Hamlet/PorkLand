@@ -9,8 +9,7 @@ local assets =
     Asset("ANIM", "anim/python_segment_build.zip"),
     Asset("ANIM", "anim/python_segment_tail02_build.zip"),
     Asset("ANIM", "anim/python_segment_tail_build.zip"),
-
-    Asset("MINIMAP_IMAGE", "snake_skull_buried"),
+    Asset("ANIM", "anim/python_dirt_segment_in_fast_pst.zip"),
 }
 
 local prefabs =
@@ -103,6 +102,59 @@ end
 
 -----[[Pugalisk Segment]]-----
 
+local STATES = {
+    IDLE = 1,
+    MOVING = 2,
+    DEAD = 3,
+}
+
+local function updatesegmentart(inst, percentdist)--用于更新动画的函数
+    local anim = "test_segment"
+
+    if inst._segpart:value() == "head" then--头部使用的anim名称和其他部位不一样
+        anim = "test_head"
+    end
+
+    if percentdist then
+        inst.AnimState:SetPercent(anim,percentdist)--大蛇用动画的特定帧来模拟高度
+    end
+end
+
+local function ClientPerdictPosition(inst)
+    local dt = FRAMES
+
+    if inst._segtime and inst._speed and inst._speed:value() > 0 then --模仿segemented组件，更新身体节的位置和动画
+        local t = inst._segtime:value() / 1 -- inst._segtimeMax:value() SegTimeMax is always 1
+
+        local animation_percent = math.clamp(inst._segtime:value() / 1, 0, 1)
+        t = math.clamp(t,0,1)
+        if inst._start_point and inst._end_point then
+            local end_point = Vector3(inst._end_point.x:value(), 0, inst._end_point.z:value())
+            local start_point = Vector3(inst._start_point.x:value(), 0, inst._start_point.z:value())
+            local pdelta = end_point - start_point
+            local pf = (pdelta * animation_percent) + start_point
+
+            inst.Physics:Teleport(pf.x, 0, pf.z)--更新位置，不使用Transform:SetPosition是因为会造成自动补帧导致抖动，Physics:Teleport则不包含自动补帧
+
+            local animation_delay = 0
+            if inst._speed:value() > 0 then
+                animation_delay = inst._speed:value() * 1/60 --出于奇怪的原因，主机动画相比于坐标存在滞后性，导致动画出现奇怪的抖动。因此让客机动画也根据速度进行一定的滞后
+            end
+            updatesegmentart(inst, animation_percent - animation_delay)
+        end
+    end
+
+    --将segtime和speed的刷新放到最后，使得其能模拟下一帧的属性。之所以不放在最前面，是因为不确定doperiodintask和网络同步函数的执行顺序，把模拟属性功能放在结尾可以确保网络同步发生在模拟属性和位置刷新之间
+    local ease = inst._speed:value()
+    if inst._state:value() == STATES.MOVING then
+        ease = math.min(ease + dt,1)
+    else
+        ease = math.max(ease - dt,0)
+    end
+    inst._speed:set_local(ease)--模拟刷新speed，需要放在segtime的模拟刷新前面
+    inst._segtime:set_local(inst._segtime:value() + (dt * inst._speed:value()))--根据当前速度模拟刷新segtime
+end
+
 local function segmentfn()
     local inst = CreateEntity()
 
@@ -110,6 +162,15 @@ local function segmentfn()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
+
+    inst.entity:AddPhysics()
+    inst.Physics:SetMass(1)
+    inst.Physics:SetFriction(0)
+    inst.Physics:SetDamping(5)
+    inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith(COLLISION.WORLD)
+    inst.Physics:SetCapsule(1, 1)
 
     inst.AnimState:SetBank("giant_snake")
     inst.AnimState:SetBuild("python_test")
@@ -125,11 +186,36 @@ local function segmentfn()
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
 
+    --定义网络变量_segtime，用于记录segmented组件上的segtime属性，这个属性记录一段身体从地面钻出后到当前时间经过的时长
+    inst._segtime = net_float(inst.GUID, "_segtime", function()
+        ClientPerdictPosition(inst)
+    end)
+
+    -- The point it left ground
+    inst._start_point = {
+        x = net_float(inst.GUID, "_start_point.x"),
+        z = net_float(inst.GUID, "_start_point.z"),
+    }
+    -- The point it will enter ground
+    inst._end_point = {
+        x = net_float(inst.GUID, "_end_point.x"),
+        z = net_float(inst.GUID, "_end_point.z"),
+    }
+
+    --定义网络变量_speed，用于模拟segmented组件在update中的临时变量speed，这个变量用于决定身体节当前的移速
+    inst._speed = net_float(inst.GUID, "_speed")
+    --定义网络变量_state，用于模拟自身服务器对应实体的state属性，这个属性用于记录身体节当前的移动状态
+    inst._state = net_float(inst.GUID, "_state")
+
+    --定义网络变量_state，用于模拟自身服务器对应实体的head/tail等属性，这些属性用于记录身体节属于大蛇的哪一部分（头/身/尾巴）
+    inst._segpart = net_string(inst.GUID, "_segpart")
+
     inst.name = STRINGS.NAMES.PUGALISK
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
+        inst:DoPeriodicTask(FRAMES, ClientPerdictPosition)
         return inst
     end
 

@@ -107,8 +107,8 @@ function Segmented:RemoveSegment(segment)
     end
 
     self.inst.exitpt:AddTag("notarget")
-    self.inst.exitpt.AnimState:PlayAnimation("dirt_segment_in_pst")
-    self.inst.exitpt.AnimState:OverrideSymbol("segment_swap",segment.build, "segment_swap")
+    self.inst.exitpt.AnimState:PlayAnimation("dirt_segment_in_fast_pst")
+    self.inst.exitpt.AnimState:OverrideSymbol("segment_swap", segment.build, "segment_swap")
 
     self.inst.exitpt.AnimState:Hide("broken01")
     self.inst.exitpt.AnimState:Hide("broken02")
@@ -162,23 +162,29 @@ function Segmented:addSegment(tail)
         segment.playerpickerproxy = self.inst
 
         segment.segtime = self.segtimeMax * 0.01
+        segment._segtime:set(segment.segtime)
+        segment._speed:set(self.ease)
+        segment._state:set(self.state)
 
-            local p1 = Vector3(self.groundpoint_end.x,0,self.groundpoint_end.z)
-            local p0 = Vector3(self.groundpoint_start.x,0,self.groundpoint_start.z)
+        local p1 = Vector3(self.groundpoint_end.x,0,self.groundpoint_end.z)
+        local p0 = Vector3(self.groundpoint_start.x,0,self.groundpoint_start.z)
 
-            local pdelta = p1 - p0
+        segment._end_point.x:set(p1.x)
+        segment._end_point.z:set(p1.z)
+        segment._start_point.x:set(p0.x)
+        segment._start_point.z:set(p0.z)
 
-            local t = segment.segtime/self.segtimeMax
+        local pdelta = p1 - p0
 
-            local pf = (pdelta * t) + p0
+        local t = segment.segtime/self.segtimeMax
 
-            pf.y = 0
+        local pf = (pdelta * t) + p0
 
-            segment.setheight = pf.y
+        segment.setheight = 0
 
-            segment.Transform:SetPosition(pf.x,pf.y,pf.z)
+        segment.Transform:SetPosition(pf.x, 0, pf.z)
 
-        local angle = segment:GetAngleToPoint(self.groundpoint_end.x,self.groundpoint_end.y,self.groundpoint_end.z)
+        local angle = segment:GetAngleToPoint(self.groundpoint_end.x, self.groundpoint_end.y, self.groundpoint_end.z)
         segment.Transform:SetRotation(angle)
 
         segment.startpt = self.inst
@@ -320,6 +326,9 @@ function Segmented:OnUpdate(dt)
             local pdelta = end_point - start_point
 
             segment.segtime = math.min(segment.segtime + (dt * speed) , self.segtimeMax)
+            segment._segtime:set(segment.segtime)
+            segment._speed:set(speed)
+            segment._state:set(self.state)
 
             local t = segment.segtime/self.segtimeMax -- t is kind of a percentage
 
@@ -347,13 +356,11 @@ function Segmented:OnUpdate(dt)
                     self.loopcomplete = true
                 end
 
-                --segment:PushEvent("switchtounderground")
-                self:RemoveSegment(segment) -- here, switch to underground
+                self:RemoveSegment(segment)
             end
         end
     end
 
-    --[[
     if self.state == STATES.IDLE then
         if self.segments and #self.segments > 0 then
             local function positionandscale(segment, scale, height)
@@ -452,7 +459,6 @@ function Segmented:OnUpdate(dt)
         self.idletimer = nil
         self.idlesegment = nil
     end
-    ]]
 
     if self.hit and self.hit > 0 then
         local x, y, z
