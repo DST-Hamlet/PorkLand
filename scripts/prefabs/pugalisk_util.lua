@@ -86,21 +86,6 @@ local function FindSafeLocation(pt, angle)
     return pt + offset
 end
 
-local function getNewBodyPosition(inst, bodies, target)
-    local finalpt = nil
-
-    -- get the new origin point
-    if #bodies < 1 then
-        -- this is the first body piece, start at the spawn point
-        finalpt = inst:GetPosition()
-    else
-        -- this is a new body piece. try to put it out front of the last piece. 
-        finalpt = FindSafeLocation( bodies[#bodies].exitpt:GetPosition(), bodies[#bodies].Transform:GetRotation())
-    end
-
-    return finalpt
-end
-
 local function DetermineAction(inst)
     -- tested each frame when head to see if the head should start moving
     local target = FindCurrentTarget(inst)
@@ -166,18 +151,14 @@ local function DetermineAction(inst)
     end
 end
 
-local function recoverfrombadangle(inst)
+local function RecoverFromBadAngle(inst)
     local finalpt = FindSafeLocation( inst:GetPosition(), inst.Transform:GetRotation())
     inst.Transform:SetPosition(finalpt.x, finalpt.y, finalpt.z)
 end
 
 return {
-    FindMoveablePosition = FindMoveablePosition,
-    FindDirectionToDive = FindDirectionToDive,
-    FindValidPositionByFan = FindValidPositionByFan,
     FindSafeLocation = FindSafeLocation,
-    getNewBodyPosition = getNewBodyPosition,
     FindCurrentTarget = FindCurrentTarget,
     DetermineAction = DetermineAction,
-    RecoverFromBadAngle = recoverfrombadangle,
+    RecoverFromBadAngle = RecoverFromBadAngle,
 }

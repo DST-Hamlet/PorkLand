@@ -11,6 +11,14 @@ local function kill_body(body)
     end
 end
 
+local function OnStartMove(inst, data)
+    inst.components.multibody:OnStartMove()
+end
+
+local function OnStopMove(inst, data)
+    inst.components.multibody:OnStopMove()
+end
+
 local Multibody = Class(function(self, inst)
     self.inst = inst
     self.maxbodies = 1
@@ -18,14 +26,14 @@ local Multibody = Class(function(self, inst)
     self.bodyprefab = "pugalisk_body"
     self.state = STATES.MOVING
 
-    self.inst:ListenForEvent("startmove", function(inst, data)
-        self:OnStartMove()
-    end)
-
-    self.inst:ListenForEvent("stopmove", function(inst, data)
-        self:OnStopMove()
-    end)
+    self.inst:ListenForEvent("startmove", OnStartMove)
+    self.inst:ListenForEvent("stopmove", OnStopMove)
 end)
+
+function Multibody:OnRemoveFromEntity()
+    self.inst:RemoveEventCallback("startmove", OnStartMove)
+    self.inst:RemoveEventCallback("stopmove", OnStopMove)
+end
 
 ---@param angle number the direction of the travel
 ---@param percent number how far along the travel the body should spawn in at
@@ -123,7 +131,7 @@ function Multibody:OnStopMove()
         self.state = STATES.IDLE
 
         for i,body in ipairs(self.bodies)do
-            if i==1 and #self.bodies == self.maxbodies then
+            if i == 1 and #self.bodies == self.maxbodies then
                 body.components.segmented:SetToEnd()
                 body:AddTag("switchToTailProp")
             end

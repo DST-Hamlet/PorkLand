@@ -59,6 +59,7 @@ local function HealthRedirect(inst, amount, overtime, cause, ignore_invincible, 
 
         inst.SoundEmitter:PlaySound("dontstarve/common/destroy_metal", nil, 0.25)
         inst.SoundEmitter:PlaySound("dontstarve/wilson/hit_metal")
+
         return true
     elseif amount and inst.host then
         local fx = SpawnPrefab("snake_scales_fx")
@@ -108,23 +109,23 @@ local STATES = {
     DEAD = 3,
 }
 
-local function updatesegmentart(inst, percentdist)--用于更新动画的函数
+local function updatesegmentart(inst, percentdist)
     local anim = "test_segment"
 
-    if inst._segpart:value() == "head" then--头部使用的anim名称和其他部位不一样
+    if inst._segpart:value() == "head" then
         anim = "test_head"
     end
 
     if percentdist then
-        inst.AnimState:SetPercent(anim,percentdist)--大蛇用动画的特定帧来模拟高度
+        inst.AnimState:SetPercent(anim, percentdist)
     end
 end
 
 local function ClientPerdictPosition(inst)
     local dt = FRAMES
 
-    if inst._segtime and inst._speed and inst._speed:value() > 0 then --模仿segemented组件，更新身体节的位置和动画
-        local t = inst._segtime:value() / 1 -- inst._segtimeMax:value() SegTimeMax is always 1
+    if inst._segtime and inst._speed and inst._speed:value() > 0 then
+        local t = inst._segtime:value() / 1
 
         local animation_percent = math.clamp(inst._segtime:value() / 1, 0, 1)
         t = math.clamp(t,0,1)
@@ -134,11 +135,11 @@ local function ClientPerdictPosition(inst)
             local pdelta = end_point - start_point
             local pf = (pdelta * animation_percent) + start_point
 
-            inst.Physics:Teleport(pf.x, 0, pf.z)--更新位置，不使用Transform:SetPosition是因为会造成自动补帧导致抖动，Physics:Teleport则不包含自动补帧
+            inst.Physics:Teleport(pf.x, 0, pf.z)
 
             local animation_delay = 0
             if inst._speed:value() > 0 then
-                animation_delay = inst._speed:value() * 1/60 --出于奇怪的原因，主机动画相比于坐标存在滞后性，导致动画出现奇怪的抖动。因此让客机动画也根据速度进行一定的滞后
+                animation_delay = inst._speed:value() * 1/60
             end
             updatesegmentart(inst, animation_percent - animation_delay)
         end
@@ -155,6 +156,14 @@ local function ClientPerdictPosition(inst)
     inst._segtime:set_local(inst._segtime:value() + (dt * inst._speed:value()))--根据当前速度模拟刷新segtime
 end
 
+local function OnRemove(inst, data)
+    if inst:HasTag("exithole") then
+        for entity in pairs(inst.components.segmented.redirects) do
+            entity:Remove()
+        end
+    end
+end
+
 local function segmentfn()
     local inst = CreateEntity()
 
@@ -165,12 +174,10 @@ local function segmentfn()
 
     inst.entity:AddPhysics()
     inst.Physics:SetMass(1)
-    inst.Physics:SetFriction(0)
-    inst.Physics:SetDamping(5)
     inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.WORLD)
-    inst.Physics:SetCapsule(1, 1)
+    inst.Physics:SetCapsule(0, 1)
 
     inst.AnimState:SetBank("giant_snake")
     inst.AnimState:SetBuild("python_test")
@@ -186,10 +193,7 @@ local function segmentfn()
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
 
-    --定义网络变量_segtime，用于记录segmented组件上的segtime属性，这个属性记录一段身体从地面钻出后到当前时间经过的时长
-    inst._segtime = net_float(inst.GUID, "_segtime", function()
-        ClientPerdictPosition(inst)
-    end)
+    inst._segtime = net_float(inst.GUID, "_segtime")
 
     -- The point it left ground
     inst._start_point = {
@@ -202,15 +206,13 @@ local function segmentfn()
         z = net_float(inst.GUID, "_end_point.z"),
     }
 
-    --定义网络变量_speed，用于模拟segmented组件在update中的临时变量speed，这个变量用于决定身体节当前的移速
     inst._speed = net_float(inst.GUID, "_speed")
-    --定义网络变量_state，用于模拟自身服务器对应实体的state属性，这个属性用于记录身体节当前的移动状态
     inst._state = net_float(inst.GUID, "_state")
-
-    --定义网络变量_state，用于模拟自身服务器对应实体的head/tail等属性，这些属性用于记录身体节属于大蛇的哪一部分（头/身/尾巴）
     inst._segpart = net_string(inst.GUID, "_segpart")
 
     inst.name = STRINGS.NAMES.PUGALISK
+
+    inst:AddComponent("combat_redirect")
 
     inst.entity:SetPristine()
 
@@ -238,6 +240,8 @@ local function segmentfn()
     inst.components.lootdropper:SetChanceLootTable("pugalisk_segment")
     inst.components.lootdropper.lootdropangle = 360
     inst.components.lootdropper.speed = 3 + math.random() * 3
+
+    inst:ListenForEvent("remove", OnRemove)
 
     return inst
 end
@@ -540,7 +544,7 @@ local function fn()
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.PUGALISK_DAMAGE)
     inst.components.combat.playerdamagepercent = 0.75
-    inst.components.combat:SetRange(TUNING.BEARGER_ATTACK_RANGE, TUNING.PUGALISK_MELEE_RANGE)
+    inst.components.combat:SetRange(TUNING.PUGALISK_MELEE_RANGE, TUNING.PUGALISK_MELEE_RANGE)
     inst.components.combat.hiteffectsymbol = "hit_target" -- "wormmovefx"
     inst.components.combat:SetAttackPeriod(TUNING.PUGALISK_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(0.5, RetargetFn)
@@ -653,8 +657,40 @@ local function corpsefn()
     return inst
 end
 
+local function combat_redirectfn()
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddNetwork()
+
+    inst.entity:SetPristine()
+
+    inst:AddTag("NOCLICK")
+    inst:AddTag("NOBLOCK")
+    inst:AddTag("notarget")
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+    inst.persists = false
+
+    inst:AddComponent("combat")
+    inst.components.combat:SetDefaultDamage(0)
+    inst.components.combat.hiteffectsymbol = "test_segments"
+
+    inst:AddComponent("health")
+    inst.components.health:SetMaxHealth(9999)
+    inst.components.health.destroytime = 5
+    inst.components.health.redirect = HealthRedirect
+
+    return inst
+end
+
 return  Prefab("pugalisk", fn, assets, prefabs),
         Prefab("pugalisk_body", bodyfn, assets, prefabs),
         Prefab("pugalisk_tail", tailfn, assets, prefabs),
         Prefab("pugalisk_segment", segmentfn, assets, prefabs),
-        Prefab("pugalisk_corpse", corpsefn, assets, prefabs)
+        Prefab("pugalisk_corpse", corpsefn, assets, prefabs),
+        Prefab("pugalisk_redirect", combat_redirectfn, {}, {})

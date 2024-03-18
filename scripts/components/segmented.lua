@@ -4,6 +4,26 @@ local STATES = {
     DEAD = 3,
 }
 
+local function OnHostDeath(inst, data)
+    inst.components.segmented.state = STATES.DEAD
+    inst.SoundEmitter:KillSound("speed")
+
+    for _, segment in ipairs(inst.components.segmented.segments) do
+        inst:DoTaskInTime(math.random() + 1, function()
+            inst.components.segmented:killsegment(segment)
+        end)
+    end
+
+    if inst.exitpt then
+        inst.exitpt.SoundEmitter:KillSound("speed")
+        inst.exitpt:DoTaskInTime(2, inst.exitpt.Remove)
+    end
+end
+
+local function OnHit(inst, data)
+    inst.components.segmented.hit = 1
+end
+
 local Segmented = Class(function(self, inst)
     self.inst = inst
     self.segments = {}
@@ -17,13 +37,11 @@ local Segmented = Class(function(self, inst)
     self.segtimeMax = 1
     self.loopcomplete = false
     self.ease = 1
+    self.redirects = {} -- This table stores the entities used to adjust playercontroller combat targetting
+    self.hit = 0
 
-    self.inst:ListenForEvent("death", function(inst, data)
-        self:onhostdeath(inst)
-    end)
-    self.inst:ListenForEvent("dohitanim", function(inst, data)
-        self:onhit()
-    end)
+    self.inst:ListenForEvent("death", OnHostDeath)
+    self.inst:ListenForEvent("dohitanim", OnHit)
 end)
 
 function Segmented:Start(angle, segtimeMax, advancetime)
@@ -33,22 +51,21 @@ function Segmented:Start(angle, segtimeMax, advancetime)
         self.segtimeMax = segtimeMax
     end
 
-    local pos =  Vector3(self.inst.Transform:GetWorldPosition())
-    self:SetGroundStart(pos)
+    local starting_position =  self.inst:GetPosition()
+    self:SetGroundStart(starting_position)
 
     angle = angle or -PI/2
     self.inst.angle = angle
 
     local radius = 6
-
     local offset = Vector3(radius * math.cos(angle), 0, -radius * math.sin(angle))
 
-    pos = pos + offset
-    self:SetGroundTarget(pos)
+    local end_position = starting_position + offset
+    self:SetGroundTarget(end_position)
 
     local exit = SpawnPrefab("pugalisk_body")
     exit.AnimState:PlayAnimation("thisisbroken", true)
-    exit.Transform:SetPosition(pos.x,pos.y,pos.z)
+    exit.Transform:SetPosition(end_position.x, 0, end_position.z)
     exit.Physics:SetActive(false)
     exit:AddTag("exithole")
     self.inst.exitpt = exit
@@ -64,6 +81,15 @@ function Segmented:Start(angle, segtimeMax, advancetime)
             advancetime = advancetime - dt
         end
     end
+
+    local redirect_ent
+    local redirect_position
+    for i = 1, 5 do
+        redirect_position = starting_position + offset * (i/5)
+        redirect_ent = SpawnPrefab("pugalisk_redirect")
+        redirect_ent.Transform:SetPosition(redirect_position.x, 0, redirect_position.z)
+        self.redirects[redirect_ent] = redirect_ent
+    end
 end
 
 function Segmented:StartMove()
@@ -76,10 +102,6 @@ function Segmented:StopMove()
     if self.state ~= STATES.DEAD then
         self.state = STATES.IDLE
     end
-end
-
-function Segmented:SetStartFn(fn)
-    self.startfn = fn
 end
 
 function Segmented:SetGroundTarget(point)
@@ -97,7 +119,7 @@ end
 function Segmented:RemoveSegment(segment)
     for i, testsegment in ipairs(self.segments)do
         if segment == testsegment then
-            table.remove(self.segments,i)
+            table.remove(self.segments, i)
         end
     end
 
@@ -106,8 +128,8 @@ function Segmented:RemoveSegment(segment)
         self.vulnerablesegments = self.vulnerablesegments - 1
     end
 
-    self.inst.exitpt:AddTag("notarget")
-    self.inst.exitpt.AnimState:PlayAnimation("dirt_segment_in_fast_pst")
+    local speed = self.lastrun and 1 or self.ease
+    self.inst.exitpt.AnimState:PlayAnimation(speed > 0.5 and "dirt_segment_in_fast_pst" or "dirt_segment_in_pst")
     self.inst.exitpt.AnimState:OverrideSymbol("segment_swap", segment.build, "segment_swap")
 
     self.inst.exitpt.AnimState:Hide("broken01")
@@ -125,7 +147,7 @@ function Segmented:RemoveSegment(segment)
 end
 
 function Segmented:RemoveAllSegments()
-    for i=#self.segments, 1, -1 do
+    for i = #self.segments, 1, -1 do
         self:RemoveSegment(self.segments[i])
     end
 end
@@ -156,94 +178,78 @@ function Segmented:UpdateSegmentBuild(segment, percentdist)
 end
 
 function Segmented:addSegment(tail)
-    if not self.tailfinished  then
-        local segment = SpawnPrefab(self.segment_prefab)
-        segment.host = self.inst.host
-        segment.playerpickerproxy = self.inst
-
-        segment.segtime = self.segtimeMax * 0.01
-        segment._segtime:set(segment.segtime)
-        segment._speed:set(self.ease)
-        segment._state:set(self.state)
-
-        local p1 = Vector3(self.groundpoint_end.x,0,self.groundpoint_end.z)
-        local p0 = Vector3(self.groundpoint_start.x,0,self.groundpoint_start.z)
-
-        segment._end_point.x:set(p1.x)
-        segment._end_point.z:set(p1.z)
-        segment._start_point.x:set(p0.x)
-        segment._start_point.z:set(p0.z)
-
-        local pdelta = p1 - p0
-
-        local t = segment.segtime/self.segtimeMax
-
-        local pf = (pdelta * t) + p0
-
-        segment.setheight = 0
-
-        segment.Transform:SetPosition(pf.x, 0, pf.z)
-
-        local angle = segment:GetAngleToPoint(self.groundpoint_end.x, self.groundpoint_end.y, self.groundpoint_end.z)
-        segment.Transform:SetRotation(angle)
-
-        segment.startpt = self.inst
-
-        table.insert(self.segments, segment)
-        self.segmentstotal = self.segmentstotal +1
-
-        if not self.firstsegment then
-            self.firstsegment = true
-            segment.head = true
-        end
-
-        if tail then
-            if self.tailadded  then
-                self.tailfinished = true
-                segment.tail = true
-                self.inst:DoTaskInTime(0.5, function() self.inst.AnimState:PlayAnimation("dirt_collapse") end)
-
-            else
-                self.tailadded = true
-                segment.tail02 = true
-            end
-        end
-
-        if not self.inst.invulnerable then
-            if math.random() < 0.7 then
-                segment.AnimState:Show("broken01")
-                segment.showbroken01 = true
-            end
-            if math.random() < 0.7 then
-                segment.AnimState:Show("broken02")
-                segment.showbroken02 = true
-            end
-
-            segment.vulnerable = true
-            self.vulnerablesegments = self.vulnerablesegments + 1
-        end
-        self:UpdateSegmentBuild(segment,0)
-    end
-end
-
-function Segmented:onhostdeath()
-    self.state = STATES.DEAD
-    self.inst.SoundEmitter:KillSound("speed")
-
-    for i, segment in ipairs(self.segments) do
-        self.inst:DoTaskInTime(math.random()+ 1, function() self:killsegment(segment) end)
+    if self.tailfinished then
+        return
     end
 
-    if self.inst.exitpt then
-        self.inst.exitpt.SoundEmitter:KillSound("speed")
-        self.inst.exitpt:DoTaskInTime(2,function()
-          self.inst.exitpt:Remove()
-        end)
-    end
-end
+    local segment = SpawnPrefab(self.segment_prefab)
+    segment.host = self.inst.host
+    segment.playerpickerproxy = self.inst
 
-function Segmented:onhit()
-    self.hit = 1
+    segment.segtime = self.segtimeMax * 0.01
+    segment._segtime:set(segment.segtime)
+    segment._speed:set(self.ease)
+    segment._state:set(self.state)
+
+    local p1 = Vector3(self.groundpoint_end.x, 0, self.groundpoint_end.z)
+    local p0 = Vector3(self.groundpoint_start.x, 0, self.groundpoint_start.z)
+
+    segment._end_point.x:set(p1.x)
+    segment._end_point.z:set(p1.z)
+    segment._start_point.x:set(p0.x)
+    segment._start_point.z:set(p0.z)
+
+    local pdelta = p1 - p0
+    local t = segment.segtime/self.segtimeMax
+    local pf = (pdelta * t) + p0
+
+    segment.setheight = 0
+    segment.Transform:SetPosition(pf.x, 0, pf.z)
+
+    local angle = segment:GetAngleToPoint(self.groundpoint_end.x, self.groundpoint_end.y, self.groundpoint_end.z)
+    segment.Transform:SetRotation(angle)
+
+    segment.startpt = self.inst
+
+    table.insert(self.segments, segment)
+    self.segmentstotal = self.segmentstotal +1
+
+    if not self.firstsegment then
+        self.firstsegment = true
+        segment.head = true
+        segment._segpart:set("head")
+    end
+
+    if tail then
+        if self.tailadded  then
+            self.tailfinished = true
+            segment.tail = true
+            segment._segpart:set("tail")
+            self.inst:DoTaskInTime(0.5, function() self.inst.AnimState:PlayAnimation("dirt_collapse") end)
+        else
+            self.tailadded = true
+            segment.tail02 = true
+        end
+    end
+
+    if not self.inst.invulnerable then
+        if math.random() < 0.7 then
+            segment.AnimState:Show("broken01")
+            segment.showbroken01 = true
+        end
+        if math.random() < 0.7 then
+            segment.AnimState:Show("broken02")
+            segment.showbroken02 = true
+        end
+
+        segment.vulnerable = true
+        self.vulnerablesegments = self.vulnerablesegments + 1
+    end
+    self:UpdateSegmentBuild(segment,0)
+
+    if not segment.tail and not segment.head then
+        segment.components.combat_redirect:AddRedirectTarget(self.redirects)
+    end
 end
 
 function Segmented:GetSegment(index)
@@ -460,7 +466,7 @@ function Segmented:OnUpdate(dt)
         self.idlesegment = nil
     end
 
-    if self.hit and self.hit > 0 then
+    if self.hit > 0 then
         local x, y, z
         for i, segment in ipairs(self.segments)do
             local s = 1.5
