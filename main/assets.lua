@@ -68,6 +68,7 @@ Assets = {
     Asset("IMAGE", "images/overlays/fx4.tex"),
     Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
     Asset("IMAGE", "images/overlays/fx5.tex"),
+    Asset("ANIM", "anim/leaves_canopy2.zip"),  --canopy
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 

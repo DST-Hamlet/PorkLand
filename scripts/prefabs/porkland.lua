@@ -89,8 +89,8 @@ local function common_postinit(inst)
     -- Dedicated server does not require these components
     -- NOTE: ambient lighting is required by light watchers
     if not TheNet:IsDedicated() then
-        -- inst:AddComponent("dynamicmusic")
-        -- inst:AddComponent("ambientsound")
+        inst:AddComponent("pl_dynamicmusic")
+        inst:AddComponent("pl_ambientsound")
         inst:AddComponent("dsp")
         inst:AddComponent("colourcube")
         inst:AddComponent("hallucinations")
