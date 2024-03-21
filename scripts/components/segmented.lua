@@ -58,7 +58,7 @@ function Segmented:Start(angle, segtimeMax, advancetime)
     self.inst.angle = angle
 
     local radius = 6
-    local offset = Vector3(radius * math.cos(angle), 0, -radius * math.sin(angle))
+    local offset = Vector3(math.cos(angle), 0, math.sin(-angle)) * radius
 
     local end_position = starting_position + offset
     self:SetGroundTarget(end_position)
@@ -88,6 +88,8 @@ function Segmented:Start(angle, segtimeMax, advancetime)
         redirect_position = starting_position + offset * (i/5)
         redirect_ent = SpawnPrefab("pugalisk_redirect")
         redirect_ent.Transform:SetPosition(redirect_position.x, 0, redirect_position.z)
+        redirect_ent.startpt = self.inst
+        redirect_ent.host = self.inst.host
         self.redirects[redirect_ent] = redirect_ent
     end
 end
@@ -221,7 +223,7 @@ function Segmented:addSegment(tail)
     end
 
     if tail then
-        if self.tailadded  then
+        if self.tailadded then
             self.tailfinished = true
             segment.tail = true
             segment._segpart:set("tail")
@@ -245,17 +247,17 @@ function Segmented:addSegment(tail)
         segment.vulnerable = true
         self.vulnerablesegments = self.vulnerablesegments + 1
     end
-    self:UpdateSegmentBuild(segment,0)
+    self:UpdateSegmentBuild(segment, 0)
 
-    if not segment.tail and not segment.head then
-        segment.components.combat_redirect:AddRedirectTarget(self.redirects)
-    end
+    -- if not segment.tail and not segment.head then
+    --     segment.components.combatredirect:AddRedirectTarget(self.redirects)
+    -- end
 end
 
 function Segmented:GetSegment(index)
     local step = 1
 
-    for i,segment in ipairs(self.segments)do
+    for _, segment in ipairs(self.segments)do
         if step == index then
             return segment
         end
@@ -278,15 +280,15 @@ function Segmented:killsegment(segment)
     self:RemoveSegment(segment)
 end
 
-function Segmented:switchtotail()
+function Segmented:SwitchToTail()
     self.inst.SoundEmitter:KillSound("speed")
     self.inst.exitpt.SoundEmitter:KillSound("speed")
 
+    local x, y, z = self.inst.exitpt.Transform:GetWorldPosition()
     local newtail = SpawnPrefab("pugalisk_tail")
     newtail.sg:GoToState("tail_ready")
     newtail.wantstotaunt = nil
-    local pt = Vector3(self.inst.exitpt.Transform:GetWorldPosition())
-    newtail.Transform:SetPosition(pt.x,pt.y,pt.z)
+    newtail.Transform:SetPosition(x, 0, z)
     self:RemoveAllSegments()
     self.inst.host.components.multibody.tail = newtail
     self.inst:PushEvent("bodyfinished")
@@ -353,7 +355,7 @@ function Segmented:OnUpdate(dt)
             end
 
             if t > 0.7 and segment.tail and self.inst:HasTag("switchToTailProp") then
-                self:switchtotail()
+                self:SwitchToTail()
             end
 
             if t > 0.98 then

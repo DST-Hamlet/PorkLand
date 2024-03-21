@@ -156,14 +156,6 @@ local function ClientPerdictPosition(inst)
     inst._segtime:set_local(inst._segtime:value() + (dt * inst._speed:value()))--根据当前速度模拟刷新segtime
 end
 
-local function OnRemove(inst, data)
-    if inst:HasTag("exithole") then
-        for entity in pairs(inst.components.segmented.redirects) do
-            entity:Remove()
-        end
-    end
-end
-
 local function segmentfn()
     local inst = CreateEntity()
 
@@ -212,7 +204,7 @@ local function segmentfn()
 
     inst.name = STRINGS.NAMES.PUGALISK
 
-    inst:AddComponent("combat_redirect")
+    -- inst:AddComponent("combatredirect")
 
     inst.entity:SetPristine()
 
@@ -223,10 +215,10 @@ local function segmentfn()
 
     inst.persists = false
 
-    inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(0)
-    inst.components.combat.hiteffectsymbol = "test_segments"
-    inst.components.combat.onhitfn = OnHit
+    -- inst:AddComponent("combat")
+    -- inst.components.combat:SetDefaultDamage(0)
+    -- inst.components.combat.hiteffectsymbol = "test_segments"
+    -- inst.components.combat.onhitfn = OnHit
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(9999)
@@ -240,8 +232,6 @@ local function segmentfn()
     inst.components.lootdropper:SetChanceLootTable("pugalisk_segment")
     inst.components.lootdropper.lootdropangle = 360
     inst.components.lootdropper.speed = 3 + math.random() * 3
-
-    inst:ListenForEvent("remove", OnRemove)
 
     return inst
 end
@@ -278,6 +268,16 @@ local function OnBodyComplete_Body(inst, data)
     if inst.host then
         inst.host:PushEvent("bodycomplete",{ pos = Vector3(inst.exitpt.Transform:GetWorldPosition()), angle = inst.angle })
     end
+end
+
+local function OnBodyFinished_Body(inst, data)
+    if inst.host then
+        inst.host:PushEvent("bodyfinished", { body = inst })
+    end
+    for k, v in pairs(inst.components.segmented.redirects) do
+        v:Remove()
+    end
+    inst:Remove()
 end
 
 local function bodyfn()
@@ -344,19 +344,14 @@ local function bodyfn()
     inst.components.groundpounder.destructionRings = 1
     inst.components.groundpounder.numRings = 2
     inst.components.groundpounder.groundpounddamagemult = 30/TUNING.PUGALISK_DAMAGE
-    inst.components.groundpounder.groundpoundfx= "groundpound_nosound_fx"
+    inst.components.groundpounder.groundpoundfx = "groundpound_nosound_fx"
     table.insert(inst.components.groundpounder.noTags, "pugalisk")
 
     inst:AddComponent("segmented")
     inst.components.segmented.segment_deathfn = segment_deathfn
 
     inst:ListenForEvent("bodycomplete", OnBodyComplete_Body)
-    inst:ListenForEvent("bodyfinished", function()
-        if inst.host then
-            inst.host:PushEvent("bodyfinished",{ body=inst })
-        end
-        inst:Remove()
-    end)
+    inst:ListenForEvent("bodyfinished", OnBodyFinished_Body)
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/movement_LP", "speed")
     inst.SoundEmitter:SetParameter("speed", "intensity", 0)
@@ -668,7 +663,7 @@ local function combat_redirectfn()
 
     inst:AddTag("NOCLICK")
     inst:AddTag("NOBLOCK")
-    inst:AddTag("notarget")
+    inst:AddTag("hostile")
 
     if not TheWorld.ismastersim then
         return inst
