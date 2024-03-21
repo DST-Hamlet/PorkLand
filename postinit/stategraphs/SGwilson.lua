@@ -4,11 +4,7 @@ local AddStategraphActionHandler = AddStategraphActionHandler
 local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
-
--- local sg_wilson = require("stategraphs/SGwilson")
-
--- local _run_start_timeevent_2 = sg_wilson.states["run_start"].timeline[2].fn
--- local DoFoleySounds = ToolUtil.GetUpvalue(_run_start_timeevent_2, "DoFoleySounds")
+local DoFoleySounds = nil
 
 local function OnExitRow(inst)
     local boat = inst.replica.sailor:GetBoat()
@@ -649,7 +645,7 @@ local states = {
                 boat.replica.sailable:PlayPreRowAnims()
             end
 
-            -- DoFoleySounds(inst)
+            DoFoleySounds(inst)
 
             local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
             if equipped then
@@ -684,7 +680,7 @@ local states = {
                 inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
             end
             inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/paddle", nil, nil, true)
-            -- DoFoleySounds(inst)
+            DoFoleySounds(inst)
 
             local oar = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
 
@@ -789,6 +785,9 @@ for _, state in ipairs(states) do
 end
 
 AddStategraphPostInit("wilson", function(sg)
+    local _run_start_timeevent_2 = sg.states["run_start"].timeline[2].fn
+    DoFoleySounds = ToolUtil.GetUpvalue(_run_start_timeevent_2, "DoFoleySounds")
+
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
         if not inst.sg:HasStateTag("sneeze") then

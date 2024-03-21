@@ -3,6 +3,7 @@ local AddStategraphActionHandler = AddStategraphActionHandler
 GLOBAL.setfenv(1, GLOBAL)
 
 local TIMEOUT = 2
+local DoFoleySounds = nil
 
 local actionhandlers = {
     ActionHandler(ACTIONS.HACK, function(inst)
@@ -22,6 +23,124 @@ local actionhandlers = {
 }
 
 local states = {
+    State{
+        name = "row_start",
+        tags = {"moving", "running", "rowing", "boating", "canrotate"},
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            inst.components.locomotor:RunForward()
+
+            if not inst:HasTag("mime") then
+                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+            end
+            -- TODO allow custom paddles?
+            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+
+            local oar = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+            inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_pre" or "row_pre_pl")
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayPreRowAnims()
+            end
+
+            DoFoleySounds(inst)
+        end,
+
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
+        end,
+
+        events = {
+            EventHandler("animover", function(inst) inst.sg:GoToState("row") end),
+        },
+    },
+
+    State{
+        name = "row",
+        tags = {"moving", "running", "rowing", "boating", "canrotate"},
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
+                inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
+            end
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/paddle", nil, nil, true)
+            DoFoleySounds(inst)
+
+            local oar = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+            local anim = oar and oar:HasTag("oar") and "row_medium" or "row_loop"
+            if not inst.AnimState:IsCurrentAnimation(anim) then
+				--RoT has row_medium, which is identical but uses the equipped item as paddle
+                inst.AnimState:PlayAnimation(anim, true)
+            end
+
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayRowAnims()
+            end
+            inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
+        end,
+
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if inst.sg.nextstate ~= "row" and inst.sg.nextstate ~= "sail" then
+                inst.components.locomotor:Stop(nil, true)
+                if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
+                    if boat and boat.replica.sailable then
+                        boat.replica.sailable:PlayIdleAnims()
+                    end
+                end
+            end
+        end,
+
+        timeline = {
+            TimeEvent(8 * FRAMES, function(inst)
+                local boat = inst.replica.sailor:GetBoat()
+                if boat and boat.replica.container then
+                    local trawlnet = boat.replica.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
+                    if trawlnet and trawlnet.rowsound then
+                        inst.SoundEmitter:PlaySound(trawlnet.rowsound, nil, nil, true)
+                    end
+                end
+            end),
+        },
+
+        events = {
+            EventHandler("trawlitem", function(inst)
+                local boat = inst.replica.sailor:GetBoat()
+                if boat and boat.replica.sailable then
+                    boat.replica.sailable:PlayTrawlOverAnims()
+                end
+            end),
+        },
+
+        ontimeout = function(inst) inst.sg:GoToState("row") end,
+    },
+
+    State{
+        name = "row_stop",
+        tags = {"canrotate", "idle"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            local boat = inst.replica.sailor:GetBoat()
+
+            local oar = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+            inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_idle_pst" or "row_pst")
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayPostRowAnims()
+            end
+        end,
+
+        events = {
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
     State{
         name = "hack_start",
         tags = {"prehack", "hacking", "working"},
@@ -142,5 +261,7 @@ for _, state in ipairs(states) do
     AddStategraphState("wilson_client", state)
 end
 
--- AddStategraphPostInit("wilson", function(sg)
--- end)
+AddStategraphPostInit("wilson", function(sg)
+    local _run_start_timeevent_2 = sg.states["run_start"].timeline[2].fn
+    local DoFoleySounds = ToolUtil.GetUpvalue(_run_start_timeevent_2, "DoFoleySounds")
+end)
