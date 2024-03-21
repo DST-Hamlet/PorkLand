@@ -78,6 +78,7 @@ function require(module_name, ...)
     return unpack(ret)
 end
 
+modimport("postinit/stategraph")
 modimport("postinit/entityscript")
 modimport("postinit/animstate")
 
