@@ -49,6 +49,7 @@ PrefabFiles = {
     "porkland_network",
     "porkland",
     "rabid_beetle",
+    "rowboat_wake",
     "sedimentpuddle",
     "shears",
     "smelter",
@@ -96,6 +97,8 @@ Assets = {
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
     Asset("ANIM", "anim/player_actions_panning.zip"),
     Asset("ANIM", "anim/player_boat_onoff.zip"),
+    Asset("ANIM", "anim/swap_paddle.zip"),
+    Asset("ANIM", "anim/player_action_sailing.zip"),
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),

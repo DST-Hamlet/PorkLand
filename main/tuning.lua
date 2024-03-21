@@ -256,14 +256,20 @@ local tuning = {
     LOTUS_REGROW_TIME = total_day_time * 5,
 
     MOSQUITO_MAX_SPAWN = 1,
-    MOSQUITO_REGEN_TIME = day_time/2,
+    MOSQUITO_REGEN_TIME = day_time / 2,
     FROG_POISON_MAX_SPAWN = 1,
-    FROG_POISON_REGEN_TIME = day_time/2,
+    FROG_POISON_REGEN_TIME = day_time / 2,
 
     WAVE_HIT_MOISTURE = 15,
     WAVE_HIT_DAMAGE = 5,
     ROGUEWAVE_HIT_MOISTURE = 25,
     ROGUEWAVE_HIT_DAMAGE = 10,
+
+    BOAT_HITFX_THRESHOLD = .08,  -- percent of health you need to lose to show the fx
+
+    RAFT_HEALTH = 150,
+    RAFT_PERISHTIME = total_day_time * 2,
+    RAFT_LEAKING_HEALTH = 40
 }
 
 for key, value in pairs(tuning) do

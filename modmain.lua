@@ -30,3 +30,6 @@ modimport("main/containers")
 modimport("main/postinit")
 
 AddReplicableComponent("hayfever")
+AddReplicableComponent("sailor")
+AddReplicableComponent("sailable")
+AddReplicableComponent("boathealth")

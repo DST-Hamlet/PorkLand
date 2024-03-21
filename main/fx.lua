@@ -47,6 +47,12 @@ local pl_fx = {
         anim = "idle_sink",
         sound = "dontstarve_DLC002/common/item_sink"
     },
+    {
+        name = "boat_hit_fx_raft_bamboo",
+        bank = "boat_hit_debris",
+        build = "boat_hit_debris",
+        anim = "hit_raft_bamboo",
+    },
 }
 
 -- Sneakily add these to the FX table

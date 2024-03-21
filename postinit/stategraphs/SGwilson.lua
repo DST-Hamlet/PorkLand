@@ -4,6 +4,31 @@ local AddStategraphActionHandler = AddStategraphActionHandler
 local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+
+-- local sg_wilson = require("stategraphs/SGwilson")
+
+-- local _run_start_timeevent_2 = sg_wilson.states["run_start"].timeline[2].fn
+-- local DoFoleySounds = ToolUtil.GetUpvalue(_run_start_timeevent_2, "DoFoleySounds")
+
+local function OnExitRow(inst)
+    local boat = inst.replica.sailor:GetBoat()
+    if boat and boat.components.rowboatwakespawner then
+        boat.components.rowboatwakespawner:StopSpawning()
+    end
+    if inst.sg.nextstate ~= "row" and inst.sg.nextstate ~= "sail" then
+        inst.components.locomotor:Stop(nil, true)
+        if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then -- Make sure equipped items are pulled back out (only really for items with flames right now)
+            local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+            if equipped then
+                equipped:PushEvent("stoprowing", {owner = inst})
+            end
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayIdleAnims()
+            end
+        end
+    end
+end
+
 local actionhandlers = {
     ActionHandler(ACTIONS.EMBARK, "embark"),
     ActionHandler(ACTIONS.DISEMBARK, "disembark"),
@@ -360,7 +385,7 @@ local states = {
         tags = {"canrotate", "boating", "busy", "nomorph", "nopredict"},
         onenter = function(inst)
             local action = inst:GetBufferedAction()
-            if action.target and action.target.components.sailable and action.target.components.sailable:CanSail() then
+            if action.target and action.target.components.sailable and not action.target.components.sailable:IsOccupied() then
                 action.target.components.sailable.isembarking = true
                 if inst.components.sailor and inst.components.sailor:IsSailing() then
                     inst.components.sailor:Disembark(nil, true)
@@ -541,7 +566,7 @@ local states = {
             end
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("land", false)
-            inst.SoundEmitter:PlaySound("ia/common/boatjump_to_land")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boatjump_to_land")
             PlayFootstep(inst)
         end,
 
@@ -597,6 +622,156 @@ local states = {
         events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
+    State{
+        name = "row_start",
+        tags = {"moving", "running", "rowing", "boating", "canrotate", "autopredict" },
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            inst.components.locomotor:RunForward()
+
+            if not inst:HasTag("mime") then
+                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+            end
+            -- TODO allow custom paddles?
+            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+
+            -- RoT has row_pre, which is identical but uses the equipped item as paddle
+
+            local oar = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+            inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_pre" or "row_pre_pl")
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayPreRowAnims()
+            end
+
+            -- DoFoleySounds(inst)
+
+            local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+            if equipped then
+                equipped:PushEvent("startrowing", {owner = inst})
+            end
+            inst:PushEvent("startrowing")
+        end,
+
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
+        end,
+
+        onexit = OnExitRow,
+
+        events = {
+            EventHandler("animover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("row")
+                end
+            end),
+        },
+    },
+
+    State{
+        name = "row",
+        tags = {"moving", "running", "rowing", "boating", "canrotate", "autopredict" },
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
+                inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
+            end
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/paddle", nil, nil, true)
+            -- DoFoleySounds(inst)
+
+            local oar = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+            local anim = oar and oar:HasTag("oar") and "row_medium" or "row_loop"
+            if not inst.AnimState:IsCurrentAnimation(anim) then
+                -- RoT has row_medium, which is identical but uses the equipped item as paddle
+                inst.AnimState:PlayAnimation(anim, true)
+            end
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayRowAnims()
+            end
+
+            if boat and boat.components.rowboatwakespawner then
+                boat.components.rowboatwakespawner:StartSpawning()
+            end
+
+            if inst.components.mapwrapper
+            and inst.components.mapwrapper._state > 1
+            and inst.components.mapwrapper._state < 5 then
+                inst.sg:AddStateTag("nomorph")
+                -- TODO pause predict?
+            end
+
+            inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
+        end,
+
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
+        end,
+
+        onexit = OnExitRow,
+
+        timeline = {
+            TimeEvent(8 * FRAMES, function(inst)
+                local boat = inst.replica.sailor:GetBoat()
+                if boat and boat.replica.container then
+                    local trawlnet = boat.replica.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
+                    if trawlnet and trawlnet.rowsound then
+                        inst.SoundEmitter:PlaySound(trawlnet.rowsound, nil, nil, true)
+                    end
+                end
+            end),
+        },
+
+        events = {
+            EventHandler("trawlitem", function(inst)
+                local boat = inst.replica.sailor:GetBoat()
+                if boat and boat.replica.sailable then
+                    boat.replica.sailable:PlayTrawlOverAnims()
+                end
+            end),
+        },
+
+        ontimeout = function(inst) inst.sg:GoToState("row") end,
+    },
+
+    State{
+        name = "row_stop",
+        tags = {"canrotate", "idle", "autopredict"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            local boat = inst.replica.sailor:GetBoat()
+            local oar = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+            inst.AnimState:PlayAnimation(oar and oar:HasTag("oar") and "row_idle_pst" or "row_pst")
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayPostRowAnims()
+            end
+
+            -- If the player had something in their hand before starting to row, put it back.
+            if inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS) then
+                inst.AnimState:PushAnimation("item_out", false)
+            end
+        end,
+
+        events = {
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+                    if equipped then
+                        equipped:PushEvent("stoprowing", {owner = inst})
+                    end
+                    inst:PushEvent("stoprowing")
+                    inst.sg:GoToState("idle")
+                end
+            end),
         },
     },
 }
@@ -665,5 +840,54 @@ AddStategraphPostInit("wilson", function(sg)
         elseif _funnyidle_onenter then
             _funnyidle_onenter(inst, ...)
         end
+    end
+
+    local _locomote_eventhandler = sg.events.locomote.fn
+    sg.events.locomote.fn = function(inst, data, ...)
+        local is_attacking = inst.sg:HasStateTag("attack")
+
+        local is_moving = inst.sg:HasStateTag("moving")
+        local is_running = inst.sg:HasStateTag("running")
+        local should_move = inst.components.locomotor:WantsToMoveForward()
+        if inst.components.sailor and inst.components.sailor.boat and not inst.components.sailor.boat.components.sailable then
+            should_move = false
+        end
+
+        local should_run = inst.components.locomotor:WantsToRun()
+        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
+        if not should_move then
+            if inst.components.sailor and inst.components.sailor.boat then
+                inst.components.sailor.boat:PushEvent("boatstopmoving")
+            end
+        end
+        if should_move then
+            if inst.components.sailor and inst.components.sailor.boat then
+                inst.components.sailor.boat:PushEvent("boatstartmoving")
+            end
+        end
+
+        if inst.sg:HasStateTag("busy") or inst:HasTag("busy") or inst.sg:HasStateTag("overridelocomote") then
+            return _locomote_eventhandler(inst, data, ...)
+        end
+        if inst.components.sailor and inst.components.sailor:IsSailing() then
+            if not is_attacking then
+                if is_moving and not should_move then
+                    if hasSail then
+                        inst.sg:GoToState("sail_stop")
+                    else
+                        inst.sg:GoToState("row_stop")
+                    end
+                elseif not is_moving and should_move or (is_moving and should_move and is_running ~= should_run) then
+                    if hasSail then
+                        inst.sg:GoToState("sail_start")
+                    else
+                        inst.sg:GoToState("row_start")
+                    end
+                end
+            end
+            return
+        end
+
+        return _locomote_eventhandler(inst, data, ...)
     end
 end)

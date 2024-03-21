@@ -1,3 +1,27 @@
+local function OnBoatDelta(boat, data) -- Listen for boat taking damage, talk if it is!
+    if data and boat.components.sailable and boat.components.sailable.sailor then
+        local sailor = boat.components.sailable.sailor
+        local old = data.oldpercent
+        local new = data.percent
+        local message = nil
+        for _, threshold in ipairs(sailor.components.sailor.warningthresholds) do
+            if old > threshold.percent and new <= threshold.percent then
+                message = threshold.string
+            end
+        end
+
+        if message then
+            boat.components.sailable.sailor:PushEvent("boat_damaged", {message = message})
+        end
+    end
+end
+
+local function onboat(self, boat)
+    if self.inst.replica.sailor then
+        self.inst.replica.sailor._boat:set(boat)
+    end
+end
+
 local function onsailing(self, sailing)
     if sailing then
         self.inst:AddTag("sailor")
@@ -8,16 +32,25 @@ end
 
 local Sailor = Class(function(self, inst)
     self.inst = inst
+    self.boat = nil
     self.sailing = false
+
+    self.durabilitymultiplier = 1.0
+    self.warningthresholds =  -- Moved these back to sailor from wisecracker -Z
+    {
+        { percent = 0.5, string = "ANNOUNCE_BOAT_DAMAGED" },
+        { percent = 0.3, string = "ANNOUNCE_BOAT_SINKING" },
+        { percent = 0.1, string = "ANNOUNCE_BOAT_SINKING_IMMINENT" },
+    }
 end,
 nil,
 {
-    -- boat = onboat,
+    boat = onboat,
     sailing = onsailing,
 })
 
 function Sailor:IsSailing()
-    return self.sailing
+    return self.sailing and self.boat ~= nil
 end
 
 function Sailor:GetBoat()
@@ -30,6 +63,44 @@ function Sailor:AlignBoat(direction)
     end
 end
 
+function Sailor:OnUpdate(dt)
+    if self.boat ~= nil and self.boat:IsValid() then
+        if self.boat.components.boathealth then
+            self.boat.components.boathealth.depletionmultiplier = 1.0 / self.durabilitymultiplier
+        end
+    end
+end
+
+-- This needs to save, because we're removing the boat from the scene
+-- to prevent the player from dying upon logging back in.
+function Sailor:OnSave()
+    local data = {}
+    if self.boat ~= nil and self.boat.persists then
+        data.boat = self.boat:GetSaveRecord()
+        data.boat.prefab = self.boat.actualprefab or self.boat.prefab
+    end
+    return data
+end
+
+function Sailor:OnLoad(data)
+    if data and data.boat ~= nil then
+        local boat = SpawnSaveRecord(data.boat)
+        if boat then
+            self:Embark(boat, true)
+            if boat.components.container then
+                boat:DoTaskInTime(0.3, function()
+                    if boat.components.container:IsOpen() then
+                        boat.components.container:Close(true)
+                    end
+                end)
+                boat:DoTaskInTime(1.5, function()
+                    boat.components.container:Open(self.inst)
+                end)
+            end
+        end
+    end
+end
+
 function Sailor:Embark(boat, nostate)
     if not boat or not boat.components.sailable then
         return
@@ -38,9 +109,11 @@ function Sailor:Embark(boat, nostate)
     self.sailing = true
     self.boat = boat
 
-    -- if self.boat.components.sailable.flotsambuild then
-    --     self.inst.AnimState:OverrideSymbol("flotsam", self.boat.components.sailable.flotsambuild, "flotsam")
-    -- end
+    self.inst:StartUpdatingComponent(self)
+
+    if self.boat.components.sailable.flotsambuild then
+        self.inst.AnimState:OverrideSymbol("flotsam", self.boat.components.sailable.flotsambuild, "flotsam")
+    end
 
     self.inst:AddTag("sailing")
     if not nostate then
@@ -48,6 +121,9 @@ function Sailor:Embark(boat, nostate)
     end
 
     self.inst:AddChild(self.boat)
+    if self.boat.components.highlightchild then
+        self.boat.components.highlightchild:SetOwner(self.inst)
+    end
     if self.inst.components.colouradder then
         self.inst.components.colouradder:AttachChild(self.boat)
     end
@@ -70,6 +146,25 @@ function Sailor:Embark(boat, nostate)
     end
     self.boat.Transform:SetRotation(0)
 
+    self.inst:ListenForEvent("boathealthchange", OnBoatDelta, boat)
+
+    if self.boat.components.boathealth then
+        local percent = boat.components.boathealth:GetPercent()
+        OnBoatDelta(boat, {oldpercent = 1, percent = percent})
+    end
+
+    -- dst no this
+    -- if self.inst.components.farseer and boat.components.sailable and boat.components.sailable:GetMapRevealBonus() then
+    --     self.inst.components.farseer:AddBonus("boat", boat.components.sailable:GetMapRevealBonus())
+    -- end
+
+    if boat.components.container then
+        if boat.components.container:IsOpen() then
+            boat.components.container:Close(true)
+        end
+        boat:DoTaskInTime(0.25, function() boat.components.container:Open(self.inst) end)
+    end
+
     if self.OnEmbarked then
         self.OnEmbarked(self.inst)
     end
@@ -83,14 +178,27 @@ end
 
 function Sailor:Disembark(pos, boat_to_boat, nostate)
     self.sailing = false
-    -- self.inst:StopUpdatingComponent(self)
+    self.inst:StopUpdatingComponent(self)
+
+    self.inst:RemoveEventCallback("boathealthchange", OnBoatDelta, self.boat)
+
+    if self.boat.components.container then
+        self.boat.components.container:Close(true)
+    end
+
+    -- dst no this
+    -- if self.inst.components.farseer then
+    --     self.inst.components.farseer:RemoveBonus("boat")
+    -- end
 
     self.inst:RemoveChild(self.boat)
 
+    if self.boat.components.highlightchild then
+        self.boat.components.highlightchild:SetOwner(nil)
+    end
     if self.inst.components.colouradder then
         self.inst.components.colouradder:DetachChild(self.boat)
     end
-
     if self.inst.components.eroder then
         self.inst.components.eroder:DetachChild(self.boat)
     end

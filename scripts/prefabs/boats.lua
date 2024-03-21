@@ -8,11 +8,28 @@ local lograft_assets = JoinArrays(raft_basic_assets, {
 })
 
 local prefabs = {
+    "rowboat_wake"
 }
 
 local function OnWorked(inst)
     inst.AnimState:PlayAnimation("hit")
     inst.AnimState:PushAnimation("run_loop", true)
+end
+
+local function Sink(inst)
+    local sailor = inst.components.sailable:GetSailor()
+    if sailor then
+        sailor.components.sailor:Disembark(nil, nil, true)
+
+        -- sailor:PushEvent("onsink", {ia_boat = inst})
+
+        sailor.SoundEmitter:PlaySound(inst.sinksound)
+    end
+    if inst.components.container then
+        inst.components.container:DropEverything()
+    end
+
+    inst:Remove()
 end
 
 local function OnHit(inst)
@@ -45,6 +62,8 @@ local function commonfn()
 
     inst.no_wet_prefix = true
 
+    inst.boatvisuals = {}
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -56,6 +75,10 @@ local function commonfn()
 
     inst:AddComponent("inspectable")
 
+    inst:AddComponent("lootdropper")
+
+    inst:AddComponent("rowboatwakespawner")
+
     inst:AddComponent("sailable")
 
     inst:AddComponent("workable")
@@ -63,6 +86,16 @@ local function commonfn()
     inst.components.workable:SetWorkLeft(4)
     inst.components.workable:SetOnFinishCallback(OnWorked)
     inst.components.workable:SetOnWorkCallback(OnHit)
+
+    inst:AddComponent("boathealth")
+    inst.components.boathealth:SetDepletedFn(Sink)
+    inst.components.boathealth:SetHealth(TUNING.RAFT_HEALTH, TUNING.RAFT_PERISHTIME)
+    inst.components.boathealth.leakinghealth = TUNING.RAFT_LEAKING_HEALTH
+    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat_damage_rowboat"
+    inst.components.boathealth.hitfx = "boat_hit_fx_raft_bamboo"
+
+    -- inst:AddComponent("flotsamspawner")
+    -- inst.components.flotsamspawner.flotsamprefab = "flotsam_bamboo"
 
     inst:AddComponent("hauntable")
     inst.components.hauntable:SetHauntValue(TUNING.HAUNT_TINY)
