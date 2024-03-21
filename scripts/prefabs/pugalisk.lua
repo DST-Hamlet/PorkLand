@@ -121,14 +121,13 @@ local function updatesegmentart(inst, percentdist)
     end
 end
 
-local function ClientPerdictPosition(inst)
-    local dt = FRAMES
+local function ClientPerdictPosition(inst, dt, shouldteleport)
+    --dt = FRAMES
 
-    if inst._segtime and inst._speed and inst._speed:value() > 0 then
-        local t = inst._segtime:value() / 1
+    if inst._segtime and inst._speed and inst._speed:value() > 0 and shouldteleport then
 
         local animation_percent = math.clamp(inst._segtime:value() / 1, 0, 1)
-        t = math.clamp(t,0,1)
+
         if inst._start_point and inst._end_point then
             local end_point = Vector3(inst._end_point.x:value(), 0, inst._end_point.z:value())
             local start_point = Vector3(inst._start_point.x:value(), 0, inst._start_point.z:value())
@@ -154,6 +153,27 @@ local function ClientPerdictPosition(inst)
     end
     inst._speed:set_local(ease)--模拟刷新speed，需要放在segtime的模拟刷新前面
     inst._segtime:set_local(inst._segtime:value() + (dt * inst._speed:value()))--根据当前速度模拟刷新segtime
+
+end
+
+local function OnSegRemoved(inst)
+    local segbody = inst._body:value()
+    if segbody and segbody:IsValid() and segbody.segs then
+        for i, testseg in ipairs(segbody.segs)do
+            if inst == testseg then
+                table.remove(segbody.segs, i)
+            end
+        end
+    end
+end
+
+local function OnBodyChangeSeg(inst)
+    local segbody = inst._body:value()
+    if segbody and segbody:IsValid() then
+        table.insert(segbody.segs, inst)
+        inst.components.combatredirect.redirects = segbody.redirects
+    end
+    inst:ListenForEvent("onremove", OnSegRemoved)
 end
 
 local function segmentfn()
@@ -185,7 +205,7 @@ local function segmentfn()
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
 
-    inst._segtime = net_float(inst.GUID, "_segtime")
+    inst._segtime = net_float(inst.GUID, "_segtime", "netposition")
 
     -- The point it left ground
     inst._start_point = {
@@ -202,14 +222,24 @@ local function segmentfn()
     inst._state = net_float(inst.GUID, "_state")
     inst._segpart = net_string(inst.GUID, "_segpart")
 
-    inst.name = STRINGS.NAMES.PUGALISK
+    inst._body = net_entity(inst.GUID, "_body", "setbody")
+    inst:ListenForEvent("setbody", OnBodyChangeSeg)
 
-    -- inst:AddComponent("combatredirect")
+    --inst.name = STRINGS.NAMES.PUGALISK
+
+    inst:AddComponent("combatredirect")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst:DoPeriodicTask(FRAMES, ClientPerdictPosition)
+        inst:ListenForEvent("netposition", function(inst)
+            ClientPerdictPosition(inst, FRAMES, false)--不刷新位置，只刷新速度数据，不然会导致客机比服务器提前
+        end)
+        inst.frameperiod = GetTime()
+        inst:DoPeriodicTask(FRAMES, function(inst)
+            ClientPerdictPosition(inst, GetTime() - inst.frameperiod, true)
+            inst.frameperiod = GetTime()
+        end)
         return inst
     end
 
@@ -225,8 +255,8 @@ local function segmentfn()
     inst.components.health.destroytime = 5
     inst.components.health.redirect = HealthRedirect
 
-    inst:AddComponent("inspectable")
-    inst.components.inspectable.nameoverride = "pugalisk"
+    --inst:AddComponent("inspectable")
+    --inst.components.inspectable.nameoverride = "pugalisk"
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("pugalisk_segment")
@@ -315,6 +345,10 @@ local function bodyfn()
     inst.persists = false
 
     inst.entity:SetPristine()
+
+    inst.segs = {}
+
+    inst.redirects = {}
 
     if not TheWorld.ismastersim then
         return inst
@@ -652,6 +686,25 @@ local function corpsefn()
     return inst
 end
 
+local function OnRedirectRemoved(inst)
+    local segbody = inst._body:value()
+    if segbody and segbody:IsValid() and segbody.redirects then
+        for i, testseg in ipairs(segbody.redirects)do
+            if inst == testseg then
+                table.remove(segbody.redirects, i)
+            end
+        end
+    end
+end
+
+local function OnBodyChangeRedirect(inst)
+    local segbody = inst._body:value()
+    if segbody and segbody:IsValid() and segbody.redirects then
+        table.insert(segbody.redirects, inst)
+    end
+    inst:ListenForEvent("onremove", OnRedirectRemoved)
+end
+
 local function combat_redirectfn()
     local inst = CreateEntity()
 
@@ -664,6 +717,11 @@ local function combat_redirectfn()
     inst:AddTag("NOCLICK")
     inst:AddTag("NOBLOCK")
     inst:AddTag("hostile")
+
+    inst._body = net_entity(inst.GUID, "_body", "setbody")
+    inst:ListenForEvent("setbody", OnBodyChangeRedirect)
+
+    inst.name = STRINGS.NAMES.PUGALISK
 
     if not TheWorld.ismastersim then
         return inst
@@ -679,6 +737,9 @@ local function combat_redirectfn()
     inst.components.health:SetMaxHealth(9999)
     inst.components.health.destroytime = 5
     inst.components.health.redirect = HealthRedirect
+
+    inst:AddComponent("inspectable")
+    inst.components.inspectable.nameoverride = "pugalisk"
 
     return inst
 end

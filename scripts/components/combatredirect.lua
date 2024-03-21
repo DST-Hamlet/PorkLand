@@ -21,12 +21,15 @@ function CombatRedirect:GetRedirect()
     local x, y, z = self.inst.Transform:GetWorldPosition()
     for GUID, ent in pairs(self.redirects) do
         if ent then
-            local distsq = ent:value():GetDistanceSqToPoint(x, y, z)
+            local distsq = ent:GetDistanceSqToPoint(x, y, z)
             if distsq < rangesq then
                 rangesq = distsq
                 closest = ent
             end
         end
+    end
+    if closest ~= nil then
+        closest.highlightforward = self.inst
     end
     return closest, closest ~= nil and rangesq
 end

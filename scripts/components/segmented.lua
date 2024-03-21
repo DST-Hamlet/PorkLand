@@ -90,6 +90,7 @@ function Segmented:Start(angle, segtimeMax, advancetime)
         redirect_ent.Transform:SetPosition(redirect_position.x, 0, redirect_position.z)
         redirect_ent.startpt = self.inst
         redirect_ent.host = self.inst.host
+        redirect_ent._body:set(self.inst)
         self.redirects[redirect_ent] = redirect_ent
     end
 end
@@ -248,6 +249,8 @@ function Segmented:addSegment(tail)
         self.vulnerablesegments = self.vulnerablesegments + 1
     end
     self:UpdateSegmentBuild(segment, 0)
+
+    segment._body:set(self.inst)
 
     -- if not segment.tail and not segment.head then
     --     segment.components.combatredirect:AddRedirectTarget(self.redirects)
