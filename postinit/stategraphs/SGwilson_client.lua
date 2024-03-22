@@ -1,4 +1,5 @@
 local AddStategraphState = AddStategraphState
+local AddStategraphPostInit = AddStategraphPostInit
 local AddStategraphActionHandler = AddStategraphActionHandler
 GLOBAL.setfenv(1, GLOBAL)
 
