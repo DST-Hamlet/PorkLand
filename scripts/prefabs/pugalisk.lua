@@ -121,20 +121,20 @@ local function updatesegmentart(inst, percentdist)
     end
 end
 
-local function ClientPerdictPosition(inst, dt, shouldteleport)
-    --dt = FRAMES
+---@param should_update_position boolean pass in false if only updating speed
+local function ClientPerdictPosition(inst, dt, should_update_position)
+    dt = dt or FRAMES
 
-    if inst._segtime and inst._speed and inst._speed:value() > 0 and shouldteleport then
-
+    if inst._segtime and inst._speed and inst._speed:value() > 0 and should_update_position then
         local animation_percent = math.clamp(inst._segtime:value() / 1, 0, 1)
 
         if inst._start_point and inst._end_point then
             local end_point = Vector3(inst._end_point.x:value(), 0, inst._end_point.z:value())
             local start_point = Vector3(inst._start_point.x:value(), 0, inst._start_point.z:value())
-            local pdelta = end_point - start_point
-            local pf = (pdelta * animation_percent) + start_point
+            local displacement = end_point - start_point
+            local target_position = (displacement * animation_percent) + start_point
 
-            inst.Physics:Teleport(pf.x, 0, pf.z)
+            inst.Physics:Teleport(target_position.x, 0, target_position.z)
 
             local animation_delay = 0
             if inst._speed:value() > 0 then
@@ -144,22 +144,21 @@ local function ClientPerdictPosition(inst, dt, shouldteleport)
         end
     end
 
-    --将segtime和speed的刷新放到最后，使得其能模拟下一帧的属性。之所以不放在最前面，是因为不确定doperiodintask和网络同步函数的执行顺序，把模拟属性功能放在结尾可以确保网络同步发生在模拟属性和位置刷新之间
     local ease = inst._speed:value()
     if inst._state:value() == STATES.MOVING then
         ease = math.min(ease + dt,1)
     else
         ease = math.max(ease - dt,0)
     end
-    inst._speed:set_local(ease)--模拟刷新speed，需要放在segtime的模拟刷新前面
-    inst._segtime:set_local(inst._segtime:value() + (dt * inst._speed:value()))--根据当前速度模拟刷新segtime
 
+    inst._speed:set_local(ease)
+    inst._segtime:set_local(inst._segtime:value() + (dt * inst._speed:value()))
 end
 
-local function OnSegRemoved(inst)
+local function OnRemove_Segment(inst)
     local segbody = inst._body:value()
     if segbody and segbody:IsValid() and segbody.segs then
-        for i, testseg in ipairs(segbody.segs)do
+        for i, testseg in ipairs(segbody.segs) do
             if inst == testseg then
                 table.remove(segbody.segs, i)
             end
@@ -167,13 +166,17 @@ local function OnSegRemoved(inst)
     end
 end
 
-local function OnBodyChangeSeg(inst)
+local function OnBodyDirty(inst, data)
     local segbody = inst._body:value()
     if segbody and segbody:IsValid() then
         table.insert(segbody.segs, inst)
         inst.components.combatredirect.redirects = segbody.redirects
     end
-    inst:ListenForEvent("onremove", OnSegRemoved)
+    inst:ListenForEvent("onremove", OnRemove_Segment)
+end
+
+local function OnSegTimeDirty(inst, data)
+    ClientPerdictPosition(inst, FRAMES, false)
 end
 
 local function segmentfn()
@@ -205,8 +208,16 @@ local function segmentfn()
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
 
-    inst._segtime = net_float(inst.GUID, "_segtime", "netposition")
+    inst:AddComponent("combatredirect")
 
+    inst._segtime = net_float(inst.GUID, "_segtime", "segtimedirty")
+    -- The speed of the segment
+    inst._speed = net_float(inst.GUID, "_speed")
+    -- Idle, moving or dead
+    inst._state = net_float(inst.GUID, "_state")
+    -- Head, tail or segment 
+    inst._segpart = net_string(inst.GUID, "_segpart")
+    inst._body = net_entity(inst.GUID, "_body", "bodydirty")
     -- The point it left ground
     inst._start_point = {
         x = net_float(inst.GUID, "_start_point.x"),
@@ -218,45 +229,24 @@ local function segmentfn()
         z = net_float(inst.GUID, "_end_point.z"),
     }
 
-    inst._speed = net_float(inst.GUID, "_speed")
-    inst._state = net_float(inst.GUID, "_state")
-    inst._segpart = net_string(inst.GUID, "_segpart")
-
-    inst._body = net_entity(inst.GUID, "_body", "setbody")
-    inst:ListenForEvent("setbody", OnBodyChangeSeg)
-
-    --inst.name = STRINGS.NAMES.PUGALISK
-
-    inst:AddComponent("combatredirect")
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("netposition", function(inst)
-            ClientPerdictPosition(inst, FRAMES, false)--不刷新位置，只刷新速度数据，不然会导致客机比服务器提前
-        end)
-        inst.frameperiod = GetTime()
+        inst:ListenForEvent("bodydirty", OnBodyDirty)
+        inst:ListenForEvent("segtimedirty", OnSegTimeDirty)
         inst:DoPeriodicTask(FRAMES, function(inst)
-            ClientPerdictPosition(inst, GetTime() - inst.frameperiod, true)
-            inst.frameperiod = GetTime()
+            ClientPerdictPosition(inst, FRAMES, true)
         end)
         return inst
     end
 
     inst.persists = false
 
-    -- inst:AddComponent("combat")
-    -- inst.components.combat:SetDefaultDamage(0)
-    -- inst.components.combat.hiteffectsymbol = "test_segments"
-    -- inst.components.combat.onhitfn = OnHit
-
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(9999)
+    inst.components.health:SetInvincible(true)
     inst.components.health.destroytime = 5
-    inst.components.health.redirect = HealthRedirect
-
-    --inst:AddComponent("inspectable")
-    --inst.components.inspectable.nameoverride = "pugalisk"
+    -- inst.components.health.redirect = HealthRedirect
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("pugalisk_segment")
@@ -296,13 +286,13 @@ local function OnBodyComplete_Body(inst, data)
     inst.SoundEmitter:SetParameter("emerge", "start", math.random())
 
     if inst.host then
-        inst.host:PushEvent("bodycomplete",{ pos = Vector3(inst.exitpt.Transform:GetWorldPosition()), angle = inst.angle })
+        inst.host:PushEvent("bodycomplete", {pos = Vector3(inst.exitpt.Transform:GetWorldPosition()), angle = inst.angle})
     end
 end
 
 local function OnBodyFinished_Body(inst, data)
     if inst.host then
-        inst.host:PushEvent("bodyfinished", { body = inst })
+        inst.host:PushEvent("bodyfinished", {body = inst})
     end
     for k, v in pairs(inst.components.segmented.redirects) do
         v:Remove()
@@ -330,9 +320,6 @@ local function bodyfn()
 
     MakeObstaclePhysics(inst, 1)
 
-    inst.name = STRINGS.NAMES.PUGALISK
-    inst.invulnerable = true
-
     inst:AddTag("epic")
     inst:AddTag("monster")
     inst:AddTag("hostile")
@@ -342,17 +329,18 @@ local function bodyfn()
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
 
-    inst.persists = false
-
-    inst.entity:SetPristine()
-
+    inst.invulnerable = true
+    inst.name = STRINGS.NAMES.PUGALISK
+    inst.redirects = {}
     inst.segs = {}
 
-    inst.redirects = {}
+    inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst.persists = false
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(9999)
@@ -427,9 +415,8 @@ local function tailfn()
 
     MakeObstaclePhysics(inst, 1)
 
-    inst.name = STRINGS.NAMES.PUGALISK
     inst.invulnerable = true
-    inst.persists = false
+    inst.name = STRINGS.NAMES.PUGALISK
 
     inst:AddTag("tail")
     inst:AddTag("epic")
@@ -446,6 +433,8 @@ local function tailfn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst.persists = false
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(9999)
@@ -496,10 +485,9 @@ local function OnDeath(inst)
 end
 
 local function OnBodyComplete(inst, data)
-    local pt = PugaliskUtil.FindSafeLocation(data.pos , data.angle/DEGREES)
-    inst.Transform:SetPosition(pt.x,0,pt.z)
+    local pt = PugaliskUtil.FindSafeLocation(data.pos, data.angle/DEGREES)
+    inst.Transform:SetPosition(pt.x, 0, pt.z)
     inst:DoTaskInTime(0.75, function()
-
         ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.3, 0.03, 1, inst, SHAKE_DIST)
         inst.components.groundpounder:GroundPound()
 
@@ -574,7 +562,7 @@ local function fn()
     inst.components.combat:SetDefaultDamage(TUNING.PUGALISK_DAMAGE)
     inst.components.combat.playerdamagepercent = 0.75
     inst.components.combat:SetRange(TUNING.PUGALISK_MELEE_RANGE, TUNING.PUGALISK_MELEE_RANGE)
-    inst.components.combat.hiteffectsymbol = "hit_target" -- "wormmovefx"
+    inst.components.combat.hiteffectsymbol = "hit_target"
     inst.components.combat:SetAttackPeriod(TUNING.PUGALISK_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(0.5, RetargetFn)
     inst.components.combat.onhitfn = OnHit
@@ -614,7 +602,7 @@ local function fn()
     inst:ListenForEvent("bodyfinished", function(inst, data) inst.components.multibody:RemoveBody(data.body) end)
     inst:ListenForEvent("death", OnDeath)
 
-    inst:DoTaskInTime(0,function() inst.spawned = true end)
+    inst:DoTaskInTime(0, function() inst.spawned = true end)
 
     inst.OnSave = OnSave
     inst.OnLoadPostPass = OnLoadPostPass
@@ -638,9 +626,9 @@ local function OnFinishCallback(inst, worker)
         local he_right = ((hispos - pt):Dot(TheCamera:GetRightVec()) > 0)
 
         if he_right then
-            inst.components.lootdropper:DropLoot(pt - (TheCamera:GetRightVec()*(math.random()+1)))
+            inst.components.lootdropper:DropLoot(pt - (TheCamera:GetRightVec() * (math.random() + 1)))
         else
-            inst.components.lootdropper:DropLoot(pt + (TheCamera:GetRightVec()*(math.random()+1)))
+            inst.components.lootdropper:DropLoot(pt + (TheCamera:GetRightVec() * (math.random() + 1)))
         end
 
         inst:Remove()
@@ -686,7 +674,7 @@ local function corpsefn()
     return inst
 end
 
-local function OnRedirectRemoved(inst)
+local function OnRemove_Redirect(inst)
     local segbody = inst._body:value()
     if segbody and segbody:IsValid() and segbody.redirects then
         for i, testseg in ipairs(segbody.redirects)do
@@ -697,33 +685,33 @@ local function OnRedirectRemoved(inst)
     end
 end
 
-local function OnBodyChangeRedirect(inst)
+local function OnBodyDirty_Redirect(inst)
     local segbody = inst._body:value()
     if segbody and segbody:IsValid() and segbody.redirects then
         table.insert(segbody.redirects, inst)
     end
-    inst:ListenForEvent("onremove", OnRedirectRemoved)
+    inst:ListenForEvent("onremove", OnRemove_Redirect)
 end
 
-local function combat_redirectfn()
+local function pugalisk_redirectfn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    inst.entity:SetPristine()
-
     inst:AddTag("NOCLICK")
     inst:AddTag("NOBLOCK")
     inst:AddTag("hostile")
 
-    inst._body = net_entity(inst.GUID, "_body", "setbody")
-    inst:ListenForEvent("setbody", OnBodyChangeRedirect)
+    inst._body = net_entity(inst.GUID, "_body", "bodydirty")
 
     inst.name = STRINGS.NAMES.PUGALISK
 
+    inst.entity:SetPristine()
+
     if not TheWorld.ismastersim then
+        inst:ListenForEvent("bodydirty", OnBodyDirty_Redirect)
         return inst
     end
 
@@ -749,4 +737,4 @@ return  Prefab("pugalisk", fn, assets, prefabs),
         Prefab("pugalisk_tail", tailfn, assets, prefabs),
         Prefab("pugalisk_segment", segmentfn, assets, prefabs),
         Prefab("pugalisk_corpse", corpsefn, assets, prefabs),
-        Prefab("pugalisk_redirect", combat_redirectfn, {}, {})
+        Prefab("pugalisk_redirect", pugalisk_redirectfn, {}, {})

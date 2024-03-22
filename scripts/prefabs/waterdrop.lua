@@ -66,11 +66,18 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
+    inst:AddComponent("tradable")
+
     inst:AddComponent("edible")
     inst.components.edible.foodtype = FOODTYPE.VEGGIE
     inst.components.edible.healthvalue = TUNING.HEALING_SUPERHUGE * 3
     inst.components.edible.hungervalue = TUNING.CALORIES_SUPERHUGE * 3
     inst.components.edible.sanityvalue = TUNING.SANITY_HUGE * 3
+    inst.components.edible:SetOnEatenFn(function(inst, eater)
+        if eater and eater.components.poisonable then
+            eater.components.poisonable:Cure()
+        end
+    end)
 
     inst:AddComponent("deployable")
     inst.components.deployable:SetDeployMode(DEPLOYMODE.PLANT)

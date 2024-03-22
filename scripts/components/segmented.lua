@@ -10,7 +10,7 @@ local function OnHostDeath(inst, data)
 
     for _, segment in ipairs(inst.components.segmented.segments) do
         inst:DoTaskInTime(math.random() + 1, function()
-            inst.components.segmented:killsegment(segment)
+            inst.components.segmented:KillSegment(segment)
         end)
     end
 
@@ -180,7 +180,7 @@ function Segmented:UpdateSegmentBuild(segment, percentdist)
     end
 end
 
-function Segmented:addSegment(tail)
+function Segmented:AddSegment(tail)
     if self.tailfinished then
         return
     end
@@ -275,7 +275,7 @@ function Segmented:ScaleSegment(index, scale)
     end
 end
 
-function Segmented:killsegment(segment)
+function Segmented:KillSegment(segment)
     if self.segment_deathfn then
         self.segment_deathfn(segment)
     end
@@ -489,7 +489,7 @@ function Segmented:OnUpdate(dt)
     end
 
     if self.nextseg <= 0 then
-        self:addSegment(self.lastrun)
+        self:AddSegment(self.lastrun)
         self.nextseg = 1/15
     else
         self.nextseg = self.nextseg - (dt * speed)

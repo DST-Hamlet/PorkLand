@@ -213,9 +213,6 @@ for actiontype, actons in pairs(PL_COMPONENT_ACTIONS) do
     end
 end
 
-
-ACTIONS.FEED.priority = 0.5 -- raise its priority above plant, for floweroflife
-
 -- hack
 local COMPONENT_ACTIONS = ToolUtil.GetUpvalue(EntityScript.CollectActions, "COMPONENT_ACTIONS")
 local SCENE = COMPONENT_ACTIONS.SCENE

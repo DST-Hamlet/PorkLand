@@ -1,12 +1,14 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-local Input = Input
+-- NOTE(ziwbi): Do NOT modify the Input class, modify TheInput object instead, see V2C's comment in input.lua
+local TheInput = TheInput
 
-local _GetWorldEntityUnderMouse = Input.GetWorldEntityUnderMouse
-Input.GetWorldEntityUnderMouse = function(self, ...)
+local _GetWorldEntityUnderMouse = TheInput.GetWorldEntityUnderMouse
+function TheInput:GetWorldEntityUnderMouse(...)
     local targetent = _GetWorldEntityUnderMouse(self, ...)
     if targetent and targetent.components and targetent.components.combatredirect then
         return targetent.components.combatredirect:GetRedirect()
+    else
+        return targetent
     end
-    return targetent
 end
