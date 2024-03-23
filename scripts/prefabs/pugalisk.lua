@@ -109,69 +109,21 @@ local STATES = {
     DEAD = 3,
 }
 
+local SEG_PARTS = {
+    HEAD = 1,
+    TAIL = 2,
+    SGEMENT = 3,
+}
+
 local function updatesegmentart(inst, percentdist)
     local anim = "test_segment"
 
-    if inst._segpart:value() == "head" then
+    if inst._segpart:value() == SEG_PARTS.HEAD then
         anim = "test_head"
     end
 
     if percentdist then
         inst.AnimState:SetPercent(anim, percentdist)
-    end
-end
-
----@param should_update_position boolean pass in false if only updating speed
-local function ClientPerdictPosition(inst, dt, should_update_position)--在完全读懂相关功能前，请不要乱动这部分代码，否则会引起更底层屎山的崩塌
-    --if inst._state:value() == STATES.DEAD then
-    --    return
-    --end
-    local dt = dt or FRAMES
-    local hit = inst._hit:value()
-
-    if inst._state:value() == STATES.DEAD then
-        return
-    end
-
-    for i,seg in pairs(inst.segs) do
-        if seg._segtime and inst._speed and inst._speed:value() > 0 and should_update_position == true then
-            local animation_percent = math.clamp(seg._segtime:value() / 1, 0, 1)
-
-            if inst._start_point and inst._end_point then
-                local end_point = Vector3(inst._end_point.x:value(), 0, inst._end_point.z:value())
-                local start_point = Vector3(inst._start_point.x:value(), 0, inst._start_point.z:value())
-                local displacement = end_point - start_point
-                local target_position = (displacement * animation_percent) + start_point
-                seg.Physics:Teleport(target_position.x, 0, target_position.z)
-
-                local animation_delay = (dt * inst._speed:value())/1
-                updatesegmentart(seg, animation_percent - animation_delay)
-                if hit > 0 then
-                    local s = 1.5
-                    s = Remap(hit, 1, 0, 1, 1.5)
-                    seg.Transform:SetScale(s,s,s)
-                end
-            end
-        end
-    end
-
-    if should_update_position then
-        inst.SoundEmitter:SetParameter("speed", "intensity", inst._speed:value())
-    end
-
-    local ease = inst._speed:value()
-    if inst._state:value() == STATES.MOVING then
-        ease = math.min(ease + dt,1)
-    else
-        ease = math.max(ease - dt,0)
-    end
-
-    inst._speed:set_local(ease)
-
-    inst._hit:set_local(hit - dt * 5)
-
-    for i,seg in pairs(inst.segs) do
-        seg._segtime:set_local(seg._segtime:value() + (dt * inst._speed:value()))
     end
 end
 
@@ -196,13 +148,6 @@ local function OnBodyDirty(inst, data)
         inst.components.combatredirect.redirects = segbody.redirects
     end
     inst:ListenForEvent("onremove", OnRemove_Segment)
-end
-
-local function OnSpeedDirty(inst, data)
-    if GetTime() - inst.lastupdate > 0.01 then--用于确定这一帧是否执行过doperiodictask
-        ClientPerdictPosition(inst, FRAMES, false)
-    end
-    inst.lastupdate = GetTime()
 end
 
 local function segmentfn()
@@ -233,27 +178,17 @@ local function segmentfn()
 
     inst._segtime = net_float(inst.GUID, "_segtime")
     -- Head, tail or segment
-    inst._segpart = net_string(inst.GUID, "_segpart")
+    inst._segpart = net_ushortint(inst.GUID, "_segpart")
     inst._body = net_entity(inst.GUID, "_body", "bodydirty")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("bodydirty", OnBodyDirty)
-        --inst:ListenForEvent("segtimedirty", OnSegTimeDirty)
-        --inst._perdict_task = inst:DoPeriodicTask(FRAMES, function(inst)
-        --    ClientPerdictPosition(inst, FRAMES, true)
-        --end)
         return inst
     end
 
     inst.persists = false
-
-    --inst:AddComponent("health")
-    --inst.components.health:SetMaxHealth(9999)
-    --inst.components.health:SetInvincible(true)
-    --inst.components.health.destroytime = 5
-    -- inst.components.health.redirect = HealthRedirect
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("pugalisk_segment")
@@ -307,6 +242,55 @@ local function OnBodyFinished_Body(inst, data)
     inst:Remove()
 end
 
+local function ClientPerdictPosition(inst, dt, should_update_position)
+    if inst._state:value() == STATES.DEAD then
+        return
+    end
+
+    dt = dt or FRAMES
+    local hit = inst._hit:value()
+
+    for _, seg in pairs(inst.segs) do
+        if seg._segtime and inst._speed and inst._speed:value() > 0 and should_update_position then
+            local animation_percent = math.clamp(seg._segtime:value() / 1, 0, 1)
+
+            if inst._start_point and inst._end_point then
+                local end_point = Vector3(inst._end_point.x:value(), 0, inst._end_point.z:value())
+                local start_point = Vector3(inst._start_point.x:value(), 0, inst._start_point.z:value())
+                local displacement = end_point - start_point
+                local target_position = (displacement * animation_percent) + start_point
+                seg.Physics:Teleport(target_position.x, 0, target_position.z)
+
+                local animation_delay = (dt * inst._speed:value())/1
+                updatesegmentart(seg, animation_percent - animation_delay)
+                if hit > 0 then
+                    local s = 1.5
+                    s = Remap(hit, 1, 0, 1, 1.5)
+                    seg.Transform:SetScale(s,s,s)
+                end
+            end
+        end
+    end
+
+    if should_update_position then
+        inst.SoundEmitter:SetParameter("speed", "intensity", inst._speed:value())
+    end
+
+    local ease = inst._speed:value()
+    if inst._state:value() == STATES.MOVING then
+        ease = math.min(ease + dt,1)
+    else
+        ease = math.max(ease - dt,0)
+    end
+
+    inst._speed:set_local(ease)
+    inst._hit:set_local(hit - dt * 5)
+
+    for _, seg in pairs(inst.segs) do
+        seg._segtime:set_local(seg._segtime:value() + (dt * inst._speed:value()))
+    end
+end
+
 local function bodyfn()
     local inst = CreateEntity()
 
@@ -357,15 +341,14 @@ local function bodyfn()
         z = net_float(inst.GUID, "_end_point.z"),
     }
 
-    inst._hit = net_float(inst.GUID, "_hit"),
+    inst._hit = net_float(inst.GUID, "_hit")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         inst.oldpos = inst:GetPosition()
-        --inst:ListenForEvent("speeddirty", OnSpeedDirty)
         inst:DoPeriodicTask(FRAMES, function(inst)
-            if inst.oldpos == inst:GetPosition() then--用于确定这一帧是否执行过网络同步，比侦听网络同步事件更可控
+            if inst.oldpos == inst:GetPosition() then
                 ClientPerdictPosition(inst, FRAMES, true)
             else
                 ClientPerdictPosition(inst, FRAMES, false)

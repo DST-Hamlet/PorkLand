@@ -4,6 +4,12 @@ local STATES = {
     DEAD = 3,
 }
 
+local SEG_PARTS = {
+    HEAD = 1,
+    TAIL = 2,
+    SGEMENT = 3,
+}
+
 local function OnHostDeath(inst, data)
     inst.components.segmented.state = STATES.DEAD
     inst._state:set(inst.components.segmented.state)
@@ -14,7 +20,6 @@ local function OnHostDeath(inst, data)
     end
 
     for _, segment in ipairs(inst.components.segmented.segments) do
-        segment._state:set(STATES.DEAD)
         inst:DoTaskInTime(math.random() + 1, function()
             inst.components.segmented:KillSegment(segment)
         end)
@@ -205,8 +210,6 @@ function Segmented:AddSegment(tail)
 
     segment.segtime = self.segtimeMax * 0.01
     segment._segtime:set(segment.segtime)
-    --segment._speed:set(self.ease)
-    --segment._state:set(self.state)
 
     local p1 = Vector3(self.groundpoint_end.x, 0, self.groundpoint_end.z)
     local p0 = Vector3(self.groundpoint_start.x, 0, self.groundpoint_start.z)
@@ -229,14 +232,14 @@ function Segmented:AddSegment(tail)
     if not self.firstsegment then
         self.firstsegment = true
         segment.head = true
-        segment._segpart:set("head")
+        segment._segpart:set(SEG_PARTS.HEAD)
     end
 
     if tail then
         if self.tailadded then
             self.tailfinished = true
             segment.tail = true
-            segment._segpart:set("tail")
+            segment._segpart:set(SEG_PARTS.TAIL)
             self.inst:DoTaskInTime(0.5, function() self.inst.AnimState:PlayAnimation("dirt_collapse") end)
         else
             self.tailadded = true
@@ -343,8 +346,6 @@ function Segmented:OnUpdate(dt)
 
             segment.segtime = math.min(segment.segtime + (dt * speed) , self.segtimeMax)
             segment._segtime:set(segment.segtime)
-            --segment._speed:set(speed)
-            --segment._state:set(self.state)
 
             local t = segment.segtime/self.segtimeMax -- t is kind of a percentage
 
@@ -415,7 +416,7 @@ function Segmented:OnUpdate(dt)
                 self.idletimer = SEGMENTIDLETIME
                 if self.idlesegment > #self.segments  then
                     self.idlesegment = 1
-                    self.idletimer = SEGMENTIDLETIME  -- + (math.random()*1.5)
+                    self.idletimer = SEGMENTIDLETIME
                 end
             end
 
@@ -481,7 +482,7 @@ function Segmented:OnUpdate(dt)
 
     if self.hit > 0 then
         local x, y, z
-        for i, segment in ipairs(self.segments)do
+        for _, segment in ipairs(self.segments)do
             local s = 1.5
             s = Remap(self.hit, 1, 0, 1, 1.5)
             segment.Transform:SetScale(s,s,s)
