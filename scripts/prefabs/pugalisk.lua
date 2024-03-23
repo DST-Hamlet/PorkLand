@@ -123,6 +123,9 @@ end
 
 ---@param should_update_position boolean pass in false if only updating speed
 local function ClientPerdictPosition(inst, dt, should_update_position)--在完全读懂相关功能前，请不要乱动这部分代码，否则会引起更底层屎山的崩塌
+    --if inst._state:value() == STATES.DEAD then
+    --    return
+    --end
     local dt = dt or FRAMES
     local hit = inst._hit:value()
 
@@ -237,6 +240,10 @@ local function segmentfn()
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("bodydirty", OnBodyDirty)
+        --inst:ListenForEvent("segtimedirty", OnSegTimeDirty)
+        --inst._perdict_task = inst:DoPeriodicTask(FRAMES, function(inst)
+        --    ClientPerdictPosition(inst, FRAMES, true)
+        --end)
         return inst
     end
 

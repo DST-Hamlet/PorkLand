@@ -15,7 +15,6 @@ local function onspoiledhammered(inst, worker)
     to_hammer.Transform:SetPosition(inst:GetPosition():Get())
     to_hammer.components.lootdropper:DropLoot()
     SpawnPrefab("collapse_small").Transform:SetPosition(to_hammer.Transform:GetWorldPosition())
-    to_hammer.SoundEmitter:PlaySound("dontstarve/common/destroy_stone")
 
     inst.components.workable:SetWorkLeft(1)
 
