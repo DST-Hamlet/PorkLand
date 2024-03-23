@@ -19,8 +19,8 @@ local function spawngaze(inst)
     local pt = Vector3(inst.Transform:GetWorldPosition())
     local angle = inst.Transform:GetRotation() * DEGREES
     local radius = 4
-    local offset = Vector3(radius * math.cos( angle ), 0, -radius * math.sin( angle ))
-    local newpt = pt+offset
+    local offset = Vector3(math.cos(angle), 0, math.sin(-angle)) * radius
+    local newpt = pt + offset
 
     beam.Transform:SetPosition(newpt.x, newpt.y, newpt.z)
     beam.host = inst
@@ -38,10 +38,10 @@ local function dogaze(inst)
     if inst.gazetask then
         endgaze(inst)
     end
-    inst.gazetask = inst:DoPeriodicTask(0.4,function() spawngaze(inst) end)
+    inst.gazetask = inst:DoPeriodicTask(0.4, spawngaze)
 end
 
-local events=
+local events =
 {
     EventHandler("tail_should_exit", function(inst)
         inst:AddTag("should_exit")
@@ -99,12 +99,9 @@ local events=
             inst.sg:GoToState("emerge")
         end
     end),
-
-    -- CommonHandlers.OnSleep(),
-    CommonHandlers.OnFreeze(),
 }
 
-local states=
+local states =
 {
     State{
         name = "death_underground",
@@ -192,7 +189,7 @@ local states=
                 if inst.wantstogaze then
                     inst.sg:GoToState("gaze")
                 elseif inst.wantstotaunt then
-                    inst.sg:GoToState("taunt")
+                    inst.sg:GoToState("tongue")
                 end
 
                 if inst.wantstopremove then
@@ -237,7 +234,7 @@ local states=
     },
 
     State{
-        name = "taunt",
+        name = "tongue",
         tags = {"canrotate", "busy"},
 
         onenter = function(inst, start_anim)

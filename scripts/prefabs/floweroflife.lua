@@ -12,6 +12,8 @@ local prefabs =
 }
 
 local INTENSITY = 0.5
+local PLAYER_PROX_NEAR = 6
+local PLAYER_PROX_FAR = 8
 
 local function FadeIn(inst)
     inst.components.fader:StopAll()
@@ -41,13 +43,13 @@ local function Sparkle(inst)
 
     if target then
         local lifeplant_sparkle = SpawnPrefab("lifeplant_sparkle")
-        lifeplant_sparkle.Transform:SetPosition(target.Transform:GetWorldPosition())      
+        lifeplant_sparkle.Transform:SetPosition(target.Transform:GetWorldPosition())
     end
 end
 
 local function DrainHunger(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local players = FindPlayersInRange(x, y, z, 6, true)
+    local players = FindPlayersInRange(x, y, z, PLAYER_PROX_NEAR, true)
     for _, player in pairs(players) do
         player.components.hunger:DoDelta(-1)
     end
@@ -78,7 +80,7 @@ local function OnBurnt(inst)
     inst:Remove()
 end
 
-local function OnDug(inst, chopper)
+local function OnDug(inst, digger)
     inst.components.lootdropper:SpawnLootPrefab("waterdrop")
     inst.SoundEmitter:KillSound("drainloop")
     inst.dug = true
@@ -92,7 +94,6 @@ local function OnPlanted(inst, data)
         inst.fountain = data.fountain
     end
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/flower_of_life/plant")
-    inst.components.attunable:LinkToPlayer(data.deployer)
 end
 
 local function OnRemoved(inst)
@@ -126,7 +127,6 @@ local function OnResurrect(inst, player)
     inst.MiniMapEntity:SetEnabled(false)
     RemovePhysicsColliders(inst)
 
-
     inst.persists = false
 
     inst.AnimState:PlayAnimation("transform")
@@ -150,7 +150,7 @@ local function OnResurrect(inst, player)
             local ticks = 0
             while ticks * tick_time < time_to_erode do
                 local erode_amount = ticks * tick_time / time_to_erode
-                inst.AnimState:SetErosionParams( erode_amount, 0.1, 1.0 )
+                inst.AnimState:SetErosionParams(erode_amount, 0.1, 1.0)
                 ticks = ticks + 1
                 Yield()
             end
@@ -158,6 +158,10 @@ local function OnResurrect(inst, player)
             inst:Remove()
         end)
     end)
+end
+
+local function OnHaunt(inst, player)
+    player:PushEvent("respawnfromghost", {source = inst})
 end
 
 local function OnSave(inst, data)
@@ -217,8 +221,8 @@ local function fn()
         return inst
     end
 
-    inst:AddComponent("attunable")
-    inst.components.attunable:SetAttunableTag("remoteresurrector")
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
     inst:AddComponent("inspectable")
 

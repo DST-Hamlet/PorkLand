@@ -123,6 +123,10 @@ end
 
 ---@param should_update_position boolean pass in false if only updating speed
 local function ClientPerdictPosition(inst, dt, should_update_position)
+    if inst._state:value() == STATES.DEAD then
+        return
+    end
+
     dt = dt or FRAMES
 
     if inst._segtime and inst._speed and inst._speed:value() > 0 and should_update_position then
@@ -234,7 +238,7 @@ local function segmentfn()
     if not TheWorld.ismastersim then
         inst:ListenForEvent("bodydirty", OnBodyDirty)
         inst:ListenForEvent("segtimedirty", OnSegTimeDirty)
-        inst:DoPeriodicTask(FRAMES, function(inst)
+        inst._perdict_task = inst:DoPeriodicTask(FRAMES, function(inst)
             ClientPerdictPosition(inst, FRAMES, true)
         end)
         return inst

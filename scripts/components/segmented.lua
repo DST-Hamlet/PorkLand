@@ -8,7 +8,12 @@ local function OnHostDeath(inst, data)
     inst.components.segmented.state = STATES.DEAD
     inst.SoundEmitter:KillSound("speed")
 
+    for k, v in pairs(inst.components.segmented.redirects) do
+        v:Remove()
+    end
+
     for _, segment in ipairs(inst.components.segmented.segments) do
+        segment._state:set(STATES.DEAD)
         inst:DoTaskInTime(math.random() + 1, function()
             inst.components.segmented:KillSegment(segment)
         end)
@@ -251,10 +256,6 @@ function Segmented:AddSegment(tail)
     self:UpdateSegmentBuild(segment, 0)
 
     segment._body:set(self.inst)
-
-    -- if not segment.tail and not segment.head then
-    --     segment.components.combatredirect:AddRedirectTarget(self.redirects)
-    -- end
 end
 
 function Segmented:GetSegment(index)
