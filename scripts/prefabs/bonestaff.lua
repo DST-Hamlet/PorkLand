@@ -65,7 +65,7 @@ local function endbonecast(inst)
     EndGaze(inst)
 end
 
-local function CastSpell(staff, target, pos)
+local function CastSpell(staff, target, pos, caster)
     EndGaze(staff)
 
     local owner = staff.components.inventoryitem:GetGrandOwner()
@@ -98,6 +98,7 @@ local function fn()
     inst.AnimState:SetBuild("pl_staffs")
     inst.AnimState:PlayAnimation("bonestaff")
 
+    inst:AddTag("bonestaff")
     inst:AddTag("nopunch")
     inst:AddTag("nosteal")
     inst:AddTag("show_spoilage")

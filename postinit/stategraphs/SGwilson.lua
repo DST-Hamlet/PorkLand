@@ -411,6 +411,76 @@ local states = {
             SerializeUserSession(inst)
         end,
     },
+
+    State{
+        name = "castspell_bone",
+        tags = {"doing", "busy", "canrotate", "spell"},
+
+        onenter = function(inst)
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(false)
+            end
+            inst.AnimState:PlayAnimation("staff_pre")
+            inst.AnimState:PushAnimation("staff", false)
+            inst.components.locomotor:Stop()
+
+
+            --Spawn an effect on the player's location
+            local staff = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+            local colour = staff and staff.fxcolour or { 1, 1, 1 }
+
+            inst.sg.statemem.stafffx = SpawnPrefab(inst.components.rider:IsRiding() and "staffcastfx_mount" or "staffcastfx")
+            inst.sg.statemem.stafffx.entity:SetParent(inst.entity)
+            inst.sg.statemem.stafffx:SetUp(colour)
+
+            inst.sg.statemem.stafflight = SpawnPrefab("staff_castinglight")
+            inst.sg.statemem.stafflight.Transform:SetPosition(inst.Transform:GetWorldPosition())
+            inst.sg.statemem.stafflight:SetUp(colour, 1.9, .33)
+
+            inst.sg.statemem.castsound = (staff and staff.skin_castsound or staff.castsound) or "dontstarve/wilson/use_gemstaff"
+        end,
+
+        onexit = function(inst)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:Enable(true)
+            end
+            if inst.sg.statemem.stafffx and inst.sg.statemem.stafffx:IsValid() then
+                inst.sg.statemem.stafffx:Remove()
+            end
+            if inst.sg.statemem.stafflight and inst.sg.statemem.stafflight:IsValid() then
+                inst.sg.statemem.stafflight:Remove()
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(13 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve/wilson/use_gemstaff")
+                inst:PerformBufferedAction()
+                print("PerformBufferedAction")
+            end),
+            TimeEvent(60 * FRAMES, function(inst)
+                local staff = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+                if staff and staff.endcast then
+                    print("endcast")
+                    staff.endcast(staff)
+                end
+
+                inst.sg:RemoveStateTag("busy")
+				if inst.components.playercontroller ~= nil then
+					inst.components.playercontroller:Enable(true)
+				end
+            end),
+        },
+
+        events = {
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -479,5 +549,13 @@ AddStategraphPostInit("wilson", function(sg)
         end
     end
 
-    sg.states["castspell"].tags["spell"] = true -- For bonestaff
+    local _castspell_deststate = sg.actionhandlers[ACTIONS.CASTSPELL].deststate
+    sg.actionhandlers[ACTIONS.CASTSPELL].deststate = function(inst, action)
+        local staff = action.invobject or action.doer.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+        if staff:HasTag("bonestaff") then
+            return "castspell_bone"
+        else
+            return _castspell_deststate and _castspell_deststate(inst, action)
+        end
+    end
 end)
