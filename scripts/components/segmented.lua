@@ -6,6 +6,7 @@ local STATES = {
 
 local function OnHostDeath(inst, data)
     inst.components.segmented.state = STATES.DEAD
+    inst._state:set(inst.components.segmented.state)
     inst.SoundEmitter:KillSound("speed")
 
     for k, v in pairs(inst.components.segmented.redirects) do
@@ -27,6 +28,7 @@ end
 
 local function OnHit(inst, data)
     inst.components.segmented.hit = 1
+    inst._hit:set(inst.components.segmented.hit)
 end
 
 local Segmented = Class(function(self, inst)
@@ -78,6 +80,7 @@ function Segmented:Start(angle, segtimeMax, advancetime)
     exit.host = self.inst.host
 
     self.state = STATES.MOVING
+    self.inst._state:set(self.state)
     self.inst:StartUpdatingComponent(self)
     if advancetime then
         while advancetime > 0 do
@@ -90,7 +93,7 @@ function Segmented:Start(angle, segtimeMax, advancetime)
     local redirect_ent
     local redirect_position
     for i = 1, 5 do
-        redirect_position = starting_position + offset * (i/5)
+        redirect_position = starting_position + offset * (i/6)
         redirect_ent = SpawnPrefab("pugalisk_redirect")
         redirect_ent.Transform:SetPosition(redirect_position.x, 0, redirect_position.z)
         redirect_ent.startpt = self.inst
@@ -109,12 +112,18 @@ end
 function Segmented:StopMove()
     if self.state ~= STATES.DEAD then
         self.state = STATES.IDLE
+        self.inst._state:set(self.state)
     end
 end
 
 function Segmented:SetGroundTarget(point)
     self.groundpoint_end = point
     self.groundpoint_dist = self.inst:GetDistanceSqToPoint(self.groundpoint_end)
+
+    self.inst._end_point.x:set(self.groundpoint_end.x)
+    self.inst._end_point.z:set(self.groundpoint_end.z)
+    self.inst._start_point.x:set(self.groundpoint_start.x)
+    self.inst._start_point.z:set(self.groundpoint_start.z)
 
     self.xdiff = (self.groundpoint_end.x - self.groundpoint_start.x)
     self.zdiff = (self.groundpoint_end.z - self.groundpoint_start.z)
@@ -196,16 +205,11 @@ function Segmented:AddSegment(tail)
 
     segment.segtime = self.segtimeMax * 0.01
     segment._segtime:set(segment.segtime)
-    segment._speed:set(self.ease)
-    segment._state:set(self.state)
+    --segment._speed:set(self.ease)
+    --segment._state:set(self.state)
 
     local p1 = Vector3(self.groundpoint_end.x, 0, self.groundpoint_end.z)
     local p0 = Vector3(self.groundpoint_start.x, 0, self.groundpoint_start.z)
-
-    segment._end_point.x:set(p1.x)
-    segment._end_point.z:set(p1.z)
-    segment._start_point.x:set(p0.x)
-    segment._start_point.z:set(p0.z)
 
     local pdelta = p1 - p0
     local t = segment.segtime/self.segtimeMax
@@ -339,8 +343,8 @@ function Segmented:OnUpdate(dt)
 
             segment.segtime = math.min(segment.segtime + (dt * speed) , self.segtimeMax)
             segment._segtime:set(segment.segtime)
-            segment._speed:set(speed)
-            segment._state:set(self.state)
+            --segment._speed:set(speed)
+            --segment._state:set(self.state)
 
             local t = segment.segtime/self.segtimeMax -- t is kind of a percentage
 
@@ -372,6 +376,9 @@ function Segmented:OnUpdate(dt)
             end
         end
     end
+
+    self.inst._speed:set(speed)
+    self.inst._state:set(self.state)
 
     if self.state == STATES.IDLE then
         if self.segments and #self.segments > 0 then
@@ -487,6 +494,7 @@ function Segmented:OnUpdate(dt)
             end
         end
         self.hit = self.hit -dt * 5
+        self.inst._hit:set(self.hit)
     end
 
     if self.nextseg <= 0 then
