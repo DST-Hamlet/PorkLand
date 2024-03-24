@@ -9,6 +9,11 @@ return {
         "Eww!",
         "Yucky!",
     },
+	ANNOUNCE_PUGALISK_INVULNERABLE = {
+        "I can't break it there!",
+        "That part's too tough.",
+        "It's not breaking!"
+    },
     ANNOUNCE_SNEEZE = "a...choooOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "Ugh. We're really baking in this %s.",
@@ -21,6 +26,7 @@ return {
         ARMOR_WEEVOLE = "For when we need protection.",
         ASPARAGUS_PLANTED = "We should pick those.",
         BASEFAN = "That breeze feels nice on our fur.",
+        BONESTAFF = "We could have a staring contest with that scary big snake.",
         CHITIN = "Hope no one's missing that.",
         COFFEE = "Bitter.",
         COFFEEBEANS = "These smell very... adult.",
@@ -76,6 +82,12 @@ return {
             GENERIC = "I wonder if he likes tea parties.",
             SLEEPING = "All that running around must have worn him out.",
         },
+        PUGALISK = "Agh! I think we made him angry!",
+        PUGALISK_CORPSE = "We could probably make something out of these bones.",
+        PUGALISK_FOUNTAIN = "We could stay a kid forever!",
+        PUGALISK_RUINS_PILLAR = "It could fall at any minute.",
+        PUGALISK_SKULL = "Kinda creepy.",
+        PUGALISK_TRAP_DOOR = "Gotta look where we're going around here.",
         RABID_BEETLE = {
             DEAD = "Well, that's unfortunate.",
             GENERIC = "That guy's got a lot of energy!",
@@ -89,6 +101,8 @@ return {
             DONE = "It's finished.",
             EMPTY = "Make material with material.",
         },
+        SNAKE_BONE = "These are kinda sharp bones.",
+        SNAKEBONESOUP = "Kinda tastes like chicken noodle.",
         TEA = "Let's have a tea party!",
         TEATREE = "Hey there, tea tree.",
         TEATREE_NUT = "It helps with our sneezes.",

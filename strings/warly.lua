@@ -9,6 +9,11 @@ return {
         "Blagh!",
         "Beurk!",
     },
+	ANNOUNCE_PUGALISK_INVULNERABLE = {
+        "If only I had a shell cracker!",
+        "Won't break there.",
+        "I need to find a weak spot."
+    },
     ANNOUNCE_SNEEZE = "Atchoum!",
     ANNOUNCE_TOO_HUMID = {
         "Mon dieu! This %s is humid.",
@@ -21,6 +26,7 @@ return {
         ARMOR_WEEVOLE = "It still smells of bug.",
         ASPARAGUS_PLANTED = "I should snatch those up.",
         BASEFAN = "Good ventilation in the kitchen is an must.",
+        BONESTAFF = "It's a refrigeration ray.",
         CHITIN = "Completely inedible.",
         COFFEE = "Magnifique!",
         COFFEEBEANS = "Glorious!",
@@ -76,6 +82,12 @@ return {
             GENERIC = "I prefer English Breakfast.",
             SLEEPING = "Dreaming of nuts, no doubt.",
         },
+        PUGALISK = "Pardon me, Monsieur.",
+        PUGALISK_CORPSE = "I can't roast this marrow.",
+        PUGALISK_FOUNTAIN = "Locally sourced water, free of impurities.",
+        PUGALISK_RUINS_PILLAR = "Not very hearty.",
+        PUGALISK_SKULL = "I won't use this for soup.",
+        PUGALISK_TRAP_DOOR = "I'm getting a bad feeling about that.",
         RABID_BEETLE = {
             DEAD = "A shame. Not even edible.",
             GENERIC = "It is like me when I am hungry.",
@@ -89,6 +101,8 @@ return {
             DONE = "Fresh out of the oven! Be careful with the scalding.",
             EMPTY = "'Smelt' bad, if you ask me.",
         },
+        SNAKE_BONE = "Bones always make for a good broth.",
+        SNAKEBONESOUP = "A slight variation on a cherished recipe.",
         TEA = "Tea! Oh how I missed you!",
         TEATREE = "I could to so many things with tea tree leaves.",
         TEATREE_NUT = "More useful as medicine than in my recipe.",
