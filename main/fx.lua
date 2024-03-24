@@ -11,6 +11,12 @@ end
 
 local pl_fx = {
     {
+	    name = "groundpound_nosound_fx",
+	    bank = "bearger_ground_fx",
+	    build = "bearger_ground_fx",
+    	anim = "idle",
+    },
+    {
         name = "hacking_tall_grass_fx",
         bank = "hacking_fx",
         build = "hacking_tall_grass_fx",
@@ -25,6 +31,12 @@ local pl_fx = {
         -- sound = "dontstarve_DLC002/creatures/palm_tree_guard/coconut_explode",
         fn = FinalOffset1,
     },
+    {
+    	name = "snake_scales_fx",
+    	bank = "snake_scales_fx",
+    	build = "snake_scales_fx",
+    	anim = "idle",
+	},
     {
         name = "splash_water_drop",
         bank = "splash_water_drop",

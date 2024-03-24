@@ -309,3 +309,10 @@ applyoverrides_post.hayfever = function(difficulty)
     difficulty = difficulty == "default"
     TheWorld:PushEvent("ms_setworldsetting", {setting = "hayfever", value = difficulty})
 end
+
+applyoverrides_post.pugalisk_fountain = function(difficulty)
+    local worldsettings = TheWorld.components.worldsettings
+    if worldsettings then
+        worldsettings:SetSetting("pugalisk_fountain", difficulty == "default")
+    end
+end

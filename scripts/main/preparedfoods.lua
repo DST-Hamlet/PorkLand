@@ -19,8 +19,23 @@ local foods = {
             eater:AddDebuff("buff_speed_coffee", "buff_speed_coffee")
         end,
         is_shipwreck_food = true,
-        card_def = {ingredients = {{"coffeebeans_cooked", 3}, {"honey", 1}} },
+        card_def = {ingredients = {{"coffeebeans_cooked", 3}, {"honey", 1}}},
     },
+
+	snakebonesoup = 
+	{
+        -- modified test functon because DST has bone tag already
+		test = function(cooker, names, tags) return names.snake_bone and names.snake_bone >= 2 and tags.meat and tags.meat >= 2 end,
+		priority = 20,
+		foodtype = "MEAT",
+		health = TUNING.HEALING_LARGE,
+		hunger = TUNING.CALORIES_MED,
+		perishtime = TUNING.PERISH_MED,
+		sanity = TUNING.SANITY_SMALL,
+		cooktime = 1,
+		yotp = true,
+        card_def = {ingredients = {{"snake_bone", 2}, {"monstermeat", 2}}},
+	},
 
     tea =
     {
@@ -37,6 +52,7 @@ local foods = {
         oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_SPEED_BOOST,
         spoiled_product = "icedtea",
         yotp = true,
+        card_def = {ingredients = {{"piko_orange", 2}, {"honey", 2}}},
         oneatenfn = function(inst, eater)
             eater:RemoveDebuff("buff_speed_coffee_beans")
             eater:RemoveDebuff("buff_speed_icedtea")
@@ -59,6 +75,7 @@ local foods = {
         cooktime = 0.5,
         oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_SPEED_BOOST,
         yotp = true,
+        card_def = {ingredients = {{"piko_orange", 2}, {"honey", 1}, {"ice", 1}}},
         oneatenfn = function(inst, eater)
             eater:RemoveDebuff("buff_speed_coffee_beans")
             eater:RemoveDebuff("buff_speed_tea")
