@@ -11,7 +11,7 @@ local function FindCurrentTarget(inst)
     local WANDERDIST = 60
 
     -- if the old target is dead, forget it
-    if inst.target and not inst.target:IsValid() then
+    if inst.target and (not inst.target:IsValid() or inst.target:HasTag("playerghost"))then
         inst.target = nil
     end
 

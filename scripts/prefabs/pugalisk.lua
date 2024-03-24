@@ -145,7 +145,7 @@ local function OnBodyDirty(inst, data)
     local segbody = inst._body:value()
     if segbody and segbody:IsValid() then
         table.insert(segbody.segs, inst)
-        inst.components.combatredirect.redirects = segbody.redirects
+        inst.components.combatredirect.redirects = segbody.components.combatredirect.redirects
     end
     inst:ListenForEvent("onremove", OnRemove_Segment)
 end
@@ -364,6 +364,7 @@ local function bodyfn()
     inst.components.health:SetMaxHealth(9999)
     inst.components.health.destroytime = 5
     inst.components.health.redirect = HealthRedirect
+    inst.components.health.canheal = false
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.PUGALISK_DAMAGE)
@@ -458,6 +459,7 @@ local function tailfn()
     inst.components.health:SetMaxHealth(9999)
     inst.components.health.destroytime = 5
     inst.components.health.redirect = HealthRedirect
+    inst.components.health.canheal = false
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.PUGALISK_DAMAGE/2)
@@ -596,6 +598,7 @@ local function fn()
     inst.components.health.destroytime = 5
     inst.components.health:StartRegen(1, 2)
     inst.components.health.redirect = HealthRedirect_Head
+    inst.components.health.canheal = false
 
     inst:AddComponent("knownlocations")
 
@@ -743,6 +746,7 @@ local function pugalisk_redirectfn()
     inst.components.health:SetMaxHealth(9999)
     inst.components.health.destroytime = 5
     inst.components.health.redirect = HealthRedirect
+    inst.components.health.canheal = false
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "pugalisk"

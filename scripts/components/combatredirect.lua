@@ -6,12 +6,12 @@ end)
 
 function CombatRedirect:AddRedirectTarget(tbl)
     for _, entity in pairs(tbl) do
-            self.redirects[entity.GUID] = net_entity(entity.GUID, "_entity" .. tostring(entity.GUID) .. tostring(self.inst.GUID))
-            self.redirects[entity.GUID]:set(entity)
-            entity:ListenForEvent("remove", function()
-                self.redirects[entity.GUID]:set(nil)
-                self.redirects[entity.GUID] = nil
-            end)
+        self.redirects[entity.GUID] = net_entity(entity.GUID, "_entity" .. tostring(entity.GUID) .. tostring(self.inst.GUID))
+        self.redirects[entity.GUID]:set(entity)
+        entity:ListenForEvent("remove", function()
+            self.redirects[entity.GUID]:set(nil)
+            self.redirects[entity.GUID] = nil
+        end)
     end
 end
 

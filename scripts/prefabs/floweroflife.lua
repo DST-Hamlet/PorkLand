@@ -402,7 +402,7 @@ end
 local function TestForPlant(inst)
     local ent = TheSim:FindFirstEntityWithTag("lifeplant")
 
-    if ent and ent:GetDistanceSqToInst(inst) < 1 then
+    if not ent or ent:GetDistanceSqToInst(inst) < 1 then
         inst:Remove()
     end
 end

@@ -102,6 +102,8 @@ local function fn()
     inst:AddTag("nopunch")
     inst:AddTag("nosteal")
     inst:AddTag("show_spoilage")
+    -- shadowlevel (from shadowlevel component) added to pristine state for optimization
+    inst:AddTag("shadowlevel")
 
     inst.fxcolour = {223/255, 208/255, 69/255}
 
@@ -138,6 +140,9 @@ local function fn()
     inst.components.perishable.onperishreplacement = "boneshard"
     inst.components.perishable:SetPerishTime(TUNING.PERISH_ONE_DAY/2)
     inst.components.perishable:StartPerishing()
+
+    inst:AddComponent("shadowlevel")
+    inst.components.shadowlevel:SetDefaultLevel(TUNING.STAFF_SHADOW_LEVEL)
 
     inst.endcast = endbonecast
 
