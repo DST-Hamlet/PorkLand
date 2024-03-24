@@ -21,8 +21,11 @@ local function FindCurrentTarget(inst)
     end
 
     -- if target is on water or invalid forget it
-    if target and ( not target:IsValid() or target.onwater) then -- TODO
-        target = nil
+    if target then
+        local x, y, z = target.Transform:GetWorldPosition()
+        if not target:IsValid() or not TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
+            target = nil
+        end
     end
 
     if target and inst.home and target:GetDistanceSqToInst(inst.home) < DIST*DIST then

@@ -1,10 +1,10 @@
-local CombatRedirect = Class(function(self, inst)
+local CursortRedirect = Class(function(self, inst)
     self.inst = inst
 
     self.redirects = {}
 end)
 
-function CombatRedirect:AddRedirectTarget(tbl)
+function CursortRedirect:AddRedirectTarget(tbl)
     for _, entity in pairs(tbl) do
         self.redirects[entity.GUID] = net_entity(entity.GUID, "_entity" .. tostring(entity.GUID) .. tostring(self.inst.GUID))
         self.redirects[entity.GUID]:set(entity)
@@ -15,7 +15,7 @@ function CombatRedirect:AddRedirectTarget(tbl)
     end
 end
 
-function CombatRedirect:GetRedirect()
+function CursortRedirect:GetRedirect()
     local closest
     local rangesq = math.huge
     local x, y, z = self.inst.Transform:GetWorldPosition()
@@ -37,4 +37,4 @@ end
 -- For pugalisk there's no need for save and load
 -- consider adding them if using this component for other objects
 
-return CombatRedirect
+return CursortRedirect

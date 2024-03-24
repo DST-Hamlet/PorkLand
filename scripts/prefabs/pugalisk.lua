@@ -145,7 +145,7 @@ local function OnBodyDirty_Segment(inst, data)
     local segbody = inst._body:value()
     if segbody and segbody:IsValid() then
         table.insert(segbody.segs, inst)
-        inst.components.combatredirect.redirects = segbody.redirects
+        inst.components.cursorredirect.redirects = segbody.redirects
     end
     inst:ListenForEvent("onremove", OnRemove_Segment)
 end
@@ -174,7 +174,7 @@ local function segmentfn()
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
 
-    inst:AddComponent("combatredirect")
+    inst:AddComponent("cursorredirect")
 
     inst._segtime = net_float(inst.GUID, "_segtime")
     -- Head, tail or segment
