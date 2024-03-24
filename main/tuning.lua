@@ -210,6 +210,16 @@ local tuning = {
 
     VINE_REGEN_TIME_MIN = total_day_time * 2,
     VINE_REGEN_TIME_MAX = total_day_time * 3,
+
+    PUGALISK_HEALTH = 3000,
+    PUGALISK_ATTACK_PERIOD = 3,
+    PUGALISK_MELEE_RANGE = 6,
+    PUGALISK_DAMAGE = 200,
+    PUGALISK_TARGET_DIST = 40,
+    PUGALISK_TAIL_TARGET_DIST = 6,
+    PUGALISK_ENABLED = true,
+
+    PUGALISK_RUINS_PILLAR_WORK = 3,
 }
 
 for key, value in pairs(tuning) do
