@@ -52,7 +52,7 @@ local TRIGGERED_DANGER_MUSIC =
 {
     ancient_herald =
     {
-        "dontstarve_DLC003/music/aporkalypse",
+        "dontstarve_DLC003/music/fight_epic_3",
     },
 
     ancient_hulk =
@@ -62,7 +62,7 @@ local TRIGGERED_DANGER_MUSIC =
 
     pugalisk =
     {
-        "dontstarve_DLC003/music.fight_epic_3"
+        "dontstarve_DLC003/music/fight_epic_2"
     },
 
     default =
