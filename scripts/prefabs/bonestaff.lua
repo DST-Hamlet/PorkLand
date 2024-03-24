@@ -78,7 +78,7 @@ local function CastSpell(staff, target, pos, caster)
             else
                 EndGaze(staff)
             end
-        end)
+        end, 0)
     end
 end
 

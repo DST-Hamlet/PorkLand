@@ -42,7 +42,7 @@ local function SpawnPugalisk(inst)
 end
 
 local function activate(inst)
-    if not TUNING.PUGALISK_ENABLED then
+    if not GetWorldSetting("pugalisk_fountain", true) then
         return
     end
 

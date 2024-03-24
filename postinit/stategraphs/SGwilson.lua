@@ -424,10 +424,9 @@ local states = {
             inst.AnimState:PushAnimation("staff", false)
             inst.components.locomotor:Stop()
 
-
             --Spawn an effect on the player's location
             local staff = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-            local colour = staff and staff.fxcolour or { 1, 1, 1 }
+            local colour = staff and staff.fxcolour or {1, 1, 1}
 
             inst.sg.statemem.stafffx = SpawnPrefab(inst.components.rider:IsRiding() and "staffcastfx_mount" or "staffcastfx")
             inst.sg.statemem.stafffx.entity:SetParent(inst.entity)
@@ -435,7 +434,7 @@ local states = {
 
             inst.sg.statemem.stafflight = SpawnPrefab("staff_castinglight")
             inst.sg.statemem.stafflight.Transform:SetPosition(inst.Transform:GetWorldPosition())
-            inst.sg.statemem.stafflight:SetUp(colour, 1.9, .33)
+            inst.sg.statemem.stafflight:SetUp(colour, 1.9, 0.33)
 
             inst.sg.statemem.castsound = (staff and staff.skin_castsound or staff.castsound) or "dontstarve/wilson/use_gemstaff"
         end,
@@ -457,12 +456,10 @@ local states = {
             TimeEvent(13 * FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve/wilson/use_gemstaff")
                 inst:PerformBufferedAction()
-                print("PerformBufferedAction")
             end),
             TimeEvent(60 * FRAMES, function(inst)
                 local staff = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
                 if staff and staff.endcast then
-                    print("endcast")
                     staff.endcast(staff)
                 end
 

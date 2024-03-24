@@ -141,11 +141,11 @@ local function OnRemove_Segment(inst)
     end
 end
 
-local function OnBodyDirty(inst, data)
+local function OnBodyDirty_Segment(inst, data)
     local segbody = inst._body:value()
     if segbody and segbody:IsValid() then
         table.insert(segbody.segs, inst)
-        inst.components.combatredirect.redirects = segbody.components.combatredirect.redirects
+        inst.components.combatredirect.redirects = segbody.redirects
     end
     inst:ListenForEvent("onremove", OnRemove_Segment)
 end
@@ -181,10 +181,11 @@ local function segmentfn()
     inst._segpart = net_ushortint(inst.GUID, "_segpart")
     inst._body = net_entity(inst.GUID, "_body", "bodydirty")
 
+    inst:ListenForEvent("bodydirty", OnBodyDirty_Segment)
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("bodydirty", OnBodyDirty)
         return inst
     end
 
@@ -729,10 +730,11 @@ local function pugalisk_redirectfn()
 
     inst.name = STRINGS.NAMES.PUGALISK
 
+    inst:ListenForEvent("bodydirty", OnBodyDirty_Redirect)
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("bodydirty", OnBodyDirty_Redirect)
         return inst
     end
 

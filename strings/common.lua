@@ -113,6 +113,7 @@ return {
             PRESETLEVELS = {
                 PORKLAND = "Hamlet",
             },
+            PUGALISK_FOUNTAIN = "Fountain of Youth",
             TEMPERATE = "Temperate",
             WEEVOLE_SETTING = "Weevole",
         },
