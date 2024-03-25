@@ -14,6 +14,7 @@ PrefabFiles = {
     "dungball",
     "dungbeetle",
     "dungpile",
+    "flotsam",
     "flower_rainforest",
     "glowfly",
     "gold_dust",
