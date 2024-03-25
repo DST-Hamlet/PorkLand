@@ -3,6 +3,7 @@ GLOBAL.setfenv(1, GLOBAL)
 local FogOver = require("widgets/fogover")
 local PoisonOver = require("widgets/poisonover")
 local PollenOver = require("widgets/pollenover")
+local ContainerWidget = require("widgets/containerwidget")
 
 local PlayerHud = require("screens/playerhud")
 
@@ -70,4 +71,35 @@ function PlayerHud:UpdateFogClouds(camera)
 
     self.clouds:GetAnimState():SetMultColour(1, 1, 1, intensity)
     TheFocalPoint.SoundEmitter:SetVolume("windsound", intensity)
+end
+
+function PlayerHud:OpenBoat(boat, sailing)
+    if boat then
+        local boatwidget = nil
+        if sailing then
+            self.controls.inv.boatwidget = self.controls.inv.root:AddChild(ContainerWidget(self.owner))
+            boatwidget = self.controls.inv.boatwidget
+            boatwidget:SetScale(1)
+            boatwidget.scalewithinventory = false
+            boatwidget:MoveToBack()
+            boatwidget.inv_boatwidget = true
+            self.controls.inv:Rebuild()
+        else
+            boatwidget = self.controls.containerroot:AddChild(ContainerWidget(self.owner))
+        end
+
+        boatwidget:Open(boat, self.owner, not sailing)
+
+        for k,v in pairs(self.controls.containers) do
+            if v.container then
+                if v.parent == boatwidget.parent or k == boat then
+                    v:Close()
+                end
+            else
+                self.controls.containers[k] = nil
+            end
+        end
+
+        self.controls.containers[boat] = boatwidget
+    end
 end

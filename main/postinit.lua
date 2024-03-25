@@ -59,8 +59,11 @@ local brain_posts = {
 }
 
 local widget_posts = {
+    "containerwidget",
     "seasonclock",
-    "uiclock"
+    "uianim",
+    "uiclock",
+    "widget",
 }
 
 local module_posts = {

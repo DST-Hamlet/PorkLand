@@ -1,5 +1,60 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local Replicas = ToolUtil.GetUpvalue(EntityScript.ReplicateComponent, "Replicas")
+local REPLICATABLE_COMPONENTS = ToolUtil.GetUpvalue(EntityScript.ReplicateEntity, "REPLICATABLE_COMPONENTS")
+local LoadComponent = ToolUtil.GetUpvalue(EntityScript.AddComponent, "LoadComponent")
+
+function EntityScript:SetReplaceReplicableComponent(replace_component, component)
+    if not self.replace_components then
+        self.replace_components = {}
+    end
+
+    self.replace_components[component] = replace_component
+end
+
+function EntityScript:AddReplaceComponent(replace_component, component)
+    local function ReplaceLoadComponent()
+        return LoadComponent(replace_component)
+    end
+    ToolUtil.SetUpvalue(EntityScript.AddComponent, ReplaceLoadComponent, "LoadComponent")
+
+    local _GetPostInitFns = ModManager.GetPostInitFns
+    ModManager.GetPostInitFns = function(modmanager)
+        return _GetPostInitFns(modmanager, "ComponentPostInit", replace_component)
+    end
+
+    self:AddComponent(component)
+
+    ModManager.GetPostInitFns = _GetPostInitFns
+    ToolUtil.SetUpvalue(EntityScript.AddComponent, LoadComponent, "LoadComponent")
+end
+
+local _ReplicateComponent = EntityScript.ReplicateComponent
+function EntityScript:ReplicateComponent(component, ...)
+    if not self.replace_components or self.replace_components[component] == nil then
+        return _ReplicateComponent(self, component, ...)
+    end
+
+    local replace_component = self.replace_components[component]
+
+    local filename = component .. "_replica"
+    local replace_filename = replace_component .. "_replica"
+
+    local cmp = Replicas[filename]
+    local replicatable = REPLICATABLE_COMPONENTS[component]
+
+    if Replicas[replace_filename] == nil then
+        Replicas[replace_filename] = require("components/" .. replace_filename)
+    end
+    REPLICATABLE_COMPONENTS[component] = REPLICATABLE_COMPONENTS[replace_component]
+    Replicas[filename] = Replicas[replace_filename]
+
+    _ReplicateComponent(self, component, ...)
+
+    REPLICATABLE_COMPONENTS[component] = replicatable
+    Replicas[filename] = cmp
+end
+
 ---@class entityscript
 ---@field pushevent_postfn table
 

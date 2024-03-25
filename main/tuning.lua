@@ -267,9 +267,17 @@ local tuning = {
 
     BOAT_HITFX_THRESHOLD = .08,  -- percent of health you need to lose to show the fx
 
+    LOGRAFT_HEALTH = 150,
+    LOGRAFT_PERISHTIME = total_day_time * 2,
+    LOGRAFT_LEAKING_HEALTH = 40,
+
     RAFT_HEALTH = 150,
     RAFT_PERISHTIME = total_day_time * 2,
-    RAFT_LEAKING_HEALTH = 40
+    RAFT_LEAKING_HEALTH = 40,
+
+    ROWBOAT_HEALTH = 250,
+    ROWBOAT_PERISHTIME = total_day_time * 3,
+    ROWBOAT_LEAKING_HEALTH = 40,
 }
 
 for key, value in pairs(tuning) do
