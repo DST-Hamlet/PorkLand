@@ -27,6 +27,7 @@ PrefabFiles = {
     "hippo_antler",
     "hippoherd",
     "hippopotamoose",
+    "inv_vine",
     "iron",
     "pl_wave_shore",
     "jungle_border_vine",
