@@ -10,6 +10,8 @@ local component_posts = {
     "combat",
     "drownable",
     "edible",
+    "equippable_replica",
+    "equippable",
     "floater",
     "grogginess",
     "health",
@@ -81,6 +83,7 @@ function require(module_name, ...)
     return unpack(ret)
 end
 
+modimport("postinit/equipslotutil")
 modimport("postinit/stategraph")
 modimport("postinit/entityscript")
 modimport("postinit/animstate")

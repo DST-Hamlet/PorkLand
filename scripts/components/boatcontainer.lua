@@ -505,6 +505,41 @@ function BoatContainer:GetItemByName(item, amount)
     return items
 end
 
+local function crafting_priority_fn(a, b)
+    if a.stacksize == b.stacksize then
+        return a.slot < b.slot
+    end
+    return a.stacksize < b.stacksize --smaller stacks first
+end
+
+function BoatContainer:GetCraftingIngredient(item, amount, reverse_search_order)
+    local items = {}
+    for i = 1, self.numslots do
+        local v = self.slots[i]
+		if v ~= nil and v.prefab == item and not v:HasTag("nocrafting") then
+            table.insert(items, {
+                item = v,
+                stacksize = GetStackSize(v),
+                slot = reverse_search_order and (self.numslots - (i - 1)) or i,
+            })
+        end
+    end
+    table.sort(items, crafting_priority_fn)
+
+    local crafting_items = {}
+    local total_num_found = 0
+    for i, v in ipairs(items) do
+        local stacksize = math.min(v.stacksize, amount - total_num_found)
+        crafting_items[v.item] = stacksize
+        total_num_found = total_num_found + stacksize
+        if total_num_found >= amount then
+            break
+        end
+    end
+
+    return crafting_items
+end
+
 local function tryconsume(self, v, amount)
     if v.components.stackable == nil then
         self:RemoveItem(v):Remove()
