@@ -47,15 +47,6 @@ local function MakeFlotsam(name)
 
         inst.entity:SetPristine()
 
-        if not TheWorld.ismastersim then
-            return inst
-        end
-
-        inst:AddComponent("edible")
-        inst.components.edible.foodtype = FOODTYPE.WOOD
-        inst.components.edible.healthvalue = 0
-        inst.components.edible.hungervalue = 0
-
         return inst
     end
 
