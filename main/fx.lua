@@ -59,6 +59,24 @@ local pl_fx = {
         build = "boat_hit_debris",
         anim = "hit_raft_bamboo",
     },
+    {
+    	name = "boat_hit_fx_rowboat",
+	    bank = "boat_hit_debris",
+	    build = "boat_hit_debris",
+	    anim = "hit_rowboat",
+    },
+    {
+    	name = "boat_hit_fx_cargoboat",
+	    bank = "boat_hit_debris",
+	    build = "boat_hit_debris",
+	    anim = "hit_cargoboat",
+    },
+    {
+    	name = "boat_hit_fx_corkboat",
+	    bank = "boat_hit_debris",
+	    build = "boat_hit_debris",
+	    anim = "hit_corkboat",
+    },
 }
 
 -- Sneakily add these to the FX table

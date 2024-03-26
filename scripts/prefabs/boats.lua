@@ -30,12 +30,18 @@ local cargo_assets = JoinArrays(rowboat_basic_assets, {
     Asset("ANIM", "anim/flotsam_cargo_build.zip"),
 })
 
+local corkboatassets = JoinArrays(rowboat_basic_assets, {
+	Asset("ANIM", "anim/corkboat.zip"),
+	Asset("ANIM", "anim/coracle_boat_build.zip"),
+	Asset("ANIM", "anim/flotsam_corkboat_build.zip"),
+})
+
 
 local prefabs = {
     "rowboat_wake"
 }
 
-local function OnWorked(inst)
+local function OnHit(inst)
     inst.AnimState:PlayAnimation("hit")
     inst.AnimState:PushAnimation("run_loop", true)
 end
@@ -56,7 +62,7 @@ local function Sink(inst)
     inst:Remove()
 end
 
-local function OnHit(inst)
+local function OnWorked(inst)
     inst.components.lootdropper:DropLoot()
     if inst.components.container then
         inst.components.container:DropEverything()
@@ -227,26 +233,6 @@ local function rowboatfn()
     return inst
 end
 
-local function armouredboatfn()
-    local inst = commonfn()
-
-    inst.AnimState:SetBank("rowboat")
-    inst.AnimState:SetBuild("rowboat_armored_build")
-    inst.AnimState:PlayAnimation("run_loop", true)
-    inst.MiniMapEntity:SetIcon("boat_armoured.tex")
-
-    if not TheWorld.ismastersim then
-        function inst.OnEntityReplicated(inst)
-            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/armoured"
-        end
-        return inst
-    end
-
-    inst.components.container:WidgetSetup("boat_armoured")
-
-    return inst
-end
-
 local function cargofn()
     local inst = commonfn()
 
@@ -262,17 +248,60 @@ local function cargofn()
         return inst
     end
 
-    inst.components.container:WidgetSetup("boat_cargo")
+    inst.landsound = "dontstarve_DLC002/common/boatjump_land_wood"
+	inst.sinksound = "dontstarve_DLC002/common/boat_sinking_log_cargo"
+
+    inst.components.container:WidgetSetup("boat_row")
+
+    inst.components.boathealth:SetHealth(TUNING.ROWBOAT_HEALTH, TUNING.ROWBOAT_PERISHTIME)
+    inst.components.boathealth.leakinghealth = TUNING.ROWBOAT_LEAKING_HEALTH
+    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat_damage_cargo"
+    inst.components.boathealth.hitfx = "boat_hit_fx_cargoboat"
+
+    inst.components.sailable.flotsambuild = "flotsam_cargo_build"
 
     inst.components.flotsamspawner.flotsamprefab = "flotsam_cargo"
 
     return inst
 end
 
+local function corkboatfn(sim)
+    local inst = commonfn()
+
+    inst.AnimState:SetBank("rowboat")
+    inst.AnimState:SetBuild("coracle_boat_build")
+    inst.AnimState:PlayAnimation("run_loop", true)
+    inst.MiniMapEntity:SetIcon("coracle_boat.tex")
+
+    if not TheWorld.ismastersim then
+        function inst.OnEntityReplicated(inst)
+            inst.replica.sailable.creaksound = "dontstarve_DLC003/common/objects/corkboat/creaks"
+        end
+        return inst
+    end
+
+    inst.landsound = "dontstarve_DLC002/common/boatjump_land_wood"
+	inst.sinksound = "dontstarve_DLC002/common/boat_sinking_rowboat"
+
+    inst.components.container:WidgetSetup("boat_cork")
+
+    inst.components.boathealth:SetHealth(TUNING.ROWBOAT_HEALTH, TUNING.ROWBOAT_PERISHTIME)
+    inst.components.boathealth.leakinghealth = TUNING.ROWBOAT_LEAKING_HEALTH
+    inst.components.boathealth.damagesound = "dontstarve_DLC003/common/objects/corkboat/damage"
+    inst.components.boathealth.hitfx = "boat_hit_fx_corkboat"
+
+    inst.components.sailable.flotsambuild = "flotsam_corkboat_build"
+
+    inst.components.flotsamspawner.flotsamprefab = "flotsam_cork"
+
+	return inst
+end
+
 return Prefab("boat_lograft", lograftfn, lograft_assets, prefabs),
     Prefab("boat_row", rowboatfn, rowboat_assets, prefabs),
-    Prefab("boat_armoured", armouredboatfn, armouredboat_assets, prefabs),
     Prefab("boat_cargo", cargofn, cargo_assets, prefabs),
+    Prefab("corkboat", corkboatfn, corkboatassets, prefabs),
     MakePlacer("boat_lograft_placer", "raft", "raft_log_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),
     MakePlacer("boat_row_placer", "rowboat", "rowboat_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),
-    MakePlacer("boat_cargo_placer", "rowboat", "rowboat_cargo_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2)
+    MakePlacer("boat_cargo_placer", "rowboat", "rowboat_cargo_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),
+    MakePlacer("corkboat_placer", "rowboat", "coracle_boat_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2)
