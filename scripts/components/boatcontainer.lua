@@ -516,7 +516,7 @@ function BoatContainer:GetCraftingIngredient(item, amount, reverse_search_order)
     local items = {}
     for i = 1, self.numslots do
         local v = self.slots[i]
-		if v ~= nil and v.prefab == item and not v:HasTag("nocrafting") then
+        if v ~= nil and v.prefab == item and not v:HasTag("nocrafting") then
             table.insert(items, {
                 item = v,
                 stacksize = GetStackSize(v),

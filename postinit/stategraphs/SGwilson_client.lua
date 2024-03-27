@@ -75,7 +75,7 @@ local states = {
 
             local anim = oar and oar:HasTag("oar") and "row_medium" or "row_loop"
             if not inst.AnimState:IsCurrentAnimation(anim) then
-				--RoT has row_medium, which is identical but uses the equipped item as paddle
+                --RoT has row_medium, which is identical but uses the equipped item as paddle
                 inst.AnimState:PlayAnimation(anim, true)
             end
 
@@ -140,6 +140,184 @@ local states = {
         events = {
             EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
         },
+    },
+
+    State{
+        name = "sail_start",
+        tags = {"moving", "running", "canrotate", "boating", "sailing"},
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            inst.components.locomotor:RunForward()
+
+            local anim = boat.replica.sailable.sailstartanim or "sail_pre"
+            if anim ~= "sail_pre" or inst.has_sailface then
+                inst.AnimState:PlayAnimation(anim)
+            else
+                inst.AnimState:PlayAnimation("sail_pre")
+            end
+
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayPreSailAnims()
+            end
+        end,
+
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
+        end,
+
+        events = {
+            EventHandler("animover", function(inst) inst.sg:GoToState("sail") end),
+        },
+    },
+
+    State{
+        name = "sail",
+        tags = {"canrotate", "moving", "running", "boating", "sailing"},
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            local loopsound = nil
+            local flapsound = nil
+
+            if boat and boat.replica.container and boat.replica.container.hasboatequipslots then
+                local sail = boat.replica.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
+                if sail then
+                    loopsound = sail.loopsound
+                    flapsound = sail.flapsound
+                end
+            elseif boat and boat.replica.sailable and boat.replica.sailable.sailsound then
+                loopsound = boat.replica.sailable.sailsound
+            end
+
+            if not inst.SoundEmitter:PlayingSound("sail_loop") and loopsound then
+                inst.SoundEmitter:PlaySound(loopsound, "sail_loop", nil, true)
+            end
+
+            if flapsound then
+                inst.SoundEmitter:PlaySound(flapsound, nil, nil, true)
+            end
+
+            if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
+                inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
+            end
+
+
+            local anim = boat and boat.replica.sailable and boat.replica.sailable.sailloopanim or "sail_loop"
+            if not inst.AnimState:IsCurrentAnimation(anim) then
+                if anim ~= "sail_loop" or inst.has_sailface then
+                    inst.AnimState:PlayAnimation(anim, true)
+                else
+                    inst.AnimState:PlayAnimation("sail_loop", true)
+                end
+            end
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlaySailAnims()
+            end
+            inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
+        end,
+
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if inst.sg.nextstate ~= "sail" then
+                inst.SoundEmitter:KillSound("sail_loop")
+                if inst.sg.nextstate ~= "row" then
+                    inst.components.locomotor:Stop(nil, true)
+                end
+                if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
+                    if boat and boat.replica.sailable then
+                        boat.replica.sailable:PlayIdleAnims()
+                    end
+                end
+            end
+        end,
+
+        events = {
+            EventHandler("trawlitem", function(inst)
+                local boat = inst.replica.sailor:GetBoat()
+                if boat and boat.replica.sailable then
+                    boat.replica.sailable:PlayTrawlOverAnims()
+                end
+            end),
+        },
+
+        ontimeout = function(inst) inst.sg:GoToState("sail") end,
+    },
+
+    State{
+        name = "sail",
+        tags = {"canrotate", "moving", "running", "boating", "sailing"},
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            local loopsound = nil
+            local flapsound = nil
+
+            if boat and boat.replica.container and boat.replica.container.hasboatequipslots then
+                local sail = boat.replica.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
+                if sail then
+                    loopsound = sail.loopsound
+                    flapsound = sail.flapsound
+                end
+            elseif boat and boat.replica.sailable and boat.replica.sailable.sailsound then
+                loopsound = boat.replica.sailable.sailsound
+            end
+
+            if not inst.SoundEmitter:PlayingSound("sail_loop") and loopsound then
+                inst.SoundEmitter:PlaySound(loopsound, "sail_loop", nil, true)
+            end
+
+            if flapsound then
+                inst.SoundEmitter:PlaySound(flapsound, nil, nil, true)
+            end
+
+            if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
+                inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
+            end
+
+
+            local anim = boat and boat.replica.sailable and boat.replica.sailable.sailloopanim or "sail_loop"
+            if not inst.AnimState:IsCurrentAnimation(anim) then
+                if anim ~= "sail_loop" or inst.has_sailface then
+                    inst.AnimState:PlayAnimation(anim, true)
+                else
+                    inst.AnimState:PlayAnimation("sail_loop", true)
+                end
+            end
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlaySailAnims()
+            end
+            inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
+        end,
+
+        onexit = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+            if inst.sg.nextstate ~= "sail" then
+                inst.SoundEmitter:KillSound("sail_loop")
+                if inst.sg.nextstate ~= "row" then
+                    inst.components.locomotor:Stop(nil, true)
+                end
+                if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
+                    if boat and boat.replica.sailable then
+                        boat.replica.sailable:PlayIdleAnims()
+                    end
+                end
+            end
+        end,
+
+        events = {
+            EventHandler("trawlitem", function(inst)
+                local boat = inst.replica.sailor:GetBoat()
+                if boat and boat.replica.sailable then
+                    boat.replica.sailable:PlayTrawlOverAnims()
+                end
+            end),
+        },
+
+        ontimeout = function(inst) inst.sg:GoToState("sail_ia") end,
     },
 
     State{

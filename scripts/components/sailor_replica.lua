@@ -52,7 +52,7 @@ local function OnBoatDirty(sailor)
 end
 
 local function OnBoatDirty_inst(inst)
-	return OnBoatDirty(inst.replica.sailor)
+    return OnBoatDirty(inst.replica.sailor)
 end
 
 local Sailor = Class(function(self, inst)
@@ -63,10 +63,10 @@ local Sailor = Class(function(self, inst)
     self.boatattackedevent = net_bool(inst.GUID, "boathealth.boatattackedevent", not TheWorld.ismastersim and "boatattacked" or nil)
 
     self.inst:DoTaskInTime(0, function()
-		self.inst:ListenForEvent("boatdirty", function()
-			OnBoatDirty(self)
-			self.inst:DoTaskInTime(1, OnBoatDirty_inst)
-		end)
+        self.inst:ListenForEvent("boatdirty", function()
+            OnBoatDirty(self)
+            self.inst:DoTaskInTime(1, OnBoatDirty_inst)
+        end)
         OnBoatDirty(self)
     end)
 

@@ -25,6 +25,25 @@ local function OnExitRow(inst)
     end
 end
 
+local function OnExitSail(inst)
+    local boat = inst.replica.sailor:GetBoat()
+    if boat and boat.components.rowboatwakespawner then
+        boat.components.rowboatwakespawner:StopSpawning()
+    end
+
+    if inst.sg.nextstate ~= "sail" then
+        inst.SoundEmitter:KillSound("sail_loop")
+        if inst.sg.nextstate ~= "row" then
+            inst.components.locomotor:Stop(nil, true)
+        end
+        if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayIdleAnims()
+            end
+        end
+    end
+end
+
 local actionhandlers = {
     ActionHandler(ACTIONS.EMBARK, "embark"),
     ActionHandler(ACTIONS.DISEMBARK, "disembark"),
@@ -697,12 +716,12 @@ local states = {
                 boat.components.rowboatwakespawner:StartSpawning()
             end
 
-            if inst.components.mapwrapper
-            and inst.components.mapwrapper._state > 1
-            and inst.components.mapwrapper._state < 5 then
-                inst.sg:AddStateTag("nomorph")
-                -- TODO pause predict?
-            end
+            -- if inst.components.mapwrapper
+            -- and inst.components.mapwrapper._state > 1
+            -- and inst.components.mapwrapper._state < 5 then
+            --     inst.sg:AddStateTag("nomorph")
+            --     -- TODO pause predict?
+            -- end
 
             inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
         end,
@@ -765,6 +784,154 @@ local states = {
                         equipped:PushEvent("stoprowing", {owner = inst})
                     end
                     inst:PushEvent("stoprowing")
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
+    },
+
+    State{
+        name = "sail_start",
+        tags = {"moving", "running", "canrotate", "boating", "sailing", "autopredict"},
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            inst.components.locomotor:RunForward()
+
+            local anim = boat.replica.sailable.sailstartanim or "sail_pre"
+            if anim ~= "sail_pre" or inst.has_sailface then
+                inst.AnimState:PlayAnimation(anim)
+            else
+                inst.AnimState:PlayAnimation("sail_pre")
+            end
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayPreSailAnims()
+            end
+
+            local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+            if equipped then
+                equipped:PushEvent("startsailing", {owner = inst})
+            end
+        end,
+
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
+        end,
+
+        onexit = OnExitSail,
+
+        events = {
+            EventHandler("animover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("sail")
+                end
+            end),
+        },
+    },
+
+    State{
+        name = "sail",
+        tags = {"canrotate", "moving", "running", "boating", "sailing", "autopredict"},
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            local loopsound = nil
+            local flapsound = nil
+
+            if boat and boat.replica.container and boat.replica.container.hasboatequipslots then
+                local sail = boat.replica.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
+                if sail then
+                    loopsound = sail.loopsound
+                    flapsound = sail.flapsound
+                end
+            elseif boat and boat.replica.sailable and boat.replica.sailable.sailsound then
+                loopsound = boat.replica.sailable.sailsound
+            end
+
+            if not inst.SoundEmitter:PlayingSound("sail_loop") and loopsound then
+                inst.SoundEmitter:PlaySound(loopsound, "sail_loop", nil, true)
+            end
+
+            if flapsound then
+                inst.SoundEmitter:PlaySound(flapsound, nil, nil, true)
+            end
+
+            if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
+                inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
+            end
+
+            local anim =boat and boat.replica.sailable and boat.replica.sailable.sailloopanim or "sail_loop"
+            if not inst.AnimState:IsCurrentAnimation(anim) then
+                if anim ~= "sail_loop" or inst.has_sailface then
+                    inst.AnimState:PlayAnimation(anim , true)
+                else
+                    inst.AnimState:PlayAnimation("sail_loop", true)
+                end
+            end
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlaySailAnims()
+            end
+
+            if boat and boat.components.rowboatwakespawner then
+                boat.components.rowboatwakespawner:StartSpawning()
+            end
+
+            -- if inst.components.mapwrapper
+            -- and inst.components.mapwrapper._state > 1
+            -- and inst.components.mapwrapper._state < 5 then
+            --     inst.sg:AddStateTag("nomorph")
+            --     -- TODO pause predict?
+            -- end
+            inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
+        end,
+
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
+        end,
+
+        onexit = OnExitSail,
+
+        events = {
+            -- EventHandler("animover", function(inst) inst.sg:GoToState("sail") end ),
+            EventHandler("trawlitem", function(inst)
+                local boat = inst.replica.sailor:GetBoat()
+                if boat and boat.replica.sailable then
+                    boat.replica.sailable:PlayTrawlOverAnims()
+                end
+            end),
+        },
+
+        ontimeout = function(inst) inst.sg:GoToState("sail") end,
+    },
+
+    State{
+        name = "sail_stop",
+        tags = {"canrotate", "idle", "autopredict"},
+
+        onenter = function(inst)
+            local boat = inst.replica.sailor:GetBoat()
+
+            inst.components.locomotor:Stop()
+            local anim = boat.replica.sailable.sailstopanim or "sail_pst"
+            if anim ~= "sail_pst" or inst.has_sailface then
+                inst.AnimState:PlayAnimation(anim)
+            else
+                inst.AnimState:PlayAnimation("sail_pst")
+            end
+            if boat and boat.replica.sailable then
+                boat.replica.sailable:PlayPostSailAnims()
+            end
+        end,
+
+        events = {
+            EventHandler("animover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+                    if equipped then
+                        equipped:PushEvent("stopsailing", {owner = inst})
+                    end
                     inst.sg:GoToState("idle")
                 end
             end),
