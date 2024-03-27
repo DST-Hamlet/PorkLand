@@ -35,9 +35,32 @@ local prefabs = {
     "rowboat_wake"
 }
 
+local function OnOpen(inst)
+    if inst.components.sailable.sailor == nil then
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/inventory_open")
+    end
+end
+
+local function OnClose(inst)
+    if inst.components.sailable.sailor == nil then
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/inventory_close")
+    end
+end
+
 local function OnWorked(inst)
     inst.AnimState:PlayAnimation("hit")
     inst.AnimState:PushAnimation("run_loop", true)
+end
+
+local function OnHit(inst)
+    inst.components.lootdropper:DropLoot()
+    if inst.components.container then
+        inst.components.container:DropEverything()
+    end
+    local fx = SpawnPrefab("collapse_small")
+    fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_wood")
+    inst:Remove()
 end
 
 local function Sink(inst)
@@ -54,29 +77,6 @@ local function Sink(inst)
     end
 
     inst:Remove()
-end
-
-local function OnHit(inst)
-    inst.components.lootdropper:DropLoot()
-    if inst.components.container then
-        inst.components.container:DropEverything()
-    end
-    local fx = SpawnPrefab("collapse_small")
-    fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_wood")
-    inst:Remove()
-end
-
-local function OnOpen(inst)
-    if inst.components.sailable.sailor == nil then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/inventory_open")
-    end
-end
-
-local function OnClose(inst)
-    if inst.components.sailable.sailor == nil then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/inventory_close")
-    end
 end
 
 local function OnDisEmbarked(inst)
@@ -130,6 +130,8 @@ local function commonfn()
     inst:AddComponent("lootdropper")
 
     inst:AddComponent("rowboatwakespawner")
+
+    inst:AddComponent("boatvisualmanager")
 
     inst:AddComponent("sailable")
 

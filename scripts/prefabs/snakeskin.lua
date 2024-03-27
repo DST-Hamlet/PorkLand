@@ -49,4 +49,4 @@ local function fn()
     return inst
 end
 
-return Prefab("snakeskin", fn, assets, {})
+return Prefab("snakeskin", fn, assets)

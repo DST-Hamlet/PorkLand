@@ -89,9 +89,9 @@ function Sailable:OnDisembarked(sailor)
         self.sailor = nil
     end
 
-	if self.inst.MiniMapEntity then
-		self.inst.MiniMapEntity:SetEnabled(true)
-	end
+    if self.inst.MiniMapEntity then
+        self.inst.MiniMapEntity:SetEnabled(true)
+    end
 
     if self.inst.components.boathealth then
         self.inst.components.boathealth:StopConsuming()

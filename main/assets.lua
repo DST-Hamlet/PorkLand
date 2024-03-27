@@ -53,6 +53,7 @@ PrefabFiles = {
     "porkland",
     "rabid_beetle",
     "rowboat_wake",
+    "sail",
     "sedimentpuddle",
     "shears",
     "smelter",
@@ -115,6 +116,11 @@ Assets = {
     Asset("ANIM", "anim/boat_inspect_raft.zip"),
     Asset("ANIM", "anim/boat_inspect_row.zip"),
     Asset("ANIM", "anim/boat_inspect_cargo.zip"),
+
+    -- boat sail visual
+    Asset("ANIM", "anim/sail_visual.zip"),
+    Asset("ANIM", "anim/sail_visual_idle.zip"),
+    Asset("ANIM", "anim/sail_visual_trawl.zip"),
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),

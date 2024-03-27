@@ -278,6 +278,10 @@ local tuning = {
     ROWBOAT_HEALTH = 250,
     ROWBOAT_PERISHTIME = total_day_time * 3,
     ROWBOAT_LEAKING_HEALTH = 40,
+
+    SAIL_SNAKESKIN_SPEED_MULT = 1.25,
+    SAIL_SNAKESKIN_ACCEL_MULT = 1.25,
+    SAIL_SNAKESKIN_PERISH_TIME = total_day_time * 4,
 }
 
 for key, value in pairs(tuning) do

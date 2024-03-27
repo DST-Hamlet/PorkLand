@@ -66,11 +66,11 @@ local categorynames = {"EMPTY", "LOW", "MID", "HIGH", "FULL"}
 local thresholds    = {     .15,    .35,    .65,    .85 }
 
 local function get_category(thresholds, percent)
-	local i = 1
-	while thresholds[i] ~= nil and percent >= thresholds[i] do
-		i = i + 1
-	end
-	return i
+    local i = 1
+    while thresholds[i] ~= nil and percent >= thresholds[i] do
+        i = i + 1
+    end
+    return i
 end
 
 local function get_stat_message(StatusAnnouncer, percent)
