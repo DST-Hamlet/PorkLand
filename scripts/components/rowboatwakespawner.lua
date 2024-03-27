@@ -26,6 +26,7 @@ function RowboatWakeSpawner:OnUpdate(dt)
             end
             local x, y, z = parent.Transform:GetWorldPosition()
             if x and y and z then
+                y = y - 0.5--使得水纹的位置看起来不浮在半空
                 local wake = SpawnPrefab("rowboat_wake")
                 wake.Transform:SetPosition(x, y, z)
                 wake.Transform:SetRotation(parent.Transform:GetRotation() or 0)
