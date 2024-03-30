@@ -62,6 +62,7 @@ local brain_posts = {
 
 local widget_posts = {
     "containerwidget",
+    "inventorybar",
     "seasonclock",
     "uianim",
     "uiclock",

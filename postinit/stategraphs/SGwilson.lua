@@ -79,6 +79,31 @@ local actionhandlers = {
 }
 
 local eventhandlers = {
+    EventHandler("sailequipped", function(inst)
+        if inst.sg:HasStateTag("rowing") then
+            inst.sg:GoToState("sail")
+            local equipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+            if equipped then
+                equipped:PushEvent("stoprowing", {owner = inst})
+            end
+        end
+    end),
+    EventHandler("sailunequipped", function(inst)
+        if inst.sg:HasStateTag("sailing") then
+            inst.sg:GoToState("row")
+
+            if not inst:HasTag("mime") then
+                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+            end
+            -- TODO allow custom paddles?
+            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+
+            local equipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+            if equipped then
+                equipped:PushEvent("startrowing", {owner = inst})
+            end
+        end
+    end),
     EventHandler("sneeze", function(inst, data)
         if not inst.components.health:IsDead() and not inst.components.health:IsInvincible() then
             if inst.sg:HasStateTag("busy") then

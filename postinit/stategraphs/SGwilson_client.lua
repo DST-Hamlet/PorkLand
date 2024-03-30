@@ -1,4 +1,5 @@
 local AddStategraphState = AddStategraphState
+local AddStategraphEvent = AddStategraphEvent
 local AddStategraphPostInit = AddStategraphPostInit
 local AddStategraphActionHandler = AddStategraphActionHandler
 GLOBAL.setfenv(1, GLOBAL)
@@ -20,6 +21,26 @@ local actionhandlers = {
     end),
     ActionHandler(ACTIONS.SHEAR, function(inst)
         return not inst.sg:HasStateTag("preshear") and "shear_start" or nil
+    end),
+}
+
+local eventhandlers = {
+    EventHandler("sailequipped", function(inst)
+        if inst.sg:HasStateTag("rowing") then
+            inst.sg:GoToState("sail")
+        end
+    end),
+
+    EventHandler("sailunequipped", function(inst)
+        if inst.sg:HasStateTag("sailing") then
+            inst.sg:GoToState("row")
+
+            if not inst:HasTag("mime") then
+                inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
+            end
+            -- TODO allow custom paddles?
+            inst.AnimState:OverrideSymbol("wake_paddle", "swap_paddle", "wake_paddle")
+        end
     end),
 }
 
@@ -247,77 +268,29 @@ local states = {
     },
 
     State{
-        name = "sail",
-        tags = {"canrotate", "moving", "running", "boating", "sailing"},
+        name = "sail_stop",
+        tags = {"canrotate", "idle"},
 
         onenter = function(inst)
             local boat = inst.replica.sailor:GetBoat()
 
-            local loopsound = nil
-            local flapsound = nil
-
-            if boat and boat.replica.container and boat.replica.container.hasboatequipslots then
-                local sail = boat.replica.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
-                if sail then
-                    loopsound = sail.loopsound
-                    flapsound = sail.flapsound
-                end
-            elseif boat and boat.replica.sailable and boat.replica.sailable.sailsound then
-                loopsound = boat.replica.sailable.sailsound
-            end
-
-            if not inst.SoundEmitter:PlayingSound("sail_loop") and loopsound then
-                inst.SoundEmitter:PlaySound(loopsound, "sail_loop", nil, true)
-            end
-
-            if flapsound then
-                inst.SoundEmitter:PlaySound(flapsound, nil, nil, true)
-            end
-
-            if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
-                inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
-            end
-
-
-            local anim = boat and boat.replica.sailable and boat.replica.sailable.sailloopanim or "sail_loop"
-            if not inst.AnimState:IsCurrentAnimation(anim) then
-                if anim ~= "sail_loop" or inst.has_sailface then
-                    inst.AnimState:PlayAnimation(anim, true)
-                else
-                    inst.AnimState:PlayAnimation("sail_loop", true)
-                end
+            inst.components.locomotor:Stop()
+            local anim = boat.replica.sailable.sailstopanim or "sail_pst"
+            if anim ~= "sail_pst" or inst.has_sailface then
+                inst.AnimState:PlayAnimation(anim)
+            else
+                inst.AnimState:PlayAnimation("sail_pst")
             end
             if boat and boat.replica.sailable then
-                boat.replica.sailable:PlaySailAnims()
-            end
-            inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
-        end,
-
-        onexit = function(inst)
-            local boat = inst.replica.sailor:GetBoat()
-            if inst.sg.nextstate ~= "sail" then
-                inst.SoundEmitter:KillSound("sail_loop")
-                if inst.sg.nextstate ~= "row" then
-                    inst.components.locomotor:Stop(nil, true)
-                end
-                if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
-                    if boat and boat.replica.sailable then
-                        boat.replica.sailable:PlayIdleAnims()
-                    end
-                end
+                boat.replica.sailable:PlayPostSailAnims()
             end
         end,
 
         events = {
-            EventHandler("trawlitem", function(inst)
-                local boat = inst.replica.sailor:GetBoat()
-                if boat and boat.replica.sailable then
-                    boat.replica.sailable:PlayTrawlOverAnims()
-                end
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
             end),
         },
-
-        ontimeout = function(inst) inst.sg:GoToState("sail_ia") end,
     },
 
     State{
@@ -434,6 +407,10 @@ local states = {
 
 for _, actionhandler in ipairs(actionhandlers) do
     AddStategraphActionHandler("wilson_client", actionhandler)
+end
+
+for _, eventhandler in ipairs(eventhandlers) do
+    AddStategraphEvent("wilson_client", eventhandler)
 end
 
 for _, state in ipairs(states) do
