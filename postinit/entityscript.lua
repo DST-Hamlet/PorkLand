@@ -12,21 +12,31 @@ function EntityScript:SetReplaceReplicableComponent(replace_component, component
     self.replace_components[component] = replace_component
 end
 
-function EntityScript:AddReplaceComponent(replace_component, component)
-    local function ReplaceLoadComponent()
-        return LoadComponent(replace_component)
-    end
-    ToolUtil.SetUpvalue(EntityScript.AddComponent, ReplaceLoadComponent, "LoadComponent")
-
-    local _GetPostInitFns = ModManager.GetPostInitFns
-    ModManager.GetPostInitFns = function(modmanager)
-        return _GetPostInitFns(modmanager, "ComponentPostInit", replace_component)
+function EntityScript:AddReplaceComponent(replace_component, name)
+    local lower_name = string.lower(name)
+    if self.lower_components_shadow[lower_name] ~= nil then
+        print("component ".. name .. " already exists on entity " .. tostring(self) .. "!" .. debugstack_oneline(3))
     end
 
-    self:AddComponent(component)
+    local cmp = LoadComponent(replace_component)
+	if not cmp then
+	    moderror("component ".. replace_component .. " does not exist!")
+	end
 
-    ModManager.GetPostInitFns = _GetPostInitFns
-    ToolUtil.SetUpvalue(EntityScript.AddComponent, LoadComponent, "LoadComponent")
+    self:ReplicateComponent(name)
+    local loadedcmp = cmp(self)
+    self.components[name] = loadedcmp
+    self.lower_components_shadow[lower_name] = true
+
+    local postinitfns = ModManager:GetPostInitFns("ComponentPostInit", replace_component)
+
+    for i, fn in ipairs(postinitfns) do
+        fn(loadedcmp, self)
+    end
+
+    self:RegisterComponentActions(name)
+
+	return loadedcmp
 end
 
 local _ReplicateComponent = EntityScript.ReplicateComponent

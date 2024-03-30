@@ -279,8 +279,12 @@ local tuning = {
     ROWBOAT_PERISHTIME = total_day_time * 3,
     ROWBOAT_LEAKING_HEALTH = 40,
 
+    CARGOBOAT_HEALTH = 300,
+    CARGOBOAT_PERISHTIME = total_day_time * 3,
+    CARGOBOAT_LEAKING_HEALTH = 40,
+
     CORKBOAT_HEALTH = 80,
-    CORKBOAT_PERISHTIME = total_day_time*3,
+    CORKBOAT_PERISHTIME = total_day_time * 3,
     CORKBOAT_LEAKING_HEALTH = 30,
 
     SAIL_SNAKESKIN_SPEED_MULT = 1.25,

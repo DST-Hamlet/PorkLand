@@ -64,13 +64,13 @@ function BoatContainer:WidgetSetup(prefab, data)
 end
 
 function BoatContainer:GetWidget()
-    --UNUSED
+    -- UNUSED
     return self.widget
 end
 
 function BoatContainer:NumItems()
     local num = 0
-    for k,v in pairs(self.slots) do
+    for k, v in pairs(self.slots) do
         num = num + 1
     end
 
@@ -213,11 +213,11 @@ function BoatContainer:GiveItem(item, slot, src_pos, drop_on_fail)
     if item == nil then
         return false
     elseif item.components.inventoryitem ~= nil and self:CanTakeItemInSlot(item, slot) then
-        --try to burn off stacks if we're just dumping it in there
+        -- try to burn off stacks if we're just dumping it in there
         if item.components.stackable ~= nil and self.acceptsstacks then
-            --Added this for when we want to dump a stack back into a
-            --specific spot (e.g. moving half a stack failed, so we
-            --need to dump the leftovers back into the original stack)
+            -- Added this for when we want to dump a stack back into a
+            -- specific spot (e.g. moving half a stack failed, so we
+            -- need to dump the leftovers back into the original stack)
             if slot ~= nil and slot <= self.numslots then
                 local other_item = self.slots[slot]
                 if other_item ~= nil and (other_item.prefab == item.prefab and other_item.skinname == item.skinname) and not other_item.components.stackable:IsFull() then
@@ -265,7 +265,7 @@ function BoatContainer:GiveItem(item, slot, src_pos, drop_on_fail)
         end
 
         if in_slot then
-            --weird case where we are trying to force a stack into a non-stacking container. this should probably have been handled earlier, but this is a failsafe
+            -- weird case where we are trying to force a stack into a non-stacking container. this should probably have been handled earlier, but this is a failsafe
             if not self.acceptsstacks and item.components.stackable and item.components.stackable:StackSize() > 1 then
                 item = item.components.stackable:Get()
                 self.slots[in_slot] = item
@@ -286,7 +286,7 @@ function BoatContainer:GiveItem(item, slot, src_pos, drop_on_fail)
         end
     end
 
-    --default to true if nil
+    -- default to true if nil
     if drop_on_fail ~= false then
         item.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
         if item.components.inventoryitem ~= nil then
@@ -509,7 +509,7 @@ local function crafting_priority_fn(a, b)
     if a.stacksize == b.stacksize then
         return a.slot < b.slot
     end
-    return a.stacksize < b.stacksize --smaller stacks first
+    return a.stacksize < b.stacksize  -- smaller stacks first
 end
 
 function BoatContainer:GetCraftingIngredient(item, amount, reverse_search_order)
@@ -552,7 +552,7 @@ local function tryconsume(self, v, amount)
         self:RemoveItem(v, true):Remove()
         return amount
     end
-    --shouldn't be possible?
+    -- shouldn't be possible?
     return 0
 end
 
@@ -576,7 +576,7 @@ function BoatContainer:OnSave()
     local references = {}
     local refs = {}
     for k,v in pairs(self.slots) do
-        if v:IsValid() and v.persists then --only save the valid items
+        if v:IsValid() and v.persists then  -- only save the valid items
             data.items[k], refs = v:GetSaveRecord()
             if refs then
                 for k,v in pairs(refs) do
@@ -586,7 +586,7 @@ function BoatContainer:OnSave()
         end
     end
     for k,v in pairs(self.boatequipslots) do
-        if v:IsValid() and v.persists then --only save the valid items
+        if v:IsValid() and v.persists then  -- only save the valid items
             data.boatequipitems[k], refs = v:GetSaveRecord()
             if refs then
                 for k,v in pairs(refs) do
@@ -953,7 +953,7 @@ function BoatContainer:MoveItemFromAllOfSlot(slot, container)
                 item.prevcontainer = nil
                 item.prevslot = nil
 
-                --Hacks for altering normal inventory:GiveItem() behaviour
+                -- Hacks for altering normal inventory:GiveItem() behaviour
                 if container.ignoreoverflow ~= nil and container:GetOverflowContainer() == self then
                     container.ignoreoverflow = true
                 end
@@ -965,7 +965,7 @@ function BoatContainer:MoveItemFromAllOfSlot(slot, container)
                     self:GiveItem(item, slot, nil, true)
                 end
 
-                --Hacks for altering normal inventory:GiveItem() behaviour
+                -- Hacks for altering normal inventory:GiveItem() behaviour
                 if container.ignoreoverflow then
                     container.ignoreoverflow = false
                 end
@@ -997,7 +997,7 @@ function BoatContainer:MoveItemFromHalfOfSlot(slot, container)
                 halfstack.prevcontainer = nil
                 halfstack.prevslot = nil
 
-                --Hacks for altering normal inventory:GiveItem() behaviour
+                -- Hacks for altering normal inventory:GiveItem() behaviour
                 if container.ignoreoverflow ~= nil and container:GetOverflowContainer() == self then
                     container.ignoreoverflow = true
                 end
@@ -1011,7 +1011,7 @@ function BoatContainer:MoveItemFromHalfOfSlot(slot, container)
                     self.ignoresound = false
                 end
 
-                --Hacks for altering normal inventory:GiveItem() behaviour
+                -- Hacks for altering normal inventory:GiveItem() behaviour
                 if container.ignoreoverflow then
                     container.ignoreoverflow = false
                 end

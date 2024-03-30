@@ -26,7 +26,7 @@ AddModRPCHandler("Porkland", "SwapBoatEquipWithActiveItem", function(player, con
     end
 end)
 
-AddModRPCHandler("Porkland", "SwapBoatEquipWithActiveItem", function(player, eslot, container)
+AddModRPCHandler("Porkland", "TakeActiveItemFromBoatEquipSlot", function(player, eslot, container)
     if not checknumber(eslot) then
         printinvalid("TakeActiveItemFromBoatEquipSlot", player)
         return

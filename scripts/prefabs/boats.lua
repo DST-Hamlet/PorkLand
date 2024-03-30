@@ -229,26 +229,6 @@ local function rowboatfn()
     return inst
 end
 
-local function armouredboatfn()
-    local inst = commonfn()
-
-    inst.AnimState:SetBank("rowboat")
-    inst.AnimState:SetBuild("rowboat_armored_build")
-    inst.AnimState:PlayAnimation("run_loop", true)
-    inst.MiniMapEntity:SetIcon("boat_armoured.tex")
-
-    if not TheWorld.ismastersim then
-        function inst.OnEntityReplicated(inst)
-            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/armoured"
-        end
-        return inst
-    end
-
-    inst.components.container:WidgetSetup("boat_armoured")
-
-    return inst
-end
-
 local function cargofn()
     local inst = commonfn()
 
@@ -264,7 +244,16 @@ local function cargofn()
         return inst
     end
 
+    inst.landsound = "dontstarve_DLC002/common/boatjump_land_wood"
+    inst.sinksound = "dontstarve_DLC002/common/boat/sinking/log_cargo"
+
     inst.components.container:WidgetSetup("boat_cargo")
+
+    inst.components.boathealth:SetHealth(TUNING.CARGOBOAT_HEALTH, TUNING.CARGOBOAT_PERISHTIME)
+    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat/damage/cargo"
+    inst.components.boathealth.hitfx = "boat_hit_fx_cargoboat"
+
+    inst.components.sailable.flotsambuild = "flotsam_rowboat_build"
 
     inst.components.flotsamspawner.flotsamprefab = "flotsam_cargo"
 
@@ -273,7 +262,6 @@ end
 
 return Prefab("boat_lograft", lograftfn, lograft_assets, prefabs),
     Prefab("boat_row", rowboatfn, rowboat_assets, prefabs),
-    Prefab("boat_armoured", armouredboatfn, armouredboat_assets, prefabs),
     Prefab("boat_cargo", cargofn, cargo_assets, prefabs),
     MakePlacer("boat_lograft_placer", "raft", "raft_log_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),
     MakePlacer("boat_row_placer", "rowboat", "rowboat_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),

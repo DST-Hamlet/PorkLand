@@ -19,7 +19,7 @@ local BoatContainer = Class(function(self, inst)
         self.classified = SpawnPrefab("boatcontainer_classified")
         self.classified.entity:SetParent(inst.entity)
 
-        --Server intercepts messages and forwards to clients via classified net vars
+        -- Server intercepts messages and forwards to clients via classified net vars
         self._onitemget = function(inst, data)
             self.classified:SetSlotItem(data.slot, data.item, data.src_pos)
             if self.issidewidget and
@@ -91,7 +91,7 @@ end
 local function OpenContainer(inst, self, snap)
     self.opentask = nil
 
-    --V2C: don't animate to and from the backpack position 
+    --V2C: don't animate to and from the backpack position
     --     when re-opening inventory as Werebeaver->Woodie
     local inv = snap and ThePlayer ~= nil and ThePlayer.HUD ~= nil and ThePlayer.HUD.controls.inv or nil
     snap = inv ~= nil and not inv.rebuild_pending
