@@ -417,7 +417,46 @@ for _, state in ipairs(states) do
     AddStategraphState("wilson_client", state)
 end
 
-AddStategraphPostInit("wilson", function(sg)
+AddStategraphPostInit("wilson_client", function(sg)
     local _run_start_timeevent_2 = sg.states["run_start"].timeline[2].fn
-    local DoFoleySounds = ToolUtil.GetUpvalue(_run_start_timeevent_2, "DoFoleySounds")
+    DoFoleySounds = ToolUtil.GetUpvalue(_run_start_timeevent_2, "DoFoleySounds")
+
+    local _locomote_eventhandler = sg.events.locomote.fn
+    sg.events.locomote.fn = function(inst, data)
+        if inst.sg:HasStateTag("busy") or inst:HasTag("busy") then
+            return
+        end
+        local is_attacking = inst.sg:HasStateTag("attack")
+
+        local is_moving = inst.sg:HasStateTag("moving")
+        local is_running = inst.sg:HasStateTag("running")
+        local should_move = inst.components.locomotor:WantsToMoveForward()
+        if inst.replica.sailor and inst.replica.sailor:GetBoat() and not inst.replica.sailor:GetBoat().replica.sailable then
+            should_move = false
+        end
+
+        local should_run = inst.components.locomotor:WantsToRun()
+        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
+
+        if inst:HasTag("_sailor") and inst:HasTag("sailing") then
+            if not is_attacking then
+                if is_moving and not should_move then
+                    if hasSail then
+                        inst.sg:GoToState("sail_stop")
+                    else
+                        inst.sg:GoToState("row_stop")
+                    end
+                elseif not is_moving and should_move or (is_moving and should_move and is_running ~= should_run) then
+                    if hasSail then
+                        inst.sg:GoToState("sail_start")
+                    else
+                        inst.sg:GoToState("row_start")
+                    end
+                end
+            end
+            return
+        end
+
+        _locomote_eventhandler(inst, data)
+    end
 end)
