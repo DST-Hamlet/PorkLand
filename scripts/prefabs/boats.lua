@@ -32,7 +32,7 @@ local cargo_assets = JoinArrays(rowboat_basic_assets, {
 
 
 local prefabs = {
-    "rowboat_wake"
+    "rowboat_wake",
 }
 
 local function OnOpen(inst)

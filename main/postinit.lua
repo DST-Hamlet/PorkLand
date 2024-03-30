@@ -16,6 +16,7 @@ local component_posts = {
     "grogginess",
     "health",
     "inventory",
+    "inventoryitem_replica",
     "inventoryitem",
     "locomotor",
     "lootdropper",
