@@ -987,6 +987,8 @@ AddStategraphPostInit("wilson", function(sg)
         end
     end
 
+    sg.events["boatattacked"] = EventHandler("boatattacked", sg.events.attacked.fn)
+
     local _idle_onenter = sg.states["idle"].onenter
     sg.states["idle"].onenter = function(inst, ...)
         if not (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then
