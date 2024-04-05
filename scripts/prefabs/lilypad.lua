@@ -16,7 +16,7 @@ function MakeLilypadPhysics(inst, rad)
 
     inst.entity:AddPhysics()
     inst.Physics:SetMass(0)
-    inst.Physics:SetCapsule(rad,0.01)
+    inst.Physics:SetCapsule(rad, 0.01)
     inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.ITEMS)
@@ -28,7 +28,7 @@ end
 local SIZES = {
     small = 2,
     med = 3,
-    big = 4.2,
+    big = 5.2,
 }
 local function RefreshBuild(inst)
     inst.AnimState:PlayAnimation(inst.size .. "_idle", true)
@@ -38,7 +38,7 @@ local function RefreshBuild(inst)
 end
 
 local function ReturnChildren(inst)
-    for k,child in pairs(inst.components.childspawner.childrenoutside) do
+    for k, child in pairs(inst.components.childspawner.childrenoutside) do
         if child.components.homeseeker then
             child.components.homeseeker:GoHome()
         end
@@ -57,7 +57,7 @@ local function OnPhaseChange(inst, phase)
     if inst.components.childspawner.childname == "frog_poison" then
         if phase == "day" then
             inst.components.childspawner:StartSpawning()
-        elseif phase == "night" then
+        else
             inst.components.childspawner:StopSpawning()
             ReturnChildren(inst)
         end
@@ -67,7 +67,7 @@ local function OnPhaseChange(inst, phase)
         if phase == "day" then
             inst.components.childspawner:StopSpawning()
             ReturnChildren(inst)
-        elseif phase == "dusk" then
+        else
             inst.components.childspawner:StartSpawning()
         end
     end
@@ -87,9 +87,16 @@ local function OnLoad(inst, data, newents)
         if data.childname then
             inst.components.childspawner.childname = data.childname
         end
+        if data.rotaion then
+            inst.rotation = data.rotation
+        end
     end
 
     RefreshBuild(inst)
+end
+
+local function OnPreLoad(inst, data)
+    WorldSettings_Spawner_PreLoad(inst, data, data.childname == "mosquito" and TUNING.MOSQUITO_REGEN_TIME or TUNING.FROG_POISON_REGEN_TIME)
 end
 
 local function fn()
@@ -136,7 +143,6 @@ local function fn()
     -- inst:AddComponent("waveobstacle") -- This component was only ever on mangroves
 
     inst:AddComponent("childspawner")
-    inst.components.childspawner:SetMaxChildren(math.random(1, 2))
     inst.components.childspawner:SetSpawnedFn(OnSpawned)
     inst.components.childspawner.allowwater = true
     inst.components.childspawner.spawnonwateroffset = 1
@@ -146,17 +152,30 @@ local function fn()
         inst.components.childspawner.childname = "mosquito"
         inst.components.childspawner:SetRegenPeriod(TUNING.MOSQUITO_REGEN_TIME)
         inst.components.childspawner:SetMaxChildren(TUNING.MOSQUITO_MAX_SPAWN)
+        WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.MOSQUITO_RELEASE_TIME, TUNING.MOSQUITO_ENABLED)
+        WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.MOSQUITO_REGEN_TIME, TUNING.MOSQUITO_ENABLED)
+        if not TUNING.MOSQUITO_ENABLED then
+            inst.components.childspawner.childreninside = 0
+        end
     else
         inst.components.childspawner.childname = "frog_poison"
         inst.components.childspawner:SetRegenPeriod(TUNING.FROG_POISON_REGEN_TIME)
         inst.components.childspawner:SetMaxChildren(TUNING.FROG_POISON_MAX_SPAWN)
+        WorldSettings_ChildSpawner_SpawnPeriod(inst, TUNING.FROG_POISON_RELEASE_TIME, TUNING.FROG_POISON_ENABLED)
+        WorldSettings_ChildSpawner_RegenPeriod(inst, TUNING.FROG_POISON_REGEN_TIME, TUNING.FROG_POISON_ENABLED)
+        if not TUNING.FROG_POISON_ENABLED then
+            inst.components.childspawner.childreninside = 0
+        end
     end
+
+    MakeHauntable(inst)
 
     inst:WatchWorldState("phase", OnPhaseChange)
     OnPhaseChange(inst, TheWorld.state.phase)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+    inst.OnPreLoad = OnPreLoad
 
     return inst
 end

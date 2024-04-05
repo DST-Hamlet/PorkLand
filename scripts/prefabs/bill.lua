@@ -46,20 +46,6 @@ local function OnAttacked(inst, data)
     inst.components.combat:ShareTarget(attacker, 20, function(ent) return ent:HasTag("platapine") end, 2)
 end
 
-local function OnEnterWater(inst)
-    inst.DynamicShadow:Enable(false)
-
-    inst.AnimState:SetBank("bill_water")
-    inst:PushEvent("switch_to_water")
-end
-
-local function OnExitWater(inst)
-    inst.DynamicShadow:Enable(true)
-
-    inst.AnimState:SetBank("bill")
-    inst:PushEvent("switch_to_land")
-end
-
 local function OnTimerDone(inst, data)
     if data.name == "tumble" then
         inst.can_tumble = true -- Lets get ready to tumble!
@@ -114,10 +100,10 @@ local function fn()
 
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = TUNING.BILL_RUN_SPEED
+    inst.components.locomotor.pathcaps = {allowocean = true}
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.BILL_HEALTH)
-    inst.components.health.murdersound = "dontstarve/rabbit/scream_short"
 
     inst:AddComponent("inspectable")
 
@@ -135,25 +121,21 @@ local function fn()
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
     inst.components.combat.hiteffectsymbol = "body"
 
-    inst:AddComponent("amphibiouscreature")
-    inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
-    inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
-
     inst:AddComponent("timer")
     inst.components.timer:StartTimer("tumble", 4)
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGbill")
 
-    MakePoisonableCharacter(inst)
+    MakeAmphibious(inst, "bill", "bill_water", function() return true end)
     MakeHauntablePanic(inst)
+    MakePoisonableCharacter(inst)
     MakeSmallBurnableCharacter(inst, "body")
     MakeTinyFreezableCharacter(inst, "body")
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
-    inst:DoTaskInTime(0, function() inst.components.knownlocations:RememberLocation("home", Point(inst.Transform:GetWorldPosition()), true) end)
     inst:DoPeriodicTask(1, UpdateAggro)
 
     inst:ListenForEvent("attacked", OnAttacked)

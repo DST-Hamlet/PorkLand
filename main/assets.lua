@@ -26,7 +26,6 @@ PrefabFiles = {
     "hanging_vine_patch",
     "hanging_vine",
     "hippo_antler",
-    "hippoherd",
     "hippopotamoose",
     "inv_vine",
     "iron",

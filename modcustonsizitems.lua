@@ -75,6 +75,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             pangolden = {image = "pangolden.tex"},
             "dungpile",
             hanging_vine_patch = {image = "hanging_vine.tex"},
+            hippopotamoose = {image = "hippopotamoose.tex"},
             peagawk = {image = "peagawk.tex"}
         },
         resources = {
@@ -88,6 +89,9 @@ local custonsiz_items = {  -- add in dst custonsiz
     },
     [LEVELCATEGORY.SETTINGS] = {
         monsters = {
+            bill_setting = {image = "platypine.tex"},
+            frog_poison_setting = {image = "poison_dart_frogs.tex"},
+            mosquito_setting = {image = "mosquitos.tex"},
             weevole_setting = {image = "weevole.tex"},
         },
         animals = {
@@ -95,6 +99,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             -- peagawk_setting = {image = "peagawk.tex"},
             glowfly_setting = {image = "glowflies.tex"},
             hanging_vine_setting = {image = "grabbing_vine.tex"},
+            hippopotamoose_setting = {image = "hippopotamoose.tex"},
             piko_setting = {image = "orange_pikos.tex"},
         },
         resources = {

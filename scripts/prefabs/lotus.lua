@@ -58,7 +58,7 @@ local function OnPhaseChange(inst, phase)
                 inst.AnimState:PushAnimation("idle_plant", true)
             end
         end)
-    else
+    elseif not inst.closed then
         inst:DoTaskInTime(math.random() * 10, function(inst)
             if inst.components.pickable and inst.components.pickable.canbepicked then
                 inst.AnimState:PlayAnimation("close")

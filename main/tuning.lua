@@ -240,8 +240,9 @@ local tuning = {
     HIPPO_WALK_SPEED = 5,
     HIPPO_RUN_SPEED = 6,
     HIPPO_TARGET_DIST = 12,
-    HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 1.5,
-    HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.5,
+    HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 3,
+    HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 1,
+    HIPPO_ENABLED = true,
 
     BILL_TUMBLE_SPEED = 8,
     BILL_RUN_SPEED = 5,
@@ -256,9 +257,14 @@ local tuning = {
     LOTUS_REGROW_TIME = total_day_time * 5,
 
     MOSQUITO_MAX_SPAWN = 1,
-    MOSQUITO_REGEN_TIME = day_time / 2,
+    MOSQUITO_REGEN_TIME = day_time/2,
+    MOSQUITO_RELEASE_TIME = 5,
+    MOSQUITO_ENABLED = true,
+
     FROG_POISON_MAX_SPAWN = 1,
-    FROG_POISON_REGEN_TIME = day_time / 2,
+    FROG_POISON_REGEN_TIME = day_time/2,
+    FROG_POISON_RELEASE_TIME = day_time/4,
+    FROG_POISON_ENABLED = true,
 
     WAVE_HIT_MOISTURE = 15,
     WAVE_HIT_DAMAGE = 5,

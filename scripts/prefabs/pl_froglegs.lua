@@ -85,7 +85,8 @@ local function cookedfn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst, "idle_cooked_water", "cooked")
+    MakeInventoryFloatable(inst)
+    inst.components.floater:UpdateAnimations("idle_cooked_water", "cooked")
 
     inst.AnimState:SetBank("frog_legs")
     inst.AnimState:SetBuild("frog_legs_tree")

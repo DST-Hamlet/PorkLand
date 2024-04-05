@@ -254,6 +254,125 @@ applyoverrides_pre.asparagus_regrowth = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+applyoverrides_pre.frog_poison_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            FROG_POISON_ENABLED = false,
+        },
+        few = {
+            FROG_POISON_REGEN_TIME = day_time/1,
+            FROG_POISON_RELEASE_TIME = day_time/2,
+            FROG_POISON_MAX_SPAWN = 1,
+        },
+        --[[
+        default = {
+            FROG_POISON_REGEN_TIME = day_time/2,
+            FROG_POISON_RELEASE_TIME = day_time/4,
+            FROG_POISON_MAX_SPAWN = 1,
+            FROG_POISON_ENABLED = true,
+        },
+        --]]
+        many = {
+            FROG_POISON_REGEN_TIME = day_time/4,
+            FROG_POISON_RELEASE_TIME = day_time/8,
+            FROG_POISON_MAX_SPAWN = 2,
+        },
+        always = {
+            FROG_POISON_REGEN_TIME = day_time/6,
+            FROG_POISON_RELEASE_TIME = day_time/12,
+            FROG_POISON_MAX_SPAWN = 3,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
+applyoverrides_pre.mosquito_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            MOSQUITO_ENABLED = false,
+        },
+        few = {
+            MOSQUITO_REGEN_TIME = day_time/1,
+            MOSQUITO_RELEASE_TIME = day_time/2,
+            MOSQUITO_MAX_SPAWN = 1,
+        },
+        --[[
+        default = {
+            MOSQUITO_REGEN_TIME = TUNING.DAY_TIME_DEFAULT/2,
+            MOSQUITO_RELEASE_TIME = TUNING.DAY_TIME_DEFAULT/4,
+            MOSQUITO_MAX_SPAWN = 1,
+            MOSQUITO_ENABLED = true,
+        },
+        --]]
+        many = {
+            MOSQUITO_REGEN_TIME = day_time/4,
+            MOSQUITO_RELEASE_TIME = day_time/8,
+            MOSQUITO_MAX_SPAWN = 2,
+        },
+        always = {
+            MOSQUITO_REGEN_TIME = day_time/6,
+            MOSQUITO_RELEASE_TIME = day_time/12,
+            MOSQUITO_MAX_SPAWN = 3,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
+applyoverrides_pre.bill_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            BILL_SPAWN_CHANCE = 0,
+        },
+        rare = {
+            BILL_SPAWN_CHANCE = 0.1,
+        },
+        --[[
+        default = {
+            BILL_SPAWN_CHANCE = 0.2,
+        },
+        --]]
+        often = {
+            BILL_SPAWN_CHANCE = 0.3,
+        },
+        always = {
+            BILL_SPAWN_CHANCE = 0.4,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
+applyoverrides_pre.hippopotamoose_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            HIPPO_ENABLED = false,
+        },
+        rare = {
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 6,
+            HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 2,
+        },
+        --[[
+        default = {
+            HIPPO_ENABLED = true,
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 3,
+            HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 1.0,
+        },
+        --]]
+        often = {
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 1.5,
+            HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.5,
+        },
+        always = {
+            HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 0.75,
+            HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.25,
+        }
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 --------------------------------------------------------------------------
 --[[ WORLDSETTINGS POST ]]
 --------------------------------------------------------------------------

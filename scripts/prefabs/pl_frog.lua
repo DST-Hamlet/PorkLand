@@ -37,14 +37,13 @@ end
 
 local RETARGET_MUST_TAGS = {"_combat", "_health"}
 local RETARGET_CANT_TAGS = {"merm", "FX", "NOCLICK", "INLIMBO", "hippopotamoose"}
-local RETARGET_MUST_ONE_OF_TAGS = {"insect"}
 local function Retarget(inst)
     if not inst.components.health:IsDead() and not inst.components.sleeper:IsAsleep() then
         return FindEntity(inst, TUNING.FROG_TARGET_DIST, function(ent)
-            if ent.components.combat and ent.components.health and not ent.components.health:IsDead() then
-                return ent.components.inventory ~= nil
-            end
-        end, RETARGET_MUST_TAGS, RETARGET_CANT_TAGS, RETARGET_MUST_ONE_OF_TAGS)
+			if ent.components.combat and ent.components.health and not ent.components.health:IsDead() then
+				return ent.components.inventory ~= nil or ent:HasTag("insect")
+			end
+        end, RETARGET_MUST_TAGS, RETARGET_CANT_TAGS)
     end
 end
 
@@ -78,22 +77,6 @@ local function OnLoad(inst, data)
     if data and data.aporkalypse_cleanup then
         inst:AddTag("aporkalypse_cleanup")
     end
-end
-
-local function OnEnterWater(inst)
-    inst.DynamicShadow:Enable(false)
-    inst.components.locomotor.walkspeed = 3
-
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("submerge", noanim)
-end
-
-local function OnExitWater(inst)
-    inst.DynamicShadow:Enable(true)
-    inst.components.locomotor.walkspeed = 4
-
-    local noanim = inst:GetTimeAlive() < 1
-    inst.sg:GoToState("emerge", noanim)
 end
 
 local function fn()
@@ -166,10 +149,7 @@ local function fn()
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetSleepTest(ShouldSleep)
 
-    inst:AddComponent("amphibiouscreature")
-    inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
-    inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
-
+    MakeAmphibious(inst, "frog", "frog_water")
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("goinghome", OnGoingHome)
 

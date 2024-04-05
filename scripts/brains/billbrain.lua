@@ -60,4 +60,8 @@ function BillBrain:OnStart()
     self.bt = BT(self.inst, root)
 end
 
+function BillBrain:OnInitializationComplete()
+    self.inst.components.knownlocations:RememberLocation("home", self.inst:GetPosition(), true)
+end
+
 return BillBrain

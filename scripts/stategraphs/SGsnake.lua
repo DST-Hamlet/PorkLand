@@ -6,7 +6,7 @@ local actionhandlers =
     ActionHandler(ACTIONS.HARVEST, "eat"),
 }
 
-local events=
+local events =
 {
     CommonHandlers.OnAttack(),
     CommonHandlers.OnAttacked(),
@@ -14,9 +14,12 @@ local events=
     CommonHandlers.OnFreeze(),
     CommonHandlers.OnLocomote(true, false),
     CommonHandlers.OnSleep(),
+
+    CommonHandlers.OnExitWater(),
+    CommonHandlers.OnEnterWater(),
 }
 
-local states=
+local states =
 {
     State{
         name = "idle",
