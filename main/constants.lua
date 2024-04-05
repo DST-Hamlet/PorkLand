@@ -9,6 +9,11 @@ SEASONS.HUMID = "humid"
 SEASONS.LUSH = "lush"
 SEASONS.APORKALYPSE = "aporkalypse"
 
+BOATEQUIPSLOTS = {
+    BOAT_SAIL = "sail",
+    BOAT_LAMP = "lamp",
+}
+
 FOG_STATE = {
     SETTING = 1,
     FOGGY = 2,

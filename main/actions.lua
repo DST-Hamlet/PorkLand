@@ -159,6 +159,16 @@ ACTIONS.EMBARK.fn = function(act)
     end
 end
 
+ACTIONS.DISEMBARK.fn = function(act)
+    if act.doer.components.sailor then
+        if act.doer.components.sailor:IsSailing() then
+            local pos = act.GetActionPoint and act:GetActionPoint() or act.pos
+            act.doer.components.sailor:Disembark(pos)
+            return true
+        end
+    end
+end
+
 -- Patch for hackable things
 local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
 function ACTIONS.FERTILIZE.fn(act, ...)
@@ -171,6 +181,40 @@ function ACTIONS.FERTILIZE.fn(act, ...)
 
         act.target.components.hackable:Fertilize(act.invobject, act.doer)
         return true
+    end
+end
+
+local _EQUIPfn = ACTIONS.EQUIP.fn
+function ACTIONS.EQUIP.fn(act, ...)
+    if act.doer.components.inventory and act.invobject.components.equippable.equipslot then
+        return _EQUIPfn(act, ...)
+    end
+    -- Boat equip slots
+    if act.doer.components.sailor and act.doer.components.sailor.boat and act.invobject.components.equippable.boatequipslot then
+        local boat = act.doer.components.sailor.boat
+        if boat.components.container and boat.components.container.hasboatequipslots then
+            boat.components.container:Equip(act.invobject)
+        end
+    end
+end
+
+local _UNEQUIPfn = ACTIONS.UNEQUIP.fn
+function ACTIONS.UNEQUIP.fn(act, ...)
+    if act.invobject.components.equippable.boatequipslot and act.invobject.parent then
+        local boat = act.invobject.parent
+        if boat.components.container then
+            boat.components.container:Unequip(act.invobject.components.equippable.boatequipslot)
+            if act.invobject.components.inventoryitem.cangoincontainer and not GetGameModeProperty("non_item_equips") then
+                act.doer.components.inventory:GiveItem(act.invobject)
+            else
+                act.doer.components.inventory:DropItem(act.invobject, true, true)
+            end
+        elseif boat.components.inventory and act.invobject.components.equippable.equipslot then
+            return _UNEQUIPfn(act, ...)
+        end
+        return true
+    else
+        return _UNEQUIPfn(act, ...)
     end
 end
 
@@ -274,3 +318,31 @@ local USEITEM = COMPONENT_ACTIONS.USEITEM
 local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
+
+local _INVENTORYequippable = INVENTORY.equippable
+function INVENTORY.equippable(inst, doer, actions, ...)
+    local canEquip = true
+    if inst.replica.equippable:BoatEquipSlot() ~= "INVALID" and inst.replica.equippable:EquipSlot() == "INVALID" then --Can only be equipped on a boat
+        canEquip = false
+
+        local sailor = doer.replica.sailor
+        local boat = sailor and sailor:GetBoat()
+        if boat and boat.replica.container.hasboatequipslots and boat.replica.container.enableboatequipslots then
+            canEquip = true
+        end
+    end
+
+    if not inst.replica.equippable:IsEquipped() and canEquip then
+        _INVENTORYequippable(inst, doer, actions, ...)
+    elseif inst.replica.equippable:IsEquipped() then
+        if inst:HasTag("togglable") then
+            if inst:HasTag("toggled") then
+                table.insert(actions, ACTIONS.TOGGLEOFF)
+            else
+                table.insert(actions, ACTIONS.TOGGLEON)
+            end
+        else
+            _INVENTORYequippable(inst, doer, actions, ...)
+        end
+    end
+end

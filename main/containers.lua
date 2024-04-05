@@ -41,3 +41,119 @@ function widget_smelter.widget.buttoninfo.validfn(inst)
 end
 
 params["smelter"] = widget_smelter
+
+local boat_lograft = {
+    widget = {
+        slotpos = {},
+        animbank = "boat_hud_raft",
+        animbuild = "boat_hud_raft",
+        pos = Vector3(750, 75, 0),
+        badgepos = Vector3(0, 40, 0),
+        equipslotroot = Vector3(-80, 40, 0),
+        --side_align_tip = -500,
+    },
+    inspectwidget = {
+        slotpos = {},
+        animbank = "boat_inspect_raft",
+        animbuild = "boat_inspect_raft",
+        pos = Vector3(200, 0, 0),
+        badgepos = Vector3(0, 5, 0),
+        equipslotroot = {},
+    },
+    type = "boat",
+    side_align_tip = -500,
+    canbeopened = false,
+    hasboatequipslots = false,
+    enableboatequipslots = true,
+}
+
+local boat_row = {
+    widget = {
+        slotpos = {},
+        animbank = "boat_hud_row",
+        animbuild = "boat_hud_row",
+        pos = Vector3(750, 75, 0),
+        badgepos = Vector3(0, 40, 0),
+        equipslotroot = Vector3(-80, 40, 0),
+        --side_align_tip = -500,
+    },
+    inspectwidget = {
+        slotpos = {},
+        animbank = "boat_inspect_row",
+        animbuild = "boat_inspect_row",
+        pos = Vector3(200, 0, 0),
+        badgepos = Vector3(0, 40, 0),
+        equipslotroot = Vector3(40, -45, 0),
+    },
+    type = "boat",
+    side_align_tip = -500,
+    canbeopened = false,
+    hasboatequipslots = true,
+    enableboatequipslots = true,
+}
+
+local boat_cork = {
+    widget = {
+        slotpos = {},
+        animbank = "boat_hud_row",
+        animbuild = "boat_hud_row",
+        pos = Vector3(750, 75, 0),
+        badgepos = Vector3(0, 40, 0),
+        equipslotroot = Vector3(-80, 40, 0),
+        -- side_align_tip = -500,
+    },
+    inspectwidget = {
+        slotpos = {},
+        animbank = "boat_inspect_row",
+        animbuild = "boat_inspect_row",
+        pos = Vector3(200, 0, 0),
+        badgepos = Vector3(0, 40, 0),
+        equipslotroot = Vector3(40, -45, 0),
+    },
+    type = "boat",
+    side_align_tip = -500,
+    canbeopened = false,
+    hasboatequipslots = true,
+    enableboatequipslots = true,
+}
+
+local boat_cargo = {
+    widget = {
+        slotpos = {},
+        animbank = "boat_hud_cargo",
+        animbuild = "boat_hud_cargo",
+        pos = Vector3(750, 75, 0),
+        badgepos = Vector3(0, 40, 0),
+        equipslotroot = Vector3(-80, 40, 0),
+        -- side_align_tip = -500,
+    },
+    inspectwidget = {
+        slotpos = {},
+        animbank = "boat_inspect_cargo",
+        animbuild = "boat_inspect_cargo",
+        pos = Vector3(200, 0, 0),
+        badgepos = Vector3(0, 155, 0),
+        equipslotroot = Vector3(40, 70, 0),
+    },
+    type = "boat",
+    side_align_tip = -500,
+    canbeopened = false,
+    hasboatequipslots = true,
+    enableboatequipslots = true,
+}
+
+for i = 6, 1,-1 do
+    table.insert(boat_cargo.widget.slotpos, Vector3(-13 - (80 * (i + 2)), 40 ,0))
+end
+
+for y = 1, 3 do
+    for x = 0, 1 do
+        table.insert(boat_cargo.inspectwidget.slotpos, Vector3(-40 + (x * 80), 70 + (y * -75), 0))
+    end
+end
+
+
+params["boat_lograft"] = boat_lograft
+params["boat_row"] = boat_row
+params["boat_cork"] = boat_cork
+params["boat_cargo"] = boat_cargo

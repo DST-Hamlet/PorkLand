@@ -14,14 +14,18 @@ local component_posts = {
     "combat",
     "drownable",
     "edible",
+    "equippable_replica",
+    "equippable",
     "floater",
     "grogginess",
     "health",
     "inventory",
+    "inventoryitem_replica",
     "inventoryitem",
     "locomotor",
     "lootdropper",
     "moisture",
+    "playeractionpicker",
     "playercontroller",
     "pollinator",
     "regrowthmanager",
@@ -62,8 +66,12 @@ local brain_posts = {
 }
 
 local widget_posts = {
+    "containerwidget",
+    "inventorybar",
     "seasonclock",
-    "uiclock"
+    "uianim",
+    "uiclock",
+    "widget",
 }
 
 local module_posts = {
@@ -81,6 +89,8 @@ function require(module_name, ...)
     return unpack(ret)
 end
 
+modimport("postinit/equipslotutil")
+modimport("postinit/stategraph")
 modimport("postinit/entityscript")
 modimport("postinit/animstate")
 modimport("postinit/stategraphs/commonstates")

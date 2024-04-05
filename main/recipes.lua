@@ -58,4 +58,6 @@ AddRecipe2("basefan", {Ingredient("alloy", 2), Ingredient("transistor", 2), Ingr
 SortBefore("basefan", "firesuppressor", "STRUCTURES")
 SortBefore("basefan", "rainometer", "RAIN")
 
-AddRecipe2("lograft", {Ingredient("log", 6), Ingredient("cutgrass", 4)}, TECH.NONE, {placer = "lograft_placer", build_mode = BUILDMODE.AQUATIC}, {"NAUTICAL"})
+AddRecipe2("boat_lograft", {Ingredient("log", 6), Ingredient("cutgrass", 4)}, TECH.NONE, {placer = "boat_lograft_placer", build_mode = BUILDMODE.AQUATIC}, {"NAUTICAL"})
+AddRecipe2("boat_row", {Ingredient("boards", 3), Ingredient("vine", 4)}, TECH.SCIENCE_ONE, {placer = "boat_row_placer", build_mode = BUILDMODE.AQUATIC}, {"NAUTICAL"})
+AddRecipe2("boat_cargo", {Ingredient("boards", 6), Ingredient("rope", 3)}, TECH.SCIENCE_ONE, {placer = "boat_cargo_placer", build_mode = BUILDMODE.AQUATIC}, {"NAUTICAL"})

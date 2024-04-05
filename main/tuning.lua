@@ -270,6 +270,32 @@ local tuning = {
     WAVE_HIT_DAMAGE = 5,
     ROGUEWAVE_HIT_MOISTURE = 25,
     ROGUEWAVE_HIT_DAMAGE = 10,
+
+    BOAT_HITFX_THRESHOLD = .08,  -- percent of health you need to lose to show the fx
+
+    LOGRAFT_HEALTH = 150,
+    LOGRAFT_PERISHTIME = total_day_time * 2,
+    LOGRAFT_LEAKING_HEALTH = 40,
+
+    RAFT_HEALTH = 150,
+    RAFT_PERISHTIME = total_day_time * 2,
+    RAFT_LEAKING_HEALTH = 40,
+
+    ROWBOAT_HEALTH = 250,
+    ROWBOAT_PERISHTIME = total_day_time * 3,
+    ROWBOAT_LEAKING_HEALTH = 40,
+
+    CARGOBOAT_HEALTH = 300,
+    CARGOBOAT_PERISHTIME = total_day_time * 3,
+    CARGOBOAT_LEAKING_HEALTH = 40,
+
+    CORKBOAT_HEALTH = 80,
+    CORKBOAT_PERISHTIME = total_day_time * 3,
+    CORKBOAT_LEAKING_HEALTH = 30,
+
+    SAIL_SNAKESKIN_SPEED_MULT = 1.25,
+    SAIL_SNAKESKIN_ACCEL_MULT = 1.25,
+    SAIL_SNAKESKIN_PERISH_TIME = total_day_time * 4,
 }
 
 for key, value in pairs(tuning) do

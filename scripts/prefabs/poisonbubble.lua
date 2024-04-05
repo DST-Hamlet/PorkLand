@@ -46,7 +46,7 @@ local function common(level, loop)
         inst:ListenForEvent("animqueueover", StopBubbles)
     end
 
-    inst.SoundEmitter:PlaySound("ia/common/poisoned")
+    inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/poisoned")
 
     inst.StopBubbles = StopBubbles
 

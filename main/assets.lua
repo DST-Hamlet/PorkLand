@@ -6,14 +6,16 @@ PrefabFiles = {
     "armor_metalplate",
     "asparagus_planted",
     "basefan",
-    "bill",
     "bill_quill",
+    "bill",
+    "boatcontainer_classified",
     "boats",
     "chitin",
     "deep_jungle_fern_noise",
     "dungball",
     "dungbeetle",
     "dungpile",
+    "flotsam",
     "flower_rainforest",
     "glowfly",
     "gold_dust",
@@ -25,6 +27,7 @@ PrefabFiles = {
     "hanging_vine",
     "hippo_antler",
     "hippopotamoose",
+    "inv_vine",
     "iron",
     "pl_wave_shore",
     "jungle_border_vine",
@@ -48,6 +51,8 @@ PrefabFiles = {
     "porkland_network",
     "porkland",
     "rabid_beetle",
+    "rowboat_wake",
+    "sail",
     "sedimentpuddle",
     "shears",
     "smelter",
@@ -73,6 +78,10 @@ Assets = {
     Asset("ATLAS", "images/hud/pl_inventoryimages.xml"),
     Asset("ATLAS_BUILD", "images/hud/pl_inventoryimages.xml", 256),  -- for minisign
 
+    -- boat
+    Asset("ATLAS", "images/hud/pl_hud.xml"),
+    Asset("IMAGE", "images/hud/pl_hud.tex"),
+
     -- crafting menu icons
     Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
 
@@ -95,6 +104,22 @@ Assets = {
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
     Asset("ANIM", "anim/player_actions_panning.zip"),
     Asset("ANIM", "anim/player_boat_onoff.zip"),
+    Asset("ANIM", "anim/swap_paddle.zip"),
+    Asset("ANIM", "anim/player_action_sailing.zip"),
+
+    -- boat ui
+    Asset("ANIM", "anim/boat_health.zip"),
+    Asset("ANIM", "anim/boat_hud_raft.zip"),
+    Asset("ANIM", "anim/boat_hud_row.zip"),
+    Asset("ANIM", "anim/boat_hud_cargo.zip"),
+    Asset("ANIM", "anim/boat_inspect_raft.zip"),
+    Asset("ANIM", "anim/boat_inspect_row.zip"),
+    Asset("ANIM", "anim/boat_inspect_cargo.zip"),
+
+    -- boat sail visual
+    Asset("ANIM", "anim/sail_visual.zip"),
+    Asset("ANIM", "anim/sail_visual_idle.zip"),
+    Asset("ANIM", "anim/sail_visual_trawl.zip"),
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),

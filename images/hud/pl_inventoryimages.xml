@@ -66,7 +66,7 @@
         <Element name="butterflywings_tropical.tex" u1="0.9375" u2="0.96875" v1="0.9375" v2="0.96875"/>
         <Element name="candlehat.tex" u1="0.96875" u2="1" v1="0.9375" v2="0.96875"/>
         <Element name="captainhat.tex" u1="0" u2="0.03125" v1="0.90625" v2="0.9375"/>
-        <Element name="cargoboat.tex" u1="0.03125" u2="0.0625" v1="0.90625" v2="0.9375"/>
+        <Element name="boat_cargo.tex" u1="0.03125" u2="0.0625" v1="0.90625" v2="0.9375"/>
         <Element name="caviar.tex" u1="0.0625" u2="0.09375" v1="0.90625" v2="0.9375"/>
         <Element name="chiminea.tex" u1="0.09375" u2="0.125" v1="0.90625" v2="0.9375"/>
         <Element name="chitin.tex" u1="0.125" u2="0.15625" v1="0.90625" v2="0.9375"/>
@@ -255,7 +255,7 @@
         <Element name="lobster_dead_cooked.tex" u1="0.84375" u2="0.875" v1="0.75" v2="0.78125"/>
         <Element name="log_rainforest.tex" u1="0.875" u2="0.90625" v1="0.75" v2="0.78125"/>
         <Element name="log_tropical.tex" u1="0.90625" u2="0.9375" v1="0.75" v2="0.78125"/>
-        <Element name="lograft.tex" u1="0.9375" u2="0.96875" v1="0.75" v2="0.78125"/>
+        <Element name="boat_lograft.tex" u1="0.9375" u2="0.96875" v1="0.75" v2="0.78125"/>
         <Element name="lotus_flower.tex" u1="0.96875" u2="1" v1="0.75" v2="0.78125"/>
         <Element name="lotus_flower_cooked.tex" u1="0" u2="0.03125" v1="0.71875" v2="0.75"/>
         <Element name="machete.tex" u1="0.03125" u2="0.0625" v1="0.71875" v2="0.75"/>
@@ -531,8 +531,8 @@
         <Element name="roottrunk.tex" u1="0.46875" u2="0.5" v1="0.46875" v2="0.5"/>
         <Element name="roottrunk_child.tex" u1="0.5" u2="0.53125" v1="0.46875" v2="0.5"/>
         <Element name="round_door.tex" u1="0.53125" u2="0.5625" v1="0.46875" v2="0.5"/>
-        <Element name="rowboat.tex" u1="0.5625" u2="0.59375" v1="0.46875" v2="0.5"/>
-        <Element name="sail.tex" u1="0.59375" u2="0.625" v1="0.46875" v2="0.5"/>
+        <Element name="boat_row.tex" u1="0.5625" u2="0.59375" v1="0.46875" v2="0.5"/>
+        <Element name="sail_palmleaf.tex" u1="0.59375" u2="0.625" v1="0.46875" v2="0.5"/>
         <Element name="sail_stick.tex" u1="0.625" u2="0.65625" v1="0.46875" v2="0.5"/>
         <Element name="sand.tex" u1="0.65625" u2="0.6875" v1="0.46875" v2="0.5"/>
         <Element name="sand_castle.tex" u1="0.6875" u2="0.71875" v1="0.46875" v2="0.5"/>
@@ -578,8 +578,8 @@
         <Element name="snakeskin_scaly.tex" u1="0.9375" u2="0.96875" v1="0.4375" v2="0.46875"/>
         <Element name="snakeskinhat.tex" u1="0.96875" u2="1" v1="0.4375" v2="0.46875"/>
         <Element name="snakeskinhat_scaly.tex" u1="0" u2="0.03125" v1="0.40625" v2="0.4375"/>
-        <Element name="snakeskinsail.tex" u1="0.03125" u2="0.0625" v1="0.40625" v2="0.4375"/>
-        <Element name="snakeskinsail_scaly.tex" u1="0.0625" u2="0.09375" v1="0.40625" v2="0.4375"/>
+        <Element name="sail_snakeskin.tex" u1="0.03125" u2="0.0625" v1="0.40625" v2="0.4375"/>
+        <Element name="sail_snakeskin_scaly.tex" u1="0.0625" u2="0.09375" v1="0.40625" v2="0.4375"/>
         <Element name="spear_launcher.tex" u1="0.09375" u2="0.125" v1="0.40625" v2="0.4375"/>
         <Element name="spear_launcher_obsidian.tex" u1="0.125" u2="0.15625" v1="0.40625" v2="0.4375"/>
         <Element name="spear_launcher_poison.tex" u1="0.15625" u2="0.1875" v1="0.40625" v2="0.4375"/>

@@ -148,3 +148,19 @@ function Map:CanDeployRecipeAtPoint(pt, recipe, rot, ...)
 
     return _CanDeployRecipeAtPoint(self, pt, recipe, rot, ...)
 end
+
+-- Copy of IsPassableAtPointWithPlatformRadiusBias that only checks the platform
+local WALKABLE_PLATFORM_TAGS = {"walkableplatform"}
+function Map:GetNearbyPlatformAtPoint(pos_x, pos_y, pos_z, extra_radius)
+    if pos_z == nil then -- to support passing in (x, z) instead of (x, y, x)
+        pos_z = pos_y
+        pos_y = 0
+    end
+    local entities = TheSim:FindEntities(pos_x, pos_y, pos_z, math.max(TUNING.MAX_WALKABLE_PLATFORM_RADIUS + (extra_radius or 0), 0), WALKABLE_PLATFORM_TAGS) -- DST allows negitives but I dont want to risk it -Half
+    for i, v in ipairs(entities) do
+        if v.components.walkableplatform and math.sqrt(v:GetDistanceSqToPoint(pos_x, 0, pos_z)) <= v.components.walkableplatform.platform_radius + (extra_radius or 0) then
+            return v
+        end
+    end
+    return nil
+end
