@@ -34,3 +34,7 @@ AddReplicableComponent("sailor")
 AddReplicableComponent("sailable")
 AddReplicableComponent("boathealth")
 AddReplicableComponent("boatcontainer")
+<<<<<<< Updated upstream
+=======
+AddReplicableComponent("boatvisualmanager")
+>>>>>>> Stashed changes

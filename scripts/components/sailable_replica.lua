@@ -16,6 +16,11 @@ local Sailable = Class(function(self, inst)
     self.creaksound = "dontstarve_DLC002/common/boat/creaks/creaks"
 
     self.alwayssail = false
+<<<<<<< Updated upstream
+=======
+
+    self.basicspeedbonus = 1
+>>>>>>> Stashed changes
 end)
 
 function Sailable:PlayPreRowAnims()

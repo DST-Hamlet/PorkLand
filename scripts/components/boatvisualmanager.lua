@@ -8,6 +8,7 @@ local function OnRemove(inst)
 end
 
 function BoatVisualManager:SpawnBoatEquipVisuals(item, visualprefab)
+<<<<<<< Updated upstream
     assert(visualprefab and type(visualprefab) == "string", "item.visualprefab must be a valid string!")
 
     local visual = SpawnPrefab("visual_" .. visualprefab .. "_boat")
@@ -41,6 +42,16 @@ function BoatVisualManager:RemoveBoatEquipVisuals(item)
     if self.visuals[item] then
         self.visuals[item]:Remove()
         self.visuals[item] = nil
+=======
+    if self.inst.replica.boatvisualmanager then
+        self.inst.replica.boatvisualmanager:SpawnBoatEquipVisuals(item, visualprefab)
+    end
+end
+
+function BoatVisualManager:RemoveBoatEquipVisuals(item)
+    if self.inst.replica.boatvisualmanager then
+        self.inst.replica.boatvisualmanager:RemoveBoatEquipVisuals(item)
+>>>>>>> Stashed changes
     end
 end
 

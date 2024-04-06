@@ -106,6 +106,13 @@ local states = {
             inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
         end,
 
+<<<<<<< Updated upstream
+=======
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
+        end,
+
+>>>>>>> Stashed changes
         onexit = function(inst)
             local boat = inst.replica.sailor:GetBoat()
             if inst.sg.nextstate ~= "row" and inst.sg.nextstate ~= "sail" then
@@ -240,6 +247,13 @@ local states = {
             inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
         end,
 
+<<<<<<< Updated upstream
+=======
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
+        end,
+
+>>>>>>> Stashed changes
         onexit = function(inst)
             local boat = inst.replica.sailor:GetBoat()
             if inst.sg.nextstate ~= "sail" then

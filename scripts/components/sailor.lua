@@ -42,6 +42,14 @@ local Sailor = Class(function(self, inst)
         { percent = 0.3, string = "ANNOUNCE_BOAT_SINKING" },
         { percent = 0.1, string = "ANNOUNCE_BOAT_SINKING_IMMINENT" },
     }
+<<<<<<< Updated upstream
+=======
+
+    self.acceleration = 6
+    self.deceleration = 6
+    self.boatspeed = 0
+    self.perdictframe = 0
+>>>>>>> Stashed changes
 end,
 nil,
 {
@@ -63,11 +71,66 @@ function Sailor:AlignBoat(direction)
     end
 end
 
+<<<<<<< Updated upstream
+=======
+function Sailor:GetDeceleration()
+    local modifier = 1 + self.boat.components.sailable.externalaccelerationmultiplier
+
+    return self.deceleration * modifier
+end
+
+function Sailor:GetAcceleration()
+    local modifier = 1 + self.boat.components.sailable.externalaccelerationmultiplier
+
+    return self.acceleration * modifier
+end
+
+>>>>>>> Stashed changes
 function Sailor:OnUpdate(dt)
     if self.boat ~= nil and self.boat:IsValid() then
         if self.boat.components.boathealth then
             self.boat.components.boathealth.depletionmultiplier = 1.0 / self.durabilitymultiplier
         end
+<<<<<<< Updated upstream
+=======
+
+        if self.boat.replica.sailable and self.inst.replica.sailor then
+            local currentSpeed = self.boatspeed
+            local targetSpeed = self.boat.components.sailable.externalspeedmultiplier + 6
+            local deceleration = self:GetDeceleration()
+            local acceleration = self:GetAcceleration()
+
+            if not self.inst.sg:HasStateTag("boating") then
+                self.perdictframe = self.perdictframe - 1
+            else
+                self.perdictframe = 1
+            end
+            if self.perdictframe <= 0 then
+                self.perdictframe = 0
+                targetSpeed = 0
+            end
+
+            if(targetSpeed > currentSpeed) then
+                currentSpeed = currentSpeed + acceleration * dt
+                if(currentSpeed > targetSpeed) then
+                   currentSpeed = targetSpeed
+               end
+            elseif (targetSpeed < currentSpeed) then
+                currentSpeed = currentSpeed - deceleration * dt
+                if(currentSpeed < 0) then
+                    currentSpeed = 0
+                end
+            end
+            self.boatspeed = currentSpeed
+            local sailor_speed = self.boatspeed
+            sailor_speed = math.floor(self.boatspeed + 1)
+            if sailor_speed > targetSpeed and self.perdictframe > 0 then
+                sailor_speed = targetSpeed
+            end
+
+            self.inst.replica.sailor._currentspeed:set(sailor_speed)
+        end
+>>>>>>> Stashed changes
     end
 end
 
@@ -109,8 +172,19 @@ function Sailor:Embark(boat, nostate)
     self.sailing = true
     self.boat = boat
 
+<<<<<<< Updated upstream
     self.inst:StartUpdatingComponent(self)
 
+=======
+    boat:AddTag("NOCLICK")
+
+    self.boatspeed = 0
+
+    self.inst:StartUpdatingComponent(self)
+
+
+    self.inst.AnimState:OverrideSymbol("droplet", "flotsam_debris_lograft_build", "droplet")
+>>>>>>> Stashed changes
     if self.boat.components.sailable.flotsambuild then
         self.inst.AnimState:OverrideSymbol("flotsam", self.boat.components.sailable.flotsambuild, "flotsam")
     end
@@ -178,6 +252,15 @@ end
 
 function Sailor:Disembark(pos, boat_to_boat, nostate)
     self.sailing = false
+<<<<<<< Updated upstream
+=======
+    self.boatspeed = 0
+
+    if self.boat and self.boat:HasTag("NOCLICK") then
+        self.boat:RemoveTag("NOCLICK")
+    end
+
+>>>>>>> Stashed changes
     self.inst:StopUpdatingComponent(self)
 
     self.inst:RemoveEventCallback("boathealthchange", OnBoatDelta, self.boat)

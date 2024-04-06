@@ -65,11 +65,19 @@ local function OnEquip(inst, owner)
         if inst.flapsound then
             sailor.SoundEmitter:PlaySound(inst.flapsound)
         end
+<<<<<<< Updated upstream
         -- if sailor.components.locomotor then
         --     sailor.components.locomotor:SetExternalSpeedMultiplier(inst, "SAIL", inst.sail_speed_mult)
         --     sailor.components.locomotor:SetExternalAccelerationMultiplier(inst, "SAIL", inst.sail_accel_mult)
         --     sailor.components.locomotor:SetExternalDecelerationMultiplier(inst, "SAIL", inst.sail_accel_mult)
         -- end
+=======
+        if owner.components.sailable then
+            owner.components.sailable:SetExternalSpeedMultiplier(inst, "SAIL", inst.sail_speed_mult)
+            owner.components.sailable:SetExternalAccelerationMultiplier(inst, "SAIL", inst.sail_accel_mult)
+            --owner.components.sailable:SetExternalDecelerationMultiplier(inst, "SAIL", inst.sail_accel_mult)
+        end
+>>>>>>> Stashed changes
     end
 
     inst:ListenForEvent("embarked", OnEmbarked, owner)
@@ -92,11 +100,19 @@ local function OnUnequip(inst, owner)
 				sailor.SoundEmitter:PlaySound(inst.flapsound)
 			end
 
+<<<<<<< Updated upstream
 			-- if sailor.components.locomotor then
 			-- 	sailor.components.locomotor:RemoveExternalSpeedMultiplier(inst, "SAIL")
 			-- 	sailor.components.locomotor:RemoveExternalAccelerationMultiplier(inst, "SAIL")
 			-- 	sailor.components.locomotor:RemoveExternalDecelerationMultiplier(inst, "SAIL")
 			-- end
+=======
+			if owner.components.sailable then
+			    owner.components.sailable:RemoveExternalSpeedMultiplier(inst, "SAIL")
+			 	owner.components.sailable:RemoveExternalAccelerationMultiplier(inst, "SAIL")
+			 	--owner.components.sailable:RemoveExternalDecelerationMultiplier(inst, "SAIL")
+			end
+>>>>>>> Stashed changes
 		end
 
 		inst:RemoveEventCallback("embarked", OnEmbarked, owner)
