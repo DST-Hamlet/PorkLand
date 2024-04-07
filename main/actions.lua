@@ -166,6 +166,8 @@ local _PICK_strfn = ACTIONS.PICK.strfn
 ACTIONS.PICK.strfn = function(act, ...)
     if act.target and act.target:HasTag("pickable_digin_str") then
         return "DIGIN"
+    elseif act.target:HasTag("flippable") then
+		return "FLIP"
     elseif _PICK_strfn then
         return _PICK_strfn(act, ...)
     end
