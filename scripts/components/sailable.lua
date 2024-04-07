@@ -16,8 +16,6 @@ local Sailable = Class(function(self, inst)
     self.hit_immunity = 0.66  -- time in seconds the boat is immune to hit state reactions after being hit.
     self.next_hit_time = 0
     self.maprevealbonus = 0
-<<<<<<< Updated upstream
-=======
 
     self._externalspeedmultipliers = {}
     self.externalspeedmultiplier = 0
@@ -27,7 +25,6 @@ local Sailable = Class(function(self, inst)
 
     self.inst:DoTaskInTime(0,function() self.externalspeedmultiplier = self:RecalculateExternalSpeedMultiplier(self._externalspeedmultipliers) end)
 
->>>>>>> Stashed changes
 end, nil, {
     sailor = onsailor,
     isembarking = onsailor,
@@ -125,8 +122,6 @@ function Sailable:OnRemoveFromEntity()
     self.inst:RemoveTag("sailable")
 end
 
-<<<<<<< Updated upstream
-=======
 function Sailable:RecalculateExternalSpeedMultiplier(sources)--没错，接下来的几个函数都是抄locomotor的
     local m = self.inst.replica.sailable.basicspeedbonus
     for source, src_params in pairs(sources) do
@@ -230,5 +225,4 @@ function Sailable:RemoveExternalAccelerationMultiplier(source, key)
     self.externalaccelerationmultiplier = self:RecalculateExternalAccelerationMultiplier(self._externalaccelerationmultipliers)
 end
 
->>>>>>> Stashed changes
 return Sailable

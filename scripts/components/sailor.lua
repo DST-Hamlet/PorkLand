@@ -42,14 +42,11 @@ local Sailor = Class(function(self, inst)
         { percent = 0.3, string = "ANNOUNCE_BOAT_SINKING" },
         { percent = 0.1, string = "ANNOUNCE_BOAT_SINKING_IMMINENT" },
     }
-<<<<<<< Updated upstream
-=======
 
     self.acceleration = 6
     self.deceleration = 6
     self.boatspeed = 0
     self.perdictframe = 0
->>>>>>> Stashed changes
 end,
 nil,
 {
@@ -71,8 +68,6 @@ function Sailor:AlignBoat(direction)
     end
 end
 
-<<<<<<< Updated upstream
-=======
 function Sailor:GetDeceleration()
     local modifier = 1 + self.boat.components.sailable.externalaccelerationmultiplier
 
@@ -85,14 +80,11 @@ function Sailor:GetAcceleration()
     return self.acceleration * modifier
 end
 
->>>>>>> Stashed changes
 function Sailor:OnUpdate(dt)
     if self.boat ~= nil and self.boat:IsValid() then
         if self.boat.components.boathealth then
             self.boat.components.boathealth.depletionmultiplier = 1.0 / self.durabilitymultiplier
         end
-<<<<<<< Updated upstream
-=======
 
         if self.boat.replica.sailable and self.inst.replica.sailor then
             local currentSpeed = self.boatspeed
@@ -130,7 +122,6 @@ function Sailor:OnUpdate(dt)
 
             self.inst.replica.sailor._currentspeed:set(sailor_speed)
         end
->>>>>>> Stashed changes
     end
 end
 
@@ -172,10 +163,6 @@ function Sailor:Embark(boat, nostate)
     self.sailing = true
     self.boat = boat
 
-<<<<<<< Updated upstream
-    self.inst:StartUpdatingComponent(self)
-
-=======
     boat:AddTag("NOCLICK")
 
     self.boatspeed = 0
@@ -184,7 +171,6 @@ function Sailor:Embark(boat, nostate)
 
 
     self.inst.AnimState:OverrideSymbol("droplet", "flotsam_debris_lograft_build", "droplet")
->>>>>>> Stashed changes
     if self.boat.components.sailable.flotsambuild then
         self.inst.AnimState:OverrideSymbol("flotsam", self.boat.components.sailable.flotsambuild, "flotsam")
     end
@@ -252,15 +238,12 @@ end
 
 function Sailor:Disembark(pos, boat_to_boat, nostate)
     self.sailing = false
-<<<<<<< Updated upstream
-=======
     self.boatspeed = 0
 
     if self.boat and self.boat:HasTag("NOCLICK") then
         self.boat:RemoveTag("NOCLICK")
     end
 
->>>>>>> Stashed changes
     self.inst:StopUpdatingComponent(self)
 
     self.inst:RemoveEventCallback("boathealthchange", OnBoatDelta, self.boat)

@@ -47,20 +47,12 @@ local function OnClose(inst)
     end
 end
 
-<<<<<<< Updated upstream
-local function OnWorked(inst)
-=======
 local function OnHit(inst)
->>>>>>> Stashed changes
     inst.AnimState:PlayAnimation("hit")
     inst.AnimState:PushAnimation("run_loop", true)
 end
 
-<<<<<<< Updated upstream
-local function OnHit(inst)
-=======
 local function OnWorked(inst)
->>>>>>> Stashed changes
     inst.components.lootdropper:DropLoot()
     if inst.components.container then
         inst.components.container:DropEverything()
@@ -125,13 +117,10 @@ local function commonfn()
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-<<<<<<< Updated upstream
-=======
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/bamboo"
             inst.replica.sailable.basicspeedbonus = TUNING.RAFT_SPEED
         end
->>>>>>> Stashed changes
         return inst
     end
 
@@ -149,13 +138,10 @@ local function commonfn()
     inst:AddComponent("boatvisualmanager")
 
     inst:AddComponent("sailable")
-<<<<<<< Updated upstream
-=======
     inst.components.sailable.flotsambuild = "flotsam_bamboo_build"
 
     inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/bamboo"
     inst.replica.sailable.basicspeedbonus = TUNING.RAFT_SPEED
->>>>>>> Stashed changes
 
     inst:AddReplaceComponent("boatcontainer", "container")
     inst.components.container.onopenfn = OnOpen
@@ -198,10 +184,7 @@ local function lograftfn()
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/log"
-<<<<<<< Updated upstream
-=======
             inst.replica.sailable.basicspeedbonus = TUNING.LOGRAFT_SPEED
->>>>>>> Stashed changes
         end
         return inst
     end
@@ -218,12 +201,9 @@ local function lograftfn()
 
     inst.components.sailable.flotsambuild = "flotsam_lograft_build"
 
-<<<<<<< Updated upstream
-=======
     inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/log"
     inst.replica.sailable.basicspeedbonus = TUNING.LOGRAFT_SPEED
 
->>>>>>> Stashed changes
     inst.components.flotsamspawner.flotsamprefab = "flotsam_lograft"
 
     return inst
@@ -240,11 +220,8 @@ local function rowboatfn()
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
-<<<<<<< Updated upstream
-=======
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks"
             inst.replica.sailable.basicspeedbonus = TUNING.ROWBOAT_SPEED
->>>>>>> Stashed changes
         end
         return inst
     end
@@ -261,12 +238,9 @@ local function rowboatfn()
 
     inst.components.sailable.flotsambuild = "flotsam_rowboat_build"
 
-<<<<<<< Updated upstream
-=======
     inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks"
     inst.replica.sailable.basicspeedbonus = TUNING.ROWBOAT_SPEED
 
->>>>>>> Stashed changes
     inst.components.flotsamspawner.flotsamprefab = "flotsam_rowboat"
 
     return inst
@@ -283,10 +257,7 @@ local function cargofn()
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/cargo"
-<<<<<<< Updated upstream
-=======
             inst.replica.sailable.basicspeedbonus = TUNING.CARGOBOAT_SPEED
->>>>>>> Stashed changes
         end
         return inst
     end
@@ -302,12 +273,9 @@ local function cargofn()
 
     inst.components.sailable.flotsambuild = "flotsam_rowboat_build"
 
-<<<<<<< Updated upstream
-=======
     inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/cargo"
     inst.replica.sailable.basicspeedbonus = TUNING.CARGOBOAT_SPEED
 
->>>>>>> Stashed changes
     inst.components.flotsamspawner.flotsamprefab = "flotsam_cargo"
 
     return inst

@@ -276,48 +276,30 @@ local tuning = {
     LOGRAFT_HEALTH = 150,
     LOGRAFT_PERISHTIME = total_day_time * 2,
     LOGRAFT_LEAKING_HEALTH = 40,
-<<<<<<< Updated upstream
-=======
     LOGRAFT_SPEED = -2,
->>>>>>> Stashed changes
 
     RAFT_HEALTH = 150,
     RAFT_PERISHTIME = total_day_time * 2,
     RAFT_LEAKING_HEALTH = 40,
-<<<<<<< Updated upstream
-=======
     RAFT_SPEED = -1,
->>>>>>> Stashed changes
 
     ROWBOAT_HEALTH = 250,
     ROWBOAT_PERISHTIME = total_day_time * 3,
     ROWBOAT_LEAKING_HEALTH = 40,
-<<<<<<< Updated upstream
-=======
     ROWBOAT_SPEED = 0,
->>>>>>> Stashed changes
 
     CARGOBOAT_HEALTH = 300,
     CARGOBOAT_PERISHTIME = total_day_time * 3,
     CARGOBOAT_LEAKING_HEALTH = 40,
-<<<<<<< Updated upstream
-=======
     CARGOBOAT_SPEED = -1,
->>>>>>> Stashed changes
 
     CORKBOAT_HEALTH = 80,
     CORKBOAT_PERISHTIME = total_day_time * 3,
     CORKBOAT_LEAKING_HEALTH = 30,
-<<<<<<< Updated upstream
-
-    SAIL_SNAKESKIN_SPEED_MULT = 1.25,
-    SAIL_SNAKESKIN_ACCEL_MULT = 1.25,
-=======
     CORKBOAT_SPEED = -2,
 
     SAIL_SNAKESKIN_SPEED_MULT = 0.25,
     SAIL_SNAKESKIN_ACCEL_MULT = 0.25,
->>>>>>> Stashed changes
     SAIL_SNAKESKIN_PERISH_TIME = total_day_time * 4,
 }
 

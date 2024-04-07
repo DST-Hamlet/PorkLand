@@ -29,10 +29,6 @@ local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, on
 
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
-<<<<<<< Updated upstream
-        inst.entity:AddNetwork()
-=======
->>>>>>> Stashed changes
 
         inst.Transform:SetFourFaced()
 
