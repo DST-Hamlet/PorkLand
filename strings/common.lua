@@ -1360,8 +1360,7 @@ return {
             "Darlington",
         },
 
-        FEMALE =
-        {
+        FEMALE = {
             "Elizabeth",
             "Alexandrina",
             "Alice",
@@ -1387,8 +1386,7 @@ return {
             "Ophelia",
             "Sophronia",
         },
-        MALE =
-        {
+        MALE = {
             "William",
             "Clarence",
             "Frederick",
