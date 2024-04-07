@@ -4,7 +4,6 @@ PrefabFiles = {
     "alloy",
     "aporkalypse_clock",
     "armor_metalplate",
-    "asparagus_planted",
     "basefan",
     "bonestaff",
     "chitin",
@@ -34,6 +33,7 @@ PrefabFiles = {
     "piko",
     "pl_planted_tree",
     "pl_preparedfoods",
+    "pl_veggie_plant",
     "pl_veggies",
     "pl_foodbuffs",
     "peagawkfeather",
@@ -58,6 +58,9 @@ PrefabFiles = {
     "waterdrop",
     "weevole_carapace",
     "weevole",
+
+    "rock_flippable",
+    "bugfood",
 }
 
 Assets = {
