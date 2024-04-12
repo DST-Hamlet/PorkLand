@@ -14,6 +14,7 @@ local PL_ACTIONS = {
     CUREPOISON = Action({mount_valid = true}),
     EMBARK = Action({priority = 1, distance = 6}),
     DISEMBARK = Action({priority = 1, distance = 2.5, invalid_hold_action=true}),
+    RETRIEVE = Action({priority = 1, distance = 3}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -167,6 +168,14 @@ ACTIONS.DISEMBARK.fn = function(act)
             return true
         end
     end
+end
+
+ACTIONS.RETRIEVE.fn = function(act)
+    if act.doer.components.inventory and act.target and act.target.components.pickupable and not act.target:IsInLimbo() then
+        act.doer:PushEvent("onpickup", {item = act.target})
+        return act.target.components.pickupable:OnPickup(act.doer)
+    end
+    return ACTIONS.PICKUP.fn(act)
 end
 
 -- Patch for hackable things
