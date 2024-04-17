@@ -9,6 +9,11 @@ return {
         "Oh! That's interesting!",
         "I found something!",
     },
+    ANNOUNCE_PUGALISK_INVULNERABLE = {
+        "That was the wrong spot.",
+        "It must have a weakness!",
+        "The scales are much too thick there."
+    },
     ANNOUNCE_SNEEZE = "aH-CHOOOOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s really weighs me down.",
@@ -21,6 +26,7 @@ return {
         ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",
         ASPARAGUS_PLANTED = "A cluster of edible spring vegetables!",
         BASEFAN = "Magnificent! What a marvel of engineering!",
+        BONESTAFF = "Another vanguard device I could use to bring the world to a new age!",
         CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
         COFFEE = "Interesting. Caffeinated beverages have a heightened effect here.",
         COFFEEBEANS = "I will need to roast it before I can consume it without ill effect.",
@@ -79,6 +85,12 @@ return {
             GENERIC = "Smells of tea. Perhaps a consequence of its proximity to tea trees?",
             SLEEPING = "Evidently, tired from a day of scurrying. And stealing.",
         },
+        PUGALISK = "What a wonderfully calamitous creature! I need to study it more!",
+        PUGALISK_CORPSE = "The skeletal remains of an alluring beast. I must dig them up!",
+        PUGALISK_FOUNTAIN = "Evidence would suggest it has restorative properties.",
+        PUGALISK_RUINS_PILLAR = "A pillar of nominal size and shape.",
+        PUGALISK_SKULL = "The cranium has retained some of the beasts' incredible hypnotic power.",
+        PUGALISK_TRAP_DOOR = "Intriguing. This requires further investigation.",
         RABID_BEETLE = {
             DEAD = "An occurrance of invertebrate respiratory failure.",
             GENERIC = "Evidently, it acquires facial hair when it matures.",
@@ -92,6 +104,8 @@ return {
             DONE = "Done already? Remarkable!",
             EMPTY = "Magnificent! Perhaps I can build a factory here as well.",
         },
+        SNAKE_BONE = "The skeletal remains of a carnivorous reptile.",
+        SNAKEBONESOUP = "The skeletal remains should add some calcium to my diet.",
         TEA = "A rodent based broth that tastes remarkably like tea!",
         TEATREE = "Theoretically, its smell attracts those small rodents. Intriguing...",
         TEATREE_NUT = "My stomach condition prevents me from partaking in its health benefits.",

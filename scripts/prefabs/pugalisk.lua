@@ -537,6 +537,17 @@ local function OnLoadPostPass(inst, newents, data)
     end
 end
 
+local function PushMusic(inst)
+    if ThePlayer == nil then
+        inst._playingmusic = false
+    elseif ThePlayer:IsNear(inst, inst._playingmusic and 40 or 20) then
+        inst._playingmusic = true
+        ThePlayer:PushEvent("triggeredevent", {name = "pugalisk"})
+    elseif inst._playingmusic and not ThePlayer:IsNear(inst, 50) then
+        inst._playingmusic = false
+    end
+end
+
 local head_brain = require "brains/pugalisk_headbrain"
 
 local function fn()
@@ -571,6 +582,12 @@ local function fn()
     inst.name = STRINGS.NAMES.PUGALISK
 
     inst.entity:SetPristine()
+
+    --Dedicated server does not need to trigger music
+    if not TheNet:IsDedicated() then
+        inst._playingmusic = false
+        inst:DoPeriodicTask(1, PushMusic, 0)
+    end
 
     if not TheWorld.ismastersim then
         return inst

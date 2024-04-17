@@ -273,9 +273,6 @@ local states =
         timeline =
         {
             TimeEvent(1 * FRAMES, function(inst)
-                --TODO dynamic music
-                --GetPlayer().components.dynamicmusic:OnStartDanger()
-
                 inst.components.groundpounder.numRings = 3
                 dogroundpound(inst)
                 inst.components.groundpounder.numRings = 2
