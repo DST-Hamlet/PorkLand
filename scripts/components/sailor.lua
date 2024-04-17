@@ -197,6 +197,7 @@ function Sailor:Disembark(pos, boat_to_boat, nostate)
         self.boat.components.highlightchild:SetOwner(nil)
     end
     if self.inst.components.colouradder then
+        self.boat.AnimState:SetAddColour(0, 0, 0, 0) -- clear freezable effects
         self.inst.components.colouradder:DetachChild(self.boat)
     end
     if self.inst.components.eroder then

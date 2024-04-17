@@ -88,6 +88,12 @@ local function OnEmbarked(inst)
     inst.components.workable:SetWorkable(true)
 end
 
+local function OnRepaired(inst, doer, repair_item)
+    if inst.SoundEmitter then
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boatrepairkit")
+    end
+end
+
 local function OnDeployCorkBoat(inst, pt, deployer)
     local boat = inst.boat_data and SpawnSaveRecord(inst.boat_data) or SpawnPrefab("corkboat")
 
@@ -186,6 +192,10 @@ local function commonfn()
 
     inst:AddComponent("sailable")
 
+    inst:AddComponent("repairable")
+    inst.components.repairable.repairmaterial = "boat"
+    inst.components.repairable.onrepaired = OnRepaired
+
     inst:AddReplaceComponent("boatcontainer", "container")
     inst.components.container.onopenfn = OnOpen
     inst.components.container.onclosefn = OnClose
@@ -268,6 +278,7 @@ local function rowboatfn()
 
     inst.components.container:WidgetSetup("boat_row")
 
+    inst.components.boathealth:SetMaxHealth(TUNING.ROWBOAT_HEALTH)
     inst.components.boathealth:SetHealth(TUNING.ROWBOAT_HEALTH, TUNING.ROWBOAT_PERISHTIME)
     inst.components.boathealth.leakinghealth = TUNING.ROWBOAT_LEAKING_HEALTH
     inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat/damage/row"
@@ -300,6 +311,7 @@ local function cargofn()
 
     inst.components.container:WidgetSetup("boat_cargo")
 
+    inst.components.boathealth:SetMaxHealth(TUNING.CARGOBOAT_HEALTH)
     inst.components.boathealth:SetHealth(TUNING.CARGOBOAT_HEALTH, TUNING.CARGOBOAT_PERISHTIME)
     inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat/damage/cargo"
     inst.components.boathealth.hitfx = "boat_hit_fx_cargoboat"
@@ -332,6 +344,7 @@ local function corkboatfn()
 
     inst.components.container:WidgetSetup("boat_cork")
 
+    inst.components.boathealth:SetMaxHealth(TUNING.CORKBOAT_HEALTH)
     inst.components.boathealth:SetHealth(TUNING.CORKBOAT_HEALTH, TUNING.CORKBOAT_PERISHTIME)
     inst.components.boathealth.leakinghealth = TUNING.CORKBOAT_LEAKING_HEALTH
     inst.components.boathealth.damagesound = "dontstarve_DLC003/common/objects/corkboat/damage"

@@ -9,6 +9,9 @@ local DoFoleySounds = nil
 
 local actionhandlers = {
     ActionHandler(ACTIONS.RETRIEVE, "dolongaction"),
+    ActionHandler(ACTIONS.TOGGLEON, "give"),
+    ActionHandler(ACTIONS.TOGGLEOFF, "give"),
+    ActionHandler(ACTIONS.REPAIRBOAT, "dolongaction"),
     ActionHandler(ACTIONS.HACK, function(inst)
         if inst:HasTag("beaver") then
             return not inst.sg:HasStateTag("gnawing") and "gnaw" or nil

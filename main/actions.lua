@@ -15,6 +15,9 @@ local PL_ACTIONS = {
     EMBARK = Action({priority = 1, distance = 6}),
     DISEMBARK = Action({priority = 1, distance = 2.5, invalid_hold_action=true}),
     RETRIEVE = Action({priority = 1, distance = 3}),
+    TOGGLEON = Action({priority = 2, mount_valid = true}),
+    TOGGLEOFF = Action({priority = 2, mount_valid = true}),
+    REPAIRBOAT = Action({distance = 3}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -178,6 +181,30 @@ ACTIONS.RETRIEVE.fn = function(act)
     return ACTIONS.PICKUP.fn(act)
 end
 
+ACTIONS.TOGGLEON.fn = function(act)
+    local tar = act.target or act.invobject
+    if tar and tar.components.equippable and tar.components.equippable:IsEquipped() and tar.components.equippable.togglable and not tar.components.equippable:IsToggledOn() then
+        tar.components.equippable:ToggleOn()
+        return true
+    end
+end
+
+ACTIONS.TOGGLEOFF.fn = function(act)
+    local tar = act.target or act.invobject
+    if tar and tar.components.equippable and tar.components.equippable:IsEquipped() and tar.components.equippable.togglable and tar.components.equippable:IsToggledOn() then
+        tar.components.equippable:ToggleOff()
+        return true
+    end
+end
+
+ACTIONS.REPAIRBOAT.fn = function(act)
+    if act.target and act.target ~= act.invobject and act.target.components.repairable and act.invobject and act.invobject.components.repairer then
+        return act.target.components.repairable:Repair(act.doer, act.invobject)
+    elseif act.doer.components.sailor and act.doer.components.sailor.boat and act.doer.components.sailor.boat.components.repairable and act.invobject and act.invobject.components.repairer then
+        return act.doer.components.sailor.boat.components.repairable:Repair(act.doer, act.invobject)
+    end
+end
+
 -- Patch for hackable things
 local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
 function ACTIONS.FERTILIZE.fn(act, ...)
@@ -299,6 +326,14 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.CUREPOISON)
             end
         end,
+        repairer = function(inst, doer, actions, right)
+            if doer and doer.replica.sailor and doer.replica.sailor:GetBoat() then
+                local boat = doer.replica.sailor:GetBoat()
+                if boat:HasTag("repairable_boat") and boat.replica.boathealth ~= nil then
+                    table.insert(actions, ACTIONS.REPAIRBOAT)
+                end
+            end
+        end,
     },
 
     ISVALID = { -- args: inst, action, right
@@ -327,6 +362,17 @@ local USEITEM = COMPONENT_ACTIONS.USEITEM
 local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
+
+local _USEITEMrepairer = USEITEM.repairer
+function USEITEM.repairer(inst, doer, target, actions, right, ...)
+    if right then
+        _USEITEMrepairer(inst, doer, target, actions, right, ...)
+    else
+        if target:HasTag("repairable_boat") and target.replica.boathealth ~= nil then
+            table.insert(actions, ACTIONS.REPAIRBOAT)
+        end
+    end
+end
 
 local _INVENTORYequippable = INVENTORY.equippable
 function INVENTORY.equippable(inst, doer, actions, ...)

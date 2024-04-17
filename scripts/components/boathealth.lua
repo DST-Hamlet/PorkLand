@@ -76,6 +76,11 @@ function BoatHealth:SetPercent(amount)
     self:DoDelta(target - self.currenthealth)
 end
 
+function BoatHealth:SetMaxHealth(max)
+    self.maxhealth = max
+    self:SetHealth(math.min(max, self.currenthealth))
+end
+
 function BoatHealth:SetHealth(val, perishtime)
     local oldpercent = self:GetPercent()
     if self.maxhealth < val then

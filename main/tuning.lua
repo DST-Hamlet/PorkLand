@@ -273,6 +273,11 @@ local tuning = {
 
     BOAT_HITFX_THRESHOLD = .08,  -- percent of health you need to lose to show the fx
 
+    BOAT_TORCH_LIGHTTIME = night_time * 1.75,
+
+    BOAT_REPAIR_KIT_HEALING = 100,
+    BOAT_REPAIR_KIT_USES = 3,
+
     LOGRAFT_HEALTH = 150,
     LOGRAFT_PERISHTIME = total_day_time * 2,
     LOGRAFT_LEAKING_HEALTH = 40,
