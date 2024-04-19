@@ -1,5 +1,6 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local BoatOver = require("widgets/boatover")
 local FogOver = require("widgets/fogover")
 local PoisonOver = require("widgets/poisonover")
 local PollenOver = require("widgets/pollenover")
@@ -10,6 +11,9 @@ local PlayerHud = require("screens/playerhud")
 local _CreateOverlays = PlayerHud.CreateOverlays
 function PlayerHud:CreateOverlays(owner, ...)
     _CreateOverlays(self, owner, ...)
+
+    self.boatover = self.overlayroot:AddChild(BoatOver(owner))
+    self.inst:ListenForEvent("boatattacked", function(inst, data) return self.boatover:Flash() end, self.owner)
 
     self.poisonover = self.overlayroot:AddChild(PoisonOver(owner))
 

@@ -74,6 +74,8 @@ function Sailable:OnEmbarked(sailor)
     self.sailor = sailor
     self.isembarking = false
 
+    self.inst:AddTag("NOCLICK")
+
     if self.inst.MiniMapEntity then
         self.inst.MiniMapEntity:SetEnabled(false)
     end
@@ -97,6 +99,8 @@ function Sailable:OnDisembarked(sailor)
     if self.sailor == sailor then
         self.sailor = nil
     end
+
+    self.inst:RemoveTag("NOCLICK")
 
     if self.inst.MiniMapEntity then
         self.inst.MiniMapEntity:SetEnabled(true)

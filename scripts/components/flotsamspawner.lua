@@ -71,9 +71,7 @@ function FlotsamSpawner:CanSpawnFlotsam()
     if not TheWorld.Map:IsOceanTileAtPoint(x, y, z) then
         return false
     end
-    if self.inpocket then
-        return false
-    end
+
     return true
 end
 
@@ -110,22 +108,5 @@ function FlotsamSpawner:OnUpdate()
         self:Spawn()
     end
 end
-
-function FlotsamSpawner:OnSave()
-    local data = {}
-    if self.inpocket then
-        data.inpocket = true
-    end
-    return data
-end
-
-function FlotsamSpawner:OnLoad(data)
-    if data then
-        if data.inpocket == true then
-            self.inpocket = true
-        end
-    end
-end
-
 
 return FlotsamSpawner

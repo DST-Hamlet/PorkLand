@@ -8,7 +8,9 @@ PrefabFiles = {
     "basefan",
     "bill_quill",
     "bill",
+    "boat_torch",
     "boatcontainer_classified",
+    "boatrepairkit",
     "boats",
     "chitin",
     "deep_jungle_fern_noise",
@@ -86,7 +88,7 @@ Assets = {
     Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
 
     -- hud
-    Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison
+    Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison, boat_over
     Asset("IMAGE", "images/overlays/fx3.tex"),
     Asset("ATLAS", "images/overlays/fx4.xml"),  -- pollen(hayfever)
     Asset("IMAGE", "images/overlays/fx4.tex"),
