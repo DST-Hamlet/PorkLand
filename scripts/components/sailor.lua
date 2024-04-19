@@ -197,7 +197,7 @@ function Sailor:Disembark(pos, boat_to_boat, nostate)
         self.boat.components.highlightchild:SetOwner(nil)
     end
     if self.inst.components.colouradder then
-        self.boat.AnimState:SetAddColour(0, 0, 0, 0) -- clear freezable effects
+        self.boat.AnimState:SetAddColour(0, 0, 0, 0) -- clear freezable effects etc
         self.inst.components.colouradder:DetachChild(self.boat)
     end
     if self.inst.components.eroder then
@@ -205,6 +205,10 @@ function Sailor:Disembark(pos, boat_to_boat, nostate)
     end
 
     local x, y, z = self.inst.Transform:GetWorldPosition()
+    self.inst.Physics:Stop()
+    self.inst.components.locomotor:StopMoving()
+    self.inst.Transform:SetPosition(x, y, z)
+
     local offset = self.boat.components.sailable.offset
     if offset ~= nil then
         x = x + offset.x

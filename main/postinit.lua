@@ -29,6 +29,7 @@ local component_posts = {
     "playercontroller",
     "pollinator",
     "regrowthmanager",
+    "repairable",
     "rider_replica",
     "seasons",
     "shard_clock",

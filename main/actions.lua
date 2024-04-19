@@ -329,7 +329,7 @@ local PL_COMPONENT_ACTIONS =
         repairer = function(inst, doer, actions, right)
             if doer and doer.replica.sailor and doer.replica.sailor:GetBoat() then
                 local boat = doer.replica.sailor:GetBoat()
-                if boat:HasTag("repairable_boat") and boat.replica.boathealth ~= nil then
+                if boat:HasTag("repairable_boat") and boat.replica.boathealth and not boat.replica.boathealth:IsFull() then
                     table.insert(actions, ACTIONS.REPAIRBOAT)
                 end
             end
@@ -368,7 +368,7 @@ function USEITEM.repairer(inst, doer, target, actions, right, ...)
     if right then
         _USEITEMrepairer(inst, doer, target, actions, right, ...)
     else
-        if target:HasTag("repairable_boat") and target.replica.boathealth ~= nil then
+        if target:HasTag("repairable_boat") and target.replica.boathealth and not target.replica.boathealth:IsFull() then
             table.insert(actions, ACTIONS.REPAIRBOAT)
         end
     end

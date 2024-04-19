@@ -18,8 +18,8 @@ local function fn()
     inst.AnimState:SetBuild("boat_repair_kit")
     inst.AnimState:PlayAnimation("idle")
 
-	MakeInventoryFloatable(inst)
-	inst.components.floater:UpdateAnimations("idle_water", "idle")
+    MakeInventoryFloatable(inst)
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
     inst.entity:SetPristine()
 

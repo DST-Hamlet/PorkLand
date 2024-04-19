@@ -53,10 +53,7 @@ end
 
 local function turnoff(inst)
     inst.SoundEmitter:KillSound("boatlamp")
-
-
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boatlantern_turnoff")
-
 
     if inst.components.fueled then
         inst.components.fueled:StopConsuming()
@@ -64,12 +61,12 @@ local function turnoff(inst)
 
     setswapsymbol(inst, "swap_lantern_off")
 
-	if inst._light ~= nil then
+    if inst._light ~= nil then
         if inst._light:IsValid() then
             inst._light:Remove()
         end
         inst._light = nil
-	end
+    end
 
     inst.components.inventoryitem:ChangeImageName(inst.prefab.."_off")
 end
@@ -93,9 +90,9 @@ local function onunequip(inst, owner)
         inst:RemoveEventCallback("embarked", inst.onembarked, owner)
         inst:RemoveEventCallback("disembarked", inst.ondisembarked, owner)
     end
-	if inst.components.equippable:IsToggledOn() then
-		inst.components.equippable:ToggleOff()
-	end
+    if inst.components.equippable:IsToggledOn() then
+        inst.components.equippable:ToggleOff()
+    end
 end
 
 local function nofuel(inst)
@@ -108,7 +105,7 @@ local function nofuel(inst)
     end
 end
 
-local function onremove(inst)
+local function OnRemove(inst)
     if inst._light ~= nil then
         if inst._light:IsValid() then
             inst._light:Remove()
@@ -118,12 +115,24 @@ local function onremove(inst)
 end
 
 local function ondropped(inst)
-	if inst.components.equippable:IsToggledOn() then
-		inst.components.equippable:ToggleOff()
-	end
+    if inst.components.equippable:IsToggledOn() then
+        inst.components.equippable:ToggleOff()
+    end
 end
 
-local function commonpristinefn(bank, build)
+local function OnSave(inst)
+    return {was_on = inst.components.fueled.consuming}
+end
+
+local function OnLoad(inst, data)
+    if data and data.was_on then
+        turnon(inst)
+    else
+        turnoff(inst)
+    end
+end
+
+local function torchfn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
@@ -133,28 +142,30 @@ local function commonpristinefn(bank, build)
 
     MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank(bank)
-    inst.AnimState:SetBuild(build)
+    inst.AnimState:SetBank("torch_boat")
+    inst.AnimState:SetBuild("swap_torch_boat")
     inst.AnimState:PlayAnimation("idle")
 
-    inst.visualbuild = build
+    inst.visualbuild = "swap_torch_boat"
 
-	MakeInventoryFloatable(inst)
-	inst.components.floater:UpdateAnimations("idle_water", "idle")
+    MakeInventoryFloatable(inst)
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
-    return inst
-end
+    inst.entity:SetPristine()
 
-local function serverfn(inst, image_name)
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem:ChangeImageName(image_name)
+    inst.components.inventoryitem:ChangeImageName("boat_torch_off")
     inst.components.inventoryitem:SetOnDroppedFn(ondropped)
 
     inst:AddComponent("fueled")
     inst.components.fueled:SetDepletedFn(nofuel)
+    inst.components.fueled:InitializeFuelLevel(TUNING.BOAT_TORCH_LIGHTTIME)
     inst.components.fueled:SetFirstPeriod(TUNING.TURNON_FUELED_CONSUMPTION, TUNING.TURNON_FULL_FUELED_CONSUMPTION)
 
     inst:AddComponent("equippable")
@@ -165,6 +176,14 @@ local function serverfn(inst, image_name)
     inst.components.equippable.togglable = true
     inst.components.equippable.toggledonfn = turnon
     inst.components.equippable.toggledofffn = turnoff
+
+    MakeHauntableLaunch(inst)
+
+    inst.visualprefab = "boat_torch"
+
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
+    inst.OnRemove = OnRemove
 
     inst.onembarked = function(owner, data)
         if inst._light ~= nil and inst._light:IsValid() then
@@ -180,29 +199,6 @@ local function serverfn(inst, image_name)
             inst._light.entity:SetParent((owner or inst).entity)
         end
     end
-
-    MakeHauntableLaunch(inst)
-
-    inst.OnRemove = onremove
-
-    return inst
-end
-
-local function torchfn()
-    local inst = commonpristinefn("torch_boat", "swap_torch_boat")
-
-    inst.entity:SetPristine()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    serverfn(inst, "boat_torch_off")
-
-    inst.visualprefab = "boat_torch"
-
-    inst.components.fueled.fueltype = "BURNABLE"
-    inst.components.fueled:InitializeFuelLevel(TUNING.BOAT_TORCH_LIGHTTIME)
 
     return inst
 end
