@@ -1,5 +1,9 @@
 GLOBAL.setfenv(1, GLOBAL)
+
 require("map/graphnode")
+
+local obj_layout = require("map/object_layout")
+local water_layout = require("map/water_layout")
 
 -- local NodeAddEntity = Node.AddEntity
 -- Node.AddEntity = function(self, prefab, points_x, points_y, current_pos_idx, entitiesOut, ...)
@@ -13,12 +17,12 @@ local _ConvertGround = Node.ConvertGround
 function Node:ConvertGround(...)
     local no_water = self.data.type == nil or self.data.type ~= "water"
 
-    local obj_layout = require("map/object_layout")
     local _Convert = obj_layout.Convert
     function obj_layout.Convert(node_id, item, addEntity, ...)
         local layout = obj_layout.LayoutForDefinition(item)
         if layout.water and no_water then
-            PlaceWaterLayout(layout, prefabs, addEntity, checkFn)
+            local prefabs = obj_layout.ConvertLayoutToEntitylist(layout)
+            water_layout.PlaceWaterLayout(layout, prefabs, addEntity, checkFn)
         else
             -- layout.border = layout.border or 1  -- dst no this
             _Convert(node_id, item, addEntity, ...)

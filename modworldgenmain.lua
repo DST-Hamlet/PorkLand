@@ -25,22 +25,7 @@ modimport("postinit/map/task")
 modimport("postinit/map/node")
 modimport("postinit/map/forest_map")
 
--- when we have layout, remove it
-local _AddRoom = AddRoom
-AddRoom = function(name, data)
-    if data.contents then
-        data.contents.countstaticlayouts = nil
-    end
-    _AddRoom(name, data)
-end
-local _AddTask = AddTask
-AddTask = function(name, data)
-    if data.set_pieces then
-        data.set_pieces = nil
-    end
-    _AddTask(name, data)
-end
-
+require("map/pl_layouts")
+-- require("map/pl_boons")
+-- require("map/pl_traps")
 require("map/tasks/porkland")
-AddTask = _AddTask
-AddRoom = _AddRoom

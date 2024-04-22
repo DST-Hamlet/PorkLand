@@ -4,7 +4,7 @@ require("constants")
 require("mathutil")
 
 local separate_region = require("map/separate_region")
--- local makecities = require("map/city_builder")
+local make_cities = require("map/city_builder")
 local make_border = require("map/border_finder")
 local make_bunch = require("map/pl_bunch_spawner")
 -- local make_bramble_sites = require("map/bramble_spawner")
@@ -318,9 +318,9 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     end
 
     -- make the city here.
-    -- print("BUILDING PIG CULTURE")
+    print("BUILDING PIG CULTURE")
 
-    -- entities = makecities(entities, topology_save, WorldSim, map_width, map_height, current_gen_params)
+    entities = make_cities(entities, topology_save, WorldSim, map_width, map_height, current_gen_params)
 
     --     --Process tallgrass, jungle fernnoise and other prefabs that spawn groups.
     --     if entities["grass_tall_patch"] then

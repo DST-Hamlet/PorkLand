@@ -1,5 +1,29 @@
 local STRINGS = GLOBAL.STRINGS
 
+-- Also used in city_builder.lua
+GLOBAL.PORKLAND_REQUIRED_PREFABS = {}
+-- {
+--     "pugalisk_fountain",
+--     "roc_nest",
+--     "pig_ruins_entrance",
+--     "pig_ruins_entrance2",
+--     "pig_ruins_entrance3",
+--     "pig_ruins_entrance4",
+--     "pig_ruins_entrance5",
+--     "pig_ruins_exit",
+--     "pig_ruins_exit2",
+--     "pig_ruins_exit4",
+
+--     "teleportato_hamlet_base",
+--     "teleportato_hamlet_box",
+--     "teleportato_hamlet_crank",
+--     "teleportato_hamlet_ring",
+--     "teleportato_hamlet_potato", -- THE POTATO IS HANDLED IN CITYBUILDER AS A UNIQUE FARM.
+
+--     "ancient_robot_ribs",
+--     "ancient_robot_head",
+-- }
+
 AddTaskSet("porkland", {
     name = "porkland_set",
     location = "porkland",
@@ -102,24 +126,5 @@ AddTaskSet("porkland", {
     --     }},
     --     --]]
     -- },
-    required_prefabs = {}
-    -- required_prefabs = {
-    --     "pugalisk_fountain",
-    --     "roc_nest",
-    --     "pig_ruins_entrance",
-    --     "pig_ruins_entrance2",
-    --     "pig_ruins_entrance3",
-    --     "pig_ruins_entrance4",
-    --     "pig_ruins_entrance5",
-    --     "pig_ruins_exit",
-    --     "pig_ruins_exit2",
-    --     "pig_ruins_exit4",
-
-    --     "teleportato_hamlet_base",
-    --     "teleportato_hamlet_box",
-    --     "teleportato_hamlet_crank",
-    --     "teleportato_hamlet_ring",
-    --     "teleportato_hamlet_potato", -- THE POTATO IS HANDLED IN CITYBUILDER AS A UNIQUE FARM
-    --     -- "chester_eyebone", "adventure_portal", "pigking",
-    -- },
+    required_prefabs = GLOBAL.PORKLAND_REQUIRED_PREFABS
 })
