@@ -16,10 +16,11 @@ if IsTheFrontEnd then return end
 require("map/pl_lockandkey")
 
 modimport("main/toolutil")
-
+modimport("main/tileutil")
 modimport("main/tuning")
 
 modimport("main/tiledefs")
+
 modimport("postinit/map/task")
 -- modimport("postinit/map/level")
 modimport("postinit/map/node")

@@ -173,9 +173,9 @@ local function fn()
     inst:WatchWorldState("phase", OnPhaseChange)
     OnPhaseChange(inst, TheWorld.state.phase)
 
-    inst.OnSave = OnSave
-    inst.OnLoad = OnLoad
-    inst.OnPreLoad = OnPreLoad
+    -- inst.OnSave = OnSave
+    -- inst.OnLoad = OnLoad
+    -- inst.OnPreLoad = OnPreLoad
 
     return inst
 end

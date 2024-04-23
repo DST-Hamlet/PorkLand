@@ -56,8 +56,9 @@ local TranslateWorldGenChoices = ToolUtil.GetUpvalue(_Generate, "TranslateWorldG
 forest_map.Generate = function(prefab, map_width, map_height, tasks, level, level_type, ...)
     assert(level.overrides ~= nil, "Level must have overrides specified.")
 
-    local IsPorkLand = level.location == "porkland"
-    if not IsPorkLand then
+    local is_porkland = level.location == "porkland"
+    Node.is_porkland = is_porkland
+    if not is_porkland then
         return _Generate(prefab, map_width, map_height, tasks, level, level_type, ...)
     end
 

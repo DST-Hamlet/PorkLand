@@ -334,7 +334,6 @@ local function spawn_setpiece(entities, width, height, spawners, setpiece_string
             end
             local original_tile_type = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
             if not original_tile_type or original_tile_type <= 1 then
-                print("什么东西", original_tile_type)
                 ground_valid = false
             end
         end
