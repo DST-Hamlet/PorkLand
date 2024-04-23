@@ -90,7 +90,6 @@ return {
             GLOWFLYCYCLE = "Glowfly Cycle",
             GLOWFLY_SETTING = "Glowfly",
             GRASS_TALL = "Tall Grass",
-            GRASS_TALL_PATCH = "Infected Tall Grass",
             HANGING_VINE_PATCH = "Hanging Vine",
             HANGING_VINE_SETTING = "Hanging Vine",
             HAYFEVER = "Hayfever",

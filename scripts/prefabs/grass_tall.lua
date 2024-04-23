@@ -11,13 +11,13 @@ local prefabs =
     "hacking_tall_grass_fx",
 }
 
-local function get_status(inst, viewer)
+local function GetStatus(inst, viewer)
     return not (inst.components.burnable and inst.components.burnable:IsBurning()) and
             inst.components.hackable and not inst.components.hackable:CanBeHacked() and "PICKED"
             or nil
 end
 
-local function dig_up(inst, chopper)
+local function DigUp(inst, chopper)
     if inst.components.hackable and inst.components.hackable:CanBeHacked() then
         inst.components.lootdropper:SpawnLootPrefab("cutgrass")
     end
@@ -26,7 +26,7 @@ local function dig_up(inst, chopper)
     inst:Remove()
 end
 
-local function start_spawning(inst, isdusk)
+local function StartSpawning(inst, isdusk)
     if inst.components.childspawner and inst.components.hackable:CanBeHacked() then
         local frozen = (inst.components.freezable and inst.components.freezable:IsFrozen())
         if not frozen and not TheWorld.state.isday then
@@ -35,36 +35,36 @@ local function start_spawning(inst, isdusk)
     end
 end
 
-local function stop_spawning(inst, isday)
+local function StopSpawning(inst, isday)
     if inst.components.childspawner and isday then
         inst.components.childspawner:StopSpawning()
     end
 end
 
-local function make_weevoleden(inst)
+local function MakeWeevoleden(inst)
     inst:AddTag("weevole_infested")
-    inst:WatchWorldState("isdusk", start_spawning)
-    inst:WatchWorldState("isday", stop_spawning)
+    inst:WatchWorldState("isdusk", StartSpawning)
+    inst:WatchWorldState("isday", StopSpawning)
 end
 
-local function remove_weevoleden(inst)
+local function RemoveWeevoleden(inst)
     inst:RemoveTag("weevole_infested")
-    inst:StopWatchingWorldState("isdusk", start_spawning)
-    inst:StopWatchingWorldState("isday", stop_spawning)
+    inst:StopWatchingWorldState("isdusk", StartSpawning)
+    inst:StopWatchingWorldState("isday", StopSpawning)
 end
 
-local function weevole_nest_test(inst)
+local function WeevoleNestTest(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 12, {"grass_tall"})
     local weevole_ents = TheSim:FindEntities(x, y, z, 12, {"weevole_infested"})
 
     if #weevole_ents < 1 and math.random() < #ents / 100 then
         local ent = ents[math.random(#ents)]
-        make_weevoleden(ent)
+        MakeWeevoleden(ent)
     end
 end
 
-local function spawn_weevole(inst, target)
+local function SpawnWeevole(inst, target)
     local weevole = inst.components.childspawner:SpawnChild()
     if weevole then
         local spawnpos = inst:GetPosition()
@@ -82,7 +82,7 @@ local function OnHack(inst, target, hacksleft, from_shears)
     fx.Transform:SetPosition(x, y + math.random() * 2, z)
 
     if inst:HasTag("weevole_infested") then
-        spawn_weevole(inst, target)
+        SpawnWeevole(inst, target)
     end
 
     if inst.components.hackable and inst.components.hackable.hacksleft <= 0 then
@@ -90,7 +90,7 @@ local function OnHack(inst, target, hacksleft, from_shears)
         inst.AnimState:PushAnimation("picked", true)
         inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/vine_drop")
         if inst:HasTag("weevole_infested")then
-            remove_weevoleden(inst)
+            RemoveWeevoleden(inst)
         end
     else
         inst.AnimState:PlayAnimation("chop")
@@ -106,7 +106,7 @@ local function OnRegen(inst)
     inst.AnimState:PlayAnimation("grow")
     inst.AnimState:PushAnimation("idle", true)
     inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
-    weevole_nest_test(inst)
+    WeevoleNestTest(inst)
 end
 
 local function MakeBarren(inst)
@@ -150,7 +150,7 @@ end
 
 local function OnLoad(inst, data)
     if data and data.weevoleinfested then
-        make_weevoleden(inst)
+        MakeWeevoleden(inst)
     end
 end
 
@@ -185,11 +185,11 @@ local function grass_tall()
 
     inst:AddComponent("lootdropper")
     inst:AddComponent("inspectable")
-    inst.components.inspectable.getstatus = get_status
+    inst.components.inspectable.getstatus = GetStatus
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
-    inst.components.workable:SetOnFinishCallback(dig_up)
+    inst.components.workable:SetOnFinishCallback(DigUp)
     inst.components.workable:SetWorkLeft(1)
 
     inst:AddComponent("hackable")
@@ -235,19 +235,29 @@ local function grass_tall()
     return inst
 end
 
-local function grass_tall_patch()
-    local inst = grass_tall()
+local function OnInit(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    inst:Remove()
+    local grass_tall_infected = SpawnPrefab("grass_tall")
+    grass_tall_infected.Transform:SetPosition(x, y, z)
+    MakeWeevoleden(grass_tall_infected)
+end
 
-    inst:SetPrefabName("grass_tall")
+local function grass_tall_bunche_patch()
+    local inst = CreateEntity()
 
-    if not TheWorld.ismastersim then
-        return inst
-    end
+    inst.entity:AddTransform()
+    inst.entity:SetPristine()
 
-    make_weevoleden(inst)
+    inst:AddTag("NOBLOCK")
+    inst:AddTag("CLASSIFIED")
+
+    inst:DoTaskInTime(0, OnInit)
+
+    --[[Non-networked entity]]
 
     return inst
 end
 
-return Prefab("forest/objects/grass_tall", grass_tall, assets, prefabs),
-    Prefab("forest/objects/grass_tall_patch", grass_tall_patch, assets, prefabs)
+return Prefab("grass_tall", grass_tall, assets, prefabs),
+    Prefab("grass_tall_bunche_patch", grass_tall_bunche_patch, assets, prefabs)

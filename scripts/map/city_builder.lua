@@ -288,7 +288,7 @@ local function spawn_setpiece(entities, width, height, spawners, setpiece_string
     local flip = math.random() < 0.5 -- reverses the direction along the x axis.
 
     local offset_x = ((#setpiece.ground - 1) / 2 + 1)
-    local offsetz = ((#setpiece.ground[1] - 1) / 2 + 1)
+    local offset_z = ((#setpiece.ground[1] - 1) / 2 + 1)
 
     local x_flip = 1
 
@@ -323,17 +323,18 @@ local function spawn_setpiece(entities, width, height, spawners, setpiece_string
                 new_pt = {
                     x = (pt.x - offset_x + (x * x_flip)),
                     y = 0,
-                    z = (pt.z - offsetz + (y))
+                    z = (pt.z - offset_z + (y))
                 }
             else
                 new_pt = {
                     x = (pt.x - offset_x + (y * x_flip)),
                     y = 0,
-                    z = (pt.z - offsetz + (x))
+                    z = (pt.z - offset_z + (x))
                 }
             end
             local original_tile_type = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
             if not original_tile_type or original_tile_type <= 1 then
+                print("什么东西", original_tile_type)
                 ground_valid = false
             end
         end
@@ -346,13 +347,13 @@ local function spawn_setpiece(entities, width, height, spawners, setpiece_string
                     new_pt = {
                         x = (pt.x - offset_x + (x * x_flip)),
                         y = 0,
-                        z = (pt.z - offsetz + (y))
+                        z = (pt.z - offset_z + (y))
                     }
                 else
                     new_pt = {
                         x = (pt.x - offset_x + (y * x_flip)),
                         y = 0,
-                        z = (pt.z - offsetz + (x))
+                        z = (pt.z - offset_z + (x))
                     }
                 end
                 local tile = setpiece.ground_types[setpiece.ground[x][y]]
@@ -920,6 +921,8 @@ local function is_in_nested_list(list_item, parent_list)
 end
 
 local function make_cities(entities, topology_save, worldsim, width, height, setcurrent_gen_params)
+    print("BUILDING PIG CULTURE")
+
     local parks = {}
     local spawners = {} -- anything that is added here that needs to be looked at before finally being added to the entites list.
 

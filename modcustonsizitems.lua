@@ -69,7 +69,6 @@ local custonsiz_items = {  -- add in dst custonsiz
             porkland_season_start = {image = "season_start.tex", options_remap = {img = "blank_season_red.tex", atlas = worldgen_item_atlas}, desc = season_start_descriptions, master_controlled = true, order = 2}
         },
         monsters = {
-            "grass_tall_patch",
         },
         animals = {
             pangolden = {image = "pangolden.tex"},
@@ -81,6 +80,7 @@ local custonsiz_items = {  -- add in dst custonsiz
         resources = {
             "asparagus",
             "grass_tall",
+            "grass_tall_bunches",
         },
         misc = {
             jungle_border_vine = {desc = frequency_descriptions},
