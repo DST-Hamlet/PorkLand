@@ -248,6 +248,7 @@ local function fn()
     inst:SetBrain(brain)
     inst:SetStateGraph("SGflytrap")
 
+    MakeHauntablePanic(inst)
     MakeMediumFreezableCharacter(inst, "stem")
     MakeMediumBurnableCharacter(inst, "stem")
 

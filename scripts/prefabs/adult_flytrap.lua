@@ -1,6 +1,6 @@
-require "stategraphs/SGadultflytrap"
+require("stategraphs/SGadultflytrap")
 
-local assets=
+local assets =
 {
     Asset("ANIM", "anim/venus_flytrap_lg_build.zip"),
     Asset("ANIM", "anim/venus_flytrap_planted.zip"),
@@ -99,7 +99,7 @@ local function OnTimerDone(inst, data)
         end
     end
 
-    inst.components.timer:StartTimer("spawn_new_plant", math.random()*(TUNING.TOTAL_DAY_TIME*2) + (TUNING.TOTAL_DAY_TIME*2))
+    inst.components.timer:StartTimer("spawn_new_plant", math.random() * TUNING.TOTAL_DAY_TIME * 2 + TUNING.TOTAL_DAY_TIME * 2)
 end
 
 local function OnSave(inst, data)
@@ -130,6 +130,8 @@ local function OnSpawn(inst)
         inst.Transform:SetRotation(math.random(360))
     end
 end
+
+local brain = require("brains/adultflytrapbrain")
 
 local function fn()
     local inst = CreateEntity()
@@ -187,8 +189,10 @@ local function fn()
     inst:AddComponent("timer")
     inst.components.timer:StartTimer("spawn_new_plant", GetRandomWithVariance(TUNING.TOTAL_DAY_TIME * 3, TUNING.TOTAL_DAY_TIME))
 
+    inst:SetBrain(brain)
     inst:SetStateGraph("SGadultflytrap")
 
+    MakeHauntable(inst)
     MakeLargeFreezableCharacter(inst)
     MakeMediumBurnableCharacter(inst, "stem")
 

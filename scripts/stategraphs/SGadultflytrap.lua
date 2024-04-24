@@ -1,18 +1,19 @@
 require("stategraphs/commonstates")
 
-local events=
+local events =
 {
     CommonHandlers.OnDeath(),
     CommonHandlers.OnFreeze(),
+    CommonHandlers.OnAttack(),
     CommonHandlers.OnAttacked(),
-    EventHandler("newcombattarget", function(inst,data)
+    EventHandler("newcombattarget", function(inst, data)
         if inst.sg:HasStateTag("idle") and data.target then
             inst.sg:GoToState("attack")
         end
     end)
 }
 
-local states=
+local states =
 {
     State{
         name = "idle",
@@ -20,7 +21,6 @@ local states=
 
         onenter = function(inst)
             inst.AnimState:PushAnimation("idle")
-
         end,
 
         timeline =
@@ -46,7 +46,6 @@ local states=
         timeline =
         {
             TimeEvent(10 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/venus_flytrap/4/taunt") end),
-
         },
 
         events =
@@ -96,7 +95,8 @@ local states=
             end),
         },
 
-        events={
+        events =
+        {
             EventHandler("animqueueover", function(inst)
                 if inst.components.combat.target and math.random() < 0.3 then
                     inst.sg:GoToState("taunt")

@@ -88,6 +88,8 @@ local custonsiz_items = {  -- add in dst custonsiz
     },
     [LEVELCATEGORY.SETTINGS] = {
         monsters = {
+            --adult_flytrap_setting = {image = "adult_flytraps.tex"},
+            --mean_flytrap_setting = {image = "mean_flytraps.tex"},
             weevole_setting = {image = "weevole.tex"},
         },
         animals = {
@@ -95,6 +97,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             -- peagawk_setting = {image = "peagawk.tex"},
             glowfly_setting = {image = "glowflies.tex"},
             hanging_vine_setting = {image = "grabbing_vine.tex"},
+            mandrakeman_setting = {image = "mandrake_men.tex"},
             piko_setting = {image = "orange_pikos.tex"},
         },
         resources = {

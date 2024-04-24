@@ -145,13 +145,14 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
 
+    MakeHauntable(inst)
+
     inst:ListenForEvent("burntup", OnBurntUp)
     inst:ListenForEvent("onignite", OnIgnite)
 
     inst.OnSave = OnSave
     inst.OnPreLoad = OnPreLoad
     inst.OnLoad = OnLoad
-
 
     inst:WatchWorldState("phase", OnPhaseChange)
     OnPhaseChange(inst, TheWorld.state.phase)
