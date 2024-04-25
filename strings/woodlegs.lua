@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "Them be th'ropes.",
         ICEDTEA = "'Tis relief ta be sure.",
         IRON = "'Tis not gold, but a treasure nonetheless.",
+        LILYPAD = "A leaf aft'r me own heart.",
         MACHETE = "Ye be slicin'!",
         PANGOLDEN = "Eatin' up all tha treasure!",
         PEAGAWK = {

@@ -58,6 +58,7 @@ return {
         HANGING_VINE = "Always hanging around.",
         ICEDTEA = "I scream for iced tea.",
         IRON = "Isn't it ironic?",
+        LILYPAD = "It's full of science. I can tell.",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "It likes rich food.",
         PEAGAWK = {

@@ -58,6 +58,7 @@ return {
         HANGING_VINE = "HANG'D VINE",
         ICEDTEA = "AH... IT REFRESH-ETH",
         IRON = "'TIS METAL O' THE ZAPPY BIRD",
+        LILYPAD = "'TIS SWIMMY LEAF",
         MACHETE = "YON SLASHY TOOL",
         PANGOLDEN = "NOSE HIMSELF TO BE A FOOL",
         PEAGAWK = {

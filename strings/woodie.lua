@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "Don't trust that.",
         ICEDTEA = "Nice and refreshing.",
         IRON = "Can't chop this too well.",
+        LILYPAD = "Nature's real good, eh?",
         MACHETE = "Ooh, that's a thing for chopping.",
         PANGOLDEN = "Looks expensive.",
         PEAGAWK = {

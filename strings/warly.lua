@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "How eerie.",
         ICEDTEA = "Ah. Refreshing.",
         IRON = "I wonder what I could cook up with this.",
+        LILYPAD = "I doubt it has much flavor.",
         MACHETE = "I could chop many an onion with this!",
         PANGOLDEN = "Already has a nice golden braise.",
         PEAGAWK = {

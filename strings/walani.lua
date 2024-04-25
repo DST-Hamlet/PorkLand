@@ -58,6 +58,7 @@ return {
         HANGING_VINE = "That seems dangerous.",
         ICEDTEA = "Ah... hits the spot.",
         IRON = "This has gotta be good for something.",
+        LILYPAD = "Looks like a waterbed to me.",
         MACHETE = "What a hack job.",
         PANGOLDEN = "Shiny.",
         PEAGAWK = {

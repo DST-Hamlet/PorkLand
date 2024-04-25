@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "Vines. Gotta love 'em.",
         ICEDTEA = "I prefer it cold anyway.",
         IRON = "Well it's not good balloon material.",
+        LILYPAD = "A little too heavy to use for a balloon.",
         MACHETE = "Machete. Designed for adventure.",
         PANGOLDEN = "I don't actually mind picking up his poop.",
         PEAGAWK = {

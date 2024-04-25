@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "I really hope it was just a regular plant.",
         ICEDTEA = "Right on time, Now I can taste it.",
         IRON = "An essential material for accurate timepieces.",
+        LILYPAD = "I don't think this shortcut can be taken.",
         MACHETE = "It's for chopping, simple as that.",
         PANGOLDEN = "It has an extravagant recipe.",
         PEAGAWK = {

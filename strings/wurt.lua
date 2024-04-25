@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "They're on top here.",
         ICEDTEA = "Cold leaf water.",
         IRON = "Red hard rock.",
+        LILYPAD = "Afloat leaf.",
         MACHETE = "Plant hacker.",
         PANGOLDEN = "Don't drink them all!",
         PEAGAWK = {

@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "Kleptomaniac vegetation. How wonderful!",
         ICEDTEA = "Evidence would suggest my tea got cold.",
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
+        LILYPAD = "Fascinating! It contains a small ecosystem of animals.",
         MACHETE = "A pragmatic tool for slashing objects.",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",
         PEAGAWK = {

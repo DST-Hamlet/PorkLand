@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "I saw a strong rope.",
         ICEDTEA = "What a enjoyment.",
         IRON = "Invaluable material for manufacturing useful tools.",
+        LILYPAD = "I have never seen such a big water lily!",
         MACHETE = "Hack and slash! Working's always fun.",
         PANGOLDEN = "Living metallurgical.",
         PEAGAWK = {

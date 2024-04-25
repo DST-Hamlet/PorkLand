@@ -38,6 +38,7 @@ return {
         HIPPOPOTAMOOSE = "Hippopotamoose",
         ICEDTEA = "Iced Tea",
         IRON = "Iron Ore",
+        LILYPAD = "Lily Pad",
         MACHETE = "Machete",
         PANGOLDEN = "Pangolden",
         PEAGAWK = "Peagawk",
