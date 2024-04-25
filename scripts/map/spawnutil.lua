@@ -1,50 +1,6 @@
 -- this file function only for worldgen, in game use main/util.lua functions
 local SpawnUtil = {}
 
-local water_prefabs = {
-}
-
-local land_prefabs = {
-    "grass_tall"
-}
-
-local common_spawnfn = {
-    grass_tall_bunche_patch = function(x, y, ents)
-        return not SpawnUtil.IsCloseToWaterTile(x, y, 3)
-    end,
-}
-
-local function SurroundedByWater(x, y, ents)
-    return SpawnUtil.IsSurroundedByWaterTile(x, y, 1)
-end
-
-local function NotCloseToWater(x, y, ents)
-    return not SpawnUtil.IsCloseToWaterTile(x, y, 1)
-end
-
--- Mod support
-function SpawnUtil.AddWaterCommonSpawn(prefab)
-    assert(common_spawnfn[prefab] == nil)  -- don't replace an existing one
-    common_spawnfn[prefab] = SurroundedByWater
-end
-
-function SpawnUtil.AddLandCommonSpawn(prefab)
-    assert(common_spawnfn[prefab] == nil)  -- don't replace an existing one
-    common_spawnfn[prefab] = NotCloseToWater
-end
-
-for i = 1, #water_prefabs do
-    SpawnUtil.AddWaterCommonSpawn(water_prefabs[i])
-end
-
-for i = 1, #land_prefabs do
-    SpawnUtil.AddLandCommonSpawn(land_prefabs[i])
-end
-
-function SpawnUtil.SpawntestFn(prefab, x, y, ents)
-    return prefab ~= nil and (common_spawnfn[prefab] == nil or common_spawnfn[prefab](x, y, ents))
-end
-
 function SpawnUtil.IsCloseToWater(x, y, radius)
     radius = radius or 1
     for i = -radius, radius do

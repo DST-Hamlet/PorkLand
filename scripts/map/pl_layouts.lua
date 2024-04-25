@@ -32,10 +32,14 @@ local ground_types = {
     WORLD_TILES.BATTLEGROUND, WORLD_TILES.INTERIOR, WORLD_TILES.FIELDS
 }
 
+local function LilypadResource()
+    return math.random() < 0.5 and {"frog_poison_lilypad"} or {"mosquito_lilypad"}
+end
+
 AllLayouts["lilypad"] = StaticLayout.Get("map/static_layouts/lilypad", {
     water = true,
     areas = {
-        resource_area = {"lilypad"}
+        resource_area = LilypadResource
     }
 })
 AllLayouts["lilypad"].ground_types = ground_types
@@ -43,8 +47,8 @@ AllLayouts["lilypad"].ground_types = ground_types
 AllLayouts["lilypad2"] = StaticLayout.Get("map/static_layouts/lilypad_2", {
     water = true,
     areas = {
-        resource_area = {"lilypad"},
-        resource_area2 = {"lilypad"}
+        resource_area = LilypadResource,
+        resource_area2 = LilypadResource
     }
 })
 AllLayouts["lilypad2"].ground_types = ground_types
