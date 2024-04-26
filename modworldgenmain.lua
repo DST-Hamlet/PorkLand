@@ -21,6 +21,7 @@ modimport("main/tuning")
 
 modimport("main/tiledefs")
 
+modimport("postinit/map/object_layout")
 modimport("postinit/map/task")
 -- modimport("postinit/map/level")
 modimport("postinit/map/node")

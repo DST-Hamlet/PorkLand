@@ -11,7 +11,7 @@ end
 
 local _Equip = Inventory.Equip
 function Inventory:Equip(item, ...)
-	if item == nil or item.components.equippable == nil or item.components.equippable.equipslot == nil then
+    if item == nil or item.components.equippable == nil or item.components.equippable.equipslot == nil then
         return false
     else
         return _Equip(self, item, ...)

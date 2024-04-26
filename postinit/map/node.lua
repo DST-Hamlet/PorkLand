@@ -5,7 +5,6 @@ require("map/graphnode")
 local SpawnUtil = require("map/spawnutil")
 
 local obj_layout = require("map/object_layout")
-local water_layout = require("map/water_layout")
 
 local water_prefabs = {
 }
@@ -87,14 +86,14 @@ end
 local _ConvertGround = Node.ConvertGround
 function Node:ConvertGround(...)
     local checkFn = function(ground) return IsOceanTile(ground) end
-    local no_water = self.data.type == nil or self.data.type ~= "water"
+    local is_water_node = self.data.type == "water"
 
     local _Convert = obj_layout.Convert
     function obj_layout.Convert(node_id, item, addEntity, ...)
         local layout = obj_layout.LayoutForDefinition(item)
-        if layout.water and no_water then
+        if layout.water and not is_water_node then
             local prefabs = obj_layout.ConvertLayoutToEntitylist(layout)
-            water_layout.PlaceWaterLayout(layout, prefabs, addEntity, checkFn)
+            obj_layout.PlaceWaterLayout(layout, prefabs, addEntity, checkFn)
         else
             -- layout.border = layout.border or 1  -- dst no this
             _Convert(node_id, item, addEntity, ...)

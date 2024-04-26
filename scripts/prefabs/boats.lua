@@ -113,19 +113,19 @@ local function OnDroppedCorkBoat(inst)
 end
 
 local function OnPickupedCorkBoat(inst, doer)
-	local boat_item = SpawnPrefab("corkboat_item")
-	doer.components.inventory:GiveItem(boat_item)
+    local boat_item = SpawnPrefab("corkboat_item")
+    doer.components.inventory:GiveItem(boat_item)
 
-	for _, item in pairs(inst.components.container.boatequipslots) do
+    for _, item in pairs(inst.components.container.boatequipslots) do
         item.components.inventoryitem.ignoresound = true
-		doer.components.inventory:GiveItem(item)
+        doer.components.inventory:GiveItem(item)
         item.components.inventoryitem.ignoresound = false
-	end
+    end
 
-	boat_item.boat_data = inst:GetSaveRecord()
+    boat_item.boat_data = inst:GetSaveRecord()
     inst:Remove()
 
-	return true
+    return true
 end
 
 local function OnSaveCorkBoatItem(inst)

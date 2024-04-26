@@ -19,9 +19,9 @@ function EntityScript:AddReplaceComponent(replace_component, name)
     end
 
     local cmp = LoadComponent(replace_component)
-	if not cmp then
-	    moderror("component ".. replace_component .. " does not exist!")
-	end
+    if not cmp then
+        moderror("component ".. replace_component .. " does not exist!")
+    end
 
     self:ReplicateComponent(name)
     local loadedcmp = cmp(self)
@@ -36,7 +36,7 @@ function EntityScript:AddReplaceComponent(replace_component, name)
 
     self:RegisterComponentActions(name)
 
-	return loadedcmp
+    return loadedcmp
 end
 
 local _ReplicateComponent = EntityScript.ReplicateComponent
