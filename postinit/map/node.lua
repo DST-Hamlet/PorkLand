@@ -10,7 +10,7 @@ local water_prefabs = {
 }
 
 local land_prefabs = {
-    "grass_tall"
+    "asparagus_planted", "flower_rainforest", "grass_tall", "sapling", "teatree", "teatree_piko_nest"
 }
 
 local common_spawnfn = {

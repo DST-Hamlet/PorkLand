@@ -28,7 +28,6 @@ AddTaskSet("porkland", {
     name = "porkland_set",
     location = "porkland",
 
-    -- valid_start_tasks = {"BG_rainforest_base"},
     tasks = {
         "Pigtopia",
         "Pigtopia_capital",
@@ -67,8 +66,6 @@ AddTaskSet("porkland", {
         "Deep_wild_ruins4",
         "wild_rainforest",
         "wild_ancient_ruins",
-
-        -- "BG_rainforest_base"
     },
 
     numoptionaltasks = 0,

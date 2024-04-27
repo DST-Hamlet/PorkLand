@@ -32,6 +32,13 @@ local ground_types = {
     WORLD_TILES.BATTLEGROUND, WORLD_TILES.INTERIOR, WORLD_TILES.FIELDS
 }
 
+AllLayouts["PorkLandStart"] = StaticLayout.Get("map/static_layouts/porkland_start", {
+    start_mask = PLACE_MASK.IGNORE_IMPASSABLE_BARREN_RESERVED,
+    fill_mask = PLACE_MASK.IGNORE_IMPASSABLE_BARREN_RESERVED,
+    layout_position = LAYOUT_POSITION.CENTER,
+})
+AllLayouts["PorkLandStart"].ground_types = ground_types
+
 local function LilypadResource()
     return math.random() < 0.5 and {"frog_poison_lilypad"} or {"mosquito_lilypad"}
 end
