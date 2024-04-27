@@ -1,6 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 
 local obj_layout = require("map/object_layout")
+local AllLayouts = require("map/layouts").Layouts
 
 local function GetLayoutRadius(layout, prefabs)
     assert(layout ~= nil)
@@ -116,4 +117,20 @@ function obj_layout.PlaceWaterLayout(layout, prefabs, add_entity, checkFn, radiu
             end
         end
     end
+end
+
+function obj_layout.AddLayoutToSanbox(sanboxfile, area, name)
+    local choices = require(sanboxfile)
+	local Sandbox = choices.Sandbox
+	local Layouts = choices.Layouts
+	local Layout = AllLayouts[name]
+
+    assert(Layout, "could not find layout whit " .. name)
+
+    if not Sandbox[area] then
+        Sandbox[area] = {}
+    end
+
+	Sandbox[area][name] = Layout
+    Layouts[name] = Layout
 end
