@@ -118,15 +118,15 @@ local function find_temp_ents(data, x, z, range, prefabs)
     return ents
 end
 
-local function add_temp_ents(data, x, z, prefab, city_id)
-    local entity = {
+local function add_temp_ents(data, x, z, prefab, city_id, properties)
+    local save_data = {
         x = x,
         z = z,
         prefab = prefab,
         city = city_id,
     }
 
-    table.insert(data, entity)
+    table.insert(data, save_data)
 end
 
 local function set_entity(entities, width, height, prop, x, z, city_id)
@@ -363,8 +363,8 @@ local function spawn_setpiece(entities, width, height, spawners, setpiece_string
             end
         end
 
-        for prop, list in pairs(setpiece.layout) do
-            for t, _ in ipairs(list)do
+        for prefab, list in pairs(setpiece.layout) do
+            for t, data in ipairs(list)do
                 -- local spawnprop = SpawnPrefab(prop)
 
                 local new_pt = {}
@@ -383,14 +383,14 @@ local function spawn_setpiece(entities, width, height, spawners, setpiece_string
                 end
 
                 local city_temp = city.city_id
-                if setpiece_string == "city_park_7" and prop == "oinc" then
+                if setpiece_string == "city_park_7" and prefab == "oinc" then
                     city_temp = nil
                 end
-                if setpiece_string == "pig_playerhouse_1" and prop ~= "playerhouse_city" then
+                if setpiece_string == "pig_playerhouse_1" and prefab ~= "playerhouse_city" then
                     city_temp = nil
                 end
 
-                add_temp_ents(spawners, new_pt.x, new_pt.z, prop, city_temp)
+                add_temp_ents(spawners, new_pt.x, new_pt.z, prefab, city_temp, data.properties)
             end
         end
         return true

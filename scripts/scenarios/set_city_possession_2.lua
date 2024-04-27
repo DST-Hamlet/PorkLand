@@ -1,4 +1,8 @@
 local function OnCreate(inst, scenariorunner)
+    if inst.OnCreate then
+        inst:OnCreate()
+    end
+
     -- inst:AddComponent("citypossession")
     -- inst.components.citypossession:SetCity(2)
     -- if inst.citypossessionfn then
