@@ -7,12 +7,15 @@ PrefabFiles = {
     "armor_metalplate",
     "asparagus_planted",
     "basefan",
+    "bonestaff",
     "chitin",
     "deep_jungle_fern_noise",
     "dungball",
     "dungbeetle",
     "dungpile",
     "flower_rainforest",
+    "floweroflife",
+    "gaze_beam",
     "glowfly",
     "gold_dust",
     "goldpan",
@@ -43,10 +46,16 @@ PrefabFiles = {
     "poisonbubble",
     "porkland_network",
     "porkland",
+    "pugalisk_fountain",
+    "pugalisk_ruins_pillar",
+    "pugalisk_skull",
+    "pugalisk_trap_door",
+    "pugalisk",
     "rabid_beetle",
     "sedimentpuddle",
     "shears",
     "smelter",
+    "snake_bone",
     "teatree_nut",
     "teatrees",
     "tree_pillar",
@@ -54,6 +63,7 @@ PrefabFiles = {
     -- "tubertrees",
     "venus_stalk",
     "walkingstick",
+    "waterdrop",
     "weevole_carapace",
     "weevole",
 }
@@ -76,6 +86,7 @@ Assets = {
     Asset("IMAGE", "images/overlays/fx4.tex"),
     Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
     Asset("IMAGE", "images/overlays/fx5.tex"),
+    Asset("ANIM", "anim/leaves_canopy2.zip"),  --canopy
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 
@@ -87,6 +98,7 @@ Assets = {
     Asset("ANIM", "anim/player_sneeze.zip"),
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
     Asset("ANIM", "anim/player_actions_panning.zip"),
+    Asset("ANIM", "anim/player_lifeplant.zip"),
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),

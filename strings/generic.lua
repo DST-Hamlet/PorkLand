@@ -10,6 +10,11 @@ return {
         "Ick!",
         "I got some on my hands!",
     },
+    ANNOUNCE_PUGALISK_INVULNERABLE = {
+        "Its hide is too tough!",
+        "A tough nut to crack.",
+        "Break, darn you!"
+    },
     ANNOUNCE_SNEEZE = "AHHH CHOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is so heavy.",
@@ -22,6 +27,7 @@ return {
         ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",
         ASPARAGUS_PLANTED = "I should pick those!",
         BASEFAN = "Fan-tastic.",
+        BONESTAFF = "Sends shivers down my spine.",
         CHITIN = "Bug coating.",
         COFFEE = "Smells delicious and energizing!",
         COFFEEBEANS = "They could use some roasting.",
@@ -79,6 +85,12 @@ return {
             GENERIC = "For some reason I'm craving tea.",
             SLEEPING = "Probably dreaming of trees.",
         },
+        PUGALISK = "Scientifically speaking, it shouldn't exist.",
+        PUGALISK_CORPSE = "Petrifying.",
+        PUGALISK_FOUNTAIN = "I prefer fountains of knowledge.",
+        PUGALISK_RUINS_PILLAR = "Defying the laws of science.",
+        PUGALISK_SKULL = "A numbskull.",
+        PUGALISK_TRAP_DOOR = "Well that looks ominous.",
         RABID_BEETLE = {
             DEAD = "A late beetle.",
             GENERIC = "Looks deranged.",
@@ -92,6 +104,8 @@ return {
             DONE = "It's done!",
             EMPTY = "I smelt that!",
         },
+        SNAKE_BONE = "Ha ha, snake. I have your bone.",
+        SNAKEBONESOUP = "The best way to serve snake.",
         TEA = "Tea time!",
         TEATREE = "What a lovely tree.",
         TEATREE_NUT = "Stops the seasonal sneezing.",

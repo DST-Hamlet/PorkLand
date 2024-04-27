@@ -245,6 +245,16 @@ local tuning = {
     WALKING_STICK_DAMAGE = wilson_attack * 0.6,
     WALKING_STICK_SPEED_MULT = 1.3,
     WALKING_STICK_PERISHTIME = total_day_time * 3,
+
+    PUGALISK_HEALTH = 3000,
+    PUGALISK_ATTACK_PERIOD = 3,
+    PUGALISK_MELEE_RANGE = 6,
+    PUGALISK_DAMAGE = 200,
+    PUGALISK_TARGET_DIST = 40,
+    PUGALISK_TAIL_TARGET_DIST = 6,
+    PUGALISK_ENABLED = true,
+
+    PUGALISK_RUINS_PILLAR_WORK = 3,
 }
 
 for key, value in pairs(tuning) do

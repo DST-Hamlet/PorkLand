@@ -78,6 +78,7 @@ end
 
 modimport("postinit/entityscript")
 modimport("postinit/animstate")
+modimport("postinit/input")
 
 for _, file_name in ipairs(component_posts) do
     modimport("postinit/components/" .. file_name)
