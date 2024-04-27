@@ -3,6 +3,10 @@ local prefabs =
     "peagawk",
 }
 
+local function OnPreLoad(inst, data)
+    WorldSettings_ChildSpawner_PreLoad(inst, data, TUNING.PEAGAWK_RELEASE_TIME, TUNING.PEAGAWK_REGEN_TIME)
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -25,6 +29,8 @@ local function fn()
     if not TUNING.PEAGAWK_ENABLED then
         inst.components.childspawner.childreninside = 0
     end
+
+    inst.OnPreLoad = OnPreLoad
 
     return inst
 end

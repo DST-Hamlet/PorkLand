@@ -154,6 +154,10 @@ local function OnLoad(inst, data)
     end
 end
 
+local function OnPreLoad(inst, data)
+    WorldSettings_ChildSpawner_PreLoad(inst, data, TUNING.WEEVOLEDEN_RELEASE_TIME, TUNING.WEEVOLEDEN_REGEN_TIME)
+end
+
 local function grass_tall()
     local inst = CreateEntity()
 
@@ -231,6 +235,7 @@ local function grass_tall()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+    inst.OnPreLoad = OnPreLoad
 
     return inst
 end
