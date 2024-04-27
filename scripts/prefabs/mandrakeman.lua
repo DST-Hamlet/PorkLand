@@ -34,7 +34,6 @@ local function CalcSanityAura(inst, observer)
     return 0
 end
 
-
 local function ShouldAcceptItem(inst, item)
     if inst:HasTag("grumpy") then
         return false

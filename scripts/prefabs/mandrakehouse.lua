@@ -37,8 +37,9 @@ local function OnHammered(inst, worker)
     end
 
     inst.components.lootdropper:DropLoot()
-    SpawnPrefab("collapse_big").Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_stone")
+    local fx = SpawnPrefab("collapse_big")
+    fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    fx:SetMaterial("stone")
     inst:Remove()
 end
 
