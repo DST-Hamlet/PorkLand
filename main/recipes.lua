@@ -1,3 +1,4 @@
+local AddDeconstructRecipe = AddDeconstructRecipe
 local AddRecipe2 = AddRecipe2
 local AddRecipeFilter = AddRecipeFilter
 GLOBAL.setfenv(1, GLOBAL)
@@ -57,3 +58,5 @@ SortAfter("goldpan", "goldenpitchfork", "TOOLS")
 AddRecipe2("basefan", {Ingredient("alloy", 2), Ingredient("transistor", 2), Ingredient("gears", 1)}, TECH.SCIENCE_TWO, {placer = "basefan_placer"}, {"STRUCTURES", "RAIN"})
 SortBefore("basefan", "firesuppressor", "STRUCTURES")
 SortBefore("basefan", "rainometer", "RAIN")
+
+AddDeconstructRecipe("mandrakehouse", {Ingredient("boards", 3), Ingredient("mandrake", 2), Ingredient("cutgrass", 10)})

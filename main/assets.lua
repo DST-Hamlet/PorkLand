@@ -1,6 +1,7 @@
 local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
+    "adult_flytrap",
     "alloy",
     "aporkalypse_clock",
     "armor_metalplate",
@@ -24,9 +25,14 @@ PrefabFiles = {
     "hanging_vine_patch",
     "hanging_vine",
     "iron",
+    "inv_vine",
     "pl_wave_shore",
     "jungle_border_vine",
     "machete",
+    "mandrakehouse",
+    "mandrakeman",
+    "mean_flytrap",
+    "nectar_pod",
     "nettle",
     "pangolden",
     "peagawk",
@@ -55,6 +61,8 @@ PrefabFiles = {
     "tree_pillar",
     -- "tuber",
     -- "tubertrees",
+    "venus_stalk",
+    "walkingstick",
     "waterdrop",
     "weevole_carapace",
     "weevole",
@@ -94,6 +102,8 @@ Assets = {
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),
+
+    Asset("ANIM", "anim/meat_rack_food_pl.zip"),
 }
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
