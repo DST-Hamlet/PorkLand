@@ -90,6 +90,8 @@ Assets = {
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),
+
+    Asset("ANIM", "anim/meat_rack_food_pl.zip"),
 }
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")

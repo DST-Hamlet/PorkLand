@@ -198,8 +198,6 @@ local function fn()
     inst:AddTag("animal")
     inst:AddTag("usefastrun")
 
-    inst.stage = 1
-
     MakeCharacterPhysics(inst, 10, .5)
 
     inst.entity:SetPristine()
@@ -255,6 +253,7 @@ local function fn()
     inst:ListenForEvent("newcombattarget", OnNewTarget)
     inst:ListenForEvent("attacked", OnAttacked)
 
+    inst.stage = 1
     inst.OnEntitySleep = OnEntitySleep
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

@@ -12,8 +12,10 @@ local prefabs =
 
 local function fn()
 	local inst = CreateEntity()
-	inst.entity:AddTransform()
+
+    inst.entity:AddTransform()
 	inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("stalk")
     inst.AnimState:SetBuild("venus_stalk")
