@@ -363,6 +363,14 @@ local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 
+local _SCENErideable = SCENE.rideable
+SCENE.rideable = function(inst, doer, actions, right)
+    if doer:IsSailing() then
+        return
+    end
+    return _SCENErideable(inst, doer, actions, right)
+end
+
 local _USEITEMrepairer = USEITEM.repairer
 function USEITEM.repairer(inst, doer, target, actions, right, ...)
     if right then
@@ -371,6 +379,18 @@ function USEITEM.repairer(inst, doer, target, actions, right, ...)
         if target:HasTag("repairable_boat") and target.replica.boathealth and not target.replica.boathealth:IsFull() then
             table.insert(actions, ACTIONS.REPAIRBOAT)
         end
+    end
+end
+
+local _POINTblinkstaff = POINT.blinkstaff
+function POINT.blinkstaff(inst, doer, pos, actions, right, target, ...)
+    if right and doer and doer:IsSailing() then
+        local x, y, z = pos:Get()
+        if TheWorld.Map:IsOceanAtPoint(x, y, z) and not TheWorld.Map:IsGroundTargetBlocked(pos) and not doer:HasTag("steeringboat") and not doer:HasTag("rotatingboat") then
+            table.insert(actions, ACTIONS.BLINK)
+        end
+    else
+        return _POINTblinkstaff(inst, doer, pos, actions, right, target, ...)
     end
 end
 

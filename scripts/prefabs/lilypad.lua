@@ -57,7 +57,7 @@ local function OnPhaseChange(inst, phase)
     if inst.components.childspawner.childname == "frog_poison" then
         if phase == "day" then
             inst.components.childspawner:StartSpawning()
-        else
+        elseif phase == "night" then
             inst.components.childspawner:StopSpawning()
             ReturnChildren(inst)
         end
@@ -140,7 +140,7 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
-    -- inst:AddComponent("waveobstacle") -- This component was only ever on mangroves
+    -- inst:AddComponent("waveobstacle") -- This component is for mangroves
 
     inst:AddComponent("childspawner")
     inst.components.childspawner:SetSpawnedFn(OnSpawned)
