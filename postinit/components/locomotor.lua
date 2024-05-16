@@ -184,8 +184,8 @@ function Locomotor:GetRunSpeed()
 end
 
 AddComponentPostInit("locomotor", function(self, inst)
-    self.externalspeedmultiplier_pl = 1           --此变量用于记录加速效果（加算）
-    self.externalspeedmultiplier_decelerate_pl = 1--此变量用于记录减速倍率（乘算）
+    self.externalspeedmultiplier_pl = 1  -- 此变量用于记录加速效果（加算）
+    self.externalspeedmultiplier_decelerate_pl = 1  -- 此变量用于记录减速倍率（乘算）
     self._externalspeedmultipliers_pl = {}
 
     if self.ismastersim then

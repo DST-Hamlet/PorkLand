@@ -9,6 +9,8 @@ local behaviour_posts = {
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
+    "builder_replica",
+    "builder",
     "clock",
     "colourcube",
     "combat",
@@ -93,6 +95,7 @@ end
 modimport("postinit/equipslotutil")
 modimport("postinit/stategraph")
 modimport("postinit/entityscript")
+modimport("postinit/bufferedaction")
 modimport("postinit/animstate")
 modimport("postinit/stategraphs/commonstates")
 

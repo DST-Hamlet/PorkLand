@@ -4,7 +4,7 @@ local BoatVisualManager = Class(function(self, inst)
     self.items = {}
     self._equipvisuals = {}
 
-    for i = 1, 6 do--如果船的额外视觉子实体超过6个，那么会崩溃
+    for i = 1, 6 do -- 如果船的额外视觉子实体超过6个，那么会崩溃
         table.insert(self._equipvisuals, net_string(self.inst.GUID, "boatvisualmanager._equipvisuals["..tostring(i).."]", "equipvisuals["..tostring(i).."]dirty"))
     end
 
