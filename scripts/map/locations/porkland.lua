@@ -12,6 +12,7 @@ AddLocation({
         keep_disconnected_tiles = true,
         no_wormholes_to_disconnected_tiles = true,
         no_joining_islands = true,
+        has_ocean = true,
     },
     required_prefabs = {
         "multiplayer_portal",

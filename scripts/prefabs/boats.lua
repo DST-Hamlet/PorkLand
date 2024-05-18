@@ -69,7 +69,7 @@ local function Sink(inst)
     if sailor then
         sailor.components.sailor:Disembark(nil, nil, true)
 
-        -- sailor:PushEvent("onsink", {ia_boat = inst})
+        sailor:PushEvent("onsink", {pl_boat = inst})
 
         sailor.SoundEmitter:PlaySound(inst.sinksound)
     end
