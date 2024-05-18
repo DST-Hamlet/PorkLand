@@ -62,7 +62,7 @@ local function OverlapCheck(inst)
             local safe_dist = SIZES[biggest.size] + SIZES[ent.size]
             local safe_dist_sq = safe_dist * safe_dist
             if biggest:GetDistanceSqToInst(ent) <= safe_dist_sq then
-                -- print("remove overlap lilypad!")
+                print("remove overlap lilypad!")
                 ent:Remove()
             end
         end
@@ -172,7 +172,7 @@ end
 local function frog_poison_lilypad()
     local inst = common()
 
-    inst:SetPrefabName("lilypad")
+    inst:SetPrefabNameOverride("lilypad")
 
     if not TheWorld.ismastersim then
         return inst
@@ -213,7 +213,7 @@ end
 local function mosquito_lilypad()
     local inst = common()
 
-    inst:SetPrefabName("lilypad")
+    inst:SetPrefabNameOverride("lilypad")
 
     if not TheWorld.ismastersim then
         return inst

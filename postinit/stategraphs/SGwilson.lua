@@ -5,6 +5,11 @@ local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local DoFoleySounds = nil
+local ClearStatusAilments = nil
+local ForceStopHeavyLifting = nil
+local StartTeleporting = nil
+local ToggleOnPhysics = nil
+local DoneTeleporting = nil
 
 local function OnExitRow(inst)
     local boat = inst.replica.sailor:GetBoat()
@@ -966,6 +971,195 @@ local states = {
             end),
         },
     },
+
+    State{
+        name = "sink_boat",
+        tags = {"busy", "nopredict", "nomorph", "drowning", "nointerrupt"},
+
+        onenter = function(inst, shore_pt)
+            ForceStopHeavyLifting(inst)
+            inst:ClearBufferedAction()
+
+            inst.components.locomotor:Stop()
+            inst.components.locomotor:Clear()
+
+            inst.AnimState:Hide("swap_arm_carry")
+            inst.AnimState:PlayAnimation("boat_death")
+
+            if inst:HasTag("beaver") then
+                inst.AnimState:SetBuild("werebeaver_boat_death")
+                inst.AnimState:SetBankAndPlayAnimation("werebeaver_boat_death", "boat_death")
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/characters/woodie/sinking_death_werebeaver")
+            else
+                inst.SoundEmitter:PlaySound((inst.talker_path_override or "dontstarve/characters/")..(inst.soundsname or inst.prefab).."/sinking")
+            end
+
+            if inst:HasTag("weremoose") then
+                inst.AnimState:PlayAnimation("sink")
+                inst.AnimState:Hide("plank")
+                inst.AnimState:Hide("float_front")
+                inst.AnimState:Hide("float_back")
+            end
+
+            if inst.components.rider:IsRiding() then
+                inst.sg:AddStateTag("dismounting")
+            end
+
+            if shore_pt ~= nil then
+                inst.components.drownable:OnFallInOcean(shore_pt:Get())
+            else
+                inst.components.drownable:OnFallInOcean()
+            end
+
+            inst.components.drownable:DropInventory()
+
+            inst.sg:SetTimeout(8)  -- just in case
+        end,
+
+        timeline = {
+            TimeEvent(14 * FRAMES, function(inst)
+                if inst:HasTag("weremoose") then
+                    inst.AnimState:Show("float_front")
+                    inst.AnimState:Show("float_back")
+                end
+            end),
+            TimeEvent(50 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/boat/sinking/shadow")
+            end),
+            TimeEvent(70 * FRAMES, function(inst)
+                inst.DynamicShadow:Enable(false)
+                inst:ShowHUD(false)
+            end),
+        },
+
+        ontimeout = function(inst)  -- failsafe
+            -- if inst.components.drownable:GetRescueData() ~= nil then
+            --     -- copy from animover
+            --     if inst:HasTag("beaver") then
+            --         inst.AnimState:SetBank("werebeaver")
+            --         if inst.components.skinner then
+            --             inst.components.skinner:SetSkinMode("werebeaver_skin")
+            --         else
+            --             inst.AnimState:SetBuild("werebeaver")
+            --         end
+            --     end
+            -- end
+            StartTeleporting(inst)
+
+            if inst.sg:HasStateTag("dismounting") then
+                inst.sg:RemoveStateTag("dismounting")
+
+                local mount = inst.components.rider:GetMount()
+                inst.components.rider:ActualDismount()
+                if mount ~= nil then
+                    if mount.components.drownable ~= nil then
+                        mount:Hide()
+                        mount:PushEvent("onsink", {noanim = true, shore_pt = Vector3(inst.components.drownable.dest_x, inst.components.drownable.dest_y, inst.components.drownable.dest_z)})
+                    elseif mount.components.health ~= nil then
+                        mount:Hide()
+                        mount.components.health:Kill()
+                    end
+                end
+            end
+
+            inst.components.drownable:WashAshore()
+        end,
+
+        events = {
+            EventHandler("animover", function(inst)
+                -- if inst.components.drownable:GetRescueData() ~= nil then
+                --     -- copy from animover
+                --     if inst:HasTag("beaver") then
+                --         inst.AnimState:SetBank("werebeaver")
+                --         if inst.components.skinner then
+                --             inst.components.skinner:SetSkinMode("werebeaver_skin")
+                --         else
+                --             inst.AnimState:SetBuild("werebeaver")
+                --         end
+                --     end
+                -- end
+                StartTeleporting(inst)
+
+                if inst.sg:HasStateTag("dismounting") then
+                    inst.sg:RemoveStateTag("dismounting")
+
+                    local mount = inst.components.rider:GetMount()
+                    inst.components.rider:ActualDismount()
+                    if mount ~= nil then
+                        if mount.components.drownable ~= nil then
+                            mount:Hide()
+                            mount:PushEvent("onsink", {noanim = true, shore_pt = Vector3(inst.components.drownable.dest_x, inst.components.drownable.dest_y, inst.components.drownable.dest_z)})
+                        elseif mount.components.health ~= nil then
+                            mount:Hide()
+                            mount.components.health:Kill()
+                        end
+                    end
+                end
+
+                inst.components.drownable:WashAshore()
+            end),
+
+            EventHandler("on_washed_ashore", function(inst)
+                -- Congrats you LIVE!
+                local drownable = inst.components.drownable
+                inst.sg:GoToState("washed_ashore")
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.sg.statemem.isphysicstoggle then
+                ToggleOnPhysics(inst)
+            end
+
+            if inst.sg.statemem.isteleporting then
+                DoneTeleporting(inst)
+            end
+
+            inst.DynamicShadow:Enable(true)
+            inst:ShowHUD(true)
+        end,
+    },
+
+    State{
+        name = "death_drown",
+        tags = {"busy", "dead", "canrotate", "nopredict", "nomorph", "drowning", "nointerrupt"},
+
+        onenter = function(inst, data)
+            assert(inst.deathcause ~= nil, "Entered death state without cause.")
+
+            ClearStatusAilments(inst)
+            ForceStopHeavyLifting(inst)
+
+            inst.components.locomotor:Stop()
+            inst.components.locomotor:Clear()
+            inst:ClearBufferedAction()
+
+            inst.components.burnable:Extinguish()
+
+            if HUMAN_MEAT_ENABLED then
+                inst.components.inventory:GiveItem(SpawnPrefab("humanmeat")) -- Drop some player meat!
+            end
+
+            inst.components.inventory:DropEverything(true)
+
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:RemotePausePrediction()
+                inst.components.playercontroller:Enable(false)
+            end
+
+            if inst.ghostenabled then
+                inst.components.cursable:Died()
+                if inst:HasTag("wonkey") then
+                    inst:ChangeFromMonkey()
+                else
+                    inst:PushEvent("makeplayerghost", { skeleton = TheWorld.Map:IsPassableAtPoint(inst.Transform:GetWorldPosition()) }) -- if we are not on valid ground then don't drop a skeleton
+                end
+            else
+                inst.AnimState:SetPercent(inst.deathanimoverride or "death", 1)
+                inst:PushEvent("playerdied", { skeleton = false })
+            end
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -983,6 +1177,19 @@ end
 AddStategraphPostInit("wilson", function(sg)
     local _run_start_timeevent_2 = sg.states["run_start"].timeline[2].fn
     DoFoleySounds = ToolUtil.GetUpvalue(_run_start_timeevent_2, "DoFoleySounds")
+
+    local _electrocute_onenter = sg.states["electrocute"].onenter
+    ClearStatusAilments = ToolUtil.GetUpvalue(_electrocute_onenter, "ClearStatusAilments")
+    ForceStopHeavyLifting = ToolUtil.GetUpvalue(_electrocute_onenter, "ForceStopHeavyLifting")
+
+    local _jumpin_onexit = sg.states["jumpin"].onexit
+    ToggleOnPhysics = ToolUtil.GetUpvalue(_jumpin_onexit, "ToggleOnPhysics")
+
+    local _abandon_ship_onexit = sg.states["abandon_ship"].onexit
+    DoneTeleporting = ToolUtil.GetUpvalue(_abandon_ship_onexit, "DoneTeleporting")
+
+    local _abandon_ship_events_animover = sg.states["abandon_ship"].events.animover.fn
+    StartTeleporting = ToolUtil.GetUpvalue(_abandon_ship_events_animover, "StartTeleporting")
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
@@ -1086,5 +1293,30 @@ AddStategraphPostInit("wilson", function(sg)
         end
 
         return _locomote_eventhandler(inst, data, ...)
+    end
+
+    local _onsink_eventhandler = sg.events.onsink.fn
+    sg.events.onsink.fn = function(inst, data, ...)
+        if data and data.pl_boat and not inst.components.health:IsDead() and not inst.sg:HasStateTag("drowning") and
+        (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then
+            inst.sg:GoToState("sink_boat", data.shore_pt)
+        else
+            if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then
+                inst.components.sailor.boat.components.container:Close(true)
+            end
+            _onsink_eventhandler(inst, data, ...)
+        end
+    end
+
+    local _death_eventhandler = sg.events.death.fn
+    sg.events.death.fn = function(inst, data)
+        if data.cause == "drowning" then
+            inst.sg:GoToState("death_drown")
+        else
+            if inst.components.sailor and inst.components.sailor.boat and inst.components.sailor.boat.components.container then
+                inst.components.sailor.boat.components.container:Close(true)
+            end
+            _death_eventhandler(inst, data)
+        end
     end
 end)

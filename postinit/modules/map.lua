@@ -113,13 +113,153 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
         end
     end
 
-    if near_x and near_z and abs_offset_z + abs_offset_x >= 3 then
+    if near_x and near_z and abs_offset_z + abs_offset_x > 3 then
         return self:IsOceanTileAtPoint(near_x, 0, near_z)
     end
 
     return false
 end
 
+function Map:IsCloseToTile(x, y, z, radius, typefn, ...)
+    if radius == 0 then return typefn(x, y, z, ...) end
+    -- Correct improper radiuses caused by changes to the radius based on overhang
+    if radius < 0 then return self:IsSurroundedByTile(x, y, z, radius * -1, typefn, ...) end
+
+    local num_edge_points = math.ceil((radius * 2) / TILE_SCALE) - 1
+
+    -- test the corners first
+    if typefn(x + radius, y, z + radius, ...) then return true end
+    if typefn(x - radius, y, z + radius, ...) then return true end
+    if typefn(x + radius, y, z - radius, ...) then return true end
+    if typefn(x - radius, y, z - radius, ...) then return true end
+
+    -- if the radius is less than 2(1 after the -1), it won't have any edges to test and we can end the testing here.
+    if num_edge_points == 0 then return false end
+
+    local dist = (radius * 2) / (num_edge_points + 1)
+    -- test the edges next
+    for i = 1, num_edge_points do
+        local idist = dist * i
+        if typefn(x - radius + idist, y, z + radius, ...) then return true end
+        if typefn(x - radius + idist, y, z - radius, ...) then return true end
+        if typefn(x - radius, y, z - radius + idist, ...) then return true end
+        if typefn(x + radius, y, z - radius + idist, ...) then return true end
+    end
+
+    -- test interior points last
+    for i = 1, num_edge_points do
+        local idist = dist * i
+        for j = 1, num_edge_points do
+            local jdist = dist * j
+            if typefn(x - radius + idist, y, z - radius + jdist, ...) then return true end
+        end
+    end
+    return false
+end
+
+function Map:IsCloseToLand(x, y, z, radius)
+    return self:IsCloseToTile(x, y, z, radius, function(_x, _y, _z, map)
+        return map:IsLandTileAtPoint(_x, _y, _z)
+    end, self)
+end
+
+function Map:IsSurroundedByTile(x, y, z, radius, typefn, ...)
+    if radius == 0 then return typefn(x, y, z, ...) end
+    -- Correct improper radiuses caused by changes to the radius based on overhang
+    if radius < 0 then return self:IsCloseToTile(x, y, z, radius * -1, typefn, ...) end
+
+    local num_edge_points = math.ceil((radius*2) / TILE_SCALE) - 1
+
+    -- test the corners first
+    if not typefn(x + radius, y, z + radius, ...) then return false end
+    if not typefn(x - radius, y, z + radius, ...) then return false end
+    if not typefn(x + radius, y, z - radius, ...) then return false end
+    if not typefn(x - radius, y, z - radius, ...) then return false end
+
+    -- if the radius is less than 2(1 after the -1), it won't have any edges to test and we can end the testing here.
+    if num_edge_points == 0 then return true end
+
+    local dist = (radius*2) / (num_edge_points + 1)
+    -- test the edges next
+    for i = 1, num_edge_points do
+        local idist = dist * i
+        if not typefn(x - radius + idist, y, z + radius, ...) then return false end
+        if not typefn(x - radius + idist, y, z - radius, ...) then return false end
+        if not typefn(x - radius, y, z - radius + idist, ...) then return false end
+        if not typefn(x + radius, y, z - radius + idist, ...) then return false end
+    end
+
+    -- test interior points last
+    for i = 1, num_edge_points do
+        local idist = dist * i
+        for j = 1, num_edge_points do
+            local jdist = dist * j
+            if not typefn(x - radius + idist, y, z - radius + jdist, ...) then return false end
+        end
+    end
+    return true
+end
+
+local _IsSurroundedByWater = Map.IsSurroundedByWater
+function Map:IsSurroundedByWater(x, y, z, radius, ...)
+    if TheWorld.has_pl_ocean then
+        -- subtract 1 to radius for map overhang, way cheaper than doing an IsVisualGround test
+        -- if the radius is less than 2(1 after the -1), We only need to check if the current point is an ocean tile
+        return self:IsSurroundedByTile(x, y, z, radius - 1, function(_x, _y, _z, map)
+            return map:IsOceanTileAtPoint(_x, _y, _z)
+        end, self)
+    end
+    return _IsSurroundedByWater(self, x, y, z, radius, ...)
+end
+
+function Map:CanDeployAquaticAtPointInWater(pt, data, player)
+    if data.boat and not TheWorld.has_pl_ocean then
+        return false
+    end
+
+    local x, y, z = pt:Get()
+    if self:GetNearbyPlatformAtPoint(x, y, z, data.platform_buffer_min or TUNING.BOAT.NO_BUILD_BORDER_RADIUS) ~= nil then
+        return false
+    end
+
+    local boating = true
+    local platform = false
+    if player ~= nil then
+        local px, py, pz = player.Transform:GetWorldPosition()
+        boating = self:IsOceanAtPoint(px, py, pz)
+        platform = self:GetPlatformAtPoint(px, py, pz)
+    end
+
+    if boating or platform then
+        if platform and platform.components.walkableplatform and math.sqrt(platform:GetDistanceSqToPoint(x, 0, z)) > platform.components.walkableplatform.platform_radius + (data.platform_buffer_max or 0.5) + 1.3 then --1.5 is closer but some distance should be cut for ease of use
+            return false
+        end
+        local min_buffer = data.aquatic_buffer_min or 2
+        return self:IsSurroundedByWater(x, y, z, min_buffer + 1) -- Add 1 for overhang
+    else
+        if data.noshore then -- used by the ballphinhouse
+            return false
+        end
+
+        if not self:ReverseIsVisualWaterAtPoint(x, y, z) then
+            return false
+        end
+
+        local min_buffer = data.shore_buffer_min or 0.5
+
+        if not self:IsSurroundedByWater(x, y, z, min_buffer) then
+            return false
+        end
+
+        local max_buffer = data.shore_buffer_max or 2
+
+        if not self:IsCloseToLand(x, y, z, max_buffer) then
+            return false
+        end
+
+        return true
+    end
+end
 
 local _IsVisualGroundAtPoint = Map.IsVisualGroundAtPoint
 function Map:IsVisualGroundAtPoint(x, y, z, ...)
@@ -139,14 +279,14 @@ function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
 end
 
 local _CanDeployRecipeAtPoint = Map.CanDeployRecipeAtPoint
-function Map:CanDeployRecipeAtPoint(pt, recipe, rot, ...)
-    if recipe.build_mode == BUILDMODE.AQUATIC then
+function Map:CanDeployRecipeAtPoint(pt, recipe, rot, player, ...)
+    if recipe.aquatic and recipe.build_mode == BUILDMODE.WATER then
         local pt_x, pt_y, pt_z = pt:Get()
-        local is_valid_ground = self:ReverseIsVisualWaterAtPoint(pt_x, pt_y, pt_z)
-        return is_valid_ground and (recipe.testfn == nil or recipe.testfn(pt, rot))
+        local is_valid_ground = self:CanDeployAquaticAtPointInWater(pt, recipe.aquatic, player)
+        return is_valid_ground and (recipe.testfn == nil or recipe.testfn(pt, rot)) and self:IsDeployPointClear(pt, nil, recipe.min_spacing or 3.2)
     end
 
-    return _CanDeployRecipeAtPoint(self, pt, recipe, rot, ...)
+    return _CanDeployRecipeAtPoint(self, pt, recipe, rot, player, ...)
 end
 
 -- Copy of IsPassableAtPointWithPlatformRadiusBias that only checks the platform
