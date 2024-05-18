@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "Ropes hang from the heavens!",
         ICEDTEA = "It contains no the meat!",
         IRON = "Material for metalwork.",
+        LILYPAD = "A leaf of the water.",
         MACHETE = "A fine length of blade.",
         PANGOLDEN = "Surely a cousin of Gullinbursti!",
         PEAGAWK = {

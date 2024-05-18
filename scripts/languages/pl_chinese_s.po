@@ -250,6 +250,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON"
 msgid "Isn't it ironic?"
 msgstr "老铁，这不搞笑吗？"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LILYPAD"
+msgid "It's full of science. I can tell."
+msgstr "它充满了科学。我能证明。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
@@ -614,6 +619,11 @@ msgstr "很显然有证据表明我的茶凉掉了。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON"
 msgid "Marvelous! Iron is invaluable for manufacturing the tools I need!"
 msgstr "了不起！铁是我制造器具的必需品，铁是无价的！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LILYPAD"
+msgid "Fascinating! It contains a small ecosystem of animals."
+msgstr "真迷人！它包含着一个小型生物的生态系统。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE"
@@ -990,6 +1000,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON"
 msgid "This has gotta be good for something."
 msgstr "它会在某些地方派上用场的。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LILYPAD"
+msgid "Looks like a waterbed to me."
+msgstr "在我看来它就像是个水床。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE"
 msgid "What a hack job."
@@ -1187,7 +1202,7 @@ msgstr "这真的太不卫生了！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_PICKPOOP.3
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_PICKPOOP.3"
-msgid "do not come! Warby!"
+msgid "do not come! Woby!"
 msgstr "别过来！沃比！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK
@@ -1212,12 +1227,12 @@ msgstr "薇诺娜小姐可能会喜欢，摘一点吧。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN"
-msgid "Ah, it's so comfortable, Warby, you can also enjoy it."
+msgid "Ah, it's so comfortable, Woby, you can also enjoy it."
 msgstr "啊，真舒服，沃比你也来吹吹。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN"
-msgid "Check out the pattern on this! Warby!"
+msgid "Check out the pattern on this! Woby!"
 msgstr "看看这上面的花纹！沃比！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.COFFEE
@@ -1355,6 +1370,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON"
 msgid "Is that iron?"
 msgstr "那是铁吗？"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LILYPAD"
+msgid "Look how big it is! I really want to stand up and take a look!"
+msgstr "看看它有多大！我真想站上去看看！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
@@ -1372,7 +1392,7 @@ msgstr "哇塞，这有多少只眼睛啊？"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.SLEEPING
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.SLEEPING"
-msgid "Warby, we might be able to gather his feathers while he's asleep."
+msgid "Woby, we might be able to gather his feathers while he's asleep."
 msgstr "沃比，我们也许可以在它睡着的时候采集它的羽毛。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWKFEATHER
@@ -1714,6 +1734,11 @@ msgstr "时间正好，是时候品尝它了。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON"
 msgid "An essential material for accurate timepieces."
 msgstr "精确钟表的必备材料。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LILYPAD"
+msgid "I don't think this shortcut can be taken."
+msgstr "我想这条近路抄不得。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE"
@@ -2074,6 +2099,11 @@ msgstr "啊. 令人神清气爽."
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON"
 msgid "I wonder what I could cook up with this."
 msgstr "我好奇我能用这个烹饪出什么。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LILYPAD"
+msgid "I doubt it has much flavor."
+msgstr "我怀疑它味道很大。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE"
@@ -2439,6 +2469,11 @@ msgstr "这里面没有肉！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON"
 msgid "Material for metalwork."
 msgstr "制造金属制品的材料。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LILYPAD"
+msgid "A leaf of the water."
+msgstr "长在水中的叶子。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE"
@@ -2810,6 +2845,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON"
 msgid "A solid mineral."
 msgstr "一块坚固的矿物质。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LILYPAD"
+msgid "A massive pond leaf."
+msgstr "一片巨大的池塘叶子。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE"
 msgid "Truthfully I was always a hack."
@@ -3174,6 +3214,11 @@ msgstr "太美味了！"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON"
 msgid "We could make all kinds of neat stuff with this."
 msgstr "我打赌我们可以用这做各种各样的东西。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LILYPAD"
+msgid "That's a really big lily pad!"
+msgstr "这睡莲叶真的很大！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE"
@@ -3540,6 +3585,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON"
 msgid "Iron. Like my heart."
 msgstr "坚硬的铁，像我的心脏一样。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LILYPAD"
+msgid "How calm it looks upon the water."
+msgstr "它浮在水上的样子是多么平静啊。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE"
 msgid "This is a lot of blade."
@@ -3905,6 +3955,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON"
 msgid "Well it's not good balloon material."
 msgstr "它不是一个造热气球的好材料。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LILYPAD"
+msgid "A little too heavy to use for a balloon."
+msgstr "这有点沉，不能用在热气球上。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE"
 msgid "Machete. Designed for adventure."
@@ -4269,6 +4324,11 @@ msgstr "使人精力充沛。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON"
 msgid "Ferrum."
 msgstr "铁。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LILYPAD"
+msgid "Goodness! They can grow quite large in the wild."
+msgstr "天啊！它们在野外的能长得这么大。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE"
@@ -4640,6 +4700,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON"
 msgid "'TIS METAL O' THE ZAPPY BIRD"
 msgstr "这是活泼的鸟儿身上的金属"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LILYPAD"
+msgid "'TIS SWIMMY LEAF"
+msgstr "这是浮叶"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE"
 msgid "YON SLASHY TOOL"
@@ -5004,6 +5069,11 @@ msgstr "我更喜欢热的东西"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON"
 msgid "I can't burn it with just my lighter."
 msgstr "我的打火机点不着它。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LILYPAD"
+msgid "I can't burn stuff out on the water."
+msgstr "我没法在水里烧东西。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE"
@@ -5370,6 +5440,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON"
 msgid "Invaluable material for manufacturing useful tools."
 msgstr "用于制造有用工具的宝贵材料。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LILYPAD"
+msgid "I have never seen such a big water lily!"
+msgstr "我从未见过这么大的睡莲！"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE"
 msgid "Hack and slash! Working's always fun."
@@ -5729,6 +5804,11 @@ msgstr "很棒，像沃尔夫冈一样。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON"
 msgid "Iron is strong like Wolfgang."
 msgstr "铁就和沃尔夫冈一样强壮。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LILYPAD"
+msgid "Big water leaf."
+msgstr "水上的大叶子。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE"
@@ -6095,6 +6175,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON"
 msgid "Can't chop this too well."
 msgstr "不能把它切地很平整。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LILYPAD"
+msgid "Nature's real good, eh?"
+msgstr "大自然真正的好处，嗯？"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE"
 msgid "Ooh, that's a thing for chopping."
@@ -6459,6 +6544,11 @@ msgstr "这杯茶当然能解乏。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON"
 msgid "'Tis not gold, but a treasure nonetheless."
 msgstr "这不是黄金，但至少是个宝贝。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LILYPAD"
+msgid "A leaf aft'r me own heart."
+msgstr "俺心目中的叶子就是这样的。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE"
@@ -6825,6 +6915,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON"
 msgid "Clinky Rock"
 msgstr "熟料岩"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LILYPAD"
+msgid "Nice day for swim?"
+msgstr "今天很适合来游泳呢?"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE"
 msgid "Slicer. For friend haircuts"
@@ -7184,6 +7279,11 @@ msgstr "温度使它别具风味。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON"
 msgid "Oooh. Almost burned me."
 msgstr "哦。差点烧死我了。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LILYPAD"
+msgid "The boat passed in the pond, and the duckweed gave way."
+msgstr "小船池中过，浮萍让道开。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE"
@@ -7545,6 +7645,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.IRON"
 msgid "Red hard rock."
 msgstr "红色坚硬的岩石。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LILYPAD"
+msgid "Afloat leaf."
+msgstr "漂浮的大叶子。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE"
 msgid "Plant hacker."
@@ -7905,6 +8010,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.IRON"
 msgid "HELLO FRIEND"
 msgstr "你好，朋友"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LILYPAD"
+msgid "I DO NOT TRUST ITS RELATIONSHIP WITH WATER"
+msgstr "它不能使我免于可恨的潮湿"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE"
 msgid "A LONG BLADE FOR EXPERT HACKING"
@@ -8185,6 +8295,11 @@ msgctxt "STRINGS.NAMES.IRON"
 msgid "Iron Ore"
 msgstr "铁矿石"
 
+#. STRINGS.NAMES.LILYPAD
+msgctxt "STRINGS.NAMES.LILYPAD"
+msgid "Lily Pad"
+msgstr "睡莲叶"
+
 #. STRINGS.NAMES.MACHETE
 msgctxt "STRINGS.NAMES.MACHETE"
 msgid "Machete"
@@ -8389,11 +8504,6 @@ msgstr "发光飞虫"
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL"
 msgid "Tall Grass"
 msgstr "高草"
-
-#. STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL_PATCH
-msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL_PATCH"
-msgid "Infected Tall Grass"
-msgstr "被感染的高草"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.HANGING_VINE_PATCH
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.HANGING_VINE_PATCH"

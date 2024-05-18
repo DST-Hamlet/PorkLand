@@ -10,6 +10,8 @@ local wilson_attack = TUNING.SPEAR_DAMAGE
 local wilson_health = TUNING.WILSON_HEALTH
 
 local tuning = {
+    MAPWRAPPER_WARN_RANGE = 14,
+
     SEASON_LENGTH_VERYHARSH_VERYSHORT = 5,
     SEASON_LENGTH_VERYHARSH_SHORT = 7,
     SEASON_VERYHARSH_DEFAULT = 10,
@@ -164,7 +166,7 @@ local tuning = {
     PIKO_TARGET_DIST = 20,
     PIKO_ENABLED = true,
 
-    CAFFEINE_FOOD_BONUS_SPEED = 5, -- player base speed plus this, 6 is normal walk speed
+    CAFFEINE_FOOD_BONUS_SPEED = 11/6, -- player base speed plus this, 6 is normal walk speed
     FOOD_SPEED_BRIEF = 0, -- eating coffeebeans gives you the bonus for this many seconds
     FOOD_SPEED_AVERAGE = 30, -- eating roasted coffee beans
     FOOD_SPEED_MED = 60, -- eating tropicalbouillabaisse (effects)
@@ -256,15 +258,15 @@ local tuning = {
 
     LOTUS_REGROW_TIME = total_day_time * 5,
 
-    MOSQUITO_MAX_SPAWN = 1,
-    MOSQUITO_REGEN_TIME = day_time/2,
-    MOSQUITO_RELEASE_TIME = 5,
-    MOSQUITO_ENABLED = true,
+    MOSQUITO_LILYPAD_MAX_SPAWN = 1,
+    MOSQUITO_LILYPAD_REGEN_TIME = day_time / 2,
+    MOSQUITO_LILYPAD_RELEASE_TIME = 20,
+    MOSQUITO_LILYPAD_ENABLED = true,
 
-    FROG_POISON_MAX_SPAWN = 1,
-    FROG_POISON_REGEN_TIME = day_time/2,
-    FROG_POISON_RELEASE_TIME = day_time/4,
-    FROG_POISON_ENABLED = true,
+    FROG_POISON_LILYPAD_MAX_SPAWN = 1,
+    FROG_POISON_LILYPAD_REGEN_TIME = day_time / 2,
+    FROG_POISON_LILYPAD_RELEASE_TIME = 20,
+    FROG_POISON_LILYPAD_ENABLED = true,
 
     WAVE_HIT_MOISTURE = 15,
     WAVE_HIT_DAMAGE = 5,
@@ -281,25 +283,30 @@ local tuning = {
     LOGRAFT_HEALTH = 150,
     LOGRAFT_PERISHTIME = total_day_time * 2,
     LOGRAFT_LEAKING_HEALTH = 40,
+    LOGRAFT_SPEED = -2,
 
     RAFT_HEALTH = 150,
     RAFT_PERISHTIME = total_day_time * 2,
     RAFT_LEAKING_HEALTH = 40,
+    RAFT_SPEED = -1,
 
     ROWBOAT_HEALTH = 250,
     ROWBOAT_PERISHTIME = total_day_time * 3,
     ROWBOAT_LEAKING_HEALTH = 40,
+    ROWBOAT_SPEED = 0,
 
     CARGOBOAT_HEALTH = 300,
     CARGOBOAT_PERISHTIME = total_day_time * 3,
     CARGOBOAT_LEAKING_HEALTH = 40,
+    CARGOBOAT_SPEED = -1,
 
     CORKBOAT_HEALTH = 80,
     CORKBOAT_PERISHTIME = total_day_time * 3,
     CORKBOAT_LEAKING_HEALTH = 30,
+    CORKBOAT_SPEED = -2,
 
-    SAIL_SNAKESKIN_SPEED_MULT = 1.25,
-    SAIL_SNAKESKIN_ACCEL_MULT = 1.25,
+    SAIL_SNAKESKIN_SPEED_MULT = 0.25,
+    SAIL_SNAKESKIN_ACCEL_MULT = 0.25,
     SAIL_SNAKESKIN_PERISH_TIME = total_day_time * 4,
 }
 

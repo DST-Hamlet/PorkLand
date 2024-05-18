@@ -110,6 +110,10 @@ local states = {
             inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
         end,
 
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
+        end,
+
         onexit = function(inst)
             local boat = inst.replica.sailor:GetBoat()
             if inst.sg.nextstate ~= "row" and inst.sg.nextstate ~= "sail" then
@@ -242,6 +246,10 @@ local states = {
                 boat.replica.sailable:PlaySailAnims()
             end
             inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
+        end,
+
+        onupdate = function(inst)
+            inst.components.locomotor:RunForward()
         end,
 
         onexit = function(inst)

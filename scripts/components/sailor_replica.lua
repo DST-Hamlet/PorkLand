@@ -70,6 +70,9 @@ local Sailor = Class(function(self, inst)
         OnBoatDirty(self)
     end)
 
+    self._currentspeed = net_float(inst.GUID, "sailor._currentspeed")
+    self._currentspeed:set(1)
+
     if TheWorld.ismastersim then
         inst:ListenForEvent("boatattacked", OnBoatAttacked)
     end

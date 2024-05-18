@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "The jungle's noose.",
         ICEDTEA = "Refreshing, but it still does not relieve my grief.",
         IRON = "Iron. Like my heart.",
+        LILYPAD = "How calm it looks upon the water.",
         MACHETE = "This is a lot of blade.",
         PANGOLDEN = "A fool and his gold.",
         PEAGAWK = {

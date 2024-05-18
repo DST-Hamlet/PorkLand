@@ -49,15 +49,15 @@ end
 
 local function OnEquip(inst, owner)
     if not owner or not owner.components.sailable then
-		print("WARNING: Equipped sail (",inst,") without valid boat: ", owner)
-		return false
-	end
+        print("WARNING: Equipped sail (",inst,") without valid boat: ", owner)
+        return false
+    end
 
     if owner.components.boatvisualmanager then
         owner.components.boatvisualmanager:SpawnBoatEquipVisuals(inst, inst.visualprefab)
     end
 
-	if owner.components.sailable.sailor then
+    if owner.components.sailable.sailor then
         local sailor = owner.components.sailable.sailor
         sailor:PushEvent("sailequipped")
         inst.sailquipped:set_local(true)
@@ -65,11 +65,11 @@ local function OnEquip(inst, owner)
         if inst.flapsound then
             sailor.SoundEmitter:PlaySound(inst.flapsound)
         end
-        -- if sailor.components.locomotor then
-        --     sailor.components.locomotor:SetExternalSpeedMultiplier(inst, "SAIL", inst.sail_speed_mult)
-        --     sailor.components.locomotor:SetExternalAccelerationMultiplier(inst, "SAIL", inst.sail_accel_mult)
-        --     sailor.components.locomotor:SetExternalDecelerationMultiplier(inst, "SAIL", inst.sail_accel_mult)
-        -- end
+        if owner.components.sailable then
+            owner.components.sailable:SetExternalSpeedMultiplier(inst, "SAIL", inst.sail_speed_mult)
+            owner.components.sailable:SetExternalAccelerationMultiplier(inst, "SAIL", inst.sail_accel_mult)
+            --owner.components.sailable:SetExternalDecelerationMultiplier(inst, "SAIL", inst.sail_accel_mult)
+        end
     end
 
     inst:ListenForEvent("embarked", OnEmbarked, owner)
@@ -83,27 +83,27 @@ local function OnUnequip(inst, owner)
         if owner.components.boatvisualmanager then
             owner.components.boatvisualmanager:RemoveBoatEquipVisuals(inst)
         end
-		if owner.components.sailable and owner.components.sailable.sailor then
-			local sailor = owner.components.sailable.sailor
-			sailor:PushEvent("sailunequipped")
-			inst.sailquipped:set_local(false)
-			inst.sailquipped:set(false)
-			if inst.flapsound then
-				sailor.SoundEmitter:PlaySound(inst.flapsound)
-			end
+        if owner.components.sailable and owner.components.sailable.sailor then
+            local sailor = owner.components.sailable.sailor
+            sailor:PushEvent("sailunequipped")
+            inst.sailquipped:set_local(false)
+            inst.sailquipped:set(false)
+            if inst.flapsound then
+                sailor.SoundEmitter:PlaySound(inst.flapsound)
+            end
 
-			-- if sailor.components.locomotor then
-			-- 	sailor.components.locomotor:RemoveExternalSpeedMultiplier(inst, "SAIL")
-			-- 	sailor.components.locomotor:RemoveExternalAccelerationMultiplier(inst, "SAIL")
-			-- 	sailor.components.locomotor:RemoveExternalDecelerationMultiplier(inst, "SAIL")
-			-- end
-		end
+            if owner.components.sailable then
+                owner.components.sailable:RemoveExternalSpeedMultiplier(inst, "SAIL")
+                 owner.components.sailable:RemoveExternalAccelerationMultiplier(inst, "SAIL")
+                 --owner.components.sailable:RemoveExternalDecelerationMultiplier(inst, "SAIL")
+            end
+        end
 
-		inst:RemoveEventCallback("embarked", OnEmbarked, owner)
-		inst:RemoveEventCallback("disembarked", OnDisembarked, owner)
-		inst:RemoveEventCallback("boatstartmoving", OnStartMoving, owner)
-		inst:RemoveEventCallback("boatstopmoving", OnStopMoving, owner)
-	end
+        inst:RemoveEventCallback("embarked", OnEmbarked, owner)
+        inst:RemoveEventCallback("disembarked", OnDisembarked, owner)
+        inst:RemoveEventCallback("boatstartmoving", OnStartMoving, owner)
+        inst:RemoveEventCallback("boatstopmoving", OnStopMoving, owner)
+    end
 
     StopConsuming(inst)
 

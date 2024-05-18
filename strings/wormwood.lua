@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "Wants stuff",
         ICEDTEA = "Cold Zippy water",
         IRON = "Clinky Rock",
+        LILYPAD = "Nice day for swim?",
         MACHETE = "Slicer. For friend haircuts",
         PANGOLDEN = "Shiny Pooper",
         PEAGAWK = {

@@ -258,30 +258,26 @@ applyoverrides_pre.frog_poison_setting = function(difficulty)
     local tuning_vars =
     {
         never = {
-            FROG_POISON_ENABLED = false,
+            FROG_POISON_LILYPAD_ENABLED = false,
         },
         few = {
-            FROG_POISON_REGEN_TIME = day_time/1,
-            FROG_POISON_RELEASE_TIME = day_time/2,
-            FROG_POISON_MAX_SPAWN = 1,
+            FROG_POISON_LILYPAD_REGEN_TIME = day_time,
+            FROG_POISON_LILYPAD_MAX_SPAWN = 1,
         },
         --[[
         default = {
-            FROG_POISON_REGEN_TIME = day_time/2,
-            FROG_POISON_RELEASE_TIME = day_time/4,
-            FROG_POISON_MAX_SPAWN = 1,
-            FROG_POISON_ENABLED = true,
+            FROG_POISON_LILYPAD_REGEN_TIME = day_time / 2,
+            FROG_POISON_LILYPAD_MAX_SPAWN = 1,
+            FROG_POISON_LILYPAD_ENABLED = true,
         },
         --]]
         many = {
-            FROG_POISON_REGEN_TIME = day_time/4,
-            FROG_POISON_RELEASE_TIME = day_time/8,
-            FROG_POISON_MAX_SPAWN = 2,
+            FROG_POISON_LILYPAD_REGEN_TIME = day_time / 4,
+            FROG_POISON_LILYPAD_MAX_SPAWN = 2,
         },
         always = {
-            FROG_POISON_REGEN_TIME = day_time/6,
-            FROG_POISON_RELEASE_TIME = day_time/12,
-            FROG_POISON_MAX_SPAWN = 3,
+            FROG_POISON_LILYPAD_REGEN_TIME = day_time / 6,
+            FROG_POISON_LILYPAD_MAX_SPAWN = 3,
         },
     }
     OverrideTuningVariables(tuning_vars[difficulty])
@@ -291,30 +287,26 @@ applyoverrides_pre.mosquito_setting = function(difficulty)
     local tuning_vars =
     {
         never = {
-            MOSQUITO_ENABLED = false,
+            MOSQUITO_LILYPAD_ENABLED = false,
         },
         few = {
-            MOSQUITO_REGEN_TIME = day_time/1,
-            MOSQUITO_RELEASE_TIME = day_time/2,
-            MOSQUITO_MAX_SPAWN = 1,
+            MOSQUITO_LILYPAD_REGEN_TIME = day_time,
+            MOSQUITO_LILYPAD_MAX_SPAWN = 1,
         },
         --[[
         default = {
-            MOSQUITO_REGEN_TIME = TUNING.DAY_TIME_DEFAULT/2,
-            MOSQUITO_RELEASE_TIME = TUNING.DAY_TIME_DEFAULT/4,
-            MOSQUITO_MAX_SPAWN = 1,
-            MOSQUITO_ENABLED = true,
+            MOSQUITO_LILYPAD_REGEN_TIME = day_time / 2,
+            MOSQUITO_LILYPAD_MAX_SPAWN = 1,
+            MOSQUITO_LILYPAD_ENABLED = true,
         },
         --]]
         many = {
-            MOSQUITO_REGEN_TIME = day_time/4,
-            MOSQUITO_RELEASE_TIME = day_time/8,
-            MOSQUITO_MAX_SPAWN = 2,
+            MOSQUITO_LILYPAD_REGEN_TIME = day_time / 4,
+            MOSQUITO_LILYPAD_MAX_SPAWN = 2,
         },
         always = {
-            MOSQUITO_REGEN_TIME = day_time/6,
-            MOSQUITO_RELEASE_TIME = day_time/12,
-            MOSQUITO_MAX_SPAWN = 3,
+            MOSQUITO_LILYPAD_REGEN_TIME = day_time / 6,
+            MOSQUITO_LILYPAD_MAX_SPAWN = 3,
         },
     }
     OverrideTuningVariables(tuning_vars[difficulty])

@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "Watch out for that tree!",
         ICEDTEA = "Is cool. Like Wolfgang.",
         IRON = "Iron is strong like Wolfgang.",
+        LILYPAD = "Big water leaf.",
         MACHETE = "Ah! Very good!",
         PANGOLDEN = "Hehe. Haves big nose.",
         PEAGAWK = {

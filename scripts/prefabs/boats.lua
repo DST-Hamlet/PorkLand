@@ -48,12 +48,12 @@ local function OnClose(inst)
     end
 end
 
-local function OnWorked(inst)
+local function OnHit(inst)
     inst.AnimState:PlayAnimation("hit")
     inst.AnimState:PushAnimation("run_loop", true)
 end
 
-local function OnHit(inst)
+local function OnWorked(inst)
     inst.components.lootdropper:DropLoot()
     if inst.components.container then
         inst.components.container:DropEverything()
@@ -113,19 +113,19 @@ local function OnDroppedCorkBoat(inst)
 end
 
 local function OnPickupedCorkBoat(inst, doer)
-	local boat_item = SpawnPrefab("corkboat_item")
-	doer.components.inventory:GiveItem(boat_item)
+    local boat_item = SpawnPrefab("corkboat_item")
+    doer.components.inventory:GiveItem(boat_item)
 
-	for _, item in pairs(inst.components.container.boatequipslots) do
+    for _, item in pairs(inst.components.container.boatequipslots) do
         item.components.inventoryitem.ignoresound = true
-		doer.components.inventory:GiveItem(item)
+        doer.components.inventory:GiveItem(item)
         item.components.inventoryitem.ignoresound = false
-	end
+    end
 
-	boat_item.boat_data = inst:GetSaveRecord()
+    boat_item.boat_data = inst:GetSaveRecord()
     inst:Remove()
 
-	return true
+    return true
 end
 
 local function OnSaveCorkBoatItem(inst)
@@ -174,6 +174,10 @@ local function commonfn()
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
+        function inst.OnEntityReplicated(inst)
+            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/bamboo"
+            inst.replica.sailable.basicspeedbonus = TUNING.RAFT_SPEED
+        end
         return inst
     end
 
@@ -191,6 +195,10 @@ local function commonfn()
     inst:AddComponent("boatvisualmanager")
 
     inst:AddComponent("sailable")
+    inst.components.sailable.flotsambuild = "flotsam_bamboo_build"
+
+    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/bamboo"
+    inst.replica.sailable.basicspeedbonus = TUNING.RAFT_SPEED
 
     inst:AddComponent("repairable")
     inst.components.repairable.repairmaterial = "boat"
@@ -237,6 +245,7 @@ local function lograftfn()
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/log"
+            inst.replica.sailable.basicspeedbonus = TUNING.LOGRAFT_SPEED
         end
         return inst
     end
@@ -252,6 +261,9 @@ local function lograftfn()
     inst.components.boathealth.hitfx = "boat_hit_fx_raft_log"
 
     inst.components.sailable.flotsambuild = "flotsam_lograft_build"
+
+    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/log"
+    inst.replica.sailable.basicspeedbonus = TUNING.LOGRAFT_SPEED
 
     inst.components.flotsamspawner.flotsamprefab = "flotsam_lograft"
 
@@ -269,6 +281,8 @@ local function rowboatfn()
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
+            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks"
+            inst.replica.sailable.basicspeedbonus = TUNING.ROWBOAT_SPEED
         end
         return inst
     end
@@ -286,6 +300,9 @@ local function rowboatfn()
 
     inst.components.sailable.flotsambuild = "flotsam_rowboat_build"
 
+    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks"
+    inst.replica.sailable.basicspeedbonus = TUNING.ROWBOAT_SPEED
+
     inst.components.flotsamspawner.flotsamprefab = "flotsam_rowboat"
 
     return inst
@@ -302,6 +319,7 @@ local function cargofn()
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/cargo"
+            inst.replica.sailable.basicspeedbonus = TUNING.CARGOBOAT_SPEED
         end
         return inst
     end
@@ -317,6 +335,9 @@ local function cargofn()
     inst.components.boathealth.hitfx = "boat_hit_fx_cargoboat"
 
     inst.components.sailable.flotsambuild = "flotsam_rowboat_build"
+
+    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/cargo"
+    inst.replica.sailable.basicspeedbonus = TUNING.CARGOBOAT_SPEED
 
     inst.components.flotsamspawner.flotsamprefab = "flotsam_cargo"
 

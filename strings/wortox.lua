@@ -56,6 +56,7 @@ return {
         HANGING_VINE = "Hello, what do you want?",
         ICEDTEA = "Cold gives it flavor.",
         IRON = "Oooh. Almost burned me.",
+        LILYPAD = "The boat passed in the pond, and the duckweed gave way.",
         MACHETE = "To chop and slash!",
         PANGOLDEN = "How are you today? Any outcome?",
         PEAGAWK = {

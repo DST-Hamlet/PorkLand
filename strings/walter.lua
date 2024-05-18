@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "What kind of monster up there?",
         ICEDTEA = "It just got better.",
         IRON = "Is that iron?",
+        LILYPAD = "Look how big it is! I really want to stand up and take a look!",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "A born gold rusher.",
         PEAGAWK = {

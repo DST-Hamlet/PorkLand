@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "Ugh, vines!",
         ICEDTEA = "I prefer hot things.",
         IRON = "I can't burn it with just my lighter.",
+        LILYPAD = "I can't burn stuff out on the water.",
         MACHETE = "Or I could just burn my way through.",
         PANGOLDEN = "Yeesh, he's sucking up all the gold!",
         PEAGAWK = {

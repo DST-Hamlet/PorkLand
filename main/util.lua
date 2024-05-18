@@ -1,4 +1,3 @@
-modimport("main/tileutil")
 GLOBAL.setfenv(1, GLOBAL)
 
 function GetWorldSetting(setting, default)

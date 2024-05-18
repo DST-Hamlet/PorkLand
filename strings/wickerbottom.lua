@@ -57,6 +57,7 @@ return {
         HANGING_VINE = "Hanging vines from the forest canopy.",
         ICEDTEA = "Invigorating.",
         IRON = "Ferrum.",
+        LILYPAD = "Goodness! They can grow quite large in the wild.",
         MACHETE = "Used for hacking through the brush.",
         PANGOLDEN = "Aurum vermilingua.",
         PEAGAWK = {
