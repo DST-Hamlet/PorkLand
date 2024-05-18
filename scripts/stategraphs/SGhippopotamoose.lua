@@ -4,7 +4,7 @@ local actionhandlers =
 {
 }
 
-local events=
+local events =
 {
     CommonHandlers.OnLocomote(true, true),
     CommonHandlers.OnSleep(),
@@ -325,31 +325,26 @@ CommonStates.AddWalkStates(states, {
         TimeEvent(0 * FRAMES, function(inst) inst.Physics:Stop() end),
     },
 
-    walktimeline = {
-            TimeEvent(0 * FRAMES, function(inst) inst.Physics:Stop() end),
-            TimeEvent(7 * FRAMES, function(inst) inst.components.locomotor:WalkForward() end),
-            TimeEvent(10 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/in") end),
-            TimeEvent(19*FRAMES, function(inst)
-                local x, y, z = inst.Transform:GetWorldPosition()
-                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
-                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
-                end
-            end ),
-            TimeEvent(20 * FRAMES, function(inst)
-                local x, y, z = inst.Transform:GetWorldPosition()
-                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
-                    if inst:HasTag("lightshake") then
-                        TheCamera:Shake("VERTICAL", 0.3, 0.05, 0.05)
-                    else
-                        TheCamera:Shake("VERTICAL", 0.5, 0.05, 0.1)
-                    end
-                else
-                    if inst:HasTag("wavemaker") then
-                        SpawnWaves(inst, 6, 360, 2, "wave_ripple")
-                    end
-                end
-                inst.Physics:Stop()
-            end ),
+    walktimeline =
+    {
+        TimeEvent(0 * FRAMES, function(inst) inst.Physics:Stop() end),
+        TimeEvent(7 * FRAMES, function(inst) inst.components.locomotor:WalkForward() end),
+        TimeEvent(10 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/in") end),
+        TimeEvent(19 * FRAMES, function(inst)
+            local x, y, z = inst.Transform:GetWorldPosition()
+            if TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
+            end
+        end ),
+        TimeEvent(20 * FRAMES, function(inst)
+            local x, y, z = inst.Transform:GetWorldPosition()
+            if TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
+                ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.3, 0.05, 0.05, inst, 40)
+            else
+                SpawnWaves(inst, 6, 360, 2, "wave_ripple")
+            end
+            inst.Physics:Stop()
+        end),
     },
 }, nil, true)
 
@@ -366,26 +361,19 @@ CommonStates.AddRunStates(states,{
         TimeEvent(10 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/in") end),
         TimeEvent(19 * FRAMES, function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
-            if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+            if TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
             end
         end ),
-
         TimeEvent(20 * FRAMES, function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
-            if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
-                if inst:HasTag("lightshake") then
-                    TheCamera:Shake("VERTICAL", 0.3, 0.05, 0.05)
-                else
-                    TheCamera:Shake("VERTICAL", 0.5, 0.05, 0.1)
-                end
+            if TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
+                ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.3, 0.05, 0.05, inst, 40)
             else
-                if inst:HasTag("wavemaker") then
-                    SpawnWaves(inst, 6, 360, 2, "wave_ripple")
-                end
+                SpawnWaves(inst, 6, 360, 2, "wave_ripple")
             end
             inst.Physics:Stop()
-        end ),
+        end),
     },
 }, {startrun = "walk_pre", run = "walk_loop", stoprun = "walk_pst"},true)
 

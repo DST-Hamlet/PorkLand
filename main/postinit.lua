@@ -9,6 +9,7 @@ local behaviour_posts = {
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
+    "blinkstaff",
     "builder_replica",
     "builder",
     "clock",
@@ -44,8 +45,10 @@ local component_posts = {
 
 local prefab_posts = {
     "buff_workeffectiveness",
+    "orangestaff",
     "player",
     "player_classified",
+    "torch",
     "woodie",
     "world_network",
     "shard_network",

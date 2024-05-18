@@ -136,7 +136,7 @@ local function common()
 
     inst:AddComponent("inspectable")
 
-    -- inst:AddComponent("waveobstacle") -- This component was only ever on mangroves
+    -- inst:AddComponent("waveobstacle") -- This component is for mangroves
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.allowwater = true
