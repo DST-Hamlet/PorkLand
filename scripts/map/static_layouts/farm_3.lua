@@ -357,14 +357,16 @@ return {
         },
         {
           name = "",
-          type = "wall_stone_repaired",
+          type = "wall_stone",
           shape = "rectangle",
           x = 468,
           y = 407,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -577,14 +579,16 @@ return {
         },
         {
           name = "",
-          type = "wall_stone_repaired",
+          type = "wall_stone",
           shape = "rectangle",
           x = 468,
           y = 173,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -720,14 +724,16 @@ return {
         },
         {
           name = "",
-          type = "wall_stone_repaired",
+          type = "wall_stone",
           shape = "rectangle",
           x = 469,
           y = 26,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -764,14 +770,16 @@ return {
         },
         {
           name = "",
-          type = "wall_stone_repaired",
+          type = "wall_stone",
           shape = "rectangle",
           x = 41,
           y = 172,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -819,14 +827,16 @@ return {
         },
         {
           name = "",
-          type = "wall_stone_repaired",
+          type = "wall_stone",
           shape = "rectangle",
           x = 42,
           y = 25,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",

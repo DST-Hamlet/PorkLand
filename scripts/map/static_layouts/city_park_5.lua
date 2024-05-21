@@ -77,14 +77,16 @@ return {
         },
         {
           name = "",
-          type = "wall_stone_repaired",
+          type = "wall_stone",
           shape = "rectangle",
           x = 37,
           y = 34,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -275,14 +277,16 @@ return {
         },
         {
           name = "",
-          type = "wall_stone_repaired",
+          type = "wall_stone",
           shape = "rectangle",
           x = 37,
           y = 290,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -396,14 +400,16 @@ return {
         },
         {
           name = "",
-          type = "wall_stone_repaired",
+          type = "wall_stone",
           shape = "rectangle",
           x = 285,
           y = 289,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -418,14 +424,16 @@ return {
         },
         {
           name = "",
-          type = "wall_stone_repaired",
+          type = "wall_stone",
           shape = "rectangle",
           x = 285,
           y = 33,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
