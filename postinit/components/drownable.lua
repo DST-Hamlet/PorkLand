@@ -18,6 +18,28 @@ function Drownable:ShouldDrown(...)
     return (self.inst.components.sailor == nil or not self.inst.components.sailor:IsSailing()) and _ShouldDrown(self, ...)
 end
 
+local function _never_invincible()
+    return false
+end
+
+local function _always_over_water()
+    return true
+end
+
+function Drownable:CanDrownOverWater(allow_invincible)
+    local _IsInvincible = allow_invincible and self.inst.components.health ~= nil and self.inst.components.health.IsInvincible or nil
+    if _IsInvincible ~= nil then self.inst.components.health.IsInvincible = _never_invincible end
+    local _enabled = self.enabled
+    self.enabled = self.enabled ~= false
+    local _IsOverWater = self.IsOverWater
+    self.IsOverWater = _always_over_water
+    local ret = self:ShouldDrown()
+    self.IsOverWater = _IsOverWater
+    self.enabled = _enabled
+    if _IsInvincible ~= nil then self.inst.components.health.IsInvincible = _IsInvincible end
+    return ret and not self.inst:HasTag("playerghost") -- HACK: Playerghosts dont drown because they lack the onsink sg event
+end
+
 local _WashAshore = Drownable.WashAshore
 function Drownable:WashAshore(...)
     if TheWorld.has_pl_ocean and self:ShouldDrownToDeath() then

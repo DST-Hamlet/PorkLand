@@ -129,3 +129,13 @@ function EntityScript:IsSailing()
     return (self.components.sailor ~= nil and self.components.sailor:IsSailing())
         or (self:HasTag("sailing") and self:HasTag("_sailor"))
 end
+
+function EntityScript:CanOnWater(allow_invincible)
+    return (self.components.locomotor == nil or self.components.locomotor:CanPathfindOnWater())
+        or (self:HasTag("player") and self.components.drownable == nil or self.components.drownable ~= nil and not self.components.drownable:CanDrownOverWater(allow_invincible))
+end
+
+function EntityScript:CanOnLand(allow_invincible)
+    return (self.components.locomotor == nil or self.components.locomotor:CanPathfindOnLand())
+        or (self:HasTag("player") and self.components.drydrownable == nil or self.components.drydrownable ~= nil and not self.components.drydrownable:CanDrownOverLand(allow_invincible))
+end

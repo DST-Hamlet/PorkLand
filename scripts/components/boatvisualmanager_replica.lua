@@ -7,15 +7,16 @@ local BoatVisualManager = Class(function(self, inst)
     for i = 1, 6 do -- 如果船的额外视觉子实体超过6个，那么会崩溃
         table.insert(self._equipvisuals, net_string(self.inst.GUID, "boatvisualmanager._equipvisuals["..tostring(i).."]", "equipvisuals["..tostring(i).."]dirty"))
     end
-
-    for i, v in ipairs(self._equipvisuals) do
-        inst:ListenForEvent("equipvisuals[" .. tostring(i) .. "]dirty", function()
-            if self._equipvisuals[i]:value() == "" then
-                self:RemoveBoatEquipVisuals_Client(i)
-            else
-                self:SpawnBoatEquipVisuals_Client(i, self._equipvisuals[i]:value())
-            end
-        end)
+    if not TheWorld.ismastersim then
+        for i, v in ipairs(self._equipvisuals) do
+            inst:ListenForEvent("equipvisuals[" .. tostring(i) .. "]dirty", function()
+                if self._equipvisuals[i]:value() == "" then
+                    self:RemoveBoatEquipVisuals_Client(i)
+                else
+                    self:SpawnBoatEquipVisuals_Client(i, self._equipvisuals[i]:value())
+                end
+            end)
+        end
     end
 end)
 
