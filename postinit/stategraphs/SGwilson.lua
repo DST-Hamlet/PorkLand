@@ -974,7 +974,7 @@ local states = {
 
     State{
         name = "sink_boat",
-        tags = {"busy", "nopredict", "nomorph", "drowning", "nointerrupt"},
+        tags = {"busy", "nopredict", "nomorph", "drowning", "nointerrupt", "temp_invincible"},
 
         onenter = function(inst, shore_pt)
             ForceStopHeavyLifting(inst)
@@ -1101,7 +1101,6 @@ local states = {
 
             EventHandler("on_washed_ashore", function(inst)
                 -- Congrats you LIVE!
-                local drownable = inst.components.drownable
                 inst.sg:GoToState("washed_ashore")
             end),
         },
