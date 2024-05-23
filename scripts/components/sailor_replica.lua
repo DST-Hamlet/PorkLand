@@ -33,20 +33,12 @@ local function OnBoatDirty(sailor)
         if not TheNet:IsDedicated() and sailor.inst == ThePlayer then
             sailor.inst:PushEvent("playboatmusic")
         end
-        -- if sailor.inst.components.locomotor and not sailor.inst.components.locomotor:IsAmphibious() then
-        --     sailor.inst.components.locomotor.pathcaps = sailor.inst.components.locomotor.pathcaps or {}
-        --     sailor.inst.components.locomotor.pathcaps.ignoreLand = true
-        --     sailor.inst.components.locomotor.pathcaps.allowocean = true
-        -- end
+        UpdateSailorPathcaps(sailor.inst, true)
     else
         if not TheNet:IsDedicated() and sailor.inst == ThePlayer then
             sailor.inst:PushEvent("stopboatmusic")
         end
-        -- if sailor.inst.components.locomotor and not sailor.inst.components.locomotor:IsAmphibious() then
-        --     sailor.inst.components.locomotor.pathcaps = sailor.inst.components.locomotor.pathcaps or {}
-        --     sailor.inst.components.locomotor.pathcaps.ignoreLand = false
-        --     sailor.inst.components.locomotor.pathcaps.allowocean = false
-        -- end
+        UpdateSailorPathcaps(sailor.inst, false)
         sailor._currentboat = nil
     end
 end

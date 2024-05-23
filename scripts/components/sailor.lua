@@ -206,6 +206,8 @@ function Sailor:Embark(boat, nostate)
     end
     self.boat.Transform:SetRotation(0)
 
+    UpdateSailorPathcaps(self.inst, true)
+
     self.inst:ListenForEvent("boathealthchange", OnBoatDelta, boat)
 
     if self.boat.components.boathealth then
@@ -245,6 +247,8 @@ function Sailor:Disembark(pos, boat_to_boat, nostate)
     end
 
     self.inst:StopUpdatingComponent(self)
+
+    UpdateSailorPathcaps(self.inst, false)
 
     self.inst:RemoveEventCallback("boathealthchange", OnBoatDelta, self.boat)
 
