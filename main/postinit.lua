@@ -55,6 +55,7 @@ local prefab_posts = {
     "world_network",
     "shard_network",
     "wormwood",
+    "wortox",
 }
 
 local multipleprefab_posts = {

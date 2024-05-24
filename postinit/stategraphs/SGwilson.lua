@@ -9,7 +9,9 @@ local ClearStatusAilments = nil
 local ForceStopHeavyLifting = nil
 local StartTeleporting = nil
 local ToggleOnPhysics = nil
+local ToggleOffPhysics = nil
 local DoneTeleporting = nil
+local DoWortoxPortalTint = nil
 
 local function OnExitRow(inst)
     local boat = inst.replica.sailor:GetBoat()
@@ -435,7 +437,6 @@ local states = {
         onenter = function(inst)
             local action = inst:GetBufferedAction()
             if action.target and action.target.components.sailable and not action.target.components.sailable:IsOccupied() then
-                action.target.components.sailable.isembarking = true
                 if inst.components.sailor and inst.components.sailor:IsSailing() then
                     inst.components.sailor:Disembark(nil, true)
                 else
@@ -468,9 +469,13 @@ local states = {
             inst.AnimState:PlayAnimation("jumpboat")
             inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boatjump_whoosh")
 
-            local action = inst:GetBufferedAction()
             inst.sg.statemem.startpos = inst:GetPosition()
-            inst.sg.statemem.targetpos = action.target and action.target:GetPosition()
+            local action = inst:GetBufferedAction()
+            if action ~= nil then
+                inst.sg.statemem.targetpos = action.target and action.target:GetPosition()
+                inst.sg.statemem.boattarget = action.target
+                action.target.components.sailable.isembarking = true
+            end
 
             if inst.components.playercontroller ~= nil then
                 inst.components.playercontroller:Enable(false)
@@ -479,6 +484,10 @@ local states = {
         end,
 
         onexit = function(inst)
+            if inst.sg.statemem.boattarget ~= nil then
+                inst.sg.statemem.boattarget.components.sailable.isembarking = false
+            end
+
             if inst.Physics.ClearCollidesWith then
                 inst.Physics:CollidesWith(COLLISION.LIMITS) -- R08_ROT_TURNOFTIDES
             end
@@ -511,7 +520,10 @@ local states = {
                 inst.Physics:Stop()
 
                 inst.components.locomotor:Stop()
-                inst:PerformBufferedAction()
+                inst.sg.statemem.embark_succeeded = inst:PerformBufferedAction()
+                if not inst.sg.statemem.embark_succeeded then
+                    inst.sg:GoToState("idle")
+                end
             end),
         },
     },
@@ -1159,6 +1171,146 @@ local states = {
             end
         end,
     },
+
+    State{
+        name = "portal_jumpin_boat",
+        tags = { "busy", "pausepredict", "nodangle", "nomorph" },
+
+        onenter = function(inst, data)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("wortox_portal_jumpin")
+            local x, y, z = inst.Transform:GetWorldPosition()
+            SpawnPrefab("wortox_portal_jumpin_fx").Transform:SetPosition(x, y, z)
+            inst.sg:SetTimeout(11 * FRAMES)
+            inst.sg.statemem.from_map = data and data.from_map or nil
+            local dest_target = data and data.dest_target or nil
+            if dest_target ~= nil then
+                inst.sg.statemem.dest_target = dest_target
+                inst.sg.statemem.dest_pos = dest_target:GetPosition()
+                inst:ForceFacePoint(dest_target.Transform:GetWorldPosition())
+                dest_target.components.sailable.isembarking = true
+            else
+                inst.sg.statemem.dest_target = nil
+            end
+
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:RemotePausePrediction()
+            end
+
+            if inst.components.sailor and inst.components.sailor:IsSailing() then
+                inst.components.sailor:Disembark(nil, nil, true)
+            end
+        end,
+
+        onupdate = function(inst)
+            if inst.sg.statemem.tints ~= nil then
+                DoWortoxPortalTint(inst, table.remove(inst.sg.statemem.tints))
+                if #inst.sg.statemem.tints <= 0 then
+                    inst.sg.statemem.tints = nil
+                end
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve/creatures/together/toad_stool/infection_post", nil, .7)
+                inst.SoundEmitter:PlaySound("dontstarve/characters/wortox/soul/spawn", nil, .5)
+            end),
+            TimeEvent(2 * FRAMES, function(inst)
+                inst.sg.statemem.tints = { 1, .6, .3, .1 }
+                PlayFootstep(inst)
+            end),
+            TimeEvent(4 * FRAMES, function(inst)
+                inst.sg:AddStateTag("noattack")
+                inst.components.health:SetInvincible(true)
+                inst.DynamicShadow:Enable(false)
+            end),
+        },
+
+        ontimeout = function(inst)
+            inst.sg.statemem.portaljumping = true
+            inst.sg:GoToState("portal_jumpout_boat", {dest_target = inst.sg.statemem.dest_target, dest_pos = inst.sg.statemem.dest_pos, from_map = inst.sg.statemem.from_map})
+        end,
+
+        onexit = function(inst)
+            inst.sg.statemem.dest_target.components.sailable.isembarking = false
+            if not inst.sg.statemem.portaljumping then
+                inst.components.health:SetInvincible(false)
+                inst.DynamicShadow:Enable(true)
+                DoWortoxPortalTint(inst, 0)
+            end
+        end,
+    },
+
+    State{
+        name = "portal_jumpout_boat",
+        tags = { "busy", "nopredict", "nomorph", "noattack", "nointerrupt" },
+
+        onenter = function(inst, data)
+            ToggleOffPhysics(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("wortox_portal_jumpout")
+            inst:ResetMinimapOffset()
+            if data and data.from_map then
+                inst:SnapCamera()
+            end
+            local dest_target = data and data.dest_target or nil
+            if dest_target ~= nil then
+                inst.Physics:Teleport(dest_target.Transform:GetWorldPosition())
+                if dest_target and dest_target.components.sailable and dest_target.components.sailable.sailor == nil then
+                    inst.components.sailor:Embark(dest_target, true)
+                end
+            else
+                inst.Physics:Teleport(dest_pos:Get())
+            end
+            SpawnPrefab("wortox_portal_jumpout_fx").Transform:SetPosition(inst.Transform:GetWorldPosition())
+            inst.DynamicShadow:Enable(false)
+            inst.sg:SetTimeout(14 * FRAMES)
+            DoWortoxPortalTint(inst, 1)
+            inst.components.health:SetInvincible(true)
+            inst:PushEvent("soulhop")
+        end,
+
+        onupdate = function(inst)
+            if inst.sg.statemem.tints ~= nil then
+                DoWortoxPortalTint(inst, table.remove(inst.sg.statemem.tints))
+                if #inst.sg.statemem.tints <= 0 then
+                    inst.sg.statemem.tints = nil
+                end
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/characters/wortox/soul/hop_out") end),
+            TimeEvent(5 * FRAMES, function(inst)
+                inst.sg.statemem.tints = { 0, .4, .7, .9 }
+            end),
+            TimeEvent(7 * FRAMES, function(inst)
+                inst.components.health:SetInvincible(false)
+                inst.sg:RemoveStateTag("noattack")
+                inst.SoundEmitter:PlaySound("dontstarve/movement/bodyfall_dirt")
+            end),
+            TimeEvent(8 * FRAMES, function(inst)
+                inst.DynamicShadow:Enable(true)
+                ToggleOnPhysics(inst)
+            end),
+        },
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("idle", true)
+        end,
+
+        onexit = function(inst)
+            inst.components.health:SetInvincible(false)
+            inst.DynamicShadow:Enable(true)
+            DoWortoxPortalTint(inst, 0)
+            if inst.sg.statemem.isphysicstoggle then
+                ToggleOnPhysics(inst)
+            end
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -1184,11 +1336,17 @@ AddStategraphPostInit("wilson", function(sg)
     local _jumpin_onexit = sg.states["jumpin"].onexit
     ToggleOnPhysics = ToolUtil.GetUpvalue(_jumpin_onexit, "ToggleOnPhysics")
 
+    local _jumpin_onenter = sg.states["jumpin"].onenter
+    ToggleOffPhysics = ToolUtil.GetUpvalue(_jumpin_onenter, "ToggleOffPhysics")
+
     local _abandon_ship_onexit = sg.states["abandon_ship"].onexit
     DoneTeleporting = ToolUtil.GetUpvalue(_abandon_ship_onexit, "DoneTeleporting")
 
     local _abandon_ship_events_animover = sg.states["abandon_ship"].events.animover.fn
     StartTeleporting = ToolUtil.GetUpvalue(_abandon_ship_events_animover, "StartTeleporting")
+
+    local _portal_jumpin_onupdate = sg.states["portal_jumpin"].onupdate
+    DoWortoxPortalTint = ToolUtil.GetUpvalue(_portal_jumpin_onupdate, "DoWortoxPortalTint")
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
@@ -1242,6 +1400,14 @@ AddStategraphPostInit("wilson", function(sg)
             inst.AnimState:PushAnimation("idle_poison_pst", false)
         elseif _funnyidle_onenter then
             _funnyidle_onenter(inst, ...)
+        end
+    end
+
+    local _portal_jumpin_onenter = sg.states["portal_jumpin"].onenter
+    sg.states["portal_jumpin"].onenter = function(inst, ...)
+        _portal_jumpin_onenter(inst, ...)
+        if inst.components.sailor and inst.components.sailor:IsSailing() then
+            inst.components.sailor:Disembark(nil, nil, true)
         end
     end
 
