@@ -124,12 +124,13 @@ local function add_temp_ents(data, x, z, prefab, city_id, properties)
         z = z,
         prefab = prefab,
         city = city_id,
+        properties = properties,
     }
 
     table.insert(data, save_data)
 end
 
-local function set_entity(entities, width, height, prop, x, z, city_id)
+local function set_entity(entities, width, height, prop, x, z, city_id, properties)
     if entities[prop] == nil then
         entities[prop] = {}
     end
@@ -139,11 +140,10 @@ local function set_entity(entities, width, height, prop, x, z, city_id)
         scenario = "set_city_possession_" .. city_id
     end
 
-    local save_data = {
-        x = (x - width / 2.0) * TILE_SCALE,
-        z = (z - height / 2.0) * TILE_SCALE,
-        scenario = scenario
-    }
+    local save_data = properties or {}
+    save_data.x = (x - width / 2.0) * TILE_SCALE
+    save_data.z = (z - height / 2.0) * TILE_SCALE
+    save_data.scenario = scenario
 
     table.insert(entities[prop], save_data)
 end
@@ -170,7 +170,7 @@ end
 
 local function export_spawners_to_entites(entities, width, height, spawners)
     for i, spawner in ipairs(spawners)do
-        set_entity(entities, width, height, spawner.prefab, spawner.x, spawner.z, spawner.city)
+        set_entity(entities, width, height, spawner.prefab, spawner.x, spawner.z, spawner.city, spawner.properties)
     end
 end
 

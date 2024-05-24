@@ -375,7 +375,7 @@ CommonStates.AddRunStates(states,{
             inst.Physics:Stop()
         end),
     },
-}, {startrun = "walk_pre", run = "walk_loop", stoprun = "walk_pst"},true)
+}, {startrun = "walk_pre", run = "walk_loop", stoprun = "walk_pst"}, true)
 
 CommonStates.AddSleepStates(states, {
     sleeptimeline =

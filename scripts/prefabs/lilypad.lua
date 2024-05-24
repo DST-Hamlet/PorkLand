@@ -136,12 +136,12 @@ local function common()
 
     inst:AddComponent("inspectable")
 
-    -- inst:AddComponent("waveobstacle") -- This component is for mangroves
-
     inst:AddComponent("childspawner")
     inst.components.childspawner.allowwater = true
     inst.components.childspawner.spawnonwateroffset = 1
     inst.components.childspawner:StartRegen()
+
+    MakeHauntable(inst)
 
     inst:DoTaskInTime(0, OverlapCheck)
 
