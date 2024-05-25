@@ -23,7 +23,7 @@ local events=
             end
         else
             local x, y, z = inst.Transform:GetWorldPosition()
-            if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+            if not TheWorld.Map:IsPassableAtPoint(x, y, z) then
                 if not inst.sg:HasStateTag("swimming") then
                     inst.sg:GoToState("swim")
                 end

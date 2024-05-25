@@ -163,6 +163,12 @@ function Map:IsCloseToLand(x, y, z, radius)
     end, self)
 end
 
+function Map:IsCloseToWater(x, y, z, radius)
+    return self:IsCloseToTile(x, y, z, radius, function(_x, _y, _z, map)
+        return not map:IsLandTileAtPoint(_x, _y, _z)
+    end, self)
+end
+
 function Map:IsSurroundedByTile(x, y, z, radius, typefn, ...)
     if radius == 0 then return typefn(x, y, z, ...) end
     -- Correct improper radiuses caused by changes to the radius based on overhang

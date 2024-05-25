@@ -146,7 +146,7 @@ function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_wat
 end
 
 function UpdateSailorPathcaps(inst, allowocean)
-    if inst:IsSailing() and not inst.components.amphibiouscreature ~= nil then
+    if inst:IsSailing() and inst.components.locomotor and not inst.components.amphibiouscreature ~= nil then
         inst.components.locomotor.pathcaps = inst.components.locomotor.pathcaps or {}
         inst.components.locomotor.pathcaps.ignoreLand = allowocean
         inst.components.locomotor.pathcaps.allowocean = allowocean

@@ -8,35 +8,23 @@ local rogueassets =
     Asset("ANIM", "anim/wave_rogue.zip"),
 }
 
+local SPLASH_WETNESS = 9
 local function wetanddamage(inst, other)
     -- Get wet and take damage
-    if other and other.components.driver and other.components.driver.vehicle then
-        local vehicle = other.components.driver.vehicle
-        if vehicle.components.boathealth then
-            vehicle.components.boathealth:DoDelta(inst.hitdamage, "wave")
+    if other and other.components.sailor and other.components.sailor:GetBoat() then
+        local boat = other.components.sailor and other.components.sailor:GetBoat()
+        if boat and boat.components.boathealth then
+            boat.components.boathealth:DoDelta(inst.hitdamage or -TUNING.ROGUEWAVE_HIT_DAMAGE, "wave")
         end
     end
 
-    if other and other.components.moisture then
-        if other.components.inventory and other.components.inventory:IsWaterproof() then
-            -- We are protected!
-            return
-        end
-
-        local hitmoisturerate, waterproofMultiplier = 1, 1
-
-        if other.components.driver and other.components.driver.vehicle and other.components.driver.vehicle.components.drivable then
-            hitmoisturerate = other.components.driver.vehicle.components.drivable:GetHitMoistureRate()
-        end
-
-        if other.components.inventory then
-            waterproofMultiplier = 1 - math.min(other.components.inventory:GetWaterproofness(), 1)
-        end
-
-        local delta = inst.hitmoisture * hitmoisturerate * waterproofMultiplier
-
-        if delta > 0 then
-            other.components.moisture:DoDelta(delta)
+    local pos = inst:GetPosition()
+    local ents = TheSim:FindEntities(pos.x, pos.y, pos.z, 4)
+    for _, v in pairs(ents) do
+        local moisture = v.components.moisture
+        if moisture ~= nil then
+            local waterproofness = moisture:GetWaterproofness()
+            moisture:DoDelta(inst.hitmoisture or SPLASH_WETNESS * (1 - waterproofness))
         end
     end
 end
@@ -70,7 +58,7 @@ local function OnCollideRipple(inst, other)
         local is_moving = other.sg:HasStateTag("moving")
         if angle_difference < TUNING.WAVE_BOOST_ANGLE_THRESHOLD and is_moving then
             --Do boost
-            other:PushEvent("boostbywave", {position = inst.Transform:GetWorldPosition(), velocity = inst.Physics:GetVelocity(), boost = nil}) -- boost param is for walani
+            other:PushEvent("boostbywave", {position = inst.Transform:GetWorldPosition(), boost = nil}) -- boost param is for walani
             inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wave_boost")
         else
             wetanddamage(inst, other)
@@ -134,10 +122,15 @@ local function OnLoad(inst, data)
 end
 
 local function activate_collision(inst)
-    inst.Physics:SetCollides(false) --Still will get collision callback, just not dynamic collisions.
-    inst.Physics:SetCollisionGroup(COLLISION.WAVES)
-    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-    inst.Physics:CollidesWith(COLLISION.OBSTACLES)
+    local phys = inst.Physics
+    phys:SetCollisionGroup(COLLISION.OBSTACLES)
+    phys:ClearCollisionMask()
+    phys:CollidesWith(COLLISION.WORLD)
+    phys:CollidesWith(COLLISION.OBSTACLES)
+    phys:CollidesWith(COLLISION.SMALLOBSTACLES)
+    phys:CollidesWith(COLLISION.CHARACTERS)
+    phys:CollidesWith(COLLISION.GIANTS)
+    phys:SetCollides(false) --Still will get collision callback, just not dynamic collisions.
 end
 
 local function OnRemove(inst)
@@ -216,4 +209,4 @@ end
 
 
 return Prefab("wave_ripple", MakeWave("wave_Ripple", OnCollideRipple, RipplePostinit), waveassets),
-       Prefab("rogue_wave", MakeWave("wave_rogue", OnCollideRogue, RoguePostinit), rogueassets)
+       Prefab("wave_rogue", MakeWave("wave_rogue", OnCollideRogue, RoguePostinit), rogueassets)

@@ -1,7 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 local BlinkStaff = require("components/blinkstaff")
 
-local function OnBlinked(caster, self, dpt)
+local function OnBoatBlinked(caster, self, pt, boat)
     if caster.sg == nil then
         caster:Show()
         if caster.components.health ~= nil then
@@ -13,28 +13,31 @@ local function OnBlinked(caster, self, dpt)
     elseif caster.sg.statemem.onstopblinking ~= nil then
         caster.sg.statemem.onstopblinking()
     end
-	local pt = dpt:GetPosition()
-	if pt ~= nil and TheWorld.Map:IsOceanTileAtPoint(pt:Get()) and not TheWorld.Map:IsGroundTargetBlocked(pt) then
-	    caster.Physics:Teleport(pt:Get())
-	end
+    if pt ~= nil then
+        caster.Physics:Teleport(pt:Get())
+    end
+    if boat.components.sailable then
+        boat.components.sailable.isembarking = false
+    end
+    if boat ~= nil and boat.components.sailable and boat.components.sailable.sailor == nil then
+        caster.components.sailor:Embark(boat)
+    end
     self:SpawnEffect(caster)
     if self.postsound and self.postsound ~= "" then
         caster.SoundEmitter:PlaySound(self.postsound)
     end
 end
 
-local _Blink = BlinkStaff.Blink
-function BlinkStaff:Blink(pt, caster, ...)
-    if not caster:IsSailing() then
-        return _Blink(self, pt, caster, ...)
-    end
+function BlinkStaff:BlinkToBoat(boat, caster, ...)
+    local pt = boat:GetPosition()
 
-    if (caster.sg ~= nil and caster.sg.currentstate.name ~= "quicktele") or
-        not TheWorld.Map:IsOceanTileAtPoint(pt:Get()) or
-        TheWorld.Map:IsGroundTargetBlocked(pt) then
+    if (caster.sg ~= nil and caster.sg.currentstate.name ~= "quicktele") then
         return false
     elseif self.blinktask ~= nil then
         self.blinktask:Cancel()
+    end
+    if caster.components.sailor and caster.components.sailor:IsSailing() then
+        caster.components.sailor:Disembark(nil, nil, true)
     end
 
     self:SpawnEffect(caster)
@@ -54,7 +57,11 @@ function BlinkStaff:Blink(pt, caster, ...)
         caster.sg.statemem.onstartblinking()
     end
 
-    self.blinktask = caster:DoTaskInTime(.25, OnBlinked, self, DynamicPosition(pt))
+    if boat.components.sailable then
+        boat.components.sailable.isembarking = true
+    end
+
+    self.blinktask = caster:DoTaskInTime(.25, OnBoatBlinked, self, pt, boat)
 
     if self.onblinkfn ~= nil then
         self.onblinkfn(self.inst, pt, caster)
@@ -62,3 +69,15 @@ function BlinkStaff:Blink(pt, caster, ...)
 
     return true
 end
+
+local _Blink = BlinkStaff.Blink
+function BlinkStaff:Blink(pt, caster, ...)
+    local blink_success = _Blink(self, pt, caster, ...)
+    if blink_success then
+        if caster.components.sailor and caster.components.sailor:IsSailing() then
+            caster.components.sailor:Disembark(nil, nil, true)
+        end
+    end
+    return blink_success
+end
+

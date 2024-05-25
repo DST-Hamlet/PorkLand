@@ -156,10 +156,9 @@ ACTIONS.EMBARK.strfn = function(act)
 end
 
 ACTIONS.EMBARK.fn = function(act)
-    if act.target.components.sailable then
+    if act.target and act.target.components.sailable and act.target.components.sailable.sailor == nil then
         act.doer.components.sailor:Embark(act.target)
         return true
-
     end
 end
 
@@ -281,6 +280,31 @@ ACTIONS.PICK.strfn = function(act, ...)
     end
 end
 
+local function TryToSoulhop(act, act_target, consumeall)
+    return act.doer ~= nil
+    and act.doer.sg ~= nil
+    and act.doer.sg.currentstate.name == "portal_jumpin_pre"
+    and act_target ~= nil
+    and act.doer.TryToPortalHop ~= nil
+    and act.doer:TryToPortalHop(act.distancecount, consumeall)
+end
+
+local _BLINK_fn = ACTIONS.BLINK.fn
+ACTIONS.BLINK.fn = function(act, ...)
+    if act.target then
+        if act.target.components.sailable and not act.target.components.sailable:IsOccupied() then
+            if act.invobject ~= nil then
+                return act.invobject.components.blinkstaff:BlinkToBoat(act.target, act.doer)
+            elseif TryToSoulhop(act, act.target) then
+                act.doer.sg:GoToState("portal_jumpin_boat", {dest_target = act.target,})
+                return true
+            end
+        end
+    else
+        return _BLINK_fn(act, ...)
+    end
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world
@@ -382,15 +406,9 @@ function USEITEM.repairer(inst, doer, target, actions, right, ...)
     end
 end
 
-local _POINTblinkstaff = POINT.blinkstaff
-function POINT.blinkstaff(inst, doer, pos, actions, right, target, ...)
-    if right and doer and doer:IsSailing() then
-        local x, y, z = pos:Get()
-        if TheWorld.Map:IsOceanAtPoint(x, y, z) and not TheWorld.Map:IsGroundTargetBlocked(pos) and not doer:HasTag("steeringboat") and not doer:HasTag("rotatingboat") then
-            table.insert(actions, ACTIONS.BLINK)
-        end
-    else
-        return _POINTblinkstaff(inst, doer, pos, actions, right, target, ...)
+function EQUIPPED.blinkstaff(inst, doer, target, actions, right, ...)
+    if right and target and target:HasTag("sailable") then
+        table.insert(actions, ACTIONS.BLINK)
     end
 end
 

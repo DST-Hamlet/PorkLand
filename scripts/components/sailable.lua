@@ -1,4 +1,7 @@
 local function onsailor(self, sailor)
+    if self.inst.replica.sailable then
+        self.inst.replica.sailable._sailor:set(self.sailor)
+    end
     if self:IsOccupied() then
         self.inst:RemoveTag("sailable")
     else
