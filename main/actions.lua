@@ -439,3 +439,19 @@ function INVENTORY.equippable(inst, doer, actions, ...)
         end
     end
 end
+
+local _SCENEinventoryitem = SCENE.inventoryitem
+function SCENE.inventoryitem(inst, doer, actions, right, ...)
+   if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint() then
+        if inst.replica.inventoryitem:CanBePickedUp() and
+        doer.replica.inventory ~= nil and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable ~= nil) and
+        not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder")))) and
+        (not inst:HasTag("spider") or (doer:HasTag("spiderwhisperer") and right)) and
+        (right or not inst:HasTag("heavy")) and
+        not (right and inst.replica.container ~= nil and inst.replica.equippable == nil) then  --coryfrom SCENE.inventoryitem
+            table.insert(actions, ACTIONS.RETRIEVE)
+        end
+    else
+       _SCENEinventoryitem(inst, doer, actions, right, ...)
+    end
+end

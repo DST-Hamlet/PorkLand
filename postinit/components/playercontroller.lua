@@ -16,7 +16,11 @@ local GetPickupAction = function(self, target, tool, ...)
         end
     end
 
-    return _GetPickupAction(self, target, tool, ...)
+    local rets = {_GetPickupAction(self, target, tool, ...)}
+    if rets[1] == ACTIONS.PICKUP and TheWorld.items_pass_ground and not target:IsOnPassablePoint() and self.inst:IsOnPassablePoint() then
+        rets[1] = ACTIONS.RETRIEVE
+    end
+    return unpack(rets)
 end
 ToolUtil.SetUpvalue(PlayerController.GetActionButtonAction, GetPickupAction, "GetPickupAction")
 

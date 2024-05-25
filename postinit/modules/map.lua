@@ -53,70 +53,39 @@ function Map:GetVisualTileAtPoint(x, y, z)
 end
 
 function Map:ReverseIsVisualGroundAtPoint(x, y, z)
-    if not self:IsLandTileAtPoint(x, y, z) then
+    if self:ReverseIsVisualWaterAtPoint(x, y, z) then
         return false
     end
 
-    local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
-
-    local offset_x = x - center_x
-    local abs_offset_x = math.abs(offset_x)
-    local near_x
-    if abs_offset_x >= 1 then
-        near_x = center_x + (offset_x > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(near_x, 0, center_z) then
-            return false
+    if self:IsCloseToLand(x, y, z, 1) then
+        local cx, cy, cz = self:GetTileCenterPoint(x, y, z)
+        if not self:IsValidTileAtPoint(cx, cy, cz) then
+            if math.abs(cx - x) > 1 and math.abs(cz - z) > 1 and math.abs(cx - x) + math.abs(cz - z) > 3 then
+                return true
+            else
+                return false
+            end
+        else
+            return true
         end
     end
 
-    local offset_z = z - center_z
-    local abs_offset_z = math.abs(offset_z)
-    local near_z
-    if abs_offset_z >= 1 then
-        near_z = center_z + (offset_z > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(center_x, 0, near_z) then
-            return false
-        end
-    end
-
-    if near_x and near_z and abs_offset_z + abs_offset_x >= 3 then
-        return not self:IsOceanTileAtPoint(near_x, 0, near_z)
-    end
-
-    return true
+    return false
 end
 
 function Map:ReverseIsVisualWaterAtPoint(x, y, z)
-    if self:IsOceanTileAtPoint(x, y, z) then
-        return true
-    end
-
-    local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
-
-    local offset_x = x - center_x
-    local abs_offset_x = math.abs(offset_x)
-    local near_x
-    if abs_offset_x >= 1.5 then
-        near_x = center_x + (offset_x > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(near_x, 0, center_z) then
+    if self:IsCloseToWater(x, y, z, 1) then
+        local cx, cy, cz = self:GetTileCenterPoint(x, y, z)
+        if self:IsLandTileAtPoint(cx, cy, cz) then
+            if math.abs(cx - x) > 1 and math.abs(cz - z) > 1 and math.abs(cx - x) + math.abs(cz - z) > 3 then
+                return true
+            else
+                return false
+            end
+        else
             return true
         end
     end
-
-    local offset_z = z - center_z
-    local abs_offset_z = math.abs(offset_z)
-    local near_z
-    if abs_offset_z >= 1.5 then
-        near_z = center_z + (offset_z > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(center_x, 0, near_z) then
-            return true
-        end
-    end
-
-    if near_x and near_z and abs_offset_z + abs_offset_x > 3 then
-        return self:IsOceanTileAtPoint(near_x, 0, near_z)
-    end
-
     return false
 end
 
@@ -165,7 +134,7 @@ end
 
 function Map:IsCloseToWater(x, y, z, radius)
     return self:IsCloseToTile(x, y, z, radius, function(_x, _y, _z, map)
-        return not map:IsLandTileAtPoint(_x, _y, _z)
+        return map:IsOceanTileAtPoint(_x, _y, _z)
     end, self)
 end
 
