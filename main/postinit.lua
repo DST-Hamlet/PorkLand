@@ -3,6 +3,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 -- Update this list when adding files
 local behaviour_posts = {
+    "chaseandattack",
     "wander",
 }
 
@@ -41,6 +42,7 @@ local component_posts = {
     "sleeper",
     "waterproofer",
     "wavemanager",
+    "wisecracker",
     "worldstate",
 }
 
