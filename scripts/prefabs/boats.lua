@@ -184,7 +184,7 @@ local function commonfn()
     inst.landsound = "dontstarve_DLC002/common/boatjump_land_bamboo"
     inst.sinksound = "dontstarve_DLC002/common/boat/sinking/bamboo"
 
-    -- inst.waveboost = TUNING.WAVEBOOST
+    inst.waveboost = TUNING.WAVEBOOST
 
     inst:AddComponent("inspectable")
 

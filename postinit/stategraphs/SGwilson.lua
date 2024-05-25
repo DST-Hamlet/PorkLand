@@ -520,8 +520,8 @@ local states = {
                 inst.Physics:Stop()
 
                 inst.components.locomotor:Stop()
-                inst.sg.statemem.embark_succeeded = inst:PerformBufferedAction()
-                if not inst.sg.statemem.embark_succeeded then
+                local embark_succeeded = inst:PerformBufferedAction()
+                if not embark_succeeded then
                     inst.sg:GoToState("idle")
                 end
             end),
@@ -1352,6 +1352,32 @@ AddStategraphPostInit("wilson", function(sg)
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
         if not inst.sg:HasStateTag("sneeze") then
             return _attack_deststate and _attack_deststate(inst, ...)
+        end
+    end
+
+    local _attacked_eventhandler = sg.events.attacked.fn
+    sg.events.attacked.fn = function(inst, data)
+        if inst.components.sailor and inst.components.sailor:IsSailing() then
+            local boat = inst.components.sailor:GetBoat()
+            if not inst.components.health:IsDead() and not (boat and boat.components.boathealth and boat.components.boathealth:IsDead()) then
+
+                if not boat.components.sailable or not boat.components.sailable:CanDoHit() then
+                    return
+                end
+
+                if data.attacker and (data.attacker:HasTag("insect"))then
+                    local is_idle = inst.sg:HasStateTag("idle")
+                    if not is_idle then
+                        return
+                    end
+                end
+
+                boat.components.sailable:GetHit()
+
+                _attacked_eventhandler(inst, data)
+            end
+        else
+            _attacked_eventhandler(inst, data)
         end
     end
 

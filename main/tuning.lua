@@ -272,6 +272,9 @@ local tuning = {
     WAVE_HIT_DAMAGE = 5,
     ROGUEWAVE_HIT_MOISTURE = 25,
     ROGUEWAVE_HIT_DAMAGE = 10,
+    ROGUEWAVE_SPEED_MULTIPLIER = 3,
+    WAVE_BOOST_ANGLE_THRESHOLD = 90,
+    WAVEBOOST = 5,
 
     BOAT_HITFX_THRESHOLD = .08,  -- percent of health you need to lose to show the fx
 

@@ -25,7 +25,6 @@ local function MakeLilypadPhysics(inst, rad)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.ITEMS)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-    inst.Physics:CollidesWith(COLLISION.WAVES)
     inst.Physics:CollidesWith(COLLISION.WORLD)
 end
 

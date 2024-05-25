@@ -9,7 +9,7 @@ function GetWorldSetting(setting, default)
 end
 
 function SpawnWaves(inst, num_waves, total_angle, wave_speed, wave_prefab, initialOffset, idleTime, instantActive, random_angle)
-    wave_prefab = wave_prefab or "rogue_wave"
+    wave_prefab = wave_prefab or "wave_rogue"
     total_angle = math.clamp(total_angle, 1, 360)
 
     local pos = inst:GetPosition()

@@ -74,6 +74,7 @@ function Combat:GetAttacked(attacker, damage, weapon, stimuli, ...)
         if not blocked then
             self.inst:PushEvent("boatattacked", {attacker = attacker, damage = damage, weapon = weapon, stimuli = stimuli, redirected = false})
 
+            print("boatattacked")
             if self.onhitfn then
                 self.onhitfn(self.inst, attacker, damage)
             end

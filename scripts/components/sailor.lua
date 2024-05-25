@@ -30,6 +30,24 @@ local function onsailing(self, sailing)
     end
 end
 
+local function boostbywave(inst, data)
+    print("boostbywave")
+    if inst.sg:HasStateTag("boating") then
+
+        local boost = TUNING.WAVEBOOST
+        if inst.components.sailor and inst.components.sailor:GetBoat() then
+
+            if inst.components.sailor:GetBoat().waveboost then
+                boost = data.boost or inst.components.sailor:GetBoat().waveboost
+            end
+        end
+
+        if inst.components.sailor then
+            inst.components.sailor.boatspeed = inst.components.sailor.boatspeed + boost
+        end
+    end
+end
+
 local Sailor = Class(function(self, inst)
     self.inst = inst
     self.boat = nil
@@ -47,6 +65,8 @@ local Sailor = Class(function(self, inst)
     self.deceleration = 6
     self.boatspeed = 0
     self.perdictframe = 0
+
+    self.inst:ListenForEvent("boostbywave", boostbywave)
 end,
 nil,
 {
@@ -116,8 +136,10 @@ function Sailor:OnUpdate(dt)
             self.boatspeed = currentSpeed
             local sailor_speed = self.boatspeed
             sailor_speed = math.floor(self.boatspeed + 1)
-            if sailor_speed > targetSpeed and self.perdictframe > 0 then
-                sailor_speed = targetSpeed
+            if sailor_speed > targetSpeed and
+                ((sailor_speed - targetSpeed) <= (math.floor(targetSpeed + 1) - targetSpeed)) and
+                self.perdictframe > 0 then
+                    sailor_speed = targetSpeed
             end
 
             self.inst.replica.sailor._currentspeed:set(sailor_speed)
