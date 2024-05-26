@@ -144,6 +144,8 @@ function Sailor:OnUpdate(dt)
 
             self.inst.replica.sailor._currentspeed:set(sailor_speed)
         end
+    else
+        self.boatspeed = 0
     end
 end
 

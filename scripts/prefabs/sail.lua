@@ -1,4 +1,4 @@
-local MakeVisualBoatEquip = require("prefabs/visualboatequip")
+local visualboatequip = require("prefabs/visualboatequip")
 
 local snakeskinsail_assets = {
     Asset("ANIM", "anim/swap_sail_snakeskin_scaly.zip"),
@@ -193,19 +193,20 @@ local function snakeskinsail_fn()
 end
 
 local function snakeskinsail_visual_common(inst)
-    inst.AnimState:SetBank("sail_visual")
-    inst.AnimState:SetBuild("swap_sail_snakeskin_scaly")
-    inst.AnimState:PlayAnimation("idle_loop")
-    inst.AnimState:SetSortWorldOffset(0, 0.05, 0)  -- below the player
+    inst.visualchild.AnimState:SetBank("sail_visual")
+    inst.visualchild.AnimState:SetBuild("swap_sail_snakeskin_scaly")
+    inst.visualchild.AnimState:PlayAnimation("idle_loop")
+    inst.visualchild.AnimState:SetSortWorldOffset(0, 0.05, 0)  -- below the player
 
     function inst.components.boatvisualanims.update(inst, dt)
-        if inst.AnimState:GetCurrentFacing() == FACING_UP then
-            inst.AnimState:SetSortWorldOffset(0, 0.15, 0)  -- above the player
+        if inst.visualchild.AnimState:GetCurrentFacing() == FACING_UP then
+            inst.visualchild.AnimState:SetSortWorldOffset(0, 0.15, 0)  -- above the player
         else
-            inst.AnimState:SetSortWorldOffset(0, 0.05, 0)  -- below the player
+            inst.visualchild.AnimState:SetSortWorldOffset(0, 0.05, 0)  -- below the player
         end
     end
 end
 
 return Prefab("sail_snakeskin_scaly", snakeskinsail_fn, snakeskinsail_assets),
-    MakeVisualBoatEquip("sail_snakeskin_scaly", snakeskinsail_assets, nil, snakeskinsail_visual_common)
+    visualboatequip.MakeVisualBoatEquip("sail_snakeskin_scaly", snakeskinsail_assets, nil, snakeskinsail_visual_common),
+    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin_scaly", snakeskinsail_assets, nil, snakeskinsail_visual_common)

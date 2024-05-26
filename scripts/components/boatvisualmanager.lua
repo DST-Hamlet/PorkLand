@@ -8,14 +8,26 @@ local function OnRemove(inst)
 end
 
 function BoatVisualManager:SpawnBoatEquipVisuals(item, visualprefab)
-    if self.inst.replica.boatvisualmanager then
-        self.inst.replica.boatvisualmanager:SpawnBoatEquipVisuals(item, visualprefab)
-    end
+    assert(visualprefab and type(visualprefab) == "string", "item.visualprefab must be a valid string!")
+
+    local visual = SpawnPrefab("visual_" .. visualprefab .. "_boat")
+    visual.entity:SetParent(self.inst.entity)
+    self.visuals[item] = visual
+
+    item.visual = visual
+    visual:SetVisual(self.inst)
+
+    visual.boat.boatvisuals[visual] = true
+    visual:ListenForEvent("onremove", OnRemove)
+
+    visual:StartUpdatingComponent(visual.components.boatvisualanims)
 end
 
 function BoatVisualManager:RemoveBoatEquipVisuals(item)
-    if self.inst.replica.boatvisualmanager then
-        self.inst.replica.boatvisualmanager:RemoveBoatEquipVisuals(item)
+    item.visual = nil
+    if self.visuals[item] then
+        self.visuals[item]:Remove()
+        self.visuals[item] = nil
     end
 end
 

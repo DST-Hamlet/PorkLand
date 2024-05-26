@@ -122,7 +122,7 @@ function Sailable:OnDisembarked(sailor)
         self.inst.components.workable.workable = true
     end
 
-    self.inst.AnimState:PlayAnimation(self.unoccupiedanim, true)
+    self.inst.replica.sailable:PlayRunAnims(true)
 end
 
 function Sailable:OnRemoveFromEntity()

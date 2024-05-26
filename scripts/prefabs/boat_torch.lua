@@ -1,4 +1,4 @@
-local MakeVisualBoatEquip = require("prefabs/visualboatequip")
+local visualboatequip = require("prefabs/visualboatequip")
 
 local torchassets = {
     Asset("ANIM", "anim/swap_torch_boat.zip"),
@@ -19,7 +19,8 @@ end
 
 local function setswapsymbol(inst, symbol)
     if inst.visual then
-        inst.visual.AnimState:OverrideSymbol("swap_lantern", inst.visualbuild, symbol)
+        inst.visual.visualchild.AnimState:OverrideSymbol("swap_lantern", inst.visualbuild, symbol)
+        inst.visual._oversymbol:set(symbol)
     end
 end
 
@@ -240,16 +241,27 @@ local function torchlightcommon(inst)
 end
 
 local function torch_visual_common(inst)
-    inst.AnimState:SetBank("sail_visual")
-    inst.AnimState:SetBuild("swap_torch_boat")
-    inst.AnimState:PlayAnimation("idle_loop")
-    inst.AnimState:SetSortWorldOffset(0, 0.05, 0) --below the player
+    inst.visualchild.AnimState:SetBank("sail_visual")
+    inst.visualchild.AnimState:SetBuild("swap_torch_boat")
+    inst.visualchild.AnimState:PlayAnimation("idle_loop")
+    inst.visualchild.AnimState:SetSortWorldOffset(0, 0.05, 0) --below the player
+
+    inst._oversymbol = net_string(inst.GUID, "_oversymbol", "symboldirty")
+    inst._oversymbol:set("swap_lantern_off")
+
+    if not TheWorld.ismastersim then
+        inst:ListenForEvent("symboldirty", function()
+            if "symboldirty" ~= "" then
+                inst.visualchild.AnimState:OverrideSymbol("swap_lantern", "swap_torch_boat", inst._oversymbol:value())
+            end
+        end)
+    end
 
     function inst.components.boatvisualanims.update(inst, dt)
-        if inst.AnimState:GetCurrentFacing() == FACING_DOWN then
-            inst.AnimState:SetSortWorldOffset(0, 0.15, 0) --above the player
+        if inst.visualchild.AnimState:GetCurrentFacing() == FACING_DOWN then
+            inst.visualchild.AnimState:SetSortWorldOffset(0, 0.15, 0) --above the player
         else
-            inst.AnimState:SetSortWorldOffset(0, 0.05, 0) --below the player
+            inst.visualchild.AnimState:SetSortWorldOffset(0, 0.05, 0) --below the player
         end
     end
 end
@@ -257,4 +269,5 @@ end
 
 return Prefab("boat_torch", torchfn, torchassets, torchprefabs),
        MakeLight("boat_torch_light", torchlightcommon),
-       MakeVisualBoatEquip("boat_torch", torchassets, nil, torch_visual_common)
+       visualboatequip.MakeVisualBoatEquip("boat_torch", torchassets, nil, torch_visual_common),
+       visualboatequip.MakeVisualBoatEquipChild("boat_torch", torchassets, nil, torch_visual_common)
