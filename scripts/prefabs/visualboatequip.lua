@@ -35,17 +35,12 @@ local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, on
         inst:DoTaskInTime(0, inst.Show)
     end
 
-    local function onremove(inst)
-        inst.boat.boatvisuals[inst] = nil
-    end
-
     local function OnEntityReplicated(inst)
         WaitForRotationSync(inst)
 
         inst.boat = inst.entity:GetParent()
         inst.boat.boatvisuals[inst] = true
         inst:SetVisual(inst.boat)
-        inst:ListenForEvent("onremove", onremove)
 
         inst:StartUpdatingComponent(inst.components.boatvisualanims)
 
@@ -54,8 +49,14 @@ local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, on
         end
     end
 
+    local function OnRemove(inst)
+        inst.boat.boatvisuals[inst] = nil
+    end
+
     local function SetVisual(inst, boat)
         inst.boat = boat
+        boat.boatvisuals[inst] = true
+        inst:ListenForEvent("onremove", OnRemove)
         inst.visualchild = SpawnPrefab(inst.prefab .. "_child")
         inst.visualchild.entity:SetParent(inst.entity)
         if inst.boat then
@@ -70,6 +71,8 @@ local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, on
                 inst.boat.components.eroder:AttachChild(inst.visualchild)
             end
         end
+
+        inst:StartUpdatingComponent(inst.components.boatvisualanims)
 
         if inst.commonfn then
             inst:commonfn()

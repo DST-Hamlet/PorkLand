@@ -456,9 +456,7 @@ local function lograft_visual_common(inst)
     inst.visualchild.AnimState:SetBuild("raft_log_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
     inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN)
-    inst:DoTaskInTime(0, function()  --亚丹：如果不延后一帧，那么会产生我无法理解的bug
-        inst.boat.replica.sailable:PlayRunAnims()
-    end)
+    inst.boat.replica.sailable:PlayRunAnims()
 end
 
 local function rowboat_visual_common(inst)
@@ -466,9 +464,7 @@ local function rowboat_visual_common(inst)
     inst.visualchild.AnimState:SetBuild("rowboat_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
     inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN)
-    inst:DoTaskInTime(0, function()  --亚丹：如果不延后一帧，那么会产生我无法理解的bug
-        inst.boat.replica.sailable:PlayRunAnims()
-    end)
+    inst.boat.replica.sailable:PlayRunAnims()
 end
 
 local function cargo_visual_common(inst)
@@ -476,9 +472,7 @@ local function cargo_visual_common(inst)
     inst.visualchild.AnimState:SetBuild("rowboat_cargo_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
     inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN)
-    inst:DoTaskInTime(0, function()  --亚丹：如果不延后一帧，那么会产生我无法理解的bug
-        inst.boat.replica.sailable:PlayRunAnims()
-    end)
+    inst.boat.replica.sailable:PlayRunAnims()
 end
 
 local function corkboat_visual_common(inst)
@@ -486,9 +480,7 @@ local function corkboat_visual_common(inst)
     inst.visualchild.AnimState:SetBuild("coracle_boat_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
     inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN)
-    inst:DoTaskInTime(0, function()  --亚丹：如果不延后一帧，那么会产生我无法理解的bug
-        inst.boat.replica.sailable:PlayRunAnims()
-    end)
+    inst.boat.replica.sailable:PlayRunAnims()
 end
 
 return Prefab("boat_lograft", lograftfn, lograft_assets, prefabs),

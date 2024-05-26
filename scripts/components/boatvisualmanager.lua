@@ -3,10 +3,6 @@ local BoatVisualManager = Class(function(self, inst)
     self.visuals = {}
 end)
 
-local function OnRemove(inst)
-    inst.boat.boatvisuals[inst] = nil
-end
-
 function BoatVisualManager:SpawnBoatEquipVisuals(item, visualprefab)
     assert(visualprefab and type(visualprefab) == "string", "item.visualprefab must be a valid string!")
 
@@ -16,11 +12,6 @@ function BoatVisualManager:SpawnBoatEquipVisuals(item, visualprefab)
 
     item.visual = visual
     visual:SetVisual(self.inst)
-
-    visual.boat.boatvisuals[visual] = true
-    visual:ListenForEvent("onremove", OnRemove)
-
-    visual:StartUpdatingComponent(visual.components.boatvisualanims)
 end
 
 function BoatVisualManager:RemoveBoatEquipVisuals(item)
