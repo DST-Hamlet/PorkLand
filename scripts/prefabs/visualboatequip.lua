@@ -94,6 +94,7 @@ local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, on
         inst:AddTag("can_offset_sort_pos")
 
         inst.entity:AddTransform()
+        inst.entity:AddAnimState() --虽然它没用，但是删掉会出C层相关的bug
         inst.entity:AddNetwork()
 
         inst.Transform:SetFourFaced()
