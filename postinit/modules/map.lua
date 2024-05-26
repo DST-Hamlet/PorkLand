@@ -5,6 +5,14 @@ local worldtiledefs = require("worldtiledefs")
 local TILE_SCALE = TILE_SCALE
 local TileGroupManager = TileGroupManager
 
+local NEARBY_TILE =  --用于检测直接相邻的地皮
+{
+    {x = 1, z = 0},--左
+    {x = 0, z = 1},--上
+    {x = -1, z = 0},--右
+    {x = 0, z = -1},--下
+}
+
 local TileRenderOrder = {}
 for i, v in ipairs(worldtiledefs.ground) do
     TileRenderOrder[v[1]] = i
@@ -17,7 +25,7 @@ local function GetMaxRenderOrderTile(tile1, tile2)
     return tile1
 end
 
-function Map:GetVisualTileAtPoint(x, y, z)
+function Map:GetVisualTileAtPoint(x, y, z) --这个函数没有考虑到物理斜线
     local tile = self:GetTileAtPoint(x, y, z)
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
     local offset_x = x - center_x
@@ -52,71 +60,92 @@ function Map:GetVisualTileAtPoint(x, y, z)
     return tile
 end
 
-function Map:ReverseIsVisualGroundAtPoint(x, y, z)
-    if not self:IsLandTileAtPoint(x, y, z) then
+function Map:ReverseIsVisualGroundAtPoint(x, y, z)--用于精确判断一个点是否位于陆地碰撞体积内
+    if self:ReverseIsVisualWaterAtPoint(x, y, z) then--如果位于水上，那么就不可能位于陆地上。优先级：水>陆地>虚空
         return false
     end
 
-    local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
+    local cx, cy, cz = self:GetTileCenterPoint(x, y, z)
+    if not cx or not cy or not cz then
+        return false
+    end
+    local _x = x - cx --点和点所在地皮中心的相对位置
+    local _z = z - cz
 
-    local offset_x = x - center_x
-    local abs_offset_x = math.abs(offset_x)
-    local near_x
-    if abs_offset_x >= 1 then
-        near_x = center_x + (offset_x > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(near_x, 0, center_z) then
-            return false
+    if self:IsLandTileAtPoint(cx, cy, cz) then --这个点直接位于陆地地皮上
+        return true
+    else --如果这个点没有直接位于陆地地皮上...
+        if self:IsCloseToLand(x, y, z, 1) then --检测陆地物理区域外延部分，以及因为斜线减少的外延部分
+            if math.abs(_x) >= 1 and math.abs(_z) >= 1 then --是否属于四周的角落，用于检测因为斜碰撞线导致陆地碰撞范围减小的情况
+
+                if self:IsAboveGroundAtPoint(cx + _x/math.abs(_x) * TILE_SCALE, cy, cz) then--该角落的x方向是否相邻非虚空地皮？
+                    return true
+                end
+
+                if self:IsAboveGroundAtPoint(cx, cy, cz + _z/math.abs(_z) * TILE_SCALE) then--该角落的z方向是否相邻非虚空地皮？
+                    return true
+                end
+
+                if math.abs(_x) + math.abs(_z) >= 3 and --如果在x,z方向上都未能相邻非虚空地皮，那么是否属于角落斜线靠外部分？
+                    self:IsAboveGroundAtPoint(cx + _x/math.abs(_x) * TILE_SCALE, cy, cz + _z/math.abs(_z) * TILE_SCALE) then --检测该角落对应斜方向的地皮
+                    return true
+                end
+            else --如果不属于四周的角落
+                return true
+            end
+        else --如果这个点离陆地的距离超过1，那么也有可能属于斜线导致的陆地物理额外外延部分
+            if self:IsCloseToLand(x, y, z, 1.5) then --额外外延部分离陆地的最远理论距离
+                if math.abs(_x) + math.abs(_z) >= 1 and --是否属于角落斜线靠外部分？
+                    self:IsAboveGroundAtPoint(cx + _x/math.abs(_x) * TILE_SCALE, cy, cz) and --该角落的x方向是否相邻陆地地皮？
+                    self:IsAboveGroundAtPoint(cx, cy, cz + _z/math.abs(_z) * TILE_SCALE) then --该角落的z方向是否也相邻陆地地皮？
+                    return true
+                end
+            end
         end
     end
 
-    local offset_z = z - center_z
-    local abs_offset_z = math.abs(offset_z)
-    local near_z
-    if abs_offset_z >= 1 then
-        near_z = center_z + (offset_z > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(center_x, 0, near_z) then
-            return false
-        end
-    end
-
-    if near_x and near_z and abs_offset_z + abs_offset_x >= 3 then
-        return not self:IsOceanTileAtPoint(near_x, 0, near_z)
-    end
-
-    return true
+    return false
 end
 
-function Map:ReverseIsVisualWaterAtPoint(x, y, z)
-    if self:IsOceanTileAtPoint(x, y, z) then
+function Map:ReverseIsVisualWaterAtPoint(x, y, z)--用于精确判断一个点是否位于水体碰撞体积内
+    local cx, cy, cz = self:GetTileCenterPoint(x, y, z)
+    if not cx or not cy or not cz then
+        return false
+    end
+    local _x = x - cx --点和点所在地皮中心的相对位置
+    local _z = z - cz
+
+    if self:IsOceanTileAtPoint(cx, cy, cz) then --这个点直接位于水地皮上
         return true
-    end
+    else --如果这个点没有直接位于水地皮上...
+        if self:IsCloseToWater(x, y, z, 1) then --检测水体物理区域外延部分，以及因为斜线减少的外延部分
+            if math.abs(_x) >= 1 and math.abs(_z) >= 1 then --是否属于四周的角落，用于检测因为斜碰撞线导致水体碰撞范围减小的情况
 
-    local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
+                if self:IsOceanTileAtPoint(cx + _x/math.abs(_x) * TILE_SCALE, cy, cz) then--该角落的x方向是否相邻水地皮？
+                    return true
+                end
 
-    local offset_x = x - center_x
-    local abs_offset_x = math.abs(offset_x)
-    local near_x
-    if abs_offset_x >= 1.5 then
-        near_x = center_x + (offset_x > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(near_x, 0, center_z) then
-            return true
+                if self:IsOceanTileAtPoint(cx, cy, cz + _z/math.abs(_z) * TILE_SCALE) then--该角落的z方向是否相邻水地皮？
+                    return true
+                end
+
+                if math.abs(_x) + math.abs(_z) >= 3 and --如果在x,z方向上都未能相邻水地皮，那么是否属于角落斜线靠外部分？
+                    self:IsOceanTileAtPoint(cx + _x/math.abs(_x) * TILE_SCALE, cy, cz + _z/math.abs(_z) * TILE_SCALE) then --检测该角落对应斜方向的地皮
+                    return true
+                end
+            else --如果不属于四周的角落
+                return true
+            end
+        else --如果这个点离水体的距离超过1，那么也有可能属于斜线导致的水体物理额外外延部分
+            if self:IsCloseToWater(x, y, z, 1.5) then --额外外延部分离水体的最远理论距离
+                if math.abs(_x) + math.abs(_z) >= 1 and --是否属于角落斜线靠外部分？
+                    self:IsOceanTileAtPoint(cx + _x/math.abs(_x) * TILE_SCALE, cy, cz) and --该角落的x方向是否相邻水地皮？
+                    self:IsOceanTileAtPoint(cx, cy, cz + _z/math.abs(_z) * TILE_SCALE) then --该角落的z方向是否也相邻水地皮？
+                    return true
+                end
+            end
         end
     end
-
-    local offset_z = z - center_z
-    local abs_offset_z = math.abs(offset_z)
-    local near_z
-    if abs_offset_z >= 1.5 then
-        near_z = center_z + (offset_z > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(center_x, 0, near_z) then
-            return true
-        end
-    end
-
-    if near_x and near_z and abs_offset_z + abs_offset_x > 3 then
-        return self:IsOceanTileAtPoint(near_x, 0, near_z)
-    end
-
     return false
 end
 
@@ -165,7 +194,7 @@ end
 
 function Map:IsCloseToWater(x, y, z, radius)
     return self:IsCloseToTile(x, y, z, radius, function(_x, _y, _z, map)
-        return not map:IsLandTileAtPoint(_x, _y, _z)
+        return map:IsOceanTileAtPoint(_x, _y, _z)
     end, self)
 end
 

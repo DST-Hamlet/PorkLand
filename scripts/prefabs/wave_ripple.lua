@@ -123,7 +123,7 @@ end
 
 local function activate_collision(inst)
     local phys = inst.Physics
-    phys:SetCollisionGroup(COLLISION.OBSTACLES)
+    phys:SetCollisionGroup(COLLISION.CHARACTERS)
     phys:ClearCollisionMask()
     phys:CollidesWith(COLLISION.WORLD)
     phys:CollidesWith(COLLISION.OBSTACLES)
