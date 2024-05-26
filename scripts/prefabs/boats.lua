@@ -379,7 +379,7 @@ local function corkboatfn()
     inst.landsound = "dontstarve_DLC002/common/boatjump_land_wood"
     inst.sinksound = "dontstarve_DLC002/common/boat_sinking_rowboat"
 
-    inst.components.container:WidgetSetup("boat_row")
+    inst.components.container:WidgetSetup("corkboat")
 
     inst.components.boathealth:SetMaxHealth(TUNING.CORKBOAT_HEALTH)
     inst.components.boathealth:SetHealth(TUNING.CORKBOAT_HEALTH, TUNING.CORKBOAT_PERISHTIME)
