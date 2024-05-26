@@ -192,7 +192,7 @@ end
 function Sailable:PlayRunAnims(push, notnet)
     if push then
         if TheWorld.ismastersim and (notnet == nil or notnet == false) then
-            self._currentboatanim:set(self.runanim)
+            self._currentboatanim:set("run_loop_push")
             self._animevent:push()
         end
         self.inst.AnimState:PushAnimation(self.runanim, true)
