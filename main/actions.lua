@@ -233,6 +233,68 @@ function ACTIONS.EQUIP.fn(act, ...)
     end
 end
 
+local _ExtraDropDist = ACTIONS.DROP.extra_arrive_dist
+local ExtraDropDist = function (doer, dest, bufferedaction, ...)--copy from scripts/actions.lua
+    if not TheWorld:HasTag("porkland") then
+        return _ExtraDropDist(doer, dest, bufferedaction, ...)
+    end
+    if dest ~= nil then
+        local dx, dy, dz = dest:GetPoint()
+        if TheWorld.Map:ReverseIsVisualGroundAtPoint(doer.Transform:GetWorldPosition()) ~= TheWorld.Map:ReverseIsVisualGroundAtPoint(dx, dy, dz) then
+            return 1.75
+        end
+
+        local invobject = bufferedaction and bufferedaction.invobject or nil
+
+        -- Extra drop dist to items that collide with doer.
+        if invobject ~= nil and doer ~= nil and invobject.Physics ~= nil and doer.Physics ~= nil then
+            if not checkbit(invobject.Physics:GetCollisionMask(), doer.Physics:GetCollisionGroup()) then
+                return 0
+            end
+
+            local physics_rad = invobject:GetPhysicsRadius(0)
+
+            if physics_rad > 0 then
+                return physics_rad + 0.5
+            end
+        end
+    end
+
+    return 0
+end
+
+ACTIONS.DROP.extra_arrive_dist = ExtraDropDist
+ACTIONS.COMBINESTACK.extra_arrive_dist = ExtraDropDist
+
+local _ExtraPickupRange = ACTIONS.PICK.extra_arrive_dist
+local function ExtraPickupRange(doer, dest, ...)
+    if not TheWorld:HasTag("porkland") then
+        return _ExtraPickupRange(doer, dest, ...)
+    end
+	if dest ~= nil then
+        local dx, dy, dz = dest:GetPoint()
+        if TheWorld.Map:ReverseIsVisualGroundAtPoint(doer.Transform:GetWorldPosition()) ~= TheWorld.Map:ReverseIsVisualGroundAtPoint(dx, dy, dz) then
+			return 0.75
+		end
+	end
+    return 0
+end
+
+ACTIONS.PICK.extra_arrive_dist = ExtraPickupRange
+ACTIONS.PICKUP.extra_arrive_dist = ExtraPickupRange
+
+local _HAMMERextra_arrive_dist = ACTIONS.HAMMER.extra_arrive_dist
+function ACTIONS.HAMMER.extra_arrive_dist(inst, dest, bufferedaction)
+    local distance = _HAMMERextra_arrive_dist and _HAMMERextra_arrive_dist(inst, dest, bufferedaction) or 0
+    if inst ~= nil and dest ~= nil then
+        local dx, dy, dz = dest:GetPoint()
+        if TheWorld.Map:ReverseIsVisualGroundAtPoint(inst.Transform:GetWorldPosition()) ~= TheWorld.Map:ReverseIsVisualGroundAtPoint(dx, dy, dz) then
+            distance = distance + 1
+        end
+    end
+    return distance
+end
+
 local _UNEQUIPfn = ACTIONS.UNEQUIP.fn
 function ACTIONS.UNEQUIP.fn(act, ...)
     if act.invobject.components.equippable.boatequipslot and act.invobject.parent then
@@ -442,7 +504,8 @@ end
 
 local _SCENEinventoryitem = SCENE.inventoryitem
 function SCENE.inventoryitem(inst, doer, actions, right, ...)
-   if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint() then
+   if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint() and
+        not TheWorld.Map:IsLandTileAtPoint(inst.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
         if inst.replica.inventoryitem:CanBePickedUp() and
         doer.replica.inventory ~= nil and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable ~= nil) and
         not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder")))) and

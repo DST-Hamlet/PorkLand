@@ -17,7 +17,8 @@ local GetPickupAction = function(self, target, tool, ...)
     end
 
     local rets = {_GetPickupAction(self, target, tool, ...)}
-    if rets[1] == ACTIONS.PICKUP and TheWorld.items_pass_ground and not target:IsOnPassablePoint() and self.inst:IsOnPassablePoint() then
+    if rets[1] == ACTIONS.PICKUP and TheWorld.items_pass_ground and not target:IsOnPassablePoint() and self.inst:IsOnPassablePoint()  and
+        not TheWorld.Map:IsLandTileAtPoint(target.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
         rets[1] = ACTIONS.RETRIEVE
     end
     return unpack(rets)
