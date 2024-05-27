@@ -215,7 +215,7 @@ function Sailor:Embark(boat, nostate)
         self.inst.components.eroder:AttachChild(self.boat)
     end
 
-    local x, y, z = 0, -0.1, 0
+    local x, y, z = 0, 0, 0
     local offset = self.boat.components.sailable.offset
     if offset ~= nil then
         x = x + offset.x
