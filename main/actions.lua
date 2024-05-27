@@ -271,12 +271,12 @@ local function ExtraPickupRange(doer, dest, ...)
     if not TheWorld:HasTag("porkland") then
         return _ExtraPickupRange(doer, dest, ...)
     end
-	if dest ~= nil then
+    if dest ~= nil then
         local dx, dy, dz = dest:GetPoint()
         if TheWorld.Map:ReverseIsVisualGroundAtPoint(doer.Transform:GetWorldPosition()) ~= TheWorld.Map:ReverseIsVisualGroundAtPoint(dx, dy, dz) then
-			return 0.75
-		end
-	end
+            return 0.75
+        end
+    end
     return 0
 end
 
@@ -293,6 +293,48 @@ function ACTIONS.HAMMER.extra_arrive_dist(inst, dest, bufferedaction)
         end
     end
     return distance
+end
+
+local _RUMMAGEextra_arrive_dist = ACTIONS.RUMMAGE.extra_arrive_dist
+ACTIONS.RUMMAGE.extra_arrive_dist = function(doer, dest, ...)
+    local ret = _RUMMAGEextra_arrive_dist ~= nil and _RUMMAGEextra_arrive_dist(doer, dest, ...) or 0
+    if dest ~= nil then
+        local target_x, target_y, target_z = dest:GetPoint()
+
+        local is_on_water = TheWorld.Map:IsOceanTileAtPoint(target_x, 0, target_z) and not TheWorld.Map:IsPassableAtPoint(target_x, 0, target_z)
+        if is_on_water then
+            -- 2 with the ARRIVE_STEP (0.15), player radius (0.5) and boat radius (0.25) subtracted from it is aproximatly 1.1
+            return 1.1 + ret
+        end
+    end
+    return ret
+end
+
+local _RUMMAGEstrfn = ACTIONS.RUMMAGE.strfn
+function ACTIONS.RUMMAGE.strfn(act, ...)
+    local targ = act.target or act.invobject
+
+    return targ ~= nil and targ.replica.container and targ.replica.container.type == "boat" and
+        (targ.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT") or _RUMMAGEstrfn(act, ...)
+end
+
+local _RUMMAGEfn = ACTIONS.RUMMAGE.fn
+function ACTIONS.RUMMAGE.fn(act, ...)
+    local ret = {_RUMMAGEfn(act, ...)}
+    if ret[1] == nil then
+        local targ = act.target or act.invobject
+
+        if targ ~= nil and targ.components.container ~= nil then
+            if not targ.components.container.canbeopened and targ.components.container.type == "boat" then
+                if CanEntitySeeTarget(act.doer, targ) then
+                    act.doer:PushEvent("opencontainer", { container = targ })
+                    targ.components.container:Open(act.doer)
+                end
+                return true
+            end
+        end
+    end
+    return unpack(ret)
 end
 
 local _UNEQUIPfn = ACTIONS.UNEQUIP.fn
@@ -448,6 +490,19 @@ local USEITEM = COMPONENT_ACTIONS.USEITEM
 local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
+
+local _SCENEcontainer = SCENE.container
+function SCENE.container(inst, doer, actions, right, ...)
+    if not inst:HasTag("bundle") and not inst:HasTag("burnt")
+        and doer.replica.inventory
+        and not (doer.replica.rider ~= nil and doer.replica.rider:IsRiding())
+        and right and inst.replica.container.type == "boat" then
+
+        table.insert(actions, ACTIONS.RUMMAGE)
+    else
+        _SCENEcontainer(inst, doer, actions, right, ...)
+    end
+end
 
 local _SCENErideable = SCENE.rideable
 SCENE.rideable = function(inst, doer, actions, right)
