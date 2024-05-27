@@ -1383,6 +1383,20 @@ AddStategraphPostInit("wilson", function(sg)
 
     sg.events["boatattacked"] = EventHandler("boatattacked", sg.events.attacked.fn)
 
+    -- Disembark properly and drop no skeleton
+    local _death_animover = sg.states.death.events.animover.fn
+    sg.states.death.events.animover.fn = function(inst, ...)
+        local x, y, z = inst.Transform:GetWorldPosition()
+        if inst.AnimState:AnimDone() and not inst.sg:HasStateTag("dismounting") and TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+            if inst.components.sailor and inst.components.sailor:IsSailing() then
+                inst.components.sailor:Disembark()
+            end
+            inst:PushEvent(inst.ghostenabled and "makeplayerghost" or "playerdied", {skeleton = false})
+        else
+            _death_animover(inst, ...)
+        end
+    end
+
     local _idle_onenter = sg.states["idle"].onenter
     sg.states["idle"].onenter = function(inst, ...)
         if not (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then

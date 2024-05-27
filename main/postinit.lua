@@ -30,6 +30,7 @@ local component_posts = {
     "lootdropper",
     "moisture",
     "oceancolor",
+    "oldager",
     "playeractionpicker",
     "playercontroller",
     "pollinator",
