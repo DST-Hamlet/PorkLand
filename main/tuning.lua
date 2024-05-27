@@ -313,6 +313,8 @@ local tuning = {
     SAIL_SNAKESKIN_PERISH_TIME = total_day_time * 4,
 }
 
+TUNING.OCEAN_SHADER.EFFECT_TINT_AMOUNT = 0
+
 for key, value in pairs(tuning) do
     if TUNING[key] then
         print("OVERRIDE: " .. key .. " in TUNING")
