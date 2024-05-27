@@ -1384,8 +1384,8 @@ AddStategraphPostInit("wilson", function(sg)
     sg.events["boatattacked"] = EventHandler("boatattacked", sg.events.attacked.fn)
 
     -- Disembark properly and drop no skeleton
-    local _death_animover = sg.states.death.events.animover.fn
-    sg.states.death.events.animover.fn = function(inst, ...)
+    local _death_animover = sg.states["death"].events.animover.fn
+    sg.states["death"].events.animover.fn = function(inst, ...)
         local x, y, z = inst.Transform:GetWorldPosition()
         if inst.AnimState:AnimDone() and not inst.sg:HasStateTag("dismounting") and TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
             if inst.components.sailor and inst.components.sailor:IsSailing() then
@@ -1449,6 +1449,34 @@ AddStategraphPostInit("wilson", function(sg)
         if inst.components.sailor and inst.components.sailor:IsSailing() then
             inst.components.sailor:Disembark(nil, nil, true)
         end
+    end
+
+    local _transform_werebeaver_exit = sg.states["transform_werebeaver"].onexit
+    sg.states["transform_werebeaver"].onexit = function(inst, ...)
+        if not inst.sg:HasStateTag("transform") and inst.components.sailor and inst.components.sailor:IsSailing() then
+
+            -- this will cause the boat to "drown" the player and handle the rest of the code.
+            inst.components.sailor.boat.components.boathealth:MakeEmpty()
+        end
+        return _transform_werebeaver_exit(inst, ...)
+    end
+    local _transform_weremoose_exit = sg.states["transform_weremoose"].onexit
+    sg.states["transform_weremoose"].onexit = function(inst, ...)
+        if not inst.sg:HasStateTag("transform") and inst.components.sailor and inst.components.sailor:IsSailing() then
+
+            -- this will cause the boat to "drown" the player and handle the rest of the code.
+            inst.components.sailor.boat.components.boathealth:MakeEmpty()
+        end
+        return _transform_weremoose_exit(inst, ...)
+    end
+    local _transform_weregoose_exit = sg.states["transform_weregoose"].onexit
+    sg.states["transform_weregoose"].onexit = function(inst, ...)
+        -- if inst.sg:HasStateTag("drowning") then return end -- simple hack to prevent looping
+        if not inst.sg:HasStateTag("transform") and inst.components.sailor and inst.components.sailor:IsSailing() then
+            -- inst.sg:AddStateTag("drowning") -- goose does not drown
+            inst.components.sailor:Disembark(nil, nil, true)
+        end
+        return _transform_weregoose_exit(inst, ...)
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn
