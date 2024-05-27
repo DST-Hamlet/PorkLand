@@ -92,7 +92,7 @@ local boat_row = {
     enableboatequipslots = true,
 }
 
-local boat_cork = {
+local corkboat = {
     widget = {
         slotpos = {},
         animbank = "boat_hud_row",
@@ -155,5 +155,5 @@ end
 
 params["boat_lograft"] = boat_lograft
 params["boat_row"] = boat_row
-params["boat_cork"] = boat_cork
+params["corkboat"] = corkboat
 params["boat_cargo"] = boat_cargo

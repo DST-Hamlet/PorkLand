@@ -120,7 +120,7 @@ local states = {
                 inst.components.locomotor:Stop(nil, true)
                 if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
                     if boat and boat.replica.sailable then
-                        boat.replica.sailable:PlayIdleAnims()
+                        boat.replica.sailable:PlayIdleAnims(true)
                     end
                 end
             end
@@ -287,7 +287,7 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
 
             inst.components.locomotor:Stop()
-            local anim = boat.replica.sailable.sailstopanim or "sail_pst"
+            local anim = boat.replica.sailable.postsailanim or "sail_pst"
             if anim ~= "sail_pst" or inst.has_sailface then
                 inst.AnimState:PlayAnimation(anim)
             else
