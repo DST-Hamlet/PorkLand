@@ -195,14 +195,14 @@ end
 local function snakeskinsail_visual_common(inst)
     inst.visualchild.AnimState:SetBank("sail_visual")
     inst.visualchild.AnimState:SetBuild("swap_sail_snakeskin_scaly")
-    inst.visualchild.AnimState:PlayAnimation("idle_loop")
-    inst.visualchild.AnimState:SetSortWorldOffset(0, 0.05, 0)  -- below the player
+    inst.visualchild.AnimState:PlayAnimation("idle_loop", true)
+    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- below the player
 
     function inst.components.boatvisualanims.update(inst, dt)
         if inst.visualchild.AnimState:GetCurrentFacing() == FACING_UP then
-            inst.visualchild.AnimState:SetSortWorldOffset(0, 0.15, 0)  -- above the player
+            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MAX - 1)  -- above the player
         else
-            inst.visualchild.AnimState:SetSortWorldOffset(0, 0.05, 0)  -- below the player
+            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- below the player
         end
     end
 end

@@ -58,6 +58,7 @@ local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, on
     local function SetVisual(inst, boat)
         inst.boat = boat
         boat.boatvisuals[inst] = true
+
         inst:ListenForEvent("onremove", OnRemove)
         inst.visualchild = SpawnPrefab(inst.prefab .. "_child")
         inst.visualchild.entity:SetParent(inst.entity)
@@ -77,6 +78,41 @@ local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, on
         if inst.commonfn then
             inst:commonfn()
         end
+
+        local startanim = "idle_loop"
+        local startanimframe
+        if boat.replica.sailable._currentboatanim and boat.replica.sailable._currentboatanim:value() ~= "" then
+            startanim = boat.replica.sailable._currentboatanim:value()
+        end
+
+        startanimframe = 0
+        for k,v in pairs(boat.boatvisuals) do
+            if k ~= inst and k.visualchild and k.visualchild.AnimState then
+                if k.visualchild.AnimState:IsCurrentAnimation("idle_loop") then
+                    startanim = "idle_loop"
+                end
+                if k.visualchild.AnimState:IsCurrentAnimation("run_loop") then
+                    startanim = "run_loop"
+                end
+                startanimframe = k.visualchild.AnimState:GetCurrentAnimationFrame()
+                break
+            end
+        end
+
+        if startanim == "idle_loop_push" then
+            inst.visualchild.AnimState:PlayAnimation("idle_loop", true)
+        elseif startanim == "run_loop_push" then
+            inst.visualchild.AnimState:PlayAnimation("run_loop", true)
+        elseif startanim == "idle_loop" or
+            startanim == "run_loop" or
+            startanim == "row_loop" or
+            startanim == "sail_loop" then
+            inst.visualchild.AnimState:PlayAnimation(startanim, true)
+        else
+            inst.visualchild.AnimState:PlayAnimation(startanim)
+        end
+        print(startanim,startanimframe)
+        inst.visualchild.AnimState:SetFrame(startanimframe)
 
         if TheWorld.ismastersim then
             if inst.masterfn then
