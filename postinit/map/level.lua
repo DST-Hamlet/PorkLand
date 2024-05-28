@@ -131,7 +131,10 @@ local function AddSetPeices(level, addall)
     end
 
     if boons_override ~= "never" then
-        AddSingleSetPeice(level, "map/pl_boons")
+        local boons = math.random( math.floor(3 * MULTIPLY[boons_override]), math.ceil(8 * MULTIPLY[boons_override]) )
+        for idx = 1, boons do
+            AddSingleSetPeice(level, "map/pl_boons")
+        end
     end
 
     if touchstone_override ~= "default" and level.set_pieces ~= nil and level.set_pieces["ResurrectionStone"] ~= nil then
