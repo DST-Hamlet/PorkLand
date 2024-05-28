@@ -23,13 +23,10 @@ local function RegisterNetListeners(inst)
 end
 
 AddPrefabPostInit("player_classified", function(inst)
-    inst.ispoisoned = inst.ispoisoned or net_bool(inst.GUID, "poisonable.ispoisoned")
-    inst.poisonpulse = inst.poisonpulse or net_bool(inst.GUID, "poisonable.poisonpulse", "poisonpulsedirty")
+    inst.ispoisoned = net_bool(inst.GUID, "poisonable.ispoisoned")
+    inst.poisonpulse = net_bool(inst.GUID, "poisonable.poisonpulse", "poisonpulsedirty")
+
+    inst.ispoisoned:set(false)
 
     inst:DoTaskInTime(0, RegisterNetListeners)
-
-    inst.externalspeedmultiplier_pl = net_float(inst.GUID, "locomotor.externalspeedmultiplier_pl")--用于记录加速效果(最终用于加算)
-    inst.externalspeedmultiplier_pl:set(1)
-    inst.externalspeedmultiplier_decelerate_pl = net_float(inst.GUID, "locomotor.externalspeedmultiplier_decelerate")--用于记录减速倍率(最终用于乘算)
-    inst.externalspeedmultiplier_decelerate_pl:set(1)
 end)

@@ -107,8 +107,8 @@ function Sailor:OnUpdate(dt)
         end
 
         if self.boat.replica.sailable and self.inst.replica.sailor then
-            local currentSpeed = self.boatspeed
-            local targetSpeed = self.boat.components.sailable.externalspeedmultiplier + 6
+            local current_speed = self.boatspeed
+            local target_speed = self.boat.components.sailable.externalspeedmultiplier + 6
             local deceleration = self:GetDeceleration()
             local acceleration = self:GetAcceleration()
 
@@ -119,27 +119,27 @@ function Sailor:OnUpdate(dt)
             end
             if self.perdictframe <= 0 then
                 self.perdictframe = 0
-                targetSpeed = 0
+                target_speed = 0
             end
 
-            if(targetSpeed > currentSpeed) then
-                currentSpeed = currentSpeed + acceleration * dt
-                if(currentSpeed > targetSpeed) then
-                   currentSpeed = targetSpeed
+            if(target_speed > current_speed) then
+                current_speed = current_speed + acceleration * dt
+                if(current_speed > target_speed) then
+                   current_speed = target_speed
                end
-            elseif (targetSpeed < currentSpeed) then
-                currentSpeed = currentSpeed - deceleration * dt
-                if(currentSpeed < 0) then
-                    currentSpeed = 0
+            elseif (target_speed < current_speed) then
+                current_speed = current_speed - deceleration * dt
+                if(current_speed < 0) then
+                    current_speed = 0
                 end
             end
-            self.boatspeed = currentSpeed
+            self.boatspeed = current_speed
             local sailor_speed = self.boatspeed
             sailor_speed = math.floor(self.boatspeed + 1)
-            if sailor_speed > targetSpeed and
-                ((sailor_speed - targetSpeed) <= (math.floor(targetSpeed + 1) - targetSpeed)) and
+            if sailor_speed > target_speed and
+                ((sailor_speed - target_speed) <= (math.floor(target_speed + 1) - target_speed)) and
                 self.perdictframe > 0 then
-                    sailor_speed = targetSpeed
+                    sailor_speed = target_speed
             end
 
             self.inst.replica.sailor._currentspeed:set(sailor_speed)
