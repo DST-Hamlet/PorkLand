@@ -1,11 +1,18 @@
 local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+local function endonexternalspeedmultiplier(self, externalspeedmultiplier)
+    local rider = self.inst.components.rideable:GetRider()
+    if rider ~= nil and rider.replica.rider ~= nil then
+        rider.replica.rider:SetMountSpeedMultiplier(externalspeedmultiplier)
+    end
+end
+
 local function ServerGetSpeedMultiplier(self)
     local mult = self:ExternalSpeedMultiplier()
     if self.inst.components.inventory ~= nil then
         if self.inst.components.rider ~= nil and self.inst.components.rider:IsRiding() then
-            mult = self.inst.components.rider:GetMount().components.locomotor:GetSpeedMultiplier()
+            mult = self.inst.components.rider:GetMountSpeedMultiplier()
             local saddle = self.inst.components.rider:GetSaddle()
             if saddle ~= nil and saddle.components.saddler ~= nil then
                 mult = mult + (saddle.components.saddler:GetBonusSpeedMult() - 1)
@@ -41,7 +48,7 @@ local function ClientGetSpeedMultiplier(self)
     if inventory ~= nil then
         local rider = self.inst.replica.rider
         if rider ~= nil and rider:IsRiding() then
-            mult = rider:GetMount().components.locomotor:GetSpeedMultiplier()
+            mult = rider:GetMountSpeedMultiplier()
             local saddle = rider:GetSaddle()
             local inventoryitem = saddle ~= nil and saddle.replica.inventoryitem or nil
             if inventoryitem ~= nil then
@@ -92,4 +99,8 @@ AddComponentPostInit("locomotor", function(self, inst)
     end
 
     self.RecalculateExternalSpeedMultiplier = RecalculateExternalSpeedMultiplier
+
+    if self.inst.components.rideable then
+        ToolUtil.HookSetter(self, "externalspeedmultiplier", endonexternalspeedmultiplier)
+    end
 end)
