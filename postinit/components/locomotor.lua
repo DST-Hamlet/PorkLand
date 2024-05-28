@@ -41,7 +41,7 @@ local function ClientGetSpeedMultiplier(self)
     if inventory ~= nil then
         local rider = self.inst.replica.rider
         if rider ~= nil and rider:IsRiding() then
-            mult = self.inst.components.rider:GetMount().components.locomotor:GetSpeedMultiplier()
+            mult = rider:GetMount().components.locomotor:GetSpeedMultiplier()
             local saddle = rider:GetSaddle()
             local inventoryitem = saddle ~= nil and saddle.replica.inventoryitem or nil
             if inventoryitem ~= nil then
