@@ -131,17 +131,7 @@ local function AddSetPeices(level, addall)
     end
 
     if boons_override ~= "never" then
-        if level.location == "porkland" then
-            local boons = math.random( math.floor(3 * MULTIPLY[boons_override]), math.ceil(8 * MULTIPLY[boons_override]) )
-            for idx = 1, boons do
-                AddSingleSetPeice(level, "map/pl_boons")
-            end
-        else
-            local boons = math.random( math.floor(3 * MULTIPLY[boons_override]), math.ceil(8 * MULTIPLY[boons_override]) )
-            for idx = 1, boons do
-                AddSingleSetPeice(level, "map/boons")
-            end
-        end
+        AddSingleSetPeice(level, "map/pl_boons")
     end
 
     if touchstone_override ~= "default" and level.set_pieces ~= nil and level.set_pieces["ResurrectionStone"] ~= nil then
@@ -153,17 +143,7 @@ local function AddSetPeices(level, addall)
     end
 
     if traps_override ~= "never" then
-        if level.location == "porkland" then
-            local boons = math.random( math.floor(3 * MULTIPLY[boons_override]), math.ceil(8 * MULTIPLY[boons_override]) )
-            for idx = 1, boons do
-                AddSingleSetPeice(level, "map/pl_traps", "trap")
-            end
-        else
-            local boons = math.random( math.floor(3 * MULTIPLY[boons_override]), math.ceil(8 * MULTIPLY[boons_override]) )
-            for idx = 1, boons do
-                AddSingleSetPeice(level, "map/traps", "trap")
-            end
-        end
+        AddSingleSetPeice(level, "map/pl_traps", "trap")
     end
 
     if poi_override ~= "never" then

@@ -274,9 +274,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     topology_save.root:GlobalPostPopulate(entities, map_width, map_height)
 
-    if is_porkland then
-        build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
-    end
+    build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
 
     for k, ents in pairs(entities) do
         for i=#ents, 1, -1 do

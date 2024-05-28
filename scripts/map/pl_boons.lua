@@ -22,7 +22,7 @@ local Any = {
         ["GrassBoon"] = StaticLayout.Get("map/static_layouts/small_boon", {
                 areas = {
                     item_area = function() return PickSome(1, {"torch", "trap"}) end,
-                    resource_area = function() return PickSomeWithDups(math.random(3,5), {"cutgrass"}) end,
+                    resource_area = function() return PickSomeWithDups(math.random(3,5), {"grass"}) end,
                     },
             }),
         ["TwigsBoon"] = StaticLayout.Get("map/static_layouts/small_boon", {
@@ -89,17 +89,17 @@ local Rare = {
     }
 
 local Boons = {
-	["Any"] = Any,
-	["Rare"] = Rare,
+    ["Any"] = Any,
+    ["Rare"] = Rare,
 }
 
 local layouts = {}
 for k,area in pairs(Boons) do
-	if GetTableSize(area) >0 then
-		for name, layout in pairs(area) do
-			layouts[name] = layout
-		end
-	end
+    if GetTableSize(area) >0 then
+        for name, layout in pairs(area) do
+            layouts[name] = layout
+        end
+    end
 end
 
 return {Sandbox = Boons, Layouts = layouts}
