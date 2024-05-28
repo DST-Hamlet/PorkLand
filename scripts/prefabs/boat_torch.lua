@@ -243,13 +243,14 @@ end
 local function torch_visual_common(inst)
     inst.visualchild.AnimState:SetBank("sail_visual")
     inst.visualchild.AnimState:SetBuild("swap_torch_boat")
-    inst.visualchild.AnimState:PlayAnimation("idle_loop")
-    inst.visualchild.AnimState:SetSortWorldOffset(0, 0.05, 0) --below the player
+    inst.visualchild.AnimState:PlayAnimation("idle_loop", true)
+    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- below the player
 
     inst._oversymbol = net_string(inst.GUID, "_oversymbol", "symboldirty")
     inst._oversymbol:set("swap_lantern_off")
 
     if not TheWorld.ismastersim then
+        inst.visualchild.AnimState:OverrideSymbol("swap_lantern", "swap_torch_boat", inst._oversymbol:value())
         inst:ListenForEvent("symboldirty", function()
             if "symboldirty" ~= "" then
                 inst.visualchild.AnimState:OverrideSymbol("swap_lantern", "swap_torch_boat", inst._oversymbol:value())
@@ -258,10 +259,10 @@ local function torch_visual_common(inst)
     end
 
     function inst.components.boatvisualanims.update(inst, dt)
-        if inst.visualchild.AnimState:GetCurrentFacing() == FACING_DOWN then
-            inst.visualchild.AnimState:SetSortWorldOffset(0, 0.15, 0) --above the player
+        if inst.visualchild.AnimState:GetCurrentFacing() == FACING_UP then
+            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- above the player
         else
-            inst.visualchild.AnimState:SetSortWorldOffset(0, 0.05, 0) --below the player
+            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MAX - 1)  -- below the player
         end
     end
 end
