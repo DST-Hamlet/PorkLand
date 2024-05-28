@@ -274,6 +274,8 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     topology_save.root:GlobalPostPopulate(entities, map_width, map_height)
 
+    build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
+
     for k, ents in pairs(entities) do
         for i=#ents, 1, -1 do
             local x = ents[i].x/TILE_SCALE + map_width/2.0
@@ -308,8 +310,6 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     BunchSpawnerRun(WorldSim)
 
     AncientArchivePass(entities, map_width, map_height, WorldSim)
-
-    build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
 
     local double_check = {}
     for i, prefab in ipairs(level.required_prefabs or {}) do

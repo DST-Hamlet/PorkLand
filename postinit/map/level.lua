@@ -86,13 +86,13 @@ local function AddSingleSetPeice(level, choicefile, type, area, name)
 end
 
 local function AddAllPlSetPiece(level)
-    for area, layouts in pairs(Pl_Boons) do
+    for area, layouts in pairs(Pl_Boons.Sandbox) do
         for _, name in ipairs(layouts) do
             AddSingleSetPeice(level, "map/boons", "boons", area, name)
         end
     end
 
-    for area, layouts in pairs(Pl_Traps) do
+    for area, layouts in pairs(Pl_Traps.Sandbox) do
         for _, name in ipairs(layouts) do
             AddSingleSetPeice(level, "map/traps", "traps", area, name)
         end
@@ -133,7 +133,7 @@ local function AddSetPeices(level, addall)
     if boons_override ~= "never" then
         local boons = math.random( math.floor(3 * MULTIPLY[boons_override]), math.ceil(8 * MULTIPLY[boons_override]) )
         for idx = 1, boons do
-            AddSingleSetPeice(level, "map/boons")
+            AddSingleSetPeice(level, "map/pl_boons")
         end
     end
 
@@ -146,7 +146,7 @@ local function AddSetPeices(level, addall)
     end
 
     if traps_override ~= "never" then
-        AddSingleSetPeice(level, "map/traps", "trap")
+        AddSingleSetPeice(level, "map/pl_traps", "trap")
     end
 
     if poi_override ~= "never" then

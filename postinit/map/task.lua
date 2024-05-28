@@ -1,6 +1,6 @@
 GLOBAL.setfenv(1, GLOBAL)
 
----@class task 
+---@class task
 ---@field set_pieces { name: string }[]
 ---@field gen_method string
 

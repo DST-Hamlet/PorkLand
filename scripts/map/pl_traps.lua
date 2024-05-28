@@ -1,14 +1,26 @@
+require("constants")
+local StaticLayout = require("map/static_layout")
 local obj_layout = require("map/object_layout")
 
-local Pl_Traps = {}
+local Rare = {
+    --["Dev Graveyard"] = StaticLayout.Get("map/static_layouts/dev_graveyard"),
+}
 
-local function AddTraps(area, name)
-    if not Pl_Traps[area] then
-        Pl_Traps[area] = {}
+local Rocky = {
+}
+
+local Traps = {
+    ["Rare"] = Rare,
+    [WORLD_TILES.ROCKY] = Rocky,
+}
+
+local layouts = {}
+for k,area in pairs(Traps) do
+    if GetTableSize(area) >0 then
+        for name, layout in pairs(area) do
+            layouts[name] = layout
+        end
     end
-
-    table.insert(Pl_Traps[area], name)
-    obj_layout.AddLayoutToSanbox("map/traps", area, name)
 end
 
-return Pl_Traps
+return {Sandbox = Traps, Layouts = layouts}

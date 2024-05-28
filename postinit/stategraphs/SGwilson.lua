@@ -815,11 +815,6 @@ local states = {
             if boat and boat.replica.sailable then
                 boat.replica.sailable:PlayPostRowAnims()
             end
-
-            -- If the player had something in their hand before starting to row, put it back.
-            if inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS) then
-                inst.AnimState:PushAnimation("item_out", false)
-            end
         end,
 
         events = {
@@ -830,6 +825,11 @@ local states = {
                         equipped:PushEvent("stoprowing", {owner = inst})
                     end
                     inst:PushEvent("stoprowing")
+                    -- If the player had something in their hand before starting to row, put it back.
+                    if equipped and not equipped:HasTag("oar") then
+                        inst.sg:GoToState("item_out")
+                        return
+                    end
                     inst.sg:GoToState("idle")
                 end
             end),
