@@ -329,7 +329,6 @@ function Story:Pl_InsertAdditionalSetPieces(task_nodes)
     for id, task in pairs(tasks) do
         if task.set_pieces ~= nil and #task.set_pieces > 0 then
             for i, setpiece_data in ipairs(task.set_pieces) do
-                print("setpiece_data: ",setpiece_data.name)
                 local is_entrance = function(room)
                     -- return true if the room is an entrance
                     return room.data.entrance ~= nil and room.data.entrance == true
