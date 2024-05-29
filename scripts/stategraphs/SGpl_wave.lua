@@ -15,8 +15,8 @@ local states=
         timeline =
         {
             TimeEvent(5 * FRAMES, function(inst)
-                if inst.soundrise then inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/rogue_waves/".. inst.soundrise) end
-                if inst.soundloop then inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/rogue_waves/".. inst.soundloop, inst.soundloop) end
+                if inst.soundrise then inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/rogue_waves/" .. inst.soundrise) end
+                if inst.soundloop then inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/rogue_waves/" .. inst.soundloop, inst.soundloop) end
             end),
         },
 
@@ -33,7 +33,7 @@ local states=
         tags = {"idle"},
 
         onenter = function(inst)
-            inst:activate_collision()
+            inst:ActivateCollision()
             inst.AnimState:PlayAnimation("idle", false)
             inst.sg:SetTimeout(inst.idle_time or 5)
         end,
