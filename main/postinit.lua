@@ -49,6 +49,7 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "boomerang",
     "buff_workeffectiveness",
     "orangestaff",
     "player",
