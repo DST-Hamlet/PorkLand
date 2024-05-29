@@ -18,23 +18,11 @@ end
 
 local function OnEmbarked(boat, data)
     local item = boat.components.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
-
-    -- if data.sailor.components.locomotor then
-    --     data.sailor.components.locomotor:SetExternalSpeedMultiplier(item, "SAIL", item.sail_speed_mult)
-    --     data.sailor.components.locomotor:SetExternalAccelerationMultiplier(item, "SAIL", item.sail_accel_mult)
-    --     data.sailor.components.locomotor:SetExternalDecelerationMultiplier(item, "SAIL", item.sail_accel_mult)
-    -- end
 end
 
 local function OnDisembarked(boat, data)
     local item = boat.components.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
     StopConsuming(item)
-
-    -- if data.sailor.components.locomotor then
-    --     data.sailor.components.locomotor:RemoveExternalSpeedMultiplier(item, "SAIL")
-    --     data.sailor.components.locomotor:RemoveExternalAccelerationMultiplier(item, "SAIL")
-    --     data.sailor.components.locomotor:RemoveExternalDecelerationMultiplier(item, "SAIL")
-    -- end
 end
 
 local function OnStartMoving(boat, data)
@@ -94,8 +82,7 @@ local function OnUnequip(inst, owner)
 
             if owner.components.sailable then
                 owner.components.sailable:RemoveExternalSpeedMultiplier(inst, "SAIL")
-                 owner.components.sailable:RemoveExternalAccelerationMultiplier(inst, "SAIL")
-                 --owner.components.sailable:RemoveExternalDecelerationMultiplier(inst, "SAIL")
+                owner.components.sailable:RemoveExternalAccelerationMultiplier(inst, "SAIL")
             end
         end
 
