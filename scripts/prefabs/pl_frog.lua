@@ -18,7 +18,7 @@ local prefabs =
 
 SetSharedLootTable("frog_poison", {
     {"froglegs_poison", 1},
-    {"venomgland",    0.5},
+    -- {"venomgland",    0.5}, Remove gland because it wouldn't drop any in Hamlet due to a bug
 })
 
 local POISON_SOUNDS = {
