@@ -301,8 +301,7 @@ ACTIONS.RUMMAGE.extra_arrive_dist = function(doer, dest, ...)
     if dest ~= nil then
         local target_x, target_y, target_z = dest:GetPoint()
 
-        local is_on_water = TheWorld.Map:IsOceanTileAtPoint(target_x, 0, target_z) and not TheWorld.Map:IsPassableAtPoint(target_x, 0, target_z)
-        if is_on_water then
+        if TheWorld.Map:ReverseIsVisualGroundAtPoint(doer.Transform:GetWorldPosition()) ~= TheWorld.Map:ReverseIsVisualGroundAtPoint(target_x, target_y, target_z) then
             -- 2 with the ARRIVE_STEP (0.15), player radius (0.5) and boat radius (0.25) subtracted from it is aproximatly 1.1
             return 1.1 + ret
         end
