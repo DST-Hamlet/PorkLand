@@ -123,3 +123,21 @@ function ToolUtil.RegisterInventoryItemAtlas(atlas_path)
         end
     end
 end
+
+---@param class table
+---@param prop_key string
+---@param pre_fn function | nil
+---@param post_fn function | nil
+function ToolUtil.HookSetter(class, prop_key, pre_fn, post_fn)
+    local _ = rawget(class, "_")
+    local prop = _[prop_key]
+    assert(_ ~= nil, "Class does not support property setters")
+    assert(_[prop_key] ~= nil, "Class does not " .. prop_key .. " setters")
+
+    local fn = prop[2]
+    prop[2] = function(...)
+        if pre_fn then pre_fn(...) end
+        fn(...)
+        if post_fn then post_fn(...) end
+    end
+end

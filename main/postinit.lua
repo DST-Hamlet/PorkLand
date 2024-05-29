@@ -37,6 +37,7 @@ local component_posts = {
     "regrowthmanager",
     "repairable",
     "rider_replica",
+    "rider",
     "seasons",
     "shard_clock",
     "shard_seasons",
