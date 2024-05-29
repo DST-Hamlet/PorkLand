@@ -142,6 +142,7 @@ local function fn()
     inst:AddComponent("eater")
 
     inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetChanceLootTable("frog_poison")
 
     inst:AddComponent("knownlocations")
     inst:AddComponent("inspectable")

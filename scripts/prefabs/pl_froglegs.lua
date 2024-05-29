@@ -19,6 +19,7 @@ local function fn()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("frog_legs")
     inst.AnimState:SetBuild("frog_legs_tree")
