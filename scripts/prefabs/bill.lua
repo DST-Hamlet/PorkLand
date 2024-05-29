@@ -46,6 +46,14 @@ local function OnAttacked(inst, data)
     inst.components.combat:ShareTarget(attacker, 20, function(ent) return ent:HasTag("platapine") end, 2)
 end
 
+local function OnItemGet(inst, data)
+    if data.item and data.item:IsValid() then
+        -- Remove lotus flower when bill picks a lotus.
+        -- This is not needed for DS because Pickable:Pick skips loot dropping if picker has no inventory
+        data.item:Remove()
+    end
+end
+
 local function OnTimerDone(inst, data)
     if data.name == "tumble" then
         inst.can_tumble = true -- Lets get ready to tumble!
@@ -107,6 +115,8 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
+    inst:AddComponent("inventory")
+
     inst:AddComponent("sleeper")
 
     inst:AddComponent("eater")
@@ -139,6 +149,7 @@ local function fn()
     inst:DoPeriodicTask(1, UpdateAggro)
 
     inst:ListenForEvent("attacked", OnAttacked)
+    inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("timerdone", OnTimerDone)
 
     inst.can_tumble = false

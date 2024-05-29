@@ -85,6 +85,8 @@ AquaticRecipe("boat_cargo", {distance = 4, platform_buffer_min = 2, aquatic_buff
 AddRecipe2("corkboat", {Ingredient("cork", 4), Ingredient("rope", 1)}, TECH.SCIENCE_ONE, {placer = "corkboat_placer", build_mode = BUILDMODE.WATER, build_distance = 4}, {"NAUTICAL"})
 AquaticRecipe("corkboat", {distance = 4, platform_buffer_min = 2, aquatic_buffer_min = 1, boat = true})
 
+AddRecipe2("sail_snakeskin_scaly", {Ingredient("log", 4), Ingredient("rope", 2), Ingredient("snakeskin", 2)}, TECH.SCIENCE_TWO, nil, {"NAUTICAL"})
+
 AddRecipe2("boatrepairkit", {Ingredient("boards", 2), Ingredient("stinger", 2), Ingredient("rope", 2)}, TECH.SCIENCE_ONE, nil, {"NAUTICAL"})
 
 AddRecipe2("boat_torch", {Ingredient("twigs", 2), Ingredient("torch", 1)}, TECH.SCIENCE_ONE, nil, {"LIGHT", "NAUTICAL"})

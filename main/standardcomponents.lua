@@ -90,7 +90,7 @@ end
 
 ---@param land_bank string
 ---@param water_bank string
----@param should_silent function
+---@param should_silent function|nil
 ---@param on_enter_water function|nil
 ---@param on_exit_water function|nil
 function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_water, on_exit_water)
