@@ -129,11 +129,11 @@ function Sailable:OnRemoveFromEntity()
     self.inst:RemoveTag("sailable")
 end
 
-function Sailable:RecalculateExternalSpeedMultiplier(sources)--没错，接下来的几个函数都是抄locomotor的
+function Sailable:RecalculateExternalSpeedMultiplier(sources)
     local m = self.inst.replica.sailable.basicspeedbonus
     for source, src_params in pairs(sources) do
         for k, v in pairs(src_params.multipliers) do
-            m = m + v * (6 + self.inst.replica.sailable.basicspeedbonus)--帆用加法，但是会受到船的基础移速影响，因为...因为就是这样
+            m = m + v * (6 + self.inst.replica.sailable.basicspeedbonus)
         end
     end
     return m
@@ -170,7 +170,7 @@ function Sailable:RemoveExternalSpeedMultiplier(source, key)
     elseif key ~= nil then
         src_params.multipliers[key] = nil
         if next(src_params.multipliers) ~= nil then
-            --this source still has other keys
+            -- this source still has other keys
             self.externalspeedmultiplier = self:RecalculateExternalSpeedMultiplier(self._externalspeedmultipliers)
             return
         end
@@ -181,7 +181,7 @@ function Sailable:RemoveExternalSpeedMultiplier(source, key)
     self.externalspeedmultiplier = self:RecalculateExternalSpeedMultiplier(self._externalspeedmultipliers)
 end
 
-function Sailable:RecalculateExternalAccelerationMultiplier(sources)--没错，接下来的几个函数都是抄locomotor的
+function Sailable:RecalculateExternalAccelerationMultiplier(sources)
     local m = 0
     for source, src_params in pairs(sources) do
         for k, v in pairs(src_params.multipliers) do
@@ -231,5 +231,10 @@ function Sailable:RemoveExternalAccelerationMultiplier(source, key)
     self._externalaccelerationmultipliers[source] = nil
     self.externalaccelerationmultiplier = self:RecalculateExternalAccelerationMultiplier(self._externalaccelerationmultipliers)
 end
+
+function Sailable:GetExternalAccelerationMultiplier(source, key, m)
+    return self.externalaccelerationmultiplier
+end
+
 
 return Sailable

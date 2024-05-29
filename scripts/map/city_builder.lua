@@ -922,7 +922,6 @@ end
 local function make_cities(entities, topology_save, worldsim, width, height, setcurrent_gen_params)
     print("BUILDING PIG CULTURE")
 
-    local parks = {}
     local spawners = {} -- anything that is added here that needs to be looked at before finally being added to the entites list.
 
     made_palace = false

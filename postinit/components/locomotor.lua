@@ -18,7 +18,7 @@ local function ServerGetSpeedMultiplier(self)
                 mult = mult + (saddle.components.saddler:GetBonusSpeedMult() - 1)
             end
         elseif self.inst.replica.sailor and self.inst.replica.sailor:GetBoat() then
-            mult = mult + (self.inst.replica.sailor._currentspeed:value() / self:RunSpeed() - 1)
+            mult = self.inst.replica.sailor._currentspeed:value() / self:RunSpeed()
         elseif self.inst.components.inventory.isopen then
             -- NOTE: Check if inventory is open because client GetEquips returns
             --       nothing if inventory is closed.

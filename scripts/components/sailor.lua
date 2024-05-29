@@ -16,22 +16,7 @@ local function OnBoatDelta(boat, data) -- Listen for boat taking damage, talk if
     end
 end
 
-local function onboat(self, boat)
-    if self.inst.replica.sailor then
-        self.inst.replica.sailor._boat:set(boat)
-    end
-end
-
-local function onsailing(self, sailing)
-    if sailing then
-        self.inst:AddTag("sailor")
-    else
-        self.inst:RemoveTag("sailor")
-    end
-end
-
-local function boostbywave(inst, data)
-    print("boostbywave")
+local function OnBoostByWave(inst, data)
     if inst.sg:HasStateTag("boating") then
 
         local boost = TUNING.WAVEBOOST
@@ -45,6 +30,20 @@ local function boostbywave(inst, data)
         if inst.components.sailor then
             inst.components.sailor.boatspeed = inst.components.sailor.boatspeed + boost
         end
+    end
+end
+
+local function onboat(self, boat)
+    if self.inst.replica.sailor then
+        self.inst.replica.sailor._boat:set(boat)
+    end
+end
+
+local function onsailing(self, sailing)
+    if sailing then
+        self.inst:AddTag("sailor")
+    else
+        self.inst:RemoveTag("sailor")
     end
 end
 
@@ -66,7 +65,7 @@ local Sailor = Class(function(self, inst)
     self.boatspeed = 0
     self.perdictframe = 0
 
-    self.inst:ListenForEvent("boostbywave", boostbywave)
+    self.inst:ListenForEvent("boostbywave", OnBoostByWave)
 end,
 nil,
 {
@@ -89,13 +88,13 @@ function Sailor:AlignBoat(direction)
 end
 
 function Sailor:GetDeceleration()
-    local modifier = 1 + self.boat.components.sailable.externalaccelerationmultiplier
+    local modifier = 1 + self.boat.components.sailable:GetExternalAccelerationMultiplier()
 
     return self.deceleration * modifier
 end
 
 function Sailor:GetAcceleration()
-    local modifier = 1 + self.boat.components.sailable.externalaccelerationmultiplier
+    local modifier = 1 + self.boat.components.sailable:GetExternalAccelerationMultiplier()
 
     return self.acceleration * modifier
 end
