@@ -12,7 +12,7 @@ local function OnDropped(inst)
 end
 
 AddPrefabPostInit("boomerang", function(inst)
-    inst.components.finiteuses:SetOnFinished(OnFinished_Pl)
+    inst.components.finiteuses:SetOnFinished(OnFinished)
 
-    inst.components.inventoryitem:SetOnDroppedFn(OnDropped_Pl)
+    inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
 end)
