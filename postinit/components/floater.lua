@@ -78,7 +78,6 @@ function Floater:OnLandedServer(...)
 
     local rets = {_OnLandedServer(self, ...)}
     if _showing_effect and not self:ShouldShowEffect() then
-
         self.inst:PushEvent("floater_stopfloating")
         self._is_landed:set(false)
         self.showing_effect = false

@@ -32,3 +32,12 @@ function c_gotostate(state)
         player.sg:GoToState(state)
     end
 end
+
+function c_characterembark(boat_prefab)
+    local x, y, z = TheInput:GetWorldPosition():Get()
+    local wilson = SpawnPrefab("wilson")
+    wilson.Transform:SetPosition(x, y, z)
+    local boat = SpawnPrefab(boat_prefab or "boat_lograft")
+    boat.Transform:SetPosition(x, y, z)
+    wilson.components.sailor:Embark(boat)
+end

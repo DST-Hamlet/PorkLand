@@ -360,9 +360,6 @@ end
 local function corkboatfn()
     local inst = commonfn()
 
-    --inst.AnimState:SetBank("rowboat")
-    --inst.AnimState:SetBuild("coracle_boat_build")
-
     inst.MiniMapEntity:SetIcon("coracle_boat.tex")
 
     if not TheWorld.ismastersim then
