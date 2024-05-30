@@ -82,6 +82,7 @@ return {
             GENERIC = "Really energetic, do you want to dance?",
             SLEEPING = "Then intermission.",
         },
+        SAIL_SNAKESKIN = "The stripes complement the colour, I say, I say.",
         SEDIMENTPUDDLE = "These are not for drink.",
         SHEARS = "Click, click, leaves fall.",
         SMELTER = {

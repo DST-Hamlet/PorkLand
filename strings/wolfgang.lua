@@ -84,6 +84,7 @@ return {
             GENERIC = "Wolfgang will stomp bad beetle!",
             SLEEPING = "Hehe. Is funny mustache.",
         },
+        SAIL_SNAKESKIN = "Skin of dead snake will help me sail.",
         SEDIMENTPUDDLE = "Hello little sparklies!",
         SHEARS = "Is for cutting plant things.",
         SMELTER = {

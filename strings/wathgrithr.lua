@@ -84,6 +84,7 @@ return {
             GENERIC = "Evil beast. You have met your match!",
             SLEEPING = "Slumber consumes it!",
         },
+        SAIL_SNAKESKIN = "A sail made of murder!",
         SEDIMENTPUDDLE = "Its tiny gold pieces will be mine!",
         SHEARS = "A weapon for use against a mighty hedge!",
         SMELTER = {

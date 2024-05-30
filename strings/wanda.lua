@@ -83,6 +83,7 @@ return {
             GENERIC = "vermin! go away!",
             SLEEPING = "Huh, I can take a breath.",
         },
+        SAIL_SNAKESKIN = "There's no need to make a flag if the sail is colorful. Not that I need one.",
         SEDIMENTPUDDLE = "Water isn't the only thing reflecting sunlight here.",
         SHEARS = "I won't waste my time on this.",
         SMELTER = {

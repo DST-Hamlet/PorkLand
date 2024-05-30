@@ -85,6 +85,7 @@ return {
             GENERIC = "What is he all worked up about?",
             SLEEPING = "A noisy sleeper.",
         },
+        SAIL_SNAKESKIN = "For ease of travel.",
         SEDIMENTPUDDLE = "There's something sparkling inside there.",
         SHEARS = "Aren't there gardeners for this sort of thing?",
         SMELTER = {

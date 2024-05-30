@@ -84,6 +84,7 @@ return {
             GENERIC = "It is like me when I am hungry.",
             SLEEPING = "What a curious way to sleep!",
         },
+        SAIL_SNAKESKIN = "Perhaps I'll sail to a land of spices.",
         SEDIMENTPUDDLE = "It's been seasoned with gold.",
         SHEARS = "Good for cutting hedges and grass.",
         SMELTER = {

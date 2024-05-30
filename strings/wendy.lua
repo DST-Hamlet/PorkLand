@@ -84,6 +84,7 @@ return {
             GENERIC = "As rabid as death itself.",
             SLEEPING = "Sleep is not a permanent escape from life.",
         },
+        SAIL_SNAKESKIN = "Gross, but efficient.",
         SEDIMENTPUDDLE = "Contains unreachable shiny things.",
         SHEARS = "Can it shear my heart?",
         SMELTER = {

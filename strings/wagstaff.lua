@@ -87,6 +87,7 @@ return {
             GENERIC = "Evidently, it acquires facial hair when it matures.",
             SLEEPING = "It's respiratory structures are vibrating.",
         },
+        SAIL_SNAKESKIN = "Theoretically, it's reliable despite its patchy appearance.",
         SEDIMENTPUDDLE = "Evidence would suggest there's gold down there!",
         SHEARS = "Cutting implements constructed from raw metal.",
         SMELTER = {

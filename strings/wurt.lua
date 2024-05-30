@@ -83,6 +83,7 @@ return {
             GENERIC = "The little bug is going crazy!",
             SLEEPING = "The little bug was quiet.",
         },
+        SAIL_SNAKESKIN = "It sail made of colourful scales.",
         SEDIMENTPUDDLE = "Water are ... shining?",
         SHEARS = "Shape the plants.",
         SMELTER = {

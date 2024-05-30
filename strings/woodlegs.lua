@@ -84,6 +84,7 @@ return {
             GENERIC = "Ornery buggie.",
             SLEEPING = "Thar she blows!",
         },
+        SAIL_SNAKESKIN = "Thet be a sail.",
         SEDIMENTPUDDLE = "Alas, not big enough to sail in.",
         SHEARS = "A cutlass fer tha'bushes.",
         SMELTER = {

@@ -84,6 +84,7 @@ return {
             GENERIC = "Seems mighty angry.",
             SLEEPING = "Let sleeping bugs lie, I say.",
         },
+        SAIL_SNAKESKIN = "Sailin' in style.",
         SEDIMENTPUDDLE = "What's that shiny stuff in there?",
         SHEARS = "Don't get jealous, Lucy.",
         SMELTER = {

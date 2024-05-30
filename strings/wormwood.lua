@@ -84,6 +84,7 @@ return {
             GENERIC = "Why so mad, Bzzter?",
             SLEEPING = "Let it sleep",
         },
+        SAIL_SNAKESKIN = "Squirmy Wind Nabber",
         SEDIMENTPUDDLE = "Shiny puddle",
         SHEARS = "For hair cuts",
         SMELTER = {

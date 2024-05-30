@@ -84,6 +84,7 @@ return {
             GENERIC = "Probably just agitated because it can't fly well.",
             SLEEPING = "Quite the snorer.",
         },
+        SAIL_SNAKESKIN = "Too heavy for balloon material. Just right for a sail.",
         SEDIMENTPUDDLE = "A sparkly pool. A little too sparkly.",
         SHEARS = "Time to do some yard work.",
         SMELTER = {

@@ -84,6 +84,7 @@ return {
             GENERIC = "What're you so mad about?",
             SLEEPING = "I should draw a mustache on its mustache while it sleeps.",
         },
+        SAIL_SNAKESKIN = "What a morbid sail.",
         SEDIMENTPUDDLE = "Yeesh, there's a lot of sparkles in there.",
         SHEARS = "Not as good as fire, but I guess it has its uses.",
         SMELTER = {

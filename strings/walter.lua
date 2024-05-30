@@ -83,6 +83,7 @@ return {
             GENERIC = "Wow, look how active they are!",
             SLEEPING = "it's sleeping,",
         },
+        SAIL_SNAKESKIN = "The snakes wouldn't end up like this if they didn't try to eat me!",
         SEDIMENTPUDDLE = "Is that gold in there?",
         SHEARS = "Gardener's little helper.",
         SMELTER = {
