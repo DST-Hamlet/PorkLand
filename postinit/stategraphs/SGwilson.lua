@@ -460,7 +460,7 @@ local states = {
 
     State{
         name = "jumponboatstart",
-        tags = { "doing", "nointerupt", "canrotate", "busy", "nomorph", "nopredict", "temp_invincible"},
+        tags = { "doing", "nointerupt", "canrotate", "busy", "nomorph", "nopredict"},
         onenter = function(inst)
             if inst.Physics.ClearCollidesWith then
                 inst.Physics:ClearCollidesWith(COLLISION.LIMITS) -- R08_ROT_TURNOFTIDES
@@ -515,7 +515,6 @@ local states = {
                     inst.components.playercontroller:Enable(true)
                 end
 
-                inst.sg:RemoveStateTag("temp_invincible")
                 inst.Transform:SetPosition(inst.sg.statemem.targetpos:Get())
                 inst.Physics:Stop()
 
@@ -530,7 +529,7 @@ local states = {
 
     State{
         name = "jumpboatland",
-        tags = { "doing", "nointerupt", "busy", "canrotate", "invisible", "nomorph", "nopredict", "temp_invincible"},
+        tags = { "doing", "nointerupt", "busy", "canrotate", "invisible", "nomorph", "nopredict"},
 
         onenter = function(inst, pos)
             if inst.Physics.ClearCollidesWith then
@@ -562,7 +561,7 @@ local states = {
 
     State{
         name = "jumpoffboatstart",
-        tags = {"doing", "nointerupt", "busy", "canrotate", "nomorph", "nopredict", "temp_invincible"},
+        tags = {"doing", "nointerupt", "busy", "canrotate", "nomorph", "nopredict"},
 
         onenter = function(inst, pos)
             if inst.Physics.ClearCollidesWith then
@@ -619,7 +618,7 @@ local states = {
 
     State{
         name = "jumpoffboatland",
-        tags = {"doing", "nointerupt", "busy", "canrotate", "nomorph", "nopredict", "temp_invincible"},
+        tags = {"doing", "nointerupt", "busy", "canrotate", "nomorph", "nopredict"},
 
         onenter = function(inst, pos)
             if inst.Physics.ClearCollidesWith then
