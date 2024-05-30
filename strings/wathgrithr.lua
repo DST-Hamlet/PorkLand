@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Useless vegetation!",
         BASEFAN = "Conquers the heat!",
         BOATREPAIRKIT = "Most sensible cargo.",
+        BOAT_TORCH = "The night sea is alight!",
         CHITIN = "The feeble armor of the bug.",
         COFFEE = "Bitter and pulse-pounding.",
         COFFEEBEANS = "I take mine black.",

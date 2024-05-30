@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Green stick stick, smells good.",
         BASEFAN = "Water ran away! florpt!",
         BOATREPAIRKIT = "Why repair? Let water in, florpt!",
+        BOAT_TORCH = "It torch for boat.",
         CHITIN = "Tough hide.",
         COFFEE = "Flurph... this make head hurt.",
         COFFEEBEANS = "Yummy snacks!",

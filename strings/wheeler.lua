@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "That looks like food! Let's hope it tastes like food.",
         BASEFAN = "A plane propeller would be better.",
         BOATREPAIRKIT = "Swell. Because cork is known for its durability.",
+        BOAT_TORCH = "Open fire on a wooden boat. The most adventurous thing I've ever done.",
         CHITIN = "I'm going to need more of these.",
         COFFEE = "Because there's no better time to be jumpy than when you're on an adventure.",
         COFFEEBEANS = "Small enough to fit in the Pew-matic.",

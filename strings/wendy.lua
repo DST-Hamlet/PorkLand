@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "I should rip those out of the ground.",
         BASEFAN = "Alas the relief it brings is only temporary.",
         BOATREPAIRKIT = "This could save a boat from destruction, and me with it.",
+        BOAT_TORCH = "How illuminating.",
         CHITIN = "This shell is poor protection from life's horrors.",
         COFFEE = "Dark. Bitter...",
         COFFEEBEANS = "These look stimulating.",

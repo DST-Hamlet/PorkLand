@@ -115,6 +115,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOATREPAIRKIT"
 msgid "This will add some float to my boat."
 msgstr "这可以给我的船增加一些浮力。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_TORCH"
+msgid "This'll keep my hands free."
+msgstr "这东西可以解放我的双手。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN"
 msgid "Bug coating."
@@ -494,6 +499,11 @@ msgstr "真棒啊！多么神奇的工程啊！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOATREPAIRKIT"
 msgid "Strange. Where did the glue come from?"
 msgstr "真奇怪。这胶水是从哪里来的？"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_TORCH"
+msgid "The fortunate angle of this stick makes for an ideal hanging device."
+msgstr "幸运的是，这根棍子的角度是完美的，这让它成为可用的悬挂装置。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN"
@@ -885,6 +895,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOATREPAIRKIT"
 msgid "Surfboard maintenance is essential!"
 msgstr "冲浪板维护是很重要的！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_TORCH"
+msgid "Night-surfing. I love it!"
+msgstr "夜间冲浪。我喜欢！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN"
 msgid "Probably wouldn't make a good surfboard."
@@ -1265,6 +1280,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOATREPAIRKIT"
 msgid "I'll need to maintain Woby's boat as well."
 msgstr "我还得把沃比的小船维护好。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_TORCH"
+msgid "It's important to have good visibility while sailing."
+msgstr "航行时保持良好的能见度是很重要的。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN"
 msgid "Check out the pattern on this! Woby!"
@@ -1640,6 +1660,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOATREPAIRKIT"
 msgid "Repairing takes a lot shorter than building a whole new boat from the scratch."
 msgstr "修理比从头开始建造一艘新船要快得多。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_TORCH"
+msgid "This will keep me safe, nice and hands-free."
+msgstr "这能让我安全，舒适并空出双手。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.CHITIN"
 msgid "I don't understand what's the point of this?"
@@ -2014,6 +2039,11 @@ msgstr "厨房必须通风良好。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOATREPAIRKIT"
 msgid "A most sensible traveling companion."
 msgstr "最明智的旅行伴侣。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_TORCH"
+msgid "It's a light so I might \"sea\"."
+msgstr "让我能看到海上情况的灯。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN"
@@ -2394,6 +2424,11 @@ msgstr "驱散高温!"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOATREPAIRKIT"
 msgid "Most sensible cargo."
 msgstr "最明智的船货。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_TORCH"
+msgid "The night sea is alight!"
+msgstr "夜晚的海面被点亮了！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN"
@@ -2780,6 +2815,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOATREPAIRKIT"
 msgid "It will hold off my vessel's inevitable decay."
 msgstr "它将拖延我的船无法避免的腐朽。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_TORCH"
+msgid "Sailing at night seems unsafe, but this makes it somewhat better."
+msgstr "晚上航海似乎不安全，但这个能提高一点安全性。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN"
 msgid "We all have our defenses."
@@ -3159,6 +3199,11 @@ msgstr "微风吹过毛皮的感觉很惬意。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOATREPAIRKIT"
 msgid "Never leave home without one."
 msgstr "出门的时候别把它落下了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_TORCH"
+msgid "It will light my way!"
+msgstr "它将照亮我的路！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN"
@@ -3540,6 +3585,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOATREPAIRKIT"
 msgid "This could save a boat from destruction, and me with it."
 msgstr "这能挽救一艘船免于毁灭，顺带挽救我。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_TORCH"
+msgid "How illuminating."
+msgstr "多么明亮。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN"
 msgid "This shell is poor protection from life's horrors."
@@ -3920,6 +3970,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOATREPAIRKIT"
 msgid "Swell. Because cork is known for its durability."
 msgstr "好吧。因为软木以其耐用性而闻名。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_TORCH"
+msgid "Open fire on a wooden boat. The most adventurous thing I've ever done."
+msgstr "在木船上点火。这是我做过最冒险的事情。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN"
 msgid "I'm going to need more of these."
@@ -4299,6 +4354,11 @@ msgstr "恢复装置。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOATREPAIRKIT"
 msgid "Extends the life of aquatic vessels."
 msgstr "延长水上交通工具的寿命。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_TORCH"
+msgid "To better observe the nocturnal sea life."
+msgstr "可以更清楚地看到夜间的海洋生物。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN"
@@ -4685,6 +4745,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOATREPAIRKIT"
 msgid "'TIS FOR BOAT FIXINGS"
 msgstr "用这个来修理船"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_TORCH"
+msgid "WHAT LIGHT!"
+msgstr "多么明亮啊！"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN"
 msgid "YON BUGGY ARMOR"
@@ -5064,6 +5129,11 @@ msgstr "煽风点火。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOATREPAIRKIT"
 msgid "This should patch up any little leaks."
 msgstr "这应该能补上任何小漏洞。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_TORCH"
+msgid "Strangely not for torching boats."
+msgstr "好奇怪，不是用来把船点着的。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN"
@@ -5445,6 +5515,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOATREPAIRKIT"
 msgid "Who needs glue? My tape is sticky enough."
 msgstr "谁还需要胶水？我的胶带就够了。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_TORCH"
+msgid "This torch is a little light. Ha!"
+msgstr "这样的火炬足够亮眼。哈！"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.CHITIN"
 msgid "I don't know what this can be used for."
@@ -5819,6 +5894,11 @@ msgstr "沃尔夫冈感到很凉快。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOATREPAIRKIT"
 msgid "Restore my mighty vessel!"
 msgstr "修复我强大的船！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_TORCH"
+msgid "Flame on boat is good idea!"
+msgstr "船上装火把是个好主意！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN"
@@ -6200,6 +6280,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOATREPAIRKIT"
 msgid "Patch'er up, eh?"
 msgstr "把它修好吗？"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_TORCH"
+msgid "I can go night fishing."
+msgstr "我可以夜钓。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN"
 msgid "It's got some heft to it."
@@ -6579,6 +6664,11 @@ msgstr "凉爽的风向你身上吹来！"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOATREPAIRKIT"
 msgid "Never set sail wit'out'er."
 msgstr "航海不能没有它。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_TORCH"
+msgid "Fer a torch on me boat, not fer torchin' me boat."
+msgstr "火炬放在俺的船上照明，不是用来烧掉俺的船。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN"
@@ -6960,6 +7050,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOATREPAIRKIT"
 msgid "Fix it stuff"
 msgstr "修补的东西"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_TORCH"
+msgid "For dark times on floater"
+msgstr "照亮在漂浮器上的黑暗时光"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN"
 msgid "Bzzter clothes"
@@ -7334,6 +7429,11 @@ msgstr "微风拂面，好不快活。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOATREPAIRKIT"
 msgid "To keep those boats afloat."
 msgstr "保证船浮在水面上。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_TORCH"
+msgid "A light to lead me through the night."
+msgstr "一束指引我穿越黑夜的光。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.CHITIN"
@@ -7710,6 +7810,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOATREPAIRKIT"
 msgid "Why repair? Let water in, florpt!"
 msgstr "为什么要修？让船进水，浮浪噗的！"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_TORCH"
+msgid "It torch for boat."
+msgstr "给船用的火炬。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.CHITIN"
 msgid "Tough hide."
@@ -8085,6 +8190,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOATREPAIRKIT"
 msgid "SEA VESSEL REPAIRS. AT SEA."
 msgstr "海上使用的修船工具。"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_TORCH"
+msgid "MARINE ILLUMINATION"
+msgstr "海上照明用具"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN"
 msgid "INFERIOR ORGANIC BODY PLATING"
@@ -8420,6 +8530,11 @@ msgctxt "STRINGS.NAMES.BOATREPAIRKIT"
 msgid "Boat Repair Kit"
 msgstr "修船套件"
 
+#. STRINGS.NAMES.BOAT_TORCH
+msgctxt "STRINGS.NAMES.BOAT_TORCH"
+msgid "Boat Torch"
+msgstr "船载火炬"
+
 #. STRINGS.NAMES.CHITIN
 msgctxt "STRINGS.NAMES.CHITIN"
 msgid "Chitin"
@@ -8644,6 +8759,11 @@ msgstr "缓解花粉症，保持干\n燥。"
 msgctxt "STRINGS.RECIPE_DESC.BOATREPAIRKIT"
 msgid "Stay afloat in that boat!"
 msgstr "别让船沉了！"
+
+#. STRINGS.RECIPE_DESC.BOAT_TORCH
+msgctxt "STRINGS.RECIPE_DESC.BOAT_TORCH"
+msgid "See, at sea."
+msgstr "海上照明工具。"
 
 #. STRINGS.RECIPE_DESC.GOLDENMACHETE
 msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"
