@@ -1,4 +1,4 @@
-local assets=
+local assets =
 {
     Asset("ANIM", "anim/snakeskin.zip"),
     Asset("ANIM", "anim/snakeskin_scaly.zip"),
@@ -14,7 +14,6 @@ local function fn()
     local name =  "snakeskin"
     if TheWorld:HasTag("porkland") then
         name = "snakeskin_scaly"
-        inst.shelfart = "snakeskin_scaly"
     end
 
     inst.AnimState:SetBank(name)
