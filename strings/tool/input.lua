@@ -1,61 +1,17 @@
 ds_path = "D:/Steam/steamapps/common/dont_starve"  -- don't dont_starve file path, need DLC003
 
+local dst_string_path = "D:/Steam/steamapps/common/Don't Starve Together/mods/string"
+
 package.path = package.path .. ";../?.lua"
+package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
     ["KEY"] = "NEW_KEY",
 }
 
-cn_input_strings = {
-    CHARACTERS = {
-        WINONA = {
-            DESCRIBE = {
-            },
-        },
-        WORTOX = {
-            DESCRIBE = {
-            },
-        },
-        WURT = {
-            DESCRIBE = {
-            },
-        },
-        WALTER = {
-            DESCRIBE = {
-            },
-        },
-        WANDA = {
-            DESCRIBE = {
-            },
-        },
-    }
-}
-
-en_input_strings = {
-    CHARACTERS = {
-        WINONA = {
-            DESCRIBE = {
-            },
-        },
-        WORTOX = {
-            DESCRIBE = {
-            },
-        },
-        WURT = {
-            DESCRIBE = {
-            },
-        },
-        WALTER = {
-            DESCRIBE = {
-            },
-        },
-        WANDA = {
-            DESCRIBE = {
-            },
-        },
-    }
-}
+cn_input_strings = require("string_cn")
+en_input_strings = require("string_en")
 
 output_path = "../"
 file_prefix = "pl_"
