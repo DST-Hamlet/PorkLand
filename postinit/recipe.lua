@@ -1,6 +1,6 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-local PL_ICONS = require("prefabs/visualvariant_defs").PL_ICONS
+local PL_ICONS = require("main/visualvariant_defs").PL_ICONS
 
 local _GetImage = Ingredient.GetImage
 function Ingredient:GetImage(...)

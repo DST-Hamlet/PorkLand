@@ -1,6 +1,7 @@
 local visualboatequip = require("prefabs/visualboatequip")
 
 local snakeskinsail_assets = {
+    Asset("ANIM", "anim/swap_sail_snakeskin.zip"),
     Asset("ANIM", "anim/swap_sail_snakeskin_scaly.zip"),
 }
 
@@ -160,7 +161,7 @@ local function snakeskinsail_fn()
     local inst = common()
 
     inst.AnimState:SetBank("sail")
-    inst.AnimState:SetBuild("swap_sail_snakeskin_scaly")
+    inst.AnimState:SetBuild("swap_sail_snakeskin")
     inst.AnimState:PlayAnimation("idle")
 
     inst.loopsound = "dontstarve_DLC002/common/sail_LP/snakeskin"
@@ -170,8 +171,10 @@ local function snakeskinsail_fn()
         return inst
     end
 
-    inst.visualprefab = "sail_snakeskin_scaly"
-    inst.components.inventoryitem:ChangeImageName("sail_snakeskin_scaly")
+    inst.visualprefab = "sail_snakeskin"
+
+    inst:AddComponent("visualvariant")
+    inst.components.visualvariant:SetVariantData("sail_snakeskin")
 
     inst.components.fueled:InitializeFuelLevel(TUNING.SAIL_SNAKESKIN_PERISH_TIME)
     inst.sail_speed_mult = TUNING.SAIL_SNAKESKIN_SPEED_MULT
@@ -180,21 +183,25 @@ local function snakeskinsail_fn()
     return inst
 end
 
-local function snakeskinsail_visual_common(inst)
-    inst.visualchild.AnimState:SetBank("sail_visual")
-    inst.visualchild.AnimState:SetBuild("swap_sail_snakeskin_scaly")
-    inst.visualchild.AnimState:PlayAnimation("idle_loop", true)
-    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- below the player
+local function make_sail_snakeskin_visual_common(build)
+    return function (inst)
+        inst.visualchild.AnimState:SetBank("sail_visual")
+        inst.visualchild.AnimState:SetBuild(build)
+        inst.visualchild.AnimState:PlayAnimation("idle_loop", true)
+        inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- below the player
 
-    function inst.components.boatvisualanims.update(inst, dt)
-        if inst.visualchild.AnimState:GetCurrentFacing() == FACING_UP then
-            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MAX - 1)  -- above the player
-        else
-            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- below the player
+        function inst.components.boatvisualanims.update(inst, dt)
+            if inst.visualchild.AnimState:GetCurrentFacing() == FACING_UP then
+                inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MAX - 1)  -- above the player
+            else
+                inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- below the player
+            end
         end
     end
 end
 
 return Prefab("sail_snakeskin", snakeskinsail_fn, snakeskinsail_assets),
-    visualboatequip.MakeVisualBoatEquip("sail_snakeskin", snakeskinsail_assets, nil, snakeskinsail_visual_common),
-    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin", snakeskinsail_assets, nil, snakeskinsail_visual_common)
+    visualboatequip.MakeVisualBoatEquip("sail_snakeskin", snakeskinsail_assets, nil, make_sail_snakeskin_visual_common("swap_sail_snakeskin")),
+    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin", snakeskinsail_assets, nil, make_sail_snakeskin_visual_common("swap_sail_snakeskin")),
+    visualboatequip.MakeVisualBoatEquip("sail_snakeskin_scaly", snakeskinsail_assets, nil, make_sail_snakeskin_visual_common("swap_sail_snakeskin_scaly")),
+    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin_scaly", snakeskinsail_assets, nil, make_sail_snakeskin_visual_common("swap_sail_snakeskin_scaly"))

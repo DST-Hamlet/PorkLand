@@ -1,4 +1,4 @@
-local VARIANTS = require("prefabs/visualvariant_defs").VARIANTS
+local VARIANTS = require("main/visualvariant_defs").VARIANTS
 
 local function TryReCalculate(inst)
     if inst and inst:IsValid() and inst.components.visualvariant and not inst.components.visualvariant.variant then
@@ -75,17 +75,17 @@ function VisualVariant:SetVariant(variant)
         end
     end
 
+    if variant_data.visualprefab ~= nil then
+        self.inst.visualprefab = variant_data.visualprefab
+    end
+
     if variant_data.minimap then
         self.inst.MiniMapEntity:SetIcon(variant_data.minimap)
     end
 
     -- if items try to stack as soon as they spawn, they might not have a classified (apparently) -M
-    if variant_data.inv_image and self.inst.replica.inventoryitem and self.inst.replica.inventoryitem.classified then
-        if variant_data.inv_image == "default" then
-            self.inst.components.inventoryitem:ChangeImageName()
-        else
-            self.inst.components.inventoryitem:ChangeImageName(variant_data.inv_image)
-        end
+    if self.inst.replica.inventoryitem and self.inst.replica.inventoryitem.classified then
+        self.inst.components.inventoryitem:ChangeImageName(variant_data.inv_image)
     end
 end
 
