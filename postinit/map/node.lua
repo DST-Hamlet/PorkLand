@@ -10,17 +10,29 @@ local water_prefabs = {
 }
 
 local land_prefabs = {
-    "asparagus_planted", "flower_rainforest", "grass_tall", "sapling", "teatree", "teatree_piko_nest"
+    "sapling", "flower", "flower_evil",  "fireflies", "grass", "berrybush", "berrybush2", "rock1", "rock2",
+    "rock_flintless", "rocks", "flint", "goldnugget", "red_mushroom", "blue_mushroom", "green_mushroom",
+    "clawpalmtree", "grass_tall", "flower_rainforest", "dungpile", "randomdust", "rock_flippable",
+	"aloe_planted", "asparagus_planted", "radish_planted", "rainforesttree", "peagawk", "pog",
+	"tubertree", "nitre", "teatree", "nettle", "pig_ruins_torch", "adult_flytrap", "charcoal",
+	"randomrelic", "randomruin", "pig_ruins_entrance_small", "rainforesttree_rot", "meteor_impact",
+	"anthill", "anthill_exit", "pighead", "tree_pillar", "mandrakehouse", "rainforesttree_burnt",
+	"gnatmound", "iron", "thunderbirdnest", "sedimentpuddle", "vampirebatcave_potential",
+	"ancient_robot_claw", "ancient_robot_leg", "ancient_robot_ribs", "ancient_robot_head",
+	"spoiled_food",
 }
 
 local common_spawnfn = {
     grass_tall_bunche_patch = function(x, y, ents)
         return not SpawnUtil.IsCloseToWaterTile(x, y, 3)
     end,
+    hippopotamoose = function(x, y, ents)  --使得玩家必定无法触及自然生成的河鹿
+        return not SpawnUtil.IsCloseToLandTile(x, y, 0)
+    end,
 }
 
 local function SurroundedByWater(x, y, ents)
-    return SpawnUtil.IsSurroundedByWaterTile(x, y, 1)
+    return not SpawnUtil.IsSurroundedByWaterTile(x, y, 1)
 end
 
 local function NotCloseToWater(x, y, ents)

@@ -16,7 +16,7 @@ function SpawnUtil.IsCloseToWater(x, y, radius)
     return false
 end
 
-function SpawnUtil.IsSurroundedByTile(x, y, z, radius, tile, ...)
+function SpawnUtil.IsSurroundedByTile(x, y, radius, tile, ...)
     radius = radius or 1
 
     local num_edge_points = math.ceil((radius*2) / 4) - 1
