@@ -123,7 +123,7 @@ function obj_layout.AddLayoutToSanbox(sanboxfile, area, name)
     local choices = require(sanboxfile)
     local Sandbox = choices.Sandbox
     local Layouts = choices.Layouts
-    local Layout = AllLayouts[name]
+    local Layout = obj_layout.LayoutForDefinition(name)
 
     assert(Layout, "could not find layout whit " .. name)
 

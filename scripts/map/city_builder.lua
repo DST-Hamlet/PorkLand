@@ -1,4 +1,4 @@
-local AllLayouts = require("map/layouts").Layouts
+local obj_layout = require("map/object_layout")
 
 local DIR_STEP = {
     {x = 1, z = 0},
@@ -273,12 +273,12 @@ local function place_tile_city(entities, width, height, pt)
     end
 end
 
-local function spawn_setpiece(entities, width, height, spawners, setpiece_string, pt, city)
-    if setpiece_string == "pig_palace_1" then
+local function spawn_setpiece(entities, width, height, spawners, layout, pt, city)
+    if layout == "pig_palace_1" then
         print("SPAWNING A PALACE THROUGH THE CITY BUILDER")
     end
 
-    local setpiece = AllLayouts[setpiece_string]
+    local setpiece = obj_layout.LayoutForDefinition(layout)
     -- THESE SET PIECES NEED AN ODD NUMBER OF TILES BOTH COL AND ROW,
     -- because they are centered on a single tile.. to be even, it would need code to select the tile that gets placed at the center
     assert(#setpiece.ground % 2 ~= 0, "ERROR, THE SET PIECE HAS AN EVEN NUMBER OF ROWS")
@@ -383,10 +383,10 @@ local function spawn_setpiece(entities, width, height, spawners, setpiece_string
                 end
 
                 local city_temp = city.city_id
-                if setpiece_string == "city_park_7" and prefab == "oinc" then
+                if layout == "city_park_7" and prefab == "oinc" then
                     city_temp = nil
                 end
-                if setpiece_string == "pig_playerhouse_1" and prefab ~= "playerhouse_city" then
+                if layout == "pig_playerhouse_1" and prefab ~= "playerhouse_city" then
                     city_temp = nil
                 end
 
