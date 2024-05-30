@@ -1073,9 +1073,8 @@ local states = {
                 end
             end
 
-            inst.components.drownable:WashAshore()
-            if inst.components.health and not inst.components.health:IsDead() then -- 看起来玩家并没有被沉船判定杀掉，为了防止卡在这个state，只能让他上岸
-                inst.components.drownable:OldWashAshore()
+            if inst.components.health and not inst.components.health:IsDead() then
+                inst.components.drownable:WashAshore()
             end
         end,
 
@@ -1110,7 +1109,7 @@ local states = {
                     end
                 end
 
-                inst.components.drownable:WashAshore()
+                inst.components.drownable:Sink()
             end),
 
             EventHandler("on_washed_ashore", function(inst)
