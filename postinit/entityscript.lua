@@ -142,12 +142,9 @@ end
 function EntityScript:CanOnLand(allow_invincible)
     return self.components.amphibiouscreature ~= nil
         or (self.components.locomotor == nil or self.components.locomotor:CanPathfindOnLand())
-        or self:HasTag("flying")
-        or self:HasTag("shadow")
         or (self:HasTag("player") and self.components.drydrownable == nil or self.components.drydrownable ~= nil and not self.components.drydrownable:CanDrownOverLand(allow_invincible))
 end
 
 function EntityScript:CanOnImpassable(allow_invincible)
     return self:HasTag("shadow")
 end
-
