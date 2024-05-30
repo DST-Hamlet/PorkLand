@@ -387,7 +387,7 @@ local states = {
 
         onenter = function(inst)
             if inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown() then
-                inst.sg:GoToState("sink_fast")
+                inst.sg:GoToState("sink_boat")
                 return
             end
 
@@ -460,7 +460,7 @@ local states = {
 
     State{
         name = "jumponboatstart",
-        tags = { "doing", "nointerupt", "canrotate", "busy", "nomorph", "nopredict", "temp_invincible"},
+        tags = { "doing", "nointerrupt", "canrotate", "busy", "nomorph", "nopredict"},
         onenter = function(inst)
             if inst.Physics.ClearCollidesWith then
                 inst.Physics:ClearCollidesWith(COLLISION.LIMITS) -- R08_ROT_TURNOFTIDES
@@ -515,7 +515,6 @@ local states = {
                     inst.components.playercontroller:Enable(true)
                 end
 
-                inst.sg:RemoveStateTag("temp_invincible")
                 inst.Transform:SetPosition(inst.sg.statemem.targetpos:Get())
                 inst.Physics:Stop()
 
@@ -530,7 +529,7 @@ local states = {
 
     State{
         name = "jumpboatland",
-        tags = { "doing", "nointerupt", "busy", "canrotate", "invisible", "nomorph", "nopredict", "temp_invincible"},
+        tags = { "doing", "nointerrupt", "busy", "canrotate", "invisible", "nomorph", "nopredict"},
 
         onenter = function(inst, pos)
             if inst.Physics.ClearCollidesWith then
@@ -562,7 +561,7 @@ local states = {
 
     State{
         name = "jumpoffboatstart",
-        tags = {"doing", "nointerupt", "busy", "canrotate", "nomorph", "nopredict", "temp_invincible"},
+        tags = {"doing", "nointerrupt", "busy", "canrotate", "nomorph", "nopredict"},
 
         onenter = function(inst, pos)
             if inst.Physics.ClearCollidesWith then
@@ -619,7 +618,7 @@ local states = {
 
     State{
         name = "jumpoffboatland",
-        tags = {"doing", "nointerupt", "busy", "canrotate", "nomorph", "nopredict", "temp_invincible"},
+        tags = {"doing", "nointerrupt", "busy", "canrotate", "nomorph", "nopredict"},
 
         onenter = function(inst, pos)
             if inst.Physics.ClearCollidesWith then
@@ -986,7 +985,7 @@ local states = {
 
     State{
         name = "sink_boat",
-        tags = {"busy", "nopredict", "nomorph", "drowning", "nointerrupt", "temp_invincible"},
+        tags = {"busy", "nopredict", "nomorph", "drowning", "nointerrupt", "noattack"},
 
         onenter = function(inst, shore_pt)
             ForceStopHeavyLifting(inst)
@@ -1025,7 +1024,7 @@ local states = {
 
             inst.components.drownable:DropInventory()
 
-            inst.sg:SetTimeout(8)  -- just in case
+            inst.sg:SetTimeout(3.3)  -- just in case
         end,
 
         timeline = {
@@ -1075,6 +1074,9 @@ local states = {
             end
 
             inst.components.drownable:WashAshore()
+            if inst.components.health and not inst.components.health:IsDead() then -- 看起来玩家并没有被沉船判定杀掉，为了防止卡在这个state，只能让他上岸
+                inst.components.drownable:OldWashAshore()
+            end
         end,
 
         events = {

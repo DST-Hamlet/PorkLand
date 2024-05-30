@@ -131,11 +131,23 @@ function EntityScript:IsSailing()
 end
 
 function EntityScript:CanOnWater(allow_invincible)
-    return (self.components.locomotor == nil or self.components.locomotor:CanPathfindOnWater())
+    return self.components.amphibiouscreature ~= nil
+        or (self.components.locomotor == nil or self.components.locomotor:CanPathfindOnWater())
+        or self:HasTag("flying")
+        or self:HasTag("ignorewalkableplatformdrowning")
+        or self:HasTag("shadow")
         or (self:HasTag("player") and self.components.drownable == nil or self.components.drownable ~= nil and not self.components.drownable:CanDrownOverWater(allow_invincible))
 end
 
 function EntityScript:CanOnLand(allow_invincible)
-    return (self.components.locomotor == nil or self.components.locomotor:CanPathfindOnLand())
+    return self.components.amphibiouscreature ~= nil
+        or (self.components.locomotor == nil or self.components.locomotor:CanPathfindOnLand())
+        or self:HasTag("flying")
+        or self:HasTag("shadow")
         or (self:HasTag("player") and self.components.drydrownable == nil or self.components.drydrownable ~= nil and not self.components.drydrownable:CanDrownOverLand(allow_invincible))
 end
+
+function EntityScript:CanOnImpassable(allow_invincible)
+    return self:HasTag("shadow")
+end
+

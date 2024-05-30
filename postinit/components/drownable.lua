@@ -49,6 +49,10 @@ function Drownable:WashAshore(...)
     return _WashAshore(self, ...)
 end
 
+function Drownable:OldWashAshore(...)
+    return _WashAshore(self, ...)
+end
+
 local _OnFallInOcean = Drownable.OnFallInOcean
 function Drownable:OnFallInOcean(shore_x, shore_y, shore_z, ...)
     local rets = {_OnFallInOcean(self, shore_x, shore_y, shore_z, ...)}
