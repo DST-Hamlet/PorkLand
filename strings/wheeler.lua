@@ -90,6 +90,7 @@ return {
             DONE = "Legendary adventurers forge legendary equipment, which sounds pretty good.",
             EMPTY = "It takes the heavy metal and makes it heavier.",
         },
+        SNAKESKIN = "Soft. Supple. Not currently attached to a snake. I like it!",
         TEA = "You can barely taste the rodent.",
         TEATREE = "But how do I make tea from it?",
         TEATREE_NUT = "Good enough to eat. Or fire out the Pew-matic.",

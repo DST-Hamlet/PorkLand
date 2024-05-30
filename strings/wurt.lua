@@ -89,6 +89,7 @@ return {
             DONE = "Done!",
             EMPTY = "What to put in it?",
         },
+        SNAKESKIN = "Is a nice skin.",
         TEA = "Leaf water.",
         TEATREE = "Strange leaves there.",
         TEATREE_NUT = "Florp. Smell strong.",

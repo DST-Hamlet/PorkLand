@@ -90,6 +90,7 @@ return {
             DONE = "Born of fire.",
             EMPTY = "Burn who are trapped in it...",
         },
+        SNAKESKIN = "It shed its skin, with my assistance.",
         TEA = "Abigail loved tea parties.",
         TEATREE = "I can sit under it and contemplate life's futility.",
         TEATREE_NUT = "Makes life barely more livable in allergy season.",

@@ -90,6 +90,7 @@ return {
             DONE = "Fire make metal bricks.",
             EMPTY = "Wolfgang lifted it without difficulty.",
         },
+        SNAKESKIN = "I will use as bandana.",
         TEA = "Wolfgang love tea time!",
         TEATREE = "Is strong but not strong like Wolfgang.",
         TEATREE_NUT = "Is good for Wolfgang's mighty sneezes.",

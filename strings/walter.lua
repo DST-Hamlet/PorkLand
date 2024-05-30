@@ -89,6 +89,7 @@ return {
             DONE = "Check out what we've come up with!",
             EMPTY = "A lrage iron pot. got it? Iron pot.",
         },
+        SNAKESKIN = "It's slick. We might be able to use this for something.",
         TEA = "It's tea time now! Woby!",
         TEATREE = "Hey, is there a squirrel in the tree?",
         TEATREE_NUT = "Mom used to try this on me.",

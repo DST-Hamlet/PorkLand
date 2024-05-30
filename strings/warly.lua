@@ -90,6 +90,7 @@ return {
             DONE = "Fresh out of the oven! Be careful with the scalding.",
             EMPTY = "'Smelt' bad, if you ask me.",
         },
+        SNAKESKIN = "Would make a haute apron.",
         TEA = "Tea! Oh how I missed you!",
         TEATREE = "I could to so many things with tea tree leaves.",
         TEATREE_NUT = "More useful as medicine than in my recipe.",

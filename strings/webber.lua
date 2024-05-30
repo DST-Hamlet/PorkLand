@@ -90,6 +90,7 @@ return {
             DONE = "It's finished.",
             EMPTY = "Make material with material.",
         },
+        SNAKESKIN = "The skin of a snake!",
         TEA = "Let's have a tea party!",
         TEATREE = "Hey there, tea tree.",
         TEATREE_NUT = "It helps with our sneezes.",

@@ -89,6 +89,7 @@ return {
             DONE = "Got it!",
             EMPTY = "Melt the metals together.",
         },
+        SNAKESKIN = "Whew... It's not attached to a snake this time around.",
         TEA = "It's always tea time, somewhere.",
         TEATREE = "I have some impression of the shape of these leaves.",
         TEATREE_NUT = "A crude way to combat pollen in the air.",

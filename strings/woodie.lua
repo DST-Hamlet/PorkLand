@@ -90,6 +90,7 @@ return {
             DONE = "Hrumph. A big production for a little metal.",
             EMPTY = "It's like a giant maple syrup bucket.",
         },
+        SNAKESKIN = "I'm sure the snake didn't need this.",
         TEA = "I could go for some tea.",
         TEATREE = "Welp. Better get choppin'.",
         TEATREE_NUT = "Helps with allergies, eh.",

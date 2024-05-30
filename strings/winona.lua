@@ -89,6 +89,7 @@ return {
             DONE = "knock off!",
             EMPTY = "Process the metallic material.",
         },
+        SNAKESKIN = "The texture feels incredible. I got some ideas for this.",
         TEA = "A good pot of tea sets the spirit of the day.",
         TEATREE = "Enough to whole workshop's tea supply.",
         TEATREE_NUT = "Save my nose from fire and water.",

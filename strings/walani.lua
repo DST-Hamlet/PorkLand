@@ -91,6 +91,7 @@ return {
             DONE = "Well done, bro.",
             EMPTY = "I'll just let that do all the work for me.",
         },
+        SNAKESKIN = "I could make a scaly bikini out of this!",
         TEA = "Caffeine!",
         TEATREE = "Hey little tree!",
         TEATREE_NUT = "I heard it's good for allergies.",

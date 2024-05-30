@@ -90,6 +90,7 @@ return {
             DONE = "She's ready ta fire!",
             EMPTY = "A cannon fer makin' metals.",
         },
+        SNAKESKIN = "Me leathers do need replacin'.",
         TEA = "Ah, a fine brew.",
         TEATREE = "'Tis a growin' ship mast.",
         TEATREE_NUT = "A botan'cal barber-surgeon.",

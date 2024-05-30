@@ -90,6 +90,7 @@ return {
             DONE = "Now make me a sharp edge!",
             EMPTY = "The tools of dwarves.",
         },
+        SNAKESKIN = "A snake has slipped its skin. With a little help...",
         TEA = "I shall not consume it!",
         TEATREE = "This tree is adequate.",
         TEATREE_NUT = "Its lack of meat offends me.",

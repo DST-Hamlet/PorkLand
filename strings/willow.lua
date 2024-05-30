@@ -90,6 +90,7 @@ return {
             DONE = "When are we do this again?",
             EMPTY = "Oh yeah! Now I can burn metal.",
         },
+        SNAKESKIN = "Leathery.",
         TEA = "Fire makes everything better.",
         TEATREE = "It'll burn. That's all I care about.",
         TEATREE_NUT = "I'd burn it but it helps my allergies.",

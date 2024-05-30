@@ -47,6 +47,7 @@ return {
         SEDIMENTPUDDLE = "Sparkling Pool",
         SHEARS = "Shears",
         SMELTER = "Smelter",
+        SNAKESKIN = "Snakeskin",
         TEA = "Tea",
         TEATREE = "Tea Tree",
         TEATREE_NUT = "Seed Pod",

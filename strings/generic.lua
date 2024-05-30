@@ -91,6 +91,7 @@ return {
             DONE = "It's done!",
             EMPTY = "I smelt that!",
         },
+        SNAKESKIN = "I'm intrigued AND repelled.",
         TEA = "Tea time!",
         TEATREE = "What a lovely tree.",
         TEATREE_NUT = "Stops the seasonal sneezing.",

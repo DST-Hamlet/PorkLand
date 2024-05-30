@@ -91,6 +91,7 @@ return {
             DONE = "'TIS DONE",
             EMPTY = "'TIS FWOOSHY MACHINES",
         },
+        SNAKESKIN = "IT HEART WAS MIGHTY, IT SKIN ARE WHOLE",
         TEA = "IT DOST A DRINK O' FANCY PANTSY",
         TEATREE = "YON SQUIRRELS DOST LIKETH YON TREE",
         TEATREE_NUT = "TO EAT OR NOT TO EAT",

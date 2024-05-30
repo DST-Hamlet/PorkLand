@@ -90,6 +90,7 @@ return {
             DONE = "Done!",
             EMPTY = "Clinky rock cooker",
         },
+        SNAKESKIN = "Squirmy clothes",
         TEA = "Warm Zippy water",
         TEATREE = "Let them sleep",
         TEATREE_NUT = "Want in belly? Or dirt?",

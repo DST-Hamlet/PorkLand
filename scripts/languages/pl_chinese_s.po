@@ -365,6 +365,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.EMPTY"
 msgid "I smelt that!"
 msgstr "我闻到了冶炼的气味！"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKESKIN"
+msgid "I'm intrigued AND repelled."
+msgstr "我感觉既好奇又厌恶。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEA"
 msgid "Tea time!"
@@ -739,6 +744,11 @@ msgstr "这就完成了？太妙了！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.EMPTY"
 msgid "Magnificent! Perhaps I can build a factory here as well."
 msgstr "真棒啊！也许我也可以在这里建一个工厂。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKESKIN"
+msgid "The repellant properties of this skin are inspiring!"
+msgstr "这种蛇皮的防水性令人振奋！"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEA"
@@ -1115,6 +1125,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.EMPTY"
 msgid "I'll just let that do all the work for me."
 msgstr "就让它来为我完成全部的冶炼工作。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKESKIN"
+msgid "I could make a scaly bikini out of this!"
+msgstr "我能用这个做套鳞片图案的比基尼！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TEA"
 msgid "Caffeine!"
@@ -1480,6 +1495,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.EMPTY"
 msgid "A lrage iron pot. got it? Iron pot."
 msgstr "一口大铁锅，懂吗？铁锅。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKESKIN"
+msgid "It's slick. We might be able to use this for something."
+msgstr "很光滑。我们也许可以用这个做点什么。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEA"
 msgid "It's tea time now! Woby!"
@@ -1844,6 +1864,11 @@ msgstr "完事！"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.EMPTY"
 msgid "Melt the metals together."
 msgstr "把金属熔化到一起。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKESKIN"
+msgid "Whew... It's not attached to a snake this time around."
+msgstr "唷...现在它没有附在蛇身上。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TEA"
@@ -2215,6 +2240,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.EMPTY"
 msgid "'Smelt' bad, if you ask me."
 msgstr "闻起来不是很好。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKESKIN"
+msgid "Would make a haute apron."
+msgstr "可以做成一条高档围裙。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TEA"
 msgid "Tea! Oh how I missed you!"
@@ -2584,6 +2614,11 @@ msgstr "现在请为我铸造利刃吧！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.EMPTY"
 msgid "The tools of dwarves."
 msgstr "矮人的工具。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKESKIN"
+msgid "A snake has slipped its skin. With a little help..."
+msgstr "蛇脱掉了它的皮，不过是在外力的作用下..."
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEA"
@@ -2960,6 +2995,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.EMPTY"
 msgid "Finally we're catching up to the Iron Age."
 msgstr "我们终于步入了铁器时代。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKESKIN"
+msgid "The texture is delectable."
+msgstr "这质感令人愉悦。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEA"
 msgid "A spot of tea."
@@ -3329,6 +3369,11 @@ msgstr "完成了！"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.EMPTY"
 msgid "Make material with material."
 msgstr "用材料制作材料。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKESKIN"
+msgid "The skin of a snake!"
+msgstr "蛇的皮！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEA"
@@ -3700,6 +3745,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.EMPTY"
 msgid "Burn who are trapped in it..."
 msgstr "灼伤深陷其中的人们..."
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKESKIN"
+msgid "It shed its skin, with my assistance."
+msgstr "它在我的帮助下蜕皮了。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TEA"
 msgid "Abigail loved tea parties."
@@ -4070,6 +4120,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.EMPTY"
 msgid "It takes the heavy metal and makes it heavier."
 msgstr "它需要一些重金属才能练出更重的金属。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKESKIN"
+msgid "Soft. Supple. Not currently attached to a snake. I like it!"
+msgstr "柔软，灵活，没连在蛇身上。我喜欢！"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEA"
 msgid "You can barely taste the rodent."
@@ -4439,6 +4494,11 @@ msgstr "再冷却，完成！"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.EMPTY"
 msgid "A metalsmithing tool."
 msgstr "金属锻造熔炼工具。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKESKIN"
+msgid "A layer of snake."
+msgstr "蛇的一层皮。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEA"
@@ -4815,6 +4875,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.EMPTY"
 msgid "'TIS FWOOSHY MACHINES"
 msgstr "这是个滚烫的机器"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKESKIN"
+msgid "IT HEART WAS MIGHTY, IT SKIN ARE WHOLE"
+msgstr "它的心曾经很强大，它的皮现在很完整"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TEA"
 msgid "IT DOST A DRINK O' FANCY PANTSY"
@@ -5185,6 +5250,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.EMPTY"
 msgid "Oh yeah! Now I can burn metal."
 msgstr "哦耶！现在我能烧金属了！"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKESKIN"
+msgid "Leathery."
+msgstr "绝对真皮。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEA"
 msgid "Fire makes everything better."
@@ -5549,6 +5619,11 @@ msgstr "下工！"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.EMPTY"
 msgid "Process the metallic material."
 msgstr "对金属进行加工。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKESKIN"
+msgid "The texture feels incredible. I got some ideas for this."
+msgstr "这种材质感觉很坚固。我有一些想法。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEA"
@@ -5920,6 +5995,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.EMPTY"
 msgid "Wolfgang lifted it without difficulty."
 msgstr "沃尔夫冈抬起它毫不费力。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKESKIN"
+msgid "I will use as bandana."
+msgstr "我会把它当做大围巾使用。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEA"
 msgid "Wolfgang love tea time!"
@@ -6289,6 +6369,11 @@ msgstr "哼。为一点金属的兴师动众。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.EMPTY"
 msgid "It's like a giant maple syrup bucket."
 msgstr "就像一个巨大的糖浆桶。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKESKIN"
+msgid "I'm sure the snake didn't need this."
+msgstr "我相信蛇不需要这个。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEA"
@@ -6660,6 +6745,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.EMPTY"
 msgid "A cannon fer makin' metals."
 msgstr "一架冶炼钢铁的炮台。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKESKIN"
+msgid "Me leathers do need replacin'."
+msgstr "俺的皮外套的确需要更换了。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEA"
 msgid "Ah, a fine brew."
@@ -7030,6 +7120,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.EMPTY"
 msgid "Clinky rock cooker"
 msgstr "煮叮当响石头的锅"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKESKIN"
+msgid "Squirmy clothes"
+msgstr "蠕动的家伙的衣服"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEA"
 msgid "Warm Zippy water"
@@ -7389,6 +7484,11 @@ msgstr "这并没有让它们变得更好。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.EMPTY"
 msgid "Put the iron you hate in and burn it."
 msgstr "把讨厌的铁放进去烧。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKESKIN"
+msgid "I prefer fur to scales."
+msgstr "比起鳞片我更喜欢毛皮。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEA"
@@ -7754,6 +7854,11 @@ msgstr "完成了！"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.EMPTY"
 msgid "What to put in it?"
 msgstr "放什么东西进去？"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKESKIN"
+msgid "Is a nice skin."
+msgstr "好看的皮肤。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEA"
@@ -8125,6 +8230,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.EMPTY"
 msgid "HELLO, FRIEND"
 msgstr "你好，朋友"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKESKIN"
+msgid "THE SNAKE LOST ITS SKIN. HA HA"
+msgstr "蛇丢掉了它的皮。哈哈"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TEA"
 msgid "LIQUID ACQUIRED FROM A MEAT MACHINE"
@@ -8354,6 +8464,11 @@ msgstr "剪刀"
 msgctxt "STRINGS.NAMES.SMELTER"
 msgid "Smelter"
 msgstr "炼钢炉"
+
+#. STRINGS.NAMES.SNAKESKIN
+msgctxt "STRINGS.NAMES.SNAKESKIN"
+msgid "Snakeskin"
+msgstr "蛇皮"
 
 #. STRINGS.NAMES.TEA
 msgctxt "STRINGS.NAMES.TEA"
@@ -8644,3 +8759,4 @@ msgstr "繁茂季"
 msgctxt "STRINGS.UI.SERVERLISTINGSCREEN.SEASONS.TEMPERATE"
 msgid "Temperate"
 msgstr "平和季"
+

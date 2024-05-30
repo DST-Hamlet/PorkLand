@@ -91,6 +91,7 @@ return {
             DONE = "Difficult results.",
             EMPTY = "Finally we're catching up to the Iron Age.",
         },
+        SNAKESKIN = "The texture is delectable.",
         TEA = "A spot of tea.",
         TEATREE = "It's a tree. What did I expect.",
         TEATREE_NUT = "I'll need this for hayfever season.",

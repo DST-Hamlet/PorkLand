@@ -90,6 +90,7 @@ return {
             DONE = "Recooling and done.",
             EMPTY = "A metalsmithing tool.",
         },
+        SNAKESKIN = "A layer of snake.",
         TEA = "Give me tea and a good book.",
         TEATREE = "A fine example of Camellia Sinensis.",
         TEATREE_NUT = "A good antihistamine.",

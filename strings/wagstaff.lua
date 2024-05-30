@@ -93,6 +93,7 @@ return {
             DONE = "Done already? Remarkable!",
             EMPTY = "Magnificent! Perhaps I can build a factory here as well.",
         },
+        SNAKESKIN = "The repellant properties of this skin are inspiring!",
         TEA = "A rodent based broth that tastes remarkably like tea!",
         TEATREE = "Theoretically, its smell attracts those small rodents. Intriguing...",
         TEATREE_NUT = "My stomach condition prevents me from partaking in its health benefits.",

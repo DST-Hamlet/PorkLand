@@ -88,6 +88,7 @@ return {
             DONE = "It doesn't make them any better.",
             EMPTY = "Put the iron you hate in and burn it.",
         },
+        SNAKESKIN = "I prefer fur to scales.",
         TEA = "Mortal's drink.",
         TEATREE = "The foundation of the squirrel kingdom.",
         TEATREE_NUT = "Very nice nuts and clears up my nose.",
