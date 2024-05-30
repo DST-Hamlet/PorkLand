@@ -22,6 +22,7 @@ return {
         ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",
         ASPARAGUS_PLANTED = "I should pick those!",
         BASEFAN = "Fan-tastic.",
+        BOATREPAIRKIT = "This will add some float to my boat.",
         CHITIN = "Bug coating.",
         COFFEE = "Smells delicious and energizing!",
         COFFEEBEANS = "They could use some roasting.",

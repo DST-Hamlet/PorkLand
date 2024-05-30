@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "Armour made from bug exoskeleton.",
         ASPARAGUS_PLANTED = "Asparagus. Otherwise known as sparrow grass.",
         BASEFAN = "Restorative.",
+        BOATREPAIRKIT = "Extends the life of aquatic vessels.",
         CHITIN = "The exoskeleton of an arthropod.",
         COFFEE = "I do love a cup of coffee and a good book.",
         COFFEEBEANS = "Very high in caffeine.",

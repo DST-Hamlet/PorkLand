@@ -22,6 +22,7 @@ return {
         ARMOR_WEEVOLE = "Ew. It's all creepy-crawly.",
         ASPARAGUS_PLANTED = "Food!",
         BASEFAN = "A nice breeze.",
+        BOATREPAIRKIT = "Surfboard maintenance is essential!",
         CHITIN = "Probably wouldn't make a good surfboard.",
         COFFEE = "Smells amazing!",
         COFFEEBEANS = "Come to mama!",

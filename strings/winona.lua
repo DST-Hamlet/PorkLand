@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",
         ASPARAGUS_PLANTED = "Wholesome green vegetables.",
         BASEFAN = "I'm sure bossman would be very interested in it.",
+        BOATREPAIRKIT = "Who needs glue? My tape is sticky enough.",
         CHITIN = "I don't know what this can be used for.",
         COFFEE = "Essential for any hard worker!",
         COFFEEBEANS = "I should toss them over a fire.",

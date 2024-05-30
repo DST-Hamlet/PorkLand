@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",
         ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
         BASEFAN = "A cool wind blows from thee!",
+        BOATREPAIRKIT = "Never set sail wit'out'er.",
         CHITIN = "A harden'd hull.",
         COFFEE = "Arrr thet be th'real treasure.",
         COFFEEBEANS = "Just add water.",

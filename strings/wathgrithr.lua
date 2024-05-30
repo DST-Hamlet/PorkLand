@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",
         ASPARAGUS_PLANTED = "Useless vegetation!",
         BASEFAN = "Conquers the heat!",
+        BOATREPAIRKIT = "Most sensible cargo.",
         CHITIN = "The feeble armor of the bug.",
         COFFEE = "Bitter and pulse-pounding.",
         COFFEEBEANS = "I take mine black.",

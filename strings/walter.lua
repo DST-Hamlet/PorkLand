@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "Are we really going to wear it?",
         ASPARAGUS_PLANTED = "Miss Winona might like it, pick some.",
         BASEFAN = "Ah, it's so comfortable, Woby, you can also enjoy it.",
+        BOATREPAIRKIT = "I'll need to maintain Woby's boat as well.",
         CHITIN = "Check out the pattern on this! Woby!",
         COFFEE = "Mom would kill me if she caught me drinking this.",
         COFFEEBEANS = "I wish these were cocoa beans.",

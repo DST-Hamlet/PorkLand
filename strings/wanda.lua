@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",
         ASPARAGUS_PLANTED = "I should pick some and go back to eat.",
         BASEFAN = "Very interesting structure, but unfortunately not refined enough.",
+        BOATREPAIRKIT = "Repairing takes a lot shorter than building a whole new boat from the scratch.",
         CHITIN = "I don't understand what's the point of this?",
         COFFEE = "Perfect for those long nights at the workshop back home.",
         COFFEEBEANS = "A quick roasting will get me something good to sip on.",

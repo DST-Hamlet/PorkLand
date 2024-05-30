@@ -20,6 +20,7 @@ return {
         ARMOR_WEEVOLE = "I'm getting goosebumps.",
         ASPARAGUS_PLANTED = "A spear that grows out of the earth.",
         BASEFAN = "The breeze is blowing, so happy.",
+        BOATREPAIRKIT = "To keep those boats afloat.",
         CHITIN = "The shell of those guys.",
         COFFEE = "Sure to put a pep in someone's step!",
         COFFEEBEANS = "Beans from a fiery bush we picked.",

@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "Wolfgang win!",
         ASPARAGUS_PLANTED = "Haha. Is like tiny vegetable hats.",
         BASEFAN = "Is cool on Wolfgang skin.",
+        BOATREPAIRKIT = "Restore my mighty vessel!",
         CHITIN = "Icky bug pieces.",
         COFFEE = "Strong, like Wolfgang!",
         COFFEEBEANS = "Tiny beans give Wolfgang strength!",

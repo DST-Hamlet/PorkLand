@@ -22,6 +22,7 @@ return {
         ARMOR_WEEVOLE = "This is not a good look.",
         ASPARAGUS_PLANTED = "Food. Just growing out of the ground.",
         BASEFAN = "Ah. Civilization.",
+        BOATREPAIRKIT = "It will hold off my vessel's inevitable decay.",
         CHITIN = "We all have our defenses.",
         COFFEE = "I look forward to this.",
         COFFEEBEANS = "It's strange to see them this color.",

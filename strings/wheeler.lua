@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "If only it had those bug wings.",
         ASPARAGUS_PLANTED = "That looks like food! Let's hope it tastes like food.",
         BASEFAN = "A plane propeller would be better.",
+        BOATREPAIRKIT = "Swell. Because cork is known for its durability.",
         CHITIN = "I'm going to need more of these.",
         COFFEE = "Because there's no better time to be jumpy than when you're on an adventure.",
         COFFEEBEANS = "Small enough to fit in the Pew-matic.",

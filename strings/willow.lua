@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "This feels gross. I hope it works.",
         ASPARAGUS_PLANTED = "Haha! Found you!",
         BASEFAN = "Fan the flames.",
+        BOATREPAIRKIT = "This should patch up any little leaks.",
         CHITIN = "Bug skin.",
         COFFEE = "I suddenly feel motivated.",
         COFFEEBEANS = "These could use fire.",

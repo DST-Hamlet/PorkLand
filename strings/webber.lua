@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "For when we need protection.",
         ASPARAGUS_PLANTED = "We should pick those.",
         BASEFAN = "That breeze feels nice on our fur.",
+        BOATREPAIRKIT = "Never leave home without one.",
         CHITIN = "Hope no one's missing that.",
         COFFEE = "Bitter.",
         COFFEEBEANS = "These smell very... adult.",

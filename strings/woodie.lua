@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "Nice use of bug carcasses.",
         ASPARAGUS_PLANTED = "They're like little trees to chop down.",
         BASEFAN = "Yep. That's a nice breeze.",
+        BOATREPAIRKIT = "Patch'er up, eh?",
         CHITIN = "It's got some heft to it.",
         COFFEE = "Good old joe.",
         COFFEEBEANS = "I should cook these up.",

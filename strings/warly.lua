@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "It still smells of bug.",
         ASPARAGUS_PLANTED = "I should snatch those up.",
         BASEFAN = "Good ventilation in the kitchen is an must.",
+        BOATREPAIRKIT = "A most sensible traveling companion.",
         CHITIN = "Completely inedible.",
         COFFEE = "Magnifique!",
         COFFEEBEANS = "Glorious!",

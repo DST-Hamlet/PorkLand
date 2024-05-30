@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "Bzzter clothes",
         ASPARAGUS_PLANTED = "Hello there!",
         BASEFAN = "Wind",
+        BOATREPAIRKIT = "Fix it stuff",
         CHITIN = "Bzzter clothes",
         COFFEE = "Wheee!!!",
         COFFEEBEANS = "Zoomberries!",

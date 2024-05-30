@@ -21,6 +21,7 @@ return {
         ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",
         ASPARAGUS_PLANTED = "A cluster of edible spring vegetables!",
         BASEFAN = "Magnificent! What a marvel of engineering!",
+        BOATREPAIRKIT = "Strange. Where did the glue come from?",
         CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
         COFFEE = "Interesting. Caffeinated beverages have a heightened effect here.",
         COFFEEBEANS = "I will need to roast it before I can consume it without ill effect.",
