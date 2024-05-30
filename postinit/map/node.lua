@@ -27,7 +27,7 @@ local common_spawnfn = {
         return not SpawnUtil.IsCloseToWaterTile(x, y, 3)
     end,
     hippopotamoose = function(x, y, ents)  --使得玩家必定无法触及自然生成的河鹿
-        return not SpawnUtil.IsCloseToLandTile(x, y, 0)
+        return not SpawnUtil.IsCloseToLandTile(x, y, 1)
     end,
 }
 
