@@ -121,9 +121,9 @@ end
 
 function obj_layout.AddLayoutToSanbox(sanboxfile, area, name)
     local choices = require(sanboxfile)
-	local Sandbox = choices.Sandbox
-	local Layouts = choices.Layouts
-	local Layout = AllLayouts[name]
+    local Sandbox = choices.Sandbox
+    local Layouts = choices.Layouts
+    local Layout = AllLayouts[name]
 
     assert(Layout, "could not find layout whit " .. name)
 
@@ -131,6 +131,6 @@ function obj_layout.AddLayoutToSanbox(sanboxfile, area, name)
         Sandbox[area] = {}
     end
 
-	Sandbox[area][name] = Layout
+    Sandbox[area][name] = Layout
     Layouts[name] = Layout
 end

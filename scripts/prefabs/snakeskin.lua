@@ -11,13 +11,8 @@ local function fn()
     inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
-    local name =  "snakeskin"
-    if TheWorld:HasTag("porkland") then
-        name = "snakeskin_scaly"
-    end
-
-    inst.AnimState:SetBank(name)
-    inst.AnimState:SetBuild(name)
+    inst.AnimState:SetBank("snakeskin")
+    inst.AnimState:SetBuild("snakeskin")
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryPhysics(inst)
@@ -33,9 +28,9 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
-    if TheWorld:HasTag("porkland") then
-        inst.components.inventoryitem:ChangeImageName("snakeskin_scaly")
-    end
+
+    inst:AddComponent("visualvariant")
+    inst.components.visualvariant:SetVariantData("snakeskin")
 
     inst:AddComponent("stackable")
     inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

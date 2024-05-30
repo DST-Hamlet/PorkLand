@@ -23,13 +23,13 @@ local function ServerGetSpeedMultiplier(self)
             -- NOTE: Check if inventory is open because client GetEquips returns
             --       nothing if inventory is closed.
             --       Don't check visibility though.
-			local is_mighty = self.inst.components.mightiness ~= nil and self.inst.components.mightiness:GetState() == "mighty"
+            local is_mighty = self.inst.components.mightiness ~= nil and self.inst.components.mightiness:GetState() == "mighty"
             for k, v in pairs(self.inst.components.inventory.equipslots) do
                 if v.components.equippable ~= nil then
-					local item_speed_mult = v.components.equippable:GetWalkSpeedMult()
+                    local item_speed_mult = v.components.equippable:GetWalkSpeedMult()
                     if is_mighty and item_speed_mult < 1 then
-						item_speed_mult = 1
-					end
+                        item_speed_mult = 1
+                    end
 
                     mult = mult + (item_speed_mult - 1)
                 end
@@ -58,14 +58,14 @@ local function ClientGetSpeedMultiplier(self)
             mult = self.inst.replica.sailor._currentspeed:value() / self:RunSpeed()
         else
             -- NOTE: GetEquips returns empty if inventory is closed! (Hidden still returns items.)
-			local is_mighty = self.inst:HasTag("mightiness_mighty")
+            local is_mighty = self.inst:HasTag("mightiness_mighty")
             for k, v in pairs(inventory:GetEquips()) do
                 local inventoryitem = v.replica.inventoryitem
                 if inventoryitem ~= nil then
-					local item_speed_mult = inventoryitem:GetWalkSpeedMult()
+                    local item_speed_mult = inventoryitem:GetWalkSpeedMult()
                     if is_mighty and item_speed_mult < 1 then
-						item_speed_mult = 1
-					end
+                        item_speed_mult = 1
+                    end
                     mult = mult + (item_speed_mult - 1)
                 end
             end

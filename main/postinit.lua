@@ -103,6 +103,7 @@ function require(module_name, ...)
     return unpack(ret)
 end
 
+modimport("postinit/recipe")
 modimport("postinit/equipslotutil")
 modimport("postinit/stategraph")
 modimport("postinit/entityscript")

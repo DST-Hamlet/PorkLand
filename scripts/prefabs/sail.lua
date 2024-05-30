@@ -171,6 +171,7 @@ local function snakeskinsail_fn()
     end
 
     inst.visualprefab = "sail_snakeskin_scaly"
+    inst.components.inventoryitem:ChangeImageName("sail_snakeskin_scaly")
 
     inst.components.fueled:InitializeFuelLevel(TUNING.SAIL_SNAKESKIN_PERISH_TIME)
     inst.sail_speed_mult = TUNING.SAIL_SNAKESKIN_SPEED_MULT
@@ -194,6 +195,6 @@ local function snakeskinsail_visual_common(inst)
     end
 end
 
-return Prefab("sail_snakeskin_scaly", snakeskinsail_fn, snakeskinsail_assets),
-    visualboatequip.MakeVisualBoatEquip("sail_snakeskin_scaly", snakeskinsail_assets, nil, snakeskinsail_visual_common),
-    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin_scaly", snakeskinsail_assets, nil, snakeskinsail_visual_common)
+return Prefab("sail_snakeskin", snakeskinsail_fn, snakeskinsail_assets),
+    visualboatequip.MakeVisualBoatEquip("sail_snakeskin", snakeskinsail_assets, nil, snakeskinsail_visual_common),
+    visualboatequip.MakeVisualBoatEquipChild("sail_snakeskin", snakeskinsail_assets, nil, snakeskinsail_visual_common)
