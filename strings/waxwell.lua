@@ -18,6 +18,7 @@ return {
         "This %s is too much.",
         "This %s is hotter than I like.",
     },
+    ANNOUNCE_WAVE_BOOST = "Truly!",
     DESCRIBE = {
         ALLOY = "Durable.",
         APORKALYPSE_CLOCK = "I do like this...",

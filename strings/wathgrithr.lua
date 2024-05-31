@@ -17,6 +17,7 @@ return {
         "This %s is crushing my spirit.",
         "This %s burns like Sol.",
     },
+    ANNOUNCE_WAVE_BOOST = "Carry me forth!",
     DESCRIBE = {
         ALLOY = "A metal worthy of the Sons of Ivaldi.",
         APORKALYPSE_CLOCK = "It controls Ragnarok!",

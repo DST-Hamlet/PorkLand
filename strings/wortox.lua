@@ -12,6 +12,7 @@ return {
         "I can't stand %s anymore!",
         "Take off %s.",
     },
+    ANNOUNCE_WAVE_BOOST = "Hyuyu!",
     DESCRIBE = {
         ANNOUNCE_PICKPOOP = {
             "Disgusting!",

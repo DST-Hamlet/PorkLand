@@ -17,6 +17,7 @@ return {
         "Wolfgang don't like %s in this heat.",
         "Is too muggy.",
     },
+    ANNOUNCE_WAVE_BOOST = "I am mighty!",
     DESCRIBE = {
         ALLOY = "Fire make it strong like Wolfgang.",
         APORKALYPSE_CLOCK = "Is clock of scary things.",

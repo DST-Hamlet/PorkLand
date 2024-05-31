@@ -17,6 +17,11 @@ return {
         "This %s is suffocating.",
         "This %s is just too hot!",
     },
+    ANNOUNCE_WAVE_BOOST = {
+        "WOOHOO!!!",
+        "I NEVER WANT THIS TO END!",
+        "ADVENTUUUURE!",
+    },
     DESCRIBE = {
         ALLOY = "Heavy metal made heavier.",
         APORKALYPSE_CLOCK = "If only I could turn time back to before I crashed here.",

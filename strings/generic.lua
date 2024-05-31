@@ -18,6 +18,7 @@ return {
         "This %s is so heavy.",
         "This %s is too hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Weeeee!",
     DESCRIBE = {
         ALLOY = "Ahoy there, alloy!",
         APORKALYPSE_CLOCK = "Looks scientifically apocalyptic.",

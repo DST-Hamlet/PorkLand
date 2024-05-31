@@ -12,6 +12,7 @@ return {
         "I'm bored.",
         "%s is not breathable at all.",
     },
+    ANNOUNCE_WAVE_BOOST = "Woohoo!",
     DESCRIBE = {
         ALLOY = "It's steel! Look at the steel I made!",
         ANNOUNCE_PICKPOOP = {

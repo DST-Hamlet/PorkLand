@@ -17,6 +17,7 @@ return {
         "This %s is heavier in the heat.",
         "This %s is too hot. It weighs on my soul.",
     },
+    ANNOUNCE_WAVE_BOOST = "Joy...",
     DESCRIBE = {
         ALLOY = "Cold and hard, like my existence.",
         APORKALYPSE_CLOCK = "Clockwork for the end of times.",

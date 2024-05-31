@@ -12,6 +12,7 @@ return {
         "Wearing %s is a shame.",
         "This terrible weather... I really shouldn't be wearing %s.",
     },
+    ANNOUNCE_WAVE_BOOST = "Wh-whoa!",
     DESCRIBE = {
         ALLOY = "Strong refined metal.",
         ANNOUNCE_PICKPOOP = {

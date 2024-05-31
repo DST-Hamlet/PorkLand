@@ -17,6 +17,7 @@ return {
         "Mon dieu! This %s is humid.",
         "Whew. This %s is hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Whoaaaa!",
     DESCRIBE = {
         ALLOY = "Metal cooked to perfection.",
         APORKALYPSE_CLOCK = "Like the knobs on a stove, it must be turned just right.",

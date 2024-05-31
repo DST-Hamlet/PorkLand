@@ -17,6 +17,7 @@ return {
         "Arrgh! It be hot!",
         "This %s is makin' me sweat me britches.",
     },
+    ANNOUNCE_WAVE_BOOST = "We be a silver streak on th'blue now!",
     DESCRIBE = {
         ALLOY = "Ahoy, alloy!",
         APORKALYPSE_CLOCK = "Tha time be nigh!",

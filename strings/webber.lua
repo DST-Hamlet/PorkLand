@@ -17,6 +17,7 @@ return {
         "Ugh. We're really baking in this %s.",
         "Wow! This %s is making us hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Weee!",
     DESCRIBE = {
         ALLOY = "Gosh. That's a lot of metal.",
         APORKALYPSE_CLOCK = "It's like a puzzle!",

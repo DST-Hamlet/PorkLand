@@ -17,6 +17,7 @@ return {
         "It's burning hot. But not in a good way.",
         "It's too hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Weeee!",
     DESCRIBE = {
         ALLOY = "Fire makes everything better.",
         APORKALYPSE_CLOCK = "Looks ominous. I like it.",

@@ -12,6 +12,7 @@ return {
         "%s is hot!",
         "I don't want to wear %s anymore!",
     },
+    ANNOUNCE_WAVE_BOOST = "Splish splash!",
     DESCRIBE = {
         ALLOY = "The stone became harder.",
         ANNOUNCE_PICKPOOP = {

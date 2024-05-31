@@ -17,6 +17,7 @@ return {
         "It's blazing with this %s.",
         "Whew! this %s is hot, eh?",
     },
+    ANNOUNCE_WAVE_BOOST = "For the North!",
     DESCRIBE = {
         ALLOY = "It's like a block of wood made out of metal.",
         APORKALYPSE_CLOCK = "Looks like it's the end of days.",

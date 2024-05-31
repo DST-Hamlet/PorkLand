@@ -17,6 +17,7 @@ return {
         "%s is heavy",
         "%s too hot",
     },
+    ANNOUNCE_WAVE_BOOST = "Whee!",
     DESCRIBE = {
         ALLOY = "Bar of Clink Rock",
         APORKALYPSE_CLOCK = "Tic Tock",

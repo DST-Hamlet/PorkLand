@@ -12,6 +12,7 @@ return {
         "%s is not breathable at all.",
         "This %s is so boring that I can't breathe.",
     },
+    ANNOUNCE_WAVE_BOOST = "Whoo nelly!",
     DESCRIBE = {
         ALLOY = "Proper processing makes it better.",
         ANNOUNCE_PICKPOOP = {

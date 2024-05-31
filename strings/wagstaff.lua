@@ -17,6 +17,7 @@ return {
         "This %s really weighs me down.",
         "The humid air is making this %s heavy.",
     },
+    ANNOUNCE_WAVE_BOOST = "Woo hoo! Wave mechanics!",
     DESCRIBE = {
         ALLOY = "Ah, refined metal. As good as any factory could produce.",
         APORKALYPSE_CLOCK = "Wonderful! I wonder if I could make the world end sooner.",

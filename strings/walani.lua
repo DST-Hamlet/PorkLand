@@ -18,6 +18,7 @@ return {
         "Ugh. This %s is soooo muggy.",
         "This %s is really warm.",
     },
+    ANNOUNCE_WAVE_BOOST = "Surf's up!",
     DESCRIBE = {
         ALLOY = "Hope this is worth all the trouble.",
         APORKALYPSE_CLOCK = "I hate clocks.",

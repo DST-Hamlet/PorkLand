@@ -17,6 +17,7 @@ return {
         "This %s is unbearable.",
         "This %s makes it too hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Prime oceanic oscillations!",
     DESCRIBE = {
         ALLOY = "Iron that has gone through metallic bonding.",
         APORKALYPSE_CLOCK = "Ah. Quite a complex form of clockwork.",
