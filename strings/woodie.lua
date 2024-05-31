@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "They're like little trees to chop down.",
         BASEFAN = "Yep. That's a nice breeze.",
         BOATREPAIRKIT = "Patch'er up, eh?",
+        BOAT_ROW = "Powered by elbow grease.",
         BOAT_TORCH = "I can go night fishing.",
         CHITIN = "It's got some heft to it.",
         COFFEE = "Good old joe.",

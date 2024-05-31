@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "A cluster of edible spring vegetables!",
         BASEFAN = "Magnificent! What a marvel of engineering!",
         BOATREPAIRKIT = "Strange. Where did the glue come from?",
+        BOAT_ROW = "A sufficient ship for my mundane explorative tasks.",
         BOAT_TORCH = "The fortunate angle of this stick makes for an ideal hanging device.",
         CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
         COFFEE = "Interesting. Caffeinated beverages have a heightened effect here.",

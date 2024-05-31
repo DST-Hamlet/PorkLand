@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Haha! Found you!",
         BASEFAN = "Fan the flames.",
         BOATREPAIRKIT = "This should patch up any little leaks.",
+        BOAT_ROW = "Rowing? Really?",
         BOAT_TORCH = "Strangely not for torching boats.",
         CHITIN = "Bug skin.",
         COFFEE = "I suddenly feel motivated.",

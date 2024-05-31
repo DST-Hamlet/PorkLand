@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Haha. Is like tiny vegetable hats.",
         BASEFAN = "Is cool on Wolfgang skin.",
         BOATREPAIRKIT = "Restore my mighty vessel!",
+        BOAT_ROW = "I will row with powerful arms!",
         BOAT_TORCH = "Flame on boat is good idea!",
         CHITIN = "Icky bug pieces.",
         COFFEE = "Strong, like Wolfgang!",

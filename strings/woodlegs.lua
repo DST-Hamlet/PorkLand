@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
         BASEFAN = "A cool wind blows from thee!",
         BOATREPAIRKIT = "Never set sail wit'out'er.",
+        BOAT_ROW = "I ain't rowed since I was a young swab.",
         BOAT_TORCH = "Fer a torch on me boat, not fer torchin' me boat.",
         CHITIN = "A harden'd hull.",
         COFFEE = "Arrr thet be th'real treasure.",

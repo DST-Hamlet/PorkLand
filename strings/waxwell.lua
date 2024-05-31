@@ -23,6 +23,7 @@ return {
         ASPARAGUS_PLANTED = "Food. Just growing out of the ground.",
         BASEFAN = "Ah. Civilization.",
         BOATREPAIRKIT = "It will hold off my vessel's inevitable decay.",
+        BOAT_ROW = "Manually operated. A pity.",
         BOAT_TORCH = "Sailing at night seems unsafe, but this makes it somewhat better.",
         CHITIN = "We all have our defenses.",
         COFFEE = "I look forward to this.",

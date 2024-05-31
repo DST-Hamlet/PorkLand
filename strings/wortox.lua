@@ -21,6 +21,7 @@ return {
         ASPARAGUS_PLANTED = "A spear that grows out of the earth.",
         BASEFAN = "The breeze is blowing, so happy.",
         BOATREPAIRKIT = "To keep those boats afloat.",
+        BOAT_ROW = "Gently down the merry stream!",
         BOAT_TORCH = "A light to lead me through the night.",
         CHITIN = "The shell of those guys.",
         COFFEE = "Sure to put a pep in someone's step!",
