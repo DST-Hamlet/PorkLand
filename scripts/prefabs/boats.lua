@@ -204,6 +204,7 @@ local function commonfn()
     inst.replica.sailable.basicspeedbonus = TUNING.BOAT_RAFT_SPEED
 
     inst:AddComponent("repairable")
+    inst.components.repairable.noannounce = true
     inst.components.repairable.repairmaterial = "boat"
     inst.components.repairable.onrepaired = OnRepaired
 
