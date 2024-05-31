@@ -5,6 +5,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT Version: 2.0"
 
+#. STRINGS.ACTIONS.DISEMBARK.GENERIC
+msgctxt "STRINGS.ACTIONS.DISEMBARK.GENERIC"
+msgid "Exit"
+msgstr "退出"
+
+#. STRINGS.ACTIONS.EMBARK.GENERIC
+msgctxt "STRINGS.ACTIONS.EMBARK.GENERIC"
+msgid "Drive"
+msgstr "驾驶"
+
+#. STRINGS.ACTIONS.EMBARK.SURF
+msgctxt "STRINGS.ACTIONS.EMBARK.SURF"
+msgid "Ride"
+msgstr "上板"
+
 #. STRINGS.ACTIONS.HACK
 msgctxt "STRINGS.ACTIONS.HACK"
 msgid "Hack"

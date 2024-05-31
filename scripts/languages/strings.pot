@@ -1,6 +1,21 @@
 "Application: Dont' Starve\n"
 "POT Version: 2.0\n"
 
+#. STRINGS.ACTIONS.DISEMBARK.GENERIC
+msgctxt "STRINGS.ACTIONS.DISEMBARK.GENERIC"
+msgid "Exit"
+msgstr ""
+
+#. STRINGS.ACTIONS.EMBARK.GENERIC
+msgctxt "STRINGS.ACTIONS.EMBARK.GENERIC"
+msgid "Drive"
+msgstr ""
+
+#. STRINGS.ACTIONS.EMBARK.SURF
+msgctxt "STRINGS.ACTIONS.EMBARK.SURF"
+msgid "Ride"
+msgstr ""
+
 #. STRINGS.ACTIONS.HACK
 msgctxt "STRINGS.ACTIONS.HACK"
 msgid "Hack"

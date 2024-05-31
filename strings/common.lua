@@ -1,5 +1,12 @@
 return {
     ACTIONS = {
+        DISEMBARK = {
+            GENERIC = "Exit",
+        },
+        EMBARK = {
+            GENERIC = "Drive",
+            SURF = "Ride",
+        },
         HACK = "Hack",
         PAN = "Pan",
         PICK = {
