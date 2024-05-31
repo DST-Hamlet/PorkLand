@@ -1074,7 +1074,7 @@ local states = {
             end
 
             if inst.components.health and not inst.components.health:IsDead() then
-                inst.components.drownable:WashAshore()
+                inst.components.drownable:_WashAshore()
             end
         end,
 
@@ -1109,7 +1109,7 @@ local states = {
                     end
                 end
 
-                inst.components.drownable:Sink()
+                inst.components.drownable:WashAshore()
             end),
 
             EventHandler("on_washed_ashore", function(inst)

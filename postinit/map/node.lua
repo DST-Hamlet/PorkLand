@@ -26,13 +26,13 @@ local common_spawnfn = {
     grass_tall_bunche_patch = function(x, y, ents)
         return not SpawnUtil.IsCloseToWaterTile(x, y, 3)
     end,
-    hippopotamoose = function(x, y, ents)  --使得玩家必定无法触及自然生成的河鹿
+    hippopotamoose = function(x, y, ents)
         return not SpawnUtil.IsCloseToLandTile(x, y, 1)
     end,
 }
 
 local function SurroundedByWater(x, y, ents)
-    return not SpawnUtil.IsSurroundedByWaterTile(x, y, 1)
+    return SpawnUtil.IsSurroundedByWaterTile(x, y, 1)
 end
 
 local function NotCloseToWater(x, y, ents)

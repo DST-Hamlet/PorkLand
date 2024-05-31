@@ -144,15 +144,13 @@ function Sailor:OnUpdate(dt)
             self.inst.replica.sailor._currentspeed:set(sailor_speed)
         end
 
-        local ix, iy, iz = self.inst.Transform:GetWorldPosition()
-        if not TheWorld.Map:ReverseIsVisualWaterAtPoint(ix, iy, iz) then
-            local targetpos = self.inst:GetPosition()
-            if TheWorld.Map:IsLandTileAtPoint(ix, iy, iz) then
-                targetpos = Vector3(TheWorld.Map:GetTileCenterPoint(ix, iy, iz))
-            end
-            self:Disembark(targetpos, nil, true, self.lastpos)
-        elseif TheWorld.Map:ReverseIsVisualWaterAtPoint(ix, iy, iz) then
-            self.lastpos = Vector3(ix, iy, iz)
+        local pos = self.inst:GetPosition()
+        local x, y, z = pos:Get()
+        if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+            self.last_pos = pos
+        else
+            local target_pos = Vector3(TheWorld.Map:GetTileCenterPoint(x, y, z))
+            self:Disembark(target_pos, nil, false, self.last_pos)
         end
     else
         self.boatspeed = 0
@@ -199,12 +197,8 @@ function Sailor:Embark(boat, nostate)
 
     boat:AddTag("NOCLICK")
 
-    self.lastpos = Vector3(boat.Transform:GetWorldPosition())
-
+    self.last_pos = boat:GetPosition()
     self.boatspeed = 0
-
-    self.inst:StartUpdatingComponent(self)
-
 
     self.inst.AnimState:OverrideSymbol("droplet", "flotsam_debris_lograft_build", "droplet")
     if self.boat.components.sailable.flotsambuild then
@@ -260,7 +254,11 @@ function Sailor:Embark(boat, nostate)
         if boat.components.container:IsOpen() then
             boat.components.container:Close(true)
         end
-        boat:DoTaskInTime(0.25, function() if boat == self.boat then boat.components.container:Open(self.inst) end end)
+        boat:DoTaskInTime(0.25, function()
+            if boat == self.boat then
+                boat.components.container:Open(self.inst)
+            end
+        end)
     end
 
     if self.OnEmbarked then
@@ -272,19 +270,21 @@ function Sailor:Embark(boat, nostate)
     if self.boat.components.sailable then
         self.boat.components.sailable:OnEmbarked(self.inst)
     end
+
+    self.inst:StartUpdatingComponent(self)
 end
 
-function Sailor:Disembark(pos, boat_to_boat, nostate, boatpt)
+function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
     self.sailing = false
     self.boatspeed = 0
-
-    self.lastpos = nil
 
     if self.boat and self.boat:HasTag("NOCLICK") then
         self.boat:RemoveTag("NOCLICK")
     end
 
     self.inst:StopUpdatingComponent(self)
+
+    self.last_pos = nil
 
     UpdateSailorPathcaps(self.inst, false)
 
@@ -313,10 +313,8 @@ function Sailor:Disembark(pos, boat_to_boat, nostate, boatpt)
     end
 
     local x, y, z = self.inst.Transform:GetWorldPosition()
-    if boatpt then
-        x = boatpt.x
-        y = boatpt.y
-        z = boatpt.z
+    if boat_pos then
+        x, y, z = boat_pos:Get()
     end
     self.inst.Physics:Stop()
     self.inst.components.locomotor:StopMoving()
@@ -349,15 +347,11 @@ function Sailor:Disembark(pos, boat_to_boat, nostate, boatpt)
 
     self.boat = nil
 
-    if not nostate then
+    if not no_state then
         if pos then
             self.inst.sg:GoToState("jumpoffboatstart", pos)
         elseif boat_to_boat then
             self.inst.sg:GoToState("jumponboatstart")
-        end
-    else
-        if pos then
-            self.inst.Transform:SetPosition(pos.x, pos.y, pos.z)
         end
     end
 end

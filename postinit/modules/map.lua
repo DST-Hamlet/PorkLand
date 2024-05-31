@@ -17,15 +17,15 @@ local function GetMaxRenderOrderTile(tile1, tile2)
     return tile1
 end
 
-function Map:GetVisualTileAtPoint(x, y, z) --这个函数没有考虑到物理斜线
+function Map:GetVisualTileAtPoint(x, y, z)
     local tile = self:GetTileAtPoint(x, y, z)
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
     local offset_x = x - center_x
     local offset_z = z - center_z
     local abs_offset_x = math.abs(offset_x)
     local abs_offset_z = math.abs(offset_z)
-    local has_x_overhang = abs_offset_x >= 1
-    local has_z_overhang = abs_offset_z >= 1
+    local has_x_overhang = abs_offset_x >= 1.5
+    local has_z_overhang = abs_offset_z >= 1.5
 
     if not has_x_overhang and not has_z_overhang then
         return tile
@@ -53,37 +53,7 @@ function Map:GetVisualTileAtPoint(x, y, z) --这个函数没有考虑到物理�
 end
 
 function Map:ReverseIsVisualGroundAtPoint(x, y, z)
-    if self:IsOceanTileAtPoint(x, y, z) then
-        return false
-    end
-
-    local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
-
-    local offset_x = x - center_x
-    local abs_offset_x = math.abs(offset_x)
-    local near_x
-    if abs_offset_x >= 1 then
-        near_x = center_x + (offset_x > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(near_x, 0, center_z) then
-            return false
-        end
-    end
-
-    local offset_z = z - center_z
-    local abs_offset_z = math.abs(offset_z)
-    local near_z
-    if abs_offset_z >= 1 then
-        near_z = center_z + (offset_z > 0 and 1 or -1) * TILE_SCALE
-        if self:IsOceanTileAtPoint(center_x, 0, near_z) then
-            return false
-        end
-    end
-
-    if near_x and near_z and abs_offset_z + abs_offset_x >= 3 then
-        return not self:IsOceanTileAtPoint(near_x, 0, near_z)
-    end
-
-    return true
+    return self:_IsVisualGroundAtPoint(x, y, z) and not self:ReverseIsVisualWaterAtPoint(x, y, z)
 end
 
 function Map:ReverseIsVisualWaterAtPoint(x, y, z)
@@ -267,12 +237,12 @@ function Map:CanDeployAquaticAtPointInWater(pt, data, player)
     end
 end
 
-local _IsVisualGroundAtPoint = Map.IsVisualGroundAtPoint
+Map._IsVisualGroundAtPoint = Map.IsVisualGroundAtPoint
 function Map:IsVisualGroundAtPoint(x, y, z, ...)
     if TheWorld.has_pl_ocean then
         return self:ReverseIsVisualGroundAtPoint(x, y, z)
     end
-    return _IsVisualGroundAtPoint(self, x, y, z, ...)
+    return self:_IsVisualGroundAtPoint(x, y, z, ...)
 end
 
 local _IsAboveGroundAtPoint = Map.IsAboveGroundAtPoint

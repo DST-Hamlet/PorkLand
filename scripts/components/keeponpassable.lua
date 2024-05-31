@@ -1,11 +1,11 @@
 local function OnUpdate(inst)
-    if inst:IsInLimbo() and inst.components.inventoryitem and (not inst.components.health or inst.components.health:IsDead()) then
+    if inst:IsInLimbo() or inst.components.inventoryitem or inst.components.drownable or (not inst.components.health or inst.components.health:IsDead()) then
         return
     end
 
     local x, y, z = inst.Transform:GetWorldPosition()
 
-    if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) and not inst:CanOnWater() and not inst.components.drownable then
+    if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) and not inst:CanOnWater() then
         inst.components.health:Kill()
         return
     end
@@ -22,6 +22,7 @@ local function OnUpdate(inst)
 end
 
 local KeepOnPassable = Class(function(self, inst)
+    self.inst = inst
     self.period = 0.5
 
     self:Schedule()
