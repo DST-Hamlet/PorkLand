@@ -2,7 +2,7 @@ local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local function Init(inst)
-    if inst.components.inventoryitem or inst.components.drownable then
+    if inst.components.inventoryitem then
         return
     end
 
