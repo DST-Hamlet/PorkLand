@@ -23,6 +23,7 @@ return {
         ASPARAGUS_PLANTED = "Food!",
         BASEFAN = "A nice breeze.",
         BOATREPAIRKIT = "Surfboard maintenance is essential!",
+        BOAT_CARGO = "This surfboard sure has a lot of pockets.",
         BOAT_LOGRAFT = "Seriously?",
         BOAT_ROW = "Awww, rowing? Ugh.",
         BOAT_TORCH = "Night-surfing. I love it!",

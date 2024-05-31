@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Miss Winona might like it, pick some.",
         BASEFAN = "Ah, it's so comfortable, Woby, you can also enjoy it.",
         BOATREPAIRKIT = "I'll need to maintain Woby's boat as well.",
+        BOAT_CARGO = "You can fit almost all your camping goods in there!",
         BOAT_LOGRAFT = "Just like the ones we used to make to cross rivers!",
         BOAT_ROW = "We're getting better at carving boats.",
         BOAT_TORCH = "It's important to have good visibility while sailing.",

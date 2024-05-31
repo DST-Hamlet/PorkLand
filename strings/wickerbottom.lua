@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Asparagus. Otherwise known as sparrow grass.",
         BASEFAN = "Restorative.",
         BOATREPAIRKIT = "Extends the life of aquatic vessels.",
+        BOAT_CARGO = "I can store a few extra books aboard.",
         BOAT_LOGRAFT = "Crude nautical transport.",
         BOAT_ROW = "My vessel for marine research.",
         BOAT_TORCH = "To better observe the nocturnal sea life.",

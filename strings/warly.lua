@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "I should snatch those up.",
         BASEFAN = "Good ventilation in the kitchen is an must.",
         BOATREPAIRKIT = "A most sensible traveling companion.",
+        BOAT_CARGO = "For long distance hauls.",
         BOAT_LOGRAFT = "These logs might be better suited to a fire...",
         BOAT_ROW = "Free me from the shackles of this island!",
         BOAT_TORCH = "It's a light so I might \"sea\".",

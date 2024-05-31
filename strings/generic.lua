@@ -23,6 +23,7 @@ return {
         ASPARAGUS_PLANTED = "I should pick those!",
         BASEFAN = "Fan-tastic.",
         BOATREPAIRKIT = "This will add some float to my boat.",
+        BOAT_CARGO = "It has room for all my stuff!",
         BOAT_LOGRAFT = "This looks... sort of boat-like...",
         BOAT_ROW = "It runs on elbow grease.",
         BOAT_TORCH = "This'll keep my hands free.",

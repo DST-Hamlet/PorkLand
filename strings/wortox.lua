@@ -21,6 +21,7 @@ return {
         ASPARAGUS_PLANTED = "A spear that grows out of the earth.",
         BASEFAN = "The breeze is blowing, so happy.",
         BOATREPAIRKIT = "To keep those boats afloat.",
+        BOAT_CARGO = "I dislike being burdened while traveling.",
         BOAT_LOGRAFT = "It's not so strong, but I don't have long.",
         BOAT_ROW = "Gently down the merry stream!",
         BOAT_TORCH = "A light to lead me through the night.",
