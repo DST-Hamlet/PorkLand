@@ -23,6 +23,7 @@ return {
         BASEFAN = "Conquers the heat!",
         BOATREPAIRKIT = "Most sensible cargo.",
         BOAT_CARGO = "A boat fit for a long journey.",
+        BOAT_CORK = "More like a stage prop than a viking vessel.",
         BOAT_LOGRAFT = "You will not carry me far, but you will carry me.",
         BOAT_ROW = "Rowing is in my blood.",
         BOAT_TORCH = "The night sea is alight!",

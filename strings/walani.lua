@@ -24,6 +24,7 @@ return {
         BASEFAN = "A nice breeze.",
         BOATREPAIRKIT = "Surfboard maintenance is essential!",
         BOAT_CARGO = "This surfboard sure has a lot of pockets.",
+        BOAT_CORK = "I've definitely seen better boats.",
         BOAT_LOGRAFT = "Seriously?",
         BOAT_ROW = "Awww, rowing? Ugh.",
         BOAT_TORCH = "Night-surfing. I love it!",

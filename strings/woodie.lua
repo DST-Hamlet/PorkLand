@@ -23,6 +23,7 @@ return {
         BASEFAN = "Yep. That's a nice breeze.",
         BOATREPAIRKIT = "Patch'er up, eh?",
         BOAT_CARGO = "I'd prefer cargo shorts.",
+        BOAT_CORK = "Only good for a short trip.",
         BOAT_LOGRAFT = "My specialty!",
         BOAT_ROW = "Powered by elbow grease.",
         BOAT_TORCH = "I can go night fishing.",

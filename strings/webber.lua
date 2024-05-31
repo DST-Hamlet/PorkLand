@@ -23,6 +23,7 @@ return {
         BASEFAN = "That breeze feels nice on our fur.",
         BOATREPAIRKIT = "Never leave home without one.",
         BOAT_CARGO = "Ah, we can stretch all our legs...",
+        BOAT_CORK = "I don't know. Looks kinda flimsy.",
         BOAT_LOGRAFT = "This does not look swift.",
         BOAT_ROW = "How's that old song go?",
         BOAT_TORCH = "It will light my way!",

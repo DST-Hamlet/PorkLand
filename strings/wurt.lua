@@ -23,6 +23,7 @@ return {
         BASEFAN = "Water ran away! florpt!",
         BOATREPAIRKIT = "Why repair? Let water in, florpt!",
         BOAT_CARGO = "It has room for treasures!",
+        BOAT_CORK = "Why not swim? florp.",
         BOAT_LOGRAFT = "Is a small boat.",
         BOAT_ROW = "It good enough.",
         BOAT_TORCH = "It torch for boat.",

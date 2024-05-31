@@ -23,6 +23,7 @@ return {
         BASEFAN = "A cool wind blows from thee!",
         BOATREPAIRKIT = "Never set sail wit'out'er.",
         BOAT_CARGO = "Fer th'hoarder at sea.",
+        BOAT_CORK = "It be'a poorly ship.",
         BOAT_LOGRAFT = "She don't look too sturdy.",
         BOAT_ROW = "I ain't rowed since I was a young swab.",
         BOAT_TORCH = "Fer a torch on me boat, not fer torchin' me boat.",

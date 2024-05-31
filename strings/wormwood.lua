@@ -23,6 +23,7 @@ return {
         BASEFAN = "Wind",
         BOATREPAIRKIT = "Fix it stuff",
         BOAT_CARGO = "Big Floater of friends",
+        BOAT_CORK = "Puny Floater",
         BOAT_LOGRAFT = "Friend ship",
         BOAT_ROW = "Push Pull Floater",
         BOAT_TORCH = "For dark times on floater",

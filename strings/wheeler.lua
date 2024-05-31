@@ -23,6 +23,7 @@ return {
         BASEFAN = "A plane propeller would be better.",
         BOATREPAIRKIT = "Swell. Because cork is known for its durability.",
         BOAT_CARGO = "Now all my things can go adventuring with me.",
+        BOAT_CORK = "About as stable as a cork balloon.",
         BOAT_LOGRAFT = "About as stable as a wooden balloon.",
         BOAT_ROW = "If only I had oars for my balloon.",
         BOAT_TORCH = "Open fire on a wooden boat. The most adventurous thing I've ever done.",

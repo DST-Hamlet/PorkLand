@@ -24,6 +24,7 @@ return {
         BASEFAN = "Ah. Civilization.",
         BOATREPAIRKIT = "It will hold off my vessel's inevitable decay.",
         BOAT_CARGO = "Ah, plenty of room to breathe.",
+        BOAT_CORK = "Looks barely seaworthy.",
         BOAT_LOGRAFT = "It seems like there should be regulations against this.",
         BOAT_ROW = "Manually operated. A pity.",
         BOAT_TORCH = "Sailing at night seems unsafe, but this makes it somewhat better.",

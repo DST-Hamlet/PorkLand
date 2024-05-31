@@ -23,6 +23,7 @@ return {
         BASEFAN = "Fan the flames.",
         BOATREPAIRKIT = "This should patch up any little leaks.",
         BOAT_CARGO = "I can carry so many flammables on this.",
+        BOAT_CORK = "It'd be better if I could light it on fire.",
         BOAT_LOGRAFT = "Campfire wood has other uses, apparently!",
         BOAT_ROW = "Rowing? Really?",
         BOAT_TORCH = "Strangely not for torching boats.",

@@ -23,6 +23,7 @@ return {
         BASEFAN = "Very interesting structure, but unfortunately not refined enough.",
         BOATREPAIRKIT = "Repairing takes a lot shorter than building a whole new boat from the scratch.",
         BOAT_CARGO = "I'll save so much time if I don't have to go back to fetch my things!",
+        BOAT_CORK = "Is this the only thing standing between us and the cold water?",
         BOAT_LOGRAFT = "I don't have time. If it floats, it's enough.",
         BOAT_ROW = "Rowing takes forever! Surely I can install something on it?",
         BOAT_TORCH = "This will keep me safe, nice and hands-free.",

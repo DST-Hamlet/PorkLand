@@ -23,6 +23,7 @@ return {
         BASEFAN = "Restorative.",
         BOATREPAIRKIT = "Extends the life of aquatic vessels.",
         BOAT_CARGO = "I can store a few extra books aboard.",
+        BOAT_CORK = "I suppose it's safe for a quick trip up the river.",
         BOAT_LOGRAFT = "Crude nautical transport.",
         BOAT_ROW = "My vessel for marine research.",
         BOAT_TORCH = "To better observe the nocturnal sea life.",

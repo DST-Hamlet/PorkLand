@@ -23,6 +23,7 @@ return {
         BASEFAN = "I'm sure bossman would be very interested in it.",
         BOATREPAIRKIT = "Who needs glue? My tape is sticky enough.",
         BOAT_CARGO = "It's my big, bouyant toolbox.",
+        BOAT_CORK = "It definitely fails any security tests.",
         BOAT_LOGRAFT = "I could do better...",
         BOAT_ROW = "If I wanna move, I gotta put my back into it.",
         BOAT_TORCH = "This torch is a little light. Ha!",
