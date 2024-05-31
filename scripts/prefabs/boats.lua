@@ -22,7 +22,7 @@ local rowboat_assets = JoinArrays(rowboat_basic_assets, {
     Asset("ANIM", "anim/flotsam_rowboat_build.zip"),
 })
 
-local corkboatassets = JoinArrays(rowboat_basic_assets, {
+local corkboat_assets = JoinArrays(rowboat_basic_assets, {
     Asset("ANIM", "anim/corkboat.zip"),
     Asset("ANIM", "anim/coracle_boat_build.zip"),
     Asset("ANIM", "anim/flotsam_corkboat_build.zip"),
@@ -98,7 +98,7 @@ local function OnRepaired(inst, doer, repair_item)
 end
 
 local function OnDeployCorkBoat(inst, pt, deployer)
-    local boat = inst.boat_data and SpawnSaveRecord(inst.boat_data) or SpawnPrefab("corkboat")
+    local boat = inst.boat_data and SpawnSaveRecord(inst.boat_data) or SpawnPrefab("boat_cork")
 
     if boat then
         boat.Physics:SetCollides(false)
@@ -116,7 +116,7 @@ local function OnDroppedCorkBoat(inst)
 end
 
 local function OnPickupedCorkBoat(inst, doer)
-    local boat_item = SpawnPrefab("corkboat_item")
+    local boat_item = SpawnPrefab("boat_cork_item")
     doer.components.inventory:GiveItem(boat_item)
 
     for _, item in pairs(inst.components.container.boatequipslots) do
@@ -369,14 +369,14 @@ local function corkboatfn()
         return inst
     end
 
-    inst.boatname = "corkboat"
+    inst.boatname = "boat_cork"
 
     inst.components.boatvisualmanager:SpawnBoatEquipVisuals(inst, inst.boatname)
 
     inst.landsound = "dontstarve_DLC002/common/boatjump_land_wood"
     inst.sinksound = "dontstarve_DLC002/common/boat_sinking_rowboat"
 
-    inst.components.container:WidgetSetup("corkboat")
+    inst.components.container:WidgetSetup("boat_cork")
 
     inst.components.boathealth:SetMaxHealth(TUNING.CORKBOAT_HEALTH)
     inst.components.boathealth:SetHealth(TUNING.CORKBOAT_HEALTH, TUNING.CORKBOAT_PERISHTIME)
@@ -420,7 +420,7 @@ local function corkboatitemfn()
 
     inst._custom_candeploy_fn = DeployTestCorkBoat
     inst.name = STRINGS.NAMES.CORKBOAT
-    inst.overridedeployplacername = "corkboat_placer"
+    inst.overridedeployplacername = "boat_cork_placer"
 
     inst.entity:SetPristine()
 
@@ -429,11 +429,11 @@ local function corkboatitemfn()
     end
 
     inst:AddComponent("inspectable")
-    inst.components.inspectable.nameoverride = "corkboat"
+    inst.components.inspectable.nameoverride = "boat_cork"
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem:SetOnDroppedFn(OnDroppedCorkBoat)
-    inst.components.inventoryitem:ChangeImageName("corkboat")
+    inst.components.inventoryitem:ChangeImageName("boat_cork")
 
     inst:AddComponent("deployable")
     inst.components.deployable.ondeploy = OnDeployCorkBoat
@@ -483,17 +483,17 @@ end
 return Prefab("boat_lograft", lograftfn, lograft_assets, prefabs),
     Prefab("boat_row", rowboatfn, rowboat_assets, prefabs),
     Prefab("boat_cargo", cargofn, cargo_assets, prefabs),
-    Prefab("corkboat", corkboatfn, corkboatassets, prefabs),
-    Prefab("corkboat_item", corkboatitemfn, corkboatassets, prefabs),
+    Prefab("boat_cork", corkboatfn, corkboat_assets, prefabs),
+    Prefab("boat_cork_item", corkboatitemfn, corkboat_assets, prefabs),
     MakePlacer("boat_lograft_placer", "raft", "raft_log_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),
     MakePlacer("boat_row_placer", "rowboat", "rowboat_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),
     MakePlacer("boat_cargo_placer", "rowboat", "rowboat_cargo_build", "run_loop", nil, nil, nil, nil, nil, nil, nil, 2),
-    MakePlacer("corkboat_placer", "rowboat", "coracle_boat_build", "run_loop", false, false, false),
+    MakePlacer("boat_cork_placer", "rowboat", "coracle_boat_build", "run_loop", false, false, false),
     visualboatequip.MakeVisualBoatEquip("boat_lograft", lograft_assets, nil, lograft_visual_common),
     visualboatequip.MakeVisualBoatEquipChild("boat_lograft", lograft_assets, nil, lograft_visual_common),
     visualboatequip.MakeVisualBoatEquip("boat_row", rowboat_assets, nil, rowboat_visual_common),
     visualboatequip.MakeVisualBoatEquipChild("boat_row", rowboat_assets, nil, rowboat_visual_common),
     visualboatequip.MakeVisualBoatEquip("boat_cargo", cargo_assets, nil, cargo_visual_common),
     visualboatequip.MakeVisualBoatEquipChild("boat_cargo", cargo_assets, nil, cargo_visual_common),
-    visualboatequip.MakeVisualBoatEquip("corkboat", corkboatassets, nil, corkboat_visual_common),
-    visualboatequip.MakeVisualBoatEquipChild("corkboat", corkboatassets, nil, corkboat_visual_common)
+    visualboatequip.MakeVisualBoatEquip("boat_cork", corkboat_assets, nil, corkboat_visual_common),
+    visualboatequip.MakeVisualBoatEquipChild("boat_cork", corkboat_assets, nil, corkboat_visual_common)

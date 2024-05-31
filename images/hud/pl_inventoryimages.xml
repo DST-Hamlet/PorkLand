@@ -92,7 +92,7 @@
         <Element name="corallarve.tex" u1="0.75" u2="0.78125" v1="0.90625" v2="0.9375"/>
         <Element name="cork.tex" u1="0.78125" u2="0.8125" v1="0.90625" v2="0.9375"/>
         <Element name="cork_bat.tex" u1="0.8125" u2="0.84375" v1="0.90625" v2="0.9375"/>
-        <Element name="corkboat.tex" u1="0.84375" u2="0.875" v1="0.90625" v2="0.9375"/>
+        <Element name="boat_cork.tex" u1="0.84375" u2="0.875" v1="0.90625" v2="0.9375"/>
         <Element name="corkchest.tex" u1="0.875" u2="0.90625" v1="0.90625" v2="0.9375"/>
         <Element name="cormorant.tex" u1="0.90625" u2="0.9375" v1="0.90625" v2="0.9375"/>
         <Element name="cost-1.tex" u1="0.9375" u2="0.96875" v1="0.90625" v2="0.9375"/>
