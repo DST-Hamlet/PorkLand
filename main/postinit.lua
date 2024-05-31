@@ -65,6 +65,7 @@ local prefab_posts = {
 
 local multipleprefab_posts = {
     "poisonable",
+    "health"
 }
 
 local scenario_posts = {
