@@ -52,6 +52,10 @@ function Map:GetVisualTileAtPoint(x, y, z)
     return tile
 end
 
+function Map:IsImpassableAtPoint(x, y, z, ...)
+    return not self:_IsVisualGroundAtPoint(x, y, z, ...) and not self:ReverseIsVisualWaterAtPoint(x, y, z)
+end
+
 function Map:ReverseIsVisualGroundAtPoint(x, y, z)
     return self:_IsVisualGroundAtPoint(x, y, z) and not self:ReverseIsVisualWaterAtPoint(x, y, z)
 end
@@ -66,7 +70,7 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
     local offset_x = x - center_x
     local abs_offset_x = math.abs(offset_x)
     local near_x
-    if abs_offset_x >= 1.5 then
+    if abs_offset_x >= 1 then
         near_x = center_x + (offset_x > 0 and 1 or -1) * TILE_SCALE
         if self:IsOceanTileAtPoint(near_x, 0, center_z) then
             return true
@@ -76,15 +80,27 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
     local offset_z = z - center_z
     local abs_offset_z = math.abs(offset_z)
     local near_z
-    if abs_offset_z >= 1.5 then
+    if abs_offset_z >= 1 then
         near_z = center_z + (offset_z > 0 and 1 or -1) * TILE_SCALE
         if self:IsOceanTileAtPoint(center_x, 0, near_z) then
             return true
         end
     end
 
-    if near_x and near_z and abs_offset_z + abs_offset_x > 3 then
-        return self:IsOceanTileAtPoint(near_x, 0, near_z)
+    if near_x and near_z and abs_offset_z + abs_offset_x >= 3 then
+        if self:IsOceanTileAtPoint(near_x, 0, near_z) then
+            return true
+        end
+    end
+
+    if not near_x and not near_z and abs_offset_z + abs_offset_x >= 1 then
+        near_x = center_x + (offset_x > 0 and 1 or -1) * TILE_SCALE
+        near_z = center_z + (offset_z > 0 and 1 or -1) * TILE_SCALE
+        if self:IsOceanTileAtPoint(near_x, 0, center_z)
+            and self:IsOceanTileAtPoint(center_x, 0, near_z)
+            and self:IsOceanTileAtPoint(near_x, 0, near_z) then
+            return true
+        end
     end
 
     return false
@@ -237,7 +253,7 @@ function Map:CanDeployAquaticAtPointInWater(pt, data, player)
     end
 end
 
-Map._IsVisualGroundAtPoint = Map.IsVisualGroundAtPoint
+Map._IsVisualGroundAtPoint = Map.IsVisualGroundAtPoint  --用于判断一个点是否属于陆地范围
 function Map:IsVisualGroundAtPoint(x, y, z, ...)
     if TheWorld.has_pl_ocean then
         return self:ReverseIsVisualGroundAtPoint(x, y, z)

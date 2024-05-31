@@ -5,7 +5,7 @@ local function OnUpdate(inst)
 
     local x, y, z = inst.Transform:GetWorldPosition()
 
-    if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) and not inst:CanOnWater() then
+    if not inst:CanOnWater() and TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
         inst.components.health:Kill()
         return
     end
@@ -15,7 +15,7 @@ local function OnUpdate(inst)
         return
     end
 
-    if not inst:CanOnImpassable() and not TheWorld.Map:IsPassableAtPoint(x, y, z) then
+    if not inst:CanOnImpassable() and TheWorld.Map:IsImpassableAtPoint(x, y, z) then
         inst.components.health:Kill()
         return
     end
