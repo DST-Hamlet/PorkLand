@@ -1,4 +1,7 @@
 return {
+    ANNOUNCE_BOAT_DAMAGED = "My vessel is wounded!",
+    ANNOUNCE_BOAT_SINKING = "The sea pulls me toward Hel!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "These black depths will soon claim me!",
     ANNOUNCE_DEHUMID = {
         "The haze has lifted.",
     },

@@ -1,4 +1,7 @@
 return {
+    ANNOUNCE_BOAT_DAMAGED = "Swell. I'm taking on water.",
+    ANNOUNCE_BOAT_SINKING = "I'm up to my socks in seawater!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Is this the end of Maybelle Dorothea Wheeler?",
     ANNOUNCE_DEHUMID = {
         "Whew. I forgot what it felt like to breathe.",
     },

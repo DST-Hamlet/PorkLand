@@ -1,4 +1,7 @@
 return {
+    ANNOUNCE_BOAT_DAMAGED = "I should tape these holes up.",
+    ANNOUNCE_BOAT_SINKING = "I don't think tape will be enough now.",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "That's a lotta damage!",
     ANNOUNCE_DEHUMID = {
         "This is much more comfortable.",
     },

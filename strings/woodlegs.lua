@@ -1,4 +1,7 @@
 return {
+    ANNOUNCE_BOAT_DAMAGED = "She's takin' on water!",
+    ANNOUNCE_BOAT_SINKING = "She be goin' doooon!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Be this th'day th'sea claims me?",
     ANNOUNCE_DEHUMID = {
         "Ah! Th'air be cool again.",
     },

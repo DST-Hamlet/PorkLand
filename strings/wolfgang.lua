@@ -1,4 +1,7 @@
 return {
+    ANNOUNCE_BOAT_DAMAGED = "Ship is weak! Needs fixingtimes.",
+    ANNOUNCE_BOAT_SINKING = "I will fight sea!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Wolfgang will punch death!",
     ANNOUNCE_DEHUMID = {
         "Ha! Wolfgang beat the heat!",
     },
