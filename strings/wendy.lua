@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "I should rip those out of the ground.",
         BASEFAN = "Alas the relief it brings is only temporary.",
         BOATREPAIRKIT = "This could save a boat from destruction, and me with it.",
+        BOAT_LOGRAFT = "This looks heavy, slow and dangerous.",
         BOAT_ROW = "I wonder how many leagues this can convey me?",
         BOAT_TORCH = "How illuminating.",
         CHITIN = "This shell is poor protection from life's horrors.",

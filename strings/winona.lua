@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Wholesome green vegetables.",
         BASEFAN = "I'm sure bossman would be very interested in it.",
         BOATREPAIRKIT = "Who needs glue? My tape is sticky enough.",
+        BOAT_LOGRAFT = "I could do better...",
         BOAT_ROW = "If I wanna move, I gotta put my back into it.",
         BOAT_TORCH = "This torch is a little light. Ha!",
         CHITIN = "I don't know what this can be used for.",

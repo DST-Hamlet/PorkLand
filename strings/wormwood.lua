@@ -22,6 +22,7 @@ return {
         ASPARAGUS_PLANTED = "Hello there!",
         BASEFAN = "Wind",
         BOATREPAIRKIT = "Fix it stuff",
+        BOAT_LOGRAFT = "Friend ship",
         BOAT_ROW = "Push Pull Floater",
         BOAT_TORCH = "For dark times on floater",
         CHITIN = "Bzzter clothes",

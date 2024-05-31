@@ -115,6 +115,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOATREPAIRKIT"
 msgid "This will add some float to my boat."
 msgstr "这可以给我的船增加一些浮力。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_LOGRAFT"
+msgid "This looks... sort of boat-like..."
+msgstr "这个看起来...有点像船..."
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_ROW"
 msgid "It runs on elbow grease."
@@ -509,6 +514,11 @@ msgstr "真棒啊！多么神奇的工程啊！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOATREPAIRKIT"
 msgid "Strange. Where did the glue come from?"
 msgstr "真奇怪。这胶水是从哪里来的？"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_LOGRAFT"
+msgid "The dispersal of weight should keep me briefly afloat."
+msgstr "木头分散了重量应该能让我暂时浮在水面。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_ROW"
@@ -915,6 +925,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOATREPAIRKIT"
 msgid "Surfboard maintenance is essential!"
 msgstr "冲浪板维护是很重要的！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_LOGRAFT"
+msgid "Seriously?"
+msgstr "认真的吗？"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_ROW"
 msgid "Awww, rowing? Ugh."
@@ -1310,6 +1325,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOATREPAIRKIT"
 msgid "I'll need to maintain Woby's boat as well."
 msgstr "我还得把沃比的小船维护好。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_LOGRAFT"
+msgid "Just like the ones we used to make to cross rivers!"
+msgstr "就像我们以前过河时造的一样！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_ROW"
 msgid "We're getting better at carving boats."
@@ -1700,6 +1720,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOATREPAIRKIT"
 msgid "Repairing takes a lot shorter than building a whole new boat from the scratch."
 msgstr "修理比从头开始建造一艘新船要快得多。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_LOGRAFT"
+msgid "I don't have time. If it floats, it's enough."
+msgstr "我时间不多。只要能浮起来就够了。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_ROW"
 msgid "Rowing takes forever! Surely I can install something on it?"
@@ -2089,6 +2114,11 @@ msgstr "厨房必须通风良好。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOATREPAIRKIT"
 msgid "A most sensible traveling companion."
 msgstr "最明智的旅行伴侣。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_LOGRAFT"
+msgid "These logs might be better suited to a fire..."
+msgstr "这些木头可能更适合用来烧火..."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_ROW"
@@ -2484,6 +2514,11 @@ msgstr "驱散高温!"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOATREPAIRKIT"
 msgid "Most sensible cargo."
 msgstr "最明智的船货。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_LOGRAFT"
+msgid "You will not carry me far, but you will carry me."
+msgstr "虽然你不能载我太远，但至少可以载我一程。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_ROW"
@@ -2885,6 +2920,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOATREPAIRKIT"
 msgid "It will hold off my vessel's inevitable decay."
 msgstr "它将拖延我的船无法避免的腐朽。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_LOGRAFT"
+msgid "It seems like there should be regulations against this."
+msgstr "似乎有禁止使用这个的规定。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_ROW"
 msgid "Manually operated. A pity."
@@ -3279,6 +3319,11 @@ msgstr "微风吹过毛皮的感觉很惬意。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOATREPAIRKIT"
 msgid "Never leave home without one."
 msgstr "出门的时候别把它落下了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_LOGRAFT"
+msgid "This does not look swift."
+msgstr "这个看起来速度不怎么快。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_ROW"
@@ -3675,6 +3720,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOATREPAIRKIT"
 msgid "This could save a boat from destruction, and me with it."
 msgstr "这能挽救一艘船免于毁灭，顺带挽救我。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_LOGRAFT"
+msgid "This looks heavy, slow and dangerous."
+msgstr "这个看上去沉重、缓慢而又危险。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_ROW"
 msgid "I wonder how many leagues this can convey me?"
@@ -4070,6 +4120,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOATREPAIRKIT"
 msgid "Swell. Because cork is known for its durability."
 msgstr "好吧。因为软木以其耐用性而闻名。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_LOGRAFT"
+msgid "About as stable as a wooden balloon."
+msgstr "这木头牌热气球几乎很稳固。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_ROW"
 msgid "If only I had oars for my balloon."
@@ -4464,6 +4519,11 @@ msgstr "恢复装置。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOATREPAIRKIT"
 msgid "Extends the life of aquatic vessels."
 msgstr "延长水上交通工具的寿命。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_LOGRAFT"
+msgid "Crude nautical transport."
+msgstr "原始的海上运输方式。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_ROW"
@@ -4865,6 +4925,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOATREPAIRKIT"
 msgid "'TIS FOR BOAT FIXINGS"
 msgstr "用这个来修理船"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_LOGRAFT"
+msgid "ALAS! 'TIS BARELY WORTHY O' THE SEA"
+msgstr "呼！这艘船勉强能在海上漂"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_ROW"
 msgid "THE ROWS OF OUTRAGEOUS FORTUNE"
@@ -5259,6 +5324,11 @@ msgstr "煽风点火。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOATREPAIRKIT"
 msgid "This should patch up any little leaks."
 msgstr "这应该能补上任何小漏洞。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_LOGRAFT"
+msgid "Campfire wood has other uses, apparently!"
+msgstr "很明显，柴火还有其他用途！"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_ROW"
@@ -5655,6 +5725,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOATREPAIRKIT"
 msgid "Who needs glue? My tape is sticky enough."
 msgstr "谁还需要胶水？我的胶带就够了。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_LOGRAFT"
+msgid "I could do better..."
+msgstr "我还能做到更好..."
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_ROW"
 msgid "If I wanna move, I gotta put my back into it."
@@ -6044,6 +6119,11 @@ msgstr "沃尔夫冈感到很凉快。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOATREPAIRKIT"
 msgid "Restore my mighty vessel!"
 msgstr "修复我强大的船！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_LOGRAFT"
+msgid "This raft is... not so mighty."
+msgstr "这个木筏...不太牢固。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_ROW"
@@ -6440,6 +6520,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOATREPAIRKIT"
 msgid "Patch'er up, eh?"
 msgstr "把它修好吗？"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_LOGRAFT"
+msgid "My specialty!"
+msgstr "我的专长！"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_ROW"
 msgid "Powered by elbow grease."
@@ -6834,6 +6919,11 @@ msgstr "凉爽的风向你身上吹来！"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOATREPAIRKIT"
 msgid "Never set sail wit'out'er."
 msgstr "航海不能没有它。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_LOGRAFT"
+msgid "She don't look too sturdy."
+msgstr "她看起来不是很结实。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_ROW"
@@ -7230,6 +7320,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOATREPAIRKIT"
 msgid "Fix it stuff"
 msgstr "修补的东西"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_LOGRAFT"
+msgid "Friend ship"
+msgstr "朋友的船"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_ROW"
 msgid "Push Pull Floater"
@@ -7619,6 +7714,11 @@ msgstr "微风拂面，好不快活。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOATREPAIRKIT"
 msgid "To keep those boats afloat."
 msgstr "保证船浮在水面上。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_LOGRAFT"
+msgid "It's not so strong, but I don't have long."
+msgstr "不怎么坚固，不过我也不需要。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_ROW"
@@ -8010,6 +8110,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOATREPAIRKIT"
 msgid "Why repair? Let water in, florpt!"
 msgstr "为什么要修？让船进水，浮浪噗的！"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_LOGRAFT"
+msgid "Is a small boat."
+msgstr "一艘小船。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_ROW"
 msgid "It good enough."
@@ -8400,6 +8505,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOATREPAIRKIT"
 msgid "SEA VESSEL REPAIRS. AT SEA."
 msgstr "海上使用的修船工具。"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_LOGRAFT"
+msgid "I AM UNCOMFORTABLE BEING SO CLOSE TO THE WATER"
+msgstr "这么靠近水让我不安"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_ROW"
 msgid "I, ROWBOAT"
@@ -8750,6 +8860,11 @@ msgctxt "STRINGS.NAMES.BOATREPAIRKIT"
 msgid "Boat Repair Kit"
 msgstr "修船套件"
 
+#. STRINGS.NAMES.BOAT_LOGRAFT
+msgctxt "STRINGS.NAMES.BOAT_LOGRAFT"
+msgid "Log Raft"
+msgstr "木筏"
+
 #. STRINGS.NAMES.BOAT_ROW
 msgctxt "STRINGS.NAMES.BOAT_ROW"
 msgid "Row Boat"
@@ -8989,6 +9104,11 @@ msgstr "缓解花粉症，保持干\n燥。"
 msgctxt "STRINGS.RECIPE_DESC.BOATREPAIRKIT"
 msgid "Stay afloat in that boat!"
 msgstr "别让船沉了！"
+
+#. STRINGS.RECIPE_DESC.BOAT_LOGRAFT
+msgctxt "STRINGS.RECIPE_DESC.BOAT_LOGRAFT"
+msgid "Boat at your own risk."
+msgstr "航行风险自负。"
 
 #. STRINGS.RECIPE_DESC.BOAT_ROW
 msgctxt "STRINGS.RECIPE_DESC.BOAT_ROW"
