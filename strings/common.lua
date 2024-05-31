@@ -12,6 +12,8 @@ return {
         PICK = {
             DIGIN = "Dig in",
         },
+        REPAIRBOAT = "Repair",
+        RETRIEVE = "Retrieve",
         SHEAR = "Shear",
         SMELT = "Smelt",
     },

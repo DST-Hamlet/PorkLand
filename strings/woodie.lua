@@ -1,4 +1,9 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "I'm afraid I can't.",
+        },
+    },
     ANNOUNCE_BOAT_DAMAGED = "My boat's pretty banged up, eh?",
     ANNOUNCE_BOAT_SINKING = "I'm aboot to sink!",
     ANNOUNCE_BOAT_SINKING_IMMINENT = "We're goin' down!",
