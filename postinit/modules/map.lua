@@ -24,8 +24,8 @@ function Map:GetVisualTileAtPoint(x, y, z)
     local offset_z = z - center_z
     local abs_offset_x = math.abs(offset_x)
     local abs_offset_z = math.abs(offset_z)
-    local has_x_overhang = abs_offset_x >= 1.5
-    local has_z_overhang = abs_offset_z >= 1.5
+    local has_x_overhang = abs_offset_x >= 1
+    local has_z_overhang = abs_offset_z >= 1
 
     if not has_x_overhang and not has_z_overhang then
         return tile
@@ -44,7 +44,7 @@ function Map:GetVisualTileAtPoint(x, y, z)
         tile = GetMaxRenderOrderTile(tile, near_z_tile)
     end
 
-    if has_z_overhang and has_z_overhang and abs_offset_x + abs_offset_z > 3 then
+    if has_z_overhang and has_z_overhang and abs_offset_x + abs_offset_z >= 3 then
         local corner_tile = self:GetTileAtPoint(near_x, 0, near_z)
         tile = GetMaxRenderOrderTile(tile, corner_tile)
     end
