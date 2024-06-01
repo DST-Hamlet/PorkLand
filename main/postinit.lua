@@ -51,6 +51,7 @@ local component_posts = {
 local prefab_posts = {
     "boomerang",
     "buff_workeffectiveness",
+    "meatrack",
     "orangestaff",
     "player",
     "player_classified",
@@ -111,6 +112,7 @@ modimport("postinit/entityscript")
 modimport("postinit/bufferedaction")
 modimport("postinit/animstate")
 modimport("postinit/stategraphs/commonstates")
+modimport("postinit/input")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

@@ -92,6 +92,8 @@ local custonsiz_items = {  -- add in dst custonsiz
             bill_setting = {image = "platypine.tex"},
             frog_poison_setting = {image = "poison_dart_frogs.tex"},
             mosquito_setting = {image = "mosquitos.tex"},
+            --adult_flytrap_setting = {image = "adult_flytraps.tex"},
+            --mean_flytrap_setting = {image = "mean_flytraps.tex"},
             weevole_setting = {image = "weevole.tex"},
         },
         animals = {
@@ -100,6 +102,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             glowfly_setting = {image = "glowflies.tex"},
             hanging_vine_setting = {image = "grabbing_vine.tex"},
             hippopotamoose_setting = {image = "hippopotamoose.tex"},
+            mandrakeman_setting = {image = "mandrake_men.tex"},
             piko_setting = {image = "orange_pikos.tex"},
         },
         resources = {
@@ -110,6 +113,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             glowflycycle = {image = "glowfly_life_cycle.tex", desc = enable_descriptions},
             poison = {desc = enable_descriptions},
             hayfever = {desc = enable_descriptions},
+            pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = enable_descriptions},
         },
     }
 }

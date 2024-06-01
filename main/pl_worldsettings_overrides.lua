@@ -227,6 +227,30 @@ applyoverrides_pre.hanging_vine_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+applyoverrides_pre.mandrakeman_setting = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            MANDRAKEMAN_ENABLED = false
+        },
+        rare = {
+            MANDRAKEMAN_SPAWN_TIME = total_day_time * 2,
+        },
+        --[[
+        default = {
+            MANDRAKEMAN_SPAWN_TIME = total_day_time,
+        },
+        --]]
+        often = {
+            MANDRAKEMAN_SPAWN_TIME = total_day_time * 0.5,
+        },
+        always = {
+            MANDRAKEMAN_SPAWN_TIME = total_day_time * 0.25,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 applyoverrides_pre.asparagus_regrowth = function(difficulty)
     local tuning_vars =
     {
@@ -419,4 +443,11 @@ end
 applyoverrides_post.hayfever = function(difficulty)
     difficulty = difficulty == "default"
     TheWorld:PushEvent("ms_setworldsetting", {setting = "hayfever", value = difficulty})
+end
+
+applyoverrides_post.pugalisk_fountain = function(difficulty)
+    local worldsettings = TheWorld.components.worldsettings
+    if worldsettings then
+        worldsettings:SetSetting("pugalisk_fountain", difficulty == "default")
+    end
 end

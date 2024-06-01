@@ -2,6 +2,7 @@ local AddStategraphState = AddStategraphState
 local AddStategraphEvent = AddStategraphEvent
 local AddStategraphPostInit = AddStategraphPostInit
 local AddStategraphActionHandler = AddStategraphActionHandler
+local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local TIMEOUT = 2
@@ -415,6 +416,35 @@ local states = {
             inst.sg:GoToState("idle")
         end
     },
+
+    State{
+        name = "castspell_bone",
+        tags = {"doing", "busy", "canrotate", "spell"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("staff_pre")
+            inst.AnimState:PushAnimation("staff_lag", false)
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst.sg:ServerStateMatches() then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -470,5 +500,15 @@ AddStategraphPostInit("wilson_client", function(sg)
         end
 
         _locomote_eventhandler(inst, data)
+    end
+
+    local _castspell_deststate = sg.actionhandlers[ACTIONS.CASTSPELL].deststate
+    sg.actionhandlers[ACTIONS.CASTSPELL].deststate = function(inst, action)
+        local staff = action.invobject or action.doer.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+        if staff:HasTag("bonestaff") then
+            return "castspell_bone"
+        else
+            return _castspell_deststate and _castspell_deststate(inst, action)
+        end
     end
 end)

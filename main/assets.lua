@@ -1,6 +1,7 @@
 local TheNet = GLOBAL.TheNet
 
 PrefabFiles = {
+    "adult_flytrap",
     "alloy",
     "aporkalypse_clock",
     "armor_metalplate",
@@ -12,6 +13,7 @@ PrefabFiles = {
     "boatcontainer_classified",
     "boatrepairkit",
     "boats",
+    "bonestaff",
     "chitin",
     "deep_jungle_fern_noise",
     "dungball",
@@ -20,6 +22,8 @@ PrefabFiles = {
     "fast_farmplot_planted",
     "flotsam",
     "flower_rainforest",
+    "floweroflife",
+    "gaze_beam",
     "glowfly",
     "gold_dust",
     "goldpan",
@@ -32,12 +36,17 @@ PrefabFiles = {
     "hippopotamoose",
     "inv_vine",
     "iron",
+    "inv_vine",
     "pl_wave_shore",
     "jungle_border_vine",
     "lilypad",
     "lotus",
     "lotus_flower",
     "machete",
+    "mandrakehouse",
+    "mandrakeman",
+    "mean_flytrap",
+    "nectar_pod",
     "nettle",
     "pangolden",
     "peagawk",
@@ -53,6 +62,11 @@ PrefabFiles = {
     "poisonbubble",
     "porkland_network",
     "porkland",
+    "pugalisk_fountain",
+    "pugalisk_ruins_pillar",
+    "pugalisk_skull",
+    "pugalisk_trap_door",
+    "pugalisk",
     "rabid_beetle",
     "rowboat_wake",
     "sail",
@@ -62,6 +76,7 @@ PrefabFiles = {
     "snake",
     "snakeskin",
     "snakeoil",
+    "snake_bone",
     "teatree_nut",
     "teatrees",
     "tree_pillar",
@@ -69,6 +84,9 @@ PrefabFiles = {
     -- "tubertrees",
     "wave_ripple",
     "venomgland",
+    "venus_stalk",
+    "walkingstick",
+    "waterdrop",
     "weevole_carapace",
     "weevole",
 }
@@ -95,6 +113,7 @@ Assets = {
     Asset("IMAGE", "images/overlays/fx4.tex"),
     Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
     Asset("IMAGE", "images/overlays/fx5.tex"),
+    Asset("ANIM", "anim/leaves_canopy2.zip"),  --canopy
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 
@@ -111,6 +130,7 @@ Assets = {
     Asset("ANIM", "anim/player_action_sailing.zip"),
     Asset("ANIM", "anim/player_boat_death.zip"),
     Asset("ANIM", "anim/werebeaver_boat_death.zip"),
+    Asset("ANIM", "anim/player_lifeplant.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
@@ -128,6 +148,8 @@ Assets = {
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),
+
+    Asset("ANIM", "anim/meat_rack_food_pl.zip"),
 }
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")

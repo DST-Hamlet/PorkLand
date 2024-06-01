@@ -479,9 +479,6 @@ for actiontype, actons in pairs(PL_COMPONENT_ACTIONS) do
     end
 end
 
-
-
-
 -- hack
 local COMPONENT_ACTIONS = ToolUtil.GetUpvalue(EntityScript.CollectActions, "COMPONENT_ACTIONS")
 local SCENE = COMPONENT_ACTIONS.SCENE

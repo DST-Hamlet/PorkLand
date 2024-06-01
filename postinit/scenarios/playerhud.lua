@@ -2,6 +2,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local BoatOver = require("widgets/boatover")
 local FogOver = require("widgets/fogover")
+local LeavesOver = require("widgets/pl_leaf_canopy")
 local PoisonOver = require("widgets/poisonover")
 local PollenOver = require("widgets/pollenover")
 local ContainerWidget = require("widgets/containerwidget")
@@ -26,6 +27,8 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.pollenover = self.overlayroot:AddChild(PollenOver(owner))
     self.pollenover:Hide()
     self.inst:ListenForEvent("updatepollen", function(inst, data) return self.pollenover:UpdateState(data.sneezetime) end, self.owner)
+
+    self.leavesover = self.overlayroot:AddChild(LeavesOver(owner))
 end
 
 local _UpdateClouds = PlayerHud.UpdateClouds
@@ -105,5 +108,14 @@ function PlayerHud:OpenBoat(boat, sailing)
         end
 
         self.controls.containers[boat] = boatwidget
+    end
+end
+
+local _OnUpdate = PlayerHud.OnUpdate
+function PlayerHud:OnUpdate(dt, ...)
+    _OnUpdate(self, dt, ...)
+
+    if self.leavesover then
+        self.leavesover:OnUpdate(dt)
     end
 end

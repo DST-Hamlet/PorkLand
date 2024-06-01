@@ -18,6 +18,11 @@ return {
         "Blah!",
         "This stinks!",
     },
+    ANNOUNCE_PUGALISK_INVULNERABLE = {
+        "That part won't break.",
+        "Too tough.",
+        "Come on! Everything has a weak spot!"
+    },
     ANNOUNCE_SNEEZE = "ahhh... ahhhh...ahhhhhCHOOO!",
     ANNOUNCE_TOO_HUMID = {
         "Ugh. This %s is soooo muggy.",
@@ -37,6 +42,7 @@ return {
         BOAT_LOGRAFT = "Seriously?",
         BOAT_ROW = "Awww, rowing? Ugh.",
         BOAT_TORCH = "Night-surfing. I love it!",
+        BONESTAFF = "That's one way to win a staring contest.",
         CHITIN = "Probably wouldn't make a good surfboard.",
         COFFEE = "Smells amazing!",
         COFFEEBEANS = "Come to mama!",
@@ -93,6 +99,12 @@ return {
             GENERIC = "Oh, I get it.",
             SLEEPING = "I wish I could join you, buddy.",
         },
+        PUGALISK = "Calm down, dude!",
+        PUGALISK_CORPSE = "Yeesh. Nasty.",
+        PUGALISK_FOUNTAIN = "I could be this young forever!",
+        PUGALISK_RUINS_PILLAR = "Don't fall down on me!",
+        PUGALISK_SKULL = "He deserved it.",
+        PUGALISK_TRAP_DOOR = "Nah. I'll leave it.",
         RABID_BEETLE = {
             DEAD = "That's a bummer.",
             GENERIC = "Dude, you need to chill!",
@@ -108,6 +120,8 @@ return {
             EMPTY = "I'll just let that do all the work for me.",
         },
         SNAKESKIN = "I could make a scaly bikini out of this!",
+        SNAKE_BONE = "Sorry, little snake dude.",
+        SNAKEBONESOUP = "Nice warm soup.",
         TEA = "Caffeine!",
         TEATREE = "Hey little tree!",
         TEATREE_NUT = "I heard it's good for allergies.",

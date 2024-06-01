@@ -17,6 +17,11 @@ return {
         "Alack!",
         "It disturbs mine soul!",
     },
+    ANNOUNCE_PUGALISK_INVULNERABLE = {
+        "It is nigh on invulnerable!",
+        "Its hide is unyielding!",
+        "I shall beat you yet!"
+    },
     ANNOUNCE_SNEEZE = "aaAAAH...cho!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is crushing my spirit.",
@@ -36,6 +41,7 @@ return {
         BOAT_LOGRAFT = "You will not carry me far, but you will carry me.",
         BOAT_ROW = "Rowing is in my blood.",
         BOAT_TORCH = "The night sea is alight!",
+        BONESTAFF = "Prepare to be stunned by my gaze!",
         CHITIN = "The feeble armor of the bug.",
         COFFEE = "Bitter and pulse-pounding.",
         COFFEEBEANS = "I take mine black.",
@@ -92,6 +98,12 @@ return {
             GENERIC = "It is made of meat!",
             SLEEPING = "It slumbers unwisely.",
         },
+        PUGALISK = "Have at thee!",
+        PUGALISK_CORPSE = "A token from the battlefield.",
+        PUGALISK_FOUNTAIN = "A fountain of Idunn!",
+        PUGALISK_RUINS_PILLAR = "Not worthy of Valhalla's halls.",
+        PUGALISK_SKULL = "I have vanquished a mighty foe!",
+        PUGALISK_TRAP_DOOR = "I'll not be fooled!",
         RABID_BEETLE = {
             DEAD = "It has died in battle.",
             GENERIC = "Evil beast. You have met your match!",
@@ -107,6 +119,8 @@ return {
             EMPTY = "The tools of dwarves.",
         },
         SNAKESKIN = "A snake has slipped its skin. With a little help...",
+        SNAKE_BONE = "The bones of my enemy!",
+        SNAKEBONESOUP = "A meaty broth!",
         TEA = "I shall not consume it!",
         TEATREE = "This tree is adequate.",
         TEATREE_NUT = "Its lack of meat offends me.",
