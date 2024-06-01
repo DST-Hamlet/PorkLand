@@ -17,11 +17,6 @@ return {
         "Blagh!",
         "Beurk!",
     },
-	ANNOUNCE_PUGALISK_INVULNERABLE = {
-        "If only I had a shell cracker!",
-        "Won't break there.",
-        "I need to find a weak spot."
-    },
     ANNOUNCE_SNEEZE = "Atchoum!",
     ANNOUNCE_TOO_HUMID = {
         "Mon dieu! This %s is humid.",
@@ -41,7 +36,6 @@ return {
         BOAT_LOGRAFT = "These logs might be better suited to a fire...",
         BOAT_ROW = "Free me from the shackles of this island!",
         BOAT_TORCH = "It's a light so I might \"sea\".",
-        BONESTAFF = "It's a refrigeration ray.",
         CHITIN = "Completely inedible.",
         COFFEE = "Magnifique!",
         COFFEEBEANS = "Glorious!",
@@ -98,12 +92,6 @@ return {
             GENERIC = "I prefer English Breakfast.",
             SLEEPING = "Dreaming of nuts, no doubt.",
         },
-        PUGALISK = "Pardon me, Monsieur.",
-        PUGALISK_CORPSE = "I can't roast this marrow.",
-        PUGALISK_FOUNTAIN = "Locally sourced water, free of impurities.",
-        PUGALISK_RUINS_PILLAR = "Not very hearty.",
-        PUGALISK_SKULL = "I won't use this for soup.",
-        PUGALISK_TRAP_DOOR = "I'm getting a bad feeling about that.",
         RABID_BEETLE = {
             DEAD = "A shame. Not even edible.",
             GENERIC = "It is like me when I am hungry.",
@@ -119,8 +107,6 @@ return {
             EMPTY = "'Smelt' bad, if you ask me.",
         },
         SNAKESKIN = "Would make a haute apron.",
-        SNAKE_BONE = "Bones always make for a good broth.",
-        SNAKEBONESOUP = "A slight variation on a cherished recipe.",
         TEA = "Tea! Oh how I missed you!",
         TEATREE = "I could to so many things with tea tree leaves.",
         TEATREE_NUT = "More useful as medicine than in my recipe.",

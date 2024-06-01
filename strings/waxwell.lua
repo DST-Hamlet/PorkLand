@@ -18,11 +18,6 @@ return {
         "Gah!",
         "Filth!",
     },
-    ANNOUNCE_PUGALISK_INVULNERABLE = {
-        "That hide is too tough.",
-        "That's not going to work.",
-        "I need to be more strategic."
-    },
     ANNOUNCE_SNEEZE = "ah...CHOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is too much.",
@@ -42,7 +37,6 @@ return {
         BOAT_LOGRAFT = "It seems like there should be regulations against this.",
         BOAT_ROW = "Manually operated. A pity.",
         BOAT_TORCH = "Sailing at night seems unsafe, but this makes it somewhat better.",
-        BONESTAFF = "Penetrating.",
         CHITIN = "We all have our defenses.",
         COFFEE = "I look forward to this.",
         COFFEEBEANS = "It's strange to see them this color.",
@@ -99,12 +93,6 @@ return {
             GENERIC = "How amusing.",
             SLEEPING = "The pest is asleep.",
         },
-        PUGALISK = "You're a little agitated.",
-        PUGALISK_CORPSE = "Can't say I'm sad to see him dead.",
-        PUGALISK_FOUNTAIN = "I could restore my youthful glow.",
-        PUGALISK_RUINS_PILLAR = "I don't trust it.",
-        PUGALISK_SKULL = "How very macabre.",
-        PUGALISK_TRAP_DOOR = "Ha! I'm not falling for that.",
         RABID_BEETLE = {
             DEAD = "The grim reaper has been here.",
             GENERIC = "What is he all worked up about?",
@@ -120,8 +108,6 @@ return {
             EMPTY = "Finally we're catching up to the Iron Age.",
         },
         SNAKESKIN = "The texture is delectable.",
-        SNAKE_BONE = "Oh, I like the look of this.",
-        SNAKEBONESOUP = "It's a rather weak broth.",
         TEA = "A spot of tea.",
         TEATREE = "It's a tree. What did I expect.",
         TEATREE_NUT = "I'll need this for hayfever season.",

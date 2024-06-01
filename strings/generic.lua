@@ -18,11 +18,6 @@ return {
         "Ick!",
         "I got some on my hands!",
     },
-    ANNOUNCE_PUGALISK_INVULNERABLE = {
-        "Its hide is too tough!",
-        "A tough nut to crack.",
-        "Break, darn you!"
-    },
     ANNOUNCE_SNEEZE = "AHHH CHOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is so heavy.",
@@ -42,7 +37,6 @@ return {
         BOAT_LOGRAFT = "This looks... sort of boat-like...",
         BOAT_ROW = "It runs on elbow grease.",
         BOAT_TORCH = "This'll keep my hands free.",
-        BONESTAFF = "Sends shivers down my spine.",
         CHITIN = "Bug coating.",
         COFFEE = "Smells delicious and energizing!",
         COFFEEBEANS = "They could use some roasting.",
@@ -81,8 +75,6 @@ return {
         IRON = "Isn't it ironic?",
         LILYPAD = "It's full of science. I can tell.",
         MACHETE = "I like the cut of this blade.",
-        MANDRAKEMAN = "Large and screamy.",
-        MANDRAKEHOUSE = "It looks... screamy.",
         PANGOLDEN = "It likes rich food.",
         PEAGAWK = {
             DEAD = "Dead-eyed.",
@@ -101,12 +93,6 @@ return {
             GENERIC = "For some reason I'm craving tea.",
             SLEEPING = "Probably dreaming of trees.",
         },
-        PUGALISK = "Scientifically speaking, it shouldn't exist.",
-        PUGALISK_CORPSE = "Petrifying.",
-        PUGALISK_FOUNTAIN = "I prefer fountains of knowledge.",
-        PUGALISK_RUINS_PILLAR = "Defying the laws of science.",
-        PUGALISK_SKULL = "A numbskull.",
-        PUGALISK_TRAP_DOOR = "Well that looks ominous.",
         RABID_BEETLE = {
             DEAD = "A late beetle.",
             GENERIC = "Looks deranged.",
@@ -122,8 +108,6 @@ return {
             EMPTY = "I smelt that!",
         },
         SNAKESKIN = "I'm intrigued AND repelled.",
-        SNAKE_BONE = "Ha ha, snake. I have your bone.",
-        SNAKEBONESOUP = "The best way to serve snake.",
         TEA = "Tea time!",
         TEATREE = "What a lovely tree.",
         TEATREE_NUT = "Stops the seasonal sneezing.",
