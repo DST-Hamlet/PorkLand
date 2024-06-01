@@ -82,6 +82,10 @@ local growth_stages = {
 }
 
 local function SetStage(inst, stage, instant)
+    if inst.components.health and inst.components.health:IsDead() then
+        return
+    end
+
     if not stage then
         return
     end
