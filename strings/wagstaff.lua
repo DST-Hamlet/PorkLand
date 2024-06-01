@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "This vessel has already been repaired to its optimum level.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "I'll need to repair this boat promptly.",
+    ANNOUNCE_BOAT_SINKING = "Gaining water, rapidly.",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "After all my triumphs, I've met defeat!",
     ANNOUNCE_DEHUMID = {
         "Ahhh. The season has turned.",
     },
@@ -19,6 +27,7 @@ return {
         "This %s really weighs me down.",
         "The humid air is making this %s heavy.",
     },
+    ANNOUNCE_WAVE_BOOST = "Woo hoo! Wave mechanics!",
     DESCRIBE = {
         ALLOY = "Ah, refined metal. As good as any factory could produce.",
         APORKALYPSE_CLOCK = "Wonderful! I wonder if I could make the world end sooner.",
@@ -26,6 +35,12 @@ return {
         ARMOR_WEEVOLE = "Exoskeleton armor to protect my endoskeleton.",
         ASPARAGUS_PLANTED = "A cluster of edible spring vegetables!",
         BASEFAN = "Magnificent! What a marvel of engineering!",
+        BOATREPAIRKIT = "Strange. Where did the glue come from?",
+        BOAT_CARGO = "A top-notch transporter of goods across bodies of water.",
+        BOAT_CORK = "Theoretically, it works. Though I won't predict for how long.",
+        BOAT_LOGRAFT = "The dispersal of weight should keep me briefly afloat.",
+        BOAT_ROW = "A sufficient ship for my mundane explorative tasks.",
+        BOAT_TORCH = "The fortunate angle of this stick makes for an ideal hanging device.",
         BONESTAFF = "Another vanguard device I could use to bring the world to a new age!",
         CHITIN = "Wonderful! The exoskeleton of a deceased insect!",
         COFFEE = "Interesting. Caffeinated beverages have a heightened effect here.",
@@ -63,6 +78,7 @@ return {
         HANGING_VINE = "Kleptomaniac vegetation. How wonderful!",
         ICEDTEA = "Evidence would suggest my tea got cold.",
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
+        LILYPAD = "Fascinating! It contains a small ecosystem of animals.",
         MACHETE = "A pragmatic tool for slashing objects.",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",
         PEAGAWK = {
@@ -96,6 +112,7 @@ return {
             GENERIC = "Evidently, it acquires facial hair when it matures.",
             SLEEPING = "It's respiratory structures are vibrating.",
         },
+        SAIL_SNAKESKIN = "Theoretically, it's reliable despite its patchy appearance.",
         SEDIMENTPUDDLE = "Evidence would suggest there's gold down there!",
         SHEARS = "Cutting implements constructed from raw metal.",
         SMELTER = {
@@ -104,6 +121,7 @@ return {
             DONE = "Done already? Remarkable!",
             EMPTY = "Magnificent! Perhaps I can build a factory here as well.",
         },
+        SNAKESKIN = "The repellant properties of this skin are inspiring!",
         SNAKE_BONE = "The skeletal remains of a carnivorous reptile.",
         SNAKEBONESOUP = "The skeletal remains should add some calcium to my diet.",
         TEA = "A rodent based broth that tastes remarkably like tea!",

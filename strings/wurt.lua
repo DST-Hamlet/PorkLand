@@ -1,4 +1,7 @@
 return {
+    ANNOUNCE_BOAT_DAMAGED = "My boat don't look good.",
+    ANNOUNCE_BOAT_SINKING = "Boat gets wet!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Need to find land quick!",
     ANNOUNCE_DEHUMID = {
         "Huh, cool off.",
     },
@@ -9,6 +12,7 @@ return {
         "%s is hot!",
         "I don't want to wear %s anymore!",
     },
+    ANNOUNCE_WAVE_BOOST = "Splish splash!",
     DESCRIBE = {
         ALLOY = "The stone became harder.",
         ANNOUNCE_PICKPOOP = {
@@ -21,6 +25,12 @@ return {
         ARMOR_WEEVOLE = "Nice and comfortable armor.",
         ASPARAGUS_PLANTED = "Green stick stick, smells good.",
         BASEFAN = "Water ran away! florpt!",
+        BOATREPAIRKIT = "Why repair? Let water in, florpt!",
+        BOAT_CARGO = "It has room for treasures!",
+        BOAT_CORK = "Why not swim? florp.",
+        BOAT_LOGRAFT = "Is a small boat.",
+        BOAT_ROW = "It good enough.",
+        BOAT_TORCH = "It torch for boat.",
         CHITIN = "Tough hide.",
         COFFEE = "Flurph... this make head hurt.",
         COFFEEBEANS = "Yummy snacks!",
@@ -57,6 +67,7 @@ return {
         HANGING_VINE = "They're on top here.",
         ICEDTEA = "Cold leaf water.",
         IRON = "Red hard rock.",
+        LILYPAD = "Afloat leaf.",
         MACHETE = "Plant hacker.",
         PANGOLDEN = "Don't drink them all!",
         PEAGAWK = {
@@ -80,6 +91,7 @@ return {
             GENERIC = "The little bug is going crazy!",
             SLEEPING = "The little bug was quiet.",
         },
+        SAIL_SNAKESKIN = "It sail made of colourful scales.",
         SEDIMENTPUDDLE = "Water are ... shining?",
         SHEARS = "Shape the plants.",
         SMELTER = {
@@ -88,6 +100,7 @@ return {
             DONE = "Done!",
             EMPTY = "What to put in it?",
         },
+        SNAKESKIN = "Is a nice skin.",
         TEA = "Leaf water.",
         TEATREE = "Strange leaves there.",
         TEATREE_NUT = "Florp. Smell strong.",

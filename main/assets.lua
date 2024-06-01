@@ -7,12 +7,20 @@ PrefabFiles = {
     "armor_metalplate",
     "asparagus_planted",
     "basefan",
+    "bill_quill",
+    "bill",
+    "boat_torch",
+    "boatcontainer_classified",
+    "boatrepairkit",
+    "boats",
     "bonestaff",
     "chitin",
     "deep_jungle_fern_noise",
     "dungball",
     "dungbeetle",
     "dungpile",
+    "fast_farmplot_planted",
+    "flotsam",
     "flower_rainforest",
     "floweroflife",
     "gaze_beam",
@@ -24,10 +32,16 @@ PrefabFiles = {
     "halberd",
     "hanging_vine_patch",
     "hanging_vine",
+    "hippo_antler",
+    "hippopotamoose",
+    "inv_vine",
     "iron",
     "inv_vine",
     "pl_wave_shore",
     "jungle_border_vine",
+    "lilypad",
+    "lotus",
+    "lotus_flower",
     "machete",
     "mandrakehouse",
     "mandrakeman",
@@ -38,6 +52,8 @@ PrefabFiles = {
     "peagawk",
     -- "peagawk_spawner",
     "piko",
+    "pl_frog",
+    "pl_froglegs",
     "pl_planted_tree",
     "pl_preparedfoods",
     "pl_veggies",
@@ -52,15 +68,22 @@ PrefabFiles = {
     "pugalisk_trap_door",
     "pugalisk",
     "rabid_beetle",
+    "rowboat_wake",
+    "sail",
     "sedimentpuddle",
     "shears",
     "smelter",
+    "snake",
+    "snakeskin",
+    "snakeoil",
     "snake_bone",
     "teatree_nut",
     "teatrees",
     "tree_pillar",
     -- "tuber",
     -- "tubertrees",
+    "wave_ripple",
+    "venomgland",
     "venus_stalk",
     "walkingstick",
     "waterdrop",
@@ -76,11 +99,15 @@ Assets = {
     Asset("ATLAS", "images/hud/pl_inventoryimages.xml"),
     Asset("ATLAS_BUILD", "images/hud/pl_inventoryimages.xml", 256),  -- for minisign
 
+    -- boat
+    Asset("ATLAS", "images/hud/pl_hud.xml"),
+    Asset("IMAGE", "images/hud/pl_hud.tex"),
+
     -- crafting menu icons
     Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
 
     -- hud
-    Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison
+    Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison, boat_over
     Asset("IMAGE", "images/overlays/fx3.tex"),
     Asset("ATLAS", "images/overlays/fx4.xml"),  -- pollen(hayfever)
     Asset("IMAGE", "images/overlays/fx4.tex"),
@@ -98,7 +125,26 @@ Assets = {
     Asset("ANIM", "anim/player_sneeze.zip"),
     Asset("ANIM", "anim/player_mount_sneeze.zip"),
     Asset("ANIM", "anim/player_actions_panning.zip"),
+    Asset("ANIM", "anim/player_boat_onoff.zip"),
+    Asset("ANIM", "anim/swap_paddle.zip"),
+    Asset("ANIM", "anim/player_action_sailing.zip"),
+    Asset("ANIM", "anim/player_boat_death.zip"),
+    Asset("ANIM", "anim/werebeaver_boat_death.zip"),
     Asset("ANIM", "anim/player_lifeplant.zip"),
+
+    -- boat ui
+    Asset("ANIM", "anim/boat_health.zip"),
+    Asset("ANIM", "anim/boat_hud_raft.zip"),
+    Asset("ANIM", "anim/boat_hud_row.zip"),
+    Asset("ANIM", "anim/boat_hud_cargo.zip"),
+    Asset("ANIM", "anim/boat_inspect_raft.zip"),
+    Asset("ANIM", "anim/boat_inspect_row.zip"),
+    Asset("ANIM", "anim/boat_inspect_cargo.zip"),
+
+    -- boat sail visual
+    Asset("ANIM", "anim/sail_visual.zip"),
+    Asset("ANIM", "anim/sail_visual_idle.zip"),
+    Asset("ANIM", "anim/sail_visual_trawl.zip"),
 
     -- floater
     Asset("ANIM", "anim/ripple_build.zip"),

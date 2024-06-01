@@ -1,4 +1,7 @@
 return {
+    ANNOUNCE_BOAT_DAMAGED = "My boat's damaged...",
+    ANNOUNCE_BOAT_SINKING = "Ack! This doesn't seem seaworthy at all anymore!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "I'm not meeting my end drowning in the middle of nowhere!",
     ANNOUNCE_DEHUMID = {
         "Ha, feeling better.",
     },
@@ -9,6 +12,7 @@ return {
         "Wearing %s is a shame.",
         "This terrible weather... I really shouldn't be wearing %s.",
     },
+    ANNOUNCE_WAVE_BOOST = "Wh-whoa!",
     DESCRIBE = {
         ALLOY = "Strong refined metal.",
         ANNOUNCE_PICKPOOP = {
@@ -21,6 +25,12 @@ return {
         ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",
         ASPARAGUS_PLANTED = "I should pick some and go back to eat.",
         BASEFAN = "Very interesting structure, but unfortunately not refined enough.",
+        BOATREPAIRKIT = "Repairing takes a lot shorter than building a whole new boat from the scratch.",
+        BOAT_CARGO = "I'll save so much time if I don't have to go back to fetch my things!",
+        BOAT_CORK = "Is this the only thing standing between us and the cold water?",
+        BOAT_LOGRAFT = "I don't have time. If it floats, it's enough.",
+        BOAT_ROW = "Rowing takes forever! Surely I can install something on it?",
+        BOAT_TORCH = "This will keep me safe, nice and hands-free.",
         CHITIN = "I don't understand what's the point of this?",
         COFFEE = "Perfect for those long nights at the workshop back home.",
         COFFEEBEANS = "A quick roasting will get me something good to sip on.",
@@ -57,6 +67,7 @@ return {
         HANGING_VINE = "I really hope it was just a regular plant.",
         ICEDTEA = "Right on time, Now I can taste it.",
         IRON = "An essential material for accurate timepieces.",
+        LILYPAD = "I don't think this shortcut can be taken.",
         MACHETE = "It's for chopping, simple as that.",
         PANGOLDEN = "It has an extravagant recipe.",
         PEAGAWK = {
@@ -80,6 +91,7 @@ return {
             GENERIC = "vermin! go away!",
             SLEEPING = "Huh, I can take a breath.",
         },
+        SAIL_SNAKESKIN = "There's no need to make a flag if the sail is colorful. Not that I need one.",
         SEDIMENTPUDDLE = "Water isn't the only thing reflecting sunlight here.",
         SHEARS = "I won't waste my time on this.",
         SMELTER = {
@@ -88,6 +100,7 @@ return {
             DONE = "Got it!",
             EMPTY = "Melt the metals together.",
         },
+        SNAKESKIN = "Whew... It's not attached to a snake this time around.",
         TEA = "It's always tea time, somewhere.",
         TEATREE = "I have some impression of the shape of these leaves.",
         TEATREE_NUT = "A crude way to combat pollen in the air.",

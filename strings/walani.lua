@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "It doesn't need any work.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "My floater's been dinged!",
+    ANNOUNCE_BOAT_SINKING = "This thing is letting on water.",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "I won't be floating much longer...",
     ANNOUNCE_DEHUMID = {
         "Ah... A nice cool breeze.",
     },
@@ -20,6 +28,7 @@ return {
         "Ugh. This %s is soooo muggy.",
         "This %s is really warm.",
     },
+    ANNOUNCE_WAVE_BOOST = "Surf's up!",
     DESCRIBE = {
         ALLOY = "Hope this is worth all the trouble.",
         APORKALYPSE_CLOCK = "I hate clocks.",
@@ -27,6 +36,12 @@ return {
         ARMOR_WEEVOLE = "Ew. It's all creepy-crawly.",
         ASPARAGUS_PLANTED = "Food!",
         BASEFAN = "A nice breeze.",
+        BOATREPAIRKIT = "Surfboard maintenance is essential!",
+        BOAT_CARGO = "This surfboard sure has a lot of pockets.",
+        BOAT_CORK = "I've definitely seen better boats.",
+        BOAT_LOGRAFT = "Seriously?",
+        BOAT_ROW = "Awww, rowing? Ugh.",
+        BOAT_TORCH = "Night-surfing. I love it!",
         BONESTAFF = "That's one way to win a staring contest.",
         CHITIN = "Probably wouldn't make a good surfboard.",
         COFFEE = "Smells amazing!",
@@ -64,6 +79,7 @@ return {
         HANGING_VINE = "That seems dangerous.",
         ICEDTEA = "Ah... hits the spot.",
         IRON = "This has gotta be good for something.",
+        LILYPAD = "Looks like a waterbed to me.",
         MACHETE = "What a hack job.",
         PANGOLDEN = "Shiny.",
         PEAGAWK = {
@@ -94,6 +110,7 @@ return {
             GENERIC = "Dude, you need to chill!",
             SLEEPING = "That's it. Now just stay asleep.",
         },
+        SAIL_SNAKESKIN = "Why bother when I have my board?",
         SEDIMENTPUDDLE = "There's sparkly things down there!",
         SHEARS = "What am I supposed to do with these?",
         SMELTER = {
@@ -102,6 +119,7 @@ return {
             DONE = "Well done, bro.",
             EMPTY = "I'll just let that do all the work for me.",
         },
+        SNAKESKIN = "I could make a scaly bikini out of this!",
         SNAKE_BONE = "Sorry, little snake dude.",
         SNAKEBONESOUP = "Nice warm soup.",
         TEA = "Caffeine!",

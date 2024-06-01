@@ -27,9 +27,6 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 
         no_joining_islands = false,
 
-        -- {"start_setpeice",    "PorkLandStart"},
-        -- {"start_node",        "BG_rainforest_base"},
-
         pl_clocktype = "plateau",
     },
 

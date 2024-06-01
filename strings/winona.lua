@@ -1,4 +1,7 @@
 return {
+    ANNOUNCE_BOAT_DAMAGED = "I should tape these holes up.",
+    ANNOUNCE_BOAT_SINKING = "I don't think tape will be enough now.",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "That's a lotta damage!",
     ANNOUNCE_DEHUMID = {
         "This is much more comfortable.",
     },
@@ -9,6 +12,7 @@ return {
         "%s is not breathable at all.",
         "This %s is so boring that I can't breathe.",
     },
+    ANNOUNCE_WAVE_BOOST = "Whoo nelly!",
     DESCRIBE = {
         ALLOY = "Proper processing makes it better.",
         ANNOUNCE_PICKPOOP = {
@@ -21,6 +25,12 @@ return {
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",
         ASPARAGUS_PLANTED = "Wholesome green vegetables.",
         BASEFAN = "I'm sure bossman would be very interested in it.",
+        BOATREPAIRKIT = "Who needs glue? My tape is sticky enough.",
+        BOAT_CARGO = "It's my big, bouyant toolbox.",
+        BOAT_CORK = "It definitely fails any security tests.",
+        BOAT_LOGRAFT = "I could do better...",
+        BOAT_ROW = "If I wanna move, I gotta put my back into it.",
+        BOAT_TORCH = "This torch is a little light. Ha!",
         CHITIN = "I don't know what this can be used for.",
         COFFEE = "Essential for any hard worker!",
         COFFEEBEANS = "I should toss them over a fire.",
@@ -57,6 +67,7 @@ return {
         HANGING_VINE = "I saw a strong rope.",
         ICEDTEA = "What a enjoyment.",
         IRON = "Invaluable material for manufacturing useful tools.",
+        LILYPAD = "I have never seen such a big water lily!",
         MACHETE = "Hack and slash! Working's always fun.",
         PANGOLDEN = "Living metallurgical.",
         PEAGAWK = {
@@ -80,6 +91,7 @@ return {
             GENERIC = "What are you all excited about?",
             SLEEPING = "Calm down!",
         },
+        SAIL_SNAKESKIN = "Just watch those scales catch the wind!",
         SEDIMENTPUDDLE = "The metal content is seriously over the limit.",
         SHEARS = "Shears for gardening.",
         SMELTER = {
@@ -88,6 +100,7 @@ return {
             DONE = "knock off!",
             EMPTY = "Process the metallic material.",
         },
+        SNAKESKIN = "The texture feels incredible. I got some ideas for this.",
         TEA = "A good pot of tea sets the spirit of the day.",
         TEATREE = "Enough to whole workshop's tea supply.",
         TEATREE_NUT = "Save my nose from fire and water.",

@@ -1,4 +1,7 @@
 return {
+    ANNOUNCE_BOAT_DAMAGED = "Oh dear, this water bodes ill.",
+    ANNOUNCE_BOAT_SINKING = "I'm up to my tail in water!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Into the drink I go, hyuyu!",
     ANNOUNCE_DEHUMID = {
         "Freedom, this is me!",
     },
@@ -9,6 +12,7 @@ return {
         "I can't stand %s anymore!",
         "Take off %s.",
     },
+    ANNOUNCE_WAVE_BOOST = "Hyuyu!",
     DESCRIBE = {
         ANNOUNCE_PICKPOOP = {
             "Disgusting!",
@@ -20,6 +24,12 @@ return {
         ARMOR_WEEVOLE = "I'm getting goosebumps.",
         ASPARAGUS_PLANTED = "A spear that grows out of the earth.",
         BASEFAN = "The breeze is blowing, so happy.",
+        BOATREPAIRKIT = "To keep those boats afloat.",
+        BOAT_CARGO = "I dislike being burdened while traveling.",
+        BOAT_CORK = "Hither and thither, in a wayward course.",
+        BOAT_LOGRAFT = "It's not so strong, but I don't have long.",
+        BOAT_ROW = "Gently down the merry stream!",
+        BOAT_TORCH = "A light to lead me through the night.",
         CHITIN = "The shell of those guys.",
         COFFEE = "Sure to put a pep in someone's step!",
         COFFEEBEANS = "Beans from a fiery bush we picked.",
@@ -56,6 +66,7 @@ return {
         HANGING_VINE = "Hello, what do you want?",
         ICEDTEA = "Cold gives it flavor.",
         IRON = "Oooh. Almost burned me.",
+        LILYPAD = "The boat passed in the pond, and the duckweed gave way.",
         MACHETE = "To chop and slash!",
         PANGOLDEN = "How are you today? Any outcome?",
         PEAGAWK = {
@@ -79,6 +90,7 @@ return {
             GENERIC = "Really energetic, do you want to dance?",
             SLEEPING = "Then intermission.",
         },
+        SAIL_SNAKESKIN = "The stripes complement the colour, I say, I say.",
         SEDIMENTPUDDLE = "These are not for drink.",
         SHEARS = "Click, click, leaves fall.",
         SMELTER = {
@@ -87,6 +99,7 @@ return {
             DONE = "It doesn't make them any better.",
             EMPTY = "Put the iron you hate in and burn it.",
         },
+        SNAKESKIN = "I prefer fur to scales.",
         TEA = "Mortal's drink.",
         TEATREE = "The foundation of the squirrel kingdom.",
         TEATREE_NUT = "Very nice nuts and clears up my nose.",

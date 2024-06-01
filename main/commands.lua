@@ -1,5 +1,16 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+function c_settile(tile)
+	tile = tile == nil and WORLD_TILES.QUAGMIRE_SOIL or
+			type(tile) == "string" and WORLD_TILES[string.upper(tile)]
+			or tile
+
+    local x, y, z = TheInput:GetWorldPosition():Get()
+    local coords_x, coords_y = TheWorld.Map:GetTileCoordsAtPoint(x, y, z)
+    TheWorld.Map:SetTile(coords_x, coords_y, tile)
+end
+
+
 function c_checktile()
     local player = ConsoleCommandPlayer()
     if player then
@@ -31,4 +42,13 @@ function c_gotostate(state)
     if type(state) == "string" then
         player.sg:GoToState(state)
     end
+end
+
+function c_characterembark(boat_prefab)
+    local x, y, z = TheInput:GetWorldPosition():Get()
+    local wilson = SpawnPrefab("wilson")
+    wilson.Transform:SetPosition(x, y, z)
+    local boat = SpawnPrefab(boat_prefab or "boat_lograft")
+    boat.Transform:SetPosition(x, y, z)
+    wilson.components.sailor:Embark(boat)
 end

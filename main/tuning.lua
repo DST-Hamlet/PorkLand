@@ -10,6 +10,8 @@ local wilson_attack = TUNING.SPEAR_DAMAGE
 local wilson_health = TUNING.WILSON_HEALTH
 
 local tuning = {
+    MAPWRAPPER_WARN_RANGE = 14,
+
     SEASON_LENGTH_VERYHARSH_VERYSHORT = 5,
     SEASON_LENGTH_VERYHARSH_SHORT = 7,
     SEASON_VERYHARSH_DEFAULT = 10,
@@ -129,6 +131,10 @@ local tuning = {
         {time = 2.90 * total_day_time, damage_scale = 2.00, interval_scale = 0.5, fxlevel = 4}, -- 38.40 DMG
     },
 
+    -- standard poison vars
+    VENOM_GLAND_DAMAGE = 75,
+    VENOM_GLAND_MIN_HEALTH = 5,
+
     FOG_MOISTURE_RATE_SCALE = 0.6,
 
     WINDBLOWN_DESTROY_DIST = 15,  -- distance from player wind blown prefabs can be destroyed, fall over, get picked, etc
@@ -160,7 +166,7 @@ local tuning = {
     PIKO_TARGET_DIST = 20,
     PIKO_ENABLED = true,
 
-    CAFFEINE_FOOD_BONUS_SPEED = 5, -- player base speed plus this, 6 is normal walk speed
+    CAFFEINE_FOOD_BONUS_SPEED = 11/6, -- player base speed plus this, 6 is normal walk speed
     FOOD_SPEED_BRIEF = 0, -- eating coffeebeans gives you the bonus for this many seconds
     FOOD_SPEED_AVERAGE = 30, -- eating roasted coffee beans
     FOOD_SPEED_MED = 60, -- eating tropicalbouillabaisse (effects)
@@ -211,6 +217,101 @@ local tuning = {
     VINE_REGEN_TIME_MIN = total_day_time * 2,
     VINE_REGEN_TIME_MAX = total_day_time * 3,
 
+    SNAKE_SPEED = 3,
+    SNAKE_TARGET_DIST = 8,
+    SNAKE_KEEP_TARGET_DIST= 15,
+    SNAKE_HEALTH = 100,
+    SNAKE_DAMAGE = 10,
+    SNAKE_ATTACK_PERIOD = 3,
+    SNAKE_POISON_CHANCE = 0.25,
+    SNAKE_POISON_START_DAY = 3, -- the day that poison snakes have a chance to show up
+    SNAKEDEN_REGEN_TIME = 3 * seg_time,
+    SNAKEDEN_RELEASE_TIME = 5,
+    SNAKE_JUNGLETREE_CHANCE = 0.5, -- chance of a normal snake
+    SNAKE_JUNGLETREE_POISON_CHANCE = 0.25, -- chance of a poison snake
+    SNAKE_JUNGLETREE_AMOUNT_TALL = 2, -- num of times to try and spawn a snake from a tall tree
+    SNAKE_JUNGLETREE_AMOUNT_MED = 1, -- num of times to try and spawn a snake from a normal tree
+    SNAKE_JUNGLETREE_AMOUNT_SMALL = 1, -- num of times to try and spawn a snake from a small tree
+    SNAKEDEN_MAX_SNAKES = 3,
+    SNAKEDEN_CHECK_DIST = 20,
+    SNAKEDEN_TRAP_DIST = 2,
+
+    HIPPO_DAMAGE = 50,
+    HIPPO_HEALTH = 500,
+    HIPPO_ATTACK_PERIOD = 2,
+    HIPPO_WALK_SPEED = 5,
+    HIPPO_RUN_SPEED = 6,
+    HIPPO_TARGET_DIST = 12,
+    HIPPO_MATING_SEASON_BABYDELAY = total_day_time * 3,
+    HIPPO_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 1,
+    HIPPO_ENABLED = true,
+
+    BILL_TUMBLE_SPEED = 8,
+    BILL_RUN_SPEED = 5,
+    BILL_DAMAGE = wilson_attack * 0.5,
+    BILL_HEALTH = 250,
+    BILL_ATTACK_PERIOD = 3,
+    BILL_TARGET_DIST = 50,
+    BILL_AGGRO_DIST = 15,
+    BILL_EAT_DELAY = 3.5,
+    BILL_SPAWN_CHANCE = 0.2,
+
+    LOTUS_REGROW_TIME = total_day_time * 5,
+
+    MOSQUITO_LILYPAD_MAX_SPAWN = 1,
+    MOSQUITO_LILYPAD_REGEN_TIME = day_time / 2,
+    MOSQUITO_LILYPAD_RELEASE_TIME = 20,
+    MOSQUITO_LILYPAD_ENABLED = true,
+
+    FROG_POISON_LILYPAD_MAX_SPAWN = 1,
+    FROG_POISON_LILYPAD_REGEN_TIME = day_time / 2,
+    FROG_POISON_LILYPAD_RELEASE_TIME = 20,
+    FROG_POISON_LILYPAD_ENABLED = true,
+
+    WAVE_HIT_MOISTURE = 15,
+    WAVE_HIT_DAMAGE = 5,
+    ROGUEWAVE_HIT_MOISTURE = 25,
+    ROGUEWAVE_HIT_DAMAGE = 10,
+    ROGUEWAVE_SPEED_MULTIPLIER = 3,
+    WAVE_BOOST_ANGLE_THRESHOLD = 90,
+    WAVEBOOST = 5,
+
+    BOAT_HITFX_THRESHOLD = .08,  -- percent of health you need to lose to show the fx
+
+    BOAT_TORCH_LIGHTTIME = night_time * 1.75,
+
+    BOAT_REPAIR_KIT_HEALING = 100,
+    BOAT_REPAIR_KIT_USES = 3,
+
+    BOAT_LOGRAFT_HEALTH = 150,
+    BOAT_LOGRAFT_PERISHTIME = total_day_time * 2,
+    BOAT_LOGRAFT_LEAKING_HEALTH = 40,
+    BOAT_LOGRAFT_SPEED = -2,
+
+    BOAT_RAFT_HEALTH = 150,
+    BOAT_RAFT_PERISHTIME = total_day_time * 2,
+    BOAT_RAFT_LEAKING_HEALTH = 40,
+    BOAT_RAFT_SPEED = -1,
+
+    BOAT_ROW_HEALTH = 250,
+    BOAT_ROW_PERISHTIME = total_day_time * 3,
+    BOAT_ROW_LEAKING_HEALTH = 40,
+    BOAT_ROW_SPEED = 0,
+
+    BOAT_CARGO_HEALTH = 300,
+    BOAT_CARGO_PERISHTIME = total_day_time * 3,
+    BOAT_CARGO_LEAKING_HEALTH = 40,
+    BOAT_CARGO_SPEED = -1,
+
+    BOAT_CORK_HEALTH = 80,
+    BOAT_CORK_PERISHTIME = total_day_time * 3,
+    BOAT_CORK_LEAKING_HEALTH = 30,
+    BOAT_CORK_SPEED = -2,
+
+    SAIL_SNAKESKIN_SPEED_MULT = 0.25,
+    SAIL_SNAKESKIN_ACCEL_MULT = 0.25,
+    SAIL_SNAKESKIN_PERISH_TIME = total_day_time * 4,
+  
     MANDRAKEMAN_SPAWN_TIME = total_day_time,
     MANDRAKEMAN_ENABLED = true,
 
@@ -256,6 +357,47 @@ local tuning = {
 
     PUGALISK_RUINS_PILLAR_WORK = 3,
 }
+
+
+--修改原版数值，不知道是否应该放这里
+--用于去除小地图陆地边缘的海洋渐变
+--待做：让这些值只在猪镇世界生效
+TUNING.OCEAN_MINIMAP_SHADER.EDGE_COLOR0 = { 0, 0, 0 }
+TUNING.OCEAN_MINIMAP_SHADER.EDGE_PARAMS0 =
+{
+    THRESHOLD = 0,
+    HALF_THRESHOLD_RANGE = 0,
+}
+
+TUNING.OCEAN_MINIMAP_SHADER.EDGE_COLOR1 = { 0, 0, 0 }
+TUNING.OCEAN_MINIMAP_SHADER.EDGE_PARAMS1 =
+{
+    THRESHOLD = 0,
+    HALF_THRESHOLD_RANGE = 0,
+}
+
+TUNING.OCEAN_MINIMAP_SHADER.EDGE_SHADOW_COLOR = { 0, 0, 0 }
+TUNING.OCEAN_MINIMAP_SHADER.EDGE_SHADOW_PARAMS =
+{
+    THRESHOLD = 0,
+    HALF_THRESHOLD_RANGE = 0,
+    UV_OFFSET_X = 0,
+    UV_OFFSET_Y = 0,
+}
+
+TUNING.OCEAN_MINIMAP_SHADER.EDGE_FADE_PARAMS =
+{
+    THRESHOLD = 0,
+    HALF_THRESHOLD_RANGE = 0,
+    MASK_INSET = 0,
+}
+
+TUNING.OCEAN_MINIMAP_SHADER.EDGE_NOISE_PARAMS =
+{
+    UV_SCALE = 0,
+}
+
+TUNING.OCEAN_SHADER.EFFECT_TINT_AMOUNT = 0.4
 
 for key, value in pairs(tuning) do
     if TUNING[key] then

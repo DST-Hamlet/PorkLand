@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "It will not work.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "The vessel is damaged...",
+    ANNOUNCE_BOAT_SINKING = "Oh no... I can't die on an empty stomach!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Into the soup!",
     ANNOUNCE_DEHUMID = {
         "Ah, I feel better now.",
     },
@@ -19,6 +27,7 @@ return {
         "Mon dieu! This %s is humid.",
         "Whew. This %s is hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Whoaaaa!",
     DESCRIBE = {
         ALLOY = "Metal cooked to perfection.",
         APORKALYPSE_CLOCK = "Like the knobs on a stove, it must be turned just right.",
@@ -26,6 +35,12 @@ return {
         ARMOR_WEEVOLE = "It still smells of bug.",
         ASPARAGUS_PLANTED = "I should snatch those up.",
         BASEFAN = "Good ventilation in the kitchen is an must.",
+        BOATREPAIRKIT = "A most sensible traveling companion.",
+        BOAT_CARGO = "For long distance hauls.",
+        BOAT_CORK = "A shaky sea vessel.",
+        BOAT_LOGRAFT = "These logs might be better suited to a fire...",
+        BOAT_ROW = "Free me from the shackles of this island!",
+        BOAT_TORCH = "It's a light so I might \"sea\".",
         BONESTAFF = "It's a refrigeration ray.",
         CHITIN = "Completely inedible.",
         COFFEE = "Magnifique!",
@@ -63,6 +78,7 @@ return {
         HANGING_VINE = "How eerie.",
         ICEDTEA = "Ah. Refreshing.",
         IRON = "I wonder what I could cook up with this.",
+        LILYPAD = "I doubt it has much flavor.",
         MACHETE = "I could chop many an onion with this!",
         PANGOLDEN = "Already has a nice golden braise.",
         PEAGAWK = {
@@ -93,6 +109,7 @@ return {
             GENERIC = "It is like me when I am hungry.",
             SLEEPING = "What a curious way to sleep!",
         },
+        SAIL_SNAKESKIN = "Perhaps I'll sail to a land of spices.",
         SEDIMENTPUDDLE = "It's been seasoned with gold.",
         SHEARS = "Good for cutting hedges and grass.",
         SMELTER = {
@@ -101,6 +118,7 @@ return {
             DONE = "Fresh out of the oven! Be careful with the scalding.",
             EMPTY = "'Smelt' bad, if you ask me.",
         },
+        SNAKESKIN = "Would make a haute apron.",
         SNAKE_BONE = "Bones always make for a good broth.",
         SNAKEBONESOUP = "A slight variation on a cherished recipe.",
         TEA = "Tea! Oh how I missed you!",

@@ -70,3 +70,85 @@ function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, att
         end
     end)
 end
+
+function MakeAmphibiousCharacterPhysics(inst, mass, radius)
+    inst.entity:AddPhysics()
+    inst.Physics:SetMass(mass)
+    inst.Physics:SetCapsule(radius, 1)
+    inst.Physics:SetFriction(0)
+    inst.Physics:SetDamping(5)
+    inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith((TheWorld.has_ocean and COLLISION.GROUND) or COLLISION.WORLD)
+    inst.Physics:CollidesWith(COLLISION.OBSTACLES)
+    inst.Physics:CollidesWith(COLLISION.SMALLOBSTACLES)
+    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+    inst.Physics:CollidesWith(COLLISION.GIANTS)
+    inst.Physics:ClearCollidesWith(COLLISION.LAND_OCEAN_LIMITS)
+    inst:AddTag("amphibious")
+end
+
+---@param land_bank string
+---@param water_bank string
+---@param should_silent function|nil
+---@param on_enter_water function|nil
+---@param on_exit_water function|nil
+function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_water, on_exit_water)
+    should_silent = should_silent or function(inst)
+        return (inst.components.freezable and inst.components.freezable:IsFrozen())
+            or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
+    end
+
+    local function OnEnterWater(inst)
+        if on_enter_water then
+            on_enter_water(inst)
+        end
+
+        if inst.DynamicShadow then
+            inst.DynamicShadow:Enable(false)
+        end
+
+        if inst.components.burnable then
+            inst.components.burnable:Extinguish()
+        end
+
+        -- Don't exit current state under this condition
+        if should_silent(inst) then
+            inst.AnimState:SetBank(water_bank)
+            return
+        end
+
+        -- animation is handled in stategraph event
+        inst:PushEvent("switch_to_water")
+    end
+
+    local function OnExitWater(inst)
+        if on_exit_water then
+            on_exit_water(inst)
+        end
+
+        if inst.DynamicShadow then
+            inst.DynamicShadow:Enable(true)
+        end
+
+        if should_silent(inst) then
+            inst.AnimState:SetBank(land_bank)
+            return
+        end
+
+        -- animation is handled in stategraph event
+        inst:PushEvent("switch_to_land")
+    end
+
+    inst:AddComponent("amphibiouscreature")
+    inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
+    inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
+end
+
+function UpdateSailorPathcaps(inst, allowocean)
+    if inst:IsSailing() and inst.components.locomotor and not inst.components.amphibiouscreature ~= nil then
+        inst.components.locomotor.pathcaps = inst.components.locomotor.pathcaps or {}
+        inst.components.locomotor.pathcaps.ignoreLand = allowocean
+        inst.components.locomotor.pathcaps.allowocean = allowocean
+    end
+end

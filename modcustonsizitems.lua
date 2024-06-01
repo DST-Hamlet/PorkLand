@@ -69,17 +69,18 @@ local custonsiz_items = {  -- add in dst custonsiz
             porkland_season_start = {image = "season_start.tex", options_remap = {img = "blank_season_red.tex", atlas = worldgen_item_atlas}, desc = season_start_descriptions, master_controlled = true, order = 2}
         },
         monsters = {
-            "grass_tall_patch",
         },
         animals = {
             pangolden = {image = "pangolden.tex"},
             "dungpile",
             hanging_vine_patch = {image = "hanging_vine.tex"},
+            hippopotamoose = {image = "hippopotamoose.tex"},
             peagawk = {image = "peagawk.tex"}
         },
         resources = {
             "asparagus",
             "grass_tall",
+            "grass_tall_bunches",
         },
         misc = {
             jungle_border_vine = {desc = frequency_descriptions},
@@ -88,6 +89,9 @@ local custonsiz_items = {  -- add in dst custonsiz
     },
     [LEVELCATEGORY.SETTINGS] = {
         monsters = {
+            bill_setting = {image = "platypine.tex"},
+            frog_poison_setting = {image = "poison_dart_frogs.tex"},
+            mosquito_setting = {image = "mosquitos.tex"},
             --adult_flytrap_setting = {image = "adult_flytraps.tex"},
             --mean_flytrap_setting = {image = "mean_flytraps.tex"},
             weevole_setting = {image = "weevole.tex"},
@@ -97,6 +101,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             -- peagawk_setting = {image = "peagawk.tex"},
             glowfly_setting = {image = "glowflies.tex"},
             hanging_vine_setting = {image = "grabbing_vine.tex"},
+            hippopotamoose_setting = {image = "hippopotamoose.tex"},
             mandrakeman_setting = {image = "mandrake_men.tex"},
             piko_setting = {image = "orange_pikos.tex"},
         },

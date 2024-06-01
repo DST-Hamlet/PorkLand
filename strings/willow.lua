@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "Ugh, why would I do that now?",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "My boat is wounded!",
+    ANNOUNCE_BOAT_SINKING = "I'm going down!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Goodbye cruel world!",
     ANNOUNCE_DEHUMID = {
         "Ahh...it's cooled down.",
     },
@@ -14,6 +22,7 @@ return {
         "It's burning hot. But not in a good way.",
         "It's too hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Weeee!",
     DESCRIBE = {
         ALLOY = "Fire makes everything better.",
         APORKALYPSE_CLOCK = "Looks ominous. I like it.",
@@ -21,6 +30,12 @@ return {
         ARMOR_WEEVOLE = "This feels gross. I hope it works.",
         ASPARAGUS_PLANTED = "Haha! Found you!",
         BASEFAN = "Fan the flames.",
+        BOATREPAIRKIT = "This should patch up any little leaks.",
+        BOAT_CARGO = "I can carry so many flammables on this.",
+        BOAT_CORK = "It'd be better if I could light it on fire.",
+        BOAT_LOGRAFT = "Campfire wood has other uses, apparently!",
+        BOAT_ROW = "Rowing? Really?",
+        BOAT_TORCH = "Strangely not for torching boats.",
         CHITIN = "Bug skin.",
         COFFEE = "I suddenly feel motivated.",
         COFFEEBEANS = "These could use fire.",
@@ -57,6 +72,7 @@ return {
         HANGING_VINE = "Ugh, vines!",
         ICEDTEA = "I prefer hot things.",
         IRON = "I can't burn it with just my lighter.",
+        LILYPAD = "I can't burn stuff out on the water.",
         MACHETE = "Or I could just burn my way through.",
         PANGOLDEN = "Yeesh, he's sucking up all the gold!",
         PEAGAWK = {
@@ -81,6 +97,7 @@ return {
             GENERIC = "What're you so mad about?",
             SLEEPING = "I should draw a mustache on its mustache while it sleeps.",
         },
+        SAIL_SNAKESKIN = "What a morbid sail.",
         SEDIMENTPUDDLE = "Yeesh, there's a lot of sparkles in there.",
         SHEARS = "Not as good as fire, but I guess it has its uses.",
         SMELTER = {
@@ -89,6 +106,7 @@ return {
             DONE = "When are we do this again?",
             EMPTY = "Oh yeah! Now I can burn metal.",
         },
+        SNAKESKIN = "Leathery.",
         TEA = "Fire makes everything better.",
         TEATREE = "It'll burn. That's all I care about.",
         TEATREE_NUT = "I'd burn it but it helps my allergies.",

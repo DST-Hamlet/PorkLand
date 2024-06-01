@@ -23,8 +23,12 @@ local function RegisterNetListeners(inst)
 end
 
 AddPrefabPostInit("player_classified", function(inst)
-    inst.ispoisoned = inst.ispoisoned or net_bool(inst.GUID, "poisonable.ispoisoned")
-    inst.poisonpulse = inst.poisonpulse or net_bool(inst.GUID, "poisonable.poisonpulse", "poisonpulsedirty")
+    inst.ispoisoned = net_bool(inst.GUID, "poisonable.ispoisoned")
+    inst.poisonpulse = net_bool(inst.GUID, "poisonable.poisonpulse", "poisonpulsedirty")
+    inst.riderspeedmultiplier = net_float(inst.GUID, "rider.riderspeedmultiplier")
+
+    inst.ispoisoned:set(false)
+    inst.riderspeedmultiplier:set(1)
 
     inst:DoTaskInTime(0, RegisterNetListeners)
 end)

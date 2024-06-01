@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "Nope. Can't fix ",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "Oh. Floater is wobbly",
+    ANNOUNCE_BOAT_SINKING = "Why sinking, Floater?",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Sunk",
     ANNOUNCE_DEHUMID = {
         "Cooler now",
     },
@@ -19,6 +27,7 @@ return {
         "%s is heavy",
         "%s too hot",
     },
+    ANNOUNCE_WAVE_BOOST = "Whee!",
     DESCRIBE = {
         ALLOY = "Bar of Clink Rock",
         APORKALYPSE_CLOCK = "Tic Tock",
@@ -26,6 +35,12 @@ return {
         ARMOR_WEEVOLE = "Bzzter clothes",
         ASPARAGUS_PLANTED = "Hello there!",
         BASEFAN = "Wind",
+        BOATREPAIRKIT = "Fix it stuff",
+        BOAT_CARGO = "Big Floater of friends",
+        BOAT_CORK = "Puny Floater",
+        BOAT_LOGRAFT = "Friend ship",
+        BOAT_ROW = "Push Pull Floater",
+        BOAT_TORCH = "For dark times on floater",
         BONESTAFF = "Stare Stick",
         CHITIN = "Bzzter clothes",
         COFFEE = "Wheee!!!",
@@ -63,6 +78,7 @@ return {
         HANGING_VINE = "Wants stuff",
         ICEDTEA = "Cold Zippy water",
         IRON = "Clinky Rock",
+        LILYPAD = "Nice day for swim?",
         LIFEPLANT = "Lively friend",
         MACHETE = "Slicer. For friend haircuts",
         PANGOLDEN = "Shiny Pooper",
@@ -94,6 +110,7 @@ return {
             GENERIC = "Why so mad, Bzzter?",
             SLEEPING = "Let it sleep",
         },
+        SAIL_SNAKESKIN = "Squirmy Wind Nabber",
         SEDIMENTPUDDLE = "Shiny puddle",
         SHEARS = "For hair cuts",
         SMELTER = {
@@ -102,6 +119,7 @@ return {
             DONE = "Done!",
             EMPTY = "Clinky rock cooker",
         },
+        SNAKESKIN = "Squirmy clothes",
         SNAKE_BONE = "Ouch! Has sharp bits",
         SNAKEBONESOUP = "Squirmy water",
         TEA = "Warm Zippy water",

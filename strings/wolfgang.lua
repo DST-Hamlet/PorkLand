@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "Small boat has no damages to repair! Wolfgang could punch it?",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "Ship is weak! Needs fixingtimes.",
+    ANNOUNCE_BOAT_SINKING = "I will fight sea!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Wolfgang will punch death!",
     ANNOUNCE_DEHUMID = {
         "Ha! Wolfgang beat the heat!",
     },
@@ -14,6 +22,7 @@ return {
         "Wolfgang don't like %s in this heat.",
         "Is too muggy.",
     },
+    ANNOUNCE_WAVE_BOOST = "I am mighty!",
     DESCRIBE = {
         ALLOY = "Fire make it strong like Wolfgang.",
         APORKALYPSE_CLOCK = "Is clock of scary things.",
@@ -21,6 +30,12 @@ return {
         ARMOR_WEEVOLE = "Wolfgang win!",
         ASPARAGUS_PLANTED = "Haha. Is like tiny vegetable hats.",
         BASEFAN = "Is cool on Wolfgang skin.",
+        BOATREPAIRKIT = "Restore my mighty vessel!",
+        BOAT_CARGO = "What a mighty storage hold!",
+        BOAT_CORK = "Is weakling.",
+        BOAT_LOGRAFT = "This raft is... not so mighty.",
+        BOAT_ROW = "I will row with powerful arms!",
+        BOAT_TORCH = "Flame on boat is good idea!",
         CHITIN = "Icky bug pieces.",
         COFFEE = "Strong, like Wolfgang!",
         COFFEEBEANS = "Tiny beans give Wolfgang strength!",
@@ -57,6 +72,7 @@ return {
         HANGING_VINE = "Watch out for that tree!",
         ICEDTEA = "Is cool. Like Wolfgang.",
         IRON = "Iron is strong like Wolfgang.",
+        LILYPAD = "Big water leaf.",
         MACHETE = "Ah! Very good!",
         PANGOLDEN = "Hehe. Haves big nose.",
         PEAGAWK = {
@@ -81,6 +97,7 @@ return {
             GENERIC = "Wolfgang will stomp bad beetle!",
             SLEEPING = "Hehe. Is funny mustache.",
         },
+        SAIL_SNAKESKIN = "Skin of dead snake will help me sail.",
         SEDIMENTPUDDLE = "Hello little sparklies!",
         SHEARS = "Is for cutting plant things.",
         SMELTER = {
@@ -89,6 +106,7 @@ return {
             DONE = "Fire make metal bricks.",
             EMPTY = "Wolfgang lifted it without difficulty.",
         },
+        SNAKESKIN = "I will use as bandana.",
         TEA = "Wolfgang love tea time!",
         TEATREE = "Is strong but not strong like Wolfgang.",
         TEATREE_NUT = "Is good for Wolfgang's mighty sneezes.",

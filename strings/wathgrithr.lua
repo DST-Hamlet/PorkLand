@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "My vessel is renewed!",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "My vessel is wounded!",
+    ANNOUNCE_BOAT_SINKING = "The sea pulls me toward Hel!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "These black depths will soon claim me!",
     ANNOUNCE_DEHUMID = {
         "The haze has lifted.",
     },
@@ -19,6 +27,7 @@ return {
         "This %s is crushing my spirit.",
         "This %s burns like Sol.",
     },
+    ANNOUNCE_WAVE_BOOST = "Carry me forth!",
     DESCRIBE = {
         ALLOY = "A metal worthy of the Sons of Ivaldi.",
         APORKALYPSE_CLOCK = "It controls Ragnarok!",
@@ -26,6 +35,12 @@ return {
         ARMOR_WEEVOLE = "Armor made from the skin of my enemy.",
         ASPARAGUS_PLANTED = "Useless vegetation!",
         BASEFAN = "Conquers the heat!",
+        BOATREPAIRKIT = "Most sensible cargo.",
+        BOAT_CARGO = "A boat fit for a long journey.",
+        BOAT_CORK = "More like a stage prop than a viking vessel.",
+        BOAT_LOGRAFT = "You will not carry me far, but you will carry me.",
+        BOAT_ROW = "Rowing is in my blood.",
+        BOAT_TORCH = "The night sea is alight!",
         BONESTAFF = "Prepare to be stunned by my gaze!",
         CHITIN = "The feeble armor of the bug.",
         COFFEE = "Bitter and pulse-pounding.",
@@ -63,6 +78,7 @@ return {
         HANGING_VINE = "Ropes hang from the heavens!",
         ICEDTEA = "It contains no the meat!",
         IRON = "Material for metalwork.",
+        LILYPAD = "A leaf of the water.",
         MACHETE = "A fine length of blade.",
         PANGOLDEN = "Surely a cousin of Gullinbursti!",
         PEAGAWK = {
@@ -93,6 +109,7 @@ return {
             GENERIC = "Evil beast. You have met your match!",
             SLEEPING = "Slumber consumes it!",
         },
+        SAIL_SNAKESKIN = "A sail made of murder!",
         SEDIMENTPUDDLE = "Its tiny gold pieces will be mine!",
         SHEARS = "A weapon for use against a mighty hedge!",
         SMELTER = {
@@ -101,6 +118,7 @@ return {
             DONE = "Now make me a sharp edge!",
             EMPTY = "The tools of dwarves.",
         },
+        SNAKESKIN = "A snake has slipped its skin. With a little help...",
         SNAKE_BONE = "The bones of my enemy!",
         SNAKEBONESOUP = "A meaty broth!",
         TEA = "I shall not consume it!",

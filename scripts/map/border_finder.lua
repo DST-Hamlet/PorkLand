@@ -1,15 +1,4 @@
-local borders = {}
-local entities = {}
-local width = 0
-local height = 0
-
-local function set_constants(set_entities, set_width, set_height)
-    entities = set_entities
-    width = set_width
-    height = set_height
-end
-
-local function set_entity(prop, x, z)
+local function set_entity(entities, prop, x, z)
     if entities[prop] == nil then
         entities[prop] = {}
     end
@@ -17,9 +6,9 @@ local function set_entity(prop, x, z)
     table.insert(entities[prop], save_data)
 end
 
-local function export_spawners_to_entites()
+local function export_spawners_to_entites(entities, borders)
     for _, item in ipairs(borders)do
-        set_entity(item.prefab, item.x, item.z)
+        set_entity(entities, item.prefab, item.x, item.z)
     end
 end
 
@@ -45,9 +34,8 @@ local function test_tile(world_sim, valid_tile_types, x,y)
     return valid
 end
 
-local function make_border(set_entities, topology_save, world_sim, map_width, map_height, prefab, valid_tile_types, chance)
-    borders = {}
-    set_constants(set_entities, map_width, map_height)
+local function make_border(entities, topology_save, world_sim, width, height, prefab, valid_tile_types, chance)
+    local borders = {}
 
     for x = -(width / 2) * TILE_SCALE, (width / 2) * TILE_SCALE, TILE_SCALE do
         for z = -(height / 2) * TILE_SCALE, (height / 2) * TILE_SCALE, TILE_SCALE do
@@ -86,9 +74,9 @@ local function make_border(set_entities, topology_save, world_sim, map_width, ma
         end
     end
 
-    export_spawners_to_entites()
+    export_spawners_to_entites(entities, borders)
 
-    return set_entities
+    return entities
 end
 
 return make_border

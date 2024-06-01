@@ -60,13 +60,13 @@ local function FindTempEnts(data,x,z,range,prefabs)
     return ents
 end
 
-local function AddTempEnts(data,x,z,prefab,cityID)
+local function AddTempEnts(data,x,z,prefab, city_id)
 
     local entity = {
         x = x,
         z = z,
         prefab = prefab,
-        city = cityID,
+        city = city_id,
     }
 
     table.insert(data,entity)

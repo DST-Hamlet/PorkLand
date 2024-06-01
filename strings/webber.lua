@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "No need. It already floats our boat.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "Our boat's hurt!",
+    ANNOUNCE_BOAT_SINKING = "Down, down, down we go!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Help! We can't swim!",
     ANNOUNCE_DEHUMID = {
         "Whew! Not so hot anymore.",
     },
@@ -19,6 +27,7 @@ return {
         "Ugh. We're really baking in this %s.",
         "Wow! This %s is making us hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Weee!",
     DESCRIBE = {
         ALLOY = "Gosh. That's a lot of metal.",
         APORKALYPSE_CLOCK = "It's like a puzzle!",
@@ -26,6 +35,12 @@ return {
         ARMOR_WEEVOLE = "For when we need protection.",
         ASPARAGUS_PLANTED = "We should pick those.",
         BASEFAN = "That breeze feels nice on our fur.",
+        BOATREPAIRKIT = "Never leave home without one.",
+        BOAT_CARGO = "Ah, we can stretch all our legs...",
+        BOAT_CORK = "I don't know. Looks kinda flimsy.",
+        BOAT_LOGRAFT = "This does not look swift.",
+        BOAT_ROW = "How's that old song go?",
+        BOAT_TORCH = "It will light my way!",
         BONESTAFF = "We could have a staring contest with that scary big snake.",
         CHITIN = "Hope no one's missing that.",
         COFFEE = "Bitter.",
@@ -63,6 +78,7 @@ return {
         HANGING_VINE = "Cool! Vines!",
         ICEDTEA = "Delicious!",
         IRON = "We could make all kinds of neat stuff with this.",
+        LILYPAD = "That's a really big lily pad!",
         MACHETE = "Hyah! Hyah!",
         PANGOLDEN = "I think he eats gold.",
         PEAGAWK = {
@@ -93,6 +109,7 @@ return {
             GENERIC = "That guy's got a lot of energy!",
             SLEEPING = "Haha! A bug with a mustache!",
         },
+        SAIL_SNAKESKIN = "With our sheet of gross skins, we're ready for adventure.",
         SEDIMENTPUDDLE = "It's full of sparkly stuff.",
         SHEARS = "It's for chores like trimming hedges or cutting grass.",
         SMELTER = {
@@ -101,6 +118,7 @@ return {
             DONE = "It's finished.",
             EMPTY = "Make material with material.",
         },
+        SNAKESKIN = "The skin of a snake!",
         SNAKE_BONE = "These are kinda sharp bones.",
         SNAKEBONESOUP = "Kinda tastes like chicken noodle.",
         TEA = "Let's have a tea party!",

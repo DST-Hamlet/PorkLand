@@ -32,11 +32,17 @@ local pl_fx = {
         fn = FinalOffset1,
     },
     {
+        name = "splash_water",
+        bank = "splash_water",
+        build = "splash_water",
+        anim = "idle",
+        fn = TintOceantFx,
+    },
     	name = "snake_scales_fx",
     	bank = "snake_scales_fx",
     	build = "snake_scales_fx",
     	anim = "idle",
-	},
+	  },
     {
         name = "splash_water_drop",
         bank = "splash_water_drop",
@@ -51,6 +57,43 @@ local pl_fx = {
         build = "splash_water_drop",
         anim = "idle_sink",
         sound = "dontstarve_DLC002/common/item_sink"
+    },
+    {
+        name = "boat_hit_fx_raft_log",
+        bank = "boat_hit_debris",
+        build = "boat_hit_debris",
+        anim = "hit_raft_log",
+    },
+    {
+        name = "boat_hit_fx_raft_bamboo",
+        bank = "boat_hit_debris",
+        build = "boat_hit_debris",
+        anim = "hit_raft_bamboo",
+    },
+    {
+        name = "boat_hit_fx_rowboat",
+        bank = "boat_hit_debris",
+        build = "boat_hit_debris",
+        anim = "hit_rowboat",
+    },
+    {
+        name = "boat_hit_fx_cargoboat",
+        bank = "boat_hit_debris",
+        build = "boat_hit_debris",
+        anim = "hit_cargoboat",
+    },
+    {
+        name = "boat_hit_fx_corkboat",
+        bank = "boat_hit_debris",
+        build = "boat_hit_debris",
+        anim = "hit_corkboat",
+    },
+    {
+        name = "boat_death",
+        bank = "boatdeathshadow",
+        build = "boat_death_shadows",
+        anim = "boat_death",
+        tintalpha = 0.5,
     },
 }
 

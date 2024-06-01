@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "I'm afraid I can't.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "My boat's pretty banged up, eh?",
+    ANNOUNCE_BOAT_SINKING = "I'm aboot to sink!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "We're goin' down!",
     ANNOUNCE_DEHUMID = {
         "That feels better.",
     },
@@ -14,6 +22,7 @@ return {
         "It's blazing with this %s.",
         "Whew! this %s is hot, eh?",
     },
+    ANNOUNCE_WAVE_BOOST = "For the North!",
     DESCRIBE = {
         ALLOY = "It's like a block of wood made out of metal.",
         APORKALYPSE_CLOCK = "Looks like it's the end of days.",
@@ -21,6 +30,12 @@ return {
         ARMOR_WEEVOLE = "Nice use of bug carcasses.",
         ASPARAGUS_PLANTED = "They're like little trees to chop down.",
         BASEFAN = "Yep. That's a nice breeze.",
+        BOATREPAIRKIT = "Patch'er up, eh?",
+        BOAT_CARGO = "I'd prefer cargo shorts.",
+        BOAT_CORK = "Only good for a short trip.",
+        BOAT_LOGRAFT = "My specialty!",
+        BOAT_ROW = "Powered by elbow grease.",
+        BOAT_TORCH = "I can go night fishing.",
         CHITIN = "It's got some heft to it.",
         COFFEE = "Good old joe.",
         COFFEEBEANS = "I should cook these up.",
@@ -57,6 +72,7 @@ return {
         HANGING_VINE = "Don't trust that.",
         ICEDTEA = "Nice and refreshing.",
         IRON = "Can't chop this too well.",
+        LILYPAD = "Nature's real good, eh?",
         MACHETE = "Ooh, that's a thing for chopping.",
         PANGOLDEN = "Looks expensive.",
         PEAGAWK = {
@@ -81,6 +97,7 @@ return {
             GENERIC = "Seems mighty angry.",
             SLEEPING = "Let sleeping bugs lie, I say.",
         },
+        SAIL_SNAKESKIN = "Sailin' in style.",
         SEDIMENTPUDDLE = "What's that shiny stuff in there?",
         SHEARS = "Don't get jealous, Lucy.",
         SMELTER = {
@@ -89,6 +106,7 @@ return {
             DONE = "Hrumph. A big production for a little metal.",
             EMPTY = "It's like a giant maple syrup bucket.",
         },
+        SNAKESKIN = "I'm sure the snake didn't need this.",
         TEA = "I could go for some tea.",
         TEATREE = "Welp. Better get choppin'.",
         TEATREE_NUT = "Helps with allergies, eh.",

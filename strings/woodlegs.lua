@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "It be jus'like new!",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "She's takin' on water!",
+    ANNOUNCE_BOAT_SINKING = "She be goin' doooon!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Be this th'day th'sea claims me?",
     ANNOUNCE_DEHUMID = {
         "Ah! Th'air be cool again.",
     },
@@ -19,6 +27,7 @@ return {
         "Arrgh! It be hot!",
         "This %s is makin' me sweat me britches.",
     },
+    ANNOUNCE_WAVE_BOOST = "We be a silver streak on th'blue now!",
     DESCRIBE = {
         ALLOY = "Ahoy, alloy!",
         APORKALYPSE_CLOCK = "Tha time be nigh!",
@@ -26,6 +35,12 @@ return {
         ARMOR_WEEVOLE = "Aye. Finery made o' bug skin.",
         ASPARAGUS_PLANTED = "Tiny masts growin' from the ground.",
         BASEFAN = "A cool wind blows from thee!",
+        BOATREPAIRKIT = "Never set sail wit'out'er.",
+        BOAT_CARGO = "Fer th'hoarder at sea.",
+        BOAT_CORK = "It be'a poorly ship.",
+        BOAT_LOGRAFT = "She don't look too sturdy.",
+        BOAT_ROW = "I ain't rowed since I was a young swab.",
+        BOAT_TORCH = "Fer a torch on me boat, not fer torchin' me boat.",
         BONESTAFF = "'twill chill ye to tha bone.",
         CHITIN = "A harden'd hull.",
         COFFEE = "Arrr thet be th'real treasure.",
@@ -63,6 +78,7 @@ return {
         HANGING_VINE = "Them be th'ropes.",
         ICEDTEA = "'Tis relief ta be sure.",
         IRON = "'Tis not gold, but a treasure nonetheless.",
+        LILYPAD = "A leaf aft'r me own heart.",
         LIFEPLANT = "Grew from a drop o' water.",
         MACHETE = "Ye be slicin'!",
         PANGOLDEN = "Eatin' up all tha treasure!",
@@ -94,6 +110,7 @@ return {
             GENERIC = "Ornery buggie.",
             SLEEPING = "Thar she blows!",
         },
+        SAIL_SNAKESKIN = "Thet be a sail.",
         SEDIMENTPUDDLE = "Alas, not big enough to sail in.",
         SHEARS = "A cutlass fer tha'bushes.",
         SMELTER = {
@@ -102,6 +119,7 @@ return {
             DONE = "She's ready ta fire!",
             EMPTY = "A cannon fer makin' metals.",
         },
+        SNAKESKIN = "Me leathers do need replacin'.",
         SNAKE_BONE = "A treasure o'tha snake.",
         SNAKEBONESOUP = "A hearty brew, t'be sure.",
         TEA = "Ah, a fine brew.",

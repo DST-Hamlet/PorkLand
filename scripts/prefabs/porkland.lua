@@ -73,6 +73,7 @@ end
 
 local function common_postinit(inst)
     inst.has_pl_ocean = true
+    inst.items_pass_ground = true
 
     -- Add waves
     inst.entity:AddWaveComponent()
@@ -117,6 +118,7 @@ local function master_postinit(inst)
     inst:AddComponent("brightmarespawner")
     inst:AddComponent("worldwind")
 
+    inst:AddComponent("hippospawner")
     inst:AddComponent("regrowthmanager")
     -- inst:AddComponent("desolationspawner")
     -- inst:AddComponent("forestpetrification")

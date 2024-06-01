@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "She's floating just fine right now.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "I think I sprung a leak.",
+    ANNOUNCE_BOAT_SINKING = "I seem to be sinking.",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "I need to get to land!",
     ANNOUNCE_DEHUMID = {
         "Ah, so much better.",
     },
@@ -20,6 +28,7 @@ return {
         "This %s is so heavy.",
         "This %s is too hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Weeeee!",
     DESCRIBE = {
         ALLOY = "Ahoy there, alloy!",
         APORKALYPSE_CLOCK = "Looks scientifically apocalyptic.",
@@ -27,6 +36,12 @@ return {
         ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",
         ASPARAGUS_PLANTED = "I should pick those!",
         BASEFAN = "Fan-tastic.",
+        BOATREPAIRKIT = "This will add some float to my boat.",
+        BOAT_CARGO = "It has room for all my stuff!",
+        BOAT_CORK = "An accident waiting to happen.",
+        BOAT_LOGRAFT = "This looks... sort of boat-like...",
+        BOAT_ROW = "It runs on elbow grease.",
+        BOAT_TORCH = "This'll keep my hands free.",
         BONESTAFF = "Sends shivers down my spine.",
         CHITIN = "Bug coating.",
         COFFEE = "Smells delicious and energizing!",
@@ -64,6 +79,7 @@ return {
         HANGING_VINE = "Always hanging around.",
         ICEDTEA = "I scream for iced tea.",
         IRON = "Isn't it ironic?",
+        LILYPAD = "It's full of science. I can tell.",
         MACHETE = "I like the cut of this blade.",
         MANDRAKEMAN = "Large and screamy.",
         MANDRAKEHOUSE = "It looks... screamy.",
@@ -96,6 +112,7 @@ return {
             GENERIC = "Looks deranged.",
             SLEEPING = "In a slumber.",
         },
+        SAIL_SNAKESKIN = "Scale it and sail it!",
         SEDIMENTPUDDLE = "Pool's gold.",
         SHEARS = "Shear-ly delightful.",
         SMELTER = {
@@ -104,6 +121,7 @@ return {
             DONE = "It's done!",
             EMPTY = "I smelt that!",
         },
+        SNAKESKIN = "I'm intrigued AND repelled.",
         SNAKE_BONE = "Ha ha, snake. I have your bone.",
         SNAKEBONESOUP = "The best way to serve snake.",
         TEA = "Tea time!",

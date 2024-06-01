@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "It's already in better shape than I am.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "This vessel is damaged. I can relate.",
+    ANNOUNCE_BOAT_SINKING = "I will soon face a watery grave.",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "I surrender myself to the depths!",
     ANNOUNCE_DEHUMID = {
         "The heat has lifted but my heart has not.",
     },
@@ -14,6 +22,7 @@ return {
         "This %s is heavier in the heat.",
         "This %s is too hot. It weighs on my soul.",
     },
+    ANNOUNCE_WAVE_BOOST = "Joy...",
     DESCRIBE = {
         ALLOY = "Cold and hard, like my existence.",
         APORKALYPSE_CLOCK = "Clockwork for the end of times.",
@@ -21,6 +30,12 @@ return {
         ARMOR_WEEVOLE = "Something died so that this armor may exist.",
         ASPARAGUS_PLANTED = "I should rip those out of the ground.",
         BASEFAN = "Alas the relief it brings is only temporary.",
+        BOATREPAIRKIT = "This could save a boat from destruction, and me with it.",
+        BOAT_CARGO = "This transports more junk to nowhere.",
+        BOAT_CORK = "I only hope when it sinks, the end will be quick.",
+        BOAT_LOGRAFT = "This looks heavy, slow and dangerous.",
+        BOAT_ROW = "I wonder how many leagues this can convey me?",
+        BOAT_TORCH = "How illuminating.",
         CHITIN = "This shell is poor protection from life's horrors.",
         COFFEE = "Dark. Bitter...",
         COFFEEBEANS = "These look stimulating.",
@@ -57,6 +72,7 @@ return {
         HANGING_VINE = "The jungle's noose.",
         ICEDTEA = "Refreshing, but it still does not relieve my grief.",
         IRON = "Iron. Like my heart.",
+        LILYPAD = "How calm it looks upon the water.",
         MACHETE = "This is a lot of blade.",
         PANGOLDEN = "A fool and his gold.",
         PEAGAWK = {
@@ -81,6 +97,7 @@ return {
             GENERIC = "As rabid as death itself.",
             SLEEPING = "Sleep is not a permanent escape from life.",
         },
+        SAIL_SNAKESKIN = "Gross, but efficient.",
         SEDIMENTPUDDLE = "Contains unreachable shiny things.",
         SHEARS = "Can it shear my heart?",
         SMELTER = {
@@ -89,6 +106,7 @@ return {
             DONE = "Born of fire.",
             EMPTY = "Burn who are trapped in it...",
         },
+        SNAKESKIN = "It shed its skin, with my assistance.",
         TEA = "Abigail loved tea parties.",
         TEATREE = "I can sit under it and contemplate life's futility.",
         TEATREE_NUT = "Makes life barely more livable in allergy season.",
