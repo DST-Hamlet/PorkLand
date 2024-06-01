@@ -68,6 +68,7 @@ return {
         ICEDTEA = "It just got better.",
         IRON = "Is that iron?",
         LILYPAD = "Look how big it is! I really want to stand up and take a look!",
+        LOTUS = "Sis Walani says that's edible...",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "A born gold rusher.",
         PEAGAWK = {

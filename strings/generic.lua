@@ -74,6 +74,7 @@ return {
         ICEDTEA = "I scream for iced tea.",
         IRON = "Isn't it ironic?",
         LILYPAD = "It's full of science. I can tell.",
+        LOTUS = "The science is blooming well this season.",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "It likes rich food.",
         PEAGAWK = {

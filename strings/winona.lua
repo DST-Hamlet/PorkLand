@@ -68,6 +68,7 @@ return {
         ICEDTEA = "What a enjoyment.",
         IRON = "Invaluable material for manufacturing useful tools.",
         LILYPAD = "I have never seen such a big water lily!",
+        LOTUS = "What a beautiful aquatic plant.",
         MACHETE = "Hack and slash! Working's always fun.",
         PANGOLDEN = "Living metallurgical.",
         PEAGAWK = {

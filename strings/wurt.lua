@@ -68,6 +68,7 @@ return {
         ICEDTEA = "Cold leaf water.",
         IRON = "Red hard rock.",
         LILYPAD = "Afloat leaf.",
+        LOTUS = "Fancy flower in the pool.",
         MACHETE = "Plant hacker.",
         PANGOLDEN = "Don't drink them all!",
         PEAGAWK = {

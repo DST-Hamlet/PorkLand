@@ -74,6 +74,7 @@ return {
         IRON = "Clinky Rock",
         LIFEPLANT = "Lively friend",
         LILYPAD = "Nice day for swim?",
+        LOTUS = "Hello! How's water?",
         MACHETE = "Slicer. For friend haircuts",
         PANGOLDEN = "Shiny Pooper",
         PEAGAWK = {

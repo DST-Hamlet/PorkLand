@@ -74,6 +74,7 @@ return {
         ICEDTEA = "Ah... hits the spot.",
         IRON = "This has gotta be good for something.",
         LILYPAD = "Looks like a waterbed to me.",
+        LOTUS = "Those'd make a great surfboard pattern.",
         MACHETE = "What a hack job.",
         PANGOLDEN = "Shiny.",
         PEAGAWK = {

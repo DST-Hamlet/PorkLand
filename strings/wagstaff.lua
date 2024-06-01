@@ -73,6 +73,7 @@ return {
         ICEDTEA = "Evidence would suggest my tea got cold.",
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
         LILYPAD = "Fascinating! It contains a small ecosystem of animals.",
+        LOTUS = "Ah. A water based plant with attractive flowers. I should pick it.",
         MACHETE = "A pragmatic tool for slashing objects.",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",
         PEAGAWK = {

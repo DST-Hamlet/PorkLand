@@ -68,6 +68,7 @@ return {
         ICEDTEA = "Right on time, Now I can taste it.",
         IRON = "An essential material for accurate timepieces.",
         LILYPAD = "I don't think this shortcut can be taken.",
+        LOTUS = "Those buds look familiar...",
         MACHETE = "It's for chopping, simple as that.",
         PANGOLDEN = "It has an extravagant recipe.",
         PEAGAWK = {

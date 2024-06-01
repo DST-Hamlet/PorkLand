@@ -73,6 +73,7 @@ return {
         ICEDTEA = "Is cool. Like Wolfgang.",
         IRON = "Iron is strong like Wolfgang.",
         LILYPAD = "Big water leaf.",
+        LOTUS = "Is puny pond plant.",
         MACHETE = "Ah! Very good!",
         PANGOLDEN = "Hehe. Haves big nose.",
         PEAGAWK = {

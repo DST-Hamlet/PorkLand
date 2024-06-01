@@ -74,6 +74,7 @@ return {
         ICEDTEA = "Refreshing.",
         IRON = "A solid mineral.",
         LILYPAD = "A massive pond leaf.",
+        LOTUS = "How dainty.",
         MACHETE = "Truthfully I was always a hack.",
         PANGOLDEN = "He has expensive tastes.",
         PEAGAWK = {

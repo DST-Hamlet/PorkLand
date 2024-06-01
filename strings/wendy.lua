@@ -73,6 +73,7 @@ return {
         ICEDTEA = "Refreshing, but it still does not relieve my grief.",
         IRON = "Iron. Like my heart.",
         LILYPAD = "How calm it looks upon the water.",
+        LOTUS = "It flourishes on the waves of sorrow.",
         MACHETE = "This is a lot of blade.",
         PANGOLDEN = "A fool and his gold.",
         PEAGAWK = {

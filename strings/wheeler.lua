@@ -77,6 +77,7 @@ return {
         ICEDTEA = "I prefer it cold anyway.",
         IRON = "Well it's not good balloon material.",
         LILYPAD = "A little too heavy to use for a balloon.",
+        LOTUS = "Almost worth getting my feet wet for that.",
         MACHETE = "Machete. Designed for adventure.",
         PANGOLDEN = "I don't actually mind picking up his poop.",
         PEAGAWK = {

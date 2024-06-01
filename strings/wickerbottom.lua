@@ -73,6 +73,7 @@ return {
         ICEDTEA = "Invigorating.",
         IRON = "Ferrum.",
         LILYPAD = "Goodness! They can grow quite large in the wild.",
+        LOTUS = "Nelumbo nucifera. Quite beautiful.",
         MACHETE = "Used for hacking through the brush.",
         PANGOLDEN = "Aurum vermilingua.",
         PEAGAWK = {

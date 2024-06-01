@@ -73,6 +73,7 @@ return {
         ICEDTEA = "Nice and refreshing.",
         IRON = "Can't chop this too well.",
         LILYPAD = "Nature's real good, eh?",
+        LOTUS = "Pretty nice, dontcha think Lucy?",
         MACHETE = "Ooh, that's a thing for chopping.",
         PANGOLDEN = "Looks expensive.",
         PEAGAWK = {

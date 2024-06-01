@@ -74,6 +74,7 @@ return {
         IRON = "'Tis not gold, but a treasure nonetheless.",
         LIFEPLANT = "Grew from a drop o' water.",
         LILYPAD = "A leaf aft'r me own heart.",
+        LOTUS = "It be a big pink flow'r.",
         MACHETE = "Ye be slicin'!",
         PANGOLDEN = "Eatin' up all tha treasure!",
         PEAGAWK = {
