@@ -12,6 +12,7 @@ local MULTIPLY = forest_map.MULTIPLY
 local TRANSLATE_TO_PREFABS = forest_map.TRANSLATE_TO_PREFABS
 local TRANSLATE_AND_OVERRIDE = forest_map.TRANSLATE_AND_OVERRIDE
 
+TRANSLATE_TO_PREFABS["lotus"] = { "lotus" }
 TRANSLATE_TO_PREFABS["pangolden"] = { "pangolden" }
 TRANSLATE_TO_PREFABS["asparagus"] = { "asparagus_planted" }
 TRANSLATE_TO_PREFABS["dungpile"] = { "dungpile" }

@@ -81,6 +81,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             "asparagus",
             "grass_tall",
             "grass_tall_bunches",
+            "lotus",
         },
         misc = {
             jungle_border_vine = {desc = frequency_descriptions},

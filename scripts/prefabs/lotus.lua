@@ -19,7 +19,7 @@ local function OnPicked(inst)
         inst.AnimState:PlayAnimation("picked", true)
     end
 
-    local bill = FindEntity(inst, 50, function(item) return item:HasTag("platapine") end)
+    local bill = FindEntity(inst, 50, nil, {"platapine"})
     if bill then
         return
     end
@@ -49,23 +49,27 @@ local function MakeEmpty(inst)
 	inst.AnimState:PlayAnimation("picked", true)
 end
 
+local function OnDay(inst)
+    if inst.components.pickable and inst.components.pickable:CanBePicked() and inst.closed then
+        inst.closed = false
+        inst.AnimState:PlayAnimation("open")
+        inst.AnimState:PushAnimation("idle_plant", true)
+    end
+end
+
+local function Close(inst)
+    if inst.components.pickable and inst.components.pickable:CanBePicked() then
+        inst.AnimState:PlayAnimation("close")
+        inst.AnimState:PushAnimation("idle_plant_close", true)
+        inst.closed = true
+    end
+end
+
 local function OnPhaseChange(inst, phase)
     if phase == "day" then
-        inst:DoTaskInTime(math.random() * 10, function(inst)
-            if inst.components.pickable and inst.components.pickable.canbepicked and inst.closed then
-                inst.closed = nil
-                inst.AnimState:PlayAnimation("open")
-                inst.AnimState:PushAnimation("idle_plant", true)
-            end
-        end)
+        inst:DoTaskInTime(math.random() * 10, OnDay)
     elseif not inst.closed then
-        inst:DoTaskInTime(math.random() * 10, function(inst)
-            if inst.components.pickable and inst.components.pickable.canbepicked then
-                inst.AnimState:PlayAnimation("close")
-                inst.AnimState:PushAnimation("idle_plant_close", true)
-                inst.closed = true
-            end
-        end)
+        inst:DoTaskInTime(math.random() * 10, Close)
     end
 end
 
@@ -89,7 +93,6 @@ local function fn()
 
     inst.MiniMapEntity:SetIcon("lotus.tex")
 
-    inst:AddTag("lotus")
     inst:AddTag("plant")
 
     inst.entity:SetPristine()
@@ -98,14 +101,16 @@ local function fn()
         return inst
     end
 
+    inst.closed = false
+
+    inst:AddComponent("inspectable")
+
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
     inst.components.pickable:SetUp("lotus_flower", TUNING.LOTUS_REGROW_TIME)
-	inst.components.pickable.onregenfn = OnRegen
-	inst.components.pickable.onpickedfn = OnPicked
-    inst.components.pickable.makeemptyfn = MakeEmpty
-
-    inst:AddComponent("inspectable")
+    inst.components.pickable:SetOnPickedFn(OnPicked)
+    inst.components.pickable:SetOnRegenFn(OnRegen)
+    inst.components.pickable:SetMakeEmptyFn(MakeEmpty)
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = TUNING.SMALL_FUEL
