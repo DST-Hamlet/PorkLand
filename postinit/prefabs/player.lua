@@ -50,6 +50,14 @@ local function OnLoad(inst, data, ...)
 end
 
 AddPlayerPostInit(function(inst)
+    if not TheNet:IsDedicated() then
+		inst:DoTaskInTime(0, function()
+			if inst == ThePlayer then --only do this for the local player character
+				inst:AddComponent("windvisuals")
+			end
+		end)
+    end
+
     if not TheWorld.ismastersim then
         return
     end

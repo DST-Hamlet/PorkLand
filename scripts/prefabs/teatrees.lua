@@ -59,10 +59,10 @@ local function MakeAnims(stage)
         burnt = "burnt_" .. stage,
         chop_burnt = "chop_burnt_" .. stage,
         idle_chop_burnt = "idle_chop_burnt_" .. stage,
-        blown1="blown_loop_" ..stage.. "1",
-        blown2="blown_loop_" ..stage.. "2",
-        blown_pre="blown_pre_" .. stage,
-        blown_pst="blown_pst_" .. stage
+        blown1 = "blown_loop_" ..stage.. "1",
+        blown2 = "blown_loop_" ..stage.. "2",
+        blown_pre = "blown_pre_" .. stage,
+        blown_pst = "blown_pst_" .. stage,
     }
 end
 
@@ -572,7 +572,12 @@ local function MakeTeaTree(name, stage, state)
         inst.OnPreLoad = OnPreLoad
         inst.OnLoad = OnLoad
 
-        --MakeTreeBlowInWindGust(inst, "DECIDUOUS")
+        MakeTreeBlowInWindGust(inst, {
+            "short",
+            "normal",
+            "tall",
+            "old",
+        }, TUNING.DECIDUOUS_WINDBLOWN_SPEED, TUNING.DECIDUOUS_WINDBLOWN_FALL_CHANCE)
         MakeHauntableWork(inst)
         MakeSnowCovered(inst, .01)
         MakeLargePropagator(inst)

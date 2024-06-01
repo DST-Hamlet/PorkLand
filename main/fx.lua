@@ -9,6 +9,15 @@ local function TintOceantFx(inst)
     inst.AnimState:SetOceanBlendParams(TUNING.OCEAN_SHADER.EFFECT_TINT_AMOUNT)
 end
 
+local function WindVisualsFn(inst)
+    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+    if TheWorld.net.components.plateauwind:GetWindSpeed() < 0.01 then
+        inst:Remove()
+    else
+        inst.AnimState:SetMultColour(1, 1, 1,  math.clamp(TheWorld.net.components.plateauwind:GetWindSpeed(), 0.0, 1.0))
+    end
+end
+
 local pl_fx = {
     {
 	    name = "groundpound_nosound_fx",
@@ -95,6 +104,19 @@ local pl_fx = {
         build = "boat_death_shadows",
         anim = "boat_death",
         tintalpha = 0.5,
+    },
+    {
+    	name = "splash_clouds_drop",
+    	bank = "splash_clouds_drop",
+    	build = "splash_clouds_drop",
+    	anim = "idle_sink",
+	},
+    {
+        name = "windswirl",
+        bank = "wind_fx",
+        build = "wind_fx",
+        anim = "side_wind_loop",
+        fn = WindVisualsFn,
     },
 }
 

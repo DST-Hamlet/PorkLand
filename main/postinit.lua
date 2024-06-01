@@ -60,13 +60,17 @@ local prefab_posts = {
     "woodie",
     "world_network",
     "shard_network",
+    "walls",
     "wormwood",
     "wortox",
 }
 
 local multipleprefab_posts = {
+    "blowinhurricane",
+    "blowinwindgust",
+    "firepit",
+    "health",
     "poisonable",
-    "health"
 }
 
 local scenario_posts = {
