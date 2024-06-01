@@ -38,11 +38,12 @@ local pl_fx = {
         anim = "idle",
         fn = TintOceantFx,
     },
+    {
     	name = "snake_scales_fx",
     	bank = "snake_scales_fx",
     	build = "snake_scales_fx",
     	anim = "idle",
-	  },
+	},
     {
         name = "splash_water_drop",
         bank = "splash_water_drop",
