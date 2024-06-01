@@ -244,7 +244,7 @@ local states=
         tags = {"busy", "falling"},
 
         onenter = function(inst)
-			inst.Physics:SetDamping(0)
+            inst.Physics:SetDamping(0)
             inst.Physics:SetMotorVel(0, -20 + math.random() * 10,0)
             inst.AnimState:PlayAnimation("fall_idle", true)
         end,
@@ -252,16 +252,16 @@ local states=
         onupdate = function(inst)
             local pt = Point(inst.Transform:GetWorldPosition())
             if pt.y < 2 then
-				inst.Physics:SetMotorVel(0,0,0)
+                inst.Physics:SetMotorVel(0,0,0)
             end
 
             if pt.y <= .1 then
                 pt.y = 0
 
                 inst.Physics:Stop()
-				inst.Physics:SetDamping(5)
+                inst.Physics:SetDamping(5)
                 inst.Physics:Teleport(pt.x,pt.y,pt.z)
-	            inst.DynamicShadow:Enable(true)
+                inst.DynamicShadow:Enable(true)
                 inst.SoundEmitter:PlaySound(inst.sounds.splat)
                 inst.sg:GoToState("idle", "jump_pst")
             end
@@ -445,9 +445,9 @@ local states=
 
 CommonStates.AddSleepStates(states,
 {
-	waketimeline = {
-		TimeEvent(0 * FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.wake) end ),
-	},
+    waketimeline = {
+        TimeEvent(0 * FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.wake) end ),
+    },
 })
 CommonStates.AddFrozenStates(states)
 

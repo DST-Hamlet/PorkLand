@@ -194,7 +194,7 @@ local function CommonActualRez(inst)
     inst.components.grogginess:SetResistance(3)
     inst.components.grogginess:SetKnockOutTest(ex_fns.ShouldKnockout)
 
-	inst:AddComponent("slipperyfeet")
+    inst:AddComponent("slipperyfeet")
 
     inst.components.moisture:ForceDry(false, inst)
 
@@ -217,10 +217,10 @@ local function CommonActualRez(inst)
     end
     inst.remoterezsource = nil
 
-	inst.last_death_position = nil
-	inst.last_death_shardid = nil
+    inst.last_death_position = nil
+    inst.last_death_shardid = nil
 
-	inst:RemoveTag("reviving")
+    inst:RemoveTag("reviving")
 end
 
 local function DoActualRez(inst, source)
@@ -237,8 +237,8 @@ local function DoActualRez(inst, source)
     inst.AnimState:Show("HAIR")
     inst.AnimState:Show("HEAD")
     inst.AnimState:Hide("HEAD_HAT")
-	inst.AnimState:Hide("HEAD_HAT_NOHELM")
-	inst.AnimState:Hide("HEAD_HAT_HELM")
+    inst.AnimState:Hide("HEAD_HAT_NOHELM")
+    inst.AnimState:Hide("HEAD_HAT_HELM")
 
     inst:Show()
 
@@ -276,7 +276,7 @@ local function OnHaunt(inst, player)
         return
     end
 
-	player:AddTag("reviving")
+    player:AddTag("reviving")
 
     player.deathclientobj = nil
     player.deathcause = nil

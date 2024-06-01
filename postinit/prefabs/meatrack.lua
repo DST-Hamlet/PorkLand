@@ -16,7 +16,7 @@ PLENV.AddPrefabPostInit("meatrack", function(inst)
 
     local _OnStartDrying = inst.components.dryer.onstartdrying
     local function OnStartDrying(inst, ingredient, buildfile)
-    	if meatrack_items[ingredient] then
+        if meatrack_items[ingredient] then
             ingredient = meatrack_items[ingredient]
             buildfile = pl_buildfile
         end

@@ -5,22 +5,22 @@ local assets =
 
 local MAX_LOOT = 10
 local function OnWorkCallback(inst, worker, workleft, workdone)
-	local num_loots = math.floor(math.clamp(workdone, 1, MAX_LOOT))
-	num_loots = math.min(num_loots, inst.components.stackable:StackSize())
+    local num_loots = math.floor(math.clamp(workdone, 1, MAX_LOOT))
+    num_loots = math.min(num_loots, inst.components.stackable:StackSize())
 
-	if inst.components.stackable:StackSize() > num_loots then
-		if num_loots == MAX_LOOT then
-			LaunchAt(inst, inst, worker, TUNING.SPOILED_FISH_LOOT.LAUNCH_SPEED, TUNING.SPOILED_FISH_LOOT.LAUNCH_HEIGHT, nil, TUNING.SPOILED_FISH_LOOT.LAUNCH_ANGLE)
-		end
-	end
+    if inst.components.stackable:StackSize() > num_loots then
+        if num_loots == MAX_LOOT then
+            LaunchAt(inst, inst, worker, TUNING.SPOILED_FISH_LOOT.LAUNCH_SPEED, TUNING.SPOILED_FISH_LOOT.LAUNCH_HEIGHT, nil, TUNING.SPOILED_FISH_LOOT.LAUNCH_ANGLE)
+        end
+    end
 
-	for _ = 1, num_loots do
-		inst.components.lootdropper:DropLoot()
-	end
+    for _ = 1, num_loots do
+        inst.components.lootdropper:DropLoot()
+    end
 
-	local top_stack_item = inst.components.stackable:Get(num_loots)
+    local top_stack_item = inst.components.stackable:Get(num_loots)
     SpawnPrefab("collapse_small").Transform:SetPosition(top_stack_item.Transform:GetWorldPosition())
-	top_stack_item:Remove()
+    top_stack_item:Remove()
 end
 
 local function OnStackSizeChanged(inst, data)

@@ -1,16 +1,16 @@
 local assets=
 {
-	Asset("ANIM", "anim/hippo_antler.zip"),
+    Asset("ANIM", "anim/hippo_antler.zip"),
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
-	inst:AddTag("antler")
+    inst:AddTag("antler")
 
     inst.AnimState:SetBank("hippo_antler")
     inst.AnimState:SetBuild("hippo_antler")

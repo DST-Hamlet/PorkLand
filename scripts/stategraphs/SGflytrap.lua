@@ -286,7 +286,7 @@ CommonStates.AddRunStates(states,
 {
     runtimeline =
     {
-        ---fast		
+        ---fast
         TimeEvent(5 * FRAMES, function(inst) if inst:HasTag("usefastrun") then inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/venus_flytrap/" .. inst.stage .. "/breath_out")  end end),
         TimeEvent(12 * FRAMES, function(inst) if inst:HasTag("usefastrun") then inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/venus_flytrap/" .. inst.stage .. "/step") end end),
         ---slow

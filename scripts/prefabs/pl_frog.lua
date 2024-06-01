@@ -40,9 +40,9 @@ local RETARGET_CANT_TAGS = {"merm", "FX", "NOCLICK", "INLIMBO", "hippopotamoose"
 local function Retarget(inst)
     if not inst.components.health:IsDead() and not inst.components.sleeper:IsAsleep() then
         return FindEntity(inst, TUNING.FROG_TARGET_DIST, function(ent)
-			if ent.components.combat and ent.components.health and not ent.components.health:IsDead() then
-				return ent.components.inventory ~= nil or ent:HasTag("insect")
-			end
+            if ent.components.combat and ent.components.health and not ent.components.health:IsDead() then
+                return ent.components.inventory ~= nil or ent:HasTag("insect")
+            end
         end, RETARGET_MUST_TAGS, RETARGET_CANT_TAGS)
     end
 end

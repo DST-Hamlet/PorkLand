@@ -11,10 +11,10 @@ end
 
 local pl_fx = {
     {
-	    name = "groundpound_nosound_fx",
-	    bank = "bearger_ground_fx",
-	    build = "bearger_ground_fx",
-    	anim = "idle",
+        name = "groundpound_nosound_fx",
+        bank = "bearger_ground_fx",
+        build = "bearger_ground_fx",
+        anim = "idle",
     },
     {
         name = "hacking_tall_grass_fx",
@@ -39,11 +39,11 @@ local pl_fx = {
         fn = TintOceantFx,
     },
     {
-    	name = "snake_scales_fx",
-    	bank = "snake_scales_fx",
-    	build = "snake_scales_fx",
-    	anim = "idle",
-	},
+        name = "snake_scales_fx",
+        bank = "snake_scales_fx",
+        build = "snake_scales_fx",
+        anim = "idle",
+    },
     {
         name = "splash_water_drop",
         bank = "splash_water_drop",

@@ -22,11 +22,11 @@ local function OnRespawnFromGhost(inst, data)
 end
 
 local function OnLoad(inst, data, ...)
-	if data ~= nil then
-		if data.is_ghost then
-			--blockPoison(inst)
-		end
-	end
+    if data ~= nil then
+        if data.is_ghost then
+            --blockPoison(inst)
+        end
+    end
     -- Well this really sucks, thanks for making my life hell klei :) (I blame Zarklord specifically because funi)
     local _DoTaskInTime = inst.DoTaskInTime
     function inst:DoTaskInTime(time, fn, ...)
@@ -44,7 +44,7 @@ local function OnLoad(inst, data, ...)
             return unpack(_rets)
         end or nil, ...)
     end
-	local rets = {inst.Pl_OnLoad(inst, data, ...)}
+    local rets = {inst.Pl_OnLoad(inst, data, ...)}
     inst.DoTaskInTime = _DoTaskInTime
     return unpack(rets)
 end

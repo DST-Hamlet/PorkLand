@@ -442,7 +442,7 @@ local states = {
             end),
         },
     },
-  
+
     State{
         name = "rebirth_floweroflife",
         tags = {"nopredict", "silentmorph"},
@@ -551,9 +551,9 @@ local states = {
                 end
 
                 inst.sg:RemoveStateTag("busy")
-			 	        if inst.components.playercontroller ~= nil then
-					          inst.components.playercontroller:Enable(true)
-				        end
+                         if inst.components.playercontroller ~= nil then
+                              inst.components.playercontroller:Enable(true)
+                        end
             end),
         },
 

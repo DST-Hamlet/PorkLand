@@ -10,8 +10,8 @@ AddGlobalClassPostConstruct("behaviours/chaseandattack", "ChaseAndAttack", funct
             self.distance_from_ocean_target = function(inst, target)
                 local attackrange = inst.components.combat.attackrange or 1
                 return CanProbablyReachTargetFromShore(inst, target, attackrange - 0.75)
-		        and attackrange - 0.75
-		        or OUTSIDE_CATAPULT_RANGE
+                and attackrange - 0.75
+                or OUTSIDE_CATAPULT_RANGE
             end
         end
     end

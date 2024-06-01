@@ -1,13 +1,13 @@
 local assets=
 {
-	Asset("ANIM", "anim/snakeoil.zip"),
+    Asset("ANIM", "anim/snakeoil.zip"),
 }
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 

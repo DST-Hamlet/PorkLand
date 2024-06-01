@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/lotus.zip"),
+    Asset("ANIM", "anim/lotus.zip"),
 }
 
 local prefabs =
@@ -46,7 +46,7 @@ local function OnRegen(inst)
 end
 
 local function MakeEmpty(inst)
-	inst.AnimState:PlayAnimation("picked", true)
+    inst.AnimState:PlayAnimation("picked", true)
 end
 
 local function OnDay(inst)
@@ -74,12 +74,12 @@ local function OnPhaseChange(inst, phase)
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-	inst.entity:AddMiniMapEntity()
+    inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
     MakeObstaclePhysics(inst, 0.25)
@@ -115,7 +115,7 @@ local function fn()
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = TUNING.SMALL_FUEL
 
-	MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
+    MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
     MakeSmallPropagator(inst)
     MakeHauntable(inst)
 
