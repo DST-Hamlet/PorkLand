@@ -79,6 +79,7 @@ return {
         LILYPAD = "A little too heavy to use for a balloon.",
         LOTUS = "Almost worth getting my feet wet for that.",
         LOTUS_FLOWER = "Looks edible.",
+        LOTUS_FLOWER_COOKED = "Not the first time I've eaten flowers.",
         MACHETE = "Machete. Designed for adventure.",
         PANGOLDEN = "I don't actually mind picking up his poop.",
         PEAGAWK = {

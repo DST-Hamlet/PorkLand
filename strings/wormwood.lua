@@ -76,6 +76,7 @@ return {
         LILYPAD = "Nice day for swim?",
         LOTUS = "Hello! How's water?",
         LOTUS_FLOWER = "Smells sweet!",
+        LOTUS_FLOWER_COOKED = "Holey belly stuff",
         MACHETE = "Slicer. For friend haircuts",
         PANGOLDEN = "Shiny Pooper",
         PEAGAWK = {

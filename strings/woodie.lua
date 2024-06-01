@@ -75,6 +75,7 @@ return {
         LILYPAD = "Nature's real good, eh?",
         LOTUS = "Pretty nice, dontcha think Lucy?",
         LOTUS_FLOWER = "That's a beaut.",
+        LOTUS_FLOWER_COOKED = "Cooks up real good.",
         MACHETE = "Ooh, that's a thing for chopping.",
         PANGOLDEN = "Looks expensive.",
         PEAGAWK = {

@@ -76,6 +76,7 @@ return {
         LILYPAD = "A massive pond leaf.",
         LOTUS = "How dainty.",
         LOTUS_FLOWER = "I prefer blooms of a darker shade.",
+        LOTUS_FLOWER_COOKED = "One makes due.",
         MACHETE = "Truthfully I was always a hack.",
         PANGOLDEN = "He has expensive tastes.",
         PEAGAWK = {

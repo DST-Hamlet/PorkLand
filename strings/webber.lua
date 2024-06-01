@@ -75,6 +75,7 @@ return {
         LILYPAD = "That's a really big lily pad!",
         LOTUS = "Wow, it's so pink!",
         LOTUS_FLOWER = "Gosh, this sure is beautiful.",
+        LOTUS_FLOWER_COOKED = "This looks delicious.",
         MACHETE = "Hyah! Hyah!",
         PANGOLDEN = "I think he eats gold.",
         PEAGAWK = {

@@ -76,6 +76,7 @@ return {
         LILYPAD = "A leaf aft'r me own heart.",
         LOTUS = "It be a big pink flow'r.",
         LOTUS_FLOWER = "Tis a flow'r'o'th'land.",
+        LOTUS_FLOWER_COOKED = "It b'cooked.",
         MACHETE = "Ye be slicin'!",
         PANGOLDEN = "Eatin' up all tha treasure!",
         PEAGAWK = {

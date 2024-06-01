@@ -53,6 +53,7 @@ return {
         LILYPAD = "Lily Pad",
         LOTUS = "Lotus Plant",
         LOTUS_FLOWER = "Lotus Flower",
+        LOTUS_FLOWER_COOKED = "Cooked Lotus Root",
         MACHETE = "Machete",
         PANGOLDEN = "Pangolden",
         PEAGAWK = "Peagawk",

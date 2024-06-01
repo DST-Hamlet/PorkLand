@@ -76,6 +76,7 @@ return {
         LILYPAD = "Looks like a waterbed to me.",
         LOTUS = "Those'd make a great surfboard pattern.",
         LOTUS_FLOWER = "Pretty!",
+        LOTUS_FLOWER_COOKED = "Mmmm...Tasty.",
         MACHETE = "What a hack job.",
         PANGOLDEN = "Shiny.",
         PEAGAWK = {

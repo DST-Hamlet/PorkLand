@@ -75,6 +75,7 @@ return {
         LILYPAD = "Goodness! They can grow quite large in the wild.",
         LOTUS = "Nelumbo nucifera. Quite beautiful.",
         LOTUS_FLOWER = "The blossom of Nelumbo nucifera. It's quite inspiring.",
+        LOTUS_FLOWER_COOKED = "The health benefits are numerous.",
         MACHETE = "Used for hacking through the brush.",
         PANGOLDEN = "Aurum vermilingua.",
         PEAGAWK = {

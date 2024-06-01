@@ -75,6 +75,7 @@ return {
         LILYPAD = "Fascinating! It contains a small ecosystem of animals.",
         LOTUS = "Ah. A water based plant with attractive flowers. I should pick it.",
         LOTUS_FLOWER = "Theoretically, it's edible. Though I should cook it to avoid stomach problems.",
+        LOTUS_FLOWER_COOKED = "A salubrious plant capable of boosting mental wellness.",
         MACHETE = "A pragmatic tool for slashing objects.",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",
         PEAGAWK = {

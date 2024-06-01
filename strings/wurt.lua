@@ -70,6 +70,7 @@ return {
         LILYPAD = "Afloat leaf.",
         LOTUS = "Fancy flower in the pool.",
         LOTUS_FLOWER = "Fancy flower.",
+        LOTUS_FLOWER_COOKED = "Filar snacks!",
         MACHETE = "Plant hacker.",
         PANGOLDEN = "Don't drink them all!",
         PEAGAWK = {

@@ -75,6 +75,7 @@ return {
         LILYPAD = "Big water leaf.",
         LOTUS = "Is puny pond plant.",
         LOTUS_FLOWER = "Is puny pond flower.",
+        LOTUS_FLOWER_COOKED = "Wolfgang eat you now.",
         MACHETE = "Ah! Very good!",
         PANGOLDEN = "Hehe. Haves big nose.",
         PEAGAWK = {

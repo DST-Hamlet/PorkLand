@@ -70,6 +70,7 @@ return {
         LILYPAD = "I have never seen such a big water lily!",
         LOTUS = "What a beautiful aquatic plant.",
         LOTUS_FLOWER = "it's beautiful!",
+        LOTUS_FLOWER_COOKED = "It tastes crunchy.",
         MACHETE = "Hack and slash! Working's always fun.",
         PANGOLDEN = "Living metallurgical.",
         PEAGAWK = {

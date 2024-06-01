@@ -69,6 +69,7 @@ return {
         LILYPAD = "The boat passed in the pond, and the duckweed gave way.",
         LOTUS = "Lovely flower from water.",
         LOTUS_FLOWER = "Mortals eat flowers now?",
+        LOTUS_FLOWER_COOKED = "*Crunch* It's still connected!",
         MACHETE = "To chop and slash!",
         PANGOLDEN = "How are you today? Any outcome?",
         PEAGAWK = {

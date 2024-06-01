@@ -76,6 +76,7 @@ return {
         LILYPAD = "It's full of science. I can tell.",
         LOTUS = "The science is blooming well this season.",
         LOTUS_FLOWER = "A lovely science flower.",
+        LOTUS_FLOWER_COOKED = "A delicacy.",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "It likes rich food.",
         PEAGAWK = {

@@ -70,6 +70,7 @@ return {
         LILYPAD = "I don't think this shortcut can be taken.",
         LOTUS = "Those buds look familiar...",
         LOTUS_FLOWER = "I hope that's more than dinner tonight.",
+        LOTUS_FLOWER_COOKED = "It better be worth my time cooking it.",
         MACHETE = "It's for chopping, simple as that.",
         PANGOLDEN = "It has an extravagant recipe.",
         PEAGAWK = {

@@ -75,6 +75,7 @@ return {
         LILYPAD = "I doubt it has much flavor.",
         LOTUS = "Mmm, lotus root...",
         LOTUS_FLOWER = "I should cook something up with this.",
+        LOTUS_FLOWER_COOKED = "A fine delicacy!",
         MACHETE = "I could chop many an onion with this!",
         PANGOLDEN = "Already has a nice golden braise.",
         PEAGAWK = {

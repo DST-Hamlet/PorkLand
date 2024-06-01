@@ -75,6 +75,7 @@ return {
         LILYPAD = "A leaf of the water.",
         LOTUS = "Freya looks down upon this.",
         LOTUS_FLOWER = "It possesses Freya's great beauty.",
+        LOTUS_FLOWER_COOKED = "I care not to consume this.",
         MACHETE = "A fine length of blade.",
         PANGOLDEN = "Surely a cousin of Gullinbursti!",
         PEAGAWK = {
