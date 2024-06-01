@@ -69,6 +69,7 @@ return {
         IRON = "Is that iron?",
         LILYPAD = "Look how big it is! I really want to stand up and take a look!",
         LOTUS = "Sis Walani says that's edible...",
+        LOTUS_FLOWER = "A flower floating in the water.",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "A born gold rusher.",
         PEAGAWK = {

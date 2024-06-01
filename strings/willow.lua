@@ -74,6 +74,7 @@ return {
         IRON = "I can't burn it with just my lighter.",
         LILYPAD = "I can't burn stuff out on the water.",
         LOTUS = "Can I eat it? Or burn it?",
+        LOTUS_FLOWER = "Just a dumb flower.",
         MACHETE = "Or I could just burn my way through.",
         PANGOLDEN = "Yeesh, he's sucking up all the gold!",
         PEAGAWK = {

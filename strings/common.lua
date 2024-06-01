@@ -52,6 +52,7 @@ return {
         IRON = "Iron Ore",
         LILYPAD = "Lily Pad",
         LOTUS = "Lotus Plant",
+        LOTUS_FLOWER = "Lotus Flower",
         MACHETE = "Machete",
         PANGOLDEN = "Pangolden",
         PEAGAWK = "Peagawk",

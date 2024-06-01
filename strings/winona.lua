@@ -69,6 +69,7 @@ return {
         IRON = "Invaluable material for manufacturing useful tools.",
         LILYPAD = "I have never seen such a big water lily!",
         LOTUS = "What a beautiful aquatic plant.",
+        LOTUS_FLOWER = "it's beautiful!",
         MACHETE = "Hack and slash! Working's always fun.",
         PANGOLDEN = "Living metallurgical.",
         PEAGAWK = {

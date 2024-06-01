@@ -69,6 +69,7 @@ return {
         IRON = "An essential material for accurate timepieces.",
         LILYPAD = "I don't think this shortcut can be taken.",
         LOTUS = "Those buds look familiar...",
+        LOTUS_FLOWER = "I hope that's more than dinner tonight.",
         MACHETE = "It's for chopping, simple as that.",
         PANGOLDEN = "It has an extravagant recipe.",
         PEAGAWK = {

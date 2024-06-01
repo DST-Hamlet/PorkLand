@@ -74,6 +74,7 @@ return {
         IRON = "Iron is strong like Wolfgang.",
         LILYPAD = "Big water leaf.",
         LOTUS = "Is puny pond plant.",
+        LOTUS_FLOWER = "Is puny pond flower.",
         MACHETE = "Ah! Very good!",
         PANGOLDEN = "Hehe. Haves big nose.",
         PEAGAWK = {

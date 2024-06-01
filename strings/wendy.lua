@@ -74,6 +74,7 @@ return {
         IRON = "Iron. Like my heart.",
         LILYPAD = "How calm it looks upon the water.",
         LOTUS = "It flourishes on the waves of sorrow.",
+        LOTUS_FLOWER = "This beauty will also die.",
         MACHETE = "This is a lot of blade.",
         PANGOLDEN = "A fool and his gold.",
         PEAGAWK = {

@@ -69,6 +69,7 @@ return {
         IRON = "Red hard rock.",
         LILYPAD = "Afloat leaf.",
         LOTUS = "Fancy flower in the pool.",
+        LOTUS_FLOWER = "Fancy flower.",
         MACHETE = "Plant hacker.",
         PANGOLDEN = "Don't drink them all!",
         PEAGAWK = {

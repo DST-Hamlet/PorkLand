@@ -74,6 +74,7 @@ return {
         IRON = "Can't chop this too well.",
         LILYPAD = "Nature's real good, eh?",
         LOTUS = "Pretty nice, dontcha think Lucy?",
+        LOTUS_FLOWER = "That's a beaut.",
         MACHETE = "Ooh, that's a thing for chopping.",
         PANGOLDEN = "Looks expensive.",
         PEAGAWK = {

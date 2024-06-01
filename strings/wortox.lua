@@ -68,6 +68,7 @@ return {
         IRON = "Oooh. Almost burned me.",
         LILYPAD = "The boat passed in the pond, and the duckweed gave way.",
         LOTUS = "Lovely flower from water.",
+        LOTUS_FLOWER = "Mortals eat flowers now?",
         MACHETE = "To chop and slash!",
         PANGOLDEN = "How are you today? Any outcome?",
         PEAGAWK = {

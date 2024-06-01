@@ -74,6 +74,7 @@ return {
         IRON = "Material for metalwork.",
         LILYPAD = "A leaf of the water.",
         LOTUS = "Freya looks down upon this.",
+        LOTUS_FLOWER = "It possesses Freya's great beauty.",
         MACHETE = "A fine length of blade.",
         PANGOLDEN = "Surely a cousin of Gullinbursti!",
         PEAGAWK = {

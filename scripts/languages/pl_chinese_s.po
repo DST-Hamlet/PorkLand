@@ -340,6 +340,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS"
 msgid "The science is blooming well this season."
 msgstr "科学在这个季节完美地绽放了。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS_FLOWER"
+msgid "A lovely science flower."
+msgstr "一朵可爱的科学之花。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
@@ -779,6 +784,11 @@ msgstr "真迷人！它包含着一个小型生物的生态系统。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS"
 msgid "Ah. A water based plant with attractive flowers. I should pick it."
 msgstr "啊哈。一种能开出漂亮的花儿的水生植物。我可以采摘它。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS_FLOWER"
+msgid "Theoretically, it's edible. Though I should cook it to avoid stomach problems."
+msgstr "从理论上讲，它可以食用。不过我应该煮熟它，以免引发我的胃病。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE"
@@ -1230,6 +1240,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS"
 msgid "Those'd make a great surfboard pattern."
 msgstr "那组成了一个很棒的冲浪板图案。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS_FLOWER"
+msgid "Pretty!"
+msgstr "好漂亮！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE"
 msgid "What a hack job."
@@ -1665,6 +1680,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS"
 msgid "Sis Walani says that's edible..."
 msgstr "瓦拉尼大姐说那个可以吃..."
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS_FLOWER"
+msgid "A flower floating in the water."
+msgstr "一朵飘在水里的花。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
@@ -2094,6 +2114,11 @@ msgstr "我想这条近路抄不得。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS"
 msgid "Those buds look familiar..."
 msgstr "那花苞看起来很眼熟..."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS_FLOWER"
+msgid "I hope that's more than dinner tonight."
+msgstr "我希望今天的晚饭不止这些。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE"
@@ -2529,6 +2554,11 @@ msgstr "我怀疑它味道很大。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS"
 msgid "Mmm, lotus root..."
 msgstr "嗯，莲藕根..."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS_FLOWER"
+msgid "I should cook something up with this."
+msgstr "我应该用这个做出点什么。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE"
@@ -2969,6 +2999,11 @@ msgstr "长在水中的叶子。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS"
 msgid "Freya looks down upon this."
 msgstr "芙蕾雅看不起它。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS_FLOWER"
+msgid "It possesses Freya's great beauty."
+msgstr "它拥有芙蕾雅的美丽。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE"
@@ -3415,6 +3450,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS"
 msgid "How dainty."
 msgstr "真美味。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS_FLOWER"
+msgid "I prefer blooms of a darker shade."
+msgstr "我更喜欢暗影的绽放。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE"
 msgid "Truthfully I was always a hack."
@@ -3855,6 +3895,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS"
 msgid "Wow, it's so pink!"
 msgstr "哇，好粉啊！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS_FLOWER"
+msgid "Gosh, this sure is beautiful."
+msgstr "天哪，这太美了。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE"
 msgid "Hyah! Hyah!"
@@ -4294,6 +4339,11 @@ msgstr "它浮在水上的样子是多么平静啊。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS"
 msgid "It flourishes on the waves of sorrow."
 msgstr "它盛开在悲伤的浪潮之上。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS_FLOWER"
+msgid "This beauty will also die."
+msgstr "这样的美丽最终也会逝去。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE"
@@ -4745,6 +4795,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS"
 msgid "Almost worth getting my feet wet for that."
 msgstr "我的脚会湿掉但它值得一采。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS_FLOWER"
+msgid "Looks edible."
+msgstr "看上去可以吃。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE"
 msgid "Machete. Designed for adventure."
@@ -5184,6 +5239,11 @@ msgstr "天啊！它们在野外的能长得这么大。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS"
 msgid "Nelumbo nucifera. Quite beautiful."
 msgstr "水芙蓉。非常的美丽。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS_FLOWER"
+msgid "The blossom of Nelumbo nucifera. It's quite inspiring."
+msgstr "盛开的水芙蓉。真令人激动。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE"
@@ -5630,6 +5690,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS"
 msgid "SHALL WILBA COMPARE IT TO SUMMER DAY?"
 msgstr "薇尔芭为何不能将你比作夏天？ "
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS_FLOWER"
+msgid "YON FLOWER O' NUM NUMS"
+msgstr "那朵花好美味啊"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE"
 msgid "YON SLASHY TOOL"
@@ -6070,6 +6135,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS"
 msgid "Can I eat it? Or burn it?"
 msgstr "吃掉？还是烧掉？"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS_FLOWER"
+msgid "Just a dumb flower."
+msgstr "只是个睡莲花。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE"
 msgid "Or I could just burn my way through."
@@ -6505,6 +6575,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS"
 msgid "What a beautiful aquatic plant."
 msgstr "真是棵漂亮的水生植物。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS_FLOWER"
+msgid "it's beautiful!"
+msgstr "真漂亮！"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE"
 msgid "Hack and slash! Working's always fun."
@@ -6939,6 +7014,11 @@ msgstr "水上的大叶子。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS"
 msgid "Is puny pond plant."
 msgstr "小池塘里的植物。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS_FLOWER"
+msgid "Is puny pond flower."
+msgstr "小池塘里的花。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE"
@@ -7379,6 +7459,11 @@ msgstr "大自然真正的好处，嗯？"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS"
 msgid "Pretty nice, dontcha think Lucy?"
 msgstr "很好，不要尝试打露西的主意？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS_FLOWER"
+msgid "That's a beaut."
+msgstr "那是朵很漂亮的花。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE"
@@ -7825,6 +7910,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS"
 msgid "It be a big pink flow'r."
 msgstr "巨大的粉红色花朵。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS_FLOWER"
+msgid "Tis a flow'r'o'th'land."
+msgstr "陆地之花。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE"
 msgid "Ye be slicin'!"
@@ -8270,6 +8360,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS"
 msgid "Hello! How's water?"
 msgstr "你好！来点水怎么样？"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS_FLOWER"
+msgid "Smells sweet!"
+msgstr "闻起来甜甜的！"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE"
 msgid "Slicer. For friend haircuts"
@@ -8700,6 +8795,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS"
 msgid "Lovely flower from water."
 msgstr "出淤泥而不染。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS_FLOWER"
+msgid "Mortals eat flowers now?"
+msgstr "凡人现在连花都要吃了。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE"
 msgid "To chop and slash!"
@@ -9129,6 +9229,11 @@ msgstr "漂浮的大叶子。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS"
 msgid "Fancy flower in the pool."
 msgstr "好看的花长在水里。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS_FLOWER"
+msgid "Fancy flower."
+msgstr "好看的花。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE"
@@ -9565,6 +9670,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS"
 msgid "ORGANIC UNIT THAT REQUIRES WATER"
 msgstr "需要水的有机单位"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS_FLOWER"
+msgid "UGLY WATER FLOWER"
+msgstr "丑陋的水生花朵"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE"
 msgid "A LONG BLADE FOR EXPERT HACKING"
@@ -9894,6 +10004,11 @@ msgstr "睡莲叶"
 msgctxt "STRINGS.NAMES.LOTUS"
 msgid "Lotus Plant"
 msgstr "睡莲"
+
+#. STRINGS.NAMES.LOTUS_FLOWER
+msgctxt "STRINGS.NAMES.LOTUS_FLOWER"
+msgid "Lotus Flower"
+msgstr "睡莲花"
 
 #. STRINGS.NAMES.MACHETE
 msgctxt "STRINGS.NAMES.MACHETE"

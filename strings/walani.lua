@@ -75,6 +75,7 @@ return {
         IRON = "This has gotta be good for something.",
         LILYPAD = "Looks like a waterbed to me.",
         LOTUS = "Those'd make a great surfboard pattern.",
+        LOTUS_FLOWER = "Pretty!",
         MACHETE = "What a hack job.",
         PANGOLDEN = "Shiny.",
         PEAGAWK = {

@@ -74,6 +74,7 @@ return {
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
         LILYPAD = "Fascinating! It contains a small ecosystem of animals.",
         LOTUS = "Ah. A water based plant with attractive flowers. I should pick it.",
+        LOTUS_FLOWER = "Theoretically, it's edible. Though I should cook it to avoid stomach problems.",
         MACHETE = "A pragmatic tool for slashing objects.",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",
         PEAGAWK = {
