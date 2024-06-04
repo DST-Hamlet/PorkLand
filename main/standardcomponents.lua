@@ -161,9 +161,9 @@ end
 function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
     local function PushSway(inst)
         if math.random() > .5 then
-            inst.AnimState:PushAnimation(inst.anims.sway1, true)
+            inst.AnimState:PushAnimation("sway1_loop_" .. stages[inst.components.growable.stage], true)
         else
-            inst.AnimState:PushAnimation(inst.anims.sway2, true)
+            inst.AnimState:PushAnimation("sway2_loop_" .. stages[inst.components.growable.stage], true)
         end
     end
 
@@ -225,11 +225,13 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
         end
     end
 
-    local onburnt = inst.components.burnable.onburnt
-    inst.components.burnable:SetOnBurntFn(function(inst)
-        if onburnt then onburnt(inst) end
-        inst:RemoveComponent("blowinwindgust")
-    end)
+    if inst.components.burnable then
+        local onburnt = inst.components.burnable.onburnt
+        inst.components.burnable:SetOnBurntFn(function(inst)
+            if onburnt then onburnt(inst) end
+            inst:RemoveComponent("blowinwindgust")
+        end)
+    end
 
     local onfinish = inst.components.workable.onfinish
     inst.components.workable:SetOnFinishCallback(function(inst, chopper)

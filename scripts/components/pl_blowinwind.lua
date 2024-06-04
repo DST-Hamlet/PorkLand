@@ -209,23 +209,23 @@ function BlowInWind:OnUpdate(dt)
         self:SpawnWindTrail(dt)
     end
 
-    local x,y,z = self.inst.Transform:GetWorldPosition()
+    local x, y, z = self.inst.Transform:GetWorldPosition()
     local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    if TileGroupManager:IsOceanTile(tile) then
+    if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
         if self.inst.components.burnable and self.inst.components.burnable:IsBurning() then
             self.inst.components.burnable:Extinguish() --Do this before anything that required the inventory item component, it gets removed when something is lit on fire and re-added when it's extinguished 
         end
         if self.inst.components.inventoryitem then
-            self.inst.components.inventoryitem:SetLanded(true, true)
+            self.inst.components.inventoryitem:SetLanded(true)
+            self.inst:PushEvent("on_landed") -- force this event for floater component, since it's already landed
+            self.inst.components.inventoryitem:TryToSink()
         end
         if self.inst.components.floater then
+            -- maybe slowly stops it?
             local vx, vy, vz = self.inst.Physics:GetMotorVel()
             self.inst.Physics:SetMotorVel(0.5 * vx, 0, 0)
-            self.inst:DoTaskInTime(1.0, function(inst)
+            self.inst:DoTaskInTime(1, function(inst)
                 self.inst.Physics:SetMotorVel(0, 0, 0)
-                if self.inst.components.inventoryitem then
-                    self.inst.components.inventoryitem:SetLanded(true, true)
-                end
             end)
             self.inst:StopUpdatingComponent(self)
         end

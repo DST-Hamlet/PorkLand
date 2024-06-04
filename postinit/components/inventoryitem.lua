@@ -5,7 +5,7 @@ AddComponentPostInit("inventoryitem", function(self, inst)
     inst:AddTag("isinventoryitem")
 end)
 
-local InventoryItem = require("inventoryitem")
+local InventoryItem = require("components/inventoryitem")
 
 local _OnDropped = InventoryItem.OnDropped
 function InventoryItem:OnDropped(randomdir, speedmult, skipfall)
