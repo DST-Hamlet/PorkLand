@@ -5,7 +5,7 @@ local function GetWindSpeed(self)
     local wind_speed = 1
 
     -- get a wind speed adjustment
-    if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy()
+    if TheWorld.net ~= nil and TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy()
         and not self.inst:HasTag("windspeedimmune")
         and not self.inst:HasTag("playerghost") then
 
@@ -91,7 +91,7 @@ local function ClientGetSpeedMultiplier(self)
 
     mult = mult + ((self:TempGroundSpeedMultiplier() or self.groundspeedmultiplier) - 1)
 
-    return mult * self.throttle * GetWindSpeed()
+    return mult * self.throttle * GetWindSpeed(self)
 end
 
 local function RecalculateExternalSpeedMultiplier(self, sources)

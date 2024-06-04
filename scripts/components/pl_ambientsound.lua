@@ -436,7 +436,7 @@ function self:OnUpdate(dt)
         _sanityparam = sanityparam
     end
 
-    if TheWorld.net.components.plateauwind:GetWindSpeed() > 0 then
+    if TheWorld.net ~= nil and TheWorld.net.components.plateauwind:GetWindSpeed() > 0 then
         if not _playing_wind then
             StartWindSound()
             _playing_wind = true

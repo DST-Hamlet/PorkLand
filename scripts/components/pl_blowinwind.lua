@@ -131,7 +131,7 @@ function BlowInWind:SpawnWindTrail(dt)
         local wake = SpawnPrefab("windtrail")
         local x, y, z = self.inst.Transform:GetWorldPosition()
         wake.Transform:SetPosition(x, y, z)
-        wake.Transform:SetRotation(self.inst.Transform:GetRotation())
+        wake.Transform:SetRotation(self.inst.Transform:GetRotation() + 180)
 
         self.time_since_spawn = 0
     end
@@ -199,7 +199,7 @@ function BlowInWind:OnUpdate(dt)
         self.inst.SoundEmitter:SetParameter(self.sound_name, self.sound_parameter, self.soundspeed)
     end
 
-    -- Walk!	
+    -- Walk!
     self.current_angle = math.atan2(self.velocity.z, self.velocity.x) / DEGREES
     self.inst.Transform:SetRotation(self.current_angle)
     self.inst.Physics:SetMotorVel(self.speed, 0, 0)
@@ -213,7 +213,7 @@ function BlowInWind:OnUpdate(dt)
     local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
     if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
         if self.inst.components.burnable and self.inst.components.burnable:IsBurning() then
-            self.inst.components.burnable:Extinguish() --Do this before anything that required the inventory item component, it gets removed when something is lit on fire and re-added when it's extinguished 
+            self.inst.components.burnable:Extinguish() --Do this before anything that required the inventory item component, it gets removed when something is lit on fire and re-added when it's extinguished
         end
         if self.inst.components.inventoryitem then
             self.inst.components.inventoryitem:SetLanded(true)
