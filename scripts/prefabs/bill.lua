@@ -1,5 +1,3 @@
-local brain = require("brains/billbrain")
-
 local assets =
 {
     Asset("ANIM", "anim/bill_agro_build.zip"),
@@ -12,6 +10,8 @@ local prefabs =
 {
     "bill_quill",
 }
+
+local brain = require("brains/billbrain")
 
 SetSharedLootTable( "bill",
 {
@@ -103,6 +103,12 @@ local function fn()
         return inst
     end
 
+    inst.can_tumble = false
+
+    inst:AddComponent("inspectable")
+
+    inst:AddComponent("inventory")
+
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("bill")
 
@@ -112,10 +118,6 @@ local function fn()
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.BILL_HEALTH)
-
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("inventory")
 
     inst:AddComponent("sleeper")
 

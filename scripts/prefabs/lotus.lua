@@ -93,6 +93,7 @@ local function fn()
 
     inst.MiniMapEntity:SetIcon("lotus.tex")
 
+    inst:AddTag("lotus")
     inst:AddTag("plant")
 
     inst.entity:SetPristine()

@@ -71,11 +71,11 @@ local custonsiz_items = {  -- add in dst custonsiz
         monsters = {
         },
         animals = {
-            pangolden = {image = "pangolden.tex"},
             "dungpile",
+            "hippopotamoose",
+            "peagawk",
+            "pangolden",
             hanging_vine_patch = {image = "hanging_vine.tex"},
-            hippopotamoose = {image = "hippopotamoose.tex"},
-            peagawk = {image = "peagawk.tex"}
         },
         resources = {
             "asparagus",

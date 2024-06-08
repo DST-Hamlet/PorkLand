@@ -75,6 +75,12 @@ local function OnExitWater(inst)
     inst.components.knownlocations:RememberLocation("landing_point", inst:GetPosition())
 end
 
+local function Init(inst)
+    if TheWorld.components.hippospawner then
+        TheWorld.components.hippospawner:AddHippo(inst)
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -102,6 +108,8 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst:AddComponent("inspectable")
 
     inst:AddComponent("knownlocations")
 
@@ -134,10 +142,12 @@ local function fn()
     inst.components.groundpounder.numRings = 2
     table.insert(inst.components.groundpounder.noTags, "hippopotamoose")
 
-    inst:AddComponent("inspectable")
-
     inst:SetBrain(brain)
     inst:SetStateGraph("SGhippopotamoose")
+
+    inst:ListenForEvent("attacked", OnAttacked)
+
+    inst:DoTaskInTime(0, Init)
 
     MakeAmphibious(inst, "hippo", "hippo_water", ShouldSilent, OnEnterWater, OnExitWater)
     MakeHauntablePanic(inst)
@@ -145,42 +155,32 @@ local function fn()
     MakeLargeBurnableCharacter(inst, "innerds")
     MakeMediumFreezableCharacter(inst, "innerds")
 
-    inst:ListenForEvent("attacked", OnAttacked)
-
-    inst:DoTaskInTime(0, function()
-        if TheWorld.components.hippospawner then
-            TheWorld.components.hippospawner:AddHippo(inst)
-        end
-    end)
-
     return inst
 end
 
+local function OnEntitySleep(inst)
+    if TheWorld.components.hippospawner then
+        TheWorld.components.hippospawner:RemoveHippo(inst, true)
+    end
+    ReplacePrefab(inst, "hippopotamoose")
+end
+
 -- Dummy prefab for hippo spawner
-local function fn_newborn()
+local function newborn_fn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
+    inst.entity:SetPristine()
 
     inst:AddTag("hippopotamoose")
 
-    inst.entity:SetPristine()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
+    -- [[Non-networked entity]]
 
     inst.is_dummy_prefab = true
-
-    inst.OnEntitySleep = function()
-        if TheWorld.components.hippospawner then
-            TheWorld.components.hippospawner:RemoveHippo(inst, true)
-        end
-        ReplacePrefab(inst, "hippopotamoose")
-    end
+    inst.OnEntitySleep = OnEntitySleep
 
     return inst
 end
 
 return Prefab("hippopotamoose", fn, assets, prefabs),
-       Prefab("hippopotamoose_newborn", fn_newborn, {}, {"hippopotamoose"})
+    Prefab("hippopotamoose_newborn", newborn_fn)
