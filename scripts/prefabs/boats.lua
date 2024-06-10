@@ -366,6 +366,7 @@ local function corkboatfn()
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
             inst.replica.sailable.creaksound = "dontstarve_DLC003/common/objects/corkboat/creaks"
+            inst.replica.sailable.basicspeedbonus = TUNING.BOAT_CORK_SPEED
         end
         return inst
     end
@@ -386,6 +387,9 @@ local function corkboatfn()
     inst.components.boathealth.hitfx = "boat_hit_fx_corkboat"
 
     inst.components.sailable.flotsambuild = "flotsam_corkboat_build"
+
+    inst.replica.sailable.creaksound = "dontstarve_DLC003/common/objects/corkboat/creaks"
+    inst.replica.sailable.basicspeedbonus = TUNING.BOAT_CORK_SPEED
 
     inst.components.flotsamspawner.flotsamprefab = "flotsam_corkboat"
 

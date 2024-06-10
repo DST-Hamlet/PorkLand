@@ -194,6 +194,7 @@ return Class(function(self, inst)
     local _groundoverlay = nil
 
     -- Fog
+    local _hasfog = false
     local _fullfog = false
 
     -- Dedicated server does not need to spawn the local fx
@@ -418,10 +419,12 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     local function OnseasonChange(src, new_season)
-        if new_season == SEASONS.LUSH then
-            _world.net.components.plateauwind:StartWind()
-        else
-            _world.net.components.plateauwind:StopWind()
+        if _ismastersim then
+            if new_season == SEASONS.LUSH then
+                _world.net.components.plateauwind:StartWind()
+            else
+                _world.net.components.plateauwind:StopWind()
+            end
         end
     end
 
@@ -876,6 +879,7 @@ return Class(function(self, inst)
                     SetWithPeriodicSync(_fogtime, _fogtime:value() - dt, FRAMES, _ismastersim)
                     if _fogtime:value() <= 5 and _hasfx and ThePlayer ~= nil then
                         ThePlayer:PushEvent("startfog")
+                        _hasfog = true
                     end
 
                     if _fogtime:value() <= 0 then
@@ -897,11 +901,14 @@ return Class(function(self, inst)
                 end
             end
         elseif _fogstate:value() ~= FOG_STATE.CLEAR then
+
+            if _hasfx and ThePlayer and _hasfog then
+                ThePlayer:PushEvent("stopfog")
+                _hasfog = false
+            end
+
             if _fogstate:value() ~= FOG_STATE.LIFTING then
                 TheSim:ClearDSP(.5)
-                if _hasfx and ThePlayer then
-                    ThePlayer:PushEvent("stopfog")
-                end
 
                 if _ismastersim then
                     _fogtime:set(FOG_TRANSITION_TIME)
@@ -922,9 +929,11 @@ return Class(function(self, inst)
             end
         end
 
-        if _season == SEASONS.LUSH then
-            if _world.net.components.plateauwind then
-                _world.net.components.plateauwind:UpdateDynamicWind(dt, _seasonprogress)
+        if _ismastersim then
+            if _season == SEASONS.LUSH then
+                if _world.net.components.plateauwind then
+                    _world.net.components.plateauwind:UpdateDynamicWind(dt, _seasonprogress)
+                end
             end
         end
 
