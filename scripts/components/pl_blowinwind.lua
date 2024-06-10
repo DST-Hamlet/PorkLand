@@ -229,8 +229,6 @@ function BlowInWind:OnUpdate(dt)
             end)
             self.inst:StopUpdatingComponent(self)
         end
-    elseif TileGroupManager:IsImpassableTile(tile) and not TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
-        self.inst.components.inventoryitem:OnHitCloud()
     end
 end
 

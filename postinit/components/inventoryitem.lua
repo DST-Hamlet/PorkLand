@@ -44,3 +44,43 @@ function InventoryItem:OnHitCloud()
         self.inst:Remove()
     end
 end
+
+local _SinkEntity = SinkEntity
+function SinkEntity(entity, ...)
+    if not entity:IsValid() or not TheWorld.has_pl_ocean then
+        return _SinkEntity(entity, ...)
+    end
+
+    local px, py, pz = 0, 0, 0
+    if entity.Transform then
+        px, py, pz = entity.Transform:GetWorldPosition()
+    end
+
+    if entity.components.inventory then
+        entity.components.inventory:DropEverything()
+    end
+
+    if entity.components.container then
+        entity.components.container:DropEverything()
+    end
+
+    local fx = SpawnPrefab((TheWorld.Map:IsValidTileAtPoint(px, py, pz) and "splash_sink") or "splash_clouds_drop")
+    fx.Transform:SetPosition(px, py, pz)
+
+    -- If the entity is irreplaceable, respawn it at the player
+    if entity:HasTag("irreplaceable") then
+        local sx, sy, sz = FindRandomPointOnShoreFromOcean(px, py, pz)
+        if sx ~= nil then
+            entity.Transform:SetPosition(sx, sy, sz)
+        else
+            -- Our reasonable cases are out... so let's loop to find the portal and respawn there.
+            for k, v in pairs(Ents) do
+                if v:IsValid() and v:HasTag("multiplayer_portal") then
+                    entity.Transform:SetPosition(v.Transform:GetWorldPosition())
+                end
+            end
+        end
+    else
+        entity:Remove()
+    end
+end
