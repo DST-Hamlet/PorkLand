@@ -66,7 +66,7 @@ function Floater:ShouldShowEffect()
     local x, y, z = self.inst.Transform:GetWorldPosition()
 
     -- No effect for cloud
-    return TheWorld.Map:IsValidTileAtPoint(x, 0, z) and not TheWorld.Map:IsVisualGroundAtPoint(x, 0, z)
+    return TheWorld.Map:ReverseIsVisualWaterAtPoint(x, 0, z)
 end
 
 -- Other mods use the anim methods (for example skin mods) so we need to wrap them
