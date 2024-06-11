@@ -3,6 +3,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 AddComponentPostInit("inventoryitem", function(self, inst)
     inst:AddTag("isinventoryitem")
+    self.onimpassable = false
 end)
 
 local InventoryItem = require("components/inventoryitem")
@@ -45,6 +46,44 @@ function InventoryItem:OnHitCloud()
     end
 end
 
+local _OnUpdate = InventoryItem.OnUpdate
+function InventoryItem:OnUpdate(dt, ...)
+    local x,y,z = self.inst.Transform:GetWorldPosition()
+
+    if x and y and z and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+        if self.inst.Physics then
+            if not self.onimpassable and TheWorld.Map:IsImpassableAtPoint(x, 0, z) then
+                self.inst:AddTag("falling")
+                self.onimpassable = true
+                self.inst.Physics:ClearCollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
+            elseif self.onimpassable and not TheWorld.Map:IsImpassableAtPoint(x, 0, z) then
+                self.inst:RemoveTag("falling")
+                self.onimpassable = false
+                self.inst.Physics:CollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
+                self.inst.AnimState:SetLayer(LAYER_WORLD)
+            end
+        end
+    end
+    if self.onimpassable and not self.inst:HasTag("INLIMBO") and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+        if y then
+            if y < -0.1 then
+                self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
+            else
+                self.inst.AnimState:SetLayer(LAYER_WORLD)  -- 虽然inventoryitem基本上都属于这个显示层级，但是保险起见，最好在改变显示层级的时候保存旧的显示层级
+            end
+            if y < -1.5 then
+                self:TryToSink()
+                self.inst:StopUpdatingComponent(self)
+            end
+        else
+            self:TryToSink()
+            self.inst:StopUpdatingComponent(self)
+        end
+    else
+        return _OnUpdate(self, dt, ...)
+    end
+end
+
 local _SinkEntity = SinkEntity
 function SinkEntity(entity, ...)
     if not entity:IsValid() or not TheWorld.has_pl_ocean then
@@ -81,6 +120,9 @@ function SinkEntity(entity, ...)
             end
         end
     else
-        entity:Remove()
+        entity.entity:SetInLimbo(true)  -- 这一部分执行后，该实体不应当能和其他实体产生互动
+        entity.inlimbo = true
+        entity:AddTag("INLIMBO")
+        ErodeAway(entity, 0.2)
     end
 end

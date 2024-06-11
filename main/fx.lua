@@ -9,6 +9,13 @@ local function TintOceantFx(inst)
     inst.AnimState:SetOceanBlendParams(TUNING.OCEAN_SHADER.EFFECT_TINT_AMOUNT)
 end
 
+local function BelowGroundFx(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    if y < -0.1 then
+        inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
+    end
+end
+
 local pl_fx = {
     {
 	    name = "groundpound_nosound_fx",
@@ -101,6 +108,7 @@ local pl_fx = {
     	bank = "splash_clouds_drop",
     	build = "splash_clouds_drop",
     	anim = "idle_sink",
+        fn = BelowGroundFx,
 	},
 }
 
