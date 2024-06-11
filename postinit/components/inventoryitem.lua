@@ -64,14 +64,14 @@ function InventoryItem:OnUpdate(dt, ...)
             end
         end
     end
-    if self.onimpassable and not self.inst:HasTag("INLIMBO") and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+    if self.onimpassable and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
         if y then
             if y < -0.1 then
                 self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
             else
                 self.inst.AnimState:SetLayer(LAYER_WORLD)  -- 虽然inventoryitem基本上都属于这个显示层级，但是保险起见，最好在改变显示层级的时候保存旧的显示层级
             end
-            if y < -1.5 then
+            if y < -2 then
                 self:TryToSink()
                 self.inst:StopUpdatingComponent(self)
             end
@@ -120,9 +120,6 @@ function SinkEntity(entity, ...)
             end
         end
     else
-        entity.entity:SetInLimbo(true)  -- 这一部分执行后，该实体不应当能和其他实体产生互动
-        entity.inlimbo = true
-        entity:AddTag("INLIMBO")
-        ErodeAway(entity, 0.2)
+        entity:Remove()
     end
 end
