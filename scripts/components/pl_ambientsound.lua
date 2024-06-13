@@ -151,6 +151,8 @@ local _wavessound = WAVE_SOUNDS[_seasonmix]
 local _wavesvolume = 0
 local _ambientvolume = 1
 local _tileoverrides = {}
+local _playing_wind = false
+local _wind_intensity = 0
 
 --------------------------------------------------------------------------
 --[[ Private member functions ]]
@@ -262,8 +264,22 @@ local function SetWavesVolume(volume)
     inst.SoundEmitter:SetVolume("waves", volume)
 end
 
+local function StartWindSound()
+    inst.SoundEmitter:PlaySound("dontstarve_DLC002/rain/islandwindAMB", "WIND")
+end
+
+local function SetWindIntensity(intensity)
+    inst.SoundEmitter:SetParameter("WIND", "intensity", intensity)
+end
+
+local function StopWindSound()
+    inst.SoundEmitter:KillSound("WIND")
+end
+
 StartSanitySound()
 SetSanity(_sanityparam)
+StartWindSound()
+SetWindIntensity(_wind_intensity)
 
 inst:StartUpdatingComponent(self)
 
@@ -418,6 +434,24 @@ function self:OnUpdate(dt)
     if _sanityparam ~= sanityparam then
         SetSanity(sanityparam)
         _sanityparam = sanityparam
+    end
+
+    if TheWorld.net ~= nil and TheWorld.net.components.plateauwind:GetWindSpeed() > 0 then  -- 在世界刚刚初始化的时候，TheWorld.net可能为nil
+        if not _playing_wind then
+            StartWindSound()
+            _playing_wind = true
+        end
+
+        if _playing_wind then
+            _wind_intensity = math.min(TheWorld.net.components.plateauwind:GetWindSpeed(), 1) -- cap at 1
+            SetWindIntensity(_wind_intensity)
+        end
+    else
+        _wind_intensity = 0
+        if _playing_wind then
+            StopWindSound()
+            _playing_wind = false
+        end
     end
 end
 

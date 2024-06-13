@@ -89,6 +89,8 @@ PrefabFiles = {
     "waterdrop",
     "weevole_carapace",
     "weevole",
+    "windtrail",
+    "windswirl",
 }
 
 Assets = {
@@ -150,6 +152,16 @@ Assets = {
     Asset("ANIM", "anim/ripple_build.zip"),
 
     Asset("ANIM", "anim/meat_rack_food_pl.zip"),
+
+    -- Wind blown
+    Asset("ANIM", "anim/grass_blown.zip"),
+    Asset("ANIM", "anim/sapling_blown.zip"),
+    Asset("ANIM", "anim/evergreen_short_blown.zip"),
+    Asset("ANIM", "anim/evergreen_tall_blown.zip"),
+    Asset("ANIM", "anim/grass_inwater.zip"),
+    Asset("ANIM", "anim/tree_leaf_normal_blown.zip"),
+    Asset("ANIM", "anim/tree_leaf_short_blown.zip"),
+    Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
 }
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
