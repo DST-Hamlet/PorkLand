@@ -398,6 +398,9 @@ local tuning = {
     DECIDUOUS_WINDBLOWN_FALL_CHANCE = 0.01,
 
     FIREPIT_WIND_RATE = 10,
+
+    BALLPEIN_HAMMER_DAMAGE = wilson_attack*0.3,
+    BALLPEIN_HAMMER_USES = 10,
 }
 
 

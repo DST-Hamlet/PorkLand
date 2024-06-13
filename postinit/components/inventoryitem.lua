@@ -66,10 +66,12 @@ function InventoryItem:OnUpdate(dt, ...)
     end
     if self.onimpassable and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
         if y then
-            if y < -0.1 then
+            if y < -0.01 then
                 self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
+                self.inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
             else
                 self.inst.AnimState:SetLayer(LAYER_WORLD)  -- 虽然inventoryitem基本上都属于这个显示层级，但是保险起见，最好在改变显示层级的时候保存旧的显示层级
+                self.inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
             end
             if y < -2 then
                 self:TryToSink()
@@ -82,6 +84,16 @@ function InventoryItem:OnUpdate(dt, ...)
     else
         return _OnUpdate(self, dt, ...)
     end
+end
+
+function InventoryItem:Launch(veldirect)  --应当使用Launch函数替换所有会将inventoryitem一次性弹飞的效果
+    if self.inst.Physics == nil then
+        return
+    end
+
+    self.inst.components.inventoryitem:SetLanded(false, true)
+
+    self.inst.Physics:SetVel(veldirect:Get())
 end
 
 local _SinkEntity = SinkEntity

@@ -143,7 +143,10 @@ function BlowInWind:OnUpdate(dt)
         return
     end
 
-    if self.inst:HasTag("falling") or (self.inst.components.inventoryitem and self.inst.components.inventoryitem.owner) then
+    if self.inst:HasTag("falling")
+        or (self.inst.components.inventoryitem
+        and (self.inst.components.inventoryitem.owner
+        or not self.inst.components.inventoryitem.is_landed)) then
         return
     end
 
@@ -161,7 +164,6 @@ function BlowInWind:OnUpdate(dt)
             local windangle = TheWorld.net.components.plateauwind:GetWindAngle() * DEGREES
             self.velocity = Vector3(windspeed * math.cos(windangle), 0.0, windspeed * math.sin(windangle))
         else
-            self:Stop()
             return
         end
     else
