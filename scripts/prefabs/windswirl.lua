@@ -21,10 +21,11 @@ local function fn()
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")
 
-    if TheWorld.net.components.plateauwind:GetWindSpeed() < 0.01 then
+    local speed = TheWorld.net.components.plateauwind:GetWindSpeed()
+    if speed < 0.01 then
         inst:Remove()
     else
-        inst.AnimState:SetMultColour(1, 1, 1,  math.clamp(TheWorld.net.components.plateauwind:GetWindSpeed(), 0.0, 1.0))
+        inst.AnimState:SetMultColour(1, 1, 1,  math.clamp(speed, 0.0, 1.0))
     end
 
     inst.persists = false
