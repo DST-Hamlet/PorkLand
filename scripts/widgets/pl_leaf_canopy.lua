@@ -97,7 +97,7 @@ function LeavesOver:OnUpdate(dt)
                 self.leavesfullyin = true
                 self.owner:PushEvent("canopyin")
             else
-                if self.owner.sg:HasStateTag("moving") then
+                if self.owner:HasTag("moving") or (self.owner.sg and self.owner.sg:HasStateTag("moving")) then
                     if not self.leavesmoving then
                         self.leavesmoving = true
                         self.leavesTop:GetAnimState():PlayAnimation("run_pre")

@@ -27,7 +27,11 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     local function TrySpawnCocoons(inst)
-        if inst:IsAsleep() then
+        if not _waitforspawn then
+            return true
+        end
+        if not inst:IsAsleep() then
+            _spawntask, _spawntaskinfo = inst:ResumeTask(math.random(1, 29), TrySpawnCocoons)
             return false
         end
 
@@ -61,19 +65,13 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     local function OnEntitySleep(inst)
-        if _waitforspawn then
-            _spawntask, _spawntaskinfo = nil, nil
-            _waitforspawn = not TrySpawnCocoons(inst)
-        end
+
     end
 
     local function OnSpawnCocoons(src)
         if math.random() < SPAWN_CHANCE then
-            if inst:IsAsleep() then
-                _spawntask, _spawntaskinfo = inst:ResumeTask(math.random(1, 29), TrySpawnCocoons)
-            else
-                _waitforspawn = true
-            end
+            _waitforspawn = true
+            _spawntask, _spawntaskinfo = inst:ResumeTask(math.random(1, 29), TrySpawnCocoons)
         end
     end
 

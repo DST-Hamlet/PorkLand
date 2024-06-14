@@ -18,6 +18,7 @@ local PL_ACTIONS = {
     TOGGLEON = Action({priority = 2, mount_valid = true}),
     TOGGLEOFF = Action({priority = 2, mount_valid = true}),
     REPAIRBOAT = Action({distance = 3}),
+    DISLODGE = Action({}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -108,6 +109,14 @@ ACTIONS.PANGOLDEN_POOP.fn = function(act)
     local x, y, z = act.doer.Transform:GetWorldPosition()
     SpawnPrefab("goldnugget").Transform:SetPosition(x, y, z)
     return true
+end
+
+ACTIONS.FISH.strfn = function(act)
+	if act.target and act.target:HasTag("sink") then
+		return "RETRIEVE"
+    else
+        return "GENERIC"
+    end
 end
 
 ACTIONS.DIGDUNG.fn = function(act)
@@ -202,6 +211,18 @@ ACTIONS.REPAIRBOAT.fn = function(act)
     elseif act.doer.components.sailor and act.doer.components.sailor.boat and act.doer.components.sailor.boat.components.repairable and act.invobject and act.invobject.components.repairer then
         return act.doer.components.sailor.boat.components.repairable:Repair(act.doer, act.invobject)
     end
+end
+
+ACTIONS.DISLODGE.fn = function(act)
+	if act.target and act.target.components.dislodgeable then
+		act.target.components.dislodgeable:Dislodge(act.doer)
+		return true
+	end
+end
+
+ACTIONS.DISLODGE.validfn = function(act)
+    return (act.target.components.dislodgeable and act.target.components.dislodgeable:CanBeDislodged()) or
+        (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.DISLODGE)
 end
 
 -- Patch for hackable things
@@ -413,6 +434,7 @@ end
 -- POINT        using an inventory item on a point in the world
 -- EQUIPPED     using an equiped item on yourself or a target object in the world
 -- INVENTORY    using an inventory item
+-- ISVALID      using an equiped item or an inventory item with tool component on a target
 local PL_COMPONENT_ACTIONS =
 {
     SCENE = { -- args: inst, doer, actions, right
@@ -469,7 +491,10 @@ local PL_COMPONENT_ACTIONS =
         end,
         shearable = function(inst, action, right)
             return action == ACTIONS.SHEAR and inst:HasTag("SHEAR_workable")
-        end
+        end,
+        dislodgeable = function(inst, action, right)
+            return action == ACTIONS.DISLODGE and inst:HasTag("DISLODGE_workable")
+        end,
     },
 }
 
