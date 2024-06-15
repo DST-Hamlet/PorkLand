@@ -58,6 +58,16 @@ AddPlayerPostInit(function(inst)
 		end)
     end
 
+    local _IsInLight = inst.IsInLight
+    function inst:IsInLight()
+        if inst:HasTag("pl_inside_interior") then -- TODO rename tag
+            local pos = inst:GetPosition()
+            return TheSim:GetLightAtPoint(pos.x, pos.y, pos.z, 0.1) > 0.1
+        else
+            return _IsInLight(self)
+        end
+    end
+
     if not TheWorld.ismastersim then
         return
     end
@@ -66,6 +76,7 @@ AddPlayerPostInit(function(inst)
         inst:AddComponent("hayfever")
     end
 
+    inst:AddComponent("interiorvisitor")
     inst:AddComponent("sailor")
 
     inst:ListenForEvent("death", OnDeath)

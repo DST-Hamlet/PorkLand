@@ -88,6 +88,7 @@ local actionhandlers = {
             return "give"
         end
     end),
+    ActionHandler(ACTIONS.USEDOOR, "usedoor")
 }
 
 local eventhandlers = {
@@ -1614,6 +1615,22 @@ local states = {
             end
         end,
     },
+
+    State{
+        name = "usedoor",
+        tags = {"doing", "busy", "canrotate"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.sg:SetTimeout(FRAMES)
+        end,
+
+        ontimeout = function(inst)
+            inst.sg:RemoveStateTag("busy")
+            inst:PerformBufferedAction()
+            inst.sg:AddStateTag("idle")
+        end,
+    }
 }
 
 for _, actionhandler in ipairs(actionhandlers) do

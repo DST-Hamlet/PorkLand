@@ -96,6 +96,32 @@ function InventoryItem:Launch(veldirect)  --应当使用Launch函数替换所有
     self.inst.Physics:SetVel(veldirect:Get())
 end
 
+function InventoryItem:TakeOffShelf()
+    local shelf_slot = SpawnPrefab("shelf_slot")
+    shelf_slot.components.inventoryitem:PutOnShelf(self.inst.bookshelf, self.inst.bookshelfslot)
+    shelf_slot.components.shelfer:SetShelf(self.inst.bookshelf, self.inst.bookshelfslot)
+
+    self.inst:RemoveTag("bookshelfed")
+    self.inst.bookshelfslot = nil
+    self.inst.bookshelf = nil
+    self.inst.follower:FollowSymbol(0, "dumb", 0, 0, 0)
+    if self.inst.Physics then
+        self.inst.Physics:SetActive(true)
+    end
+end
+
+function InventoryItem:PutOnShelf(shelf, slot)
+   self.inst:AddTag("bookshelfed")
+   self.inst.bookshelfslot = slot
+   self.inst.bookshelf = shelf
+   if self.inst.Physics then
+       self.inst.Physics:SetActive(false)
+   end
+   local follower = self.inst.Follower or self.inst.entity:AddFollower()
+   follower:FollowSymbol(shelf.GUID, slot, 10, 0, 0.6)
+   self.inst.follower = follower
+end
+
 local _SinkEntity = SinkEntity
 function SinkEntity(entity, ...)
     if not entity:IsValid() or not TheWorld.has_pl_ocean then
@@ -133,5 +159,19 @@ function SinkEntity(entity, ...)
         end
     else
         entity:Remove()
+    end
+end
+
+local _ShouldEntitySink = ShouldEntitySink
+function ShouldEntitySink(entity, entity_sinks_in_water, ...)
+    if not TheWorld:HasTag("porkland") then
+        return _ShouldEntitySink(entity, entity_sinks_in_water, ...)
+    end
+
+    local x, _, z = entity.Transform:GetWorldPosition()
+    if x and z and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return false
+    else
+        return _ShouldEntitySink(entity, entity_sinks_in_water, ...)
     end
 end

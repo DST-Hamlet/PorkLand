@@ -10,12 +10,15 @@ local behaviour_posts = {
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
+    "ambientlighting",
+    "areaaware",
     "blinkstaff",
     "builder_replica",
     "builder",
     "clock",
     "colourcube",
     "combat",
+    "crop",
     "drownable",
     "edible",
     "equippable_replica",
@@ -23,10 +26,12 @@ local component_posts = {
     "fishingrod",
     "floater",
     "grogginess",
+    "grue",
     "health",
     "inventory",
     "inventoryitem_replica",
     "inventoryitem",
+    "inventoryitemmoisture",
     "locomotor",
     "lootdropper",
     "moisture",
@@ -34,7 +39,9 @@ local component_posts = {
     "oldager",
     "playeractionpicker",
     "playercontroller",
+    "playervision",
     "pollinator",
+    "positionalwarp",
     "regrowthmanager",
     "repairable",
     "rider_replica",
@@ -46,6 +53,7 @@ local component_posts = {
     "waterproofer",
     "wavemanager",
     "wisecracker",
+    "witherable",
     "worldstate",
 }
 
@@ -79,6 +87,7 @@ local scenario_posts = {
 }
 
 local screens_posts = {
+    "mapscreen",
     "playerhud",
 }
 
@@ -100,6 +109,7 @@ local widget_posts = {
 }
 
 local module_posts = {
+    ["components/camera"] = "camera",
     ["components/map"] = "map",
 }
 
@@ -122,6 +132,10 @@ modimport("postinit/bufferedaction")
 modimport("postinit/animstate")
 modimport("postinit/stategraphs/commonstates")
 modimport("postinit/input")
+modimport("postinit/vector3")
+modimport("postinit/emittermanager")
+modimport("postinit/minimapentity")
+modimport("postinit/sim")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)
