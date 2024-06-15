@@ -247,9 +247,10 @@ local function DoTeleport(player, pos)
 end
 
 local function OnTeleportFailed(player)
-    if player.player_classified then
-        player.player_classified.teleportfailed_event:push()
-    end
+    print("teleportfailed_event failed")
+    -- if player.player_classified then
+    --     player.player_classified.teleportfailed_event:push()
+    -- end
 end
 
 ACTIONS.USEDOOR.fn = function(act)

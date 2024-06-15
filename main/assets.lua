@@ -94,6 +94,30 @@ PrefabFiles = {
     "weevole",
     "windtrail",
     "windswirl",
+
+    "deco",
+    "deco_academy",
+    "deco_antiquities",
+    "deco_chair",
+    "deco_florist",
+    "deco_lamp",
+    "deco_lightglow",
+    --"deco_placers",
+    "deco_plantholder",
+    "deco_roomglow",
+    "deco_ruins_fountain",
+    "deco_swinging_light",
+    "deco_table",
+    "interior_mapicon",
+    "interior_boundary",
+    "interior_surface",
+    "interiorwall_fx",
+    "interiorfloor_fx",
+    "test_house",
+    "vampirebatcave",
+    "interiorworkblank",
+    "prop_door",
+    "pig_ruins_creeping_vines",
 }
 
 Assets = {
@@ -173,6 +197,10 @@ Assets = {
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
 }
+
+for _,v in ipairs(require("interior_texture_defs").Assets) do
+    table.insert(Assets, v)
+end
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")

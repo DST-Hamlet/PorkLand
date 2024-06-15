@@ -254,7 +254,7 @@ end
 function InteriorSpawner:AddDoor(inst, def)
     self.doors[def.my_door_id] = { my_interior_name = def.my_interior_name, inst = inst, target_interior = def.target_interior }
 
-    local door = inst.components.pl_door or inst:AddComponent("pl_door")
+    local door = inst.components.door or inst:AddComponent("door")
 
     door.door_id = def.my_door_id
     door.interior_name = def.my_interior_name
@@ -668,7 +668,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
     local pt = self:IndexToPosition(interior.unique_name)
     self:ClearInteriorContents(pt)
 
-    local center = SpawnPrefab("pl_interiorworkblank")
+    local center = SpawnPrefab("interiorworkblank")
     center:SetUp(interior)
     center.interiorID = interior.unique_name
     center.Transform:SetPosition(pt:Get())
@@ -867,7 +867,7 @@ function InteriorSpawner:GatherAllRooms_Impl(inst, allrooms, usemap)
     local x, _, z = inst.Transform:GetWorldPosition()
     for _, v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}))do
         if v.prefab == "prop_door" then
-            local id = v.components.pl_door.target_interior
+            local id = v.components.door.target_interior
             if id ~= nil and id ~= "EXTERIOR" then
                 local room = nil
                 if usemap then
