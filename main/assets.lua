@@ -113,7 +113,6 @@ PrefabFiles = {
     "interior_surface",
     "interiorwall_fx",
     "interiorfloor_fx",
-    "test_house",
     "vampirebatcave",
     "interiorworkblank",
     "prop_door",
@@ -194,6 +193,7 @@ Assets = {
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
 
+    -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
 }

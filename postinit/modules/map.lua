@@ -327,12 +327,21 @@ function Map:GetNearbyPlatformAtPoint(pos_x, pos_y, pos_z, extra_radius)
 end
 
 local _GetTileCenterPoint = Map.GetTileCenterPoint
-Map.GetTileCenterPoint = function(self, x, y, z, ...)
+function Map:GetTileCenterPoint(x, y, z, ...)
     if x and y and z and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return math.floor(x / 4) * 4 + 2, 0, math.floor(z / 4) * 4 + 2
     elseif z == nil then
         return _GetTileCenterPoint(self, x, y)
     else
         return _GetTileCenterPoint(self, x, y, z, ...)
+    end
+end
+
+local _GetTileAtPoint = Map.GetTileAtPoint
+function Map:GetTileAtPoint(x, y, z, ...)
+    if x and z and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return WORLD_TILES.INTERIOR
+    else
+        return _GetTileAtPoint(self, x, y, z, ...)
     end
 end
