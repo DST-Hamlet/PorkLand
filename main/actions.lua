@@ -19,6 +19,7 @@ local PL_ACTIONS = {
     TOGGLEOFF = Action({priority = 2, mount_valid = true}),
     REPAIRBOAT = Action({distance = 3}),
     DISLODGE = Action({}),
+    USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = false, encumbered_valid = true}), -- TODO ghost_valid
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -223,6 +224,74 @@ end
 ACTIONS.DISLODGE.validfn = function(act)
     return (act.target.components.dislodgeable and act.target.components.dislodgeable:CanBeDislodged()) or
         (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.DISLODGE)
+end
+
+local function DoTeleport(player, pos)
+    player:StartThread(function()
+        local invincible = player.components.health.invincible
+        player.components.health:SetInvincible(true)
+        player:ScreenFade(false, 0.4)
+        Sleep(0.5)
+        -- recheck interior
+        if not TheWorld.components.interiorspawner:IsInInteriorRegion(pos.x, pos.z)
+            or TheWorld.components.interiorspawner:IsInInterior(pos.x, pos.z) then
+            player.Physics:Teleport(pos:Get())
+        end
+        player.components.interiorvisitor:UpdateExteriorPos()
+        player.components.health:SetInvincible(invincible)
+        Sleep(0)
+        player:SnapCamera()
+        player:ScreenFade(true, 0.4)
+        player.sg:GoToState("idle")
+    end)
+end
+
+local function OnTeleportFailed(player)
+    if player.player_classified then
+        player.player_classified.teleportfailed_event:push()
+    end
+end
+
+ACTIONS.USEDOOR.fn = function(act)
+    local door = act.target
+    if door.components.door.disabled or door.components.door.hidden then
+        return false, "DISABLED"
+    end
+    local target_interior = door.components.door.target_interior
+    local target_door_id = door.components.door.target_door_id
+
+    local function PlayDoorSound()
+        door:PushEvent("usedoor", {doer = act.doer})
+    end
+
+    if target_interior == "EXTERIOR" then
+        -- use `target_exterior` firstly, then use current room id as default
+        local index = door.components.door.target_exterior or door.components.door.interior_name
+        local house = TheWorld.components.interiorspawner:GetExteriorByInteriorIndex(index)
+        -- print(index, type(index), house)
+        if house ~= nil then
+            DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
+            PlayDoorSound()
+            return true
+        end
+    else
+        local room = TheWorld.components.interiorspawner:GetInteriorByIndex(target_interior)
+
+        local target_door = room and room:GetDoorById(target_door_id)
+        if target_door then
+            -- don't throw player directly on door
+            -- instead, give a slight offset to room center
+            local door_pos = target_door:GetPosition()
+            local room_pos = room:GetPosition()
+            local offset = (room_pos - door_pos):GetNormalized() * 1.0
+            DoTeleport(act.doer, door_pos + offset)
+            PlayDoorSound()
+            return true
+        end
+    end
+
+    OnTeleportFailed(act.doer)
+    return false, "ERROR"
 end
 
 -- Patch for hackable things
@@ -444,7 +513,12 @@ local PL_COMPONENT_ACTIONS =
                     table.insert(actions, ACTIONS.EMBARK)
                 end
             end
-        end
+        end,
+        door = function(inst, doer, actions, right)
+            if not inst:HasTag("door_hidden") --[[and not inst:HasTag("door_disabled") ]] then -- TODO disable
+                table.insert(actions, ACTIONS.USEDOOR)
+            end
+        end,
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right

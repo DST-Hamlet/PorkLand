@@ -100,6 +100,9 @@ local function common_postinit(inst)
         inst.Map:AlwaysDrawWaves(true)
         inst.Map:DoOceanRender(true)
     end
+
+    inst:AddComponent("interiorspawner")
+    inst:AddComponent("worldmapiconproxy")
 end
 
 local function master_postinit(inst)

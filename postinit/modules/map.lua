@@ -277,9 +277,9 @@ local _IsAboveGroundAtPoint = Map.IsAboveGroundAtPoint
 function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         if ThePlayer and ThePlayer.components.playercontroller and ThePlayer.components.playercontroller.deployplacer then
-            return TheWorld.components.pl_interiorspawner:IsInInteriorRoom(x, z, -1)
+            return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z, -1)
         else
-            return TheWorld.components.pl_interiorspawner:IsInInteriorRoom(x, z, 1)
+            return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z, 1)
         end
     end
     if TheWorld.has_pl_ocean then
