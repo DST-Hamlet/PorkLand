@@ -11,7 +11,7 @@ local events=
 {
     CommonHandlers.OnLocomote(false, true),
     CommonHandlers.OnFreeze(),
-    CommonHandlers.OnAttack(),
+    CommonHandlers.OnAttackWithTarget(),
     CommonHandlers.OnAttacked(),
     CommonHandlers.OnDeath(),
     CommonHandlers.OnSleep(),
@@ -20,7 +20,7 @@ local events=
 local states =
 {
     State{
-        
+
         name = "idle",
         tags = {"idle", "canrotate"},
         onenter = function(inst, playanim)
@@ -32,14 +32,14 @@ local states =
                 inst.AnimState:PlayAnimation("fly_loop", true)
             end
         end,
-        
-        timeline = 
-        {         
+
+        timeline =
+        {
             TimeEvent(3*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
             TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out")  end ),
             TimeEvent(13*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
         },
-        
+
         events=
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
@@ -47,7 +47,7 @@ local states =
     },
 
     State{
-        
+
         name = "action",
         onenter = function(inst, playanim)
             inst.Physics:Stop()
@@ -60,18 +60,18 @@ local states =
                 inst.sg:GoToState("idle")
             end),
         }
-    }, 
+    },
 
     State{
         name = "taunt",
         tags = {"busy"},
-        
+
         onenter = function(inst)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("taunt")
         end,
 
-        timeline = 
+        timeline =
         {
             TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/taunt") end ),
             TimeEvent(3*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
@@ -80,7 +80,7 @@ local states =
             TimeEvent(24*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
             TimeEvent(41*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
         },
-        
+
         events=
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
@@ -100,7 +100,7 @@ local states =
 
         end,
 
-        timeline = 
+        timeline =
         {
             TimeEvent(3*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
             TimeEvent(8*FRAMES, function(inst) inst:PerformBufferedAction()
@@ -108,7 +108,7 @@ local states =
             TimeEvent(14*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
         },
 
-        events = 
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end)
         },
@@ -129,7 +129,7 @@ local states =
             inst.sg:GoToState("idle")
         end,
 
-        timeline = 
+        timeline =
         {
             TimeEvent(3*FRAMES, function(inst) inst:PushEvent("wingdown")
             inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/chew")  end ),
@@ -137,7 +137,7 @@ local states =
             inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/chew")  end ),
         },
 
-        events = 
+        events =
         {
             EventHandler("attacked", function(inst) inst.components.inventory:DropEverything() inst.sg:GoToState("idle") end) --drop food
         },
@@ -149,12 +149,12 @@ local states =
         onenter= function(inst)
             inst.DynamicShadow:Enable(false)
             inst.AnimState:PlayAnimation("glide", true)
-            inst.Physics:SetMotorVelOverride(0,-25,0)        
+            inst.Physics:SetMotorVelOverride(0,-25,0)
         end,
-        
+
         onupdate= function(inst)
             inst.Physics:SetMotorVelOverride(0,-25,0)
-            local pt = Point(inst.Transform:GetWorldPosition())            
+            local pt = Point(inst.Transform:GetWorldPosition())
             if pt.y <= .1 then
                 inst.Physics:ClearMotorVelOverride()
                 pt.y = 0
@@ -162,9 +162,9 @@ local states =
                 inst.Physics:Teleport(pt.x,pt.y,pt.z)
             --    inst.AnimState:PlayAnimation("land")
                 inst.DynamicShadow:Enable(true)
-              
-             --   inst.sg:GoToState("idle")                
-                inst.sg:GoToState("land")   
+
+             --   inst.sg:GoToState("idle")
+                inst.sg:GoToState("land")
             end
         end,
 
@@ -175,8 +175,8 @@ local states =
                 inst.Transform:SetPosition(pos:Get())
             end
            -- inst.components.knownlocations:RememberLocation("landpoint", inst:GetPosition())
-        end, 
-    },     
+        end,
+    },
 
     State{
         name = "land",
@@ -187,7 +187,7 @@ local states =
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/land")
         end,
 
-        events = 
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end)
         },
@@ -195,7 +195,7 @@ local states =
 
 }
 
-local walkanims = 
+local walkanims =
 {
     startwalk = "fly_loop",
     walk = "fly_loop",
@@ -211,7 +211,7 @@ CommonStates.AddWalkStates(states,
         TimeEvent(17*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
     },
 
-    walktimeline = 
+    walktimeline =
     {
         TimeEvent(7*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
         TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out")  end ),
@@ -230,14 +230,14 @@ CommonStates.AddWalkStates(states,
 
 CommonStates.AddSleepStates(states,
 {
-    starttimeline = 
+    starttimeline =
     {
         TimeEvent(7*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
         TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out")  end ),
-        TimeEvent(17*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),       
+        TimeEvent(17*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
     },
 
-    sleeptimeline = 
+    sleeptimeline =
     {
         TimeEvent(23*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/sleep") end),
     },
@@ -250,21 +250,21 @@ CommonStates.AddSleepStates(states,
 
 CommonStates.AddCombatStates(states,
 {
-    attacktimeline = 
+    attacktimeline =
     {
-        
+
         -- TimeEvent(7* FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/bite") end),
-        TimeEvent(7*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
-        TimeEvent(7* FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/bite") end),
-        TimeEvent(14*FRAMES, function(inst) 
-        inst.components.combat:DoAttack()
+        TimeEvent(7*FRAMES, function(inst) inst:PushEvent("wingdown")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/bite") end),
+        TimeEvent(14*FRAMES, function(inst)
+        inst.components.combat:DoAttack(inst.sg.statemem.target)
         inst:PushEvent("wingdown")
         end),
     },
 
     hittimeline =
     {
-        TimeEvent(1*FRAMES, function(inst)  
+        TimeEvent(1*FRAMES, function(inst)
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/hit")
         end),
         TimeEvent(3*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),
@@ -272,7 +272,7 @@ CommonStates.AddCombatStates(states,
 
     deathtimeline =
     {
-        TimeEvent(1*FRAMES, function(inst)  
+        TimeEvent(1*FRAMES, function(inst)
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/death")
         end),
         TimeEvent(4*FRAMES, function(inst) inst:PushEvent("wingdown")  end ),

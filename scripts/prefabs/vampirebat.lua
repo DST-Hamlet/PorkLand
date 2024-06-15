@@ -54,15 +54,18 @@ local function KeepTarget(inst, target)
     end
 end
 
-local function retargetfn(inst)
+local RETARGET_CANT_TAGS = {"bat"}
+local RETARGET_ONEOF_TAGS = {"character", "monster"}
+local function Retarget(inst)
     local ta = inst.components.teamattacker
 
     local newtarget = FindEntity(inst, TUNING.VAMPIREBAT_TARGET_DIST, function(guy)
-            return (guy:HasTag("character") or guy:HasTag("monster") )
-                   and not guy:HasTag("vampirebat")
-                   and inst.components.combat:CanTarget(guy)
-    end)
-
+            return inst.components.combat:CanTarget(guy)
+        end,
+        nil,
+        RETARGET_CANT_TAGS,
+        RETARGET_ONEOF_TAGS
+    )
     if newtarget and not ta.inteam and not ta:SearchForTeam() then
         MakeTeam(inst, newtarget)
     end
@@ -90,19 +93,15 @@ local function OnAttackOther(inst, data)
     inst.components.combat:ShareTarget(data.target, SHARE_TARGET_DIST, function(dude) return dude:HasTag("vampirebat") and not dude.components.health:IsDead() end, 5)
 end
 
---[[ local function OnWaterChange(inst, onwater)
-    if onwater then
-        inst.onwater = true
-    else
-        inst.onwater = false
-    end
-end ]]
+local function OnWakeUp(inst)
+    inst.forcesleep = false
+end
 
 local function onsave(inst, data)
     if inst:HasTag("batfrenzy") then
         data.batfrenzy = true
     end
-    if inst.sg:HasStateTag("sleeping") then
+    if inst.forcesleep then
         data.forcesleep = true
     end
     if inst.sg:HasStateTag("flying") then
@@ -117,6 +116,7 @@ local function onload(inst, data)
         end
 
         if data.forcesleep then
+            inst.forcesleep = true
             inst.sg:GoToState("forcesleep")
             inst.components.sleeper.hibernate = true
             inst.components.sleeper:GoToSleep()
@@ -165,7 +165,7 @@ local function fn()
     inst:AddComponent("locomotor")
     inst.components.locomotor:SetSlowMultiplier( 1 )
     inst.components.locomotor:SetTriggersCreep(false)
-    inst.components.locomotor.pathcaps = { ignorecreep = true }
+    inst.components.locomotor.pathcaps = { ignorecreep = true, allowocean = true }
     inst.components.locomotor.walkspeed = TUNING.VAMPIREBAT_WALK_SPEED
 
     inst:AddComponent("eater")
@@ -182,7 +182,7 @@ local function fn()
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.VAMPIREBAT_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.VAMPIREBAT_ATTACK_PERIOD)
-    inst.components.combat:SetRetargetFunction(3, retargetfn)
+    inst.components.combat:SetRetargetFunction(3, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
 
     inst:AddComponent("sleeper")
@@ -207,7 +207,7 @@ local function fn()
     inst:ListenForEvent("wingdown", OnWingDown)
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("onattackother", OnAttackOther)
-    --inst:ListenForEvent("death", OnKilled)
+    inst:ListenForEvent("onwakeup", OnWakeUp)
 
     inst:AddComponent("teamattacker")
     inst.components.teamattacker.team_type = "vampirebat"
@@ -215,6 +215,7 @@ local function fn()
 
     MakeMediumBurnableCharacter(inst, "bat_body")
     MakeMediumFreezableCharacter(inst, "bat_body")
+    MakeHauntablePanic(inst)
 
     inst.OnSave = onsave
     inst.OnLoad = onload
