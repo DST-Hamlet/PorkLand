@@ -466,7 +466,7 @@ TUNING.PL_MANUAL_LIGHT_OFFSET = {
 
 -- temp use, read only
 -- TODO: may change to mod config or keep as constant
--- see pl_interiorspawner.lua
+-- see interiorspawner.lua
 TUNING.INTERIOR_DESTRUCTION_BEHAVIOR = {
 	DEFAULT = "REMOVE",
 	PLAYER = "TELEPORT_TO_EXTERIOR",

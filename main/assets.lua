@@ -171,13 +171,13 @@ Assets = {
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
 
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
-    Asset("ATLAS", "interiror_minimap/interiror_minimap.xml"),
+    Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
 }
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
 AddMinimapAtlas("levels/textures/map_interior/pl_black_bg.xml")
-AddMinimapAtlas("interiror_minimap/interiror_minimap.xml")
+AddMinimapAtlas("interior_minimap/interior_minimap.xml")
 
 local sounds = {
     Asset("SOUND", "sound/DLC003_AMB_stream.fsb"),

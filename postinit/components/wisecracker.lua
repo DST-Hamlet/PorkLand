@@ -36,7 +36,7 @@ end
 
 local _OnUpdate = WiseCracker.OnUpdate
 function WiseCracker:OnUpdate(dt)
-    if not self.inst:HasTag("pl_inside_interior") then
+    if not self.inst:HasTag("inside_interior") then
         self.pl_enterdark_time = math.huge
         self.pl_enterlight_time = math.huge
         _OnUpdate(self, dt)

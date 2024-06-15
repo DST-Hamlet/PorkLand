@@ -50,7 +50,7 @@ function FollowCamera:Apply(...)
         )
     else
         if self.pl_old_headingtarget ~= nil
-            and not TheWorld.components.pl_interiorspawner:IsInInteriorRegion(
+            and not TheWorld.components.interiorspawner:IsInInteriorRegion(
                 self.currentpos.x, self.currentpos.z) then
             self.headingtarget = self.pl_old_headingtarget
             self.pl_old_headingtarget = nil
