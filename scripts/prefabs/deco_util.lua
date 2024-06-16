@@ -410,10 +410,10 @@ end
 
 local function build_rectangle_collision_mesh(rad, height, width)
     local points = {
-        Vector3(-width/2, 0, -rad/2),
-        Vector3(width/2, 0, -rad/2),
-        Vector3(width/2, 0, rad/2),
-        Vector3(-width/2, 0, rad/2),
+        Vector3(-width / 2, 0, -rad / 2),
+        Vector3(width / 2, 0, -rad / 2),
+        Vector3(width / 2, 0, rad / 2),
+        Vector3(-width / 2, 0, rad / 2),
     }
     local triangles = {}
     local y0 = 0
@@ -456,7 +456,6 @@ local function MakeInteriorPhysics(inst, rad, height, width)
     inst:AddTag("blocker")
     inst.Physics = inst.Physics or inst.entity:AddPhysics()
     inst.Physics:SetMass(0)
-    -- inst.Physics:SetRectangle(rad,height,width)
     inst.Physics:SetTriangleMesh(build_rectangle_collision_mesh(rad, height, width or rad))
     inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
     inst.Physics:ClearCollisionMask()

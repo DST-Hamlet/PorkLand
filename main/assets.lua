@@ -118,6 +118,7 @@ PrefabFiles = {
     "interiorworkblank",
     "prop_door",
     "pig_ruins_creeping_vines",
+    "pl_birds",
 }
 
 Assets = {

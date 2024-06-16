@@ -107,9 +107,10 @@ end
 
 local function master_postinit(inst)
     -- Spawners
-    inst:AddComponent("birdspawner")
+    inst:AddComponent("pl_birdspawner")
     inst:AddComponent("butterflyspawner")
     inst:AddComponent("glowflyspawner")
+    inst:AddComponent("hippospawner")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")
@@ -121,7 +122,6 @@ local function master_postinit(inst)
     inst:AddComponent("brightmarespawner")
     inst:AddComponent("pl_worldwind")
 
-    inst:AddComponent("hippospawner")
     inst:AddComponent("regrowthmanager")
     -- inst:AddComponent("desolationspawner")
     -- inst:AddComponent("forestpetrification")

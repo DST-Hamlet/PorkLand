@@ -5,6 +5,10 @@ local function OnUpdate(inst)
 
     local x, y, z = inst.Transform:GetWorldPosition()
 
+    if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return
+    end
+
     if not inst:CanOnWater() and TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) and not inst.components.drownable then
         inst.components.health:Kill()
         return
