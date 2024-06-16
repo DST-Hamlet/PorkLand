@@ -2,6 +2,7 @@ local assets =
 {
     Asset("ANIM", "anim/bat_basic.zip"),
     Asset("ANIM", "anim/bat_vamp_build.zip"),
+    Asset("ANIM", "anim/bat_vamp_actions.zip"),
     Asset("ANIM", "anim/bat_vamp_shadow.zip"),
 }
 
@@ -351,7 +352,7 @@ local function circlingbatfn()
 
     inst:DoTaskInTime(0, CircleOnInit)
 
-    inst.task, inst.taskinfo = inst:ResumeTask(20+(math.random()*2), Dodive)
+    inst.task, inst.taskinfo = inst:ResumeTask(20+(math.random()*2), DoDive)
 
     inst.OnSave = OnSaveShadow
     inst.OnLoad = OnLoadShadow

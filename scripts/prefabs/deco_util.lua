@@ -25,6 +25,7 @@ local assets =
     Asset("ANIM", "anim/interior_wall_decals_antiquities.zip"),
     Asset("ANIM", "anim/interior_wall_decals_arcane.zip"),
     Asset("ANIM", "anim/interior_wall_decals_batcave.zip"),
+    Asset("ANIM", "anim/interior_wall_decals_batcave_2.zip"),
     Asset("ANIM", "anim/interior_wall_decals_deli.zip"),
     Asset("ANIM", "anim/interior_wall_decals_florist.zip"),
     Asset("ANIM", "anim/interior_wall_decals_mayorsoffice.zip"),
@@ -170,7 +171,7 @@ local function OnSave(inst, data)
 
     --if inst.flipped then
         --data.flipped = inst.flipped
-    --end    
+    --end
     if inst.setbackground then
         data.setbackground = inst.setbackground
     end
@@ -240,8 +241,8 @@ local function OnLoad(inst, data)
         inst.childrenspawned = data.childrenspawned
     end
     --if data.flipped then
-    --    inst.flipped = data.flipped        
-    --end       
+    --    inst.flipped = data.flipped
+    --end
     if data.dartthrower then
        inst:AddTag("dartthrower")
     end
@@ -612,7 +613,7 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         inst.Transform:SetRotation(-90)
         if decal then
-            -- NOTE: only apply billborad render behavior on beam/pillar 
+            -- NOTE: only apply billborad render behavior on beam/pillar
             if name:find("_cornerbeam")
                 or name:find("_beam")
                 or name:find("_pillar")

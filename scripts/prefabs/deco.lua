@@ -18,7 +18,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("window_tall", "interior_window_tall", "interior_window_tall_side", "day_loop",                 {loopanim=true, decal=nil, background=3, dayevents=true, curtains=nil, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
         DecoCreator:Create("window_tall_backwall", "interior_window_tall", "interior_window_tall", "day_loop",             {loopanim=true, decal=nil, bckground=3, dayevents=true, curtains=nil, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_tall"}),
 
-        --DecoCreator:Create("window_arcane", "interior_window", "interior_window_side", "day_loop",                        {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"wallsection"}, onbuilt=true}), 
+        --DecoCreator:Create("window_arcane", "interior_window", "interior_window_side", "day_loop",                        {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"wallsection"}, onbuilt=true}),
         DecoCreator:Create("window_round_arcane", "window_arcane_build", "interior_window_large_side", "day_loop",         {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
         DecoCreator:Create("window_round_arcane_backwall", "window_arcane_build", "interior_window_large", "day_loop",     {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_round_arcane"}),
 
@@ -158,7 +158,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_ruins_beam_broken_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_broken",       {decal=true, background=3}),
 
 
-     --   DecoCreator:Create("deco_ruins_fountain", "pig_ruins_well", "pig_ruins_well", "idle_full",                                      {loopanim=true, decal=true, physics="pond_physics", minimapicon="pig_ruins_well.png"}),                                                                 
+     --   DecoCreator:Create("deco_ruins_fountain", "pig_ruins_well", "pig_ruins_well", "idle_full",                                      {loopanim=true, decal=true, physics="pond_physics", minimapicon="pig_ruins_well.png"}),
 
         DecoCreator:Create("deco_ruins_wallcrumble_1", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "2",                 {decal=true, background=1}),
         DecoCreator:Create("deco_ruins_wallcrumble_side_1", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "1",            {decal=true}),
@@ -201,6 +201,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_cave_floor_trim_front", "interior_wall_decals_batcave", "interior_wall_decals_cave", "floor_trim_3"),
         DecoCreator:Create("deco_cave_stalactite", "interior_wall_decals_batcave", "interior_wall_decals_cave", "stalactite"),
         DecoCreator:Create("deco_cave_bat_burrow", "interior_wall_decals_batcave", "interior_wall_decals_cave", "bat_burrow",                   {decal=true, physics="pond_physics", prefabname="deco_cave_bat_burrow", minimapicon="vamp_cave_burrow.png"}),
+        DecoCreator:Create("deco_cave_bat_burrow_front", "interior_wall_decals_batcave_2", "interior_wall_decals_cave", "bat_burrow_front"),
 
         --ANT HIVE
         DecoCreator:Create("deco_hive_beam_room", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "pillar_front",               {decal=true, physics="big_post_physics", workable=true, minimapicon="vamp_cave_pillar.png"}),
@@ -231,11 +232,11 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_cityhall_picture2", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "picture2_sidewall",                {decal=true}),
         DecoCreator:Create("deco_cityhall_bookshelf", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "bookcase_backwall",               {decal=true}),
         DecoCreator:Create("deco_cityhall_pillar", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "pillar_round_corner",                {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL}),
-        DecoCreator:Create("deco_cityhall_cornerbeam", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "pillar_flag_corner",             {decal=true, tags={"cornerpost"}}),  -- , background=3        
+        DecoCreator:Create("deco_cityhall_cornerbeam", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "pillar_flag_corner",             {decal=true, tags={"cornerpost"}}),  -- , background=3
         DecoCreator:Create("window_mayorsoffice", "window_mayorsoffice", "window_mayorsoffice", "day_loop",                                               {loopanim=true, decal=true, background=3, curtains=true}),
         DecoCreator:Create("deco_cityhall_desk", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "desk",                                 {light=DecoCreator:GetLights().MED,physics="desk_physics"}),
 
-        -- palace        
+        -- palace
         DecoCreator:Create("deco_palace_beam_room_tall", "interior_wall_decals_palace", "wall_decals_palace", "pillar_tall",                              {decal=true, physics="post_physics"}),
         DecoCreator:Create("deco_palace_beam_room_tall_lights", "interior_wall_decals_palace", "wall_decals_palace", "pillar_tall_lights",                {decal=true, physics="post_physics", light=DecoCreator:GetLights().SMALL}),
 
