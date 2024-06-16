@@ -7,6 +7,10 @@ local behaviour_posts = {
     "wander",
 }
 
+local camera_posts = {
+    "followcamera",
+}
+
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
@@ -110,7 +114,6 @@ local widget_posts = {
 }
 
 local module_posts = {
-    ["components/camera"] = "camera",
     ["components/map"] = "map",
 }
 
@@ -140,6 +143,10 @@ modimport("postinit/sim")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)
+end
+
+for _, file_name in ipairs(camera_posts) do
+    modimport("postinit/cameras/" .. file_name)
 end
 
 for _, file_name in ipairs(component_posts) do

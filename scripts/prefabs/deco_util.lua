@@ -1,7 +1,5 @@
 -- TODO:
 -- 实现billboard
--- 移除Debug代码
--- prefab重命名（加前缀）
 
 local assets =
 {
@@ -73,16 +71,15 @@ local function smash(inst)
         if interior_spawner.current_interior then
             local originpt = interior_spawner:getSpawnOrigin()
             local x, y, z = inst.Transform:GetWorldPosition()
-            local dropdir = Vector3(originpt.x - x, 0.0, originpt.z - z):GetNormalized()
+            local dropdir = Vector3(originpt.x - x, 0, originpt.z - z):GetNormalized()
             inst.components.lootdropper.dropdir = dropdir
             inst.components.lootdropper:DropLoot()
         end
     end
-    SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
-    if inst.SoundEmitter then
-        inst.SoundEmitter:PlaySound("dontstarve/common/destroy_wood")
-    end
 
+    local fx = SpawnPrefab("collapse_small")
+    fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    fx:SetMaterial("wood")
     inst:Remove()
 end
 
@@ -106,10 +103,10 @@ local function OnBuilt(inst)
     SetPlayerUncraftable(inst)
     inst.onbuilt = true
 
+    local x, y, z = inst.Transform:GetWorldPosition()
     if inst:HasTag("cornerpost") then
-        local pt = inst:GetPosition()
-        local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 1, {"cornerpost"})
-        for i,ent in ipairs(ents) do
+        local ents = TheSim:FindEntities(x, y, z, 1, {"cornerpost"})
+        for _, ent in pairs(ents) do
             if ent ~= inst then
                 smash(ent)
             end
@@ -117,9 +114,8 @@ local function OnBuilt(inst)
     end
 
     if inst:HasTag("centerlight") then
-        local pt = inst:GetPosition()
-        local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 1, {"centerlight"})
-        for i,ent in ipairs(ents) do
+        local ents = TheSim:FindEntities(x, y, z, 1, {"centerlight"})
+        for _, ent in pairs(ents) do
             if ent ~= inst then
                smash(ent)
             end
@@ -127,9 +123,8 @@ local function OnBuilt(inst)
     end
 
     if inst:HasTag("wallsection") then
-        local pt = inst:GetPosition()
-        local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 1, {"wallsection"})
-        for i,ent in ipairs(ents) do
+        local ents = TheSim:FindEntities(x, y, z, 1, {"wallsection"})
+        for _, ent in pairs(ents) do
             if ent ~= inst and not (ent:HasTag("interior_door") and not ent.doorcanberemoved) then
                smash(ent)
             end
@@ -138,21 +133,21 @@ local function OnBuilt(inst)
 end
 
 local function UpdateArtWorkable(inst, instant)
-    local workleft = inst.components.workable.workleft
-    local animlevel = workleft/TUNING.DECO_RUINS_BEAM_WORK
-    if animlevel <= 0 then
+    local work_left = inst.components.workable.workleft
+    local anim_level = work_left / TUNING.DECO_RUINS_BEAM_WORK
+    if anim_level <= 0 then
         if not instant then
             inst.AnimState:PlayAnimation("pillar_front_crumble")
             inst.AnimState:PushAnimation("pillar_front_crumble_idle")
         else
             inst.AnimState:PlayAnimation("pillar_front_crumble_idle")
         end
-    elseif animlevel < 1/3 then
+    elseif anim_level < 1 / 3 then
         inst.AnimState:PlayAnimation("pillar_front_break_2")
-    elseif animlevel < 2/3 then
+    elseif anim_level < 2 / 3 then
         inst.AnimState:PlayAnimation("pillar_front_break_1")
     end
-    if workleft <= 0 then
+    if work_left <= 0 then
         inst.components.workable:SetWorkable(false)
     end
 end
@@ -324,7 +319,7 @@ end
 
 local function OnRemove(inst)
     if inst.decochildrenToRemove then
-        for _,child in ipairs(inst.decochildrenToRemove) do
+        for _, child in pairs(inst.decochildrenToRemove) do
             child:Remove()
         end
     end
@@ -337,48 +332,63 @@ local function OnRemove(inst)
     end
 end
 
-local function turnoff(inst, light)
-    if light then
-        light:Enable(false)
-    end
-end
+local phase_anims ={
+    day = {
+        enter = "to_day",
+        loop = "day_loop",
+    },
+    dusk = {
+        enter = "to_dusk",
+        loop = "dusk_loop",
+    },
+    night = {
+        enter = "to_night",
+        loop = "night_loop",
+    },
+}
 
-local function timechange(inst)
-    if TheWorld.state.isday then
-        inst.AnimState:PlayAnimation("to_day")
-        inst.AnimState:PushAnimation("day_loop", true)
-    elseif TheWorld.state.isnight then
-       inst.AnimState:PlayAnimation("to_night")
-        inst.AnimState:PushAnimation("night_loop", true)
-    elseif TheWorld.state.isdusk then
-        inst.AnimState:PlayAnimation("to_dusk")
-        inst.AnimState:PushAnimation("dusk_loop", true)
-    end
+local function OnPhaseChange(inst, phase)
+    inst.AnimState:PlayAnimation(phase_anims[phase].enter)
+    inst.AnimState:PushAnimation(phase_anims[phase].loop, true)
 end
 
 local function mirror_blink_idle(inst)
-    if inst.isneer then
+    if inst.is_near then
         inst.AnimState:PlayAnimation("shadow_blink")
         inst.AnimState:PushAnimation("shadow_idle", true)
     end
     inst.blink_task = inst:DoTaskInTime(10 + math.random() * 50, mirror_blink_idle)
 end
 
-local function mirror_OnNear(inst)
+local function MirrorOnNear(inst)
     inst.AnimState:PlayAnimation("shadow_in")
     inst.AnimState:PushAnimation("shadow_idle", true)
 
-    inst.blink_task = inst:DoTaskInTime(10 + math.random() * 50, mirror_OnNear)
-    inst.isneer = true
+    inst.blink_task = inst:DoTaskInTime(10 + math.random() * 50, mirror_blink_idle)
+    inst.is_near = true
 end
 
-local function mirror_OnFar(inst)
-    if inst.isneer then
+local function MirrorOnFar(inst)
+    if inst.is_near then
         inst.AnimState:PlayAnimation("shadow_out")
         inst.AnimState:PushAnimation("idle", true)
-        inst.isneer = nil
+        inst.is_near = nil
         inst.blink_task:Cancel()
         inst.blink_task = nil
+    end
+end
+
+local function OnWorkCallBack(inst, worker, work_left)
+    inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
+
+    UpdateArtWorkable(inst)
+
+    if TheWorld.components.quaker_interior then
+        if work_left <= 0 then
+            TheWorld.components.quaker_interior:ForceQuake("cavein")
+        else
+            TheWorld.components.quaker_interior:ForceQuake("pillarshake")
+        end
     end
 end
 
@@ -396,6 +406,62 @@ local function swapColor(inst, light)
         inst.iswhite =true
         inst.components.lighttweener:StartTween(light, Lerp(0, 3, 1), nil, nil, {100/255, 240/255, 100/255}, 0.2, swapColor)
     end
+end
+
+local function build_rectangle_collision_mesh(rad, height, width)
+    local points = {
+        Vector3(-width/2, 0, -rad/2),
+        Vector3(width/2, 0, -rad/2),
+        Vector3(width/2, 0, rad/2),
+        Vector3(-width/2, 0, rad/2),
+    }
+    local triangles = {}
+    local y0 = 0
+    local y1 = height
+    for i = 1, 4 do
+        local p1 = points[i]
+        local p2 = points[i == 4 and 1 or i + 1]
+
+        table.insert(triangles, p1.x)
+        table.insert(triangles, y0)
+        table.insert(triangles, p1.z)
+
+        table.insert(triangles, p1.x)
+        table.insert(triangles, y1)
+        table.insert(triangles, p1.z)
+
+        table.insert(triangles, p2.x)
+        table.insert(triangles, y0)
+        table.insert(triangles, p2.z)
+
+        table.insert(triangles, p2.x)
+        table.insert(triangles, y0)
+        table.insert(triangles, p2.z)
+
+        table.insert(triangles, p1.x)
+        table.insert(triangles, y1)
+        table.insert(triangles, p1.z)
+
+        table.insert(triangles, p2.x)
+        table.insert(triangles, y1)
+        table.insert(triangles, p2.z)
+    end
+
+    return triangles
+end
+
+local function MakeInteriorPhysics(inst, rad, height, width)
+    height = height or 20
+
+    inst:AddTag("blocker")
+    inst.Physics = inst.Physics or inst.entity:AddPhysics()
+    inst.Physics:SetMass(0)
+    -- inst.Physics:SetRectangle(rad,height,width)
+    inst.Physics:SetTriangleMesh(build_rectangle_collision_mesh(rad, height, width or rad))
+    inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith(COLLISION.ITEMS)
+    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
 end
 
 local function MakeDeco(build, bank, animframe, data, name)
@@ -418,145 +484,43 @@ local function MakeDeco(build, bank, animframe, data, name)
     local tags = data.tags or {}
     local name_override = data.recipeproxy or data.name_override
 
-    local function fn(Sim)
+    local function fn()
         local inst = CreateEntity()
-        local trans = inst.entity:AddTransform()
-        local anim = inst.entity:AddAnimState()
+
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
         inst.entity:AddNetwork()
-        anim:SetBuild(build)
-        anim:SetBank(bank)
-        anim:PlayAnimation(animframe, loopanim)
 
-        inst.Transform:SetRotation(-90)
-
-        for i, tag in ipairs(tags) do
-            inst:AddTag(tag)
+        inst.AnimState:SetBuild(build)
+        inst.AnimState:SetBank(bank)
+        inst.AnimState:PlayAnimation(animframe, loopanim)
+        if scale then
+            inst.AnimState:SetScale(scale.x, scale.y, scale.z)
         end
-
-        if data.children then
-            inst:DoTaskInTime(0,function()
-                -- don't spawn child in client
-                if TheWorld.ismastersim and not inst.childrenspawned then
-                    for i, child in ipairs(data.children) do
-                        local childprop = SpawnPrefab(child)
-                        local pt = Vector3(inst.Transform:GetWorldPosition())
-                        print(childprop.prefab,pt.x,pt.y,pt.z)
-                        childprop.Transform:SetPosition(pt.x ,pt.y, pt.z)
-                        childprop.Transform:SetRotation(inst.Transform:GetRotation())
-                        if not inst.decochildrenToRemove then
-                            inst.decochildrenToRemove = {}
-                        end
-                        table.insert(inst.decochildrenToRemove,childprop)
-                    end
-                    inst.childrenspawned = true
-                end
-           end)
-        end
-
-        if minimapicon then
-            local minimap = inst.entity:AddMiniMapEntity()
-            minimap:SetIcon(minimapicon)
-        end
-
         if background then
             inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
             inst.AnimState:SetSortOrder(background)
             inst.setbackground = background
         end
-
+        if loopanim then
+            inst.AnimState:SetTime(math.random() * inst.AnimState:GetCurrentAnimationLength())
+        end
+        if not data.curtains then
+            inst.AnimState:Hide("curtain")
+        end
+        if data.bloom then
+            inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+        end
         if name == "deco_palace_beam_room_tall_corner" then
             -- fix layer
             inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
         end
-
-        if TheWorld.ismastersim then
-            if STRINGS.NAMES[string.upper(name)] then
-                inst:AddComponent("inspectable")
-            end
-
-            if name_override then
-                if not inst.components.inspectable then
-                    inst:AddComponent("inspectable")
-                end
-                -- this way the backwall windows will show the right prefab name (with controller)
-                inst.name = STRINGS.NAMES[name_override:upper()]
-                inst.components.inspectable.nameoverride = name_override
-            end
-        end
-
-        if physics then
-            if physics == "sofa_physics" then
-                MakeInteriorPhysics(inst, 1.3, 1, 0.2)
-            elseif physics == "sofa_physics_vert" then
-                MakeInteriorPhysics(inst, 0.2, 1, 1.3)
-            elseif physics == "chair_physics_small" then
-                MakeObstaclePhysics(inst, .5)
-            elseif physics == "chair_physics" then
-                MakeInteriorPhysics(inst, 1, 1, 1)
-            elseif physics == "desk_physics" then
-                MakeInteriorPhysics(inst, 2, 1, 1)
-            elseif physics == "tree_physics" then
-                inst:AddTag("blocker")
-                inst.entity:AddPhysics()
-                inst.Physics:SetMass(0)
-                inst.Physics:SetCylinder(4.7, 4.0)
-                inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
-                inst.Physics:ClearCollisionMask()
-                inst.Physics:CollidesWith(COLLISION.ITEMS)
-                inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-                -- inst.Physics:CollidesWith(COLLISION.INTWALL)
-            elseif physics == "pond_physics" then
-                inst:AddTag("blocker")
-                inst.entity:AddPhysics()
-                inst.Physics:SetMass(0)
-                inst.Physics:SetCylinder(1.6, 4.0)
-                inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
-                inst.Physics:ClearCollisionMask()
-                inst.Physics:CollidesWith(COLLISION.ITEMS)
-                inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-                -- inst.Physics:CollidesWith(COLLISION.INTWALL)
-            elseif physics == "big_post_physics" then
-                MakeObstaclePhysics(inst, 0.75)
-            elseif physics == "post_physics" then
-                MakeObstaclePhysics(inst, .25)
-            end
-        end
-
-        if scale then
-            anim:SetScale(scale.x, scale.y, scale.z)
-        end
-
-        if decal then
-            -- NOTE: only apply billborad render behavior on beam/pillar 
-            if name:find("_cornerbeam")
-                or name:find("_beam")
-                or name:find("_pillar")
-                or data.rotatingbillboard then
-                -- skip this 2024/6/13
-                -- inst:AddComponent("pl_rotatingbillboard")
-
-                -- inst.components.pl_rotatingbillboard.animdata = {
-                --     bank = bank,
-                --     build = build,
-                --     animation = animframe,
-                -- }
+        if data.adjustanim then
+            if false then
+                inst.AnimState:PlayAnimation(animframe .. "_front")
             else
-                inst.Transform:SetTwoFaced()
+                inst.AnimState:PlayAnimation(animframe .. "_side")
             end
-        else
-            inst.Transform:SetTwoFaced()
-        end
-
-        if loopanim then
-            anim:SetTime(math.random() * anim:GetCurrentAnimationLength())
-        end
-
-        if not data.curtains then
-            anim:Hide("curtain")
-        end
-
-        if data.bloom then
-            inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
         end
 
         if light then
@@ -577,16 +541,16 @@ local function MakeDeco(build, bank, animframe, data, name)
                         inst.swinglight.setListenEvents(inst.swinglight)
                     end
                     -- NOTE: set arbitrary light position here
-                    if inst.components.pl_rotatingbillboard ~= nil then
+                    if inst.components.rotatingbillboard then
                         local offset = TUNING.PL_MANUAL_LIGHT_OFFSET[name:upper()] or TUNING.PL_MANUAL_LIGHT_OFFSET.DEFAULT
                         inst.swinglight.entity:SetParent(inst.entity)
                         inst.swinglight.offset = Vector3(0.01, offset[1], offset[2])
-                        inst.components.pl_rotatingbillboard:UpdateLightPosition()
+                        inst.components.rotatingbillboard:UpdateLightPosition()
                     else
                         inst.swinglight.entity:SetParent(inst.entity)
                         local follower = inst.swinglight.Follower
-                        follower:FollowSymbol( inst.GUID, "light_circle", 0, 0, 0 )
-                        inst.swinglight.followobject = {GUID=inst.GUID, symbol="light_circle", x=0, y=0, z=0}
+                        follower:FollowSymbol(inst.GUID, "light_circle", 0, 0, 0)
+                        inst.swinglight.followobject = {GUID = inst.GUID, symbol = "light_circle", x = 0, y = 0, z = 0}
                     end
                 end)
             else
@@ -596,6 +560,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.Light:SetFalloff(light.falloff)
                 inst.Light:SetRadius(light.radius)
                 inst.Light:Enable(true)
+
                 inst:AddComponent("fader")
             end
 
@@ -605,31 +570,131 @@ local function MakeDeco(build, bank, animframe, data, name)
             end
         end
 
+        if minimapicon then
+            inst.entity:AddMiniMapEntity()
+            inst.MiniMapEntity:SetIcon(minimapicon)
+        end
+
+        if physics then
+            if physics == "sofa_physics" then
+                MakeInteriorPhysics(inst, 1.3, 1, 0.2)
+            elseif physics == "sofa_physics_vert" then
+                MakeInteriorPhysics(inst, 0.2, 1, 1.3)
+            elseif physics == "chair_physics_small" then
+                MakeObstaclePhysics(inst, 0.5)
+            elseif physics == "chair_physics" then
+                MakeInteriorPhysics(inst, 1, 1, 1)
+            elseif physics == "desk_physics" then
+                MakeInteriorPhysics(inst, 2, 1, 1)
+            elseif physics == "tree_physics" then
+                inst:AddTag("blocker")
+                inst.entity:AddPhysics()
+                inst.Physics:SetMass(0)
+                inst.Physics:SetCylinder(4.7, 4.0)
+                inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
+                inst.Physics:ClearCollisionMask()
+                inst.Physics:CollidesWith(COLLISION.ITEMS)
+                inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+            elseif physics == "pond_physics" then
+                inst:AddTag("blocker")
+                inst.entity:AddPhysics()
+                inst.Physics:SetMass(0)
+                inst.Physics:SetCylinder(1.6, 4.0)
+                inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
+                inst.Physics:ClearCollisionMask()
+                inst.Physics:CollidesWith(COLLISION.ITEMS)
+                inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+            elseif physics == "big_post_physics" then
+                MakeObstaclePhysics(inst, 0.75)
+            elseif physics == "post_physics" then
+                MakeObstaclePhysics(inst, 0.25)
+            end
+        end
+
+        inst.Transform:SetRotation(-90)
+        if decal then
+            -- NOTE: only apply billborad render behavior on beam/pillar 
+            if name:find("_cornerbeam")
+                or name:find("_beam")
+                or name:find("_pillar")
+                or data.rotatingbillboard then
+                -- skip this 2024/6/13
+                -- inst:AddComponent("rotatingbillboard")
+
+                -- inst.components.rotatingbillboard.animdata = {
+                --     bank = bank,
+                --     build = build,
+                --     animation = animframe,
+                -- }
+            else
+                inst.Transform:SetTwoFaced()
+            end
+        else
+            inst.Transform:SetTwoFaced()
+        end
+
+        if TheWorld.ismastersim then
+            if STRINGS.NAMES[string.upper(name)] then
+                inst:AddComponent("inspectable")
+            end
+
+            if name_override then
+                if not inst.components.inspectable then
+                    inst:AddComponent("inspectable")
+                end
+                -- this way the backwall windows will show the right prefab name (with controller)
+                inst.name = STRINGS.NAMES[name_override:upper()]
+                inst.components.inspectable.nameoverride = name_override
+            end
+        end
+
+        for _, tag in pairs(tags) do
+            inst:AddTag(tag)
+        end
+
+        if data.children then
+            inst:DoTaskInTime(0, function()
+                -- don't spawn child in client
+                if not TheWorld.ismastersim or inst.childrenspawned then
+                    return
+                end
+
+                for _, child in pairs(data.children) do
+                    local child_prop = SpawnPrefab(child)
+                    local x, y, z = inst.Transform:GetWorldPosition()
+                    child_prop.Transform:SetPosition(x, y, z)
+                    child_prop.Transform:SetRotation(inst.Transform:GetRotation())
+                    if not inst.decochildrenToRemove then
+                        inst.decochildrenToRemove = {}
+                    end
+                    inst.decochildrenToRemove[#inst.decochildrenToRemove + 1] = child_prop
+                end
+                inst.childrenspawned = true
+           end)
+        end
+
+        if prefabname then
+            if TheWorld.ismastersim and not inst.components.inspectable then
+                inst:AddComponent("inspectable")
+            end
+
+            inst:SetPrefabName(prefabname)
+        end
+
         inst.entity:SetPristine()
+
         if not TheWorld.ismastersim then
             return inst
         end
 
-        inst.OnSave = OnSave
-        inst.OnLoad = OnLoad
-        inst.LoadPostPass = OnLoadPostPass
-
-        if data.dayevents then
-            inst:WatchWorldState("isday", timechange)
-            inst:WatchWorldState("isdusk", timechange)
-            inst:WatchWorldState("isnight", timechange)
-            timechange(inst)
-        end
-
         if mirror then
             inst:AddComponent("playerprox")
-            inst.components.playerprox:SetOnPlayerNear(mirror_OnNear)
-            inst.components.playerprox:SetOnPlayerFar(mirror_OnFar)
+            inst.components.playerprox:SetOnPlayerNear(MirrorOnNear)
+            inst.components.playerprox:SetOnPlayerFar(MirrorOnFar)
             inst.components.playerprox:SetDist(2, 2.1)
         end
 
         if workable then
-
             if not inst.components.inspectable then
                 inst:AddComponent("inspectable")
             end
@@ -641,33 +706,11 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst.components.workable:SetWorkLeft(TUNING.DECO_RUINS_BEAM_WORK)
             inst.components.workable:SetMaxWork(TUNING.DECO_RUINS_BEAM_WORK)
             inst.components.workable.savestate = true
-            inst.components.workable:SetOnWorkCallback(
-                function(inst, worker, workleft)
-                    inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
-
-                    UpdateArtWorkable(inst)
-
-                    if GetWorld().components.quaker_interior then
-                        if workleft <= 0 then
-                            GetWorld().components.quaker_interior:ForceQuake("cavein")
-                            print("QUAKE: CAVE IN!!!")
-                        else
-                           GetWorld().components.quaker_interior:ForceQuake("pillarshake")
-                           print("QUAKE: pillar!!!")
-                        end
-                    end
-                end)
+            inst.components.workable:SetOnWorkCallback(OnWorkCallBack)
             inst.updateworkableart = true
         end
 
-        if prefabname then
-            if not inst.components.inspectable then
-                inst:AddComponent("inspectable")
-            end
-
-            inst:SetPrefabName(prefabname)
-        end
-
+        --[[
         if prefabname == "pig_latin_1" then
             inst:AddTag("pig_writing_1")
             GetWorld():ListenForEvent("doorused", function(world, data)
@@ -719,30 +762,26 @@ local function MakeDeco(build, bank, animframe, data, name)
                 end)
         end
 
+        --]]
 
-        inst:ListenForEvent("onremove", function()
-                OnRemove(inst)
-            end)
-
-        inst:DoTaskInTime(0,function()
-                if inst:HasTag("playercrafted") then
-                    SetPlayerUncraftable(inst)
-                end
-            end)
-
+        inst:ListenForEvent("onremove", OnRemove)
         if data.onbuilt then
-            inst:ListenForEvent( "onbuilt", function()
-                OnBuilt(inst)
-            end)
+            inst:ListenForEvent("onbuilt", OnBuilt)
+        end
+        if data.dayevents then
+            inst:WatchWorldState("phase", OnPhaseChange)
+            OnPhaseChange(inst, TheWorld.state.phase)
         end
 
-        if data.adjustanim then
-            if false then
-                anim:PlayAnimation(animframe .. "_front")
-            else
-                anim:PlayAnimation(animframe .. "_side")
+        inst:DoTaskInTime(0, function()
+            if inst:HasTag("playercrafted") then
+                SetPlayerUncraftable(inst)
             end
-        end
+        end)
+
+        inst.OnSave = OnSave
+        inst.OnLoad = OnLoad
+        inst.LoadPostPass = OnLoadPostPass
 
         if data.recipeproxy then
             inst.recipeproxy = data.recipeproxy
@@ -808,12 +847,8 @@ local DecoCreator = Class(function(self)
 
 end)
 
-local prefab_names = {}
-
 function DecoCreator:Create(name, build, bank, anim, data)
-    assert(name, "Prefab name is nil")
-    prefab_names[name] = true
-    return Prefab("deco/"..name, MakeDeco(build, bank, anim, data, name), assets, prefabs)
+    return Prefab(name, MakeDeco(build, bank, anim, data, name), assets, prefabs)
 end
 
 function DecoCreator:GetLights()

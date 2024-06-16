@@ -487,13 +487,13 @@ local function fn()
 
     inst:DoTaskInTime(0, testPlayerHouseDoor)
 
-       inst:AddTag("interior_door")
-       inst:AddTag("NOBLOCK")
+    inst:AddTag("interior_door")
+    inst:AddTag("NOBLOCK")
 
-       inst.entity:SetPristine()
-       if not TheWorld.ismastersim then
-           return inst
-       end
+    inst.entity:SetPristine()
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
     inst:AddComponent("door")
 
@@ -501,6 +501,8 @@ local function fn()
     inst.initInteriorPrefab = InitInteriorPrefab
     inst.saveInteriorData = SaveInteriorData
     inst.initFromInteriorSave = InitFromInteriorSave
+
+    MakeHauntableDoor(inst)
 
     inst.opendoor = opendoor
     inst.closedoor = closedoor
@@ -540,20 +542,22 @@ end
 
 local function shadowfn()
     local inst = CreateEntity()
+
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
 
     inst.AnimState:SetBank("doorway_ruins")
     inst.AnimState:SetBuild("pig_ruins_door")
     inst.AnimState:PlayAnimation("south_floor")
+
     inst:AddTag("NOCLICK")  -- Note for future self: Was commented out, but not sure why.. if it's not there, the shadow eats the click on the door.
     inst:AddTag("NOBLOCK")
     inst.initInteriorPrefab = InitInteriorPrefab_shadow
 
     inst:AddTag("SELECT_ME")
 
-    inst.AnimState:SetLayer( LAYER_BACKGROUND )
-    inst.AnimState:SetSortOrder( 3 )
+    inst.AnimState:SetLayer(LAYER_BACKGROUND)
+    inst.AnimState:SetSortOrder(3)
     return inst
 end
 

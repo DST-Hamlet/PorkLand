@@ -397,64 +397,6 @@ function MakeInventoryPhysics(inst, mass, rad)
     return physics
 end
 
-local function build_rectangle_collision_mesh(rad, height, width)
-    local points = {
-        Vector3(-width/2, 0, -rad/2),
-        Vector3(width/2, 0, -rad/2),
-        Vector3(width/2, 0, rad/2),
-        Vector3(-width/2, 0, rad/2),
-    }
-    local triangles = {}
-    local y0 = 0
-    local y1 = height
-    for i = 1, 4 do
-        local p1 = points[i]
-        local p2 = points[i == 4 and 1 or i + 1]
-
-        table.insert(triangles, p1.x)
-        table.insert(triangles, y0)
-        table.insert(triangles, p1.z)
-
-        table.insert(triangles, p1.x)
-        table.insert(triangles, y1)
-        table.insert(triangles, p1.z)
-
-        table.insert(triangles, p2.x)
-        table.insert(triangles, y0)
-        table.insert(triangles, p2.z)
-
-        table.insert(triangles, p2.x)
-        table.insert(triangles, y0)
-        table.insert(triangles, p2.z)
-
-        table.insert(triangles, p1.x)
-        table.insert(triangles, y1)
-        table.insert(triangles, p1.z)
-
-        table.insert(triangles, p2.x)
-        table.insert(triangles, y1)
-        table.insert(triangles, p2.z)
-    end
-
-    return triangles
-end
-
--- for temp use
--- TODO: change to local function in prod
-function MakeInteriorPhysics(inst, rad, height, width)
-    height = height or 20
-
-    inst:AddTag("blocker")
-    inst.Physics = inst.Physics or inst.entity:AddPhysics()
-    inst.Physics:SetMass(0)
-    -- inst.Physics:SetRectangle(rad,height,width)
-    inst.Physics:SetTriangleMesh(build_rectangle_collision_mesh(rad, height, width or rad))
-    inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
-    inst.Physics:ClearCollisionMask()
-    inst.Physics:CollidesWith(COLLISION.ITEMS)
-    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-end
-
 function MakeHauntableDoor(inst)
     if not inst.components.door then
         print("Warning: Trying to call MakeHauntableDoor without door component")

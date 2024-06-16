@@ -1,7 +1,7 @@
 local AddClassPostConstruct = AddClassPostConstruct
 GLOBAL.setfenv(1, GLOBAL)
 
-local FollowCamera = require("components/followcamera")
+local FollowCamera = require("cameras/followcamera")
 
 local _Apply = FollowCamera.Apply
 function FollowCamera:Apply(...)

@@ -1,161 +1,159 @@
 local InteriorVisitor = Class(function(self, inst)
-	self.inst = inst
-	self.interiorspawner = TheWorld.components.interiorspawner
+    self.inst = inst
+    self.interiorspawner = TheWorld.components.interiorspawner
 
-	self.center_ent = net_entity(inst.GUID, "interiorvisitor.center_ent")
-	self.last_center_ent = nil
-	self.exterior_pos_x = net_shortint(inst.GUID, "interiorvisitor.exterior_pos_x", "interiorvisitor.exterior_pos")
-	self.exterior_pos_x:set_local(0)
-	self.exterior_pos_z = net_shortint(inst.GUID, "interiorvisitor.exterior_pos_z", "interiorvisitor.exterior_pos")
-	self.exterior_pos_z:set_local(0)
-	self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
+    self.center_ent = net_entity(inst.GUID, "interiorvisitor.center_ent")
+    self.last_center_ent = nil
+    self.exterior_pos_x = net_shortint(inst.GUID, "interiorvisitor.exterior_pos_x", "interiorvisitor.exterior_pos")
+    self.exterior_pos_x:set_local(0)
+    self.exterior_pos_z = net_shortint(inst.GUID, "interiorvisitor.exterior_pos_z", "interiorvisitor.exterior_pos")
+    self.exterior_pos_z:set_local(0)
+    self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
-	self.resetinteriorcamera = net_event(inst.GUID, "interiorvisitor.resetinteriorcamera")
-	-- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
+    self.resetinteriorcamera = net_event(inst.GUID, "interiorvisitor.resetinteriorcamera")
+    -- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
 
-	inst:StartUpdatingComponent(self)
+    inst:StartUpdatingComponent(self)
 
-	self.player_icon = SpawnPrefab("pl_local_icon")
+    self.player_icon = SpawnPrefab("pl_local_icon")
 end)
 
 function InteriorVisitor:GetExteriorPos()
-	return Point(
-		self.exterior_pos_x:value(),
-		0,
-		self.exterior_pos_z:value())
+    return Point(
+        self.exterior_pos_x:value(),
+        0,
+        self.exterior_pos_z:value())
 end
 
 function InteriorVisitor:IsInInterior()
-	local pos = self.inst:GetPosition()
-	local index = self.interiorspawner:PositionToIndex(pos)
+    local pos = self.inst:GetPosition()
+    local index = self.interiorspawner:PositionToIndex(pos)
 end
 
 function InteriorVisitor:GetInteriorCenterGeneric()
-	local pos = self.inst:GetPosition()
-	for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 30, {"pl_interiorcenter"}))do
-		return v
-	end
+    local pos = self.inst:GetPosition()
+    for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 30, {"pl_interiorcenter"}))do
+        return v
+    end
 end
 
 function InteriorVisitor:GetInteriorCenterDedicated()
-	local pos = self.inst:GetPosition()
-	local ent = self.interiorspawner:PositionToInteriorCenter()
-	return ent
+    local pos = self.inst:GetPosition()
+    local ent = self.interiorspawner:PositionToInteriorCenter()
+    return ent
 end
 
 local function IsInInteriorRectangle(player_pos, ent)
-	if ent == nil or not ent:IsValid() then
-		return false
-	end
-	local w, d = ent:GetSize()
-	local offset = ent:GetPosition() - player_pos
-	return math.abs(offset.x) < d/2 + 2 and math.abs(offset.z) < w/2 + 2
+    if ent == nil or not ent:IsValid() then
+        return false
+    end
+    local w, d = ent:GetSize()
+    local offset = ent:GetPosition() - player_pos
+    return math.abs(offset.x) < d/2 + 2 and math.abs(offset.z) < w/2 + 2
 end
 
 function InteriorVisitor:Activate()
-	print("InteriorVisitor:Activate()")
+    print("InteriorVisitor:Activate()")
 end
 
 function InteriorVisitor:Deactivate()
-	print("InteriorVisitor:Deactivate()")
+    print("InteriorVisitor:Deactivate()")
 end
 
 function InteriorVisitor:ApplyInteriorCamera(ent)
-	local cameraoffset = -2.5 		--10x15
-	local zoom = 30
-	local size = { ent:GetSize() }
-	local depth = size[2] or TUNING.ROOM_TINY_DEPTH
-	if depth == 12 then    --12x18
-		cameraoffset = -2
-		zoom = 32
-	elseif depth == 16 then --16x24
-		cameraoffset = -1.5
-		zoom = 37
-	elseif depth == 18 then --18x26
-		cameraoffset = -2
-		zoom = 42
-	end
+    local cameraoffset = -2.5 		--10x15
+    local zoom = 30
+    local size = { ent:GetSize() }
+    local depth = size[2] or TUNING.ROOM_TINY_DEPTH
+    if depth == 12 then    --12x18
+        cameraoffset = -2
+        zoom = 32
+    elseif depth == 16 then --16x24
+        cameraoffset = -1.5
+        zoom = 37
+    elseif depth == 18 then --18x26
+        cameraoffset = -2
+        zoom = 42
+    end
 
-	-- custom value
-	if ent.pl_interior_distance ~= nil then
-		zoom = ent.pl_interior_distance
-	end
-	if ent.pl_interior_cameraoffset ~= nil then
-		cameraoffset = ent.pl_interior_cameraoffset
-	else
-		cameraoffset = Vector3(cameraoffset, 0, 0)
-	end
+    -- custom value
+    if ent.pl_interior_distance ~= nil then
+        zoom = ent.pl_interior_distance
+    end
+    if ent.pl_interior_cameraoffset ~= nil then
+        cameraoffset = ent.pl_interior_cameraoffset
+    else
+        cameraoffset = Vector3(cameraoffset, 0, 0)
+    end
 
-	local pos = ent:GetPosition()
-	TheCamera.pl_inside_interior = true
-	TheCamera.pl_interior_currentpos = pos + cameraoffset
-	TheCamera.pl_interior_distance = zoom
+    local pos = ent:GetPosition()
+    TheCamera.pl_inside_interior = true
+    TheCamera.pl_interior_currentpos = pos + cameraoffset
+    TheCamera.pl_interior_distance = zoom
 end
 
 function InteriorVisitor:OnUpdate()
-	local ambientlighting = TheWorld.components.ambientlighting
-	if self.inst == ThePlayer then
-		-- local was_in = TheCamera.pl_inside_interior 
-		local last_center_ent = self.last_center_ent
-		local pos = self.inst:GetPosition()
-		local ent = self.center_ent:value()
-		local is_in = IsInInteriorRectangle(self.inst:GetPosition(), ent)
-		if is_in then
-			self.inst:AddTag("inside_interior")
-			self:ApplyInteriorCamera(ent)
-			if ent:HasInteriorMinimap() then
-				self.player_icon.MiniMapEntity:SetEnabled(false)
-			else
-				self.player_icon.MiniMapEntity:CopyIcon(self.inst.MiniMapEntity)
-				self.player_icon.MiniMapEntity:SetEnabled(true)
-				self.player_icon.Transform:SetPosition(self:GetExteriorPos():Get())
+    local ambientlighting = TheWorld.components.ambientlighting
+    if self.inst == ThePlayer then
+        -- local was_in = TheCamera.pl_inside_interior 
+        local last_center_ent = self.last_center_ent
+        local ent = self.center_ent:value()
+        local is_in = IsInInteriorRectangle(self.inst:GetPosition(), ent)
+        if is_in then
+            self.inst:AddTag("inside_interior")
+            self:ApplyInteriorCamera(ent)
+            if ent:HasInteriorMinimap() then
+                self.player_icon.MiniMapEntity:SetEnabled(false)
+            else
+                self.player_icon.MiniMapEntity:CopyIcon(self.inst.MiniMapEntity)
+                self.player_icon.MiniMapEntity:SetEnabled(true)
+                self.player_icon.Transform:SetPosition(self:GetExteriorPos():Get())
 
-			end
-			if last_center_ent ~= ent then
-				self.last_center_ent = ent
-				self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
-				if self.inst.MiniMapEntity then
-					self.inst.MiniMapEntity:SetEnabled(false)
-				end
-				if ambientlighting then
-					ambientlighting:Pl_Refresh()
-				end
-			end
-		else
-			self.inst:RemoveTag("inside_interior")
-			self.player_icon.MiniMapEntity:SetEnabled(false)
-			TheCamera.pl_inside_interior = false
-			self.last_center_ent = nil
-			if last_center_ent ~= ent then
-				self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
-				if self.inst.MiniMapEntity then
-					self.inst.MiniMapEntity:SetEnabled(true)
-				end
-				if ambientlighting then
-					ambientlighting:Pl_Refresh()
-				end
-			end
-		end
-	end
+            end
+            if last_center_ent ~= ent then
+                self.last_center_ent = ent
+                self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
+                if self.inst.MiniMapEntity then
+                    self.inst.MiniMapEntity:SetEnabled(false)
+                end
+                if ambientlighting then
+                    ambientlighting:Pl_Refresh()
+                end
+            end
+        else
+            self.inst:RemoveTag("inside_interior")
+            self.player_icon.MiniMapEntity:SetEnabled(false)
+            TheCamera.pl_inside_interior = false
+            self.last_center_ent = nil
+            if last_center_ent ~= ent then
+                self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
+                if self.inst.MiniMapEntity then
+                    self.inst.MiniMapEntity:SetEnabled(true)
+                end
+                if ambientlighting then
+                    ambientlighting:Pl_Refresh()
+                end
+            end
+        end
+    end
 end
 
 function InteriorVisitor:GetCenterEnt()
-	local ent = self.center_ent:value()
-	if ent and ent:IsValid() then
-		return ent
-	end
+    local ent = self.center_ent:value()
+    if ent and ent:IsValid() then
+        return ent
+    end
 end
 
 local CC_DEF = require("interior_texture_defs").CC_DEF
 
 function InteriorVisitor:GetCCTable()
-	local index = self.interior_cc:value()
-	local cc = CC_DEF[index] and CC_DEF[index].path or "images/colour_cubes/day05_cc.tex"
-	print("current cc:", cc)
-	cc = resolvefilepath(cc) -- add prefix mod root
-	return {
-		day = cc, dusk = cc, night = cc, full_moon = cc
-	}
+    local index = self.interior_cc:value()
+    local cc = CC_DEF[index] and CC_DEF[index].path or "images/colour_cubes/day05_cc.tex"
+    cc = resolvefilepath(cc) -- add prefix mod root
+    return {
+        day = cc, dusk = cc, night = cc, full_moon = cc
+    }
 end
 
 function InteriorVisitor:OnRemoveFromEntity()

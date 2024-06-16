@@ -1,13 +1,8 @@
-require "brains/vampirebatbrain"
-require "stategraphs/SGvampirebat"
-
-local assets=
+local assets =
 {
     Asset("ANIM", "anim/bat_basic.zip"),
     Asset("ANIM", "anim/bat_vamp_build.zip"),
     Asset("ANIM", "anim/bat_vamp_shadow.zip"),
-    Asset("SOUND", "sound/bat.fsb"),
-    Asset("INV_IMAGE", "bat"),
 }
 
 local prefabs =
@@ -17,16 +12,13 @@ local prefabs =
     "bat_hide",
 }
 
-SetSharedLootTable( 'vampirebat',
+SetSharedLootTable("vampirebat",
 {
-    {'monstermeat',0.50},
-    {'bat_hide',0.50},
-    {'vampire_bat_wing',0.10},
+    {"monstermeat",      0.5},
+    {"bat_hide",         0.5},
+    {"vampire_bat_wing", 0.1},
 })
 
-local SLEEP_DIST_FROMHOME = 1
-local SLEEP_DIST_FROMTHREAT = 12
-local MAX_CHASEAWAY_DIST = 80
 local MAX_TARGET_SHARES = 100
 local SHARE_TARGET_DIST = 100
 
@@ -54,18 +46,16 @@ local function KeepTarget(inst, target)
     end
 end
 
+local RETARGET_DIST = 12
 local RETARGET_CANT_TAGS = {"bat"}
 local RETARGET_ONEOF_TAGS = {"character", "monster"}
 local function Retarget(inst)
     local ta = inst.components.teamattacker
 
-    local newtarget = FindEntity(inst, TUNING.VAMPIREBAT_TARGET_DIST, function(guy)
-            return inst.components.combat:CanTarget(guy)
-        end,
-        nil,
-        RETARGET_CANT_TAGS,
-        RETARGET_ONEOF_TAGS
-    )
+    local newtarget = FindEntity(inst, RETARGET_DIST, function(ent)
+        return inst.components.combat:CanTarget(ent)
+    end, nil, RETARGET_CANT_TAGS, RETARGET_ONEOF_TAGS)
+
     if newtarget and not ta.inteam and not ta:SearchForTeam() then
         MakeTeam(inst, newtarget)
     end
@@ -85,19 +75,21 @@ local function OnAttacked(inst, data)
     if inst.components.teamattacker.inteam and not inst.components.teamattacker.teamleader:CanAttack() then
         local attacker = data and data.attacker
         inst.components.combat:SetTarget(attacker)
-        inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude) return dude:HasTag("vampirebat") end, MAX_TARGET_SHARES)
+        inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent) return ent:HasTag("vampirebat") end, MAX_TARGET_SHARES)
     end
 end
 
 local function OnAttackOther(inst, data)
-    inst.components.combat:ShareTarget(data.target, SHARE_TARGET_DIST, function(dude) return dude:HasTag("vampirebat") and not dude.components.health:IsDead() end, 5)
+    inst.components.combat:ShareTarget(data.target, SHARE_TARGET_DIST, function(ent)
+        return ent:HasTag("vampirebat") and not ent.components.health:IsDead()
+    end, 5)
 end
 
 local function OnWakeUp(inst)
     inst.forcesleep = false
 end
 
-local function onsave(inst, data)
+local function OnSave(inst, data)
     if inst:HasTag("batfrenzy") then
         data.batfrenzy = true
     end
@@ -109,52 +101,55 @@ local function onsave(inst, data)
     end
 end
 
-local function onload(inst, data)
-    if data then
-        if data.batfrenzy then
-            inst:AddTag("batfrenzy")
-        end
+local function OnLoad(inst, data)
+    if not data then
+        return
+    end
 
-        if data.forcesleep then
-            inst.forcesleep = true
-            inst.sg:GoToState("forcesleep")
-            inst.components.sleeper.hibernate = true
-            inst.components.sleeper:GoToSleep()
-        end
+    if data.batfrenzy then
+        inst:AddTag("batfrenzy")
+    end
 
-        if data.flying then
-            inst.sg:GoToState("glide")
-        end
+    if data.forcesleep then
+        inst.forcesleep = true
+        inst.sg:GoToState("forcesleep")
+        inst.components.sleeper.hibernate = true
+        inst.components.sleeper:GoToSleep()
+    end
+
+    if data.flying then
+        inst.sg:GoToState("glide")
     end
 end
 
+local brain = require("brains/vampirebatbrain")
+
 local function fn()
     local inst = CreateEntity()
-    local trans = inst.entity:AddTransform()
-    local anim = inst.entity:AddAnimState()
-    local sound = inst.entity:AddSoundEmitter()
-    local shadow = inst.entity:AddDynamicShadow()
+
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
-    shadow:SetSize( 1.5, .75 )
+
+    local scale = 0.9
+    inst.AnimState:SetBank("bat")
+    inst.AnimState:SetBuild("bat_vamp_build")
+    inst.AnimState:SetScale(scale, scale, scale)
+
+    inst.DynamicShadow:SetSize(1.5, 0.75)
+
     inst.Transform:SetFourFaced()
 
-    local scaleFactor = 0.9
-    inst.AnimState:SetScale(scaleFactor, scaleFactor, scaleFactor)
-
-    --MakeGhostPhysics(inst, 1, .5)
-    MakeFlyingCharacterPhysics(inst, 1, .5)
-    MakePoisonableCharacter(inst, "bat_body")
+    MakeFlyingCharacterPhysics(inst, 1, 0.5)
+    MakeInventoryFloatable(inst)
 
     inst:AddTag("vampirebat")
     inst:AddTag("scarytoprey")
     inst:AddTag("monster")
     inst:AddTag("hostile")
     inst:AddTag("flying")
-
-    anim:SetBank("bat")
-    anim:SetBuild("bat_vamp_build")
-
-    MakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()
 
@@ -163,13 +158,13 @@ local function fn()
     end
 
     inst:AddComponent("locomotor")
-    inst.components.locomotor:SetSlowMultiplier( 1 )
+    inst.components.locomotor:SetSlowMultiplier(1)
     inst.components.locomotor:SetTriggersCreep(false)
-    inst.components.locomotor.pathcaps = { ignorecreep = true, allowocean = true }
+    inst.components.locomotor.pathcaps = {ignorecreep = true, allowocean = true}
     inst.components.locomotor.walkspeed = TUNING.VAMPIREBAT_WALK_SPEED
 
     inst:AddComponent("eater")
-    inst.components.eater:SetDiet({ FOODTYPE.MEAT }, { FOODTYPE.MEAT })
+    inst.components.eater:SetDiet({FOODTYPE.MEAT}, {FOODTYPE.MEAT})
     inst.components.eater:SetCanEatHorrible()
     inst.components.eater:SetStrongStomach(true) -- can eat monster meat!
 
@@ -189,38 +184,35 @@ local function fn()
     inst.components.sleeper:SetResistance(3)
     inst.components.sleeper:SetNocturnal(true)
 
-    inst:SetStateGraph("SGvampirebat")
-
-    local brain = require "brains/vampirebatbrain"
-    inst:SetBrain(brain)
-
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetChanceLootTable('vampirebat')
+    inst.components.lootdropper:SetChanceLootTable("vampirebat")
 
     inst:AddComponent("inventory")
 
     inst:AddComponent("inspectable")
+
     inst:AddComponent("knownlocations")
 
-    inst:DoTaskInTime(1*FRAMES, function() inst.components.knownlocations:RememberLocation("home", Vector3(inst.Transform:GetWorldPosition()), true) end)
+    inst:AddComponent("teamattacker")
+    inst.components.teamattacker.team_type = "vampirebat"
+
+    inst:SetBrain(brain)
+    inst:SetStateGraph("SGvampirebat")
+
+    MakeMediumBurnableCharacter(inst, "bat_body")
+    MakeMediumFreezableCharacter(inst, "bat_body")
+    MakePoisonableCharacter(inst, "bat_body")
+    MakeHauntablePanic(inst)
+
+    inst.cavebat = false
+    inst.MakeTeam = MakeTeam
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     inst:ListenForEvent("wingdown", OnWingDown)
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("onattackother", OnAttackOther)
     inst:ListenForEvent("onwakeup", OnWakeUp)
-
-    inst:AddComponent("teamattacker")
-    inst.components.teamattacker.team_type = "vampirebat"
-    inst.MakeTeam = MakeTeam
-
-    MakeMediumBurnableCharacter(inst, "bat_body")
-    MakeMediumFreezableCharacter(inst, "bat_body")
-    MakeHauntablePanic(inst)
-
-    inst.OnSave = onsave
-    inst.OnLoad = onload
-
-    inst.cavebat = false
 
     return inst
 end
@@ -297,7 +289,7 @@ end
 
 local function CircleOnInit(inst)
     inst:WatchWorldState("isnight", CircleOnIsNight)
-    CircleOnIsWinter(inst, TheWorld.state.isnight)
+    CircleOnIsNight(inst, TheWorld.state.isnight)
 end
 
 local function OnSaveShadow(inst, data)
@@ -309,7 +301,7 @@ end
 local function OnLoadShadow(inst, data)
     if data then
         if data.time then
-            inst.task, inst.taskinfo = inst:ResumeTask(data.time, Dodive)
+            inst.task, inst.taskinfo = inst:ResumeTask(data.time, DoDive)
         end
     end
 end

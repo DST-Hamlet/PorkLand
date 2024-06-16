@@ -73,6 +73,9 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
     if self:IsOceanTileAtPoint(x, y, z) then
         return true
     end
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return false
+    end
 
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
 
@@ -328,10 +331,8 @@ end
 
 local _GetTileCenterPoint = Map.GetTileCenterPoint
 function Map:GetTileCenterPoint(x, y, z, ...)
-    if x and y and z and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+    if x and z and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return math.floor(x / 4) * 4 + 2, 0, math.floor(z / 4) * 4 + 2
-    elseif z == nil then
-        return _GetTileCenterPoint(self, x, y)
     else
         return _GetTileCenterPoint(self, x, y, z, ...)
     end
