@@ -86,6 +86,7 @@ PrefabFiles = {
     -- "tuber",
     -- "tubertrees",
     "wave_ripple",
+    "vampirebat",
     "venomgland",
     "venus_stalk",
     "walkingstick",
