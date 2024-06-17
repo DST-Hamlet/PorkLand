@@ -153,13 +153,13 @@ local states =
         name = "glide",
         tags = {"idle", "flying", "busy"},
 
-        onenter= function(inst)
+        onenter = function(inst)
             inst.DynamicShadow:Enable(false)
             inst.AnimState:PlayAnimation("glide", true)
-            inst.Physics:SetMotorVelOverride(0,-25,0)
+            inst.Physics:SetMotorVelOverride(0, -25,0)
         end,
 
-        onupdate= function(inst)
+        onupdate = function(inst)
             inst.Physics:SetMotorVelOverride(0, -25, 0)
             local x, y, z = inst.Transform:GetWorldPosition()
             if y <= 0.1 then
@@ -175,7 +175,6 @@ local states =
         onexit = function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
             if y > 0 then
-                local pos = inst:GetPosition()
                 inst.Transform:SetPosition(x, 0, z)
             end
         end,

@@ -103,7 +103,7 @@ PrefabFiles = {
     "deco_florist",
     "deco_lamp",
     "deco_lightglow",
-    --"deco_placers",
+    "deco_placers",
     "deco_plantholder",
     "deco_roomglow",
     "deco_ruins_fountain",
@@ -119,6 +119,7 @@ PrefabFiles = {
     "prop_door",
     "pig_ruins_creeping_vines",
     "pl_birds",
+    "bat_hide",
 }
 
 Assets = {

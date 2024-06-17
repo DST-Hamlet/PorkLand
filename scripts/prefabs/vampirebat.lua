@@ -1,6 +1,6 @@
 local assets =
 {
-    Asset("ANIM", "anim/bat_basic.zip"),
+    Asset("ANIM", "anim/bat_vamp_basic.zip"),
     Asset("ANIM", "anim/bat_vamp_build.zip"),
     Asset("ANIM", "anim/bat_vamp_actions.zip"),
     Asset("ANIM", "anim/bat_vamp_shadow.zip"),
@@ -20,8 +20,8 @@ SetSharedLootTable("vampirebat",
     {"vampire_bat_wing", 0.1},
 })
 
-local MAX_TARGET_SHARES = 100
-local SHARE_TARGET_DIST = 100
+local MAX_TARGET_SHARES = 5
+local SHARE_TARGET_DIST = 40
 
 local function MakeTeam(inst, attacker)
     local leader = SpawnPrefab("teamleader")
@@ -76,14 +76,16 @@ local function OnAttacked(inst, data)
     if inst.components.teamattacker.inteam and not inst.components.teamattacker.teamleader:CanAttack() then
         local attacker = data and data.attacker
         inst.components.combat:SetTarget(attacker)
-        inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent) return ent:HasTag("vampirebat") end, MAX_TARGET_SHARES)
+        inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent)
+            return ent:HasTag("vampirebat") and not ent.components.health:IsDead()
+        end, MAX_TARGET_SHARES)
     end
 end
 
 local function OnAttackOther(inst, data)
     inst.components.combat:ShareTarget(data.target, SHARE_TARGET_DIST, function(ent)
         return ent:HasTag("vampirebat") and not ent.components.health:IsDead()
-    end, 5)
+    end, MAX_TARGET_SHARES)
 end
 
 local function OnWakeUp(inst)
@@ -135,7 +137,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     local scale = 0.9
-    inst.AnimState:SetBank("bat")
+    inst.AnimState:SetBank("bat_vamp")
     inst.AnimState:SetBuild("bat_vamp_build")
     inst.AnimState:SetScale(scale, scale, scale)
 
@@ -221,25 +223,48 @@ end
 -----------------------------------------------------------------------------------
 
 local function DoDive(inst)
-    if not TheCamera.interior and inst:IsOnValidGround() then
+    local player = inst.components.circler.circleTarget
+
+    -- The player has left the game, spawn anyways
+    if not player or not player:IsValid() then
         local bat = SpawnPrefab("vampirebat")
-        local spawn_pt = Vector3(inst.Transform:GetWorldPosition())
-        if bat and spawn_pt then
-            local x,y,z  = spawn_pt:Get()
-            bat.Transform:SetPosition(x,y+30,z)
-            bat:FacePoint(GetPlayer().Transform:GetWorldPosition())
+        local spawn_point = inst:GetPosition()
+        if bat and spawn_point then
+            bat.Transform:SetPosition(spawn_point.x, spawn_point.y + 30, spawn_point.z)
             bat.sg:GoToState("glide")
             bat:AddTag("batfrenzy")
 
-            bat:DoTaskInTime(2,function()  bat:PushEvent("attacked", {attacker = GetPlayer(), damage = 0, weapon = nil}) end)
+            bat:DoTaskInTime(2, function()
+                -- Use Combat:SuggestTarget?
+                bat:PushEvent("attacked", {attacker = player, damage = 0, weapon = nil})
+            end)
+        end
+        inst:Remove()
+        return
+    end
+
+    -- allow water but not interior
+    if player and player:IsValid() and not player:HasTag("inside_interior") and inst:IsOnPassablePoint(true) then
+        local bat = SpawnPrefab("vampirebat")
+        local spawn_point = inst:GetPosition()
+        if bat and spawn_point then
+            bat.Transform:SetPosition(spawn_point.x, spawn_point.y + 30, spawn_point.z)
+            bat:FacePoint(player.Transform:GetWorldPosition())
+            bat.sg:GoToState("glide")
+            bat:AddTag("batfrenzy")
+
+            bat:DoTaskInTime(2, function()
+                -- Use Combat:SuggestTarget?
+                bat:PushEvent("attacked", {attacker = player, damage = 0, weapon = nil})
+            end)
         end
         inst:Remove()
     else
-        inst.task, inst.taskinfo = inst:ResumeTask(5+(math.random()*2), DoDive)
+        inst.task, inst.taskinfo = inst:ResumeTask(5 + math.random() * 2, DoDive)
     end
 end
 
-local MAX_FADE_FRAME = math.floor(3 / FRAMES + .5)
+local MAX_FADE_FRAME = math.floor(3 / FRAMES + 0.5)
 
 local function OnUpdateFade(inst, dframes)
     local done
@@ -296,19 +321,26 @@ end
 local function OnSaveShadow(inst, data)
     if inst.taskinfo then
         data.time = inst:TimeRemainingInTask(inst.taskinfo)
+        data.player = inst.components.circler.circleTarget.GUID
+        return {player = inst.components.circler.circleTarget.GUID}
     end
 end
 
 local function OnLoadShadow(inst, data)
-    if data then
-        if data.time then
-            inst.task, inst.taskinfo = inst:ResumeTask(data.time, DoDive)
-        end
+    if not data then
+        return
+    end
+
+    if data.time then
+        inst.task, inst.taskinfo = inst:ResumeTask(data.time, DoDive)
     end
 end
 
-local function OnLoadPostPassShadow(inst)
-    inst.components.circler:SetCircleTarget(GetPlayer())
+local function OnLoadPostPassShadow(inst, ents, data)
+    if data and data.player and ents[data.player] then
+        inst.components.circler:SetCircleTarget(ents[data.player])
+    end
+
     inst.components.circler.dontfollowinterior = true
     inst.components.circler:Start()
 end
@@ -318,6 +350,7 @@ local function circlingbatfn()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("bat_vamp_shadow")
@@ -348,17 +381,20 @@ local function circlingbatfn()
     -- flap sound
     inst:DoPeriodicTask(10/30, function() inst:PushEvent("wingdown") end)
     -- screech sound
-    inst:DoPeriodicTask(1, function() if math.random()<0.1 then inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/distant_taunt") end end)
+    inst:DoPeriodicTask(1, function()
+        if math.random() < 0.1 then
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/distant_taunt")
+        end
+    end)
 
     inst:DoTaskInTime(0, CircleOnInit)
 
-    inst.task, inst.taskinfo = inst:ResumeTask(20+(math.random()*2), DoDive)
+    inst.task, inst.taskinfo = inst:ResumeTask(20 + math.random() * 2, DoDive)
 
     inst.OnSave = OnSaveShadow
     inst.OnLoad = OnLoadShadow
     inst.OnLoadPostPass = OnLoadPostPassShadow
 
-    inst.KillShadow = KillShadow
     inst.DoDive = DoDive
 
     inst.persists = false
@@ -368,4 +404,3 @@ end
 
 return Prefab("vampirebat", fn, assets, prefabs) ,
        Prefab("circlingbat", circlingbatfn, assets, prefabs)
-

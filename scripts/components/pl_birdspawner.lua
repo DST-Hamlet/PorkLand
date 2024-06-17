@@ -37,7 +37,6 @@ return Class(function(self, inst)
 
     --Public
     self.inst = inst
-    self.inst.components.birdspawner = self -- to not break stuff
 
     --Private
     local _activeplayers = {}
