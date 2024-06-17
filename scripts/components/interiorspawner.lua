@@ -273,6 +273,24 @@ function InteriorSpawner:RemoveDoor(door_id)
     self.doors[door_id] = nil
 end
 
+function InteriorSpawner:SpawnObject(interiorID, prefab, offset)
+    local interior_pos = self:GetInteriorByIndex(interiorID):GetPosition() -- interior center point
+    if not interior_pos then
+        print("Error: Could not find interior of ID " .. interiorID)
+        return
+    end
+
+    local object = SpawnPrefab(prefab)
+    if not object then
+        print("Error: Failed to spawn " .. prefab)
+        return
+    end
+
+    local spawn_point = interior_pos + (offset or Vector3(0, 0, 0))
+    object.Transform:SetPosition(spawn_point.x, spawn_point.y, spawn_point.z)
+    return object
+end
+
 function InteriorSpawner:AddInteriorCenter(inst)
     self.interiors_hashmap[inst] = true
 
@@ -445,7 +463,7 @@ function InteriorSpawner:AddInterior(def)
     end
 
     if def.batted and TheWorld.components.batted then
-        TheWorld.components.batted:RegisterInterior(def.unique_name)
+        TheWorld.components.batted:RegisterBatCave(def.unique_name) -- unique_name is interiorID
     end
 end
 

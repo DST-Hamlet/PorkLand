@@ -107,10 +107,11 @@ end
 
 local function master_postinit(inst)
     -- Spawners
-    inst:AddComponent("pl_birdspawner")
+    inst:AddReplaceComponent("pl_birdspawner", "birdspawner")
     inst:AddComponent("butterflyspawner")
     inst:AddComponent("glowflyspawner")
     inst:AddComponent("hippospawner")
+    inst:AddComponent("batted")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")

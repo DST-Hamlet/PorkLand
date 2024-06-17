@@ -763,6 +763,10 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         --]]
 
+        if inst.components.inspectable then
+            inst:AddComponent("hauntable")
+        end
+
         inst:ListenForEvent("onremove", OnRemove)
         if data.onbuilt then
             inst:ListenForEvent("onbuilt", OnBuilt)

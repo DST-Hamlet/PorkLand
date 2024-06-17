@@ -119,6 +119,7 @@ PrefabFiles = {
     "prop_door",
     "pig_ruins_creeping_vines",
     "pl_birds",
+    "bat_hide",
 }
 
 Assets = {

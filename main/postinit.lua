@@ -19,6 +19,7 @@ local component_posts = {
     "blinkstaff",
     "builder_replica",
     "builder",
+    "circler",
     "clock",
     "colourcube",
     "combat",
