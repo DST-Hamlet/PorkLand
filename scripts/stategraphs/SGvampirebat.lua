@@ -194,6 +194,58 @@ local states =
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end)
         },
     },
+
+    State{
+        name = "flyout",
+        tags = {"busy", "noattack", "nointerrupt"},
+
+        onenter = function(inst)
+            inst.AnimState:PlayAnimation("flyout", false)
+            inst.AnimState:SetFloatParams(0.25, 1.0, 0)
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/distant_taunt")
+        end,
+
+        timeline =
+        {
+            TimeEvent(44 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(54 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(56 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
+            TimeEvent(64 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(74 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(76 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
+            TimeEvent(84 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(94 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(96 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
+            TimeEvent(104 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(114 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(116 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
+            TimeEvent(124 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(124 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(136 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
+            TimeEvent(144 * FRAMES, function(inst) inst:PushEvent("wingdown")
+                inst.sg:RemoveStateTag("noattack")
+                inst.sg:RemoveStateTag("busy")
+                inst.sg:RemoveStateTag("nointerrupt") end),
+            TimeEvent(154 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(156 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
+            TimeEvent(164 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(174 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+            TimeEvent(176 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
+        },
+
+        onupdate = function(inst)
+
+        end,
+
+        onexit = function(inst)
+            inst.AnimState:SetFloatParams(0, 0, 0)
+        end,
+
+        events =
+        {
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end)
+        },
+    },
 }
 
 local walkanims =

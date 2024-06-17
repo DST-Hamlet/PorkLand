@@ -2,6 +2,7 @@ local assets =
 {
     Asset("ANIM", "anim/bat_vamp_basic.zip"),
     Asset("ANIM", "anim/bat_vamp_build.zip"),
+    Asset("ANIM", "anim/bat_vamp_actions.zip"),
     Asset("ANIM", "anim/bat_vamp_shadow.zip"),
 }
 
