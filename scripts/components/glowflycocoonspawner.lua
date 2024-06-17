@@ -18,7 +18,6 @@ return Class(function(self, inst)
     -- Private
     local _world = TheWorld
 
-    local _waitforspawn = false
     local _spawntask
     local _spawntaskinfo
 
@@ -26,8 +25,19 @@ return Class(function(self, inst)
     --[[ Private member functions ]]
     --------------------------------------------------------------------------
 
-    local function TrySpawnCocoons(inst)
-        if inst:IsAsleep() then
+    local function CancelTask()
+        if _spawntask then
+            _spawntask:Cancel()
+            _spawntask = nil
+            _spawntaskinfo = nil
+        end
+    end
+
+    local function TrySpawnCocoons(inst, spawntasktime)
+        CancelTask()
+
+        if not inst:IsAsleep() then
+            _spawntask, _spawntaskinfo = inst:ResumeTask(spawntasktime or math.random(1, 29), TrySpawnCocoons)
             return false
         end
 
@@ -61,19 +71,12 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     local function OnEntitySleep(inst)
-        if _waitforspawn then
-            _spawntask, _spawntaskinfo = nil, nil
-            _waitforspawn = not TrySpawnCocoons(inst)
-        end
+        TrySpawnCocoons(inst)
     end
 
     local function OnSpawnCocoons(src)
         if math.random() < SPAWN_CHANCE then
-            if inst:IsAsleep() then
-                _spawntask, _spawntaskinfo = inst:ResumeTask(math.random(1, 29), TrySpawnCocoons)
-            else
-                _waitforspawn = true
-            end
+            _spawntask, _spawntaskinfo = inst:ResumeTask(math.random(1, 29), TrySpawnCocoons)
         end
     end
 
@@ -90,7 +93,7 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     function self:OnSave()
-        local data = {waitforspawn = _waitforspawn}
+        local data = {}
 
         if _spawntaskinfo ~= nil then
             data.spawntasktime = inst:TimeRemainingInTask(_spawntaskinfo)
@@ -101,13 +104,9 @@ return Class(function(self, inst)
 
     function self:OnLoad(data)
         if data ~= nil then
-            _waitforspawn = data.waitforspawn
-
             if data.spawntasktime then
-                _spawntask, _spawntaskinfo = inst:ResumeTask(data.spawntasktime, TrySpawnCocoons)
+                TrySpawnCocoons(inst, data.spawntasktime)
             end
         end
-
-        OnEntitySleep(inst)
     end
 end)

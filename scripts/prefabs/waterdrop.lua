@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/waterdrop.zip"),
+    Asset("ANIM", "anim/waterdrop.zip"),
     Asset("ANIM", "anim/lifeplant.zip"),
 }
 
@@ -38,10 +38,10 @@ local function OnLoadPostPass(inst, newents, data)
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
@@ -96,4 +96,3 @@ end
 
 return Prefab("waterdrop", fn, assets, prefabs),
        MakePlacer("waterdrop_placer", "lifeplant", "lifeplant", "idle_loop")
-

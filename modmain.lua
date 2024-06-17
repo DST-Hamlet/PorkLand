@@ -6,11 +6,7 @@ PL_CONFIG = {
     locale = GetModConfigData("locale", true), -- Some of these may be treated as client-side, as indicated by the bool
 }
 
--- modimport("main/toolutil")
-
--- modimport("main/tuning")
 modimport("main/constants")
-
 modimport("main/util")
 -- modimport("main/oceanutil")
 
@@ -30,3 +26,7 @@ modimport("main/containers")
 modimport("main/postinit")
 
 AddReplicableComponent("hayfever")
+AddReplicableComponent("sailor")
+AddReplicableComponent("sailable")
+AddReplicableComponent("boathealth")
+AddReplicableComponent("boatcontainer")

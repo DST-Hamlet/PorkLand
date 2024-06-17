@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "She's floating just fine right now.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "I think I sprung a leak.",
+    ANNOUNCE_BOAT_SINKING = "I seem to be sinking.",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "I need to get to land!",
     ANNOUNCE_DEHUMID = {
         "Ah, so much better.",
     },
@@ -10,16 +18,12 @@ return {
         "Ick!",
         "I got some on my hands!",
     },
-    ANNOUNCE_PUGALISK_INVULNERABLE = {
-        "Its hide is too tough!",
-        "A tough nut to crack.",
-        "Break, darn you!"
-    },
     ANNOUNCE_SNEEZE = "AHHH CHOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is so heavy.",
         "This %s is too hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Weeeee!",
     DESCRIBE = {
         ALLOY = "Ahoy there, alloy!",
         APORKALYPSE_CLOCK = "Looks scientifically apocalyptic.",
@@ -27,7 +31,12 @@ return {
         ARMOR_WEEVOLE = "Yeesh. This is kinda creepy.",
         ASPARAGUS_PLANTED = "I should pick those!",
         BASEFAN = "Fan-tastic.",
-        BONESTAFF = "Sends shivers down my spine.",
+        BOATREPAIRKIT = "This will add some float to my boat.",
+        BOAT_CARGO = "It has room for all my stuff!",
+        BOAT_CORK = "An accident waiting to happen.",
+        BOAT_LOGRAFT = "This looks... sort of boat-like...",
+        BOAT_ROW = "It runs on elbow grease.",
+        BOAT_TORCH = "This'll keep my hands free.",
         CHITIN = "Bug coating.",
         COFFEE = "Smells delicious and energizing!",
         COFFEEBEANS = "They could use some roasting.",
@@ -64,6 +73,10 @@ return {
         HANGING_VINE = "Always hanging around.",
         ICEDTEA = "I scream for iced tea.",
         IRON = "Isn't it ironic?",
+        LILYPAD = "It's full of science. I can tell.",
+        LOTUS = "The science is blooming well this season.",
+        LOTUS_FLOWER = "A lovely science flower.",
+        LOTUS_FLOWER_COOKED = "A delicacy.",
         MACHETE = "I like the cut of this blade.",
         PANGOLDEN = "It likes rich food.",
         PEAGAWK = {
@@ -83,17 +96,12 @@ return {
             GENERIC = "For some reason I'm craving tea.",
             SLEEPING = "Probably dreaming of trees.",
         },
-        PUGALISK = "Scientifically speaking, it shouldn't exist.",
-        PUGALISK_CORPSE = "Petrifying.",
-        PUGALISK_FOUNTAIN = "I prefer fountains of knowledge.",
-        PUGALISK_RUINS_PILLAR = "Defying the laws of science.",
-        PUGALISK_SKULL = "A numbskull.",
-        PUGALISK_TRAP_DOOR = "Well that looks ominous.",
         RABID_BEETLE = {
             DEAD = "A late beetle.",
             GENERIC = "Looks deranged.",
             SLEEPING = "In a slumber.",
         },
+        SAIL_SNAKESKIN = "Scale it and sail it!",
         SEDIMENTPUDDLE = "Pool's gold.",
         SHEARS = "Shear-ly delightful.",
         SMELTER = {
@@ -102,8 +110,7 @@ return {
             DONE = "It's done!",
             EMPTY = "I smelt that!",
         },
-        SNAKE_BONE = "Ha ha, snake. I have your bone.",
-        SNAKEBONESOUP = "The best way to serve snake.",
+        SNAKESKIN = "I'm intrigued AND repelled.",
         TEA = "Tea time!",
         TEATREE = "What a lovely tree.",
         TEATREE_NUT = "Stops the seasonal sneezing.",

@@ -61,7 +61,7 @@ function ToolUtil.SetUpvalue(fn, value, path)
 end
 
 ---@param t table
-function ToolUtil.is_array(t)
+function ToolUtil.IsArray(t)
     if type(t) ~= "table" or not next(t) then
         return false
     end
@@ -79,7 +79,7 @@ end
 ---@param target table
 ---@param add_table table
 ---@param override boolean
-function ToolUtil.merge_table(target, add_table, override)
+function ToolUtil.MergeTable(target, add_table, override)
     target = target or {}
 
     for k, v in pairs(add_table) do
@@ -94,9 +94,9 @@ function ToolUtil.merge_table(target, add_table, override)
                 end
             end
 
-            ToolUtil.merge_table(target[k], v, override)
+            ToolUtil.MergeTable(target[k], v, override)
         else
-            if ToolUtil.is_array(target) and not override then
+            if ToolUtil.IsArray(target) and not override then
                 table.insert(target, v)
             elseif not target[k] or override then
                 target[k] = v
@@ -121,5 +121,23 @@ function ToolUtil.RegisterInventoryItemAtlas(atlas_path)
             RegisterInventoryItemAtlas(atlas, image)
             RegisterInventoryItemAtlas(atlas, hash(image))  -- for client
         end
+    end
+end
+
+---@param class table
+---@param prop_key string
+---@param pre_fn function | nil
+---@param post_fn function | nil
+function ToolUtil.HookSetter(class, prop_key, pre_fn, post_fn)
+    local _ = rawget(class, "_")
+    local prop = _[prop_key]
+    assert(_ ~= nil, "Class does not support property setters")
+    assert(_[prop_key] ~= nil, "Class does not " .. prop_key .. " setters")
+
+    local fn = prop[2]
+    prop[2] = function(...)
+        if pre_fn then pre_fn(...) end
+        fn(...)
+        if post_fn then post_fn(...) end
     end
 end

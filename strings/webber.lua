@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "No need. It already floats our boat.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "Our boat's hurt!",
+    ANNOUNCE_BOAT_SINKING = "Down, down, down we go!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Help! We can't swim!",
     ANNOUNCE_DEHUMID = {
         "Whew! Not so hot anymore.",
     },
@@ -9,16 +17,12 @@ return {
         "Eww!",
         "Yucky!",
     },
-	ANNOUNCE_PUGALISK_INVULNERABLE = {
-        "I can't break it there!",
-        "That part's too tough.",
-        "It's not breaking!"
-    },
     ANNOUNCE_SNEEZE = "a...choooOOOOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "Ugh. We're really baking in this %s.",
         "Wow! This %s is making us hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Weee!",
     DESCRIBE = {
         ALLOY = "Gosh. That's a lot of metal.",
         APORKALYPSE_CLOCK = "It's like a puzzle!",
@@ -26,7 +30,12 @@ return {
         ARMOR_WEEVOLE = "For when we need protection.",
         ASPARAGUS_PLANTED = "We should pick those.",
         BASEFAN = "That breeze feels nice on our fur.",
-        BONESTAFF = "We could have a staring contest with that scary big snake.",
+        BOATREPAIRKIT = "Never leave home without one.",
+        BOAT_CARGO = "Ah, we can stretch all our legs...",
+        BOAT_CORK = "I don't know. Looks kinda flimsy.",
+        BOAT_LOGRAFT = "This does not look swift.",
+        BOAT_ROW = "How's that old song go?",
+        BOAT_TORCH = "It will light my way!",
         CHITIN = "Hope no one's missing that.",
         COFFEE = "Bitter.",
         COFFEEBEANS = "These smell very... adult.",
@@ -63,6 +72,10 @@ return {
         HANGING_VINE = "Cool! Vines!",
         ICEDTEA = "Delicious!",
         IRON = "We could make all kinds of neat stuff with this.",
+        LILYPAD = "That's a really big lily pad!",
+        LOTUS = "Wow, it's so pink!",
+        LOTUS_FLOWER = "Gosh, this sure is beautiful.",
+        LOTUS_FLOWER_COOKED = "This looks delicious.",
         MACHETE = "Hyah! Hyah!",
         PANGOLDEN = "I think he eats gold.",
         PEAGAWK = {
@@ -82,17 +95,12 @@ return {
             GENERIC = "I wonder if he likes tea parties.",
             SLEEPING = "All that running around must have worn him out.",
         },
-        PUGALISK = "Agh! I think we made him angry!",
-        PUGALISK_CORPSE = "We could probably make something out of these bones.",
-        PUGALISK_FOUNTAIN = "We could stay a kid forever!",
-        PUGALISK_RUINS_PILLAR = "It could fall at any minute.",
-        PUGALISK_SKULL = "Kinda creepy.",
-        PUGALISK_TRAP_DOOR = "Gotta look where we're going around here.",
         RABID_BEETLE = {
             DEAD = "Well, that's unfortunate.",
             GENERIC = "That guy's got a lot of energy!",
             SLEEPING = "Haha! A bug with a mustache!",
         },
+        SAIL_SNAKESKIN = "With our sheet of gross skins, we're ready for adventure.",
         SEDIMENTPUDDLE = "It's full of sparkly stuff.",
         SHEARS = "It's for chores like trimming hedges or cutting grass.",
         SMELTER = {
@@ -101,8 +109,7 @@ return {
             DONE = "It's finished.",
             EMPTY = "Make material with material.",
         },
-        SNAKE_BONE = "These are kinda sharp bones.",
-        SNAKEBONESOUP = "Kinda tastes like chicken noodle.",
+        SNAKESKIN = "The skin of a snake!",
         TEA = "Let's have a tea party!",
         TEATREE = "Hey there, tea tree.",
         TEATREE_NUT = "It helps with our sneezes.",

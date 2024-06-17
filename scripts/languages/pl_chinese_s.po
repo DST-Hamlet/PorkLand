@@ -5,6 +5,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT Version: 2.0"
 
+#. STRINGS.ACTIONS.DISEMBARK.GENERIC
+msgctxt "STRINGS.ACTIONS.DISEMBARK.GENERIC"
+msgid "Exit"
+msgstr "退出"
+
+#. STRINGS.ACTIONS.EMBARK.GENERIC
+msgctxt "STRINGS.ACTIONS.EMBARK.GENERIC"
+msgid "Drive"
+msgstr "驾驶"
+
+#. STRINGS.ACTIONS.EMBARK.SURF
+msgctxt "STRINGS.ACTIONS.EMBARK.SURF"
+msgid "Ride"
+msgstr "上板"
+
 #. STRINGS.ACTIONS.HACK
 msgctxt "STRINGS.ACTIONS.HACK"
 msgid "Hack"
@@ -20,6 +35,16 @@ msgctxt "STRINGS.ACTIONS.PICK.DIGIN"
 msgid "Dig in"
 msgstr "挖掘"
 
+#. STRINGS.ACTIONS.REPAIRBOAT
+msgctxt "STRINGS.ACTIONS.REPAIRBOAT"
+msgid "Repair"
+msgstr "修理"
+
+#. STRINGS.ACTIONS.RETRIEVE
+msgctxt "STRINGS.ACTIONS.RETRIEVE"
+msgid "Retrieve"
+msgstr "回收"
+
 #. STRINGS.ACTIONS.SHEAR
 msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
@@ -29,6 +54,26 @@ msgstr "剪"
 msgctxt "STRINGS.ACTIONS.SMELT"
 msgid "Smelt"
 msgstr "冶炼"
+
+#. STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "She's floating just fine right now."
+msgstr "它现在状态很好。"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_BOAT_DAMAGED"
+msgid "I think I sprung a leak."
+msgstr "我感觉开始漏水了。"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_BOAT_SINKING"
+msgid "I seem to be sinking."
+msgstr "我好像在下沉。"
+
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "I need to get to land!"
+msgstr "我需要登上陆地！"
 
 #. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_DEHUMID.1"
@@ -80,6 +125,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is too hot."
 msgstr "这%s太闷热了。"
 
+#. STRINGS.CHARACTERS.GENERIC.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.GENERIC.ANNOUNCE_WAVE_BOOST"
+msgid "Weeeee!"
+msgstr "哇哦！"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ALLOY"
 msgid "Ahoy there, alloy!"
@@ -109,6 +159,36 @@ msgstr "我应该采摘它们！"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BASEFAN"
 msgid "Fan-tastic."
 msgstr "风-趣。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOATREPAIRKIT"
+msgid "This will add some float to my boat."
+msgstr "这可以给我的船增加一些浮力。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_CARGO"
+msgid "It has room for all my stuff!"
+msgstr "它能放下我所有的东西！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_CORK"
+msgid "An accident waiting to happen."
+msgstr "迟早会出意外的。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_LOGRAFT"
+msgid "This looks... sort of boat-like..."
+msgstr "这个看起来...有点像船..."
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_ROW"
+msgid "It runs on elbow grease."
+msgstr "它靠劳力运作。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_TORCH"
+msgid "This'll keep my hands free."
+msgstr "这东西可以解放我的双手。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN"
@@ -250,6 +330,26 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON"
 msgid "Isn't it ironic?"
 msgstr "老铁，这不搞笑吗？"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LILYPAD"
+msgid "It's full of science. I can tell."
+msgstr "它充满了科学。我能证明。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS"
+msgid "The science is blooming well this season."
+msgstr "科学在这个季节完美地绽放了。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS_FLOWER"
+msgid "A lovely science flower."
+msgstr "一朵可爱的科学之花。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "A delicacy."
+msgstr "一道美味佳肴。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
@@ -330,6 +430,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "In a slumber."
 msgstr "它正在熟睡。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Scale it and sail it!"
+msgstr "扒下了皮，做成了帆！"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Pool's gold."
@@ -359,6 +464,11 @@ msgstr "搞定！"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMELTER.EMPTY"
 msgid "I smelt that!"
 msgstr "我闻到了冶炼的气味！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKESKIN"
+msgid "I'm intrigued AND repelled."
+msgstr "我感觉既好奇又厌恶。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEA"
@@ -399,6 +509,26 @@ msgstr "喂！"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "I'll be careful with this carapace."
 msgstr "我会小心保存这个甲壳的。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "This vessel has already been repaired to its optimum level."
+msgstr "这艘船已经修复到它的最佳水平了。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BOAT_DAMAGED"
+msgid "I'll need to repair this boat promptly."
+msgstr "我需要尽快修理这艘船。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BOAT_SINKING"
+msgid "Gaining water, rapidly."
+msgstr "进水了，速度很快。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "After all my triumphs, I've met defeat!"
+msgstr "在我的众多胜利之后，我遇上失败了！"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_DEHUMID.1"
@@ -445,6 +575,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_TOO_HUMID.2"
 msgid "The humid air is making this %s heavy."
 msgstr "潮湿的空气让这个%s变得很沉。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ANNOUNCE_WAVE_BOOST"
+msgid "Woo hoo! Wave mechanics!"
+msgstr "哇吼！波动力学！"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ALLOY"
 msgid "Ah, refined metal. As good as any factory could produce."
@@ -474,6 +609,36 @@ msgstr "一簇可食用的春季蔬菜！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BASEFAN"
 msgid "Magnificent! What a marvel of engineering!"
 msgstr "真棒啊！多么神奇的工程啊！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOATREPAIRKIT"
+msgid "Strange. Where did the glue come from?"
+msgstr "真奇怪。这胶水是从哪里来的？"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_CARGO"
+msgid "A top-notch transporter of goods across bodies of water."
+msgstr "一流的水上运货工具。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_CORK"
+msgid "Theoretically, it works. Though I won't predict for how long."
+msgstr "从理论上讲，这能管用。但是能用多久我无法预测。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_LOGRAFT"
+msgid "The dispersal of weight should keep me briefly afloat."
+msgstr "木头分散了重量应该能让我暂时浮在水面。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_ROW"
+msgid "A sufficient ship for my mundane explorative tasks."
+msgstr "一艘足够我完成日常探索活动的船。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BOAT_TORCH"
+msgid "The fortunate angle of this stick makes for an ideal hanging device."
+msgstr "幸运的是，这根棍子的角度是完美的，这让它成为可用的悬挂装置。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN"
@@ -615,6 +780,26 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON"
 msgid "Marvelous! Iron is invaluable for manufacturing the tools I need!"
 msgstr "了不起！铁是我制造器具的必需品，铁是无价的！"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LILYPAD"
+msgid "Fascinating! It contains a small ecosystem of animals."
+msgstr "真迷人！它包含着一个小型生物的生态系统。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS"
+msgid "Ah. A water based plant with attractive flowers. I should pick it."
+msgstr "啊哈。一种能开出漂亮的花儿的水生植物。我可以采摘它。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS_FLOWER"
+msgid "Theoretically, it's edible. Though I should cook it to avoid stomach problems."
+msgstr "从理论上讲，它可以食用。不过我应该煮熟它，以免引发我的胃病。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "A salubrious plant capable of boosting mental wellness."
+msgstr "一种能舒缓身心的有益植物。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.MACHETE"
 msgid "A pragmatic tool for slashing objects."
@@ -700,6 +885,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "It's respiratory structures are vibrating."
 msgstr "它的呼吸器官在振动着。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Theoretically, it's reliable despite its patchy appearance."
+msgstr "从理论上来说，它是可靠的，尽管它的外观参差不齐。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Evidence would suggest there's gold down there!"
@@ -729,6 +919,11 @@ msgstr "这就完成了？太妙了！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SMELTER.EMPTY"
 msgid "Magnificent! Perhaps I can build a factory here as well."
 msgstr "真棒啊！也许我也可以在这里建一个工厂。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKESKIN"
+msgid "The repellant properties of this skin are inspiring!"
+msgstr "这种蛇皮的防水性令人振奋！"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEA"
@@ -769,6 +964,26 @@ msgstr "这是一种非常长寿的昆虫！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Excellent! It's the exoskeleton of a hexapod invertebrate!"
 msgstr "太棒了！是六足无脊椎动物的外骨骼！"
+
+#. STRINGS.CHARACTERS.WALANI.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "It doesn't need any work."
+msgstr "它不需要任何处理。"
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_BOAT_DAMAGED"
+msgid "My floater's been dinged!"
+msgstr "我的漂浮工具被损坏了！"
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_BOAT_SINKING"
+msgid "This thing is letting on water."
+msgstr "这东西正在漏水。"
+
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "I won't be floating much longer..."
+msgstr "我浮不了多久了..."
 
 #. STRINGS.CHARACTERS.WALANI.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_DEHUMID.1"
@@ -820,6 +1035,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is really warm."
 msgstr "这%s相当的热。"
 
+#. STRINGS.CHARACTERS.WALANI.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WALANI.ANNOUNCE_WAVE_BOOST"
+msgid "Surf's up!"
+msgstr "冲上浪头！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ALLOY"
 msgid "Hope this is worth all the trouble."
@@ -849,6 +1069,36 @@ msgstr "食物！"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BASEFAN"
 msgid "A nice breeze."
 msgstr "宜人的微风。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOATREPAIRKIT"
+msgid "Surfboard maintenance is essential!"
+msgstr "冲浪板维护是很重要的！"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_CARGO"
+msgid "This surfboard sure has a lot of pockets."
+msgstr "这块冲浪板有许多口袋。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_CORK"
+msgid "I've definitely seen better boats."
+msgstr "我肯定见过比它更好的船。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_LOGRAFT"
+msgid "Seriously?"
+msgstr "认真的吗？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_ROW"
+msgid "Awww, rowing? Ugh."
+msgstr "啊，划船？没劲。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BOAT_TORCH"
+msgid "Night-surfing. I love it!"
+msgstr "夜间冲浪。我喜欢！"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN"
@@ -990,6 +1240,26 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON"
 msgid "This has gotta be good for something."
 msgstr "它会在某些地方派上用场的。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LILYPAD"
+msgid "Looks like a waterbed to me."
+msgstr "在我看来它就像是个水床。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS"
+msgid "Those'd make a great surfboard pattern."
+msgstr "那组成了一个很棒的冲浪板图案。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS_FLOWER"
+msgid "Pretty!"
+msgstr "好漂亮！"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "Mmmm...Tasty."
+msgstr "嗯...好吃。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.MACHETE"
 msgid "What a hack job."
@@ -1070,6 +1340,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "That's it. Now just stay asleep."
 msgstr "就是那样。安稳地睡觉吧。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Why bother when I have my board?"
+msgstr "我有冲浪板，要这个干嘛？"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SEDIMENTPUDDLE"
 msgid "There's sparkly things down there!"
@@ -1099,6 +1374,11 @@ msgstr "做的好，兄弟们。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SMELTER.EMPTY"
 msgid "I'll just let that do all the work for me."
 msgstr "就让它来为我完成全部的冶炼工作。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKESKIN"
+msgid "I could make a scaly bikini out of this!"
+msgstr "我能用这个做套鳞片图案的比基尼！"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TEA"
@@ -1140,6 +1420,21 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Ew. Bug skin."
 msgstr "呃。虫子皮。"
 
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_BOAT_DAMAGED"
+msgid "I wonder if there's a badge for boat maintenance."
+msgstr "不知道有没有船只维修的徽章。"
+
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_BOAT_SINKING"
+msgid "We may need to repair this soon, haha..."
+msgstr "我们得快点修了，哈哈..."
+
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "I-I don't think I can swim my way back!"
+msgstr "我-我觉得我没法游回去！"
+
 #. STRINGS.CHARACTERS.WALTER.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_DEHUMID.1"
 msgid "Still more comfortable this way."
@@ -1170,6 +1465,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_TOO_HUMID.2"
 msgid "%s is not breathable at all."
 msgstr "%s一点都不透气。"
 
+#. STRINGS.CHARACTERS.WALTER.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WALTER.ANNOUNCE_WAVE_BOOST"
+msgid "Woohoo!"
+msgstr "呜呼！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ALLOY"
 msgid "It's steel! Look at the steel I made!"
@@ -1187,7 +1487,7 @@ msgstr "这真的太不卫生了！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_PICKPOOP.3
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANNOUNCE_PICKPOOP.3"
-msgid "do not come! Warby!"
+msgid "do not come! Woby!"
 msgstr "别过来！沃比！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK
@@ -1212,12 +1512,42 @@ msgstr "薇诺娜小姐可能会喜欢，摘一点吧。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN"
-msgid "Ah, it's so comfortable, Warby, you can also enjoy it."
+msgid "Ah, it's so comfortable, Woby, you can also enjoy it."
 msgstr "啊，真舒服，沃比你也来吹吹。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOATREPAIRKIT"
+msgid "I'll need to maintain Woby's boat as well."
+msgstr "我还得把沃比的小船维护好。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_CARGO"
+msgid "You can fit almost all your camping goods in there!"
+msgstr "你几乎可以把所有的露营用品都放上去！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_CORK"
+msgid "Rainforest rafting, oh yeah!"
+msgstr "雨林漂流，哦耶！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_LOGRAFT"
+msgid "Just like the ones we used to make to cross rivers!"
+msgstr "就像我们以前过河时造的一样！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_ROW"
+msgid "We're getting better at carving boats."
+msgstr "我们越来越擅长造船了。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BOAT_TORCH"
+msgid "It's important to have good visibility while sailing."
+msgstr "航行时保持良好的能见度是很重要的。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.CHITIN"
-msgid "Check out the pattern on this! Warby!"
+msgid "Check out the pattern on this! Woby!"
 msgstr "看看这上面的花纹！沃比！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.COFFEE
@@ -1355,6 +1685,26 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON"
 msgid "Is that iron?"
 msgstr "那是铁吗？"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LILYPAD"
+msgid "Look how big it is! I really want to stand up and take a look!"
+msgstr "看看它有多大！我真想站上去看看！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS"
+msgid "Sis Walani says that's edible..."
+msgstr "瓦拉尼大姐说那个可以吃..."
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS_FLOWER"
+msgid "A flower floating in the water."
+msgstr "一朵飘在水里的花。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "Woby! Look these holes!"
+msgstr "沃比！看看这些孔！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.MACHETE"
 msgid "I like the cut of this blade."
@@ -1372,7 +1722,7 @@ msgstr "哇塞，这有多少只眼睛啊？"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.SLEEPING
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK.SLEEPING"
-msgid "Warby, we might be able to gather his feathers while he's asleep."
+msgid "Woby, we might be able to gather his feathers while he's asleep."
 msgstr "沃比，我们也许可以在它睡着的时候采集它的羽毛。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWKFEATHER
@@ -1430,6 +1780,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "it's sleeping,"
 msgstr "它在睡觉，"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SAIL_SNAKESKIN"
+msgid "The snakes wouldn't end up like this if they didn't try to eat me!"
+msgstr "如果蛇没想吃我，就不会变成这样！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Is that gold in there?"
@@ -1459,6 +1814,11 @@ msgstr "看看我们炼出了什么！"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SMELTER.EMPTY"
 msgid "A lrage iron pot. got it? Iron pot."
 msgstr "一口大铁锅，懂吗？铁锅。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKESKIN"
+msgid "It's slick. We might be able to use this for something."
+msgstr "很光滑。我们也许可以用这个做点什么。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEA"
@@ -1500,6 +1860,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Let's put it away, it might be useful."
 msgstr "我们把它收起来吧，可能会有用。"
 
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_BOAT_DAMAGED"
+msgid "My boat's damaged..."
+msgstr "我的船坏了..."
+
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_BOAT_SINKING"
+msgid "Ack! This doesn't seem seaworthy at all anymore!"
+msgstr "啊！这一点都不值得！"
+
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "I'm not meeting my end drowning in the middle of nowhere!"
+msgstr "我可不想死在荒无人烟的地方淹死！"
+
 #. STRINGS.CHARACTERS.WANDA.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_DEHUMID.1"
 msgid "Ha, feeling better."
@@ -1529,6 +1904,11 @@ msgstr "穿%s真是自讨不快。"
 msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_TOO_HUMID.2"
 msgid "This terrible weather... I really shouldn't be wearing %s."
 msgstr "这鬼天气...真不该穿%s的。"
+
+#. STRINGS.CHARACTERS.WANDA.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_WAVE_BOOST"
+msgid "Wh-whoa!"
+msgstr "噢-哈！"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ALLOY"
@@ -1574,6 +1954,36 @@ msgstr "我应该摘点回去吃。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BASEFAN"
 msgid "Very interesting structure, but unfortunately not refined enough."
 msgstr "非常有趣的结构，可惜还不够精细。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOATREPAIRKIT"
+msgid "Repairing takes a lot shorter than building a whole new boat from the scratch."
+msgstr "修理比从头开始建造一艘新船要快得多。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_CARGO"
+msgid "I'll save so much time if I don't have to go back to fetch my things!"
+msgstr "如果不用来回搬我的东西，能节省很多时间！"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_CORK"
+msgid "Is this the only thing standing between us and the cold water?"
+msgstr "这就是我们和冰冷水面之间的唯一阻隔了？"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_LOGRAFT"
+msgid "I don't have time. If it floats, it's enough."
+msgstr "我时间不多。只要能浮起来就够了。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_ROW"
+msgid "Rowing takes forever! Surely I can install something on it?"
+msgstr "划船太费时间了！我应该能在上面装点东西吧？"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BOAT_TORCH"
+msgid "This will keep me safe, nice and hands-free."
+msgstr "这能让我安全，舒适并空出双手。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.CHITIN"
@@ -1715,6 +2125,26 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON"
 msgid "An essential material for accurate timepieces."
 msgstr "精确钟表的必备材料。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LILYPAD"
+msgid "I don't think this shortcut can be taken."
+msgstr "我想这条近路抄不得。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS"
+msgid "Those buds look familiar..."
+msgstr "那花苞看起来很眼熟..."
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS_FLOWER"
+msgid "I hope that's more than dinner tonight."
+msgstr "我希望今天的晚饭不止这些。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "It better be worth my time cooking it."
+msgstr "它最好值得我花时间烤熟它。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE"
 msgid "It's for chopping, simple as that."
@@ -1790,6 +2220,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Huh, I can take a breath."
 msgstr "呼，可以喘口气了。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SAIL_SNAKESKIN"
+msgid "There's no need to make a flag if the sail is colorful. Not that I need one."
+msgstr "如果帆是彩色的，就没有必要做旗了。不过我也用不到。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Water isn't the only thing reflecting sunlight here."
@@ -1819,6 +2254,11 @@ msgstr "完事！"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SMELTER.EMPTY"
 msgid "Melt the metals together."
 msgstr "把金属熔化到一起。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKESKIN"
+msgid "Whew... It's not attached to a snake this time around."
+msgstr "唷...现在它没有附在蛇身上。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TEA"
@@ -1859,6 +2299,26 @@ msgstr "我记得它会咬人。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Evil, exudes a strange smell."
 msgstr "恶，散发着奇怪的气味。"
+
+#. STRINGS.CHARACTERS.WARLY.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WARLY.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "It will not work."
+msgstr "这样做没用。"
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_BOAT_DAMAGED"
+msgid "The vessel is damaged..."
+msgstr "这艘船损坏了..."
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_BOAT_SINKING"
+msgid "Oh no... I can't die on an empty stomach!"
+msgstr "哦，不...我不能空着肚子死去！"
+
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "Into the soup!"
+msgstr "进入汤里！"
 
 #. STRINGS.CHARACTERS.WARLY.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_DEHUMID.1"
@@ -1905,6 +2365,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_TOO_HUMID.2"
 msgid "Whew. This %s is hot."
 msgstr "唷！这个%s太热了。"
 
+#. STRINGS.CHARACTERS.WARLY.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WARLY.ANNOUNCE_WAVE_BOOST"
+msgid "Whoaaaa!"
+msgstr "哇哦！！！"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ALLOY"
 msgid "Metal cooked to perfection."
@@ -1934,6 +2399,36 @@ msgstr "我应该把那些捡起来。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BASEFAN"
 msgid "Good ventilation in the kitchen is an must."
 msgstr "厨房必须通风良好。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOATREPAIRKIT"
+msgid "A most sensible traveling companion."
+msgstr "最明智的旅行伴侣。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_CARGO"
+msgid "For long distance hauls."
+msgstr "用于长途运输。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_CORK"
+msgid "A shaky sea vessel."
+msgstr "一艘不牢靠的海船。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_LOGRAFT"
+msgid "These logs might be better suited to a fire..."
+msgstr "这些木头可能更适合用来烧火..."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_ROW"
+msgid "Free me from the shackles of this island!"
+msgstr "让我摆脱这座岛的桎梏！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BOAT_TORCH"
+msgid "It's a light so I might \"sea\"."
+msgstr "让我能看到海上情况的灯。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN"
@@ -2075,6 +2570,26 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON"
 msgid "I wonder what I could cook up with this."
 msgstr "我好奇我能用这个烹饪出什么。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LILYPAD"
+msgid "I doubt it has much flavor."
+msgstr "我怀疑它味道很大。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS"
+msgid "Mmm, lotus root..."
+msgstr "嗯，莲藕根..."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS_FLOWER"
+msgid "I should cook something up with this."
+msgstr "我应该用这个做出点什么。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "A fine delicacy!"
+msgstr "一份精美的菜肴！"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.MACHETE"
 msgid "I could chop many an onion with this!"
@@ -2155,6 +2670,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "What a curious way to sleep!"
 msgstr "好奇怪的睡觉方式！"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Perhaps I'll sail to a land of spices."
+msgstr "也许我会驶向一片满是香料的大陆。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SEDIMENTPUDDLE"
 msgid "It's been seasoned with gold."
@@ -2184,6 +2704,11 @@ msgstr "新鲜出炉！小心烫。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SMELTER.EMPTY"
 msgid "'Smelt' bad, if you ask me."
 msgstr "闻起来不是很好。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKESKIN"
+msgid "Would make a haute apron."
+msgstr "可以做成一条高档围裙。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TEA"
@@ -2224,6 +2749,26 @@ msgstr "嘘！走开！"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "The crust of a bug."
 msgstr "一种虫子的硬壳。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "My vessel is renewed!"
+msgstr "我的船已经翻新过了！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_BOAT_DAMAGED"
+msgid "My vessel is wounded!"
+msgstr "我的船受伤了！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_BOAT_SINKING"
+msgid "The sea pulls me toward Hel!"
+msgstr "大海将我拉向深渊！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "These black depths will soon claim me!"
+msgstr "黑暗的深渊会将我吞没！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_DEHUMID.1"
@@ -2270,6 +2815,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s burns like Sol."
 msgstr "这%s像太阳一样燃烧着。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ANNOUNCE_WAVE_BOOST"
+msgid "Carry me forth!"
+msgstr "海浪助我前进吧！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ALLOY"
 msgid "A metal worthy of the Sons of Ivaldi."
@@ -2299,6 +2849,36 @@ msgstr "没用的蔬菜！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BASEFAN"
 msgid "Conquers the heat!"
 msgstr "驱散高温!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOATREPAIRKIT"
+msgid "Most sensible cargo."
+msgstr "最明智的船货。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_CARGO"
+msgid "A boat fit for a long journey."
+msgstr "适合长途旅行的船。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_CORK"
+msgid "More like a stage prop than a viking vessel."
+msgstr "更像是舞台道具而不是维京船。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_LOGRAFT"
+msgid "You will not carry me far, but you will carry me."
+msgstr "虽然你不能载我太远，但至少可以载我一程。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_ROW"
+msgid "Rowing is in my blood."
+msgstr "划船溶解在我的血液中。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BOAT_TORCH"
+msgid "The night sea is alight!"
+msgstr "夜晚的海面被点亮了！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN"
@@ -2440,6 +3020,26 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON"
 msgid "Material for metalwork."
 msgstr "制造金属制品的材料。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LILYPAD"
+msgid "A leaf of the water."
+msgstr "长在水中的叶子。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS"
+msgid "Freya looks down upon this."
+msgstr "芙蕾雅看不起它。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS_FLOWER"
+msgid "It possesses Freya's great beauty."
+msgstr "它拥有芙蕾雅的美丽。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "I care not to consume this."
+msgstr "这不是战士的食物。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MACHETE"
 msgid "A fine length of blade."
@@ -2520,6 +3120,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Slumber consumes it!"
 msgstr "它睡着了！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SAIL_SNAKESKIN"
+msgid "A sail made of murder!"
+msgstr "谋杀造就的帆！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Its tiny gold pieces will be mine!"
@@ -2549,6 +3154,11 @@ msgstr "现在请为我铸造利刃吧！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMELTER.EMPTY"
 msgid "The tools of dwarves."
 msgstr "矮人的工具。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKESKIN"
+msgid "A snake has slipped its skin. With a little help..."
+msgstr "蛇脱掉了它的皮，不过是在外力的作用下..."
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEA"
@@ -2589,6 +3199,26 @@ msgstr "这块土地上的害虫！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "The skin of my enemy."
 msgstr "我敌人的皮肤。"
+
+#. STRINGS.CHARACTERS.WAXWELL.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "Not right now."
+msgstr "现在不用。"
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_BOAT_DAMAGED"
+msgid "My vessel is sustaining damage."
+msgstr "我的船遭到了破坏。"
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_BOAT_SINKING"
+msgid "I fear I've sprung a leak."
+msgstr "我担心开始漏水了。"
+
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "After everything, is this how it ends?!"
+msgstr "经过千辛万苦，这就是我的结局？！"
 
 #. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_DEHUMID.1"
@@ -2640,6 +3270,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is hotter than I like."
 msgstr "这个%s比我喜欢的更热。"
 
+#. STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ANNOUNCE_WAVE_BOOST"
+msgid "Truly!"
+msgstr "爽！"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ALLOY"
 msgid "Durable."
@@ -2669,6 +3304,36 @@ msgstr "食物。刚从地里长出来。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BASEFAN"
 msgid "Ah. Civilization."
 msgstr "哈，现代文明。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOATREPAIRKIT"
+msgid "It will hold off my vessel's inevitable decay."
+msgstr "它将拖延我的船无法避免的腐朽。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_CARGO"
+msgid "Ah, plenty of room to breathe."
+msgstr "哈，有足够的呼吸空间。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_CORK"
+msgid "Looks barely seaworthy."
+msgstr "看起来也就勉强能下水。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_LOGRAFT"
+msgid "It seems like there should be regulations against this."
+msgstr "似乎有禁止使用这个的规定。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_ROW"
+msgid "Manually operated. A pity."
+msgstr "可惜是手动操作的。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BOAT_TORCH"
+msgid "Sailing at night seems unsafe, but this makes it somewhat better."
+msgstr "晚上航海似乎不安全，但这个能提高一点安全性。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN"
@@ -2810,6 +3475,26 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON"
 msgid "A solid mineral."
 msgstr "一块坚固的矿物质。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LILYPAD"
+msgid "A massive pond leaf."
+msgstr "一片巨大的池塘叶子。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS"
+msgid "How dainty."
+msgstr "真美味。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS_FLOWER"
+msgid "I prefer blooms of a darker shade."
+msgstr "我更喜欢暗影的绽放。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "One makes due."
+msgstr "这是它应得的。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MACHETE"
 msgid "Truthfully I was always a hack."
@@ -2890,6 +3575,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "A noisy sleeper."
 msgstr "睡着了还这么聒噪。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SAIL_SNAKESKIN"
+msgid "For ease of travel."
+msgstr "用于轻松旅行。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SEDIMENTPUDDLE"
 msgid "There's something sparkling inside there."
@@ -2919,6 +3609,11 @@ msgstr "艰难的成果。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMELTER.EMPTY"
 msgid "Finally we're catching up to the Iron Age."
 msgstr "我们终于步入了铁器时代。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKESKIN"
+msgid "The texture is delectable."
+msgstr "这质感令人愉悦。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEA"
@@ -2959,6 +3654,26 @@ msgstr "无休止的害虫。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Ugh."
 msgstr "呃。"
+
+#. STRINGS.CHARACTERS.WEBBER.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WEBBER.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "No need. It already floats our boat."
+msgstr "没必要。我们的船已经好好地漂着了。"
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_BOAT_DAMAGED"
+msgid "Our boat's hurt!"
+msgstr "我们的船受伤了！"
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_BOAT_SINKING"
+msgid "Down, down, down we go!"
+msgstr "下沉，下沉，我们在下沉！"
+
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "Help! We can't swim!"
+msgstr "救命！我们不会游泳！"
 
 #. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_DEHUMID.1"
@@ -3005,6 +3720,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_TOO_HUMID.2"
 msgid "Wow! This %s is making us hot."
 msgstr "哇哦！这%s让我们好热。"
 
+#. STRINGS.CHARACTERS.WEBBER.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WEBBER.ANNOUNCE_WAVE_BOOST"
+msgid "Weee!"
+msgstr "哟！！！"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ALLOY"
 msgid "Gosh. That's a lot of metal."
@@ -3034,6 +3754,36 @@ msgstr "我们应该捡走它们。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BASEFAN"
 msgid "That breeze feels nice on our fur."
 msgstr "微风吹过毛皮的感觉很惬意。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOATREPAIRKIT"
+msgid "Never leave home without one."
+msgstr "出门的时候别把它落下了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_CARGO"
+msgid "Ah, we can stretch all our legs..."
+msgstr "哈，我们可以伸直所有的腿..."
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_CORK"
+msgid "I don't know. Looks kinda flimsy."
+msgstr "我不知道它行不行。看起来有点脆。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_LOGRAFT"
+msgid "This does not look swift."
+msgstr "这个看起来速度不怎么快。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_ROW"
+msgid "How's that old song go?"
+msgstr "那首老歌是怎么唱的？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BOAT_TORCH"
+msgid "It will light my way!"
+msgstr "它将照亮我的路！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN"
@@ -3175,6 +3925,26 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON"
 msgid "We could make all kinds of neat stuff with this."
 msgstr "我打赌我们可以用这做各种各样的东西。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LILYPAD"
+msgid "That's a really big lily pad!"
+msgstr "这睡莲叶真的很大！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS"
+msgid "Wow, it's so pink!"
+msgstr "哇，好粉啊！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS_FLOWER"
+msgid "Gosh, this sure is beautiful."
+msgstr "天哪，这太美了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "This looks delicious."
+msgstr "真香。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.MACHETE"
 msgid "Hyah! Hyah!"
@@ -3255,6 +4025,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Haha! A bug with a mustache!"
 msgstr "哈哈！留着小胡子的虫子！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SAIL_SNAKESKIN"
+msgid "With our sheet of gross skins, we're ready for adventure."
+msgstr "有了这张用恶心的皮做成的帆，我们可以开始冒险了。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SEDIMENTPUDDLE"
 msgid "It's full of sparkly stuff."
@@ -3284,6 +4059,11 @@ msgstr "完成了！"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMELTER.EMPTY"
 msgid "Make material with material."
 msgstr "用材料制作材料。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKESKIN"
+msgid "The skin of a snake!"
+msgstr "蛇的皮！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEA"
@@ -3324,6 +4104,26 @@ msgstr "这些虫子好烦人。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "It's the outer part of those bugs."
 msgstr "这是那些虫子的外壳。"
+
+#. STRINGS.CHARACTERS.WENDY.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WENDY.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "It's already in better shape than I am."
+msgstr "它的状态已经好过我了。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_BOAT_DAMAGED"
+msgid "This vessel is damaged. I can relate."
+msgstr "这艘船毁坏了，我感同身受。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_BOAT_SINKING"
+msgid "I will soon face a watery grave."
+msgstr "我很快将直面海墓。"
+
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "I surrender myself to the depths!"
+msgstr "我向深渊投降！"
 
 #. STRINGS.CHARACTERS.WENDY.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_DEHUMID.1"
@@ -3370,6 +4170,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is too hot. It weighs on my soul."
 msgstr "这%s太热了，它重压着我的灵魂。"
 
+#. STRINGS.CHARACTERS.WENDY.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WENDY.ANNOUNCE_WAVE_BOOST"
+msgid "Joy..."
+msgstr "开心..."
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ALLOY"
 msgid "Cold and hard, like my existence."
@@ -3399,6 +4204,36 @@ msgstr "我应该把它们从地里挖出来。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BASEFAN"
 msgid "Alas the relief it brings is only temporary."
 msgstr "哎，这只能缓解片刻。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOATREPAIRKIT"
+msgid "This could save a boat from destruction, and me with it."
+msgstr "这能挽救一艘船免于毁灭，顺带挽救我。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_CARGO"
+msgid "This transports more junk to nowhere."
+msgstr "这个可以把更多破烂运到不知何处。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_CORK"
+msgid "I only hope when it sinks, the end will be quick."
+msgstr "我只希望它沉没的时候，死亡能早点降临。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_LOGRAFT"
+msgid "This looks heavy, slow and dangerous."
+msgstr "这个看上去沉重、缓慢而又危险。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_ROW"
+msgid "I wonder how many leagues this can convey me?"
+msgstr "我想知道这个能在海上航行多少里格？"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BOAT_TORCH"
+msgid "How illuminating."
+msgstr "多么明亮。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN"
@@ -3540,6 +4375,26 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON"
 msgid "Iron. Like my heart."
 msgstr "坚硬的铁，像我的心脏一样。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LILYPAD"
+msgid "How calm it looks upon the water."
+msgstr "它浮在水上的样子是多么平静啊。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS"
+msgid "It flourishes on the waves of sorrow."
+msgstr "它盛开在悲伤的浪潮之上。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS_FLOWER"
+msgid "This beauty will also die."
+msgstr "这样的美丽最终也会逝去。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "Its death was tasty."
+msgstr "它的死亡多么美味。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.MACHETE"
 msgid "This is a lot of blade."
@@ -3620,6 +4475,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Sleep is not a permanent escape from life."
 msgstr "睡眠只能短暂得逃避生活。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Gross, but efficient."
+msgstr "恶心，但有效。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Contains unreachable shiny things."
@@ -3649,6 +4509,11 @@ msgstr "浴火重生。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SMELTER.EMPTY"
 msgid "Burn who are trapped in it..."
 msgstr "灼伤深陷其中的人们..."
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKESKIN"
+msgid "It shed its skin, with my assistance."
+msgstr "它在我的帮助下蜕皮了。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TEA"
@@ -3689,6 +4554,26 @@ msgstr "它存在的唯一意义就是烦扰我。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Bits of bug carcass."
 msgstr "一点虫子的残躯。"
+
+#. STRINGS.CHARACTERS.WHEELER.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "It's not going to get fixed any more than it already is."
+msgstr "再修也不能让它比现在还牢固。"
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_BOAT_DAMAGED"
+msgid "Swell. I'm taking on water."
+msgstr "好吧。我的船正在进水。"
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_BOAT_SINKING"
+msgid "I'm up to my socks in seawater!"
+msgstr "我在海水里忙得不可开交！"
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "Is this the end of Maybelle Dorothea Wheeler?"
+msgstr "这就是梅贝尔·多罗西·薇勒尔的结局吗？"
 
 #. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_DEHUMID.1"
@@ -3735,6 +4620,21 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is just too hot!"
 msgstr "这%s真是太热了！"
 
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_WAVE_BOOST.1
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_WAVE_BOOST.1"
+msgid "WOOHOO!!!"
+msgstr "喔吼！！！"
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_WAVE_BOOST.2
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_WAVE_BOOST.2"
+msgid "I NEVER WANT THIS TO END!"
+msgstr "我可没想就这样到此为止！"
+
+#. STRINGS.CHARACTERS.WHEELER.ANNOUNCE_WAVE_BOOST.3
+msgctxt "STRINGS.CHARACTERS.WHEELER.ANNOUNCE_WAVE_BOOST.3"
+msgid "ADVENTUUUURE!"
+msgstr "好刺激啊啊啊！"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ALLOY"
 msgid "Heavy metal made heavier."
@@ -3764,6 +4664,36 @@ msgstr "看起来它像是食物！希望吃起来的时候也像是食物。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BASEFAN"
 msgid "A plane propeller would be better."
 msgstr "要是用飞机的螺旋桨当叶片就更好了。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOATREPAIRKIT"
+msgid "Swell. Because cork is known for its durability."
+msgstr "好吧。因为软木以其耐用性而闻名。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_CARGO"
+msgid "Now all my things can go adventuring with me."
+msgstr "现在我所有的物品都能和我一起去冒险了。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_CORK"
+msgid "About as stable as a cork balloon."
+msgstr "和软木热气球一样稳固。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_LOGRAFT"
+msgid "About as stable as a wooden balloon."
+msgstr "这木头牌热气球几乎很稳固。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_ROW"
+msgid "If only I had oars for my balloon."
+msgstr "要是我的热气球有桨就好了。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BOAT_TORCH"
+msgid "Open fire on a wooden boat. The most adventurous thing I've ever done."
+msgstr "在木船上点火。这是我做过最冒险的事情。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN"
@@ -3905,6 +4835,26 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON"
 msgid "Well it's not good balloon material."
 msgstr "它不是一个造热气球的好材料。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LILYPAD"
+msgid "A little too heavy to use for a balloon."
+msgstr "这有点沉，不能用在热气球上。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS"
+msgid "Almost worth getting my feet wet for that."
+msgstr "我的脚会湿掉但它值得一采。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS_FLOWER"
+msgid "Looks edible."
+msgstr "看上去可以吃。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "Not the first time I've eaten flowers."
+msgstr "我不是第一次吃花我之前吃过。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.MACHETE"
 msgid "Machete. Designed for adventure."
@@ -3985,6 +4935,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Quite the snorer."
 msgstr "鼾声相当大。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Too heavy for balloon material. Just right for a sail."
+msgstr "用它来做热气球太重了。拿来做个帆正好。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SEDIMENTPUDDLE"
 msgid "A sparkly pool. A little too sparkly."
@@ -4014,6 +4969,11 @@ msgstr "传奇冒险家铸造传奇装备，听起来还不错。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SMELTER.EMPTY"
 msgid "It takes the heavy metal and makes it heavier."
 msgstr "它需要一些重金属才能练出更重的金属。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKESKIN"
+msgid "Soft. Supple. Not currently attached to a snake. I like it!"
+msgstr "柔软，灵活，没连在蛇身上。我喜欢！"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEA"
@@ -4054,6 +5014,26 @@ msgstr "令人恼火的虫子！它完全浪费了它的翅膀。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Light enough to fire out the Pew-matic."
 msgstr "它很轻，可以当我气枪喇叭里面的子弹。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "Tip top!"
+msgstr "这艘船状态一流！"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_BOAT_DAMAGED"
+msgid "My vessel is deteriorating!"
+msgstr "我的船破损了！"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_BOAT_SINKING"
+msgid "I do believe this boat is sinking."
+msgstr "我相信这艘船正在下沉。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "I had best head for shore! Now!"
+msgstr "我最好驶向岸边！一秒钟也不能耽误！"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_DEHUMID.1"
@@ -4100,6 +5080,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s makes it too hot."
 msgstr "这个%s太热了。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ANNOUNCE_WAVE_BOOST"
+msgid "Prime oceanic oscillations!"
+msgstr "一流的海洋涛动！"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ALLOY"
 msgid "Iron that has gone through metallic bonding."
@@ -4129,6 +5114,36 @@ msgstr "芦笋。又称麻雀草。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BASEFAN"
 msgid "Restorative."
 msgstr "恢复装置。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOATREPAIRKIT"
+msgid "Extends the life of aquatic vessels."
+msgstr "延长水上交通工具的寿命。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_CARGO"
+msgid "I can store a few extra books aboard."
+msgstr "我可以在船上多放一些书。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_CORK"
+msgid "I suppose it's safe for a quick trip up the river."
+msgstr "我认为它对于一次顺流而下的快速旅行来说很安全。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_LOGRAFT"
+msgid "Crude nautical transport."
+msgstr "原始的海上运输方式。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_ROW"
+msgid "My vessel for marine research."
+msgstr "我用于进行海洋研究的交通工具。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BOAT_TORCH"
+msgid "To better observe the nocturnal sea life."
+msgstr "可以更清楚地看到夜间的海洋生物。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN"
@@ -4270,6 +5285,26 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON"
 msgid "Ferrum."
 msgstr "铁。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LILYPAD"
+msgid "Goodness! They can grow quite large in the wild."
+msgstr "天啊！它们在野外的能长得这么大。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS"
+msgid "Nelumbo nucifera. Quite beautiful."
+msgstr "水芙蓉。非常的美丽。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS_FLOWER"
+msgid "The blossom of Nelumbo nucifera. It's quite inspiring."
+msgstr "盛开的水芙蓉。真令人激动。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "The health benefits are numerous."
+msgstr "对健康有许多益处。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MACHETE"
 msgid "Used for hacking through the brush."
@@ -4350,6 +5385,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Dormant."
 msgstr "休眠期。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SAIL_SNAKESKIN"
+msgid "A sail of serpent hide."
+msgstr "蛇皮帆。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Contains some lustrous sentiment."
@@ -4379,6 +5419,11 @@ msgstr "再冷却，完成！"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMELTER.EMPTY"
 msgid "A metalsmithing tool."
 msgstr "金属锻造熔炼工具。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKESKIN"
+msgid "A layer of snake."
+msgstr "蛇的一层皮。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEA"
@@ -4419,6 +5464,26 @@ msgstr "隶属鞘翅目，是一种烦人的昆虫。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "The exoskeleton of a Coleoptera."
 msgstr "是鞘翅目的外骨骼。"
+
+#. STRINGS.CHARACTERS.WILBA.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILBA.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "WILBA CAN'ST NAUGHT FIX IT"
+msgstr "薇尔芭能够修好它"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_BOAT_DAMAGED"
+msgid "MINE SHIP DOTH BROK'DEN!"
+msgstr "我的船坏掉了！"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_BOAT_SINKING"
+msgid "MINE BOAT GO'EST GLUB GLUBS"
+msgstr "我的船正在咕噜咕噜的沉没"
+
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "ADIEU! ADIEU!"
+msgstr "永别了！永别了！"
 
 #. STRINGS.CHARACTERS.WILBA.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_DEHUMID.1"
@@ -4470,6 +5535,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_TOO_HUMID.2"
 msgid "THE AIR 'TIS FULL OF HEAT"
 msgstr "空气中充满了热量"
 
+#. STRINGS.CHARACTERS.WILBA.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WILBA.ANNOUNCE_WAVE_BOOST"
+msgid "WHOOP! WHOOP! HIE!"
+msgstr "哇哦！哇哦！快走开！"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ALLOY"
 msgid "IS'T BLOCK O' HARD METALS"
@@ -4499,6 +5569,36 @@ msgstr "它有一顶有趣的帽子"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BASEFAN"
 msgid "BLOW WINDS!"
 msgstr "吹吧 风啊！"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOATREPAIRKIT"
+msgid "'TIS FOR BOAT FIXINGS"
+msgstr "用这个来修理船"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_CARGO"
+msgid "HOLDETH LOTS O' STUFFS"
+msgstr "能装很多东西"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_CORK"
+msgid "FRAILTY, THY NAME IS'T CORK BOWL CANOE!"
+msgstr "摸起来好软啊，它的名字是碗状独软木舟！"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_LOGRAFT"
+msgid "ALAS! 'TIS BARELY WORTHY O' THE SEA"
+msgstr "呼！这艘船勉强能在海上漂"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_ROW"
+msgid "THE ROWS OF OUTRAGEOUS FORTUNE"
+msgstr "驶向那不义之财"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_TORCH"
+msgid "WHAT LIGHT!"
+msgstr "多么明亮啊！"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN"
@@ -4640,6 +5740,26 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON"
 msgid "'TIS METAL O' THE ZAPPY BIRD"
 msgstr "这是活泼的鸟儿身上的金属"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LILYPAD"
+msgid "'TIS SWIMMY LEAF"
+msgstr "这是浮叶"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS"
+msgid "SHALL WILBA COMPARE IT TO SUMMER DAY?"
+msgstr "薇尔芭为何不能将你比作夏天？ "
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS_FLOWER"
+msgid "YON FLOWER O' NUM NUMS"
+msgstr "那朵花好美味啊"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "FWOOSH'DED FLOWER O' NUM NUMS"
+msgstr "煮过的花好美味啊"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.MACHETE"
 msgid "YON SLASHY TOOL"
@@ -4720,6 +5840,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "O GENTLE SLEEPIES"
 msgstr "啊 睡得很安稳"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SAIL_SNAKESKIN"
+msgid "MAKETH THE WIND TO MINE LABOR"
+msgstr "让风为我所用"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SEDIMENTPUDDLE"
 msgid "ALL THAT GLITTERS 'TIS GOLD"
@@ -4749,6 +5874,11 @@ msgstr "弄完了"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SMELTER.EMPTY"
 msgid "'TIS FWOOSHY MACHINES"
 msgstr "这是个滚烫的机器"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKESKIN"
+msgid "IT HEART WAS MIGHTY, IT SKIN ARE WHOLE"
+msgstr "它的心曾经很强大，它的皮现在很完整"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TEA"
@@ -4789,6 +5919,26 @@ msgstr "虫子走开"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "WILBA BEAT ANNOYING BUGS"
 msgstr "薇尔芭打败了讨厌的虫子"
+
+#. STRINGS.CHARACTERS.WILLOW.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILLOW.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "Ugh, why would I do that now?"
+msgstr "呃，为什么我要现在干那个？"
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_BOAT_DAMAGED"
+msgid "My boat is wounded!"
+msgstr "我的船受伤了！"
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_BOAT_SINKING"
+msgid "I'm going down!"
+msgstr "我要沉下去了！"
+
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "Goodbye cruel world!"
+msgstr "永别了，残酷的世界！"
 
 #. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_DEHUMID.1"
@@ -4835,6 +5985,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_TOO_HUMID.2"
 msgid "It's too hot."
 msgstr "太热了。"
 
+#. STRINGS.CHARACTERS.WILLOW.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WILLOW.ANNOUNCE_WAVE_BOOST"
+msgid "Weeee!"
+msgstr "哗！"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ALLOY"
 msgid "Fire makes everything better."
@@ -4864,6 +6019,36 @@ msgstr "哈哈！找到你了！"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BASEFAN"
 msgid "Fan the flames."
 msgstr "煽风点火。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOATREPAIRKIT"
+msgid "This should patch up any little leaks."
+msgstr "这应该能补上任何小漏洞。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_CARGO"
+msgid "I can carry so many flammables on this."
+msgstr "这个可以装好多易燃物。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_CORK"
+msgid "It'd be better if I could light it on fire."
+msgstr "如果我能将它点燃它会更好。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_LOGRAFT"
+msgid "Campfire wood has other uses, apparently!"
+msgstr "很明显，柴火还有其他用途！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_ROW"
+msgid "Rowing? Really?"
+msgstr "划船？开玩笑吧？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BOAT_TORCH"
+msgid "Strangely not for torching boats."
+msgstr "好奇怪，不是用来把船点着的。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN"
@@ -5005,6 +6190,26 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON"
 msgid "I can't burn it with just my lighter."
 msgstr "我的打火机点不着它。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LILYPAD"
+msgid "I can't burn stuff out on the water."
+msgstr "我没法在水里烧东西。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS"
+msgid "Can I eat it? Or burn it?"
+msgstr "吃掉？还是烧掉？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS_FLOWER"
+msgid "Just a dumb flower."
+msgstr "只是个睡莲花。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "Fire makes it better."
+msgstr "火让它变得更好。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.MACHETE"
 msgid "Or I could just burn my way through."
@@ -5085,6 +6290,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "I should draw a mustache on its mustache while it sleeps."
 msgstr "我应该在它睡觉的时候挂它的胡子。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SAIL_SNAKESKIN"
+msgid "What a morbid sail."
+msgstr "真是个恶心的帆。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Yeesh, there's a lot of sparkles in there."
@@ -5114,6 +6324,11 @@ msgstr "我们什么时候再来一次？"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMELTER.EMPTY"
 msgid "Oh yeah! Now I can burn metal."
 msgstr "哦耶！现在我能烧金属了！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKESKIN"
+msgid "Leathery."
+msgstr "绝对真皮。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEA"
@@ -5155,6 +6370,21 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Ew."
 msgstr "哦。"
 
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_BOAT_DAMAGED"
+msgid "I should tape these holes up."
+msgstr "我该把这些洞粘起来。"
+
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_BOAT_SINKING"
+msgid "I don't think tape will be enough now."
+msgstr "我觉得现在这些胶带要不够用了。"
+
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "That's a lotta damage!"
+msgstr "坏的太严重了！"
+
 #. STRINGS.CHARACTERS.WINONA.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_DEHUMID.1"
 msgid "This is much more comfortable."
@@ -5184,6 +6414,11 @@ msgstr "%s一点都不透气。"
 msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is so boring that I can't breathe."
 msgstr "这%s闷得我要喘不过气来了。"
+
+#. STRINGS.CHARACTERS.WINONA.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WINONA.ANNOUNCE_WAVE_BOOST"
+msgid "Whoo nelly!"
+msgstr "吼呜！"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ALLOY"
@@ -5229,6 +6464,36 @@ msgstr "有益健康的绿色蔬菜。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BASEFAN"
 msgid "I'm sure bossman would be very interested in it."
 msgstr "老板一定会感兴趣的。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOATREPAIRKIT"
+msgid "Who needs glue? My tape is sticky enough."
+msgstr "谁还需要胶水？我的胶带就够了。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_CARGO"
+msgid "It's my big, bouyant toolbox."
+msgstr "我的水上大工具箱。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_CORK"
+msgid "It definitely fails any security tests."
+msgstr "它绝对通过不了任何安全性测试。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_LOGRAFT"
+msgid "I could do better..."
+msgstr "我还能做到更好..."
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_ROW"
+msgid "If I wanna move, I gotta put my back into it."
+msgstr "如果我想移动，我得使出全力。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BOAT_TORCH"
+msgid "This torch is a little light. Ha!"
+msgstr "这样的火炬足够亮眼。哈！"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.CHITIN"
@@ -5370,6 +6635,26 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON"
 msgid "Invaluable material for manufacturing useful tools."
 msgstr "用于制造有用工具的宝贵材料。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LILYPAD"
+msgid "I have never seen such a big water lily!"
+msgstr "我从未见过这么大的睡莲！"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS"
+msgid "What a beautiful aquatic plant."
+msgstr "真是棵漂亮的水生植物。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS_FLOWER"
+msgid "it's beautiful!"
+msgstr "真漂亮！"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "It tastes crunchy."
+msgstr "尝起来脆脆的。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.MACHETE"
 msgid "Hack and slash! Working's always fun."
@@ -5445,6 +6730,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Calm down!"
 msgstr "好好冷静一下！"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Just watch those scales catch the wind!"
+msgstr "看那些鳞片随风飘荡！"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SEDIMENTPUDDLE"
 msgid "The metal content is seriously over the limit."
@@ -5474,6 +6764,11 @@ msgstr "下工！"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SMELTER.EMPTY"
 msgid "Process the metallic material."
 msgstr "对金属进行加工。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKESKIN"
+msgid "The texture feels incredible. I got some ideas for this."
+msgstr "这种材质感觉很坚固。我有一些想法。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEA"
@@ -5514,6 +6809,26 @@ msgstr "你要是跟床虱打过交道，象鼻虫就根本不算什么。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "It can be regarded as clean."
 msgstr "可算除干净了。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "Small boat has no damages to repair! Wolfgang could punch it?"
+msgstr "小船没有要修理的地方！沃尔夫冈给它来一拳？"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_BOAT_DAMAGED"
+msgid "Ship is weak! Needs fixingtimes."
+msgstr "船很弱！需要修理。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_BOAT_SINKING"
+msgid "I will fight sea!"
+msgstr "我将与大海战斗！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "Wolfgang will punch death!"
+msgstr "沃尔夫冈要给死神来一拳！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_DEHUMID.1"
@@ -5560,6 +6875,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_TOO_HUMID.2"
 msgid "Is too muggy."
 msgstr "太热了。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ANNOUNCE_WAVE_BOOST"
+msgid "I am mighty!"
+msgstr "我是最强壮的！"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ALLOY"
 msgid "Fire make it strong like Wolfgang."
@@ -5589,6 +6909,36 @@ msgstr "哈哈，这就像小小的蔬菜帽子一样。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BASEFAN"
 msgid "Is cool on Wolfgang skin."
 msgstr "沃尔夫冈感到很凉快。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOATREPAIRKIT"
+msgid "Restore my mighty vessel!"
+msgstr "修复我强大的船！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_CARGO"
+msgid "What a mighty storage hold!"
+msgstr "多么强大的存储舱！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_CORK"
+msgid "Is weakling."
+msgstr "很弱。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_LOGRAFT"
+msgid "This raft is... not so mighty."
+msgstr "这个木筏...不太牢固。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_ROW"
+msgid "I will row with powerful arms!"
+msgstr "我将用强壮的手臂划船！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BOAT_TORCH"
+msgid "Flame on boat is good idea!"
+msgstr "船上装火把是个好主意！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN"
@@ -5730,6 +7080,26 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON"
 msgid "Iron is strong like Wolfgang."
 msgstr "铁就和沃尔夫冈一样强壮。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LILYPAD"
+msgid "Big water leaf."
+msgstr "水上的大叶子。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS"
+msgid "Is puny pond plant."
+msgstr "小池塘里的植物。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS_FLOWER"
+msgid "Is puny pond flower."
+msgstr "小池塘里的花。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "Wolfgang eat you now."
+msgstr "沃尔夫冈现在要吃了你。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MACHETE"
 msgid "Ah! Very good!"
@@ -5810,6 +7180,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Hehe. Is funny mustache."
 msgstr "呵呵，很有趣的胡子。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Skin of dead snake will help me sail."
+msgstr "死蛇的皮将帮助我航海。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Hello little sparklies!"
@@ -5839,6 +7214,11 @@ msgstr "火让金属变成小方块。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMELTER.EMPTY"
 msgid "Wolfgang lifted it without difficulty."
 msgstr "沃尔夫冈抬起它毫不费力。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKESKIN"
+msgid "I will use as bandana."
+msgstr "我会把它当做大围巾使用。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEA"
@@ -5879,6 +7259,26 @@ msgstr "讨厌的虫子，离沃尔夫冈远点！"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Is pesky bug skin."
 msgstr "讨厌虫子的皮。"
+
+#. STRINGS.CHARACTERS.WOODIE.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODIE.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "I'm afraid I can't."
+msgstr "我恐怕做不到。"
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_BOAT_DAMAGED"
+msgid "My boat's pretty banged up, eh?"
+msgstr "我的船损坏很严重，是吗？"
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_BOAT_SINKING"
+msgid "I'm aboot to sink!"
+msgstr "我快要沉了！"
+
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "We're goin' down!"
+msgstr "我们在往下沉！"
 
 #. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_DEHUMID.1"
@@ -5925,6 +7325,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_TOO_HUMID.2"
 msgid "Whew! this %s is hot, eh?"
 msgstr "哇！这%s真的很热啊，嗯？"
 
+#. STRINGS.CHARACTERS.WOODIE.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WOODIE.ANNOUNCE_WAVE_BOOST"
+msgid "For the North!"
+msgstr "为了北境的加拿大！"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ALLOY"
 msgid "It's like a block of wood made out of metal."
@@ -5954,6 +7359,36 @@ msgstr "他们就像即将被砍倒的小树一样。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BASEFAN"
 msgid "Yep. That's a nice breeze."
 msgstr "嗯。一阵微风。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOATREPAIRKIT"
+msgid "Patch'er up, eh?"
+msgstr "把它修好吗？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_CARGO"
+msgid "I'd prefer cargo shorts."
+msgstr "我更喜欢有大口袋的工装短裤。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_CORK"
+msgid "Only good for a short trip."
+msgstr "仅仅适合短途旅行。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_LOGRAFT"
+msgid "My specialty!"
+msgstr "我的专长！"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_ROW"
+msgid "Powered by elbow grease."
+msgstr "靠臂力驱动。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BOAT_TORCH"
+msgid "I can go night fishing."
+msgstr "我可以夜钓。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN"
@@ -6095,6 +7530,26 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON"
 msgid "Can't chop this too well."
 msgstr "不能把它切地很平整。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LILYPAD"
+msgid "Nature's real good, eh?"
+msgstr "大自然真正的好处，嗯？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS"
+msgid "Pretty nice, dontcha think Lucy?"
+msgstr "很好，不要尝试打露西的主意？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS_FLOWER"
+msgid "That's a beaut."
+msgstr "那是朵很漂亮的花。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "Cooks up real good."
+msgstr "烤熟以后变得更好了。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.MACHETE"
 msgid "Ooh, that's a thing for chopping."
@@ -6175,6 +7630,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Let sleeping bugs lie, I say."
 msgstr "我是说，让熟睡的虫子躺着吧。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Sailin' in style."
+msgstr "一路酷炫地航行世界。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SEDIMENTPUDDLE"
 msgid "What's that shiny stuff in there?"
@@ -6204,6 +7664,11 @@ msgstr "哼。为一点金属的兴师动众。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMELTER.EMPTY"
 msgid "It's like a giant maple syrup bucket."
 msgstr "就像一个巨大的糖浆桶。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKESKIN"
+msgid "I'm sure the snake didn't need this."
+msgstr "我相信蛇不需要这个。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEA"
@@ -6244,6 +7709,26 @@ msgstr "比黑蝇还可恶。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "That'll teach 'em!"
 msgstr "那可以给他们上一课了！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "It be jus'like new!"
+msgstr "它像新的一样！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_BOAT_DAMAGED"
+msgid "She's takin' on water!"
+msgstr "我的船儿她在喝水！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_BOAT_SINKING"
+msgid "She be goin' doooon!"
+msgstr "我的船儿她要沉了！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "Be this th'day th'sea claims me?"
+msgstr "难道今天就是大海将俺吞没的日子？"
 
 #. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_DEHUMID.1"
@@ -6290,6 +7775,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_TOO_HUMID.2"
 msgid "This %s is makin' me sweat me britches."
 msgstr "这%s让俺汗流浃背。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ANNOUNCE_WAVE_BOOST"
+msgid "We be a silver streak on th'blue now!"
+msgstr "俺们现在是海上的银色条纹！"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ALLOY"
 msgid "Ahoy, alloy!"
@@ -6319,6 +7809,36 @@ msgstr "地上长出的小菜杆。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BASEFAN"
 msgid "A cool wind blows from thee!"
 msgstr "凉爽的风向你身上吹来！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOATREPAIRKIT"
+msgid "Never set sail wit'out'er."
+msgstr "航海不能没有它。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_CARGO"
+msgid "Fer th'hoarder at sea."
+msgstr "供海上的囤货者使用。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_CORK"
+msgid "It be'a poorly ship."
+msgstr "一艘差劲的船。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_LOGRAFT"
+msgid "She don't look too sturdy."
+msgstr "她看起来不是很结实。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_ROW"
+msgid "I ain't rowed since I was a young swab."
+msgstr "从俺年轻时当水手起，俺就没有用桨划过船。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BOAT_TORCH"
+msgid "Fer a torch on me boat, not fer torchin' me boat."
+msgstr "火炬放在俺的船上照明，不是用来烧掉俺的船。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN"
@@ -6460,6 +7980,31 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON"
 msgid "'Tis not gold, but a treasure nonetheless."
 msgstr "这不是黄金，但至少是个宝贝。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LIFEPLANT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LIFEPLANT"
+msgid "Grew from a drop o' water."
+msgstr "这朵花是从一滴水里长出来的。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LILYPAD"
+msgid "A leaf aft'r me own heart."
+msgstr "俺心目中的叶子就是这样的。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS"
+msgid "It be a big pink flow'r."
+msgstr "巨大的粉红色花朵。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS_FLOWER"
+msgid "Tis a flow'r'o'th'land."
+msgstr "陆地之花。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "It b'cooked."
+msgstr "它被烤熟了。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.MACHETE"
 msgid "Ye be slicin'!"
@@ -6540,6 +8085,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Thar she blows!"
 msgstr "她在那里呼吸着！"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Thet be a sail."
+msgstr "那是一个船帆。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Alas, not big enough to sail in."
@@ -6569,6 +8119,11 @@ msgstr "她准备好开炮了！"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SMELTER.EMPTY"
 msgid "A cannon fer makin' metals."
 msgstr "一架冶炼钢铁的炮台。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKESKIN"
+msgid "Me leathers do need replacin'."
+msgstr "俺的皮外套的确需要更换了。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEA"
@@ -6609,6 +8164,26 @@ msgstr "你们这群旱鸭子！"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Longcoat made o' them pesky bugs."
 msgstr "这是那些烦人虫子的外套。"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "Nope. Can't fix "
+msgstr "不行，不能修复"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_BOAT_DAMAGED"
+msgid "Oh. Floater is wobbly"
+msgstr "哦。漂浮器不太稳"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_BOAT_SINKING"
+msgid "Why sinking, Floater?"
+msgstr "为什么在下沉，漂浮器？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "Sunk"
+msgstr "沉没"
 
 #. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_DEHUMID.1"
@@ -6655,6 +8230,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_TOO_HUMID.2"
 msgid "%s too hot"
 msgstr "%s太热了"
 
+#. STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ANNOUNCE_WAVE_BOOST"
+msgid "Whee!"
+msgstr "耶！"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ALLOY"
 msgid "Bar of Clink Rock"
@@ -6684,6 +8264,36 @@ msgstr "你好！"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BASEFAN"
 msgid "Wind"
 msgstr "上发条"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOATREPAIRKIT"
+msgid "Fix it stuff"
+msgstr "修补的东西"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_CARGO"
+msgid "Big Floater of friends"
+msgstr "装满朋友们的大漂浮器"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_CORK"
+msgid "Puny Floater"
+msgstr "小漂浮器"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_LOGRAFT"
+msgid "Friend ship"
+msgstr "朋友的船"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_ROW"
+msgid "Push Pull Floater"
+msgstr "推拉漂浮器"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BOAT_TORCH"
+msgid "For dark times on floater"
+msgstr "照亮在漂浮器上的黑暗时光"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN"
@@ -6825,6 +8435,31 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON"
 msgid "Clinky Rock"
 msgstr "熟料岩"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LIFEPLANT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LIFEPLANT"
+msgid "Lively friend"
+msgstr "活泼的朋友"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LILYPAD"
+msgid "Nice day for swim?"
+msgstr "今天很适合来游泳呢?"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS"
+msgid "Hello! How's water?"
+msgstr "你好！来点水怎么样？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS_FLOWER"
+msgid "Smells sweet!"
+msgstr "闻起来甜甜的！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "Holey belly stuff"
+msgstr "满是洞洞的食物"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.MACHETE"
 msgid "Slicer. For friend haircuts"
@@ -6905,6 +8540,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Let it sleep"
 msgstr "让它睡觉吧"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SAIL_SNAKESKIN"
+msgid "Squirmy Wind Nabber"
+msgstr "蠕动家伙们做的捕风器"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Shiny puddle"
@@ -6934,6 +8574,11 @@ msgstr "好了！"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SMELTER.EMPTY"
 msgid "Clinky rock cooker"
 msgstr "煮叮当响石头的锅"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKESKIN"
+msgid "Squirmy clothes"
+msgstr "蠕动的家伙的衣服"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEA"
@@ -6975,6 +8620,21 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "Crunchy"
 msgstr "松脆的"
 
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_BOAT_DAMAGED"
+msgid "Oh dear, this water bodes ill."
+msgstr "哦，天哪，这水可是不祥之兆。"
+
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_BOAT_SINKING"
+msgid "I'm up to my tail in water!"
+msgstr "我的尾巴都泡在水里了！"
+
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "Into the drink I go, hyuyu!"
+msgstr "我要进水里去了！哼哼！"
+
 #. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_DEHUMID.1"
 msgid "Freedom, this is me!"
@@ -7004,6 +8664,11 @@ msgstr "我受不了%s了！"
 msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_TOO_HUMID.2"
 msgid "Take off %s."
 msgstr "脱掉%s吧。"
+
+#. STRINGS.CHARACTERS.WORTOX.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WORTOX.ANNOUNCE_WAVE_BOOST"
+msgid "Hyuyu!"
+msgstr "哼哼！"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_PICKPOOP.1
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANNOUNCE_PICKPOOP.1"
@@ -7044,6 +8709,36 @@ msgstr "从土里长出的长矛。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BASEFAN"
 msgid "The breeze is blowing, so happy."
 msgstr "微风拂面，好不快活。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOATREPAIRKIT"
+msgid "To keep those boats afloat."
+msgstr "保证船浮在水面上。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_CARGO"
+msgid "I dislike being burdened while traveling."
+msgstr "我不喜欢旅行时背负重担。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_CORK"
+msgid "Hither and thither, in a wayward course."
+msgstr "飘忽不定，摇摇欲坠。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_LOGRAFT"
+msgid "It's not so strong, but I don't have long."
+msgstr "不怎么坚固，不过我也不需要。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_ROW"
+msgid "Gently down the merry stream!"
+msgstr "顺着欢快的小溪缓缓而下！"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BOAT_TORCH"
+msgid "A light to lead me through the night."
+msgstr "一束指引我穿越黑夜的光。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.CHITIN"
@@ -7185,6 +8880,26 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON"
 msgid "Oooh. Almost burned me."
 msgstr "哦。差点烧死我了。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LILYPAD"
+msgid "The boat passed in the pond, and the duckweed gave way."
+msgstr "小船池中过，浮萍让道开。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS"
+msgid "Lovely flower from water."
+msgstr "出淤泥而不染。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS_FLOWER"
+msgid "Mortals eat flowers now?"
+msgstr "凡人现在连花都要吃了。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "*Crunch* It's still connected!"
+msgstr "藕断丝连。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.MACHETE"
 msgid "To chop and slash!"
@@ -7260,6 +8975,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "Then intermission."
 msgstr "那就中场休息。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SAIL_SNAKESKIN"
+msgid "The stripes complement the colour, I say, I say."
+msgstr "花纹与颜色正搭，哇哦。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SEDIMENTPUDDLE"
 msgid "These are not for drink."
@@ -7289,6 +9009,11 @@ msgstr "这并没有让它们变得更好。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SMELTER.EMPTY"
 msgid "Put the iron you hate in and burn it."
 msgstr "把讨厌的铁放进去烧。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKESKIN"
+msgid "I prefer fur to scales."
+msgstr "比起鳞片我更喜欢毛皮。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEA"
@@ -7330,6 +9055,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "What remains of their armor."
 msgstr "它们残留的盔甲。"
 
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_BOAT_DAMAGED"
+msgid "My boat don't look good."
+msgstr "我的船看着不好。"
+
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_BOAT_SINKING"
+msgid "Boat gets wet!"
+msgstr "船在变湿！"
+
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "Need to find land quick!"
+msgstr "要快找陆地！"
+
 #. STRINGS.CHARACTERS.WURT.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_DEHUMID.1"
 msgid "Huh, cool off."
@@ -7359,6 +9099,11 @@ msgstr "%s热！"
 msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_TOO_HUMID.2"
 msgid "I don't want to wear %s anymore!"
 msgstr "不想穿%s了！"
+
+#. STRINGS.CHARACTERS.WURT.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WURT.ANNOUNCE_WAVE_BOOST"
+msgid "Splish splash!"
+msgstr "水花四溅！"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ALLOY"
@@ -7404,6 +9149,36 @@ msgstr "绿棒棒，闻起来不错。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BASEFAN"
 msgid "Water ran away! florpt!"
 msgstr "水都跑掉了！浮浪噗的！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOATREPAIRKIT"
+msgid "Why repair? Let water in, florpt!"
+msgstr "为什么要修？让船进水，浮浪噗的！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_CARGO"
+msgid "It has room for treasures!"
+msgstr "有装宝藏的地方！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_CORK"
+msgid "Why not swim? florp."
+msgstr "为什么不用游的？浮浪噗。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_LOGRAFT"
+msgid "Is a small boat."
+msgstr "一艘小船。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_ROW"
+msgid "It good enough."
+msgstr "够好了。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BOAT_TORCH"
+msgid "It torch for boat."
+msgstr "给船用的火炬。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.CHITIN"
@@ -7545,6 +9320,26 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.IRON"
 msgid "Red hard rock."
 msgstr "红色坚硬的岩石。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LILYPAD"
+msgid "Afloat leaf."
+msgstr "漂浮的大叶子。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS"
+msgid "Fancy flower in the pool."
+msgstr "好看的花长在水里。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS_FLOWER"
+msgid "Fancy flower."
+msgstr "好看的花。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "Filar snacks!"
+msgstr "长丝的零食！"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.MACHETE"
 msgid "Plant hacker."
@@ -7620,6 +9415,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "The little bug was quiet."
 msgstr "小虫子安静了。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SAIL_SNAKESKIN"
+msgid "It sail made of colourful scales."
+msgstr "彩色鳞片做成的帆。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SEDIMENTPUDDLE"
 msgid "Water are ... shining?"
@@ -7649,6 +9449,11 @@ msgstr "完成了！"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SMELTER.EMPTY"
 msgid "What to put in it?"
 msgstr "放什么东西进去？"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKESKIN"
+msgid "Is a nice skin."
+msgstr "好看的皮肤。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEA"
@@ -7689,6 +9494,26 @@ msgstr "走开走开！"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "hard shell."
 msgstr "坚硬的虫壳。"
+
+#. STRINGS.CHARACTERS.WX78.ACTIONFAIL.REPAIRBOAT.GENERIC
+msgctxt "STRINGS.CHARACTERS.WX78.ACTIONFAIL.REPAIRBOAT.GENERIC"
+msgid "IT REQUIRES NO MAINTENANCE"
+msgstr "它不需要维护"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_BOAT_DAMAGED
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_BOAT_DAMAGED"
+msgid "DAMAGE SUSTAINED"
+msgstr "遭到损坏"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_BOAT_SINKING
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_BOAT_SINKING"
+msgid "DESTRUCTION IMPENDING"
+msgstr "即将毁灭"
+
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_BOAT_SINKING_IMMINENT
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_BOAT_SINKING_IMMINENT"
+msgid "DESTRUCTION IMMINENT"
+msgstr "毁灭迫近"
 
 #. STRINGS.CHARACTERS.WX78.ANNOUNCE_DEHUMID.1
 msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_DEHUMID.1"
@@ -7735,6 +9560,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_TOO_HUMID.2"
 msgid "HUMIDEX REACHING LEVELS GREATER THAN 40"
 msgstr "潮湿等级达到四十级以上"
 
+#. STRINGS.CHARACTERS.WX78.ANNOUNCE_WAVE_BOOST
+msgctxt "STRINGS.CHARACTERS.WX78.ANNOUNCE_WAVE_BOOST"
+msgid "01010111 01000101 01000101"
+msgstr "01010111 01000101 01000101"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ALLOY
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ALLOY"
 msgid "PRECIOUS METAL"
@@ -7764,6 +9594,36 @@ msgstr "能量小树苗"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BASEFAN"
 msgid "COOLING FAN"
 msgstr "冷却风扇"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BOATREPAIRKIT
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOATREPAIRKIT"
+msgid "SEA VESSEL REPAIRS. AT SEA."
+msgstr "海上使用的修船工具。"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_CARGO
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_CARGO"
+msgid "A SAILING VESSEL WITH ENHANCED STORAGE CAPABILITIES"
+msgstr "加强了存储能力的航船"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_CORK
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_CORK"
+msgid "IT MOCKS ME"
+msgstr "它嘲弄了我"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_LOGRAFT
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_LOGRAFT"
+msgid "I AM UNCOMFORTABLE BEING SO CLOSE TO THE WATER"
+msgstr "这么靠近水让我不安"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_ROW
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_ROW"
+msgid "I, ROWBOAT"
+msgstr "我，划船机器人"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_TORCH
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BOAT_TORCH"
+msgid "MARINE ILLUMINATION"
+msgstr "海上照明用具"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN"
@@ -7905,6 +9765,26 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.IRON"
 msgid "HELLO FRIEND"
 msgstr "你好，朋友"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.LILYPAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LILYPAD"
+msgid "I DO NOT TRUST ITS RELATIONSHIP WITH WATER"
+msgstr "它不能使我免于可恨的潮湿"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS"
+msgid "ORGANIC UNIT THAT REQUIRES WATER"
+msgstr "需要水的有机单位"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS_FLOWER
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS_FLOWER"
+msgid "UGLY WATER FLOWER"
+msgstr "丑陋的水生花朵"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS_FLOWER_COOKED"
+msgid "I HAVE LIBERATED IT FROM ITS WATER REQUIREMENTS"
+msgstr "我已经把它从对水的需求中解放了"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.MACHETE"
 msgid "A LONG BLADE FOR EXPERT HACKING"
@@ -7985,6 +9865,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RABID_BEETLE.SLEEPING"
 msgid "REGENERATING TERROR"
 msgstr "恐怖再生中"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SAIL_SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SAIL_SNAKESKIN"
+msgid "REPTILIAN SCALES IMPROVE SAIL EFFICIENCY"
+msgstr "爬行动物的鳞片提高了风帆的效率"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SEDIMENTPUDDLE"
 msgid "WATER IS HINDERING ME FROM FINANCIAL GAIN"
@@ -8014,6 +9899,11 @@ msgstr "收到返回值"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SMELTER.EMPTY"
 msgid "HELLO, FRIEND"
 msgstr "你好，朋友"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKESKIN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKESKIN"
+msgid "THE SNAKE LOST ITS SKIN. HA HA"
+msgstr "蛇丢掉了它的皮。哈哈"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TEA"
@@ -8084,6 +9974,36 @@ msgstr "芦笋苗"
 msgctxt "STRINGS.NAMES.BASEFAN"
 msgid "Oscillating Fan"
 msgstr "摆动风扇"
+
+#. STRINGS.NAMES.BOATREPAIRKIT
+msgctxt "STRINGS.NAMES.BOATREPAIRKIT"
+msgid "Boat Repair Kit"
+msgstr "修船套件"
+
+#. STRINGS.NAMES.BOAT_CARGO
+msgctxt "STRINGS.NAMES.BOAT_CARGO"
+msgid "Cargo Boat"
+msgstr "货船"
+
+#. STRINGS.NAMES.BOAT_CORK
+msgctxt "STRINGS.NAMES.BOAT_CORK"
+msgid "Cork Bowl Canoe"
+msgstr "碗状软木舟"
+
+#. STRINGS.NAMES.BOAT_LOGRAFT
+msgctxt "STRINGS.NAMES.BOAT_LOGRAFT"
+msgid "Log Raft"
+msgstr "木筏"
+
+#. STRINGS.NAMES.BOAT_ROW
+msgctxt "STRINGS.NAMES.BOAT_ROW"
+msgid "Row Boat"
+msgstr "划艇"
+
+#. STRINGS.NAMES.BOAT_TORCH
+msgctxt "STRINGS.NAMES.BOAT_TORCH"
+msgid "Boat Torch"
+msgstr "船载火炬"
 
 #. STRINGS.NAMES.CHITIN
 msgctxt "STRINGS.NAMES.CHITIN"
@@ -8185,6 +10105,26 @@ msgctxt "STRINGS.NAMES.IRON"
 msgid "Iron Ore"
 msgstr "铁矿石"
 
+#. STRINGS.NAMES.LILYPAD
+msgctxt "STRINGS.NAMES.LILYPAD"
+msgid "Lily Pad"
+msgstr "睡莲叶"
+
+#. STRINGS.NAMES.LOTUS
+msgctxt "STRINGS.NAMES.LOTUS"
+msgid "Lotus Plant"
+msgstr "睡莲"
+
+#. STRINGS.NAMES.LOTUS_FLOWER
+msgctxt "STRINGS.NAMES.LOTUS_FLOWER"
+msgid "Lotus Flower"
+msgstr "睡莲花"
+
+#. STRINGS.NAMES.LOTUS_FLOWER_COOKED
+msgctxt "STRINGS.NAMES.LOTUS_FLOWER_COOKED"
+msgid "Cooked Lotus Root"
+msgstr "熟莲藕"
+
 #. STRINGS.NAMES.MACHETE
 msgctxt "STRINGS.NAMES.MACHETE"
 msgid "Machete"
@@ -8225,6 +10165,11 @@ msgctxt "STRINGS.NAMES.RABID_BEETLE"
 msgid "Rabid Beetle"
 msgstr "疯狂甲虫"
 
+#. STRINGS.NAMES.SAIL_SNAKESKIN
+msgctxt "STRINGS.NAMES.SAIL_SNAKESKIN"
+msgid "Snakeskin Sail"
+msgstr "蛇皮帆"
+
 #. STRINGS.NAMES.SEDIMENTPUDDLE
 msgctxt "STRINGS.NAMES.SEDIMENTPUDDLE"
 msgid "Sparkling Pool"
@@ -8239,6 +10184,11 @@ msgstr "剪刀"
 msgctxt "STRINGS.NAMES.SMELTER"
 msgid "Smelter"
 msgstr "炼钢炉"
+
+#. STRINGS.NAMES.SNAKESKIN
+msgctxt "STRINGS.NAMES.SNAKESKIN"
+msgid "Snakeskin"
+msgstr "蛇皮"
 
 #. STRINGS.NAMES.TEA
 msgctxt "STRINGS.NAMES.TEA"
@@ -8295,6 +10245,36 @@ msgctxt "STRINGS.RECIPE_DESC.BASEFAN"
 msgid "Relieves hay fever, keeps you dry."
 msgstr "缓解花粉症，保持干\n燥。"
 
+#. STRINGS.RECIPE_DESC.BOATREPAIRKIT
+msgctxt "STRINGS.RECIPE_DESC.BOATREPAIRKIT"
+msgid "Stay afloat in that boat!"
+msgstr "别让船沉了！"
+
+#. STRINGS.RECIPE_DESC.BOAT_CARGO
+msgctxt "STRINGS.RECIPE_DESC.BOAT_CARGO"
+msgid "Hoarding at sea!"
+msgstr "海上贮藏！"
+
+#. STRINGS.RECIPE_DESC.BOAT_CORK
+msgctxt "STRINGS.RECIPE_DESC.BOAT_CORK"
+msgid "Good for portage and tough as porridge."
+msgstr "像麦片一样坚硬并且\n便于携带。"
+
+#. STRINGS.RECIPE_DESC.BOAT_LOGRAFT
+msgctxt "STRINGS.RECIPE_DESC.BOAT_LOGRAFT"
+msgid "Boat at your own risk."
+msgstr "航行风险自负。"
+
+#. STRINGS.RECIPE_DESC.BOAT_ROW
+msgctxt "STRINGS.RECIPE_DESC.BOAT_ROW"
+msgid "Row, row, row your boat!"
+msgstr "划呀划，划你的船！"
+
+#. STRINGS.RECIPE_DESC.BOAT_TORCH
+msgctxt "STRINGS.RECIPE_DESC.BOAT_TORCH"
+msgid "See, at sea."
+msgstr "海上照明工具。"
+
 #. STRINGS.RECIPE_DESC.GOLDENMACHETE
 msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"
 msgid "Hack stuff in STYLE!"
@@ -8314,6 +10294,11 @@ msgstr "锋利而伤人。"
 msgctxt "STRINGS.RECIPE_DESC.MACHETE"
 msgid "Hack stuff!"
 msgstr "砍东西！"
+
+#. STRINGS.RECIPE_DESC.SAIL_SNAKESKIN
+msgctxt "STRINGS.RECIPE_DESC.SAIL_SNAKESKIN"
+msgid "Heavy duty wind catcher."
+msgstr "大功率捕风装置。"
 
 #. STRINGS.RECIPE_DESC.SHEARS
 msgctxt "STRINGS.RECIPE_DESC.SHEARS"
@@ -8390,10 +10375,10 @@ msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL"
 msgid "Tall Grass"
 msgstr "高草"
 
-#. STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL_PATCH
-msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL_PATCH"
-msgid "Infected Tall Grass"
-msgstr "被感染的高草"
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL_BUNCHES
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GRASS_TALL_BUNCHES"
+msgid "Tall Grass Fields"
+msgstr "高草丛田"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.HANGING_VINE_PATCH
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.HANGING_VINE_PATCH"
@@ -8419,6 +10404,11 @@ msgstr "潮湿季"
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.JUNGLE_BORDER_VINE"
 msgid "Jungle Canopy Vines"
 msgstr "雨林树冠的藤蔓"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.LOTUS
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.LOTUS"
+msgid "lotus"
+msgstr "睡莲"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.LUSH
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.LUSH"
@@ -8534,3 +10524,4 @@ msgstr "繁茂季"
 msgctxt "STRINGS.UI.SERVERLISTINGSCREEN.SEASONS.TEMPERATE"
 msgid "Temperate"
 msgstr "平和季"
+

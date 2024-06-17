@@ -64,7 +64,7 @@ local function tile_physics_init(inst, ...)
     )
     -- standard impassable collider
     inst.Map:AddTileCollisionSet(
-        COLLISION.GROUND,
+        COLLISION.VOID_LIMITS,
         TileGroups.ImpassableTiles, true,
         TileGroups.ImpassableTiles, false,
         0.25, 128
@@ -73,6 +73,7 @@ end
 
 local function common_postinit(inst)
     inst.has_pl_ocean = true
+    inst.items_pass_ground = true
 
     -- Add waves
     inst.entity:AddWaveComponent()
@@ -115,8 +116,9 @@ local function master_postinit(inst)
     inst:AddComponent("shadowcreaturespawner")
     inst:AddComponent("shadowhandspawner")
     inst:AddComponent("brightmarespawner")
-    inst:AddComponent("worldwind")
+    inst:AddComponent("pl_worldwind")
 
+    inst:AddComponent("hippospawner")
     inst:AddComponent("regrowthmanager")
     -- inst:AddComponent("desolationspawner")
     -- inst:AddComponent("forestpetrification")

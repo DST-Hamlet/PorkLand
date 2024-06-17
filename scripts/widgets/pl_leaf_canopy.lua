@@ -3,8 +3,8 @@ local UIAnim = require("widgets/uianim")
 
 local CANOPY_TILES = {
     [WORLD_TILES.GASJUNGLE] = true,
-	[WORLD_TILES.DEEPRAINFOREST] = true,
-	[WORLD_TILES.PIGRUINS] = true,
+    [WORLD_TILES.DEEPRAINFOREST] = true,
+    [WORLD_TILES.PIGRUINS] = true,
 }
 
 local LeavesOver = Class(Widget, function(self, owner)
@@ -23,8 +23,8 @@ local LeavesOver = Class(Widget, function(self, owner)
     self.leavesTop:GetAnimState():SetMultColour(1, 1, 1, 1)
     self.leavesTop:GetAnimState():AnimateWhilePaused(false)
     self.leavesTop:SetScaleMode(SCALEMODE_FIXEDSCREEN_NONDYNAMIC)
-	-- self.leavesTop:GetAnimState():SetEffectParams( 0.784, 0.784, 0.784, 1)    
-	self.leavesTop:Hide()
+    -- self.leavesTop:GetAnimState():SetEffectParams( 0.784, 0.784, 0.784, 1)
+    self.leavesTop:Hide()
 end)
 
 function LeavesOver:SetLeavesTopColorMult(r, g, b)
@@ -32,12 +32,12 @@ function LeavesOver:SetLeavesTopColorMult(r, g, b)
 end
 
 function LeavesOver:OnUpdate(dt)
-	local wasup = self.leavestop_intensity and self.leavestop_intensity > 0 or false
+    local wasup = self.leavestop_intensity and self.leavestop_intensity > 0 or false
 
-	if not self.leavestopmultiplytarget then
-		self.leavestopmultiplytarget = {r = 1, g = 1, b = 1}
-		self.leavestopmultiplycurrent = {r = 1, g = 1, b = 1}
-	end
+    if not self.leavestopmultiplytarget then
+        self.leavestopmultiplytarget = {r = 1, g = 1, b = 1}
+        self.leavestopmultiplycurrent = {r = 1, g = 1, b = 1}
+    end
 
     if TheWorld.state.isdusk then
         self:SetLeavesTopColorMult(0.6, 0.6, 0.6)
@@ -47,7 +47,7 @@ function LeavesOver:OnUpdate(dt)
         self:SetLeavesTopColorMult(1, 1, 1)
     end
 
-	if not self.leavesTop then
+    if not self.leavesTop then
         return
     end
 
@@ -97,7 +97,7 @@ function LeavesOver:OnUpdate(dt)
                 self.leavesfullyin = true
                 self.owner:PushEvent("canopyin")
             else
-                if self.owner.sg:HasStateTag("moving") then
+                if self.owner:HasTag("moving") or (self.owner.sg and self.owner.sg:HasStateTag("moving")) then
                     if not self.leavesmoving then
                         self.leavesmoving = true
                         self.leavesTop:GetAnimState():PlayAnimation("run_pre")

@@ -1,7 +1,7 @@
 local assets =
 {
-	Asset("ANIM", "anim/pl_staffs.zip"),
-	Asset("ANIM", "anim/pl_swap_staffs.zip"),
+    Asset("ANIM", "anim/pl_staffs.zip"),
+    Asset("ANIM", "anim/pl_swap_staffs.zip"),
 }
 
 local prefabs =
@@ -83,10 +83,10 @@ local function CastSpell(staff, target, pos, caster)
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 

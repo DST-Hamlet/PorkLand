@@ -194,6 +194,7 @@ return Class(function(self, inst)
     local _groundoverlay = nil
 
     -- Fog
+    local _hasfog = false
     local _fullfog = false
 
     -- Dedicated server does not need to spawn the local fx
@@ -416,6 +417,16 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
     --[[ Private event handlers ]]
     --------------------------------------------------------------------------
+
+    local function OnseasonChange(src, new_season)
+        if _ismastersim then
+            if new_season == SEASONS.LUSH then
+                _world.net.components.plateauwind:StartWind()
+            else
+                _world.net.components.plateauwind:StopWind()
+            end
+        end
+    end
 
     local function OnSeasonTick(src, data)
         _season = data.season
@@ -675,6 +686,7 @@ return Class(function(self, inst)
     inst:ListenForEvent("phasechanged", OnPhaseChanged, _world)
     inst:ListenForEvent("playeractivated", OnPlayerActivated, _world)
     inst:ListenForEvent("playerdeactivated", OnPlayerDeactivated, _world)
+    inst:WatchWorldState("season", OnseasonChange)
 
     if _ismastersim then
         -- Initialize master simulation variables
@@ -867,6 +879,7 @@ return Class(function(self, inst)
                     SetWithPeriodicSync(_fogtime, _fogtime:value() - dt, FRAMES, _ismastersim)
                     if _fogtime:value() <= 5 and _hasfx and ThePlayer ~= nil then
                         ThePlayer:PushEvent("startfog")
+                        _hasfog = true
                     end
 
                     if _fogtime:value() <= 0 then
@@ -888,11 +901,14 @@ return Class(function(self, inst)
                 end
             end
         elseif _fogstate:value() ~= FOG_STATE.CLEAR then
+
+            if _hasfx and ThePlayer and _hasfog then
+                ThePlayer:PushEvent("stopfog")
+                _hasfog = false
+            end
+
             if _fogstate:value() ~= FOG_STATE.LIFTING then
                 TheSim:ClearDSP(.5)
-                if _hasfx and ThePlayer then
-                    ThePlayer:PushEvent("stopfog")
-                end
 
                 if _ismastersim then
                     _fogtime:set(FOG_TRANSITION_TIME)
@@ -909,6 +925,14 @@ return Class(function(self, inst)
                         _fogtime:set(0)
                         _fogstate:set(FOG_STATE.CLEAR)
                     end
+                end
+            end
+        end
+
+        if _ismastersim then
+            if _season == SEASONS.LUSH then
+                if _world.net.components.plateauwind then
+                    _world.net.components.plateauwind:UpdateDynamicWind(dt, _seasonprogress)
                 end
             end
         end

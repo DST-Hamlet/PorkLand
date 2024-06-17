@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "Tip top!",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "My vessel is deteriorating!",
+    ANNOUNCE_BOAT_SINKING = "I do believe this boat is sinking.",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "I had best head for shore! Now!",
     ANNOUNCE_DEHUMID = {
         "Ah... that breeze is nice.",
     },
@@ -14,6 +22,7 @@ return {
         "This %s is unbearable.",
         "This %s makes it too hot.",
     },
+    ANNOUNCE_WAVE_BOOST = "Prime oceanic oscillations!",
     DESCRIBE = {
         ALLOY = "Iron that has gone through metallic bonding.",
         APORKALYPSE_CLOCK = "Ah. Quite a complex form of clockwork.",
@@ -21,6 +30,12 @@ return {
         ARMOR_WEEVOLE = "Armour made from bug exoskeleton.",
         ASPARAGUS_PLANTED = "Asparagus. Otherwise known as sparrow grass.",
         BASEFAN = "Restorative.",
+        BOATREPAIRKIT = "Extends the life of aquatic vessels.",
+        BOAT_CARGO = "I can store a few extra books aboard.",
+        BOAT_CORK = "I suppose it's safe for a quick trip up the river.",
+        BOAT_LOGRAFT = "Crude nautical transport.",
+        BOAT_ROW = "My vessel for marine research.",
+        BOAT_TORCH = "To better observe the nocturnal sea life.",
         CHITIN = "The exoskeleton of an arthropod.",
         COFFEE = "I do love a cup of coffee and a good book.",
         COFFEEBEANS = "Very high in caffeine.",
@@ -57,6 +72,10 @@ return {
         HANGING_VINE = "Hanging vines from the forest canopy.",
         ICEDTEA = "Invigorating.",
         IRON = "Ferrum.",
+        LILYPAD = "Goodness! They can grow quite large in the wild.",
+        LOTUS = "Nelumbo nucifera. Quite beautiful.",
+        LOTUS_FLOWER = "The blossom of Nelumbo nucifera. It's quite inspiring.",
+        LOTUS_FLOWER_COOKED = "The health benefits are numerous.",
         MACHETE = "Used for hacking through the brush.",
         PANGOLDEN = "Aurum vermilingua.",
         PEAGAWK = {
@@ -81,6 +100,7 @@ return {
             GENERIC = "Certainly not a species I know of!",
             SLEEPING = "Dormant.",
         },
+        SAIL_SNAKESKIN = "A sail of serpent hide.",
         SEDIMENTPUDDLE = "Contains some lustrous sentiment.",
         SHEARS = "A useful tool for horticultural purposes.",
         SMELTER = {
@@ -89,6 +109,7 @@ return {
             DONE = "Recooling and done.",
             EMPTY = "A metalsmithing tool.",
         },
+        SNAKESKIN = "A layer of snake.",
         TEA = "Give me tea and a good book.",
         TEATREE = "A fine example of Camellia Sinensis.",
         TEATREE_NUT = "A good antihistamine.",

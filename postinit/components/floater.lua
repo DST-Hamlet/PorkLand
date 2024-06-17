@@ -57,6 +57,18 @@ function Floater:PlaySplashFx()
     end
 end
 
+local _ShouldShowEffect = Floater.ShouldShowEffect
+function Floater:ShouldShowEffect()
+    if not TheWorld:HasTag("porkland") then
+        return _ShouldShowEffect(self)
+    end
+
+    local x, y, z = self.inst.Transform:GetWorldPosition()
+
+    -- No effect for cloud
+    return TheWorld.Map:ReverseIsVisualWaterAtPoint(x, 0, z)
+end
+
 -- Other mods use the anim methods (for example skin mods) so we need to wrap them
 local _SwitchToFloatAnim = Floater.SwitchToFloatAnim
 function Floater:SwitchToFloatAnim(...)
@@ -78,7 +90,6 @@ function Floater:OnLandedServer(...)
 
     local rets = {_OnLandedServer(self, ...)}
     if _showing_effect and not self:ShouldShowEffect() then
-
         self.inst:PushEvent("floater_stopfloating")
         self._is_landed:set(false)
         self.showing_effect = false

@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "It's not going to get fixed any more than it already is.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "Swell. I'm taking on water.",
+    ANNOUNCE_BOAT_SINKING = "I'm up to my socks in seawater!",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "Is this the end of Maybelle Dorothea Wheeler?",
     ANNOUNCE_DEHUMID = {
         "Whew. I forgot what it felt like to breathe.",
     },
@@ -14,6 +22,11 @@ return {
         "This %s is suffocating.",
         "This %s is just too hot!",
     },
+    ANNOUNCE_WAVE_BOOST = {
+        "WOOHOO!!!",
+        "I NEVER WANT THIS TO END!",
+        "ADVENTUUUURE!",
+    },
     DESCRIBE = {
         ALLOY = "Heavy metal made heavier.",
         APORKALYPSE_CLOCK = "If only I could turn time back to before I crashed here.",
@@ -21,6 +34,12 @@ return {
         ARMOR_WEEVOLE = "If only it had those bug wings.",
         ASPARAGUS_PLANTED = "That looks like food! Let's hope it tastes like food.",
         BASEFAN = "A plane propeller would be better.",
+        BOATREPAIRKIT = "Swell. Because cork is known for its durability.",
+        BOAT_CARGO = "Now all my things can go adventuring with me.",
+        BOAT_CORK = "About as stable as a cork balloon.",
+        BOAT_LOGRAFT = "About as stable as a wooden balloon.",
+        BOAT_ROW = "If only I had oars for my balloon.",
+        BOAT_TORCH = "Open fire on a wooden boat. The most adventurous thing I've ever done.",
         CHITIN = "I'm going to need more of these.",
         COFFEE = "Because there's no better time to be jumpy than when you're on an adventure.",
         COFFEEBEANS = "Small enough to fit in the Pew-matic.",
@@ -57,6 +76,10 @@ return {
         HANGING_VINE = "Vines. Gotta love 'em.",
         ICEDTEA = "I prefer it cold anyway.",
         IRON = "Well it's not good balloon material.",
+        LILYPAD = "A little too heavy to use for a balloon.",
+        LOTUS = "Almost worth getting my feet wet for that.",
+        LOTUS_FLOWER = "Looks edible.",
+        LOTUS_FLOWER_COOKED = "Not the first time I've eaten flowers.",
         MACHETE = "Machete. Designed for adventure.",
         PANGOLDEN = "I don't actually mind picking up his poop.",
         PEAGAWK = {
@@ -81,6 +104,7 @@ return {
             GENERIC = "Probably just agitated because it can't fly well.",
             SLEEPING = "Quite the snorer.",
         },
+        SAIL_SNAKESKIN = "Too heavy for balloon material. Just right for a sail.",
         SEDIMENTPUDDLE = "A sparkly pool. A little too sparkly.",
         SHEARS = "Time to do some yard work.",
         SMELTER = {
@@ -89,6 +113,7 @@ return {
             DONE = "Legendary adventurers forge legendary equipment, which sounds pretty good.",
             EMPTY = "It takes the heavy metal and makes it heavier.",
         },
+        SNAKESKIN = "Soft. Supple. Not currently attached to a snake. I like it!",
         TEA = "You can barely taste the rodent.",
         TEATREE = "But how do I make tea from it?",
         TEATREE_NUT = "Good enough to eat. Or fire out the Pew-matic.",

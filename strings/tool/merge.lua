@@ -72,20 +72,26 @@ for _, _data in ipairs(data) do
         data_strings = load_ds_string(_data[1])
     end
 
+    local _data_strings = {}
+    for key, over_key in pairs(keys) do  -- get strings by key
+        local key_strings = get_string(data_strings, key:upper(), over_key:upper())
+        merge_table(_data_strings, key_strings, override)
+    end
+
     if languages[po_path] then  -- if input other language, translat to en
-        local _data_strings = deepcopy(data_strings)
-        local data_index = table_index_to_str(_data_strings, "STRINGS")  -- keep old language
+        local __data_strings = deepcopy(_data_strings)
+        local data_index = table_index_to_str(__data_strings, "STRINGS")  -- keep old language
         for msgctxt, msgstr in pairs(data_index) do
             data_index[msgctxt] = "msgstr \"" .. msgstr .. "\""
         end
         merge_table(translates[po_path], data_index, override)
-        translate_table(data_strings, function(str) return translator(str, po_path, "en") end)
+        translate_table(_data_strings, function(str) return translator(str, po_path, "en") end)
     end
 
     for key, over_key in pairs(keys) do  -- get strings by key
-        local key_strings = get_string(data_strings, key:upper(), over_key:upper())
+        local key_strings = get_string(_data_strings, key:upper(), over_key:upper())
         if key:upper() ~= over_key:upper() then
-            local overed_strings = get_string(data_strings, key:upper())
+            local overed_strings = get_string(_data_strings, key:upper())
             local overed_key_indexs = table_index_to_str(overed_strings, "STRINGS")
             local invert_overed_key_indexs = {}
             for msgctxt, msgstr in pairs(overed_key_indexs) do
@@ -152,6 +158,7 @@ for l, file_name in pairs(languages) do
 
         package = package .. "#. " .. index_str  .. "\n"
         package = package .. msgctxt .. "\n"
+        msgid = string.gsub(msgid, '"', '\\"')
         package = package .. "msgid " .. "\"" .. msgid .. "\"".. "\n"
         package = package .. (l == "en" and "msgstr \"\"" or translates[l][msgctxt] or translates[l][invert_overed_indexs[msgctxt]]) .. "\n\n"
     end

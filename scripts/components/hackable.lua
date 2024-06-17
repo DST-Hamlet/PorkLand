@@ -425,11 +425,9 @@ function Hackable:Hack(hacker, numworks, shear_product_num, drop, from_shears)
 
             local loot = nil
             if self.product ~= nil then
-                print("什么", drop)
                 if drop == nil then
                     drop = self.drop
                 end
-                print("什么", drop)
                 if hacker ~= nil and hacker:HasTag("player") and hacker.components.inventory ~= nil and not drop then
                     loot = SpawnPrefab(self.product)
                     if loot ~= nil then

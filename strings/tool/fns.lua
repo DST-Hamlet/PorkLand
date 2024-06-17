@@ -135,6 +135,7 @@ function table_to_string(t, indent)
         else
             local value = ""
             if type(v) == "string" then
+                v = string.gsub(v, '"', '\\"')
                 value = "\"" .. v .. "\""
             end
 

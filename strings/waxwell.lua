@@ -1,4 +1,12 @@
 return {
+    ACTIONFAIL = {
+        REPAIRBOAT = {
+            GENERIC = "Not right now.",
+        },
+    },
+    ANNOUNCE_BOAT_DAMAGED = "My vessel is sustaining damage.",
+    ANNOUNCE_BOAT_SINKING = "I fear I've sprung a leak.",
+    ANNOUNCE_BOAT_SINKING_IMMINENT = "After everything, is this how it ends?!",
     ANNOUNCE_DEHUMID = {
         "Ah! That feels better.",
     },
@@ -10,16 +18,12 @@ return {
         "Gah!",
         "Filth!",
     },
-    ANNOUNCE_PUGALISK_INVULNERABLE = {
-        "That hide is too tough.",
-        "That's not going to work.",
-        "I need to be more strategic."
-    },
     ANNOUNCE_SNEEZE = "ah...CHOOOO!",
     ANNOUNCE_TOO_HUMID = {
         "This %s is too much.",
         "This %s is hotter than I like.",
     },
+    ANNOUNCE_WAVE_BOOST = "Truly!",
     DESCRIBE = {
         ALLOY = "Durable.",
         APORKALYPSE_CLOCK = "I do like this...",
@@ -27,7 +31,12 @@ return {
         ARMOR_WEEVOLE = "This is not a good look.",
         ASPARAGUS_PLANTED = "Food. Just growing out of the ground.",
         BASEFAN = "Ah. Civilization.",
-        BONESTAFF = "Penetrating.",
+        BOATREPAIRKIT = "It will hold off my vessel's inevitable decay.",
+        BOAT_CARGO = "Ah, plenty of room to breathe.",
+        BOAT_CORK = "Looks barely seaworthy.",
+        BOAT_LOGRAFT = "It seems like there should be regulations against this.",
+        BOAT_ROW = "Manually operated. A pity.",
+        BOAT_TORCH = "Sailing at night seems unsafe, but this makes it somewhat better.",
         CHITIN = "We all have our defenses.",
         COFFEE = "I look forward to this.",
         COFFEEBEANS = "It's strange to see them this color.",
@@ -64,6 +73,10 @@ return {
         HANGING_VINE = "I know the ropes.",
         ICEDTEA = "Refreshing.",
         IRON = "A solid mineral.",
+        LILYPAD = "A massive pond leaf.",
+        LOTUS = "How dainty.",
+        LOTUS_FLOWER = "I prefer blooms of a darker shade.",
+        LOTUS_FLOWER_COOKED = "One makes due.",
         MACHETE = "Truthfully I was always a hack.",
         PANGOLDEN = "He has expensive tastes.",
         PEAGAWK = {
@@ -83,17 +96,12 @@ return {
             GENERIC = "How amusing.",
             SLEEPING = "The pest is asleep.",
         },
-        PUGALISK = "You're a little agitated.",
-        PUGALISK_CORPSE = "Can't say I'm sad to see him dead.",
-        PUGALISK_FOUNTAIN = "I could restore my youthful glow.",
-        PUGALISK_RUINS_PILLAR = "I don't trust it.",
-        PUGALISK_SKULL = "How very macabre.",
-        PUGALISK_TRAP_DOOR = "Ha! I'm not falling for that.",
         RABID_BEETLE = {
             DEAD = "The grim reaper has been here.",
             GENERIC = "What is he all worked up about?",
             SLEEPING = "A noisy sleeper.",
         },
+        SAIL_SNAKESKIN = "For ease of travel.",
         SEDIMENTPUDDLE = "There's something sparkling inside there.",
         SHEARS = "Aren't there gardeners for this sort of thing?",
         SMELTER = {
@@ -102,8 +110,7 @@ return {
             DONE = "Difficult results.",
             EMPTY = "Finally we're catching up to the Iron Age.",
         },
-        SNAKE_BONE = "Oh, I like the look of this.",
-        SNAKEBONESOUP = "It's a rather weak broth.",
+        SNAKESKIN = "The texture is delectable.",
         TEA = "A spot of tea.",
         TEATREE = "It's a tree. What did I expect.",
         TEATREE_NUT = "I'll need this for hayfever season.",

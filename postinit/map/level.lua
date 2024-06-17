@@ -4,6 +4,9 @@ local MULTIPLY = require("map/forest_map").MULTIPLY
 local tasks = require("map/tasks")
 local tasksets = require("map/tasksets")
 
+local Pl_Boons = require("map/pl_boons")
+local Pl_Traps = require("map/pl_traps")
+
 local function GetRandomFromLayouts(layouts)
     local area_keys = {}
     for k, v in pairs(layouts) do
@@ -82,14 +85,14 @@ local function AddSingleSetPeice(level, choicefile, type, area, name)
     end
 end
 
-local function AddAllIaSurpris(level)
-    for area, layouts in pairs(IA_AllBoons) do
+local function AddAllPlSetPiece(level)
+    for area, layouts in pairs(Pl_Boons.Sandbox) do
         for _, name in ipairs(layouts) do
             AddSingleSetPeice(level, "map/boons", "boons", area, name)
         end
     end
 
-    for area, layouts in pairs(IA_AllTraps) do
+    for area, layouts in pairs(Pl_Traps.Sandbox) do
         for _, name in ipairs(layouts) do
             AddSingleSetPeice(level, "map/traps", "traps", area, name)
         end
@@ -98,15 +101,15 @@ end
 
 local function AddSetPeices(level, addall)
     if addall then  -- for test
-        print("add all ia surpris")
-        AddAllIaSurpris(level)
+        print("Added every pl Set Piece")
+        AddAllPlSetPiece(level)
         return
     end
 
     local boons_override = "default"
     local touchstone_override = "default"
     local traps_override = "default"
-    -- local poi_override = "default"
+    local poi_override = "default"
     local protected_override = "default"
 
     if level.overrides ~= nil then
@@ -119,9 +122,9 @@ local function AddSetPeices(level, addall)
         if level.overrides.traps ~= nil then
             traps_override = level.overrides.traps
         end
-        -- if level.overrides.poi ~= nil then -- sw no poi
-        --     poi_override = level.overrides.poi
-        -- end
+        if level.overrides.poi ~= nil then
+            poi_override = level.overrides.poi
+        end
         if level.overrides.protected ~= nil then
             protected_override = level.overrides.protected
         end
@@ -130,39 +133,38 @@ local function AddSetPeices(level, addall)
     if boons_override ~= "never" then
         local boons = math.random( math.floor(3 * MULTIPLY[boons_override]), math.ceil(8 * MULTIPLY[boons_override]) )
         for idx = 1, boons do
-            AddSingleSetPeice(level, "map/boons")
+            AddSingleSetPeice(level, "map/pl_boons")
         end
     end
 
-    if touchstone_override ~= "default" and level.set_pieces ~= nil and level.set_pieces["ResurrectionStoneSw"] ~= nil then
+    if touchstone_override ~= "default" and level.set_pieces ~= nil and level.set_pieces["ResurrectionStone"] ~= nil then
         if touchstone_override == "never" then
-            level.set_pieces["ResurrectionStoneSw"] = nil
+            level.set_pieces["ResurrectionStone"] = nil
         else
-            level.set_pieces["ResurrectionStoneSw"].count = math.ceil(level.set_pieces["ResurrectionStoneSw"].count * MULTIPLY[touchstone_override])
+            level.set_pieces["ResurrectionStone"].count = math.ceil(level.set_pieces["ResurrectionStone"].count * MULTIPLY[touchstone_override])
         end
     end
 
     if traps_override ~= "never" then
-        AddSingleSetPeice(level, "map/traps", "trap")
+        AddSingleSetPeice(level, "map/pl_traps", "trap")
     end
 
-    -- if poi_override ~= "never" then
-    --     AddSingleSetPeice(level, "map/pointsofinterest")
-    -- end
+    if poi_override ~= "never" then
+        AddSingleSetPeice(level, "map/pointsofinterest")
+    end
 
     if protected_override ~= "never" then
         AddSingleSetPeice(level, "map/protected_resources")
     end
-
 end
 
 local _ChooseSetPieces = Level.ChooseSetPieces
 Level.ChooseSetPieces = function(self, ...)
-    local IsShipwrecked = self.overrides.isshipwrecked
+    local is_porkland = self.location == "porkland"
 
-    if IsShipwrecked then  -- Clear DST added setpiece and add we customized setpiece
-        self.set_pieces = tasksets.GetGenTasks("shipwrecked").set_pieces  -- Clear DST added set_pieces
-        AddSetPeices(self, self.overrides.alliasurprise)  -- true is add all, for test
+    if is_porkland then  -- Clear DST added setpiece and add we customized setpiece
+        self.set_pieces = tasksets.GetGenTasks("porkland").set_pieces  -- Clear DST added set_pieces
+        AddSetPeices(self, self.overrides.all_pl_set_peices)
     end
 
     _ChooseSetPieces(self, ...)

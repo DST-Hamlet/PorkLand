@@ -1,119 +1,77 @@
-
-require "prefabutil"
-require "maputil"
-
-local StaticLayout = require("map/static_layout")
+local obj_layout = require("map/object_layout")
 
 local DIR_STEP = {
-    {x=1, z=0},
-    {x=0, z=1},
-    {x=-1,z=0},
-    {x=0, z=-1},
+    {x = 1, z = 0},
+    {x = 0, z = 1},
+    {x = -1, z = 0},
+    {x = 0, z = -1},
 }
 
-local parks = {}
 local made_palace = false
 local made_cityhall = false
 local made_playerhouse = false
 
-local entities = {} -- the list of entities that will fill the whole world. imported from  world gen (forest_map)
--- local world
-
-local spawners = {} -- anything that is added here that needs to be looked at before finally being added to the entites list.
-local current_gen_params = nil
-local function prime()
-    parks = {}
-    made_palace = false
-    made_cityhall = false
-    made_playerhouse = false
-    spawners = {} -- anything that is added here that needs to be looked at before finally being added to the entites list.
-end
-
-local WIDTH = 0
-local HEIGHT = 0
-
 local CITIES = 2
 
-local function setConstants(setentities, setwidth, setheight, setcurrent_gen_params)
-    entities = setentities
-    current_gen_params = setcurrent_gen_params
-    WIDTH = setwidth
-    HEIGHT = setheight
-end
-
 local PARK_CHOICES = {
-    "map/static_layouts/city_park_1",
-    "map/static_layouts/city_park_2",
-    "map/static_layouts/city_park_3",
-    "map/static_layouts/city_park_4",
-    "map/static_layouts/city_park_5",
-    "map/static_layouts/city_park_8",
+    "city_park_1",
+    "city_park_2",
+    "city_park_3",
+    "city_park_4",
+    "city_park_5",
+    "city_park_8",
 }
 
 local UNIQUE_PARK_CHOICES = {
-    "map/static_layouts/city_park_6",
-    "map/static_layouts/city_park_7",
-    "map/static_layouts/city_park_9",
-    "map/static_layouts/city_park_10",
+    "city_park_6",
+    "city_park_7",
+    "city_park_9",
+    "city_park_10",
 }
 
 local REQUIRED_FARMS = {
-    "map/static_layouts/teleportato_hamlet_potato_layout",
+    "teleportato_hamlet_potato_layout",
 }
 
 local FARM_CHOICES = {
-    "map/static_layouts/farm_1",
-    "map/static_layouts/farm_2",
-    "map/static_layouts/farm_3",
-    "map/static_layouts/farm_4",
-    "map/static_layouts/farm_5",
+    "farm_1",
+    "farm_2",
+    "farm_3",
+    "farm_4",
+    "farm_5",
 }
 
 local FARM_FILLER_CHOICES = {
-    "map/static_layouts/farm_fill_1",
-    "map/static_layouts/farm_fill_2",
-    "map/static_layouts/farm_fill_3",
+    "farm_fill_1",
+    "farm_fill_2",
+    "farm_fill_3",
 }
 
 local BUILDING_QUOTAS = {
-    {prefab="pig_shop_deli",num=1},
-    {prefab="pig_shop_academy",num=1},
-    {prefab="pig_shop_florist",num=1},
-    {prefab="pig_shop_general",num=1},
-    {prefab="pig_shop_hoofspa",num=1},
-    {prefab="pig_shop_produce",num=1},
-    {prefab="pig_shop_bank",num=1},
-    {prefab="pig_guard_tower",num=15},
-    {prefab="pighouse_city",num=50}
+    {prefab = "pig_shop_deli", num = 1},
+    {prefab = "pig_shop_academy", num = 1},
+    {prefab = "pig_shop_florist", num = 1},
+    {prefab = "pig_shop_general", num = 1},
+    {prefab = "pig_shop_hoofspa", num = 1},
+    {prefab = "pig_shop_produce", num = 1},
+    {prefab = "pig_shop_bank", num = 1},
+    {prefab = "pig_guard_tower", num = 15},
+    {prefab = "pighouse_city", num = 50}
 }
-
 
 local BUILDING_QUOTAS_2 = {
-    {prefab="pig_shop_antiquities",num=1},
-    {prefab="pig_shop_hatshop",num=1},
-    {prefab="pig_shop_weapons",num=1},
-    {prefab="pig_shop_arcane",num=1},
-    {prefab="pig_shop_tinker",num=1},
-    {prefab="pig_guard_tower",num=15},
-    {prefab="pighouse_city",num=50}
+    {prefab="pig_shop_antiquities", num = 1},
+    {prefab="pig_shop_hatshop", num = 1},
+    {prefab="pig_shop_weapons", num = 1},
+    {prefab="pig_shop_arcane", num = 1},
+    {prefab="pig_shop_tinker", num = 1},
+    {prefab="pig_guard_tower", num = 15},
+    {prefab="pighouse_city", num = 50}
 }
 
+local VALID_TILES = {WORLD_TILES.SUBURB, WORLD_TILES.FOUNDATION}
 
-local VALID_TILES = {WORLD_TILES.SUBURB,WORLD_TILES.FOUNDATION}
-
-local OPEN_NODES = {}
-local CLOSED_NODES = {}
-
-local city_spawners = {}
-local city_nodes = {}
-
-local farm_nodes = {}
-local junk_nodes = {}
-
-
-
-
-local function oppdir(dir)
+local function opp_dir(dir)
     if dir == 1 then
         return 3
     elseif dir == 2 then
@@ -125,53 +83,34 @@ local function oppdir(dir)
     end
 end
 
-local function getdir(dir,inc)
+local function get_dir(dir, inc)
     if dir == 1 then
-        if inc > 0 then
-            return 2
-        else
-            return 4
-        end
+        return inc > 0 and 2 or 4
     elseif dir == 2 then
-        if inc > 0 then
-            return 3
-        else
-            return 1
-        end
+        return inc > 0 and 3 or 1
     elseif dir == 3 then
-        if inc > 0 then
-            return 4
-        else
-            return 2
-        end
+        return inc > 0 and 4 or 2
     elseif dir == 4 then
-        if inc > 0 then
-            return 1
-        else
-            return 3
-        end
+        return inc > 0 and 1 or 3
     end
 end
 
-local function FindTempEnts(data,x,z,range,prefabs)
+local function find_temp_ents(data, x, z, range, prefabs)
     local ents = {}
 
-    for i,entity in ipairs(data)do
-        local test = false
-        if not prefabs then
-            test = true
-        end
-        if prefabs then
-            for p,prefab in ipairs(prefabs)do
+    for i, entity in ipairs(data)do
+        local test = prefabs == nil
+        if not test then
+            for p, prefab in ipairs(prefabs)do
                 if entity.prefab == prefab then
                     test = true
                 end
             end
         end
         if test then
-            local distsq = (math.abs(x-entity.x)*math.abs(x-entity.x)) + (math.abs(z-entity.z)*math.abs(z-entity.z) )
-            if distsq <= range*range then
-                table.insert(ents,entity)
+            local distsq = (math.abs(x - entity.x) * math.abs(x - entity.x)) + (math.abs(z - entity.z) * math.abs(z - entity.z))
+            if distsq <= range * range then
+                table.insert(ents, entity)
             end
         end
     end
@@ -179,44 +118,49 @@ local function FindTempEnts(data,x,z,range,prefabs)
     return ents
 end
 
-local function AddTempEnts(data,x,z,prefab,cityID)
-
-    local entity = {
+local function add_temp_ents(data, x, z, prefab, city_id, properties)
+    local save_data = {
         x = x,
         z = z,
         prefab = prefab,
-        city = cityID,
+        city = city_id,
+        properties = properties,
     }
 
-    table.insert(data,entity)
-
-    return data
+    table.insert(data, save_data)
 end
 
-local function setEntity(prop, x, z, cityID)
+local function set_entity(entities, width, height, prop, x, z, city_id, properties)
     if entities[prop] == nil then
         entities[prop] = {}
     end
 
     local scenario = nil
-    if cityID then
-        scenario = "set_city_possession_"..cityID
+    if city_id then
+        scenario = "set_city_possession_" .. city_id
     end
 
-    local save_data = {x= (x - WIDTH/2.0)*TILE_SCALE , z= (z - HEIGHT/2.0)*TILE_SCALE, scenario = scenario}
+    local save_data = properties or {}
+    save_data.x = (x - width / 2.0) * TILE_SCALE
+    save_data.z = (z - height / 2.0) * TILE_SCALE
+    save_data.scenario = scenario
+
     table.insert(entities[prop], save_data)
 end
 
-local function FindEntities(x,z,range,props)
-
+local function find_entities(entities, x, z, range, props)
     local ents = {}
 
-    for p,prop in ipairs(props)do
-        for i,testent in ipairs (entities[prop])do
-            xdist = math.abs(testent.x - x)
-            zdist = math.abs(testent.z - z)
-            if (xdist*xdist) + (zdist*zdist) < range*range then
-                table.insert(ents,{prop=prop,x=testent.x,y=testent.z})
+    for p, prop in ipairs(props) do
+        for i, testent in ipairs(entities[prop]) do
+            local xdist = math.abs(testent.x - x)
+            local zdist = math.abs(testent.z - z)
+            if (xdist * xdist) + (zdist * zdist) < range * range then
+                table.insert(ents, {
+                    prop = prop,
+                    x = testent.x,
+                    y = testent.z
+                })
             end
         end
     end
@@ -224,40 +168,37 @@ local function FindEntities(x,z,range,props)
     return ents
 end
 
-local function exportSpawnersToEntites()
+local function export_spawners_to_entites(entities, width, height, spawners)
     for i, spawner in ipairs(spawners)do
-        setEntity(spawner.prefab, spawner.x, spawner.z, spawner.city )
+        set_entity(entities, width, height, spawner.prefab, spawner.x, spawner.z, spawner.city, spawner.properties)
     end
 end
 
-local function testTile(pt,types)
-
-    -- pt is in TILE SPACE
-
-    local ground = WorldSim:GetTile(pt.x, pt.z)
+local function test_tile(pt, types)
+    local ground = WorldSim:GetTile(pt.x, pt.z) -- pt is in TILE SPACE
 
     local test = true
 
     local original_tile_type = nil
     local original_tile_types = {}
     if ground then
-        for x=-1,1,1 do
-            for z=-1,1,1 do
-                table.insert(original_tile_types, WorldSim:GetTile(pt.x+x, pt.z+z))
+        for x = -1, 1 do
+            for z = -1, 1 do
+                table.insert(original_tile_types, WorldSim:GetTile(pt.x + x, pt.z + z))
             end
         end
     end
-    for i,original_tile_type in ipairs(original_tile_types) do
 
+    for i, original_tile_type in ipairs(original_tile_types) do
         if original_tile_type then
             if original_tile_type < 2 then
                 test = false
                 break
             else
-                --  5 is the centre tile
+                -- 5 is the centre tile
                 if i == 5 and types then
                     local check = false
-                    for p,tiletype in ipairs(types)do
+                    for p, tiletype in ipairs(types) do
                         if tiletype == original_tile_type then
                             check = true
                             break
@@ -274,9 +215,8 @@ local function testTile(pt,types)
     return test
 end
 
-local function placeTile(pt,tile)
-    -- pt is in TILE SPACE
-    local ground = WorldSim:GetTile(pt.x, pt.z)
+local function place_tile(pt, tile)
+    local ground = WorldSim:GetTile(pt.x, pt.z) -- pt is in TILE SPACE
 
     if ground then
         if not tile then
@@ -287,14 +227,11 @@ local function placeTile(pt,tile)
     end
 end
 
-local function clearground(pt)
-
-    require("map/levels/porkland")
-
+local function clear_ground(entities, width, height, pt)
     local radius = 6
-    for prefab,datalist in pairs(entities) do
+    for prefab, data_list in pairs(entities) do
         local reserved = false
-        for i,rprefab in ipairs(REQUIRED_PREFABS)do
+        for i, rprefab in ipairs(PORKLAND_REQUIRED_PREFABS) do
             if prefab == rprefab then
                 reserved = true
                 break
@@ -302,215 +239,207 @@ local function clearground(pt)
         end
 
         if not reserved then
-            for i=#datalist,1,-1 do
+            for i = #data_list, 1, -1 do
+                local x_dist = math.abs(((data_list[i].x / TILE_SCALE) + width / 2.0) - pt.x) + 0.2
+                local z_dist = math.abs(((data_list[i].z / TILE_SCALE) + height / 2.0) - pt.z) + 0.2
 
-                local xdist = math.abs( ((datalist[i].x / TILE_SCALE) + WIDTH/2.0) - pt.x) + 0.2
-                local zdist = math.abs( ((datalist[i].z / TILE_SCALE) + HEIGHT/2.0) - pt.z) + 0.2
-
-                if (xdist*xdist)+(zdist*zdist) <= radius*radius  then
-                    table.remove(datalist,i)
+                if (x_dist * x_dist) + (z_dist * z_dist) <= radius * radius then
+                    table.remove(data_list, i)
                 end
             end
         end
     end
 end
 
-local function placeTileCity(pt)
-    clearground(pt)
+local function place_tile_city(entities, width, height, pt)
+    clear_ground(entities, width, height, pt)
 
-    placeTile(pt)
-    for i=-6,6 do
-        for t=-6,6 do
-            local newpt = {x=pt.x + i,z=pt.z + t}
-            --print("TESTING THE TILE TYPE",WorldSim:GetTile(newpt.x, newpt.z))
-            if WorldSim:GetTile(newpt.x, newpt.z) > 1 then
-                if math.random() < 0.15 or (t<math.abs(4) and i< math.abs(4) ) then
-                    if testTile(newpt,VALID_TILES)  then
-
-                        placeTile(newpt,WORLD_TILES.FOUNDATION)
+    place_tile(pt)
+    for i = -6, 6 do
+        for t = -6, 6 do
+            local new_pt = {
+                x = pt.x + i,
+                z = pt.z + t
+            }
+            -- print("TESTING THE TILE TYPE", WorldSim:GetTile(newpt.x, newpt.z))
+            if WorldSim:GetTile(new_pt.x, new_pt.z) > 1 then
+                if math.random() < 0.15 or (t < math.abs(4) and i < math.abs(4)) then
+                    if test_tile(new_pt, VALID_TILES) then
+                        place_tile(new_pt, WORLD_TILES.FOUNDATION)
                     end
                 end
             end
         end
     end
-
 end
 
-
-local function spawnSetPiece(setpiece_string,pt, city)
-    if "map/static_layouts/pig_palace_1" == setpiece_string then
+local function spawn_setpiece(entities, width, height, spawners, layout, pt, city)
+    if layout == "pig_palace_1" then
         print("SPAWNING A PALACE THROUGH THE CITY BUILDER")
     end
 
-    local setpiece = StaticLayout.Get(setpiece_string)
+    local setpiece = obj_layout.LayoutForDefinition(layout)
     -- THESE SET PIECES NEED AN ODD NUMBER OF TILES BOTH COL AND ROW,
-    --because they are centered on a single tile.. to be even, it would need code to select the tile that gets placed at the center
-    assert(#setpiece.ground% 2 ~= 0,"ERROR, THE SET PIECE HAS AN EVEN NUMBER OF ROWS")
-    assert(#setpiece.ground[1]% 2 ~= 0,"ERROR, THE SET PIECE HAS AN EVEN NUMBER OF COLS")
+    -- because they are centered on a single tile.. to be even, it would need code to select the tile that gets placed at the center
+    assert(#setpiece.ground % 2 ~= 0, "ERROR, THE SET PIECE HAS AN EVEN NUMBER OF ROWS")
+    assert(#setpiece.ground[1] % 2 ~= 0, "ERROR, THE SET PIECE HAS AN EVEN NUMBER OF COLS")
 
-    local reverse = math.random() < 0.5   -- flips the x and y axis
-    local flip = math.random() < 0.5   -- reverses the direction along the x axis.
+    local reverse = math.random() < 0.5 -- flips the x and y axis
+    local flip = math.random() < 0.5 -- reverses the direction along the x axis.
 
-    local offsetx = ((#setpiece.ground-1)/2 +1)
-    local offsetz = ((#setpiece.ground[1]-1)/2+1)
+    local offset_x = ((#setpiece.ground - 1) / 2 + 1)
+    local offset_z = ((#setpiece.ground[1] - 1) / 2 + 1)
 
-    local xflip = 1
+    local x_flip = 1
 
     if flip then
-        offsetx = offsetx * -1
-        xflip = -1
+        offset_x = offset_x * -1
+        x_flip = -1
     end
 
-    local radius = math.max(#setpiece.ground,#setpiece.ground[1])/2 * 1.4
-    for prefab,datalist in pairs(entities) do
-        local scrublist = {}
-        for i=#datalist,1,-1 do
+    local radius = math.max(#setpiece.ground, #setpiece.ground[1]) / 2 * 1.4
 
-            local xdist = math.abs( ((datalist[i].x / TILE_SCALE) + WIDTH/2.0) - pt.x) + 0.2
-            local zdist = math.abs( ((datalist[i].z / TILE_SCALE) + HEIGHT/2.0) - pt.z) + 0.2
+    for prefab, data_list in pairs(entities) do
+        local scrub_list = {}
+        for i = #data_list, 1, -1 do
+            local xdist = math.abs(((data_list[i].x / TILE_SCALE) + width / 2.0) - pt.x) + 0.2
+            local zdist = math.abs(((data_list[i].z / TILE_SCALE) + height / 2.0) - pt.z) + 0.2
 
-            if (xdist*xdist)+(zdist*zdist) <= radius*radius  then
-                table.remove(datalist,i)
+            if (xdist * xdist) + (zdist * zdist) <= radius * radius then
+                table.remove(data_list, i)
             end
         end
     end
 
     local ground_valid = true
-    for x=1,#setpiece.ground,1 do
-        for y=1,#setpiece.ground[x],1 do
-            local newpt = {}
+    for x = 1, #setpiece.ground do
+        for y = 1, #setpiece.ground[x] do
+            local new_pt = {}
             local step = x
             if flip then
                 step = step * -1
             end
-                if reverse then
-                    newpt ={
-                        x = (pt.x - offsetx + (x * xflip)),
-                        y = 0,
-                        z = (pt.z - offsetz + (y)),
-                    }
-                else
-                    newpt ={
-                        x = (pt.x - offsetx + (y * xflip)),
-                        y = 0,
-                        z = (pt.z - offsetz + (x)),
-                    }
-                end
-
-            local original_tile_type = WorldSim:GetTile(math.floor(newpt.x), math.floor(newpt.z) )
-
+            if reverse then
+                new_pt = {
+                    x = (pt.x - offset_x + (x * x_flip)),
+                    y = 0,
+                    z = (pt.z - offset_z + (y))
+                }
+            else
+                new_pt = {
+                    x = (pt.x - offset_x + (y * x_flip)),
+                    y = 0,
+                    z = (pt.z - offset_z + (x))
+                }
+            end
+            local original_tile_type = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
             if not original_tile_type or original_tile_type <= 1 then
                 ground_valid = false
             end
         end
     end
     if ground_valid then
-        for x=1,#setpiece.ground,1 do
-            for y=1,#setpiece.ground[x],1 do
-                local newpt = {}
-
+        for x = 1, #setpiece.ground do
+            for y = 1, #setpiece.ground[x] do
+                local new_pt = {}
                 if reverse then
-                    newpt ={
-                        x = (pt.x - offsetx + (x * xflip)),
+                    new_pt = {
+                        x = (pt.x - offset_x + (x * x_flip)),
                         y = 0,
-                        z = (pt.z - offsetz + (y)),
+                        z = (pt.z - offset_z + (y))
                     }
                 else
-                    newpt ={
-                        x = (pt.x - offsetx + (y * xflip)),
+                    new_pt = {
+                        x = (pt.x - offset_x + (y * x_flip)),
                         y = 0,
-                        z = (pt.z - offsetz + (x)),
+                        z = (pt.z - offset_z + (x))
                     }
                 end
-
                 local tile = setpiece.ground_types[setpiece.ground[x][y]]
 
                 if tile and tile > 0 then
-                    placeTile(newpt,tile)
+                    place_tile(new_pt, tile)
                 end
             end
         end
 
-        for prop,list in pairs(setpiece.layout) do
-            for t,_ in ipairs(list)do
-            -- local spawnprop = SpawnPrefab(prop)
+        for prefab, list in pairs(setpiece.layout) do
+            for t, data in ipairs(list)do
+                -- local spawnprop = SpawnPrefab(prop)
 
-                local newpt = {}
+                local new_pt = {}
                 if reverse then
-                    newpt = {
-                        x = (pt.x + (list[t].y * xflip)),
+                    new_pt = {
+                        x = (pt.x + (list[t].y * x_flip)),
                         y = 0,
                         z = (pt.z + (list[t].x)),
                     }
                 else
-                    newpt = {
-                        x = (pt.x + (list[t].x * xflip)),
+                    new_pt = {
+                        x = (pt.x + (list[t].x * x_flip)),
                         y = 0,
                         z = (pt.z + (list[t].y)),
                     }
                 end
 
-                local citytemp = city.cityID
-                if setpiece_string == "map/static_layouts/city_park_7" and prop == "oinc" then
-                    citytemp = nil
+                local city_temp = city.city_id
+                if layout == "city_park_7" and prefab == "oinc" then
+                    city_temp = nil
                 end
-                if setpiece_string == "map/static_layouts/pig_playerhouse_1" and prop ~= "playerhouse_city" then
-                    citytemp = nil
+                if layout == "pig_playerhouse_1" and prefab ~= "playerhouse_city" then
+                    city_temp = nil
                 end
 
-                AddTempEnts(spawners,newpt.x,newpt.z,prop,citytemp)
+                add_temp_ents(spawners, new_pt.x, new_pt.z, prefab, city_temp, data.properties)
             end
         end
-
         return true
     else
         print("!!!!!! WORLD_TILES WAS NOT VALID !!!!!!!!!!!!")
         return false
     end
-
 end
 
-local function setShop(pt,dir,i,offset, nilwieght, city)
+local function set_shop(spawners, pt, dir, i, offset, nil_wieght, city)
     local spawn = "pig_shop_spawner"
-    local OFFSET = 6/4
-    local newpt = {
-                x=pt.x + (DIR_STEP[dir].x * i * OFFSET) + (OFFSET * DIR_STEP[getdir(dir,offset)].x),
-                y=0,
-                z=pt.z + (DIR_STEP[dir].z * i * OFFSET) + (OFFSET * DIR_STEP[getdir(dir,offset)].z),
-            }
+    local OFFSET = 6 / 4
+    local new_pt = {
+        x = pt.x + (DIR_STEP[dir].x * i * OFFSET) + (OFFSET * DIR_STEP[get_dir(dir, offset)].x),
+        y = 0,
+        z = pt.z + (DIR_STEP[dir].z * i * OFFSET) + (OFFSET * DIR_STEP[get_dir(dir, offset)].z)
+    }
 
-    local pigshops_spawners = FindTempEnts(spawners,newpt.x,newpt.z,1,{spawn})
+    local pigshops_spawners = find_temp_ents(spawners, new_pt.x, new_pt.z, 1, {spawn})
 
-    local ground = WorldSim:GetTile(math.floor(newpt.x), math.floor(newpt.z) )
+    local ground = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
 
-    if #pigshops_spawners == 0 and WorldSim:IsLand(WorldSim:GetTile( math.floor(newpt.x), math.floor(newpt.z) )) then
-        AddTempEnts(spawners,newpt.x,newpt.z,spawn,city.cityID)
+    if #pigshops_spawners == 0 and IsLandTile(WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))) then
+        add_temp_ents(spawners, new_pt.x, new_pt.z, spawn, city.city_id)
     end
 end
 
-local function addPigShops(pt,dir, nilwieght, city) -- pig shops and parks..
-    for i=1,3,1 do
-        setShop(pt,dir,i,1, nilwieght, city)
-        setShop(pt,dir,i,-1, nilwieght, city)
+local function add_pig_shops(spawners, pt, dir, nil_wieght, city) -- pig shops and parks..
+    for i = 1, 3 do
+        set_shop(spawners, pt, dir, i, 1, nil_wieght, city)
+        set_shop(spawners, pt, dir, i, -1, nil_wieght, city)
     end
 end
 
-local function setParkCoord(pt,dir,i,offset, city)
+local function set_park_coord(pt, dir, i, offset, city)
+    local OFFSET = 6 / 4
 
-    local OFFSET = 6/4
-
-    local newpt = {
-                x=pt.x + (DIR_STEP[dir].x * i * OFFSET) + (OFFSET * DIR_STEP[getdir(dir,offset)].x * math.abs(offset)),
-                y=0,
-                z=pt.z + (DIR_STEP[dir].z * i * OFFSET) + (OFFSET * DIR_STEP[getdir(dir,offset)].z * math.abs(offset)),
-            }
+    local new_pt = {
+        x = pt.x + (DIR_STEP[dir].x * i * OFFSET) + (OFFSET * DIR_STEP[get_dir(dir, offset)].x * math.abs(offset)),
+        y = 0,
+        z = pt.z + (DIR_STEP[dir].z * i * OFFSET) + (OFFSET * DIR_STEP[get_dir(dir, offset)].z * math.abs(offset))
+    }
 
     -- make sure all 25 tiles are free.
     local pass = true
 
-    for x=-2,2,1 do
-        for y=-2,2,1 do
-            local ground = WorldSim:GetTile(math.floor(newpt.x)+(x), math.floor(newpt.z)+(y) )
+    for x = -2, 2 do
+        for y = -2, 2 do
+            local ground = WorldSim:GetTile(math.floor(new_pt.x) + (x), math.floor(new_pt.z) + (y))
             if not ground or ground ~= WORLD_TILES.FOUNDATION then
                 pass = false
                 break
@@ -520,545 +449,540 @@ local function setParkCoord(pt,dir,i,offset, city)
 
     if pass then
         local pass = true
-        for i,park in ipairs(city.parks)do
-            if newpt.x == park.x and newpt.z == park.z then
+        for i, park in ipairs(city.parks) do
+            if new_pt.x == park.x and new_pt.z == park.z then
                 pass = false
                 break
             end
         end
         if pass then
-            newpt.cityID = city.cityID
-            table.insert(city.parks, newpt)
+            new_pt.city_id = city.city_id
+            table.insert(city.parks, new_pt)
         end
     end
 end
 
-local function addParkZones(pt,dir, city) -- pig shops and parks..
+local function add_park_zones(pt, dir, city) -- pig shops and parks..
     local i = 2
-    setParkCoord(pt,dir,i,2, city)
-    setParkCoord(pt,dir,i,-2, city)
+    set_park_coord(pt, dir, i, 2, city)
+    set_park_coord(pt, dir, i, -2, city)
 end
 
-local function spawnCityLight(pt,dir,offset, cityID)
+local function spawn_city_light(spawners, pt, dir, offset, city_id)
     local spawn = "city_lamp"
-    local OFFSET = 5/8
+    local OFFSET = 5 / 8
     local newpt = {
-                x=pt.x + (DIR_STEP[dir].x * OFFSET) + (OFFSET * DIR_STEP[getdir(dir,offset)].x),
-                y=0,
-                z=pt.z + (DIR_STEP[dir].z * OFFSET) + (OFFSET * DIR_STEP[getdir(dir,offset)].z),
-            }
+        x = pt.x + (DIR_STEP[dir].x * OFFSET) + (OFFSET * DIR_STEP[get_dir(dir, offset)].x),
+        y = 0,
+        z = pt.z + (DIR_STEP[dir].z * OFFSET) + (OFFSET * DIR_STEP[get_dir(dir, offset)].z)
+    }
 
-    local lamps = FindTempEnts(spawners,newpt.x,newpt.z,0.5,{spawn})
+    local lamps = find_temp_ents(spawners, newpt.x, newpt.z, 0.5, {spawn})
 
     if #lamps == 0 then
-        local ground = WorldSim:GetTile(math.floor(newpt.x), math.floor(newpt.z) )
-        if ground  then
-            AddTempEnts(spawners,newpt.x,newpt.z,spawn,cityID)
+        local ground = WorldSim:GetTile(math.floor(newpt.x), math.floor(newpt.z))
+        if ground then
+            add_temp_ents(spawners, newpt.x, newpt.z, spawn, city_id)
         end
     end
 end
 
-local function addCityLights(pt,dir, cityID)
-    spawnCityLight(pt,dir,1, cityID)
-    spawnCityLight(pt,dir,-1, cityID)
+local function add_city_lights(spawners, pt, dir, city_id)
+    spawn_city_light(spawners, pt, dir, 1, city_id)
+    spawn_city_light(spawners, pt, dir, -1, city_id)
 end
 
-local function makeroad(pt,dir,suburb, city)
-    local stepMax = 7
+local function make_road(entities, width, height, spawners, pt, dir, sub_urb, city)
+    local step_max = 7
     local step = 1
-    local newpt =  nil
-    local OFFSET = 1  -- 4
+    local new_pt =  nil
+    local offset = 1  -- 4
 
-    local TWO_WAY_CHANCE  = 0.8
-    local BEND_CHANCE = 0.4
-    local NOT_T_INT_CHANCE = 0.3
-    local NIL_PIG_SHOP_WEIGHT = 6
+    local two_way_chance = 0.8
+    local bend_chance = 0.4
+    local not_t_int_chance = 0.3
+    local nil_pig_shop_weight = 6
 
-    if suburb then
-        TWO_WAY_CHANCE  = 0.8
-        BEND_CHANCE = 0.2
-        NOT_T_INT_CHANCE = 0.6
-        NIL_PIG_SHOP_WEIGHT = 12
+    if sub_urb then
+        two_way_chance = 0.8
+        bend_chance = 0.2
+        not_t_int_chance = 0.6
+        nil_pig_shop_weight = 12
     end
 
-    while step < stepMax and step > -1 do
-        newpt = {
-                    x= pt.x+(DIR_STEP[dir].x * step * OFFSET),
-                    y=0,
-                    z= pt.z+(DIR_STEP[dir].z * step * OFFSET),
-                }
-        if testTile(newpt,VALID_TILES) then
-            placeTileCity(newpt)
-            --placeTile(newpt)
+    while step < step_max and step > -1 do
+        new_pt = {
+            x = pt.x + (DIR_STEP[dir].x * step * offset),
+            y = 0,
+            z = pt.z + (DIR_STEP[dir].z * step * offset)
+        }
+
+        if test_tile(new_pt, VALID_TILES) then
+            place_tile_city(entities, width, height, new_pt)
+            -- placeTile(newpt)
             step = step + 1
         else
             step = -1
         end
     end
 
-    if step == stepMax then
+    if step == step_max then
         -- has reached a new intersection
-        local dirset = {false,false,false,false}
+        local dir_set = {false, false, false, false}
 
-        if math.random() < TWO_WAY_CHANCE then
+        if math.random() < two_way_chance then
             -- just a 2 way
-            if math.random() < BEND_CHANCE then
-                local inc = 1
-                if math.random() < 0.5 then
-                    inc = -1
-                end
-                dirset[getdir(dir,inc)] = true
+            if math.random() < bend_chance then
+                local inc = math.random() < 0.5 and -1 or 1
+                dir_set[get_dir(dir, inc)] = true
             else
                 -- go strait
-                dirset[dir] = true
+                dir_set[dir] = true
             end
         else
             -- a 3 way
-            dirset = {true,true,true,true}
-            dirset[oppdir(dir)] = false
+            dir_set = {true, true, true, true}
+            dir_set[opp_dir(dir)] = false
 
-            if math.random() < NOT_T_INT_CHANCE then
-                --include strait
-                local inc = 1
-                if math.random() < 0.5 then
-                    inc = -1
-                end
-                dirset[getdir(dir,inc)] = false
+            if math.random() < not_t_int_chance then
+                -- include strait
+                local inc = math.random() < 0.5 and -1 or 1
+                dir_set[get_dir(dir,inc)] = false
             else
                 -- T branch
-                dirset[dir] = false
+                dir_set[dir] = false
             end
         end
-
-        addPigShops(pt,dir,NIL_PIG_SHOP_WEIGHT, city)
-
-        addParkZones(pt,dir, city)
-        addCityLights(pt,dir, city.cityID)
-
+        add_pig_shops(spawners, pt, dir, nil_pig_shop_weight, city)
+        add_park_zones(pt, dir, city)
+        add_city_lights(spawners, pt, dir, city.city_id)
     end
 end
 
-local function getdiv1tile(x,y,z)
-    local fx,fy,fz = x,y,z
+local function get_div1_tile(x, y, z)
+    x = x - (math.fmod(x, 1))
+    z = z - (math.fmod(z, 1))
 
-    fx = x - ( math.fmod(x,1) )
-    fz = z - ( math.fmod(z,1) )
-
-    return fx,fy,fz
+    return x, y, z
 end
 
-local function getdiv6tile(x,y,z)
-    local fx,fy,fz = x,y,z
-
-    fx = x - ( math.fmod(x,6) )
-    fz = z - ( math.fmod(z,6) )
-
-    return fx,fy,fz
+local function get_div6_tile(x, y, z)
+    x = x - (math.fmod(x, 6))
+    z = z - (math.fmod(z, 6))
+    return x, y, z
 end
 
-local function createcity(city)
+local function is_pt_in_list(pt, data)
+    local idx = nil
+    for i,coord in ipairs(data)do
+        if coord.x == pt.x and coord.y == pt.y and coord.z == pt.z then
+            idx = i
+            break
+        end
+    end
+    return idx
+end
+
+local function add_dirs(pt, grid, open_dirs)
+    for dir,data in ipairs(DIR_STEP) do
+        local new_pt = {
+            x = pt.x + (data.x * 6),
+            y = pt.y,
+            z = pt.z + (data.z * 6)
+        }
+
+        local idx = is_pt_in_list(new_pt, grid)
+        if idx then
+            table.insert(open_dirs, {pt = pt, newpt = new_pt, dir = dir})
+            table.remove(grid, idx)
+        else
+            if math.random() < 0.3 then
+                table.insert(open_dirs, {pt = pt, dir = dir})
+            end
+        end
+    end
+    return grid, open_dirs
+end
 
 
-                        local function isPtInList(pt,data)
-                            local idx = nil
-                            for i,coord in ipairs(data)do
-                                if coord.x == pt.x and coord.y == pt.y and coord.z == pt.z then
-                                    idx = i
-                                    break
-                                end
-                            end
-                            return idx
-                        end
-
-                        local function addDirs(pt,grid,opendirs)
-                            for dir,data in ipairs(DIR_STEP) do
-                                local newpt = {x=pt.x + (data.x*6),y=pt.y,z=pt.z + (data.z*6)}
-                                local idx = isPtInList(newpt,grid)
-                                if idx then
-                                    table.insert(opendirs,{pt=pt,newpt=newpt, dir=dir})
-                                    table.remove(grid,idx)
-                                else
-                                    if math.random() < 0.3 then
-                                        table.insert(opendirs,{pt=pt, dir=dir})
-                                    end
-                                end
-                            end
-                            return grid, opendirs
-                        end
-
-
-    local startNode = nil
+local function create_city(entities, width, height, spawners, city)
+    local start_node = nil
 
     -- this requires that at least one of the city nodes's center is not outside the land.
-
-    while not startNode do
-        local idx = math.random(1,#city.citynodes)
-        startNode = city.citynodes[idx]
-        local x, z = startNode.cent[1], startNode.cent[2]
+    while not start_node do
+        local idx = math.random(1, #city.citynodes)
+        start_node = city.citynodes[idx]
+        local x, z = start_node.cent[1], start_node.cent[2]
         local y = 0
-        x, y, z = getdiv6tile(x,0,z)
-        local testpt = {x=x,y=y,z=z}
-        if not testTile(testpt,VALID_TILES) then
-            startNode = nil
+        x, y, z = get_div6_tile(x, 0, z)
+        local testpt = {
+            x = x,
+            y = y,
+            z = z
+        }
+        if not test_tile(testpt, VALID_TILES) then
+            start_node = nil
         end
     end
 
+
     -- this is to catch if every node center was outside the land
-    if not startNode then
-        local newnodelist = deepcopy(city.citynodes)
-        while not startNode do
-            local idx = math.random(1,#newnodelist)
-            startNode = newnodelist[idx]
+    if not start_node then
+        local new_node_list = deepcopy(city.citynodes)
+        while not start_node do
+            local idx = math.random(1, #new_node_list)
+            start_node = new_node_list[idx]
             local ok = false
 
-            for i=1,#startNode.poly.x,1 do
-                local x, z = startNode.poly.x[i], startNode.poly.y[i]
+            for i = 1, #start_node.poly.x, 1 do
+                local x, z = start_node.poly.x[i], start_node.poly.y[i]
                 local y = 0
 
-                x, y, z = getdiv6tile(x,0,z)
+                x, y, z = get_div6_tile(x, 0, z)
 
-                local testpt = {x=x,y=y,z=z}
-                if testTile(testpt,VALID_TILES) then
+                local testpt = {
+                    x = x,
+                    y = y,
+                    z = z
+                }
+                if test_tile(testpt, VALID_TILES) then
                     ok = true
                     break
                 end
             end
             if not ok then
-                startNode = nil
+                start_node = nil
             end
-            table.remove(newnodelist,idx)
+            table.remove(new_node_list, idx)
         end
     end
 
-    local x, z = startNode.cent[1], startNode.cent[2]
+    local x, z = start_node.cent[1], start_node.cent[2]
     local y = 0
-    x, y, z = getdiv6tile(x,0,z)
+    x, y, z = get_div6_tile(x, 0, z)
 
-    local grid = {{x=x,y=y,z=z}}
+    local grid = {{x = x, y = y, z = z}}
 
-    for nx=-8,8 do
-        for nz=-8,8 do
-            local newpt = { x=x+(nx*6), y=y, grid,z=z+(nz*6) }
+    for nx = -8, 8 do
+        for nz = -8, 8 do
+            local newpt = {
+                x = x + (nx * 6),
+                y = y,
+                grid,
+                z = z + (nz * 6)
+            }
 
-            local incitynode = false
-            for i,node in ipairs(city.citynodes) do
-                if WorldSim:PointInSite( node.id, newpt.x, newpt.z) then
-                    incitynode = true
+            local in_city_node = false
+            for i, node in ipairs(city.citynodes) do
+                if WorldSim:PointInSite(node.id, newpt.x, newpt.z) then
+                    in_city_node = true
                 end
             end
 
-            if testTile(newpt,VALID_TILES) and incitynode then
-                table.insert(grid, newpt )
+            if test_tile(newpt, VALID_TILES) and in_city_node then
+                table.insert(grid, newpt)
             end
         end
     end
 
-    local idx = math.random(1,#grid)
+    local idx = math.random(1, #grid)
     local start = grid[idx]
-    table.remove(grid,idx)
+    table.remove(grid, idx)
 
-    if testTile(start,VALID_TILES) then
-        placeTileCity(start)
+    if test_tile(start,VALID_TILES) then
+        place_tile_city(entities, width, height, start)
     end
 
     local maxintersections = 30
     local opendirs = {}
     local closeddirs = {}
 
-
-    grid,opendirs = addDirs(start,grid,opendirs)
+    grid, opendirs = add_dirs(start, grid, opendirs)
 
     while maxintersections > 0 and #opendirs > 0 do
-        local idx = math.random(1,#opendirs)
+        local idx = math.random(1, #opendirs)
         local data = opendirs[idx]
-        makeroad(data.pt,data.dir,true, city)
+        make_road(entities, width, height, spawners, data.pt, data.dir, true, city)
         if data.newpt then
-            -- AddTempEnts(spawners,data.newpt.x,data.newpt.z,"onemanband",city.cityID)
-            grid,opendirs = addDirs(data.newpt,grid,opendirs)
-            maxintersections = maxintersections -1
+            -- add_temp_ents(spawners, data.newpt.x, data.newpt.z, "onemanband", city.city_id)
+            grid, opendirs = add_dirs(data.newpt, grid, opendirs)
+            maxintersections = maxintersections - 1
         end
-        table.remove(opendirs,idx)
+        table.remove(opendirs, idx)
     end
 end
 
-local function makeParks(city,unique,uniqueParks)
-
-    local TOTALPARKS = #city.citynodes
+local function make_parks(entities, width, height, spawners, city, unique, unique_parks)
+    local total_parks = #city.citynodes
     if unique then
-        TOTALPARKS = uniqueParks
+        total_parks = unique_parks
     end
 
-    for i=1,TOTALPARKS,1 do
+    for i = 1, total_parks do
         if #city.parks > 0 then
-            local index = math.random(1,#city.parks)
+            local index = math.random(1, #city.parks)
             local park = city.parks[index]
 
-            local pigshops_spawners = FindTempEnts(spawners,park.x,park.z,3,{"pig_shop_spawner"})
+            local pigshops_spawners = find_temp_ents(spawners, park.x, park.z, 3, {"pig_shop_spawner"})
 
-            --local pigshops_spawners = TheSim:FindEntities(park.x, park.y, park.z, 15, {"pig_shop_spawner"})
-            for _,spawner in ipairs(pigshops_spawners)do
-                for s=#spawners,1,-1 do
+            -- local pigshops_spawners = TheSim:FindEntities(park.x, park.y, park.z, 15, {"pig_shop_spawner"})
+            for _, spawner in ipairs(pigshops_spawners) do
+                for s = #spawners, 1, -1 do
                     if spawner == spawners[s] then
-                        table.remove(spawners,s)
+                        table.remove(spawners, s)
                     end
                 end
             end
-            print("-------------------------------- SHOULD I SPAWN A PALACE?",made_palace)
-            --Spawn palace first
-            if made_palace == false and city.cityID == 2 then
-                local choice = "map/static_layouts/pig_palace_1"
+
+            print("-------------------------------- SHOULD I SPAWN A PALACE?", made_palace)
+            -- Spawn palace first
+            if made_palace == false and city.city_id == 2 then
+                local choice = "pig_palace_1"
                 print("--------------------------------  PLACING PALACE")
                 if choice ~= nil then
-                    spawnSetPiece( choice, {x=park.x,y=park.y,z=park.z}, city)
-                    table.remove(city.parks,index)
+                    spawn_setpiece(entities, width, height, spawners, choice, {x = park.x, y = park.y, z = park.z}, city)
+                    table.remove(city.parks, index)
                     made_palace = true
                 end
-            elseif made_cityhall == false and city.cityID == 1 then
-                local choice = "map/static_layouts/pig_cityhall_1"
+            elseif made_cityhall == false and city.city_id == 1 then
+                local choice = "pig_cityhall_1"
                 if choice ~= nil then
-                    spawnSetPiece( choice, {x=park.x,y=park.y,z=park.z}, city)
-                    table.remove(city.parks,index)
+                    spawn_setpiece(entities, width, height, spawners, choice, {x = park.x, y = park.y, z = park.z}, city)
+                    table.remove(city.parks, index)
                     made_cityhall = true
                 end
-            elseif made_playerhouse == false and city.cityID == 1 then
-                local choice = "map/static_layouts/pig_playerhouse_1"
+            elseif made_playerhouse == false and city.city_id == 1 then
+                local choice = "pig_playerhouse_1"
                 if choice ~= nil then
-                    spawnSetPiece( choice, {x=park.x,y=park.y,z=park.z}, city)
-                    table.remove(city.parks,index)
+                    spawn_setpiece(entities, width, height, spawners, choice, {x = park.x, y = park.y, z = park.z}, city)
+                    table.remove(city.parks, index)
                     made_playerhouse = true
                 end
             else
-                local choice = PARK_CHOICES[math.random(1,#PARK_CHOICES)]
+                local choice = PARK_CHOICES[math.random(1, #PARK_CHOICES)]
                 if unique then
                     if #UNIQUE_PARK_CHOICES > 0 then
-                    local selection = math.random(1,#UNIQUE_PARK_CHOICES)
-                    choice = UNIQUE_PARK_CHOICES[selection]
-                    table.remove(UNIQUE_PARK_CHOICES,selection)
+                        local selection = math.random(1, #UNIQUE_PARK_CHOICES)
+                        choice = UNIQUE_PARK_CHOICES[selection]
+                        table.remove(UNIQUE_PARK_CHOICES, selection)
                     else
                         choice = nil
                     end
                 end
                 if choice ~= nil then
-                    spawnSetPiece( choice, {x=park.x,y=park.y,z=park.z}, city)
-                    table.remove(city.parks,index)
+                    spawn_setpiece(entities, width, height, spawners, choice, {x = park.x, y = park.y, z = park.z}, city)
+                    table.remove(city.parks, index)
                 end
             end
         end
     end
 end
 
-local function placefarm(nodes, city, total, set )
-    local TOTALFARMS = total
+local function place_farm(entities, width, height, spawners, nodes, city, total, set)
     local placed_farms = 0
-    local breaklimit = 0
-    while TOTALFARMS > placed_farms and breaklimit < 50 and #nodes > 0 do
-        local testedNodes = {}
-        local totalNodes = #nodes
+    local break_limit = 0
+    while total > placed_farms and break_limit < 50 and #nodes > 0 do
+        local tested_nodes = {}
+        local total_nodes = #nodes
         local finished = false
 
-        while #testedNodes < totalNodes and finished == false do
-
-            local farmnum = math.random(1,#nodes)
+        while #tested_nodes < total_nodes and finished == false do
+            local farm_num = math.random(1, #nodes)
             local untested = true
-            for i,checkednode in ipairs(testedNodes)do
-                if checkednode == farmnum then
+            for i, checked_node in ipairs(tested_nodes)do
+                if checked_node == farm_num then
                     untested = false
                 end
             end
 
             if untested then
-
-                table.insert(testedNodes,farmnum)
+                table.insert(tested_nodes, farm_num)
 
                 local location = {
-                    x = nodes[farmnum].cent[1],
+                    x = nodes[farm_num].cent[1],
                     y = 0,
-                    z = nodes[farmnum].cent[2],
+                    z = nodes[farm_num].cent[2],
                 }
-
-                location.x,location.y,location.z = getdiv1tile(location.x,location.y,location.z)
+                location.x, location.y, location.z = get_div1_tile(location.x, location.y, location.z)
 
                 local place_farm = true
-
                 if place_farm then
-                    local choice = set[math.random(1,#set)]
-
-                    if spawnSetPiece( choice, {x=location.x,y=location.y,z=location.z}, city) then
-                        placed_farms = placed_farms +1
-                        table.remove(nodes,farmnum)
+                    local choice = set[math.random(1, #set)]
+                    if spawn_setpiece(entities, width, height, spawners, choice, {x = location.x, y = location.y, z = location.z}, city) then
+                        placed_farms = placed_farms + 1
+                        table.remove(nodes, farm_num)
                         finished = true
                     end
                 end
             end
         end
         if finished == false then
-            breaklimit = breaklimit +1
+            break_limit = break_limit +1
             print("COULDNT FIND ANY PLACE TO FIT THIS FARM")
         end
     end
     return nodes
 end
 
-local function placeuniquefarms(cities)
-    for i,farm in ipairs(REQUIRED_FARMS) do
-        local city = math.random(1,CITIES)
+local function place_unique_farms(entities, width, height, spawners, cities)
+    for i, farm in ipairs(REQUIRED_FARMS) do
+        local city = math.random(1, CITIES)
 
         local nodes = cities[city].farmnodes
-        placefarm(nodes, cities[city], 1, {farm} )
+        place_farm(entities, width, height, spawners, nodes, cities[city], 1, {farm})
     end
 end
 
-local function makeFarms( nodes, city)
-    nodes = placefarm(nodes, city, 3, FARM_CHOICES )
-    nodes = placefarm(nodes, city, 9999, FARM_FILLER_CHOICES )
+local function make_farms(entities, width, height, spawners, nodes, city)
+    nodes = place_farm(entities, width, height, spawners, nodes, city, 3, FARM_CHOICES)
+    nodes = place_farm(entities, width, height, spawners, nodes, city, 9999, FARM_FILLER_CHOICES)
 
-    for i,node in ipairs(nodes)do
-        local prefabs = FindTempEnts(spawners,node.cent[1],node.cent[2],1)
+    for i, node in ipairs(nodes) do
+        local prefabs = find_temp_ents(spawners, node.cent[1], node.cent[2], 1)
 
         if #prefabs == 0 then
-            if testTile({x=node.cent[1], z=node.cent[2]},{WORLD_TILES.FIELDS}) then
-                AddTempEnts(spawners,node.cent[1],node.cent[2],"pig_guard_tower",city.cityID)
+            if test_tile({x = node.cent[1], z = node.cent[2]}, {WORLD_TILES.FIELDS}) then
+                add_temp_ents(spawners, node.cent[1], node.cent[2], "pig_guard_tower", city.city_id)
             end
         end
     end
-
 end
 
-local function setbuildings(city)
-
+local function set_buildings(spawners, city)
     local building_quotas = {}
 
     local set = BUILDING_QUOTAS
-    if city.cityID == 2 then
+    if city.city_id == 2 then
         set = BUILDING_QUOTAS_2
     end
 
-    for item,data in pairs(set)do
+    for item, data in pairs(set)do
         building_quotas[item] = data
     end
 
-    local eligablelist = {}
-    for i,spawn in ipairs(spawners)do
-        if spawn.prefab == "pig_shop_spawner" and spawn.city == city.cityID then
-            table.insert(eligablelist,i)
+    local eligable_list = {}
+    for i, spawn in ipairs(spawners)do
+        if spawn.prefab == "pig_shop_spawner" and spawn.city == city.city_id then
+            table.insert(eligable_list, i)
         end
     end
 
-    for i, dataset in pairs(building_quotas) do
-        local buildingtype = dataset.prefab
-        local num = dataset.num
+    for _, data_set in pairs(building_quotas) do
+        local building_type = data_set.prefab
+        local num = data_set.num
 
-        for t=1,num,1 do
-            if #eligablelist > 0 then
-                local location = math.random(1,#eligablelist)
-                spawners[eligablelist[location]].prefab = buildingtype
-                table.remove(eligablelist,location)
+        for t = 1, num do
+            if #eligable_list > 0 then
+                local location = math.random(1, #eligable_list)
+                spawners[eligable_list[location]].prefab = building_type
+                table.remove(eligable_list, location)
             else
-                print("*********** RAN OUT OF ELIGABLE LOCATIONS FOR ", buildingtype," @ ".. t.." of ".. num)
+                print("*********** RAN OUT OF ELIGABLE LOCATIONS FOR ", building_type," @ ".. t.." of ".. num)
             end
         end
     end
 
-    for i=#spawners,1,-1 do
-        if spawners[i].prefab == "pig_shop_spawner" and spawners[i].city == city.cityID then
-            table.remove(spawners,i)
+    for i = #spawners, 1, -1 do
+        if spawners[i].prefab == "pig_shop_spawner" and spawners[i].city == city.city_id then
+            table.remove(spawners, i)
         end
     end
 end
 
-
-local function removeShopSpawners()
-    for i=#spawners,1,-1 do
+local function remove_shop_spawners(spawners)
+    for i = #spawners, 1, -1 do
         if spawners[i].prefab == "pig_shop_spawner" then
-            table.remove(spawners,i)
+            table.remove(spawners, i)
         end
     end
 end
 
-function makecities(entities, topology_save, worldsim, map_width, map_height, setcurrent_gen_params)
-
-    prime()
-
-    setConstants(entities ,map_width, map_height, setcurrent_gen_params)
-
-    -- finds if an item is in a list, removes it and returns the item.
-    local function isInList(listitem, list, dontremove)
-        for i,item in ipairs(list)do
-            if item == listitem then
-                if not dontremove then
-                    table.remove(list,i)
-                end
-                return item
+-- finds if an item is in a list, removes it and returns the item.
+local function is_in_list(list_item, list, dont_remove)
+    for i, item in ipairs(list) do
+        if item == list_item then
+            if not dont_remove then
+                table.remove(list, i)
             end
+            return item
         end
-        return false
     end
+    return false
+end
 
-    local function inInNestedList(listitem, parentlist)
-        for i,items in pairs(parentlist)do
-            if isInList(listitem, items, true) then
-                return listitem
-            end
+local function is_in_nested_list(list_item, parent_list)
+    for i, items in pairs(parent_list) do
+        if is_in_list(list_item, items, true) then
+            return list_item
         end
-        return false
     end
+    return false
+end
+
+local function make_cities(entities, topology_save, worldsim, width, height, setcurrent_gen_params)
+    print("BUILDING PIG CULTURE")
+
+    local spawners = {} -- anything that is added here that needs to be looked at before finally being added to the entites list.
+
+    made_palace = false
+    made_cityhall = false
+    made_playerhouse = false
 
     local cities = {}
-    for cityID = 1,CITIES,1 do
+    for city_id = 1, CITIES do
+        cities[city_id] = {}
+        cities[city_id].parks = {}
+        cities[city_id].citynodes = {}
+        cities[city_id].farmnodes = {}
+        cities[city_id].city_id = city_id
+        -- cities[city_id].spawners = {}
 
-        cities[cityID] = {}
-        cities[cityID].citynodes = {}
-        cities[cityID].farmnodes = {}
-        cities[cityID].parks = {}
-        --cities[cityID].spawners = {}
-        cities[cityID].cityID = cityID
+        if topology_save.GlobalTags["City" .. city_id] then
+            for task, nodes in pairs(topology_save.GlobalTags["City" .. city_id]) do
+                for i, node in ipairs(nodes)do
+                    local c_x, c_y = WorldSim:GetSiteCentroid(topology_save.GlobalTags["City" .. city_id][task][i])
 
-        if topology_save.GlobalTags["City"..cityID] then
-            for task, nodes in pairs(topology_save.GlobalTags["City"..cityID]) do
+                    -- for i,task in pairs(topology_save.GlobalTags["City_Foundation"]) do
+                    --     for t,node in ipairs(task) do
+                    --         dumptable(node)
+                    --     end
+                    -- end
 
-                for i,node in ipairs(nodes)do
+                    local poly_x, poly_y = WorldSim:GetSitePolygon(node)
+                    local nodedata = {
+                        cent = {c_x, c_y},
+                        id = node,
+                        poly = {x = poly_x, y = poly_y}
+                    }
 
-                    local c_x, c_y = WorldSim:GetSiteCentroid(topology_save.GlobalTags["City"..cityID][task][i])
---[[
-                    for i,task in pairs(topology_save.GlobalTags["City_Foundation"]) do
-                        for t,node in ipairs(task) do
-                            dumptable(node)
-                        end
+                    if is_in_nested_list(node, topology_save.GlobalTags["City_Foundation"]) then  -- and not nodedata.suburb == true
+                        table.insert(cities[city_id].citynodes, nodedata)
                     end
-]]
-                    local polyx,polyy = WorldSim:GetSitePolygon(node)
-                    local nodedata = {cent={c_x, c_y}, id=node ,poly = {x=polyx,y=polyy} }
 
-                    if inInNestedList(node, topology_save.GlobalTags["City_Foundation"]) then                     -- and not nodedata.suburb == true
-                        table.insert(cities[cityID].citynodes,nodedata)
-                    end
-
-                    if inInNestedList(node, topology_save.GlobalTags["Cultivated"]) then
-                        table.insert(cities[cityID].farmnodes,nodedata)
+                    if is_in_nested_list(node, topology_save.GlobalTags["Cultivated"]) then
+                        table.insert(cities[city_id].farmnodes, nodedata)
                     end
                 end
             end
         end
     end
 
-    placeuniquefarms(cities)
+    place_unique_farms(entities, width, height, spawners, cities)
 
-    for city_ID,city in ipairs(cities)do
-
-        createcity(city)
-
-        makeParks(city, true,2)
-        makeParks(city)
-        setbuildings(city)
-        makeFarms(city.farmnodes,city)
-        -- makeFarms(city.farmnodes,city, 25, FARM_FILLER_CHOICES )
+    for city_ID, city in ipairs(cities)do
+        create_city(entities, width, height, spawners, city)
+        make_parks(entities, width, height, spawners, city, true, 2)
+        make_parks(entities, width, height, spawners, city)
+        set_buildings(spawners, city)
+        make_farms(entities, width, height, spawners, city.farmnodes, city)
+        -- makeFarms(city.farmnodes,city, 25, FARM_FILLER_CHOICES)
     end
 
-    removeShopSpawners()
+    remove_shop_spawners(spawners)
 
-    exportSpawnersToEntites()
+    export_spawners_to_entites(entities, width, height, spawners)
 
     return entities
 end
 
-return makecities
+return make_cities

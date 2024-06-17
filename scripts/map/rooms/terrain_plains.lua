@@ -20,7 +20,7 @@ AddRoom("BG_plains_base", {
             asparagus_planted = 0.05,
         },
         countprefabs = {
-            grass_tall_patch = 2,
+            grass_tall_bunche_patch = 2,
             vampirebatcave_potential = 1,
         },
     }
@@ -45,7 +45,7 @@ AddRoom("plains_tallgrass", {
             asparagus_planted = 0.05,
         },
         countprefabs = {
-            grass_tall_patch = 2,
+            grass_tall_bunche_patch = 2,
             vampirebatcave_potential = 1,
         },
     }
@@ -70,7 +70,7 @@ AddRoom("plains_ruins", {
             asparagus_planted = 0.05,
         },
         countprefabs = {
-            grass_tall_patch = 2,
+            grass_tall_bunche_patch = 2,
             pig_ruins_entrance_small = 1,
             vampirebatcave_potential = 1,
         },
@@ -123,7 +123,7 @@ AddRoom("plains_base_nobatcave", {
         asparagus_planted = 0.05,
         },
         countprefabs = {
-            grass_tall_patch = 2,
+            grass_tall_bunche_patch = 2,
         },
     }
 })

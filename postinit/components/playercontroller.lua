@@ -16,6 +16,28 @@ local GetPickupAction = function(self, target, tool, ...)
         end
     end
 
-    return _GetPickupAction(self, target, tool, ...)
+    local rets = {_GetPickupAction(self, target, tool, ...)}
+    if rets[1] == ACTIONS.PICKUP and TheWorld.items_pass_ground and not target:IsOnPassablePoint() and self.inst:IsOnPassablePoint()  and
+        not TheWorld.Map:IsLandTileAtPoint(target.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
+        rets[1] = ACTIONS.RETRIEVE
+    end
+    return unpack(rets)
 end
 ToolUtil.SetUpvalue(PlayerController.GetActionButtonAction, GetPickupAction, "GetPickupAction")
+
+-- local _GetGroundUseAction = PlayerController.GetGroundUseAction
+-- function PlayerController:GetGroundUseAction(position, ...)
+--     if self.inst:IsSailing() then
+--         -- Check if the player is close to land and facing towards it
+--         local angle = self.inst.Transform:GetRotation() * DEGREES
+--         local x, y, z = self.inst.Transform:GetWorldPosition()
+--         local target_x, target_z = VecUtil_Normalize(math.cos(angle), -math.sin(angle))
+--         target_x, target_z = 5 * target_x + x, 5 * target_z + z
+
+--         local can_hop, hop_x, hop_z, target_platform = self.inst.components.playeractionpicker:ScanForLandingPoint(target_x, target_z)
+--         if can_hop then
+--             return nil, BufferedAction(self.inst, nil, ACTIONS.DISEMBARK, nil, Vector3(hop_x, 0, hop_z))
+--         end
+--     end
+--     return _GetGroundUseAction(self, position, ...)
+-- end

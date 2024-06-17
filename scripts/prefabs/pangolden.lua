@@ -80,7 +80,7 @@ local function fn()
     inst:AddComponent("knownlocations")
 
     inst:AddComponent("eater")
-    inst.components.eater:SetDiet({FOODGROUP.GOLDDUST}, {FOODGROUP.GOLDDUST})
+    inst.components.eater:SetDiet({FOODTYPE.GOLDDUST}, {FOODTYPE.GOLDDUST})
     inst.components.eater:SetOnEatFn(OnEat)
 
     inst:AddComponent("combat")

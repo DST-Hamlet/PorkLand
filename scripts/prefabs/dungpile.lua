@@ -134,6 +134,10 @@ local function Fall(inst)
     end)
 end
 
+local function OnPreLoad(inst, data)
+    WorldSettings_ChildSpawner_PreLoad(inst, data, TUNING.DUNGBEETLE_RELEASE_TIME, TUNING.DUNGBEETLE_REGEN_TIME)
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -205,6 +209,7 @@ local function fn()
     MakeSnowCovered(inst)
 
     inst.Fall = Fall
+    inst.OnPreLoad = OnPreLoad
 
     inst:DoTaskInTime(0, Init)
 
