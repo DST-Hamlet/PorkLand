@@ -6,6 +6,14 @@ local make_bunch = require("map/make_bunch")
 local forest_map = require("map/forest_map")
 local MULTIPLY = forest_map.MULTIPLY
 
+local BATS =  -- 复制自constants
+{
+	EMPTY = "empty",
+	CAVE = "cave",
+	ATTACK = "attack",
+	CAVE_NUM = 6 * 2,  -- 是单机数量的两倍
+}
+
 local function build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
     if current_gen_params == nil then
         current_gen_params = {}

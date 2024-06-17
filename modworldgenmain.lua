@@ -6,7 +6,6 @@ if IsTheFrontEnd then
     modimport("main/strings")
 end
 
-modimport("main/constants")
 modimport("scripts/map/locations/porkland")
 modimport("scripts/map/startlocations/porkland")
 modimport("scripts/map/tasksets/porklandset")
