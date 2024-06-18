@@ -48,7 +48,7 @@ local function KeepTarget(inst, target)
 end
 
 local RETARGET_DIST = 12
-local RETARGET_CANT_TAGS = {"bat"}
+local RETARGET_CANT_TAGS = {"vampirebat"}
 local RETARGET_ONEOF_TAGS = {"character", "monster"}
 local function Retarget(inst)
     local ta = inst.components.teamattacker
@@ -70,7 +70,7 @@ local function OnAttacked(inst, data)
     if not inst.components.teamattacker.inteam and not inst.components.teamattacker:SearchForTeam() then
         MakeTeam(inst, data.attacker)
     elseif inst.components.teamattacker.teamleader then
-        inst.components.teamattacker.teamleader:BroadcastDistress()   --Ask for  help!
+        inst.components.teamattacker.teamleader:BroadcastDistress() --Ask for help!
     end
 
     if inst.components.teamattacker.inteam and not inst.components.teamattacker.teamleader:CanAttack() then

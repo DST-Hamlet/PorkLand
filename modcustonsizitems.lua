@@ -97,6 +97,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             mosquito_setting = {image = "mosquitos.tex"},
             --adult_flytrap_setting = {image = "adult_flytraps.tex"},
             --mean_flytrap_setting = {image = "mean_flytraps.tex"},
+            vampirebat = {image = "vampire_bats.tex"},
             weevole_setting = {image = "weevole.tex"},
         },
         animals = {
