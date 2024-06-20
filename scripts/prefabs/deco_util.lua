@@ -619,13 +619,13 @@ local function MakeDeco(build, bank, animframe, data, name)
                 or name:find("_pillar")
                 or data.rotatingbillboard then
                 -- skip this 2024/6/13
-                -- inst:AddComponent("rotatingbillboard")
+                inst:AddComponent("rotatingbillboard")
 
-                -- inst.components.rotatingbillboard.animdata = {
-                --     bank = bank,
-                --     build = build,
-                --     animation = animframe,
-                -- }
+                inst.components.rotatingbillboard.animdata = {
+                    bank = bank,
+                    build = build,
+                    animation = animframe,
+                }
             else
                 inst.Transform:SetTwoFaced()
             end
