@@ -199,10 +199,11 @@ local states =
         name = "flyout",
         tags = {"busy", "noattack", "nointerrupt"},
 
-        onenter = function(inst)
+        onenter = function(inst, offset)
             inst.AnimState:PlayAnimation("flyout", false)
             inst.AnimState:SetFloatParams(0.25, 1.0, 0)
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/distant_taunt")
+            inst.sg.statemem.offset = offset or {x = 0, z = 0}
         end,
 
         timeline =
@@ -215,7 +216,8 @@ local states =
             TimeEvent(76 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
             TimeEvent(84 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
             TimeEvent(94 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
-            TimeEvent(96 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
+            TimeEvent(96 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out")
+                inst.sg.statemem.can_down = true end),
             TimeEvent(104 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
             TimeEvent(114 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
             TimeEvent(116 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
@@ -233,8 +235,12 @@ local states =
             TimeEvent(176 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
         },
 
-        onupdate = function(inst)
-
+        onupdate = function(inst, dt)
+            if inst.sg.statemem.can_down then
+                local offset = inst.sg.statemem.offset
+                local x, y, z = inst.Transform:GetWorldPosition()
+                inst.Transform:SetPosition(x + offset.x * dt * 0.5, y, z + offset.z * dt * 0.5)
+            end
         end,
 
         onexit = function(inst)
@@ -243,7 +249,11 @@ local states =
 
         events =
         {
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end)
+            EventHandler("animover", function(inst) 
+                inst.sg:GoToState("idle")
+                -- inst.components.sleeper.hibernate = true
+                -- inst.components.sleeper:GoToSleep()
+            end)
         },
     },
 }

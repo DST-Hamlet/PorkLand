@@ -1,5 +1,16 @@
 local GetPropDef = require("prefabs/interior_prop_defs")
 
+local BAT_CAVE_NAME = "batcave"
+local BAT_CAVE_WIDTH = 26
+local BAT_CAVE_DEPTH = 18
+local BAT_CAVE_REVERB = "batcave"
+local BAT_CAVE_AMBIENT = "BAT_CAVE"
+local BAT_CAVE_GROUND_SOUND = "DIRT"
+local BAT_CAVE_FLOOR_TEXTURE = "levels/textures/interiors/batcave_floor.tex"
+local BAT_CAVE_WALL_TEXTURE = "levels/textures/interiors/batcave_wall_rock.tex"
+local BAT_CAVE_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_vamp_cave_noise.tex"
+local BAT_CAVE_COULOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
+
 local assets =
 {
     Asset("ANIM", "anim/vamp_bat_entrance.zip"),
@@ -25,35 +36,31 @@ local function CreatInterior(inst)
     local interior_spawner = TheWorld.components.interiorspawner
     local ID = inst.interiorID
     if not ID then
-        ID = interior_spawner:GetCurrentMaxID() + 1
+        ID = interior_spawner:GetNewID()
     end
 
-    if inst.interiorID == nil then
-        local newID = ID
-        inst.interiorID = newID
-        local name = "vampirebatcave" .. newID
-        local height = 18
-        local width = 26
-
-        local exterior_door_def = {
-            my_door_id = name .. newID .. "_door",
-            target_door_id = name .. newID .. "_exit",
-            target_interior = newID,
-        }
-
-        interior_spawner:AddDoor(inst, exterior_door_def)
-
-        local floortexture = "levels/textures/interiors/batcave_floor.tex"
-        local walltexture =  "levels/textures/interiors/batcave_wall_rock.tex"
-        local minimaptexture = "levels/textures/map_interior/mini_vamp_cave_noise.tex"
-
-        local addprops = GetPropDef("vampirebatcave", exterior_door_def, height, width)
-
-        local def = interior_spawner:CreateRoom("generic_interior", width, 10, height, name, newID, addprops, {}, walltexture, floortexture, minimaptexture,
-            nil, "images/colour_cubes/pigshop_interior_cc.tex", true, nil, "batcave","BAT_CAVE","DIRT", nil, nil, true)
-        interior_spawner:SpawnInterior(def)
-        inst:AddTag("spawned_cave")
+    if not inst.interiorID == nil then
+        return
     end
+
+    local newID = ID
+    inst.interiorID = newID
+    local name = "vampirebatcave" .. newID
+
+    local exterior_door_def = {
+        my_door_id = name .. "_door",
+        target_door_id = name .. "_exit",
+        target_interior = newID,
+    }
+
+    interior_spawner:AddDoor(inst, exterior_door_def)
+
+    local addprops = GetPropDef("vampirebatcave", exterior_door_def, BAT_CAVE_DEPTH, BAT_CAVE_WIDTH)
+    local def = interior_spawner:CreateRoom(BAT_CAVE_NAME, BAT_CAVE_WIDTH, 10, BAT_CAVE_DEPTH, name, newID, addprops, {},
+        BAT_CAVE_WALL_TEXTURE, BAT_CAVE_FLOOR_TEXTURE, BAT_CAVE_MINIMAP_TEXTURE, nil, BAT_CAVE_COULOUR_CUBE, true, nil,
+        BAT_CAVE_REVERB, BAT_CAVE_AMBIENT, BAT_CAVE_GROUND_SOUND, nil, nil, true)
+    interior_spawner:SpawnInterior(def)
+    inst:AddTag("spawned_cave")
 end
 
 local function fn()
