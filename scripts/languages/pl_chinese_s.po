@@ -848,7 +848,7 @@ msgstr "刚刚死掉。"
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIKO.GENERIC
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIKO.GENERIC"
 msgid "The amazing storage space of their small cheeks defies all laws of physics!"
-msgstr "它们的小脸颊着惊人的储物空间违反了所有的物理定律！"
+msgstr "它们的小脸颊里惊人的储物空间违反了所有的物理定律！"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIKO.SLEEPING
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIKO.SLEEPING"
@@ -10524,4 +10524,3 @@ msgstr "繁茂季"
 msgctxt "STRINGS.UI.SERVERLISTINGSCREEN.SEASONS.TEMPERATE"
 msgid "Temperate"
 msgstr "平和季"
-
