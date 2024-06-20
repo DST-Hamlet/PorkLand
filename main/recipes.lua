@@ -67,13 +67,50 @@ AddRecipeFilter({
     image = "filter_archaeology.tex",
 })
 
-AddRecipe2("goldpan", {Ingredient("iron", 2), Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
-SortAfter("goldpan", "goldenpitchfork", "TOOLS")
+AddRecipe2("goldpan", {Ingredient("iron", 2), Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"ARCHAEOLOGY"})
+--SortAfter("goldpan", "goldenpitchfork", "TOOLS")
+AddRecipe2("ballpein_hammer", {Ingredient("iron", 2), Ingredient("twigs", 1)}, TECH.SCIENCE_ONE, {}, {"ARCHAEOLOGY"})
+
+--SCIENCE
+AddRecipe2("smelter", {Ingredient("cutstone", 6), Ingredient("boards", 4), Ingredient("redgem", 1)}, TECH.SCIENCE_TWO, {placer = "smelter_placer"}, {"TOOLS","STRUCTURES"})
+SortBefore("smelter", "cookpot", "STRUCTURES")
+SortAfter("smelter", "archive_resonator_item", "TOOLS")
 
 AddRecipe2("basefan", {Ingredient("alloy", 2), Ingredient("transistor", 2), Ingredient("gears", 1)}, TECH.SCIENCE_TWO, {placer = "basefan_placer"}, {"STRUCTURES", "RAIN"})
 SortBefore("basefan", "firesuppressor", "STRUCTURES")
 SortBefore("basefan", "rainometer", "RAIN")
 
+--TOOLS
+AddRecipe2("machete", {Ingredient("twigs", 1),Ingredient("flint", 3)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
+SortAfter("machete", "axe", "TOOLS")
+
+AddRecipe2("goldenmachete", {Ingredient("twigs", 4),Ingredient("goldnugget", 2)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
+SortAfter("goldenmachete", "goldenaxe", "TOOLS")
+
+AddRecipe2("shears", {Ingredient("twigs", 2),Ingredient("iron", 2)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
+SortAfter("shears", "goldenpitchfork", "TOOLS")
+
+--war
+AddRecipe2("halberd", {Ingredient("alloy", 1), Ingredient("twigs", 2)}, TECH.SCIENCE_TWO, {}, {"WEAPONS","TOOLS"})
+SortAfter("halberd", "spear", "WEAPONS")
+SortAfter("halberd", "shears", "TOOLS")
+
+AddRecipe2("metalplatehat", {Ingredient("alloy", 3),Ingredient("cork", 3)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
+SortBefore("metalplatehat", "cookiecutterhat", "ARMOUR")
+
+AddRecipe2("armor_metalplate", {Ingredient("alloy", 3),Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
+SortAfter("armor_metalplate", "armormarble", "ARMOUR")
+
+--MAGIC
+AddRecipe2("bonestaff", {Ingredient("pugalisk_skull", 1), Ingredient("boneshard", 1), Ingredient("nightmarefuel", 2)}, TECH.MAGIC_THREE, {} , {"WEAPONS","MAGIC"})
+SortAfter("bonestaff", "antlionhat", "MAGIC")
+SortAfter("bonestaff", "trident", "WEAPONS")
+
+--REFINE
+AddRecipe2("goldnugget", {Ingredient("gold_dust", 6)}, TECH.SCIENCE_ONE, {no_deconstruction=true} , {"REFINE"})
+AddRecipe2("venomgland", {Ingredient("froglegs_poison", 3)}, TECH.SCIENCE_TWO, {no_deconstruction=true} , {"REFINE"})
+
+--NAUTICAL
 AddRecipe2("boat_lograft", {Ingredient("log", 6), Ingredient("cutgrass", 4)}, TECH.NONE, {placer = "boat_lograft_placer", build_mode = BUILDMODE.WATER, build_distance = 4}, {"NAUTICAL"})
 AquaticRecipe("boat_lograft", {distance = 4, platform_buffer_min = 2, aquatic_buffer_min = 1, boat = true})
 
@@ -92,4 +129,5 @@ AddRecipe2("boat_torch", {Ingredient("twigs", 2), Ingredient("torch", 1)}, TECH.
 
 AddRecipe2("sail_snakeskin", {Ingredient("log", 4), Ingredient("rope", 2), Ingredient("snakeskin", 2)}, TECH.SCIENCE_TWO, nil, {"NAUTICAL"})
 
+--Deconstruct
 AddDeconstructRecipe("mandrakehouse", {Ingredient("boards", 3), Ingredient("mandrake", 2), Ingredient("cutgrass", 10)})
