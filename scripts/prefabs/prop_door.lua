@@ -144,7 +144,7 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
         if prefab_definition.animdata.background then
             inst.AnimState:SetLayer( LAYER_BACKGROUND )
             inst.AnimState:SetSortOrder( 3 )
-            inst.Transform:SetTwoFaced()
+            --inst.Transform:SetTwoFaced()
             -- inst.Transform:SetRotation(90)
 
             inst.door_data_background = prefab_definition.animdata.background
@@ -480,7 +480,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
     -- inst.AnimState:SetSortOrder(SORTORDER_MAX)
 
-    inst.Transform:SetTwoFaced()
+    --inst.Transform:SetTwoFaced()
 
     MakeObstaclePhysics(inst, 1)
     inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
