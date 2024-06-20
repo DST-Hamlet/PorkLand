@@ -48,7 +48,7 @@ local RotatingBillboard = Class(function(self, inst)
 	self.always_on_updating = false
 
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/pl_animrotatingbillboard.ksh"))
+    inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/animrotatingbillboard.ksh"))
 	inst:StartUpdatingComponent(self)
 
 	if not TheNet:IsDedicated() then

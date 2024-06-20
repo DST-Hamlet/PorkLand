@@ -194,7 +194,7 @@ Assets = {
     Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
 
     -- Billboard
-    Asset("SHADER", "shaders/pl_animrotatingbillboard.ksh"),
+    Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
 
     -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
