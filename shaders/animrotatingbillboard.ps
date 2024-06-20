@@ -1,0 +1,139 @@
+if defined( GL_ES )
+precision mediump float;
+#endif
+
+uniform mat4 MatrixW;
+
+#if defined( TRIPLE_ATLAS )
+    uniform sampler2D SAMPLER[6];
+#else
+    uniform sampler2D SAMPLER[5];
+#endif
+
+#ifndef LIGHTING_H
+#define LIGHTING_H
+
+#if !defined( UI_CC )
+// Lighting
+varying vec3 PS_POS;
+#endif
+
+// xy = min, zw = max
+uniform vec4 LIGHTMAP_WORLD_EXTENTS;
+
+#define LIGHTMAP_TEXTURE SAMPLER[3]
+
+#ifndef LIGHTMAP_TEXTURE
+	#error If you use lighting, you must #define the sampler that the lightmap belongs to
+#endif
+
+#if defined( UI_CC )
+vec3 CalculateLightingContribution(vec2 pos)
+{
+	vec2 uv = ( pos - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+#else
+vec3 CalculateLightingContribution()
+{
+	vec2 uv = ( PS_POS.xz - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+
+vec3 CalculateLightingContribution( vec3 normal )
+{
+	return vec3( 1, 1, 1 );
+}
+#endif
+
+#endif //LIGHTING.h
+
+
+varying vec3 PS_TEXCOORD;
+
+uniform vec4 TIMEPARAMS;
+uniform mat4 COLOUR_XFORM;
+uniform vec2 PARAMS;
+uniform vec3 FLOAT_PARAMS;
+uniform vec4 HAUNTPARAMS;
+uniform vec4 HAUNTPARAMS2;
+uniform vec4 OCEAN_BLEND_PARAMS;
+uniform vec3 CAMERARIGHT;
+
+#define ALPHA_TEST PARAMS.x
+#define LIGHT_OVERRIDE PARAMS.y
+
+uniform vec4 OCEAN_WORLD_EXTENTS;
+#define OCEAN_SAMPLER SAMPLER[4]
+
+void main()
+{
+    vec4 colour;
+
+#if defined( TRIPLE_ATLAS )
+    if( PS_TEXCOORD.z < 0.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
+    }
+    else if( PS_TEXCOORD.z < 1.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
+    }
+    else
+    {
+        colour.rgba = texture2D( SAMPLER[5], PS_TEXCOORD.xy );
+    }
+#else
+    if( PS_TEXCOORD.z < 0.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
+    }
+    else
+    {
+        colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
+    }
+#endif
+
+    // if(FLOAT_PARAMS.y > 0.0)
+    // {
+    // 	if(PS_POS.y < FLOAT_PARAMS.x)
+    // 	{
+    // 		discard;
+    // 	}
+    // }
+
+#if defined ( FADE_OUT )
+	if (colour.a >= ALPHA_TEST)
+#else
+	if (ALPHA_TEST > 0.0)
+	{
+		if (colour.a >= ALPHA_TEST)
+		{
+			gl_FragColor = colour.rgba;	
+		}
+		else
+		{
+			discard;
+		}
+	}
+    else
+#endif
+    {
+        gl_FragColor.rgba = colour.rgba * COLOUR_XFORM;
+		
+		vec2 world_uv = ( PS_POS.xz - OCEAN_WORLD_EXTENTS.xy ) * OCEAN_WORLD_EXTENTS.zw;
+		vec3 world_tint = texture2D( OCEAN_SAMPLER, world_uv ).rgb;
+		gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * world_tint.rgb, OCEAN_BLEND_PARAMS.x);
+
+        vec3 light = CalculateLightingContribution();
+
+        gl_FragColor.rgb *= max( light.rgb, vec3( LIGHT_OVERRIDE, LIGHT_OVERRIDE, LIGHT_OVERRIDE ) );
+    }
+#if defined ( FADE_OUT )
+	else
+	{
+		discard;
+	}
+#endif
+
+}
