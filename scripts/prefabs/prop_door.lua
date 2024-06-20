@@ -385,7 +385,7 @@ local function disableDoor(inst, setting, cause)
 
     else
         -- THIS DOORS OPPOSITE DOOR MAY EXIST BUT NOT VISITED YET..
-        local interior = interior_spawner:GetInteriorByName(door.target_interior)
+        local interior = interior_spawner:GetInteriorByIndex(door.target_interior)
         if interior then
             if interior.prefabs then
                 for k, prefab in ipairs(interior.prefabs) do

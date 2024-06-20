@@ -91,13 +91,12 @@ local function AddBatToCaves()
     local bat_cave = TheWorld.components.interiorspawner:GetInteriorByIndex(interiorID)
     local width = bat_cave.size_net.width:value()
     local depth = bat_cave.size_net.depth:value()
-    local offset = Vector3(math.random() * width - width / 2, 0, math.random() * depth - depth / 2) -- TODO adjust position
+    local offset = {x = math.random() * width - width / 2, z = math.random() * depth - depth / 2} -- TODO adjust position
 
-    local bat = TheWorld.components.interiorspawner:SpawnObject(interiorID, "vampirebat", offset)
+    local bat = TheWorld.components.interiorspawner:SpawnObject(interiorID, "vampirebat")
     if bat then
-        bat.components.sleeper.hibernate = true
-        bat.components.sleeper:GoToSleep()
         OnBatSpawned(bat)
+        bat.sg:GoToState("flyout", offset)
     end
 end
 
@@ -244,6 +243,12 @@ self.inst:StartUpdatingComponent(self)
 --------------------------------------------------------------------------
 --[[ Public getters and setters ]]
 --------------------------------------------------------------------------
+
+-- Easy access for roc cave connection
+---@return number InteriorID
+function self:GetRandomBatCave()
+    return GetRandomItem(_batcaves)
+end
 
 function self:GetNumBats()
     return _bat_count
