@@ -196,7 +196,7 @@ local function WallPlaceTest(inst, pt, distance)
         local dist = distance or 3
         ents = TheSim:FindEntities(pt.x, pt.y, pt.z, dist, {"wallsection"})
         print("ENTS",#ents, canbuild)
-        --dumptable(ents,1,1,1)    
+        --dumptable(ents,1,1,1)
         if #ents < 1 and canbuild then
             return true
         end
@@ -220,7 +220,7 @@ end
 
 local function WindowPlacerAnim(inst, pt)
     inst.Transform:SetTwoFaced()
-    -- inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/pl_animrotatingbillboard.ksh"))
+    -- inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/animrotatingbillboard.ksh"))
 end
 
 local function WindowPlaceTest(inst, pt)

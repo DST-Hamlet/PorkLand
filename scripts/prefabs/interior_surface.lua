@@ -63,9 +63,9 @@ local function UpdateFx(inst)
                 local fx = SpawnPrefab("interiorwall_fx")
                 if inst.prefab:find("_x") then
                     fx.is_x = true
-                    fx.Transform:SetPosition((x + 0.5) * WALL_TILE_SCALE - xoffset, y, 0)
+                    fx.Transform:SetPosition((x + 0.5) * WALL_TILE_SCALE - xoffset - y * 0.25, y, 0)
                 else
-                    fx.Transform:SetPosition(0, y, (x + 0.5) * WALL_TILE_SCALE)
+                    fx.Transform:SetPosition( - y * 0.5, y, (x + 0.5) * WALL_TILE_SCALE)
                 end
                 fx.entity:SetParent(inst.entity)
                 inst.fx[fx] = true
@@ -77,10 +77,10 @@ local function UpdateFx(inst)
                 local p = select(2, math.modf(w/WALL_TILE_SCALE))
                 last_fx.w_percent = p
                 local x, _, z = last_fx.Transform:GetLocalPosition()
-                if x ~= 0 then
+                if inst.prefab:find("_x") then
                     last_fx.Transform:SetPosition(x - (1-p)*WALL_TILE_SCALE/2, y, 0)
                 else
-                    last_fx.Transform:SetPosition(0, y, z - (1-p)*WALL_TILE_SCALE/2)
+                    last_fx.Transform:SetPosition(- y * 0.5, y, z - (1-p)*WALL_TILE_SCALE/2)
                 end
             end
 

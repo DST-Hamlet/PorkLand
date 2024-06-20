@@ -79,6 +79,10 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
 
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
 
+    if center_x == nil then
+        return false
+    end
+
     local offset_x = x - center_x
     local abs_offset_x = math.abs(offset_x)
     local near_x
