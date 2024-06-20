@@ -235,8 +235,8 @@ _bat_attack_time = GetNextAttackTime()
 _bat_regen_time = GetNextRegenTime()
 
 -- Register events
-inst:ListenForEvent("ms_playerjoined", OnPlayerJoined)
-inst:ListenForEvent("ms_playerleft", OnPlayerLeft)
+inst:ListenForEvent("ms_playerjoined", OnPlayerJoined, TheWorld)
+inst:ListenForEvent("ms_playerleft", OnPlayerLeft, TheWorld)
 
 self.inst:StartUpdatingComponent(self)
 
@@ -467,5 +467,9 @@ function self:RegenAllBats()
         num_tries = num_tries + 1
     end
 end
+
+--------------------------------------------------------------------------
+--[[ End ]]
+--------------------------------------------------------------------------
 
 end)

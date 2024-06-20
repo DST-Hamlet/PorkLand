@@ -357,7 +357,7 @@ local function disableDoor(inst, setting, cause)
     assert(cause,"needs a cause")
 
     local door = inst.components.door
-    door:checkDisableDoor(setting, cause)
+    door:UpdateDoorStatus(setting, cause)
 
     -- deal with connecting doors.
     local interior_spawner = GetWorld().components.interiorspawner
@@ -380,7 +380,7 @@ local function disableDoor(inst, setting, cause)
                     targetdoor.components.vineable:enabledoorvis()
                 end
             end
-            targetdoor.components.door:checkDisableDoor(setting, cause)
+            targetdoor.components.door:UpdateDoorStatus(setting, cause)
         end
 
     else

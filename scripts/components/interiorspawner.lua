@@ -116,8 +116,7 @@ function InteriorSpawner:IsInInteriorRoom(x, z, padding)
 end
 
 function InteriorSpawner:IsInInterior(x, z)
-    return self.world_width > 0
-        and self:IsInInteriorRegion(x, z) and self:IsInInteriorRoom(x, z)
+    return self.world_width > 0 and self:IsInInteriorRegion(x, z) and self:IsInInteriorRoom(x, z)
 end
 
 function InteriorSpawner:GetInteriorCenterAt_Generic(x, z)
@@ -491,120 +490,6 @@ function InteriorSpawner:GetInteriorByName(name)
     end
 end
 
-function InteriorSpawner:ReturnItemToScene(entity, doors_in_limbo)
-    entity:ReturnToScene()
-    entity.interior = nil
-    entity:RemoveTag("INTERIOR_LIMBO")
-
-    if entity.SoundEmitter then
-        entity.SoundEmitter:OverrideVolumeMultiplier(1)
-    end
-
-    if entity.dissablephysics then
-        entity.dissablephysics = nil
-        entity.Physics:SetActive(false)
-    end
-
-    -- I am really not pleased with this function. TODO: Use callbacks to entities/components for this
-    if entity.prefab == "antman" then
-        if IsCompleteDisguise(GetPlayer()) and not entity.combatTargetWasDisguisedOnExit then
-            entity.components.combat.target = nil
-        end
-        entity.combatTargetWasDisguisedOnExit = false
-    end
-
-    if entity.Light and entity.components.machine and not entity.components.machine.ison then
-        entity.Light:Enable(false)
-    end
-
-    if entity:HasTag("interior_door") and doors_in_limbo then
-        table.insert(doors_in_limbo, entity)
-    end
-    if entity.returntointeriorscene then
-        entity.returntointeriorscene(entity)
-    end
-    if not entity.persists then
-        entity:Remove()
-    end
-end
-
-function InteriorSpawner:insertprefab(interior, prefab, offset, prefabdata)
-    if interior == self.current_interior then
-        print("CURRENT")
-        local pt = self:getSpawnOrigin()
-        local object = SpawnPrefab(prefab)
-        object.Transform:SetPosition(pt.x + offset.x_offset, 0, pt.z + offset.z_offset)
-        if prefabdata and prefabdata.startstate then
-            object.sg:GoToState(prefabdata.startstate)
-            if prefabdata.startstate == "forcesleep" then
-                object.components.sleeper.hibernate = true
-                object.components.sleeper:GoToSleep()
-            end
-        end
-    elseif interior.visited then
-        print("VISITED")
-        local pt = self:getSpawnOrigin()
-        local object = SpawnPrefab(prefab)
-        object.Transform:SetPosition(pt.x + offset.x_offset, 0, pt.z + offset.z_offset)
-        if prefabdata and prefabdata.startstate then
-            object.sg:GoToState(prefabdata.startstate)
-            if prefabdata.startstate == "forcesleep" then
-                object.components.sleeper.hibernate = true
-                object.components.sleeper:GoToSleep()
-            end
-        end
-        self:PutPropIntoInteriorLimbo(object,interior)
-    else
-        local data = {name = prefab, x_offset = offset.x_offset, z_offset = offset.z_offset }
-        if prefabdata then
-            for arg, param in pairs(prefabdata) do
-                data[arg] = param
-            end
-        end
-        table.insert(interior.prefabs, data)
-    end
-end
-
-function InteriorSpawner:InsertHouseDoor(interior, door_data)
-
-    if interior.visited then
-        local pt = self:getSpawnOrigin()
-
-        local object = SpawnPrefab(door_data.name)
-        object.Transform:SetPosition(pt.x + door_data.x_offset, 0, pt.z + door_data.z_offset)
-        object.initInteriorPrefab(object, GetPlayer(), door_data, interior)
-        object.Transform:SetRotation(door_data.rotation)
-
-        self:AddDoor(object, door_data)
-        self:PutPropIntoInteriorLimbo(object, interior)
-
-    else
-        local data = door_data
-        table.insert(interior.prefabs, data)
-    end
-end
-
-function InteriorSpawner:InsertDoor(interior, door_data)
-
-    if interior.visited then
-
-        local pt = self:getSpawnOrigin()
-
-        local object = SpawnPrefab("prop_door")
-        object.Transform:SetPosition(pt.x + door_data.x_offset, 0, pt.z + door_data.z_offset)
-        -- object:RemoveFromScene(true)
-        -- object:AddTag("INTERIOR_LIMBO")
-
-        object.initInteriorPrefab(object, GetPlayer(), door_data, interior)
-
-        self.doors[door_data.my_door_id] = { my_interior_name = door_data.my_interior_name, inst = object, target_interior = door_data.target_interior }
-        self:PutPropIntoInteriorLimbo(object, interior)
-    else
-        local data = door_data
-        table.insert(interior.prefabs, data)
-    end
-end
-
 function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     assert(TheWorld.ismastersim)
 
@@ -824,7 +709,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 -- needs to happen after the object initinterior so the door info is there. 
                 if prefab.door_closed then
                     for cause,setting in pairs(prefab.door_closed)do
-                        object.components.door:checkDisableDoor(setting, cause)
+                        object.components.door:UpdateDoorStatus(setting, cause)
                     end
                 end
 
@@ -1080,6 +965,25 @@ function InteriorSpawner:Debug_Layout()
         dumptable(json.encode(self:BuildMinimapLayout(center)))
     else
         print("Out of interior")
+    end
+end
+
+function InteriorSpawner:ForEachPlayerInRoom(interiorID, fn, ...)
+    if not interiorID then
+        return
+    end
+
+    local room = self:GetInteriorByIndex(interiorID)
+    if not room or not room:IsValid() then
+        return
+    end
+
+    for _, player in pairs(AllPlayers) do
+        local current_room = (player.components.interiorvisitor and player.components.interiorvisitor.center_ent)
+            or (player.replica.interiorvisitor and player.replica.interiorvisitor.center_ent:value()) or nil
+        if current_room and current_room:IsValid() then
+            fn(player, ...)
+        end
     end
 end
 

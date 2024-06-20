@@ -273,6 +273,7 @@ ACTIONS.USEDOOR.fn = function(act)
         if house ~= nil then
             DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
             PlayDoorSound()
+            act.doer:PushEvent("used_door", {door = door})
             return true
         end
     else
@@ -287,6 +288,7 @@ ACTIONS.USEDOOR.fn = function(act)
             local offset = (room_pos - door_pos):GetNormalized() * 1.0
             DoTeleport(act.doer, door_pos + offset)
             PlayDoorSound()
+            act.doer:PushEvent("used_door", {door = door})
             return true
         end
     end
@@ -516,7 +518,7 @@ local PL_COMPONENT_ACTIONS =
             end
         end,
         door = function(inst, doer, actions, right)
-            if not inst:HasTag("door_hidden") --[[and not inst:HasTag("door_disabled") ]] then -- TODO disable
+            if not inst:HasTag("door_hidden") and not inst:HasTag("door_disabled") then
                 table.insert(actions, ACTIONS.USEDOOR)
             end
         end,

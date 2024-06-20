@@ -26,6 +26,7 @@ local Door = Class(function(self, inst)
     self.inst = inst
     self.disabled = false
     self.hidden = false
+    self.disable_causes = {}
 end, nil,
 {
     disabled = ondisabled,
@@ -34,7 +35,7 @@ end, nil,
 })
 
 function Door:UpdateTargetOffset()
-    local door_inst = GetWorld().components.interiorspawner:GetDoorInst(self.target_door_id)
+    local door_inst = TheWorld.components.interiorspawner:GetDoorInst(self.target_door_id)
     if door_inst then
         local x_offset = 0
         local z_offset = 0
@@ -67,18 +68,13 @@ function Door:Activate(doer)
     self.inst:PushEvent("usedoor", {doer = doer})
 end
 
-function Door:checkDisableDoor(setting, cause)
-    if not self.disabledcauses then
-        self.disabledcauses = {}
-    end
-
+function Door:UpdateDoorStatus(status, cause)
     if cause then
-        self.disabledcauses[cause] = setting
+        self.disable_causes[cause] = status
     end
 
     self.disabled = false
-
-    for reason, setting in pairs(self.disabledcauses) do
+    for _cause, setting in pairs(self.disable_causes) do
         if setting then
             self.disabled = true
         end
@@ -101,7 +97,7 @@ function Door:UpdateDoorVis()
     end
 end
 
-function Door:sethidden(hidden)
+function Door:SetHidden(hidden)
     self.hidden = hidden
 end
 
@@ -135,8 +131,8 @@ function Door:OnSave()
     if self.angle then
         data.angle = self.angle
     end
-    if self.disabledcauses then
-        data.disabledcauses = self.disabledcauses
+    if self.disable_causes then
+        data.disable_causes = self.disable_causes
     end
 
     return data
@@ -182,10 +178,10 @@ function Door:OnLoad(data)
     if data.door_south then
         self.inst:AddTag("door_south")
     end
-    if data.disabledcauses then
-        self.disabledcauses = data.disabledcauses
+    if data.disable_causes then
+        self.disable_causes = data.disable_causes
     end
-    self:checkDisableDoor()
+    self:UpdateDoorStatus()
 end
 
 return Door

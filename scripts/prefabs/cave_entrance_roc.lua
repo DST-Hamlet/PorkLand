@@ -10,13 +10,11 @@ local ROC_CAVE_WALL_TEXTURE = "levels/textures/interiors/batcave_wall_rock.tex"
 local ROC_CAVE_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_vamp_cave_noise.tex"
 local ROC_CAVE_COULOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
 local ROC_CAVE_REVERB = "ruins"
-local ROC_CAVE_AMBIENT = "STONE"
+local ROC_CAVE_AMBIENT = WORLD_TILES.CAVE
 
 local assets =
 {
     Asset("ANIM", "anim/cave_entrance.zip"),
-    --Asset("ANIM", "anim/ruins_entrance.zip"),
-    --Asset("ANIM", "anim/cave_exit_rope.zip"),
     Asset("ANIM", "anim/rock_batcave.zip"),
 }
 
@@ -124,7 +122,7 @@ local function Open(inst)
 
     inst.MiniMapEntity:SetIcon("cave_open.tex")
 
-    --inst.components.door:checkDisableDoor(false, "plug")
+    inst.components.door:UpdateDoorStatus(false, "plug")
 end
 
 local function OnWorkCallbackEntrance(inst, worker, workleft)
@@ -185,7 +183,7 @@ local function Close(inst)
 
     inst.open = false
 
-   -- inst.components.door:checkDisableDoor(true, "plug")
+   inst.components.door:UpdateDoorStatus(true, "plug")
 end
 
 local function GetStatus(inst)
@@ -353,16 +351,14 @@ local function fn()
     inst.components.door.outside = true
 
     inst:AddComponent("inspectable")
-    --inst.components.inspectable:RecordViews()
     inst.components.inspectable.getstatus = GetStatus
     inst.components.inspectable.nameoverride = "CAVE_ENTRANCE"
-
-    TheWorld.components.interiorspawner:AddExterior(inst)
 
     MakeHauntableDoor(inst)
 
     inst:DoTaskInTime(0, InitMaze)
 
+    TheWorld.components.interiorspawner:AddExterior(inst)
     Close(inst)
 
     inst.OnSave = OnSave
@@ -412,28 +408,6 @@ local function exitfn()
 
     return inst
 end
-
--- local function ropefn()
---     local inst = CreateEntity()
-
---     inst.entity:AddTransform()
---     inst.entity:AddAnimState()
---     inst.entity:AddNetwork()
-
---     inst.AnimState:SetBank("exitrope")
---     inst.AnimState:SetBuild("cave_exit_rope")
---     inst.AnimState:PlayAnimation("idle_loop", true)
-
---     inst.entity:SetPristine()
-
---     if not TheWorld.ismastersim then
---         return inst
---     end
-
---     inst:DoTaskInTime(0, function()
-        
---     end)
--- end
 
 return Prefab("cave_entrance_roc", fn, assets, prefabs),
        Prefab("cave_exit_roc", exitfn, assets, prefabs)
