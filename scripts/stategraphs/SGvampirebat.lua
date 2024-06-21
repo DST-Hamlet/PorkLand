@@ -4,7 +4,8 @@ local actionhandlers =
 {
     ActionHandler(ACTIONS.GOHOME, "action"),
     ActionHandler(ACTIONS.EAT, "eat_loop"),
-    ActionHandler(ACTIONS.PICKUP, "eat_enter")
+    ActionHandler(ACTIONS.PICKUP, "eat_enter"),
+    ActionHandler(ACTIONS.VAMPIREBAT_FLYAWAY, "flyaway"),
 }
 
 local events =
@@ -196,6 +197,43 @@ local states =
     },
 
     State{
+        name = "flyaway",
+        tags = {"flight", "busy"},
+
+        onenter = function(inst)
+            local bat_cave = TheWorld.components.interiorspawner:GetExteriorByInteriorIndex(inst._target_exterior)
+            if bat_cave ~= nil then
+                local outside_pos = bat_cave:GetPosition() + Vector3(bat_cave:GetPhysicsRadius(1), 0, 0)
+                inst.Transform:SetPosition(outside_pos.x, 0, outside_pos.z)
+            end
+
+            inst.Physics:Stop()
+
+            inst.DynamicShadow:Enable(false)
+            inst.components.health:SetInvincible(true)
+
+            inst.AnimState:PlayAnimation("fly_away_pre")
+            inst.AnimState:PushAnimation("fly_away_loop", true)
+
+            inst.Physics:SetMotorVel(0, 10 + math.random() * 2, 0)
+        end,
+
+        onupdate = function(inst)
+            inst.Physics:SetMotorVel(0, 10 + math.random() * 2, 0)
+        end,
+
+        timeline =
+        {
+            TimeEvent(6  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end),
+            TimeEvent(13 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end),
+            TimeEvent(23 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end),
+            TimeEvent(33 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end),
+            TimeEvent(41 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end),
+            TimeEvent(51 * FRAMES, function(inst) inst:PerformBufferedAction() end),
+        },
+    },
+
+    State{
         name = "flyout",
         tags = {"busy", "noattack", "nointerrupt"},
 
@@ -203,7 +241,7 @@ local states =
             inst.AnimState:PlayAnimation("flyout", false)
             inst.AnimState:SetFloatParams(0.25, 1.0, 0)
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/distant_taunt")
-            inst.sg.statemem.offset = offset or {x = 0, z = 0}
+            inst.sg.statemem.offset = offset or Vector3(0, 0, 0)
         end,
 
         timeline =
@@ -216,11 +254,11 @@ local states =
             TimeEvent(76 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
             TimeEvent(84 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
             TimeEvent(94 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
-            TimeEvent(96 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out")
-                inst.sg.statemem.can_down = true end),
+            TimeEvent(96 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
             TimeEvent(104 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
             TimeEvent(114 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
             TimeEvent(116 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
+            TimeEvent(120 * FRAMES, function(inst) inst.sg.statemem.can_down = true end),
             TimeEvent(124 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
             TimeEvent(124 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
             TimeEvent(136 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/breathe_out") end),
@@ -249,10 +287,8 @@ local states =
 
         events =
         {
-            EventHandler("animover", function(inst) 
+            EventHandler("animover", function(inst)
                 inst.sg:GoToState("idle")
-                -- inst.components.sleeper.hibernate = true
-                -- inst.components.sleeper:GoToSleep()
             end)
         },
     },

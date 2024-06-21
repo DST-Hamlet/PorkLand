@@ -986,4 +986,18 @@ function InteriorSpawner:ForEachPlayerInRoom(interiorID, fn, ...)
     end
 end
 
+function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
+    if not interiorID then
+        return false
+    end
+
+    for _, v in pairs(AllPlayers) do
+        if v:GetCurrentInteriorID() == interiorID then
+            return true
+        end
+    end
+
+    return false
+end
+
 return InteriorSpawner

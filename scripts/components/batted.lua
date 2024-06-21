@@ -80,6 +80,11 @@ local function OnPlayerLeft(src, player)
     end
 end
 
+local function hibernate(bat)
+    bat.components.sleeper.hibernate = true
+    bat.components.sleeper:GoToSleep()
+end
+
 -- Spawns a bat in a random bat cave
 local function AddBatToCaves()
     local bat_count = self:GetNumBats()
@@ -91,12 +96,20 @@ local function AddBatToCaves()
     local bat_cave = TheWorld.components.interiorspawner:GetInteriorByIndex(interiorID)
     local width = bat_cave.size_net.width:value()
     local depth = bat_cave.size_net.depth:value()
-    local offset = {x = math.random() * width - width / 2, z = math.random() * depth - depth / 2} -- TODO adjust position
+    local offset = {x = math.random() * width - width / 2, y = 0, z = math.random() * depth - depth / 2}
 
     local bat = TheWorld.components.interiorspawner:SpawnObject(interiorID, "vampirebat")
     if bat then
         OnBatSpawned(bat)
-        bat.sg:GoToState("flyout", offset)
+        if TheWorld.components.interiorspawner:IsAnyPlayerInRoom(interiorID) then
+            bat.sg:GoToState("flyout", offset)
+            bat:DoTaskInTime(176 * FRAMES, hibernate)
+        else
+            -- Don't bother if there are no players
+            local spawn_point = bat_cave:GetPosition() + offset
+            bat.Transform:SetPosition(spawn_point.x, 0, spawn_point.z)
+            hibernate(bat)
+        end
     end
 end
 
@@ -215,8 +228,20 @@ local function SpawnBatsForPlayer(player)
     end
 
     for _, key in pairs(mark_for_remove) do
-        -- TODO run to door action
-        _bats_to_attack[key]:Remove()
+        local bat = _bats_to_attack[key]
+        local interiorID = bat:GetCurrentInteriorID()
+        if TheWorld.components.interiorspawner:IsAnyPlayerInRoom(interiorID) then
+            local door_id = "vampirebatcave" .. interiorID .. "_exit"
+            local door = TheWorld.components.interiorspawner.doors[door_id]
+
+            bat.persists = false
+            bat._target_exterior = door.components.door.target_exterior
+            bat.components.locomotor:GoToEntity(door, ACTIONS.VAMPIREBAT_FLYAWAY, true)
+        else
+            -- Don't bother if there are no players
+            bat:Remove()
+        end
+
         _bats_to_attack[key] = nil
     end
 

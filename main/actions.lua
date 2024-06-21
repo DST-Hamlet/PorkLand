@@ -20,6 +20,7 @@ local PL_ACTIONS = {
     REPAIRBOAT = Action({distance = 3}),
     DISLODGE = Action({}),
     USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = false, encumbered_valid = true}), -- TODO ghost_valid
+    VAMPIREBAT_FLYAWAY = Action({distance = 1}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -295,6 +296,14 @@ ACTIONS.USEDOOR.fn = function(act)
 
     OnTeleportFailed(act.doer)
     return false, "ERROR"
+end
+
+ACTIONS.VAMPIREBAT_FLYAWAY.fn = function(act)
+    if not act.target or not act.doer then
+        return false
+    end
+    act.doer:Remove()
+    return true
 end
 
 -- Patch for hackable things
