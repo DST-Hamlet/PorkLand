@@ -73,6 +73,7 @@ PrefabFiles = {
     "relics",
     "rowboat_wake",
     "sail",
+    "scorpion",
     "sedimentpuddle",
     "shears",
     "smelter",

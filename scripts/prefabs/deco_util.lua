@@ -384,13 +384,10 @@ local function OnWorkCallBack(inst, worker, work_left)
 
     UpdateArtWorkable(inst)
 
-    if TheWorld.components.quaker_interior then
-        if work_left <= 0 then
-            TheWorld.components.quaker_interior:ForceQuake("cavein")
-        else
-            TheWorld.components.quaker_interior:ForceQuake("pillarshake")
-        end
-    end
+    TheWorld:PushEvent("interior_startquake", {
+        interiorID = inst:GetCurrentInteriorID(),
+        quake_level = work_left <= 0 and INTERIOR_QUAKE_LEVELS.PILLAR_DESTROYED or INTERIOR_QUAKE_LEVELS.PILLAR_WORKED,
+    })
 end
 
 local function swapColor(inst, light)

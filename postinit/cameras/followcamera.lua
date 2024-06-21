@@ -77,3 +77,17 @@ AddClassPostConstruct("cameras/followcamera", function(self)
     self.pl_interior_fov = 25
     self.pl_inside_interior = false -- controlled by player client component
 end)
+
+function ShakeAllCamerasInRoom(interiorID, mode, duration, speed, scale, source_or_point, max_distance)
+    if not interiorID then
+        return
+    end
+
+    if not TheWorld.components.interiorspawner then
+        return
+    end
+
+    TheWorld.components.interiorspawner:ForEachPlayerInRoom(interiorID, function (player)
+        player:ShakeCamera(mode, duration, speed, scale, source_or_point, max_distance)
+    end)
+end

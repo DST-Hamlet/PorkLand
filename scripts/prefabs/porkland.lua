@@ -103,6 +103,7 @@ local function common_postinit(inst)
 
     inst:AddComponent("interiorspawner")
     inst:AddComponent("worldmapiconproxy")
+    inst:AddComponent("interiorquaker")
 end
 
 local function master_postinit(inst)

@@ -18,6 +18,7 @@ local function RegisterNetListeners(inst)
         inst:ListenForEvent("poisondamage", OnPoisonDamage, inst._parent)
     else
         inst.poisonpulse:set_local(false)
+        inst.isinteriorquaking:set_local(false)
         inst:ListenForEvent("poisonpulsedirty", OnPoisonPulseDirty)
     end
 end
@@ -26,6 +27,7 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.ispoisoned = net_bool(inst.GUID, "poisonable.ispoisoned")
     inst.poisonpulse = net_bool(inst.GUID, "poisonable.poisonpulse", "poisonpulsedirty")
     inst.riderspeedmultiplier = net_float(inst.GUID, "rider.riderspeedmultiplier")
+    inst.isquaking = net_bool(inst.GUID, "interiorquaker.isquaking", "isquakingdirty")
 
     inst.ispoisoned:set(false)
     inst.riderspeedmultiplier:set(1)

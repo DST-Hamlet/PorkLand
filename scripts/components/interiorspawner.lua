@@ -979,9 +979,8 @@ function InteriorSpawner:ForEachPlayerInRoom(interiorID, fn, ...)
     end
 
     for _, player in pairs(AllPlayers) do
-        local current_room = (player.components.interiorvisitor and player.components.interiorvisitor.center_ent)
-            or (player.replica.interiorvisitor and player.replica.interiorvisitor.center_ent:value()) or nil
-        if current_room and current_room:IsValid() then
+        local current_room = player:GetCurrentInteriorID()
+        if current_room == interiorID then
             fn(player, ...)
         end
     end

@@ -143,9 +143,9 @@ end
 
 local function OnWorkCallbackExit(inst, worker, work_left)
     if work_left > 0 then
-        if work_left < TUNING.ROCKS_MINE*(1/3) then
+        if work_left < TUNING.ROCKS_MINE * (1 / 3) then
             inst.AnimState:PlayAnimation("low")
-        elseif work_left < TUNING.ROCKS_MINE*(2/3) then
+        elseif work_left < TUNING.ROCKS_MINE * (2 / 3) then
             inst.AnimState:PlayAnimation("med")
         else
             inst.AnimState:PlayAnimation("full")
@@ -161,7 +161,10 @@ local function OnWorkCallbackExit(inst, worker, work_left)
     inst.components.lootdropper:DropLoot()
     inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
 
-    --TheWorld.components.quaker_interior:ForceQuake("PILLAR_WORKED")
+    TheWorld:PushEvent("interior_startquake", {
+        interiorID = inst:GetCurrentInteriorID(),
+        quake_level = INTERIOR_QUAKE_LEVELS.PILLAR_WORKED,
+    })
 
     ConnectInteriors(inst)
 
