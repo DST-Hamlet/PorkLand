@@ -32,8 +32,8 @@ local function bg_group()
 	inst.entity:AddTransform()
 
 	local tiles = {}
-	for i = -20, 20 do
-		for j = -20, 20 do
+	for i = -30, 30 do
+		for j = -30, 30 do
 			local v = bg()
 			v.Transform:SetPosition(i * 50, 0, j * 50)
 			v:ListenForEvent("onremove", function() v:Remove() end, inst)
