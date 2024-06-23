@@ -120,7 +120,7 @@ local function Open(inst)
     inst.open = true
     inst.name = STRINGS.NAMES.CAVE_ENTRANCE_OPEN
 
-    inst.MiniMapEntity:SetIcon("cave_open.tex")
+    inst.MiniMapEntity:SetIcon("cave_open.png")
 
     inst.components.door:UpdateDoorStatus(false, "plug")
 end

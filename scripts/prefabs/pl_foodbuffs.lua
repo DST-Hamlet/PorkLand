@@ -16,13 +16,13 @@ end
 
 local function speed_tea_attach(inst, target)
     if target.components.locomotor then
-        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/2)
+        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", 1 + (TUNING.CAFFEINE_FOOD_BONUS_SPEED - 1)/2)
     end
 end
 
 local function speed_icedtea_attach(inst, target)
     if target.components.locomotor then
-        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", TUNING.CAFFEINE_FOOD_BONUS_SPEED/3)
+        target.components.locomotor:SetExternalSpeedMultiplier(inst, "CAFFEINE", 1 + (TUNING.CAFFEINE_FOOD_BONUS_SPEED - 1)/3)
     end
 end
 

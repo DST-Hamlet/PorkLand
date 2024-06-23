@@ -124,7 +124,7 @@ local function SetMinimapData(inst, data)
 	inst.MiniMapEntity:SetEnabled(true)
 
 	-- TODO: support priority
-	-- "ents":{"vamp_cave_burrow.png":[[0,0]],"winona.png":[[-7.5001220703125,0]],"vamp_bat_cave_exit.png":[[-9,0]],"stalagmite_tall.png":[[-2.5570068359375,3.3013305664062]]},"pos":[986,906]}
+	-- "ents":{"vamp_cave_burrow.tex":[[0,0]],"winona.tex":[[-7.5001220703125,0]],"vamp_bat_cave_exit.tex":[[-9,0]],"stalagmite_tall.tex":[[-2.5570068359375,3.3013305664062]]},"pos":[986,906]}
 	for icon, pos_list in pairs(data.ents)do
 		if inst.icons[icon] == nil then
 			inst.icons[icon] = {}
