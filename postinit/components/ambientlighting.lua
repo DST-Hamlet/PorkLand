@@ -7,15 +7,14 @@ local PL_NO_LIGHT_INTERIOR_COLOURS =
     {
         default =
         {
-            day = { colour = Point(0, 0, 0), time = 4 },
-            dusk = { colour = Point(0, 0, 0), time = 6 },
-            night = { colour = Point(0, 0, 0), time = 8 },
+            day = {colour = Point(0, 0, 0), time = 4},
+            dusk = {colour = Point(0, 0, 0), time = 6},
+            night = {colour = Point(0, 0, 0), time = 8},
         },
     },
 
-    FULL_MOON_COLOUR = { colour = Point(0, 0, 0), time = 8 },
-    -- TODO BLOODMOON
-    CAVE_COLOUR = { colour = Point(0, 0, 0), time = 2 },
+    FULL_MOON_COLOUR = {colour = Point(0, 0, 0), time = 8},
+    CAVE_COLOUR = {colour = Point(0, 0, 0), time = 2},
 }
 
 AddComponentPostInit("ambientlighting", function(self, inst)

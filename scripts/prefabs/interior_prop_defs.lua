@@ -39,7 +39,6 @@ PROP_DEFS.roc_cave = function(depth, width, room, open_exits, exterior_door_def)
                 bank = "exitrope",
                 build = "cave_exit_rope",
                 anim = "idle_loop",
-                light = true
             },
             my_door_id =  exterior_door_def.target_door_id,
             target_exterior = exterior_door_def.target_exterior,

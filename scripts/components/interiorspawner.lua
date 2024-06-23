@@ -340,13 +340,13 @@ local function CheckRoomSize(width, depth)
     end
 end
 
-function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name, roomindex, addprops, exits, walltexture, floortexture, minimaptexture, cityID, cc, batted, playerroom, reverb, ambsnd, groundsound, cameraoffset, zoom, forceInteriorMinimap)
+function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name, roomindex, addprops, exits, walltexture, floortexture, minimaptexture, cityID, colour_cube, batted, playerroom, reverb, ambient_sound, footstep_tile, cameraoffset, zoom, forceInteriorMinimap)
     interior = interior or "generic_interior"
     width = width or 15
     depth = depth or 10
     CheckRoomSize(width, depth)
     assert(roomindex)
-    cc = cc or "images/colour_cubes/day05_cc.tex"
+    colour_cube = colour_cube or "images/colour_cubes/day05_cc.tex"
 
     local interior_def =
     {
@@ -360,14 +360,14 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
         floortexture = floortexture,
         minimaptexture = minimaptexture,
         cityID = cityID,
-        cc = cc,
+        cc = colour_cube,
         visited = false,
         batted = batted,
         playerroom = playerroom,
         enigma = false,
-        reverb = reverb,
-        ambsnd = ambsnd,
-        groundsound = groundsound,
+        reverb = reverb, -- reverb preset for TheSim:SetReverbPreset
+        ambient_sound = ambient_sound, -- The index of ambient sound defined in pl_ambientsound.lua, e.g. WORLD_TILES.DIRT
+        footstep_tile = footstep_tile, -- The tile of the desired footstep sound, default to WORLD_TILES.DIRT in PlayFootstep function
         cameraoffset = cameraoffset,
         zoom = zoom,
         forceInteriorMinimap = forceInteriorMinimap

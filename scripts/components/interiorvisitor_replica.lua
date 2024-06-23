@@ -89,7 +89,7 @@ function InteriorVisitor:ApplyInteriorCamera(ent)
     end
 
     local pos = ent:GetPosition()
-    TheCamera.pl_inside_interior = true
+    TheCamera.inside_interior = true
     TheCamera.pl_interior_currentpos = pos + cameraoffset
     TheCamera.pl_interior_distance = zoom
 end
@@ -97,7 +97,6 @@ end
 function InteriorVisitor:OnUpdate()
     local ambientlighting = TheWorld.components.ambientlighting
     if self.inst == ThePlayer then
-        -- local was_in = TheCamera.pl_inside_interior
         local last_center_ent = self.last_center_ent
         local ent = self.center_ent:value()
         local is_in = IsInInteriorRectangle(self.inst:GetPosition(), ent)
@@ -125,7 +124,7 @@ function InteriorVisitor:OnUpdate()
         else
             self.inst:RemoveTag("inside_interior")
             self.player_icon.MiniMapEntity:SetEnabled(false)
-            TheCamera.pl_inside_interior = false
+            TheCamera.inside_interior = false
             self.last_center_ent = nil
             if last_center_ent ~= ent then
                 self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})

@@ -26,23 +26,23 @@ local function onattackwithtarget(inst, data)
     end
 end
 
-CommonHandlers.OnAttackWithTarget = function()  -- 这个对doattack的事件侦听相比官方的可以sg.statemem.target。不清楚官方版本没法指定sg.statemem.target是否是bug
+-- 这个对 doattack 的事件侦听相比 CommonHandlers.OnAttack() 可以额外传入一个 data 参数
+CommonHandlers.OnAttackWithTarget = function()
     return EventHandler("doattack", onattackwithtarget)
 end
 
 local _PlayFootstep = PlayFootstep
 function PlayFootstep(inst, volume, ispredicted, ...)
-    if inst and inst:HasTag("inside_interior") and inst.SoundEmitter then
-        inst.SoundEmitter:PlaySound(
-            inst.sg ~= nil and inst.sg:HasStateTag("running") and "dontstarve/movement/run_woods" or "dontstarve/movement/walk_woods"
-            ..
-            (   (inst:HasTag("smallcreature") and "_small") or
-                (inst:HasTag("largecreature") and "_large" or "")
-            ),
-            nil,
-            volume or 1,
-            ispredicted
-        )
+    local interiorID = inst:GetCurrentInteriorID()
+    if interiorID ~= nil and inst.SoundEmitter then
+        local footstep_tile = TheWorld.components.interiorspawner.interiors[interiorID].footstep_tile
+        local tile_info = GetTileInfo(footstep_tile) or GetTileInfo(WORLD_TILES.DIRT)
+        local runsound = tile_info.runsound or "dontstarve/movement/run_woods"
+        local walksound = tile_info.walksound or "dontstarve/movement/walk_woods"
+        local suffix = (inst:HasTag("smallcreature") and "_small") or (inst:HasTag("largecreature") and "_large" or "")
+        local sound = (inst.sg ~= nil and inst.sg:HasStateTag("running") and runsound or walksound) .. suffix
+
+        inst.SoundEmitter:PlaySound(sound, nil, volume or 1, ispredicted)
     else
         _PlayFootstep(inst, volume, ispredicted, ...)
     end

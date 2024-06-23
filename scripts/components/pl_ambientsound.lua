@@ -28,53 +28,52 @@ local SANITY_SOUND = "dontstarve/sanity/sanity"
 local AMBIENT_SOUNDS =
 {
     -- Keeping DST sounds in case of multiple shards
-    [WORLD_TILES.ROAD] =            {sound = "dontstarve/AMB/rocky",                        wintersound = "dontstarve/AMB/rocky_winter",                    springsound = "dontstarve/AMB/rocky",                           summersound = "dontstarve_DLC001/AMB/rocky_summer",             rainsound = "dontstarve/AMB/rocky_rain"},
-    [WORLD_TILES.ROCKY] =           {sound = "dontstarve/AMB/rocky",                        wintersound = "dontstarve/AMB/rocky_winter",                    springsound = "dontstarve/AMB/rocky",                           summersound = "dontstarve_DLC001/AMB/rocky_summer",             rainsound = "dontstarve/AMB/rocky_rain"},
-    [WORLD_TILES.DIRT] =            {sound = "dontstarve/AMB/badland",                      wintersound = "dontstarve/AMB/badland_winter",                  springsound = "dontstarve/AMB/badland",                         summersound = "dontstarve_DLC001/AMB/badland_summer",           rainsound = "dontstarve/AMB/badland_rain"},
-    [WORLD_TILES.WOODFLOOR] =       {sound = "dontstarve/AMB/rocky",                        wintersound = "dontstarve/AMB/rocky_winter",                    springsound = "dontstarve/AMB/rocky",                           summersound = "dontstarve_DLC001/AMB/rocky_summer",             rainsound = "dontstarve/AMB/rocky_rain"},
-    [WORLD_TILES.SAVANNA] =         {sound = "dontstarve/AMB/grassland",                    wintersound = "dontstarve/AMB/grassland_winter",                springsound = "dontstarve/AMB/grassland",                       summersound = "dontstarve_DLC001/AMB/grassland_summer",         rainsound = "dontstarve/AMB/grassland_rain"},
-    [WORLD_TILES.GRASS] =           {sound = "dontstarve/AMB/meadow",                       wintersound = "dontstarve/AMB/meadow_winter",                   springsound = "dontstarve/AMB/meadow",                          summersound = "dontstarve_DLC001/AMB/meadow_summer",            rainsound = "dontstarve/AMB/meadow_rain"},
-    [WORLD_TILES.FOREST] =          {sound = "dontstarve/AMB/forest",                       wintersound = "dontstarve/AMB/forest_winter",                   springsound = "dontstarve/AMB/forest",                          summersound = "dontstarve_DLC001/AMB/forest_summer",            rainsound = "dontstarve/AMB/forest_rain"},
-    [WORLD_TILES.MARSH] =           {sound = "dontstarve/AMB/marsh",                        wintersound = "dontstarve/AMB/marsh_winter",                    springsound = "dontstarve/AMB/marsh",                           summersound = "dontstarve_DLC001/AMB/marsh_summer",             rainsound = "dontstarve/AMB/marsh_rain"},
-    [WORLD_TILES.DECIDUOUS] =       {sound = "dontstarve/AMB/forest",                       wintersound = "dontstarve/AMB/forest_winter",                   springsound = "dontstarve/AMB/forest",                          summersound = "dontstarve_DLC001/AMB/forest_summer",            rainsound = "dontstarve/AMB/forest_rain"},
-    [WORLD_TILES.DESERT_DIRT] =     {sound = "dontstarve/AMB/badland",                      wintersound = "dontstarve/AMB/badland_winter",                  springsound = "dontstarve/AMB/badland",                         summersound = "dontstarve_DLC001/AMB/badland_summer",           rainsound = "dontstarve/AMB/badland_rain"},
-    [WORLD_TILES.CHECKER] =         {sound = "dontstarve/AMB/chess",                        wintersound = "dontstarve/AMB/chess_winter",                    springsound = "dontstarve/AMB/chess",                           summersound = "dontstarve_DLC001/AMB/chess_summer",             rainsound = "dontstarve_DLC001/AMB/chess_summer"},
-    [WORLD_TILES.METEOR] =          {sound = "turnoftides/together_amb/moon_island/fall",   wintersound = "turnoftides/together_amb/moon_island/winter",    springsound = "turnoftides/together_amb/moon_island/spring",    summersound = "turnoftides/together_amb/moon_island/summer",    rainsound = "dontstarve_DLC001/AMB/chess_summer"},
-    [WORLD_TILES.PEBBLEBEACH] =     {sound = "turnoftides/together_amb/moon_island/fall",   wintersound = "turnoftides/together_amb/moon_island/winter",    springsound = "turnoftides/together_amb/moon_island/spring",    summersound = "turnoftides/together_amb/moon_island/summer",    rainsound = "dontstarve/AMB/badland_rain"},
-    [WORLD_TILES.SHELLBEACH] =      {sound = "hookline_2/amb/hermit_island",                wintersound = "hookline_2/amb/hermit_island",                   springsound = "hookline_2/amb/hermit_island",                   summersound = "hookline_2/amb/hermit_island",                   rainsound = "hookline_2/amb/hermit_island"},
+    [WORLD_TILES.ROAD] =                {sound = "dontstarve/AMB/rocky",                        wintersound = "dontstarve/AMB/rocky_winter",                    springsound = "dontstarve/AMB/rocky",                           summersound = "dontstarve_DLC001/AMB/rocky_summer",             rainsound = "dontstarve/AMB/rocky_rain"},
+    [WORLD_TILES.ROCKY] =               {sound = "dontstarve/AMB/rocky",                        wintersound = "dontstarve/AMB/rocky_winter",                    springsound = "dontstarve/AMB/rocky",                           summersound = "dontstarve_DLC001/AMB/rocky_summer",             rainsound = "dontstarve/AMB/rocky_rain"},
+    [WORLD_TILES.DIRT] =                {sound = "dontstarve/AMB/badland",                      wintersound = "dontstarve/AMB/badland_winter",                  springsound = "dontstarve/AMB/badland",                         summersound = "dontstarve_DLC001/AMB/badland_summer",           rainsound = "dontstarve/AMB/badland_rain"},
+    [WORLD_TILES.WOODFLOOR] =           {sound = "dontstarve/AMB/rocky",                        wintersound = "dontstarve/AMB/rocky_winter",                    springsound = "dontstarve/AMB/rocky",                           summersound = "dontstarve_DLC001/AMB/rocky_summer",             rainsound = "dontstarve/AMB/rocky_rain"},
+    [WORLD_TILES.SAVANNA] =             {sound = "dontstarve/AMB/grassland",                    wintersound = "dontstarve/AMB/grassland_winter",                springsound = "dontstarve/AMB/grassland",                       summersound = "dontstarve_DLC001/AMB/grassland_summer",         rainsound = "dontstarve/AMB/grassland_rain"},
+    [WORLD_TILES.GRASS] =               {sound = "dontstarve/AMB/meadow",                       wintersound = "dontstarve/AMB/meadow_winter",                   springsound = "dontstarve/AMB/meadow",                          summersound = "dontstarve_DLC001/AMB/meadow_summer",            rainsound = "dontstarve/AMB/meadow_rain"},
+    [WORLD_TILES.FOREST] =              {sound = "dontstarve/AMB/forest",                       wintersound = "dontstarve/AMB/forest_winter",                   springsound = "dontstarve/AMB/forest",                          summersound = "dontstarve_DLC001/AMB/forest_summer",            rainsound = "dontstarve/AMB/forest_rain"},
+    [WORLD_TILES.MARSH] =               {sound = "dontstarve/AMB/marsh",                        wintersound = "dontstarve/AMB/marsh_winter",                    springsound = "dontstarve/AMB/marsh",                           summersound = "dontstarve_DLC001/AMB/marsh_summer",             rainsound = "dontstarve/AMB/marsh_rain"},
+    [WORLD_TILES.DECIDUOUS] =           {sound = "dontstarve/AMB/forest",                       wintersound = "dontstarve/AMB/forest_winter",                   springsound = "dontstarve/AMB/forest",                          summersound = "dontstarve_DLC001/AMB/forest_summer",            rainsound = "dontstarve/AMB/forest_rain"},
+    [WORLD_TILES.DESERT_DIRT] =         {sound = "dontstarve/AMB/badland",                      wintersound = "dontstarve/AMB/badland_winter",                  springsound = "dontstarve/AMB/badland",                         summersound = "dontstarve_DLC001/AMB/badland_summer",           rainsound = "dontstarve/AMB/badland_rain"},
+    [WORLD_TILES.CHECKER] =             {sound = "dontstarve/AMB/chess",                        wintersound = "dontstarve/AMB/chess_winter",                    springsound = "dontstarve/AMB/chess",                           summersound = "dontstarve_DLC001/AMB/chess_summer",             rainsound = "dontstarve_DLC001/AMB/chess_summer"},
+    [WORLD_TILES.METEOR] =              {sound = "turnoftides/together_amb/moon_island/fall",   wintersound = "turnoftides/together_amb/moon_island/winter",    springsound = "turnoftides/together_amb/moon_island/spring",    summersound = "turnoftides/together_amb/moon_island/summer",    rainsound = "dontstarve_DLC001/AMB/chess_summer"},
+    [WORLD_TILES.PEBBLEBEACH] =         {sound = "turnoftides/together_amb/moon_island/fall",   wintersound = "turnoftides/together_amb/moon_island/winter",    springsound = "turnoftides/together_amb/moon_island/spring",    summersound = "turnoftides/together_amb/moon_island/summer",    rainsound = "dontstarve/AMB/badland_rain"},
+    [WORLD_TILES.SHELLBEACH] =          {sound = "hookline_2/amb/hermit_island",                wintersound = "hookline_2/amb/hermit_island",                   springsound = "hookline_2/amb/hermit_island",                   summersound = "hookline_2/amb/hermit_island",                   rainsound = "hookline_2/amb/hermit_island"},
 
-    -- TODO: Properly add these
-    [WORLD_TILES.MONKEY_DOCK] =     {sound = "monkeyisland/amb/dock_ambience",              wintersound = "monkeyisland/amb/dock_ambience",                 springsound = "monkeyisland/amb/dock_ambience",                 summersound = "monkeyisland/amb/dock_ambience",                 rainsound = "monkeyisland/amb/dock_ambience_rain"},
-    [WORLD_TILES.MONKEY_GROUND] =   {sound = "monkeyisland/amb/island_amb",                 wintersound = "monkeyisland/amb/island_amb",                    springsound = "monkeyisland/amb/island_amb",                    summersound = "monkeyisland/amb/island_amb",                    rainsound = "monkeyisland/amb/island_amb_rain"},
-    [WORLD_TILES.CAVE] =            {sound = "dontstarve/AMB/caves/main"},
-    [WORLD_TILES.FUNGUS] =          {sound = "dontstarve/AMB/caves/fungus_forest"},
-    [WORLD_TILES.FUNGUSRED] =       {sound = "dontstarve/AMB/caves/fungus_forest"},
-    [WORLD_TILES.FUNGUSGREEN] =     {sound = "dontstarve/AMB/caves/fungus_forest"},
+    [WORLD_TILES.MONKEY_DOCK] =         {sound = "monkeyisland/amb/dock_ambience",              wintersound = "monkeyisland/amb/dock_ambience",                 springsound = "monkeyisland/amb/dock_ambience",                 summersound = "monkeyisland/amb/dock_ambience",                 rainsound = "monkeyisland/amb/dock_ambience_rain"},
+    [WORLD_TILES.MONKEY_GROUND] =       {sound = "monkeyisland/amb/island_amb",                 wintersound = "monkeyisland/amb/island_amb",                    springsound = "monkeyisland/amb/island_amb",                    summersound = "monkeyisland/amb/island_amb",                    rainsound = "monkeyisland/amb/island_amb_rain"},
+    [WORLD_TILES.CAVE] =                {sound = "dontstarve/AMB/caves/main"},
+    [WORLD_TILES.FUNGUS] =              {sound = "dontstarve/AMB/caves/fungus_forest"},
+    [WORLD_TILES.FUNGUSRED] =           {sound = "dontstarve/AMB/caves/fungus_forest"},
+    [WORLD_TILES.FUNGUSGREEN] =         {sound = "dontstarve/AMB/caves/fungus_forest"},
 
-    [WORLD_TILES.ARCHIVE] =         {sound = "grotto/amb/archive"},
-    [WORLD_TILES.FUNGUSMOON] =      {sound = "grotto/amb/grotto"},
+    [WORLD_TILES.ARCHIVE] =             {sound = "grotto/amb/archive"},
+    [WORLD_TILES.FUNGUSMOON] =          {sound = "grotto/amb/grotto"},
 
-    [WORLD_TILES.RIFT_MOON] =       {sound = "rifts/ambience/rift_tile_amb", rainsound = "dontstarve_DLC001/AMB/chess_summer"},
+    [WORLD_TILES.RIFT_MOON] =           {sound = "rifts/ambience/rift_tile_amb", rainsound = "dontstarve_DLC001/AMB/chess_summer"},
 
-    [WORLD_TILES.SINKHOLE] =        {sound = "dontstarve/AMB/caves/litcave"},
-    [WORLD_TILES.UNDERROCK] =       {sound = "dontstarve/AMB/caves/main"}, --- rocky
-    [WORLD_TILES.MUD] =             {sound = "dontstarve/AMB/caves/fungus_forest"},
-    [WORLD_TILES.BRICK] =           {sound = "dontstarve/AMB/caves/ruins"},
-    [WORLD_TILES.BRICK_GLOW] =      {sound = "dontstarve/AMB/caves/ruins"},
-    [WORLD_TILES.TILES] =           {sound = "dontstarve/AMB/caves/civ_ruins"},
-    [WORLD_TILES.TILES_GLOW] =      {sound = "dontstarve/AMB/caves/civ_ruins"},
-    [WORLD_TILES.TRIM] =            {sound = "dontstarve/AMB/caves/ruins"},
-    [WORLD_TILES.TRIM_GLOW] =       {sound = "dontstarve/AMB/caves/ruins"},
+    [WORLD_TILES.SINKHOLE] =            {sound = "dontstarve/AMB/caves/litcave"},
+    [WORLD_TILES.UNDERROCK] =           {sound = "dontstarve/AMB/caves/main"}, --- rocky
+    [WORLD_TILES.MUD] =                 {sound = "dontstarve/AMB/caves/fungus_forest"},
+    [WORLD_TILES.BRICK] =               {sound = "dontstarve/AMB/caves/ruins"},
+    [WORLD_TILES.BRICK_GLOW] =          {sound = "dontstarve/AMB/caves/ruins"},
+    [WORLD_TILES.TILES] =               {sound = "dontstarve/AMB/caves/civ_ruins"},
+    [WORLD_TILES.TILES_GLOW] =          {sound = "dontstarve/AMB/caves/civ_ruins"},
+    [WORLD_TILES.TRIM] =                {sound = "dontstarve/AMB/caves/ruins"},
+    [WORLD_TILES.TRIM_GLOW] =           {sound = "dontstarve/AMB/caves/ruins"},
 
-    [WORLD_TILES.OCEAN_COASTAL] =   {sound = "hookline_2/amb/sea_shore",               rainsound = "hookline_2/amb/sea_shore"},
-    [WORLD_TILES.OCEAN_SWELL] =     {sound = "turnoftides/together_amb/ocean/shallow", rainsound = "turnoftides/together_amb/ocean/shallow_rain"},
-    [WORLD_TILES.OCEAN_ROUGH] =     {sound = "turnoftides/together_amb/ocean/deep",    rainsound = "turnoftides/together_amb/ocean/deep_rain"},
-    [WORLD_TILES.OCEAN_BRINEPOOL] = {sound = "turnoftides/together_amb/ocean/deep",    rainsound = "turnoftides/together_amb/ocean/deep_rain"},
-    [WORLD_TILES.OCEAN_HAZARDOUS] = {sound = "turnoftides/together_amb/ocean/deep",    rainsound = "turnoftides/together_amb/ocean/deep_rain"},
-    [WORLD_TILES.OCEAN_WATERLOG] =  {sound = "waterlogged2/amb/fall", wintersound = "waterlogged2/amb/winter", springsound = "waterlogged1/amb/spring", summersound = "waterlogged1/amb/summer", rainsound = "waterlogged1/amb/spring"},
+    [WORLD_TILES.OCEAN_COASTAL] =       {sound = "hookline_2/amb/sea_shore",               rainsound = "hookline_2/amb/sea_shore"},
+    [WORLD_TILES.OCEAN_SWELL] =         {sound = "turnoftides/together_amb/ocean/shallow", rainsound = "turnoftides/together_amb/ocean/shallow_rain"},
+    [WORLD_TILES.OCEAN_ROUGH] =         {sound = "turnoftides/together_amb/ocean/deep",    rainsound = "turnoftides/together_amb/ocean/deep_rain"},
+    [WORLD_TILES.OCEAN_BRINEPOOL] =     {sound = "turnoftides/together_amb/ocean/deep",    rainsound = "turnoftides/together_amb/ocean/deep_rain"},
+    [WORLD_TILES.OCEAN_HAZARDOUS] =     {sound = "turnoftides/together_amb/ocean/deep",    rainsound = "turnoftides/together_amb/ocean/deep_rain"},
+    [WORLD_TILES.OCEAN_WATERLOG] =      {sound = "waterlogged2/amb/fall", wintersound = "waterlogged2/amb/winter", springsound = "waterlogged1/amb/spring", summersound = "waterlogged1/amb/summer", rainsound = "waterlogged1/amb/spring"},
 
-    [WORLD_TILES.LAVAARENA_FLOOR] = {sound = "dontstarve/AMB/lava_arena/arena_day"},
-    [WORLD_TILES.LAVAARENA_TRIM] =  {sound = "dontstarve/AMB/lava_arena/arena_day"},
+    [WORLD_TILES.LAVAARENA_FLOOR] =     {sound = "dontstarve/AMB/lava_arena/arena_day"},
+    [WORLD_TILES.LAVAARENA_TRIM] =      {sound = "dontstarve/AMB/lava_arena/arena_day"},
 
     [WORLD_TILES.QUAGMIRE_PEATFOREST] = {sound = "dontstarve/AMB/quagmire/peat_forest"},
     [WORLD_TILES.QUAGMIRE_PARKFIELD] =  {sound = "dontstarve/AMB/quagmire/park_field"},
@@ -83,9 +82,9 @@ local AMBIENT_SOUNDS =
     [WORLD_TILES.QUAGMIRE_SOIL] =       {sound = "dontstarve/AMB/quagmire/city_stone"},
     [WORLD_TILES.QUAGMIRE_CITYSTONE] =  {sound = "dontstarve/AMB/quagmire/city_stone"},
 
-    ABYSS = {sound = "dontstarve/AMB/caves/pit"}, --- IMPASSABLE
-    VOID = {sound = "dontstarve/AMB/caves/void", wintersound = "dontstarve/AMB/caves/void", springsound = "dontstarve/AMB/caves/void", summersound="dontstarve/AMB/caves/void", rainsound = "dontstarve/AMB/caves/void" },
-    CIVRUINS = {sound = "dontstarve/AMB/caves/civ_ruins" },
+    ABYSS =                             {sound = "dontstarve/AMB/caves/pit"}, --- IMPASSABLE
+    VOID =                              {sound = "dontstarve/AMB/caves/void", wintersound = "dontstarve/AMB/caves/void", springsound = "dontstarve/AMB/caves/void", summersound="dontstarve/AMB/caves/void", rainsound = "dontstarve/AMB/caves/void" },
+    CIVRUINS =                          {sound = "dontstarve/AMB/caves/civ_ruins" },
 
     -- Porkland
     [WORLD_TILES.DEEPRAINFOREST] =     {sound = "dontstarve_DLC003/amb/temperate/deep_rainforest",    temperate = "dontstarve_DLC003/amb/temperate/deep_rainforest",     lush = "dontstarve_DLC003/amb/warm/deep_rainforest",     humid = "dontstarve_DLC003/amb/cold/deep_rainforest",      aporkalypse = "dontstarve_DLC003/amb/aporkalypse/deep_rainforest"},
@@ -254,7 +253,7 @@ inst:ListenForEvent("used_door", OnUsedDoor, ThePlayer)
 
 inst:WatchWorldState("phase", OnPhaseChange)
 
-self:SetReverbPreset("default") -- TODO apply reverb when enter/exit interior
+self:SetReverbPreset("default")
 
 --------------------------------------------------------------------------
 --[[ Wrapper function for calls into actual sound system ]]
@@ -346,16 +345,14 @@ function self:OnUpdate(dt)
                         local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = test_x, z = test_z})
                         local def = TheWorld.components.interiorspawner.interiors[interiorID]
                         if def ~= nil then -- nil OnLoad
-                            tile = def.ambsnd
+                            tile = def.ambient_sound
                         end
                     end
                     tile = _tileoverrides[tile] or tile
                     local soundgroup = AMBIENT_SOUNDS[tile]
                     if soundgroup ~= nil then
-                        local sound =
-                                (_rainmix and _heavyrainmix and soundgroup.rainsound) or
-                                (_seasonmix and soundgroup[SEASON_SOUND_KEY[_seasonmix]]) or
-                                soundgroup.sound
+                        local sound = (_rainmix and _heavyrainmix and soundgroup.rainsound)
+                            or (_seasonmix and soundgroup[SEASON_SOUND_KEY[_seasonmix]]) or soundgroup.sound
                         local counter = soundmixcounters[sound]
                         local increment = 1
                         if sound == AMBIENT_SOUNDS.ABYSS.sound then

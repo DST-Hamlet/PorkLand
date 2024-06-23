@@ -44,7 +44,7 @@ ToolUtil.SetUpvalue(PlayerController.GetActionButtonAction, GetPickupAction, "Ge
 
 local _RotLeft = PlayerController.RotLeft
 function PlayerController:RotLeft(...)
-    if TheCamera.pl_inside_interior then
+    if TheCamera.inside_interior then
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve/HUD/click_negative", nil, 0.4)
     end
     return _RotLeft(self, ...)
@@ -52,7 +52,7 @@ end
 
 local _RotRight = PlayerController.RotRight
 function PlayerController:RotRight(...)
-    if TheCamera.pl_inside_interior then
+    if TheCamera.inside_interior then
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve/HUD/click_negative", nil, 0.4)
     end
     return _RotRight(self, ...)
