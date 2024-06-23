@@ -43,7 +43,7 @@ end
 AddClassPostConstruct("screens/mapscreen", function(self)
     local minimap = self.minimap
     if minimap.minimap == TheWorld.minimap.MiniMap then
-        if TheCamera.pl_inside_interior then
+        if TheCamera.inside_interior then
             self:OnEnterInterior(ThePlayer.replica.interiorvisitor:GetCenterEnt())
         end
     else

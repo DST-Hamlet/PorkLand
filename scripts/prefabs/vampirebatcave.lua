@@ -5,7 +5,7 @@ local BAT_CAVE_WIDTH = 26
 local BAT_CAVE_DEPTH = 18
 local BAT_CAVE_REVERB = "batcave"
 local BAT_CAVE_AMBIENT = "BAT_CAVE"
-local BAT_CAVE_GROUND_SOUND = "DIRT"
+local BAT_CAVE_GROUND_SOUND = WORLD_TILES.DIRT
 local BAT_CAVE_FLOOR_TEXTURE = "levels/textures/interiors/batcave_floor.tex"
 local BAT_CAVE_WALL_TEXTURE = "levels/textures/interiors/batcave_wall_rock.tex"
 local BAT_CAVE_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_vamp_cave_noise.tex"
@@ -85,6 +85,7 @@ local function fn()
     TheWorld.components.interiorspawner:AddExterior(inst)
 
     inst.entity:SetPristine()
+
     if not TheWorld.ismastersim then
         return inst
     end

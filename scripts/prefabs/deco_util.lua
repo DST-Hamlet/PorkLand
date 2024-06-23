@@ -1,6 +1,3 @@
--- TODO:
--- 实现billboard
-
 local assets =
 {
     Asset("ANIM", "anim/interior_unique.zip"),

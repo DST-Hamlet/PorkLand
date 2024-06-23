@@ -11,6 +11,7 @@ local ROC_CAVE_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_vamp_cave_no
 local ROC_CAVE_COULOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
 local ROC_CAVE_REVERB = "ruins"
 local ROC_CAVE_AMBIENT = WORLD_TILES.CAVE
+local ROC_CAVE_GROUND_SOUND = WORLD_TILES.DIRT
 
 local assets =
 {
@@ -287,7 +288,8 @@ local function BuildMaze(inst, exterior_door_def)
 
         local addprops = GenerateProps(ROC_CAVE_NAME, ROC_CAVE_DEPTH, ROC_CAVE_WIDTH, room, exits_open, exterior_door_def)
         local def = interior_spawner:CreateRoom(ROC_CAVE_NAME, ROC_CAVE_WIDTH, ROC_CAVE_HEIGHT, ROC_CAVE_DEPTH, ROC_CAVE_NAME, room.id, addprops, room.exits,
-            ROC_CAVE_WALL_TEXTURE, ROC_CAVE_FLOOR_TEXTURE, ROC_CAVE_MINIMAP_TEXTURE, nil, ROC_CAVE_COULOUR_CUBE, nil, nil, ROC_CAVE_REVERB, ROC_CAVE_AMBIENT)
+            ROC_CAVE_WALL_TEXTURE, ROC_CAVE_FLOOR_TEXTURE, ROC_CAVE_MINIMAP_TEXTURE, nil, ROC_CAVE_COULOUR_CUBE, nil, nil,
+            ROC_CAVE_REVERB, ROC_CAVE_AMBIENT, ROC_CAVE_GROUND_SOUND)
         interior_spawner:SpawnInterior(def)
     end
 

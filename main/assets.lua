@@ -122,6 +122,7 @@ PrefabFiles = {
     "pl_birds",
     "bat_hide",
     "cave_entrance_roc",
+    "pig_ruins_light_beam",
 }
 
 Assets = {

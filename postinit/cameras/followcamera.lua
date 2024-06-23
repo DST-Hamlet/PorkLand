@@ -5,7 +5,7 @@ local FollowCamera = require("cameras/followcamera")
 
 local _Apply = FollowCamera.Apply
 function FollowCamera:Apply(...)
-    if self.pl_inside_interior then
+    if self.inside_interior then
         if self.pl_old_headingtarget == nil then
             self.pl_old_headingtarget = self.headingtarget
         end
@@ -61,7 +61,7 @@ end
 
 local _ZoomOut = FollowCamera.ZoomOut
 function FollowCamera:ZoomOut(step, ...)
-    if self.pl_inside_interior then
+    if self.inside_interior then
         return
     else
         return _ZoomOut(self, step, ...)
@@ -75,7 +75,7 @@ AddClassPostConstruct("cameras/followcamera", function(self)
     self.pl_interior_distance = 25
     self.pl_interior_currentpos = Vector3(0, 0, 0)
     self.pl_interior_fov = 25
-    self.pl_inside_interior = false -- controlled by player client component
+    self.inside_interior = false -- controlled by player client component
 end)
 
 function ShakeAllCamerasInRoom(interiorID, mode, duration, speed, scale, source_or_point, max_distance)

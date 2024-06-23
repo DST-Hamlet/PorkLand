@@ -634,7 +634,9 @@ local states = {
 
             inst.components.health:SetInvincible(true)
             inst:ShowHUD(false)
-            inst:SetCameraDistance(12) -- TODO: Do not set to 12 if interior
+            if not inst:HasTag("inside_interior") then
+                inst:SetCameraDistance(12) -- Do not change interior camera  
+            end
         end,
 
         timeline =
