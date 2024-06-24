@@ -70,11 +70,11 @@ end
 
 AddClassPostConstruct("cameras/followcamera", function(self)
     -- Init Interior Variables
-    self.pl_interior_pitch = 32
+    self.pl_interior_pitch = 35
     self.pl_interior_heading = 0
-    self.pl_interior_distance = 25
+    self.pl_interior_distance = 30
     self.pl_interior_currentpos = Vector3(0, 0, 0)
-    self.pl_interior_fov = 25
+    self.pl_interior_fov = 35
     self.inside_interior = false -- controlled by player client component
 end)
 

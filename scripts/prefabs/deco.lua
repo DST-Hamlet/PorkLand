@@ -125,12 +125,12 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_ruins_cornerbeam", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_corner",          {decal=true, background=3, tags={"cornerpost"}}),
         DecoCreator:Create("deco_ruins_cornerbeam_heavy", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_corner_lg", {decal=true, background=3, tags={"cornerpost"}}),
 
-        DecoCreator:Create("deco_ruins_corner_tree", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "giant_roots",         {decal=true, background=3, physics="tree_physics"}),  -- , minimapicon="pig_ruins_tree_roots_int.png"
+        DecoCreator:Create("deco_ruins_corner_tree", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "giant_roots",         {decal=true, background=3, physics="tree_physics"}),  -- , minimapicon="pig_ruins_tree_roots_int.tex"
         DecoCreator:Create("deco_ruins_beam_heavy", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_side_lg",       {decal=true, background=3}),
         DecoCreator:Create("deco_ruins_beam", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_front",               {decal=true}),
 
-        DecoCreator:Create("deco_ruins_beam_room", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_front",          {decal=true, physics="post_physics", workable=true, minimapicon="pig_ruins_pillar.png"}),
-        DecoCreator:Create("deco_ruins_beam_room_broken", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_broken",  {decal=true, physics="post_physics", minimapicon="pig_ruins_pillar.png"}),
+        DecoCreator:Create("deco_ruins_beam_room", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_front",          {decal=true, physics="post_physics", workable=true, minimapicon="pig_ruins_pillar.tex"}),
+        DecoCreator:Create("deco_ruins_beam_room_broken", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_broken",  {decal=true, physics="post_physics", minimapicon="pig_ruins_pillar.tex"}),
         DecoCreator:Create("deco_ruins_beam_broken", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_broken",       {decal=true, background=3}),
         DecoCreator:Create("deco_ruins_wallstrut", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "support_side",          {decal=true}),
         DecoCreator:Create("deco_ruins_walltorch", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "sconce_metal_sidewall", {decal=true, background=3}),
@@ -153,12 +153,12 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_ruins_beam_heavy_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_side_lg",       {decal=true, background=3}),
         DecoCreator:Create("deco_ruins_beam_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_front",               {decal=true}),
 
-        DecoCreator:Create("deco_ruins_beam_room_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_front",          {decal=true, physics="post_physics", workable=true, minimapicon="pig_ruins_pillar.png"}),
-        DecoCreator:Create("deco_ruins_beam_room_broken_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_broken",  {decal=true, physics="post_physics", minimapicon="pig_ruins_pillar.png"}),
+        DecoCreator:Create("deco_ruins_beam_room_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_front",          {decal=true, physics="post_physics", workable=true, minimapicon="pig_ruins_pillar.tex"}),
+        DecoCreator:Create("deco_ruins_beam_room_broken_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_broken",  {decal=true, physics="post_physics", minimapicon="pig_ruins_pillar.tex"}),
         DecoCreator:Create("deco_ruins_beam_broken_blue", "interior_wall_decals_ruins_blue", "interior_wall_decals_ruins", "pillar_broken",       {decal=true, background=3}),
 
 
-     --   DecoCreator:Create("deco_ruins_fountain", "pig_ruins_well", "pig_ruins_well", "idle_full",                                      {loopanim=true, decal=true, physics="pond_physics", minimapicon="pig_ruins_well.png"}),
+     --   DecoCreator:Create("deco_ruins_fountain", "pig_ruins_well", "pig_ruins_well", "idle_full",                                      {loopanim=true, decal=true, physics="pond_physics", minimapicon="pig_ruins_well.tex"}),
 
         DecoCreator:Create("deco_ruins_wallcrumble_1", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "2",                 {decal=true, background=1}),
         DecoCreator:Create("deco_ruins_wallcrumble_side_1", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "1",            {decal=true}),
@@ -190,7 +190,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
 
 
         --BAT CAVE
-        DecoCreator:Create("deco_cave_beam_room", "interior_wall_decals_batcave", "interior_wall_decals_cave", "pillar_front",                  {decal=true, physics="big_post_physics", workable=true, minimapicon="vamp_cave_pillar.png"}),
+        DecoCreator:Create("deco_cave_beam_room", "interior_wall_decals_batcave", "interior_wall_decals_cave", "pillar_front",                  {decal=true, physics="big_post_physics", workable=true, minimapicon="vamp_cave_pillar.tex"}),
         DecoCreator:Create("deco_cave_cornerbeam", "interior_wall_decals_batcave", "interior_wall_decals_cave", "pillar_corner",                {decal=true, background=3, tags={"cornerpost"}}),
         DecoCreator:Create("deco_cave_pillar_side", "interior_wall_decals_batcave", "interior_wall_decals_cave", "pillar_sidewall",             {decal=true}),
         DecoCreator:Create("deco_cave_ceiling_trim", "interior_wall_decals_batcave", "interior_wall_decals_cave", "ceiling_trim_1"),
@@ -200,15 +200,15 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_cave_floor_trim_2", "interior_wall_decals_batcave", "interior_wall_decals_cave", "floor_trim_2",               {decal=true, background=3}),
         DecoCreator:Create("deco_cave_floor_trim_front", "interior_wall_decals_batcave", "interior_wall_decals_cave", "floor_trim_3"),
         DecoCreator:Create("deco_cave_stalactite", "interior_wall_decals_batcave", "interior_wall_decals_cave", "stalactite"),
-        DecoCreator:Create("deco_cave_bat_burrow", "interior_wall_decals_batcave", "interior_wall_decals_cave", "bat_burrow",                   {decal=true, physics="pond_physics", prefabname="deco_cave_bat_burrow", minimapicon="vamp_cave_burrow.png"}),
+        DecoCreator:Create("deco_cave_bat_burrow", "interior_wall_decals_batcave", "interior_wall_decals_cave", "bat_burrow",                   {decal=true, physics="pond_physics", prefabname="deco_cave_bat_burrow", minimapicon="vamp_cave_burrow.tex"}),
         DecoCreator:Create("deco_cave_bat_burrow_front", "interior_wall_decals_batcave_2", "interior_wall_decals_cave", "bat_burrow_front"),
 
         --ANT HIVE
-        DecoCreator:Create("deco_hive_beam_room", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "pillar_front",               {decal=true, physics="big_post_physics", workable=true, minimapicon="vamp_cave_pillar.png"}),
+        DecoCreator:Create("deco_hive_beam_room", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "pillar_front",               {decal=true, physics="big_post_physics", workable=true, minimapicon="vamp_cave_pillar.tex"}),
         DecoCreator:Create("deco_hive_cornerbeam", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "pillar_corner",             {decal=true, background=3, tags={"cornerpost"}}),
         DecoCreator:Create("deco_hive_pillar_side", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "pillar_sidewall",          {decal=true}),
         DecoCreator:Create("deco_hive_floor_trim", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "floor_trim_1"),
-        DecoCreator:Create("deco_hive_beam_broken_room", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "pillar_front_crumble_idle",           {decal=true, physics="big_post_physics", minimapicon="vamp_cave_pillar.png"}),
+        DecoCreator:Create("deco_hive_beam_broken_room", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "pillar_front_crumble_idle",           {decal=true, physics="big_post_physics", minimapicon="vamp_cave_pillar.tex"}),
         DecoCreator:Create("deco_hive_stalactite", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "stalactite"),
         DecoCreator:Create("deco_hive_broken_pillar", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "pillar_broken"),
         DecoCreator:Create("deco_hive_debris", "interior_wall_decals_antcave", "interior_wall_decals_antcave", "rock_debris"),

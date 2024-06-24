@@ -459,7 +459,7 @@ local function testPlayerHouseDoor(inst)
         local interior = TheWorld.components.interiorspawner:GetInteriorByName(door.interior_name)
         if interior and interior.playerroom then
             local minimap = inst.entity:AddMiniMapEntity()
-            minimap:SetIcon( "player_frontdoor.png" )
+            minimap:SetIcon( "player_frontdoor.tex" )
             minimap:SetIconOffset(4,0)
         end
     end

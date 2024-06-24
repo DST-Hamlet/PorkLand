@@ -62,19 +62,21 @@ end
 
 function InteriorVisitor:ApplyInteriorCamera(ent)
     local cameraoffset = -2.5 		--10x15
-    local zoom = 30
-    local size = { ent:GetSize() }
-    local depth = size[2] or TUNING.ROOM_TINY_DEPTH
-    if depth == 12 then    --12x18
-        cameraoffset = -2
-        zoom = 32
-    elseif depth == 16 then --16x24
-        cameraoffset = -1.5
-        zoom = 37
-    elseif depth == 18 then --18x26
-        cameraoffset = -2
-        zoom = 42
-    end
+	local zoom = 23
+
+	if ent.cameraoffset and ent.zoom then
+		cameraoffset = ent.cameraoffset
+		zoom = ent.zoom
+	elseif ent.depth == 12 then    --12x18
+		cameraoffset = -2
+		zoom = 25
+	elseif ent.depth == 16 then --16x24
+		cameraoffset = -1.5
+		zoom = 30
+	elseif ent.depth == 18 then --18x26
+		cameraoffset = -2 -- -1
+		zoom = 35
+	end
 
     -- custom value
     if ent.pl_interior_distance ~= nil then
@@ -95,7 +97,6 @@ end
 function InteriorVisitor:OnUpdate()
     local ambientlighting = TheWorld.components.ambientlighting
     if self.inst == ThePlayer then
-        -- local was_in = TheCamera.inside_interior 
         local last_center_ent = self.last_center_ent
         local ent = self.center_ent:value()
         local is_in = IsInInteriorRectangle(self.inst:GetPosition(), ent)

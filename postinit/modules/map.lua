@@ -56,12 +56,15 @@ end
 local _IsPassableAtPoint = Map.IsPassableAtPoint
 function Map:IsPassableAtPoint(x, y, z, ...)
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        return true
+        return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
     return _IsPassableAtPoint(self, x, y, z, ...)
 end
 
 function Map:IsImpassableAtPoint(x, y, z, ...)
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return not TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+    end
     return not self:_IsVisualGroundAtPoint(x, y, z, ...) and not self:ReverseIsVisualWaterAtPoint(x, y, z)
 end
 
@@ -74,7 +77,7 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
         return true
     end
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        return false
+        return not TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
 
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
@@ -269,10 +272,10 @@ function Map:CanDeployAquaticAtPointInWater(pt, data, player)
     end
 end
 
-Map._IsVisualGroundAtPoint = Map.IsVisualGroundAtPoint  --用于判断一个点是否属于陆地范围
+Map._IsVisualGroundAtPoint = Map.IsVisualGroundAtPoint  --用于判断一个点是否属于陆地范围，主要在游戏本体的代码中调用
 function Map:IsVisualGroundAtPoint(x, y, z, ...)
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        return true
+        return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
     if TheWorld.has_pl_ocean then
         return self:ReverseIsVisualGroundAtPoint(x, y, z)
@@ -283,11 +286,7 @@ end
 local _IsAboveGroundAtPoint = Map.IsAboveGroundAtPoint
 function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        if ThePlayer and ThePlayer.components.playercontroller and ThePlayer.components.playercontroller.deployplacer then
-            return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z, -1)
-        else
-            return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z, 1)
-        end
+        return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
     if TheWorld.has_pl_ocean then
         local valid_water_tile = (allow_water == true) and self:ReverseIsVisualWaterAtPoint(x, y, z)
@@ -345,7 +344,11 @@ end
 local _GetTileAtPoint = Map.GetTileAtPoint
 function Map:GetTileAtPoint(x, y, z, ...)
     if x and z and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        return WORLD_TILES.INTERIOR
+        if TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
+            return WORLD_TILES.INTERIOR
+        else
+            return WORLD_TILES.IMPASSABLE
+        end
     else
         return _GetTileAtPoint(self, x, y, z, ...)
     end

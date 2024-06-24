@@ -161,17 +161,3 @@ function SinkEntity(entity, ...)
         entity:Remove()
     end
 end
-
-local _ShouldEntitySink = ShouldEntitySink
-function ShouldEntitySink(entity, entity_sinks_in_water, ...)
-    if not TheWorld:HasTag("porkland") then
-        return _ShouldEntitySink(entity, entity_sinks_in_water, ...)
-    end
-
-    local x, _, z = entity.Transform:GetWorldPosition()
-    if x and z and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        return false
-    else
-        return _ShouldEntitySink(entity, entity_sinks_in_water, ...)
-    end
-end

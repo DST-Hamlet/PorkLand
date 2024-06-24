@@ -1,7 +1,7 @@
 -- NOTE: Sweet House used -1900 < x < 2000 and 1100 < z < 2000
 -- NOTE: Porkland Room will use BORDER < x < +2000 and BORDER < z < +2000
 -- BORDER VALUE is world_size/2 + 120
--- 
+--
 --  +------[z]------+
 --  |               |
 -- [x] The constant |
@@ -14,7 +14,7 @@
 --                     * (place in this region) *
 --                     *                        *
 --                     **************************
---  
+--
 
 
 local SPACE = 80
@@ -563,7 +563,7 @@ local function uuid()
 end
 
 function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
-    -- this function only gets run once per room when the room is first called. 
+    -- this function only gets run once per room when the room is first called.
     -- if the room has a "prefabs" attribute, it means the prefabs have not yet been spawned.
     -- if it does not have a prefab attribute, it means they have bene spawned and all the rooms
     -- contents will now be in object_list
@@ -698,7 +698,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
 
-                -- this function processes the extra data that the prefab has attached to it for interior stuff. 
+                -- this function processes the extra data that the prefab has attached to it for interior stuff.
                 if object.initInteriorPrefab then
                     -- object.initInteriorPrefab(object, GetPlayer(), prefab, interior)
                     object.initInteriorPrefab(object, --[[GetPlayer()]]nil , prefab, interior)
@@ -706,7 +706,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 -- should the door be closed for some reason?
-                -- needs to happen after the object initinterior so the door info is there. 
+                -- needs to happen after the object initinterior so the door info is there.
                 if prefab.door_closed then
                     for cause,setting in pairs(prefab.door_closed)do
                         object.components.door:UpdateDoorStatus(setting, cause)
@@ -815,17 +815,17 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
 
         local doors = {}
         for k,v in pairs(inst.doors)do
-            if v.dir == "east" or v.dir == "south" then
+            --if v.dir == "east" or v.dir == "south" then  -- 暂时注释掉这一部分，否则会出现小地图刷新错误（亚丹）
                 -- WARNING: TODO:
                 -- 这里的写法比较糟糕，需要深入测试
-                -- 注意，在遗迹中可能会遇到“不对称门”，即一侧可打开但另一侧却被锁上
+                -- 注意，在遗迹中可能会遇到“不对称门”，即一侧可打开但另一侧却被锁上（老王）
 
                 table.insert(doors, {
                     dir = v.dir,
-                    -- locked 
+                    -- locked
                     -- hidden
                 })
-            end
+            --end
         end
 
         -- for easy access
