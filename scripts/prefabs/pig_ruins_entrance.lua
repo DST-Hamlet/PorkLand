@@ -1,8 +1,7 @@
-require "prefabutil"
-require "recipes"
-
 local GenerateProps = require("prefabs/interior_prop_defs")
 
+local PIG_RUINS_WIDTH = 24
+local PIG_RUINS_DEPTH = 16
 local PIG_RUINS_FLOOR_TEXTURE = "levels/textures/interiors/ground_ruins_slab.tex"
 local PIG_RUINS_WALL_TEXTURE = "levels/textures/interiors/pig_ruins_panel.tex"
 local PIG_RUINS_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_ruins_slab.tex"
@@ -12,7 +11,6 @@ local PIG_RUINS_COLOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
 local PIG_RUINS_CAVE_REVERB = "ruins"
 local PIG_RUINS_CAVE_AMBIENT = WORLD_TILES.RUINS
 local PIG_RUINS_CAVE_GROUND_SOUND = WORLD_TILES.DIRT
-
 
 local assets =
 {
@@ -126,7 +124,6 @@ local function GetNumExitsInRoom(room)
 end
 
 local function BuildMaze(inst, dungeondef)
-
     local interior_spawner = TheWorld.components.interiorspawner
 
     local rooms_to_make = dungeondef.rooms --24
@@ -411,9 +408,6 @@ local function BuildMaze(inst, dungeondef)
 
     CreateSecretRoom()
 
-    local width = 18
-    local depth = 12
-
     for _, room in pairs(rooms) do
         local roomtypes = {"grown_over", "store_room", "small_treasure", "snake", nil}
 
@@ -478,7 +472,8 @@ local function BuildMaze(inst, dungeondef)
             south = not exits_open.south and room.exits[interior_spawner:GetSouth()].vined or false,
             east = not exits_open.east and room.exits[interior_spawner:GetEast()].vined or false,
         }
-        local addprops, entrance_room, exit_room = GenerateProps("pig_ruins_" .. roomtype, depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+        local addprops, entrance_room, exit_room = GenerateProps("pig_ruins_" .. roomtype, PIG_RUINS_DEPTH, PIG_RUINS_WIDTH,
+            exits_open, exits_vined, room, roomtype, dungeondef)
 
         if not entranceRoom then
             entranceRoom = entrance_room
@@ -487,7 +482,7 @@ local function BuildMaze(inst, dungeondef)
             exitRoom = exit_room
         end
 
-        local def = interior_spawner:CreateRoom("generic_interior", width, nil, depth, dungeondef.name, room.id, addprops, room.exits,
+        local def = interior_spawner:CreateRoom("generic_interior", PIG_RUINS_WIDTH, nil, PIG_RUINS_DEPTH, dungeondef.name, room.id, addprops, room.exits,
             wall_texture, floor_texture, PIG_RUINS_MINIMAP_TEXTURE, nil, PIG_RUINS_COLOUR_CUBE, nil, nil,
             PIG_RUINS_CAVE_REVERB, PIG_RUINS_CAVE_AMBIENT, PIG_RUINS_CAVE_GROUND_SOUND)
         interior_spawner:SpawnInterior(def)
@@ -525,8 +520,7 @@ local function InitMaze(inst, dungeonname)
         dungeondef.doorvines = 0.6
         dungeondef.no_second_exit = true
     elseif dungeonname == "RUINS_SMALL" then
-        local interior_spawner = TheWorld.components.interiorspawner
-        dungeondef.name = "RUINS_SMALL"..interior_spawner:GetNewID()
+        dungeondef.name = "RUINS_SMALL"
         dungeondef.rooms = math.random(6,8)
         dungeondef.no_second_exit = true
         dungeondef.lock = nil
@@ -540,8 +534,8 @@ local function InitMaze(inst, dungeonname)
 
     local interior_spawner = TheWorld.components.interiorspawner
     local exterior_door_def = {
-        my_door_id = dungeondef.name.."_ENTRANCE1",
-        target_door_id = dungeondef.name.."_EXIT1",
+        my_door_id = dungeondef.name .. "_ENTRANCE1",
+        target_door_id = dungeondef.name .. "_EXIT1",
         target_interior = entranceRoom.id,
     }
     interior_spawner:AddDoor(inst, exterior_door_def)
@@ -552,7 +546,7 @@ local function InitMaze(inst, dungeonname)
 
     local exit_door = nil
     for i,ent in pairs(Ents) do
-        if ent:HasTag(dungeondef.name.."_EXIT_TARGET") then
+        if ent:HasTag(dungeondef.name .. "_EXIT_TARGET") then
             exit_door = ent
         end
     end
@@ -560,12 +554,22 @@ local function InitMaze(inst, dungeonname)
     if exit_door and exitRoom then
         -- CREATE 2nd DOOR
         local exterior_door_def2 = {
-            my_door_id = dungeondef.name.."_ENTRANCE2",
-            target_door_id = dungeondef.name.."_EXIT2",
+            my_door_id = dungeondef.name .. "_ENTRANCE2",
+            target_door_id = dungeondef.name .. "_EXIT2",
             target_interior = exitRoom.id,
         }
         interior_spawner:AddDoor(exit_door, exterior_door_def2)
     end
+
+    --[[
+    local exterior_door_def = {
+        my_door_id = ROC_CAVE_NAME .. "_ENTRANCE1",
+        target_door_id = ROC_CAVE_NAME .. "_EXIT1",
+    }
+
+    BuildMaze(inst, exterior_door_def)
+    TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def)
+    ]]
 
     inst.maze_generated = true
 
