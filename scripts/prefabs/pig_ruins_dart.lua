@@ -139,7 +139,7 @@ local function MakeDart(name, build, bank, animframe, facing)
         inst:AddTag("dartthrower")
 
         if facing == "left" then
-            inst.Transform:SetScale(1, 1, -1)
+            inst.AnimState:SetScale(-1, 1, 1)
             inst:AddTag("dartthrower_right")
         end
         if facing == "right" then

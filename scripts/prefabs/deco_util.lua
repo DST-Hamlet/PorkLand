@@ -608,7 +608,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         inst.Transform:SetRotation(-90)
         if decal then
             -- NOTE: only apply billborad render behavior on beam/pillar
-            if name:find("_cornerbeam")
+            if name:find("_corner")
                 or name:find("_beam")
                 or name:find("_pillar")
                 or data.rotatingbillboard then
