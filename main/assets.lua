@@ -118,11 +118,18 @@ PrefabFiles = {
     "vampirebatcave",
     "interiorworkblank",
     "prop_door",
-    "pig_ruins_creeping_vines",
+    --"pig_ruins_creeping_vines",
     "pl_birds",
     "bat_hide",
     "cave_entrance_roc",
     "pig_ruins_light_beam",
+    "pig_ruins_entrance",
+    "wallcrack_ruins",
+    "pig_ruins_pressure_plate",
+    "pig_ruins_dart_statue",
+    "smashingpot",
+    "pig_ruins_dart",
+    "pig_ruins_torch",
 }
 
 Assets = {

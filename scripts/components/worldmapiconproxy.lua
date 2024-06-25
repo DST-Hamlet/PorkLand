@@ -386,6 +386,6 @@ return Class(function(self, inst)
         end
     end
 
-    inst:StartUpdatingComponent(self)
+    --inst:StartUpdatingComponent(self)
 
     end)

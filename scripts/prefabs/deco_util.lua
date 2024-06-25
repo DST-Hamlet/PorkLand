@@ -704,59 +704,56 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst.updateworkableart = true
         end
 
-        --[[
         if prefabname == "pig_latin_1" then
             inst:AddTag("pig_writing_1")
-            GetWorld():ListenForEvent("doorused", function(world, data)
-                    if not inst:HasTag("INTERIOR_LIMBO") then
-                        inst:DoTaskInTime(1,
-                            function()
-                                local pt = Vector3(inst.Transform:GetWorldPosition())
-                                local torches = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, {"wall_torch"}, {"INTERIOR_LIMBO"})
-                                local closedoors = false
-                                for i,torch in ipairs(torches)do
-                                    if not torch.components.cooker then
-                                        closedoors = true
-                                    end
-                                end
+            inst:ListenForEvent("entitywake", function(inst, data)
+                inst:DoTaskInTime(1, function()
+                    local should_close_doors = false
 
-                                if closedoors then
-                                    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, {"lockable_door"}, {"INTERIOR_LIMBO"})
-                                    for i, ent in ipairs(ents)do
-                                        if ent ~= data.door then
-                                            ent:PushEvent("close")
-                                        end
-                                    end
-                                end
-                            end)
-                    end
-                end, GetWorld())
+                    local x, y, z = inst.Transform:GetWorldPosition()
+                    local torches = TheSim:FindEntities(x, y, z, 50, {"wall_torch"})
 
-
-            inst:ListenForEvent("fire_lit", function()
-                    local opendoors = true
-                    local pt = Vector3(inst.Transform:GetWorldPosition())
-                    local torches = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, {"wall_torch"}, {"INTERIOR_LIMBO"})
-
-                    for i,torch in ipairs(torches)do
+                    for _, torch in pairs(torches)do
                         if not torch.components.cooker then
-                            opendoors = false
+                            should_close_doors = true
                         end
                     end
 
-                    if opendoors then
-                        local pt = Vector3(inst.Transform:GetWorldPosition())
-                        local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, nil, {"INTERIOR_LIMBO"})
-                        for i, ent in ipairs(ents)do
-                            if ent:HasTag("lockable_door") then
-                                ent:PushEvent("open")
-                            end
+                    if not should_close_doors then
+                        return
+                    end
+
+                    local ents = TheSim:FindEntities(x, y, z, 50, {"lockable_door"})
+                    for _, ent in pairs(ents) do
+                        if ent ~= data.door then
+                            ent:PushEvent("close")
                         end
                     end
                 end)
-        end
+            end)
 
-        --]]
+            inst:ListenForEvent("fire_lit", function()
+                local should_open_doors = true
+
+                local x, y, z = inst.Transform:GetWorldPosition()
+                local torches = TheSim:FindEntities(x, y, z, 50, {"wall_torch"})
+
+                for _, torch in pairs(torches)do
+                    if not torch.components.cooker then
+                        should_open_doors = false
+                    end
+                end
+
+                if not should_open_doors then
+                    return
+                end
+
+                local ents = TheSim:FindEntities(x, y, z, 50, {"lockable_door"})
+                for _, ent in pairs(ents) do
+                    ent:PushEvent("open")
+                end
+            end)
+        end
 
         if inst.components.inspectable then
             inst:AddComponent("hauntable")

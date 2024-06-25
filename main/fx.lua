@@ -104,12 +104,31 @@ local pl_fx = {
         tintalpha = 0.5,
     },
     {
-    	name = "splash_clouds_drop",
-    	bank = "splash_clouds_drop",
-    	build = "splash_clouds_drop",
-    	anim = "idle_sink",
+        name = "splash_clouds_drop",
+        bank = "splash_clouds_drop",
+        build = "splash_clouds_drop",
+        anim = "idle_sink",
         fn = BelowGroundFx,
-	},
+    },
+    {
+        name = "circle_puff_fx",
+        bank = "circle_puff_fx",
+        build = "circle_puff_fx",
+        anim = "idle",
+    },
+    {
+        name = "hacking_fx",
+        bank = "hacking_fx",
+        build = "hacking_fx",
+        anim = "idle",
+    },
+    {
+        name = "rock_hit_debris",
+        bank = "rock_hit_debris",
+        build = "rock_hit_debris",
+        anim = "hit_rock_ruins",
+        dlc = true,
+    },
 }
 
 -- Sneakily add these to the FX table

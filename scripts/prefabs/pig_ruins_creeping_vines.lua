@@ -124,7 +124,7 @@ local function makefn()
         inst.entity:AddLight()
         inst.entity:AddSoundEmitter()
 
-        inst.AnimState:SetOrientation(ANIM_ORIENTATION.RotatingBillboard)
+        --inst.AnimState:SetOrientation(ANIM_ORIENTATION.RotatingBillboard)
 
         inst.facing = "north"
         inst.stage = 2
@@ -163,7 +163,7 @@ local function makewallfn(facing)
         inst.entity:AddSoundEmitter()
 
         inst.Transform:SetRotation(-90)
-        inst.AnimState:SetOrientation(ANIM_ORIENTATION.RotatingBillboard)
+        --TODO billboard inst.AnimState:SetOrientation(ANIM_ORIENTATION.RotatingBillboard)
         inst.AnimState:SetLayer( LAYER_WORLD_BACKGROUND )
         inst.AnimState:SetSortOrder( 3 )
 

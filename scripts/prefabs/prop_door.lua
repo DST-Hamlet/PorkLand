@@ -370,14 +370,14 @@ local function disableDoor(inst, setting, cause)
                     targetdoor.closedoor(targetdoor, true)
                 end
                 if cause == "vines" then
-                    targetdoor.components.vineable:dissabledoorvis()
+                    -- targetdoor.components.vineable:dissabledoorvis()
                 end
             else
                 if cause == "door" then
                     targetdoor.opendoor(targetdoor, true)
                 end
                 if cause == "vines" then
-                    targetdoor.components.vineable:enabledoorvis()
+                    -- targetdoor.components.vineable:enabledoorvis()
                 end
             end
             targetdoor.components.door:UpdateDoorStatus(setting, cause)
@@ -497,7 +497,7 @@ local function fn()
 
     inst:AddComponent("door")
 
-    inst:AddComponent("vineable")
+    -- inst:AddComponent("vineable")
     inst.initInteriorPrefab = InitInteriorPrefab
     inst.saveInteriorData = SaveInteriorData
     inst.initFromInteriorSave = InitFromInteriorSave
