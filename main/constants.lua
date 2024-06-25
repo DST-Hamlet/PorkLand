@@ -39,6 +39,11 @@ BATS =
 	CAVE_NUM = 6 * 2,  -- 是单机数量的两倍
 }
 
+RUINS =
+{
+	SMALL = 4,
+}
+
 INTERIOR_QUAKE_LEVELS = {
     PILLAR_WORKED = 1,
     PILLAR_DESTROYED = 2,

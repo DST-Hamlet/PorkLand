@@ -423,6 +423,8 @@ local tuning = {
     RUINS_DOOR_VINES_HACKS = 2,
     ROCKS_MINE_GIANT = 10,
     PIG_RUINS_DART_DAMAGE = wilson_attack,
+    SPEAR_TRAP_HEALTH = 100,
+    SPEAR_TRAP_DAMNAGE = wilson_attack,
 }
 
 

@@ -67,7 +67,7 @@ end
 
 local function reveal(inst)
     if inst.door then
-        inst.door.components.door:sethidden(false)
+        inst.door.components.door:SetHidden(false)
         inst.door.components.door:UpdateDoorVis()
 
         inst.door.AnimState:PlayAnimation(GetOpposite(inst.baseanimname) .. "_open")
@@ -100,7 +100,7 @@ local function reveal(inst)
         inst:Remove()
     else
         inst.revealed = true
-        inst.AnimState:PlayAnimation(inst.baseanimname.. "_open")
+        inst.AnimState:PlayAnimation(inst.baseanimname .. "_open")
         inst.AnimState:PushAnimation(inst.baseanimname)
     end
 end
@@ -119,7 +119,7 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    inst.AnimState:SetBank ("interior_wall_decals_ruins_fake")
+    inst.AnimState:SetBank("interior_wall_decals_ruins_fake")
     inst.AnimState:SetBuild("interior_wall_decals_ruins_cracks_fake")
 
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
@@ -153,7 +153,9 @@ local function fn()
     -- inst.components.workable:SetOnFinishCallback(reveal)
 
     inst:ListenForEvent("death", reveal)
-    inst:ListenForEvent("interior_endquake", reveal, TheWorld)
+    inst:ListenForEvent("interior_endquake", function()
+        reveal(inst)
+    end, TheWorld)
 
     inst:ListenForEvent("exitlimbo", function(_)
         -- Self destruct if this door has already been unlocked
