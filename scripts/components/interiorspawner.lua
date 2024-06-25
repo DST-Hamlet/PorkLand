@@ -411,13 +411,31 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                     addtags = {"lockable_door", "door_north"}
                 }
             elseif heading == SOUTH then
-                prefab = { name = "prop_door", x_offset = (depth/2), z_offset = 0, sg_name = exit.sg_name, startstate = exit.startstate, animdata = { minimapicon = exit.minimapicon, bank = exit.bank, build = exit.build, anim = "south", background = false },
-                            my_door_id = roomindex.."_SOUTH", target_door_id = exit.target_room.."_NORTH", target_interior = exit.target_room, rotation = -90, hidden = false, angle=180, addtags = { "lockable_door", "door_south" } }
+                prefab = {
+                    name = "prop_door",
+                    x_offset = (depth/2),
+                    z_offset = 0,
+                    sg_name = exit.sg_name,
+                    startstate = exit.startstate,
+                    animdata = {
+                        minimapicon = exit.minimapicon,
+                        bank = exit.bank,
+                        build = exit.build,
+                        anim = "south",
+                        background = false
+                    },
+                    my_door_id = roomindex .. "_SOUTH",
+                    target_door_id = exit.target_room .. "_NORTH",
+                    target_interior = exit.target_room,
+                    rotation = -90,
+                    hidden = false,
+                    angle = 180,
+                    addtags = {"lockable_door", "door_south"}
+                }
 
                 if not exit.secret then
                     table.insert(interior_def.prefabs, { name = "prop_door_shadow", x_offset = (depth/2), z_offset = 0, animdata = { bank = exit.bank, build = exit.build, anim = "south_floor" } })
                 end
-
             elseif heading == EAST then
                 prefab = { name = "prop_door", x_offset = 0, z_offset = width/2, sg_name = exit.sg_name, startstate = exit.startstate, animdata = { minimapicon = exit.minimapicon, bank = exit.bank, build = exit.build, anim = "east", background = true },
                             my_door_id = roomindex.."_EAST", target_door_id = exit.target_room.."_WEST", target_interior = exit.target_room, rotation = -90, hidden = false, angle=90, addtags = { "lockable_door", "door_east" } }

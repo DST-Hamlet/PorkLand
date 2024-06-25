@@ -362,7 +362,7 @@ end
 PROP_DEFS.pig_ruins_grown_over = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
     local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
 
-    addprops[#addprops + 1] = {name = "lightrays", x_offset = 0, z_offset = 0}
+    addprops[#addprops + 1] = {name = "lightrays_jungle", x_offset = 0, z_offset = 0}
 
     for i = 1, math.random(8, 18) do
         local set_width, set_depth = GetSpawnLocation(depth, width, 0.8, 0.8, room.fountain)
@@ -907,8 +907,6 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
     end
 
     if room.entrance1 then
-        width = 24
-        depth = 16
         addprops[#addprops + 1] = {
             name = "prop_door",
             x_offset = -depth/2,
@@ -933,8 +931,6 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
     end
 
     if room.entrance2 then
-        width = 24
-        depth = 16
         addprops[#addprops + 1] = {
             name = "prop_door",
             x_offset = -depth/2,
@@ -959,15 +955,11 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
     end
 
     if room.endswell then
-        width = 24
-        depth = 16
         addprops[#addprops + 1] = {name = "deco_ruins_endswell", x_offset = 0, z_offset = 0, rotation = -90}
         room.fountain = true
     end
 
     if room.pheromonestone then
-        width = 24
-        depth = 16
         addprops[#addprops + 1] = {name = "pheromonestone", x_offset = 0, z_offset = 0}
     end
 
