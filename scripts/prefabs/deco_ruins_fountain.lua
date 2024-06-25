@@ -61,41 +61,42 @@ local function OnGetItemFromPlayer_Vortex(inst, giver, item)
         value = 50
     end
 
-    value = value + math.random()*100
+    value = value + math.random() * 100
 
     inst:DoTaskInTime(1, function()
-            local gems = 0
-            if value < 100 then
-                if math.random() <= 0.6 then
-                    SpawnAt("crawlingnightmare",inst)
-                else
-                    SpawnAt("nightmarebeak",inst)
-                end
-            elseif value < 150 then
-                    gems = 1
-            elseif value < 200 then
-                   gems = 3
+        local gems = 0
+        if value < 100 then
+            if math.random() <= 0.6 then
+                SpawnAt("crawlingnightmare", inst)
+            else
+                SpawnAt("nightmarebeak", inst)
             end
+        elseif value < 150 then
+            gems = 1
+        elseif value < 200 then
+            gems = 3
+        end
 
-            if gems > 0 then
-                inst.AnimState:PlayAnimation("vortex_splash")
-                inst.AnimState:PushAnimation("vortex_idle_full",true)
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/endswell/splash")
-                for k = 1, gems do
-                    local nug = SpawnPrefab("purplegem")
-                    local pt = Vector3(inst.Transform:GetWorldPosition()) + Vector3(0,4.5,0)
+        if gems <= 0 then
+            return
+        end
 
-                    nug.Transform:SetPosition(pt:Get())
-                    local down = TheCamera:GetDownVec()
-                    local angle = math.atan2(down.z, down.x) + (math.random()*60-30)*DEGREES
-                    --local angle = (-TUNING.CAM_ROT-90 + math.random()*60-30)/180*PI
-                    local sp = math.random()*4+2
-                    nug.Physics:SetVel(sp*math.cos(angle), math.random()*2+8, sp*math.sin(angle))
-                    nug.components.inventoryitem:OnStartFalling()
-                end
-            end
+        inst.AnimState:PlayAnimation("vortex_splash")
+        inst.AnimState:PushAnimation("vortex_idle_full", true)
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/endswell/splash")
+
+        for i = 1, gems do
+            local spawn_point = inst:GetPosition() + Vector3(0, 4.5, 0)
+            local down = TheCamera:GetDownVec()
+            local angle = math.atan2(down.z, down.x) + (math.random() * 60 - 30) * DEGREES
+            local speed = math.random() * 4 + 2
+
+            local gem = SpawnPrefab("purplegem")
+            gem.Transform:SetPosition(spawn_point:Get())
+            gem.Physics:SetVel(speed * math.cos(angle), math.random() * 2 + 8, speed * math.sin(angle))
+            -- gem.components.inventoryitem:OnStartFalling()
+        end
     end)
-
 end
 
 local function OnSave(inst, data)
@@ -186,5 +187,5 @@ local function MakeFountain(name, build, bank, animframe, is_vortex)
     return Prefab(name, fn, assets, prefabs)
 end
 
-return  MakeFountain("deco_ruins_fountain", "pig_ruins_well", "pig_ruins_well", "idle_full"),
+return  MakeFountain("deco_ruins_fountain", "pig_ruins_well", "pig_ruins_well", "idle_full", false),
         MakeFountain("deco_ruins_endswell", "pig_ruins_well", "pig_ruins_well", "vortex_idle_full", true)

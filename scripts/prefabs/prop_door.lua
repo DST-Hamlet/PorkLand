@@ -1,9 +1,3 @@
-require "prefabutil"
--- require "stategraphs/SGanthilldoor_north"
--- require "stategraphs/SGanthilldoor_south"
--- require "stategraphs/SGanthilldoor_east"
--- require "stategraphs/SGanthilldoor_west"
-
 local assets =
 {
     Asset("ANIM", "anim/pig_door_test.zip"),
@@ -26,9 +20,9 @@ local prefabs =
 
 local lights =
 {
-    day = {rad=3,intensity=0.75,falloff=0.5,color={1,1,1}},
-    dusk = {rad=2,intensity=0.75,falloff=0.5,color={1/1.8,1/1.8,1/1.8}},
-    full = {rad=2,intensity=0.75,falloff=0.5,color={0.8/1.8,0.8/1.8,1/1.8}}
+    day  = {rad = 3, intensity = 0.75, falloff = 0.5, color = {1, 1, 1}},
+    dusk = {rad = 2, intensity = 0.75, falloff = 0.5, color = {1 / 1.8, 1 / 1.8, 1 / 1.8}},
+    full = {rad = 2, intensity = 0.75, falloff = 0.5, color = {0.8 / 1.8, 0.8 / 1.8, 1 / 1.8}}
 }
 
 local function turnoff(inst, light)
@@ -37,7 +31,7 @@ local function turnoff(inst, light)
     end
 end
 
-local phasefunctions =
+local phase_functions =
 {
     day = function(inst)
         if not inst:IsInLimbo() then inst.Light:Enable(true) end
@@ -67,7 +61,7 @@ local function timechange(inst)
         end
 
         if inst.Light then
-            phasefunctions["day"](inst)
+            phase_functions["day"](inst)
         end
     elseif TheWorld.state.isnight then
 
@@ -77,7 +71,7 @@ local function timechange(inst)
         end
 
         if inst.Light then
-            phasefunctions["night"](inst)
+            phase_functions["night"](inst)
         end
     elseif TheWorld.state.isdusk then
 
@@ -87,7 +81,7 @@ local function timechange(inst)
         end
 
         if inst.Light then
-            phasefunctions["dusk"](inst)
+            phase_functions["dusk"](inst)
         end
     end
 end
@@ -353,14 +347,14 @@ local function onload(inst, data)
     end
 end
 
-local function disableDoor(inst, setting, cause)
+local function DisableDoor(inst, setting, cause)
     assert(cause,"needs a cause")
 
     local door = inst.components.door
     door:UpdateDoorStatus(setting, cause)
 
     -- deal with connecting doors.
-    local interior_spawner = GetWorld().components.interiorspawner
+    local interior_spawner = TheWorld.components.interiorspawner
     if interior_spawner.doors[door.target_door_id] then
         -- THIS DOORS OPPOSITE DOOR HAS BEEN VISITED BEFORE
         local targetdoor = interior_spawner.doors[door.target_door_id].inst
@@ -407,7 +401,7 @@ local function disableDoor(inst, setting, cause)
     end
 end
 
-local function usedoor(inst,data)
+local function UseDoor(inst,data)
     if inst.usesounds then
         if data and data.doer and data.doer.SoundEmitter then
             for i,sound in ipairs(inst.usesounds)do
@@ -417,37 +411,35 @@ local function usedoor(inst,data)
     end
 end
 
-local function opendoor(inst, instant)
+local function OpenDoor(inst, data)
     if inst.baseanimname and inst.components.door.disabledcauses and inst.components.door.disabledcauses["door"] then
-        --print("OPENING")
-        if not instant then
+        if not data or not data.instant then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/slide")
-            inst.AnimState:PlayAnimation(inst.baseanimname.."_open")
+            inst.AnimState:PlayAnimation(inst.baseanimname .. "_open")
             inst.AnimState:PushAnimation(inst.baseanimname)
         else
             inst.AnimState:PlayAnimation(inst.baseanimname)
         end
 
-        disableDoor(inst,nil,"door")
+        DisableDoor(inst, nil, "door")
 
         inst.dooranimclosed = nil
     end
 end
 
-local function closedoor(inst, instant)
+local function CloseDoor(inst, instant)
     -- once the player has used a door, the doors should freeze open
-    if not GetWorld().doorfreeze  then
-        if inst.baseanimname and (not inst.components.door.disabledcauses or not inst.components.door.disabledcauses["door"])  then
-            --print("CLOSING")
-            if not instant then
+    if not inst.components.door.disabled then
+        if inst.baseanimname and (not inst.components.door.disabledcauses or not inst.components.door.disabledcauses["door"]) then
+            if instant then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/close")
                 inst.AnimState:PlayAnimation(inst.baseanimname.."_shut")
                 inst.AnimState:PushAnimation(inst.baseanimname.."_closed")
-                inst:DoTaskInTime(1/30*7,function() TheCamera:Shake("FULL", 0.7, 0.02, .5, 40) end)
+                inst:DoTaskInTime(7 / 30, function() TheCamera:Shake("FULL", 0.7, 0.02, .5, 40) end)
             else
                 inst.AnimState:PlayAnimation(inst.baseanimname.."_closed")
             end
-            disableDoor(inst, true,"door")
+            DisableDoor(inst, true, "door")
             inst.dooranimclosed = true
         end
     end
@@ -467,30 +459,30 @@ end
 
 local function fn()
     local inst = CreateEntity()
+
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-    inst.entity:AddNetwork()
     inst.entity:AddLight()
+    inst.entity:AddNetwork()
 
-    inst.Light:Enable(false)
+    MakeObstaclePhysics(inst, 1)
 
     inst.AnimState:SetBank("acorn")
     inst.AnimState:SetBuild("acorn")
     inst.AnimState:PlayAnimation("idle")
-    -- inst.AnimState:SetSortOrder(SORTORDER_MAX)
 
-    --inst.Transform:SetTwoFaced()
-
-    MakeObstaclePhysics(inst, 1)
-    inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
-
-    inst:DoTaskInTime(0, testPlayerHouseDoor)
+    inst.Light:Enable(false)
 
     inst:AddTag("interior_door")
     inst:AddTag("NOBLOCK")
 
+    inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
+
+    inst:DoTaskInTime(0, testPlayerHouseDoor)
+
     inst.entity:SetPristine()
+
     if not TheWorld.ismastersim then
         return inst
     end
@@ -498,20 +490,20 @@ local function fn()
     inst:AddComponent("door")
 
     -- inst:AddComponent("vineable")
+
     inst.initInteriorPrefab = InitInteriorPrefab
     inst.saveInteriorData = SaveInteriorData
     inst.initFromInteriorSave = InitFromInteriorSave
 
     MakeHauntableDoor(inst)
 
-    inst.opendoor = opendoor
-    inst.closedoor = closedoor
-    inst.disableDoor = disableDoor
+    inst.opendoor = OpenDoor
+    inst.closedoor = CloseDoor
+    inst.disableDoor = DisableDoor
 
-    inst:ListenForEvent("open", function(inst, data) opendoor(inst, data and data.instant) end)
-    inst:ListenForEvent("close", function(inst, data) closedoor(inst, data and data.instant) end)
-
-    inst:ListenForEvent("usedoor", function(inst,data) usedoor(inst,data) end)
+    inst:ListenForEvent("open", OpenDoor)
+    inst:ListenForEvent("close", CloseDoor)
+    inst:ListenForEvent("usedoor", UseDoor)
 
     inst.OnSave = onsave
     inst.OnLoad = onload

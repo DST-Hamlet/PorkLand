@@ -172,17 +172,25 @@ end
 
 local function sidewallfn()
     local inst = fn()
+
+    local anim_data = {
+        bank = "interior_wall_decals_ruins",
+        build = "interior_wall_decals_ruins",
+        animation = "sconce_sidewall",
+    }
+
+    inst.AnimState:SetBank(anim_data.bank)
+    inst.AnimState:SetBuild(anim_data.build)
+    inst.AnimState:PlayAnimation(anim_data.animation)
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(3)
-    --inst.AnimState:SetOrientation(ANIM_ORIENTATION.RotatingBillboard)
-
-    inst:SetPrefabNameOverride("pig_ruins_torch_wall")
 
     inst:AddTag("wall_torch")
 
-    inst.AnimState:SetBank("interior_wall_decals_ruins")
-    inst.AnimState:SetBuild("interior_wall_decals_ruins")
-    inst.AnimState:PlayAnimation("sconce_sidewall")
+    inst:AddComponent("rotatingbillboard")
+    inst.components.rotatingbillboard.animdata = anim_data
+
+    inst:SetPrefabNameOverride("pig_ruins_torch_wall")
 
     return inst
 end

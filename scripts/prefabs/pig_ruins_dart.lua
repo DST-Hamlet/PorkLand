@@ -133,7 +133,6 @@ local function MakeDart(name, build, bank, animframe, facing)
         inst.AnimState:PlayAnimation(animframe)
         inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
         inst.AnimState:SetSortOrder(1)
-        --inst.AnimState:SetOrientation(ANIM_ORIENTATION.RotatingBillboard)
 
         inst.Transform:SetRotation(-90)
 
@@ -148,6 +147,13 @@ local function MakeDart(name, build, bank, animframe, facing)
         end
 
         inst.name = STRINGS.NAMES.PIG_RUINS_DART_TRAP
+
+        inst:AddComponent("rotatingbillboard")
+        inst.components.rotatingbillboard.animdata = {
+            bank = bank,
+            build = build,
+            animation = animframe,
+        }
 
         inst.entity:SetPristine()
 

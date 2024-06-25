@@ -67,29 +67,33 @@ local function Untrigger(inst)
 end
 
 local function OnNear(inst)
-    if inst.components.disarmable.armed and not inst.down then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/pressure_plate/hit")
-        inst.AnimState:PlayAnimation("popdown")
-        inst.AnimState:PushAnimation("down_idle")
-        inst.down = true
-        if inst:HasTag("reversetrigger") then
-            Untrigger(inst)
-        else
-            Trigger(inst)
-        end
+    if not inst.components.disarmable.armed or inst.down then
+        return
+    end
+
+    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/pressure_plate/hit")
+    inst.AnimState:PlayAnimation("popdown")
+    inst.AnimState:PushAnimation("down_idle")
+    inst.down = true
+    if inst:HasTag("reversetrigger") then
+        Untrigger(inst)
+    else
+        Trigger(inst)
     end
 end
 
 local function OnFar(inst)
-    if not inst:HasTag("INTERIOR_LIMBO") and inst.components.disarmable.armed and inst.down then
-        inst.AnimState:PlayAnimation("popup")
-        inst.AnimState:PushAnimation("up_idle")
-        inst.down = nil
-        if inst:HasTag("reversetrigger") then
-            Trigger(inst)
-        else
-            Untrigger(inst)
-        end
+    if not inst.components.disarmable.armed or not inst.down then
+        return
+    end
+
+    inst.AnimState:PlayAnimation("popup")
+    inst.AnimState:PushAnimation("up_idle")
+    inst.down = nil
+    if inst:HasTag("reversetrigger") then
+        Trigger(inst)
+    else
+        Untrigger(inst)
     end
 end
 
@@ -194,8 +198,9 @@ local function fn()
     inst.components.creatureprox:SetOnFar(OnFar)
     inst.components.creatureprox:SetFindTestFn(TestFn)
     inst.components.creatureprox:SetDist(0.8, 0.9)
-    inst.components.creatureprox.inventorytrigger = true
-    inst.components.creatureprox.period = 0.01
+    inst.components.creatureprox:SetInventoryTrigger(true)
+    inst.components.creatureprox:SetPlayerAliveMode(true)
+    inst.components.creatureprox:Schedule(0.01)
 
     inst:AddComponent("hiddendanger")
 

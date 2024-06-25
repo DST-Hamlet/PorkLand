@@ -118,7 +118,7 @@ PrefabFiles = {
     "vampirebatcave",
     "interiorworkblank",
     "prop_door",
-    --"pig_ruins_creeping_vines",
+    "pig_ruins_creeping_vines",
     "pl_birds",
     "bat_hide",
     "cave_entrance_roc",
