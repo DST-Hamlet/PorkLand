@@ -91,6 +91,12 @@ local function UpdateFx(inst)
     end
 end
 
+local function ClearFx(inst)
+    for k in pairs(inst.fx)do
+        k:Remove()
+    end
+end
+
 local function SetTextureIndex(inst, index)
     assert(TEXTURE_DEF[index])
     inst:SetTexture(TEXTURE_DEF[index].name)
@@ -101,13 +107,42 @@ local function SetTexture(inst, texture)
     inst.texture_name = texture
     inst.texture_index:set(index)
     inst.texture_path = TEXTURE_DEF[index].path
-    UpdateFx(inst)
+    --UpdateFx(inst)
 end
 
 local function SetSizeXZ(inst, x, z)
     inst.size_x:set(x)
     inst.size_z:set(z)
+    --UpdateFx(inst)
+end
+
+local function OnThePlayerNear(inst)
     UpdateFx(inst)
+end
+
+local function OnThePlayerFar(inst)
+    ClearFx(inst)
+end
+
+local function UpdateState(inst)
+    if ThePlayer and ThePlayer:IsNear(inst, 64) then
+        OnThePlayerNear(inst)
+    else
+        OnThePlayerFar(inst)
+    end
+end
+
+local function StartUpdateState(inst)
+    if inst.updatefxtask == nil then
+        inst.updatefxtask = inst:DoPeriodicTask(FRAMES, UpdateState)
+    end
+end
+
+local function StopUpdateState(inst)
+    if inst.updatefxtask then
+        inst.updatefxtask:Cancel()
+        inst.updatefxtask = nil
+    end
 end
 
 local function SetSizeX(inst, x)
@@ -145,6 +180,11 @@ local function floor_fn()
     inst:AddTag("NOBLOCK")
     inst.fx = {}
 
+    if not TheNet:IsDedicated() then
+        inst.OnEntitySleep = StopUpdateState
+        inst.OnEntityWake = StartUpdateState
+    end
+
     if not TheWorld.ismastersim then
         inst:ListenForEvent("texture_index", UpdateFx)
         inst:ListenForEvent("size", UpdateFx)
@@ -177,6 +217,11 @@ local function wall_fn()
 
     inst:AddTag("NOBLOCK")
     inst.fx = {}
+
+    if not TheNet:IsDedicated() then
+        inst.OnEntitySleep = StopUpdateState
+        inst.OnEntityWake = StartUpdateState
+    end
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("texture_index", UpdateFx)
