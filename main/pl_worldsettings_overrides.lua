@@ -453,15 +453,17 @@ applyoverrides_post.pugalisk_fountain = function(difficulty)
 end
 
 applyoverrides_post.vampirebat = function (difficulty)
-    if difficulty == "never" then
-        TheWorld.components.batted:SetSpawnModeNever()
-    elseif difficulty == "rare" then
-        TheWorld.components.batted:SetSpawnModeRare()
-    elseif difficulty == "often" then
-        TheWorld.components.batted:SetSpawnModeOften()
-    elseif difficulty == "always" then
-        TheWorld.components.batted:SetSpawnModeAlways()
-    else
-        TheWorld.components.batted:SetSpawnModeNormal()
+    if TheWorld.components.batted then
+        if difficulty == "never" then
+            TheWorld.components.batted:SetSpawnModeNever()
+        elseif difficulty == "rare" then
+            TheWorld.components.batted:SetSpawnModeRare()
+        elseif difficulty == "often" then
+            TheWorld.components.batted:SetSpawnModeOften()
+        elseif difficulty == "always" then
+            TheWorld.components.batted:SetSpawnModeAlways()
+        else
+            TheWorld.components.batted:SetSpawnModeNormal()
+        end
     end
 end

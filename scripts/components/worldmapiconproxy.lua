@@ -70,7 +70,7 @@ return Class(function(self, inst)
             local ent = data.to
             if ent ~= nil and ent:HasInteriorMinimap() then
                 bg:Render(true)
-                player_room_ent:Update()
+                --player_room_ent:Update()
                 minimap_type = "interior"
             else
                 bg:Render(false)
@@ -215,7 +215,7 @@ return Class(function(self, inst)
             v:Render(false)
         end
 
-        player_room_ent:Update()
+        --player_room_ent:Update()
 
         local ent = _activatedplayer.replica.interiorvisitor:GetCenterEnt()
         local layout_map = TheWorld.components.interiorspawner.interior_layout_map
