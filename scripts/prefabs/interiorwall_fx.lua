@@ -90,9 +90,6 @@ local function fn()
     inst.entity:AddTransform()
 
     --[[Non-networked entity]]
-    if TheNet:GetIsClient() then
-        inst.entity:AddClientSleepable()
-    end
 
     inst.persists = false
 
