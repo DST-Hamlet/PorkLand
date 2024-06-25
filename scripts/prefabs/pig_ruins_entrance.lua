@@ -411,8 +411,8 @@ local function BuildMaze(inst, dungeondef)
 
     CreateSecretRoom()
 
-    local width = 18
-    local depth = 12
+    local width = 24
+    local depth = 16
 
     for _, room in pairs(rooms) do
         local roomtypes = {"grown_over", "store_room", "small_treasure", "snake", nil}
