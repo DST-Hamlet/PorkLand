@@ -711,9 +711,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 -- this door should have vines
-                -- if prefab.vined and object.components.vineable then
-                --     object.components.vineable:SetUpVine()
-                -- end
+                if prefab.vined and object.components.vineable then
+                    object.components.vineable:SetUpVine()
+                end
 
 
                 -- this function processes the extra data that the prefab has attached to it for interior stuff.
@@ -743,9 +743,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 -- needs to happen after the door_closed stuff has happened.
-                -- if object.components.vineable then
-                --     object.components.vineable:InitInteriorPrefab()
-                -- end
+                if object.components.vineable then
+                    object.components.vineable:InitInteriorPrefab()
+                end
 
                 if interior.cityID then
                     object:AddComponent("citypossession")

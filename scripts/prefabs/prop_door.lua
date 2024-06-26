@@ -316,15 +316,9 @@ local function DisableDoor(inst, setting, cause)
                 if cause == "door" then
                     targetdoor.closedoor(targetdoor, true)
                 end
-                if cause == "vines" then
-                    -- targetdoor.components.vineable:dissabledoorvis()
-                end
             else
                 if cause == "door" then
                     targetdoor.opendoor(targetdoor, true)
-                end
-                if cause == "vines" then
-                    -- targetdoor.components.vineable:enabledoorvis()
                 end
             end
             targetdoor.components.door:SetDoorDisabled(setting, cause)
@@ -332,7 +326,7 @@ local function DisableDoor(inst, setting, cause)
 
     else
         -- THIS DOORS OPPOSITE DOOR MAY EXIST BUT NOT VISITED YET..
-        local interior = interior_spawner:GetInteriorByIndex(door.target_interior)
+        local interior = door.target_interior and interior_spawner:GetInteriorByIndex(door.target_interior)
         if interior then
             if interior.prefabs then
                 for k, prefab in ipairs(interior.prefabs) do
@@ -449,7 +443,7 @@ local function fn()
 
     inst:AddComponent("door")
 
-    -- inst:AddComponent("vineable")
+    inst:AddComponent("vineable")
 
     inst.initInteriorPrefab = InitInteriorPrefab
     inst.saveInteriorData = SaveInteriorData

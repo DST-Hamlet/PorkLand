@@ -63,7 +63,7 @@ local function hackedopen(inst)
     inst.AnimState:PlayAnimation(GetAnimName(inst), true)
 end
 
-local function onhackedfn(inst, hacker, hacksleft)
+local function OnHacked(inst, hacker, hacksleft)
     if hacksleft <= 0 then
         if inst.stage > 0 then
             inst.stage = inst.stage -1
@@ -71,16 +71,16 @@ local function onhackedfn(inst, hacker, hacksleft)
             if inst.stage == 0 then
                 ClearDoor(inst)
                 if inst.door then
-                   --  inst.door.components.vineable:BeginRegrow()                       
+                   inst.door.components.vineable:BeginRegrow()
                 end
             else
-                inst.AnimState:PlayAnimation(GetAnimName(inst).."_hit")
+                inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_hit")
                 inst.AnimState:PushAnimation(GetAnimName(inst), true)
                 inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
             end
         end
     else
-        inst.AnimState:PlayAnimation(GetAnimName(inst).."_hit")
+        inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_hit")
         inst.AnimState:PushAnimation(GetAnimName(inst), true)
     end
 
@@ -141,7 +141,7 @@ local function makefn()
 
     inst:AddComponent("hackable")
     inst.components.hackable:SetUp()
-    inst.components.hackable.onhackedfn = onhackedfn
+    inst.components.hackable.onhackedfn = OnHacked
     inst.components.hackable.hacksleft = TUNING.RUINS_DOOR_VINES_HACKS
     inst.components.hackable.maxhacks = TUNING.RUINS_DOOR_VINES_HACKS
 

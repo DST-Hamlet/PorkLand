@@ -392,16 +392,16 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
     end
 
     if dungeondef.name == "RUINS_3" then
-        choices[math.random(#choices)].pheromonestone = true
+        GetRandomItem(choices).pheromonestone = true
     elseif dungeondef.name == "RUINS_1" then
-        choices[math.random(#choices)].relictruffle = true
+        GetRandomItem(choices).relictruffle = true
     elseif dungeondef.name == "RUINS_2" then
-        choices[math.random(#choices)].relicsow = true
+        GetRandomItem(choices).relicsow = true
     elseif dungeondef.name == "RUINS_5" then
         dungeondef.advancedtraps = true
-        choices[math.random(#choices)].endswell = true
+        GetRandomItem(choices).endswell = true
     else
-        choices[math.random(#choices)].treasure = true
+        GetRandomItem(choices).treasure = true
     end
 
     CreateSecretRoom()
@@ -409,10 +409,9 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
     for _, room in pairs(rooms) do
         local roomtypes = {"grown_over", "store_room", "small_treasure", "snake", nil}
 
-        -- TODO implement IsWorldGenOptionNever
-        -- if not TheWorld:IsWorldGenOptionNever("spear_traps") then
+        --if GetWorldSetting("spear_traps", true) then
             table.insert(roomtypes, "spear_trap")
-        -- end
+        --end
 
         -- if not TheWorld:IsWorldGenOptionNever("dart_traps") then
             table.insert(roomtypes, "dart_trap")
@@ -557,9 +556,9 @@ local function InitMaze(inst, dungeonname)
         exit_door.interiorID = exit_room.id
     end
 
-    -- if inst.components.door and dungeondef.lock then
-         inst.components.door:SetDoorDisabled(true, "vines")
-    -- end
+    if inst.components.door and dungeondef.lock then
+        inst.components.door:SetDoorDisabled(true, "vines")
+    end
 
     inst.maze_generated = true
 
