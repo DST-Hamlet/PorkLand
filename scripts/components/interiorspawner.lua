@@ -727,7 +727,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 -- needs to happen after the object initinterior so the door info is there.
                 if prefab.door_closed then
                     for cause,setting in pairs(prefab.door_closed)do
-                        object.components.door:UpdateDoorStatus(setting, cause)
+                        object.components.door:SetDoorDisabled(setting, cause)
                     end
                 end
 

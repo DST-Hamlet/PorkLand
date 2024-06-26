@@ -2,6 +2,14 @@ local GenerateProps = require("prefabs/interior_prop_defs")
 
 local PIG_RUINS_WIDTH = 24
 local PIG_RUINS_DEPTH = 16
+local PIG_RUINS_ROOM_COUNT = {
+    RUINS_1 = 24,
+    RUINS_2 = 15,
+    RUINS_3 = 15,
+    RUINS_4 = 20,
+    RUINS_5 = 30,
+    RUINS_SMALL = function() return math.random(6, 8) end,
+}
 local PIG_RUINS_FLOOR_TEXTURE = "levels/textures/interiors/ground_ruins_slab.tex"
 local PIG_RUINS_WALL_TEXTURE = "levels/textures/interiors/pig_ruins_panel.tex"
 local PIG_RUINS_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_ruins_slab.tex"
@@ -126,22 +134,20 @@ end
 local function BuildMaze(inst, dungeondef, exterior_door_def)
     local interior_spawner = TheWorld.components.interiorspawner
 
-    local rooms_to_make = dungeondef.rooms --24
-    local exitRoom = nil
+    local exit_room
+
+    local rooms_to_make = dungeondef.rooms
 
     local rooms = {
         {
             x = 0,
             y = 0,
-            id = interior_spawner:GetNewID(),
+            id = exterior_door_def.target_interior,
             exits = {},
             blocked_exits = {interior_spawner:GetNorth()},
             entrance1 = true,
         }
     }
-    exterior_door_def.target_interior = rooms[1].id
-    local rooms_by_id = {}
-    rooms_by_id[rooms[1].id] = rooms[1]
 
     local clock_placed = false
 
@@ -202,8 +208,6 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
                 new_room.exits[dir_opposite[dir_choice]].vined = true
             end
 
-            rooms_by_id[new_room.id] = new_room
-
             rooms[#rooms + 1] = new_room
         end
     end
@@ -212,7 +216,7 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
         local grid = {}
 
         local function CheckFreeGridPos(x, y)
-            for i,room in ipairs(rooms) do
+            for _, room in pairs(rooms) do
                 if room.x == x and room.y == y then
                     return false
                 end
@@ -241,13 +245,10 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
         end
 
         local function FindCandidates()
-            for i,room in ipairs(rooms) do
-
+            for _, room in pairs(rooms) do
                 local north = interior_spawner:GetNorth()
                 local west = interior_spawner:GetWest()
                 local east = interior_spawner:GetEast()
-
-                local dir = nil
 
                 -- NORTH IS OPEN
                 if not room.exits[north] and not room.entrance2 and not room.entrance1 then
@@ -270,11 +271,9 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
             local max_x = 0
             local max_y = 0
             local max = 0
-            local key_1 = 0
-            local key_2 = 0
 
-            for k,v in pairs(grid) do
-                for k2,v2 in pairs(v) do
+            for k, v in pairs(grid) do
+                for k2, v2 in pairs(v) do
                     if #v2.rooms > max then
                         max = #v2.rooms
                         max_x = k
@@ -289,7 +288,6 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
         end
 
         local function PopulateSecretRoom(x, y)
-
             local secret_room = {
                 x = x,
                 y = y,
@@ -311,9 +309,9 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
                 secret_room.aporkalypseclock = true
                 while #grid_rooms > 1 do
 
-                    local num = math.random(1,#grid_rooms)
-                    table.remove(grid_rooms,num)
-                    table.remove(grid_dirs,num)
+                    local num = math.random(1, #grid_rooms)
+                    table.remove(grid_rooms, num)
+                    table.remove(grid_dirs, num)
                     bank =  "doorway_ruins"
                     build = "pig_ruins_door"
                 end
@@ -358,7 +356,6 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
             else
                 local newroom = PopulateSecretRoom(x, y)
                 if newroom then
-                    rooms_by_id[newroom.id] = newroom
                     table.insert(rooms, newroom)
                 end
             end
@@ -382,7 +379,8 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
 
     if not dungeondef.no_second_exit then
         if next(choices) then
-            GetRandomItem(choices).entrance2 = true
+            exit_room = GetRandomItem(choices)
+            exit_room.entrance2 = true
         end
     end
 
@@ -426,22 +424,22 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
             table.insert(roomtypes, "door_trap")
         end
 
-        local roomtype = GetRandomItem(roomtypes)
+        local room_type = GetRandomItem(roomtypes)
 
         if room.treasure then
-            roomtype =  "treasure"
+            room_type =  "treasure"
         end
         if room.relictruffle or room.relicsow then
-            roomtype =  "treasure_rarerelic"
+            room_type =  "treasure_rarerelic"
         end
         if room.secretroom  then
-            roomtype = "treasure_secret"
+            room_type = "treasure_secret"
         end
         if room.aporkalypseclock then
-            roomtype = "treasure_aporkalypse"
+            room_type = "treasure_aporkalypse"
         end
         if room.endswell then
-            roomtype = "treasure_endswell" -- this prevents other features from conflicting with the endswell well.
+            room_type = "treasure_endswell" -- this prevents other features from conflicting with the endswell well.
         end
 
         local wall_texture = PIG_RUINS_WALL_TEXTURE
@@ -472,12 +470,8 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
             south = not exits_open.south and room.exits[interior_spawner:GetSouth()].vined or false,
             east = not exits_open.east and room.exits[interior_spawner:GetEast()].vined or false,
         }
-        local addprops, entrance_room, exit_room = GenerateProps("pig_ruins_" .. roomtype, PIG_RUINS_DEPTH, PIG_RUINS_WIDTH,
-            exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
-
-        if not exitRoom then
-            exitRoom = exit_room
-        end
+        local addprops = GenerateProps("pig_ruins_" .. room_type, PIG_RUINS_DEPTH, PIG_RUINS_WIDTH,
+            exits_open, exits_vined, room, room_type, dungeondef, exterior_door_def)
 
         local def = interior_spawner:CreateRoom("generic_interior", PIG_RUINS_WIDTH, nil, PIG_RUINS_DEPTH, dungeondef.name, room.id, addprops, room.exits,
             wall_texture, floor_texture, PIG_RUINS_MINIMAP_TEXTURE, nil, PIG_RUINS_COLOUR_CUBE, nil, nil,
@@ -485,7 +479,7 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
         interior_spawner:SpawnInterior(def)
     end
 
-    return rooms[1], exitRoom
+    return exit_room
 end
 
 local function InitMaze(inst, dungeonname)
@@ -496,29 +490,23 @@ local function InitMaze(inst, dungeonname)
 
     local dungeondef = {
         name = dungeonname,
-        rooms = 24,
-        lock  = true,
+        rooms = FunctionOrValue(PIG_RUINS_ROOM_COUNT[dungeonname]),
+        lock = true,
         doorvines = 0.3,
         deepruins = true,
         secretrooms = 2,
     }
 
     if dungeonname == "RUINS_2" then
-        dungeondef.rooms = 15
         dungeondef.doorvines = 0.6
     elseif dungeonname == "RUINS_3" then
-        dungeondef.rooms = 15
         dungeondef.no_second_exit = true
     elseif dungeonname == "RUINS_4" then
-        dungeondef.rooms = 20
         dungeondef.doorvines = 0.4
     elseif dungeonname == "RUINS_5" then
-        dungeondef.rooms = 30
         dungeondef.doorvines = 0.6
         dungeondef.no_second_exit = true
     elseif dungeonname == "RUINS_SMALL" then
-        dungeondef.name = "RUINS_SMALL"
-        dungeondef.rooms = math.random(6,8)
         dungeondef.no_second_exit = true
         dungeondef.lock = nil
         dungeondef.doorvines = nil
@@ -527,34 +515,51 @@ local function InitMaze(inst, dungeonname)
         dungeondef.smallsecret = true
     end
 
+    local interior_spawner = TheWorld.components.interiorspawner
+
+    local ID = inst.interiorID
+    if not ID then
+        ID = interior_spawner:GetNewID()
+    end
+
+    if not inst.interiorID == nil then
+        return
+    end
+
+    local newID = ID
+    inst.interiorID = newID
+
     local exterior_door_def = {
         my_door_id = dungeondef.name .. "_ENTRANCE1",
         target_door_id = dungeondef.name .. "_EXIT1",
+        target_interior = inst.interiorID,
     }
-    local entranceRoom, exitRoom = BuildMaze(inst, dungeondef, exterior_door_def)
-    local interior_spawner = TheWorld.components.interiorspawner
+
+    local exit_room = BuildMaze(inst, dungeondef, exterior_door_def)
     interior_spawner:AddDoor(inst, exterior_door_def)
 
-    -- if inst.components.door and dungeondef.lock then
-    --     inst.components.door:checkDisableDoor(true, "vines")
-    -- end
-
-    local exit_door = nil
+    local exit_door
     for _, ent in pairs(Ents) do
         if ent:HasTag(dungeondef.name .. "_EXIT_TARGET") then
             exit_door = ent
         end
     end
 
-    if exit_door and exitRoom then
+    if exit_door and exit_room then
         -- CREATE 2nd DOOR
         local exterior_door_def2 = {
             my_door_id = dungeondef.name .. "_ENTRANCE2",
             target_door_id = dungeondef.name .. "_EXIT2",
-            target_interior = exitRoom.id,
+            target_interior = exit_room.id,
         }
         interior_spawner:AddDoor(exit_door, exterior_door_def2)
+        interior_spawner:AddExterior(exit_door)
+        exit_door.interiorID = exit_room.id
     end
+
+    -- if inst.components.door and dungeondef.lock then
+         inst.components.door:SetDoorDisabled(true, "vines")
+    -- end
 
     inst.maze_generated = true
 
@@ -574,7 +579,7 @@ local function OnHacked(inst, hacker, hacksleft)
 
             if inst.stage == 0 then
                 inst.components.hackable.canbehacked = false
-                inst.components.door:checkDisableDoor(false, "vines")
+                inst.components.door:SetDoorDisabled(false, "vines")
             else
                 inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
             end
@@ -612,6 +617,8 @@ local function OnSave(inst, data)
     if inst:HasTag("top_ornament3") then
         data.top_ornament3 = true
     end
+
+    data.interiorID = inst.interiorID
 end
 
 local function OnLoad(inst, data)
@@ -634,12 +641,15 @@ local function OnLoad(inst, data)
         if data.top_ornament3 then
             inst:AddTag("top_ornament3")
         end
+        if data.interiorID then
+            inst.interiorID = data.interiorID
+        end
     end
 
     RefreshBuild(inst)
 end
 
-local function MakeEntrance(name, is_entrance, dungeonname)
+local function MakeEntrance(name, is_entrance, dungeon_name)
     local function fn()
         local inst = CreateEntity()
 
@@ -659,15 +669,17 @@ local function MakeEntrance(name, is_entrance, dungeonname)
         inst.MiniMapEntity:SetIcon("pig_ruins_entrance.tex")
 
         inst:AddTag("ruins_exit")
-        if dungeonname == "RUINS_1" then
+        if dungeon_name == "RUINS_1" then
             inst:AddTag("top_ornament")
-        elseif dungeonname == "RUINS_2" then
+        elseif dungeon_name == "RUINS_2" then
             inst:AddTag("top_ornament2")
-        elseif dungeonname == "RUINS_3" then
+        elseif dungeon_name == "RUINS_3" then
             inst:AddTag("top_ornament3")
-        elseif dungeonname == "RUINS_4" or dungeonname == "RUINS_5" then
+        elseif dungeon_name == "RUINS_4" or dungeon_name == "RUINS_5" then
             inst:AddTag("top_ornament4")
         end
+
+        TheWorld.components.interiorspawner:AddExterior(inst)
 
         inst.entity:SetPristine()
 
@@ -707,19 +719,19 @@ local function MakeEntrance(name, is_entrance, dungeonname)
                 --     time = GetWorld().ruinspawntime
                 --     GetWorld().ruinspawntime  = GetWorld().ruinspawntime + 0.3
                 -- end
-                inst:DoTaskInTime(1, function()
-                    InitMaze(inst, dungeonname)
+                inst:DoTaskInTime(math.random() + 1, function()
+                    InitMaze(inst, dungeon_name)
                 end)
             end)
         else -- this prefab is an exit. Just set the door and art
-            inst:AddTag(dungeonname.."_EXIT_TARGET")
+            inst:AddTag(dungeon_name .. "_EXIT_TARGET")
             inst.stage = 0
             inst.components.hackable.canbehacked = false
             inst.components.door.disabled = nil
             RefreshBuild(inst)
         end
 
-        if dungeonname == "RUINS_SMALL" then
+        if dungeon_name == "RUINS_SMALL" then
             inst.stage = 0
             inst.components.hackable.canbehacked = false
             inst.components.door.disabled = nil
@@ -737,17 +749,17 @@ local function MakeEntrance(name, is_entrance, dungeonname)
     return Prefab(name, fn, assets, prefabs)
 end
 
-return MakeEntrance("pig_ruins_entrance", true,"RUINS_1"),
-       MakeEntrance("pig_ruins_exit", false,"RUINS_1"),
+return MakeEntrance("pig_ruins_entrance", true, "RUINS_1"),
+       MakeEntrance("pig_ruins_exit", false, "RUINS_1"),
 
-       MakeEntrance("pig_ruins_entrance2", true,"RUINS_2"),
-       MakeEntrance("pig_ruins_exit2", false,"RUINS_2"),
+       MakeEntrance("pig_ruins_entrance2", true, "RUINS_2"),
+       MakeEntrance("pig_ruins_exit2", false, "RUINS_2"),
 
-       MakeEntrance("pig_ruins_entrance3", true,"RUINS_3"),
+       MakeEntrance("pig_ruins_entrance3", true, "RUINS_3"),
 
-       MakeEntrance("pig_ruins_entrance4", true,"RUINS_4"),
-       MakeEntrance("pig_ruins_exit4", false,"RUINS_4"),
+       MakeEntrance("pig_ruins_entrance4", true, "RUINS_4"),
+       MakeEntrance("pig_ruins_exit4", false, "RUINS_4"),
 
-       MakeEntrance("pig_ruins_entrance5", true,"RUINS_5"),
+       MakeEntrance("pig_ruins_entrance5", true, "RUINS_5"),
 
-       MakeEntrance("pig_ruins_entrance_small", true,"RUINS_SMALL")
+       MakeEntrance("pig_ruins_entrance_small", true, "RUINS_SMALL")
