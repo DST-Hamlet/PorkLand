@@ -35,15 +35,20 @@ local function CreatureProxTest(ent)
 end
 
 local function TurnOn(inst, light)
-    inst.components.creatureprox:SetEnabled(true)
+    if TheWorld.ismastersim and inst.components.creatureprox then
+        inst.components.creatureprox:SetEnabled(true)
+    end
 end
 
 local function TurnOff(inst, light)
     if light then
         light:Enable(false)
     end
-    inst.components.creatureprox:SetEnabled(false)
-    inst:Hide()
+
+    if TheWorld.ismastersim and inst.components.creatureprox then
+        inst.components.creatureprox:SetEnabled(false)
+        inst:Hide()
+    end
 end
 
 local phase_functions =
@@ -75,7 +80,6 @@ local phase_functions =
             elseif inst:HasTag("cave_light") then
                 inst.components.lighttweener:StartTween(nil, 1 * 3, 0.5, 0.6, {91 / 255, 164 / 255, 255 / 255}, 4, TurnOn)
             end
-
         else
             inst.components.lighttweener:StartTween(nil, 0, 0, 1, {0, 0, 0}, 6, TurnOff)
         end

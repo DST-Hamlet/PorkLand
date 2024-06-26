@@ -123,11 +123,10 @@ local function GetNumExitsInRoom(room)
     return total
 end
 
-local function BuildMaze(inst, dungeondef)
+local function BuildMaze(inst, dungeondef, exterior_door_def)
     local interior_spawner = TheWorld.components.interiorspawner
 
     local rooms_to_make = dungeondef.rooms --24
-    local entranceRoom = nil
     local exitRoom = nil
 
     local rooms = {
@@ -140,6 +139,7 @@ local function BuildMaze(inst, dungeondef)
             entrance1 = true,
         }
     }
+    exterior_door_def.target_interior = rooms[1].id
     local rooms_by_id = {}
     rooms_by_id[rooms[1].id] = rooms[1]
 
@@ -473,11 +473,8 @@ local function BuildMaze(inst, dungeondef)
             east = not exits_open.east and room.exits[interior_spawner:GetEast()].vined or false,
         }
         local addprops, entrance_room, exit_room = GenerateProps("pig_ruins_" .. roomtype, PIG_RUINS_DEPTH, PIG_RUINS_WIDTH,
-            exits_open, exits_vined, room, roomtype, dungeondef)
+            exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
-        if not entranceRoom then
-            entranceRoom = entrance_room
-        end
         if not exitRoom then
             exitRoom = exit_room
         end
@@ -488,7 +485,7 @@ local function BuildMaze(inst, dungeondef)
         interior_spawner:SpawnInterior(def)
     end
 
-    return entranceRoom, exitRoom
+    return rooms[1], exitRoom
 end
 
 local function InitMaze(inst, dungeonname)
@@ -530,14 +527,12 @@ local function InitMaze(inst, dungeonname)
         dungeondef.smallsecret = true
     end
 
-    local entranceRoom, exitRoom = BuildMaze(inst, dungeondef)
-
-    local interior_spawner = TheWorld.components.interiorspawner
     local exterior_door_def = {
         my_door_id = dungeondef.name .. "_ENTRANCE1",
         target_door_id = dungeondef.name .. "_EXIT1",
-        target_interior = entranceRoom.id,
     }
+    local entranceRoom, exitRoom = BuildMaze(inst, dungeondef, exterior_door_def)
+    local interior_spawner = TheWorld.components.interiorspawner
     interior_spawner:AddDoor(inst, exterior_door_def)
 
     -- if inst.components.door and dungeondef.lock then
@@ -545,7 +540,7 @@ local function InitMaze(inst, dungeonname)
     -- end
 
     local exit_door = nil
-    for i,ent in pairs(Ents) do
+    for _, ent in pairs(Ents) do
         if ent:HasTag(dungeondef.name .. "_EXIT_TARGET") then
             exit_door = ent
         end
@@ -560,16 +555,6 @@ local function InitMaze(inst, dungeonname)
         }
         interior_spawner:AddDoor(exit_door, exterior_door_def2)
     end
-
-    --[[
-    local exterior_door_def = {
-        my_door_id = ROC_CAVE_NAME .. "_ENTRANCE1",
-        target_door_id = ROC_CAVE_NAME .. "_EXIT1",
-    }
-
-    BuildMaze(inst, exterior_door_def)
-    TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def)
-    ]]
 
     inst.maze_generated = true
 

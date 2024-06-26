@@ -209,8 +209,8 @@ PROP_DEFS.roc_cave = function(depth, width, room, open_exits, exterior_door_def)
     return addprops
 end
 
-PROP_DEFS.pig_ruins_dart_trap = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_dart_trap = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     if dungeondef.advancedtraps and math.random() < 0.3 then
         local x = depth / 8
@@ -265,8 +265,8 @@ PROP_DEFS.pig_ruins_dart_trap = function(depth, width, exits_open, exits_vined, 
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_door_trap = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_door_trap = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     local setups = {"default","default","default","hor","vert"}
 
@@ -359,8 +359,8 @@ PROP_DEFS.pig_ruins_door_trap = function(depth, width, exits_open, exits_vined, 
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_grown_over = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_grown_over = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     addprops[#addprops + 1] = {name = "lightrays_jungle", x_offset = 0, z_offset = 0}
 
@@ -388,8 +388,8 @@ PROP_DEFS.pig_ruins_grown_over = function(depth, width, exits_open, exits_vined,
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_small_treasure = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_small_treasure = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     if math.random() < 0.5 then
         AddGoldStatue(addprops, 0, -width / 6)
@@ -401,8 +401,8 @@ PROP_DEFS.pig_ruins_small_treasure = function(depth, width, exits_open, exits_vi
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_snake = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_snake = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     for i = 1, math.random(3, 6) do
         addprops[#addprops + 1] = {
@@ -415,8 +415,8 @@ PROP_DEFS.pig_ruins_snake = function(depth, width, exits_open, exits_vined, room
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_spear_trap = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_spear_trap = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     local local_trap_tags = {"localtrap"}
     local pressure_plate_tags = {"trap_spear", "localtrap", "reversetrigger", "startdown"}
@@ -658,8 +658,8 @@ PROP_DEFS.pig_ruins_spear_trap = function(depth, width, exits_open, exits_vined,
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_store_room = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_store_room = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     for i = 1, math.random(6, 12) do
         local set_width, set_depth = GetSpawnLocation(depth, width, 0.8, 0.8, room.fountain)
@@ -671,8 +671,8 @@ PROP_DEFS.pig_ruins_store_room = function(depth, width, exits_open, exits_vined,
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_treasure = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_treasure = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     -- ziwbi: For some reason only relics_dust setup is used
 
@@ -707,21 +707,21 @@ PROP_DEFS.pig_ruins_treasure = function(depth, width, exits_open, exits_vined, r
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_treasure_aporkalypse = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_treasure_aporkalypse = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     addprops[#addprops + 1] = {name = "aporkalypse_clock", x_offset = -1, z_offset = 0}
 
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_treasure_endswell = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_treasure_endswell = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_treasure_rarerelic = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_treasure_rarerelic = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     room.color = "_blue"
 
@@ -830,8 +830,8 @@ PROP_DEFS.pig_ruins_treasure_rarerelic = function(depth, width, exits_open, exit
     return addprops, entranceRoom, exitRoom
 end
 
-PROP_DEFS.pig_ruins_treasure_secret = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
-    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_treasure_secret = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops, entranceRoom, exitRoom = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     local function getitem()
         local items =  {
@@ -884,7 +884,7 @@ local room_creatures  = {
     },
 }
 
-PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef)
+PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
     local addprops = {}
 
     local addedprops = false
@@ -909,7 +909,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
     if room.entrance1 then
         addprops[#addprops + 1] = {
             name = "prop_door",
-            x_offset = -depth/2,
+            x_offset = -depth / 2,
             z_offset = 0,
             animdata = {
                 minimapicon = "pig_ruins_exit_int.png",
@@ -918,10 +918,12 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
                 anim = "day_loop",
                 light = true
             },
-            my_door_id = dungeondef.name.."_EXIT1",
-            target_door_id = dungeondef.name.."_ENTRANCE1",
+            is_exit = true,
+            my_door_id = dungeondef.name .. "_EXIT1",
+            target_door_id = dungeondef.name .. "_ENTRANCE1",
+            target_exterior = exterior_door_def.target_exterior,
             rotation = -90,
-            angle=0,
+            angle = 0,
             addtags = {
                 "timechange_anims",
                 "ruins_entrance"
@@ -942,10 +944,12 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
                 anim = "day_loop",
                 light = true
             },
-            my_door_id = dungeondef.name.."_EXIT2",
-            target_door_id = dungeondef.name.."_ENTRANCE2",
+            is_exit = true,
+            my_door_id = dungeondef.name .. "_EXIT2",
+            target_door_id = dungeondef.name .. "_ENTRANCE2",
+            target_exterior = exterior_door_def.target_exterior,
             rotation = -90,
-            angle=0,
+            angle = 0,
             addtags = {
                 "timechange_anims",
                 "ruins_entrance"
@@ -978,8 +982,8 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
 
     local prop = "deco_ruins_beam" .. (math.random() < 0.2 and "_broken" or "") .. room.color
 
-    addprops[#addprops + 1] = {name = prop, x_offset = -depth/2, z_offset =  -width/6, rotation = -90}
-    addprops[#addprops + 1] = {name = prop, x_offset = -depth/2, z_offset =  width/6, rotation = -90}
+    addprops[#addprops + 1] = {name = prop, x_offset = -depth / 2, z_offset =  -width / 6, rotation = -90}
+    addprops[#addprops + 1] = {name = prop, x_offset = -depth / 2, z_offset =  width / 6, rotation = -90}
 
     -- Adds fake wall cracks
     if exits_open.north and math.random() < 0.10  then
