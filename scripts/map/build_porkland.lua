@@ -14,6 +14,11 @@ local BATS =  -- 复制自constants
 	CAVE_NUM = 6 * 2,  -- 是单机数量的两倍
 }
 
+local RUINS =
+{
+    SMALL = 4,
+}
+
 local function build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
     if current_gen_params == nil then
         current_gen_params = {}
