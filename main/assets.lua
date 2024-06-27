@@ -132,6 +132,7 @@ PrefabFiles = {
     "pig_ruins_torch",
     "light_rays",
     "pig_ruins_spear_trap",
+    "pigghost",
 }
 
 Assets = {

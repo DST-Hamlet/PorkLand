@@ -92,7 +92,7 @@ AllLayouts["PigRuinsArtichoke"] = StaticLayout.Get("map/static_layouts/pig_ruins
 })
 AllLayouts["PigRuinsArtichoke"].ground_types = ground_types
 
-local function GetPigRuinsEntranceProps()
+local function PigRuinsEntranceProps()
     return {
         areas = {
             item1 = GetSmashingpot,
@@ -102,7 +102,7 @@ local function GetPigRuinsEntranceProps()
     }
 end
 
-AllLayouts["PigRuinsEntrance1"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_1", GetPigRuinsEntranceProps())
+AllLayouts["PigRuinsEntrance1"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_1", PigRuinsEntranceProps())
 AllLayouts["PigRuinsEntrance1"].ground_types = ground_types
 
 AllLayouts["PigRuinsEntrance2"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_2")
@@ -111,10 +111,10 @@ AllLayouts["PigRuinsEntrance2"].ground_types = ground_types
 AllLayouts["PigRuinsEntrance3"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_3")
 AllLayouts["PigRuinsEntrance3"].ground_types = ground_types
 
-AllLayouts["PigRuinsEntrance4"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_4", GetPigRuinsEntranceProps())
+AllLayouts["PigRuinsEntrance4"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_4", PigRuinsEntranceProps())
 AllLayouts["PigRuinsEntrance4"].ground_types = ground_types
 
-AllLayouts["PigRuinsEntrance5"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_5", GetPigRuinsEntranceProps())
+AllLayouts["PigRuinsEntrance5"] = StaticLayout.Get("map/static_layouts/pig_ruins_entrance_5", PigRuinsEntranceProps())
 AllLayouts["PigRuinsEntrance5"].ground_types = ground_types
 
 AllLayouts["PigRuinsExit1"] = StaticLayout.Get("map/static_layouts/pig_ruins_exit_1")
