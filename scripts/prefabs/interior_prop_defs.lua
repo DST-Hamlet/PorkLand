@@ -1076,7 +1076,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
 
     if math.random() < 0.1 and roomtype ~= "spears" then
         local flip = math.random() < 0.5 or nil
-        addprops[#addprops + 1] = { name = "deco_ruins_corner_tree", x_offset = -depth/2, z_offset = (flip and -1 or 1) * width/2, rotation = -90, flip = flip}
+        addprops[#addprops + 1] = { name = "deco_ruins_corner_tree", x_offset = -depth/2, z_offset = (flip and 1 or -1) * width/2, rotation = -90, flip = flip}
     end
 
     --RANDOM POTS
