@@ -58,7 +58,7 @@ function Vineable:UpdateVineVisual()
 end
 
 function Vineable:InitInteriorPrefab()
-    if self.inst.components.door and self.inst.components.door.disabledcauses and self.inst.components.door.disabledcauses["vines"] == true then
+    if self.inst.components.door and self.inst.components.door.disable_causes and self.inst.components.door.disable_causes["vines"] == true then
         if self.vined then
             self:SetDoorDissabled(true)
         end

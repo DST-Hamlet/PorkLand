@@ -314,11 +314,11 @@ local function DisableDoor(inst, setting, cause)
         if targetdoor then
             if setting == true then
                 if cause == "door" then
-                    targetdoor.closedoor(targetdoor, true)
+                    targetdoor.closedoor(targetdoor)
                 end
             else
                 if cause == "door" then
-                    targetdoor.opendoor(targetdoor, true)
+                    targetdoor.opendoor(targetdoor)
                 end
             end
             targetdoor.components.door:SetDoorDisabled(setting, cause)
@@ -358,9 +358,9 @@ local function UseDoor(inst,data)
     end
 end
 
-local function OpenDoor(inst, data)
-    if inst.baseanimname and inst.components.door.disabledcauses and inst.components.door.disabledcauses["door"] then
-        if not data or not data.instant then
+local function OpenDoor(inst, instant)
+    if inst.baseanimname and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] then
+        if not inst:IsAsleep() then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/slide")
             inst.AnimState:PlayAnimation(inst.baseanimname .. "_open")
             inst.AnimState:PushAnimation(inst.baseanimname)
@@ -380,11 +380,11 @@ local function CloseDoor(inst, instant)
         return
     end
 
-    if not inst.baseanimname or (inst.components.door.disabledcauses and inst.components.door.disabledcauses["door"]) then
+    if not inst.baseanimname or (inst.components.door.disable_causes and inst.components.door.disable_causes["door"]) then
         return
     end
 
-    if instant then
+    if not inst:IsAsleep() then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/close")
         inst.AnimState:PlayAnimation(inst.baseanimname .. "_shut")
         inst.AnimState:PushAnimation(inst.baseanimname .. "_closed")
