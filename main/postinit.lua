@@ -86,6 +86,7 @@ local multipleprefab_posts = {
     "blowinwindgust",
     "firepit",
     "health",
+    "notraptrigger",
     "poisonable",
 }
 

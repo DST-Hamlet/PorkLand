@@ -469,4 +469,5 @@ function MakeInteriorPhysics(inst, rad, height, width)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.ITEMS)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+    inst.Physics:CollidesWith(COLLISION.FLYERS)
 end

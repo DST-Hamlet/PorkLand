@@ -14,6 +14,7 @@ local function fn()
     inst.Transform:SetEightFaced()
 
     MakeObstaclePhysics(inst, 0.5)
+    inst.Physics:CollidesWith(COLLISION.FLYERS)
     inst.Physics:SetDontRemoveOnSleep(true)
     inst.Physics:SetActive(false)
 

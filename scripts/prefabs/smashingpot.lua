@@ -39,7 +39,7 @@ local function OnHammered(inst, worker)
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
     fx:SetMaterial("stone")
 
-    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_pot_bigger")
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_pot_bigger") -- TODO missing sound event
     SetBroken(inst)
 end
 
@@ -71,8 +71,7 @@ local function fn()
 
     MakeObstaclePhysics(inst, 0.25)
 
-    -- TODO hammer sound in stategraph
-    inst.hammersound = "dontstarve_DLC003/common/harvested/claypot/hit"
+    inst.hammer_sound = "dontstarve_DLC003/common/harvested/claypot/hit"
 
     inst.AnimState:SetBank("pig_ruins_pot")
     inst.AnimState:SetBuild("pig_ruins_pot")
