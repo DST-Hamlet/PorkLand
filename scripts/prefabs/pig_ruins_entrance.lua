@@ -629,7 +629,7 @@ local function OnLoad(inst, data)
             inst.components.hackable.canbehacked = data.hackeable
         end
         if data.maze_generated then
-            inst:AddTag("maze_generated")
+            inst.maze_generated = data.maze_generated
         end
         if data.top_ornament then
             inst:AddTag("top_ornament")
@@ -705,22 +705,11 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
 
             -- spread out the maze gen for less hiccup at load time.
             inst:DoTaskInTime(0, function()
-                -- local time = 0
-                -- local player = GetPlayer()
-                -- local dist = inst:GetDistanceSqToInst(player)
-                -- local w,h = GetWorld().Map:GetSize()
-                -- if not GetWorld().ruinspawntime then
-                --     GetWorld().ruinspawntime = 0.5
-                -- end
-                -- if dist < 40*40 then
-                --     time = Remap(dist,0,40*40,0,0.5)
-                -- else
-                --     time = GetWorld().ruinspawntime
-                --     GetWorld().ruinspawntime  = GetWorld().ruinspawntime + 0.3
-                -- end
-                inst:DoTaskInTime(math.random() + 1, function()
-                    InitMaze(inst, dungeon_name)
-                end)
+                if inst.maze_generated == nil then
+                    inst:DoTaskInTime(math.random() + 1, function()
+                        InitMaze(inst, dungeon_name)
+                    end)
+                end
             end)
         else -- this prefab is an exit. Just set the door and art
             inst:AddTag(dungeon_name .. "_EXIT_TARGET")

@@ -985,11 +985,11 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         exits_open.north = false
     end
     if exits_open.west and math.random() < 0.10  then
-        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = 0, z_offset = -width/2, startAnim = "east_closed", animdata = {anim = "east"}}
+        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = 0, z_offset = -width/2, startAnim = "west_closed", animdata = {anim = "west"}}
         exits_open.west = false
     end
     if exits_open.east and math.random() < 0.10  then
-        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = 0, z_offset = width/2, startAnim = "west_closed", animdata = {anim = "west"}}
+        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = 0, z_offset = width/2, startAnim = "east_closed", animdata = {anim = "east"}}
         exits_open.east = false
     end
 

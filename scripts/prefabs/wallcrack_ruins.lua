@@ -10,14 +10,20 @@ local prefabs =
 {
 }
 
-local function GetOpposite(dir)
-    if dir == "east" then
-        return "west"
-    elseif dir == "west" then
-        return "east"
-    end
+local function SetCrack(inst, door)
+    inst.Transform:SetPosition(door.Transform:GetWorldPosition())
 
-    return dir
+    inst.baseanimname = door.baseanimname
+
+    inst.AnimState:SetBuild("interior_wall_decals_ruins_cracks")
+
+    inst.door = door
+    door.crack = inst
+    inst.AnimState:PlayAnimation(inst.baseanimname .. "_closed")
+
+    if not door:HasTag("secret") then
+        inst.reveal()
+    end
 end
 
 local function OnSave(inst, data)
@@ -42,35 +48,23 @@ local function OnLoadPostPass(inst, ents, data)
     end
 
     if data.door_guid then
-        inst.door = ents[data.door_guid].entity
+        SetCrack(inst, ents[data.door_guid].entity)
     end
     if data.revealed then
         inst.AnimState:PushAnimation(inst.baseanimname)
     end
 end
 
-local function SetCrack(inst, door)
-    inst.Transform:SetPosition(door.Transform:GetWorldPosition())
-
-    inst.baseanimname = door.baseanimname
-    inst.baseanimname = GetOpposite(inst.baseanimname)
-
-    inst.AnimState:SetBuild("interior_wall_decals_ruins_cracks")
-
-    inst.door = door
-    inst.AnimState:PlayAnimation(inst.baseanimname .. "_closed")
-
-    if not door:HasTag("secret") then
-        inst.reveal()
-    end
-end
-
-local function reveal(inst)
+local function reveal(inst, nochain)
     if inst.door then
         inst.door.components.door:SetHidden(false)
         inst.door.components.door:UpdateDoorVis()
 
-        inst.door.AnimState:PlayAnimation(GetOpposite(inst.baseanimname) .. "_open")
+        if not inst.door:IsAsleep() then
+            inst.door.AnimState:PlayAnimation(inst.baseanimname .. "_open")
+        else
+            inst.door.AnimState:PlayAnimation(inst.baseanimname)
+        end
         inst.door:RemoveTag("secret")
 
         inst.SoundEmitter:PlaySound("dontstarve/common/destroy_stone")
@@ -80,20 +74,13 @@ local function reveal(inst)
         -- The rest of the function unlocks the equivalent door within the secret room
         local interior_spawner = TheWorld.components.interiorspawner
         local target_door_id = inst.door.components.door.target_door_id
-        local dest_door = interior_spawner:GetDoor(target_door_id)
+        local room = interior_spawner:GetInteriorByIndex(inst.door.components.door.target_interior)
+        local dest_door = room:GetDoorById(target_door_id)
 
         -- If the player has been to the secret room before we remove the tag from the instance manually
-        if dest_door and dest_door.inst then
-            dest_door.inst:RemoveTag("secret")
-        else
-            -- If the player has yet to be in the secret room we find the door definition and remove the secret and hidden tags
-            local interior = interior_spawner:GetInteriorByIndex(inst.door.components.door.target_interior)
-            for k,v in pairs(interior.prefabs) do
-                if v.my_door_id == target_door_id then
-                    v.secret = false
-                    v.hidden = false
-                    break
-                end
+        if dest_door and dest_door:HasTag("secret") then
+            if dest_door.crack and not nochain then
+                dest_door.crack:reveal(true)
             end
         end
 
@@ -152,17 +139,16 @@ local function fn()
     -- inst.components.workable:SetWorkLeft(1)
     -- inst.components.workable:SetOnFinishCallback(reveal)
 
-    inst:ListenForEvent("death", reveal)
-    inst:ListenForEvent("interior_endquake", function()
-        reveal(inst)
-    end, TheWorld)
-
-    inst:ListenForEvent("exitlimbo", function(_)
-        -- Self destruct if this door has already been unlocked
-        if inst.door and not inst.door:HasTag("secret") then
+    inst:ListenForEvent("interior_endquake", function(scr, data)
+        local interiorID = data.interiorID
+        if not interiorID then
+            return
+        end
+        local current_interiorID = inst:GetCurrentInteriorID()
+        if current_interiorID and interiorID == current_interiorID then
             reveal(inst)
         end
-    end)
+    end, TheWorld)
 
     return inst
 end
