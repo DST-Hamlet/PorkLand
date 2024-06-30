@@ -232,7 +232,7 @@ local function DoTeleport(player, pos)
         local invincible = player.components.health.invincible
         player.components.health:SetInvincible(true)
         player:ScreenFade(false, 0.4)
-        Sleep(0.5)
+        Sleep(0.4)
         -- recheck interior
         if not TheWorld.components.interiorspawner:IsInInteriorRegion(pos.x, pos.z)
             or TheWorld.components.interiorspawner:IsInInterior(pos.x, pos.z) then
@@ -240,7 +240,7 @@ local function DoTeleport(player, pos)
         end
         player.components.interiorvisitor:UpdateExteriorPos()
         player.components.health:SetInvincible(invincible)
-        Sleep(0)
+        Sleep(0.1) -- 出于未知原因，当Sleep(0)的时候SnapCamera执行时玩家的位置仍未发生变化，因此改为0.1
         player:SnapCamera()
         player:ScreenFade(true, 0.4)
         player.sg:GoToState("idle")
@@ -254,7 +254,7 @@ local function OnTeleportFailed(player)
     -- end
 end
 
-ACTIONS.USEDOOR.fn = function(act)
+ACTIONS.USEDOOR.fn = function(act) -- 感觉这里大部分的内容应该移到component上去
     local door = act.target
     if door.components.door.disabled or door.components.door.hidden then
         return false, "DISABLED"
@@ -275,6 +275,10 @@ ACTIONS.USEDOOR.fn = function(act)
             DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
             PlayDoorSound()
             act.doer:PushEvent("used_door", {door = door})
+            if house.components.hackable then -- 内部门用vineable, 外部门用hackable...需要代码清理
+                house.stage = 1
+                house.components.hackable:Hack(act.doer, 9999)
+            end
             return true
         end
     else
@@ -290,6 +294,9 @@ ACTIONS.USEDOOR.fn = function(act)
             DoTeleport(act.doer, door_pos + offset)
             PlayDoorSound()
             act.doer:PushEvent("used_door", {door = door})
+            if target_door.components.vineable then
+                target_door.components.vineable:SetDoorDissabled(false)
+            end
             return true
         end
     end

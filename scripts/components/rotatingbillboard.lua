@@ -46,6 +46,7 @@ local RotatingBillboard = Class(function(self, inst)
 	self.rotation_net = net_float(inst.GUID, "rotatingbillboard.rotation_net", "rotatingbillboard.rotation_net")
 	self.rotation = 0
 	self.always_on_updating = false
+    self.setted = false -- 用于判断是否在实体生成后至少传入一次立体参数
 
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/animrotatingbillboard.ksh"))
@@ -100,6 +101,7 @@ end
 
 function RotatingBillboard:SetRotation(rot)
 	self.rotation = rot
+    self.setted = true
 	local x, _, z = self.inst.Transform:GetWorldPosition()
 	self.inst.AnimState:SetFloatParams(x, z, rot* DEGREES + PI)
 
@@ -131,7 +133,7 @@ end
 
 function RotatingBillboard:OnUpdate()
 	local rot = self.inst.Transform:GetRotation()
-	if rot ~= 0 then
+	if rot ~= 0 or not self.setted then
 		self:SetRotation(rot)
 		self.inst.Transform:SetRotation(0) -- set transform rot to 0 to make anim align to xz
 	end

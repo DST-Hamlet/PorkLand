@@ -121,6 +121,10 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
     TheWorld.components.interiorspawner:AddDoor(inst, door_definition)
 
     if prefab_definition.animdata then
+        inst.Transform:SetRotation(-90)
+
+        inst:AddComponent("rotatingbillboard")
+        inst.components.rotatingbillboard.animdata = prefab_definition.animdata
 
         if prefab_definition.animdata.bank then
             inst.AnimState:SetBank(prefab_definition.animdata.bank)
@@ -234,6 +238,12 @@ local function OnLoad(inst, data)
     if data.rotation then
         inst.Transform:SetRotation(data.rotation)
     end
+    inst:AddComponent("rotatingbillboard")
+    inst.components.rotatingbillboard.animdata = {
+        bank = data.door_data_bank,
+        build = data.door_data_build,
+        animation = data.door_data_animstate,
+    }
     if data.door_data_background then
         inst.AnimState:SetLayer( LAYER_BACKGROUND )
         inst.AnimState:SetSortOrder( 3 )

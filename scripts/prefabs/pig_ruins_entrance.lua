@@ -604,7 +604,7 @@ end
 
 local function OnSave(inst, data)
     data.stage = inst.stage
-    data.hackeable = inst.components.hackable.canbehacked
+    data.canhack = inst.components.hackable.canbehacked
     data.maze_generated = inst.maze_generated
 
     if inst:HasTag("top_ornament") then
@@ -625,8 +625,8 @@ local function OnLoad(inst, data)
         if data.stage then
             inst.stage = data.stage
         end
-        if data.hackable then
-            inst.components.hackable.canbehacked = data.hackeable
+        if data.canhack then
+            inst.components.hackable.canbehacked = data.canhack
         end
         if data.maze_generated then
             inst.maze_generated = data.maze_generated
