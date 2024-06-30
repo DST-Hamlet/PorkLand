@@ -10,6 +10,9 @@ function Vineable:SetUpVine()
     self.vines.Transform:SetPosition(0, 0, 0)
     self.vines.door = self.inst
     self.vines.setup(self.vines)
+    if self.vines.components.rotatingbillboard then
+        self.vines.Transform:SetRotation(90) -- 使得藤蔓在世界坐标系中面朝摄像机
+    end
     self.vines_open = false
 
     -- self.inst:ListenForEvent("exitedruins", function() self:SetDoorDissabled(true) end, GetPlayer())
@@ -54,6 +57,9 @@ function Vineable:UpdateVineVisual()
         else
             self.vines.regrow(self.vines)
         end
+    end
+    if self.inst.components.rotatingbillboard then
+        self.inst.components.rotatingbillboard:SyncMaskAnimation()
     end
 end
 

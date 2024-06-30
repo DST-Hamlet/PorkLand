@@ -68,7 +68,7 @@ local function SpawnWeevole(inst, target)
     local weevole = inst.components.childspawner:SpawnChild()
     if weevole then
         local spawnpos = inst:GetPosition()
-        spawnpos = spawnpos + TheCamera:GetDownVec()
+        spawnpos = spawnpos
         weevole.Transform:SetPosition(spawnpos:Get())
         if weevole and target and weevole.components.combat then
             weevole.components.combat:SetTarget(target)

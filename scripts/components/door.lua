@@ -58,12 +58,6 @@ function Door:SetTargetOffset(x, y, z)
     dest.target_offset_z = z
 end
 
-function Door:CollectSceneActions(doer, actions) -- TODO component action
-    if not self.inst:HasTag("predoor") and not self.hidden then
-        table.insert(actions, ACTIONS.USEDOOR)
-    end
-end
-
 function Door:Activate(doer)
     self.inst:PushEvent("usedoor", {doer = doer})
 end

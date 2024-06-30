@@ -53,6 +53,7 @@ function FollowCamera:Apply(...)
             and not TheWorld.components.interiorspawner:IsInInteriorRegion(
                 self.currentpos.x, self.currentpos.z) then
             self.headingtarget = self.pl_old_headingtarget
+            --self.heading = self.headingtarget
             self.pl_old_headingtarget = nil
         end
         return _Apply(self, ...)
