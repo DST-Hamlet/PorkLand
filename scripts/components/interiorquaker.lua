@@ -400,7 +400,7 @@ local OnUsedDoor = _ismastersim and function(player, data)
     end
 
     local target_interior = data.door.components.door.target_interior
-    if target_interior == "EXTERIOR" or not _isquaking[target_interior] then
+    if data.exterior or not _isquaking[target_interior] then
         player.player_classified.isquaking:set(false)
     else
         player.player_classified.isquaking:set(true)
@@ -436,15 +436,6 @@ local OnPlayerLeft = _ismastersim and function(src, player)
     end
 end or nil
 
-local OnExplosion = _ismastersim and function(scr, data)
-    if not data or not data.explosive then
-        return
-    end
-
-    local interiorID = data.explosive:GetCurrentInteriorID()
-    _world:PushEvent("interior_startquake", {interiorID = interiorID, quake_level = INTERIOR_QUAKE_LEVELS.PILLAR_DESTROYED})
-end or nil
-
 --------------------------------------------------------------------------
 --[[ Public member functions ]]
 --------------------------------------------------------------------------
@@ -462,7 +453,6 @@ if _ismastersim then
     inst:ListenForEvent("interior_endquake", EndQuakeForRoom, _world)
     inst:ListenForEvent("ms_playerjoined", OnPlayerJoined, _world)
     inst:ListenForEvent("ms_playerleft", OnPlayerLeft, _world)
-    inst:ListenForEvent("explosion", OnExplosion, _world)
 end
 
 --------------------------------------------------------------------------

@@ -124,7 +124,7 @@ local function fn()
     inst:AddComponent("propagator")
 
     inst:AddComponent("burnable")
-    inst.components.burnable:AddBurnFX("campfirefire", Vector3(0,0,0), "fire_marker")
+    inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 0, 0), "fire_marker")
 
     inst:AddComponent("fueled")
     inst.components.fueled.maxfuel = TUNING.CAMPFIRE_FUEL_MAX

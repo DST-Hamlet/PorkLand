@@ -63,17 +63,18 @@ end
 function InteriorVisitor:ApplyInteriorCamera(ent)
     local cameraoffset = -2.5 		--10x15
 	local zoom = 23
+    local width, depth = ent.size_net:value()
 
 	if ent.cameraoffset and ent.zoom then
 		cameraoffset = ent.cameraoffset
 		zoom = ent.zoom
-	elseif ent.depth == 12 then    --12x18
+	elseif depth == 12 then    --12x18
 		cameraoffset = -2
 		zoom = 25
-	elseif ent.depth == 16 then --16x24
+	elseif depth == 16 then --16x24
 		cameraoffset = -1.5
 		zoom = 30
-	elseif ent.depth == 18 then --18x26
+	elseif depth == 18 then --18x26
 		cameraoffset = -2 -- -1
 		zoom = 35
 	end
@@ -124,6 +125,8 @@ function InteriorVisitor:OnUpdate()
                 if ambientlighting then
                     ambientlighting:Pl_Refresh()
                 end
+
+                TheWorld.WaveComponent:SetWaveParams(0, 0, -1) -- disable clouds
             end
         else
             self.inst:RemoveTag("inside_interior")
@@ -139,6 +142,8 @@ function InteriorVisitor:OnUpdate()
                 if ambientlighting then
                     ambientlighting:Pl_Refresh()
                 end
+
+                TheWorld.WaveComponent:SetWaveParams(13.5, 2.5, -1) -- enable clouds again
             end
         end
     end

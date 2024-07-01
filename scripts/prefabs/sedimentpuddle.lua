@@ -9,6 +9,18 @@ local prefabs =
     "gold_dust",
 }
 
+local function IsLowPriorityAction(act)
+    return act == nil or act.action ~= ACTIONS.DROP
+end
+
+--Runs on clients
+local function CanMouseThrough(inst)
+    if ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil then
+        local lmb, rmb = ThePlayer.components.playeractionpicker:DoGetMouseActions(inst:GetPosition(), inst)
+        return IsLowPriorityAction(rmb) and IsLowPriorityAction(lmb), true
+    end
+end
+
 local STAGES = {
     {
         name = "empty",
@@ -252,6 +264,7 @@ local function fn()
     inst:AddTag("OnFloor")
 
     inst.no_wet_prefix = true
+    inst.CanMouseThrough = CanMouseThrough
 
     inst.entity:SetPristine()
 
