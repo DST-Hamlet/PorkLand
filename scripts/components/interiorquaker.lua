@@ -400,7 +400,7 @@ local OnUsedDoor = _ismastersim and function(player, data)
     end
 
     local target_interior = data.door.components.door.target_interior
-    if target_interior == "EXTERIOR" or not _isquaking[target_interior] then
+    if data.exterior or not _isquaking[target_interior] then
         player.player_classified.isquaking:set(false)
     else
         player.player_classified.isquaking:set(true)

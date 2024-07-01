@@ -133,6 +133,7 @@ PrefabFiles = {
     "light_rays",
     "pig_ruins_spear_trap",
     "pigghost",
+    "rugs",
 }
 
 Assets = {

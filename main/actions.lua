@@ -274,7 +274,7 @@ ACTIONS.USEDOOR.fn = function(act) -- 感觉这里大部分的内容应该移到
         if house ~= nil then
             DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
             PlayDoorSound()
-            act.doer:PushEvent("used_door", {door = door})
+            act.doer:PushEvent("used_door", {door = door, exterior = true})
             if house.components.hackable then -- 内部门用vineable, 外部门用hackable...需要代码清理
                 house.stage = 1
                 house.components.hackable:Hack(act.doer, 9999)
@@ -293,7 +293,7 @@ ACTIONS.USEDOOR.fn = function(act) -- 感觉这里大部分的内容应该移到
             local offset = (room_pos - door_pos):GetNormalized() * 1.0
             DoTeleport(act.doer, door_pos + offset)
             PlayDoorSound()
-            act.doer:PushEvent("used_door", {door = door})
+            act.doer:PushEvent("used_door", {door = door, exterior = false})
             if target_door.components.vineable then
                 target_door.components.vineable:SetDoorDissabled(false)
             end

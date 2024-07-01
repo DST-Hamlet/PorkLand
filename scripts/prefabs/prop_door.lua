@@ -218,7 +218,7 @@ local function OnSave(inst, data)
     data.roc_cave_delete_me = inst:HasTag("roc_cave_delete_me")
     data.ruins_entrance = inst:HasTag("ruins_entrance")
     data.secret = inst:HasTag("secret")
-    data.shop_entrance = inst:HasTag("shop_entrance")
+    data.shop_music = inst:HasTag("shop_music")
     data.timechange_anims = inst:HasTag("timechange_anims")
 end
 
@@ -283,8 +283,8 @@ local function OnLoad(inst, data)
     if data.ruins_entrance then
         inst:AddTag("ruins_entrance")
     end
-    if data.shop_entrance then
-        inst:AddTag("shop_entrance")
+    if data.shop_music then
+        inst:AddTag("shop_music")
     end
     if data.anthill_inside then
         inst:AddTag("anthill_inside")
@@ -412,7 +412,7 @@ end
 local function testPlayerHouseDoor(inst)
     local door = inst.components.door
     if door then
-        local interior = TheWorld.components.interiorspawner:GetInteriorByName(door.interior_name)
+        local interior = TheWorld.components.interiorspawner:GetInteriorByIndex(door.interior_name)
         if interior and interior.playerroom then
             inst.entity:AddMiniMapEntity()
             inst.MiniMapEntity:SetIcon("player_frontdoor.tex")
