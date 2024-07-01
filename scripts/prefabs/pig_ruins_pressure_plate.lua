@@ -9,6 +9,18 @@ local prefabs =
     "pig_ruins_dart",
 }
 
+local function IsLowPriorityAction(act)
+    return act == nil or act.action ~= ACTIONS.DROP
+end
+
+--Runs on clients
+local function CanMouseThrough(inst)
+    if ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil then
+        local lmb, rmb = ThePlayer.components.playeractionpicker:DoGetMouseActions(inst:GetPosition(), inst)
+        return IsLowPriorityAction(rmb) and IsLowPriorityAction(lmb), true
+    end
+end
+
 local DART_TRAP_TAGS = {"dartthrower"}
 local SPEAR_TRAP_TAGS = {"spear_trap"}
 local DOOR_TRAP_TAGS = {"lockable_door"}
@@ -181,6 +193,8 @@ local function fn()
 
     inst:AddTag("structure")
     inst:AddTag("weighdownable")
+
+    inst.CanMouseThrough = CanMouseThrough
 
     inst.entity:SetPristine()
 

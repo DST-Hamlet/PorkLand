@@ -28,6 +28,7 @@ local component_posts = {
     "edible",
     "equippable_replica",
     "equippable",
+    "explosive",
     "fishingrod",
     "floater",
     "grogginess",
