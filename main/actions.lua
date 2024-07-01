@@ -275,7 +275,7 @@ ACTIONS.USEDOOR.fn = function(act) -- 感觉这里大部分的内容应该移到
             DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
             PlayDoorSound()
             act.doer:PushEvent("used_door", {door = door})
-            if house.components.hackable then -- 内部门用vineable, 外部门用hackable...需要代码清理
+            if house.components.hackable and house.stage > 0 then -- 内部门用vineable, 外部门用hackable...需要代码清理
                 house.stage = 1
                 house.components.hackable:Hack(act.doer, 9999)
             end
@@ -295,7 +295,7 @@ ACTIONS.USEDOOR.fn = function(act) -- 感觉这里大部分的内容应该移到
             PlayDoorSound()
             act.doer:PushEvent("used_door", {door = door})
             if target_door.components.vineable and target_door.components.vineable.vines and
-                target_door.components.vineable.vines.components.hackable then
+                target_door.components.vineable.vines.components.hackable and target_door.components.vineable.vines.stage > 0 then
                     target_door.components.vineable.vines.stage = 1
                     target_door.components.vineable.vines.components.hackable:Hack(act.doer, 9999)
             end

@@ -223,7 +223,7 @@ end
 
 local function OnLoad(inst, data)
     if data.rotation then
-        if inst.components.rotatingbillboard == nil or true --[[skip this 2024/6/13]] then
+        if inst.components.rotatingbillboard == nil then
             -- this component handle rotation save/load itself
             inst.Transform:SetRotation(data.rotation)
         end

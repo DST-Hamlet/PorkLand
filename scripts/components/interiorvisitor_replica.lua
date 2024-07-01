@@ -95,6 +95,9 @@ function InteriorVisitor:ApplyInteriorCamera(ent)
 end
 
 function InteriorVisitor:OnUpdate()
+    if self.inst.components.interiorvisitor then
+        self.inst.components.interiorvisitor:UpdateExteriorPos()
+    end
     local ambientlighting = TheWorld.components.ambientlighting
     if self.inst == ThePlayer then
         local last_center_ent = self.last_center_ent
@@ -114,6 +117,7 @@ function InteriorVisitor:OnUpdate()
             if last_center_ent ~= ent then
                 self.last_center_ent = ent
                 self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
+                print("enterinterior",GetTime())
                 if self.inst.MiniMapEntity then
                     self.inst.MiniMapEntity:SetEnabled(false)
                 end
@@ -128,6 +132,7 @@ function InteriorVisitor:OnUpdate()
             self.last_center_ent = nil
             if last_center_ent ~= ent then
                 self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
+                print("leave",GetTime())
                 if self.inst.MiniMapEntity then
                     self.inst.MiniMapEntity:SetEnabled(true)
                 end
