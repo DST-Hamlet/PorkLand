@@ -157,3 +157,14 @@ function EntityScript:GetCurrentInteriorID()
         return TheWorld.components.interiorspawner.interiors[interiorID] and interiorID
     end
 end
+
+function EntityScript:Play2DSoundOutSide(path, soundname, distance, paramname, paramval)
+    local pos = self:GetPosition()
+    local followentity = self
+    local areamode = AREAMODES.DISTANCE
+    TheWorld.components.worldsoundmanager:PlayWorldSound(path, soundname, paramname, paramval, pos, followentity, areamode, distance)
+end
+
+function EntityScript:Kill2DSound(soundname)
+    TheWorld.components.worldsoundmanager:KillWorldSound(self, soundname)
+end

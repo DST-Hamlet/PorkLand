@@ -27,8 +27,7 @@ local parrot_blue_sounds = {
 }
 
 local kingfisher_sounds = {
-    takeoff = "dontstarve/birds/takeoff_faster",
-    takeoff_2 = "dontstarve_DLC003/creatures/king_fisher/take_off",
+    takeoff = "dontstarve_DLC003/creatures/king_fisher/take_off",
     chirp = "dontstarve_DLC003/creatures/king_fisher/chirp",
     flyin = "dontstarve/birds/flyin",
 }

@@ -33,7 +33,6 @@ local InteriorVisitor = Class(function(self, inst)
     self.center_ent = nil
     self.visited_uuid = {}
 
-    inst:DoPeriodicTask(0.1, function() self:UpdateExteriorPos() end)
     -- self.restore_physics_task = nil
 
     self.last_mainland_pos = nil

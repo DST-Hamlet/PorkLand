@@ -118,7 +118,6 @@ local function makefn()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
-    inst.entity:AddLight()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
@@ -168,7 +167,6 @@ local function makewallfn(facing)
         local inst = CreateEntity()
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
-        inst.entity:AddLight()
         inst.entity:AddSoundEmitter()
         inst.entity:AddNetwork()
 

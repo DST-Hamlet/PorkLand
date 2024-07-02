@@ -235,7 +235,7 @@ local function OnLoad(inst, data)
         inst.AnimState:PlayAnimation(data.door_data_animstate, true)
         inst.door_data_animstate = data.door_data_animstate
     end
-    if data.rotation then
+    if data.rotation and inst.components.rotatingbillboard == nil then
         inst.Transform:SetRotation(data.rotation)
     end
     inst:AddComponent("rotatingbillboard")
@@ -386,7 +386,7 @@ end
 
 local function CloseDoor(inst, instant)
     -- once the player has used a door, the doors should freeze open
-    if inst.components.door.disabled then
+    if inst.components.door.disabled and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] == true then
         return
     end
 

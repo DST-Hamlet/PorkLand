@@ -14,7 +14,6 @@ local camera_posts = {
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
-    "ambientlighting",
     "areaaware",
     "blinkstaff",
     "builder_replica",

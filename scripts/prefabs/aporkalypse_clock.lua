@@ -36,17 +36,17 @@ end
 
 local function OnRewindMultChange(inst, rewind_mult)
     if rewind_mult == 0 then  -- stop rewind
-        inst.SoundEmitter:KillSound("rewind_sound")
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
+        inst:Kill2DSound("rewind_sound")
+        inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound",20)
 
         inst.rewind = false
     else  -- start rewind
-        inst.SoundEmitter:KillSound("base_sound")
+        inst:Kill2DSound("base_sound")
 
         if rewind_mult < 0 then
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_backwards_LP", "rewind_sound")
+            inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_backwards_LP", "rewind_sound")
         elseif rewind_mult > 0 then
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_fast_LP", "rewind_sound")
+            inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_fast_LP", "rewind_sound")
         end
 
         inst.rewind = true
@@ -68,8 +68,8 @@ end
 local function OnStartAporkalypse(inst, data)
     inst:PlayClockAnimation("on")
 
-    inst.SoundEmitter:KillSound("totem_sound")
-    inst.SoundEmitter:KillSound("base_sound")
+    inst:Kill2DSound("totem_sound")
+    inst:Kill2DSound("base_sound")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/close")
 
     ShakeAllCameras(CAMERASHAKE.FULL, 0.7, 0.02, .5, inst)
@@ -81,8 +81,8 @@ end
 local function OnStopAporkalypse(inst, data)
     inst:PlayClockAnimation("off")
 
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
+    inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound",20)
+    inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound",20)
 
     inst.AnimState:PushAnimation("idle_pre", false)
     inst.AnimState:PushAnimation("idle_loop")
@@ -133,8 +133,8 @@ local function DoPostInit(inst)
     end
 
     if TheWorld.state.isaporkalypse then
-        inst.SoundEmitter:KillSound("totem_sound")
-        inst.SoundEmitter:KillSound("base_sound")
+        inst:Kill2DSound("totem_sound")
+        inst:Kill2DSound("base_sound")
 
         inst.AnimState:PlayAnimation("idle_on")
         inst:PlayClockAnimation("on")
@@ -158,8 +158,8 @@ local function aporkalypse_clock_fn()
     inst.AnimState:SetBuild("aporkalypse_totem")
     inst.AnimState:PlayAnimation("idle_loop", true)
 
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound")
+    inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/totem_LP", "totem_sound",20)
+    inst:Play2DSoundOutSide("dontstarve_DLC003/common/objects/aporkalypse_clock/base_LP", "base_sound",20)
 
     inst.entity:SetPristine()
 

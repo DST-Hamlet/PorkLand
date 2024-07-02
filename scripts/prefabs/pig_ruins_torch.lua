@@ -185,10 +185,12 @@ local function sidewallfn()
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(3)
 
+    inst.Transform:SetTwoFaced()
+
     inst:AddTag("wall_torch")
 
-    inst:AddComponent("rotatingbillboard")
-    inst.components.rotatingbillboard.animdata = anim_data
+    --inst:AddComponent("rotatingbillboard") --由于rotatingbillboard会导致火焰效果出现问题，因此暂时禁用这部分功能
+    --inst.components.rotatingbillboard.animdata = anim_data
 
     inst:SetPrefabNameOverride("pig_ruins_torch_wall")
 

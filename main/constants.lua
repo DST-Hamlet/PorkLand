@@ -37,3 +37,8 @@ INTERIOR_QUAKE_LEVELS = {
     QUEEN_ATTACK = 3,
     MINOR_QUAKE = 4,
 }
+
+AREAMODES = {
+    DISTANCE = 0,
+    ROOM = 1
+}
