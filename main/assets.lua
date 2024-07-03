@@ -135,6 +135,10 @@ PrefabFiles = {
     "pig_ruins_spear_trap",
     "pigghost",
     "rugs",
+    "pheromonestone",
+    "antcombhome",
+    "anthill_lamp",
+    "anthill_stalactite",
 }
 
 Assets = {

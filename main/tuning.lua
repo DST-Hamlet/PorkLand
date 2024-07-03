@@ -425,6 +425,8 @@ local tuning = {
     PIG_RUINS_DART_DAMAGE = wilson_attack,
     SPEAR_TRAP_HEALTH = 100,
     SPEAR_TRAP_DAMNAGE = wilson_attack,
+
+    HONEY_LANTERN_MINE = 6,
 }
 
 
