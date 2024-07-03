@@ -141,8 +141,8 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
         end
 
         if prefab_definition.animdata.background then
-            inst.AnimState:SetLayer( LAYER_BACKGROUND )
-            inst.AnimState:SetSortOrder( 3 )
+            inst.AnimState:SetLayer(LAYER_BACKGROUND)
+            inst.AnimState:SetSortOrder(3)
             --inst.Transform:SetTwoFaced()
             -- inst.Transform:SetRotation(90)
 
@@ -241,12 +241,12 @@ local function OnLoad(inst, data)
         inst.Transform:SetRotation(data.rotation)
     end
     if data.door_data_background then
-        inst.AnimState:SetLayer( LAYER_BACKGROUND )
-        inst.AnimState:SetSortOrder( 3 )
+        inst.AnimState:SetLayer(LAYER_BACKGROUND)
+        inst.AnimState:SetSortOrder(3)
         inst.door_data_background = data.door_data_background
     end
     if data.scalex  then
-        inst.Transform:SetScale( data.scalex, data.scaley, data.scalez)
+        inst.Transform:SetScale(data.scalex, data.scaley, data.scalez)
     end
     if data.timechanger then
         MakeTimeChanger(inst)
@@ -449,11 +449,27 @@ local function fn()
         anim = "idle"
     }
 
+    inst.entity:SetPristine()
 
-    inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
-    inst:DoTaskInTime(0, testPlayerHouseDoor)
-enForEvent("open", OpenDoor)
+    inst:AddComponent("door")
+
+    inst:AddComponent("vineable")
+
+    inst.initInteriorPrefab = InitInteriorPrefab
+    inst.saveInteriorData = SaveInteriorData
+    inst.initFromInteriorSave = InitFromInteriorSave
+
+    MakeHauntableDoor(inst)
+
+    inst.opendoor = OpenDoor
+    inst.closedoor = CloseDoor
+    inst.disableDoor = DisableDoor
+
+    inst:ListenForEvent("open", OpenDoor)
     inst:ListenForEvent("close", CloseDoor)
     inst:ListenForEvent("usedoor", UseDoor)
 
