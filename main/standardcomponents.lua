@@ -471,7 +471,7 @@ function MakeInteriorPhysics(inst, rad, height, width)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
 end
 
-function MakeInteriorWllPhysics(inst, rad, height, width)
+function MakeInteriorWallPhysics(inst, rad, height, width)
     height = height or 20
 
     inst:AddTag("blocker")
