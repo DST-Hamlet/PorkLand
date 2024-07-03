@@ -96,6 +96,7 @@ PrefabFiles = {
     "weevole",
     "windtrail",
     "windswirl",
+    "worldsound",
 
     "deco",
     "deco_academy",
