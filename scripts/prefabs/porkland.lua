@@ -23,7 +23,7 @@ local assets =
     Asset("IMAGE", "images/colour_cubes/pork_lush_day_test.tex"),
 
     Asset("IMAGE", "images/could/fog_cloud.tex"),
-
+    Asset("IMAGE", "images/could/fog_cloud_interior.tex"),
 }
 
 local prefabs =

@@ -122,7 +122,7 @@ function InteriorVisitor:OnUpdate()
                     ambientlighting:Pl_Refresh()
                 end
 
-                TheWorld.WaveComponent:SetWaveParams(0, 0, -1) -- disable clouds
+                TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud_interior.tex")) -- disable clouds
             end
         else
             self.inst:RemoveTag("inside_interior")
@@ -138,7 +138,7 @@ function InteriorVisitor:OnUpdate()
                     ambientlighting:Pl_Refresh()
                 end
 
-                TheWorld.WaveComponent:SetWaveParams(13.5, 2.5, -1) -- enable clouds again
+                TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex")) -- enable clouds again
             end
         end
     end
