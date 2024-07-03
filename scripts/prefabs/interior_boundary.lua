@@ -47,7 +47,7 @@ local function fn()
 end
 
 local function init(inst)
-    MakeInteriorPhysics(inst, inst.width:value(), nil, inst.depth:value())
+    MakeInteriorWallPhysics(inst, inst.width:value(), nil, inst.depth:value())
     inst.Physics:SetActive(true)
 end
 

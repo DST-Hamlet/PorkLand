@@ -92,7 +92,9 @@ local function UpdateFx(inst)
 end
 
 local function ClearFx(inst)
-    for k in pairs(inst.fx)do
+    for k, v in pairs(inst.fx)do
+        print(k)
+        inst.fx[k] = nil
         k:Remove()
     end
 end
@@ -139,6 +141,7 @@ local function StartUpdateState(inst)
 end
 
 local function StopUpdateState(inst)
+    UpdateState(inst)
     if inst.updatefxtask then
         inst.updatefxtask:Cancel()
         inst.updatefxtask = nil

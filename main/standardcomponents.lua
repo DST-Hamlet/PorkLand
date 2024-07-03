@@ -120,7 +120,7 @@ function MakePickableBlowInWindGust(inst, wind_speed, destroy_chance)
                     -- This may not be true anymore
                     if inst.components.pickable and inst.components.pickable:CanBePicked() then
                         inst.AnimState:PlayAnimation("blown_pst", false)
-                        -- changed this from a push animation to an animover listen event so that it can be interrupted if necessary, 
+                        -- changed this from a push animation to an animover listen event so that it can be interrupted if necessary,
                         -- and that a check can be made at the end to know if it should go to idle at that time.
                         inst:ListenForEvent("animover", inst.onblownpstdone)
                     end
@@ -466,6 +466,19 @@ function MakeInteriorPhysics(inst, rad, height, width)
     inst.Physics:SetMass(0)
     inst.Physics:SetTriangleMesh(build_rectangle_collision_mesh(rad, height, width or rad))
     inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith(COLLISION.ITEMS)
+    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+end
+
+function MakeInteriorWallPhysics(inst, rad, height, width)
+    height = height or 20
+
+    inst:AddTag("blocker")
+    inst.Physics = inst.Physics or inst.entity:AddPhysics()
+    inst.Physics:SetMass(0)
+    inst.Physics:SetTriangleMesh(build_rectangle_collision_mesh(rad, height, width or rad))
+    inst.Physics:SetCollisionGroup(COLLISION.GROUND)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.ITEMS)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
