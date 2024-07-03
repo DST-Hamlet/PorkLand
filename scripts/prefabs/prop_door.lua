@@ -121,10 +121,7 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
     TheWorld.components.interiorspawner:AddDoor(inst, door_definition)
 
     if prefab_definition.animdata then
-        inst.Transform:SetRotation(-90)
-
-        inst:AddComponent("rotatingbillboard")
-        inst.components.rotatingbillboard.animdata = prefab_definition.animdata
+        inst.components.rotatingbillboard:SetAnimation_Server(prefab_definition.animdata)
 
         if prefab_definition.animdata.bank then
             inst.AnimState:SetBank(prefab_definition.animdata.bank)
@@ -144,8 +141,8 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
         end
 
         if prefab_definition.animdata.background then
-            inst.AnimState:SetLayer(LAYER_BACKGROUND)
-            inst.AnimState:SetSortOrder(3)
+            inst.AnimState:SetLayer( LAYER_BACKGROUND )
+            inst.AnimState:SetSortOrder( 3 )
             --inst.Transform:SetTwoFaced()
             -- inst.Transform:SetRotation(90)
 
@@ -233,26 +230,23 @@ local function OnLoad(inst, data)
     end
     if data.door_data_animstate then
         inst.AnimState:PlayAnimation(data.door_data_animstate, true)
-        inst.door_data_animstate = data.door_data_animstate
+        inst.door_data_build = data.door_data_build
     end
-    if data.rotation and inst.components.rotatingbillboard == nil then
-        inst.Transform:SetRotation(data.rotation)
-    end
-    if not inst.components.rotatingbillboard then
-        inst:AddComponent("rotatingbillboard")
-    end
-    inst.components.rotatingbillboard.animdata = {
+    inst.components.rotatingbillboard:SetAnimation_Server({
         bank = data.door_data_bank,
         build = data.door_data_build,
         animation = data.door_data_animstate,
-    }
+    })
+    if data.rotation and inst.components.rotatingbillboard == nil then
+        inst.Transform:SetRotation(data.rotation)
+    end
     if data.door_data_background then
-        inst.AnimState:SetLayer(LAYER_BACKGROUND)
-        inst.AnimState:SetSortOrder(3)
+        inst.AnimState:SetLayer( LAYER_BACKGROUND )
+        inst.AnimState:SetSortOrder( 3 )
         inst.door_data_background = data.door_data_background
     end
     if data.scalex  then
-        inst.Transform:SetScale(data.scalex, data.scaley, data.scalez)
+        inst.Transform:SetScale( data.scalex, data.scaley, data.scalez)
     end
     if data.timechanger then
         MakeTimeChanger(inst)
@@ -447,27 +441,19 @@ local function fn()
 
     inst:DoTaskInTime(0, testPlayerHouseDoor)
 
-    inst.entity:SetPristine()
+    inst.Transform:SetRotation(-90)
+    inst:AddComponent("rotatingbillboard")
+    inst.components.rotatingbillboard.animdata = {
+        bank = "acorn",
+        build = "acorn",
+        anim = "idle"
+    }
 
-    if not TheWorld.ismastersim then
-        return inst
-    end
 
-    inst:AddComponent("door")
+    inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
 
-    inst:AddComponent("vineable")
-
-    inst.initInteriorPrefab = InitInteriorPrefab
-    inst.saveInteriorData = SaveInteriorData
-    inst.initFromInteriorSave = InitFromInteriorSave
-
-    MakeHauntableDoor(inst)
-
-    inst.opendoor = OpenDoor
-    inst.closedoor = CloseDoor
-    inst.disableDoor = DisableDoor
-
-    inst:ListenForEvent("open", OpenDoor)
+    inst:DoTaskInTime(0, testPlayerHouseDoor)
+enForEvent("open", OpenDoor)
     inst:ListenForEvent("close", CloseDoor)
     inst:ListenForEvent("usedoor", UseDoor)
 
