@@ -88,10 +88,7 @@ local function fn()
 
 
     --[[Non-networked entity]]
-    --inst.entity:SetCanSleep(false)
-    if TheNet:GetIsClient() then
-        inst.entity:AddClientSleepable()
-    end
+
     inst.persists = false
 
     inst:AddTag("FX")

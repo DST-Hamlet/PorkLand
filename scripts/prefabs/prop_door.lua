@@ -1,9 +1,3 @@
-require "prefabutil"
--- require "stategraphs/SGanthilldoor_north"
--- require "stategraphs/SGanthilldoor_south"
--- require "stategraphs/SGanthilldoor_east"
--- require "stategraphs/SGanthilldoor_west"
-
 local assets =
 {
     Asset("ANIM", "anim/pig_door_test.zip"),
@@ -26,9 +20,9 @@ local prefabs =
 
 local lights =
 {
-    day = {rad=3,intensity=0.75,falloff=0.5,color={1,1,1}},
-    dusk = {rad=2,intensity=0.75,falloff=0.5,color={1/1.8,1/1.8,1/1.8}},
-    full = {rad=2,intensity=0.75,falloff=0.5,color={0.8/1.8,0.8/1.8,1/1.8}}
+    day  = {rad = 3, intensity = 0.75, falloff = 0.5, color = {1, 1, 1}},
+    dusk = {rad = 2, intensity = 0.75, falloff = 0.5, color = {1 / 1.8, 1 / 1.8, 1 / 1.8}},
+    full = {rad = 2, intensity = 0.75, falloff = 0.5, color = {0.8 / 1.8, 0.8 / 1.8, 1 / 1.8}}
 }
 
 local function turnoff(inst, light)
@@ -37,72 +31,76 @@ local function turnoff(inst, light)
     end
 end
 
-local phasefunctions =
-{
+local phase_functions = {
     day = function(inst)
-        if not inst:IsInLimbo() then inst.Light:Enable(true) end
-        inst.components.lighttweener:StartTween(nil, lights.day.rad, lights.day.intensity, lights.day.falloff, {lights.day.color[1],lights.day.color[2],lights.day.color[3]}, 2)
+        if inst:HasTag("timechange_anims") then
+            inst.AnimState:PlayAnimation("to_day")
+            inst.AnimState:PushAnimation("day_loop", true)
+        end
+
+        if not inst.Light then
+            return
+        end
+
+        if not inst:IsInLimbo() then
+            inst.Light:Enable(true)
+        end
+
+        inst.components.lighttweener:StartTween(nil, lights.day.rad, lights.day.intensity, lights.day.falloff,
+            {lights.day.color[1], lights.day.color[2], lights.day.color[3]}, 2)
     end,
 
     dusk = function(inst)
-        if not inst:IsInLimbo() then inst.Light:Enable(true) end
-        inst.components.lighttweener:StartTween(nil, lights.dusk.rad, lights.dusk.intensity, lights.dusk.falloff, {lights.dusk.color[1],lights.dusk.color[2],lights.dusk.color[3]}, 2)
-    end,
-
-    night = function(inst)
-        if TheWorld.state.moonphase == "full" then
-            inst.components.lighttweener:StartTween(nil, lights.full.rad, lights.full.intensity, lights.full.falloff, {lights.full.color[1],lights.full.color[2],lights.full.color[3]}, 4)
-        else
-            inst.components.lighttweener:StartTween(nil, 0, 0, 1, {0,0,0}, 6, turnoff)
-        end
-    end,
-}
-
-local function timechange(inst)
-    if TheWorld.state.isday then
-
-        if inst:HasTag("timechange_anims") then
-            inst.AnimState:PlayAnimation("to_day")
-               inst.AnimState:PushAnimation("day_loop", true)
-        end
-
-        if inst.Light then
-            phasefunctions["day"](inst)
-        end
-    elseif TheWorld.state.isnight then
-
-        if inst:HasTag("timechange_anims") then
-               inst.AnimState:PlayAnimation("to_night")
-            inst.AnimState:PushAnimation("night_loop", true)
-        end
-
-        if inst.Light then
-            phasefunctions["night"](inst)
-        end
-    elseif TheWorld.state.isdusk then
-
         if inst:HasTag("timechange_anims") then
             inst.AnimState:PlayAnimation("to_dusk")
             inst.AnimState:PushAnimation("dusk_loop", true)
         end
 
-        if inst.Light then
-            phasefunctions["dusk"](inst)
+        if not inst.Light then
+            return
         end
-    end
+
+        if not inst:IsInLimbo() then
+            inst.Light:Enable(true)
+        end
+
+        inst.components.lighttweener:StartTween(nil, lights.dusk.rad, lights.dusk.intensity, lights.dusk.falloff,
+            {lights.dusk.color[1], lights.dusk.color[2], lights.dusk.color[3]}, 2)
+    end,
+
+    night = function(inst)
+        if inst:HasTag("timechange_anims") then
+            inst.AnimState:PlayAnimation("to_night")
+            inst.AnimState:PushAnimation("night_loop", true)
+        end
+
+        if not inst.Light then
+            return
+        end
+
+        if TheWorld.state.moonphase == "full" then
+            inst.components.lighttweener:StartTween(nil, lights.full.rad, lights.full.intensity, lights.full.falloff,
+                {lights.full.color[1], lights.full.color[2], lights.full.color[3]}, 4)
+        else
+            inst.components.lighttweener:StartTween(nil, 0, 0, 1, {0, 0, 0}, 6, turnoff)
+        end
+    end,
+}
+
+local function OnPhaseChange(inst, phase)
+    phase_functions[phase](inst)
 end
 
-local function settimechange(inst)
+local function MakeTimeChanger(inst)
     inst:AddComponent("lighttweener")
-    inst.components.lighttweener:StartTween(inst.Light, lights.day.rad, lights.day.intensity, lights.day.falloff, {lights.day.color[1],lights.day.color[2],lights.day.color[3]}, 0)
+    inst.components.lighttweener:StartTween(inst.Light, lights.day.rad, lights.day.intensity, lights.day.falloff,
+        {lights.day.color[1], lights.day.color[2], lights.day.color[3]}, 0)
     inst.Light:Enable(true)
 
-    inst:WatchWorldState("isday", function() timechange(inst) end)
-    inst:WatchWorldState("isdusk", function() timechange(inst) end)
-    inst:WatchWorldState("isnight", function() timechange(inst) end)
+    inst:WatchWorldState("phase", OnPhaseChange)
+    OnPhaseChange(inst, TheWorld.state.phase)
 
     inst.timechanger = true
-    timechange(inst)
 end
 
 local function InitInteriorPrefab(inst, doer, prefab_definition, interior_definition)
@@ -123,6 +121,7 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
     TheWorld.components.interiorspawner:AddDoor(inst, door_definition)
 
     if prefab_definition.animdata then
+        inst.components.rotatingbillboard:SetAnimation_Server(prefab_definition.animdata)
 
         if prefab_definition.animdata.bank then
             inst.AnimState:SetBank(prefab_definition.animdata.bank)
@@ -142,8 +141,8 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
         end
 
         if prefab_definition.animdata.background then
-            inst.AnimState:SetLayer( LAYER_BACKGROUND )
-            inst.AnimState:SetSortOrder( 3 )
+            inst.AnimState:SetLayer(LAYER_BACKGROUND)
+            inst.AnimState:SetSortOrder(3)
             --inst.Transform:SetTwoFaced()
             -- inst.Transform:SetRotation(90)
 
@@ -151,7 +150,7 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
         end
 
         if prefab_definition.animdata.light then
-            settimechange(inst)
+            MakeTimeChanger(inst)
         end
 
         if prefab_definition.animdata.minimapicon then
@@ -190,86 +189,37 @@ end
 local function InitFromInteriorSave(inst, save_data)
 end
 
-local function onsave(inst, data)
+local function OnSave(inst, data)
+    local scale_x, scale_y, scale_z = inst.Transform:GetScale()
+    data.scalex = scale_x
+    data.scaley = scale_y
+    data.scalez = scale_z
 
-    local pt = Vector3(inst.Transform:GetScale())
-    data.scalex = pt.x
-    data.scaley = pt.y
-    data.scalez = pt.z
-
-    if inst.baseanimname then
-        data.baseanimname = inst.baseanimname
-    end
-
-    if inst.door_data_animstate then
-        data.door_data_animstate = inst.door_data_animstate
-    end
-
-    if inst.door_data_bank then
-        data.door_data_bank = inst.door_data_bank
-    end
-
-    if inst.door_data_build then
-        data.door_data_build = inst.door_data_build
-    end
-
-    if inst.door_data_background then
-        data.door_data_background = inst.door_data_background
-    end
-    if inst.timechanger then
-        data.timechanger = true
-    end
+    data.baseanimname = inst.baseanimname
+    data.door_data_animstate = inst.door_data_animstate
+    data.door_data_background = inst.door_data_background
+    data.door_data_bank = inst.door_data_bank
+    data.door_data_build = inst.door_data_build
+    data.dooranimclosed = inst.dooranimclosed
+    data.flipped = inst.flipped
+    data.minimapicon = inst.minimapicon
     data.rotation = inst.Transform:GetRotation()
-    if inst.flipped then
-        data.flipped = inst.flipped
-    end
-    if inst:HasTag("timechange_anims") then
-        data.timechange_anims = true
-    end
-    if inst:HasTag("lockable_door") then
-        data.lockable_door = true
-    end
-    if inst:HasTag("secret") then
-        data.secret = true
-    end
+    data.sg_name = inst.sg_name
+    data.startstate = inst.startstate
+    data.timechanger = inst.timechanger
+    data.usesounds = inst.usesounds
 
-    if inst.dooranimclosed then
-        data.dooranimclosed = true
-    end
-
-    if inst.minimapicon then
-        data.minimapicon = inst.minimapicon
-    end
-
-    if inst:HasTag("guard_entrance") then
-        data.guard_entrance = true
-    end
-    if inst:HasTag("ruins_entrance")then
-        data.ruins_entrance = true
-    end
-    if inst:HasTag("shop_entrance")then
-        data.shop_entrance = true
-    end
-    if inst:HasTag("roc_cave_delete_me")then
-        data.roc_cave_delete_me = true
-    end
-
-    if inst:HasTag("anthill_inside") then
-        data.anthill_inside = true
-    end
-    if inst.startstate then
-        data.startstate = inst.startstate
-    end
-    if inst.sg_name then
-        data.sg_name = inst.sg_name
-    end
-
-    if inst.usesounds then
-        data.usesounds = inst.usesounds
-    end
+    data.anthill_inside = inst:HasTag("anthill_inside")
+    data.guard_entrance = inst:HasTag("guard_entrance")
+    data.lockable_door = inst:HasTag("lockable_door")
+    data.roc_cave_delete_me = inst:HasTag("roc_cave_delete_me")
+    data.ruins_entrance = inst:HasTag("ruins_entrance")
+    data.secret = inst:HasTag("secret")
+    data.shop_music = inst:HasTag("shop_music")
+    data.timechange_anims = inst:HasTag("timechange_anims")
 end
 
-local function onload(inst, data)
+local function OnLoad(inst, data)
     if data.door_data_bank then
         inst.AnimState:SetBank(data.door_data_bank)
         inst.door_data_bank = data.door_data_bank
@@ -280,27 +230,30 @@ local function onload(inst, data)
     end
     if data.door_data_animstate then
         inst.AnimState:PlayAnimation(data.door_data_animstate, true)
-        inst.door_data_animstate = data.door_data_animstate
+        inst.door_data_build = data.door_data_build
     end
-    if data.rotation then
-        -- inst:DoTaskInTime(0, function()
-            inst.Transform:SetRotation(data.rotation)
-        -- end)
+    inst.components.rotatingbillboard:SetAnimation_Server({
+        bank = data.door_data_bank,
+        build = data.door_data_build,
+        animation = data.door_data_animstate,
+    })
+    if data.rotation and inst.components.rotatingbillboard == nil then
+        inst.Transform:SetRotation(data.rotation)
     end
     if data.door_data_background then
-        inst.AnimState:SetLayer( LAYER_BACKGROUND )
-        inst.AnimState:SetSortOrder( 3 )
+        inst.AnimState:SetLayer(LAYER_BACKGROUND)
+        inst.AnimState:SetSortOrder(3)
         inst.door_data_background = data.door_data_background
     end
     if data.scalex  then
-        inst.Transform:SetScale( data.scalex, data.scaley, data.scalez)
+        inst.Transform:SetScale(data.scalex, data.scaley, data.scalez)
     end
     if data.timechanger then
-        settimechange(inst)
+        MakeTimeChanger(inst)
     end
     if data.timechange_anims then
         inst:AddTag("timechange_anims")
-        timechange(inst)
+        OnPhaseChange(inst, TheWorld.state.phase)
     end
     if data.baseanimname then
         inst.baseanimname = data.baseanimname
@@ -316,22 +269,22 @@ local function onload(inst, data)
     end
     if data.minimapicon then
         inst.minimapicon = data.minimapicon
-        local minimap = inst.entity:AddMiniMapEntity()
-        minimap:SetIcon(inst.minimapicon)
+        inst.entity:AddMiniMapEntity()
+        inst.MiniMapEntity:SetIcon(inst.minimapicon)
     end
+
     if data.guard_entrance then
         inst:AddTag("guard_entrance")
     end
     if data.ruins_entrance then
         inst:AddTag("ruins_entrance")
     end
-    if data.shop_entrance then
-        inst:AddTag("shop_entrance")
+    if data.shop_music then
+        inst:AddTag("shop_music")
     end
     if data.anthill_inside then
         inst:AddTag("anthill_inside")
     end
-
     if data.roc_cave_delete_me then
         inst:AddTag("roc_cave_delete_me")
     end
@@ -353,39 +306,33 @@ local function onload(inst, data)
     end
 end
 
-local function disableDoor(inst, setting, cause)
+local function DisableDoor(inst, setting, cause)
     assert(cause,"needs a cause")
 
     local door = inst.components.door
-    door:UpdateDoorStatus(setting, cause)
+    door:SetDoorDisabled(setting, cause)
 
     -- deal with connecting doors.
-    local interior_spawner = GetWorld().components.interiorspawner
+    local interior_spawner = TheWorld.components.interiorspawner
     if interior_spawner.doors[door.target_door_id] then
         -- THIS DOORS OPPOSITE DOOR HAS BEEN VISITED BEFORE
         local targetdoor = interior_spawner.doors[door.target_door_id].inst
         if targetdoor then
             if setting == true then
                 if cause == "door" then
-                    targetdoor.closedoor(targetdoor, true)
-                end
-                if cause == "vines" then
-                    targetdoor.components.vineable:dissabledoorvis()
+                    targetdoor.closedoor(targetdoor)
                 end
             else
                 if cause == "door" then
-                    targetdoor.opendoor(targetdoor, true)
-                end
-                if cause == "vines" then
-                    targetdoor.components.vineable:enabledoorvis()
+                    targetdoor.opendoor(targetdoor)
                 end
             end
-            targetdoor.components.door:UpdateDoorStatus(setting, cause)
+            targetdoor.components.door:SetDoorDisabled(setting, cause)
         end
 
     else
         -- THIS DOORS OPPOSITE DOOR MAY EXIST BUT NOT VISITED YET..
-        local interior = interior_spawner:GetInteriorByIndex(door.target_interior)
+        local interior = door.target_interior and interior_spawner:GetInteriorByIndex(door.target_interior)
         if interior then
             if interior.prefabs then
                 for k, prefab in ipairs(interior.prefabs) do
@@ -407,7 +354,7 @@ local function disableDoor(inst, setting, cause)
     end
 end
 
-local function usedoor(inst,data)
+local function UseDoor(inst,data)
     if inst.usesounds then
         if data and data.doer and data.doer.SoundEmitter then
             for i,sound in ipairs(inst.usesounds)do
@@ -417,80 +364,93 @@ local function usedoor(inst,data)
     end
 end
 
-local function opendoor(inst, instant)
-    if inst.baseanimname and inst.components.door.disabledcauses and inst.components.door.disabledcauses["door"] then
-        --print("OPENING")
-        if not instant then
+local function OpenDoor(inst, instant)
+    if inst.baseanimname and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] then
+        if not inst:IsAsleep() then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/slide")
-            inst.AnimState:PlayAnimation(inst.baseanimname.."_open")
+            inst.AnimState:PlayAnimation(inst.baseanimname .. "_open")
             inst.AnimState:PushAnimation(inst.baseanimname)
         else
             inst.AnimState:PlayAnimation(inst.baseanimname)
         end
 
-        disableDoor(inst,nil,"door")
+        DisableDoor(inst, nil, "door")
 
         inst.dooranimclosed = nil
     end
 end
 
-local function closedoor(inst, instant)
+local function CloseDoor(inst, instant)
     -- once the player has used a door, the doors should freeze open
-    if not GetWorld().doorfreeze  then
-        if inst.baseanimname and (not inst.components.door.disabledcauses or not inst.components.door.disabledcauses["door"])  then
-            --print("CLOSING")
-            if not instant then
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/close")
-                inst.AnimState:PlayAnimation(inst.baseanimname.."_shut")
-                inst.AnimState:PushAnimation(inst.baseanimname.."_closed")
-                inst:DoTaskInTime(1/30*7,function() TheCamera:Shake("FULL", 0.7, 0.02, .5, 40) end)
-            else
-                inst.AnimState:PlayAnimation(inst.baseanimname.."_closed")
-            end
-            disableDoor(inst, true,"door")
-            inst.dooranimclosed = true
-        end
+    if inst.components.door.disabled and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] == true then
+        return
     end
+
+    if not inst.baseanimname or (inst.components.door.disable_causes and inst.components.door.disable_causes["door"]) then
+        return
+    end
+
+    if not inst:IsAsleep() then
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/close")
+        inst.AnimState:PlayAnimation(inst.baseanimname .. "_shut")
+        inst.AnimState:PushAnimation(inst.baseanimname .. "_closed")
+        inst:DoTaskInTime(7 / 30, function()
+            ShakeAllCamerasInRoom(inst:GetCurrentInteriorID(), CAMERASHAKE.FULL, 0.7, 0.02, 0.5, inst, 40)
+        end)
+    else
+        inst.AnimState:PlayAnimation(inst.baseanimname .. "_closed")
+    end
+
+    DisableDoor(inst, true, "door")
+    inst.dooranimclosed = true
 end
 
 local function testPlayerHouseDoor(inst)
     local door = inst.components.door
     if door then
-        local interior = TheWorld.components.interiorspawner:GetInteriorByName(door.interior_name)
+        local interior = TheWorld.components.interiorspawner:GetInteriorByIndex(door.interior_name)
         if interior and interior.playerroom then
-            local minimap = inst.entity:AddMiniMapEntity()
-            minimap:SetIcon( "player_frontdoor.tex" )
-            minimap:SetIconOffset(4,0)
+            inst.entity:AddMiniMapEntity()
+            inst.MiniMapEntity:SetIcon("player_frontdoor.tex")
+            inst.MiniMapEntity:SetIconOffset(4, 0)
         end
     end
 end
 
 local function fn()
     local inst = CreateEntity()
+
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-    inst.entity:AddNetwork()
     inst.entity:AddLight()
+    inst.entity:AddNetwork()
 
-    inst.Light:Enable(false)
+    MakeObstaclePhysics(inst, 1)
 
     inst.AnimState:SetBank("acorn")
     inst.AnimState:SetBuild("acorn")
     inst.AnimState:PlayAnimation("idle")
-    -- inst.AnimState:SetSortOrder(SORTORDER_MAX)
 
-    --inst.Transform:SetTwoFaced()
-
-    MakeObstaclePhysics(inst, 1)
-    inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
-
-    inst:DoTaskInTime(0, testPlayerHouseDoor)
+    inst.Light:Enable(false)
 
     inst:AddTag("interior_door")
     inst:AddTag("NOBLOCK")
 
+    inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
+
+    inst:DoTaskInTime(0, testPlayerHouseDoor)
+
+    inst.Transform:SetRotation(-90)
+    inst:AddComponent("rotatingbillboard")
+    inst.components.rotatingbillboard.animdata = {
+        bank = "acorn",
+        build = "acorn",
+        anim = "idle"
+    }
+
     inst.entity:SetPristine()
+
     if not TheWorld.ismastersim then
         return inst
     end
@@ -498,23 +458,23 @@ local function fn()
     inst:AddComponent("door")
 
     inst:AddComponent("vineable")
+
     inst.initInteriorPrefab = InitInteriorPrefab
     inst.saveInteriorData = SaveInteriorData
     inst.initFromInteriorSave = InitFromInteriorSave
 
     MakeHauntableDoor(inst)
 
-    inst.opendoor = opendoor
-    inst.closedoor = closedoor
-    inst.disableDoor = disableDoor
+    inst.opendoor = OpenDoor
+    inst.closedoor = CloseDoor
+    inst.disableDoor = DisableDoor
 
-    inst:ListenForEvent("open", function(inst, data) opendoor(inst, data and data.instant) end)
-    inst:ListenForEvent("close", function(inst, data) closedoor(inst, data and data.instant) end)
+    inst:ListenForEvent("open", OpenDoor)
+    inst:ListenForEvent("close", CloseDoor)
+    inst:ListenForEvent("usedoor", UseDoor)
 
-    inst:ListenForEvent("usedoor", function(inst,data) usedoor(inst,data) end)
-
-    inst.OnSave = onsave
-    inst.OnLoad = onload
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     return inst
 end

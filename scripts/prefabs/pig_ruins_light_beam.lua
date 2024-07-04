@@ -31,19 +31,24 @@ local function TriggerTraps(inst)
 end
 
 local function CreatureProxTest(ent)
-    return ent:HasTag("locomotor") and not ent:HasTag("notraptrigger") -- TODO add notraptrigger tag to mobs
+    return ent:HasTag("locomotor") and not ent:HasTag("notraptrigger")
 end
 
 local function TurnOn(inst, light)
-    inst.components.creatureprox:SetEnabled(true)
+    if TheWorld.ismastersim and inst.components.creatureprox then
+        inst.components.creatureprox:SetEnabled(true)
+    end
 end
 
 local function TurnOff(inst, light)
     if light then
         light:Enable(false)
     end
-    inst.components.creatureprox:SetEnabled(false)
-    inst:Hide()
+
+    if TheWorld.ismastersim and inst.components.creatureprox then
+        inst.components.creatureprox:SetEnabled(false)
+        inst:Hide()
+    end
 end
 
 local phase_functions =
@@ -75,7 +80,6 @@ local phase_functions =
             elseif inst:HasTag("cave_light") then
                 inst.components.lighttweener:StartTween(nil, 1 * 3, 0.5, 0.6, {91 / 255, 164 / 255, 255 / 255}, 4, TurnOn)
             end
-
         else
             inst.components.lighttweener:StartTween(nil, 0, 0, 1, {0, 0, 0}, 6, TurnOff)
         end
@@ -142,6 +146,12 @@ local function ruinsfn()
         return inst
     end
 
+    inst:AddComponent("creatureprox")
+    inst.components.creatureprox:SetOnNear(TriggerTraps)
+    inst.components.creatureprox:SetFindTestFn(CreatureProxTest)
+    inst.components.creatureprox:SetDist(1.4, 1.5)
+    inst.components.creatureprox.inventorytrigger = true
+
     return inst
 end
 
@@ -155,12 +165,6 @@ local function cavefn()
     if not TheWorld.ismastersim then
         return inst
     end
-
-    inst:AddComponent("creatureprox")
-    inst.components.creatureprox:SetOnNear(TriggerTraps)
-    inst.components.creatureprox:SetFindTestFn(CreatureProxTest)
-    inst.components.creatureprox:SetDist(1.4, 1.5)
-    inst.components.creatureprox.inventorytrigger = true
 
     return inst
 end

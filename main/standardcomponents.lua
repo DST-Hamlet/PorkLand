@@ -120,7 +120,7 @@ function MakePickableBlowInWindGust(inst, wind_speed, destroy_chance)
                     -- This may not be true anymore
                     if inst.components.pickable and inst.components.pickable:CanBePicked() then
                         inst.AnimState:PlayAnimation("blown_pst", false)
-                        -- changed this from a push animation to an animover listen event so that it can be interrupted if necessary, 
+                        -- changed this from a push animation to an animover listen event so that it can be interrupted if necessary,
                         -- and that a check can be made at the end to know if it should go to idle at that time.
                         inst:ListenForEvent("animover", inst.onblownpstdone)
                     end
@@ -414,4 +414,73 @@ function MakeHauntableDoor(inst)
         end
         return false
     end)
+end
+
+local function build_rectangle_collision_mesh(rad, height, width)
+    local points = {
+        Vector3(-width / 2, 0, -rad / 2),
+        Vector3(width / 2, 0, -rad / 2),
+        Vector3(width / 2, 0, rad / 2),
+        Vector3(-width / 2, 0, rad / 2),
+    }
+    local triangles = {}
+    local y0 = 0
+    local y1 = height
+    for i = 1, 4 do
+        local p1 = points[i]
+        local p2 = points[i == 4 and 1 or i + 1]
+
+        table.insert(triangles, p1.x)
+        table.insert(triangles, y0)
+        table.insert(triangles, p1.z)
+
+        table.insert(triangles, p1.x)
+        table.insert(triangles, y1)
+        table.insert(triangles, p1.z)
+
+        table.insert(triangles, p2.x)
+        table.insert(triangles, y0)
+        table.insert(triangles, p2.z)
+
+        table.insert(triangles, p2.x)
+        table.insert(triangles, y0)
+        table.insert(triangles, p2.z)
+
+        table.insert(triangles, p1.x)
+        table.insert(triangles, y1)
+        table.insert(triangles, p1.z)
+
+        table.insert(triangles, p2.x)
+        table.insert(triangles, y1)
+        table.insert(triangles, p2.z)
+    end
+
+    return triangles
+end
+
+function MakeInteriorPhysics(inst, rad, height, width)
+    height = height or 20
+
+    inst:AddTag("blocker")
+    inst.Physics = inst.Physics or inst.entity:AddPhysics()
+    inst.Physics:SetMass(0)
+    inst.Physics:SetTriangleMesh(build_rectangle_collision_mesh(rad, height, width or rad))
+    inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith(COLLISION.ITEMS)
+    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+end
+
+function MakeInteriorWallPhysics(inst, rad, height, width)
+    height = height or 20
+
+    inst:AddTag("blocker")
+    inst.Physics = inst.Physics or inst.entity:AddPhysics()
+    inst.Physics:SetMass(0)
+    inst.Physics:SetTriangleMesh(build_rectangle_collision_mesh(rad, height, width or rad))
+    inst.Physics:SetCollisionGroup(COLLISION.GROUND)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith(COLLISION.ITEMS)
+    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+    inst.Physics:CollidesWith(COLLISION.FLYERS)
 end

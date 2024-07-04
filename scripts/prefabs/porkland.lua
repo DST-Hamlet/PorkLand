@@ -23,7 +23,7 @@ local assets =
     Asset("IMAGE", "images/colour_cubes/pork_lush_day_test.tex"),
 
     Asset("IMAGE", "images/could/fog_cloud.tex"),
-
+    Asset("IMAGE", "images/could/fog_cloud_interior.tex"),
 }
 
 local prefabs =
@@ -146,6 +146,8 @@ local function master_postinit(inst)
     if METRICS_ENABLED then
         inst:AddComponent("worldoverseer")
     end
+
+    inst:AddComponent("worldsoundmanager")
 end
 
 return MakeWorld("porkland", prefabs, assets, common_postinit, master_postinit, {"porkland"}, {tile_physics_init = tile_physics_init})

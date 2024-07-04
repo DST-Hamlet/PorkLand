@@ -58,17 +58,11 @@ function Door:SetTargetOffset(x, y, z)
     dest.target_offset_z = z
 end
 
-function Door:CollectSceneActions(doer, actions)
-    if not self.inst:HasTag("predoor") and not self.hidden then
-        table.insert(actions, ACTIONS.USEDOOR)
-    end
-end
-
 function Door:Activate(doer)
     self.inst:PushEvent("usedoor", {doer = doer})
 end
 
-function Door:UpdateDoorStatus(status, cause)
+function Door:SetDoorDisabled(status, cause)
     if cause then
         self.disable_causes[cause] = status
     end
@@ -181,7 +175,7 @@ function Door:OnLoad(data)
     if data.disable_causes then
         self.disable_causes = data.disable_causes
     end
-    self:UpdateDoorStatus()
+    self:SetDoorDisabled()
 end
 
 return Door

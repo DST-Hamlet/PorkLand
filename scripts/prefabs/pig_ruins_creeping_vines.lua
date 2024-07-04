@@ -1,6 +1,3 @@
-require "prefabutil"
-require "recipes"
-
 local assets =
 {
     Asset("ANIM", "anim/pig_ruins_vines_door.zip"),
@@ -18,7 +15,7 @@ local prefabs =
 
 }
 
-local function getanimname(inst)
+local function GetAnimName(inst)
 
     local stage_string = "_closed"
 
@@ -28,24 +25,24 @@ local function getanimname(inst)
         stage_string = "_open"
     end
 
-    return inst.facing..stage_string
+    return inst.facing .. stage_string
 end
 
-local function blockdoor(inst)
+local function BlockDoor(inst)
     -- send event to dissable the door.  the listener will respond if it's the door OR the target door
     if inst.door then
         inst.door.components.vineable:SetDoorDissabled(true)
     end
 end
 
-local function cleardoor(inst)
+local function ClearDoor(inst)
     -- send event to enable the door. the listener will respond if it's the door OR the target door
     if inst.door then
         inst.door.components.vineable:SetDoorDissabled(false)
     end
 end
 
-local function regrow(inst)
+local function Regrow(inst)
     -- this is just for viuals, it doesn't actually lock the assotiated door.
     if inst.stage ~= 2 then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/traps/vine_grow")
@@ -53,8 +50,9 @@ local function regrow(inst)
         inst.components.hackable.canbehacked = true
         inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
         inst:RemoveTag("NOCLICK")
-        inst.AnimState:PlayAnimation(getanimname(inst).."_pre", true)
-        inst.AnimState:PushAnimation(getanimname(inst), true)
+        inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_pre", true)
+        inst.AnimState:PushAnimation(GetAnimName(inst), true)
+        inst.components.rotatingbillboard:SyncMaskAnimation()
     end
 end
 
@@ -63,29 +61,29 @@ local function hackedopen(inst)
     inst.stage = 0
     inst.components.hackable.canbehacked = false
     inst:AddTag("NOCLICK")
-    inst.AnimState:PlayAnimation(getanimname(inst), true)
+    inst.AnimState:PlayAnimation(GetAnimName(inst), true)
+    inst.components.rotatingbillboard:SyncMaskAnimation()
 end
 
-local function onhackedfn(inst, hacker, hacksleft)
-
+local function OnHacked(inst, hacker, hacksleft)
     if hacksleft <= 0 then
         if inst.stage > 0 then
             inst.stage = inst.stage -1
 
             if inst.stage == 0 then
-                cleardoor(inst)
+                ClearDoor(inst)
                 if inst.door then
-                   --  inst.door.components.vineable:BeginRegrow()                       
+                   inst.door.components.vineable:BeginRegrow()
                 end
             else
-                inst.AnimState:PlayAnimation(getanimname(inst).."_hit")
-                inst.AnimState:PushAnimation(getanimname(inst), true)
+                inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_hit")
+                inst.AnimState:PushAnimation(GetAnimName(inst), true)
                 inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
             end
         end
     else
-        inst.AnimState:PlayAnimation(getanimname(inst).."_hit")
-        inst.AnimState:PushAnimation(getanimname(inst), true)
+        inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_hit")
+        inst.AnimState:PushAnimation(GetAnimName(inst), true)
     end
 
     local fx = SpawnPrefab("hacking_fx")
@@ -94,8 +92,8 @@ local function onhackedfn(inst, hacker, hacksleft)
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/vine_hack")
 end
 
-local function setup(inst)
-    blockdoor(inst)
+local function SetUp(inst)
+    BlockDoor(inst)
 
     if inst.door:HasTag("door_north") then
         inst.facing = "north"
@@ -108,77 +106,102 @@ local function setup(inst)
     end
 
     if inst.facing ~= "south" then
-        inst.AnimState:SetLayer( LAYER_WORLD_BACKGROUND )
-        inst.AnimState:SetSortOrder( 4 )
+        inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
+        inst.AnimState:SetSortOrder(4)
     end
 
-    inst.AnimState:PlayAnimation(getanimname(inst), true)
+    inst.AnimState:PlayAnimation(GetAnimName(inst), true)
 end
 
 local function makefn()
-    local function fn()
-        local inst = CreateEntity()
+    local inst = CreateEntity()
 
-        inst.entity:AddTransform()
-        inst.entity:AddAnimState()
-        inst.entity:AddLight()
-        inst.entity:AddSoundEmitter()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddNetwork()
 
-        inst.AnimState:SetOrientation(ANIM_ORIENTATION.RotatingBillboard)
+    local anim_data = {
+        bank = "pig_ruins_vines_door",
+        build = "pig_ruins_vines_build",
+        animation = "north_closed"
+    }
 
-        inst.facing = "north"
-        inst.stage = 2
+    inst.AnimState:SetBank(anim_data.bank)
+    inst.AnimState:SetBuild(anim_data.build)
+    inst.AnimState:PlayAnimation(anim_data.animation, true)
 
-        inst.AnimState:SetBank("pig_ruins_vines_door")
-        inst.AnimState:SetBuild("pig_ruins_vines_build")
-        inst.AnimState:PlayAnimation(getanimname(inst), true)
+    inst.Transform:SetRotation(-90) -- 使得rotatingbillboard默认正对室内摄像机显示
 
-        inst:AddComponent("hackable")
-        inst.components.hackable:SetUp()
-        inst.components.hackable.onhackedfn = onhackedfn
-        inst.components.hackable.hacksleft = 5-- TUNING.RUINS_DOOR_VINES_HACKS
-        inst.components.hackable.maxhacks = 5--TUNING.RUINS_DOOR_VINES_HACKS
+    inst:AddComponent("rotatingbillboard")
+    inst.components.rotatingbillboard.animdata = anim_data
 
-        inst:AddComponent("shearable")
+    inst.entity:SetPristine()
 
-        inst:AddComponent("inspectable")
-
-        inst.setup = setup
-
-        inst.regrow = regrow
-        inst.hackedopen = hackedopen
-
+    if not TheWorld.ismastersim then
         return inst
     end
-    return fn
+
+    inst:AddComponent("hackable")
+    inst.components.hackable:SetUp()
+    inst.components.hackable.onhackedfn = OnHacked
+    inst.components.hackable.hacksleft = TUNING.RUINS_DOOR_VINES_HACKS
+    inst.components.hackable.maxhacks = TUNING.RUINS_DOOR_VINES_HACKS
+
+    inst:AddComponent("shearable")
+
+    inst:AddComponent("inspectable")
+
+    inst.facing = "north"
+    inst.stage = 2
+
+    inst.setup = SetUp
+    inst.regrow = Regrow
+    inst.hackedopen = hackedopen
+
+    return inst
 end
 
 local function makewallfn(facing)
-
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
-        inst.entity:AddLight()
         inst.entity:AddSoundEmitter()
+        inst.entity:AddNetwork()
+
+        local anim_data = {
+            bank = "pig_ruins_vines_wall",
+            build = "pig_ruins_vines_build",
+            animation = facing .. math.random(1, 15)
+        }
+
+        inst.AnimState:SetBank(anim_data.bank)
+        inst.AnimState:SetBuild(anim_data.build)
+        inst.AnimState:PlayAnimation(anim_data.animation, true)
+        inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
+        inst.AnimState:SetSortOrder(3)
 
         inst.Transform:SetRotation(-90)
-        inst.AnimState:SetOrientation(ANIM_ORIENTATION.RotatingBillboard)
-        inst.AnimState:SetLayer( LAYER_WORLD_BACKGROUND )
-        inst.AnimState:SetSortOrder( 3 )
+
+        inst:AddComponent("rotatingbillboard")
+        inst.components.rotatingbillboard.animdata = anim_data
+
+        inst.entity:SetPristine()
+
+        if not TheWorld.ismastersim then
+            return inst
+        end
 
         inst.facing = facing
 
-        inst.AnimState:SetBank("pig_ruins_vines_wall")
-        inst.AnimState:SetBuild("pig_ruins_vines_build")
-        inst.AnimState:PlayAnimation(inst.facing..math.random(1,15), true)
-
         return inst
     end
+
     return fn
 end
 
-return Prefab("pig_ruins_creeping_vines", makefn(), assets, prefabs ),
-       Prefab("pig_ruins_wall_vines_north", makewallfn("north_"), assets_wall, prefabs ),
-       Prefab("pig_ruins_wall_vines_east", makewallfn("east_"), assets_wall, prefabs ),
-       Prefab("pig_ruins_wall_vines_west", makewallfn("west_"), assets_wall, prefabs )
+return Prefab("pig_ruins_creeping_vines", makefn, assets, prefabs),
+       Prefab("pig_ruins_wall_vines_north", makewallfn("north_"), assets_wall, prefabs),
+       Prefab("pig_ruins_wall_vines_east", makewallfn("east_"), assets_wall, prefabs),
+       Prefab("pig_ruins_wall_vines_west", makewallfn("west_"), assets_wall, prefabs)

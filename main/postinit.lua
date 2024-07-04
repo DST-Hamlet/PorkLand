@@ -14,7 +14,6 @@ local camera_posts = {
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
-    "ambientlighting",
     "areaaware",
     "blinkstaff",
     "builder_replica",
@@ -28,6 +27,7 @@ local component_posts = {
     "edible",
     "equippable_replica",
     "equippable",
+    "explosive",
     "fishingrod",
     "floater",
     "grogginess",
@@ -86,6 +86,7 @@ local multipleprefab_posts = {
     "blowinwindgust",
     "firepit",
     "health",
+    "notraptrigger",
     "poisonable",
 }
 

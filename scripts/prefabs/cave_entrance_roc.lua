@@ -123,7 +123,7 @@ local function Open(inst)
 
     inst.MiniMapEntity:SetIcon("cave_open.png")
 
-    inst.components.door:UpdateDoorStatus(false, "plug")
+    inst.components.door:SetDoorDisabled(false, "plug")
 end
 
 local function OnWorkCallbackEntrance(inst, worker, workleft)
@@ -187,7 +187,7 @@ local function Close(inst)
 
     inst.open = false
 
-   inst.components.door:UpdateDoorStatus(true, "plug")
+   inst.components.door:SetDoorDisabled(true, "plug")
 end
 
 local function GetStatus(inst)

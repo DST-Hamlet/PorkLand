@@ -96,6 +96,7 @@ PrefabFiles = {
     "weevole",
     "windtrail",
     "windswirl",
+    "worldsound",
 
     "deco",
     "deco_academy",
@@ -123,6 +124,21 @@ PrefabFiles = {
     "bat_hide",
     "cave_entrance_roc",
     "pig_ruins_light_beam",
+    "pig_ruins_entrance",
+    "wallcrack_ruins",
+    "pig_ruins_pressure_plate",
+    "pig_ruins_dart_statue",
+    "smashingpot",
+    "pig_ruins_dart",
+    "pig_ruins_torch",
+    "light_rays",
+    "pig_ruins_spear_trap",
+    "pigghost",
+    "rugs",
+    "pheromonestone",
+    "antcombhome",
+    "anthill_lamp",
+    "anthill_stalactite",
 }
 
 Assets = {

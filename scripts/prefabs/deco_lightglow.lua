@@ -124,13 +124,13 @@ local function fn()
     inst.entity:AddFollower()
     inst.entity:AddNetwork()
 
+    inst.lighttype = "natural"
+
     inst.Light:SetIntensity(lighttypes[inst.lighttype].day.intensity)
     inst.Light:SetColour(lighttypes[inst.lighttype].day.color[1], lighttypes[inst.lighttype].day.color[2],lighttypes[inst.lighttype].day.color[3])
     inst.Light:SetFalloff(lighttypes[inst.lighttype].day.falloff)
     inst.Light:SetRadius(lighttypes[inst.lighttype].day.rad)
     inst.Light:Enable(true)
-
-    inst.lighttype = "natural"
 
     inst.setListenEvents = SetListenEvents
     inst.setLightType = SetLightType

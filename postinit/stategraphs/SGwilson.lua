@@ -1893,4 +1893,15 @@ AddStategraphPostInit("wilson", function(sg)
         end
         return _fish_actionhandler and _fish_actionhandler(inst, action, ...)
     end
+
+    local hammer_timeline = sg.states["hammer"].timeline
+    hammer_timeline[1].fn = function(inst)
+        local sound = (inst.sg.statemem.action and inst.sg.statemem.action.target and inst.sg.statemem.action.target.hammer_sound)
+            or (inst.sg.statemem.action and inst.sg.statemem.action.invobject and inst.sg.statemem.action.invobject.hit_skin_sound)
+            or "dontstarve/wilson/hit"
+
+        inst.SoundEmitter:PlaySound(sound)
+        inst.sg.statemem.recoilstate = "mine_recoil"
+        inst:PerformBufferedAction()
+    end
 end)

@@ -7,30 +7,15 @@ function Vineable:SetUpVine()
     self.vined = true
     self.vines = SpawnPrefab("pig_ruins_creeping_vines")
     self.inst:AddChild(self.vines)
-    self.vines.Transform:SetPosition(0,0,0)
+    self.vines.Transform:SetPosition(0, 0, 0)
     self.vines.door = self.inst
     self.vines.setup(self.vines)
+    if self.vines.components.rotatingbillboard then
+        self.vines.Transform:SetRotation(90) -- 使得藤蔓在世界坐标系中面朝摄像机
+    end
     self.vines_open = false
 
-    self.inst:ListenForEvent("exitedruins", function() self:SetDoorDissabled(true) end, GetPlayer())
-end
-
-function Vineable:dissabledoorvis()
-    if self.vined then
-        self.inst:AddTag("NOCLICK")
-        self.vines_open = false
-        --self.inst.disableDoor(self.inst, true, "vines")
-        self:updatevinevis()
-    end
-end
-
-function Vineable:enabledoorvis()
-    if self.vined then
-        self.inst:RemoveTag("NOCLICK")
-        self.vines_open = true
-        --self.inst.disableDoor(self.inst, false, "vines")
-        self:updatevinevis()
-    end
+    -- self.inst:ListenForEvent("exitedruins", function() self:SetDoorDissabled(true) end, GetPlayer())
 end
 
 function Vineable:SetDoorDissabled(setting)
@@ -40,25 +25,31 @@ function Vineable:SetDoorDissabled(setting)
             self.inst.regrowtask:Cancel()
             self.inst.regrowtask = nil
         end
-        self:dissabledoorvis()
+        if self.vined then
+            self.inst:AddTag("NOCLICK")
+            self.vines_open = false
+        end
     else
-        self:enabledoorvis()
+        if self.vined then
+            self.inst:RemoveTag("NOCLICK")
+            self.vines_open = true
+        end
     end
+
+    self:UpdateVineVisual()
 end
 
-
 function Vineable:SetGrowTask(time)
-     self.inst.regrowtask, self.inst.regrowtaskinfo = self.inst:ResumeTask( time ,function()
-            self:SetDoorDissabled(true)
-        end)
+     self.inst.regrowtask, self.inst.regrowtaskinfo = self.inst:ResumeTask(time, function()
+        self:SetDoorDissabled(true)
+    end)
 end
 
 function Vineable:BeginRegrow()
-    print("BEGIN REGROW TASK", self.inst.GUID)
-    self:SetGrowTask( 20 + (math.random() * 20 ))
+    self:SetGrowTask(20 + math.random() * 20)
 end
 
-function Vineable:updatevinevis()
+function Vineable:UpdateVineVisual()
     -- gets the vines to update their visuals.
     if self.vines then
         if self.vines_open then
@@ -67,39 +58,24 @@ function Vineable:updatevinevis()
             self.vines.regrow(self.vines)
         end
     end
+    if self.inst.components.rotatingbillboard then
+        self.inst.components.rotatingbillboard:SyncMaskAnimation()
+    end
 end
 
 function Vineable:InitInteriorPrefab()
-
-    if self.inst.components.door and self.inst.components.door.disabledcauses and self.inst.components.door.disabledcauses["vines"] == true then
+    if self.inst.components.door and self.inst.components.door.disable_causes and self.inst.components.door.disable_causes["vines"] == true then
         if self.vined then
             self:SetDoorDissabled(true)
-            --self:dissabledoorvis()
         end
     else
         if self.vined then
             self:SetDoorDissabled(false)
-            --self:enabledoor()
         end
     end
-
-    --self:updatevinevis()
-end
-
-function Vineable:testevent(data)
-    local interior_spawner = GetWorld().components.interiorspawner
-    local door = data.door.components.door
-    if interior_spawner.doors[door.door_id] then
-        if interior_spawner.doors[door.door_id] == interior_spawner.doors[self.inst.components.door.door_id] or
-           interior_spawner.doors[door.target_door_id] == interior_spawner.doors[self.inst.components.door.door_id] then
-
-        end
-    end
-
 end
 
 function Vineable:OnSave()
-    local refs = {}
     local data = {
         vined = self.vined,
     }
@@ -115,13 +91,7 @@ function Vineable:OnSave()
     end
 
     if next(data) then
-        return data,refs
-    end
-end
-
-function Vineable:OnLoad(data)
-    if data then
-
+        return data
     end
 end
 
@@ -137,8 +107,7 @@ function Vineable:LoadPostPass(ents, data)
     end
 
     if data.regrowtimeleft then
-        print("RELOADING TASK TIME",data.regrowtimeleft)
-        self:SetGrowTask( data.regrowtimeleft )
+        self:SetGrowTask(data.regrowtimeleft)
     end
 end
 

@@ -61,22 +61,23 @@ function InteriorVisitor:Deactivate()
 end
 
 function InteriorVisitor:ApplyInteriorCamera(ent)
-    local cameraoffset = -2.5         --10x15
-    local zoom = 23
+    local cameraoffset = -2.5 		--10x15
+	local zoom = 23
+    local width, depth = ent.size_net:value()
 
-    if ent.cameraoffset and ent.zoom then
-        cameraoffset = ent.cameraoffset
-        zoom = ent.zoom
-    elseif ent.depth == 12 then    --12x18
-        cameraoffset = -2
-        zoom = 25
-    elseif ent.depth == 16 then --16x24
-        cameraoffset = -1.5
-        zoom = 30
-    elseif ent.depth == 18 then --18x26
-        cameraoffset = -2 -- -1
-        zoom = 35
-    end
+	if ent.cameraoffset and ent.zoom then
+		cameraoffset = ent.cameraoffset
+		zoom = ent.zoom
+	elseif depth == 12 then    --12x18
+		cameraoffset = -2
+		zoom = 25
+	elseif depth == 16 then --16x24
+		cameraoffset = -1.5
+		zoom = 30
+	elseif depth == 18 then --18x26
+		cameraoffset = -2 -- -1
+		zoom = 35
+	end
 
     -- custom value
     if ent.pl_interior_distance ~= nil then
@@ -95,6 +96,9 @@ function InteriorVisitor:ApplyInteriorCamera(ent)
 end
 
 function InteriorVisitor:OnUpdate()
+    if self.inst.components.interiorvisitor then
+        self.inst.components.interiorvisitor:UpdateExteriorPos()
+    end
     local ambientlighting = TheWorld.components.ambientlighting
     if self.inst == ThePlayer then
         local last_center_ent = self.last_center_ent
@@ -114,12 +118,15 @@ function InteriorVisitor:OnUpdate()
             if last_center_ent ~= ent then
                 self.last_center_ent = ent
                 self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
+
                 if self.inst.MiniMapEntity then
                     self.inst.MiniMapEntity:SetEnabled(false)
                 end
                 if ambientlighting then
                     ambientlighting:Pl_Refresh()
                 end
+
+                TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud_interior.tex")) -- disable clouds
             end
         else
             self.inst:RemoveTag("inside_interior")
@@ -128,12 +135,15 @@ function InteriorVisitor:OnUpdate()
             self.last_center_ent = nil
             if last_center_ent ~= ent then
                 self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
+
                 if self.inst.MiniMapEntity then
                     self.inst.MiniMapEntity:SetEnabled(true)
                 end
                 if ambientlighting then
                     ambientlighting:Pl_Refresh()
                 end
+
+                TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex")) -- enable clouds again
             end
         end
     end

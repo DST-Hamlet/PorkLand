@@ -42,20 +42,34 @@ local function CanMouseThrough(inst)
 end
 
 local RotatingBillboard = Class(function(self, inst)
-    self.inst = inst
-    self.rotation_net = net_float(inst.GUID, "rotatingbillboard.rotation_net", "rotatingbillboard.rotation_net")
-    self.rotation = 0
-    self.always_on_updating = false
+	self.inst = inst
+	self.rotation_net = net_float(inst.GUID, "rotatingbillboard.rotation_net", "rotatingbillboard.rotation_net")
+	self.rotation = 0
+	self.always_on_updating = false
+    self.setted = false -- 用于判断是否在实体生成后至少传入一次立体参数
 
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/animrotatingbillboard.ksh"))
     inst:StartUpdatingComponent(self)
 
-    if not TheNet:IsDedicated() then
-        self.mask = Mask(inst)
-        inst.CanMouseThrough = CanMouseThrough
-        inst:DoTaskInTime(0, function() self:SyncMaskAnimation() end)
+    self._door_data_animstate = net_string(inst.GUID, "_door_data_animstate", "animdirty")
+    self._door_data_bank = net_string(inst.GUID, "_door_data_bank", "bankdirty")
+    self._door_data_build = net_string(inst.GUID, "_door_data_build", "builddirty")
+
+    self._maskdirty = net_event(inst.GUID, "_maskdirty", "maskdirty")
+
+    if not TheWorld.ismastersim then
+        inst:ListenForEvent("animdirty", function() self:UpdateAnim_client() end)
+        inst:ListenForEvent("bankdirty", function() self:UpdateAnim_client() end)
+        inst:ListenForEvent("builddirty", function() self:UpdateAnim_client() end)
+
+        inst:ListenForEvent("maskdirty", function() self:UpdateAnim_client() end)
     end
+	if not TheNet:IsDedicated() then
+	    self.mask = Mask(inst)
+	    inst.CanMouseThrough = CanMouseThrough
+	    inst:DoTaskInTime(0, function() self:SyncMaskAnimation() end)
+	end
 
     if not TheNet:GetIsServer() then
         inst:ListenForEvent("rotatingbillboard.rotation_net", function()
@@ -72,26 +86,39 @@ end, nil, {
     end,
 })
 
+function RotatingBillboard:SetAnimation_Server(animdata) -- 动画会变化的实体在动画变化时需要执行此函数
+    self.animdata = animdata
+    self._door_data_bank:set(animdata.bank or "")
+    self._door_data_build:set(animdata.build or "")
+    self._door_data_animstate:set(animdata.anim or "")
+    self:SyncMaskAnimation()
+end
+
+function RotatingBillboard:UpdateAnim_client()
+    self.animdata = {
+        bank = self._door_data_bank:value(),
+        build = self._door_data_build:value(),
+        anim = self._door_data_animstate:value()
+    }
+    self:SyncMaskAnimation()
+end
+
 function RotatingBillboard:GetMask()
     return self.mask
 end
 
 function RotatingBillboard:SyncMaskAnimation()
-    if self.mask  then
-        if self.inst:HasTag("NOCLICK") then
-            self.mask:AddTag("NOCLICK")
-        else
-            self.mask:RemoveTag("NOCLICK")
-        end
-        local data = self.animdata or {}
-        local anim = self.mask.AnimState
-        anim:SetBank(data.bank or self.inst.AnimState:GetCurrentBankName())
-        anim:SetBuild(data.build or self.inst.AnimState:GetBuild())
-        local animation = data.animation or select(2, self.inst.AnimState:GetHistoryData())
-        if not anim:IsCurrentAnimation(animation) then
-            anim:PlayAnimation(animation)
-        end
-    end
+	if self.mask then
+		local data = self.animdata or {}
+		local anim = self.mask.AnimState
+		anim:SetBank(data.bank or self.inst.AnimState:GetCurrentBankName())
+		anim:SetBuild(data.build or self.inst.AnimState:GetBuild())
+		local animation = data.animation or select(2, self.inst.AnimState:GetHistoryData())
+		if not anim:IsCurrentAnimation(animation) then
+			anim:PlayAnimation(animation)
+		end
+        self._maskdirty:push()
+	end
 end
 
 function RotatingBillboard:GetRotation()
@@ -99,9 +126,10 @@ function RotatingBillboard:GetRotation()
 end
 
 function RotatingBillboard:SetRotation(rot)
-    self.rotation = rot
-    local x, _, z = self.inst.Transform:GetWorldPosition()
-    self.inst.AnimState:SetFloatParams(x, z, rot* DEGREES + PI)
+	self.rotation = rot
+    self.setted = true
+	local x, _, z = self.inst.Transform:GetWorldPosition()
+	self.inst.AnimState:SetFloatParams(x, z, rot* DEGREES + PI)
 
     self:UpdateLightPosition()
 end
@@ -130,15 +158,31 @@ function RotatingBillboard:OnLoad(data)
 end
 
 function RotatingBillboard:OnUpdate()
-    local rot = self.inst.Transform:GetRotation()
-    if rot ~= 0 then
-        self:SetRotation(rot)
-        self.inst.Transform:SetRotation(0) -- set transform rot to 0 to make anim align to xz
+	local rot = self.inst.Transform:GetRotation()
+	if rot ~= 0 or not self.setted then
+		self:SetRotation(rot)
+		self.inst.Transform:SetRotation(0) -- set transform rot to 0 to make anim align to xz
+	end
+
+    if self.mask then
+        if self.inst:HasTag("NOCLICK") then
+            self.mask:AddTag("NOCLICK")
+        else
+            self.mask:RemoveTag("NOCLICK")
+        end
     end
 
-    if not self.always_on_updating then
-        self.inst:StopUpdatingComponent(self)
-    end
+    if self.inst:IsAsleep() then
+		self.inst:StopUpdatingComponent(self)
+	end
+
+	-- if not self.always_on_updating then -- 关于tag的网络通讯存在延迟等问题，因此使得每帧都需要检测tag
+		-- self.inst:StopUpdatingComponent(self)
+	-- end
+end
+
+function RotatingBillboard:OnEntityWake()
+    self.inst:StartUpdatingComponent(self)
 end
 
 function RotatingBillboard:OnRemoveFromEntity()

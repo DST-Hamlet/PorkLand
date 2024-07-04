@@ -223,7 +223,7 @@ end
 
 local function OnLoad(inst, data)
     if data.rotation then
-        if inst.components.rotatingbillboard == nil or true --[[skip this 2024/6/13]] then
+        if inst.components.rotatingbillboard == nil then
             -- this component handle rotation save/load itself
             inst.Transform:SetRotation(data.rotation)
         end
@@ -403,61 +403,6 @@ local function swapColor(inst, light)
     end
 end
 
-local function build_rectangle_collision_mesh(rad, height, width)
-    local points = {
-        Vector3(-width / 2, 0, -rad / 2),
-        Vector3(width / 2, 0, -rad / 2),
-        Vector3(width / 2, 0, rad / 2),
-        Vector3(-width / 2, 0, rad / 2),
-    }
-    local triangles = {}
-    local y0 = 0
-    local y1 = height
-    for i = 1, 4 do
-        local p1 = points[i]
-        local p2 = points[i == 4 and 1 or i + 1]
-
-        table.insert(triangles, p1.x)
-        table.insert(triangles, y0)
-        table.insert(triangles, p1.z)
-
-        table.insert(triangles, p1.x)
-        table.insert(triangles, y1)
-        table.insert(triangles, p1.z)
-
-        table.insert(triangles, p2.x)
-        table.insert(triangles, y0)
-        table.insert(triangles, p2.z)
-
-        table.insert(triangles, p2.x)
-        table.insert(triangles, y0)
-        table.insert(triangles, p2.z)
-
-        table.insert(triangles, p1.x)
-        table.insert(triangles, y1)
-        table.insert(triangles, p1.z)
-
-        table.insert(triangles, p2.x)
-        table.insert(triangles, y1)
-        table.insert(triangles, p2.z)
-    end
-
-    return triangles
-end
-
-local function MakeInteriorPhysics(inst, rad, height, width)
-    height = height or 20
-
-    inst:AddTag("blocker")
-    inst.Physics = inst.Physics or inst.entity:AddPhysics()
-    inst.Physics:SetMass(0)
-    inst.Physics:SetTriangleMesh(build_rectangle_collision_mesh(rad, height, width or rad))
-    inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)
-    inst.Physics:ClearCollisionMask()
-    inst.Physics:CollidesWith(COLLISION.ITEMS)
-    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-end
-
 local function MakeDeco(build, bank, animframe, data, name)
     if not data then
         data = {}
@@ -608,7 +553,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         inst.Transform:SetRotation(-90)
         if decal then
             -- NOTE: only apply billborad render behavior on beam/pillar
-            if name:find("_cornerbeam")
+            if name:find("_corner")
                 or name:find("_beam")
                 or name:find("_pillar")
                 or data.rotatingbillboard then
@@ -704,59 +649,56 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst.updateworkableart = true
         end
 
-        --[[
         if prefabname == "pig_latin_1" then
             inst:AddTag("pig_writing_1")
-            GetWorld():ListenForEvent("doorused", function(world, data)
-                    if not inst:HasTag("INTERIOR_LIMBO") then
-                        inst:DoTaskInTime(1,
-                            function()
-                                local pt = Vector3(inst.Transform:GetWorldPosition())
-                                local torches = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, {"wall_torch"}, {"INTERIOR_LIMBO"})
-                                local closedoors = false
-                                for i,torch in ipairs(torches)do
-                                    if not torch.components.cooker then
-                                        closedoors = true
-                                    end
-                                end
+            inst:ListenForEvent("entitywake", function(inst, data)
+                inst:DoTaskInTime(1, function()
+                    local should_close_doors = false
 
-                                if closedoors then
-                                    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, {"lockable_door"}, {"INTERIOR_LIMBO"})
-                                    for i, ent in ipairs(ents)do
-                                        if ent ~= data.door then
-                                            ent:PushEvent("close")
-                                        end
-                                    end
-                                end
-                            end)
-                    end
-                end, GetWorld())
+                    local x, y, z = inst.Transform:GetWorldPosition()
+                    local torches = TheSim:FindEntities(x, y, z, 50, {"wall_torch"})
 
-
-            inst:ListenForEvent("fire_lit", function()
-                    local opendoors = true
-                    local pt = Vector3(inst.Transform:GetWorldPosition())
-                    local torches = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, {"wall_torch"}, {"INTERIOR_LIMBO"})
-
-                    for i,torch in ipairs(torches)do
+                    for _, torch in pairs(torches)do
                         if not torch.components.cooker then
-                            opendoors = false
+                            should_close_doors = true
                         end
                     end
 
-                    if opendoors then
-                        local pt = Vector3(inst.Transform:GetWorldPosition())
-                        local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, nil, {"INTERIOR_LIMBO"})
-                        for i, ent in ipairs(ents)do
-                            if ent:HasTag("lockable_door") then
-                                ent:PushEvent("open")
-                            end
+                    if not should_close_doors then
+                        return
+                    end
+
+                    local ents = TheSim:FindEntities(x, y, z, 50, {"lockable_door"})
+                    for _, ent in pairs(ents) do
+                        if ent ~= data.door then
+                            ent:PushEvent("close")
                         end
                     end
                 end)
-        end
+            end)
 
-        --]]
+            inst:ListenForEvent("fire_lit", function()
+                local should_open_doors = true
+
+                local x, y, z = inst.Transform:GetWorldPosition()
+                local torches = TheSim:FindEntities(x, y, z, 50, {"wall_torch"})
+
+                for _, torch in pairs(torches)do
+                    if not torch.components.cooker then
+                        should_open_doors = false
+                    end
+                end
+
+                if not should_open_doors then
+                    return
+                end
+
+                local ents = TheSim:FindEntities(x, y, z, 50, {"lockable_door"})
+                for _, ent in pairs(ents) do
+                    ent:PushEvent("open")
+                end
+            end)
+        end
 
         if inst.components.inspectable then
             inst:AddComponent("hauntable")

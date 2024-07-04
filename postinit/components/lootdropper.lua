@@ -51,13 +51,8 @@ function LootDropper:DropLootPrefab(loot, pt, setangle, arc, alwaysinfront, drop
                 angle = setangle / DEGREES
             end
 
-            if alwaysinfront then
-                local down = TheCamera:GetDownVec()
-                angle = math.atan2(down.z, down.x) + (math.random()*60-30) * DEGREES
-            end
-
-            speed = speed * math.random()
-            loot.Physics:SetVel(speed*math.cos(angle), GetRandomWithVariance(8, 4), speed*math.sin(angle))
+			speed = speed * math.random()
+			loot.Physics:SetVel(speed*math.cos(angle), GetRandomWithVariance(8, 4), speed*math.sin(angle))
             pt = pt + dir*((loot.Physics:GetRadius() or 1) + (self.inst.Physics:GetRadius() or 0))
             loot.Transform:SetPosition(pt.x,pt.y,pt.z)
         end

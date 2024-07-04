@@ -55,6 +55,7 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddLightWatcher()
     inst.entity:AddDynamicShadow()
+    inst.entity:AddNetwork()
 
     inst.DynamicShadow:SetSize(1.5, 0.5)
     inst.Transform:SetFourFaced()
@@ -67,7 +68,7 @@ local function fn()
     inst:AddTag("scorpion")
     inst:AddTag("canbetrapped")
 
-    MakeCharacterPhysics(inst, 10, .5)
+    MakeCharacterPhysics(inst, 10, 0.5)
     MakePoisonableCharacter(inst)
 
     inst.AnimState:SetBank("scorpion")
@@ -131,4 +132,4 @@ local function fn()
     return inst
 end
 
-return Prefab( "scorpion", fn, assets, prefabs)
+return Prefab("scorpion", fn, assets, prefabs)

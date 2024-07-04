@@ -343,6 +343,7 @@ local function fn()
     TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
 
     inst.entity:SetPristine()
+
     if not TheWorld.ismastersim then
         inst:ListenForEvent("interior_tags_mask", OnTagsMaskChange)
         return inst

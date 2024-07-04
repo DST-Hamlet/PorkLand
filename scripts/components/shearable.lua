@@ -44,16 +44,12 @@ local function SpawnProduct(prefab)
 end
 
 function Shearable:Shear(shearer, numworks)
-    if not self.product then
-        return
-    end
-
     if self.inst.components.hackable then
         numworks = self.inst.components.hackable.hacksleft
         self.inst.components.hackable:Hack(shearer, numworks, self.product_num, self.drop, true)
     else
         local pt = self.inst:GetPosition()
-        if not self.drop and shearer and shearer.components.inventory then
+        if not self.drop and shearer and shearer.components.inventory and self.product then
             local product = SpawnProduct(self.product)
             if product then
                 if self.product_num > 1 then
@@ -68,7 +64,7 @@ function Shearable:Shear(shearer, numworks)
                 end
                 shearer.components.inventory:GiveItem(product, nil, pt)
             end
-        elseif self.inst.components.lootdropper then
+        elseif self.inst.components.lootdropper and self.product then
             pt.y = pt.y + self.drop_height
 
             for i = 1, self.product_num do
