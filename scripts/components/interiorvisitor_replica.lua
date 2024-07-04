@@ -61,22 +61,22 @@ function InteriorVisitor:Deactivate()
 end
 
 function InteriorVisitor:ApplyInteriorCamera(ent)
-    local cameraoffset = -2.5 		--10x15
-	local zoom = 23
+    local cameraoffset = -2.5         --10x15
+    local zoom = 23
 
-	if ent.cameraoffset and ent.zoom then
-		cameraoffset = ent.cameraoffset
-		zoom = ent.zoom
-	elseif ent.depth == 12 then    --12x18
-		cameraoffset = -2
-		zoom = 25
-	elseif ent.depth == 16 then --16x24
-		cameraoffset = -1.5
-		zoom = 30
-	elseif ent.depth == 18 then --18x26
-		cameraoffset = -2 -- -1
-		zoom = 35
-	end
+    if ent.cameraoffset and ent.zoom then
+        cameraoffset = ent.cameraoffset
+        zoom = ent.zoom
+    elseif ent.depth == 12 then    --12x18
+        cameraoffset = -2
+        zoom = 25
+    elseif ent.depth == 16 then --16x24
+        cameraoffset = -1.5
+        zoom = 30
+    elseif ent.depth == 18 then --18x26
+        cameraoffset = -2 -- -1
+        zoom = 35
+    end
 
     -- custom value
     if ent.pl_interior_distance ~= nil then

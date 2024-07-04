@@ -8,10 +8,10 @@ local MULTIPLY = forest_map.MULTIPLY
 
 local BATS =  -- 复制自constants
 {
-	EMPTY = "empty",
-	CAVE = "cave",
-	ATTACK = "attack",
-	CAVE_NUM = 6 * 2,  -- 是单机数量的两倍
+    EMPTY = "empty",
+    CAVE = "cave",
+    ATTACK = "attack",
+    CAVE_NUM = 6 * 2,  -- 是单机数量的两倍
 }
 
 local function build_porkland(entities, topology_save, map_width, map_height, current_gen_params)

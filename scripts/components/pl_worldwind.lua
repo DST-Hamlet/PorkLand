@@ -55,14 +55,14 @@ end
 
 function WorldWind:OnUpdate(dt)
 
-	if not self.inst then
-		self:Stop()
-		return
-	end
+    if not self.inst then
+        self:Stop()
+        return
+    end
 
-	self.time_to_wind_change = self.time_to_wind_change - dt
+    self.time_to_wind_change = self.time_to_wind_change - dt
 
-	if self.time_to_wind_change <= 0 then
+    if self.time_to_wind_change <= 0 then
         if TheWorld.net.components.plateauwind:GetWindSpeed() > 0.01 and TheWorld.net.components.plateauwind:GetIsWindy() then  -- 正在刮风时不改变风向
             self.time_to_wind_change = math.random(5, 10)
         else
@@ -71,7 +71,7 @@ function WorldWind:OnUpdate(dt)
 
             self.time_to_wind_change = math.random(MIN_TIME_TO_WIND_CHANGE, MAX_TIME_TO_WIND_CHANGE)
         end
-	end
+    end
 end
 
 return WorldWind

@@ -3,12 +3,12 @@
 
 local function GetSkeletonPositions(w, h)
     return {
-        LEFT_TOP 	= Point(-h/2, 0, -w/2),
-        RIGHT_TOP 	= Point(-h/2, 0,  w/2),
+        LEFT_TOP     = Point(-h/2, 0, -w/2),
+        RIGHT_TOP     = Point(-h/2, 0,  w/2),
         LEFT_BOTTOM  = Point(h/2, 0, -w/2),
         RIGHT_BOTTOM = Point(h/2, 0,  w/2),
-        BOTTOM 		= Point(h/2, 0, 0),
-        CENTER 		= Point(0, 0, 0),
+        BOTTOM         = Point(h/2, 0, 0),
+        CENTER         = Point(0, 0, 0),
     }
 end
 

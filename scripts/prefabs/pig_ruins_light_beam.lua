@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/ruins_light_beam.zip"),
+    Asset("ANIM", "anim/ruins_light_beam.zip"),
 }
 
 local prefabs =
@@ -99,10 +99,10 @@ local function OnLoad(inst, data)
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddLight()
 

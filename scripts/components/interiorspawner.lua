@@ -92,7 +92,7 @@ function InteriorSpawner:GetNewID()
 end
 
 -- function InteriorSpawner:Debug_CalculateNumSlots()
--- 	print(string.format("World size: %dx%d", self.world_width, self.world_height))
+--     print(string.format("World size: %dx%d", self.world_width, self.world_height))
 --     local x_size = math.floor(MAX_X_OFFSET / SPACE)
 --     local y_size = math.floor((MAX_Z - MIN_Z) / SPACE)
 --     print(string.format("InteriorSpawner can use %d slots (%dx%d)",

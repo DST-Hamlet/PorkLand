@@ -33,10 +33,10 @@ INVERTED_WORLD_TILES[WORLD_TILES.INTERIOR] = "INTERIOR"
 
 BATS =
 {
-	EMPTY = "empty",
-	CAVE = "cave",
-	ATTACK = "attack",
-	CAVE_NUM = 6 * 2,  -- 是单机数量的两倍
+    EMPTY = "empty",
+    CAVE = "cave",
+    ATTACK = "attack",
+    CAVE_NUM = 6 * 2,  -- 是单机数量的两倍
 }
 
 INTERIOR_QUAKE_LEVELS = {

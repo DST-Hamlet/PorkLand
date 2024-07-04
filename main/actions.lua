@@ -114,8 +114,8 @@ ACTIONS.PANGOLDEN_POOP.fn = function(act)
 end
 
 ACTIONS.FISH.strfn = function(act)
-	if act.target and act.target:HasTag("sink") then
-		return "RETRIEVE"
+    if act.target and act.target:HasTag("sink") then
+        return "RETRIEVE"
     else
         return "GENERIC"
     end
@@ -216,10 +216,10 @@ ACTIONS.REPAIRBOAT.fn = function(act)
 end
 
 ACTIONS.DISLODGE.fn = function(act)
-	if act.target and act.target.components.dislodgeable then
-		act.target.components.dislodgeable:Dislodge(act.doer)
-		return true
-	end
+    if act.target and act.target.components.dislodgeable then
+        act.target.components.dislodgeable:Dislodge(act.doer)
+        return true
+    end
 end
 
 ACTIONS.DISLODGE.validfn = function(act)

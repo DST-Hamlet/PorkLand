@@ -21,7 +21,7 @@ return Class(function(self, inst)
 
         [WORLD_TILES.RAINFOREST] = {"toucan", "kingfisher", "parrot_blue"},
         [WORLD_TILES.DEEPRAINFOREST] = {"parrot_blue", "kingfisher"},
-        [WORLD_TILES.GASJUNGLE]	= {"parrot_blue"},
+        [WORLD_TILES.GASJUNGLE]    = {"parrot_blue"},
         [WORLD_TILES.FOUNDATION] = {"pigeon", "pigeon_swarm", "pigeon_swarm", "crow"},
         [WORLD_TILES.FIELDS] = {"robin", "crow"},
         [WORLD_TILES.SUBURB] = {"robin", "crow", "pigeon"},

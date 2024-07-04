@@ -104,12 +104,12 @@ local pl_fx = {
         tintalpha = 0.5,
     },
     {
-    	name = "splash_clouds_drop",
-    	bank = "splash_clouds_drop",
-    	build = "splash_clouds_drop",
-    	anim = "idle_sink",
+        name = "splash_clouds_drop",
+        bank = "splash_clouds_drop",
+        build = "splash_clouds_drop",
+        anim = "idle_sink",
         fn = BelowGroundFx,
-	},
+    },
 }
 
 -- Sneakily add these to the FX table

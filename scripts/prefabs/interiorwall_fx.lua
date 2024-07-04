@@ -64,7 +64,7 @@ local function emit_fn(inst, effect)
         0,
         MAX_LIFETIME,   -- lifetime
         0, 0, 0,
-        0, 0, 0,			-- velocity
+        0, 0, 0,            -- velocity
         -- uvoffset_x, uvoffset_y        -- uv offset
         0, 0
     )

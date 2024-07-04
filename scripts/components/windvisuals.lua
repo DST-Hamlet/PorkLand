@@ -2,9 +2,9 @@ local windfx_spawn_rate = 0
 local windfx_spawn_per_sec = 16
 
 local WindVisuals = Class(function(self, inst)
-	self.inst = inst
+    self.inst = inst
 
-	inst:StartUpdatingComponent(self)
+    inst:StartUpdatingComponent(self)
 end)
 
 function WindVisuals:SpawnWindSwirl(x, y, z, angle)

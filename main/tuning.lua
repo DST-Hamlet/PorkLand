@@ -477,20 +477,20 @@ TUNING.INTERIOR_MINIMAP_DOOR_SPACE = 10
 TUNING.INTERIOR_MINIMAP_POSITION_SCALE = 2.8 -- NOTE: do not change this value
 
 TUNING.PL_MANUAL_LIGHT_OFFSET = {
-	-- {[K: prefab]: {height, z_off}}
-	DEFAULT = {2, .5},
+    -- {[K: prefab]: {height, z_off}}
+    DEFAULT = {2, .5},
 }
 
 -- temp use, read only
 -- TODO: may change to mod config or keep as constant
 -- see interiorspawner.lua
 TUNING.INTERIOR_DESTRUCTION_BEHAVIOR = {
-	DEFAULT = "REMOVE",
-	PLAYER = "TELEPORT_TO_EXTERIOR",
-	CREATURE = "KILL",
-	EPIC_CREATURE = "TELEPORT_TO_EXTERIOR",
-	ITEMS = "REMOVE", -- except for irreplaceable
-	STRUCTURE = "DESTROY",
+    DEFAULT = "REMOVE",
+    PLAYER = "TELEPORT_TO_EXTERIOR",
+    CREATURE = "KILL",
+    EPIC_CREATURE = "TELEPORT_TO_EXTERIOR",
+    ITEMS = "REMOVE", -- except for irreplaceable
+    STRUCTURE = "DESTROY",
 }
 
 -- temp use

@@ -19,7 +19,7 @@ function Vineable:dissabledoorvis()
     if self.vined then
         self.inst:AddTag("NOCLICK")
         self.vines_open = false
-        --self.inst.disableDoor(self.inst, true, "vines")				
+        --self.inst.disableDoor(self.inst, true, "vines")
         self:updatevinevis()
     end
 end
@@ -28,7 +28,7 @@ function Vineable:enabledoorvis()
     if self.vined then
         self.inst:RemoveTag("NOCLICK")
         self.vines_open = true
-        --self.inst.disableDoor(self.inst, false, "vines")		
+        --self.inst.disableDoor(self.inst, false, "vines")
         self:updatevinevis()
     end
 end

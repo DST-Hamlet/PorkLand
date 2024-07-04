@@ -38,7 +38,7 @@ local DEBRIS_LOOT = {
 local QUAKE_LEVELS = {
     [INTERIOR_QUAKE_LEVELS.PILLAR_WORKED] = {
         quake_time = function() return GetRandomWithVariance(1, 0.5) end,--how long the quake lasts
-        debrispersecond = function() return math.random(5, 6) end, 	--how much debris falls every second
+        debrispersecond = function() return math.random(5, 6) end,     --how much debris falls every second
         debrisbreakchance = 0.75,
         max_critters = 0,
         level = 1, -- level determines how it would affect rooms next to the one quaking
@@ -223,7 +223,7 @@ local GetDebrisSpawnPoint = _ismastersim and function(interiorID, is_critter)
     local depth = interior_center.size_net.depth:value()
     local offset = Vector3(0, 0, 0)
 
-    local critter_spawn_offset = QUAKE_LEVELS[_isquaking[interiorID]].critter_spawn_offset 
+    local critter_spawn_offset = QUAKE_LEVELS[_isquaking[interiorID]].critter_spawn_offset
 
     if critter_spawn_offset and is_critter then
         if critter_spawn_offset.x then

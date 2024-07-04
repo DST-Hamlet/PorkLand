@@ -1,12 +1,12 @@
 local assets =
 {
-	Asset("ANIM", "anim/scorpion_basic.zip"),
-	Asset("ANIM", "anim/scorpion_build.zip"),
+    Asset("ANIM", "anim/scorpion_basic.zip"),
+    Asset("ANIM", "anim/scorpion_build.zip"),
 }
 
 local prefabs =
 {
-	"chitin",
+    "chitin",
     "monstermeat",
     "venomgland",
     "stinger",

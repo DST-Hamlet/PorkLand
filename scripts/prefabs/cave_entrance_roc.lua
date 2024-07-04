@@ -58,7 +58,7 @@ local function ConnectInteriors(inst)
     {
         my_door_id =  "roc_cave_EXIT2",
         target_door_id = "roc_cave_ENTRANCE2",
-        target_interior	= interiorID,
+        target_interior    = interiorID,
     }
 
     interior_spawner:AddDoor(door, interior_door_def)
@@ -99,7 +99,7 @@ local function ConnectInteriors(inst)
         my_interior_name = interiorID,
         my_door_id = "roc_cave_ENTRANCE2",
         target_door_id = "roc_cave_EXIT2",
-        target_interior	= interior_spawner:PositionToIndex({x = x, z = z}),
+        target_interior    = interior_spawner:PositionToIndex({x = x, z = z}),
     }
 
     interior_spawner:AddDoor(door_replacement, data_replacement)
