@@ -463,7 +463,7 @@ local function fn()
     inst.saveInteriorData = SaveInteriorData
     inst.initFromInteriorSave = InitFromInteriorSave
 
-    MakeHauntableDoor(inst)
+    -- MakeHauntableDoor(inst) -- 这部分功能在action中处理了
 
     inst.opendoor = OpenDoor
     inst.closedoor = CloseDoor

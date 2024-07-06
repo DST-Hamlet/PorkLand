@@ -45,6 +45,7 @@ local InteriorSpawner = Class(function(self, inst)
     self.player_homes = {}
 
     inst:DoTaskInTime(0, function()
+        self:SetInteriorPos() -- 保证室内位于渲染范围内
         self:FixInteriorID()
     end)
 

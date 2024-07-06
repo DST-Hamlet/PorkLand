@@ -635,7 +635,7 @@ local states = {
             inst.components.health:SetInvincible(true)
             inst:ShowHUD(false)
             if not inst:HasTag("inside_interior") then
-                inst:SetCameraDistance(12) -- Do not change interior camera  
+                inst:SetCameraDistance(12) -- Do not change interior camera
             end
         end,
 
@@ -1624,14 +1624,28 @@ local states = {
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
-            inst.sg:SetTimeout(FRAMES)
+			inst.AnimState:PlayAnimation("give")
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:EnableMapControls(false)
+                inst.components.playercontroller:Enable(false)
+            end
         end,
 
-        ontimeout = function(inst)
-            inst.sg:RemoveStateTag("busy")
-            inst:PerformBufferedAction()
-            inst.sg:AddStateTag("idle")
+        onexit = function(inst)
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:EnableMapControls(true)
+                inst.components.playercontroller:Enable(true)
+            end
         end,
+
+        events = {
+            EventHandler("animover", function(inst)
+                inst:PerformBufferedAction()
+                inst.AnimState:PlayAnimation("give_pst", false)
+                inst.sg:GoToState("idle", true)
+            end),
+        },
+
     }
 }
 

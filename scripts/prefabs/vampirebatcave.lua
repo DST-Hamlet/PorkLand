@@ -87,13 +87,13 @@ local function fn()
 
     inst:AddTag("batcave")
 
-    TheWorld.components.interiorspawner:AddExterior(inst)
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
+
+    TheWorld.components.interiorspawner:AddExterior(inst)
 
     inst:AddComponent("inspectable")
 
