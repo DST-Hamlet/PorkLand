@@ -621,6 +621,10 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
+    if data == nil or (data and data.interiorID == nil) and inst.is_entrance then
+        InitMaze(inst, inst.dungeon_name)
+        return
+    end
     if data then
         if data.stage then
             inst.stage = data.stage
@@ -667,6 +671,8 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
 
         inst.MiniMapEntity:SetIcon("pig_ruins_entrance.tex")
 
+        inst.dungeon_name = dungeon_name
+
         inst:AddTag("ruins_exit")
         if dungeon_name == "RUINS_1" then
             inst:AddTag("top_ornament")
@@ -701,16 +707,8 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
         inst.components.door.outside = true
 
         if is_entrance then -- this prefab is the entrance. Makes the maze
+            inst.is_entrance = true
             inst.stage = 3
-
-            -- spread out the maze gen for less hiccup at load time.
-            inst:DoTaskInTime(0, function()
-                if inst.maze_generated == nil then
-                    inst:DoTaskInTime(math.random() + 1, function()
-                        InitMaze(inst, dungeon_name)
-                    end)
-                end
-            end)
         else -- this prefab is an exit. Just set the door and art
             inst:AddTag(dungeon_name .. "_EXIT_TARGET")
             inst.stage = 0

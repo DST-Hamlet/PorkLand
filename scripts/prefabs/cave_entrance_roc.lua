@@ -319,7 +319,8 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
-    if not data then
+    if data == nil or (data and data.interiorID == nil) then
+        InitMaze(inst)
         return
     end
 
@@ -360,8 +361,6 @@ local function fn()
     inst.components.inspectable.nameoverride = "CAVE_ENTRANCE"
 
     MakeHauntableDoor(inst)
-
-    inst:DoTaskInTime(0, InitMaze)
 
     TheWorld.components.interiorspawner:AddExterior(inst)
     Close(inst)
