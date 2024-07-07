@@ -20,6 +20,6 @@ function Hauntable:StopShaderFX(...)
             self.inst.components.rotatingbillboard:SetMaskHaunt(false)
         end
     else
-        _StartShaderFx(self, ...)
+        _StopShaderFX(self, ...)
     end
 end

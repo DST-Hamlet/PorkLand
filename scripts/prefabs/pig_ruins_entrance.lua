@@ -728,6 +728,8 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
 
         MakeSnowCovered(inst, 0.01)
 
+        MakeHauntableVineDoor(inst)
+
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
         inst.OnLoadPostPass = OnLoadPostPass

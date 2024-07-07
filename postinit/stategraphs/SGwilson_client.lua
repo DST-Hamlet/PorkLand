@@ -30,6 +30,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.DISLODGE, function(inst)
         return not inst.sg:HasStateTag("pretap") and "tap_start" or nil
     end),
+    ActionHandler(ACTIONS.USEDOOR, "usedoor")
 }
 
 local eventhandlers = {
@@ -472,6 +473,37 @@ local states = {
                 end
             elseif inst.bufferedaction == nil then
                 inst.AnimState:PlayAnimation("tamp_pst")
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end
+    },
+
+    State{
+        name = "usedoor",
+        tags = {"doing", "busy", "canrotate"},
+        server_states = {"usedoor"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+
+			inst.AnimState:PlayAnimation("give")
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("doing") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("give_pst")
                 inst.sg:GoToState("idle")
             end
         end,

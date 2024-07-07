@@ -75,6 +75,17 @@ local function GetStatus(inst)
     return status[section + 1]
 end
 
+local function OnHaunt(inst)
+    if inst.components.fueled ~= nil and
+        inst.components.fueled.accepting and
+        math.random() <= TUNING.HAUNT_CHANCE_OCCASIONAL then
+        inst.components.fueled:DoDelta(TUNING.TINY_FUEL)
+        inst.components.hauntable.hauntvalue = TUNING.HAUNT_SMALL
+        return true
+    end
+    return false
+end
+
 local function OnSave(inst, data)
     data.rotation = inst.Transform:GetRotation()
     if inst.flipped then
@@ -140,6 +151,11 @@ local function fn()
 
     inst:ListenForEvent("onextinguish", OnExtinguish)
     inst:ListenForEvent("onignite", OnIgnite)
+
+    inst:AddComponent("hauntable")
+    inst.components.hauntable:SetHauntValue(TUNING.HAUNT_SMALL)
+    inst.components.hauntable.cooldown = TUNING.HAUNT_COOLDOWN_HUGE
+    inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

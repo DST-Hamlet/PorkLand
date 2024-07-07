@@ -103,6 +103,8 @@ local stategraph_posts = {
     "bird",
     "wilson",
     "wilson_client",
+    "wilsonghost",
+    "wilsonghost_client",
 }
 
 local brain_posts = {
