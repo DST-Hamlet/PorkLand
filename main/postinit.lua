@@ -32,6 +32,7 @@ local component_posts = {
     "floater",
     "grogginess",
     "grue",
+    "hauntable",
     "health",
     "inventory",
     "inventoryitem_replica",

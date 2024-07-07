@@ -19,7 +19,7 @@ local PL_ACTIONS = {
     TOGGLEOFF = Action({priority = 2, mount_valid = true}),
     REPAIRBOAT = Action({distance = 3}),
     DISLODGE = Action({}),
-    USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = false, encumbered_valid = true}), -- TODO ghost_valid
+    USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = true, encumbered_valid = true}), -- TODO ghost_valid
     VAMPIREBAT_FLYAWAY = Action({distance = 1}),
 }
 

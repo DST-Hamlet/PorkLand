@@ -537,25 +537,6 @@ local function InitMaze(inst, dungeonname)
     local exit_room = BuildMaze(inst, dungeondef, exterior_door_def)
     interior_spawner:AddDoor(inst, exterior_door_def)
 
-    local exit_door
-    for _, ent in pairs(Ents) do
-        if ent:HasTag(dungeondef.name .. "_EXIT_TARGET") then
-            exit_door = ent
-        end
-    end
-
-    if exit_door and exit_room then
-        -- CREATE 2nd DOOR
-        local exterior_door_def2 = {
-            my_door_id = dungeondef.name .. "_ENTRANCE2",
-            target_door_id = dungeondef.name .. "_EXIT2",
-            target_interior = exit_room.id,
-        }
-        interior_spawner:AddDoor(exit_door, exterior_door_def2)
-        interior_spawner:AddExterior(exit_door)
-        exit_door.interiorID = exit_room.id
-    end
-
     if inst.components.door and dungeondef.lock then
         inst.components.door:SetDoorDisabled(true, "vines")
     end
@@ -621,7 +602,7 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
-    if data == nil or (data and data.interiorID == nil) and inst.is_entrance then
+    if (data == nil or (data and data.interiorID == nil)) and inst.is_entrance then
         InitMaze(inst, inst.dungeon_name)
         return
     end
@@ -650,6 +631,27 @@ local function OnLoad(inst, data)
     end
 
     RefreshBuild(inst)
+end
+
+local function OnLoadPostPass(inst, data) -- 出口的连接写在OnLoadPostPass中，这样才能确定所有储存的实体已经添加进世界
+    if not inst.is_entrance and inst.interiorID == nil then
+        if inst.dungeon_name then
+            local exit_room_id
+            for _, ent in pairs(Ents) do
+                if ent.components.door and ent.components.door.target_door_id == inst.dungeon_name .. "_ENTRANCE2" then
+                    exit_room_id = ent.components.door.interior_name
+                end
+            end
+            local exterior_door_def2 = {
+                my_door_id = inst.dungeon_name .. "_ENTRANCE2",
+                target_door_id = inst.dungeon_name .. "_EXIT2",
+                target_interior = exit_room_id,
+            }
+            TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def2)
+            TheWorld.components.interiorspawner:AddExterior(inst)
+            inst.interiorID = exit_room_id
+        end
+    end
 end
 
 local function MakeEntrance(name, is_entrance, dungeon_name)
@@ -684,13 +686,13 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
             inst:AddTag("top_ornament4")
         end
 
-        TheWorld.components.interiorspawner:AddExterior(inst)
-
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
             return inst
         end
+
+        TheWorld.components.interiorspawner:AddExterior(inst)
 
         inst:AddComponent("hackable")
         inst.components.hackable:SetUp()
@@ -728,6 +730,7 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
+        inst.OnLoadPostPass = OnLoadPostPass
 
         return inst
     end

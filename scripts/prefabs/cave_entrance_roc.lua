@@ -360,7 +360,7 @@ local function fn()
     inst.components.inspectable.getstatus = GetStatus
     inst.components.inspectable.nameoverride = "CAVE_ENTRANCE"
 
-    MakeHauntableDoor(inst)
+    -- MakeHauntableDoor(inst) -- 这部分功能在action中处理了
 
     TheWorld.components.interiorspawner:AddExterior(inst)
     Close(inst)
