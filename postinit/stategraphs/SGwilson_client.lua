@@ -30,7 +30,8 @@ local actionhandlers = {
     ActionHandler(ACTIONS.DISLODGE, function(inst)
         return not inst.sg:HasStateTag("pretap") and "tap_start" or nil
     end),
-    ActionHandler(ACTIONS.USEDOOR, "usedoor")
+    ActionHandler(ACTIONS.USEDOOR, "usedoor"),
+    ActionHandler(ACTIONS.WEIGHDOWN, "doshortaction"),
 }
 
 local eventhandlers = {

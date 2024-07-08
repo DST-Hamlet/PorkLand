@@ -88,7 +88,8 @@ local actionhandlers = {
             return "give"
         end
     end),
-    ActionHandler(ACTIONS.USEDOOR, "usedoor")
+    ActionHandler(ACTIONS.USEDOOR, "usedoor"),
+    ActionHandler(ACTIONS.WEIGHDOWN, "doshortaction"),
 }
 
 local eventhandlers = {

@@ -3,14 +3,24 @@ GLOBAL.setfenv(1, GLOBAL)
 local function GetLight(light, dist)
     -- thanks to HalfEnder776
     local A = math.log(light:GetIntensity())
-    local B = -(light:GetFalloff() / A)
-    local C = (dist / light:GetRadius()) ^ B
-    local D = math.exp(A * C)
+    local B
+    local C
+    local D
     local r, g, b = light:GetColour()
     local E = 0.2126 * r + 0.7152 * g + 0.0722 * b
 
-    if A >= 0 then
-        D = 1
+    if A == 0 then
+        if dist > light:GetRadius() then
+            D = 0
+        else
+            D = 1
+        end
+    elseif A < 0 then
+        B = -(light:GetFalloff() / A)
+        C = (dist / light:GetRadius()) ^ B
+        D = math.exp(A * C)
+    else -- A > 0
+        D = 0
     end
 
     return D * E

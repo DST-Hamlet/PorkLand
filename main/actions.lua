@@ -21,6 +21,7 @@ local PL_ACTIONS = {
     DISLODGE = Action({}),
     USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = true, encumbered_valid = true}), -- TODO ghost_valid
     VAMPIREBAT_FLYAWAY = Action({distance = 1}),
+    WEIGHDOWN = Action({},nil,nil,nil,1.5),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -528,6 +529,16 @@ ACTIONS.BLINK.fn = function(act, ...)
     end
 end
 
+ACTIONS.WEIGHDOWN.fn = function(act)
+    if act.target == nil then
+        return false
+    end
+	local pos = Vector3(act.target.Transform:GetWorldPosition())
+	if act.doer.components.inventory then
+		return act.doer.components.inventory:DropItem(act.invobject, false, false, pos)
+	end
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world
@@ -679,6 +690,16 @@ function INVENTORY.equippable(inst, doer, actions, ...)
         else
             _INVENTORYequippable(inst, doer, actions, ...)
         end
+    end
+end
+
+local _USEITEMinventoryitem = USEITEM.inventoryitem
+function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
+    if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
+        target and target:HasTag("weighdownable") then
+            table.insert(actions, ACTIONS.WEIGHDOWN)
+    else
+        _USEITEMinventoryitem(inst, doer, target, actions, right, ...)
     end
 end
 

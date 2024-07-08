@@ -11,7 +11,7 @@ local BATS =  -- 复制自constants
     EMPTY = "empty",
     CAVE = "cave",
     ATTACK = "attack",
-    CAVE_NUM = 6 * 2,  -- 是单机数量的两倍
+    CAVE_NUM = 6,
 }
 
 local RUINS =

@@ -10,7 +10,7 @@ local prefabs =
 }
 
 local function IsLowPriorityAction(act)
-    return act == nil or act.action ~= ACTIONS.DROP
+    return act == nil or (act and act.action ~= ACTIONS.LOOKAT and act.action ~= ACTIONS.PAN)
 end
 
 --Runs on clients

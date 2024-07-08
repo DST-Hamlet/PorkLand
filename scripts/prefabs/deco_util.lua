@@ -137,16 +137,31 @@ local function UpdateArtWorkable(inst, instant)
         if not instant then
             inst.AnimState:PlayAnimation("pillar_front_crumble")
             inst.AnimState:PushAnimation("pillar_front_crumble_idle")
+            if inst.components.rotatingbillboard then
+                inst.components.rotatingbillboard.animdata.animation = "pillar_front_crumble_idle"
+            end
         else
             inst.AnimState:PlayAnimation("pillar_front_crumble_idle")
+            if inst.components.rotatingbillboard then
+                inst.components.rotatingbillboard.animdata.animation = "pillar_front_crumble_idle"
+            end
         end
     elseif anim_level < 1 / 3 then
         inst.AnimState:PlayAnimation("pillar_front_break_2")
+        if inst.components.rotatingbillboard then
+            inst.components.rotatingbillboard.animdata.animation = "pillar_front_break_2"
+        end
     elseif anim_level < 2 / 3 then
         inst.AnimState:PlayAnimation("pillar_front_break_1")
+        if inst.components.rotatingbillboard then
+            inst.components.rotatingbillboard.animdata.animation = "pillar_front_break_1"
+        end
     end
     if work_left <= 0 then
         inst.components.workable:SetWorkable(false)
+    end
+    if inst.components.rotatingbillboard then
+        inst.components.rotatingbillboard:SyncMaskAnimation()
     end
 end
 
