@@ -59,7 +59,7 @@ local InteriorSpawner = Class(function(self, inst)
 end)
 
 function InteriorSpawner:SetInteriorPos()
-    if self.pos_setted then
+    if self.pos_set then
         return
     end
     local w, h = TheWorld.Map:GetSize()
@@ -72,7 +72,7 @@ function InteriorSpawner:SetInteriorPos()
     max_size = math.ceil(2* (max_size + SPACE + PADDING))
     TheSim:UpdateRenderExtents(max_size)
 
-    self.pos_setted = true
+    self.pos_set = true
 
     for i = 1, 500 do
         local pos = self:IndexToPosition(i)

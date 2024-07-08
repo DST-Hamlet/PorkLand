@@ -455,6 +455,8 @@ local tuning = {
     -- TODO: remove in prod
     DECO_RUINS_BEAM_WORK = 6,
 
+    MAGNIFYING_GLASS_DAMAGE = wilson_attack * 0.125,
+    MAGNIFYING_GLASS_USES = 10,
 }
 
 

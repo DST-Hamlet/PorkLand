@@ -35,6 +35,10 @@ end
 
 local function maintainantpop(inst)
     if inst:HasTag("burnt") then
+        if inst.pop_task then
+            inst.pop_task:Cancel()
+            inst.pop_task = nil
+        end
         return
     end
 
@@ -149,7 +153,7 @@ local function fn()
     inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
     OnIsAporkalypse(inst, TheWorld.state.isaporkalypse)
 
-    inst:DoPeriodicTask(30, maintainantpop)
+    inst.pop_task = inst:DoPeriodicTask(30, maintainantpop)
 
     return inst
 end

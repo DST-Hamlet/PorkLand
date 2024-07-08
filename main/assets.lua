@@ -139,6 +139,9 @@ PrefabFiles = {
     "antcombhome",
     "anthill_lamp",
     "anthill_stalactite",
+    "antcombhome",
+    "magnifying_glass",
+    "disarmingkit",
 }
 
 Assets = {
@@ -182,6 +185,7 @@ Assets = {
     Asset("ANIM", "anim/player_boat_death.zip"),
     Asset("ANIM", "anim/werebeaver_boat_death.zip"),
     Asset("ANIM", "anim/player_lifeplant.zip"),
+    Asset("ANIM", "anim/player_actions_hand_lens.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),

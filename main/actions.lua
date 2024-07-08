@@ -19,9 +19,12 @@ local PL_ACTIONS = {
     TOGGLEOFF = Action({priority = 2, mount_valid = true}),
     REPAIRBOAT = Action({distance = 3}),
     DISLODGE = Action({}),
-    USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = true, encumbered_valid = true}), -- TODO ghost_valid
+    USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = true, encumbered_valid = true}),
     VAMPIREBAT_FLYAWAY = Action({distance = 1}),
-    WEIGHDOWN = Action({},nil,nil,nil,1.5),
+    WEIGHDOWN = Action({distance = 1.5}),
+    DISARM = Action({priority = 1, distance = 1.5}),
+    REARM = Action({priority = 1, distance = 1.5}),
+    SPY = Action({distance = 2, mount_enabled =true}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -226,6 +229,28 @@ end
 ACTIONS.DISLODGE.validfn = function(act)
     return (act.target.components.dislodgeable and act.target.components.dislodgeable:CanBeDislodged()) or
         (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.DISLODGE)
+end
+
+ACTIONS.DISARM.fn = function(act)
+	if act.target and act.target.components.disarmable and act.invobject and act.invobject.components.disarming then
+		return act.invobject.components.disarming:DoDisarming(act.target, act.doer)
+	end
+end
+
+ACTIONS.REARM.fn = function(act)
+	if act.target and act.target.components.disarmable and not act.target.components.disarmable.armed and act.target.components.disarmable.rearmable then
+		return act.target.components.disarmable:DoRearming(act.target, act.doer)
+	end
+end
+
+ACTIONS.SPY.fn = function(act)
+	if act.target and act.target.components.mystery then
+		act.target.components.mystery:Investigate(act.doer)
+		return true
+	elseif act.target and act.target.components.mystery_door then
+		act.target.components.mystery_door:Investigate(act.doer)
+		return true
+	end
 end
 
 local function DoTeleport(player, pos)
@@ -560,9 +585,19 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.USEDOOR)
             end
         end,
+        disarmable = function(inst, doer, actions, right)
+            if not inst:HasTag("armed") and inst:HasTag("rearmable") then
+                table.insert(actions, ACTIONS.REARM)
+            end
+        end,
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right
+        disarming = function(inst, doer, target, actions, right)
+            if target:HasTag("disarmable") and target:HasTag("armed") then
+                table.insert(actions, ACTIONS.DISARM)
+            end
+        end,
         poisonhealer = function (inst, doer, target, actions, right)
             if target and target:HasTag("poisonable") then
                 if target:HasTag("poison") or (target:HasTag("player") and
@@ -609,6 +644,12 @@ local PL_COMPONENT_ACTIONS =
         end,
         dislodgeable = function(inst, action, right)
             return action == ACTIONS.DISLODGE and inst:HasTag("DISLODGE_workable")
+        end,
+        mystery = function(inst, action, right)
+            return action == ACTIONS.SPY and inst:HasTag("mystery")
+        end,
+        mystery_door = function(inst, action, right)
+            return action == ACTIONS.SPY and inst:HasTag("secret_room")
         end,
     },
 }

@@ -90,6 +90,17 @@ local actionhandlers = {
     end),
     ActionHandler(ACTIONS.USEDOOR, "usedoor"),
     ActionHandler(ACTIONS.WEIGHDOWN, "doshortaction"),
+    ActionHandler(ACTIONS.DISARM, "dolongaction"),
+    ActionHandler(ACTIONS.REARM, "dolongaction"),
+    ActionHandler(ACTIONS.SPY, function(inst, action)
+        if not inst.sg:HasStateTag("preinvestigate") then
+            if action.invobject:HasTag("goggles") then
+                return "goggle"
+            else
+                return "investigate"
+            end
+        end
+    end),
 }
 
 local eventhandlers = {
@@ -722,9 +733,9 @@ local states = {
                 end
 
                 inst.sg:RemoveStateTag("busy")
-                         if inst.components.playercontroller ~= nil then
-                              inst.components.playercontroller:Enable(true)
-                        end
+                if inst.components.playercontroller ~= nil then
+                    inst.components.playercontroller:Enable(true)
+                end
             end),
         },
 
@@ -1625,7 +1636,7 @@ local states = {
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
-			inst.AnimState:PlayAnimation("give")
+            inst.AnimState:PlayAnimation("give")
         end,
 
         onexit = function(inst)
@@ -1639,7 +1650,167 @@ local states = {
                 inst.sg:GoToState("idle", true)
             end),
         },
-    }
+    },
+
+    State{
+        name = "investigate_start",
+        tags = {"preinvestigate", "investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.components.locomotor:Stop()
+            inst.sg:GoToState("investigate")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end ),
+            EventHandler("animover", function(inst) inst.sg:GoToState("investigate") end),
+        },
+    },
+
+    State {
+        name = "investigate",
+        tags = {"preinvestigate", "investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.sg.statemem.action = inst:GetBufferedAction()
+            inst.AnimState:PlayAnimation("lens")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(9 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("preinvestigate")
+            end),
+            TimeEvent(16 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("investigating")
+            end),
+            TimeEvent(45 * FRAMES, function(inst)
+                -- this covers both mystery and lighting now
+                inst:PerformBufferedAction()
+            end),
+        },
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("investigate_post")
+            end ),
+        },
+    },
+
+    State{
+        name = "investigate_post",
+        tags = {"investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.AnimState:PlayAnimation("lens_pst")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
+    State {
+        name = "goggle",
+        tags = {"preinvestigate", "investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.sg.statemem.action = inst:GetBufferedAction()
+            inst.AnimState:PlayAnimation("goggle")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+            inst.SoundEmitter:KillSound("goggle")
+        end,
+
+        timeline =
+        {
+            TimeEvent(9 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("preinvestigate")
+            end),
+            TimeEvent(13 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve_wagstaff/characters/wagstaff/use_goggles", "goggle")
+            end),
+            TimeEvent(16 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("investigating")
+            end),
+            TimeEvent(45 * FRAMES, function(inst)
+                -- this covers both mystery and lighting now
+                inst:PerformBufferedAction()
+            end),
+        },
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("goggle_post")
+            end ),
+        },
+    },
+
+    State{
+        name = "goggle_post",
+        tags = {"investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.AnimState:PlayAnimation("goggle_pst")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -1681,6 +1852,17 @@ AddStategraphPostInit("wilson", function(sg)
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
         if not inst.sg:HasStateTag("sneeze") then
             return _attack_deststate and _attack_deststate(inst, ...)
+        end
+    end
+
+    local _light_deststate = sg.actionhandlers[ACTIONS.LIGHT].deststate
+    sg.actionhandlers[ACTIONS.LIGHT].deststate = function(inst, ...)
+        local equipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+        if equipped and equipped:HasTag("magnifying_glass") then
+            return "investigate_start"
+        else
+            return _light_deststate(inst, ...)
         end
     end
 
