@@ -1,7 +1,30 @@
+local function onarmed(self, armed)
+    if armed then
+        self.inst:AddTag("armed")
+    else
+        self.inst:RemoveTag("armed")
+    end
+end
+
+local function onrearmable(self, rearmable)
+    if rearmable then
+        self.inst:AddTag("rearmable")
+    else
+        self.inst:RemoveTag("rearmable")
+    end
+end
+
 local Disarmable = Class(function(self, inst)
     self.inst = inst
     self.armed = true
-end)
+
+    self.inst:AddTag("disarmable")
+end,
+nil,
+{
+    armed = onarmed,
+    rearmable = onrearmable,
+})
 
 
 function Disarmable:disarm(doer, item)
@@ -25,12 +48,6 @@ function Disarmable:DoRearming(inst, doer)
         return true
     end
 end
-
--- function Disarmable:CollectSceneActions(doer, actions)
---     if not self.armed and self.rearmable then
---         table.insert(actions, ACTIONS.REARM)
---     end
--- end
 
 function Disarmable:OnSave()
     return {armed = self.armed}

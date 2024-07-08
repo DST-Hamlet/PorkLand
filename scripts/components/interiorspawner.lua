@@ -45,6 +45,7 @@ local InteriorSpawner = Class(function(self, inst)
     self.player_homes = {}
 
     inst:DoTaskInTime(0, function()
+        self:SetInteriorPos() -- 保证室内位于渲染范围内
         self:FixInteriorID()
     end)
 
@@ -57,7 +58,10 @@ local InteriorSpawner = Class(function(self, inst)
     self.destroyer = CreateEntity() -- for workable:Destroy()
 end)
 
-function InteriorSpawner:OnPostInit()
+function InteriorSpawner:SetInteriorPos()
+    if self.pos_set then
+        return
+    end
     local w, h = TheWorld.Map:GetSize()
     self.world_width = w * TILE_SCALE
     self.world_height = h * TILE_SCALE
@@ -68,10 +72,16 @@ function InteriorSpawner:OnPostInit()
     max_size = math.ceil(2* (max_size + SPACE + PADDING))
     TheSim:UpdateRenderExtents(max_size)
 
+    self.pos_set = true
+
     for i = 1, 500 do
         local pos = self:IndexToPosition(i)
         assert(self:PositionToIndex(pos) == i, "Index not match: "..i)
     end
+end
+
+function InteriorSpawner:OnLoad()
+    self:SetInteriorPos()
 end
 
 -- WARNING: this mothod cannot be called before game load (interiorID is nil)
@@ -133,6 +143,7 @@ function InteriorSpawner:GetInteriorCenterAt_Dedicated(x, z)
 end
 
 function InteriorSpawner:IndexToPosition(i)
+    self:SetInteriorPos()
     local x_size = math.floor(MAX_X_OFFSET / SPACE)
     local x_index = i % x_size
     local z_index = math.floor(i / x_size)
@@ -143,6 +154,7 @@ function InteriorSpawner:IndexToPosition(i)
 end
 
 function InteriorSpawner:PositionToIndex(pos)
+    self:SetInteriorPos()
     local x_size = math.floor(MAX_X_OFFSET / SPACE)
     local x, z = pos.x, pos.z
     local x_index = math.floor((x - self.x_start) / SPACE + 0.5)
@@ -588,6 +600,8 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
 
     local pt = self:IndexToPosition(interior.unique_name)
     self:ClearInteriorContents(pt)
+
+    print("InteriorSpawner:SpawnInterior",pt)
 
     local center = SpawnPrefab("interiorworkblank")
     center:SetUp(interior)

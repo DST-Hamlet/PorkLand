@@ -22,7 +22,7 @@ local function SetCrack(inst, door)
     inst.AnimState:PlayAnimation(inst.baseanimname .. "_closed")
 
     if not door:HasTag("secret") then
-        inst.reveal()
+        inst:Reveal()
     end
 end
 
@@ -55,7 +55,7 @@ local function OnLoadPostPass(inst, ents, data)
     end
 end
 
-local function reveal(inst, nochain)
+local function Reveal(inst, nochain)
     if inst.door then
         inst.door.components.door:SetHidden(false)
         inst.door.components.door:UpdateDoorVis()
@@ -80,7 +80,7 @@ local function reveal(inst, nochain)
         -- If the player has been to the secret room before we remove the tag from the instance manually
         if dest_door and dest_door:HasTag("secret") then
             if dest_door.crack and not nochain then
-                dest_door.crack:reveal(true)
+                dest_door.crack:Reveal(true)
             end
         end
 
@@ -127,17 +127,9 @@ local function fn()
 
     inst.OnSave = OnSave
     inst.OnLoadPostPass = OnLoadPostPass
-
     inst.SetCrack = SetCrack
-
-    inst.reveal = reveal
-
+    inst.Reveal = Reveal
     inst.initInteriorPrefab = InitInteriorPrefab
-
-    -- inst:AddComponent("workable")
-    -- inst.components.workable:SetWorkAction(ACTIONS.BLANK)
-    -- inst.components.workable:SetWorkLeft(1)
-    -- inst.components.workable:SetOnFinishCallback(reveal)
 
     inst:ListenForEvent("interior_endquake", function(scr, data)
         local interiorID = data.interiorID
@@ -146,7 +138,7 @@ local function fn()
         end
         local current_interiorID = inst:GetCurrentInteriorID()
         if current_interiorID and interiorID == current_interiorID then
-            reveal(inst)
+            inst:Reveal()
         end
     end, TheWorld)
 

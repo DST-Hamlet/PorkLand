@@ -66,7 +66,7 @@ function Ripplespawner:OnUpdate(dt)
     for GUID, ent in pairs(temp_list) do
         if not self.objects[GUID] then
             self.objects[GUID] = ent
-            ent.ripple_task = ent:DoPeriodicTask(0.4, SpawnRipple(ent))
+            ent.ripple_task = ent:DoPeriodicTask(0.4, function() SpawnRipple(ent) end)
         end
     end
 end

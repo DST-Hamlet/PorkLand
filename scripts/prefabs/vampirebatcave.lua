@@ -22,22 +22,13 @@ local prefabs =
     "cave_fern",
 }
 
-local function OnSave(inst, data)
-    data.interiorID = inst.interiorID
-end
-
-local function OnLoad(inst, data)
-    if data then
-        inst.interiorID = data.interiorID
-    end
-end
-
 local function CreatInterior(inst)
     local interior_spawner = TheWorld.components.interiorspawner
     local ID = inst.interiorID
     if not ID then
         ID = interior_spawner:GetNewID()
     end
+    print("CreatInterior id: ",ID)
 
     if not inst.interiorID == nil then
         return
@@ -63,6 +54,20 @@ local function CreatInterior(inst)
     inst:AddTag("spawned_cave")
 end
 
+local function OnSave(inst, data)
+    data.interiorID = inst.interiorID
+end
+
+local function OnLoad(inst, data)
+    if data == nil or (data and data.interiorID == nil) then
+        CreatInterior(inst)
+        return
+    end
+    if data then
+        inst.interiorID = data.interiorID
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -82,13 +87,13 @@ local function fn()
 
     inst:AddTag("batcave")
 
-    TheWorld.components.interiorspawner:AddExterior(inst)
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
+
+    TheWorld.components.interiorspawner:AddExterior(inst)
 
     inst:AddComponent("inspectable")
 
@@ -97,7 +102,7 @@ local function fn()
 
     MakeSnowCovered(inst)
 
-    inst:DoTaskInTime(0, CreatInterior)
+    --inst:DoTaskInTime(0, CreatInterior)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

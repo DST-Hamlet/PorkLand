@@ -427,10 +427,44 @@ local tuning = {
     SPEAR_TRAP_DAMNAGE = wilson_attack,
 
     HONEY_LANTERN_MINE = 6,
+
+    ROOM_FINDENTITIES_RADIUS = 30, -- NOTE: this value is determined by TUNING.ROOM_LARGE_WIDTH and TUNING.ROOM_LARGE_DEPTH
+
+    INTERIOR_MINIMAP_PRIORITY_START = 1000,
+    INTERIOR_MINIMAP_DOOR_SPACE = 10,
+    INTERIOR_MINIMAP_POSITION_SCALE = 2.8, -- NOTE: do not change this value
+
+    PL_MANUAL_LIGHT_OFFSET = {
+        -- {[K: prefab]: {height, z_off}}
+        DEFAULT = {2, .5},
+    },
+
+    -- temp use, read only
+    -- TODO: may change to mod config or keep as constant
+    -- see interiorspawner.lua
+    INTERIOR_DESTRUCTION_BEHAVIOR = {
+        DEFAULT = "REMOVE",
+        PLAYER = "TELEPORT_TO_EXTERIOR",
+        CREATURE = "KILL",
+        EPIC_CREATURE = "TELEPORT_TO_EXTERIOR",
+        ITEMS = "REMOVE", -- except for irreplaceable
+        STRUCTURE = "DESTROY",
+    },
+
+    -- temp use
+    -- TODO: remove in prod
+    DECO_RUINS_BEAM_WORK = 6,
+
+    MAGNIFYING_GLASS_DAMAGE = wilson_attack * 0.125,
+    MAGNIFYING_GLASS_USES = 10,
 }
 
 
 --修改原版数值，不知道是否应该放这里
+
+--使得黑暗范围更符合视觉效果
+TUNING.DARK_CUTOFF = 0.02
+
 --用于去除小地图陆地边缘的海洋渐变
 --待做：让这些值只在猪镇世界生效
 TUNING.OCEAN_MINIMAP_SHADER.EDGE_COLOR0 = { 0, 0, 0 }
@@ -479,32 +513,6 @@ TUNING.ROOM_MEDIUM_DEPTH = 16
 TUNING.ROOM_LARGE_WIDTH  = 26
 TUNING.ROOM_LARGE_DEPTH  = 18
 
-TUNING.ROOM_FINDENTITIES_RADIUS = 30 -- NOTE: this value is determined by TUNING.ROOM_LARGE_WIDTH and TUNING.ROOM_LARGE_DEPTH
-
-TUNING.INTERIOR_MINIMAP_PRIORITY_START = 1000
-TUNING.INTERIOR_MINIMAP_DOOR_SPACE = 10
-TUNING.INTERIOR_MINIMAP_POSITION_SCALE = 2.8 -- NOTE: do not change this value
-
-TUNING.PL_MANUAL_LIGHT_OFFSET = {
-    -- {[K: prefab]: {height, z_off}}
-    DEFAULT = {2, .5},
-}
-
--- temp use, read only
--- TODO: may change to mod config or keep as constant
--- see interiorspawner.lua
-TUNING.INTERIOR_DESTRUCTION_BEHAVIOR = {
-    DEFAULT = "REMOVE",
-    PLAYER = "TELEPORT_TO_EXTERIOR",
-    CREATURE = "KILL",
-    EPIC_CREATURE = "TELEPORT_TO_EXTERIOR",
-    ITEMS = "REMOVE", -- except for irreplaceable
-    STRUCTURE = "DESTROY",
-}
-
--- temp use
--- TODO: remove in prod
-TUNING.DECO_RUINS_BEAM_WORK = 6
 
 
 for key, value in pairs(tuning) do

@@ -14,8 +14,8 @@ local function Mask(parent)
     inst.entity:AddAnimState()
     inst:AddTag("noblock")
     inst:AddTag("rotatingbillboard_mask")
-    inst.AnimState:SetMultColour(0, 0, 0, 0)
-    inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
+    inst.AnimState:SetMultColour(0, 0, 0, 1)
+    inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     inst.AnimState:SetFinalOffset(FINALOFFSET_MIN)
     inst.Transform:SetTwoFaced()
 
@@ -48,6 +48,8 @@ local RotatingBillboard = Class(function(self, inst)
 	self.always_on_updating = false
     self.setted = false -- 用于判断是否在实体生成后至少传入一次立体参数
 
+    self.animdata = {}
+
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/animrotatingbillboard.ksh"))
     inst:StartUpdatingComponent(self)
@@ -58,12 +60,16 @@ local RotatingBillboard = Class(function(self, inst)
 
     self._maskdirty = net_event(inst.GUID, "_maskdirty", "maskdirty")
 
+    self._haunt_active = net_bool(inst.GUID, "_haunt_active", "hauntdirty")
+
     if not TheWorld.ismastersim then
         inst:ListenForEvent("animdirty", function() self:UpdateAnim_client() end)
         inst:ListenForEvent("bankdirty", function() self:UpdateAnim_client() end)
         inst:ListenForEvent("builddirty", function() self:UpdateAnim_client() end)
 
         inst:ListenForEvent("maskdirty", function() self:UpdateAnim_client() end)
+
+        inst:ListenForEvent("hauntdirty", function() self:UpdateMaskHaunt_client() end)
     end
 	if not TheNet:IsDedicated() then
 	    self.mask = Mask(inst)
@@ -141,6 +147,17 @@ function RotatingBillboard:UpdateLightPosition()
         self.inst.swinglight.Transform:SetPosition(offset.x, offset.y,
             (self.rotation > 0 and 1 or -1)* offset.z)
     end
+end
+
+function RotatingBillboard:SetMaskHaunt(active) -- 只在主机执行
+	if self.mask then
+        self.mask.AnimState:SetHaunted(active)
+    end
+    self._haunt_active:set(active)
+end
+
+function RotatingBillboard:UpdateMaskHaunt_client()
+    self:SetMaskHaunt(self._haunt_active:value())
 end
 
 function RotatingBillboard:OnSave()

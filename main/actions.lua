@@ -19,8 +19,12 @@ local PL_ACTIONS = {
     TOGGLEOFF = Action({priority = 2, mount_valid = true}),
     REPAIRBOAT = Action({distance = 3}),
     DISLODGE = Action({}),
-    USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = false, encumbered_valid = true}), -- TODO ghost_valid
+    USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = true, encumbered_valid = true}),
     VAMPIREBAT_FLYAWAY = Action({distance = 1}),
+    WEIGHDOWN = Action({distance = 1.5}),
+    DISARM = Action({priority = 1, distance = 1.5}),
+    REARM = Action({priority = 1, distance = 1.5}),
+    SPY = Action({distance = 2, mount_enabled =true}),
 }
 
 for name, ACTION in pairs(PL_ACTIONS) do
@@ -227,10 +231,37 @@ ACTIONS.DISLODGE.validfn = function(act)
         (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.DISLODGE)
 end
 
+ACTIONS.DISARM.fn = function(act)
+	if act.target and act.target.components.disarmable and act.invobject and act.invobject.components.disarming then
+		return act.invobject.components.disarming:DoDisarming(act.target, act.doer)
+	end
+end
+
+ACTIONS.REARM.fn = function(act)
+	if act.target and act.target.components.disarmable and not act.target.components.disarmable.armed and act.target.components.disarmable.rearmable then
+		return act.target.components.disarmable:DoRearming(act.target, act.doer)
+	end
+end
+
+ACTIONS.SPY.fn = function(act)
+	if act.target and act.target.components.mystery then
+		act.target.components.mystery:Investigate(act.doer)
+		return true
+	elseif act.target and act.target.components.mystery_door then
+		act.target.components.mystery_door:Investigate(act.doer)
+		return true
+	end
+end
+
 local function DoTeleport(player, pos)
     player:StartThread(function()
         local invincible = player.components.health.invincible
-        player.components.health:SetInvincible(true)
+        --player.components.health:SetInvincible(true)
+        if player.components.playercontroller ~= nil then
+            player.components.playercontroller:EnableMapControls(false)
+            player.components.playercontroller:Enable(false)
+        end
+
         player:ScreenFade(false, 0.4)
         Sleep(0.4)
         -- recheck interior
@@ -239,8 +270,12 @@ local function DoTeleport(player, pos)
             player.Physics:Teleport(pos:Get())
         end
         player.components.interiorvisitor:UpdateExteriorPos()
-        player.components.health:SetInvincible(invincible)
+        --player.components.health:SetInvincible(invincible)
         Sleep(0.1) -- 出于未知原因，当Sleep(0)的时候SnapCamera执行时玩家的位置仍未发生变化，因此改为0.1
+        if player.components.playercontroller ~= nil then
+            player.components.playercontroller:EnableMapControls(true)
+            player.components.playercontroller:Enable(true)
+        end
         player:SnapCamera()
         player:ScreenFade(true, 0.4)
         player.sg:GoToState("idle")
@@ -519,6 +554,16 @@ ACTIONS.BLINK.fn = function(act, ...)
     end
 end
 
+ACTIONS.WEIGHDOWN.fn = function(act)
+    if act.target == nil then
+        return false
+    end
+	local pos = Vector3(act.target.Transform:GetWorldPosition())
+	if act.doer.components.inventory then
+		return act.doer.components.inventory:DropItem(act.invobject, false, false, pos)
+	end
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world
@@ -540,9 +585,19 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.USEDOOR)
             end
         end,
+        disarmable = function(inst, doer, actions, right)
+            if not inst:HasTag("armed") and inst:HasTag("rearmable") then
+                table.insert(actions, ACTIONS.REARM)
+            end
+        end,
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right
+        disarming = function(inst, doer, target, actions, right)
+            if target:HasTag("disarmable") and target:HasTag("armed") then
+                table.insert(actions, ACTIONS.DISARM)
+            end
+        end,
         poisonhealer = function (inst, doer, target, actions, right)
             if target and target:HasTag("poisonable") then
                 if target:HasTag("poison") or (target:HasTag("player") and
@@ -589,6 +644,12 @@ local PL_COMPONENT_ACTIONS =
         end,
         dislodgeable = function(inst, action, right)
             return action == ACTIONS.DISLODGE and inst:HasTag("DISLODGE_workable")
+        end,
+        mystery = function(inst, action, right)
+            return action == ACTIONS.SPY and inst:HasTag("mystery")
+        end,
+        mystery_door = function(inst, action, right)
+            return action == ACTIONS.SPY and inst:HasTag("secret_room")
         end,
     },
 }
@@ -670,6 +731,16 @@ function INVENTORY.equippable(inst, doer, actions, ...)
         else
             _INVENTORYequippable(inst, doer, actions, ...)
         end
+    end
+end
+
+local _USEITEMinventoryitem = USEITEM.inventoryitem
+function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
+    if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
+        target and target:HasTag("weighdownable") then
+            table.insert(actions, ACTIONS.WEIGHDOWN)
+    else
+        _USEITEMinventoryitem(inst, doer, target, actions, right, ...)
     end
 end
 

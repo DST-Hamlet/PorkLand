@@ -416,6 +416,29 @@ function MakeHauntableDoor(inst)
     end)
 end
 
+function MakeHauntableVineDoor(inst)
+    if not inst.components.hackable and not inst.components.vineable then
+        print("Warning: Trying to call MakeHauntableVineDoor without hackable or vineable component")
+        return
+    end
+
+    if not inst.components.hauntable then
+        inst:AddComponent("hauntable")
+    end
+    inst.components.hauntable.cooldown = TUNING.HAUNT_COOLDOWN_SMALL
+    inst.components.hauntable:SetOnHauntFn(function(inst, player)
+        if math.random() <= TUNING.HAUNT_CHANCE_OFTEN then
+            if inst.components.vineable and inst.components.vineable.vines and
+                inst.components.vineable.vines.components.hackable and inst.components.vineable.vines.stage > 0 then
+                    inst.components.vineable.vines.components.hackable:Hack(player, 1)
+            elseif inst.components.hackable and inst.stage > 0 then -- 内部门用vineable, 外部门用hackable...需要代码清理
+                inst.components.hackable:Hack(player, 1)
+            end
+        end
+        return false
+    end)
+end
+
 local function build_rectangle_collision_mesh(rad, height, width)
     local points = {
         Vector3(-width / 2, 0, -rad / 2),
