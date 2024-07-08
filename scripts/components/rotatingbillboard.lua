@@ -48,6 +48,8 @@ local RotatingBillboard = Class(function(self, inst)
 	self.always_on_updating = false
     self.setted = false -- 用于判断是否在实体生成后至少传入一次立体参数
 
+    self.animdata = {}
+
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/animrotatingbillboard.ksh"))
     inst:StartUpdatingComponent(self)

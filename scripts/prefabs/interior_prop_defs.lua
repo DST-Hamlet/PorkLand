@@ -914,7 +914,8 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
                 bank = "doorway_ruins",
                 build = "pig_ruins_door",
                 anim = "day_loop",
-                light = true
+                light = true,
+                background = true,
             },
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id,
@@ -938,7 +939,8 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
                 bank = "doorway_ruins",
                 build = "pig_ruins_door",
                 anim = "day_loop",
-                light = true
+                light = true,
+                background = true,
             },
             is_exit = true,
             my_door_id = dungeondef.name .. "_EXIT2",
@@ -1202,6 +1204,7 @@ PROP_DEFS.vampirebatcave = function(exterior_door_def, height, width)
                 build = "bat_cave_door",
                 anim = "day_loop",
                 light = true,
+                background = true,
             },
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id,
