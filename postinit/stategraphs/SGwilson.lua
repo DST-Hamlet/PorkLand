@@ -1625,17 +1625,10 @@ local states = {
         onenter = function(inst)
             inst.components.locomotor:Stop()
 			inst.AnimState:PlayAnimation("give")
-            if inst.components.playercontroller ~= nil then
-                inst.components.playercontroller:EnableMapControls(false)
-                inst.components.playercontroller:Enable(false)
-            end
         end,
 
         onexit = function(inst)
-            if inst.components.playercontroller ~= nil then
-                inst.components.playercontroller:EnableMapControls(true)
-                inst.components.playercontroller:Enable(true)
-            end
+
         end,
 
         events = {
@@ -1645,7 +1638,6 @@ local states = {
                 inst.sg:GoToState("idle", true)
             end),
         },
-
     }
 }
 

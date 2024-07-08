@@ -152,6 +152,8 @@ local function makefn()
 
     inst:AddComponent("inspectable")
 
+    MakeHauntableVineDoor(inst)
+
     inst.facing = "north"
     inst.stage = 2
 

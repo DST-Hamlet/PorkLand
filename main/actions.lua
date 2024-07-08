@@ -230,7 +230,12 @@ end
 local function DoTeleport(player, pos)
     player:StartThread(function()
         local invincible = player.components.health.invincible
-        player.components.health:SetInvincible(true)
+        --player.components.health:SetInvincible(true)
+        if player.components.playercontroller ~= nil then
+            player.components.playercontroller:EnableMapControls(false)
+            player.components.playercontroller:Enable(false)
+        end
+
         player:ScreenFade(false, 0.4)
         Sleep(0.4)
         -- recheck interior
@@ -239,8 +244,12 @@ local function DoTeleport(player, pos)
             player.Physics:Teleport(pos:Get())
         end
         player.components.interiorvisitor:UpdateExteriorPos()
-        player.components.health:SetInvincible(invincible)
+        --player.components.health:SetInvincible(invincible)
         Sleep(0.1) -- 出于未知原因，当Sleep(0)的时候SnapCamera执行时玩家的位置仍未发生变化，因此改为0.1
+        if player.components.playercontroller ~= nil then
+            player.components.playercontroller:EnableMapControls(true)
+            player.components.playercontroller:Enable(true)
+        end
         player:SnapCamera()
         player:ScreenFade(true, 0.4)
         player.sg:GoToState("idle")

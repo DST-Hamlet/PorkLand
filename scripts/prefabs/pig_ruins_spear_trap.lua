@@ -140,6 +140,8 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
+    MakeHauntable(inst)
+
     inst:AddComponent("shearable")
     inst.components.shearable:SetOnShearFn(OnKilled)
 
@@ -217,6 +219,8 @@ local function debrisfn()
     end
 
     inst:AddComponent("inspectable")
+
+    MakeHauntable(inst)
 
     return inst
 end

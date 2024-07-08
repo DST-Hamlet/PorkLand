@@ -9,7 +9,7 @@ local function GetLight(light, dist)
     local r, g, b = light:GetColour()
     local E = 0.2126 * r + 0.7152 * g + 0.0722 * b
 
-    if A <= 0 then
+    if A >= 0 then
         D = 1
     end
 
