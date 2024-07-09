@@ -1,5 +1,7 @@
 local Cycletimer = Class(function(self, inst)
     self.inst = inst
+
+    self.setted = false
 end)
 
 function Cycletimer:StartCycle1(settime)
@@ -42,6 +44,8 @@ function Cycletimer:SetUp(time1, time2, time1fn, time2fn)
 
     self.cycletime2 = time2
     self.cyclefn2 = time2fn
+
+    self.setted = true
 end
 
 function Cycletimer:Start(initialdelay)
@@ -51,6 +55,12 @@ end
 function Cycletimer:OnSave()
     local data = {}
 
+    if self.cycletime1 then
+        data.cycletime1 = self.cycletime1
+    end
+    if self.cycletime2 then
+        data.cycletime2 = self.cycletime2
+    end
     if self.inst.cycletask1 then
         data.task1time = self.inst:TimeRemainingInTask(self.inst.cycletask1info)
     end
@@ -68,11 +78,21 @@ function Cycletimer:OnSave()
         data.pasuetask2time = self.task2time
     end
 
+    if self.setted then
+        data.setted = self.setted
+    end
+
     return data
 end
 
 function Cycletimer:OnLoad(data)
     if data then
+        if data.cycletime1 then
+            self.cycletime1 = data.cycletime1
+        end
+        if data.cycletime2 then
+            self.cycletime2 = data.cycletime2
+        end
         if data.task1time then
             self.inst.cycletask1, self.inst.cycletask1info = self.inst:ResumeTask(data.task1time, function() self:StartCycle2() end)
         end
@@ -88,6 +108,9 @@ function Cycletimer:OnLoad(data)
         end
         if data.pasuetask2time then
             self.task2time = data.pasuetask2time
+        end
+        if data.setted then
+            self.setted = data.setted
         end
     end
 end

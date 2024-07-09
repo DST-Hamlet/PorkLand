@@ -26,13 +26,14 @@ local events =
 }
 
 local radius = 1.3
-local DAMAGE_NO_TAGS = {"spear_trap"}
+local DAMAGE_NO_TAGS = {"playerghost", "FX", "NOCLICK", "DECOR", "spear_trap", "INLIMBO"}
 
 local function DoDamage(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, radius, nil, DAMAGE_NO_TAGS)
     for _, ent in pairs(ents)do
         if ent.components.health then
+            print(ent)
             inst.components.combat:DoAttack(ent)
         elseif ent.components.workable and ent.components.workable.workleft > 0 then
             ent.components.workable:Destroy(inst)
