@@ -104,6 +104,7 @@ local function common_postinit(inst)
     inst:AddComponent("interiorspawner")
     inst:AddComponent("worldmapiconproxy")
     inst:AddComponent("interiorquaker")
+    inst:AddComponent("worldsoundmanager")
 end
 
 local function master_postinit(inst)
@@ -146,8 +147,6 @@ local function master_postinit(inst)
     if METRICS_ENABLED then
         inst:AddComponent("worldoverseer")
     end
-
-    inst:AddComponent("worldsoundmanager")
 end
 
 return MakeWorld("porkland", prefabs, assets, common_postinit, master_postinit, {"porkland"}, {tile_physics_init = tile_physics_init})

@@ -17,7 +17,7 @@
 --
 
 
-local SPACE = 80
+local SPACE = 120
 local MAX_X_OFFSET = 2000
 local MAX_Z_OFFSET = 2000
 local PADDING = 30
@@ -604,9 +604,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
     print("InteriorSpawner:SpawnInterior",pt)
 
     local center = SpawnPrefab("interiorworkblank")
+    center.Transform:SetPosition(pt:Get())
     center:SetUp(interior)
     center.interiorID = interior.unique_name
-    center.Transform:SetPosition(pt:Get())
     center.uuid = uuid()
 
     if enqueue_update_layout then
@@ -621,7 +621,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
             -- TODO: 实现这个特性
             -- 例如，关闭树枝时，遗迹内也不产生树枝
             print("CANCEL SPAWN ITEM DUE TO WORLD GEN PREFS", prefab.name)
-         else
+        else
             local object = SpawnPrefab(prefab.name)
 
             -- TODO: remove this assertion in prod

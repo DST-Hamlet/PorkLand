@@ -45,7 +45,6 @@ local function ConnectInteriors(inst)
     door.AnimState:PlayAnimation("north")
 
     door.Transform:SetPosition(x, y, z)
-    door.Transform:SetRotation(-90)
 
     door.MiniMapEntity:SetIcon("ant_cave_door.tex")
 
@@ -54,14 +53,29 @@ local function ConnectInteriors(inst)
     door.door_data_build = "ant_cave_door"
     door.door_data_animstate = "north"
 
-    local interior_door_def = -- This door leads to the bat cave
+    local prefab_door_def = -- This door leads to the bat cave
     {
         my_door_id =  "roc_cave_EXIT2",
         target_door_id = "roc_cave_ENTRANCE2",
-        target_interior    = interiorID,
+        target_interior = interiorID,
+        animdata = {
+            minimapicon = "ant_cave_door.tex",
+            bank = "ant_cave_door",
+            build = "ant_cave_door",
+            anim = "north",
+            background = true,
+            is_exit = true,
+        }
     }
 
-    interior_spawner:AddDoor(door, interior_door_def)
+    local interior_door_def =
+    {
+        unique_name = inst:GetCurrentInteriorID()
+    }
+
+    door:initInteriorPrefab(nil, prefab_door_def, interior_door_def)
+
+    --interior_spawner:AddDoor(door, interior_door_def) -- 亚丹：在InitInteriorPrefab中已经执行
 
     local target_interior_pos = interior_spawner:IndexToPosition(interiorID) -- center of bat cave
     local target_interior_center = interior_spawner:GetInteriorCenterAt_Generic(target_interior_pos.x, target_interior_pos.z)
@@ -85,7 +99,6 @@ local function ConnectInteriors(inst)
     door_replacement.AnimState:PlayAnimation("south")
 
     door_replacement.Transform:SetPosition(door_pos.x, door_pos.y, door_pos.z)
-    door_replacement.Transform:SetRotation(-90)
 
     door_replacement.MiniMapEntity:SetIcon("ant_cave_door.tex")
 
@@ -94,15 +107,29 @@ local function ConnectInteriors(inst)
     door_replacement.door_data_bank = "ant_cave_door"
     door_replacement.door_data_build = "ant_cave_door"
 
-    local data_replacement =
+    local prefab_door_replacement_def = -- This door leads to the bat cave
     {
-        my_interior_name = interiorID,
         my_door_id = "roc_cave_ENTRANCE2",
         target_door_id = "roc_cave_EXIT2",
-        target_interior    = interior_spawner:PositionToIndex({x = x, z = z}),
+        target_interior = inst:GetCurrentInteriorID(),
+        animdata = {
+            minimapicon = "ant_cave_door.tex",
+            bank = "ant_cave_door",
+            build = "ant_cave_door",
+            anim = "south",
+            background = true,
+            is_exit = true,
+        }
     }
 
-    interior_spawner:AddDoor(door_replacement, data_replacement)
+    local interior_door_replacement_def =
+    {
+        unique_name = interiorID
+    }
+
+    door_replacement:initInteriorPrefab(nil, prefab_door_replacement_def, interior_door_replacement_def)
+
+    -- interior_spawner:AddDoor(door_replacement, data_replacement)
 
     local shadow = SpawnPrefab("prop_door_shadow")
     shadow.Transform:SetPosition(door_pos.x, door_pos.y, door_pos.z)
@@ -391,7 +418,7 @@ local function exitfn()
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        return
+        return inst
     end
 
     inst:AddComponent("lootdropper")

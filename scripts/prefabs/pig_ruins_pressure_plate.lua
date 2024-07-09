@@ -97,6 +97,27 @@ local function OnFar(inst)
     end
 end
 
+local function OnAporkalypseNear(inst)
+    if not inst.down then
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/pressure_plate/hit")
+        inst.AnimState:PlayAnimation("popdown")
+        inst.AnimState:PushAnimation("down_idle")
+        inst.down = true
+
+        TheWorld:PushEvent("ms_setrewindmult", inst.rewind_mult)
+    end
+end
+
+local function OnAporkalypseFar(inst)
+    if inst.down then
+        inst.AnimState:PlayAnimation("popup")
+        inst.AnimState:PushAnimation("up_idle")
+        inst.down = nil
+
+        TheWorld:PushEvent("ms_setrewindmult", -inst.rewind_mult)
+    end
+end
+
 local function TestFn(testinst)
     return not testinst:HasTag("flying") and not testinst:HasTag("notraptrigger")
 end
@@ -212,4 +233,32 @@ local function fn()
     return inst
 end
 
-return  Prefab("pig_ruins_pressure_plate", fn, assets, prefabs)
+local function MakeAporkalypseplate(name, build, rewind_mult)
+    local assets_aporkalypse =
+    {
+        Asset("ANIM", "anim/pressure_plate.zip"),
+        Asset("ANIM", "anim/".. build .. ".zip"),
+    }
+
+    local function aporkalypse_fn()
+        local inst = fn()
+        inst.AnimState:SetBuild(build)
+
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
+        inst.components.creatureprox:SetOnNear(OnAporkalypseNear)
+        inst.components.creatureprox:SetOnFar(OnAporkalypseFar)
+
+        inst.rewind_mult = rewind_mult
+
+        return inst
+    end
+
+    return Prefab("common/objects/" .. name, aporkalypse_fn, assets_aporkalypse)
+end
+
+return  Prefab("pig_ruins_pressure_plate", fn, assets, prefabs),
+    MakeAporkalypseplate("aporkalypse_rewind_plate", "pressure_plate_forwards_build", -1),
+    MakeAporkalypseplate("aporkalypse_fastforward_plate", "pressure_plate_backwards_build", 1)

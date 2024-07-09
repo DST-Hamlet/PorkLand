@@ -22,6 +22,10 @@ local land_prefabs = {
     "spoiled_food",
 }
 
+local land_prefabs_patch = {
+	"deep_jungle_fern_noise", "teatree_piko_nest_patch", "hanging_vine_patch",
+}
+
 local common_spawnfn = {
     grass_tall_bunche_patch = function(x, y, ents)
         return not SpawnUtil.IsCloseToWaterTile(x, y, 3)
@@ -39,6 +43,10 @@ local function NotCloseToWater(x, y, ents)
     return not SpawnUtil.IsCloseToWaterTile(x, y, 1)
 end
 
+local function NotCloseToWater_Patch(x, y, ents)
+    return not SpawnUtil.IsCloseToWaterTile(x, y, 2)
+end
+
 -- Mod support
 function SpawnUtil.AddCommonSpawnTestFn(prefab, fn)
     common_spawnfn[prefab] = fn
@@ -54,12 +62,21 @@ function SpawnUtil.AddLandPrefabSpawnTest(prefab)
     SpawnUtil.AddCommonSpawnTestFn(prefab, NotCloseToWater)
 end
 
+function SpawnUtil.AddLandPrefabPatchSpawnTest(prefab)
+    assert(common_spawnfn[prefab] == nil)  -- don't replace an existing one
+    SpawnUtil.AddCommonSpawnTestFn(prefab, NotCloseToWater_Patch)
+end
+
 for i = 1, #water_prefabs do
     SpawnUtil.AddWaterPrefabSpawnTest(water_prefabs[i])
 end
 
 for i = 1, #land_prefabs do
     SpawnUtil.AddLandPrefabSpawnTest(land_prefabs[i])
+end
+
+for i = 1, #land_prefabs_patch do
+    SpawnUtil.AddLandPrefabPatchSpawnTest(land_prefabs_patch[i])
 end
 
 local function SpawntestFn(prefab, x, y, ents)
