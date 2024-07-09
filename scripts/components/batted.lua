@@ -351,7 +351,7 @@ function self:OnUpdate(dt)
         _bat_attack_time = GetNextAttackTime()
     end
 
-    -- slowly fill bat caves on a timer. 
+    -- slowly fill bat caves on a timer.
     _bat_regen_time = _bat_regen_time -dt
     if _bat_regen_time <= 0 then
         AddBatToCaves()
@@ -415,6 +415,8 @@ function self:OnSave()
     data.bat_attack_time = _bat_attack_time
     data.bat_regen_time = _bat_regen_time
 
+    data.batcaves = _batcaves
+
     if next(_bats) then
         data.bats = {}
         for _, bat in pairs(_bats) do
@@ -439,8 +441,10 @@ function self:OnLoad(data)
         return
     end
 
-    _bat_attack_time = data.bat_attack_time
-    _bat_regen_time = data.bat_regen_time
+    _batcaves = data.batcaves or {}
+
+    _bat_attack_time = data.bat_attack_time or 0
+    _bat_regen_time = data.bat_regen_time or 0
 end
 
 function self:LoadPostPass(ents, data)

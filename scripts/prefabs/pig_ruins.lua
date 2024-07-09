@@ -73,19 +73,19 @@ SetSharedLootTable("basalt",{
 
 local function TriggerDarts(inst)
     local pt = Vector3(inst.Transform:GetWorldPosition())
-    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, {"dartthrower"}, {"INTERIOR_LIMBO"})
+    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 40, {"dartthrower"}, {"INLIMBO"})
     for i, v in ipairs(ents) do
         if v.components.autodartthrower then
             v.components.autodartthrower:TurnOn()
-        elseif v.Shoot ~= nil then
-            v.Shoot(v)
+        elseif v.shoot ~= nil then
+            v.shoot(v)
         end
     end
 end
 
 local function DislodgeOnLoad(inst, data)
     inst.AnimState:PlayAnimation("extract_success")
-    -- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_EXTRACTED"])
+    inst.components.named:SetName(STRINGS.NAMES.PIG_RUINS_EXTRACTED)
 end
 
 local function OnSave(inst, data)

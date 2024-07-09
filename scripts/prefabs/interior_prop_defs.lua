@@ -210,7 +210,7 @@ PROP_DEFS.roc_cave = function(depth, width, room, open_exits, exterior_door_def)
     return addprops
 end
 
-PROP_DEFS.pig_ruins_dart_trap = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+PROP_DEFS.pig_ruins_dart_trap = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def, nopressureplates)
     local addprops = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
 
     if dungeondef.advancedtraps and math.random() < 0.3 then
@@ -245,8 +245,9 @@ PROP_DEFS.pig_ruins_dart_trap = function(depth, width, exits_open, exits_vined, 
     end
 
     -- ziwbi: not nopressureplates will always be true, see PROP_DEFS.pig_ruins_treasure
+    -- 亚丹：实际上nopressureplates在3雕像吹箭陷阱房间被使用了
     -- if the treasure room wants dart traps, then the plates get turned off.
-    --if not nopressureplates then
+    if not nopressureplates then
         addprops[#addprops + 1] = { name = "pig_ruins_pressure_plate", x_offset = -depth/6*2+ (math.random()*2 - 1),        z_offset = 0+ (math.random()*2 - 1),        addtags={"trap_dart"} }
         addprops[#addprops + 1] = { name = "pig_ruins_pressure_plate", x_offset = 0 + (math.random(2) - 1),        z_offset = 0+ (math.random()*2 - 1),        addtags={"trap_dart"} }
 
@@ -261,7 +262,7 @@ PROP_DEFS.pig_ruins_dart_trap = function(depth, width, exits_open, exits_vined, 
         addprops[#addprops + 1] = { name = "pig_ruins_pressure_plate", x_offset =  depth/6*2+ (math.random()*2 - 1), z_offset = -width/6*2+(math.random()*2 - 1), addtags={"trap_dart"} }
         addprops[#addprops + 1] = { name = "pig_ruins_pressure_plate", x_offset =  (math.random()*2 - 1), z_offset = width/6*2+(math.random()*2 - 1), addtags={"trap_dart"} }
         addprops[#addprops + 1] = { name = "pig_ruins_pressure_plate", x_offset =  depth/6*2+ (math.random()*2 - 1), z_offset =  width/6*2+(math.random()*2 - 1), addtags={"trap_dart"} }
-    --end
+    end
 
     return addprops
 end
@@ -673,37 +674,53 @@ PROP_DEFS.pig_ruins_store_room = function(depth, width, exits_open, exits_vined,
 end
 
 PROP_DEFS.pig_ruins_treasure = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
-    local addprops = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    local addprops = {}
+
+    local setups = {"darts_relics","darts_relics","darts_relics","darts_relics","darts_relics","darts_relics",
+    "spears_relics","spears_relics","spears_relics",
+    "relics_dust"} -- 亚丹：出于奇怪的私心，我让这些在单机版因为random = 1而没有被启用的房间重新存在生成的可能
+    --我暂时将8金子1遗物房间的概率设置为10%，3遗物长矛陷阱房间的概率设置为30%，3遗物吹箭陷阱房间的概率设置为60%
+    --然而，关于它们的游戏逻辑需要进一步的讨论
+    local random =  math.random(1,#setups)
+    -- random = 1 -- 不是，哥们
+
+    if setups[random] == "darts_relics" then
+        roomtype = "dart_trap"
+        local nopressureplates = true
+        addprops = PROP_DEFS.pig_ruins_dart_trap(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def, nopressureplates)
+    else
+        if setups[random] == "relics_dust" then
+            room.nocornertree = true
+        end
+        addprops = PROP_DEFS.pig_ruins_common(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
+    end
 
     -- ziwbi: For some reason only relics_dust setup is used
+    -- 亚丹：事实上，在单机版只有darts_relics被使用了
 
-    -- local setups = {"darts_relics","spears_relics", "relics_dust"}
-    -- local random =  math.random(1,#setups)
-    -- random = 1
-    -- if setups[random] == "relics_dust" then
+
+    if setups[random] == "relics_dust" then
         AddGoldStatue(addprops, -depth / 3, -width / 3)
         AddGoldStatue(addprops, depth / 3, width / 3)
         AddRelicStatue(addprops, 0, 0)
         AddGoldStatue(addprops, depth / 3, -width / 3)
         AddGoldStatue(addprops, -depth / 3, width / 3)
-    -- elseif setups[random] == "spears_relics" then
-    --     AddRelicStatue(addprops,0,-width/4)
-    --     AddRelicStatue(addprops,0,0)
-    --     AddRelicStatue(addprops,0,width/4)
+    elseif setups[random] == "spears_relics" then
+        AddRelicStatue(addprops,0,-width/4)
+        AddRelicStatue(addprops,0,0)
+        AddRelicStatue(addprops,0,width/4)
 
-    --     AddSpearTrap(addprops, depth, width, 0, -width/4, nil, true, true,12)
-    --     addprops[#addprops + 1] = { name = "pig_ruins_light_beam", x_offset = 0, z_offset =  -width/4, addtags={"localtrap"}}
-    --     AddSpearTrap(addprops, depth, width, 0, 0, nil, true, true, 12)
-    --     addprops[#addprops + 1] = { name = "pig_ruins_light_beam", x_offset = 0, z_offset =  0, addtags={"localtrap"}}
-    --     AddSpearTrap(addprops, depth, width, 0, width/4, nil, true, true, 12)
-    --     addprops[#addprops + 1] = { name = "pig_ruins_light_beam", x_offset = 0, z_offset =  width/4, addtags={"localtrap"}}
-    -- elseif setups[random] == "darts_relics" then
-    --     AddRelicStatue(addprops,0,-width/3 +1, {"trggerdarttraps"})
-    --     AddRelicStatue(addprops,depth/4-1,0, {"trggerdarttraps"})
-    --     AddRelicStatue(addprops,0,width/3 -1, {"trggerdarttraps"})
-    --     roomtype = "darts"
-    --     nopressureplates = true
-    -- end
+        AddSpearTrap(addprops, depth, width, 0, -width/4, nil, true, true,12)
+        addprops[#addprops + 1] = { name = "pig_ruins_light_beam", x_offset = 0, z_offset =  -width/4, addtags={"localtrap"}}
+        AddSpearTrap(addprops, depth, width, 0, 0, nil, true, true, 12)
+        addprops[#addprops + 1] = { name = "pig_ruins_light_beam", x_offset = 0, z_offset =  0, addtags={"localtrap"}}
+        AddSpearTrap(addprops, depth, width, 0, width/4, nil, true, true, 12)
+        addprops[#addprops + 1] = { name = "pig_ruins_light_beam", x_offset = 0, z_offset =  width/4, addtags={"localtrap"}}
+    elseif setups[random] == "darts_relics" then
+        AddRelicStatue(addprops,0,-width/3 +1, {"trggerdarttraps"})
+        AddRelicStatue(addprops,depth/4-1,0, {"trggerdarttraps"})
+        AddRelicStatue(addprops,0,width/3 -1, {"trggerdarttraps"})
+    end
 
     return addprops
 end
@@ -964,7 +981,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
     end
 
     -- GENERAL RUINS ROOM ART
-    if math.random() < 0.8 or roomtype == "darts" then  -- the wall torches get blocked by the big beams
+    if math.random() < 0.8 or roomtype == "dart_trap" then  -- the wall torches get blocked by the big beams
         addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = -depth/2, z_offset =  -width/2, rotation = -90}
         addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = -depth/2, z_offset =  width/2, rotation = -90, flip = true}
         addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = depth/2, z_offset =  -width/2, rotation = -90}
@@ -1026,7 +1043,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         addprops[#addprops + 1] = { name = "pig_ruins_wall_vines_west", x_offset = depth/2 - 0.75, z_offset = width/2}
     end
 
-    if roomtype ~= "darts" and roomtype ~= "spears" then
+    if roomtype ~= "dart_trap" and roomtype ~= "spear_trap" then
         if math.random() < 0.6 then
             if math.random() < 0.8 then
                 addprops[#addprops + 1] = { name = "deco_ruins_pigman_relief"..math.random(3)..room.color, x_offset = -depth/2, z_offset =  -width/6*2, rotation = -90 }
@@ -1076,7 +1093,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         end
     end
 
-    if math.random() < 0.1 and roomtype ~= "spears" then
+    if math.random() < 0.1 and roomtype ~= "spear_trap" and not room.nocornertree then
         local flip = math.random() < 0.5 or nil
         addprops[#addprops + 1] = { name = "deco_ruins_corner_tree", x_offset = -depth/2, z_offset = (flip and 1 or -1) * width/2, rotation = -90, flip = flip}
     end

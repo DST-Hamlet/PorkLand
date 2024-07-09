@@ -230,7 +230,7 @@ local function OnLoad(inst, data)
     end
     if data.door_data_animstate then
         inst.AnimState:PlayAnimation(data.door_data_animstate, true)
-        inst.door_data_build = data.door_data_build
+        inst.door_data_animstate = data.door_data_animstate
     end
     inst.components.rotatingbillboard:SetAnimation_Server({
         bank = data.door_data_bank,

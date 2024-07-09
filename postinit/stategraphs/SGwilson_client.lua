@@ -32,6 +32,17 @@ local actionhandlers = {
     end),
     ActionHandler(ACTIONS.USEDOOR, "usedoor"),
     ActionHandler(ACTIONS.WEIGHDOWN, "doshortaction"),
+    ActionHandler(ACTIONS.DISARM, "dolongaction"),
+    ActionHandler(ACTIONS.REARM, "dolongaction"),
+    ActionHandler(ACTIONS.SPY, function(inst, action)
+        if not inst.sg:HasStateTag("preinvestigate") then
+            if action.invobject ~= nil and action.invobject:HasTag("goggles") then
+                return "goggle"
+            else
+                return "investigate"
+            end
+        end
+    end),
 }
 
 local eventhandlers = {
@@ -505,6 +516,72 @@ local states = {
                 end
             elseif inst.bufferedaction == nil then
                 inst.AnimState:PlayAnimation("give_pst")
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end
+    },
+
+    State{
+        name = "investigate_start",
+        tags = {"preinvestigate", "investigating", "working"},
+        server_states = {"investigate_start", "investigate", "investigate_post"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+
+            if not inst:HasTag("investigating") then
+                inst.AnimState:PlayAnimation("lens")
+            end
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("investigating") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("lens_pst")
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end
+    },
+
+    State{
+        name = "goggle",
+        tags = {"preinvestigate", "investigating", "working"},
+        server_states = {"goggle", "goggle_post"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+
+            if not inst:HasTag("investigating") then
+                inst.AnimState:PlayAnimation("goggle")
+            end
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("investigating") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("goggle_pst")
                 inst.sg:GoToState("idle")
             end
         end,

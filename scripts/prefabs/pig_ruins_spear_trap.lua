@@ -30,12 +30,18 @@ local function OnHit(inst)
     inst:PushEvent("hit")
 end
 
-local function cycletrap(inst)
+local function cycletrapup(inst)
+    if not inst:HasTag("burnt") and not inst:HasTag("dead") then
+        if inst.sg:HasStateTag("retracted") then
+            inst:PushEvent("triggertrap")
+        end
+    end
+end
+
+local function cycletrapdown(inst)
     if not inst:HasTag("burnt") and not inst:HasTag("dead") then
         if inst.sg:HasStateTag("extended") then
             inst:PushEvent("reset")
-        elseif inst.sg:HasStateTag("retracted") then
-            inst:PushEvent("triggertrap")
         end
     end
 end
@@ -101,7 +107,7 @@ local function OnLoad(inst, data)
         inst:AddTag("delay_6")
     end
     if data.delay_9 then
-        inst:HasTag("delay_9")
+        inst:AddTag("delay_9")
     end
 end
 
@@ -135,6 +141,8 @@ local function fn()
     end
 
     inst:AddComponent("cycletimer")
+    inst.components.cycletimer.cyclefn1 = cycletrapup
+    inst.components.cycletimer.cyclefn2 = cycletrapdown
 
     inst:AddComponent("hiddendanger")
 
@@ -175,6 +183,9 @@ local function fn()
     end)
 
     inst:DoTaskInTime(0, function()
+        if inst.components.cycletimer.setted == true then
+            return
+        end
         local time1 = 1
         if inst:HasTag("up_3") then
             time1 = 3
@@ -185,7 +196,7 @@ local function fn()
             time2 = 6
         end
 
-        inst.components.cycletimer:SetUp(time1, time2, cycletrap, cycletrap)
+        inst.components.cycletimer:SetUp(time1, time2, cycletrapup, cycletrapdown)
 
         if inst:HasTag("timed") then
             local initialdelay = 3

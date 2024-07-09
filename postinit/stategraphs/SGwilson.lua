@@ -94,7 +94,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.REARM, "dolongaction"),
     ActionHandler(ACTIONS.SPY, function(inst, action)
         if not inst.sg:HasStateTag("preinvestigate") then
-            if action.invobject:HasTag("goggles") then
+            if action.invobject ~= nil and action.invobject:HasTag("goggles") then
                 return "goggle"
             else
                 return "investigate"
