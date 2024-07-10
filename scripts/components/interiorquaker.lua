@@ -477,7 +477,7 @@ if _ismastersim then function self:OnLoad(data)
     _debris_spawn_rates = data.debris_spawn_rates
     _debris_spawn_times = data.debris_spawn_times
     _isquaking = data.isquaking
-    _quake_times = data.quaketimes
+    _quake_times = data.quake_times
 end end
 
 --------------------------------------------------------------------------
