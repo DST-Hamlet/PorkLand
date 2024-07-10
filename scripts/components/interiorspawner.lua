@@ -69,18 +69,31 @@ function InteriorSpawner:SetInteriorPos()
     self.z_start = self.world_height / 2 + 120
 
     local max_size = math.max(self.x_start + MAX_X_OFFSET, self.z_start + MAX_Z_OFFSET)
-    max_size = math.ceil(2* (max_size + SPACE + PADDING))
+    max_size = math.ceil(2 * (max_size + SPACE + PADDING))
     TheSim:UpdateRenderExtents(max_size)
 
     self.pos_set = true
 
     for i = 1, 500 do
         local pos = self:IndexToPosition(i)
-        assert(self:PositionToIndex(pos) == i, "Index not match: "..i)
+        assert(self:PositionToIndex(pos) == i, "Index not match: ".. i)
     end
 end
 
-function InteriorSpawner:OnLoad()
+function InteriorSpawner:OnSave()
+    local data = {interiors = {}}
+    for interiorID, def in pairs(self.interiors) do
+        data.interiors[interiorID] = def
+    end
+    return data
+end
+
+function InteriorSpawner:OnLoad(data)
+    if data and data.interiors then
+        for interiroID, def in pairs(data.interiors) do
+            self:AddInterior(def)
+        end
+    end
     self:SetInteriorPos()
 end
 
