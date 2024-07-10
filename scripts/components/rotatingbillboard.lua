@@ -54,9 +54,9 @@ local RotatingBillboard = Class(function(self, inst)
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/animrotatingbillboard.ksh"))
     inst:StartUpdatingComponent(self)
 
-    self._door_data_animstate = net_string(inst.GUID, "_door_data_animstate", "animdirty")
-    self._door_data_bank = net_string(inst.GUID, "_door_data_bank", "bankdirty")
-    self._door_data_build = net_string(inst.GUID, "_door_data_build", "builddirty")
+    self._data_animstate = net_string(inst.GUID, "_data_animstate", "animdirty")
+    self._data_bank = net_string(inst.GUID, "_data_bank", "bankdirty")
+    self._data_build = net_string(inst.GUID, "_data_build", "builddirty")
 
     self._maskdirty = net_event(inst.GUID, "_maskdirty", "maskdirty")
 
@@ -94,17 +94,17 @@ end, nil, {
 
 function RotatingBillboard:SetAnimation_Server(animdata) -- 动画会变化的实体在动画变化时需要执行此函数
     self.animdata = animdata
-    self._door_data_bank:set(animdata.bank or "")
-    self._door_data_build:set(animdata.build or "")
-    self._door_data_animstate:set(animdata.anim or "")
+    self._data_bank:set(animdata.bank or "")
+    self._data_build:set(animdata.build or "")
+    self._data_animstate:set(animdata.anim or "")
     self:SyncMaskAnimation()
 end
 
 function RotatingBillboard:UpdateAnim_client()
     self.animdata = {
-        bank = self._door_data_bank:value(),
-        build = self._door_data_build:value(),
-        anim = self._door_data_animstate:value()
+        bank = self._data_bank:value(),
+        build = self._data_build:value(),
+        anim = self._data_animstate:value()
     }
     self:SyncMaskAnimation()
 end

@@ -17,7 +17,7 @@ local function UpdateFx(inst)
     local index = inst.texture_index:value()
     if TEXTURE_DEF[index] then
         local path = TEXTURE_DEF[index].path
-        for k in pairs(inst.fx)do
+        for k,v in pairs(inst.fx)do
             k:Remove()
         end
         inst.fx = {}
@@ -126,28 +126,6 @@ local function OnThePlayerFar(inst)
     ClearFx(inst)
 end
 
-local function UpdateState(inst)
-    if ThePlayer and ThePlayer:IsNear(inst, 64) then
-        OnThePlayerNear(inst)
-    else
-        OnThePlayerFar(inst)
-    end
-end
-
-local function StartUpdateState(inst)
-    if inst.updatefxtask == nil then
-        inst.updatefxtask = inst:DoPeriodicTask(FRAMES, UpdateState)
-    end
-end
-
-local function StopUpdateState(inst)
-    UpdateState(inst)
-    if inst.updatefxtask then
-        inst.updatefxtask:Cancel()
-        inst.updatefxtask = nil
-    end
-end
-
 local function SetSizeX(inst, x)
     inst.size_x:set(x)
 end
@@ -183,10 +161,8 @@ local function floor_fn()
     inst:AddTag("NOBLOCK")
     inst.fx = {}
 
-    if not TheNet:IsDedicated() then
-        inst.OnEntitySleep = StopUpdateState
-        inst.OnEntityWake = StartUpdateState
-    end
+    inst.OnThePlayerNear = OnThePlayerNear
+    inst.OnThePlayerFar = OnThePlayerFar
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("texture_index", UpdateFx)
@@ -221,10 +197,8 @@ local function wall_fn()
     inst:AddTag("NOBLOCK")
     inst.fx = {}
 
-    if not TheNet:IsDedicated() then
-        inst.OnEntitySleep = StopUpdateState
-        inst.OnEntityWake = StartUpdateState
-    end
+    inst.OnThePlayerNear = OnThePlayerNear
+    inst.OnThePlayerFar = OnThePlayerFar
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("texture_index", UpdateFx)

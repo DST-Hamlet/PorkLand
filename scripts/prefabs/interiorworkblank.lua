@@ -50,30 +50,34 @@ local function SetUp(inst, data)
     local pos = inst:GetPosition()
     local sp = GetSkeletonPositions(inst.width, inst.depth)
 
+    local left_top_pos = sp.LEFT_TOP + inst:GetPosition()
+
     local floor = SpawnPrefab("interiorfloor")
     floor:SetSize(inst.depth, inst.width) -- depth => size_x, width => size_z
     floor:SetTexture(inst.floortexture)
-    floor.Transform:SetPosition(sp.LEFT_TOP:Get())
+    floor.Transform:SetPosition(left_top_pos:Get())
 
     local wall_bg = SpawnPrefab("interiorwall_z")
     wall_bg:SetSize(inst.width)
-    wall_bg.Transform:SetPosition(sp.LEFT_TOP:Get())
+    wall_bg.Transform:SetPosition(left_top_pos:Get())
 
     local wall_left = SpawnPrefab("interiorwall_x")
     wall_left:SetSize(inst.depth)
-    wall_left.Transform:SetPosition(sp.LEFT_TOP:Get())
+    wall_left.Transform:SetPosition(left_top_pos:Get())
+
+    local right_top_pos = sp.RIGHT_TOP + inst:GetPosition()
 
     local wall_right = SpawnPrefab("interiorwall_x")
     wall_right:SetSize(inst.depth)
-    wall_right.Transform:SetPosition(sp.RIGHT_TOP:Get())
+    wall_right.Transform:SetPosition(right_top_pos:Get())
 
     for _,v in ipairs{wall_bg, wall_left, wall_right}do
         v:SetTexture(inst.walltexture)
     end
 
-    for _,v in ipairs{floor, wall_bg, wall_left, wall_right}do
-        v.entity:SetParent(inst.entity)
-    end
+    --for _,v in ipairs{floor, wall_bg, wall_left, wall_right}do -- 亚丹：SetParent并且本地位置不为000的话，有时会出现网络传输的问题
+        --v.entity:SetParent(inst.entity)
+    --end
 
     inst.fx = {
         [floor] = true,
@@ -299,6 +303,36 @@ local function OnLoad(inst, data)
     end
 end
 
+local function UpdateState(inst)
+    if ThePlayer and ThePlayer:IsNear(inst, 64) then
+        for k,v in pairs(inst.fx) do
+            if k.OnThePlayerNear then
+                k:OnThePlayerNear()
+            end
+        end
+    else
+        for k,v in pairs(inst.fx) do
+            if k.OnThePlayerFar then
+                k:OnThePlayerFar()
+            end
+        end
+    end
+end
+
+local function StartUpdateState(inst)
+    if inst.updatefxtask == nil then
+        inst.updatefxtask = inst:DoPeriodicTask(FRAMES, UpdateState)
+    end
+end
+
+local function StopUpdateState(inst)
+    UpdateState(inst)
+    if inst.updatefxtask then
+        inst.updatefxtask:Cancel()
+        inst.updatefxtask = nil
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -312,6 +346,8 @@ local function fn()
     inst:AddTag("pl_interiorcenter")
     inst:AddTag("pl_interior_no_minimap")
     inst:AddTag("NOBLOCK")
+
+    inst.fx = {}
 
     inst.cc_index = net_byte(inst.GUID, "cc_index", "cc_index")
     inst.size_net = {
@@ -341,6 +377,11 @@ local function fn()
 
     TheWorld.components.interiorspawner:AddInteriorCenter(inst)
     TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
+
+    if not TheNet:IsDedicated() then
+        inst.OnEntitySleep = StopUpdateState
+        inst.OnEntityWake = StartUpdateState
+    end
 
     inst.entity:SetPristine()
 

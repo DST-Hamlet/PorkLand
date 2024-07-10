@@ -214,75 +214,6 @@ local function aporkalypse_marker_fn()
     return inst
 end
 
-local function SetOnPlayerNear(inst)
-    if not inst.down then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/pressure_plate/hit")
-        inst.AnimState:PlayAnimation("popdown")
-        inst.AnimState:PushAnimation("down_idle")
-        inst.down = true
-
-        TheWorld:PushEvent("ms_setrewindmult", inst.rewind_mult)
-    end
-end
-
-local function SetOnPlayerFar(inst)
-    if inst.down then
-        inst.AnimState:PlayAnimation("popup")
-        inst.AnimState:PushAnimation("up_idle")
-        inst.down = false
-
-        TheWorld:PushEvent("ms_setrewindmult", -inst.rewind_mult)
-    end
-end
-
-local function Makeplate(name, build, rewind_mult)
-    local assets =
-    {
-        Asset("ANIM", "anim/pressure_plate.zip"),
-        Asset("ANIM", "anim/".. build .. ".zip"),
-    }
-
-    local function fn()
-        local inst = CreateEntity()
-
-        inst.entity:AddTransform()
-        inst.entity:AddAnimState()
-        inst.entity:AddSoundEmitter()
-        inst.entity:AddNetwork()
-
-        inst.AnimState:SetBank("pressure_plate")
-        inst.AnimState:SetBuild(build)
-        inst.AnimState:PlayAnimation("up_idle")
-
-        inst.AnimState:SetLayer(LAYER_BACKGROUND)
-        inst.AnimState:SetSortOrder(3)
-
-        inst:AddTag("structure")
-        inst:AddTag("weighdownable")  -- ?
-
-        inst.entity:SetPristine()
-
-        if not TheWorld.ismastersim then
-            return inst
-        end
-
-        inst.persists = false
-
-        inst.rewind_mult = rewind_mult
-        inst.down = false
-
-        inst:AddComponent("playerprox")
-        inst.components.playerprox.alivemode = true
-        inst.components.playerprox:SetDist(0.8, 0.9)
-        inst.components.playerprox:SetOnPlayerNear(SetOnPlayerNear)
-        inst.components.playerprox:SetOnPlayerFar(SetOnPlayerFar)
-
-        return inst
-    end
-
-    return Prefab("common/objects/" .. name, fn, assets)
-end
-
 local function MakeClock(clock_num)
     local name = "aporkalypse_clock" .. clock_num
     local bank = "clock_0" .. clock_num
@@ -323,8 +254,6 @@ end
 
 return Prefab("common/objects/aporkalypse_clock", aporkalypse_clock_fn, aporkalypse_clock_assets),
     Prefab("common/objects/aporkalypse_marker", aporkalypse_marker_fn, aporkalypse_marker_assets),
-    Makeplate("aporkalypse_rewind_plate", "pressure_plate_forwards_build", -1),
-    Makeplate("aporkalypse_fastforward_plate", "pressure_plate_backwards_build", 1),
     MakeClock(1),
     MakeClock(2),
     MakeClock(3)
