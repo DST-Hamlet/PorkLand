@@ -8,7 +8,7 @@ local BrainCommon = require("brains/braincommon")
 local MAX_CHASE_TIME = 60
 local MAX_CHASE_DIST = 40
 
-local function GetLeashPos(inst)
+local function GetWanderPos(inst)
     return inst.components.teamattacker.teamleader == nil and inst.components.knownlocations:GetLocation("home")
 end
 
@@ -19,14 +19,20 @@ end)
 function VampireBatBrain:OnStart()
     local root = PriorityNode(
     {
-        BrainCommon.PanicTrigger(self.inst),
+        WhileNode(
+            function() return not self.inst.sg:HasStateTag("flight") end, "AttackAndWander",
+            PriorityNode(
+            {
+                BrainCommon.PanicTrigger(self.inst),
 
-        AttackWall(self.inst),
+                AttackWall(self.inst),
 
-        ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST),
+                ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST),
 
-        Leash(self.inst, GetLeashPos, 8, 4),
-    }, 0.25)
+                Wander(self.inst, GetWanderPos, 8),
+            }, 0.25)
+        )
+    })
 
     self.bt = BT(self.inst, root)
 end

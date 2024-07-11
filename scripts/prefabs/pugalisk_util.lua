@@ -29,7 +29,7 @@ local function FindCurrentTarget(inst)
     end
 
     if target and inst.home and target:GetDistanceSqToInst(inst.home) < DIST*DIST then
-        -- if we are close to home and there is a target, target it.        
+        -- if we are close to home and there is a target, target it.
         inst.target = target
         inst.components.combat:SetTarget(target)
     elseif inst.home and inst:GetDistanceSqToInst(inst.home) > WANDERDIST * WANDERDIST then
@@ -98,6 +98,7 @@ local function DetermineAction(inst)
     inst.wantstogaze = nil
 
     if math.random() < PUGALISK_TAUNT_CHANCE then
+
         inst.wantstotaunt = true
     end
 
@@ -133,7 +134,7 @@ local function DetermineAction(inst)
         end
         inst:PushEvent("stopmove")
     -- If we are more than 6 unit distance away, keep moving to target
-    elseif not inst.wantstogaze then
+    elseif not inst.wantstogaze and not inst.wantstotaunt then
         local angle = FindDirectionToDive(inst, target)
         inst.movecommited = true
 

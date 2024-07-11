@@ -152,9 +152,10 @@ local states =
 
     State{
         name = "glide",
-        tags = {"idle", "flying", "busy"},
+        tags = {"idle", "flight", "busy"},
 
         onenter = function(inst)
+            inst.Physics:Stop()
             inst.DynamicShadow:Enable(false)
             inst.AnimState:PlayAnimation("glide", true)
             inst.Physics:SetMotorVelOverride(0, -25,0)
@@ -163,7 +164,7 @@ local states =
         onupdate = function(inst)
             inst.Physics:SetMotorVelOverride(0, -25, 0)
             local x, y, z = inst.Transform:GetWorldPosition()
-            if y <= 0.1 then
+            if y <= 0.1 or inst:IsAsleep() then
                 inst.Physics:ClearMotorVelOverride()
                 inst.Physics:Stop()
                 inst.Physics:Teleport(x, 0, z)
@@ -174,6 +175,9 @@ local states =
         end,
 
         onexit = function(inst)
+            inst.Physics:Stop()
+            inst.Physics:ClearMotorVelOverride()
+            inst.DynamicShadow:Enable(true)
             local x, y, z = inst.Transform:GetWorldPosition()
             if y > 0 then
                 inst.Transform:SetPosition(x, 0, z)

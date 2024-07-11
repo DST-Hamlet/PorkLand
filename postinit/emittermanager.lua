@@ -19,7 +19,7 @@ function EmitterManager:PostUpdate(...)
                 fns[inst.prefab] = data.updateFunc
             end
             local x, _, z = inst.Transform:GetWorldPosition()
-            if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+            if TheWorld:HasTag("porkland") and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
                 data.updateFunc = function() end
             else
                 data.updateFunc = fns[inst.prefab]

@@ -26,6 +26,7 @@ local SHARE_TARGET_DIST = 40
 local function MakeTeam(inst, attacker)
     local leader = SpawnPrefab("teamleader")
     leader:AddTag("vampirebat")
+    leader.components.teamleader.mult = 1.5
     leader.components.teamleader:SetUp(attacker, inst)
     leader.components.teamleader:BroadcastDistress(inst)
 end
@@ -39,7 +40,8 @@ local function OnWingDownShadow(inst)
 end
 
 local function KeepTarget(inst, target)
-    if (inst.components.teamattacker.teamleader and not inst.components.teamattacker.teamleader:CanAttack()) or
+    if inst.components.teamattacker.teamleader == nil or
+        (inst.components.teamattacker.teamleader and not inst.components.teamattacker.teamleader:CanAttack()) or
         inst.components.teamattacker.orders == "ATTACK" then
         return true
     else
@@ -99,7 +101,7 @@ local function OnSave(inst, data)
     if inst.forcesleep then
         data.forcesleep = true
     end
-    if inst.sg:HasStateTag("flying") then
+    if inst.sg:HasStateTag("flight") then
         data.flying = true
     end
 end
@@ -161,9 +163,9 @@ local function fn()
     end
 
     inst:AddComponent("locomotor")
-    inst.components.locomotor:SetSlowMultiplier(1)
+    inst.components.locomotor:EnableGroundSpeedMultiplier(false)
     inst.components.locomotor:SetTriggersCreep(false)
-    inst.components.locomotor.pathcaps = {ignorecreep = true, allowocean = true}
+    inst.components.locomotor.pathcaps = {ignorewalls = true, ignorecreep = true, allowocean = true}
     inst.components.locomotor.walkspeed = TUNING.VAMPIREBAT_WALK_SPEED
 
     inst:AddComponent("eater")
@@ -233,11 +235,6 @@ local function DoDive(inst)
             bat.Transform:SetPosition(spawn_point.x, spawn_point.y + 30, spawn_point.z)
             bat.sg:GoToState("glide")
             bat:AddTag("batfrenzy")
-
-            bat:DoTaskInTime(2, function()
-                -- Use Combat:SuggestTarget?
-                bat:PushEvent("attacked", {attacker = player, damage = 0, weapon = nil})
-            end)
         end
         inst:Remove()
         return
@@ -255,7 +252,7 @@ local function DoDive(inst)
 
             bat:DoTaskInTime(2, function()
                 -- Use Combat:SuggestTarget?
-                bat:PushEvent("attacked", {attacker = player, damage = 0, weapon = nil})
+                bat.components.combat:SuggestTarget(player)
             end)
         end
         inst:Remove()
