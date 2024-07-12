@@ -17,7 +17,7 @@
 --
 
 -- 亚丹：实际上，在上方注释版本的代码中，z的范围是(+BORDER + 2000,+infinite)
--- 亚丹：将z的坐标范围修改为(-BORDER - 2000,+infinite)，注意当z小于-2000时渲染会因为超出TheSim:UpdateRenderExtents而出现问题
+-- 亚丹：将z的坐标范围修改为(-1000,+infinite)，注意当z小于-2000时渲染会因为超出TheSim:UpdateRenderExtents而出现问题
 
 
 local SPACE = 120
@@ -142,7 +142,7 @@ end
 
 function InteriorSpawner:IsInInteriorRegion(x, z)
     return x >= self.x_start - PADDING and x <= self.x_start + MAX_X_OFFSET + PADDING
-        and z >= - (self.z_start + MAX_X_OFFSET) - PADDING and z <= self.z_start + MAX_Z_OFFSET + PADDING -- z坐标反转以从负数开始
+        and z >= - 1000 and z <= self.z_start + MAX_Z_OFFSET + PADDING -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
 end
 
 function InteriorSpawner:IsInInteriorRoom(x, z, padding)
@@ -180,7 +180,7 @@ function InteriorSpawner:IndexToPosition(i)
     return Vector3(
         x_index * SPACE + self.x_start,
         0,
-        z_index * SPACE - (self.z_start + MAX_X_OFFSET)) -- z坐标反转以从负数开始
+        z_index * SPACE - 1000) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
 end
 
 function InteriorSpawner:PositionToIndex(pos)
@@ -188,7 +188,7 @@ function InteriorSpawner:PositionToIndex(pos)
     local x_size = math.floor(MAX_X_OFFSET / SPACE)
     local x, z = pos.x, pos.z
     local x_index = math.floor((x - self.x_start) / SPACE + 0.5)
-    local z_index = math.floor((z + (self.z_start + MAX_X_OFFSET)) / SPACE + 0.5) -- z坐标反转以从负数开始
+    local z_index = math.floor((z + 1000) / SPACE + 0.5) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
     return z_index * x_size + x_index
 end
 
