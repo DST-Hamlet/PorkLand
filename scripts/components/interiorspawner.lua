@@ -142,7 +142,7 @@ end
 
 function InteriorSpawner:IsInInteriorRegion(x, z)
     return x >= self.x_start - PADDING and x <= self.x_start + MAX_X_OFFSET + PADDING
-        and z >= - 1000 and z <= self.z_start + MAX_Z_OFFSET + PADDING -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
+        and z >= - 1000 -100 and z <= self.z_start + MAX_Z_OFFSET + PADDING -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
 end
 
 function InteriorSpawner:IsInInteriorRoom(x, z, padding)
@@ -341,8 +341,8 @@ end
 
 function InteriorSpawner:RemoveInteriorCenter(inst)
     self.interiors_hashmap[inst] = nil
-    self.interiors[interiorID] = nil
-    table.insert(self.reuse_interior_IDs, interiorID)
+    self.interiors[inst.interiorID] = nil
+    table.insert(self.reuse_interior_IDs, inst.interiorID)
 end
 
 function InteriorSpawner:FixInteriorID()
