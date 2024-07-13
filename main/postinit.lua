@@ -75,6 +75,7 @@ local prefab_posts = {
     "torch",
     "woodie",
     "world_network",
+    "world",
     "shard_network",
     "statueruins",
     "walls",

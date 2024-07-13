@@ -52,7 +52,7 @@ end
 AddPlayerPostInit(function(inst)
     if not TheNet:IsDedicated() then
         inst:DoTaskInTime(0, function()
-            if inst == ThePlayer then --only do this for the local player character
+            if inst == ThePlayer and TheWorld:HasTag("porkland") then --only do this for the local player character
                 inst:AddComponent("windvisuals")
             end
         end)
