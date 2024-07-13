@@ -16,6 +16,9 @@
 --                     **************************
 --
 
+-- 亚丹：实际上，在上方注释版本的代码中，z的范围是(+BORDER + 2000,+infinite)
+-- 亚丹：将z的坐标范围修改为(-1000,+infinite)，注意当z小于-2000时渲染会因为超出TheSim:UpdateRenderExtents而出现问题
+
 
 local SPACE = 120
 local MAX_X_OFFSET = 2000
@@ -33,6 +36,7 @@ local InteriorSpawner = Class(function(self, inst)
     self.exteriors_hashmap = {} -- {[exterior: House]: true}
     self.interiors_hashmap = {} -- {[interior: Room]: true}
     self.doors = {} -- {[index: string]: DoorDef}
+    self.reuse_interior_IDs = {} -- 记录那些生成后被删掉的室内ID，以重复利用其空间
     self.next_interior_ID = 0
 
     -- if value is redirected_id, then access twice
@@ -70,7 +74,7 @@ function InteriorSpawner:SetInteriorPos()
 
     local max_size = math.max(self.x_start + MAX_X_OFFSET, self.z_start + MAX_Z_OFFSET)
     max_size = math.ceil(2 * (max_size + SPACE + PADDING))
-    TheSim:UpdateRenderExtents(max_size)
+    TheSim:UpdateRenderExtents(max_size) -- 设置底层引擎的渲染范围。需要注意，根据官方的说法，渲染范围太大会影响性能
 
     self.pos_set = true
 
@@ -85,13 +89,19 @@ function InteriorSpawner:OnSave()
     for interiorID, def in pairs(self.interiors) do
         data.interiors[interiorID] = def
     end
+    data.reuse_interior_IDs = self.reuse_interior_IDs
     return data
 end
 
 function InteriorSpawner:OnLoad(data)
-    if data and data.interiors then
-        for interiroID, def in pairs(data.interiors) do
-            self:AddInterior(def)
+    if data then
+        if data.interiors then
+            for interiroID, def in pairs(data.interiors) do
+                self:AddInterior(def)
+            end
+        end
+        if data.interiors then
+            self.interiors = data.interiors
         end
     end
     self:SetInteriorPos()
@@ -109,7 +119,14 @@ function InteriorSpawner:GetCurrentMaxID()
     return index
 end
 
-function InteriorSpawner:GetNewID()
+function InteriorSpawner:GetNewID() -- 注意：每次该函数被调用，都会占用一个interior_ID及其对应的室内区域，因此确定有使用需求再调用此函数
+        -- 并且需要在该室内区域移除后需要触发回调，通过reuse_interior_IDs来重复使用interior_ID
+    if #self.reuse_interior_IDs > 0 then
+        table.sort(self.reuse_interior_IDs) -- 从小到大排序
+        local reuse_ID = self.reuse_interior_IDs[1]
+        table.remove(self.reuse_interior_IDs, 1) -- 使用后删除最小项
+        return reuse_ID
+    end
     self.next_interior_ID = self.next_interior_ID + 1
     return self.next_interior_ID
 end
@@ -125,7 +142,7 @@ end
 
 function InteriorSpawner:IsInInteriorRegion(x, z)
     return x >= self.x_start - PADDING and x <= self.x_start + MAX_X_OFFSET + PADDING
-        and z >= self.z_start - PADDING and z <= self.z_start + MAX_Z_OFFSET + PADDING
+        and z >= - 1000 and z <= self.z_start + MAX_Z_OFFSET + PADDING -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
 end
 
 function InteriorSpawner:IsInInteriorRoom(x, z, padding)
@@ -163,7 +180,7 @@ function InteriorSpawner:IndexToPosition(i)
     return Vector3(
         x_index * SPACE + self.x_start,
         0,
-        z_index * SPACE + self.z_start)
+        z_index * SPACE - 1000) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
 end
 
 function InteriorSpawner:PositionToIndex(pos)
@@ -171,7 +188,7 @@ function InteriorSpawner:PositionToIndex(pos)
     local x_size = math.floor(MAX_X_OFFSET / SPACE)
     local x, z = pos.x, pos.z
     local x_index = math.floor((x - self.x_start) / SPACE + 0.5)
-    local z_index = math.floor((z - self.z_start) / SPACE + 0.5)
+    local z_index = math.floor((z + 1000) / SPACE + 0.5) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
     return z_index * x_size + x_index
 end
 
@@ -319,7 +336,13 @@ function InteriorSpawner:AddInteriorCenter(inst)
     self.interiors_hashmap[inst] = true
 
     self.inst:ListenForEvent("onremove",
-        function() self.interiors_hashmap[inst] = nil end, inst)
+        function() self:RemoveInteriorCenter(inst) end, inst)
+end
+
+function InteriorSpawner:RemoveInteriorCenter(inst)
+    self.interiors_hashmap[inst] = nil
+    self.interiors[interiorID] = nil
+    table.insert(self.reuse_interior_IDs, interiorID)
 end
 
 function InteriorSpawner:FixInteriorID()

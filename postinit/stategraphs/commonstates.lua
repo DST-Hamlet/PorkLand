@@ -21,7 +21,7 @@ end
 
 local function onattackwithtarget(inst, data)
     if inst.components.health ~= nil and not inst.components.health:IsDead()
-        and (not inst.sg:HasStateTag("busy") or inst.sg:HasStateTag("hit")) then
+        and not (inst.sg:HasStateTag("busy") or inst.sg:HasStateTag("hit")) then
         inst.sg:GoToState("attack", data.target)
     end
 end

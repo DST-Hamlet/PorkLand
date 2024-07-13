@@ -93,7 +93,6 @@ end
 
 local function ClearFx(inst)
     for k, v in pairs(inst.fx)do
-        print(k)
         inst.fx[k] = nil
         k:Remove()
     end

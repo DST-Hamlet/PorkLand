@@ -16,3 +16,13 @@ function TeamLeader:OnUpdate(dt, ...)  -- 修复了群体战斗生物不会因�
 	end
     return _OnUpdate(self, dt, ...)
 end
+
+local _GetTheta = TeamLeader.GetTheta
+function TeamLeader:GetTheta(dt, ...)
+    self.thetaincrement = 5 / (self.radius) -- TeamLeader存在诸多问题，有时间可以做个pl_teamleader来进行代替
+    if self.mult then
+        return _GetTheta(self, dt * self.mult, ...)
+    else
+        return _GetTheta(self, dt, ...)
+    end
+end

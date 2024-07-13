@@ -33,7 +33,6 @@ local function DoDamage(inst)
     local ents = TheSim:FindEntities(x, y, z, radius, nil, DAMAGE_NO_TAGS)
     for _, ent in pairs(ents)do
         if ent.components.health then
-            print(ent)
             inst.components.combat:DoAttack(ent)
         elseif ent.components.workable and ent.components.workable.workleft > 0 then
             ent.components.workable:Destroy(inst)

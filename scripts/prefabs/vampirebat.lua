@@ -26,6 +26,7 @@ local SHARE_TARGET_DIST = 40
 local function MakeTeam(inst, attacker)
     local leader = SpawnPrefab("teamleader")
     leader:AddTag("vampirebat")
+    leader.components.teamleader.mult = 1.5
     leader.components.teamleader:SetUp(attacker, inst)
     leader.components.teamleader:BroadcastDistress(inst)
 end
@@ -39,7 +40,8 @@ local function OnWingDownShadow(inst)
 end
 
 local function KeepTarget(inst, target)
-    if (inst.components.teamattacker.teamleader and not inst.components.teamattacker.teamleader:CanAttack()) or
+    if inst.components.teamattacker.teamleader == nil or
+        (inst.components.teamattacker.teamleader and not inst.components.teamattacker.teamleader:CanAttack()) or
         inst.components.teamattacker.orders == "ATTACK" then
         return true
     else
@@ -99,7 +101,7 @@ local function OnSave(inst, data)
     if inst.forcesleep then
         data.forcesleep = true
     end
-    if inst.sg:HasStateTag("flying") then
+    if inst.sg:HasStateTag("flight") then
         data.flying = true
     end
 end
@@ -161,9 +163,9 @@ local function fn()
     end
 
     inst:AddComponent("locomotor")
-    inst.components.locomotor:SetSlowMultiplier(1)
+    inst.components.locomotor:EnableGroundSpeedMultiplier(false)
     inst.components.locomotor:SetTriggersCreep(false)
-    inst.components.locomotor.pathcaps = {ignorecreep = true, allowocean = true}
+    inst.components.locomotor.pathcaps = {ignorewalls = true, ignorecreep = true, allowocean = true}
     inst.components.locomotor.walkspeed = TUNING.VAMPIREBAT_WALK_SPEED
 
     inst:AddComponent("eater")
@@ -233,13 +235,12 @@ local function DoDive(inst)
             bat.Transform:SetPosition(spawn_point.x, spawn_point.y + 30, spawn_point.z)
             bat.sg:GoToState("glide")
             bat:AddTag("batfrenzy")
-
-            bat:DoTaskInTime(2, function()
-                -- Use Combat:SuggestTarget?
-                bat:PushEvent("attacked", {attacker = player, damage = 0, weapon = nil})
-            end)
         end
-        inst:Remove()
+        inst.task = nil
+        inst.taskinfo = nil
+        inst.components.colourtweener:StartTween({1,1,1,0}, 0.3)
+        inst.components.circler:Stop()
+        inst:DoTaskInTime(1,inst.Remove)
         return
     end
 
@@ -255,67 +256,28 @@ local function DoDive(inst)
 
             bat:DoTaskInTime(2, function()
                 -- Use Combat:SuggestTarget?
-                bat:PushEvent("attacked", {attacker = player, damage = 0, weapon = nil})
+                bat.components.combat:SuggestTarget(player)
             end)
         end
-        inst:Remove()
+        inst.task = nil
+        inst.taskinfo = nil
+        inst.components.colourtweener:StartTween({1,1,1,0}, 0.3)
+        inst.components.circler:Stop()
+        inst:DoTaskInTime(1,inst.Remove)
     else
         inst.task, inst.taskinfo = inst:ResumeTask(5 + math.random() * 2, DoDive)
     end
 end
 
-local MAX_FADE_FRAME = math.floor(3 / FRAMES + 0.5)
 
-local function OnUpdateFade(inst, dframes)
-    local done
-    if inst._isfadein:value() then
-        local frame = inst._fadeframe:value() + dframes
-        done = frame >= MAX_FADE_FRAME
-        inst._fadeframe:set_local(done and MAX_FADE_FRAME or frame)
-    else
-        local frame = inst._fadeframe:value() - dframes
-        done = frame <= 0
-        inst._fadeframe:set_local(done and 0 or frame)
-    end
-
-    local k = inst._fadeframe:value() / MAX_FADE_FRAME
-    inst.AnimState:OverrideMultColour(1, 1, 1, k)
-
-    if done then
-        inst._fadetask:Cancel()
-        inst._fadetask = nil
-        if inst._killed then
-            --don't need to check ismastersim, _killed will never be set on clients
-            inst:Remove()
-            return
-        end
-    end
-
-    if TheWorld.ismastersim then
-        if inst._fadeframe:value() > 0 then
-            inst:Show()
+local function CircleOnIsNight(inst)
+    if inst.taskinfo ~= nil then
+        if TheWorld.state.isnight then
+            inst.components.colourtweener:StartTween({1,1,1,0}, 3)
         else
-            inst:Hide()
+            inst.components.colourtweener:StartTween({1,1,1,1}, 3)
         end
     end
-end
-
-local function OnFadeDirty(inst)
-    if inst._fadetask == nil then
-        inst._fadetask = inst:DoPeriodicTask(FRAMES, OnUpdateFade, nil, 1)
-    end
-    OnUpdateFade(inst, 0)
-end
-
-local function CircleOnIsNight(inst, isnight)
-    inst._isfadein:set(not isnight)
-    inst._fadeframe:set(inst._fadeframe:value())
-    OnFadeDirty(inst)
-end
-
-local function CircleOnInit(inst)
-    inst:WatchWorldState("isnight", CircleOnIsNight)
-    CircleOnIsNight(inst, TheWorld.state.isnight)
 end
 
 local function OnSaveShadow(inst, data)
@@ -328,6 +290,7 @@ end
 
 local function OnLoadShadow(inst, data)
     if not data then
+        inst:Remove()
         return
     end
 
@@ -359,23 +322,24 @@ local function circlingbatfn()
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(3)
-    inst.AnimState:OverrideMultColour(1, 1, 1, 0)
+    inst.AnimState:SetMultColour(1, 1, 1, 0)
 
     inst:AddTag("FX")
-
-    inst._fadeframe = net_byte(inst.GUID, "circlingbuzzard._fadeframe", "fadedirty")
-    inst._isfadein = net_bool(inst.GUID, "circlingbuzzard._isfadein", "fadedirty")
-    inst._fadetask = nil
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("fadedirty", OnFadeDirty)
-
         return inst
     end
 
     inst:AddComponent("circler")
+    inst.components.circler.minScale = 10
+    inst.components.circler.maxScale = 8
+
+    inst:AddComponent("colourtweener")
+    if not TheWorld.state.isnight then
+        inst.components.colourtweener:StartTween({1,1,1,1}, 3)
+    end
 
     inst:ListenForEvent("wingdown", OnWingDownShadow)
     -- flap sound
@@ -387,7 +351,8 @@ local function circlingbatfn()
         end
     end)
 
-    inst:DoTaskInTime(0, CircleOnInit)
+    inst:WatchWorldState("isnight", CircleOnIsNight)
+    inst:WatchWorldState("isday", CircleOnIsNight)
 
     inst.task, inst.taskinfo = inst:ResumeTask(20 + math.random() * 2, DoDive)
 
