@@ -147,6 +147,7 @@ modimport("postinit/vector3")
 modimport("postinit/emittermanager")
 modimport("postinit/minimapentity")
 modimport("postinit/sim")
+modimport("postinit/pathfinder")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

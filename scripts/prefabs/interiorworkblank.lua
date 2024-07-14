@@ -39,6 +39,10 @@ local function SetUp(inst, data)
     inst.size_net:set(inst.width, inst.depth)
     inst.search_radius = inst:GetSearchRadius()
 
+    if inst.components.interiorpathfinder then
+        inst.components.interiorpathfinder:PopulateRoom()
+    end
+
     if data.forceInteriorMinimap then
         inst:AddInteriorTags("FORCE_MINIMAP")
     end
@@ -396,6 +400,8 @@ local function fn()
     inst.SetUp = SetUp
     inst.GetSearchRadius = GetSearchRadius
     inst.CollectMinimapData = CollectMinimapData
+
+    inst:AddComponent("interiorpathfinder")
 
     inst.walltexture = nil
     inst.floortexture = nil
