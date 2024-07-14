@@ -96,8 +96,7 @@ local function is_in_set(set, node)
 end
 
 -- A* algorithm
-local function a_star(start, goal, grid, width, depth, ignorewalls) -- 亚丹：GPT写的，因为我菜
-    -- TODO: 实际上可以用IsClear来取消一些无用节点
+local function a_star(start, goal, grid, width, depth, ignorewalls) -- 亚丹：A星寻路算法
     local open_set = {start}
     local closed_set = {}
 
