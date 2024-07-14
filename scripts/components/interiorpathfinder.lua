@@ -31,7 +31,7 @@ local function IsClearPath(start_x, start_y, end_x, end_y, map, width, depth, ig
         local iy = math.floor(y + 0.5)
 
         if not IsInBounds(ix, iy, map, width, depth) or (not ignorewalls and map[ix] and map[ix][iy] and map[ix][iy] == Blockers.Wall) then
-            print("point is not clear!!!!!", ix, iy)
+            -- print("point is not clear!!!!!", ix, iy)
             return false
         end
 
@@ -42,7 +42,7 @@ local function IsClearPath(start_x, start_y, end_x, end_y, map, width, depth, ig
             if (ix ~= prev_ix and iy ~= prev_iy) and
                ((map[ix] and map[ix][prev_iy] and map[ix][prev_iy] == Blockers.Wall) or
                 (map[prev_ix] and map[prev_ix][iy] and map[prev_ix][iy] == Blockers.Wall)) then
-                print("diagonal point is not clear!!!!!", ix, iy)
+                -- print("diagonal point is not clear!!!!!", ix, iy)
                 return false
             end
         end
@@ -50,7 +50,7 @@ local function IsClearPath(start_x, start_y, end_x, end_y, map, width, depth, ig
         x = x + x_step
         y = y + y_step
     end
-    print("clear!!!!!", start_x, start_y)
+    -- print("clear!!!!!", start_x, start_y)
     return true
 end
 
@@ -78,7 +78,7 @@ local function get_neighbors(node, grid, width, depth, ignorewalls)
     }
     for _, dir in ipairs(directions) do
         local nx, ny = node.x + dir[1], node.y + dir[2]
-        if not ignorewalls and not (grid[nx] and grid[nx][ny] and grid[nx][ny] == Blockers.Wall) then
+        if not ignorewalls and IsInBounds(nx, ny, grid, width, depth) and not (grid[nx] and grid[nx][ny] and grid[nx][ny] == Blockers.Wall) then
             table.insert(neighbors, CreateNode(nx, ny, 0, 0, node))
         end
     end
@@ -227,7 +227,7 @@ function InteriorPathfinder:AddWall(x, y, z) -- 并未考虑室内大小的动�
         self.interior_physicswall[_x] = {}
     end
     self.interior_physicswall[_x][_z] = Blockers.Wall
-    print("AddWall to interior",_x,_z)
+    -- print("AddWall to interior",_x,_z)
 end
 
 function InteriorPathfinder:RemoveWall(x, y, z)
@@ -236,7 +236,7 @@ function InteriorPathfinder:RemoveWall(x, y, z)
         self.interior_physicswall[_x] = {}
     end
     self.interior_physicswall[_x][_z] = 0
-    print("RemoveWall to interior",_x,_z)
+    -- print("RemoveWall to interior",_x,_z)
 end
 
 function InteriorPathfinder:HasWall(x, y, z)
@@ -254,6 +254,14 @@ function InteriorPathfinder:IsClear(x, y, z, tx, ty, tz, data) -- 检测两点�
 end
 
 function InteriorPathfinder:CalculateSearch(x, y, z, tx, ty, tz, data) -- 计算寻路
+    local isclear = self:IsClear(x, y, z, tx, ty, tz, data)
+    if isclear then
+        return {
+            isinterior = true,
+            path = {steps = {}},
+            status = STATUS_NOPATH,
+        }
+    end
     local _x, _y, _z = self:WorldPositionToLocal(x, y, z)
     local start = CreateNode(_x, _z, 0, 0, nil) -- 开始位置
     local _tx, _ty, _tz = self:WorldPositionToLocal(tx, ty, tz)
