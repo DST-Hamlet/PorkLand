@@ -341,8 +341,10 @@ end
 
 function InteriorSpawner:RemoveInteriorCenter(inst)
     self.interiors_hashmap[inst] = nil
-    self.interiors[inst.interiorID] = nil
-    table.insert(self.reuse_interior_IDs, inst.interiorID)
+    if inst.interiorID then
+        self.interiors[inst.interiorID] = nil
+        table.insert(self.reuse_interior_IDs, inst.interiorID)
+    end
 end
 
 function InteriorSpawner:FixInteriorID()

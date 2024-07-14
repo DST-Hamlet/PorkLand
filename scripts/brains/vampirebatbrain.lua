@@ -25,8 +25,6 @@ function VampireBatBrain:OnStart()
             {
                 BrainCommon.PanicTrigger(self.inst),
 
-                AttackWall(self.inst),
-
                 ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST),
 
                 Wander(self.inst, GetWanderPos, 8),
