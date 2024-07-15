@@ -39,6 +39,10 @@ local function SetUp(inst, data)
     inst.size_net:set(inst.width, inst.depth)
     inst.search_radius = inst:GetSearchRadius()
 
+    if inst.components.interiorpathfinder then
+        inst.components.interiorpathfinder:PopulateRoom()
+    end
+
     if data.forceInteriorMinimap then
         inst:AddInteriorTags("FORCE_MINIMAP")
     end
@@ -242,6 +246,12 @@ local function OnTagsMaskChange(inst)
     inst.interior_tags = tags
 end
 
+local function OnSizeChange(inst)
+    if inst.components.interiorpathfinder then
+        inst.components.interiorpathfinder:PopulateRoom()
+    end
+end
+
 local function OnTagsChange(inst)
     local sum = 0
     for k in pairs(inst.interior_tags)do
@@ -351,8 +361,8 @@ local function fn()
 
     inst.cc_index = net_byte(inst.GUID, "cc_index", "cc_index")
     inst.size_net = {
-        width = net_byte(inst.GUID, "size.width"),
-        depth = net_byte(inst.GUID, "size.depth"),
+        width = net_byte(inst.GUID, "size.width", "sizedirty"),
+        depth = net_byte(inst.GUID, "size.depth", "sizedirty"),
         set = function(self, w, d)
             self.width:set(w)
             self.depth:set(d)
@@ -369,6 +379,7 @@ local function fn()
     inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
 
     inst.GetSize = GetSize
+    inst.GetSearchRadius = GetSearchRadius
     inst.GetDoorById = GetDoorById
     inst.GetDoorToExterior = GetDoorToExterior
     inst.GetIsSingleRoom = GetIsSingleRoom
@@ -377,6 +388,8 @@ local function fn()
 
     TheWorld.components.interiorspawner:AddInteriorCenter(inst)
     TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
+
+    inst:AddComponent("interiorpathfinder")
 
     if not TheNet:IsDedicated() then
         inst.OnEntitySleep = StopUpdateState
@@ -387,6 +400,7 @@ local function fn()
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("interior_tags_mask", OnTagsMaskChange)
+        inst:ListenForEvent("sizedirty", OnSizeChange)
         return inst
     end
 
@@ -394,7 +408,6 @@ local function fn()
     inst.height = 5
     inst.depth = TUNING.ROOM_TINY_DEPTH
     inst.SetUp = SetUp
-    inst.GetSearchRadius = GetSearchRadius
     inst.CollectMinimapData = CollectMinimapData
 
     inst.walltexture = nil

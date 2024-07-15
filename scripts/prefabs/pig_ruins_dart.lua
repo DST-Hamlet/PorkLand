@@ -132,7 +132,7 @@ local function MakeDart(name, build, bank, animframe, facing)
         inst.AnimState:SetBuild(build)
         inst.AnimState:PlayAnimation(animframe)
         inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
-        inst.AnimState:SetSortOrder(1)
+        inst.AnimState:SetSortOrder(3)
 
         inst.Transform:SetRotation(-90)
 
@@ -176,7 +176,7 @@ local function MakeDart(name, build, bank, animframe, facing)
         inst.OnLoad = OnLoad
         inst.shoot = Shoot
 
-        inst.setbackground = 1
+        inst.setbackground = 3
         inst.animframe = animframe
 
         UpdateArt(inst)

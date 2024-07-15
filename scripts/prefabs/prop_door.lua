@@ -311,47 +311,6 @@ local function DisableDoor(inst, setting, cause)
 
     local door = inst.components.door
     door:SetDoorDisabled(setting, cause)
-
-    -- deal with connecting doors.
-    local interior_spawner = TheWorld.components.interiorspawner
-    if interior_spawner.doors[door.target_door_id] then
-        -- THIS DOORS OPPOSITE DOOR HAS BEEN VISITED BEFORE
-        local targetdoor = interior_spawner.doors[door.target_door_id].inst
-        if targetdoor then
-            if setting == true then
-                if cause == "door" then
-                    targetdoor.closedoor(targetdoor)
-                end
-            else
-                if cause == "door" then
-                    targetdoor.opendoor(targetdoor)
-                end
-            end
-            targetdoor.components.door:SetDoorDisabled(setting, cause)
-        end
-
-    else
-        -- THIS DOORS OPPOSITE DOOR MAY EXIST BUT NOT VISITED YET..
-        local interior = door.target_interior and interior_spawner:GetInteriorByIndex(door.target_interior)
-        if interior then
-            if interior.prefabs then
-                for k, prefab in ipairs(interior.prefabs) do
-                    if prefab.my_door_id and prefab.my_door_id == door.target_door_id then
-
-                        if not prefab.door_closed then
-                            prefab.door_closed = {}
-                        end
-
-                        prefab.door_closed[cause] = setting
-
-                        break
-                    end
-                end
-            end
-        else
-            print("INTERIOR WAS NOT FOUND")
-        end
-    end
 end
 
 local function UseDoor(inst,data)
@@ -364,7 +323,7 @@ local function UseDoor(inst,data)
     end
 end
 
-local function OpenDoor(inst, instant)
+local function OpenDoor(inst, nospread)
     if inst.baseanimname and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] then
         if not inst:IsAsleep() then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/slide")
@@ -375,12 +334,19 @@ local function OpenDoor(inst, instant)
         end
 
         DisableDoor(inst, nil, "door")
-
         inst.dooranimclosed = nil
+
+        local interior_spawner = TheWorld.components.interiorspawner
+        if interior_spawner.doors[inst.components.door.target_door_id] then
+            local targetdoor = interior_spawner.doors[inst.components.door.target_door_id].inst
+            if targetdoor and not nospread then
+                targetdoor:opendoor(true)
+            end
+        end
     end
 end
 
-local function CloseDoor(inst, instant)
+local function CloseDoor(inst, nospread)
     -- once the player has used a door, the doors should freeze open
     if inst.components.door.disabled and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] == true then
         return
@@ -403,6 +369,14 @@ local function CloseDoor(inst, instant)
 
     DisableDoor(inst, true, "door")
     inst.dooranimclosed = true
+
+    local interior_spawner = TheWorld.components.interiorspawner
+    if interior_spawner.doors[inst.components.door.target_door_id] then
+        local targetdoor = interior_spawner.doors[inst.components.door.target_door_id].inst
+        if targetdoor and not nospread then
+            targetdoor:closedoor(true)
+        end
+    end
 end
 
 local function testPlayerHouseDoor(inst)
@@ -435,6 +409,7 @@ local function fn()
     inst.Light:Enable(false)
 
     inst:AddTag("interior_door")
+    inst:AddTag("client_forward_action_target") -- 为了能被键盘操作交互检测
     inst:AddTag("NOBLOCK")
 
     inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
@@ -463,7 +438,7 @@ local function fn()
     inst.saveInteriorData = SaveInteriorData
     inst.initFromInteriorSave = InitFromInteriorSave
 
-    -- MakeHauntableDoor(inst) -- 这部分功能在action中处理了
+    MakeHauntableDoor(inst) -- 门关上时，鬼魂玩家仍然可以通过
 
     inst.opendoor = OpenDoor
     inst.closedoor = CloseDoor

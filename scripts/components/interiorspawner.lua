@@ -341,8 +341,10 @@ end
 
 function InteriorSpawner:RemoveInteriorCenter(inst)
     self.interiors_hashmap[inst] = nil
-    self.interiors[inst.interiorID] = nil
-    table.insert(self.reuse_interior_IDs, inst.interiorID)
+    if inst.interiorID then
+        self.interiors[inst.interiorID] = nil
+        table.insert(self.reuse_interior_IDs, inst.interiorID)
+    end
 end
 
 function InteriorSpawner:FixInteriorID()
@@ -998,7 +1000,7 @@ function InteriorSpawner:SendMinimapLayoutData()
             table.insert(data, {k, v})
         end
         SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"),
-            full_list, TheSim:ZipAndEncodeString(json.encode(data)))
+            full_list, TheSim:ZipAndEncodeString(DataDumper(data)))
     end
     if #diff_list > 0 then
         -- TODO: 这里没有考虑房间的销毁和key的移除
@@ -1009,7 +1011,7 @@ function InteriorSpawner:SendMinimapLayoutData()
         end
         self.interior_layout_dirty_keys = {}
         SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"),
-            diff_list, TheSim:ZipAndEncodeString(json.encode(data)))
+            diff_list, TheSim:ZipAndEncodeString(DataDumper(data)))
     end
 end
 

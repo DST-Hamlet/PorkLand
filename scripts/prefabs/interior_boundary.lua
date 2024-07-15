@@ -27,14 +27,6 @@ local function fn()
         -- TODO: remove this wall if not in interior
     end)
 
-    inst:DoTaskInTime(0.5, function()
-        TheWorld.Pathfinder:AddWall(inst:GetPosition():Get())
-    end)
-
-    inst:ListenForEvent("onremove", function()
-        TheWorld.Pathfinder:RemoveWall(inst:GetPosition():Get())
-    end)
-
     inst.entity:SetPristine()
     if not TheWorld.ismastersim then
         return inst
