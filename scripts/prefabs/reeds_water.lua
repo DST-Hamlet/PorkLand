@@ -10,7 +10,7 @@ local prefabs = {
 local fn = function()
     local inst = Prefabs["reeds"].fn()
 
-    inst.MiniMapEntity:SetIcon("reeds_in_water.png")
+    inst.MiniMapEntity:SetIcon("reeds_in_water.tex")
 
     MakeObstaclePhysics(inst, .25)
 
