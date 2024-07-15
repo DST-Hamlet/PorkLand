@@ -249,7 +249,8 @@ end
 function InteriorPathfinder:IsClear(x, y, z, tx, ty, tz, data) -- 检测两点之间的直线寻路是否有阻挡
     local _x, _y, _z = self:WorldPositionToLocal(x, y, z)
     local _tx, _ty, _tz = self:WorldPositionToLocal(tx, ty, tz)
-    return IsClearPath(_x, _z, _tx, _tz, self.interior_physicswall, self:GetWidth(), self:GetDepth(), data.ignorewalls)
+    local ignorewalls = data and data.ignorewalls
+    return IsClearPath(_x, _z, _tx, _tz, self.interior_physicswall, self:GetWidth(), self:GetDepth(), ignorewalls)
 end
 
 function InteriorPathfinder:CalculateSearch(x, y, z, tx, ty, tz, data) -- 计算寻路
@@ -265,14 +266,15 @@ function InteriorPathfinder:CalculateSearch(x, y, z, tx, ty, tz, data) -- 计算
     local start = CreateNode(_x, _z, 0, 0, nil) -- 开始位置
     local _tx, _ty, _tz = self:WorldPositionToLocal(tx, ty, tz)
     local goal = CreateNode(_tx, _tz, 0, 0, nil) -- 目标位置
-    local calcupath = a_star(start, goal, self.interior_physicswall, self:GetWidth(), self:GetDepth(), data.ignorewalls)
+    local ignorewalls = data and data.ignorewalls
+    local calcupath = a_star(start, goal, self.interior_physicswall, self:GetWidth(), self:GetDepth(), ignorewalls)
     local search = {
         isinterior = true,
         path = {steps = {}},
         status = STATUS_CALCULATING,
     }
     if calcupath then
-        local smoothed_path = smooth_path(calcupath, self.interior_physicswall, self:GetWidth(), self:GetDepth(), data.ignorewalls)
+        local smoothed_path = smooth_path(calcupath, self.interior_physicswall, self:GetWidth(), self:GetDepth(), ignorewalls)
         for i, v in ipairs(smoothed_path) do
             search.path.steps[i] = Vector3(self:LocalPositionToWorld(v[1],0,v[2])) -- 记录寻路路径上的所有节点
         end

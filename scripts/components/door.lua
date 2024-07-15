@@ -175,6 +175,13 @@ function Door:OnLoad(data)
     if data.disable_causes then
         self.disable_causes = data.disable_causes
     end
+    local door_definition = {
+        my_interior_name = data.interior_name,
+        my_door_id = data.door_id,
+        target_door_id = data.target_door_id,
+        target_interior = data.target_interior,
+    }
+    TheWorld.components.interiorspawner:AddDoor(self.inst, door_definition)
     self:SetDoorDisabled()
 end
 

@@ -408,11 +408,7 @@ function MakeHauntableDoor(inst)
     end
     inst.components.hauntable.cooldown = TUNING.HAUNT_COOLDOWN_SMALL
     inst.components.hauntable:SetOnHauntFn(function(inst, player)
-        local success, reason = ACTIONS.USEDOOR.fn({target = inst, doer = player})
-        if not success then
-            inst:PushEvent("actionfailed", {action = BufferedAction(inst, player, ACTIONS.USEDOOR), reason = reason})
-        end
-        return false
+        inst:PushEvent("open")
     end)
 end
 

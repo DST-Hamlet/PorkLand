@@ -270,7 +270,7 @@ local function DoTeleport(player, pos)
             player.Physics:Teleport(pos:Get())
         end
         player.components.interiorvisitor:UpdateExteriorPos()
-        --player.components.health:SetInvincible(invincible)
+        -- player.components.health:SetInvincible(invincible)
         Sleep(0.1) -- 出于未知原因，当Sleep(0)的时候SnapCamera执行时玩家的位置仍未发生变化，因此改为0.1
         if player.components.playercontroller ~= nil then
             player.components.playercontroller:EnableMapControls(true)
@@ -289,9 +289,9 @@ local function OnTeleportFailed(player)
     -- end
 end
 
-ACTIONS.USEDOOR.fn = function(act) -- 感觉这里大部分的内容应该移到component上去
+ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内容应该移到component上去
     local door = act.target
-    if door.components.door.disabled or door.components.door.hidden then
+    if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
         return false, "DISABLED"
     end
     local target_interior = door.components.door.target_interior

@@ -21,6 +21,9 @@ local GetPickupAction = function(self, target, tool, ...)
         not TheWorld.Map:IsLandTileAtPoint(target.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
         rets[1] = ACTIONS.RETRIEVE
     end
+    if target:HasTag("interior_door") and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+        rets[1] = ACTIONS.USEDOOR
+    end
     return unpack(rets)
 end
 ToolUtil.SetUpvalue(PlayerController.GetActionButtonAction, GetPickupAction, "GetPickupAction")
