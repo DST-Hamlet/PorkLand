@@ -764,10 +764,12 @@ function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
     if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
         target and target:HasTag("weighdownable") then
             table.insert(actions, ACTIONS.WEIGHDOWN)
+            return
     elseif target and target.replica.visualshelfslot then
         local shelf = target.replica.visualshelfslot:GetShelf()
-        if shelf and not target.replica.visualshelfslot:GetItem() and shelf:HasTag("canput") then
+        if shelf and not target.replica.visualshelfslot:GetItem() and not inst.replica.inventoryitem:CanOnlyGoInPocket() and shelf:HasTag("canput") then
             table.insert(actions, ACTIONS.PUTSHELF)
+            return
         end
     else
         _USEITEM_inventoryitem(inst, doer, target, actions, right, ...)
