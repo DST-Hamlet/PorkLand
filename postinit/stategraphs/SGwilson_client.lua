@@ -9,6 +9,8 @@ local TIMEOUT = 2
 local DoFoleySounds = nil
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.PICKSHELF, "doshortaction"),
+    ActionHandler(ACTIONS.PUTSHELF, "doshortaction"),
     ActionHandler(ACTIONS.RETRIEVE, "dolongaction"),
     ActionHandler(ACTIONS.TOGGLEON, "give"),
     ActionHandler(ACTIONS.TOGGLEOFF, "give"),

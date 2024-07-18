@@ -15,7 +15,7 @@ if not rawget(_G, "HotReloading") then
         MOUNTDUNG = Action({}),
         CUREPOISON = Action({mount_valid = true}),
         EMBARK = Action({priority = 1, distance = 6}),
-        DISEMBARK = Action({priority = 1, distance = 2.5, invalid_hold_action=true}),
+        DISEMBARK = Action({priority = 1, distance = 2.5, invalid_hold_action = true}),
         RETRIEVE = Action({priority = 1, distance = 3}),
         TOGGLEON = Action({priority = 2, mount_valid = true}),
         TOGGLEOFF = Action({priority = 2, mount_valid = true}),
@@ -26,7 +26,9 @@ if not rawget(_G, "HotReloading") then
         WEIGHDOWN = Action({distance = 1.5}),
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
-        SPY = Action({distance = 2, mount_enabled =true}),
+        SPY = Action({distance = 2, mount_enabled = true}),
+        PUTSHELF = Action({ distance = 2 }),
+        PICKSHELF = Action({ distance = 2, priority = 1 })
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -360,6 +362,33 @@ ACTIONS.WEIGHDOWN.fn = function(act)
 	end
 end
 
+ACTIONS.PUTSHELF.fn = function(act)
+    local shelf = act.target.replica.visualshelfslot:GetShelf()
+
+    if shelf.components.container ~= nil and act.invobject.components.inventoryitem ~= nil then
+        local item = act.invobject.components.inventoryitem:RemoveFromOwner(shelf.components.container.acceptsstacks)
+        return shelf.components.container:GiveItem(item, act.target.components.visualshelfslot:GetSlot(), nil, false)
+    end
+end
+
+ACTIONS.PUTSHELF.stroverridefn = function(act)
+    return STRINGS.ACTIONS.STORE.GENERIC
+end
+
+ACTIONS.PICKSHELF.fn = function(act)
+    local shelf = act.target.replica.visualshelfslot:GetShelf()
+
+    if shelf.components.container ~= nil then
+        local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualshelfslot:GetSlot())
+        act.doer.components.inventory:GiveItem(item, nil, act.doer:GetPosition())
+
+        return true
+    end
+end
+
+ACTIONS.PICKSHELF.stroverridefn = function(act)
+    return STRINGS.ACTIONS.PICK.GENERIC
+end
 
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
@@ -565,16 +594,6 @@ ACTIONS.BLINK.fn = function(act, ...)
     end
 end
 
-ACTIONS.WEIGHDOWN.fn = function(act)
-    if act.target == nil then
-        return false
-    end
-	local pos = Vector3(act.target.Transform:GetWorldPosition())
-	if act.doer.components.inventory then
-		return act.doer.components.inventory:DropItem(act.invobject, false, false, pos)
-	end
-end
-
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world
@@ -601,6 +620,11 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.REARM)
             end
         end,
+        visualshelfslot = function(inst, doer, actions, right)
+            if inst:HasTag("canpick") then
+                table.insert(actions, ACTIONS.PICKSHELF)
+            end
+        end
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right
@@ -717,6 +741,13 @@ function SCENE.inventoryitem(inst, doer, actions, right, ...)
     end
 end
 
+local _SCENE_inspectable = SCENE.inspectable
+function SCENE.inspectable(inst, ...)
+    if inst:HasTag("inspectable") then
+        _SCENE_inspectable(inst, ...)
+    end
+end
+
 local _USEITEM_repairer = USEITEM.repairer
 function USEITEM.repairer(inst, doer, target, actions, right, ...)
     if right then
@@ -733,8 +764,11 @@ function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
     if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
         target and target:HasTag("weighdownable") then
             table.insert(actions, ACTIONS.WEIGHDOWN)
-    elseif target and target:HasTag("shelf_slot") then
-        table.insert(actions, ACTIONS.STORE)
+    elseif target and target.replica.visualshelfslot then
+        local shelf = target.replica.visualshelfslot:GetShelf()
+        if shelf and not target.replica.visualshelfslot:GetItem() and shelf:HasTag("canput") then
+            table.insert(actions, ACTIONS.PUTSHELF)
+        end
     else
         _USEITEM_inventoryitem(inst, doer, target, actions, right, ...)
     end
@@ -793,7 +827,6 @@ function PLENV.OnHotReload()
     ACTIONS.COOK.stroverridefn = _COOK_stroverridefn
     ACTIONS.PICK.strfn = _PICK_strfn
     ACTIONS.BLINK.fn = _BLINK_fn
-    ACTIONS.STORE.fn = _STORE_fn
 
     SCENE.container = _SCENE_container
     SCENE.rideable = _SCENE_rideable

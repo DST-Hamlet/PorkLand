@@ -152,8 +152,45 @@ for y = 1, 3 do
     end
 end
 
-
 params["boat_lograft"] = boat_lograft
 params["boat_row"] = boat_row
 params["boat_cork"] = boat_cork
 params["boat_cargo"] = boat_cargo
+
+local shelf1 =
+{
+    widget = {
+        slotpos = { Vector3(0, 0, 0) }
+    },
+    acceptsstacks = false,
+}
+
+
+local shelf1x3 = {
+    widget = {
+        slotpos = {
+            Vector3(-85 + 20, 0,   0),
+            Vector3(-85 + 20, -80, 0),
+            Vector3(-85 + 20, 80,  0)
+        },
+    },
+    acceptsstacks = false,
+}
+
+local shelf2x3 =
+{
+    widget = {
+        slotpos = {
+            Vector3(-165, -80, 0),
+            Vector3(-85,  -80, 0),
+            Vector3(-165, 0,   0),
+            Vector3(-85,  0,   0),
+            Vector3(-165, 80,  0),
+            Vector3(-85,  80,  0)
+        },
+    },
+    acceptsstacks = false,
+}
+
+params["shelf_ruins"] = shelf1
+params["shelf_wood"] = shelf2x3
