@@ -1,40 +1,40 @@
 local AddAction = AddAction
 local AddComponentAction = AddComponentAction
+local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
-local PL_ACTIONS = {
-    HACK = Action({mindistance = 1.75, silent_fail = true}),
-    SHEAR = Action({distance = 1.75}),
-    PAN = Action({distance = 1}),
-    PANGOLDEN_DRINK = Action({distance = 1.2}),
-    PANGOLDEN_POOP = Action({distance = 1.2}),
-    PEAGAWK_TRANSFORM = Action({}),
-    DIGDUNG = Action({mount_valid = true}),
-    MOUNTDUNG = Action({}),
-    CUREPOISON = Action({mount_valid = true}),
-    EMBARK = Action({priority = 1, distance = 6}),
-    DISEMBARK = Action({priority = 1, distance = 2.5, invalid_hold_action=true}),
-    RETRIEVE = Action({priority = 1, distance = 3}),
-    TOGGLEON = Action({priority = 2, mount_valid = true}),
-    TOGGLEOFF = Action({priority = 2, mount_valid = true}),
-    REPAIRBOAT = Action({distance = 3}),
-    DISLODGE = Action({}),
-    USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = true, encumbered_valid = true}),
-    VAMPIREBAT_FLYAWAY = Action({distance = 1}),
-    WEIGHDOWN = Action({distance = 1.5}),
-    DISARM = Action({priority = 1, distance = 1.5}),
-    REARM = Action({priority = 1, distance = 1.5}),
-    SPY = Action({distance = 2, mount_enabled =true}),
-}
+if not rawget(_G, "HotReloading") then
+    _G.PL_ACTIONS = {
+        HACK = Action({mindistance = 1.75, silent_fail = true}),
+        SHEAR = Action({distance = 1.75}),
+        PAN = Action({distance = 1}),
+        PANGOLDEN_DRINK = Action({distance = 1.2}),
+        PANGOLDEN_POOP = Action({distance = 1.2}),
+        PEAGAWK_TRANSFORM = Action({}),
+        DIGDUNG = Action({mount_valid = true}),
+        MOUNTDUNG = Action({}),
+        CUREPOISON = Action({mount_valid = true}),
+        EMBARK = Action({priority = 1, distance = 6}),
+        DISEMBARK = Action({priority = 1, distance = 2.5, invalid_hold_action=true}),
+        RETRIEVE = Action({priority = 1, distance = 3}),
+        TOGGLEON = Action({priority = 2, mount_valid = true}),
+        TOGGLEOFF = Action({priority = 2, mount_valid = true}),
+        REPAIRBOAT = Action({distance = 3}),
+        DISLODGE = Action({}),
+        USEDOOR = Action({priority = 1, mount_valid = true, ghost_valid = true, encumbered_valid = true}),
+        VAMPIREBAT_FLYAWAY = Action({distance = 1}),
+        WEIGHDOWN = Action({distance = 1.5}),
+        DISARM = Action({priority = 1, distance = 1.5}),
+        REARM = Action({priority = 1, distance = 1.5}),
+        SPY = Action({distance = 2, mount_enabled =true}),
+    }
 
-for name, ACTION in pairs(PL_ACTIONS) do
-    ACTION.id = name
-    ACTION.str = STRINGS.ACTIONS[name] or name
-    AddAction(ACTION)
+    for name, ACTION in pairs(_G.PL_ACTIONS) do
+        ACTION.id = name
+        ACTION.str = STRINGS.ACTIONS[name] or name
+        AddAction(ACTION)
+    end
 end
-
-
-
 
 ----set up the action functions
 local _ValidToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.validfn, "ValidToolWork")
@@ -232,25 +232,25 @@ ACTIONS.DISLODGE.validfn = function(act)
 end
 
 ACTIONS.DISARM.fn = function(act)
-	if act.target and act.target.components.disarmable and act.invobject and act.invobject.components.disarming then
-		return act.invobject.components.disarming:DoDisarming(act.target, act.doer)
-	end
+    if act.target and act.target.components.disarmable and act.invobject and act.invobject.components.disarming then
+        return act.invobject.components.disarming:DoDisarming(act.target, act.doer)
+    end
 end
 
 ACTIONS.REARM.fn = function(act)
-	if act.target and act.target.components.disarmable and not act.target.components.disarmable.armed and act.target.components.disarmable.rearmable then
-		return act.target.components.disarmable:DoRearming(act.target, act.doer)
-	end
+    if act.target and act.target.components.disarmable and not act.target.components.disarmable.armed and act.target.components.disarmable.rearmable then
+        return act.target.components.disarmable:DoRearming(act.target, act.doer)
+    end
 end
 
 ACTIONS.SPY.fn = function(act)
-	if act.target and act.target.components.mystery then
-		act.target.components.mystery:Investigate(act.doer)
-		return true
-	elseif act.target and act.target.components.mystery_door then
-		act.target.components.mystery_door:Investigate(act.doer)
-		return true
-	end
+    if act.target and act.target.components.mystery then
+        act.target.components.mystery:Investigate(act.doer)
+        return true
+    elseif act.target and act.target.components.mystery_door then
+        act.target.components.mystery_door:Investigate(act.doer)
+        return true
+    end
 end
 
 local function DoTeleport(player, pos)
@@ -350,10 +350,21 @@ ACTIONS.VAMPIREBAT_FLYAWAY.fn = function(act)
     return true
 end
 
+ACTIONS.WEIGHDOWN.fn = function(act)
+    if act.target == nil then
+        return false
+    end
+	local pos = Vector3(act.target.Transform:GetWorldPosition())
+	if act.doer.components.inventory then
+		return act.doer.components.inventory:DropItem(act.invobject, false, false, pos)
+	end
+end
+
+
 -- Patch for hackable things
-local _FERTILIZEfn = ACTIONS.FERTILIZE.fn
+local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
 function ACTIONS.FERTILIZE.fn(act, ...)
-    if _FERTILIZEfn(act, ...) then
+    if _FERTILIZE_fn(act, ...) then
         return true
     end
 
@@ -365,10 +376,10 @@ function ACTIONS.FERTILIZE.fn(act, ...)
     end
 end
 
-local _EQUIPfn = ACTIONS.EQUIP.fn
+local _EQUIP_fn = ACTIONS.EQUIP.fn
 function ACTIONS.EQUIP.fn(act, ...)
     if act.doer.components.inventory and act.invobject.components.equippable.equipslot then
-        return _EQUIPfn(act, ...)
+        return _EQUIP_fn(act, ...)
     end
     -- Boat equip slots
     if act.doer.components.sailor and act.doer.components.sailor.boat and act.invobject.components.equippable.boatequipslot then
@@ -455,17 +466,17 @@ ACTIONS.RUMMAGE.extra_arrive_dist = function(doer, dest, ...)
     return ret
 end
 
-local _RUMMAGEstrfn = ACTIONS.RUMMAGE.strfn
+local _RUMMAGE_strfn = ACTIONS.RUMMAGE.strfn
 function ACTIONS.RUMMAGE.strfn(act, ...)
     local targ = act.target or act.invobject
 
     return targ ~= nil and targ.replica.container and targ.replica.container.type == "boat" and
-        (targ.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT") or _RUMMAGEstrfn(act, ...)
+        (targ.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT") or _RUMMAGE_strfn(act, ...)
 end
 
-local _RUMMAGEfn = ACTIONS.RUMMAGE.fn
+local _RUMMAGE_fn = ACTIONS.RUMMAGE.fn
 function ACTIONS.RUMMAGE.fn(act, ...)
-    local ret = {_RUMMAGEfn(act, ...)}
+    local ret = {_RUMMAGE_fn(act, ...)}
     if ret[1] == nil then
         local targ = act.target or act.invobject
 
@@ -482,7 +493,7 @@ function ACTIONS.RUMMAGE.fn(act, ...)
     return unpack(ret)
 end
 
-local _UNEQUIPfn = ACTIONS.UNEQUIP.fn
+local _UNEQUIP_fn = ACTIONS.UNEQUIP.fn
 function ACTIONS.UNEQUIP.fn(act, ...)
     if act.invobject.components.equippable.boatequipslot and act.invobject.parent then
         local boat = act.invobject.parent
@@ -494,11 +505,11 @@ function ACTIONS.UNEQUIP.fn(act, ...)
                 act.doer.components.inventory:DropItem(act.invobject, true, true)
             end
         elseif boat.components.inventory and act.invobject.components.equippable.equipslot then
-            return _UNEQUIPfn(act, ...)
+            return _UNEQUIP_fn(act, ...)
         end
         return true
     else
-        return _UNEQUIPfn(act, ...)
+        return _UNEQUIP_fn(act, ...)
     end
 end
 
@@ -598,7 +609,7 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.DISARM)
             end
         end,
-        poisonhealer = function (inst, doer, target, actions, right)
+        poisonhealer = function(inst, doer, target, actions, right)
             if target and target:HasTag("poisonable") then
                 if target:HasTag("poison") or (target:HasTag("player") and
                     ((target.components.poisonable and target.components.poisonable:IsPoisoned()) or
@@ -668,7 +679,7 @@ local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 
-local _SCENEcontainer = SCENE.container
+local _SCENE_container = SCENE.container
 function SCENE.container(inst, doer, actions, right, ...)
     if not inst:HasTag("bundle") and not inst:HasTag("burnt")
         and doer.replica.inventory
@@ -677,26 +688,55 @@ function SCENE.container(inst, doer, actions, right, ...)
 
         table.insert(actions, ACTIONS.RUMMAGE)
     else
-        _SCENEcontainer(inst, doer, actions, right, ...)
+        _SCENE_container(inst, doer, actions, right, ...)
     end
 end
 
-local _SCENErideable = SCENE.rideable
+local _SCENE_rideable = SCENE.rideable
 SCENE.rideable = function(inst, doer, actions, right)
     if doer:IsSailing() then
         return
     end
-    return _SCENErideable(inst, doer, actions, right)
+    return _SCENE_rideable(inst, doer, actions, right)
 end
 
-local _USEITEMrepairer = USEITEM.repairer
+local _SCENE_inventoryitem = SCENE.inventoryitem
+function SCENE.inventoryitem(inst, doer, actions, right, ...)
+   if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint() and
+        not TheWorld.Map:IsLandTileAtPoint(inst.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
+        if inst.replica.inventoryitem:CanBePickedUp() and
+        doer.replica.inventory ~= nil and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable ~= nil) and
+        not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder")))) and
+        (not inst:HasTag("spider") or (doer:HasTag("spiderwhisperer") and right)) and
+        (right or not inst:HasTag("heavy")) and
+        not (right and inst.replica.container ~= nil and inst.replica.equippable == nil) then  --coryfrom SCENE.inventoryitem
+            table.insert(actions, ACTIONS.RETRIEVE)
+        end
+    else
+       _SCENE_inventoryitem(inst, doer, actions, right, ...)
+    end
+end
+
+local _USEITEM_repairer = USEITEM.repairer
 function USEITEM.repairer(inst, doer, target, actions, right, ...)
     if right then
-        _USEITEMrepairer(inst, doer, target, actions, right, ...)
+        _USEITEM_repairer(inst, doer, target, actions, right, ...)
     else
         if target:HasTag("repairable_boat") and target.replica.boathealth and not target.replica.boathealth:IsFull() then
             table.insert(actions, ACTIONS.REPAIRBOAT)
         end
+    end
+end
+
+local _USEITEM_inventoryitem = USEITEM.inventoryitem
+function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
+    if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
+        target and target:HasTag("weighdownable") then
+            table.insert(actions, ACTIONS.WEIGHDOWN)
+    elseif target and target:HasTag("shelf_slot") then
+        table.insert(actions, ACTIONS.STORE)
+    else
+        _USEITEM_inventoryitem(inst, doer, target, actions, right, ...)
     end
 end
 
@@ -706,7 +746,7 @@ function EQUIPPED.blinkstaff(inst, doer, target, actions, right, ...)
     end
 end
 
-local _INVENTORYequippable = INVENTORY.equippable
+local _INVENTORY_equippable = INVENTORY.equippable
 function INVENTORY.equippable(inst, doer, actions, ...)
     local canEquip = true
     if inst.replica.equippable:BoatEquipSlot() ~= "INVALID" and inst.replica.equippable:EquipSlot() == "INVALID" then --Can only be equipped on a boat
@@ -720,7 +760,7 @@ function INVENTORY.equippable(inst, doer, actions, ...)
     end
 
     if not inst.replica.equippable:IsEquipped() and canEquip then
-        _INVENTORYequippable(inst, doer, actions, ...)
+        _INVENTORY_equippable(inst, doer, actions, ...)
     elseif inst.replica.equippable:IsEquipped() then
         if inst:HasTag("togglable") then
             if inst:HasTag("toggled") then
@@ -729,34 +769,36 @@ function INVENTORY.equippable(inst, doer, actions, ...)
                 table.insert(actions, ACTIONS.TOGGLEON)
             end
         else
-            _INVENTORYequippable(inst, doer, actions, ...)
+            _INVENTORY_equippable(inst, doer, actions, ...)
         end
     end
 end
 
-local _USEITEMinventoryitem = USEITEM.inventoryitem
-function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
-    if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
-        target and target:HasTag("weighdownable") then
-            table.insert(actions, ACTIONS.WEIGHDOWN)
-    else
-        _USEITEMinventoryitem(inst, doer, target, actions, right, ...)
-    end
-end
+function PLENV.OnHotReload()
+    ToolUtil.SetUpvalue(ACTIONS.CHOP.fn, _DoToolWork, "DoToolWork")
 
-local _SCENEinventoryitem = SCENE.inventoryitem
-function SCENE.inventoryitem(inst, doer, actions, right, ...)
-   if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint() and
-        not TheWorld.Map:IsLandTileAtPoint(inst.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
-        if inst.replica.inventoryitem:CanBePickedUp() and
-        doer.replica.inventory ~= nil and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable ~= nil) and
-        not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder")))) and
-        (not inst:HasTag("spider") or (doer:HasTag("spiderwhisperer") and right)) and
-        (right or not inst:HasTag("heavy")) and
-        not (right and inst.replica.container ~= nil and inst.replica.equippable == nil) then  --coryfrom SCENE.inventoryitem
-            table.insert(actions, ACTIONS.RETRIEVE)
-        end
-    else
-       _SCENEinventoryitem(inst, doer, actions, right, ...)
-    end
+    ACTIONS.FERTILIZE.fn = _FERTILIZE_fn
+    ACTIONS.EQUIP.fn = _EQUIP_fn
+    ACTIONS.DROP.extra_arrive_dist = _ExtraDropDist
+    ACTIONS.DROP.extra_arrive_dist = ExtraDropDist
+    ACTIONS.COMBINESTACK.extra_arrive_dist = ExtraDropDist
+    ACTIONS.PICK.extra_arrive_dist = _ExtraPickupRange
+    ACTIONS.PICKUP.extra_arrive_dist = _ExtraPickupRange
+    ACTIONS.HAMMER.extra_arrive_dist = _HAMMERextra_arrive_dist
+    ACTIONS.RUMMAGE.extra_arrive_dist = _RUMMAGEextra_arrive_dist
+    ACTIONS.RUMMAGE.strfn = _RUMMAGE_strfn
+    ACTIONS.RUMMAGE.fn = _RUMMAGE_fn
+    ACTIONS.UNEQUIP.fn = _UNEQUIP_fn
+    ACTIONS.STORE.stroverridefn = _STORE_stroverridefn
+    ACTIONS.COOK.stroverridefn = _COOK_stroverridefn
+    ACTIONS.PICK.strfn = _PICK_strfn
+    ACTIONS.BLINK.fn = _BLINK_fn
+    ACTIONS.STORE.fn = _STORE_fn
+
+    SCENE.container = _SCENE_container
+    SCENE.rideable = _SCENE_rideable
+    USEITEM.repairer = _USEITEM_repairer
+    INVENTORY.equippable = _INVENTORY_equippable
+    USEITEM.inventoryitem = _USEITEM_inventoryitem
+    SCENE.inventoryitem = _SCENE_inventoryitem
 end

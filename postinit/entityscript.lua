@@ -168,3 +168,10 @@ end
 function EntityScript:Kill2DSound(soundname)
     TheWorld.components.worldsoundmanager:KillWorldSound(self, soundname)
 end
+
+function EntityScript:GetCurrentAnimation()
+    local debug_string = self.entity:GetDebugString()
+    if debug_string then
+        return string.match(debug_string, "anim:%s+(%S+)%s+")
+    end
+end

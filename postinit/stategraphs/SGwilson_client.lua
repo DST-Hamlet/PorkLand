@@ -54,7 +54,7 @@ local eventhandlers = {
 
     EventHandler("sailunequipped", function(inst)
         if inst.sg:HasStateTag("sailing") then
-            inst.sg:GoToState("row")
+            inst.sg:GoToState("pl_row")
 
             if not inst:HasTag("mime") then
                 inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
@@ -96,12 +96,12 @@ local states = {
         end,
 
         events = {
-            EventHandler("animover", function(inst) inst.sg:GoToState("row") end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("pl_row") end),
         },
     },
 
     State{
-        name = "row",
+        name = "pl_row",
         tags = {"moving", "running", "rowing", "boating", "canrotate"},
 
         onenter = function(inst)
@@ -133,7 +133,7 @@ local states = {
 
         onexit = function(inst)
             local boat = inst.replica.sailor:GetBoat()
-            if inst.sg.nextstate ~= "row" and inst.sg.nextstate ~= "sail" then
+            if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
                 inst.components.locomotor:Stop(nil, true)
                 if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
                     if boat and boat.replica.sailable then
@@ -164,7 +164,7 @@ local states = {
             end),
         },
 
-        ontimeout = function(inst) inst.sg:GoToState("row") end,
+        ontimeout = function(inst) inst.sg:GoToState("pl_row") end,
     },
 
     State{
@@ -273,7 +273,7 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
             if inst.sg.nextstate ~= "sail" then
                 inst.SoundEmitter:KillSound("sail_loop")
-                if inst.sg.nextstate ~= "row" then
+                if inst.sg.nextstate ~= "pl_row" then
                     inst.components.locomotor:Stop(nil, true)
                 end
                 if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
