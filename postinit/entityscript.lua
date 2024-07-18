@@ -108,18 +108,20 @@ end
 ---@param event string
 ---@param source entityscript | nil
 ---@param source_file string | nil
-function EntityScript:GetEventCallbacks(event, source, source_file)
+function EntityScript:GetEventCallbacks(event, source, source_file, test_fn)
     source = source or self
 
-    assert(self.event_listening[event] and self.event_listening[event][source])
+    if not self.event_listening[event] or not self.event_listening[event][source] then
+        return
+    end
 
     for _, fn in ipairs(self.event_listening[event][source]) do
         if source_file then
             local info = debug.getinfo(fn, "S")
-            if info and (info.source == source_file) then
+            if info and (info.source == source_file) and (not test_fn or test_fn(fn)) then
                 return fn
             end
-        else
+        elseif (not test_fn or test_fn(fn)) then
             return fn
         end
     end

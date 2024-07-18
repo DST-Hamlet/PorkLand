@@ -77,6 +77,7 @@ PrefabFiles = {
     "sedimentpuddle",
     "shears",
     "visual_shelf_slot",
+    "visual_shelf_slot_items",
     "shelves",
     "smelter",
     "snake",

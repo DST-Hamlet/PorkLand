@@ -18,13 +18,9 @@ end, nil, {
     shelf = onshelf
 })
 
-function VisualShelfSlot:SetShelf(shelf, slot, followsymbol)
+function VisualShelfSlot:SetShelf(shelf, slot)
     self.slot = slot
     self.shelf = shelf
-    self.inst.entity:SetParent(self.shelf.entity)
-    if followsymbol then
-        self.inst.Follower:FollowSymbol(self.shelf.GUID, "SWAP_img" .. slot, 10, 0, 0.6)
-    end
 end
 
 function VisualShelfSlot:SetItem(item)
