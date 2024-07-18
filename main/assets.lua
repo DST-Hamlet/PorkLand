@@ -71,6 +71,7 @@ PrefabFiles = {
     "pugalisk",
     "rabid_beetle",
     "relics",
+    "reeds_water",
     "rowboat_wake",
     "sail",
     "sedimentpuddle",
