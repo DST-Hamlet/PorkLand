@@ -227,7 +227,7 @@ Assets = {
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
 }
 
-for _,v in ipairs(require("interior_texture_defs").Assets) do
+for _,v in ipairs(require("main/interior_texture_defs").Assets) do
     table.insert(Assets, v)
 end
 

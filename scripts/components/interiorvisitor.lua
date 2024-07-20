@@ -1,4 +1,5 @@
 -- component that record infomations about player interior status
+local CC_DEF_INDEX = require("main/interior_texture_defs").CC_DEF_INDEX
 
 local function on_x(self, value)
     if self.inst.replica.interiorvisitor then
@@ -19,7 +20,6 @@ local function on_center_ent(self, value)
 end
 
 local function on_interior_cc(self, value)
-    local CC_DEF_INDEX = require("interior_texture_defs").CC_DEF_INDEX
     if self.inst.replica.interiorvisitor then
         self.inst.replica.interiorvisitor.interior_cc:set(CC_DEF_INDEX[value] or 0)
     end

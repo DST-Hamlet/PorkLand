@@ -1,4 +1,4 @@
-local defs = require("interior_texture_defs")
+local defs = require("main/interior_texture_defs")
 local TEXTURE_DEF = defs.TEXTURE_DEF
 local TEXTURE_DEF_INDEX = defs.TEXTURE_DEF_INDEX
 

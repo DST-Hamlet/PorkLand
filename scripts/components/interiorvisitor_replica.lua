@@ -1,3 +1,6 @@
+
+local CC_DEF = require("main/interior_texture_defs").CC_DEF
+
 local InteriorVisitor = Class(function(self, inst)
     self.inst = inst
     self.interiorspawner = TheWorld.components.interiorspawner
@@ -155,8 +158,6 @@ function InteriorVisitor:GetCenterEnt()
         return ent
     end
 end
-
-local CC_DEF = require("interior_texture_defs").CC_DEF
 
 function InteriorVisitor:GetCCTable()
     local index = self.interior_cc:value()
