@@ -145,6 +145,9 @@ PrefabFiles = {
     "antcombhome",
     "magnifying_glass",
     "disarmingkit",
+
+    "pighouse_city",
+    "reconstruction_project",
 }
 
 Assets = {
@@ -153,7 +156,7 @@ Assets = {
 
     -- inventoryimages
     Asset("ATLAS", "images/hud/pl_inventoryimages.xml"),
-    Asset("ATLAS_BUILD", "images/hud/pl_inventoryimages.xml", 256),  -- for minisign
+    Asset("ATLAS_BUILD", "images/hud/pl_inventoryimages.xml", 256), -- for minisign
 
     -- boat
     Asset("ATLAS", "images/hud/pl_hud.xml"),
@@ -163,15 +166,15 @@ Assets = {
     Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
 
     -- hud
-    Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison, boat_over
+    Asset("ATLAS", "images/overlays/fx3.xml"), -- poison, boat_over
     Asset("IMAGE", "images/overlays/fx3.tex"),
-    Asset("ATLAS", "images/overlays/fx4.xml"),  -- pollen(hayfever)
+    Asset("ATLAS", "images/overlays/fx4.xml"), -- pollen(hayfever)
     Asset("IMAGE", "images/overlays/fx4.tex"),
-    Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
+    Asset("ATLAS", "images/overlays/fx5.xml"), -- fog
     Asset("IMAGE", "images/overlays/fx5.tex"),
-    Asset("ANIM", "anim/leaves_canopy2.zip"),  --canopy
+    Asset("ANIM", "anim/leaves_canopy2.zip"), -- canopy
 
-    Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
+    Asset("ANIM", "anim/moon_aporkalypse_phases.zip"), -- blood moon
 
     -- player_actions
     Asset("ANIM", "anim/player_idles_poison.zip"),
@@ -227,7 +230,7 @@ Assets = {
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
 }
 
-for _,v in ipairs(require("main/interior_texture_defs").Assets) do
+for _, v in ipairs(require("main/interior_texture_defs").Assets) do
     table.insert(Assets, v)
 end
 
@@ -240,7 +243,7 @@ local sounds = {
     Asset("SOUND", "sound/DLC003_AMB_stream.fsb"),
     Asset("SOUND", "sound/DLC003_music_stream.fsb"),
     Asset("SOUND", "sound/DLC003_sfx.fsb"),
-    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev")
+    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev"),
 }
 
 if not TheNet:IsDedicated() then
