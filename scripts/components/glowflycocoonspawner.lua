@@ -18,6 +18,7 @@ return Class(function(self, inst)
     -- Private
     local _world = TheWorld
 
+    local _waitforspawn = false
     local _spawntask
     local _spawntaskinfo
 
@@ -34,12 +35,18 @@ return Class(function(self, inst)
     end
 
     local function TrySpawnCocoons(inst, spawntasktime)
+        if not _waitforspawn then
+            return
+        end
+
         CancelTask()
 
         if not inst:IsAsleep() then
             _spawntask, _spawntaskinfo = inst:ResumeTask(spawntasktime or math.random(1, 29), TrySpawnCocoons)
             return false
         end
+
+        _waitforspawn = false
 
         local pt = inst:GetPosition()
         local radius = 5 + math.random() * 10
@@ -71,11 +78,14 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     local function OnEntitySleep(inst)
-        TrySpawnCocoons(inst)
+        if _waitforspawn then
+            TrySpawnCocoons(inst)
+        end
     end
 
     local function OnSpawnCocoons(src)
-        if math.random() < SPAWN_CHANCE then
+        if math.random() < SPAWN_CHANCE and not _waitforspawn then
+            local _waitforspawn = true
             _spawntask, _spawntaskinfo = inst:ResumeTask(math.random(1, 29), TrySpawnCocoons)
         end
     end
@@ -93,7 +103,7 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     function self:OnSave()
-        local data = {}
+        local data = {waitforspawn = _waitforspawn}
 
         if _spawntaskinfo ~= nil then
             data.spawntasktime = inst:TimeRemainingInTask(_spawntaskinfo)
@@ -104,6 +114,7 @@ return Class(function(self, inst)
 
     function self:OnLoad(data)
         if data ~= nil then
+            _waitforspawn = data.waitforspawn
             if data.spawntasktime then
                 TrySpawnCocoons(inst, data.spawntasktime)
             end

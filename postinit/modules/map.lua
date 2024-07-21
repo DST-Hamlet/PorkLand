@@ -3,7 +3,6 @@ GLOBAL.setfenv(1, GLOBAL)
 local worldtiledefs = require("worldtiledefs")
 
 local TILE_SCALE = TILE_SCALE
-local TileGroupManager = TileGroupManager
 
 local TileRenderOrder = {}
 for i, v in ipairs(worldtiledefs.ground) do
@@ -44,7 +43,7 @@ function Map:GetVisualTileAtPoint(x, y, z)
         tile = GetMaxRenderOrderTile(tile, near_z_tile)
     end
 
-    if has_z_overhang and has_z_overhang and abs_offset_x + abs_offset_z >= 3 then
+    if has_x_overhang and has_z_overhang and abs_offset_x + abs_offset_z >= 3 then
         local corner_tile = self:GetTileAtPoint(near_x, 0, near_z)
         tile = GetMaxRenderOrderTile(tile, corner_tile)
     end
@@ -273,7 +272,6 @@ end
 local _CanDeployRecipeAtPoint = Map.CanDeployRecipeAtPoint
 function Map:CanDeployRecipeAtPoint(pt, recipe, rot, player, ...)
     if recipe.aquatic and recipe.build_mode == BUILDMODE.WATER then
-        local pt_x, pt_y, pt_z = pt:Get()
         local is_valid_ground = self:CanDeployAquaticAtPointInWater(pt, recipe.aquatic, player)
         return is_valid_ground and (recipe.testfn == nil or recipe.testfn(pt, rot)) and self:IsDeployPointClear(pt, nil, recipe.min_spacing or 3.2)
     end
