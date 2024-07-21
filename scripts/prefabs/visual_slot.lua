@@ -1,6 +1,7 @@
 local assets =
 {
     Asset("ANIM", "anim/visual_slot.zip"),
+    Asset("ANIM", "anim/inventory_fx_sparkle.zip"),
 }
 
 local function GetItemName(inst)

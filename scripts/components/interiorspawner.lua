@@ -759,7 +759,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 if prefab.shelfitems then
-                    object.shelfitems = prefab.shelfitems
+                    for i,v in ipairs(prefab.shelfitems) do
+                        object.components.container:GiveItem(SpawnPrefab(v))
+                    end
                 end
 
                 -- this door should have vines
