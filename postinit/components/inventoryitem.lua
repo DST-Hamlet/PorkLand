@@ -48,9 +48,9 @@ end
 
 local _OnUpdate = InventoryItem.OnUpdate
 function InventoryItem:OnUpdate(dt, ...)
-    local x,y,z = self.inst.Transform:GetWorldPosition()
+    local x, y, z = self.inst.Transform:GetWorldPosition()
 
-    if x and y and z and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+    if x and y and z and self.inst.Physics and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
         if self.inst.Physics then
             if not self.onimpassable and TheWorld.Map:IsImpassableAtPoint(x, 0, z) then
                 self.inst:AddTag("falling")
@@ -64,7 +64,7 @@ function InventoryItem:OnUpdate(dt, ...)
             end
         end
     end
-    if self.onimpassable and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+    if self.onimpassable and self.inst.Physics and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
         if y then
             if y < -0.01 then
                 self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
@@ -94,32 +94,6 @@ function InventoryItem:Launch(veldirect)  --应当使用Launch函数替换所有
     self.inst.components.inventoryitem:SetLanded(false, true)
 
     self.inst.Physics:SetVel(veldirect:Get())
-end
-
-function InventoryItem:TakeOffShelf()
-    local shelf_slot = SpawnPrefab("shelf_slot")
-    shelf_slot.components.inventoryitem:PutOnShelf(self.inst.bookshelf, self.inst.bookshelfslot)
-    shelf_slot.components.shelfer:SetShelf(self.inst.bookshelf, self.inst.bookshelfslot)
-
-    self.inst:RemoveTag("bookshelfed")
-    self.inst.bookshelfslot = nil
-    self.inst.bookshelf = nil
-    self.inst.follower:FollowSymbol(0, "dumb", 0, 0, 0)
-    if self.inst.Physics then
-        self.inst.Physics:SetActive(true)
-    end
-end
-
-function InventoryItem:PutOnShelf(shelf, slot)
-   self.inst:AddTag("bookshelfed")
-   self.inst.bookshelfslot = slot
-   self.inst.bookshelf = shelf
-   if self.inst.Physics then
-       self.inst.Physics:SetActive(false)
-   end
-   local follower = self.inst.Follower or self.inst.entity:AddFollower()
-   follower:FollowSymbol(shelf.GUID, slot, 10, 0, 0.6)
-   self.inst.follower = follower
 end
 
 local _SinkEntity = SinkEntity

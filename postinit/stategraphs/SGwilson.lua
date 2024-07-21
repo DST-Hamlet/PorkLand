@@ -18,7 +18,7 @@ local function OnExitRow(inst)
     if boat and boat.components.rowboatwakespawner then
         boat.components.rowboatwakespawner:StopSpawning()
     end
-    if inst.sg.nextstate ~= "row" and inst.sg.nextstate ~= "sail" then
+    if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
         inst.components.locomotor:Stop(nil, true)
         if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then -- Make sure equipped items are pulled back out (only really for items with flames right now)
             local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
@@ -40,7 +40,7 @@ local function OnExitSail(inst)
 
     if inst.sg.nextstate ~= "sail" then
         inst.SoundEmitter:KillSound("sail_loop")
-        if inst.sg.nextstate ~= "row" then
+        if inst.sg.nextstate ~= "PL_row" then
             inst.components.locomotor:Stop(nil, true)
         end
         if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
@@ -52,6 +52,8 @@ local function OnExitSail(inst)
 end
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.PICKSHELF, "doshortaction"),
+    ActionHandler(ACTIONS.PUTSHELF, "doshortaction"),
     ActionHandler(ACTIONS.EMBARK, "embark"),
     ActionHandler(ACTIONS.DISEMBARK, "disembark"),
     ActionHandler(ACTIONS.RETRIEVE, "dolongaction"),
@@ -115,7 +117,7 @@ local eventhandlers = {
     end),
     EventHandler("sailunequipped", function(inst)
         if inst.sg:HasStateTag("sailing") then
-            inst.sg:GoToState("row")
+            inst.sg:GoToState("pl_row")
 
             if not inst:HasTag("mime") then
                 inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
@@ -1044,14 +1046,14 @@ local states = {
         events = {
             EventHandler("animover", function(inst)
                 if inst.AnimState:AnimDone() then
-                    inst.sg:GoToState("row")
+                    inst.sg:GoToState("pl_row")
                 end
             end),
         },
     },
 
     State{
-        name = "row",
+        name = "pl_row",
         tags = {"moving", "running", "rowing", "boating", "canrotate", "autopredict" },
 
         onenter = function(inst)
@@ -1115,7 +1117,7 @@ local states = {
             end),
         },
 
-        ontimeout = function(inst) inst.sg:GoToState("row") end,
+        ontimeout = function(inst) inst.sg:GoToState("pl_row") end,
     },
 
     State{
