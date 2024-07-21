@@ -10,7 +10,11 @@ local function MakeObstacle(inst)
     TheWorld.Pathfinder:AddWall(x, y, z + 1)
 end
 
-local function MakeShelf(name, physics_round, anim_data, slot_num)
+local function GetSlotSymbol(inst, slot)
+    return inst.anim_def.slot_symbol_prefix .. slot
+end
+
+local function MakeShelf(name, physics_round, anim_def, slot_num)
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -27,17 +31,22 @@ local function MakeShelf(name, physics_round, anim_data, slot_num)
 
         inst.Transform:SetRotation(-90)
 
-        inst.AnimState:SetBuild(anim_data.build or "room_shelves")
-        inst.AnimState:SetBank(anim_data.bank or "bookcase")
-        inst.AnimState:PlayAnimation(anim_data.animation, anim_data.loop)
+        inst.AnimState:SetBuild(anim_def.build or "room_shelves")
+        inst.AnimState:SetBank(anim_def.bank or "bookcase")
+        inst.AnimState:PlayAnimation(anim_def.animation, anim_def.loop)
         -- inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGroundFixed) -- ds is ANIM_ORIENTATION.RotatingBillboard
 
-        if anim_data.layer then
-            inst.AnimState:SetLayer(anim_data.layer)
+        if anim_def.layer then
+            inst.AnimState:SetLayer(anim_def.layer)
         end
-        if anim_data.order then
-            inst.AnimState:SetSortOrder(anim_data.order)
+        if anim_def.order then
+            inst.AnimState:SetSortOrder(anim_def.order)
         end
+
+        inst.anim_def = anim_def
+        inst.anim_def.slot_bank = anim_def.animation .. "_visual_slot"
+        inst.anim_def.slot_symbol_prefix = "SWAP_img"
+        inst.GetSlotSymbol = GetSlotSymbol
 
         inst:AddTag("NOCLICK")
         inst:AddTag("wallsection")
@@ -51,17 +60,18 @@ local function MakeShelf(name, physics_round, anim_data, slot_num)
         end
 
         inst:AddComponent("container")
-        inst.components.container:WidgetSetup(name)
+        inst.components.container:WidgetSetup("shelf_" .. name)
         inst.components.container.Open = function() end
         inst.components.container.skipopensnd = true
 
-        inst:AddComponent("visualshelf")
+        inst:AddComponent("visualslotmanager")
 
         return inst
     end
 
-    return Prefab(name, fn, assets)
+    return Prefab("shelf_" .. name, fn, assets)
 end
 
-return MakeShelf("shelf_wood", nil, {animation = "wood", layer = LAYER_WORLD_BACKGROUND, order = 3}),
-    MakeShelf("shelf_ruins", true, {animation = "ruins"})
+return MakeShelf("wood", nil, {animation = "wood", layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("displayshelf_wood", true, {animation = "displayshelf_wood"}),
+    MakeShelf("ruins", true, {animation = "ruins"})

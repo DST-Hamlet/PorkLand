@@ -363,11 +363,11 @@ ACTIONS.WEIGHDOWN.fn = function(act)
 end
 
 ACTIONS.PUTSHELF.fn = function(act)
-    local shelf = act.target.replica.visualshelfslot:GetShelf()
+    local shelf = act.target.components.visualslot:GetShelf()
 
     if shelf.components.container ~= nil and act.invobject.components.inventoryitem ~= nil then
         local item = act.invobject.components.inventoryitem:RemoveFromOwner(shelf.components.container.acceptsstacks)
-        return shelf.components.container:GiveItem(item, act.target.components.visualshelfslot:GetSlot(), nil, false)
+        return shelf.components.container:GiveItem(item, act.target.components.visualslot:GetSlot(), nil, false)
     end
 end
 
@@ -376,10 +376,10 @@ ACTIONS.PUTSHELF.stroverridefn = function(act)
 end
 
 ACTIONS.PICKSHELF.fn = function(act)
-    local shelf = act.target.replica.visualshelfslot:GetShelf()
+    local shelf = act.target.components.visualslot:GetShelf()
 
     if shelf.components.container ~= nil then
-        local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualshelfslot:GetSlot())
+        local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualslot:GetSlot())
         act.doer.components.inventory:GiveItem(item, nil, act.doer:GetPosition())
 
         return true
@@ -387,8 +387,12 @@ ACTIONS.PICKSHELF.fn = function(act)
 end
 
 ACTIONS.PICKSHELF.stroverridefn = function(act)
-    return STRINGS.ACTIONS.PICK.GENERIC
+    return STRINGS.ACTIONS.PICKUP.GENERIC
 end
+
+
+
+
 
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
@@ -620,8 +624,8 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.REARM)
             end
         end,
-        visualshelfslot = function(inst, doer, actions, right)
-            if inst:HasTag("canpick") then
+        visualslot = function(inst, doer, actions, right)
+            if not inst:HasTag("empty") then
                 table.insert(actions, ACTIONS.PICKSHELF)
             end
         end
@@ -765,9 +769,8 @@ function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
         target and target:HasTag("weighdownable") then
             table.insert(actions, ACTIONS.WEIGHDOWN)
             return
-    elseif target and target.replica.visualshelfslot then
-        local shelf = target.replica.visualshelfslot:GetShelf()
-        if shelf and not target.replica.visualshelfslot:GetItem() and not inst.replica.inventoryitem:CanOnlyGoInPocket() and shelf:HasTag("canput") then
+    elseif target and target:HasTag("visual_slot") then
+        if target:HasTag("empty") and not inst.replica.inventoryitem:CanOnlyGoInPocket() then
             table.insert(actions, ACTIONS.PUTSHELF)
             return
         end

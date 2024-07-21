@@ -193,4 +193,5 @@ local shelf2x3 =
 }
 
 params["shelf_ruins"] = shelf1
+params["shelf_displayshelf_wood"] = shelf1x3
 params["shelf_wood"] = shelf2x3

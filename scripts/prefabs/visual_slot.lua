@@ -1,10 +1,10 @@
 local assets =
 {
-    Asset("ANIM", "anim/shelf_slot.zip"),
+    Asset("ANIM", "anim/visual_slot.zip"),
 }
 
 local function GetItemName(inst)
-    local item = inst.replica.visualshelfslot:GetItem()
+    local item = inst.replica.visualslot:GetItem()
     if item then
         return item:GetDisplayName()
     end
@@ -13,7 +13,7 @@ local function GetItemName(inst)
 end
 
 local function GetItemDescription(inst, viewer)
-    local item = inst.replica.visualshelfslot:GetItem()
+    local item = inst.replica.visualslot:GetItem()
     if item and item.components.inspectable then
         return item.components.inspectable:GetDescription(viewer)
     end
@@ -26,17 +26,12 @@ local function fn()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddFollower()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    inst.AnimState:SetBuild("shelf_slot")
-    inst.AnimState:SetBank("shelf_slot")
-    inst.AnimState:PlayAnimation("idle")
-    -- inst.AnimState:Hide("mouseclick")
+    inst.AnimState:SetBuild("visual_slot")
 
-    -- inst:AddTag("NOCLICK")
-    inst:AddTag("shelf_visual_slot")
     inst:AddTag("NOBLOCK")
-    inst:AddTag("NOFORAGE")
 
     inst.displaynamefn = GetItemName
 
@@ -49,11 +44,11 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.descriptionfn = GetItemDescription
 
-    inst:AddComponent("visualshelfslot")
+    inst:AddComponent("visualslot")
 
     inst.persists = false
 
     return inst
 end
 
-return Prefab("visual_shelf_slot", fn, assets)
+return Prefab("visual_slot", fn, assets)
