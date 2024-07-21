@@ -76,14 +76,48 @@ local function GetStatus(inst)
 end
 
 local function OnHaunt(inst)
-    if inst.components.fueled ~= nil and
-        inst.components.fueled.accepting and
-        math.random() <= TUNING.HAUNT_CHANCE_OCCASIONAL then
-        inst.components.fueled:DoDelta(TUNING.TINY_FUEL)
+    if math.random() <= TUNING.HAUNT_CHANCE_RARE and
+        inst.components.fueled ~= nil and
+        not inst.components.fueled:IsEmpty() then
+        inst.components.fueled:DoDelta(TUNING.MED_FUEL)
         inst.components.hauntable.hauntvalue = TUNING.HAUNT_SMALL
         return true
     end
     return false
+end
+
+local function onfuelchange(newsection, oldsection, inst, doer)
+    if newsection <= 0 then
+        inst.components.burnable:Extinguish()
+		if inst.queued_charcoal then
+			inst.components.lootdropper:SpawnLootPrefab("charcoal")
+			inst.queued_charcoal = nil
+		end
+    else
+        if not inst.components.burnable:IsBurning() then
+            UpdateFuelRate(inst)
+            inst.components.burnable:Ignite(nil, nil, doer)
+        end
+        inst.components.burnable:SetFXLevel(newsection, inst.components.fueled:GetSectionPercent())
+
+		if newsection == inst.components.fueled.sections then
+			inst.queued_charcoal = not inst.disable_charcoal
+		end
+    end
+end
+
+local function onhammered(inst, worker)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    SpawnPrefab("ash").Transform:SetPosition(x, y, z)
+    local fx = SpawnPrefab("collapse_small")
+    fx.Transform:SetPosition(x, y, z)
+    fx:SetMaterial("stone")
+    inst:Remove()
+end
+
+local function onhit(inst, worker)
+    inst.AnimState:PlayAnimation("hit")
+    inst.AnimState:PushAnimation("idle")
 end
 
 local function OnSave(inst, data)
@@ -125,6 +159,7 @@ local function fn()
 
     inst:AddTag("campfire")
     inst:AddTag("structure")
+    inst:AddTag("wildfireprotected")
 
     inst.entity:SetPristine()
 
@@ -132,10 +167,13 @@ local function fn()
         return inst
     end
 
-    inst:AddComponent("propagator")
+    --inst:AddComponent("propagator")
 
     inst:AddComponent("burnable")
-    inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 0, 0), "fire_marker")
+    --inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 0, 0), "fire_marker")
+    inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 0, 0), "fire_marker", true, nil, true)
+
+    inst:AddComponent("lootdropper")
 
     inst:AddComponent("fueled")
     inst.components.fueled.maxfuel = TUNING.CAMPFIRE_FUEL_MAX
@@ -145,6 +183,7 @@ local function fn()
     inst.components.fueled:SetUpdateFn(FueledUpdateFn)
     inst.components.fueled:SetSectionCallback(FueledSectionCallback)
     inst.components.fueled:InitializeFuelLevel(0)
+    inst.components.fueled:SetSectionCallback(onfuelchange)
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
@@ -167,6 +206,16 @@ local function pillarfn()
     local inst = fn()
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("ruins_torch.tex")
+
+    -- for storytellingprop component
+	inst:AddTag("storytellingprop")
+    inst:AddComponent("storytellingprop")
+
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
+    inst.components.workable:SetWorkLeft(4)
+    inst.components.workable:SetOnFinishCallback(onhammered)
+    inst.components.workable:SetOnWorkCallback(onhit)
 
     return inst
 end
