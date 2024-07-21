@@ -296,7 +296,7 @@ function Story:Pl_AddBGNodes(min_count, max_count)
                         local blank_subnode = task:AddNode({
                             id = nodeid .. ":BLOCKER_BLANK_" .. tostring(i),
                             data = {
-                                type = new_room.type or "blank",
+                                type = new_room.type or NODE_TYPE.BLANK,
                                 colour = new_room.colour,
                                 value = new_room.value,
                                 internal_type = new_room.internal_type,

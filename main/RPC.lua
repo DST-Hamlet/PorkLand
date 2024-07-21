@@ -55,3 +55,49 @@ AddShardModRPCHandler("Porkland", "SwitchAporkalypse", function(shardid, active)
         TheWorld:PushEvent("ms_stopaporkalypse")
     end
 end)
+
+AddModRPCHandler("Porkland", "teleport_to_home", function(inst)
+    -- TODO: 以后可以做一个倒计时...
+    local pos = inst:GetPosition()
+    if TheWorld.components.interiorspawner:IsInInteriorRegion(pos.x, pos.z) then
+        TheWorld.components.playerspawner:SpawnAtNextLocation(inst)
+    end
+end)
+
+AddClientModRPCHandler("Porkland", "mapdata", function(data)
+    if type(data) == "string" then
+        data = TheSim:DecodeAndUnzipString(data)
+        TheWorld.components.worldmapiconproxy:OnGetMapDataFromServer(data)
+    end
+end)
+
+AddClientModRPCHandler("Porkland", "layoutdata", function(data)
+    if type(data) == "string" then
+        data = TheSim:DecodeAndUnzipString(data)
+        TheWorld.components.interiorspawner:OnGetLayoutDataFromServer(data)
+    end
+end)
+
+AddClientModRPCHandler("Porkland", "visited_uuid", function(data)
+    if type(data) == "string" then
+        TheWorld.components.worldmapiconproxy:OnGetVisitedUUIDFromServer(data)
+    end
+end)
+
+AddUserCommand("saveme", {
+    aliases = nil,
+    prettyname = nil,
+    desc = nil,
+    permission = COMMAND_PERMISSION.USER,
+    confirm = false,
+    slash = true,
+    usermenu = false,
+    servermenu = false,
+    params = {},
+    vote = false,
+    localfn = function(params, caller)
+        ThePlayer:DoTaskInTime(0, function()
+            SendModRPCToServer(MOD_RPC["Porkland"]["teleport_to_home"])
+        end)
+    end,
+})

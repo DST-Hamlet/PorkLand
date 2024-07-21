@@ -48,9 +48,9 @@ end
 
 local _OnUpdate = InventoryItem.OnUpdate
 function InventoryItem:OnUpdate(dt, ...)
-    local x,y,z = self.inst.Transform:GetWorldPosition()
+    local x, y, z = self.inst.Transform:GetWorldPosition()
 
-    if x and y and z and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+    if x and y and z and self.inst.Physics and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
         if self.inst.Physics then
             if not self.onimpassable and TheWorld.Map:IsImpassableAtPoint(x, 0, z) then
                 self.inst:AddTag("falling")
@@ -64,7 +64,7 @@ function InventoryItem:OnUpdate(dt, ...)
             end
         end
     end
-    if self.onimpassable and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
+    if self.onimpassable and self.inst.Physics and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
         if y then
             if y < -0.01 then
                 self.inst.AnimState:SetLayer(LAYER_BELOW_GROUND)

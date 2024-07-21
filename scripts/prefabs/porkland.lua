@@ -23,7 +23,7 @@ local assets =
     Asset("IMAGE", "images/colour_cubes/pork_lush_day_test.tex"),
 
     Asset("IMAGE", "images/could/fog_cloud.tex"),
-
+    Asset("IMAGE", "images/could/fog_cloud_interior.tex"),
 }
 
 local prefabs =
@@ -100,13 +100,21 @@ local function common_postinit(inst)
         inst.Map:AlwaysDrawWaves(true)
         inst.Map:DoOceanRender(true)
     end
+
+    inst:AddComponent("interiorspawner")
+    inst:AddComponent("worldpathfindermanager")
+    inst:AddComponent("worldmapiconproxy")
+    inst:AddComponent("interiorquaker")
+    inst:AddComponent("worldsoundmanager")
 end
 
 local function master_postinit(inst)
     -- Spawners
-    inst:AddComponent("birdspawner")
+    inst:AddReplaceComponent("pl_birdspawner", "birdspawner")
     inst:AddComponent("butterflyspawner")
     inst:AddComponent("glowflyspawner")
+    inst:AddComponent("hippospawner")
+    inst:AddComponent("batted")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")
@@ -118,7 +126,6 @@ local function master_postinit(inst)
     inst:AddComponent("brightmarespawner")
     inst:AddComponent("pl_worldwind")
 
-    inst:AddComponent("hippospawner")
     inst:AddComponent("regrowthmanager")
     -- inst:AddComponent("desolationspawner")
     -- inst:AddComponent("forestpetrification")

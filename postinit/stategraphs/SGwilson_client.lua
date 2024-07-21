@@ -9,6 +9,8 @@ local TIMEOUT = 2
 local DoFoleySounds = nil
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.PICKSHELF, "doshortaction"),
+    ActionHandler(ACTIONS.PUTSHELF, "doshortaction"),
     ActionHandler(ACTIONS.RETRIEVE, "dolongaction"),
     ActionHandler(ACTIONS.TOGGLEON, "give"),
     ActionHandler(ACTIONS.TOGGLEOFF, "give"),
@@ -30,6 +32,19 @@ local actionhandlers = {
     ActionHandler(ACTIONS.DISLODGE, function(inst)
         return not inst.sg:HasStateTag("pretap") and "tap_start" or nil
     end),
+    ActionHandler(ACTIONS.USEDOOR, "usedoor"),
+    ActionHandler(ACTIONS.WEIGHDOWN, "doshortaction"),
+    ActionHandler(ACTIONS.DISARM, "dolongaction"),
+    ActionHandler(ACTIONS.REARM, "dolongaction"),
+    ActionHandler(ACTIONS.SPY, function(inst, action)
+        if not inst.sg:HasStateTag("preinvestigate") then
+            if action.invobject ~= nil and action.invobject:HasTag("goggles") then
+                return "goggle"
+            else
+                return "investigate"
+            end
+        end
+    end),
 }
 
 local eventhandlers = {
@@ -41,7 +56,7 @@ local eventhandlers = {
 
     EventHandler("sailunequipped", function(inst)
         if inst.sg:HasStateTag("sailing") then
-            inst.sg:GoToState("row")
+            inst.sg:GoToState("pl_row")
 
             if not inst:HasTag("mime") then
                 inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
@@ -83,12 +98,12 @@ local states = {
         end,
 
         events = {
-            EventHandler("animover", function(inst) inst.sg:GoToState("row") end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("pl_row") end),
         },
     },
 
     State{
-        name = "row",
+        name = "pl_row",
         tags = {"moving", "running", "rowing", "boating", "canrotate"},
 
         onenter = function(inst)
@@ -120,7 +135,7 @@ local states = {
 
         onexit = function(inst)
             local boat = inst.replica.sailor:GetBoat()
-            if inst.sg.nextstate ~= "row" and inst.sg.nextstate ~= "sail" then
+            if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
                 inst.components.locomotor:Stop(nil, true)
                 if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
                     if boat and boat.replica.sailable then
@@ -151,7 +166,7 @@ local states = {
             end),
         },
 
-        ontimeout = function(inst) inst.sg:GoToState("row") end,
+        ontimeout = function(inst) inst.sg:GoToState("pl_row") end,
     },
 
     State{
@@ -260,7 +275,7 @@ local states = {
             local boat = inst.replica.sailor:GetBoat()
             if inst.sg.nextstate ~= "sail" then
                 inst.SoundEmitter:KillSound("sail_loop")
-                if inst.sg.nextstate ~= "row" then
+                if inst.sg.nextstate ~= "pl_row" then
                     inst.components.locomotor:Stop(nil, true)
                 end
                 if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
@@ -472,6 +487,103 @@ local states = {
                 end
             elseif inst.bufferedaction == nil then
                 inst.AnimState:PlayAnimation("tamp_pst")
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end
+    },
+
+    State{
+        name = "usedoor",
+        tags = {"doing", "busy", "canrotate"},
+        server_states = {"usedoor"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+
+			inst.AnimState:PlayAnimation("give")
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("doing") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("give_pst")
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end
+    },
+
+    State{
+        name = "investigate_start",
+        tags = {"preinvestigate", "investigating", "working"},
+        server_states = {"investigate_start", "investigate", "investigate_post"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+
+            if not inst:HasTag("investigating") then
+                inst.AnimState:PlayAnimation("lens")
+            end
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("investigating") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("lens_pst")
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end
+    },
+
+    State{
+        name = "goggle",
+        tags = {"preinvestigate", "investigating", "working"},
+        server_states = {"goggle", "goggle_post"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+
+            if not inst:HasTag("investigating") then
+                inst.AnimState:PlayAnimation("goggle")
+            end
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("investigating") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("goggle_pst")
                 inst.sg:GoToState("idle")
             end
         end,

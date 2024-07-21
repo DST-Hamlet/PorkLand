@@ -240,6 +240,11 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
 
     local function StartAmbientRainSound(intensity)
+        if ThePlayer and ThePlayer:HasTag("inside_interior") then
+            _rainsound = false
+            _world.SoundEmitter:KillSound("rain")
+            return
+        end
         if not _rainsound then
             _rainsound = true
             _world.SoundEmitter:PlaySound("dontstarve_DLC002/rain/islandrainAMB", "rain")
@@ -255,6 +260,11 @@ return Class(function(self, inst)
     end
 
     local function StartTreeRainSound(intensity)
+        if ThePlayer and ThePlayer:HasTag("inside_interior") then
+            _treerainsound = false
+            _world.SoundEmitter:KillSound("treerainsound")
+            return
+        end
         if not _treerainsound then
             _treerainsound = true
             TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC001/common/rain_on_tree", "treerainsound")
@@ -270,6 +280,11 @@ return Class(function(self, inst)
     end
 
     local function StartUmbrellaRainSound()
+        if ThePlayer and ThePlayer:HasTag("inside_interior") then
+            _umbrellarainsound = false
+            _world.SoundEmitter:KillSound("umbrellarainsound")
+            return
+        end
         if not _umbrellarainsound then
             _umbrellarainsound = true
             TheFocalPoint.SoundEmitter:PlaySound("dontstarve/rain/rain_on_umbrella", "umbrellarainsound")

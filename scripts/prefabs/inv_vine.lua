@@ -39,14 +39,7 @@ local function fn()
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = TUNING.MED_FUEL
 
-    -- inst:AddComponent("appeasement")
-    -- inst.components.appeasement.appeasementvalue = TUNING.WRATH_SMALL
-
-    MakeSmallPropagator(inst)
-    MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
-    -- inst.components.burnable:MakeDragonflyBait(3)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
-
     MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
     MakeSmallPropagator(inst)
     MakeHauntableLaunch(inst)

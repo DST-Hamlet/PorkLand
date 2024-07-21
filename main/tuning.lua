@@ -401,10 +401,70 @@ local tuning = {
 
     BALLPEIN_HAMMER_DAMAGE = wilson_attack*0.3,
     BALLPEIN_HAMMER_USES = 10,
+
+    VAMPIREBAT_HEALTH = 130,
+    VAMPIREBAT_DAMAGE = 25,
+    VAMPIREBAT_ATTACK_PERIOD = 1.8,
+    VAMPIREBAT_WALK_SPEED = 7.2, -- 8 * 0.9?
+
+    SCORPION_HEALTH = 200,
+    SCORPION_DAMAGE = 20,
+    SCORPION_ATTACK_PERIOD = 3,
+    SSCORPION_WAKE_RADIUS = 4,
+    SCORPION_FLAMMABILITY = 0.33,
+    SCORPION_SUMMON_WARRIORS_RADIUS = 12,
+    SCORPION_EAT_DELAY = 1.5,
+    SCORPION_ATTACK_RANGE = 3,
+    SCORPION_STING_RANGE = 2,
+    SCORPION_WALK_SPEED = 3,
+    SCORPION_RUN_SPEED = 5,
+
+    RUINS_ENTRANCE_VINES_HACKS = 4,
+    RUINS_DOOR_VINES_HACKS = 2,
+    ROCKS_MINE_GIANT = 10,
+    PIG_RUINS_DART_DAMAGE = wilson_attack,
+    SPEAR_TRAP_HEALTH = 100,
+    SPEAR_TRAP_DAMNAGE = wilson_attack,
+
+    HONEY_LANTERN_MINE = 6,
+
+    ROOM_FINDENTITIES_RADIUS = 30, -- NOTE: this value is determined by TUNING.ROOM_LARGE_WIDTH and TUNING.ROOM_LARGE_DEPTH
+
+    INTERIOR_MINIMAP_PRIORITY_START = 1000,
+    INTERIOR_MINIMAP_DOOR_SPACE = 10,
+    INTERIOR_MINIMAP_POSITION_SCALE = 2.8, -- NOTE: do not change this value
+
+    PL_MANUAL_LIGHT_OFFSET = {
+        -- {[K: prefab]: {height, z_off}}
+        DEFAULT = {2, .5},
+    },
+
+    -- temp use, read only
+    -- TODO: may change to mod config or keep as constant
+    -- see interiorspawner.lua
+    INTERIOR_DESTRUCTION_BEHAVIOR = {
+        DEFAULT = "REMOVE",
+        PLAYER = "TELEPORT_TO_EXTERIOR",
+        CREATURE = "KILL",
+        EPIC_CREATURE = "TELEPORT_TO_EXTERIOR",
+        ITEMS = "REMOVE", -- except for irreplaceable
+        STRUCTURE = "DESTROY",
+    },
+
+    -- temp use
+    -- TODO: remove in prod
+    DECO_RUINS_BEAM_WORK = 6,
+
+    MAGNIFYING_GLASS_DAMAGE = wilson_attack * 0.125,
+    MAGNIFYING_GLASS_USES = 10,
 }
 
 
 --修改原版数值，不知道是否应该放这里
+
+--使得黑暗范围更符合视觉效果
+TUNING.DARK_CUTOFF = 0.02
+
 --用于去除小地图陆地边缘的海洋渐变
 --待做：让这些值只在猪镇世界生效
 TUNING.OCEAN_MINIMAP_SHADER.EDGE_COLOR0 = { 0, 0, 0 }
@@ -443,6 +503,17 @@ TUNING.OCEAN_MINIMAP_SHADER.EDGE_NOISE_PARAMS =
 }
 
 TUNING.OCEAN_SHADER.EFFECT_TINT_AMOUNT = 0.4
+
+TUNING.ROOM_TINY_WIDTH   = 15
+TUNING.ROOM_TINY_DEPTH   = 10
+TUNING.ROOM_SMALL_WIDTH  = 18
+TUNING.ROOM_SMALL_DEPTH  = 12
+TUNING.ROOM_MEDIUM_WIDTH = 24
+TUNING.ROOM_MEDIUM_DEPTH = 16
+TUNING.ROOM_LARGE_WIDTH  = 26
+TUNING.ROOM_LARGE_DEPTH  = 18
+
+
 
 for key, value in pairs(tuning) do
     if TUNING[key] then

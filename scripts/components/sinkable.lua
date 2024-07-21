@@ -52,27 +52,27 @@ function Sinkable:SetOnHitWaterfn(fn)
 end
 
 function Sinkable:OnHitWater()
-	if self.inst:IsOnOcean() then
-		self.sunken = true
+    if self.inst:IsOnOcean() then
+        self.sunken = true
         self.inst.AnimState:SetLayer(LAYER_BACKGROUND)
         if self.onhitwaterfn then
             self.onhitwaterfn(self.inst)
         end
-	end
+    end
 end
 
 function Sinkable:OnSave()
-	return {
-		oldname = self.oldname
-	}
+    return {
+        oldname = self.oldname
+    }
 end
 
 function Sinkable:OnLoad(data)
-	if data ~= nil then
-	 	if data.oldname ~= nil then
-	 		self.oldname = data.oldname
-	 	end
-	end
+    if data ~= nil then
+         if data.oldname ~= nil then
+             self.oldname = data.oldname
+         end
+    end
 end
 
 return Sinkable

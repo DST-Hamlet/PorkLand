@@ -5,6 +5,10 @@ local Moisture = require("components/moisture")
 
 local _GetMoistureRate = Moisture.GetMoistureRate
 function Moisture:GetMoistureRate(...)
+    local x, y, z = self.inst.Transform:GetWorldPosition()
+    if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return 0
+    end
     if not TheWorld.state.fullfog then
         return _GetMoistureRate(self, ...)
     end

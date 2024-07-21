@@ -18,7 +18,7 @@ local function OnExitRow(inst)
     if boat and boat.components.rowboatwakespawner then
         boat.components.rowboatwakespawner:StopSpawning()
     end
-    if inst.sg.nextstate ~= "row" and inst.sg.nextstate ~= "sail" then
+    if inst.sg.nextstate ~= "pl_row" and inst.sg.nextstate ~= "sail" then
         inst.components.locomotor:Stop(nil, true)
         if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then -- Make sure equipped items are pulled back out (only really for items with flames right now)
             local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
@@ -40,7 +40,7 @@ local function OnExitSail(inst)
 
     if inst.sg.nextstate ~= "sail" then
         inst.SoundEmitter:KillSound("sail_loop")
-        if inst.sg.nextstate ~= "row" then
+        if inst.sg.nextstate ~= "PL_row" then
             inst.components.locomotor:Stop(nil, true)
         end
         if inst.sg.nextstate ~= "row_stop" and inst.sg.nextstate ~= "sail_stop" then
@@ -52,6 +52,8 @@ local function OnExitSail(inst)
 end
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.PICKSHELF, "doshortaction"),
+    ActionHandler(ACTIONS.PUTSHELF, "doshortaction"),
     ActionHandler(ACTIONS.EMBARK, "embark"),
     ActionHandler(ACTIONS.DISEMBARK, "disembark"),
     ActionHandler(ACTIONS.RETRIEVE, "dolongaction"),
@@ -88,6 +90,19 @@ local actionhandlers = {
             return "give"
         end
     end),
+    ActionHandler(ACTIONS.USEDOOR, "usedoor"),
+    ActionHandler(ACTIONS.WEIGHDOWN, "doshortaction"),
+    ActionHandler(ACTIONS.DISARM, "dolongaction"),
+    ActionHandler(ACTIONS.REARM, "dolongaction"),
+    ActionHandler(ACTIONS.SPY, function(inst, action)
+        if not inst.sg:HasStateTag("preinvestigate") then
+            if action.invobject ~= nil and action.invobject:HasTag("goggles") then
+                return "goggle"
+            else
+                return "investigate"
+            end
+        end
+    end),
 }
 
 local eventhandlers = {
@@ -102,7 +117,7 @@ local eventhandlers = {
     end),
     EventHandler("sailunequipped", function(inst)
         if inst.sg:HasStateTag("sailing") then
-            inst.sg:GoToState("row")
+            inst.sg:GoToState("pl_row")
 
             if not inst:HasTag("mime") then
                 inst.AnimState:OverrideSymbol("paddle", "swap_paddle", "paddle")
@@ -633,7 +648,9 @@ local states = {
 
             inst.components.health:SetInvincible(true)
             inst:ShowHUD(false)
-            inst:SetCameraDistance(12) -- TODO: Do not set to 12 if interior
+            if not inst:HasTag("inside_interior") then
+                inst:SetCameraDistance(12) -- Do not change interior camera
+            end
         end,
 
         timeline =
@@ -718,9 +735,9 @@ local states = {
                 end
 
                 inst.sg:RemoveStateTag("busy")
-                         if inst.components.playercontroller ~= nil then
-                              inst.components.playercontroller:Enable(true)
-                        end
+                if inst.components.playercontroller ~= nil then
+                    inst.components.playercontroller:Enable(true)
+                end
             end),
         },
 
@@ -1029,14 +1046,14 @@ local states = {
         events = {
             EventHandler("animover", function(inst)
                 if inst.AnimState:AnimDone() then
-                    inst.sg:GoToState("row")
+                    inst.sg:GoToState("pl_row")
                 end
             end),
         },
     },
 
     State{
-        name = "row",
+        name = "pl_row",
         tags = {"moving", "running", "rowing", "boating", "canrotate", "autopredict" },
 
         onenter = function(inst)
@@ -1100,7 +1117,7 @@ local states = {
             end),
         },
 
-        ontimeout = function(inst) inst.sg:GoToState("row") end,
+        ontimeout = function(inst) inst.sg:GoToState("pl_row") end,
     },
 
     State{
@@ -1614,6 +1631,188 @@ local states = {
             end
         end,
     },
+
+    State{
+        name = "usedoor",
+        tags = {"doing", "busy", "canrotate"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("give")
+        end,
+
+        onexit = function(inst)
+
+        end,
+
+        events = {
+            EventHandler("animover", function(inst)
+                inst:PerformBufferedAction()
+                inst.AnimState:PlayAnimation("give_pst", false)
+                inst.sg:GoToState("idle", true)
+            end),
+        },
+    },
+
+    State{
+        name = "investigate_start",
+        tags = {"preinvestigate", "investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.components.locomotor:Stop()
+            inst.sg:GoToState("investigate")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end ),
+            EventHandler("animover", function(inst) inst.sg:GoToState("investigate") end),
+        },
+    },
+
+    State {
+        name = "investigate",
+        tags = {"preinvestigate", "investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.sg.statemem.action = inst:GetBufferedAction()
+            inst.AnimState:PlayAnimation("lens")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(9 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("preinvestigate")
+            end),
+            TimeEvent(16 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("investigating")
+            end),
+            TimeEvent(45 * FRAMES, function(inst)
+                -- this covers both mystery and lighting now
+                inst:PerformBufferedAction()
+            end),
+        },
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("investigate_post")
+            end ),
+        },
+    },
+
+    State{
+        name = "investigate_post",
+        tags = {"investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.AnimState:PlayAnimation("lens_pst")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
+    State {
+        name = "goggle",
+        tags = {"preinvestigate", "investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.sg.statemem.action = inst:GetBufferedAction()
+            inst.AnimState:PlayAnimation("goggle")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+            inst.SoundEmitter:KillSound("goggle")
+        end,
+
+        timeline =
+        {
+            TimeEvent(9 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("preinvestigate")
+            end),
+            TimeEvent(13 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve_wagstaff/characters/wagstaff/use_goggles", "goggle")
+            end),
+            TimeEvent(16 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("investigating")
+            end),
+            TimeEvent(45 * FRAMES, function(inst)
+                -- this covers both mystery and lighting now
+                inst:PerformBufferedAction()
+            end),
+        },
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("goggle_post")
+            end ),
+        },
+    },
+
+    State{
+        name = "goggle_post",
+        tags = {"investigating", "working"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            inst.AnimState:PlayAnimation("goggle_pst")
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        events =
+        {
+            EventHandler("unequip", function(inst) inst.sg:GoToState("idle") end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
+        },
+    },
+
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -1655,6 +1854,17 @@ AddStategraphPostInit("wilson", function(sg)
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
         if not inst.sg:HasStateTag("sneeze") then
             return _attack_deststate and _attack_deststate(inst, ...)
+        end
+    end
+
+    local _light_deststate = sg.actionhandlers[ACTIONS.LIGHT].deststate
+    sg.actionhandlers[ACTIONS.LIGHT].deststate = function(inst, ...)
+        local equipped = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+        if equipped and equipped:HasTag("magnifying_glass") then
+            return "investigate_start"
+        else
+            return _light_deststate(inst, ...)
         end
     end
 
@@ -1873,5 +2083,16 @@ AddStategraphPostInit("wilson", function(sg)
             return "fishing_retrieve"
         end
         return _fish_actionhandler and _fish_actionhandler(inst, action, ...)
+    end
+
+    local hammer_timeline = sg.states["hammer"].timeline
+    hammer_timeline[1].fn = function(inst)
+        local sound = (inst.sg.statemem.action and inst.sg.statemem.action.target and inst.sg.statemem.action.target.hammer_sound)
+            or (inst.sg.statemem.action and inst.sg.statemem.action.invobject and inst.sg.statemem.action.invobject.hit_skin_sound)
+            or "dontstarve/wilson/hit"
+
+        inst.SoundEmitter:PlaySound(sound)
+        inst.sg.statemem.recoilstate = "mine_recoil"
+        inst:PerformBufferedAction()
     end
 end)

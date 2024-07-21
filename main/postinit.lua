@@ -7,26 +7,37 @@ local behaviour_posts = {
     "wander",
 }
 
+local camera_posts = {
+    "followcamera",
+}
+
 local component_posts = {
     "actionqueuer",
     "ambientlighting",
+    "areaaware",
     "blinkstaff",
     "builder_replica",
     "builder",
+    "circler",
     "clock",
     "colourcube",
     "combat",
+    "crop",
     "drownable",
     "edible",
     "equippable_replica",
     "equippable",
+    "explosive",
     "fishingrod",
     "floater",
     "grogginess",
+    "grue",
+    "hauntable",
     "health",
     "inventory",
     "inventoryitem_replica",
     "inventoryitem",
+    "inventoryitemmoisture",
     "locomotor",
     "lootdropper",
     "moisture",
@@ -34,7 +45,9 @@ local component_posts = {
     "oldager",
     "playeractionpicker",
     "playercontroller",
+    "playervision",
     "pollinator",
+    "positionalwarp",
     "regrowthmanager",
     "repairable",
     "rider_replica",
@@ -43,9 +56,11 @@ local component_posts = {
     "shard_clock",
     "shard_seasons",
     "sleeper",
+    "teamleader",
     "waterproofer",
     "wavemanager",
     "wisecracker",
+    "witherable",
     "worldstate",
 }
 
@@ -60,6 +75,7 @@ local prefab_posts = {
     "torch",
     "woodie",
     "world_network",
+    "world",
     "shard_network",
     "statueruins",
     "walls",
@@ -72,6 +88,7 @@ local multipleprefab_posts = {
     "blowinwindgust",
     "firepit",
     "health",
+    "notraptrigger",
     "poisonable",
 }
 
@@ -79,12 +96,16 @@ local scenario_posts = {
 }
 
 local screens_posts = {
+    "mapscreen",
     "playerhud",
 }
 
 local stategraph_posts = {
+    "bird",
     "wilson",
     "wilson_client",
+    "wilsonghost",
+    "wilsonghost_client",
 }
 
 local brain_posts = {
@@ -122,9 +143,18 @@ modimport("postinit/bufferedaction")
 modimport("postinit/animstate")
 modimport("postinit/stategraphs/commonstates")
 modimport("postinit/input")
+modimport("postinit/vector3")
+modimport("postinit/emittermanager")
+modimport("postinit/minimapentity")
+modimport("postinit/sim")
+modimport("postinit/pathfinder")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)
+end
+
+for _, file_name in ipairs(camera_posts) do
+    modimport("postinit/cameras/" .. file_name)
 end
 
 for _, file_name in ipairs(component_posts) do

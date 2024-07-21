@@ -18,8 +18,8 @@ SetSharedLootTable("ruins_pig", {
 })
 
 SetSharedLootTable("ruins_giant_head", {
-	{"gold_dust", 0.2},
-	{"gold_dust", 0.2},
+    {"gold_dust", 0.2},
+    {"gold_dust", 0.2},
     {"rocks", 1.0},
     {"rocks", 1.0},
     {"nitre",  0.25},
@@ -55,9 +55,9 @@ SetSharedLootTable("antqueen_throne", {
     {"gold_dust", 0.6},
 
     {"gold_nugget", 1.0},
-	{"gold_nugget", 1.0},
-	{"gold_nugget", 0.3},
-	{"gold_nugget", 0.3},
+    {"gold_nugget", 1.0},
+    {"gold_nugget", 0.3},
+    {"gold_nugget", 0.3},
 
     {"bluegem", 0.5},
     {"bluegem", 0.5},
@@ -73,44 +73,44 @@ SetSharedLootTable("basalt",{
 
 local function TriggerDarts(inst)
     local pt = Vector3(inst.Transform:GetWorldPosition())
-    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 50, {"dartthrower"}, {"INTERIOR_LIMBO"})
+    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 40, {"dartthrower"}, {"INLIMBO"})
     for i, v in ipairs(ents) do
-    	if v.components.autodartthrower then
-    		v.components.autodartthrower:TurnOn()
-    	elseif v.Shoot ~= nil then
-            v.Shoot(v)
+        if v.components.autodartthrower then
+            v.components.autodartthrower:TurnOn()
+        elseif v.shoot ~= nil then
+            v.shoot(v)
         end
     end
 end
 
 local function DislodgeOnLoad(inst, data)
-	inst.AnimState:PlayAnimation("extract_success")
-	-- inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_EXTRACTED"])
+    inst.AnimState:PlayAnimation("extract_success")
+    inst.components.named:SetName(STRINGS.NAMES.PIG_RUINS_EXTRACTED)
 end
 
 local function OnSave(inst, data)
-	if inst:HasTag("trggerdarttraps") then
-		data.trggerdarttraps = true
-	end
+    if inst:HasTag("trggerdarttraps") then
+        data.trggerdarttraps = true
+    end
 end
 
 local function OnLoad(inst, data)
-	if data ~= nil then
-		if data.trggerdarttraps then
-			inst:AddTag("trggerdarttraps")
-		end
-	end
+    if data ~= nil then
+        if data.trggerdarttraps then
+            inst:AddTag("trggerdarttraps")
+        end
+    end
 end
 
 local function OnDislodged(inst)
-	if inst:HasTag("trggerdarttraps") then
-		TriggerDarts(inst)
-	end
+    if inst:HasTag("trggerdarttraps") then
+        TriggerDarts(inst)
+    end
     DislodgeOnLoad(inst)
 end
 
 local function CanBeDislodgedFn(inst)
-	return inst.components.workable ~= nil and inst.components.workable.workleft >= TUNING.ROCKS_MINE*(2/3)
+    return inst.components.workable ~= nil and inst.components.workable.workleft >= TUNING.ROCKS_MINE*(2/3)
 end
 
 local function OnWorkCallback(inst, worker, workleft)
@@ -232,10 +232,10 @@ local function MakeRuin(name, data)
 end
 
 local function ShineTask(inst)
-   	if inst.components.dislodgeable and inst.components.dislodgeable:CanBeDislodged() then
-   		inst.AnimState:PlayAnimation("sparkle")
-   		inst.AnimState:PushAnimation("full")
-   	end
+       if inst.components.dislodgeable and inst.components.dislodgeable:CanBeDislodged() then
+           inst.AnimState:PlayAnimation("sparkle")
+           inst.AnimState:PushAnimation("full")
+       end
 
     if inst.entity:IsAwake() then
         inst.task = inst:DoTaskInTime(4+math.random()*5, ShineTask)

@@ -12,6 +12,10 @@ local function OnDropped(inst)
 end
 
 AddPrefabPostInit("boomerang", function(inst)
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
     inst.components.finiteuses:SetOnFinished(OnFinished)
 
     inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
