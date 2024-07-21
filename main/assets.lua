@@ -145,6 +145,7 @@ PrefabFiles = {
     "antcombhome",
     "magnifying_glass",
     "disarmingkit",
+    "pig_shop",
 }
 
 Assets = {
