@@ -848,6 +848,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
 
         inst:AddComponent("named")
         -- inst.components.named.possiblenames = names
+        inst.components.named.possiblenames = {"placeholder pigman name"}
         inst.components.named:PickNewName()
 
         inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
@@ -1167,18 +1168,21 @@ local function QueenCommonPostinit(inst)
 end
 
 local function QueenMasterPostinit(inst)
-    inst.components.named.possiblenames = STRINGS.QUEENPIGNAMES
-    inst.components.named:PickNewName()
+    -- TODO: get this back when string related works are finished @Jerry457
+    -- inst.components.named.possiblenames = STRINGS.QUEENPIGNAMES
+    -- inst.components.named:PickNewName()
 end
 
 --[[ Pig Mayor ]]--
 
 local function MayorMasterPostinit(inst)
-    inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
+    -- TODO: get this back when string related works are finished @Jerry457
+    -- inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
 end
 
 local function MayorShopkeeperMasterPostinit(inst)
-    inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
+    -- TODO: get this back when string related works are finished @Jerry457
+    -- inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
 end
 
 local NOHAT_TAGS = {"emote_nohat"}
