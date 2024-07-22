@@ -144,6 +144,8 @@ return {
             NAUTICAL = "Nautical",
         },
         CUSTOMIZATIONSCREEN = {
+            PRESETLEVELS = {PORKLAND = "Hamlet",},
+            PRESETLEVELDESC = {PORKLAND = "A deeply dangerous jungle?",},
             ASPARAGUS = "Asparagus",
             ASPARAGUS_REGROWTH = "Asparagus",
             BILL_SETTING = "Platapine",
