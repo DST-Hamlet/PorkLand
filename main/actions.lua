@@ -28,7 +28,11 @@ if not rawget(_G, "HotReloading") then
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2, mount_enabled = true}),
         PUTONSHELF = Action({ distance = 2 }),
-        TAKEFROMSHELF = Action({ distance = 2, priority = 1 })
+        TAKEFROMSHELF = Action({ distance = 2, priority = 1 }),
+        ASSEMBLE_ROBOT = Action({}),
+        CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
+        CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
+        USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true})
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -386,7 +390,23 @@ ACTIONS.TAKEFROMSHELF.fn = function(act)
     end
 end
 
+ACTIONS.ASSEMBLE_ROBOT.fn = function(act)
+    act.doer.components.mechassembly:Assemble(act.target)
+    return true
+end
 
+ACTIONS.CHARGE_UP.fn = function(act)
+    act.doer:PushEvent("beginchargeup")
+    return true
+end
+
+ACTIONS.USE_LIVING_ARTIFACT.fn = function(act)
+    local target = act.target or act.invobject
+    if target and target.components.livingartifact and not target:HasTag("active") then
+        target.components.livingartifact:Activate(act.doer, false)
+        return true
+    end
+end
 
 
 
@@ -620,6 +640,11 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.REARM)
             end
         end,
+        livingartifact = function (inst, doer, actions, right)
+            if not inst:HasTag("enabled") and right then
+                table.insert(actions, ACTIONS.USE_LIVING_ARTIFACT)
+            end
+        end,
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
                 table.insert(actions, ACTIONS.TAKEFROMSHELF)
@@ -653,6 +678,15 @@ local PL_COMPONENT_ACTIONS =
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
+        livingartifact = function (inst, doer, actions, right)
+            if not (inst.replica.inventoryitem and inst.replica.inventoryitem:IsHeldBy(doer)) then
+                return
+            end
+
+            if not inst:HasTag("enabled") then
+                table.insert(actions, ACTIONS.USE_LIVING_ARTIFACT)
+            end
+        end,
         poisonhealer = function(inst, doer, actions, right)
             if doer:HasTag("poisonable") and (doer:HasTag("player") and
                 ((doer.components.poisonable and doer.components.poisonable:IsPoisoned()) or

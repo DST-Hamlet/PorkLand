@@ -56,6 +56,7 @@ local component_posts = {
     "shard_clock",
     "shard_seasons",
     "sleeper",
+    "strafer",
     "teamleader",
     "waterproofer",
     "wavemanager",
@@ -112,9 +113,11 @@ local brain_posts = {
 }
 
 local widget_posts = {
+    "bloodover",
     "containerwidget",
     "inventorybar",
     "seasonclock",
+    "statusdisplay",
     "uianim",
     "uiclock",
     "widget",
