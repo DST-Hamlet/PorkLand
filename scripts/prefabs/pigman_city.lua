@@ -1,5 +1,4 @@
-local assets =
-{
+local assets = {
     Asset("ANIM", "anim/pig_usher.zip"),
     Asset("ANIM", "anim/pig_mayor.zip"),
     Asset("ANIM", "anim/pig_miner.zip"),
@@ -23,8 +22,7 @@ local assets =
     Asset("ANIM", "anim/townspig_shop_wip.zip"),
 }
 
-local prefabs =
-{
+local prefabs = {
     "meat",
     "poop",
     "tophat",
@@ -45,7 +43,7 @@ local FEMALE = "FEMALE"
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 30
 
-local function getSpeechType(inst,speech)
+local function getSpeechType(inst, speech)
     local line = speech.DEFAULT
 
     if inst.talkertype and speech[inst.talkertype] then
@@ -61,10 +59,10 @@ end
 
 local function spawndesk(inst, spawndesk)
     if spawndesk then
-        local desklocation =  Vector3(inst.Transform:GetWorldPosition())
+        local desklocation = Vector3(inst.Transform:GetWorldPosition())
 
         inst.desk = SpawnPrefab("pigman_shopkeeper_desk")
-        inst.desk.Transform:SetPosition(desklocation.x,desklocation.y,desklocation.z)
+        inst.desk.Transform:SetPosition(desklocation.x, desklocation.y, desklocation.z)
         inst:AddComponent("homeseeker")
         inst.components.homeseeker:SetHome(inst.desk)
     else
@@ -76,8 +74,8 @@ local function spawndesk(inst, spawndesk)
     end
 end
 
-local function separatedesk(inst,separatedesk)
-    if separatedesk  then
+local function separatedesk(inst, separatedesk)
+    if separatedesk then
         inst:RemoveTag("atdesk")
         inst.AnimState:Hide("desk")
         spawndesk(inst, true)
@@ -86,8 +84,8 @@ local function separatedesk(inst,separatedesk)
     else
         ChangeToObstaclePhysics(inst)
         if inst.desk then
-            local x,y,z = inst.desk.Transform:GetWorldPosition()
-            inst.Transform:SetPosition(x,y,z)
+            local x, y, z = inst.desk.Transform:GetWorldPosition()
+            inst.Transform:SetPosition(x, y, z)
         end
         spawndesk(inst, false)
         inst:AddTag("atdesk")
@@ -104,20 +102,20 @@ local function ontalk(inst, script, mood)
         if mood and mood == "alarmed" then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/guard_alert")
         else
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk_gaurd","talk")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk_gaurd", "talk")
         end
     else
         if inst.female then
             if mood and mood == "alarmed" then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream_female")
             else
-               inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk_female","talk")
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk_female", "talk")
             end
         else
             if mood and mood == "alarmed" then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream")
             else
-               inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk","talk")
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk", "talk")
             end
         end
     end
@@ -149,9 +147,8 @@ local function ShouldAcceptItem(inst, item)
     end
 
     if inst.components.eater:CanEat(item) then
-        if (item.components.edible.foodtype == FOODTYPE.MEAT or item.components.edible.foodtype == "HORRIBLE")
-           and inst.components.follower.leader
-           and inst.components.follower:GetLoyaltyPercent() > 0.9 then
+        if (item.components.edible.foodtype == FOODTYPE.MEAT or item.components.edible.foodtype == "HORRIBLE") and
+            inst.components.follower.leader and inst.components.follower:GetLoyaltyPercent() > 0.9 then
             return false
         end
 
@@ -164,7 +161,7 @@ local function ShouldAcceptItem(inst, item)
             end
             local wanteditems = econ:GetTradeItems(econprefab)
             local wantitem = false
-            for i,wanted in ipairs(wanteditems or {})do
+            for i, wanted in ipairs(wanteditems or {}) do
                 if wanted == item.prefab then
                     wantitem = true
                     break
@@ -182,8 +179,6 @@ local function ShouldAcceptItem(inst, item)
         end
     end
 
-
-
     if not inst:HasTag("guard") then
         local city = inst:HasTag("city2") and 2 or 1
 
@@ -195,27 +190,28 @@ local function ShouldAcceptItem(inst, item)
         end
 
         local wanteditems = econ:GetTradeItems(econprefab)
-        local desc =        econ:GetTradeItemDesc(econprefab)
-        --local wantednum =   econ:GetNumberWanted(econprefab,city)
+        local desc = econ:GetTradeItemDesc(econprefab)
+        -- local wantednum =   econ:GetNumberWanted(econprefab,city)
 
         local wantitem = false
-        for i,wanted in ipairs(wanteditems)do
+        for i, wanted in ipairs(wanteditems) do
             if wanted == item.prefab then
                 wantitem = true
                 break
             end
         end
 
-        if item.prefab == "purplegem" and (inst.prefab == "pigman_banker" or inst.prefab == "pigman_banker_shopkeep" ) then
-            inst.sayline(inst, getSpeechType(inst,STRINGS.CITY_PIG_TALK_REFUSE_PURPLEGEM))
+        if item.prefab == "purplegem" and (inst.prefab == "pigman_banker" or inst.prefab == "pigman_banker_shopkeep") then
+            inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_PURPLEGEM))
             return false
         end
 
-        if (item.prefab == "trinket_giftshop_1" or item.prefab == "trinket_giftshop_3") and inst:HasTag("city1") and not inst:HasTag("recieved_trinket") then
+        if (item.prefab == "trinket_giftshop_1" or item.prefab == "trinket_giftshop_3") and inst:HasTag("city1") and
+            not inst:HasTag("recieved_trinket") then
             wantitem = true
         end
 
-        if (item.prefab == "relic_4" or item.prefab == "relic_5") and not inst:HasTag("pigqueen")  then
+        if (item.prefab == "relic_4" or item.prefab == "relic_5") and not inst:HasTag("pigqueen") then
             wantitem = false
         end
 
@@ -224,12 +220,13 @@ local function ShouldAcceptItem(inst, item)
                 return true
             end
 
-            local delay = econ:GetDelay(econprefab,city,inst)
+            local delay = econ:GetDelay(econprefab, city, inst)
             if delay > 0 then
                 if delay == 1 then
-                    inst.sayline(inst, getSpeechType(inst,STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW))
+                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW))
                 else
-                    inst.sayline(inst, string.format( getSpeechType(inst,STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY), tostring(delay) ))
+                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY),
+                        tostring(delay)))
                 end
                 return false
             else
@@ -237,39 +234,37 @@ local function ShouldAcceptItem(inst, item)
             end
         else
             if item:HasTag("relic") then
-                if item.prefab == "relic_4" or item.prefab == "relic_5"then
-                    inst.sayline(inst, getSpeechType(inst,STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT))
+                if item.prefab == "relic_4" or item.prefab == "relic_5" then
+                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT))
                 else
-                    inst.sayline(inst, getSpeechType(inst,STRINGS.CITY_PIG_TALK_RELIC_GIFT))
+                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_RELIC_GIFT))
                 end
             else
                 if item.prefab == "trinket_giftshop_1" or item.prefab == "trinket_giftshop_3" and inst:HasTag("city1") then
-                    inst.sayline(inst, getSpeechType(inst,STRINGS.CITY_PIG_TALK_REFUSE_TRINKET_GIFT))
+                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_TRINKET_GIFT))
                 else
-                    --HUGO
-                    inst.sayline(inst, string.format( getSpeechType(inst,STRINGS.CITY_PIG_TALK_REFUSE_GIFT), desc ))
+                    -- HUGO
+                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_GIFT), desc))
                 end
             end
             return false
         end
     end
 
-
-
     return false
 end
 
 local function OnGetItemFromPlayer(inst, giver, item)
 
-    if not inst:HasTag("guard") then     -- or inst:HasTag("pigqueen")
+    if not inst:HasTag("guard") then -- or inst:HasTag("pigqueen")
 
         local city = 1
         if inst:HasTag("city2") then
-            city =  2
+            city = 2
         end
 
-        --I wear hats (but should they? the art doesn't show)
-        if inst:HasTag("pigqueen") and item.components.equippable  then
+        -- I wear hats (but should they? the art doesn't show)
+        if inst:HasTag("pigqueen") and item.components.equippable then
             local behappy = false
             if item.components.equippable.equipslot == EQUIPSLOTS.HEAD then
                 local current = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HEAD)
@@ -313,7 +308,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
 
         local wantitem = false
         local trinket = false
-        for i,wanted in ipairs(wanteditems)do
+        for i, wanted in ipairs(wanteditems) do
             if wanted == item.prefab then
                 wantitem = true
                 break
@@ -330,41 +325,53 @@ local function OnGetItemFromPlayer(inst, giver, item)
             if trinket then
                 if giver.components.inventory then
                     inst:AddTag("recieved_trinket")
-                    inst.sayline(inst, getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_TRINKET_REWARD) )
+                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_TRINKET_REWARD))
 
-                    local reward = {"kabobs","pumpkincookie","taffy","oinc","butterflymuffin","powcake"}
-                    local rewarditem = SpawnPrefab(reward[math.random(1,#reward)])
-                    giver.components.inventory:GiveItem( rewarditem, nil,  Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+                    local reward = {
+                        "kabobs",
+                        "pumpkincookie",
+                        "taffy",
+                        "oinc",
+                        "butterflymuffin",
+                        "powcake",
+                    }
+                    local rewarditem = SpawnPrefab(reward[math.random(1, #reward)])
+                    giver.components.inventory:GiveItem(rewarditem, nil,
+                        Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
 
                     return true
                 end
             end
 
-            local reward,qty = econ:MakeTrade(econprefab,city,inst)
+            local reward, qty = econ:MakeTrade(econprefab, city, inst)
             if item.prefab ~= "pig_scepter" and item.prefab ~= "pigcrownhat" then
                 item:Remove()
             end
             if reward then
                 if giver.components.inventory then
-                    inst.sayline(inst, string.format(getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_REWARD), tostring(1), desc ))
-                    --inst.components.talker:Say( string.format(getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_REWARD), tostring(1), desc ))--econ:GetNumberWanted(econprefab,city) ), desc ) )
+                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_REWARD),
+                        tostring(1), desc))
+                    -- inst.components.talker:Say( string.format(getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_REWARD), tostring(1), desc ))--econ:GetNumberWanted(econprefab,city) ), desc ) )
 
-                    for i=1,qty do
+                    for i = 1, qty do
                         local rewarditem = SpawnPrefab(reward)
-                        giver.components.inventory:GiveItem( rewarditem, nil,  Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+                        giver.components.inventory:GiveItem(rewarditem, nil, Vector3(
+                            TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
                     end
                 end
             else
-                inst.sayline(inst, string.format(getSpeechType(inst,STRINGS.CITY_PIG_TALK_TAKE_GIFT), tostring(1), desc ))
-                --inst.components.talker:Say( string.format(getSpeechType(inst,STRINGS.CITY_PIG_TALK_TAKE_GIFT), tostring(1), desc ))--econ:GetNumberWanted(econprefab,city) ), desc ) )
-           end
+                inst.sayline(inst,
+                    string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_TAKE_GIFT), tostring(1), desc))
+                -- inst.components.talker:Say( string.format(getSpeechType(inst,STRINGS.CITY_PIG_TALK_TAKE_GIFT), tostring(1), desc ))--econ:GetNumberWanted(econprefab,city) ), desc ) )
+            end
         end
         if item:HasTag("relic") and (inst.prefab == "pigman_collector_shopkeep" or inst.prefab == "pigman_collector") then
             if giver.components.inventory then
-                inst.sayline(inst, getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD))
-                --inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD) )
+                inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD))
+                -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD) )
                 local rewarditem = SpawnPrefab("oinc10")
-                giver.components.inventory:GiveItem( rewarditem, nil,  Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())) )
+                giver.components.inventory:GiveItem(rewarditem, nil,
+                    Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
             end
         end
     end
@@ -385,16 +392,14 @@ local function OnRefuseItem(inst, item)
 end
 
 local function OnEat(inst, food)
-    if food.components.edible
-       and food.components.edible.foodtype == "MEAT"
-       and inst.components.werebeast
-       and not inst.components.werebeast:IsInWereState() then
+    if food.components.edible and food.components.edible.foodtype == "MEAT" and inst.components.werebeast and
+        not inst.components.werebeast:IsInWereState() then
         if food.components.edible:GetHealth() < 0 then
             inst.components.werebeast:TriggerDelta(1)
         end
     end
 
-    if food.components.edible and (food.components.edible.foodtype == "VEGGIE") then --or food.components.edible.foodtype == "SEEDS") then
+    if food.components.edible and (food.components.edible.foodtype == "VEGGIE") then -- or food.components.edible.foodtype == "SEEDS") then
         local poop = SpawnPrefab("poop")
         poop.Transform:SetPosition(inst.Transform:GetWorldPosition())
 
@@ -404,21 +409,26 @@ local function OnEat(inst, food)
 end
 
 local function OnAttackedByDecidRoot(inst, attacker)
-    local fn = function(dude) return dude:HasTag("pig") and not dude:HasTag("werepig") and not dude:HasTag("guard") end
+    local fn = function(dude)
+        return dude:HasTag("pig") and not dude:HasTag("werepig") and not dude:HasTag("guard")
+    end
 
-    local x,y,z = inst.Transform:GetWorldPosition()
+    local x, y, z = inst.Transform:GetWorldPosition()
     local ents = nil
     if GetSeasonManager() and (GetSeasonManager():IsSpring() or GetSeasonManager():IsGreenSeason()) then
-        ents = TheSim:FindEntities(x,y,z, (SHARE_TARGET_DIST * TUNING.SPRING_COMBAT_MOD) / 2)
+        ents = TheSim:FindEntities(x, y, z, (SHARE_TARGET_DIST * TUNING.SPRING_COMBAT_MOD) / 2)
     else
-        ents = TheSim:FindEntities(x,y,z, SHARE_TARGET_DIST / 2)
+        ents = TheSim:FindEntities(x, y, z, SHARE_TARGET_DIST / 2)
     end
 
     if ents then
         local num_helpers = 0
-        for k,v in pairs(ents) do
-            if v ~= inst and v.components.combat and not (v.components.health and v.components.health:IsDead()) and fn(v) then
-                if v:PushEvent("suggest_tree_target", {tree=attacker}) then
+        for k, v in pairs(ents) do
+            if v ~= inst and v.components.combat and not (v.components.health and v.components.health:IsDead()) and
+                fn(v) then
+                if v:PushEvent("suggest_tree_target", {
+                    tree = attacker,
+                }) then
                     num_helpers = num_helpers + 1
                 end
             end
@@ -430,8 +440,10 @@ local function OnAttackedByDecidRoot(inst, attacker)
 end
 
 local function callGuards(inst, attacker, task)
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x,y,z, 30,{"guard_entrance"})
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, 30, {
+        "guard_entrance",
+    })
     if #ents > 0 then
         local guardprefab = "pigman_royalguard"
         local cityID = 1
@@ -439,11 +451,15 @@ local function callGuards(inst, attacker, task)
             guardprefab = "pigman_royalguard_2"
             cityID = 2
         end
-        local spawnpt = Vector3(ents[math.random(#ents)].Transform:GetWorldPosition() )
+        local spawnpt = Vector3(ents[math.random(#ents)].Transform:GetWorldPosition())
         local guard = SpawnPrefab(guardprefab)
         guard.components.citypossession:SetCity(cityID)
-        guard.Transform:SetPosition(spawnpt.x,spawnpt.y,spawnpt.z)
-        guard:PushEvent("attacked", {attacker = attacker, damage = 0, weapon = nil})
+        guard.Transform:SetPosition(spawnpt.x, spawnpt.y, spawnpt.z)
+        guard:PushEvent("attacked", {
+            attacker = attacker,
+            damage = 0,
+            weapon = nil,
+        })
         if attacker then
             attacker:AddTag("wanted_by_guards")
         end
@@ -461,8 +477,12 @@ local function callGuards(inst, attacker, task)
 end
 
 local function spawnguardtasks(inst, attacker)
-    inst.task_guard1 = inst:DoTaskInTime(math.random(1) + 1,   function() callGuards(inst, attacker, "task_guard1") end)
-    inst.task_guard2 = inst:DoTaskInTime(math.random(1) + 1.5, function() callGuards(inst, attacker, "task_guard2") end)
+    inst.task_guard1 = inst:DoTaskInTime(math.random(1) + 1, function()
+        callGuards(inst, attacker, "task_guard1")
+    end)
+    inst.task_guard2 = inst:DoTaskInTime(math.random(1) + 1.5, function()
+        callGuards(inst, attacker, "task_guard2")
+    end)
 end
 
 local function OnAttacked(inst, data)
@@ -479,10 +499,14 @@ local function OnAttacked(inst, data)
                 if attacker == GetPlayer() then
                     inst:AddTag("angry_at_player")
                 end
-                inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude) return dude:HasTag("pig") and (dude:HasTag("guard") or not attacker:HasTag("pig")) end, MAX_TARGET_SHARES)
+                inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
+                    return dude:HasTag("pig") and (dude:HasTag("guard") or not attacker:HasTag("pig"))
+                end, MAX_TARGET_SHARES)
             else
-                if not (attacker:HasTag("pig") and attacker:HasTag("guard") ) then
-                    inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude) return dude:HasTag("pig") end, MAX_TARGET_SHARES)
+                if not (attacker:HasTag("pig") and attacker:HasTag("guard")) then
+                    inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
+                        return dude:HasTag("pig")
+                    end, MAX_TARGET_SHARES)
                 end
             end
         end
@@ -499,34 +523,37 @@ end
 local builds = {"pig_build", "pigspotted_build"}
 
 local function NormalRetargetFn(inst)
-    return FindEntity(inst, TUNING.CITY_PIG_GUARD_TARGET_DIST,
-        function(guy)
-            if not guy.LightWatcher or guy.LightWatcher:IsInLight() then
+    return FindEntity(inst, TUNING.CITY_PIG_GUARD_TARGET_DIST, function(guy)
+        if not guy.LightWatcher or guy.LightWatcher:IsInLight() then
 
-                if guy == GetPlayer() and inst:HasTag("angry_at_player") and guy.components.health and not guy.components.health:IsDead() and inst.components.combat:CanTarget(guy) and inst.components.combat.target ~= GetPlayer() then
-                    inst.sayline(inst, getSpeechType(inst,STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER))
-                    --inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER) )
-                end
-
-                return (guy:HasTag("monster") or (guy == GetPlayer() and inst:HasTag("angry_at_player"))  ) and guy.components.health and not guy.components.health:IsDead() and inst.components.combat:CanTarget(guy) and not
-                (inst.components.follower.leader ~= nil and guy:HasTag("abigail"))
+            if guy == GetPlayer() and inst:HasTag("angry_at_player") and guy.components.health and
+                not guy.components.health:IsDead() and inst.components.combat:CanTarget(guy) and
+                inst.components.combat.target ~= GetPlayer() then
+                inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER))
+                -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER) )
             end
-        end)
+
+            return (guy:HasTag("monster") or (guy == GetPlayer() and inst:HasTag("angry_at_player"))) and
+                       guy.components.health and not guy.components.health:IsDead() and
+                       inst.components.combat:CanTarget(guy) and
+                       not (inst.components.follower.leader ~= nil and guy:HasTag("abigail"))
+        end
+    end)
 end
 
 local function NormalKeepTargetFn(inst, target)
-    --give up on dead guys, or guys in the dark, or werepigs
-    return inst.components.combat:CanTarget(target)
-           and (not target.LightWatcher or target.LightWatcher:IsInLight())
-           and not (target.sg and target.sg:HasStateTag("transform") )
+    -- give up on dead guys, or guys in the dark, or werepigs
+    return inst.components.combat:CanTarget(target) and (not target.LightWatcher or target.LightWatcher:IsInLight()) and
+               not (target.sg and target.sg:HasStateTag("transform"))
 end
 
 local function NormalShouldSleep(inst)
     if inst.components.follower and inst.components.follower.leader then
         local fire = FindEntity(inst, 6, function(ent)
-            return ent.components.burnable
-                   and ent.components.burnable:IsBurning()
-        end, {"campfire"})
+            return ent.components.burnable and ent.components.burnable:IsBurning()
+        end, {
+            "campfire",
+        })
         return DefaultSleepTest(inst) and fire and (not inst.LightWatcher or inst.LightWatcher:IsInLight())
     else
         return DefaultSleepTest(inst)
@@ -551,8 +578,8 @@ local function SetNormalPig(inst, brain_id)
     inst.components.sleeper:SetWakeTest(DefaultWakeTest)
 
     inst.components.lootdropper:SetLoot({})
-    inst.components.lootdropper:AddRandomLoot("meat",3)
-    inst.components.lootdropper:AddRandomLoot("pigskin",1)
+    inst.components.lootdropper:AddRandomLoot("meat", 3)
+    inst.components.lootdropper:AddRandomLoot("pigskin", 1)
     inst.components.lootdropper.numrandomloot = 1
 
     inst.components.health:SetMaxHealth(TUNING.PIG_HEALTH)
@@ -564,41 +591,40 @@ local function SetNormalPig(inst, brain_id)
         end
     end)
 
-    inst:ListenForEvent("itemreceived",
-        function (inst, data)
-            if data.item.prefab == "oinc" or data.item.prefab == "oinc10" or data.item.prefab == "oinc100" then
-                if inst:HasTag("angry_at_player") then
-                    if not inst.bribe_count then
-                        inst.bribe_count = 0
+    inst:ListenForEvent("itemreceived", function(inst, data)
+        if data.item.prefab == "oinc" or data.item.prefab == "oinc10" or data.item.prefab == "oinc100" then
+            if inst:HasTag("angry_at_player") then
+                if not inst.bribe_count then
+                    inst.bribe_count = 0
+                end
+
+                -- If the item is not an oinc it's obviously an oinc10, so we count the bribe accordingly
+                if data.item.prefab == "oinc" then
+                    inst.bribe_count = inst.bribe_count + 1
+                elseif data.item.prefab == "oinc10" then
+                    inst.bribe_count = inst.bribe_count + 10
+                elseif data.item.prefab == "oinc100" then
+                    inst.bribe_count = inst.bribe_count + 100
+                end
+                inst.bribe_count = inst.bribe_count * data.item.components.stackable.stacksize
+
+                local bribe_threshold = inst:HasTag("guard") and 10 or 1
+                if inst.bribe_count >= bribe_threshold then
+                    inst:RemoveTag("angry_at_player")
+
+                    if inst.components.combat and inst.components.combat:IsTarget(GetPlayer()) then
+                        inst.components.combat:GiveUp()
                     end
 
-                    -- If the item is not an oinc it's obviously an oinc10, so we count the bribe accordingly
-                    if data.item.prefab == "oinc" then
-                        inst.bribe_count = inst.bribe_count + 1
-                    elseif data.item.prefab == "oinc10" then
-                        inst.bribe_count = inst.bribe_count + 10
-                    elseif data.item.prefab == "oinc100" then
-                        inst.bribe_count = inst.bribe_count + 100
-                    end
-                    inst.bribe_count = inst.bribe_count * data.item.components.stackable.stacksize
-
-                    local bribe_threshold = inst:HasTag("guard") and 10 or 1
-                    if inst.bribe_count >= bribe_threshold then
-                        inst:RemoveTag("angry_at_player")
-
-                        if inst.components.combat and inst.components.combat:IsTarget(GetPlayer()) then
-                            inst.components.combat:GiveUp()
-                        end
-
-                        inst.bribe_count = 0
-                        inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER))
-                        --inst.components.talker:Say(getSpeechType(inst, STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER))
-                    else
-                        inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_NOT_ENOUGH))
-                    end
+                    inst.bribe_count = 0
+                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER))
+                    -- inst.components.talker:Say(getSpeechType(inst, STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER))
+                else
+                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_NOT_ENOUGH))
                 end
             end
-        end)
+        end
+    end)
 
     inst.components.trader:Enable()
     inst.components.talker:StopIgnoringAll()
@@ -606,14 +632,16 @@ end
 
 local function throwcrackers(inst)
     local cracker = SpawnPrefab("firecrackers")
-    inst.components.inventory:GiveItem( cracker )
+    inst.components.inventory:GiveItem(cracker)
     local pos = Vector3(inst.Transform:GetWorldPosition())
     local start_angle = inst.Transform:GetRotation()
     local radius = 5
     local attempts = 12
 
     local test_fn = function(offset)
-        local ents = TheSim:FindEntities(pos.x+offset.x,pos.y+offset.y,pos.z+offset.z, 2, nil,{"INLIMBO"})
+        local ents = TheSim:FindEntities(pos.x + offset.x, pos.y + offset.y, pos.z + offset.z, 2, nil, {
+            "INLIMBO",
+        })
 
         if #ents == 0 then
             return true
@@ -627,11 +655,11 @@ local function throwcrackers(inst)
 
     local rot = inst.Transform:GetRotation() * DEGREES
 
-    local tossdir = Vector3(0,0,0)
+    local tossdir = Vector3(0, 0, 0)
     tossdir.x = math.cos(rot)
     tossdir.z = -math.sin(rot)
 
-    inst.components.inventory:DropItem(cracker, nil,nil,nil,nil,tossdir)
+    inst.components.inventory:DropItem(cracker, nil, nil, nil, nil, tossdir)
     cracker.components.fuse:StartFuse()
 end
 
@@ -639,7 +667,7 @@ local function OnSave(inst, data)
     data.build = inst.build
 
     data.children = {}
-    -- for the shopkeepers if they have spawned their desk            
+    -- for the shopkeepers if they have spawned their desk
     if inst.desk then
         table.insert(data.children, inst.desk.GUID)
         data.desk = inst.desk.GUID
@@ -691,7 +719,7 @@ local function OnLoad(inst, data)
     end
 
     if data.doSpawnGuardTask then
-        spawnguardtasks(inst,GetPlayer())
+        spawnguardtasks(inst, GetPlayer())
     end
 
     if data.equipped then
@@ -778,7 +806,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst:AddTag("_named")
 
         if tags then
-            for _, tag in pairs(tags)do
+            for _, tag in pairs(tags) do
                 inst:AddTag(tag)
             end
         end
@@ -808,7 +836,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
                 inst.female = true
             end
 
-            for i,name in ipairs(STRINGS.CITYPIGNAMES[sex]) do
+            for i, name in ipairs(STRINGS.CITYPIGNAMES[sex]) do
                 table.insert(names, name)
             end
         end
@@ -818,8 +846,8 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst.components.named:PickNewName()
 
         inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-        inst.components.locomotor.runspeed = TUNING.PIG_RUN_SPEED --5
-        inst.components.locomotor.walkspeed = TUNING.PIG_WALK_SPEED --3
+        inst.components.locomotor.runspeed = TUNING.PIG_RUN_SPEED -- 5
+        inst.components.locomotor.walkspeed = TUNING.PIG_WALK_SPEED -- 3
 
         inst:AddComponent("eater")
         inst.components.eater:SetOmnivore()
@@ -864,7 +892,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         MakeMediumBurnableCharacter(inst, "pig_torso")
         MakeMediumFreezableCharacter(inst, "pig_torso")
 
-        inst.special_action = function (act)
+        inst.special_action = function(act)
             if inst.daily_gifting then
                 inst.sg:GoToState("daily_gift")
             elseif inst.poop_tip then
@@ -1024,18 +1052,17 @@ local function OnIsDusk(inst, isdusk)
         return STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT[math.random(#STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT)]
     end
     inst.sayline(inst, getspeech())
-    --inst.components.talker:Say(getspeech(), 1.5, nil, true)
-    inst:DoTaskInTime(0.5+(math.random()*1),function()
-            local torch = inst.components.inventory:FindItem(
-                function(item)
-                    if item.prefab == "torch" then
-                        return true
-                    end
-                end)
-            if torch then
-                inst.components.inventory:Equip(torch)
+    -- inst.components.talker:Say(getspeech(), 1.5, nil, true)
+    inst:DoTaskInTime(0.5 + (math.random() * 1), function()
+        local torch = inst.components.inventory:FindItem(function(item)
+            if item.prefab == "torch" then
+                return true
             end
         end)
+        if torch then
+            inst.components.inventory:Equip(torch)
+        end
+    end)
 end
 
 local guard_brain = require("brains/royalpigguardbrain")
@@ -1068,13 +1095,13 @@ local SHOP_STAND_TAGS = {"shop_pedestal"}
 
 local function OnDeath_ShopKeep(inst, data)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local shops = TheSim:FindEntities(x,y,z, 30, SHOP_STAND_TAGS)
-    for _, ent in pairs(shops)do
+    local shops = TheSim:FindEntities(x, y, z, 30, SHOP_STAND_TAGS)
+    for _, ent in pairs(shops) do
         ent:AddTag("nodailyrestock")
     end
 end
 
-local function shopkeeper_speech(inst, speech )
+local function shopkeeper_speech(inst, speech)
     if inst:IsValid() and not inst:IsAsleep() and not inst.components.combat.target and not inst:IsInLimbo() then
         inst.sayline(inst, speech)
     end
@@ -1105,13 +1132,13 @@ local function shopkeeper_master_postinit(inst)
 
     inst:WatchWorldState("isnight", CloseShop)
 
-    inst.special_action = function (act)
+    inst.special_action = function(act)
         inst.sg:GoToState("desk_pre")
     end
 end
 
 local function MakeShopKeeper(name, build, sex, tags)
-    tags[#tags+1] = "shopkeep"
+    tags[#tags + 1] = "shopkeep"
 
     local inst = MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit)
 
@@ -1139,9 +1166,9 @@ local function MechanicMasterPostinit(inst)
         -- Get rid of any hammers we have, cuz bugs
         local numHammers = inst.components.inventory:Count("hammer")
         local hammers = inst.components.inventory:GetItemByName("hammer", numHammers)
-        for k,v in pairs(hammers) do
-                local thisHammer = inst.components.inventory:RemoveItem(k, true)
-                thisHammer:Remove()
+        for k, v in pairs(hammers) do
+            local thisHammer = inst.components.inventory:RemoveItem(k, true)
+            thisHammer:Remove()
         end
         -- and give us a brand new one
         local tool = SpawnPrefab("hammer")
@@ -1177,38 +1204,38 @@ end
 local NOHAT_TAGS = {"emote_nohat"}
 local GUARD_TAGS = {"emote_nocurtsy", "guard", "extinguisher"}
 
-return  MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
-        MakeCityPigman("pigman_florist", "pig_florist", FEMALE),
-        MakeCityPigman("pigman_erudite", "pig_erudite", FEMALE),
-        MakeCityPigman("pigman_hatmaker", "pig_hatmaker", FEMALE),
-        MakeCityPigman("pigman_storeowner", "pig_storeowner", FEMALE, NOHAT_TAGS),
-        MakeCityPigman("pigman_banker", "pig_banker", MALE, NOHAT_TAGS),
-        MakeCityPigman("pigman_collector", "pig_collector", MALE),
-        MakeCityPigman("pigman_hunter", "pig_hunter", MALE),
-        MakeCityPigman("pigman_professor", "pig_professor", MALE),
-        MakeCityPigman("pigman_usher", "pig_usher", MALE),
-        MakeCityPigman("pigman_farmer", "pig_farmer", MALE),
-        MakeCityPigman("pigman_miner", "pig_miner", MALE),
+return MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
+       MakeCityPigman("pigman_florist", "pig_florist", FEMALE),
+       MakeCityPigman("pigman_erudite", "pig_erudite", FEMALE),
+       MakeCityPigman("pigman_hatmaker", "pig_hatmaker", FEMALE),
+       MakeCityPigman("pigman_storeowner", "pig_storeowner", FEMALE, NOHAT_TAGS),
+       MakeCityPigman("pigman_banker", "pig_banker", MALE, NOHAT_TAGS),
+       MakeCityPigman("pigman_collector", "pig_collector", MALE),
+       MakeCityPigman("pigman_hunter", "pig_hunter", MALE),
+       MakeCityPigman("pigman_professor", "pig_professor", MALE),
+       MakeCityPigman("pigman_usher", "pig_usher", MALE),
+       MakeCityPigman("pigman_farmer", "pig_farmer", MALE),
+       MakeCityPigman("pigman_miner", "pig_miner", MALE),
 
-        MakeShopKeeper("pigman_beautician_shopkeep", "pig_beautician", FEMALE),
-        MakeShopKeeper("pigman_florist_shopkeep", "pig_florist", FEMALE),
-        MakeShopKeeper("pigman_erudite_shopkeep", "pig_erudite", FEMALE),
-        MakeShopKeeper("pigman_hatmaker_shopkeep", "pig_hatmaker", FEMALE),
-        MakeShopKeeper("pigman_storeowner_shopkeep", "pig_storeowner", FEMALE, NOHAT_TAGS),
-        MakeShopKeeper("pigman_banker_shopkeep", "pig_banker", MALE, NOHAT_TAGS),
-        MakeShopKeeper("pigman_shopkeep", "pig_banker", MALE),
-        MakeShopKeeper("pigman_hunter_shopkeep", "pig_hunter", MALE),
-        MakeShopKeeper("pigman_farmer_shopkeep", "pig_farmer", MALE),
-        MakeShopKeeper("pigman_miner_shopkeep", "pig_miner", MALE),
-        MakeShopKeeper("pigman_collector_shopkeep", "pig_collector", MALE),
-        MakeShopKeeper("pigman_professor_shopkeep", "pig_professor", MALE),
-        MakeShopKeeper("pigman_mechanic_shopkeep", "pig_mechanic", MALE),
+       MakeShopKeeper("pigman_beautician_shopkeep", "pig_beautician", FEMALE),
+       MakeShopKeeper("pigman_florist_shopkeep", "pig_florist", FEMALE),
+       MakeShopKeeper("pigman_erudite_shopkeep", "pig_erudite", FEMALE),
+       MakeShopKeeper("pigman_hatmaker_shopkeep", "pig_hatmaker", FEMALE),
+       MakeShopKeeper("pigman_storeowner_shopkeep", "pig_storeowner", FEMALE, NOHAT_TAGS),
+       MakeShopKeeper("pigman_banker_shopkeep", "pig_banker", MALE, NOHAT_TAGS),
+       MakeShopKeeper("pigman_shopkeep", "pig_banker", MALE),
+       MakeShopKeeper("pigman_hunter_shopkeep", "pig_hunter", MALE),
+       MakeShopKeeper("pigman_farmer_shopkeep", "pig_farmer", MALE),
+       MakeShopKeeper("pigman_miner_shopkeep", "pig_miner", MALE),
+       MakeShopKeeper("pigman_collector_shopkeep", "pig_collector", MALE),
+       MakeShopKeeper("pigman_professor_shopkeep", "pig_professor", MALE),
+       MakeShopKeeper("pigman_mechanic_shopkeep", "pig_mechanic", MALE),
 
-        MakeCityPigman("pigman_royalguard", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
-        MakeCityPigman("pigman_royalguard_2", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
+       MakeCityPigman("pigman_royalguard", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
+       MakeCityPigman("pigman_royalguard_2", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
 
-        MakeCityPigman("pigman_mechanic", "pig_mechanic", MALE, nil, nil, MechanicMasterPostinit),
+       MakeCityPigman("pigman_mechanic", "pig_mechanic", MALE, nil, nil, MechanicMasterPostinit),
 
-        MakeCityPigman("pigman_mayor", "pig_mayor", MALE, nil, nil, MayorMasterPostinit),
-        MakeCityPigman("pigman_mayor_shopkeep", "pig_mayor", MALE, nil, shopkeeper_common_postinit, MayorShopkeeperMasterPostinit),
-        MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, QueenMasterPostinit)
+       MakeCityPigman("pigman_mayor", "pig_mayor", MALE, nil, nil, MayorMasterPostinit),
+       MakeCityPigman("pigman_mayor_shopkeep", "pig_mayor", MALE, nil, shopkeeper_common_postinit, MayorShopkeeperMasterPostinit),
+       MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, QueenMasterPostinit)
