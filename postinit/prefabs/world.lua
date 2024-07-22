@@ -7,5 +7,6 @@ AddPrefabPostInit("world", function(inst)
     end
     if not TheWorld.components.economy then
         inst:AddComponent("economy")
+        inst.components.economy:AddCity(1)
     end
 end)
