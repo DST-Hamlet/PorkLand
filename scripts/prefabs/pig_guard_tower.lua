@@ -202,10 +202,20 @@ local function OnIsPathFindingDirty(inst)
     if inst._ispathfinding:value() then
         if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
             inst._pfpos = inst:GetPosition()
-            TheWorld.Pathfinder:AddWall(inst._pfpos:Get())
+            local x, _, z = inst._pfpos:Get()
+            for delta_x = -1, 1 do
+                for delta_z = -1, 1 do
+                    TheWorld.Pathfinder:AddWall(x + delta_x, 0, z + delta_z)
+                end
+            end
         end
     elseif inst._pfpos ~= nil then
-        TheWorld.Pathfinder:RemoveWall(inst._pfpos:Get())
+        local x, _, z = inst._pfpos:Get()
+        for delta_x = -1, 1 do
+            for delta_z = -1, 1 do
+                TheWorld.Pathfinder:RemoveWall(x + delta_x, 0, z + delta_z)
+            end
+        end
         inst._pfpos = nil
     end
 end
@@ -223,6 +233,11 @@ end
 local function ClearObstacle(inst)
     inst.Physics:SetActive(false)
     inst._ispathfinding:set(false)
+end
+
+local function onremove(inst)
+    inst._ispathfinding:set_local(false)
+    OnIsPathFindingDirty(inst)
 end
 
 local function fn()
@@ -296,10 +311,11 @@ local function fn()
     -- Delay this because makeobstacle sets pathfinding on by default
     -- but we don't to handle it until after our position is set
     inst:DoTaskInTime(0, InitializePathFinding)
+
+    inst:ListenForEvent("onremove", onremove)
     --------------------------------------------
 
     inst:ListenForEvent("onbuilt", OnBuilt)
-    inst:ListenForEvent("onremove", ClearObstacle)
 
     inst:WatchWorldState("IsDay", OnIsDay)
     OnIsDay(inst, TheWorld.state.isday)
