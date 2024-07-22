@@ -1001,8 +1001,8 @@ function InteriorSpawner:SendMinimapLayoutData()
         for k,v in pairs(self.interior_layout_map)do
             table.insert(data, {k, v})
         end
-        --SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"),
-            --full_list, TheSim:ZipAndEncodeString(DataDumper(data)))
+        SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
+            full_list, TheSim:ZipAndEncodeString(DataDumper(data)))
     end
     if #diff_list > 0 then
         -- TODO: 这里没有考虑房间的销毁和key的移除
@@ -1012,8 +1012,8 @@ function InteriorSpawner:SendMinimapLayoutData()
             table.insert(data, {k, self.interior_layout_map[k]})
         end
         self.interior_layout_dirty_keys = {}
-        --SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"),
-            --diff_list, TheSim:ZipAndEncodeString(DataDumper(data)))
+        SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
+            diff_list, TheSim:ZipAndEncodeString(DataDumper(data)))
     end
 end
 
