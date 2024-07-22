@@ -26,17 +26,23 @@ return Class(function(self, inst)
     local _clock = inst.components.clock
     local _seasons = inst.components.seasons
 
+    local _isnearaporkalypsedirty = true
+
     -- Master simulation
     local active_aporkalypse
     local first_aporkalypse
-    local near_aporkalypse = false
 
     -- Network
     local _timeuntilaporkalypse = net_float(inst.GUID, "timeuntil.aporkalypse")
+    local _isnearaporkalypse = net_float(inst.GUID, "timeuntil.isnearaporkalypse", "isnearaporkalypsedirty")
 
     --------------------------------------------------------------------------
     --[[ Private member functions ]]
     --------------------------------------------------------------------------
+
+    local function OnPlayerActivated()
+        _isnearaporkalypsedirty = true
+    end
 
     local BeginAporkalypse = _ismastersim and function()
         if active_aporkalypse then
@@ -113,6 +119,8 @@ return Class(function(self, inst)
     local OnAporkalypseUpdate = _ismastersim and not _ismastershard and function(src, data)
         _timeuntilaporkalypse:set(data.timeuntilaporkalypse)
 
+        _isnearaporkalypse:set(data.isnearaporkalypse)
+
         if active_aporkalypse ~= data.activeaporkalypse then
             active_aporkalypse = data.activeaporkalypse
 
@@ -134,6 +142,11 @@ return Class(function(self, inst)
 
     -- Initialize network variables
     _timeuntilaporkalypse:set(APORKALYPSE_PERIOD_LENGTH)
+    _isnearaporkalypse:set(false)
+
+    -- Register network variable sync events
+    inst:ListenForEvent("isnearaporkalypsedirty", function() _isnearaporkalypsedirty = true end)
+    inst:ListenForEvent("playeractivated", OnPlayerActivated, _world)
 
     if _ismastersim then
         active_aporkalypse = false
@@ -180,11 +193,11 @@ return Class(function(self, inst)
                 _timeuntilaporkalypse:set_local(timeuntilaporkalypse)
             end
 
-            if timeuntilaporkalypse <= NEAR_TIME and not near_aporkalypse then
-                near_aporkalypse = true
+            if _clock.current_clock == "plateau" and timeuntilaporkalypse <= NEAR_TIME and not _isnearaporkalypse:value() then
+                _isnearaporkalypse:set(true)
             end
         else
-            near_aporkalypse = false
+            _isnearaporkalypse:set(false)
 
             if _ismastershard then
                 if not active_aporkalypse then
@@ -197,8 +210,13 @@ return Class(function(self, inst)
 
         end
 
+        if _isnearaporkalypsedirty then
+            _world:PushEvent("isnearaporkalypsechange", _isnearaporkalypsedirty)
+            _isnearaporkalypsedirty = false
+        end
+
         if _ismastershard then
-            _world:PushEvent("master_aporkalypseupdate", {timeuntilaporkalypse = _timeuntilaporkalypse:value(), activeaporkalypse = active_aporkalypse, rewindmult = self.rewind_mult})
+            _world:PushEvent("master_aporkalypseupdate", {timeuntilaporkalypse = _timeuntilaporkalypse:value(), isnearaporkalypse = _isnearaporkalypse:value(), activeaporkalypse = active_aporkalypse, rewindmult = self.rewind_mult})
         end
 
         _world:PushEvent("aporkalypseclocktick", {timeuntilaporkalypse = _timeuntilaporkalypse:value()})

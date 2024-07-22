@@ -27,6 +27,10 @@ AddComponentPostInit("worldstate", function(self, inst)
         SetVariable("plateautemperature", temperature)
     end
 
+    local function OnIsNearAporkalypseChange(src, isnearaporkalypse)
+        SetVariable("isnearaporkalypse", isnearaporkalypse)
+    end
+
     local function OnSeasonTick(src, data)
         SetVariable("istemperate", data.season == "temperate", "temperate")
         SetVariable("ishumid", data.season == "humid", "humid")
@@ -79,6 +83,7 @@ AddComponentPostInit("worldstate", function(self, inst)
         inst:ListenForEvent("plateautemperaturetick", OnPlateauTemperatureTick)
     end
 
+    inst:ListenForEvent("isnearaporkalypsechange", OnIsNearAporkalypseChange)
     inst:ListenForEvent("seasontick", OnSeasonTick)
     inst:ListenForEvent("seasonlengthschanged", OnSeasonLengthsChanged)
     inst:ListenForEvent("plateauweathertick", OnPlateauWeatherTick)
