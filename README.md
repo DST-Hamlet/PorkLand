@@ -4,7 +4,7 @@ Bring Hamlet DLC from Don't Starve to Don't Starve Together
 
 ## To Clone
 
-We're running out of quota for GitHub's Git Large File Storage, so lfs won't work, you need to set `GIT_LFS_SKIP_SMUDGE` to 1 to skip it for clone to work
+We're running out of quota for GitHub's Git Large File Storage, so LFS won't work, you need to set `GIT_LFS_SKIP_SMUDGE` to 1 to skip it for clone to work
 
 With PowerShell
 
@@ -12,14 +12,16 @@ With PowerShell
 $env:GIT_LFS_SKIP_SMUDGE=1
 ```
 
-With command prompt
+With Command Prompt
 
 ```cmd
 set GIT_LFS_SKIP_SMUDGE=1
 ```
 
-With bash
+With Bash
 
 ```bash
 GIT_LFS_SKIP_SMUDGE=1
 ```
+
+After `git clone`, you need to copy the missing sound files from Don't Starve's folder (for example `C:\Program Files (x86)\Steam\steamapps\common\dont_starve\data\DLC0003\sound`) manually
