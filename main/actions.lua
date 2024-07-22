@@ -371,7 +371,16 @@ ACTIONS.PUTONSHELF.fn = function(act)
 
     if shelf.components.container ~= nil and act.invobject.components.inventoryitem ~= nil then
         local item = act.invobject.components.inventoryitem:RemoveFromOwner(shelf.components.container.acceptsstacks)
-        return shelf.components.container:GiveItem(item, act.target.components.visualslot:GetSlot(), nil, false)
+        local success = shelf.components.container:GiveItem(item, act.target.components.visualslot:GetSlot(), nil, false)
+        if item:HasTag("small_livestock") then -- TODO: 需要加一个对容器所属的展示柜的检测，使得生物无法离开带有罩子的展示柜
+            if act.doer and  item:HasTag("canbetrapped") then -- 鸟类之外的可被抓的生物都有canbetrapped标签
+                local d_pos = act.doer:GetPosition()
+                local s_pos = shelf:GetPosition()
+                shelf.components.container:DropItemBySlot(act.target.components.visualslot:GetSlot(), (d_pos + s_pos) / 2)
+            else
+                shelf.components.container:DropItemBySlot(act.target.components.visualslot:GetSlot(), shelf:GetPosition())
+            end
+        end
     end
 end
 

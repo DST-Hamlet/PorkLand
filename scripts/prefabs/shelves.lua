@@ -43,6 +43,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_num)
             inst.AnimState:SetSortOrder(anim_def.order)
         end
 
+        inst.AnimState:SetFinalOffset(-1)
+
         inst.anim_def = anim_def
         inst.anim_def.slot_bank = anim_def.animation .. "_visual_slot"
         inst.anim_def.slot_symbol_prefix = "SWAP_img"

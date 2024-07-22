@@ -219,6 +219,8 @@ local function fn()
     inst:AddTag("prey")
     inst:AddTag("smallcreature")
 
+    MakeFeedableSmallLivestockPristine(inst)
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
