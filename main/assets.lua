@@ -74,8 +74,11 @@ PrefabFiles = {
     "reeds_water",
     "rowboat_wake",
     "sail",
+    "scorpion",
     "sedimentpuddle",
     "shears",
+    "visual_slot",
+    "shelves",
     "smelter",
     "snake",
     "snakeskin",
@@ -87,6 +90,7 @@ PrefabFiles = {
     -- "tuber",
     -- "tubertrees",
     "wave_ripple",
+    "vampirebat",
     "venomgland",
     "venus_stalk",
     "walkingstick",
@@ -95,6 +99,59 @@ PrefabFiles = {
     "weevole",
     "windtrail",
     "windswirl",
+    "worldsound",
+
+    "deco",
+    "deco_academy",
+    "deco_antiquities",
+    "deco_chair",
+    "deco_florist",
+    "deco_lamp",
+    "deco_lightglow",
+    "deco_placers",
+    "deco_plantholder",
+    "deco_roomglow",
+    "deco_ruins_fountain",
+    "deco_swinging_light",
+    "deco_table",
+    "interior_mapicon",
+    "interior_boundary",
+    "interior_surface",
+    "interiorwall_fx",
+    "interiorfloor_fx",
+    "vampirebatcave",
+    "interiorworkblank",
+    "prop_door",
+    "pig_ruins_creeping_vines",
+    "pl_birds",
+    "bat_hide",
+    "cave_entrance_roc",
+    "pig_ruins_light_beam",
+    "pig_ruins_entrance",
+    "wallcrack_ruins",
+    "pig_ruins_pressure_plate",
+    "pig_ruins_dart_statue",
+    "smashingpot",
+    "pig_ruins_dart",
+    "pig_ruins_torch",
+    "light_rays",
+    "pig_ruins_spear_trap",
+    "pigghost",
+    "rugs",
+    "pheromonestone",
+    "antcombhome",
+    "anthill_lamp",
+    "anthill_stalactite",
+    "antcombhome",
+    "magnifying_glass",
+    "disarmingkit",
+
+    "ancient_hulk",
+    "ancient_robot_assembly",
+    "ancient_robots",
+    "infused_iron",
+    "living_artifact",
+    "ancient_hulk_laser",
 }
 
 Assets = {
@@ -119,7 +176,10 @@ Assets = {
     Asset("IMAGE", "images/overlays/fx4.tex"),
     Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
     Asset("IMAGE", "images/overlays/fx5.tex"),
+    Asset("ATLAS", "images/overlays/fx6.xml"),  -- living artifact
+    Asset("IMAGE", "images/overlays/fx6.tex"),
     Asset("ANIM", "anim/leaves_canopy2.zip"),  --canopy
+    Asset("ANIM", "anim/livingartifact_meter.zip"),
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 
@@ -138,6 +198,11 @@ Assets = {
     Asset("ANIM", "anim/player_boat_death.zip"),
     Asset("ANIM", "anim/werebeaver_boat_death.zip"),
     Asset("ANIM", "anim/player_lifeplant.zip"),
+    Asset("ANIM", "anim/player_actions_hand_lens.zip"),
+    Asset("ANIM", "anim/player_living_suit_destruct.zip"),
+    Asset("ANIM", "anim/player_living_suit_morph.zip"),
+    Asset("ANIM", "anim/player_living_suit_punch.zip"),
+    Asset("ANIM", "anim/player_living_suit_shoot.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
@@ -167,10 +232,23 @@ Assets = {
     Asset("ANIM", "anim/tree_leaf_normal_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_short_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
+
+    -- Billboard
+    Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
+
+    -- Interior MiniMap
+    Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
+    Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
 }
+
+for _,v in ipairs(require("main/interior_texture_defs").Assets) do
+    table.insert(Assets, v)
+end
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
+AddMinimapAtlas("levels/textures/map_interior/pl_black_bg.xml")
+AddMinimapAtlas("interior_minimap/interior_minimap.xml")
 
 local sounds = {
     Asset("SOUND", "sound/DLC003_AMB_stream.fsb"),

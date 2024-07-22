@@ -9,9 +9,9 @@ local prefabs =
     "lifeplant"
 }
 
-local function OnRemove(inst)
-    if inst.fountain and not inst.planted then
-        inst.fountain:PushEvent("deactivate")
+local function OnEaten(inst, eater)
+    if eater and eater.components.poisonable then
+        eater.components.poisonable:Cure()
     end
 end
 
@@ -22,6 +22,12 @@ local function OnDeploy(inst, pt, deployer)
 
     inst.planted = true
     inst:Remove()
+end
+
+local function OnRemove(inst)
+    if inst.fountain and not inst.planted then
+        inst.fountain:PushEvent("deactivate")
+    end
 end
 
 local function OnSave(inst, data)
@@ -73,11 +79,7 @@ local function fn()
     inst.components.edible.healthvalue = TUNING.HEALING_SUPERHUGE * 3
     inst.components.edible.hungervalue = TUNING.CALORIES_SUPERHUGE * 3
     inst.components.edible.sanityvalue = TUNING.SANITY_HUGE * 3
-    inst.components.edible:SetOnEatenFn(function(inst, eater)
-        if eater and eater.components.poisonable then
-            eater.components.poisonable:Cure()
-        end
-    end)
+    inst.components.edible:SetOnEatenFn(OnEaten)
 
     inst:AddComponent("deployable")
     inst.components.deployable:SetDeployMode(DEPLOYMODE.PLANT)

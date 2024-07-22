@@ -15,11 +15,14 @@ local languages = {
     -- br = "portuguese_br",  -- brazilian portuguese
     -- pl = "polish",  -- polish
     -- ru = "russian",  -- russian
-    zh = "chinese_s",  -- chinese
-    chs = "chinese_s", -- chinese mod
-    sc = "chinese_s", -- simple chinese
-    tc = "chinese_s", -- simple chinese
-    cht = "chinese_s",  -- simple chinese
+    zh = "chinese_s", --Chinese for Steam
+    zhr = "chinese_s", --Chinese for WeGame
+    ch = "chinese_s", --Chinese mod
+    chs = "chinese_s", --Chinese mod
+    sc = "chinese_s", --simple Chinese
+    zht = "chinese_s", --traditional Chinese for Steam
+    tc = "chinese_s", --traditional Chinese
+    cht = "chinese_s", --Chinese mod
 }
 
 local speech = {
@@ -94,11 +97,11 @@ elseif (IsTheFrontEnd or PL_CONFIG) and LanguageTranslator.defaultlang then  -- 
 end
 
 if desiredlang and languages[desiredlang] then
-    local temp_lang = desiredlang .. "_temp"
+    -- local temp_lang = desiredlang .. "_temp"
 
-    LanguageTranslator:LoadPOFile("scripts/languages/pl_" .. languages[desiredlang] .. ".po", temp_lang)
-    ToolUtil.MergeTable(LanguageTranslator.languages[desiredlang], LanguageTranslator.languages[temp_lang])
-    TranslateStringTable(STRINGS)
-    LanguageTranslator.languages[temp_lang] = nil
-    LanguageTranslator.defaultlang = desiredlang
+    PLENV.LoadPOFile("scripts/languages/pl_" .. languages[desiredlang] .. ".po", desiredlang)
+    -- ToolUtil.MergeTable(LanguageTranslator.languages[desiredlang], LanguageTranslator.languages[temp_lang])
+    -- TranslateStringTable(STRINGS)
+    -- LanguageTranslator.languages[temp_lang] = nil
+    -- LanguageTranslator.defaultlang = desiredlang
 end

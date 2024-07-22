@@ -20,6 +20,16 @@ msgctxt "STRINGS.ACTIONS.EMBARK.SURF"
 msgid "Ride"
 msgstr "上板"
 
+#. STRINGS.ACTIONS.FISH.GENERIC
+msgctxt "STRINGS.ACTIONS.FISH.GENERIC"
+msgid "Fish"
+msgstr "钓鱼"
+
+#. STRINGS.ACTIONS.FISH.RETRIEVE
+msgctxt "STRINGS.ACTIONS.FISH.RETRIEVE"
+msgid "Retrieve"
+msgstr "回收"
+
 #. STRINGS.ACTIONS.HACK
 msgctxt "STRINGS.ACTIONS.HACK"
 msgid "Hack"
@@ -54,6 +64,11 @@ msgstr "剪"
 msgctxt "STRINGS.ACTIONS.SMELT"
 msgid "Smelt"
 msgstr "冶炼"
+
+#. STRINGS.ACTIONS.TAKEFROMSHELF
+msgctxt "STRINGS.ACTIONS.TAKEFROMSHELF"
+msgid "Retrieve"
+msgstr "取下"
 
 #. STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.REPAIRBOAT.GENERIC
 msgctxt "STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.REPAIRBOAT.GENERIC"
@@ -10238,12 +10253,12 @@ msgstr "强大而坚固。"
 #. STRINGS.RECIPE_DESC.ARMOR_WEEVOLE
 msgctxt "STRINGS.RECIPE_DESC.ARMOR_WEEVOLE"
 msgid "Kinda gross, but surprisingly strong."
-msgstr "有点恶心，但出奇的\n强。"
+msgstr "有点恶心，但出奇的强。"
 
 #. STRINGS.RECIPE_DESC.BASEFAN
 msgctxt "STRINGS.RECIPE_DESC.BASEFAN"
 msgid "Relieves hay fever, keeps you dry."
-msgstr "缓解花粉症，保持干\n燥。"
+msgstr "缓解花粉症，保持干燥。"
 
 #. STRINGS.RECIPE_DESC.BOATREPAIRKIT
 msgctxt "STRINGS.RECIPE_DESC.BOATREPAIRKIT"
@@ -10258,7 +10273,7 @@ msgstr "海上贮藏！"
 #. STRINGS.RECIPE_DESC.BOAT_CORK
 msgctxt "STRINGS.RECIPE_DESC.BOAT_CORK"
 msgid "Good for portage and tough as porridge."
-msgstr "像麦片一样坚硬并且\n便于携带。"
+msgstr "像麦片一样坚硬并且便于携带。"
 
 #. STRINGS.RECIPE_DESC.BOAT_LOGRAFT
 msgctxt "STRINGS.RECIPE_DESC.BOAT_LOGRAFT"
@@ -10283,7 +10298,7 @@ msgstr "砍东西也要有格调！"
 #. STRINGS.RECIPE_DESC.GOLDPAN
 msgctxt "STRINGS.RECIPE_DESC.GOLDPAN"
 msgid "Pans gold actually."
-msgstr "实际上这是用来淘金\n的。"
+msgstr "实际上这是用来淘金的。"
 
 #. STRINGS.RECIPE_DESC.HALBERD
 msgctxt "STRINGS.RECIPE_DESC.HALBERD"

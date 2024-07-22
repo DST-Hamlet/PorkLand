@@ -404,13 +404,13 @@ end
 -----[[Pugalisk Tail]]-----
 
 local RETARGET_NO_TAGS = {"FX", "NOCLICK", "INLIMBO", "playerghost", "notarget", "pugalisk"}
-local RETARGET_ONE_OF_TASG = {"character", "animal", "monster"}
+local RETARGET_ONE_OF_TAGS = {"character", "animal", "monster"}
 local function RetargetTailFn(inst)
     local targetDist = TUNING.PUGALISK_TAIL_TARGET_DIST
 
     return FindEntity(inst, targetDist, function(ent)
         return inst.components.combat:CanTarget(ent)
-    end, nil, RETARGET_NO_TAGS, RETARGET_ONE_OF_TASG)
+    end, nil, RETARGET_NO_TAGS, RETARGET_ONE_OF_TAGS)
 end
 
 local tail_brain = require "brains/pugalisk_tailbrain"
@@ -491,7 +491,7 @@ local function RetargetFn(inst)
 
     return FindEntity(inst, targetDist, function(ent)
         return inst.components.combat:CanTarget(ent)
-    end, nil, RETARGET_NO_TAGS, RETARGET_ONE_OF_TASG)
+    end, nil, RETARGET_NO_TAGS, RETARGET_ONE_OF_TAGS)
 end
 
 local function OnDeath(inst)
@@ -736,12 +736,14 @@ local function pugalisk_redirectfn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
+    inst.entity:AddAnimState() -- adding AnimState just so it won't crash with ancient_hulk_laser (and brightshade staff)
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     inst:AddTag("NOCLICK")
     inst:AddTag("NOBLOCK")
     inst:AddTag("hostile")
+    inst:AddTag("pugalisk")
 
     inst._body = net_entity(inst.GUID, "_body", "bodydirty")
 

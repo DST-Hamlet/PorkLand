@@ -64,6 +64,9 @@ function Floater:ShouldShowEffect()
     end
 
     local x, y, z = self.inst.Transform:GetWorldPosition()
+    if x and z and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return false
+    end
 
     -- No effect for cloud
     return TheWorld.Map:ReverseIsVisualWaterAtPoint(x, 0, z)

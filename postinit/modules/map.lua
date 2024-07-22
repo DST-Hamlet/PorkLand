@@ -17,6 +17,7 @@ local function GetMaxRenderOrderTile(tile1, tile2)
 end
 
 function Map:GetVisualTileAtPoint(x, y, z)
+    -- TODO interior tile
     local tile = self:GetTileAtPoint(x, y, z)
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
     local offset_x = x - center_x
@@ -51,7 +52,18 @@ function Map:GetVisualTileAtPoint(x, y, z)
     return tile
 end
 
+local _IsPassableAtPoint = Map.IsPassableAtPoint
+function Map:IsPassableAtPoint(x, y, z, ...)
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+    end
+    return _IsPassableAtPoint(self, x, y, z, ...)
+end
+
 function Map:IsImpassableAtPoint(x, y, z, ...)
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return not TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+    end
     return not self:_IsVisualGroundAtPoint(x, y, z, ...) and not self:ReverseIsVisualWaterAtPoint(x, y, z)
 end
 
@@ -63,8 +75,15 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
     if self:IsOceanTileAtPoint(x, y, z) then
         return true
     end
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return not TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+    end
 
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
+
+    if center_x == nil then
+        return false
+    end
 
     local offset_x = x - center_x
     local abs_offset_x = math.abs(offset_x)
@@ -203,6 +222,18 @@ function Map:IsSurroundedByWater(x, y, z, radius, ...)
     return _IsSurroundedByWater(self, x, y, z, radius, ...)
 end
 
+local _IsSurroundedByLand = Map.IsSurroundedByLand
+function Map:IsSurroundedByLand(x, y, z, radius, ...)
+    if TheWorld.has_pl_ocean then
+        -- subtract 1 to radius for map overhang, way cheaper than doing an IsVisualGround test
+        -- if the radius is less than 2(1 after the -1), We only need to check if the current point is an ocean tile
+        return self:IsSurroundedByTile(x, y, z, radius - 1, function(_x, _y, _z, map)
+            return not map:IsOceanTileAtPoint(_x, _y, _z) and map:_IsVisualGroundAtPoint(_x, _y, _z)
+        end, self)
+    end
+    return _IsSurroundedByLand(self, x, y, z, radius, ...)
+end
+
 function Map:CanDeployAquaticAtPointInWater(pt, data, player)
     if data.boat and not TheWorld.has_pl_ocean then
         return false
@@ -252,8 +283,11 @@ function Map:CanDeployAquaticAtPointInWater(pt, data, player)
     end
 end
 
-Map._IsVisualGroundAtPoint = Map.IsVisualGroundAtPoint  --用于判断一个点是否属于陆地范围
+Map._IsVisualGroundAtPoint = Map.IsVisualGroundAtPoint  --用于判断一个点是否属于陆地范围，主要在游戏本体的代码中调用
 function Map:IsVisualGroundAtPoint(x, y, z, ...)
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+    end
     if TheWorld.has_pl_ocean then
         return self:ReverseIsVisualGroundAtPoint(x, y, z)
     end
@@ -262,6 +296,9 @@ end
 
 local _IsAboveGroundAtPoint = Map.IsAboveGroundAtPoint
 function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+    end
     if TheWorld.has_pl_ocean then
         local valid_water_tile = (allow_water == true) and self:ReverseIsVisualWaterAtPoint(x, y, z)
         return valid_water_tile or self:IsVisualGroundAtPoint(x, y, z)
@@ -274,6 +311,16 @@ function Map:CanDeployRecipeAtPoint(pt, recipe, rot, player, ...)
     if recipe.aquatic and recipe.build_mode == BUILDMODE.WATER then
         local is_valid_ground = self:CanDeployAquaticAtPointInWater(pt, recipe.aquatic, player)
         return is_valid_ground and (recipe.testfn == nil or recipe.testfn(pt, rot)) and self:IsDeployPointClear(pt, nil, recipe.min_spacing or 3.2)
+    end
+
+    -- TODO: 目前只判定了一般建筑物，还需要额外考虑房间装饰物
+    if recipe and pt then
+        local interior = TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(pt.x, pt.z)
+        if recipe.pl_is_house and interior then -- recipe types
+            return false
+        elseif interior and not TheWorld.components.interiorspawner:IsInInteriorRoom(pt.x, pt.z, -1) then
+            return false
+        end
     end
 
     return _CanDeployRecipeAtPoint(self, pt, recipe, rot, player, ...)
@@ -293,4 +340,39 @@ function Map:GetNearbyPlatformAtPoint(pos_x, pos_y, pos_z, extra_radius)
         end
     end
     return nil
+end
+
+local _GetTileCenterPoint = Map.GetTileCenterPoint
+function Map:GetTileCenterPoint(x, y, z, ...)
+    if x and z and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return math.floor(x / 4) * 4 + 2, 0, math.floor(z / 4) * 4 + 2
+    else
+        return _GetTileCenterPoint(self, x, y, z, ...)
+    end
+end
+
+local _GetTileAtPoint = Map.GetTileAtPoint
+function Map:GetTileAtPoint(x, y, z, ...)
+    if x and z and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        if TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
+            return WORLD_TILES.INTERIOR
+        else
+            return WORLD_TILES.IMPASSABLE
+        end
+    else
+        return _GetTileAtPoint(self, x, y, z, ...)
+    end
+end
+
+local _GetTile = Map.GetTile
+function Map:GetTile(x, y, ...)
+    if x and y and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x * 4, y * 4) then
+        if TheWorld.components.interiorspawner:IsInInteriorRoom(x * 4, y * 4) then
+            return WORLD_TILES.INTERIOR
+        else
+            return WORLD_TILES.IMPASSABLE
+        end
+    else
+        return _GetTile(self, x, y, ...)
+    end
 end

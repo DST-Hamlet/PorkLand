@@ -49,8 +49,8 @@ end
 
 local function OnHitWater(inst)
     inst:AddTag("fishable")
-	inst.oldname = inst.name
-	inst.name = STRINGS.NAMES.SUNKEN_RELIC
+    inst.oldname = inst.name
+    inst.name = STRINGS.NAMES.SUNKEN_RELIC
     inst.components.inventoryitem.canbefishedup = true
     inst.components.inventoryitem.canbepickedup = false
 end

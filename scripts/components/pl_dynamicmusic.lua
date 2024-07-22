@@ -104,6 +104,8 @@ local _tone_task = nil
 --[[ Private member functions ]]
 --------------------------------------------------------------------------
 
+local StopPlayingTone -- forward declare
+
 local function StopBusy(inst, istimeout)
     if _busytask ~= nil then
         if not istimeout then
@@ -137,6 +139,8 @@ local function StartBusy(player)
         _soundemitter:SetParameter("busy", "intensity", 1)
         _busytask = inst:DoTaskInTime(15, StopBusy, true)
         _extendtime = 0
+
+        StopPlayingTone(_tone)
     end
 end
 
@@ -191,8 +195,8 @@ local function StopDanger(inst, istimeout)
     end
 end
 
-local EPIC_TAGS = { "epic" }
-local NO_EPIC_TAGS = { "noepicmusic" }
+local EPIC_TAGS = {"epic"}
+local NO_EPIC_TAGS = {"noepicmusic"}
 local function StartDanger(player)
     if _dangertask ~= nil then
         _extendtime = GetTime() + 10
@@ -208,6 +212,8 @@ local function StartDanger(player)
         if _hasinspirationbuff then
             _soundemitter:SetParameter("danger", "wathgrithr_intensity", _hasinspirationbuff)
         end
+
+        StopPlayingTone(_tone)
     end
 end
 
@@ -305,7 +311,7 @@ local function ResumeTone()
     _soundemitter:SetParameter("tone", "intensity", 1)
 end
 
-local function StopPlayingTone(category)
+StopPlayingTone = function(category)
     if not category or _tone == category then
         _tone = nil
         _soundemitter:KillSound("tone")
@@ -318,12 +324,12 @@ local function SetTone(category)
     end
 
     local CATEGORIES = {
-        ruins = {path ="dontstarve_DLC003/music/ruins_enter", timeout = 75},
-        ruins_humid = {path ="dontstarve_DLC003/music/ruins_enter_2", timeout = 75},
-        ruins_lush = {path ="dontstarve_DLC003/music/ruins_enter_3", timeout = 75},
-        jungle = {path ="dontstarve_DLC003/music/deeprainforest_enter_1", timeout = 75},
-        jungle_humid = {path ="dontstarve_DLC003/music/deeprainforest_enter_2", timeout = 75},
-        jungle_lush = {path ="dontstarve_DLC003/music/deeprainforest_enter_3", timeout = 75},
+        ruins = {path = "dontstarve_DLC003/music/ruins_enter", timeout = 75},
+        ruins_humid = {path = "dontstarve_DLC003/music/ruins_enter_2", timeout = 75},
+        ruins_lush = {path = "dontstarve_DLC003/music/ruins_enter_3", timeout = 75},
+        jungle = {path = "dontstarve_DLC003/music/deeprainforest_enter_1", timeout = 75},
+        jungle_humid = {path = "dontstarve_DLC003/music/deeprainforest_enter_2", timeout = 75},
+        jungle_lush = {path = "dontstarve_DLC003/music/deeprainforest_enter_3", timeout = 75},
     }
     local tone = CATEGORIES[category]
     if not tone then
@@ -362,6 +368,35 @@ local function StartJungleTone(player)
     SetTone("jungle" .. (tones[TheWorld.state.season] or ""))
 end
 
+local function StartShopMusic(player)
+    _soundemitter:PlaySound("dontstarve_DLC003/music/shop_enter", "shop_music")
+    _soundemitter:SetParameter("shop_music", "intensity", 1)
+end
+
+local function StopShopMusic(player)
+    if _soundemitter:PlayingSound("shop_music") then
+        _soundemitter:KillSound("shop_music")
+    end
+end
+
+local function OnUsedDoor(player, data)
+    if not data or not data.door then
+        return
+    end
+
+    if data.door:HasTag("ruins_entrance") then -- the tags are the wrong way round...
+        StopPlayingTone("ruins")
+    elseif data.door:HasTag("ruins_exit") then
+        StartPigRuinsTone(player)
+    elseif data.door:HasTag("shop_music") then
+        if data.exterior then
+            StopShopMusic()
+        else
+            StartShopMusic(player)
+        end
+    end
+end
+
 local function StartPlayerListeners(player)
     inst:ListenForEvent("buildsuccess", StartBusy, player)
     inst:ListenForEvent("gotnewitem", ExtendBusy, player)
@@ -374,8 +409,7 @@ local function StartPlayerListeners(player)
 
     inst:ListenForEvent("canopyin", StartJungleTone, player)
     inst:ListenForEvent("canopyout", function() StopPlayingTone("jungle") end, player)
-    inst:ListenForEvent("enteredruins", StartPigRuinsTone, player)
-    inst:ListenForEvent("exitedruins", function() StopPlayingTone("ruins") end, player)
+    inst:ListenForEvent("used_door", OnUsedDoor, player)
 end
 
 local function StopPlayerListeners(player)

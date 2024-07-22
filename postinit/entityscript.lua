@@ -108,18 +108,20 @@ end
 ---@param event string
 ---@param source entityscript | nil
 ---@param source_file string | nil
-function EntityScript:GetEventCallbacks(event, source, source_file)
+function EntityScript:GetEventCallbacks(event, source, source_file, test_fn)
     source = source or self
 
-    assert(self.event_listening[event] and self.event_listening[event][source])
+    if not self.event_listening[event] or not self.event_listening[event][source] then
+        return
+    end
 
     for _, fn in ipairs(self.event_listening[event][source]) do
         if source_file then
             local info = debug.getinfo(fn, "S")
-            if info and (info.source == source_file) then
+            if info and (info.source == source_file) and (not test_fn or test_fn(fn)) then
                 return fn
             end
-        else
+        elseif (not test_fn or test_fn(fn)) then
             return fn
         end
     end
@@ -147,4 +149,31 @@ end
 
 function EntityScript:CanOnImpassable(allow_invincible)
     return self:HasTag("shadow")
+end
+
+-- Returns the interiorID of the room this entity is in
+function EntityScript:GetCurrentInteriorID()
+    local x, y, z = self.Transform:GetWorldPosition()
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = x, z = z})
+        return TheWorld.components.interiorspawner.interiors[interiorID] and interiorID
+    end
+end
+
+function EntityScript:Play2DSoundOutSide(path, soundname, distance, paramname, paramval)
+    local pos = self:GetPosition()
+    local followentity = self
+    local areamode = AREAMODES.DISTANCE
+    TheWorld.components.worldsoundmanager:PlayWorldSound(path, soundname, paramname, paramval, pos, followentity, areamode, distance)
+end
+
+function EntityScript:Kill2DSound(soundname)
+    TheWorld.components.worldsoundmanager:KillWorldSound(self, soundname)
+end
+
+function EntityScript:GetCurrentAnimation()
+    local debug_string = self.entity:GetDebugString()
+    if debug_string then
+        return string.match(debug_string, "anim:%s+(%S+)%s+")
+    end
 end

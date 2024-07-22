@@ -5,10 +5,12 @@ local TheInput = TheInput
 
 local _GetWorldEntityUnderMouse = TheInput.GetWorldEntityUnderMouse
 function TheInput:GetWorldEntityUnderMouse(...)
-    local targetent = _GetWorldEntityUnderMouse(self, ...)
-    if targetent and targetent.components and targetent.components.cursorredirect then
-        return targetent.components.cursorredirect:GetRedirect()
+    local target_entity = _GetWorldEntityUnderMouse(self, ...)
+    if target_entity and target_entity.components and target_entity.components.cursorredirect then
+        return target_entity.components.cursorredirect:GetRedirect()
+    elseif target_entity and target_entity:HasTag("rotatingbillboard_mask") then
+        return target_entity.parent -- TODO: 有没有更优雅的实现?
     else
-        return targetent
+        return target_entity
     end
 end

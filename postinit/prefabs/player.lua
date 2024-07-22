@@ -51,11 +51,21 @@ end
 
 AddPlayerPostInit(function(inst)
     if not TheNet:IsDedicated() then
-		inst:DoTaskInTime(0, function()
-			if inst == ThePlayer then --only do this for the local player character
-				inst:AddComponent("windvisuals")
-			end
-		end)
+        inst:DoTaskInTime(0, function()
+            if inst == ThePlayer and TheWorld:HasTag("porkland") then --only do this for the local player character
+                inst:AddComponent("windvisuals")
+            end
+        end)
+    end
+
+    local _IsInLight = inst.IsInLight
+    function inst:IsInLight()
+        if inst:HasTag("inside_interior") then
+            local pos = inst:GetPosition()
+            return TheSim:GetLightAtPoint(pos.x, pos.y, pos.z, 0.1) > 0.1
+        else
+            return _IsInLight(self)
+        end
     end
 
     if not TheWorld.ismastersim then
@@ -66,6 +76,7 @@ AddPlayerPostInit(function(inst)
         inst:AddComponent("hayfever")
     end
 
+    inst:AddComponent("interiorvisitor")
     inst:AddComponent("sailor")
 
     inst:ListenForEvent("death", OnDeath)

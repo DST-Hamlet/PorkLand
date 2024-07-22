@@ -6,6 +6,19 @@ local make_bunch = require("map/make_bunch")
 local forest_map = require("map/forest_map")
 local MULTIPLY = forest_map.MULTIPLY
 
+local BATS =  -- 复制自constants
+{
+    EMPTY = "empty",
+    CAVE = "cave",
+    ATTACK = "attack",
+    CAVE_NUM = 6,
+}
+
+local RUINS =
+{
+    SMALL = 4,
+}
+
 local function build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
     if current_gen_params == nil then
         current_gen_params = {}
@@ -64,69 +77,69 @@ local function build_porkland(entities, topology_save, map_width, map_height, cu
 
 
     -- filter small ruins doors
-    -- if entities["pig_ruins_entrance_small"] then
-    --     print("FOUND", #entities["pig_ruins_entrance_small"], "RUIN SITES")
-    --     local newents = deepcopy(entities["pig_ruins_entrance_small"])
-    --     entities["pig_ruins_entrance_small"] = {}
-    --     local num = RUINS.SMALL
+    if entities["pig_ruins_entrance_small"] then
+        print("FOUND", #entities["pig_ruins_entrance_small"], "RUIN SITES")
+        local newents = deepcopy(entities["pig_ruins_entrance_small"])
+        entities["pig_ruins_entrance_small"] = {}
+        local num = RUINS.SMALL
 
-    --     -- I didn't want to use the same multiply system, so I'm translating it here.
-    --     if current_gen_params and current_gen_params["pig_ruins_entrance_small"] then
-    --         if current_gen_params["pig_ruins_entrance_small"] == 0 then
-    --             num = 0
-    --         elseif current_gen_params["pig_ruins_entrance_small"] == 2 then
-    --             num = num * 3
-    --         elseif current_gen_params["pig_ruins_entrance_small"] == 1.5 then
-    --             num = num * 2
-    --         elseif current_gen_params["pig_ruins_entrance_small"] == 0.5 then
-    --             num = math.ceil(num / 2)
-    --         end
-    --     end
+        -- I didn't want to use the same multiply system, so I'm translating it here.
+        if current_gen_params and current_gen_params["pig_ruins_entrance_small"] then
+            if current_gen_params["pig_ruins_entrance_small"] == 0 then
+                num = 0
+            elseif current_gen_params["pig_ruins_entrance_small"] == 2 then
+                num = num * 3
+            elseif current_gen_params["pig_ruins_entrance_small"] == 1.5 then
+                num = num * 2
+            elseif current_gen_params["pig_ruins_entrance_small"] == 0.5 then
+                num = math.ceil(num / 2)
+            end
+        end
 
-    --     for i = 1, num do
-    --         if #newents > 0 then
-    --             local rand = math.random(1, #newents)
-    --             local entry = newents[rand]
-    --             table.remove(newents, rand)
-    --             print("INSERTING RUIN")
-    --             table.insert(entities["pig_ruins_entrance_small"], entry)
-    --         end
-    --     end
-    -- end
+        for i = 1, num do
+            if #newents > 0 then
+                local rand = math.random(1, #newents)
+                local entry = newents[rand]
+                table.remove(newents, rand)
+                print("INSERTING RUIN")
+                table.insert(entities["pig_ruins_entrance_small"], entry)
+            end
+        end
+    end
 
     -- turn potential bat caves into real bat caves.
-    -- if entities["vampirebatcave_potential"] then
-    --     local ents = entities["vampirebatcave_potential"]
+    if entities["vampirebatcave_potential"] then
+        local ents = entities["vampirebatcave_potential"]
 
-    --     entities["vampirebatcave"] = {}
-    --     local num = BATS.CAVE_NUM
+        entities["vampirebatcave"] = {}
+        local num = BATS.CAVE_NUM
 
-    --     -- I didn't want to use the same multiply system, so I'm translating it here.
-    --     if current_gen_params and current_gen_params["vampirebatcave"] then
-    --         if current_gen_params["vampirebatcave"] == 0 then
-    --             num = 0
-    --         elseif current_gen_params["vampirebatcave"] == 2 then
-    --             num = num * 3
-    --         elseif current_gen_params["vampirebatcave"] == 1.5 then
-    --             num = num * 2
-    --         elseif current_gen_params["vampirebatcave"] == 0.5 then
-    --             num = math.ceil(num / 2)
-    --         end
-    --     end
+        -- I didn't want to use the same multiply system, so I'm translating it here.
+        if current_gen_params and current_gen_params["vampirebatcave"] then
+            if current_gen_params["vampirebatcave"] == 0 then
+                num = 0
+            elseif current_gen_params["vampirebatcave"] == 2 then
+                num = num * 3
+            elseif current_gen_params["vampirebatcave"] == 1.5 then
+                num = num * 2
+            elseif current_gen_params["vampirebatcave"] == 0.5 then
+                num = math.ceil(num / 2)
+            end
+        end
 
-    --     for i = 1, num do
-    --         if #ents > 0 then
-    --             local rand = math.random(1, #ents)
-    --             local save_data = {
-    --                 x = ents[rand].x,
-    --                 z = ents[rand].z
-    --             }
-    --             table.insert(entities["vampirebatcave"], save_data)
-    --             table.remove(ents, rand)
-    --         end
-    --     end
-    --     entities["vampirebatcave_potential"] = nil
-    -- end
+        for i = 1, num do
+            if #ents > 0 then
+                local rand = math.random(1, #ents)
+                local save_data = {
+                    x = ents[rand].x,
+                    z = ents[rand].z
+                }
+                table.insert(entities["vampirebatcave"], save_data)
+                table.remove(ents, rand)
+            end
+        end
+        entities["vampirebatcave_potential"] = nil
+    end
 
     -- if not entities["relic_1"] then
     --     entities["relic_1"] = {}

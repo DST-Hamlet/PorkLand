@@ -100,6 +100,8 @@ local function fn()
     inst:AddTag("canbetrapped")
     inst:AddTag("smallcreature")
 
+    MakeFeedableSmallLivestockPristine(inst)
+
     MakeCharacterPhysics(inst, 5, .5)
 
     inst.DynamicShadow:SetSize(2.5, 1.5)
@@ -166,8 +168,16 @@ local function fn()
     inst.components.combat:SetRange(TUNING.RABID_BEETLE_ATTACK_RANGE)
     inst.components.combat:SetHurtSound("dontstarve_DLC003/creatures/enemy/rabid_beetle/hurt")
 
+    local lifetime = TUNING.TOTAL_DAY_TIME + (3 * math.random() - 2) * TUNING.SEG_TIME
+
     inst:AddComponent("timer")
-    inst.components.timer:StartTimer("endlife", TUNING.TOTAL_DAY_TIME + (3 * math.random() - 2) * TUNING.SEG_TIME)
+    inst.components.timer:StartTimer("endlife", lifetime)
+
+    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME)
+    inst.components.eater:SetOnEatFn(nil)
+    inst:DoStaticTaskInTime(0, function()
+        inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
+    end)
 
     inst:SetStateGraph("SGrabid_beetle")
     inst:SetBrain(brain)

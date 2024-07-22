@@ -201,14 +201,6 @@ local function onhit(inst, worker)
     end
 end
 
-local function returntointeriorscene(inst)
-    if inst.components.stewer and inst.components.stewer:IsCooking() then
-        inst.Light:Enable(true)
-    else
-        inst.Light:Enable(false)
-    end
-end
-
 local function onsave(inst, data)
     if inst:HasTag("burnt") or (inst.components.burnable ~= nil and inst.components.burnable:IsBurning()) then
         data.burnt = true
@@ -314,7 +306,6 @@ local function fn()
     MakeMediumBurnable(inst, nil, nil, true)
     MakeSmallPropagator(inst)
 
-    inst.returntointeriorscene = returntointeriorscene
     inst.OnSave = onsave
     inst.OnLoad = onload
 
@@ -322,4 +313,4 @@ local function fn()
 end
 
 return Prefab("smelter", fn, assets, prefabs),
-    MakePlacer("smetler_placer", "smelter", "smelter", "idle_empty")
+    MakePlacer("smelter_placer", "smelter", "smelter", "idle_empty")

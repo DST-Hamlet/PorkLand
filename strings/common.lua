@@ -3,13 +3,13 @@ return {
         DISEMBARK = {
             GENERIC = "Exit",
         },
-        FISH = {
-            GENERIC = "Fish",
-            RETRIEVE = "Retrieve",
-        },
         EMBARK = {
             GENERIC = "Drive",
             SURF = "Ride",
+        },
+        FISH = {
+            GENERIC = "Fish",
+            RETRIEVE = "Retrieve",
         },
         HACK = "Hack",
         PAN = "Pan",
@@ -20,6 +20,7 @@ return {
         RETRIEVE = "Retrieve",
         SHEAR = "Shear",
         SMELT = "Smelt",
+        TAKEFROMSHELF = "Retrieve",
     },
     NAMES = {
         ALLOY = "Alloy",

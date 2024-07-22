@@ -1,3 +1,4 @@
+local SpawnUtil = require("map/spawnutil")
 
 local bunch_blockers = {
     "porkland_intro_basket",
@@ -31,7 +32,7 @@ local function check_valid_ground(x, z, width, height, valid_tile_types, water)
 
     local original_tile_type = WorldSim:GetTile(math.floor(x), math.floor(z))
     if original_tile_type then
-        if not water and IsOceanTile(original_tile_type) then
+        if not water and (IsOceanTile(original_tile_type) or SpawnUtil.IsCloseToWaterTile(x, z, 1)) then
             return false
         end
 
