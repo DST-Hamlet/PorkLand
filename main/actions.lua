@@ -28,7 +28,9 @@ if not rawget(_G, "HotReloading") then
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2, mount_enabled = true}),
         PUTONSHELF = Action({ distance = 2 }),
-        TAKEFROMSHELF = Action({ distance = 2, priority = 1 })
+        TAKEFROMSHELF = Action({ distance = 2, priority = 1 }),
+
+        POOP_TIP = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -257,7 +259,7 @@ end
 
 local function DoTeleport(player, pos)
     player:StartThread(function()
-        local invincible = player.components.health.invincible
+        -- local invincible = player.components.health.invincible
         --player.components.health:SetInvincible(true)
         if player.components.playercontroller ~= nil then
             player.components.playercontroller:EnableMapControls(false)
@@ -273,7 +275,7 @@ local function DoTeleport(player, pos)
         end
         player.components.interiorvisitor:UpdateExteriorPos()
         -- player.components.health:SetInvincible(invincible)
-        Sleep(0.1) -- 出于未知原因，当Sleep(0)的时候SnapCamera执行时玩家的位置仍未发生变化，因此改为0.1
+        Sleep(0.1) -- 出于未知原因，当 Sleep(0) 的时候 SnapCamera 执行时玩家的位置仍未发生变化，因此改为 0.1
         if player.components.playercontroller ~= nil then
             player.components.playercontroller:EnableMapControls(true)
             player.components.playercontroller:Enable(true)
@@ -386,6 +388,9 @@ ACTIONS.TAKEFROMSHELF.fn = function(act)
     end
 end
 
+ACTIONS.POOP_TIP.fn = function(act)
+    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
+end
 
 
 
@@ -699,7 +704,7 @@ end
 local COMPONENT_ACTIONS = ToolUtil.GetUpvalue(EntityScript.CollectActions, "COMPONENT_ACTIONS")
 local SCENE = COMPONENT_ACTIONS.SCENE
 local USEITEM = COMPONENT_ACTIONS.USEITEM
-local POINT = COMPONENT_ACTIONS.POINT
+-- local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 

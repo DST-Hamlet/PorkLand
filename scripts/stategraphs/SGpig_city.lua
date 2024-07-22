@@ -8,6 +8,7 @@ local actionhandlers =
     ActionHandler(ACTIONS.CHOP, "chop"),
     ActionHandler(ACTIONS.FIX, "chop"),
     ActionHandler(ACTIONS.SPECIAL_ACTION, nil),
+    ActionHandler(ACTIONS.POOP_TIP, "poop_tip"),
     ActionHandler(ACTIONS.PICKUP, "pickup"),
     ActionHandler(ACTIONS.EQUIP, "pickup"),
     ActionHandler(ACTIONS.ADDFUEL, "pickup"),
@@ -427,11 +428,9 @@ local states =
         tags = {"busy"},
 
         onenter = function(inst)
-            local speechset = getSpeechType(inst, STRINGS.CITY_PIG_TALK_POOPTIP)
-            if GetPlayer():HasTag("pigroyalty") then
-                speechset = getSpeechType(inst, STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP)
-            end
-
+            local speechset = inst.poop_tip:HasTag("pigroyalty")
+                and getSpeechType(inst, STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP)
+                or getSpeechType(inst, STRINGS.CITY_PIG_TALK_POOPTIP)
             inst.components.talker:Say(speechset[math.random(#speechset)])
             inst.AnimState:PlayAnimation("interact")
             inst.Physics:Stop()
@@ -439,11 +438,7 @@ local states =
 
         timeline=
         {
-            TimeEvent(13*FRAMES,
-                function(inst)
-                    GetPlayer().components.inventory:GiveItem(
-                        SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
-                end ),
+            TimeEvent(13 * FRAMES, function(inst) inst:PerformBufferedAction() end),
         },
 
         events=

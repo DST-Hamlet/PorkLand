@@ -44,22 +44,12 @@ function PeriodicPoopManager:OnPickedUp(city_id, poop, owner)
         return
     end
 
-	local x,y,z = owner.Transform:GetWorldPosition()
-	local radius = 20
-	local ents = TheSim:FindEntities(x,y,z, radius, {"city_pig"}, {"guard"})
-
-	local closest_pig = nil
-	for _, pig in pairs(ents) do
-		if pig.components.citypossession and pig.components.citypossession.cityID == city_id then
-			closest_pig = pig
-			break
-		end
-	end
-
+    local closest_pig = FindEntity(owner, 20, function(inst)
+        return inst.components.citypossession and inst.components.citypossession.cityID == city_id
+    end, {"city_pig"}, {"guard"})
 	if closest_pig then
-		closest_pig.poop_tip = true
+		closest_pig.poop_tip = owner
 	end
-
 end
 
 function PeriodicPoopManager:AllowPoop(city_id)
