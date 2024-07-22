@@ -1,2 +1,2 @@
-python3.10 translator.py
+python translator.py
 pause:
