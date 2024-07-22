@@ -221,7 +221,7 @@ function GetSpawnPoint(inst, pt)
     if offset then
         local pos = pt + offset
 
-        local ground = GetWorld()
+        local ground = TheWorld
         local tile = GROUND.GRASS
         if ground and ground.Map then
             tile = inst:GetCurrentTileType(pos:Get())

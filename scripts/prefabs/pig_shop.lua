@@ -508,7 +508,7 @@ local function usedoor(inst, data)
 end
 
 local function canburn(inst)
-    local interior_spawner = GetWorld().components.interiorspawner
+    local interior_spawner = TheWorld.components.interiorspawner
     if inst.components.door then
         local interior = inst.components.door.target_interior
         if interior_spawner:IsPlayerConsideredInside(interior) then

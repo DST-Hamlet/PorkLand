@@ -439,11 +439,9 @@ local function OnAttackedByDecidRoot(inst, attacker)
     end
 end
 
-local function callGuards(inst, attacker, task)
+local function call_guards(inst, attacker)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, 30, {
-        "guard_entrance",
-    })
+    local ents = TheSim:FindEntities(x, y, z, 30, {"guard_entrance"})
     if #ents > 0 then
         local guardprefab = "pigman_royalguard"
         local cityID = 1
@@ -468,21 +466,24 @@ local function callGuards(inst, attacker, task)
         if interior then
             GetInteriorSpawner():injectprefab(guard, interior)
         end
-
-        if inst[task] then
-            inst[task]:Cancel()
-            inst[task] = nil
-        end
     end
 end
 
-local function spawnguardtasks(inst, attacker)
-    inst.task_guard1 = inst:DoTaskInTime(math.random(1) + 1, function()
-        callGuards(inst, attacker, "task_guard1")
-    end)
-    inst.task_guard2 = inst:DoTaskInTime(math.random(1) + 1.5, function()
-        callGuards(inst, attacker, "task_guard2")
-    end)
+local function spawn_guard_tasks(inst, attacker)
+    if not inst.task_guard1 then
+        inst.task_guard1 = inst:DoTaskInTime(math.random(1) + 1, function()
+            call_guards(inst, attacker)
+            inst.task_guard1:Cancel()
+            inst.task_guard1 = nil
+        end)
+    end
+    if not inst.task_guard1 then
+        inst.task_guard2 = inst:DoTaskInTime(math.random(1) + 1.5, function()
+            call_guards(inst, attacker)
+            inst.task_guard2:Cancel()
+            inst.task_guard2 = nil
+        end)
+    end
 end
 
 local function OnAttacked(inst, data)
@@ -496,7 +497,7 @@ local function OnAttacked(inst, data)
             inst.components.combat:SetTarget(attacker)
 
             if inst:HasTag("guard") then
-                if attacker == GetPlayer() then
+                if attacker:HasTag("player") then
                     inst:AddTag("angry_at_player")
                 end
                 inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
@@ -514,7 +515,7 @@ local function OnAttacked(inst, data)
         if not inst:HasTag("guards_called") then
             inst:AddTag("guards_called")
             if inst:HasTag("shopkeep") or inst:HasTag("pigqueen") then
-                spawnguardtasks(inst, data.attacker)
+                spawn_guard_tasks(inst, data.attacker)
             end
         end
     end
@@ -526,14 +527,15 @@ local function NormalRetargetFn(inst)
     return FindEntity(inst, TUNING.CITY_PIG_GUARD_TARGET_DIST, function(guy)
         if not guy.LightWatcher or guy.LightWatcher:IsInLight() then
 
-            if guy == GetPlayer() and inst:HasTag("angry_at_player") and guy.components.health and
-                not guy.components.health:IsDead() and inst.components.combat:CanTarget(guy) and
-                inst.components.combat.target ~= GetPlayer() then
+            if guy:HasTag("player") and inst:HasTag("angry_at_player") and guy.components.health
+                and not guy.components.health:IsDead() and inst.components.combat:CanTarget(guy)
+                and not (inst.components.combat.target and inst.components.combat.target:HasTag("player")) then
+
                 inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER))
                 -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER) )
             end
 
-            return (guy:HasTag("monster") or (guy == GetPlayer() and inst:HasTag("angry_at_player"))) and
+            return (guy:HasTag("monster") or (guy:HasTag("player") and inst:HasTag("angry_at_player"))) and
                        guy.components.health and not guy.components.health:IsDead() and
                        inst.components.combat:CanTarget(guy) and
                        not (inst.components.follower.leader ~= nil and guy:HasTag("abigail"))
@@ -612,7 +614,7 @@ local function SetNormalPig(inst, brain_id)
                 if inst.bribe_count >= bribe_threshold then
                     inst:RemoveTag("angry_at_player")
 
-                    if inst.components.combat and inst.components.combat:IsTarget(GetPlayer()) then
+                    if inst.components.combat and inst.components.combat.target and inst.components.combat.target:HasTag("player") then
                         inst.components.combat:GiveUp()
                     end
 
@@ -647,7 +649,7 @@ local function throwcrackers(inst)
             return true
         end
     end
-    local pt, new_angle = FindValidPositionByFan(start_angle, radius, attempts, test_fn)
+    local _, new_angle = FindValidPositionByFan(start_angle, radius, attempts, test_fn)
 
     if new_angle then
         inst.Transform:SetRotation(new_angle / DEGREES)
@@ -719,7 +721,7 @@ local function OnLoad(inst, data)
     end
 
     if data.doSpawnGuardTask then
-        spawnguardtasks(inst, GetPlayer())
+        spawn_guard_tasks(inst)
     end
 
     if data.equipped then
