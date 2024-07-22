@@ -145,6 +145,13 @@ PrefabFiles = {
     "antcombhome",
     "magnifying_glass",
     "disarmingkit",
+
+    "ancient_hulk",
+    "ancient_robot_assembly",
+    "ancient_robots",
+    "infused_iron",
+    "living_artifact",
+    "ancient_hulk_laser",
 }
 
 Assets = {
@@ -169,7 +176,10 @@ Assets = {
     Asset("IMAGE", "images/overlays/fx4.tex"),
     Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
     Asset("IMAGE", "images/overlays/fx5.tex"),
+    Asset("ATLAS", "images/overlays/fx6.xml"),  -- living artifact
+    Asset("IMAGE", "images/overlays/fx6.tex"),
     Asset("ANIM", "anim/leaves_canopy2.zip"),  --canopy
+    Asset("ANIM", "anim/livingartifact_meter.zip"),
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 
@@ -189,6 +199,10 @@ Assets = {
     Asset("ANIM", "anim/werebeaver_boat_death.zip"),
     Asset("ANIM", "anim/player_lifeplant.zip"),
     Asset("ANIM", "anim/player_actions_hand_lens.zip"),
+    Asset("ANIM", "anim/player_living_suit_destruct.zip"),
+    Asset("ANIM", "anim/player_living_suit_morph.zip"),
+    Asset("ANIM", "anim/player_living_suit_punch.zip"),
+    Asset("ANIM", "anim/player_living_suit_shoot.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
