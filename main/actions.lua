@@ -31,10 +31,12 @@ if not rawget(_G, "HotReloading") then
         TAKEFROMSHELF = Action({ distance = 2, priority = 1 }),
 
         -- For City Pigs
-        POOP_TIP = Action({}),
-        PAY_TAX = Action({}),
-        DAILY_GIFT = Action({}),
-        SIT_AT_DESK = Action({}),
+        POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        PAY_TAX = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        DAILY_GIFT = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
+        STOCK = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -394,17 +396,41 @@ end
 
 ACTIONS.POOP_TIP.fn = function(act)
     act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
+    return true
 end
 
 ACTIONS.PAY_TAX.fn = function(act)
     act.doer:RemoveTag("paytax")
     act.doer.taxing = false
     act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
+    return true
 end
 
 ACTIONS.DAILY_GIFT.fn = function(act)
-    local resources = { "flint", "log", "rocks", "cutgrass", "seeds", "twigs" }
+    local resources = {"flint", "log", "rocks", "cutgrass", "seeds", "twigs"}
     act.target.components.inventory:GiveItem(SpawnPrefab(resources[math.random(#resources)]), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
+    return true
+end
+
+ACTIONS.SIT_AT_DESK.fn = function(act)
+    return true
+end
+
+ACTIONS.FIX.fn = function(act)
+	if act.target then
+		local target = act.target
+		local numworks = 1
+		target.components.workable:WorkedBy(act.doer, numworks)
+	--	return target:fix(act.doer)
+	end
+end
+
+ACTIONS.STOCK.fn = function(act)
+	if act.target then
+		act.target.restock(act.target,true)
+		act.doer.changestock = nil
+		return true
+	end
 end
 
 
