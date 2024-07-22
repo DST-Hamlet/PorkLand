@@ -70,6 +70,7 @@ AddComponentPostInit("worldstate", function(self, inst)
     data.ishumid = false
     data.islush = false
     data.isaporkalypse = false
+    data.isnearaporkalypse = false
     data.preaporkalypseseason = "temperate"
     data.preaporkalypseseasonprogress = 0
     data.fullfog = false

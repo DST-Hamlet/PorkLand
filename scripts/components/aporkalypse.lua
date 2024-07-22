@@ -211,7 +211,7 @@ return Class(function(self, inst)
         end
 
         if _isnearaporkalypsedirty then
-            _world:PushEvent("isnearaporkalypsechange", _isnearaporkalypsedirty)
+            _world:PushEvent("isnearaporkalypsechange", _isnearaporkalypse:value())
             _isnearaporkalypsedirty = false
         end
 
