@@ -34,7 +34,7 @@ return Class(function(self, inst)
 
     -- Network
     local _timeuntilaporkalypse = net_float(inst.GUID, "timeuntil.aporkalypse")
-    local _isnearaporkalypse = net_float(inst.GUID, "timeuntil.isnearaporkalypse", "isnearaporkalypsedirty")
+    local _isnearaporkalypse = net_bool(inst.GUID, "timeuntil.isnearaporkalypse", "isnearaporkalypsedirty")
 
     --------------------------------------------------------------------------
     --[[ Private member functions ]]
