@@ -213,6 +213,7 @@ local function Revert(inst)
     player:ClearBufferedAction()
     player:DoTaskInTime(0, function() player.sg:GoToState("bucked_post") end)
 
+    player.components.inventory:RemoveItem(inst)
     inst:Remove()
 end
 

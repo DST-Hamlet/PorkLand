@@ -198,6 +198,7 @@ function InteriorSpawner:PositionToInteriorCenter(pos)
 end
 
 function InteriorSpawner:AddExterior(ent)
+    ent:AddTag("exterior_door")
     self.exteriors_hashmap[ent] = true
     ent:ListenForEvent("onremove", function()
         self.exteriors_hashmap[ent] = nil

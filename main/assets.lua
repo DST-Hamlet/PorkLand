@@ -179,6 +179,7 @@ Assets = {
     Asset("ATLAS", "images/overlays/fx6.xml"),  -- living artifact
     Asset("IMAGE", "images/overlays/fx6.tex"),
     Asset("ANIM", "anim/leaves_canopy2.zip"),  --canopy
+    Asset("ANIM", "anim/livingartifact_meter.zip"),
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
 

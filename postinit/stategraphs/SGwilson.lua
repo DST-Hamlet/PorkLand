@@ -2238,6 +2238,10 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _idle_onenter = sg.states["idle"].onenter
     sg.states["idle"].onenter = function(inst, ...)
+        if inst:HasTag("ironlord") then
+            inst.sg:GoToState("ironlord_idle")
+            return
+        end
         if not (inst.components.drownable ~= nil and inst.components.drownable:ShouldDrown()) then
             if inst.sg.wantstosneeze then
                 inst.components.locomotor:Stop()
