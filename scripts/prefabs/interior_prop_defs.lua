@@ -865,17 +865,17 @@ PROP_DEFS.pig_ruins_treasure_secret = function(depth, width, exits_open, exits_v
             armorruins = 1,
             multitool_axe_pickaxe = 1,
         }
-        return weighted_random_choice(items)
+        return weighted_random_choices(items, 1)
     end
 
     if not dungeondef.smallsecret then
-        addprops[#addprops + 1] = {name = "shelves_ruins", x_offset = -depth / 7, z_offset = -width / 7, shelfitems = {{1, getitem()}}}
-        addprops[#addprops + 1] = {name = "shelves_ruins", x_offset = depth / 7, z_offset = -width / 7, shelfitems = {{1, getitem()}}}
-        addprops[#addprops + 1] = {name = "shelves_ruins", x_offset = -depth / 7, z_offset = width / 7, shelfitems = {{1, getitem()}}}
-        addprops[#addprops + 1] = {name = "shelves_ruins", x_offset = depth / 7, z_offset = width / 7, shelfitems = {{1, getitem()}}}
+        addprops[#addprops + 1] = {name = "shelf_ruins", x_offset = -depth / 7, z_offset = -width / 7, shelfitems = getitem()}
+        addprops[#addprops + 1] = {name = "shelf_ruins", x_offset = depth / 7, z_offset = -width / 7, shelfitems = getitem()}
+        addprops[#addprops + 1] = {name = "shelf_ruins", x_offset = -depth / 7, z_offset = width / 7, shelfitems = getitem()}
+        addprops[#addprops + 1] = {name = "shelf_ruins", x_offset = depth / 7, z_offset = width / 7, shelfitems = getitem()}
     else
-        addprops[#addprops + 1] = {name = "shelves_ruins", x_offset = 0, z_offset = -width / 7, shelfitems = {{1, getitem()}}}
-        addprops[#addprops + 1] = {name = "shelves_ruins", x_offset = 0, z_offset = width / 7, shelfitems = {{1, getitem()}}}
+        addprops[#addprops + 1] = {name = "shelf_ruins", x_offset = 0, z_offset = -width / 7, shelfitems = getitem()}
+        addprops[#addprops + 1] = {name = "shelf_ruins", x_offset = 0, z_offset = width / 7, shelfitems = getitem()}
     end
 
     return addprops

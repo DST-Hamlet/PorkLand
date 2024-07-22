@@ -52,8 +52,8 @@ local function OnExitSail(inst)
 end
 
 local actionhandlers = {
-    ActionHandler(ACTIONS.PICKSHELF, "doshortaction"),
-    ActionHandler(ACTIONS.PUTSHELF, "doshortaction"),
+    ActionHandler(ACTIONS.TAKEFROMSHELF, "doshortaction"),
+    ActionHandler(ACTIONS.PUTONSHELF, "doshortaction"),
     ActionHandler(ACTIONS.EMBARK, "embark"),
     ActionHandler(ACTIONS.DISEMBARK, "disembark"),
     ActionHandler(ACTIONS.RETRIEVE, "dolongaction"),

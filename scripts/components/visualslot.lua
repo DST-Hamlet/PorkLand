@@ -68,12 +68,11 @@ function VisualSlot:SetArt()
     if self.shelf.anim_def.order then
         self.inst.AnimState:SetSortOrder(self.shelf.anim_def.layer)
     end
+    self.inst.AnimState:SetFinalOffset(1) -- 保证不会因为followsymbol的小概率奇怪bug而被挡住
 
     if self.item then
         local fn = master_postinitfns[self.item.prefab]
-        if fn then
-            fn(self.inst, self.shelf, self.slot, self.item)
-        else
+        if not fn or fn(self.inst, self.shelf, self.slot, self.item) then
             self:SetDefault()
             self.inst.AnimState:OverrideSymbol("visual_slot", self.item.replica.inventoryitem:GetAtlas(), self.item.replica.inventoryitem:GetImage())
         end
