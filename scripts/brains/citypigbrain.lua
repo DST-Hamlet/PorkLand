@@ -255,8 +255,6 @@ local function PayTax(inst)
     return BufferedAction(inst, GetPlayer(), ACTIONS.SPECIAL_ACTION)
 end
 
-
-
 local function DailyGift(inst)
     inst.daily_gifting = true
     return BufferedAction(inst, GetPlayer(), ACTIONS.SPECIAL_ACTION)
@@ -452,9 +450,7 @@ end
 
 function CityPigBrain:OnStart()
     --print(self.inst, "CityPigBrain:OnStart")
-    local clock = GetClock()
-
-    local day = WhileNode( function() return clock and clock:IsDay() end, "IsDay",
+    local day = WhileNode( function() return TheWorld.state.isday end, "IsDay",
         PriorityNode{
             -- start of day, shopkeeper needs to go back this their desk
             WhileNode(function() return self.inst:HasTag("shopkeep") and not self.inst:HasTag("atdesk") and not self.inst.changestock end, "shopkeeper opening",
@@ -478,7 +474,7 @@ function CityPigBrain:OnStart()
             Wander(self.inst, GetNoLeaderHomePos, MAX_WANDER_DIST)
         },.5)
 
-    local night = WhileNode( function() return clock and not clock:IsDay() end, "IsNight",
+    local night = WhileNode( function() return not TheWorld.state.isday end, "IsNight",
         PriorityNode{
             ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER),
                 RunAway(self.inst, "spider", 4, 8)),
@@ -552,8 +548,8 @@ function CityPigBrain:OnStart()
                     local target = GetFaceTargetFn(self.inst)
 
                     if target and (target:HasTag("pigroyalty") or (GetAporkalypse() and GetAporkalypse():GetFiestaActive()) )and
-                       (not self.inst.daily_gift or (GetClock():GetTotalTime() - self.inst.daily_gift > (TUNING.TOTAL_DAY_TIME * 1.5))) then
-                            self.inst.daily_gift = GetClock():GetTotalTime()
+                       (not self.inst.daily_gift or (TheWorld.state.cycles - self.inst.daily_gift > (TUNING.TOTAL_DAY_TIME * 1.5))) then
+                            self.inst.daily_gift = TheWorld.state.cycles
                             return math.random() < 0.3
                     end
                     return false

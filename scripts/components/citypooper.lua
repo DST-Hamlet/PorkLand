@@ -35,7 +35,7 @@ function CityPooper:TestForPoop(force)
     	    poop_manager:OnPoop(cityID, poop)
 	    end
 	else
-	    if ((math.random() <= 0.5) or force) and poop_manager:AllowPoop(cityID) and GetClock():IsDay() then
+	    if ((math.random() <= 0.5) or force) and poop_manager:AllowPoop(cityID) and TheWorld.state.isday then
     	    local poop = SpawnPrefab("poop")
         	poop.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
 

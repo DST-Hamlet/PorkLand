@@ -352,9 +352,7 @@ end
 
 function RoyalPigGuardBrain:OnStart()
     --print(self.inst, "RoyalPigGuardBrain:OnStart")
-    local clock = GetClock()
-
-    local day = WhileNode( function() return clock and clock:IsDay() end, "IsDay",
+    local day = WhileNode( function() return TheWorld.state.isday end, "IsDay",
         PriorityNode {
 
             ChattyNode(self.inst, getSpeechType(self.inst,STRINGS.CITY_PIG_TALK_FIND_MEAT),
@@ -375,7 +373,7 @@ function RoyalPigGuardBrain:OnStart()
         }, .5)
 
 
-    local night = WhileNode( function() return clock and not clock:IsDay() end, "IsNight",
+    local night = WhileNode( function() return not TheWorld.state.isday end, "IsNight",
         PriorityNode {
 
             ChattyNode(self.inst, getSpeechType(self.inst,STRINGS.CITY_PIG_TALK_FIND_MEAT),
