@@ -23,6 +23,7 @@ local tuning = {
     LUSH_LENGTH = 10,
     APORKALYPSE_LENGTH = 20,
 
+    APORKALYPSE_FIESTA_TIME = 5 * total_day_time,
     APORKALYPSE_NEAR_TIME = 7 * total_day_time,
     APORKALYPSE_PERIOD_LENGTH = 60 * total_day_time,
 

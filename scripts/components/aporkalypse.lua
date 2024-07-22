@@ -7,7 +7,8 @@ local function onrewindmult(self)
 end
 
 return Class(function(self, inst)
-    local NEAR_TIME = TUNING.APORKALYPSE_NEAR_TIME
+    local APORKALYPSE_NEAR_TIME = TUNING.APORKALYPSE_NEAR_TIME
+    local APORKALYPSE_FIESTA_TIME = TUNING.APORKALYPSE_FIESTA_TIME
     local APORKALYPSE_PERIOD_LENGTH = TUNING.APORKALYPSE_PERIOD_LENGTH
 
     --------------------------------------------------------------------------
@@ -25,16 +26,22 @@ return Class(function(self, inst)
     local _ismastershard = _world.ismastershard
     local _clock = inst.components.clock
     local _seasons = inst.components.seasons
+    local _isplateau = _clock and _clock.current_clock == "plateau"
 
+    local _activefiestadirty = true
     local _isnearaporkalypsedirty = true
 
+    -- Master shard simulation
+    local _timeuntilfiestaend = _ismastershard and TUNING.APORKALYPSE_FIESTA_TIME or nil
+
     -- Master simulation
-    local active_aporkalypse
-    local first_aporkalypse
+    local _activeaporkalypse
+    local _firstaporkalypse
 
     -- Network
-    local _timeuntilaporkalypse = net_float(inst.GUID, "timeuntil.aporkalypse")
-    local _isnearaporkalypse = net_bool(inst.GUID, "timeuntil.isnearaporkalypse", "isnearaporkalypsedirty")
+    local _timeuntilaporkalypse = net_float(inst.GUID, "aporkalypse.timeuntil")
+    local _activefiesta = net_bool(inst.GUID, "aporkalypse.activefiesta", "activefiestadirty")
+    local _isnearaporkalypse = net_bool(inst.GUID, "aporkalypse.isnearaporkalypse", "isnearaporkalypsedirty")
 
     --------------------------------------------------------------------------
     --[[ Private member functions ]]
@@ -42,14 +49,28 @@ return Class(function(self, inst)
 
     local function OnPlayerActivated()
         _isnearaporkalypsedirty = true
+        _activefiestadirty = true
+    end
+
+    local BeginFiesta = _ismastersim and _isplateau and function()
+        if not _activefiesta:value() then
+            _activefiesta:set(true)
+        end
+    end
+
+    local EndFiesta = _ismastersim and _isplateau and function()
+        if _activefiesta:value() then
+            _activefiesta:set(false)
+            _timeuntilfiestaend = APORKALYPSE_FIESTA_TIME
+        end
     end
 
     local BeginAporkalypse = _ismastersim and function()
-        if active_aporkalypse then
+        if _activeaporkalypse then
             return
         end
 
-        active_aporkalypse = true
+        _activeaporkalypse = true
         _timeuntilaporkalypse:set(0)
 
         if _clock and _clock.BeginAporkalypse then
@@ -57,25 +78,33 @@ return Class(function(self, inst)
         end
 
         if _seasons and _seasons.BeginAporkalypse then
-            _seasons:BeginAporkalypse(first_aporkalypse)
+            _seasons:BeginAporkalypse(_firstaporkalypse)
+        end
+
+        if _isplateau then
+            EndFiesta()
         end
     end or nil
 
     local EndAporkalypse = _ismastersim and function()
-        if not active_aporkalypse then
+        if not _activeaporkalypse then
             return
         end
 
-        active_aporkalypse = false
-        first_aporkalypse = false
+        _activeaporkalypse = false
+        _firstaporkalypse = false
         _timeuntilaporkalypse:set(APORKALYPSE_PERIOD_LENGTH)
 
-        if inst.components.clock and inst.components.clock.EndAporkalypse then
-            inst.components.clock:EndAporkalypse()
+        if _clock and _clock.EndAporkalypse then
+            _clock:EndAporkalypse()
         end
 
-        if inst.components.seasons and inst.components.seasons.EndAporkalypse then
-            inst.components.seasons:EndAporkalypse()
+        if _seasons and _seasons.EndAporkalypse then
+            _seasons:EndAporkalypse()
+        end
+
+        if _isplateau then
+            BeginFiesta()
         end
     end or nil
 
@@ -118,12 +147,10 @@ return Class(function(self, inst)
 
     local OnAporkalypseUpdate = _ismastersim and not _ismastershard and function(src, data)
         _timeuntilaporkalypse:set(data.timeuntilaporkalypse)
-
+        _activefiesta:set(data.activefiesta)
         _isnearaporkalypse:set(data.isnearaporkalypse)
 
-        if active_aporkalypse ~= data.activeaporkalypse then
-            active_aporkalypse = data.activeaporkalypse
-
+        if _activeaporkalypse ~= data.activeaporkalypse then
             if data.activeaporkalypse then
                 BeginAporkalypse()
             else
@@ -143,14 +170,16 @@ return Class(function(self, inst)
     -- Initialize network variables
     _timeuntilaporkalypse:set(APORKALYPSE_PERIOD_LENGTH)
     _isnearaporkalypse:set(false)
+    _activefiesta:set(false)
 
     -- Register network variable sync events
+    inst:ListenForEvent("activefiestadirty", function() _activefiestadirty = true end)
     inst:ListenForEvent("isnearaporkalypsedirty", function() _isnearaporkalypsedirty = true end)
     inst:ListenForEvent("playeractivated", OnPlayerActivated, _world)
 
     if _ismastersim then
-        active_aporkalypse = false
-        first_aporkalypse = true
+        _activeaporkalypse = false
+        _firstaporkalypse = true
 
         -- Register master events
         inst:ListenForEvent("ms_startaporkalypse", StartAporkalypse, _world)
@@ -171,6 +200,7 @@ return Class(function(self, inst)
     function self:OnPostInit(...)
         _clock = inst.components.clock
         _seasons = inst.components.seasons
+        _isplateau = _clock and _clock.current_clock == "plateau"
     end
 
     --------------------------------------------------------------------------
@@ -193,14 +223,14 @@ return Class(function(self, inst)
                 _timeuntilaporkalypse:set_local(timeuntilaporkalypse)
             end
 
-            if _clock.current_clock == "plateau" and timeuntilaporkalypse <= NEAR_TIME and not _isnearaporkalypse:value() then
+            if _isplateau and timeuntilaporkalypse <= APORKALYPSE_NEAR_TIME and not _isnearaporkalypse:value() then
                 _isnearaporkalypse:set(true)
             end
         else
             _isnearaporkalypse:set(false)
 
             if _ismastershard then
-                if not active_aporkalypse then
+                if not _activeaporkalypse then
                     BeginAporkalypse()
                 end
             else
@@ -210,13 +240,31 @@ return Class(function(self, inst)
 
         end
 
+        if _activefiesta:value() and _ismastershard then
+            _timeuntilfiestaend = _timeuntilfiestaend - dt
+            if _timeuntilfiestaend <= 0 then
+                EndFiesta()
+            end
+        end
+
         if _isnearaporkalypsedirty then
-            _world:PushEvent("isnearaporkalypsechange", _isnearaporkalypse:value())
+            _world:PushEvent("nearaporkalypsechange", _isnearaporkalypse:value())
             _isnearaporkalypsedirty = false
         end
 
+        if _activefiestadirty then
+            _world:PushEvent("fiestachange", _activefiesta:value())
+            _activefiestadirty = false
+        end
+
         if _ismastershard then
-            _world:PushEvent("master_aporkalypseupdate", {timeuntilaporkalypse = _timeuntilaporkalypse:value(), isnearaporkalypse = _isnearaporkalypse:value(), activeaporkalypse = active_aporkalypse, rewindmult = self.rewind_mult})
+            _world:PushEvent("master_aporkalypseupdate", {
+                timeuntilaporkalypse = _timeuntilaporkalypse:value(),
+                isnearaporkalypse = _isnearaporkalypse:value(),
+                activefiesta = _activefiesta:value(),
+                activeaporkalypse = _activeaporkalypse,
+                rewindmult = self.rewind_mult
+            })
         end
 
         _world:PushEvent("aporkalypseclocktick", {timeuntilaporkalypse = _timeuntilaporkalypse:value()})
@@ -228,19 +276,22 @@ return Class(function(self, inst)
 
     if _ismastersim then function self:OnSave()
         return {
-            active_aporkalypse = active_aporkalypse,
-            first_aporkalypse = first_aporkalypse,
-            time_until_aporkalypse = _timeuntilaporkalypse:value(),
+            activeaporkalypse = _activeaporkalypse,
+            firstaporkalypse = _firstaporkalypse,
+            activefiesta = _activefiesta:value(),
+            isnearaporkalypse = _isnearaporkalypse:value(),
+            timeuntilaporkalypse = _timeuntilaporkalypse:value(),
         }
     end end
 
     if _ismastersim then function self:OnLoad(data)
         -- can be false, so don't nil check
-        first_aporkalypse = data.first_aporkalypse or false
+        _firstaporkalypse = data.firstaporkalypse or false
+        _activefiesta:set(data.activefiesta or false)
+        _isnearaporkalypse:set(data.isnearaporkalypse or false)
+        _timeuntilaporkalypse:set(data.timeuntilaporkalypse or APORKALYPSE_PERIOD_LENGTH)
 
-        _timeuntilaporkalypse:set(data.time_until_aporkalypse or APORKALYPSE_PERIOD_LENGTH)
-
-        if data.active_aporkalypse == true then
+        if data.activeaporkalypse == true then
             BeginAporkalypse()
         end
     end end
