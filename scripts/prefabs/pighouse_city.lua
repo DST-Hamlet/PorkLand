@@ -342,42 +342,46 @@ local function onbuilt(inst)
     inst.AnimState:PushAnimation("idle")
     citypossessionfn(inst)
 end
-
-local function makeobstacle(inst)
-    local ground = TheWorld
-    if ground then
-        local pt = Point(inst.Transform:GetWorldPosition())
-        -- print("    at: ", pt)
-        ground.Pathfinder:AddWall(pt.x, pt.y, pt.z - 1)
-        ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
-        ground.Pathfinder:AddWall(pt.x, pt.y, pt.z + 1)
-
-        ground.Pathfinder:AddWall(pt.x - 1, pt.y, pt.z - 1)
-        ground.Pathfinder:AddWall(pt.x - 1, pt.y, pt.z)
-        ground.Pathfinder:AddWall(pt.x - 1, pt.y, pt.z + 1)
-
-        ground.Pathfinder:AddWall(pt.x + 1, pt.y, pt.z - 1)
-        ground.Pathfinder:AddWall(pt.x + 1, pt.y, pt.z)
-        ground.Pathfinder:AddWall(pt.x + 1, pt.y, pt.z + 1)
+local function OnIsPathFindingDirty(inst)
+    if inst._ispathfinding:value() then
+        if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
+            inst._pfpos = inst:GetPosition()
+            local x, _, z = inst._pfpos:Get()
+            for delta_x = -1, 1 do
+                for delta_z = -1, 1 do
+                    TheWorld.Pathfinder:AddWall(x + delta_x, 0, z + delta_z)
+                end
+            end
+        end
+    elseif inst._pfpos ~= nil then
+        local x, _, z = inst._pfpos:Get()
+        for delta_x = -1, 1 do
+            for delta_z = -1, 1 do
+                TheWorld.Pathfinder:RemoveWall(x + delta_x, 0, z + delta_z)
+            end
+        end
+        inst._pfpos = nil
     end
 end
 
-local function clearobstacle(inst)
-    local ground = TheWorld
-    if ground then
-        local pt = Point(inst.Transform:GetWorldPosition())
-        ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z - 1)
-        ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)
-        ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z + 1)
+local function InitializePathFinding(inst)
+    inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
+    OnIsPathFindingDirty(inst)
+end
 
-        ground.Pathfinder:RemoveWall(pt.x - 1, pt.y, pt.z - 1)
-        ground.Pathfinder:RemoveWall(pt.x - 1, pt.y, pt.z)
-        ground.Pathfinder:RemoveWall(pt.x - 1, pt.y, pt.z + 1)
+local function MakeObstacle(inst)
+    inst.Physics:SetActive(true)
+    inst._ispathfinding:set(true)
+end
 
-        ground.Pathfinder:RemoveWall(pt.x + 1, pt.y, pt.z - 1)
-        ground.Pathfinder:RemoveWall(pt.x + 1, pt.y, pt.z)
-        ground.Pathfinder:RemoveWall(pt.x + 1, pt.y, pt.z + 1)
-    end
+local function ClearObstacle(inst)
+    inst.Physics:SetActive(false)
+    inst._ispathfinding:set(false)
+end
+
+local function onremove(inst)
+    inst._ispathfinding:set_local(false)
+    OnIsPathFindingDirty(inst)
 end
 
 local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
@@ -443,7 +447,7 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst.components.spawner.onoccupied = onoccupied
         inst.components.spawner.onvacate = onvacate
 
-        inst.components.spawner:Configure("pigman", TUNING.PIGHOUSE_CITY_RESPAWNTIME, 1)
+        inst.components.spawner:Configure("pigman", TUNING.PIGHOUSE_CITY_RESPAWNTIME, 1) -- TODO: Change to pigman_city
         -- if spawn_list then
         --     ConfigureSpawner(inst, spawn_list)
         -- else
@@ -489,12 +493,16 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
 
         inst:ListenForEvent("onbuilt", onbuilt)
 
-        inst:AddComponent("gridnudger")
+        ------- Copied from prefabs/wall.lua -------
+        inst._pfpos = nil
+        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+        MakeObstacle(inst)
+        -- Delay this because makeobstacle sets pathfinding on by default
+        -- but we don't to handle it until after our position is set
+        inst:DoTaskInTime(0, InitializePathFinding)
 
-        inst.setobstical = makeobstacle
-        inst:ListenForEvent("onremove", function(inst)
-            clearobstacle(inst)
-        end)
+        inst:ListenForEvent("onremove", onremove)
+        --------------------------------------------
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad

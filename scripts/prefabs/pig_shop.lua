@@ -87,8 +87,7 @@ local SHOPSOUND_ENTER1 = "dontstarve_DLC003/common/objects/store/door_open"
 local SHOPSOUND_ENTER2 = "dontstarve_DLC003/common/objects/store/door_entrance"
 local SHOPSOUND_EXIT = "dontstarve_DLC003/common/objects/store/door_close"
 
-local assets =
-{
+local assets = {
     Asset("ANIM", "anim/pig_shop.zip"),
     Asset("ANIM", "anim/pig_shop_florist.zip"),
     Asset("ANIM", "anim/pig_shop_hoofspa.zip"),
@@ -109,8 +108,7 @@ local assets =
     Asset("ANIM", "anim/pig_shop_tinker.zip"),
 }
 
-local prefabs =
-{
+local prefabs = {
     "pigman_collector",
     "pigman_banker",
     "pigman_beautician",
@@ -124,7 +122,7 @@ local prefabs =
     "pigman_storeowner",
 
     "window_round",
-  --  "window_sunlight",
+    --  "window_sunlight",
     "deco_wallpaper_rip1",
     "deco_wallpaper_rip2",
     "deco_wallpaper_rip_side1",
@@ -172,8 +170,7 @@ local prefabs =
     "securitycontract",
 }
 
-local spawner_prefabs =
-{
+local spawner_prefabs = {
     "pig_shop_florist",
     "pig_shop_general",
     "pig_shop_hoofspa",
@@ -444,7 +441,9 @@ local function OnLoad(inst, data)
     end
 
     if data.burning then
-        inst:DoTaskInTime(0, function() inst.components.burnable:Ignite(true) end)
+        inst:DoTaskInTime(0, function()
+            inst.components.burnable:Ignite(true)
+        end)
     end
 end
 
@@ -463,7 +462,7 @@ local function CreatInterior(inst, name)
     local exterior_door_def = {
         my_door_id = name .. ID .. "_door",
         target_door_id = name .. ID .. "_exit",
-        target_interior = ID
+        target_interior = ID,
     }
     interior_spawner:AddDoor(inst, exterior_door_def)
 
@@ -488,8 +487,9 @@ local function CreatInterior(inst, name)
             cityID = inst.components.citypossession.cityID
         end
 
-        local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name .. ID, ID, addprops, {}, wall_texture, floor_texture,
-            minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB, PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
+        local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name .. ID, ID, addprops, {},
+            wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
+            PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
         interior_spawner:SpawnInterior(def)
     end
 
@@ -497,10 +497,10 @@ local function CreatInterior(inst, name)
     inst:AddTag("spawned_shop")
 end
 
-local function usedoor(inst,data)
+local function usedoor(inst, data)
     if inst.usesounds then
         if data and data.doer and data.doer.SoundEmitter then
-            for i,sound in ipairs(inst.usesounds)do
+            for i, sound in ipairs(inst.usesounds) do
                 data.doer.SoundEmitter:PlaySound(sound)
             end
         end
@@ -519,34 +519,46 @@ local function canburn(inst)
     return true
 end
 
+local function OnIsPathFindingDirty(inst)
+    if inst._ispathfinding:value() then
+        if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
+            inst._pfpos = inst:GetPosition()
+            local x, _, z = inst._pfpos:Get()
+            for delta_x = -1, 1 do
+                for delta_z = -1, 1 do
+                    TheWorld.Pathfinder:AddWall(x + delta_x, 0, z + delta_z)
+                end
+            end
+        end
+    elseif inst._pfpos ~= nil then
+        local x, _, z = inst._pfpos:Get()
+        for delta_x = -1, 1 do
+            for delta_z = -1, 1 do
+                TheWorld.Pathfinder:RemoveWall(x + delta_x, 0, z + delta_z)
+            end
+        end
+        inst._pfpos = nil
+    end
+end
+
+local function InitializePathFinding(inst)
+    inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
+    OnIsPathFindingDirty(inst)
+end
+
 local function MakeObstacle(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    TheWorld.Pathfinder:AddWall(x, y, z - 1)
-    TheWorld.Pathfinder:AddWall(x, y, z)
-    TheWorld.Pathfinder:AddWall(x, y, z + 1)
-
-    TheWorld.Pathfinder:AddWall(x - 1, y, z - 1)
-    TheWorld.Pathfinder:AddWall(x - 1, y, z)
-    TheWorld.Pathfinder:AddWall(x - 1, y, z + 1)
-
-    TheWorld.Pathfinder:AddWall(x + 1, y, z - 1)
-    TheWorld.Pathfinder:AddWall(x + 1, y, z)
-    TheWorld.Pathfinder:AddWall(x + 1, y, z + 1)
+    inst.Physics:SetActive(true)
+    inst._ispathfinding:set(true)
 end
 
 local function ClearObstacle(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    TheWorld.Pathfinder:RemoveWall(x, y, z - 1)
-    TheWorld.Pathfinder:RemoveWall(x, y, z)
-    TheWorld.Pathfinder:RemoveWall(x, y, z + 1)
+    inst.Physics:SetActive(false)
+    inst._ispathfinding:set(false)
+end
 
-    TheWorld.Pathfinder:RemoveWall(x - 1, y, z - 1)
-    TheWorld.Pathfinder:RemoveWall(x - 1, y, z)
-    TheWorld.Pathfinder:RemoveWall(x - 1, y, z + 1)
-
-    TheWorld.Pathfinder:RemoveWall(x + 1, y, z - 1)
-    TheWorld.Pathfinder:RemoveWall(x + 1, y, z)
-    TheWorld.Pathfinder:RemoveWall(x + 1, y, z + 1)
+local function onremove(inst)
+    inst._ispathfinding:set_local(false)
+    OnIsPathFindingDirty(inst)
 end
 
 local function MakeShop(name, build, bank, data)
@@ -570,7 +582,7 @@ local function MakeShop(name, build, bank, data)
             inst.AnimState:AddOverrideBuild("flag_post_duster_build")
         end
         if name == "pig_shop_cityhall_player" then
-           inst.AnimState:AddOverrideBuild("flag_post_wilson_build")
+            inst.AnimState:AddOverrideBuild("flag_post_wilson_build")
         end
 
         inst.Light:SetFalloff(1)
@@ -610,8 +622,6 @@ local function MakeShop(name, build, bank, data)
             fixbank = bank
         end
 
-        inst:AddComponent("gridnudger")
-
         inst:AddComponent("inspectable")
         inst.components.inspectable.getstatus = GetStatus
 
@@ -640,15 +650,24 @@ local function MakeShop(name, build, bank, data)
 
         MakeSnowCovered(inst, 0.01)
 
+        ------- Copied from prefabs/wall.lua -------
+        inst._pfpos = nil
+        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+        MakeObstacle(inst)
+        -- Delay this because makeobstacle sets pathfinding on by default
+        -- but we don't to handle it until after our position is set
+        inst:DoTaskInTime(0, InitializePathFinding)
+
+        inst:ListenForEvent("onremove", onremove)
+        --------------------------------------------
+
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
-        inst.setobstical = MakeObstacle
         inst.breaksoundsufix = data and data.usestonebreaksound and "stone" or "wood"
         if data and data.sounds then
             inst.usesounds = data.sounds
         end
 
-        inst:ListenForEvent("onremove", ClearObstacle)
         inst:ListenForEvent("onbuilt", OnBuilt)
         inst:ListenForEvent("usedoor", usedoor)
         inst:ListenForEvent("burntup", function(inst)
@@ -689,7 +708,7 @@ local function spawner_fn()
 
     inst:AddTag("pig_shop_spawner")
 
-    inst:DoTaskInTime(0, function() inst:Remove() end)
+    inst:DoTaskInTime(0, inst.Remove)
 
     return inst
 end
