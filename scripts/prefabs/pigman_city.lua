@@ -764,7 +764,7 @@ local function OnLoadPostPass(inst, ents, data)
     end
 end
 
-local function MakeCityPigman(name, build, sex, tags, common_postinit, master_postinit)
+local function MakeCityPigman(name, build, sex, tags, common_postinit, master_postinit, econprefab)
     local function fn()
         local inst = CreateEntity()
 
@@ -813,6 +813,8 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
             end
         end
 
+        inst.econprefab = econprefab
+
         if common_postinit then
             common_postinit(inst)
         end
@@ -826,25 +828,26 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         -- Remove these tags so that they can be added properly when replicating components below
         inst:RemoveTag("_named")
 
-        local names = {}
-        for i, pigname in ipairs(STRINGS.CITYPIGNAMES["UNISEX"]) do
-            table.insert(names, pigname)
-        end
+        -- TODO: get this back when string related works are finished @Jerry457
+        -- local names = {}
+        -- for i, pigname in ipairs(STRINGS.CITYPIGNAMES["UNISEX"]) do
+        --     table.insert(names, pigname)
+        -- end
 
-        if sex then
-            if sex == MALE then
-                inst.female = false
-            else
-                inst.female = true
-            end
+        -- if sex then
+        --     if sex == MALE then
+        --         inst.female = false
+        --     else
+        --         inst.female = true
+        --     end
 
-            for i, name in ipairs(STRINGS.CITYPIGNAMES[sex]) do
-                table.insert(names, name)
-            end
-        end
+        --     for i, name in ipairs(STRINGS.CITYPIGNAMES[sex]) do
+        --         table.insert(names, name)
+        --     end
+        -- end
 
         inst:AddComponent("named")
-        inst.components.named.possiblenames = names
+        -- inst.components.named.possiblenames = names
         inst.components.named:PickNewName()
 
         inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
@@ -852,11 +855,10 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst.components.locomotor.walkspeed = TUNING.PIG_WALK_SPEED -- 3
 
         inst:AddComponent("eater")
-        inst.components.eater:SetOmnivore()
+        inst.components.eater:SetDiet({ FOODGROUP.OMNI })
         inst.components.eater:SetCanEatHorrible()
-        table.insert(inst.components.eater.foodprefs, "RAW")
-        table.insert(inst.components.eater.ablefoods, "RAW")
-        inst.components.eater.strongstomach = true -- can eat monster meat!
+        inst.components.eater:SetCanEatRaw()
+        inst.components.eater:SetStrongStomach(true) -- can eat monster meat!
         inst.components.eater:SetOnEatFn(OnEat)
 
         inst:AddComponent("combat")
@@ -867,6 +869,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
 
         inst:AddComponent("inspectable")
         inst.components.inspectable.getstatus = GetStatus
+        inst.components.inspectable.nameoverride = econprefab
 
         inst:AddComponent("trader")
         inst.components.trader:SetAcceptTest(ShouldAcceptItem)
@@ -1139,24 +1142,12 @@ local function shopkeeper_master_postinit(inst)
     end
 end
 
-local function MakeShopKeeper(name, build, sex, tags)
-    tags[#tags + 1] = "shopkeep"
-
-    local inst = MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit)
-
-    inst:SetPrefabNameOverride(name)
-
-    --[[
-    if econprefab then
-        inst.econprefab = econprefab
-        inst.components.inspectable.nameoverride = econprefab
+local function MakeShopKeeper(name, build, sex, tags, econprefab)
+    if not tags then
+        tags = {}
     end
-    ]]
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    inst.econprefab = name:sub()
+    table.insert(tags, "shopkeep")
+    return MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit, econprefab)
 end
 
 --[[ Pig Mechanic ]]--
@@ -1219,19 +1210,19 @@ return MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
        MakeCityPigman("pigman_farmer", "pig_farmer", MALE),
        MakeCityPigman("pigman_miner", "pig_miner", MALE),
 
-       MakeShopKeeper("pigman_beautician_shopkeep", "pig_beautician", FEMALE),
-       MakeShopKeeper("pigman_florist_shopkeep", "pig_florist", FEMALE),
-       MakeShopKeeper("pigman_erudite_shopkeep", "pig_erudite", FEMALE),
-       MakeShopKeeper("pigman_hatmaker_shopkeep", "pig_hatmaker", FEMALE),
-       MakeShopKeeper("pigman_storeowner_shopkeep", "pig_storeowner", FEMALE, NOHAT_TAGS),
-       MakeShopKeeper("pigman_banker_shopkeep", "pig_banker", MALE, NOHAT_TAGS),
-       MakeShopKeeper("pigman_shopkeep", "pig_banker", MALE),
-       MakeShopKeeper("pigman_hunter_shopkeep", "pig_hunter", MALE),
-       MakeShopKeeper("pigman_farmer_shopkeep", "pig_farmer", MALE),
-       MakeShopKeeper("pigman_miner_shopkeep", "pig_miner", MALE),
-       MakeShopKeeper("pigman_collector_shopkeep", "pig_collector", MALE),
-       MakeShopKeeper("pigman_professor_shopkeep", "pig_professor", MALE),
-       MakeShopKeeper("pigman_mechanic_shopkeep", "pig_mechanic", MALE),
+       MakeShopKeeper("pigman_beautician_shopkeep", "pig_beautician", FEMALE, nil,        "pigman_beautician"),
+       MakeShopKeeper("pigman_florist_shopkeep",    "pig_florist",    FEMALE, nil,        "pigman_florist"),
+       MakeShopKeeper("pigman_erudite_shopkeep",    "pig_erudite",    FEMALE, nil,        "pigman_erudite"),
+       MakeShopKeeper("pigman_hatmaker_shopkeep",   "pig_hatmaker",   FEMALE, nil,        "pigman_hatmaker"),
+       MakeShopKeeper("pigman_storeowner_shopkeep", "pig_storeowner", FEMALE, NOHAT_TAGS, "pigman_storeowner"),
+       MakeShopKeeper("pigman_banker_shopkeep",     "pig_banker",     MALE,   NOHAT_TAGS, "pigman_banker"),
+       MakeShopKeeper("pigman_shopkeep",            "pig_banker",     MALE,   nil,        "pigman_banker"),
+       MakeShopKeeper("pigman_hunter_shopkeep",     "pig_hunter",     MALE,   nil,        "pigman_hunter"),
+       MakeShopKeeper("pigman_farmer_shopkeep",     "pig_farmer",     MALE,   nil,        "pigman_farmer"),
+       MakeShopKeeper("pigman_miner_shopkeep",      "pig_miner",      MALE,   nil,        "pigman_miner"),
+       MakeShopKeeper("pigman_collector_shopkeep",  "pig_collector",  MALE,   nil,        "pigman_collector"),
+       MakeShopKeeper("pigman_professor_shopkeep",  "pig_professor",  MALE,   nil,        "pigman_professor"),
+       MakeShopKeeper("pigman_mechanic_shopkeep",   "pig_mechanic",   MALE,   nil,        "pigman_mechanic"),
 
        MakeCityPigman("pigman_royalguard", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
        MakeCityPigman("pigman_royalguard_2", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
@@ -1239,5 +1230,5 @@ return MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
        MakeCityPigman("pigman_mechanic", "pig_mechanic", MALE, nil, nil, MechanicMasterPostinit),
 
        MakeCityPigman("pigman_mayor", "pig_mayor", MALE, nil, nil, MayorMasterPostinit),
-       MakeCityPigman("pigman_mayor_shopkeep", "pig_mayor", MALE, nil, shopkeeper_common_postinit, MayorShopkeeperMasterPostinit),
+       MakeCityPigman("pigman_mayor_shopkeep", "pig_mayor", MALE, nil, shopkeeper_common_postinit, MayorShopkeeperMasterPostinit, "pigman_mayor"),
        MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, QueenMasterPostinit)
