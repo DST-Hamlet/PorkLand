@@ -5,7 +5,7 @@ local assets =
 }
 
 local function GetItemName(inst)
-    local item = inst.replica.visualslot:GetItem()
+    local item = inst.replica.visualslot and inst.replica.visualslot:GetItem() or nil
     if item then
         return item:GetDisplayName()
     end
@@ -14,7 +14,7 @@ local function GetItemName(inst)
 end
 
 local function GetItemDescription(inst, viewer)
-    local item = inst.replica.visualslot:GetItem()
+    local item =  inst.replica.visualslot and inst.replica.visualslot:GetItem() or nil
     if item and item.components.inspectable then
         return item.components.inspectable:GetDescription(viewer)
     end

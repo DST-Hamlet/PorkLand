@@ -27,8 +27,8 @@ if not rawget(_G, "HotReloading") then
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2, mount_enabled = true}),
-        PUTSHELF = Action({ distance = 2 }),
-        PICKSHELF = Action({ distance = 2, priority = 1 })
+        PUTONSHELF = Action({ distance = 2 }),
+        TAKEFROMSHELF = Action({ distance = 2, priority = 1 })
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -362,7 +362,7 @@ ACTIONS.WEIGHDOWN.fn = function(act)
 	end
 end
 
-ACTIONS.PUTSHELF.fn = function(act)
+ACTIONS.PUTONSHELF.fn = function(act)
     local shelf = act.target.components.visualslot:GetShelf()
 
     if shelf.components.container ~= nil and act.invobject.components.inventoryitem ~= nil then
@@ -371,11 +371,11 @@ ACTIONS.PUTSHELF.fn = function(act)
     end
 end
 
-ACTIONS.PUTSHELF.stroverridefn = function(act)
+ACTIONS.PUTONSHELF.stroverridefn = function(act)
     return STRINGS.ACTIONS.STORE.GENERIC
 end
 
-ACTIONS.PICKSHELF.fn = function(act)
+ACTIONS.TAKEFROMSHELF.fn = function(act)
     local shelf = act.target.components.visualslot:GetShelf()
 
     if shelf.components.container ~= nil then
@@ -384,10 +384,6 @@ ACTIONS.PICKSHELF.fn = function(act)
 
         return true
     end
-end
-
-ACTIONS.PICKSHELF.stroverridefn = function(act)
-    return STRINGS.ACTIONS.PICKUP.GENERIC
 end
 
 
@@ -626,7 +622,7 @@ local PL_COMPONENT_ACTIONS =
         end,
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
-                table.insert(actions, ACTIONS.PICKSHELF)
+                table.insert(actions, ACTIONS.TAKEFROMSHELF)
             end
         end
     },
@@ -771,7 +767,7 @@ function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
             return
     elseif target and target:HasTag("visual_slot") then
         if target:HasTag("empty") and not inst.replica.inventoryitem:CanOnlyGoInPocket() then
-            table.insert(actions, ACTIONS.PUTSHELF)
+            table.insert(actions, ACTIONS.PUTONSHELF)
             return
         end
     else

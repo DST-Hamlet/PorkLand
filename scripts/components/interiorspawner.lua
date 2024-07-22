@@ -759,8 +759,8 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 if prefab.shelfitems then
-                    for i,v in ipairs(prefab.shelfitems) do
-                        object.components.container:GiveItem(SpawnPrefab(v))
+                    for _, item in ipairs(prefab.shelfitems) do
+                        object.components.container:GiveItem(SpawnPrefab(item))
                     end
                 end
 
