@@ -550,7 +550,6 @@ return MakePigHouse("pighouse_city", nil, nil),
     MakePigHouse("pighouse_farm", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_farm),
     MakePigHouse("pighouse_mine", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_mine),
 
-    MakePlacer("pighouse_city_placer", "pig_shop", "pig_townhouse1_green_build", "idle", nil, nil, true, 0.75, nil, nil,
-        nil, nil, nil, placetestfn)
+    MakePlacer("pighouse_city_placer", "pig_shop", "pig_townhouse1_green_build", "idle", nil, nil, true, 0.75)
 
 -- MakePlacer("pighouse_placer", "pig_house", "pig_house", "idle")
