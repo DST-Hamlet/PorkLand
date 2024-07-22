@@ -70,7 +70,11 @@ local function OnDropped(inst)
     inst.sg:GoToState("stunned")
 end
 
-local function SpawnPrefabChooser(inst)
+local function SpawnPrefabChooser(inst) -- 鸟在每次起飞的时候会调用本函数留下种子，而在室内会因为撞墙多次起飞，因此在室内不调用本函数留下种子
+    local x, y, z = inst.Transform:GetWorldPosition()
+    if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return nil
+    end
     if inst.prefab == "kingfisher" and math.random() < 0.1 then
         return "fish"
     else
@@ -105,11 +109,16 @@ local function MakeBird(name, sounds, feather_name)
         inst.entity:AddSoundEmitter()
         inst.entity:AddNetwork()
 
-        inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
+        inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
         inst.Physics:ClearCollisionMask()
         inst.Physics:CollidesWith(COLLISION.WORLD)
         inst.Physics:SetMass(1)
         inst.Physics:SetSphere(1)
+
+        if TheWorld:HasTag("porkland") then
+            inst.Physics:ClearCollidesWith(COLLISION.LIMITS)
+            inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+        end
 
         inst.AnimState:SetBank("crow")
         inst.AnimState:SetBuild(name .. "_build")
