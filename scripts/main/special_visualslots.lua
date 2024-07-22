@@ -3,20 +3,18 @@ local master_postinitfns = {}
 local client_postinitfns = {}
 
 local shelfslot_scales = {
-    shelf_displayshelf_wood = {0.6, 0.7, 0.8}
+    shelf_displayshelf_wood = {0.7, 0.8, 0.9}
 }
 
 local function ScaleShelfSlot(inst, shelf, slot, base_scale)
-    local scale = shelfslot_scales[shelf.prefab] and shelfslot_scales[shelf.prefab][slot] or nil
-    if scale then
-        if base_scale then
-            scale = base_scale * scale
-        end
-        inst.AnimState:SetScale(scale, scale, scale)
+    local scale = shelfslot_scales[shelf.prefab] and shelfslot_scales[shelf.prefab][slot] or 1
+    if base_scale then
+        scale = base_scale * scale
     end
+    inst.AnimState:SetScale(scale, scale, scale)
 end
 
-local function CreateCopyEntity(inst, item)
+local function CreateCopyAnimEntity(inst, item)
     local copy = CreateEntity()
     copy:AddTag("NOCLICK")
     copy.entity:AddTransform()
@@ -40,10 +38,33 @@ local function CreateCopyEntity(inst, item)
 
     local skin_name = item.AnimState:GetSkinBuild()
     if skin_name then
-        copy.AnimState:SetSkin(skin_name, animation)
+        copy.AnimState:SetSkin(skin_name)
     end
 
     return copy
+end
+
+local function CreateInventorySparkleFX()
+    local sparkle_fx = CreateEntity()
+
+    sparkle_fx:AddTag("NOCLICK")
+    sparkle_fx.entity:AddTransform()
+    sparkle_fx.entity:AddAnimState()
+
+    sparkle_fx.AnimState:SetFinalOffset(2)
+    sparkle_fx.AnimState:SetBank("inventory_fx_sparkle")
+    sparkle_fx.AnimState:SetBuild("inventory_fx_sparkle")
+    sparkle_fx.AnimState:PlayAnimation("idle", true)
+
+    return sparkle_fx
+end
+
+local function SparkleInventoryItem(inst, loop)
+    if not inst.AnimState:IsCurrentAnimation("sparkle") then
+        inst.AnimState:PlayAnimation("sparkle")
+        inst.AnimState:PushAnimation("idle", loop)
+    end
+    inst:DoTaskInTime(4 + math.random(), SparkleInventoryItem, loop)
 end
 
 local function SparkleGem(inst, colour, loop)
@@ -52,12 +73,6 @@ local function SparkleGem(inst, colour, loop)
         inst.AnimState:PushAnimation(colour .. "gem_idle", loop)
     end
     inst:DoTaskInTime(4 + math.random(), SparkleGem, colour, loop)
-end
-
-local function ReviverBeat(inst)
-    inst.AnimState:PlayAnimation("idle")
-    inst.SoundEmitter:PlaySound("dontstarve/ghost/bloodpump")
-    inst.beattask = inst:DoTaskInTime(.75 + math.random() * .75, ReviverBeat)
 end
 
 local gem_offests = {
@@ -72,7 +87,7 @@ for k, colour in ipairs({"purple", "blue", "red", "orange", "yellow", "green", "
         inst.AnimState:PlayAnimation(colour.."gem_idle", true)
 
         local offest = gem_offests[colour] or {}
-        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), offest.x or 0, offest.y or 20, offest.z or 0)
+        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), offest.x or 0, offest.y or 50, offest.z or 0)
 
         inst:DoTaskInTime(1, SparkleGem, colour, true)
 
@@ -87,12 +102,24 @@ for k, colour in ipairs({"purple", "blue", "red", "orange", "yellow", "green"}) 
         inst.AnimState:SetBuild("mooneyes")
         inst.AnimState:PlayAnimation(colour .. "gem_idle")
         inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
+        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 60, 0)
 
         inst:DoTaskInTime(0, SparkleGem, colour, false)
 
-        ScaleShelfSlot(inst, shelf, slot)
+        ScaleShelfSlot(inst, shelf, slot, 0.8)
     end
+end
+
+master_postinitfns.goldnugget = function(inst, shelf, slot, item)
+    inst.AnimState:SetBank("goldnugget")
+    inst.AnimState:SetBuild("gold_nugget")
+    inst.AnimState:PlayAnimation("idle", true)
+    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 60, 0)
+
+    inst:DoTaskInTime(1, SparkleInventoryItem)
+
+    ScaleShelfSlot(inst, shelf, slot)
 end
 
 local FISH_DATA = require("prefabs/oceanfishdef")
@@ -137,7 +164,7 @@ master_postinitfns.lightbulb = function(inst, shelf, slot, item)
     inst.Light:SetFalloff(0.7)
     inst.Light:SetIntensity(.5)
     inst.Light:SetRadius(0.5)
-    inst.Light:SetColour(237/255, 237/255, 209/255)
+    inst.Light:SetColour(237 / 255, 237 / 255, 209 / 255)
     inst.Light:Enable(true)
 
     inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
@@ -169,71 +196,79 @@ master_postinitfns.moonglass_charged = function(inst, shelf, slot, item)
     inst.AnimState:PlayAnimation("f1")
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
 
-    inst.Light:SetColour(111/255, 111/255, 227/255)
+    inst.Light:SetColour(111 / 255, 111 / 255, 227 / 255)
     inst.Light:SetIntensity(0.75)
     inst.Light:SetFalloff(0.5)
     inst.Light:SetRadius(1)
     inst.Light:Enable(true)
 
-    ScaleShelfSlot(inst, shelf, slot)
-end
-
-master_postinitfns.nightmarefuel = function(inst, shelf, slot, item)
-    inst.AnimState:SetBank("nightmarefuel")
-    inst.AnimState:SetBuild("nightmarefuel")
-    inst.AnimState:PlayAnimation("idle_loop", true)
-    inst.AnimState:SetMultColour(1, 1, 1, 0.5)
-    inst.AnimState:UsePointFiltering(true)
-    inst.AnimState:SetFrame(math.random(inst.AnimState:GetCurrentAnimationNumFrames()) - 1)
-
     inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
 
     ScaleShelfSlot(inst, shelf, slot)
 end
 
-master_postinitfns.horrorfuel = function(inst, shelf, slot, item)
-    inst.AnimState:SetBank("horrorfuel")
-    inst.AnimState:SetBuild("horrorfuel")
-    inst.AnimState:PlayAnimation("idle_loop", true)
-    inst.AnimState:SetMultColour(1, 1, 1, 0.5)
-    inst.AnimState:UsePointFiltering(true)
+-- master_postinitfns.nightmarefuel = function(inst, shelf, slot, item)
+--     inst.AnimState:SetBank("nightmarefuel")
+--     inst.AnimState:SetBuild("nightmarefuel")
+--     inst.AnimState:PlayAnimation("idle_loop", true)
+--     inst.AnimState:SetMultColour(1, 1, 1, 0.5)
+--     inst.AnimState:UsePointFiltering(true)
+--     inst.AnimState:SetFrame(math.random(inst.AnimState:GetCurrentAnimationNumFrames()) - 1)
 
-    inst.AnimState:SetFrame(math.random(inst.AnimState:GetCurrentAnimationNumFrames()) - 1)
+--     inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
 
-    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
+--     ScaleShelfSlot(inst, shelf, slot)
+-- end
 
-    ScaleShelfSlot(inst, shelf, slot)
-end
+-- master_postinitfns.horrorfuel = function(inst, shelf, slot, item)
+--     inst.AnimState:SetBank("horrorfuel")
+--     inst.AnimState:SetBuild("horrorfuel")
+--     inst.AnimState:PlayAnimation("idle_loop", true)
+--     inst.AnimState:SetMultColour(1, 1, 1, 0.5)
+--     inst.AnimState:UsePointFiltering(true)
+
+--     inst.AnimState:SetFrame(math.random(inst.AnimState:GetCurrentAnimationNumFrames()) - 1)
+
+--     inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
+
+--     ScaleShelfSlot(inst, shelf, slot)
+-- end
 
 master_postinitfns.poop = function(inst, shelf, slot, item)
-    inst.AnimState:SetBank("poop")
-    inst.AnimState:SetBuild("poop")
-    inst.AnimState:PlayAnimation("idle", false)
-    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
     inst:SpawnChild("flies")
-
-    ScaleShelfSlot(inst, shelf, slot, 0.8)
+    return true
 end
 
 client_postinitfns.tophat = function(inst, shelf, slot, item)
-    if not inst.tophat_shadow_fx then
-        local tophat_shadow_fx = CreateEntity()
-        inst.tophat_shadow_fx = tophat_shadow_fx
+    if not inst.shelf_shadow_fx and item:HasTag("shadow_item") then
+        local shelf_shadow_fx = CreateEntity()
+        inst.shelf_shadow_fx = shelf_shadow_fx
 
-        tophat_shadow_fx:AddTag("NOCLICK")
+        shelf_shadow_fx:AddTag("NOCLICK")
 
-        tophat_shadow_fx.entity:AddTransform()
-        tophat_shadow_fx.entity:AddAnimState()
-        tophat_shadow_fx.entity:SetParent(inst.entity)
+        shelf_shadow_fx.entity:AddTransform()
+        shelf_shadow_fx.entity:AddAnimState()
+        shelf_shadow_fx.entity:SetParent(inst.entity)
 
-        tophat_shadow_fx.AnimState:SetBank("inventory_fx_shadow")
-        tophat_shadow_fx.AnimState:SetBuild("inventory_fx_shadow")
-        tophat_shadow_fx.AnimState:PlayAnimation("idle", true)
-        tophat_shadow_fx.AnimState:SetTime(math.random() * tophat_shadow_fx.AnimState:GetCurrentAnimationTime())
-        tophat_shadow_fx.AnimState:AnimateWhilePaused(false)
+        shelf_shadow_fx.AnimState:SetBank("inventory_fx_shadow")
+        shelf_shadow_fx.AnimState:SetBuild("inventory_fx_shadow")
+        shelf_shadow_fx.AnimState:PlayAnimation("idle", true)
+        shelf_shadow_fx.AnimState:SetTime(math.random() * shelf_shadow_fx.AnimState:GetCurrentAnimationTime())
+        shelf_shadow_fx.AnimState:AnimateWhilePaused(false)
 
-        ScaleShelfSlot(tophat_shadow_fx, shelf, slot, 0.8)
+        ScaleShelfSlot(shelf_shadow_fx, shelf, slot, 0.8)
     end
+    return true
+end
+
+local function PlayBeatAnimation(inst)
+    inst.AnimState:PlayAnimation("idle")
+end
+
+local function ReviverBeat(inst)
+    inst:PlayBeatAnimation()
+    inst.SoundEmitter:PlaySound("dontstarve/ghost/bloodpump")
+    inst.beattask = inst:DoTaskInTime(.75 + math.random() * .75, ReviverBeat)
 end
 
 master_postinitfns.reviver = function(inst, shelf, slot, item)
@@ -242,12 +277,16 @@ end
 
 client_postinitfns.reviver = function(inst, shelf, slot, item)
     if not inst.visual_reviver then
-        inst.visual_reviver = CreateCopyEntity(inst, item)
+        inst.visual_reviver = CreateCopyAnimEntity(inst, item)
+
         inst.visual_reviver.entity:AddSoundEmitter()
         inst.visual_reviver.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 20, 0)
         ScaleShelfSlot(inst.visual_reviver, shelf, slot)
+
+        inst.visual_reviver.PlayBeatAnimation = PlayBeatAnimation
+        inst.visual_reviver.DefaultPlayBeatAnimation = PlayBeatAnimation
     end
-    inst.visual_reviver.beattask = inst.visual_reviver:DoTaskInTime(.75 + math.random() * .75, ReviverBeat)
+   inst.visual_reviver:DoTaskInTime(.75 + math.random() * .75, ReviverBeat)
 end
 
 return {
