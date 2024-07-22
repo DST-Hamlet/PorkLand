@@ -1,5 +1,4 @@
-local assets =
-{
+local assets = {
     Asset("ANIM", "anim/pig_shop.zip"),
 
     Asset("ANIM", "anim/flag_post_duster_build.zip"),
@@ -10,8 +9,7 @@ local assets =
     Asset("ANIM", "anim/pig_tower_royal_build.zip"),
 }
 
-local prefabs =
-{
+local prefabs = {
     "pigman_royalguard",
     "pigman_royalguard_2",
 }
@@ -135,7 +133,9 @@ local function OnIsDay(inst, isday)
             inst.doortask:Cancel()
             inst.doortask = nil
         end
-        inst.doortask = inst:DoTaskInTime(1 + math.random() * 2, function() inst.components.spawner:ReleaseChild() end)
+        inst.doortask = inst:DoTaskInTime(1 + math.random() * 2, function()
+            inst.components.spawner:ReleaseChild()
+        end)
     end
 end
 
@@ -178,8 +178,12 @@ local function callguards(inst, threat)
         if inst.components.spawner.child then
             local pig = inst.components.spawner.child
             if pig.components.combat.target == nil then
-                pig:DoTaskInTime(math.random()*1,function()
-                    pig:PushEvent("atacked", {attacker = threat, damage = 0, weapon = nil})
+                pig:DoTaskInTime(math.random() * 1, function()
+                    pig:PushEvent("atacked", {
+                        attacker = threat,
+                        damage = 0,
+                        weapon = nil,
+                    })
                 end)
             end
         end
@@ -194,34 +198,31 @@ local function OnIsAporkalypse(inst, isaporkalypse)
     end
 end
 
+local function OnIsPathFindingDirty(inst)
+    if inst._ispathfinding:value() then
+        if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
+            inst._pfpos = inst:GetPosition()
+            TheWorld.Pathfinder:AddWall(inst._pfpos:Get())
+        end
+    elseif inst._pfpos ~= nil then
+        TheWorld.Pathfinder:RemoveWall(inst._pfpos:Get())
+        inst._pfpos = nil
+    end
+end
+
+local function InitializePathFinding(inst)
+    inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
+    OnIsPathFindingDirty(inst)
+end
+
 local function MakeObstacle(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    TheWorld.Pathfinder:AddWall(x, y, z - 1)
-    TheWorld.Pathfinder:AddWall(x, y, z)
-    TheWorld.Pathfinder:AddWall(x, y, z + 1)
-
-    TheWorld.Pathfinder:AddWall(x - 1, y, z - 1)
-    TheWorld.Pathfinder:AddWall(x - 1, y, z)
-    TheWorld.Pathfinder:AddWall(x - 1, y, z + 1)
-
-    TheWorld.Pathfinder:AddWall(x + 1, y, z - 1)
-    TheWorld.Pathfinder:AddWall(x + 1, y, z)
-    TheWorld.Pathfinder:AddWall(x + 1, y, z + 1)
+    inst.Physics:SetActive(true)
+    inst._ispathfinding:set(true)
 end
 
 local function ClearObstacle(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    TheWorld.Pathfinder:RemoveWall(x, y, z - 1)
-    TheWorld.Pathfinder:RemoveWall(x, y, z)
-    TheWorld.Pathfinder:RemoveWall(x, y, z + 1)
-
-    TheWorld.Pathfinder:RemoveWall(x - 1, y, z - 1)
-    TheWorld.Pathfinder:RemoveWall(x - 1, y, z)
-    TheWorld.Pathfinder:RemoveWall(x - 1, y, z + 1)
-
-    TheWorld.Pathfinder:RemoveWall(x + 1, y, z - 1)
-    TheWorld.Pathfinder:RemoveWall(x + 1, y, z)
-    TheWorld.Pathfinder:RemoveWall(x + 1, y, z + 1)
+    inst.Physics:SetActive(false)
+    inst._ispathfinding:set(false)
 end
 
 local function fn()
@@ -259,8 +260,6 @@ local function fn()
         return inst
     end
 
-    inst:AddComponent("gridnudger")
-
     inst:AddComponent("lootdropper")
 
     inst:AddComponent("fixable")
@@ -289,6 +288,15 @@ local function fn()
     inst.callguards = callguards
     inst.reconstructed = reconstructed
     inst.setobstical = MakeObstacle
+
+    ------- Copied from prefabs/wall.lua -------
+    inst._pfpos = nil
+    inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+    MakeObstacle(inst)
+    -- Delay this because makeobstacle sets pathfinding on by default
+    -- but we don't to handle it until after our position is set
+    inst:DoTaskInTime(0, InitializePathFinding)
+    --------------------------------------------
 
     inst:ListenForEvent("onbuilt", OnBuilt)
     inst:ListenForEvent("onremove", ClearObstacle)
@@ -328,6 +336,6 @@ local function PlaceTestFn(inst)
     return true
 end
 
-return Prefab("pig_guard_tower", fn, assets, prefabs),
-       Prefab("pig_guard_tower_palace", palacefn, assets, prefabs),
-       MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn)
+return Prefab("pig_guard_tower", fn, assets, prefabs), Prefab("pig_guard_tower_palace", palacefn, assets, prefabs),
+    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, false, true, nil, nil, nil, nil,
+        nil, nil, PlaceTestFn)

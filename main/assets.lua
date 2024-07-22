@@ -146,8 +146,9 @@ PrefabFiles = {
     "magnifying_glass",
     "disarmingkit",
 
-    "pig_shop",
     "pighouse_city",
+    "pig_guard_tower",
+    "pig_shop",
     "reconstruction_project",
 }
 
