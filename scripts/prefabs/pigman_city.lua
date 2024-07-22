@@ -937,9 +937,11 @@ local function ShouldAcceptItem_Guard(inst, item)
     return ShouldAcceptItem(inst, item)
 end
 
-local function OnGasChange(inst, onGas)
-    if onGas and inst.components.poisonable then
-        inst.components.poisonable:Poison(true, nil, true)
+local function OnChangeArea(inst, data)
+    if data and data.tags and table.contains(data.tags, "Gas_Jungle") then
+        if inst.components.poisonable then
+            inst.components.poisonable:Poison(true, nil, true)
+        end
     end
 end
 
@@ -1071,9 +1073,8 @@ local function pig_guard_master_postinit(inst)
 
     inst.components.trader:SetAcceptTest(ShouldAcceptItem_Guard)
 
-    inst:AddComponent("tiletracker")
-    inst.components.tiletracker:SetOnGasChangeFn(OnGasChange)
-    inst.components.tiletracker:Start()
+    inst:AddComponent("areaaware")
+    inst:ListenForEvent("changearea", OnChangeArea)
 
     inst:SetBrain(guard_brain)
 
