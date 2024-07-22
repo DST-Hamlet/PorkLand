@@ -376,3 +376,61 @@ function Map:GetTile(x, y, ...)
         return _GetTile(self, x, y, ...)
     end
 end
+
+
+function Map:GetIslandTagAtPoint(x, y, z)
+    -- Note: If you care about the tile overlap then use FindVisualNodeAtPoint
+    local node_index = self:GetNodeIdAtPoint(x, y, z)
+    local node = TheWorld.topology.nodes[node_index]
+    if node == nil or node.tags == nil then
+        return nil
+    end
+
+    local island_tag = nil
+
+    for i,v in ipairs(ISLAND_TAGS) do
+        if table.contains(node.tags, v) then
+            if island_tag == nil then
+                island_tag = v
+            else
+                print("WARNING!!! There is overlap between two islands!!! (maybe more)")
+            end
+        end
+    end
+
+    return island_tag
+end
+
+function Map:FindPointByIslandTag(islandtag, trytimes, allowwater)
+    local try = trytimes or 10000
+
+    local hasisland = false
+    for i,v in ipairs(ISLAND_TAGS) do
+        if islandtag == v then
+            hasisland = true
+        end
+    end
+
+    if not hasisland then
+        print("WARNING!!! Cant find island with tag: ", islandtag)
+        return nil
+    end
+
+    for i = 1, try do
+        local topology = TheWorld.topology
+        local area = topology.nodes[math.random(#topology.nodes)]
+        if table.contains(area.tags, islandtag) then
+            local points_x, points_y = TheWorld.Map:GetRandomPointsForSite(area.x, area.y, area.poly, 1)
+            if #points_x == 1 and #points_y == 1
+                and (allowwater or self:ReverseIsVisualGroundAtPoint(points_x[1], 0, points_y[1]))
+                and not self:IsImpassableAtPoint(points_x[1], 0, points_y[1]) then
+                    local x = points_x[1]
+                    local z = points_y[1]
+                    return Vector3(x, 0, z)
+            end
+        end
+    end
+
+    print("WARNING!!! Cant find island after max trytimes!!!")
+    return nil
+end

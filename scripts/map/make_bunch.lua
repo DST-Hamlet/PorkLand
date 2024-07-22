@@ -101,7 +101,7 @@ local function round(x)
     return num / 10
 end
 
-local function place_item_offgrids(entities, width, height, bunch, x1, z1, range, prefab, valid_tile_types, water)
+local function place_item_offgrids(entities, width, height, bunch, x1, z1, range, prefab, valid_tile_types, water, min_spacing)
     local offgrid = false
     local inc = 1
     local x, z = nil, nil
@@ -133,6 +133,11 @@ local function place_item_offgrids(entities, width, height, bunch, x1, z1, range
             end
         end
 
+        local closeents = find_ents_in_range(bunch, x,z,min_spacing or 0.5)
+        if #closeents > 0 then
+            test = false
+        end
+
         offgrid = test
         inc = inc + 1
     end
@@ -142,11 +147,11 @@ local function place_item_offgrids(entities, width, height, bunch, x1, z1, range
     end
 end
 
-local function make_bunch(entities, topology_save, world_sim, width, height, prefab, range, number, x, z, valid_tile_types, water)
+local function make_bunch(entities, topology_save, world_sim, width, height, prefab, range, number, x, z, valid_tile_types, water, min_spacing)
     local bunch = {}
 
     for i = 1, number do
-        place_item_offgrids(entities, width, height, bunch, x, z, range, prefab, valid_tile_types, water)
+        place_item_offgrids(entities, width, height, bunch, x, z, range, prefab, valid_tile_types, water, min_spacing)
     end
 
     export_spawners_to_entites(entities, bunch)

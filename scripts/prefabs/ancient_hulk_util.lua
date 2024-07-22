@@ -324,11 +324,11 @@ local function GetDropLocations(inst)
 end
 
 local function DropAncientRobots(inst)
-    local locations = GetDropLocations(inst)
+    -- local locations = GetDropLocations(inst)
     local map = TheWorld.Map
     local w,h = map:GetSize()
 
-    assert(#locations > 0,"Locations for ancient robots not found!")
+    -- assert(#locations > 0,"Locations for ancient robots not found!")
 
     local parts = {
         "ancient_robot_claw",
@@ -338,6 +338,9 @@ local function DropAncientRobots(inst)
         "ancient_robot_ribs",
     }
 
+    local x,y,z = inst.Transform:GetWorldPosition()
+    local islandtag = TheWorld.Map:GetIslandTagAtPoint(x,y,z)
+
     for i, part in ipairs(parts) do
         local partprop = SpawnPrefab(part)
         partprop.spawntask:Cancel()
@@ -346,11 +349,15 @@ local function DropAncientRobots(inst)
         partprop:AddTag("dormant")
         partprop.sg:GoToState("idle_dormant")
 
-        local idx = math.random(1,#locations)
-        local loc = locations[idx]
-        table.remove(locations, idx)
+        local targetpos = nil
+        if islandtag ~= nil then
+            targetpos = TheWorld.Map:FindPointByIslandTag(islandtag)
+        end
+        if targetpos == nil then
+            targetpos = inst:GetPosition()
+        end
 
-        partprop.Transform:SetPosition( (loc.x-(w/2)) *4 -4,0, (loc.z-(h/2)) *4-4 )
+        partprop.Transform:SetPosition(targetpos.x, 0, targetpos.z)
 
         DoCircularAOE(partprop, 5)
     end
