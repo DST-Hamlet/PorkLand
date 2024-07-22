@@ -897,15 +897,6 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         MakeMediumBurnableCharacter(inst, "pig_torso")
         MakeMediumFreezableCharacter(inst, "pig_torso")
 
-        inst.special_action = function(act)
-            if inst.daily_gifting then
-                inst.sg:GoToState("daily_gift")
-            elseif inst.poop_tip then
-                inst.sg:GoToState("poop_tip")
-            elseif inst:HasTag("paytax") then
-                inst.sg:GoToState("pay_tax")
-            end
-        end
         inst.throwcrackers = throwcrackers
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
@@ -1136,10 +1127,6 @@ local function shopkeeper_master_postinit(inst)
     inst:ListenForEvent("death", OnDeath_ShopKeep)
 
     inst:WatchWorldState("isnight", CloseShop)
-
-    inst.special_action = function(act)
-        inst.sg:GoToState("desk_pre")
-    end
 end
 
 local function MakeShopKeeper(name, build, sex, tags, econprefab)

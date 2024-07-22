@@ -7,8 +7,10 @@ local actionhandlers =
     ActionHandler(ACTIONS.EAT, "eat"),
     ActionHandler(ACTIONS.CHOP, "chop"),
     ActionHandler(ACTIONS.FIX, "chop"),
-    ActionHandler(ACTIONS.SPECIAL_ACTION, nil),
     ActionHandler(ACTIONS.POOP_TIP, "poop_tip"),
+    ActionHandler(ACTIONS.PAY_TAX, "pay_tax"),
+    ActionHandler(ACTIONS.DAILY_GIFT, "daily_gift"),
+    ActionHandler(ACTIONS.SIT_AT_DESK, "desk_pre"),
     ActionHandler(ACTIONS.PICKUP, "pickup"),
     ActionHandler(ACTIONS.EQUIP, "pickup"),
     ActionHandler(ACTIONS.ADDFUEL, "pickup"),
@@ -470,13 +472,7 @@ local states =
 
         timeline=
         {
-            TimeEvent(13*FRAMES,
-                function(inst)
-                    inst:RemoveTag("paytax")
-                    inst.taxing = false
-                    GetPlayer().components.inventory:GiveItem(
-                        SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
-                end ),
+            TimeEvent(13 * FRAMES, function(inst) inst:PerformBufferedAction() end),
         },
 
         events=
@@ -506,14 +502,7 @@ local states =
 
         timeline=
         {
-            TimeEvent(13*FRAMES,
-                function(inst)
-                    local resources = { "flint", "log", "rocks", "cutgrass", "seeds", "twigs" }
-
-                    GetPlayer().components.inventory:GiveItem(
-                        SpawnPrefab(resources [math.random(1, #resources)]),
-                        nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
-                end ),
+            TimeEvent(13 * FRAMES, function(inst) inst:PerformBufferedAction() end),
         },
 
         events=

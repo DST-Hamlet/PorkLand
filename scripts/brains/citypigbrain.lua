@@ -54,14 +54,11 @@ local function getSpeechType(inst, speech)
 end
 
 local function getString(speech)
-
     if type(speech) == "table" then
         return speech[math.random(#speech)]
     else
         return speech
     end
-
-
 end
 --[[
 local function GetFaceTargetFn(inst)
@@ -246,23 +243,28 @@ end
 
 local function PoopTip(inst)
     inst.tipping = true
-    return BufferedAction(inst, GetPlayer(), ACTIONS.SPECIAL_ACTION)
+    return BufferedAction(inst, inst.poop_tip, ACTIONS.POOP_TIP)
 end
 
-
 local function PayTax(inst)
-    inst.taxing = true
-    return BufferedAction(inst, GetPlayer(), ACTIONS.SPECIAL_ACTION)
+    local player = FindClosestPlayerToInst(inst)
+    if player then
+        inst.taxing = true
+        return BufferedAction(inst, player, ACTIONS.PAY_TAX)
+    end
 end
 
 local function DailyGift(inst)
-    inst.daily_gifting = true
-    return BufferedAction(inst, GetPlayer(), ACTIONS.SPECIAL_ACTION)
+    local player = FindClosestPlayerToInst(inst)
+    if player then
+        inst.daily_gifting = true
+        return BufferedAction(inst, player, ACTIONS.DAILY_GIFT)
+    end
 end
 
 local function ShopkeeperSitAtDesk(inst)
     if inst.components.homeseeker then
-        return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.SPECIAL_ACTION)
+        return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.SIT_AT_DESK)
     end
 end
 

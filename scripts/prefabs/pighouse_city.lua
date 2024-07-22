@@ -214,25 +214,21 @@ local function OnHit(inst, worker)
     end
 end
 
-local function paytax(inst)
-    if inst.components.spawner.child -- and GetPlayer():HasTag("mayor")
-    and inst:HasTag("paytax") then
-
-        inst:DoTaskInTime(4, function()
-            if inst.components.spawner.child then
-                inst.components.spawner.child:AddTag("paytax")
-            end
-            inst:RemoveTag("paytax")
-        end)
-    end
-end
 local function checktax(inst)
     -- a player build pighouse doesn't have a city possesion component.. so that's how I'm checking for tax paying houses right now
     if not inst.components.citypossession and inst.components.spawner.child and TheWorld.state.cycles % 10 == 0 and
         inst.lasttaxday ~= TheWorld.state.cycles then
+
         inst.lasttaxday = TheWorld.state.cycles
         inst:AddTag("paytax")
-        paytax(inst)
+        if inst.components.spawner.child then
+            inst:DoTaskInTime(4, function()
+                if inst.components.spawner.child then
+                    inst.components.spawner.child:AddTag("paytax")
+                end
+                inst:RemoveTag("paytax")
+            end)
+        end
     end
 end
 
@@ -342,6 +338,7 @@ local function onbuilt(inst)
     inst.AnimState:PushAnimation("idle")
     citypossessionfn(inst)
 end
+
 local function OnIsPathFindingDirty(inst)
     if inst._ispathfinding:value() then
         if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
@@ -506,6 +503,24 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
+        inst.OnCreate = function(inst)
+            local function normalize(coord)
+                local temp = coord % 0.5
+                coord = coord + 0.5 - temp
+
+                if coord % 1 == 0 then
+                    coord = coord - 0.5
+                end
+
+                return coord
+            end
+
+            local x, y, z = inst.Transform:GetWorldPosition()
+            x = normalize(x)
+            z = normalize(z)
+            local grass = SpawnPrefab("grass")
+            grass.Transform:SetPosition(x, y, z)
+        end
         inst.OnEntityWake = OnEntityWake
 
         MakeSnowCovered(inst, .01)

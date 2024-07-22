@@ -30,7 +30,11 @@ if not rawget(_G, "HotReloading") then
         PUTONSHELF = Action({ distance = 2 }),
         TAKEFROMSHELF = Action({ distance = 2, priority = 1 }),
 
+        -- For City Pigs
         POOP_TIP = Action({}),
+        PAY_TAX = Action({}),
+        DAILY_GIFT = Action({}),
+        SIT_AT_DESK = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -392,6 +396,16 @@ ACTIONS.POOP_TIP.fn = function(act)
     act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
 end
 
+ACTIONS.PAY_TAX.fn = function(act)
+    act.doer:RemoveTag("paytax")
+    act.doer.taxing = false
+    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
+end
+
+ACTIONS.DAILY_GIFT.fn = function(act)
+    local resources = { "flint", "log", "rocks", "cutgrass", "seeds", "twigs" }
+    act.target.components.inventory:GiveItem(SpawnPrefab(resources[math.random(#resources)]), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
+end
 
 
 
