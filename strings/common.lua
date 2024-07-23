@@ -1779,6 +1779,7 @@ return {
         BONESTAFF = "Wield the gaze of the Pugalisk!",
         DISARMING_KIT = "It's disarming.",
         GOLDENMACHETE = "Hack stuff in STYLE!",
+        GOLDNUGGET = "Gold! Gold! Gold!",
         GOLDPAN = "Pans gold actually.",
         HALBERD = "Pointy and hurty.",
         LIVING_ARTIFACT = "Lets just mix em and see what happens.",

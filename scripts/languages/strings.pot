@@ -22901,6 +22901,11 @@ msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"
 msgid "Hack stuff in STYLE!"
 msgstr ""
 
+#. STRINGS.RECIPE_DESC.GOLDNUGGET
+msgctxt "STRINGS.RECIPE_DESC.GOLDNUGGET"
+msgid "Gold! Gold! Gold!"
+msgstr ""
+
 #. STRINGS.RECIPE_DESC.GOLDPAN
 msgctxt "STRINGS.RECIPE_DESC.GOLDPAN"
 msgid "Pans gold actually."
