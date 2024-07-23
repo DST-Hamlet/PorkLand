@@ -325,7 +325,7 @@ function Poisonable:SpawnFX()
     self:KillFX()
 
     if not self.fxdata then
-        self.fxdata = {prefa = "poisonbubble", x = 0, y = 0, z = 0, level = self:GetFXLevel()}
+        self.fxdata = {prefab = "poisonbubble", x = 0, y = 0, z = 0, level = self:GetFXLevel()}
     end
 
     if self.fxdata then
