@@ -1146,8 +1146,9 @@ local function MechanicMasterPostinit(inst)
 
     inst:DoTaskInTime(0, function()
         -- Get rid of any hammers we have, cuz bugs
-        local numHammers = inst.components.inventory:Count("hammer")
-        local hammers = inst.components.inventory:GetItemByName("hammer", numHammers)
+        -- local numHammers = inst.components.inventory:Count("hammer")
+        -- local hammers = inst.components.inventory:GetItemByName("hammer", numHammers)
+        local hammers = inst.components.inventory:FindItems(function(item) return item.prefab == "hammer" end)
         for k, v in pairs(hammers) do
             local thisHammer = inst.components.inventory:RemoveItem(k, true)
             thisHammer:Remove()
