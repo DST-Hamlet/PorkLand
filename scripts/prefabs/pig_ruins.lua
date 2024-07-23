@@ -275,7 +275,7 @@ local ruin_data = {
         loot = "goldnugget",
         loot_num = 2,
         master_postinit = function(inst)
-            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_PIG"])
             inst.OnEntityWake = OnEntityWake
             inst.OnRemoveEntity = OnRemoveEntity
         end
