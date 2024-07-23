@@ -155,7 +155,7 @@ local function ShouldAcceptItem(inst, item)
 
         if (item.components.edible.foodtype == "VEGGIE" or item.components.edible.foodtype == "RAW") then
 
-            local econ = GetWorld().components.economy
+            local econ = TheWorld.components.economy
             local econprefab = inst.prefab
             if inst.econprefab then
                 econprefab = inst.econprefab
@@ -183,7 +183,7 @@ local function ShouldAcceptItem(inst, item)
     if not inst:HasTag("guard") then
         local city = inst:HasTag("city2") and 2 or 1
 
-        local econ = GetWorld().components.economy
+        local econ = TheWorld.components.economy
 
         local econprefab = inst.prefab
         if inst.econprefab then
@@ -296,7 +296,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             end
         end
 
-        local econ = GetWorld().components.economy
+        local econ = TheWorld.components.economy
 
         local econprefab = inst.prefab
         if inst.econprefab then
@@ -405,7 +405,7 @@ local function OnEat(inst, food)
         poop.Transform:SetPosition(inst.Transform:GetWorldPosition())
 
         poop.cityID = inst.components.citypossession.cityID
-        GetWorld().components.periodicpoopmanager:OnPoop(poop.cityID, poop)
+        TheWorld.components.periodicpoopmanager:OnPoop(poop.cityID, poop)
     end
 end
 
@@ -1123,7 +1123,7 @@ local function shopkeeper_master_postinit(inst)
     inst.separatedesk = separatedesk
     inst.shopkeeper_speech = shopkeeper_speech
 
-    -- GetWorld():ListenForEvent("enterroom", function(data)
+    -- TheWorld:ListenForEvent("enterroom", function(data)
     --     shopkeeper_speech(inst, getSpeechType(inst,STRINGS.CITY_PIG_SHOPKEEPER_GREETING) )
     -- end)
 

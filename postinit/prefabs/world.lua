@@ -9,4 +9,7 @@ AddPrefabPostInit("world", function(inst)
         inst:AddComponent("economy")
         inst.components.economy:AddCity(1)
     end
+    if not TheWorld.components.periodicpoopmanager then
+        inst:AddComponent("periodicpoopmanager")
+    end
 end)

@@ -16,12 +16,11 @@ function PeriodicPoopManager:OnSave()
 end
 
 function PeriodicPoopManager:LoadPostPass(ents, data)
-    for k,v in pairs(data.poop_data) do
+    for k, v in pairs(data.poop_data) do
         if ents[k] and ents[k].entity and v then
             ents[k].entity.cityID = v
         end
     end
-
 end
 
 function PeriodicPoopManager:OnPoop(city_id, poop)
