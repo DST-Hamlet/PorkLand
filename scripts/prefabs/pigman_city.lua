@@ -1133,9 +1133,9 @@ local function MechanicMasterPostinit(inst)
         -- local numHammers = inst.components.inventory:Count("hammer")
         -- local hammers = inst.components.inventory:GetItemByName("hammer", numHammers)
         local hammers = inst.components.inventory:FindItems(function(item) return item.prefab == "hammer" end)
-        for k, v in pairs(hammers) do
-            local thisHammer = inst.components.inventory:RemoveItem(k, true)
-            thisHammer:Remove()
+        for _, hammer in pairs(hammers) do
+            inst.components.inventory:RemoveItem(hammer, true)
+            hammer:Remove()
         end
         -- and give us a brand new one
         local tool = SpawnPrefab("hammer")
