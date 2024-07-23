@@ -72,7 +72,7 @@ SetSharedLootTable("basalt",{
 })
 
 local function TriggerDarts(inst)
-    local pt = Vector3(inst.Transform:GetWorldPosition())
+    local pt = inst:GetPosition()
     local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 40, {"dartthrower"}, {"INLIMBO"})
     for i, v in ipairs(ents) do
         if v.components.autodartthrower then

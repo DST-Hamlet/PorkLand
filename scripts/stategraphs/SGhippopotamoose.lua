@@ -98,7 +98,7 @@ local states=
         onenter = function(inst, target)
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("jump_atk_pre")
-            inst.sg.statemem.startpos = Vector3(inst.Transform:GetWorldPosition())
+            inst.sg.statemem.startpos = inst:GetPosition()
             inst.sg.statemem.targetpos = Vector3(target.Transform:GetWorldPosition())
         end,
 

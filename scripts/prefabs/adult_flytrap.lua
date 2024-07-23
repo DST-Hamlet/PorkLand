@@ -85,7 +85,7 @@ local function OnNewTarget(inst, data)
 end
 
 local function OnTimerDone(inst, data)
-    local pt = Vector3(inst.Transform:GetWorldPosition())
+    local pt = inst:GetPosition()
     local radius = 15
     local offset = FindWalkableOffset(pt, math.random() * 2 * PI, radius, 20, true, false) -- try avoiding walls
 
