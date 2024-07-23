@@ -208,6 +208,7 @@ return {
             SLEEPING = "I wish you nightmares.",
         },
         VAMPIREBATCAVE = "The maw of death itself.",
+        VENOMGLAND = "Their dead drop the cure to their sickness.",
         VENUS_STALK = "Objects from a dead thing.",
         VINE = "Unruly life.",
         WALKINGSTICK = "For walking this weary world.",

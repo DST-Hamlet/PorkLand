@@ -208,6 +208,7 @@ return {
             SLEEPING = "'Tha scurvy dog be defenceless.",
         },
         VAMPIREBATCAVE = "Inta th'depths wit'ye.",
+        VENOMGLAND = "Aye, 'tis th'source o'th'venom.",
         VENUS_STALK = "A plant skelerton.",
         VINE = "Them's be th'stranglin' kind.",
         WALKINGSTICK = "Moor legs mean moor walkin'.",

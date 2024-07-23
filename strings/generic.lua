@@ -226,6 +226,7 @@ return {
             SLEEPING = "Hopefully it won't get up again.",
         },
         VAMPIREBATCAVE = "A den of bloodsuckers.",
+        VENOMGLAND = "Only poison can cure poison.",
         VENUS_STALK = "I bet I could find a use for it.",
         VINE = "Maybe I can tie stuff up with this.",
         WALKINGSTICK = "Perfect for a gentleman scientist.",

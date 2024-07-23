@@ -207,6 +207,7 @@ return {
             SLEEPING = "Let sleeping bats lie, I say.",
         },
         VAMPIREBATCAVE = "Don't look none too inviting.",
+        VENOMGLAND = "It smells kind of funny.",
         VENUS_STALK = "I got it from that big leafy hoser.",
         VINE = "Sigh. Not a tree.",
         WALKINGSTICK = "Just out for a walk.",

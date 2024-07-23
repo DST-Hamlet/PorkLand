@@ -219,6 +219,7 @@ return {
             SLEEPING = "My curiosity is telling me I should poke it with a stick.",
         },
         VAMPIREBATCAVE = "Based on its depth and malodorous smell, I deduce this hole houses bats.",
+        VENOMGLAND = "Excellent! A sack of zootoxin.",
         VENUS_STALK = "Theoretically edible, but undoubtedly I'll find a better use for it.",
         VINE = "A ropey branch. I can think of nine good uses for it already.",
         WALKINGSTICK = "Incredible! It increases my speed by exactly thirty percent!",

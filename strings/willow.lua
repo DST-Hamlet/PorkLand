@@ -207,6 +207,7 @@ return {
             SLEEPING = "It must be tired from being such a jerk.",
         },
         VAMPIREBATCAVE = "Creepy things live there.",
+        VENOMGLAND = "Gross! I wish I had gloves.",
         VENUS_STALK = "Looks like kindling.",
         VINE = "I could use this for something. Or I could just burn it.",
         WALKINGSTICK = "Zoom!",

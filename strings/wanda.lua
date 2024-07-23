@@ -203,6 +203,7 @@ return {
             SLEEPING = "How cozy.",
         },
         VAMPIREBATCAVE = "Going in there is asking for trouble.",
+        VENOMGLAND = "I suppose I could ingest it as it is, it'd be better than poison...",
         VENUS_STALK = "It's still too early to be usable.",
         VINE = "It's a vine. I won't take the time to get sentimental about it.",
         WALKINGSTICK = "Okay, I'll bring it.",

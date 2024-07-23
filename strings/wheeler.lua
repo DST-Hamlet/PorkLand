@@ -220,6 +220,7 @@ return {
             SLEEPING = "If I could only steal its wings while its asleep.",
         },
         VAMPIREBATCAVE = "Those bats are wasting their time in a cave when they should be outside flying.",
+        VENOMGLAND = "Swell. A sack of goop from an animal.",
         VENUS_STALK = "Hope this comes in handy. Otherwise that flytrap died for nothing.",
         VINE = "The kind of thing that would be more useful if I had a bunch of them.",
         WALKINGSTICK = "Dried flytrap stalks really put a spring in my step.",

@@ -223,6 +223,7 @@ return {
             SLEEPING = "It'd be great if you could just stay asleep.",
         },
         VAMPIREBATCAVE = "I don't get good vibes from that place.",
+        VENOMGLAND = "What a terrible gland.",
         VENUS_STALK = "Gnarly.",
         VINE = "Good for lashing stuff down.",
         WALKINGSTICK = "It's my lazy stick.",

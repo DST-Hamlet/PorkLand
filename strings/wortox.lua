@@ -203,6 +203,7 @@ return {
             SLEEPING = "Its spirit returned to the darkness sky.",
         },
         VAMPIREBATCAVE = "Dominion of the blood starved.",
+        VENOMGLAND = "Now to land this gland in a brew.",
         VENUS_STALK = "I guess even mortals wouldn't eat this.",
         VINE = "It's a fine vine of mine.",
         WALKINGSTICK = "He really has the style of an adventurer.",

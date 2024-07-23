@@ -207,6 +207,7 @@ return {
             SLEEPING = "It is quite dormant.",
         },
         VAMPIREBATCAVE = "The natural habitat of a the Mammalian Hematophagous.",
+        VENOMGLAND = "A useful substance for poison prevention.",
         VENUS_STALK = "Salvaged from that terrible creature.",
         VINE = "A common jungle vine.",
         WALKINGSTICK = "Improves one's posture.",

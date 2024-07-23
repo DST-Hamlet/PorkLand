@@ -207,6 +207,7 @@ return {
             SLEEPING = "Peaceful for now.",
         },
         VAMPIREBATCAVE = "Not the best place to hide, I think.",
+        VENOMGLAND = "The worst kind of gland!",
         VENUS_STALK = "Possesses a flavor reminiscent of artichoke hearts.",
         VINE = "Not a single grape on it...",
         WALKINGSTICK = "I'm out to forage!",

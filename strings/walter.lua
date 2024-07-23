@@ -203,6 +203,7 @@ return {
             SLEEPING = "Shh. Don't wake it up.",
         },
         VAMPIREBATCAVE = "A vampire's lair.",
+        VENOMGLAND = "It's brimming with venom... Haha...",
         VENUS_STALK = "I think that's their stomach are.",
         VINE = "Foraged vines, perfect for kindling and crafting.",
         WALKINGSTICK = "Now I get a wood leg too.",

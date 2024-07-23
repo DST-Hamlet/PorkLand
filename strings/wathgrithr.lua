@@ -207,6 +207,7 @@ return {
             SLEEPING = "Unwise, little beast.",
         },
         VAMPIREBATCAVE = "Creatures of darkness lurk within.",
+        VENOMGLAND = "The source of the fevers.",
         VENUS_STALK = "The heart of a defeated plant warrior.",
         VINE = "What can you do for me?",
         WALKINGSTICK = "To assist in my long journey.",

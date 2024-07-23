@@ -203,6 +203,7 @@ return {
             SLEEPING = "Quiet...",
         },
         VAMPIREBATCAVE = "It smell stink.",
+        VENOMGLAND = "Glargh!....ugly tasting medicine.",
         VENUS_STALK = "Many water in it.",
         VINE = "Thick sticks!",
         WALKINGSTICK = "A dry stick.",

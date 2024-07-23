@@ -207,6 +207,7 @@ return {
             SLEEPING = "We should be very quiet so he doesn't wake up.",
         },
         VAMPIREBATCAVE = "That's probably where those mean bats live.",
+        VENOMGLAND = "The key to feeling better if we get sick.",
         VENUS_STALK = "It came off that mean plant.",
         VINE = "This stuff is wild.",
         WALKINGSTICK = "This should make it easier to walk.",

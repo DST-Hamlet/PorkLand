@@ -935,6 +935,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.VAMPIREBATCAVE"
 msgid "A den of bloodsuckers."
 msgstr "一个吸血鬼的巢穴。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.VENOMGLAND"
+msgid "Only poison can cure poison."
+msgstr "以毒攻毒。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.VENUS_STALK"
 msgid "I bet I could find a use for it."
@@ -1774,6 +1779,11 @@ msgstr "我的好奇心告诉我，我应该用棍子去戳醒它。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VAMPIREBATCAVE"
 msgid "Based on its depth and malodorous smell, I deduce this hole houses bats."
 msgstr "根据这洞穴的深度和臭味，我断定这个洞里住着蝙蝠。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VENOMGLAND"
+msgid "Excellent! A sack of zootoxin."
+msgstr "太棒了！一袋动物毒素。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VENUS_STALK"
@@ -2625,6 +2635,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.VAMPIREBATCAVE"
 msgid "I don't get good vibes from that place."
 msgstr "那个地方让我感觉不舒服。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.VENOMGLAND"
+msgid "What a terrible gland."
+msgstr "多么可怕的腺体。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.VENUS_STALK"
 msgid "Gnarly."
@@ -3445,6 +3460,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.VAMPIREBATCAVE"
 msgid "A vampire's lair."
 msgstr "吸血鬼的巢穴。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.VENOMGLAND"
+msgid "It's brimming with venom... Haha..."
+msgstr "这可太恶“毒”了...哈哈..."
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.VENUS_STALK"
 msgid "I think that's their stomach are."
@@ -3903,7 +3923,7 @@ msgstr "它最好值得我花时间烤熟它。"
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MACHETE"
 msgid "It's for chopping, simple as that."
-msgstr "就是用来切菜的，就这么简单。"
+msgstr "是用来砍的，就这么简单。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.MAGNIFYING_GLASS
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.MAGNIFYING_GLASS"
@@ -4264,6 +4284,11 @@ msgstr "多惬意啊。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.VAMPIREBATCAVE"
 msgid "Going in there is asking for trouble."
 msgstr "进去那里是自讨不快。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.VENOMGLAND"
+msgid "I suppose I could ingest it as it is, it'd be better than poison..."
+msgstr "我想我可以直接吞下去，总比中毒好..."
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.VENUS_STALK"
@@ -5085,6 +5110,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.VAMPIREBATCAVE"
 msgid "Not the best place to hide, I think."
 msgstr "我觉得，这不是最好的藏身之处。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.VENOMGLAND"
+msgid "The worst kind of gland!"
+msgstr "最糟糕的那种腺体！"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.VENUS_STALK"
 msgid "Possesses a flavor reminiscent of artichoke hearts."
@@ -5904,6 +5934,11 @@ msgstr "这可不明智，小怪物。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VAMPIREBATCAVE"
 msgid "Creatures of darkness lurk within."
 msgstr "黑暗生物潜伏在里面。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VENOMGLAND"
+msgid "The source of the fevers."
+msgstr "引起发烧的根源。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VENUS_STALK"
@@ -6745,6 +6780,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VAMPIREBATCAVE"
 msgid "Villainy lurks within."
 msgstr "这里住着邪恶的东西。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VENOMGLAND"
+msgid "Could this be the cure?"
+msgstr "这会是解药吗？"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VENUS_STALK"
 msgid "All stalk and no action."
@@ -7564,6 +7604,11 @@ msgstr "我们应该轻点别把他吵醒了。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.VAMPIREBATCAVE"
 msgid "That's probably where those mean bats live."
 msgstr "很可能那就是那些坏蝙蝠住的地方。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.VENOMGLAND"
+msgid "The key to feeling better if we get sick."
+msgstr "如果我们中毒了，这东西是解毒的关键。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.VENUS_STALK"
@@ -8389,6 +8434,11 @@ msgstr "我希望你会做噩梦。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.VAMPIREBATCAVE"
 msgid "The maw of death itself."
 msgstr "死神的胃。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.VENOMGLAND"
+msgid "Their dead drop the cure to their sickness."
+msgstr "它们死后掉落的东西能治愈它们造成的疾病。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.VENUS_STALK"
@@ -9235,6 +9285,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.VAMPIREBATCAVE"
 msgid "Those bats are wasting their time in a cave when they should be outside flying."
 msgstr "那些蝙蝠应该去外面飞翔，它们却在洞里面浪费时间。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.VENOMGLAND"
+msgid "Swell. A sack of goop from an animal."
+msgstr "好吧。一袋动物粘液。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.VENUS_STALK"
 msgid "Hope this comes in handy. Otherwise that flytrap died for nothing."
@@ -10054,6 +10109,11 @@ msgstr "它处于深度睡眠当中。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VAMPIREBATCAVE"
 msgid "The natural habitat of a the Mammalian Hematophagous."
 msgstr "哺乳类吸血动物的自然栖息地。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VENOMGLAND"
+msgid "A useful substance for poison prevention."
+msgstr "一种可以防止中毒的有用物质。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VENUS_STALK"
@@ -10880,6 +10940,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.VAMPIREBATCAVE"
 msgid "WHERE THE BAT SUCKS"
 msgstr "蝙蝠在那里吮吸"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.VENOMGLAND"
+msgid "CAN'ST BE US'DED FOR WILBA BOO BOOS"
+msgstr "可用于治疗薇尔芭的伤"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.VENUS_STALK"
 msgid "WILBA CAN'ST MAKETH STUFF WITHAL"
@@ -11699,6 +11764,11 @@ msgstr "它一定是犯浑犯累了。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.VAMPIREBATCAVE"
 msgid "Creepy things live there."
 msgstr "可怕的家伙们住在这里。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.VENOMGLAND"
+msgid "Gross! I wish I had gloves."
+msgstr "好恶心！我要是有手套就好了。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.VENUS_STALK"
@@ -12520,6 +12590,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.VAMPIREBATCAVE"
 msgid "I felt a chill running down my spine."
 msgstr "我感到脊背发凉。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.VENOMGLAND"
+msgid "Haha, gross."
+msgstr "哈哈，真恶心。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.VENUS_STALK"
 msgid "As far as building materials are concerned, it's a bit too watery."
@@ -13340,6 +13415,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VAMPIREBATCAVE"
 msgid "Wolfgang is no like dark hole."
 msgstr "沃尔夫冈不喜欢暗暗的洞。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VENOMGLAND"
+msgid "Is weapon of cowards."
+msgstr "懦夫的武器。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VENUS_STALK"
 msgid "Is Plant Men parts."
@@ -14159,6 +14239,11 @@ msgstr "我是说，让睡着的蝙蝠去死吧。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.VAMPIREBATCAVE"
 msgid "Don't look none too inviting."
 msgstr "看起来一点也不诱人。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.VENOMGLAND"
+msgid "It smells kind of funny."
+msgstr "闻起来有点怪。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.VENUS_STALK"
@@ -14984,6 +15069,11 @@ msgstr "这是一只毫无防备的臭吸血鬼。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VAMPIREBATCAVE"
 msgid "Inta th'depths wit'ye."
 msgstr "和你一起坠入深渊。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VENOMGLAND"
+msgid "Aye, 'tis th'source o'th'venom."
+msgstr "是的，这就是毒液的来源。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VENUS_STALK"
@@ -15835,6 +15925,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VAMPIREBATCAVE"
 msgid "Smells good!"
 msgstr "真香！"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VENOMGLAND"
+msgid "For sickness"
+msgstr "用来引起生病"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VENUS_STALK"
 msgid "Mmmm..."
@@ -16654,6 +16749,11 @@ msgstr "它的精神回到了漆黑的天空。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.VAMPIREBATCAVE"
 msgid "Dominion of the blood starved."
 msgstr "嗜血生物的领土。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.VENOMGLAND"
+msgid "Now to land this gland in a brew."
+msgstr "现在用它开始酿造吧。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.VENUS_STALK"
@@ -17475,6 +17575,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.VAMPIREBATCAVE"
 msgid "It smell stink."
 msgstr "闻起来臭臭的。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.VENOMGLAND"
+msgid "Glargh!....ugly tasting medicine."
+msgstr "格辣格！...难吃的药。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.VENUS_STALK"
 msgid "Many water in it."
@@ -18294,6 +18399,11 @@ msgstr "待机中"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.VAMPIREBATCAVE"
 msgid "STORAGE UNIT FOR WINGED RODENTS"
 msgstr "飞行啮齿动物的存储单元"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.VENOMGLAND
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.VENOMGLAND"
+msgid "COULD BE A POISON ANTIDOTE"
+msgstr "可以用作解毒药"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.VENUS_STALK
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.VENUS_STALK"
@@ -22787,82 +22897,82 @@ msgstr "箣竹"
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr "山茱萸"
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Juniperus"
+msgid "Betula"
 msgstr "柏桧"
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr "马利筋"
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr "栎"
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr "大葱"
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr "豌豆"
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr "荆蓟"
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr "麝香草"
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr "大豆"
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Betula"
+msgid "Juniperus"
 msgstr "桦木"
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr "覆盆子"
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr "胡萝卜"
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr "甘蓝"
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr "齿栗叶"
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr "车轴草"
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr "黄瓜"
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -23490,6 +23600,11 @@ msgctxt "STRINGS.NAMES.VAMPIREBATCAVE"
 msgid "Cave Cleft"
 msgstr "洞穴裂缝"
 
+#. STRINGS.NAMES.VENOMGLAND
+msgctxt "STRINGS.NAMES.VENOMGLAND"
+msgid "Venom Gland"
+msgstr "毒腺"
+
 #. STRINGS.NAMES.VENUS_STALK
 msgctxt "STRINGS.NAMES.VENUS_STALK"
 msgid "Flytrap Stalk"
@@ -23634,6 +23749,11 @@ msgstr "进入你的冒险之路。"
 msgctxt "STRINGS.RECIPE_DESC.SMELTER"
 msgid "Turn Iron into Alloy."
 msgstr "将铁制成合金。"
+
+#. STRINGS.RECIPE_DESC.VENOMGLAND
+msgctxt "STRINGS.RECIPE_DESC.VENOMGLAND"
+msgid "Freshly squeezed poison."
+msgstr "鲜榨的毒液。"
 
 #. STRINGS.UI.COOKBOOK.FOOD_EFFECTS_ANTIHISTAMINE
 msgctxt "STRINGS.UI.COOKBOOK.FOOD_EFFECTS_ANTIHISTAMINE"

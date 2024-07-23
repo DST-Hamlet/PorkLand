@@ -207,6 +207,7 @@ return {
             SLEEPING = "Flappy bad guy is night-night.",
         },
         VAMPIREBATCAVE = "Wolfgang is no like dark hole.",
+        VENOMGLAND = "Is weapon of cowards.",
         VENUS_STALK = "Is Plant Men parts.",
         VINE = "For string enemies together.",
         WALKINGSTICK = "Is for good walk steps.",

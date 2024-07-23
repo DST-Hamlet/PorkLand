@@ -203,6 +203,7 @@ return {
             SLEEPING = "Recharge your batteries.",
         },
         VAMPIREBATCAVE = "I felt a chill running down my spine.",
+        VENOMGLAND = "Haha, gross.",
         VENUS_STALK = "As far as building materials are concerned, it's a bit too watery.",
         VINE = "It's strong! I can tie stuff up with this.",
         WALKINGSTICK = "When dehydrated it becomes a durable crutch.",

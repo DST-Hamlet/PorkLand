@@ -217,6 +217,7 @@ return {
             SLEEPING = "Even creatures of the night must sleep.",
         },
         VAMPIREBATCAVE = "Villainy lurks within.",
+        VENOMGLAND = "Could this be the cure?",
         VENUS_STALK = "All stalk and no action.",
         VINE = "It's twisted and gnarled.",
         WALKINGSTICK = "Much easier on my knees.",

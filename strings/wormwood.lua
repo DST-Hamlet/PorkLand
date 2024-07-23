@@ -219,6 +219,7 @@ return {
             SLEEPING = "Sleeping down side up",
         },
         VAMPIREBATCAVE = "Smells good!",
+        VENOMGLAND = "For sickness",
         VENUS_STALK = "Mmmm...",
         VINE = "String branches",
         WALKINGSTICK = "Wheee!",
