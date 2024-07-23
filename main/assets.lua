@@ -153,7 +153,7 @@ PrefabFiles = {
     "living_artifact",
     "ancient_hulk_laser",
 
-    -- "pigman_city",
+    "pigman_city",
     "pighouse_city",
     "pig_guard_tower",
     "pig_shop",

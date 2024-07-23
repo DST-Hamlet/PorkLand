@@ -307,8 +307,7 @@ end
 local function ConfigureSpawner(inst, selected_citizens)
     if inst.components.spawner then
         inst.spawnlist = selected_citizens
-        inst.components.spawner:Configure(selected_citizens[math.random(1, #selected_citizens)],
-            TUNING.PIGHOUSE_CITY_RESPAWNTIME, 1)
+        inst.components.spawner:Configure(selected_citizens[math.random(1, #selected_citizens)], TUNING.PIGHOUSE_CITY_RESPAWNTIME, 1)
     end
 end
 
@@ -456,13 +455,12 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst.components.spawner.onoccupied = onoccupied
         inst.components.spawner.onvacate = onvacate
 
-        inst.components.spawner:Configure("pigman", TUNING.PIGHOUSE_CITY_RESPAWNTIME, 1) -- TODO: Change to pigman_city
-        -- if spawn_list then
-        --     ConfigureSpawner(inst, spawn_list)
-        -- else
-        --     inst.citypossessionfn = citypossessionfn
-        --     inst.OnLoadPostPass = citypossessionfn
-        -- end
+        if spawn_list then
+            ConfigureSpawner(inst, spawn_list)
+        else
+            inst.citypossessionfn = citypossessionfn
+            inst.OnLoadPostPass = citypossessionfn
+        end
 
         inst:WatchWorldState("isday", OnDay)
         OnDay(inst, TheWorld.state.isday)
