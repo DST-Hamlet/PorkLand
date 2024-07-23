@@ -29,6 +29,85 @@ return {
         "TAKE FROM THE RICH!",
         "ENGUARD!",
     },
+    CITYPIGNAMES = {--jerry的脚本有问题，顺序会对不上，以后记得手动改一下
+        FEMALE = {
+            "Elizabeth",
+            "Catherine",
+            "Charlotte",
+            "Della",
+            "Ebba",
+            "Edith",
+            "Flora",
+            "Florence",
+            "Georgette",
+            "Henrietta",
+            "Luella",
+            "Alexandrina",
+            "Lilian",
+            "Louise",
+            "Ottilie",
+            "Ophelia",
+            "Sophronia",
+            "Alice",
+            "Agnes",
+            "Arabella",
+            "Belle",
+            "Beryl",
+            "Briar",
+            "Beatrice",
+        },
+        MALE = {
+            "William",
+            "Arthur",
+            "Ewart",
+            "Herbert",
+            "Henry",
+            "Charley",
+            "Douglas",
+            "Edison",
+            "Edmund",
+            "Larkin",
+            "Oliver",
+            "Clarence",
+            "Merritt",
+            "Sterling",
+            "Tesla",
+            "Thaddeus",
+            "Wellington",
+            "Gulliver",
+            "Frederick",
+            "Edward",
+            "George",
+            "Charles",
+            "Leopold",
+            "Albert",
+            "Alfred",
+        },
+        UNISEX = {
+            "Melbourne",
+            "Greville",
+            "Hastings",
+            "Aberdeen",
+            "Talbot",
+            "Thames",
+            "Stockton",
+            "Darlington",
+            "Peel",
+            "Derby",
+            "Palmerston",
+            "Gladstone",
+            "Disraeli",
+            "Salisbury",
+            "Kensington",
+            "Conroy",
+        },
+    },
+    CITY_PIG_BANKER_TRADE = "JEWELS",
+    CITY_PIG_BEAUTICIAN_TRADE = "FEATHERS",
+    CITY_PIG_COLLECTOR_TRADE = "ODDITIES",
+    CITY_PIG_ERUDITE_TRADE = "NIGHTMARE FUEL",
+    CITY_PIG_FARMER_TRADE = "GRASS",
+    CITY_PIG_FLORIST_TRADE = "PETALS",
     CITY_PIG_GUARD_LIGHT_TORCH = {
         DEFAULT = {
             "ME LIGHT A FIERY TORCH",
@@ -44,7 +123,7 @@ return {
             "YOU A SEA OF TROUBLES!",
         },
     },
-    CITY_PIG_GUARD_TALK_FIGHT = {
+    CITY_PIG_GUARD_TALK_FIGHT = {--unused
         DEFAULT = {
             "I STAB AT THEE!",
             "HAVE AT THEE!",
@@ -59,7 +138,7 @@ return {
             "WHAT HO!",
         },
     },
-    CITY_PIG_GUARD_TALK_LOOKATWILSON = {
+    CITY_PIG_GUARD_TALK_LOOKATWILSON = {--unused
         DEFAULT = {
             "MAKE NOT TROUBLES",
             "WHOFORE GO'ST THERE?",
@@ -73,13 +152,20 @@ return {
             "NEED’ST HELP?",
         },
     },
-    CITY_PIG_GUARD_TALK_TORCH = {
+    CITY_PIG_GUARD_TALK_TORCH = {--unused
         DEFAULT = {
             "BURN BRIGHT THE TORCHES!",
             "LIGHT THE TORCHES!",
             "BURN, TORCHES, CLEAR AND BRIGHT!",
         },
     },
+    CITY_PIG_HATMAKER_TRADE = "SILK",
+    CITY_PIG_HUNTER_TRADE = "HOUND'S TOOTH",
+    CITY_PIG_MAYOR_TRADE = "GOLD",
+    CITY_PIG_MECHANIC_TRADE = "REFINED GOODS",
+    CITY_PIG_MINER_TRADE = "ROCKS",
+    CITY_PIG_PROFESSOR_TRADE = "RELICS",
+    CITY_PIG_QUEEN_TRADE = "ROYAL BELONGINGS",
     CITY_PIG_SHOPKEEPER_CLOSING = {
         "IS'T THE TIME O' CLOSINGS",
         "COME BACK ON THE 'MORROW",
@@ -173,6 +259,8 @@ return {
         "MANY THANKS",
         "'TIS GOOD STUFF",
     },
+    CITY_PIG_SHOPKEEP_TRADE = "GOODS",
+    CITY_PIG_STOREOWNER_TRADE = "HEDGE CUTTINGS",
     CITY_PIG_TALK_APORKALYPSE_REWARD = {
         DEFAULT = {
             "THOU SAVETH US!",
@@ -208,7 +296,7 @@ return {
             "TAKEST THEE MINE GIFT, YOUR MAJESTY",
         },
     },
-    CITY_PIG_TALK_EAT_MEAT = {
+    CITY_PIG_TALK_EAT_MEAT = {--unused?
         DEFAULT = {
             "NOM-ETH NOM-ETH, NOM-ETH",
             "O FOOD! O SLOP!",
@@ -462,7 +550,7 @@ return {
             "SOMETHING YUMMY THIS WAY COMES",
         },
     },
-    CITY_PIG_TALK_FIND_MONEY = {
+    CITY_PIG_TALK_FIND_MONEY = {--unused，只有两种守卫的有用到
         DEFAULT = {
             "'TIS SHINY THING!",
             "ALL THAT GLITTERS IS GOLD!",
@@ -1410,7 +1498,7 @@ return {
             "HONORABLE PLOP PICKER!",
         },
     },
-    CITY_PIG_TALK_RUNAWAY_WILSON = {
+    CITY_PIG_TALK_RUNAWAY_WILSON = {--unused
         DEFAULT = {
             "THOUST ART NOT KIND!",
             "STAYEST THOU AWAY!",
@@ -1600,7 +1688,8 @@ return {
             "MANY THANKS, GIVES'T THOU MORE %s PLEASE",
         },
     },
-    CITY_TALK_ANNOUNCE_APORKALYPSE = {
+    CITY_PIG_USHER_TRADE = "BERRIES",
+    CITY_TALK_ANNOUNCE_APORKALYPSE = {--unused
         DEFAULT = {
             "THE APORKALYPSE COMETH!",
             "THE CRACK OF DOOM!",
@@ -1611,16 +1700,8 @@ return {
             "BE ALL AND END ALL!",
         },
     },
-    MANDRAKEMANNAMES = {
+    MANDRAKEMANNAMES = {--jerry的脚本有问题，顺序会对不上，以后记得手动改一下
         "Bambuseae",
-        "Fabaceae",
-        "Betula",
-        "Rubus",
-        "Daucus carota",
-        "Brassica oleracea",
-        "Castanea",
-        "Trifolium",
-        "Cucumis sativus",
         "Cornus",
         "Juniperus",
         "Asclepias",
@@ -1629,6 +1710,14 @@ return {
         "Pisum sativum",
         "Cirsium arvense",
         "Thymus",
+        "Fabaceae",
+        "Betula",
+        "Rubus",
+        "Daucus carota",
+        "Brassica oleracea",
+        "Castanea",
+        "Trifolium",
+        "Cucumis sativus",
     },
     MANDRAKEMAN_BATTLECRY = {
         "ROT!",
@@ -1845,6 +1934,7 @@ return {
             PUGALISK_FOUNTAIN = "Fountain of Youth",
             RUINED_SCULPTURES = "Ruined Sculptures",
             TEMPERATE = "Temperate",
+            VAMPIREBAT = "Vampire Bat Attacks",
             WEEVOLE_SETTING = "Weevole",
         },
         SANDBOXMENU = {

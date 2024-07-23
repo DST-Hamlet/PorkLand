@@ -31,7 +31,7 @@ return {
             SLEEPING = "It's resting.",
         },
         ALLOY = "Proper processing makes it better.",
-        ANCIENT_HULK = "Why is it always killer automations?",
+        ANCIENT_HULK = "Why is it always killer automations?",--shoul't use "robot" because the word invent in 1920
         ANCIENT_ROBOTS_ASSEMBLY = "There is still work to be done.",
         ANCIENT_ROBOT_CLAW = "I'll handle it.",
         ANCIENT_ROBOT_HEAD = "A hideous mechanical head.",
