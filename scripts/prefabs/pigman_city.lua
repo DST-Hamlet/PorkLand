@@ -59,7 +59,7 @@ end
 
 local function spawndesk(inst, spawndesk)
     if spawndesk then
-        local desklocation = Vector3(inst.Transform:GetWorldPosition())
+        local desklocation = inst:GetPosition()
 
         inst.desk = SpawnPrefab("pigman_shopkeeper_desk")
         inst.desk.Transform:SetPosition(desklocation.x, desklocation.y, desklocation.z)
@@ -635,7 +635,7 @@ end
 local function throwcrackers(inst)
     local cracker = SpawnPrefab("firecrackers")
     inst.components.inventory:GiveItem(cracker)
-    local pos = Vector3(inst.Transform:GetWorldPosition())
+    local pos = inst:GetPosition()
     local start_angle = inst.Transform:GetRotation()
     local radius = 5
     local attempts = 12

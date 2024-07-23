@@ -153,7 +153,7 @@ local function FindMoneyAction(inst)
                     return false
                 end
                -- local itempos = Vector3(item.Transform:GetWorldPosition())
-               -- local instpos = Vector3(inst.Transform:GetWorldPosition())
+               -- local instpos = inst:GetPosition()
                 --and GetWorld().Pathfinder:IsClear(itempos.x, itempos.y, itempos.z, instpos.x, instpos.y, instpos.z,  {ignorewalls = false})
                 return item.prefab == "oinc" or item.prefab == "oinc10"
             end)
@@ -273,7 +273,7 @@ end
 
 local function ShouldGoHome(inst)
     local homePos = inst.components.knownlocations:GetLocation("home")
-    local myPos = Vector3(inst.Transform:GetWorldPosition())
+    local myPos = inst:GetPosition()
 
     -- eating food allows them to overide their home leash
     local action = inst:GetBufferedAction()
