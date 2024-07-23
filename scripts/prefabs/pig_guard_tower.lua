@@ -164,7 +164,6 @@ local function reconstructed(inst)
 end
 
 local function OnBuilt(inst)
-    NudgeToHalfGrid(inst)
     inst.AnimState:PlayAnimation("place")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/brick")
     inst.AnimState:PushAnimation("idle")
@@ -272,6 +271,17 @@ local function fn()
 
     inst.entity:SetPristine()
 
+    ------- Copied from prefabs/wall.lua -------
+    inst._pfpos = nil
+    inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+    MakeObstacle(inst)
+    -- Delay this because makeobstacle sets pathfinding on by default
+    -- but we don't to handle it until after our position is set
+    inst:DoTaskInTime(0, InitializePathFinding)
+
+    inst:ListenForEvent("onremove", onremove)
+    --------------------------------------------
+
     if not TheWorld.ismastersim then
         return inst
     end
@@ -305,16 +315,7 @@ local function fn()
     inst.reconstructed = reconstructed
     inst.setobstical = MakeObstacle
 
-    ------- Copied from prefabs/wall.lua -------
-    inst._pfpos = nil
-    inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
-    MakeObstacle(inst)
-    -- Delay this because makeobstacle sets pathfinding on by default
-    -- but we don't to handle it until after our position is set
-    inst:DoTaskInTime(0, InitializePathFinding)
-
-    inst:ListenForEvent("onremove", onremove)
-    --------------------------------------------
+    inst:AddComponent("gridnudger")
 
     inst:ListenForEvent("onbuilt", OnBuilt)
 

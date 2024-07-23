@@ -333,7 +333,6 @@ local function reconstructed(inst)
 end
 
 local function onbuilt(inst)
-    NudgeToHalfGrid(inst)
     inst.AnimState:PlayAnimation("place")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/wood_2")
     inst.AnimState:PushAnimation("idle")
@@ -424,6 +423,17 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
         inst.AnimState:Hide("YOTP")
 
+        ------- Copied from prefabs/wall.lua -------
+        inst._pfpos = nil
+        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+        MakeObstacle(inst)
+        -- Delay this because makeobstacle sets pathfinding on by default
+        -- but we don't to handle it until after our position is set
+        inst:DoTaskInTime(0, InitializePathFinding)
+
+        inst:ListenForEvent("onremove", onremove)
+        --------------------------------------------
+
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
@@ -489,22 +499,12 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
             end
         end)
 
-        ------- Copied from prefabs/wall.lua -------
-        inst._pfpos = nil
-        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
-        MakeObstacle(inst)
-        -- Delay this because makeobstacle sets pathfinding on by default
-        -- but we don't to handle it until after our position is set
-        inst:DoTaskInTime(0, InitializePathFinding)
-
-        inst:ListenForEvent("onremove", onremove)
-        --------------------------------------------
+        inst:AddComponent("gridnudger")
 
         inst:ListenForEvent("onbuilt", onbuilt)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
-        inst.OnCreate = NudgeToHalfGrid
 
         inst.OnEntityWake = OnEntityWake
 

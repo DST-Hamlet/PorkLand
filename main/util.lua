@@ -63,28 +63,6 @@ function FindAmphibiousOffset(position, start_angle, radius, attempts, check_los
     return FindWalkableOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, true, false)
 end
 
---- Nudge instance to nearest 0.5 grid
---- example:
----     x = 2.8, z = 3.3 -> x = 3.0, z = 3.5
---- copied from prefabs/wall.lua
-function NudgeToHalfGrid(inst)
-    local function normalize(coord)
-        local temp = coord % 0.5
-        coord = coord + 0.5 - temp
-
-        if coord % 1 == 0 then
-            coord = coord - 0.5
-        end
-
-        return coord
-    end
-
-    local pt = Vector3(inst.Transform:GetWorldPosition())
-    pt.x = normalize(pt.x)
-    pt.z = normalize(pt.z)
-    inst.Transform:SetPosition(pt.x, pt.y, pt.z)
-end
-
 local DAMAGE_CANT_TAGS = {"playerghost", "INLIMBO", "DECOR", "INLIMBO", "FX"}
 local DAMAGE_ONEOF_TAGS = {"_combat", "pickable", "NPC_workable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable", "SHEAR_workable"}
 local LAUNCH_MUST_TAGS = {"_inventoryitem"}

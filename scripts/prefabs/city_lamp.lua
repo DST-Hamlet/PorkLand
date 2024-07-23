@@ -110,7 +110,6 @@ local function onhit(inst, worker)
 end
 
 local function onbuilt(inst)
-    NudgeToHalfGrid(inst)
     inst.AnimState:PlayAnimation("place")
     inst.AnimState:PushAnimation("idle", true)
     inst:DoTaskInTime(0, updatelight)
@@ -205,10 +204,24 @@ local function fn(Sim)
 
     inst:AddTag("lightsource")
 
+    ------- Copied from prefabs/wall.lua -------
+    inst._pfpos = nil
+    inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+    MakeObstacle(inst)
+    -- Delay this because makeobstacle sets pathfinding on by default
+    -- but we don't to handle it until after our position is set
+    inst:DoTaskInTime(0, InitializePathFinding)
+
+    inst:ListenForEvent("onremove", onremove)
+    --------------------------------------------
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
     inst:AddTag("city_hammerable")
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
-
 
     inst:AddComponent("lootdropper")
 
@@ -243,21 +256,12 @@ local function fn(Sim)
         end
     end
 
-    inst.audiotask = inst:DoPeriodicTask(1.0, function() UpdateAudio(inst) end, math.random())
+    inst.audiotask = inst:DoPeriodicTask(1.0, UpdateAudio, math.random())
 
     inst:AddComponent("fixable")
     inst.components.fixable:AddRecinstructionStageData("rubble","lamp_post","lamp_post2_city_build")
 
-    ------- Copied from prefabs/wall.lua -------
-    inst._pfpos = nil
-    inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
-    MakeObstacle(inst)
-    -- Delay this because makeobstacle sets pathfinding on by default
-    -- but we don't to handle it until after our position is set
-    inst:DoTaskInTime(0, InitializePathFinding)
-
-    inst:ListenForEvent("onremove", onremove)
-    --------------------------------------------
+    inst:AddComponent("gridnudger")
 
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake

@@ -276,7 +276,6 @@ local function OnIsAporkalypse(inst, isaporkalypse)
 end
 
 local function OnBuilt(inst)
-    NudgeToHalfGrid(inst)
     inst.AnimState:PlayAnimation("place")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/wood_1")
     inst.AnimState:PushAnimation("idle")
@@ -612,6 +611,17 @@ local function MakeShop(name, build, bank, data)
 
         TheWorld.components.interiorspawner:AddExterior(inst)
 
+        ------- Copied from prefabs/wall.lua -------
+        inst._pfpos = nil
+        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+        MakeObstacle(inst)
+        -- Delay this because makeobstacle sets pathfinding on by default
+        -- but we don't to handle it until after our position is set
+        inst:DoTaskInTime(0, InitializePathFinding)
+
+        inst:ListenForEvent("onremove", onremove)
+        --------------------------------------------
+
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
@@ -651,16 +661,7 @@ local function MakeShop(name, build, bank, data)
 
         MakeSnowCovered(inst, 0.01)
 
-        ------- Copied from prefabs/wall.lua -------
-        inst._pfpos = nil
-        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
-        MakeObstacle(inst)
-        -- Delay this because makeobstacle sets pathfinding on by default
-        -- but we don't to handle it until after our position is set
-        inst:DoTaskInTime(0, InitializePathFinding)
-
-        inst:ListenForEvent("onremove", onremove)
-        --------------------------------------------
+        inst:AddComponent("gridnudger")
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
