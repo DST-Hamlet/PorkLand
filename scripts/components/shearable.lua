@@ -16,7 +16,6 @@ local Shearable = Class(function(self, inst)
 
     self.product = nil
     self.onshearfn = nil
-    self.canshearfn = nil
 
     inst:DoTaskInTime(0, function()
         if inst.components.hackable then
@@ -84,15 +83,11 @@ function Shearable:Shear(shearer, numworks)
 end
 
 function Shearable:CanShear()
-    return self.canshaveable and (not self.canshearfn or self.canshearfn(self.inst))
+    return self.canshaveable
 end
 
 function Shearable:SetOnShearFn(fn)
     self.onshearfn = fn
-end
-
-function Shearable:SetCanShearFn(fn)
-    self.canshearfn = fn
 end
 
 return Shearable
