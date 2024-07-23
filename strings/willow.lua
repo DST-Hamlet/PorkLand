@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "These could use fire.",
         COFFEEBEANS_COOKED = "Ahhh, that aroma.",
         CUTNETTLE = "It smells funny.",
+        DISARMING_KIT = "Those traps are goners now.",
         DUNGBALL = "Can't even set it on fire.",
         DUNGBEETLE = {
             DEAD = "Squashed.",
@@ -109,6 +110,7 @@ return {
         MACHETE = "Or I could just burn my way through.",
         MANDRAKEHOUSE = "Gross.",
         MANDRAKEMAN = "Great. It's a big one. Just what I need.",
+        METALPLATEHAT = "This protects my brain.",
         PANGOLDEN = "Yeesh, he's sucking up all the gold!",
         PEAGAWK = {
             DEAD = "Very dead.",
@@ -138,6 +140,7 @@ return {
             GENERIC = "What're you so mad about?",
             SLEEPING = "I should draw a mustache on its mustache while it sleeps.",
         },
+        REEDS_WATER = "Can I burn it?",
         SAIL_SNAKESKIN = "What a morbid sail.",
         SEDIMENTPUDDLE = "Yeesh, there's a lot of sparkles in there.",
         SHEARS = "Not as good as fire, but I guess it has its uses.",

@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "Just add water.",
         COFFEEBEANS_COOKED = "No hot water?",
         CUTNETTLE = "Cleans tha' nose as good as sea air.",
+        DISARMING_KIT = "Now Woodlegs' got'tha upp'r hand!",
         DUNGBALL = "Throw it o'erboard!",
         DUNGBEETLE = {
             DEAD = "'tas been run through!",
@@ -110,6 +111,7 @@ return {
         MACHETE = "Ye be slicin'!",
         MANDRAKEHOUSE = "They live b'low decks.",
         MANDRAKEMAN = "I'll run ye through!",
+        METALPLATEHAT = "Prefer me captain's hat.",
         PANGOLDEN = "Eatin' up all tha treasure!",
         PEAGAWK = {
             DEAD = "It tells no tales.",
@@ -139,6 +141,7 @@ return {
             GENERIC = "Ornery buggie.",
             SLEEPING = "Thar she blows!",
         },
+        REEDS_WATER = "Sticks aft'r me'own 'eart.",
         SAIL_SNAKESKIN = "Thet be a sail.",
         SEDIMENTPUDDLE = "Alas, not big enough to sail in.",
         SHEARS = "A cutlass fer tha'bushes.",

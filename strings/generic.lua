@@ -61,6 +61,7 @@ return {
         COFFEEBEANS = "They could use some roasting.",
         COFFEEBEANS_COOKED = "Heat definitely improved them.",
         CUTNETTLE = "Science says the sharp edges are good for my lungs.",
+        DISARMING_KIT = "A trap for traps!",
         DUNGBALL = "Most definitely poop.",
         DUNGBEETLE = {
             DEAD = "Dung for.",
@@ -110,6 +111,7 @@ return {
         MACHETE = "I like the cut of this blade.",
         MANDRAKEHOUSE = "It looks... screamy.",
         MANDRAKEMAN = "Large and screamy.",
+        METALPLATEHAT = "Protects my brains.",
         PANGOLDEN = "It likes rich food.",
         PEAGAWK = {
             DEAD = "Dead-eyed.",
@@ -139,6 +141,7 @@ return {
             GENERIC = "Looks deranged.",
             SLEEPING = "In a slumber.",
         },
+        REEDS_WATER = "Aquatic reeds.",
         SAIL_SNAKESKIN = "Scale it and sail it!",
         SEDIMENTPUDDLE = "Pool's gold.",
         SHEARS = "Shear-ly delightful.",

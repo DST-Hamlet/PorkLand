@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "I should cook these up.",
         COFFEEBEANS_COOKED = "Canadians love their coffee.",
         CUTNETTLE = "It has a smell to it.",
+        DISARMING_KIT = "Well that's smart, eh?",
         DUNGBALL = "Dung to go.",
         DUNGBEETLE = {
             DEAD = "It's a goner.",
@@ -109,6 +110,7 @@ return {
         MACHETE = "Ooh, that's a thing for chopping.",
         MANDRAKEHOUSE = "It's where those little plant guys live.",
         MANDRAKEMAN = "He's looking for a fight.",
+        METALPLATEHAT = "It's a little cold.",
         PANGOLDEN = "Looks expensive.",
         PEAGAWK = {
             DEAD = "It's a goner.",
@@ -138,6 +140,7 @@ return {
             GENERIC = "Seems mighty angry.",
             SLEEPING = "Let sleeping bugs lie, I say.",
         },
+        REEDS_WATER = "I could find a use for'em.",
         SAIL_SNAKESKIN = "Sailin' in style.",
         SEDIMENTPUDDLE = "What's that shiny stuff in there?",
         SHEARS = "Don't get jealous, Lucy.",

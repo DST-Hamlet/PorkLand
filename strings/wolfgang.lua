@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "Tiny beans give Wolfgang strength!",
         COFFEEBEANS_COOKED = "Is bitter beans!",
         CUTNETTLE = "Is good for clearing nose.",
+        DISARMING_KIT = "Wolfgang beat booby trap now.",
         DUNGBALL = "Is ball of poop.",
         DUNGBEETLE = {
             DEAD = "Is dead. Is still stink.",
@@ -109,6 +110,7 @@ return {
         MACHETE = "Ah! Very good!",
         MANDRAKEHOUSE = "Hill for plant mans.",
         MANDRAKEMAN = "Wolfgang stronger than you!",
+        METALPLATEHAT = "Is funny little tin hat.",
         PANGOLDEN = "Hehe. Haves big nose.",
         PEAGAWK = {
             DEAD = "Is blink-blink no more.",
@@ -138,6 +140,7 @@ return {
             GENERIC = "Wolfgang will stomp bad beetle!",
             SLEEPING = "Hehe. Is funny mustache.",
         },
+        REEDS_WATER = "Is pond plant.",
         SAIL_SNAKESKIN = "Skin of dead snake will help me sail.",
         SEDIMENTPUDDLE = "Hello little sparklies!",
         SHEARS = "Is for cutting plant things.",

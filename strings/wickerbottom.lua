@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "Very high in caffeine.",
         COFFEEBEANS_COOKED = "Ahh, that roast smells delightful.",
         CUTNETTLE = "These are quite good for the sinuses.",
+        DISARMING_KIT = "Rather clever.",
         DUNGBALL = "A perfectly spherical specimen of feces.",
         DUNGBEETLE = {
             DEAD = "A Scarabaeidae cadaver.",
@@ -109,6 +110,7 @@ return {
         MACHETE = "Used for hacking through the brush.",
         MANDRAKEHOUSE = "A subterranean home.",
         MANDRAKEMAN = "Is it Plantae or Animalia?",
+        METALPLATEHAT = "It's similar to the Spanish colonials.",
         PANGOLDEN = "Aurum vermilingua.",
         PEAGAWK = {
             DEAD = "Lifeless.",
@@ -138,6 +140,7 @@ return {
             GENERIC = "Certainly not a species I know of!",
             SLEEPING = "Dormant.",
         },
+        REEDS_WATER = "I could make paper from those.",
         SAIL_SNAKESKIN = "A sail of serpent hide.",
         SEDIMENTPUDDLE = "Contains some lustrous sentiment.",
         SHEARS = "A useful tool for horticultural purposes.",

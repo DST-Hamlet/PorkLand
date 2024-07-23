@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "Glorious!",
         COFFEEBEANS_COOKED = "Could use hot water...!",
         CUTNETTLE = "Great for clearing the sinuses!",
+        DISARMING_KIT = "Disarmingly simple to use.",
         DUNGBALL = "Non.",
         DUNGBEETLE = {
             DEAD = "Such is life.",
@@ -109,6 +110,7 @@ return {
         MACHETE = "I could chop many an onion with this!",
         MANDRAKEHOUSE = "Those deafening root vegetables live in there.",
         MANDRAKEMAN = "Loud root vegetable.",
+        METALPLATEHAT = "I prefer a chef hat.",
         PANGOLDEN = "Already has a nice golden braise.",
         PEAGAWK = {
             DEAD = "A pointless death.",
@@ -138,6 +140,7 @@ return {
             GENERIC = "It is like me when I am hungry.",
             SLEEPING = "What a curious way to sleep!",
         },
+        REEDS_WATER = "I can think of plenty of uses for those.",
         SAIL_SNAKESKIN = "Perhaps I'll sail to a land of spices.",
         SEDIMENTPUDDLE = "It's been seasoned with gold.",
         SHEARS = "Good for cutting hedges and grass.",

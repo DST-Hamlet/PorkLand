@@ -55,6 +55,7 @@ return {
         COFFEEBEANS = "I wish these were cocoa beans.",
         COFFEEBEANS_COOKED = "Smells great!",
         CUTNETTLE = "Ow! It got me.",
+        DISARMING_KIT = "Adventure activities, cool!",
         DUNGBALL = "How did she... nevermind.",
         DUNGBEETLE = {
             DEAD = "Hello?",
@@ -104,6 +105,7 @@ return {
         MACHETE = "I like the cut of this blade.",
         MANDRAKEHOUSE = "Is this where the magic happens?",
         MANDRAKEMAN = "Warby! That big carrot over there has a face!",
+        METALPLATEHAT = "It looks so funny.",
         PANGOLDEN = "A born gold rusher.",
         PEAGAWK = {
             GENERIC = "Wow, how many eyes are there?",
@@ -132,6 +134,7 @@ return {
             GENERIC = "Wow, look how active they are!",
             SLEEPING = "it's sleeping,",
         },
+        REEDS_WATER = "A pretty normal thing to see in a pool.",
         SAIL_SNAKESKIN = "The snakes wouldn't end up like this if they didn't try to eat me!",
         SEDIMENTPUDDLE = "Is that gold in there?",
         SHEARS = "Gardener's little helper.",

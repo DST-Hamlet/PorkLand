@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "I will need to roast it before I can consume it without ill effect.",
         COFFEEBEANS_COOKED = "Has an ephemeral effect on my adrenal gland.",
         CUTNETTLE = "A large leaf nettle plant native to these parts. Also it smells funny.",
+        DISARMING_KIT = "An aid in negotiating those violent booby traps.",
         DUNGBALL = "Excellent! The act of rolling has picked up a motley of paraphernalia.",
         DUNGBEETLE = {
             DEAD = "Expired. But it appears that is a recent occurrence.",
@@ -109,6 +110,7 @@ return {
         MACHETE = "A pragmatic tool for slashing objects.",
         MANDRAKEHOUSE = "Evidence would suggest it belongs to some sort of vegetation based humanoid.",
         MANDRAKEMAN = "He appears to be influenced by this world's satellite. Intriguing!",
+        METALPLATEHAT = "Incredibly durable. Though incredibly dense as well.",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",
         PEAGAWK = {
             DEAD = "Evidently, it didn't see that coming.",
@@ -141,6 +143,7 @@ return {
             GENERIC = "Evidently, it acquires facial hair when it matures.",
             SLEEPING = "It's respiratory structures are vibrating.",
         },
+        REEDS_WATER = "Good for paper, if it is anything like its earthly counterparts.",
         SAIL_SNAKESKIN = "Theoretically, it's reliable despite its patchy appearance.",
         SEDIMENTPUDDLE = "Evidence would suggest there's gold down there!",
         SHEARS = "Cutting implements constructed from raw metal.",

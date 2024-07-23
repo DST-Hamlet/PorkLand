@@ -55,6 +55,7 @@ return {
         COFFEEBEANS = "A quick roasting will get me something good to sip on.",
         COFFEEBEANS_COOKED = "I could pop these in my mouth or take the time to boil them.",
         CUTNETTLE = "This keeps us breathing smoothly.",
+        DISARMING_KIT = "So I can worry about a little less.",
         DUNGBALL = "I won't touch it.",
         DUNGBEETLE = {
             DEAD = "She ends up being part of those.",
@@ -104,6 +105,7 @@ return {
         MACHETE = "It's for chopping, simple as that.",
         MANDRAKEHOUSE = "Looks screaming enough.",
         MANDRAKEMAN = "Stop shouting!",
+        METALPLATEHAT = "Nice, but way too heavy for a hat.",
         PANGOLDEN = "It has an extravagant recipe.",
         PEAGAWK = {
             GENERIC = "See no evil!",
@@ -132,6 +134,7 @@ return {
             GENERIC = "vermin! go away!",
             SLEEPING = "Huh, I can take a breath.",
         },
+        REEDS_WATER = "Seem I'm have to wade into this.",
         SAIL_SNAKESKIN = "There's no need to make a flag if the sail is colorful. Not that I need one.",
         SEDIMENTPUDDLE = "Water isn't the only thing reflecting sunlight here.",
         SHEARS = "I won't waste my time on this.",

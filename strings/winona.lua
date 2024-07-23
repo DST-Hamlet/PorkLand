@@ -55,6 +55,7 @@ return {
         COFFEEBEANS = "I should toss them over a fire.",
         COFFEEBEANS_COOKED = "Ah, the smell of coffee beans in the morning!",
         CUTNETTLE = "Keep your breath flowing and refresh your mind.",
+        DISARMING_KIT = "Say no to unfriendly machines.",
         DUNGBALL = "I would never touch it.",
         DUNGBEETLE = {
             DEAD = "Is she dead?",
@@ -104,6 +105,7 @@ return {
         MACHETE = "Hack and slash! Working's always fun.",
         MANDRAKEHOUSE = "It was built to look like a screaming face.",
         MANDRAKEMAN = "Even I can't stand this.",
+        METALPLATEHAT = "Looks like something a colonist would wear.",
         PANGOLDEN = "Living metallurgical.",
         PEAGAWK = {
             GENERIC = "Always be vigilant.",
@@ -132,6 +134,7 @@ return {
             GENERIC = "What are you all excited about?",
             SLEEPING = "Calm down!",
         },
+        REEDS_WATER = "Looks like they're hollow inside.",
         SAIL_SNAKESKIN = "Just watch those scales catch the wind!",
         SEDIMENTPUDDLE = "The metal content is seriously over the limit.",
         SHEARS = "Shears for gardening.",

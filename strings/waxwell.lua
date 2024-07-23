@@ -61,6 +61,7 @@ return {
         COFFEEBEANS = "It's strange to see them this color.",
         COFFEEBEANS_COOKED = "Better than raw, but perhaps there's a better way to prepare them?",
         CUTNETTLE = "Useful.",
+        DISARMING_KIT = "This will deal with those pesky traps.",
         DUNGBALL = "I refuse to touch that.",
         DUNGBEETLE = {
             DEAD = "It has come to a feculent end.",
@@ -110,6 +111,7 @@ return {
         MACHETE = "Truthfully I was always a hack.",
         MANDRAKEHOUSE = "Ugh. That's a loud household.",
         MANDRAKEMAN = "Cease your babbling!",
+        METALPLATEHAT = "How very conquistadorian.",
         PANGOLDEN = "He has expensive tastes.",
         PEAGAWK = {
             DEAD = "It's beauty has been snuffed out forever.",
@@ -139,6 +141,7 @@ return {
             GENERIC = "What is he all worked up about?",
             SLEEPING = "A noisy sleeper.",
         },
+        REEDS_WATER = "Those reeds could be cut.",
         SAIL_SNAKESKIN = "For ease of travel.",
         SEDIMENTPUDDLE = "There's something sparkling inside there.",
         SHEARS = "Aren't there gardeners for this sort of thing?",

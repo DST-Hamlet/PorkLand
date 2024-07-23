@@ -61,6 +61,7 @@ return {
         COFFEEBEANS = "Come to mama!",
         COFFEEBEANS_COOKED = "Peppy!",
         CUTNETTLE = "Whew! Really cleans your sinuses!",
+        DISARMING_KIT = "Those traps won't get me anymore.",
         DUNGBALL = "Should've leashed it.",
         DUNGBEETLE = {
             DEAD = "Aww... All dunged out.",
@@ -110,6 +111,7 @@ return {
         MACHETE = "What a hack job.",
         MANDRAKEHOUSE = "I wonder how they get any sleep.",
         MANDRAKEMAN = "Hey there, noisy dude!",
+        METALPLATEHAT = "Keeps my noggin safe.",
         PANGOLDEN = "Shiny.",
         PEAGAWK = {
             DEAD = "Dang. It's dead.",
@@ -139,6 +141,7 @@ return {
             GENERIC = "Dude, you need to chill!",
             SLEEPING = "That's it. Now just stay asleep.",
         },
+        REEDS_WATER = "It'd be a lot of effort to go get them.",
         SAIL_SNAKESKIN = "Why bother when I have my board?",
         SEDIMENTPUDDLE = "There's sparkly things down there!",
         SHEARS = "What am I supposed to do with these?",

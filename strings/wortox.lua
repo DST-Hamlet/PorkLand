@@ -55,6 +55,7 @@ return {
         COFFEEBEANS = "Beans from a fiery bush we picked.",
         COFFEEBEANS_COOKED = "The fire brings out the magic within.",
         CUTNETTLE = "Just smelling it blows my nose.",
+        DISARMING_KIT = "Well well, I'm just gonna suck it up.",
         DUNGBALL = "Why would anyone like it?",
         DUNGBEETLE = {
             DEAD = "Sorry, ma'am.",
@@ -104,6 +105,7 @@ return {
         MACHETE = "To chop and slash!",
         MANDRAKEHOUSE = "So they have their own bag end.",
         MANDRAKEMAN = "It's full of prank juice... maybe too much.",
+        METALPLATEHAT = "My horns are burning!",
         PANGOLDEN = "How are you today? Any outcome?",
         PEAGAWK = {
             GENERIC = "You must have seen a lot, right?",
@@ -132,6 +134,7 @@ return {
             GENERIC = "Really energetic, do you want to dance?",
             SLEEPING = "Then intermission.",
         },
+        REEDS_WATER = "Just my luck! There's reeds to pluck!",
         SAIL_SNAKESKIN = "The stripes complement the colour, I say, I say.",
         SEDIMENTPUDDLE = "These are not for drink.",
         SHEARS = "Click, click, leaves fall.",

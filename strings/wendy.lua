@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "These look stimulating.",
         COFFEEBEANS_COOKED = "Who knew the will to live came in bean form?",
         CUTNETTLE = "I suppose these will cure blocked sinuses.",
+        DISARMING_KIT = "I can outsmart the death traps.",
         DUNGBALL = "Grotesque.",
         DUNGBEETLE = {
             DEAD = "How I envy you.",
@@ -109,6 +110,7 @@ return {
         MACHETE = "This is a lot of blade.",
         MANDRAKEHOUSE = "Abigail lives in the ground too.",
         MANDRAKEMAN = "Another abomination.",
+        METALPLATEHAT = "It'll protect my head but not my heart.",
         PANGOLDEN = "A fool and his gold.",
         PEAGAWK = {
             DEAD = "Beautiful death.",
@@ -138,6 +140,7 @@ return {
             GENERIC = "As rabid as death itself.",
             SLEEPING = "Sleep is not a permanent escape from life.",
         },
+        REEDS_WATER = "Reeds that grow drowning in the swamps of life.",
         SAIL_SNAKESKIN = "Gross, but efficient.",
         SEDIMENTPUDDLE = "Contains unreachable shiny things.",
         SHEARS = "Can it shear my heart?",

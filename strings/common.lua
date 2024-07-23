@@ -1,5 +1,6 @@
 return {
     ACTIONS = {
+        CHARGE_UP = "Charge",
         DISEMBARK = {
             GENERIC = "Exit",
         },
@@ -16,6 +17,7 @@ return {
         PICK = {
             DIGIN = "Dig in",
         },
+        PUNCH = "Punch",
         REPAIRBOAT = "Repair",
         RETRIEVE = "Retrieve",
         SHEAR = "Shear",
@@ -51,6 +53,7 @@ return {
         COFFEEBEANS = "Coffee Beans",
         COFFEEBEANS_COOKED = "Roasted Coffee Beans",
         CUTNETTLE = "Nettle",
+        DISARMING_KIT = "Disarming Tools",
         DUNGBALL = "Dung Ball",
         DUNGBEETLE = "Dung Beetle",
         DUNGPILE = "Dung Pile",
@@ -80,6 +83,7 @@ return {
         MACHETE = "Machete",
         MANDRAKEHOUSE = "Mandrake Hill",
         MANDRAKEMAN = "Elder Mandrake",
+        METALPLATEHAT = "Fancy Helmet",
         PANGOLDEN = "Pangolden",
         PEAGAWK = "Peagawk",
         PEAGAWKFEATHER = "Peagawk Plume",
@@ -101,6 +105,7 @@ return {
         PUGALISK_SKULL = "Pugalisk Skull",
         PUGALISK_TRAP_DOOR = "Ominous Carving",
         RABID_BEETLE = "Rabid Beetle",
+        REEDS_WATER = "Reeds",
         RELIC_1 = "Lost Idol",
         RELIC_2 = "Lost Totem",
         RELIC_3 = "Relic Fragment",
@@ -134,11 +139,13 @@ return {
         BOAT_ROW = "Row, row, row your boat!",
         BOAT_TORCH = "See, at sea.",
         BONESTAFF = "Wield the gaze of the Pugalisk!",
+        DISARMING_KIT = "It's disarming.",
         GOLDENMACHETE = "Hack stuff in STYLE!",
         GOLDPAN = "Pans gold actually.",
         HALBERD = "Pointy and hurty.",
         LIVING_ARTIFACT = "Lets just mix em and see what happens.",
         MACHETE = "Hack stuff!",
+        METALPLATEHAT = "Strong, sturdy and classy.",
         SAIL_SNAKESKIN = "Heavy duty wind catcher.",
         SHEARS = "Cut your way into adventure.",
         SMELTER = "Turn Iron into Alloy.",

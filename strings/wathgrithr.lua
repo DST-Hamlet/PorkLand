@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "I take mine black.",
         COFFEEBEANS_COOKED = "It smells energizing.",
         CUTNETTLE = "Its smell has vanquish mine sinuses.",
+        DISARMING_KIT = "A weapon for traps!",
         DUNGBALL = "What sickness is this?",
         DUNGBEETLE = {
             DEAD = "She has fallen in battle.",
@@ -109,6 +110,7 @@ return {
         MACHETE = "A fine length of blade.",
         MANDRAKEHOUSE = "I have them cornered!",
         MANDRAKEMAN = "I will vanquish thee!",
+        METALPLATEHAT = "It will protect my head!",
         PANGOLDEN = "Surely a cousin of Gullinbursti!",
         PEAGAWK = {
             DEAD = "Even in death its eyes stare into my soul.",
@@ -138,6 +140,7 @@ return {
             GENERIC = "Evil beast. You have met your match!",
             SLEEPING = "Slumber consumes it!",
         },
+        REEDS_WATER = "Lake reeds of hardy stock.",
         SAIL_SNAKESKIN = "A sail made of murder!",
         SEDIMENTPUDDLE = "Its tiny gold pieces will be mine!",
         SHEARS = "A weapon for use against a mighty hedge!",

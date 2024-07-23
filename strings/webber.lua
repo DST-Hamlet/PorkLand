@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "These smell very... adult.",
         COFFEEBEANS_COOKED = "These make me feel funny.",
         CUTNETTLE = "These nettles smell really strong.",
+        DISARMING_KIT = "Neat! We can disarm traps with this.",
         DUNGBALL = "Yuck!",
         DUNGBEETLE = {
             DEAD = "Awww.",
@@ -109,6 +110,7 @@ return {
         MACHETE = "Hyah! Hyah!",
         MANDRAKEHOUSE = "I think those noisy guys live there.",
         MANDRAKEMAN = "Hey there, noisy guy.",
+        METALPLATEHAT = "A fancy helmet to protect our head.",
         PANGOLDEN = "I think he eats gold.",
         PEAGAWK = {
             DEAD = "I think it's dead.",
@@ -138,6 +140,7 @@ return {
             GENERIC = "That guy's got a lot of energy!",
             SLEEPING = "Haha! A bug with a mustache!",
         },
+        REEDS_WATER = "They're totally hollow.",
         SAIL_SNAKESKIN = "With our sheet of gross skins, we're ready for adventure.",
         SEDIMENTPUDDLE = "It's full of sparkly stuff.",
         SHEARS = "It's for chores like trimming hedges or cutting grass.",

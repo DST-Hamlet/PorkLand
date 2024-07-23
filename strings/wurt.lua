@@ -55,6 +55,7 @@ return {
         COFFEEBEANS = "Yummy snacks!",
         COFFEEBEANS_COOKED = "No longer yummy, flort!",
         CUTNETTLE = "It into my nose!",
+        DISARMING_KIT = "Mermfolk one, pigfolk trap zero.",
         DUNGBALL = "Crud ball.",
         DUNGBEETLE = {
             DEAD = "It not moving anymore.",
@@ -104,6 +105,7 @@ return {
         MACHETE = "Plant hacker.",
         MANDRAKEHOUSE = "The ceiling is not as high as mine.",
         MANDRAKEMAN = "Always scream.",
+        METALPLATEHAT = "The hat from Ms. Wickerbottom's book!",
         PANGOLDEN = "Don't drink them all!",
         PEAGAWK = {
             GENERIC = "Big weird bird.",
@@ -132,6 +134,7 @@ return {
             GENERIC = "The little bug is going crazy!",
             SLEEPING = "The little bug was quiet.",
         },
+        REEDS_WATER = "Pond full of useful things, florp.",
         SAIL_SNAKESKIN = "It sail made of colourful scales.",
         SEDIMENTPUDDLE = "Water are ... shining?",
         SHEARS = "Shape the plants.",

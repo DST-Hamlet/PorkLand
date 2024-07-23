@@ -60,6 +60,7 @@ return {
         COFFEEBEANS = "Zoomberries!",
         COFFEEBEANS_COOKED = "Smells good",
         CUTNETTLE = "(sniiiiiff)",
+        DISARMING_KIT = "Things for tricky walls",
         DUNGBALL = "Yay! Ball of poop!",
         DUNGBEETLE = {
             DEAD = "Poor poop rider",
@@ -110,6 +111,7 @@ return {
         MACHETE = "Slicer. For friend haircuts",
         MANDRAKEHOUSE = "Hello? Anyone?",
         MANDRAKEMAN = "Screamy",
+        METALPLATEHAT = "Clink Rock Head Thing",
         PANGOLDEN = "Shiny Pooper",
         PEAGAWK = {
             DEAD = "Oh dear",
@@ -139,6 +141,7 @@ return {
             GENERIC = "Why so mad, Bzzter?",
             SLEEPING = "Let it sleep",
         },
+        REEDS_WATER = "Good day, friend!",
         SAIL_SNAKESKIN = "Squirmy Wind Nabber",
         SEDIMENTPUDDLE = "Shiny puddle",
         SHEARS = "For hair cuts",

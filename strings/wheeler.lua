@@ -64,6 +64,7 @@ return {
         COFFEEBEANS = "Small enough to fit in the Pew-matic.",
         COFFEEBEANS_COOKED = "I eat these all the time during overnight flights.",
         CUTNETTLE = "Smells like relief.",
+        DISARMING_KIT = "Adventuring kit.",
         DUNGBALL = "Huh. It's almost like nobody wants a ball of poop.",
         DUNGBEETLE = {
             DEAD = "Someone should write a eulogy. Not me, but someone.",
@@ -113,6 +114,7 @@ return {
         MACHETE = "Machete. Designed for adventure.",
         MANDRAKEHOUSE = "Have you ever seen anything scream \"adventure\" louder?",
         MANDRAKEMAN = "Mind not eating me, I have adventuring to do.",
+        METALPLATEHAT = "Saves me head pain but gives me neck pain.",
         PANGOLDEN = "I don't actually mind picking up his poop.",
         PEAGAWK = {
             DEAD = "I promise, I will go on without you!",
@@ -142,6 +144,7 @@ return {
             GENERIC = "Probably just agitated because it can't fly well.",
             SLEEPING = "Quite the snorer.",
         },
+        REEDS_WATER = "Definitely going to need more of these.",
         SAIL_SNAKESKIN = "Too heavy for balloon material. Just right for a sail.",
         SEDIMENTPUDDLE = "A sparkly pool. A little too sparkly.",
         SHEARS = "Time to do some yard work.",
