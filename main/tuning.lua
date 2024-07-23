@@ -272,6 +272,8 @@ local tuning = {
     PIGHOUSE_CITY_RESPAWNTIME = total_day_time*3,
     GUARDTOWER_CITY_RESPAWNTIME = total_day_time*3,
 
+    CITY_PIG_GUARD_TARGET_DIST = 20,
+
     WAVE_HIT_MOISTURE = 15,
     WAVE_HIT_DAMAGE = 5,
     ROGUEWAVE_HIT_MOISTURE = 25,

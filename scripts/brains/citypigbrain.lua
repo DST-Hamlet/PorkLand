@@ -268,9 +268,9 @@ local function ShopkeeperSitAtDesk(inst)
     end
 end
 
-local function shouldPanic(inst)
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x,y,z, 20, {"hostile"}, {"city_pig", "INLIMBO", "shadowcreature", "bramble"})
+local function should_panic(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, 20, {"hostile"}, {"city_pig", "INLIMBO", "shadowcreature", "bramble"})
     if #ents > 0 then
         return true
     end
@@ -278,7 +278,7 @@ local function shouldPanic(inst)
     if inst.components.combat.target then
         local threat = inst.components.combat.target
         if threat then
-            local dist = inst:GetHorzDistanceSqToInst(threat)
+            local dist = inst:GetDistanceSqToInst(threat)
 
             if dist >= FAR_ENOUGH * FAR_ENOUGH then
                 inst.components.combat:GiveUp()
@@ -294,7 +294,7 @@ local function shouldPanic(inst)
 end
 
 local function shouldpanicwithspeech(inst)
-    if shouldPanic(inst) then
+    if should_panic(inst) then
         if math.random()<0.01 then
             local speechset = getSpeechType(inst,STRINGS.CITY_PIG_TALK_FLEE)
             local str = speechset[math.random(#speechset)]

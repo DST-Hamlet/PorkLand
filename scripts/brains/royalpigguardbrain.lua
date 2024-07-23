@@ -246,9 +246,9 @@ local RoyalPigGuardBrain = Class(Brain, function(self, inst)
 end)
 
 
-local function shouldPanic(inst)
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x,y,z, 20, {"hostile"}, {"city_pig", "INLIMBO", "shadowcreature", "bramble"})
+local function should_panic(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, 20, {"hostile"}, {"city_pig", "INLIMBO", "shadowcreature", "bramble"})
     if #ents > 0 then
         return true
     end
@@ -256,7 +256,7 @@ local function shouldPanic(inst)
     if inst.components.combat.target then
         local threat = inst.components.combat.target
         if threat then
-            local dist = inst:GetHorzDistanceSqToInst(threat)
+            local dist = inst:GetDistanceSqToInst(threat)
 
             if dist >= FAR_ENOUGH * FAR_ENOUGH then
                 inst.components.combat:GiveUp()
@@ -273,7 +273,7 @@ end
 
 local function ShouldGoHome(inst)
     local homePos = inst.components.knownlocations:GetLocation("home")
-    local myPos = Vector3(inst.Transform:GetWorldPosition() )
+    local myPos = Vector3(inst.Transform:GetWorldPosition())
 
     -- eating food allows them to overide their home leash
     local action = inst:GetBufferedAction()
@@ -422,7 +422,7 @@ function RoyalPigGuardBrain:OnStart()
             -- END GUARD SECTION
 
             ChattyNode(self.inst, getSpeechType(self.inst,STRINGS.CITY_PIG_TALK_FLEE),
-                WhileNode(function() return shouldPanic(self.inst)  end, "Threat Panic",
+                WhileNode(function() return should_panic(self.inst)  end, "Threat Panic",
                     Panic(self.inst) ),"alarmed"),
 
             RunAway(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST ),
