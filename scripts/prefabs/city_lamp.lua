@@ -215,6 +215,8 @@ local function fn(Sim)
     inst:ListenForEvent("onremove", onremove)
     --------------------------------------------
 
+    inst.entity:SetPristine()
+
     if not TheWorld.ismastersim then
         return inst
     end
