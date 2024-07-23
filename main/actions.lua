@@ -389,7 +389,7 @@ ACTIONS.PUTONSHELF.fn = function(act)
                 shelf.components.container:DropItemBySlot(act.target.components.visualslot:GetSlot(), shelf:GetPosition())
             end
         end
-        return true
+        return success
     end
 end
 
