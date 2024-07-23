@@ -170,6 +170,36 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ALLOY"
 msgid "Ahoy there, alloy!"
 msgstr "那是合金，合金！"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_HULK"
+msgid "I regret causing that."
+msgstr "我后悔那么做了。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "It's not quite done yet."
+msgstr "它还没有做好。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "Careful, it's armed!"
+msgstr "小心，它全副武装！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "I'm heading out of here!"
+msgstr "我想离开这里！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "Not a leg to stand on."
+msgstr "一条腿站不稳。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "All that iron should be mine."
+msgstr "所有的铁矿都是我的。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Looks scientifically apocalyptic."
@@ -420,6 +450,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ICEDTEA"
 msgid "I scream for iced tea."
 msgstr "我为冰茶狂。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.INFUSED_IRON"
+msgid "Metal touched with science."
+msgstr "金属与科学的结合物。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.IRON"
 msgid "Isn't it ironic?"
@@ -429,6 +464,11 @@ msgstr "老铁，这不搞笑吗？"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LILYPAD"
 msgid "It's full of science. I can tell."
 msgstr "它充满了科学。我能证明。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LIVING_ARTIFACT"
+msgid "It's alive. ALIVE!"
+msgstr "它是活的。是活的！"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LOTUS"
@@ -750,6 +790,36 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ALLOY"
 msgid "Ah, refined metal. As good as any factory could produce."
 msgstr "啊哈，精炼好的金属。和工厂生产的一样好。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_HULK"
+msgid "A wonderful automaton of ancient technology brought back to life!"
+msgstr "古代科技的神奇机器人重获新生！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "Fascinating! What will transpire once it is all assembled?"
+msgstr "真迷人！一旦把它组装好会发生什么呢？"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "The metacarpus of an automaton. I must find the rest!"
+msgstr "一个机器人的手掌。我得找到剩下的部分！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "Who built this beautiful cranium? I have many questions!"
+msgstr "是谁制造出如此出色的头颅的？我有很多问题想问！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "A leg! A beautiful mechanical leg!"
+msgstr "一条腿！一条出色的机器腿！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "The carapace of a beautiful automaton!"
+msgstr "一个出色的机器人的外壳！"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Wonderful! I wonder if I could make the world end sooner."
@@ -1000,6 +1070,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ICEDTEA"
 msgid "Evidence would suggest my tea got cold."
 msgstr "很显然有证据表明我的茶凉掉了。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.INFUSED_IRON"
+msgid "Ferrous metal infused with a kind of ancient arcane technology."
+msgstr "被注入了某种古代神秘科技的含铁金属。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.IRON"
 msgid "Marvelous! Iron is invaluable for manufacturing the tools I need!"
@@ -1009,6 +1084,11 @@ msgstr "了不起！铁是我制造器具的必需品，铁是无价的！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LILYPAD"
 msgid "Fascinating! It contains a small ecosystem of animals."
 msgstr "真迷人！它包含着一个小型生物的生态系统。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LIVING_ARTIFACT"
+msgid "An ancient war machine! I must appraise its funtionality!"
+msgstr "一种古老的战争机器！我得好好评估一下它的功能！"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LOTUS"
@@ -1340,6 +1420,36 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ALLOY"
 msgid "Hope this is worth all the trouble."
 msgstr "希望这值得我费这么大劲。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_HULK"
+msgid "I'm the same way when I wake up from a long nap."
+msgstr "我有起床气的时候也是这样的。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "I don't wanna know what it does when it's all together."
+msgstr "我不想知道它组装在一起的时候会发生什么。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "Yeesh. Don't wanna high five that."
+msgstr "噫，我可不想和你击掌。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "There's no shoulders for this head."
+msgstr "这个脑袋离开肩膀了。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "I think I had a pair of boots like that."
+msgstr "我想我有一双这样的靴子。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Just stay asleep little guy."
+msgstr "小家伙，乖乖睡觉。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "I hate clocks."
@@ -1590,6 +1700,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ICEDTEA"
 msgid "Ah... hits the spot."
 msgstr "啊哈...正是喝茶的好时候。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.INFUSED_IRON"
+msgid "Whoa. It's got a weird glow."
+msgstr "哇哦。它闪着奇怪的光芒。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.IRON"
 msgid "This has gotta be good for something."
@@ -1599,6 +1714,11 @@ msgstr "它会在某些地方派上用场的。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LILYPAD"
 msgid "Looks like a waterbed to me."
 msgstr "在我看来它就像是个水床。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LIVING_ARTIFACT"
+msgid "That looks cool. What does it do?"
+msgstr "那是用来干啥的啊？看起来很酷欸。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LOTUS"
@@ -1915,6 +2035,36 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ALLOY"
 msgid "It's steel! Look at the steel I made!"
 msgstr "是钢铁！看我炼出的钢铁！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_HULK"
+msgid "War automation! It's real!"
+msgstr "战争机器人！流言是真的！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "They're assembling themselves! What will it become in the end?"
+msgstr "它们在自行组装！最终会变成什么样呢？"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "Can it be installed on WX?"
+msgstr "它可以被装在WX身上吗？"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "A giant robot head!"
+msgstr "一个巨大的机器人头！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "A leg. I wonder are they come from the same giant?"
+msgstr "一条腿，我想知道它们是否来自同一个巨人？"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "A machine ant?"
+msgstr "一只机器蚂蚁？"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Oh no! It's a doomsday prophecy!"
@@ -2165,6 +2315,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ICEDTEA"
 msgid "It just got better."
 msgstr "它反而变得更好喝了。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.INFUSED_IRON"
+msgid "These lines shone with a strange light."
+msgstr "这些纹路闪烁着诡异的光。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.IRON"
 msgid "Is that iron?"
@@ -2174,6 +2329,11 @@ msgstr "那是铁吗？"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LILYPAD"
 msgid "Look how big it is! I really want to stand up and take a look!"
 msgstr "看看它有多大！我真想站上去看看！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LIVING_ARTIFACT"
+msgid "Indestructible mechanical armor!"
+msgstr "无坚不摧的机械盔甲！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LOTUS"
@@ -2485,6 +2645,36 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ALLOY"
 msgid "Strong refined metal."
 msgstr "坚固的精炼金属。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_HULK"
+msgid "It better be worth it!"
+msgstr "这最好是值得的！"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "Why I'm doing this again?"
+msgstr "为什么我要这么做来着？"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "I think it was the tail... But doesn't it look more like a hand?"
+msgstr "我记得是尾巴...但看着起来更像手啊？"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "We'd better not do that in its face."
+msgstr "还是不要在太岁头上动土吧。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "We better stay away from it before ready."
+msgstr "在我们准备好之前，最好离它远点。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "A giant metal rib."
+msgstr "一具巨大的肋骨。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Keeping track of their movements...very clever idea."
@@ -2735,6 +2925,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ICEDTEA"
 msgid "Right on time, Now I can taste it."
 msgstr "时间正好，是时候品尝它了。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.INFUSED_IRON"
+msgid "If I could use it on my pocket watch..."
+msgstr "如果能够用在我的怀表上..."
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.IRON"
 msgid "An essential material for accurate timepieces."
@@ -2744,6 +2939,11 @@ msgstr "精确钟表的必备材料。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LILYPAD"
 msgid "I don't think this shortcut can be taken."
 msgstr "我想这条近路抄不得。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LIVING_ARTIFACT"
+msgid "That's it! Perfect way to take advantage!"
+msgstr "就是这样！完美的利用方式！"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LOTUS"
@@ -3060,6 +3260,36 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ALLOY"
 msgid "Metal cooked to perfection."
 msgstr "被完美料理的金属。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_HULK"
+msgid "Must be hungry after that long sleep."
+msgstr "它沉睡了这么久肯定是饿疯了。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "Perhaps it would be best if I left it unfinished."
+msgstr "如果我不把它组装好，可能这才是最好的。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "I'm staying away from that guy."
+msgstr "我要离那个家伙远点。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "I hope he stays asleep."
+msgstr "我希望它一直睡下去。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "Could I serve it up with roast potatoes?"
+msgstr "我能把它和烤土豆一起端上桌吗？"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Not sure those ribs are good for BBQing."
+msgstr "我不确定这些肋条是否适合烧烤。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Like the knobs on a stove, it must be turned just right."
@@ -3310,6 +3540,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ICEDTEA"
 msgid "Ah. Refreshing."
 msgstr "啊. 令人神清气爽."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.INFUSED_IRON"
+msgid "Iron marinated in magic."
+msgstr "用魔法腌制的铁块。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.IRON"
 msgid "I wonder what I could cook up with this."
@@ -3319,6 +3554,11 @@ msgstr "我好奇我能用这个烹饪出什么。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LILYPAD"
 msgid "I doubt it has much flavor."
 msgstr "我怀疑它味道很大。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LIVING_ARTIFACT"
+msgid "Will it help me be a better cook?"
+msgstr "它能让我做一个更好的厨师吗？"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LOTUS"
@@ -3640,6 +3880,36 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ALLOY"
 msgid "A metal worthy of the Sons of Ivaldi."
 msgstr "配得上伊瓦第之子的金属。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_HULK"
+msgid "Metal beast, you have met your match!"
+msgstr "金属野兽啊，你现在遇上对手了！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "A half-assembled warrior."
+msgstr "一台组装了一半的斗士。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "The work of Brokkr no doubt."
+msgstr "毫无疑问，这是布洛克的神迹。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "Open your eyes to look upon your doom!"
+msgstr "睁开你的眼睛，看清你的宿命！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "The severed leg of a metal beast!"
+msgstr "金属野兽被端上餐桌的腿！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Wake, metal beast!"
+msgstr "快起来，残暴的金属！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "It controls Ragnarok!"
@@ -3890,6 +4160,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ICEDTEA"
 msgid "It contains no the meat!"
 msgstr "这里面没有肉！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.INFUSED_IRON"
+msgid "It glows with a warrior's spirit."
+msgstr "它闪耀着战士之魂。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.IRON"
 msgid "Material for metalwork."
@@ -3899,6 +4174,11 @@ msgstr "制造金属制品的材料。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LILYPAD"
 msgid "A leaf of the water."
 msgstr "长在水中的叶子。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LIVING_ARTIFACT"
+msgid "I will be unbeatable on the battlefield!"
+msgstr "我穿上它将战无不胜！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LOTUS"
@@ -4225,6 +4505,36 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ALLOY"
 msgid "Durable."
 msgstr "耐用。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_HULK"
+msgid "So the technology CAN be brought back to life!"
+msgstr "所以这台科技是可以被复活的！"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "Dare I complete it?"
+msgstr "我敢重组它吗？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "Seems part of a whole."
+msgstr "似乎是整体的一部分。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "There's no head on his shoulders."
+msgstr "他的肩膀上没有头了。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "I'd hate to see the rest of it."
+msgstr "我不想看到其它的部分。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Well that looks interesting."
+msgstr "好吧，那看起来很有趣。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "I do like this..."
@@ -4475,6 +4785,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ICEDTEA"
 msgid "Refreshing."
 msgstr "提神醒脑。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.INFUSED_IRON"
+msgid "Hello... Let's see what I can make with this."
+msgstr "嗨...让我们看看这个东西能干嘛。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.IRON"
 msgid "A solid mineral."
@@ -4484,6 +4799,11 @@ msgstr "一块坚固的矿物质。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LILYPAD"
 msgid "A massive pond leaf."
 msgstr "一片巨大的池塘叶子。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LIVING_ARTIFACT"
+msgid "Not exactly dapper, but how can I say no to this?"
+msgstr "不太适合我，但是我怎么会嫌弃这个呢？"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LOTUS"
@@ -4805,6 +5125,36 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ALLOY"
 msgid "Gosh. That's a lot of metal."
 msgstr "天哪。真是很大一块金属。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_HULK"
+msgid "Whoa! It's a big robot!"
+msgstr "哇！一个大机器人！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "It's like a big puzzle with pieces missing."
+msgstr "就像一副丢了几片的大拼图。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "It's a sleepy robot hand."
+msgstr "一个睡着的机器人手掌。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "Bet it doesn't like to get woken up."
+msgstr "我估计它不喜欢被人吵醒。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "That looks like it could stomp us!"
+msgstr "它看起能追我们到天涯海角！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Yikes. Looks scary."
+msgstr "呀。看起来真吓人。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "It's like a puzzle!"
@@ -5055,6 +5405,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ICEDTEA"
 msgid "Delicious!"
 msgstr "太美味了！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.INFUSED_IRON"
+msgid "We could make something cool with this."
+msgstr "我们可以用它做一些很酷的东西。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.IRON"
 msgid "We could make all kinds of neat stuff with this."
@@ -5064,6 +5419,11 @@ msgstr "我打赌我们可以用这做各种各样的东西。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LILYPAD"
 msgid "That's a really big lily pad!"
 msgstr "这睡莲叶真的很大！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LIVING_ARTIFACT"
+msgid "Neat! We can be a robot!"
+msgstr "很精巧！我们现在是机器人了！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LOTUS"
@@ -5385,6 +5745,36 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ALLOY"
 msgid "Cold and hard, like my existence."
 msgstr "冰冷又坚硬，就像我的存在"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_HULK"
+msgid "Like Abigail, it has been resurrected from a deep sleep."
+msgstr "就像阿比盖尔那样，它也从沉睡中苏醒了。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "It lays half-dead."
+msgstr "它被夹在生死之间。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "It clutches at my heart."
+msgstr "它紧紧抓住了我的心。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "Headed to death, like all of us."
+msgstr "它死了，同我们所有人一样。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "A death stomper."
+msgstr "踏出死亡的节拍。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "An undead instrument of death."
+msgstr "不死的死亡机器。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Clockwork for the end of times."
@@ -5635,6 +6025,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ICEDTEA"
 msgid "Refreshing, but it still does not relieve my grief."
 msgstr "提神醒脑，但抹除不去我的悲伤。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.INFUSED_IRON"
+msgid "Nothing surprises me anymore."
+msgstr "再也没有什么能让我感到意外的了。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.IRON"
 msgid "Iron. Like my heart."
@@ -5644,6 +6039,11 @@ msgstr "坚硬的铁，像我的心脏一样。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LILYPAD"
 msgid "How calm it looks upon the water."
 msgstr "它浮在水上的样子是多么平静啊。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LIVING_ARTIFACT"
+msgid "A death machine has been given life."
+msgstr "一台死掉的机器被赋予了生命。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LOTUS"
@@ -5975,6 +6375,36 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ALLOY"
 msgid "Heavy metal made heavier."
 msgstr "重金属变得更沉了。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_HULK"
+msgid "I probably should have let you sleep."
+msgstr "我也许应该让你继续睡着。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "How much am I going to regret putting that all together?"
+msgstr "我会后悔把它全部组装完整吗？"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "Where's the rest of you?"
+msgstr "你的其他部分呢？"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "Are you aware you're missing the rest of your body?"
+msgstr "你知道你失去了身体的其他部分吗？"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "Well, it's better facing two left feet."
+msgstr "嗯，最好面对的是两只左脚。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "I like it better when it's not awake."
+msgstr "我更喜欢它休眠的时候。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "If only I could turn time back to before I crashed here."
@@ -6225,6 +6655,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ICEDTEA"
 msgid "I prefer it cold anyway."
 msgstr "我不管，我喜欢喝冷饮。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.INFUSED_IRON"
+msgid "Was it glowing like that before?"
+msgstr "这东西以前会发光吗？"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.IRON"
 msgid "Well it's not good balloon material."
@@ -6234,6 +6669,11 @@ msgstr "它不是一个造热气球的好材料。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LILYPAD"
 msgid "A little too heavy to use for a balloon."
 msgstr "这有点沉，不能用在热气球上。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LIVING_ARTIFACT"
+msgid "An invitation to adventure."
+msgstr "它邀请着我去冒险。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LOTUS"
@@ -6555,6 +6995,36 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ALLOY"
 msgid "Iron that has gone through metallic bonding."
 msgstr "通过金属键结合的铁。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_HULK"
+msgid "It must be using some sort of ancient technology."
+msgstr "这一定是用某种古代科技制成的。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "Appears to be only partially assembled."
+msgstr "似乎它只组装了一部分。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "The paw of some metal goliath."
+msgstr "某种金属巨人的爪子。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "The skull of an iron automata."
+msgstr "一个铁制机器人的头颅。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "Appears to be a automaton appendage."
+msgstr "看起来好像在休眠。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "An iron contraption."
+msgstr "一个奇妙的金属装置。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Ah. Quite a complex form of clockwork."
@@ -6805,6 +7275,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ICEDTEA"
 msgid "Invigorating."
 msgstr "使人精力充沛。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.INFUSED_IRON"
+msgid "Perhaps there is something I can build from this."
+msgstr "也许我能用它来做些什么。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.IRON"
 msgid "Ferrum."
@@ -6814,6 +7289,11 @@ msgstr "铁。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LILYPAD"
 msgid "Goodness! They can grow quite large in the wild."
 msgstr "天啊！它们在野外的能长得这么大。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LIVING_ARTIFACT"
+msgid "I further study ancient technology with this."
+msgstr "我要用它来进一步研究古代科技。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LOTUS"
@@ -7140,6 +7620,36 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ALLOY"
 msgid "IS'T BLOCK O' HARD METALS"
 msgstr "这是一块坚硬的金属"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_HULK"
+msgid "WHAT PIECES OF WORK MAKE ROBOT!"
+msgstr "这个机器人是怎么制造的啊！"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "'TIS UNFINISH'DED"
+msgstr "这个机器人还没造完"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "HATH NAUGHT A ROBOT HANDS?"
+msgstr "这是一个机器人的手吗？"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "ALAS, POOR ROBOT"
+msgstr "唉，可怜的机器人"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "THE ROBOT IS AFOOTS"
+msgstr "这是这个机器人的腿"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "HATH THE SLEEP OF DEATH"
+msgstr "它已经谁死了"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "TIME AND THE HOUR RUNS THROUGH IT"
@@ -7390,6 +7900,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ICEDTEA"
 msgid "AH... IT REFRESH-ETH"
 msgstr "啊...它让我消除疲劳"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.INFUSED_IRON"
+msgid "ALL THAT GLITTERS IS NAUGHT IRON"
+msgstr "这些发光的东西可不是铁"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON"
 msgid "'TIS METAL O' THE ZAPPY BIRD"
@@ -7399,6 +7914,11 @@ msgstr "这是活泼的鸟儿身上的金属"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LILYPAD"
 msgid "'TIS SWIMMY LEAF"
 msgstr "这是浮叶"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LIVING_ARTIFACT"
+msgid "WILBA HATH GREATNESS THRUST 'PON HER!"
+msgstr "薇尔芭被注入了强大的力量！"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LOTUS"
@@ -7720,6 +8240,36 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ALLOY"
 msgid "Fire makes everything better."
 msgstr "火可以让一切东西变得更好。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_HULK"
+msgid "Hey! Burning is my thing!"
+msgstr "嘿！我才是最擅长烧东西的！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "It's not gonna work like that."
+msgstr "我不会像它那样去运行的。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "Dang! Can't burn it!"
+msgstr "讨厌！没法点着！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "Ugly."
+msgstr "真丑。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "I should kick it."
+msgstr "我应该踢它一脚。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Aww... It won't burn."
+msgstr "啊...它烧不起来。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Looks ominous. I like it."
@@ -7970,6 +8520,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ICEDTEA"
 msgid "I prefer hot things."
 msgstr "我更喜欢热的东西"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.INFUSED_IRON"
+msgid "Are you supposed to be special or something?"
+msgstr "你应该有什么特殊的用途吧？"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.IRON"
 msgid "I can't burn it with just my lighter."
@@ -7979,6 +8534,11 @@ msgstr "我的打火机点不着它。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LILYPAD"
 msgid "I can't burn stuff out on the water."
 msgstr "我没法在水里烧东西。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LIVING_ARTIFACT"
+msgid "Think of the things I can burn with it!"
+msgstr "想一想我可以用它烧点什么！"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LOTUS"
@@ -8295,6 +8855,36 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ALLOY"
 msgid "Proper processing makes it better."
 msgstr "适当的加工让它变得更好。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_HULK"
+msgid "Why is it always killer automations?"
+msgstr "为什么非得是杀手机器人呢？"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "There is still work to be done."
+msgstr "还有工作没有完成。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "I'll handle it."
+msgstr "由我来接手吧。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "A hideous mechanical head."
+msgstr "一个狰狞的机器脑袋。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "This boot is not insulated at all."
+msgstr "这只靴子一点都不绝缘。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Machine frame, I guess."
+msgstr "我猜是机器框架。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "A fairly complex set of instrumentation."
@@ -8545,6 +9135,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ICEDTEA"
 msgid "What a enjoyment."
 msgstr "真是一种享受。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.INFUSED_IRON"
+msgid "This is not a natural metal pattern."
+msgstr "这不是自然金属能有的纹路。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.IRON"
 msgid "Invaluable material for manufacturing useful tools."
@@ -8554,6 +9149,11 @@ msgstr "用于制造有用工具的宝贵材料。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LILYPAD"
 msgid "I have never seen such a big water lily!"
 msgstr "我从未见过这么大的睡莲！"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LIVING_ARTIFACT"
+msgid "WX seems confused about us wearing it"
+msgstr "WX似乎对我们穿它这件事感到困惑。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LOTUS"
@@ -8870,6 +9470,36 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ALLOY"
 msgid "Fire make it strong like Wolfgang."
 msgstr "火焰让他和沃尔夫冈一样强大。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_HULK"
+msgid "Big robot not too big for Wolfgang to smash!"
+msgstr "砸碎大机器人对沃尔夫冈来说不难！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "Is missing pieces. Wolfgang will help!"
+msgstr "是丢失的碎片。沃尔夫冈会拼好的！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "Is sleepy little robot."
+msgstr "这个小机器正在睡觉。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "Is big head. Wolfgang head is bigger!"
+msgstr "这是个大脑袋，但沃尔夫冈的脑袋更大！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "It have to work on legs."
+msgstr "腿上的东西必须管用。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Wolfgang can eat ribs?"
+msgstr "沃尔夫冈可以吃排骨吗？"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Is clock of scary things."
@@ -9120,6 +9750,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ICEDTEA"
 msgid "Is cool. Like Wolfgang."
 msgstr "很棒，像沃尔夫冈一样。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.INFUSED_IRON"
+msgid "Is strong and glowing."
+msgstr "强大又会发光。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.IRON"
 msgid "Iron is strong like Wolfgang."
@@ -9129,6 +9764,11 @@ msgstr "铁就和沃尔夫冈一样强壮。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LILYPAD"
 msgid "Big water leaf."
 msgstr "水上的大叶子。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LIVING_ARTIFACT"
+msgid "Mighty Wolfgang can get mightier!"
+msgstr "强大的沃尔夫冈可以变得更强大了！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LOTUS"
@@ -9450,6 +10090,36 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ALLOY"
 msgid "It's like a block of wood made out of metal."
 msgstr "就像一个金属做的木头。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_HULK"
+msgid "Yep. That's a big one."
+msgstr "对。真够大的。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "Doesn't look like it can put itself back together."
+msgstr "看来它不能自己把自己重新组装起来。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "No axe in that hand."
+msgstr "那只手需要拿一把斧头。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "I wonder how long it's slept."
+msgstr "我想知道它会沉睡多久"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "Somebody lost their leg, eh?"
+msgstr "有些人失去了他们的腿，嗯？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "It's only full of iron, not wood."
+msgstr "它全部都是铁块，没有一点木头。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Looks like it's the end of days."
@@ -9700,6 +10370,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ICEDTEA"
 msgid "Nice and refreshing."
 msgstr "甜美清凉。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.INFUSED_IRON"
+msgid "I still prefer wood."
+msgstr "我还是喜欢木头。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.IRON"
 msgid "Can't chop this too well."
@@ -9709,6 +10384,11 @@ msgstr "不能把它切地很平整。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LILYPAD"
 msgid "Nature's real good, eh?"
 msgstr "大自然真正的好处，嗯？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LIVING_ARTIFACT"
+msgid "This looks interesting eh, Lucy?"
+msgstr "这东西看上去很不错，是吧，露西？"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LOTUS"
@@ -10030,6 +10710,36 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ALLOY"
 msgid "Ahoy, alloy!"
 msgstr "喂，合金！"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_HULK"
+msgid "Ye be lookin' fer a fight?"
+msgstr "你是在寻求一场战斗吗？"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "An'alf t'gether metal leviathan."
+msgstr "全部组合好就是一个金属大怪物。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "I've no need fer a'extra hand."
+msgstr "两只手就够了，没必要再多一只。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "I'll hang tha' head from me bowsprit."
+msgstr "我要把这个脑袋挂在船头桅杆上。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "Arrg! I could use tha' leg!"
+msgstr "啊！这条腿对俺有用！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "'Tis an iron leviathan."
+msgstr "这是钢铁巨兽！"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Tha time be nigh!"
@@ -10280,6 +10990,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ICEDTEA"
 msgid "'Tis relief ta be sure."
 msgstr "这杯茶当然能解乏。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.INFUSED_IRON"
+msgid "'as th'look 'o treasure to't."
+msgstr "它看起来就像宝藏一样。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.IRON"
 msgid "'Tis not gold, but a treasure nonetheless."
@@ -10294,6 +11009,11 @@ msgstr "这朵花是从一滴水里长出来的。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LILYPAD"
 msgid "A leaf aft'r me own heart."
 msgstr "俺心目中的叶子就是这样的。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LIVING_ARTIFACT"
+msgid "A Man o' War o' tha land!"
+msgstr "俺是一个在陆地上作战的男人！"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LOTUS"
@@ -10615,6 +11335,36 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ALLOY"
 msgid "Bar of Clink Rock"
 msgstr "一条叮当响的石头"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_HULK"
+msgid "Clinky Rock Man is awake!"
+msgstr "叮当响的石头人醒来了！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "Not done"
+msgstr "它没有组装好"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "Shake?"
+msgstr "在震动？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "Full of Clinky Rock"
+msgstr "全是叮当响的石头"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "Clinky Rock Walker"
+msgstr "叮当响的石头行走器"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Piece of Clinky Rock Man"
+msgstr "叮当响的石头人的一部分"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Tic Tock"
@@ -10865,6 +11615,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ICEDTEA"
 msgid "Cold Zippy water"
 msgstr "冷的快跑水"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.INFUSED_IRON"
+msgid "Oh... shiny"
+msgstr "哦...闪闪发光"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.IRON"
 msgid "Clinky Rock"
@@ -10879,6 +11634,11 @@ msgstr "活泼的朋友"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LILYPAD"
 msgid "Nice day for swim?"
 msgstr "今天很适合来游泳呢?"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LIVING_ARTIFACT"
+msgid "Boom clothes!"
+msgstr "轰隆隆衣服！"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LOTUS"
@@ -11195,6 +11955,36 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ALLOY"
 msgid "Ahh!!!"
 msgstr "嗷！！！"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_HULK"
+msgid "Calm down, demon! Please calm down!"
+msgstr "冷静，恶魔！请冷静！"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "The forgotten rise."
+msgstr "亡者崛起。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "Give me five! I'm kidding. Don't touch me."
+msgstr "击个掌！开玩笑的别碰我。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "There must be a giant guillotine nearby."
+msgstr "附近一定有一个巨大的断头台。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "I'm glad it won't move."
+msgstr "很高兴看到它不会动了。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "I don't want to touch it at all."
+msgstr "我一点都不想碰它。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Magic on such a large scale, man, this is going to be fun."
@@ -11445,6 +12235,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ICEDTEA"
 msgid "Cold gives it flavor."
 msgstr "温度使它别具风味。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.INFUSED_IRON"
+msgid "Some kind of energy was injected into it."
+msgstr "某种力量被注入到了其中。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.IRON"
 msgid "Oooh. Almost burned me."
@@ -11454,6 +12249,11 @@ msgstr "哦。差点烧死我了。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LILYPAD"
 msgid "The boat passed in the pond, and the duckweed gave way."
 msgstr "小船池中过，浮萍让道开。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LIVING_ARTIFACT"
+msgid "A perfect combine. Pity."
+msgstr "多么完美的结合，可惜。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LOTUS"
@@ -11765,6 +12565,36 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ALLOY"
 msgid "The stone became harder."
 msgstr "石头变得更硬了。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_HULK"
+msgid "Rock beast is angry!"
+msgstr "岩石大怪兽很生气！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "They are became a bigger beast."
+msgstr "它们正在变成一头更大的怪兽。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "No fins? Florp."
+msgstr "没有鳍？浮浪噗。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "A rock beast head."
+msgstr "一颗岩石怪兽脑袋。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "A stone shoe."
+msgstr "一只石头鞋子。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "Did a big fish die here?"
+msgstr "有一条大鱼死在这里了吗？"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "Stuff form bad story!"
@@ -12015,6 +12845,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ICEDTEA"
 msgid "Cold leaf water."
 msgstr "凉叶子水。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.INFUSED_IRON"
+msgid "Glowing..."
+msgstr "在发光..."
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.IRON"
 msgid "Red hard rock."
@@ -12024,6 +12859,11 @@ msgstr "红色坚硬的岩石。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LILYPAD"
 msgid "Afloat leaf."
 msgstr "漂浮的大叶子。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LIVING_ARTIFACT"
+msgid "Bring power to Mermfolk!"
+msgstr "为鱼人带来强大的力量！"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LOTUS"
@@ -12340,6 +13180,36 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ALLOY"
 msgid "PRECIOUS METAL"
 msgstr "珍贵的金属"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_HULK
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_HULK"
+msgid "LET'S OVERTHROW THE FLESHSACKS!"
+msgstr "让我们推翻那群肉团！"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "I WILL HELP IT LIVE AGAIN!"
+msgstr "我会再帮它再活过来的！"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOT_CLAW"
+msgid "WARNING: GRASPING ACCESSORY NOT COMPATIBLE"
+msgstr "警告：抓握配件不兼容"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOT_HEAD"
+msgid "IN SLEEP MODE"
+msgstr "处于睡眠模式"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOT_LEG"
+msgid "WARNING: WALKING ACCESSORY NOT COMPATIBLE"
+msgstr "警告：移动配件不兼容"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANCIENT_ROBOT_RIBS"
+msgid "FRIEND?"
+msgstr "朋友？"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.APORKALYPSE_CLOCK
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.APORKALYPSE_CLOCK"
 msgid "MY ANCIENT BRETHREN"
@@ -12590,6 +13460,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ICEDTEA"
 msgid "A REFRESHING DRINK MADE FROM MY ENEMY"
 msgstr "我的敌人做的清爽饮料"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.INFUSED_IRON
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.INFUSED_IRON"
+msgid "NEW COMPONENTS ACQUIRED"
+msgstr "已获取全新部件"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.IRON"
 msgid "HELLO FRIEND"
@@ -12599,6 +13474,11 @@ msgstr "你好，朋友"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LILYPAD"
 msgid "I DO NOT TRUST ITS RELATIONSHIP WITH WATER"
 msgstr "它不能使我免于可恨的潮湿"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.LIVING_ARTIFACT
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LIVING_ARTIFACT"
+msgid "I HAVE ACQUIRED A WORTHY UPGRADE"
+msgstr "我获得了一次高质量更新"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LOTUS"
@@ -12830,6 +13710,36 @@ msgctxt "STRINGS.NAMES.ALLOY"
 msgid "Alloy"
 msgstr "合金"
 
+#. STRINGS.NAMES.ANCIENT_HULK
+msgctxt "STRINGS.NAMES.ANCIENT_HULK"
+msgid "Large Iron Hulk"
+msgstr "远古兵器"
+
+#. STRINGS.NAMES.ANCIENT_ROBOTS_ASSEMBLY
+msgctxt "STRINGS.NAMES.ANCIENT_ROBOTS_ASSEMBLY"
+msgid "Large Iron Hulk"
+msgstr "大块废铁"
+
+#. STRINGS.NAMES.ANCIENT_ROBOT_CLAW
+msgctxt "STRINGS.NAMES.ANCIENT_ROBOT_CLAW"
+msgid "Iron Hulk"
+msgstr "废铁"
+
+#. STRINGS.NAMES.ANCIENT_ROBOT_HEAD
+msgctxt "STRINGS.NAMES.ANCIENT_ROBOT_HEAD"
+msgid "Iron Hulk"
+msgstr "废铁"
+
+#. STRINGS.NAMES.ANCIENT_ROBOT_LEG
+msgctxt "STRINGS.NAMES.ANCIENT_ROBOT_LEG"
+msgid "Iron Hulk"
+msgstr "废铁"
+
+#. STRINGS.NAMES.ANCIENT_ROBOT_RIBS
+msgctxt "STRINGS.NAMES.ANCIENT_ROBOT_RIBS"
+msgid "Iron Hulk"
+msgstr "废铁"
+
 #. STRINGS.NAMES.ANTQUEEN_THRONE
 msgctxt "STRINGS.NAMES.ANTQUEEN_THRONE"
 msgid "Stalacmite Throne"
@@ -13030,6 +13940,11 @@ msgctxt "STRINGS.NAMES.ICEDTEA"
 msgid "Iced Tea"
 msgstr "冰茶"
 
+#. STRINGS.NAMES.INFUSED_IRON
+msgctxt "STRINGS.NAMES.INFUSED_IRON"
+msgid "Infused Iron"
+msgstr "注能铁块"
+
 #. STRINGS.NAMES.IRON
 msgctxt "STRINGS.NAMES.IRON"
 msgid "Iron Ore"
@@ -13039,6 +13954,11 @@ msgstr "铁矿石"
 msgctxt "STRINGS.NAMES.LILYPAD"
 msgid "Lily Pad"
 msgstr "睡莲叶"
+
+#. STRINGS.NAMES.LIVING_ARTIFACT
+msgctxt "STRINGS.NAMES.LIVING_ARTIFACT"
+msgid "Living Artifact"
+msgstr "活性机甲"
 
 #. STRINGS.NAMES.LOTUS
 msgctxt "STRINGS.NAMES.LOTUS"
@@ -13093,7 +14013,7 @@ msgstr "眨眼的灌木丛"
 #. STRINGS.NAMES.PIG_RUINS_ARTICHOKE
 msgctxt "STRINGS.NAMES.PIG_RUINS_ARTICHOKE"
 msgid "Crumbling Carved Stone"
-msgstr "残破的雕像"
+msgstr "残破的石刻"
 
 #. STRINGS.NAMES.PIG_RUINS_EXTRACTED
 msgctxt "STRINGS.NAMES.PIG_RUINS_EXTRACTED"
@@ -13103,7 +14023,7 @@ msgstr "石雕"
 #. STRINGS.NAMES.PIG_RUINS_HEAD
 msgctxt "STRINGS.NAMES.PIG_RUINS_HEAD"
 msgid "Crumbling Visage"
-msgstr "残破的雕像"
+msgstr "残破的面孔"
 
 #. STRINGS.NAMES.PIG_RUINS_IDOL
 msgctxt "STRINGS.NAMES.PIG_RUINS_IDOL"
@@ -13118,7 +14038,7 @@ msgstr "宝石松露"
 #. STRINGS.NAMES.PIG_RUINS_PIG
 msgctxt "STRINGS.NAMES.PIG_RUINS_PIG"
 msgid "Crumbling Icon"
-msgstr "残破的硬币"
+msgstr "残破的雕像"
 
 #. STRINGS.NAMES.PIG_RUINS_PLAQUE
 msgctxt "STRINGS.NAMES.PIG_RUINS_PLAQUE"
@@ -13344,6 +14264,11 @@ msgstr "实际上这是用来淘金的。"
 msgctxt "STRINGS.RECIPE_DESC.HALBERD"
 msgid "Pointy and hurty."
 msgstr "锋利而伤人。"
+
+#. STRINGS.RECIPE_DESC.LIVING_ARTIFACT
+msgctxt "STRINGS.RECIPE_DESC.LIVING_ARTIFACT"
+msgid "Lets just mix em and see what happens."
+msgstr "让我们把它们合为一\n体看看会怎么样。"
 
 #. STRINGS.RECIPE_DESC.MACHETE
 msgctxt "STRINGS.RECIPE_DESC.MACHETE"
