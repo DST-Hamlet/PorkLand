@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/metal_hulk_merge.zip"),
+    Asset("ANIM", "anim/metal_hulk_merge.zip"),
 }
 
 local prefabs =
@@ -117,13 +117,13 @@ local function OnLoadPostPass(inst, newents, data)
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddLight()
     inst.entity:AddMiniMapEntity()
-	inst.entity:AddSoundEmitter()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("metal_hulk_merge")

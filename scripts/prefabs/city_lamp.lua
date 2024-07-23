@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/lamp_post2.zip"),
+    Asset("ANIM", "anim/lamp_post2.zip"),
     Asset("ANIM", "anim/lamp_post2_city_build.zip"),
     Asset("ANIM", "anim/lamp_post2_yotp_build.zip"),
     Asset("INV_IMAGE", "city_lamp"),
@@ -31,12 +31,12 @@ local function fadein(inst)
     inst.AnimState:PushAnimation("idle", true)
     inst.Light:Enable(true)
 
-	if inst:IsAsleep() then
-		inst.Light:SetIntensity(INTENSITY)
-	else
-		inst.Light:SetIntensity(0)
-		inst.components.fader:Fade(0, INTENSITY, 3+math.random()*2, function(v) inst.Light:SetIntensity(v) end)
-	end
+    if inst:IsAsleep() then
+        inst.Light:SetIntensity(INTENSITY)
+    else
+        inst.Light:SetIntensity(0)
+        inst.components.fader:Fade(0, INTENSITY, 3+math.random()*2, function(v) inst.Light:SetIntensity(v) end)
+    end
 end
 
 local function fadeout(inst)
@@ -44,11 +44,11 @@ local function fadeout(inst)
     inst.AnimState:PlayAnimation("off")
     inst.AnimState:PushAnimation("idle", true)
 
-	if inst:IsAsleep() then
-		inst.Light:SetIntensity(0)
-	else
-		inst.components.fader:Fade(INTENSITY, 0, .75+math.random()*1, function(v) inst.Light:SetIntensity(v) end)
-	end
+    if inst:IsAsleep() then
+        inst.Light:SetIntensity(0)
+    else
+        inst.components.fader:Fade(INTENSITY, 0, .75+math.random()*1, function(v) inst.Light:SetIntensity(v) end)
+    end
 end
 
 local function updatelight(inst, phase)
@@ -116,16 +116,16 @@ local function onbuilt(inst)
 end
 
 local function OnEntitySleep(inst)
-	if inst.audiotask then
-		inst.audiotask:Cancel()
-		inst.audiotask = nil
-	end
+    if inst.audiotask then
+        inst.audiotask:Cancel()
+        inst.audiotask = nil
+    end
 end
 
 local function OnEntityWake(inst)
-	if inst.audiotask then
-		inst.audiotask:Cancel()
-	end
+    if inst.audiotask then
+        inst.audiotask:Cancel()
+    end
     inst.audiotask = inst:DoPeriodicTask(1.0, UpdateAudio, math.random())
 
     if TheWorld.state.isfiesta then
@@ -172,10 +172,10 @@ local function onremove(inst)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddLight()
     inst.entity:AddNetwork()
@@ -266,7 +266,7 @@ local function fn(Sim)
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake
 
-	return inst
+    return inst
 end
 
 return Prefab("city_lamp", fn, assets),

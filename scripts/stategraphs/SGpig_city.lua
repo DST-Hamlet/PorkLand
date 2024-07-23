@@ -148,7 +148,7 @@ local states =
                 inst.alerted = true
                 inst:DoTaskInTime(120,function(inst) inst.alerted = nil end)
 
-    			inst.Physics:Stop()
+                inst.Physics:Stop()
                 local daytime = not TheWorld.state.isnight
                 if daytime then
                     --inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk")
@@ -213,14 +213,14 @@ local states =
     },
 
     State{
-		name = "abandon",
-		tags = {"busy"},
+        name = "abandon",
+        tags = {"busy"},
 
-		onenter = function(inst, leader)
-			inst.Physics:Stop()
-			inst.AnimState:PlayAnimation("abandon")
+        onenter = function(inst, leader)
+            inst.Physics:Stop()
+            inst.AnimState:PlayAnimation("abandon")
             inst:FacePoint(Vector3(leader.Transform:GetWorldPosition()))
-		end,
+        end,
 
         events =
         {
@@ -229,28 +229,28 @@ local states =
     },
 
     State{
-		name = "transformNormal",
-		tags = {"transform", "busy", "sleeping"},
+        name = "transformNormal",
+        tags = {"transform", "busy", "sleeping"},
 
-		onenter = function(inst)
-			inst.Physics:Stop()
-			inst.SoundEmitter:PlaySound("dontstarve/creatures/werepig/transformToPig")
+        onenter = function(inst)
+            inst.Physics:Stop()
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/werepig/transformToPig")
             inst.AnimState:SetBuild("werepig_build")
-			inst.AnimState:PlayAnimation("transform_were_pig")
-		    inst:RemoveTag("hostile")
+            inst.AnimState:PlayAnimation("transform_were_pig")
+            inst:RemoveTag("hostile")
 
-		end,
+        end,
 
-		onexit = function(inst)
+        onexit = function(inst)
             inst.AnimState:SetBuild(inst.build)
-		end,
+        end,
 
         events=
         {
             EventHandler("animover", function(inst)
-				inst.components.sleeper:GoToSleep(15+math.random()*4)
-				inst.sg:GoToState("sleeping")
-			end ),
+                inst.components.sleeper:GoToSleep(15+math.random()*4)
+                inst.sg:GoToState("sleeping")
+            end ),
         },
     },
 
@@ -518,25 +518,25 @@ local states =
 
 CommonStates.AddWalkStates(states,
 {
-	walktimeline = {
-		TimeEvent(0*FRAMES, function(inst)
+    walktimeline = {
+        TimeEvent(0*FRAMES, function(inst)
                 PlayFootstep(inst)
                 if inst:HasTag("guard") then
                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/iron_armor/foley")
                 end
             end ),
-		TimeEvent(12*FRAMES, function(inst)
+        TimeEvent(12*FRAMES, function(inst)
                 PlayFootstep(inst)
                 if inst:HasTag("guard") then
                    inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/iron_armor/foley")
                 end
             end),
-	},
+    },
 })
 CommonStates.AddRunStates(states,
 {
-	runtimeline = {
-		TimeEvent(0*FRAMES, PlayFootstep ),
+    runtimeline = {
+        TimeEvent(0*FRAMES, PlayFootstep ),
 
         TimeEvent(3*FRAMES, function(inst)
                 -- PlayFootstep(inst)
@@ -545,7 +545,7 @@ CommonStates.AddRunStates(states,
                 end
             end),
 
-		TimeEvent(10*FRAMES, PlayFootstep),
+        TimeEvent(10*FRAMES, PlayFootstep),
 
         TimeEvent(11*FRAMES, function(inst)
             -- PlayFootstep(inst)
@@ -558,15 +558,15 @@ CommonStates.AddRunStates(states,
                 inst.components.locomotor:ResetPath()
             end
         end),
-	},
+    },
 })
 
 CommonStates.AddSleepStates(states,
 {
-	sleeptimeline =
-	{
-		TimeEvent(35*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/pig/sleep") end ),
-	},
+    sleeptimeline =
+    {
+        TimeEvent(35*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/pig/sleep") end ),
+    },
 })
 
 CommonStates.AddSimpleState(states,"refuse", "pig_reject", {"busy"})

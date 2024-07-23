@@ -117,9 +117,9 @@ end
 local function FindFoodAction(inst)
     local target = nil
 
-	if inst.sg:HasStateTag("busy") or inst:HasTag("shopkeep") then
-		return
-	end
+    if inst.sg:HasStateTag("busy") or inst:HasTag("shopkeep") then
+        return
+    end
 
     if inst.components.inventory and inst.components.eater then
         target = inst.components.inventory:FindItem(function(item) return inst.components.eater:CanEat(item) end)
@@ -130,16 +130,16 @@ local function FindFoodAction(inst)
 
     if not target and (not time_since_eat or time_since_eat > TUNING.PIG_MIN_POOP_PERIOD*2) then
         target = FindEntity(inst, SEE_FOOD_DIST, function(item)
-				if item:GetTimeAlive() < 8 then return false end
-				if item.prefab == "mandrake" then return false end
-				if noveggie and item.components.edible and item.components.edible.foodtype ~= "MEAT" then
-					return false
-				end
-				if not item:IsOnValidGround() then
-					return false
-				end
-				return inst.components.eater:CanEat(item)
-			end)
+                if item:GetTimeAlive() < 8 then return false end
+                if item.prefab == "mandrake" then return false end
+                if noveggie and item.components.edible and item.components.edible.foodtype ~= "MEAT" then
+                    return false
+                end
+                if not item:IsOnValidGround() then
+                    return false
+                end
+                return inst.components.eater:CanEat(item)
+            end)
     end
     if target then
         return BufferedAction(inst, target, ACTIONS.EAT)
@@ -504,8 +504,8 @@ function CityPigBrain:OnStart()
         PriorityNode(
         {
             WhileNode(GoToIdleStateWrap(self.inst, function() return self.inst.components.health.takingfiredamage end), "OnFire",
-				ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_PANICFIRE),
-					Panic(self.inst))),
+                ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_PANICFIRE),
+                    Panic(self.inst))),
 
             -- FOLLOWER CODE
             ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FOLLOWWILSON),

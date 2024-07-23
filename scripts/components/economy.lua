@@ -73,7 +73,7 @@ function Economy:GetDelay(traderprefab, city, inst)
 end
 
 -- function Economy:GetNumberWanted(traderprefab,city)
--- 	return self.cities[city][traderprefab].num - self.cities[city][traderprefab].current
+--     return self.cities[city][traderprefab].num - self.cities[city][traderprefab].current
 -- end
 
 function Economy:MakeTrade(traderprefab, city, inst)

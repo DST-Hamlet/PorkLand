@@ -448,20 +448,20 @@ ACTIONS.SIT_AT_DESK.fn = function(act)
 end
 
 ACTIONS.FIX.fn = function(act)
-	if act.target then
-		local target = act.target
-		local numworks = 1
-		target.components.workable:WorkedBy(act.doer, numworks)
-	--	return target:fix(act.doer)
-	end
+    if act.target then
+        local target = act.target
+        local numworks = 1
+        target.components.workable:WorkedBy(act.doer, numworks)
+    --    return target:fix(act.doer)
+    end
 end
 
 ACTIONS.STOCK.fn = function(act)
-	if act.target then
-		act.target.restock(act.target,true)
-		act.doer.changestock = nil
-		return true
-	end
+    if act.target then
+        act.target.restock(act.target,true)
+        act.doer.changestock = nil
+        return true
+    end
 end
 
 
