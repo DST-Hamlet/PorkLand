@@ -16,6 +16,7 @@ local Shearable = Class(function(self, inst)
 
     self.product = nil
     self.onshearfn = nil
+    self.canshearfn = nil
 
     inst:DoTaskInTime(0, function()
         if inst.components.hackable then
@@ -27,6 +28,10 @@ nil,
 {
     canshaveable = onshaveable
 })
+
+function Shearable:OnRemoveFromEntity()
+    self.inst:RemoveTag("shear_workable")
+end
 
 function Shearable:SetUp(product, product_num, drop)
     self.canshaveable = true
@@ -78,16 +83,16 @@ function Shearable:Shear(shearer, numworks)
     end
 end
 
-function Shearable:OnRemoveFromEntity()
-    self.inst:RemoveTag("shear_workable")
-end
-
 function Shearable:CanShear()
-    return self.canshaveable
+    return self.canshaveable and (not self.canshearfn or self.canshearfn(self.inst))
 end
 
 function Shearable:SetOnShearFn(fn)
     self.onshearfn = fn
+end
+
+function Shearable:SetCanShearFn(fn)
+    self.canshearfn = fn
 end
 
 return Shearable

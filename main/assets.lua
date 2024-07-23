@@ -158,6 +158,8 @@ PrefabFiles = {
     "pig_guard_tower",
     "pig_shop",
     "city_lamp",
+    "hedge",
+    "clippings",
     "reconstruction_project",
 }
 
