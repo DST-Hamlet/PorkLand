@@ -368,10 +368,10 @@ ACTIONS.WEIGHDOWN.fn = function(act)
     if act.target == nil then
         return false
     end
-	local pos = Vector3(act.target.Transform:GetWorldPosition())
-	if act.doer.components.inventory then
-		return act.doer.components.inventory:DropItem(act.invobject, false, false, pos)
-	end
+    local pos = Vector3(act.target.Transform:GetWorldPosition())
+    if act.doer.components.inventory then
+        return act.doer.components.inventory:DropItem(act.invobject, false, false, pos)
+    end
 end
 
 ACTIONS.PUTONSHELF.fn = function(act)

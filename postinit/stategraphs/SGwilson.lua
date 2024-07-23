@@ -1946,8 +1946,8 @@ local states = {
                     inst.sg.statemem.action.target.components.workable:CanBeWorked() and
                     inst.sg.statemem.action.target:IsActionValid(inst.sg.statemem.action.action) and
                     CanEntitySeeTarget(inst, inst.sg.statemem.action.target) then
-					--No fast-forward when repeat initiated on server
-					inst.sg.statemem.action.options.no_predict_fastforward = true
+                    --No fast-forward when repeat initiated on server
+                    inst.sg.statemem.action.options.no_predict_fastforward = true
                     inst:ClearBufferedAction()
                     inst:PushBufferedAction(inst.sg.statemem.action)
                 end
@@ -2109,7 +2109,7 @@ local states = {
         onenter = function(inst)
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("hit")
-			CommonHandlers.UpdateHitRecoveryDelay(inst)
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
         end,
 
         events =

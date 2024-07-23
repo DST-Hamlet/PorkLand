@@ -42,10 +42,10 @@ local function CanMouseThrough(inst)
 end
 
 local RotatingBillboard = Class(function(self, inst)
-	self.inst = inst
-	self.rotation_net = net_float(inst.GUID, "rotatingbillboard.rotation_net", "rotatingbillboard.rotation_net")
-	self.rotation = 0
-	self.always_on_updating = false
+    self.inst = inst
+    self.rotation_net = net_float(inst.GUID, "rotatingbillboard.rotation_net", "rotatingbillboard.rotation_net")
+    self.rotation = 0
+    self.always_on_updating = false
     self.setted = false -- 用于判断是否在实体生成后至少传入一次立体参数
 
     self.animdata = {}
@@ -71,11 +71,11 @@ local RotatingBillboard = Class(function(self, inst)
 
         inst:ListenForEvent("hauntdirty", function() self:UpdateMaskHaunt_client() end)
     end
-	if not TheNet:IsDedicated() then
-	    self.mask = Mask(inst)
-	    inst.CanMouseThrough = CanMouseThrough
-	    inst:DoTaskInTime(0, function() self:SyncMaskAnimation() end)
-	end
+    if not TheNet:IsDedicated() then
+        self.mask = Mask(inst)
+        inst.CanMouseThrough = CanMouseThrough
+        inst:DoTaskInTime(0, function() self:SyncMaskAnimation() end)
+    end
 
     if not TheNet:GetIsServer() then
         inst:ListenForEvent("rotatingbillboard.rotation_net", function()
@@ -114,17 +114,17 @@ function RotatingBillboard:GetMask()
 end
 
 function RotatingBillboard:SyncMaskAnimation()
-	if self.mask then
-		local data = self.animdata or {}
-		local anim = self.mask.AnimState
-		anim:SetBank(data.bank or self.inst.AnimState:GetCurrentBankName())
-		anim:SetBuild(data.build or self.inst.AnimState:GetBuild())
-		local animation = data.animation or select(2, self.inst.AnimState:GetHistoryData())
-		if not anim:IsCurrentAnimation(animation) then
-			anim:PlayAnimation(animation)
-		end
+    if self.mask then
+        local data = self.animdata or {}
+        local anim = self.mask.AnimState
+        anim:SetBank(data.bank or self.inst.AnimState:GetCurrentBankName())
+        anim:SetBuild(data.build or self.inst.AnimState:GetBuild())
+        local animation = data.animation or select(2, self.inst.AnimState:GetHistoryData())
+        if not anim:IsCurrentAnimation(animation) then
+            anim:PlayAnimation(animation)
+        end
         self._maskdirty:push()
-	end
+    end
 end
 
 function RotatingBillboard:GetRotation()
@@ -132,10 +132,10 @@ function RotatingBillboard:GetRotation()
 end
 
 function RotatingBillboard:SetRotation(rot)
-	self.rotation = rot
+    self.rotation = rot
     self.setted = true
-	local x, _, z = self.inst.Transform:GetWorldPosition()
-	self.inst.AnimState:SetFloatParams(x, z, rot* DEGREES + PI)
+    local x, _, z = self.inst.Transform:GetWorldPosition()
+    self.inst.AnimState:SetFloatParams(x, z, rot* DEGREES + PI)
 
     self:UpdateLightPosition()
 end
@@ -150,7 +150,7 @@ function RotatingBillboard:UpdateLightPosition()
 end
 
 function RotatingBillboard:SetMaskHaunt(active) -- 只在主机执行
-	if self.mask then
+    if self.mask then
         self.mask.AnimState:SetHaunted(active)
     end
     self._haunt_active:set(active)
@@ -175,11 +175,11 @@ function RotatingBillboard:OnLoad(data)
 end
 
 function RotatingBillboard:OnUpdate()
-	local rot = self.inst.Transform:GetRotation()
-	if rot ~= 0 or not self.setted then
-		self:SetRotation(rot)
-		self.inst.Transform:SetRotation(0) -- set transform rot to 0 to make anim align to xz
-	end
+    local rot = self.inst.Transform:GetRotation()
+    if rot ~= 0 or not self.setted then
+        self:SetRotation(rot)
+        self.inst.Transform:SetRotation(0) -- set transform rot to 0 to make anim align to xz
+    end
 
     if self.mask then
         if self.inst:HasTag("NOCLICK") then
@@ -190,12 +190,12 @@ function RotatingBillboard:OnUpdate()
     end
 
     if self.inst:IsAsleep() then
-		self.inst:StopUpdatingComponent(self)
-	end
+        self.inst:StopUpdatingComponent(self)
+    end
 
-	-- if not self.always_on_updating then -- 关于tag的网络通讯存在延迟等问题，因此使得每帧都需要检测tag
-		-- self.inst:StopUpdatingComponent(self)
-	-- end
+    -- if not self.always_on_updating then -- 关于tag的网络通讯存在延迟等问题，因此使得每帧都需要检测tag
+        -- self.inst:StopUpdatingComponent(self)
+    -- end
 end
 
 function RotatingBillboard:OnEntityWake()
