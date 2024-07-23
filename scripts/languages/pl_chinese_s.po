@@ -80,6 +80,21 @@ msgctxt "STRINGS.ACTIONS.TAKEFROMSHELF"
 msgid "Retrieve"
 msgstr "取下"
 
+#. STRINGS.BANDIT_TALK_FIGHT.1
+msgctxt "STRINGS.BANDIT_TALK_FIGHT.1"
+msgid "HAVE AT THEE"
+msgstr "交出钱来！"
+
+#. STRINGS.BANDIT_TALK_FIGHT.2
+msgctxt "STRINGS.BANDIT_TALK_FIGHT.2"
+msgid "TAKE FROM THE RICH!"
+msgstr "打劫！"
+
+#. STRINGS.BANDIT_TALK_FIGHT.3
+msgctxt "STRINGS.BANDIT_TALK_FIGHT.3"
+msgid "ENGUARD!"
+msgstr "防护！"
+
 #. STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.REPAIRBOAT.GENERIC
 msgctxt "STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "She's floating just fine right now."
@@ -244,6 +259,11 @@ msgstr "耶。这玩意有点让人毛骨悚然。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick those!"
 msgstr "我应该采摘它们！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BALLPEIN_HAMMER"
+msgid "It's a tiny little hammer."
+msgstr "这是一把小锤子。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BASEFAN"
@@ -805,10 +825,20 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKEBONESOUP"
 msgid "The best way to serve snake."
 msgstr "利用蛇的最好方法。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKEOIL"
+msgid "The label says \"Jay's Wondrous Snake Oil!\""
+msgstr "标签上写着“杰伊的神奇蛇油！”"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKESKIN"
 msgid "I'm intrigued AND repelled."
 msgstr "我感觉既好奇又厌恶。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Agh! Stay away!"
+msgstr "啊！你走开！"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SNAKE_BONE"
@@ -840,6 +870,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "It's a little puny."
 msgstr "它微不足道。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TOUCAN"
+msgid "I tou-can't catch him."
+msgstr "我可抓不住它。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TREE_PILLAR"
 msgid "It totally blocks out the sun."
@@ -869,6 +904,11 @@ msgstr "一个吸血鬼的巢穴。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.VENUS_STALK"
 msgid "I bet I could find a use for it."
 msgstr "我敢打赌我一定能找到它的用处。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.VINE"
+msgid "Maybe I can tie stuff up with this."
+msgstr "也许我可以用这个来捆东西。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.WALKINGSTICK"
@@ -1044,6 +1084,11 @@ msgstr "外骨骼盔甲保护我的内骨骼。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A cluster of edible spring vegetables!"
 msgstr "一簇可食用的春季蔬菜！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BALLPEIN_HAMMER"
+msgid "A diminutive tool, ideal for negotiating the removal of gems."
+msgstr "一个小巧的工具，很适合用来拆卸宝石。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BASEFAN"
@@ -1585,10 +1630,20 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKEBONESOUP"
 msgid "The skeletal remains should add some calcium to my diet."
 msgstr "这些骨骼应该能让我的饮食里面增添一些钙元素。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKEOIL"
+msgid "Ah, I made a fortune selling such concoctions in my youth."
+msgstr "哈，我在年轻时靠卖蛇油发了大财。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKESKIN"
 msgid "The repellant properties of this skin are inspiring!"
 msgstr "这种蛇皮的防水性令人振奋！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "What a wonderfully vicious reptile! I would like its skin."
+msgstr "多么邪恶的爬行动物啊！我想扒了它的皮。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SNAKE_BONE"
@@ -1620,6 +1675,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "Displays the same rapid growth rate of the other trees here."
 msgstr "它展示了与这里其他树一样的生长速度。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TOUCAN"
+msgid "How does its unusually tiny neck support such a bulbous beak."
+msgstr "它非常短小的脖子支撑着这球状的鸟喙。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TREE_PILLAR"
 msgid "The circumference of this tree's trunk is unusually large."
@@ -1649,6 +1709,11 @@ msgstr "根据这洞穴的深度和臭味，我断定这个洞里住着蝙蝠。
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VENUS_STALK"
 msgid "Theoretically edible, but undoubtedly I'll find a better use for it."
 msgstr "从理论上讲可以食用，但是我必定会找到更好的用途的。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VINE"
+msgid "A ropey branch. I can think of nine good uses for it already."
+msgstr "一条绳索状的枝杈。我已经想好它的九个好用处了。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.WALKINGSTICK"
@@ -1829,6 +1894,11 @@ msgstr "呃。完全是用恶心的爬虫做的。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food!"
 msgstr "食物！"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Aw... it's a cute little hammer."
+msgstr "嗯...一把可爱的小锤子。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BASEFAN"
@@ -2375,10 +2445,20 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKEBONESOUP"
 msgid "Nice warm soup."
 msgstr "好喝的热汤。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKEOIL"
+msgid "I wasn't born yesterday."
+msgstr "我没那么容易上当。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKESKIN"
 msgid "I could make a scaly bikini out of this!"
 msgstr "我能用这个做套鳞片图案的比基尼！"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Leave me alone!"
+msgstr "给我走开！"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SNAKE_BONE"
@@ -2410,6 +2490,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "One day you'll be big and strong."
 msgstr "总有一天你会变得又大又壮。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TOUCAN"
+msgid "You could catch waves with a nose like that!"
+msgstr "有那样的大嘴就可以划水追浪了！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TREE_PILLAR"
 msgid "What a great tree!"
@@ -2439,6 +2524,11 @@ msgstr "那个地方让我感觉不舒服。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.VENUS_STALK"
 msgid "Gnarly."
 msgstr "尖尖的。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.VINE"
+msgid "Good for lashing stuff down."
+msgstr "适合用来捆东西。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.WALKINGSTICK"
@@ -2609,6 +2699,11 @@ msgstr "我们真的要穿它吗？"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Miss Winona might like it, pick some."
 msgstr "薇诺娜小姐可能会喜欢，摘一点吧。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BALLPEIN_HAMMER"
+msgid "I can now take those cute little figurines home."
+msgstr "我现在能把那些可爱的小雕像带回家了。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.BASEFAN"
@@ -3135,10 +3230,20 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKEBONESOUP"
 msgid "What a spicy spine."
 msgstr "希望你们没什么“脊”口。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKEOIL"
+msgid "Come on, even a child wouldn't fall for this..."
+msgstr "得了吧，小孩子都不会上当的..."
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKESKIN"
 msgid "It's slick. We might be able to use this for something."
 msgstr "很光滑。我们也许可以用这个做点什么。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "This snake is highly venomous, so you must seek medical attention immediately!"
+msgstr "这种蛇有剧毒，一定要及时就医！"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SNAKE_BONE"
@@ -3170,6 +3275,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "We are still a long way from a cozy squirrel home."
 msgstr "离一个温馨的松鼠之家还差点时日。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TOUCAN"
+msgid "Okay, that one's definitely unfamiliar."
+msgstr "可以，这个肯定不常见。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TREE_PILLAR"
 msgid "Such a big tree, even werebeaver can't eat it all."
@@ -3199,6 +3309,11 @@ msgstr "吸血鬼的巢穴。"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.VENUS_STALK"
 msgid "I think that's their stomach are."
 msgstr "我想这里面是它们的胃。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.VINE"
+msgid "Foraged vines, perfect for kindling and crafting."
+msgstr "采摘的藤蔓，非常适合生火和制作。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.WALKINGSTICK"
@@ -3369,6 +3484,11 @@ msgstr "闻起来不怎么样，但没时间讲究那么多了。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should pick some and go back to eat."
 msgstr "我应该摘点回去吃。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Delicate work. Delicate is my specialty."
+msgstr "精细活，我最擅长精细活。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.BASEFAN"
@@ -3895,10 +4015,20 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKEBONESOUP"
 msgid "I doubt it's worth my time."
 msgstr "我怀疑这是否值得我浪费时间。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKEOIL"
+msgid "So many timelines and I've still not figured out what this is for."
+msgstr "走过这么多时间线，我还是搞不懂它有什么用。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKESKIN"
 msgid "Whew... It's not attached to a snake this time around."
 msgstr "唷...现在它没有附在蛇身上。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Snake. Why did it have to be snake?"
+msgstr "蛇，为什么非得是蛇呢？"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SNAKE_BONE"
@@ -3930,6 +4060,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "I should come back after it grows up."
 msgstr "我应该在它长大之后再来。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TOUCAN"
+msgid "What's it supposed to do with a beak so large?"
+msgstr "它这么长的嘴到底有什么用？"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TREE_PILLAR"
 msgid "Thankfully it doesn't completely block the sun."
@@ -3959,6 +4094,11 @@ msgstr "进去那里是自讨不快。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.VENUS_STALK"
 msgid "It's still too early to be usable."
 msgstr "离能用还早着呢。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.VINE"
+msgid "It's a vine. I won't take the time to get sentimental about it."
+msgstr "只是一根藤蔓。我才不会花时间去多愁善感。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.WALKINGSTICK"
@@ -4134,6 +4274,11 @@ msgstr "它还留有一股虫子味儿。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should snatch those up."
 msgstr "我应该把那些捡起来。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BALLPEIN_HAMMER"
+msgid "This will tenderize jewels out of statues."
+msgstr "这可以把雕像上的珠宝敲下来。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BASEFAN"
@@ -4655,10 +4800,20 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKEBONESOUP"
 msgid "A slight variation on a cherished recipe."
 msgstr "在珍馐食谱上有了一些小小的改动。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKEOIL"
+msgid "Why can't you be olive oil?"
+msgstr "为什么你不是橄榄油？"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKESKIN"
 msgid "Would make a haute apron."
 msgstr "可以做成一条高档围裙。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Yeeouch. I'll keep away from him."
+msgstr "我的妈呀。我要离他远远的。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SNAKE_BONE"
@@ -4690,6 +4845,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "Keep growing. You'll get there."
 msgstr "接着长吧。你会有个好归属的。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TOUCAN"
+msgid "You are all nose."
+msgstr "鸟啊，你全是嘴。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TREE_PILLAR"
 msgid "What a marvel."
@@ -4719,6 +4879,11 @@ msgstr "我觉得，这不是最好的藏身之处。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.VENUS_STALK"
 msgid "Possesses a flavor reminiscent of artichoke hearts."
 msgstr "它的味道让我想到了洋蓟心。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.VINE"
+msgid "Not a single grape on it..."
+msgstr "上面一颗葡萄也没有..."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.WALKINGSTICK"
@@ -4894,6 +5059,11 @@ msgstr "这是用我敌人的鳞片制成的盔甲。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Useless vegetation!"
 msgstr "没用的蔬菜！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BALLPEIN_HAMMER"
+msgid "This hammer is only good for bashing tiny things."
+msgstr "这把锤子只适合敲小东西。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BASEFAN"
@@ -5415,10 +5585,20 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKEBONESOUP"
 msgid "A meaty broth!"
 msgstr "多肉的肉汤！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKEOIL"
+msgid "What powerful properties does this bestow?"
+msgstr "这东西有什么强大的功效？"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKESKIN"
 msgid "A snake has slipped its skin. With a little help..."
 msgstr "蛇脱掉了它的皮，不过是在外力的作用下..."
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "You shall not escape my wrath!"
+msgstr "你不能逃脱我的愤怒！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SNAKE_BONE"
@@ -5450,6 +5630,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "A tree still weak with youth."
 msgstr "一棵年幼而弱小的树。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TOUCAN"
+msgid "Fight with me, long-nosed bird! Together we shall dine in Valhalla!"
+msgstr "来跟我一战吧，长嘴鸟！我们应该在英灵殿共进晚餐！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TREE_PILLAR"
 msgid "Surely I stand before Yggdrasil!"
@@ -5479,6 +5664,11 @@ msgstr "黑暗生物潜伏在里面。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VENUS_STALK"
 msgid "The heart of a defeated plant warrior."
 msgstr "战败植物勇士的心脏。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VINE"
+msgid "What can you do for me?"
+msgstr "你对我有什么用？"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.WALKINGSTICK"
@@ -5659,6 +5849,11 @@ msgstr "不是很好看。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Food. Just growing out of the ground."
 msgstr "食物。刚从地里长出来。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BALLPEIN_HAMMER"
+msgid "For more subtler smashing jobs."
+msgstr "用于更精细的破坏工作。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BASEFAN"
@@ -6195,10 +6390,20 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKEBONESOUP"
 msgid "It's a rather weak broth."
 msgstr "这肉汤相当淡。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKEOIL"
+msgid "Perhaps I could turn a profit with this."
+msgstr "也许我能用这个赚钱。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKESKIN"
 msgid "The texture is delectable."
 msgstr "这质感令人愉悦。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "An amphibian after my own heart."
+msgstr "我心中的两栖动物。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SNAKE_BONE"
@@ -6230,6 +6435,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "Oh, just grow already."
 msgstr "哦，已经长起来了。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TOUCAN"
+msgid "Colorful vermin."
+msgstr "色彩斑澜的害鸟。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TREE_PILLAR"
 msgid "This tree is unusually large."
@@ -6259,6 +6469,11 @@ msgstr "这里住着邪恶的东西。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VENUS_STALK"
 msgid "All stalk and no action."
 msgstr "所有的根都不动了。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VINE"
+msgid "It's twisted and gnarled."
+msgstr "盘根错节。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.WALKINGSTICK"
@@ -6434,6 +6649,11 @@ msgstr "为了在必要时能保护我们。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "We should pick those."
 msgstr "我们应该捡走它们。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BALLPEIN_HAMMER"
+msgid "A tiny hammer, like in a dinosaur digging kit."
+msgstr "一把小锤子，就像恐龙挖掘套装里的一样。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BASEFAN"
@@ -6955,10 +7175,20 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKEBONESOUP"
 msgid "Kinda tastes like chicken noodle."
 msgstr "尝起来有点像鸡汤面。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKEOIL"
+msgid "It really works!"
+msgstr "它真的有效！"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKESKIN"
 msgid "The skin of a snake!"
 msgstr "蛇的皮！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Agh! Stay away!"
+msgstr "啊！离远点！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SNAKE_BONE"
@@ -6990,6 +7220,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "It's gonna grow up big and strong."
 msgstr "它会长得又大又壮。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TOUCAN"
+msgid "What a colorful beak you have!"
+msgstr "你的嘴颜色真鲜艳！"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TREE_PILLAR"
 msgid "It's probably super old."
@@ -7019,6 +7254,11 @@ msgstr "很可能那就是那些坏蝙蝠住的地方。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.VENUS_STALK"
 msgid "It came off that mean plant."
 msgstr "它不再是那种卑鄙的植物了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.VINE"
+msgid "This stuff is wild."
+msgstr "这东西是野生的。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.WALKINGSTICK"
@@ -7194,6 +7434,11 @@ msgstr "有些东西死去才能让这件盔甲存在。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "I should rip those out of the ground."
 msgstr "我应该把它们从地里挖出来。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BALLPEIN_HAMMER"
+msgid "For delicate smashing."
+msgstr "用于精细的粉碎。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BASEFAN"
@@ -7720,10 +7965,20 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKEBONESOUP"
 msgid "A broth made from a dead animal."
 msgstr "由死去动物做成的汤。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKEOIL"
+msgid "This fills me with a sense of mistrust."
+msgstr "这东西给我一种不能信任的感觉。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKESKIN"
 msgid "It shed its skin, with my assistance."
 msgstr "它在我的帮助下蜕皮了。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Snakes are everywhere."
+msgstr "蛇真是无处不在。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SNAKE_BONE"
@@ -7755,6 +8010,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "Ah, to be young and full of promise."
 msgstr "啊，年轻而又充满希望。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TOUCAN"
+msgid "It sings a tortured song."
+msgstr "听它唱歌是一种折磨。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TREE_PILLAR"
 msgid "Ancient, and full of life."
@@ -7784,6 +8044,11 @@ msgstr "死神的胃。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.VENUS_STALK"
 msgid "Objects from a dead thing."
 msgstr "死者的遗物。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.VINE"
+msgid "Unruly life."
+msgstr "不守规矩的生命。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.WALKINGSTICK"
@@ -7969,6 +8234,11 @@ msgstr "这件护甲要是有昆虫的翅膀就好了。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "That looks like food! Let's hope it tastes like food."
 msgstr "看起来它像是食物！希望吃起来的时候也像是食物。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BALLPEIN_HAMMER"
+msgid "So cute and convenient."
+msgstr "非常可爱又非常实用。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BASEFAN"
@@ -8505,10 +8775,20 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKEBONESOUP"
 msgid "A good soup made from bad things."
 msgstr "用坏家伙煮的靓汤。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKEOIL"
+msgid "I know it's a fake, but I still just have to try it!"
+msgstr "我知道这是假的，但是我还是想用用看！"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKESKIN"
 msgid "Soft. Supple. Not currently attached to a snake. I like it!"
 msgstr "柔软，灵活，没连在蛇身上。我喜欢！"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Don't want to bother you. I'll just be on my way."
+msgstr "我并不想打扰你。我马上就离开这。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SNAKE_BONE"
@@ -8540,6 +8820,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "It's a baby tree. It'll grow."
 msgstr "一棵树宝宝。它会长大的。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TOUCAN"
+msgid "If you can fly with that big beak, maybe you can handle flying a person."
+msgstr "如果你带着这么一个大喙都能飞起来，也许也能够载人。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TREE_PILLAR"
 msgid "That's a big tree."
@@ -8569,6 +8854,11 @@ msgstr "那些蝙蝠应该去外面飞翔，它们却在洞里面浪费时间。
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.VENUS_STALK"
 msgid "Hope this comes in handy. Otherwise that flytrap died for nothing."
 msgstr "希望它能够派上用场。不然那只捕蝇草就白死了。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.VINE"
+msgid "The kind of thing that would be more useful if I had a bunch of them."
+msgstr "这种东西我如果弄了一堆它才会有大用处。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.WALKINGSTICK"
@@ -8744,6 +9034,11 @@ msgstr "用昆虫外骨骼做的盔甲。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Asparagus. Otherwise known as sparrow grass."
 msgstr "芦笋。又称麻雀草。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BALLPEIN_HAMMER"
+msgid "I could use this for more delicate jobs."
+msgstr "我能用它做一些细活。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BASEFAN"
@@ -9265,10 +9560,20 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKEBONESOUP"
 msgid "A hearty broth."
 msgstr "一顿丰盛的汤。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKEOIL"
+msgid "The usefulness of this substance remains uncertain."
+msgstr "这个东西的作用还不确定。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKESKIN"
 msgid "A layer of snake."
 msgstr "蛇的一层皮。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Looks like a breed of Agkistrodon."
+msgstr "看起来像一种蝮蛇。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SNAKE_BONE"
@@ -9300,6 +9605,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "It's growing nicely."
 msgstr "它长得很好。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TOUCAN"
+msgid "A species known for its brightly colored bill."
+msgstr "因为颜色鲜艳的嘴而闻名的物种。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TREE_PILLAR"
 msgid "Certainly from an old growth tree."
@@ -9329,6 +9639,11 @@ msgstr "哺乳类吸血动物的自然栖息地。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VENUS_STALK"
 msgid "Salvaged from that terrible creature."
 msgstr "从那个可怕的生物中拯救出来。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VINE"
+msgid "A common jungle vine."
+msgstr "一簇普通的丛林藤蔓。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.WALKINGSTICK"
@@ -9510,6 +9825,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "HATH A FUNNY HAT"
 msgstr "它有一顶有趣的帽子"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BALLPEIN_HAMMER"
+msgid "FORTH MINE TEENY SMASHINGS"
+msgstr "用于开采的小粉碎锤"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BASEFAN"
 msgid "BLOW WINDS!"
@@ -9558,7 +9878,7 @@ msgstr "呼！这艘船勉强能在海上漂"
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_ROW
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_ROW"
 msgid "THE ROWS OF OUTRAGEOUS FORTUNE"
-msgstr "驶向那不义之财"
+msgstr "驶向暴虐的命运"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_TORCH
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BOAT_TORCH"
@@ -9748,7 +10068,7 @@ msgstr "啊...它让我消除疲劳"
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.INFUSED_IRON
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.INFUSED_IRON"
 msgid "ALL THAT GLITTERS IS NAUGHT IRON"
-msgstr "这些发光的东西可不是铁"
+msgstr "闪光的必不是废铁"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.IRON"
@@ -9998,7 +10318,7 @@ msgstr "薇尔芭该趁它睡觉时杀掉它"
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SEDIMENTPUDDLE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SEDIMENTPUDDLE"
 msgid "ALL THAT GLITTERS 'TIS GOLD"
-msgstr "是金子总会发光"
+msgstr "闪光的一定都是金子"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SHEARS"
@@ -10030,10 +10350,20 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKEBONESOUP"
 msgid "'TIS WAT'RY NUM NUMS"
 msgstr "这碗汤好美味啊"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKEOIL"
+msgid "NOTHING COMES OF IT"
+msgstr "没有任何用"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKESKIN"
 msgid "IT HEART WAS MIGHTY, IT SKIN ARE WHOLE"
 msgstr "它的心曾经很强大，它的皮现在很完整"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "A BOLTING-HUTCH OF BEASTLINESS"
+msgstr "一个塞满了兽性的小屋"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SNAKE_BONE"
@@ -10065,6 +10395,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "'TIS A CUTE-ETH BABY TREE"
 msgstr "这是一棵可爱的树苗"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TOUCAN"
+msgid "A NOSE BY OTHER NAME 'TIS CALL'DED A BEAK"
+msgstr "鼻子的另一个名字是喙"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TREE_PILLAR"
 msgid "'TIS STRONG TREE"
@@ -10094,6 +10429,11 @@ msgstr "蝙蝠在那里吮吸"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.VENUS_STALK"
 msgid "WILBA CAN'ST MAKETH STUFF WITHAL"
 msgstr "薇尔芭能够用它制作东西"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.VINE"
+msgid "FAST BIND, FAST FIND"
+msgstr "扎的牢, 丢不了"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.WALKINGSTICK"
@@ -10269,6 +10609,11 @@ msgstr "感觉怪恶心的。希望它有用。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha! Found you!"
 msgstr "哈哈！找到你了！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BALLPEIN_HAMMER"
+msgid "This only smashes little bits off things."
+msgstr "这只能破坏一些东西。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BASEFAN"
@@ -10790,10 +11135,20 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKEBONESOUP"
 msgid "Water and bones are better with fire."
 msgstr "火让骨头和水变得更好。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKEOIL"
+msgid "I'm not convinced."
+msgstr "我不相信。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKESKIN"
 msgid "Leathery."
 msgstr "绝对真皮。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Jerks."
+msgstr "混蛋。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SNAKE_BONE"
@@ -10825,6 +11180,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "It's not even worth burning."
 msgstr "烧掉这个东西真浪费我的火。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TOUCAN"
+msgid "I like your nose."
+msgstr "我喜欢你的嘴巴。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TREE_PILLAR"
 msgid "That's a big ol' tree."
@@ -10854,6 +11214,11 @@ msgstr "可怕的家伙们住在这里。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.VENUS_STALK"
 msgid "Looks like kindling."
 msgstr "看起来可以用来点火。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.VINE"
+msgid "I could use this for something. Or I could just burn it."
+msgstr "我可以用这个来做点什么，或干脆烧掉也行。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.WALKINGSTICK"
@@ -11024,6 +11389,11 @@ msgstr "不是很舒适，将就一下吧。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Wholesome green vegetables."
 msgstr "有益健康的绿色蔬菜。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BALLPEIN_HAMMER"
+msgid "So I can take them out without damaging them."
+msgstr "这样我就能在不损坏它们的情况下把它们取出来了。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.BASEFAN"
@@ -11550,10 +11920,20 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKEBONESOUP"
 msgid "To put it bluntly, cooking this way is self-deception."
 msgstr "这样烹饪说白了就是自欺欺人。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKEOIL"
+msgid "Riiight. I don't buy it."
+msgstr "对对对，我才不买这个账。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKESKIN"
 msgid "The texture feels incredible. I got some ideas for this."
 msgstr "这种材质感觉很坚固。我有一些想法。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Stay away from me, you vicious creature!"
+msgstr "邪恶的生物，离我远点！"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SNAKE_BONE"
@@ -11585,6 +11965,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "Our tea supply for next season."
 msgstr "我们下个季节的茶水供应。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TOUCAN"
+msgid "Look at the beak on that one!"
+msgstr "看那只鸟的嘴！"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TREE_PILLAR"
 msgid "It stretches to the end of my field of vision."
@@ -11614,6 +11999,11 @@ msgstr "我感到脊背发凉。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.VENUS_STALK"
 msgid "As far as building materials are concerned, it's a bit too watery."
 msgstr "就建材来说有点太水了。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.VINE"
+msgid "It's strong! I can tie stuff up with this."
+msgstr "真坚固！我能用它来绑东西。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.WALKINGSTICK"
@@ -11789,6 +12179,11 @@ msgstr "沃尔夫冈赢了！"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Haha. Is like tiny vegetable hats."
 msgstr "哈哈，这就像小小的蔬菜帽子一样。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Wolfgang not good with subtlety."
+msgstr "沃尔夫冈和细微处合不来的。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BASEFAN"
@@ -12310,10 +12705,20 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKEBONESOUP"
 msgid "Is food little for Wolfgang."
 msgstr "对沃尔夫冈来说太少了。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKEOIL"
+msgid "Good for shining Wolfgang's muscles!"
+msgstr "适合用来让沃尔夫冈的肌肉变得油亮！"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKESKIN"
 msgid "I will use as bandana."
 msgstr "我会把它当做大围巾使用。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Wolfgang punch you!"
+msgstr "沃尔夫冈要揍你！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SNAKE_BONE"
@@ -12345,6 +12750,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "Is tiny little big tree."
 msgstr "一棵小小的树。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TOUCAN"
+msgid "Bird flees at the sight of Wolfgang."
+msgstr "鸟一看到沃尔夫冈就逃了。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TREE_PILLAR"
 msgid "Mightiest tree!"
@@ -12374,6 +12784,11 @@ msgstr "沃尔夫冈不喜欢暗暗的洞。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VENUS_STALK"
 msgid "Is Plant Men parts."
 msgstr "是植物人的部分。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VINE"
+msgid "For string enemies together."
+msgstr "用来把敌人捆在一起。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.WALKINGSTICK"
@@ -12549,6 +12964,11 @@ msgstr "对昆虫尸体的最佳应用。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "They're like little trees to chop down."
 msgstr "他们就像即将被砍倒的小树一样。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Subtle."
+msgstr "如果你需要温柔的抚摸，就用这个吧。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BASEFAN"
@@ -13070,10 +13490,20 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKEBONESOUP"
 msgid "Nothin' like a nice warm bowl of soup."
 msgstr "没什么东西比得上一碗美味的蛇骨汤。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKEOIL"
+msgid "I'm not falling for this."
+msgstr "我才不会上当。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKESKIN"
 msgid "I'm sure the snake didn't need this."
 msgstr "我相信蛇不需要这个。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Rather keep away from that guy."
+msgstr "最好离那玩意远点。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SNAKE_BONE"
@@ -13105,6 +13535,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "It's better if you let them grow a little."
 msgstr "最好等它们长大点再砍。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TOUCAN"
+msgid "That thing looks shifty."
+msgstr "那家伙看上去诡计多端。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TREE_PILLAR"
 msgid "That's a real beaut."
@@ -13134,6 +13569,11 @@ msgstr "看起来一点也不诱人。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.VENUS_STALK"
 msgid "I got it from that big leafy hoser."
 msgstr "这个东西我是从一个有大叶子的蠢货那里弄的。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.VINE"
+msgid "Sigh. Not a tree."
+msgstr "唉，可惜不是树。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.WALKINGSTICK"
@@ -13309,6 +13749,11 @@ msgstr "是的。用虫子的外皮做的衣服。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Tiny masts growin' from the ground."
 msgstr "地上长出的小菜杆。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Fer diggin' treasures from'tha artifacts."
+msgstr "为了把古遗物中的宝藏凿下来。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BASEFAN"
@@ -13835,10 +14280,20 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKEBONESOUP"
 msgid "A hearty brew, t'be sure."
 msgstr "俺确信，这是一碗丰盛的佳酿。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKEOIL"
+msgid "Me knows a good deal when me sees it."
+msgstr "当俺见到它时俺就知道有一桩好买卖要来了。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKESKIN"
 msgid "Me leathers do need replacin'."
 msgstr "俺的皮外套的确需要更换了。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "'Tis a land and sea serpent."
+msgstr "这是一条海陆两栖的蛇。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SNAKE_BONE"
@@ -13870,6 +14325,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "'e'll be a fine one."
 msgstr "你会长成一棵好树的。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TOUCAN"
+msgid "Yer name wouldn't be Sam, would it?"
+msgstr "你的名字不会就叫山姆吧，说对了？"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TREE_PILLAR"
 msgid "Vessel i'th'makin'."
@@ -13899,6 +14359,11 @@ msgstr "和你一起坠入深渊。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VENUS_STALK"
 msgid "A plant skelerton."
 msgstr "一块植物的骨骼。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VINE"
+msgid "Them's be th'stranglin' kind."
+msgstr "它们是能勒死人的那种藤。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.WALKINGSTICK"
@@ -14074,6 +14539,11 @@ msgstr "嗞嗞的衣服"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Hello there!"
 msgstr "你好！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Teeny Smasher"
+msgstr "小小的敲击器"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BASEFAN"
@@ -14625,10 +15095,20 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKEBONESOUP"
 msgid "Squirmy water"
 msgstr "蠕动家伙水"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKEOIL"
+msgid "Hmmm..."
+msgstr "嗯..."
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKESKIN"
 msgid "Squirmy clothes"
 msgstr "蠕动的家伙的衣服"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Squirmy"
+msgstr "蠕动的"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SNAKE_BONE"
@@ -14660,6 +15140,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "Hello, little friend"
 msgstr "你好，小朋友"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TOUCAN"
+msgid "Big Nose Tweeter"
+msgstr "大鼻子的叽喳"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TREE_PILLAR"
 msgid "Big friend?"
@@ -14689,6 +15174,11 @@ msgstr "真香！"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VENUS_STALK"
 msgid "Mmmm..."
 msgstr "唔..."
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VINE"
+msgid "String branches"
+msgstr "参差披拂"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.WALKINGSTICK"
@@ -14859,6 +15349,11 @@ msgstr "要起鸡皮疙瘩了。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "A spear that grows out of the earth."
 msgstr "从土里长出的长矛。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BALLPEIN_HAMMER"
+msgid "The loot call!"
+msgstr "战利品在召唤！"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.BASEFAN"
@@ -15385,10 +15880,20 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKEBONESOUP"
 msgid "Mortals always dress their food fancy."
 msgstr "凡人们总喜欢把食物打扮得花里胡哨。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKEOIL"
+msgid "Hyuyu, mortals find such fun ways to deceive one another."
+msgstr "哼哼，凡人们欺骗彼此的方法真好玩。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKESKIN"
 msgid "I prefer fur to scales."
 msgstr "比起鳞片我更喜欢毛皮。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Did you bring me an apple?"
+msgstr "你要教唆我吃下禁果吗？"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SNAKE_BONE"
@@ -15420,6 +15925,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "The future is promising."
 msgstr "未来可期。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TOUCAN"
+msgid "Hyuyu, this one's mostly beak."
+msgstr "哼哼，这家伙的大部分是喙。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TREE_PILLAR"
 msgid "Blot out the sun."
@@ -15449,6 +15959,11 @@ msgstr "嗜血生物的领土。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.VENUS_STALK"
 msgid "I guess even mortals wouldn't eat this."
 msgstr "我猜凡人也不会吃这个。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.VINE"
+msgid "It's a fine vine of mine."
+msgstr "弯弯蔓蔓。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.WALKINGSTICK"
@@ -15619,6 +16134,11 @@ msgstr "漂亮又舒服的盔甲。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "Green stick stick, smells good."
 msgstr "绿棒棒，闻起来不错。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BALLPEIN_HAMMER"
+msgid "Pry up everything!"
+msgstr "撬走一切！"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.BASEFAN"
@@ -16145,10 +16665,20 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKEBONESOUP"
 msgid "Grrr, Gross."
 msgstr "格浪，恶心。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKEOIL"
+msgid "Is best medicine!"
+msgstr "包治百病！"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKESKIN"
 msgid "Is a nice skin."
 msgstr "好看的皮肤。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "Snakefolk with beautiful coat."
+msgstr "蛇换上了漂亮的外衣。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SNAKE_BONE"
@@ -16180,6 +16710,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "Baby Tree."
 msgstr "树宝宝。"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TOUCAN"
+msgid "Why it need a beak that big, florp?"
+msgstr "为什么它需要那么大的喙，浮浪噗？"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TREE_PILLAR"
 msgid "A huge tree."
@@ -16209,6 +16744,11 @@ msgstr "闻起来臭臭的。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.VENUS_STALK"
 msgid "Many water in it."
 msgstr "里面好像有很多水。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.VINE"
+msgid "Thick sticks!"
+msgstr "大棒棒！"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.WALKINGSTICK"
@@ -16384,6 +16924,11 @@ msgstr "生物计算机外壳"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ASPARAGUS_PLANTED"
 msgid "SMALL TREES OF ENERGY"
 msgstr "能量小树苗"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BALLPEIN_HAMMER
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BALLPEIN_HAMMER"
+msgid "DELICATE SMASHING ACCESSORY ACQUIRED"
+msgstr "粉碎配件已获取"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.BASEFAN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BASEFAN"
@@ -16905,10 +17450,20 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKEBONESOUP"
 msgid "A BREW MADE FROM TWO OF MY ENEMIES"
 msgstr "用我的两个敌人做成的肉汤"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKEOIL
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKEOIL"
+msgid "THIS HAS NO BENEFICIAL PROPERTIES WHATSOEVER"
+msgstr "这东西没有任何有益属性"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKESKIN"
 msgid "THE SNAKE LOST ITS SKIN. HA HA"
 msgstr "蛇丢掉了它的皮。哈哈"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKE_AMPHIBIOUS"
+msgid "YOU ARE MY ENEMY"
+msgstr "你是我的敌人"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKE_BONE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SNAKE_BONE"
@@ -16940,6 +17495,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TEATREE_NUT_SAPLING"
 msgid "HAHA. IT IS SO WEAK"
 msgstr "哈哈。它真弱小"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.TOUCAN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TOUCAN"
+msgid "YOU HAVE AN INORDINATE AMOUNT OF NOSE"
+msgstr "你的嘴巴不是一般的大"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TREE_PILLAR"
 msgid "IT IS LARGE AND MADE OF WOOD"
@@ -16970,6 +17530,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.VENUS_STALK"
 msgid "BIOLOGICAL STICK"
 msgstr "棒状生物组织"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.VINE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.VINE"
+msgid "UNRULY NATURE"
+msgstr "凌乱的大自然"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.WALKINGSTICK
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WALKINGSTICK"
 msgid "ACCELERATOR"
@@ -16984,6 +17549,4466 @@ msgstr "肉块生物病毒"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.WEEVOLE_CARAPACE"
 msgid "THEY HAVE BEEN DEBUGGED"
 msgstr "他们已经被排除了"
+
+#. STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT.1"
+msgid "ME LIGHT A FIERY TORCH"
+msgstr "我点燃了一个火炬"
+
+#. STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT.2"
+msgid "TORCHES, TORCHES!"
+msgstr "火炬，火炬！"
+
+#. STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT.3"
+msgid "CURFEW'S RUNGETH"
+msgstr "执行宵禁"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER.DEFAULT.1"
+msgid "HAS'T THEE RETURNED?!"
+msgstr "你还敢回来？！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER.DEFAULT.2"
+msgid "CUR! VILLAIN!"
+msgstr "无赖！恶棍！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER.DEFAULT.3"
+msgid "OUT! FLEE!"
+msgstr "出去！逃犯！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER.DEFAULT.4"
+msgid "YOU A SEA OF TROUBLES!"
+msgstr "你这戕害天性的蟊贼！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_FIGHT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_FIGHT.DEFAULT.1"
+msgid "I STAB AT THEE!"
+msgstr "我刺死你！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_FIGHT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_FIGHT.DEFAULT.2"
+msgid "HAVE AT THEE!"
+msgstr "接我一戟！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_FIGHT.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_FIGHT.DEFAULT.3"
+msgid "AWAY, CUR! AWAY!"
+msgstr "走开，无赖！走开！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_GOHOME.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_GOHOME.DEFAULT.1"
+msgid "STAND HO!"
+msgstr "立正！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_GOHOME.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_GOHOME.DEFAULT.2"
+msgid "WHOFORE IS THAT?"
+msgstr "那是谁？"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_GOHOME.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_GOHOME.DEFAULT.3"
+msgid "WHATFORE THAT?"
+msgstr "那是什么？"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_GOHOME.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_GOHOME.DEFAULT.4"
+msgid "WHAT HO!"
+msgstr "嘿！那是什么？"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_LOOKATWILSON.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_LOOKATWILSON.DEFAULT.1"
+msgid "MAKE NOT TROUBLES"
+msgstr "别惹祸"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_LOOKATWILSON.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_LOOKATWILSON.DEFAULT.2"
+msgid "WHOFORE GO'ST THERE?"
+msgstr "谁在那里？"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_LOOKATWILSON.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_LOOKATWILSON.DEFAULT.3"
+msgid "TRESPASS NOT!"
+msgstr "禁止非法入侵！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_RESCUE.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_RESCUE.DEFAULT.1"
+msgid "I HELPEST THOU!"
+msgstr "我来帮助你！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_RESCUE.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_RESCUE.DEFAULT.2"
+msgid "O! THOU STUCK’DED"
+msgstr "哦！你被困住了"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_RESCUE.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_RESCUE.DEFAULT.3"
+msgid "NEED’ST HELP?"
+msgstr "需要帮助吗？"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_TORCH.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_TORCH.DEFAULT.1"
+msgid "BURN BRIGHT THE TORCHES!"
+msgstr "明亮地燃烧！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_TORCH.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_TORCH.DEFAULT.2"
+msgid "LIGHT THE TORCHES!"
+msgstr "点燃火炬！"
+
+#. STRINGS.CITY_PIG_GUARD_TALK_TORCH.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_GUARD_TALK_TORCH.DEFAULT.3"
+msgid "BURN, TORCHES, CLEAR AND BRIGHT!"
+msgstr "燃烧吧，火炬，清晰又明亮！"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.1"
+msgid "IS'T THE TIME O' CLOSINGS"
+msgstr "打烊时间到"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.2"
+msgid "COME BACK ON THE 'MORROW"
+msgstr "明天再来"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.3"
+msgid "ME CLOSETH SHOP"
+msgstr "我要关店了"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.4
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.4"
+msgid "ADIEU, ADIEU, REMEMBERS ME"
+msgstr "再会，再会，要记得我啊"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.5
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_CLOSING.5"
+msgid "ME EXEUNT"
+msgstr "我要下场了"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_DONT_HAVE.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_DONT_HAVE.1"
+msgid "BRINGETH THEE ITEM"
+msgstr "带好你的东西"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_DONT_HAVE.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_DONT_HAVE.2"
+msgid "THOU NEED'ST ITEM"
+msgstr "你需要的是物品"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_DONT_HAVE.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_DONT_HAVE.3"
+msgid "OINCS NOT SUFFICETH, ONLY ITEM"
+msgstr "钱不能给你，要有物品"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.DEFAULT.1"
+msgid "WHAT SAY THOUST?"
+msgstr "你需要什么？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.DEFAULT.2"
+msgid "THOU LOOK'ST FOR THINGS?"
+msgstr "你在找什么东西吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.DEFAULT.3"
+msgid "I HATH THEE WARES"
+msgstr "我有你要的货物"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.DEFAULT.4"
+msgid "BUY'ST THOU STUFFS TODAY?"
+msgstr "今天要给自己买点东西吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_banker.1"
+msgid "HAST THOU JEWELS?"
+msgstr "你有宝石吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_banker.2"
+msgid "ME GIVETH OINCS FOR JEWELS"
+msgstr "我为宝石付钱"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_banker.3"
+msgid "ME LIKETH SPARKLY JEWELS"
+msgstr "我喜欢闪闪发光的宝石"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_beautician.1"
+msgid "LOOKETH AT MINE MEDICINES"
+msgstr "看看我的药"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_beautician.2"
+msgid "THOU NEED'ST MEDICINES?"
+msgstr "你要买药吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_beautician.3"
+msgid "NEED'ST THINGS FOR BOO-BOOS?"
+msgstr "要买后悔药吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_collector.1"
+msgid "HAST THOU STRANGE THINGS?"
+msgstr "你有奇怪的东西吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_collector.2"
+msgid "I DEALETH WITH THINGS O' STRANGENESS"
+msgstr "我收购奇怪的东西"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_collector.3"
+msgid "WANTS THOU STRANGE THINGS?"
+msgstr "你想要奇怪的东西吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_erudite.1"
+msgid "NEEDETH MAGIC THINGS?"
+msgstr "需要魔法道具？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_erudite.2"
+msgid "I SELL MAGIC THINGS?"
+msgstr "我卖魔法道具？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_erudite.3"
+msgid "I SELLEST THINGS BAD DREAMS ARE MADE ON"
+msgstr "我出售噩梦制品"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.1"
+msgid "THOU NEEDS OF SEEDS?"
+msgstr "你需要种子吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.2"
+msgid "NEEDETH STUFFS FOR PLANTINGS?"
+msgstr "需要种植工具吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.3"
+msgid "HAST THOU PLOP?"
+msgstr "你有便便吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.4
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.4"
+msgid "HAST THOU PETALS?"
+msgstr "你有花瓣吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hatmaker.1"
+msgid "HATS? NEED'ST THOU HATS?"
+msgstr "帽子？你要帽子吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hatmaker.2"
+msgid "NEEDST THING TO COVER THINE HEAD?"
+msgstr "需要能盖住你头部的东西吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hatmaker.3"
+msgid "BUY'ST THY HATS FROM ME"
+msgstr "从我这买顶帽子"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.1"
+msgid "IN NEED O' WEAPONS"
+msgstr "收购武器"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.2"
+msgid "I SELL'ST SMASHY THINGS"
+msgstr "我出售狩猎用品"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.3"
+msgid "NEEDST THOU MURDERING THINGS?"
+msgstr "你需要狩猎用品吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mayor_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mayor_shopkeep.1"
+msgid "NEED'ST THOU A HOUSE?"
+msgstr "你需要一座房子吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mayor_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mayor_shopkeep.2"
+msgid "NEED'ST GUARD?"
+msgstr "你需要安保服务吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mayor_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mayor_shopkeep.3"
+msgid "WANT'ST THOU TO DWELL'ETH HERE?"
+msgstr "你想在这里定居吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mechanic.1"
+msgid "HAS'T THOU THINGS TO FIX?"
+msgstr "你有要修理的东西吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mechanic.2"
+msgid "I FIXETH"
+msgstr "我会修理"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mechanic.3"
+msgid "I FIXETH BROKEN THING"
+msgstr "我修理坏掉的东西"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mechanic.4
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_mechanic.4"
+msgid "YOU NEEDETH FIXINGS?"
+msgstr "你需要修理吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_miner.1"
+msgid "SELLETH ROCKS?"
+msgstr "卖石头吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_miner.2"
+msgid "I LIKETH ROCKS"
+msgstr "我喜欢石头"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_miner.3"
+msgid "SELLEST ME THINE ROCKS"
+msgstr "把你的石头卖给我"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_professor.1"
+msgid "IN NEED'ST OF OLD THINGS?"
+msgstr "需要一些古董吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_professor.2"
+msgid "I LIKETH RELICS FROM YON TEMPLES"
+msgstr "我喜欢那些神庙里的圣遗物"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_professor.3"
+msgid "NEED'ST THOU RELICS?"
+msgstr "你需要圣遗物吗？"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_NOT_ENOUGH.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_NOT_ENOUGH.1"
+msgid "THY LACKETH THE OINCS"
+msgstr "你的钱不够"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_NOT_ENOUGH.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_NOT_ENOUGH.2"
+msgid "GET THEE MORE OINCS"
+msgstr "去得到更多的钱"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_ROBBED.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_ROBBED.1"
+msgid "WHOFORE HAST DONE THIS?!"
+msgstr "这是谁做的?!"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_ROBBED.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_ROBBED.2"
+msgid "ROBBED! ROBBED! ROBBED!"
+msgstr "抢劫!抢劫!抢劫!"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_ROBBED.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_ROBBED.3"
+msgid "OH THE PIGANITY!"
+msgstr "太不猪道了!"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_ROBBED.4
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_ROBBED.4"
+msgid "REVENGE!"
+msgstr "复仇！"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_SALE.1
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_SALE.1"
+msgid "MY THANKS"
+msgstr "谢谢你"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_SALE.2
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_SALE.2"
+msgid "A FINE EXCHANGE"
+msgstr "一次愉快的交易"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_SALE.3
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_SALE.3"
+msgid "MANY THANKS"
+msgstr "谢谢惠顾"
+
+#. STRINGS.CITY_PIG_SHOPKEEPER_SALE.4
+msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_SALE.4"
+msgid "'TIS GOOD STUFF"
+msgstr "这可是好东西"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD.DEFAULT.1"
+msgid "THOU SAVETH US!"
+msgstr "你拯救了我们！"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD.DEFAULT.2"
+msgid "TAKEST THOU REWARD!"
+msgstr "请接受你的奖赏！"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD.DEFAULT.3"
+msgid "THOU IS'T GOOD!"
+msgstr "你真好！"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD.DEFAULT.4"
+msgid "APORKALYPSE 'TIS DONE!"
+msgstr "大灾变消失了！"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.1"
+msgid "THE APORKALYPSE APPROACH-ETH"
+msgstr "大灾变要来了"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.2"
+msgid "WOE, DESTRUCTION, RUIN, AND DECAY!"
+msgstr "灾难，毁灭，丧亡和没落！"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.3"
+msgid "DOOMSDAY IS NEAR!"
+msgstr "末日临近！"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.4"
+msgid "SOMETHING WICKED THIS WAY COMES"
+msgstr "某些邪恶的东西在逼近"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.5
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.5"
+msgid "PORKTENTOUS FIGURES!"
+msgstr "不祥之兆显现了！"
+
+#. STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.6
+msgctxt "STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON.DEFAULT.6"
+msgid "FEAR AND PORKTENT!"
+msgstr "恐惧和凶兆！"
+
+#. STRINGS.CITY_PIG_TALK_ATTEMPT_TRADE.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_ATTEMPT_TRADE.DEFAULT.1"
+msgid "WHAT HATH THEE?"
+msgstr "你有什么？"
+
+#. STRINGS.CITY_PIG_TALK_ATTEMPT_TRADE.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_ATTEMPT_TRADE.DEFAULT.2"
+msgid "THY WANTS'T TRADES?"
+msgstr "你想要交易吗？"
+
+#. STRINGS.CITY_PIG_TALK_ATTEMPT_TRADE.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_ATTEMPT_TRADE.DEFAULT.3"
+msgid "MAKE'ST THEE DEALS?"
+msgstr "要交易吗？"
+
+#. STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.1"
+msgid "WARE FOR ART THOU"
+msgstr "给你的东西"
+
+#. STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.2"
+msgid "THY HUMBL'ST PIGGY SERVANT"
+msgstr "您最谦卑的猪猪仆人"
+
+#. STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.3"
+msgid "REMEMBER'ST ME"
+msgstr "记住我"
+
+#. STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.4"
+msgid "GIFT FOR'ST YOU"
+msgstr "给你的礼物"
+
+#. STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.5
+msgctxt "STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.5"
+msgid "WITH MINE HUMBLEST GRATITUDE"
+msgstr "以我最谦卑的感激之情"
+
+#. STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.6
+msgctxt "STRINGS.CITY_PIG_TALK_DAILYGIFT.DEFAULT.6"
+msgid "TAKEST THEE MINE GIFT, YOUR MAJESTY"
+msgstr "带上我的礼物，殿下"
+
+#. STRINGS.CITY_PIG_TALK_EAT_MEAT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_EAT_MEAT.DEFAULT.1"
+msgid "NOM-ETH NOM-ETH, NOM-ETH"
+msgstr "好吃，好吃，真好吃"
+
+#. STRINGS.CITY_PIG_TALK_EAT_MEAT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_EAT_MEAT.DEFAULT.2"
+msgid "O FOOD! O SLOP!"
+msgstr "啊，食物！啊，美食！"
+
+#. STRINGS.CITY_PIG_TALK_EAT_MEAT.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_EAT_MEAT.DEFAULT.3"
+msgid "MUNCH'D, AND MUNCH'D, AND MUNCH'D"
+msgstr "更多，更多，更多"
+
+#. STRINGS.CITY_PIG_TALK_EXTINGUISH.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_EXTINGUISH.DEFAULT.1"
+msgid "OUT OUT, BRIEF FIRES!"
+msgstr "天干物燥，小心火烛！"
+
+#. STRINGS.CITY_PIG_TALK_EXTINGUISH.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_EXTINGUISH.DEFAULT.2"
+msgid "FIRE IS'T BAD!"
+msgstr "火是不好的！"
+
+#. STRINGS.CITY_PIG_TALK_EXTINGUISH.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_EXTINGUISH.DEFAULT.3"
+msgid "YON FIRE BE OUT!"
+msgstr "把那边的火灭了！"
+
+#. STRINGS.CITY_PIG_TALK_FIESTA.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIESTA.DEFAULT.1"
+msgid "HUZZAH! HOORAY"
+msgstr "哇哇！万岁"
+
+#. STRINGS.CITY_PIG_TALK_FIESTA.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIESTA.DEFAULT.2"
+msgid "'TIS SWINE FIESTA DAYS!"
+msgstr "今天是猪庆典日！"
+
+#. STRINGS.CITY_PIG_TALK_FIESTA.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIESTA.DEFAULT.3"
+msgid "BAD GUYS GO-ETH AWAY"
+msgstr "坏家伙们已经走了"
+
+#. STRINGS.CITY_PIG_TALK_FIESTA.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_FIESTA.DEFAULT.4"
+msgid "PIGGIES COME OUT-ETH TO PLAY!"
+msgstr "猪儿出来狂欢吧！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.DEFAULT.1"
+msgid "AVAST!"
+msgstr "停下！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.DEFAULT.2"
+msgid "TO THINE DEATH!"
+msgstr "去死吧！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.DEFAULT.3"
+msgid "RAAAWR!"
+msgstr "嗷嗷嗷！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.DEFAULT.4"
+msgid "I BITE MY HOOF AT THEE!"
+msgstr "我唾弃你！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_banker.1"
+msgid "THY NOT MINE FRIEND!"
+msgstr "你不是我的朋友！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_banker.2"
+msgid "I CHOP-ETH THEE!"
+msgstr "我要砍了你！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_banker.3"
+msgid "DIE! DIE!"
+msgstr "去死！去死！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_beautician.1"
+msgid "DIE-EST NOW!"
+msgstr "现在去死！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_beautician.2"
+msgid "ME KILL THEE"
+msgstr "我杀了你"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_beautician.3"
+msgid "TO THY DEATH!"
+msgstr "去死吧！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_collector.1"
+msgid "THOU ART DONE FOR!"
+msgstr "你完蛋了！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_collector.2"
+msgid "GET THINE HENCE!"
+msgstr "你快走开！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_collector.3"
+msgid "THY BAD UNPIG!"
+msgstr "你这个坏非猪！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_erudite.1"
+msgid "VILLAIN UNPIG! BAD!"
+msgstr "恶棍非猪！真坏！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_erudite.2"
+msgid "THINE ART THE BADEST!"
+msgstr "你是最坏的！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_erudite.3"
+msgid "AWAY FROM ME!"
+msgstr "离我远点！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_farmer.1"
+msgid "GET THEE BACK!!"
+msgstr "给我回来！！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_farmer.2"
+msgid "I BURY THINE!"
+msgstr "我要活埋你！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_farmer.3"
+msgid "I GET THEE!"
+msgstr "我抓到你了！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_florist.1"
+msgid "THOU ART THE WORST!"
+msgstr "你是最坏的！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_florist.2"
+msgid "GO AWAY-EST!"
+msgstr "走开！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_florist.3"
+msgid "THOU ART A VILLAIN!"
+msgstr "你是个恶棍！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_hatmaker.1"
+msgid "YOU BE UNDONE!"
+msgstr "你真烦人！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_hatmaker.2"
+msgid "I SAY THEE OUT!!"
+msgstr "我让你出去！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_hatmaker.3"
+msgid "YOU MOST VEXING!"
+msgstr "你真烦人！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_hunter.1"
+msgid "I ATTACK-ETH THEE!"
+msgstr "接我这招！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_hunter.2"
+msgid "GET THOU AWAY FROM HERE!"
+msgstr "你从这里走开！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_hunter.3"
+msgid "YOU MOST NOT WELCOME!"
+msgstr "你是最不受欢迎的！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_mayor.1"
+msgid "KILL!"
+msgstr "杀啊！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_mayor.2"
+msgid "DIE THOU!"
+msgstr "去死！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_mayor.3"
+msgid "ME MOST VEXED!"
+msgstr "我不高兴！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_mayor.4
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_mayor.4"
+msgid "DESTROY!"
+msgstr "毁灭！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_mechanic.1"
+msgid "I HAMMER THEE!"
+msgstr "我锤死你！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_mechanic.2"
+msgid "HIT, HAMMER! HIT!"
+msgstr "打，用锤子打！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_mechanic.3"
+msgid "I DESTROY THEE!"
+msgstr "我会毁灭你！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_miner.1"
+msgid "I CRUSHETH YOU!"
+msgstr "我要把你碎尸万段！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_miner.2"
+msgid "THY DYING!"
+msgstr "你要死了！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_miner.3"
+msgid "THOU DONE IT NOW!"
+msgstr "你完蛋了！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_professor.1"
+msgid "BE DONE-EST WITH THEE!"
+msgstr "我和你没什么好说的了！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_professor.2"
+msgid "WILL NOT YOU GO?!!"
+msgstr "你怎么还不走？！！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_professor.3"
+msgid "OUT, DAMNED UNPIG!"
+msgstr "滚，该死的非猪！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_shopkeep.1"
+msgid "I GET THEE!"
+msgstr "我抓到你了！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_shopkeep.2"
+msgid "THOU NOT NICE!"
+msgstr "你不好！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_shopkeep.3"
+msgid "I GET THEE!"
+msgstr "我抓到你了！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_storeowner.1"
+msgid "GETEST THEE OUT!"
+msgstr "你出去！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_storeowner.2"
+msgid "THY NOT BE WELCOME!"
+msgstr "这里不欢迎你！"
+
+#. STRINGS.CITY_PIG_TALK_FIGHT.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIGHT.pigman_storeowner.3"
+msgid "GET OFF MINE PROPERTY!"
+msgstr "别碰我的财产！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.DEFAULT.1"
+msgid "ONCE MORE UNTO THE LIGHT!"
+msgstr "重新回到光明之中！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.DEFAULT.2"
+msgid "WHEREFORE ART LIGHT?"
+msgstr "光去哪了？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.DEFAULT.3"
+msgid "WHEREFORE IS'T SUN?"
+msgstr "太阳去哪了？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.DEFAULT.4"
+msgid "FREINDS, PIGGIES, UNPIGGIES, LEND ME YOUR LIGHT"
+msgstr "朋友们，猪人们，非猪们，借点光给我吧！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_banker.1"
+msgid "BRINGETH BACK THE LIGHT!"
+msgstr "把光带回来！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_banker.2"
+msgid "THIS WAY DARKNESS LIES!"
+msgstr "这里好黑！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_beautician.1"
+msgid "I AM TOO MUCH I' THE DARK"
+msgstr "我好怕黑"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_beautician.2"
+msgid "'TIS DARK!"
+msgstr "好黑！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_beautician.3"
+msgid "WHEREFORE ART THE LIGHT?"
+msgstr "光去哪了？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_collector.1"
+msgid "WHEREFORE ART THE LIGHT?!"
+msgstr "光去哪了？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_collector.2"
+msgid "I NEED'ST LIGHT!"
+msgstr "我需要光！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_erudite.1"
+msgid "'TIS TOO MUCH DARKNESS!"
+msgstr "太黑了！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_erudite.2"
+msgid "DARKNESS IS AFOOTS!"
+msgstr "黑暗近在眼前！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_farmer.1"
+msgid "WHEREFORE IS'T SUN?"
+msgstr "太阳去哪了？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_farmer.2"
+msgid "NEED'ST LIGHT!"
+msgstr "要有光！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_florist.1"
+msgid "I AM TOO MUCH I' THE DARK!"
+msgstr "我好怕黑！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_florist.2"
+msgid "THIS WAY DARKNESS LIES!"
+msgstr "这里好黑！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_hatmaker.1"
+msgid "THIS WAY DARKNESS LIES!"
+msgstr "这里好黑！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_hatmaker.2"
+msgid "I AM TOO MUCH I' THE DARK!"
+msgstr "我好怕黑！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_hunter.1"
+msgid "BRING'ST BACK THE LIGHT!"
+msgstr "把光带回来！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_hunter.2"
+msgid "IS'T DARK! IS'T SCARY!"
+msgstr "好黑！好可怕！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_mayor.1"
+msgid "FRIENDS, PIGGIES, UNPIGGIES, LEND ME YOUR LIGHT!"
+msgstr "朋友们，猪人们，非猪们，借点光给我吧！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_mayor.2"
+msgid "WHEREFORE ART MINE LIGHT?"
+msgstr "我的光去哪了？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_mechanic.1"
+msgid "IS'T DARK! IS'T SCARY!"
+msgstr "好黑！好可怕！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_mechanic.2"
+msgid "THAT WAY MADNESS LIES!"
+msgstr "疯狂的谎言！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_miner.1"
+msgid "FINDETH LIGHT!"
+msgstr "快找光！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_miner.2"
+msgid "IS'T TOO MUCH SCARY"
+msgstr "这太恐怖了"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_professor.1"
+msgid "THIS WAY DARKNESS LIES!"
+msgstr "这里好黑！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_professor.2"
+msgid "DARKNESS 'TIS NAUGHT GOOD!"
+msgstr "黑暗没有一点好处！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_royalguard.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_royalguard.1"
+msgid "TAKE NAUGHT THE LIGHT!"
+msgstr "没有光了！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_royalguard.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_royalguard.2"
+msgid "TAKE ARMS!"
+msgstr "拿好武器！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_royalguard.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_royalguard.3"
+msgid "ONCE MORE UNTO THE LIGHT!"
+msgstr "再次迎来光明！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_shopkeep.1"
+msgid "PROTECTETH ME!"
+msgstr "保护我！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_shopkeep.2"
+msgid "TAKETH NAUGHT THE LIGHT!"
+msgstr "没有光了！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_storeowner.1"
+msgid "ONCE MORE UNTO THE LIGHT!"
+msgstr "再次迎来光明！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_LIGHT.pigman_storeowner.2"
+msgid "WHEREFORE ART THOU, LIGHT?"
+msgstr "光，你在哪？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.DEFAULT.1"
+msgid "IS'T MEAT!"
+msgstr "是肉！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.DEFAULT.2"
+msgid "'TIS MEAT I SEE BEFORE ME?!"
+msgstr "我看到了肉，就在我面前？！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.DEFAULT.3"
+msgid "I EAT'TH!"
+msgstr "我吃东西！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.DEFAULT.4"
+msgid "FOOD TIME IS NIGH!"
+msgstr "用餐时间到！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_banker.1"
+msgid "THE FOOD'S THE THING"
+msgstr "食物很重要"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_banker.2"
+msgid "ZOUNDS, FOR MINE FAT PAUNCH!"
+msgstr "该死，为了我的大肥肚子！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_banker.3"
+msgid "WHENCE COMES THIS FOOD?!"
+msgstr "这种食物是从何处而来的？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_beautician.1"
+msgid "MEAT BE THE FOOD OF LOVE"
+msgstr "肉是我最爱的食物"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_beautician.2"
+msgid "I HATH STOMACH FOR IT"
+msgstr "我准备好让它进入我的胃了"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_beautician.3"
+msgid "VERILY I EAT"
+msgstr "我确实要吃了"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_collector.1"
+msgid "'TIS SLOP! 'TIS FOOD!"
+msgstr "是粥！开饭了！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_collector.2"
+msgid "WHENCE COME THIS FOOD?"
+msgstr "这种食物是从哪儿来的？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_collector.3"
+msgid "PRITHEE, LET ME EAT!"
+msgstr "求求你，让我吃吧！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_erudite.1"
+msgid "AY, THERE'S THE GRUB!"
+msgstr "哎，那里有一条蛆！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_erudite.2"
+msgid "INTO THE BOWELS OF MY BELLY"
+msgstr "到我的肚子里来"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_erudite.3"
+msgid "MEAT GOETH IN MINE BELLY!"
+msgstr "肉快进到我肚子里来！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_farmer.1"
+msgid "MMMM...MEAT MOST FOUL!"
+msgstr "呣...肉最香了！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_farmer.2"
+msgid "FOR MINE FAT PAUNCH!"
+msgstr "为了我的大肥肚子！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_farmer.3"
+msgid "BELLY BURN, AND MEAT BUBBLE"
+msgstr "腹部烧伤了，变成了肉泡状"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_florist.1"
+msgid "MARRY, 'TIS MEAT!"
+msgstr "肉！真让我开心。"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_florist.2"
+msgid "ALACK THE DAY,'TIS MEAT!"
+msgstr "今日之殇源于肉！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hatmaker.1"
+msgid "MINE BELLY NOT PROTEST TOO MUCH"
+msgstr "我的肚子没有表示抗议"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hatmaker.2"
+msgid "SIRRAH! MY FOOD!"
+msgstr "小子！我的食物！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hatmaker.3"
+msgid "NOT SALAD DAYS!"
+msgstr "这些日子里没有色拉！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hunter.1"
+msgid "A POUND OF FLESH!"
+msgstr "一磅肉！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hunter.2"
+msgid "'TIS GOOD, 'TIS GOOD INDEED!"
+msgstr "它很好，它确实很好！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_hunter.3"
+msgid "MUCH ADO ABOUT MEAT!"
+msgstr "关于肉的麻烦太多了！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mayor.1"
+msgid "'TIS A DISH FIT FOR PIGS"
+msgstr "这是适合猪人的菜"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mayor.2"
+msgid "GIVE'ST MAYOR MINE DUE"
+msgstr "交给你的镇长，这是我应得的"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mechanic.1"
+msgid "THIS MEAT I SEE BEFORE ME?"
+msgstr "我看到了肉，就在我面前？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mechanic.2"
+msgid "WELL SERVED"
+msgstr "提供服务"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_mechanic.3"
+msgid "SOMETHING YUMMY THIS WAY COMES"
+msgstr "那边有好吃的东西"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_miner.1"
+msgid "MEAT BE THE SOUL OF FOOD"
+msgstr "肉是食物的灵魂"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_miner.2"
+msgid "WOULD IT WERE IN MY BELLY"
+msgstr "它将会进到我的肚子里"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_miner.3"
+msgid "MARRY THOUGH I LOVETH FOODS!"
+msgstr "快乐啊，我爱食物！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_professor.1"
+msgid "MMM... MEAT THRUST UPON ME"
+msgstr "唔唔唔……肉是我的动力"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_professor.2"
+msgid "WHYFORE ART THERE GROUND MEAT?"
+msgstr "地上为什么会有肉？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard.1"
+msgid "EAT OR NOT TO EAT, THERE BE NO QUESTION"
+msgstr "吃还是不吃，这不是个问题"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard.2"
+msgid "MEATS FOR'ST PIGGY"
+msgstr "肉类是为你的小猪准备的。"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard_2.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard_2.1"
+msgid "TO MINE OWN BELLY BE TRUE!"
+msgstr "我的肚子才是真实的！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard_2.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard_2.2"
+msgid "'TIS MEAT! 'TIS FOOD!"
+msgstr "是肉！是食物！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard_2.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_royalguard_2.3"
+msgid "HUZZA!"
+msgstr "万岁！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_shopkeep.1"
+msgid "TO MINE OWN BELLY BE TRUE"
+msgstr "我的肚子是真实的"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_shopkeep.2"
+msgid "ALLS WELL THAT ENDS IN BELLY"
+msgstr "一切都将在肚子里结束"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_storeowner.1"
+msgid "'TIS EATS!"
+msgstr "吃！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_storeowner.2"
+msgid "I EATS!"
+msgstr "我吃东西！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MEAT.pigman_storeowner.3"
+msgid "SOMETHING YUMMY THIS WAY COMES"
+msgstr "那边有好吃的东西"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.DEFAULT.1"
+msgid "'TIS SHINY THING!"
+msgstr "闪闪发光的东西！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.DEFAULT.2"
+msgid "ALL THAT GLITTERS IS GOLD!"
+msgstr "闪光的一定都是金子！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.DEFAULT.3"
+msgid "YEA, THO I HAST SHINY THING!"
+msgstr "是的，我弄到了闪闪发光的东西！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.DEFAULT.4"
+msgid "I GO FORTH AND BUY'ST THINGS"
+msgstr "我出去买东西"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_banker.1"
+msgid "A POUND OF OINC!"
+msgstr "一枚呼噜币！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_banker.2"
+msgid "MARRY, 'TIS COIN!"
+msgstr "钱，呼噜币！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_banker.3"
+msgid "'TIS LOST OINC FOR MINE PURSE"
+msgstr "这枚呼噜币是从我钱包里丢的"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_beautician.1"
+msgid "OINC HAST PRETTYNESS!"
+msgstr "美丽的呼噜币！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_beautician.2"
+msgid "'TIS PRETTIES"
+msgstr "真漂亮"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_beautician.3"
+msgid "OINC HATH WORTH"
+msgstr "呼噜币有价值"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_collector.1"
+msgid "YEA, THO I HAST SHINY THING!"
+msgstr "是的，我找到了闪闪发光的东西！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_collector.2"
+msgid "MINE OWN PURSE BE TRUE"
+msgstr "我的钱包才是真实的"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_erudite.1"
+msgid "CATCHETH MINE EYE"
+msgstr "它吸引了我的眼球"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_erudite.2"
+msgid "HAST VALUE"
+msgstr "有价值的东西"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_erudite.3"
+msgid "'TIS SHININESS"
+msgstr "闪闪发光"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_farmer.1"
+msgid "MOST EXCELLENT FANCY"
+msgstr "最棒的幻想"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_farmer.2"
+msgid "'TIS FOR HONEST DAYS WORK"
+msgstr "这是对一整天朴实劳作的补偿"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_farmer.3"
+msgid "WHATFORE ART THIS?"
+msgstr "这是什么？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_florist.1"
+msgid "HATH LOVELINESS"
+msgstr "真可爱"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_florist.2"
+msgid "'TIS PRETTY!"
+msgstr "太漂亮了！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_florist.3"
+msgid "ALL THAT GLITTERS IS GOLD"
+msgstr "闪光的一定都是金子"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hatmaker.1"
+msgid "ME LIKETH!"
+msgstr "我喜欢！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hatmaker.2"
+msgid "PUT MONEY IN MINE PURSE"
+msgstr "把钱装进我的钱包"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hatmaker.3"
+msgid "WHATFORE ART THIS?"
+msgstr "这是什么？"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hunter.1"
+msgid "'TIS MINE!"
+msgstr "它是我的！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_hunter.2"
+msgid "FORTUNE SMILE 'PON ME!"
+msgstr "幸运之神在对我微笑！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mayor.1"
+msgid "MINE-ETH!"
+msgstr "我——的！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mayor.2"
+msgid "IS'T BUY'ST VOTES"
+msgstr "这可以用来买到选票"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mayor.3"
+msgid "GIVE MAYOR MINE DUE"
+msgstr "交给镇长，这是我应得的"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mechanic.1"
+msgid "LIKEST OINCS!"
+msgstr "喜欢呼噜币！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mechanic.2"
+msgid "PUT'ST OINC IN MINE POCKET"
+msgstr "把这呼噜币放进我的口袋"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_mechanic.3"
+msgid "CAN'ST ME BUY'ST STUFFS"
+msgstr "你能让我买些东西"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_miner.1"
+msgid "MINE'ST!"
+msgstr "你是我的！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_miner.2"
+msgid "A POUND OF OINC"
+msgstr "一枚呼噜币"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_miner.3"
+msgid "'TIS MINE"
+msgstr "它是我的"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_professor.1"
+msgid "OUTRAGEOUS FORTUNE!"
+msgstr "意外之财！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_professor.2"
+msgid "WANT MONEYS"
+msgstr "想要钱"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_professor.3"
+msgid "CATCHETH MINE EYE"
+msgstr "它吸引了我的眼球"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard.1"
+msgid "OUTRAGEOUS FORTUNE!"
+msgstr "意外之财！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard.2"
+msgid "ME KEEP'TH"
+msgstr "我要留着这个"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard.3"
+msgid "PUT MONEY IN MINE PURSE!"
+msgstr "把钱装进我的钱包！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard_2.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard_2.1"
+msgid "MINE OINC BE TRUE!"
+msgstr "我的呼噜币才是真实的！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard_2.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_royalguard_2.2"
+msgid "FORTUNE SMILE 'PON ME"
+msgstr "幸运之神在对我微笑"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_shopkeep.1"
+msgid "IT SUFFICETH"
+msgstr "这足够了"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_shopkeep.2"
+msgid "ME TAKETH!"
+msgstr "我要拿到它！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_shopkeep.3"
+msgid "SOMETHING SHINY THIS WAY COMES"
+msgstr "那边有闪着光的东西"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_storeowner.1"
+msgid "MARRY!"
+msgstr "真快乐！"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_storeowner.2"
+msgid "ME LIKETH"
+msgstr "我喜欢"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_storeowner.3"
+msgid "WILL SCREW THIS TO STICKING-PLACE"
+msgstr "把小气鬼粘在地上"
+
+#. STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_storeowner.4
+msgctxt "STRINGS.CITY_PIG_TALK_FIND_MONEY.pigman_storeowner.4"
+msgid "ME TAKE'ST!"
+msgstr "我要拿到你！"
+
+#. STRINGS.CITY_PIG_TALK_FIX.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.DEFAULT.1"
+msgid "ALL FIX'D!"
+msgstr "修好所有的损坏！"
+
+#. STRINGS.CITY_PIG_TALK_FIX.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.DEFAULT.2"
+msgid "I DO'ST GOOD FIXINGS!"
+msgstr "我要把你好好修理一下！"
+
+#. STRINGS.CITY_PIG_TALK_FIX.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.pigman_beautician.1"
+msgid "I FIXETH NOT"
+msgstr "我不擅长修理"
+
+#. STRINGS.CITY_PIG_TALK_FIX.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.pigman_beautician.2"
+msgid "GET THEE TO A MECHANIC"
+msgstr "你得去找个修理工"
+
+#. STRINGS.CITY_PIG_TALK_FIX.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.pigman_mayor.1"
+msgid "MAYOR SHALL NOT FIXETH"
+msgstr "镇长不会修理"
+
+#. STRINGS.CITY_PIG_TALK_FIX.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.pigman_mayor.2"
+msgid "I FIXETH NOT"
+msgstr "我不擅长修理"
+
+#. STRINGS.CITY_PIG_TALK_FIX.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.pigman_mayor.3"
+msgid "GET THEE TO A MECHANIC"
+msgstr "你得去找个机械师"
+
+#. STRINGS.CITY_PIG_TALK_FIX.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.pigman_mechanic.1"
+msgid "I MAKETH NICE NICE"
+msgstr "我做得非常非常棒"
+
+#. STRINGS.CITY_PIG_TALK_FIX.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.pigman_mechanic.2"
+msgid "BUILD, BUILD"
+msgstr "建造，建造"
+
+#. STRINGS.CITY_PIG_TALK_FIX.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_FIX.pigman_mechanic.3"
+msgid "I USETH MINE HAMMER GOOD"
+msgstr "我很擅长使用我的锤子"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.DEFAULT.1"
+msgid "ROGUE!"
+msgstr "恶徒！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.DEFAULT.2"
+msgid "PEASANT SLAVE!"
+msgstr "粗俗的奴才！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.DEFAULT.3"
+msgid "O HORRIBLE!"
+msgstr "哦，讨厌"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.DEFAULT.4"
+msgid "O STRANGE"
+msgstr "哦，陌生人"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_banker.1"
+msgid "ADIEU, ADIEU!"
+msgstr "再见，再见！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_banker.2"
+msgid "REMEMBER ME!"
+msgstr "别忘了我！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_banker.3"
+msgid "FIE ON THEE!"
+msgstr "呸，你不该存在！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_beautician.1"
+msgid "O HORRIBLE!"
+msgstr "哦，讨厌！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_beautician.2"
+msgid "O STRANGE!"
+msgstr "哦，陌生人！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_beautician.3"
+msgid "MOST HORRIBLE"
+msgstr "极其令人厌恶"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_collector.1"
+msgid "I AM TOO MUCH ON THE RUN!"
+msgstr "我跑得太多了！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_collector.2"
+msgid "FLEE, FIE, FO, FUM!"
+msgstr "呸，我要逃跑，真该死！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_collector.3"
+msgid "SOMETHING ROTTEN!"
+msgstr "烂东西！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_erudite.1"
+msgid "A PLAGUE ON YOUR HOUSES!"
+msgstr "瘟疫会降临到你的家宅！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_erudite.2"
+msgid "THOU'RT MAD!"
+msgstr "你一定是疯了！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_erudite.3"
+msgid "AWAY FROM ME!"
+msgstr "离我远点！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_farmer.1"
+msgid "THOU LILY-LIVERED UNPIG!"
+msgstr "你这懦弱的非猪！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_farmer.2"
+msgid "LIE LOW!"
+msgstr "卧倒！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_farmer.3"
+msgid "O MISERY!"
+msgstr "哦，好痛！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_florist.1"
+msgid "S'WOUNDS!"
+msgstr "受伤了！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_florist.2"
+msgid "ZOUNDS!"
+msgstr "呸！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_florist.3"
+msgid "COWARD!"
+msgstr "懦夫！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_hatmaker.1"
+msgid "RUINOUS!"
+msgstr "毁灭！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_hatmaker.2"
+msgid "HARK! NO MORE!"
+msgstr "听好了！没有更多的了！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_hatmaker.3"
+msgid "CUR!"
+msgstr "坏蛋！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_hunter.1"
+msgid "TAKETH THEM AWAY!"
+msgstr "把他们赶走！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_hunter.2"
+msgid "FIE ON THEE!"
+msgstr "呸，你不该存在！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_hunter.3"
+msgid "TOIL AND TROUBLE!"
+msgstr "劳苦愁烦！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_mayor.1"
+msgid "THAT WAY MADNESS LIES!"
+msgstr "这种方式真是愚蠢！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_mayor.2"
+msgid "NO MORE OF THAT!"
+msgstr "别再这样了！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_mayor.3"
+msgid "CRY MERCY"
+msgstr "哀哉悲悯"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_mechanic.1"
+msgid "MOST NOTABLE COWARD"
+msgstr "显眼的懦夫"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_mechanic.2"
+msgid "FLEE!"
+msgstr "逃！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_mechanic.3"
+msgid "AVAST!"
+msgstr "停下！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_miner.1"
+msgid "IF YOU PRICK US, WE BLEED!"
+msgstr "要是你刺伤我们，我们就会流血！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_miner.2"
+msgid "'TIS RUIN'D!"
+msgstr "它毁了！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_miner.3"
+msgid "A POX ON'T!"
+msgstr "该得天花的！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_professor.1"
+msgid "MOST FOUL!"
+msgstr "太污秽了！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_professor.2"
+msgid "NOT FAIR!"
+msgstr "这不公平！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_professor.3"
+msgid "LEAVE ME!"
+msgstr "远离我！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard.1"
+msgid "KILL, KILL, KILL, KILL"
+msgstr "杀，杀，杀，杀"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard.2"
+msgid "FARE THEE WELL!"
+msgstr "再见！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard.3"
+msgid "ONCE MORE UNTO THE BREACH!"
+msgstr "再一次面对破坏者！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard_2.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard_2.1"
+msgid "TO ARMS!"
+msgstr "武装起来！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard_2.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard_2.2"
+msgid "I DASH YOU TO PIECES!"
+msgstr "我要把你剁成碎块！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard_2.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_royalguard_2.3"
+msgid "THE GAME IS UP!"
+msgstr "游戏结束！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_shopkeep.1"
+msgid "FOUL!"
+msgstr "污秽！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_shopkeep.2"
+msgid "LESS THAN FAIR!"
+msgstr "这不太公平！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_shopkeep.3"
+msgid "WOE IS ME!"
+msgstr "我要遭殃了！"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_storeowner.1"
+msgid "PIGS BE UP IN ARMS"
+msgstr "猪们要拿起武器了"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_storeowner.2"
+msgid "'TIS A WILD PIG CHASE"
+msgstr "这是一场对猪的野蛮追杀"
+
+#. STRINGS.CITY_PIG_TALK_FLEE.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_FLEE.pigman_storeowner.3"
+msgid "WHAT A PIECE OF WORK!"
+msgstr "多么了不起的杰作！"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.1"
+msgid "WHEREFORE ART THINE BAD GUYS?"
+msgstr "坏蛋在哪？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.2"
+msgid "ONCE MORE UNTO THE BREACH, UNPIG"
+msgstr "再一次面对破坏者，非猪"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.3"
+msgid "TAKE ARMS!"
+msgstr "拿起武器！"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.4"
+msgid "KILL, KILL, KILL!"
+msgstr "杀，杀，杀！"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.5
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.5"
+msgid "CRY HAVOC!"
+msgstr "发出警报！"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.6
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.DEFAULT.6"
+msgid "THE GAME IS AFOOTS!"
+msgstr "步步为营！"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_banker.1"
+msgid "ALL THAT GLITTERS WORTH OINCS"
+msgstr "闪光的一定都值钱"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_banker.2"
+msgid "HAST THOU JEWELS?"
+msgstr "你有珠宝？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_banker.3"
+msgid "I BUY THOU JEWELS"
+msgstr "我要买你的珠宝"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_beautician.1"
+msgid "VISIT MINE SHOP FOR MEDICINES"
+msgstr "请参观我的药品店"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_beautician.2"
+msgid "SELLEST ME THINE FEATHERS"
+msgstr "把你的羽毛卖给我吧"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_beautician.3"
+msgid "I HATH NEED OF FEATHERS"
+msgstr "我需要羽毛"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_collector.1"
+msgid "WANT'ST STRANGE THINGS?"
+msgstr "你需要奇怪的东西？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_collector.2"
+msgid "SELLEST ME THINE WEIRDITIES"
+msgstr "把你手上稀奇古怪的东西卖给我吧"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_erudite.1"
+msgid "NEED'ST THOU MAGICS? COME'ST TO MINE SHOP"
+msgstr "你需要魔法吗？请到我的店里来"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_erudite.2"
+msgid "NEED'ST FUEL O' NIGHTMARES"
+msgstr "我需要噩梦燃料"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_erudite.3"
+msgid "HAST THOU FUEL O' NIGHTMARES?"
+msgstr "你有噩梦燃料吗？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_farmer.1"
+msgid "I HAST FARM"
+msgstr "我是个农民"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_farmer.2"
+msgid "SELLETH ME THINE GRASS"
+msgstr "把你的草卖给我吧"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_farmer.3"
+msgid "STEALEST NAUGHT MINE STUFFS"
+msgstr "我的东西不可能被偷走"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_florist.1"
+msgid "VISIT MINE SHOP FOR SEEDS"
+msgstr "请参观我的种子店"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_florist.2"
+msgid "HAST THOU PLOP TO SELL?"
+msgstr "你有便便卖么？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_florist.3"
+msgid "HAST THOU PETALS?"
+msgstr "你有花瓣么？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hatmaker.1"
+msgid "NEED'ST HATS? VISIT YON HAT SHOP"
+msgstr "你需要帽子吗？请参观那边的帽店"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hatmaker.2"
+msgid "HAST THOU SILK?"
+msgstr "你有蜘蛛丝吗？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hatmaker.3"
+msgid "THY HEAD IS'T IN NEED O' COVERINGS"
+msgstr "你的头需要被遮盖住"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hunter.1"
+msgid "NEED'ST THOU WEAPONS? VISIT MINE SHOP"
+msgstr "你需要武器吗？请参观我的店铺"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hunter.2"
+msgid "HAS'T THOU TOOTH O' THE HOUND?"
+msgstr "你有猎犬的牙齿吗？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_hunter.3"
+msgid "GET THEE TO YON WEAPONS SHOP"
+msgstr "去那边的武器店"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mayor.1"
+msgid "YOU VOTETH?"
+msgstr "你投票么？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mayor.2"
+msgid "GIVE ME THINE GOLD FOR GOOD CAUSE"
+msgstr "为了伟大的目标，把你的金子给我吧"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mayor.3"
+msgid "ENDORSETH ME?"
+msgstr "支持我么？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mechanic.1"
+msgid "SELLEST ME THINE REFINED'D THINGS"
+msgstr "把你手上那些精炼的东西卖给我吧"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mechanic.2"
+msgid "IN NEED OF FIXINGS?"
+msgstr "需要修理东西？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mechanic.3"
+msgid "SELLEST ME THINE ROPE"
+msgstr "把你的绳子卖给我吧"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mechanic.4
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_mechanic.4"
+msgid "SELLEST ME THINE BOARDS"
+msgstr "把你的木板卖给我吧"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_miner.1"
+msgid "I WILLST BUY THINE ROCKS"
+msgstr "我要买你的石头"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_miner.2"
+msgid "HAST THOU ROCKS TO SELL?"
+msgstr "你有石头卖吗？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_miner.3"
+msgid "STEAL NOT FROM MINE MINE"
+msgstr "不要偷我的东西"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_professor.1"
+msgid "VISIT YON ACADEMY"
+msgstr "请参观那边的学院"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_professor.2"
+msgid "HA'ST THOU RELICS?"
+msgstr "你有文物吗？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_professor.3"
+msgid "HATH THOU STUFFS O' OLDEN'D TIMES?"
+msgstr "你有古时候的东西吗？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_shopkeep.1"
+msgid "HAST THOU CLIPPINGS?"
+msgstr "你有被剪下的树篱吗？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_shopkeep.2"
+msgid "GIVETH ME YON CLIPPINGS FROM YON HEDGE"
+msgstr "请给我你剪下的树篱"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_shopkeep.3"
+msgid "TRIMETH YON SHRUBS"
+msgstr "修剪那边的灌木丛"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_storeowner.1"
+msgid "HAS'T THOU CUTTINGS O' HEDGE?"
+msgstr "你有被剪下的树篱吗？"
+
+#. STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_FOLLOWWILSON.pigman_storeowner.2"
+msgid "YON HEDGES NEED'TH TRIMMING"
+msgstr "树篱需要你修剪"
+
+#. STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER.DEFAULT.1"
+msgid "I SHOW QUALITY OF MERCY"
+msgstr "我表现出了宽容的品格"
+
+#. STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER.DEFAULT.2"
+msgid "ALL IS'T FORGIVEN"
+msgstr "一切都已被原谅"
+
+#. STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER.DEFAULT.3"
+msgid "HEARTILY I FORGIVEST THEE"
+msgstr "我衷心地对你表示谅解"
+
+#. STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER.DEFAULT.4"
+msgid "A POUND OF OINCS HATH SUFFICETH"
+msgstr "一枚呼噜币就足够了"
+
+#. STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD.DEFAULT.1"
+msgid "MOST EXCELLENT!"
+msgstr "太棒了！"
+
+#. STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD.DEFAULT.2"
+msgid "IS'T TREASURE!"
+msgstr "这是宝藏！"
+
+#. STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD.DEFAULT.3"
+msgid "FROM YON OLDEN TIMES!"
+msgstr "它来自很久以前！"
+
+#. STRINGS.CITY_PIG_TALK_GIVE_REWARD.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_GIVE_REWARD.DEFAULT.1"
+msgid "A WORTHY JOB. TAKE THEE REWARD"
+msgstr "真是可敬的工作。给你报酬"
+
+#. STRINGS.CITY_PIG_TALK_GIVE_REWARD.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_GIVE_REWARD.DEFAULT.2"
+msgid "'TIS NOBLE JOB THEE DO"
+msgstr "你做的事真是高尚"
+
+#. STRINGS.CITY_PIG_TALK_GIVE_REWARD.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_GIVE_REWARD.DEFAULT.3"
+msgid "A FINE JOB"
+msgstr "干得不错"
+
+#. STRINGS.CITY_PIG_TALK_GIVE_TRINKET_REWARD.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_GIVE_TRINKET_REWARD.DEFAULT.1"
+msgid "OH, HOW LOVELY! TAKE THIS GIFT"
+msgstr "哦，多么可爱啊！这个送给你"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.DEFAULT.1"
+msgid "ANON! ADIEU!"
+msgstr "不能再久了！再见！"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.DEFAULT.2"
+msgid "I GET ME TO BED!"
+msgstr "我要去睡觉！"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_banker.1"
+msgid "ADIEU, ADIEU REMEMBERS ME"
+msgstr "再会，再会，要记得我啊"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_banker.2"
+msgid "FARE THEE WELL"
+msgstr "珍重"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_banker.3"
+msgid "GOOD PIGS, LET'S RETIRE"
+msgstr "好猪猪，该走了"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_beautician.1"
+msgid "MOST HUMBLY I LEAVES"
+msgstr "我以最谦卑的方式离开"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_beautician.2"
+msgid "I SLEEP"
+msgstr "我去睡觉"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_beautician.3"
+msgid "PERCHANCE I DREAMS"
+msgstr "安歇在我的梦乡中"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_collector.1"
+msgid "GOOD NIGHT UNTO YOU ALL"
+msgstr "祝各位晚安"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_collector.2"
+msgid "SWEET GOOD NIGHT!"
+msgstr "甜蜜的晚安！"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_collector.3"
+msgid "I BID ADIEU TO YOUS"
+msgstr "我对你说再见"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_erudite.1"
+msgid "NOW IS NIGHTTIMES OF OUR DISCONTENT"
+msgstr "现在是令我们不快的夜间"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_erudite.2"
+msgid "I BID ADIEUS"
+msgstr "我要告别了"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_erudite.3"
+msgid "UNTIL THE MORROW"
+msgstr "明天见"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_farmer.1"
+msgid "GOODETH NIGHT NIGHT"
+msgstr "祝你好梦，晚安"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_farmer.2"
+msgid "PARTING SUCH SWEET SORROW"
+msgstr "离别是如此的甜蜜而又哀伤"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_farmer.3"
+msgid "TIL IT BE MORROW"
+msgstr "直到清晨来临为止"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_florist.1"
+msgid "GENTLE NIGHTY-NIGHTS"
+msgstr "温柔的晚安"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_florist.2"
+msgid "ONCE MORE UNTO MY JAMMIES"
+msgstr "再一次穿上我的睡衣"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_florist.3"
+msgid "ANON, GOOD NIGHT"
+msgstr "不能再久了，晚安"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hatmaker.1"
+msgid "WHEREFORE ART MY JAMMIES?"
+msgstr "我的睡衣呢？"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hatmaker.2"
+msgid "ALAS, I DEPART"
+msgstr "唉，我得走了"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hatmaker.3"
+msgid "I BID THEE NIGHTY NIGHTS"
+msgstr "我对你道晚安"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hunter.1"
+msgid "ME DREAM A DREAM TONIGHT"
+msgstr "我梦见了今晚的梦"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hunter.2"
+msgid "MY TOO TIRED FLESH GOES SLEEPIES"
+msgstr "我累到连身上的肉都要睡着了"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_hunter.3"
+msgid "SEE YOU ON THE MORROW"
+msgstr "明天见"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mayor.1"
+msgid "FAIR ME WELL"
+msgstr "公正的我"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mayor.2"
+msgid "I MAKE ME BEDFELLOWS"
+msgstr "我成为了和自己同床异梦的挚友"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mayor.3"
+msgid "MY DREAMS MAY COME"
+msgstr "我的梦想可能会成真"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mechanic.1"
+msgid "FARES'T THEE WELL"
+msgstr "珍重"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mechanic.2"
+msgid "MY KINGDOM FOR SOME JAMMIES"
+msgstr "这些睡衣就是属于我的王国"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_mechanic.3"
+msgid "GOOD EVENTIME"
+msgstr "晚安"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_miner.1"
+msgid "TIL TOMORROW AND TOMORROW AND TOMORROW"
+msgstr "直到明天的明天的明天"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_miner.2"
+msgid "I SLUMBER'DING"
+msgstr "我睡觉"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_miner.3"
+msgid "TO SLEEP OR NOT TO SLEEP?"
+msgstr "睡还是不睡？"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_professor.1"
+msgid "LIGHT THROUGH MY WINDOW BREAKS"
+msgstr "灯光穿过了我的破窗户"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_professor.2"
+msgid "TIS WITCHING TIME OF NIGHT"
+msgstr "这是迷人的夜晚时刻"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_professor.3"
+msgid "I TAKING MY LEAVE"
+msgstr "我要走了"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_shopkeep.1"
+msgid "GET ME TO A BEDDY-BYES"
+msgstr "带我去睡觉"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_shopkeep.2"
+msgid "I GO MY CHAMBERS"
+msgstr "我要回我的房间"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_shopkeep.3"
+msgid "NIGHTY NIGHTS, SWEET UNPIGS"
+msgstr "晚安，可爱的非猪"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_storeowner.1"
+msgid "I SEE WHAT DREAMS MAY COME"
+msgstr "我预见了我会做什么样的梦"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_storeowner.2"
+msgid "ADIEU ADIEU"
+msgstr "再见，再见"
+
+#. STRINGS.CITY_PIG_TALK_GO_HOME.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_GO_HOME.pigman_storeowner.3"
+msgid "REMEMBER ME"
+msgstr "请记住我"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.DEFAULT.1"
+msgid "TAKETH THAT TREE!"
+msgstr "揍那棵树！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.DEFAULT.2"
+msgid "I SMASH-ETH YON TREE!"
+msgstr "我要打断那棵树！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.DEFAULT.3"
+msgid "I PUNCH-ETH TREE!"
+msgstr "我狠狠打树！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_banker.1"
+msgid "MINE HOOVES GET-ETH DIRTY"
+msgstr "我的蹄子沾上灰尘了"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_banker.2"
+msgid "FALL, TREE!"
+msgstr "砍倒树！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_beautician.1"
+msgid "I SHALL CHOP-ETH!"
+msgstr "我要砍！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_beautician.2"
+msgid "YON TREE NEEDS CHOPPIN'!"
+msgstr "那棵树需要被砍倒！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_collector.1"
+msgid "'TIS HARD WORK"
+msgstr "这是件累活"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_collector.2"
+msgid "WHAT A PIECE OF WORK IS CHOPPING"
+msgstr "伐木是件多么了不起的活计"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_erudite.1"
+msgid "I HELP-ETH"
+msgstr "我来帮你"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_erudite.2"
+msgid "FALL, TREE!"
+msgstr "砍倒树！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_erudite.3"
+msgid "I AXE THEE!"
+msgstr "我砍你！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_farmer.1"
+msgid "THIS TREE DOTH CHOP'T"
+msgstr "砍这棵树"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_farmer.2"
+msgid "I TOIL"
+msgstr "我好累"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_farmer.3"
+msgid "CHOP'T CHOP'T!"
+msgstr "砍它，砍它！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_florist.1"
+msgid "CHOP'T, CHOP'T"
+msgstr "砍它，砍它"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_florist.2"
+msgid "SMASHINGS!"
+msgstr "打碎！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_florist.3"
+msgid "TOIL, TOIL"
+msgstr "真累，真累"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hatmaker.1"
+msgid "YON TREE SHALL FALL!"
+msgstr "那棵树要倒了！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hatmaker.2"
+msgid "THUS FALL-ETH THY TREE"
+msgstr "这棵树就这么倒下了"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hunter.1"
+msgid "THUS FALL THE TREE"
+msgstr "这棵树就这样被砍倒了"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hunter.2"
+msgid "I BID THEE FALL!"
+msgstr "我让你倒下！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_hunter.3"
+msgid "I WIN!"
+msgstr "我赢了！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_mayor.1"
+msgid "WHAT PIECE OF WORK IS CHOPPING"
+msgstr "伐木是件多么了不起的活计"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_mayor.2"
+msgid "FALL, TREE!"
+msgstr "砍倒树！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_mechanic.1"
+msgid "SHALL I COMPARE TREE TO SUMMER'S DAY?"
+msgstr "也许我应该把树比作夏季中的一天？"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_mechanic.2"
+msgid "WORK-ETH, WORK-ETH, WORK-ETH"
+msgstr "干活，干活，干活"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_miner.1"
+msgid "YON TREE IS'T CHOP'T"
+msgstr "砍那颗树"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_miner.2"
+msgid "'TIS EASIER THAN MINING"
+msgstr "这比采矿要容易多了"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_miner.3"
+msgid "YON TREE IS'T DONE FOR!"
+msgstr "那棵树完蛋了！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_professor.1"
+msgid "WITH MINE LAST BREATH I CHOP AT THEE!"
+msgstr "我用吃奶的力气砍树！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_professor.2"
+msgid "CHOP'T CHOP'T"
+msgstr "砍它，砍它"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_professor.3"
+msgid "HAVE AT THEE TREE"
+msgstr "砍倒你，树"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard.1"
+msgid "I TAKETH DOWN YON TREE"
+msgstr "我砍倒那棵树"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard.2"
+msgid "I CHOPTING"
+msgstr "我砍树"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard.3"
+msgid "I GOOD FRIEND, I CHOPT TREE"
+msgstr "我来砍树，我的好朋友"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard_2.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard_2.1"
+msgid "CHOP'T CHOP'T"
+msgstr "砍它，砍它"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard_2.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard_2.2"
+msgid "I AXE THEE!"
+msgstr "我砍你！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard_2.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_royalguard_2.3"
+msgid "FAIR TREE SHALT FALL!"
+msgstr "漂亮的树就快要倒下了！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_shopkeep.1"
+msgid "'TIS HARD WORK"
+msgstr "这是件累活"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_shopkeep.2"
+msgid "I SMASH-ETH"
+msgstr "我打碎它"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_shopkeep.3"
+msgid "I SMASH THEE"
+msgstr "我要打碎树"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_storeowner.1"
+msgid "SMASH-ETH! SMASH-ETH"
+msgstr "打碎！打碎"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_storeowner.2"
+msgid "DOTH HARD WORK!"
+msgstr "干累活！"
+
+#. STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD.pigman_storeowner.3"
+msgid "HAVE AT THEE TREE!"
+msgstr "砍倒你，树！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.1"
+msgid "GREETINGS YOUR HIGHNESS"
+msgstr "参见殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.2"
+msgid "NEED'ST THOU %s?"
+msgstr "您需要%s？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.3"
+msgid "GOOD DAY"
+msgstr "美妙的一天"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.4"
+msgid "NEED'ST %s. HAV'TH THOU THAT?"
+msgstr "您想要%s。是这个吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.5
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.5"
+msgid "I WANT'ST %s. WILL BUY"
+msgstr "您想要的%s。都可以买到"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.6
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.DEFAULT.6"
+msgid "YOUR MAJESTY"
+msgstr "殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_banker.1"
+msgid "YON MAJESTY!"
+msgstr "殿下！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_banker.2"
+msgid "THOU DO-EST ME AN HONOR"
+msgstr "您的作为是我的荣耀"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_banker.3"
+msgid "I AM AT-ETH THY SERVICE"
+msgstr "我随时为您效劳"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_beautician.1"
+msgid "THOU HAST MOST BEAUTIFUL SNOUT"
+msgstr "您拥有最漂亮的猪鼻子"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_beautician.2"
+msgid "YON MAJESTY"
+msgstr "殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_beautician.3"
+msgid "TAKETH THEE A GIFT?"
+msgstr "可以送您一份礼物吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_collector.1"
+msgid "AT THINE SERVICE"
+msgstr "为您效劳"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_collector.2"
+msgid "THOU DO-EST US AN HONOR"
+msgstr "您的作为是我们的荣耀"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_collector.3"
+msgid "TAKEST THOU A GIFT?"
+msgstr "可以送您一份礼物吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_erudite.1"
+msgid "ACCEPT MINE HUMBLEST GIFT"
+msgstr "请接受我微不足道的礼物"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_erudite.2"
+msgid "LONG LIVE YON MAJESTY"
+msgstr "殿下万岁"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_erudite.3"
+msgid "WILL'ST THOU ACCEPT A GIFT?"
+msgstr "您会接受礼物吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_farmer.1"
+msgid "THINE HUMBL'EST SERVENT"
+msgstr "您卑微的仆人"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_farmer.2"
+msgid "YOUR MAJESTY"
+msgstr "殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_farmer.3"
+msgid "AT THINE SERVICE"
+msgstr "为您效劳"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_florist.1"
+msgid "TAKEST THINE MINE FLOWERS?"
+msgstr "可以把我的花送给您吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_florist.2"
+msgid "AT YON SERVICE"
+msgstr "为您效劳"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_florist.3"
+msgid "ME HONORED'D AT THINE PRESENCE!"
+msgstr "您的光临让我感到十分的荣幸！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hatmaker.1"
+msgid "YON MAJESTY"
+msgstr "殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hatmaker.2"
+msgid "AT THINE SERVICE"
+msgstr "为您效劳"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hatmaker.3"
+msgid "THOU MIGHTY SCEPTER'D BEING"
+msgstr "您的权力至高无上"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hunter.1"
+msgid "THY HONOR US LOWLY PIGS"
+msgstr "您的荣耀照耀了我们这些卑微的猪"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hunter.2"
+msgid "YON MAJESTY"
+msgstr "殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_hunter.3"
+msgid "AT YON SERVICE, YON MAJESTY"
+msgstr "为您效劳，殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mayor.1"
+msgid "YON MAJESTY!"
+msgstr "殿下！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mayor.2"
+msgid "ME HONORED'D!"
+msgstr "我很荣幸！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mayor.3"
+msgid "AT YON SERVICE"
+msgstr "为您效劳"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mechanic.1"
+msgid "HOW NOW, YOUR MAJESTY"
+msgstr "今天感觉如何，殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mechanic.2"
+msgid "AT-ETH YON SERVICE"
+msgstr "为您效劳"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_mechanic.3"
+msgid "THOU MIGHTY SCEPTER'D BEING"
+msgstr "您的权力至高无上"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_miner.1"
+msgid "YOU HONOR ME"
+msgstr "您荣耀了我"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_miner.2"
+msgid "TAKE'ST THOU A GIFT"
+msgstr "送您一份礼物"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_miner.3"
+msgid "ACCEPT'ETH MINE GIFT!"
+msgstr "请接受我的礼物！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_professor.1"
+msgid "ACCEPT'ST THOU A GIFT?"
+msgstr "您会接受礼物吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_professor.2"
+msgid "THY HONOR ME?"
+msgstr "是您荣耀了我吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_professor.3"
+msgid "I AM THOU MOST HUMBLEST PIGGY SERVANT"
+msgstr "我是您最卑微的小猪仆人"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard.1"
+msgid "MINE SERVICE UNTO YOU"
+msgstr "我为您效劳"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard.2"
+msgid "YON MAJESTY"
+msgstr "殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard.3"
+msgid "LONG LIVE YON MAJESTY!"
+msgstr "殿下万岁！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard_2.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard_2.1"
+msgid "THOU HONOR US LOWLY PIGS"
+msgstr "你很尊重我们这些下等猪"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard_2.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard_2.2"
+msgid "YON MAJESTY"
+msgstr "殿下"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard_2.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_royalguard_2.3"
+msgid "THOU MIGHTY SCEPTER'D BEING"
+msgstr "您的权力至高无上"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_shopkeep.1"
+msgid "HOW NOW, YON MAJESTY?"
+msgstr "今天感觉如何，殿下？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_shopkeep.2"
+msgid "LIKETH THY MINE GIFT?"
+msgstr "您喜欢我的礼物吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_shopkeep.3"
+msgid "TAKE'ST THEE A GIFT?"
+msgstr "送您一份礼物？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_storeowner.1"
+msgid "AT THINE SERVICE"
+msgstr "为您效劳"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_storeowner.2"
+msgid "LIKEST THY MINE GIFT?"
+msgstr "您喜欢我的礼物吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER.pigman_storeowner.3"
+msgid "THOU MIGHTY SCEPTER'D BEING"
+msgstr "您的权力至高无上"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON.DEFAULT.1"
+msgid "WHAT HO, UNPIG"
+msgstr "哟呵，非猪"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON.DEFAULT.2"
+msgid "HOW NOW, GOOD UNPIG"
+msgstr "今天感觉如何，善良的非猪"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON.DEFAULT.3"
+msgid "WHAT NEWS?"
+msgstr "多么新奇？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON.DEFAULT.4"
+msgid "WELL MET"
+msgstr "遇见你真好"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY.1"
+msgid "LONG LIVE THE QUEEN!"
+msgstr "女王万岁！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY.2"
+msgid "HAIL, GOOD NOBLE PIG!"
+msgstr "万岁，善良而高贵的猪！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY.3"
+msgid "MINE LIEGE"
+msgstr "我的君王"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY.4
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY.4"
+msgid "HAIL TO YOU, GOOD GENTLEPIGGY"
+msgstr "向您致敬，善良温柔的小猪"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.1"
+msgid "HOW NOW?"
+msgstr "现在怎么样了？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.2"
+msgid "HAVE THEE %s?"
+msgstr "你有%s？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.3"
+msgid "WELL MET"
+msgstr "遇见你真好"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.4"
+msgid "GOOD FORTUNE, THOSE WHO HAVE %s"
+msgstr "运气不错，那些人有%s"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.5
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.5"
+msgid "MY KINGDOM FOR SOME %s"
+msgstr "我的王国需要一些%s"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_banker.1"
+msgid "HAS'T THOU JEWELS?"
+msgstr "你有珠宝吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_banker.2"
+msgid "I BUY'ST JEWELS FROM THOU"
+msgstr "我要买你的珠宝"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_banker.3"
+msgid "WILL-TH THOU SELLEST ME THINE JEWELS?"
+msgstr "你会把你的珠宝买给我吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.1"
+msgid "HAS'T THOU FEATHERS?"
+msgstr "你有羽毛吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.2"
+msgid "VISIT YON SHOP IF THOU HAS'T BOO-BOOS"
+msgstr "如果你有轻伤的话，可以来店里看看"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.3"
+msgid "SELLEST ME FEATHERS"
+msgstr "卖给我羽毛"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_collector.1"
+msgid "HAS'T THOU ODD STUFFS?"
+msgstr "你有奇怪的东西吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_collector.2"
+msgid "I CAN'ST BUY YOUR ODD STUFFS?"
+msgstr "我可以买你手上那些奇怪的东西吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_collector.3"
+msgid "I SELL'ST ODD STUFFS!"
+msgstr "我出售奇怪的东西！"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_erudite.1"
+msgid "HAS'T THOU RELICS O' PIGGIES?"
+msgstr "你有猪民的文物吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_erudite.2"
+msgid "SELLEST ME THINE PIGGY RELICS"
+msgstr "把猪民的文物卖给我吧"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_erudite.3"
+msgid "RELIC HATH MUCH WORTH"
+msgstr "文物很有价值"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_farmer.1"
+msgid "HAS'T THOU GRASS?"
+msgstr "你有草吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_farmer.2"
+msgid "DON'T TAKETH MINE FARM STUFFS"
+msgstr "别碰我农场里的东西"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_farmer.3"
+msgid "CAN'ST THOU SELL ME THINE GRASS?"
+msgstr "能把你的草卖给我吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_florist.1"
+msgid "NEED'ST I STUFFS O' PLANTS"
+msgstr "我需要植物的一部分"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_florist.2"
+msgid "HAS'T THOU PETALS?"
+msgstr "你有花瓣吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hatmaker.1"
+msgid "HAS'T THOU HATS?"
+msgstr "你有帽子吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hatmaker.2"
+msgid "ME HAVE HATS FOR HEADETHS"
+msgstr "我卖戴在头上的帽子"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hatmaker.3"
+msgid "ME BUYEST FEATHERS FROM YOU"
+msgstr "我想向你购买羽毛"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hunter.1"
+msgid "YOU NEED SMASH STUFF?"
+msgstr "你需要痛打东西吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hunter.2"
+msgid "ME TAKE OINCS FOR WEAPON"
+msgstr "我赚钱是为了武器"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_hunter.3"
+msgid "WEAPON MAKE YOU NOT SCARED"
+msgstr "武器可以给你安全感"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mayor.1"
+msgid "WANTS THOU HOME IN HAMLET?"
+msgstr "你想在猪镇里有一个家吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mayor.2"
+msgid "WANTS THOU PIG O' SECURITY?"
+msgstr "你想要让猪来保护你的安全吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mayor.3"
+msgid "VOTE FOR ME ONLY"
+msgstr "只给我投票"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mechanic.1"
+msgid "WHATFORE IS YOU?"
+msgstr "你究竟是什么人？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mechanic.2"
+msgid "HAS'T THOU BOARDS?"
+msgstr "你有木板吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mechanic.3"
+msgid "HAS'T THOU ROPE?"
+msgstr "你有绳子吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mechanic.4
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_mechanic.4"
+msgid "I BUY'ST THINGS REFINED'D"
+msgstr "我要买你手上那些精炼的东西"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_miner.1"
+msgid "HAS'T THOU ROCKS?"
+msgstr "你有石头吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_miner.2"
+msgid "TAKETH NAUGHT MINE ROCKS"
+msgstr "别动我的石头"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_miner.3"
+msgid "I WILL GIVETH THEE OINCS FOR ROCKS"
+msgstr "我会用呼噜币换你的石头"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_professor.1"
+msgid "YOU HAVE RELICS?"
+msgstr "你有文物吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_professor.2"
+msgid "COME TO SHOP, ME HAVE RELICS"
+msgstr "来店里吧，我有文物"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_professor.3"
+msgid "I NEED OLD STUFFS"
+msgstr "我需要古老的东西"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_shopkeep.1"
+msgid "HAS'T THOU CLIPPINGS?"
+msgstr "你有被剪下的树篱吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_shopkeep.2"
+msgid "GET THEE TO A SHRUBBERY"
+msgstr "你可以去那边的灌木丛看看"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_shopkeep.3"
+msgid "SELLEST ME THINE CLIPPINGS"
+msgstr "把你手上的被剪下的树篱卖给我吧"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_storeowner.1"
+msgid "HAS'T THOU CLIPPINGS?"
+msgstr "你有被剪下的树篱吗？"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_storeowner.2"
+msgid "GET THEE TO A SHRUBBERY"
+msgstr "你可以去那边的灌木丛看看"
+
+#. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_storeowner.3"
+msgid "SELLEST ME THINE CLIPPINGS"
+msgstr "把你手上的被剪下的树篱卖给我吧"
+
+#. STRINGS.CITY_PIG_TALK_NOT_ENOUGH.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_NOT_ENOUGH.DEFAULT.1"
+msgid "I WANT-ETH MORE"
+msgstr "我想要更多"
+
+#. STRINGS.CITY_PIG_TALK_NOT_ENOUGH.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_NOT_ENOUGH.DEFAULT.2"
+msgid "DOTH NOT SUFFICETH"
+msgstr "这些还不够"
+
+#. STRINGS.CITY_PIG_TALK_NOT_ENOUGH.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_NOT_ENOUGH.DEFAULT.3"
+msgid "I REQUIRETH MORE"
+msgstr "我想要更多"
+
+#. STRINGS.CITY_PIG_TALK_NOT_ENOUGH.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_NOT_ENOUGH.DEFAULT.4"
+msgid "NEEDETH MORE"
+msgstr "想要更多"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.1"
+msgid "O HORRIBLE"
+msgstr "哦，真可怕"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.2"
+msgid "AAAAAAAAAH!!"
+msgstr "啊啊啊啊啊！！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.3"
+msgid "AVAST!"
+msgstr "停下！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.4"
+msgid "NO LIKETH"
+msgstr "不喜欢"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.5
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.DEFAULT.5"
+msgid "HURLEYBURLY!"
+msgstr "暴力的喧嚣！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_banker.1"
+msgid "O MONSTROUS!"
+msgstr "哦，太荒谬了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_banker.2"
+msgid "O STRANGE!"
+msgstr "哦，太诡异了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_banker.3"
+msgid "HELP'TH ME!"
+msgstr "救救我！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_beautician.1"
+msgid "EVIL 'TIS AFOOT"
+msgstr "邪恶正在作乱"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_beautician.2"
+msgid "SOMETHING WICKED THIS WAY COMES!"
+msgstr "某种邪恶的东西从远处过来了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_beautician.3"
+msgid "O HORRORS"
+msgstr "哦，好恐怖"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_collector.1"
+msgid "BAD THINGS ARE NIGH!"
+msgstr "坏东西接近了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_collector.2"
+msgid "ME PROTEST SO MUCH!"
+msgstr "我反对！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_collector.3"
+msgid "I WANT'ST NOT TO DIE!"
+msgstr "我不想死！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_erudite.1"
+msgid "O CURSE'D SPITE!"
+msgstr "哦，该诅咒的！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_erudite.2"
+msgid "GO AWAY'TH!"
+msgstr "滚开！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_erudite.3"
+msgid "MOST UNKIND!"
+msgstr "极其不友好！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_farmer.1"
+msgid "ALL IS'T LOST!"
+msgstr "一切都要失去了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_farmer.2"
+msgid "ADIEU! ADIEU!"
+msgstr "再见！再见！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_farmer.3"
+msgid "I EXEUNT!"
+msgstr "我要下场！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_florist.1"
+msgid "OUT! OUT!"
+msgstr "逃跑！逃跑！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_florist.2"
+msgid "TAKE ARMS!"
+msgstr "拿起武器！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_florist.3"
+msgid "SOMETHING WICKED THIS WAY COMES!"
+msgstr "某种邪恶的东西从远处过来了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_hatmaker.1"
+msgid "OUT! OUT!"
+msgstr "逃跑！逃跑！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_hatmaker.2"
+msgid "SAVETH ME!"
+msgstr "保护我！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_hatmaker.3"
+msgid "MOST HORRIBLE! MOST STRANGE!"
+msgstr "太可怕了！太怪异了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_hunter.1"
+msgid "SOUND AND FURY!"
+msgstr "狂怒的声音！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_hunter.2"
+msgid "HOWL, HOWL, HOWL, HOWL!"
+msgstr "啊啊啊，啊啊啊，啊啊啊，啊啊啊啊！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_hunter.3"
+msgid "ALL IS'T LOST!"
+msgstr "一切都要失去了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_mayor.1"
+msgid "MOST HORRIBLE"
+msgstr "太恐怖了"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_mayor.2"
+msgid "O' CURSED SPITE"
+msgstr "哦，该诅咒的"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_mayor.3"
+msgid "THIS BE MADNESS"
+msgstr "这就是疯狂"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_mechanic.1"
+msgid "ADIEU!"
+msgstr "告辞！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_mechanic.2"
+msgid "I AM TOO MUCH IN THE FEAR"
+msgstr "我害怕极了"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_mechanic.3"
+msgid "MOST FOUL! MOST FOUL!"
+msgstr "太污秽了！太邪恶了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_miner.1"
+msgid "I GET ME GONE!"
+msgstr "我要离开！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_miner.2"
+msgid "O, WOE THE DAY!"
+msgstr "哦，悲惨的一天！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_miner.3"
+msgid "'TIS THE END!"
+msgstr "结束了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_professor.1"
+msgid "CRY YOU MERCY!"
+msgstr "恸哭乞求你的怜悯！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_professor.2"
+msgid "MOST HORRIBLE! MOST STRANGE!"
+msgstr "太可怕了！太怪异了"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_professor.3"
+msgid "IT COMETH FOR US!"
+msgstr "它是冲着我们来的！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard.1"
+msgid "ONCE MORE INTO THE BREACH!"
+msgstr "再一次面对破坏者！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard.2"
+msgid "GUARDS PROTECT THEE!"
+msgstr "守卫会保护你！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard.3"
+msgid "AVAST! AVAIL!"
+msgstr "停下！你被捕了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard_2.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard_2.1"
+msgid "ONCE MORE INTO THE BREACH!"
+msgstr "再一次面对破坏者！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard_2.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard_2.2"
+msgid "GUARDS PROTECT THEE!"
+msgstr "守卫会保护你！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard_2.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_royalguard_2.3"
+msgid "AVAST! AVAIL!"
+msgstr "停下！你被捕了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_shopkeep.1"
+msgid "O HORROR! O HORROR! O HORROR!"
+msgstr "哦，太可怕了！哦，太可怕了！哦，太可怕了！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_shopkeep.2"
+msgid "O SLINGS AND ARROWS!"
+msgstr "噢，飞石和毒箭！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_shopkeep.3"
+msgid "O OUTRAGEOUS FORTUNE!"
+msgstr "噢，暴虐的命运！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_storeowner.1"
+msgid "HEIGH, MY HEARTS!"
+msgstr "嘿，我的心脏啊！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_storeowner.2"
+msgid "A PLAGUE UPON IT!"
+msgstr "瘟疫会降在它的头上！"
+
+#. STRINGS.CITY_PIG_TALK_PANIC.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANIC.pigman_storeowner.3"
+msgid "ALL LOST!"
+msgstr "什么都没了！"
+
+#. STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.1"
+msgid "IT BURN-ETH!"
+msgstr "它在燃烧！"
+
+#. STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.2"
+msgid "FIRE BURN AND PIGGY BUBBLES"
+msgstr "火焰熊熊燃烧，小猪身上起泡"
+
+#. STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.3"
+msgid "FIGHT FIRE WITH WATER!"
+msgstr "拿水来与火战斗！"
+
+#. STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.4"
+msgid "SOMETHING FIREY THIS WAY COMES!"
+msgstr "火从那边烧过来了！"
+
+#. STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.5
+msgctxt "STRINGS.CITY_PIG_TALK_PANICFIRE.DEFAULT.5"
+msgid "FIRE FIRE FIRE"
+msgstr "火，火，火"
+
+#. STRINGS.CITY_PIG_TALK_PAYTAX.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_PAYTAX.DEFAULT.1"
+msgid "TAKETH THINE TAX"
+msgstr "交给你税"
+
+#. STRINGS.CITY_PIG_TALK_PAYTAX.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_PAYTAX.DEFAULT.2"
+msgid "NEED'ST THOU MINE TAX"
+msgstr "这是我交的税"
+
+#. STRINGS.CITY_PIG_TALK_PAYTAX.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_PAYTAX.DEFAULT.3"
+msgid "TAKEST THOU MINE TAX"
+msgstr "给你我的税"
+
+#. STRINGS.CITY_PIG_TALK_PAYTAX.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_PAYTAX.DEFAULT.4"
+msgid "MANY THANKS UNTO YOU"
+msgstr "非常感谢你"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.DEFAULT.1"
+msgid "OUT, DAMNED PLOP"
+msgstr "它消失了，该死的便便"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.DEFAULT.2"
+msgid "HUMBLE THANKS, KIND UNPIG"
+msgstr "谦卑地向你道谢，友善的非猪"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.DEFAULT.3"
+msgid "MY THANKS"
+msgstr "谢谢"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_banker.1"
+msgid "AN OINC FOR THY TROUBLE"
+msgstr "麻烦你了，这枚呼噜币给你。"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_banker.2"
+msgid "A TAX FOR THY PLOP PICKING"
+msgstr "这是对你捡起便便的报偿"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_banker.3"
+msgid "MANY THANKS"
+msgstr "非常感谢"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_beautician.1"
+msgid "TAKEST THEE THY COIN"
+msgstr "给你这枚呼噜币"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_beautician.2"
+msgid "HERE BE YOUR OUTRAGEOUS FORTUNE"
+msgstr "这是你的意外之财"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_beautician.3"
+msgid "THANK YE, UNPIG"
+msgstr "谢谢你，非猪"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_collector.1"
+msgid "HERE BE OINC FOR THOUST MANURE"
+msgstr "给你这枚呼噜币是因为你捡起了肥料"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_collector.2"
+msgid "ALAS POOR UNPIG"
+msgstr "唉，可怜的非猪"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_collector.3"
+msgid "FORTUNE SMILES ONST THEE"
+msgstr "幸运之神在向你微笑"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_erudite.1"
+msgid "FAIR PRICE FOR FOUL DEED"
+msgstr "脏活的合理报偿"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_erudite.2"
+msgid "THY PLOP-PICKING IS MOST PROFESSIONALS"
+msgstr "你是捡屎界的专业人士"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_erudite.3"
+msgid "FOR PLOP OF PIGGY MAN"
+msgstr "这是猪人的便便"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_farmer.1"
+msgid "FOR THY HONEST MANURING"
+msgstr "这是因为你实实在在的捡起了肥料"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_farmer.2"
+msgid "TAKEST THOU WHAT THOU'ST OWED"
+msgstr "你得到了之前所亏欠你的"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_farmer.3"
+msgid "HONEST OINC FOR UNPIG"
+msgstr "这枚呼噜币给诚实的非猪"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_florist.1"
+msgid "WE WILLST PAY FOR THY PLOPPING"
+msgstr "我们将支付你捡起便便的工价"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_florist.2"
+msgid "IS POO, UNPIG?"
+msgstr "是便便，非猪？"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_florist.3"
+msgid "ME PAYEST FOR PLOP PICKING"
+msgstr "我付出捡起便便的工价"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hatmaker.1"
+msgid "I GIVE THE UNPIG ITS DUE"
+msgstr "我给非猪应得的报酬"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hatmaker.2"
+msgid "WHAT PIECE OF WORK IS UNPIG"
+msgstr "非猪做的很不错"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hatmaker.3"
+msgid "YOU'ST PAID FOR PLOP OF PIG"
+msgstr "你得到了捡一坨猪屎的报酬"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hunter.1"
+msgid "PLOP AND CIRCUMSTANCE"
+msgstr "便便和环境"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hunter.2"
+msgid "FOR POUND OF PLOP"
+msgstr "一坨便便"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_hunter.3"
+msgid "HAVE OINCS THRUST UPON THEE"
+msgstr "把呼噜币硬塞给你"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mayor.1"
+msgid "IS THAT PLOP I SEE BEFORE THEE?"
+msgstr "那坨便便，我之前看见它在你面前？"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mayor.2"
+msgid "HONEST UNPIG"
+msgstr "可靠的非猪"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mayor.3"
+msgid "KINDEST UNPIG"
+msgstr "令人感激的非猪"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.1"
+msgid "OUT, DAMNED PLOP!"
+msgstr "它消失了，该死的便便！"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.2"
+msgid "FAIR PRICE, FAIR UNPIG?"
+msgstr "合理的报偿，公正的非猪？"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.3"
+msgid "LET-EST ME PAY FOR THYST HELP"
+msgstr "让我为你帮的大忙支付报酬吧"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_miner.1"
+msgid "'TIS FOUL"
+msgstr "它是污秽的"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_miner.2"
+msgid "IS A JUST PAYMENT?"
+msgstr "这是合理的报酬吧？"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_miner.3"
+msgid "'TIS WORTHY DEED"
+msgstr "可敬的活计"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_professor.1"
+msgid "THOUST MILK OF UNPIG KINDNESS"
+msgstr "这是给善良非猪的报偿"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_professor.2"
+msgid "SUCH STUFF AS PLOP IS MADE ON"
+msgstr "便便这种东西就不该存在"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_professor.3"
+msgid "FOR THY TROUBLES"
+msgstr "真是麻烦你了"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_shopkeep.1"
+msgid "UNPIG IS AN HONORABLE UNPIG"
+msgstr "可敬的非猪"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_shopkeep.2"
+msgid "I GIVE EVERY PLOP MINE OINC"
+msgstr "我为每一坨便便支付呼噜币"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_shopkeep.3"
+msgid "FAIR TERMS"
+msgstr "合理的价钱"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_storeowner.1"
+msgid "FOR THY PLOP PICKING"
+msgstr "因为你捡起了便便"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_storeowner.2"
+msgid "MOST EXCELLENT PICKING"
+msgstr "最杰出的捡拾者"
+
+#. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_storeowner.3"
+msgid "HONORABLE UNPIG"
+msgstr "可敬的非猪"
+
+#. STRINGS.CITY_PIG_TALK_PROTECT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_PROTECT.DEFAULT.1"
+msgid "MOST FOUL! MOST FOUL!"
+msgstr "太污秽了！太邪恶了！"
+
+#. STRINGS.CITY_PIG_TALK_PROTECT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_PROTECT.DEFAULT.2"
+msgid "TAKE ARMS! TAKE ARMS!"
+msgstr "拿起武器！拿起武器！"
+
+#. STRINGS.CITY_PIG_TALK_PROTECT.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_PROTECT.DEFAULT.3"
+msgid "THOU WRETCH"
+msgstr "你卑鄙"
+
+#. STRINGS.CITY_PIG_TALK_PROTECT.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_PROTECT.DEFAULT.4"
+msgid "THOU COWARD!"
+msgstr "你这个懦夫！"
+
+#. STRINGS.CITY_PIG_TALK_REFUSE_GIFT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_GIFT.DEFAULT.1"
+msgid "HAVE THEE %s? WILL PAY"
+msgstr "你有%s吗? 我可以付钱"
+
+#. STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY.DEFAULT.1"
+msgid "COMES'T BACK IN %s DAYS"
+msgstr "%s天之后再来吧"
+
+#. STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW.DEFAULT.1"
+msgid "COME'ST BACK ON THE MORROW"
+msgstr "明天再来吧"
+
+#. STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.1"
+msgid "NO 'TIS PRICELESS!"
+msgstr "不,这是无价之宝!"
+
+#. STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.2"
+msgid "IT IS FOUND! MUST FIND QUEEN"
+msgstr "它被找到了!一定要去找女王"
+
+#. STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.3"
+msgid "I CANNOT TAKE, BELONG TO ROYALTY"
+msgstr "我不能收，这是属于皇室的"
+
+#. STRINGS.CITY_PIG_TALK_REFUSE_TRINKET_GIFT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_TRINKET_GIFT.DEFAULT.1"
+msgid "NO MORE JUNK, THANK YOU"
+msgstr "不要更多的垃圾了，谢谢你"
+
+#. STRINGS.CITY_PIG_TALK_RELIC_GIFT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_RELIC_GIFT.DEFAULT.1"
+msgid "TAKEST TO YON MUSEUM"
+msgstr "去那边的博物馆吧"
+
+#. STRINGS.CITY_PIG_TALK_RELIC_GIFT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_RELIC_GIFT.DEFAULT.2"
+msgid "THE ACADEMY BE THE PLACE FOR IT"
+msgstr "学会才是适合它的地方"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.1"
+msgid "OUT, DAMNED PLOP"
+msgstr "滚开,该死的便便"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.2"
+msgid "HUMBLE THANKS, YOUR HIGHNESS"
+msgstr "向你致以我恭谦的谢意,阁下"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_banker.1"
+msgid "AN OINC FOR THY TROUBLE"
+msgstr "为你的劳烦付一块钱"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_banker.2"
+msgid "'TIS A KIND THING YOU DO"
+msgstr "你做了一件善良的事"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_banker.3"
+msgid "THOU DO US HONOR"
+msgstr "你的行为令我们尊敬"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_beautician.1"
+msgid "ACCEPTEST THEE MINE COIN?"
+msgstr "能接受我的硬币吗?"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_beautician.2"
+msgid "HERE BE YOUR OUTRAGEOUS FORTUNE"
+msgstr "这是你的意外之财"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_beautician.3"
+msgid "HUMBLE THANKS, YOUR MAJESTY"
+msgstr "向你致以我恭谦的谢意,阁下"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_collector.1"
+msgid "HERE BE OINC FOR THOUST ROYAL MANURE"
+msgstr "为你的皇家肥料付一块钱"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_collector.2"
+msgid "FOR THY ROYAL PLOP PICKING"
+msgstr "付给皇家粪便清理员的"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_collector.3"
+msgid "THOU ART THE FINEST OF PLOP PICKERS"
+msgstr "你是最好的粪便清理员"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_erudite.1"
+msgid "FAIR PRICE FOR FOUL DEED"
+msgstr "给去除污秽的行为最公平的报酬"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_erudite.2"
+msgid "THY PLOP-PICKING IS MOST EXCELLENTEST"
+msgstr "你清理粪便的最好了"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_erudite.3"
+msgid "THOU DO'ST US HONOR"
+msgstr "你的行为令我们尊敬"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_farmer.1"
+msgid "FOR THY HONEST MANURING"
+msgstr "为了你真诚的行为"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_farmer.2"
+msgid "FOR THY ROYAL PLOP PICKING"
+msgstr "这是你为皇家捡屎的酬劳"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_farmer.3"
+msgid "THOU DO US'T HONOR"
+msgstr "你的行为令我们尊敬"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.1"
+msgid "THOU ART THE FINEST OF PLOP PICKERS!"
+msgstr "你是最好的捡屎者!"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.2"
+msgid "HUMBLE THANKS, YOUR MAJESTY"
+msgstr "向你致以我恭谦的谢意,阁下"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.3"
+msgid "ACCEPTEST THEE MINE COIN?"
+msgstr "能接受我的硬币吗?"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.1"
+msgid "ACCEPTEST THEE MINE COIN?"
+msgstr "能接受我的硬币吗?"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.2"
+msgid "OUT, DAMNED PLOP"
+msgstr "滚开,该死的便便"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.3"
+msgid "THOU ARE THE MOST EXCELLENTEST OF PLOP PICKERS"
+msgstr "你是最优秀的粪便清理员"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hunter.1"
+msgid "PLOP AND CIRCUMSTANCE"
+msgstr "沾满便便且彬彬有礼"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hunter.2"
+msgid "FOR POUND OF PLOP"
+msgstr "为你捡的粪便付钱"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hunter.3"
+msgid "MOST EXCELLENT PICKINGS"
+msgstr "最优秀的清理员"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mayor.1"
+msgid "WE ARE NOT WORTHY OF THINE PLOP"
+msgstr "我们连你的屎都不如"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mayor.2"
+msgid "'TIS A KIND THING YOU DO"
+msgstr "你做了一件善良的事"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mayor.3"
+msgid "ACCEPTEST THEE MINE COIN?"
+msgstr "能接受我的硬币吗?"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.1"
+msgid "OUT, DAMNED PLOP!"
+msgstr "滚开,该死的便便"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.2"
+msgid "THOU ART THE FINEST OF PLOP PICKERS!"
+msgstr "你是最好的捡屎者!"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.3"
+msgid "THOU DO US HONOR"
+msgstr "你的行为令我们尊敬"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.1"
+msgid "OUT, DAMNED PLOP!"
+msgstr "滚开,该死的便便"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.2"
+msgid "FOR THY ROYAL PLOP PICKING"
+msgstr "付给皇家粪便清理员的"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.3"
+msgid "HUMBLEST OF THANKS, YOUR MAJESTY"
+msgstr "向你致以我恭谦的谢意,阁下"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.1"
+msgid "THOUST MILK OF PIGGY KINDNESS"
+msgstr "友善的猪人给你买牛奶的钱"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.2"
+msgid "SUCH STUFF AS PLOP IS MADE ON"
+msgstr "人生如翔"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.3"
+msgid "FOR THY TROUBLES"
+msgstr "麻烦你了"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_shopkeep.1"
+msgid "WE ARE NOT WORTHY OF THINE SERVICE"
+msgstr "我们不值得你的服务"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_shopkeep.2"
+msgid "I GIVE EVERY PLOP MY OINC"
+msgstr "我为每一块屎付钱"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_shopkeep.3"
+msgid "HUMBLE THANKS, YOUR MAJESTY"
+msgstr "向你致以我恭谦的谢意,阁下"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_storeowner.1"
+msgid "FOR THY FINE PLOP PICKING"
+msgstr "为了你善良的粪便清理行为"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_storeowner.2"
+msgid "MOST EXCELLENT PICKING"
+msgstr "最优秀的清理员"
+
+#. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_storeowner.3"
+msgid "HONORABLE PLOP PICKER!"
+msgstr "光荣的粪便清理员!"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.DEFAULT.1"
+msgid "THOUST ART NOT KIND!"
+msgstr "你这样做可不好！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.DEFAULT.2"
+msgid "STAYEST THOU AWAY!"
+msgstr "保持距离！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.DEFAULT.3"
+msgid "GET-ETH THEE AWAY!"
+msgstr "你滚！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.DEFAULT.4"
+msgid "ADIEU YOU!"
+msgstr "远离你！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_banker.1"
+msgid "THOU HAST THE SMELL OF UNPIG"
+msgstr "你闻起来像非猪"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_banker.2"
+msgid "TAKE-ETH OFF!"
+msgstr "滚开！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_banker.3"
+msgid "GET THEE GONE!"
+msgstr "你走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_beautician.1"
+msgid "GOODNESS!"
+msgstr "天哪！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_beautician.2"
+msgid "EEP! SNORT!"
+msgstr "哼！哼！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_beautician.3"
+msgid "LEAVETH THOU!!"
+msgstr "你离开！！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_beautician.4
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_beautician.4"
+msgid "THOU HAST THE SMELL OF UNPIG"
+msgstr "你闻起来像非猪"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_collector.1"
+msgid "TAKETH NAUGHT MINE STUFFS!"
+msgstr "不要拿我的东西！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_collector.2"
+msgid "GET THEE GONE"
+msgstr "你走开"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_collector.3"
+msgid "GO'EST THOU AWAY!"
+msgstr "你滚！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_erudite.1"
+msgid "LEAVETH ME BE!"
+msgstr "远离我！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_erudite.2"
+msgid "WHYFORE YOU BUG-ETH ME?"
+msgstr "你为什么要骚扰我？"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_erudite.3"
+msgid "BACK-EST THOU OFF!"
+msgstr "你滚回去！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_farmer.1"
+msgid "WHATFORE THOU WANT'ETH WITH ME?"
+msgstr "你为什么要待在我身边？"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_farmer.2"
+msgid "GET'ST BACK!"
+msgstr "滚回去！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_farmer.3"
+msgid "BACK-ETH OFF!"
+msgstr "滚回去！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_florist.1"
+msgid "ADIEU!"
+msgstr "告辞！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_florist.2"
+msgid "THOU ART TOO CLOSE!"
+msgstr "你靠得太近了！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_florist.3"
+msgid "STAND-EST NAUGHT SO CLOSE TO ME!"
+msgstr "别站得离我那么近！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hatmaker.1"
+msgid "GO'ST THOU AWAY!"
+msgstr "你走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hatmaker.2"
+msgid "WANT THOU TO STEAL'EST MINE STUFFS?"
+msgstr "你想偷我的东西？"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hatmaker.3"
+msgid "GET THEE GONE!"
+msgstr "你滚开！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hatmaker.4
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hatmaker.4"
+msgid "I TRUSTETH THEE NAUGHT!"
+msgstr "我一点也不相信你！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hunter.1"
+msgid "BACK-ETH AWAY!"
+msgstr "滚回去！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hunter.2"
+msgid "CROWD-EST ME NAUGHT!"
+msgstr "别挤我！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_hunter.3"
+msgid "GET-ETH THEE AWAY!"
+msgstr "你滚！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mayor.1"
+msgid "GET THEE GONE!"
+msgstr "你走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mayor.2"
+msgid "GO-EST THOU AWAY!"
+msgstr "你滚开！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mayor.3"
+msgid "GUARDS! PROTECT-ETH ME!"
+msgstr "守卫，保护我！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mechanic.1"
+msgid "I TRUST THEE NOT!"
+msgstr "我不相信你"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mechanic.2"
+msgid "STAY'ST THOU BACK"
+msgstr "滚回去，别再回来"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_mechanic.3"
+msgid "GET THEE GONE, UNPIG"
+msgstr "非猪，你走开"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_miner.1"
+msgid "LEAVE'ST ME BE!"
+msgstr "离我远点！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_miner.2"
+msgid "SHOO!"
+msgstr "嘘……！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_miner.3"
+msgid "STAYEST THOU AWAY!"
+msgstr "保持距离！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_professor.1"
+msgid "LEAVETH ME BE!"
+msgstr "离我远点！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_professor.2"
+msgid "GO-EST THOU AWAY"
+msgstr "你走开"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_professor.3"
+msgid "WHYFORE YOU SO CLOSE?"
+msgstr "为什么你要离我这么近？"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard.1"
+msgid "STAYEST THOU AWAY!"
+msgstr "保持距离！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard.2"
+msgid "GET THEE GONE!"
+msgstr "你走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard.3"
+msgid "THOU HAST THE STENCH OF UNPIG!"
+msgstr "你身上有一股非猪的恶臭味！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard_2.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard_2.1"
+msgid "GO'ST THOU AWAY"
+msgstr "你走开"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard_2.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard_2.2"
+msgid "BACK-ETH THEE OFF!"
+msgstr "你滚回去！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard_2.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_royalguard_2.3"
+msgid "TALK'ST THOU TO ME?"
+msgstr "你在跟我是说话？"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_shopkeep.1"
+msgid "TOO CLOSE! THOU TOO CLOSE!"
+msgstr "太近了！你离我太近了！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_shopkeep.2"
+msgid "BACK-ETH THEE OFF!"
+msgstr "你滚回去！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_shopkeep.3"
+msgid "GET THEE GONE!"
+msgstr "你走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_storeowner.1"
+msgid "THINE CLOSENESS DOST OFFENDETH ME"
+msgstr "你离我太近了，这冒犯了我"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_storeowner.2"
+msgid "TOO CLOSE!"
+msgstr "太近了！"
+
+#. STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUNAWAY_WILSON.pigman_storeowner.3"
+msgid "BACK'ST THOU UP!"
+msgstr "滚回去！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.DEFAULT.1"
+msgid "SPIDER IS'T BAD!"
+msgstr "蜘蛛太坏了！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.DEFAULT.2"
+msgid "LIKETH NAUGHT YON SPIDER!"
+msgstr "这蜘蛛像怪物一样！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.DEFAULT.3"
+msgid "GO'ST THOU AWAY!"
+msgstr "你快走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_banker.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_banker.1"
+msgid "FOUL! FOUL! MOST FOUL!"
+msgstr "邪恶的！邪恶！最邪恶的东西！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_banker.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_banker.2"
+msgid "MONSTROUS THING!"
+msgstr "怪物一样的东西！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_banker.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_banker.3"
+msgid "GET THEE GONE!!"
+msgstr "快消失！！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_beautician.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_beautician.1"
+msgid "O MONSTROUS!"
+msgstr "噢！怪物！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_beautician.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_beautician.2"
+msgid "O HORRIBLE!"
+msgstr "噢！真可怕！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_beautician.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_beautician.3"
+msgid "MOST VEXING!"
+msgstr "太烦恼了！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_collector.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_collector.1"
+msgid "GET THEE GONE!"
+msgstr "快消失！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_collector.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_collector.2"
+msgid "THOU ART BAD GUY!!"
+msgstr "你是个坏家伙！！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_collector.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_collector.3"
+msgid "MOST VEXING!"
+msgstr "太烦恼了！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_erudite.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_erudite.1"
+msgid "GET THEE GONE!"
+msgstr "快消失！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_erudite.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_erudite.2"
+msgid "AWAY! AWAY!!"
+msgstr "走开！走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_erudite.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_erudite.3"
+msgid "EEK!"
+msgstr "咦呃！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_farmer.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_farmer.1"
+msgid "O MONSTROUS THING!"
+msgstr "噢！怪物一样的东西！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_farmer.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_farmer.2"
+msgid "SPIDERS NAUGHT WELCOME!"
+msgstr "怪物蜘蛛来了！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_farmer.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_farmer.3"
+msgid "MOST VEXING!"
+msgstr "太恼人了！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_florist.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_florist.1"
+msgid "SPIDER IS'T BAD!"
+msgstr "蜘蛛太坏了！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_florist.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_florist.2"
+msgid "O MONSTROUS!!"
+msgstr "噢！怪物！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_florist.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_florist.3"
+msgid "O HORROR!"
+msgstr "噢！真恐怖！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hatmaker.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hatmaker.1"
+msgid "CREEP NAUGHT HENCH!"
+msgstr "爬行大怪物！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hatmaker.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hatmaker.2"
+msgid "GO'ST THOU AWAY!"
+msgstr "快走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hatmaker.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hatmaker.3"
+msgid "GUARD!"
+msgstr "守卫！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hunter.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hunter.1"
+msgid "I HATE-ETH THEE!"
+msgstr "我讨厌它们！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hunter.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hunter.2"
+msgid "LIKE-ETH THEE NAUGHT!"
+msgstr "没人喜欢你！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hunter.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_hunter.3"
+msgid "EEK! SNORT! AVAST!!"
+msgstr "咦呃！不要过来！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mayor.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mayor.1"
+msgid "GET-ETH THEE AWAY!"
+msgstr "你快走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mayor.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mayor.2"
+msgid "ALAS!! ALACK!"
+msgstr "啊啊！呜哇啊！！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mayor.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mayor.3"
+msgid "I HATE-ETH THEE, SPIDERS!"
+msgstr "我讨厌这些蜘蛛！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mechanic.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mechanic.1"
+msgid "O MONSTROUS THING!"
+msgstr "噢！怪物一样的东西！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mechanic.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mechanic.2"
+msgid "WRECK-ETH NAUGHT OUR STUFFS"
+msgstr "怪物破坏我们的东西"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mechanic.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_mechanic.3"
+msgid "GO'ST THOU AWAY!"
+msgstr "快走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_miner.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_miner.1"
+msgid "GO-ETH THOU AWAY!"
+msgstr "你快走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_miner.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_miner.2"
+msgid "GET THEE GONE!"
+msgstr "快消失！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_miner.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_miner.3"
+msgid "THOU AREN'ST WELCOME HENCE"
+msgstr "这里不欢迎你"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_professor.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_professor.1"
+msgid "GET-ETH THEE AWAY!"
+msgstr "你快走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_professor.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_professor.2"
+msgid "ALAS! ALACK!"
+msgstr "啊啊！呜哇啊！！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_professor.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_professor.3"
+msgid "GET THEE GONE!"
+msgstr "快消失！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard.1"
+msgid "PROTECT-ETH THE CITY!"
+msgstr "保卫城镇！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard.2"
+msgid "SPIDERS NAUGHT WELCOME!"
+msgstr "这里不欢迎蜘蛛！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard.3"
+msgid "GET THEE GONE!"
+msgstr "快消失！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard_2.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard_2.1"
+msgid "PROTECT-ETH THE CITY"
+msgstr "保卫城镇"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard_2.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard_2.2"
+msgid "SQUASH-ETH THE SPIDERS!"
+msgstr "镇压这些蜘蛛！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard_2.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_royalguard_2.3"
+msgid "GET THEE GONE!"
+msgstr "让它们消失！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_shopkeep.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_shopkeep.1"
+msgid "PROTECT-ETH MINE STORE!"
+msgstr "保护我的商店！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_shopkeep.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_shopkeep.2"
+msgid "GET-ETH THEE GONE!"
+msgstr "让它们消失！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_shopkeep.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_shopkeep.3"
+msgid "GO-EST AWAY!"
+msgstr "走开！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_storeowner.1
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_storeowner.1"
+msgid "EEK! SNORT! AVAST!"
+msgstr "咦呃！不要过来！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_storeowner.2
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_storeowner.2"
+msgid "MOST VEXING!"
+msgstr "太恼人了！"
+
+#. STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_storeowner.3
+msgctxt "STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER.pigman_storeowner.3"
+msgid "O HORRIBLE!"
+msgstr "噢！真可怕！"
+
+#. STRINGS.CITY_PIG_TALK_STAYOUT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_STAYOUT.DEFAULT.1"
+msgid "MOST UNWELCOME"
+msgstr "最不受欢迎"
+
+#. STRINGS.CITY_PIG_TALK_STAYOUT.DEFAULT.2
+msgctxt "STRINGS.CITY_PIG_TALK_STAYOUT.DEFAULT.2"
+msgid "AWAY, YOU CUR!"
+msgstr "走开，你这个坏蛋！"
+
+#. STRINGS.CITY_PIG_TALK_STAYOUT.DEFAULT.3
+msgctxt "STRINGS.CITY_PIG_TALK_STAYOUT.DEFAULT.3"
+msgid "BE'ST THEE GONE!"
+msgstr "你最好快消失！"
+
+#. STRINGS.CITY_PIG_TALK_STAYOUT.DEFAULT.4
+msgctxt "STRINGS.CITY_PIG_TALK_STAYOUT.DEFAULT.4"
+msgid "FIE ON THEE, VILLAIN!"
+msgstr "攻击，坏蛋！"
+
+#. STRINGS.CITY_PIG_TALK_TAKE_GIFT.DEFAULT.1
+msgctxt "STRINGS.CITY_PIG_TALK_TAKE_GIFT.DEFAULT.1"
+msgid "MANY THANKS, GIVES'T THOU MORE %s PLEASE"
+msgstr "非常感谢，不能给你更多的%s了"
+
+#. STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.1
+msgctxt "STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.1"
+msgid "THE APORKALYPSE COMETH!"
+msgstr "大灾变来了！"
+
+#. STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.2
+msgctxt "STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.2"
+msgid "THE CRACK OF DOOM!"
+msgstr "世界末日！"
+
+#. STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.3
+msgctxt "STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.3"
+msgid "DEATH HAVE ITS DAY!"
+msgstr "今天就是死亡之时！"
+
+#. STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.4
+msgctxt "STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.4"
+msgid "THEY HATH RETURNED!"
+msgstr "他们回来了！"
+
+#. STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.5
+msgctxt "STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.5"
+msgid "THEY KILL US FOR THEIR SPORT"
+msgstr "他们屠杀我们为乐"
+
+#. STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.6
+msgctxt "STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.6"
+msgid "A PLAGUE ON ALL OUR HOUSES!"
+msgstr "我们的家园要遭受灾祸了！"
+
+#. STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.7
+msgctxt "STRINGS.CITY_TALK_ANNOUNCE_APORKALYPSE.DEFAULT.7"
+msgid "BE ALL AND END ALL!"
+msgstr "一切都要完了！"
 
 #. STRINGS.MANDRAKEMANNAMES.1
 msgctxt "STRINGS.MANDRAKEMANNAMES.1"
@@ -17610,10 +22635,20 @@ msgctxt "STRINGS.NAMES.SNAKEBONESOUP"
 msgid "Snake Bone Soup"
 msgstr "蛇骨汤"
 
+#. STRINGS.NAMES.SNAKEOIL
+msgctxt "STRINGS.NAMES.SNAKEOIL"
+msgid "Snake Oil"
+msgstr "蛇油"
+
 #. STRINGS.NAMES.SNAKESKIN
 msgctxt "STRINGS.NAMES.SNAKESKIN"
 msgid "Snakeskin"
 msgstr "蛇皮"
+
+#. STRINGS.NAMES.SNAKE_AMPHIBIOUS
+msgctxt "STRINGS.NAMES.SNAKE_AMPHIBIOUS"
+msgid "Viper"
+msgstr "蝰蛇"
 
 #. STRINGS.NAMES.SNAKE_BONE
 msgctxt "STRINGS.NAMES.SNAKE_BONE"
@@ -17650,6 +22685,11 @@ msgctxt "STRINGS.NAMES.TEATREE_NUT_SAPLING"
 msgid "Tea Tree Sapling"
 msgstr "茶树苗"
 
+#. STRINGS.NAMES.TOUCAN
+msgctxt "STRINGS.NAMES.TOUCAN"
+msgid "Toucan"
+msgstr "大嘴鸟"
+
 #. STRINGS.NAMES.TREE_PILLAR
 msgctxt "STRINGS.NAMES.TREE_PILLAR"
 msgid "Great Leafy Stalk"
@@ -17669,6 +22709,11 @@ msgstr "洞穴裂缝"
 msgctxt "STRINGS.NAMES.VENUS_STALK"
 msgid "Flytrap Stalk"
 msgstr "捕蝇草根"
+
+#. STRINGS.NAMES.VINE
+msgctxt "STRINGS.NAMES.VINE"
+msgid "Vine"
+msgstr "藤蔓"
 
 #. STRINGS.NAMES.WALKINGSTICK
 msgctxt "STRINGS.NAMES.WALKINGSTICK"
@@ -17694,6 +22739,11 @@ msgstr "强大而坚固。"
 msgctxt "STRINGS.RECIPE_DESC.ARMOR_WEEVOLE"
 msgid "Kinda gross, but surprisingly strong."
 msgstr "有点恶心，但出奇的强。"
+
+#. STRINGS.RECIPE_DESC.BALLPEIN_HAMMER
+msgctxt "STRINGS.RECIPE_DESC.BALLPEIN_HAMMER"
+msgid "For when you wanna wreck things gently."
+msgstr "当你想轻轻地弄坏一些东西时。"
 
 #. STRINGS.RECIPE_DESC.BASEFAN
 msgctxt "STRINGS.RECIPE_DESC.BASEFAN"
