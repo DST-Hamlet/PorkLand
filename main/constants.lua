@@ -45,9 +45,9 @@ AREAMODES = {
 }
 
 ISLAND_TAGS = {
-    [1] = "island_accademy",
-    [2] = "island_royal",
-    [3] = "island_pugalisk",
-    [4] = "island_BFB",
-    [5] = "island_ancient",
+    "island_accademy",
+    "island_royal",
+    "island_pugalisk",
+    "island_BFB",
+    "island_ancient",
 }
