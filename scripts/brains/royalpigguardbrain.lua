@@ -163,7 +163,7 @@ local function FindMoneyAction(inst)
 end
 
 local function checknotangry(inst)
-    return not inst:HasTag("angry_at_player") or inst:GetDistanceSqToInst(GetPlayer()) > 4*4
+    return not inst:HasTag("angry_at_player") or inst:IsNearPlayer(4)
 end
 
 local function KeepChoppingAction(inst)
@@ -278,7 +278,7 @@ local function ShouldGoHome(inst)
     -- eating food allows them to overide their home leash
     local action = inst:GetBufferedAction()
     if action and action.action.id ==  "EAT" then
-        homePos =  nil
+        homePos = nil
     end
 
     return (homePos and distsq(homePos, myPos) > GO_HOME_DIST*GO_HOME_DIST ) or (TheWorld.state.isaporkalypse and HasValidHome(inst))
@@ -336,7 +336,7 @@ end
 
 local function playersproblem(inst)
     if inst.components.combat.target and inst.components.combat.target:HasTag("scary_to_pig_guards") and
-        (not inst.components.follower.leader or inst.components.follower.leader ~= GetPlayer()) then
+        (not inst.components.follower.leader or not inst.components.follower.leader:HasTag("player")) then
         return true
     end
     return false
