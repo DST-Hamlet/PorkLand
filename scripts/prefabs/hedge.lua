@@ -268,21 +268,28 @@ local function MakeHedgeType(data)
         MakeObstacle(inst)
     end
 
+    local function start_grow_timer(inst)
+        if not inst.components.timer:TimerExists("grow") then
+            inst.components.timer:StartTimer("grow", TUNING.TOTAL_DAY_TIME / 2 + (math.random() * TUNING.TOTAL_DAY_TIME))
+        end
+    end
+
     local function age(inst)
         inst.AnimState:PlayAnimation("growth2", false)
-        inst.shaveable = true
+        inst:AddTag("shaveable")
     end
 
     local function unage(inst)
         inst.AnimState:PlayAnimation("growth1", false)
-        inst.shaveable = nil
-        inst.setAgeTask(inst)
+        inst:RemoveTag("shaveable")
+        start_grow_timer(inst)
     end
 
-    local function shave(inst, shaver)
-        if inst.shaveable then
-            unage(inst)
-            shaver.components.inventory:GiveItem(SpawnPrefab("clippings"), nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+    local function on_grow_timer_done(inst)
+        if math.random() < 0.03 then
+            age(inst)
+        else
+            start_grow_timer(inst)
         end
     end
 
@@ -291,64 +298,36 @@ local function MakeHedgeType(data)
     end
 
     local function canshear(inst)
-        return inst.shaveable
+        return inst:HasTag("shaveable")
     end
 
     local function onsave(inst, data)
-        if inst.task then
-            data.timeleft = inst:TimeRemainingInTask(inst.taskinfo)
-        end
-        if inst.shaveable then
+        if inst:HasTag("shaveable") then
             data.shaveable = true
         end
     end
 
     local function onload(inst, data)
-        -- This is run everytime the hedges are loaded into the world, including the fisrt. But the result is overridden by the save data afterwards.
-        if math.random() < 0.05 then
-            age(inst)
-        else
-            inst.setAgeTask(inst)
-        end
-
         if data then
             if data.shaveable then
                 age(inst)
             else
                 unage(inst)
             end
-            if data.timeleft then
-                inst.setAgeTask(inst, data.timeleft)
+        else
+            -- This is run everytime the hedges are loaded into the world, including the fisrt. But the result is overridden by the save data afterwards.
+            if math.random() < 0.05 then
+                age(inst)
+            else
+                on_grow_timer_done(inst)
             end
         end
 
         MakeObstacle(inst)
     end
 
-    local function testage(inst)
-        if math.random() < 0.03 then
-            age(inst)
-        else
-            inst.setAgeTask(inst)
-        end
-    end
-
-    local function setAgeTask(inst, time)
-        if inst.task then
-            inst.taskinfo = nil
-            inst.task:Cancel()
-            inst.task = nil
-        end
-        if not time then
-            time = TUNING.TOTAL_DAY_TIME / 2 + (math.random() * TUNING.TOTAL_DAY_TIME)
-        end
-        inst.task, inst.taskinfo = inst:ResumeTask(time, function()
-            testage(inst)
-        end)
-    end
-
     local function getstatus(inst)
-        if inst.shaveable then
+        if inst:HasTag("shaveable") then
             return "SHAVEABLE"
         end
     end
@@ -401,6 +380,10 @@ local function MakeHedgeType(data)
             inst.SoundEmitter:PlaySound(data.buildsound)
         end
 
+        inst:AddComponent("timer")
+        start_grow_timer(inst)
+        inst:ListenForEvent("timerdone", on_grow_timer_done)
+
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
         inst.components.workable:SetWorkLeft(3)
@@ -424,10 +407,6 @@ local function MakeHedgeType(data)
         inst:AddComponent("gridnudger")
 
         MakeSnowCovered(inst)
-
-        inst.shave = shave
-        inst.setAgeTask = setAgeTask
-
         MakeMediumBurnable(inst, nil, nil, true)
         MakeMediumPropagator(inst)
         inst:ListenForEvent("burntup", inst.Remove)
@@ -436,12 +415,6 @@ local function MakeHedgeType(data)
         inst.components.shearable:SetUp("clippings", 2)
         inst.components.shearable:SetCanShearFn(canshear)
         inst.components.shearable:SetOnShearFn(onshear)
-
-        inst:DoTaskInTime(0.5, function()
-            if not inst.shaveable and not inst.task then
-                setAgeTask(inst)
-            end
-        end)
 
         return inst
     end
