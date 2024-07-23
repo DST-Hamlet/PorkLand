@@ -148,18 +148,16 @@ local function ShouldAcceptItem(inst, item)
     end
 
     if inst.components.eater:CanEat(item) then
-        if (item.components.edible.foodtype == FOODTYPE.MEAT or item.components.edible.foodtype == "HORRIBLE") and
-            inst.components.follower.leader and inst.components.follower:GetLoyaltyPercent() > 0.9 then
+        if (item.components.edible.foodtype == FOODTYPE.MEAT or item.components.edible.foodtype == "HORRIBLE")
+            and inst.components.follower.leader and inst.components.follower:GetLoyaltyPercent() > 0.9 then
+
             return false
         end
 
-        if (item.components.edible.foodtype == "VEGGIE" or item.components.edible.foodtype == "RAW") then
+        if (item.components.edible.foodtype == FOODTYPE.VEGGIE or item.components.edible.foodtype == FOODTYPE.RAW) then
 
             local econ = TheWorld.components.economy
-            local econprefab = inst.prefab
-            if inst.econprefab then
-                econprefab = inst.econprefab
-            end
+            local econprefab = inst.econprefab or inst.prefab
             local wanteditems = econ:GetTradeItems(econprefab)
             local wantitem = false
             for i, wanted in ipairs(wanteditems or {}) do
@@ -184,18 +182,13 @@ local function ShouldAcceptItem(inst, item)
         local city = inst:HasTag("city2") and 2 or 1
 
         local econ = TheWorld.components.economy
-
-        local econprefab = inst.prefab
-        if inst.econprefab then
-            econprefab = inst.econprefab
-        end
-
+        local econprefab = inst.econprefab or inst.prefab
         local wanteditems = econ:GetTradeItems(econprefab)
         local desc = econ:GetTradeItemDesc(econprefab)
         -- local wantednum =   econ:GetNumberWanted(econprefab,city)
 
         local wantitem = false
-        for i, wanted in ipairs(wanteditems or {}) do
+        for i, wanted in ipairs(wanteditems) do
             if wanted == item.prefab then
                 wantitem = true
                 break
@@ -207,8 +200,10 @@ local function ShouldAcceptItem(inst, item)
             return false
         end
 
-        if (item.prefab == "trinket_giftshop_1" or item.prefab == "trinket_giftshop_3") and inst:HasTag("city1") and
-            not inst:HasTag("recieved_trinket") then
+        if (item.prefab == "trinket_giftshop_1" or item.prefab == "trinket_giftshop_3")
+            and inst:HasTag("city1")
+            and not inst:HasTag("recieved_trinket") then
+
             wantitem = true
         end
 
@@ -226,8 +221,7 @@ local function ShouldAcceptItem(inst, item)
                 if delay == 1 then
                     inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW))
                 else
-                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY),
-                        tostring(delay)))
+                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY), tostring(delay)))
                 end
                 return false
             else
@@ -297,12 +291,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
         end
 
         local econ = TheWorld.components.economy
-
-        local econprefab = inst.prefab
-        if inst.econprefab then
-            econprefab = inst.econprefab
-        end
-
+        local econprefab = inst.econprefab or inst.prefab
         local wanteditems = econ:GetTradeItems(econprefab)
         local desc =        econ:GetTradeItemDesc(econprefab)
         --local wantednum =   econ:GetNumberWanted(econprefab,city)
@@ -350,14 +339,12 @@ local function OnGetItemFromPlayer(inst, giver, item)
             end
             if reward then
                 if giver.components.inventory then
-                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_REWARD),
-                        tostring(1), desc))
+                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_REWARD), tostring(1), desc))
                     -- inst.components.talker:Say( string.format(getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_REWARD), tostring(1), desc ))--econ:GetNumberWanted(econprefab,city) ), desc ) )
 
                     for i = 1, qty do
                         local rewarditem = SpawnPrefab(reward)
-                        giver.components.inventory:GiveItem(rewarditem, nil, Vector3(
-                            TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+                        giver.components.inventory:GiveItem(rewarditem, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
                     end
                 end
             else
@@ -371,8 +358,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
                 inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD))
                 -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD) )
                 local rewarditem = SpawnPrefab("oinc10")
-                giver.components.inventory:GiveItem(rewarditem, nil,
-                    Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+                giver.components.inventory:GiveItem(rewarditem, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
             end
         end
     end
@@ -1132,9 +1118,7 @@ local function shopkeeper_master_postinit(inst)
 end
 
 local function MakeShopKeeper(name, build, sex, tags, econprefab)
-    if not tags then
-        tags = {}
-    end
+    tags = shallowcopy(tags or {})
     table.insert(tags, "shopkeep")
     return MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit, econprefab)
 end
