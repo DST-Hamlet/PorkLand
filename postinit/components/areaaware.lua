@@ -16,3 +16,19 @@ function AreaAware:UpdatePosition(x, y, z, ...)
 
     return _UpdatePosition(self,x, y, z, ...)
 end
+
+function AreaAware:GetDebugString() -- 替换原函数以避免调试崩溃
+    local node = TheWorld.topology.nodes[self.current_area]
+    if node then
+        local s = string.format("%s: %s [%d]",tostring(TheWorld.topology.ids[self.current_area]), table.reverselookup(NODE_TYPE, node.type) or "", self.current_area)
+        if node.tags then
+            s = string.format("%s, {%s}", s, table.concat(node.tags, ", "))
+        else
+            s = string.format("%s, No tags.", s)
+        end
+        return s
+    else
+		local x, y = TheWorld.Map:GetTileCoordsAtPoint(self.inst.Transform:GetWorldPosition())
+        return "No current node: "..x..", "..y
+    end
+end

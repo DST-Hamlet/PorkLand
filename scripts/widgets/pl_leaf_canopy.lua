@@ -71,10 +71,14 @@ function LeavesOver:OnUpdate(dt)
     self.under_leaves = false
 
     local x, y ,z = self.owner.Transform:GetWorldPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    if CANOPY_TILES[tile] then
-        self.under_leaves = true
+    for k,v in pairs(CANOPY_TILES) do
+        if v and TheWorld.Map:IsCloseToTile(x, y, z, 1.5, function(_x, _y, _z)
+                return TheWorld.Map:GetTileAtPoint(_x, _y, _z) == k
+            end) then
+                self.under_leaves = true
+        end
     end
+
 
     if self.under_leaves then
         self.leavestop_intensity = math.min(1, self.leavestop_intensity + (1/30))
