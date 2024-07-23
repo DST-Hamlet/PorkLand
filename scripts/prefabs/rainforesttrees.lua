@@ -43,10 +43,6 @@ SetSharedLootTable("rainforesttree_tall",
     {"log", 1.0},
 })
 
-SetSharedLootTable("rainforesttree_burnt", {
-    {"charcoal", 1.0},
-})
-
 local function MakeAnims(stage)
     return {
         idle = "idle_" .. stage,
@@ -271,7 +267,7 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst:ListenForEvent("animover", inst.Remove)
     inst:ListenForEvent("entitysleep", inst.Remove)
 
-    inst.components.lootdropper:DropLoot()
+    inst.components.lootdropper:SpawnLootPrefab("charcoal")
 end
 
 local function OnBurntChanges(inst)
@@ -284,7 +280,7 @@ local function OnBurntChanges(inst)
     inst:RemoveComponent("blowinwindgust")
     MakeHauntableWork(inst)
 
-    inst.components.lootdropper:SetChanceLootTable("rainforesttree_burnt")
+    inst.components.lootdropper:SetLoot({})
 
     if inst.components.workable then
         inst.components.workable:SetWorkLeft(1)
@@ -310,7 +306,7 @@ local function OnBurnt(inst)
         else
             pt = pt - TheCamera:GetRightVec()
         end
-        inst.components.lootdropper:DropLoot(pt)
+
         inst.seed_task = nil
     end)
 end
@@ -617,9 +613,9 @@ local function MakeTree(name, build, stage, data)
         MakeHauntableWork(inst)
         MakeTreeBlowInWindGust(inst, {"short", "normal", "tall"}, TUNING.JUNGLETREE_WINDBLOWN_SPEED, TUNING.JUNGLETREE_WINDBLOWN_FALL_CHANCE)
 
-        if data =="burnt" then
+        if data == "burnt" then
             OnBurnt(inst)
-        elseif data =="stump" then
+        elseif data == "stump" then
             MakeStump(inst)
         end
 
@@ -632,6 +628,7 @@ local function MakeTree(name, build, stage, data)
         inst:ListenForEvent("blownbywind", OnBlownByWind)
         inst:ListenForEvent("loot_prefab_spawned", OnLootSpawned)
         inst:WatchWorldState("season", OnseasonChange)
+        OnseasonChange(inst, TheWorld.state.season)
 
         return inst
     end
@@ -640,7 +637,7 @@ local function MakeTree(name, build, stage, data)
 end
 
 return  MakeTree("rainforesttree", "normal", 0),
-        MakeTree("rainforestree_normal", "normal", 2),
+        MakeTree("rainforesttree_normal", "normal", 2),
         MakeTree("rainforesttree_tall", "normal", 3),
         MakeTree("rainforesttree_short", "normal", 1),
         MakeTree("rainforesttree_burnt", "normal", 0, "burnt"),

@@ -233,11 +233,13 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
         end)
     end
 
-    local onfinish = inst.components.workable.onfinish
-    inst.components.workable:SetOnFinishCallback(function(inst, chopper)
-        if onfinish then onfinish(inst, chopper) end
-        inst:RemoveComponent("blowinwindgust")
-    end)
+    if inst.components.workable then
+        local onfinish = inst.components.workable.onfinish
+        inst.components.workable:SetOnFinishCallback(function(inst, chopper)
+            if onfinish then onfinish(inst, chopper) end
+            inst:RemoveComponent("blowinwindgust")
+        end)
+    end
 end
 
 function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, attack_period_penalty, speed_penalty, hunger_burn, sanity_scale)
