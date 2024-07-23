@@ -155,6 +155,9 @@ PrefabFiles = {
     "burr",
     "poisonmist",
     "rainforesttrees",
+    "clawpalmtrees",
+    "cork",
+    "clawpalmtree_sapling"
 }
 
 Assets = {

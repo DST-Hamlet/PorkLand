@@ -16,6 +16,14 @@ local burr_prefabs = {
     "twigs",
 }
 
+local clawpalmtree_assets = {
+    Asset("ANIM", "anim/clawling.zip"),
+}
+
+local clawpalmtree_prefabs = {
+    "twigs",
+}
+
 local function growtree(inst)
     local tree = SpawnPrefab(inst.growprefab)
     if tree then
@@ -121,4 +129,5 @@ local function sapling_fn(build, anim, growprefab, tag, fireproof, overrideloot,
 end
 
 return Prefab("teatree_nut_sapling", sapling_fn("teatree_nut", "idle_planted", "teatree"), teatree_nut_assets, teatree_nut_prefabs),
-       Prefab("burr_sapling", sapling_fn("burr", "idle_planted", burr_growprefab_fn, nil, nil, nil, TUNING.JUNGLETREESEED_GROWTIME), burr_assets, burr_prefabs)
+       Prefab("burr_sapling", sapling_fn("burr", "idle_planted", burr_growprefab_fn, nil, nil, nil, TUNING.JUNGLETREESEED_GROWTIME), burr_assets, burr_prefabs),
+       Prefab("clawpalmtree_sapling", sapling_fn("clawling", "idle_planted", "clawpalmtree", nil, nil, nil, TUNING.ACORN_GROWTIME), clawpalmtree_assets, clawpalmtree_prefabs)

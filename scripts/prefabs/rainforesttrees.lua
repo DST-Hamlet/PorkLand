@@ -82,7 +82,7 @@ local function PushSway(inst)
 end
 
 local function Sway(inst)
-    PushSway(inst)
+    inst.AnimState:PlayAnimation(math.random() < 0.5 and anims[inst.stage].sway1 or anims[inst.stage].sway2, true)
     inst.AnimState:SetTime(math.random() * 2)
 end
 

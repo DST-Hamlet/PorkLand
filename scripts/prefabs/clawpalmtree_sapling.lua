@@ -1,12 +1,11 @@
-require "prefabutil"
-
-local assets =
-{
-    Asset("ANIM", "anim/burr.zip"),
+local assets = {
+    Asset("ANIM", "anim/clawling.zip"),
 }
 
+local prefabs = {}
+
 local function Plant(point)
-    local sapling = SpawnPrefab("burr_sapling")
+    local sapling = SpawnPrefab("clawpalmtree_sapling")
     sapling:StartGrowing()
     sapling.Transform:SetPosition(point:Get())
     sapling.SoundEmitter:PlaySound("dontstarve/wilson/plant_tree")
@@ -29,12 +28,10 @@ local function fn()
 
     MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("burr")
-    inst.AnimState:SetBuild("burr")
-    inst.AnimState:PlayAnimation("idle")
-
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    inst.AnimState:SetBank("clawling")
+    inst.AnimState:SetBuild("clawling")
+    inst.AnimState:PlayAnimation("idle_planted")
+    inst.AnimState:SetScale(0.7, 0.7, 0.7)
 
     inst:AddTag("plant")
     inst:AddTag("cattoy")
@@ -56,6 +53,7 @@ local function fn()
     inst.components.fuel.fuelvalue = TUNING.SMALL_FUEL
 
     inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem:ChangeImageName("clawpalmtree_sapling")
 
     inst:AddComponent("deployable")
     inst.components.deployable:SetDeployMode(DEPLOYMODE.PLANT)
@@ -66,14 +64,9 @@ local function fn()
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
     MakeHauntableLaunch(inst)
 
-    -- inst:ListenForEvent("seasonChange", function(it, data) 
-    --     if data.season ~= SEASONS.LUSH and not inst:HasTag("jungletree") and not inst:IsInLimbo() then
-    --         inst.taskgrow, inst.taskgrowinfo = inst:ResumeTask( math.random()* TUNING.TOTAL_DAY_TIME/2, hatchtree)
-    --     end
-    -- end, GetWorld())
-
     return inst
 end
 
-return Prefab("burr", fn, assets),
-       MakePlacer("burr_placer", "burr", "burr", "idle_planted")
+return
+    Prefab("clawpalmtree_sapling_item", fn, assets, prefabs),
+    MakePlacer("clawpalmtree_sapling_item_placer", "clawling", "clawling", "idle_planted")
