@@ -259,6 +259,8 @@ local function glowflyfn()
     inst.components.inventoryitem.nobounce = true
     inst.components.inventoryitem.pushlandedevents = false
 
+    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME * 2)
+
     inst.glowflyspawner = TheWorld.components.glowflyspawner
     if inst.glowflyspawner ~= nil then
         inst.components.inventoryitem:SetOnPickupFn(inst.glowflyspawner.StopTrackingFn)

@@ -233,15 +233,13 @@ function Poisonable:DoPoison(dt)
                 end
                 self:DonePoisoning()
             else
-                if not self.inst:IsInLimbo() then
-                    if self.inst.components.health and self.inst.components.health.vulnerabletopoisondamage then
-                        dt = dt or 1
-                        local damage = self.damage_per_interval * dt * ramp_scale * self.severity
-                        self.inst.components.health:DoPoisonDamage(damage)
-                        self.inst:PushEvent("poisondamage", {damage = damage})
-                        if not self.loop_fx and self.show_fx then
-                            self:SpawnFX()
-                        end
+                if self.inst.components.health and self.inst.components.health.vulnerabletopoisondamage then
+                    dt = dt or 1
+                    local damage = self.damage_per_interval * dt * ramp_scale * self.severity
+                    self.inst.components.health:DoPoisonDamage(damage)
+                    self.inst:PushEvent("poisondamage", {damage = damage})
+                    if not self.loop_fx and self.show_fx then
+                        self:SpawnFX()
                     end
                 end
             end
@@ -325,7 +323,11 @@ function Poisonable:SpawnFX()
     self:KillFX()
 
     if not self.fxdata then
-        self.fxdata = {prefa = "poisonbubble", x = 0, y = 0, z = 0, level = self:GetFXLevel()}
+        self.fxdata = {prefab = "poisonbubble", x = 0, y = 0, z = 0, level = self:GetFXLevel()}
+    end
+
+    if self.inst:IsInLimbo() then
+        return
     end
 
     if self.fxdata then

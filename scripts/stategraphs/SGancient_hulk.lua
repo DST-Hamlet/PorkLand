@@ -57,7 +57,7 @@ local function SpawnBurns(inst, radius, start_angle, end_angle)
     end_angle = end_angle * DEGREES
 
     local num_burns = 5
-    local pt = Vector3(inst.Transform:GetWorldPosition())
+    local pt = inst:GetPosition()
     local down = TheCamera:GetDownVec()
     local angle = math.atan2(down.z, down.x) + start_angle
     local angle_difference = (end_angle - start_angle) / num_burns
@@ -653,7 +653,7 @@ local states =
                 ShakeAllCameras(CAMERASHAKE.FULL, 0.7, 0.02, 2, inst, SHAKE_DIST)
                 inst.components.groundpounder:GroundPound()
 
-                local pt = Vector3(inst.Transform:GetWorldPosition())
+                local pt = inst:GetPosition()
                 inst:DoTaskInTime(0.6, SpawnBarrier, pt)
 
                 local fx = SpawnPrefab("metal_hulk_ring_fx")
