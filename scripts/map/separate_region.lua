@@ -1,43 +1,43 @@
-local task_regison_mapping = {}
-local function SetTaskRegison(task_name, region)
-    task_regison_mapping[task_name] = region
+local task_region_mapping = {}
+local function SetTaskRegion(task_name, region)
+    task_region_mapping[task_name] = region
 end
 
-SetTaskRegison("START",                           "A")
-SetTaskRegison("Edge_of_the_unknown",             "A")
-SetTaskRegison("painted_sands",                   "A")
-SetTaskRegison("plains",                          "A")
-SetTaskRegison("rainforests",                     "A")
-SetTaskRegison("rainforest_ruins",                "A")
-SetTaskRegison("plains_ruins",                    "A")
-SetTaskRegison("Edge_of_civilization",            "A")
-SetTaskRegison("Deep_rainforest",                 "A")
-SetTaskRegison("Pigtopia",                        "A")
-SetTaskRegison("Pigtopia_capital",                "A")
-SetTaskRegison("Deep_lost_ruins_gas",             "A")
-SetTaskRegison("Edge_of_the_unknown_2",           "A")
-SetTaskRegison("Lilypond_land",                   "A")
-SetTaskRegison("Lilypond_land_2",                 "A")
-SetTaskRegison("this_is_how_you_get_ants",        "A")
-SetTaskRegison("Deep_rainforest_2",               "A")
-SetTaskRegison("Lost_Ruins_1",                    "A")
-SetTaskRegison("Lost_Ruins_4",                    "A")
+SetTaskRegion("START",                           "A")
+SetTaskRegion("Edge_of_the_unknown",             "A")
+SetTaskRegion("painted_sands",                   "A")
+SetTaskRegion("plains",                          "A")
+SetTaskRegion("rainforests",                     "A")
+SetTaskRegion("rainforest_ruins",                "A")
+SetTaskRegion("plains_ruins",                    "A")
+SetTaskRegion("Edge_of_civilization",            "A")
+SetTaskRegion("Deep_rainforest",                 "A")
+SetTaskRegion("Pigtopia",                        "A")
+SetTaskRegion("Pigtopia_capital",                "A")
+SetTaskRegion("Deep_lost_ruins_gas",             "A")
+SetTaskRegion("Edge_of_the_unknown_2",           "A")
+SetTaskRegion("Lilypond_land",                   "A")
+SetTaskRegion("Lilypond_land_2",                 "A")
+SetTaskRegion("this_is_how_you_get_ants",        "A")
+SetTaskRegion("Deep_rainforest_2",               "A")
+SetTaskRegion("Lost_Ruins_1",                    "A")
+SetTaskRegion("Lost_Ruins_4",                    "A")
 
-SetTaskRegison("Deep_rainforest_3",              "B")
-SetTaskRegison("Deep_rainforest_mandrake",       "B")
-SetTaskRegison("Path_to_the_others",             "B")
-SetTaskRegison("Other_edge_of_civilization",     "B")
-SetTaskRegison("Other_pigtopia",                 "B")
-SetTaskRegison("Other_pigtopia_capital",         "B")
+SetTaskRegion("Deep_rainforest_3",              "B")
+SetTaskRegion("Deep_rainforest_mandrake",       "B")
+SetTaskRegion("Path_to_the_others",             "B")
+SetTaskRegion("Other_edge_of_civilization",     "B")
+SetTaskRegion("Other_pigtopia",                 "B")
+SetTaskRegion("Other_pigtopia_capital",         "B")
 
-SetTaskRegison("Deep_lost_ruins4",               "C")
-SetTaskRegison("lost_rainforest",                "C")
+SetTaskRegion("Deep_lost_ruins4",               "C")
+SetTaskRegion("lost_rainforest",                "C")
 
-SetTaskRegison("pincale",                        "E")
+SetTaskRegion("pincale",                        "E")
 
-SetTaskRegison("Deep_wild_ruins4",               "F")
-SetTaskRegison("wild_rainforest",                "F")
-SetTaskRegison("wild_ancient_ruins",             "F")
+SetTaskRegion("Deep_wild_ruins4",               "F")
+SetTaskRegion("wild_rainforest",                "F")
+SetTaskRegion("wild_ancient_ruins",             "F")
 
 ---@param nodes table<string, node>
 ---@param dist number
@@ -52,7 +52,7 @@ local function separate_region(nodes, dist)
             for i = 1, #points_x, 1 do
                 local x, y = points_x[i], points_y[i]
                 point_region[x] = point_region[x] or {}
-                point_region[x][y] = task_regison_mapping[task]
+                point_region[x][y] = task_region_mapping[task]
                 -- WorldSim:SetTile(x, y, WORLD_TILES.GASJUNGLE)
             end
         end

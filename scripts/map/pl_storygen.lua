@@ -176,11 +176,13 @@ function Story:Pl_GenerateNodesFromTasks(linkFn)
         print("Has start node", self.gen_params.start_node)
         start_node_data.data = self:GetRoom(self.gen_params.start_node)
         start_node_data.data.terrain_contents = start_node_data.data.contents
+        table.insert(start_node_data.data.tags, "island_accademy")
     else
         print("No start node! Createing a default room.")
         start_node_data.data = {
             value = WORLD_TILES.GRASS,
             type = NODE_TYPE.Default,
+            tags = {"island_accademy"},
             terrain_contents = {
                 countprefabs = {
                     spawnpoint = 1,
