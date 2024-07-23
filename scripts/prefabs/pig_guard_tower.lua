@@ -269,8 +269,6 @@ local function fn()
     inst:AddTag("structure")
     inst:AddTag("city_hammerable")
 
-    inst.entity:SetPristine()
-
     ------- Copied from prefabs/wall.lua -------
     inst._pfpos = nil
     inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
@@ -281,6 +279,8 @@ local function fn()
 
     inst:ListenForEvent("onremove", onremove)
     --------------------------------------------
+
+    inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
