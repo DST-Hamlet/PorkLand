@@ -152,6 +152,9 @@ PrefabFiles = {
     "infused_iron",
     "living_artifact",
     "ancient_hulk_laser",
+    "burr",
+    "poisonmist",
+    "rainforesttrees",
 }
 
 Assets = {

@@ -1,50 +1,66 @@
+local function on_blooming(self, blooming)
+    if blooming then
+        self.inst:AddTag("blooming")
+    else
+        self.inst:RemoveTag("blooming")
+    end
+end
+
 local Bloomable = Class(function(self, inst)
     self.inst = inst
-    self.season = {SEASONS.SUMMER}
     self.blooming = false
     self.time = 0
     self.timevarriance = TUNING.TOTAL_DAY_TIME/2
-
-     self:WatchWorldState("season", function(it, data)
-            self:SeasonChange(data)
-        end, TheWorld)
-end)
+end, nil,
+{
+    blooming = on_blooming,
+})
 
 function Bloomable:SetCanBloom(fn)
     self.canbloom = fn
 end
 
 function Bloomable:SetStartBloomFn(fn)
-    self.bloomfunction = fn
+    self.startfn = fn
 end
 
 function Bloomable:SetStopBloomFn(fn)
-    self.unbloomfunction = fn
-end
-
-function Bloomable:StartBloom(instant)
-
-    if self.unbloomtask then self.unbloomtask:Cancel() self.unbloomtask = nil end
-    self.unbloomtaskinfo = nil
-
-    self.blooming = true
-    self.inst:AddTag("blooming")
-
-    if self.bloomtask then self.bloomtask:Cancel() self.bloomtask = nil end
-    self.bloomtaskinfo = nil
-
-    if self.bloomfunction then
-        self.bloomfunction(self.inst, instant)
-    end
+    self.stopfn = fn
 end
 
 function Bloomable:SetDoBloom(fn)
     self.dobloomfn = fn
 end
 
-function Bloomable:DoBloom()
-    if self.dobloomfn then
-        self.dobloomfn(self.inst)
+function Bloomable:IsBlooming()
+    return self.blooming
+end
+
+function Bloomable:CanBloom()
+    local canbloom = true
+    if self.canbloom then
+       canbloom = self.canbloom(self.inst)
+    end
+    return canbloom
+end
+
+function Bloomable:StartBloom(instant)
+    if self.unbloomtask then
+        self.unbloomtask:Cancel()
+        self.unbloomtask = nil
+    end
+    self.unbloomtaskinfo = nil
+
+    self.blooming = true
+
+    if self.bloomtask then
+        self.bloomtask:Cancel()
+        self.bloomtask = nil
+    end
+    self.bloomtaskinfo = nil
+
+    if self.startfn then
+        self.startfn(self.inst, instant)
     end
 end
 
@@ -58,34 +74,43 @@ function Bloomable:StopBloom(inst)
     if self.unbloomtask then self.unbloomtask:Cancel() self.unbloomtask = nil end
     self.unbloomtaskinfo = nil
 
-    if self.unbloomfunction then
-        self.unbloomfunction(self.inst)
+    if self.stopfn then
+        self.stopfn(self.inst)
     end
 end
 
-function Bloomable:SeasonChange(data)
-    if self:CanBloom() then
-        local goodseason = false
-        for i,v in ipairs(self.season) do
-            if TheWorld.state.season == v then
-                goodseason = true
-                break
-            end
-        end
-        if goodseason and not self.blooming then
-            self:DoStartBloomTask(self.time + math.random()*self.timevarriance)
-        elseif not goodseason and self.blooming then
-            self:DoStopBloomTask(self.time + math.random()*self.timevarriance)
-        end
+function Bloomable:DoBloom()
+    if self.dobloomfn then
+        self.dobloomfn(self.inst)
     end
 end
 
-function Bloomable:CanBloom()
-    local canbloom = true
-    if self.canbloom then
-       canbloom = self.canbloom(self.inst)
+function Bloomable:DoStartBloomTask(time)
+    if self.bloomtask then
+        self.bloomtask:Cancel()
+        self.bloomtask = nil
     end
-    return canbloom
+    self.bloomtaskinfo = nil
+
+    self.bloomtask, self.bloomtaskinfo = self.inst:ResumeTask(time, function() self:StartBloom() end)
+end
+
+function Bloomable:DoStopBloomTask(time)
+    if self.unbloomtask then
+        self.unbloomtask:Cancel()
+        self.unbloomtask = nil
+    end
+    self.unbloomtaskinfo = nil
+
+    self.unbloomtask, self.unbloomtaskinfo = self.inst:ResumeTask(time, function() self:StopBloom() end)
+end
+
+function Bloomable:StartBloomTask()
+    self:DoStartBloomTask(self.time + math.random() * self.timevarriance)
+end
+
+function Bloomable:StartUnbloomTask()
+    self:DoStopBloomTask(self.time + math.random() * self.timevarriance)
 end
 
 function Bloomable:OnSave()
@@ -101,19 +126,6 @@ function Bloomable:OnSave()
     end
 
     return data
-end
-
-function Bloomable:DoStartBloomTask(time)
-    if self.bloomtask then self.bloomtask:Cancel() self.bloomtask = nil end
-    self.bloomtaskinfo = nil
-    self.bloomtask, self.bloomtaskinfo = self.inst:ResumeTask(time, function() self:StartBloom() end)
-end
-
-
-function Bloomable:DoStopBloomTask(time)
-    if self.unbloomtask then self.unbloomtask:Cancel() self.unbloomtask = nil end
-    self.unbloomtaskinfo = nil
-    self.unbloomtask, self.unbloomtaskinfo = self.inst:ResumeTask(time, function() self:StopBloom() end)
 end
 
 function Bloomable:OnLoad(data)
@@ -136,10 +148,9 @@ end
 function Bloomable:GetDebugString()
     local string = ""
     if self.bloomtaskinfo then
-        string = string .. "  bloomtask: "..self.inst:TimeRemainingInTask(self.bloomtaskinfo)
-    end
-    if self.unbloomtaskinfo then
-        string = string .. "  unbloomtask: "..self.inst:TimeRemainingInTask(self.unbloomtaskinfo)
+        string = string .. "Blooms in: " .. self.inst:TimeRemainingInTask(self.bloomtaskinfo)
+    elseif self.unbloomtaskinfo then
+        string = string .. "Unblooms in: " .. self.inst:TimeRemainingInTask(self.unbloomtaskinfo)
     end
     return string
 end

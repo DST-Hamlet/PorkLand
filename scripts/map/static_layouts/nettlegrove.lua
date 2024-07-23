@@ -172,7 +172,7 @@ return {
         },
         {
           name = "",
-          type = "lightrays",
+          type = "lightrays_jungle",
           shape = "rectangle",
           x = 126,
           y = 126,
