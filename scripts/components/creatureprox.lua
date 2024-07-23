@@ -15,7 +15,7 @@ local function OnUpdate(inst, self)
     local foundents = {}
 
     for k, ent in ipairs(ents) do
-        if (not self.findtestfn or self.findtestfn(ent, inst)) and (self.alivemode ~= IsEntityDeadOrGhost(foundents[k])) then
+        if (not self.findtestfn or self.findtestfn(ent, inst)) and (self.alivemode ~= IsEntityDeadOrGhost(ent)) then
             table.insert(foundents, ent)
         end
     end

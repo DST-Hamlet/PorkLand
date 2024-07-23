@@ -55,7 +55,7 @@ local function build_porkland(entities, topology_save, map_width, map_height, cu
     if entities["deep_jungle_fern_noise"] then
         for _, ent in ipairs(entities["deep_jungle_fern_noise"]) do
             make_bunch(entities, topology_save, WorldSim, map_width, map_height, "deep_jungle_fern_noise_plant", 12,
-                math.random(5, 15), ent.x, ent.z, {WORLD_TILES.DEEPRAINFOREST})
+                math.random(5, 15), ent.x, ent.z, {WORLD_TILES.DEEPRAINFOREST}, nil, 2)
         end
     end
 

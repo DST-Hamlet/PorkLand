@@ -11,6 +11,7 @@ require("map/rooms/terrain_pinacle")
 AddTask("Edge_of_the_unknown", {
     locks = LOCKS.NONE,
     keys_given = KEYS.JUNGLE_DEPTH_1,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["BG_plains_base"] = 2,
     },
@@ -22,6 +23,7 @@ AddTask("Edge_of_the_unknown", {
 AddTask("painted_sands", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.JUNGLE_DEPTH_1,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["BG_painted_base"] = math.random(2, 3),
         ["BG_battleground_base"] = math.random(0, 1),
@@ -37,6 +39,7 @@ AddTask("painted_sands", {
 AddTask("plains", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.JUNGLE_DEPTH_1,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["plains_tallgrass"] = math.random(2, 3),
         ["plains_pogs"] = 1,
@@ -49,6 +52,7 @@ AddTask("plains", {
 AddTask("rainforests", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.JUNGLE_DEPTH_1,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["BG_rainforest_base"] = math.random(2, 3),
     },
@@ -60,6 +64,7 @@ AddTask("rainforests", {
 AddTask("rainforest_ruins", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.JUNGLE_DEPTH_1,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["rainforest_ruins"] = math.random(2, 3),
     },
@@ -71,6 +76,7 @@ AddTask("rainforest_ruins", {
 AddTask("plains_ruins", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.JUNGLE_DEPTH_1,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["plains_ruins"] = math.random(2, 3),
         ["plains_pogs"] = math.random(0, 1),
@@ -83,6 +89,7 @@ AddTask("plains_ruins", {
 AddTask("Edge_of_civilization", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.CIVILIZATION_1,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["cultivated_base_1"] = math.random(3, 5),
         ["piko_land"] = math.random(2, 3),
@@ -95,6 +102,7 @@ AddTask("Edge_of_civilization", {
 AddTask("Deep_rainforest", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = {KEYS.JUNGLE_DEPTH_2, KEYS.JUNGLE_DEPTH_3},
+    room_tags = {"island_accademy"},
     room_choices = {
         ["BG_rainforest_base"] = math.random(2, 3),
         ["BG_deeprainforest_base"] = 1,
@@ -117,6 +125,7 @@ AddTask("Deep_rainforest", {
 AddTask("Pigtopia", {
     locks = LOCKS.CIVILIZATION_1,
     keys_given = KEYS.CIVILIZATION_2,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["suburb_base_1"] = math.random(2, 3),
     },
@@ -128,6 +137,7 @@ AddTask("Pigtopia", {
 AddTask("Pigtopia_capital", {
     locks = LOCKS.CIVILIZATION_2,
     keys_given = KEYS.ISLAND_2,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["city_base_1"] = math.random(2, 3),
     },
@@ -139,6 +149,7 @@ AddTask("Pigtopia_capital", {
 AddTask("Deep_lost_ruins_gas", {
     locks = LOCKS.JUNGLE_DEPTH_3,
     keys_given = KEYS.JUNGLE_DEPTH_3,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["deeprainforest_gas"] = math.random(3, 4),
         ["deeprainforest_gas_flytrap_grove"] = math.random(2),
@@ -157,6 +168,7 @@ AddTask("Deep_lost_ruins_gas", {
 AddTask("Edge_of_the_unknown_2", {
     locks = LOCKS.CIVILIZATION_1,
     keys_given = KEYS.JUNGLE_DEPTH_1,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["plains_tallgrass"] = math.random(1, 2),
         ["plains_pogs"] = math.random(0, 2),
@@ -176,6 +188,7 @@ AddTask("Edge_of_the_unknown_2", {
 AddTask("Lilypond_land", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.JUNGLE_DEPTH_2,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["rainforest_lillypond"] = math.random(3, 5),
     },
@@ -187,6 +200,7 @@ AddTask("Lilypond_land", {
 AddTask("Lilypond_land_2", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.JUNGLE_DEPTH_2,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["rainforest_lillypond"] = math.random(2, 3),
     },
@@ -198,6 +212,7 @@ AddTask("Lilypond_land_2", {
 AddTask("this_is_how_you_get_ants", {
     locks = LOCKS.JUNGLE_DEPTH_2,
     keys_given = {KEYS.JUNGLE_DEPTH_2, KEYS.JUNGLE_DEPTH_3},
+    room_tags = {"island_accademy"},
     room_choices = {
         ["deeprainforest_anthill"] = 1,
     },
@@ -209,6 +224,7 @@ AddTask("this_is_how_you_get_ants", {
 AddTask("Deep_rainforest_2", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = {KEYS.JUNGLE_DEPTH_2, KEYS.JUNGLE_DEPTH_3},
+    room_tags = {"island_accademy"},
     room_choices = {
         ["BG_deeprainforest_base"] = math.random(1, 2),
         ["deeprainforest_spider_monkey_nest"] = math.random(1, 2),
@@ -230,6 +246,7 @@ AddTask("Deep_rainforest_2", {
 AddTask("Lost_Ruins_1", {
     locks = LOCKS.JUNGLE_DEPTH_3,
     keys_given = KEYS.NONE,
+    room_tags = {"island_accademy"},
     room_choices = {
         ["deeprainforest_ruins_entrance"] = 1,
     },
@@ -281,6 +298,7 @@ AddTask("Deep_rainforest_3", {
     locks = LOCKS.LAND_DIVIDE_1,
     keys_given = {KEYS.OTHER_JUNGLE_DEPTH_2},
     --    entrance_room = "ForceDisconnectedRoom",   --  THIS IS HOW THEY ARE ON SEPARATE ISLANDS
+    room_tags = {"island_royal"},
     room_choices = {
         ["BG_deeprainforest_base"] = math.random(2, 4),
         ["deeprainforest_fireflygrove"] = math.random(0, 1),
@@ -302,6 +320,7 @@ AddTask("Deep_rainforest_mandrake", {
     locks = LOCKS.OTHER_JUNGLE_DEPTH_2,
     keys_given = {KEYS.NONE},
     --    entrance_room = "ForceDisconnectedRoom",   --  THIS IS HOW THEY ARE ON SEPARATE ISLANDS
+    room_tags = {"island_royal"},
     room_choices = {
         ["deeprainforest_mandrakeman"] = 1,
     },
@@ -317,6 +336,7 @@ AddTask("Deep_rainforest_mandrake", {
 AddTask("Path_to_the_others", {
     locks = LOCKS.OTHER_JUNGLE_DEPTH_2,
     keys_given = KEYS.OTHER_JUNGLE_DEPTH_1,
+    room_tags = {"island_royal"},
     room_choices = {
         ["BG_plains_base"] = math.random(1, 2),
         ["plains_tallgrass"] = math.random(1, 2),
@@ -330,6 +350,7 @@ AddTask("Path_to_the_others", {
 AddTask("Other_edge_of_civilization", {
     locks = LOCKS.OTHER_JUNGLE_DEPTH_1,
     keys_given = KEYS.OTHER_CIVILIZATION_1,
+    room_tags = {"island_royal"},
     room_choices = {
         ["cultivated_base_2"] = math.random(1, 3),
     },
@@ -341,6 +362,7 @@ AddTask("Other_edge_of_civilization", {
 AddTask("Other_pigtopia", {
     locks = LOCKS.OTHER_CIVILIZATION_1,
     keys_given = KEYS.OTHER_CIVILIZATION_2,
+    room_tags = {"island_royal"},
     room_choices = {
         ["suburb_base_2"] = math.random(2, 3),
     },
@@ -352,6 +374,7 @@ AddTask("Other_pigtopia", {
 AddTask("Other_pigtopia_capital", {
     locks = LOCKS.OTHER_CIVILIZATION_2,
     keys_given = KEYS.ISLAND_3,
+    room_tags = {"island_royal"},
     room_choices = {
         ["city_base_2"] = math.random(2, 3),
     },
@@ -376,6 +399,7 @@ AddTask("Deep_lost_ruins4", {
     locks = LOCKS.LAND_DIVIDE_2,
     keys_given = {KEYS.LOST_JUNGLE_DEPTH_2},
 --    entrance_room = "ForceDisconnectedRoom", --  THIS IS HOW THEY ARE ON SEPARATE ISLANDS
+    room_tags = {"island_pugalisk"},
     room_choices = {
         ["BG_deeprainforest_base"] = math.random(2, 4),
         ["deeprainforest_flytrap_grove"] = math.random(2, 3),
@@ -396,6 +420,7 @@ AddTask("Deep_lost_ruins4", {
 AddTask("lost_rainforest", {
     locks = LOCKS.LOST_JUNGLE_DEPTH_2,
     keys_given = {KEYS.ISLAND_4},
+    room_tags = {"island_pugalisk"},
     room_choices = {
         ["BG_plains_base"] = math.random(1,4),
         ["rainforest_lillypond"] = math.random(2, 4),
@@ -418,6 +443,7 @@ AddTask("lost_rainforest", {
 AddTask("Land_Divide_3", {
     locks = LOCKS.ISLAND_4,
     keys_given = KEYS.LAND_DIVIDE_3,
+    room_tags = {"island_pugalisk"},
     room_choices = {
         ["ForceDisconnectedRoom"] = 20,
     },
@@ -430,6 +456,7 @@ AddTask("Land_Divide_3", {
 AddTask("pincale", {
     locks = LOCKS.LAND_DIVIDE_3,
     keys_given = KEYS.PINACLE,
+    room_tags = {"island_BFB"},
     room_choices = {
         ["BG_pinacle_base"] = 1,
     },
@@ -460,6 +487,7 @@ AddTask("Deep_wild_ruins4", {
     locks = LOCKS.LAND_DIVIDE_4,
     keys_given = {KEYS.WILD_JUNGLE_DEPTH_1},
 --    entrance_room = "ForceDisconnectedRoom", --  THIS IS HOW THEY ARE ON SEPARATE ISLANDS
+    room_tags = {"island_ancient"},
     room_choices = {
         ["deeprainforest_base_nobatcave"] = math.random(2, 4),
         ["deeprainforest_flytrap_grove"] = math.random(2, 3),
@@ -475,6 +503,7 @@ AddTask("Deep_wild_ruins4", {
 AddTask("wild_rainforest", {
     locks = LOCKS.WILD_JUNGLE_DEPTH_1,
     keys_given = {KEYS.WILD_JUNGLE_DEPTH_2},
+    room_tags = {"island_ancient"},
     room_choices = {
         ["plains_base_nobatcave"] = math.random(3, 4),
         ["rainforest_lillypond"] = math.random(3, 4),
@@ -489,6 +518,7 @@ AddTask("wild_rainforest", {
 AddTask("wild_ancient_ruins", {
     locks = LOCKS.WILD_JUNGLE_DEPTH_2,
     keys_given = {KEYS.ISLAND_5},
+    room_tags = {"island_ancient"},
     room_choices = {
         ["deeprainforest_flytrap_grove"] = math.random(4, 5),
     },
@@ -503,6 +533,7 @@ AddTask("wild_ancient_ruins", {
 AddTask("Land_Divide_5", {
     locks = LOCKS.ISLAND_5,
     keys_given = KEYS.LAND_DIVIDE_5,
+    room_tags = {"island_ancient"},
     room_choices = {
         ["ForceDisconnectedRoom"] = 20,
     },

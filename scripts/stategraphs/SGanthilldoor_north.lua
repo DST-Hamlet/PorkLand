@@ -38,13 +38,13 @@ local states_north =
         }
     },
 
-	State{
-		name = "shut_north",
-		tags = {"busy"},
+    State{
+        name = "shut_north",
+        tags = {"busy"},
 
-		onenter = function(inst)
-			inst.AnimState:PlayAnimation("north_shut", false)
-		end,
+        onenter = function(inst)
+            inst.AnimState:PlayAnimation("north_shut", false)
+        end,
 
         events =
         {
@@ -54,7 +54,7 @@ local states_north =
                 inst.sg:GoToState("idle_north")
             end),
         }
-	},
+    },
 }
 
 return StateGraph("anthilldoor_north", states_north, events, "idle_north", actionhandlers)

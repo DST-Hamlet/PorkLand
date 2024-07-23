@@ -148,7 +148,6 @@ local actionhandlers = {
         if inst.sg:HasStateTag("strafing") then
             inst.sg.statemem.should_shoot = true
             inst.sg.mem.shootpos = action:GetActionPoint()
-            print("OnRemoteReleaseControlSecondary")
         end
     end),
 }
@@ -1932,20 +1931,32 @@ local states = {
         {
             TimeEvent(8  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/punch", nil, 0.5) end),
             TimeEvent(6  * FRAMES, function(inst) inst:PerformBufferedAction() end),
-            TimeEvent(14 * FRAMES, function(inst) inst.sg:RemoveStateTag("working") inst.sg:RemoveStateTag("busy") end),
-            TimeEvent(15 * FRAMES, function(inst)
-                if inst.components.playercontroller and
-                    inst.components.playercontroller:IsAnyOfControlsPressed(CONTROL_PRIMARY, CONTROL_ACTION, CONTROL_CONTROLLER_ACTION) and
-                    inst.sg.statemem.action and
+            TimeEvent(12 * FRAMES, function(inst) inst.sg:RemoveStateTag("working") inst.sg:RemoveStateTag("busy") end),
+            TimeEvent(13 * FRAMES, function(inst)
+                if not inst.sg.statemem.iswoodcutter and
+                    inst.components.playercontroller ~= nil and
+                    inst.components.playercontroller:IsAnyOfControlsPressed(
+                        CONTROL_PRIMARY,
+                        CONTROL_ACTION,
+                        CONTROL_CONTROLLER_ACTION) and
+                    inst.sg.statemem.action ~= nil and
                     inst.sg.statemem.action:IsValid() and
-                    inst.sg.statemem.action.target and
+                    inst.sg.statemem.action.target ~= nil and
+                    inst.sg.statemem.action.target.components.workable ~= nil and
+                    inst.sg.statemem.action.target.components.workable:CanBeWorked() and
                     inst.sg.statemem.action.target:IsActionValid(inst.sg.statemem.action.action) and
-                    (inst.sg.statemem.action.target.components.workable or inst.sg.statemem.action.target.components.hackable) then
-                        inst:ClearBufferedAction()
-                        inst:PushBufferedAction(inst.sg.statemem.action)
+                    CanEntitySeeTarget(inst, inst.sg.statemem.action.target) then
+                    --No fast-forward when repeat initiated on server
+                    inst.sg.statemem.action.options.no_predict_fastforward = true
+                    inst:ClearBufferedAction()
+                    inst:PushBufferedAction(inst.sg.statemem.action)
                 end
             end),
         },
+
+        EventHandler("animover", function(inst)
+            inst.sg:GoToState("idle", true)
+        end),
     },
 
     State{
@@ -2098,7 +2109,7 @@ local states = {
         onenter = function(inst)
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("hit")
-			CommonHandlers.UpdateHitRecoveryDelay(inst)
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
         end,
 
         events =
