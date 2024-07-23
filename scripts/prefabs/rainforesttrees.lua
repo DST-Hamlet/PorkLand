@@ -516,23 +516,6 @@ local function OnEntityWake(inst)
     end
 end
 
-local function OnBlownByWind(inst, data)
-    if inst.components.bloomable:CanBloom() then
-        if math.random() < 0.30 then
-            inst.components.bloomable:DoBloom()
-        end
-    end
-end
-
-local function OnseasonChange(inst, season)
-    local bloomable = inst.components.bloomable
-    if season == SEASONS.LUSH and not bloomable:IsBlooming() then
-        bloomable:StartBloomTask()
-    elseif season ~= SEASONS.LUSH and bloomable:IsBlooming() then
-        bloomable:StartUnbloomTask()
-    end
-end
-
 local function MakeTree(name, build, stage, data)
     local function fn()
         local inst = CreateEntity()
@@ -625,10 +608,7 @@ local function MakeTree(name, build, stage, data)
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
 
-        inst:ListenForEvent("blownbywind", OnBlownByWind)
         inst:ListenForEvent("loot_prefab_spawned", OnLootSpawned)
-        inst:WatchWorldState("season", OnseasonChange)
-        OnseasonChange(inst, TheWorld.state.season)
 
         return inst
     end
