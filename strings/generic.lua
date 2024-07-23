@@ -31,6 +31,11 @@ return {
     },
     ANNOUNCE_WAVE_BOOST = "Weeeee!",
     DESCRIBE = {
+        ADULT_FLYTRAP = {
+            DEAD = "Bereft of life.",
+            GENERIC = "Science could not have done this.",
+            SLEEPING = "Shhh. It's sleeping.",
+        },
         ALLOY = "Ahoy there, alloy!",
         ANCIENT_HULK = "I regret causing that.",
         ANCIENT_ROBOTS_ASSEMBLY = "It's not quite done yet.",
@@ -109,9 +114,16 @@ return {
         LOTUS_FLOWER = "A lovely science flower.",
         LOTUS_FLOWER_COOKED = "A delicacy.",
         MACHETE = "I like the cut of this blade.",
+        MAGNIFYING_GLASS = "Science awaits!",
         MANDRAKEHOUSE = "It looks... screamy.",
         MANDRAKEMAN = "Large and screamy.",
+        MEAN_FLYTRAP = {
+            DEAD = "Cadaverous.",
+            GENERIC = "Plants shouldn't move! That's just science!",
+            SLEEPING = "Sleep well, horrible plant.",
+        },
         METALPLATEHAT = "Protects my brains.",
+        NECTAR_POD = "I could use this to make honey.",
         PANGOLDEN = "It likes rich food.",
         PEAGAWK = {
             DEAD = "Dead-eyed.",
@@ -120,6 +132,12 @@ return {
         },
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
+        PIG_RUINS_ANT = "An abstract insect or something.",
+        PIG_RUINS_HEAD = "Looks like a headache.",
+        PIG_RUINS_IDOL = "These ruins have been ruined.",
+        PIG_RUINS_MUSHROOM = "A vivid display of... their love.",
+        PIG_RUINS_PLAQUE = "I could probably sell that to one of those pigs.",
+        PIG_RUINS_SOW = "A superb local art craft.",
         PIKO = {
             DEAD = "I feel kinda bad.",
             GENERIC = "He's a bit of a nut job.",
@@ -142,7 +160,32 @@ return {
             SLEEPING = "In a slumber.",
         },
         REEDS_WATER = "Aquatic reeds.",
+        RELIC_1 = {
+            GENERIC = "A priceless piece of history.",
+            SUNKEN = "Ancient litter.",
+        },
+        RELIC_2 = {
+            GENERIC = "The relic of an ancient culture.",
+            SUNKEN = "It's green and submarine.",
+        },
+        RELIC_3 = {
+            GENERIC = "Looks valuable.",
+            SUNKEN = "I'll have to fish it out.",
+        },
+        RELIC_4 = {
+            GENERIC = "A regal relic.",
+            SUNKEN = "Something fishy down there.",
+        },
+        RELIC_5 = {
+            GENERIC = "It's an old fancy feast.",
+            SUNKEN = "I found something.",
+        },
         SAIL_SNAKESKIN = "Scale it and sail it!",
+        SCORPION = {
+            DEAD = "It's dead. Good.",
+            GENERIC = "That better not be poisonous.",
+            SLEEPING = "Now'd be a good time to smush it.",
+        },
         SEDIMENTPUDDLE = "Pool's gold.",
         SHEARS = "Shear-ly delightful.",
         SMELTER = {
@@ -160,6 +203,14 @@ return {
         TEATREE_NUT_COOKED = "Take that, tiny tree!",
         TEATREE_NUT_SAPLING = "It's a little puny.",
         TREE_PILLAR = "It totally blocks out the sun.",
+        VAMPIREBAT = {
+            DEAD = "I feel a bit safer.",
+            GENERIC = "I'd prefer to keep all of my blood.",
+            SLEEPING = "Hopefully it won't get up again.",
+        },
+        VAMPIREBATCAVE = "A den of bloodsuckers.",
+        VENUS_STALK = "I bet I could find a use for it.",
+        WALKINGSTICK = "Perfect for a gentleman scientist.",
         WEEVOLE = "Whee!",
         WEEVOLE_CARAPACE = "I'll be careful with this carapace.",
     },

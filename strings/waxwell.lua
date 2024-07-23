@@ -31,6 +31,11 @@ return {
     },
     ANNOUNCE_WAVE_BOOST = "Truly!",
     DESCRIBE = {
+        ADULT_FLYTRAP = {
+            DEAD = "It's dead.",
+            GENERIC = "That's one handsome abomination.",
+            SLEEPING = "A nefarious napper.",
+        },
         ALLOY = "Durable.",
         ANCIENT_HULK = "So the technology CAN be brought back to life!",
         ANCIENT_ROBOTS_ASSEMBLY = "Dare I complete it?",
@@ -109,9 +114,16 @@ return {
         LOTUS_FLOWER = "I prefer blooms of a darker shade.",
         LOTUS_FLOWER_COOKED = "One makes due.",
         MACHETE = "Truthfully I was always a hack.",
+        MAGNIFYING_GLASS = "Let's see what we can find.",
         MANDRAKEHOUSE = "Ugh. That's a loud household.",
         MANDRAKEMAN = "Cease your babbling!",
+        MEAN_FLYTRAP = {
+            DEAD = "Eradicated.",
+            GENERIC = "Do not tangle with me!",
+            SLEEPING = "I must endeavor not to wake it.",
+        },
         METALPLATEHAT = "How very conquistadorian.",
+        NECTAR_POD = "Needs a suitable container to be turned into honey.",
         PANGOLDEN = "He has expensive tastes.",
         PEAGAWK = {
             DEAD = "It's beauty has been snuffed out forever.",
@@ -120,6 +132,9 @@ return {
         },
         PEAGAWKFEATHER = "What finery.",
         PEAGAWK_BUSH = "I've my suspicions about that bush.",
+        PIG_RUINS_HEAD = "It's been beheaded.",
+        PIG_RUINS_IDOL = "Hmmm. How do I get that statue off?",
+        PIG_RUINS_PLAQUE = "It must be worth something to those pigs.",
         PIKO = {
             DEAD = "It has been exterminated.",
             GENERIC = "Shoo, vermin.",
@@ -142,7 +157,26 @@ return {
             SLEEPING = "A noisy sleeper.",
         },
         REEDS_WATER = "Those reeds could be cut.",
+        RELIC_1 = {
+            GENERIC = "Someone might desire this.",
+            SUNKEN = "Looks like a drowned man.",
+        },
+        RELIC_2 = {
+            GENERIC = "This might catch a pretty penny.",
+            SUNKEN = "I suppose I'll have to fish it out.",
+        },
+        RELIC_3 = {
+            GENERIC = "Where's the rest of the face?",
+            SUNKEN = "Must I get my hands dirty?",
+        },
+        RELIC_4 = "Looks regal.",
+        RELIC_5 = "It's absurd what passes as valuable around here.",
         SAIL_SNAKESKIN = "For ease of travel.",
+        SCORPION = {
+            DEAD = "It has felt the cruel sting of death.",
+            GENERIC = "You'll not be stinging me.",
+            SLEEPING = "Don't wake up, cur.",
+        },
         SEDIMENTPUDDLE = "There's something sparkling inside there.",
         SHEARS = "Aren't there gardeners for this sort of thing?",
         SMELTER = {
@@ -160,6 +194,14 @@ return {
         TEATREE_NUT_COOKED = "I'll eat it but I won't like it.",
         TEATREE_NUT_SAPLING = "Oh, just grow already.",
         TREE_PILLAR = "This tree is unusually large.",
+        VAMPIREBAT = {
+            DEAD = "Thoroughly defeated.",
+            GENERIC = "You're an impressive creation, aren't you?",
+            SLEEPING = "Even creatures of the night must sleep.",
+        },
+        VAMPIREBATCAVE = "Villainy lurks within.",
+        VENUS_STALK = "All stalk and no action.",
+        WALKINGSTICK = "Much easier on my knees.",
         WEEVOLE = "Interminable pests.",
         WEEVOLE_CARAPACE = "Ugh.",
     },

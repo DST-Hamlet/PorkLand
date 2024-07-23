@@ -31,6 +31,11 @@ return {
     },
     ANNOUNCE_WAVE_BOOST = "Surf's up!",
     DESCRIBE = {
+        ADULT_FLYTRAP = {
+            DEAD = "Still gross.",
+            GENERIC = "I don't feel like being eaten right now.",
+            SLEEPING = "I could almost like them when they're asleep.",
+        },
         ALLOY = "Hope this is worth all the trouble.",
         ANCIENT_HULK = "I'm the same way when I wake up from a long nap.",
         ANCIENT_ROBOTS_ASSEMBLY = "I don't wanna know what it does when it's all together.",
@@ -109,9 +114,16 @@ return {
         LOTUS_FLOWER = "Pretty!",
         LOTUS_FLOWER_COOKED = "Mmmm...Tasty.",
         MACHETE = "What a hack job.",
+        MAGNIFYING_GLASS = "It's amazing what you'll find if you look close enough.",
         MANDRAKEHOUSE = "I wonder how they get any sleep.",
         MANDRAKEMAN = "Hey there, noisy dude!",
+        MEAN_FLYTRAP = {
+            DEAD = "Can't say I'm too sorry.",
+            GENERIC = "Find something else to eat, please.",
+            SLEEPING = "They're better this way.",
+        },
         METALPLATEHAT = "Keeps my noggin safe.",
+        NECTAR_POD = "I wonder if I can make honey out of this.",
         PANGOLDEN = "Shiny.",
         PEAGAWK = {
             DEAD = "Dang. It's dead.",
@@ -120,6 +132,9 @@ return {
         },
         PEAGAWKFEATHER = "Nature makes such pretty things.",
         PEAGAWK_BUSH = "What a cool looking bush!",
+        PIG_RUINS_HEAD = "A little bit creepy.",
+        PIG_RUINS_IDOL = "How do I get that top part off?",
+        PIG_RUINS_PLAQUE = "It'll take some work to get that top part off.",
         PIKO = {
             DEAD = "No! Little buddy!",
             GENERIC = "It's a little buddy!",
@@ -142,7 +157,32 @@ return {
             SLEEPING = "That's it. Now just stay asleep.",
         },
         REEDS_WATER = "It'd be a lot of effort to go get them.",
+        RELIC_1 = {
+            GENERIC = "I should return this to the pig-dudes.",
+            SUNKEN = "Someone dropped their ancient action figure.",
+        },
+        RELIC_2 = {
+            GENERIC = "Cool! What is it?",
+            SUNKEN = "Someone should fish that out.",
+        },
+        RELIC_3 = {
+            GENERIC = "Someone would probably want this.",
+            SUNKEN = "Huh. Who would drop that in the water?",
+        },
+        RELIC_4 = {
+            GENERIC = "Woah. Looks fancy.",
+            SUNKEN = "There's something shiny down there.",
+        },
+        RELIC_5 = {
+            GENERIC = "Not your regular old relic.",
+            SUNKEN = "Is it worth fishing that out?",
+        },
         SAIL_SNAKESKIN = "Why bother when I have my board?",
+        SCORPION = {
+            DEAD = "Ugh. Gnarly.",
+            GENERIC = "Too close, scary dude!",
+            SLEEPING = "It kinda looks almost peaceful like that.",
+        },
         SEDIMENTPUDDLE = "There's sparkly things down there!",
         SHEARS = "What am I supposed to do with these?",
         SMELTER = {
@@ -160,6 +200,14 @@ return {
         TEATREE_NUT_COOKED = "A good meal for little effort.",
         TEATREE_NUT_SAPLING = "One day you'll be big and strong.",
         TREE_PILLAR = "What a great tree!",
+        VAMPIREBAT = {
+            DEAD = "Dang!",
+            GENERIC = "Don't get aggro on me now.",
+            SLEEPING = "It'd be great if you could just stay asleep.",
+        },
+        VAMPIREBATCAVE = "I don't get good vibes from that place.",
+        VENUS_STALK = "Gnarly.",
+        WALKINGSTICK = "It's my lazy stick.",
         WEEVOLE = "Annoying little guys.",
         WEEVOLE_CARAPACE = "Ew. Bug skin.",
     },

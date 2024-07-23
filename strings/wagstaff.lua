@@ -30,6 +30,11 @@ return {
     },
     ANNOUNCE_WAVE_BOOST = "Woo hoo! Wave mechanics!",
     DESCRIBE = {
+        ADULT_FLYTRAP = {
+            DEAD = "A recently departed carnivorous plant.",
+            GENERIC = "I've never seen a carnivorous plant reach such an illustrious size.",
+            SLEEPING = "A shame. It's much more interesting when it's awake.",
+        },
         ALLOY = "Ah, refined metal. As good as any factory could produce.",
         ANCIENT_HULK = "A wonderful automaton of ancient technology brought back to life!",
         ANCIENT_ROBOTS_ASSEMBLY = "Fascinating! What will transpire once it is all assembled?",
@@ -108,9 +113,16 @@ return {
         LOTUS_FLOWER = "Theoretically, it's edible. Though I should cook it to avoid stomach problems.",
         LOTUS_FLOWER_COOKED = "A salubrious plant capable of boosting mental wellness.",
         MACHETE = "A pragmatic tool for slashing objects.",
+        MAGNIFYING_GLASS = "Excellent! A burning glass!",
         MANDRAKEHOUSE = "Evidence would suggest it belongs to some sort of vegetation based humanoid.",
         MANDRAKEMAN = "He appears to be influenced by this world's satellite. Intriguing!",
+        MEAN_FLYTRAP = {
+            DEAD = "Lifeless.",
+            GENERIC = "Evidently, it's a juvenile. And particularly attracted to meat.",
+            SLEEPING = "Does it dream of consuming life forms?",
+        },
         METALPLATEHAT = "Incredibly durable. Though incredibly dense as well.",
+        NECTAR_POD = "Requires an enzymatic processor to convert it to honey.",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",
         PEAGAWK = {
             DEAD = "Evidently, it didn't see that coming.",
@@ -122,6 +134,9 @@ return {
             GENERIC = "I'm experiencing the inescapable perception that I'm being watched.",
             SLEEPING = "That insight that spied on me was gone.",
         },
+        PIG_RUINS_HEAD = "Evidence would suggest he's an important figure in the pig's past.",
+        PIG_RUINS_IDOL = "Theoretically, it can be detached from its base.",
+        PIG_RUINS_PLAQUE = "Evidently, I'll need something to sever it from the base.",
         PIKO = {
             DEAD = "Recently demised.",
             GENERIC = "The amazing storage space of their small cheeks defies all laws of physics!",
@@ -144,7 +159,26 @@ return {
             SLEEPING = "It's respiratory structures are vibrating.",
         },
         REEDS_WATER = "Good for paper, if it is anything like its earthly counterparts.",
+        RELIC_1 = {
+            GENERIC = "In theory this was a respectably jubilant fellow in the pig's history.",
+            SUNKEN = "My observations lead me to conclude I should fish that out.",
+        },
+        RELIC_2 = {
+            GENERIC = "Fascinating! Evidently, they had a runic writing system.",
+            SUNKEN = "My curiosity won't rest until I obtain that mysterious object!",
+        },
+        RELIC_3 = {
+            GENERIC = "Theoretically, it's a fragment of a larger sculpture.",
+            SUNKEN = "Evidence would suggests there's something down there.",
+        },
+        RELIC_4 = "A stone representation of some sort of royalty. Quite an unusual color too!",
+        RELIC_5 = "The ornamentation of this ancient artifact suggests it's of enormous value.",
         SAIL_SNAKESKIN = "Theoretically, it's reliable despite its patchy appearance.",
+        SCORPION = {
+            DEAD = "Cold and lifeless.",
+            GENERIC = "A wonderful example of a predatory arachnid! And poisonous to boot!",
+            SLEEPING = "My first inclination is to poke it with a stick.",
+        },
         SEDIMENTPUDDLE = "Evidence would suggest there's gold down there!",
         SHEARS = "Cutting implements constructed from raw metal.",
         SMELTER = {
@@ -162,6 +196,14 @@ return {
         TEATREE_NUT_COOKED = "Of a chewy consistency. Evidently, it's good for you.",
         TEATREE_NUT_SAPLING = "Displays the same rapid growth rate of the other trees here.",
         TREE_PILLAR = "The circumference of this tree's trunk is unusually large.",
+        VAMPIREBAT = {
+            DEAD = "An excellent illustration of respiratory arrest.",
+            GENERIC = "How fortunate! I've found a flocking predatory flying mammal to observe!",
+            SLEEPING = "My curiosity is telling me I should poke it with a stick.",
+        },
+        VAMPIREBATCAVE = "Based on its depth and malodorous smell, I deduce this hole houses bats.",
+        VENUS_STALK = "Theoretically edible, but undoubtedly I'll find a better use for it.",
+        WALKINGSTICK = "Incredible! It increases my speed by exactly thirty percent!",
         WEEVOLE = "What a wonderfully persistent species of insect!",
         WEEVOLE_CARAPACE = "Excellent! It's the exoskeleton of a hexapod invertebrate!",
     },

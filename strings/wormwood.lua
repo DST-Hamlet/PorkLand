@@ -30,6 +30,11 @@ return {
     },
     ANNOUNCE_WAVE_BOOST = "Whee!",
     DESCRIBE = {
+        ADULT_FLYTRAP = {
+            DEAD = "(sob)",
+            GENERIC = "Wants belly stuff",
+            SLEEPING = "Tired. Shh...",
+        },
         ALLOY = "Bar of Clink Rock",
         ANCIENT_HULK = "Clinky Rock Man is awake!",
         ANCIENT_ROBOTS_ASSEMBLY = "Not done",
@@ -109,9 +114,16 @@ return {
         LOTUS_FLOWER = "Smells sweet!",
         LOTUS_FLOWER_COOKED = "Holey belly stuff",
         MACHETE = "Slicer. For friend haircuts",
+        MAGNIFYING_GLASS = "Peeper",
         MANDRAKEHOUSE = "Hello? Anyone?",
         MANDRAKEMAN = "Screamy",
+        MEAN_FLYTRAP = {
+            DEAD = "(sob)",
+            GENERIC = "Hungry?",
+            SLEEPING = "Tired. Shh...",
+        },
         METALPLATEHAT = "Clink Rock Head Thing",
+        NECTAR_POD = "Sweet!",
         PANGOLDEN = "Shiny Pooper",
         PEAGAWK = {
             DEAD = "Oh dear",
@@ -120,6 +132,11 @@ return {
         },
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
+        PIG_RUINS_ANT = "Chr'ik rock",
+        PIG_RUINS_HEAD = "Must have big rock brain",
+        PIG_RUINS_IDOL = "Twirly Tail rock",
+        PIG_RUINS_MUSHROOM = "Not friend.",
+        PIG_RUINS_PLAQUE = "Twirly Tail rock",
         PIKO = {
             DEAD = "Aw...",
             GENERIC = "Fluffy Nabber",
@@ -142,7 +159,26 @@ return {
             SLEEPING = "Let it sleep",
         },
         REEDS_WATER = "Good day, friend!",
+        RELIC_1 = {
+            GENERIC = "Happy rock!",
+            SUNKEN = "Swimming",
+        },
+        RELIC_2 = {
+            GENERIC = "Old Twirly Tail thing",
+            SUNKEN = "Something hiding?",
+        },
+        RELIC_3 = {
+            GENERIC = "Lost sniffer?",
+            SUNKEN = "See you!",
+        },
+        RELIC_4 = "Ohh... pretty rock",
+        RELIC_5 = "Fancy old thing",
         SAIL_SNAKESKIN = "Squirmy Wind Nabber",
+        SCORPION = {
+            DEAD = "No more stabby",
+            GENERIC = "Stabby bzzter",
+            SLEEPING = "Nighty night",
+        },
         SEDIMENTPUDDLE = "Shiny puddle",
         SHEARS = "For hair cuts",
         SMELTER = {
@@ -160,6 +196,14 @@ return {
         TEATREE_NUT_COOKED = "Not for dirt now",
         TEATREE_NUT_SAPLING = "Hello, little friend",
         TREE_PILLAR = "Big friend?",
+        VAMPIREBAT = {
+            DEAD = "Oh",
+            GENERIC = "Flying claws",
+            SLEEPING = "Sleeping down side up",
+        },
+        VAMPIREBATCAVE = "Smells good!",
+        VENUS_STALK = "Mmmm...",
+        WALKINGSTICK = "Wheee!",
         WEEVOLE = "Wee Bzzter",
         WEEVOLE_CARAPACE = "Crunchy",
     },

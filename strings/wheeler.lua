@@ -34,6 +34,11 @@ return {
         "ADVENTUUUURE!",
     },
     DESCRIBE = {
+        ADULT_FLYTRAP = {
+            DEAD = "I'm not going to cry over that.",
+            GENERIC = "Excuse me while I avoid you entirely.",
+            SLEEPING = "Sleeping on the job. Not that I have a problem with that.",
+        },
         ALLOY = "Heavy metal made heavier.",
         ANCIENT_HULK = "I probably should have let you sleep.",
         ANCIENT_ROBOTS_ASSEMBLY = "How much am I going to regret putting that all together?",
@@ -112,9 +117,16 @@ return {
         LOTUS_FLOWER = "Looks edible.",
         LOTUS_FLOWER_COOKED = "Not the first time I've eaten flowers.",
         MACHETE = "Machete. Designed for adventure.",
+        MAGNIFYING_GLASS = "For finding the tiny hidden treasures. And burning stuff.",
         MANDRAKEHOUSE = "Have you ever seen anything scream \"adventure\" louder?",
         MANDRAKEMAN = "Mind not eating me, I have adventuring to do.",
+        MEAN_FLYTRAP = {
+            DEAD = "It died so young. So young and so horrible.",
+            GENERIC = "I like you guys better when you're old and can't move around so much.",
+            SLEEPING = "All tuckered out after a day of terrorizing.",
+        },
         METALPLATEHAT = "Saves me head pain but gives me neck pain.",
+        NECTAR_POD = "Now to find something that'll make this into something good.",
         PANGOLDEN = "I don't actually mind picking up his poop.",
         PEAGAWK = {
             DEAD = "I promise, I will go on without you!",
@@ -123,6 +135,9 @@ return {
         },
         PEAGAWKFEATHER = "Normally I don't mind feathers, but this one keeps staring at me.",
         PEAGAWK_BUSH = "Something's hiding in there.",
+        PIG_RUINS_HEAD = "Missing something... like its body.",
+        PIG_RUINS_IDOL = "I'll need to get that totem free to take it back to the pigs.",
+        PIG_RUINS_PLAQUE = "The pigs only want the top part. How do I get it free?",
         PIKO = {
             DEAD = "Sad. It only wanted to steal things.",
             GENERIC = "Has more storage space in its cheeks than I do in my pockets.",
@@ -145,7 +160,26 @@ return {
             SLEEPING = "Quite the snorer.",
         },
         REEDS_WATER = "Definitely going to need more of these.",
+        RELIC_1 = {
+            GENERIC = "Looks like something the pig history buffs would like.",
+            SUNKEN = "I'll need something to fish it out with.",
+        },
+        RELIC_2 = {
+            GENERIC = "Pig history. Someone's bound to love this.",
+            SUNKEN = "I'm hoping that's not a really big fish.",
+        },
+        RELIC_3 = {
+            GENERIC = "This belongs in a museum.",
+            SUNKEN = "How am I going to get it out of there?",
+        },
+        RELIC_4 = "Looks fancy. And royal. And it looks like a pig.",
+        RELIC_5 = "Well it's valuable to someone.",
         SAIL_SNAKESKIN = "Too heavy for balloon material. Just right for a sail.",
+        SCORPION = {
+            DEAD = "I'll be honest, I don't care.",
+            GENERIC = "Keep your stinger to yourself, mister!",
+            SLEEPING = "I'll just sneak by...",
+        },
         SEDIMENTPUDDLE = "A sparkly pool. A little too sparkly.",
         SHEARS = "Time to do some yard work.",
         SMELTER = {
@@ -163,6 +197,14 @@ return {
         TEATREE_NUT_COOKED = "For chewing or pew-ing.",
         TEATREE_NUT_SAPLING = "It's a baby tree. It'll grow.",
         TREE_PILLAR = "That's a big tree.",
+        VAMPIREBAT = {
+            DEAD = "Grounded for good.",
+            GENERIC = "A misuse of flying abilities.",
+            SLEEPING = "If I could only steal its wings while its asleep.",
+        },
+        VAMPIREBATCAVE = "Those bats are wasting their time in a cave when they should be outside flying.",
+        VENUS_STALK = "Hope this comes in handy. Otherwise that flytrap died for nothing.",
+        WALKINGSTICK = "Dried flytrap stalks really put a spring in my step.",
         WEEVOLE = "Aggravating bugs! A complete waste of wings.",
         WEEVOLE_CARAPACE = "Light enough to fire out the Pew-matic.",
     },
