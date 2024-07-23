@@ -376,7 +376,7 @@ local function ClearObstacle(inst)
     inst._ispathfinding:set(false)
 end
 
-local function onremove(inst)
+local function OnRemove(inst)
     inst._ispathfinding:set_local(false)
     OnIsPathFindingDirty(inst)
 end
@@ -413,6 +413,7 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         if not inst.bank then
             inst.bank = bank_build_map[inst.build]
         end
+
         inst.scale = build_scale_map[inst.build] or 1
         inst.color = 0.5 + math.random() * 0.5
 
@@ -431,7 +432,7 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         -- but we don't to handle it until after our position is set
         inst:DoTaskInTime(0, InitializePathFinding)
 
-        inst:ListenForEvent("onremove", onremove)
+        inst:ListenForEvent("onremove", OnRemove)
         --------------------------------------------
 
         inst.entity:SetPristine()

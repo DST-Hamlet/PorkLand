@@ -1,5 +1,5 @@
 local assets = {
-    Asset("ANIM", "anim/pig_house.zip"),
+    Asset("ANIM", "anim/pighouse_rubble.zip"),
 }
 
 local prefabs = {}
@@ -294,9 +294,9 @@ local function fn()
     -- inst.entity:AddPhysics()
     -- MakeObstaclePhysics(inst, .25)
 
-    inst.AnimState:SetBank("pig_house")
-    inst.AnimState:SetBuild("pig_house")
-    inst.AnimState:PlayAnimation("unbuilt", true)
+    inst.AnimState:SetBank("pighouse_rubble")
+    inst.AnimState:SetBuild("pighouse_rubble")
+    inst.AnimState:PlayAnimation("unbuilt")
 
     inst.entity:SetPristine()
 
