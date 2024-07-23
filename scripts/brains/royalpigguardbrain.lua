@@ -406,7 +406,7 @@ function RoyalPigGuardBrain:OnStart()
 
             ChattyNode(self.inst, getSpeechType(self.inst,STRINGS.CITY_PIG_TALK_FIGHT),
                 WhileNode( function() return self.inst.components.combat.target and self.inst.components.combat:InCooldown() and self.inst:HasTag("guard") end, "Dodge",
-                    RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST) ),"alarmed"),
+                    RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST) )--[[, "alarmed"]]),
 
             -- FOLLOWER CODE
             ChattyNode(self.inst, getSpeechType(self.inst,STRINGS.CITY_PIG_TALK_FOLLOWWILSON),
@@ -423,7 +423,7 @@ function RoyalPigGuardBrain:OnStart()
 
             ChattyNode(self.inst, getSpeechType(self.inst,STRINGS.CITY_PIG_TALK_FLEE),
                 WhileNode(function() return should_panic(self.inst)  end, "Threat Panic",
-                    Panic(self.inst) ),"alarmed"),
+                    Panic(self.inst) )--[[, "alarmed"]]),
 
             RunAway(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST ),
 

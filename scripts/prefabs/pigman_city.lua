@@ -98,6 +98,7 @@ local function sayline(inst, line, mood)
 end
 
 local function ontalk(inst, script, mood)
+    -- TODO: Make alarmed mood work
     if inst:HasTag("guard") then
         if mood and mood == "alarmed" then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/guard_alert")
