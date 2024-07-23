@@ -333,6 +333,7 @@ local function reconstructed(inst)
 end
 
 local function onbuilt(inst)
+    NudgeToHalfGrid(inst)
     inst.AnimState:PlayAnimation("place")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/wood_2")
     inst.AnimState:PushAnimation("idle")
@@ -488,8 +489,6 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
             end
         end)
 
-        inst:ListenForEvent("onbuilt", onbuilt)
-
         ------- Copied from prefabs/wall.lua -------
         inst._pfpos = nil
         inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
@@ -501,26 +500,12 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst:ListenForEvent("onremove", onremove)
         --------------------------------------------
 
+        inst:ListenForEvent("onbuilt", onbuilt)
+
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
-        inst.OnCreate = function(inst)
-            local function normalize(coord)
-                local temp = coord % 0.5
-                coord = coord + 0.5 - temp
+        inst.OnCreate = NudgeToHalfGrid
 
-                if coord % 1 == 0 then
-                    coord = coord - 0.5
-                end
-
-                return coord
-            end
-
-            local x, y, z = inst.Transform:GetWorldPosition()
-            x = normalize(x)
-            z = normalize(z)
-            local grass = SpawnPrefab("grass")
-            grass.Transform:SetPosition(x, y, z)
-        end
         inst.OnEntityWake = OnEntityWake
 
         MakeSnowCovered(inst, .01)

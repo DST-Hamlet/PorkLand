@@ -164,6 +164,7 @@ local function reconstructed(inst)
 end
 
 local function OnBuilt(inst)
+    NudgeToHalfGrid(inst)
     inst.AnimState:PlayAnimation("place")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/brick")
     inst.AnimState:PushAnimation("idle")

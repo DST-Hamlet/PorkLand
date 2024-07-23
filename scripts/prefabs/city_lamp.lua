@@ -106,13 +106,14 @@ end
 local function onhit(inst, worker)
     inst.AnimState:PlayAnimation("hit")
     inst.AnimState:PushAnimation("idle", true)
-    inst:DoTaskInTime(0.3, function() updatelight(inst) end)
+    inst:DoTaskInTime(0.3, updatelight)
 end
 
 local function onbuilt(inst)
+    NudgeToHalfGrid(inst)
     inst.AnimState:PlayAnimation("place")
     inst.AnimState:PushAnimation("idle", true)
-    inst:DoTaskInTime(0, function() updatelight(inst) end)
+    inst:DoTaskInTime(0, updatelight)
 end
 
 local function OnEntitySleep(inst)

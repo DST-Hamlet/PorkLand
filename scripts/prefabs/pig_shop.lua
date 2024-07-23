@@ -276,6 +276,7 @@ local function OnIsAporkalypse(inst, isaporkalypse)
 end
 
 local function OnBuilt(inst)
+    NudgeToHalfGrid(inst)
     inst.AnimState:PlayAnimation("place")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/wood_1")
     inst.AnimState:PushAnimation("idle")
