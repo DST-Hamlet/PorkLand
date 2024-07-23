@@ -320,8 +320,8 @@ local function ShouldGoHome(inst)
 end
 
 local function inCityLimits(inst)
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x,y,z, FAR_ENOUGH, {"citypossession"},{"city_pig"})
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH, {"citypossession"},{"city_pig"})
     if #ents > 0 then
         return true
     end
@@ -341,8 +341,8 @@ local function ReplaceStockCondition(inst)
         return false
     end
 
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x,y,z, FAR_ENOUGH/2, {"shop_pedestal"},{"INTERIOR_LIMBO"})
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH/2, {"shop_pedestal"},{"INTERIOR_LIMBO"})
     if #ents == 0 then
         return false
     end
@@ -371,8 +371,8 @@ local function ExtinguishfireAction(inst)
     end
 
     -- find fire
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x,y,z, FAR_ENOUGH/2, {"campfire"})
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH/2, {"campfire"})
     if #ents == 0 then
         return false
     end

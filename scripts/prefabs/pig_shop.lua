@@ -373,7 +373,7 @@ local function OnLoad(inst, data)
                     if interior.visited then
                         for _, ent in pairs(interior_ents) do
                             if ent.prefab == "shop_buyer" and ent.components.shopdispenser.item_served == "deed" then
-                                local x,y,z = ent.Transform:GetWorldPosition()
+                                local x, y, z = ent.Transform:GetWorldPosition()
                                 ent.Transform:SetPosition(x + 1.75, y, z -2)
                                 c_select(ent)
                                 break
