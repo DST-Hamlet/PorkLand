@@ -8,6 +8,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Don't these plants do anything else but pollinate all over the place?",
     ANNOUNCE_HAYFEVER_OFF = "Whoops! it is finally over!",
+    ANNOUNCE_PICKPOOP = {
+        "Why would I do that?",
+        "There must be something wrong with my mind.",
+        "(Retching)",
+    },
     ANNOUNCE_PUGALISK_INVULNERABLE = {
         "Not here. Wrong place.",
         "You can't get through here.",
@@ -21,11 +26,6 @@ return {
     ANNOUNCE_WAVE_BOOST = "Wh-whoa!",
     DESCRIBE = {
         ALLOY = "Strong refined metal.",
-        ANNOUNCE_PICKPOOP = {
-            "Why would I do that?",
-            "There must be something wrong with my mind.",
-            "(Retching)",
-        },
         APORKALYPSE_CLOCK = "Keeping track of their movements...very clever idea.",
         ARMOR_METALPLATE = "I still prefer magic.",
         ARMOR_WEEVOLE = "It doesn't smell that great, but there's no time to dwell on that much.",

@@ -8,6 +8,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "My nose is itchy...",
     ANNOUNCE_HAYFEVER_OFF = "Huh, finally comfortable.",
+    ANNOUNCE_PICKPOOP = {
+        "Alas!",
+        "So dirty!",
+        "Unbearable!",
+    },
     ANNOUNCE_PUGALISK_INVULNERABLE = {
         "So hard!",
         "My hands are numb!",
@@ -21,11 +26,6 @@ return {
     ANNOUNCE_WAVE_BOOST = "Whoo nelly!",
     DESCRIBE = {
         ALLOY = "Proper processing makes it better.",
-        ANNOUNCE_PICKPOOP = {
-            "Alas!",
-            "So dirty!",
-            "Unbearable!",
-        },
         APORKALYPSE_CLOCK = "A fairly complex set of instrumentation.",
         ARMOR_METALPLATE = "Bulky, but surprisingly well-protected.",
         ARMOR_WEEVOLE = "Not very comfortable, just let it go.",

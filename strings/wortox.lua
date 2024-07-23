@@ -8,6 +8,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Oops, so much pollen, it's going to be uncomfortable.",
     ANNOUNCE_HAYFEVER_OFF = "The pollen is gone. finally.",
+    ANNOUNCE_PICKPOOP = {
+        "Disgusting!",
+        "It's still warm!",
+        "My paws!",
+    },
     ANNOUNCE_PUGALISK_INVULNERABLE = {
         "It's won't work.",
         "Almost a rock!",
@@ -20,11 +25,7 @@ return {
     },
     ANNOUNCE_WAVE_BOOST = "Hyuyu!",
     DESCRIBE = {
-        ANNOUNCE_PICKPOOP = {
-            "Disgusting!",
-            "It's still warm!",
-            "My paws!",
-        },
+        ALLOY = "Ahh!!!",
         APORKALYPSE_CLOCK = "Magic on such a large scale, man, this is going to be fun.",
         ARMOR_METALPLATE = "What a horrible torture.",
         ARMOR_WEEVOLE = "I'm getting goosebumps.",

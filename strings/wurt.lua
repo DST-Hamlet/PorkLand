@@ -8,6 +8,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "Gullah. The gills are so uncomfortable...",
     ANNOUNCE_HAYFEVER_OFF = "oh! The gills are finally comfortable!",
+    ANNOUNCE_PICKPOOP = {
+        "Dirty water!",
+        "Glurgh...",
+        "No next time!",
+    },
     ANNOUNCE_PUGALISK_INVULNERABLE = {
         "Can't wear it!",
         "The scales are too hard!",
@@ -21,11 +26,6 @@ return {
     ANNOUNCE_WAVE_BOOST = "Splish splash!",
     DESCRIBE = {
         ALLOY = "The stone became harder.",
-        ANNOUNCE_PICKPOOP = {
-            "Dirty water!",
-            "Glurgh...",
-            "No next time!",
-        },
         APORKALYPSE_CLOCK = "Stuff form bad story!",
         ARMOR_METALPLATE = "Sturdy, but heavy.",
         ARMOR_WEEVOLE = "Nice and comfortable armor.",

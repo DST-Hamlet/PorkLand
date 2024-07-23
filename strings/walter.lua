@@ -8,6 +8,11 @@ return {
     },
     ANNOUNCE_HAYFEVER = "There's something in the air...my nose is itching.",
     ANNOUNCE_HAYFEVER_OFF = "My nose is so much better and it's finally gone!",
+    ANNOUNCE_PICKPOOP = {
+        "Pine Pioneers must be hardworking...but...",
+        "This is really unhygienic!",
+        "do not come! Woby!",
+    },
     ANNOUNCE_PUGALISK_INVULNERABLE = {
         "As hard as metal!",
         "It has invulnerable scales!",
@@ -21,11 +26,6 @@ return {
     ANNOUNCE_WAVE_BOOST = "Woohoo!",
     DESCRIBE = {
         ALLOY = "It's steel! Look at the steel I made!",
-        ANNOUNCE_PICKPOOP = {
-            "Pine Pioneers must be hardworking...but...",
-            "This is really unhygienic!",
-            "do not come! Woby!",
-        },
         APORKALYPSE_CLOCK = "Oh no! It's a doomsday prophecy!",
         ARMOR_METALPLATE = "Nothing can hurt me with this on!",
         ARMOR_WEEVOLE = "Are we really going to wear it?",
