@@ -195,7 +195,7 @@ local function ShouldAcceptItem(inst, item)
         -- local wantednum =   econ:GetNumberWanted(econprefab,city)
 
         local wantitem = false
-        for i, wanted in ipairs(wanteditems) do
+        for i, wanted in ipairs(wanteditems or {}) do
             if wanted == item.prefab then
                 wantitem = true
                 break
@@ -564,7 +564,6 @@ local function NormalShouldSleep(inst)
 end
 
 local function SetNormalPig(inst, brain_id)
-    inst:RemoveTag("guard")
     local brain = require "brains/citypigbrain"
     inst:SetBrain(brain)
     inst:SetStateGraph("SGpig_city")
@@ -809,7 +808,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst:AddTag("_named")
 
         if tags then
-            for _, tag in pairs(tags) do
+            for _, tag in ipairs(tags) do
                 inst:AddTag(tag)
             end
         end
