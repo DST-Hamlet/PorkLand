@@ -126,6 +126,7 @@ return {
         },
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
+        PIG_RUINS_ARTICHOKE = "This plant everywhere.",
         PIG_RUINS_HEAD = "Giant pifrolk face!",
         PIG_RUINS_IDOL = "A Pigfolk idol, not Mermfolk.",
         PIG_RUINS_MUSHROOM = "Stone for food?",

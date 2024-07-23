@@ -126,6 +126,7 @@ return {
         },
         PEAGAWKFEATHER = "method is valid.",
         PEAGAWK_BUSH = "This bird can't fly, but turns into a bush!",
+        PIG_RUINS_ARTICHOKE = "Is this a bamboo shoot or something?",
         PIG_RUINS_HEAD = "Warby! It's bigger than you!",
         PIG_RUINS_IDOL = "Look what we found, Warby!",
         PIG_RUINS_MUSHROOM = "Wow, a carved stone...mushroom?",

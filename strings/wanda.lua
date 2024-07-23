@@ -126,6 +126,7 @@ return {
         },
         PEAGAWKFEATHER = "It's hard to see.",
         PEAGAWK_BUSH = "What a clever disguise.",
+        PIG_RUINS_ARTICHOKE = "Stones carved into vegetables.",
         PIG_RUINS_HEAD = "Huge stone pig face.",
         PIG_RUINS_IDOL = "I thought it would be deeper...oh, that's another one.",
         PIG_RUINS_MUSHROOM = "This is it, and I can exchange it for great rewards.",

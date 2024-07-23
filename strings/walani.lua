@@ -133,6 +133,7 @@ return {
         },
         PEAGAWKFEATHER = "Nature makes such pretty things.",
         PEAGAWK_BUSH = "What a cool looking bush!",
+        PIG_RUINS_ARTICHOKE = "Artichoke art!",
         PIG_RUINS_HEAD = "A little bit creepy.",
         PIG_RUINS_IDOL = "How do I get that top part off?",
         PIG_RUINS_PLAQUE = "It'll take some work to get that top part off.",

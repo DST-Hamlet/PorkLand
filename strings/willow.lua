@@ -132,6 +132,7 @@ return {
         },
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
+        PIG_RUINS_ARTICHOKE = "Is that... an artichoke?",
         PIG_RUINS_HEAD = "Doesn't look very flammable.",
         PIG_RUINS_IDOL = "I should take that off and sell it to a pig.",
         PIG_RUINS_PLAQUE = "If I could break it, I could sell it.",

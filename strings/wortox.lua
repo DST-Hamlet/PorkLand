@@ -126,6 +126,7 @@ return {
         },
         PEAGAWKFEATHER = "Feather of a small peacock.",
         PEAGAWK_BUSH = "Well, this trick can't fool me.",
+        PIG_RUINS_ARTICHOKE = "A giant vegetable.",
         PIG_RUINS_HEAD = "Others use umbrella, it use big head!",
         PIG_RUINS_IDOL = "What a nice little idol. Let's take it.",
         PIG_RUINS_MUSHROOM = "Lots of gems, but no magic.",

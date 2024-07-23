@@ -132,6 +132,7 @@ return {
         },
         PEAGAWKFEATHER = "Is blink-blink bird feather.",
         PEAGAWK_BUSH = "Is just bush.",
+        PIG_RUINS_ARTICHOKE = "Is odd statue.",
         PIG_RUINS_HEAD = "Is big and mighty head. Like Wolfgang!",
         PIG_RUINS_IDOL = "Piggies might like those.",
         PIG_RUINS_PLAQUE = "Is piggy thing.",

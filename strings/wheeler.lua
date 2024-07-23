@@ -136,6 +136,7 @@ return {
         },
         PEAGAWKFEATHER = "Normally I don't mind feathers, but this one keeps staring at me.",
         PEAGAWK_BUSH = "Something's hiding in there.",
+        PIG_RUINS_ARTICHOKE = "Strange thing to make a statue out of.",
         PIG_RUINS_HEAD = "Missing something... like its body.",
         PIG_RUINS_IDOL = "I'll need to get that totem free to take it back to the pigs.",
         PIG_RUINS_PLAQUE = "The pigs only want the top part. How do I get it free?",

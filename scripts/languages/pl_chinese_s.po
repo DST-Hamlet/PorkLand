@@ -615,6 +615,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_ANT"
 msgid "An abstract insect or something."
 msgstr "一尊抽象的昆虫或者别的什么东西。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Arti-choked."
+msgstr "长成了洋蓟。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_HEAD"
 msgid "Looks like a headache."
@@ -1440,6 +1445,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
 msgid "That insight that spied on me was gone."
 msgstr "那种监视我的洞察力消失了。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "An elegant depiction of a giant vegetable."
+msgstr "对一种巨大蔬菜的精美雕刻。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_HEAD"
 msgid "Evidence would suggest he's an important figure in the pig's past."
@@ -2245,6 +2255,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a cool looking bush!"
 msgstr "多么酷的一丛灌木啊！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Artichoke art!"
+msgstr "蓟状的艺术品！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_HEAD"
 msgid "A little bit creepy."
@@ -3045,6 +3060,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PEAGAWK_BUSH"
 msgid "This bird can't fly, but turns into a bush!"
 msgstr "这种鸟不会飞，但是会变成灌木丛！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Is this a bamboo shoot or something?"
+msgstr "这是笋还是什么？"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PIG_RUINS_HEAD"
 msgid "Warby! It's bigger than you!"
@@ -3829,6 +3849,11 @@ msgstr "真是令人难以直视。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a clever disguise."
 msgstr "真是聪明的伪装。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Stones carved into vegetables."
+msgstr "被雕刻成蔬菜的石头。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PIG_RUINS_HEAD"
@@ -4625,6 +4650,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
 msgid "It's a bright blue bush."
 msgstr "亮蓝色的灌木丛。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Clearly a food loving culture dwelled here."
+msgstr "显然，一种以食为天的文化扎根于此。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_HEAD"
 msgid "I suppose pigs lived here once."
@@ -5409,6 +5439,11 @@ msgstr "一根无价之宝。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
 msgid "Do you think you can hide from me?"
 msgstr "你觉得你能藏起来不让我发现吗？"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "A terrible monument to non-meat!"
+msgstr "一个可怕的雕像！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_HEAD"
@@ -6199,6 +6234,11 @@ msgstr "多么优雅。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
 msgid "I've my suspicions about that bush."
 msgstr "我对那丛灌木表示怀疑。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "What an odd choice of statuary."
+msgstr "真是奇怪的雕塑。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_HEAD"
@@ -7000,6 +7040,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Neat. A weird bush!"
 msgstr "优美但又有点奇怪的灌木丛！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Looks like it'd be fun to climb."
+msgstr "看起来爬上去一定很有趣。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_HEAD"
 msgid "We think it's a bit creepy."
@@ -7789,6 +7834,11 @@ msgstr "只是一个灌木丛…"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_ANT"
 msgid "Monument to the ants."
 msgstr "蝼蚁的纪念碑。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "What a curious thing."
+msgstr "真是件稀奇的事情。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_HEAD"
@@ -8584,6 +8634,11 @@ msgstr "通常来说我不会在意一根羽毛，但是这根羽毛它一直在
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Something's hiding in there."
 msgstr "有东西藏在那里。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Strange thing to make a statue out of."
+msgstr "用奇怪的材料雕成的雕像。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_HEAD"
@@ -9385,6 +9440,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
 msgid "I have questions about that bush."
 msgstr "我对那灌木丛有些疑惑。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "It must have had some significance to the pigs."
+msgstr "它对猪人一定有些特别的意义。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_HEAD"
 msgid "An early Porcine civilization once dwelt here."
@@ -10175,6 +10235,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
 msgid "'TIS NAUGHT A BUSH"
 msgstr "它不是灌木丛"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "WHEREFORE ART-ICHOKE?"
+msgstr "什么是洋蓟啊？"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_HEAD"
 msgid "WHOFORE OFF'D WITH HIS HEAD?"
@@ -10960,6 +11025,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
 msgid "A bush. I think."
 msgstr "一株灌木丛，至少我觉得是。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Is that... an artichoke?"
+msgstr "那是...一个洋蓟？"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_HEAD"
 msgid "Doesn't look very flammable."
@@ -11734,6 +11804,11 @@ msgstr "它还在看着我。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PEAGAWK_BUSH"
 msgid "A vigilant bush, how strange!"
 msgstr "一株会警惕的灌木丛，真是奇怪！"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "So they really like artichokes."
+msgstr "看来它们是真的很喜欢洋蓟。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PIG_RUINS_HEAD"
@@ -12530,6 +12605,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
 msgid "Is just bush."
 msgstr "仅仅是灌木丛。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Is odd statue."
+msgstr "奇怪的雕像。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_HEAD"
 msgid "Is big and mighty head. Like Wolfgang!"
@@ -13314,6 +13394,11 @@ msgstr "它散发着一股鸟腥味。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
 msgid "There's a wretched bird nearby. I feel it."
 msgstr "这附近有一只卑鄙的鸟。我能感觉到它。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Doesn't look too tasty."
+msgstr "看起来并不好吃。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_HEAD"
@@ -14104,6 +14189,11 @@ msgstr "闪烁微光的羽毛。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
 msgid "'Tis unsettlin' t'b'sure."
 msgstr "这灌木很令人不安。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Thar be treas're in't."
+msgstr "那里面有宝藏。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_HEAD"
@@ -14900,6 +14990,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_ANT"
 msgid "Chr'ik rock"
 msgstr "咔喀喀石头"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "Friend? Nope, rock"
+msgstr "朋友？不，是石头"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_HEAD"
 msgid "Must have big rock brain"
@@ -15695,6 +15790,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PEAGAWK_BUSH"
 msgid "Well, this trick can't fool me."
 msgstr "哼，这点把戏骗不过我。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "A giant vegetable."
+msgstr "一棵巨型蔬菜。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PIG_RUINS_HEAD"
 msgid "Others use umbrella, it use big head!"
@@ -16479,6 +16579,11 @@ msgstr "上面有大怪鸟的眼睛。"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PEAGAWK_BUSH"
 msgid "Pretty feather bush."
 msgstr "漂亮的羽毛灌木。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "This plant everywhere."
+msgstr "到处都是这个形状。"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PIG_RUINS_HEAD"
@@ -17274,6 +17379,11 @@ msgstr "它已经和它的鸟分开了"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
 msgid "GROUND PART"
 msgstr "地面部分"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_ARTICHOKE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_ARTICHOKE"
+msgid "ERROR: STONE VERSION OF VEGETATION DOES NOT COMPUTE"
+msgstr "错误：石化植物不被计算"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_HEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_HEAD"
@@ -22017,82 +22127,82 @@ msgstr "箣竹"
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr "山茱萸"
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Juniperus"
+msgid "Betula"
 msgstr "柏桧"
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr "马利筋"
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr "栎"
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr "大葱"
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr "豌豆"
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr "荆蓟"
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr "麝香草"
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr "大豆"
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Betula"
+msgid "Juniperus"
 msgstr "桦木"
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr "覆盆子"
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr "胡萝卜"
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr "甘蓝"
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr "齿栗叶"
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr "车轴草"
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr "黄瓜"
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -22818,7 +22928,7 @@ msgstr "砍东西！"
 #. STRINGS.RECIPE_DESC.MAGNIFYING_GLASS
 msgctxt "STRINGS.RECIPE_DESC.MAGNIFYING_GLASS"
 msgid "See things from a different perspective."
-msgstr "从不同的角度看待事\n物。"
+msgstr "从不同的角度看待事物。"
 
 #. STRINGS.RECIPE_DESC.METALPLATEHAT
 msgctxt "STRINGS.RECIPE_DESC.METALPLATEHAT"
