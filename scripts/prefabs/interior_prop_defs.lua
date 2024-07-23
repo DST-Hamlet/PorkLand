@@ -915,7 +915,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         addedprops = true
     end
     -- randomly add creatures otherwise
-    if not addedprops and math.random() < 0.3 then
+    if roomtype ~= "treasure_aporkalypse" and not addedprops and math.random() < 0.3 then
         for _, prop in ipairs(GetRandomItem(room_creatures)) do
             addprops[#addprops + 1] = prop
         end
@@ -1099,7 +1099,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
     end
 
     --RANDOM POTS
-    if roomtype ~= "secret" and roomtype ~= "aporkalypse" and math.random() < 0.25 then
+    if roomtype ~= "treasure_secret" and roomtype ~= "treasure_aporkalypse" and math.random() < 0.25 then
         for i = 1, math.random(2, 3) do
             local set_width, set_depth = GetSpawnLocation(depth, width, 0.8, 0.8, room.fountain)
             if set_width and set_depth then

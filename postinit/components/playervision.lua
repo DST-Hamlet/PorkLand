@@ -6,9 +6,16 @@ AddComponentPostInit("playervision", function(self)
     local NIGHTVISION_PHASEFN = ToolUtil.GetUpvalue(self.UpdateCCTable, "NIGHTVISION_PHASEFN")
     local NIGHTVISION_COLOURCUBES_INTERIOR = shallowcopy(NIGHTVISION_COLOURCUBES)
     NIGHTVISION_COLOURCUBES_INTERIOR.day = NIGHTVISION_COLOURCUBES_INTERIOR.night
+    NIGHTVISION_COLOURCUBES_INTERIOR.dusk = NIGHTVISION_COLOURCUBES_INTERIOR.night
+    NIGHTVISION_COLOURCUBES_INTERIOR.full_moon = NIGHTVISION_COLOURCUBES_INTERIOR.night
+
+    local NIGHTVISION_COLOURCUBES_APORKLYPSE = shallowcopy(NIGHTVISION_COLOURCUBES)
+    NIGHTVISION_COLOURCUBES_APORKLYPSE.full_moon = NIGHTVISION_COLOURCUBES.dusk
 
     self.inst:ListenForEvent("enterinterior", function() self:UpdateCCTable() end)
     self.inst:ListenForEvent("leaveinterior", function() self:UpdateCCTable() end)
+
+    self.inst:WatchWorldState("isaporkalypse", function() self:UpdateCCTable() end)
 
     local _UpdateCCTable = self.UpdateCCTable
     function self:UpdateCCTable()
@@ -23,6 +30,11 @@ AddComponentPostInit("playervision", function(self)
         elseif self.currentcctable == NIGHTVISION_COLOURCUBES then
             if self.inst:HasTag("inside_interior") then
                 local cc = NIGHTVISION_COLOURCUBES_INTERIOR
+                self.currentcctable = cc
+                self.inst:PushEvent("ccoverrides", cc)
+                self.inst:PushEvent("ccphasefn", NIGHTVISION_PHASEFN)
+            elseif TheWorld.state.isaporkalypse then
+                local cc = NIGHTVISION_COLOURCUBES_APORKLYPSE
                 self.currentcctable = cc
                 self.inst:PushEvent("ccoverrides", cc)
                 self.inst:PushEvent("ccphasefn", NIGHTVISION_PHASEFN)

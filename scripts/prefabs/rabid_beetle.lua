@@ -171,11 +171,16 @@ local function fn()
     local lifetime = TUNING.TOTAL_DAY_TIME + (3 * math.random() - 2) * TUNING.SEG_TIME
 
     inst:AddComponent("timer")
-    inst.components.timer:StartTimer("endlife", lifetime)
+    inst.components.timer:StartTimer("endlife", lifetime) -- 每当疯狂甲虫被陷阱捕捉就会重置这个计时，因为陷阱捕捉会删掉旧实体生成新实体
 
     MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME)
     inst.components.eater:SetOnEatFn(nil)
     inst:DoStaticTaskInTime(0, function()
+        inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
+    end)
+
+    inst.components.inventoryitem:SetOnPutInInventoryFn(function(inst, owner)
+        inst.components.perishable:StartPerishing()
         inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
     end)
 

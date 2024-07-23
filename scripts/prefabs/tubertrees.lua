@@ -255,7 +255,7 @@ local function tree_burnt(inst)
     OnBurnt(inst)
     inst.pineconetask = inst:DoTaskInTime(10,
         function()
-            local pt = Vector3(inst.Transform:GetWorldPosition())
+            local pt = inst:GetPosition()
             if math.random(0, 1) == 1 then
                 pt = pt + TheCamera:GetRightVec()
             else
@@ -509,7 +509,7 @@ local function onhackedfinal(prefab,data)
         inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/tuber_fall")
 
         local he_right = math.random()>0.5 and true or false
-        local pt = Vector3(inst.Transform:GetWorldPosition())
+        local pt = inst:GetPosition()
         if data.hacker then
 
             local hispos = Vector3(data.hacker.Transform:GetWorldPosition())
