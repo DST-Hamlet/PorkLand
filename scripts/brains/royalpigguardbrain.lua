@@ -214,9 +214,7 @@ end
 
 
 local function GuardGoHomeAction(inst)
-
-    local aporkalypse = GetAporkalypse()
-    if aporkalypse and aporkalypse:IsActive() and HasValidHome(inst) then
+    if TheWorld.state.isfiesta and HasValidHome(inst) then
         return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
     end
 
@@ -277,15 +275,13 @@ local function ShouldGoHome(inst)
     local homePos = inst.components.knownlocations:GetLocation("home")
     local myPos = Vector3(inst.Transform:GetWorldPosition() )
 
-    local aporkalypse = GetAporkalypse()
-
     -- eating food allows them to overide their home leash
     local action = inst:GetBufferedAction()
     if action and action.action.id ==  "EAT" then
         homePos =  nil
     end
 
-    return (homePos and distsq(homePos, myPos) > GO_HOME_DIST*GO_HOME_DIST ) or (aporkalypse and aporkalypse:IsActive() and HasValidHome(inst))
+    return (homePos and distsq(homePos, myPos) > GO_HOME_DIST*GO_HOME_DIST ) or (TheWorld.state.isaporkalypse and HasValidHome(inst))
 end
 
 local function inCityLimits(inst)

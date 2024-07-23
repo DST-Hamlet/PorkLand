@@ -297,11 +297,11 @@ local function OnLoad(inst, data)
 end
 
 local function OnEntityWake(inst)
-    -- if TheWorld.state.ifiesta then
-    --     inst.AnimState:Show("YOTP")
-    -- else
-    --     inst.AnimState:Hide("YOTP")
-    -- end
+    if TheWorld.state.isfiesta then
+        inst.AnimState:Show("YOTP")
+    else
+        inst.AnimState:Hide("YOTP")
+    end
 end
 
 local function ConfigureSpawner(inst, selected_citizens)

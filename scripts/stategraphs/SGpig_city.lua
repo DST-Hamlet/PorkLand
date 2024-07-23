@@ -78,7 +78,7 @@ local states =
        events=
         {
             EventHandler("animover", function(inst)
-                if GetAporkalypse() and GetAporkalypse():GetFiestaActive() and  math.random()< 0.5 then
+                if TheWorld.state.isfiesta and  math.random()< 0.5 then
                     if math.random()< 0.3 then
                         inst.sg:GoToState("throwcracker")
                     else
@@ -491,7 +491,7 @@ local states =
 
         onenter = function(inst)
             local speech = STRINGS.CITY_PIG_TALK_DAILYGIFT
-            if GetAporkalypse() and GetAporkalypse():GetFiestaActive() then
+            if TheWorld.state.isfiesta then
                 speech = STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD
             end
             local speechset = getSpeechType(inst, speech)

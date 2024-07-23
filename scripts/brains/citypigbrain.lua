@@ -406,14 +406,13 @@ end
 function getfacespeech(inst)
     local econprefab = inst.econprefab or inst.prefab
     local desc = TheWorld.components.economy:GetTradeItemDesc(econprefab)
-    local aporkalypse = GetAporkalypse()
     local facing_player = GetFaceTargetFn(inst)
     local is_player_pig_loyalty = facing_player and facing_player:HasTag("pigroyalty")
     if desc then
         local speech = is_player_pig_loyalty and deepcopy(getSpeechType(inst, STRINGS.CITY_PIG_TALK_LOOKATROYALTY_TRADER)) or
                                                             deepcopy(getSpeechType(inst, STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER))
 
-        if aporkalypse and aporkalypse:IsNear() then
+        if TheWorld.state.isnearaporkalypse then
             speech = deepcopy(getSpeechType(inst, STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON))
         end
 
@@ -427,7 +426,7 @@ function getfacespeech(inst)
             and STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY
             or getSpeechType(inst, STRINGS.CITY_PIG_TALK_LOOKATWILSON)
 
-        if aporkalypse and aporkalypse:IsNear() then
+        if TheWorld.state.isnearaporkalypse then
             speech = deepcopy(getSpeechType(inst, STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON))
         end
 
@@ -488,7 +487,7 @@ function CityPigBrain:OnStart()
             IfNode(function() return (self.inst:HasTag("shopkeep") or self.inst:HasTag("pigqueen")) and self.inst:GetIsInInterior() end, "shopkeeper closing",
                 Wander(self.inst, GetNoLeaderHomePos, MAX_WANDER_DIST)),
 
-            IfNode(function() return not self.inst:HasTag("guard") and not self.inst:HasTag("shopkeep") and not (GetAporkalypse() and GetAporkalypse():GetFiestaActive()) end, "gohome",
+            IfNode(function() return not self.inst:HasTag("guard") and not self.inst:HasTag("shopkeep") and not TheWorld.state.isfiesta end, "gohome",
                 ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_GO_HOME),
                     DoAction(self.inst, GoHomeAction, "go home"))),
 
@@ -496,7 +495,7 @@ function CityPigBrain:OnStart()
                 ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FIND_LIGHT),
                     FindLight(self.inst))),
 
-            IfNode(function() return not self.inst:HasTag("guard") and not (GetAporkalypse() and GetAporkalypse():GetFiestaActive()) end, "panic",
+            IfNode(function() return not self.inst:HasTag("guard") and not TheWorld.state.isfiesta end, "panic",
                 ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_PANIC),
                 Panic(self.inst))),
         },1)
@@ -549,7 +548,7 @@ function CityPigBrain:OnStart()
 
                     local target = GetFaceTargetFn(self.inst)
 
-                    if target and (target:HasTag("pigroyalty") or (GetAporkalypse() and GetAporkalypse():GetFiestaActive()) )and
+                    if target and (target:HasTag("pigroyalty") or TheWorld.state.isfiesta )and
                        (not self.inst.daily_gift or (TheWorld.state.cycles - self.inst.daily_gift > (TUNING.TOTAL_DAY_TIME * 1.5))) then
                             self.inst.daily_gift = TheWorld.state.cycles
                             return math.random() < 0.3

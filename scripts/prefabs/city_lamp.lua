@@ -127,15 +127,14 @@ local function OnEntityWake(inst)
 	if inst.audiotask then
 		inst.audiotask:Cancel()
 	end
-    inst.audiotask = inst:DoPeriodicTask(1.0, function() UpdateAudio(inst) end, math.random())
+    inst.audiotask = inst:DoPeriodicTask(1.0, UpdateAudio, math.random())
 
-    -- if TheWorld.state.ifiesta then
-    --     if inst.build == "lamp_post2_city_build" then
-    --         inst.build = "lamp_post2_yotp_build"
-    --         inst.AnimState:SetBuild(inst.build)
-    --     end
-    -- else
-    if inst.build == "lamp_post2_yotp_build" then
+    if TheWorld.state.isfiesta then
+        if inst.build == "lamp_post2_city_build" then
+            inst.build = "lamp_post2_yotp_build"
+            inst.AnimState:SetBuild(inst.build)
+        end
+    elseif inst.build == "lamp_post2_yotp_build" then
         inst.build = "lamp_post2_city_build"
         inst.AnimState:SetBuild(inst.build)
     end
@@ -268,4 +267,3 @@ end
 
 return Prefab("city_lamp", fn, assets),
     MakePlacer("city_lamp_placer", "lamp_post", "lamp_post2_city_build", "idle", false, false, true)
-
