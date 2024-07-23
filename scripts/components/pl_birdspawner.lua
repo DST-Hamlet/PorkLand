@@ -10,7 +10,7 @@ return Class(function(self, inst)
     --[[ Constants ]]
     --------------------------------------------------------------------------
 
-    local BIRD_TYPES =
+    local BIRD_TYPES_LAND =
     {
         [WORLD_TILES.ROCKY] = {"crow"},
         [WORLD_TILES.DIRT] = {"crow"},
@@ -121,8 +121,8 @@ return Class(function(self, inst)
         local bird = "crow"
 
         local tile = _map:GetTileAtPoint(spawnpoint:Get())
-        if BIRD_TYPES[tile] ~= nil then
-            bird = GetRandomItem(BIRD_TYPES[tile])
+        if BIRD_TYPES_LAND[tile] ~= nil then
+            bird = GetRandomItem(BIRD_TYPES_LAND[tile])
         end
 
         if bird == "crow" then
@@ -130,6 +130,10 @@ return Class(function(self, inst)
             if TheSim:CountEntities(x, y, z, TUNING.BIRD_CANARY_LURE_DISTANCE, SCARECROW_TAGS) > 0 then
                 bird = "canary"
             end
+        end
+
+        if not _map:IsSurroundedByLand(spawnpoint.x, spawnpoint.y, spawnpoint.z, 4) then
+            bird = nil
         end
 
         return bird

@@ -29,6 +29,10 @@ if not rawget(_G, "HotReloading") then
         SPY = Action({distance = 2, mount_enabled = true}),
         PUTONSHELF = Action({ distance = 2 }),
         TAKEFROMSHELF = Action({ distance = 2, priority = 1 }),
+        ASSEMBLE_ROBOT = Action({}),
+        CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
+        CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
+        USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
 
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -375,7 +379,17 @@ ACTIONS.PUTONSHELF.fn = function(act)
 
     if shelf.components.container ~= nil and act.invobject.components.inventoryitem ~= nil then
         local item = act.invobject.components.inventoryitem:RemoveFromOwner(shelf.components.container.acceptsstacks)
-        return shelf.components.container:GiveItem(item, act.target.components.visualslot:GetSlot(), nil, false)
+        shelf.components.container:GiveItem(item, act.target.components.visualslot:GetSlot(), nil, false)
+        if item:HasTag("small_livestock") then -- TODO: 需要加一个对容器所属的展示柜的检测，使得生物无法离开带有罩子的展示柜
+            if act.doer and  item:HasTag("canbetrapped") then -- 鸟类之外的可被抓的生物都有canbetrapped标签
+                local d_pos = act.doer:GetPosition()
+                local s_pos = shelf:GetPosition()
+                shelf.components.container:DropItemBySlot(act.target.components.visualslot:GetSlot(), (d_pos + s_pos) / 2)
+            else
+                shelf.components.container:DropItemBySlot(act.target.components.visualslot:GetSlot(), shelf:GetPosition())
+            end
+        end
+        return true
     end
 end
 
@@ -394,6 +408,23 @@ ACTIONS.TAKEFROMSHELF.fn = function(act)
     end
 end
 
+ACTIONS.ASSEMBLE_ROBOT.fn = function(act)
+    act.doer.components.mechassembly:Assemble(act.target)
+    return true
+end
+
+ACTIONS.CHARGE_UP.fn = function(act)
+    act.doer:PushEvent("beginchargeup")
+    return true
+end
+
+ACTIONS.USE_LIVING_ARTIFACT.fn = function(act)
+    local target = act.target or act.invobject
+    if target and target.components.livingartifact and not target:HasTag("active") then
+        target.components.livingartifact:Activate(act.doer, false)
+        return true
+    end
+end
 ACTIONS.POOP_TIP.fn = function(act)
     act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
     return true
@@ -665,6 +696,11 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.REARM)
             end
         end,
+        livingartifact = function (inst, doer, actions, right)
+            if not inst:HasTag("enabled") and right then
+                table.insert(actions, ACTIONS.USE_LIVING_ARTIFACT)
+            end
+        end,
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
                 table.insert(actions, ACTIONS.TAKEFROMSHELF)
@@ -698,6 +734,15 @@ local PL_COMPONENT_ACTIONS =
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
+        livingartifact = function (inst, doer, actions, right)
+            if not (inst.replica.inventoryitem and inst.replica.inventoryitem:IsHeldBy(doer)) then
+                return
+            end
+
+            if not inst:HasTag("enabled") then
+                table.insert(actions, ACTIONS.USE_LIVING_ARTIFACT)
+            end
+        end,
         poisonhealer = function(inst, doer, actions, right)
             if doer:HasTag("poisonable") and (doer:HasTag("player") and
                 ((doer.components.poisonable and doer.components.poisonable:IsPoisoned()) or

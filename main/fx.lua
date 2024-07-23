@@ -127,7 +127,79 @@ local pl_fx = {
         bank = "rock_hit_debris",
         build = "rock_hit_debris",
         anim = "hit_rock_ruins",
-        dlc = true,
+    },
+    {
+        name = "robot_leaf_fx",
+        bank = "robot_leaf_fx",
+        build = "robot_leaf_fx",
+        anim = "idle",
+    },
+    {
+        name = "sparks_green_fx",
+        bank = "sparks",
+        build = "sparks_green",
+        anim = "sparks_1",
+        fn = function(inst)
+            local anims = {"sparks_1", "sparks_2", "sparks_3"}
+            inst.AnimState:PlayAnimation(anims[math.random(1, 3)])
+        end
+    },
+    {
+        name = "metal_hulk_ring_fx",
+        bank = "metal_hulk_ring_fx",
+        build = "metal_hulk_ring_fx",
+        anim = "idle",
+        fn = function(inst)
+            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+            inst.AnimState:SetLayer(LAYER_BACKGROUND)
+            inst.AnimState:SetSortOrder(2)
+        end,
+    },
+    {
+	    name = "groundpound_fx_hulk",
+	    bank = "bearger_ground_fx",
+	    build = "bearger_ground_fx",
+	    sound = "dontstarve_DLC003/creatures/boss/hulk_metal_robot/dust",
+    	anim = "idle",
+    },
+    {
+        name = "laser_burst_fx",
+        bank = "laser_ring_fx",
+        build = "laser_ring_fx",
+        anim = "idle",
+    },
+    {
+        name = "laser_ring",
+        bank = "laser_ring_fx",
+        build = "laser_ring_fx",
+        anim = "idle",
+        fn = function(inst)
+            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+            inst.AnimState:SetLayer(LAYER_BACKGROUND)
+            inst.Transform:SetRotation(math.random() * 360)
+            inst.Transform:SetScale(0.85, 0.85, 0.85)
+
+            inst.alpha = 1
+            inst:DoTaskInTime(0.7, function()
+                inst:DoPeriodicTask(0, Scorch_OnUpdateFade)
+            end)
+        end
+    },
+    {
+        name = "laser_explosion",
+        build = "laser_explosion",
+        bank = "laser_explosion",
+        anim = "idle",
+        fn = function(inst)
+            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+            inst.Transform:SetScale(0.85, 0.85, 0.85)
+        end,
+    },
+    {
+        name = "living_suit_explode_fx",
+        bank = "living_suit_explode_fx",
+        build = "living_suit_explode_fx",
+        anim = "idle",
     },
 }
 

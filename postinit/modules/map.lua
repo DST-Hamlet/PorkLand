@@ -222,6 +222,18 @@ function Map:IsSurroundedByWater(x, y, z, radius, ...)
     return _IsSurroundedByWater(self, x, y, z, radius, ...)
 end
 
+local _IsSurroundedByLand = Map.IsSurroundedByLand
+function Map:IsSurroundedByLand(x, y, z, radius, ...)
+    if TheWorld.has_pl_ocean then
+        -- subtract 1 to radius for map overhang, way cheaper than doing an IsVisualGround test
+        -- if the radius is less than 2(1 after the -1), We only need to check if the current point is an ocean tile
+        return self:IsSurroundedByTile(x, y, z, radius - 1, function(_x, _y, _z, map)
+            return not map:IsOceanTileAtPoint(_x, _y, _z) and map:_IsVisualGroundAtPoint(_x, _y, _z)
+        end, self)
+    end
+    return _IsSurroundedByLand(self, x, y, z, radius, ...)
+end
+
 function Map:CanDeployAquaticAtPointInWater(pt, data, player)
     if data.boat and not TheWorld.has_pl_ocean then
         return false

@@ -1,3 +1,4 @@
+local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 local PlayerController = require("components/playercontroller")
 
@@ -97,3 +98,41 @@ function PlayerController:RemapMapAction(act, position)
     end
     return _RemapMapAction(self, act, position)
 end
+
+function PlayerController:ReleaseControlSecondary(x, z)
+    if not self.ismastersim then
+        SendModRPCToServer(MOD_RPC["Porkland"]["ReleaseControlSecondary"], x, z)
+    end
+    local position = Vector3(x, 0, z)
+    if self.inst.sg ~= nil and self.inst.sg:HasStateTag("strafing") then
+        self.inst:PushBufferedAction(BufferedAction(self.inst, nil, ACTIONS.CHARGE_RELEASE, nil, position))
+    end
+end
+
+function PlayerController:OnRemoteReleaseControlSecondary(x, z)
+    local position = Vector3(x, 0, z)
+    if self.inst.sg ~= nil and self.inst.sg:HasStateTag("strafing") then
+        self.inst:PushBufferedAction(BufferedAction(self.inst, nil, ACTIONS.CHARGE_RELEASE, nil, position))
+    end
+end
+
+local _OnUpdate = PlayerController.OnUpdate
+function PlayerController:OnUpdate(dt)
+    local ret = {_OnUpdate(self, dt)}
+
+    if self.handler then
+        if self.lasttick_controlpressed[CONTROL_SECONDARY] ~= nil
+            and self.lasttick_controlpressed[CONTROL_SECONDARY] == true
+            and self:IsControlPressed(CONTROL_SECONDARY) == false then
+            local x, z = TheInput:GetWorldXZWithHeight(1)
+            self:ReleaseControlSecondary(x, z)
+        end
+        self.lasttick_controlpressed[CONTROL_SECONDARY] = self:IsControlPressed(CONTROL_SECONDARY)
+    end
+
+    return unpack(ret)
+end
+
+AddComponentPostInit("playercontroller", function(self)
+    self.lasttick_controlpressed = {}
+end)

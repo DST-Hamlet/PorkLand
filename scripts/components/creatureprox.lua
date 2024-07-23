@@ -12,18 +12,20 @@ local function OnUpdate(inst, self)
     local must_one_tags = self.inventorytrigger and INVENTORY_MUST_ONE_TAGS or CREATURE_MUST_ONE_TAGS
 
     local ents = TheSim:FindEntities(x, y, z, range, nil, CANT_TAGS, must_one_tags)
-    for i = #ents, 1, -1 do
-        if (self.findtestfn and not self.findtestfn(ents[i], inst)) or self.alivemode == IsEntityDeadOrGhost(ents[i]) then
-            table.remove(ents, i)
+    local foundents = {}
+
+    for k, ent in ipairs(ents) do
+        if (not self.findtestfn or self.findtestfn(ent, inst)) and (self.alivemode ~= IsEntityDeadOrGhost(foundents[k])) then
+            table.insert(foundents, ent)
         end
     end
 
     local change = false
-    if not IsTableEmpty(ents) then
+    if not IsTableEmpty(foundents) then
         change = true
 
         if self.inproxfn then
-            for _, ent in ipairs(ents)do
+            for _, ent in ipairs(foundents)do
                 self.inproxfn(inst, ent)
             end
         end
@@ -34,11 +36,11 @@ local function OnUpdate(inst, self)
 
         if self.isclose then
             if self.onnear then
-                self.onnear(inst, ents)
+                self.onnear(inst, foundents)
             end
         else
             if self.onfar then
-                self.onfar(inst, ents)
+                self.onfar(inst, foundents)
             end
         end
     end

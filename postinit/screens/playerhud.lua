@@ -3,6 +3,7 @@ GLOBAL.setfenv(1, GLOBAL)
 local BoatOver = require("widgets/boatover")
 local FogOver = require("widgets/fogover")
 local LeavesOver = require("widgets/pl_leaf_canopy")
+local LivingArtifactOver = require("widgets/livingartifactover")
 local PoisonOver = require("widgets/poisonover")
 local PollenOver = require("widgets/pollenover")
 local ContainerWidget = require("widgets/containerwidget")
@@ -29,6 +30,11 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.inst:ListenForEvent("updatepollen", function(inst, data) return self.pollenover:UpdateState(data.sneezetime) end, self.owner)
 
     self.leavesover = self.overlayroot:AddChild(LeavesOver(owner))
+
+    self.livingartifactover = self.overlayroot:AddChild(LivingArtifactOver(owner))
+    self.inst:ListenForEvent("livingartifactoveron", function(inst, data) self.livingartifactover:TurnOn() end, self.owner)
+    self.inst:ListenForEvent("livingartifactoveroff", function(inst, data) self.livingartifactover:TurnOff() end, self.owner)
+    self.inst:ListenForEvent("livingartifactoverpulse", function(inst, data) self.livingartifactover:Flash(data) end, self.owner)
 end
 
 local _UpdateClouds = PlayerHud.UpdateClouds

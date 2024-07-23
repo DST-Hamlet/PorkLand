@@ -198,6 +198,7 @@ function InteriorSpawner:PositionToInteriorCenter(pos)
 end
 
 function InteriorSpawner:AddExterior(ent)
+    ent:AddTag("exterior_door")
     self.exteriors_hashmap[ent] = true
     ent:ListenForEvent("onremove", function()
         self.exteriors_hashmap[ent] = nil
@@ -1001,7 +1002,7 @@ function InteriorSpawner:SendMinimapLayoutData()
         for k,v in pairs(self.interior_layout_map)do
             table.insert(data, {k, v})
         end
-        SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"),
+        SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
             full_list, TheSim:ZipAndEncodeString(DataDumper(data)))
     end
     if #diff_list > 0 then
@@ -1012,7 +1013,7 @@ function InteriorSpawner:SendMinimapLayoutData()
             table.insert(data, {k, self.interior_layout_map[k]})
         end
         self.interior_layout_dirty_keys = {}
-        SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"),
+        SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
             diff_list, TheSim:ZipAndEncodeString(DataDumper(data)))
     end
 end

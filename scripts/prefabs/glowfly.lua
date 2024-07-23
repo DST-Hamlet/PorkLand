@@ -101,6 +101,7 @@ local function commonfn()
 
     inst:AddTag("animal")
     inst:AddTag("insect")
+    inst:AddTag("noember")
     inst:AddTag("smallcreature")
     inst:AddTag("wildfireprotected")
 
