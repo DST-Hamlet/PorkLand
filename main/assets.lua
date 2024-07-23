@@ -161,6 +161,10 @@ PrefabFiles = {
     "hedge",
     "clippings",
     "reconstruction_project",
+
+    "oinc",
+    "oinc10",
+    "oinc100",
 }
 
 Assets = {
