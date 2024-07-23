@@ -107,13 +107,6 @@ local function KeepTraderFn(inst, target)
     return inst.components.trader:IsTryingToTradeWithMe(target)
 end
 
-local function GreetAction(inst)
-    if GetClosestInstWithTag("player", inst, START_FACE_DIST) then
-        inst.sg:GoToState("greet")
-        return true
-    end
-end
-
 local function FindFoodAction(inst)
     local target = nil
 
@@ -247,7 +240,7 @@ local function PoopTip(inst)
 end
 
 local function PayTax(inst)
-    local player = FindClosestPlayerToInst(inst)
+    local player = inst:GetNearestPlayer()
     if player then
         inst.taxing = true
         return BufferedAction(inst, player, ACTIONS.PAY_TAX)
@@ -255,7 +248,7 @@ local function PayTax(inst)
 end
 
 local function DailyGift(inst)
-    local player = FindClosestPlayerToInst(inst)
+    local player = inst:GetNearestPlayer()
     if player then
         inst.daily_gifting = true
         return BufferedAction(inst, player, ACTIONS.DAILY_GIFT)
@@ -305,23 +298,20 @@ local function shouldpanicwithspeech(inst)
 end
 
 local function needlight(inst)
-
     if inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS) and inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS).prefab == "torch" then
         return false
     end
-
     return true
 end
 
 local function ShouldGoHome(inst)
-    local homePos = inst.components.knownlocations:GetLocation("home")
-    local myPos = Vector3(inst.Transform:GetWorldPosition() )
-    return (homePos and distsq(homePos, myPos) > GO_HOME_DIST*GO_HOME_DIST )
+    local home_pos = inst.components.knownlocations:GetLocation("home")
+    return home_pos and inst:GetDistanceSqToPoint(home_pos) > GO_HOME_DIST*GO_HOME_DIST
 end
 
 local function inCityLimits(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH, {"citypossession"},{"city_pig"})
+    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH, {"citypossession"}, {"city_pig"})
     if #ents > 0 then
         return true
     end
@@ -396,7 +386,6 @@ local function ExtinguishfireAction(inst)
 end
 
 local function ReplenishStockAction(inst)
-
     if inst.changestock and inst.changestock:IsValid() then
         inst.sg:GoToState("idle")
         return BufferedAction(inst, inst.changestock, ACTIONS.STOCK)
@@ -416,8 +405,8 @@ function getfacespeech(inst)
             speech = deepcopy(getSpeechType(inst, STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON))
         end
 
-        for i,line in ipairs(speech)do
-            speech[i] = string.format( line, desc )
+        for i, line in ipairs(speech)do
+            speech[i] = string.format(line, desc)
         end
 
         return speech

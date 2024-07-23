@@ -337,7 +337,7 @@ local states =
         tags = {"desk"},
 
         onenter = function(inst)
-            inst.separatedesk(inst,false)
+            inst.separatedesk(inst, false)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("idle_table_pre")
         end,

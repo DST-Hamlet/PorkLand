@@ -90,13 +90,6 @@ local function KeepTraderFn(inst, target)
     return inst.components.trader:IsTryingToTradeWithMe(target)
 end
 
-local function GreetAction(inst)
-    if GetClosestInstWithTag("player", inst, START_FACE_DIST) then
-        inst.sg:GoToState("greet")
-        return true
-    end
-end
-
 local function FindFoodAction(inst)
     local target = nil
 
