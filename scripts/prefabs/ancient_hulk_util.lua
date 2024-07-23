@@ -326,7 +326,7 @@ end
 local function DropAncientRobots(inst)
     -- local locations = GetDropLocations(inst)
     local map = TheWorld.Map
-    local w,h = map:GetSize()
+    local w, h = map:GetSize()
 
     -- assert(#locations > 0,"Locations for ancient robots not found!")
 
@@ -338,7 +338,7 @@ local function DropAncientRobots(inst)
         "ancient_robot_ribs",
     }
 
-    local x,y,z = inst.Transform:GetWorldPosition()
+    local x, y, z = inst.Transform:GetWorldPosition()
     local islandtag = TheWorld.Map:GetIslandTagAtPoint(x,y,z)
 
     for i, part in ipairs(parts) do

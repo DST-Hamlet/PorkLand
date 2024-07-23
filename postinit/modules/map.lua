@@ -388,7 +388,7 @@ function Map:GetIslandTagAtPoint(x, y, z)
 
     local island_tag = nil
 
-    for i,v in ipairs(ISLAND_TAGS) do
+    for _, v in ipairs(ISLAND_TAGS) do
         if table.contains(node.tags, v) then
             if island_tag == nil then
                 island_tag = v

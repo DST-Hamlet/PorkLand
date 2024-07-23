@@ -515,7 +515,7 @@ local states = {
         onenter = function(inst)
             inst.components.locomotor:Stop()
 
-			inst.AnimState:PlayAnimation("give")
+            inst.AnimState:PlayAnimation("give")
 
             inst:PerformPreviewBufferedAction()
             inst.sg:SetTimeout(TIMEOUT)
@@ -722,8 +722,8 @@ local states = {
 
             inst:PerformPreviewBufferedAction()
 
-			if target and target:IsValid() then
-				inst:FacePoint(inst.replica.combat:GetTarget().Transform:GetWorldPosition())
+            if target and target:IsValid() then
+                inst:FacePoint(inst.replica.combat:GetTarget().Transform:GetWorldPosition())
             end
 
         end,

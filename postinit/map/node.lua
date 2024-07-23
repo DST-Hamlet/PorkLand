@@ -23,7 +23,7 @@ local land_prefabs = {
 }
 
 local land_prefabs_patch = {
-	"deep_jungle_fern_noise", "teatree_piko_nest_patch", "hanging_vine_patch",
+    "deep_jungle_fern_noise", "teatree_piko_nest_patch", "hanging_vine_patch",
 }
 
 local common_spawnfn = {
