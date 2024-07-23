@@ -25,7 +25,7 @@ local clawpalmtree_prefabs = {
 }
 
 local function growtree(inst)
-    local tree = SpawnPrefab(inst.growprefab)
+    local tree = SpawnPrefab(FunctionOrValue(inst.growprefab, inst))
     if tree then
         tree.Transform:SetPosition(inst.Transform:GetWorldPosition())
         tree:growfromseed()

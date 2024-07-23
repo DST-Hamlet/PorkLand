@@ -19,6 +19,12 @@ local function OnDeploy(inst, point)
     Plant(point)
 end
 
+local function OnseasonChange(inst, season)
+    if season ~= SEASONS.LUSH and not inst:IsInLimbo() then
+        inst.components.deployable:Deploy(inst:GetPosition(), inst)
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -66,11 +72,8 @@ local function fn()
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
     MakeHauntableLaunch(inst)
 
-    -- inst:ListenForEvent("seasonChange", function(it, data) 
-    --     if data.season ~= SEASONS.LUSH and not inst:HasTag("jungletree") and not inst:IsInLimbo() then
-    --         inst.taskgrow, inst.taskgrowinfo = inst:ResumeTask( math.random()* TUNING.TOTAL_DAY_TIME/2, hatchtree)
-    --     end
-    -- end, GetWorld())
+    inst:WatchWorldState("season", OnseasonChange)
+    OnseasonChange(inst, TheWorld.state.season)
 
     return inst
 end
