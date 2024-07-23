@@ -132,6 +132,18 @@ return {
         },
         PEAGAWKFEATHER = "A priceless beauty.",
         PEAGAWK_BUSH = "Do you think you can hide from me?",
+        PIGHOUSE_CITY = {
+            BURNING = "Aflame with the fires of Hel!",
+            GENERIC = "A village home worthy of a shield maiden's protection.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Loge's work!",
+            GENERIC = "Farming was not my life's calling.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Hel's fire consumes it!",
+            GENERIC = "A house for Dwarfish things.",
+        },
         PIG_RUINS_ARTICHOKE = "A terrible monument to non-meat!",
         PIG_RUINS_HEAD = "A frost giant head, turned to stone!",
         PIG_RUINS_IDOL = "I will dethron it and sell it to a pig.",

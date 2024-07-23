@@ -133,6 +133,18 @@ return {
         },
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
+        PIGHOUSE_CITY = {
+            BURNING = "That house is on fire!",
+            GENERIC = "Both a house, and a home.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "That farm is on fire!",
+            GENERIC = "It's a peaceful life.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "The mine is on fire!",
+            GENERIC = "I have no quarry with them.",
+        },
         PIG_RUINS_ANT = "An abstract insect or something.",
         PIG_RUINS_ARTICHOKE = "Arti-choked.",
         PIG_RUINS_HEAD = "Looks like a headache.",

@@ -126,6 +126,18 @@ return {
         },
         PEAGAWKFEATHER = "method is valid.",
         PEAGAWK_BUSH = "This bird can't fly, but turns into a bush!",
+        PIGHOUSE_CITY = {
+            BURNING = "Is anyone in there? Help them!",
+            GENERIC = "Community service is a must for a Pinetree Pioneer.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Poor farmers.",
+            GENERIC = "I have a feeling Wurt's not gonna like there",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Firemen! Firemen!",
+            GENERIC = "I have a feeling Wurt's not gonna like there",
+        },
         PIG_RUINS_ARTICHOKE = "Is this a bamboo shoot or something?",
         PIG_RUINS_HEAD = "Warby! It's bigger than you!",
         PIG_RUINS_IDOL = "Look what we found, Warby!",

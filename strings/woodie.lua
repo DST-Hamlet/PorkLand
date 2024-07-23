@@ -132,6 +132,18 @@ return {
         },
         PEAGAWKFEATHER = "It has a foul bird stench.",
         PEAGAWK_BUSH = "There's a wretched bird nearby. I feel it.",
+        PIGHOUSE_CITY = {
+            BURNING = "Hope no one's been hurt.",
+            GENERIC = "Not as good as a cabin in the woods.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "That farm just bought the farm.",
+            GENERIC = "This pig town's a real cowtown.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Woosh. Went up just like that!",
+            GENERIC = "What are they mining in there?",
+        },
         PIG_RUINS_ARTICHOKE = "Doesn't look too tasty.",
         PIG_RUINS_HEAD = "Someone missing a head?",
         PIG_RUINS_IDOL = "Be nice if we could get that top part off.",

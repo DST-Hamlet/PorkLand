@@ -133,6 +133,18 @@ return {
         },
         PEAGAWKFEATHER = "Feather'o'glimmer.",
         PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
+        PIGHOUSE_CITY = {
+            BURNING = "A flamin' abode!",
+            GENERIC = "Boathouse'o'th'land.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Not long fer'tha world!",
+            GENERIC = "'Tis th'home o'a landlubber.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Avast! 'Tis afire!",
+            GENERIC = "Them b'th'mines.",
+        },
         PIG_RUINS_ARTICHOKE = "Thar be treas're in't.",
         PIG_RUINS_HEAD = "Thar be th'head.",
         PIG_RUINS_IDOL = "Tha' treasure atop there.",

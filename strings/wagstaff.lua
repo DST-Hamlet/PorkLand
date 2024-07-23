@@ -135,6 +135,18 @@ return {
             GENERIC = "I'm experiencing the inescapable perception that I'm being watched.",
             SLEEPING = "That insight that spied on me was gone.",
         },
+        PIGHOUSE_CITY = {
+            BURNING = "In theory that home is done for.",
+            GENERIC = "The humble home of a domesticated pig.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Excellent! I love to watch things combust.",
+            GENERIC = "An excellent example of agricultural architecture.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "An excellent blaze! Full of thermodynamic energy!",
+            GENERIC = "I wonder if they are up to any digging in there?",
+        },
         PIG_RUINS_ARTICHOKE = "An elegant depiction of a giant vegetable.",
         PIG_RUINS_HEAD = "Evidence would suggest he's an important figure in the pig's past.",
         PIG_RUINS_IDOL = "Theoretically, it can be detached from its base.",

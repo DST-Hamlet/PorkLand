@@ -126,6 +126,18 @@ return {
         },
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
+        PIGHOUSE_CITY = {
+            BURNING = "Burn! Burn!",
+            GENERIC = "Not wet! How stupid pigfolk.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Pigfolk can mess up even with stone.",
+            GENERIC = "Where pigfolk dig stone.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Pigfolk can mess up even with stone.",
+            GENERIC = "Where pigfolk plant snacks.",
+        },
         PIG_RUINS_ARTICHOKE = "This plant everywhere.",
         PIG_RUINS_HEAD = "Giant pifrolk face!",
         PIG_RUINS_IDOL = "A Pigfolk idol, not Mermfolk.",

@@ -132,6 +132,18 @@ return {
         },
         PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
         PEAGAWK_BUSH = "I have questions about that bush.",
+        PIGHOUSE_CITY = {
+            BURNING = "It has ignited.",
+            GENERIC = "A more advanced version of pig domicile.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "In the process of oxidation.",
+            GENERIC = "The abode of the humble farmer.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Oh dear, it's now a burning pyre.",
+            GENERIC = "The a residence for miners.",
+        },
         PIG_RUINS_ARTICHOKE = "It must have had some significance to the pigs.",
         PIG_RUINS_HEAD = "An early Porcine civilization once dwelt here.",
         PIG_RUINS_IDOL = "The top part would make an invaluable bartering tool.",

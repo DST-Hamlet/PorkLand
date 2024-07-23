@@ -126,6 +126,18 @@ return {
         },
         PEAGAWKFEATHER = "It's hard to see.",
         PEAGAWK_BUSH = "What a clever disguise.",
+        PIGHOUSE_CITY = {
+            BURNING = "I think it's about time too.",
+            GENERIC = "I really hope this is I finally get back to the right time.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "I think it's about time too.",
+            GENERIC = "I'm sure I've seen it in... Oh, that's the other one.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "I think it's about time too.",
+            GENERIC = "I'm sure I've seen it in... Oh, that's the other one.",
+        },
         PIG_RUINS_ARTICHOKE = "Stones carved into vegetables.",
         PIG_RUINS_HEAD = "Huge stone pig face.",
         PIG_RUINS_IDOL = "I thought it would be deeper...oh, that's another one.",

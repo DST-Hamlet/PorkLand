@@ -133,6 +133,18 @@ return {
         },
         PEAGAWKFEATHER = "Nature makes such pretty things.",
         PEAGAWK_BUSH = "What a cool looking bush!",
+        PIGHOUSE_CITY = {
+            BURNING = "Aww... Where they gonna sleep now?",
+            GENERIC = "One of those pigdudes' houses.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "That happened fast!",
+            GENERIC = "Farm life ain't for me.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "That's some inferno.",
+            GENERIC = "They work too hard in there.",
+        },
         PIG_RUINS_ARTICHOKE = "Artichoke art!",
         PIG_RUINS_HEAD = "A little bit creepy.",
         PIG_RUINS_IDOL = "How do I get that top part off?",

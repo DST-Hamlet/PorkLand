@@ -133,6 +133,18 @@ return {
         },
         PEAGAWKFEATHER = "What finery.",
         PEAGAWK_BUSH = "I've my suspicions about that bush.",
+        PIGHOUSE_CITY = {
+            BURNING = "That will only lead to improvement.",
+            GENERIC = "I presume it's a pigsty inside.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "A flaming reminder of Life's inequities.",
+            GENERIC = "I've no interest in a commoner's domicile.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "It's in flames!",
+            GENERIC = "Little pig, little pig, let me in.",
+        },
         PIG_RUINS_ARTICHOKE = "What an odd choice of statuary.",
         PIG_RUINS_HEAD = "It's been beheaded.",
         PIG_RUINS_IDOL = "Hmmm. How do I get that statue off?",

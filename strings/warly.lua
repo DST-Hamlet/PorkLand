@@ -132,6 +132,18 @@ return {
         },
         PEAGAWKFEATHER = "It's quite soft.",
         PEAGAWK_BUSH = "It's a bright blue bush.",
+        PIGHOUSE_CITY = {
+            BURNING = "Fricasseed.",
+            GENERIC = "It's a simple life.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "A little too well-done!",
+            GENERIC = "Farm fresh.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Blackened!",
+            GENERIC = "Mining is a dangerous job.",
+        },
         PIG_RUINS_ARTICHOKE = "Clearly a food loving culture dwelled here.",
         PIG_RUINS_HEAD = "I suppose pigs lived here once.",
         PIG_RUINS_IDOL = "Those pig fellows might like that.",

@@ -126,6 +126,18 @@ return {
         },
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
+        PIGHOUSE_CITY = {
+            BURNING = "Burned to the ground.",
+            GENERIC = "It's hard to imagine such a house being built by pigs.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "The flames consumed everything here.",
+            GENERIC = "A farm house for farmer.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "The flames consumed everything here.",
+            GENERIC = "A mine house for miner.",
+        },
         PIG_RUINS_ARTICHOKE = "So they really like artichokes.",
         PIG_RUINS_HEAD = "There must be some way to remove the middle part.",
         PIG_RUINS_IDOL = "There must be some way to remove the top part.",

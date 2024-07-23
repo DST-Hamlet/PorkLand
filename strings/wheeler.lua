@@ -136,6 +136,18 @@ return {
         },
         PEAGAWKFEATHER = "Normally I don't mind feathers, but this one keeps staring at me.",
         PEAGAWK_BUSH = "Something's hiding in there.",
+        PIGHOUSE_CITY = {
+            BURNING = "Someone's having a bad day.",
+            GENERIC = "As pig houses go, it's decent enough.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "They're not sleeping there tonight.",
+            GENERIC = "I thought they would've built their home out of straw.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Huh. Wouldn't think stone would burn that well.",
+            GENERIC = "Looks like they put all those rocks into building a house.",
+        },
         PIG_RUINS_ARTICHOKE = "Strange thing to make a statue out of.",
         PIG_RUINS_HEAD = "Missing something... like its body.",
         PIG_RUINS_IDOL = "I'll need to get that totem free to take it back to the pigs.",

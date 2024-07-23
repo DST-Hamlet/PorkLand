@@ -132,6 +132,18 @@ return {
         },
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
+        PIGHOUSE_CITY = {
+            BURNING = "Yes! Burn!",
+            GENERIC = "Pig houses look pretty different here.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Yes! It's burning!",
+            GENERIC = "I think it's a farmhouse.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Buuuurn!",
+            GENERIC = "Is that a mine?",
+        },
         PIG_RUINS_ARTICHOKE = "Is that... an artichoke?",
         PIG_RUINS_HEAD = "Doesn't look very flammable.",
         PIG_RUINS_IDOL = "I should take that off and sell it to a pig.",

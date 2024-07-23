@@ -132,6 +132,18 @@ return {
         },
         PEAGAWKFEATHER = "It's pretty.",
         PEAGAWK_BUSH = "Neat. A weird bush!",
+        PIGHOUSE_CITY = {
+            BURNING = "It's on fire!",
+            GENERIC = "That looks like a pig house.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Hope no one was in there.",
+            GENERIC = "Kinda reminds me of home.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Oh no!",
+            GENERIC = "That's where the miners live.",
+        },
         PIG_RUINS_ARTICHOKE = "Looks like it'd be fun to climb.",
         PIG_RUINS_HEAD = "We think it's a bit creepy.",
         PIG_RUINS_IDOL = "Those pigs would probably really love that.",

@@ -133,6 +133,18 @@ return {
         },
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
+        PIGHOUSE_CITY = {
+            BURNING = "Fire not good",
+            GENERIC = "Twirly tail home",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Save it! Save it!",
+            GENERIC = "Home of dirt",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Bad fire! Bad!",
+            GENERIC = "Twirly Tail home",
+        },
         PIG_RUINS_ANT = "Chr'ik rock",
         PIG_RUINS_ARTICHOKE = "Friend? Nope, rock",
         PIG_RUINS_HEAD = "Must have big rock brain",

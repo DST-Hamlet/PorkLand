@@ -132,6 +132,18 @@ return {
         },
         PEAGAWKFEATHER = "I spy, with my little eye...",
         PEAGAWK_BUSH = "Just a bush...",
+        PIGHOUSE_CITY = {
+            BURNING = "Destruction wins again.",
+            GENERIC = "Shelter won't save you from death.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Doomed.",
+            GENERIC = "I wish I could be happy with a pastoral existence.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "(sigh) Beautiful destruction.",
+            GENERIC = "A home for otherworldly creatures.",
+        },
         PIG_RUINS_ANT = "Monument to the ants.",
         PIG_RUINS_ARTICHOKE = "What a curious thing.",
         PIG_RUINS_HEAD = "Whoever built it has long gone.",

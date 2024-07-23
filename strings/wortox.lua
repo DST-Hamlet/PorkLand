@@ -126,6 +126,18 @@ return {
         },
         PEAGAWKFEATHER = "Feather of a small peacock.",
         PEAGAWK_BUSH = "Well, this trick can't fool me.",
+        PIGHOUSE_CITY = {
+            BURNING = "Wow, this is not good.",
+            GENERIC = "Knock Knock.",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "How these stones burn?",
+            GENERIC = "Anyone noticed that their farm look the same as their mine?",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "How these stones burn?",
+            GENERIC = "Anyone noticed that their mine look the same as their farm?",
+        },
         PIG_RUINS_ARTICHOKE = "A giant vegetable.",
         PIG_RUINS_HEAD = "Others use umbrella, it use big head!",
         PIG_RUINS_IDOL = "What a nice little idol. Let's take it.",

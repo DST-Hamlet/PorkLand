@@ -132,6 +132,18 @@ return {
         },
         PEAGAWKFEATHER = "Is blink-blink bird feather.",
         PEAGAWK_BUSH = "Is just bush.",
+        PIGHOUSE_CITY = {
+            BURNING = "Wolfgang not start fire!",
+            GENERIC = "Little pig! Little pig! Let Wolfgang come in!",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "Is fire!",
+            GENERIC = "House for little farmy pigs.",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "Hope mustache pig not inside.",
+            GENERIC = "Mining mustache pig is live there.",
+        },
         PIG_RUINS_ARTICHOKE = "Is odd statue.",
         PIG_RUINS_HEAD = "Is big and mighty head. Like Wolfgang!",
         PIG_RUINS_IDOL = "Piggies might like those.",

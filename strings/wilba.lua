@@ -133,6 +133,18 @@ return {
         },
         PEAGAWKFEATHER = "IS'T A BIRD THING O' PRETTY",
         PEAGAWK_BUSH = "'TIS NAUGHT A BUSH",
+        PIGHOUSE_CITY = {
+            BURNING = "HOUSE 'TIS FWOOSHING!",
+            GENERIC = "WILBA HOME IS'T BIGGER",
+        },
+        PIGHOUSE_FARM = {
+            BURNING = "AVAST! 'TIS AFWOOSH'D!",
+            GENERIC = "YON HOUSE SMELLETH LIKE PLOPS",
+        },
+        PIGHOUSE_MINE = {
+            BURNING = "'TIS FWOOSHING! 'TIS FWOOSHING!",
+            GENERIC = "CONTAINETH PIGS O' THE ROCKS",
+        },
         PIG_RUINS_ARTICHOKE = "WHEREFORE ART-ICHOKE?",
         PIG_RUINS_HEAD = "WHOFORE OFF'D WITH HIS HEAD?",
         PIG_RUINS_IDOL = "WILBA LIKETH THE TOP PART",
