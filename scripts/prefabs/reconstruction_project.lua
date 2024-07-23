@@ -9,6 +9,7 @@ local REBUILD_REACTION_VARIANCE = TUNING.SEG_TIME
 
 local OFF_SCREENDIST = 30
 local AUTO_REPAIRDIST = 100
+local AUTO_REPAIRDIST_SQ = AUTO_REPAIRDIST * AUTO_REPAIRDIST
 
 local function fix(inst, fixer)
     if fixer and fixer.components.fixer then -- covers the actual worker (possibly the player?)
@@ -209,11 +210,7 @@ local function getstatus(inst)
     end
 end
 
-function GetSpawnPoint(inst, pt)
-    if GetPlayer():HasTag("aquatic") then
-        return
-    end
-
+local function GetSpawnPoint(inst, pt)
     local theta = math.random() * 2 * PI
     local radius = OFF_SCREENDIST
 
@@ -239,43 +236,38 @@ local function setfixer(inst, fixer)
     inst.fixer = fixer
 end
 
-local function spawnFixer(inst)
+local function spawn_fixer(inst)
     -- if away from player fix, else
     -- look for fixer pig
     -- spawn if none
     -- set pig's fixer target to this inst.
-    if inst:IsNearPlayer(AUTO_REPAIRDIST * AUTO_REPAIRDIST) then
+    if inst:IsNearPlayer(AUTO_REPAIRDIST_SQ) then
         fix(inst)
     else
         if (not inst.fixer or inst.fixer.components.health:IsDead()) and inst.cityID then -- Spawn the pig only for city structures.
             inst.fixer = nil
             if TheWorld.state.isday then
-                local x, y, z = inst.Transform:GetWorldPosition()
-
-                local ents = TheSim:FindEntities(x, y, z, 30, {
-                    "fixer",
-                })
-                if #ents > 0 then
-                    for i, ent in ipairs(ents) do
-                        if ent.components.fixer.target == nil then
-                            setfixer(inst, ent)
-                            break
-                        end
-                    end
+                local fixer = FindEntity(inst, 30, function(ent)
+                    return ent.components.fixer and not ent.components.fixer.target
+                end, {"fixer"})
+                if fixer then
+                    setfixer(inst, fixer)
                 else
-                    local pt = Vector3(GetPlayer().Transform:GetWorldPosition())
-                    local spawn_pt = GetSpawnPoint(inst, pt)
-                    if spawn_pt then
-                        local fixer = SpawnPrefab("pigman_mechanic")
-                        fixer.Physics:Teleport(spawn_pt:Get())
-                        setfixer(inst, fixer)
+                    local player = FindClosestPlayerToInstOnLand(inst, AUTO_REPAIRDIST_SQ)
+                    if player then
+                        local spawn_pt = GetSpawnPoint(inst, player:GetPosition())
+                        if spawn_pt then
+                            local fixer = SpawnPrefab("pigman_mechanic")
+                            fixer.Physics:Teleport(spawn_pt:Get())
+                            setfixer(inst, fixer)
+                        end
                     end
                 end
             end
         end
         inst.task:Cancel()
         inst.task = nil
-        inst.task = inst:DoTaskInTime(REBUILD_REACTION_TIME + (math.random() * REBUILD_REACTION_VARIANCE), spawnFixer)
+        inst.task = inst:DoTaskInTime(REBUILD_REACTION_TIME + (math.random() * REBUILD_REACTION_VARIANCE), spawn_fixer)
     end
 end
 
@@ -337,7 +329,7 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
-    inst.task = inst:DoTaskInTime(REBUILD_REACTION_TIME + (math.random() * REBUILD_REACTION_VARIANCE), spawnFixer)
+    inst.task = inst:DoTaskInTime(REBUILD_REACTION_TIME + (math.random() * REBUILD_REACTION_VARIANCE), spawn_fixer)
 
     MakeSnowCovered(inst, .01)
 
