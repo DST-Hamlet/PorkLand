@@ -89,10 +89,10 @@ end
 local function onfuelchange(newsection, oldsection, inst, doer)
     if newsection <= 0 then
         inst.components.burnable:Extinguish()
-		if inst.queued_charcoal then
-			inst.components.lootdropper:SpawnLootPrefab("charcoal")
-			inst.queued_charcoal = nil
-		end
+        if inst.queued_charcoal then
+            inst.components.lootdropper:SpawnLootPrefab("charcoal")
+            inst.queued_charcoal = nil
+        end
     else
         if not inst.components.burnable:IsBurning() then
             UpdateFuelRate(inst)
@@ -100,9 +100,9 @@ local function onfuelchange(newsection, oldsection, inst, doer)
         end
         inst.components.burnable:SetFXLevel(newsection, inst.components.fueled:GetSectionPercent())
 
-		if newsection == inst.components.fueled.sections then
-			inst.queued_charcoal = not inst.disable_charcoal
-		end
+        if newsection == inst.components.fueled.sections then
+            inst.queued_charcoal = not inst.disable_charcoal
+        end
     end
 end
 
@@ -208,7 +208,7 @@ local function pillarfn()
     inst.MiniMapEntity:SetIcon("ruins_torch.tex")
 
     -- for storytellingprop component
-	inst:AddTag("storytellingprop")
+    inst:AddTag("storytellingprop")
     inst:AddComponent("storytellingprop")
 
     inst:AddComponent("workable")

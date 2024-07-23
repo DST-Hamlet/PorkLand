@@ -43,3 +43,11 @@ AREAMODES = {
     DISTANCE = 0,
     ROOM = 1
 }
+
+ISLAND_TAGS = {
+    "island_accademy",
+    "island_royal",
+    "island_pugalisk",
+    "island_BFB",
+    "island_ancient",
+}

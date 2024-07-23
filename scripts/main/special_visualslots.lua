@@ -125,7 +125,7 @@ end
 local FISH_DATA = require("prefabs/oceanfishdef")
 local Flop = ToolUtil.GetUpvalue(Prefabs["oceanfish_small_1"].fn, "water_common.OnMakeProjectile.OnProjectileLand.Flop")
 for _, fish_def in pairs(FISH_DATA.fish) do
-	master_postinitfns[fish_def.prefab .. "_inv"] = function(inst, shelf, slot, item)
+    master_postinitfns[fish_def.prefab .. "_inv"] = function(inst, shelf, slot, item)
         if fish_def.light ~= nil then
             inst.entity:AddLight()
             inst.Light:SetRadius(fish_def.light.r)
