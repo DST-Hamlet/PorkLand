@@ -12,9 +12,6 @@ return {
         "Not here. Wrong place.",
         "You can't get through here.",
         "Where... where is it?",
-        "Not here, wrong location.",
-        "It can't be penetrated here.",
-        "Where...where is it?",
     },
     ANNOUNCE_SNEEZE = "Ah Choo!",
     ANNOUNCE_TOO_HUMID = {

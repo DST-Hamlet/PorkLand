@@ -7,22 +7,8 @@ package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-    ["FROG_POISON"] = "FROG_POISON",
-    ["FROGLEGS_POISON"] = "FROGLEGS_POISON",
-    ["FROGLEGS_POISON_COOKED"] = "FROGLEGS_POISON_COOKED",
-    ["HIPPO_ANTLER"] = "HIPPO_ANTLER",
-    ["HIPPOPOTAMOOSE"] = "HIPPOPOTAMOOSE",
-    ["FROG_POISON_SETTING"] = "FROG_POISON_SETTING",
-    ["PUGALISK_FOUNTAIN"] = "PUGALISK_FOUNTAIN",
-    ["ANNOUNCE_PUGALISK_INVULNERABLE"] = "ANNOUNCE_PUGALISK_INVULNERABLE",
-    ["PUGALISK"] = "PUGALISK",
-    ["PUGALISK_CORPSE"] = "PUGALISK_CORPSE",
-    ["PUGALISK_RUINS_PILLAR"] = "PUGALISK_RUINS_PILLAR",
-    ["PUGALISK_SKULL"] = "PUGALISK_SKULL",
-    ["PUGALISK_TRAP_DOOR"] = "PUGALISK_TRAP_DOOR",
-    ["BONESTAFF"] = "BONESTAFF",
-    ["SNAKE_BONE"] = "SNAKE_BONE",
-    ["SNAKEBONESOUP"] = "SNAKEBONESOUP",
+    [""] = "",
+    [""] = "",
 }
 
 cn_input_strings = require("string_cn")

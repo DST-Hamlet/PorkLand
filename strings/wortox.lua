@@ -12,9 +12,6 @@ return {
         "It's won't work.",
         "Almost a rock!",
         "This isn't its weakness!",
-        "This won't work.",
-        "Almost a stone!",
-        "This is not its seven inches!",
     },
     ANNOUNCE_SNEEZE = "(breathing) Ah chirp! Ahhhhhh!",
     ANNOUNCE_TOO_HUMID = {
