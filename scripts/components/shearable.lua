@@ -29,7 +29,7 @@ nil,
 })
 
 function Shearable:OnRemoveFromEntity()
-    self.inst:RemoveTag("shear_workable")
+    self.inst:RemoveTag("SHEAR_workable")
 end
 
 function Shearable:SetUp(product, product_num, drop)
