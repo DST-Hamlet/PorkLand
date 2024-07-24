@@ -1,5 +1,5 @@
-local function onshaveable(self, canshaveable)
-    if canshaveable then
+local function oncanbesheared(self, canbesheared)
+    if canbesheared then
         self.inst:AddTag("SHEAR_workable")
     else
         self.inst:RemoveTag("SHEAR_workable")
@@ -12,20 +12,20 @@ local Shearable = Class(function(self, inst)
     self.drop = false
     self.drop_height = 0
     self.product_num = 1
-    self.canshaveable = true
+    self.canbesheared = true
 
     self.product = nil
     self.onshearfn = nil
 
     inst:DoTaskInTime(0, function()
         if inst.components.hackable then
-            self.canshaveable = inst:HasTag("HACK_workable")
+            self.canbesheared = inst:HasTag("HACK_workable")
         end
     end)
 end,
 nil,
 {
-    canshaveable = onshaveable
+    canbesheared = oncanbesheared
 })
 
 function Shearable:OnRemoveFromEntity()
@@ -33,7 +33,7 @@ function Shearable:OnRemoveFromEntity()
 end
 
 function Shearable:SetUp(product, product_num, drop)
-    self.canshaveable = true
+    self.canbesheared = true
     self.product = product
     self.product_num = product_num or 2
     self.drop = drop or false
@@ -83,7 +83,7 @@ function Shearable:Shear(shearer, numworks)
 end
 
 function Shearable:CanShear()
-    return self.canshaveable
+    return self.canbesheared
 end
 
 function Shearable:SetOnShearFn(fn)
