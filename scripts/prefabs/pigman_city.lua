@@ -270,11 +270,6 @@ local function OnGetItemFromPlayer(inst, giver, item)
                 inst.components.inventory:Equip(item)
                 inst.AnimState:Show("hat")
                 behappy = true
-
-                if item.prefab == "pigcrownhat" and not Profile:IsCharacterUnlocked("wilba") then
-                    Profile:UnlockCharacter("wilba")
-                    Profile:Save()
-                end
             end
 
             if item.components.equippable.equipslot == EQUIPSLOTS.HANDS and item.prefab == "pig_scepter" then
