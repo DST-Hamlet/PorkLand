@@ -400,7 +400,7 @@ local function OnAttackedByDecidRoot(inst, attacker)
 
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = nil
-    if GetSeasonManager() and (GetSeasonManager():IsSpring() or GetSeasonManager():IsGreenSeason()) then
+    if TheWorld.state.isspring then
         ents = TheSim:FindEntities(x, y, z, (SHARE_TARGET_DIST * TUNING.SPRING_COMBAT_MOD) / 2)
     else
         ents = TheSim:FindEntities(x, y, z, SHARE_TARGET_DIST / 2)
