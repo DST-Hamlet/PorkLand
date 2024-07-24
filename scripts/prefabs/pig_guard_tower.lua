@@ -354,6 +354,7 @@ local function PlaceTestFn(inst)
     return true
 end
 
-return Prefab("pig_guard_tower", fn, assets, prefabs), Prefab("pig_guard_tower_palace", palacefn, assets, prefabs),
+return Prefab("pig_guard_tower", fn, assets, prefabs),
+    Prefab("pig_guard_tower_palace", palacefn, assets, prefabs),
     MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, false, true, nil, nil, nil, nil,
         nil, nil, PlaceTestFn)

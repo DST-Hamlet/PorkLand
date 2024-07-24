@@ -347,6 +347,8 @@ local function MakeHedgeType(data)
         inst.AnimState:SetBuild("hedge" .. data.hedgetype .. "_build")
         inst.AnimState:PlayAnimation("growth1", false)
 
+        inst:SetPrefabNameOverride("hedge")
+
         ------- Copied from prefabs/wall.lua -------
         inst._pfpos = nil
         inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
@@ -397,8 +399,6 @@ local function MakeHedgeType(data)
 
         inst.OnSave = onsave
         inst.OnLoad = onload
-
-        inst:SetPrefabNameOverride("hedge")
 
         inst:AddComponent("gridnudger")
 
