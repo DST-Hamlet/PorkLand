@@ -54,7 +54,7 @@ local function fn(Sim)
     end
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "ELEMENTAL"
+    inst.components.edible.foodtype = FOODTYPE.ELEMENTAL
     inst.components.edible.hungervalue = 1
 
     inst:AddComponent("currency")
