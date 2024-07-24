@@ -155,8 +155,9 @@ PrefabFiles = {
 
     "pigman_city",
     "pighouse_city",
-    "pig_guard_tower",
     "pig_shop",
+    "pig_guard_tower",
+    "pigman_shopkeeper_desk",
     "city_lamp",
     "hedge",
     "clippings",
