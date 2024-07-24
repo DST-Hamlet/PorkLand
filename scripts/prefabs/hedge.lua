@@ -333,6 +333,7 @@ local function MakeHedgeType(data)
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
         inst.entity:AddSoundEmitter()
+        inst.entity:AddNetwork()
 
         inst.Transform:SetEightFaced()
         -- inst.Transform:SetScale(1.3,1.3,1.3)

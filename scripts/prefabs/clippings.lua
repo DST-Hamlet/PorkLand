@@ -8,6 +8,8 @@ local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
+
     MakeInventoryPhysics(inst)
     MakeInventoryFloatable(inst, "idle_water", "idle")
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)

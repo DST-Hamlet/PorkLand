@@ -48,6 +48,7 @@ local function MakeLawnornament(n)
         local inst = CreateEntity()
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
+        inst.entity:AddNetwork()
 
         MakeObstaclePhysics(inst, .5)
 
