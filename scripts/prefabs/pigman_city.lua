@@ -94,7 +94,8 @@ local function separatedesk(inst, separatedesk)
 end
 
 local function sayline(inst, line, mood)
-    inst.components.talker:Say(line, 1.5, nil, true, mood)
+    -- inst.components.talker:Say(line, 1.5, nil, true, mood)
+    inst.components.talker:Say(line, 1.5)
 end
 
 local function ontalk(inst, script, mood)
@@ -143,7 +144,7 @@ local function ShouldAcceptItem(inst, item)
         return false
     end
 
-    if item.prefab == "oinc" or item.prefab == "oinc10" or item.prefab == "oinc100" then
+    if item:HasTag("oinc") then
         return true
     end
 
