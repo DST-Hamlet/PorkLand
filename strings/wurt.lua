@@ -1,4 +1,10 @@
 return {
+    ACTIONFAIL = {
+        USEDOOR = {
+            GENERIC = "Can't in.",
+            LOCKED = "Can't Open.",
+        },
+    },
     ANNOUCE_BATS = "Florp. What's this shadow of?",
     ANNOUNCE_BOAT_DAMAGED = "My boat don't look good.",
     ANNOUNCE_BOAT_SINKING = "Boat gets wet!",
@@ -103,6 +109,12 @@ return {
         ICEDTEA = "Cold leaf water.",
         INFUSED_IRON = "Glowing...",
         IRON = "Red hard rock.",
+        KINGFISHER = {
+            DEAD = "Ewww, it dead.",
+            GENERIC = "Bad bird! Get away from them!",
+            SLEEPING = "Sleepy bad bird.",
+        },
+        LIFEPLANT = "Strange flower, florp.",
         LILYPAD = "Afloat leaf.",
         LIVING_ARTIFACT = "Bring power to Mermfolk!",
         LOTUS = "Fancy flower in the pool.",
@@ -119,13 +131,26 @@ return {
         },
         METALPLATEHAT = "The hat from Ms. Wickerbottom's book!",
         NECTAR_POD = "Flower juice.",
+        OINC = "What it for?",
+        OINC10 = "What is \"Gurrency\"?",
+        OINC100 = "Stuff for stuff! \"Gurrency\"!",
         PANGOLDEN = "Don't drink them all!",
+        PARROT_BLUE = {
+            DEAD = "Ewww, it dead.",
+            GENERIC = "The feathers are so beautiful!",
+            SLEEPING = "Sleepy bird.",
+        },
         PEAGAWK = {
             GENERIC = "Big weird bird.",
             SLEEPING = "The big monster fell asleep?",
         },
         PEAGAWKFEATHER = "There are big monster eyes on it.",
         PEAGAWK_BUSH = "Pretty feather bush.",
+        PIGEON = {
+            DEAD = "Ewww, it dead.",
+            GENERIC = "Hello birdy!",
+            SLEEPING = "Sleepy bird.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Burn! Burn!",
             GENERIC = "Not wet! How stupid pigfolk.",
@@ -138,12 +163,26 @@ return {
             BURNING = "Pigfolk can mess up even with stone.",
             GENERIC = "Where pigfolk plant snacks.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "Glurp! A little big Pigfolk.",
+            SLEEPING = "No sleeping you nasty Pigfolk!",
+        },
+        PIGMAN_QUEEN = "She no Queen, flort!!",
+        PIG_PALACE = "Mermfolk must have one!!!",
         PIG_RUINS_ARTICHOKE = "This plant everywhere.",
         PIG_RUINS_HEAD = "Giant pifrolk face!",
         PIG_RUINS_IDOL = "A Pigfolk idol, not Mermfolk.",
         PIG_RUINS_MUSHROOM = "Stone for food?",
         PIG_RUINS_PLAQUE = "Created by Pigfolk too?",
         PIG_RUINS_SOW = "A different Pigfolk.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Burn!",
+            GENERIC = "Mermfolk must have one!",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "It must be Pigfolk!",
+            GENERIC = "Pigfolk listen Mermfolk now!",
+        },
         PIKO = {
             DEAD = "Glurp! Hold on!",
             GENERIC = "Hi! squirrel.",
@@ -207,6 +246,7 @@ return {
         VENUS_STALK = "Many water in it.",
         VINE = "Thick sticks!",
         WALKINGSTICK = "A dry stick.",
+        WATERDROP = "a bit sweet.",
         WEEVOLE = "go away go away!",
         WEEVOLE_CARAPACE = "hard shell.",
     },

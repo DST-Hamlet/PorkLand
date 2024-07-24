@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Nope. Can't fix ",
         },
+        USEDOOR = {
+            GENERIC = "Won't open",
+            LOCKED = "Nope. Locked",
+        },
     },
     ANNOUCE_BATS = "Ack! Flying Claws coming!",
     ANNOUNCE_BOAT_DAMAGED = "Oh. Floater is wobbly",
@@ -108,6 +112,11 @@ return {
         ICEDTEA = "Cold Zippy water",
         INFUSED_IRON = "Oh... shiny",
         IRON = "Clinky Rock",
+        KINGFISHER = {
+            DEAD = "Sad. So sad",
+            GENERIC = "Poke Nose Tweeter",
+            SLEEPING = "Nighty night",
+        },
         LIFEPLANT = "Lively friend",
         LILYPAD = "Nice day for swim?",
         LIVING_ARTIFACT = "Boom clothes!",
@@ -125,7 +134,15 @@ return {
         },
         METALPLATEHAT = "Clink Rock Head Thing",
         NECTAR_POD = "Sweet!",
+        OINC = "Twirly Tails like this",
+        OINC10 = "Can buy things now",
+        OINC100 = "Wow!!",
         PANGOLDEN = "Shiny Pooper",
+        PARROT_BLUE = {
+            DEAD = "Dead",
+            GENERIC = "Blue Tweeter",
+            SLEEPING = "Resting",
+        },
         PEAGAWK = {
             DEAD = "Oh dear",
             GENERIC = "Gubble Gubble Tweeter",
@@ -133,6 +150,11 @@ return {
         },
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
+        PIGEON = {
+            DEAD = "(sob)",
+            GENERIC = "Gray Tweeter",
+            SLEEPING = "Shh...",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Fire not good",
             GENERIC = "Twirly tail home",
@@ -145,12 +167,26 @@ return {
             BURNING = "Bad fire! Bad!",
             GENERIC = "Twirly Tail home",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "Your town?",
+            SLEEPING = "Sweet dreams",
+        },
+        PIGMAN_QUEEN = "Fancy Twirly Tail",
+        PIG_PALACE = "Pretty!",
         PIG_RUINS_ANT = "Chr'ik rock",
         PIG_RUINS_ARTICHOKE = "Friend? Nope, rock",
         PIG_RUINS_HEAD = "Must have big rock brain",
         PIG_RUINS_IDOL = "Twirly Tail rock",
         PIG_RUINS_MUSHROOM = "Not friend.",
         PIG_RUINS_PLAQUE = "Twirly Tail rock",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Nooooo!",
+            GENERIC = "Papers inside",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Stay back!",
+            GENERIC = "Work place",
+        },
         PIKO = {
             DEAD = "Aw...",
             GENERIC = "Fluffy Nabber",
@@ -223,6 +259,7 @@ return {
         VENUS_STALK = "Mmmm...",
         VINE = "String branches",
         WALKINGSTICK = "Wheee!",
+        WATERDROP = "For dirt",
         WEEVOLE = "Wee Bzzter",
         WEEVOLE_CARAPACE = "Crunchy",
     },

@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "This vessel has already been repaired to its optimum level.",
         },
+        USEDOOR = {
+            GENERIC = "Something prevents me from getting inside.",
+            LOCKED = "I'll have to discover a way to open it.",
+        },
     },
     ANNOUCE_BATS = "Bats! I recognize the silhouette.",
     ANNOUNCE_BOAT_DAMAGED = "I'll need to repair this boat promptly.",
@@ -108,6 +112,12 @@ return {
         ICEDTEA = "Evidence would suggest my tea got cold.",
         INFUSED_IRON = "Ferrous metal infused with a kind of ancient arcane technology.",
         IRON = "Marvelous! Iron is invaluable for manufacturing the tools I need!",
+        KINGFISHER = {
+            DEAD = "Deceased, yet rigor mortis has yet to set in.",
+            GENERIC = "That remarkable beak would be excellent for crushing seeds.",
+            SLEEPING = "The bird appears to be in some kind of sonamolant state.",
+        },
+        LIFEPLANT = "Insurance in case a dangerous experiment goes awry.",
         LILYPAD = "Fascinating! It contains a small ecosystem of animals.",
         LIVING_ARTIFACT = "An ancient war machine! I must appraise its funtionality!",
         LOTUS = "Ah. A water based plant with attractive flowers. I should pick it.",
@@ -124,7 +134,15 @@ return {
         },
         METALPLATEHAT = "Incredibly durable. Though incredibly dense as well.",
         NECTAR_POD = "Requires an enzymatic processor to convert it to honey.",
+        OINC = "Pig coinage of a single denomination.",
+        OINC10 = "The pigs appear to have set up an economy of sorts.",
+        OINC100 = "There appears to be a truffle engraved on the face of this coin!",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",
+        PARROT_BLUE = {
+            DEAD = "It has shuffled off the mortal coil.",
+            GENERIC = "Remarkable! Truly beautiful plumage!",
+            SLEEPING = "Evidence would suggest it's had a prolonged squawk.",
+        },
         PEAGAWK = {
             DEAD = "Evidently, it didn't see that coming.",
             GENERIC = "Curious. Can it see out of all of those ocular quills?",
@@ -134,6 +152,11 @@ return {
         PEAGAWK_BUSH = {
             GENERIC = "I'm experiencing the inescapable perception that I'm being watched.",
             SLEEPING = "That insight that spied on me was gone.",
+        },
+        PIGEON = {
+            DEAD = "Theoretically, it's dead.",
+            GENERIC = "Intriguing! Pigeons flock to urban centers here as well.",
+            SLEEPING = "Currently in a dormant state.",
         },
         PIGHOUSE_CITY = {
             BURNING = "In theory that home is done for.",
@@ -147,10 +170,23 @@ return {
             BURNING = "An excellent blaze! Full of thermodynamic energy!",
             GENERIC = "I wonder if they are up to any digging in there?",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "This pig society appears to have built a healthy political system.",
+            SLEEPING = "In theory, there are better places for him to sleep.",
+        },
+        PIG_PALACE = "Evidence would suggest this is the domicile of some kind of royalty.",
         PIG_RUINS_ARTICHOKE = "An elegant depiction of a giant vegetable.",
         PIG_RUINS_HEAD = "Evidence would suggest he's an important figure in the pig's past.",
         PIG_RUINS_IDOL = "Theoretically, it can be detached from its base.",
         PIG_RUINS_PLAQUE = "Evidently, I'll need something to sever it from the base.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Theoretically, all the paperwork is burnt too.",
+            GENERIC = "A venerable hall of presumptions and bureaucracy.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Evidence would suggest there are vandals in the town.",
+            GENERIC = "As lucrative as my new job is, I prefer to occupy my days as an inventor.",
+        },
         PIKO = {
             DEAD = "Recently demised.",
             GENERIC = "The amazing storage space of their small cheeks defies all laws of physics!",
@@ -223,6 +259,7 @@ return {
         VENUS_STALK = "Theoretically edible, but undoubtedly I'll find a better use for it.",
         VINE = "A ropey branch. I can think of nine good uses for it already.",
         WALKINGSTICK = "Incredible! It increases my speed by exactly thirty percent!",
+        WATERDROP = "Evidence would suggest it needs to be planted to be fully implemented.",
         WEEVOLE = "What a wonderfully persistent species of insect!",
         WEEVOLE_CARAPACE = "Excellent! It's the exoskeleton of a hexapod invertebrate!",
     },

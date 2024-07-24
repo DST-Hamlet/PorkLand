@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Small boat has no damages to repair! Wolfgang could punch it?",
         },
+        USEDOOR = {
+            GENERIC = "Open for Wolfgang!",
+            LOCKED = "Wolfgang needs a mighty key.",
+        },
     },
     ANNOUCE_BATS = "Bats not get Wolfgang!",
     ANNOUNCE_BOAT_DAMAGED = "Ship is weak! Needs fixingtimes.",
@@ -108,6 +112,12 @@ return {
         ICEDTEA = "Is cool. Like Wolfgang.",
         INFUSED_IRON = "Is strong and glowing.",
         IRON = "Iron is strong like Wolfgang.",
+        KINGFISHER = {
+            DEAD = "Is dead. Make Wolfgang sad.",
+            GENERIC = "Skinny bird is big beak.",
+            SLEEPING = "Shhh. Skinny bird is sleep.",
+        },
+        LIFEPLANT = "Is pretty flower.",
         LILYPAD = "Big water leaf.",
         LIVING_ARTIFACT = "Mighty Wolfgang can get mightier!",
         LOTUS = "Is puny pond plant.",
@@ -124,7 +134,15 @@ return {
         },
         METALPLATEHAT = "Is funny little tin hat.",
         NECTAR_POD = "Is sweet like honey.",
+        OINC = "Wolfgang is stronger than little coin.",
+        OINC10 = "Wolfgang like coin.",
+        OINC100 = "Can buy many nice things Wolfgang deserve.",
         PANGOLDEN = "Hehe. Haves big nose.",
+        PARROT_BLUE = {
+            DEAD = "Is no more.",
+            GENERIC = "Is blue bird.",
+            SLEEPING = "Is just resting.",
+        },
         PEAGAWK = {
             DEAD = "Is blink-blink no more.",
             GENERIC = "Funny blink-blink bird!",
@@ -132,6 +150,11 @@ return {
         },
         PEAGAWKFEATHER = "Is blink-blink bird feather.",
         PEAGAWK_BUSH = "Is just bush.",
+        PIGEON = {
+            DEAD = "Is dead.",
+            GENERIC = "Is little grey bird.",
+            SLEEPING = "Is asleep.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Wolfgang not start fire!",
             GENERIC = "Little pig! Little pig! Let Wolfgang come in!",
@@ -144,10 +167,24 @@ return {
             BURNING = "Hope mustache pig not inside.",
             GENERIC = "Mining mustache pig is live there.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "Wolfgang think this important man.",
+            SLEEPING = "Important man need sleep, too.",
+        },
+        PIGMAN_QUEEN = "Wolfgang should curtsy?",
+        PIG_PALACE = "Is fancy place.",
         PIG_RUINS_ARTICHOKE = "Is odd statue.",
         PIG_RUINS_HEAD = "Is big and mighty head. Like Wolfgang!",
         PIG_RUINS_IDOL = "Piggies might like those.",
         PIG_RUINS_PLAQUE = "Is piggy thing.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Is on fire!",
+            GENERIC = "Is big bossy pig place.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Is on fire!",
+            GENERIC = "Wolfgang working there now.",
+        },
         PIKO = {
             DEAD = "Is tiny fluff dead part.",
             GENERIC = "Tiny, weak fluff.",
@@ -211,6 +248,7 @@ return {
         VENUS_STALK = "Is Plant Men parts.",
         VINE = "For string enemies together.",
         WALKINGSTICK = "Is for good walk steps.",
+        WATERDROP = "Is magic water seed.",
         WEEVOLE = "Pesky bug. Leave Wolfgang alone!",
         WEEVOLE_CARAPACE = "Is pesky bug skin.",
     },

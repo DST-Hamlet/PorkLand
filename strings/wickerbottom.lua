@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Tip top!",
         },
+        USEDOOR = {
+            GENERIC = "I am unable to open this.",
+            LOCKED = "Requires something to unlock it.",
+        },
     },
     ANNOUCE_BATS = "Desmodus rotundus!",
     ANNOUNCE_BOAT_DAMAGED = "My vessel is deteriorating!",
@@ -108,6 +112,12 @@ return {
         ICEDTEA = "Invigorating.",
         INFUSED_IRON = "Perhaps there is something I can build from this.",
         IRON = "Ferrum.",
+        KINGFISHER = {
+            DEAD = "Lifeless.",
+            GENERIC = "What a dear little Chloroceryle Amazona!",
+            SLEEPING = "Sleeping.",
+        },
+        LIFEPLANT = "Narcissus poeticus. Quite a beautiful one.",
         LILYPAD = "Goodness! They can grow quite large in the wild.",
         LIVING_ARTIFACT = "I further study ancient technology with this.",
         LOTUS = "Nelumbo nucifera. Quite beautiful.",
@@ -124,7 +134,15 @@ return {
         },
         METALPLATEHAT = "It's similar to the Spanish colonials.",
         NECTAR_POD = "I wonder if this could somehow be turned to honey.",
+        OINC = "I wish I could spend this on books.",
+        OINC10 = "If only I could spend this on a lot of books.",
+        OINC100 = "If only I could donate this to the library.",
         PANGOLDEN = "Aurum vermilingua.",
+        PARROT_BLUE = {
+            DEAD = "A late parrot.",
+            GENERIC = "Psittaciformes Norwegianae, perhaps?",
+            SLEEPING = "It appears to be just resting.",
+        },
         PEAGAWK = {
             DEAD = "Lifeless.",
             GENERIC = "A strangely mutated Pavo Cristatus.",
@@ -132,6 +150,11 @@ return {
         },
         PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
         PEAGAWK_BUSH = "I have questions about that bush.",
+        PIGEON = {
+            DEAD = "The remains of a disease carrying bird.",
+            GENERIC = "A common grey specimen of the Columbidae family.",
+            SLEEPING = "It is in a slumber.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "It has ignited.",
             GENERIC = "A more advanced version of pig domicile.",
@@ -144,10 +167,24 @@ return {
             BURNING = "Oh dear, it's now a burning pyre.",
             GENERIC = "The a residence for miners.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "I should like to document a pig election.",
+            SLEEPING = "He appears quite dormant.",
+        },
+        PIGMAN_QUEEN = "Clearly the monarch of this society.",
+        PIG_PALACE = "Quite an impressive display of Porcine Architecture.",
         PIG_RUINS_ARTICHOKE = "It must have had some significance to the pigs.",
         PIG_RUINS_HEAD = "An early Porcine civilization once dwelt here.",
         PIG_RUINS_IDOL = "The top part would make an invaluable bartering tool.",
         PIG_RUINS_PLAQUE = "How do I separate it from the base?",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "I hope they rebuild.",
+            GENERIC = "The home of an elected official.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Pity.",
+            GENERIC = "My place of work.",
+        },
         PIKO = {
             DEAD = "I feel a touch of grief at its passing.",
             GENERIC = "A charming mammalian fuzzball.",
@@ -211,6 +248,7 @@ return {
         VENUS_STALK = "Salvaged from that terrible creature.",
         VINE = "A common jungle vine.",
         WALKINGSTICK = "Improves one's posture.",
+        WATERDROP = "It appears seed-like.",
         WEEVOLE = "A Coleoptera. And an annoying one at that.",
         WEEVOLE_CARAPACE = "The exoskeleton of a Coleoptera.",
     },
