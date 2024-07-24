@@ -74,7 +74,7 @@ local function GetFaceTargetFn(inst)
     if inst.components.follower.leader then
         return inst.components.follower.leader
     end
-    local target = GetClosestInstWithTag("player", inst, START_FACE_DIST)
+    local target = FindClosestPlayerToInst(inst, START_FACE_DIST, true)
     if target and not target:HasTag("notarget") then
        -- inst.sg:GoToState("greet")
         return target
@@ -85,14 +85,7 @@ local function KeepFaceTargetFn(inst, target)
     if inst.components.follower.leader then
         return inst.components.follower.leader == target
     end
-
-    local keep_face = inst:IsNear(target, KEEP_FACE_DIST) and not target:HasTag("notarget")
-
-    if not keep_face then
-        inst.alerted = false
-    end
-
-    return keep_face
+    return inst:IsNear(target, KEEP_FACE_DIST) and not target:HasTag("notarget")
 end
 
 local function ShouldRunAway(inst, target)
@@ -411,15 +404,12 @@ function getfacespeech(inst)
 
         return speech
     else
-        local speech = is_player_pig_loyalty
+        if TheWorld.state.isnearaporkalypse then
+            return deepcopy(getSpeechType(inst, STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON))
+        end
+        return is_player_pig_loyalty
             and STRINGS.CITY_PIG_TALK_LOOKATWILSON.ROYALTY
             or getSpeechType(inst, STRINGS.CITY_PIG_TALK_LOOKATWILSON)
-
-        if TheWorld.state.isnearaporkalypse then
-            speech = deepcopy(getSpeechType(inst, STRINGS.CITY_PIG_TALK_APORKALYPSE_SOON))
-        end
-
-        return speech
     end
 end
 

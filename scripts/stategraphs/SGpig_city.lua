@@ -139,18 +139,18 @@ local states =
 
     State{
         name= "alert",
-        tags = {"idle"},
+        tags = {"idle", "alert"},
 
         onenter = function(inst)
             if inst.alerted then
                 inst.sg:GoToState("idle")
+                inst.sg:AddStateTag("alert")
             else
                 inst.alerted = true
-                inst:DoTaskInTime(120,function(inst) inst.alerted = nil end)
+                inst:DoTaskInTime(120, function(inst) inst.alerted = nil end)
 
                 inst.Physics:Stop()
-                local daytime = not TheWorld.state.isnight
-                if daytime then
+                if not TheWorld.state.isnight then
                     --inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk")
                     if (inst:HasTag("emote_nohat") or math.random() < 0.3) and not inst:HasTag("emote_nocurtsy") then
                         inst.AnimState:PlayAnimation("emote_bow")

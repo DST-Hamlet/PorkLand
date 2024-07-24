@@ -64,7 +64,7 @@ local function GetFaceTargetFn(inst)
     if inst.components.follower.leader then
         return inst.components.follower.leader
     end
-    local target = GetClosestInstWithTag("player", inst, START_FACE_DIST)
+    local target = FindClosestPlayerToInst(inst, START_FACE_DIST, true)
     if target and not target:HasTag("notarget") then
        -- inst.sg:GoToState("greet")
         return target
