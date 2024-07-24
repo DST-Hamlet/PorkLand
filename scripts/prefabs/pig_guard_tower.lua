@@ -309,7 +309,7 @@ local function fn()
     MakeSnowCovered(inst, 0.01)
 
     inst.onvacate = OnVacated
-    inst.citypossessionfn = MakeCityPossession
+    inst.OnCityPossession = MakeCityPossession
     inst.OnLoadPostPass = MakeCityPossession
     inst.callguards = callguards
     inst.reconstructed = reconstructed

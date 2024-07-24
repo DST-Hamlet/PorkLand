@@ -391,12 +391,9 @@ local function MakeHedgeType(data)
 
         inst:AddComponent("fixable")
         inst.components.fixable:AddRecinstructionStageData("broken", "hedge", "hedge" .. data.hedgetype .. "_build")
-        inst.components.fixable:SetPrefabName("hedge")
-        inst.components.fixable.reconstructedanims = {
-            play = "place",
-            push = "growth1",
-        }
-        inst.components.fixable.reconstructionprefab = data.name
+        inst.components.fixable:SetPrefabNameOverride("hedge")
+        inst.components.fixable.reconstruction_prefab = data.name
+        inst.components.fixable.reconstruction_anims = { play = "place", push = "growth1" }
 
         inst.OnSave = onsave
         inst.OnLoad = onload

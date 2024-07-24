@@ -1,88 +1,61 @@
+local function OnDeconstructStructure(inst)
+    inst.components.fixable.overridden = true
+end
+
 local Fixable = Class(function(self, inst)
     self.inst = inst
+    self.overridden = false
     self.reconstruction_stages = {}
+    self.reconstruction_anims = {}
+
     self.inst:AddTag("fixable")
+
+    self.inst:ListenForEvent("ondeconstructstructure", OnDeconstructStructure)
 end)
+
+function Fixable:OnRemoveFromEntity()
+    self.inst:RemoveEventCallback("ondeconstructstructure", OnDeconstructStructure)
+end
 
 function Fixable:OnRemoveEntity()
     if not self.overridden then
         local fixer = SpawnPrefab("reconstruction_project")
-        fixer.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
-        fixer.construction_prefab = self.reconstructionprefab or self.inst.prefab
+
+        fixer.reconstruction_prefab = self.reconstruction_prefab or self.inst.prefab
+        fixer.reconstruction_stages = self.reconstruction_stages
+        fixer.reconstruction_anims = self.reconstruction_anims
+        fixer.interiorID = self.inst.interiorID
+        fixer.cityID = self.inst.components.citypossession and self.inst.components.citypossession.cityID or nil
 
         if self.inst.components.spawner then
-            fixer.spawnerdata = {
+            fixer.spawner_data = {
                 childname = self.inst.components.spawner.childname,
                 child = self.inst.components.spawner.child or nil,
                 delay = self.inst.components.spawner.delay,
             }
         end
 
-        if self.reconstruction_stages[1] then
-            fixer.AnimState:SetBank(self.reconstruction_stages[1].bank)
-            fixer.AnimState:SetBuild(self.reconstruction_stages[1].build)
-            fixer.AnimState:PlayAnimation(self.reconstruction_stages[1].anim, true)
-            fixer.saveartdata = {
-                bank = self.reconstruction_stages[1].bank,
-                build = self.reconstruction_stages[1].build,
-                anim = self.reconstruction_stages[1].anim,
-            }
-            if self.reconstruction_stages[1].scale then
-                fixer.AnimState:SetScale(self.reconstruction_stages[1].scale[1], self.reconstruction_stages[1].scale[2],
-                    self.reconstruction_stages[1].scale[3])
-                fixer.saveartdata.scale = {
-                    self.reconstruction_stages[1].scale[1],
-                    self.reconstruction_stages[1].scale[2],
-                    self.reconstruction_stages[1].scale[3],
-                }
-            else
-                fixer.AnimState:SetScale(1, 1, 1)
-            end
-            fixer:Show()
-
-            if self.inst.components.citypossession then
-                fixer.cityID = self.inst.components.citypossession.cityID
-            end
-            if self.inst.interiorID then
-                fixer.interiorID = self.inst.interiorID
-            end
-        end
-
-        if self.reconstructedanims then
-            fixer.reconstructedanims = self.reconstructedanims
-        end
-
-        if self.prefabname then
-            fixer:SetPrefabNameOverride(self.prefabname)
-        end
-
-        fixer.reconstruction_stages = self.reconstruction_stages
+        fixer:SetReconstructionStage(1)
+        fixer:SetConstructionPrefabName(self.nameoverride or self.inst.prefab)
+        fixer.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
     end
 end
 
-function Fixable:SetPrefabName(name)
-    self.prefabname = name
-end
-
-function Fixable:AddRecinstructionStageData(anim, bank, build, stage, scale)
+function Fixable:AddRecinstructionStageData(anim, bank, build, scale, stage)
     if not stage then
         stage = #self.reconstruction_stages + 1
     end
 
-    self.reconstruction_stages[stage] = {}
+    if type(scale) == "number" then
+        scale = {scale, scale, scale}
+    end
 
-    if bank then
-        self.reconstruction_stages[stage].bank = bank
-    end
-    if build then
-        self.reconstruction_stages[stage].build = build
-    end
-    if anim then
-        self.reconstruction_stages[stage].anim = anim
-    end
-    if scale then
-        self.reconstruction_stages[stage].scale = scale
-    end
+    self.reconstruction_stages[stage] = {
+        bank = bank,
+        build = build,
+        anim = anim,
+        scale = scale,
+    }
 end
 
 return Fixable
