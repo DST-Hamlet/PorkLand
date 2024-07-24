@@ -160,6 +160,7 @@ PrefabFiles = {
     "pigman_shopkeeper_desk",
     "city_lamp",
     "hedge",
+    "lawnornaments",
     "clippings",
     "reconstruction_project",
 
