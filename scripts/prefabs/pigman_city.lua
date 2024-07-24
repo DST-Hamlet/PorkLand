@@ -148,7 +148,7 @@ local function ShouldAcceptItem(inst, item)
     end
 
     if inst.components.eater:CanEat(item) then
-        if (item.components.edible.foodtype == FOODTYPE.MEAT or item.components.edible.foodtype == "HORRIBLE")
+        if (item.components.edible.foodtype == FOODTYPE.MEAT or item.components.edible.foodtype == FOODTYPE.HORRIBLE)
             and inst.components.follower.leader and inst.components.follower:GetLoyaltyPercent() > 0.9 then
 
             return false
@@ -379,14 +379,14 @@ local function OnRefuseItem(inst, item)
 end
 
 local function OnEat(inst, food)
-    if food.components.edible and food.components.edible.foodtype == "MEAT" and inst.components.werebeast and
+    if food.components.edible and food.components.edible.foodtype == FOODTYPE.MEAT and inst.components.werebeast and
         not inst.components.werebeast:IsInWereState() then
         if food.components.edible:GetHealth() < 0 then
             inst.components.werebeast:TriggerDelta(1)
         end
     end
 
-    if food.components.edible and (food.components.edible.foodtype == "VEGGIE") then -- or food.components.edible.foodtype == "SEEDS") then
+    if food.components.edible and (food.components.edible.foodtype == FOODTYPE.VEGGIE) then -- or food.components.edible.foodtype == FOODTYPE.SEEDS) then
         local poop = SpawnPrefab("poop")
         poop.Transform:SetPosition(inst.Transform:GetWorldPosition())
 
