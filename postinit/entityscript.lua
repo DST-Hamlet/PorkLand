@@ -160,6 +160,14 @@ function EntityScript:GetCurrentInteriorID()
     end
 end
 
+function EntityScript:GetIsInInterior()
+    local x, _, z = self.Transform:GetWorldPosition()
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return true
+    end
+    return false
+end
+
 function EntityScript:Play2DSoundOutSide(path, soundname, distance, paramname, paramval)
     local pos = self:GetPosition()
     local followentity = self

@@ -181,7 +181,7 @@
         <Element name="pig_shop_general.tex" u1="0.59375" u2="0.625" v1="0.375" v2="0.4375"/>
         <Element name="pig_shop_hoofspa.tex" u1="0.625" u2="0.65625" v1="0.375" v2="0.4375"/>
         <Element name="pig_townhouse.tex" u1="0.65625" u2="0.6875" v1="0.375" v2="0.4375"/>
-        <Element name="pillar_tree.tex" u1="0.6875" u2="0.71875" v1="0.375" v2="0.4375"/>
+        <Element name="tree_pillar.tex" u1="0.6875" u2="0.71875" v1="0.375" v2="0.4375"/>
         <Element name="player_house_gothic.tex" u1="0.71875" u2="0.75" v1="0.375" v2="0.4375"/>
         <Element name="player_house_tudor.tex" u1="0.75" u2="0.78125" v1="0.375" v2="0.4375"/>
         <Element name="quacken.tex" u1="0.78125" u2="0.8125" v1="0.375" v2="0.4375"/>
