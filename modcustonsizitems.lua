@@ -97,8 +97,8 @@ local custonsiz_items = {  -- add in dst custonsiz
             mosquito_setting = {image = "mosquitos.tex"},
             --adult_flytrap_setting = {image = "adult_flytraps.tex"},
             --mean_flytrap_setting = {image = "mean_flytraps.tex"},
-            vampirebat = {image = "vampire_bats.tex"},
             weevole_setting = {image = "weevole.tex"},
+            --vampirebat = {image = "vampire_bats.tex"},
         },
         animals = {
             dungbeetle_setting = {image = "dungbeetle.tex"},
@@ -118,6 +118,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             poison = {desc = enable_descriptions},
             hayfever = {desc = enable_descriptions},
             pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = enable_descriptions},
+            vampirebat = {image = "vampire_bats.tex", desc = frequency_descriptions},
         },
     }
 }

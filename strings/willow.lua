@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Ugh, why would I do that now?",
         },
+        USEDOOR = {
+            GENERIC = "Probably boring in there anyway.",
+            LOCKED = "How am I supposed to get in?!",
+        },
     },
     ANNOUCE_BATS = "Bats! Go away!",
     ANNOUNCE_BOAT_DAMAGED = "My boat is wounded!",
@@ -108,6 +112,12 @@ return {
         ICEDTEA = "I prefer hot things.",
         INFUSED_IRON = "Are you supposed to be special or something?",
         IRON = "I can't burn it with just my lighter.",
+        KINGFISHER = {
+            DEAD = "Ugly and dead.",
+            GENERIC = "What's wrong with your face?",
+            SLEEPING = "I should catch it while its guard is down.",
+        },
+        LIFEPLANT = "I guess it's okay.",
         LILYPAD = "I can't burn stuff out on the water.",
         LIVING_ARTIFACT = "Think of the things I can burn with it!",
         LOTUS = "Can I eat it? Or burn it?",
@@ -124,7 +134,15 @@ return {
         },
         METALPLATEHAT = "This protects my brain.",
         NECTAR_POD = "Is this even good for anything?",
+        OINC = "Some sort of weird coin.",
+        OINC10 = "Maybe it's worth something?",
+        OINC100 = "I have money to burn!",
         PANGOLDEN = "Yeesh, he's sucking up all the gold!",
+        PARROT_BLUE = {
+            DEAD = "Demised.",
+            GENERIC = "Never seen a bird like that.",
+            SLEEPING = "I should catch it while its guard is down.",
+        },
         PEAGAWK = {
             DEAD = "Very dead.",
             GENERIC = "Jeepers peepers!",
@@ -132,6 +150,11 @@ return {
         },
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
+        PIGEON = {
+            DEAD = "Whoops.",
+            GENERIC = "Flying rats.",
+            SLEEPING = "Sleeping flying rats.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Yes! Burn!",
             GENERIC = "Pig houses look pretty different here.",
@@ -144,10 +167,24 @@ return {
             BURNING = "Buuuurn!",
             GENERIC = "Is that a mine?",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "Pigs have mayors?",
+            SLEEPING = "He's dozing.",
+        },
+        PIGMAN_QUEEN = "Hey there, your majesty.",
+        PIG_PALACE = "Pompous.",
         PIG_RUINS_ARTICHOKE = "Is that... an artichoke?",
         PIG_RUINS_HEAD = "Doesn't look very flammable.",
         PIG_RUINS_IDOL = "I should take that off and sell it to a pig.",
         PIG_RUINS_PLAQUE = "If I could break it, I could sell it.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Nice!",
+            GENERIC = "That's where that bossy jerk works.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Let it burn!",
+            GENERIC = "My own office to burn down.",
+        },
         PIKO = {
             DEAD = "Didn't run fast enough.",
             GENERIC = "Squirrelly little guy.",
@@ -211,6 +248,7 @@ return {
         VENUS_STALK = "Looks like kindling.",
         VINE = "I could use this for something. Or I could just burn it.",
         WALKINGSTICK = "Zoom!",
+        WATERDROP = "It should really be a flame.",
         WEEVOLE = "Stand still so I can burn you.",
         WEEVOLE_CARAPACE = "Ew.",
     },

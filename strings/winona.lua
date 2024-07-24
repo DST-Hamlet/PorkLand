@@ -1,4 +1,10 @@
 return {
+    ACTIONFAIL = {
+        USEDOOR = {
+            GENERIC = "This door doesn't work.",
+            LOCKED = "I need the right key.",
+        },
+    },
     ANNOUCE_BATS = "bat! It seems like it’s coming for me!",
     ANNOUNCE_BOAT_DAMAGED = "I should tape these holes up.",
     ANNOUNCE_BOAT_SINKING = "I don't think tape will be enough now.",
@@ -103,6 +109,12 @@ return {
         ICEDTEA = "What a enjoyment.",
         INFUSED_IRON = "This is not a natural metal pattern.",
         IRON = "Invaluable material for manufacturing useful tools.",
+        KINGFISHER = {
+            DEAD = "Dead as a doornail.",
+            GENERIC = "Oh, a fisher bird!",
+            SLEEPING = "Sleeping on the job.",
+        },
+        LIFEPLANT = "I am also a good gardener.",
         LILYPAD = "I have never seen such a big water lily!",
         LIVING_ARTIFACT = "WX seems confused about us wearing it",
         LOTUS = "What a beautiful aquatic plant.",
@@ -119,13 +131,26 @@ return {
         },
         METALPLATEHAT = "Looks like something a colonist would wear.",
         NECTAR_POD = "Semi-finished product of honey.",
+        OINC = "Is that a salary?",
+        OINC10 = "Don't waste your little savings.",
+        OINC100 = "Diligence is the key to wealth.",
         PANGOLDEN = "Living metallurgical.",
+        PARROT_BLUE = {
+            DEAD = "Dead as a doornail.",
+            GENERIC = "Blue parrot.",
+            SLEEPING = "Sleeping on the job.",
+        },
         PEAGAWK = {
             GENERIC = "Always be vigilant.",
             SLEEPING = "It let down its guard.",
         },
         PEAGAWKFEATHER = "It's still looking at me.",
         PEAGAWK_BUSH = "A vigilant bush, how strange!",
+        PIGEON = {
+            DEAD = "Dead as a doornail.",
+            GENERIC = "You seen one, you seen'em all.",
+            SLEEPING = "Sleeping on the job.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Burned to the ground.",
             GENERIC = "It's hard to imagine such a house being built by pigs.",
@@ -138,12 +163,26 @@ return {
             BURNING = "The flames consumed everything here.",
             GENERIC = "A mine house for miner.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "A restless guy.",
+            SLEEPING = "Go to sleep, lazy pig.",
+        },
+        PIGMAN_QUEEN = "Pampered guy.",
+        PIG_PALACE = "Uh, is it necessary to be so exaggerated?",
         PIG_RUINS_ARTICHOKE = "So they really like artichokes.",
         PIG_RUINS_HEAD = "There must be some way to remove the middle part.",
         PIG_RUINS_IDOL = "There must be some way to remove the top part.",
         PIG_RUINS_MUSHROOM = "It is inlaid with many precious stones and must be very valuable.",
         PIG_RUINS_PLAQUE = "There must be some way to remove the top part.",
         PIG_RUINS_SOW = "This one looks different, let's bring it back.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Firefighting work was not done well.",
+            GENERIC = "The place where officials work.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Hey! Who did it?",
+            GENERIC = "My new workshop.",
+        },
         PIKO = {
             DEAD = "died.",
             GENERIC = "An annoying thief.",
@@ -207,6 +246,7 @@ return {
         VENUS_STALK = "As far as building materials are concerned, it's a bit too watery.",
         VINE = "It's strong! I can tie stuff up with this.",
         WALKINGSTICK = "When dehydrated it becomes a durable crutch.",
+        WATERDROP = "Is this really...water?",
         WEEVOLE = "Once you've dealt with bedbugs, weevils aren't so bad.",
         WEEVOLE_CARAPACE = "It can be regarded as clean.",
     },
