@@ -18,10 +18,11 @@ function Citypossession:Disable()
 end
 
 function Citypossession:OnSave(inst)
-    local data = {}
-    data.cityID = self.cityID
-    data.enabled = self.enabled
-    return data
+    return {
+        cityID = self.cityID,
+        enabled = self.enabled,
+        add_component_if_missing = true,
+    }
 end
 
 function Citypossession:OnLoad(data)
@@ -38,6 +39,6 @@ function Citypossession:OnLoad(data)
     if not self.enabled then
         self:Disable()
     end
-end 
+end
 
 return Citypossession
