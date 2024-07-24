@@ -326,9 +326,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
                         "powcake",
                     }
                     local rewarditem = SpawnPrefab(reward[math.random(1, #reward)])
-                    giver.components.inventory:GiveItem(rewarditem, nil,
-                        Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
-
+                    giver.components.inventory:GiveItem(rewarditem, nil, inst:GetPosition())
                     return true
                 end
             end
@@ -344,7 +342,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
 
                     for i = 1, qty do
                         local rewarditem = SpawnPrefab(reward)
-                        giver.components.inventory:GiveItem(rewarditem, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+                        giver.components.inventory:GiveItem(rewarditem, nil, inst:GetPosition())
                     end
                 end
             else
@@ -358,7 +356,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
                 inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD))
                 -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD) )
                 local rewarditem = SpawnPrefab("oinc10")
-                giver.components.inventory:GiveItem(rewarditem, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+                giver.components.inventory:GiveItem(rewarditem, nil, inst:GetPosition())
             end
         end
     end

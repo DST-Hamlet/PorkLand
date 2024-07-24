@@ -426,20 +426,20 @@ ACTIONS.USE_LIVING_ARTIFACT.fn = function(act)
     end
 end
 ACTIONS.POOP_TIP.fn = function(act)
-    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
+    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, act.doer:GetPosition())
     return true
 end
 
 ACTIONS.PAY_TAX.fn = function(act)
     act.doer:RemoveTag("paytax")
     act.doer.taxing = false
-    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
+    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, act.doer:GetPosition())
     return true
 end
 
 ACTIONS.DAILY_GIFT.fn = function(act)
     local resources = {"flint", "log", "rocks", "cutgrass", "seeds", "twigs"}
-    act.target.components.inventory:GiveItem(SpawnPrefab(resources[math.random(#resources)]), nil, Vector3(TheSim:GetScreenPos(act.doer.Transform:GetWorldPosition())))
+    act.target.components.inventory:GiveItem(SpawnPrefab(resources[math.random(#resources)]), nil, act.doer:GetPosition())
     return true
 end
 
