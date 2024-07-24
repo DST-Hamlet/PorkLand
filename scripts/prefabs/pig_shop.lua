@@ -715,6 +715,7 @@ local function spawner_fn()
     return inst
 end
 
+-- TODO: Make this work
 local function PlaceTestFn(inst)
     inst.AnimState:Hide("YOTP")
     inst.AnimState:Hide("SNOW")
@@ -745,15 +746,15 @@ return MakeShop("pig_shop_deli",            "pig_shop_deli",        nil,        
 
        Prefab("pig_shop_spawner", spawner_fn, assets, spawner_prefabs),
 
-       MakePlacer("pig_shop_deli_placer",        "pig_shop",     "pig_shop_deli",        "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_general_placer",     "pig_shop",     "pig_shop_general",     "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_hoofspa_placer",     "pig_shop",     "pig_shop_hoofspa",     "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_produce_placer",     "pig_shop",     "pig_shop_produce",     "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_florist_placer",     "pig_shop",     "pig_shop_florist",     "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_antiquities_placer", "pig_shop",     "pig_shop_antiquities", "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_arcane_placer",      "pig_shop",     "pig_shop_arcane",      "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_weapons_placer",     "pig_shop",     "pig_shop_weapons",     "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_hatshop_placer",     "pig_shop",     "pig_shop_millinery",   "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_cityhall_placer",    "pig_cityhall", "pig_cityhall",         "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_bank_placer",        "pig_shop",     "pig_shop_bank",        "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn),
-       MakePlacer("pig_shop_tinker_placer",      "pig_shop",     "pig_shop_tinker",      "idle", false, false, true, nil, nil, nil, nil, nil, nil, PlaceTestFn)
+       MakePlacer("pig_shop_deli_placer",        "pig_shop",     "pig_shop_deli",        "idle", false, false, true),
+       MakePlacer("pig_shop_general_placer",     "pig_shop",     "pig_shop_general",     "idle", false, false, true),
+       MakePlacer("pig_shop_hoofspa_placer",     "pig_shop",     "pig_shop_hoofspa",     "idle", false, false, true),
+       MakePlacer("pig_shop_produce_placer",     "pig_shop",     "pig_shop_produce",     "idle", false, false, true),
+       MakePlacer("pig_shop_florist_placer",     "pig_shop",     "pig_shop_florist",     "idle", false, false, true),
+       MakePlacer("pig_shop_antiquities_placer", "pig_shop",     "pig_shop_antiquities", "idle", false, false, true),
+       MakePlacer("pig_shop_arcane_placer",      "pig_shop",     "pig_shop_arcane",      "idle", false, false, true),
+       MakePlacer("pig_shop_weapons_placer",     "pig_shop",     "pig_shop_weapons",     "idle", false, false, true),
+       MakePlacer("pig_shop_hatshop_placer",     "pig_shop",     "pig_shop_millinery",   "idle", false, false, true),
+       MakePlacer("pig_shop_cityhall_placer",    "pig_cityhall", "pig_cityhall",         "idle", false, false, true),
+       MakePlacer("pig_shop_bank_placer",        "pig_shop",     "pig_shop_bank",        "idle", false, false, true),
+       MakePlacer("pig_shop_tinker_placer",      "pig_shop",     "pig_shop_tinker",      "idle", false, false, true)
