@@ -341,6 +341,7 @@ local function palacefn()
     return inst
 end
 
+-- TODO: Make this work
 local function PlaceTestFn(inst)
     inst.AnimState:Hide("YOTP")
     inst.AnimState:Hide("SNOW")
@@ -356,5 +357,4 @@ end
 
 return Prefab("pig_guard_tower", fn, assets, prefabs),
     Prefab("pig_guard_tower_palace", palacefn, assets, prefabs),
-    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, false, true, nil, nil, nil, nil,
-        nil, nil, PlaceTestFn)
+    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, false, true)
