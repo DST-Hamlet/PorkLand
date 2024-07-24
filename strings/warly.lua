@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "It will not work.",
         },
+        USEDOOR = {
+            GENERIC = "It cannot be opened.",
+            LOCKED = "Perhaps there is a way to unlock it.",
+        },
     },
     ANNOUCE_BATS = "Agh! Bats!",
     ANNOUNCE_BOAT_DAMAGED = "The vessel is damaged...",
@@ -108,6 +112,12 @@ return {
         ICEDTEA = "Ah. Refreshing.",
         INFUSED_IRON = "Iron marinated in magic.",
         IRON = "I wonder what I could cook up with this.",
+        KINGFISHER = {
+            DEAD = "A shame it died so young.",
+            GENERIC = "That beak would be excellent for spearing food.",
+            SLEEPING = "In a food coma, perhaps.",
+        },
+        LIFEPLANT = "It looks hungry.",
         LILYPAD = "I doubt it has much flavor.",
         LIVING_ARTIFACT = "Will it help me be a better cook?",
         LOTUS = "Mmm, lotus root...",
@@ -125,6 +135,11 @@ return {
         METALPLATEHAT = "I prefer a chef hat.",
         NECTAR_POD = "The ingredients for honey making.",
         PANGOLDEN = "Already has a nice golden braise.",
+        PARROT_BLUE = {
+            DEAD = "Demised.",
+            GENERIC = "Hello Polly!",
+            SLEEPING = "It's just resting.",
+        },
         PEAGAWK = {
             DEAD = "A pointless death.",
             GENERIC = "Those feathers would make a nice table centerpiece.",
@@ -132,6 +147,11 @@ return {
         },
         PEAGAWKFEATHER = "It's quite soft.",
         PEAGAWK_BUSH = "It's a bright blue bush.",
+        PIGEON = {
+            DEAD = "Squab?",
+            GENERIC = "Pigeon pie? No, perhaps not.",
+            SLEEPING = "Perhaps a feast of seeds has worn it out.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Fricasseed.",
             GENERIC = "It's a simple life.",
@@ -144,10 +164,24 @@ return {
             BURNING = "Blackened!",
             GENERIC = "Mining is a dangerous job.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "You know, you might benefit from a nice farmer's market here.",
+            SLEEPING = "I too get drowsy after a good meal.",
+        },
+        PIGMAN_QUEEN = "What feasts she must have...",
+        PIG_PALACE = "I wonder what the kitchen is like.",
         PIG_RUINS_ARTICHOKE = "Clearly a food loving culture dwelled here.",
         PIG_RUINS_HEAD = "I suppose pigs lived here once.",
         PIG_RUINS_IDOL = "Those pig fellows might like that.",
         PIG_RUINS_PLAQUE = "Just a pinch of statue.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "C'est horrible.",
+            GENERIC = "A place of civic pride.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Fricasseed!",
+            GENERIC = "I never thought of a life in politics.",
+        },
         PIKO = {
             DEAD = "An unfortunate end.",
             GENERIC = "Bonjour, mon amie.",
@@ -211,6 +245,7 @@ return {
         VENUS_STALK = "Possesses a flavor reminiscent of artichoke hearts.",
         VINE = "Not a single grape on it...",
         WALKINGSTICK = "I'm out to forage!",
+        WATERDROP = "The water of life.",
         WEEVOLE = "Shoo! Go away!",
         WEEVOLE_CARAPACE = "The crust of a bug.",
     },

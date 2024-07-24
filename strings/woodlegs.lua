@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "It be jus'like new!",
         },
+        USEDOOR = {
+            GENERIC = "'tis closed ta me.",
+            LOCKED = "It be needin' somethin' ta open't.",
+        },
     },
     ANNOUCE_BATS = "Beasties be flappin' about.",
     ANNOUNCE_BOAT_DAMAGED = "She's takin' on water!",
@@ -108,6 +112,11 @@ return {
         ICEDTEA = "'Tis relief ta be sure.",
         INFUSED_IRON = "'as th'look 'o treasure to't.",
         IRON = "'Tis not gold, but a treasure nonetheless.",
+        KINGFISHER = {
+            DEAD = "Met Davey Jones.",
+            GENERIC = "Ye live off'th'ocean too?",
+            SLEEPING = "'Tis not on watch.",
+        },
         LIFEPLANT = "Grew from a drop o' water.",
         LILYPAD = "A leaf aft'r me own heart.",
         LIVING_ARTIFACT = "A Man o' War o' tha land!",
@@ -126,6 +135,11 @@ return {
         METALPLATEHAT = "Prefer me captain's hat.",
         NECTAR_POD = "Tha sweet, sweet nectar!",
         PANGOLDEN = "Eatin' up all tha treasure!",
+        PARROT_BLUE = {
+            DEAD = "Thar be an ex-parrot.",
+            GENERIC = "Blue as th'sea.",
+            SLEEPING = "'Tis just restin'",
+        },
         PEAGAWK = {
             DEAD = "It tells no tales.",
             GENERIC = "Arr, them eyes need patches!",
@@ -133,6 +147,11 @@ return {
         },
         PEAGAWKFEATHER = "Feather'o'glimmer.",
         PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
+        PIGEON = {
+            DEAD = "Tells no tales.",
+            GENERIC = "Be'a gulls o'th' land.",
+            SLEEPING = "Grabbin' shuteye.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "A flamin' abode!",
             GENERIC = "Boathouse'o'th'land.",
@@ -145,10 +164,24 @@ return {
             BURNING = "Avast! 'Tis afire!",
             GENERIC = "Them b'th'mines.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "Too plump fer'is own good.",
+            SLEEPING = "Sleepin' landlubbin' swine.",
+        },
+        PIGMAN_QUEEN = "Whar be yer treasure?",
+        PIG_PALACE = "A brigantine o' tha land.",
         PIG_RUINS_ARTICHOKE = "Thar be treas're in't.",
         PIG_RUINS_HEAD = "Thar be th'head.",
         PIG_RUINS_IDOL = "Tha' treasure atop there.",
         PIG_RUINS_PLAQUE = "Tha' treasure needs a diggin' out.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Good riddance.",
+            GENERIC = "Full o'tha pesky bigshots.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Avast!",
+            GENERIC = "Where I capt'n me city.",
+        },
         PIKO = {
             DEAD = "Tells no tales.",
             GENERIC = "Thievin' scoundr'l.",
@@ -212,6 +245,7 @@ return {
         VENUS_STALK = "A plant skelerton.",
         VINE = "Them's be th'stranglin' kind.",
         WALKINGSTICK = "Moor legs mean moor walkin'.",
+        WATERDROP = "'Tis only a wee bit o' water.",
         WEEVOLE = "'ave at ye landlubbers!",
         WEEVOLE_CARAPACE = "Longcoat made o' them pesky bugs.",
     },

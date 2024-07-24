@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "My vessel is renewed!",
         },
+        USEDOOR = {
+            GENERIC = "It cannot be opened!",
+            LOCKED = "I will unlock it. This I vow!",
+        },
     },
     ANNOUCE_BATS = "Flying beasts! To arms!",
     ANNOUNCE_BOAT_DAMAGED = "My vessel is wounded!",
@@ -108,6 +112,12 @@ return {
         ICEDTEA = "It contains no the meat!",
         INFUSED_IRON = "It glows with a warrior's spirit.",
         IRON = "Material for metalwork.",
+        KINGFISHER = {
+            DEAD = "It has fallen!",
+            GENERIC = "Possessor of the mightiest of beaks!",
+            SLEEPING = "It sleeps.",
+        },
+        LIFEPLANT = "It gives life.",
         LILYPAD = "A leaf of the water.",
         LIVING_ARTIFACT = "I will be unbeatable on the battlefield!",
         LOTUS = "Freya looks down upon this.",
@@ -125,6 +135,11 @@ return {
         METALPLATEHAT = "It will protect my head!",
         NECTAR_POD = "Food for insects, not worthy of a shieldmaiden.",
         PANGOLDEN = "Surely a cousin of Gullinbursti!",
+        PARROT_BLUE = {
+            DEAD = "It has joined Valhalla's choir invisible.",
+            GENERIC = "A Norwegian bird of blue.",
+            SLEEPING = "Pining for Njord.",
+        },
         PEAGAWK = {
             DEAD = "Even in death its eyes stare into my soul.",
             GENERIC = "It has the eyes of Odin.",
@@ -132,6 +147,11 @@ return {
         },
         PEAGAWKFEATHER = "A priceless beauty.",
         PEAGAWK_BUSH = "Do you think you can hide from me?",
+        PIGEON = {
+            DEAD = "It has been bested in battle!",
+            GENERIC = "Be you tasty?",
+            SLEEPING = "Sleep has been victorious!",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Aflame with the fires of Hel!",
             GENERIC = "A village home worthy of a shield maiden's protection.",
@@ -144,10 +164,24 @@ return {
             BURNING = "Hel's fire consumes it!",
             GENERIC = "A house for Dwarfish things.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "A chieftain in this clan of pigs.",
+            SLEEPING = "Doubtless dreaming of the votes which consume him.",
+        },
+        PIGMAN_QUEEN = "O, great lady!",
+        PIG_PALACE = "A Gullinbursti shrine, perhaps?",
         PIG_RUINS_ARTICHOKE = "A terrible monument to non-meat!",
         PIG_RUINS_HEAD = "A frost giant head, turned to stone!",
         PIG_RUINS_IDOL = "I will dethron it and sell it to a pig.",
         PIG_RUINS_PLAQUE = "I will take it with me!",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Afire!",
+            GENERIC = "The ruler of this land lays within.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Fire consumes it.",
+            GENERIC = "Where I preside over my warrior village.",
+        },
         PIKO = {
             DEAD = "It has fallen.",
             GENERIC = "Do you crave battle?",
@@ -211,6 +245,7 @@ return {
         VENUS_STALK = "The heart of a defeated plant warrior.",
         VINE = "What can you do for me?",
         WALKINGSTICK = "To assist in my long journey.",
+        WATERDROP = "A drop of water, touched by Freya.",
         WEEVOLE = "A pest upon this land!",
         WEEVOLE_CARAPACE = "The skin of my enemy.",
     },

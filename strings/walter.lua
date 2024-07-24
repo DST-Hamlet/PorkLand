@@ -1,4 +1,10 @@
 return {
+    ACTIONFAIL = {
+        USEDOOR = {
+            GENERIC = "How do I get in?",
+            LOCKED = "They wouldn't let me in.",
+        },
+    },
     ANNOUCE_BATS = "This doesn't seem to be a good sign.",
     ANNOUNCE_BOAT_DAMAGED = "I wonder if there's a badge for boat maintenance.",
     ANNOUNCE_BOAT_SINKING = "We may need to repair this soon, haha...",
@@ -103,6 +109,12 @@ return {
         ICEDTEA = "It just got better.",
         INFUSED_IRON = "These lines shone with a strange light.",
         IRON = "Is that iron?",
+        KINGFISHER = {
+            DEAD = "Oh, what a shame.",
+            GENERIC = "That incisive beak is definitely unfamiliar.",
+            SLEEPING = "Shhh, be quiet.",
+        },
+        LIFEPLANT = "it's beautiful!",
         LILYPAD = "Look how big it is! I really want to stand up and take a look!",
         LIVING_ARTIFACT = "Indestructible mechanical armor!",
         LOTUS = "Sis Walani says that's edible...",
@@ -120,12 +132,22 @@ return {
         METALPLATEHAT = "It looks so funny.",
         NECTAR_POD = "I know! Bees use them to make honey.",
         PANGOLDEN = "A born gold rusher.",
+        PARROT_BLUE = {
+            DEAD = "Oh, what a shame.",
+            GENERIC = "The blue parrot from the story!",
+            SLEEPING = "Shhh, be quiet.",
+        },
         PEAGAWK = {
             GENERIC = "Wow, how many eyes are there?",
             SLEEPING = "Woby, we might be able to gather his feathers while he's asleep.",
         },
         PEAGAWKFEATHER = "method is valid.",
         PEAGAWK_BUSH = "This bird can't fly, but turns into a bush!",
+        PIGEON = {
+            DEAD = "Oh, what a shame.",
+            GENERIC = "Mr. Maxwell advised us not to feed them.",
+            SLEEPING = "Shhh, be quiet.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Is anyone in there? Help them!",
             GENERIC = "Community service is a must for a Pinetree Pioneer.",
@@ -138,12 +160,26 @@ return {
             BURNING = "Firemen! Firemen!",
             GENERIC = "I have a feeling Wurt's not gonna like there",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "Are you Mr. Mayor?",
+            SLEEPING = "Mr. Mayor fell asleep on the ground.",
+        },
+        PIGMAN_QUEEN = "She was dressed so gorgeously, but she smelled...",
+        PIG_PALACE = "This must be their palace!",
         PIG_RUINS_ARTICHOKE = "Is this a bamboo shoot or something?",
         PIG_RUINS_HEAD = "Warby! It's bigger than you!",
         PIG_RUINS_IDOL = "Look what we found, Warby!",
         PIG_RUINS_MUSHROOM = "Wow, a carved stone...mushroom?",
         PIG_RUINS_PLAQUE = "It's a totem!",
         PIG_RUINS_SOW = "Very royal.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Fire! Firefighters are coming this way!",
+            GENERIC = "This must be their government department!",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Pay attention to fire safety! What did I say!",
+            GENERIC = "This is where we will work from now on! Warby!",
+        },
         PIKO = {
             DEAD = "Poor little guy.",
             GENERIC = "I want to know what they usually do?",
@@ -207,6 +243,7 @@ return {
         VENUS_STALK = "I think that's their stomach are.",
         VINE = "Foraged vines, perfect for kindling and crafting.",
         WALKINGSTICK = "Now I get a wood leg too.",
+        WATERDROP = "Are those inside those seeds?",
         WEEVOLE = "Hey! Got you!",
         WEEVOLE_CARAPACE = "Let's put it away, it might be useful.",
     },

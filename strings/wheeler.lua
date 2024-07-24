@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "It's not going to get fixed any more than it already is.",
         },
+        USEDOOR = {
+            GENERIC = "Swell. A door that won't open.",
+            LOCKED = "I'll find a way to open it, somehow.",
+        },
     },
     ANNOUCE_BATS = "Flying rats. This should be exciting.",
     ANNOUNCE_BOAT_DAMAGED = "Swell. I'm taking on water.",
@@ -112,6 +116,12 @@ return {
         ICEDTEA = "I prefer it cold anyway.",
         INFUSED_IRON = "Was it glowing like that before?",
         IRON = "Well it's not good balloon material.",
+        KINGFISHER = {
+            DEAD = "I'll miss him.",
+            GENERIC = "What an aerodynamic beak!",
+            SLEEPING = "Like me, it probably dreams of flying.",
+        },
+        LIFEPLANT = "You stay right there until I need you.",
         LILYPAD = "A little too heavy to use for a balloon.",
         LIVING_ARTIFACT = "An invitation to adventure.",
         LOTUS = "Almost worth getting my feet wet for that.",
@@ -129,6 +139,11 @@ return {
         METALPLATEHAT = "Saves me head pain but gives me neck pain.",
         NECTAR_POD = "Now to find something that'll make this into something good.",
         PANGOLDEN = "I don't actually mind picking up his poop.",
+        PARROT_BLUE = {
+            DEAD = "Rests in peace.",
+            GENERIC = "Beautiful wings. Can I use 'em?",
+            SLEEPING = "Sweet dreams.",
+        },
         PEAGAWK = {
             DEAD = "I promise, I will go on without you!",
             GENERIC = "Has the eyesight for flying but not the wings for it.",
@@ -136,6 +151,11 @@ return {
         },
         PEAGAWKFEATHER = "Normally I don't mind feathers, but this one keeps staring at me.",
         PEAGAWK_BUSH = "Something's hiding in there.",
+        PIGEON = {
+            DEAD = "Always sad to see a fellow flyer go down.",
+            GENERIC = "Fly! Fly away from here! And take me with you.",
+            SLEEPING = "Probably having one of those flying dreams.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Someone's having a bad day.",
             GENERIC = "As pig houses go, it's decent enough.",
@@ -148,10 +168,23 @@ return {
             BURNING = "Huh. Wouldn't think stone would burn that well.",
             GENERIC = "Looks like they put all those rocks into building a house.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "In all my adventures, I've never been able to escape bureaucracy.",
+            SLEEPING = "You'd think a fancy pig like him would have a home to go to.",
+        },
+        PIG_PALACE = "Ohh! A castle adventure. I love those.",
         PIG_RUINS_ARTICHOKE = "Strange thing to make a statue out of.",
         PIG_RUINS_HEAD = "Missing something... like its body.",
         PIG_RUINS_IDOL = "I'll need to get that totem free to take it back to the pigs.",
         PIG_RUINS_PLAQUE = "The pigs only want the top part. How do I get it free?",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "That'll cost some tax dollars to fix.",
+            GENERIC = "The big pig building in this small pond.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "My schedule just got wide open.",
+            GENERIC = "Mayor by day, adventurer by night.",
+        },
         PIKO = {
             DEAD = "Sad. It only wanted to steal things.",
             GENERIC = "Has more storage space in its cheeks than I do in my pockets.",
@@ -224,6 +257,7 @@ return {
         VENUS_STALK = "Hope this comes in handy. Otherwise that flytrap died for nothing.",
         VINE = "The kind of thing that would be more useful if I had a bunch of them.",
         WALKINGSTICK = "Dried flytrap stalks really put a spring in my step.",
+        WATERDROP = "Another life of adventure!",
         WEEVOLE = "Aggravating bugs! A complete waste of wings.",
         WEEVOLE_CARAPACE = "Light enough to fire out the Pew-matic.",
     },

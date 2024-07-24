@@ -1,4 +1,10 @@
 return {
+    ACTIONFAIL = {
+        USEDOOR = {
+            GENERIC = "We are not welcome here now.",
+            LOCKED = "I must have left my keys somewhere...",
+        },
+    },
     ANNOUCE_BATS = "Why do things always keep causing trouble for us?",
     ANNOUNCE_BOAT_DAMAGED = "My boat's damaged...",
     ANNOUNCE_BOAT_SINKING = "Ack! This doesn't seem seaworthy at all anymore!",
@@ -103,6 +109,12 @@ return {
         ICEDTEA = "Right on time, Now I can taste it.",
         INFUSED_IRON = "If I could use it on my pocket watch...",
         IRON = "An essential material for accurate timepieces.",
+        KINGFISHER = {
+            DEAD = "Do I really have to stare at this dead bird?",
+            GENERIC = "Some kind of bird that catches fish.",
+            SLEEPING = "It is asleep.",
+        },
+        LIFEPLANT = "This is no ordinary flower.",
         LILYPAD = "I don't think this shortcut can be taken.",
         LIVING_ARTIFACT = "That's it! Perfect way to take advantage!",
         LOTUS = "Those buds look familiar...",
@@ -120,12 +132,22 @@ return {
         METALPLATEHAT = "Nice, but way too heavy for a hat.",
         NECTAR_POD = "Not honey yet, I'm too soon.",
         PANGOLDEN = "It has an extravagant recipe.",
+        PARROT_BLUE = {
+            DEAD = "Do I really have to stare at this dead bird?",
+            GENERIC = "Aren't they red?",
+            SLEEPING = "They also have to sleep.",
+        },
         PEAGAWK = {
             GENERIC = "See no evil!",
             SLEEPING = "Shouldn't it be looking at me?",
         },
         PEAGAWKFEATHER = "It's hard to see.",
         PEAGAWK_BUSH = "What a clever disguise.",
+        PIGEON = {
+            DEAD = "Do I really have to stare at this dead pigeon?",
+            GENERIC = "That's a pigeon.",
+            SLEEPING = "I guess they doesn't have anything better to do.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "I think it's about time too.",
             GENERIC = "I really hope this is I finally get back to the right time.",
@@ -138,12 +160,26 @@ return {
             BURNING = "I think it's about time too.",
             GENERIC = "I'm sure I've seen it in... Oh, that's the other one.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "Yeah. You gonna re-elected. Wait, who are you again?",
+            SLEEPING = "Cherish your leisure.",
+        },
+        PIGMAN_QUEEN = "She actually very cold-blooded if you get to know her.",
+        PIG_PALACE = "It's so beautiful. Let's go in.",
         PIG_RUINS_ARTICHOKE = "Stones carved into vegetables.",
         PIG_RUINS_HEAD = "Huge stone pig face.",
         PIG_RUINS_IDOL = "I thought it would be deeper...oh, that's another one.",
         PIG_RUINS_MUSHROOM = "This is it, and I can exchange it for great rewards.",
         PIG_RUINS_PLAQUE = "I'm curious what it means, but forget it.",
         PIG_RUINS_SOW = "This one comes in a unique colorway.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Why does this happen?",
+            GENERIC = "Yes, it's on this street.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Ah, yes, this will happen...",
+            GENERIC = "My office, I don’t know how long it will last.",
+        },
         PIKO = {
             DEAD = "They are quiet... forever.",
             GENERIC = "It better not mess with my stuff.",
@@ -207,6 +243,7 @@ return {
         VENUS_STALK = "It's still too early to be usable.",
         VINE = "It's a vine. I won't take the time to get sentimental about it.",
         WALKINGSTICK = "Okay, I'll bring it.",
+        WATERDROP = "There is a price to pay for escaping.",
         WEEVOLE = "I remember it biting.",
         WEEVOLE_CARAPACE = "Evil, exudes a strange smell.",
     },

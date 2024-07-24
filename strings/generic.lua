@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "She's floating just fine right now.",
         },
+        USEDOOR = {
+            GENERIC = "It won't open.",
+            LOCKED = "It's locked.",
+        },
     },
     ANNOUCE_BATS = "I don't like the look of this.",
     ANNOUNCE_BOAT_DAMAGED = "I think I sprung a leak.",
@@ -109,6 +113,12 @@ return {
         ICEDTEA = "I scream for iced tea.",
         INFUSED_IRON = "Metal touched with science.",
         IRON = "Isn't it ironic?",
+        KINGFISHER = {
+            DEAD = "Perished.",
+            GENERIC = "What a pointy bill!",
+            SLEEPING = "In a slumber.",
+        },
+        LIFEPLANT = "Sure likes looking at itself.",
         LILYPAD = "It's full of science. I can tell.",
         LIVING_ARTIFACT = "It's alive. ALIVE!",
         LOTUS = "The science is blooming well this season.",
@@ -126,6 +136,11 @@ return {
         METALPLATEHAT = "Protects my brains.",
         NECTAR_POD = "I could use this to make honey.",
         PANGOLDEN = "It likes rich food.",
+        PARROT_BLUE = {
+            DEAD = "An ex-parrot.",
+            GENERIC = "An azure bird.",
+            SLEEPING = "It's just resting.",
+        },
         PEAGAWK = {
             DEAD = "Dead-eyed.",
             GENERIC = "That bush is alive!",
@@ -133,6 +148,11 @@ return {
         },
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
+        PIGEON = {
+            DEAD = "It has passed.",
+            GENERIC = "It's only carrying a couple diseases.",
+            SLEEPING = "It's fast asleep.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "That house is on fire!",
             GENERIC = "Both a house, and a home.",
@@ -145,6 +165,12 @@ return {
             BURNING = "The mine is on fire!",
             GENERIC = "I have no quarry with them.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "I didn't vote for him.",
+            SLEEPING = "Typical. Sleeping on the job.",
+        },
+        PIGMAN_QUEEN = "She looks bossy.",
+        PIG_PALACE = "Majestic.",
         PIG_RUINS_ANT = "An abstract insect or something.",
         PIG_RUINS_ARTICHOKE = "Arti-choked.",
         PIG_RUINS_HEAD = "Looks like a headache.",
@@ -152,6 +178,14 @@ return {
         PIG_RUINS_MUSHROOM = "A vivid display of... their love.",
         PIG_RUINS_PLAQUE = "I could probably sell that to one of those pigs.",
         PIG_RUINS_SOW = "A superb local art craft.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "It wasn't me.",
+            GENERIC = "The local lawmaker.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Who would do that?!",
+            GENERIC = "I'm a Gentleman Politician now.",
+        },
         PIKO = {
             DEAD = "I feel kinda bad.",
             GENERIC = "He's a bit of a nut job.",
@@ -230,6 +264,7 @@ return {
         VENUS_STALK = "I bet I could find a use for it.",
         VINE = "Maybe I can tie stuff up with this.",
         WALKINGSTICK = "Perfect for a gentleman scientist.",
+        WATERDROP = "Water you think it does?",
         WEEVOLE = "Whee!",
         WEEVOLE_CARAPACE = "I'll be careful with this carapace.",
     },

@@ -23,24 +23,32 @@ return {
         SHEAR = "Shear",
         SMELT = "Smelt",
         TAKEFROMSHELF = "Retrieve",
+        USEDOOR = "Enter",
     },
     BANDIT_TALK_FIGHT = {
         "HAVE AT THEE",
         "TAKE FROM THE RICH!",
         "ENGUARD!",
     },
-    CITYPIGNAMES = {--jerry的脚本有问题，顺序会对不上，以后记得手动改一下
+    CITYPIGNAMES = {
         FEMALE = {
             "Elizabeth",
+            "Alice",
+            "Agnes",
             "Catherine",
+            "Arabella",
+            "Belle",
+            "Beryl",
+            "Briar",
+            "Beatrice",
             "Charlotte",
             "Della",
+            "Henrietta",
             "Ebba",
             "Edith",
             "Flora",
             "Florence",
             "Georgette",
-            "Henrietta",
             "Luella",
             "Alexandrina",
             "Lilian",
@@ -48,25 +56,26 @@ return {
             "Ottilie",
             "Ophelia",
             "Sophronia",
-            "Alice",
-            "Agnes",
-            "Arabella",
-            "Belle",
-            "Beryl",
-            "Briar",
-            "Beatrice",
         },
         MALE = {
             "William",
+            "Gulliver",
+            "Frederick",
             "Arthur",
+            "Edward",
+            "George",
+            "Charles",
+            "Leopold",
+            "Albert",
+            "Alfred",
             "Ewart",
+            "Larkin",
             "Herbert",
             "Henry",
             "Charley",
             "Douglas",
             "Edison",
             "Edmund",
-            "Larkin",
             "Oliver",
             "Clarence",
             "Merritt",
@@ -74,18 +83,9 @@ return {
             "Tesla",
             "Thaddeus",
             "Wellington",
-            "Gulliver",
-            "Frederick",
-            "Edward",
-            "George",
-            "Charles",
-            "Leopold",
-            "Albert",
-            "Alfred",
         },
         UNISEX = {
             "Melbourne",
-            "Greville",
             "Hastings",
             "Aberdeen",
             "Talbot",
@@ -100,6 +100,7 @@ return {
             "Salisbury",
             "Kensington",
             "Conroy",
+            "Greville",
         },
     },
     CITY_PIG_BANKER_TRADE = "JEWELS",
@@ -123,7 +124,7 @@ return {
             "YOU A SEA OF TROUBLES!",
         },
     },
-    CITY_PIG_GUARD_TALK_FIGHT = {--unused
+    CITY_PIG_GUARD_TALK_FIGHT = {
         DEFAULT = {
             "I STAB AT THEE!",
             "HAVE AT THEE!",
@@ -138,7 +139,7 @@ return {
             "WHAT HO!",
         },
     },
-    CITY_PIG_GUARD_TALK_LOOKATWILSON = {--unused
+    CITY_PIG_GUARD_TALK_LOOKATWILSON = {
         DEFAULT = {
             "MAKE NOT TROUBLES",
             "WHOFORE GO'ST THERE?",
@@ -152,7 +153,7 @@ return {
             "NEED’ST HELP?",
         },
     },
-    CITY_PIG_GUARD_TALK_TORCH = {--unused
+    CITY_PIG_GUARD_TALK_TORCH = {
         DEFAULT = {
             "BURN BRIGHT THE TORCHES!",
             "LIGHT THE TORCHES!",
@@ -296,7 +297,7 @@ return {
             "TAKEST THEE MINE GIFT, YOUR MAJESTY",
         },
     },
-    CITY_PIG_TALK_EAT_MEAT = {--unused?
+    CITY_PIG_TALK_EAT_MEAT = {
         DEFAULT = {
             "NOM-ETH NOM-ETH, NOM-ETH",
             "O FOOD! O SLOP!",
@@ -550,7 +551,7 @@ return {
             "SOMETHING YUMMY THIS WAY COMES",
         },
     },
-    CITY_PIG_TALK_FIND_MONEY = {--unused，只有两种守卫的有用到
+    CITY_PIG_TALK_FIND_MONEY = {
         DEFAULT = {
             "'TIS SHINY THING!",
             "ALL THAT GLITTERS IS GOLD!",
@@ -1498,7 +1499,7 @@ return {
             "HONORABLE PLOP PICKER!",
         },
     },
-    CITY_PIG_TALK_RUNAWAY_WILSON = {--unused
+    CITY_PIG_TALK_RUNAWAY_WILSON = {
         DEFAULT = {
             "THOUST ART NOT KIND!",
             "STAYEST THOU AWAY!",
@@ -1689,7 +1690,7 @@ return {
         },
     },
     CITY_PIG_USHER_TRADE = "BERRIES",
-    CITY_TALK_ANNOUNCE_APORKALYPSE = {--unused
+    CITY_TALK_ANNOUNCE_APORKALYPSE = {
         DEFAULT = {
             "THE APORKALYPSE COMETH!",
             "THE CRACK OF DOOM!",
@@ -1700,7 +1701,7 @@ return {
             "BE ALL AND END ALL!",
         },
     },
-    MANDRAKEMANNAMES = {--jerry的脚本有问题，顺序会对不上，以后记得手动改一下
+    MANDRAKEMANNAMES = {
         "Bambuseae",
         "Cornus",
         "Juniperus",
@@ -1789,6 +1790,8 @@ return {
         ICEDTEA = "Iced Tea",
         INFUSED_IRON = "Infused Iron",
         IRON = "Iron Ore",
+        KINGFISHER = "Kingfisher",
+        LIFEPLANT = "Magic Flower",
         LILYPAD = "Lily Pad",
         LIVING_ARTIFACT = "Living Artifact",
         LOTUS = "Lotus Plant",
@@ -1802,12 +1805,17 @@ return {
         METALPLATEHAT = "Fancy Helmet",
         NECTAR_POD = "Nectar",
         PANGOLDEN = "Pangolden",
+        PARROT_BLUE = "Parrot",
         PEAGAWK = "Peagawk",
         PEAGAWKFEATHER = "Peagawk Plume",
         PEAGAWK_BUSH = "Blinkbush",
+        PIGEON = "Pigeon",
         PIGHOUSE_CITY = "Town House",
         PIGHOUSE_FARM = "Farm House",
         PIGHOUSE_MINE = "Quarry Lodgings",
+        PIGMAN_MAYOR = "Mayor Truffleston",
+        PIGMAN_QUEEN = "Pig Queen",
+        PIG_PALACE = "Palace",
         PIG_RUINS_ARTICHOKE = "Crumbling Carved Stone",
         PIG_RUINS_EXTRACTED = "Chiseled Stone",
         PIG_RUINS_HEAD = "Crumbling Visage",
@@ -1816,6 +1824,8 @@ return {
         PIG_RUINS_PIG = "Crumbling Icon",
         PIG_RUINS_PLAQUE = "Eroding Totem",
         PIG_RUINS_SOW = "The Blue Sow",
+        PIG_SHOP_CITYHALL = "Swinesbury City Hall",
+        PIG_SHOP_CITYHALL_PLAYER = "My City Hall",
         PIKO = "Piko",
         PIKO_ORANGE = "Orange Piko",
         PUGALISK = "Pugalisk",
@@ -1855,6 +1865,7 @@ return {
         VENUS_STALK = "Flytrap Stalk",
         VINE = "Vine",
         WALKINGSTICK = "Stalking Stick",
+        WATERDROP = "Magic Water",
         WEEVOLE = "Weevole",
         WEEVOLE_CARAPACE = "Weevole Carapace",
     },
@@ -1880,6 +1891,7 @@ return {
         MAGNIFYING_GLASS = "See things from a different perspective.",
         METALPLATEHAT = "Strong, sturdy and classy.",
         PIGHOUSE_CITY = "Shelters one tax paying pig.",
+        PIG_SHOP_CITYHALL_PLAYER = "You are the Mayor now.",
         SAIL_SNAKESKIN = "Heavy duty wind catcher.",
         SHEARS = "Cut your way into adventure.",
         SMELTER = "Turn Iron into Alloy.",

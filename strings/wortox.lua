@@ -1,4 +1,10 @@
 return {
+    ACTIONFAIL = {
+        USEDOOR = {
+            GENERIC = "Oops, I can't get in.",
+            LOCKED = "It just can't be open from this side",
+        },
+    },
     ANNOUCE_BATS = "Hum! The vampires are coming!",
     ANNOUNCE_BOAT_DAMAGED = "Oh dear, this water bodes ill.",
     ANNOUNCE_BOAT_SINKING = "I'm up to my tail in water!",
@@ -103,6 +109,12 @@ return {
         ICEDTEA = "Cold gives it flavor.",
         INFUSED_IRON = "Some kind of energy was injected into it.",
         IRON = "Oooh. Almost burned me.",
+        KINGFISHER = {
+            DEAD = "Oh goodness, oh gracious.",
+            GENERIC = "Please don't peck my hand, little one.",
+            SLEEPING = "Sleep and dream, little wing.",
+        },
+        LIFEPLANT = "Don't be fooled by its unremarkable appearance.",
         LILYPAD = "The boat passed in the pond, and the duckweed gave way.",
         LIVING_ARTIFACT = "A perfect combine. Pity.",
         LOTUS = "Lovely flower from water.",
@@ -120,12 +132,22 @@ return {
         METALPLATEHAT = "My horns are burning!",
         NECTAR_POD = "Food for little bees.",
         PANGOLDEN = "How are you today? Any outcome?",
+        PARROT_BLUE = {
+            DEAD = "Oh goodness, oh gracious.",
+            GENERIC = "We could be good friends, you and I.",
+            SLEEPING = "sleeping.",
+        },
         PEAGAWK = {
             GENERIC = "You must have seen a lot, right?",
             SLEEPING = "Huh, let's close our eyes and take a break?",
         },
         PEAGAWKFEATHER = "Feather of a small peacock.",
         PEAGAWK_BUSH = "Well, this trick can't fool me.",
+        PIGEON = {
+            DEAD = "Oh goodness, oh gracious.",
+            GENERIC = "I've heard they make good pie.",
+            SLEEPING = "Sleep and dream, little wing.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Wow, this is not good.",
             GENERIC = "Knock Knock.",
@@ -138,12 +160,26 @@ return {
             BURNING = "How these stones burn?",
             GENERIC = "Anyone noticed that their mine look the same as their farm?",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "Yes, Prime Minister.",
+            SLEEPING = "That's a lot of work, isn't it?",
+        },
+        PIGMAN_QUEEN = "Hello, Your Majesty.",
+        PIG_PALACE = "A big, fancy house.",
         PIG_RUINS_ARTICHOKE = "A giant vegetable.",
         PIG_RUINS_HEAD = "Others use umbrella, it use big head!",
         PIG_RUINS_IDOL = "What a nice little idol. Let's take it.",
         PIG_RUINS_MUSHROOM = "Lots of gems, but no magic.",
         PIG_RUINS_PLAQUE = "Hey little tree, guess what this says?",
         PIG_RUINS_SOW = "Hey, who's she?",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Burned to the ground, pitiful scorched earth!",
+            GENERIC = "Zhumen's wine and meat stink.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Burned to the ground, pitiful scorched earth!",
+            GENERIC = "I'm the mayor here, huh!",
+        },
         PIKO = {
             DEAD = "That's not what dhyana's supposed to be.",
             GENERIC = "No one can mess with the squirrel.",
@@ -207,6 +243,7 @@ return {
         VENUS_STALK = "I guess even mortals wouldn't eat this.",
         VINE = "It's a fine vine of mine.",
         WALKINGSTICK = "He really has the style of an adventurer.",
+        WATERDROP = "It took me a lot of effort to get it.",
         WEEVOLE = "don't bite me!",
         WEEVOLE_CARAPACE = "What remains of their armor.",
     },

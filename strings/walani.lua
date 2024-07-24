@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "It doesn't need any work.",
         },
+        USEDOOR = {
+            GENERIC = "It's not opening!",
+            LOCKED = "Aw... it's locked.",
+        },
     },
     ANNOUCE_BATS = "Chill out, flying dudes!",
     ANNOUNCE_BOAT_DAMAGED = "My floater's been dinged!",
@@ -109,6 +113,12 @@ return {
         ICEDTEA = "Ah... hits the spot.",
         INFUSED_IRON = "Whoa. It's got a weird glow.",
         IRON = "This has gotta be good for something.",
+        KINGFISHER = {
+            DEAD = "Aww... That's bogus.",
+            GENERIC = "Gnarly beak,dude.",
+            SLEEPING = "How do you sleep like that without falling over?",
+        },
+        LIFEPLANT = "Whoa! It's all sparkly.",
         LILYPAD = "Looks like a waterbed to me.",
         LIVING_ARTIFACT = "That looks cool. What does it do?",
         LOTUS = "Those'd make a great surfboard pattern.",
@@ -126,6 +136,11 @@ return {
         METALPLATEHAT = "Keeps my noggin safe.",
         NECTAR_POD = "I wonder if I can make honey out of this.",
         PANGOLDEN = "Shiny.",
+        PARROT_BLUE = {
+            DEAD = "Ex-parrot-dude.",
+            GENERIC = "Beautiful plumage, parrot-dude!",
+            SLEEPING = "Shagged out.",
+        },
         PEAGAWK = {
             DEAD = "Dang. It's dead.",
             GENERIC = "Beautiful eyes, dude!",
@@ -133,6 +148,11 @@ return {
         },
         PEAGAWKFEATHER = "Nature makes such pretty things.",
         PEAGAWK_BUSH = "What a cool looking bush!",
+        PIGEON = {
+            DEAD = "I hope he died in his sleep.",
+            GENERIC = "They're sort of cute.",
+            SLEEPING = "Wish I was with you, buddy.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Aww... Where they gonna sleep now?",
             GENERIC = "One of those pigdudes' houses.",
@@ -145,10 +165,24 @@ return {
             BURNING = "That's some inferno.",
             GENERIC = "They work too hard in there.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "I'm not much of an establishment gal.",
+            SLEEPING = "Must be a stress nap.",
+        },
+        PIGMAN_QUEEN = "Afternoon, queenie.",
+        PIG_PALACE = "Snazzy!",
         PIG_RUINS_ARTICHOKE = "Artichoke art!",
         PIG_RUINS_HEAD = "A little bit creepy.",
         PIG_RUINS_IDOL = "How do I get that top part off?",
         PIG_RUINS_PLAQUE = "It'll take some work to get that top part off.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Bummer.",
+            GENERIC = "That's where that big shot pig works.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Dang.",
+            GENERIC = "Never thought I'd have a job.",
+        },
         PIKO = {
             DEAD = "No! Little buddy!",
             GENERIC = "It's a little buddy!",
@@ -227,6 +261,7 @@ return {
         VENUS_STALK = "Gnarly.",
         VINE = "Good for lashing stuff down.",
         WALKINGSTICK = "It's my lazy stick.",
+        WATERDROP = "Huh. Kinda looks like a little seed.",
         WEEVOLE = "Annoying little guys.",
         WEEVOLE_CARAPACE = "Ew. Bug skin.",
     },
