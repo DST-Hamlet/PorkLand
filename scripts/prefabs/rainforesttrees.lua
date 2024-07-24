@@ -113,7 +113,7 @@ local function GetStageFn(stage)
         end
 
         local scale = scales[stage]
-        inst.Transform:SetScale(scale, scale, scale)
+        inst.AnimState:SetScale(scale, scale, scale)
 
         Sway(inst)
     end
@@ -473,6 +473,7 @@ local function MakeTreeBurnable(inst)
     inst.components.burnable.extinguishimmediately = false
     inst.components.burnable:SetFXLevel(5)
     inst.components.burnable:SetOnBurntFn(OnBurnt)
+    inst.components.burnable:SetOnIgniteFn(OnIgnite)
 end
 
 local function OnEntitySleep(inst)
@@ -611,10 +612,7 @@ local function MakeTree(name, build, stage, data)
         inst.components.bloomable:SetStopBloomFn(StopBloom)
         inst.components.bloomable:SetDoBloom(DoBloom)
 
-        MakeLargeBurnable(inst)
-        inst.components.burnable:SetFXLevel(5)
-        inst.components.burnable:SetOnBurntFn(OnBurnt)
-        inst.components.burnable:SetOnIgniteFn(OnIgnite)
+        MakeTreeBurnable(inst)
 
         MakeLargePropagator(inst, TUNING.TREE_BURN_TIME)
         MakeSnowCovered(inst, 0.01)
