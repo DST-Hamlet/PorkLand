@@ -73,6 +73,7 @@ local prefab_posts = {
     "player",
     "player_classified",
     "player_common_extensions",
+    "poop",
     "torch",
     "woodie",
     "world_network",
