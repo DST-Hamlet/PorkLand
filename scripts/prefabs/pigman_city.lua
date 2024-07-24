@@ -447,10 +447,11 @@ local function call_guards(inst, attacker)
             attacker:AddTag("wanted_by_guards")
         end
 
-        local interior = GetInteriorSpawner():getPropInterior(inst)
-        if interior then
-            GetInteriorSpawner():injectprefab(guard, interior)
-        end
+        -- TODO: Get this working
+        -- local interior = TheWorld.components.interiorspawner:getPropInterior(inst)
+        -- if interior then
+        --     TheWorld.components.interiorspawner:injectprefab(guard, interior)
+        -- end
     end
 end
 
