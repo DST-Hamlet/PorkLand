@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "A fancy helmet to protect our head.",
         NECTAR_POD = "Spiders don't like this, but other bugs do!",
+        OINC = "What can we buy with this?",
+        OINC10 = "Mom said we should always save for a rainy day.",
+        OINC100 = "WOAH! We're rich!",
         PANGOLDEN = "I think he eats gold.",
         PARROT_BLUE = {
             DEAD = "Rest in peace.",

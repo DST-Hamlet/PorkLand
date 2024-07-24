@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "It will protect my head!",
         NECTAR_POD = "Food for insects, not worthy of a shieldmaiden.",
+        OINC = "Njord bestows a gift upon me this day.",
+        OINC10 = "I shall be the most prosperous Valkyrie!",
+        OINC100 = "My conquests have been profitable!",
         PANGOLDEN = "Surely a cousin of Gullinbursti!",
         PARROT_BLUE = {
             DEAD = "It has joined Valhalla's choir invisible.",

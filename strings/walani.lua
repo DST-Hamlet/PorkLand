@@ -135,6 +135,9 @@ return {
         },
         METALPLATEHAT = "Keeps my noggin safe.",
         NECTAR_POD = "I wonder if I can make honey out of this.",
+        OINC = "Heads I take a nap, tails I go to bed.",
+        OINC10 = "Money can't buy happiness. Only naps can.",
+        OINC100 = "I can retire now!",
         PANGOLDEN = "Shiny.",
         PARROT_BLUE = {
             DEAD = "Ex-parrot-dude.",

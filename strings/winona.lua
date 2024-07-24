@@ -131,6 +131,9 @@ return {
         },
         METALPLATEHAT = "Looks like something a colonist would wear.",
         NECTAR_POD = "Semi-finished product of honey.",
+        OINC = "Is that a salary?",
+        OINC10 = "Don't waste your little savings.",
+        OINC100 = "Diligence is the key to wealth.",
         PANGOLDEN = "Living metallurgical.",
         PARROT_BLUE = {
             DEAD = "Dead as a doornail.",

@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "Is funny little tin hat.",
         NECTAR_POD = "Is sweet like honey.",
+        OINC = "Wolfgang is stronger than little coin.",
+        OINC10 = "Wolfgang like coin.",
+        OINC100 = "Can buy many nice things Wolfgang deserve.",
         PANGOLDEN = "Hehe. Haves big nose.",
         PARROT_BLUE = {
             DEAD = "Is no more.",

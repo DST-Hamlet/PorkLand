@@ -131,6 +131,9 @@ return {
         },
         METALPLATEHAT = "My horns are burning!",
         NECTAR_POD = "Food for little bees.",
+        OINC = "Regular coin.",
+        OINC10 = "Still regular coin.",
+        OINC100 = "Money makes the world go round.",
         PANGOLDEN = "How are you today? Any outcome?",
         PARROT_BLUE = {
             DEAD = "Oh goodness, oh gracious.",

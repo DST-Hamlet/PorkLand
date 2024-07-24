@@ -135,6 +135,9 @@ return {
         },
         METALPLATEHAT = "How very conquistadorian.",
         NECTAR_POD = "Needs a suitable container to be turned into honey.",
+        OINC = "Petty change.",
+        OINC10 = "What use have I for coin out here?",
+        OINC100 = "Finally some reasonable pocket change.",
         PANGOLDEN = "He has expensive tastes.",
         PARROT_BLUE = {
             DEAD = "Its metabolic processes are now history.",

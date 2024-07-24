@@ -131,6 +131,9 @@ return {
         },
         METALPLATEHAT = "It looks so funny.",
         NECTAR_POD = "I know! Bees use them to make honey.",
+        OINC = "My pocket money.",
+        OINC10 = "My little money.",
+        OINC100 = "A huge sum of money from me.",
         PANGOLDEN = "A born gold rusher.",
         PARROT_BLUE = {
             DEAD = "Oh, what a shame.",

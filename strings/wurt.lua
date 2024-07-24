@@ -131,6 +131,9 @@ return {
         },
         METALPLATEHAT = "The hat from Ms. Wickerbottom's book!",
         NECTAR_POD = "Flower juice.",
+        OINC = "What it for?",
+        OINC10 = "What is \"Gurrency\"?",
+        OINC100 = "Stuff for stuff! \"Gurrency\"!",
         PANGOLDEN = "Don't drink them all!",
         PARROT_BLUE = {
             DEAD = "Ewww, it dead.",

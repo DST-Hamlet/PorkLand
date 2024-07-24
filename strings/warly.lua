@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "I prefer a chef hat.",
         NECTAR_POD = "The ingredients for honey making.",
+        OINC = "I can purchase fresh groceries with this.",
+        OINC10 = "Only the finest to eat tonight!",
+        OINC100 = "Mon dieu! Think of the groceries this could buy!",
         PANGOLDEN = "Already has a nice golden braise.",
         PARROT_BLUE = {
             DEAD = "Demised.",

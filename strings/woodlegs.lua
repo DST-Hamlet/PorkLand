@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "Prefer me captain's hat.",
         NECTAR_POD = "Tha sweet, sweet nectar!",
+        OINC = "Pieces o' Eight!",
+        OINC10 = "Thet b'gold!!",
+        OINC100 = "'tis a small tre'sure!",
         PANGOLDEN = "Eatin' up all tha treasure!",
         PARROT_BLUE = {
             DEAD = "Thar be an ex-parrot.",

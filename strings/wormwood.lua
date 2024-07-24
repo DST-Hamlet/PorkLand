@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "Clink Rock Head Thing",
         NECTAR_POD = "Sweet!",
+        OINC = "Twirly Tails like this",
+        OINC10 = "Can buy things now",
+        OINC100 = "Wow!!",
         PANGOLDEN = "Shiny Pooper",
         PARROT_BLUE = {
             DEAD = "Dead",

@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "It's a little cold.",
         NECTAR_POD = "Nectar makes honey, eh.",
+        OINC = "Looks valuable, eh?",
+        OINC10 = "Let's buy something nice eh, Lucy?",
+        OINC100 = "Can buy a lot of supplies with this.",
         PANGOLDEN = "Looks expensive.",
         PARROT_BLUE = {
             DEAD = "Pushin' up the daisies.",

@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "Incredibly durable. Though incredibly dense as well.",
         NECTAR_POD = "Requires an enzymatic processor to convert it to honey.",
+        OINC = "Pig coinage of a single denomination.",
+        OINC10 = "The pigs appear to have set up an economy of sorts.",
+        OINC100 = "There appears to be a truffle engraved on the face of this coin!",
         PANGOLDEN = "Evidently, it poops gold. Fascinating!",
         PARROT_BLUE = {
             DEAD = "It has shuffled off the mortal coil.",

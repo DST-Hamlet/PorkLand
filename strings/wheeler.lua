@@ -138,6 +138,9 @@ return {
         },
         METALPLATEHAT = "Saves me head pain but gives me neck pain.",
         NECTAR_POD = "Now to find something that'll make this into something good.",
+        OINC = "Good for buying projectiles. Or being projectiles.",
+        OINC10 = "Moving up in the world.",
+        OINC100 = "You know what Wheeler, you deserve a treat.",
         PANGOLDEN = "I don't actually mind picking up his poop.",
         PARROT_BLUE = {
             DEAD = "Rests in peace.",

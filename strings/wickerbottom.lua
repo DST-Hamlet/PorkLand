@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "It's similar to the Spanish colonials.",
         NECTAR_POD = "I wonder if this could somehow be turned to honey.",
+        OINC = "I wish I could spend this on books.",
+        OINC10 = "If only I could spend this on a lot of books.",
+        OINC100 = "If only I could donate this to the library.",
         PANGOLDEN = "Aurum vermilingua.",
         PARROT_BLUE = {
             DEAD = "A late parrot.",

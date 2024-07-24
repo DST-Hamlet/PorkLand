@@ -131,6 +131,9 @@ return {
         },
         METALPLATEHAT = "Nice, but way too heavy for a hat.",
         NECTAR_POD = "Not honey yet, I'm too soon.",
+        OINC = "Hopefully this will be worth my time.",
+        OINC10 = "What should I buy?",
+        OINC100 = "Is there truffle on this? I've never looked closely before!",
         PANGOLDEN = "It has an extravagant recipe.",
         PARROT_BLUE = {
             DEAD = "Do I really have to stare at this dead bird?",

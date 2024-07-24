@@ -135,6 +135,9 @@ return {
         },
         METALPLATEHAT = "Protects my brains.",
         NECTAR_POD = "I could use this to make honey.",
+        OINC = "It's gotta be worth something.",
+        OINC10 = "I'm rich!",
+        OINC100 = "A coin worth my gentlemanly stature.",
         PANGOLDEN = "It likes rich food.",
         PARROT_BLUE = {
             DEAD = "An ex-parrot.",

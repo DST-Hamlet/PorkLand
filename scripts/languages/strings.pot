@@ -611,6 +611,21 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.NECTAR_POD"
 msgid "I could use this to make honey."
 msgstr ""
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC"
+msgid "It's gotta be worth something."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC10"
+msgid "I'm rich!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC100"
+msgid "A coin worth my gentlemanly stature."
+msgstr ""
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PANGOLDEN"
 msgid "It likes rich food."
@@ -1581,6 +1596,21 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.NECTAR_POD"
 msgid "Requires an enzymatic processor to convert it to honey."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC"
+msgid "Pig coinage of a single denomination."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC10"
+msgid "The pigs appear to have set up an economy of sorts."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC100"
+msgid "There appears to be a truffle engraved on the face of this coin!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PANGOLDEN"
 msgid "Evidently, it poops gold. Fascinating!"
@@ -2529,6 +2559,21 @@ msgstr ""
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.NECTAR_POD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.NECTAR_POD"
 msgid "I wonder if I can make honey out of this."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC"
+msgid "Heads I take a nap, tails I go to bed."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC10"
+msgid "Money can't buy happiness. Only naps can."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC100"
+msgid "I can retire now!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PANGOLDEN
@@ -3481,6 +3526,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.NECTAR_POD"
 msgid "I know! Bees use them to make honey."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC"
+msgid "My pocket money."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC10"
+msgid "My little money."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC100"
+msgid "A huge sum of money from me."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PANGOLDEN"
 msgid "A born gold rusher."
@@ -4409,6 +4469,21 @@ msgstr ""
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.NECTAR_POD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.NECTAR_POD"
 msgid "Not honey yet, I'm too soon."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC"
+msgid "Hopefully this will be worth my time."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC10"
+msgid "What should I buy?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC100"
+msgid "Is there truffle on this? I've never looked closely before!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PANGOLDEN
@@ -5346,6 +5421,21 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.NECTAR_POD"
 msgid "The ingredients for honey making."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC"
+msgid "I can purchase fresh groceries with this."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC10"
+msgid "Only the finest to eat tonight!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC100"
+msgid "Mon dieu! Think of the groceries this could buy!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PANGOLDEN"
 msgid "Already has a nice golden braise."
@@ -6274,6 +6364,21 @@ msgstr ""
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.NECTAR_POD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.NECTAR_POD"
 msgid "Food for insects, not worthy of a shieldmaiden."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC"
+msgid "Njord bestows a gift upon me this day."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC10"
+msgid "I shall be the most prosperous Valkyrie!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC100"
+msgid "My conquests have been profitable!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PANGOLDEN
@@ -7209,6 +7314,21 @@ msgstr ""
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.NECTAR_POD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.NECTAR_POD"
 msgid "Needs a suitable container to be turned into honey."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC"
+msgid "Petty change."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC10"
+msgid "What use have I for coin out here?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC100"
+msgid "Finally some reasonable pocket change."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PANGOLDEN
@@ -8156,6 +8276,21 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.NECTAR_POD"
 msgid "Spiders don't like this, but other bugs do!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC"
+msgid "What can we buy with this?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC10"
+msgid "Mom said we should always save for a rainy day."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC100"
+msgid "WOAH! We're rich!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PANGOLDEN"
 msgid "I think he eats gold."
@@ -9084,6 +9219,21 @@ msgstr ""
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.NECTAR_POD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.NECTAR_POD"
 msgid "Is it even worth turning this to honey?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC"
+msgid "What use is wealth?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC10"
+msgid "There are no riches in death."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC100"
+msgid "I can't spend it when I'm dead."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PANGOLDEN
@@ -10031,6 +10181,21 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.NECTAR_POD"
 msgid "Now to find something that'll make this into something good."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC"
+msgid "Good for buying projectiles. Or being projectiles."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC10"
+msgid "Moving up in the world."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC100"
+msgid "You know what Wheeler, you deserve a treat."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PANGOLDEN"
 msgid "I don't actually mind picking up his poop."
@@ -10971,6 +11136,21 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.NECTAR_POD"
 msgid "I wonder if this could somehow be turned to honey."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC"
+msgid "I wish I could spend this on books."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC10"
+msgid "If only I could spend this on a lot of books."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC100"
+msgid "If only I could donate this to the library."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PANGOLDEN"
 msgid "Aurum vermilingua."
@@ -11906,6 +12086,21 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.NECTAR_POD"
 msgid "HOWFORE WILBA TURN IT TO THE SWEET YUMS?"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC"
+msgid "'TIS SHINY THING O' SMALL MONEYS"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC10"
+msgid "'TIS SHINY THING O' BIG MONEYS"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC100"
+msgid "'TIS SHINY THING O' REALLY BIG MONEYS"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PANGOLDEN"
 msgid "NOSE HIMSELF TO BE A FOOL"
@@ -12836,6 +13031,21 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.NECTAR_POD"
 msgid "Is this even good for anything?"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC"
+msgid "Some sort of weird coin."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC10"
+msgid "Maybe it's worth something?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC100"
+msgid "I have money to burn!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PANGOLDEN"
 msgid "Yeesh, he's sucking up all the gold!"
@@ -13759,6 +13969,21 @@ msgstr ""
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.NECTAR_POD
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.NECTAR_POD"
 msgid "Semi-finished product of honey."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC"
+msgid "Is that a salary?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC10"
+msgid "Don't waste your little savings."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC100"
+msgid "Diligence is the key to wealth."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PANGOLDEN
@@ -14696,6 +14921,21 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.NECTAR_POD"
 msgid "Is sweet like honey."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC"
+msgid "Wolfgang is stronger than little coin."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC10"
+msgid "Wolfgang like coin."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC100"
+msgid "Can buy many nice things Wolfgang deserve."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PANGOLDEN"
 msgid "Hehe. Haves big nose."
@@ -15624,6 +15864,21 @@ msgstr ""
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.NECTAR_POD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.NECTAR_POD"
 msgid "Nectar makes honey, eh."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC"
+msgid "Looks valuable, eh?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC10"
+msgid "Let's buy something nice eh, Lucy?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC100"
+msgid "Can buy a lot of supplies with this."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PANGOLDEN
@@ -16556,6 +16811,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.NECTAR_POD"
 msgid "Tha sweet, sweet nectar!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC"
+msgid "Pieces o' Eight!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC10"
+msgid "Thet b'gold!!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC100"
+msgid "'tis a small tre'sure!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PANGOLDEN"
 msgid "Eatin' up all tha treasure!"
@@ -17484,6 +17754,21 @@ msgstr ""
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.NECTAR_POD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.NECTAR_POD"
 msgid "Sweet!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC"
+msgid "Twirly Tails like this"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC10"
+msgid "Can buy things now"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC100"
+msgid "Wow!!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PANGOLDEN
@@ -18436,6 +18721,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.NECTAR_POD"
 msgid "Food for little bees."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC"
+msgid "Regular coin."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC10"
+msgid "Still regular coin."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC100"
+msgid "Money makes the world go round."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PANGOLDEN"
 msgid "How are you today? Any outcome?"
@@ -19364,6 +19664,21 @@ msgstr ""
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.NECTAR_POD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.NECTAR_POD"
 msgid "Flower juice."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.OINC"
+msgid "What it for?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.OINC10"
+msgid "What is \"Gurrency\"?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.OINC100"
+msgid "Stuff for stuff! \"Gurrency\"!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PANGOLDEN
@@ -20301,6 +20616,21 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.NECTAR_POD"
 msgid "REQUIRES HONEY CONVERTER TO BECOME USEFUL"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.OINC"
+msgid "CURRENCY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.OINC10"
+msgid "I HAVE ACQUIRED FINANCIAL STABILITY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.OINC100"
+msgid "WEALTH ACQUIRED THROUGH MY SUPERIOR BRAIN"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PANGOLDEN"
 msgid "AN ORGANIC WITH A TASTE FOR METAL. CONCERNING"
@@ -20728,117 +21058,117 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Alice"
+msgid "Charlotte"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Agnes"
+msgid "Della"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Catherine"
+msgid "Henrietta"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Arabella"
+msgid "Ebba"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Belle"
+msgid "Edith"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Beryl"
+msgid "Flora"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Briar"
+msgid "Florence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Beatrice"
+msgid "Georgette"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Charlotte"
+msgid "Luella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Della"
+msgid "Alexandrina"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Henrietta"
+msgid "Alice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Ebba"
+msgid "Lilian"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Edith"
+msgid "Louise"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Flora"
+msgid "Ottilie"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Florence"
+msgid "Ophelia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Georgette"
+msgid "Sophronia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Luella"
+msgid "Agnes"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Alexandrina"
+msgid "Catherine"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Lilian"
+msgid "Arabella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Louise"
+msgid "Belle"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Ottilie"
+msgid "Beryl"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Ophelia"
+msgid "Briar"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Sophronia"
+msgid "Beatrice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -20848,122 +21178,122 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Gulliver"
+msgid "Alfred"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Frederick"
+msgid "Ewart"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Arthur"
+msgid "Larkin"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Edward"
+msgid "Herbert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "George"
+msgid "Henry"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Charles"
+msgid "Charley"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Leopold"
+msgid "Douglas"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Albert"
+msgid "Edison"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Alfred"
+msgid "Edmund"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Ewart"
+msgid "Oliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Larkin"
+msgid "Gulliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Herbert"
+msgid "Clarence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Henry"
+msgid "Merritt"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Charley"
+msgid "Sterling"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Douglas"
+msgid "Tesla"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Edison"
+msgid "Thaddeus"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Edmund"
+msgid "Wellington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Oliver"
+msgid "Frederick"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Clarence"
+msgid "Arthur"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Merritt"
+msgid "Edward"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Sterling"
+msgid "George"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Tesla"
+msgid "Charles"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Thaddeus"
+msgid "Leopold"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Wellington"
+msgid "Albert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -20973,77 +21303,77 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Hastings"
+msgid "Palmerston"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Aberdeen"
+msgid "Gladstone"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Talbot"
+msgid "Disraeli"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Thames"
+msgid "Salisbury"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Stockton"
+msgid "Kensington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Darlington"
+msgid "Conroy"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Peel"
+msgid "Greville"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Derby"
+msgid "Hastings"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Palmerston"
+msgid "Aberdeen"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Gladstone"
+msgid "Talbot"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Disraeli"
+msgid "Thames"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Salisbury"
+msgid "Stockton"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Kensington"
+msgid "Darlington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Conroy"
+msgid "Peel"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Greville"
+msgid "Derby"
 msgstr ""
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -25593,82 +25923,82 @@ msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Juniperus"
+msgid "Betula"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Betula"
+msgid "Juniperus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -26054,6 +26384,21 @@ msgstr ""
 #. STRINGS.NAMES.NECTAR_POD
 msgctxt "STRINGS.NAMES.NECTAR_POD"
 msgid "Nectar"
+msgstr ""
+
+#. STRINGS.NAMES.OINC
+msgctxt "STRINGS.NAMES.OINC"
+msgid "Oinc"
+msgstr ""
+
+#. STRINGS.NAMES.OINC10
+msgctxt "STRINGS.NAMES.OINC10"
+msgid "Tenpiece Oinc"
+msgstr ""
+
+#. STRINGS.NAMES.OINC100
+msgctxt "STRINGS.NAMES.OINC100"
+msgid "Centapiece Oinc"
 msgstr ""
 
 #. STRINGS.NAMES.PANGOLDEN

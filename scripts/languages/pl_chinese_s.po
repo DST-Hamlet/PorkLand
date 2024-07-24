@@ -615,6 +615,21 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.NECTAR_POD"
 msgid "I could use this to make honey."
 msgstr "这个花蜜我可以用它来造蜂蜜。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC"
+msgid "It's gotta be worth something."
+msgstr "这一定很有价值。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC10"
+msgid "I'm rich!"
+msgstr "发财了！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.OINC100"
+msgid "A coin worth my gentlemanly stature."
+msgstr "一枚与我绅士身份相称的硬币。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PANGOLDEN"
 msgid "It likes rich food."
@@ -1585,6 +1600,21 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.NECTAR_POD"
 msgid "Requires an enzymatic processor to convert it to honey."
 msgstr "需要经过酶的处理才能变成蜂蜜。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC"
+msgid "Pig coinage of a single denomination."
+msgstr "一元面额的猪币。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC10"
+msgid "The pigs appear to have set up an economy of sorts."
+msgstr "猪人们似乎建立了某种经济制度。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.OINC100"
+msgid "There appears to be a truffle engraved on the face of this coin!"
+msgstr "这枚硬币的表面似乎雕的是一个松露！"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PANGOLDEN"
 msgid "Evidently, it poops gold. Fascinating!"
@@ -2534,6 +2564,21 @@ msgstr "给我提供一些保护。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.NECTAR_POD"
 msgid "I wonder if I can make honey out of this."
 msgstr "我想知道我能不能用它来制作蜂蜜。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC"
+msgid "Heads I take a nap, tails I go to bed."
+msgstr "正面我打盹，反面我睡觉。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC10"
+msgid "Money can't buy happiness. Only naps can."
+msgstr "金钱买不到幸福。只有打盹可以。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.OINC100"
+msgid "I can retire now!"
+msgstr "现在我可以退休了！"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PANGOLDEN"
@@ -3485,6 +3530,21 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.NECTAR_POD"
 msgid "I know! Bees use them to make honey."
 msgstr "我知道！蜜蜂会用它们来酿蜂蜜。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC"
+msgid "My pocket money."
+msgstr "我的零花钱。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC10"
+msgid "My little money."
+msgstr "我的一点小钱。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.OINC100"
+msgid "A huge sum of money from me."
+msgstr "我的一笔巨款。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.PANGOLDEN"
 msgid "A born gold rusher."
@@ -4414,6 +4474,21 @@ msgstr "很不错，但对于一顶帽子来说着实太重了。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.NECTAR_POD"
 msgid "Not honey yet, I'm too soon."
 msgstr "还不是蜂蜜，我来的太早了。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC"
+msgid "Hopefully this will be worth my time."
+msgstr "希望这能值得我付出的时间。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC10"
+msgid "What should I buy?"
+msgstr "买点什么好呢？"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.OINC100"
+msgid "Is there truffle on this? I've never looked closely before!"
+msgstr "这上面是松露吗？我之前从没仔细看过！"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.PANGOLDEN"
@@ -5350,6 +5425,21 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.NECTAR_POD"
 msgid "The ingredients for honey making."
 msgstr "这是制作蜂蜜的原料。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC"
+msgid "I can purchase fresh groceries with this."
+msgstr "我能用这个买一些新鲜的食物。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC10"
+msgid "Only the finest to eat tonight!"
+msgstr "今晚只吃最好的！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.OINC100"
+msgid "Mon dieu! Think of the groceries this could buy!"
+msgstr "我的天啊！想想这能买多少食物！"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PANGOLDEN"
 msgid "Already has a nice golden braise."
@@ -6279,6 +6369,21 @@ msgstr "它可以保护我的脑袋！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.NECTAR_POD"
 msgid "Food for insects, not worthy of a shieldmaiden."
 msgstr "这是昆虫的食物，不配给女战士吃。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC"
+msgid "Njord bestows a gift upon me this day."
+msgstr "尼约德今天赋予我的馈赠。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC10"
+msgid "I shall be the most prosperous Valkyrie!"
+msgstr "我将成为最富有的女武神！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OINC100"
+msgid "My conquests have been profitable!"
+msgstr "我的远征让我得到了财富！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PANGOLDEN"
@@ -7214,6 +7319,21 @@ msgstr "真像个征服者。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.NECTAR_POD"
 msgid "Needs a suitable container to be turned into honey."
 msgstr "需要一个合适的器具来让它变成蜂蜜。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC"
+msgid "Petty change."
+msgstr "一点小零钱。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC10"
+msgid "What use have I for coin out here?"
+msgstr "我要这些硬币有什么用？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OINC100"
+msgid "Finally some reasonable pocket change."
+msgstr "终于有一些合理的小钱了。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PANGOLDEN"
@@ -8160,6 +8280,21 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.NECTAR_POD"
 msgid "Spiders don't like this, but other bugs do!"
 msgstr "蜘蛛不喜欢花蜜，但是其他的昆虫很喜欢！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC"
+msgid "What can we buy with this?"
+msgstr "我们可以用它买啥？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC10"
+msgid "Mom said we should always save for a rainy day."
+msgstr "妈妈说我们应该存着以备不时之需。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.OINC100"
+msgid "WOAH! We're rich!"
+msgstr "啊哦！我们有钱了！"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PANGOLDEN"
 msgid "I think he eats gold."
@@ -9089,6 +9224,21 @@ msgstr "它能保护我的头，但保护不了我的心。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.NECTAR_POD"
 msgid "Is it even worth turning this to honey?"
 msgstr "值得把这花蜜制成蜂蜜吗？"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC"
+msgid "What use is wealth?"
+msgstr "财富有什么用？"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC10"
+msgid "There are no riches in death."
+msgstr "死亡面前不分贫富。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.OINC100"
+msgid "I can't spend it when I'm dead."
+msgstr "我死前是花不完的。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PANGOLDEN"
@@ -10035,6 +10185,21 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.NECTAR_POD"
 msgid "Now to find something that'll make this into something good."
 msgstr "现在去找点能把它变成好东西的东西吧。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC"
+msgid "Good for buying projectiles. Or being projectiles."
+msgstr "可以用它购买子弹。或者就用它来作子弹。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC10"
+msgid "Moving up in the world."
+msgstr "跻身上流社会的道具。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.OINC100"
+msgid "You know what Wheeler, you deserve a treat."
+msgstr "薇勒尔你要知道，这是你应得的。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PANGOLDEN"
 msgid "I don't actually mind picking up his poop."
@@ -10975,6 +11140,21 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.NECTAR_POD"
 msgid "I wonder if this could somehow be turned to honey."
 msgstr "我想知道花蜜能不能变成蜂蜜。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC"
+msgid "I wish I could spend this on books."
+msgstr "我应该把这些钱花在书上。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC10"
+msgid "If only I could spend this on a lot of books."
+msgstr "要是我能用这钱买很多书就好了。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OINC100"
+msgid "If only I could donate this to the library."
+msgstr "要是我能把这个捐给图书馆就好了。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PANGOLDEN"
 msgid "Aurum vermilingua."
@@ -11910,6 +12090,21 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.NECTAR_POD"
 msgid "HOWFORE WILBA TURN IT TO THE SWEET YUMS?"
 msgstr "薇尔芭要怎么做才能把它变成甜蜜的美味？"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC"
+msgid "'TIS SHINY THING O' SMALL MONEYS"
+msgstr "这闪亮的东西是小钱钱"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC10"
+msgid "'TIS SHINY THING O' BIG MONEYS"
+msgstr "这闪亮的东西是大钱钱"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.OINC100"
+msgid "'TIS SHINY THING O' REALLY BIG MONEYS"
+msgstr "这闪亮的东西值好大一笔钱"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PANGOLDEN"
 msgid "NOSE HIMSELF TO BE A FOOL"
@@ -12840,6 +13035,21 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.NECTAR_POD"
 msgid "Is this even good for anything?"
 msgstr "这棵植物有什么用处吗？"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC"
+msgid "Some sort of weird coin."
+msgstr "某种奇怪的硬币。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC10"
+msgid "Maybe it's worth something?"
+msgstr "这或许更值钱？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.OINC100"
+msgid "I have money to burn!"
+msgstr "我有的是钱烧了！"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PANGOLDEN"
 msgid "Yeesh, he's sucking up all the gold!"
@@ -13764,6 +13974,21 @@ msgstr "看起来像是殖民者会戴的东西。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.NECTAR_POD"
 msgid "Semi-finished product of honey."
 msgstr "蜂蜜的半成品。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC"
+msgid "Is that a salary?"
+msgstr "这算是工资吗？"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC10"
+msgid "Don't waste your little savings."
+msgstr "一点小积蓄，不要浪费。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.OINC100"
+msgid "Diligence is the key to wealth."
+msgstr "勤奋是致富之本。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.PANGOLDEN"
@@ -14700,6 +14925,21 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.NECTAR_POD"
 msgid "Is sweet like honey."
 msgstr "像那般蜂蜜甜。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC"
+msgid "Wolfgang is stronger than little coin."
+msgstr "沃尔夫冈比小硬币强的多。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC10"
+msgid "Wolfgang like coin."
+msgstr "沃尔夫冈喜欢硬币。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OINC100"
+msgid "Can buy many nice things Wolfgang deserve."
+msgstr "能买到沃尔夫冈想要的许多好东西。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PANGOLDEN"
 msgid "Hehe. Haves big nose."
@@ -15629,6 +15869,21 @@ msgstr "有点儿冷。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.NECTAR_POD"
 msgid "Nectar makes honey, eh."
 msgstr "花蜜能酿成蜂蜜，嗯。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC"
+msgid "Looks valuable, eh?"
+msgstr "看起来很值钱，不是吗？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC10"
+msgid "Let's buy something nice eh, Lucy?"
+msgstr "我们买点好东西吧，露西？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.OINC100"
+msgid "Can buy a lot of supplies with this."
+msgstr "用这个可以买很多东西。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PANGOLDEN"
@@ -16560,6 +16815,21 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.NECTAR_POD"
 msgid "Tha sweet, sweet nectar!"
 msgstr "很甜，很甜的花蜜！"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC"
+msgid "Pieces o' Eight!"
+msgstr "价值为八个里亚尔！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC10"
+msgid "Thet b'gold!!"
+msgstr "这就是金子！！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.OINC100"
+msgid "'tis a small tre'sure!"
+msgstr "一笔小小的财富！"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PANGOLDEN"
 msgid "Eatin' up all tha treasure!"
@@ -17489,6 +17759,21 @@ msgstr "叮当响岩石的头戴物"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.NECTAR_POD"
 msgid "Sweet!"
 msgstr "好甜啊！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC"
+msgid "Twirly Tails like this"
+msgstr "卷尾巴喜欢这个"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC10"
+msgid "Can buy things now"
+msgstr "现在可以去买东西了"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.OINC100"
+msgid "Wow!!"
+msgstr "哇！！"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PANGOLDEN"
@@ -18440,6 +18725,21 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.NECTAR_POD"
 msgid "Food for little bees."
 msgstr "小蜜蜂的食物。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC"
+msgid "Regular coin."
+msgstr "普通的硬币。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC10"
+msgid "Still regular coin."
+msgstr "依然是普通的货币。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.OINC100"
+msgid "Money makes the world go round."
+msgstr "有钱能使鬼推磨，但他们毕竟只是猪。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.PANGOLDEN"
 msgid "How are you today? Any outcome?"
@@ -19369,6 +19669,21 @@ msgstr "是薇克巴顿女士书里的帽子！"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.NECTAR_POD"
 msgid "Flower juice."
 msgstr "花朵汁。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.OINC"
+msgid "What it for?"
+msgstr "这有什么用？"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.OINC10"
+msgid "What is \"Gurrency\"?"
+msgstr "什么是“钱”？"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.OINC100"
+msgid "Stuff for stuff! \"Gurrency\"!"
+msgstr "换东西的东西！“钱”！"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.PANGOLDEN"
@@ -20305,6 +20620,21 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.NECTAR_POD"
 msgid "REQUIRES HONEY CONVERTER TO BECOME USEFUL"
 msgstr "需要使用蜂蜜转换器"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.OINC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.OINC"
+msgid "CURRENCY"
+msgstr "货币"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.OINC10
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.OINC10"
+msgid "I HAVE ACQUIRED FINANCIAL STABILITY"
+msgstr "我已经获得了财政稳定性"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.OINC100
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.OINC100"
+msgid "WEALTH ACQUIRED THROUGH MY SUPERIOR BRAIN"
+msgstr "通过我聪明的大脑获得的财富"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PANGOLDEN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PANGOLDEN"
 msgid "AN ORGANIC WITH A TASTE FOR METAL. CONCERNING"
@@ -20732,117 +21062,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Alice"
+msgid "Charlotte"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Agnes"
+msgid "Della"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Catherine"
+msgid "Henrietta"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Arabella"
+msgid "Ebba"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Belle"
+msgid "Edith"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Beryl"
+msgid "Flora"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Briar"
+msgid "Florence"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Beatrice"
+msgid "Georgette"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Charlotte"
+msgid "Luella"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Della"
+msgid "Alexandrina"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Henrietta"
+msgid "Alice"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Ebba"
+msgid "Lilian"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Edith"
+msgid "Louise"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Flora"
+msgid "Ottilie"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Florence"
+msgid "Ophelia"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Georgette"
+msgid "Sophronia"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Luella"
+msgid "Agnes"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Alexandrina"
+msgid "Catherine"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Lilian"
+msgid "Arabella"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Louise"
+msgid "Belle"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Ottilie"
+msgid "Beryl"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Ophelia"
+msgid "Briar"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Sophronia"
+msgid "Beatrice"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -20852,122 +21182,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Gulliver"
+msgid "Alfred"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Frederick"
+msgid "Ewart"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Arthur"
+msgid "Larkin"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Edward"
+msgid "Herbert"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "George"
+msgid "Henry"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Charles"
+msgid "Charley"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Leopold"
+msgid "Douglas"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Albert"
+msgid "Edison"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Alfred"
+msgid "Edmund"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Ewart"
+msgid "Oliver"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Larkin"
+msgid "Gulliver"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Herbert"
+msgid "Clarence"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Henry"
+msgid "Merritt"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Charley"
+msgid "Sterling"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Douglas"
+msgid "Tesla"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Edison"
+msgid "Thaddeus"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Edmund"
+msgid "Wellington"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Oliver"
+msgid "Frederick"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Clarence"
+msgid "Arthur"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Merritt"
+msgid "Edward"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Sterling"
+msgid "George"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Tesla"
+msgid "Charles"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Thaddeus"
+msgid "Leopold"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Wellington"
+msgid "Albert"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -20977,77 +21307,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Hastings"
+msgid "Palmerston"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Aberdeen"
+msgid "Gladstone"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Talbot"
+msgid "Disraeli"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Thames"
+msgid "Salisbury"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Stockton"
+msgid "Kensington"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Darlington"
+msgid "Conroy"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Peel"
+msgid "Greville"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Derby"
+msgid "Hastings"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Palmerston"
+msgid "Aberdeen"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Gladstone"
+msgid "Talbot"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Disraeli"
+msgid "Thames"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Salisbury"
+msgid "Stockton"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Kensington"
+msgid "Darlington"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Conroy"
+msgid "Peel"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Greville"
+msgid "Derby"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -25597,82 +25927,82 @@ msgstr "箣竹"
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr "山茱萸"
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Juniperus"
+msgid "Betula"
 msgstr "柏桧"
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr "马利筋"
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr "栎"
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr "大葱"
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr "豌豆"
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr "荆蓟"
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr "麝香草"
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr "大豆"
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Betula"
+msgid "Juniperus"
 msgstr "桦木"
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr "覆盆子"
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr "胡萝卜"
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr "甘蓝"
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr "齿栗叶"
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr "车轴草"
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr "黄瓜"
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -26059,6 +26389,21 @@ msgstr "花哨的头盔"
 msgctxt "STRINGS.NAMES.NECTAR_POD"
 msgid "Nectar"
 msgstr "花蜜"
+
+#. STRINGS.NAMES.OINC
+msgctxt "STRINGS.NAMES.OINC"
+msgid "Oinc"
+msgstr "呼噜币"
+
+#. STRINGS.NAMES.OINC10
+msgctxt "STRINGS.NAMES.OINC10"
+msgid "Tenpiece Oinc"
+msgstr "十元呼噜币"
+
+#. STRINGS.NAMES.OINC100
+msgctxt "STRINGS.NAMES.OINC100"
+msgid "Centapiece Oinc"
+msgstr "百元呼噜币"
 
 #. STRINGS.NAMES.PANGOLDEN
 msgctxt "STRINGS.NAMES.PANGOLDEN"

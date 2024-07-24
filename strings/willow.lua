@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "This protects my brain.",
         NECTAR_POD = "Is this even good for anything?",
+        OINC = "Some sort of weird coin.",
+        OINC10 = "Maybe it's worth something?",
+        OINC100 = "I have money to burn!",
         PANGOLDEN = "Yeesh, he's sucking up all the gold!",
         PARROT_BLUE = {
             DEAD = "Demised.",

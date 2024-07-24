@@ -134,6 +134,9 @@ return {
         },
         METALPLATEHAT = "It'll protect my head but not my heart.",
         NECTAR_POD = "Is it even worth turning this to honey?",
+        OINC = "What use is wealth?",
+        OINC10 = "There are no riches in death.",
+        OINC100 = "I can't spend it when I'm dead.",
         PANGOLDEN = "A fool and his gold.",
         PARROT_BLUE = {
             DEAD = "To squawk, to croon, no more.",
