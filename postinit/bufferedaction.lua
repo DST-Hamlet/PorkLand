@@ -31,3 +31,34 @@ function BufferedAction:_ctor(doer, target, action, invobject, pos, recipe, dist
         end
     end
 end
+
+local CITYALARM_TRIGGER_ACTIONS = {
+    [ACTIONS.PAN] = true,
+    [ACTIONS.LIGHT] = true,
+    [ACTIONS.HARVEST] = true,
+    [ACTIONS.PICK] = true,
+    [ACTIONS.DIG] = true,
+    [ACTIONS.HAMMER] = true,
+    [ACTIONS.MINE] = true,
+    [ACTIONS.CHOP] = true,
+    [ACTIONS.PICKUP] = true,
+}
+
+local succeed = BufferedAction.Succeed
+function BufferedAction:Succeed(...)
+    local ret = { succeed(self, ...) }
+    if TheWorld.components.cityalarms
+        and self.target
+        and self.target.components.citypossession
+        and self.target.components.citypossession.enabled
+        and self.target.components.citypossession.cityID then
+
+        if CITYALARM_TRIGGER_ACTIONS[self.action] then
+            TheWorld.components.cityalarms:ChangeStatus(self.target.components.citypossession.cityID, true, self.doer)
+            if self.action == ACTIONS.PICKUP then
+                self.target.components.citypossession:Disable()
+            end
+        end
+    end
+    return unpack(ret)
+end

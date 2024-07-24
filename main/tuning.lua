@@ -491,6 +491,8 @@ local tuning = {
     IRON_LORD_TIME = 3 * 60,
 
     INFUSED_IRON_PERISHTIME = total_day_time * 2,
+
+    SNEAK_SIGHTDISTANCE = 8,
 }
 
 

@@ -62,6 +62,7 @@ local component_posts = {
     "wavemanager",
     "wisecracker",
     "witherable",
+    "workable",
     "worldstate",
 }
 
