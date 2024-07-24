@@ -28,7 +28,7 @@ local KEEP_FACE_DIST = 8
 -- local MAX_CHASE_TIME = 10
 -- local MAX_CHASE_DIST = 30
 
--- local SEE_LIGHT_DIST = 20
+local SEE_LIGHT_DIST = 20
 local TRADE_DIST = 20
 local SEE_TREE_DIST = 15
 -- local SEE_TARGET_DIST = 20
@@ -297,6 +297,13 @@ local function needlight(inst)
     return true
 end
 
+local function SafeLightDist(inst, target)
+    return (target:HasTag("player") or target:HasTag("playerlight")
+            or (target.inventoryitem and target.inventoryitem:GetGrandOwner() and target.inventoryitem:GetGrandOwner():HasTag("player")))
+        and 4
+        or target.Light:GetCalculatedRadius() / 3
+end
+
 local function ShouldGoHome(inst)
     local home_pos = inst.components.knownlocations:GetLocation("home")
     return home_pos and inst:GetDistanceSqToPoint(home_pos) > GO_HOME_DIST*GO_HOME_DIST
@@ -472,7 +479,7 @@ function CityPigBrain:OnStart()
 
             WhileNode(function() return needlight(self.inst) end, "NeedLight",
                 ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FIND_LIGHT),
-                    FindLight(self.inst))),
+                    FindLight(self.inst, SEE_LIGHT_DIST, SafeLightDist))),
 
             IfNode(function() return not self.inst:HasTag("guard") and not TheWorld.state.isfiesta end, "panic",
                 ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_PANIC),
