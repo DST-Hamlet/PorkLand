@@ -1468,7 +1468,7 @@ end
 
 PROP_DEFS.pig_shop_florist = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
     return {
-        { name = "prop_door", x_offset = 5, z_offset = 0, 
+        { name = "prop_door", x_offset = 5, z_offset = 0,
             animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_florist", background=true},
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
@@ -1874,7 +1874,7 @@ PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def, SHOPSOUND
         { name = "deco_worktable",              x_offset = 2.5,  z_offset = 4, rotation=90, flip = true  },
         { name = "deco_filecabinet",            x_offset = -2.5,  z_offset = -width/2 },
         { name = "deco_rollholder",            x_offset = 2,  z_offset = -width/2+0.7 },
-        { name = "deco_rollholder",            x_offset = 0,  z_offset = width/2-0.7, rotation=90, flip = true },
+        { name = "deco_rollholder",            x_offset = 0,  z_offset = width/2-0.7, rotation=90},
         { name = "deco_rollholder_front",            x_offset = -depth/2+0.3,  z_offset =-4 },
     }
 end

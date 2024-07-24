@@ -47,6 +47,9 @@ local function fn(Sim)
     inst.AnimState:SetBuild("pig_coin_jade")
     inst.AnimState:PlayAnimation("idle")
 
+    inst:AddTag("molebait")
+    inst:AddTag("oinc")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -72,8 +75,6 @@ local function fn(Sim)
     inst:AddComponent("inventoryitem")
 
     inst:AddComponent("bait")
-    inst:AddTag("molebait")
-    inst:AddTag("oinc")
     inst.oincvalue = 100
 
     inst:AddComponent("tradable")
