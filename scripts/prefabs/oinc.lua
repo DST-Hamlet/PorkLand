@@ -11,16 +11,16 @@ local function shine(inst)
     end
 
     if inst.entity:IsAwake() then
-        inst:DoTaskInTime(4+math.random()*5, function() shine(inst) end)
+        inst:DoTaskInTime(4 + math.random() * 5, shine)
     end
 end
 
 local function onwake(inst)
-    inst.task = inst:DoTaskInTime(4+math.random()*5, function() shine(inst) end)
+    inst.task = inst:DoTaskInTime(4 + math.random() * 5, shine)
 end
 
 local function MakeOinc(name, build, value)
-    local assets= {
+    local assets = {
         Asset("ANIM", "anim/"..build..".zip"),
     }
 
@@ -78,7 +78,7 @@ local function MakeOinc(name, build, value)
 
         return inst
     end
-    return Prefab("oinc", fn, assets)
+    return Prefab(name, fn, assets)
 end
 
 return MakeOinc("oinc", "pig_coin", 1),
