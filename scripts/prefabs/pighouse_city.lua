@@ -129,14 +129,13 @@ end
 
 local function OnCityPossession(inst)
     local selected_citizens = {}
-    local cityID = inst.components.citypossession and inst.components.citypossession.cityID or 2
-    for i = 1, inst.components.citypossession.cityID do
+    local city_id = inst.components.citypossession and inst.components.citypossession.cityID or 2
+    for i = 1, city_id do
         selected_citizens = JoinArrays(selected_citizens, city_citizens[i])
     end
 
     ConfigureSpawner(inst, selected_citizens)
 end
-
 
 local function OnHit(inst, worker)
     if not inst:HasTag("burnt") then
@@ -420,6 +419,7 @@ end
 return MakePigHouse("pighouse_city", nil, nil),
     MakePigHouse("pighouse_farm", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_farm),
     MakePigHouse("pighouse_mine", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_mine),
+
     MakePlacer("pighouse_city_placer", "pig_shop", "pig_townhouse1_green_build", "idle", nil, nil, true, 0.75)
 
 -- MakePlacer("pighouse_placer", "pig_house", "pig_house", "idle")

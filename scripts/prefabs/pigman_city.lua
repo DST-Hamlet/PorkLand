@@ -809,27 +809,25 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         -- Remove these tags so that they can be added properly when replicating components below
         inst:RemoveTag("_named")
 
-        -- TODO: get this back when string related works are finished @Jerry457
-        -- local names = {}
-        -- for i, pigname in ipairs(STRINGS.CITYPIGNAMES["UNISEX"]) do
-        --     table.insert(names, pigname)
-        -- end
+        local names = {}
+        for i, pigname in ipairs(STRINGS.CITYPIGNAMES["UNISEX"]) do
+            table.insert(names, pigname)
+        end
 
-        -- if sex then
-        --     if sex == MALE then
-        --         inst.female = false
-        --     else
-        --         inst.female = true
-        --     end
+        if sex then
+            if sex == MALE then
+                inst.female = false
+            else
+                inst.female = true
+            end
 
-        --     for i, name in ipairs(STRINGS.CITYPIGNAMES[sex]) do
-        --         table.insert(names, name)
-        --     end
-        -- end
+            for i, name in ipairs(STRINGS.CITYPIGNAMES[sex]) do
+                table.insert(names, name)
+            end
+        end
 
         inst:AddComponent("named")
-        -- inst.components.named.possiblenames = names
-        inst.components.named.possiblenames = {"placeholder pigman name"}
+        inst.components.named.possiblenames = names
         inst.components.named:PickNewName()
 
         inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
@@ -1149,21 +1147,18 @@ local function QueenCommonPostinit(inst)
 end
 
 local function QueenMasterPostinit(inst)
-    -- TODO: get this back when string related works are finished @Jerry457
-    -- inst.components.named.possiblenames = STRINGS.QUEENPIGNAMES
-    -- inst.components.named:PickNewName()
+    inst.components.named.possiblenames = STRINGS.QUEENPIGNAMES
+    inst.components.named:PickNewName()
 end
 
 --[[ Pig Mayor ]]--
 
 local function MayorMasterPostinit(inst)
-    -- TODO: get this back when string related works are finished @Jerry457
-    -- inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
+    inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
 end
 
 local function MayorShopkeeperMasterPostinit(inst)
-    -- TODO: get this back when string related works are finished @Jerry457
-    -- inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
+    inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
 end
 
 local NOHAT_TAGS = {"emote_nohat"}
