@@ -32,7 +32,9 @@ if not rawget(_G, "HotReloading") then
         ASSEMBLE_ROBOT = Action({}),
         CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
         CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
-        USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true})
+        USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
+        BARK = Action({distance = 3}),
+        RANSACK = Action({distance = 0.5}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -416,6 +418,14 @@ ACTIONS.USE_LIVING_ARTIFACT.fn = function(act)
         target.components.livingartifact:Activate(act.doer, false)
         return true
     end
+end
+
+ACTIONS.BARK.fn = function(act)
+    return true
+end
+
+ACTIONS.RANSACK.fn = function(act)
+    return true
 end
 
 

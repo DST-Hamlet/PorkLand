@@ -157,7 +157,10 @@ PrefabFiles = {
     "rainforesttrees",
     "clawpalmtrees",
     "cork",
-    "clawpalmtree_sapling"
+    "clawpalmtree_sapling",
+    "bramble_bulb",
+    "pog",
+    "pogherd",
 }
 
 Assets = {

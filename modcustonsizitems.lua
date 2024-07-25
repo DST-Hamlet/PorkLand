@@ -74,6 +74,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             "dungpile",
             "hippopotamoose",
             "peagawk",
+            pog = {image = "pogs.tex"},
             "pangolden",
             hanging_vine_patch = {image = "hanging_vine.tex"},
         },
