@@ -185,7 +185,6 @@ local function LightsOn(inst)
     inst.Light:Enable(true)
     inst.AnimState:PlayAnimation("lit", true)
     inst.SoundEmitter:PlaySound("dontstarve/pig/pighut_lighton")
-    inst.lightson = true
 end
 
 local function LightsOff(inst)
@@ -196,17 +195,18 @@ local function LightsOff(inst)
     inst.Light:Enable(false)
     inst.AnimState:PlayAnimation("idle", true)
     inst.SoundEmitter:PlaySound("dontstarve/pig/pighut_lightoff")
-    inst.lightson = false
 end
 
-local function GetStatus(inst)
-    if inst:HasTag("burnt") then
-        return "BURNT"
+local function OnHit(inst, worker)
+    if not inst:HasTag("burnt") then
+        inst.AnimState:PlayAnimation("hit")
+        local animation = inst.Light:IsEnabled() and "lit" or "idle"
+        inst.AnimState:PushAnimation(animation)
     end
 end
 
 local function OnHammered(inst, worker)
-    if inst:HasTag("fire") and inst.components.burnable then
+    if inst.components.burnable ~= nil and inst.components.burnable:IsBurning() then
         inst.components.burnable:Extinguish()
     end
     if inst.doortask then
@@ -222,21 +222,8 @@ local function OnHammered(inst, worker)
     fx:SetMaterial("wood")
     fx.Transform:SetPosition(x, y, z)
 
-    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_" .. inst.breaksoundsufix)
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_" .. inst.break_sound_sufix)
     inst:Remove()
-end
-
-local function OnHit(inst, worker)
-    if inst:HasTag("burnt") then
-        return
-    end
-
-    inst.AnimState:PlayAnimation("hit")
-    if inst.lightson then
-        inst.AnimState:PushAnimation("lit")
-    else
-        inst.AnimState:PushAnimation("idle")
-    end
 end
 
 local function OnPhaseChange(inst, phase)
@@ -247,7 +234,6 @@ local function OnPhaseChange(inst, phase)
     if phase == "day" then
         if inst.doortask then
             inst.doortask:Cancel()
-            inst.doortask = nil
         end
         inst.doortask = inst:DoTaskInTime(1, LightsOn)
 
@@ -255,11 +241,11 @@ local function OnPhaseChange(inst, phase)
             inst.components.door.disabled = nil
         end
     elseif phase == "night" then
-        LightsOff(inst)
         if inst.doortask then
             inst.doortask:Cancel()
             inst.doortask = nil
         end
+        LightsOff(inst)
 
         if inst:HasTag("pig_shop_cityhall_player") then
             inst.components.door.disabled = true
@@ -267,8 +253,8 @@ local function OnPhaseChange(inst, phase)
     end
 end
 
-local function OnIsAporkalypse(inst, isaporkalypse)
-    if isaporkalypse then
+local function OnIsFiesta(inst, isfiesta)
+    if isfiesta then
         inst.AnimState:Show("YOTP")
     else
         inst.AnimState:Hide("YOTP")
@@ -281,36 +267,67 @@ local function OnBuilt(inst)
     inst.AnimState:PushAnimation("idle")
 end
 
+local function CreatInterior(inst)
+    local interior_spawner = TheWorld.components.interiorspawner
+    local ID = inst.interiorID
+    if ID then
+        return
+    end
+
+    ID = interior_spawner:GetNewID()
+    inst.interiorID = ID
+    print("CreatInterior id: ",ID)
+
+    local name = inst.prefab .. ID
+
+    local exterior_door_def = {
+        my_door_id = name .. "_door",
+        target_door_id = name .. "_exit",
+        target_interior = ID,
+    }
+    interior_spawner:AddDoor(inst, exterior_door_def)
+
+    local textures = PIG_SHOP_TEXTURE[string.upper(inst.prefab)]
+    local floor_texture = textures and textures.FLOOR or PIG_SHOP_TEXTURE.DEFAULT.FLOOR
+    local wall_texture = textures and textures.WALL or PIG_SHOP_TEXTURE.DEFAULT.WALL
+    local minimap_texture = textures and textures.MINIMAP or PIG_SHOP_TEXTURE.DEFAULT.MINIMAP
+
+    local width = TUNING.ROOM_TINY_WIDTH -- 15
+    local depth = TUNING.ROOM_TINY_DEPTH -- 10
+    local height = nil
+
+    if inst:HasTag("pig_shop_bank") or inst:HasTag("pig_shop_tinker") then
+        height = 6
+    end
+
+    local addprops = GetPropDef(name, depth, width, exterior_door_def, SHOPSOUND_EXIT)
+
+    local cityID = nil
+    if inst.components.citypossession then
+        cityID = inst.components.citypossession.cityID
+    end
+
+    local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name .. ID, ID, addprops, {},
+        wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
+        PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
+    interior_spawner:SpawnInterior(def)
+end
+
 local function OnSave(inst, data)
     if inst:HasTag("burnt") then
         data.burnt = true
     end
-    if inst.components.burnable ~= nil and inst.components.burnable:IsBurning() then
-        -- if the player is inside we gotta keep burning
-        local interior_spawner = TheWorld.components.interiorspawner
-        if not interior_spawner:IsPlayerConsideredInside(inst.interiorID) then
-            data.burnt = true
-        else
-            data.burning = true
-        end
-    end
-
-    if inst:HasTag("spawned_shop") then
-        data.spawned_shop = true
-    end
-
-    if inst.interiorID then
-        data.interiorID = inst.interiorID
-    end
+    data.interiorID = inst.interiorID
 end
 
 local function OnLoad(inst, data)
-    if not data then
+    if data == nil or (data and data.interiorID == nil) then
+        CreatInterior(inst)
         return
     end
 
-    if data.spawned_shop then
-        inst:AddTag("spawned_shop")
+    if data.burnt then
+        inst.components.burnable.onburnt(inst)
     end
 
     if data.interiorID then
@@ -435,76 +452,23 @@ local function OnLoad(inst, data)
         end
         ]]
     end
+end
 
-    if data.burnt then
-        inst.components.burnable.onburnt(inst)
-    end
-
-    if data.burning then
-        inst:DoTaskInTime(0, function()
-            inst.components.burnable:Ignite(true)
-        end)
+local function UseDoor(inst, data)
+    if inst.use_sounds and data and data.doer and data.doer.SoundEmitter then
+        for i, sound in ipairs(inst.use_sounds) do
+            data.doer.SoundEmitter:PlaySound(sound)
+        end
     end
 end
 
-local function CreatInterior(inst, name)
-    if inst:HasTag("spawned_shop") then
-        return
+local function OnBurntUp(inst, data)
+    inst.components.fixable:AddRecinstructionStageData("burnt", inst.bank, inst.build, 1)
+    if inst.doortask then
+        inst.doortask:Cancel()
+        inst.doortask = nil
     end
-
-    local interior_spawner = TheWorld.components.interiorspawner
-
-    local ID = inst.interiorID
-    if not ID then
-        ID = interior_spawner:GetNewID()
-    end
-
-    local exterior_door_def = {
-        my_door_id = name .. ID .. "_door",
-        target_door_id = name .. ID .. "_exit",
-        target_interior = ID,
-    }
-    interior_spawner:AddDoor(inst, exterior_door_def)
-
-    if not inst.interiorID then
-        local textures = PIG_SHOP_TEXTURE[string.upper(name)]
-        local floor_texture = textures and textures.FLOOR or PIG_SHOP_TEXTURE.DEFAULT.FLOOR
-        local wall_texture = textures and textures.WALL or PIG_SHOP_TEXTURE.DEFAULT.WALL
-        local minimap_texture = textures and textures.MINIMAP or PIG_SHOP_TEXTURE.DEFAULT.MINIMAP
-
-        local width = TUNING.ROOM_TINY_WIDTH -- 15
-        local depth = TUNING.ROOM_TINY_DEPTH -- 10
-        local height = nil
-
-        if inst:HasTag("pig_shop_bank") or inst:HasTag("pig_shop_tinker") then
-            height = 6
-        end
-
-        local addprops = GetPropDef(name, depth, width, exterior_door_def, SHOPSOUND_EXIT)
-
-        local cityID = nil
-        if inst.components.citypossession then
-            cityID = inst.components.citypossession.cityID
-        end
-
-        local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name .. ID, ID, addprops, {},
-            wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
-            PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
-        interior_spawner:SpawnInterior(def)
-    end
-
-    inst.interiorID = ID
-    inst:AddTag("spawned_shop")
-end
-
-local function usedoor(inst, data)
-    if inst.usesounds then
-        if data and data.doer and data.doer.SoundEmitter then
-            for i, sound in ipairs(inst.usesounds) do
-                data.doer.SoundEmitter:PlaySound(sound)
-            end
-        end
-    end
+    inst:Remove()
 end
 
 local function canburn(inst)
@@ -556,7 +520,7 @@ local function ClearObstacle(inst)
     inst._ispathfinding:set(false)
 end
 
-local function onremove(inst)
+local function OnRemove(inst)
     inst._ispathfinding:set_local(false)
     OnIsPathFindingDirty(inst)
 end
@@ -574,8 +538,11 @@ local function MakeShop(name, build, bank, data)
 
         MakeObstaclePhysics(inst, 1.25)
 
-        inst.AnimState:SetBank(bank or "pig_shop")
-        inst.AnimState:SetBuild(build)
+        inst.bank = bank or "pig_shop"
+        inst.build = build
+
+        inst.AnimState:SetBank(inst.bank)
+        inst.AnimState:SetBuild(inst.build)
         inst.AnimState:PlayAnimation("idle", true)
         inst.AnimState:Hide("YOTP")
         if name == "pig_shop_cityhall" then
@@ -619,7 +586,7 @@ local function MakeShop(name, build, bank, data)
         -- but we don't to handle it until after our position is set
         inst:DoTaskInTime(0, InitializePathFinding)
 
-        inst:ListenForEvent("onremove", onremove)
+        inst:ListenForEvent("onremove", OnRemove)
         --------------------------------------------
 
         inst.entity:SetPristine()
@@ -628,13 +595,12 @@ local function MakeShop(name, build, bank, data)
             return inst
         end
 
-        local fixbank = "pig_shop"
-        if bank then
-            fixbank = bank
-        end
+        inst.use_sounds = data and data.sounds or nil
+        inst.break_sound_sufix = data and data.usestonebreaksound and "stone" or "wood"
+
+        inst:AddComponent("gridnudger")
 
         inst:AddComponent("inspectable")
-        inst.components.inspectable.getstatus = GetStatus
 
         inst:AddComponent("lootdropper")
 
@@ -642,16 +608,28 @@ local function MakeShop(name, build, bank, data)
         inst.components.door.outside = true
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("rubble", fixbank, build)
-        inst.components.fixable:AddRecinstructionStageData("unbuilt", fixbank, build)
+        inst.components.fixable:AddRecinstructionStageData("rubble", inst.bank, inst.build)
+        inst.components.fixable:AddRecinstructionStageData("unbuilt", inst.bank, inst.build)
 
         if not data or not data.indestructable then
             inst:AddComponent("workable")
             inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
             inst.components.workable:SetWorkLeft(4)
-            inst.components.workable:SetOnFinishCallback(OnHammered)
             inst.components.workable:SetOnWorkCallback(OnHit)
+            inst.components.workable:SetOnFinishCallback(OnHammered)
         end
+
+        inst:ListenForEvent("onbuilt", OnBuilt)
+        inst:ListenForEvent("usedoor", UseDoor)
+        inst:ListenForEvent("burntup", OnBurntUp)
+
+        inst:WatchWorldState("phase", OnPhaseChange)
+        OnPhaseChange(inst, TheWorld.state.isdusk and "day" or TheWorld.state.phase) -- Turn lights on for dusk too
+        inst:WatchWorldState("isfiesta", OnIsFiesta)
+        OnIsFiesta(inst, TheWorld.state.isfiesta)
+
+        inst.OnSave = OnSave
+        inst.OnLoad = OnLoad
 
         if not data or not data.unburnable then
             MakeLargeBurnable(inst, nil, nil, true)
@@ -661,58 +639,10 @@ local function MakeShop(name, build, bank, data)
 
         MakeSnowCovered(inst, 0.01)
 
-        inst:AddComponent("gridnudger")
-
-        inst.OnSave = OnSave
-        inst.OnLoad = OnLoad
-        inst.breaksoundsufix = data and data.usestonebreaksound and "stone" or "wood"
-        if data and data.sounds then
-            inst.usesounds = data.sounds
-        end
-
-        inst:ListenForEvent("onbuilt", OnBuilt)
-        inst:ListenForEvent("usedoor", usedoor)
-        inst:ListenForEvent("burntup", function(inst)
-            inst.components.fixable:AddRecinstructionStageData("burnt", fixbank, build, 1)
-            if inst.doortask then
-                inst.doortask:Cancel()
-                inst.doortask = nil
-            end
-            inst:Remove()
-        end)
-
-        inst:WatchWorldState("phase", OnPhaseChange)
-        OnPhaseChange(inst, TheWorld.state.isdusk and "day" or TheWorld.state.phase) -- Turn lights on for dusk too
-        inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
-        OnIsAporkalypse(inst, TheWorld.state.isaporkalypse)
-
-        inst:DoTaskInTime(0, function()
-            CreatInterior(inst, name)
-        end)
-
         return inst
     end
 
     return Prefab(name, fn, assets, prefabs)
-end
-
-local function spawner_fn()
-    local inst = CreateEntity()
-
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-
-    inst.Transform:SetEightFaced()
-
-    MakeObstaclePhysics(inst, 1)
-    inst.AnimState:SetBank("pig_shop")
-    inst.AnimState:PlayAnimation("idle", true)
-
-    inst:AddTag("pig_shop_spawner")
-
-    inst:DoTaskInTime(0, inst.Remove)
-
-    return inst
 end
 
 -- TODO: Make this work
@@ -743,8 +673,6 @@ return MakeShop("pig_shop_deli",            "pig_shop_deli",        nil,        
        MakeShop("pig_shop_tinker",          "pig_shop_tinker",      nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, usestonebreaksound = true}),
        MakeShop("pig_shop_cityhall",        "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, nomusic = true}),
        MakeShop("pig_shop_cityhall_player", "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, usestonebreaksound = true, unburnable = true, nomusic = true}),
-
-       Prefab("pig_shop_spawner", spawner_fn, assets, spawner_prefabs),
 
        MakePlacer("pig_shop_deli_placer",        "pig_shop",     "pig_shop_deli",        "idle", false, false, true),
        MakePlacer("pig_shop_general_placer",     "pig_shop",     "pig_shop_general",     "idle", false, false, true),

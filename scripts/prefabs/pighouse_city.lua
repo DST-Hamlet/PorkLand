@@ -191,7 +191,7 @@ local function OnBuilt(inst)
     inst.AnimState:PlayAnimation("place")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/wood_2")
     inst.AnimState:PushAnimation("idle")
-    OnCityPossession(inst)
+    ConfigureSpawner(inst, JoinArrays(city_citizens[1], city_citizens[2]))
 end
 
 
@@ -241,7 +241,6 @@ end
 
 local function OnReconstructe(inst)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/brick")
-    OnCityPossession(inst)
 end
 
 local function OnIsPathFindingDirty(inst)
