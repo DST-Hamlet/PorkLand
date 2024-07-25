@@ -78,8 +78,6 @@ local function fn()
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
     MakeHauntableLaunch(inst)
 
-
-
     inst:WatchWorldState("season", OnseasonChange)
     OnseasonChange(inst, TheWorld.state.season)
 
