@@ -207,7 +207,7 @@ end
 
 
 local function GuardGoHomeAction(inst)
-    if TheWorld.state.isfiesta and HasValidHome(inst) then
+    if TheWorld.state.isaporkalypse and HasValidHome(inst) then
         return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
     end
 
