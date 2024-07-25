@@ -297,13 +297,13 @@ local function MakeHedgeType(data)
 
     local function onsave(inst, data)
         if inst.components.shearable.canbesheared then
-            data.shaveable = true
+            data.canbesheared = true
         end
     end
 
     local function onload(inst, data)
         if data then
-            if data.shaveable then
+            if data.canbesheared then
                 age(inst)
             else
                 unage(inst)
