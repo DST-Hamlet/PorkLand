@@ -366,8 +366,11 @@ end
 
 local _GetTile = Map.GetTile
 function Map:GetTile(x, y, ...)
-    if x and y and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x * 4, y * 4) then
-        if TheWorld.components.interiorspawner:IsInInteriorRoom(x * 4, y * 4) then
+    local w, h = TheWorld.Map:GetSize()
+    local tx = x * TILE_SCALE - w / 2
+    local tz = y * TILE_SCALE - h / 2
+    if x and y and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(tx, tz) then
+        if TheWorld.components.interiorspawner:IsInInteriorRoom(tx, tz) then
             return WORLD_TILES.INTERIOR
         else
             return WORLD_TILES.IMPASSABLE
