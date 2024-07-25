@@ -4,6 +4,9 @@ local function OnCreate(inst, scenariorunner)
     if inst.OnCityPossession then
         inst:OnCityPossession()
     end
+    if inst.components.gridnudger then
+        inst.components.gridnudger:Nudge()
+    end
 end
 
 local function OnLoad(inst, scenariorunner)

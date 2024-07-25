@@ -139,39 +139,7 @@ local function OnEntityWake(inst)
     end
 end
 
-local function OnIsPathFindingDirty(inst)
-    if inst._ispathfinding:value() then
-        if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
-            inst._pfpos = inst:GetPosition()
-            TheWorld.Pathfinder:AddWall(inst._pfpos:Get())
-        end
-    elseif inst._pfpos ~= nil then
-        TheWorld.Pathfinder:RemoveWall(inst._pfpos:Get())
-        inst._pfpos = nil
-    end
-end
-
-local function InitializePathFinding(inst)
-    inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
-    OnIsPathFindingDirty(inst)
-end
-
-local function MakeObstacle(inst)
-    inst.Physics:SetActive(true)
-    inst._ispathfinding:set(true)
-end
-
-local function ClearObstacle(inst)
-    inst.Physics:SetActive(false)
-    inst._ispathfinding:set(false)
-end
-
-local function onremove(inst)
-    inst._ispathfinding:set_local(false)
-    OnIsPathFindingDirty(inst)
-end
-
-local function fn(Sim)
+local function fn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
@@ -186,8 +154,8 @@ local function fn(Sim)
 
     inst.Light:SetIntensity(INTENSITY)
     inst.Light:SetColour(197/255, 197/255, 10/255)
-    inst.Light:SetFalloff( 0.9 )
-    inst.Light:SetRadius( 5 )
+    inst.Light:SetFalloff(0.9)
+    inst.Light:SetRadius(5)
     inst.Light:Enable(false)
 
     inst:AddTag("CITY_LAMP")
@@ -203,17 +171,6 @@ local function fn(Sim)
     inst.AnimState:Hide("GLOW")
 
     inst:AddTag("lightsource")
-
-    ------- Copied from prefabs/wall.lua -------
-    inst._pfpos = nil
-    inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
-    MakeObstacle(inst)
-    -- Delay this because makeobstacle sets pathfinding on by default
-    -- but we don't to handle it until after our position is set
-    inst:DoTaskInTime(0, InitializePathFinding)
-
-    inst:ListenForEvent("onremove", onremove)
-    --------------------------------------------
 
     inst.entity:SetPristine()
 
@@ -263,8 +220,6 @@ local function fn(Sim)
     inst:AddComponent("fixable")
     inst.components.fixable:AddRecinstructionStageData("rubble","lamp_post","lamp_post2_city_build")
 
-    inst:AddComponent("gridnudger")
-
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake
 
@@ -272,4 +227,4 @@ local function fn(Sim)
 end
 
 return Prefab("city_lamp", fn, assets),
-    MakePlacer("city_lamp_placer", "lamp_post", "lamp_post2_city_build", "idle", false, false, true)
+    MakePlacer("city_lamp_placer", "lamp_post", "lamp_post2_city_build", "idle")

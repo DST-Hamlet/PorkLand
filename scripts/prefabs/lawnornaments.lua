@@ -4,9 +4,9 @@ local prefabs = {
 
 local function onHammered(inst, worker)
     local x, y, z = inst.Transform:GetWorldPosition()
-    for i=1,math.random(3,4) do
+    for i = 1, math.random(3,4) do
         local fx = SpawnPrefab("robot_leaf_fx")
-        fx.Transform:SetPosition(x + (math.random()*2) , y+math.random()*0.5, z + (math.random()*2))
+        fx.Transform:SetPosition(x + (math.random() * 2) , y + math.random() * 0.5, z + (math.random() * 2))
         if math.random() < 0.5 then
             fx.Transform:SetScale(-1,1,-1)
         end
@@ -25,13 +25,13 @@ local function onHit(inst, worker)
 	inst.AnimState:PushAnimation("idle", false)
 
     local fx = SpawnPrefab("robot_leaf_fx")
-    local x, y, z= inst.Transform:GetWorldPosition()
-    fx.Transform:SetPosition(x, y + math.random()*0.5, z)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    fx.Transform:SetPosition(x, y + math.random() * 0.5, z)
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/vine_hack")
 end
 
-local function onBuilt(inst)
+local function OnBuilt(inst)
     inst.AnimState:PlayAnimation("place")
     inst.AnimState:PushAnimation("idle")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/lawnornaments/repair")
@@ -81,15 +81,13 @@ local function MakeLawnornament(n)
 
         MakeSnowCovered(inst)
 
-        inst:ListenForEvent( "onbuilt", onBuilt)
+        inst:ListenForEvent("onbuilt", OnBuilt)
 
         inst:AddComponent("fixable")
         inst.components.fixable:AddRecinstructionStageData("burnt", "topiary0".. n, "topiary0".. n)
 
         MakeMediumBurnable(inst, nil, nil, true)
         MakeMediumPropagator(inst)
-
-        inst:AddComponent("gridnudger")
 
         inst:ListenForEvent("burntup", inst.Remove)
 

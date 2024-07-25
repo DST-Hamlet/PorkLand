@@ -190,17 +190,17 @@ local function OnIsPathFindingDirty(inst)
         if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
             inst._pfpos = inst:GetPosition()
             local x, _, z = inst._pfpos:Get()
-            for delta_x = -1, 1 do
-                for delta_z = -1, 1 do
-                    TheWorld.Pathfinder:AddWall(x + delta_x, 0, z + delta_z)
+            for delta_x = 0, 1 do
+                for delta_z = 0, 1 do
+                    TheWorld.Pathfinder:AddWall(x + delta_x - 0.5, 0, z + delta_z - 0.5)
                 end
             end
         end
     elseif inst._pfpos ~= nil then
         local x, _, z = inst._pfpos:Get()
-        for delta_x = -1, 1 do
-            for delta_z = -1, 1 do
-                TheWorld.Pathfinder:RemoveWall(x + delta_x, 0, z + delta_z)
+        for delta_x = 0, 1 do
+            for delta_z = 0, 1 do
+                TheWorld.Pathfinder:RemoveWall(x + delta_x - 0.5, 0, z + delta_z - 0.5)
             end
         end
         inst._pfpos = nil
@@ -274,6 +274,7 @@ local function fn()
     end
 
     inst:AddComponent("gridnudger")
+    inst.components.gridnudger.snap_to_grid = true
 
     inst:AddComponent("inspectable")
 
@@ -345,4 +346,4 @@ end
 
 return Prefab("pig_guard_tower", fn, assets, prefabs),
     Prefab("pig_guard_tower_palace", palacefn, assets, prefabs),
-    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, false, true)
+    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, true)
