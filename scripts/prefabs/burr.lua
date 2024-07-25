@@ -5,6 +5,10 @@ local assets =
     Asset("ANIM", "anim/burr.zip"),
 }
 
+local function custom_candeploy_fn(inst, pt, mouseover, deployer, rot)
+    return TheWorld.Map:ReverseIsVisualGroundAtPoint(pt:Get()) and TheWorld.Map:CanDeployPlantAtPoint(pt, inst)
+end
+
 local function Plant(point)
     local sapling = SpawnPrefab("burr_sapling")
     sapling:StartGrowing()
@@ -45,6 +49,8 @@ local function fn()
     inst:AddTag("plant")
     inst:AddTag("cattoy")
 
+    inst._custom_candeploy_fn = custom_candeploy_fn
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -64,13 +70,15 @@ local function fn()
     inst:AddComponent("inventoryitem")
 
     inst:AddComponent("deployable")
-    inst.components.deployable:SetDeployMode(DEPLOYMODE.PLANT)
+    inst.components.deployable:SetDeployMode(DEPLOYMODE.CUSTOM)
     inst.components.deployable.ondeploy = OnDeploy
 
     MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
     MakeHauntableLaunch(inst)
+
+
 
     inst:WatchWorldState("season", OnseasonChange)
     OnseasonChange(inst, TheWorld.state.season)
