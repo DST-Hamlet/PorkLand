@@ -224,7 +224,7 @@ local function OnLoad(inst, data)
         end
         if data.bank then
             inst.bank = data.bank
-            inst.AnimState:SetBank(inst.animset)
+            inst.AnimState:SetBank(inst.bank)
         end
         if data.color then
             inst.color = data.color
