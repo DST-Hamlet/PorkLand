@@ -51,3 +51,5 @@ ISLAND_TAGS = {
     "island_BFB",
     "island_ancient",
 }
+
+FUELTYPE.CORK = "CORK"
