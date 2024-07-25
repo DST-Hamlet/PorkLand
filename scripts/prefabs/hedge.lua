@@ -296,7 +296,7 @@ local function MakeHedgeType(data)
     end
 
     local function onsave(inst, data)
-        if inst:HasTag("shaveable") then
+        if inst.components.shearable.canbesheared then
             data.shaveable = true
         end
     end
