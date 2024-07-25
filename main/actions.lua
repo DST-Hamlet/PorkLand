@@ -759,7 +759,7 @@ local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 
 local _SCENE_container = SCENE.container
 function SCENE.container(inst, doer, actions, right, ...)
-    if not inst:HasTag("bundle") and not inst:HasTag("burnt")
+    if not inst:HasTag("bundle") and not inst:HasTag("burnt") and not inst:HasTag("noslot")
         and doer.replica.inventory
         and not (doer.replica.rider ~= nil and doer.replica.rider:IsRiding())
         and right and inst.replica.container.type == "boat" then
