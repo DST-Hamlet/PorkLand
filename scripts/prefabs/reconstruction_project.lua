@@ -55,6 +55,10 @@ local function Fix(inst, fixer)
         reconstructed.AnimState:PlayAnimation(reconstruction_anims.play or "place")
         reconstructed.AnimState:PushAnimation(reconstruction_anims.push or "idle")
 
+        if inst.reconstruction_overridebuild then
+            reconstructed.AnimState:AddOverrideBuild(inst.reconstruction_overridebuild)
+        end
+
         if inst.cityID then
             if not reconstructed.components.citypossession then
                 reconstructed:AddComponent("citypossession")
@@ -70,7 +74,7 @@ local function Fix(inst, fixer)
         end
 
         if reconstructed.OnReconstructe then
-            reconstructed:OnReconstructed()
+            reconstructed:OnReconstructe()
         end
 
     end
@@ -98,6 +102,7 @@ local function OnSave(inst, data)
     data.reconstruction_stage = inst.reconstruction_stage
     data.reconstruction_stages = inst.reconstruction_stages
     data.reconstruction_anims = inst.reconstruction_anims
+    data.reconstruction_overridebuild = inst.reconstruction_overridebuild
     data.interiorID = inst.interiorID
     data.cityID = inst.cityID
     data.name = inst._name:value()
@@ -116,6 +121,7 @@ local function OnLoad(inst, data)
         inst.reconstruction_prefab = data.reconstruction_prefab
         inst.reconstruction_stages = data.reconstruction_stages
         inst.reconstruction_anims = data.reconstruction_anims
+        inst.reconstruction_overridebuild = data.reconstruction_overridebuild
         inst.interiorID = data.interiorID
         inst.cityID = data.cityID
 

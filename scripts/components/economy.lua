@@ -4,14 +4,7 @@ local Economy = Class(function(self, inst)
     self.inst = inst
     self.cities = {}
 
-    self:WatchWorldState("cycles", self.processdelays)
-
-    self.inst:DoTaskInTime(0.1, function()
-        -- Fixup for beta glitch when a world was saved without a city on it.
-        if not self.cities or #self.cities < 1 then
-            self:AddCity(1)
-        end
-    end)
+    self:WatchWorldState("cycles", self.ProcessDelays)
 end)
 
 function Economy:OnSave()
@@ -55,17 +48,11 @@ function Economy:LoadPostPass(newents, savedata)
 end
 
 function Economy:GetTradeItems(traderprefab)
-    if TRADER[traderprefab] then
-        return TRADER[traderprefab].items
-    end
+    return TRADER[traderprefab] and TRADER[traderprefab].items or nil
 end
 
 function Economy:GetTradeItemDesc(traderprefab)
-    if not TRADER[traderprefab] then
-        return nil
-    end
-
-    return TRADER[traderprefab].desc
+    return TRADER[traderprefab] and TRADER[traderprefab].desc or nil
 end
 
 function Economy:GetDelay(traderprefab, city, inst)
@@ -82,7 +69,7 @@ function Economy:MakeTrade(traderprefab, city, inst)
     return TRADER[traderprefab].reward, TRADER[traderprefab].rewardqty
 end
 
-function Economy:processdelays()
+function Economy:ProcessDelays()
     print("Resetting trade delays")
 
     for c, city in ipairs(self.cities) do
@@ -100,8 +87,8 @@ end
 function Economy:AddCity(city)
     self.cities[city] = {}
 
-    for traderprefab, data in pairs(TRADER) do
-        self.cities[city][traderprefab] = {
+    for trader_prefab, _ in pairs(TRADER) do
+        self.cities[city][trader_prefab] = {
             GUIDS = {},
         }
     end

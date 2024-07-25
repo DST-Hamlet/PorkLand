@@ -278,7 +278,7 @@ function Cityalarms:ChangeStatus(city, alarmed, threat, ignore_royal_status)
 
         local towers = TheSim:FindEntities(x, y, z, tower_range, {"guard_tower"})
         for i, tower in ipairs(towers) do
-            tower:callguards(threat)
+            tower:CallGuards(threat)
             playmusic = true
         end
 
@@ -320,4 +320,3 @@ function Cityalarms:LongUpdate(dt)
 end
 
 return Cityalarms
-

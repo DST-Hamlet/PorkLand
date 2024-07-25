@@ -71,12 +71,6 @@ local build_scale_map = {
     pig_townhouse1_brown_build = 0.75,
 }
 
-local function GetStatus(inst)
-    if inst:HasTag("burnt") then
-        return "BURNT"
-    end
-end
-
 local function LightsOn(inst)
     if not inst:HasTag("burnt") then
         inst.Light:Enable(true)
@@ -140,11 +134,8 @@ end
 local function OnHit(inst, worker)
     if not inst:HasTag("burnt") then
         inst.AnimState:PlayAnimation("hit")
-        if inst.Light:IsEnabled() then
-            inst.AnimState:PushAnimation("lit")
-        else
-            inst.AnimState:PushAnimation("idle")
-        end
+        local animation = inst.Light:IsEnabled() and "lit" or "idle"
+        inst.AnimState:PushAnimation(animation)
     end
 end
 
@@ -358,7 +349,6 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst:AddComponent("gridnudger")
 
         inst:AddComponent("inspectable")
-        inst.components.inspectable.getstatus = GetStatus
 
         inst:AddComponent("lootdropper")
 
@@ -383,8 +373,8 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
             inst.OnCityPossession = OnCityPossession
         end
 
-        OnDay(inst, TheWorld.state.isday)
         inst:WatchWorldState("isday", OnDay)
+        OnDay(inst, TheWorld.state.isday)
         inst:ListenForEvent("burntup", OnBurntUp)
         inst:ListenForEvent("onignite", OnIgnite)
         inst:ListenForEvent("onbuilt", OnBuilt)

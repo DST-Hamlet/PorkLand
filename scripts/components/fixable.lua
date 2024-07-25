@@ -24,6 +24,7 @@ function Fixable:OnRemoveEntity()
         fixer.reconstruction_prefab = self.reconstruction_prefab or self.inst.prefab
         fixer.reconstruction_stages = self.reconstruction_stages
         fixer.reconstruction_anims = self.reconstruction_anims
+        fixer.reconstruction_overridebuild = self.overridebuild
         fixer.interiorID = self.inst.interiorID
         fixer.cityID = self.inst.components.citypossession and self.inst.components.citypossession.cityID or nil
 

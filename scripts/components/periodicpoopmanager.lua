@@ -33,6 +33,8 @@ function PeriodicPoopManager:OnPoop(city_id, poop)
     self.poop_data[poop.GUID] = city_id
 end
 
+local MUST_TAGS = {"city_pig"}
+local CANT_TAGS = {"guard"}
 function PeriodicPoopManager:OnPickedUp(city_id, poop, owner)
     self.poop_count_per_city[city_id] = self.poop_count_per_city[city_id] or 0
 
@@ -45,7 +47,7 @@ function PeriodicPoopManager:OnPickedUp(city_id, poop, owner)
 
     local closest_pig = FindEntity(owner, 20, function(inst)
         return inst.components.citypossession and inst.components.citypossession.cityID == city_id
-    end, {"city_pig"}, {"guard"})
+    end, MUST_TAGS, CANT_TAGS)
     if closest_pig then
         closest_pig.poop_tip = owner
     end
