@@ -98,23 +98,28 @@ local function sayline(inst, line, mood)
     inst.components.talker:Say(line, 1.5)
 end
 
+local function ondonetalking(inst)
+    inst.SoundEmitter:KillSound("talk")
+end
+
 local function ontalk(inst, script, mood)
     -- TODO: Make alarmed mood work
+    inst.SoundEmitter:KillSound("talk")
     if inst:HasTag("guard") then
-        if mood and mood == "alarmed" then
+        if mood == "alarmed" then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/guard_alert")
         else
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk_gaurd", "talk")
         end
     else
         if inst.female then
-            if mood and mood == "alarmed" then
+            if mood == "alarmed" then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream_female")
             else
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk_female", "talk")
             end
         else
-            if mood and mood == "alarmed" then
+            if mood == "alarmed" then
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/scream")
             else
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/conversational_talk", "talk")
@@ -771,6 +776,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
 
         inst:AddComponent("talker")
         inst.components.talker.ontalk = ontalk
+        inst.components.talker.donetalkingfn = ondonetalking
         inst.components.talker.fontsize = 35
         inst.components.talker.font = TALKINGFONT
         inst.components.talker.offset = Vector3(0, -600, 0)
