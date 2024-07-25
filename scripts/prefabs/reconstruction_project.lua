@@ -126,7 +126,7 @@ local function OnLoad(inst, data)
         inst.cityID = data.cityID
 
         inst:SetConstructionPrefabName(data.name)
-        inst:SetReconstructionStaged(data.reconstruction_stage)
+        inst:SetReconstructionStage(data.reconstruction_stage)
 
         if data.childname then
             inst.spawner_data = {
