@@ -463,7 +463,7 @@ local function UseDoor(inst, data)
 end
 
 local function OnBurntUp(inst, data)
-    inst.components.fixable:AddRecinstructionStageData("burnt", inst.bank, inst.build, 1)
+    inst.components.fixable:AddRecinstructionStageData("burnt", inst.bank, inst.build, nil, 1)
     if inst.doortask then
         inst.doortask:Cancel()
         inst.doortask = nil
