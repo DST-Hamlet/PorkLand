@@ -2,15 +2,13 @@ local assets = {
     Asset("ANIM", "anim/pighouse_rubble.zip"),
 }
 
-local prefabs = {}
-
 -- 30~60 seconds
-local REBUILD_REACTION_TIME = TUNING.SEG_TIME
-local REBUILD_REACTION_VARIANCE = TUNING.SEG_TIME
+-- local REBUILD_REACTION_TIME = TUNING.SEG_TIME
+-- local REBUILD_REACTION_VARIANCE = TUNING.SEG_TIME
 
-local OFF_SCREENDIST = 30
-local AUTO_REPAIRDIST = 100
-local AUTO_REPAIRDIST_SQ = AUTO_REPAIRDIST * AUTO_REPAIRDIST
+-- local OFF_SCREENDIST = 30
+-- local AUTO_REPAIRDIST = 100
+-- local AUTO_REPAIRDIST_SQ = AUTO_REPAIRDIST * AUTO_REPAIRDIST
 
 local function SetConstructionPrefabName(inst, name)
     inst._name:set(name)
@@ -190,4 +188,4 @@ local function fn()
     return inst
 end
 
-return Prefab("reconstruction_project", fn, assets, prefabs)
+return Prefab("reconstruction_project", fn, assets)
