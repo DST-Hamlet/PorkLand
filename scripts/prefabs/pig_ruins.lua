@@ -72,7 +72,7 @@ SetSharedLootTable("basalt",{
 })
 
 local function TriggerDarts(inst)
-    local pt = Vector3(inst.Transform:GetWorldPosition())
+    local pt = inst:GetPosition()
     local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 40, {"dartthrower"}, {"INLIMBO"})
     for i, v in ipairs(ents) do
         if v.components.autodartthrower then
@@ -275,7 +275,7 @@ local ruin_data = {
         loot = "goldnugget",
         loot_num = 2,
         master_postinit = function(inst)
-            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_HEAD"])
+            inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_PIG"])
             inst.OnEntityWake = OnEntityWake
             inst.OnRemoveEntity = OnRemoveEntity
         end

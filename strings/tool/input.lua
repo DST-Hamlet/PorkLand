@@ -1,13 +1,15 @@
-ds_path = "D:/Steam/steamapps/common/dont_starve"  -- don't dont_starve file path, need DLC003
+ds_path = "D:/Program Files/Steam/steamapps/common/dont_starve"  -- don't dont_starve file path, need DLC003
 
-local dst_string_path = "D:/Steam/steamapps/common/Don't Starve Together/mods/string"
+local dst_string_path = "E:/my/game/Dont starve/Porklandstring"
 
 package.path = package.path .. ";../?.lua"
 package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-    ["KEY"] = "NEW_KEY",
+    ["OINC10"] = "OINC10",
+    ["OINC100"] = "OINC100",
+    ["OINC"] = "OINC",
 }
 
 cn_input_strings = require("string_cn")

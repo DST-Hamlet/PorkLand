@@ -8,7 +8,7 @@ local prefabs =
     "spoiled_food",
 }
 
--- NOTE(ziwbi): Honestly just put these in antchest instead, 
+-- NOTE(ziwbi): Honestly just put these in antchest instead,
 -- for the perish rate, there's already Preserver:SetPerishRateMultiplier method for that
 
 -- local function TransformToHoney(inst, antchest)
@@ -25,7 +25,7 @@ local prefabs =
 --         local honey = SpawnPrefab("honey")
 --         local position = Vector3(antchest.Transform:GetWorldPosition())
 --         honey.Transform:SetPosition(position.x, position.y, position.z)
---         antchest.components.container:GiveItem(honey, nil, Vector3(inst.Transform:GetWorldPosition()))
+--         antchest.components.container:GiveItem(honey, nil, inst:GetPosition())
 --     end
 -- end
 

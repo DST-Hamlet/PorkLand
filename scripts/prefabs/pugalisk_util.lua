@@ -144,7 +144,7 @@ local function DetermineAction(inst)
             inst.angle = angle
 
             if inst.sg:HasStateTag("underground") then
-                local pos = Vector3(inst.Transform:GetWorldPosition())
+                local pos = inst:GetPosition()
                 inst.components.multibody:SpawnBody(inst.angle, 0, pos)
             else
                 inst.wantstopremove = true

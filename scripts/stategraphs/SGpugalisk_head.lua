@@ -16,7 +16,7 @@ end
 
 local function spawngaze(inst)
     local beam = SpawnPrefab("gaze_beam")
-    local pt = Vector3(inst.Transform:GetWorldPosition())
+    local pt = inst:GetPosition()
     local angle = inst.Transform:GetRotation() * DEGREES
     local radius = 4
     local offset = Vector3(math.cos(angle), 0, math.sin(-angle)) * radius
@@ -461,7 +461,7 @@ local states =
         events =
         {
             EventHandler("animover", function(inst)
-                local pos = Vector3(inst.Transform:GetWorldPosition())
+                local pos = inst:GetPosition()
                 inst.components.multibody:SpawnBody(inst.angle,0.3,pos)
                 inst.sg:GoToState("underground")
             end),

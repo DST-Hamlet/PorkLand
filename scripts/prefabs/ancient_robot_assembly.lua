@@ -54,7 +54,7 @@ local function OnAssemble(inst)
     RefreshBuild(inst)
     inst.AnimState:PlayAnimation("merge")
     inst.AnimState:PushAnimation("idle", true)
-    local pos = Vector3(inst.Transform:GetWorldPosition())
+    local pos = inst:GetPosition()
     TheWorld:PushEvent("ms_sendlightningstrike", pos)
     SpawnPrefab("ancient_hulk_laserhit"):SetTarget(inst)
 
