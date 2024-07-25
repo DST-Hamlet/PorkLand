@@ -1,13 +1,3 @@
-local assets=
-{
-	Asset("ANIM", "anim/pig_coin.zip"),
-}
-
-local prefabs =
-{
-
-}
-
 local function shine(inst)
     inst.task = nil
     -- hacky, need to force a floatable anim change
@@ -29,59 +19,69 @@ local function onwake(inst)
     inst.task = inst:DoTaskInTime(4+math.random()*5, function() shine(inst) end)
 end
 
-local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddPhysics()
-	inst.entity:AddNetwork()
+local function MakeOinc(name, build, value)
+    local assets= {
+        Asset("ANIM", "anim/"..build..".zip"),
+    }
 
-    MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst, "idle_water", "idle")
-    MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
+    local function fn()
+        local inst = CreateEntity()
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddSoundEmitter()
+        inst.entity:AddPhysics()
+        inst.entity:AddNetwork()
 
-	inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+        MakeInventoryPhysics(inst)
+        MakeInventoryFloatable(inst, "idle_water", "idle")
+        MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
 
-    inst.AnimState:SetBank("coin")
-    inst.AnimState:SetBuild("pig_coin")
-    inst.AnimState:PlayAnimation("idle")
+        inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
 
-    inst:AddTag("molebait")
-    inst:AddTag("oinc")
+        inst.AnimState:SetBank("coin")
+        inst.AnimState:SetBuild(build)
+        inst.AnimState:PlayAnimation("idle")
 
-    inst.entity:SetPristine()
+        inst:AddTag("molebait")
+        inst:AddTag("oinc")
 
-    if not TheWorld.ismastersim then
+        inst.entity:SetPristine()
+
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
+        inst:AddComponent("edible")
+        inst.components.edible.foodtype = FOODTYPE.ELEMENTAL
+        inst.components.edible.hungervalue = 1
+
+        inst:AddComponent("currency")
+
+        inst:AddComponent("inspectable")
+
+        inst:AddComponent("stackable")
+        inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+
+        -- inst:AddComponent("appeasement")
+        -- inst.components.appeasement.appeasementvalue = TUNING.APPEASEMENT_TINY
+
+        inst:AddComponent("waterproofer")
+        inst.components.waterproofer.effectiveness = 0
+        inst:AddComponent("inventoryitem")
+
+        inst:AddComponent("bait")
+        inst.oincvalue = value
+
+        inst:AddComponent("tradable")
+
+        inst.OnEntityWake = onwake
+
         return inst
     end
-
-    inst:AddComponent("edible")
-    inst.components.edible.foodtype = FOODTYPE.ELEMENTAL
-    inst.components.edible.hungervalue = 1
-
-    inst:AddComponent("currency")
-
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-
-    -- inst:AddComponent("appeasement")
-    -- inst.components.appeasement.appeasementvalue = TUNING.APPEASEMENT_TINY
-
-    inst:AddComponent("waterproofer")
-    inst.components.waterproofer.effectiveness = 0
-    inst:AddComponent("inventoryitem")
-
-    inst:AddComponent("bait")
-    inst.oincvalue = 1
-
-    inst:AddComponent("tradable")
-
-    inst.OnEntityWake = onwake
-
-    return inst
+    return Prefab("oinc", fn, assets)
 end
 
-return Prefab("oinc", fn, assets, prefabs)
+return MakeOinc("oinc", "pig_coin", 1),
+    MakeOinc("oinc10", "pig_coin_silver", 10),
+    MakeOinc("oinc100", "pig_coin_jade", 100)
+

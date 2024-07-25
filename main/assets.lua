@@ -165,8 +165,6 @@ PrefabFiles = {
     "reconstruction_project",
 
     "oinc",
-    "oinc10",
-    "oinc100",
 }
 
 Assets = {
