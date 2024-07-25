@@ -87,8 +87,8 @@ PrefabFiles = {
     "teatree_nut",
     "teatrees",
     "tree_pillar",
-    -- "tuber",
-    -- "tubertrees",
+    "tuber",
+    "tubertrees",
     "wave_ripple",
     "vampirebat",
     "venomgland",
@@ -152,6 +152,12 @@ PrefabFiles = {
     "infused_iron",
     "living_artifact",
     "ancient_hulk_laser",
+    "burr",
+    "poisonmist",
+    "rainforesttrees",
+    "clawpalmtrees",
+    "cork",
+    "clawpalmtree_sapling"
 }
 
 Assets = {

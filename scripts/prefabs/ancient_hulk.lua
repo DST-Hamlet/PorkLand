@@ -80,41 +80,35 @@ local function OnAttacked(inst, data)
     inst.components.combat:SetTarget(data.attacker)
 end
 
-local function OnCollide(inst, other)
-    local v = other
+local function ClearRecentlyCollided(inst, other)
+    inst.recently_collided[other] = nil
+end
 
-    local isworkable = false
-    if v.components.workable ~= nil then
-        local work_action = v.components.workable:GetWorkAction()
-        --V2C: nil action for campfires
-        isworkable = (work_action == nil and v:HasTag("campfire"))
-            or work_action == ACTIONS.CHOP
-            or work_action == ACTIONS.HAMMER
-            or work_action == ACTIONS.MINE
-            or work_action == ACTIONS.DIG
-    end
-    if isworkable then
-        v:DoTaskInTime(0.6, function()
-            if v.components.workable then
-                v.components.workable:Destroy(inst)
-            end
-         end)
-    elseif v.components.pickable ~= nil
-        and v.components.pickable:CanBePicked()
-        and not v:HasTag("intense") then
-
-        local num = v.components.pickable.numtoharvest or 1
-        local product = v.components.pickable.product
-        local x1, y1, z1 = v.Transform:GetWorldPosition()
-        v.components.pickable:Pick(inst) -- only calling this to trigger callbacks on the object
-        if product ~= nil and num > 0 then
-            for i = 1, num do
-                local loot = SpawnPrefab(product)
-                loot.Transform:SetPosition(x1, 0, z1)
-            end
+local function OnDestroyOther(inst, other)
+    if other:IsValid() and
+        other.components.workable ~= nil and
+        other.components.workable:CanBeWorked() and
+        other.components.workable.action ~= ACTIONS.NET and
+        not inst.recently_collided[other] then
+        SpawnPrefab("collapse_small").Transform:SetPosition(other.Transform:GetWorldPosition())
+        other.components.workable:Destroy(inst)
+        if other:IsValid() and other.components.workable ~= nil and other.components.workable:CanBeWorked() then
+            inst.recently_collided[other] = true
+            inst:DoTaskInTime(3, ClearRecentlyCollided, other)
         end
     end
-    -- may want to do some charging damage?
+end
+
+local function OnCollide(inst, other)
+    if other ~= nil and
+        other:IsValid() and
+        other.components.workable ~= nil and
+        other.components.workable:CanBeWorked() and
+        other.components.workable.action ~= ACTIONS.NET and
+        Vector3(inst.Physics:GetVelocity()):LengthSq() >= 1 and
+        not inst.recently_collided[other] then
+        inst:DoTaskInTime(2 * FRAMES, OnDestroyOther, other)
+    end
 end
 
 local function PushMusic(inst)
@@ -160,7 +154,6 @@ local function fn()
     inst.Transform:SetSixFaced()
 
     MakeCharacterPhysics(inst, 1000, 1.5)
-    inst.Physics:SetCollisionCallback(OnCollide)
 
     inst:AddComponent("fader")
 
@@ -186,6 +179,9 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst.recently_collided = {}
+    inst.Physics:SetCollisionCallback(OnCollide)
 
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = TUNING.BEARGER_CALM_WALK_SPEED

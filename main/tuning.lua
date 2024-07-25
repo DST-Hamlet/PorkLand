@@ -103,11 +103,17 @@ local tuning = {
 
     TREE_CREAK_RANGE = 16,
 
-    JUNGLETREE_CHOPS_SMALL = 5,
+    JUNGLETREE_CHOPS_SHORT = 5,
     JUNGLETREE_CHOPS_NORMAL = 10,
     JUNGLETREE_CHOPS_TALL = 15,
     JUNGLETREE_WINDBLOWN_SPEED = 0.2,
     JUNGLETREE_WINDBLOWN_FALL_CHANCE = 0.01,
+    JUNGLETREESEED_GROWTIME = {base = 4.5 * day_time, random = 0.75 * day_time},
+    JUNGLETREE_GROW_TIME ={
+        {base = 4.5 * day_time, random = 0.5 * day_time}, -- tall to short
+        {base = 8 * day_time, random = 5 * day_time}, -- short to normal
+        {base = 8 * day_time, random = 5 * day_time}, -- normal to tall
+    },
 
     POISON_PERISH_PENALTY = 0.5,
     POISON_HUNGER_DRAIN_MOD = 0.80,
@@ -230,8 +236,8 @@ local tuning = {
     SNAKE_JUNGLETREE_CHANCE = 0.5, -- chance of a normal snake
     SNAKE_JUNGLETREE_POISON_CHANCE = 0.25, -- chance of a poison snake
     SNAKE_JUNGLETREE_AMOUNT_TALL = 2, -- num of times to try and spawn a snake from a tall tree
-    SNAKE_JUNGLETREE_AMOUNT_MED = 1, -- num of times to try and spawn a snake from a normal tree
-    SNAKE_JUNGLETREE_AMOUNT_SMALL = 1, -- num of times to try and spawn a snake from a small tree
+    SNAKE_JUNGLETREE_AMOUNT_NORMAL = 1, -- num of times to try and spawn a snake from a normal tree
+    SNAKE_JUNGLETREE_AMOUNT_SHORT = 1, -- num of times to try and spawn a snake from a small tree
     SNAKEDEN_MAX_SNAKES = 3,
     SNAKEDEN_CHECK_DIST = 20,
     SNAKEDEN_TRAP_DIST = 2,
