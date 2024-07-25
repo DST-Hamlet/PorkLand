@@ -277,11 +277,13 @@ local function MakeHedgeType(data)
     local function age(inst)
         inst.AnimState:PlayAnimation("growth2", false)
         inst.components.shearable.canbesheared = true
+        inst.components.shaveable.prize_count = 1
     end
 
     local function unage(inst)
         inst.AnimState:PlayAnimation("growth1", false)
         inst.components.shearable.canbesheared = false
+        inst.components.shaveable.prize_count = 0
         start_grow_timer(inst)
     end
 
@@ -291,10 +293,6 @@ local function MakeHedgeType(data)
         else
             start_grow_timer(inst)
         end
-    end
-
-    local function onshear(inst, shearer)
-        unage(inst)
     end
 
     local function onsave(inst, data)
@@ -406,8 +404,12 @@ local function MakeHedgeType(data)
 
         inst:AddComponent("shearable")
         inst.components.shearable:SetUp("clippings", 2)
-        inst.components.shearable:SetOnShearFn(onshear)
+        inst.components.shearable:SetOnShearFn(unage)
         inst.components.shearable.canbesheared = false
+
+        inst:AddComponent("shaveable")
+        inst.components.shaveable:SetPrize("clippings", 0)
+        inst.components.shaveable.on_shaved = unage
 
         return inst
     end
