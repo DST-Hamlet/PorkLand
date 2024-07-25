@@ -420,7 +420,7 @@ local function corkboatitemfn()
     inst.components.floater:UpdateAnimations("idle_water", "idle")
 
     inst:AddTag("small_boat")
-    inst:AddTag("portableitem") -- for deploy string
+    inst:AddTag("boatbuilder") -- for deploy string
     inst:AddTag("usedeployspacingasoffset") -- for deploy distance
 
     inst._custom_candeploy_fn = DeployTestCorkBoat

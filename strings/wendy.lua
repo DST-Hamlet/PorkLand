@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "It's already in better shape than I am.",
         },
+        USEDOOR = {
+            GENERIC = "(sigh) Everything is closed to me.",
+            LOCKED = "I could find a way in, but why bother.",
+        },
     },
     ANNOUCE_BATS = "The flying mammals of death have appeared.",
     ANNOUNCE_BOAT_DAMAGED = "This vessel is damaged. I can relate.",
@@ -108,6 +112,12 @@ return {
         ICEDTEA = "Refreshing, but it still does not relieve my grief.",
         INFUSED_IRON = "Nothing surprises me anymore.",
         IRON = "Iron. Like my heart.",
+        KINGFISHER = {
+            DEAD = "Death knows no mercy.",
+            GENERIC = "Thy sharp beak might impale me from the depths of the sea.",
+            SLEEPING = "It slumbers, for now.",
+        },
+        LIFEPLANT = "It longs for another life.",
         LILYPAD = "How calm it looks upon the water.",
         LIVING_ARTIFACT = "A death machine has been given life.",
         LOTUS = "It flourishes on the waves of sorrow.",
@@ -124,7 +134,15 @@ return {
         },
         METALPLATEHAT = "It'll protect my head but not my heart.",
         NECTAR_POD = "Is it even worth turning this to honey?",
+        OINC = "What use is wealth?",
+        OINC10 = "There are no riches in death.",
+        OINC100 = "I can't spend it when I'm dead.",
         PANGOLDEN = "A fool and his gold.",
+        PARROT_BLUE = {
+            DEAD = "To squawk, to croon, no more.",
+            GENERIC = "A parrot as blue as me.",
+            SLEEPING = "It slumbers, for now.",
+        },
         PEAGAWK = {
             DEAD = "Beautiful death.",
             GENERIC = "Many eyes witness many horrors in life.",
@@ -132,6 +150,11 @@ return {
         },
         PEAGAWKFEATHER = "I spy, with my little eye...",
         PEAGAWK_BUSH = "Just a bush...",
+        PIGEON = {
+            DEAD = "I don't blame you.",
+            GENERIC = "A wretched creature.",
+            SLEEPING = "What horrors does it dream of?",
+        },
         PIGHOUSE_CITY = {
             BURNING = "Destruction wins again.",
             GENERIC = "Shelter won't save you from death.",
@@ -144,11 +167,25 @@ return {
             BURNING = "(sigh) Beautiful destruction.",
             GENERIC = "A home for otherworldly creatures.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "You busy yourself with trivial duties.",
+            SLEEPING = "Dreams are just illusions.",
+        },
+        PIGMAN_QUEEN = "A life of aristocracy is a life empty of meaning.",
+        PIG_PALACE = "Alas, too good for the likes me.",
         PIG_RUINS_ANT = "Monument to the ants.",
         PIG_RUINS_ARTICHOKE = "What a curious thing.",
         PIG_RUINS_HEAD = "Whoever built it has long gone.",
         PIG_RUINS_IDOL = "An artifact of a long dead culture.",
         PIG_RUINS_PLAQUE = "I could make money off its destruction.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Civil disobedience.",
+            GENERIC = "Power corrupts.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "Of course.",
+            GENERIC = "Power has corrupted me.",
+        },
         PIKO = {
             DEAD = "Even the innocent must die.",
             GENERIC = "Too naive to know pain.",
@@ -212,6 +249,7 @@ return {
         VENUS_STALK = "Objects from a dead thing.",
         VINE = "Unruly life.",
         WALKINGSTICK = "For walking this weary world.",
+        WATERDROP = "A drop of life in this bleak existence.",
         WEEVOLE = "Its sole existence is to annoy me.",
         WEEVOLE_CARAPACE = "Bits of bug carcass.",
     },

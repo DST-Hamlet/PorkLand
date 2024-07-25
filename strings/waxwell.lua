@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Not right now.",
         },
+        USEDOOR = {
+            GENERIC = "It refuses to open for me.",
+            LOCKED = "I'll get it open somehow.",
+        },
     },
     ANNOUCE_BATS = "How apropos.",
     ANNOUNCE_BOAT_DAMAGED = "My vessel is sustaining damage.",
@@ -109,6 +113,12 @@ return {
         ICEDTEA = "Refreshing.",
         INFUSED_IRON = "Hello... Let's see what I can make with this.",
         IRON = "A solid mineral.",
+        KINGFISHER = {
+            DEAD = "Met its demise.",
+            GENERIC = "A rather generous mandible.",
+            SLEEPING = "Dormancy becomes it.",
+        },
+        LIFEPLANT = "I do still prefer roses.",
         LILYPAD = "A massive pond leaf.",
         LIVING_ARTIFACT = "Not exactly dapper, but how can I say no to this?",
         LOTUS = "How dainty.",
@@ -125,7 +135,15 @@ return {
         },
         METALPLATEHAT = "How very conquistadorian.",
         NECTAR_POD = "Needs a suitable container to be turned into honey.",
+        OINC = "Petty change.",
+        OINC10 = "What use have I for coin out here?",
+        OINC100 = "Finally some reasonable pocket change.",
         PANGOLDEN = "He has expensive tastes.",
+        PARROT_BLUE = {
+            DEAD = "Its metabolic processes are now history.",
+            GENERIC = "Remarkable bird.",
+            SLEEPING = "Pining for the fjords, no doubt.",
+        },
         PEAGAWK = {
             DEAD = "It's beauty has been snuffed out forever.",
             GENERIC = "What a regal-looking beast.",
@@ -133,6 +151,11 @@ return {
         },
         PEAGAWKFEATHER = "What finery.",
         PEAGAWK_BUSH = "I've my suspicions about that bush.",
+        PIGEON = {
+            DEAD = "As filthy in death as it was in life.",
+            GENERIC = "Filthy.",
+            SLEEPING = "Enjoy your grimy slumber.",
+        },
         PIGHOUSE_CITY = {
             BURNING = "That will only lead to improvement.",
             GENERIC = "I presume it's a pigsty inside.",
@@ -145,10 +168,24 @@ return {
             BURNING = "It's in flames!",
             GENERIC = "Little pig, little pig, let me in.",
         },
+        PIGMAN_MAYOR = {
+            GENERIC = "A man who understands the power of a tailored suit.",
+            SLEEPING = "Those in power should sleep with one eye open.",
+        },
+        PIGMAN_QUEEN = "She does not smell particularly royal.",
+        PIG_PALACE = "A little garish for my taste.",
         PIG_RUINS_ARTICHOKE = "What an odd choice of statuary.",
         PIG_RUINS_HEAD = "It's been beheaded.",
         PIG_RUINS_IDOL = "Hmmm. How do I get that statue off?",
         PIG_RUINS_PLAQUE = "It must be worth something to those pigs.",
+        PIG_SHOP_CITYHALL = {
+            BURNING = "Serves them right.",
+            GENERIC = "I could run this place better.",
+        },
+        PIG_SHOP_CITYHALL_PLAYER = {
+            BURNING = "This town has a vandal problem.",
+            GENERIC = "I deserve that.",
+        },
         PIKO = {
             DEAD = "It has been exterminated.",
             GENERIC = "Shoo, vermin.",
@@ -221,6 +258,7 @@ return {
         VENUS_STALK = "All stalk and no action.",
         VINE = "It's twisted and gnarled.",
         WALKINGSTICK = "Much easier on my knees.",
+        WATERDROP = "What an invigorating little seed.",
         WEEVOLE = "Interminable pests.",
         WEEVOLE_CARAPACE = "Ugh.",
     },
