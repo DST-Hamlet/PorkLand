@@ -42,7 +42,7 @@ local function fn()
     end
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "MEAT"
+    inst.components.edible.foodtype = FOODTYPE.MEAT
     inst.components.edible.healthvalue = 0
     inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
     inst.components.edible.sanityvalue = -TUNING.SANITY_SMALL
@@ -105,7 +105,7 @@ local function cookedfn()
     end
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "MEAT"
+    inst.components.edible.foodtype = FOODTYPE.MEAT
     inst.components.edible.foodstate = "COOKED"
     inst.components.edible.healthvalue = TUNING.HEALING_TINY
     inst.components.edible.hungervalue = TUNING.CALORIES_SMALL

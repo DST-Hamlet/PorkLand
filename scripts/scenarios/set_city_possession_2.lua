@@ -1,13 +1,12 @@
 local function OnCreate(inst, scenariorunner)
-    if inst.OnCreate then
-        inst:OnCreate()
+    inst:AddComponent("citypossession")
+    inst.components.citypossession:SetCity(2)
+    if inst.OnCityPossession then
+        inst:OnCityPossession()
     end
-
-    -- inst:AddComponent("citypossession")
-    -- inst.components.citypossession:SetCity(2)
-    -- if inst.citypossessionfn then
-    --     inst.citypossessionfn(inst)
-    -- end
+    if inst.components.gridnudger then
+        inst.components.gridnudger:Nudge()
+    end
 end
 
 local function OnLoad(inst, scenariorunner)

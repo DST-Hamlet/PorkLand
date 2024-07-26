@@ -27,6 +27,14 @@ AddComponentPostInit("worldstate", function(self, inst)
         SetVariable("plateautemperature", temperature)
     end
 
+    local function OnFiestaChange(sec, isfiesta)
+        SetVariable("isfiesta", isfiesta, "fiesta")
+    end
+
+    local function OnNearAporkalypseChange(src, isnearaporkalypse)
+        SetVariable("isnearaporkalypse", isnearaporkalypse)
+    end
+
     local function OnSeasonTick(src, data)
         SetVariable("istemperate", data.season == "temperate", "temperate")
         SetVariable("ishumid", data.season == "humid", "humid")
@@ -66,6 +74,8 @@ AddComponentPostInit("worldstate", function(self, inst)
     data.ishumid = false
     data.islush = false
     data.isaporkalypse = false
+    data.isfiesta = false
+    data.isnearaporkalypse = false
     data.preaporkalypseseason = "temperate"
     data.preaporkalypseseasonprogress = 0
     data.fullfog = false
@@ -79,6 +89,8 @@ AddComponentPostInit("worldstate", function(self, inst)
         inst:ListenForEvent("plateautemperaturetick", OnPlateauTemperatureTick)
     end
 
+    inst:ListenForEvent("fiestachange", OnFiestaChange)
+    inst:ListenForEvent("nearaporkalypsechange", OnNearAporkalypseChange)
     inst:ListenForEvent("seasontick", OnSeasonTick)
     inst:ListenForEvent("seasonlengthschanged", OnSeasonLengthsChanged)
     inst:ListenForEvent("plateauweathertick", OnPlateauWeatherTick)

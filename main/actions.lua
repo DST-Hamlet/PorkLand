@@ -35,6 +35,15 @@ if not rawget(_G, "HotReloading") then
         USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
+        USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
+
+        -- For City Pigs
+        POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        PAY_TAX = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        DAILY_GIFT = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
+        STOCK = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -263,7 +272,7 @@ end
 
 local function DoTeleport(player, pos)
     player:StartThread(function()
-        local invincible = player.components.health.invincible
+        -- local invincible = player.components.health.invincible
         --player.components.health:SetInvincible(true)
         if player.components.playercontroller ~= nil then
             player.components.playercontroller:EnableMapControls(false)
@@ -279,7 +288,7 @@ local function DoTeleport(player, pos)
         end
         player.components.interiorvisitor:UpdateExteriorPos()
         -- player.components.health:SetInvincible(invincible)
-        Sleep(0.1) -- 出于未知原因，当Sleep(0)的时候SnapCamera执行时玩家的位置仍未发生变化，因此改为0.1
+        Sleep(0.1) -- 出于未知原因，当 Sleep(0) 的时候 SnapCamera 执行时玩家的位置仍未发生变化，因此改为 0.1
         if player.components.playercontroller ~= nil then
             player.components.playercontroller:EnableMapControls(true)
             player.components.playercontroller:Enable(true)
@@ -426,6 +435,44 @@ end
 
 ACTIONS.RANSACK.fn = function(act)
     return true
+end
+ACTIONS.POOP_TIP.fn = function(act)
+    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, act.doer:GetPosition())
+    return true
+end
+
+ACTIONS.PAY_TAX.fn = function(act)
+    act.doer:RemoveTag("paytax")
+    act.doer.taxing = false
+    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, act.doer:GetPosition())
+    return true
+end
+
+ACTIONS.DAILY_GIFT.fn = function(act)
+    local resources = {"flint", "log", "rocks", "cutgrass", "seeds", "twigs"}
+    act.target.components.inventory:GiveItem(SpawnPrefab(resources[math.random(#resources)]), nil, act.doer:GetPosition())
+    return true
+end
+
+ACTIONS.SIT_AT_DESK.fn = function(act)
+    return true
+end
+
+ACTIONS.FIX.fn = function(act)
+    if act.target then
+        local target = act.target
+        local numworks = 1
+        target.components.workable:WorkedBy(act.doer, numworks)
+    --    return target:fix(act.doer)
+    end
+end
+
+ACTIONS.STOCK.fn = function(act)
+    if act.target then
+        act.target.restock(act.target,true)
+        act.doer.changestock = nil
+        return true
+    end
 end
 
 
@@ -753,7 +800,7 @@ end
 local COMPONENT_ACTIONS = ToolUtil.GetUpvalue(EntityScript.CollectActions, "COMPONENT_ACTIONS")
 local SCENE = COMPONENT_ACTIONS.SCENE
 local USEITEM = COMPONENT_ACTIONS.USEITEM
-local POINT = COMPONENT_ACTIONS.POINT
+-- local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 

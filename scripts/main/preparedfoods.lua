@@ -27,7 +27,7 @@ local foods = {
         -- modified test functon because DST has bone tag already
         test = function(cooker, names, tags) return names.snake_bone and names.snake_bone >= 2 and tags.meat and tags.meat >= 2 end,
         priority = 20,
-        foodtype = "MEAT",
+        foodtype = FOODTYPE.MEAT,
         health = TUNING.HEALING_LARGE,
         hunger = TUNING.CALORIES_MED,
         perishtime = TUNING.PERISH_MED,
