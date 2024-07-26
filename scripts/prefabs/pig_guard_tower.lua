@@ -101,16 +101,35 @@ local function OnIsFiesta(inst, isfiesta)
     end
 end
 
-local function OnIsAporkalypse(inst, isaporkalypse)
+local function OnDay(inst, isday)
     if inst:HasTag("burnt") then
         return
     end
-
-    if inst.components.spawner:IsOccupied() then
+    if not inst:HasTag("burnt") then
         inst.doortask = inst:DoTaskInTime(1 + math.random() * 2, function()
-            inst.components.spawner:ReleaseChild()
+            if inst.components.spawner:IsOccupied() then
+                LightsOff(inst)
+                inst.components.spawner:ReleaseChild()
+                inst.doortask = nil
+            end
         end)
     end
+end
+
+local function OnInit(inst)
+    if inst.components.spawner
+        and not inst.components.spawner.child
+        and inst.components.spawner.childname and
+        not inst.components.spawner:IsSpawnPending() then
+
+        local child = SpawnPrefab(inst.components.spawner.childname)
+        if child then
+            inst.components.spawner:TakeOwnership(child)
+            inst.components.spawner:GoHome(child)
+        end
+    end
+    inst:WatchWorldState("isday", OnDay)
+    OnDay(inst, TheWorld.state.isday)
 end
 
 local function OnBuilt(inst)
@@ -295,6 +314,8 @@ local function fn()
     inst.components.spawner:SetOnVacateFn(OnVacate)
     inst.components.spawner:SetOnOccupiedFn(OnOccupied)
     inst.components.spawner:SetWaterSpawning(false, true)
+    inst.components.spawner:CancelSpawning()
+    inst:DoTaskInTime(0, OnInit)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
@@ -307,9 +328,6 @@ local function fn()
 
     inst:WatchWorldState("isfiesta", OnIsFiesta)
     OnIsFiesta(inst, TheWorld.state.isfiesta)
-
-    inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
-    OnIsAporkalypse(inst, TheWorld.state.isaporkalypse)
 
     MakeSnowCovered(inst, 0.01)
 

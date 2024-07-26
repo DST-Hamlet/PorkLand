@@ -112,9 +112,9 @@ local function fn()
     inst.OnRemoveEntity = OnRemoveEntity
 
     inst:AddComponent("burnable")
-    inst.components.burnable:SetFXLevel(3)
+    inst.components.burnable:SetFXLevel(2)
     inst.components.burnable:SetBurnTime(10)
-    inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 20, 0), "swap_fire")
+    inst.components.burnable:AddBurnFX("fire", Vector3(0, 20, 0), "swap_fire", true) -- 出于未知原因，如果不加第四个参数，那么冒烟特效就会消失
     inst.components.burnable:SetOnExtinguishFn(OnExtinguish)
     inst.components.burnable:SetOnBurntFn(DefaultBurntFn)
     MakeSmallPropagator(inst)

@@ -118,6 +118,7 @@ end
 local function ConfigureSpawner(inst, selected_citizens)
     if inst.components.spawner then
         inst.components.spawner:Configure(selected_citizens[math.random(1, #selected_citizens)], TUNING.PIGHOUSE_CITY_RESPAWNTIME, 1)
+        inst.components.spawner:CancelSpawning()
     end
 end
 
@@ -185,6 +186,22 @@ local function OnDay(inst, isday)
             end
         end)
     end
+end
+
+local function OnInit(inst)
+    if inst.components.spawner
+        and not inst.components.spawner.child
+        and inst.components.spawner.childname and
+        not inst.components.spawner:IsSpawnPending() then
+
+        local child = SpawnPrefab(inst.components.spawner.childname)
+        if child then
+            inst.components.spawner:TakeOwnership(child)
+            inst.components.spawner:GoHome(child)
+        end
+    end
+    inst:WatchWorldState("isday", OnDay)
+    OnDay(inst, TheWorld.state.isday)
 end
 
 local function OnBuilt(inst)
@@ -366,15 +383,13 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst.components.spawner:SetOnVacateFn(OnVacate)
         inst.components.spawner:SetOnOccupiedFn(OnOccupied)
         inst.components.spawner:SetWaterSpawning(false, true)
-
         if spawn_list then
             ConfigureSpawner(inst, spawn_list)
         else
             inst.OnCityPossession = OnCityPossession
         end
+        inst:DoTaskInTime(0, OnInit)
 
-        inst:WatchWorldState("isday", OnDay)
-        OnDay(inst, TheWorld.state.isday)
         inst:ListenForEvent("burntup", OnBurntUp)
         inst:ListenForEvent("onignite", OnIgnite)
         inst:ListenForEvent("onbuilt", OnBuilt)

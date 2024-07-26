@@ -30,7 +30,7 @@ local states = {
                     if inst.bufferedaction ~= nil then
                         inst:PerformBufferedAction()
                     end
-                    inst.sg:GoToState("idle")
+                    inst.sg:GoToState("haunt")
                 end
             end),
         },
