@@ -1,4 +1,3 @@
-local AddClassPostConstruct = AddClassPostConstruct
 GLOBAL.setfenv(1, GLOBAL)
 
 local InventoryItem = require("components/inventoryitem_replica")

@@ -32,7 +32,7 @@ local _RebuildLayout = ToolUtil.GetUpvalue(InventoryBar.Rebuild, "RebuildLayout"
 local function RebuildLayout(self, inventory, overflow, do_integrated_backpack, ...)
     local boatwidget = self.boatwidget
     if boatwidget then
-        local x, y, z = boatwidget:GetPosition():Get()
+        local x, _, z = boatwidget:GetPosition():Get()
         boatwidget:SetPosition(x, do_integrated_backpack and 115 or 75, z)
     end
 

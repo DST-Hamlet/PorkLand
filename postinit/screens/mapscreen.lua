@@ -9,7 +9,7 @@ local function FocusMapOnWorldPosition(mapscreen, worldx, worldz)
     mapscreen:SetZoom(1)
     mapscreen.minimap.minimap:ResetOffset()
 
-    local player_x, player_y, player_z = ThePlayer.Transform:GetWorldPosition()
+    local player_x, _, player_z = ThePlayer.Transform:GetWorldPosition()
     local dx, dy = worldx - player_x, worldz - player_z
 
     local angle_correction = (PI / 4) * (10 - (math.fmod(TheCamera:GetHeadingTarget() / 360, 1) * 8))

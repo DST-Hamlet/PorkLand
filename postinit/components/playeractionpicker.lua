@@ -48,7 +48,7 @@ function PlayerActionPicker:ScanForPlatformInDir(my_x, my_z, dir_x, dir_z, steps
 end
 
 function PlayerActionPicker:ScanForLandingPoint(target_x, target_z)
-    local my_x, my_y, my_z = self.inst.Transform:GetWorldPosition()
+    local my_x, _, my_z = self.inst.Transform:GetWorldPosition()
     local dir_x, dir_z = target_x - my_x, target_z - my_z
     local dir_length = VecUtil_Length(dir_x, dir_z)
     dir_x, dir_z = dir_x / dir_length, dir_z / dir_length
@@ -76,7 +76,7 @@ function PlayerActionPicker:GetLeftClickActions(position, target, ...)
 
     if (not actions or #actions == 0) and self.inst:IsSailing() and self.map:IsPassableAtPoint(position.x, 0, position.z) then
         -- Find the landing position, where water meets the land
-        local can_hop, hop_x, hop_z, target_platform = self:ScanForLandingPoint(position.x, position.z)
+        local can_hop, hop_x, hop_z = self:ScanForLandingPoint(position.x, position.z)
         if can_hop then
             actions = { BufferedAction(self.inst, nil, ACTIONS.DISEMBARK, nil, Vector3(hop_x, 0, hop_z)) }
         end

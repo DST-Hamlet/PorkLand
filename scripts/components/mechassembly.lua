@@ -40,7 +40,7 @@ function MechAssembly:Assemble(other)
     local hulk = other
     if not other:HasTag("ancient_robots_assembly") then
         hulk = SpawnPrefab("ancient_robots_assembly")
-        local x, y, z = self.inst.Transform:GetWorldPosition()
+        local x, _, z = self.inst.Transform:GetWorldPosition()
         hulk.Transform:SetPosition(x, 0, z)
         for body_part, amount in pairs(other.components.mechassembly.parts) do
             hulk.components.mechassembly.parts[body_part] = hulk.components.mechassembly.parts[body_part] + amount
@@ -73,7 +73,7 @@ function MechAssembly:Dissemble()
         end)
     end
 
-    local x, y, z = self.inst.Transform:GetWorldPosition()
+    local x, _, z = self.inst.Transform:GetWorldPosition()
     local down = TheCamera:GetDownVec()
     local angle = math.atan2(down.z, down.x) / DEGREES
 

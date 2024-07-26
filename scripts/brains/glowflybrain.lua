@@ -3,15 +3,15 @@ require("behaviours/runaway")
 
 local BrainCommon = require("brains/braincommon")
 
-local MAX_LEASH_DIST = 40
+-- local MAX_LEASH_DIST = 40
 local MAX_WANDER_DIST = 40
 local STOP_RUN_AWAY_DIST = 8
 local RUN_AWAY_DIST = 5
 
-local MAX_CHASE_DIST = 8
-local MAX_CHASE_TIME = 10
+-- local MAX_CHASE_DIST = 8
+-- local MAX_CHASE_TIME = 10
 
-local SEE_FLOWER_DIST = 30
+-- local SEE_FLOWER_DIST = 30
 
 local WANDER_TIMES = {
     minwalktime = 2,

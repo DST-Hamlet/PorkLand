@@ -9,8 +9,8 @@ require("behaviours/useshield")
 
 --local BrainCommon = require "brains/braincommon"
 
-local RETURN_HOME_DELAY_MIN = 15
-local RETURN_HOME_DELAY_MAX = 25
+-- local RETURN_HOME_DELAY_MIN = 15
+-- local RETURN_HOME_DELAY_MAX = 25
 
 local MAX_WANDER_DIST = 50
 local MAX_CHASE_DIST = 20
