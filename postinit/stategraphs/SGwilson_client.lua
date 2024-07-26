@@ -48,6 +48,7 @@ local actionhandlers = {
             end
         end
     end),
+    ActionHandler(ACTIONS.USE_LIVING_ARTIFACT, "give"),
     ActionHandler(ACTIONS.CHARGE_UP, "ironlord_charge"),
     ActionHandler(ACTIONS.CHARGE_RELEASE, function(inst, action)
         if inst.sg:HasStateTag("strafing") then
@@ -447,31 +448,24 @@ local states = {
 
     State{
         name = "castspell_bone",
-        tags = {"doing", "busy", "canrotate", "spell"},
+        tags = {"doing", "busy", "canrotate", "spell", "strafing"},
+        server_states = {"castspell_bone"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("staff_pre")
-            inst.AnimState:PushAnimation("staff_lag", false)
+            inst.AnimState:PushAnimation("staff", false)
 
             inst:PerformPreviewBufferedAction()
             inst.sg:SetTimeout(TIMEOUT)
-        end,
-
-        onupdate = function(inst)
-            if inst.sg:ServerStateMatches() then
-                if inst.entity:FlattenMovementPrediction() then
-                    inst.sg:GoToState("idle", "noanim")
-                end
-            elseif inst.bufferedaction == nil then
-                inst.sg:GoToState("idle")
-            end
         end,
 
         ontimeout = function(inst)
             inst:ClearBufferedAction()
             inst.sg:GoToState("idle")
         end,
+
+        EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
     },
 
     State{
@@ -606,7 +600,7 @@ local states = {
 
     State{
         name = "ironlord_charge",
-        tags = {"busy", "doing", "strafing"},
+        tags = {"busy", "doing", "strafing", "charge"},
         server_states = {"ironlord_charge", "ironlord_charge_full"},
 
         onenter = function(inst)
@@ -626,14 +620,14 @@ local states = {
         end,
 
         onupdate = function(inst)
-            if inst.sg.statemem.should_shoot and inst.sg.statemem.ready_to_shoot then
-                if inst.sg.statemem.isfull then
+            if inst.sg.statemem.should_shoot then
+                if inst.sg.statemem.ready_to_shoot then
                     inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/creatures/boss/hulk_metal_robot/laser",  {intensity = math.random(0.7, 1)})
                 else
                     inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/common/crafted/iron_lord/smallshot", {timeoffset = math.random()})
                 end
                 inst.SoundEmitter:KillSound("chargedup")
-                inst.sg:GoToState("ironlord_shoot", false)
+                inst.sg:GoToState("ironlord_shoot", inst.sg.statemem.ready_to_shoot)
             end
         end,
 
@@ -645,7 +639,6 @@ local states = {
                 inst.AnimState:PushAnimation("charge_super_loop", true)
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/electro")
                 inst.sg.statemem.ready_to_shoot = false
-                inst.sg.statemem.should_shoot = false
             end),
             TimeEvent(25 * FRAMES, function(inst) inst.sg.statemem.ready_to_shoot = true end),
         },

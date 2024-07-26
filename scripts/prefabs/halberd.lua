@@ -35,6 +35,7 @@ local function fn()
 
     -- weapon (from weapon component) added to pristine state for optimization
     inst:AddTag("weapon")
+    inst:AddTag("halberd")
 
     MakeInventoryFloatable(inst)
     inst.components.floater:UpdateAnimations("idle_water", "idle")

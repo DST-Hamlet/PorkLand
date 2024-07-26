@@ -17,7 +17,10 @@ local function OnUpdate(inst, dt)
 end
 
 local function OnCollide(inst, other)
-    if other.components.freezable and not other.components.freezable:IsFrozen( ) and other ~= inst.host then
+    if other.components.freezable and other ~= inst.host then
+        if inst.host:HasTag("player") and other:HasTag("player") and not inst.canhitplayers then
+            return
+        end
         if inst.host and other.components.combat then
             other:PushEvent("attacked", {attacker = inst.host, damage = 0, weapon = inst})
         end
@@ -52,6 +55,8 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst.canhitplayers = TheNet:GetPVPEnabled()
 
     -- inst:AddComponent("genericonupdate")
     -- inst.components.genericonupdate:Setup(onupdate)

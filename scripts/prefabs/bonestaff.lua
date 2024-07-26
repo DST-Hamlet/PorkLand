@@ -23,21 +23,11 @@ end
 local function SpawnGaze(inst)
     local owner = nil
     owner = inst.components.inventoryitem:GetGrandOwner()
-    local mousepos = TheInput:GetWorldPosition()
     local rotation = nil
-
-    if TheInput:ControllerAttached() then
-        local pc = ThePlayer.components.playercontroller
-        if pc.reticule and pc.reticule.targetpos then
-            local pt = pc.reticule.targetpos
-            rotation = owner:GetAngleToPoint(pt.x, pt.y, pt.z)
-        end
-
-        if not rotation then
-            rotation = owner.Transform:GetRotation()
-        end
+    if owner then
+        rotation = owner.Transform:GetRotation()
     else
-        rotation = owner:GetAngleToPoint(mousepos.x, mousepos.y, mousepos.z)
+        return
     end
 
     local beam = SpawnPrefab("gaze_beam")

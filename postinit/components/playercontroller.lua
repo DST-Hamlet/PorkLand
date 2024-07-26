@@ -104,14 +104,14 @@ function PlayerController:ReleaseControlSecondary(x, z)
         SendModRPCToServer(MOD_RPC["Porkland"]["ReleaseControlSecondary"], x, z)
     end
     local position = Vector3(x, 0, z)
-    if self.inst.sg ~= nil and self.inst.sg:HasStateTag("strafing") then
+    if self.inst.sg ~= nil and self.inst.sg:HasStateTag("strafing") and self.inst.sg:HasStateTag("charge") then
         self.inst:PushBufferedAction(BufferedAction(self.inst, nil, ACTIONS.CHARGE_RELEASE, nil, position))
     end
 end
 
 function PlayerController:OnRemoteReleaseControlSecondary(x, z)
     local position = Vector3(x, 0, z)
-    if self.inst.sg ~= nil and self.inst.sg:HasStateTag("strafing") then
+    if self.inst.sg ~= nil and self.inst.sg:HasStateTag("strafing") and self.inst.sg:HasStateTag("charge") then
         self.inst:PushBufferedAction(BufferedAction(self.inst, nil, ACTIONS.CHARGE_RELEASE, nil, position))
     end
 end

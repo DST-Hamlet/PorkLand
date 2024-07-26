@@ -732,15 +732,13 @@ local states = {
 
     State{
         name = "castspell_bone",
-        tags = {"doing", "busy", "canrotate", "spell"},
+        tags = {"doing", "busy", "canrotate", "spell", "strafing"},
 
         onenter = function(inst)
-            if inst.components.playercontroller ~= nil then
-                inst.components.playercontroller:Enable(false)
-            end
             inst.AnimState:PlayAnimation("staff_pre")
             inst.AnimState:PushAnimation("staff", false)
             inst.components.locomotor:Stop()
+            inst.components.locomotor:StartStrafing()
 
             --Spawn an effect on the player's location
             local staff = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
@@ -758,9 +756,7 @@ local states = {
         end,
 
         onexit = function(inst)
-            if inst.components.playercontroller then
-                inst.components.playercontroller:Enable(true)
-            end
+            inst.components.locomotor:StopStrafing()
             if inst.sg.statemem.stafffx and inst.sg.statemem.stafffx:IsValid() then
                 inst.sg.statemem.stafffx:Remove()
             end
@@ -782,9 +778,7 @@ local states = {
                 end
 
                 inst.sg:RemoveStateTag("busy")
-                if inst.components.playercontroller ~= nil then
-                    inst.components.playercontroller:Enable(true)
-                end
+                inst.components.locomotor:StopStrafing()
             end),
         },
 
@@ -1961,7 +1955,7 @@ local states = {
 
     State{
         name = "ironlord_charge",
-        tags = {"busy", "doing", "strafing"},
+        tags = {"busy", "doing", "strafing", "charge"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -1998,7 +1992,7 @@ local states = {
 
     State{
         name = "ironlord_charge_full",
-        tags = {"busy", "doing", "strafing"},
+        tags = {"busy", "doing", "strafing", "charge"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -2331,6 +2325,20 @@ AddStategraphPostInit("wilson", function(sg)
             inst.components.sailor:Disembark(nil, nil, true)
         end
         return _transform_weregoose_exit(inst, ...)
+    end
+
+    local _attack_onenter = sg.states["attack"].onenter
+    sg.states["attack"].onenter = function(inst, data)
+        local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+        if equip and equip:HasTag("halberd") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/halberd")
+        elseif equip and equip:HasTag("corkbat") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/corkbat")
+        end
+
+        _attack_onenter(inst, data)
+
+        inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", nil)
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn

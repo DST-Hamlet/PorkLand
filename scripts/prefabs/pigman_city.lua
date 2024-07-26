@@ -848,7 +848,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst.components.eater:SetOnEatFn(OnEat)
 
         inst:AddComponent("combat")
-        inst.components.combat.hiteffectsymbol = "pig_torso"
+        inst.components.combat.hiteffectsymbol = "torso"
 
         inst:AddComponent("follower")
         inst.components.follower.maxfollowtime = TUNING.PIG_LOYALTY_MAXTIME
@@ -880,8 +880,8 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst:AddComponent("citypooper")
 
         MakePoisonableCharacter(inst)
-        MakeMediumBurnableCharacter(inst, "pig_torso")
-        MakeMediumFreezableCharacter(inst, "pig_torso")
+        MakeMediumBurnableCharacter(inst, "torso")
+        MakeMediumFreezableCharacter(inst, "torso")
 
         inst.throwcrackers = throwcrackers
         inst.OnSave = OnSave

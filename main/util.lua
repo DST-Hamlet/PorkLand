@@ -63,6 +63,20 @@ function FindAmphibiousOffset(position, start_angle, radius, attempts, check_los
     return FindWalkableOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, true, false)
 end
 
+function CanPVPTarget(inst, target)
+    local canpvp = TheNet:GetPVPEnabled() and (inst ~= target) -- 即使关闭pvp, 仍然可以伤害到玩家自己
+    if not canpvp and inst:HasTag("player") and target:HasTag("player") then
+        return false
+    end
+    if not canpvp and inst.owner and inst.owner:HasTag("player") and target:HasTag("player") then
+        return false
+    end
+    if not canpvp and inst.host and inst.host:HasTag("player") and target:HasTag("player") then
+        return false
+    end
+    return true
+end
+
 local DAMAGE_CANT_TAGS = {"playerghost", "INLIMBO", "DECOR", "INLIMBO", "FX"}
 local DAMAGE_ONEOF_TAGS = {"_combat", "pickable", "NPC_workable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable", "SHEAR_workable"}
 local LAUNCH_MUST_TAGS = {"_inventoryitem"}
@@ -136,7 +150,7 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
                         pugalisk_parts[v] = v
                     end
                     targets_hit[v] = true
-                elseif inst.components.combat:CanTarget(v) then
+                elseif inst.components.combat:CanTarget(v) and CanPVPTarget(inst, v) then
                     targets_hit[v] = true
                     inst.components.combat:DoAttack(v)
                     if v:IsValid() then
@@ -297,7 +311,7 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
                         pugalisk_parts[v] = v
                     end
                     targets_hit[v] = true
-                elseif inst.components.combat:CanTarget(v) then
+                elseif inst.components.combat:CanTarget(v) and CanPVPTarget(inst, v) then
                     targets_hit[v] = true
                     inst.components.combat:DoAttack(v)
                     if v:IsValid() then

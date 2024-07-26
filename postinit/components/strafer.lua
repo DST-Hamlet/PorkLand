@@ -5,7 +5,7 @@ local Strafer = require("components/strafer")
 local _OnUpdate = Strafer.OnUpdate
 function Strafer:OnUpdate(dt, ...)--基本上从原update函数中复制粘贴过来的
     if self.playercontroller:IsEnabled()
-        and ((self.inst.sg and self.inst.sg:HasStateTag("strafing") and TheInput:IsControlPressed(CONTROL_SECONDARY))
+        and ((self.inst.sg and self.inst.sg:HasStateTag("strafing") and (TheInput:IsControlPressed(CONTROL_SECONDARY) or self.inst.sg:HasStateTag("spell")))
         or not self.inst.sg)
         then
         local dir
@@ -31,6 +31,7 @@ function Strafer:OnUpdate(dt, ...)--基本上从原update函数中复制粘贴�
             if not self.ismastersim and self.lastdir ~= dir then
                 self.lastdir = dir
                 SendModRPCToServer(MOD_RPC["Porkland"]["StrafeFacing_pl"], dir)
+                print("SendModRPCToServer strafer",dir)
             end
         end
     else

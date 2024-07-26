@@ -367,8 +367,9 @@ end
 local _GetTile = Map.GetTile
 function Map:GetTile(x, y, ...)
     local w, h = TheWorld.Map:GetSize()
-    local tx = x * TILE_SCALE - w / 2
-    local tz = y * TILE_SCALE - h / 2
+    local tx = (x - w / 2) * TILE_SCALE
+    local tz = (y - h / 2) * TILE_SCALE
+    print("tile to point", tx, tz)
     if x and y and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(tx, tz) then
         if TheWorld.components.interiorspawner:IsInInteriorRoom(tx, tz) then
             return WORLD_TILES.INTERIOR
@@ -379,7 +380,6 @@ function Map:GetTile(x, y, ...)
         return _GetTile(self, x, y, ...)
     end
 end
-
 
 function Map:GetIslandTagAtPoint(x, y, z)
     -- Note: If you care about the tile overlap then use FindVisualNodeAtPoint
