@@ -161,6 +161,9 @@ PrefabFiles = {
     "bramble_bulb",
     "pog",
     "pogherd",
+    "spider_monkey",
+    "spider_monkey_herd",
+    "pl_chests",
 }
 
 Assets = {

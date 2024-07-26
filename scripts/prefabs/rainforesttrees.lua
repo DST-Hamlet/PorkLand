@@ -2,9 +2,8 @@ local assets =
 {
     Asset("ANIM", "anim/tree_forest_rot_build.zip"),
     Asset("ANIM", "anim/tree_rainforest_gas_build.zip"),
-
     Asset("ANIM", "anim/tree_forest_bloom_build.zip"),
-
+    Asset("ANIM", "anim/tree_rainforest_web_build.zip"),
     Asset("ANIM", "anim/tree_rainforest_build.zip"),
     Asset("ANIM", "anim/tree_rainforest_bloom_build.zip"),
     Asset("ANIM", "anim/tree_rainforest_normal.zip"),
@@ -41,6 +40,29 @@ SetSharedLootTable("rainforesttree_tall",
     {"log", 1.0},
     {"log", 1.0},
     {"log", 1.0},
+})
+
+SetSharedLootTable("spider_monkey_tree_short",
+{
+    {"log", 1.0},
+    {"silk", 1.0},
+})
+
+SetSharedLootTable("spider_monkey_tree_normal",
+{
+    {"log", 1.0},
+    {"log", 1.0},
+    {"silk", 1.0},
+    {"silk", 1.0},
+})
+
+SetSharedLootTable("spider_monkey_tree_tall",
+{
+    {"log", 1.0},
+    {"log", 1.0},
+    {"log", 1.0},
+    {"silk", 1.0},
+    {"silk", 1.0},
 })
 
 local function MakeAnims(stage)
@@ -98,7 +120,11 @@ local function GetStageFn(stage)
         if inst.components.workable then
             inst.components.workable:SetWorkLeft(TUNING["JUNGLETREE_CHOPS_" .. string.upper(stage)])
         end
-        inst.components.lootdropper:SetChanceLootTable("rainforesttree_" .. stage)
+        if inst:HasTag("spider_monkey_tree") then
+            inst.components.lootdropper:SetChanceLootTable("spider_monkey_tree_" .. stage)
+        else
+            inst.components.lootdropper:SetChanceLootTable("rainforesttree_" .. stage)
+        end
 
         if math.random() < 0.5 then
             for i = 1, TUNING["SNAKE_JUNGLETREE_AMOUNT_" .. string.upper(stage)] do
@@ -549,19 +575,33 @@ local function MakeTree(name, build, stage, data)
         inst.entity:AddAnimState()
         inst.entity:AddSoundEmitter()
         inst.entity:AddMiniMapEntity()
+        if data == "spider" then
+            inst.entity:AddGroundCreepEntity()
+            inst.GroundCreepEntity:SetRadius(5)
+        end
         inst.entity:AddNetwork()
 
         MakeObstaclePhysics(inst, 0.25)
 
         local color = 0.5 + math.random() * 0.5
 
-        inst.AnimState:SetBuild(build == "rot" and "tree_rainforest_gas_build" or "tree_rainforest_build")
+        if build == "rot" then
+            inst.AnimState:SetBuild("tree_rainforest_gas_build")
+        elseif build == "spider" then
+            inst.AnimState:SetBuild("tree_rainforest_web_build")
+        else
+            inst.AnimState:SetBuild("tree_rainforest_build")
+        end
         inst.AnimState:SetBank("rainforesttree")
         inst.AnimState:SetTime(math.random() * 2)
 
         inst.AnimState:SetMultColour(color, color, color, 1)
 
-        inst.MiniMapEntity:SetIcon("tree_rainforest.tex")
+        if build == "spider" then
+            inst.MiniMapEntity:SetIcon("spiderTree.tex")
+        else
+            inst.MiniMapEntity:SetIcon("tree_rainforest.tex")
+        end
         inst.MiniMapEntity:SetPriority(-1)
 
         inst:AddTag("plant")
@@ -574,6 +614,10 @@ local function MakeTree(name, build, stage, data)
             inst:AddTag("rotten")
             inst.build = "tree_rainforest_gas_build"
             inst:SetPrefabName("rainforesttree_rot")
+        elseif build == "spider" then
+            inst:AddTag("spider_monkey_tree")
+            inst.build = "tree_rainforest_web_build"
+            inst:SetPrefabName("spider_monkey_tree")
         else
             inst:SetPrefabName("rainforesttree")
         end
@@ -633,8 +677,10 @@ local function MakeTree(name, build, stage, data)
 
         inst:ListenForEvent("blownbywind", OnBlownByWind)
         inst:ListenForEvent("loot_prefab_spawned", OnLootSpawned)
-        inst:WatchWorldState("season", OnseasonChange)
-        OnseasonChange(inst, TheWorld.state.season)
+        if build ~= "spider" then
+            inst:WatchWorldState("season", OnseasonChange)
+            OnseasonChange(inst, TheWorld.state.season)
+        end
 
         return inst
     end
@@ -654,4 +700,11 @@ return  MakeTree("rainforesttree", "normal", 0),
         MakeTree("rainforesttree_rot_tall", "rot", 3),
         MakeTree("rainforesttree_rot_short", "rot", 1),
         MakeTree("rainforesttree_rot_burnt", "rot", 0, "burnt"),
-        MakeTree("rainforesttree_rot_stump", "rot", 0, "stump")
+        MakeTree("rainforesttree_rot_stump", "rot", 0, "stump"),
+
+        MakeTree("spider_monkey_tree", "spider", 0),
+        MakeTree("spider_monkey_tree_normal", "spider", 2),
+        MakeTree("spider_monkey_tree_tall", "spider", 3),
+        MakeTree("spider_monkey_tree_short", "spider", 1),
+        MakeTree("spider_monkey_tree_burnt", "spider", 0, "burnt"),
+        MakeTree("spider_monkey_tree_stump", "spider", 0, "stump")
