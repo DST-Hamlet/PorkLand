@@ -178,10 +178,14 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     WorldSim:WorldGen_InitializeNodePoints()
 
-    WorldSim:WorldGen_VoronoiPass(100)
-    storygen:AddRegionsToMainland(function()
+    WorldSim:WorldGen_VoronoiPass(50)
+    storygen:AddIslandToPorkland(function(region_id)
 		WorldSim:WorldGen_AddNewPositions()
-		WorldSim:WorldGen_VoronoiPass(50)
+        if region_id == "E" then
+            WorldSim:WorldGen_VoronoiPass(100)
+        else
+            WorldSim:WorldGen_VoronoiPass(50)
+        end
 	end)
 
     print("... story created")
@@ -217,7 +221,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     for _, node in pairs(nodes) do
         node:SetTilesViaFunction(entities, map_width, map_height)
     end
-    separate_region(nodes, 2) -- ensure at least two tiles at intervals between islands
+    -- separate_region(nodes, 2) -- ensure at least two tiles at intervals between islands
 
     print("Encoding...")
 
@@ -315,7 +319,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     AncientArchivePass(entities, map_width, map_height, WorldSim)
 
-    -- build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
+    build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
 
     local double_check = {}
     for i, prefab in ipairs(level.required_prefabs or {}) do
