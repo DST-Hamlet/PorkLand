@@ -176,9 +176,13 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     require("map/storygen")
     local topology_save, storygen = BuildPorkLandStory(tasks, story_gen_params, level)
 
-    WorldSim:WorldGen_InitializeNodePoints();
+    WorldSim:WorldGen_InitializeNodePoints()
 
     WorldSim:WorldGen_VoronoiPass(100)
+    storygen:AddRegionsToMainland(function()
+		WorldSim:WorldGen_AddNewPositions()
+		WorldSim:WorldGen_VoronoiPass(50)
+	end)
 
     print("... story created")
 
@@ -311,7 +315,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     AncientArchivePass(entities, map_width, map_height, WorldSim)
 
-    build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
+    -- build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
 
     local double_check = {}
     for i, prefab in ipairs(level.required_prefabs or {}) do
