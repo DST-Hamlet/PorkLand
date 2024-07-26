@@ -49,10 +49,10 @@ AddTaskSet("porkland", {
         "Deep_lost_ruins4",
         "lost_rainforest",
 
-        -- "Land_Divide_1",
-        -- "Land_Divide_2",
-        -- "Land_Divide_3",
-        -- "Land_Divide_4",
+        "Land_Divide_1",
+        "Land_Divide_2",
+        "Land_Divide_3",
+        "Land_Divide_4",
 
         "painted_sands",
         "plains",
