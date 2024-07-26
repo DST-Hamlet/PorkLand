@@ -114,6 +114,7 @@ local function master_postinit(inst)
     inst:AddComponent("butterflyspawner")
     inst:AddComponent("glowflyspawner")
     inst:AddComponent("hippospawner")
+    inst:AddComponent("spidermonkeyherd")
     inst:AddComponent("batted")
 
     inst:AddComponent("worlddeciduoustreeupdater")

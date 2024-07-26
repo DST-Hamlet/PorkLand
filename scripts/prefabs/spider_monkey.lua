@@ -109,6 +109,41 @@ local function OnPooped(inst, poop)
     end
 end
 
+local function OnSave(inst, data)
+    if inst.tree and inst.tree:IsValid() then
+        data.tree = inst.tree.GUID
+        data.inherd = inst.inherd -- added to a herd
+        return {tree = inst.tree.GUID}
+    end
+end
+
+local function OnLoadPostPass(inst, newents, data)
+    if not data or not data.inherd then
+        TheWorld.components.spidermonkeyherd:AddToHerd(inst)
+    end
+
+    if data and data.tree then
+        inst.tree = newents[data.tree].entity
+    end
+end
+
+local FIND_TREE_DIST = 7
+local FIND_TREE_MUST_TAGS = {"rainforesttree"}
+local FIND_TREE_NO_TAGS = {"spider_monkey_tree", "has_monkey", "burnt", "stump"}
+
+local function OnEntitySleep(inst)
+    if inst.tree and inst.tree:IsValid() then
+        return
+    end
+
+    local tree = FindEntity(inst, FIND_TREE_DIST, nil, FIND_TREE_MUST_TAGS, FIND_TREE_NO_TAGS)
+
+    if tree and tree:IsValid() then
+        inst.tree = ReplacePrefab(tree, "spider_monkey_tree")
+        inst.tree:AddTag("has_monkey")
+    end
+end
+
 local brain = require("brains/spidermonkeybrain")
 
 local function fn()
@@ -176,15 +211,15 @@ local function fn()
     inst.components.lootdropper.droppingchanceloot = false
 
     inst:AddComponent("eater")
-    inst.components.eater:SetDiet({ FOODTYPE.VEGGIE }, { FOODTYPE.VEGGIE })
+    inst.components.eater:SetDiet({FOODTYPE.VEGGIE}, {FOODTYPE.VEGGIE})
     inst.components.eater:SetOnEatFn(OnEat)
 
     inst:AddComponent("sleeper")
 
     inst:AddComponent("knownlocations")
 
-    inst:AddComponent("herdmember")
-    inst.components.herdmember:SetHerdPrefab("spider_monkey_herd")
+    -- inst:AddComponent("herdmember")
+    -- inst.components.herdmember:SetHerdPrefab("spider_monkey_herd")
 
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetDist(20, 23)
@@ -202,6 +237,11 @@ local function fn()
     inst:SetStateGraph("SGspidermonkey")
 
     inst:ListenForEvent("attacked", OnAttacked)
+
+    inst.OnSave = OnSave
+    inst.OnLoadPostPass = OnLoadPostPass
+    inst.OnEntitySleep = OnEntitySleep
+    inst.tree = nil
 
     return inst
 end

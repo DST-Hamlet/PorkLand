@@ -439,6 +439,8 @@ local function OnSave(inst, data)
     if inst.unbloomtaskinfo then
         data.unbloomtask = inst:TimeRemainingInTask(inst.unbloomtaskinfo)
     end
+
+    data.spider = inst:HasTag("has_spider")
 end
 
 local function OnLoad(inst, data)
@@ -491,6 +493,10 @@ local function OnLoad(inst, data)
                 inst.AnimState:SetBuild(inst.build)
             end
         end)
+    end
+
+    if data.spider then
+        inst:AddTag("has_spider")
     end
 end
 

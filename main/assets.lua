@@ -162,7 +162,6 @@ PrefabFiles = {
     "pog",
     "pogherd",
     "spider_monkey",
-    "spider_monkey_herd",
     "pl_chests",
 }
 
