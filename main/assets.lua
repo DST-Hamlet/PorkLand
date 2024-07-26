@@ -172,6 +172,7 @@ PrefabFiles = {
     "lawnornaments",
     "clippings",
     "reconstruction_project",
+    "city_hammer",
 
     "oinc",
 }

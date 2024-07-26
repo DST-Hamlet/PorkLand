@@ -875,10 +875,32 @@ function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
     end
 end
 
+local _USEITEM_tool = USEITEM.tool
+function USEITEM.tool(inst, doer, target, actions, right, ...)
+    if inst:HasTag("fixable_crusher")
+        and inst:HasTag(ACTIONS.HAMMER.id .. "_tool")
+        and target:IsActionValid(ACTIONS.HAMMER, right)
+        and not target:HasTag("fixable") then
+        return
+    end
+    return _USEITEM_tool(inst, doer, target, actions, right, ...)
+end
+
 function EQUIPPED.blinkstaff(inst, doer, target, actions, right, ...)
     if right and target and target:HasTag("sailable") then
         table.insert(actions, ACTIONS.BLINK)
     end
+end
+
+local _EQUIPPED_tool = EQUIPPED.tool
+function EQUIPPED.tool(inst, doer, target, actions, right, ...)
+    if inst:HasTag("fixable_crusher")
+        and inst:HasTag(ACTIONS.HAMMER.id .. "_tool")
+        and target:IsActionValid(ACTIONS.HAMMER, right)
+        and not target:HasTag("fixable") then
+        return
+    end
+    return _EQUIPPED_tool(inst, doer, target, actions, right, ...)
 end
 
 local _INVENTORY_equippable = INVENTORY.equippable

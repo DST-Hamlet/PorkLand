@@ -2,6 +2,16 @@ local function OnDeconstructStructure(inst)
     inst.components.fixable.overridden = true
 end
 
+local function OnWorked(inst, data)
+    if data.workleft <= 0 then
+        local worker = data.worker
+        local tool = worker.components.inventory and worker.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+        if tool and tool:HasTag("fixable_crusher") then
+            inst:RemoveComponent("fixable")
+        end
+    end
+end
+
 local Fixable = Class(function(self, inst)
     self.inst = inst
     self.overridden = false
@@ -10,10 +20,13 @@ local Fixable = Class(function(self, inst)
 
     self.inst:AddTag("fixable")
 
+    self.inst:ListenForEvent("worked", OnWorked)
     self.inst:ListenForEvent("ondeconstructstructure", OnDeconstructStructure)
 end)
 
 function Fixable:OnRemoveFromEntity()
+    self.inst:RemoveTag("fixable")
+    self.inst:RemoveEventCallback("worked", OnWorked)
     self.inst:RemoveEventCallback("ondeconstructstructure", OnDeconstructStructure)
 end
 
