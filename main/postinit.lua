@@ -31,6 +31,7 @@ local component_posts = {
     "fishingrod",
     "floater",
     "grogginess",
+    "grower",
     "grue",
     "hauntable",
     "health",
