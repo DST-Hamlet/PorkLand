@@ -23,9 +23,9 @@ function Wander:PickNewDirection()
         local attempts = self.offest_attempts
         local find_offset_fn = self.inst.components.amphibiouscreature ~= nil and FindAmphibiousOffset
             or self.inst.components.locomotor:IsAquatic() and FindSwimmableOffset or FindWalkableOffset
-        local offset, check_angle, deflected = find_offset_fn(start_position, angle, radius, attempts, true, false, self.checkpointFn) -- try to avoid walls
+        local offset, check_angle = find_offset_fn(start_position, angle, radius, attempts, true, false, self.checkpointFn) -- try to avoid walls
         if not check_angle then
-            offset, check_angle, deflected = find_offset_fn(start_position, angle, radius, attempts, true, true, self.checkpointFn) -- if we can't avoid walls
+            offset, check_angle = find_offset_fn(start_position, angle, radius, attempts, true, true, self.checkpointFn) -- if we can't avoid walls
         end
         if check_angle then
             angle = check_angle

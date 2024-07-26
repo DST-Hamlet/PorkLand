@@ -68,7 +68,7 @@ local function smash(inst)
         local interior_spawner = TheWorld.components.interiorspawner
         if interior_spawner.current_interior then
             local originpt = interior_spawner:getSpawnOrigin()
-            local x, y, z = inst.Transform:GetWorldPosition()
+            local x, _, z = inst.Transform:GetWorldPosition()
             local dropdir = Vector3(originpt.x - x, 0, originpt.z - z):GetNormalized()
             inst.components.lootdropper.dropdir = dropdir
             inst.components.lootdropper:DropLoot()
@@ -750,13 +750,6 @@ end
 
 local LIGHTS =
 {
-    SUNBEAM =
-    {
-        day  = {radius = 3, intensity = 0.75, falloff = 0.5, color = {1, 1, 1}},
-        dusk = {radius = 2, intensity = 0.75, falloff = 0.5, color = {1/1.8, 1/1.8, 1/1.8}},
-        full = {radius = 2, intensity = 0.75, falloff = 0.5, color = {0.8/1.8, 0.8/1.8, 1/1.8}}
-    },
-
     SUNBEAM =
     {
         intensity = 0.9,

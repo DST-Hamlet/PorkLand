@@ -35,7 +35,6 @@ if not rawget(_G, "HotReloading") then
         USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
-        USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
 
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION

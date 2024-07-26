@@ -121,7 +121,7 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
                     end
                 elseif v.components.pickable and v.components.pickable:CanBePicked() then
                     targets_hit[v] = true
-                    local success, loots = v.components.pickable:Pick(inst)
+                    local _, loots = v.components.pickable:Pick(inst)
                     if loots and SHOULD_LAUNCH then
                         for _, vv in ipairs(loots) do
                             targets_tossed[vv] = true

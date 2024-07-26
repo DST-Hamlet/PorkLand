@@ -62,7 +62,7 @@ local function toss_items(inst, target)
         local item = items[math.random(1, #items)]
         item = container.components.container:RemoveItem(item)
 
-        local x, y, z = target.Transform:GetWorldPosition()
+        local x, _, z = target.Transform:GetWorldPosition()
         item.Transform:SetPosition(x, 1, z)
 
         local vel = Vector3(0, 5, 0)

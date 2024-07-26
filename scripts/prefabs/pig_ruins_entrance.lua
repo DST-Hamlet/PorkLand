@@ -535,7 +535,7 @@ local function InitMaze(inst, dungeonname)
         target_interior = inst.interiorID,
     }
 
-    local exit_room = BuildMaze(inst, dungeondef, exterior_door_def)
+    BuildMaze(inst, dungeondef, exterior_door_def)
     interior_spawner:AddDoor(inst, exterior_door_def)
 
     if inst.components.door and dungeondef.lock then

@@ -554,7 +554,6 @@ local function modifypillarfn(inst)
     local interiorSpawner = GetWorld().components.interiorspawner
     if interiorSpawner.current_interior then
         local originpt = interiorSpawner:getSpawnOrigin()
-        local depth = interiorSpawner.current_interior.depth
         local pt = Point(inst.Transform:GetWorldPosition())
 
         if pt.x <= originpt.x then

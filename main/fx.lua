@@ -10,7 +10,7 @@ local function TintOceantFx(inst)
 end
 
 local function BelowGroundFx(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local _, y, _ = inst.Transform:GetWorldPosition()
     if y < -0.1 then
         inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     end

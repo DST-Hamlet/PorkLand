@@ -170,13 +170,6 @@ local prefabs = {
     "securitycontract",
 }
 
-local spawner_prefabs = {
-    "pig_shop_florist",
-    "pig_shop_general",
-    "pig_shop_hoofspa",
-    "pig_shop_produce",
-}
-
 local function LightsOn(inst)
     if inst:HasTag("burnt") then
         return

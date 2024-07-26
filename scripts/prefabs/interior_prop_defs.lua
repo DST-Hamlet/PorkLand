@@ -1070,8 +1070,6 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             end
         else
             if math.random()< 0.5 then
-                local tags = nil
-
                 addprops[#addprops + 1] = { name = "pig_ruins_torch_wall"..room.color, x_offset = -depth/2, z_offset =  -width/6*2, rotation = -90 }
                 if exits_open.north then
                     addprops[#addprops + 1] = { name = "pig_ruins_torch_wall"..room.color, x_offset = -depth/2, z_offset =  0, rotation = -90, }

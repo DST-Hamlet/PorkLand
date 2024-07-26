@@ -18,7 +18,7 @@ local function StopConsuming(inst)
 end
 
 local function OnEmbarked(boat, data)
-    local item = boat.components.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
+    -- local item = boat.components.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
 end
 
 local function OnDisembarked(boat, data)

@@ -90,7 +90,7 @@ end
 -- Check if I'm about to hit land
 local function CheckGround(inst, dt)
     local x, y, z = inst.Transform:GetWorldPosition()
-    local vx, vy, vz = inst.Physics:GetVelocity()
+    local vx, _, vz = inst.Physics:GetVelocity()
 
     local checkx = x + vx
     local checky = y
