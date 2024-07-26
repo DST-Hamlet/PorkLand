@@ -8,7 +8,7 @@ GLOBAL.setfenv(1, GLOBAL)
 -- local TIMEOUT = 2
 
 local actionhandlers = {
-    ActionHandler(ACTIONS.USEDOOR, "jumpin_pre"),
+    ActionHandler(ACTIONS.USEDOOR, "usedoor_pre"),
 }
 
 local eventhandlers = {
@@ -16,7 +16,37 @@ local eventhandlers = {
 }
 
 local states = {
+    State{
+        name = "usedoor_pre",
+        tags = { "doing", "busy", "canrotate" },
+		server_states = { "usedoor_pre"},
 
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("dissipate")
+            inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_haunt", nil, nil, true)
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+			if inst.sg:ServerStateMatches() then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("appear")
+                inst.sg:GoToState("idle", true)
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.AnimState:PlayAnimation("appear")
+            inst.sg:GoToState("idle", true)
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
