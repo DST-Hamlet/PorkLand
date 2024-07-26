@@ -369,7 +369,6 @@ function Map:GetTile(x, y, ...)
     local w, h = TheWorld.Map:GetSize()
     local tx = (x - w / 2) * TILE_SCALE
     local tz = (y - h / 2) * TILE_SCALE
-    print("tile to point", tx, tz)
     if x and y and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(tx, tz) then
         if TheWorld.components.interiorspawner:IsInInteriorRoom(tx, tz) then
             return WORLD_TILES.INTERIOR
