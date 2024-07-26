@@ -2,53 +2,6 @@
 require("map/storygen")
 local AddPlMaptags = require("map/pl_map_tags")
 
-local task_region_mapping = {}
-local function SetTaskRegion(task_name, region)
-    task_region_mapping[task_name] = region
-end
-
-SetTaskRegion("START",                           "A")
-SetTaskRegion("Edge_of_the_unknown",             "A")
-SetTaskRegion("painted_sands",                   "A")
-SetTaskRegion("plains",                          "A")
-SetTaskRegion("rainforests",                     "A")
-SetTaskRegion("rainforest_ruins",                "A")
-SetTaskRegion("plains_ruins",                    "A")
-SetTaskRegion("Edge_of_civilization",            "A")
-SetTaskRegion("Deep_rainforest",                 "A")
-SetTaskRegion("Pigtopia",                        "A")
-SetTaskRegion("Pigtopia_capital",                "A")
-SetTaskRegion("Deep_lost_ruins_gas",             "A")
-SetTaskRegion("Edge_of_the_unknown_2",           "A")
-SetTaskRegion("Lilypond_land",                   "A")
-SetTaskRegion("Lilypond_land_2",                 "A")
-SetTaskRegion("this_is_how_you_get_ants",        "A")
-SetTaskRegion("Deep_rainforest_2",               "A")
-SetTaskRegion("Lost_Ruins_1",                    "A")
-SetTaskRegion("Lost_Ruins_4",                    "A")
-
--- SetTaskRegion("Land_Divide_1",                   "A")
-
-SetTaskRegion("Deep_rainforest_3",              "B")
-SetTaskRegion("Deep_rainforest_mandrake",       "B")
-SetTaskRegion("Path_to_the_others",             "B")
-SetTaskRegion("Other_edge_of_civilization",     "B")
-SetTaskRegion("Other_pigtopia",                 "B")
-SetTaskRegion("Other_pigtopia_capital",         "B")
-
-SetTaskRegion("Deep_lost_ruins4",               "C")
-SetTaskRegion("lost_rainforest",                "C")
--- SetTaskRegion("Land_Divide_2",                  "C")
-
-SetTaskRegion("pincale",                        "E")
--- SetTaskRegion("Land_Divide_3",                  "E")
-
-
-SetTaskRegion("Deep_wild_ruins4",               "F")
-SetTaskRegion("wild_rainforest",                "F")
-SetTaskRegion("wild_ancient_ruins",             "F")
--- SetTaskRegion("Land_Divide_4",                  "F")
-
 function Story:GenerateIslandFromTask(task, randomize)
     if task.room_choices == nil or type(task.room_choices[1]) ~= "table" then
         return nil
@@ -60,7 +13,8 @@ function Story:GenerateIslandFromTask(task, randomize)
         task.random_treasures })
     task_node.substitutes = task.substitutes
 
-    WorldSim:AddChild(self.rootNode.id, task.id, task.room_bg, task.colour.r, task.colour.g, task.colour.b, task.colour.a)
+    WorldSim:AddChild(self.rootNode.id, task.id, task.room_bg, task.colour.r, task.colour.g, task.colour.b, task.colour
+    .a)
 
     local layout = {}
     local layoutdepth = 1
@@ -166,14 +120,13 @@ function Story:GenerateIslandFromTask(task, randomize)
     return task_node
 end
 
-function Story:Pl_GenerateNodesFromTasks(linkFn, tasks, start)
+function Story:Pl_GenerateNodesFromTasks(linkFn)
     -- print("Story:GenerateNodesFromTasks creating stories")
 
     local unusedTasks = {}
 
     -- Generate all the TERRAIN
-    local finalNode
-    for _, task in pairs(tasks) do
+    for _, task in pairs(self.tasks) do
         -- print("Story:GenerateNodesFromTasks k,task",k,task,  GetTableSize(self.TERRAIN))
         local node = nil
         if task.gen_method == "lagoon" then
@@ -185,10 +138,6 @@ function Story:Pl_GenerateNodesFromTasks(linkFn, tasks, start)
         end
         self.TERRAIN[task.id] = node
         unusedTasks[task.id] = node
-
-        if string.find(task.id, "Land_Divide") then
-            finalNode = node
-        end
     end
 
     -- print("Story:GenerateNodesFromTasks lock terrain")
@@ -218,10 +167,6 @@ function Story:Pl_GenerateNodesFromTasks(linkFn, tasks, start)
     -- print("Lock and Key")
 
     self.finalNode = linkFn(self, startParentNode, unusedTasks) -- startParentNode
-    local entranceNode = startParentNode:GetRandomNodeForEntrance()
-    if not start then
-        return {startingTask = startParentNode, finalNode = finalNode}
-    end
 
     local randomStartNode = startParentNode:GetRandomNode()
 
@@ -265,8 +210,6 @@ function Story:Pl_GenerateNodesFromTasks(linkFn, tasks, start)
 
     -- print("Story:GenerateNodesFromTasks adding start node link", self.startNode.id .. " -> " .. randomStartNode.id)
     startParentNode:AddEdge({ node1id = self.startNode.id, node2id = randomStartNode.id })
-
-    return {startingTask = startParentNode, entranceNode = entranceNode, finalNode = finalNode}
 end
 
 function Story:Pl_AddBGNodes(min_count, max_count)
@@ -501,6 +444,7 @@ function Story:Pl_PlaceTeleportatoParts()
     local iswaternode = function(node)
         local water_node = node.data.type == "water" or IsOceanTile(node.data.value)
         return water_node
+        -- return ((setpiece_data.restrict_to == nil or setpiece_data.restrict_to ~= "water") and room.data.type ~= "water") or (setpiece_data.restrict_to and setpiece_data.restrict_to == "water" and (room.data.type == "water" or WorldSim:IsWater(room.data.value)))
     end
 
     local AddPartToTask = function(part, task)
@@ -725,42 +669,8 @@ local function BuildPorkLandStory(tasks, story_gen_params, level)
     print("Building PorkLand Story", tasks)
 
     local story = Story("GAME", tasks, terrain, story_gen_params, level)
-    story.region_tasksets = {}
-    for task_id, task in pairs(story.tasks) do
-        local region_id = task_region_mapping[task_id]
-        if task_region_mapping[task_id] == "A" then
-            region_id = "mainland"
-        end
-        if story.region_tasksets[region_id] == nil then
-            story.region_tasksets[region_id] = {}
-        end
-        story.region_tasksets[region_id][task_id] = task
-    end
     AddPlMaptags(story.map_tags)
-
-    -- 用于存储每个岛屿的起始节点
-    -- local startNodes = {}
-
-    -- -- 生成五个岛屿的故事节点
-    -- local island_ids = {"A", "B", "C", "E", "F"}
-    -- for i, island_id in ipairs(island_ids) do
-    --     local b = story:Pl_GenerateNodesFromTasks(RestrictNodesByKey, story.region_tasksets[island_id], i==1)
-    --     table.insert(startNodes, b.startingTask)
-    -- end
-
-    -- -- 将每个岛屿的结尾连接到下一个岛屿的起始
-    -- for i = 1, #startNodes do
-    --     local currentIsland = startNodes[i]
-    --     local nextIsland = startNodes[(i % #startNodes) + 1] -- 环形链接
-
-    --     -- 创建一个随机节点作为当前岛屿的结尾
-    --     local endNode = currentIsland:GetRandomNode()
-    --     -- 创建一个随机节点作为下一个岛屿的起始
-    --     local nextStartNode = nextIsland:GetRandomNode()
-
-    --     -- 添加边连接
-    --     currentIsland:AddEdge({node1id = endNode.id, node2id = nextStartNode.id})
-    -- end
+    story:Pl_GenerateNodesFromTasks(RestrictNodesByKey)
 
     local world_size = 0
     if story_gen_params.world_size == "medium" then
@@ -771,14 +681,12 @@ local function BuildPorkLandStory(tasks, story_gen_params, level)
         world_size = 3
     end
 
-    story.min_bg = (level.background_node_range and level.background_node_range[1] or 0) + world_size
-    story.max_bg = (level.background_node_range and level.background_node_range[2] or 2) + world_size
+    local min_bg = (level.background_node_range and level.background_node_range[1] or 0) + world_size
+    local max_bg = (level.background_node_range and level.background_node_range[2] or 2) + world_size
 
-    story:Pl_GenerateNodesFromTasks(RestrictNodesByKey, story.region_tasksets["mainland"], true)
-
-    story:Pl_AddBGNodes(story.min_bg, story.max_bg)
-    -- story:Pl_InsertAdditionalSetPieces()
-    -- story:Pl_PlaceTeleportatoParts()
+    story:Pl_AddBGNodes(min_bg, max_bg)
+    story:Pl_InsertAdditionalSetPieces()
+    story:Pl_PlaceTeleportatoParts()
 
     return { root = story.rootNode, startNode = story.startNode, GlobalTags = story.GlobalTags }, story
 end
