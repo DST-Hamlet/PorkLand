@@ -96,6 +96,9 @@ local tuning = {
     ASPARAGUS_REGROWTH_TIME = day_time * 20,
     ASPARAGUS_REGROWTH_TIME_MULT = 1,
 
+    FLIPPABLE_ROCK_REPOPULATE_TIME = total_day_time * 8,
+    FLIPPABLE_ROCK_REPOPULATE_VARIANCE = total_day_time * 2,
+
     CLAWPALMTREE_GROW_TIME = {
         {base = 8 * day_time, random = 0.5 * day_time},  -- tall to short
         {base = 12 * day_time, random = 5 * day_time},   -- short to normal
