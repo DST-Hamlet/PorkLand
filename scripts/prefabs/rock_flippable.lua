@@ -67,8 +67,6 @@ local function onpickedfn(inst, picker)
     inst.AnimState:PlayAnimation("flip_over", false)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/flipping_rock/open")
     inst.components.lootdropper:DropLoot(inst:GetPosition())
-
-    inst.flipped = true
 end
 
 local function makefullfn(inst)
@@ -76,8 +74,11 @@ local function makefullfn(inst)
     inst.AnimState:PushAnimation("idle")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/harvested/flipping_rock/open")
 
-    inst.flipped = false
     inst:DoTaskInTime(0, setloot)
+end
+
+local function makeemptyfn(inst)
+    inst.AnimState:PlayAnimation("flip_over", false)
 end
 
 local function getregentimefn(inst)
@@ -145,6 +146,7 @@ local function fn(Sim)
     inst.components.pickable.getregentimefn = getregentimefn
     inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.makefullfn = makefullfn
+    inst.components.pickable.makeemptyfn = makeemptyfn
     inst.components.pickable.quickpick = true
 
     inst:AddComponent("workable")
