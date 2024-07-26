@@ -75,6 +75,7 @@ AllLayouts["PigRuinsHead"] = StaticLayout.Get("map/static_layouts/pig_ruins_head
     }
 })
 AllLayouts["PigRuinsHead"].ground_types = ground_types
+AllLayouts["PigRuinsHead"].only_in_tiles = {WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.GASJUNGLE}
 
 local function GetRandomSmashingpot()
     return math.random() < 0.7 and {"smashingpot"} or nil

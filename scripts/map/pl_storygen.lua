@@ -326,6 +326,20 @@ function Story:Pl_InsertAdditionalSetPieces(task_nodes)
         local water_layout = layout and layout.water == true
         return (water_room and water_layout) or (not water_room and not water_layout)
     end
+    local function is_target_tile(room, layout)
+        local tile = room.data.value ~= nil and room.data.value
+        local need_tiles = layout and layout.only_in_tiles
+        if need_tiles == nil then
+            return true
+        end
+        local has_target_tile = false
+        for i, v in ipairs(need_tiles) do
+            if v == tile then
+                has_target_tile = true
+            end
+        end
+        return has_target_tile
+    end
 
     local tasks = task_nodes or self.rootNode:GetChildren()
     for id, task in pairs(tasks) do
@@ -347,7 +361,7 @@ function Story:Pl_InsertAdditionalSetPieces(task_nodes)
                 local choicekeys = shuffledKeys(task.nodes)
                 local choice = nil
                 for _, choicekey in ipairs(choicekeys) do
-                    if not is_entrance(task.nodes[choicekey]) and is_background_ok(task.nodes[choicekey]) and is_water_ok(task.nodes[choicekey], layout) and isnt_blank(task.nodes[choicekey]) then
+                    if not is_entrance(task.nodes[choicekey]) and is_background_ok(task.nodes[choicekey]) and is_water_ok(task.nodes[choicekey], layout) and isnt_blank(task.nodes[choicekey]) and is_target_tile(task.nodes[choicekey], layout) then
                         choice = choicekey
                         break
                     end
@@ -381,7 +395,7 @@ function Story:Pl_InsertAdditionalSetPieces(task_nodes)
                         return room.data.type ~= "blank"
                     end
 
-                    if not is_entrance(task.nodes[choicekey]) and isnt_blank(task.nodes[choicekey]) and is_water_ok(task.nodes[choicekey], layout) then
+                    if not is_entrance(task.nodes[choicekey]) and isnt_blank(task.nodes[choicekey]) and is_water_ok(task.nodes[choicekey], layout) and is_target_tile(task.nodes[choicekey], layout) then
                         choice = choicekey
                         break
                     end

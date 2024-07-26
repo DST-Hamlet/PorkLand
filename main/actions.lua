@@ -33,6 +33,9 @@ if not rawget(_G, "HotReloading") then
         CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
         CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
         USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
+        BARK = Action({distance = 3}),
+        RANSACK = Action({distance = 0.5}),
+        USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
 
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -425,6 +428,14 @@ ACTIONS.USE_LIVING_ARTIFACT.fn = function(act)
         return true
     end
 end
+
+ACTIONS.BARK.fn = function(act)
+    return true
+end
+
+ACTIONS.RANSACK.fn = function(act)
+    return true
+end
 ACTIONS.POOP_TIP.fn = function(act)
     act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, act.doer:GetPosition())
     return true
@@ -795,7 +806,7 @@ local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 
 local _SCENE_container = SCENE.container
 function SCENE.container(inst, doer, actions, right, ...)
-    if not inst:HasTag("bundle") and not inst:HasTag("burnt")
+    if not inst:HasTag("bundle") and not inst:HasTag("burnt") and not inst:HasTag("noslot")
         and doer.replica.inventory
         and not (doer.replica.rider ~= nil and doer.replica.rider:IsRiding())
         and right and inst.replica.container.type == "boat" then
