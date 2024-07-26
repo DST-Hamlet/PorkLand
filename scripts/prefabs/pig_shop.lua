@@ -592,6 +592,7 @@ local function MakeShop(name, build, bank, data)
         inst.break_sound_sufix = data and data.usestonebreaksound and "stone" or "wood"
 
         inst:AddComponent("gridnudger")
+        inst.components.gridnudger.snap_to_grid = true
 
         inst:AddComponent("inspectable")
 
