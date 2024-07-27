@@ -489,6 +489,11 @@ function CityPigBrain:OnStart()
     local root =
         PriorityNode(
         {
+            -- TODO: Add in custom panic speech
+            WhileNode( function() return self.inst.components.hauntable and self.inst.components.hauntable.panic end, "PanicHaunted",
+                ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
+                    Panic(self.inst))),
+
             WhileNode(GoToIdleStateWrap(self.inst, function() return self.inst.components.health.takingfiredamage end), "OnFire",
                 ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_PANICFIRE),
                     Panic(self.inst))),
