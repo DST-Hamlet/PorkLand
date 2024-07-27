@@ -1,4 +1,3 @@
-
 local prefabs =
 {
     "spoiled_food",
@@ -57,13 +56,6 @@ local function MakePreparedFood(data)
         inst.components.edible.antihistamine = data.antihistamine or 0
         inst.components.edible:SetOnEatenFn(data.oneatenfn)
 
-        inst.yotp_override = data.yotp
-        if inst.yotp_override then
-            inst.OnFiestaChange = function(src, isfiesta) OnFiestaChange(inst, isfiesta) end
-            inst:WatchWorldState("fiestachange", inst.OnFiestaChange)
-            OnFiestaChange(inst, TheWorld.state.isfiesta)
-        end
-
         inst:AddComponent("inspectable")
 
         inst:AddComponent("inventoryitem")
@@ -85,6 +77,13 @@ local function MakePreparedFood(data)
         MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
         MakeHauntableLaunchAndPerish(inst)
+
+        inst.yotp_override = data.yotp
+        if inst.yotp_override then
+            inst.OnFiestaChange = function(src, isfiesta) OnFiestaChange(inst, isfiesta) end
+            inst:WatchWorldState("fiestachange", inst.OnFiestaChange)
+            OnFiestaChange(inst, TheWorld.state.isfiesta)
+        end
 
         return inst
     end

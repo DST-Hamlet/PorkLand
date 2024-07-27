@@ -83,6 +83,34 @@ local foods = {
             eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")
         end,
     },
+
+    gummy_cake =
+	{
+		test = function(cooker, names, tags) return (names.slugbug or names.slugbug_cooked) and tags.sweetener end,
+
+		priority = 1,
+		foodtype = FOODTYPE.MEAT,
+		health = -TUNING.HEALING_SMALL,
+		hunger = TUNING.CALORIES_SUPERHUGE,
+		perishtime = TUNING.PERISH_PRESERVED,
+		sanity = -TUNING.SANITY_TINY,
+		cooktime = 2,
+		yotp = true,
+	},
+
+    feijoada =
+	{
+		test = function(cooker, names, tags) return tags.meat and ((names.jellybug or 0) + (names.jellybug_cooked or 0)) == 3 end,
+
+		priority = 30,
+		foodtype = FOODTYPE.MEAT,
+		health = TUNING.HEALING_MED,
+		hunger = TUNING.CALORIES_HUGE,
+		perishtime = TUNING.PERISH_FASTISH,
+		sanity = TUNING.SANITY_MED,
+		cooktime = 3.5,
+		yotp = true,
+	},
 }
 
 for k, v in pairs(foods) do
