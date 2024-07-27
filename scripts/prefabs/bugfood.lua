@@ -88,8 +88,6 @@ local function jellybug_raw()
     inst:AddComponent("cookable")
     inst.components.cookable.product = "jellybug_cooked"
 
-	inst:AddComponent("bait")
-
     return inst
 end
 
