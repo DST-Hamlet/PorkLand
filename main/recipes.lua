@@ -92,6 +92,14 @@ SortAfter("goldenmachete", "goldenaxe", "TOOLS")
 AddRecipe2("shears", {Ingredient("twigs", 2),Ingredient("iron", 2)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
 SortAfter("shears", "goldenpitchfork", "TOOLS")
 
+--Storage Solutions
+AddRecipe2("corkchest", {Ingredient("cork", 2), Ingredient("rope", 1)}, TECH.SCIENCE_ONE, {placer = "corkchest_placer"},  {"CONTAINERS"})
+SortBefore("corkchest", "treasurechest", "CONTAINERS")
+
+AddRecipe2("roottrunk_child", {Ingredient("bramble_bulb", 1), Ingredient("venus_stalk", 2),Ingredient("boards", 3)}, TECH.MAGIC_TWO, {placer = "roottrunk_child_placer"}, {"CONTAINERS","MAGIC"})
+SortBefore("roottrunk_child", "magician_chest", "CONTAINERS")
+SortAfter("roottrunk_child", "armorslurper", "MAGIC")
+
 --war
 AddRecipe2("halberd", {Ingredient("alloy", 1), Ingredient("twigs", 2)}, TECH.SCIENCE_TWO, {}, {"WEAPONS","TOOLS"})
 SortAfter("halberd", "spear", "WEAPONS")
@@ -107,6 +115,11 @@ SortAfter("armor_metalplate", "armormarble", "ARMOUR")
 AddRecipe2("bonestaff", {Ingredient("pugalisk_skull", 1), Ingredient("boneshard", 1), Ingredient("nightmarefuel", 2)}, TECH.MAGIC_THREE, {} , {"WEAPONS","MAGIC"})
 SortAfter("bonestaff", "antlionhat", "MAGIC")
 SortAfter("bonestaff", "trident", "WEAPONS")
+
+AddRecipe2("living_artifact", {Ingredient("infused_iron", 6), Ingredient("waterdrop", 1)}, TECH.LOST, {}, {"MAGIC", "ARMOUR", "WEAPONS"})
+SortAfter("living_artifact", "nightmarefuel", "MAGIC")
+SortAfter("living_artifact", nil, "ARMOUR")
+SortAfter("living_artifact", nil, "WEAPONS")
 
 --REFINE
 AddRecipe2("goldnugget", {Ingredient("gold_dust", 6)}, TECH.SCIENCE_ONE, {no_deconstruction=true} , {"REFINE"})
@@ -130,11 +143,6 @@ AddRecipe2("boatrepairkit", {Ingredient("boards", 2), Ingredient("stinger", 2), 
 AddRecipe2("boat_torch", {Ingredient("twigs", 2), Ingredient("torch", 1)}, TECH.SCIENCE_ONE, nil, {"LIGHT", "NAUTICAL"})
 
 AddRecipe2("sail_snakeskin", {Ingredient("log", 4), Ingredient("rope", 2), Ingredient("snakeskin", 2)}, TECH.SCIENCE_TWO, nil, {"NAUTICAL"})
-
-AddRecipe2("living_artifact", {Ingredient("infused_iron", 6), Ingredient("waterdrop", 1)}, TECH.LOST, {}, {"MAGIC", "ARMOUR", "WEAPONS"})
-SortAfter("living_artifact", "nightmarefuel", "MAGIC")
-SortAfter("living_artifact", nil, "ARMOUR")
-SortAfter("living_artifact", nil, "WEAPONS")
 
 --Deconstruct
 AddDeconstructRecipe("mandrakehouse", {Ingredient("boards", 3), Ingredient("mandrake", 2), Ingredient("cutgrass", 10)})
