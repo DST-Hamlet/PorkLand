@@ -8,6 +8,7 @@ local build_porkland = require("map/build_porkland")
 local startlocations = require("map/startlocations")
 local forest_map = require("map/forest_map")
 local BuildPorkLandStory = require("map/pl_storygen")
+local BuildPorkLandStory_old = require("map/pl_storygen_old")
 local MULTIPLY = forest_map.MULTIPLY
 local TRANSLATE_TO_PREFABS = forest_map.TRANSLATE_TO_PREFABS
 local TRANSLATE_AND_OVERRIDE = forest_map.TRANSLATE_AND_OVERRIDE
@@ -170,7 +171,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
     end
     map_width = min_size
     map_height = min_size
-    WorldSim:SetWorldSize(map_width, map_height)
+    WorldSim:SetWorldSize(100, 100)
 
     print("Creating story...")
     require("map/storygen")
@@ -178,15 +179,15 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     WorldSim:WorldGen_InitializeNodePoints()
 
-    WorldSim:WorldGen_VoronoiPass(50)
-    storygen:AddIslandToPorkland(function(region_id)
-		WorldSim:WorldGen_AddNewPositions()
-        if region_id == "E" then
-            WorldSim:WorldGen_VoronoiPass(100)
-        else
-            WorldSim:WorldGen_VoronoiPass(50)
-        end
-	end)
+    WorldSim:WorldGen_VoronoiPass(10)
+    -- storygen:AddIslandToPorkland(function(region_id)
+	-- 	WorldSim:WorldGen_AddNewPositions()
+    --     if region_id == "E" then
+    --         WorldSim:WorldGen_VoronoiPass(100)
+    --     else
+    --         WorldSim:WorldGen_VoronoiPass(50)
+    --     end
+	-- end)
 
     print("... story created")
 
@@ -319,7 +320,7 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
 
     AncientArchivePass(entities, map_width, map_height, WorldSim)
 
-    build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
+    -- build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
 
     local double_check = {}
     for i, prefab in ipairs(level.required_prefabs or {}) do

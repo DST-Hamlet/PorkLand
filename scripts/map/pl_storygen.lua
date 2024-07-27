@@ -1,4 +1,3 @@
--- hack storygen functions is very trouble, so we rewrite it  -- Jerry
 require("map/storygen")
 local AddPlMaptags = require("map/pl_map_tags")
 local TaskRegionMap = require("map/task_region_map")
@@ -170,7 +169,7 @@ function Story:GenerateNodesForIsland(taskSet, linkFn)
     local entranceNode = startingTask:GetRandomNodeForEntrance()
     local finalNode = linkFn(self, startingTask, taskNodes)
 
-    return {startingTask = startingTask, entranceNode = entranceNode, finalNode = finalNode, taskNodes = taskNodes}
+    return {startingTask = startingTask, entranceNode = entranceNode, finalNode = finalNode}
 end
 
 function Story:Pl_InsertAdditionalSetPieces(task_nodes)
@@ -277,7 +276,7 @@ function Story:AddIslandToPorkland(on_region_added_fn)
     for region_id, region_taskset in pairs(self.region_tasksets) do
         if region_id ~= "A" then
             local c1, c2 = self:FindMainlandNodesForNewRegion()
-            local new_island = self:GenerateNodesForRegion(region_taskset, "RestrictNodesByKey")
+            local new_island = self:GenerateNodesForIsland(region_taskset, RestrictNodesByKey)
 
             local new_task_nodes = {}
             for k, v in pairs(region_taskset) do
@@ -324,9 +323,7 @@ local function BuildPorkLandStory(tasks, story_gen_params, level)
     story.min_bg = (level.background_node_range and level.background_node_range[1] or 0) + world_size
     story.max_bg = (level.background_node_range and level.background_node_range[2] or 2) + world_size
 
-    local g = story:GenerateNodesForRegion(story.region_tasksets["A"], "RestrictNodesByKey")
-
-    story.main_task_nodes = g.taskNodes
+    local g = story:GenerateNodesForIsland(story.region_tasksets["A"], RestrictNodesByKey)
     story.startNode = story:_AddPlayerStartNode(g)
     story:AddBGNodes(story.min_bg, story.max_bg)
     story:Pl_InsertAdditionalSetPieces()
