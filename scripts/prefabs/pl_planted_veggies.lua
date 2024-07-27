@@ -1,4 +1,4 @@
-local function MakePlantedVeggie(base_veggie, anim, scale, regrow)
+local function MakePlantedVeggie(base_veggie, anim, animation, scale, regrow)
     anim = anim or base_veggie
 
     local assets = {
@@ -18,7 +18,7 @@ local function MakePlantedVeggie(base_veggie, anim, scale, regrow)
 
         inst.AnimState:SetBank(anim)
         inst.AnimState:SetBuild(anim)
-        inst.AnimState:PlayAnimation("planted")
+        inst.AnimState:PlayAnimation(animation or "planted")
         inst.AnimState:SetRayTestOnBB(true)
 
         if scale then
@@ -53,4 +53,4 @@ end
 
 return MakePlantedVeggie("aloe"),
     MakePlantedVeggie("radish"),
-    MakePlantedVeggie("asparagus", "asparagus_planted", 1.3, true)
+    MakePlantedVeggie("asparagus", "asparagus_planted", "idle", 1.3, true)
