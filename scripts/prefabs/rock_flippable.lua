@@ -29,13 +29,13 @@ local function setloot(inst)
 
     -- inst.components.lootdropper:AddExternalLoot("rocks") -- for wheeler tracker
 
-    if tile == GROUND.PLAINS then
+    if tile == WORLD_TILES.PLAINS then
         inst.components.lootdropper:AddRandomLoot("jellybug", 2) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("rocks", 8) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("flint", 8) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("cutgrass", 8) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("goldnugget", 1) -- Weighted average
-    elseif tile == GROUND.RAINFOREST then
+    elseif tile == WORLD_TILES.RAINFOREST then
         inst.components.lootdropper:AddRandomLoot("jellybug", 10.0) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("slugbug", 10.0) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("rocks", 15.0) -- Weighted average
@@ -43,7 +43,7 @@ local function setloot(inst)
         inst.components.lootdropper:AddRandomLoot("cutgrass", 10.0) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("rabid_beetle", 0.1) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("goldnugget", 1) -- Weighted average
-    elseif tile == GROUND.DEEPRAINFOREST then
+    elseif tile == WORLD_TILES.DEEPRAINFOREST then
         inst.components.lootdropper:AddRandomLoot("jellybug", 15.0) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("slugbug", 15.0) -- Weighted average
         inst.components.lootdropper:AddRandomLoot("rocks", 5.0) -- Weighted averagettt
