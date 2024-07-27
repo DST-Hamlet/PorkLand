@@ -62,7 +62,7 @@ local function fn(Sim)
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)
 
-    MakeHauntableLaunch()
+    MakeHauntableLaunch(inst)
 
     return inst
 end
