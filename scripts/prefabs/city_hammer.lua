@@ -29,7 +29,7 @@ local function fn(Sim)
 	inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst, "idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.AnimState:SetBank("city_hammer")
     inst.AnimState:SetBuild("city_hammer")

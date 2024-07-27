@@ -11,7 +11,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
+    PorkLandMakeInventoryFloatable(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
 
     inst.AnimState:SetBank("feather_peagawk")

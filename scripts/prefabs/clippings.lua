@@ -11,7 +11,7 @@ local function fn(Sim)
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst, "idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
 
     inst.AnimState:SetBank("cut_hedge")

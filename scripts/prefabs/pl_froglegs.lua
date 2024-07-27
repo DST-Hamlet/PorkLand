@@ -26,8 +26,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("smallmeat")
     inst:AddTag("fishmeat")
@@ -86,8 +85,7 @@ local function cookedfn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_cooked_water", "cooked")
+    PorkLandMakeInventoryFloatable(inst, "idle_cooked_water", "cooked")
 
     inst.AnimState:SetBank("frog_legs")
     inst.AnimState:SetBuild("frog_legs_tree")

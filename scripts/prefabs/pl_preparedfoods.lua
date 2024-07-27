@@ -28,8 +28,7 @@ local function MakePreparedFood(data)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations(data.name .. "_water", data.name)
+        PorkLandMakeInventoryFloatable(inst, data.name .. "_water", data.name)
 
         inst.AnimState:SetBuild("pl_cook_pot_food")
         inst.AnimState:SetBank(data.is_shipwreck_food and "sw_food" or "pl_food")
