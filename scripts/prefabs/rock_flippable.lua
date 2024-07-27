@@ -167,7 +167,7 @@ local function fn(Sim)
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake
 
-    MakeHauntableWork()
+    MakeHauntableWork(inst)
 
     return inst
 end

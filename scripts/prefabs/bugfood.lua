@@ -62,7 +62,7 @@ local function common(bank, build, foodtype)
 	inst.components.perishable:StartPerishing()
 	inst.components.perishable.onperishreplacement = "spoiled_food"
 
-    MakeHauntableLaunchAndPerish()
+    MakeHauntableLaunchAndPerish(inst)
 
     return inst
 end
