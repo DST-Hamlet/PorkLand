@@ -27,3 +27,5 @@ AddIngredientValues({"snake_bone"}, {bone=1})
 
 AddIngredientValues({"jellybug"}, {bug=1}, true)
 AddIngredientValues({"slugbug"}, {bug=1}, true)
+
+AddIngredientValues({"radish", "aloe"}, {veggie=1}, true)
