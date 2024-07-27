@@ -71,7 +71,7 @@ local function jellybug_raw()
     local inst = common("jellybug", "jellybug", FOODTYPE.VEGGIE)
     inst.AnimState:PlayAnimation("idle", true)
 
-    PorkLandMakeInventoryFloatable(inst, "idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     if not TheWorld.ismastersim then
         return inst
@@ -114,7 +114,7 @@ local function slugbug_raw()
     local inst = common("slugbug", "slugbug", FOODTYPE.MEAT)
     inst.AnimState:PlayAnimation("idle", true)
 
-    PorkLandMakeInventoryFloatable(inst, "idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     if not TheWorld.ismastersim then
         return inst
