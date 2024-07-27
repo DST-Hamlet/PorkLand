@@ -27,7 +27,7 @@ end
 local function setloot(inst)
     local tile = TheWorld.Map:GetTileAtPoint(inst.Transform:GetWorldPosition())
 
-    -- inst.components.lootdropper:AddExternalLoot("rocks")
+    -- inst.components.lootdropper:AddExternalLoot("rocks") -- for wheeler tracker
 
     if tile == GROUND.PLAINS then
         inst.components.lootdropper:AddRandomLoot("jellybug", 2) -- Weighted average
@@ -166,6 +166,8 @@ local function fn(Sim)
 
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake
+
+    MakeHauntableWork()
 
     return inst
 end
