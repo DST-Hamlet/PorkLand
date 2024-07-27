@@ -712,8 +712,8 @@ local function OnLoad(inst, data)
 
     if data.equipped then
         inst.equipped = true
-        inst.equiptask:Cancel()
-        inst.equiptask = nil
+        -- inst.equiptask:Cancel()
+        -- inst.equiptask = nil
     end
 
     if data.angryatplayer then
@@ -932,7 +932,7 @@ local function OnChangeArea(inst, data)
 end
 
 local function NormalizeTorch(torch, owner)
-    torch.components.fueled.unlimited_fuel = nil
+    torch.components.burnable.ignorefuel = false
 
     if not torch.components.citypossession then
         torch:AddComponent("citypossession")
@@ -941,7 +941,7 @@ local function NormalizeTorch(torch, owner)
 end
 
 local function NormalizeHalberd(halberd, owner)
-    halberd.components.finiteuses.unlimited_uses = nil
+    halberd.components.finiteuses:SetIgnoreCombatDurabilityLoss(false)
 
     if not halberd.components.citypossession then
         halberd:AddComponent("citypossession")
@@ -951,23 +951,29 @@ end
 
 local function EquipItems(inst)
     if inst.equipped then
-        return
+        local torches = inst.components.inventory:FindItems(function(item) return item.prefab == "torch" end)
+        for _, torch in ipairs(torches) do
+            print("setting torch to ignorefuel")
+            torch.components.burnable.ignorefuel = true
+        end
+        local halberds = inst.components.inventory:FindItems(function(item) return item.prefab == "halberd" end)
+        for _, axe in ipairs(halberds) do
+            axe.components.finiteuses:SetIgnoreCombatDurabilityLoss(true)
+        end
+    else
+        inst.equipped = true
+
+        local torch = SpawnPrefab("torch")
+        torch.components.burnable.ignorefuel = true
+        inst.components.inventory:GiveItem(torch)
+
+        local axe = SpawnPrefab("halberd")
+        axe.components.finiteuses:SetIgnoreCombatDurabilityLoss(true)
+        inst.components.inventory:Equip(axe)
+
+        local armour = SpawnPrefab("armorwood")
+        inst.components.inventory:Equip(armour)
     end
-
-    inst.equipped = true
-
-    local torch = SpawnPrefab("torch")
-    inst.components.inventory:GiveItem(torch)
-    torch.components.fueled.unlimited_fuel = true
-
-    local axe = SpawnPrefab("halberd")
-    inst.components.inventory:GiveItem(axe)
-    inst.components.inventory:Equip(axe)
-    axe.components.finiteuses.unlimited_uses = true
-
-    local armour = SpawnPrefab("armorwood")
-    inst.components.inventory:GiveItem(armour)
-    inst.components.inventory:Equip(armour)
 end
 
 local function OnDeath_Guard(inst, data)
@@ -1129,22 +1135,13 @@ local function MechanicMasterPostinit(inst)
     inst:AddComponent("fixer")
 
     inst:DoTaskInTime(0, function()
-        -- Get rid of any hammers we have, cuz bugs
-        -- local numHammers = inst.components.inventory:Count("hammer")
-        -- local hammers = inst.components.inventory:GetItemByName("hammer", numHammers)
-        local hammers = inst.components.inventory:FindItems(function(item) return item.prefab == "hammer" end)
-        for _, hammer in pairs(hammers) do
-            inst.components.inventory:RemoveItem(hammer, true)
-            hammer:Remove()
-        end
-        -- and give us a brand new one
         local tool = SpawnPrefab("hammer")
         if tool then
             inst.components.inventory:GiveItem(tool)
             inst.components.inventory:Equip(tool)
+            tool.persists = false
         end
     end)
-
 end
 
 --[[ Pig Queen ]]--
