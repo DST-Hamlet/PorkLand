@@ -64,6 +64,9 @@ function self:AddToHerd(monkey)
 end
 
 function self:RemoveFromHerd(monkey)
+    if not monkey.herd then
+        return
+    end
     RemoveByValue(monkey.herd.monkeys, monkey)
     monkey.herd = nil
 end
@@ -121,8 +124,10 @@ local function OnUpdate(self, dt)
     -- Remove for monkeys away from herd
     for _, monkey in pairs(_monkeys) do
         if monkey and monkey:IsValid() then
-            if monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
-                self:RemoveFromHerd(monkey)
+            if monkey.herd then
+                if monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
+                    self:RemoveFromHerd(monkey)
+                end
             else
                 self:AddToHerd(monkey)
             end

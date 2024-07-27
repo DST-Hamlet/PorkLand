@@ -549,7 +549,6 @@ local function OnEntityWake(inst)
     end
 end
 
-
 local function OnBlownByWind(inst, data)
     if inst.components.bloomable and inst.components.bloomable:CanBloom() then
         if math.random() < 0.30 then
@@ -571,8 +570,6 @@ local function OnseasonChange(inst, season)
     end
 end
 
-
-
 local function MakeTree(name, build, stage, data)
     local function fn()
         local inst = CreateEntity()
@@ -581,7 +578,7 @@ local function MakeTree(name, build, stage, data)
         inst.entity:AddAnimState()
         inst.entity:AddSoundEmitter()
         inst.entity:AddMiniMapEntity()
-        if data == "spider" then
+        if build == "spider" then
             inst.entity:AddGroundCreepEntity()
             inst.GroundCreepEntity:SetRadius(5)
         end

@@ -139,7 +139,9 @@ local function OnEntitySleep(inst)
     local tree = FindEntity(inst, FIND_TREE_DIST, nil, FIND_TREE_MUST_TAGS, FIND_TREE_NO_TAGS)
 
     if tree and tree:IsValid() then
+        local stage = tree.stage
         inst.tree = ReplacePrefab(tree, "spider_monkey_tree")
+        inst.tree.components.growable:SetStage(stage)
         inst.tree:AddTag("has_monkey")
     end
 end
