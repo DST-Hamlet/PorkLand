@@ -953,7 +953,6 @@ local function EquipItems(inst)
     if inst.equipped then
         local torches = inst.components.inventory:FindItems(function(item) return item.prefab == "torch" end)
         for _, torch in ipairs(torches) do
-            print("setting torch to ignorefuel")
             torch.components.burnable.ignorefuel = true
         end
         local halberds = inst.components.inventory:FindItems(function(item) return item.prefab == "halberd" end)
