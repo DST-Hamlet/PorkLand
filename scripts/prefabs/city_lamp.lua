@@ -223,6 +223,8 @@ local function fn()
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake
 
+    MakeHauntableWork()
+
     return inst
 end
 

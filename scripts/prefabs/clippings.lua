@@ -50,6 +50,8 @@ local function fn(Sim)
 
     inst:AddComponent("inventoryitem")
 
+    MakeHauntableLaunchAndIgnite(inst)
+
     return inst
 end
 

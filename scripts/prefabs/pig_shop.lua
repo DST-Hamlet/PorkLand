@@ -632,6 +632,7 @@ local function MakeShop(name, build, bank, data)
         end
 
         MakeSnowCovered(inst, 0.01)
+        MakeHauntableWork(inst)
 
         return inst
     end

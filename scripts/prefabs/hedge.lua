@@ -250,6 +250,8 @@ local function MakeHedgeType(data)
         inst.components.deployable.ondeploy = ondeploywall
         inst.components.deployable:SetDeployMode(DEPLOYMODE.WALL)
 
+        MakeHauntableLaunch(inst)
+
         return inst
     end
 
@@ -410,6 +412,8 @@ local function MakeHedgeType(data)
         inst:AddComponent("shaveable")
         inst.components.shaveable:SetPrize("clippings", 0)
         inst.components.shaveable.on_shaved = unage
+
+        MakeHauntableWork(inst)
 
         return inst
     end

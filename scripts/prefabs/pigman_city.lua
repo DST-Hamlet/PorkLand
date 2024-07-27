@@ -882,6 +882,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         MakePoisonableCharacter(inst)
         MakeMediumBurnableCharacter(inst, "torso")
         MakeMediumFreezableCharacter(inst, "torso")
+        MakeHauntablePanic(inst)
 
         inst.throwcrackers = throwcrackers
         inst.OnSave = OnSave

@@ -91,6 +91,8 @@ local function MakeLawnornament(n)
 
         inst:ListenForEvent("burntup", inst.Remove)
 
+        MakeHauntableWork(inst)
+
         return inst
     end
 

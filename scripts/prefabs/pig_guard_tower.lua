@@ -330,6 +330,7 @@ local function fn()
     OnIsFiesta(inst, TheWorld.state.isfiesta)
 
     MakeSnowCovered(inst, 0.01)
+    MakeHauntableWork(inst)
 
     return inst
 end

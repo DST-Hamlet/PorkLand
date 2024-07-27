@@ -76,6 +76,8 @@ local function MakeOinc(name, build, value)
 
         inst.OnEntityWake = onwake
 
+        MakeHauntableLaunch(inst)
+
         return inst
     end
     return Prefab(name, fn, assets)
