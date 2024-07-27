@@ -35,6 +35,8 @@ local function common(bank, build, foodtype)
     inst.AnimState:SetBuild(build)
     inst.AnimState:SetRayTestOnBB(true)
 
+    inst:AddTag("monstermeat")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -60,7 +62,7 @@ local function common(bank, build, foodtype)
 	inst.components.perishable:StartPerishing()
 	inst.components.perishable.onperishreplacement = "spoiled_food"
 
-    inst:AddTag("monstermeat")
+    MakeHauntableLaunchAndPerish()
 
     return inst
 end
@@ -70,6 +72,10 @@ local function jellybug_raw()
     inst.AnimState:PlayAnimation("idle", true)
 
     MakeInventoryFloatable(inst, "idle_water", "idle")
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
     inst.components.edible.healthvalue = 0
     inst.components.edible.hungervalue = TUNING.CALORIES_TINY
@@ -93,6 +99,10 @@ local function jellybug_cooked()
 
     MakeInventoryFloatable(inst, "idle_cooked_water", "cooked")
 
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
     inst.components.edible.foodstate = "COOKED"
 	inst.components.edible.healthvalue = TUNING.HEALING_TINY
     inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
@@ -107,6 +117,10 @@ local function slugbug_raw()
     inst.AnimState:PlayAnimation("idle", true)
 
     MakeInventoryFloatable(inst, "idle_water", "idle")
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
     inst.components.edible.healthvalue = 0
     inst.components.edible.hungervalue = TUNING.CALORIES_TINY
@@ -125,6 +139,10 @@ local function slugbug_cooked()
     inst.AnimState:PlayAnimation("cooked", true)
 
     MakeInventoryFloatable(inst, "idle_cooked_water", "cooked")
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
     inst.components.edible.foodstate = "COOKED"
     inst.components.edible.healthvalue = TUNING.HEALING_TINY
