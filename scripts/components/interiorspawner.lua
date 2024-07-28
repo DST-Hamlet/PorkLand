@@ -195,41 +195,57 @@ function InteriorSpawner:PositionToInteriorCenter(pos)
     return self.interiors[index]
 end
 
-function InteriorSpawner:AddExterior(ent)
-    ent:AddTag("exterior_door")
-    self.exteriors_hashmap[ent] = true
-    ent:ListenForEvent("onremove", function()
-        self.exteriors_hashmap[ent] = nil
-        self:OnRemoveExterior(ent)
-    end)
+function InteriorSpawner:AddExterior(entity)
+    entity:AddTag("exterior_door")
+    self.exteriors_hashmap[entity] = true
+    entity.interiorspawner_exterior_on_remove_listener = function()
+        if not entity.components.fixable and entity.prefab ~= "reconstruction_project" then
+            self.exteriors_hashmap[entity] = nil
+            self:OnRemoveExterior(entity)
+        end
+    end
+    entity:ListenForEvent("onremove", entity.interiorspawner_exterior_on_remove_listener)
 end
 
-function InteriorSpawner:OnRemoveExterior(ent)
-    if ent.interiorID == nil then
-        print("WARNING: remove exterior without interiorID: "..tostring(ent))
+function InteriorSpawner:TransferExterior(from_entity, to_entity)
+    if from_entity.interiorspawner_exterior_on_remove_listener then
+        from_entity:RemoveEventCallback("onremove", from_entity.interiorspawner_exterior_on_remove_listener)
+        from_entity.interiorspawner_exterior_on_remove_listener = nil
+    end
+    from_entity:RemoveTag("exterior_door")
+    self.exteriors_hashmap[from_entity] = nil
+
+    self:AddExterior(to_entity)
+end
+
+function InteriorSpawner:OnRemoveExterior(entity)
+    if entity.interiorID == nil then
+        print("WARNING: remove exterior without interiorID: "..tostring(entity))
         return
     end
 
-    local room = self:GetInteriorByIndex(ent.interiorID)
-    if room ~= nil then
+    local room = self:GetInteriorByIndex(entity.interiorID)
+    if room then
         self:UpdateInteriorIdMap()
         local allrooms = self:GatherAllRooms_Impl(room, {}, true)
-        for k in pairs(allrooms)do
-            self:ClearInteriorContents(k:GetPosition(), ent:GetPosition())
-            self.interiors[k.interiorID or -1] = nil
+        for k in pairs(allrooms) do
+            self:ClearInteriorContents(k:GetPosition(), entity:GetPosition())
+            if k.interiorID then
+                self.interiors[k.interiorID] = nil
+            end
         end
     end
 end
 
 function InteriorSpawner:GetExteriorByInteriorIndex(index)
     assert(TheWorld.ismastersim, "This method must be called in server")
-    for k in pairs(self.exteriors_hashmap)do
-        if k:IsValid() then
-            if k.interiorID == index then
-                return k
+    for exterior in pairs(self.exteriors_hashmap) do
+        if exterior:IsValid() then
+            if exterior.interiorID == index then
+                return exterior
             end
         else
-            self.exteriors_hashmap[k] = nil
+            self.exteriors_hashmap[exterior] = nil
         end
     end
 end

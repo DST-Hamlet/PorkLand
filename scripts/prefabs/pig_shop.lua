@@ -262,15 +262,14 @@ end
 
 local function CreateInterior(inst)
     local id = inst.interiorID
-    if id then
-        -- Reuse old interior
-        return
-    end
+    local can_reuse_interior = id ~= nil
 
     local interior_spawner = TheWorld.components.interiorspawner
-    id = interior_spawner:GetNewID()
-    inst.interiorID = id
-    print("CreateInterior id:", id)
+    if not can_reuse_interior then
+        id = interior_spawner:GetNewID()
+        inst.interiorID = id
+        print("CreateInterior id:", id)
+    end
 
     local name = inst.prefab .. id
 
@@ -280,6 +279,11 @@ local function CreateInterior(inst)
         target_interior = id,
     }
     interior_spawner:AddDoor(inst, exterior_door_def)
+
+    if can_reuse_interior then
+        -- Reuse old interior, but we still need to re-register the door
+        return
+    end
 
     local textures = PIG_SHOP_TEXTURE[string.upper(inst.prefab)]
     local floor_texture = textures and textures.FLOOR or PIG_SHOP_TEXTURE.DEFAULT.FLOOR
