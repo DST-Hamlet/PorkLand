@@ -30,8 +30,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("pherostone_water", "pherostone")
+    PorkLandMakeInventoryFloatable(inst, "pherostone_water", "pherostone")
 
     inst.AnimState:SetBank("pheromone_stone")
     inst.AnimState:SetBuild("pheromone_stone")

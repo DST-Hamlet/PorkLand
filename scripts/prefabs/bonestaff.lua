@@ -81,8 +81,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("bonestaff_water", "bonestaff")
+    PorkLandMakeInventoryFloatable(inst, "bonestaff_water", "bonestaff")
 
     inst.AnimState:SetBank("staffs")
     inst.AnimState:SetBuild("pl_staffs")
