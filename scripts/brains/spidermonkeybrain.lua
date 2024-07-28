@@ -13,6 +13,15 @@ local SpiderMonkeyBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
 
+local function MakeHomeAction(inst)
+    if inst.targettree and inst.targettree:IsValid()
+        and not inst.targettree:HasTag("burnt")
+        and not inst.targettree:HasTag("stump")
+        and not inst.targettree:HasTag("rotten") then
+            return BufferedAction(inst, inst.targettree, ACTIONS.MAKEHOME)
+    end
+end
+
 function SpiderMonkeyBrain:OnStart()
     local root = PriorityNode(
     {
@@ -20,7 +29,9 @@ function SpiderMonkeyBrain:OnStart()
 
         ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST),
 
-        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST),
+        DoAction(self.inst, function() return MakeHomeAction(self.inst) end),
+
+        Wander(self.inst, function() return self.inst.tree and self.inst.tree:GetPosition() end, MAX_WANDER_DIST),
     }, 0.25)
 
     self.bt = BT(self.inst, root)

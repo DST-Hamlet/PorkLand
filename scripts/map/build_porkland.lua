@@ -62,7 +62,7 @@ local function build_porkland(entities, topology_save, map_width, map_height, cu
     if entities["teatree_piko_nest_patch"] then
         for i, ent in ipairs(entities["teatree_piko_nest_patch"]) do
             make_bunch(entities, topology_save, WorldSim, map_width, map_height, "teatree_piko_nest", 18, math.random(4, 8),
-                ent.x, ent.z)
+                ent.x, ent.z, {WORLD_TILES.FIELDS})
         end
     end
 

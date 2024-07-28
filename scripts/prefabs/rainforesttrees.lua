@@ -9,6 +9,7 @@ local assets =
     Asset("ANIM", "anim/tree_rainforest_normal.zip"),
     Asset("ANIM", "anim/tree_rainforest_short.zip"),
     Asset("ANIM", "anim/tree_rainforest_tall.zip"),
+    Asset("ANIM", "anim/tree_rainforest_changetoweb.zip"),
     Asset("ANIM", "anim/dust_fx.zip"),
 }
 
@@ -114,6 +115,12 @@ local scales = {
     tall = 0.7,
 }
 
+local STAGES = {
+    [1] = "short",
+    [2] = "normal",
+    [3] = "tall",
+}
+
 local function GetStageFn(stage)
     return function(inst)
         inst.stage = inst.components.growable.stage
@@ -126,7 +133,7 @@ local function GetStageFn(stage)
             inst.components.lootdropper:SetChanceLootTable("rainforesttree_" .. stage)
         end
 
-        if math.random() < 0.5 then
+        if math.random() < 0.5 and not inst:HasTag("rotten") and not inst:HasTag("spider_monkey_tree") then
             for i = 1, TUNING["SNAKE_JUNGLETREE_AMOUNT_" .. string.upper(stage)] do
                 if math.random() < 0.5 and TheWorld.state.cycles >= TUNING.SNAKE_POISON_START_DAY then
                     inst.components.lootdropper:AddChanceLoot("scorpion", TUNING.SNAKE_JUNGLETREE_POISON_CHANCE)
@@ -134,7 +141,7 @@ local function GetStageFn(stage)
                     inst.components.lootdropper:AddChanceLoot("snake_amphibious", TUNING.SNAKE_JUNGLETREE_CHANCE)
                 end
             end
-        elseif stage ~= "short" then
+        elseif stage ~= "short" and not inst:HasTag("rotten") and not inst:HasTag("spider_monkey_tree") then
             inst.components.lootdropper:AddChanceLoot("bird_egg", 1.0)
         end
 
@@ -149,6 +156,9 @@ local function GetGrowFn(stage, grow_animation, grow_sound)
     return function(inst)
         inst.AnimState:PlayAnimation(grow_animation)
         inst.SoundEmitter:PlaySound(grow_sound)
+        if inst:HasTag("spider_monkey_tree") then
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderLair_grow")
+        end
         PushSway(inst)
     end
 end
@@ -181,6 +191,9 @@ local function OnWorkCallback(inst, chopper)
             "dontstarve/characters/woodie/beaver_chop_tree" or
             "dontstarve/wilson/use_axe_tree"
         )
+        if inst:HasTag("spider_monkey_tree") then
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderLair_hit")
+        end
     end
 
     local fx = SpawnPrefab("chop_mangrove_pink")
@@ -355,10 +368,26 @@ end
 
 local function OnIgnite(inst)
     DefaultIgniteFn(inst)
+    if inst:HasTag("stump") then
+        return false
+    end
+
+    if inst:HasTag("burnt") then
+        return
+    end
+
+    if inst:HasTag("rotten") then
+        return false
+    end
+
+    if inst:HasTag("spider_monkey_tree") then
+        return false
+    end
+
     if not inst.flushed and math.random() < 0.4 then
         inst.flushed = true
 
-        local prefab = math.random() < 0.5 and "scorpion" or "snake_amphibious"
+        local prefab = math.random() < 0.5 and TheWorld.state.cycles >= TUNING.SNAKE_POISON_START_DAY and "scorpion" or "snake_amphibious"
 
         inst:DoTaskInTime(math.random() * 0.5, function() drop_critter(inst, prefab) end)
         if math.random() < 0.3 and prefab == "snake_amphibious" then
@@ -399,7 +428,15 @@ local function CanBloom(inst)
         return false
     end
 
+    if inst:HasTag("burnt") then
+        return
+    end
+
     if inst:HasTag("rotten") then
+        return false
+    end
+
+    if inst:HasTag("spider_monkey_tree") then
         return false
     end
 
@@ -420,6 +457,12 @@ local function StopBloom(inst)
     end
     inst.AnimState:SetBuild("tree_rainforest_build")
     inst.build = "normal"
+end
+
+local function PlayWebFX(inst)
+    inst.AnimState:PlayAnimation("change_to_web_" .. STAGES[inst.stage or 1])
+    inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderLair_grow")
+    inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderExitLair")
 end
 
 local function OnSave(inst, data)
@@ -672,6 +715,7 @@ local function MakeTree(name, build, stage, data)
             MakeStump(inst)
         end
 
+        inst.PlayWebFX = PlayWebFX
         inst.growfromseed = GrowFromSeed
         inst.OnEntitySleep = OnEntitySleep
         inst.OnEntityWake = OnEntityWake

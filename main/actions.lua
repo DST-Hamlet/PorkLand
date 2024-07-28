@@ -35,6 +35,7 @@ if not rawget(_G, "HotReloading") then
         USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
+        MAKEHOME = Action({distance = 1}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -426,6 +427,13 @@ end
 
 ACTIONS.RANSACK.fn = function(act)
     return true
+end
+
+ACTIONS.MAKEHOME.fn = function(act)
+    if act.doer and act.target then
+        return act.doer:MakeHomeAction(act.target)
+    end
+    return false
 end
 
 

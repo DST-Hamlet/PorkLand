@@ -2,6 +2,7 @@ require("stategraphs/commonstates")
 
 local actionhandlers =
 {
+    ActionHandler(ACTIONS.MAKEHOME, "action"),
     ActionHandler(ACTIONS.GOHOME, "action"),
     ActionHandler(ACTIONS.PICKUP, "action"),
     ActionHandler(ACTIONS.STEAL, "action"),
@@ -63,20 +64,25 @@ local states =
 
     State{
         name = "action",
+        tags = {"doing", "busy"},
         onenter = function(inst, playanim)
             inst.Physics:Stop()
-            inst.AnimState:PlayAnimation("interact", true)
-            inst.SoundEmitter:PlaySound("dontstarve/wilson/make_trap", "make")
+            inst.AnimState:PlayAnimation("fossilized")
+            inst.AnimState:PushAnimation("fossilized_pst", false)
         end,
 
-        onexit = function(inst)
-            inst:PerformBufferedAction()
-            inst.SoundEmitter:KillSound("make")
-        end,
+        timeline =
+        {
+            TimeEvent(7 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/spidermonkey/bite") end),
+            TimeEvent(15 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/spidermonkey/taunt") end),
+            TimeEvent(20 * FRAMES, function(inst) inst:PerformBufferedAction() end),
+            TimeEvent(27 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/spidermonkey/step", nil, 0.5) end),
+            TimeEvent(28 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/spidermonkey/step") end),
+        },
 
         events =
         {
-            EventHandler("animover", function (inst)
+            EventHandler("animqueueover", function (inst)
                 inst.sg:GoToState("idle")
             end),
         }

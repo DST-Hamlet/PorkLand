@@ -9,17 +9,19 @@ return Class(function(self, inst)
 
 assert(TheWorld.ismastersim, "SpiderMonkeyHerd should not exist on client")
 
-local ADD_TO_HERD_MAX_DISTSQ = 300 * 300
-local REMOVE_FROM_HERD_DISTSQ = 320 * 320
-local CREATE_HERD_MIN_DISTSQ = 600 * 600
+local ADD_TO_HERD_MAX_DISTSQ = 200 * 200
+local REMOVE_FROM_HERD_DISTSQ = 220 * 220
+local CREATE_HERD_MIN_DISTSQ = 400 * 400
 local MAX_MONKEY_PER_HERD = 6
-local FIND_NEW_TREE_DIST = 300 -- absurd...
+local FIND_NEW_TREE_DIST = 200 -- absurd...
 
 --------------------------------------------------------------------------
 --[[ Public Member Variables ]]
 --------------------------------------------------------------------------
 
 self.inst = inst
+
+self.updatetime = 0
 
 local _herds = {}
 local _monkeys = {}
@@ -64,11 +66,10 @@ function self:AddToHerd(monkey)
 end
 
 function self:RemoveFromHerd(monkey)
-    if not monkey.herd then
-        return
+    if monkey.herd then
+        RemoveByValue(monkey.herd.monkeys, monkey)
+        monkey.herd = nil
     end
-    RemoveByValue(monkey.herd.monkeys, monkey)
-    monkey.herd = nil
 end
 
 function self:SpawnNewMonkey(herd)
@@ -77,17 +78,15 @@ function self:SpawnNewMonkey(herd)
     end
 
     local tree = FindEntity(herd.leader, FIND_NEW_TREE_DIST, function(ent)
-        local other_monkey = FindEntity(ent, 7, nil, nil, {"burnt", "stump", "has_spider"}, {"rainforesttree", "spider_monkey_tree"})
-        return other_monkey == nil
-    end, nil, {"burnt", "stump", "has_spider"}, {"rainforesttree", "spider_monkey_tree"})
+        local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider"}, {"burnt", "stump", "rotten"})
+        return other_monkey_tree == nil
+    end, nil, {"burnt", "stump", "rotten", "has_spider"}, {"rainforesttree", "spider_monkey_tree"})
 
     if tree then
         local new_monkey = SpawnPrefab("spider_monkey")
-        if not tree:HasTag("spider_monkey_tree") then
-            tree = ReplacePrefab(tree, "spider_monkey_tree")
-        end
-        new_monkey.tree = tree
-        tree:AddTag("has_spider")
+        new_monkey.targettree = tree
+        new_monkey.Transform:SetPosition(tree:GetPosition():Get())
+        print("SPAWNED NEW MONKEY: ", new_monkey)
     end
 end
 
@@ -124,10 +123,8 @@ local function OnUpdate(self, dt)
     -- Remove for monkeys away from herd
     for _, monkey in pairs(_monkeys) do
         if monkey and monkey:IsValid() then
-            if monkey.herd then
-                if monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
-                    self:RemoveFromHerd(monkey)
-                end
+            if monkey.herd and monkey.herd.leader and monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
+                self:RemoveFromHerd(monkey)
             else
                 self:AddToHerd(monkey)
             end
@@ -201,8 +198,24 @@ function self:LoadPostPass(ents, data)
     end
 end
 
-self.inst:DoPeriodicTask(1, function()
-    OnUpdate(self, 1)
-end)
+function self:GetDebugString(ents, data)
+    for k, herd in pairs(_herds) do
+        if herd.leader and herd.leader:IsValid() then
+            print("herd:", k, "    leader:", herd.leader, "    members:", #herd.monkeys, "    next_regen:", herd.next_regen)
+        end
+    end
+end
+
+function self:OnUpdate(dt)
+    self.updatetime = self.updatetime -dt
+    if self.updatetime < 0 then
+        OnUpdate(self, 1 - self.updatetime)
+        self.updatetime = 1
+    end
+end
+
+function self:LongUpdate(dt)
+    self:OnUpdate(dt)
+end
 
 end)
