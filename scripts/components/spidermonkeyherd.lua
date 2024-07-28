@@ -84,6 +84,7 @@ function self:SpawnNewMonkey(herd)
 
     if tree then
         local new_monkey = SpawnPrefab("spider_monkey")
+        print("SpiderMonkeyHerd:SpawnNewMonkey")
         new_monkey.target_tree = tree
         new_monkey.Transform:SetPosition(tree:GetPosition():Get())
     end
@@ -197,12 +198,15 @@ function self:LoadPostPass(ents, data)
     end
 end
 
-function self:GetDebugString(ents, data)
+function self:GetDebugString()
+    local s = ""
     for k, herd in pairs(_herds) do
         if herd.leader and herd.leader:IsValid() then
-            print("herd:", k, "    leader:", herd.leader, "    members:", #herd.monkeys, "    next_regen:", herd.next_regen)
+            s = string.format("%s\nHerd: %d Leader: %s Member Count: %d Next Regen: %2.2f", s, k, tostring(herd.leader), #herd.monkeys, herd.next_regen)
         end
     end
+
+    return s
 end
 
 function self:OnUpdate(dt)
