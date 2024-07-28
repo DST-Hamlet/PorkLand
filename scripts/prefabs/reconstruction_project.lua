@@ -50,6 +50,9 @@ local function Fix(inst, fixer)
         reconstructed.Transform:SetPosition(inst.Transform:GetWorldPosition())
 
         reconstructed.interiorID = inst.interiorID
+        if reconstructed.interiorID then
+            TheWorld.components.interiorspawner:TransferExterior(inst, reconstructed)
+        end
 
         local reconstruction_anims = inst.reconstruction_anims or {}
         reconstructed.AnimState:PlayAnimation(reconstruction_anims.play or "place")
@@ -76,7 +79,6 @@ local function Fix(inst, fixer)
         if reconstructed.OnReconstructe then
             reconstructed:OnReconstructe()
         end
-
     end
 
     inst:Remove()
