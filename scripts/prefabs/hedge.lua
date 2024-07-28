@@ -213,6 +213,8 @@ local function MakeHedgeType(data)
 
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
+        inst.entity:AddNetwork()
+
         MakeInventoryPhysics(inst)
 
         inst.AnimState:SetBank("hedge")
