@@ -517,17 +517,13 @@ local function InitMaze(inst, dungeonname)
 
     local interior_spawner = TheWorld.components.interiorspawner
 
-    local ID = inst.interiorID
-    if not ID then
-        ID = interior_spawner:GetNewID()
-    end
-
-    if not inst.interiorID == nil then
+    local id = inst.interiorID
+    if id then
+        -- Reuse old interior
         return
     end
-
-    local newID = ID
-    inst.interiorID = newID
+    id = interior_spawner:GetNewID()
+    inst.interiorID = id
 
     local exterior_door_def = {
         my_door_id = dungeondef.name .. "_ENTRANCE1",

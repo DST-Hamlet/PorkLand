@@ -225,6 +225,7 @@ end
 
 local function BuildMaze(inst, exterior_door_def)
     if inst.interiorID then
+        -- Reuse old interior
         return
     end
 
