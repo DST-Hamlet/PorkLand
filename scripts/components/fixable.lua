@@ -51,7 +51,9 @@ function Fixable:OnRemoveEntity()
     fixer:SetConstructionPrefabName(self.nameoverride or self.inst.prefab)
     fixer.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
 
-    TheWorld.components.interiorspawner:TransferExterior(self.inst, fixer)
+    if fixer.interiorID then
+        TheWorld.components.interiorspawner:TransferExterior(self.inst, fixer)
+    end
 end
 
 function Fixable:AddRecinstructionStageData(anim, bank, build, scale, stage)
