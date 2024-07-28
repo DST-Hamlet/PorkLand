@@ -60,14 +60,14 @@ local function DoStep(inst)
         inst.components.groundpounder:GroundPound()
     else
         if IsSurroundedByLand(x, y, z, 2) then
-            -- if math.random() < TUNING.VOLCANO_FIRERAIN_LAVA_CHANCE then
-            --     local lavapool = SpawnPrefab("lavapool")
-            --     lavapool.Transform:SetPosition(x, y, z)
-            -- else
-            --     local impact = SpawnPrefab("meteor_impact")
-            --     impact.components.timer:StartTimer("remove", TUNING.TOTAL_DAY_TIME * 2)
-            --     impact.Transform:SetPosition(x, y, z)
-            -- end
+            if math.random() < TUNING.VOLCANO_FIRERAIN_LAVA_CHANCE then
+                local lavapool = SpawnPrefab("lavapool")
+                lavapool.Transform:SetPosition(x, y, z)
+            else
+                local impact = SpawnPrefab("meteor_impact")
+                impact.components.timer:StartTimer("remove", TUNING.TOTAL_DAY_TIME * 2)
+                impact.Transform:SetPosition(x, y, z)
+            end
         end
         playSound(inst, "dontstarve_DLC002/common/volcano/volcano_rock_smash")
         inst.components.groundpounder.numRings = 4

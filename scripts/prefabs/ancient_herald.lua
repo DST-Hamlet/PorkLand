@@ -8,17 +8,6 @@ local prefabs =
     "ancient_remnant",
 }
 
-SetSharedLootTable("ancientherald", {
-    {"ancient_remnant",            1.00},
-    {"ancient_remnant",            1.00},
-    {"ancient_remnant",            1.00},
-    {"ancient_remnant",            1.00},
-    {"ancient_remnant",            1.00},
-    {"nightmarefuel",              1.00},
-    {"nightmarefuel",              1.00},
-    {"nightmarefuel",              0.33},
-})
-
 local function CalcSanityAura(inst, observer)
     if inst.components.combat.target then
         return -TUNING.SANITYAURA_HUGE

@@ -182,6 +182,9 @@ PrefabFiles = {
     "armor_vortex_cloak",
     "herald_tatters",
     "firerain",
+    "lavapool",
+    "meteor_impact",
+    "obsidian",
 }
 
 Assets = {

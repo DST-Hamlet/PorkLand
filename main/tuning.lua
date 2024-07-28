@@ -532,6 +532,9 @@ local tuning = {
     VOLCANO_FIRERAIN_DAMAGE = 300,
     VOLCANO_FIRERAIN_LAVA_CHANCE = 0.5,
     VOLCANO_DRAGOONEGG_CHANCE = 0.25,
+
+    LAVAPOOL_FUEL_MAX = (night_time+dusk_time),
+    LAVAPOOL_FUEL_START = (night_time+dusk_time)*.75,
 }
 
 
