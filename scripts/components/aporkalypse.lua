@@ -2,6 +2,8 @@
 --[[ Aporkalypse class definition ]]
 --------------------------------------------------------------------------
 
+local SpawnHerald = require("prefabs/ancient_herald_util").SpawnHerald
+
 local function onrewindmult(self)
     TheWorld:PushEvent("rewindmultchange", self.rewind_mult)
 end
@@ -30,6 +32,9 @@ return Class(function(self, inst)
 
     local _activefiestadirty = true
     local _isnearaporkalypsedirty = true
+
+    local _bat_task
+    local _herald_task
 
     -- Master shard simulation
     local _timeuntilfiestaend = _ismastershard and TUNING.APORKALYPSE_FIESTA_TIME or nil
@@ -65,6 +70,49 @@ return Class(function(self, inst)
         end
     end
 
+    local CancelBatAttack = _ismastersim and function()
+        if _bat_task then
+            _bat_task:Cancel()
+            _bat_task = nil
+        end
+    end
+
+    local ScheduleBatAttack
+    ScheduleBatAttack = _ismastersim and function()
+        CancelBatAttack()
+
+        local time = TUNING.TOTAL_DAY_TIME + (TUNING.TOTAL_DAY_TIME * math.random(0, 0.25))
+        _bat_task = self.inst:DoTaskInTime(time, function()
+            if GetWorldSetting("vampirebat") == "never" then
+                return
+            end
+
+            local batted = _world.components.batted
+            batted:RegenBat(15)
+            batted:ForceBatAttack()
+            ScheduleBatAttack()
+        end)
+    end
+
+    local CancelHeraldAttack = _ismastersim and function()
+        if _herald_task then
+            _herald_task:Cancel()
+            _herald_task = nil
+        end
+    end
+
+    local ScheduleHeraldAttack
+    ScheduleHeraldAttack = _ismastersim and function()
+        CancelHeraldAttack()
+
+        local time = math.random(TUNING.TOTAL_DAY_TIME / 3, TUNING.TOTAL_DAY_TIME)
+        _herald_task = self.inst:DoTaskInTime(time, function()
+            local player = GetRandomItem(AllPlayers)
+            SpawnHerald(player)
+            ScheduleHeraldAttack()
+        end)
+    end
+
     local BeginAporkalypse = _ismastersim and function()
         if _activeaporkalypse then
             return
@@ -84,6 +132,9 @@ return Class(function(self, inst)
         if _isplateau then
             EndFiesta()
         end
+
+        ScheduleBatAttack()
+        ScheduleHeraldAttack()
     end or nil
 
     local EndAporkalypse = _ismastersim and function()
@@ -106,6 +157,9 @@ return Class(function(self, inst)
         if _isplateau then
             BeginFiesta()
         end
+
+        CancelBatAttack()
+        CancelHeraldAttack()
     end or nil
 
     local ForceResync = _ismastersim and function(netvar)

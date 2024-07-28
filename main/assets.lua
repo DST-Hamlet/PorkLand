@@ -178,6 +178,10 @@ PrefabFiles = {
     "city_hammer",
 
     "oinc",
+    "ancient_herald",
+    "armor_vortex_cloak",
+    "herald_tatters",
+    "firerain",
 }
 
 Assets = {

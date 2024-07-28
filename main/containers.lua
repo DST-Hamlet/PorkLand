@@ -241,3 +241,20 @@ params["roottrunk"] = deepcopy(params["shadowchester"])
 function params.roottrunk.itemtestfn(container, item, slot)
     return not item:HasTag("irreplaceable")
 end
+
+local widget_armor_vortex_cloak = {
+    widget = {
+        slotpos = {},
+        animbank = "ui_krampusbag_2x5",
+        animbuild = "ui_krampusbag_2x5",
+        pos = Vector3(-5, -70, 0),
+    },
+    type = "pack",
+}
+
+for y = 0, 4 do
+    table.insert(widget_armor_vortex_cloak.widget.slotpos, Vector3(-162, -y * 75 + 114, 0))
+    table.insert(widget_armor_vortex_cloak.widget.slotpos, Vector3(-162 +75, -y * 75 + 114, 0))
+end
+
+params["armor_vortex_cloak"] = widget_armor_vortex_cloak

@@ -51,6 +51,7 @@ local component_posts = {
     "positionalwarp",
     "regrowthmanager",
     "repairable",
+    "resistance",
     "rider_replica",
     "rider",
     "seasons",
@@ -107,6 +108,7 @@ local screens_posts = {
 
 local stategraph_posts = {
     "bird",
+    "frog",
     "wilson",
     "wilson_client",
     "wilsonghost",

@@ -225,6 +225,24 @@ local pl_fx = {
         build = "chop_mangrove_blue",
         anim = "fall",
     },
+    {
+        name = "armorvortexcloak_fx",
+        bank = "cloakfx",
+        build = "cloak_fx",
+        anim = "idle",
+        fn = function(inst)
+            for i = 1, 14 do
+                inst.AnimState:Hide("fx" .. i)
+            end
+            inst.AnimState:Show("fx" .. math.random(1, 14))
+        end
+    },
+    {
+        name = "vortex_cloak_fx",
+        bank = "vortex_cloak_fx",
+        build = "vortex_cloak_fx",
+        anim = "idle",
+    },
 }
 
 -- Sneakily add these to the FX table

@@ -97,11 +97,17 @@ AddRecipe2("halberd", {Ingredient("alloy", 1), Ingredient("twigs", 2)}, TECH.SCI
 SortAfter("halberd", "spear", "WEAPONS")
 SortAfter("halberd", "shears", "TOOLS")
 
-AddRecipe2("metalplatehat", {Ingredient("alloy", 3),Ingredient("cork", 3)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
+AddRecipe2("metalplatehat", {Ingredient("alloy", 3), Ingredient("cork", 3)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
 SortBefore("metalplatehat", "cookiecutterhat", "ARMOUR")
 
-AddRecipe2("armor_metalplate", {Ingredient("alloy", 3),Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
+AddRecipe2("armor_metalplate", {Ingredient("alloy", 3), Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
 SortAfter("armor_metalplate", "armormarble", "ARMOUR")
+
+AddRecipe2("armorvortexcloak", {Ingredient("ancient_remnant", 5), Ingredient("armor_sanity", 1)}, TECH.LOST, {}, {"ARMOUR", "CLOTHING", "CONTAINTERS", "MAGIC"})
+SortAfter("armorvortexcloak", "dreadstonehat", "ARMOUR")
+SortAfter("armorvortexcloak", "icepack", "CLOTHING")
+SortAfter("armorvortexcloak", "spicepack", "CONTAINTERS")
+SortAfter("armorvortexcloak", "dreadstonehat", "MAGIC")
 
 --MAGIC
 AddRecipe2("bonestaff", {Ingredient("pugalisk_skull", 1), Ingredient("boneshard", 1), Ingredient("nightmarefuel", 2)}, TECH.MAGIC_THREE, {} , {"WEAPONS","MAGIC"})
