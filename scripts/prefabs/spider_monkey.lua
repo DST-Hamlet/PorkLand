@@ -109,6 +109,153 @@ local function OnPooped(inst, poop)
     end
 end
 
+local FIND_WEB_TREE_DIST = 7
+local FIND_TREE_DIST = 30
+local FORGET_TREE_DIST = FIND_TREE_DIST + 10
+local FIND_WEB_TREE_MUST_TAGS = {"rainforesttree", "spider_monkey_tree"}
+local FIND_WEB_TREE_NOT_TAGS = {"burnt", "stump", "rotten"}
+local FIND_TREE_MUST_TAGS = {"rainforesttree"}
+local FIND_TREE_NO_TAGS = {"has_monkey", "burnt", "stump", "rotten"}
+
+local OnTreeDestroyed
+
+local function BindWithTree(inst, tree)
+    if not tree or not tree:IsValid() then
+        return
+    end
+
+    inst.tree = tree
+    tree.monkey = inst
+    tree:AddTag("has_spider")
+
+    -- when the tree is burnt, chopped down or deleted, unbind with monkey
+    tree:ListenForEvent("burnt", OnTreeDestroyed)
+    tree:ListenForEvent("workfinished", OnTreeDestroyed)
+    tree:ListenForEvent("onremove", OnTreeDestroyed)
+end
+
+local function UnbindWithTree(inst, tree)
+    inst.tree = nil
+
+    if not tree or not tree:IsValid() then
+        return
+    end
+
+    tree.monkey = nil
+    tree:RemoveTag("has_spider")
+
+    -- no longer binded with a monkey, remove those listeners
+    tree:RemoveEventCallback("burnt", OnTreeDestroyed)
+    tree:RemoveEventCallback("workfinished", OnTreeDestroyed)
+    tree:RemoveEventCallback("onremove", OnTreeDestroyed)
+end
+
+OnTreeDestroyed = function(inst)
+    if not inst.monkey or not inst.monkey:IsValid() then
+        return
+    end
+
+    inst.monkey.old_tree_pos = inst:GetPosition()
+    UnbindWithTree(inst.monkey, inst)
+end
+
+local function InfectTrees(inst, tree)
+    if tree:HasTag("has_spider") then
+        inst.target_tree = nil
+        return false
+    end
+
+    if not tree:HasTag("spider_monkey_tree") then
+        local stage = tree.stage
+        tree = ReplacePrefab(tree, "spider_monkey_tree")
+        tree.components.growable:SetStage(stage)
+        tree:PlayWebFX()
+    end
+
+    BindWithTree(inst, tree)
+
+    local x, y, z = tree.Transform:GetWorldPosition()
+    local nearby_trees = TheSim:FindEntities(x, y, z, FIND_WEB_TREE_DIST, FIND_TREE_MUST_TAGS, FIND_TREE_NO_TAGS)
+
+    if nearby_trees then
+        for _, new_tree in pairs(nearby_trees) do
+            new_tree = ReplacePrefab(new_tree, "spider_monkey_tree")
+            new_tree:PlayWebFX()
+        end
+    end
+
+    return true
+end
+
+-- not deleted, not burnt, not chopped, not rotten
+local function is_valid_tree(tree)
+    return tree and tree:IsValid()
+        and not tree:HasTag("burnt")
+        and not tree:HasTag("stump")
+        and not tree:HasTag("rotten")
+end
+
+local function is_valid_target_tree(tree)
+    return is_valid_tree(tree) and not tree:HasTag("has_spider")
+end
+
+local function UpdateTreeStatus(inst)
+    if is_valid_tree(inst.tree) then
+        if inst:GetDistanceSqToInst(inst.tree) <= FIND_TREE_DIST * FIND_TREE_DIST then -- tree is still habitable
+            return
+        elseif inst:GetDistanceSqToInst(inst.tree) > FORGET_TREE_DIST * FORGET_TREE_DIST then -- too far away, find new home
+            UnbindWithTree(inst, inst.tree)
+        end
+    end
+
+    if is_valid_target_tree(inst.target_tree) then
+        if inst:GetDistanceSqToInst(inst.target_tree) <= FIND_TREE_DIST * FIND_TREE_DIST  then -- close enough for infecting
+            if inst:IsAsleep() and inst.target_tree:IsAsleep() then -- only off screen
+                InfectTrees(inst, inst.target_tree)
+            end
+            return
+        elseif inst:GetDistanceSqToInst(inst.target_tree) > FORGET_TREE_DIST * FORGET_TREE_DIST then -- too far away, find new home
+            inst.target_tree = nil
+        end
+    else
+        inst.target_tree = nil -- no longer valid, forget about it
+    end
+
+    if inst.old_tree_pos then
+        local x, y, z = inst.old_tree_pos:Get()
+        local infected_tree = TheSim:FindEntities(x, y, z, FIND_TREE_DIST, FIND_WEB_TREE_MUST_TAGS, FIND_WEB_TREE_NOT_TAGS)
+        local tree
+        for i, ent in ipairs(infected_tree) do
+            local other_monkey_tree = FindEntity(ent, 7, nil, {"has_monkey", "spider_monkey_tree"}, FIND_WEB_TREE_NOT_TAGS)
+            if other_monkey_tree == nil then
+                tree = ent
+                break
+            end
+        end
+
+        if tree then
+            inst.target_tree = tree
+        end
+    end
+
+    if not inst.target_tree then -- can't find a tree next to old home or this is the first tree
+        local tree = FindEntity(inst, 30, function(ent)
+            local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider", "spider_monkey_tree"}, FIND_WEB_TREE_NOT_TAGS)
+            return other_monkey_tree == nil
+        end, FIND_TREE_MUST_TAGS, FIND_TREE_NO_TAGS)
+
+        if tree then
+            inst.target_tree = tree
+        end
+    end
+
+    if not is_valid_target_tree(inst.target_tree) then -- failed to find suitable tree
+        return
+    end
+
+    InfectTrees(inst, inst.target_tree)
+end
+
 local function OnSave(inst, data)
     if inst.tree and inst.tree:IsValid() then
         data.tree = inst.tree.GUID
@@ -125,106 +272,6 @@ local function OnLoadPostPass(inst, newents, data)
     if data and data.tree then
         inst.tree = newents[data.tree].entity
     end
-end
-
-local FIND_WEB_TREE_DIST = 7
-local FIND_TREE_DIST = 30
-local FORGET_TREE_DIST = FIND_TREE_DIST + 10
-local FIND_WEB_TREE_MUST_TAGS = {"rainforesttree", "spider_monkey_tree"}
-local FIND_TREE_MUST_TAGS = {"rainforesttree"}
-local FIND_TREE_NO_TAGS = {"has_monkey", "burnt", "stump", "rotten"}
-
-local function ForgetTree(inst)
-    if inst.tree and inst.tree:IsValid() and inst.tree:HasTag("has_spider") then
-        inst.tree:RemoveTag("has_spider")
-    end
-    inst.tree = nil
-end
-
-local function UpdateTree(inst) -- 判断蜘蛛猴是否需要寻找新的巢穴树，并且寻找新的巢穴树
-    local x, y, z = inst.Transform:GetWorldPosition()
-
-    if inst.tree and inst.tree:IsValid() -- 有巢穴树
-        and not inst.tree:HasTag("burnt")
-        and not inst.tree:HasTag("stump")
-        and not inst.tree:HasTag("rotten") then
-            if inst.tree:GetDistanceSqToPoint(x, 0, z) < FIND_TREE_DIST * FIND_TREE_DIST then -- 离得足够近，就不寻找新的树
-                return
-            elseif inst.tree:GetDistanceSqToPoint(x, 0, z) < FIND_TREE_DIST * FIND_TREE_DIST then -- 离得足够远，就强制忘记旧的树
-                inst:ForgetTree()
-            end
-    else
-        inst:ForgetTree()
-    end
-
-    if inst.targettree and inst.targettree:IsValid() -- 有找到的可以变成巢穴树的树
-        and not inst.targettree:HasTag("burnt")
-        and not inst.targettree:HasTag("stump")
-        and not inst.targettree:HasTag("rotten")
-        and not inst.targettree:HasTag("has_spider") then
-            if inst.targettree:GetDistanceSqToPoint(x, 0, z) < FIND_TREE_DIST * FIND_TREE_DIST then -- 离得足够近
-                if inst:IsAsleep() and inst.targettree:IsAsleep() then
-                    inst:MakeHomeAction(inst.targettree)
-                end
-                return
-            elseif inst.targettree:GetDistanceSqToPoint(x, 0, z) < FIND_TREE_DIST * FIND_TREE_DIST then
-                inst.targettree = nil
-            end
-    else
-        inst.targettree = nil
-    end
-
-    -- 先寻找不属于其他蜘蛛猴并且离其他蜘蛛猴的巢穴树保持一定距离的蛛网树
-    local tree = FindEntity(inst, FIND_WEB_TREE_DIST, function(ent)
-            local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider"}, {"burnt", "stump", "rotten"})
-            return other_monkey_tree == nil
-        end, FIND_WEB_TREE_MUST_TAGS, FIND_TREE_NO_TAGS)
-
-    if tree and tree:IsValid() then
-        inst.targettree = tree
-        return
-    end
-
-    -- 如果找不到符合条件的蛛网树，那么扩大搜索范围和目标
-    tree = FindEntity(inst, FIND_TREE_DIST, function(ent)
-        local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider"}, {"burnt", "stump", "rotten"})
-        return other_monkey_tree == nil
-    end, FIND_TREE_MUST_TAGS, FIND_TREE_NO_TAGS)
-
-    if tree and tree:IsValid() then
-        inst.targettree = tree
-        return
-    end
-end
-
-local function TryReplaceTree(inst, tree)
-    if tree:HasTag("has_spider") then
-        inst.targettree = nil
-        return false
-    end
-
-    local newtree = inst.targettree
-    if not tree:HasTag("spider_monkey_tree") then
-        local stage = tree.stage
-        newtree = ReplacePrefab(tree, "spider_monkey_tree")
-        newtree.components.growable:SetStage(stage)
-        newtree:PlayWebFX()
-    end
-    inst.tree = newtree
-    inst.targettree = nil
-    newtree:AddTag("has_spider")
-
-    local x, y, z = newtree.Transform:GetWorldPosition()
-    local neighbortrees = TheSim:FindEntities(x, y, z, 7, {"rainforesttree"}, {"burnt", "stump", "rotten", "spider_monkey_tree"})
-
-    if neighbortrees then
-        for i, neighbortree in ipairs(neighbortrees) do
-            local newneighbortree = ReplacePrefab(neighbortree, "spider_monkey_tree")
-            newneighbortree:PlayWebFX()
-        end
-    end
-
-    return true
 end
 
 local brain = require("brains/spidermonkeybrain")
@@ -301,9 +348,6 @@ local function fn()
 
     inst:AddComponent("knownlocations")
 
-    -- inst:AddComponent("herdmember")
-    -- inst.components.herdmember:SetHerdPrefab("spider_monkey_herd")
-
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetDist(20, 23)
     inst.components.playerprox:SetOnPlayerNear(OnNear)
@@ -311,8 +355,6 @@ local function fn()
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED
-
-    inst:DoPeriodicTask(15 + math.random() * 15, UpdateTree)
 
     MakeHauntablePanic(inst)
     MakeLargeBurnableCharacter(inst, "body")
@@ -323,14 +365,13 @@ local function fn()
 
     inst:ListenForEvent("attacked", OnAttacked)
 
-    inst.ForgetTree = ForgetTree
-    inst.UpdateTree = UpdateTree
-    inst.MakeHomeAction = TryReplaceTree
+    inst:DoPeriodicTask(15 + math.random() * 15, UpdateTreeStatus)
 
     inst.OnSave = OnSave
     inst.OnLoadPostPass = OnLoadPostPass
+
     inst.tree = nil -- 当前的巢穴树
-    inst.targettree = nil -- 准备去作为巢穴的树
+    inst.target_tree = nil -- 准备去作为巢穴的树
 
     return inst
 end

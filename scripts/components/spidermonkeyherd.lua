@@ -84,9 +84,8 @@ function self:SpawnNewMonkey(herd)
 
     if tree then
         local new_monkey = SpawnPrefab("spider_monkey")
-        new_monkey.targettree = tree
+        new_monkey.target_tree = tree
         new_monkey.Transform:SetPosition(tree:GetPosition():Get())
-        print("SPAWNED NEW MONKEY: ", new_monkey)
     end
 end
 

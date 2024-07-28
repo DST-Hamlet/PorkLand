@@ -14,11 +14,11 @@ local SpiderMonkeyBrain = Class(Brain, function(self, inst)
 end)
 
 local function MakeHomeAction(inst)
-    if inst.targettree and inst.targettree:IsValid()
-        and not inst.targettree:HasTag("burnt")
-        and not inst.targettree:HasTag("stump")
-        and not inst.targettree:HasTag("rotten") then
-            return BufferedAction(inst, inst.targettree, ACTIONS.MAKEHOME)
+    if inst.target_tree and inst.target_tree:IsValid()
+        and not inst.target_tree:HasTag("burnt")
+        and not inst.target_tree:HasTag("stump")
+        and not inst.target_tree:HasTag("rotten") then
+            return BufferedAction(inst, inst.target_tree, ACTIONS.MAKEHOME)
     end
 end
 
