@@ -103,10 +103,10 @@ SortBefore("metalplatehat", "cookiecutterhat", "ARMOUR")
 AddRecipe2("armor_metalplate", {Ingredient("alloy", 3), Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
 SortAfter("armor_metalplate", "armormarble", "ARMOUR")
 
-AddRecipe2("armorvortexcloak", {Ingredient("ancient_remnant", 5), Ingredient("armor_sanity", 1)}, TECH.LOST, {}, {"ARMOUR", "CLOTHING", "CONTAINTERS", "MAGIC"})
+AddRecipe2("armorvortexcloak", {Ingredient("ancient_remnant", 5), Ingredient("armor_sanity", 1)}, TECH.LOST, {}, {"ARMOUR", "CLOTHING", "CONTAINERS", "MAGIC"})
 SortAfter("armorvortexcloak", "dreadstonehat", "ARMOUR")
 SortAfter("armorvortexcloak", "icepack", "CLOTHING")
-SortAfter("armorvortexcloak", "spicepack", "CONTAINTERS")
+SortAfter("armorvortexcloak", "spicepack", "CONTAINERS")
 SortAfter("armorvortexcloak", "dreadstonehat", "MAGIC")
 
 --MAGIC
