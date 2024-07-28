@@ -2,8 +2,7 @@ local easing = require("easing")
 
 local assets =
 {
-    Asset("ANIM", "anim/meteor.zip"),
-    Asset("ANIM", "anim/meteor_shadow.zip")
+    Asset("ANIM", "anim/pl_meteor.zip"),
 }
 
 local prefabs =
@@ -19,32 +18,7 @@ local prefabs =
     "soundplayer"
 }
 
-local function playSound(original_inst, sound)
-    -- local interiorSpawner = GetInteriorSpawner()
-    -- if interiorSpawner:IsPlayerConsideredInside() then
-    --     local simulatedPlayerPos = Vector3(interiorSpawner:GetInteriorEntryPosition())
-    --     local delta = simulatedPlayerPos - original_inst:GetPosition()
-    --     local proxyPos = GetPlayer():GetPosition() + delta
-    --     local proxy = SpawnPrefab("soundplayer")
-    --     proxy.PlaySound(proxyPos, sound)
-    -- else
-        original_inst.SoundEmitter:PlaySound(sound)
-    -- end
-end
-
 local function DoStep(inst)
-    -- local player = GetPlayer()
-
-    -- local pos = player:GetPosition()
-    -- local interiorSpawner = GetInteriorSpawner()
-    -- local isInside = false
-    -- if interiorSpawner:IsPlayerConsideredInside() then
-    --     pos = Vector3(interiorSpawner:GetInteriorEntryPosition())
-    --     isInside = true
-    -- end
-
-    -- local distToPlayer = inst:GetPosition():Dist(pos)
-    local power = 3 -- Lerp(3, 1, distToPlayer/180)
     local x, y, z = inst.Transform:GetLocalPosition()
 
     if TheWorld.Map:IsImpassableAtPoint(x, y, z) then
@@ -53,8 +27,11 @@ local function DoStep(inst)
     elseif TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
         local fx = SpawnPrefab("bombsplash")
         fx.Transform:SetPosition(x, y, z)
+
         SpawnWaves(inst, 8, 360, 6)
-        playSound(inst, "dontstarve_DLC002/common/volcano/volcano_rock_splash")
+
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/volcano/volcano_rock_splash")
+
         inst.components.groundpounder.burner = false
         inst.components.groundpounder.groundpoundfx = nil
         inst.components.groundpounder:GroundPound()
@@ -69,13 +46,15 @@ local function DoStep(inst)
                 impact.Transform:SetPosition(x, y, z)
             end
         end
-        playSound(inst, "dontstarve_DLC002/common/volcano/volcano_rock_smash")
+
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/volcano/volcano_rock_smash")
+
         inst.components.groundpounder.numRings = 4
         inst.components.groundpounder.burner = true -- missing from dst?
         inst.components.groundpounder:GroundPound()
     end
 
-    ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.5, 0.03, power, 40)
+    ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.5, 0.03, 3, 40)
 end
 
 local function StartStep(inst)
@@ -83,7 +62,7 @@ local function StartStep(inst)
     shadow.Transform:SetPosition(inst.Transform:GetWorldPosition())
     shadow.Transform:SetRotation(math.random(0, 360))
 
-    playSound(inst, "dontstarve_DLC002/common/bomb_fall")
+    inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/bomb_fall")
     inst:DoTaskInTime(TUNING.VOLCANO_FIRERAIN_WARNING - (5  * FRAMES), inst.DoStep)
     inst:DoTaskInTime(TUNING.VOLCANO_FIRERAIN_WARNING - (14 * FRAMES), function(inst)
         inst:Show()
@@ -112,7 +91,7 @@ local function firerainfn()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("meteor")
-    inst.AnimState:SetBuild("meteor")
+    inst.AnimState:SetBuild("pl_meteor")
 
     inst.Transform:SetFourFaced()
 
@@ -182,7 +161,7 @@ local function shadowfn()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("meteor_shadow")
-    inst.AnimState:SetBuild("meteor_shadow")
+    inst.AnimState:SetBuild("pl_meteor")
     inst.AnimState:PlayAnimation("idle")
     inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     inst.AnimState:SetLayer(LAYER_BACKGROUND)

@@ -162,6 +162,8 @@ local function fn()
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
 
+    MakeHauntableLaunchAndDropFirstItem(inst)
+
     return inst
 end
 

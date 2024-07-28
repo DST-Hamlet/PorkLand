@@ -23,7 +23,6 @@ local function OnGetItemFromPlayer(inst, giver, item)
     obsidian.Transform:SetPosition(x, y, z)
 
     local fx = SpawnPrefab("collapse_small")
-    fx:SetMaterial("stone")
     fx.Transform:SetPosition(x, y, z)
 
     inst:Remove()
@@ -59,8 +58,8 @@ local function FueledSectionCallback(new_section, old_section, inst)
         end
 
         inst.components.burnable:SetFXLevel(new_section, inst.components.fueled:GetSectionPercent())
-        local ranges = {1,1,1,1}
-        local output = {2,5,5,10}
+        local ranges = {1, 1, 1, 1}
+        local output = {2, 5, 5, 10}
         inst.components.propagator.propagaterange = ranges[new_section]
         inst.components.propagator.heatoutput = output[new_section]
     end
@@ -101,6 +100,7 @@ local function fn()
     inst:AddComponent("propagator")
     inst.components.propagator.damagerange = 1
     inst.components.propagator.damages = true
+    inst.components.propagator:StartSpreading()
 
     inst:AddComponent("fueled")
     inst.components.fueled:InitializeFuelLevel(TUNING.LAVAPOOL_FUEL_START)
@@ -118,6 +118,8 @@ local function fn()
     inst:AddComponent("trader")
     inst.components.trader:SetAcceptTest(ShouldAcceptItem)
     inst.components.trader.onaccept = OnGetItemFromPlayer
+
+    MakeHauntable(inst)
 
     return inst
 end

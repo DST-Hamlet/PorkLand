@@ -14,9 +14,6 @@ local function fn()
     MakeInventoryPhysics(inst)
     MakeInventoryFloatable(inst)
     inst.components.floater:UpdateAnimations( "idle_water", "idle")
-    -- inst.components.floatable:SetOnHitWaterFn(function(inst)
-    --     inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/obsidian_wetsizzles")
-    -- end)
 
     inst.AnimState:SetBank("obsidian")
     inst.AnimState:SetBuild("obsidian")
@@ -30,6 +27,14 @@ local function fn()
     inst.no_wet_prefix = true
 
     inst.entity:SetPristine()
+
+    if not TheNet:IsDedicated() then
+        inst:ListenForEvent("on_landed", function()
+            if inst.components.floater:ShouldShowEffect() then -- we landed on water
+                inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/obsidian_wetsizzles")
+            end
+        end)
+    end
 
     if not TheWorld.ismastersim then
         return inst
@@ -50,6 +55,7 @@ local function fn()
 
     inst:AddComponent("bait")
 
+    MakeHauntableLaunch(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.HEAVY, TUNING.WINDBLOWN_SCALE_MAX.HEAVY)
 
     return inst

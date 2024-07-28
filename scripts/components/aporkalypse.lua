@@ -33,8 +33,8 @@ return Class(function(self, inst)
     local _activefiestadirty = true
     local _isnearaporkalypsedirty = true
 
-    local _bat_task
-    local _herald_task
+    local _bat_time
+    local _herald_time
 
     -- Master shard simulation
     local _timeuntilfiestaend = _ismastershard and TUNING.APORKALYPSE_FIESTA_TIME or nil
@@ -70,47 +70,17 @@ return Class(function(self, inst)
         end
     end
 
-    local CancelBatAttack = _ismastersim and function()
-        if _bat_task then
-            _bat_task:Cancel()
-            _bat_task = nil
-        end
+    local function CancelAttacks()
+        _bat_time = nil
+        _herald_time = nil
     end
 
-    local ScheduleBatAttack
-    ScheduleBatAttack = _ismastersim and function()
-        CancelBatAttack()
-
-        local time = TUNING.TOTAL_DAY_TIME + (TUNING.TOTAL_DAY_TIME * math.random(0, 0.25))
-        _bat_task = self.inst:DoTaskInTime(time, function()
-            if GetWorldSetting("vampirebat") == "never" then
-                return
-            end
-
-            local batted = _world.components.batted
-            batted:RegenBat(15)
-            batted:ForceBatAttack()
-            ScheduleBatAttack()
-        end)
+    local ScheduleBatAttack = _ismastersim and function()
+        _bat_time = TUNING.TOTAL_DAY_TIME + (TUNING.TOTAL_DAY_TIME * math.random(0, 0.25))
     end
 
-    local CancelHeraldAttack = _ismastersim and function()
-        if _herald_task then
-            _herald_task:Cancel()
-            _herald_task = nil
-        end
-    end
-
-    local ScheduleHeraldAttack
-    ScheduleHeraldAttack = _ismastersim and function()
-        CancelHeraldAttack()
-
-        local time = math.random(TUNING.TOTAL_DAY_TIME / 3, TUNING.TOTAL_DAY_TIME)
-        _herald_task = self.inst:DoTaskInTime(time, function()
-            local player = GetRandomItem(AllPlayers)
-            SpawnHerald(player)
-            ScheduleHeraldAttack()
-        end)
+    local ScheduleHeraldAttack = _ismastersim and function()
+        _herald_time = math.random(TUNING.TOTAL_DAY_TIME / 3, TUNING.TOTAL_DAY_TIME)
     end
 
     local BeginAporkalypse = _ismastersim and function()
@@ -158,8 +128,7 @@ return Class(function(self, inst)
             BeginFiesta()
         end
 
-        CancelBatAttack()
-        CancelHeraldAttack()
+        CancelAttacks()
     end or nil
 
     local ForceResync = _ismastersim and function(netvar)
@@ -321,6 +290,33 @@ return Class(function(self, inst)
             })
         end
 
+        if _activeaporkalypse then
+            _bat_time = _bat_time - dt
+            if _bat_time <= 0 then
+                if GetWorldSetting("vampirebat") == "never" then
+                    return
+                end
+
+                local batted = _world.components.batted
+                batted:RegenBat(15)
+                batted:ForceBatAttack()
+                ScheduleBatAttack()
+            end
+            _herald_time = _herald_time - dt
+            if _herald_time <= 0 then
+                local players = {}
+                for _, player in pairs(AllPlayers) do
+                    if not player:HasTag("inside_interior") then
+                        table.insert(players, player)
+                    end
+                end
+
+                local player = GetRandomItem(players)
+                SpawnHerald(player)
+                ScheduleHeraldAttack()
+            end
+        end
+
         _world:PushEvent("aporkalypseclocktick", {timeuntilaporkalypse = _timeuntilaporkalypse:value()})
     end
 
@@ -335,6 +331,8 @@ return Class(function(self, inst)
             activefiesta = _activefiesta:value(),
             isnearaporkalypse = _isnearaporkalypse:value(),
             timeuntilaporkalypse = _timeuntilaporkalypse:value(),
+            bat_time = _bat_time,
+            herald_time = _herald_time,
         }
     end end
 
@@ -347,6 +345,12 @@ return Class(function(self, inst)
 
         if data.activeaporkalypse == true then
             BeginAporkalypse()
+            if data.bat_time then
+                _bat_time = data.bat_time
+            end
+            if data.herald_time then
+                _herald_time = data.herald_time
+            end
         end
     end end
 

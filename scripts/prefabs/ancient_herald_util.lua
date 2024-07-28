@@ -35,6 +35,10 @@ local function SpawnRandomInRange(player, prefab, min_count, max_count, radius, 
         return
     end
 
+    if type(prefab) == "table" then
+        prefab = GetRandomItem(prefab)
+    end
+
     local pt = player:GetPosition()
     offset_y = offset_y or 0
 
@@ -56,7 +60,7 @@ local function NightmarePostInit(nightmare)
 end
 
 local function SpawnNightmares(player, inst)
-    SpawnRandomInRange(player, GetRandomItem({"nightmarebeak", "crawlingnightmare"}), 2, 4, 10, nil, NightmarePostInit)
+    SpawnRandomInRange(player, {"nightmarebeak", "crawlingnightmare"}, 2, 4, 10, nil, NightmarePostInit)
 end
 
 local function SpawnGhosts(player, inst)
@@ -77,11 +81,7 @@ local function SpawnFrogRain(player, inst)
     local max = 5
 
     inst._frog_rain_task = inst:DoPeriodicTask(0.2, function()
-        SpawnRandomInRange(player, "frog_poison", 1, 4, 8, 35, function(frog)
-            print(frog.GUID, frog.sg.currentstate.name)
-            frog.sg:GoToState("fall")
-            print(frog.GUID, frog.sg.currentstate.name)
-        end)
+        SpawnRandomInRange(player, "frog_poison", 1, 4, 8, 35, function(frog) frog.sg:GoToState("fall") end)
 
         count = count + 1
         if count >= max then
@@ -102,9 +102,7 @@ local function SpawnHerald(player, inst)
     local herald = GetClosestInstWithTag("ancient_herald", player, 20)
 
     if herald == nil then
-        if not player:HasTag("inside_interior") then
-            SpawnRandomInRange(player, "ancient_herald", 1, 1, 10, nil, function(herald) herald.sg:GoToState("appear") end)
-        end
+        SpawnRandomInRange(player, "ancient_herald", 1, 1, 10, nil, function(herald) herald.sg:GoToState("appear") end)
     else
         herald.components.combat:SuggestTarget(player)
     end
