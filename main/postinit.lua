@@ -108,7 +108,6 @@ local screens_posts = {
 
 local stategraph_posts = {
     "bird",
-    "frog",
     "wilson",
     "wilson_client",
     "wilsonghost",

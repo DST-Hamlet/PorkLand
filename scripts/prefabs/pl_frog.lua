@@ -1,11 +1,10 @@
-local brain = require "brains/frogbrain"
+local brain = require("brains/pl_frogbrain")
 
-local poisonassets=
+local poisonassets =
 {
     Asset("ANIM", "anim/frog.zip"),
     Asset("ANIM", "anim/frog_water.zip"),
     Asset("ANIM", "anim/frog_treefrog_build.zip"),
-    Asset("SOUND", "sound/frog.fsb"),
 }
 
 local prefabs =
@@ -90,7 +89,7 @@ local function fn()
 
     MakeAmphibiousCharacterPhysics(inst, 1, 0.3)
 
-    inst.DynamicShadow:SetSize(1.5, .75)
+    inst.DynamicShadow:SetSize(1.5, 0.75)
     inst.Transform:SetFourFaced()
 
     inst.AnimState:SetBank("frog")
@@ -103,9 +102,7 @@ local function fn()
     inst:AddTag("smallcreature")
     inst:AddTag("frog")
     inst:AddTag("canbetrapped")
-
     inst:AddTag("duskok")
-    inst:AddTag("eatsbait")
     inst:AddTag("scarytoprey")
 
     inst.sounds = POISON_SOUNDS
@@ -119,6 +116,7 @@ local function fn()
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.walkspeed = 4
     inst.components.locomotor.runspeed = 8
+    inst.components.locomotor:SetAllowPlatformHopping(true)
 
     -- -- boat hopping enable.
     -- inst.components.locomotor:SetAllowPlatformHopping(true)
