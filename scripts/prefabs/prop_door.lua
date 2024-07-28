@@ -14,10 +14,6 @@ local assets =
     Asset("ANIM", "anim/player_house_doors.zip"),
 }
 
-local prefabs =
-{
-}
-
 local lights =
 {
     day  = {rad = 3, intensity = 0.75, falloff = 0.5, color = {1, 1, 1}},
@@ -497,5 +493,5 @@ local function shadowfn()
 end
 
 
-return Prefab("prop_door", fn, assets, prefabs),
-       Prefab("prop_door_shadow", shadowfn, assets, prefabs)
+return Prefab("prop_door", fn, assets),
+       Prefab("prop_door_shadow", shadowfn, assets)
