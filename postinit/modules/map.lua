@@ -403,36 +403,36 @@ function Map:GetIslandTagAtPoint(x, y, z)
     return island_tag
 end
 
-function Map:FindPointByIslandTag(islandtag, trytimes, allowwater)
-    local try = trytimes or 10000
+function Map:FindPointByIslandTag(island_tag, num_tries, allow_water)
+    num_tries = num_tries or 10000
 
-    local hasisland = false
-    for i,v in ipairs(ISLAND_TAGS) do
-        if islandtag == v then
-            hasisland = true
+    local found_island = false
+    for _, v in pairs(ISLAND_TAGS) do
+        if island_tag == v then
+            found_island = true
+            break
         end
     end
 
-    if not hasisland then
-        print("WARNING!!! Cant find island with tag: ", islandtag)
+    if not found_island then
+        print("WARNING!!! Cant find island with tag: ", island_tag)
         return nil
     end
 
-    for i = 1, try do
-        local topology = TheWorld.topology
-        local area = topology.nodes[math.random(#topology.nodes)]
-        if table.contains(area.tags, islandtag) then
+    local topology = TheWorld.topology
+    for i = 1, num_tries do
+        local area = GetRandomItem(topology.nodes)
+        if table.contains(area.tags, island_tag) then
             local points_x, points_y = TheWorld.Map:GetRandomPointsForSite(area.x, area.y, area.poly, 1)
             if #points_x == 1 and #points_y == 1
-                and (allowwater or self:ReverseIsVisualGroundAtPoint(points_x[1], 0, points_y[1]))
+                and (allow_water or self:ReverseIsVisualGroundAtPoint(points_x[1], 0, points_y[1]))
                 and not self:IsImpassableAtPoint(points_x[1], 0, points_y[1]) then
-                    local x = points_x[1]
-                    local z = points_y[1]
-                    return Vector3(x, 0, z)
+                return Vector3(points_x[1], 0, points_y[1])
             end
         end
     end
 
     print("WARNING!!! Cant find island after max trytimes!!!")
+
     return nil
 end
