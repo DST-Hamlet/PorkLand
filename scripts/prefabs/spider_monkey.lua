@@ -38,49 +38,46 @@ local function OnAttacked(inst, data)
     inst.components.combat:SetTarget(data.attacker)
 end
 
+local DEFEND_HOME_DIST = 12
+local HOME_THREAT_MUST_TAGS = {"FX", "NOCLICK", "INLIMBO", "spidermonkey"}
+local HOME_THREAT_NO_TAGS = {"character", "animal", "monster"}
+
 local function FindThreatToNest(inst)
-    local notags = {"FX", "NOCLICK", "INLIMBO", "spidermonkey"}
-    local yestags = {"character", "animal", "monster"}
-    if inst.components.homeseeker and inst.components.homeseeker:HasHome() then
-        return FindEntity(inst.components.homeseeker.home, TUNING.SPIDER_MONKEY_DEFEND_DIST, function(guy)
-            return guy.components.health
-                and not guy.components.health:IsDead()
-                and inst.components.combat:CanTarget(guy)
-        end, nil, notags, yestags)
+    if not inst.tree or not inst.tree:IsValid() then
+        return
     end
+
+    return FindEntity(inst.tree, DEFEND_HOME_DIST, function(ent)
+        return ent.components.health and not ent.components.health:IsDead() and inst.components.combat:CanTarget(ent)
+    end, nil, HOME_THREAT_MUST_TAGS, HOME_THREAT_NO_TAGS)
 end
 
+local RETARGET_DIST = 8
+local RETARGET_PIG_MUST_TAGS = {"pig"}
+local RETARGET_CHARACTER_ONEOF_TAGS = {"character", "monster"}
+local RETARGET_NO_TAGS = {"FX", "NOCLICK", "INLIMBO", "aquatic", "werepig"}
+
 local function RetargetFn(inst)
-    local newtarget = FindThreatToNest(inst)
+    local new_target = FindThreatToNest(inst)
 
-    if not newtarget then
-        local notags = {"FX", "NOCLICK", "INLIMBO", "aquatic", "werepig"}
-        local yestags = {"pig"}
-        newtarget = FindEntity(inst,TUNING.SPIDER_MONKEY_TARGET_DIST, function(guy)
-            return guy.components.health
-                and not guy.components.health:IsDead()
-                and inst.components.combat:CanTarget(guy)
-        end, yestags, notags)
+    if not new_target then
+        new_target = FindEntity(inst, RETARGET_DIST, function(ent)
+            return ent.components.health and not ent.components.health:IsDead() and inst.components.combat:CanTarget(ent)
+        end, RETARGET_PIG_MUST_TAGS, RETARGET_NO_TAGS)
     end
 
-    if not newtarget then
-        local notags = {"FX", "NOCLICK", "INLIMBO", "aquatic", "spidermonkey", "aquatic"}
-        local yestags = {"character", "monster"}
-        newtarget = FindEntity(inst,TUNING.SPIDER_MONKEY_TARGET_DIST, function(guy)
-            return  guy.components.health
-            and not guy.components.health:IsDead()
-            and inst.components.combat:CanTarget(guy)
-        end, nil, notags, yestags)
+    if not new_target then
+        new_target = FindEntity(inst, RETARGET_DIST, function(ent)
+            return ent.components.health and not ent.components.health:IsDead() and inst.components.combat:CanTarget(ent)
+        end, nil, RETARGET_NO_TAGS, RETARGET_CHARACTER_ONEOF_TAGS)
     end
 
-    return newtarget
+    return new_target
 end
 
 local function KeepTargetFn(inst, target)
-    local home = inst.components.homeseeker and inst.components.homeseeker.home
-
-    if home then
-        return inst:GetDistanceSqToInst(home) < MAX_CHASEAWAY_DIST * MAX_CHASEAWAY_DIST
+    if inst.tree and inst.tree:IsValid() then
+        return inst:GetDistanceSqToInst(inst.tree) < MAX_CHASEAWAY_DIST * MAX_CHASEAWAY_DIST
     else
         return true
     end
@@ -231,12 +228,10 @@ local function UpdateTreeStatus(inst)
         local infected_tree = TheSim:FindEntities(x, y, z, FIND_TREE_DIST, FIND_WEB_TREE_MUST_TAGS, FIND_TREE_NO_TAGS)
         local tree
         for i, ent in ipairs(infected_tree) do
-            local other_monkey_tree = FindEntity(ent, 7, function(ent)
-                local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider"}, {"burnt", "stump", "rotten"})
-                return other_monkey_tree == nil
-            end, {"spider_monkey_tree"}, FIND_TREE_NO_TAGS)
-            local x, y, z = ent.Transform:GetWorldPosition()
-            local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
+            local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider"}, FIND_WEB_TREE_NOT_TAGS)
+
+            local ex, ey, ez = ent.Transform:GetWorldPosition()
+            local tile = TheWorld.Map:GetTileAtPoint(ex, ey, ez)
             if other_monkey_tree == nil
                 and inst:GetDistanceSqToInst(ent) <= FIND_TREE_DIST * FIND_TREE_DIST
                 and tile == WORLD_TILES.DEEPRAINFOREST then
@@ -252,8 +247,7 @@ local function UpdateTreeStatus(inst)
 
     if not inst.target_tree then -- can't find a tree next to old home or this is the first tree
         local tree = FindEntity(inst, 30, function(ent)
-            local other_monkey_tree = FindEntity(ent, 7, nil,
-                {"has_spider", "spider_monkey_tree"}, FIND_WEB_TREE_NOT_TAGS)
+            local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider"}, FIND_WEB_TREE_NOT_TAGS)
             local x, y, z = ent.Transform:GetWorldPosition()
             local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
             return other_monkey_tree == nil and tile == WORLD_TILES.DEEPRAINFOREST
