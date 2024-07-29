@@ -60,6 +60,7 @@ local function getString(speech)
         return speech
     end
 end
+
 --[[
 local function GetFaceTargetFn(inst)
     return inst.components.follower.leader
@@ -281,10 +282,8 @@ end
 
 local function shouldpanicwithspeech(inst)
     if should_panic(inst) then
-        if math.random()<0.01 then
-            local speechset = getSpeechType(inst,STRINGS.CITY_PIG_TALK_FLEE)
-            local str = speechset[math.random(#speechset)]
-            inst.components.talker:Say(str)
+        if math.random() < 0.01 then
+            inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_FLEE"))
         end
         return true
     end
@@ -309,18 +308,14 @@ local function ShouldGoHome(inst)
     return home_pos and inst:GetDistanceSqToPoint(home_pos) > GO_HOME_DIST*GO_HOME_DIST
 end
 
-local function inCityLimits(inst)
+local function InCityLimits(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH, {"citypossession"}, {"city_pig"})
     if #ents > 0 then
         return true
     end
     if inst.components.combat.target then
-
-        local speechset = getSpeechType(inst,STRINGS.CITY_PIG_TALK_STAYOUT)
-        local str = speechset[math.random(#speechset)]
-        inst.components.talker:Say(str)
-
+        inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_STAYOUT"))
         inst.components.combat:GiveUp()
     end
     return false
@@ -392,6 +387,7 @@ local function ReplenishStockAction(inst)
     end
 end
 
+-- TODO: Migrate this to chatter
 function getfacespeech(inst)
     local econprefab = inst.econprefab or inst.prefab
     local desc = TheWorld.components.economy:GetTradeItemDesc(econprefab)
@@ -443,13 +439,13 @@ function CityPigBrain:OnStart()
             WhileNode(function() return self.inst:HasTag("shopkeep") and not self.inst:HasTag("atdesk") and not self.inst.changestock end, "shopkeeper opening",
                DoAction(self.inst, ShopkeeperSitAtDesk, "SitAtDesk", true )  ),
 
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FIND_MEAT),
+            ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FIND_MEAT"),
                 DoAction(self.inst, FindFoodAction )),
 
             IfNode(function() return StartChoppingCondition(self.inst) end, "chop",
                 WhileNode(function() return KeepChoppingAction(self.inst) end, "keep chopping",
                     LoopNode{
-                        ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_HELP_CHOP_WOOD),
+                        ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_HELP_CHOP_WOOD"),
                             DoAction(self.inst, FindTreeToChopAction ))})),
 
             Leash(self.inst, GetNoLeaderHomePos, LEASH_MAX_DIST, LEASH_RETURN_DIST),
@@ -463,10 +459,10 @@ function CityPigBrain:OnStart()
 
     local night = WhileNode( function() return not TheWorld.state.isday end, "IsNight",
         PriorityNode{
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_RUN_FROM_SPIDER),
+            ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_RUN_FROM_SPIDER"),
                 RunAway(self.inst, "spider", 4, 8)),
 
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FIND_MEAT),
+            ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FIND_MEAT"),
                 DoAction(self.inst, FindFoodAction )),
 
             -- after hours shop pig wants you to leave
@@ -474,15 +470,15 @@ function CityPigBrain:OnStart()
                 Wander(self.inst, GetNoLeaderHomePos, MAX_WANDER_DIST)),
 
             IfNode(function() return not self.inst:HasTag("guard") and not self.inst:HasTag("shopkeep") and not TheWorld.state.isfiesta end, "gohome",
-                ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_GO_HOME),
+                ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_GO_HOME"),
                     DoAction(self.inst, GoHomeAction, "go home"))),
 
             WhileNode(function() return needlight(self.inst) end, "NeedLight",
-                ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FIND_LIGHT),
+                ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FIND_LIGHT"),
                     FindLight(self.inst, SEE_LIGHT_DIST, SafeLightDist))),
 
             IfNode(function() return not self.inst:HasTag("guard") and not TheWorld.state.isfiesta end, "panic",
-                ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_PANIC),
+                ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_PANIC"),
                 Panic(self.inst))),
         },1)
 
@@ -491,30 +487,30 @@ function CityPigBrain:OnStart()
         {
             -- TODO: Add in custom panic speech
             WhileNode( function() return self.inst.components.hauntable and self.inst.components.hauntable.panic end, "PanicHaunted",
-                ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
+                ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FLEE"),
                     Panic(self.inst))),
 
             WhileNode(GoToIdleStateWrap(self.inst, function() return self.inst.components.health.takingfiredamage end), "OnFire",
-                ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_PANICFIRE),
+                ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_PANICFIRE"),
                     Panic(self.inst))),
 
             -- FOLLOWER CODE
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FOLLOWWILSON),
+            ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FOLLOWWILSON"),
                 Follow(self.inst, GetLeader, MIN_FOLLOW_DIST, TARGET_FOLLOW_DIST, MAX_FOLLOW_DIST)),
             IfNode(function() return GetLeader(self.inst) end, "has leader",
-                ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FOLLOWWILSON),
+                ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FOLLOWWILSON"),
                     FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn ))),
             -- END FOLLOWER CODE
 
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
+            ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FLEE"),
                 WhileNode(GoToIdleStateWrap(self.inst, function() return shouldpanicwithspeech(self.inst) end), "Threat Panic",
                     Panic(self.inst) )--[[, "alarmed"]]),
 
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
+            ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FLEE"),
                 WhileNode(GoToIdleStateWrap(self.inst, function() return (self.inst.components.combat.target and not self.inst:HasTag("guard")) end), "Dodge",
                     RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST) )--[[, "alarmed"]]),
 
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FLEE),
+            ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FLEE"),
                 RunAway(self.inst, GoToIdleStateWrap(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end), RUN_AWAY_DIST, STOP_RUN_AWAY_DIST )--[[, "alarmed"]]),
 
             WhileNode(function() return ReplaceStockCondition(self.inst) end, "replenish",
@@ -551,11 +547,11 @@ function CityPigBrain:OnStart()
             ),
 
             -- for the mechanic pigs when they fix stuff
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_FIX),
+            ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_FIX"),
                 WhileNode( function() return self.inst.components.fixer and self.inst.components.fixer.target end, "RepairStructure",
                      DoAction(self.inst, FixStructure))),
 
-            ChattyNode(self.inst, getSpeechType(self.inst, STRINGS.CITY_PIG_TALK_ATTEMPT_TRADE),
+            ChattyNode(self.inst, self.inst:GetSpeechType("CITY_PIG_TALK_ATTEMPT_TRADE"),
                 FaceEntity(self.inst, GetTraderFn, KeepTraderFn)),
 
             day,

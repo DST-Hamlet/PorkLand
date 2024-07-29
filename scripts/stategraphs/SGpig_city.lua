@@ -47,15 +47,6 @@ local events=
         end),
 }
 
-local function getSpeechType(inst, speech)
-    local line = speech.DEFAULT
-
-    if inst.talkertype and speech[inst.talkertype] then
-        line = speech[inst.talkertype]
-    end
-    return line
-end
-
 local states =
 {
      State {
@@ -96,9 +87,8 @@ local states =
         name = "dance",
         tags = {"canrotate", "busy"},
         onenter = function(inst, pushanim)
-            if math.random()<0.3 then
-                local speechset = getSpeechType(inst, STRINGS.CITY_PIG_TALK_FIESTA)
-                inst.components.talker:Say(speechset[math.random(#speechset)])
+            if math.random() < 0.3 then
+                inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_FIESTA"))
             end
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("idle_happy")
@@ -430,10 +420,10 @@ local states =
         tags = {"busy"},
 
         onenter = function(inst)
-            local speechset = inst.poop_tip:HasTag("pigroyalty")
-                and getSpeechType(inst, STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP)
-                or getSpeechType(inst, STRINGS.CITY_PIG_TALK_POOPTIP)
-            inst.components.talker:Say(speechset[math.random(#speechset)])
+            local line = inst.poop_tip:HasTag("pigroyalty")
+                and inst:GetSpeechType("CITY_PIG_TALK_ROYAL_POOPTIP")
+                or inst:GetSpeechType("CITY_PIG_TALK_POOPTIP")
+            inst:SayLine(line)
             inst.AnimState:PlayAnimation("interact")
             inst.Physics:Stop()
         end,
@@ -464,8 +454,7 @@ local states =
         tags = {"busy"},
 
         onenter = function(inst)
-            local speechset = getSpeechType(inst, STRINGS.CITY_PIG_TALK_PAYTAX)
-            inst.components.talker:Say(speechset[math.random(#speechset)])
+            inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_PAYTAX"))
             inst.AnimState:PlayAnimation("interact")
             inst.Physics:Stop()
         end,
@@ -490,12 +479,10 @@ local states =
         tags = {"busy"},
 
         onenter = function(inst)
-            local speech = STRINGS.CITY_PIG_TALK_DAILYGIFT
-            if TheWorld.state.isfiesta then
-                speech = STRINGS.CITY_PIG_TALK_APORKALYPSE_REWARD
-            end
-            local speechset = getSpeechType(inst, speech)
-            inst.components.talker:Say(speechset[math.random(#speechset)])
+            local speech = TheWorld.state.isfiesta
+                and inst:GetSpeechType("CITY_PIG_TALK_APORKALYPSE_REWARD")
+                or inst:GetSpeechType("CITY_PIG_TALK_DAILYGIFT")
+            inst:SayLine(speech)
             inst.AnimState:PlayAnimation("interact")
             inst.Physics:Stop()
         end,
