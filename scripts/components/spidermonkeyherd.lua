@@ -9,6 +9,10 @@ return Class(function(self, inst)
 
 assert(TheWorld.ismastersim, "SpiderMonkeyHerd should not exist on client")
 
+--------------------------------------------------------------------------
+--[[ Private constants ]]
+--------------------------------------------------------------------------
+
 local ADD_TO_HERD_MAX_DISTSQ = 200 * 200
 local REMOVE_FROM_HERD_DISTSQ = 220 * 220
 local CREATE_HERD_MIN_DISTSQ = 400 * 400
@@ -21,10 +25,65 @@ local FIND_NEW_TREE_DIST = 200 -- absurd...
 
 self.inst = inst
 
-self.updatetime = 0
+--------------------------------------------------------------------------
+--[[ Private Member Variables ]]
+--------------------------------------------------------------------------
 
+local _update_time = 0
 local _herds = {}
 local _monkeys = {}
+
+--------------------------------------------------------------------------
+--[[ Private member functions ]]
+--------------------------------------------------------------------------
+
+local function OnUpdate(self, dt)
+    -- Check for empty monkey herds
+    local mark_for_remove = {}
+    for k, herd in pairs(_herds) do
+        if GetTableSize(herd.monkeys) <= 0 then
+            mark_for_remove[k] = herd
+        end
+    end
+
+    -- Remove the herds
+    for k, herd in pairs(mark_for_remove) do
+        _herds[k] = nil
+    end
+    mark_for_remove = nil
+
+    for _, herd in pairs(_herds) do
+        -- Elect new leader
+        if not herd.leader or not herd.leader:IsValid() then
+            local new_leader = GetRandomItem(herd.monkeys)
+            herd.leader = new_leader
+        end
+
+        -- Regen monkey
+        herd.next_regen = herd.next_regen - dt
+        if herd.next_regen <= 0 then
+            self:SpawnNewMonkey(herd)
+            herd.next_regen = GetRandomWithVariance(TUNING.SPIDER_MONKEY_MATING_SEASON_BABYDELAY, TUNING.SPIDER_MONKEY_MATING_SEASON_BABYDELAY_VARIANCE)
+        end
+    end
+
+    -- Remove for monkeys away from herd
+    for _, monkey in pairs(_monkeys) do
+        if monkey and monkey:IsValid() then
+            if monkey.herd and monkey.herd.leader and monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
+                self:RemoveFromHerd(monkey)
+            else
+                self:AddToHerd(monkey)
+            end
+        else
+            self:RemoveFromHerd(monkey)
+        end
+    end
+end
+
+--------------------------------------------------------------------------
+--[[ Public member functions ]]
+--------------------------------------------------------------------------
 
 function self:AddToHerd(monkey)
     if monkey.inherd then
@@ -89,49 +148,15 @@ function self:SpawnNewMonkey(herd)
     end
 end
 
-local function OnUpdate(self, dt)
-    -- Check for empty monkey herds
-    local mark_for_remove = {}
-    for k, herd in pairs(_herds) do
-        if not next(herd.monkeys) then
-            mark_for_remove[k] = herd
-        end
-    end
+--------------------------------------------------------------------------
+--[[ Initialization ]]
+--------------------------------------------------------------------------
 
-    -- Remove the herds
-    for k, herd in pairs(mark_for_remove) do
-        _herds[k] = nil
-    end
-    mark_for_remove = nil
+self.inst:StartUpdatingComponent(self)
 
-    for _, herd in pairs(_herds) do
-        -- Elect new leader
-        if not herd.leader or not herd.leader:IsValid() then
-            local new_leader = GetRandomItem(herd.monkeys)
-            herd.leader = new_leader
-        end
-
-        -- Regen monkey
-        herd.next_regen = herd.next_regen - dt
-        if herd.next_regen <= 0 then
-            self:SpawnNewMonkey(herd)
-            herd.next_regen = GetRandomWithVariance(TUNING.SPIDER_MONKEY_MATING_SEASON_BABYDELAY, TUNING.SPIDER_MONKEY_MATING_SEASON_BABYDELAY_VARIANCE)
-        end
-    end
-
-    -- Remove for monkeys away from herd
-    for _, monkey in pairs(_monkeys) do
-        if monkey and monkey:IsValid() then
-            if monkey.herd and monkey.herd.leader and monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
-                self:RemoveFromHerd(monkey)
-            else
-                self:AddToHerd(monkey)
-            end
-        else
-            self:RemoveFromHerd(monkey)
-        end
-    end
-end
+--------------------------------------------------------------------------
+--[[ Save/Load ]]
+--------------------------------------------------------------------------
 
 function self:OnSave()
     local data = {}
@@ -197,27 +222,39 @@ function self:LoadPostPass(ents, data)
     end
 end
 
-function self:GetDebugString()
-    local s = ""
-    for k, herd in pairs(_herds) do
-        if herd.leader and herd.leader:IsValid() then
-            s = string.format("%s\nHerd: %d Leader: %s Member Count: %d Next Regen: %2.2f", s, k, tostring(herd.leader), #herd.monkeys, herd.next_regen)
-        end
-    end
-
-    return s
-end
+--------------------------------------------------------------------------
+--[[ Update ]]
+--------------------------------------------------------------------------
 
 function self:OnUpdate(dt)
-    self.updatetime = self.updatetime -dt
-    if self.updatetime < 0 then
-        OnUpdate(self, 1 - self.updatetime)
-        self.updatetime = 1
+    _update_time = _update_time -dt
+    if _update_time < 0 then
+        OnUpdate(self, 1 - _update_time)
+        _update_time = 1
     end
 end
 
 function self:LongUpdate(dt)
     self:OnUpdate(dt)
 end
+
+--------------------------------------------------------------------------
+--[[ Debug ]]
+--------------------------------------------------------------------------
+
+function self:GetDebugString()
+    local s = ""
+    for k, herd in pairs(_herds) do
+        if herd.leader and herd.leader:IsValid() then
+            s = string.format("%s\nHerd: %d Leader: %s Member Count: %d Next Regen: %2.2f", s, k, tostring(herd.leader), GetTableSize(herd.monkeys), herd.next_regen)
+        end
+    end
+
+    return s
+end
+
+--------------------------------------------------------------------------
+--[[ End ]]
+--------------------------------------------------------------------------
 
 end)

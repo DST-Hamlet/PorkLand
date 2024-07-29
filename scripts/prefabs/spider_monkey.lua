@@ -125,6 +125,9 @@ local function BindWithTree(inst, tree)
     end
 
     inst.tree = tree
+    inst.target_tree = nil
+    inst.old_tree_pos = nil
+
     tree.monkey = inst
     tree:AddTag("has_spider")
 
@@ -177,9 +180,11 @@ local function InfectTrees(inst, tree)
     local x, y, z = tree.Transform:GetWorldPosition()
     local nearby_trees = TheSim:FindEntities(x, y, z, FIND_WEB_TREE_DIST, FIND_TREE_MUST_TAGS, FIND_TREE_NO_TAGS)
 
-    if nearby_trees then
-        for _, new_tree in pairs(nearby_trees) do
+    for _, new_tree in pairs(nearby_trees) do
+        if new_tree ~= tree then
+            local stage = new_tree.stage
             new_tree = ReplacePrefab(new_tree, "spider_monkey_tree")
+            new_tree.components.growable:SetStage(stage)
             new_tree:PlayWebFX()
         end
     end
@@ -227,7 +232,7 @@ local function UpdateTreeStatus(inst)
         local tree
         for i, ent in ipairs(infected_tree) do
             local other_monkey_tree = FindEntity(ent, 7, nil, {"has_monkey", "spider_monkey_tree"}, FIND_WEB_TREE_NOT_TAGS)
-            if other_monkey_tree == nil then
+            if other_monkey_tree == nil and inst:GetDistanceSqToInst(ent) <= FIND_TREE_DIST * FIND_TREE_DIST then
                 tree = ent
                 break
             end
@@ -369,6 +374,7 @@ local function fn()
 
     inst.OnSave = OnSave
     inst.OnLoadPostPass = OnLoadPostPass
+    inst.MakeHomeAction = InfectTrees
 
     inst.tree = nil -- 当前的巢穴树
     inst.target_tree = nil -- 准备去作为巢穴的树
