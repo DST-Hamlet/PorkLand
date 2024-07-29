@@ -27,7 +27,7 @@ local events =
         end
 
         local should_move = inst.components.locomotor:WantsToMoveForward()
-        local should_run = inst.components.locomotor:WantsToRun()
+        -- local should_run = inst.components.locomotor:WantsToRun()
 
         if not should_move then
             inst.sg:GoToState("idle")
@@ -322,7 +322,7 @@ local states =
         end,
 
         onexit = function(inst)
-            local x, y, z = inst.Transform:GetWorldPosition()
+            local x, _, z = inst.Transform:GetWorldPosition()
             inst.Transform:SetPosition(x, 0, z)
         end,
     },

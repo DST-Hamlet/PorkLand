@@ -1,14 +1,14 @@
 local function GrowCrop(inst)
-    for ent, _ in ipairs(inst.components.grower.crops) do
-        if ent.components.crop then
+    for crop in pairs(inst.components.grower.crops) do
+        if crop.components.crop then
             for i = 1, 10 do
-                ent.components.crop:DoGrow(9999)
+                crop.components.crop:DoGrow(9999)
             end
         end
     end
 end
 
-local function OnCreate(inst)
+local function OnCityPossession(inst)
     if inst.components.grower then
         local seed = SpawnPrefab("seeds")
         inst.components.grower:PlantItem(seed)
@@ -25,7 +25,7 @@ local function fn()
         return inst
     end
 
-    inst.OnCreate = OnCreate
+    inst.OnCityPossession = OnCityPossession
 
     return inst
 end

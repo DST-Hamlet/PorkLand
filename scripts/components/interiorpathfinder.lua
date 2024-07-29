@@ -207,21 +207,21 @@ function InteriorPathfinder:PopulateRoom()
 end
 
 function InteriorPathfinder:WorldPositionToLocal(x, y, z)
-    local ix, iy, iz = self.inst.Transform:GetWorldPosition()
+    local ix, _, iz = self.inst.Transform:GetWorldPosition()
     local _x = math.floor(x - ix + self:GetDepth() / 2 + 1)
     local _z = math.floor(z - iz + self:GetWidth() / 2 + 1)
     return _x, 0, _z
 end
 
 function InteriorPathfinder:LocalPositionToWorld(x, y, z)
-    local ix, iy, iz = self.inst.Transform:GetWorldPosition()
+    local ix, _, iz = self.inst.Transform:GetWorldPosition()
     local _x = ix + x - 1 - self:GetDepth() / 2 + 0.5 -- 0.5代表墙的碰撞位置和坐标位置的差
     local _z = iz + z - 1 - self:GetWidth() / 2 + 0.5
     return _x, 0, _z
 end
 
 function InteriorPathfinder:AddWall(x, y, z) -- 并未考虑室内大小的动态变化
-    local _x, _y, _z = self:WorldPositionToLocal(x, y, z)
+    local _x, _, _z = self:WorldPositionToLocal(x, y, z)
     if self.interior_physicswall[_x] == nil then
         self.interior_physicswall[_x] = {}
     end
@@ -230,7 +230,7 @@ function InteriorPathfinder:AddWall(x, y, z) -- 并未考虑室内大小的动�
 end
 
 function InteriorPathfinder:RemoveWall(x, y, z)
-    local _x, _y, _z = self:WorldPositionToLocal(x, y, z)
+    local _x, _, _z = self:WorldPositionToLocal(x, y, z)
     if self.interior_physicswall[_x] == nil then
         self.interior_physicswall[_x] = {}
     end
@@ -239,7 +239,7 @@ function InteriorPathfinder:RemoveWall(x, y, z)
 end
 
 function InteriorPathfinder:HasWall(x, y, z)
-    local _x, _y, _z = self:WorldPositionToLocal(x, y, z)
+    local _x, _, _z = self:WorldPositionToLocal(x, y, z)
     if self.interior_physicswall[_x] == nil then
         self.interior_physicswall[_x] = {}
     end
@@ -247,8 +247,8 @@ function InteriorPathfinder:HasWall(x, y, z)
 end
 
 function InteriorPathfinder:IsClear(x, y, z, tx, ty, tz, data) -- 检测两点之间的直线寻路是否有阻挡
-    local _x, _y, _z = self:WorldPositionToLocal(x, y, z)
-    local _tx, _ty, _tz = self:WorldPositionToLocal(tx, ty, tz)
+    local _x, _, _z = self:WorldPositionToLocal(x, y, z)
+    local _tx, _, _tz = self:WorldPositionToLocal(tx, ty, tz)
     local ignorewalls = data and data.ignorewalls
     return IsClearPath(_x, _z, _tx, _tz, self.interior_physicswall, self:GetWidth(), self:GetDepth(), ignorewalls)
 end
@@ -262,9 +262,9 @@ function InteriorPathfinder:CalculateSearch(x, y, z, tx, ty, tz, data) -- 计算
             status = STATUS_NOPATH,
         }
     end
-    local _x, _y, _z = self:WorldPositionToLocal(x, y, z)
+    local _x, _, _z = self:WorldPositionToLocal(x, y, z)
     local start = CreateNode(_x, _z, 0, 0, nil) -- 开始位置
-    local _tx, _ty, _tz = self:WorldPositionToLocal(tx, ty, tz)
+    local _tx, _, _tz = self:WorldPositionToLocal(tx, ty, tz)
     local goal = CreateNode(_tx, _tz, 0, 0, nil) -- 目标位置
     local ignorewalls = data and data.ignorewalls
     local calcupath = a_star(start, goal, self.interior_physicswall, self:GetWidth(), self:GetDepth(), ignorewalls)

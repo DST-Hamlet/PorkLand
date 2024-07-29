@@ -295,7 +295,7 @@ function Segmented:SwitchToTail()
     self.inst.SoundEmitter:KillSound("speed")
     self.inst.exitpt.SoundEmitter:KillSound("speed")
 
-    local x, y, z = self.inst.exitpt.Transform:GetWorldPosition()
+    local x, _, z = self.inst.exitpt.Transform:GetWorldPosition()
     local newtail = SpawnPrefab("pugalisk_tail")
     newtail.sg:GoToState("tail_ready")
     newtail.wantstotaunt = nil
@@ -481,13 +481,12 @@ function Segmented:OnUpdate(dt)
     end
 
     if self.hit > 0 then
-        local x, y, z
         for _, segment in ipairs(self.segments)do
             local s = 1.5
             s = Remap(self.hit, 1, 0, 1, 1.5)
             segment.Transform:SetScale(s,s,s)
 
-            x, y, z = segment.Transform:GetWorldPosition()
+            local x, _, z = segment.Transform:GetWorldPosition()
             if segment.Physics then
                 segment.Physics:Teleport(x, 0, z)
             else

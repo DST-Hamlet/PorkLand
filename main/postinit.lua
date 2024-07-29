@@ -31,6 +31,7 @@ local component_posts = {
     "fishingrod",
     "floater",
     "grogginess",
+    "grower",
     "grue",
     "hauntable",
     "health",
@@ -62,6 +63,7 @@ local component_posts = {
     "wavemanager",
     "wisecracker",
     "witherable",
+    "workable",
     "worldstate",
 }
 
@@ -74,6 +76,7 @@ local prefab_posts = {
     "player_classified",
     "player_common_extensions",
     "pocketdimensioncontainer_defs",
+    "poop",
     "torch",
     "woodie",
     "world_network",
@@ -154,6 +157,8 @@ modimport("postinit/sim")
 modimport("postinit/pathfinder")
 modimport("postinit/groundcreep")
 modimport("postinit/groundcreepentity")
+modimport("postinit/soundemitter")
+
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

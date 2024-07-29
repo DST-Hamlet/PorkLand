@@ -28,7 +28,7 @@ AddStategraphPostInit("bird", function(sg)
     if _flyaway_ontimeout then
         sg.states["flyaway"].ontimeout = function(inst)
             _flyaway_ontimeout(inst)
-            local x, y, z = inst.Transform:GetWorldPosition()
+            local x, _, z = inst.Transform:GetWorldPosition()
             if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
                 inst.Physics:SetMotorVel(0, math.random() * 5 + 15, 0)
             end
@@ -38,7 +38,7 @@ AddStategraphPostInit("bird", function(sg)
     local _glide_onupdate = sg.states["glide"].onupdate
     if _glide_onupdate then
         sg.states["glide"].onupdate = function(inst)
-            local x, y, z = inst.Transform:GetWorldPosition()
+            local _, y, _ = inst.Transform:GetWorldPosition()
             if y < 0.1 and not inst.sg.statemem.onlanding_spawned then
                 if inst.components.periodicspawner.onlanding then
                     inst.components.periodicspawner:TrySpawn()

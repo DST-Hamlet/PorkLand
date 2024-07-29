@@ -43,8 +43,7 @@ local function fn()
     inst.AnimState:SetBuild("burr")
     inst.AnimState:PlayAnimation("idle")
 
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("plant")
     inst:AddTag("cattoy")

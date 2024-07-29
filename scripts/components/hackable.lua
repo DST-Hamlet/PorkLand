@@ -9,7 +9,7 @@ local function onhackable(self)
 
     local shearable = self.inst.components.shearable
     if shearable then
-        shearable.canshaveable = self.inst:HasTag("HACK_workable")
+        shearable.canbesheared = self.inst:HasTag("HACK_workable")
     end
 end
 

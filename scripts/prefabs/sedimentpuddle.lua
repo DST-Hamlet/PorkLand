@@ -162,7 +162,7 @@ end
 local SAFE_EDGE_RANGE = 7
 local SAFE_PUDDLE_RANGE = 7
 local function Reposition(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local x, _, z = inst.Transform:GetWorldPosition()
     local  angle, opposite_angle, tile_x, tile_z
 
     local offsets = {}

@@ -1,4 +1,3 @@
-local IAENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
 local ex_fns = require("prefabs/player_common_extensions")

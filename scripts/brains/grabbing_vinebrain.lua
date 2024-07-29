@@ -5,7 +5,7 @@ require("behaviours/standstill")
 local BrainCommon = require("brains/braincommon")
 
 local GO_HOME_DIST = 1
-local EAT_DIST = 0.5
+-- local EAT_DIST = 0.5
 local SEE_DIST = 5
 
 local NO_TAGS = {"FX", "NOCLICK", "DECOR", "INLIMBO"}
@@ -39,6 +39,11 @@ function GrabbingvineBrain:OnStart()
         BrainCommon.PanicTrigger(self.inst),
         WhileNode(function() return not IsUp(self.inst) end, "GoEatFood",
             DoAction(self.inst, function() return EatFoodAction(self.inst) end, "eat food", true, math.random(5, 8))),
+        WhileNode(function()
+                local target = self.inst.components.combat.target
+                return target and not self.inst.components.combat:CanAttack(target)
+            end, "Attack",
+            StandStill(self.inst)), -- 用于执行locomotor:Stop()来让回家中的藤蔓停下来
         WhileNode(function() return not IsUp(self.inst) end, "StandAndAttack",
             StandAndAttack(self.inst)),
         SelectorNode({

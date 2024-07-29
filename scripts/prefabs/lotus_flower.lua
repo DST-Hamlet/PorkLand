@@ -11,7 +11,7 @@ local function common()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("cattoy")
     inst:AddTag("billfood")

@@ -419,11 +419,9 @@ local function ShelfPlaceTest(inst, pt)
         local leftdiff =  pt.z < (originpt.z - width/2 + dist)
 
         local canbuild = true
-        local bank = ""
         local rot = -90
         if backdiff and not rightdiff and not leftdiff then
             newpt = {x= originpt.x - depth/2, y=0, z=pt.z}
-            bank = ""
             rot = -90
         else
             newpt = pt
@@ -554,7 +552,6 @@ local function modifypillarfn(inst)
     local interiorSpawner = GetWorld().components.interiorspawner
     if interiorSpawner.current_interior then
         local originpt = interiorSpawner:getSpawnOrigin()
-        local depth = interiorSpawner.current_interior.depth
         local pt = Point(inst.Transform:GetWorldPosition())
 
         if pt.x <= originpt.x then

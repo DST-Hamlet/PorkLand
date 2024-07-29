@@ -159,7 +159,8 @@ function BlowInWind:OnUpdate(dt)
     end
 
     if TheWorld:HasTag("porkland") then
-        if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy() then
+        if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy()
+            and not self.inst:GetIsInInterior() then
             local windspeed = TheWorld.net.components.plateauwind:GetWindSpeed() -- from 0 to 1
             local windangle = TheWorld.net.components.plateauwind:GetWindAngle() * DEGREES
             self.velocity = Vector3(windspeed * math.cos(windangle), 0.0, windspeed * math.sin(windangle))

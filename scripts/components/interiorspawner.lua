@@ -99,8 +99,6 @@ function InteriorSpawner:OnLoad(data)
             for interiroID, def in pairs(data.interiors) do
                 self:AddInterior(def)
             end
-        end
-        if data.interiors then
             self.interiors = data.interiors
         end
     end
@@ -110,7 +108,7 @@ end
 -- WARNING: this mothod cannot be called before game load (interiorID is nil)
 function InteriorSpawner:GetCurrentMaxID()
     local index = 0
-    for k in pairs(self.interiors_hashmap)do
+    for k in pairs(self.interiors_hashmap) do
         if k.interiorID then
             index = math.max(k.interiorID, index)
         end
@@ -161,7 +159,7 @@ end
 
 function InteriorSpawner:GetInteriorCenterAt_Generic(x, z)
     local radius = TUNING.ROOM_FINDENTITIES_RADIUS
-    for _,v in ipairs(TheSim:FindEntities(x, 0, z, radius, {"pl_interiorcenter"}))do
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, radius, {"pl_interiorcenter"})) do
         return v
     end
 end
@@ -197,41 +195,57 @@ function InteriorSpawner:PositionToInteriorCenter(pos)
     return self.interiors[index]
 end
 
-function InteriorSpawner:AddExterior(ent)
-    ent:AddTag("exterior_door")
-    self.exteriors_hashmap[ent] = true
-    ent:ListenForEvent("onremove", function()
-        self.exteriors_hashmap[ent] = nil
-        self:OnRemoveExterior(ent)
-    end)
+function InteriorSpawner:AddExterior(entity)
+    entity:AddTag("exterior_door")
+    self.exteriors_hashmap[entity] = true
+    entity.interiorspawner_exterior_on_remove_listener = function()
+        if not entity.components.fixable and entity.prefab ~= "reconstruction_project" then
+            self.exteriors_hashmap[entity] = nil
+            self:OnRemoveExterior(entity)
+        end
+    end
+    entity:ListenForEvent("onremove", entity.interiorspawner_exterior_on_remove_listener)
 end
 
-function InteriorSpawner:OnRemoveExterior(ent)
-    if ent.interiorID == nil then
-        print("WARNING: remove exterior without interiorID: "..tostring(ent))
+function InteriorSpawner:TransferExterior(from_entity, to_entity)
+    if from_entity.interiorspawner_exterior_on_remove_listener then
+        from_entity:RemoveEventCallback("onremove", from_entity.interiorspawner_exterior_on_remove_listener)
+        from_entity.interiorspawner_exterior_on_remove_listener = nil
+    end
+    from_entity:RemoveTag("exterior_door")
+    self.exteriors_hashmap[from_entity] = nil
+
+    self:AddExterior(to_entity)
+end
+
+function InteriorSpawner:OnRemoveExterior(entity)
+    if entity.interiorID == nil then
+        print("WARNING: remove exterior without interiorID: "..tostring(entity))
         return
     end
 
-    local room = self:GetInteriorByIndex(ent.interiorID)
-    if room ~= nil then
+    local room = self:GetInteriorByIndex(entity.interiorID)
+    if room then
         self:UpdateInteriorIdMap()
         local allrooms = self:GatherAllRooms_Impl(room, {}, true)
-        for k in pairs(allrooms)do
-            self:ClearInteriorContents(k:GetPosition(), ent:GetPosition())
-            self.interiors[k.interiorID or -1] = nil
+        for k in pairs(allrooms) do
+            self:ClearInteriorContents(k:GetPosition(), entity:GetPosition())
+            if k.interiorID then
+                self.interiors[k.interiorID] = nil
+            end
         end
     end
 end
 
 function InteriorSpawner:GetExteriorByInteriorIndex(index)
     assert(TheWorld.ismastersim, "This method must be called in server")
-    for k in pairs(self.exteriors_hashmap)do
-        if k:IsValid() then
-            if k.interiorID == index then
-                return k
+    for exterior in pairs(self.exteriors_hashmap) do
+        if exterior:IsValid() then
+            if exterior.interiorID == index then
+                return exterior
             end
         else
-            self.exteriors_hashmap[k] = nil
+            self.exteriors_hashmap[exterior] = nil
         end
     end
 end
@@ -249,13 +263,13 @@ local dir_vec = {
     west = Vector3(0, 0, -1),
 }
 
-local op_dir_str =
-{
-    ["north"] = "south",
-    ["east"]  = "west",
-    ["south"] = "north",
-    ["west"]  = "east",
-}
+-- local op_dir_str =
+-- {
+--     ["north"] = "south",
+--     ["east"]  = "west",
+--     ["south"] = "north",
+--     ["west"]  = "east",
+-- }
 
 local dir = { EAST, WEST, NORTH, SOUTH }
 local dir_opposite = { WEST, EAST, SOUTH, NORTH }
@@ -335,9 +349,7 @@ end
 
 function InteriorSpawner:AddInteriorCenter(inst)
     self.interiors_hashmap[inst] = true
-
-    self.inst:ListenForEvent("onremove",
-        function() self:RemoveInteriorCenter(inst) end, inst)
+    self.inst:ListenForEvent("onremove", function() self:RemoveInteriorCenter(inst) end)
 end
 
 function InteriorSpawner:RemoveInteriorCenter(inst)
@@ -351,7 +363,7 @@ end
 function InteriorSpawner:FixInteriorID()
     local ids = {}
     local temp = {}
-    for k in pairs(self.interiors_hashmap)do
+    for k in pairs(self.interiors_hashmap) do
         if k.interiorID ~= nil then
             ids[k.interiorID] = true
         else
@@ -363,7 +375,7 @@ function InteriorSpawner:FixInteriorID()
             end
         end
     end
-    for _,v in ipairs(temp)do
+    for _, v in ipairs(temp) do
         local k, index = unpack(v)
         if ids[index] == nil then
             ids[index] = true
@@ -541,7 +553,7 @@ function InteriorSpawner:GetInteriorByIndex(index)
         index = assert(tonumber(select(3, index:find("_(%d+)$"))), "Failed to convert to number: "..index)
     end
     local pos = self:IndexToPosition(index)
-    for _,v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 4, {"pl_interiorcenter"}))do
+    for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 4, {"pl_interiorcenter"})) do
         return v
     end
 end
@@ -565,7 +577,7 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     TheWorld:PushEvent("pl_clearinterior", {pos = pos})
 
     local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"player"})
-    for _,v in ipairs(ents)do
+    for _, v in ipairs(ents) do
         v:PushEvent("pl_clearfrominterior", {exterior_pos = exterior_pos})
         if exterior_pos ~= nil then
             v.Physics:Teleport(exterior_pos:Get())
@@ -580,7 +592,7 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     if #ents > 0 then
         print("WARNING: Find "..#ents.." entities around pt "..tostring(pos)
             .." [INDEX="..self:PositionToIndex(pos).."]")
-        for _,v in ipairs(ents)do
+        for _, v in ipairs(ents) do
             v:PushEvent("pl_clearfrominterior", {exterior_pos = exterior_pos})
             if v:HasTag("irreplaceable") then
                 if exterior_pos ~= nil then
@@ -607,7 +619,7 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     end
 
     local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS)
-    for _,v in ipairs(ents)do
+    for _, v in ipairs(ents) do
         if v.components.inventoryitem then
             v:Remove()
         elseif v:IsValid() then
@@ -640,7 +652,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
     local pt = self:IndexToPosition(interior.unique_name)
     self:ClearInteriorContents(pt)
 
-    print("InteriorSpawner:SpawnInterior",pt)
+    print("InteriorSpawner:SpawnInterior", pt)
 
     local center = SpawnPrefab("interiorworkblank")
     center.Transform:SetPosition(pt:Get())
@@ -654,7 +666,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
         end)
     end
 
-    for k, prefab in ipairs(interior.prefabs) do
+    for _, prefab in ipairs(interior.prefabs) do
 
         if --[[ GetWorld():IsWorldGenOptionNever(prefab.name)]] false then
             -- TODO: 实现这个特性
@@ -709,7 +721,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
 
                 -- adds tags to the object
                 if prefab.addtags then
-                    for i, tag in ipairs(prefab.addtags) do
+                    for _, tag in ipairs(prefab.addtags) do
                         object:AddTag(tag)
                     end
                 end
@@ -781,7 +793,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 -- should the door be closed for some reason?
                 -- needs to happen after the object initinterior so the door info is there.
                 if prefab.door_closed then
-                    for cause,setting in pairs(prefab.door_closed)do
+                    for cause, setting in pairs(prefab.door_closed) do
                         object.components.door:SetDoorDisabled(setting, cause)
                     end
                 end
@@ -808,12 +820,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 if object.decochildrenToRemove then
-                    for i, child in ipairs(object.decochildrenToRemove) do
-                        if child then
-                            local ptc = Vector3(object.Transform:GetWorldPosition())
-                            child.Transform:SetPosition( ptc.x ,ptc.y, ptc.z )
-                            child.Transform:SetRotation( object.Transform:GetRotation() )
-                        end
+                    for _, child in ipairs(object.decochildrenToRemove) do
+                        child.Transform:SetPosition(object.Transform:GetWorldPosition())
+                        child.Transform:SetRotation(object.Transform:GetRotation())
                     end
                 end
             end
@@ -841,7 +850,7 @@ function InteriorSpawner:GatherAllRooms_Impl(inst, allrooms, usemap)
     allrooms[inst] = true
     inst.doors = {}
     local x, _, z = inst.Transform:GetWorldPosition()
-    for _, v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}))do
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}))do
         if v.prefab == "prop_door" then
             local id = v.components.door.target_interior
             if id ~= nil and id ~= "EXTERIOR" then
@@ -918,7 +927,6 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
             force_visited = inst:HasInteriorTag("FORCE_VISITED"),
         })
 
-        local prev_values = { pos_x, pos_z, grid_x, grid_z }
         local space = TUNING.INTERIOR_MINIMAP_DOOR_SPACE
         for k,v in pairs(inst.doors)do
             if v.dir ~= "unknown" and visited[v.target] == nil then
@@ -936,7 +944,7 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
     end
 
     local major_id = nil
-    for _,v in ipairs(result)do
+    for _, v in ipairs(result)do
         local k = v.interior_name
         if k ~= nil then
             -- should be always number, but check here
@@ -972,21 +980,21 @@ function InteriorSpawner:SendMinimapLayoutData()
     local full_list = {} -- userid[]
     local diff_list = {} -- userid[]
     local player_visitors = {} -- {[K: InteriorVisitor]: true}
-    for _,v in pairs(AllPlayers)do
-        if v.userid ~= nil and v.userid ~= "" then
-            if v.pl_minimap_layout_flag then
-                table.insert(diff_list, v.userid)
+    for _, player in pairs(AllPlayers)do
+        if player.userid ~= nil and player.userid ~= "" then
+            if player.pl_minimap_layout_flag then
+                table.insert(diff_list, player.userid)
             else
-                v.pl_minimap_layout_flag = true
-                table.insert(full_list, v.userid)
+                player.pl_minimap_layout_flag = true
+                table.insert(full_list, player.userid)
             end
         end
-        if v.components.interiorvisitor then
-            player_visitors[v.components.interiorvisitor] = true
+        if player.components.interiorvisitor then
+            player_visitors[player.components.interiorvisitor] = true
         end
     end
     -- set visited data
-    for k,v in pairs(self.interior_layout_map)do
+    for k, v in pairs(self.interior_layout_map)do
         if type(v) == "table" and v.uuid ~= nil then
             for c in pairs(player_visitors)do
                 if c:IsVisited(v.uuid) then
@@ -999,7 +1007,7 @@ function InteriorSpawner:SendMinimapLayoutData()
     end
     if #full_list > 0 then
         local data = {}
-        for k,v in pairs(self.interior_layout_map)do
+        for k,v in pairs(self.interior_layout_map) do
             table.insert(data, {k, v})
         end
         -- SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
@@ -1009,7 +1017,7 @@ function InteriorSpawner:SendMinimapLayoutData()
         -- TODO: 这里没有考虑房间的销毁和key的移除
         -- 也许会有问题，也许没有，我不知道
         local data = {}
-        for k in pairs(self.interior_layout_dirty_keys)do
+        for k in pairs(self.interior_layout_dirty_keys) do
             table.insert(data, {k, self.interior_layout_map[k]})
         end
         self.interior_layout_dirty_keys = {}
@@ -1023,7 +1031,7 @@ function InteriorSpawner:OnGetLayoutDataFromServer(data)
     local success, data = pcall(json.decode, data)
 
     if success and type(data) == "table" then
-        for _,v in ipairs(data)do
+        for _, v in ipairs(data) do
             local key, value = unpack(v)
             self.interior_layout_map[key] = value
         end

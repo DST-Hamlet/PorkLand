@@ -26,8 +26,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("smallmeat")
     inst:AddTag("fishmeat")
@@ -42,7 +41,7 @@ local function fn()
     end
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "MEAT"
+    inst.components.edible.foodtype = FOODTYPE.MEAT
     inst.components.edible.healthvalue = 0
     inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
     inst.components.edible.sanityvalue = -TUNING.SANITY_SMALL
@@ -86,8 +85,7 @@ local function cookedfn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_cooked_water", "cooked")
+    PorkLandMakeInventoryFloatable(inst, "idle_cooked_water", "cooked")
 
     inst.AnimState:SetBank("frog_legs")
     inst.AnimState:SetBuild("frog_legs_tree")
@@ -105,7 +103,7 @@ local function cookedfn()
     end
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "MEAT"
+    inst.components.edible.foodtype = FOODTYPE.MEAT
     inst.components.edible.foodstate = "COOKED"
     inst.components.edible.healthvalue = TUNING.HEALING_TINY
     inst.components.edible.hungervalue = TUNING.CALORIES_SMALL

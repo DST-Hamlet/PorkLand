@@ -1,4 +1,3 @@
-local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
 local FishingRod = require("components/fishingrod")
@@ -15,7 +14,6 @@ function FishingRod:StartFishing(target, fisherman)
 end
 
 function FishingRod:Retrieve()
-    local numworks = 1
     if self.target and self.target.components.inventoryitem and self.target.components.inventoryitem.canbepickedup then
         self.inst:PushEvent("fishingcollect")
         self.target:PushEvent("fishingcollect", self.fisherman)

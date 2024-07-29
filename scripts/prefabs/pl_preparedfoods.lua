@@ -1,8 +1,17 @@
-
 local prefabs =
 {
     "spoiled_food",
 }
+
+local function OnFiestaChange(inst, active)
+    if active then
+        inst.AnimState:AddOverrideBuild("cook_pot_food_yotp")
+        inst.components.inventoryitem:ChangeImageName(inst.prefab .. "_yotp")
+    else
+        inst.AnimState:ClearOverrideBuild("cook_pot_food_yotp")
+        inst.components.inventoryitem:ChangeImageName(inst.prefab)
+    end
+end
 
 local function MakePreparedFood(data)
     local foodassets =
@@ -19,8 +28,7 @@ local function MakePreparedFood(data)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations(data.name .. "_water", data.name)
+        PorkLandMakeInventoryFloatable(inst, data.name .. "_water", data.name)
 
         inst.AnimState:SetBuild("pl_cook_pot_food")
         inst.AnimState:SetBank(data.is_shipwreck_food and "sw_food" or "pl_food")
@@ -47,23 +55,6 @@ local function MakePreparedFood(data)
         inst.components.edible.antihistamine = data.antihistamine or 0
         inst.components.edible:SetOnEatenFn(data.oneatenfn)
 
-        --[[ TODO: Add fiesta stuff
-        inst.yotp_override = data.yotp
-        local function OnFiestaChange(inst, active)
-            if active then
-                inst.AnimState:AddOverrideBuild("cook_pot_food_yotp")
-                inst.components.inventoryitem:ChangeImageName(data.name .. "_yotp")
-            else
-                inst.AnimState:ClearOverrideBuild("cook_pot_food_yotp")
-                inst.components.inventoryitem:ChangeImageName(data.name)
-            end
-        end
-
-        if inst.yotp_override then
-            inst:WatchWorldState("fiesta", OnFiestaChange)
-            OnFiestaChange(inst, TheWorld.state.fiesta)
-        end]]
-
         inst:AddComponent("inspectable")
 
         inst:AddComponent("inventoryitem")
@@ -85,6 +76,13 @@ local function MakePreparedFood(data)
         MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
         MakeHauntableLaunchAndPerish(inst)
+
+        inst.yotp_override = data.yotp
+        if inst.yotp_override then
+            inst.OnFiestaChange = function(src, isfiesta) OnFiestaChange(inst, isfiesta) end
+            inst:WatchWorldState("fiestachange", inst.OnFiestaChange)
+            OnFiestaChange(inst, TheWorld.state.isfiesta)
+        end
 
         return inst
     end

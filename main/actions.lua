@@ -36,6 +36,13 @@ if not rawget(_G, "HotReloading") then
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
         MAKEHOME = Action({distance = 1}),
+        -- For City Pigs
+        POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        PAY_TAX = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        DAILY_GIFT = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
+        FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
+        STOCK = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -81,8 +88,8 @@ ACTIONS.HACK.fn = function(act)
 end
 
 ACTIONS.HACK.validfn = function(act) -- this fixes hacking a nonvalid target when holding the mouse
-    return (act.target.components.hackable and act.target.components.hackable:CanBeHacked()) or
-        (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.HACK)
+    return (act.target.components.hackable and act.target.components.hackable:CanBeHacked())
+        or (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.HACK)
 end
 
 ACTIONS.PAN.fn = function(act)
@@ -102,8 +109,8 @@ ACTIONS.SHEAR.fn = function(act)
 end
 
 ACTIONS.SHEAR.validfn = function(act)
-    return (act.target.components.shearable and act.target.components.shearable:CanShear()) or
-        (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.SHEAR)
+    return (act.target.components.shearable and act.target.components.shearable:CanShear())
+        or (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.SHEAR)
 end
 
 ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
@@ -264,7 +271,7 @@ end
 
 local function DoTeleport(player, pos)
     player:StartThread(function()
-        local invincible = player.components.health.invincible
+        -- local invincible = player.components.health.invincible
         --player.components.health:SetInvincible(true)
         if player.components.playercontroller ~= nil then
             player.components.playercontroller:EnableMapControls(false)
@@ -280,7 +287,7 @@ local function DoTeleport(player, pos)
         end
         player.components.interiorvisitor:UpdateExteriorPos()
         -- player.components.health:SetInvincible(invincible)
-        Sleep(0.1) -- 出于未知原因，当Sleep(0)的时候SnapCamera执行时玩家的位置仍未发生变化，因此改为0.1
+        Sleep(0.1) -- 出于未知原因，当 Sleep(0) 的时候 SnapCamera 执行时玩家的位置仍未发生变化，因此改为 0.1
         if player.components.playercontroller ~= nil then
             player.components.playercontroller:EnableMapControls(true)
             player.components.playercontroller:Enable(true)
@@ -363,9 +370,8 @@ ACTIONS.WEIGHDOWN.fn = function(act)
     if act.target == nil then
         return false
     end
-    local pos = Vector3(act.target.Transform:GetWorldPosition())
     if act.doer.components.inventory then
-        return act.doer.components.inventory:DropItem(act.invobject, false, false, pos)
+        return act.doer.components.inventory:DropItem(act.invobject, false, false, act.target:GetPosition())
     end
 end
 
@@ -376,7 +382,7 @@ ACTIONS.PUTONSHELF.fn = function(act)
         local item = act.invobject.components.inventoryitem:RemoveFromOwner(shelf.components.container.acceptsstacks)
         local success = shelf.components.container:GiveItem(item, act.target.components.visualslot:GetSlot(), nil, false)
         if item:HasTag("small_livestock") then -- TODO: 需要加一个对容器所属的展示柜的检测，使得生物无法离开带有罩子的展示柜
-            if act.doer and  item:HasTag("canbetrapped") then -- 鸟类之外的可被抓的生物都有canbetrapped标签
+            if act.doer and item:HasTag("canbetrapped") then -- 鸟类之外的可被抓的生物都有 canbetrapped 标签
                 local d_pos = act.doer:GetPosition()
                 local s_pos = shelf:GetPosition()
                 shelf.components.container:DropItemBySlot(act.target.components.visualslot:GetSlot(), (d_pos + s_pos) / 2)
@@ -395,7 +401,7 @@ end
 ACTIONS.TAKEFROMSHELF.fn = function(act)
     local shelf = act.target.components.visualslot:GetShelf()
 
-    if shelf.components.container ~= nil then
+    if shelf.components.container then
         local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualslot:GetSlot())
         act.doer.components.inventory:GiveItem(item, nil, act.doer:GetPosition())
 
@@ -436,6 +442,45 @@ ACTIONS.MAKEHOME.fn = function(act)
     return false
 end
 
+ACTIONS.POOP_TIP.fn = function(act)
+    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, act.doer:GetPosition())
+    return true
+end
+
+ACTIONS.PAY_TAX.fn = function(act)
+    act.doer:RemoveTag("paytax")
+    act.doer.taxing = false
+    act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, act.doer:GetPosition())
+    return true
+end
+
+ACTIONS.DAILY_GIFT.fn = function(act)
+    local resources = {"flint", "log", "rocks", "cutgrass", "seeds", "twigs"}
+    act.target.components.inventory:GiveItem(SpawnPrefab(resources[math.random(#resources)]), nil, act.doer:GetPosition())
+    return true
+end
+
+ACTIONS.SIT_AT_DESK.fn = function(act)
+    return true
+end
+
+ACTIONS.FIX.fn = function(act)
+    if act.target then
+        local target = act.target
+        local numworks = 1
+        target.components.workable:WorkedBy(act.doer, numworks)
+    --    return target:fix(act.doer)
+    end
+end
+
+ACTIONS.STOCK.fn = function(act)
+    if act.target then
+        act.target.restock(act.target,true)
+        act.doer.changestock = nil
+        return true
+    end
+end
+
 
 
 -- Patch for hackable things
@@ -468,7 +513,7 @@ function ACTIONS.EQUIP.fn(act, ...)
 end
 
 local _ExtraDropDist = ACTIONS.DROP.extra_arrive_dist
-local ExtraDropDist = function (doer, dest, bufferedaction, ...)--copy from scripts/actions.lua
+local ExtraDropDist = function (doer, dest, bufferedaction, ...) -- copied from scripts/actions.lua
     if not TheWorld:HasTag("porkland") then
         return _ExtraDropDist(doer, dest, bufferedaction, ...)
     end
@@ -545,10 +590,11 @@ end
 
 local _RUMMAGE_strfn = ACTIONS.RUMMAGE.strfn
 function ACTIONS.RUMMAGE.strfn(act, ...)
-    local targ = act.target or act.invobject
-
-    return targ ~= nil and targ.replica.container and targ.replica.container.type == "boat" and
-        (targ.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT") or _RUMMAGE_strfn(act, ...)
+    local target = act.target or act.invobject
+    if target and target.replica.container and target.replica.container.type == "boat" then
+        return target.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT"
+    end
+    return _RUMMAGE_strfn(act, ...)
 end
 
 local _RUMMAGE_fn = ACTIONS.RUMMAGE.fn
@@ -619,11 +665,11 @@ end
 
 local function TryToSoulhop(act, act_target, consumeall)
     return act.doer ~= nil
-    and act.doer.sg ~= nil
-    and act.doer.sg.currentstate.name == "portal_jumpin_pre"
-    and act_target ~= nil
-    and act.doer.TryToPortalHop ~= nil
-    and act.doer:TryToPortalHop(act.distancecount, consumeall)
+        and act.doer.sg ~= nil
+        and act.doer.sg.currentstate.name == "portal_jumpin_pre"
+        and act_target ~= nil
+        and act.doer.TryToPortalHop ~= nil
+        and act.doer:TryToPortalHop(act.distancecount, consumeall)
 end
 
 local _BLINK_fn = ACTIONS.BLINK.fn
@@ -761,13 +807,13 @@ end
 local COMPONENT_ACTIONS = ToolUtil.GetUpvalue(EntityScript.CollectActions, "COMPONENT_ACTIONS")
 local SCENE = COMPONENT_ACTIONS.SCENE
 local USEITEM = COMPONENT_ACTIONS.USEITEM
-local POINT = COMPONENT_ACTIONS.POINT
+-- local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 
 local _SCENE_container = SCENE.container
 function SCENE.container(inst, doer, actions, right, ...)
-    if not inst:HasTag("bundle") and not inst:HasTag("burnt")
+    if not inst:HasTag("bundle") and not inst:HasTag("burnt") and not inst:HasTag("noslot")
         and doer.replica.inventory
         and not (doer.replica.rider ~= nil and doer.replica.rider:IsRiding())
         and right and inst.replica.container.type == "boat" then
@@ -788,14 +834,16 @@ end
 
 local _SCENE_inventoryitem = SCENE.inventoryitem
 function SCENE.inventoryitem(inst, doer, actions, right, ...)
-   if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint() and
-        not TheWorld.Map:IsLandTileAtPoint(inst.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
-        if inst.replica.inventoryitem:CanBePickedUp() and
-        doer.replica.inventory ~= nil and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable ~= nil) and
-        not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder")))) and
-        (not inst:HasTag("spider") or (doer:HasTag("spiderwhisperer") and right)) and
-        (right or not inst:HasTag("heavy")) and
-        not (right and inst.replica.container ~= nil and inst.replica.equippable == nil) then  --coryfrom SCENE.inventoryitem
+    if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint()
+        and not TheWorld.Map:IsLandTileAtPoint(inst.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
+
+        if inst.replica.inventoryitem:CanBePickedUp()
+            and doer.replica.inventory and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable)
+            and not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder"))))
+            and (not inst:HasTag("spider") or (doer:HasTag("spiderwhisperer") and right))
+            and (right or not inst:HasTag("heavy"))
+            and not (right and inst.replica.container and not inst.replica.equippable) then  -- copied from SCENE.inventoryitem
+
             table.insert(actions, ACTIONS.RETRIEVE)
         end
     else
@@ -837,10 +885,32 @@ function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
     end
 end
 
+local _USEITEM_tool = USEITEM.tool
+function USEITEM.tool(inst, doer, target, actions, right, ...)
+    if inst:HasTag("fixable_crusher")
+        and inst:HasTag(ACTIONS.HAMMER.id .. "_tool")
+        and target:IsActionValid(ACTIONS.HAMMER, right)
+        and not target:HasTag("fixable") then
+        return
+    end
+    return _USEITEM_tool(inst, doer, target, actions, right, ...)
+end
+
 function EQUIPPED.blinkstaff(inst, doer, target, actions, right, ...)
     if right and target and target:HasTag("sailable") then
         table.insert(actions, ACTIONS.BLINK)
     end
+end
+
+local _EQUIPPED_tool = EQUIPPED.tool
+function EQUIPPED.tool(inst, doer, target, actions, right, ...)
+    if inst:HasTag("fixable_crusher")
+        and inst:HasTag(ACTIONS.HAMMER.id .. "_tool")
+        and target:IsActionValid(ACTIONS.HAMMER, right)
+        and not target:HasTag("fixable") then
+        return
+    end
+    return _EQUIPPED_tool(inst, doer, target, actions, right, ...)
 end
 
 local _INVENTORY_equippable = INVENTORY.equippable

@@ -18,7 +18,7 @@ local function StopConsuming(inst)
 end
 
 local function OnEmbarked(boat, data)
-    local item = boat.components.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
+    -- local item = boat.components.container:GetItemInBoatSlot(BOATEQUIPSLOTS.BOAT_SAIL)
 end
 
 local function OnDisembarked(boat, data)
@@ -114,8 +114,7 @@ local function common()
 
     MakeInventoryPhysics(inst)
 
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("sail")
 

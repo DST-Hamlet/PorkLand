@@ -51,7 +51,6 @@ local function SetUp(inst, data)
     inst.floortexture = data.floortexture or inst.floortexture or "antcave_floor"
     inst.interiorID = data.interiorID or inst.interiorID
 
-    local pos = inst:GetPosition()
     local sp = GetSkeletonPositions(inst.width, inst.depth)
 
     local left_top_pos = sp.LEFT_TOP + inst:GetPosition()

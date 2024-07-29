@@ -1,5 +1,3 @@
-local STRINGS = GLOBAL.STRINGS
-
 -- Also used in city_builder.lua
 GLOBAL.PORKLAND_REQUIRED_PREFABS = {}
 -- {

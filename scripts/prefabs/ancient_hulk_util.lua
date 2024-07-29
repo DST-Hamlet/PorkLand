@@ -96,7 +96,7 @@ end
 local function SpawnLaser(inst)
     assert(inst.sg.statemem.targetpos)
     local numsteps = 10
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local x, _, z = inst.Transform:GetWorldPosition()
 
     local xt = inst.sg.statemem.targetpos.x
     local yt = inst.sg.statemem.targetpos.y
@@ -290,7 +290,7 @@ local function ApplyDamageToEntities(inst,ent, targets, rad, hit)
                 targets[v] = true
                 local num = v.components.pickable.numtoharvest or 1
                 local product = v.components.pickable.product
-                local x1, y1, z1 = v.Transform:GetWorldPosition()
+                local x1, _, z1 = v.Transform:GetWorldPosition()
                 v.components.pickable:Pick(inst) -- only calling this to trigger callbacks on the object
                 if product ~= nil and num > 0 then
                     for i = 1, num do

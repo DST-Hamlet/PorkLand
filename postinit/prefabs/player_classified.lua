@@ -204,7 +204,7 @@ local function RegisterNetListeners(inst)
         inst:ListenForEvent("poisonpulsedirty", OnPoisonPulseDirty)
     end
 
-    if not TheNet:IsDedicated() then
+    if not TheNet:IsDedicated() and inst._parent == ThePlayer then
         inst.isironlord:set_local(false)
         inst:ListenForEvent("ironlorddirty", OnIronlordDirty)
         inst.ironlordtimeleft:set_local(0)

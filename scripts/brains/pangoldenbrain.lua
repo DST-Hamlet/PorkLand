@@ -9,7 +9,7 @@ local WANDER_DIST = 20
 local SEE_FOOD_DIST = 10
 local AVOID_PLAYER_DIST = 7
 local AVOID_PLAYER_STOP = 9
-local SEE_PUDDLE_DIST = 15
+-- local SEE_PUDDLE_DIST = 15
 
 local MUST_TAGS = {"sedimentpuddle"}
 local function GetPuddle(inst, test_fn)

@@ -5,7 +5,6 @@ PrefabFiles = {
     "alloy",
     "aporkalypse_clock",
     "armor_metalplate",
-    "asparagus_planted",
     "ballpein_hammer",
     "basefan",
     "bill_quill",
@@ -15,6 +14,7 @@ PrefabFiles = {
     "boatrepairkit",
     "boats",
     "bonestaff",
+    "bugfood",
     "chitin",
     "deep_jungle_fern_noise",
     "dungball",
@@ -54,11 +54,13 @@ PrefabFiles = {
     "peagawk",
     -- "peagawk_spawner",
     "piko",
+    "pl_chests",
     "pl_frog",
     "pl_froglegs",
     "pl_planted_tree",
     "pl_preparedfoods",
     "pl_veggies",
+    "pl_planted_veggies",
     "pl_foodbuffs",
     "peagawkfeather",
     "poisonbubble",
@@ -72,6 +74,7 @@ PrefabFiles = {
     "rabid_beetle",
     "relics",
     "reeds_water",
+    "rock_flippable",
     "rowboat_wake",
     "sail",
     "scorpion",
@@ -163,6 +166,21 @@ PrefabFiles = {
     "pogherd",
     "spider_monkey",
     "pl_chests",
+
+
+    "pigman_city",
+    "pighouse_city",
+    "pig_shop",
+    "pig_guard_tower",
+    "pigman_shopkeeper_desk",
+    "city_lamp",
+    "hedge",
+    "lawnornaments",
+    "clippings",
+    "reconstruction_project",
+    "city_hammer",
+
+    "oinc",
 }
 
 Assets = {
@@ -171,7 +189,7 @@ Assets = {
 
     -- inventoryimages
     Asset("ATLAS", "images/hud/pl_inventoryimages.xml"),
-    Asset("ATLAS_BUILD", "images/hud/pl_inventoryimages.xml", 256),  -- for minisign
+    Asset("ATLAS_BUILD", "images/hud/pl_inventoryimages.xml", 256), -- for minisign
 
     -- boat
     Asset("ATLAS", "images/hud/pl_hud.xml"),
@@ -181,18 +199,18 @@ Assets = {
     Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
 
     -- hud
-    Asset("ATLAS", "images/overlays/fx3.xml"),  -- poison, boat_over
+    Asset("ATLAS", "images/overlays/fx3.xml"), -- poison, boat_over
     Asset("IMAGE", "images/overlays/fx3.tex"),
-    Asset("ATLAS", "images/overlays/fx4.xml"),  -- pollen(hayfever)
+    Asset("ATLAS", "images/overlays/fx4.xml"), -- pollen(hayfever)
     Asset("IMAGE", "images/overlays/fx4.tex"),
-    Asset("ATLAS", "images/overlays/fx5.xml"),  -- fog
+    Asset("ATLAS", "images/overlays/fx5.xml"), -- fog
     Asset("IMAGE", "images/overlays/fx5.tex"),
     Asset("ATLAS", "images/overlays/fx6.xml"),  -- living artifact
     Asset("IMAGE", "images/overlays/fx6.tex"),
-    Asset("ANIM", "anim/leaves_canopy2.zip"),  --canopy
+    Asset("ANIM", "anim/leaves_canopy2.zip"),  -- canopy
     Asset("ANIM", "anim/livingartifact_meter.zip"),
 
-    Asset("ANIM", "anim/moon_aporkalypse_phases.zip"),  -- blood moon
+    Asset("ANIM", "anim/moon_aporkalypse_phases.zip"), -- blood moon
 
     -- player_actions
     Asset("ANIM", "anim/player_idles_poison.zip"),
@@ -252,7 +270,7 @@ Assets = {
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
 }
 
-for _,v in ipairs(require("main/interior_texture_defs").Assets) do
+for _, v in ipairs(require("main/interior_texture_defs").Assets) do
     table.insert(Assets, v)
 end
 
@@ -265,7 +283,7 @@ local sounds = {
     Asset("SOUND", "sound/DLC003_AMB_stream.fsb"),
     Asset("SOUND", "sound/DLC003_music_stream.fsb"),
     Asset("SOUND", "sound/DLC003_sfx.fsb"),
-    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev")
+    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev"),
 }
 
 if not TheNet:IsDedicated() then

@@ -179,7 +179,6 @@ local function test_tile(pt, types)
 
     local test = true
 
-    local original_tile_type = nil
     local original_tile_types = {}
     if ground then
         for x = -1, 1 do
@@ -300,7 +299,6 @@ local function spawn_setpiece(entities, width, height, spawners, layout, pt, cit
     local radius = math.max(#setpiece.ground, #setpiece.ground[1]) / 2 * 1.4
 
     for prefab, data_list in pairs(entities) do
-        local scrub_list = {}
         for i = #data_list, 1, -1 do
             local xdist = math.abs(((data_list[i].x / TILE_SCALE) + width / 2.0) - pt.x) + 0.2
             local zdist = math.abs(((data_list[i].z / TILE_SCALE) + height / 2.0) - pt.z) + 0.2
@@ -411,7 +409,7 @@ local function set_shop(spawners, pt, dir, i, offset, nil_wieght, city)
 
     local pigshops_spawners = find_temp_ents(spawners, new_pt.x, new_pt.z, 1, {spawn})
 
-    local ground = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
+    -- local ground = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
 
     if #pigshops_spawners == 0 and IsLandTile(WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))) then
         add_temp_ents(spawners, new_pt.x, new_pt.z, spawn, city.city_id)
@@ -695,7 +693,6 @@ local function create_city(entities, width, height, spawners, city)
 
     local maxintersections = 30
     local opendirs = {}
-    local closeddirs = {}
 
     grid, opendirs = add_dirs(start, grid, opendirs)
 

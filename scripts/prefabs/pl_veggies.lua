@@ -13,8 +13,14 @@ local function MakeVegStats(seedweight, hunger, health, perish_time, sanity, coo
     }
 end
 
+local COMMON = 3
+-- local UNCOMMON = 1
+-- local RARE = .5
+
 PL_VEGGIES = {
     coffeebeans = MakeVegStats(0, TUNING.CALORIES_TINY, 0, TUNING.PERISH_FAST, 0, TUNING.CALORIES_TINY, 0, TUNING.PERISH_SLOW, -TUNING.SANITY_TINY),
+	radish = MakeVegStats(COMMON, TUNING.CALORIES_SMALL, TUNING.HEALING_TINY, TUNING.PERISH_SLOW, 0, TUNING.CALORIES_SMALL,	TUNING.HEALING_SMALL, TUNING.PERISH_MED, 0),
+    aloe = MakeVegStats(COMMON, TUNING.CALORIES_TINY, TUNING.HEALING_MEDSMALL, TUNING.PERISH_FAST, 0, TUNING.CALORIES_SMALL, TUNING.HEALING_SMALL, TUNING.PERISH_SUPERFAST, 0),
 }
 
 local function MakeVeggie(name)
@@ -42,8 +48,7 @@ local function MakeVeggie(name)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations("idle_water", "idle")
+        PorkLandMakeInventoryFloatable(inst)
 
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)
@@ -101,8 +106,7 @@ local function MakeVeggie(name)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations("cooked_water", "idle")
+        PorkLandMakeInventoryFloatable(inst, "cooked_water", "idle")
 
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)

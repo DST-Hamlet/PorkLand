@@ -10,5 +10,5 @@ local function Init(inst)
 end
 
 AddComponentPostInit("health", function(self)
-    self.inst:DoTaskInTime(0, Init)
+    self.inst:DoStaticTaskInTime(0, Init)
 end)

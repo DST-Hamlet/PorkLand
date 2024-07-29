@@ -27,7 +27,7 @@ local foods = {
         -- modified test functon because DST has bone tag already
         test = function(cooker, names, tags) return names.snake_bone and names.snake_bone >= 2 and tags.meat and tags.meat >= 2 end,
         priority = 20,
-        foodtype = "MEAT",
+        foodtype = FOODTYPE.MEAT,
         health = TUNING.HEALING_LARGE,
         hunger = TUNING.CALORIES_MED,
         perishtime = TUNING.PERISH_MED,
@@ -83,6 +83,47 @@ local foods = {
             eater:AddDebuff("buff_speed_icedtea", "buff_speed_icedtea")
         end,
     },
+
+    gummy_cake =
+	{
+		test = function(cooker, names, tags) return (names.slugbug or names.slugbug_cooked) and tags.sweetener end,
+
+		priority = 1,
+		foodtype = FOODTYPE.MEAT,
+		health = -TUNING.HEALING_SMALL,
+		hunger = TUNING.CALORIES_SUPERHUGE,
+		perishtime = TUNING.PERISH_PRESERVED,
+		sanity = -TUNING.SANITY_TINY,
+		cooktime = 2,
+		yotp = true,
+	},
+
+    feijoada =
+	{
+		test = function(cooker, names, tags) return tags.meat and ((names.jellybug or 0) + (names.jellybug_cooked or 0)) == 3 end,
+
+		priority = 30,
+		foodtype = FOODTYPE.MEAT,
+		health = TUNING.HEALING_MED,
+		hunger = TUNING.CALORIES_HUGE,
+		perishtime = TUNING.PERISH_FASTISH,
+		sanity = TUNING.SANITY_MED,
+		cooktime = 3.5,
+		yotp = true,
+	},
+
+	spicyvegstinger =
+	{
+		test = function(cooker, names, tags) return (names.asparagus or names.asparagus_cooked or names.radish or names.radish_cooked) and tags.veggie and tags.veggie > 2 and tags.frozen and not tags.meat end,
+		priority = 15,
+		foodtype = FOODTYPE.VEGGIE,
+		health = TUNING.HEALING_SMALL,
+		hunger = TUNING.CALORIES_MED,
+		perishtime = TUNING.PERISH_SLOW,
+		sanity = TUNING.SANITY_LARGE,
+		cooktime = 0.5,
+		yotp = true,
+	},
 }
 
 for k, v in pairs(foods) do

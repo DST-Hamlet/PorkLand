@@ -17,8 +17,7 @@ local function fn(Sim)
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()
 

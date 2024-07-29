@@ -23,6 +23,7 @@ local tuning = {
     LUSH_LENGTH = 10,
     APORKALYPSE_LENGTH = 20,
 
+    APORKALYPSE_FIESTA_TIME = 5 * total_day_time,
     APORKALYPSE_NEAR_TIME = 7 * total_day_time,
     APORKALYPSE_PERIOD_LENGTH = 60 * total_day_time,
 
@@ -94,6 +95,9 @@ local tuning = {
 
     ASPARAGUS_REGROWTH_TIME = day_time * 20,
     ASPARAGUS_REGROWTH_TIME_MULT = 1,
+
+    FLIPPABLE_ROCK_REPOPULATE_TIME = total_day_time * 8,
+    FLIPPABLE_ROCK_REPOPULATE_VARIANCE = total_day_time * 2,
 
     CLAWPALMTREE_GROW_TIME = {
         {base = 8 * day_time, random = 0.5 * day_time},  -- tall to short
@@ -273,6 +277,11 @@ local tuning = {
     FROG_POISON_LILYPAD_REGEN_TIME = day_time / 2,
     FROG_POISON_LILYPAD_RELEASE_TIME = 20,
     FROG_POISON_LILYPAD_ENABLED = true,
+
+    PIGHOUSE_CITY_RESPAWNTIME = total_day_time*3,
+    GUARDTOWER_CITY_RESPAWNTIME = total_day_time*3,
+
+    CITY_PIG_GUARD_TARGET_DIST = 20,
 
     WAVE_HIT_MOISTURE = 15,
     WAVE_HIT_DAMAGE = 5,
@@ -491,6 +500,8 @@ local tuning = {
     IRON_LORD_TIME = 3 * 60,
 
     INFUSED_IRON_PERISHTIME = total_day_time * 2,
+
+    SNEAK_SIGHTDISTANCE = 8,
 
     POG_ATTACK_RANGE = 3,
     POG_MELEE_RANGE = 2.5,

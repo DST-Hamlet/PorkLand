@@ -87,7 +87,7 @@ local function OnGetItemFromPlayer_Vortex(inst, giver, item)
 
         for i = 1, gems do
             local spawn_point = inst:GetPosition() + Vector3(0, 4.5, 0)
-            local down = TheCamera:GetDownVec()
+            local x, y, z = spawn_point:Get()
             local angle = (math.random() * 360) * DEGREES
             if giver ~= nil and giver:IsValid() then
                 angle = 180 - giver:GetAngleToPoint(x, 0, z)
@@ -96,7 +96,7 @@ local function OnGetItemFromPlayer_Vortex(inst, giver, item)
             local speed = math.random() * 4 + 2
 
             local gem = SpawnPrefab("purplegem")
-            gem.Transform:SetPosition(spawn_point:Get())
+            gem.Transform:SetPosition(x, y, z)
             gem.Physics:SetVel(speed * math.cos(angle), math.random() * 2 + 8, speed * math.sin(angle))
             -- gem.components.inventoryitem:OnStartFalling()
         end

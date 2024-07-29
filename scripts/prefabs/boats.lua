@@ -243,6 +243,8 @@ local function lograftfn()
     --inst.AnimState:SetBank("raft")
     --inst.AnimState:SetBuild("raft_log_build")
 
+    inst:AddTag("noslot")
+
     inst.MiniMapEntity:SetIcon("raft.tex")
 
     if not TheWorld.ismastersim then
@@ -416,8 +418,7 @@ local function corkboatitemfn()
     inst.MiniMapEntity:SetIcon("coracle_boat.tex")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("small_boat")
     inst:AddTag("boatbuilder") -- for deploy string

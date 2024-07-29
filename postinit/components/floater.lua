@@ -1,4 +1,3 @@
-local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
 local Floater = require("components/floater")
@@ -63,7 +62,7 @@ function Floater:ShouldShowEffect()
         return _ShouldShowEffect(self)
     end
 
-    local x, y, z = self.inst.Transform:GetWorldPosition()
+    local x, _, z = self.inst.Transform:GetWorldPosition()
     if x and z and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return false
     end

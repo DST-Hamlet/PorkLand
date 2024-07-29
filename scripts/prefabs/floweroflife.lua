@@ -14,7 +14,7 @@ local prefabs =
 
 local INTENSITY = 0.5
 local PLAYER_PROX_NEAR = 6
-local PLAYER_PROX_FAR = 8
+-- local PLAYER_PROX_FAR = 8
 
 local function FadeIn(inst)
     inst.components.fader:StopAll()

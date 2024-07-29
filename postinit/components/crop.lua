@@ -7,7 +7,7 @@ local LIGHT_SOURCE_MUST_TAGS = {"daylight", "lightsource"}
 
 local _DoGrow = Crop.DoGrow
 function Crop:DoGrow(dt, no_wither, ...)
-    local x, y, z = self.inst.Transform:GetWorldPosition()
+    local x, _, z = self.inst.Transform:GetWorldPosition()
     if not TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         _DoGrow(self, dt, no_wither, ...)
         return
