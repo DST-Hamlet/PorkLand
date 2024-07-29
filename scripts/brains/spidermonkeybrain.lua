@@ -15,6 +15,7 @@ end)
 
 local function MakeHomeAction(inst)
     if inst.target_tree and inst.target_tree:IsValid()
+        and not inst.target_tree:HasTag("has_spider")
         and not inst.target_tree:HasTag("burnt")
         and not inst.target_tree:HasTag("stump")
         and not inst.target_tree:HasTag("rotten") then

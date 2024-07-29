@@ -15,9 +15,9 @@ assert(TheWorld.ismastersim, "SpiderMonkeyHerd should not exist on client")
 
 local ADD_TO_HERD_MAX_DISTSQ = 200 * 200
 local REMOVE_FROM_HERD_DISTSQ = 220 * 220
-local CREATE_HERD_MIN_DISTSQ = 400 * 400
+local CREATE_HERD_MIN_DISTSQ = 200 * 200
 local MAX_MONKEY_PER_HERD = 6
-local FIND_NEW_TREE_DIST = 200 -- absurd...
+local FIND_NEW_TREE_DIST = 100 -- absurd...
 
 --------------------------------------------------------------------------
 --[[ Public Member Variables ]]
@@ -138,7 +138,9 @@ function self:SpawnNewMonkey(herd)
 
     local tree = FindEntity(herd.leader, FIND_NEW_TREE_DIST, function(ent)
         local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider"}, {"burnt", "stump", "rotten"})
-        return other_monkey_tree == nil
+        local x, y, z = ent.Transform:GetWorldPosition()
+        local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
+        return other_monkey_tree == nil and tile == WORLD_TILES.DEEPRAINFOREST
     end, nil, {"burnt", "stump", "rotten", "has_spider"}, {"rainforesttree", "spider_monkey_tree"})
 
     if tree then

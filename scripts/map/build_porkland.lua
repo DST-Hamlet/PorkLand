@@ -141,72 +141,72 @@ local function build_porkland(entities, topology_save, map_width, map_height, cu
         entities["vampirebatcave_potential"] = nil
     end
 
-    -- if not entities["relic_1"] then
-    --     entities["relic_1"] = {}
-    -- end
-    -- if not entities["relic_2"] then
-    --     entities["relic_2"] = {}
-    -- end
-    -- if not entities["relic_3"] then
-    --     entities["relic_3"] = {}
-    -- end
+    if not entities["relic_1"] then
+        entities["relic_1"] = {}
+    end
+    if not entities["relic_2"] then
+        entities["relic_2"] = {}
+    end
+    if not entities["relic_3"] then
+        entities["relic_3"] = {}
+    end
 
-    -- if not entities["pig_ruins_ant"] then
-    --     entities["pig_ruins_ant"] = {}
-    -- end
-    -- if not entities["pig_ruins_pig"] then
-    --     entities["pig_ruins_pig"] = {}
-    -- end
-    -- if not entities["pig_ruins_idol"] then
-    --     entities["pig_ruins_idol"] = {}
-    -- end
-    -- if not entities["pig_ruins_plaque"] then
-    --     entities["pig_ruins_plaque"] = {}
-    -- end
+    if not entities["pig_ruins_ant"] then
+        entities["pig_ruins_ant"] = {}
+    end
+    if not entities["pig_ruins_pig"] then
+        entities["pig_ruins_pig"] = {}
+    end
+    if not entities["pig_ruins_idol"] then
+        entities["pig_ruins_idol"] = {}
+    end
+    if not entities["pig_ruins_plaque"] then
+        entities["pig_ruins_plaque"] = {}
+    end
 
 
-    -- if entities["randomrelic"] then
-    --     for i, ent in ipairs(entities["randomrelic"]) do
-    --         local relic = "relic_" .. tostring(math.random(1, 3))
-    --         -- print("ADDING RELIC",relic)
-    --         local save_data = {
-    --             x = ent.x,
-    --             z = ent.z
-    --         }
-    --         table.insert(entities[relic], save_data)
-    --     end
-    --     entities["randomrelic"] = nil
-    -- end
+    if entities["randomrelic"] then
+        for i, ent in ipairs(entities["randomrelic"]) do
+            local relic = "relic_" .. tostring(math.random(1, 3))
+            -- print("ADDING RELIC",relic)
+            local save_data = {
+                x = ent.x,
+                z = ent.z
+            }
+            table.insert(entities[relic], save_data)
+        end
+        entities["randomrelic"] = nil
+    end
 
-    -- if entities["randomruin"] then
-    --     for i, ent in ipairs(entities["randomruin"]) do
-    --         local save_data = {
-    --             x = ent.x,
-    --             z = ent.z
-    --         }
-    --         if math.random(1, 2) == 1 then
-    --             table.insert(entities["pig_ruins_idol"], save_data)
-    --         else
-    --             table.insert(entities["pig_ruins_plaque"], save_data)
-    --         end
-    --     end
-    --     entities["randomruin"] = nil
-    -- end
+    if entities["randomruin"] then
+        for i, ent in ipairs(entities["randomruin"]) do
+            local save_data = {
+                x = ent.x,
+                z = ent.z
+            }
+            if math.random(1, 2) == 1 then
+                table.insert(entities["pig_ruins_idol"], save_data)
+            else
+                table.insert(entities["pig_ruins_plaque"], save_data)
+            end
+        end
+        entities["randomruin"] = nil
+    end
 
-    -- if entities["randomdust"] then
-    --     for i, ent in ipairs(entities["randomdust"]) do
-    --         local save_data = {
-    --             x = ent.x,
-    --             z = ent.z
-    --         }
-    --         if math.random(1, 2) == 1 then
-    --             table.insert(entities["pig_ruins_pig"], save_data)
-    --         else
-    --             table.insert(entities["pig_ruins_ant"], save_data)
-    --         end
-    --     end
-    --     entities["randomdust"] = nil
-    -- end
+    if entities["randomdust"] then
+        for i, ent in ipairs(entities["randomdust"]) do
+            local save_data = {
+                x = ent.x,
+                z = ent.z
+            }
+            if math.random(1, 2) == 1 then
+                table.insert(entities["pig_ruins_pig"], save_data)
+            else
+                table.insert(entities["pig_ruins_ant"], save_data)
+            end
+        end
+        entities["randomdust"] = nil
+    end
 
     -- if entities["pig_scepter"] then
     --     while #entities["pig_scepter"] > 1 do
