@@ -23,7 +23,6 @@ local function ScheduleOincSoundEvent(inst, amount)
     inst.oinc_transaction = inst.oinc_transaction + amount
     if not inst.oinc_transaction_task then
         inst.oinc_transaction_task = inst:DoTaskInTime(0, function()
-            print("set to", inst.oinc_transaction)
             inst._oinc_sound:set(inst.oinc_transaction)
             inst.oinc_transaction = nil
             inst.oinc_transaction_task = nil
