@@ -45,8 +45,19 @@ local SHARE_TARGET_DIST = 30
 
 local function GetSpeechType(inst, speech)
     return inst.talkertype and STRINGS[speech][inst.talkertype]
-        and speech .. inst.talkertype
-        or speech .. "DEFAULT"
+        and speech .. "." .. inst.talkertype
+        or speech .. ".DEFAULT"
+end
+
+local function SayLine(inst, line)
+    -- inst.components.talker:Say(line, 1.5, nil, true, mood)
+    local strtbl = STRINGS[line]
+    if not strtbl then
+        print("no line found to say for", inst, line)
+        return
+    end
+    local strid = type(strtbl) == "table" and math.random(#strtbl) or 0
+    inst.components.talker:Chatter(line, strid, 1.5)
 end
 
 local function spawndesk(inst, spawndesk)
@@ -83,17 +94,6 @@ local function separatedesk(inst, separatedesk)
         inst:AddTag("atdesk")
         inst.AnimState:Show("desk")
     end
-end
-
-local function SayLine(inst, line)
-    -- inst.components.talker:Say(line, 1.5, nil, true, mood)
-    local strtbl = STRINGS[line]
-    if not strtbl then
-        print("no line found to say for", inst)
-        return
-    end
-    local strid = type(strtbl) == "table" and math.random(#strtbl) or 0
-    inst.components.talker:Chatter(line, strid, 1.5)
 end
 
 local function ondonetalking(inst)
@@ -779,7 +779,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
 
         inst.SayLine = SayLine
         inst.GetSpeechType = GetSpeechType
-        inst.talkertype = name
+        inst.talkertype = name:upper()
 
         inst:AddTag("character")
         inst:AddTag("pig")
