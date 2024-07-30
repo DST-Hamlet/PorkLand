@@ -181,6 +181,7 @@ PrefabFiles = {
     "city_hammer",
 
     "oinc",
+    "bramble",
 }
 
 Assets = {
