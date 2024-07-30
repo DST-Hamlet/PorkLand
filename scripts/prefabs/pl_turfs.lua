@@ -75,16 +75,16 @@ local function make_turf(tile, data)
 end
 
 local porkland_turfs = {
-    [WORL_TILES.PIGRUINS]   = {name = "pigruins",   anim = "pig_ruins"},
-    [WORL_TILES.RAINFOREST] = {name = "rainforest", anim = "rainforest"},
-    [WORL_TILES.LAWN]       = {name = "lawn",       anim = "checkeredlawn"},
-    [WORL_TILES.SUBURB]     = {name = "moss",       anim = "mossy_blossom"},
-    [WORL_TILES.FIELDS]     = {name = "fields",     anim = "farmland",},
-    [WORL_TILES.FOUNDATION] = {name = "foundation", anim = "fanstone"},
-    [WORL_TILES.COBBLEROAD] = {name = "cobbleroad", anim = "cobbleroad"},
-    [WORL_TILES.PAINTED]    = {name = "painted",    anim = "bog"},
-    [WORL_TILES.PLAINS]     = {name = "plains",     anim = "plains"},
-    [WORL_TILES.DEEPRAINFOREST_NOCANOPY] = {name = "deeprainforest_nocanopy", anim = "deepjungle"},
+    [WORLD_TILES.PIGRUINS]   = {name = "pigruins",   anim = "pig_ruins"},
+    [WORLD_TILES.RAINFOREST] = {name = "rainforest", anim = "rainforest"},
+    [WORLD_TILES.LAWN]       = {name = "lawn",       anim = "checkeredlawn"},
+    [WORLD_TILES.SUBURB]     = {name = "moss",       anim = "mossy_blossom"},
+    [WORLD_TILES.FIELDS]     = {name = "fields",     anim = "farmland",},
+    [WORLD_TILES.FOUNDATION] = {name = "foundation", anim = "fanstone"},
+    [WORLD_TILES.COBBLEROAD] = {name = "cobbleroad", anim = "cobbleroad"},
+    [WORLD_TILES.PAINTED]    = {name = "painted",    anim = "bog"},
+    [WORLD_TILES.PLAINS]     = {name = "plains",     anim = "plains"},
+    [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = {name = "deeprainforest_nocanopy", anim = "deepjungle"},
 }
 
 local ret = {}

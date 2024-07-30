@@ -98,10 +98,11 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_noise_rainforest",
         },
-        --turf_def = {
-        --    name = "beach",
-        --    bank_build = "turf_ia",
-        --},
+        turf_def = {
+           name = "rainforest",
+           anim = "rainforest",
+           bank_build = "turf_1",
+        },
     },
     DEEPRAINFOREST = {
         tile_range = TileRanges.LAND,
@@ -141,10 +142,11 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_noise_jungle_deep",
         },
-        -- turf_def = {
-        --     name = "jungle",
-        --     bank_build = "turf_ia",
-        -- },
+        turf_def = {
+            name = "deeprainforest_nocanopy",
+            anim = "deepjungle",
+            bank_build = "turf_1",
+        },
     },
     GASJUNGLE = { --note this majestic creature is unused
         tile_range = TileRanges.LAND,
@@ -183,10 +185,11 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_plains_noise",
         },
-        -- turf_def = {
-        --     name = "meadow",
-        --     bank_build = "turf_ia",
-        -- },
+        turf_def = {
+            name = "plains",
+            anim = "plains",
+            bank_build = "turf_1",
+        },
     },
     PAINTED = {
         tile_range = TileRanges.LAND,
@@ -205,10 +208,11 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_bog_noise",
         },
-        -- turf_def = {
-        --     name = "meadow",
-        --     bank_build = "turf_ia",
-        -- },
+        turf_def = {
+            name = "painted",
+            anim = "bog",
+            bank_build = "turf_1",
+        },
     },
     SUBURB = {
         tile_range = TileRanges.LAND,
@@ -227,10 +231,11 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_noise_mossy_blossom",
         },
-        -- turf_def = {
-        --     name = "meadow",
-        --     bank_build = "turf_ia",
-        -- },
+        turf_def = {
+            name = "moss",
+            anim = "mossy_blossom",
+            bank_build = "turf_1",
+        },
     },
     FIELDS = {
         tile_range = TileRanges.LAND,
@@ -248,10 +253,11 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_noise_farmland",
         },
-        -- turf_def = {
-        --     name = "meadow",
-        --     bank_build = "turf_ia",
-        -- },
+        turf_def = {
+            name = "fields",
+            anim = "farmland",
+            bank_build = "turf_1",
+        },
     },
     FOUNDATION = {
         tile_range = TileRanges.LAND,
@@ -270,10 +276,11 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_fanstone_noise",
         },
-        -- turf_def = {
-        --     name = "meadow",
-        --     bank_build = "turf_ia",
-        -- },
+        turf_def = {
+            name = "foundation",
+            anim = "fanstone",
+            bank_build = "turf_1",
+        },
     },
     COBBLEROAD = {
         tile_range = TileRanges.LAND,
@@ -292,10 +299,11 @@ local pl_tiledefs = {
             name = "map_edge",
             noise_texture = "mini_brickroad_noise",
         },
-        -- turf_def = {
-        --     name = "meadow",
-        --     bank_build = "turf_ia",
-        -- },
+        turf_def = {
+            name = "cobbleroad",
+            anim = "cobbleroad",
+            bank_build = "turf_1",
+        },
     },
     LAWN = {
         tile_range = TileRanges.LAND,
@@ -312,6 +320,11 @@ local pl_tiledefs = {
         minimap_tile_def = {
             name = "map_edge",
             noise_texture = "mini_grasslawn_noise",
+        },
+        turf_def = {
+            name = "lawn",
+            anim = "checkeredlawn",
+            bank_build = "turf_1",
         },
     },
     PIGRUINS = {

@@ -242,6 +242,7 @@ Assets = {
     Asset("ANIM", "anim/player_living_suit_morph.zip"),
     Asset("ANIM", "anim/player_living_suit_punch.zip"),
     Asset("ANIM", "anim/player_living_suit_shoot.zip"),
+    Asset("ANIM", "anim/player_actions_cropdust.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),

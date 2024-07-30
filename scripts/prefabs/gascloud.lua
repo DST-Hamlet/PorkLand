@@ -8,7 +8,7 @@ local function OnEnterGas(inst)
         inst:OnGasChange(true)
     else
         if inst:HasTag("insect") and inst.components.poisonable then
-            inst.components.poisonable:Poison(true, nil, true)
+            inst.components.poisonable:Poison(true)
         end
     end
 end

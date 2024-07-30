@@ -2158,8 +2158,14 @@ local states = {
             end
 
             local action = inst:GetBufferedAction()
+            local pos
+            if action.pos then -- POINT action
+                pos = action:GetActionPoint()
+            else -- EQUIPPED action
+                pos = action.target:GetPosition()
+            end
 
-            inst:FacePoint(Point(action.pos.x, action.pos.y, action.pos.z))
+            inst:FacePoint(Point(pos.x, pos.y, pos.z))
 
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("cropdust_pre")
