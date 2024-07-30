@@ -181,6 +181,16 @@ PrefabFiles = {
     "city_hammer",
 
     "oinc",
+    "antsuit",
+    "armor_weevole",
+    -- "blunderbuss",
+    "bugrepellent",
+    "candlefire",
+    "corkbat",
+    "gascloud",
+    -- "pl_hats",
+    -- "pl_turfs",
+    "poisonbalm",
 }
 
 Assets = {

@@ -43,6 +43,7 @@ if not rawget(_G, "HotReloading") then
         SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
+        GAS = Action({distance = 1.5, mount_enabled = true}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -479,6 +480,13 @@ ACTIONS.STOCK.fn = function(act)
         act.doer.changestock = nil
         return true
     end
+end
+
+ACTIONS.GAS.fn = function(act)
+	if act.invobject and act.invobject.components.gasser then
+		act.invobject.components.gasser:Gas(act.pos)
+		return true
+	end
 end
 
 

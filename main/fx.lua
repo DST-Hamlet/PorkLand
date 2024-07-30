@@ -225,6 +225,12 @@ local pl_fx = {
         build = "chop_mangrove_blue",
         anim = "fall",
     },
+    {
+        name = "cloudpuff",
+        bank = "splash_clouds_drop",
+        build = "cloud_puff_soft",
+        anim = "idle_sink",
+    }
 }
 
 -- Sneakily add these to the FX table
