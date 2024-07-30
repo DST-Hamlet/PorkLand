@@ -188,7 +188,7 @@ PrefabFiles = {
     "candlefire",
     "corkbat",
     "gascloud",
-    -- "pl_hats",
+    "pl_hats",
     "pl_turfs",
     "poisonbalm",
 }

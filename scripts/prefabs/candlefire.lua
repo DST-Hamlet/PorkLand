@@ -86,7 +86,7 @@ local function fn()
     local effect = inst.entity:AddVFXEffect()
     effect:InitEmitters(1)
 
-    effect:SetRenderResources(TEXTURE, SHADER)
+    effect:SetRenderResources(0, TEXTURE, SHADER)
     effect:SetMaxNumParticles(0, 64)
     effect:SetUVFrameSize(0, 0.25, 1)
     effect:SetMaxLifetime(0, MAX_LIFETIME)
