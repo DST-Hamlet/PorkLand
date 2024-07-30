@@ -313,7 +313,7 @@ local function MakeHat(name)
         inst.shelfart = "snakeskinhat_scaly" -- special_visual_slots?
     end
 
-    fns.snakeskin = function() -- todo jacket
+    fns.snakeskin = function()
         local inst = simple(snake_custom_init)
 
         if not TheWorld.ismastersim then

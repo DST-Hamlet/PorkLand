@@ -191,6 +191,7 @@ PrefabFiles = {
     "pl_hats",
     "pl_turfs",
     "poisonbalm",
+    "snakeskin_jacket",
 }
 
 Assets = {
