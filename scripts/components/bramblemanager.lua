@@ -35,6 +35,7 @@ self.inst = inst
 local _bramble_spots = {}
 local _bramble_to_spawn = 7
 local _bramble_spawned = false
+local _disabled = false
 
 --------------------------------------------------------------------------
 --[[ Private member functions ]]
@@ -75,7 +76,7 @@ local function SpawnBrambles()
 end
 
 local function OnseasonChange(src, season)
-    if self.disabled then
+    if _disabled then
         return
     end
 
@@ -91,6 +92,10 @@ end
 --------------------------------------------------------------------------
 --[[ Public member functions ]]
 --------------------------------------------------------------------------
+
+function self:Disable(disable)
+    _disabled = disable == true
+end
 
 function self:RegisterBramble(bramble)
     local x, y, z = bramble.Transform:GetWorldPosition()
@@ -113,7 +118,6 @@ self.inst:WatchWorldState("season", OnseasonChange)
 
 function self:OnSave()
     return {
-        disabled = self.disabled,
         bramble_spawned = _bramble_spawned,
         bramble_spots = _bramble_spots,
     }
@@ -124,7 +128,6 @@ function self:OnLoad(data)
         return
     end
 
-    self.disabled = data.disabled
     _bramble_spawned = data.bramble_spawned
     _bramble_spots = data.bramble_spots or {}
 end
