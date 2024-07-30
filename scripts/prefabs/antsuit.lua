@@ -73,6 +73,8 @@ local function fn()
     inst.components.fueled:SetDepletedFn(inst.Remove)
     inst.components.fueled:SetUpdateFn(FueledUpdateFn)
 
+    MakeHauntableLaunch(inst)
+
     return inst
 end
 

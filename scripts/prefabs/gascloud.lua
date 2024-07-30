@@ -19,13 +19,14 @@ local function OnLeaveGas(inst)
     end
 end
 
-local function spawn(inst)
+local function Spawn(inst)
     inst.AnimState:PlayAnimation("appear")
     inst.AnimState:PushAnimation("idle_loop", true)
 end
 
-local function die(inst)
+local function Despawn(inst)
     inst.AnimState:PlayAnimation("disappear")
+    -- should probably disable DynamicShadow here
     inst:ListenForEvent("animover", function()
         for _, ent in ipairs(inst.ents_in_gas)do
             OnLeaveGas(ent)
@@ -103,11 +104,11 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
-    inst:DoTaskInTime(20, die)
+    inst:DoTaskInTime(20, Despawn)
 
     inst.ents_in_gas = {}
 
-    inst.spawn = spawn
+    inst.Spawn = Spawn
 
     return inst
 end

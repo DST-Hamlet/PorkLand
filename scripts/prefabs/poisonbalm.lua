@@ -12,7 +12,7 @@ local function fn()
 
     MakeInventoryPhysics(inst)
     MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations( "idle_water", "idle")
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
 	inst.AnimState:SetBank("poison_salve")
 	inst.AnimState:SetBuild("poison_salve")
@@ -32,6 +32,8 @@ local function fn()
 	inst:AddComponent("inventoryitem")
 
 	inst:AddComponent("poisonhealer")
+
+	MakeHauntableLaunch(inst)
 
 	return inst
 end

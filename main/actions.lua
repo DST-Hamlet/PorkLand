@@ -752,7 +752,11 @@ local PL_COMPONENT_ACTIONS =
     },
 
     POINT = { -- args: inst, doer, pos, actions, right, target
-
+        gasser = function (inst, doer, pos, actions, right, target)
+            if right then
+                table.insert(actions, ACTIONS.GAS)
+            end
+        end
     },
 
     EQUIPPED = { -- args: inst, doer, target, actions, right

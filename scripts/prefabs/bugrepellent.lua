@@ -30,9 +30,12 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
+    MakeInventoryFloatable(inst)
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
     inst.AnimState:SetBank("bugrepellent")
     inst.AnimState:SetBuild("bugrepellent")
+    inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("bugrepellent")
     inst:AddTag("nopunch")
@@ -43,7 +46,7 @@ local function fn()
         return inst
     end
 
-    -- inst:AddComponent("gasser") TODO
+    inst:AddComponent("gasser")
 
     inst:AddComponent("inspectable")
 
@@ -62,9 +65,7 @@ local function fn()
     inst:AddComponent("tool")
     inst.components.tool:SetAction(ACTIONS.GAS, 1)
 
-    inst.AnimState:PlayAnimation("idle")
-
-    MakeInventoryFloatable(inst, "idle_water", "idle")
+    MakeHauntableLaunch(inst)
 
     return inst
 end
