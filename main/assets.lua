@@ -189,7 +189,7 @@ PrefabFiles = {
     "corkbat",
     "gascloud",
     -- "pl_hats",
-    -- "pl_turfs",
+    "pl_turfs",
     "poisonbalm",
 }
 

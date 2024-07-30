@@ -760,7 +760,12 @@ local PL_COMPONENT_ACTIONS =
     },
 
     EQUIPPED = { -- args: inst, doer, target, actions, right
-
+        -- ziwbi: added gasser to EQUIPPED. why wouldn't you just spray on gnats directly?
+        gasser = function (inst, doer, pos, actions, right, target)
+            if right then
+                table.insert(actions, ACTIONS.GAS)
+            end
+        end
     },
 
     INVENTORY = { -- args: inst, doer, actions, right

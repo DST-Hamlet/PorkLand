@@ -150,6 +150,9 @@ local actionhandlers = {
             inst.sg.mem.shootpos = action:GetActionPoint()
         end
     end),
+    ActionHandler(ACTIONS.GAS, function(inst)
+        return "crop_dust"
+    end),
 }
 
 local eventhandlers = {
@@ -2143,6 +2146,48 @@ local states = {
                 inst.sg:GoToState("ironlord_idle")
             end),
         },
+    },
+
+    State{
+        name = "crop_dust",
+        tags = {"busy", "canrotate"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+
+            local action = inst:GetBufferedAction()
+
+            inst:FacePoint(Point(action.pos.x, action.pos.y, action.pos.z))
+
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("cropdust_pre")
+            inst.AnimState:PushAnimation("cropdust_loop")
+            inst.AnimState:PushAnimation("cropdust_pst", false)
+        end,
+
+        timeline =
+        {
+            TimeEvent(20 * FRAMES, function(inst)
+                inst:PerformBufferedAction()
+                inst.sg:RemoveStateTag("busy")
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/bugrepellant")
+            end),
+        },
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
     },
 }
 

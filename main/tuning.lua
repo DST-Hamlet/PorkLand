@@ -535,6 +535,7 @@ local tuning = {
 
     BUGREPELLENT_USES = 20,
     CORK_BAT_USES = 20,
+    CORK_BAT_DAMAGE = wilson_attack * 1.5,
 
     BLUNDERBUSS_ATTACK_RANGE = 9,
     BLUNDERBUSS_HIT_RANGE = 11,
