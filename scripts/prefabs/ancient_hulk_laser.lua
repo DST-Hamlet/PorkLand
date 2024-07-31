@@ -345,15 +345,6 @@ local function hitfn()
     return inst
 end
 
-local function Ring_OnUpdateFade(inst)
-    if inst._fade:value() > 0 then
-        inst._fade:set_local(0)
-        inst.AnimState:SetMultColour(1, 1, 1, 0)
-    elseif TheWorld.ismastersim then
-        inst:Remove()
-    end
-end
-
 local function ringfn()
     local inst = CreateEntity()
 
@@ -374,20 +365,22 @@ local function ringfn()
     inst:AddTag("NOCLICK")
     inst:AddTag("FX")
 
-    inst._fade = net_byte(inst.GUID, "ancient_hulk_laserscorch._fade", "fadedirty")
-    inst._fade:set(1)
-
-    inst:DoTaskInTime(0.7, function()
-        inst:DoPeriodicTask(0, Ring_OnUpdateFade)
-    end)
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("fadedirty", Scorch_OnFadeDirty)
-
         return inst
     end
+
+    inst.alpha = 1
+    inst:DoTaskInTime(0.7, function()
+        inst:DoPeriodicTask(0, function()
+            inst.alpha = math.max(0, inst.alpha - 1 / 90)
+            inst.AnimState:SetMultColour(1, 1, 1,  inst.alpha)
+            if inst.alpha == 0 then
+                inst:Remove()
+            end
+        end)
+    end)
 
     inst.persists = false
 
