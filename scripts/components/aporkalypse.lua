@@ -354,6 +354,18 @@ return Class(function(self, inst)
         end
     end end
 
+    --------------------------------------------------------------------------
+    --[[ Debug ]]
+    --------------------------------------------------------------------------
+
+    if _ismastersim then function self:GetDebugString()
+        local s = ""
+        if _activeaporkalypse then
+            s = string.format("Next bat attack: %2.2f Next herald attack: %2.2f", _bat_time or -1, _herald_time or -1)
+        end
+
+        return s
+    end end
 
     --------------------------------------------------------------------------
     --[[ End ]]

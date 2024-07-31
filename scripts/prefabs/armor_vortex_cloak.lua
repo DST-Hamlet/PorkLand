@@ -50,26 +50,26 @@ local function ShouldResistFn(inst)
 end
 
 local function CLIENT_PlayFuelSound(inst)
-	local parent = inst.entity:GetParent()
-	local container = parent ~= nil and (parent.replica.inventory or parent.replica.container) or nil
-	if container ~= nil and container:IsOpenedBy(ThePlayer) then
-		TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/add_fuel")
-	end
+    local parent = inst.entity:GetParent()
+    local container = parent ~= nil and (parent.replica.inventory or parent.replica.container) or nil
+    if container ~= nil and container:IsOpenedBy(ThePlayer) then
+        TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/add_fuel")
+    end
 end
 
 local function SERVER_PlayFuelSound(inst)
-	local owner = inst.components.inventoryitem.owner
-	if owner == nil then
-		inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/add_fuel")
-	elseif inst.components.equippable:IsEquipped() and owner.SoundEmitter ~= nil then
-		owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/add_fuel")
-	else
-		inst.playfuelsound:push()
-		-- Dedicated server does not need to trigger sfx
-		if not TheNet:IsDedicated() then
-			CLIENT_PlayFuelSound(inst)
-		end
-	end
+    local owner = inst.components.inventoryitem.owner
+    if owner == nil then
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/add_fuel")
+    elseif inst.components.equippable:IsEquipped() and owner.SoundEmitter ~= nil then
+        owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/add_fuel")
+    else
+        inst.playfuelsound:push()
+        -- Dedicated server does not need to trigger sfx
+        if not TheNet:IsDedicated() then
+            CLIENT_PlayFuelSound(inst)
+        end
+    end
 end
 
 local function OnTakeFuel(inst, fuel)
@@ -123,6 +123,9 @@ local function fn()
 
     inst:AddTag("vortex_cloak")
 
+    --shadowlevel (from shadowlevel component) added to pristine state for optimization
+    inst:AddTag("shadowlevel")
+
     inst.foleysound = "dontstarve_DLC003/common/crafted/vortex_armour/foley"
 
     inst.playfuelsound = net_event(inst.GUID, "armorvortexcloak.playfuelsound")
@@ -161,6 +164,9 @@ local function fn()
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
+
+    inst:AddComponent("shadowlevel")
+	inst.components.shadowlevel:SetDefaultLevel(TUNING.ARMOTVORTEX_SHADOW_LEVEL)
 
     MakeHauntableLaunchAndDropFirstItem(inst)
 

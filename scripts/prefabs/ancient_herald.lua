@@ -94,6 +94,7 @@ local function fn()
     inst:AddTag("largecreature")
     inst:AddTag("laser_immune")
     inst:AddTag("ancient_herald")
+    inst:AddTag("shadow_aligned")
 
     inst.entity:SetPristine()
 
