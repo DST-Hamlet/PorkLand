@@ -2195,6 +2195,69 @@ local states = {
             end
         end,
     },
+
+    State{
+        name = "blunderbuss",
+        tags = {"attack", "notalking", "abouttoattack"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+            local target = inst.components.combat.target
+            inst.sg.statemem.target = target
+            inst.sg.statemem.target_position = target and Vector3(inst.components.combat.target.Transform:GetWorldPosition())
+            inst.components.combat:StartAttack()
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("speargun")
+
+            if inst.components.combat.target then
+                if inst.components.combat.target and inst.components.combat.target:IsValid() then
+                    inst:FacePoint(Point(inst.components.combat.target.Transform:GetWorldPosition()))
+                end
+            end
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(12 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst.components.combat:DoAttack(inst.sg.statemem.target)
+
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot")
+                local cloud = SpawnPrefab("cloudpuff")
+                local pt = Vector3(inst.Transform:GetWorldPosition())
+
+                local angle
+                if inst.components.combat.target and inst.components.combat.target:IsValid() then
+                    angle = (inst:GetAngleToPoint(inst.components.combat.target.Transform:GetWorldPosition()) -90)  *DEGREES
+                else
+                    angle = (inst:GetAngleToPoint(inst.sg.statemem.target_position.x, inst.sg.statemem.target_position.y, inst.sg.statemem.target_position.z) -90) * DEGREES
+                end
+                inst.sg.statemem.target_position = nil
+
+                local DIST = 1.5
+                local offset = Vector3(math.cos(angle + PI / 2), 0, -math.sin(angle + PI / 2)) * DIST
+
+                local y = inst.components.rider:IsRiding() and 4.5 or 2
+                cloud.Transform:SetPosition(pt.x + offset.x, y, pt.z + offset.z)
+            end),
+            TimeEvent(20 * FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -2235,6 +2298,10 @@ AddStategraphPostInit("wilson", function(sg)
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
         if not inst.sg:HasStateTag("sneeze") then
+            local weapon = inst.components.combat ~= nil and inst.components.combat:GetWeapon()
+            if weapon and weapon:HasTag("blunderbuss_loaded") then
+                return "blunderbuss"
+            end
             return _attack_deststate and _attack_deststate(inst, ...)
         end
     end

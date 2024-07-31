@@ -741,6 +741,11 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.DISARM)
             end
         end,
+        explosive = function(inst, doer, target, actions, right)
+            if target:HasTag("blunderbuss") then
+                table.insert(actions, ACTIONS.GIVE)
+            end
+        end,
         poisonhealer = function(inst, doer, target, actions, right)
             if target and target:HasTag("poisonable") then
                 if target:HasTag("poison") or (target:HasTag("player") and

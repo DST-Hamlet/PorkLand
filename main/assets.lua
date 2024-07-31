@@ -183,7 +183,7 @@ PrefabFiles = {
     "oinc",
     "antsuit",
     "armor_weevole",
-    -- "blunderbuss",
+    "blunderbuss",
     "bugrepellent",
     "candlefire",
     "corkbat",
@@ -244,6 +244,9 @@ Assets = {
     Asset("ANIM", "anim/player_living_suit_punch.zip"),
     Asset("ANIM", "anim/player_living_suit_shoot.zip"),
     Asset("ANIM", "anim/player_actions_cropdust.zip"),
+    Asset("ANIM", "anim/player_actions_speargun.zip"),
+    Asset("ANIM", "anim/player_mount_actions_cropdust.zip"),
+    Asset("ANIM", "anim/player_mount_actions_speargun.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
