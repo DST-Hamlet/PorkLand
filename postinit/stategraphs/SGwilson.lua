@@ -2462,6 +2462,10 @@ AddStategraphPostInit("wilson", function(sg)
         _attack_onenter(inst, data)
 
         inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", nil)
+
+        if equip and equip:HasTag("corkbat") then
+            inst.sg:SetTimeout(23 * FRAMES)
+        end
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn

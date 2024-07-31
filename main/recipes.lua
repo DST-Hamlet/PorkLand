@@ -158,7 +158,7 @@ SortAfter("pithhat", "thunderhat", "CLOTHING")
 SortAfter("pithhat", "thunderhat", "RAIN")
 
 --MAGIC
-AddRecipe2("hogusporkusator", {Ingredient("pigskin", 4), Ingredient("boards", 4), Ingredient("feather_robin_winter", 4)}, TECH.SCIENCE_ONE, {"hogusporkusator_placer"}, {"MAGIC", "STRUCTURES", "PROTOTYPER"})
+AddRecipe2("hogusporkusator", {Ingredient("pigskin", 4), Ingredient("boards", 4), Ingredient("feather_robin_winter", 4)}, TECH.SCIENCE_ONE, {placer = "hogusporkusator_placer"}, {"MAGIC", "STRUCTURES", "PROTOTYPER"})
 SortAfter("hogusporkusator", "researchlab4", "MAGIC")
 SortAfter("hogusporkusator", "researchlab4", "STRUCTURES")
 SortAfter("hogusporkusator", "researchlab4", "PROTOTYPER")
@@ -168,9 +168,9 @@ SortAfter("bonestaff", "antlionhat", "MAGIC")
 SortAfter("bonestaff", "trident", "WEAPONS")
 
 --REFINE
-AddRecipe2("goldnugget", {Ingredient("gold_dust", 6)}, TECH.SCIENCE_ONE, {no_deconstruction=true} , {"REFINE"})
-AddRecipe2("clawpalmtree_sapling", {Ingredient("cork", 1), Ingredient("poop", 1)}, TECH.SCIENCE_ONE, {}, {"REFINE"})
-AddRecipe2("venomgland", {Ingredient("froglegs_poison", 3)}, TECH.SCIENCE_TWO, {no_deconstruction=true} , {"REFINE"})
+AddRecipe2("goldnugget", {Ingredient("gold_dust", 6)}, TECH.SCIENCE_ONE, {no_deconstruction = true} , {"REFINE"})
+AddRecipe2("clawpalmtree_sapling_item", {Ingredient("cork", 1), Ingredient("poop", 1)}, TECH.SCIENCE_ONE, {no_deconstruction = true}, {"REFINE"})
+AddRecipe2("venomgland", {Ingredient("froglegs_poison", 3)}, TECH.SCIENCE_TWO, {no_deconstruction = true} , {"REFINE"})
 
 --DECOR
 -- AddRecipe2("turf_foundation", {Ingredient("cutstone", 1)}, TECH.CITY, cityRecipeGameTypes, nil, nil, true)

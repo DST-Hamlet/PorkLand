@@ -446,6 +446,11 @@ local function MakeHat(name)
         candle_turnoff(inst)
     end
 
+    local function candle_equiptomodel(inst, owner)
+        candle_equip(inst, owner)
+        candle_turnoff(inst)
+    end
+
     local function candle_perish(inst)
         local owner = inst.components.inventoryitem and inst.components.inventoryitem.owner
         if owner then
@@ -484,6 +489,7 @@ local function MakeHat(name)
 
         inst.components.equippable:SetOnEquip(candle_equip)
         inst.components.equippable:SetOnUnequip(candle_unequip)
+        inst.components.equippable:SetOnEquipToModel(candle_equiptomodel)
 
         inst:AddComponent("fueled")
         inst.components.fueled.fueltype = FUELTYPE.CORK

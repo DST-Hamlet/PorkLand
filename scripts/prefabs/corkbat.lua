@@ -32,7 +32,7 @@ local function fn()
 
     inst:AddTag("bat")
     inst:AddTag("corkbat")
-    inst:AddTag("slowattack") -- todo sg change
+    inst:AddTag("slowattack")
 
     inst.entity:SetPristine()
 
@@ -57,6 +57,8 @@ local function fn()
     inst.components.equippable:SetOnUnequip(OnUnequip)
 
     inst:AddComponent("inventoryitem")
+
+    MakeHauntableLaunch(inst)
 
     return inst
 end

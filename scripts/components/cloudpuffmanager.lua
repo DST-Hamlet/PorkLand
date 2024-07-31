@@ -17,11 +17,11 @@ local CloudPuffManager = Class(function(self, inst)
 end)
 
 function CloudPuffManager:OnUpdate(dt)
-    if not ThePlayer then -- true during character selection
+    if self.inst:HasTag("inside_interior") then
         return
     end
 
-    local px, py, pz = ThePlayer.Transform:GetWorldPosition()
+    local px, py, pz = self.inst.Transform:GetWorldPosition()
 
     self.cloudpuff_spawn_rate = self.cloudpuff_spawn_rate + self.cloudpuff_per_sec * dt
 

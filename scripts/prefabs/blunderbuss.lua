@@ -140,6 +140,8 @@ local function fn()
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
 
+    MakeHauntableLaunch(inst)
+
     inst:ListenForEvent("trade", OnTakeAmmo)
 
     inst.OnShoot = OnAttack
