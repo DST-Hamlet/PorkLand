@@ -438,7 +438,7 @@ local function call_guards(inst, attacker)
         local spawnpt = Vector3(ents[math.random(#ents)].Transform:GetWorldPosition())
         local guard = SpawnPrefab(guardprefab)
         guard.components.citypossession:SetCity(cityID)
-        guard.Transform:SetPosition(spawnpt.x, spawnpt.y, spawnpt.z)
+        guard.Transform:SetPosition(spawnpt:Get())
         guard:PushEvent("attacked", {
             attacker = attacker,
             damage = 0,
@@ -447,12 +447,6 @@ local function call_guards(inst, attacker)
         if attacker then
             attacker:AddTag("wanted_by_guards")
         end
-
-        -- TODO: Get this working
-        -- local interior = TheWorld.components.interiorspawner:getPropInterior(inst)
-        -- if interior then
-        --     TheWorld.components.interiorspawner:injectprefab(guard, interior)
-        -- end
     end
 end
 

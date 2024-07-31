@@ -13,15 +13,11 @@ local Cityalarms = Class(function(self, inst)
     self.cities = {}
 end)
 
-local function spawnGuardPigFromOffscreen(inst, city, threat)
-    -- local player = GetPlayer()
-    local tries = 0
-    local placed = false
+local function spawn_guard_pig_from_offscreen(inst, city, threat)
     local SCREENDIST = 35
     local pos = threat:GetPosition()
-
-    while tries < 50 and placed == false do
-        local start_angle = math.random() * 2 * PI
+    for i = 1, 50 do
+        local start_angle = math.random() * TWOPI
         local offset = FindWalkableOffset(pos, start_angle, SCREENDIST, 8, false)
         if offset == nil then
             -- well it's gotta go somewhere!
@@ -29,41 +25,29 @@ local function spawnGuardPigFromOffscreen(inst, city, threat)
         else
             pos = pos + offset
         end
-
-        -- if player:GetDistanceSqToPoint(pos) >= SCREENDIST * SCREENDIST then
-        --     placed = true
-        -- end
         if threat:GetDistanceSqToPoint(pos) >= SCREENDIST * SCREENDIST then
-            placed = true
+            inst:DoTaskInTime(0, function()
+                local prefab = city == 2 and "pigman_royalguard_2" or "pigman_royalguard"
+                local guard = SpawnPrefab(prefab)
+                if guard.Physics then
+                    guard.Physics:Teleport(pos:Get())
+                else
+                    guard.Transform:SetPosition(pos:Get())
+                end
+                guard.components.citypossession.cityID = city
+                guard.components.knownlocations:RememberLocation("home", pos)
+                guard:PushEvent("attacked", {
+                    attacker = threat,
+                    damage = 0,
+                    weapon = nil,
+                })
+            end)
+            break
         end
-        tries = tries + 1
-    end
-
-    if placed then
-        local prefab = "pigman_royalguard"
-        if city == 2 then
-            prefab = "pigman_royalguard_2"
-        end
-
-        inst:DoTaskInTime(0, function()
-            local guard = SpawnPrefab(prefab)
-            if guard.Physics then
-                guard.Physics:Teleport(pos:Get())
-            else
-                guard.Transform:SetPosition(pos:Get())
-            end
-            guard.components.citypossession.cityID = city
-            guard.components.knownlocations:RememberLocation("home", pos)
-            guard:PushEvent("attacked", {
-                attacker = threat,
-                damage = 0,
-                weapon = nil,
-            })
-        end)
     end
 end
 
-local function spawnGuardPigFromTower(inst, city, tower, threat)
+local function spawn_guard_pig_from_tower(inst, city, tower, threat)
     local guard = SpawnPrefab(tower.components.spawner:GetChildName())
     local rad = 0.5
     if tower.Physics then
@@ -77,7 +61,7 @@ local function spawnGuardPigFromTower(inst, city, tower, threat)
     end
 
     local pos = tower:GetPosition()
-    local start_angle = math.random() * 2 * PI
+    local start_angle = math.random() * TWOPI
 
     local offset = FindWalkableOffset(pos, start_angle, rad, 8, false)
     if offset == nil then
@@ -91,7 +75,7 @@ local function spawnGuardPigFromTower(inst, city, tower, threat)
     else
         guard.Transform:SetPosition(pos:Get())
     end
-    tower.onvacate(tower)
+    tower:onvacate()
     if guard.components.knownlocations then
         guard.components.knownlocations:RememberLocation("home", pos)
     end
@@ -143,7 +127,7 @@ end
 
 function Cityalarms:LoadPostPass(newents, data)
     for c, city in ipairs(self.cities) do
-        for i, threat in ipairs(data.cities[c].threats) do
+        for _, threat in ipairs(data.cities[c].threats) do
             local child = newents[threat]
             if child then
                 table.insert(self.cities[c].threats, child.entity)
@@ -160,10 +144,10 @@ function Cityalarms:ReleaseGuards(city, threat)
         local guards = TheSim:FindEntities(x, y, z, 30, {"guard"})
         local guard_assigned = false
 
-        for i, guard in ipairs(guards) do
+        for _, guard in ipairs(guards) do
             if guard.components.combat.target == nil and not guard:HasTag("alarmed_picked") then
                 guard:AddTag("alarmed_picked")
-                guard:DoTaskInTime(math.random() * 1, function()
+                guard:DoTaskInTime(math.random(), function()
                     guard:RemoveTag("alarmed_picked")
                     guard:PushEvent("attacked", {
                         attacker = threat,
@@ -180,31 +164,27 @@ function Cityalarms:ReleaseGuards(city, threat)
         if not guard_assigned then
             local towers = TheSim:FindEntities(x, y, z, 30, {"guard_tower"})
             local tower = nil
-            local dist = 999999
-
             if #towers > 0 then
-                for i, testtower in ipairs(towers) do
-                    if testtower:GetDistanceSqToInst(threat) < dist then
-                        tower = testtower
-                        dist = testtower:GetDistanceSqToInst(threat)
+                local closest_distance = nil
+                for _, tower in ipairs(towers) do
+                    local distance = tower:GetDistanceSqToInst(threat)
+                    if not closest_distance or distance < closest_distance then
+                        tower = tower
+                        closest_distance = distance
                     end
                 end
             end
 
             if tower then
-                self.inst:DoTaskInTime(math.random() * 1, function()
-                    spawnGuardPigFromTower(self.inst, city, tower, threat)
+                self.inst:DoTaskInTime(math.random(), function()
+                    spawn_guard_pig_from_tower(self.inst, city, tower, threat)
                 end)
-                guard_assigned = true
             else
-                spawnGuardPigFromOffscreen(self.inst, city, threat)
-                guard_assigned = true
+                spawn_guard_pig_from_offscreen(self.inst, city, threat)
             end
         end
 
-        if guard_assigned then
-            self.cities[city].guards = self.cities[city].guards - 1
-        end
+        self.cities[city].guards = self.cities[city].guards - 1
     end
 end
 
@@ -225,8 +205,8 @@ function Cityalarms:ReadyGuard(city)
 end
 
 function Cityalarms:isThreat(target)
-    for c, city in ipairs(self.cities) do
-        for i, threat in ipairs(city.threats) do
+    for _, city in ipairs(self.cities) do
+        for _, threat in ipairs(city.threats) do
             if target == threat then
                 return true
             end
@@ -256,10 +236,10 @@ function Cityalarms:ChangeStatus(city, alarmed, threat, ignore_royal_status)
 
         local playmusic = false
         local pigs = TheSim:FindEntities(x, y, z, range, {"city_pig"})
-        for i, pig in ipairs(pigs) do
+        for _, pig in ipairs(pigs) do
             if pig.components.combat.target == nil then
                 -- print("ALERTING FROM WITNESS")
-                pig:DoTaskInTime(math.random() * 1, function()
+                pig:DoTaskInTime(math.random(), function()
                     pig:PushEvent("attacked", {
                         attacker = threat,
                         damage = 0,
@@ -270,14 +250,9 @@ function Cityalarms:ChangeStatus(city, alarmed, threat, ignore_royal_status)
             end
         end
 
-        local tower_range = TOWER_SIGHT_RANGE
-
-        if threat:HasTag("sneaky") then
-            tower_range = TUNING.SNEAK_SIGHTDISTANCE
-        end
-
+        local tower_range = threat:HasTag("sneaky") and TUNING.SNEAK_SIGHTDISTANCE or TOWER_SIGHT_RANGE
         local towers = TheSim:FindEntities(x, y, z, tower_range, {"guard_tower"})
-        for i, tower in ipairs(towers) do
+        for _, tower in ipairs(towers) do
             tower:CallGuards(threat)
             playmusic = true
         end
@@ -307,7 +282,7 @@ end
 
 function Cityalarms:LongUpdate(dt)
     for c, city in ipairs(self.cities) do
-        for i = 1, math.floor(dt / self.cities[c].guard_ready_time), 1 do
+        for i = 1, math.floor(dt / self.cities[c].guard_ready_time) do
             self:ReadyGuard(c)
         end
         -- local newtime = dt % self.cities[c].guard_ready_time
