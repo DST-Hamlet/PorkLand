@@ -17,6 +17,11 @@ local assets_trail =
     Asset("ANIM", "anim/laser_smoke_fx.zip"),
 }
 
+local assets_ring =
+{
+    Asset("ANIM", "anim/laser_ring_fx.zip")
+}
+
 local prefabs =
 {
     "ancient_hulk_laserscorch",
@@ -340,8 +345,58 @@ local function hitfn()
     return inst
 end
 
+local function Ring_OnUpdateFade(inst)
+    if inst._fade:value() > 0 then
+        inst._fade:set_local(0)
+        inst.AnimState:SetMultColour(1, 1, 1, 0)
+    elseif TheWorld.ismastersim then
+        inst:Remove()
+    end
+end
+
+local function ringfn()
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
+
+    inst.AnimState:SetBuild("laser_ring_fx")
+    inst.AnimState:SetBank("laser_ring_fx")
+    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+    inst.AnimState:SetLayer(LAYER_BACKGROUND)
+    inst.AnimState:SetSortOrder(3)
+
+    inst.Transform:SetRotation(math.random() * 360)
+    inst.Transform:SetScale(0.85, 0.85, 0.85)
+
+    inst:AddTag("NOCLICK")
+    inst:AddTag("FX")
+
+    inst._fade = net_byte(inst.GUID, "ancient_hulk_laserscorch._fade", "fadedirty")
+    inst._fade:set(1)
+
+    inst:DoTaskInTime(0.7, function()
+        inst:DoPeriodicTask(0, Ring_OnUpdateFade)
+    end)
+
+    inst.entity:SetPristine()
+
+    if not TheWorld.ismastersim then
+        inst:ListenForEvent("fadedirty", Scorch_OnFadeDirty)
+
+        return inst
+    end
+
+    inst.persists = false
+
+    return inst
+end
+
 return Prefab("ancient_hulk_laser", fn, assets, prefabs),
     Prefab("ancient_hulk_laserempty", emptyfn, assets, prefabs),
     Prefab("ancient_hulk_laserscorch", scorchfn, assets_scorch),
     Prefab("ancient_hulk_lasertrail", trailfn, assets_trail),
-    Prefab("ancient_hulk_laserhit", hitfn)
+    Prefab("ancient_hulk_laserhit", hitfn),
+    Prefab("laser_ring", ringfn, assets_ring)

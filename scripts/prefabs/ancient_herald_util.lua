@@ -35,10 +35,6 @@ local function SpawnRandomInRange(player, prefab, min_count, max_count, radius, 
         return
     end
 
-    if type(prefab) == "table" then
-        prefab = GetRandomItem(prefab)
-    end
-
     local pt = player:GetPosition()
     offset_y = offset_y or 0
 
@@ -46,7 +42,13 @@ local function SpawnRandomInRange(player, prefab, min_count, max_count, radius, 
     for i = 1, count do
         local spawn_point = GetRandomOffset(pt, radius, offset_y)
         if spawn_point then
-            DoSpawnObject(player, spawn_point, prefab, prefab_postinit)
+            local actual_prefab
+            if type(prefab) == "table" then
+                actual_prefab = GetRandomItem(prefab)
+            else
+                actual_prefab = prefab
+            end
+            DoSpawnObject(player, spawn_point, actual_prefab, prefab_postinit)
         end
     end
 end

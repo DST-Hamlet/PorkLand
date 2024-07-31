@@ -8,7 +8,7 @@ local function RemoveImpact(inst)
     inst.persists = false
 end
 
-local function ontimerdone(inst, data)
+local function OnTimerDone(inst, data)
     if data.name == "remove" then
         RemoveImpact(inst)
     end
@@ -39,7 +39,7 @@ local function fn()
 
     inst:AddComponent("timer")
 
-    inst:ListenForEvent("timerdone", ontimerdone)
+    inst:ListenForEvent("timerdone", OnTimerDone)
 
     return inst
 end

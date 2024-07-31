@@ -90,6 +90,32 @@ local states =
     },
 
     State{
+        name = "disappear",
+        tags = {"busy"},
+
+        onenter = function(inst)
+            inst.components.locomotor:StopMoving()
+            inst.AnimState:PlayAnimation("death")
+            RemovePhysicsColliders(inst)
+        end,
+
+        timeline =
+        {
+            TimeEvent(0 * FRAMES, function(inst)
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/ancient_herald/death")
+                AncientHeraldUtil.CancelFrogRain(inst)
+            end),
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst, data)
+                inst:Remove()
+            end)
+        },
+    },
+
+    State{
         name = "taunt",
         tags = {"busy"},
 

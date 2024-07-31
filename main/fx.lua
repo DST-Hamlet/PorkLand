@@ -169,23 +169,6 @@ local pl_fx = {
         anim = "idle",
     },
     {
-        name = "laser_ring",
-        bank = "laser_ring_fx",
-        build = "laser_ring_fx",
-        anim = "idle",
-        fn = function(inst)
-            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-            inst.AnimState:SetLayer(LAYER_BACKGROUND)
-            inst.Transform:SetRotation(math.random() * 360)
-            inst.Transform:SetScale(0.85, 0.85, 0.85)
-
-            inst.alpha = 1
-            inst:DoTaskInTime(0.7, function()
-                inst:DoPeriodicTask(0, Scorch_OnUpdateFade)
-            end)
-        end
-    },
-    {
         name = "laser_explosion",
         build = "laser_explosion",
         bank = "laser_explosion",

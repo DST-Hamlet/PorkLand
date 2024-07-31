@@ -50,7 +50,7 @@ local function DoStep(inst)
         inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/volcano/volcano_rock_smash")
 
         inst.components.groundpounder.numRings = 4
-        inst.components.groundpounder.burner = true -- missing from dst?
+        inst.components.groundpounder.burner = true
         inst.components.groundpounder:GroundPound()
     end
 

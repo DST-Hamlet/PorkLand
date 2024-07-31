@@ -249,7 +249,9 @@ local widget_armor_vortex_cloak = {
         animbuild = "ui_krampusbag_2x5",
         pos = Vector3(-5, -70, 0),
     },
+    issidewidget = true,
     type = "pack",
+    openlimit = 1,
 }
 
 for y = 0, 4 do

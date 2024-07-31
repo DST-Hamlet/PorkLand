@@ -46,7 +46,11 @@ end
 
 local function OnIsAporkalypse(inst, isaporkalypse)
     if not isaporkalypse and inst:HasTag("aporkalypse_cleanup") then
-        inst:Remove()
+        if inst:IsAsleep() then
+            inst:Remove() -- don't care about anim
+        else
+            inst.sg:GoToState("disappear")
+        end
     end
 end
 
@@ -136,7 +140,7 @@ local function fn()
     inst.OnLoad = OnLoad
 
     inst:ListenForEvent("attacked", OnAttacked)
-    inst:WatchWorldState("aprokalypse", OnIsAporkalypse)
+    inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
     OnIsAporkalypse(inst, TheWorld.state.isaporkalypse)
 
     return inst
