@@ -332,7 +332,7 @@ function RoyalPigGuardBrain:OnStart()
             Leash(self.inst, GetNoLeaderHomePos, LEASH_MAX_DIST, LEASH_RETURN_DIST),
 
             IfNode(function() return not self.inst.alerted end, "greet",
-                ChattyNode(self.inst, getfacespeech(self.inst),
+                ChattyNode(self.inst, getfacespeech(),
                     FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn))),
 
             Wander(self.inst, GetNoLeaderHomePos, MAX_WANDER_DIST)
