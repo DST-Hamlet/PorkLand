@@ -54,7 +54,7 @@ local function DoStep(inst)
         inst.components.groundpounder:GroundPound()
     end
 
-    ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.5, 0.03, 3, 40)
+    ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.5, 0.03, 3, inst, 40)
 end
 
 local function StartStep(inst)

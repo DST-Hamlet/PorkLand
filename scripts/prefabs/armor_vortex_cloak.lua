@@ -125,12 +125,12 @@ local function fn()
 
     inst.foleysound = "dontstarve_DLC003/common/crafted/vortex_armour/foley"
 
-    inst.playfuelsound = net_event(inst.GUID, "armorskeleton.playfuelsound")
+    inst.playfuelsound = net_event(inst.GUID, "armorvortexcloak.playfuelsound")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("armorskeleton.playfuelsound", CLIENT_PlayFuelSound)
+        inst:ListenForEvent("armorvortexcloak.playfuelsound", CLIENT_PlayFuelSound)
         return inst
     end
 
@@ -140,7 +140,7 @@ local function fn()
     inst.components.inventoryitem.cangoincontainer = false
 
     inst:AddComponent("container")
-    inst.components.container:WidgetSetup("armor_vortex_cloak")
+    inst.components.container:WidgetSetup("armorvortexcloak")
 
     inst:AddComponent("resistance")
     inst.components.resistance:SetShouldResistFn(ShouldResistFn)

@@ -214,4 +214,4 @@ CommonStates.AddWalkStates(states,
     }
 })
 
-return StateGraph("ancient_herald", states, events, "idle")
+return StateGraph("ancient_herald", states, events, "appear")

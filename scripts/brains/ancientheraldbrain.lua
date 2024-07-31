@@ -30,6 +30,10 @@ local function CanSummon(inst)
         return false
     end
 
+    if inst.sg:HasStateTag("busy") then
+        return false
+    end
+
     if not inst.components.health or inst.components.health:IsDead() then
         return false
     end
@@ -47,6 +51,10 @@ local function DoSummon(inst)
 end
 
 local function CanTaunt(inst)
+    if inst.sg:HasStateTag("busy") then
+        return false
+    end
+
     if not inst.components.health or inst.components.health:IsDead() then
         return false
     end

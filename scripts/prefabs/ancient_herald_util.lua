@@ -54,6 +54,7 @@ local function SpawnRandomInRange(player, prefab, min_count, max_count, radius, 
 end
 
 local function NightmarePostInit(nightmare)
+    nightmare.sg:GoToState("appear")
     nightmare:WatchWorldState("isaporkalypse", function(inst, isaporkalypse)
         if not isaporkalypse and nightmare:HasTag("aporkalypse_cleanup") then
             nightmare:Remove()
@@ -66,7 +67,9 @@ local function SpawnNightmares(player, inst)
 end
 
 local function SpawnGhosts(player, inst)
-    SpawnRandomInRange(player, "pigghost", 4, 6, 10)
+    SpawnRandomInRange(player, "pigghost", 4, 6, 10, nil, function(pigghost)
+        pigghost.sg:GoToState("appear")
+    end)
 end
 
 local function CancelFrogRain(inst)

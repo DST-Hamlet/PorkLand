@@ -259,4 +259,4 @@ for y = 0, 4 do
     table.insert(widget_armor_vortex_cloak.widget.slotpos, Vector3(-162 +75, -y * 75 + 114, 0))
 end
 
-params["armor_vortex_cloak"] = widget_armor_vortex_cloak
+params["armorvortexcloak"] = widget_armor_vortex_cloak
