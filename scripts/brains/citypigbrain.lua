@@ -310,14 +310,14 @@ local function ReplaceStockCondition(inst)
     end
 
     local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH / 2, {"shop_pedestal"}, {"INTERIOR_LIMBO"})
+    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH / 2, {"shop_pedestal"})
     if #ents == 0 then
         return false
     end
 
     local changestock = nil
 
-    for _, ent in ipairs(ents)do
+    for _, ent in ipairs(ents) do
         if ent.imagename and ent.imagename == "" and not ent:HasTag("justsellonce") and
             (not ent.costimagename or ent.costimagename ~= "cost-nil") then
             changestock = ent
