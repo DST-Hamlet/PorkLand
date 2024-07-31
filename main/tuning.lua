@@ -556,7 +556,7 @@ local tuning = {
     ARMOR_KNIGHT = wilson_health*8,
     ARMOR_KNIGHT_ABSORPTION = .85,
     PITHHAT_PERISHTIME = total_day_time*8,
-    GASMASK_PERISHTIME = total_day_time*3,		
+    GASMASK_PERISHTIME = total_day_time*3,
 }
 
 
@@ -613,6 +613,11 @@ TUNING.ROOM_MEDIUM_DEPTH = 16
 TUNING.ROOM_LARGE_WIDTH  = 26
 TUNING.ROOM_LARGE_DEPTH  = 18
 
+local TechTree = require("techtree")
+
+TUNING.PROTOTYPER_TREES.HOGUSPORKUSATOR = TechTree.Create({
+    MAGIC = 2,
+})
 
 
 for key, value in pairs(tuning) do
