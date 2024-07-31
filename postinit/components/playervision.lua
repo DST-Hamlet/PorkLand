@@ -1,6 +1,20 @@
 local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+local BATVISION_COLOUR_CUBE = {
+    day = "images/colour_cubes/bat_vision_on_cc.tex",
+    dusk = "images/colour_cubes/bat_vision_on_cc.tex",
+    night = "images/colour_cubes/bat_vision_on_cc.tex",
+    full_moon = "images/colour_cubes/bat_vision_on_cc.tex",
+}
+
+local BATVISION_PHASEFN =
+{
+    blendtime = 0.5,
+    events = {},
+    fn = nil,
+}
+
 AddComponentPostInit("playervision", function(self)
     local NIGHTVISION_COLOURCUBES = ToolUtil.GetUpvalue(self.UpdateCCTable, "NIGHTVISION_COLOURCUBES")
     local NIGHTVISION_PHASEFN = ToolUtil.GetUpvalue(self.UpdateCCTable, "NIGHTVISION_PHASEFN")
@@ -39,6 +53,13 @@ AddComponentPostInit("playervision", function(self)
                 self.inst:PushEvent("ccoverrides", cc)
                 self.inst:PushEvent("ccphasefn", NIGHTVISION_PHASEFN)
             end
+        end
+
+        if self.inst.replica.inventory:EquipHasTag("bat_hat") then
+            local cc = BATVISION_COLOUR_CUBE
+            self.currentcctable = cc
+            self.inst:PushEvent("ccoverrides", cc)
+            self.inst:PushEvent("ccphasefn", BATVISION_PHASEFN)
         end
     end
 end)

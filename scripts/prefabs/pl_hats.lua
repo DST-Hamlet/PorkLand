@@ -224,19 +224,6 @@ local function MakeHat(name)
         end
 
         owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/on")
-
-        -- TODO hook ccm
-        -- GetClock():SetNightVision(true)
-        -- if GetClock() and GetWorld() and GetWorld().components.colourcubemanager then
-        --     local ccm = GetWorld().components.colourcubemanager
-        --     -- ccm:SetOverrideColourCube("images/colour_cubes/bat_vision_on_cc.tex", 1)
-
-        --     inst:DoTaskInTime(0, function()
-        --         if owner.HUD and owner.HUD.batview then
-        --             owner.HUD.batview:StartSonar()
-        --         end
-        --     end)
-        -- end
     end
 
     local function bat_onunequip(inst, owner)
@@ -247,27 +234,6 @@ local function MakeHat(name)
         end
 
         owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/off")
-        -- GetClock():SetNightVision(false)
-        -- if GetWorld() and GetWorld().components.colourcubemanager then
-        --     local ccm = GetWorld().components.colourcubemanager
-        --     ccm:SetOverrideColourCube(nil, 0.5)
-        --     if owner.HUD then
-        --         owner.HUD.batview:StopSonar()
-        --     end
-        -- end
-    end
-
-    local function bat_perish(inst)
-        -- if inst.components.inventoryitem:GetGrandOwner() == GetPlayer() and inst.components.equippable and inst.components.equippable:IsEquipped() then
-        --     if GetWorld() and GetWorld().components.colourcubemanager then
-        --         local ccm = GetWorld().components.colourcubemanager
-        --         ccm:SetOverrideColourCube(nil, 0.5)
-        --         if GetPlayer().HUD then
-        --             GetPlayer().HUD.batview:StopSonar()
-        --         end
-        --     end
-        -- end
-        inst:Remove()
     end
 
     local function bat_custom_init(inst)
@@ -291,7 +257,7 @@ local function MakeHat(name)
         inst:AddComponent("fueled")
         inst.components.fueled.fueltype = FUELTYPE.USAGE
         inst.components.fueled:InitializeFuelLevel(TUNING.BATHAT_PERISHTIME)
-        inst.components.fueled:SetDepletedFn(bat_perish)
+        inst.components.fueled:SetDepletedFn(inst.Remove)
         inst.components.fueled.accepting = true
 
         inst.transition = false
