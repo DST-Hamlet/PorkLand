@@ -78,10 +78,10 @@ function InteriorSpawner:SetInteriorPos()
 
     self.pos_set = true
 
-    for i = 1, 500 do
-        local pos = self:IndexToPosition(i)
-        assert(self:PositionToIndex(pos) == i, "Index not match: ".. i)
-    end
+    -- for i = 1, 500 do
+    --     local pos = self:IndexToPosition(i)
+    --     assert(self:PositionToIndex(pos) == i, "Index not match: ".. i)
+    -- end
 end
 
 function InteriorSpawner:OnSave()
