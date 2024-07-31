@@ -18,18 +18,21 @@ local function OnUnequip(inst,owner)
     owner.AnimState:Show("ARM_normal")
 end
 
+local function AbleToTakeAmmon(inst, ammo, giver)
+    return not inst:HasTag("blunderbuss_loaded")
+end
+
 local function CanTakeAmmo(inst, ammo, giver)
     return ammo.prefab == "gunpowder"
 end
 
 local function OnTakeAmmo(inst, data)
-    local ammo = data and data.item
-    if not ammo then return end
-    print("OnTakeAmmo")
+    if not data == "loading" and (not data or not data.item) then
+        return
+    end
 
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_load")
 
-    inst.components.trader.enabled = false
     --Set up as projectile thrower instead of crummy bat
     inst:AddTag("projectile")
     inst.components.weapon:SetProjectile("gunpowder_projectile")
@@ -44,7 +47,7 @@ local function OnTakeAmmo(inst, data)
 
     --If equipped, change current equip overrides
     if inst.components.equippable and inst.components.equippable:IsEquipped() then
-        local owner = inst.components.equippable.equipper
+        local owner = inst.components.inventoryitem.owner
         owner.AnimState:OverrideSymbol("swap_object", inst.override_bank, "swap_blunderbuss")
     end
 
@@ -52,9 +55,7 @@ local function OnTakeAmmo(inst, data)
     inst.components.inventoryitem:ChangeImageName("blunderbuss_loaded")
 end
 
-local function OnLoseAmmo(inst, data)
-    print("OnLoseAmmo")
-    inst.components.trader.enabled = true
+local function OnLoseAmmo(inst)
     --Go back to crummy bat mode
     inst:RemoveTag("projectile")
     inst.components.weapon:SetProjectile(nil)
@@ -69,7 +70,7 @@ local function OnLoseAmmo(inst, data)
 
     --If equipped, change current equip overrides
     if inst.components.equippable and inst.components.equippable:IsEquipped() then
-        local owner = inst.components.equippable.equipper
+        local owner = inst.components.inventoryitem.owner
         owner.AnimState:OverrideSymbol("swap_object", inst.override_bank, "swap_blunderbuss")
     end
 
@@ -82,6 +83,18 @@ local function OnAttack(inst, attacker, target)
 
     if removed_item then
         removed_item:Remove()
+    end
+
+    OnLoseAmmo(inst)
+end
+
+local function OnSave(inst, data)
+    data.blunderbuss_loaded = inst:HasTag("blunderbuss_loaded")
+end
+
+local function OnLoad(inst, data)
+    if data and data.blunderbuss_loaded then
+        OnTakeAmmo(inst, "loading")
     end
 end
 
@@ -102,7 +115,6 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("blunderbuss")
-    -- inst:AddTag("alltrader")
 
     inst.entity:SetPristine()
 
@@ -114,7 +126,6 @@ local function fn()
 
     inst:AddComponent("weapon")
     inst.components.weapon.projectilelaunchsymbol = "swap_object"
-    inst.components.weapon.onattack = OnAttack
 
     inst:AddComponent("inventoryitem")
 
@@ -122,28 +133,35 @@ local function fn()
     inst.components.inventory.maxslots = 1
 
     inst:AddComponent("trader")
-    -- inst.components.trader.deleteitemonaccept = true
+    inst.components.trader:SetAbleToAcceptTest(AbleToTakeAmmon)
     inst.components.trader:SetAcceptTest(CanTakeAmmo)
-    inst.components.trader.enabled = true
 
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
 
-    inst:ListenForEvent("itemlose", OnLoseAmmo)
-    inst:ListenForEvent("itemget", OnTakeAmmo)
+    inst:ListenForEvent("trade", OnTakeAmmo)
+
+    inst.OnShoot = OnAttack
 
     inst.override_bank = "swap_blunderbuss"
+
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     return inst
 end
 
-local function OnHit(inst, attacker, target, weapon)
+local function OnHit(inst, attacker, target)
     local fx = SpawnPrefab("impact")
     if fx and attacker then
         local follower = fx.entity:AddFollower()
         follower:FollowSymbol(target.GUID, target.components.combat.hiteffectsymbol, 0, 0, 0)
         fx:FacePoint(attacker.Transform:GetWorldPosition())
+    end
+
+    if attacker and attacker:IsValid() then
+        OnAttack(attacker.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS), attacker, target)
     end
 
     inst:Remove()
