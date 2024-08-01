@@ -164,6 +164,9 @@ PrefabFiles = {
     "bramble_bulb",
     "pog",
     "pogherd",
+    "spider_monkey",
+    "pl_chests",
+
 
     "pigman_city",
     "pighouse_city",
