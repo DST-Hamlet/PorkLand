@@ -32,7 +32,7 @@ function CloudPuffManager:OnUpdate(dt)
         local x, y, z = px + dx, py, pz + dz
 
         if IsSurroundedByTile(x, y, z, 1, WORLD_TILES.IMPASSABLE) then
-            local cloudpuff = SpawnPrefab("cloudpuff")
+            local cloudpuff = SpawnPrefab("cloudpuff_visual")
             cloudpuff.Transform:SetPosition(x, y, z)
         end
 

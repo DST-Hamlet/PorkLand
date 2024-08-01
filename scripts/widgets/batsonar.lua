@@ -76,14 +76,12 @@ function BatSonar:UpdateAlpha(dt)
     else
         if self.currentstate == STATES.OUT then
             TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/sonar")
-            local ring = SpawnPrefab("groundpoundring_fx")
-            ring.Transform:SetScale(2, 2, 2)
+            local ring = SpawnPrefab("batsonar_fx")
             ring.Transform:SetPosition(self.owner.Transform:GetWorldPosition())
 
             self.owner:DoTaskInTime(0.1, function()
                 if self.active then
-                    local ring2 = SpawnPrefab("groundpoundring_fx")
-                    ring2.Transform:SetScale(2, 2, 2)
+                    local ring2 = SpawnPrefab("batsonar_fx")
                     ring2.Transform:SetPosition(self.owner.Transform:GetWorldPosition())
                 end
             end)

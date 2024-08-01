@@ -193,6 +193,8 @@ PrefabFiles = {
     "poisonbalm",
     "snakeskin_jacket",
     "pl_magicprototyper",
+    "cloudpuff",
+    "batsonar_fx",
 }
 
 Assets = {
