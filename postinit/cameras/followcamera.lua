@@ -15,6 +15,18 @@ function FollowCamera:Apply(...)
         local heading = self.pl_interior_heading* DEGREES
         local distance = self.pl_interior_distance_override or self.pl_interior_distance
         local currentpos = self.pl_interior_currentpos
+        if self.shake ~= nil then
+            local shakeOffset = self.shake:Update(0)
+            print("shakeOffset", shakeOffset)
+            if shakeOffset ~= nil then
+                local rightOffset = self:GetRightVec() * shakeOffset.x
+                currentpos.x = currentpos.x + rightOffset.x
+                currentpos.y = currentpos.y + rightOffset.y + shakeOffset.y
+                currentpos.z = currentpos.z + rightOffset.z
+            else
+                self.shake = nil
+            end
+        end
         local fov = self.pl_interior_fov
         local cos_pitch = math.cos(pitch)
         local cos_heading = math.cos(heading)

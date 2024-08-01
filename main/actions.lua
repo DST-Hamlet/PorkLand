@@ -288,12 +288,15 @@ local function DoTeleport(player, pos)
         end
         player.components.interiorvisitor:UpdateExteriorPos()
         -- player.components.health:SetInvincible(invincible)
-        Sleep(0.1) -- 出于未知原因，当 Sleep(0) 的时候 SnapCamera 执行时玩家的位置仍未发生变化，因此改为 0.1
+        Sleep(0.1)
         if player.components.playercontroller ~= nil then
             player.components.playercontroller:EnableMapControls(true)
             player.components.playercontroller:Enable(true)
         end
         player:SnapCamera()
+        if TheWorld.ismastersim then
+            TheCamera:Snap()
+        end
         player:ScreenFade(true, 0.4)
         player.sg:GoToState("idle")
     end)

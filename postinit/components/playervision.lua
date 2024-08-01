@@ -2,10 +2,10 @@ local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local BATVISION_COLOUR_CUBE = {
-    day = "images/colour_cubes/bat_vision_on_cc.tex",
-    dusk = "images/colour_cubes/bat_vision_on_cc.tex",
-    night = "images/colour_cubes/bat_vision_on_cc.tex",
-    full_moon = "images/colour_cubes/bat_vision_on_cc.tex",
+    day = resolvefilepath("images/colour_cubes/bat_vision_on_cc.tex"),
+    dusk = resolvefilepath("images/colour_cubes/bat_vision_on_cc.tex"),
+    night = resolvefilepath("images/colour_cubes/bat_vision_on_cc.tex"),
+    full_moon = resolvefilepath("images/colour_cubes/bat_vision_on_cc.tex"),
 }
 
 local BATVISION_PHASEFN =
