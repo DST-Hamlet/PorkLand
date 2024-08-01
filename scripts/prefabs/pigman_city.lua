@@ -43,17 +43,61 @@ local FEMALE = "FEMALE"
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 30
 
-local function getSpeechType(inst, speech)
-    local line = speech.DEFAULT
+local function GetSpeechType(inst, speech)
+    return inst.talkertype and STRINGS[speech][inst.talkertype]
+        and speech .. "." .. inst.talkertype
+        or speech .. ".DEFAULT"
+end
 
-    if inst.talkertype and speech[inst.talkertype] then
-        line = speech[inst.talkertype]
+local function resolve_string_from_path(str)
+    local strtbl = STRINGS
+    local components = string.split(str, ".")
+    for _, component in ipairs(components) do
+        strtbl = strtbl[component]
+        if strtbl == nil then
+            print("WARNING: failed to resolve string from path", str)
+            return nil
+        end
+    end
+    return strtbl
+end
+
+-- line: should be something like "CITY_PIG_TALK_FORGIVE_PLAYER.DEFAULT"
+-- format_args: should be something like "a" or {line = "CITY_PIG_BANKER_TRADE"} or nil
+local function SayLine(inst, line, ...)
+    local format_args = {...}
+    local strtbl = resolve_string_from_path(line)
+    if strtbl == STRINGS or strtbl == nil then
+        print("no line found to say for", inst, line)
+        return
+    end
+    local strid = type(strtbl) == "table" and math.random(#strtbl) or 0
+    inst.components.talker:Chatter(json.encode({line = line, format_args = format_args}), strid, 1.5)
+end
+
+local function ResolveChatterString(inst, strid, strtbl)
+    local strtbl = strtbl:value()
+    local strid = strid:value()
+    local decoded = json.decode(strtbl)
+    local line = resolve_string_from_path(decoded.line)
+    if strtbl == STRINGS or strtbl == nil then
+        print("no line found to say for", inst, line)
+        return
+    end
+    if strid ~= 0 then
+        line = line[strid]
     end
 
-    if type(line) == "table" then
-        line = line[math.random(#line)]
+    if decoded.format_args then
+        local format_args = {}
+        for _, arg in ipairs(decoded.format_args) do
+            if type(arg) == "table" then
+                table.insert(format_args, resolve_string_from_path(arg.line))
+            end
+            table.insert(format_args, tostring(arg))
+        end
+        return string.format(line, unpack(format_args))
     end
-
     return line
 end
 
@@ -91,11 +135,6 @@ local function separatedesk(inst, separatedesk)
         inst:AddTag("atdesk")
         inst.AnimState:Show("desk")
     end
-end
-
-local function sayline(inst, line, mood)
-    -- inst.components.talker:Say(line, 1.5, nil, true, mood)
-    inst.components.talker:Say(line, 1.5)
 end
 
 local function ondonetalking(inst)
@@ -194,7 +233,7 @@ local function ShouldAcceptItem(inst, item)
         -- local wantednum =   econ:GetNumberWanted(econprefab,city)
 
         local wantitem = false
-        for i, wanted in ipairs(wanteditems) do
+        for _, wanted in ipairs(wanteditems) do
             if wanted == item.prefab then
                 wantitem = true
                 break
@@ -202,7 +241,7 @@ local function ShouldAcceptItem(inst, item)
         end
 
         if item.prefab == "purplegem" and (inst.prefab == "pigman_banker" or inst.prefab == "pigman_banker_shopkeep") then
-            inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_PURPLEGEM))
+            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_PURPLEGEM"))
             return false
         end
 
@@ -225,9 +264,9 @@ local function ShouldAcceptItem(inst, item)
             local delay = econ:GetDelay(econprefab, city, inst)
             if delay > 0 then
                 if delay == 1 then
-                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW))
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW"))
                 else
-                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_GIFT_DELAY), tostring(delay)))
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_GIFT_DELAY"), delay)
                 end
                 return false
             else
@@ -236,16 +275,16 @@ local function ShouldAcceptItem(inst, item)
         else
             if item:HasTag("relic") then
                 if item.prefab == "relic_4" or item.prefab == "relic_5" then
-                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT))
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_PRICELESS_GIFT"))
                 else
-                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_RELIC_GIFT))
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_RELIC_GIFT"))
                 end
             else
                 if item.prefab == "trinket_giftshop_1" or item.prefab == "trinket_giftshop_3" and inst:HasTag("city1") then
-                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_TRINKET_GIFT))
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_TRINKET_GIFT"))
                 else
                     -- HUGO
-                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_REFUSE_GIFT), desc))
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_GIFT"), {line = desc})
                 end
             end
             return false
@@ -316,7 +355,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             if trinket then
                 if giver.components.inventory then
                     inst:AddTag("recieved_trinket")
-                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_TRINKET_REWARD))
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_GIVE_TRINKET_REWARD"))
 
                     local reward = {
                         "kabobs",
@@ -338,8 +377,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             end
             if reward then
                 if giver.components.inventory then
-                    inst.sayline(inst, string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_REWARD), tostring(1), desc))
-                    -- inst.components.talker:Say( string.format(getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_REWARD), tostring(1), desc ))--econ:GetNumberWanted(econprefab,city) ), desc ) )
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_GIVE_REWARD"), 1, {line = desc})
 
                     for i = 1, qty do
                         local rewarditem = SpawnPrefab(reward)
@@ -347,15 +385,12 @@ local function OnGetItemFromPlayer(inst, giver, item)
                     end
                 end
             else
-                inst.sayline(inst,
-                    string.format(getSpeechType(inst, STRINGS.CITY_PIG_TALK_TAKE_GIFT), tostring(1), desc))
-                -- inst.components.talker:Say( string.format(getSpeechType(inst,STRINGS.CITY_PIG_TALK_TAKE_GIFT), tostring(1), desc ))--econ:GetNumberWanted(econprefab,city) ), desc ) )
+                inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_TAKE_GIFT"), 1, {line = desc})
             end
         end
         if item:HasTag("relic") and (inst.prefab == "pigman_collector_shopkeep" or inst.prefab == "pigman_collector") then
             if giver.components.inventory then
-                inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD))
-                -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_TALK_GIVE_RELIC_REWARD) )
+                inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_GIVE_RELIC_REWARD"))
                 local rewarditem = SpawnPrefab("oinc10")
                 giver.components.inventory:GiveItem(rewarditem, nil, inst:GetPosition())
             end
@@ -438,7 +473,7 @@ local function call_guards(inst, attacker)
         local spawnpt = Vector3(ents[math.random(#ents)].Transform:GetWorldPosition())
         local guard = SpawnPrefab(guardprefab)
         guard.components.citypossession:SetCity(cityID)
-        guard.Transform:SetPosition(spawnpt.x, spawnpt.y, spawnpt.z)
+        guard.Transform:SetPosition(spawnpt:Get())
         guard:PushEvent("attacked", {
             attacker = attacker,
             damage = 0,
@@ -447,12 +482,6 @@ local function call_guards(inst, attacker)
         if attacker then
             attacker:AddTag("wanted_by_guards")
         end
-
-        -- TODO: Get this working
-        -- local interior = TheWorld.components.interiorspawner:getPropInterior(inst)
-        -- if interior then
-        --     TheWorld.components.interiorspawner:injectprefab(guard, interior)
-        -- end
     end
 end
 
@@ -518,7 +547,7 @@ local function NormalRetargetFn(inst)
                 and not guy.components.health:IsDead() and inst.components.combat:CanTarget(guy)
                 and not (inst.components.combat.target and inst.components.combat.target:HasTag("player")) then
 
-                inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER))
+                inst:SayLine(GetSpeechType(inst, "CITY_PIG_GUARD_TALK_ANGRY_PLAYER"))
                 -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER) )
             end
 
@@ -605,10 +634,9 @@ local function SetNormalPig(inst, brain_id)
                     end
 
                     inst.bribe_count = 0
-                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER))
-                    -- inst.components.talker:Say(getSpeechType(inst, STRINGS.CITY_PIG_TALK_FORGIVE_PLAYER))
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_FORGIVE_PLAYER"))
                 else
-                    inst.sayline(inst, getSpeechType(inst, STRINGS.CITY_PIG_TALK_NOT_ENOUGH))
+                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_NOT_ENOUGH"))
                 end
             end
         end
@@ -627,10 +655,7 @@ local function throwcrackers(inst)
     local attempts = 12
 
     local test_fn = function(offset)
-        local ents = TheSim:FindEntities(pos.x + offset.x, pos.y + offset.y, pos.z + offset.z, 2, nil, {
-            "INLIMBO",
-        })
-
+        local ents = TheSim:FindEntities(pos.x + offset.x, pos.y + offset.y, pos.z + offset.z, 2, nil, {"INLIMBO"})
         if #ents == 0 then
             return true
         end
@@ -777,12 +802,13 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst:AddComponent("talker")
         inst.components.talker.ontalk = ontalk
         inst.components.talker.donetalkingfn = ondonetalking
-        inst.components.talker.fontsize = 35
-        inst.components.talker.font = TALKINGFONT
         inst.components.talker.offset = Vector3(0, -600, 0)
-        inst.talkertype = name
+        inst.components.talker.resolvechatterfn = ResolveChatterString
+        inst.components.talker:MakeChatter()
 
-        inst.sayline = sayline
+        inst.SayLine = SayLine
+        inst.GetSpeechType = GetSpeechType
+        inst.talkertype = name:upper()
 
         inst:AddTag("character")
         inst:AddTag("pig")
@@ -815,25 +841,14 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         -- Remove these tags so that they can be added properly when replicating components below
         inst:RemoveTag("_named")
 
-        local names = {}
-        for i, pigname in ipairs(STRINGS.CITYPIGNAMES["UNISEX"]) do
-            table.insert(names, pigname)
-        end
-
-        if sex then
-            if sex == MALE then
-                inst.female = false
-            else
-                inst.female = true
-            end
-
-            for i, name in ipairs(STRINGS.CITYPIGNAMES[sex]) do
-                table.insert(names, name)
-            end
+        if sex == MALE then
+            inst.female = false
+        else
+            inst.female = true
         end
 
         inst:AddComponent("named")
-        inst.components.named.possiblenames = names
+        inst.components.named.possiblenames = JoinArrays(STRINGS.CITYPIGNAMES["UNISEX"], STRINGS.CITYPIGNAMES[sex])
         inst.components.named:PickNewName()
 
         inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
@@ -1038,11 +1053,7 @@ local function OnIsDusk(inst, isdusk)
         return
     end
 
-    local function getspeech()
-        return STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT[math.random(#STRINGS.CITY_PIG_GUARD_LIGHT_TORCH.DEFAULT)]
-    end
-    inst.sayline(inst, getspeech())
-    -- inst.components.talker:Say(getspeech(), 1.5, nil, true)
+    inst:SayLine(GetSpeechType(inst, "CITY_PIG_GUARD_LIGHT_TORCH"))
     inst:DoTaskInTime(0.5 + (math.random() * 1), function()
         local torch = inst.components.inventory:FindItem(function(item)
             if item.prefab == "torch" then
@@ -1085,21 +1096,22 @@ local SHOP_STAND_TAGS = {"shop_pedestal"}
 local function OnDeath_ShopKeep(inst, data)
     local x, y, z = inst.Transform:GetWorldPosition()
     local shops = TheSim:FindEntities(x, y, z, 30, SHOP_STAND_TAGS)
-    for _, ent in pairs(shops) do
+    for _, ent in ipairs(shops) do
         ent:AddTag("nodailyrestock")
     end
 end
 
+-- This is different from Don't Starve Hamlet, we use thing like "CITY_PIG_SHOPKEEPER_CLOSING" instead of STRINGS.CITY_PIG_SHOPKEEPER_CLOSING[0]
 local function shopkeeper_speech(inst, speech)
     if inst:IsValid() and not inst:IsAsleep() and not inst.components.combat.target and not inst:IsInLimbo() then
-        inst.sayline(inst, speech)
+        inst:SayLine(speech)
     end
 end
 
 local function CloseShop(inst)
     if inst:IsValid() and not inst:IsAsleep() and not inst.components.combat.target and not inst:IsInLimbo() then
         inst.sg:GoToState("idle")
-        shopkeeper_speech(inst, GetRandomItem(STRINGS.CITY_PIG_SHOPKEEPER_CLOSING))
+        shopkeeper_speech(inst, "CITY_PIG_SHOPKEEPER_CLOSING")
     end
 end
 
@@ -1114,7 +1126,7 @@ local function shopkeeper_master_postinit(inst)
     inst.shopkeeper_speech = shopkeeper_speech
 
     -- TheWorld:ListenForEvent("enterroom", function(data)
-    --     shopkeeper_speech(inst, getSpeechType(inst,STRINGS.CITY_PIG_SHOPKEEPER_GREETING) )
+    --     shopkeeper_speech(inst, getSpeechType(inst, "CITY_PIG_SHOPKEEPER_GREETING"))
     -- end)
 
     inst:ListenForEvent("death", OnDeath_ShopKeep)
