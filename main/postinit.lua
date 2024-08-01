@@ -120,6 +120,7 @@ local widget_posts = {
     "bloodover",
     "containerwidget",
     "inventorybar",
+    "healthbadge",
     "seasonclock",
     "statusdisplay",
     "uianim",
