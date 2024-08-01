@@ -44,6 +44,7 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem:SetSinks(true)
 
     inst:AddComponent("armor")
     inst.components.armor:InitCondition(TUNING.ARMOR_WEEVOLE_DURABILITY, TUNING.ARMOR_WEEVOLE_ABSORPTION)
