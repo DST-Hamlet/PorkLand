@@ -12,17 +12,16 @@ function FollowCamera:Apply(...)
         self.headingtarget = self.pl_interior_heading -- for playercontroller
         self.distance = 25 -- for hud cloud
         local pitch = self.pl_interior_pitch * DEGREES
-        local heading = self.pl_interior_heading* DEGREES
+        local heading = self.pl_interior_heading * DEGREES
         local distance = self.pl_interior_distance_override or self.pl_interior_distance
-        local currentpos = self.pl_interior_currentpos
-        if self.shake ~= nil then
-            local shakeOffset = self.shake:Update(0)
-            print("shakeOffset", shakeOffset)
-            if shakeOffset ~= nil then
-                local rightOffset = self:GetRightVec() * shakeOffset.x
-                currentpos.x = currentpos.x + rightOffset.x
-                currentpos.y = currentpos.y + rightOffset.y + shakeOffset.y
-                currentpos.z = currentpos.z + rightOffset.z
+        local current_pos = self.pl_interior_currentpos
+        if self.shake then
+            local camera_shake_offset = self.shake:Update(0)
+            if camera_shake_offset ~= nil then
+                local right_offset = self:GetRightVec() * camera_shake_offset.x
+                current_pos.x = current_pos.x + right_offset.x
+                current_pos.y = current_pos.y + right_offset.y + camera_shake_offset.y
+                current_pos.z = current_pos.z + right_offset.z
             else
                 self.shake = nil
             end
@@ -35,9 +34,9 @@ function FollowCamera:Apply(...)
         local dy = -math.sin(pitch)
         local dz = -cos_pitch * sin_heading
         TheSim:SetCameraPos(
-            currentpos.x - dx * distance,
-            currentpos.y - dy * distance,
-            currentpos.z - dz * distance
+            current_pos.x - dx * distance,
+            current_pos.y - dy * distance,
+            current_pos.z - dz * distance
         )
         TheSim:SetCameraDir(dx, dy, dz)
 
@@ -52,11 +51,11 @@ function FollowCamera:Apply(...)
 
         TheSim:SetCameraUp(ux, uy, uz)
         TheSim:SetCameraFOV(fov)
-        local listendist = -.1 * distance
+        local listen_dist = -0.1 * distance
         TheSim:SetListener(
-            dx * listendist + currentpos.x,
-            dy * listendist + currentpos.y,
-            dz * listendist + currentpos.z,
+            dx * listen_dist + current_pos.x,
+            dy * listen_dist + current_pos.y,
+            dz * listen_dist + current_pos.z,
             dx, dy, dz,
             ux, uy, uz
         )

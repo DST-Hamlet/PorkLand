@@ -223,6 +223,7 @@ local function MakeHat(name)
             return
         end
 
+        inst.bat_sonar_on:push()
         owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/on")
     end
 
@@ -233,6 +234,7 @@ local function MakeHat(name)
             return
         end
 
+        inst.bat_sonar_off:push()
         owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/off")
     end
 
@@ -242,6 +244,23 @@ local function MakeHat(name)
         inst:AddTag("nightvision")
         inst:AddTag("no_sewing")
         inst:AddTag("venting")
+
+        inst.bat_sonar_on = net_event(inst.GUID, "bat_sonar_on")
+        inst.bat_sonar_off = net_event(inst.GUID, "bat_sonar_off")
+
+        if not TheNet:IsDedicated() then
+            inst:ListenForEvent("bat_sonar_on", function()
+                if ThePlayer.replica.inventory:EquipHasTag("bat_hat") then
+                    ThePlayer:PushEvent("startbatsonar")
+                end
+            end)
+
+            inst:ListenForEvent("bat_sonar_off", function()
+                if not ThePlayer.replica.inventory:EquipHasTag("bat_hat") then
+                    ThePlayer:PushEvent("stopbatsonar")
+                end
+            end)
+        end
     end
 
     fns.bat = function()
@@ -276,7 +295,7 @@ local function MakeHat(name)
 
         inst:SetPrefabName("snakeskinhat")
 
-        inst.shelfart = "snakeskinhat_scaly" -- special_visual_slots?
+        inst.shelfart = "snakeskinhat_scaly"
     end
 
     fns.snakeskin = function()
@@ -555,7 +574,7 @@ local function MakeHat(name)
 
     local function gasmask_custom_init(inst)
         inst:AddTag("gasmask")
-        inst:AddTag("muffler") -- sound?
+        inst:AddTag("muffler") -- TODO add missing sound effects
     end
 
     fns.gasmask = function()

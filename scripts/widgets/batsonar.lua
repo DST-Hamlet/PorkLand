@@ -13,7 +13,7 @@ local BatSonar = Class(Widget, function(self, owner)
     Widget._ctor(self, "BatSonar")
     self:SetClickable(false)
 
-    self.bg2 = self:AddChild(Image("images/fx5.xml", "fog_over.tex"))
+    self.bg2 = self:AddChild(Image("images/overlays/fx5.xml", "fog_over.tex"))
     self.bg2:SetVRegPoint(ANCHOR_MIDDLE)
     self.bg2:SetHRegPoint(ANCHOR_MIDDLE)
     self.bg2:SetVAnchor(ANCHOR_MIDDLE)
@@ -21,7 +21,7 @@ local BatSonar = Class(Widget, function(self, owner)
     self.bg2:SetScaleMode(SCALEMODE_FILLSCREEN)
 
     self.alpha = 0
-    self.alphagoal = 0
+    self.alpha_goal = 0
 
     self.transitiontime = 2.0
     self.time = TRANSITION_TIME_IN
@@ -33,7 +33,7 @@ end)
 function BatSonar:StartSonar()
     if not self.active then
         self.time = TRANSITION_TIME_IN
-        self.alphagoal = 1
+        self.alpha_goal = 1
         self.active = true
         self:StartUpdating()
         self:Show()
@@ -43,7 +43,7 @@ end
 function BatSonar:SetSonar(off)
     if off and self.active then
         self.time = 0
-        self.alphagoal = 0
+        self.alpha_goal = 0
         self.active = false
         self.alpha = 0
         self:StopUpdating()
@@ -51,7 +51,7 @@ function BatSonar:SetSonar(off)
     else
         if not self.active then
             self.time = 0
-            self.alphagoal = 1
+            self.alpha_goal = 1
             self.active = true
             self.alpha = 1
             self:StartUpdating()
@@ -63,7 +63,7 @@ end
 function BatSonar:StopSonar()
     if self.active then
         self.time = self.transitiontime
-        self.alphagoal = 0
+        self.alpha_goal = 0
         self.active = false
         self:StopUpdating()
         self:Hide()
@@ -87,11 +87,11 @@ function BatSonar:UpdateAlpha(dt)
             end)
 
             self.currentstate = STATES.IN
-            self.alphagoal = 0
+            self.alpha_goal = 0
             self.time = TRANSITION_TIME_IN
         elseif self.currentstate == STATES.IN then
             self.currentstate = STATES.OUT
-            self.alphagoal = 1
+            self.alpha_goal = 1
             self.time = TRANSITION_TIME_OUT
         end
     end
