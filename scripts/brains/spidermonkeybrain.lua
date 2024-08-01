@@ -18,7 +18,7 @@ local function MakeHomeAction(inst)
         and not inst.target_tree:HasTag("has_spider")
         and not inst.target_tree:HasTag("burnt")
         and not inst.target_tree:HasTag("stump")
-        and not inst.target_tree:HasTag("rotten") then
+        and not inst.target_tree:HasTag("rotten_tree") then
             return BufferedAction(inst, inst.target_tree, ACTIONS.MAKEHOME)
     end
 end
