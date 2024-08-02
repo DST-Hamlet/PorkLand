@@ -33,7 +33,7 @@ local function MakeOinc(name, build, value)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst, "idle_water", "idle")
+        PorkLandMakeInventoryFloatable(inst)
         MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
 
         inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )

@@ -30,8 +30,7 @@ local function fn()
     inst.AnimState:PlayAnimation("anim")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "anim")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("metal")
     inst:AddTag("smeltable")  -- Smelter

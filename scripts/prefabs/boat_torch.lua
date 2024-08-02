@@ -149,8 +149,7 @@ local function torchfn()
 
     inst.visualbuild = "swap_torch_boat"
 
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()
 

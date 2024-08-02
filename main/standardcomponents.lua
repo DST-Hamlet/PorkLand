@@ -505,3 +505,9 @@ function MakeInteriorWallPhysics(inst, rad, height, width)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
     inst.Physics:CollidesWith(COLLISION.FLYERS)
 end
+
+--- Compatible with Don't Starve's MakeInventoryFloatable
+function PorkLandMakeInventoryFloatable(inst, water_anim, land_anim)
+    MakeInventoryFloatable(inst)
+    inst.components.floater:UpdateAnimations(water_anim or "idle_water", land_anim or "idle")
+end

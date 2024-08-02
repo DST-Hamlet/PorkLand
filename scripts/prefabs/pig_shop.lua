@@ -260,25 +260,30 @@ local function OnBuilt(inst)
     inst.AnimState:PushAnimation("idle")
 end
 
-local function CreatInterior(inst)
+local function CreateInterior(inst)
+    local id = inst.interiorID
+    local can_reuse_interior = id ~= nil
+
     local interior_spawner = TheWorld.components.interiorspawner
-    local ID = inst.interiorID
-    if ID then
-        return
+    if not can_reuse_interior then
+        id = interior_spawner:GetNewID()
+        inst.interiorID = id
+        print("CreateInterior id:", id)
     end
 
-    ID = interior_spawner:GetNewID()
-    inst.interiorID = ID
-    print("CreatInterior id: ",ID)
-
-    local name = inst.prefab .. ID
+    local name = inst.prefab .. id
 
     local exterior_door_def = {
         my_door_id = name .. "_door",
         target_door_id = name .. "_exit",
-        target_interior = ID,
+        target_interior = id,
     }
     interior_spawner:AddDoor(inst, exterior_door_def)
+
+    if can_reuse_interior then
+        -- Reuse old interior, but we still need to re-register the door
+        return
+    end
 
     local textures = PIG_SHOP_TEXTURE[string.upper(inst.prefab)]
     local floor_texture = textures and textures.FLOOR or PIG_SHOP_TEXTURE.DEFAULT.FLOOR
@@ -293,14 +298,11 @@ local function CreatInterior(inst)
         height = 6
     end
 
-    local addprops = GetPropDef(name, depth, width, exterior_door_def, SHOPSOUND_EXIT)
+    local addprops = GetPropDef(inst.prefab, depth, width, exterior_door_def, SHOPSOUND_EXIT)
 
-    local cityID = nil
-    if inst.components.citypossession then
-        cityID = inst.components.citypossession.cityID
-    end
+    local cityID = inst.components.citypossession and inst.components.citypossession.cityID
 
-    local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name .. ID, ID, addprops, {},
+    local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, id, addprops, {},
         wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
         PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
     interior_spawner:SpawnInterior(def)
@@ -314,8 +316,7 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
-    if data == nil or (data and data.interiorID == nil) then
-        CreatInterior(inst)
+    if not data then
         return
     end
 
@@ -621,6 +622,8 @@ local function MakeShop(name, build, bank, data)
         OnPhaseChange(inst, TheWorld.state.isdusk and "day" or TheWorld.state.phase) -- Turn lights on for dusk too
         inst:WatchWorldState("isfiesta", OnIsFiesta)
         OnIsFiesta(inst, TheWorld.state.isfiesta)
+
+        inst:DoTaskInTime(0, CreateInterior)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad

@@ -418,8 +418,7 @@ local function corkboatitemfn()
     inst.MiniMapEntity:SetIcon("coracle_boat.tex")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("small_boat")
     inst:AddTag("boatbuilder") -- for deploy string

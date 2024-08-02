@@ -35,7 +35,7 @@ if not rawget(_G, "HotReloading") then
         USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
-
+        MAKEHOME = Action({distance = 1}),
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         PAY_TAX = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -88,8 +88,8 @@ ACTIONS.HACK.fn = function(act)
 end
 
 ACTIONS.HACK.validfn = function(act) -- this fixes hacking a nonvalid target when holding the mouse
-    return (act.target.components.hackable and act.target.components.hackable:CanBeHacked()) or
-        (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.HACK)
+    return (act.target.components.hackable and act.target.components.hackable:CanBeHacked())
+        or (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.HACK)
 end
 
 ACTIONS.PAN.fn = function(act)
@@ -109,8 +109,8 @@ ACTIONS.SHEAR.fn = function(act)
 end
 
 ACTIONS.SHEAR.validfn = function(act)
-    return (act.target.components.shearable and act.target.components.shearable:CanShear()) or
-        (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.SHEAR)
+    return (act.target.components.shearable and act.target.components.shearable:CanShear())
+        or (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.SHEAR)
 end
 
 ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
@@ -370,9 +370,8 @@ ACTIONS.WEIGHDOWN.fn = function(act)
     if act.target == nil then
         return false
     end
-    local pos = Vector3(act.target.Transform:GetWorldPosition())
     if act.doer.components.inventory then
-        return act.doer.components.inventory:DropItem(act.invobject, false, false, pos)
+        return act.doer.components.inventory:DropItem(act.invobject, false, false, act.target:GetPosition())
     end
 end
 
@@ -383,7 +382,7 @@ ACTIONS.PUTONSHELF.fn = function(act)
         local item = act.invobject.components.inventoryitem:RemoveFromOwner(shelf.components.container.acceptsstacks)
         local success = shelf.components.container:GiveItem(item, act.target.components.visualslot:GetSlot(), nil, false)
         if item:HasTag("small_livestock") then -- TODO: 需要加一个对容器所属的展示柜的检测，使得生物无法离开带有罩子的展示柜
-            if act.doer and  item:HasTag("canbetrapped") then -- 鸟类之外的可被抓的生物都有canbetrapped标签
+            if act.doer and item:HasTag("canbetrapped") then -- 鸟类之外的可被抓的生物都有 canbetrapped 标签
                 local d_pos = act.doer:GetPosition()
                 local s_pos = shelf:GetPosition()
                 shelf.components.container:DropItemBySlot(act.target.components.visualslot:GetSlot(), (d_pos + s_pos) / 2)
@@ -402,7 +401,7 @@ end
 ACTIONS.TAKEFROMSHELF.fn = function(act)
     local shelf = act.target.components.visualslot:GetShelf()
 
-    if shelf.components.container ~= nil then
+    if shelf.components.container then
         local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualslot:GetSlot())
         act.doer.components.inventory:GiveItem(item, nil, act.doer:GetPosition())
 
@@ -435,6 +434,14 @@ end
 ACTIONS.RANSACK.fn = function(act)
     return true
 end
+
+ACTIONS.MAKEHOME.fn = function(act)
+    if act.doer and act.target then
+        return act.doer:MakeHomeAction(act.target)
+    end
+    return false
+end
+
 ACTIONS.POOP_TIP.fn = function(act)
     act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, act.doer:GetPosition())
     return true
@@ -506,7 +513,7 @@ function ACTIONS.EQUIP.fn(act, ...)
 end
 
 local _ExtraDropDist = ACTIONS.DROP.extra_arrive_dist
-local ExtraDropDist = function (doer, dest, bufferedaction, ...)--copy from scripts/actions.lua
+local ExtraDropDist = function (doer, dest, bufferedaction, ...) -- copied from scripts/actions.lua
     if not TheWorld:HasTag("porkland") then
         return _ExtraDropDist(doer, dest, bufferedaction, ...)
     end
@@ -583,10 +590,11 @@ end
 
 local _RUMMAGE_strfn = ACTIONS.RUMMAGE.strfn
 function ACTIONS.RUMMAGE.strfn(act, ...)
-    local targ = act.target or act.invobject
-
-    return targ ~= nil and targ.replica.container and targ.replica.container.type == "boat" and
-        (targ.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT") or _RUMMAGE_strfn(act, ...)
+    local target = act.target or act.invobject
+    if target and target.replica.container and target.replica.container.type == "boat" then
+        return target.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT"
+    end
+    return _RUMMAGE_strfn(act, ...)
 end
 
 local _RUMMAGE_fn = ACTIONS.RUMMAGE.fn
@@ -657,11 +665,11 @@ end
 
 local function TryToSoulhop(act, act_target, consumeall)
     return act.doer ~= nil
-    and act.doer.sg ~= nil
-    and act.doer.sg.currentstate.name == "portal_jumpin_pre"
-    and act_target ~= nil
-    and act.doer.TryToPortalHop ~= nil
-    and act.doer:TryToPortalHop(act.distancecount, consumeall)
+        and act.doer.sg ~= nil
+        and act.doer.sg.currentstate.name == "portal_jumpin_pre"
+        and act_target ~= nil
+        and act.doer.TryToPortalHop ~= nil
+        and act.doer:TryToPortalHop(act.distancecount, consumeall)
 end
 
 local _BLINK_fn = ACTIONS.BLINK.fn
@@ -826,14 +834,16 @@ end
 
 local _SCENE_inventoryitem = SCENE.inventoryitem
 function SCENE.inventoryitem(inst, doer, actions, right, ...)
-   if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint() and
-        not TheWorld.Map:IsLandTileAtPoint(inst.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
-        if inst.replica.inventoryitem:CanBePickedUp() and
-        doer.replica.inventory ~= nil and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable ~= nil) and
-        not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder")))) and
-        (not inst:HasTag("spider") or (doer:HasTag("spiderwhisperer") and right)) and
-        (right or not inst:HasTag("heavy")) and
-        not (right and inst.replica.container ~= nil and inst.replica.equippable == nil) then  --coryfrom SCENE.inventoryitem
+    if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint()
+        and not TheWorld.Map:IsLandTileAtPoint(inst.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
+
+        if inst.replica.inventoryitem:CanBePickedUp()
+            and doer.replica.inventory and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable)
+            and not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder"))))
+            and (not inst:HasTag("spider") or (doer:HasTag("spiderwhisperer") and right))
+            and (right or not inst:HasTag("heavy"))
+            and not (right and inst.replica.container and not inst.replica.equippable) then  -- copied from SCENE.inventoryitem
+
             table.insert(actions, ACTIONS.RETRIEVE)
         end
     else

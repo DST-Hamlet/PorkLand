@@ -48,8 +48,7 @@ local function MakeVeggie(name)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations("idle_water", "idle")
+        PorkLandMakeInventoryFloatable(inst)
 
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)
@@ -107,8 +106,7 @@ local function MakeVeggie(name)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations("cooked_water", "idle")
+        PorkLandMakeInventoryFloatable(inst, "cooked_water", "idle")
 
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)

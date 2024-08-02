@@ -213,13 +213,15 @@ local function MakeHedgeType(data)
 
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
+        inst.entity:AddNetwork()
+
         MakeInventoryPhysics(inst)
 
         inst.AnimState:SetBank("hedge")
         inst.AnimState:SetBuild("hedge" .. data.hedgetype .. "_build")
         inst.AnimState:PlayAnimation("idle")
 
-        MakeInventoryFloatable(inst, "idle_water", "idle")
+        PorkLandMakeInventoryFloatable(inst)
 
         inst.entity:SetPristine()
 

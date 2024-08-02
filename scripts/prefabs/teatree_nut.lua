@@ -32,7 +32,7 @@ local function common()
 
     MakeInventoryPhysics(inst)
 
-    MakeInventoryFloatable(inst)
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()
 
