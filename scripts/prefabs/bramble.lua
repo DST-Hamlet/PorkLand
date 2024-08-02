@@ -163,6 +163,8 @@ local function spikefn()
     inst:SetStateGraph("SGbramble")
     inst.sg:GoToState("grow")
 
+    MakeHauntable(inst)
+
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
 
@@ -324,6 +326,8 @@ local function corefn()
     inst:AddComponent("inspectable")
 
     inst:SetStateGraph("SGbramble")
+
+    MakeHauntable(inst)
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
