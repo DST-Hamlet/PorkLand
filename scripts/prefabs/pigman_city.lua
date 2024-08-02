@@ -1116,6 +1116,7 @@ local function CloseShop(inst)
 end
 
 local function shopkeeper_common_postinit(inst)
+    inst:AddTag("shopkeep")
     inst.AnimState:AddOverrideBuild("townspig_shop_wip")
 end
 
@@ -1135,8 +1136,6 @@ local function shopkeeper_master_postinit(inst)
 end
 
 local function MakeShopKeeper(name, build, sex, tags, econprefab)
-    tags = shallowcopy(tags or {})
-    table.insert(tags, "shopkeep")
     return MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit, econprefab)
 end
 

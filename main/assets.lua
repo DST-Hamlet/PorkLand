@@ -195,6 +195,13 @@ PrefabFiles = {
     "pl_magicprototyper",
     "cloudpuff",
     "batsonar_fx",
+    "ancient_herald",
+    "armor_vortex_cloak",
+    "herald_tatters",
+    "firerain",
+    "lavapool",
+    "meteor_impact",
+    "obsidian",
 }
 
 Assets = {

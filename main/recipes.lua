@@ -106,15 +106,21 @@ AddRecipe2("halberd", {Ingredient("alloy", 1), Ingredient("twigs", 2)}, TECH.SCI
 SortAfter("halberd", "spear", "WEAPONS")
 SortAfter("halberd", "shears", "TOOLS")
 
-AddRecipe2("metalplatehat", {Ingredient("alloy", 3),Ingredient("cork", 3)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
+AddRecipe2("metalplatehat", {Ingredient("alloy", 3), Ingredient("cork", 3)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
 SortBefore("metalplatehat", "cookiecutterhat", "ARMOUR")
 
-AddRecipe2("armor_metalplate", {Ingredient("alloy", 3),Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
+AddRecipe2("armor_metalplate", {Ingredient("alloy", 3), Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
 SortAfter("armor_metalplate", "armormarble", "ARMOUR")
 
 AddRecipe2("armor_weevole", {Ingredient("weevole_carapace", 4), Ingredient("chitin", 2)}, TECH.SCIENCE_TWO, {}, {"ARMOUR", "RAIN"})
 SortBefore("armor_weevole", "armorwood", "ARMOUR")
 SortBefore("armor_weevole", "raincoat", "RAIN")
+
+AddRecipe2("armorvortexcloak", {Ingredient("ancient_remnant", 5), Ingredient("armor_sanity", 1)}, TECH.LOST, {}, {"ARMOUR", "CLOTHING", "CONTAINERS", "MAGIC"})
+SortAfter("armorvortexcloak", "dreadstonehat", "ARMOUR")
+SortAfter("armorvortexcloak", "icepack", "CLOTHING")
+SortAfter("armorvortexcloak", "spicepack", "CONTAINERS")
+SortAfter("armorvortexcloak", "dreadstonehat", "MAGIC")
 
 AddRecipe2("living_artifact", {Ingredient("infused_iron", 6), Ingredient("waterdrop", 1)}, TECH.LOST, {}, {"MAGIC", "ARMOUR", "WEAPONS"})
 SortAfter("living_artifact", "nightmarefuel", "MAGIC")

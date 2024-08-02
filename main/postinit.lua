@@ -51,6 +51,7 @@ local component_posts = {
     "positionalwarp",
     "regrowthmanager",
     "repairable",
+    "resistance",
     "rider_replica",
     "rider",
     "seasons",
