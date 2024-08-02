@@ -183,6 +183,7 @@ local function MakeHat(name)
         end
 
         MakeInventoryFloatable(inst)
+        inst.components.floater:UpdateAnimations("idle_water", "anim")
         inst.components.floater:SetBankSwapOnFloat(false, nil, swap_data) --Hats default animation is not "idle", so even though we don't swap banks, we need to specify the swap_data for re-skinning to reset properly when floating
 
         inst.entity:SetPristine()
