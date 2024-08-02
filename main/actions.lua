@@ -43,6 +43,7 @@ if not rawget(_G, "HotReloading") then
         SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
+        GAS = Action({distance = 1.5, mount_enabled = true}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -287,12 +288,15 @@ local function DoTeleport(player, pos)
         end
         player.components.interiorvisitor:UpdateExteriorPos()
         -- player.components.health:SetInvincible(invincible)
-        Sleep(0.1) -- 出于未知原因，当 Sleep(0) 的时候 SnapCamera 执行时玩家的位置仍未发生变化，因此改为 0.1
+        Sleep(0.1)
         if player.components.playercontroller ~= nil then
             player.components.playercontroller:EnableMapControls(true)
             player.components.playercontroller:Enable(true)
         end
         player:SnapCamera()
+        if TheWorld.ismastersim then
+            TheCamera:Snap()
+        end
         player:ScreenFade(true, 0.4)
         player.sg:GoToState("idle")
     end)
@@ -479,6 +483,14 @@ ACTIONS.STOCK.fn = function(act)
         act.doer.changestock = nil
         return true
     end
+end
+
+ACTIONS.GAS.fn = function(act)
+	if act.invobject and act.invobject.components.gasser then
+        local pos = (act.pos and act:GetActionPoint()) or (act.target and act.target:GetPosition())
+		act.invobject.components.gasser:Gas(pos)
+		return true
+	end
 end
 
 
@@ -732,6 +744,11 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.DISARM)
             end
         end,
+        explosive = function(inst, doer, target, actions, right)
+            if target:HasTag("blunderbuss") then
+                table.insert(actions, ACTIONS.GIVE)
+            end
+        end,
         poisonhealer = function(inst, doer, target, actions, right)
             if target and target:HasTag("poisonable") then
                 if target:HasTag("poison") or (target:HasTag("player") and
@@ -744,11 +761,20 @@ local PL_COMPONENT_ACTIONS =
     },
 
     POINT = { -- args: inst, doer, pos, actions, right, target
-
+        gasser = function (inst, doer, pos, actions, right, target)
+            if right then
+                table.insert(actions, ACTIONS.GAS)
+            end
+        end
     },
 
     EQUIPPED = { -- args: inst, doer, target, actions, right
-
+        -- ziwbi: added gasser to EQUIPPED. why wouldn't you just spray on gnats directly?
+        gasser = function (inst, doer, pos, actions, right, target)
+            if right then
+                table.insert(actions, ACTIONS.GAS)
+            end
+        end
     },
 
     INVENTORY = { -- args: inst, doer, actions, right

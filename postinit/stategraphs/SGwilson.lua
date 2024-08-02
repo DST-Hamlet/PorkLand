@@ -150,6 +150,9 @@ local actionhandlers = {
             inst.sg.mem.shootpos = action:GetActionPoint()
         end
     end),
+    ActionHandler(ACTIONS.GAS, function(inst)
+        return "crop_dust"
+    end),
 }
 
 local eventhandlers = {
@@ -2144,6 +2147,122 @@ local states = {
             end),
         },
     },
+
+    State{
+        name = "crop_dust",
+        tags = {"busy", "canrotate"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+
+            local action = inst:GetBufferedAction()
+            local pos
+            if action.pos then -- POINT action
+                pos = action:GetActionPoint()
+            else -- EQUIPPED action
+                pos = action.target:GetPosition()
+            end
+
+            inst:FacePoint(Point(pos.x, pos.y, pos.z))
+
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("cropdust_pre")
+            inst.AnimState:PushAnimation("cropdust_loop")
+            inst.AnimState:PushAnimation("cropdust_pst", false)
+        end,
+
+        timeline =
+        {
+            TimeEvent(20 * FRAMES, function(inst)
+                inst:PerformBufferedAction()
+                inst.sg:RemoveStateTag("busy")
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/bugrepellant")
+            end),
+        },
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+    },
+
+    State{
+        name = "blunderbuss",
+        tags = {"attack", "notalking", "abouttoattack"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction and buffaction.target
+            inst.sg.statemem.target = target
+            inst.sg.statemem.target_position = target and target:GetPosition()
+
+            inst.components.combat:StartAttack()
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("speargun")
+
+            if target and target:IsValid() then
+                inst:FacePoint(target:GetPosition())
+            end
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(12 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst.components.combat:DoAttack(inst.sg.statemem.target)
+
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot")
+
+                local target_position
+                if inst.sg.statemem.target and inst.sg.statemem.target:IsValid() then
+                    target_position = inst.sg.statemem.target:GetPosition()
+                elseif inst.sg.statemem.target_position then
+                    target_position = inst.sg.statemem.target_position
+                end
+
+                local angle =  target_position and (inst:GetAngleToPoint(target_position.x, target_position.y, target_position.z) - 90) * DEGREES
+
+                inst.sg.statemem.target = nil
+                inst.sg.statemem.target_position = nil
+
+                local DIST = 1.5
+                local pt = Vector3(inst.Transform:GetWorldPosition())
+                local offset = Vector3(math.cos(angle + PI / 2), 0, -math.sin(angle + PI / 2)) * DIST
+                local y = inst.components.rider:IsRiding() and 4.5 or 2
+
+                local cloud = SpawnPrefab("cloudpuff")
+                cloud.Transform:SetPosition(pt.x + offset.x, y, pt.z + offset.z)
+            end),
+            TimeEvent(20 * FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -2184,6 +2303,10 @@ AddStategraphPostInit("wilson", function(sg)
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
         if not inst.sg:HasStateTag("sneeze") then
+            local weapon = inst.components.combat ~= nil and inst.components.combat:GetWeapon()
+            if weapon and weapon:HasTag("blunderbuss_loaded") then
+                return "blunderbuss"
+            end
             return _attack_deststate and _attack_deststate(inst, ...)
         end
     end
@@ -2339,6 +2462,10 @@ AddStategraphPostInit("wilson", function(sg)
         _attack_onenter(inst, data)
 
         inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", nil)
+
+        if equip and equip:HasTag("corkbat") then
+            inst.sg:SetTimeout(23 * FRAMES)
+        end
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn

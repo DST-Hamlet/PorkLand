@@ -114,6 +114,7 @@ AddPlayerPostInit(function(inst)
                 inst:ListenForEvent("oincsounddirty", PlayOincSound)
                 if TheWorld:HasTag("porkland") then
                     inst:AddComponent("windvisuals")
+                    inst:AddComponent("cloudpuffmanager")
                 end
             end
         end)

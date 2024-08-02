@@ -51,6 +51,7 @@ function Economy:GetTradeItems(traderprefab)
     return TRADER[traderprefab] and TRADER[traderprefab].items or nil
 end
 
+-- This is different from Don't Starve Hamlet, we use thing like "CITY_PIG_BANKER_TRADE" instead of STRINGS.CITY_PIG_BANKER_TRADE
 function Economy:GetTradeItemDesc(traderprefab)
     return TRADER[traderprefab] and TRADER[traderprefab].desc or nil
 end
