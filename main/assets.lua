@@ -181,6 +181,7 @@ PrefabFiles = {
     "city_hammer",
 
     "oinc",
+    "bramble",
     "antsuit",
     "armor_weevole",
     "blunderbuss",

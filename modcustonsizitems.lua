@@ -114,6 +114,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             asparagus_regrowth = {image = "asparagus.tex"},
         },
         misc = {
+            brambles = {desc = enable_descriptions},
             fog = {desc = enable_descriptions},
             glowflycycle = {image = "glowfly_life_cycle.tex", desc = enable_descriptions},
             poison = {desc = enable_descriptions},
