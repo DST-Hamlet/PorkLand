@@ -549,6 +549,31 @@ local tuning = {
 
     SPIDER_MONKEY_MATING_SEASON_BABYDELAY = total_day_time * 1.5,
     SPIDER_MONKEY_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.5,
+
+    BUGREPELLENT_USES = 20,
+    CORK_BAT_USES = 20,
+    CORK_BAT_DAMAGE = wilson_attack * 1.5,
+
+    BLUNDERBUSS_ATTACK_RANGE = 9,
+    BLUNDERBUSS_HIT_RANGE = 11,
+
+    ARMOR_WEEVOLE_DURABILITY = wilson_health*6,
+    ARMOR_WEEVOLE_ABSORPTION = .65,
+
+    CANDLEHAT_LIGHTTIME = night_time*2,
+
+    ANTMASKHAT_PERISHTIME = total_day_time*10,
+    ANTSUIT_PERISHTIME = total_day_time*10,
+    BATHAT_PERISHTIME = total_day_time*2,
+    ARMOR_SNAKESKIN_PERISHTIME = total_day_time*8, --was 10
+    SNAKESKINHAT_PERISHTIME = total_day_time*8, --was 10
+    BANDITHAT_PERISHTIME = total_day_time*1,
+    THUNDERHAT_PERISHTIME = total_day_time*4,
+    THUNDERHAT_USAGE_PER_LIGHTINING_STRIKE = 0.05, -- Percent
+    ARMOR_KNIGHT = wilson_health*8,
+    ARMOR_KNIGHT_ABSORPTION = .85,
+    PITHHAT_PERISHTIME = total_day_time*8,
+    GASMASK_PERISHTIME = total_day_time*3,
 }
 
 
@@ -605,6 +630,11 @@ TUNING.ROOM_MEDIUM_DEPTH = 16
 TUNING.ROOM_LARGE_WIDTH  = 26
 TUNING.ROOM_LARGE_DEPTH  = 18
 
+local TechTree = require("techtree")
+
+TUNING.PROTOTYPER_TREES.HOGUSPORKUSATOR = TechTree.Create({
+    MAGIC = 2,
+})
 
 
 for key, value in pairs(tuning) do

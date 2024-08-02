@@ -209,6 +209,12 @@ local pl_fx = {
         anim = "fall",
     },
     {
+        name = "cloudpuff",
+        bank = "splash_clouds_drop",
+        build = "cloud_puff_soft",
+        anim = "idle_sink",
+    },
+    {
         name = "armorvortexcloak_fx",
         bank = "cloakfx",
         build = "cloak_fx",

@@ -91,7 +91,7 @@ function FogOver:OnUpdate(dt)
         self:StopUpdating()
     end
 
-    if self.owner.replica.inventory:EquipHasTag("clearfog") then -- or TheCamera.interior
+    if self.owner.replica.inventory:EquipHasTag("clearfog") or self.owner:HasTag("inside_interior") then
         self:Hide()
     else
         self:Show()

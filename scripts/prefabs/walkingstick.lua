@@ -1,6 +1,6 @@
-local assets=
+local assets =
 {
-    Asset("ANIM", "anim/walking_stick.zip"),
+    Asset("ANIM", "anim/pl_walking_stick.zip"),
     Asset("ANIM", "anim/swap_walking_stick.zip"),
 }
 
@@ -39,8 +39,8 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    inst.AnimState:SetBank("cane")
-    inst.AnimState:SetBuild("walking_stick")
+    inst.AnimState:SetBank("pl_cane")
+    inst.AnimState:SetBuild("pl_walking_stick") -- name collision with Woodie's walking stick :/
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryPhysics(inst)
