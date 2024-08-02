@@ -286,21 +286,15 @@ local function ExtinguishfireAction(inst)
         return false
     end
 
-    local target = nil
-    for i, ent in ipairs(ents) do
+    for _, ent in ipairs(ents) do
         if ent.components.burnable and ent.components.burnable:IsBurning() then
             local pt = inst:GetPosition()
-            local tiletype = GetGroundTypeAtPosition(pt)
+            local tiletype = TheWorld.Map:GetTileAtPoint(pt)
 
-            if tiletype == GROUND.SUBURB or tiletype == GROUND.FOUNDATION or tiletype == GROUND.COBBLEROAD or tiletype == GROUND.LAWN or tiletype == GROUND.FIELDS then
-                target = ent
-                break
+            if tiletype == WORLD_TILES.SUBURB or tiletype == WORLD_TILES.FOUNDATION or tiletype == WORLD_TILES.COBBLEROAD or tiletype == WORLD_TILES.LAWN or tiletype == WORLD_TILES.FIELDS then
+                return BufferedAction(inst, ent, ACTIONS.MANUALEXTINGUISH)
             end
         end
-    end
-
-    if target then
-        return BufferedAction(inst, target, ACTIONS.MANUALEXTINGUISH)
     end
 end
 
