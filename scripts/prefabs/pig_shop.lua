@@ -207,6 +207,33 @@ local function LightsOff(inst)
     inst.SoundEmitter:PlaySound("dontstarve/pig/pighut_lightoff")
 end
 
+local function OnVacate(inst, child)
+    if not inst:HasTag("burnt") then
+        if inst.doortask then
+            inst.doortask:Cancel()
+            inst.doortask = nil
+        end
+        inst.SoundEmitter:KillSound("pigsound")
+
+        LightsOff(inst)
+
+        if child and child.components.health then
+            child.components.health:SetPercent(1)
+        end
+    end
+end
+
+local function OnOccupied(inst, child)
+    if not inst:HasTag("burnt") then
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/city_pig/pig_in_house_LP", "pigsound")
+
+        if inst.doortask ~= nil then
+            inst.doortask:Cancel()
+        end
+        inst.doortask = inst:DoTaskInTime(1, LightsOn)
+    end
+end
+
 local function OnHit(inst, worker)
     if not inst:HasTag("burnt") then
         inst.AnimState:PlayAnimation("hit")
@@ -261,6 +288,35 @@ local function OnPhaseChange(inst, phase)
             inst.components.door.disabled = true
         end
     end
+end
+
+local function OnDay(inst, isday)
+    if not isday then
+        return
+    end
+
+    if not inst:HasTag("burnt") then
+        inst:DoTaskInTime(1 + math.random() * 2, function()
+            if inst.components.spawner:IsOccupied() then
+                inst.components.spawner:ReleaseChild()
+            end
+        end)
+    end
+end
+
+local function InitSpawner(inst)
+    if not inst.components.spawner.child
+        and inst.components.spawner.childname and
+        not inst.components.spawner:IsSpawnPending() then
+
+        local child = SpawnPrefab(inst.components.spawner.childname)
+        if child then
+            inst.components.spawner:TakeOwnership(child)
+            inst.components.spawner:GoHome(child)
+        end
+    end
+    inst:WatchWorldState("isday", OnDay)
+    OnDay(inst, TheWorld.state.isday)
 end
 
 local function OnIsFiesta(inst, isfiesta)
@@ -546,7 +602,7 @@ end
 
 local function UseDoor(inst, data)
     if inst.use_sounds and data and data.doer and data.doer.SoundEmitter then
-        for i, sound in ipairs(inst.use_sounds) do
+        for _, sound in ipairs(inst.use_sounds) do
             data.doer.SoundEmitter:PlaySound(sound)
         end
     end
@@ -616,6 +672,7 @@ local function OnRemove(inst)
 end
 
 local function MakeShop(name, build, bank, data)
+    data = data or {}
     local function fn()
         local inst = CreateEntity()
 
@@ -658,7 +715,7 @@ local function MakeShop(name, build, bank, data)
         inst:AddTag("structure")
         inst:AddTag("city_hammerable")
 
-        if not data.nomusic then
+        if not data.no_shop_music then
             inst:AddTag("shop_music")
         end
 
@@ -685,8 +742,8 @@ local function MakeShop(name, build, bank, data)
             return inst
         end
 
-        inst.use_sounds = data and data.sounds or nil
-        inst.break_sound_sufix = data and data.usestonebreaksound and "stone" or "wood"
+        inst.use_sounds = data.sounds
+        inst.break_sound_sufix = data.use_stone_break_sound and "stone" or "wood"
 
         inst:AddComponent("gridnudger")
         inst.components.gridnudger.snap_to_grid = true
@@ -702,12 +759,21 @@ local function MakeShop(name, build, bank, data)
         inst.components.fixable:AddRecinstructionStageData("rubble", inst.bank, inst.build)
         inst.components.fixable:AddRecinstructionStageData("unbuilt", inst.bank, inst.build)
 
-        if not data or not data.indestructable then
+        if not data.indestructable then
             inst:AddComponent("workable")
             inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
             inst.components.workable:SetWorkLeft(4)
             inst.components.workable:SetOnWorkCallback(OnHit)
             inst.components.workable:SetOnFinishCallback(OnHammered)
+        end
+
+        if data.spawner then
+            inst:AddComponent("spawner")
+            inst.components.spawner:SetOnVacateFn(OnVacate)
+            inst.components.spawner:SetOnOccupiedFn(OnOccupied)
+            inst.components.spawner:SetWaterSpawning(false, true)
+            inst.components.spawner:Configure(data.spawner.prefab, data.spawner.delay)
+            inst:DoTaskInTime(0, InitSpawner)
         end
 
         inst:ListenForEvent("onbuilt", OnBuilt)
@@ -724,7 +790,7 @@ local function MakeShop(name, build, bank, data)
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
 
-        if not data or not data.unburnable then
+        if not data.unburnable then
             MakeLargeBurnable(inst, nil, nil, true)
             MakeLargePropagator(inst)
             -- inst.components.burnable:SetCanActuallyBurnFunction(canburn)
@@ -754,20 +820,20 @@ local function PlaceTestFn(inst)
 end
 
 return MakeShop("pig_shop_deli",            "pig_shop_deli",        nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}}),
-       MakeShop("pig_shop_general",         "pig_shop_general",     nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, usestonebreaksound = true}),
+       MakeShop("pig_shop_general",         "pig_shop_general",     nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
        MakeShop("pig_shop_hoofspa",         "pig_shop_hoofspa",     nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}}),
        MakeShop("pig_shop_produce",         "pig_shop_produce",     nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}}),
        MakeShop("pig_shop_florist",         "pig_shop_florist",     nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}}),
-       MakeShop("pig_shop_antiquities",     "pig_shop_antiquities", nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, usestonebreaksound = true}),
+       MakeShop("pig_shop_antiquities",     "pig_shop_antiquities", nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
        MakeShop("pig_shop_academy",         "pig_shop_accademia",   nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}}),
        MakeShop("pig_shop_arcane",          "pig_shop_arcane",      nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}}),
        MakeShop("pig_shop_weapons",         "pig_shop_weapons",     nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}}),
        MakeShop("pig_shop_hatshop",         "pig_shop_millinery",   nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}}),
-       MakeShop("pig_shop_bank",            "pig_shop_bank",        nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, usestonebreaksound = true}),
-       MakeShop("pig_shop_tinker",          "pig_shop_tinker",      nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, usestonebreaksound = true}),
-       MakeShop("pig_shop_cityhall",        "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, nomusic = true}),
-       MakeShop("pig_shop_cityhall_player", "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, usestonebreaksound = true, unburnable = true, nomusic = true}),
-       MakeShop("pig_palace",               "palace",               "palace",       {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, nomusic = true}),
+       MakeShop("pig_shop_bank",            "pig_shop_bank",        nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
+       MakeShop("pig_shop_tinker",          "pig_shop_tinker",      nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
+       MakeShop("pig_shop_cityhall",        "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true}),
+       MakeShop("pig_shop_cityhall_player", "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true, unburnable = true, no_shop_music = true}),
+       MakeShop("pig_palace",               "palace",               "palace",       {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true, spawner = {prefab = "pigman_banker", delay = TUNING.TOTAL_DAY_TIME * 4}}),
 
        MakePlacer("pig_shop_deli_placer",        "pig_shop",     "pig_shop_deli",        "idle", false, false, true),
        MakePlacer("pig_shop_general_placer",     "pig_shop",     "pig_shop_general",     "idle", false, false, true),
