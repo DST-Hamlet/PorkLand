@@ -281,143 +281,43 @@ end
 local function CreateInteriorPalace(inst, exterior_door_def)
     local interior_spawner = TheWorld.components.interiorspawner
 
-    local galleryID = interior_spawner:GetNewID()
-    local giftshopID = interior_spawner:GetNewID()
+    local gallery_id = interior_spawner:GetNewID()
+    local giftshop_id = interior_spawner:GetNewID()
 
     local depth = 18
     local width = 26
+    local height = 13
 
     local name = inst.prefab
+    local city_id = inst.components.citypossession and inst.components.citypossession.cityID
 
-    local floortexture   = "levels/textures/interiors/floor_marble_royal.tex"
-    local walltexture    = "levels/textures/interiors/wall_royal_high.tex"
-    local minimaptexture = "levels/textures/map_interior/mini_floor_marble_royal.tex"
+    local floortexture   = PIG_SHOP_TEXTURE.PIG_PALACE.FLOOR
+    local walltexture    = PIG_SHOP_TEXTURE.PIG_PALACE.WALL
+    local minimaptexture = PIG_SHOP_TEXTURE.PIG_PALACE.MINIMAP
 
     local togallery_door_def =
     {
         my_door_id = "palace_courtroom_WEST",
         target_door_id = "palace_gallery_EAST",
-        target_interior = galleryID,
+        target_interior = gallery_id,
     }
 
-    local addprops =
-    {
-        { name = "prop_door", x_offset = 9, z_offset = 0, animdata = {bank = "palace_door", build = "palace_door", anim = "south", background = false },
-            my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id, rotation = -90, addtags = {"guard_entrance"}, usesounds={"dontstarve_DLC003/common/objects/store/door_close"} },
-
-        { name = "prop_door_shadow", x_offset = 9, z_offset = 0, animdata = {bank = "palace_door", build = "palace_door", anim = "south_floor"} },
-
-        { name = "deco_roomglow_large", x_offset = 0, z_offset = 0 },
-
-
-        { name = "prop_door", x_offset = 0, z_offset = -26/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
-            my_door_id = togallery_door_def.my_door_id, target_door_id = togallery_door_def.target_door_id, target_interior = togallery_door_def.target_interior, rotation = -90, flip = true, addtags = {"lockable_door","door_west"} },
-
-        { name = "deco_palace_beam_room_tall_corner",       x_offset = -18/2, z_offset = -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall_corner",       x_offset = -18/2, z_offset =  26/2, rotation = 90 },
-        { name = "deco_palace_beam_room_tall_corner_front", x_offset =  18/2, z_offset = -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall_corner_front", x_offset =  18/2, z_offset =  26/2, rotation = 90 },
-
-        { name = "deco_palace_beam_room_tall", x_offset = -18/2, z_offset = -26/6-1, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall", x_offset = -18/2, z_offset =  26/6+1, rotation = 90 },
-
-        { name = "deco_palace_beam_room_tall_lights", x_offset = -18/6, z_offset = -26/6 -1, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall_lights", x_offset = -18/6, z_offset =  26/6 +1, rotation = 90 },
-
-        { name = "deco_palace_beam_room_tall_lights", x_offset = 18/6, z_offset = -26/6 -1, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall_lights", x_offset = 18/6, z_offset =  26/6 +1, rotation = 90 },
-
-        { name = "deco_palace_banner_big_front", x_offset = -18/6, z_offset = -26/3-0.5, rotation = 90 },
-        { name = "deco_palace_banner_big_front", x_offset = -18/6, z_offset =  26/3+0.5, rotation = 90 },
-        { name = "deco_palace_banner_big_front", x_offset =  18/6, z_offset = -26/3-0.5, rotation = 90 },
-        { name = "deco_palace_banner_big_front", x_offset =  18/6, z_offset =  26/3+0.5, rotation = 90 },
-
-        { name = "deco_palace_banner_small_front", x_offset = -18/2, z_offset = -26/18-3, rotation = 90 },
-        { name = "deco_palace_banner_small_front", x_offset = -18/2, z_offset =  26/18+3, rotation = 90 },
-
-        { name = "deco_palace_banner_small_front", x_offset = -18/2, z_offset = -26/18 - 26/3, rotation = 90 },
-        { name = "deco_palace_banner_small_front", x_offset = -18/2, z_offset =  26/18 - 26/3, rotation = 90 },
-
-        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14, z_offset = -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14, z_offset =  26/2, rotation = 90 },
-        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14, z_offset = -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14, z_offset =  26/2, rotation = 90 },
-
-        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14 * 3, z_offset = -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14 * 3, z_offset =  26/2, rotation = 90 },
-        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14 * 3, z_offset = -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14 * 3, z_offset =  26/2, rotation = 90 },
-
-        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14 * 5, z_offset =  -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14 * 5, z_offset =   26/2, rotation = 90 },
-        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14 * 5, z_offset =  -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14 * 5, z_offset =   26/2, rotation = 90 },
-
-        { name = "deco_palace_beam_room_tall_corner", x_offset = -18/6, z_offset = -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall_corner", x_offset =  18/6, z_offset = -26/2, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall_corner", x_offset = -18/6, z_offset =  26/2, rotation = 90 },
-        { name = "deco_palace_beam_room_tall_corner", x_offset =  18/6, z_offset =  26/2, rotation = 90 },
-
-        { name = "deco_palace_plant", x_offset = -18/2 +0.3, z_offset = -26/6.5, rotation = 90, flip = true },
-        { name = "deco_palace_plant", x_offset = -18/2 +0.3, z_offset =  26/6.5, rotation = 90 },
-
-        { name = "wall_mirror", x_offset =  18/3, z_offset = -26/2, rotation = -90 },
-        { name = "wall_mirror", x_offset = -18/3, z_offset = -26/2, rotation = -90 },
-
-        -- { name = "wall_mirror", x_offset =  18/3, z_offset = 26/2, rotation = 90, flip=true },
-        -- { name = "wall_mirror", x_offset = -18/3, z_offset = 26/2, rotation = 90, flip=true },
-
-        { name = "deco_cityhall_picture1", x_offset =  18/3, z_offset = 26/2, rotation = 90 },
-        { name = "deco_cityhall_picture2", x_offset =  -0.5, z_offset = 26/2, rotation = 90 },
-        { name = "deco_cityhall_picture1", x_offset =  -18/3, z_offset = 26/2, rotation = 90 },
-
-        { name = "pigman_queen",       x_offset = -3, z_offset = 0 },
-        { name = "deco_palace_throne", x_offset = -6, z_offset = 0, rotation = 90 },
-
-        -- floor corner pieces
-        { name = "rug_palace_corners", x_offset = -18/2, z_offset =  26/2, rotation = 90  },
-        { name = "rug_palace_corners", x_offset =  18/2, z_offset =  26/2, rotation = 180 },
-        { name = "rug_palace_corners", x_offset =  18/2, z_offset = -26/2, rotation = 270 },
-        { name = "rug_palace_corners", x_offset = -18/2, z_offset = -26/2, rotation = 0   },
-
-        -- front wall floor lights
-        { name = "swinglightobject", x_offset = 18/2, z_offset = -26/3, rotation = -90 },
-        { name = "swinglightobject", x_offset = 18/2, z_offset =  26/3, rotation = -90 },
-
-        -- back wall lights and floor lights
-        { name = "window_round_light_backwall", x_offset = -18/2, z_offset = -26/3, rotation = -90 },
-        { name = "window_palace",               x_offset = -18/2, z_offset = -26/3, rotation =  90 },
-        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =  26/3, rotation = -90 },
-        { name = "window_palace",               x_offset = -18/2, z_offset =  26/3, rotation =  90 },
-        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =     0, rotation = -90 },
-        { name = "window_palace_stainglass",    x_offset = -18/2, z_offset =     0, rotation =  90 },
-
-        -- aisle rug
-        { name = "rug_palace_runner", x_offset =   -3.38, z_offset = 0, rotation = 90 },
-        { name = "rug_palace_runner", x_offset = -3.38*2, z_offset = 0, rotation = 90 },
-        { name = "rug_palace_runner", x_offset =       0, z_offset = 0, rotation = 90 },
-        { name = "rug_palace_runner", x_offset =    3.38, z_offset = 0, rotation = 90 },
-        { name = "rug_palace_runner", x_offset =  3.38*2, z_offset = 0, rotation = 90 },
-    }
-
-    local cityID = inst.components.citypossession and inst.components.citypossession.cityID
-
-    local def = interior_spawner:CreateRoom("generic_interior", width, 13, depth, name, inst.interiorID, addprops, {}, walltexture, floortexture, minimaptexture, cityID, "images/colour_cubes/pigshop_interior_cc.tex", nil, nil, "palace", "PALACE","STONE")
+    local palace_addprops = GetPropDef("pig_palace", depth, width, exterior_door_def, togallery_door_def)
+    local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, inst.interiorID, palace_addprops, {}, walltexture, floortexture, minimaptexture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
-
 
     -- CREATE GALLERY
 
     depth = 12
     width = 18
+    height = 12
 
     local togiftshop_door_def =
     {
         my_door_id = "palace_gallery_WEST",
         target_door_id = "palace_giftshop_EAST",
-        target_interior = giftshopID,
+        target_interior = giftshop_id,
     }
-
     local topalace_door_def =
     {
         my_door_id = "palace_gallery_EAST",
@@ -425,119 +325,30 @@ local function CreateInteriorPalace(inst, exterior_door_def)
         target_interior = inst.interiorID,
     }
 
-    addprops =
-    {
-        { name = "deco_roomglow", x_offset = 0, z_offset = 0 },
-
-        { name = "prop_door", x_offset =0, z_offset = -18/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
-            my_door_id = togiftshop_door_def.my_door_id, target_door_id = togiftshop_door_def.target_door_id, target_interior = togiftshop_door_def.target_interior, rotation = -90, flip = true, addtags = {"lockable_door", "door_west"} },
-
-        { name = "prop_door", x_offset =0, z_offset = 18/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
-            my_door_id = topalace_door_def.my_door_id, target_door_id =topalace_door_def.target_door_id, target_interior = topalace_door_def.target_interior, rotation = 90, addtags = {"lockable_door", "door_east"} },
-
-        { name = "rug_palace_corners", x_offset = -12/2, z_offset =  18/2, rotation = 90  },
-        { name = "rug_palace_corners", x_offset =  12/2, z_offset =  18/2, rotation = 180 },
-        { name = "rug_palace_corners", x_offset =  12/2, z_offset = -18/2, rotation = 270 },
-        { name = "rug_palace_corners", x_offset = -12/2, z_offset = -18/2, rotation = 0   },
-
-        { name = "window_round_light_backwall", x_offset = -12/2, z_offset = -18/3, rotation = -90 },
-        { name = "window_palace",               x_offset = -12/2, z_offset = -18/3, rotation =  90 },
-        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =  26/3, rotation = -90 },
-        { name = "window_palace",               x_offset = -12/2, z_offset =  18/3, rotation =  90 },
-
-        { name = "deco_palace_beam_room_tall_corner",       x_offset = -12/2, z_offset =  -18/2, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall_corner",       x_offset = -12/2, z_offset =   18/2, rotation = 90 },
-        { name = "deco_palace_beam_room_tall_corner_front", x_offset =  12/2, z_offset =  -18/2, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall_corner_front", x_offset =  12/2, z_offset =   18/2, rotation = 90 },
-
-        { name = "deco_palace_beam_room_tall", x_offset = -12/6, z_offset =  -18/6, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall", x_offset = -12/6, z_offset =  18/6, rotation = 90 },
-
-        { name = "deco_palace_beam_room_tall", x_offset = 12/6, z_offset =  -18/6, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_tall", x_offset = 12/6, z_offset =  18/6, rotation = 90 },
-
-
-        { name = "shelves_queen_display_1", x_offset = -12/4, z_offset =  -18/3, rotation = 90, shelfitems={{1,"key_to_city"}} },
-        { name = "shelves_queen_display_2", x_offset =     0, z_offset =      0, rotation = 90, shelfitems={{1,"trinket_giftshop_4"}} },
-        { name = "shelves_queen_display_3", x_offset = -12/4, z_offset =   18/3, rotation = 90, flip = true, shelfitems={{1,"city_hammer"}} },
-        --{ name = "shelves_queen_display_1", x_offset =  12/4, z_offset =  -18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
-        --{ name = "shelves_queen_display_4", x_offset =  12/4, z_offset =   18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
-
-       -- { name = "shop_buyer", x_offset = -12/4, z_offset =  -18/3,  saveID = true, startAnim = "lock19_east" },
-       -- { name = "shop_buyer", x_offset =     0, z_offset =      0,  saveID = true, startAnim = "lock17_east" },
-       -- { name = "shop_buyer", x_offset = -12/4, z_offset =   18/3,  saveID = true, startAnim = "lock12_west" },
-       -- { name = "shop_buyer", x_offset =  12/4, z_offset =  -18/3,  saveID = true, startAnim = "lock19_east" },
-       -- { name = "shop_buyer", x_offset =  12/4, z_offset =   18/3,  saveID = true, startAnim = "lock12_west" },
-
-        { name = "deco_palace_banner_small_sidewall", x_offset = -12/14 * 3, z_offset =  -18/2, rotation = 90, flip = true },
-        { name = "deco_palace_banner_small_sidewall", x_offset = -12/14 * 3, z_offset =   18/2, rotation = 90 },
-        { name = "deco_palace_banner_small_sidewall", x_offset =  12/14 * 3, z_offset =  -18/2, rotation = 90, flip = true },
-        { name = "deco_palace_banner_small_sidewall", x_offset =  12/14 * 3, z_offset =   18/2, rotation = 90 },
-
-        { name = "shelves_marble", x_offset = -12/2, z_offset = 0, shelfitems={{5,"trinket_20"},{6,"trinket_14"},{3,"trinket_4"},{4,"trinket_2"}}  },
-    }
-
-    def = interior_spawner:CreateRoom("generic_interior", width, 12, depth, name, galleryID, addprops, {}, walltexture, floortexture, minimaptexture, cityID ,"images/colour_cubes/pigshop_interior_cc.tex", nil, nil, "palace", "PALACE","STONE")
+    local gallery_addprops = GetPropDef("pig_palace_gallery", depth, width, togiftshop_door_def, topalace_door_def)
+    def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, gallery_id, gallery_addprops, {}, walltexture, floortexture, minimaptexture, city_id ,PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
-
 
     -- CREATE GIFT SHOP
 
     depth = 10
     width = 15
-
-    local togallery_door_def =
-    {
-        my_door_id = "palace_giftshop_EAST",
-        target_door_id = "palace_gallery_WEST",
-        target_interior = galleryID,
-    }
+    height = 11
 
     local toexit_door_def =
     {
         my_door_id = "palace_giftshop_SOUTH",
         target_door_id = exterior_door_def.my_door_id,
     }
-
-    addprops =
+    local togallery_door_def =
     {
-        { name = "deco_roomglow", x_offset = 0, z_offset = 0 },
-
-        { name = "prop_door", x_offset = 10/2, z_offset = 0, animdata = {bank = "pig_shop_doormats", build = "pig_shop_doormats", anim = "idle_giftshop", background = true },
-            my_door_id = toexit_door_def.my_door_id, target_door_id = toexit_door_def.target_door_id, rotation = -90, addtags = {"guard_entrance"}, usesounds={"dontstarve_DLC003/common/objects/store/door_close"} },
-
-        { name = "prop_door", x_offset = 0, z_offset = 15/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
-            my_door_id = togallery_door_def.my_door_id, target_door_id =togallery_door_def.target_door_id, target_interior = togallery_door_def.target_interior, rotation = 90, addtags = {"lockable_door", "door_east"} },
-
-        { name = "rug_palace_corners", x_offset = -10/2, z_offset =  15/2, rotation = 90  },
-        { name = "rug_palace_corners", x_offset =  10/2, z_offset =  15/2, rotation = 180 },
-        { name = "rug_palace_corners", x_offset =  10/2, z_offset = -15/2, rotation = 270 },
-        { name = "rug_palace_corners", x_offset = -10/2, z_offset = -15/2, rotation = 0   },
-
-        { name = "deco_palace_beam_room_short_corner_lights",       x_offset = -10/2, z_offset =  -15/2, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_short_corner_lights",       x_offset = -10/2, z_offset =   15/2, rotation = 90 },
-        { name = "deco_palace_beam_room_short_corner_front_lights", x_offset =  10/2, z_offset =  -15/2, rotation = 90, flip = true },
-        { name = "deco_palace_beam_room_short_corner_front_lights", x_offset =  10/2, z_offset =   15/2, rotation = 90 },
-
-        { name = "deco_cityhall_picture2", x_offset = -10/5, z_offset = -15/2, rotation = 90, flip = true },
-        { name = "deco_cityhall_picture1", x_offset =  10/5, z_offset = -15/2, rotation = 90, flip = true },
-
-        { name = "shelves_wood", x_offset = -10/2, z_offset = -15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{2,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
-        { name = "shelves_wood", x_offset = -10/2, z_offset =  15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{4,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
-
-        { name = "swinging_light_floral_bloomer", x_offset = 0, z_offset = 0 },
-
-        { name = "shelves_displaycase", x_offset = -10/5, z_offset = -15/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_1"},{2,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
-        { name = "shelves_displaycase", x_offset =  10/5, z_offset =  15/3, rotation = 90,              shelfitems={{1,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
-        { name = "shelves_displaycase", x_offset =  10/5, z_offset = -15/3, rotation = 90, flip = true, shelfitems={{2,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
-        { name = "shelves_displaycase", x_offset = -10/5, z_offset =  15/3, rotation = 90,              shelfitems={{1,"trinket_giftshop_1"},{2,"trinket_giftshop_1"}} },
+        my_door_id = "palace_giftshop_EAST",
+        target_door_id = "palace_gallery_WEST",
+        target_interior = gallery_id,
     }
 
-    -- if not Profile:IsCharacterUnlocked("wilba") then
-    --     table.insert(addprops, { name = "grounded_wilba", x_offset = 0, z_offset = 0 })
-    -- end
-
-    def = interior_spawner:CreateRoom("generic_interior", width, 11, depth, name, giftshopID, addprops, {}, walltexture, floortexture, minimaptexture, cityID ,"images/colour_cubes/pigshop_interior_cc.tex", nil, nil, "palace", "PALACE","STONE")
+    local giftshop_addprops = GetPropDef("pig_palace_giftshop", depth, width, toexit_door_def, togallery_door_def)
+    def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, giftshop_id, giftshop_addprops, {}, walltexture, floortexture, minimaptexture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
 end
 

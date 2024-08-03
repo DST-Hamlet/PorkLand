@@ -1978,6 +1978,97 @@ PROP_DEFS.pig_palace = function (depth, width, exterior_door_def, togallery_door
     }
 end
 
+PROP_DEFS.pig_palace_gallery = function (depth, width, togiftshop_door_def, topalace_door_def)
+    return {
+        { name = "deco_roomglow", x_offset = 0, z_offset = 0 },
+
+        { name = "prop_door", x_offset =0, z_offset = -18/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
+            my_door_id = togiftshop_door_def.my_door_id, target_door_id = togiftshop_door_def.target_door_id, target_interior = togiftshop_door_def.target_interior, rotation = -90, flip = true, addtags = {"lockable_door", "door_west"} },
+
+        { name = "prop_door", x_offset =0, z_offset = 18/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
+            my_door_id = topalace_door_def.my_door_id, target_door_id =topalace_door_def.target_door_id, target_interior = topalace_door_def.target_interior, rotation = 90, addtags = {"lockable_door", "door_east"} },
+
+        { name = "rug_palace_corners", x_offset = -12/2, z_offset =  18/2, rotation = 90  },
+        { name = "rug_palace_corners", x_offset =  12/2, z_offset =  18/2, rotation = 180 },
+        { name = "rug_palace_corners", x_offset =  12/2, z_offset = -18/2, rotation = 270 },
+        { name = "rug_palace_corners", x_offset = -12/2, z_offset = -18/2, rotation = 0   },
+
+        { name = "window_round_light_backwall", x_offset = -12/2, z_offset = -18/3, rotation = -90 },
+        { name = "window_palace",               x_offset = -12/2, z_offset = -18/3, rotation =  90 },
+        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =  26/3, rotation = -90 },
+        { name = "window_palace",               x_offset = -12/2, z_offset =  18/3, rotation =  90 },
+
+        { name = "deco_palace_beam_room_tall_corner",       x_offset = -12/2, z_offset =  -18/2, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall_corner",       x_offset = -12/2, z_offset =   18/2, rotation = 90 },
+        { name = "deco_palace_beam_room_tall_corner_front", x_offset =  12/2, z_offset =  -18/2, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall_corner_front", x_offset =  12/2, z_offset =   18/2, rotation = 90 },
+
+        { name = "deco_palace_beam_room_tall", x_offset = -12/6, z_offset =  -18/6, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall", x_offset = -12/6, z_offset =  18/6, rotation = 90 },
+
+        { name = "deco_palace_beam_room_tall", x_offset = 12/6, z_offset =  -18/6, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall", x_offset = 12/6, z_offset =  18/6, rotation = 90 },
+
+
+        { name = "shelves_queen_display_1", x_offset = -12/4, z_offset =  -18/3, rotation = 90, shelfitems={{1,"key_to_city"}} },
+        { name = "shelves_queen_display_2", x_offset =     0, z_offset =      0, rotation = 90, shelfitems={{1,"trinket_giftshop_4"}} },
+        { name = "shelves_queen_display_3", x_offset = -12/4, z_offset =   18/3, rotation = 90, flip = true, shelfitems={{1,"city_hammer"}} },
+        --{ name = "shelves_queen_display_1", x_offset =  12/4, z_offset =  -18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
+        --{ name = "shelves_queen_display_4", x_offset =  12/4, z_offset =   18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
+
+       -- { name = "shop_buyer", x_offset = -12/4, z_offset =  -18/3,  saveID = true, startAnim = "lock19_east" },
+       -- { name = "shop_buyer", x_offset =     0, z_offset =      0,  saveID = true, startAnim = "lock17_east" },
+       -- { name = "shop_buyer", x_offset = -12/4, z_offset =   18/3,  saveID = true, startAnim = "lock12_west" },
+       -- { name = "shop_buyer", x_offset =  12/4, z_offset =  -18/3,  saveID = true, startAnim = "lock19_east" },
+       -- { name = "shop_buyer", x_offset =  12/4, z_offset =   18/3,  saveID = true, startAnim = "lock12_west" },
+
+        { name = "deco_palace_banner_small_sidewall", x_offset = -12/14 * 3, z_offset =  -18/2, rotation = 90, flip = true },
+        { name = "deco_palace_banner_small_sidewall", x_offset = -12/14 * 3, z_offset =   18/2, rotation = 90 },
+        { name = "deco_palace_banner_small_sidewall", x_offset =  12/14 * 3, z_offset =  -18/2, rotation = 90, flip = true },
+        { name = "deco_palace_banner_small_sidewall", x_offset =  12/14 * 3, z_offset =   18/2, rotation = 90 },
+
+        { name = "shelves_marble", x_offset = -12/2, z_offset = 0, shelfitems={{5,"trinket_20"},{6,"trinket_14"},{3,"trinket_4"},{4,"trinket_2"}}  },
+    }
+end
+
+PROP_DEFS.pig_palace_giftshop = function (depth, width, toexit_door_def, togallery_door_def)
+    return {
+        { name = "deco_roomglow", x_offset = 0, z_offset = 0 },
+
+        { name = "prop_door", x_offset = 10/2, z_offset = 0, animdata = {bank = "pig_shop_doormats", build = "pig_shop_doormats", anim = "idle_giftshop", background = true },
+            my_door_id = toexit_door_def.my_door_id, target_door_id = toexit_door_def.target_door_id, rotation = -90, addtags = {"guard_entrance"}, usesounds={"dontstarve_DLC003/common/objects/store/door_close"} },
+
+        { name = "prop_door", x_offset = 0, z_offset = 15/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
+            my_door_id = togallery_door_def.my_door_id, target_door_id =togallery_door_def.target_door_id, target_interior = togallery_door_def.target_interior, rotation = 90, addtags = {"lockable_door", "door_east"} },
+
+        { name = "rug_palace_corners", x_offset = -10/2, z_offset =  15/2, rotation = 90  },
+        { name = "rug_palace_corners", x_offset =  10/2, z_offset =  15/2, rotation = 180 },
+        { name = "rug_palace_corners", x_offset =  10/2, z_offset = -15/2, rotation = 270 },
+        { name = "rug_palace_corners", x_offset = -10/2, z_offset = -15/2, rotation = 0   },
+
+        { name = "deco_palace_beam_room_short_corner_lights",       x_offset = -10/2, z_offset =  -15/2, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_short_corner_lights",       x_offset = -10/2, z_offset =   15/2, rotation = 90 },
+        { name = "deco_palace_beam_room_short_corner_front_lights", x_offset =  10/2, z_offset =  -15/2, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_short_corner_front_lights", x_offset =  10/2, z_offset =   15/2, rotation = 90 },
+
+        { name = "deco_cityhall_picture2", x_offset = -10/5, z_offset = -15/2, rotation = 90, flip = true },
+        { name = "deco_cityhall_picture1", x_offset =  10/5, z_offset = -15/2, rotation = 90, flip = true },
+
+        { name = "shelves_wood", x_offset = -10/2, z_offset = -15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{2,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
+        { name = "shelves_wood", x_offset = -10/2, z_offset =  15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{4,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
+
+        { name = "swinging_light_floral_bloomer", x_offset = 0, z_offset = 0 },
+
+        { name = "shelves_displaycase", x_offset = -10/5, z_offset = -15/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_1"},{2,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
+        { name = "shelves_displaycase", x_offset =  10/5, z_offset =  15/3, rotation = 90,              shelfitems={{1,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
+        { name = "shelves_displaycase", x_offset =  10/5, z_offset = -15/3, rotation = 90, flip = true, shelfitems={{2,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
+        { name = "shelves_displaycase", x_offset = -10/5, z_offset =  15/3, rotation = 90,              shelfitems={{1,"trinket_giftshop_1"},{2,"trinket_giftshop_1"}} },
+    }
+    -- if not Profile:IsCharacterUnlocked("wilba") then
+    --     table.insert(addprops, { name = "grounded_wilba", x_offset = 0, z_offset = 0 })
+    -- end
+end
+
 PROP_DEFS.vampirebatcave = function(exterior_door_def, height, width)
     local addprops = {
         {
