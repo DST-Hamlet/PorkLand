@@ -37,7 +37,7 @@ local function OnLoad(inst, data)
 	inst.joint_layer_shown = data.joint_layer_shown
 	inst.pipe_layer_shown = data.pipe_layer_shown
 
-	HideLayers(inst.AnimState)
+	HideLayers(inst)
 	inst.AnimState:Show(inst.joint_layer_shown)
 	inst.AnimState:Show(inst.pipe_layer_shown)
 end

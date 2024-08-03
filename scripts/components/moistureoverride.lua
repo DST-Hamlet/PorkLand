@@ -29,13 +29,20 @@ function MoistureOverride:RemoveMultMoisture(source)
 end
 
 function MoistureOverride:OnUpdate(dt)
-    local wetrate = TheWorld.components.plateauweather:GetMoistureRate()
-    self.rate_mult:SetModifier(WETNESS_SOURCE_WEATHER, wetrate)
+    local rate_additive = self.rate_add:Get() * dt
+    if rate_additive <= 0 then
+        local wetrate = TheWorld.net.components.plateauweather:GetMoistureRate()
+        self.rate_mult:SetModifier(WETNESS_SOURCE_WEATHER, wetrate)
+    end
 
-    self.wetness = (self.wetness * self.rate_mult:Get()) + self.rate_add:Get() * dt
-    if self.wetness < 0 then
+    self.wetness = math.clamp((self.wetness * self.rate_mult:Get()) + self.rate_add:Get() * dt, 0, TUNING.MAX_WETNESS)
+    if self.wetness == 0 then
         self.inst:RemoveComponent("moistureoverride")
     end
+end
+
+function MoistureOverride:GetDebugString()
+    return string.format("Wetness: %2.2f Rate(additive): %2.2f Rate(multiply): %2.2f", self.wetness, self.rate_add:Get(), self.rate_mult:Get())
 end
 
 return MoistureOverride

@@ -206,6 +206,7 @@ PrefabFiles = {
     "nettle_plant",
     "sprinkler",
     "water_pipe",
+    "water_spray",
 }
 
 Assets = {

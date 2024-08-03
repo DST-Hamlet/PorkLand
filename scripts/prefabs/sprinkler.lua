@@ -73,7 +73,7 @@ local function TurnOff(inst)
 
     for GUID, ent in pairs(inst.moisture_targets) do
         if ent.components.moistureoverride then -- just in case
-            ent.components.moistureoverride:RemoveMoistureFromSource(inst)
+            ent.components.moistureoverride:RemoveAddMoisture(inst)
         end
     end
 
@@ -109,9 +109,9 @@ local function UpdateSpray(inst)
 
         if not v.components.moistureoverride then
             v:AddComponent("moistureoverride")
+            v.components.moistureoverride:SetAddMoisture(inst, TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY / UPDATE_TIME) -- +2.5 per sec
+            v:StartUpdatingComponent(v.components.moistureoverride)
         end
-        v.components.moistureoverride:SetAddMoisture(inst, TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY / UPDATE_TIME) -- +2.5 per sec
-        v:StartUpdatingComponent(v.components.moistureoverride)
 
         if v.components.crop and v.components.crop.task then
             v.components.crop.growthpercent = v.components.crop.growthpercent + (0.001)

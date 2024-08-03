@@ -70,7 +70,8 @@ local function OnUpdate(self, dt)
     -- Remove for monkeys away from herd
     for _, monkey in pairs(_monkeys) do
         if monkey and monkey:IsValid() then
-            if monkey.herd and monkey.herd.leader and monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
+            if monkey.herd and monkey.herd.leader and monkey.herd.leader:IsValid()
+                and monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
                 self:RemoveFromHerd(monkey)
             else
                 self:AddToHerd(monkey)

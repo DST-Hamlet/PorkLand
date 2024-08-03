@@ -129,10 +129,12 @@ local function UpdateMoisture(inst)
     elseif moisture > TUNING.NETTLE_MOISTURE_DRY_THRESHOLD then -- still a bit dry
         inst.AnimState:AddOverrideBuild(BULB_HALF_OPEN_BUILD)
         inst.AnimState:ClearOverrideBuild(BULB_CLOSED_BUILD)
+        inst.wet = false
         -- don't pause growth just yet, give players some time
     else -- too dry
         inst.AnimState:ClearOverrideBuild(BULB_HALF_OPEN_BUILD)
         inst.AnimState:AddOverrideBuild(BULB_CLOSED_BUILD)
+        inst.wet = false
         UpdateGrowthStatus(inst) -- stop growing
     end
 end
@@ -187,13 +189,6 @@ local function fn()
     inst.components.workable:SetOnFinishCallback(OnFinishCallback)
     inst.components.workable:SetWorkLeft(1)
 
-    inst:AddComponent("moisturelistener")
-    inst.components.moisturelistener.wetnessThreshold = TUNING.NETTLE_MOISTURE_WET_THRESHOLD
-    inst.components.moisturelistener.drynessThreshold = TUNING.NETTLE_MOISTURE_DRY_THRESHOLD
-    inst.components.moisturelistener.overrideinventoryonly = true
-
-
-
     MakeMediumBurnable(inst)
     MakeSmallPropagator(inst)
     MakeNoGrowInWinter(inst)
@@ -201,6 +196,7 @@ local function fn()
 
     inst.wet = false
     inst:DoPeriodicTask(1, UpdateMoisture)
+    UpdateGrowthStatus(inst)
 
     return inst
 end

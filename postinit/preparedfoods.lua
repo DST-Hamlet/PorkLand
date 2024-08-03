@@ -1,3 +1,3 @@
 local preparedfoods = require("preparedfoods")
 
-preparedfoods.vegstinger = {}
+preparedfoods.vegstinger.test = {function() return false end}
