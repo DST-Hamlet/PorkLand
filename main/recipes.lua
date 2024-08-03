@@ -25,11 +25,11 @@ local function SortRecipe(a, b, filter_name, offset)
 end
 
 local function SortBefore(a, b, filter_name)  -- a before b
-    SortRecipe(a, b, filter_name, 0)
+    -- SortRecipe(a, b, filter_name, 0)
 end
 
 local function SortAfter(a, b, filter_name)  -- a after b
-    SortRecipe(a, b, filter_name, 1)
+    -- SortRecipe(a, b, filter_name, 1)
 end
 
 local function AquaticRecipe(name, data)
@@ -46,111 +46,185 @@ local function AquaticRecipe(name, data)
     end
 end
 
-local VALID_DST_RECIPES = {
-    ["amulet"] = true,
-    ["armor_sanity"] = true,
-    ["armordragonfly"] = true,
-    ["armorwood"] = true,
-    ["axe"] = true,
-    ["backpack"] = true,
-    ["bandage"] = true,
-    ["batbat"] = true,
-    ["beargervest"] = true,
-    ["bedroll_straw"] = true,
-    ["beemine"] = true,
-    ["beeswax"] = true,
-    ["birdcage"] = true,
-    ["birdtrap"] = true,
-    ["blowdart_fire"] = true,
-    ["blowdart_pipe"] = true,
-    ["blowdart_sleep"] = true,
-    ["blueamulet"] = true,
-    ["boards"] = true,
-    ["boomerang"] = true,
-    ["bugnet"] = true,
-    ["bundlewrap"] = true,
-    ["bushhat"] = true,
-    ["campfire"] = true,
-    ["cane"] = true,
-    ["compass"] = true,
-    ["cookpot"] = true,
-    ["cutstone"] = true,
-    ["dragonflychest"] = true,
-    ["eyebrellahat"] = true,
-    ["featherfan"] = true,
-    ["featherhat"] = true,
-    ["featherpencil"] = true,
-    ["fence_gate_item"] = true,
-    ["fence_item"] = true,
-    ["fertilizer"] = true,
-    ["firepit"] = true,
-    ["firestaff"] = true,
-    ["firesuppressor"] = true,
-    ["fishingrod"] = true,
-    ["flowerhat"] = true,
-    ["footballhat"] = true,
-    ["goldenaxe"] = true,
-    ["goldenpickaxe"] = true,
-    ["goldenshovel"] = true,
-    ["gunpowder"] = true,
-    ["hambat"] = true,
-    ["hammer"] = true,
-    ["healingsalve"] = true,
-    ["homesign"] = true,
-    ["icebox"] = true,
-    ["icepack"] = true,
-    ["icestaff"] = true,
-    ["lantern"] = true,
-    ["lightning_rod"] = true,
-    ["meatrack"] = true,
-    ["minerhat"] = true,
-    ["minisign_item"] = true,
-    ["molehat"] = true,
-    ["nightlight"] = true,
-    ["nightmarefuel"] = true,
-    ["nightsword"] = true,
-    ["onemanband"] = true,
-    ["panflute"] = true,
-    ["papyrus"] = true,
-    ["pickaxe"] = true,
-    ["piggyback"] = true,
-    ["pitchfork"] = true,
-    ["purpleamulet"] = true,
-    ["purplegem"] = true,
-    ["rainometer"] = true,
-    ["razor"] = true,
-    ["researchlab"] = true,
-    ["researchlab2"] = true,
-    ["researchlab3"] = true,
-    ["resurrectionstatue"] = true,
-    ["rope"] = true,
-    ["sewing_kit"] = true,
-    ["shovel"] = true,
-    ["siestahut"] = true,
-    ["spear"] = true,
-    ["staff_tornado"] = true,
-    ["strawhat"] = true,
-    ["telebase"] = true,
-    ["telestaff"] = true,
-    ["tent"] = true,
-    ["tophat"] = true,
-    ["torch"] = true,
-    ["transistor"] = true,
-    ["trap_teeth"] = true,
-    ["trap"] = true,
-    ["treasurechest"] = true,
-    ["turf_carpetfloor"] = true,
-    ["turf_checkerfloor"] = true,
-    ["turf_road"] = true,
-    ["turf_woodfloor"] = true,
-    ["umbrella"] = true,
-    ["wall_hay_item"] = true,
-    ["wall_stone_item"] = true,
-    ["wall_wood_item"] = true,
-    ["waxpaper"] = true,
-    ["winterometer"] = true,
-}
 
+
+-- Clear ALL of the DST recipes
+RemoveAllRecipes()
+
+local tabs_to_delete = {"SEAFARING", "RIDING", "WINTER", "SUMMER", "FISHING"}
+for _, tab in pairs(tabs_to_delete) do
+    RemoveByValue(CRAFTING_FILTER_DEFS, CRAFTING_FILTERS[tab])
+    CRAFTING_FILTERS[tab] = nil
+end
+
+
+local function IsMarshLand(pt, rot)
+	local ground_tile = TheWorld.Map:GetTileAtPoint(pt.x, pt.y, pt.z)
+	return ground_tile and ground_tile == WORLD_TILES.MARSH
+end
+
+
+local function telebase_testfn(pt, rot)
+	--See telebase.lua
+	local telebase_parts =
+	{
+		{ x = -1.6, z = -1.6 },
+		{ x =  2.7, z = -0.8 },
+		{ x = -0.8, z =  2.7 },
+	}
+	rot = (45 - rot) * DEGREES
+	local sin_rot = math.sin(rot)
+	local cos_rot = math.cos(rot)
+	for i, v in ipairs(telebase_parts) do
+		if not TheWorld.Map:IsVisualGroundAtPoint(pt.x + v.x * cos_rot - v.z * sin_rot, pt.y, pt.z + v.z * cos_rot + v.x * sin_rot) then
+			return false
+		end
+	end
+	return true
+end
+
+--[[ DST&Porkland Recipes ]]
+
+AddRecipe2("amulet",                        {Ingredient("goldnugget", 3), Ingredient("nightmarefuel", 2),Ingredient("redgem", 1)},			TECH.MAGIC_TWO)
+AddRecipe2("armor_sanity",                  {Ingredient("nightmarefuel", 5),Ingredient("papyrus", 3)},										TECH.MAGIC_THREE)
+AddRecipe2("armordragonfly",                {Ingredient("dragon_scales", 1), Ingredient("armorwood", 1), Ingredient("pigskin", 3)},			TECH.SCIENCE_TWO)
+AddRecipe2("armorgrass",					{Ingredient("cutgrass", 10), Ingredient("twigs", 2)},										    TECH.NONE)
+AddRecipe2("armorwood",						{Ingredient("log", 8), Ingredient("rope", 2)},													TECH.SCIENCE_ONE)
+AddRecipe2("axe",                           {Ingredient("twigs", 1), Ingredient("flint", 1)},												TECH.NONE)
+AddRecipe2("backpack",						{Ingredient("cutgrass", 4), Ingredient("twigs", 4)},											TECH.SCIENCE_ONE)
+AddRecipe2("bandage",						{Ingredient("papyrus", 1), Ingredient("honey", 2)},												TECH.SCIENCE_TWO)
+AddRecipe2("batbat",						{Ingredient("batwing", 3), Ingredient("livinglog", 2), Ingredient("purplegem", 1)},				TECH.MAGIC_THREE)
+AddRecipe2("beargervest", 					{Ingredient("bearger_fur", 1), Ingredient("sweatervest", 1), Ingredient("rope", 2)},			TECH.SCIENCE_TWO)
+AddRecipe2("bedroll_straw",					{Ingredient("cutgrass", 6), Ingredient("rope", 1)},												TECH.SCIENCE_ONE)
+AddRecipe2("beeswax",						{Ingredient("honeycomb", 1)}, 																	TECH.SCIENCE_TWO)
+AddRecipe2("birdcage",						{Ingredient("papyrus", 2), Ingredient("goldnugget", 6), Ingredient("seeds", 2)},				TECH.SCIENCE_TWO,			{placer="birdcage_placer"})
+AddRecipe2("birdtrap",						{Ingredient("twigs", 3),Ingredient("silk", 4)},													TECH.SCIENCE_ONE)
+AddRecipe2("blowdart_fire",					{Ingredient("cutreeds", 2),Ingredient("charcoal", 1),Ingredient("feather_robin", 1)},			TECH.SCIENCE_TWO)
+AddRecipe2("blowdart_pipe",					{Ingredient("cutreeds", 2),Ingredient("houndstooth", 1),Ingredient("feather_robin_winter", 1)},	TECH.SCIENCE_TWO)
+AddRecipe2("blowdart_sleep",				{Ingredient("cutreeds", 2),Ingredient("stinger", 1),Ingredient("feather_crow", 1)},				TECH.SCIENCE_TWO)
+AddRecipe2("blueamulet",					{Ingredient("goldnugget", 3), Ingredient("bluegem", 1)},										TECH.MAGIC_TWO)
+AddRecipe2("boards",						{Ingredient("log", 4)}, 																		TECH.SCIENCE_ONE)
+AddRecipe2("boomerang",						{Ingredient("boards", 1),Ingredient("silk", 1),Ingredient("charcoal", 1)},						TECH.SCIENCE_TWO)
+AddRecipe2("bugnet",						{Ingredient("twigs", 4), Ingredient("silk", 2), Ingredient("rope", 1)},							TECH.SCIENCE_ONE)
+AddRecipe2("bundlewrap",					{Ingredient("waxpaper", 1), Ingredient("rope", 1)},												TECH.LOST)
+AddRecipe2("bushhat",						{Ingredient("strawhat", 1),Ingredient("rope", 1),Ingredient("dug_berrybush", 1)},				TECH.SCIENCE_TWO)
+AddRecipe2("campfire",						{Ingredient("cutgrass", 3),Ingredient("log", 2)},												TECH.NONE,					{placer="campfire_placer",			min_spacing=2})
+AddRecipe2("cane", 							{Ingredient("goldnugget", 2), Ingredient("walrus_tusk", 1), Ingredient("twigs", 4)},			TECH.SCIENCE_TWO)
+AddRecipe2("compass",						{Ingredient("goldnugget", 1), Ingredient("flint", 1)},											TECH.NONE)
+AddRecipe2("cookpot",						{Ingredient("cutstone", 3), Ingredient("charcoal", 6), Ingredient("twigs", 6)},					TECH.SCIENCE_ONE,			{placer="cookpot_placer", min_spacing=2})
+AddRecipe2("cutstone",                      {Ingredient("rocks", 3)}, 																		TECH.SCIENCE_ONE)
+AddRecipe2("dragonflychest",				{Ingredient("dragon_scales", 1), Ingredient("boards", 4), Ingredient("goldnugget", 10)},		TECH.SCIENCE_TWO,			{placer="dragonflychest_placer",	min_spacing=1.5})
+AddRecipe2("eyebrellahat", 					{Ingredient("deerclops_eyeball", 1), Ingredient("twigs", 15), Ingredient("boneshard", 4)}, 		TECH.SCIENCE_TWO)
+AddRecipe2("featherfan",                    {Ingredient("goose_feather", 5), Ingredient("cutreeds", 2), Ingredient("rope", 2)},				TECH.LOST)
+AddRecipe2("featherpencil",					{Ingredient("twigs", 1), Ingredient("charcoal", 1), Ingredient("feather_crow", 1)}, 			TECH.SCIENCE_ONE)
+AddRecipe2("fence_gate_item",				{Ingredient("boards", 2), Ingredient("rope", 1)},												TECH.SCIENCE_TWO)
+AddRecipe2("fence_item",					{Ingredient("twigs", 3), Ingredient("rope", 1)},												TECH.SCIENCE_ONE,			{numtogive=6})
+AddRecipe2("fertilizer",					{Ingredient("poop", 3), Ingredient("boneshard", 2), Ingredient("log", 4)},						TECH.SCIENCE_TWO)
+AddRecipe2("firepit",						{Ingredient("log", 2),Ingredient("rocks", 12)},													TECH.NONE,					{placer="firepit_placer",			min_spacing=2.5})
+AddRecipe2("firestaff",						{Ingredient("nightmarefuel", 2), Ingredient("spear", 1), Ingredient("redgem", 1)},				TECH.MAGIC_THREE)
+AddRecipe2("firesuppressor",				{Ingredient("gears", 2),Ingredient("ice", 15),Ingredient("transistor", 2)},						TECH.SCIENCE_TWO,			{placer="firesuppressor_placer",	min_spacing=2.5})
+AddRecipe2("fishingrod",					{Ingredient("twigs", 2), Ingredient("silk", 2)},												TECH.SCIENCE_ONE)
+AddRecipe2("flowerhat", 					{Ingredient("petals", 12)}, 																	TECH.NONE)
+AddRecipe2("footballhat",					{Ingredient("pigskin", 1), Ingredient("rope", 1)},												TECH.SCIENCE_TWO)
+AddRecipe2("goldenaxe",						{Ingredient("twigs", 4),Ingredient("goldnugget", 2)},											TECH.SCIENCE_TWO)
+AddRecipe2("goldenpickaxe",					{Ingredient("twigs", 4),Ingredient("goldnugget", 2)},											TECH.SCIENCE_TWO)
+AddRecipe2("goldenshovel",					{Ingredient("twigs", 4),Ingredient("goldnugget", 2)},											TECH.SCIENCE_TWO)
+AddRecipe2("gunpowder",						{Ingredient("rottenegg", 1), Ingredient("charcoal", 1), Ingredient("nitre", 1)},				TECH.SCIENCE_TWO)
+AddRecipe2("hambat",						{Ingredient("pigskin", 1), Ingredient("twigs", 2), Ingredient("meat", 2)},						TECH.SCIENCE_TWO)
+AddRecipe2("hammer",						{Ingredient("twigs", 3),Ingredient("rocks", 3), Ingredient("cutgrass", 6)},						TECH.NONE)
+AddRecipe2("healingsalve",					{Ingredient("ash", 2), Ingredient("rocks", 1), Ingredient("spidergland",1)},					TECH.SCIENCE_ONE)
+AddRecipe2("homesign",						{Ingredient("boards", 1)},																		TECH.SCIENCE_ONE,			{placer="homesign_placer",			min_spacing=1.5})
+AddRecipe2("arrowsign_post",				{Ingredient("boards", 1)},																		TECH.SCIENCE_ONE,			{placer="arrowsign_post_placer",	min_spacing=1.5})
+AddRecipe2("icebox",						{Ingredient("goldnugget", 2), Ingredient("gears", 1), Ingredient("cutstone", 1)},				TECH.SCIENCE_TWO,			{placer="icebox_placer",			min_spacing=1.5})
+AddRecipe2("icepack",						{Ingredient("bearger_fur", 1), Ingredient("gears", 1), Ingredient("transistor", 1)},			TECH.SCIENCE_TWO)
+AddRecipe2("icestaff",						{Ingredient("spear", 1),Ingredient("bluegem", 1)},												TECH.MAGIC_TWO)
+AddRecipe2("lantern",						{Ingredient("twigs", 3), Ingredient("rope", 2), Ingredient("lightbulb", 2)},					TECH.SCIENCE_TWO)
+AddRecipe2("lightning_rod",					{Ingredient("goldnugget", 4), Ingredient("cutstone", 1)},										TECH.SCIENCE_ONE,			{placer="lightning_rod_placer",		min_spacing=1})
+AddRecipe2("meatrack",						{Ingredient("twigs", 3),Ingredient("charcoal", 2), Ingredient("rope", 3)},						TECH.SCIENCE_ONE,			{placer="meatrack_placer"})
+AddRecipe2("minerhat",						{Ingredient("strawhat", 1),Ingredient("goldnugget", 1),Ingredient("fireflies", 1)},				TECH.SCIENCE_TWO)
+AddRecipe2("minisign_item",					{Ingredient("boards", 1)},																		TECH.SCIENCE_ONE,			{numtogive = 4})
+AddRecipe2("molehat",						{Ingredient("mole", 2), Ingredient("transistor", 2), Ingredient("wormlight", 1)},				TECH.LOST) -- requries blueprint
+AddRecipe2("nightlight",					{Ingredient("goldnugget", 8), Ingredient("nightmarefuel", 2), Ingredient("redgem", 1)},			TECH.MAGIC_TWO,				{placer="nightlight_placer",		min_spacing=1.5})
+AddRecipe2("nightmarefuel",					{Ingredient("petals_evil", 4)}, 																TECH.MAGIC_TWO)
+AddRecipe2("nightsword",					{Ingredient("nightmarefuel", 5),Ingredient("livinglog", 1)},									TECH.MAGIC_THREE)
+AddRecipe2("onemanband",					{Ingredient("goldnugget", 2),Ingredient("nightmarefuel", 4),Ingredient("pigskin", 2)},			TECH.MAGIC_TWO)
+AddRecipe2("panflute",						{Ingredient("cutreeds", 5), Ingredient("mandrake", 1), Ingredient("rope", 1)},					TECH.MAGIC_TWO)
+AddRecipe2("papyrus",						{Ingredient("cutreeds", 4)}, 																	TECH.SCIENCE_ONE)
+AddRecipe2("pickaxe",						{Ingredient("twigs", 2),Ingredient("flint", 2)},												TECH.NONE)
+AddRecipe2("piggyback",						{Ingredient("pigskin", 4), Ingredient("silk", 6), Ingredient("rope", 2)},						TECH.SCIENCE_TWO)
+AddRecipe2("pitchfork",						{Ingredient("twigs", 2),Ingredient("flint", 2)},												TECH.SCIENCE_ONE)
+AddRecipe2("purpleamulet",					{Ingredient("goldnugget", 6), Ingredient("nightmarefuel", 4),Ingredient("purplegem", 2)},		TECH.MAGIC_THREE)
+AddRecipe2("purplegem",						{Ingredient("redgem",1), Ingredient("bluegem", 1)}, 											TECH.MAGIC_TWO,             {no_deconstruction=true})
+AddRecipe2("rainometer",					{Ingredient("boards", 2), Ingredient("goldnugget", 2), Ingredient("rope",2)},					TECH.SCIENCE_ONE,			{placer="rainometer_placer",		min_spacing=2.5})
+AddRecipe2("razor",							{Ingredient("twigs", 2), Ingredient("flint", 2)},												TECH.SCIENCE_ONE)
+AddRecipe2("researchlab",					{Ingredient("goldnugget", 1),Ingredient("log", 4),Ingredient("rocks", 4)},						TECH.NONE,					{placer="researchlab_placer",			min_spacing=2})
+AddRecipe2("researchlab2",					{Ingredient("boards", 4),Ingredient("cutstone", 2), Ingredient("transistor", 2)},				TECH.SCIENCE_ONE,			{placer="researchlab2_placer",			min_spacing=2})
+AddRecipe2("researchlab3",					{Ingredient("livinglog", 3), Ingredient("purplegem", 1), Ingredient("nightmarefuel", 7)},		TECH.MAGIC_TWO,				{placer="researchlab3_placer",			min_spacing=2})
+AddRecipe2("resurrectionstatue",			{Ingredient("boards", 4), Ingredient("beardhair", 4), Ingredient(CHARACTER_INGREDIENT.HEALTH, TUNING.EFFIGY_HEALTH_PENALTY)}, TECH.MAGIC_TWO,	{placer="resurrectionstatue_placer", min_spacing=2})
+AddRecipe2("rope",							{Ingredient("cutgrass", 3)},																	TECH.SCIENCE_ONE)
+AddRecipe2("sewing_kit",					{Ingredient("log", 1), Ingredient("silk", 8), Ingredient("houndstooth", 2)}, 					TECH.SCIENCE_TWO)
+AddRecipe2("shovel",						{Ingredient("twigs", 2),Ingredient("flint", 2)},												TECH.SCIENCE_ONE)
+AddRecipe2("siestahut",						{Ingredient("silk", 2),Ingredient("boards", 4),Ingredient("rope", 3)},							TECH.SCIENCE_TWO,			{placer="siestahut_placer"})
+AddRecipe2("spear",							{Ingredient("twigs", 2), Ingredient("rope", 1), Ingredient("flint", 1) },						TECH.SCIENCE_ONE)
+AddRecipe2("staff_tornado",					{Ingredient("goose_feather", 10), Ingredient("lightninggoathorn", 1), Ingredient("gears", 1)},	TECH.SCIENCE_TWO)
+AddRecipe2("strawhat", 						{Ingredient("cutgrass", 12)}, 																	TECH.NONE)
+AddRecipe2("telebase",						{Ingredient("nightmarefuel", 4), Ingredient("livinglog", 4), Ingredient("goldnugget", 8)},		TECH.MAGIC_THREE,			{placer="telebase_placer", testfn=telebase_testfn})
+AddRecipe2("telestaff",						{Ingredient("nightmarefuel", 4), Ingredient("livinglog", 2), Ingredient("purplegem", 2)},		TECH.MAGIC_THREE)
+AddRecipe2("tent",                          {Ingredient("silk", 6),Ingredient("twigs", 4),Ingredient("rope", 3)},							TECH.SCIENCE_TWO,			{placer="tent_placer"})
+AddRecipe2("tophat", 						{Ingredient("silk", 6)}, 																		TECH.SCIENCE_ONE)
+AddRecipe2("torch",							{Ingredient("cutgrass", 2),Ingredient("twigs", 2)},												TECH.NONE)
+AddRecipe2("transistor",					{Ingredient("goldnugget", 2), Ingredient("cutstone", 1)},										TECH.SCIENCE_ONE)
+AddRecipe2("trap_teeth",					{Ingredient("log", 1),Ingredient("rope", 1),Ingredient("houndstooth", 1)},						TECH.SCIENCE_TWO)
+AddRecipe2("trap",							{Ingredient("twigs", 2),Ingredient("cutgrass", 6)},												TECH.NONE)
+AddRecipe2("treasurechest",					{Ingredient("boards", 3)},																		TECH.SCIENCE_ONE,			{placer = "treasurechest_placer",		min_spacing=1})
+AddRecipe2("turf_road",						{Ingredient("cutstone", 1), Ingredient("flint", 2)},											TECH.SCIENCE_TWO,			{numtogive = 4})
+AddRecipe2("turf_woodfloor",				{Ingredient("boards", 1)},																		TECH.SCIENCE_TWO,			{numtogive = 4})
+AddRecipe2("umbrella",						{Ingredient("twigs", 6) ,Ingredient("pigskin", 1), Ingredient("silk",2 )},						TECH.SCIENCE_ONE)
+AddRecipe2("wall_hay_item",					{Ingredient("cutgrass", 4), Ingredient("twigs", 2)},											TECH.SCIENCE_ONE,			{numtogive = 4})
+AddRecipe2("wall_stone_item",				{Ingredient("cutstone", 2)},																	TECH.SCIENCE_TWO,			{numtogive = 6})
+AddRecipe2("wall_wood_item",				{Ingredient("boards", 2), Ingredient("rope", 1)},												TECH.SCIENCE_ONE,			{numtogive = 8})
+AddRecipe2("waxpaper",						{Ingredient("papyrus", 1), Ingredient("beeswax", 1)}, 											TECH.SCIENCE_TWO)
+
+--[[ DST Character Crafts ]]
+-- Winona
+AddRecipe2("sewing_tape",					{Ingredient("silk", 1), Ingredient("cutgrass", 3)},												TECH.NONE,				{builder_tag="handyperson"})
+AddRecipe2("winona_catapult",				{Ingredient("sewing_tape", 1), Ingredient("twigs", 3), Ingredient("rocks", 15)},				TECH.NONE,				{builder_tag="basicengineer", placer="winona_catapult_item_placer"})
+AddRecipe2("winona_spotlight",				{Ingredient("sewing_tape", 1), Ingredient("goldnugget", 2), Ingredient("fireflies", 1)},		TECH.NONE,				{builder_tag="basicengineer", placer="winona_spotlight_item_placer"})
+AddRecipe2("winona_battery_low",			{Ingredient("sewing_tape", 1), Ingredient("log", 2), Ingredient("nitre", 2)},					TECH.NONE,				{builder_tag="basicengineer", placer="winona_battery_low_item_placer"})
+AddRecipe2("winona_battery_high",			{Ingredient("sewing_tape", 1), Ingredient("boards", 2), Ingredient("transistor", 2)},			TECH.NONE,				{builder_tag="basicengineer", placer="winona_battery_high_item_placer"})
+
+-- Wurt
+AddRecipe2("mermhouse_crafted",			    {Ingredient("boards", 4), Ingredient("cutreeds", 3), Ingredient("pondfish", 2)},				TECH.SCIENCE_ONE,		{builder_tag="merm_builder", placer="mermhouse_crafted_placer", testfn=IsMarshLand})
+AddRecipe2("mermthrone_construction",		{Ingredient("boards", 5), Ingredient("rope", 5)},												TECH.SCIENCE_ONE,		{builder_tag="merm_builder", placer="mermthrone_construction_placer", testfn=IsMarshLand})
+AddRecipe2("mermwatchtower",				{Ingredient("boards", 5), Ingredient("tentaclespots", 1), Ingredient("spear", 2)},				TECH.SCIENCE_ONE,		{builder_tag="merm_builder", placer="mermwatchtower_placer", testfn=IsMarshLand})
+AddRecipe2("wurt_turf_marsh",				{Ingredient("cutreeds", 1), Ingredient("spoiled_food", 2)},										TECH.NONE,				{builder_tag="merm_builder", product="turf_marsh", numtogive = 4})
+AddRecipe2("mermhat", 						{Ingredient("pondfish", 1), Ingredient("cutreeds", 1), Ingredient("twigs", 2)}, 				TECH.NONE,				{builder_tag="merm_builder"})
+
+-- Wanda --
+local function pocketwatch_nodecon(inst) return not inst:HasTag("pocketwatch_inactive") end
+AddRecipe2("pocketwatch_dismantler",		{Ingredient("goldnugget", 1), Ingredient("flint", 1), Ingredient("twigs", 3)},									TECH.NONE,			{builder_tag="clockmaker"})
+AddRecipe2("pocketwatch_parts",			    {Ingredient("pocketwatch_dismantler", 0), Ingredient("thulecite_pieces", 8),Ingredient("nightmarefuel", 2)},	TECH.NONE,			{builder_tag="clockmaker"})
+AddRecipe2("pocketwatch_heal",				{Ingredient("pocketwatch_parts", 1), Ingredient("marble", 2), Ingredient("redgem", 1)},							TECH.NONE,			{builder_tag="clockmaker", no_deconstruction = pocketwatch_nodecon})
+AddRecipe2("pocketwatch_revive",			{Ingredient("pocketwatch_parts", 1), Ingredient("livinglog", 2), Ingredient("boneshard", 4)},					TECH.NONE,			{builder_tag="clockmaker", no_deconstruction = pocketwatch_nodecon})
+AddRecipe2("pocketwatch_warp",				{Ingredient("pocketwatch_parts", 1), Ingredient("goldnugget", 2)},												TECH.NONE,			{builder_tag="clockmaker", no_deconstruction = pocketwatch_nodecon})
+AddRecipe2("pocketwatch_recall",			{Ingredient("pocketwatch_parts", 2), Ingredient("goldnugget", 2), Ingredient("walrus_tusk", 1)},				TECH.MAGIC_TWO,		{builder_tag="clockmaker", no_deconstruction = pocketwatch_nodecon})
+AddRecipe2("pocketwatch_portal",			{Ingredient("pocketwatch_recall", 1, nil, true), Ingredient("purplegem", 1)},									TECH.MAGIC_TWO,		{builder_tag="clockmaker", no_deconstruction = pocketwatch_nodecon, actionstr="SOCKET"})
+AddRecipe2("pocketwatch_weapon",			{Ingredient("pocketwatch_parts", 3), Ingredient("marble", 4), Ingredient("nightmarefuel", 8)},					TECH.MAGIC_THREE,	{builder_tag="clockmaker", no_deconstruction = pocketwatch_nodecon})
+
+--[[ DST Regular Crafts ]]
+AddRecipe2("cartographydesk",				{Ingredient("compass", 1),Ingredient("boards", 4)},												TECH.SCIENCE_ONE,			{placer="cartographydesk_placer",		min_spacing=2})
+AddRecipe2("compass",						{Ingredient("goldnugget", 1), Ingredient("flint", 1)},											TECH.NONE)
+AddRecipe2("cookbook",						{Ingredient("papyrus", 1), Ingredient("carrot", 1)},											TECH.SCIENCE_ONE)
+AddRecipe2("featherpencil",					{Ingredient("twigs", 1), Ingredient("charcoal", 1), Ingredient("feather_crow", 1)}, 			TECH.SCIENCE_ONE)
+AddRecipe2("fence_rotator",					{Ingredient("spear", 1), Ingredient("flint", 2) },												TECH.SCIENCE_TWO)
+AddRecipe2("goldenpitchfork",				{Ingredient("twigs", 4),Ingredient("goldnugget", 2)},											TECH.SCIENCE_TWO)
+AddRecipe2("grass_umbrella",				{Ingredient("twigs", 4) ,Ingredient("cutgrass", 3), Ingredient("petals", 6)},					TECH.NONE)
+AddRecipe2("mapscroll",						{Ingredient("featherpencil", 1), Ingredient("papyrus", 1)}, 									TECH.CARTOGRAPHY_TWO,		{nounlock=true, actionstr="CARTOGRAPHY"})
+AddRecipe2("miniflare",						{Ingredient("twigs", 1), Ingredient("cutgrass", 1), Ingredient("nitre", 1)},					TECH.NONE)
+AddRecipe2("mushroom_farm",					{Ingredient("spoiled_food", 8),Ingredient("poop", 5),Ingredient("livinglog", 2)},				TECH.SCIENCE_TWO,			{placer="mushroom_farm_placer",		min_spacing=2})
+AddRecipe2("reskin_tool",					{Ingredient("twigs", 1), Ingredient("petals", 4)},												TECH.SCIENCE_TWO)
+AddRecipe2("wardrobe",						{Ingredient("boards", 4), Ingredient("cutgrass", 3)},											TECH.SCIENCE_TWO,			{placer="wardrobe_placer",						min_spacing=2.5})
+AddRecipe2("waterballoon",					{Ingredient("mosquitosack", 2), Ingredient("ice", 1)},											TECH.SCIENCE_ONE,			{numtogive = 4})
 
 -- AddRecipeFilter(filter_def, index)
 -- index: insertion order
@@ -164,13 +238,13 @@ AddRecipeFilter({
     name = "NAUTICAL",
     atlas = "images/hud/pl_crafting_menu_icons.xml",
     image = "filter_nautical.tex",
-})
+}, #CRAFTING_FILTER_DEFS) -- insert this before the "all recipes" category
 
 AddRecipeFilter({
     name = "ARCHAEOLOGY",
     atlas = "images/hud/pl_crafting_menu_icons.xml",
     image = "filter_archaeology.tex",
-})
+}, #CRAFTING_FILTER_DEFS)
 
 --- ARCHAEOLOGY ---
 AddRecipe2("disarming_kit", {Ingredient("iron", 2), Ingredient("cutreeds", 2)}, TECH.NONE, {}, {"ARCHAEOLOGY"})
@@ -252,10 +326,9 @@ AddRecipe2("snakeskinhat", {Ingredient("snakeskin", 1), Ingredient("strawhat", 1
 SortBefore("snakeskinhat", "earmuffshat", "CLOTHING")
 SortAfter("snakeskinhat", "rainhat", "RAIN")
 
-AddRecipe2("armor_snakeskin", {Ingredient("snakeskin", 2), Ingredient("vine", 2), Ingredient("boneshard", 2)}, TECH.SCIENCE_ONE, {}, {"CLOTHING", "RAIN", "WINTER"})
+AddRecipe2("armor_snakeskin", {Ingredient("snakeskin", 2), Ingredient("vine", 2), Ingredient("boneshard", 2)}, TECH.SCIENCE_ONE, {}, {"CLOTHING", "RAIN"})
 SortBefore("armor_snakeskin", "sweatervest", "CLOTHING")
 SortAfter("armor_snakeskin", "raincoat", "RAIN")
-SortAfter("armor_snakeskin", "raincoat", "WINTER")
 
 AddRecipe2("gasmaskhat", {Ingredient("peagawkfeather", 4), Ingredient("pigskin", 1), Ingredient("fabric", 1)}, TECH.SCIENCE_TWO, {}, {"CLOTHING"})
 SortAfter("gasmaskhat", "icehat", "CLOTHING")
