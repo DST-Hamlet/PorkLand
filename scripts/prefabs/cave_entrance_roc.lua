@@ -225,24 +225,25 @@ end
 
 local function BuildMaze(inst, exterior_door_def)
     if inst.interiorID then
-        -- Reuse old interior
+        -- Maze already generated
         return
     end
 
     local interior_spawner = TheWorld.components.interiorspawner
 
+    local id = interior_spawner:GetNewID()
+    inst.interiorID = id
     local rooms = {
         {
             x = 0, -- x, y are used to keep track of the relative position of those rooms
             y = 0,
-            id = interior_spawner:GetNewID(),
+            id = id,
             exits = {},
             blocked_exits = {},
             is_entrance_room = true, -- this is the room you enter from the roc island
         },
     }
-    inst.interiorID = rooms[1].id
-    exterior_door_def.target_interior = rooms[1].id
+    exterior_door_def.target_interior = id
 
     while #rooms < ROC_CAVE_NUM_ROOMS do
         local dir = interior_spawner:GetDir()
@@ -307,7 +308,7 @@ local function BuildMaze(inst, exterior_door_def)
     end
     GetRandomItem(available_exits).is_exit_room = true -- make this room connect to the bat cave
 
-    for _, room in pairs(rooms) do
+    for _, room in ipairs(rooms) do
         local exits_open = {
             west = not room.exits[interior_spawner:GetWest()],
             south = not room.exits[interior_spawner:GetSouth()],
@@ -325,35 +326,23 @@ local function BuildMaze(inst, exterior_door_def)
 end
 
 local function InitMaze(inst)
-    if inst.maze_generated then
-        return
-    end
-
     local exterior_door_def = {
         my_door_id = ROC_CAVE_NAME .. "_ENTRANCE1",
         target_door_id = ROC_CAVE_NAME .. "_EXIT1",
     }
-
     BuildMaze(inst, exterior_door_def)
     TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def)
-
-    inst.maze_generated = true
+    TheWorld.components.interiorspawner:AddExterior(inst)
 end
 
 local function OnSave(inst, data)
-    data.maze_generated = inst.maze_generated
     data.open = inst.open
     data.interiorID = inst.interiorID
 end
 
 local function OnLoad(inst, data)
-    if data == nil or (data and data.interiorID == nil) then
-        InitMaze(inst)
-        return
-    end
-
-    inst.maze_generated = data.maze_generated
     inst.interiorID = data.interiorID
+    InitMaze(inst)
     if data.open then
         Open(inst)
     end
@@ -390,7 +379,6 @@ local function fn()
 
     -- MakeHauntableDoor(inst) -- 这部分功能在action中处理了
 
-    TheWorld.components.interiorspawner:AddExterior(inst)
     Close(inst)
 
     inst.OnSave = OnSave

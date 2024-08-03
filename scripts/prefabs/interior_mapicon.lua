@@ -196,7 +196,7 @@ local function Update(inst)
         return
     end
 
-    for _,v in pairs(inst.icons)do
+    for _, v in pairs(inst.icons) do
         v.MiniMapEntity:SetEnabled(false)
     end
 
@@ -206,7 +206,7 @@ local function Update(inst)
         inst.MiniMapEntity:SetIcon("pl_frame_"..SizeToString(width, height)..".tex")
         inst.MiniMapEntity:SetEnabled(true)
         local x, _, z = ent.Transform:GetWorldPosition()
-        for _,v in ipairs(TheSim:FindEntities(x, 0, z, ent:GetSearchRadius(), nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"}))do
+        for _, v in ipairs(TheSim:FindEntities(x, 0, z, ent:GetSearchRadius(), nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"}))do
             if v.Network ~= nil and v.MiniMapEntity ~= nil then
                 local id = v.Network:GetNetworkID()
                 if inst.icons[id] == nil then

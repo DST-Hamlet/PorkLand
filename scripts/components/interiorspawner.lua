@@ -33,11 +33,11 @@ local InteriorSpawner = Class(function(self, inst)
     self.z_start = math.huge
 
     self.interiors = {} -- {[index: number]: InteriorDef}
-    self.exteriors_hashmap = {} -- {[exterior: House]: true}
+    self.exteriors = {} -- {[exterior: string]: House}
     self.interiors_hashmap = {} -- {[interior: Room]: true}
     self.doors = {} -- {[index: string]: DoorDef}
-    self.reuse_interior_IDs = {} -- 记录那些生成后被删掉的室内ID，以重复利用其空间
-    self.next_interior_ID = 0
+    self.reuse_interior_ids = {} -- 记录那些生成后被删掉的室内ID，以重复利用其空间
+    self.next_interior_id = 0
 
     -- if value is redirected_id, then access twice
     -- if value is table, that's it!
@@ -85,21 +85,22 @@ function InteriorSpawner:SetInteriorPos()
 end
 
 function InteriorSpawner:OnSave()
-    local data = {interiors = {}}
-    for interiorID, def in pairs(self.interiors) do
-        data.interiors[interiorID] = def
+    local interiors = {}
+    for interior_id, def in pairs(self.interiors) do
+        interiors[interior_id] = def
     end
-    data.reuse_interior_IDs = self.reuse_interior_IDs
-    return data
+    return {
+        interiors = interiors,
+        reuse_interior_ids = self.reuse_interior_ids,
+    }
 end
 
 function InteriorSpawner:OnLoad(data)
     if data then
         if data.interiors then
-            for interiroID, def in pairs(data.interiors) do
+            for _, def in pairs(data.interiors) do
                 self:AddInterior(def)
             end
-            self.interiors = data.interiors
         end
     end
     self:SetInteriorPos()
@@ -113,20 +114,20 @@ function InteriorSpawner:GetCurrentMaxID()
             index = math.max(k.interiorID, index)
         end
     end
-    self.next_interior_ID = index
+    self.next_interior_id = index
     return index
 end
 
-function InteriorSpawner:GetNewID() -- 注意：每次该函数被调用，都会占用一个interior_ID及其对应的室内区域，因此确定有使用需求再调用此函数
-        -- 并且需要在该室内区域移除后需要触发回调，通过reuse_interior_IDs来重复使用interior_ID
-    if #self.reuse_interior_IDs > 0 then
-        table.sort(self.reuse_interior_IDs) -- 从小到大排序
-        local reuse_ID = self.reuse_interior_IDs[1]
-        table.remove(self.reuse_interior_IDs, 1) -- 使用后删除最小项
-        return reuse_ID
+function InteriorSpawner:GetNewID() -- 注意：每次该函数被调用，都会占用一个 interiorID 及其对应的室内区域，因此确定有使用需求再调用此函数
+        -- 并且需要在该室内区域移除后需要触发回调，通过 reuse_interior_ids 来重复使用 interiorID
+    if #self.reuse_interior_ids > 0 then
+        table.sort(self.reuse_interior_ids) -- 从小到大排序
+        local reuse_id = self.reuse_interior_ids[1]
+        table.remove(self.reuse_interior_ids, 1) -- 使用后删除最小项
+        return reuse_id
     end
-    self.next_interior_ID = self.next_interior_ID + 1
-    return self.next_interior_ID
+    self.next_interior_id = self.next_interior_id + 1
+    return self.next_interior_id
 end
 
 -- function InteriorSpawner:Debug_CalculateNumSlots()
@@ -184,9 +185,8 @@ end
 function InteriorSpawner:PositionToIndex(pos)
     self:SetInteriorPos()
     local x_size = math.floor(MAX_X_OFFSET / SPACE)
-    local x, z = pos.x, pos.z
-    local x_index = math.floor((x - self.x_start) / SPACE + 0.5)
-    local z_index = math.floor((z + 1000) / SPACE + 0.5) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
+    local x_index = math.floor((pos.x - self.x_start) / SPACE + 0.5)
+    local z_index = math.floor((pos.z + 1000) / SPACE + 0.5) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
     return z_index * x_size + x_index
 end
 
@@ -197,10 +197,11 @@ end
 
 function InteriorSpawner:AddExterior(entity)
     entity:AddTag("exterior_door")
-    self.exteriors_hashmap[entity] = true
+    local interior_id = entity.interiorID
+    self.exteriors[interior_id] = entity
     entity.interiorspawner_exterior_on_remove_listener = function()
         if not entity.components.fixable and entity.prefab ~= "reconstruction_project" then
-            self.exteriors_hashmap[entity] = nil
+            self.exteriors[interior_id] = nil
             self:OnRemoveExterior(entity)
         end
     end
@@ -213,7 +214,7 @@ function InteriorSpawner:TransferExterior(from_entity, to_entity)
         from_entity.interiorspawner_exterior_on_remove_listener = nil
     end
     from_entity:RemoveTag("exterior_door")
-    self.exteriors_hashmap[from_entity] = nil
+    self.exteriors[from_entity.interiorID] = nil
 
     self:AddExterior(to_entity)
 end
@@ -237,17 +238,14 @@ function InteriorSpawner:OnRemoveExterior(entity)
     end
 end
 
-function InteriorSpawner:GetExteriorByInteriorIndex(index)
+function InteriorSpawner:GetExteriorById(id)
     assert(TheWorld.ismastersim, "This method must be called in server")
-    for exterior in pairs(self.exteriors_hashmap) do
-        if exterior:IsValid() then
-            if exterior.interiorID == index then
-                return exterior
-            end
-        else
-            self.exteriors_hashmap[exterior] = nil
-        end
+    local exterior = self.exteriors[id]
+    if exterior and not exterior:IsValid() then
+        self.exteriors[id] = nil
+        return
     end
+    return exterior
 end
 
 local EAST  = { x =  1, y =  0, label = "east" }
@@ -356,7 +354,7 @@ function InteriorSpawner:RemoveInteriorCenter(inst)
     self.interiors_hashmap[inst] = nil
     if inst.interiorID then
         self.interiors[inst.interiorID] = nil
-        table.insert(self.reuse_interior_IDs, inst.interiorID)
+        table.insert(self.reuse_interior_ids, inst.interiorID)
     end
 end
 
@@ -403,6 +401,8 @@ local function CheckRoomSize(width, depth)
     end
 end
 
+-- roomindex here is used as the interiorID on all the interiors in the room,
+-- and also interior_name for the door component on prop_door prefab
 function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name, roomindex, addprops, exits, walltexture, floortexture, minimaptexture, cityID, colour_cube, batted, playerroom, reverb, ambient_sound, footstep_tile, cameraoffset, zoom, forceInteriorMinimap)
     interior = interior or "generic_interior"
     width = width or 15
@@ -558,18 +558,19 @@ function InteriorSpawner:GetInteriorByIndex(index)
     end
 end
 
-function InteriorSpawner:GetInteriorByName(name)
-    if name == nil then
-        return nil
-    else
-        local interior = self.interiors[name]
-        if interior == nil then
-            print("!!ERROR: Unable To Find Interior Named:"..name)
-        end
+-- TODO: Doesn't work right now, see if we need it
+-- function InteriorSpawner:GetInteriorByName(name)
+--     if name == nil then
+--         return nil
+--     else
+--         local interior = self.interiors[name]
+--         if interior == nil then
+--             print("!!ERROR: Unable To Find Interior Named:"..name)
+--         end
 
-        return interior
-    end
-end
+--         return interior
+--     end
+-- end
 
 function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     assert(TheWorld.ismastersim)

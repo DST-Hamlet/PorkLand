@@ -570,8 +570,6 @@ local function MakeShop(name, build, bank, data)
         --     GetPlayer():AddTag("mayor")
         -- end
 
-        TheWorld.components.interiorspawner:AddExterior(inst)
-
         ------- Copied from prefabs/wall.lua -------
         inst._pfpos = nil
         inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")

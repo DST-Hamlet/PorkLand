@@ -324,7 +324,7 @@ ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内�
     if target_interior == "EXTERIOR" then
         -- use `target_exterior` firstly, then use current room id as default
         local index = door.components.door.target_exterior or door.components.door.interior_name
-        local house = TheWorld.components.interiorspawner:GetExteriorByInteriorIndex(index)
+        local house = TheWorld.components.interiorspawner:GetExteriorById(index)
         -- print(index, type(index), house)
         if house ~= nil then
             DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
