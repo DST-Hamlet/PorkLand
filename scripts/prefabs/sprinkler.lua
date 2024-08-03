@@ -84,9 +84,9 @@ local function OnFuelEmpty(inst)
     inst.components.machine:TurnOff()
 end
 
-local function OnFuelSectionChange(old, new, inst)
+local function OnFuelSectionChange(newsection, oldsection, inst)
     local fuel_anim = inst.components.fueled:GetCurrentSection()
-    inst.AnimState:OverrideSymbol("swap_meter", "sprinkler_meter", fuel_anim)
+    inst.AnimState:OverrideSymbol("swap_meter", "sprinkler_meter", tostring(fuel_anim))
 end
 
 local function CanInteract(inst)
@@ -107,11 +107,25 @@ local function UpdateSpray(inst)
     for k, v in pairs(ents) do
         inst.moisture_targets[v.GUID] = v
 
-        if not v.components.moistureoverride then
+        local use_override = true
+
+        if v.components.moisture then
+            v.components.moisture:DoDelta(TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY)
+            use_override = false
+        end
+
+        if v.components.inventoryitemmoisture then
+            v.components.inventoryitemmoisture:DoDelta(TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY)
+            use_override = false
+        end
+
+        if not v.components.moistureoverride and use_override then
             v:AddComponent("moistureoverride")
             v:StartUpdatingComponent(v.components.moistureoverride)
         end
-        v.components.moistureoverride:SetAddMoisture(inst, TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY / UPDATE_TIME) -- +2.5 per sec
+        if v.components.moistureoverride and use_override then
+            v.components.moistureoverride:SetAddMoisture(inst, TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY / UPDATE_TIME) -- +2.5 per sec
+        end
 
         if v.components.crop and v.components.crop.task then
             v.components.crop.growthpercent = v.components.crop.growthpercent + (0.001)
@@ -331,7 +345,7 @@ local function fn()
     inst.AnimState:SetBank("sprinkler")
     inst.AnimState:SetBuild("sprinkler")
     inst.AnimState:PlayAnimation("idle_off")
-    inst.AnimState:OverrideSymbol("swap_meter", "sprinkler_meter", 10)
+    inst.AnimState:OverrideSymbol("swap_meter", "sprinkler_meter", "10")
 
     inst.MiniMapEntity:SetPriority(5)
     inst.MiniMapEntity:SetIcon("sprinkler.tex")
