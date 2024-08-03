@@ -1207,7 +1207,9 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
     return addprops
 end
 
-PROP_DEFS.pig_shop_academy = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+local EXIT_SHOP_SOUND = "dontstarve_DLC003/common/objects/store/door_close"
+
+PROP_DEFS.pig_shop_academy = function (depth, width, exterior_door_def)
     return {
         {
             name = "prop_door",
@@ -1223,7 +1225,7 @@ PROP_DEFS.pig_shop_academy = function (depth, width, exterior_door_def, SHOPSOUN
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds = {SHOPSOUND_EXIT},
+            usesounds = {EXIT_SHOP_SOUND},
         },
 
         {name = "deco_roomglow", x_offset = 0, z_offset = 0},
@@ -1253,7 +1255,7 @@ PROP_DEFS.pig_shop_academy = function (depth, width, exterior_door_def, SHOPSOUN
     }
 end
 
-PROP_DEFS.pig_shop_antiquities = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_antiquities = function (depth, width, exterior_door_def)
     return {
         {
             name = "prop_door",
@@ -1269,7 +1271,7 @@ PROP_DEFS.pig_shop_antiquities = function (depth, width, exterior_door_def, SHOP
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds = {SHOPSOUND_EXIT},
+            usesounds = {EXIT_SHOP_SOUND},
         },
 
         {name = "pigman_collector_shopkeep", x_offset = -3, z_offset = 4, startstate = "desk_pre"},
@@ -1304,7 +1306,7 @@ PROP_DEFS.pig_shop_antiquities = function (depth, width, exterior_door_def, SHOP
     }
 end
 
-PROP_DEFS.pig_shop_hatshop = function(depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_hatshop = function(depth, width, exterior_door_def)
     return {
         {
             name = "prop_door",
@@ -1320,7 +1322,7 @@ PROP_DEFS.pig_shop_hatshop = function(depth, width, exterior_door_def, SHOPSOUND
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds = {SHOPSOUND_EXIT}
+            usesounds = {EXIT_SHOP_SOUND}
         },
 
         {name = "shelves_floating", x_offset = -5,   z_offset = 0, shelfitems={{1,"petals"},{2,"petals"},{3,"petals"}, {4,"cutgrass"}, {5,"cutgrass"},{6,"petals"}} },
@@ -1364,7 +1366,7 @@ PROP_DEFS.pig_shop_hatshop = function(depth, width, exterior_door_def, SHOPSOUND
     }
 end
 
-PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def)
     return {
         {
             name = "prop_door",
@@ -1380,7 +1382,7 @@ PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def, SHOPSOUND
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds = {SHOPSOUND_EXIT}
+            usesounds = {EXIT_SHOP_SOUND}
         },
 
         {name = "shelves_midcentury", x_offset = -4.5, z_offset = 4, shelfitems={{5, "twigs"}, {6, "twigs"}, {3, "twigs"}, {4, "twigs"}}},
@@ -1418,7 +1420,7 @@ PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def, SHOPSOUND
     }
 end
 
-PROP_DEFS.pig_shop_arcane = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_arcane = function (depth, width, exterior_door_def)
     return {
         {
             name = "prop_door",
@@ -1429,7 +1431,7 @@ PROP_DEFS.pig_shop_arcane = function (depth, width, exterior_door_def, SHOPSOUND
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds = {SHOPSOUND_EXIT},
+            usesounds = {EXIT_SHOP_SOUND},
         },
 
         { name = "pigman_erudite_shopkeep", x_offset = -3,   z_offset = 4, startstate = "desk_pre" },
@@ -1464,14 +1466,14 @@ PROP_DEFS.pig_shop_arcane = function (depth, width, exterior_door_def, SHOPSOUND
     }
 end
 
-PROP_DEFS.pig_shop_florist = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_florist = function (depth, width, exterior_door_def)
     return {
         { name = "prop_door", x_offset = 5, z_offset = 0,
             animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_florist", background=true},
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds={SHOPSOUND_EXIT} },
+            usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_florist_shopkeep", x_offset = -1,   z_offset =  4,    startstate = "desk_pre" },
         { name = "deco_roomglow",           x_offset =  0,   z_offset =  0 },
@@ -1508,7 +1510,7 @@ PROP_DEFS.pig_shop_florist = function (depth, width, exterior_door_def, SHOPSOUN
     }
 end
 
-PROP_DEFS.pig_shop_hoofspa = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_hoofspa = function (depth, width, exterior_door_def)
     return {
         {
             name = "prop_door", x_offset = 5,
@@ -1516,7 +1518,7 @@ PROP_DEFS.pig_shop_hoofspa = function (depth, width, exterior_door_def, SHOPSOUN
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds={SHOPSOUND_EXIT}},
+            usesounds={EXIT_SHOP_SOUND}},
 
         { name = "pigman_beautician_shopkeep", x_offset = -3, z_offset = 3, startstate = "desk_pre" },
         { name = "deco_roomglow",              x_offset = 0,  z_offset = 0 },
@@ -1545,7 +1547,7 @@ PROP_DEFS.pig_shop_hoofspa = function (depth, width, exterior_door_def, SHOPSOUN
     }
 end
 
-PROP_DEFS.pig_shop_general = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_general = function (depth, width, exterior_door_def)
     return {
         {
             name = "prop_door",
@@ -1560,7 +1562,7 @@ PROP_DEFS.pig_shop_general = function (depth, width, exterior_door_def, SHOPSOUN
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds = {SHOPSOUND_EXIT},
+            usesounds = {EXIT_SHOP_SOUND},
         },
 
         { name = "pigman_banker_shopkeep", x_offset = -1, z_offset = 4, startstate = "desk_pre" },
@@ -1600,7 +1602,7 @@ PROP_DEFS.pig_shop_general = function (depth, width, exterior_door_def, SHOPSOUN
     }
 end
 
-PROP_DEFS.pig_shop_produce = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_produce = function (depth, width, exterior_door_def)
     return {
         {
             name = "prop_door",
@@ -1608,7 +1610,7 @@ PROP_DEFS.pig_shop_produce = function (depth, width, exterior_door_def, SHOPSOUN
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds={SHOPSOUND_EXIT} },
+            usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_storeowner_shopkeep", x_offset = -2.5,         z_offset = 4, startstate = "desk_pre" },
         { name = "shop_spawner",               x_offset = -3,           z_offset = 0, shop_type = "pig_shop_produce"},
@@ -1649,13 +1651,13 @@ PROP_DEFS.pig_shop_produce = function (depth, width, exterior_door_def, SHOPSOUN
     }
 end
 
-PROP_DEFS.pig_shop_deli = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_deli = function (depth, width, exterior_door_def)
     return {
         { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_deli", background=true},
         is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds={SHOPSOUND_EXIT} },
+            usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_storeowner_shopkeep", x_offset = -1, z_offset = 4, startstate = "desk_pre" },
         { name = "shop_spawner",               x_offset = -3, z_offset = 0, shop_type = "pig_shop_deli" },
@@ -1689,13 +1691,13 @@ PROP_DEFS.pig_shop_deli = function (depth, width, exterior_door_def, SHOPSOUND_E
     }
 end
 
-PROP_DEFS.pig_shop_cityhall = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_cityhall = function (depth, width, exterior_door_def)
     return {
         { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_flag", background=true},
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
             addtags={"guard_entrance"},
-            usesounds={SHOPSOUND_EXIT} },
+            usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_mayor_shopkeep",    x_offset = -3, z_offset = 4 },
         { name = "deco_roomglow",            x_offset = 0,  z_offset = 0 },
@@ -1733,11 +1735,11 @@ PROP_DEFS.pig_shop_cityhall = function (depth, width, exterior_door_def, SHOPSOU
     }
 end
 
-PROP_DEFS.pig_shop_cityhall_player = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_cityhall_player = function (depth, width, exterior_door_def)
     return {
         { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_flag", background=true},
         is_exit = true,
-            my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id, addtags={"guard_entrance"}, usesounds={SHOPSOUND_EXIT} },
+            my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id, addtags={"guard_entrance"}, usesounds={EXIT_SHOP_SOUND} },
 
         { name = "deco_roomglow",            x_offset = 0,  z_offset = 0 },
         { name = "shop_spawner",             x_offset = -3, z_offset = 0, shop_type = "pig_shop_cityhall_player" },
@@ -1769,12 +1771,12 @@ PROP_DEFS.pig_shop_cityhall_player = function (depth, width, exterior_door_def, 
     }
 end
 
-PROP_DEFS.pig_shop_bank = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_bank = function (depth, width, exterior_door_def)
     return {
         { name = "prop_door", x_offset = 5, z_offset = 0, animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_bank", background=true},
         is_exit = true,
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id,
-            addtags = {"guard_entrance", "shop_music"}, usesounds={SHOPSOUND_EXIT} },
+            addtags = {"guard_entrance", "shop_music"}, usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_banker_shopkeep",     x_offset = -2.5,         z_offset = 0, startstate = "desk_pre" },
         { name = "shop_spawner",               x_offset = -3,           z_offset = 0, shop_type = "pig_shop_bank" },
@@ -1821,7 +1823,7 @@ PROP_DEFS.pig_shop_bank = function (depth, width, exterior_door_def, SHOPSOUND_E
     }
 end
 
-PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def, SHOPSOUND_EXIT)
+PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def)
     return {
         {
             name = "prop_door",
@@ -1837,7 +1839,7 @@ PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def, SHOPSOUND
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
             addtags = {"guard_entrance", "shop_music"},
-            usesounds = {SHOPSOUND_EXIT}
+            usesounds = {EXIT_SHOP_SOUND}
         },
 
         { name = "pigman_mechanic_shopkeep",     x_offset = -2,         z_offset = -3, startstate = "desk_pre" },
@@ -1879,16 +1881,36 @@ end
 
 PROP_DEFS.pig_palace = function (depth, width, exterior_door_def, togallery_door_def)
     return {
-        { name = "prop_door", x_offset = 9, z_offset = 0, animdata = {bank = "palace_door", build = "palace_door", anim = "south", background = false },
-            my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id, rotation = -90, addtags = {"guard_entrance"}, usesounds={"dontstarve_DLC003/common/objects/store/door_close"} },
+        {
+            name = "prop_door",
+            x_offset = 9,
+            z_offset = 0,
+            animdata = {bank = "palace_door", build = "palace_door", anim = "south", background = false},
+            is_exit = true,
+            my_door_id = exterior_door_def.target_door_id,
+            target_door_id = exterior_door_def.my_door_id,
+            rotation = -90,
+            addtags = {"guard_entrance"},
+            usesounds = {EXIT_SHOP_SOUND},
+        },
 
         { name = "prop_door_shadow", x_offset = 9, z_offset = 0, animdata = {bank = "palace_door", build = "palace_door", anim = "south_floor"} },
 
         { name = "deco_roomglow_large", x_offset = 0, z_offset = 0 },
 
 
-        { name = "prop_door", x_offset = 0, z_offset = -26/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
-            my_door_id = togallery_door_def.my_door_id, target_door_id = togallery_door_def.target_door_id, target_interior = togallery_door_def.target_interior, rotation = -90, flip = true, addtags = {"lockable_door","door_west"} },
+        {
+            name = "prop_door",
+            x_offset = 0,
+            z_offset = -26 / 2,
+            animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true},
+            my_door_id = togallery_door_def.my_door_id,
+            target_door_id = togallery_door_def.target_door_id,
+            target_interior = togallery_door_def.target_interior,
+            rotation = -90,
+            flip = true,
+            addtags = {"lockable_door","door_west"}
+        },
 
         { name = "deco_palace_beam_room_tall_corner",       x_offset = -18/2, z_offset = -26/2, rotation = 90, flip = true },
         { name = "deco_palace_beam_room_tall_corner",       x_offset = -18/2, z_offset =  26/2, rotation = 90 },
@@ -1982,11 +2004,40 @@ PROP_DEFS.pig_palace_gallery = function (depth, width, togiftshop_door_def, topa
     return {
         { name = "deco_roomglow", x_offset = 0, z_offset = 0 },
 
-        { name = "prop_door", x_offset =0, z_offset = -18/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
-            my_door_id = togiftshop_door_def.my_door_id, target_door_id = togiftshop_door_def.target_door_id, target_interior = togiftshop_door_def.target_interior, rotation = -90, flip = true, addtags = {"lockable_door", "door_west"} },
+        {
+            name = "prop_door",
+            x_offset = 0,
+            z_offset = -18 / 2,
+            animdata = {
+                bank = "wall_decals_palace",
+                build = "interior_wall_decals_palace",
+                anim = "door_sidewall",
+                background = true
+            },
+            my_door_id = togiftshop_door_def.my_door_id,
+            target_door_id = togiftshop_door_def.target_door_id,
+            target_interior = togiftshop_door_def.target_interior,
+            rotation = -90,
+            flip = true,
+            addtags = {"lockable_door", "door_west"}
+        },
 
-        { name = "prop_door", x_offset =0, z_offset = 18/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
-            my_door_id = topalace_door_def.my_door_id, target_door_id =topalace_door_def.target_door_id, target_interior = topalace_door_def.target_interior, rotation = 90, addtags = {"lockable_door", "door_east"} },
+        {
+            name = "prop_door",
+            x_offset = 0,
+            z_offset = 18 / 2,
+            animdata = {
+                bank = "wall_decals_palace",
+                build = "interior_wall_decals_palace",
+                anim = "door_sidewall",
+                background = true,
+            },
+            my_door_id = topalace_door_def.my_door_id,
+            target_door_id = topalace_door_def.target_door_id,
+            target_interior = topalace_door_def.target_interior,
+            rotation = 90,
+            addtags = {"lockable_door","door_east"},
+        },
 
         { name = "rug_palace_corners", x_offset = -12/2, z_offset =  18/2, rotation = 90  },
         { name = "rug_palace_corners", x_offset =  12/2, z_offset =  18/2, rotation = 180 },
@@ -2035,11 +2086,31 @@ PROP_DEFS.pig_palace_giftshop = function (depth, width, toexit_door_def, togalle
     return {
         { name = "deco_roomglow", x_offset = 0, z_offset = 0 },
 
-        { name = "prop_door", x_offset = 10/2, z_offset = 0, animdata = {bank = "pig_shop_doormats", build = "pig_shop_doormats", anim = "idle_giftshop", background = true },
-            my_door_id = toexit_door_def.my_door_id, target_door_id = toexit_door_def.target_door_id, rotation = -90, addtags = {"guard_entrance"}, usesounds={"dontstarve_DLC003/common/objects/store/door_close"} },
+        {
+            name = "prop_door",
+            x_offset = 10 / 2,
+            z_offset = 0,
+            animdata = {bank = "pig_shop_doormats", build = "pig_shop_doormats", anim = "idle_giftshop", background = true },
+            is_exit = true,
+            my_door_id = toexit_door_def.my_door_id,
+            target_door_id = toexit_door_def.target_door_id,
+            target_exterior = toexit_door_def.target_exterior,
+            rotation = -90,
+            addtags = {"guard_entrance"},
+            usesounds = {EXIT_SHOP_SOUND},
+        },
 
-        { name = "prop_door", x_offset = 0, z_offset = 15/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
-            my_door_id = togallery_door_def.my_door_id, target_door_id =togallery_door_def.target_door_id, target_interior = togallery_door_def.target_interior, rotation = 90, addtags = {"lockable_door", "door_east"} },
+        {
+            name = "prop_door",
+            x_offset = 0,
+            z_offset = 15 / 2,
+            animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
+            my_door_id = togallery_door_def.my_door_id,
+            target_door_id = togallery_door_def.target_door_id,
+            target_interior = togallery_door_def.target_interior,
+            rotation = 90,
+            addtags = {"lockable_door", "door_east"}
+        },
 
         { name = "rug_palace_corners", x_offset = -10/2, z_offset =  15/2, rotation = 90  },
         { name = "rug_palace_corners", x_offset =  10/2, z_offset =  15/2, rotation = 180 },

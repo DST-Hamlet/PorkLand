@@ -90,7 +90,6 @@ local PIG_SHOP_FOOTSTEP = "WOOD"
 
 local SHOPSOUND_ENTER1 = "dontstarve_DLC003/common/objects/store/door_open"
 local SHOPSOUND_ENTER2 = "dontstarve_DLC003/common/objects/store/door_entrance"
-local SHOPSOUND_EXIT = "dontstarve_DLC003/common/objects/store/door_close"
 
 local assets = {
     Asset("ANIM", "anim/pig_shop.zip"),
@@ -291,9 +290,9 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     local name = inst.prefab
     local city_id = inst.components.citypossession and inst.components.citypossession.cityID
 
-    local floortexture   = PIG_SHOP_TEXTURE.PIG_PALACE.FLOOR
-    local walltexture    = PIG_SHOP_TEXTURE.PIG_PALACE.WALL
-    local minimaptexture = PIG_SHOP_TEXTURE.PIG_PALACE.MINIMAP
+    local floor_texture   = PIG_SHOP_TEXTURE.PIG_PALACE.FLOOR
+    local wall_texture    = PIG_SHOP_TEXTURE.PIG_PALACE.WALL
+    local minimap_texture = PIG_SHOP_TEXTURE.PIG_PALACE.MINIMAP
 
     local togallery_door_def =
     {
@@ -303,7 +302,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     }
 
     local palace_addprops = GetPropDef("pig_palace", depth, width, exterior_door_def, togallery_door_def)
-    local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, inst.interiorID, palace_addprops, {}, walltexture, floortexture, minimaptexture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
+    local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, inst.interiorID, palace_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
 
     -- CREATE GALLERY
@@ -326,7 +325,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     }
 
     local gallery_addprops = GetPropDef("pig_palace_gallery", depth, width, togiftshop_door_def, topalace_door_def)
-    def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, gallery_id, gallery_addprops, {}, walltexture, floortexture, minimaptexture, city_id ,PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
+    def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, gallery_id, gallery_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id ,PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
 
     -- CREATE GIFT SHOP
@@ -339,6 +338,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     {
         my_door_id = "palace_giftshop_SOUTH",
         target_door_id = exterior_door_def.my_door_id,
+        target_exterior = inst.interiorID,
     }
     local togallery_door_def =
     {
@@ -348,7 +348,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     }
 
     local giftshop_addprops = GetPropDef("pig_palace_giftshop", depth, width, toexit_door_def, togallery_door_def)
-    def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, giftshop_id, giftshop_addprops, {}, walltexture, floortexture, minimaptexture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
+    def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, giftshop_id, giftshop_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
 end
 
@@ -394,7 +394,7 @@ local function CreateInterior(inst)
         height = 6
     end
 
-    local addprops = GetPropDef(inst.prefab, depth, width, exterior_door_def, SHOPSOUND_EXIT)
+    local addprops = GetPropDef(inst.prefab, depth, width, exterior_door_def)
 
     local cityID = inst.components.citypossession and inst.components.citypossession.cityID
 
