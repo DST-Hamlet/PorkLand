@@ -29,7 +29,6 @@ local function common(bank, build, foodtype)
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
 
     inst.AnimState:SetBank(bank)
     inst.AnimState:SetBuild(build)
@@ -63,6 +62,7 @@ local function common(bank, build, foodtype)
 	inst.components.perishable.onperishreplacement = "spoiled_food"
 
     MakeHauntableLaunchAndPerish(inst)
+    MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
 
     return inst
 end

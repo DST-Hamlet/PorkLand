@@ -232,6 +232,12 @@ local pl_fx = {
         build = "vortex_cloak_fx",
         anim = "idle",
     },
+    {
+        name = "water_spray",
+        bank = "sprinkler_fx",
+        build = "sprinkler_fx",
+        anim = "spray_loop",
+    },
 }
 
 -- Sneakily add these to the FX table

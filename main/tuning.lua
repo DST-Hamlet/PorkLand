@@ -578,6 +578,11 @@ local tuning = {
     ARMOR_KNIGHT_ABSORPTION = .85,
     PITHHAT_PERISHTIME = total_day_time*8,
     GASMASK_PERISHTIME = total_day_time*3,
+
+    NETTLE_REGROW_TIME = total_day_time*3,
+    NETTLE_MOISTURE_WET_THRESHOLD = 20,
+    NETTLE_MOISTURE_DRY_THRESHOLD = 10,
+    SPRINKLER_MAX_FUEL_TIME = total_day_time,
 }
 
 

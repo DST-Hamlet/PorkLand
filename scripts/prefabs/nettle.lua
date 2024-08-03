@@ -24,14 +24,13 @@ local function fn()
     end
 
     inst:AddComponent("tradable")
+
     inst:AddComponent("inspectable")
+
     inst:AddComponent("inventoryitem")
 
     inst:AddComponent("stackable")
     inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-
-    -- inst:AddComponent("appeasement")
-    -- inst.components.appeasement.appeasementvalue = TUNING.WRATH_SMALL
 
     inst:AddComponent("edible")
     inst.components.edible.foodtype = FOODTYPE.VEGGIE
@@ -41,7 +40,6 @@ local function fn()
     MakeSmallPropagator(inst)
     MakeHauntableLaunch(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
-    -- inst.components.burnable:MakeDragonflyBait(3)
 
     return inst
 end

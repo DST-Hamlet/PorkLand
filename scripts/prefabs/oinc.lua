@@ -34,7 +34,6 @@ local function MakeOinc(name, build, value)
 
         MakeInventoryPhysics(inst)
         PorkLandMakeInventoryFloatable(inst)
-        MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
 
         inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
 
@@ -62,9 +61,6 @@ local function MakeOinc(name, build, value)
         inst:AddComponent("stackable")
         inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
-        -- inst:AddComponent("appeasement")
-        -- inst.components.appeasement.appeasementvalue = TUNING.APPEASEMENT_TINY
-
         inst:AddComponent("waterproofer")
         inst.components.waterproofer.effectiveness = 0
         inst:AddComponent("inventoryitem")
@@ -77,6 +73,7 @@ local function MakeOinc(name, build, value)
         inst.OnEntityWake = onwake
 
         MakeHauntableLaunch(inst)
+        MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
 
         return inst
     end
