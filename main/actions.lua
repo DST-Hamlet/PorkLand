@@ -967,6 +967,13 @@ function INVENTORY.equippable(inst, doer, actions, ...)
     end
 end
 
+local _SCENE_pickable = SCENE.pickable
+function SCENE.pickable(inst, doer, actions, ...)
+    if not inst:HasTag("unsuited") then
+        return _SCENE_pickable(inst, doer, actions, ...)
+    end
+end
+
 function PLENV.OnHotReload()
     ToolUtil.SetUpvalue(ACTIONS.CHOP.fn, _DoToolWork, "DoToolWork")
 

@@ -29,7 +29,7 @@ end
 local function GetStatus(inst)
     if not is_on_valid_tile(inst) then
         return "WITHERED"
-    elseif inst.wet and not inst.components.pickable.canbepicked then
+    elseif inst.wet and not inst.components.pickable:CanBePicked() then
         return "MOIST"
     else
         return "DEFAULT"
@@ -39,38 +39,18 @@ end
 local function OnPicked(inst)
     inst.AnimState:PlayAnimation("picking")
     inst.AnimState:PushAnimation("picked", false)
-
-    if inst.dryup_task then
-        inst.dryup_task:Cancel()
-        inst.dryup_task = nil
-    end
 end
 
 local function OnRegen(inst)
     inst.AnimState:PlayAnimation("grow")
     inst.AnimState:PushAnimation("idle", true)
-
-    if inst.dryup_task then
-        inst.dryup_task:Cancel()
-        inst.dryup_task = nil
-    end
 end
 
 local function MakeEmpty(inst)
     inst.AnimState:PlayAnimation("picked", true)
-
-    if inst.dryup_task then
-        inst.dryup_task:Cancel()
-        inst.dryup_task = nil
-    end
 end
 
 local function MakeBarren(inst)
-    if inst.dryup_task then
-        inst.dryup_task:Cancel()
-        inst.dryup_task = nil
-    end
-
     if inst.AnimState:IsCurrentAnimation("idle_dead") then
         return
     end
@@ -106,10 +86,6 @@ local function OnTransplanted(inst)
     UpdateGrowthStatus(inst)
 end
 
-local function CanBePicked(inst)
-    return inst.wet
-end
-
 local function OnFinishCallback(inst, digger)
     if inst.components.pickable and inst.components.pickable:CanBePicked() then
         inst.components.lootdropper:SpawnLootPrefab("cutnettle")
@@ -121,21 +97,23 @@ end
 local function UpdateMoisture(inst)
     local moisture = inst.components.moistureoverride and inst.components.moistureoverride.wetness or TheWorld.state.wetness
 
-    print(moisture)
     if moisture > TUNING.NETTLE_MOISTURE_WET_THRESHOLD then -- ready to grow
         inst.AnimState:ClearOverrideBuild(BULB_HALF_OPEN_BUILD)
         inst.AnimState:ClearOverrideBuild(BULB_CLOSED_BUILD)
         inst.wet = true
+        inst.components.pickable:MakeUnsuited(false)
         UpdateGrowthStatus(inst) -- start growing
-    elseif moisture > TUNING.NETTLE_MOISTURE_DRY_THRESHOLD then -- still a bit dry
+    elseif moisture > TUNING.NETTLE_MOISTURE_DRY_THRESHOLD and inst.wet == true then
+        -- if wet, keep wet
+    elseif moisture > 0 then -- still a bit dry
         inst.AnimState:AddOverrideBuild(BULB_HALF_OPEN_BUILD)
-        inst.AnimState:ClearOverrideBuild(BULB_CLOSED_BUILD)
         inst.wet = false
+        inst.components.pickable:MakeUnsuited(true)
         -- don't pause growth just yet, give players some time
     else -- too dry
-        inst.AnimState:ClearOverrideBuild(BULB_HALF_OPEN_BUILD)
         inst.AnimState:AddOverrideBuild(BULB_CLOSED_BUILD)
         inst.wet = false
+        inst.components.pickable:MakeUnsuited(true)
         UpdateGrowthStatus(inst) -- stop growing
     end
 end
@@ -171,7 +149,6 @@ local function fn()
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_reeds"
     inst.components.pickable:SetUp("cutnettle", TUNING.NETTLE_REGROW_TIME)
-    inst.components.pickable.canbepickedfn = CanBePicked
     inst.components.pickable:SetOnRegenFn(OnRegen)
     inst.components.pickable:SetOnPickedFn(OnPicked)
     inst.components.pickable:SetMakeEmptyFn(MakeEmpty)
@@ -179,6 +156,7 @@ local function fn()
     inst.components.pickable.ontransplantfn = OnTransplanted
     inst.components.pickable.dontunpauseafterwinter = true
     inst.components.pickable.pickydirt = valid_tiles
+    inst.components.pickable:MakeUnsuited(true) -- 这里的true会给荨麻加上unsuited标签，代表不适合采摘，也就是产物已经生长完毕，但是没法进行采摘交互
 
     inst:AddComponent("inspectable")
 
@@ -197,7 +175,8 @@ local function fn()
 
     inst.wet = false
     inst:DoPeriodicTask(1, UpdateMoisture)
-    UpdateGrowthStatus(inst)
+    inst:DoTaskInTime(0, UpdateGrowthStatus)
+    --UpdateGrowthStatus(inst)
 
     return inst
 end

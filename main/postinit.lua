@@ -44,6 +44,7 @@ local component_posts = {
     "moisture",
     "oceancolor",
     "oldager",
+    "pickable",
     "playeractionpicker",
     "playercontroller",
     "playervision",
