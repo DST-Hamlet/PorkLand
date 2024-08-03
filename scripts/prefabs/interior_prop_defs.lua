@@ -1877,6 +1877,107 @@ PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def, SHOPSOUND
     }
 end
 
+PROP_DEFS.pig_palace = function (depth, width, exterior_door_def, togallery_door_def)
+    return {
+        { name = "prop_door", x_offset = 9, z_offset = 0, animdata = {bank = "palace_door", build = "palace_door", anim = "south", background = false },
+            my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id, rotation = -90, addtags = {"guard_entrance"}, usesounds={"dontstarve_DLC003/common/objects/store/door_close"} },
+
+        { name = "prop_door_shadow", x_offset = 9, z_offset = 0, animdata = {bank = "palace_door", build = "palace_door", anim = "south_floor"} },
+
+        { name = "deco_roomglow_large", x_offset = 0, z_offset = 0 },
+
+
+        { name = "prop_door", x_offset = 0, z_offset = -26/2, animdata = {bank = "wall_decals_palace", build = "interior_wall_decals_palace", anim = "door_sidewall", background = true },
+            my_door_id = togallery_door_def.my_door_id, target_door_id = togallery_door_def.target_door_id, target_interior = togallery_door_def.target_interior, rotation = -90, flip = true, addtags = {"lockable_door","door_west"} },
+
+        { name = "deco_palace_beam_room_tall_corner",       x_offset = -18/2, z_offset = -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall_corner",       x_offset = -18/2, z_offset =  26/2, rotation = 90 },
+        { name = "deco_palace_beam_room_tall_corner_front", x_offset =  18/2, z_offset = -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall_corner_front", x_offset =  18/2, z_offset =  26/2, rotation = 90 },
+
+        { name = "deco_palace_beam_room_tall", x_offset = -18/2, z_offset = -26/6-1, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall", x_offset = -18/2, z_offset =  26/6+1, rotation = 90 },
+
+        { name = "deco_palace_beam_room_tall_lights", x_offset = -18/6, z_offset = -26/6 -1, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall_lights", x_offset = -18/6, z_offset =  26/6 +1, rotation = 90 },
+
+        { name = "deco_palace_beam_room_tall_lights", x_offset = 18/6, z_offset = -26/6 -1, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall_lights", x_offset = 18/6, z_offset =  26/6 +1, rotation = 90 },
+
+        { name = "deco_palace_banner_big_front", x_offset = -18/6, z_offset = -26/3-0.5, rotation = 90 },
+        { name = "deco_palace_banner_big_front", x_offset = -18/6, z_offset =  26/3+0.5, rotation = 90 },
+        { name = "deco_palace_banner_big_front", x_offset =  18/6, z_offset = -26/3-0.5, rotation = 90 },
+        { name = "deco_palace_banner_big_front", x_offset =  18/6, z_offset =  26/3+0.5, rotation = 90 },
+
+        { name = "deco_palace_banner_small_front", x_offset = -18/2, z_offset = -26/18-3, rotation = 90 },
+        { name = "deco_palace_banner_small_front", x_offset = -18/2, z_offset =  26/18+3, rotation = 90 },
+
+        { name = "deco_palace_banner_small_front", x_offset = -18/2, z_offset = -26/18 - 26/3, rotation = 90 },
+        { name = "deco_palace_banner_small_front", x_offset = -18/2, z_offset =  26/18 - 26/3, rotation = 90 },
+
+        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14, z_offset = -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14, z_offset =  26/2, rotation = 90 },
+        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14, z_offset = -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14, z_offset =  26/2, rotation = 90 },
+
+        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14 * 3, z_offset = -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14 * 3, z_offset =  26/2, rotation = 90 },
+        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14 * 3, z_offset = -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14 * 3, z_offset =  26/2, rotation = 90 },
+
+        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14 * 5, z_offset =  -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_banner_small_sidewall", x_offset = -18/14 * 5, z_offset =   26/2, rotation = 90 },
+        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14 * 5, z_offset =  -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_banner_small_sidewall", x_offset =  18/14 * 5, z_offset =   26/2, rotation = 90 },
+
+        { name = "deco_palace_beam_room_tall_corner", x_offset = -18/6, z_offset = -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall_corner", x_offset =  18/6, z_offset = -26/2, rotation = 90, flip = true },
+        { name = "deco_palace_beam_room_tall_corner", x_offset = -18/6, z_offset =  26/2, rotation = 90 },
+        { name = "deco_palace_beam_room_tall_corner", x_offset =  18/6, z_offset =  26/2, rotation = 90 },
+
+        { name = "deco_palace_plant", x_offset = -18/2 +0.3, z_offset = -26/6.5, rotation = 90, flip = true },
+        { name = "deco_palace_plant", x_offset = -18/2 +0.3, z_offset =  26/6.5, rotation = 90 },
+
+        { name = "wall_mirror", x_offset =  18/3, z_offset = -26/2, rotation = -90 },
+        { name = "wall_mirror", x_offset = -18/3, z_offset = -26/2, rotation = -90 },
+
+        -- { name = "wall_mirror", x_offset =  18/3, z_offset = 26/2, rotation = 90, flip=true },
+        -- { name = "wall_mirror", x_offset = -18/3, z_offset = 26/2, rotation = 90, flip=true },
+
+        { name = "deco_cityhall_picture1", x_offset =  18/3, z_offset = 26/2, rotation = 90 },
+        { name = "deco_cityhall_picture2", x_offset =  -0.5, z_offset = 26/2, rotation = 90 },
+        { name = "deco_cityhall_picture1", x_offset =  -18/3, z_offset = 26/2, rotation = 90 },
+
+        { name = "pigman_queen",       x_offset = -3, z_offset = 0 },
+        { name = "deco_palace_throne", x_offset = -6, z_offset = 0, rotation = 90 },
+
+        -- floor corner pieces
+        { name = "rug_palace_corners", x_offset = -18/2, z_offset =  26/2, rotation = 90  },
+        { name = "rug_palace_corners", x_offset =  18/2, z_offset =  26/2, rotation = 180 },
+        { name = "rug_palace_corners", x_offset =  18/2, z_offset = -26/2, rotation = 270 },
+        { name = "rug_palace_corners", x_offset = -18/2, z_offset = -26/2, rotation = 0   },
+
+        -- front wall floor lights
+        { name = "swinglightobject", x_offset = 18/2, z_offset = -26/3, rotation = -90 },
+        { name = "swinglightobject", x_offset = 18/2, z_offset =  26/3, rotation = -90 },
+
+        -- back wall lights and floor lights
+        { name = "window_round_light_backwall", x_offset = -18/2, z_offset = -26/3, rotation = -90 },
+        { name = "window_palace",               x_offset = -18/2, z_offset = -26/3, rotation =  90 },
+        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =  26/3, rotation = -90 },
+        { name = "window_palace",               x_offset = -18/2, z_offset =  26/3, rotation =  90 },
+        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =     0, rotation = -90 },
+        { name = "window_palace_stainglass",    x_offset = -18/2, z_offset =     0, rotation =  90 },
+
+        -- aisle rug
+        { name = "rug_palace_runner", x_offset =   -3.38, z_offset = 0, rotation = 90 },
+        { name = "rug_palace_runner", x_offset = -3.38*2, z_offset = 0, rotation = 90 },
+        { name = "rug_palace_runner", x_offset =       0, z_offset = 0, rotation = 90 },
+        { name = "rug_palace_runner", x_offset =    3.38, z_offset = 0, rotation = 90 },
+        { name = "rug_palace_runner", x_offset =  3.38*2, z_offset = 0, rotation = 90 },
+    }
+end
+
 PROP_DEFS.vampirebatcave = function(exterior_door_def, height, width)
     local addprops = {
         {
