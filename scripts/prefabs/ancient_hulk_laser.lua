@@ -17,6 +17,11 @@ local assets_trail =
     Asset("ANIM", "anim/laser_smoke_fx.zip"),
 }
 
+local assets_ring =
+{
+    Asset("ANIM", "anim/laser_ring_fx.zip")
+}
+
 local prefabs =
 {
     "ancient_hulk_laserscorch",
@@ -340,8 +345,51 @@ local function hitfn()
     return inst
 end
 
+local function ringfn()
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
+
+    inst.AnimState:SetBuild("laser_ring_fx")
+    inst.AnimState:SetBank("laser_ring_fx")
+    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+    inst.AnimState:SetLayer(LAYER_BACKGROUND)
+    inst.AnimState:SetSortOrder(3)
+
+    inst.Transform:SetRotation(math.random() * 360)
+    inst.Transform:SetScale(0.85, 0.85, 0.85)
+
+    inst:AddTag("NOCLICK")
+    inst:AddTag("FX")
+
+    inst.entity:SetPristine()
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+    inst.alpha = 1
+    inst:DoTaskInTime(0.7, function()
+        inst:DoPeriodicTask(0, function()
+            inst.alpha = math.max(0, inst.alpha - 1 / 90)
+            inst.AnimState:SetMultColour(1, 1, 1,  inst.alpha)
+            if inst.alpha == 0 then
+                inst:Remove()
+            end
+        end)
+    end)
+
+    inst.persists = false
+
+    return inst
+end
+
 return Prefab("ancient_hulk_laser", fn, assets, prefabs),
     Prefab("ancient_hulk_laserempty", emptyfn, assets, prefabs),
     Prefab("ancient_hulk_laserscorch", scorchfn, assets_scorch),
     Prefab("ancient_hulk_lasertrail", trailfn, assets_trail),
-    Prefab("ancient_hulk_laserhit", hitfn)
+    Prefab("ancient_hulk_laserhit", hitfn),
+    Prefab("laser_ring", ringfn, assets_ring)

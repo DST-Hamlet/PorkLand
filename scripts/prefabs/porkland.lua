@@ -79,7 +79,7 @@ local function common_postinit(inst)
     inst.entity:AddWaveComponent()
     inst.WaveComponent:SetWaveParams(13.5, 2.5, -1)  -- wave texture u repeat, forward distance between waves
     inst.WaveComponent:SetWaveSize(80, 3.5)  -- wave mesh width and height
-    inst.WaveComponent:SetWaveMotion(3, 0.5, 0.25)
+    inst.WaveComponent:SetWaveMotion(0.3, 0.5, 0.25)
     inst.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex"))
     -- See source\game\components\WaveRegion.h
     inst.WaveComponent:SetWaveEffect("shaders/waves.ksh")
@@ -116,6 +116,7 @@ local function master_postinit(inst)
     inst:AddComponent("hippospawner")
     inst:AddComponent("spidermonkeyherd")
     inst:AddComponent("batted")
+    inst:AddComponent("bramblemanager")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")

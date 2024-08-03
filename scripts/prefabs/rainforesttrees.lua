@@ -133,7 +133,7 @@ local function GetStageFn(stage)
             inst.components.lootdropper:SetChanceLootTable("rainforesttree_" .. stage)
         end
 
-        if math.random() < 0.5 and not inst:HasTag("rotten") and not inst:HasTag("spider_monkey_tree") then
+        if math.random() < 0.5 and not inst:HasTag("rotten_tree") and not inst:HasTag("spider_monkey_tree") then
             for i = 1, TUNING["SNAKE_JUNGLETREE_AMOUNT_" .. string.upper(stage)] do
                 if math.random() < 0.5 and TheWorld.state.cycles >= TUNING.SNAKE_POISON_START_DAY then
                     inst.components.lootdropper:AddChanceLoot("scorpion", TUNING.SNAKE_JUNGLETREE_POISON_CHANCE)
@@ -141,7 +141,7 @@ local function GetStageFn(stage)
                     inst.components.lootdropper:AddChanceLoot("snake_amphibious", TUNING.SNAKE_JUNGLETREE_CHANCE)
                 end
             end
-        elseif stage ~= "short" and not inst:HasTag("rotten") and not inst:HasTag("spider_monkey_tree") then
+        elseif stage ~= "short" and not inst:HasTag("rotten_tree") and not inst:HasTag("spider_monkey_tree") then
             inst.components.lootdropper:AddChanceLoot("bird_egg", 1.0)
         end
 
@@ -376,7 +376,7 @@ local function OnIgnite(inst)
         return
     end
 
-    if inst:HasTag("rotten") then
+    if inst:HasTag("rotten_tree") then
         return false
     end
 
@@ -432,7 +432,7 @@ local function CanBloom(inst)
         return
     end
 
-    if inst:HasTag("rotten") then
+    if inst:HasTag("rotten_tree") then
         return false
     end
 
@@ -444,7 +444,7 @@ local function CanBloom(inst)
 end
 
 local function StartBloom(inst)
-    if inst:HasTag("rotten") then
+    if inst:HasTag("rotten_tree") then
         return
     end
     inst.AnimState:SetBuild("tree_rainforest_bloom_build")
@@ -452,7 +452,7 @@ local function StartBloom(inst)
 end
 
 local function StopBloom(inst)
-    if inst:HasTag("rotten") then
+    if inst:HasTag("rotten_tree") then
         return
     end
     inst.AnimState:SetBuild("tree_rainforest_build")
@@ -521,7 +521,7 @@ local function OnLoad(inst, data)
         if inst.bloomtask then inst.bloomtask:Cancel() inst.bloomtask = nil end
         inst.bloomtaskinfo = nil
         inst.bloomtask, inst.bloomtaskinfo = inst:ResumeTask(data.bloomtask, function()
-            if not inst:HasTag("rotten") then
+            if not inst:HasTag("rotten_tree") then
                 inst.build = "tree_rainforest_bloom_build"
                 inst.AnimState:SetBuild(inst.build)
             end
@@ -531,7 +531,7 @@ local function OnLoad(inst, data)
         if inst.unbloomtask then inst.unbloomtask:Cancel() inst.unbloomtask = nil end
         inst.unbloomtaskinfo = nil
         inst.unbloomtask, inst.unbloomtaskinfo = inst:ResumeTask(data.unbloomtask, function()
-            if not inst:HasTag("rotten") then
+            if not inst:HasTag("rotten_tree") then
                 inst.build = "tree_rainforest_build"
                 inst.AnimState:SetBuild(inst.build)
             end
@@ -657,7 +657,7 @@ local function MakeTree(name, build, stage, data)
         inst:AddTag("shelter")
         inst:AddTag("gustable")
         if build == "rot" then
-            inst:AddTag("rotten")
+            inst:AddTag("rotten_tree")
             inst.build = "tree_rainforest_gas_build"
             inst:SetPrefabName("rainforesttree_rot")
         elseif build == "spider" then

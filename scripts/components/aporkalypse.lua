@@ -2,6 +2,8 @@
 --[[ Aporkalypse class definition ]]
 --------------------------------------------------------------------------
 
+local SpawnHerald = require("prefabs/ancient_herald_util").SpawnHerald
+
 local function onrewindmult(self)
     TheWorld:PushEvent("rewindmultchange", self.rewind_mult)
 end
@@ -30,6 +32,9 @@ return Class(function(self, inst)
 
     local _activefiestadirty = true
     local _isnearaporkalypsedirty = true
+
+    local _bat_time
+    local _herald_time
 
     -- Master shard simulation
     local _timeuntilfiestaend = _ismastershard and TUNING.APORKALYPSE_FIESTA_TIME or nil
@@ -65,6 +70,19 @@ return Class(function(self, inst)
         end
     end
 
+    local function CancelAttacks()
+        _bat_time = nil
+        _herald_time = nil
+    end
+
+    local ScheduleBatAttack = _ismastersim and function()
+        _bat_time = TUNING.TOTAL_DAY_TIME + (TUNING.TOTAL_DAY_TIME * math.random(0, 0.25))
+    end
+
+    local ScheduleHeraldAttack = _ismastersim and function()
+        _herald_time = math.random(TUNING.TOTAL_DAY_TIME / 3, TUNING.TOTAL_DAY_TIME)
+    end
+
     local BeginAporkalypse = _ismastersim and function()
         if _activeaporkalypse then
             return
@@ -84,6 +102,9 @@ return Class(function(self, inst)
         if _isplateau then
             EndFiesta()
         end
+
+        ScheduleBatAttack()
+        ScheduleHeraldAttack()
     end or nil
 
     local EndAporkalypse = _ismastersim and function()
@@ -106,6 +127,8 @@ return Class(function(self, inst)
         if _isplateau then
             BeginFiesta()
         end
+
+        CancelAttacks()
     end or nil
 
     local ForceResync = _ismastersim and function(netvar)
@@ -267,6 +290,33 @@ return Class(function(self, inst)
             })
         end
 
+        if _activeaporkalypse then
+            _bat_time = _bat_time - dt
+            if _bat_time <= 0 then
+                if GetWorldSetting("vampirebat") == "never" then
+                    return
+                end
+
+                local batted = _world.components.batted
+                batted:RegenBat(15)
+                batted:ForceBatAttack()
+                ScheduleBatAttack()
+            end
+            _herald_time = _herald_time - dt
+            if _herald_time <= 0 then
+                local players = {}
+                for _, player in pairs(AllPlayers) do
+                    if not player:HasTag("inside_interior") then
+                        table.insert(players, player)
+                    end
+                end
+
+                local player = GetRandomItem(players)
+                SpawnHerald(player)
+                ScheduleHeraldAttack()
+            end
+        end
+
         _world:PushEvent("aporkalypseclocktick", {timeuntilaporkalypse = _timeuntilaporkalypse:value()})
     end
 
@@ -281,6 +331,8 @@ return Class(function(self, inst)
             activefiesta = _activefiesta:value(),
             isnearaporkalypse = _isnearaporkalypse:value(),
             timeuntilaporkalypse = _timeuntilaporkalypse:value(),
+            bat_time = _bat_time,
+            herald_time = _herald_time,
         }
     end end
 
@@ -293,9 +345,27 @@ return Class(function(self, inst)
 
         if data.activeaporkalypse == true then
             BeginAporkalypse()
+            if data.bat_time then
+                _bat_time = data.bat_time
+            end
+            if data.herald_time then
+                _herald_time = data.herald_time
+            end
         end
     end end
 
+    --------------------------------------------------------------------------
+    --[[ Debug ]]
+    --------------------------------------------------------------------------
+
+    if _ismastersim then function self:GetDebugString()
+        local s = ""
+        if _activeaporkalypse then
+            s = string.format("Next bat attack: %2.2f Next herald attack: %2.2f", _bat_time or -1, _herald_time or -1)
+        end
+
+        return s
+    end end
 
     --------------------------------------------------------------------------
     --[[ End ]]

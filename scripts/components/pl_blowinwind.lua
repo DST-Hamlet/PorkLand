@@ -143,6 +143,11 @@ function BlowInWind:OnUpdate(dt)
         return
     end
 
+    if self.inst:GetCurrentInteriorID() ~= nil then
+        -- inside an interior, don't blow
+        return
+    end
+
     if self.inst:HasTag("falling")
         or (self.inst.components.inventoryitem
         and (self.inst.components.inventoryitem.owner

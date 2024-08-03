@@ -181,6 +181,28 @@ PrefabFiles = {
     "city_hammer",
 
     "oinc",
+    "bramble",
+    "antsuit",
+    "armor_weevole",
+    "blunderbuss",
+    "bugrepellent",
+    "candlefire",
+    "corkbat",
+    "gascloud",
+    "pl_hats",
+    "pl_turfs",
+    "poisonbalm",
+    "snakeskin_jacket",
+    "pl_magicprototyper",
+    "cloudpuff",
+    "batsonar_fx",
+    "ancient_herald",
+    "armor_vortex_cloak",
+    "herald_tatters",
+    "firerain",
+    "lavapool",
+    "meteor_impact",
+    "obsidian",
 }
 
 Assets = {
@@ -209,6 +231,7 @@ Assets = {
     Asset("IMAGE", "images/overlays/fx6.tex"),
     Asset("ANIM", "anim/leaves_canopy2.zip"),  -- canopy
     Asset("ANIM", "anim/livingartifact_meter.zip"),
+    Asset("ANIM", "anim/poison_meter_overlay.zip"),
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"), -- blood moon
 
@@ -232,6 +255,10 @@ Assets = {
     Asset("ANIM", "anim/player_living_suit_morph.zip"),
     Asset("ANIM", "anim/player_living_suit_punch.zip"),
     Asset("ANIM", "anim/player_living_suit_shoot.zip"),
+    Asset("ANIM", "anim/player_actions_cropdust.zip"),
+    Asset("ANIM", "anim/player_actions_speargun.zip"),
+    Asset("ANIM", "anim/player_mount_actions_cropdust.zip"),
+    Asset("ANIM", "anim/player_mount_actions_speargun.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),

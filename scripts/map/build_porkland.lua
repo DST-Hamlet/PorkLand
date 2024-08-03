@@ -1,7 +1,7 @@
 local make_border = require("map/border_finder")
 local make_cities = require("map/city_builder")
 local make_bunch = require("map/make_bunch")
--- local make_bramble_sites = require("map/bramble_spawner")
+local make_bramble_sites = require("map/bramble_spawner")
 
 local forest_map = require("map/forest_map")
 local MULTIPLY = forest_map.MULTIPLY
@@ -214,7 +214,7 @@ local function build_porkland(entities, topology_save, map_width, map_height, cu
     --     end
     -- end
 
-    -- entities = makeBrambleSites(entities, topology_save, WorldSim, map_width, map_height)
+    make_bramble_sites(entities, topology_save, map_width, map_height)
 end
 
 return build_porkland

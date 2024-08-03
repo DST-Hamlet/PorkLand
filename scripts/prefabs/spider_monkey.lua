@@ -39,8 +39,8 @@ local function OnAttacked(inst, data)
 end
 
 local DEFEND_HOME_DIST = 12
-local HOME_THREAT_MUST_TAGS = {"FX", "NOCLICK", "INLIMBO", "spidermonkey"}
-local HOME_THREAT_NO_TAGS = {"character", "animal", "monster"}
+local HOME_THREAT_NO_TAGS = {"FX", "NOCLICK", "INLIMBO", "spider_monkey"}
+local HOME_THREAT_ONE_OF_TAGS = {"character", "animal", "monster"}
 
 local function FindThreatToNest(inst)
     if not inst.tree or not inst.tree:IsValid() then
@@ -49,7 +49,7 @@ local function FindThreatToNest(inst)
 
     return FindEntity(inst.tree, DEFEND_HOME_DIST, function(ent)
         return ent.components.health and not ent.components.health:IsDead() and inst.components.combat:CanTarget(ent)
-    end, nil, HOME_THREAT_MUST_TAGS, HOME_THREAT_NO_TAGS)
+    end, nil, HOME_THREAT_NO_TAGS, HOME_THREAT_ONE_OF_TAGS)
 end
 
 local RETARGET_DIST = 8
@@ -110,9 +110,9 @@ local FIND_WEB_TREE_DIST = 7
 local FIND_TREE_DIST = 30
 local FORGET_TREE_DIST = FIND_TREE_DIST + 10
 local FIND_WEB_TREE_MUST_TAGS = {"rainforesttree", "spider_monkey_tree"}
-local FIND_WEB_TREE_NOT_TAGS = {"burnt", "stump", "rotten"}
+local FIND_WEB_TREE_NOT_TAGS = {"burnt", "stump", "rotten_tree"}
 local FIND_TREE_MUST_TAGS = {"rainforesttree"}
-local FIND_TREE_NO_TAGS = {"has_spider", "burnt", "stump", "rotten"}
+local FIND_TREE_NO_TAGS = {"has_spider", "burnt", "stump", "rotten_tree"}
 
 local OnTreeDestroyed
 
@@ -189,12 +189,12 @@ local function InfectTrees(inst, tree)
     return true
 end
 
--- not deleted, not burnt, not chopped, not rotten
+-- not deleted, not burnt, not chopped, not rotten_tree
 local function is_valid_tree(tree)
     return tree and tree:IsValid()
         and not tree:HasTag("burnt")
         and not tree:HasTag("stump")
-        and not tree:HasTag("rotten")
+        and not tree:HasTag("rotten_tree")
 end
 
 local function is_valid_target_tree(tree)
