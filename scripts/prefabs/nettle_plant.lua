@@ -121,6 +121,7 @@ end
 local function UpdateMoisture(inst)
     local moisture = inst.components.moistureoverride and inst.components.moistureoverride.wetness or TheWorld.state.wetness
 
+    print(moisture)
     if moisture > TUNING.NETTLE_MOISTURE_WET_THRESHOLD then -- ready to grow
         inst.AnimState:ClearOverrideBuild(BULB_HALF_OPEN_BUILD)
         inst.AnimState:ClearOverrideBuild(BULB_CLOSED_BUILD)

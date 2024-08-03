@@ -35,7 +35,7 @@ function MoistureOverride:OnUpdate(dt)
         self.rate_mult:SetModifier(WETNESS_SOURCE_WEATHER, wetrate)
     end
 
-    self.wetness = math.clamp((self.wetness * self.rate_mult:Get()) + self.rate_add:Get() * dt, 0, TUNING.MAX_WETNESS)
+    self.wetness = math.clamp(self.wetness + self.rate_mult:Get() * dt + self.rate_add:Get() * dt, 0, TUNING.MAX_WETNESS)
     if self.wetness == 0 then
         self.inst:RemoveComponent("moistureoverride")
     end
