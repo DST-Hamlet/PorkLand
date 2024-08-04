@@ -578,6 +578,13 @@ local tuning = {
     ARMOR_KNIGHT_ABSORPTION = .85,
     PITHHAT_PERISHTIME = total_day_time*8,
     GASMASK_PERISHTIME = total_day_time*3,
+
+    PIG_BANDIT_DAMAGE = 33,
+    PIG_BANDIT_HEALTH = 250,
+    PIG_BANDIT_ATTACK_PERIOD = 3,
+    PIG_BANDIT_LOYALTY_MAXTIME = 2.5*total_day_time,
+    PIG_BANDIT_LOYALTY_PER_HUNGER = total_day_time/25,
+    PIG_BANDIT_MIN_POOP_PERIOD = seg_time * .5,
 }
 
 
