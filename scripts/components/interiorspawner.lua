@@ -550,6 +550,8 @@ end
 function InteriorSpawner:GetInteriorByIndex(index)
     -- convert string name
     if type(index) == "string" then
+        -- should not happen
+        print("WARNING: GetInteriorByIndex with a string:", index)
         index = assert(tonumber(select(3, index:find("_(%d+)$"))), "Failed to convert to number: "..index)
     end
     local pos = self:IndexToPosition(index)
