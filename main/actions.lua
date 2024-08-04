@@ -294,9 +294,6 @@ local function DoTeleport(player, pos)
             player.components.playercontroller:Enable(true)
         end
         player:SnapCamera()
-        if TheWorld.ismastersim then
-            TheCamera:Snap()
-        end
         player:ScreenFade(true, 0.4)
         player.sg:GoToState("idle")
     end)

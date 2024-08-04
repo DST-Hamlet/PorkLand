@@ -15,6 +15,7 @@ local InteriorVisitor = Class(function(self, inst)
 
     self.resetinteriorcamera = net_event(inst.GUID, "interiorvisitor.resetinteriorcamera")
     -- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
+    self.inst:ListenForEvent("interiorvisitor.exterior_pos", function() self:OnUpdate() end)
 
     inst:StartUpdatingComponent(self)
 
@@ -42,9 +43,9 @@ function InteriorVisitor:GetInteriorCenterGeneric()
     end
 end
 
-function InteriorVisitor:GetInteriorCenterDedicated()
-    return self.interiorspawner:PositionToInteriorCenter()
-end
+-- function InteriorVisitor:GetInteriorCenterDedicated()
+--     return self.interiorspawner:PositionToInteriorCenter()
+-- end
 
 local function IsInInteriorRectangle(player_pos, ent)
     if ent == nil or not ent:IsValid() then

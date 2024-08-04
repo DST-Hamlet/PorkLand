@@ -165,11 +165,11 @@ function InteriorSpawner:GetInteriorCenterAt_Generic(x, z)
     end
 end
 
-function InteriorSpawner:GetInteriorCenterAt_Dedicated(x, z)
-    -- should not be used in client (center_ent may asleep)
-    local index = self:PositionToIndex(Point(x, 0, z))
-    return self.interiors[index] and self.interiors[index].center_ent
-end
+-- function InteriorSpawner:GetInteriorCenterAt_Dedicated(x, z)
+--     -- should not be used in client (center_ent may asleep)
+--     local index = self:PositionToIndex(Point(x, 0, z))
+--     return self.interiors[index] and self.interiors[index].center_ent
+-- end
 
 function InteriorSpawner:IndexToPosition(i)
     self:SetInteriorPos()

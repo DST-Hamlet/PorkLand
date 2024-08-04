@@ -3,6 +3,19 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local FollowCamera = require("cameras/followcamera")
 
+local snap = FollowCamera.Snap
+function FollowCamera:Snap(...)
+    if not self.inside_interior
+        and self.pl_old_headingtarget
+        and not TheWorld.components.interiorspawner:IsInInteriorRegion(self.currentpos.x, self.currentpos.z) then
+
+        self.headingtarget = self.pl_old_headingtarget
+        --self.heading = self.headingtarget
+        self.pl_old_headingtarget = nil
+    end
+    return snap(self, ...)
+end
+
 local _Apply = FollowCamera.Apply
 function FollowCamera:Apply(...)
     if self.inside_interior then
