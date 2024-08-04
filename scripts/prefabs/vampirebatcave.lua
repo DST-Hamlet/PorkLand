@@ -41,6 +41,7 @@ local function CreateInterior(inst)
         target_interior = id,
     }
     interior_spawner:AddDoor(inst, exterior_door_def)
+    interior_spawner:AddExterior(inst)
 
     if can_reuse_interior then
         -- Reuse old interior, but we still need to re-register the door
