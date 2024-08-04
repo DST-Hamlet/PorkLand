@@ -1907,8 +1907,6 @@ PROP_DEFS.pig_palace = function (depth, width, exterior_door_def, togallery_door
             my_door_id = togallery_door_def.my_door_id,
             target_door_id = togallery_door_def.target_door_id,
             target_interior = togallery_door_def.target_interior,
-            rotation = -90,
-            flip = true,
             addtags = {"lockable_door","door_west"}
         },
 
@@ -2017,8 +2015,6 @@ PROP_DEFS.pig_palace_gallery = function (depth, width, togiftshop_door_def, topa
             my_door_id = togiftshop_door_def.my_door_id,
             target_door_id = togiftshop_door_def.target_door_id,
             target_interior = togiftshop_door_def.target_interior,
-            rotation = -90,
-            flip = true,
             addtags = {"lockable_door", "door_west"}
         },
 
@@ -2035,7 +2031,7 @@ PROP_DEFS.pig_palace_gallery = function (depth, width, togiftshop_door_def, topa
             my_door_id = topalace_door_def.my_door_id,
             target_door_id = topalace_door_def.target_door_id,
             target_interior = topalace_door_def.target_interior,
-            rotation = 90,
+            flip = true,
             addtags = {"lockable_door","door_east"},
         },
 
@@ -2108,7 +2104,7 @@ PROP_DEFS.pig_palace_giftshop = function (depth, width, toexit_door_def, togalle
             my_door_id = togallery_door_def.my_door_id,
             target_door_id = togallery_door_def.target_door_id,
             target_interior = togallery_door_def.target_interior,
-            rotation = 90,
+            flip = true,
             addtags = {"lockable_door", "door_east"}
         },
 
