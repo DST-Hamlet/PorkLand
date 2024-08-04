@@ -28,13 +28,13 @@ local function MapOnSave(inst, data)
     return refs
 end
 
-local function MapOnLoadPostPass(inst, data)
+local function MapOnLoadPostPass(inst, newents, data)
     if not data then
         return
     end
 
-    if data.treasure and ents[data.treasure] then
-        inst.treasure = ents[data.treasure].entity
+    if data.treasure and newents[data.treasure] then
+        inst.treasure = newents[data.treasure].entity
     end
     inst.message = data.message
 end
@@ -122,15 +122,17 @@ local function SpawnTreasureChest(pt)
     chest.Transform:SetPosition(pt.x, pt.y, pt.z)
     SpawnPrefab("collapse_small").Transform:SetPosition(pt.x, pt.y, pt.z)
 
-    local lootprefabs = TheWorld.components.banditmanager:GetLoot()
+    local loot_prefabs = TheWorld.components.banditmanager:GetLoot()
 
-    for p, n in pairs(lootprefabs) do
-        local loot = SpawnPrefab(p)
-        if loot.components.stackable then
-            loot.components.stackable:SetStackSize(n)
+    for prefab, num_loot in pairs(loot_prefabs) do
+        if num_loot > 0 then
+            local loot = SpawnPrefab(prefab)
+            if loot.components.stackable then
+                loot.components.stackable:SetStackSize(num_loot)
+            end
+
+            chest.components.container:GiveItem(loot, nil, nil, true)
         end
-
-        chest.components.container:GiveItem(loot, nil, nil, true)
     end
 
     TheWorld:PushEvent("bandittreasure_dug")

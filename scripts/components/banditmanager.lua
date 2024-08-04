@@ -33,10 +33,10 @@ local TREASURE_LIST = {
     {
         weight = 3,
         loot = {
-            trinket_17 = 1,
+            trinket_18 = 1, -- trinket_17 = 1,
             oinc = 5,
             sewing_kit = 1,
-            telescope = 1,
+            -- telescope = 1,
             meat_dried = 1,
         },
     },
