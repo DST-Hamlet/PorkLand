@@ -61,13 +61,10 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
-    if data == nil or (data and data.interiorID == nil) then
-        CreateInterior(inst)
-        return
-    end
     if data then
         inst.interiorID = data.interiorID
     end
+    CreateInterior(inst)
 end
 
 local function fn()

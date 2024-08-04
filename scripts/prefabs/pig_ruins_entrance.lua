@@ -525,6 +525,7 @@ local function InitMaze(inst, dungeonname)
         target_interior = inst.interiorID,
     }
     interior_spawner:AddDoor(inst, exterior_door_def)
+    interior_spawner:AddExterior(inst)
 
     if can_reuse_interior then
         -- Reuse old interior, but we still need to re-register the door
@@ -572,7 +573,7 @@ local function OnHacked(inst, hacker, hacksleft)
         inst.AnimState:PlayAnimation("hit_low")
     end
 
-    RefreshBuild(inst,true)
+    RefreshBuild(inst, true)
 end
 
 local function OnSave(inst, data)
@@ -615,29 +616,41 @@ local function OnLoad(inst, data)
     end
     if inst.is_entrance then
         InitMaze(inst, inst.dungeon_name)
+    elseif inst.interiorID then
+        local exterior_door_def2 = {
+            my_door_id = inst.dungeon_name .. "_ENTRANCE2",
+            target_door_id = inst.dungeon_name .. "_EXIT2",
+            target_interior = inst.interiorID,
+        }
+        TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def2)
+        TheWorld.components.interiorspawner:AddExterior(inst)
     end
-
     RefreshBuild(inst)
 end
 
 local function OnLoadPostPass(inst, data) -- 出口的连接写在 OnLoadPostPass 中，这样才能确定所有储存的实体已经添加进世界
-    if not inst.is_entrance and inst.interiorID == nil then
-        if inst.dungeon_name then
-            local exit_room_id
-            for _, ent in pairs(Ents) do
-                if ent.components.door and ent.components.door.target_door_id == inst.dungeon_name .. "_ENTRANCE2" then
-                    exit_room_id = ent.components.door.interior_name
-                end
+    if inst.is_entrance then
+        -- For exit only
+        return
+    end
+    -- Run on initial load only
+    if not inst.interiorID then
+        -- Set our interior id to the interior id of the door that points to us
+        local exit_room_id
+        for _, ent in pairs(Ents) do
+            if ent.components.door and ent.components.door.target_door_id == inst.dungeon_name .. "_ENTRANCE2" then
+                exit_room_id = ent.components.door.interior_name
+                break
             end
-            local exterior_door_def2 = {
-                my_door_id = inst.dungeon_name .. "_ENTRANCE2",
-                target_door_id = inst.dungeon_name .. "_EXIT2",
-                target_interior = exit_room_id,
-            }
-            inst.interiorID = exit_room_id
-            TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def2)
-            TheWorld.components.interiorspawner:AddExterior(inst)
         end
+        local exterior_door_def2 = {
+            my_door_id = inst.dungeon_name .. "_ENTRANCE2",
+            target_door_id = inst.dungeon_name .. "_EXIT2",
+            target_interior = exit_room_id,
+        }
+        inst.interiorID = exit_room_id
+        TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def2)
+        TheWorld.components.interiorspawner:AddExterior(inst)
     end
 end
 
