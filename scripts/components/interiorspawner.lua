@@ -845,7 +845,7 @@ function InteriorSpawner:UpdateInteriorIdMap()
     return self.interiors_id_map
 end
 
-function InteriorSpawner:GatherAllRooms_Impl(inst, allrooms, usemap)
+function InteriorSpawner:GatherAllRooms_Impl(inst, allrooms, usemap, allexteriors)
     -- WARNING: this method is quite expensive and server only
     if allrooms[inst] then
         return
@@ -856,6 +856,15 @@ function InteriorSpawner:GatherAllRooms_Impl(inst, allrooms, usemap)
     for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}))do
         if v.prefab == "prop_door" then
             local id = v.components.door.target_interior
+
+            if id == "EXTERIOR" and allexteriors ~= nil then
+                local index = v.components.door.target_exterior or v.components.door.interior_name
+                local house = self:GetExteriorById(index)
+                if house then
+                    allexteriors[house] = true
+                end
+            end
+
             if id ~= nil and id ~= "EXTERIOR" then
                 local room = nil
                 if usemap then
@@ -873,11 +882,11 @@ function InteriorSpawner:GatherAllRooms_Impl(inst, allrooms, usemap)
                     end
                 end
 
-                self:GatherAllRooms_Impl(room, allrooms, usemap)
+                self:GatherAllRooms_Impl(room, allrooms, usemap, allexteriors)
             end
         end
     end
-    return allrooms
+    return allrooms, allexteriors
 end
 
 function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
@@ -885,7 +894,7 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
     if not usecachedmap then
         self:UpdateInteriorIdMap()
     end
-    local allrooms = self:GatherAllRooms_Impl(inst, {}, true)
+    local allrooms, allexteriors = self:GatherAllRooms_Impl(inst, {}, true, {})
     local pos_x, pos_z = 0, 0
     local grid_x, grid_z = 0, 0
     local visited = {}
@@ -926,7 +935,6 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
             pos_x = pos_x, pos_z = pos_z,
             grid_x = grid_x, grid_z = grid_z,
             doors = doors,
-            visited_players = {}, -- {[K: userid]: true}
             force_visited = inst:HasInteriorTag("FORCE_VISITED"),
         })
 
@@ -945,6 +953,15 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
             end
         end
     end
+
+    local all_exteriors_pos = {}
+    for k in pairs(allexteriors)do
+        local x, _, z = k.Transform:GetWorldPosition()
+        if x and z then
+            table.insert(all_exteriors_pos, {x = x, z = z})
+        end
+    end
+    result[1].all_exteriors_pos = all_exteriors_pos -- save pos in first room
 
     local major_id = nil
     for _, v in ipairs(result)do
@@ -996,25 +1013,25 @@ function InteriorSpawner:SendMinimapLayoutData()
             player_visitors[player.components.interiorvisitor] = true
         end
     end
-    -- set visited data
-    for k, v in pairs(self.interior_layout_map)do
-        if type(v) == "table" and v.uuid ~= nil then
-            for c in pairs(player_visitors) do
-                if c:IsVisited(v.uuid) then
-                    v.visited_players[c.inst.userid] = true
-                else
-                    v.visited_players[c.inst.userid] = nil
-                end
-            end
-        end
-    end
+    -- -- set visited data
+    -- for k, v in pairs(self.interior_layout_map)do
+    --     if type(v) == "table" and v.uuid ~= nil then
+    --         for c in pairs(player_visitors) do
+    --             if c:IsVisited(v.uuid) then
+    --                 v.visited_players[c.inst.userid] = true
+    --             else
+    --                 v.visited_players[c.inst.userid] = nil
+    --             end
+    --         end
+    --     end
+    -- end
     if #full_list > 0 then
         local data = {}
         for k, v in pairs(self.interior_layout_map) do
             table.insert(data, {k, v})
         end
-        -- SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
-        --     full_list, TheSim:ZipAndEncodeString(DataDumper(data)))
+        SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
+            full_list, TheSim:ZipAndEncodeString(DataDumper(data)))
     end
     if #diff_list > 0 then
         -- TODO: 这里没有考虑房间的销毁和key的移除
@@ -1024,8 +1041,10 @@ function InteriorSpawner:SendMinimapLayoutData()
             table.insert(data, {k, self.interior_layout_map[k]})
         end
         self.interior_layout_dirty_keys = {}
-        -- SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
-        --     diff_list, TheSim:ZipAndEncodeString(DataDumper(data)))
+        if #data > 0 then
+            SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
+                diff_list, TheSim:ZipAndEncodeString(DataDumper(data)))
+        end
     end
 end
 

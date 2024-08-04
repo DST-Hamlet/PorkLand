@@ -210,6 +210,7 @@ local function CollectMinimapData(inst)
             end
         end
     end
+    inst.minimap_data_cache = result
     return result
     -- {
     --     center: Point,
@@ -408,6 +409,12 @@ local function fn()
     inst.depth = TUNING.ROOM_TINY_DEPTH
     inst.SetUp = SetUp
     inst.CollectMinimapData = CollectMinimapData
+
+    inst:DoTaskInTime(0, function()
+        -- 2024/7/14 cache minimap data on start
+        -- TODO: 性能测试
+        inst.minimap_data_cache = CollectMinimapData(inst)
+    end)
 
     inst.walltexture = nil
     inst.floortexture = nil

@@ -302,9 +302,26 @@ for _, v in ipairs(require("main/interior_texture_defs").Assets) do
 end
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
-AddMinimapAtlas("images/minimap/pl_minimap.xml")
 AddMinimapAtlas("levels/textures/map_interior/pl_black_bg.xml")
+AddMinimapAtlas("images/minimap/pl_minimap.xml")
 AddMinimapAtlas("interior_minimap/interior_minimap.xml")
+
+-- delay world minimap asset
+local registered = {}
+local old_AddAtlas = GLOBAL.MiniMap.AddAtlas
+function GLOBAL.MiniMap.AddAtlas(minimap, path, ...)
+    if path == GLOBAL.resolvefilepath("minimap/minimap_data1.xml")
+        or path == GLOBAL.resolvefilepath("minimap/minimap_data2.xml") then
+        if registered[path] == nil then
+            registered[path] = true
+            AddMinimapAtlas(path)
+        else
+            return old_AddAtlas(minimap, path, ...)
+        end
+    else
+        return old_AddAtlas(minimap, path, ...)
+    end
+end
 
 local sounds = {
     Asset("SOUND", "sound/DLC003_AMB_stream.fsb"),

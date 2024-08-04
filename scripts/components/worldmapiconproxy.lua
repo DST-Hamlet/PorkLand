@@ -13,11 +13,16 @@ return Class(function(self, inst)
     local client_minimap_door_ents = {} -- {[key: `${uuid}-${dir}`]: Ent}
     local client_visited_uuid = {} -- {[uuid: string]: true}
 
+    local client_exit_markers = {} -- map_ent[]
+
     local player_room_ent = SpawnPrefab("pl_interior_minimap_room_client") -- center, client ThePlayer only
 
     local minimap_type = nil -- "interior" | "exterior"
+    local force_exterior_mode = false -- force show big map
 
     local _activatedplayer = nil
+
+    local debug_force_visit = true
 
     local function GetPlayerID()
         return _activatedplayer ~= nil and _activatedplayer.userid or ""
@@ -66,6 +71,7 @@ return Class(function(self, inst)
     local function OnPlayerActivated(_, player)
         _activatedplayer = player
         player.pl_changeinterior_handler = function(_, data)
+            force_exterior_mode = false
             local ent = data.to
             if ent ~= nil and ent:HasInteriorMinimap() then
                 bg:Render(true)
@@ -77,8 +83,25 @@ return Class(function(self, inst)
                 minimap_type = "exterior"
             end
         end
+        player.pl_changeminimapmode_handler = function(_, data)
+            if type(data) == "string" then
+                force_exterior_mode = data == "exterior"
+            else
+                force_exterior_mode = not force_exterior_mode
+            end
+            if minimap_type == "interior" then
+                if force_exterior_mode then
+                    bg:Render(false)
+                    player_room_ent:Render(false)
+                else
+                    bg:Render(true)
+                    player_room_ent:Update()
+                end
+            end
+        end
         player:ListenForEvent("enterinterior", player.pl_changeinterior_handler)
         player:ListenForEvent("leaveinterior", player.pl_changeinterior_handler)
+        player:ListenForEvent("pl_toggleminimapmode", player.pl_changeminimapmode_handler)
     end
 
     local function OnPlayerDeactivated(_, player)
@@ -89,10 +112,18 @@ return Class(function(self, inst)
             player:RemoveEventCallback("enterinterior", player.pl_changeinterior_handler)
             player.pl_changeinterior_handler = nil
         end
+        if player and player.pl_changeminimapmode_handler then
+            player:RemoveEventCallback("pl_minimapmode", player.pl_changeminimapmode_handler)
+            player.pl_changeminimapmode_handler = nil
+        end
     end
 
     inst:ListenForEvent("playeractivated", OnPlayerActivated, TheWorld)
     inst:ListenForEvent("playerdeactivated", OnPlayerDeactivated, TheWorld)
+
+    self.UsingInteriorMinimap = function()
+        return minimap_type == "interior" and not force_exterior_mode
+    end
 
     local function CheckDirty(data)
         local guid = data.guid
@@ -113,11 +144,16 @@ return Class(function(self, inst)
                     pos = { 0, 0 },
                 }))
                 table.insert(temp, "\"\"") -- decode to empty string
-            elseif ent:IsAsleep() then
-
             else
-                local data = ent:CollectMinimapData()
-                if data.no_minimap then
+                local data = nil
+                if ent:IsAsleep() then 
+                    -- 2024/7/13 do not collect from asleep room 
+                    data = ent.minimap_data_cache
+                else
+                    data = ent:CollectMinimapData()
+                end
+                
+                if data == nil or data.no_minimap then
                     -- do nothing
                 else
                     local diff, s = CheckDirty(data)
@@ -182,7 +218,11 @@ return Class(function(self, inst)
     local function ApplyMinimapData(net_id)
         local ent = client_minimap_room_ents[net_id] or SpawnPrefab("pl_interior_minimap_room")
         client_minimap_room_ents[net_id] = ent
-        ent:SetMinimapData(client_data[net_id])
+        if self:UsingInteriorMinimap() then
+            ent:SetMinimapData(client_data[net_id])
+        else
+            ent:Render(false)
+        end
         return ent
     end
 
@@ -250,6 +290,25 @@ return Class(function(self, inst)
         local ent_list = {}
         local origin = nil
 
+        -- render exit marker
+        local all_exteriors_pos = layout[1] and layout[1].all_exteriors_pos
+        if all_exteriors_pos ~= nil and minimap_type == "interior" and force_exterior_mode then
+            for i,v in ipairs(all_exteriors_pos)do
+                local marker = client_exit_markers[i] or SpawnPrefab("pl_local_icon")
+                marker.MiniMapEntity:SetIcon("moonstormmarker0.png") -- TODO: replace art
+                marker.MiniMapEntity:SetEnabled(true)
+                marker.Transform:SetPosition(v.x, 0, v.z)
+                client_exit_markers[i] = marker
+            end
+            for i = #all_exteriors_pos + 1, math.huge do
+                if client_exit_markers[i] then
+                    client_exit_markers[i].MiniMapEntity:SetEnabled(false)
+                else
+                    break
+                end
+            end
+        end
+
         for _,v in ipairs(layout)do
             local interiorID = v.interior_name
             local net_id = v.net_id
@@ -296,11 +355,17 @@ return Class(function(self, inst)
                 -- 0, 0 --> skip, use room_client
                 v:Render(false)
                 -- player_room_ent:Update()
-            else
+            elseif self:UsingInteriorMinimap() then
                 -- others --> render them
                 v.Transform:SetPosition(pos:Get())
                 v:Render(true)
             end
+        end
+    end
+
+    function self:GetExteriorPosClient()
+        if client_exit_markers[1] then
+            return client_exit_markers[1].Transform:GetWorldPosition()
         end
     end
 

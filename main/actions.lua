@@ -275,7 +275,7 @@ local function DoTeleport(player, pos)
         -- local invincible = player.components.health.invincible
         --player.components.health:SetInvincible(true)
         if player.components.playercontroller ~= nil then
-            player.components.playercontroller:EnableMapControls(false)
+            -- player.components.playercontroller:EnableMapControls(false)
             player.components.playercontroller:Enable(false)
         end
 
