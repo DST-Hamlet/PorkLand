@@ -98,10 +98,10 @@ Recipe2("beargervest", 					{Ingredient("bearger_fur", 1), Ingredient("sweaterve
 Recipe2("bedroll_straw",				{Ingredient("cutgrass", 6), Ingredient("rope", 1)},											    TECH.SCIENCE_ONE)
 Recipe2("beeswax",						{Ingredient("honeycomb", 1)}, 																	TECH.SCIENCE_TWO)
 Recipe2("birdcage",						{Ingredient("papyrus", 2), Ingredient("goldnugget", 6), Ingredient("seeds", 2)},				TECH.SCIENCE_TWO,			{placer="birdcage_placer"})
-Recipe2("birdtrap",						{Ingredient("twigs", 3),Ingredient("silk", 4)},													TECH.SCIENCE_ONE)
-Recipe2("blowdart_fire",				{Ingredient("cutreeds", 2),Ingredient("charcoal", 1),Ingredient("feather_robin", 1)},		    TECH.SCIENCE_TWO)
-Recipe2("blowdart_pipe",				{Ingredient("cutreeds", 2),Ingredient("houndstooth", 1),Ingredient("feather_robin_winter", 1)},	TECH.SCIENCE_TWO)
-Recipe2("blowdart_sleep",				{Ingredient("cutreeds", 2),Ingredient("stinger", 1),Ingredient("feather_crow", 1)},				TECH.SCIENCE_TWO)
+Recipe2("birdtrap",						{Ingredient("twigs", 3), Ingredient("silk", 4)},												TECH.SCIENCE_ONE)
+Recipe2("blowdart_fire",				{Ingredient("cutreeds", 2), Ingredient("charcoal", 1), Ingredient("feather_robin", 1)},		    TECH.SCIENCE_TWO)
+Recipe2("blowdart_pipe",				{Ingredient("cutreeds", 2), Ingredient("houndstooth", 1),Ingredient("feather_robin_winter", 1)},TECH.SCIENCE_TWO)
+Recipe2("blowdart_sleep",				{Ingredient("cutreeds", 2), Ingredient("stinger", 1), Ingredient("feather_crow", 1)},			TECH.SCIENCE_TWO)
 Recipe2("blueamulet",					{Ingredient("goldnugget", 3), Ingredient("bluegem", 1)},										TECH.MAGIC_TWO)
 Recipe2("boards",						{Ingredient("log", 4)}, 																		TECH.SCIENCE_ONE)
 Recipe2("boomerang",					{Ingredient("boards", 1),Ingredient("silk", 1),Ingredient("charcoal", 1)},						TECH.SCIENCE_TWO)
@@ -193,7 +193,7 @@ Recipe2("winona_battery_low",			{Ingredient("sewing_tape", 1), Ingredient("log",
 Recipe2("winona_battery_high",			{Ingredient("sewing_tape", 1), Ingredient("boards", 2), Ingredient("transistor", 2)},			TECH.NONE,				{builder_tag="basicengineer", placer="winona_battery_high_item_placer"})
 
 -- Wurt
-Recipe2("mermhouse_crafted",			    {Ingredient("boards", 4), Ingredient("cutreeds", 3), Ingredient("pondfish", 2)},				TECH.SCIENCE_ONE,		{builder_tag="merm_builder", placer="mermhouse_crafted_placer", testfn=IsMarshLand})
+Recipe2("mermhouse_crafted",			   {Ingredient("boards", 4), Ingredient("cutreeds", 3), Ingredient("pondfish", 2)},				TECH.SCIENCE_ONE,		{builder_tag="merm_builder", placer="mermhouse_crafted_placer", testfn=IsMarshLand})
 Recipe2("mermthrone_construction",		{Ingredient("boards", 5), Ingredient("rope", 5)},												TECH.SCIENCE_ONE,		{builder_tag="merm_builder", placer="mermthrone_construction_placer", testfn=IsMarshLand})
 Recipe2("mermwatchtower",				{Ingredient("boards", 5), Ingredient("tentaclespots", 1), Ingredient("spear", 2)},				TECH.SCIENCE_ONE,		{builder_tag="merm_builder", placer="mermwatchtower_placer", testfn=IsMarshLand})
 Recipe2("wurt_turf_marsh",				{Ingredient("cutreeds", 1), Ingredient("spoiled_food", 2)},										TECH.NONE,				{builder_tag="merm_builder", product="turf_marsh", numtogive = 4})
@@ -202,7 +202,7 @@ Recipe2("mermhat", 						{Ingredient("pondfish", 1), Ingredient("cutreeds", 1), 
 -- Wanda --
 local function pocketwatch_nodecon(inst) return not inst:HasTag("pocketwatch_inactive") end
 Recipe2("pocketwatch_dismantler",		{Ingredient("goldnugget", 1), Ingredient("flint", 1), Ingredient("twigs", 3)},									TECH.NONE,			{builder_tag="clockmaker"})
-Recipe2("pocketwatch_parts",			    {Ingredient("pocketwatch_dismantler", 0), Ingredient("thulecite_pieces", 8),Ingredient("nightmarefuel", 2)},	TECH.NONE,			{builder_tag="clockmaker"})
+Recipe2("pocketwatch_parts",			{Ingredient("pocketwatch_dismantler", 0), Ingredient("thulecite_pieces", 8),Ingredient("nightmarefuel", 2)},	TECH.NONE,			{builder_tag="clockmaker"})
 Recipe2("pocketwatch_heal",				{Ingredient("pocketwatch_parts", 1), Ingredient("marble", 2), Ingredient("redgem", 1)},							TECH.NONE,			{builder_tag="clockmaker", no_deconstruction = pocketwatch_nodecon})
 Recipe2("pocketwatch_revive",			{Ingredient("pocketwatch_parts", 1), Ingredient("livinglog", 2), Ingredient("boneshard", 4)},					TECH.NONE,			{builder_tag="clockmaker", no_deconstruction = pocketwatch_nodecon})
 Recipe2("pocketwatch_warp",				{Ingredient("pocketwatch_parts", 1), Ingredient("goldnugget", 2)},												TECH.NONE,			{builder_tag="clockmaker", no_deconstruction = pocketwatch_nodecon})
@@ -214,13 +214,13 @@ Recipe2("pocketwatch_weapon",			{Ingredient("pocketwatch_parts", 3), Ingredient(
 Recipe2("cartographydesk",				{Ingredient("compass", 1),Ingredient("boards", 4)},												TECH.SCIENCE_ONE,			{placer="cartographydesk_placer",		min_spacing=2})
 Recipe2("compass",						{Ingredient("goldnugget", 1), Ingredient("flint", 1)},											TECH.NONE)
 Recipe2("cookbook",						{Ingredient("papyrus", 1), Ingredient("carrot", 1)},											TECH.SCIENCE_ONE)
-Recipe2("featherpencil",					{Ingredient("twigs", 1), Ingredient("charcoal", 1), Ingredient("feather_crow", 1)}, 			TECH.SCIENCE_ONE)
-Recipe2("fence_rotator",					{Ingredient("spear", 1), Ingredient("flint", 2) },												TECH.SCIENCE_TWO)
+Recipe2("featherpencil",				{Ingredient("twigs", 1), Ingredient("charcoal", 1), Ingredient("feather_crow", 1)}, 			TECH.SCIENCE_ONE)
+Recipe2("fence_rotator",				{Ingredient("spear", 1), Ingredient("flint", 2) },												TECH.SCIENCE_TWO)
 Recipe2("goldenpitchfork",				{Ingredient("twigs", 4),Ingredient("goldnugget", 2)},											TECH.SCIENCE_TWO)
 Recipe2("grass_umbrella",				{Ingredient("twigs", 4) ,Ingredient("cutgrass", 3), Ingredient("petals", 6)},					TECH.NONE)
-Recipe2("mapscroll",						{Ingredient("featherpencil", 1), Ingredient("papyrus", 1)}, 									TECH.CARTOGRAPHY_TWO,		{nounlock=true, actionstr="CARTOGRAPHY"})
-Recipe2("miniflare",						{Ingredient("twigs", 1), Ingredient("cutgrass", 1), Ingredient("nitre", 1)},					TECH.NONE)
-Recipe2("mushroom_farm",					{Ingredient("spoiled_food", 8),Ingredient("poop", 5),Ingredient("livinglog", 2)},				TECH.SCIENCE_TWO,			{placer="mushroom_farm_placer",		min_spacing=2})
+Recipe2("mapscroll",					{Ingredient("featherpencil", 1), Ingredient("papyrus", 1)}, 									TECH.CARTOGRAPHY_TWO,		{nounlock=true, actionstr="CARTOGRAPHY"})
+Recipe2("miniflare",					{Ingredient("twigs", 1), Ingredient("cutgrass", 1), Ingredient("nitre", 1)},					TECH.NONE)
+Recipe2("mushroom_farm",				{Ingredient("spoiled_food", 8),Ingredient("poop", 5),Ingredient("livinglog", 2)},				TECH.SCIENCE_TWO,			{placer="mushroom_farm_placer",		min_spacing=2})
 Recipe2("reskin_tool",					{Ingredient("twigs", 1), Ingredient("petals", 4)},												TECH.SCIENCE_TWO)
 Recipe2("wardrobe",						{Ingredient("boards", 4), Ingredient("cutgrass", 3)},											TECH.SCIENCE_TWO,			{placer="wardrobe_placer",						min_spacing=2.5})
 Recipe2("waterballoon",					{Ingredient("mosquitosack", 2), Ingredient("ice", 1)},											TECH.SCIENCE_ONE,			{numtogive = 4})
@@ -243,6 +243,12 @@ AddRecipeFilter({
     name = "ARCHAEOLOGY",
     atlas = "images/hud/pl_crafting_menu_icons.xml",
     image = "filter_archaeology.tex",
+}, #CRAFTING_FILTER_DEFS)
+
+AddRecipeFilter({
+    name = "ENVIRONMENT_PROTECTION",
+    atlas = "images/hud/pl_crafting_menu_icons.xml",
+    image = "filter_environment_protection.tex",
 }, #CRAFTING_FILTER_DEFS)
 
 --- ARCHAEOLOGY ---
@@ -341,10 +347,10 @@ SortAfter("pithhat", "thunderhat", "CLOTHING")
 SortAfter("pithhat", "thunderhat", "RAIN")
 
 --MAGIC
-AddRecipe2("hogusporkusator", {Ingredient("pigskin", 4), Ingredient("boards", 4), Ingredient("feather_robin_winter", 4)}, TECH.SCIENCE_ONE, {placer = "hogusporkusator_placer"}, {"MAGIC", "STRUCTURES", "PROTOTYPER"})
+AddRecipe2("hogusporkusator", {Ingredient("pigskin", 4), Ingredient("boards", 4), Ingredient("feather_robin_winter", 4)}, TECH.SCIENCE_ONE, {placer = "hogusporkusator_placer"}, {"MAGIC", "STRUCTURES", "PROTOTYPERS"})
 SortAfter("hogusporkusator", "researchlab4", "MAGIC")
 SortAfter("hogusporkusator", "researchlab4", "STRUCTURES")
-SortAfter("hogusporkusator", "researchlab4", "PROTOTYPER")
+SortAfter("hogusporkusator", "researchlab4", "PROTOTYPERS")
 
 AddRecipe2("bonestaff", {Ingredient("pugalisk_skull", 1), Ingredient("boneshard", 1), Ingredient("nightmarefuel", 2)}, TECH.MAGIC_THREE, {} , {"WEAPONS","MAGIC"})
 SortAfter("bonestaff", "antlionhat", "MAGIC")
