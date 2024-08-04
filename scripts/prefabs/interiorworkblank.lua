@@ -385,7 +385,6 @@ local function fn()
     inst.HasInteriorMinimap = HasInteriorMinimap
     inst.HasInteriorTag = HasInteriorTag
 
-    TheWorld.components.interiorspawner:AddInteriorCenter(inst)
     TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
 
     inst:AddComponent("interiorpathfinder")
