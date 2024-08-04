@@ -107,7 +107,7 @@ function InteriorSpawner:OnLoad(data)
 end
 
 -- WARNING: this mothod cannot be called before game load (interiorID is nil)
-function InteriorSpawner:GetCurrentMaxID()
+function InteriorSpawner:GetCurrentMaxId()
     local index = 0
     for id in pairs(self.interiors) do
         index = math.max(id, index)
@@ -317,7 +317,7 @@ end
 
 function InteriorSpawner:RemoveDoor(door_id)
     if not self.doors[door_id] then
-        print ("ERROR: TRYING TO REMOVE A NON EXISTING DOOR DEFINITION")
+        print("ERROR: TRYING TO REMOVE A NON EXISTING DOOR DEFINITION")
         return
     end
 
@@ -877,7 +877,7 @@ function InteriorSpawner:BuildMinimapLayout(center, usecachedmap)
         local width, depth = inst:GetSize()
 
         local doors = {}
-        for k,v in pairs(inst.doors)do
+        for k, v in pairs(inst.doors) do
             --if v.dir == "east" or v.dir == "south" then  -- 暂时注释掉这一部分，否则会出现小地图刷新错误（亚丹）
                 -- WARNING: TODO:
                 -- 这里的写法比较糟糕，需要深入测试
@@ -909,7 +909,7 @@ function InteriorSpawner:BuildMinimapLayout(center, usecachedmap)
         })
 
         local space = TUNING.INTERIOR_MINIMAP_DOOR_SPACE
-        for k,v in pairs(inst.doors)do
+        for k, v in pairs(inst.doors) do
             if v.dir ~= "unknown" and visited[v.target] == nil then
                 local vec = assert(dir_vec[v.dir])
                 local pos_x = pos_x + vec.x * ((depth + select(2, v.target:GetSize()))/2 + space)
@@ -925,7 +925,7 @@ function InteriorSpawner:BuildMinimapLayout(center, usecachedmap)
     end
 
     local major_id = nil
-    for _, v in ipairs(result)do
+    for _, v in ipairs(result) do
         local k = v.interior_name
         if k ~= nil then
             -- should be always number, but check here
@@ -1053,8 +1053,8 @@ function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
         return false
     end
 
-    for _, v in pairs(AllPlayers) do
-        if v:GetCurrentInteriorID() == interiorID then
+    for _, player in pairs(AllPlayers) do
+        if player:GetCurrentInteriorID() == interiorID then
             return true
         end
     end
