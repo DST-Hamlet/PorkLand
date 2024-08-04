@@ -188,10 +188,6 @@ local function GetValidWaterPointNearby(pt)
     return best_point
 end
 
-local function PlaceTestFn(inst, pt)
-    return GetValidWaterPointNearby(pt) ~= nil
-end
-
 local function RotateToTarget(inst, dest)
     local px, py, pz = inst.Transform:GetWorldPosition()
     local dz = pz - dest.z
