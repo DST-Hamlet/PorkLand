@@ -837,7 +837,7 @@ end
 
 function InteriorSpawner:UpdateInteriorIdMap()
     self.interiors_id_map = {}
-    for k in pairs(self.interiors_hashmap)do
+    for k in pairs(self.interiors_hashmap) do
         if k:IsValid() and k.interiorID ~= nil then
             self.interiors_id_map[k.interiorID] = k
         end
@@ -969,10 +969,10 @@ end
 
 function InteriorSpawner:BuildAllMinimapLayout()
     local visited = {}
-    for _,v in pairs(self:UpdateInteriorIdMap())do
+    for _, v in pairs(self:UpdateInteriorIdMap()) do
         if visited[v] == nil then
-            local result, allrooms = self:BuildMinimapLayout(v, true)
-            for k in pairs(allrooms)do
+            local _, allrooms = self:BuildMinimapLayout(v, true)
+            for k in pairs(allrooms) do
                 visited[k] = true
             end
         end
@@ -999,7 +999,7 @@ function InteriorSpawner:SendMinimapLayoutData()
     -- set visited data
     for k, v in pairs(self.interior_layout_map)do
         if type(v) == "table" and v.uuid ~= nil then
-            for c in pairs(player_visitors)do
+            for c in pairs(player_visitors) do
                 if c:IsVisited(v.uuid) then
                     v.visited_players[c.inst.userid] = true
                 else
@@ -1010,7 +1010,7 @@ function InteriorSpawner:SendMinimapLayoutData()
     end
     if #full_list > 0 then
         local data = {}
-        for k,v in pairs(self.interior_layout_map) do
+        for k, v in pairs(self.interior_layout_map) do
             table.insert(data, {k, v})
         end
         -- SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
