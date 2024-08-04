@@ -111,7 +111,7 @@ end
 
 function InteriorVisitor:UpdateExteriorPos()
     local spawner = TheWorld.components.interiorspawner
-    local x,_,z = self.inst.Transform:GetWorldPosition()
+    local x, _, z = self.inst.Transform:GetWorldPosition()
     local ent = spawner:GetInteriorCenterAt_Generic(x, z)
     self.center_ent = ent
 
@@ -134,9 +134,9 @@ function InteriorVisitor:UpdateExteriorPos()
 
         local single, door = ent:GetIsSingleRoom() -- check if this room is single, if so, get the unique exit
         if single then
-            local house = spawner:GetExteriorByInteriorIndex(door.components.door.interior_name)
+            local house = spawner:GetExteriorById(door.components.door.interior_name)
             if house ~= nil then
-                local x,_,z = house.Transform:GetWorldPosition()
+                local x, _, z = house.Transform:GetWorldPosition()
                 -- when opening minimap inside a single room,
                 -- focus on exterior house position
                 self.exterior_pos_x = x

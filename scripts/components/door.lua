@@ -96,7 +96,6 @@ function Door:SetHidden(hidden)
 end
 
 function Door:OnSave()
-
     local data = {}
     data.door_id = self.door_id
     data.target_door_id = self.target_door_id

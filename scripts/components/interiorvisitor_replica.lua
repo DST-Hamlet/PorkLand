@@ -31,13 +31,13 @@ end
 
 -- TODO: Make this actually work
 function InteriorVisitor:IsInInterior(x, z)
-    local pos = self.inst:GetPosition()
-    local index = self.interiorspawner:PositionToIndex(pos)
+    -- local pos = self.inst:GetPosition()
+    -- local index = self.interiorspawner:PositionToIndex(pos)
 end
 
 function InteriorVisitor:GetInteriorCenterGeneric()
     local pos = self.inst:GetPosition()
-    for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 30, {"pl_interiorcenter"}))do
+    for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 30, {"pl_interiorcenter"})) do
         return v
     end
 end
@@ -66,7 +66,7 @@ end
 function InteriorVisitor:ApplyInteriorCamera(ent)
     local cameraoffset = -2.5         --10x15
     local zoom = 23
-    local width, depth = ent.size_net:value()
+    local depth = ent.size_net.depth:value()
 
     if ent.cameraoffset and ent.zoom then
         cameraoffset = ent.cameraoffset

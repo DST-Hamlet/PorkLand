@@ -279,6 +279,7 @@ local function CreateInterior(inst)
         target_interior = id,
     }
     interior_spawner:AddDoor(inst, exterior_door_def)
+    interior_spawner:AddExterior(inst)
 
     if can_reuse_interior then
         -- Reuse old interior, but we still need to re-register the door
@@ -569,8 +570,6 @@ local function MakeShop(name, build, bank, data)
         -- if name == "pig_shop_cityhall_player" then
         --     GetPlayer():AddTag("mayor")
         -- end
-
-        TheWorld.components.interiorspawner:AddExterior(inst)
 
         ------- Copied from prefabs/wall.lua -------
         inst._pfpos = nil

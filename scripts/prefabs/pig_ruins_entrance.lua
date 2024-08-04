@@ -73,7 +73,7 @@ local prefabs =
     "wallcrack_ruins"
 }
 
-local function RefreshBuild(inst,push)
+local function RefreshBuild(inst, push)
     local anim = "idle_closed"
     if inst.stage == 2 then
         anim = "idle_med"
@@ -483,11 +483,6 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
 end
 
 local function InitMaze(inst, dungeonname)
-    if inst.maze_generated then
-        RefreshBuild(inst)
-        return
-    end
-
     local dungeondef = {
         name = dungeonname,
         rooms = FunctionOrValue(PIG_RUINS_ROOM_COUNT[dungeonname]),
@@ -515,32 +510,33 @@ local function InitMaze(inst, dungeonname)
         dungeondef.smallsecret = true
     end
 
-    local interior_spawner = TheWorld.components.interiorspawner
-
     local id = inst.interiorID
-    if id then
-        -- Reuse old interior
-        return
+    local can_reuse_interior = id ~= nil
+
+    local interior_spawner = TheWorld.components.interiorspawner
+    if not can_reuse_interior then
+        id = interior_spawner:GetNewID()
+        inst.interiorID = id
     end
-    id = interior_spawner:GetNewID()
-    inst.interiorID = id
 
     local exterior_door_def = {
         my_door_id = dungeondef.name .. "_ENTRANCE1",
         target_door_id = dungeondef.name .. "_EXIT1",
         target_interior = inst.interiorID,
     }
+    interior_spawner:AddDoor(inst, exterior_door_def)
+    interior_spawner:AddExterior(inst)
+
+    if can_reuse_interior then
+        -- Reuse old interior, but we still need to re-register the door
+        return
+    end
 
     BuildMaze(inst, dungeondef, exterior_door_def)
-    interior_spawner:AddDoor(inst, exterior_door_def)
 
     if inst.components.door and dungeondef.lock then
         inst.components.door:SetDoorDisabled(true, "vines")
     end
-
-    inst.maze_generated = true
-
-    RefreshBuild(inst)
 end
 
 local function GetStatus(inst)
@@ -577,13 +573,12 @@ local function OnHacked(inst, hacker, hacksleft)
         inst.AnimState:PlayAnimation("hit_low")
     end
 
-    RefreshBuild(inst,true)
+    RefreshBuild(inst, true)
 end
 
 local function OnSave(inst, data)
     data.stage = inst.stage
     data.canhack = inst.components.hackable.canbehacked
-    data.maze_generated = inst.maze_generated
 
     if inst:HasTag("top_ornament") then
         data.top_ornament = true
@@ -599,19 +594,12 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
-    if (data == nil or (data and data.interiorID == nil)) and inst.is_entrance then
-        InitMaze(inst, inst.dungeon_name)
-        return
-    end
     if data then
         if data.stage then
             inst.stage = data.stage
         end
         if data.canhack then
             inst.components.hackable.canbehacked = data.canhack
-        end
-        if data.maze_generated then
-            inst.maze_generated = data.maze_generated
         end
         if data.top_ornament then
             inst:AddTag("top_ornament")
@@ -626,28 +614,43 @@ local function OnLoad(inst, data)
             inst.interiorID = data.interiorID
         end
     end
-
+    if inst.is_entrance then
+        InitMaze(inst, inst.dungeon_name)
+    elseif inst.interiorID then
+        local exterior_door_def2 = {
+            my_door_id = inst.dungeon_name .. "_ENTRANCE2",
+            target_door_id = inst.dungeon_name .. "_EXIT2",
+            target_interior = inst.interiorID,
+        }
+        TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def2)
+        TheWorld.components.interiorspawner:AddExterior(inst)
+    end
     RefreshBuild(inst)
 end
 
-local function OnLoadPostPass(inst, data) -- 出口的连接写在OnLoadPostPass中，这样才能确定所有储存的实体已经添加进世界
-    if not inst.is_entrance and inst.interiorID == nil then
-        if inst.dungeon_name then
-            local exit_room_id
-            for _, ent in pairs(Ents) do
-                if ent.components.door and ent.components.door.target_door_id == inst.dungeon_name .. "_ENTRANCE2" then
-                    exit_room_id = ent.components.door.interior_name
-                end
+local function OnLoadPostPass(inst, data) -- 出口的连接写在 OnLoadPostPass 中，这样才能确定所有储存的实体已经添加进世界
+    if inst.is_entrance then
+        -- For exit only
+        return
+    end
+    -- Run on initial load only
+    if not inst.interiorID then
+        -- Set our interior id to the interior id of the door that points to us
+        local exit_room_id
+        for _, ent in pairs(Ents) do
+            if ent.components.door and ent.components.door.target_door_id == inst.dungeon_name .. "_ENTRANCE2" then
+                exit_room_id = ent.components.door.interior_name
+                break
             end
-            local exterior_door_def2 = {
-                my_door_id = inst.dungeon_name .. "_ENTRANCE2",
-                target_door_id = inst.dungeon_name .. "_EXIT2",
-                target_interior = exit_room_id,
-            }
-            TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def2)
-            TheWorld.components.interiorspawner:AddExterior(inst)
-            inst.interiorID = exit_room_id
         end
+        local exterior_door_def2 = {
+            my_door_id = inst.dungeon_name .. "_ENTRANCE2",
+            target_door_id = inst.dungeon_name .. "_EXIT2",
+            target_interior = exit_room_id,
+        }
+        inst.interiorID = exit_room_id
+        TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def2)
+        TheWorld.components.interiorspawner:AddExterior(inst)
     end
 end
 
@@ -688,8 +691,6 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
         if not TheWorld.ismastersim then
             return inst
         end
-
-        TheWorld.components.interiorspawner:AddExterior(inst)
 
         inst:AddComponent("hackable")
         inst.components.hackable:SetUp()

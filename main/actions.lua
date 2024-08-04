@@ -309,7 +309,7 @@ local function OnTeleportFailed(player)
     -- end
 end
 
-ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内容应该移到component上去
+ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内容应该移到 component 上去
     local door = act.target
     if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
         return false, "DISABLED"
@@ -323,14 +323,13 @@ ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内�
 
     if target_interior == "EXTERIOR" then
         -- use `target_exterior` firstly, then use current room id as default
-        local index = door.components.door.target_exterior or door.components.door.interior_name
-        local house = TheWorld.components.interiorspawner:GetExteriorByInteriorIndex(index)
-        -- print(index, type(index), house)
-        if house ~= nil then
+        local id = door.components.door.target_exterior or door.components.door.interior_name
+        local house = TheWorld.components.interiorspawner:GetExteriorById(id)
+        if house then
             DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
             PlayDoorSound()
             act.doer:PushEvent("used_door", {door = door, exterior = true})
-            if house.components.hackable and house.stage > 0 then -- 内部门用vineable, 外部门用hackable...需要代码清理
+            if house.components.hackable and house.stage > 0 then -- 内部门用 vineable, 外部门用 hackable... 需要代码清理
                 house.stage = 1
                 house.components.hackable:Hack(act.doer, 9999)
             end
