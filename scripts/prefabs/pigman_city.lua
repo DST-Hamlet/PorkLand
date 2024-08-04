@@ -294,14 +294,32 @@ local function ShouldAcceptItem(inst, item)
     return false
 end
 
-local function OnGetItemFromPlayer(inst, giver, item)
-
-    if not inst:HasTag("guard") then -- or inst:HasTag("pigqueen")
-
-        local city = 1
-        if inst:HasTag("city2") then
-            city = 2
+local function OnGetBribe(inst, item)
+    if inst:HasTag("angry_at_player") then
+        if not inst.bribe_count then
+            inst.bribe_count = 0
         end
+        inst.bribe_count = inst.bribe_count + item.oincvalue * item.components.stackable.stacksize
+
+        local bribe_threshold = inst:HasTag("guard") and 10 or 1
+        if inst.bribe_count >= bribe_threshold then
+            inst:RemoveTag("angry_at_player")
+
+            if inst.components.combat and inst.components.combat.target and inst.components.combat.target:HasTag("player") then
+                inst.components.combat:GiveUp()
+            end
+
+            inst.bribe_count = 0
+            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_FORGIVE_PLAYER"))
+        else
+            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_NOT_ENOUGH"))
+        end
+    end
+end
+
+local function OnGetItemFromPlayer(inst, giver, item)
+    if not inst:HasTag("guard") then -- or inst:HasTag("pigqueen")
+        local city = inst:HasTag("city2") and 2 or 1
 
         -- I wear hats (but should they? the art doesn't show)
         if inst:HasTag("pigqueen") and item.components.equippable then
@@ -403,6 +421,10 @@ local function OnGetItemFromPlayer(inst, giver, item)
         inst.components.follower:AddLoyaltyTime(TUNING.PIG_LOYALTY_MAXTIME)
         item:Remove()
     end
+
+    if item:HasTag("oinc") then
+        OnGetBribe(inst, item)
+    end
 end
 
 local function OnRefuseItem(inst, item)
@@ -444,14 +466,14 @@ local function OnAttackedByDecidRoot(inst, attacker)
 
     if ents then
         local num_helpers = 0
-        for k, v in pairs(ents) do
-            if v ~= inst and v.components.combat and not (v.components.health and v.components.health:IsDead()) and
-                fn(v) then
-                if v:PushEvent("suggest_tree_target", {
-                    tree = attacker,
-                }) then
-                    num_helpers = num_helpers + 1
-                end
+        for _, v in ipairs(ents) do
+            if v ~= inst
+                and v.components.combat
+                and not (v.components.health and v.components.health:IsDead())
+                and fn(v) then
+
+                v:PushEvent("suggest_tree_target", {tree = attacker})
+                num_helpers = num_helpers + 1
             end
             if num_helpers >= MAX_TARGET_SHARES then
                 break
@@ -606,28 +628,9 @@ local function SetNormalPig(inst, brain_id)
         end
     end)
 
-    inst:ListenForEvent("itemreceived", function(inst, data)
+    inst:ListenForEvent("itemget", function(inst, data)
         if data.item:HasTag("oinc") then
-            if inst:HasTag("angry_at_player") then
-                if not inst.bribe_count then
-                    inst.bribe_count = 0
-                end
-                inst.bribe_count = inst.bribe_count + inst.oincvalue * data.item.components.stackable.stacksize
-
-                local bribe_threshold = inst:HasTag("guard") and 10 or 1
-                if inst.bribe_count >= bribe_threshold then
-                    inst:RemoveTag("angry_at_player")
-
-                    if inst.components.combat and inst.components.combat.target and inst.components.combat.target:HasTag("player") then
-                        inst.components.combat:GiveUp()
-                    end
-
-                    inst.bribe_count = 0
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_FORGIVE_PLAYER"))
-                else
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_NOT_ENOUGH"))
-                end
-            end
+            OnGetBribe(inst, data.item)
         end
     end)
 
