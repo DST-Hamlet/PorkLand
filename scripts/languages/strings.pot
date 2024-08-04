@@ -52733,8 +52733,7 @@ msgstr ""
 
 #. STRINGS.NAMES.PIG_SHOP_ARCANE
 msgctxt "STRINGS.NAMES.PIG_SHOP_ARCANE"
-msgid "The Flying Pig 
-Arcane Shop"
+msgid "The Flying Pig\nArcane Shop"
 msgstr ""
 
 #. STRINGS.NAMES.PIG_SHOP_BANK
@@ -52759,26 +52758,22 @@ msgstr ""
 
 #. STRINGS.NAMES.PIG_SHOP_FLORIST
 msgctxt "STRINGS.NAMES.PIG_SHOP_FLORIST"
-msgid "Miss Sow's
-Floral Arrangements"
+msgid "Miss Sow's\nFloral Arrangements"
 msgstr ""
 
 #. STRINGS.NAMES.PIG_SHOP_GENERAL
 msgctxt "STRINGS.NAMES.PIG_SHOP_GENERAL"
-msgid "Pigg and Pigglet's
-General Store"
+msgid "Pigg and Pigglet's\nGeneral Store"
 msgstr ""
 
 #. STRINGS.NAMES.PIG_SHOP_HATSHOP
 msgctxt "STRINGS.NAMES.PIG_SHOP_HATSHOP"
-msgid "The Sow's Ear 
-Hat Shop"
+msgid "The Sow's Ear \nHat Shop"
 msgstr ""
 
 #. STRINGS.NAMES.PIG_SHOP_HOOFSPA
 msgctxt "STRINGS.NAMES.PIG_SHOP_HOOFSPA"
-msgid "Curly Tails
-Mud Spa"
+msgid "Curly Tails\nMud Spa"
 msgstr ""
 
 #. STRINGS.NAMES.PIG_SHOP_PRODUCE
@@ -52793,8 +52788,7 @@ msgstr ""
 
 #. STRINGS.NAMES.PIG_SHOP_WEAPONS
 msgctxt "STRINGS.NAMES.PIG_SHOP_WEAPONS"
-msgid "The Boar's Tusk 
-Weapon Shop"
+msgid "The Boar's Tusk\nWeapon Shop"
 msgstr ""
 
 #. STRINGS.NAMES.PIKO

@@ -52733,12 +52733,11 @@ msgstr "猪伯利学会"
 #. STRINGS.NAMES.PIG_SHOP_ANTIQUITIES
 msgctxt "STRINGS.NAMES.PIG_SHOP_ANTIQUITIES"
 msgid "'The Sty' Oddities Emporium"
-msgstr "\"猪圈\"奇异商店"
+msgstr "“猪圈”奇异商店"
 
 #. STRINGS.NAMES.PIG_SHOP_ARCANE
 msgctxt "STRINGS.NAMES.PIG_SHOP_ARCANE"
-msgid "The Flying Pig 
-Arcane Shop"
+msgid "The Flying Pig\nArcane Shop"
 msgstr "飞猪神秘商店"
 
 #. STRINGS.NAMES.PIG_SHOP_BANK
@@ -52763,26 +52762,22 @@ msgstr "高纯度熟猪食店"
 
 #. STRINGS.NAMES.PIG_SHOP_FLORIST
 msgctxt "STRINGS.NAMES.PIG_SHOP_FLORIST"
-msgid "Miss Sow's
-Floral Arrangements"
+msgid "Miss Sow's\nFloral Arrangements"
 msgstr "母猪小姐的花香物语"
 
 #. STRINGS.NAMES.PIG_SHOP_GENERAL
 msgctxt "STRINGS.NAMES.PIG_SHOP_GENERAL"
-msgid "Pigg and Pigglet's
-General Store"
+msgid "Pigg and Pigglet's\nGeneral Store"
 msgstr "猪猪与居居的杂货店"
 
 #. STRINGS.NAMES.PIG_SHOP_HATSHOP
 msgctxt "STRINGS.NAMES.PIG_SHOP_HATSHOP"
-msgid "The Sow's Ear 
-Hat Shop"
+msgid "The Sow's Ear\nHat Shop"
 msgstr "母猪耳朵帽子店"
 
 #. STRINGS.NAMES.PIG_SHOP_HOOFSPA
 msgctxt "STRINGS.NAMES.PIG_SHOP_HOOFSPA"
-msgid "Curly Tails
-Mud Spa"
+msgid "Curly Tails\nMud Spa"
 msgstr "卷尾巴的泥浆水疗店"
 
 #. STRINGS.NAMES.PIG_SHOP_PRODUCE
@@ -52797,8 +52792,7 @@ msgstr "小发明匠的塔楼"
 
 #. STRINGS.NAMES.PIG_SHOP_WEAPONS
 msgctxt "STRINGS.NAMES.PIG_SHOP_WEAPONS"
-msgid "The Boar's Tusk 
-Weapon Shop"
+msgid "The Boar's Tusk\nWeapon Shop"
 msgstr "野猪獠牙武器店"
 
 #. STRINGS.NAMES.PIKO
@@ -53354,17 +53348,17 @@ msgstr "椭圆玻璃窗帘"
 #. STRINGS.RECIPE_DESC.ANTMASKHAT
 msgctxt "STRINGS.RECIPE_DESC.ANTMASKHAT"
 msgid "A face only a Mant could love."
-msgstr "一张只有蚁人喜欢的\n脸。"
+msgstr "一张只有蚁人喜欢的脸。"
 
 #. STRINGS.RECIPE_DESC.ANTSUIT
 msgctxt "STRINGS.RECIPE_DESC.ANTSUIT"
 msgid "Walk a mile in a Mant's carapace."
-msgstr "在蚂蚁的壳里走一英\n里。"
+msgstr "在蚂蚁的壳里走一英里。"
 
 #. STRINGS.RECIPE_DESC.ARMORVORTEXCLOAK
 msgctxt "STRINGS.RECIPE_DESC.ARMORVORTEXCLOAK"
 msgid "Pockets, dimensions deep."
-msgstr "有一个口袋，相当深\n。"
+msgstr "有一个口袋，相当深。"
 
 #. STRINGS.RECIPE_DESC.ARMOR_METALPLATE
 msgctxt "STRINGS.RECIPE_DESC.ARMOR_METALPLATE"
@@ -53399,7 +53393,7 @@ msgstr "一顶蝙蝠帽。"
 #. STRINGS.RECIPE_DESC.BLUNDERBUSS
 msgctxt "STRINGS.RECIPE_DESC.BLUNDERBUSS"
 msgid "Loud and messy, but gets the job done."
-msgstr "虽然很吵，但是能完\n成任务。"
+msgstr "虽然很吵，但是能完成任务。"
 
 #. STRINGS.RECIPE_DESC.BOATREPAIRKIT
 msgctxt "STRINGS.RECIPE_DESC.BOATREPAIRKIT"
@@ -53439,12 +53433,12 @@ msgstr "感受来自翘鼻蛇怪的凝视吧!"
 #. STRINGS.RECIPE_DESC.BUGREPELLENT
 msgctxt "STRINGS.RECIPE_DESC.BUGREPELLENT"
 msgid "In case you don't enjoy the company of bugs."
-msgstr "如果你不喜欢虫子跟\n着你的话。"
+msgstr "如果你不喜欢虫子跟着你的话。"
 
 #. STRINGS.RECIPE_DESC.CANDLEHAT
 msgctxt "STRINGS.RECIPE_DESC.CANDLEHAT"
 msgid "Hands free spelunking on shoe string."
-msgstr "用极小的付出获得自\n由的洞穴探索。"
+msgstr "用极小的付出获得自由的洞穴探索。"
 
 #. STRINGS.RECIPE_DESC.CITY_LAMP
 msgctxt "STRINGS.RECIPE_DESC.CITY_LAMP"
@@ -53459,7 +53453,7 @@ msgstr "这些东西都在成长，真是奇迹。"
 #. STRINGS.RECIPE_DESC.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.RECIPE_DESC.CONSTRUCTION_PERMIT"
 msgid "Add that den you've always wanted."
-msgstr "造出那个你一直都想\n要的房间。"
+msgstr "造出那个你一直都想要的房间。"
 
 #. STRINGS.RECIPE_DESC.CORKCHEST
 msgctxt "STRINGS.RECIPE_DESC.CORKCHEST"
@@ -53469,7 +53463,7 @@ msgstr "填塞软木塞。"
 #. STRINGS.RECIPE_DESC.CORK_BAT
 msgctxt "STRINGS.RECIPE_DESC.CORK_BAT"
 msgid "Like a wiffle bat filled with pain."
-msgstr "像一根填满痛楚的威\n浮球棒。"
+msgstr "像一根填满痛楚的威浮球棒。"
 
 #. STRINGS.RECIPE_DESC.DECO_CHAIR_BENCH
 msgctxt "STRINGS.RECIPE_DESC.DECO_CHAIR_BENCH"
@@ -53524,7 +53518,7 @@ msgstr "松弛下垂。"
 #. STRINGS.RECIPE_DESC.DEMOLITION_PERMIT
 msgctxt "STRINGS.RECIPE_DESC.DEMOLITION_PERMIT"
 msgid "Destroy that den you've always wanted."
-msgstr "摧毁那个你一直都想\n要的房间。"
+msgstr "摧毁那个你一直都想要的房间。"
 
 #. STRINGS.RECIPE_DESC.DISARMING_KIT
 msgctxt "STRINGS.RECIPE_DESC.DISARMING_KIT"
@@ -53539,7 +53533,7 @@ msgstr "一张新面孔。"
 #. STRINGS.RECIPE_DESC.GASMASKHAT
 msgctxt "STRINGS.RECIPE_DESC.GASMASKHAT"
 msgid "Makes everything smell like bird."
-msgstr "让所有的东西闻起来\n都像孔雀。"
+msgstr "让所有的东西闻起来都像孔雀。"
 
 #. STRINGS.RECIPE_DESC.GOLDENMACHETE
 msgctxt "STRINGS.RECIPE_DESC.GOLDENMACHETE"
@@ -53624,7 +53618,7 @@ msgstr "强大，坚固而有品位。"
 #. STRINGS.RECIPE_DESC.PHEROMONESTONE
 msgctxt "STRINGS.RECIPE_DESC.PHEROMONESTONE"
 msgid "Ancient scratch and sniff technology."
-msgstr "古代划痕与嗅探技术\n。"
+msgstr "古代划痕与嗅探技术。"
 
 #. STRINGS.RECIPE_DESC.PIGHOUSE_CITY
 msgctxt "STRINGS.RECIPE_DESC.PIGHOUSE_CITY"
@@ -53639,17 +53633,17 @@ msgstr "保护公民。"
 #. STRINGS.RECIPE_DESC.PIG_SHOP_ANTIQUITIES
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_ANTIQUITIES"
 msgid "Where else can you get a shriveled head."
-msgstr "你还能在哪里找到这\n样干瘪的脑袋啊。"
+msgstr "你还能在哪里找到这样干瘪的脑袋啊。"
 
 #. STRINGS.RECIPE_DESC.PIG_SHOP_ARCANE
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_ARCANE"
 msgid "For the magic half of Science and Magic."
-msgstr "为了神奇的科学和魔\n法。"
+msgstr "为了神奇的科学和魔法。"
 
 #. STRINGS.RECIPE_DESC.PIG_SHOP_BANK
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_BANK"
 msgid "Gold is a solid investment."
-msgstr "黄金无疑是一种可靠\n的投资。"
+msgstr "黄金无疑是一种可靠的投资。"
 
 #. STRINGS.RECIPE_DESC.PIG_SHOP_CITYHALL_PLAYER
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_CITYHALL_PLAYER"
@@ -53669,7 +53663,7 @@ msgstr "人人都是绿手指。"
 #. STRINGS.RECIPE_DESC.PIG_SHOP_GENERAL
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_GENERAL"
 msgid "For all your handy needs."
-msgstr "为你所有的需要提供\n便利。"
+msgstr "为你所有的需要提供便利。"
 
 #. STRINGS.RECIPE_DESC.PIG_SHOP_HATSHOP
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_HATSHOP"
@@ -53679,7 +53673,7 @@ msgstr "所有的最新时尚。"
 #. STRINGS.RECIPE_DESC.PIG_SHOP_HOOFSPA
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_HOOFSPA"
 msgid "The mud really cleans the pores."
-msgstr "泥浆真的能净化毛孔\n。"
+msgstr "泥浆真的能净化毛孔。"
 
 #. STRINGS.RECIPE_DESC.PIG_SHOP_PRODUCE
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_PRODUCE"
@@ -53689,17 +53683,17 @@ msgstr "理性购物。"
 #. STRINGS.RECIPE_DESC.PIG_SHOP_TINKER
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_TINKER"
 msgid "You can't think of everything on your own."
-msgstr "你一个人没法想到所\n有的事情。"
+msgstr "你一个人没法想到所有的事情。"
 
 #. STRINGS.RECIPE_DESC.PIG_SHOP_WEAPONS
 msgctxt "STRINGS.RECIPE_DESC.PIG_SHOP_WEAPONS"
 msgid "All adventurers need to defend themselves."
-msgstr "所有的冒险者都需要\n保护好他们自己。"
+msgstr "所有的冒险者都需要保护好他们自己。"
 
 #. STRINGS.RECIPE_DESC.PITHHAT
 msgctxt "STRINGS.RECIPE_DESC.PITHHAT"
 msgid "Keeps your hair easy and breezy."
-msgstr "让你的头发轻松活泼\n。"
+msgstr "让你的头发轻松活泼。"
 
 #. STRINGS.RECIPE_DESC.PLAYERHOUSE_CITY
 msgctxt "STRINGS.RECIPE_DESC.PLAYERHOUSE_CITY"
@@ -53709,17 +53703,17 @@ msgstr "甜蜜的家。"
 #. STRINGS.RECIPE_DESC.PLAYER_HOUSE_BRICK_CRAFT
 msgctxt "STRINGS.RECIPE_DESC.PLAYER_HOUSE_BRICK_CRAFT"
 msgid "Proven better than wood and hay."
-msgstr "经证实比木头和干草\n更好。"
+msgstr "经证实比木头和干草更好。"
 
 #. STRINGS.RECIPE_DESC.PLAYER_HOUSE_COTTAGE_CRAFT
 msgctxt "STRINGS.RECIPE_DESC.PLAYER_HOUSE_COTTAGE_CRAFT"
 msgid "A comfortable cozy facade."
-msgstr "一个令人舒适的外表\n。"
+msgstr "一个令人舒适的外表。"
 
 #. STRINGS.RECIPE_DESC.PLAYER_HOUSE_GOTHIC_CRAFT
 msgctxt "STRINGS.RECIPE_DESC.PLAYER_HOUSE_GOTHIC_CRAFT"
 msgid "Bats sold seperately."
-msgstr "蝙蝠是单独售卖的哦\n。"
+msgstr "蝙蝠是单独售卖的哦。"
 
 #. STRINGS.RECIPE_DESC.PLAYER_HOUSE_MANOR_CRAFT
 msgctxt "STRINGS.RECIPE_DESC.PLAYER_HOUSE_MANOR_CRAFT"
@@ -53734,7 +53728,7 @@ msgstr "很有中世纪的美感。"
 #. STRINGS.RECIPE_DESC.PLAYER_HOUSE_TURRET_CRAFT
 msgctxt "STRINGS.RECIPE_DESC.PLAYER_HOUSE_TURRET_CRAFT"
 msgid "Practical? Maybe. Cool? Probably."
-msgstr "它实用吗？也许吧。\n它很酷吗？可能吧。"
+msgstr "它实用吗？也许吧。它很酷吗？可能吧。"
 
 #. STRINGS.RECIPE_DESC.PLAYER_HOUSE_VILLA_CRAFT
 msgctxt "STRINGS.RECIPE_DESC.PLAYER_HOUSE_VILLA_CRAFT"
@@ -53744,7 +53738,7 @@ msgstr "高雅的表面。"
 #. STRINGS.RECIPE_DESC.POISONBALM
 msgctxt "STRINGS.RECIPE_DESC.POISONBALM"
 msgid "The excruciating pain means it's working."
-msgstr "有剧痛就说明它起作\n用了。"
+msgstr "有剧痛就说明它起作用了。"
 
 #. STRINGS.RECIPE_DESC.ROOTTRUNK_CHILD
 msgctxt "STRINGS.RECIPE_DESC.ROOTTRUNK_CHILD"
@@ -53774,7 +53768,7 @@ msgstr "将铁制成合金。"
 #. STRINGS.RECIPE_DESC.SNAKESKINHAT
 msgctxt "STRINGS.RECIPE_DESC.SNAKESKINHAT"
 msgid "Keep rain out and look cool doing it."
-msgstr "防雨，而且样子很酷\n。"
+msgstr "防雨，而且样子很酷。"
 
 #. STRINGS.RECIPE_DESC.SPRINKLER
 msgctxt "STRINGS.RECIPE_DESC.SPRINKLER"
@@ -53789,27 +53783,27 @@ msgstr "不要被雷到。"
 #. STRINGS.RECIPE_DESC.TURF_COBBLEROAD
 msgctxt "STRINGS.RECIPE_DESC.TURF_COBBLEROAD"
 msgid "The life of a thriving village."
-msgstr "一个繁荣城镇的命脉\n。"
+msgstr "一个繁荣城镇的命脉。"
 
 #. STRINGS.RECIPE_DESC.TURF_DEEPRAINFOREST_NOCANOPY
 msgctxt "STRINGS.RECIPE_DESC.TURF_DEEPRAINFOREST_NOCANOPY"
 msgid "As tame as wild jungle can be."
-msgstr "这块地皮就像被驯服\n的野兽一样。"
+msgstr "这块地皮就像被驯服的野兽一样。"
 
 #. STRINGS.RECIPE_DESC.TURF_FIELDS
 msgctxt "STRINGS.RECIPE_DESC.TURF_FIELDS"
 msgid "A civilized patch of dirt."
-msgstr "一块文明社会中的地\n皮。"
+msgstr "一块文明社会中的地皮。"
 
 #. STRINGS.RECIPE_DESC.TURF_FOUNDATION
 msgctxt "STRINGS.RECIPE_DESC.TURF_FOUNDATION"
 msgid "The foundation of a solid village."
-msgstr "一个坚固城镇的建立\n。"
+msgstr "一个坚固城镇的建立。"
 
 #. STRINGS.RECIPE_DESC.TURF_LAWN
 msgctxt "STRINGS.RECIPE_DESC.TURF_LAWN"
 msgid "Fully tamed grass."
-msgstr "一块完全被文明社会\n驯化了的草地。"
+msgstr "一块完全被文明社会驯化了的草地。"
 
 #. STRINGS.RECIPE_DESC.VENOMGLAND
 msgctxt "STRINGS.RECIPE_DESC.VENOMGLAND"
@@ -53849,7 +53843,7 @@ msgstr "硬木，柔和的光。"
 #. STRINGS.RECIPE_DESC.WINDOW_SMALL_PEAKED_CURTAIN
 msgctxt "STRINGS.RECIPE_DESC.WINDOW_SMALL_PEAKED_CURTAIN"
 msgid "Frugal and functional."
-msgstr "节省材料的窗帘，还\n能用。"
+msgstr "节省材料的窗帘，还能用。"
 
 #. STRINGS.RECIPE_DESC.WINDOW_TALL
 msgctxt "STRINGS.RECIPE_DESC.WINDOW_TALL"
