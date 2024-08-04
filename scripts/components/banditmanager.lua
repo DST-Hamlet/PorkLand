@@ -10,6 +10,69 @@ assert(TheWorld.ismastersim, "Banditmanager should not exist on client")
 --[[ Private constants ]]
 --------------------------------------------------------------------------
 
+local TREASURE_LIST = {
+    {
+        weight = 5,
+        loot = {
+            tunacan = 4,
+            oinc10 = 1,
+            meat_dried = 2,
+        },
+    },
+
+    {
+        weight = 3,
+        loot = {
+            goldnugget = 4,
+            alloy = 1,
+            meat_dried = 2,
+            oinc = 5,
+        },
+    },
+
+    {
+        weight = 3,
+        loot = {
+            trinket_17 = 1,
+            oinc = 5,
+            sewing_kit = 1,
+            telescope = 1,
+            meat_dried = 1,
+        },
+    },
+
+    {
+        weight = 2,
+        loot = {
+            meat_dried = 2,
+            oinc = 15,
+            drumstick = 2,
+            oinc10 = 1,
+        },
+    },
+
+    {
+        weight = 2,
+        loot = {
+            armor_metalplate = 1,
+            halberd = 1,
+            metalplatehat = 1,
+            oinc = 15,
+        },
+    },
+
+    {
+        weight = 1,
+        loot = {
+            drumstick = 2,
+            oinc = 15,
+            oinc10 = 2,
+            tunacan = 1,
+            monstermeat = 1,
+        },
+    },
+}
+
 local UPDATE_PERIOD = 10
 local BANDIT_RESPAWN_TIME = 30 * 16 * 1.5 -- 9 minutes
 
@@ -216,79 +279,15 @@ end
 function self:GetLoot()
     local temploot = {}
 
-    local treasurelist = {
-        {
-            weight = 5,
-            loot = {
-                tunacan = 4,
-                oinc10 = 1,
-                meat_dried = 2,
-            },
-        },
-
-        {
-            weight = 3,
-            loot = {
-                goldnugget = 4,
-                alloy = 1,
-                meat_dried = 2,
-                oinc = 5,
-            },
-        },
-
-        {
-            weight = 3,
-            loot = {
-                trinket_17 = 1,
-                oinc = 5,
-                sewing_kit = 1,
-                telescope = 1,
-                meat_dried = 1,
-            },
-        },
-
-        {
-            weight = 2,
-            loot = {
-                meat_dried = 2,
-                oinc = 15,
-                drumstick = 2,
-                oinc10 = 1,
-            },
-        },
-
-        {
-            weight = 2,
-            loot = {
-                armor_metalplate = 1,
-                halberd = 1,
-                metalplatehat = 1,
-                oinc = 15,
-            },
-        },
-
-        {
-            weight = 1,
-            loot = {
-                drumstick = 2,
-                oinc = 15,
-                oinc10 = 2,
-                tunacan = 1,
-                monstermeat = 1,
-            },
-        },
-    }
-
     local range = 0
 
-    for i,set in ipairs(treasurelist) do
+    for i, set in ipairs(TREASURE_LIST) do
         range = range + set.weight
     end
 
     local final = math.random(1,range)
     range = 0
-    for i,set in ipairs(treasurelist) do
-
+    for i, set in ipairs(TREASURE_LIST) do
         range = range + set.weight
         if range >= final then
             for p,n in pairs(set.loot) do
@@ -309,6 +308,7 @@ function self:GetLoot()
             temploot[oinc_prefab] = temploot[oinc_prefab] + amount_stolen
         end
     end
+
     return temploot
 end
 

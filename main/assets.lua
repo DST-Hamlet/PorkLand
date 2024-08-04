@@ -203,6 +203,8 @@ PrefabFiles = {
     "lavapool",
     "meteor_impact",
     "obsidian",
+    "pigbandit",
+    "banditmap",
 }
 
 Assets = {

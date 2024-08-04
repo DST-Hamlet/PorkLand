@@ -44,7 +44,7 @@ local function DoVanish(inst)
     if position then
         inst.components.knownlocations:RememberLocation("exit", position)
 
-        -- return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
+        return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.PIG_BANDIT_EXIT)
     end
 end
 

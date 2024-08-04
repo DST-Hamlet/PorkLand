@@ -55,15 +55,6 @@ local function KeepTarget(inst, target)
     return inst.components.combat:CanTarget(target)
 end
 
--- function Shuffle(tbl)
---      local size = #tbl
---     for i = size, 1, -1 do
---         local rand = math.random(size)
---         tbl[i], tbl[rand] = tbl[rand], tbl[i]
---     end
---     return tbl
--- end
-
 local function OnSave(inst, data)
     if inst.attacked then
         data.attacked = inst.attacked
