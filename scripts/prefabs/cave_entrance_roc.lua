@@ -341,9 +341,11 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
-    inst.interiorID = data.interiorID
+    if data and data.interiorID then
+        inst.interiorID = data.interiorID
+    end
     InitMaze(inst)
-    if data.open then
+    if data and data.open then
         Open(inst)
     end
 end
