@@ -13,7 +13,7 @@ local function GetSkeletonPositions(w, h)
 end
 
 local function Clear(inst)
-    for k in pairs(inst.fx)do
+    for k in pairs(inst.fx) do
         k:Remove()
     end
     inst.fx = {}
@@ -112,7 +112,7 @@ local function SetUp(inst, data)
         wall(i, -inst.width/2)
     end
 
-    for _,v in ipairs(temp)do
+    for _,v in ipairs(temp) do
         inst.fx[v] = true
     end
 
@@ -136,7 +136,7 @@ end
 local function GetDoorById(inst, id)
     assert(TheWorld.ismastersim)
     local x,_,z = inst:GetPosition():Get()
-    for _,v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}))do
+    for _,v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})) do
         if v.components.door.door_id == id then
             return v
         end
@@ -145,7 +145,7 @@ end
 
 local function GetDoorToExterior(inst)
     local x,_,z = inst:GetPosition():Get()
-    for _,v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door", "door_exit"}))do
+    for _,v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door", "door_exit"})) do
         return v
     end
 end
@@ -194,7 +194,7 @@ local function CollectMinimapData(inst)
     }
     inst.net_id = result.net_id
     local ents = result.ents
-    for _,v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"}))do
+    for _,v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
         if v.MiniMapEntity ~= nil then
             local pos = v:GetPosition()
             local offset = pos - center
@@ -228,7 +228,7 @@ local TAGS = {
 }
 
 local TAGS_VALUE_DESCENDING = {}
-for k,v in pairs(TAGS)do
+for k,v in pairs(TAGS) do
     table.insert(TAGS_VALUE_DESCENDING, {name = k, value = v})
 end
 table.sort(TAGS_VALUE_DESCENDING, function(a, b) return a.value > b.value end)
@@ -236,7 +236,7 @@ table.sort(TAGS_VALUE_DESCENDING, function(a, b) return a.value > b.value end)
 local function OnTagsMaskChange(inst)
     local mask = inst.interior_tags_mask:value()
     local tags = {}
-    for _,v in ipairs(TAGS_VALUE_DESCENDING)do
+    for _,v in ipairs(TAGS_VALUE_DESCENDING) do
         if mask >= v.value then
             mask = mask % v.value
             tags[v.name] = true
@@ -253,14 +253,14 @@ end
 
 local function OnTagsChange(inst)
     local sum = 0
-    for k in pairs(inst.interior_tags)do
+    for k in pairs(inst.interior_tags) do
         sum = sum + TAGS[k]
     end
     inst.interior_tags_mask:set(sum)
 end
 
 local function AddInteriorTags(inst, ...)
-    for _,v in ipairs({...})do
+    for _,v in ipairs({...}) do
         v = string.upper(v)
         if not TAGS[v] then
             print("WARNING: Invalid interior tag: "..v)
@@ -272,7 +272,7 @@ local function AddInteriorTags(inst, ...)
 end
 
 local function RemoveInteriorTags(inst, ...)
-    for _,v in ipairs({...})do
+    for _,v in ipairs({...}) do
         v = string.upper(v)
         inst.interior_tags[v] = nil
     end
