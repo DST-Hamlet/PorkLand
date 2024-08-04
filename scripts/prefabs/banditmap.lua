@@ -139,7 +139,6 @@ end
 local function OnFinishCallback(inst, worker)
     inst.MiniMapEntity:SetEnabled(false)
     inst:RemoveComponent("workable")
-    inst.components.hole.canbury = true
 
     if worker then
         -- figure out which side to drop the loot
@@ -209,17 +208,15 @@ local function bandittreasurefn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
 
-    inst:AddComponent("workable")
-    inst.components.workable:SetWorkAction(ACTIONS.DIG)
-    inst.components.workable:SetWorkLeft(1)
-    inst.components.workable:SetOnFinishCallback(OnFinishCallback)
-
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"peagawkfeather"})
 
-    inst:AddComponent("hole")
-
     inst:ListenForEvent("reveal", function()
+        inst:AddComponent("workable")
+        inst.components.workable:SetWorkAction(ACTIONS.DIG)
+        inst.components.workable:SetWorkLeft(1)
+        inst.components.workable:SetOnFinishCallback(OnFinishCallback)
+
         inst:Show()
         inst.MiniMapEntity:SetEnabled(true)
         inst:RemoveTag("NOCLICK")

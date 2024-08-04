@@ -117,6 +117,7 @@ local function master_postinit(inst)
     inst:AddComponent("spidermonkeyherd")
     inst:AddComponent("batted")
     inst:AddComponent("bramblemanager")
+    inst:AddComponent("banditmanager")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")

@@ -585,6 +585,8 @@ local tuning = {
     PIG_BANDIT_LOYALTY_MAXTIME = 2.5*total_day_time,
     PIG_BANDIT_LOYALTY_PER_HUNGER = total_day_time/25,
     PIG_BANDIT_MIN_POOP_PERIOD = seg_time * .5,
+    PIG_BANDIT_RUN_SPEED = 7,
+    PIG_BANDIT_WALK_SPEED = 3,
 }
 
 

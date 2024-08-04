@@ -95,7 +95,7 @@ local _stolen_oincs = {oinc = 0, oinc10 = 0, oinc100 = 0}
 local _disabled = false
 local _diffmod = 1
 
-local function OnUpdate(dt)
+local function OnUpdate(world, dt)
     if _disabled then
         return
     end
@@ -163,7 +163,6 @@ end
 --------------------------------------------------------------------------
 
 local function OnBanditDeath(src, data)
-    _banditactive = nil
     _deathtime = BANDIT_RESPAWN_TIME
     _bandit = nil
 end
@@ -250,8 +249,6 @@ function self:SpawnBanditOnPlayer(player)
     local cover = GetRandomItem(ents)
 
     if cover then
-        _banditactive = true
-
         if _stored_bandit then
             _bandit = SpawnSaveRecord(_stored_bandit)
         else
@@ -373,7 +370,6 @@ function self:OnLoad(data)
     _stolen_oincs.oinc100 = data.stolen_oincs.oinc100 or 0
 
     _deathtime = data.deathtime
-
 end
 
 function self:LoadPostPass(ents, data)

@@ -134,32 +134,24 @@ local function fn()
     inst.components.eater:SetCanEatHorrible()
     inst.components.eater:SetCanEatRaw()
     inst.components.eater:SetStrongStomach(true) -- can eat monster meat!
-    inst.components.eater:SetOnEatFn(OnEat)
-
-    inst:AddComponent("combat")
-    inst.components.combat.hiteffectsymbol = "pig_torso"
-    inst.components.combat:SetRange(4)
-
-    inst:AddComponent("homeseeker")
-    --inst.components.homeseeker:SetHome(SpawnPrefab("pigbanditexit"))
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.PIG_BANDIT_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.PIG_BANDIT_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
-    inst.components.combat.hiteffectsymbol = "chest"
+    inst.components.combat.hiteffectsymbol = "pig_torso"
+    inst.components.combat:SetRange(4)
+    -- inst.components.combat.hiteffectsymbol = "chest"
     inst.components.combat.onhitotherfn = OnHitOther
 
     inst:AddComponent("thief")
-    inst.components.thief:SetDropDistance(10.0)
+    -- inst.components.thief:SetDropDistance(10.0)
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.PIG_HEALTH)
 
     inst:AddComponent("inventory")
-
-    inst:AddComponent("knownlocations")
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"bandithat"})
@@ -172,6 +164,7 @@ local function fn()
     MakeMediumFreezableCharacter(inst, "pig_torso")
     MakeMediumBurnableCharacter(inst, "pig_torso")
     MakePoisonableCharacter(inst)
+    MakeHauntablePanic(inst)
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGpigbandit")

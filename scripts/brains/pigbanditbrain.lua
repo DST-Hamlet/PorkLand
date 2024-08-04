@@ -42,9 +42,7 @@ local function DoVanish(inst)
     local position = FindVanishPosition(inst)
 
     if position then
-        inst.components.knownlocations:RememberLocation("exit", position)
-
-        return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.PIG_BANDIT_EXIT)
+        return BufferedAction(inst, nil, ACTIONS.PIG_BANDIT_EXIT, nil, position)
     end
 end
 
@@ -63,12 +61,6 @@ local function GetPlayerPos(inst)
     end
 end
 
-local function ChatterSay(str)
-    return function(inst)
-        inst:SayLine(inst:GetSpeechType(str))
-    end
-end
-
 local PigBanditBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
@@ -77,11 +69,11 @@ function PigBanditBrain:OnStart()
     local root = PriorityNode(
     {
         WhileNode(function() return self.inst.components.hauntable and self.inst.components.hauntable.panic end, "PanicHaunted",
-            ChattyNode(self.inst, ChatterSay("PIG_TALK_PANICHAUNT"),
+            ChattyNode(self.inst, "PIG_TALK_PANICHAUNT",
                 Panic(self.inst))),
 
         WhileNode(function() return self.inst.components.health.takingfiredamage end, "OnFire",
-            ChattyNode(self.inst, ChatterSay("PIG_TALK_PANICFIRE"),
+            ChattyNode(self.inst, "PIG_TALK_PANICFIRE",
                 Panic(self.inst))),
 
         WhileNode(function() return ShouldVanish(self.inst) end, "Run off with prize",
@@ -90,7 +82,7 @@ function PigBanditBrain:OnStart()
         DoAction(self.inst, PickupAction, "Searching for prize", true),
 
         WhileNode(function() return self.inst.components.combat.target == nil or not self.inst.components.combat:InCooldown() end, "AttackMomentarily",
-            ChattyNode(self.inst, ChatterSay("BANDIT_TALK_FIGHT"),
+            ChattyNode(self.inst, "BANDIT_TALK_FIGHT",
                 ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST))),
 
         RunAway(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST),
