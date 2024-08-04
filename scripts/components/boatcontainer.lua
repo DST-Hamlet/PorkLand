@@ -776,7 +776,7 @@ local function QueryActiveItem(self)
 end
 
 function BoatContainer:PutOneOfActiveItemInSlot(slot)
-    local inventory, active_item = QueryActiveItem(self)
+    local _, active_item = QueryActiveItem(self)
     if active_item ~= nil and
         self:GetItemInSlot(slot) == nil and
         self:CanTakeItemInSlot(active_item, slot) and
@@ -834,7 +834,7 @@ function BoatContainer:TakeActiveItemFromAllOfSlot(slot)
 end
 
 function BoatContainer:AddOneOfActiveItemToSlot(slot)
-    local inventory, active_item = QueryActiveItem(self)
+    local _, active_item = QueryActiveItem(self)
     local item = self:GetItemInSlot(slot)
     if active_item ~= nil and
         item ~= nil and
@@ -886,7 +886,7 @@ function BoatContainer:SwapActiveItemWithSlot(slot)
 end
 
 function BoatContainer:BoatEquipActiveItem()
-    local inventory, active_item = QueryActiveItem(self)
+    local _, active_item = QueryActiveItem(self)
     if active_item ~= nil and
         active_item.components.equippable ~= nil and
         self:GetItemInBoatSlot(active_item.components.equippable.boatequipslot) == nil then
@@ -896,7 +896,7 @@ function BoatContainer:BoatEquipActiveItem()
 end
 
 function BoatContainer:SwapBoatEquipWithActiveItem()
-    local inventory, active_item = QueryActiveItem(self)
+    local _, active_item = QueryActiveItem(self)
     if active_item ~= nil and
         active_item.components.equippable ~= nil and
         self:GetItemInBoatSlot(active_item.components.equippable.boatequipslot) ~= nil then

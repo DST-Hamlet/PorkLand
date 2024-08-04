@@ -23,7 +23,6 @@ local STOP_RUN_AWAY_DIST = 5
 local DAMAGE_UNTIL_SHIELD = 100
 local SHIELD_TIME = 3
 local AVOID_PROJECTILE_ATTACKS = false
-local HIDE_WHEN_SCARED = true
 
 local SEE_FOOD_DIST = 10
 

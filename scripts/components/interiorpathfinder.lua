@@ -177,8 +177,7 @@ function InteriorPathfinder:GetWidth()
     if self.inst.width then
         return self.inst.width
     else
-        local iwidth, idepth = self.inst.size_net:value()
-        return iwidth
+        return self.inst.size_net.width:value()
     end
 end
 
@@ -186,8 +185,7 @@ function InteriorPathfinder:GetDepth()
     if self.inst.depth then
         return self.inst.depth
     else
-        local iwidth, idepth = self.inst.size_net:value()
-        return idepth
+        return self.inst.size_net.depth:value()
     end
 end
 

@@ -252,7 +252,7 @@ function Story:Pl_AddBGNodes(min_count, max_count)
 
                 if not node.data.entrance then
                     local count = getBGRoomCount(task) --math.random(min_count,max_count)
-                    local prevNode = nil
+                    -- local prevNode = nil
                     for i = 1, count do
                         local new_room = deepcopy(background_template)
                         new_room.id = nodeid .. ":BG_" .. bg_idx .. ":" .. background
@@ -286,7 +286,7 @@ function Story:Pl_AddBGNodes(min_count, max_count)
                         -- end
 
                         bg_idx = bg_idx + 1
-                        prevNode = newNode
+                        -- prevNode = newNode
                     end
                 else -- this is an entrance node
                     for i = 1, 2 do
