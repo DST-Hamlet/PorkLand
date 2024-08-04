@@ -44,6 +44,7 @@ if not rawget(_G, "HotReloading") then
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
         GAS = Action({distance = 1.5, mount_enabled = true}),
+        PIG_BANDIT_EXIT = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -489,6 +490,9 @@ ACTIONS.GAS.fn = function(act)
 	end
 end
 
+ACTIONS.PIG_BANDIT_EXIT.fn = function(act)
+    return true
+end
 
 
 -- Patch for hackable things
