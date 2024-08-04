@@ -72,6 +72,10 @@ local function TurnOff(inst)
     end
 
     for GUID, ent in pairs(inst.moisture_targets) do
+        if ent.components.moisture then
+            ent.components.moisture:RemoveRateBonus(inst)
+        end
+
         if ent.components.moistureoverride then -- just in case
             ent.components.moistureoverride:RemoveAddMoisture(inst)
         end
@@ -110,7 +114,7 @@ local function UpdateSpray(inst)
         local use_override = true
 
         if v.components.moisture then
-            v.components.moisture:DoDelta(TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY)
+            v.components.moisture:AddRateBonus(inst, TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY / UPDATE_TIME)
             use_override = false
         end
 
@@ -140,6 +144,10 @@ local function UpdateSpray(inst)
         local still_affected = inst.moisture_targets[old_GUID] ~= nil
 
         if not still_affected then
+            if old_ent.components.moisture then
+                old_ent.components.moisture:RemoveRateBonus(inst)
+            end
+
             if old_ent.components.moistureoverride then
                 old_ent.components.moistureoverride:RemoveAddMoisture(inst)
             end

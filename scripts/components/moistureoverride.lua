@@ -1,6 +1,8 @@
 local SourceModifierList = require("util/sourcemodifierlist")
 
 local WETNESS_SOURCE_WEATHER = "plateauweather"
+local DRY_THRESHOLD = TUNING.MOISTURE_DRY_THRESHOLD
+local WET_THRESHOLD = TUNING.MOISTURE_WET_THRESHOLD
 
 local MoistureOverride = Class(function(self, inst)
     self.inst = inst
@@ -28,6 +30,10 @@ function MoistureOverride:RemoveMultMoisture(source)
     self.rate_mult:RemoveModifier(source)
 end
 
+function MoistureOverride:AddOnce(wetness)
+    self.wetness = math.clamp(self.wetness + wetness, 0, TUNING.MAX_WETNESS)
+end
+
 function MoistureOverride:OnUpdate(dt)
     local rate_additive = self.rate_add:Get() * dt
     if rate_additive <= 0 then
@@ -36,8 +42,16 @@ function MoistureOverride:OnUpdate(dt)
     end
 
     self.wetness = math.clamp(self.wetness + self.rate_mult:Get() * dt + self.rate_add:Get() * dt, 0, TUNING.MAX_WETNESS)
+
     if self.wetness == 0 then
         self.inst:RemoveComponent("moistureoverride")
+        return
+    end
+
+    if self.wetness > WET_THRESHOLD then
+        self.inst:AddTag("temporary_wet")
+    elseif self.wetness < DRY_THRESHOLD then
+        self.inst:RemoveTag("temporary_wet")
     end
 end
 

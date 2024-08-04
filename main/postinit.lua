@@ -86,6 +86,7 @@ local prefab_posts = {
     "shard_network",
     "statueruins",
     "walls",
+    "waterballoon",
     "wormwood",
     "wortox",
 }
