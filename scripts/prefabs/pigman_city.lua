@@ -1177,7 +1177,7 @@ return MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
        MakeShopKeeper("pigman_mechanic_shopkeep",   "pig_mechanic",   MALE,   nil,        "pigman_mechanic"),
 
        MakeCityPigman("pigman_royalguard", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
-       MakeCityPigman("pigman_royalguard_2", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
+       MakeCityPigman("pigman_royalguard_2", "pig_royalguard_2", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
 
        MakeCityPigman("pigman_mechanic", "pig_mechanic", MALE, nil, nil, MechanicMasterPostinit),
 
