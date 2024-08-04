@@ -569,9 +569,7 @@ local function NormalShouldSleep(inst)
     if inst.components.follower and inst.components.follower.leader then
         local fire = FindEntity(inst, 6, function(ent)
             return ent.components.burnable and ent.components.burnable:IsBurning()
-        end, {
-            "campfire",
-        })
+        end, {"campfire"})
         return DefaultSleepTest(inst) and fire and (not inst.LightWatcher or inst.LightWatcher:IsInLight())
     else
         return DefaultSleepTest(inst)
@@ -609,21 +607,12 @@ local function SetNormalPig(inst, brain_id)
     end)
 
     inst:ListenForEvent("itemreceived", function(inst, data)
-        if data.item.prefab == "oinc" or data.item.prefab == "oinc10" or data.item.prefab == "oinc100" then
+        if data.item:HasTag("oinc") then
             if inst:HasTag("angry_at_player") then
                 if not inst.bribe_count then
                     inst.bribe_count = 0
                 end
-
-                -- If the item is not an oinc it's obviously an oinc10, so we count the bribe accordingly
-                if data.item.prefab == "oinc" then
-                    inst.bribe_count = inst.bribe_count + 1
-                elseif data.item.prefab == "oinc10" then
-                    inst.bribe_count = inst.bribe_count + 10
-                elseif data.item.prefab == "oinc100" then
-                    inst.bribe_count = inst.bribe_count + 100
-                end
-                inst.bribe_count = inst.bribe_count * data.item.components.stackable.stacksize
+                inst.bribe_count = inst.bribe_count + inst.oincvalue * data.item.components.stackable.stacksize
 
                 local bribe_threshold = inst:HasTag("guard") and 10 or 1
                 if inst.bribe_count >= bribe_threshold then
@@ -673,7 +662,7 @@ local function throwcrackers(inst)
     tossdir.z = -math.sin(rot)
 
     inst.components.inventory:DropItem(cracker, nil, nil, nil, nil, tossdir)
-    cracker.components.fuse:StartFuse()
+    cracker.components.burnable:Ignite(nil, nil, inst)
 end
 
 local function OnSave(inst, data)
@@ -990,26 +979,6 @@ local function EquipItems(inst)
     end
 end
 
-local function OnDeath_Guard(inst, data)
-    local torch = inst.components.inventory:FindItem(function(item)
-        if item.prefab == "torch" and item.components.fueled and item.components.fueled.unlimited_fuel then
-            return true
-        end
-    end)
-    if torch then
-        NormalizeTorch(torch, inst)
-    end
-
-    local axe = inst.components.inventory:FindItem(function(item)
-        if item.prefab == "halberd" and item.components.finiteuses and item.components.finiteuses.unlimited_uses then
-            return true
-        end
-    end)
-    if axe then
-        NormalizeHalberd(axe, inst)
-    end
-end
-
 local function OnDropItem(inst, data)
     local item = data.item
     if not item or not item:IsValid() then
@@ -1082,7 +1051,6 @@ local function pig_guard_master_postinit(inst)
 
     inst.equiptask = inst:DoTaskInTime(0, EquipItems)
 
-    inst:ListenForEvent("death", OnDeath_Guard)
     inst:ListenForEvent("dropitem", OnDropItem)
 
     inst:WatchWorldState("isday", OnIsDay)
