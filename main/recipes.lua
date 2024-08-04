@@ -262,12 +262,12 @@ AddRecipe2("smelter", {Ingredient("cutstone", 6), Ingredient("boards", 4), Ingre
 SortBefore("smelter", "cookpot", "STRUCTURES")
 SortAfter("smelter", "archive_resonator_item", "TOOLS")
 
-AddRecipe2("basefan", {Ingredient("alloy", 2), Ingredient("transistor", 2), Ingredient("gears", 1)}, TECH.SCIENCE_TWO, {placer = "basefan_placer"}, {"STRUCTURES", "RAIN"})
+AddRecipe2("basefan", {Ingredient("alloy", 2), Ingredient("transistor", 2), Ingredient("gears", 1)}, TECH.SCIENCE_TWO, {placer = "basefan_placer"}, {"STRUCTURES", "RAIN", "ENVIRONMENT_PROTECTION"})
 SortBefore("basefan", "firesuppressor", "STRUCTURES")
 SortBefore("basefan", "rainometer", "RAIN")
 
 --TOOLS
-AddRecipe2("bugrepellent", {Ingredient("tuber_crop", 6), Ingredient("venus_stalk", 1)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
+AddRecipe2("bugrepellent", {Ingredient("tuber_crop", 6), Ingredient("venus_stalk", 1)}, TECH.SCIENCE_ONE, {}, {"TOOLS", "ENVIRONMENT_PROTECTION"})
 SortAfter("bugrepellent", nil, "TOOLS")
 
 AddRecipe2("machete", {Ingredient("twigs", 1),Ingredient("flint", 3)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
@@ -296,7 +296,7 @@ SortBefore("metalplatehat", "cookiecutterhat", "ARMOUR")
 AddRecipe2("armor_metalplate", {Ingredient("alloy", 3), Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"ARMOUR"})
 SortAfter("armor_metalplate", "armormarble", "ARMOUR")
 
-AddRecipe2("armor_weevole", {Ingredient("weevole_carapace", 4), Ingredient("chitin", 2)}, TECH.SCIENCE_TWO, {}, {"ARMOUR", "RAIN"})
+AddRecipe2("armor_weevole", {Ingredient("weevole_carapace", 4), Ingredient("chitin", 2)}, TECH.SCIENCE_TWO, {}, {"ARMOUR", "RAIN", "ENVIRONMENT_PROTECTION"})
 SortBefore("armor_weevole", "armorwood", "ARMOUR")
 SortBefore("armor_weevole", "raincoat", "RAIN")
 
@@ -320,7 +320,7 @@ AddRecipe2("antsuit", {Ingredient("chitin", 5),Ingredient("armorwood", 1)}, TECH
 SortAfter("antsuit", "armorwood", "ARMOUR")
 SortAfter("antsuit", "antmaskhat", "CLOTHING")
 
-AddRecipe2("bathat", {Ingredient("pigskin", 2), Ingredient("batwing", 1), Ingredient("compass", 1)}, TECH.SCIENCE_TWO, {}, {"LIGHT"})
+AddRecipe2("bathat", {Ingredient("pigskin", 2), Ingredient("batwing", 1), Ingredient("compass", 1)}, TECH.SCIENCE_TWO, {}, {"LIGHT", "ENVIRONMENT_PROTECTION"})
 SortAfter("bathat", "molehat", "LIGHT")
 
 AddRecipe2("candlehat", {Ingredient("cork", 4), Ingredient("iron", 2)}, TECH.SCIENCE_ONE, {}, {"LIGHT", "RAIN"})
@@ -335,14 +335,14 @@ AddRecipe2("armor_snakeskin", {Ingredient("snakeskin", 2, nil, nil, "snakeskin_s
 SortBefore("armor_snakeskin", "sweatervest", "CLOTHING")
 SortAfter("armor_snakeskin", "raincoat", "RAIN")
 
-AddRecipe2("gasmaskhat", {Ingredient("peagawkfeather", 4), Ingredient("pigskin", 1), Ingredient("fabric", 1)}, TECH.SCIENCE_TWO, {}, {"CLOTHING"})
+AddRecipe2("gasmaskhat", {Ingredient("peagawkfeather", 4), Ingredient("pigskin", 1), Ingredient("fabric", 1)}, TECH.SCIENCE_TWO, {}, {"CLOTHING", "ENVIRONMENT_PROTECTION"})
 SortAfter("gasmaskhat", "icehat", "CLOTHING")
 
 AddRecipe2("thunderhat", {Ingredient("feather_thunder", 1), Ingredient("goldnugget", 1),Ingredient("cork", 2)}, TECH.SCIENCE_TWO, {}, {"CLOTHING", "RAIN"})
 SortAfter("thunderhat", "pithhat", "CLOTHING")
 SortAfter("thunderhat", "eyebrellahat", "RAIN")
 
-AddRecipe2("pithhat", {Ingredient("fabric", 1),Ingredient("vine", 3),Ingredient("cork", 6)}, TECH.SCIENCE_TWO, {}, {"CLOTHING", "RAIN"})
+AddRecipe2("pithhat", {Ingredient("fabric", 1),Ingredient("vine", 3),Ingredient("cork", 6)}, TECH.SCIENCE_TWO, {}, {"CLOTHING", "RAIN", "ENVIRONMENT_PROTECTION"})
 SortAfter("pithhat", "thunderhat", "CLOTHING")
 SortAfter("pithhat", "thunderhat", "RAIN")
 
@@ -395,6 +395,11 @@ SortBefore("disguisehat", "spidereggsack", "CHARACTER")
 AddRecipe2("poisonbalm", {Ingredient("livinglog", 1), Ingredient("venomgland", 1)}, TECH.NONE, {builder_tag = "plantkin"}, {"CHARACTER", "RESTORATION"})
 SortAfter("poisonbalm", "armor_bramble", "CHARACTER")
 SortBefore("poisonbalm", "healingsalve", "RESTORATION")
+
+AddRecipe2("corkchest", {Ingredient("cork", 2), Ingredient("rope", 1)}, TECH.SCIENCE_ONE, {placer="corkchest_placer", min_spacing=1}, {"STRUCTURES", "CONTAINERS"})
+
+AddRecipe2("roottrunk_child", {Ingredient("bramble_bulb", 1), Ingredient("venus_stalk", 2), Ingredient("boards", 3)}, TECH.MAGIC_TWO, {placer="roottrunk_child_placer", min_spacing=2}, {"STRUCTURES", "CONTAINERS", "MAGIC"})
+
 
 --Deconstruct
 AddDeconstructRecipe("mandrakehouse", {Ingredient("boards", 3), Ingredient("mandrake", 2), Ingredient("cutgrass", 10)})
