@@ -2171,6 +2171,7 @@ return {
         CRAFTING_FILTERS = {
             ARCHAEOLOGY = "Treasure Hunting",
             NAUTICAL = "Nautical",
+            ENVIRONMENT_PROTECTION = "Environment Protection",
         },
         CUSTOMIZATIONSCREEN = {
             ASPARAGUS = "Asparagus",

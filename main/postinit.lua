@@ -79,6 +79,7 @@ local prefab_posts = {
     "pocketdimensioncontainer_defs",
     "poop",
     "torch",
+    "waterprojectiles",
     "woodie",
     "world_network",
     "world",
