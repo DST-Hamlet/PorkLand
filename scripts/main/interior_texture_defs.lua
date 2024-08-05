@@ -47,7 +47,7 @@ for _,v in ipairs({
     "levels/textures/map_interior/mini_antcave_floor.tex",      "levels/textures/map_interior/passage_blocked.tex",
     "levels/textures/map_interior/mini_floor_marble_royal.tex", "levels/textures/map_interior/passage_unknown.tex",
     "levels/textures/map_interior/mini_ruins_slab.tex",
-})do
+}) do
     table.insert(Assets, Asset("IMAGE", v))
     table.insert(MINIMAP_DEF, {
         name = string.sub(v, string.find(v, "[^/]*$")):gsub("%.tex", ""),
@@ -60,7 +60,7 @@ end
 for _,v in ipairs({
     "images/colour_cubes/day05_cc.tex",
     "images/colour_cubes/pigshop_interior_cc.tex",
-})do
+}) do
     table.insert(Assets, Asset("IMAGE", v))
     table.insert(CC_DEF, {
         path = v,
@@ -72,17 +72,17 @@ assert(#TEXTURE_DEF < 255) -- as net_byte
 assert(#MINIMAP_DEF < 255) -- net_byte
 assert(#CC_DEF < 63) -- as net_smallbyte
 
-for i, v in ipairs(TEXTURE_DEF)do
+for i, v in ipairs(TEXTURE_DEF) do
     TEXTURE_DEF_INDEX[v.name] = i
     TEXTURE_DEF_INDEX[v.path] = i
 end
 
-for i, v in ipairs(MINIMAP_DEF)do
+for i, v in ipairs(MINIMAP_DEF) do
     MINIMAP_DEF_INDEX[v.name] = i
     MINIMAP_DEF_INDEX[v.path] = i
 end
 
-for i, v in ipairs(CC_DEF)do
+for i, v in ipairs(CC_DEF) do
     CC_DEF_INDEX[v.path] = i
 end
 

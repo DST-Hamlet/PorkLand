@@ -482,7 +482,7 @@ PROP_DEFS.pig_ruins_spear_trap = function(depth, width, exits_open, exits_vined,
             { depth / 5,  width / 5}
         }
 
-        for i=1, math.random(1,3)do
+        for i=1, math.random(1,3) do
             local rand = math.random(1, #offsets)
             local choice_x = offsets[rand][1]
             local choice_z = offsets[rand][2]

@@ -19,7 +19,7 @@ local function set_entity(entities, prop, x, z)
 end
 
 local function export_spawners_to_entites(entities, bunch)
-    for _, item in ipairs(bunch)do
+    for _, item in ipairs(bunch) do
         set_entity(entities, item.prefab, item.x, item.z)
     end
 end
@@ -37,7 +37,7 @@ local function check_valid_ground(x, z, width, height, valid_tile_types, water)
         end
 
         if valid_tile_types then
-            for _, tiletype in ipairs(valid_tile_types)do
+            for _, tiletype in ipairs(valid_tile_types) do
                 if original_tile_type == tiletype then
                     return true
                 end

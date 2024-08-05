@@ -449,7 +449,7 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
             room.color = ""
         end
         if room.color == "_blue" then
-            for ii, exit in pairs(room.exits)do
+            for ii, exit in pairs(room.exits) do
                 if exit.build == "pig_ruins_door" then
                     exit.build = "pig_ruins_door_blue"
                 end

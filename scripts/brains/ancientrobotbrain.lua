@@ -86,7 +86,7 @@ local function ShouldAssemble(inst)
     local mergetarget = nil
     local dist = 9999
     local hulk = nil
-    for _, ent in ipairs(ents)do
+    for _, ent in ipairs(ents) do
         -- a valid merge target is when there is only one active bot. And a hulk should have priority
         if ent ~= inst then
             if ent:HasTag("ancient_robots_assembly") or (ent:HasTag("dormant") and not hulk) then

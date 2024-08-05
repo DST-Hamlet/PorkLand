@@ -64,7 +64,7 @@ end
 function InteriorVisitor:UpdatePlayerAndCreaturePhysics(ent)
     local center = ent:GetPosition()
     local radius = ent:GetSearchRadius()
-    for _,v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_invisiblewall"}))do
+    for _,v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_invisiblewall"})) do
         if v.Physics ~= nil and v.Physics:GetCollisionGroup() ~= COLLISION.OBSTACLES then
             self:TunePhysics(v, ent)
         end

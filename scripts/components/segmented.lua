@@ -139,7 +139,7 @@ function Segmented:SetGroundStart(point)
 end
 
 function Segmented:RemoveSegment(segment)
-    for i, testsegment in ipairs(self.segments)do
+    for i, testsegment in ipairs(self.segments) do
         if segment == testsegment then
             table.remove(self.segments, i)
         end
@@ -268,7 +268,7 @@ end
 function Segmented:GetSegment(index)
     local step = 1
 
-    for _, segment in ipairs(self.segments)do
+    for _, segment in ipairs(self.segments) do
         if step == index then
             return segment
         end
@@ -313,7 +313,7 @@ function Segmented:SetToEnd()
 end
 
 function Segmented:OnUpdate(dt)
-    for _, segment in ipairs(self.segments)do
+    for _, segment in ipairs(self.segments) do
         self:UpdateSegmentBuild(segment, segment.segtime/self.segtimeMax)
     end
 
@@ -438,7 +438,7 @@ function Segmented:OnUpdate(dt)
                 positionandscale(self.segments[self.idlesegment], SCALE, HEIGHT)
             end
 
-            for i, segment in ipairs(self.segments)do
+            for i, segment in ipairs(self.segments) do
                 local SCALE_VEL = 0.008
                 if segment.scalegoal then
                     local scale = segment.Transform:GetScale()
@@ -481,7 +481,7 @@ function Segmented:OnUpdate(dt)
     end
 
     if self.hit > 0 then
-        for _, segment in ipairs(self.segments)do
+        for _, segment in ipairs(self.segments) do
             local s = 1.5
             s = Remap(self.hit, 1, 0, 1, 1.5)
             segment.Transform:SetScale(s,s,s)

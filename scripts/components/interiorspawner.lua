@@ -822,7 +822,7 @@ function InteriorSpawner:GatherAllRooms_Impl(center, allrooms, usemap)
                 assert(room, "Room not exists: "..id)
 
                 center.doors[v] = {target = room, dir = "unknown"} -- for easy access after searching
-                for _, name in ipairs(dir_str)do
+                for _, name in ipairs(dir_str) do
                     if v:HasTag("door_"..name) then
                         center.doors[v].dir = name
                         break
