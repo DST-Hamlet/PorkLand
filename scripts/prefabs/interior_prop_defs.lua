@@ -1169,7 +1169,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         }
 
         local num = math.random(#roots_left)
-        for i=1,num do
+        for i = 1, num do
             local choice = math.random(#roots_left)
             addprops[#addprops + 1] = roots_left[choice]
             table.remove(roots_left,choice)
@@ -1183,7 +1183,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             }
 
             local num = math.random(#roots_center)
-            for i=1,num do
+            for i = 1, num do
                 local choice = math.random(#roots_center)
                 addprops[#addprops + 1] = roots_center[choice]
                 table.remove(roots_center,choice)
@@ -1197,7 +1197,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         }
 
         local num = math.random(#roots_right)
-        for i=1,num do
+        for i = 1, num do
             local choice = math.random(#roots_right)
             addprops[#addprops + 1] = roots_right[choice]
             table.remove(roots_right,choice)

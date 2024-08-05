@@ -639,7 +639,7 @@ local function RestrictNodesByKey(story, startParentNode, unusedTasks)
             end
 
             -- print_lockandkey_ex("\t\tAdding keys to keyring:")
-            -- for i,v in ipairs(self.tasks[currentNode.id].keys_given) do
+            -- for i, v in ipairs(self.tasks[currentNode.id].keys_given) do
             --     if availableKeys[v] == nil then
             --         availableKeys[v] = {}
             --     end

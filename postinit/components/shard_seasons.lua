@@ -90,7 +90,7 @@ local function MakeShardSeasons(self, clock_type)
             endlessdaysinseason = _endlessdaysinseason:value(),
             lengths = {}
         }
-        for i,v in ipairs(_lengths) do
+        for i, v in ipairs(_lengths) do
             data.lengths[i] = v:value()
         end
         _world:PushEvent("secondary_seasonsupdate_" .. clock_type, data)

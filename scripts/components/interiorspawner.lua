@@ -604,7 +604,7 @@ end
 local function uuid()
     local seed = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'}
     local tb = {}
-    for i = 1,32 do
+    for i = 1, 32 do
         table.insert(tb, seed[math.random(1,16)])
     end
     return string.format('%s-%s-%s-%s-%s',

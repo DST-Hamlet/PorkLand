@@ -4,7 +4,7 @@ local prefabs = {
 
 local function onHammered(inst, worker)
     local x, y, z = inst.Transform:GetWorldPosition()
-    for i = 1, math.random(3,4) do
+    for i = 1, math.random(3, 4) do
         local fx = SpawnPrefab("robot_leaf_fx")
         fx.Transform:SetPosition(x + (math.random() * 2) , y + math.random() * 0.5, z + (math.random() * 2))
         if math.random() < 0.5 then

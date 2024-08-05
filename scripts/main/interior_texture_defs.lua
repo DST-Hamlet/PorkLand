@@ -72,22 +72,22 @@ assert(#TEXTURE_DEF < 255) -- as net_byte
 assert(#MINIMAP_DEF < 255) -- net_byte
 assert(#CC_DEF < 63) -- as net_smallbyte
 
-for i,v in ipairs(TEXTURE_DEF)do
+for i, v in ipairs(TEXTURE_DEF)do
     TEXTURE_DEF_INDEX[v.name] = i
     TEXTURE_DEF_INDEX[v.path] = i
 end
 
-for i,v in ipairs(MINIMAP_DEF)do
+for i, v in ipairs(MINIMAP_DEF)do
     MINIMAP_DEF_INDEX[v.name] = i
     MINIMAP_DEF_INDEX[v.path] = i
 end
 
-for i,v in ipairs(CC_DEF)do
+for i, v in ipairs(CC_DEF)do
     CC_DEF_INDEX[v.path] = i
 end
 
 return {
-    TEXTURE_DEF = TEXTURE_DEF, 
+    TEXTURE_DEF = TEXTURE_DEF,
     MINIMAP_DEF = MINIMAP_DEF,
     TEXTURE_DEF_INDEX = TEXTURE_DEF_INDEX,
     MINIMAP_DEF_INDEX = MINIMAP_DEF_INDEX,

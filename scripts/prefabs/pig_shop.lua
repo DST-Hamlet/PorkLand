@@ -552,7 +552,7 @@ local function OnLoad(inst, data)
                         end
                     end
 
-                    for i=1,#saleitems do
+                    for i = 1, #saleitems do
                         local offset = offsets[i]
                         local saleitem = saleitems[i]
                         local prefab_data = {saleitem = saleitem, startAnim = startAnim }
