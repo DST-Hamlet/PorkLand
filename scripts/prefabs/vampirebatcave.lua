@@ -24,14 +24,14 @@ local prefabs =
 
 local function CreateInterior(inst)
     local id = inst.interiorID
-    if id then
-        -- Reuse old interior
-        return
-    end
+    local can_reuse_interior = id ~= nil
+
     local interior_spawner = TheWorld.components.interiorspawner
-    id = interior_spawner:GetNewID()
-    inst.interiorID = id
-    print("CreateInterior id:", id)
+    if not can_reuse_interior then
+        id = interior_spawner:GetNewID()
+        inst.interiorID = id
+        print("CreateInterior id:", id)
+    end
 
     local name = "vampirebatcave" .. id
 
@@ -40,8 +40,13 @@ local function CreateInterior(inst)
         target_door_id = name .. "_exit",
         target_interior = id,
     }
-
     interior_spawner:AddDoor(inst, exterior_door_def)
+    interior_spawner:AddExterior(inst)
+
+    if can_reuse_interior then
+        -- Reuse old interior, but we still need to re-register the door
+        return
+    end
 
     local addprops = GetPropDef("vampirebatcave", exterior_door_def, BAT_CAVE_DEPTH, BAT_CAVE_WIDTH)
     local def = interior_spawner:CreateRoom(BAT_CAVE_NAME, BAT_CAVE_WIDTH, 10, BAT_CAVE_DEPTH, name, id, addprops, {},
@@ -56,13 +61,10 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
-    if data == nil or (data and data.interiorID == nil) then
-        CreateInterior(inst)
-        return
-    end
     if data then
         inst.interiorID = data.interiorID
     end
+    CreateInterior(inst)
 end
 
 local function fn()
@@ -89,8 +91,6 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
-
-    TheWorld.components.interiorspawner:AddExterior(inst)
 
     inst:AddComponent("inspectable")
 

@@ -135,7 +135,7 @@ function BoatContainer:DropEverythingWithTag(tag)
         end
     end
     if self.hasboatequipslots then
-         for k,v in pairs(self.boatequipslots) do
+         for k, v in pairs(self.boatequipslots) do
             local item = v
             if item:HasTag(tag) then
                 self:DropBoatEquipBySlot(k)
@@ -155,7 +155,7 @@ function BoatContainer:DropEverything()
         self:DropItemBySlot(i)
     end
     if self.hasboatequipslots then
-         for k,v in pairs(self.boatequipslots) do
+         for k, v in pairs(self.boatequipslots) do
             self:DropBoatEquipBySlot(k)
         end
     end
@@ -256,7 +256,7 @@ function BoatContainer:GiveItem(item, slot, src_pos, drop_on_fail)
         if use_slot then
             in_slot = slot
         elseif self.numslots > 0 then
-            for k = 1,self.numslots do
+            for k = 1, self.numslots do
                 if not self.slots[k] then
                     in_slot = k
                     break
@@ -330,7 +330,7 @@ function BoatContainer:GetItemInBoatSlot(slot)
 end
 
 function BoatContainer:GetItemSlot(item)
-    for k,v in pairs(self.slots) do
+    for k, v in pairs(self.slots) do
         if item == v then
             return k
         end
@@ -434,7 +434,7 @@ function BoatContainer:IsHolding(item, checkcontainer)
 end
 
 function BoatContainer:FindItem(fn)
-    for k,v in pairs(self.slots) do
+    for k, v in pairs(self.slots) do
         if fn(v) then
             return v
         end
@@ -444,7 +444,7 @@ end
 function BoatContainer:FindItems(fn)
     local items = {}
 
-    for k,v in pairs(self.slots) do
+    for k, v in pairs(self.slots) do
         if fn(v) then
             table.insert(items, v)
         end
@@ -457,7 +457,7 @@ BoatContainer.FindCraftingItems = BoatContainer.FindItems
 
 function BoatContainer:Has(item, amount)
     local num_found = 0
-    for k,v in pairs(self.slots) do
+    for k, v in pairs(self.slots) do
         if v and v.prefab == item then
             if v.components.stackable ~= nil then
                 num_found = num_found + v.components.stackable:StackSize()
@@ -494,7 +494,7 @@ function BoatContainer:GetItemByName(item, amount)
         return num_found
     end
 
-    for k,v in pairs(self.slots) do
+    for k, v in pairs(self.slots) do
         total_num_found = total_num_found + tryfind(v)
 
         if total_num_found >= amount then
@@ -575,21 +575,21 @@ function BoatContainer:OnSave()
     local data = {items= {}, boatequipitems = {}}
     local references = {}
     local refs = {}
-    for k,v in pairs(self.slots) do
+    for k, v in pairs(self.slots) do
         if v:IsValid() and v.persists then  -- only save the valid items
             data.items[k], refs = v:GetSaveRecord()
             if refs then
-                for k,v in pairs(refs) do
+                for k, v in pairs(refs) do
                     table.insert(references, v)
                 end
             end
         end
     end
-    for k,v in pairs(self.boatequipslots) do
+    for k, v in pairs(self.boatequipslots) do
         if v:IsValid() and v.persists then  -- only save the valid items
             data.boatequipitems[k], refs = v:GetSaveRecord()
             if refs then
-                for k,v in pairs(refs) do
+                for k, v in pairs(refs) do
                     table.insert(references, v)
                 end
             end
@@ -600,7 +600,7 @@ end
 
 function BoatContainer:OnLoad(data, newents)
     if data.items then
-        for k,v in pairs(data.items) do
+        for k, v in pairs(data.items) do
             local inst = SpawnSaveRecord(v, newents)
             if inst then
                 self:GiveItem(inst, k)
@@ -608,7 +608,7 @@ function BoatContainer:OnLoad(data, newents)
         end
     end
     if data.boatequipitems then
-        for k,v in pairs(data.boatequipitems) do
+        for k, v in pairs(data.boatequipitems) do
             local inst = SpawnSaveRecord(v, newents)
             if inst then
                 self:Equip(inst, false)
@@ -776,7 +776,7 @@ local function QueryActiveItem(self)
 end
 
 function BoatContainer:PutOneOfActiveItemInSlot(slot)
-    local inventory, active_item = QueryActiveItem(self)
+    local _, active_item = QueryActiveItem(self)
     if active_item ~= nil and
         self:GetItemInSlot(slot) == nil and
         self:CanTakeItemInSlot(active_item, slot) and
@@ -834,7 +834,7 @@ function BoatContainer:TakeActiveItemFromAllOfSlot(slot)
 end
 
 function BoatContainer:AddOneOfActiveItemToSlot(slot)
-    local inventory, active_item = QueryActiveItem(self)
+    local _, active_item = QueryActiveItem(self)
     local item = self:GetItemInSlot(slot)
     if active_item ~= nil and
         item ~= nil and
@@ -886,7 +886,7 @@ function BoatContainer:SwapActiveItemWithSlot(slot)
 end
 
 function BoatContainer:BoatEquipActiveItem()
-    local inventory, active_item = QueryActiveItem(self)
+    local _, active_item = QueryActiveItem(self)
     if active_item ~= nil and
         active_item.components.equippable ~= nil and
         self:GetItemInBoatSlot(active_item.components.equippable.boatequipslot) == nil then
@@ -896,7 +896,7 @@ function BoatContainer:BoatEquipActiveItem()
 end
 
 function BoatContainer:SwapBoatEquipWithActiveItem()
-    local inventory, active_item = QueryActiveItem(self)
+    local _, active_item = QueryActiveItem(self)
     if active_item ~= nil and
         active_item.components.equippable ~= nil and
         self:GetItemInBoatSlot(active_item.components.equippable.boatequipslot) ~= nil then
@@ -1025,7 +1025,7 @@ end
 
 function BoatContainer:ReferenceAllItems()
     local items = {}
-    for i=1,self.numslots do
+    for i = 1, self.numslots do
         if self.slots[i] ~= nil then
             table.insert(items, self.slots[i])
         end

@@ -24,7 +24,7 @@ end)
 
 function Ripplespawner:OnEntitySleep()
     self.inst:StopUpdatingComponent(self)
-    for GUID, ent in pairs(self.objects)do
+    for GUID, ent in pairs(self.objects) do
         if self.objects[GUID] and self.objects[GUID].ripple_task then
             self.objects[GUID].ripple_task:Cancel()
             self.objects[GUID].ripple_task = nil

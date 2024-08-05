@@ -71,7 +71,7 @@ function LeavesOver:OnUpdate(dt)
     self.under_leaves = false
 
     local x, y ,z = self.owner.Transform:GetWorldPosition()
-    for k,v in pairs(CANOPY_TILES) do
+    for k, v in pairs(CANOPY_TILES) do
         if v and TheWorld.Map:IsCloseToTile(x, y, z, 1.5, function(_x, _y, _z)
                 return TheWorld.Map:GetTileAtPoint(_x, _y, _z) == k
             end) then

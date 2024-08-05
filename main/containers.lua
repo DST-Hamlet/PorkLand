@@ -142,7 +142,7 @@ local boat_cargo = {
     enableboatequipslots = true,
 }
 
-for i = 6, 1,-1 do
+for i = 6, 1, -1 do
     table.insert(boat_cargo.widget.slotpos, Vector3(-13 - (80 * (i + 2)), 40 ,0))
 end
 

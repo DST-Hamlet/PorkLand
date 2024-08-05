@@ -88,7 +88,7 @@ function Multibody:OnSave()
         bodies = {},
     }
 
-    for i, body in ipairs(self.bodies)do
+    for i, body in ipairs(self.bodies) do
         if i ~= #self.bodies then
             local x, y, z = body.Transform:GetWorldPosition()
 
@@ -116,7 +116,7 @@ function Multibody:OnStartMove()
     if self.state ~= STATES.MOVING and self.state ~= STATES.DEAD then
         self.state = STATES.MOVING
 
-        for i,body in ipairs(self.bodies)do
+        for i,body in ipairs(self.bodies) do
             body.components.segmented:StartMove()
         end
 
@@ -130,7 +130,7 @@ function Multibody:OnStopMove()
     if self.state ~= STATES.IDLE and self.state ~= STATES.DEAD then
         self.state = STATES.IDLE
 
-        for i,body in ipairs(self.bodies)do
+        for i,body in ipairs(self.bodies) do
             if i == 1 and #self.bodies == self.maxbodies then
                 body.components.segmented:SetToEnd()
                 body:AddTag("switchToTailProp")
@@ -146,7 +146,7 @@ function Multibody:Kill()
 end
 
 function Multibody:KillAllBodies()
-    for _, body in ipairs(self.bodies)do
+    for _, body in ipairs(self.bodies) do
         kill_body(body)
     end
 

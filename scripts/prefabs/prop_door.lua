@@ -303,7 +303,7 @@ local function OnLoad(inst, data)
 end
 
 local function DisableDoor(inst, setting, cause)
-    assert(cause,"needs a cause")
+    assert(cause, "needs a cause")
 
     local door = inst.components.door
     door:SetDoorDisabled(setting, cause)
@@ -312,7 +312,7 @@ end
 local function UseDoor(inst,data)
     if inst.usesounds then
         if data and data.doer and data.doer.SoundEmitter then
-            for i,sound in ipairs(inst.usesounds)do
+            for _, sound in ipairs(inst.usesounds) do
                 data.doer.SoundEmitter:PlaySound(sound)
             end
         end

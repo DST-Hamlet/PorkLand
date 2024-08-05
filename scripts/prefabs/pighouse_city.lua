@@ -114,7 +114,6 @@ local function OnOccupied(inst, child)
     end
 end
 
-
 local function ConfigureSpawner(inst, selected_citizens)
     if inst.components.spawner then
         inst.components.spawner:Configure(selected_citizens[math.random(1, #selected_citizens)], TUNING.PIGHOUSE_CITY_RESPAWNTIME, 1)

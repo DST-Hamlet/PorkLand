@@ -96,7 +96,6 @@ function Door:SetHidden(hidden)
 end
 
 function Door:OnSave()
-
     local data = {}
     data.door_id = self.door_id
     data.target_door_id = self.target_door_id
@@ -180,6 +179,7 @@ function Door:OnLoad(data)
         my_door_id = data.door_id,
         target_door_id = data.target_door_id,
         target_interior = data.target_interior,
+        target_exterior = data.target_exterior,
     }
     TheWorld.components.interiorspawner:AddDoor(self.inst, door_definition)
     self:SetDoorDisabled()

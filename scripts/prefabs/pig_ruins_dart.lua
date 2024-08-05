@@ -19,7 +19,7 @@ local function OnCollide(inst, other)
         impactfx:FacePoint(x, y, z)
 
         local fx = SpawnPrefab("circle_puff_fx")
-        fx.Transform:SetPosition(x,y,z)
+        fx.Transform:SetPosition(x, y, z)
     end
     inst:Remove()
 end

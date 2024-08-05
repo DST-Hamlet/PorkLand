@@ -148,7 +148,7 @@ function ContainerWidget:Close(...)
         end
         _Close(self, ...)
         self.boatbadge:Hide()
-        for i,v in pairs(self.boatEquip) do
+        for i, v in pairs(self.boatEquip) do
             v:Kill()
         end
     else

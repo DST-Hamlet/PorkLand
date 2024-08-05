@@ -52,7 +52,7 @@ AncientRobot.Events.OnAttacked = function()
 
         if inst.hits > 2 and math.random() * inst.hits >= 2 then
             local x, y, z= inst.Transform:GetWorldPosition()
-            inst.components.lootdropper:SpawnLootPrefab("iron", Vector3(x,y,z))
+            inst.components.lootdropper:SpawnLootPrefab("iron", Vector3(x, y, z))
             inst.hits = 0
 
             if inst:HasTag("dormant") then

@@ -23,7 +23,7 @@ local function TestLocation(inst, pt)
     local brambleblocked = false
 
     local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 1, {"blocker"})
-    for _, ent in pairs(ents)do
+    for _, ent in pairs(ents) do
         if ent:HasTag("bramble") then
             brambleblocked = true
             break

@@ -255,7 +255,7 @@ local states =
             TimeEvent(81 * FRAMES, function(inst)
                 ShakeAllCameras(CAMERASHAKE.FULL, 0.7, 0.02, 2, inst, SHAKE_DIST)
 
-                local x,y,z = inst.Transform:GetWorldPosition()
+                local x, y, z = inst.Transform:GetWorldPosition()
                 for i = -1, 1 do
                     for j = -1, 1 do
                         SpawnPrefab("ancient_hulk_laserscorch").Transform:SetPosition(x + i, 0, z + j)
