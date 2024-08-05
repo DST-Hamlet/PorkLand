@@ -3,12 +3,12 @@
 
 local function GetSkeletonPositions(w, h)
     return {
-        LEFT_TOP     = Point(-h/2, 0, -w/2),
-        RIGHT_TOP    = Point(-h/2, 0,  w/2),
-        LEFT_BOTTOM  = Point(h/2, 0, -w/2),
-        RIGHT_BOTTOM = Point(h/2, 0,  w/2),
-        BOTTOM       = Point(h/2, 0, 0),
-        CENTER       = Point(0, 0, 0),
+        LEFT_TOP     = Point(-h / 2, 0, -w / 2),
+        RIGHT_TOP    = Point(-h / 2, 0,  w / 2),
+        LEFT_BOTTOM  = Point( h / 2, 0, -w / 2),
+        RIGHT_BOTTOM = Point( h / 2, 0,  w / 2),
+        BOTTOM       = Point( h / 2, 0,      0),
+        CENTER       = Point(     0, 0,      0),
     }
 end
 
@@ -101,13 +101,15 @@ local function SetUp(inst, data)
         table.insert(inst.fx, wall)
     end
 
-    for i = -width/2 - 1, width/2 + 1 do
-        wall(depth/2, i)
-        wall(-depth/2, i)
+    local half_width = width / 2
+    local half_depth = depth / 2
+    for i = -half_width - 1, half_width + 1 do
+        wall(half_depth, i)
+        wall(-half_depth, i)
     end
-    for i = -depth/2 - 1, depth/2 + 1 do
-        wall(i, width/2)
-        wall(i, -width/2)
+    for i = -half_depth - 1, half_depth + 1 do
+        wall(i, half_width)
+        wall(i, -half_width)
     end
 
     -- real wall
@@ -269,12 +271,12 @@ local function OnTagsChange(inst)
 end
 
 local function AddInteriorTags(inst, ...)
-    for _, v in ipairs({...}) do
-        v = string.upper(v)
-        if not TAGS[v] then
-            print("WARNING: Invalid interior tag: "..v)
+    for _, tag in ipairs({...}) do
+        tag = string.upper(tag)
+        if not TAGS[tag] then
+            print("WARNING: Invalid interior tag: "..tag)
         else
-            inst.interior_tags[v] = true
+            inst.interior_tags[tag] = true
         end
     end
     OnTagsChange(inst)
