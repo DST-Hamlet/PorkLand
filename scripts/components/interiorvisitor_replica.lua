@@ -3,7 +3,6 @@ local CC_DEF = require("main/interior_texture_defs").CC_DEF
 
 local InteriorVisitor = Class(function(self, inst)
     self.inst = inst
-    self.interiorspawner = TheWorld.components.interiorspawner
 
     self.center_ent = net_entity(inst.GUID, "interiorvisitor.center_ent")
     self.last_center_ent = nil
@@ -14,8 +13,13 @@ local InteriorVisitor = Class(function(self, inst)
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
     self.resetinteriorcamera = net_event(inst.GUID, "interiorvisitor.resetinteriorcamera")
+    self.restore_outside_interior_camera = net_event(inst.GUID, "interiorvisitor.restoreoutsideinteriorcamera")
+
     -- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
-    self.inst:ListenForEvent("interiorvisitor.exterior_pos", function() self:OnUpdate() end)
+    self.inst:ListenForEvent("interiorvisitor.restoreoutsideinteriorcamera", function()
+        self:OnUpdate()
+        TheCamera:RestoreOutsideInteriorCamera()
+    end)
 
     inst:StartUpdatingComponent(self)
 
@@ -33,7 +37,7 @@ end
 -- TODO: Make this actually work
 function InteriorVisitor:IsInInterior(x, z)
     -- local pos = self.inst:GetPosition()
-    -- local index = self.interiorspawner:PositionToIndex(pos)
+    -- local index = TheWorld.components.interiorspawner:PositionToIndex(pos)
 end
 
 function InteriorVisitor:GetInteriorCenterGeneric()
@@ -44,7 +48,7 @@ function InteriorVisitor:GetInteriorCenterGeneric()
 end
 
 -- function InteriorVisitor:GetInteriorCenterDedicated()
---     return self.interiorspawner:PositionToInteriorCenter()
+--     return TheWorld.components.interiorspawner:PositionToInteriorCenter()
 -- end
 
 local function IsInInteriorRectangle(player_pos, ent)
@@ -99,6 +103,10 @@ function InteriorVisitor:ApplyInteriorCamera(interior_center)
     TheCamera.pl_interior_distance = zoom
 end
 
+function InteriorVisitor:RestoreOutsideInteriorCamera()
+    self.restore_outside_interior_camera:push()
+end
+
 function InteriorVisitor:OnUpdate()
     if self.inst.components.interiorvisitor then
         self.inst.components.interiorvisitor:UpdateExteriorPos()
@@ -117,7 +125,6 @@ function InteriorVisitor:OnUpdate()
                 self.player_icon.MiniMapEntity:CopyIcon(self.inst.MiniMapEntity)
                 self.player_icon.MiniMapEntity:SetEnabled(true)
                 self.player_icon.Transform:SetPosition(self:GetExteriorPos():Get())
-
             end
             if last_center_ent ~= ent then
                 self.last_center_ent = ent

@@ -136,6 +136,7 @@ end
 --         x_size, y_size))
 -- end
 
+-- TODO: Make all x, z things take a Vector3 or x, y, z for easier access
 function InteriorSpawner:IsInInteriorRegion(x, z)
     return x >= self.x_start - PADDING and x <= self.x_start + MAX_X_OFFSET + PADDING
         and z >= - 1000 -100 and z <= self.z_start + MAX_Z_OFFSET + PADDING -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题

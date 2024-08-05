@@ -272,28 +272,36 @@ end
 
 local function DoTeleport(player, pos)
     player:StartThread(function()
+        local x, y, z = pos:Get()
+
         -- local invincible = player.components.health.invincible
-        --player.components.health:SetInvincible(true)
-        if player.components.playercontroller ~= nil then
+        -- player.components.health:SetInvincible(true)
+        if player.components.playercontroller then
             player.components.playercontroller:EnableMapControls(false)
             player.components.playercontroller:Enable(false)
         end
 
         player:ScreenFade(false, 0.4)
+
         Sleep(0.4)
-        -- recheck interior
-        if not TheWorld.components.interiorspawner:IsInInteriorRegion(pos.x, pos.z)
-            or TheWorld.components.interiorspawner:IsInInterior(pos.x, pos.z) then
-            player.Physics:Teleport(pos:Get())
-        end
+
+        player.Physics:Teleport(x, y, z)
         player.components.interiorvisitor:UpdateExteriorPos()
         -- player.components.health:SetInvincible(invincible)
+
         Sleep(0.1)
-        if player.components.playercontroller ~= nil then
+
+        if player.components.playercontroller then
             player.components.playercontroller:EnableMapControls(true)
             player.components.playercontroller:Enable(true)
         end
-        player:SnapCamera()
+
+        if TheWorld.components.interiorspawner:IsInInterior(x, z) then
+            player:SnapCamera()
+        else
+            player.replica.interiorvisitor:RestoreOutsideInteriorCamera()
+        end
+
         player:ScreenFade(true, 0.4)
         player.sg:GoToState("idle")
     end)
