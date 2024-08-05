@@ -414,5 +414,36 @@ local function fn()
     return inst
 end
 
+local PLACER_SCALE = 1.4
+
+local function placer_postinit_fn(inst)
+    --Show the sprinkler placer on top of the sprinkler range ground placer
+
+    local placer2 = CreateEntity()
+
+    --[[Non-networked entity]]
+    placer2.entity:SetCanSleep(false)
+    placer2.persists = false
+
+    placer2.entity:AddTransform()
+    placer2.entity:AddAnimState()
+
+    placer2:AddTag("CLASSIFIED")
+    placer2:AddTag("NOCLICK")
+    placer2:AddTag("placer")
+
+    local s = 1 / PLACER_SCALE
+    placer2.Transform:SetScale(s, s, s)
+
+    placer2.AnimState:SetBank("sprinkler")
+    placer2.AnimState:SetBuild("sprinkler")
+    placer2.AnimState:PlayAnimation("idle_off")
+    placer2.AnimState:SetLightOverride(1)
+
+    placer2.entity:SetParent(inst.entity)
+
+    inst.components.placer:LinkEntity(placer2)
+end
+
 return  Prefab("sprinkler", fn, assets, prefabs),
-        MakePlacer("sprinkler_placer", "sprinkler_placement", "sprinkler_placement", "idle", true, nil, nil, 1.4)
+        MakePlacer("sprinkler_placer", "sprinkler_placement", "sprinkler_placement", "idle", true, nil, nil, PLACER_SCALE, nil, nil, placer_postinit_fn)
