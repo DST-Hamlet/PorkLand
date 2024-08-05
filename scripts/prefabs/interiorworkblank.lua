@@ -160,7 +160,7 @@ local function GetDoorToExterior(inst)
 end
 
 local function GetIsSingleRoom(inst, no_cache)
-    if inst.cached_is_single ~= nil and no_cache ~= true then
+    if inst.cached_is_single ~= nil and not no_cache then
         return unpack(inst.cached_is_single)
     end
     local x, _, z = inst.Transform:GetWorldPosition()
