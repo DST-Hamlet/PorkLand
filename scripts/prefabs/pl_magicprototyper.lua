@@ -41,6 +41,12 @@ local function onturnoff(inst)
 end
 
 local function doneact(inst)
+    if inst._activecount > 1 then
+        inst._activecount = inst._activecount - 1
+    else
+        inst._activecount = 0
+        inst.SoundEmitter:KillSound("sound")
+    end
     inst._activetask = nil
     if not inst:HasTag("burnt") then
         if inst.components.prototyper.on then
@@ -149,6 +155,9 @@ local function fn()
     MakeLargePropagator(inst)
 
     inst:ListenForEvent("onbuilt", onbuilt)
+
+    inst._activecount = 0
+    inst._activetask = nil
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

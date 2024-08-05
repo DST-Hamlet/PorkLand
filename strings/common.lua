@@ -1794,6 +1794,7 @@ return {
         CITY_LAMP = "Lamp Post",
         CLAWPALMTREE = "Claw Palm Tree",
         CLAWPALMTREE_SAPLING = "Claw Palm Sapling",
+        CLAWPALMTREE_SAPLING_ITEM = "Claw Palm Sapling",
         CLIPPINGS = "Clippings",
         COFFEE = "Coffee",
         COFFEEBEANS = "Coffee Beans",
@@ -2080,7 +2081,7 @@ return {
         BUGREPELLENT = "In case you don't enjoy the company of bugs.",
         CANDLEHAT = "Hands free spelunking on shoe string.",
         CITY_LAMP = "I can't believe I can make this.",
-        CLAWPALMTREE_SAPLING = "It's a wonder these things grow at all.",
+        CLAWPALMTREE_SAPLING_ITEM = "It's a wonder these things grow at all.",
         CONSTRUCTION_PERMIT = "Add that den you've always wanted.",
         CORKCHEST = "Fill and put a cork in it.",
         CORK_BAT = "Like a wiffle bat filled with pain.",
@@ -2219,7 +2220,7 @@ return {
         PLANTREGISTRY = {
             DESCRIPTIONS = {
                 ALOE = "Taste like: not clear. -W",
-                RADISH = "It’s totally rad. -W",
+                RADISH = "It's totally rad. -W",
             },
         },
         SANDBOXMENU = {
