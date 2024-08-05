@@ -32,12 +32,12 @@ local InteriorSpawner = Class(function(self, inst)
     self.x_start = math.huge
     self.z_start = math.huge
 
-    self.interiors = {} -- {[index: number]: InteriorDef}
-    self.exteriors_hashmap = {} -- {[exterior: House]: true}
-    self.interiors_hashmap = {} -- {[interior: Room]: true}
+    self.exteriors = {} -- {[exterior: string]: House}
+    self.interiors = {} -- {[interior: string]: interiorworkblank}
+    self.interior_defs = {} -- {[index: number]: InteriorDef}
     self.doors = {} -- {[index: string]: DoorDef}
-    self.reuse_interior_IDs = {} -- 记录那些生成后被删掉的室内ID，以重复利用其空间
-    self.next_interior_ID = 0
+    self.reuse_interior_ids = {} -- 记录那些生成后被删掉的室内 ID，以重复利用其空间
+    self.next_interior_id = 0
 
     -- if value is redirected_id, then access twice
     -- if value is table, that's it!
@@ -50,7 +50,6 @@ local InteriorSpawner = Class(function(self, inst)
 
     inst:DoTaskInTime(0, function()
         self:SetInteriorPos() -- 保证室内位于渲染范围内
-        self:FixInteriorID()
     end)
 
     if TheWorld.ismastersim then
@@ -85,48 +84,47 @@ function InteriorSpawner:SetInteriorPos()
 end
 
 function InteriorSpawner:OnSave()
-    local data = {interiors = {}}
-    for interiorID, def in pairs(self.interiors) do
-        data.interiors[interiorID] = def
+    local interior_defs = {}
+    for interior_id, def in pairs(self.interior_defs) do
+        interior_defs[interior_id] = def
     end
-    data.reuse_interior_IDs = self.reuse_interior_IDs
-    return data
+    return {
+        interiors = interior_defs,
+        reuse_interior_ids = self.reuse_interior_ids,
+    }
 end
 
 function InteriorSpawner:OnLoad(data)
     if data then
         if data.interiors then
-            for interiroID, def in pairs(data.interiors) do
+            for _, def in pairs(data.interiors) do
                 self:AddInterior(def)
             end
-            self.interiors = data.interiors
         end
     end
     self:SetInteriorPos()
 end
 
 -- WARNING: this mothod cannot be called before game load (interiorID is nil)
-function InteriorSpawner:GetCurrentMaxID()
+function InteriorSpawner:GetCurrentMaxId()
     local index = 0
-    for k in pairs(self.interiors_hashmap) do
-        if k.interiorID then
-            index = math.max(k.interiorID, index)
-        end
+    for id in pairs(self.interiors) do
+        index = math.max(id, index)
     end
-    self.next_interior_ID = index
+    self.next_interior_id = index
     return index
 end
 
-function InteriorSpawner:GetNewID() -- 注意：每次该函数被调用，都会占用一个interior_ID及其对应的室内区域，因此确定有使用需求再调用此函数
-        -- 并且需要在该室内区域移除后需要触发回调，通过reuse_interior_IDs来重复使用interior_ID
-    if #self.reuse_interior_IDs > 0 then
-        table.sort(self.reuse_interior_IDs) -- 从小到大排序
-        local reuse_ID = self.reuse_interior_IDs[1]
-        table.remove(self.reuse_interior_IDs, 1) -- 使用后删除最小项
-        return reuse_ID
+function InteriorSpawner:GetNewID() -- 注意：每次该函数被调用，都会占用一个 interiorID 及其对应的室内区域，因此确定有使用需求再调用此函数
+        -- 并且需要在该室内区域移除后需要触发回调，通过 reuse_interior_ids 来重复使用 interiorID
+    if #self.reuse_interior_ids > 0 then
+        table.sort(self.reuse_interior_ids) -- 从小到大排序
+        local reuse_id = self.reuse_interior_ids[1]
+        table.remove(self.reuse_interior_ids, 1) -- 使用后删除最小项
+        return reuse_id
     end
-    self.next_interior_ID = self.next_interior_ID + 1
-    return self.next_interior_ID
+    self.next_interior_id = self.next_interior_id + 1
+    return self.next_interior_id
 end
 
 -- function InteriorSpawner:Debug_CalculateNumSlots()
@@ -138,6 +136,7 @@ end
 --         x_size, y_size))
 -- end
 
+-- TODO: Make all x, z things take a Vector3 or x, y, z for easier access
 function InteriorSpawner:IsInInteriorRegion(x, z)
     return x >= self.x_start - PADDING and x <= self.x_start + MAX_X_OFFSET + PADDING
         and z >= - 1000 -100 and z <= self.z_start + MAX_Z_OFFSET + PADDING -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
@@ -164,11 +163,11 @@ function InteriorSpawner:GetInteriorCenterAt_Generic(x, z)
     end
 end
 
-function InteriorSpawner:GetInteriorCenterAt_Dedicated(x, z)
-    -- should not be used in client (center_ent may asleep)
-    local index = self:PositionToIndex(Point(x, 0, z))
-    return self.interiors[index] and self.interiors[index].center_ent
-end
+-- function InteriorSpawner:GetInteriorCenterAt_Dedicated(x, z)
+--     -- should not be used in client (center_ent may asleep)
+--     local index = self:PositionToIndex(Point(x, 0, z))
+--     return self.interior_defs[index] and self.interior_defs[index].center_ent
+-- end
 
 function InteriorSpawner:IndexToPosition(i)
     self:SetInteriorPos()
@@ -184,23 +183,23 @@ end
 function InteriorSpawner:PositionToIndex(pos)
     self:SetInteriorPos()
     local x_size = math.floor(MAX_X_OFFSET / SPACE)
-    local x, z = pos.x, pos.z
-    local x_index = math.floor((x - self.x_start) / SPACE + 0.5)
-    local z_index = math.floor((z + 1000) / SPACE + 0.5) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
+    local x_index = math.floor((pos.x - self.x_start) / SPACE + 0.5)
+    local z_index = math.floor((pos.z + 1000) / SPACE + 0.5) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
     return z_index * x_size + x_index
 end
 
 function InteriorSpawner:PositionToInteriorCenter(pos)
     local index = self:PositionToIndex(pos)
-    return self.interiors[index]
+    return self.interior_defs[index]
 end
 
 function InteriorSpawner:AddExterior(entity)
     entity:AddTag("exterior_door")
-    self.exteriors_hashmap[entity] = true
+    local interior_id = entity.interiorID
+    self.exteriors[interior_id] = entity
     entity.interiorspawner_exterior_on_remove_listener = function()
         if not entity.components.fixable and entity.prefab ~= "reconstruction_project" then
-            self.exteriors_hashmap[entity] = nil
+            self.exteriors[interior_id] = nil
             self:OnRemoveExterior(entity)
         end
     end
@@ -213,7 +212,7 @@ function InteriorSpawner:TransferExterior(from_entity, to_entity)
         from_entity.interiorspawner_exterior_on_remove_listener = nil
     end
     from_entity:RemoveTag("exterior_door")
-    self.exteriors_hashmap[from_entity] = nil
+    self.exteriors[from_entity.interiorID] = nil
 
     self:AddExterior(to_entity)
 end
@@ -226,28 +225,24 @@ function InteriorSpawner:OnRemoveExterior(entity)
 
     local room = self:GetInteriorByIndex(entity.interiorID)
     if room then
-        self:UpdateInteriorIdMap()
         local allrooms = self:GatherAllRooms_Impl(room, {}, true)
         for k in pairs(allrooms) do
             self:ClearInteriorContents(k:GetPosition(), entity:GetPosition())
             if k.interiorID then
-                self.interiors[k.interiorID] = nil
+                self.interior_defs[k.interiorID] = nil
             end
         end
     end
 end
 
-function InteriorSpawner:GetExteriorByInteriorIndex(index)
+function InteriorSpawner:GetExteriorById(id)
     assert(TheWorld.ismastersim, "This method must be called in server")
-    for exterior in pairs(self.exteriors_hashmap) do
-        if exterior:IsValid() then
-            if exterior.interiorID == index then
-                return exterior
-            end
-        else
-            self.exteriors_hashmap[exterior] = nil
-        end
+    local exterior = self.exteriors[id]
+    if exterior and not exterior:IsValid() then
+        self.exteriors[id] = nil
+        return
     end
+    return exterior
 end
 
 local EAST  = { x =  1, y =  0, label = "east" }
@@ -322,7 +317,7 @@ end
 
 function InteriorSpawner:RemoveDoor(door_id)
     if not self.doors[door_id] then
-        print ("ERROR: TRYING TO REMOVE A NON EXISTING DOOR DEFINITION")
+        print("ERROR: TRYING TO REMOVE A NON EXISTING DOOR DEFINITION")
         return
     end
 
@@ -347,42 +342,15 @@ function InteriorSpawner:SpawnObject(interiorID, prefab, offset)
     return object
 end
 
-function InteriorSpawner:AddInteriorCenter(inst)
-    self.interiors_hashmap[inst] = true
-    self.inst:ListenForEvent("onremove", function() self:RemoveInteriorCenter(inst) end)
+function InteriorSpawner:AddInteriorCenter(center)
+    self.interiors[center.interiorID] = center
+    self.inst:ListenForEvent("onremove", function() self:RemoveInteriorCenter(center) end)
 end
 
-function InteriorSpawner:RemoveInteriorCenter(inst)
-    self.interiors_hashmap[inst] = nil
-    if inst.interiorID then
-        self.interiors[inst.interiorID] = nil
-        table.insert(self.reuse_interior_IDs, inst.interiorID)
-    end
-end
-
-function InteriorSpawner:FixInteriorID()
-    local ids = {}
-    local temp = {}
-    for k in pairs(self.interiors_hashmap) do
-        if k.interiorID ~= nil then
-            ids[k.interiorID] = true
-        else
-            local pos = k:GetPosition()
-            local index = self:PositionToIndex(pos)
-            if DistXZSq(self:IndexToPosition(index), pos) < 4 then
-                -- rule match
-                table.insert(temp, {k, index})
-            end
-        end
-    end
-    for _, v in ipairs(temp) do
-        local k, index = unpack(v)
-        if ids[index] == nil then
-            ids[index] = true
-            k.interiorID = index
-            print("FixInteriorID: Give id "..index.." to "..tostring(k))
-        end
-    end
+function InteriorSpawner:RemoveInteriorCenter(center)
+    self.interiors[center.interiorID] = center
+    self.interior_defs[center.interiorID] = nil
+    table.insert(self.reuse_interior_ids, center.interiorID)
 end
 
 local function CheckRoomSize(width, depth)
@@ -403,6 +371,8 @@ local function CheckRoomSize(width, depth)
     end
 end
 
+-- roomindex here is used as the interiorID on all the interiors in the room,
+-- and also interior_name for the door component on prop_door prefab
 function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name, roomindex, addprops, exits, walltexture, floortexture, minimaptexture, cityID, colour_cube, batted, playerroom, reverb, ambient_sound, footstep_tile, cameraoffset, zoom, forceInteriorMinimap)
     interior = interior or "generic_interior"
     width = width or 15
@@ -532,10 +502,10 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
 end
 
 function InteriorSpawner:AddInterior(def)
-    assert(self.interiors[def.unique_name] == nil, "THIS ROOM ALREADY EXISTS: "..def.unique_name)
+    assert(self.interior_defs[def.unique_name] == nil, "THIS ROOM ALREADY EXISTS: "..def.unique_name)
 
     def.object_list = {}
-    self.interiors[def.unique_name] = def
+    self.interior_defs[def.unique_name] = def
 
     if TheWorld.components.worldmapiconproxy then
         -- TODO: impl minimap
@@ -550,6 +520,8 @@ end
 function InteriorSpawner:GetInteriorByIndex(index)
     -- convert string name
     if type(index) == "string" then
+        -- should not happen
+        print("WARNING: GetInteriorByIndex with a string:", index)
         index = assert(tonumber(select(3, index:find("_(%d+)$"))), "Failed to convert to number: "..index)
     end
     local pos = self:IndexToPosition(index)
@@ -558,18 +530,19 @@ function InteriorSpawner:GetInteriorByIndex(index)
     end
 end
 
-function InteriorSpawner:GetInteriorByName(name)
-    if name == nil then
-        return nil
-    else
-        local interior = self.interiors[name]
-        if interior == nil then
-            print("!!ERROR: Unable To Find Interior Named:"..name)
-        end
+-- TODO: Doesn't work right now, see if we need it
+-- function InteriorSpawner:GetInteriorByName(name)
+--     if name == nil then
+--         return nil
+--     else
+--         local interior = self.interior_defs[name]
+--         if interior == nil then
+--             print("!!ERROR: Unable To Find Interior Named:"..name)
+--         end
 
-        return interior
-    end
-end
+--         return interior
+--     end
+-- end
 
 function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     assert(TheWorld.ismastersim)
@@ -631,7 +604,7 @@ end
 local function uuid()
     local seed = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'}
     local tb = {}
-    for i = 1,32 do
+    for i = 1, 32 do
         table.insert(tb, seed[math.random(1,16)])
     end
     return string.format('%s-%s-%s-%s-%s',
@@ -659,6 +632,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
     center:SetUp(interior)
     center.interiorID = interior.unique_name
     center.uuid = uuid()
+    self:AddInteriorCenter(center)
 
     if enqueue_update_layout then
         center:DoTaskInTime(0, function()
@@ -832,40 +806,25 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
     interior.visited = true
 end
 
-function InteriorSpawner:UpdateInteriorIdMap()
-    self.interiors_id_map = {}
-    for k in pairs(self.interiors_hashmap)do
-        if k:IsValid() and k.interiorID ~= nil then
-            self.interiors_id_map[k.interiorID] = k
-        end
-    end
-    return self.interiors_id_map
-end
-
-function InteriorSpawner:GatherAllRooms_Impl(inst, allrooms, usemap)
+function InteriorSpawner:GatherAllRooms_Impl(center, allrooms, usemap)
     -- WARNING: this method is quite expensive and server only
-    if allrooms[inst] then
+    if allrooms[center] then
         return
     end
-    allrooms[inst] = true
-    inst.doors = {}
-    local x, _, z = inst.Transform:GetWorldPosition()
-    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}))do
+    allrooms[center] = true
+    center.doors = {}
+    local x, _, z = center.Transform:GetWorldPosition()
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})) do
         if v.prefab == "prop_door" then
             local id = v.components.door.target_interior
             if id ~= nil and id ~= "EXTERIOR" then
-                local room = nil
-                if usemap then
-                    room = self.interiors_id_map[id]
-                else
-                    room = self:GetInteriorByIndex(id)
-                end
+                local room = usemap and self.interiors[id] or self:GetInteriorByIndex(id)
                 assert(room, "Room not exists: "..id)
 
-                inst.doors[v] = {target = room, dir = "unknown"} -- for easy access after searching
-                for _, name in ipairs(dir_str)do
+                center.doors[v] = {target = room, dir = "unknown"} -- for easy access after searching
+                for _, name in ipairs(dir_str) do
                     if v:HasTag("door_"..name) then
-                        inst.doors[v].dir = name
+                        center.doors[v].dir = name
                         break
                     end
                 end
@@ -877,12 +836,9 @@ function InteriorSpawner:GatherAllRooms_Impl(inst, allrooms, usemap)
     return allrooms
 end
 
-function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
+function InteriorSpawner:BuildMinimapLayout(center, usecachedmap)
     assert(TheWorld.ismastersim)
-    if not usecachedmap then
-        self:UpdateInteriorIdMap()
-    end
-    local allrooms = self:GatherAllRooms_Impl(inst, {}, true)
+    local allrooms = self:GatherAllRooms_Impl(center, {}, true)
     local pos_x, pos_z = 0, 0
     local grid_x, grid_z = 0, 0
     local visited = {}
@@ -896,7 +852,7 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
         local width, depth = inst:GetSize()
 
         local doors = {}
-        for k,v in pairs(inst.doors)do
+        for k, v in pairs(inst.doors) do
             --if v.dir == "east" or v.dir == "south" then  -- 暂时注释掉这一部分，否则会出现小地图刷新错误（亚丹）
                 -- WARNING: TODO:
                 -- 这里的写法比较糟糕，需要深入测试
@@ -928,11 +884,12 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
         })
 
         local space = TUNING.INTERIOR_MINIMAP_DOOR_SPACE
-        for k,v in pairs(inst.doors)do
+        for _, v in pairs(inst.doors) do
             if v.dir ~= "unknown" and visited[v.target] == nil then
                 local vec = assert(dir_vec[v.dir])
-                local pos_x = pos_x + vec.x * ((depth + select(2, v.target:GetSize()))/2 + space)
-                local pos_z = pos_z + vec.z * ((width + select(1, v.target:GetSize()))/2 + space)
+                local target_width, target_depth = v.target:GetSize()
+                local pos_x = pos_x + vec.x * ((depth + target_width) / 2 + space)
+                local pos_z = pos_z + vec.z * ((width + target_depth) / 2 + space)
                 local grid_x = grid_x + vec.x
                 local grid_z = grid_z + vec.z
                 table.insert(temp, {
@@ -944,7 +901,7 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
     end
 
     local major_id = nil
-    for _, v in ipairs(result)do
+    for _, v in ipairs(result) do
         local k = v.interior_name
         if k ~= nil then
             -- should be always number, but check here
@@ -966,10 +923,10 @@ end
 
 function InteriorSpawner:BuildAllMinimapLayout()
     local visited = {}
-    for _,v in pairs(self:UpdateInteriorIdMap())do
-        if visited[v] == nil then
-            local result, allrooms = self:BuildMinimapLayout(v, true)
-            for k in pairs(allrooms)do
+    for _, center in pairs(self.interiors) do
+        if not visited[center] then
+            local _, allrooms = self:BuildMinimapLayout(center, true)
+            for k in pairs(allrooms) do
                 visited[k] = true
             end
         end
@@ -980,7 +937,7 @@ function InteriorSpawner:SendMinimapLayoutData()
     local full_list = {} -- userid[]
     local diff_list = {} -- userid[]
     local player_visitors = {} -- {[K: InteriorVisitor]: true}
-    for _, player in pairs(AllPlayers)do
+    for _, player in pairs(AllPlayers) do
         if player.userid ~= nil and player.userid ~= "" then
             if player.pl_minimap_layout_flag then
                 table.insert(diff_list, player.userid)
@@ -994,9 +951,9 @@ function InteriorSpawner:SendMinimapLayoutData()
         end
     end
     -- set visited data
-    for k, v in pairs(self.interior_layout_map)do
+    for k, v in pairs(self.interior_layout_map) do
         if type(v) == "table" and v.uuid ~= nil then
-            for c in pairs(player_visitors)do
+            for c in pairs(player_visitors) do
                 if c:IsVisited(v.uuid) then
                     v.visited_players[c.inst.userid] = true
                 else
@@ -1007,7 +964,7 @@ function InteriorSpawner:SendMinimapLayoutData()
     end
     if #full_list > 0 then
         local data = {}
-        for k,v in pairs(self.interior_layout_map) do
+        for k, v in pairs(self.interior_layout_map) do
             table.insert(data, {k, v})
         end
         -- SendModRPCToClient(GetClientModRPC("PorkLand", "layoutdata"), -- 亚丹：我很确定这一部分会引起卡顿
@@ -1072,8 +1029,8 @@ function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
         return false
     end
 
-    for _, v in pairs(AllPlayers) do
-        if v:GetCurrentInteriorID() == interiorID then
+    for _, player in pairs(AllPlayers) do
+        if player:GetCurrentInteriorID() == interiorID then
             return true
         end
     end

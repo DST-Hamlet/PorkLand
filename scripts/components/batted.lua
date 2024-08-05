@@ -94,8 +94,7 @@ local function AddBatToCaves()
 
     local interiorID = GetRandomItem(_batcaves)
     local bat_cave = TheWorld.components.interiorspawner:GetInteriorByIndex(interiorID)
-    local width = bat_cave.size_net.width:value()
-    local depth = bat_cave.size_net.depth:value()
+    local width, depth = bat_cave:GetSize()
     local offset = {x = math.random() * width - width / 2, y = 0, z = math.random() * depth - depth / 2}
 
     local bat = TheWorld.components.interiorspawner:SpawnObject(interiorID, "vampirebat")

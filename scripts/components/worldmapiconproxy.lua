@@ -34,7 +34,7 @@ return Class(function(self, inst)
 
     function self:OnGetMapDataFromServer(message)
         local lines = {}
-        for l in message:gmatch("[^\n]+")do
+        for l in message:gmatch("[^\n]+") do
             table.insert(lines, l)
         end
         assert(#lines % 2 == 0, "data line numbers must be even")
@@ -104,7 +104,7 @@ return Class(function(self, inst)
 
     self.OnUpdate = ismastersim and function()
         local temp = {}
-        for ent in pairs(center_ents)do
+        for ent in pairs(center_ents) do
             if not ent:IsValid() and ent.net_id ~= nil then
                 center_ents[ent] = nil
                 table.insert(temp, json.encode({
@@ -139,7 +139,7 @@ return Class(function(self, inst)
         if #temp ~= 0 then
             local message = table.concat(temp, "\n")
             local ids = {}
-            for _,v in pairs(AllPlayers)do
+            for _,v in pairs(AllPlayers) do
                 if v == _activatedplayer then
                     -- host in mastersim
                     self:OnGetMapDataFromServer(message)
@@ -159,7 +159,7 @@ return Class(function(self, inst)
         end
 
         -- mapvisited
-        for _,v in pairs(AllPlayers)do
+        for _,v in pairs(AllPlayers) do
             if v.components.interiorvisitor ~= nil and v:HasTag("inside_interior") then
                 if v.userid ~= nil and v.userid ~= "" then
                     local message = json.encode(v.components.interiorvisitor.visited_uuid)
@@ -209,10 +209,10 @@ return Class(function(self, inst)
             return
         end
 
-        for _,v in pairs(client_minimap_room_ents)do
+        for _,v in pairs(client_minimap_room_ents) do
             v:Render(false)
         end
-        for _,v in pairs(client_minimap_door_ents)do
+        for _,v in pairs(client_minimap_door_ents) do
             v:Render(false)
         end
 
@@ -250,7 +250,7 @@ return Class(function(self, inst)
         local ent_list = {}
         local origin = nil
 
-        for _,v in ipairs(layout)do
+        for _,v in ipairs(layout) do
             local interiorID = v.interior_name
             local net_id = v.net_id
             local pos = Point(v.pos_x, 0, v.pos_z)
@@ -265,7 +265,7 @@ return Class(function(self, inst)
                 ent.grid_x = v.grid_x
                 ent.grid_z = v.grid_z
                 table.insert(ent_list, ent)
-                for _,d in pairs(doors)do
+                for _,d in pairs(doors) do
                     local vec = d.dir ~= nil and DIR_VEC[d.dir]
                     if vec ~= nil then
                         local key = interiorID.."-door-"..d.dir
@@ -290,7 +290,7 @@ return Class(function(self, inst)
         end
 
         assert(origin ~= nil, "Failed to find origin in layout")
-        for _,v in ipairs(ent_list)do
+        for _,v in ipairs(ent_list) do
             local pos = (v.layout_pos - origin)* TUNING.INTERIOR_MINIMAP_POSITION_SCALE
             if math.abs(pos.x) + math.abs(pos.z) < .1 then
                 -- 0, 0 --> skip, use room_client
@@ -319,7 +319,7 @@ return Class(function(self, inst)
                 local center_data = nil
                 local target_room = nil
                 local offset = nil
-                for _,v in pairs(client_minimap_room_ents)do
+                for _,v in pairs(client_minimap_room_ents) do
                     if v.render and v.minimap_data ~= nil then -- only teleport to visible room
                         local data = v.minimap_data
                         local room_pos = v:GetPosition()

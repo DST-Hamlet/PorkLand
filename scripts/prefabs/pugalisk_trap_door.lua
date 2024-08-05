@@ -25,7 +25,7 @@ local STATE_TO_ANIMATION = {
 local function DoSpawnPugalisk(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local pugalisk = SpawnPrefab("pugalisk")
-    pugalisk.Transform:SetPosition(x,y,z)
+    pugalisk.Transform:SetPosition(x, y, z)
     pugalisk.home = TheSim:FindFirstEntityWithTag("pugalisk_fountain")
     pugalisk.sg:GoToState("emerge_taunt")
     pugalisk.wantstotaunt = false

@@ -28,7 +28,7 @@ local function Despawn(inst)
     inst.AnimState:PlayAnimation("disappear")
     -- should probably disable DynamicShadow here
     inst:ListenForEvent("animover", function()
-        for _, ent in ipairs(inst.ents_in_gas)do
+        for _, ent in ipairs(inst.ents_in_gas) do
             OnLeaveGas(ent)
         end
         inst:Remove()
@@ -50,7 +50,7 @@ local function OnUpdate(inst, dt)
 
     inst.ents_in_gas = new_ents
 
-    for _, ent in ipairs(inst.ents_in_gas)do
+    for _, ent in ipairs(inst.ents_in_gas) do
         local was_in_gas = false
 
         for i = 1, num_old_ents do -- don't use pairs for this
@@ -66,7 +66,7 @@ local function OnUpdate(inst, dt)
         end
     end
 
-    for _, ent in ipairs(old_ents)do
+    for _, ent in ipairs(old_ents) do
         OnLeaveGas(ent)
     end
 end

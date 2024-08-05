@@ -25,7 +25,7 @@ local function OnUpdate(inst, self)
         change = true
 
         if self.inproxfn then
-            for _, ent in ipairs(foundents)do
+            for _, ent in ipairs(foundents) do
                 self.inproxfn(inst, ent)
             end
         end

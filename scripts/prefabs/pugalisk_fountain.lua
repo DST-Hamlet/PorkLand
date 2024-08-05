@@ -134,7 +134,7 @@ local function fn()
     inst:DoTaskInTime(0, function()
         local drop = nil
         local plant = nil
-        for k,v in pairs(Ents) do
+        for k, v in pairs(Ents) do
             if v:HasTag("lifeplant") then
                 plant = true
             end

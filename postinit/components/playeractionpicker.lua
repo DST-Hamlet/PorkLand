@@ -12,7 +12,7 @@ end
 local LAND_SCAN_STEP_SIZE = 2
 local WALL_TAGS = { "wall" }
 function PlayerActionPicker:ScanForLandInDir(my_x, my_z, dir_x, dir_z, steps, step_size)
-    for i = 0,steps do -- Initial position can have a quantized pos on land so start at 0
+    for i = 0, steps do -- Initial position can have a quantized pos on land so start at 0
         local pt_x, pt_z = QuantizeLandingPosition(my_x + dir_x * i * step_size, my_z + dir_z * i * step_size)
 
         local is_land = self.map:IsVisualGroundAtPoint(pt_x, 0, pt_z)
@@ -36,7 +36,7 @@ end
 local PLATFORM_SCAN_STEP_SIZE = 0.25
 local PLATFORM_SCAN_RANGE = 1
 function PlayerActionPicker:ScanForPlatformInDir(my_x, my_z, dir_x, dir_z, steps, step_size)
-    for i = 1,steps do
+    for i = 1, steps do
         local pt_x, pt_z = my_x + dir_x * i * step_size, my_z + dir_z * i * step_size
 
         local platform = self.map:GetNearbyPlatformAtPoint(pt_x, 0, pt_z, -PLATFORM_SCAN_RANGE)

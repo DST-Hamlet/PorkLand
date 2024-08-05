@@ -205,7 +205,7 @@ local states =
         tags = {"flight", "busy"},
 
         onenter = function(inst)
-            local bat_cave = TheWorld.components.interiorspawner:GetExteriorByInteriorIndex(inst._target_exterior)
+            local bat_cave = TheWorld.components.interiorspawner:GetExteriorById(inst._target_exterior)
             if bat_cave ~= nil then
                 local outside_pos = bat_cave:GetPosition() + Vector3(bat_cave:GetPhysicsRadius(1), 0, 0)
                 inst.Transform:SetPosition(outside_pos.x, 0, outside_pos.z)

@@ -142,7 +142,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
         table.sort(importance, function(a,b) return mod[a] < mod[b] end)
 
         local retsegs = {}
-        for k,v in pairs(segs) do
+        for k, v in pairs(segs) do
             retsegs[k] = math.ceil(math.clamp(v * mod[k], 0, 16))
         end
 
@@ -255,7 +255,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
             endlessdaysinseason = _endlessdaysinseason:value(),
             lengths = {}
         }
-        for i,v in ipairs(_lengths) do
+        for i, v in ipairs(_lengths) do
             data.lengths[i] = v:value()
         end
         _world:PushEvent("master_seasonsupdate_" .. clock_type, data)
@@ -462,7 +462,7 @@ local function MakeSeasons(self, clock_type, seasons_data)
     end or nil
 
     local OnSeasonsUpdate = _ismastersim and not _ismastershard and function(src, data)
-        for i,v in ipairs(_lengths) do
+        for i, v in ipairs(_lengths) do
             v:set(data.lengths[i])
         end
         _season:set(data.season)

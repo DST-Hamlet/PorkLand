@@ -3,11 +3,6 @@ local assets =
     Asset("ANIM", "anim/spear_trap.zip"),
 }
 
-local prefabs =
-{
-
-}
-
 local function OnKilled(inst)
     local debris = SpawnPrefab("pig_ruins_spear_trap_broken")
     debris.AnimState:PlayAnimation("breaking")
@@ -36,6 +31,7 @@ local function cycletrapup(inst)
             inst:PushEvent("triggertrap")
         end
     end
+    inst.components.timer:StartTimer("trap_down", inst.down_delay)
 end
 
 local function cycletrapdown(inst)
@@ -44,24 +40,30 @@ local function cycletrapdown(inst)
             inst:PushEvent("reset")
         end
     end
+    inst.components.timer:StartTimer("trap_up", inst.up_delay)
 end
 
-local function OnEntityWake(inst)
-    inst.components.cycletimer:Resume()
+local function OnTimerDone(inst, data)
+    local name = data.name
+    if name == "trap_up" then
+        cycletrapup(inst)
+    elseif name == "trap_down" then
+        cycletrapdown(inst)
+    end
 end
 
-local function OnEntitySleep(inst)
-    inst.components.cycletimer:Pause()
+local function ResumeTimers(inst)
+    inst.components.timer:ResumeTimer("trap_up")
+    inst.components.timer:ResumeTimer("trap_down")
+end
+
+local function PauseTimers(inst)
+    inst.components.timer:PauseTimer("trap_up")
+    inst.components.timer:PauseTimer("trap_down")
 end
 
 local function canbeattackedfn(inst)
-    local canbeattacked = true
-
-    if inst:HasTag("burnt") or inst:HasTag("dead") then
-        canbeattacked = false
-    end
-
-    return canbeattacked
+    return not (inst:HasTag("burnt") or inst:HasTag("dead"))
 end
 
 local function OnSave(inst, data)
@@ -90,7 +92,6 @@ local function OnLoad(inst, data)
     if not data then
         return
     end
-
     if data.extended then
         inst.sg:GoToState("extended")
     end
@@ -140,9 +141,8 @@ local function fn()
         return inst
     end
 
-    inst:AddComponent("cycletimer")
-    inst.components.cycletimer.cyclefn1 = cycletrapup
-    inst.components.cycletimer.cyclefn2 = cycletrapdown
+    inst:AddComponent("timer")
+    inst:ListenForEvent("timerdone", OnTimerDone)
 
     inst:AddComponent("hiddendanger")
 
@@ -172,32 +172,28 @@ local function fn()
 
     inst.OnLoad = OnLoad
     inst.OnSave = OnSave
-    inst.OnEntitySleep = OnEntitySleep
-    inst.OnEntityWake = OnEntityWake
+    inst.OnEntitySleep = PauseTimers
+    inst.OnEntityWake = ResumeTimers
 
     inst:ListenForEvent("death", OnKilled)
     inst:ListenForEvent("triggertrap", function(inst, data)
-        inst.triggertask = inst:DoTaskInTime(math.random() * 0.25,function()
+        inst.triggertask = inst:DoTaskInTime(math.random() * 0.25, function()
             inst:PushEvent("spring")
         end)
     end)
 
+    inst.up_delay = 1
+    inst.down_delay = 3
+
     inst:DoTaskInTime(0, function()
-        if inst.components.cycletimer.setted == true then
-            return
-        end
-        local time1 = 1
         if inst:HasTag("up_3") then
-            time1 = 3
+            inst.up_delay = 3
         end
-
-        local time2 = 3
         if inst:HasTag("down_6") then
-            time2 = 6
+            inst.down_delay = 6
         end
 
-        inst.components.cycletimer:SetUp(time1, time2, cycletrapup, cycletrapdown)
-
+        -- We resume the task from timer component after initial load instead of doing it here
         if inst:HasTag("timed") then
             local initialdelay = 3
             if inst:HasTag("delay_6") then
@@ -205,7 +201,10 @@ local function fn()
             elseif inst:HasTag("delay_9") then
                 initialdelay = 9
             end
-            inst.components.cycletimer:Start(initialdelay)
+            inst.components.timer:StartTimer("trap_up", initialdelay)
+            if inst:IsAsleep() then
+                PauseTimers(inst)
+            end
         end
     end)
 
@@ -236,5 +235,5 @@ local function debrisfn()
     return inst
 end
 
-return Prefab("pig_ruins_spear_trap", fn, assets, prefabs),
-       Prefab("pig_ruins_spear_trap_broken", debrisfn, assets, prefabs)
+return Prefab("pig_ruins_spear_trap", fn, assets),
+       Prefab("pig_ruins_spear_trap_broken", debrisfn, assets)

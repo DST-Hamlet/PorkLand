@@ -108,7 +108,7 @@ function PlayerHud:OpenBoat(boat, sailing)
 
         boatwidget:Open(boat, self.owner, not sailing)
 
-        for k,v in pairs(self.controls.containers) do
+        for k, v in pairs(self.controls.containers) do
             if v.container then
                 if v.parent == boatwidget.parent or k == boat then
                     v:Close()

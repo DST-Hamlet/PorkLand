@@ -173,22 +173,14 @@ local InteriorPathfinder = Class(function(self, inst)
     self.interior_physicswall = {}
 end, nil)
 
+-- TODO: Remove this
 function InteriorPathfinder:GetWidth()
-    if self.inst.width then
-        return self.inst.width
-    else
-        local iwidth, idepth = self.inst.size_net:value()
-        return iwidth
-    end
+    return self.inst:GetWidth()
 end
 
+-- TODO: Remove this
 function InteriorPathfinder:GetDepth()
-    if self.inst.depth then
-        return self.inst.depth
-    else
-        local iwidth, idepth = self.inst.size_net:value()
-        return idepth
-    end
+    return self.inst:GetDepth()
 end
 
 function InteriorPathfinder:PopulateRoom()
