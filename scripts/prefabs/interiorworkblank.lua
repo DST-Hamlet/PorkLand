@@ -323,36 +323,6 @@ local function OnLoad(inst, data)
     end
 end
 
-local function UpdateState(inst)
-    if ThePlayer and ThePlayer:IsNear(inst, 64) then
-        for _, fx in ipairs(inst.fx) do
-            if fx.OnThePlayerNear then
-                fx:OnThePlayerNear()
-            end
-        end
-    else
-        for _, fx in ipairs(inst.fx) do
-            if fx.OnThePlayerFar then
-                fx:OnThePlayerFar()
-            end
-        end
-    end
-end
-
-local function StartUpdateState(inst)
-    if inst.updatefxtask == nil then
-        inst.updatefxtask = inst:DoPeriodicTask(FRAMES, UpdateState)
-    end
-end
-
-local function StopUpdateState(inst)
-    UpdateState(inst)
-    if inst.updatefxtask then
-        inst.updatefxtask:Cancel()
-        inst.updatefxtask = nil
-    end
-end
-
 local function fn()
     local inst = CreateEntity()
 
@@ -398,11 +368,6 @@ local function fn()
     TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
 
     inst:AddComponent("interiorpathfinder")
-
-    if not TheNet:IsDedicated() then
-        inst.OnEntitySleep = StopUpdateState
-        inst.OnEntityWake = StartUpdateState
-    end
 
     inst.entity:SetPristine()
 

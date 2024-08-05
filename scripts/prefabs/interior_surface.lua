@@ -84,7 +84,7 @@ local function UpdateFx(inst)
                 end
             end
 
-            for fx in pairs(inst.fx)do
+            for fx in pairs(inst.fx) do
                 fx:SetTexture(path)
             end
         end
@@ -92,7 +92,7 @@ local function UpdateFx(inst)
 end
 
 local function ClearFx(inst)
-    for k, v in pairs(inst.fx)do
+    for k, v in pairs(inst.fx) do
         inst.fx[k] = nil
         k:Remove()
     end
@@ -115,14 +115,6 @@ local function SetSizeXZ(inst, x, z)
     inst.size_x:set(x)
     inst.size_z:set(z)
     --UpdateFx(inst)
-end
-
-local function OnThePlayerNear(inst)
-    UpdateFx(inst)
-end
-
-local function OnThePlayerFar(inst)
-    ClearFx(inst)
 end
 
 local function SetSizeX(inst, x)
@@ -160,8 +152,10 @@ local function floor_fn()
     inst:AddTag("NOBLOCK")
     inst.fx = {}
 
-    inst.OnThePlayerNear = OnThePlayerNear
-    inst.OnThePlayerFar = OnThePlayerFar
+    if not TheNet:IsDedicated() then
+        inst.OnEntityWake = UpdateFx
+        inst.OnEntitySleep = ClearFx
+    end
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("texture_index", UpdateFx)
@@ -196,8 +190,10 @@ local function wall_fn()
     inst:AddTag("NOBLOCK")
     inst.fx = {}
 
-    inst.OnThePlayerNear = OnThePlayerNear
-    inst.OnThePlayerFar = OnThePlayerFar
+    if not TheNet:IsDedicated() then
+        inst.OnEntityWake = UpdateFx
+        inst.OnEntitySleep = ClearFx
+    end
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("texture_index", UpdateFx)
