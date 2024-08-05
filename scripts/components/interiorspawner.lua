@@ -50,7 +50,6 @@ local InteriorSpawner = Class(function(self, inst)
 
     inst:DoTaskInTime(0, function()
         self:SetInteriorPos() -- 保证室内位于渲染范围内
-        -- self:FixInteriorID()
     end)
 
     if TheWorld.ismastersim then
@@ -352,31 +351,6 @@ function InteriorSpawner:RemoveInteriorCenter(center)
     self.interior_defs[center.interiorID] = nil
     table.insert(self.reuse_interior_ids, center.interiorID)
 end
-
--- function InteriorSpawner:FixInteriorID()
---     local ids = {}
---     local temp = {}
---     for interior in pairs(self.interiors) do
---         if interior.interiorID ~= nil then
---             ids[interior.interiorID] = true
---         else
---             local pos = interior:GetPosition()
---             local index = self:PositionToIndex(pos)
---             if DistXZSq(self:IndexToPosition(index), pos) < 4 then
---                 -- rule match
---                 table.insert(temp, {interior, index})
---             end
---         end
---     end
---     for _, v in ipairs(temp) do
---         local interior, index = unpack(v)
---         if ids[index] == nil then
---             ids[index] = true
---             interior.interiorID = index
---             print("FixInteriorID: Give id "..index.." to "..tostring(interior))
---         end
---     end
--- end
 
 local function CheckRoomSize(width, depth)
     assert(math.floor(width) == width, "Room width must be int")
