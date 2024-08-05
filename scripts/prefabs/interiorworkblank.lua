@@ -4,11 +4,11 @@
 local function GetSkeletonPositions(w, h)
     return {
         LEFT_TOP     = Point(-h/2, 0, -w/2),
-        RIGHT_TOP     = Point(-h/2, 0,  w/2),
+        RIGHT_TOP    = Point(-h/2, 0,  w/2),
         LEFT_BOTTOM  = Point(h/2, 0, -w/2),
         RIGHT_BOTTOM = Point(h/2, 0,  w/2),
-        BOTTOM         = Point(h/2, 0, 0),
-        CENTER         = Point(0, 0, 0),
+        BOTTOM       = Point(h/2, 0, 0),
+        CENTER       = Point(0, 0, 0),
     }
 end
 
@@ -33,10 +33,10 @@ local function SetUp(inst, data)
     Clear(inst)
 
     data = data or {}
-    inst.width = data.width or inst.width
+    local width = data.width or inst._width:value()
+    local depth = data.depth or inst._depth:value()
+    inst:SetSize(width, depth)
     inst.height = data.height or inst.height
-    inst.depth = data.depth or inst.depth
-    inst.size_net:set(inst.width, inst.depth)
     inst.search_radius = inst:GetSearchRadius()
 
     if inst.components.interiorpathfinder then
@@ -124,8 +124,21 @@ local function SetUp(inst, data)
     inst.interior_cc = data.interior_cc or data.cc or "images/colour_cubes/day05_cc.tex"
 end
 
+local function GetWidth(inst)
+    return inst._width:value()
+end
+
+local function GetDepth(inst)
+    return inst._depth:value()
+end
+
 local function GetSize(inst)
-    return inst.size_net:value()
+    return GetWidth(inst), GetDepth(inst)
+end
+
+local function SetSize(inst, width, depth)
+    inst._width:set(width)
+    inst._depth:set(depth)
 end
 
 local function GetDoorById(inst, id)
@@ -285,9 +298,9 @@ local function AttachMinimapOverride(inst)
 end
 
 local function OnSave(inst, data)
-    data.width = inst.width
+    data.width = inst:GetWidth()
+    data.depth = inst:GetDepth()
     data.height = inst.height
-    data.depth = inst.depth
     data.walltexture = inst.walltexture
     data.floortexture = inst.floortexture
     data.interiorID = inst.interiorID
@@ -353,18 +366,18 @@ local function fn()
 
     inst.fx = {}
 
+    inst._width = net_byte(inst.GUID, "interiorworkblank.width", "sizedirty")
+    inst._width:set_local(TUNING.ROOM_TINY_WIDTH)
+    inst._depth = net_byte(inst.GUID, "interiorworkblank.depth", "sizedirty")
+    inst._depth:set_local(TUNING.ROOM_TINY_DEPTH)
+    inst.height = 5
+
+    inst.GetWidth = GetWidth
+    inst.GetDepth = GetDepth
+    inst.GetSize = GetSize
+    inst.SetSize = SetSize
+
     inst.cc_index = net_byte(inst.GUID, "cc_index", "cc_index")
-    inst.size_net = {
-        width = net_byte(inst.GUID, "size.width", "sizedirty"),
-        depth = net_byte(inst.GUID, "size.depth", "sizedirty"),
-        set = function(self, w, d)
-            self.width:set(w)
-            self.depth:set(d)
-        end,
-        value = function(self)
-            return self.width:value(), self.depth:value()
-        end,
-    }
     inst.interior_tags = {}
     inst.interior_tags_mask = net_ushortint(inst.GUID, "interior_tags_mask", "interior_tags_mask")
 
@@ -372,7 +385,6 @@ local function fn()
     inst.minimap_coord_x = net_shortint(inst.GUID, "minimap_coord_x", "minimap_coord")
     inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
 
-    inst.GetSize = GetSize
     inst.GetSearchRadius = GetSearchRadius
     inst.GetDoorById = GetDoorById
     inst.GetDoorToExterior = GetDoorToExterior
@@ -397,9 +409,6 @@ local function fn()
         return inst
     end
 
-    inst.width = TUNING.ROOM_TINY_WIDTH
-    inst.height = 5
-    inst.depth = TUNING.ROOM_TINY_DEPTH
     inst.SetUp = SetUp
     inst.CollectMinimapData = CollectMinimapData
 

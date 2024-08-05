@@ -909,11 +909,12 @@ function InteriorSpawner:BuildMinimapLayout(center, usecachedmap)
         })
 
         local space = TUNING.INTERIOR_MINIMAP_DOOR_SPACE
-        for k, v in pairs(inst.doors) do
+        for _, v in pairs(inst.doors) do
             if v.dir ~= "unknown" and visited[v.target] == nil then
                 local vec = assert(dir_vec[v.dir])
-                local pos_x = pos_x + vec.x * ((depth + select(2, v.target:GetSize()))/2 + space)
-                local pos_z = pos_z + vec.z * ((width + select(1, v.target:GetSize()))/2 + space)
+                local target_width, target_depth = v.target:GetSize()
+                local pos_x = pos_x + vec.x * ((depth + target_width) / 2 + space)
+                local pos_z = pos_z + vec.z * ((width + target_depth) / 2 + space)
                 local grid_x = grid_x + vec.x
                 local grid_z = grid_z + vec.z
                 table.insert(temp, {

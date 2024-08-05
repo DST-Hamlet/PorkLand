@@ -64,14 +64,14 @@ function InteriorVisitor:Deactivate()
     print("InteriorVisitor:Deactivate()")
 end
 
-function InteriorVisitor:ApplyInteriorCamera(ent)
+function InteriorVisitor:ApplyInteriorCamera(interior_center)
     local cameraoffset = -2.5         --10x15
     local zoom = 23
-    local depth = ent.size_net.depth:value()
+    local depth = interior_center:GetDepth()
 
-    if ent.cameraoffset and ent.zoom then
-        cameraoffset = ent.cameraoffset
-        zoom = ent.zoom
+    if interior_center.cameraoffset and interior_center.zoom then
+        cameraoffset = interior_center.cameraoffset
+        zoom = interior_center.zoom
     elseif depth == 12 then    --12x18
         cameraoffset = -2
         zoom = 25
@@ -84,16 +84,16 @@ function InteriorVisitor:ApplyInteriorCamera(ent)
     end
 
     -- custom value
-    if ent.pl_interior_distance ~= nil then
-        zoom = ent.pl_interior_distance
+    if interior_center.pl_interior_distance ~= nil then
+        zoom = interior_center.pl_interior_distance
     end
-    if ent.pl_interior_cameraoffset ~= nil then
-        cameraoffset = ent.pl_interior_cameraoffset
+    if interior_center.pl_interior_cameraoffset ~= nil then
+        cameraoffset = interior_center.pl_interior_cameraoffset
     else
         cameraoffset = Vector3(cameraoffset, 0, 0)
     end
 
-    local pos = ent:GetPosition()
+    local pos = interior_center:GetPosition()
     TheCamera.inside_interior = true
     TheCamera.pl_interior_currentpos = pos + cameraoffset
     TheCamera.pl_interior_distance = zoom
