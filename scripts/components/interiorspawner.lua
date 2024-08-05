@@ -98,7 +98,7 @@ end
 function InteriorSpawner:OnLoad(data)
     if data then
         if data.interiors then
-            for _, def in pairs(data.interior_defs) do
+            for _, def in pairs(data.interiors) do
                 self:AddInterior(def)
             end
         end
