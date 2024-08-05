@@ -122,6 +122,7 @@ local function fn()
     inst.MiniMapEntity:SetIcon("armor_vortex_cloak.tex")
 
     inst:AddTag("vortex_cloak")
+    inst:AddTag("shadow_item")
 
     --shadowlevel (from shadowlevel component) added to pristine state for optimization
     inst:AddTag("shadowlevel")
