@@ -51,36 +51,35 @@ local function SetUp(inst, data)
     inst.floortexture = data.floortexture or inst.floortexture or "antcave_floor"
     inst.interiorID = data.interiorID or inst.interiorID
 
-    local sp = GetSkeletonPositions(inst.width, inst.depth)
+    local sp = GetSkeletonPositions(width, depth)
 
     local left_top_pos = sp.LEFT_TOP + inst:GetPosition()
 
     local floor = SpawnPrefab("interiorfloor")
-    floor:SetSize(inst.depth, inst.width) -- depth => size_x, width => size_z
+    floor:SetSize(depth, width) -- depth => size_x, width => size_z
     floor:SetTexture(inst.floortexture)
     floor.Transform:SetPosition(left_top_pos:Get())
 
     local wall_bg = SpawnPrefab("interiorwall_z")
-    wall_bg:SetSize(inst.width)
+    wall_bg:SetSize(width)
     wall_bg.Transform:SetPosition(left_top_pos:Get())
+    wall_bg:SetTexture(inst.walltexture)
 
     local wall_left = SpawnPrefab("interiorwall_x")
-    wall_left:SetSize(inst.depth)
+    wall_left:SetSize(depth)
     wall_left.Transform:SetPosition(left_top_pos:Get())
+    wall_left:SetTexture(inst.walltexture)
 
     local right_top_pos = sp.RIGHT_TOP + inst:GetPosition()
 
     local wall_right = SpawnPrefab("interiorwall_x")
-    wall_right:SetSize(inst.depth)
+    wall_right:SetSize(depth)
     wall_right.Transform:SetPosition(right_top_pos:Get())
+    wall_right:SetTexture(inst.walltexture)
 
-    for _, v in ipairs {wall_bg, wall_left, wall_right} do
-        v:SetTexture(inst.walltexture)
-    end
-
-    --for _, v in ipairs{floor, wall_bg, wall_left, wall_right}do -- 亚丹：SetParent并且本地位置不为000的话，有时会出现网络传输的问题
-        --v.entity:SetParent(inst.entity)
-    --end
+    -- for _, v in ipairs {floor, wall_bg, wall_left, wall_right} do -- 亚丹：SetParent 并且本地位置不为 000 的话，有时会出现网络传输的问题
+    --     v.entity:SetParent(inst.entity)
+    -- end
 
     inst.fx = {
         floor,
@@ -91,32 +90,32 @@ local function SetUp(inst, data)
 
     local function wall(x, z)
         local wall = SpawnPrefab("invisiblewall")
-        table.insert(inst.fx, wall)
+        wall.persists = false
         wall:DoTaskInTime(0, function()
             local pos = inst:GetPosition()
             wall.Physics:SetActive(true)
             wall.Physics:SetActive(false) -- use these wall for pathfinder only :p
             wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
         end)
-        wall.persists = false
-        -- v:Debug()
+        -- wall:Debug()
+        table.insert(inst.fx, wall)
     end
 
-    for i = -inst.width/2 - 1, inst.width/2 + 1 do
-        wall(inst.depth/2, i)
-        wall(-inst.depth/2, i)
+    for i = -width/2 - 1, width/2 + 1 do
+        wall(depth/2, i)
+        wall(-depth/2, i)
     end
-    for i = -inst.depth/2 - 1, inst.depth/2 + 1 do
-        wall(i, inst.width/2)
-        wall(i, -inst.width/2)
+    for i = -depth/2 - 1, depth/2 + 1 do
+        wall(i, width/2)
+        wall(i, -width/2)
     end
 
     -- real wall
     local wall = SpawnPrefab("invisiblewall_long")
     wall:DoTaskInTime(0, function()
         local pos = inst:GetPosition()
-        wall.width:set(inst.width + 0.2)
-        wall.depth:set(inst.depth + 0.2)
+        wall.width:set(width + 0.2)
+        wall.depth:set(depth + 0.2)
         wall.Transform:SetPosition(pos.x, 0, pos.z)
     end)
     table.insert(inst.fx, wall)
@@ -190,11 +189,13 @@ local function CollectMinimapData(inst)
     if not inst:HasInteriorMinimap() then
         return { center = center, no_minimap = true }
     end
+    local width = inst:GetWidth()
+    local depth = inst:GetDepth()
     local radius = inst:GetSearchRadius()
     local result = {
         center = center,
-        width = inst.width,
-        depth = inst.depth,
+        width = width,
+        depth = depth,
         net_id = inst.Network:GetNetworkID(),
         interiorID = inst.interiorID,
         guid = inst.entity:GetGUID(),
@@ -207,7 +208,7 @@ local function CollectMinimapData(inst)
             local pos = v:GetPosition()
             local offset = pos - center
             -- check if entity is in room
-            if math.abs(offset.z) < inst.width / 2 + 1 and math.abs(offset.x) < inst.depth / 2 + 1 then
+            if math.abs(offset.z) < width / 2 + 1 and math.abs(offset.x) < depth / 2 + 1 then
                 local icon = v.MiniMapEntity:GetIcon() -- see interior_map.lua
                 local priority = v.MiniMapEntity:GetPriority() -- see interior_map.lua
                 if icon ~= nil and icon ~= "" then
