@@ -1,23 +1,23 @@
 local assets =
 {
 	Asset("ANIM", "anim/cut_hedge.zip"),
-    Asset("INV_IMAGE", "clippings"),
 }
 
-local function fn(Sim)
+local function fn()
 	local inst = CreateEntity()
+
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
     PorkLandMakeInventoryFloatable(inst)
-    MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
 
     inst.AnimState:SetBank("cut_hedge")
     inst.AnimState:SetBuild("cut_hedge")
-
     inst.AnimState:PlayAnimation("idle")
+
+    inst:AddTag("cattoy")
 
     inst.entity:SetPristine()
 
@@ -33,17 +33,12 @@ local function fn(Sim)
     inst.components.edible.healthvalue = TUNING.HEALING_TINY
     inst.components.edible.hungervalue = TUNING.CALORIES_TINY/2
 
-    inst:AddTag("cattoy")
     inst:AddComponent("tradable")
 
     inst:AddComponent("inspectable")
 
-    -- inst:AddComponent("appeasement")
-    -- inst.components.appeasement.appeasementvalue = TUNING.WRATH_SMALL
-
 	MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
-    -- inst.components.burnable:MakeDragonflyBait(3)
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = TUNING.SMALL_FUEL
@@ -51,6 +46,7 @@ local function fn(Sim)
     inst:AddComponent("inventoryitem")
 
     MakeHauntableLaunchAndIgnite(inst)
+    MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
 
     return inst
 end

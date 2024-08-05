@@ -44,6 +44,7 @@ local component_posts = {
     "moisture",
     "oceancolor",
     "oldager",
+    "pickable",
     "playeractionpicker",
     "playercontroller",
     "playervision",
@@ -86,6 +87,7 @@ local prefab_posts = {
     "shard_network",
     "statueruins",
     "walls",
+    "waterballoon",
     "wormwood",
     "wortox",
 }
@@ -161,6 +163,7 @@ modimport("postinit/pathfinder")
 modimport("postinit/groundcreep")
 modimport("postinit/groundcreepentity")
 modimport("postinit/soundemitter")
+modimport("postinit/preparedfoods")
 
 
 for _, file_name in ipairs(behaviour_posts) do

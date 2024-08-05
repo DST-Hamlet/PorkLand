@@ -203,6 +203,11 @@ PrefabFiles = {
     "lavapool",
     "meteor_impact",
     "obsidian",
+    "nettle_plant",
+    "sprinkler",
+    "water_pipe",
+    "water_spray",
+    "pl_plantables",
 }
 
 Assets = {

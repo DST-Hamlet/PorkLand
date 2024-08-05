@@ -667,6 +667,15 @@ return Class(function(self, inst)
     end or nil
 
     --------------------------------------------------------------------------
+    --[[ Public functions ]]
+    --------------------------------------------------------------------------
+
+    if _ismastersim then function self:GetMoistureRate()
+        local preciprate = CalculatePrecipitationRate()
+        return CalculateWetnessRate(_temperature, preciprate)
+    end end
+
+    --------------------------------------------------------------------------
     --[[ Initialization ]]
     --------------------------------------------------------------------------
 

@@ -185,3 +185,8 @@ function EntityScript:GetCurrentAnimation()
         return string.match(debug_string, "anim:%s+(%S+)%s+")
     end
 end
+
+local _GetIsWet = EntityScript.GetIsWet
+function EntityScript:GetIsWet()
+    return self:HasTag("temporary_wet") or _GetIsWet(self)
+end

@@ -396,10 +396,48 @@ AddRecipe2("poisonbalm", {Ingredient("livinglog", 1), Ingredient("venomgland", 1
 SortAfter("poisonbalm", "armor_bramble", "CHARACTER")
 SortBefore("poisonbalm", "healingsalve", "RESTORATION")
 
+local function IsValidSprinklerTile(tile)
+    return not TileGroupManager:IsOceanTile(tile) and (tile ~= WORLD_TILES.INVALID) and (tile ~= WORLD_TILES.IMPASSABLE)
+end
+
+local function GetValidWaterPointNearby(pt)
+    local range = 20
+
+    local cx, cy = TheWorld.Map:GetTileCoordsAtPoint(pt.x, 0, pt.z)
+    local center_tile = TheWorld.Map:GetTile(cx, cy)
+
+    local min_sq_dist = 999999999999
+    local best_point = nil
+
+    for x = pt.x - range, pt.x + range, 1 do
+        for z = pt.z - range, pt.z + range, 1 do
+            local tx, ty = TheWorld.Map:GetTileCoordsAtPoint(x, 0, z)
+            local tile = TheWorld.Map:GetTile(tx, ty)
+
+            if IsValidSprinklerTile(center_tile) and TileGroupManager:IsOceanTile(tile) then
+                local cur_point = Vector3(x, 0, z)
+                local cur_sq_dist = cur_point:DistSq(pt)
+
+                if cur_sq_dist < min_sq_dist then
+                    min_sq_dist = cur_sq_dist
+                    best_point = cur_point
+                end
+            end
+        end
+    end
+
+    return best_point
+end
+
+local function sprinkler_placetest(pt, rot)
+    return GetValidWaterPointNearby(pt) ~= nil
+end
+
+AddRecipe2("sprinkler", {Ingredient("alloy", 2), Ingredient("bluegem", 1), Ingredient("ice", 6)}, TECH.SCIENCE_TWO, {placer = "sprinkler_placer", testfn = sprinkler_placetest}, {"GARDENING", "STRUCTURES"})
+
 AddRecipe2("corkchest", {Ingredient("cork", 2), Ingredient("rope", 1)}, TECH.SCIENCE_ONE, {placer="corkchest_placer", min_spacing=1}, {"STRUCTURES", "CONTAINERS"})
 
 AddRecipe2("roottrunk_child", {Ingredient("bramble_bulb", 1), Ingredient("venus_stalk", 2), Ingredient("boards", 3)}, TECH.MAGIC_TWO, {placer="roottrunk_child_placer", min_spacing=2}, {"STRUCTURES", "CONTAINERS", "MAGIC"})
-
 
 --Deconstruct
 AddDeconstructRecipe("mandrakehouse", {Ingredient("boards", 3), Ingredient("mandrake", 2), Ingredient("cutgrass", 10)})
