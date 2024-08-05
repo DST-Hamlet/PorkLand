@@ -2,12 +2,8 @@ local assets =
 {
     Asset("ANIM", "anim/tuber_tree_build.zip"),
     Asset("ANIM", "anim/tuber_bloom_build.zip"),
-
     Asset("ANIM", "anim/tuber_tree.zip"),
     Asset("ANIM", "anim/dust_fx.zip"),
-    Asset("SOUND", "sound/forest.fsb"),
-    --Asset("INV_IMAGE", "jungleTreeSeed"),
-    Asset("MINIMAP_IMAGE", "tuber_trees"),
 }
 
 local prefabs =
@@ -21,210 +17,35 @@ local prefabs =
     "tuber_bloom_crop_cooked",
 }
 
-local builds =
-{
-    normal = {
-        file="tuber_tree_build",
-        prefab_name="tubertree",
-        tuberslots_short ={5,6},
-        tuberslots_tall ={8,5,7},
-    },
-    blooming = {
-        file="tuber_bloom_build",
-        prefab_name="tubertree",
-        tuberslots_short ={5,6},
-        tuberslots_tall ={8,5,7},
-    }
-}
+local TUBER_SLOTS_SHORT = {5, 6}
+local TUBER_SLOTS_TALL = {8, 5, 7}
 
-local function makeanims(stage)
+local function MakeAnims(stage)
     return {
-        idle="idle_"..stage,
-        sway1="sway1_loop_"..stage,
-        sway2="sway2_loop_"..stage,
-        chop="chop_"..stage,
-        fallleft="fallleft_"..stage,
-        fallright="fallright_"..stage,
-        stump="stump_"..stage,
-        burning="burning_loop_"..stage,
-        burnt="burnt_"..stage,
-        chop_burnt="chop_burnt_"..stage,
-        idle_chop_burnt="idle_chop_burnt_"..stage,
-        blown1="blown_loop_"..stage.."1",
-        blown2="blown_loop_"..stage.."2",
-        blown_pre="blown_pre_"..stage,
-        blown_pst="blown_pst_"..stage
+        idle = "idle_" .. stage,
+        sway1 = "sway1_loop_" .. stage,
+        sway2 = "sway2_loop_" .. stage,
+        chop = "chop_" .. stage,
+        fallleft = "fallleft_" .. stage,
+        fallright = "fallright_" .. stage,
+        stump = "stump_" .. stage,
+        burning = "burning_loop_" .. stage,
+        burnt = "burnt_" .. stage,
+        chop_burnt = "chop_burnt_" .. stage,
+        idle_chop_burnt = "idle_chop_burnt_" .. stage,
+        blown1 = "blown_loop_" .. stage .. "1",
+        blown2 = "blown_loop_" .. stage .. "2",
+        blown_pre = "blown_pre_" .. stage,
+        blown_pst = "blown_pst_" .. stage
     }
 end
 
-local short_anims = makeanims("short")
-local tall_anims = makeanims("tall")
-local old_anims =
-{
-    idle="idle_old",
-    sway1="idle_old",
-    sway2="idle_old",
-    chop="chop_old",
-    fallleft="chop_old",
-    fallright="chop_old",
-    stump="stump_old",
-    burning="idle_olds",
-    burnt="burnt_tall",
-    chop_burnt="chop_burnt_tall",
-    idle_chop_burnt="idle_chop_burnt_tall",
-    blown="blown_loop",
-    blown_pre="blown_pre",
-    blown_pst="blown_pst"
+local anims = {
+    MakeAnims("short"),
+    MakeAnims("tall"),
 }
 
-
-local function dig_up_stump(inst, chopper)
-    inst:Remove()
-    inst.components.lootdropper:SpawnLootPrefab("tuber_crop")
---[[
-    if inst:HasTag("mystery") and inst.components.mystery.investigated then
-        inst.components.lootdropper:SpawnLootPrefab(inst.components.mystery.reward)
-        inst:RemoveTag("mystery")
-    end
-    ]]
-end
-
-local function chop_down_burnt_tree(inst, chopper)
-    inst:RemoveComponent("hackable")
-    inst.SoundEmitter:PlaySound("dontstarve/forest/treeCrumble")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/bamboo_hack")
-    inst.AnimState:PlayAnimation(inst.anims.chop_burnt)
-    RemovePhysicsColliders(inst)
-    inst:ListenForEvent("animover", function() inst:Remove() end)
-    inst.components.lootdropper:SpawnLootPrefab("charcoal")
-    inst.components.lootdropper:DropLoot()
-    if inst.pineconetask then
-        inst.pineconetask:Cancel()
-        inst.pineconetask = nil
-    end
-end
-
-local function GetBuild(inst)
-    local build = builds[inst.build]
-    if build == nil then
-        return builds["normal"]
-    end
-    return build
-end
-
-local function updateart(inst)
-    for i,slot in ipairs(inst.tuberslots) do
-        inst.AnimState:Hide("tubers"..slot)
-    end
-
-    for i=1,inst.tubers do
-        inst.AnimState:Show("tubers"..inst.tuberslots[i])
-    end
-end
-
-local burnt_highlight_override = {.5,.5,.5}
-local function OnBurnt(inst, imm)
-
-    local function changes()
-        if inst.components.burnable then
-            inst.components.burnable:Extinguish()
-        end
-        inst:RemoveComponent("burnable")
-        inst:RemoveComponent("propagator")
-        inst:RemoveComponent("growable")
-        --inst:RemoveComponent("blowinwindgust")
-        inst:RemoveTag("shelter")
-        inst:RemoveTag("dragonflybait_lowprio")
-        inst:RemoveTag("fire")
-        inst:RemoveTag("gustable")
-
-        inst.components.lootdropper:SetLoot({})
-
-        if inst.components.workable then
-            inst.components.workable:SetWorkLeft(1)
-            inst.components.workable:SetOnWorkCallback(nil)
-            inst.components.workable:SetOnFinishCallback(chop_down_burnt_tree)
-        end
-
-        if inst.components.hackable then
-            inst.components.hackable.onhackedfn = chop_down_burnt_tree
-        end
-    end
-
-    if imm then
-        changes()
-    else
-        inst:DoTaskInTime( 0.5, changes)
-    end
-    inst.AnimState:PlayAnimation(inst.anims.burnt, true)
-    --inst.AnimState:SetRayTestOnBB(true);
-    inst:AddTag("burnt")
-
-    inst.highlight_override = burnt_highlight_override
-end
-
-local function PushSway(inst)
-    if math.random() > .5 then
-        inst.AnimState:PushAnimation(inst.anims.sway1, true)
-    else
-        inst.AnimState:PushAnimation(inst.anims.sway2, true)
-    end
-end
-
-local function Sway(inst)
-    if math.random() > .5 then
-        inst.AnimState:PlayAnimation(inst.anims.sway1, true)
-    else
-        inst.AnimState:PlayAnimation(inst.anims.sway2, true)
-    end
-    inst.AnimState:SetTime(math.random()*2)
-end
-
-local function SetShort(inst)
-    inst.anims = short_anims
-    inst.maxtubers = 2
-    inst.tuberslots = GetBuild(inst).tuberslots_short
-    --[[
-    if inst.components.workable then
-        inst.components.workable:SetWorkLeft(TUNING.JUNGLETREE_CHOPS_SMALL)
-    end
-    ]]
-    --inst.components.lootdropper:SetLoot(GetBuild(inst).short_loot)
-
-    Sway(inst)
-end
-
-local function GrowShort(inst)
-    inst.AnimState:PlayAnimation("grow_tall_to_short")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/grow_pre")
-    inst.tubers = math.min(inst.tubers, inst.maxtubers)
-    updateart(inst)
-    PushSway(inst)
-end
-
-local function SetTall(inst)
-    inst.maxtubers = 3
-    inst.anims = tall_anims
-    inst.tuberslots = GetBuild(inst).tuberslots_tall
-    --[[
-    if inst.components.workable then
-        inst.components.workable:SetWorkLeft(TUNING.JUNGLETREE_CHOPS_TALL)
-    end
-    ]]
-    --inst.components.lootdropper:SetLoot(GetBuild(inst).tall_loot)
-
-    Sway(inst)
-end
-
-local function GrowTall(inst)
-    inst.AnimState:PlayAnimation("grow_short_to_tall")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/grow_pre")
-    inst.tubers = math.min(inst.tubers + 1, inst.maxtubers)
-    updateart(inst)
-    PushSway(inst)
-end
-
-local function inspect_tree(inst)
+local function GetStatus(inst)
     if inst:HasTag("burnt") then
         return "BURNT"
     elseif inst:HasTag("stump") then
@@ -232,161 +53,304 @@ local function inspect_tree(inst)
     end
 end
 
-local growth_stages =
-{
-    {
-        name="short",
-         time = function(inst) return GetRandomWithVariance(TUNING.CLAWPALMTREE_GROW_TIME[1].base, TUNING.CLAWPALMTREE_GROW_TIME[1].random) end,
-         fn = function(inst) SetShort(inst) end,
-         growfn = function(inst) GrowShort(inst) end,
-         leifscale=.7
-     },
+local function UpdateArt(inst)
+    for i, slot in ipairs(inst.tuberslots) do
+        inst.AnimState:Hide("tubers" .. slot)
+    end
 
+    for i = 1, inst.tubers do
+        inst.AnimState:Show("tubers" .. inst.tuberslots[i])
+    end
+end
+
+local function PushSway(inst)
+    local anim = anims[inst.stage]
+    if math.random() > 0.5 then
+        inst.AnimState:PushAnimation(anim.sway1, true)
+    else
+        inst.AnimState:PushAnimation(anim.sway2, true)
+    end
+end
+
+local function Sway(inst)
+    local anim = anims[inst.stage]
+    if math.random() > 0.5 then
+        inst.AnimState:PlayAnimation(anim.sway1, true)
+    else
+        inst.AnimState:PlayAnimation(anim.sway2, true)
+    end
+    inst.AnimState:SetTime(math.random() * 2)
+end
+
+local function GetStageFn(stage)
+    return function(inst)
+        if stage == "short" then
+            inst.maxtubers = 2
+            inst.tuberslots = TUBER_SLOTS_SHORT
+            inst.stage = 1
+        elseif stage == "tall" then
+            inst.maxtubers = 3
+            inst.tuberslots = TUBER_SLOTS_TALL
+            inst.stage = 2
+        end
+
+        Sway(inst)
+    end
+end
+
+local function GetGrowFn(stage, grow_animation)
+    return function(inst)
+        inst.AnimState:PlayAnimation(grow_animation)
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/grow_pre")
+
+        local min_tubers = inst.tubers
+        if stage == "tall" then
+            min_tubers = min_tubers + 1
+        end
+        inst.tubers = math.min(min_tubers, inst.maxtubers)
+        UpdateArt(inst)
+        PushSway(inst)
+    end
+end
+
+local growth_stages = {
     {
-        name="tall",
+        name = "short",
+        time = function() return GetRandomWithVariance(TUNING.CLAWPALMTREE_GROW_TIME[1].base, TUNING.CLAWPALMTREE_GROW_TIME[1].random) end,
+        fn = GetStageFn("short"),
+        growfn = GetGrowFn("short", "grow_tall_to_short"),
+    },
+    {
+        name = "tall",
         time = function(inst) return GetRandomWithVariance(TUNING.CLAWPALMTREE_GROW_TIME[3].base, TUNING.CLAWPALMTREE_GROW_TIME[3].random) end,
-        fn = function(inst) SetTall(inst) end,
-        growfn = function(inst) GrowTall(inst) end,
-        leifscale=1.25
+        fn = GetStageFn("tall"),
+        growfn = GetGrowFn("tall", "grow_short_to_tall"),
     },
 }
 
-local function tree_burnt(inst)
-    OnBurnt(inst)
-    inst.pineconetask = inst:DoTaskInTime(10,
-        function()
-            local pt = inst:GetPosition()
-            if math.random(0, 1) == 1 then
-                pt = pt + TheCamera:GetRightVec()
-            else
-                pt = pt - TheCamera:GetRightVec()
-            end
-            inst.components.lootdropper:DropLoot(pt)
-            inst.pineconetask = nil
-        end)
+local function OnFinishCallbackStump(inst, chopper)
+    inst.components.lootdropper:SpawnLootPrefab("tuber_crop")
+    inst:Remove()
 end
 
-local function tree_lit(inst)
-    DefaultIgniteFn(inst)
+local function MakeStump(inst, push_anim)
+    local anim = anims[inst.stage]
+
+    inst:RemoveTag("shelter")
+    inst:RemoveTag("gustable")
+
+    inst:RemoveComponent("burnable")
+    inst:RemoveComponent("propagator")
+    inst:RemoveComponent("growable")
+    inst:RemoveComponent("hackable")
+    inst:RemoveComponent("bloomable")
+    inst:RemoveComponent("blowinwindgust")
+
+    RemovePhysicsColliders(inst)
+
+    inst:AddTag("stump")
+
+    MakeSmallBurnable(inst)
+    MakeSmallPropagator(inst)
+
+    if push_anim then
+        inst.AnimState:PushAnimation(anim.stump)
+    else
+        inst.AnimState:PlayAnimation(anim.stump)
+    end
+
+    inst.MiniMapEntity:SetIcon("tuber_trees_stump.tex")
+
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.DIG)
+    inst.components.workable:SetOnFinishCallback(OnFinishCallbackStump)
+    inst.components.workable:SetWorkLeft(1)
 end
---[[
-local function handler_growfromseed (inst)
-    inst.components.growable:SetStage(1)
-    inst.AnimState:PlayAnimation("grow_seed_to_short")
-    inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow")
-    updateart(inst)
+
+local function OnFinishCallbackBurnt(inst, chopper)
+    local anim = anims[inst.stage]
+
+    inst:RemoveComponent("hackable")
+
+    RemovePhysicsColliders(inst)
+
+    inst.AnimState:PlayAnimation(anim.chop_burnt)
+
+    inst.SoundEmitter:PlaySound("dontstarve/forest/treeCrumble")
+    inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/bamboo_hack")
+
+    inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    inst.components.lootdropper:DropLoot()
+
+    inst.persists = false
+
+    inst:ListenForEvent("animover", inst.Remove)
+    inst:ListenForEvent("entitysleep", inst.Remove)
+end
+
+local function OnBurntChanges(inst)
+    inst:RemoveTag("shelter")
+    inst:AddTag("burnt")
+
+    inst:RemoveComponent("growable")
+    inst:RemoveComponent("burnable")
+    inst:RemoveComponent("propagator")
+    inst:RemoveComponent("hauntable")
+    inst:RemoveComponent("blowinwindgust")
+    MakeHauntableWork(inst)
+
+    inst.components.lootdropper:SetLoot({})
+
+    if inst.components.hackable then
+        inst.components.hackable.onhackedfn = OnFinishCallbackBurnt
+    end
+end
+
+local burnt_highlight_override = {0.5, 0.5, 0.5}
+local function OnBurnt(inst)
+    local anim = anims[inst.stage]
+
+    OnBurntChanges(inst)
+
+    inst.AnimState:PlayAnimation(anim.burnt, true)
+    inst.MiniMapEntity:SetIcon("tuber_trees_burnt.tex")
+    inst.highlight_override = burnt_highlight_override
+end
+
+local function OnRegen(inst)
+    if not inst:HasTag("burnt") and not inst:HasTag("stump") then
+        inst.tubers = math.min(inst.tubers + 1, inst.maxtubers)
+        UpdateArt(inst)
+    end
+end
+
+local function OnHacked(inst)
+    local anim = anims[inst.stage]
+    inst.AnimState:PlayAnimation(anim.chop)
     PushSway(inst)
-end
-]]
-local function updateTreeType(inst)
-    inst.AnimState:SetBuild(GetBuild(inst).file)
-end
 
-local function doTransformBloom(inst)
-    if not inst:HasTag("rotten") then
-        inst.build = "blooming"
-        inst.components.hackable.product = "tuber_bloom_crop"
-
-        updateTreeType(inst)
+    if inst.components.hackable.hacksleft <= 0 then
+        inst.tubers = inst.tubers -1
     end
+
+    UpdateArt(inst)
+
+    inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/hit")
 end
 
-local function doTransformNormal(inst)
-    if not inst:HasTag("rotten") then
-        inst.build = "normal"
-        if inst.components.hackable then
-            inst.components.hackable.product = "tuber_crop"
-        end
-        updateTreeType(inst)
+local function OnHackedFinal(inst, data)
+    if inst.tubers >= 0 then
+        inst.components.hackable.hacksleft = 3
+        inst.components.hackable.canbehacked = true
+        return
     end
+
+    inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/tuber_fall")
+
+    local pt = inst:GetPosition()
+    local hispos = data.hacker:GetPosition()
+    local he_right = (hispos - pt):Dot(TheCamera:GetRightVec()) > 0
+
+    local anim = anims[inst.stage]
+    if he_right then
+        inst.AnimState:PlayAnimation(anim.fallleft)
+        inst.components.lootdropper:DropLoot(pt - TheCamera:GetRightVec())
+    else
+        inst.AnimState:PlayAnimation(anim.fallright)
+        inst.components.lootdropper:DropLoot(pt + TheCamera:GetRightVec())
+    end
+
+    MakeStump(inst, true)
+
+    inst:AddTag("NOCLICK")
+    inst:DoTaskInTime(2, function() inst:RemoveTag("NOCLICK") end)
 end
 
-local function onsave(inst, data)
-    if inst:HasTag("burnt") or inst:HasTag("fire") then
+local function CanBloom(inst)
+    return not inst:HasTag("stump") and not inst:HasTag("burnt") and not inst:HasTag("rotten")
+end
+
+local function StartBloom(inst)
+    if not inst.components.bloomable:CanBloom() then
+        return
+    end
+
+    inst.build = "blooming"
+    inst.components.hackable.product = "tuber_bloom_crop"
+    inst.AnimState:SetBuild("tuber_bloom_build")
+end
+
+local function StopBloom(inst)
+    if not inst.components.bloomable:CanBloom() then
+        return
+    end
+
+    inst.build = "normal"
+    inst.components.hackable.product = "tuber_crop"
+    inst.AnimState:SetBuild("tuber_tree_build")
+end
+
+local function OnSave(inst, data)
+    if inst:HasTag("burnt") or (inst.components.burnable and inst.components.burnable:IsBurning()) then
         data.burnt = true
     end
-
-    if inst.flushed then
-        data.flushed = inst.flushed
-    end
-
-    if inst.tubers then
-        data.tubers  = inst.tubers
-    end
-
-    if inst:HasTag("stump") then
-        data.stump = true
-    end
+    data.stump = inst:HasTag("stump")
+    data.flushed = inst.flushed
+    data.stage = inst.stage
 
     if inst.build ~= "normal" then
         data.build = inst.build
     end
+    if inst.tubers then
+        data.tubers  = inst.tubers
+    end
 end
 
-local function onload(inst, data)
-    if data then
-        if not data.build or builds[data.build] == nil then
-             doTransformNormal(inst)
-        else
-            inst.build = data.build
-        end
+local function OnLoad(inst, data)
+    if not data then
+        return
+    end
 
-        if data.bloomtask then
-            if inst.bloomtask then inst.bloomtask:Cancel() inst.bloomtask = nil end
-            inst.bloomtaskinfo = nil
-            inst.bloomtask, inst.bloomtaskinfo = inst:ResumeTask(data.bloomtask, function() doTransformBloom(inst) end)
-        end
-        if data.unbloomtask then
-            if inst.unbloomtask then inst.unbloomtask:Cancel() inst.unbloomtask = nil end
-            inst.unbloomtaskinfo = nil
-            inst.unbloomtask, inst.unbloomtaskinfo = inst:ResumeTask(data.unbloomtask, function() doTransformNormal(inst) end)
-        end
+    if data.stage then
+        inst.stage = data.stage
+    end
 
-        if data.flushed then
-            inst.flushed = data.flushed
-        end
+    if not data.build then
+        StopBloom(inst)
+    else
+        inst.build = data.build
+    end
 
-        if data.tubers then
-            inst.tubers = data.tubers
-        end
+    if data.flushed then
+        inst.flushed = data.flushed
+    end
 
-        if data.burnt then
-            inst:AddTag("fire") -- Add the fire tag here: OnEntityWake will handle it actually doing burnt logic
-        elseif data.stump then
-            inst:RemoveComponent("burnable")
-            MakeSmallBurnable(inst)
-            inst:RemoveComponent("propagator")
-            MakeSmallPropagator(inst)
-            inst:RemoveComponent("growable")
-            RemovePhysicsColliders(inst)
-            inst.AnimState:PlayAnimation(inst.anims.stump)
-            inst:AddTag("stump")
-            inst:RemoveTag("shelter")
-            inst:RemoveTag("gustable")
-            --inst:RemoveComponent("blowinwindgust")
-            inst:AddComponent("workable")
-            inst.components.workable:SetWorkAction(ACTIONS.DIG)
-            inst.components.workable:SetOnFinishCallback(dig_up_stump)
-            inst.components.workable:SetWorkLeft(1)
-        end
+    if data.tubers then
+        inst.tubers = math.min(data.tubers, inst.maxtubers) -- inst.maxtubers is correctly set by growable component.
+        UpdateArt(inst)
+    end
+
+    if data.burnt then
+        inst:AddTag("fire") -- Add the fire tag here: OnEntityWake will handle it actually doing burnt logic
+        inst.MiniMapEntity:SetIcon("tuber_trees_burnt.tex")
+    elseif data.stump then
+        MakeStump(inst)
     end
 end
 
 local function OnEntitySleep(inst)
-    local fire = false
-    if inst:HasTag("fire") then
-        fire = true
-    end
+    local fire = inst:HasTag("fire")
+
     inst:RemoveComponent("burnable")
     inst:RemoveComponent("propagator")
     inst:RemoveComponent("inspectable")
+
     if fire then
         inst:AddTag("fire")
     end
 end
 
 local function OnEntityWake(inst)
-
     if not inst:HasTag("burnt") and not inst:HasTag("fire") then
         if not inst.components.burnable then
             if inst:HasTag("stump") then
@@ -394,7 +358,7 @@ local function OnEntityWake(inst)
             else
                 MakeLargeBurnable(inst)
                 inst.components.burnable:SetFXLevel(5)
-                inst.components.burnable:SetOnBurntFn(tree_burnt)
+                inst.components.burnable:SetOnBurntFn(OnBurnt)
             end
         end
 
@@ -403,206 +367,57 @@ local function OnEntityWake(inst)
                 MakeSmallPropagator(inst)
             else
                 MakeLargePropagator(inst)
-                inst.components.burnable:SetOnIgniteFn(tree_lit)
+                inst.components.burnable:SetOnIgniteFn(DefaultIgniteFn)
             end
         end
     elseif not inst:HasTag("burnt") and inst:HasTag("fire") then
-        OnBurnt(inst, true)
+        OnBurnt(inst)
     end
 
     if not inst.components.inspectable then
         inst:AddComponent("inspectable")
-        inst.components.inspectable.getstatus = inspect_tree
+        inst.components.inspectable.getstatus = GetStatus
     end
 end
 
-local function OnGustAnimDone(inst)
-    if inst:HasTag("stump") or inst:HasTag("burnt") then
-        inst:RemoveEventCallback("animover", OnGustAnimDone)
-        return
-    end
-    if inst.components.blowinwindgust and inst.components.blowinwindgust:IsGusting() then
-        local anim = math.random(1,2)
-        inst.AnimState:PlayAnimation(inst.anims["blown"..tostring(anim)], false)
-    else
-        inst:DoTaskInTime(math.random()/2, function(inst)
-            inst:RemoveEventCallback("animover", OnGustAnimDone)
-            inst.AnimState:PlayAnimation(inst.anims.blown_pst, false)
-            PushSway(inst)
-        end)
+local function OnseasonChange(inst, season)
+    local bloomable = inst.components.bloomable
+    if season == SEASONS.LUSH and not bloomable:IsBlooming() then
+        bloomable:StartBloomTask()
+    elseif season ~= SEASONS.LUSH and bloomable:IsBlooming() then
+        bloomable:StartUnbloomTask()
     end
 end
 
-local function OnGustStart(inst, windspeed)
-    if inst:HasTag("stump") or inst:HasTag("burnt") then
-        return
-    end
-    inst:DoTaskInTime(math.random()/2, function(inst)
-        if inst.spotemitter == nil then
-            AddToNearSpotEmitter(inst, "treeherd", "tree_creak_emitter", TUNING.TREE_CREAK_RANGE)
-        end
-        inst.AnimState:PlayAnimation(inst.anims.blown_pre, false)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wind_tree_creak")
-        inst:ListenForEvent("animover", OnGustAnimDone)
-    end)
-end
-
-local function OnGustEnd(inst, windspeed)
-end
-
-local function OnGustFall(inst)
-    if inst:HasTag("burnt") then
-        chop_down_burnt_tree(inst, GetPlayer())
-    end
-end
-
-local function canbloom(inst)
-     if not inst:HasTag("stump") and not inst:HasTag("rotten") then
-         return true
-     else
-         return false
-     end
-end
-
-local function startbloom(inst)
-    --inst.components.hackable.product = "tuber_bloom_crop"
-    doTransformBloom(inst)
-end
-
-local function stopbloom(inst)
-    --inst.components.hackable.product = "tuber_crop"
-    doTransformNormal(inst)
-end
-
-local function onregenfn(inst)
-    if not inst:HasTag("burned") then
-        inst.tubers = math.min(inst.tubers + 1, inst.maxtubers)
-        updateart(inst)
-    end
-end
-
-local function onhackedfn(inst)
-    inst.AnimState:PlayAnimation(inst.anims.chop)
-    inst.AnimState:PushAnimation(inst.anims.idle)
-
-    if inst.components.hackable.hacksleft <= 0 then
-        inst.tubers = inst.tubers -1
-
-        --inst.components.lootdropper:SpawnLootPrefab(inst.components.hackable.product, Point(inst.Transform:GetWorldPosition()) )
-    end
-    updateart(inst)
-
-    inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/hit")
-end
-
-local function onhackedfinal(prefab,data)
-    local inst = data.plant
-    inst:RemoveTag("stump")
-    if inst.tubers < 0 then
-
-        inst:RemoveComponent("hackable")
-
-        inst:RemoveComponent("burnable")
-        MakeSmallBurnable(inst)
-        inst:RemoveComponent("propagator")
-        MakeSmallPropagator(inst)
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/volcano_cactus/tuber_fall")
-
-        local he_right = math.random()>0.5 and true or false
-        local pt = inst:GetPosition()
-        if data.hacker then
-
-            local hispos = Vector3(data.hacker.Transform:GetWorldPosition())
-
-            he_right = (hispos - pt):Dot(TheCamera:GetRightVec()) > 0
-        end
-
-        if he_right then
-            inst.AnimState:PlayAnimation(inst.anims.fallleft)
-            inst.components.lootdropper:DropLoot(pt - TheCamera:GetRightVec())
-        else
-            inst.AnimState:PlayAnimation(inst.anims.fallright)
-            inst.components.lootdropper:DropLoot(pt + TheCamera:GetRightVec())
-        end
-        RemovePhysicsColliders(inst)
-        inst.AnimState:PushAnimation(inst.anims.stump)
-
-        inst:AddComponent("workable")
-        inst.components.workable:SetWorkAction(ACTIONS.DIG)
-        inst.components.workable:SetOnFinishCallback(dig_up_stump)
-        inst.components.workable:SetWorkLeft(1)
-        inst:AddTag("stump")
-        if inst.components.growable then
-            inst.components.growable:StopGrowing()
-        end
-        inst:AddTag("NOCLICK")
-        inst:DoTaskInTime(2, function() inst:RemoveTag("NOCLICK") end)
-
-    else
-        if  inst.components.hackable then
-            inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
-            inst.components.hackable.canbehacked = true
-            inst.components.hackable.hasbeenhacked = false
-        end
-    end
-end
-
-local function makeemptyfn(inst)
-
-end
-
-local function makebarrenfn(inst)
-
-end
-
-local function onhammered(inst)
-    if inst.tubers > 0 then
-        while inst.tubers > 0 do
-            inst.components.lootdropper:SpawnLootPrefab(inst.components.hackable.product)
-            inst.tubers = inst.tubers -1
-        end
-    end
-    inst.tubers = -1
-    onhackedfinal(inst,{plant = inst})
-    -- should process
-end
-
-local function makefn(build, stage, data)
-
-    local function fn(Sim)
-        local l_stage = stage
-        if l_stage == 0 then
-            l_stage = math.random(1,3)
-        end
-
+local function MakeTree(name, build, stage, data)
+    local function fn()
         local inst = CreateEntity()
-        local trans = inst.entity:AddTransform()
-        local anim = inst.entity:AddAnimState()
 
-        local sound = inst.entity:AddSoundEmitter()
-
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddSoundEmitter()
+        inst.entity:AddMiniMapEntity()
         inst.entity:AddNetwork()
 
-        MakeObstaclePhysics(inst, .25)
+        MakeObstaclePhysics(inst, 0.25)
 
-        local minimap = inst.entity:AddMiniMapEntity()
-        minimap:SetIcon("tuber_trees.tex")
+        local color = 0.5 + math.random() * 0.5
 
-        minimap:SetPriority(-1)
+        inst.AnimState:SetBuild("tuber_tree_build")
+        inst.AnimState:SetBank("tubertree")
+        inst.AnimState:SetMultColour(color, color, color, 1)
+        inst.AnimState:SetTime(math.random() * 2)
+
+        inst.MiniMapEntity:SetIcon("tuber_trees.tex")
+        inst.MiniMapEntity:SetPriority(-1)
 
         inst:AddTag("plant")
         inst:AddTag("tree")
-        inst:AddTag("workable")
         inst:AddTag("shelter")
         inst:AddTag("gustable")
         inst:AddTag("tubertree")
 
-        inst.build = build
-        anim:SetBuild(GetBuild(inst).file)
-        anim:SetBank("tubertree")
-        local color = 0.5 + math.random() * 0.5
-        anim:SetMultColour(color, color, color, 1)
-
+        inst:SetPrefabName("tubertree")
 
         inst.entity:SetPristine()
 
@@ -610,123 +425,74 @@ local function makefn(build, stage, data)
             return inst
         end
 
-
-        -------------------
-
-        MakeLargeBurnable(inst)
-        inst.components.burnable:SetFXLevel(3)
-        inst.components.burnable:SetOnBurntFn(tree_burnt)
-        --inst.components.burnable:MakeDragonflyBait(1)
-
-        -------------------
-
-        MakeSmallPropagator(inst)
-        inst.components.burnable:SetOnIgniteFn(tree_lit)
-
-        -------------------
-
-        inst:AddComponent("inspectable")
-        inst.components.inspectable.getstatus = inspect_tree
-
-        -------------------
-
-        inst:AddComponent("hackable")
-        inst.components.hackable:SetUp("tuber_crop", TUNING.VINE_REGROW_TIME )
-        inst.components.hackable.onregenfn = onregenfn
-        inst.components.hackable.onhackedfn = onhackedfn
-        inst.components.hackable.makeemptyfn = makeemptyfn
-        inst.components.hackable.makebarrenfn = makebarrenfn
-
-        inst:ListenForEvent("hacked", onhackedfinal)
-
-        inst.components.hackable.hacksleft = 3
-        inst.components.hackable.maxhacks = 3
-
-        -------------------
+        inst.build = build
+        inst.stage = stage == 0 and math.random(1, 3) or stage
 
         inst:AddComponent("lootdropper")
 
-        ---------------------
+        inst:AddComponent("inspectable")
+        inst.components.inspectable.getstatus = GetStatus
+
+        inst:AddComponent("hackable")
+        inst.components.hackable:SetUp("tuber_crop", TUNING.VINE_REGROW_TIME)
+        inst.components.hackable.onregenfn = OnRegen
+        inst.components.hackable.onhackedfn = OnHacked
+        inst.components.hackable.hacksleft = 3
+        inst.components.hackable.maxhacks = 3
+        inst.components.hackable.repeat_hack_cycle = true
 
         inst:AddComponent("growable")
         inst.components.growable.stages = growth_stages
-        inst.components.growable:SetStage(l_stage)
+        inst.components.growable:SetStage(inst.stage)
         inst.components.growable.loopstages = true
         inst.components.growable.springgrowth = true
         inst.components.growable:StartGrowing()
 
-        --inst.growfromseed = handler_growfromseed
-
-        --inst:AddComponent("blowinwindgust")
-        --inst.components.blowinwindgust:SetWindSpeedThreshold(TUNING.JUNGLETREE_WINDBLOWN_SPEED)
-        --inst.components.blowinwindgust:SetDestroyChance(TUNING.JUNGLETREE_WINDBLOWN_FALL_CHANCE)
-        --inst.components.blowinwindgust:SetGustStartFn(OnGustStart)
-        ----inst.components.blowinwindgust:SetGustEndFn(OnGustEnd)
-        --inst.components.blowinwindgust:SetDestroyFn(OnGustFall)
-        --inst.components.blowinwindgust:Start()
-
         --inst:AddComponent("mystery")
 
-        ---------------------
-
         inst:AddComponent("bloomable")
-        inst.components.bloomable:SetCanBloom(canbloom)
-        inst.components.bloomable:SetStartBloomFn(startbloom)
-        inst.components.bloomable:SetStopBloomFn(stopbloom)
-        inst.components.bloomable.season = {SEASONS.SUMMER}
+        inst.components.bloomable:SetCanBloom(CanBloom)
+        inst.components.bloomable:SetStartBloomFn(StartBloom)
+        inst.components.bloomable:SetStopBloomFn(StopBloom)
 
-        ---------------------
-        --PushSway(inst)
-        inst.AnimState:SetTime(math.random()*2)
+        MakeLargeBurnable(inst)
+        inst.components.burnable:SetFXLevel(3)
+        inst.components.burnable:SetOnBurntFn(OnBurnt)
 
-        ---------------------
+        MakeLargePropagator(inst)
+        inst.components.burnable:SetOnIgniteFn(DefaultIgniteFn)
 
-        inst.OnSave = onsave
-        inst.OnLoad = onload
+        MakeSnowCovered(inst, 0.01)
+        MakeHauntableWork(inst)
+        MakeTreeBlowInWindGust(inst, {"short", "tall"}, TUNING.JUNGLETREE_WINDBLOWN_SPEED, TUNING.JUNGLETREE_WINDBLOWN_FALL_CHANCE)
 
-        MakeSnowCovered(inst, .01)
-        ---------------------
-
-        inst:SetPrefabName( GetBuild(inst).prefab_name )
-
-        if data =="burnt"  then
+        if data == "burnt"  then
             OnBurnt(inst)
         end
 
-        if data =="stump"  then
-            inst:RemoveComponent("burnable")
-            MakeSmallBurnable(inst)
-            inst:RemoveComponent("propagator")
-            MakeSmallPropagator(inst)
-            inst:RemoveComponent("growable")
-            --inst:RemoveComponent("blowinwindgust")
-            inst:RemoveTag("gustable")
-            RemovePhysicsColliders(inst)
-            inst.AnimState:PlayAnimation(inst.anims.stump)
-            inst:AddTag("stump")
-            inst:AddComponent("workable")
-            inst.components.workable:SetWorkAction(ACTIONS.DIG)
-            inst.components.workable:SetOnFinishCallback(dig_up_stump)
-            inst.components.workable:SetWorkLeft(1)
+        if data == "stump"  then
+            MakeStump(inst)
         end
 
+        inst.OnSave = OnSave
+        inst.OnLoad = OnLoad
         inst.OnEntitySleep = OnEntitySleep
         inst.OnEntityWake = OnEntityWake
 
         inst.tubers = inst.maxtubers
-        updateart(inst)
+        UpdateArt(inst)
+
+        inst:ListenForEvent("hacked", OnHackedFinal)
+        inst:WatchWorldState("season", OnseasonChange)
+        OnseasonChange(inst, TheWorld.state.season)
 
         return inst
     end
-    return fn
+    return Prefab(name, fn, assets, prefabs)
 end
 
-local function tree(name, build, stage, data)
-    return Prefab("forest/objects/trees/"..name, makefn(build, stage, data), assets, prefabs)
-end
-
-return tree("tubertree", "normal", 0),
-        tree("tubertree_tall", "normal", 2),
-        tree("tubertree_short", "normal", 1),
-        tree("tubertree_burnt", "normal", 0, "burnt"),
-        tree("tubertree_stump", "normal", 0, "stump")
+return  MakeTree("tubertree", "normal", 0),
+        MakeTree("tubertree_tall", "normal", 2),
+        MakeTree("tubertree_short", "normal", 1),
+        MakeTree("tubertree_burnt", "normal", 0, "burnt"),
+        MakeTree("tubertree_stump", "normal", 0, "stump")

@@ -918,7 +918,6 @@ function InteriorSpawner:BuildMinimapLayout(inst, usecachedmap)
             force_visited = inst:HasInteriorTag("FORCE_VISITED"),
         })
 
-        local prev_values = { pos_x, pos_z, grid_x, grid_z }
         local space = TUNING.INTERIOR_MINIMAP_DOOR_SPACE
         for k,v in pairs(inst.doors)do
             if v.dir ~= "unknown" and visited[v.target] == nil then

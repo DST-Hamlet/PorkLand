@@ -46,7 +46,6 @@ return Class(function(self, inst)
             end)
             if success then
                 local id = center.net_id
-                local pos = center.pos
                 if ents == "" then
                     client_data[id] = nil
                 else
@@ -257,7 +256,6 @@ return Class(function(self, inst)
             local pos = Point(v.pos_x, 0, v.pos_z)
             local width = v.width
             local depth = v.depth
-            local visited_players = v.visited_players
             local uuid = v.uuid
             local doors = v.doors
             if client_data[net_id] ~= nil and (ShouldRender(uuid) or v.force_visited) then

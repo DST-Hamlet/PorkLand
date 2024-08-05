@@ -327,7 +327,7 @@ function self:OnUpdate(dt)
     elseif _lastplayerpos == nil or player:GetDistanceSqToPoint(_lastplayerpos:Get()) >= 16 then
         _lastplayerpos = player:GetPosition()
 
-        local x, y, z = _lastplayerpos:Get()
+        local x, _, z = _lastplayerpos:Get()
         local wavecount = 0
         local soundmixcounters = {}
         local soundmix = {}

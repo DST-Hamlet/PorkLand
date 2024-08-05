@@ -243,6 +243,8 @@ local function lograftfn()
     --inst.AnimState:SetBank("raft")
     --inst.AnimState:SetBuild("raft_log_build")
 
+    inst:AddTag("noslot")
+
     inst.MiniMapEntity:SetIcon("raft.tex")
 
     if not TheWorld.ismastersim then

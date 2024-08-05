@@ -96,7 +96,7 @@ end
 local function SpawnLaser(inst)
     assert(inst.sg.statemem.targetpos)
     local numsteps = 10
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local x, _, z = inst.Transform:GetWorldPosition()
 
     local xt = inst.sg.statemem.targetpos.x
     local yt = inst.sg.statemem.targetpos.y
@@ -235,7 +235,6 @@ end
 
 local function dofloodfillfromcoord(x,y,w, h, tiles, islands)
     local index = 3
-    local rescan = true
     local val = tiles[y][x]
     if val then
         floodfill(x,y,w,h,tiles,islands,index)
@@ -244,78 +243,78 @@ local function dofloodfillfromcoord(x,y,w, h, tiles, islands)
 end
 
 local function GetDropLocations(inst)
-    local island_nodes = {
-        {
-            ["START"] = true,
-            ["Edge_of_the_unknown"] = true,
-            ["painted_sands"] = true,
-            ["plains" ]= true,
-            ["rainforests" ]= true,
-            ["rainforest_ruins" ]= true,
-            ["plains_ruins"] = true,
-            ["Edge_of_civilization"]= true,
-            ["Deep_rainforest"] = true,
-            ["Pigtopia"] = true,
-            ["Pigtopia_capital"] = true,
-            ["Deep_lost_ruins_gas"] = true,
-            ["Edge_of_the_unknown_2"] = true,
-            ["Lilypond_land"] = false,
-            ["Lilypond_land_2"] = false,
-            ["this_is_how_you_get_ants"] = true,
-            ["Deep_rainforest_2"] = true,
-            ["Lost_Ruins_1"] = true,
-            ["Lost_Ruins_4"] = true,
-        },
-        {
-            ["Deep_rainforest_3"] = true,
-            ["Deep_rainforest_mandrake"] = true,
-            ["Path_to_the_others"] = true,
-            ["Other_edge_of_civilization"] = true,
-            ["Other_pigtopia"] = true,
-            ["Other_pigtopia_capital"] = true,
-        },
-        {
-            ["Deep_lost_ruins4"] = true,
-            ["lost_rainforest"] = true,
-        },
-        {
-            ["pincale"] = true,
-        },
-        {
-            ["Deep_wild_ruins4"] = true,
-            ["wild_rainforest"] = true,
-            ["wild_ancient_ruins"] = true,
-        }
-    }
+    -- local island_nodes = {
+    --     {
+    --         ["START"] = true,
+    --         ["Edge_of_the_unknown"] = true,
+    --         ["painted_sands"] = true,
+    --         ["plains" ]= true,
+    --         ["rainforests" ]= true,
+    --         ["rainforest_ruins" ]= true,
+    --         ["plains_ruins"] = true,
+    --         ["Edge_of_civilization"]= true,
+    --         ["Deep_rainforest"] = true,
+    --         ["Pigtopia"] = true,
+    --         ["Pigtopia_capital"] = true,
+    --         ["Deep_lost_ruins_gas"] = true,
+    --         ["Edge_of_the_unknown_2"] = true,
+    --         ["Lilypond_land"] = false,
+    --         ["Lilypond_land_2"] = false,
+    --         ["this_is_how_you_get_ants"] = true,
+    --         ["Deep_rainforest_2"] = true,
+    --         ["Lost_Ruins_1"] = true,
+    --         ["Lost_Ruins_4"] = true,
+    --     },
+    --     {
+    --         ["Deep_rainforest_3"] = true,
+    --         ["Deep_rainforest_mandrake"] = true,
+    --         ["Path_to_the_others"] = true,
+    --         ["Other_edge_of_civilization"] = true,
+    --         ["Other_pigtopia"] = true,
+    --         ["Other_pigtopia_capital"] = true,
+    --     },
+    --     {
+    --         ["Deep_lost_ruins4"] = true,
+    --         ["lost_rainforest"] = true,
+    --     },
+    --     {
+    --         ["pincale"] = true,
+    --     },
+    --     {
+    --         ["Deep_wild_ruins4"] = true,
+    --         ["wild_rainforest"] = true,
+    --         ["wild_ancient_ruins"] = true,
+    --     }
+    -- }
 
-    local nodes = TheWorld.topology.nodes
+    -- local nodes = TheWorld.topology.nodes
     -- TheWorld.topolog.nodes[1].tags[]
 
     local islands = {}
     local tiles = {}
     local map = TheWorld.Map
-    local w,h = map:GetSize()
+    local w, h = map:GetSize()
 
     for y = 1, h do
         tiles[y] = {}
         islands[y] = {}
         for x = 1, w do
-            local tile = map:GetTile(x-1,y-1)
+            local tile = map:GetTile(x - 1, y - 1)
 
             tiles[y][x] = tile ~= WORLD_TILES.IMPASSABLE and tile ~= WORLD_TILES.LILYPOND
         end
     end
-    local x,y,z = inst.Transform:GetWorldPosition()
+    local x, _, z = inst.Transform:GetWorldPosition()
 
-    x = math.floor(x/4+ (w/2))
-    z = math.floor(z/4 + (h/2))
-    dofloodfillfromcoord(x,z,w, h, tiles, islands)
+    x = math.floor((x / 4) + (w / 2))
+    z = math.floor((z / 4) + (h / 2))
+    dofloodfillfromcoord(x, z, w, h, tiles, islands)
 
     local locations = {}
-    for z=1,h do
-        for x=1,w do
+    for z = 1, h do
+        for x = 1, w do
             if islands[z][x] then
-                table.insert(locations,{x=x,z=z})
+                table.insert(locations, {x=x,z=z})
             end
         end
     end
@@ -325,8 +324,8 @@ end
 
 local function DropAncientRobots(inst)
     -- local locations = GetDropLocations(inst)
-    local map = TheWorld.Map
-    local w, h = map:GetSize()
+    -- local map = TheWorld.Map
+    -- local w, h = map:GetSize()
 
     -- assert(#locations > 0,"Locations for ancient robots not found!")
 
@@ -420,7 +419,7 @@ local function ApplyDamageToEntities(inst,ent, targets, rad, hit)
                 targets[v] = true
                 local num = v.components.pickable.numtoharvest or 1
                 local product = v.components.pickable.product
-                local x1, y1, z1 = v.Transform:GetWorldPosition()
+                local x1, _, z1 = v.Transform:GetWorldPosition()
                 v.components.pickable:Pick(inst) -- only calling this to trigger callbacks on the object
                 if product ~= nil and num > 0 then
                     for i = 1, num do

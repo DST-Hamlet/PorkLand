@@ -25,10 +25,12 @@ function InteriorVisitor:GetExteriorPos()
     return Point(
         self.exterior_pos_x:value(),
         0,
-        self.exterior_pos_z:value())
+        self.exterior_pos_z:value()
+    )
 end
 
-function InteriorVisitor:IsInInterior()
+-- TODO: Make this actually work
+function InteriorVisitor:IsInInterior(x, z)
     local pos = self.inst:GetPosition()
     local index = self.interiorspawner:PositionToIndex(pos)
 end
@@ -41,9 +43,7 @@ function InteriorVisitor:GetInteriorCenterGeneric()
 end
 
 function InteriorVisitor:GetInteriorCenterDedicated()
-    local pos = self.inst:GetPosition()
-    local ent = self.interiorspawner:PositionToInteriorCenter()
-    return ent
+    return self.interiorspawner:PositionToInteriorCenter()
 end
 
 local function IsInInteriorRectangle(player_pos, ent)

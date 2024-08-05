@@ -10,7 +10,7 @@ local function TintOceantFx(inst)
 end
 
 local function BelowGroundFx(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local _, y, _ = inst.Transform:GetWorldPosition()
     if y < -0.1 then
         inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     end
@@ -200,6 +200,30 @@ local pl_fx = {
         bank = "living_suit_explode_fx",
         build = "living_suit_explode_fx",
         anim = "idle",
+    },
+    {
+        name = "chop_mangrove_pink",
+        bank = "chop_mangrove",
+        build = "chop_mangrove_pink",
+        anim = "chop",
+    },
+    {
+        name = "fall_mangrove_pink",
+        bank = "chop_mangrove",
+        build = "chop_mangrove_pink",
+        anim = "fall",
+    },
+    {
+        name = "chop_mangrove_blue",
+        bank = "chop_mangrove",
+        build = "chop_mangrove_blue",
+        anim = "chop",
+    },
+    {
+        name = "fall_mangrove_blue",
+        bank = "chop_mangrove",
+        build = "chop_mangrove_blue",
+        anim = "fall",
     },
 }
 

@@ -153,11 +153,19 @@ end
 
 -- Returns the interiorID of the room this entity is in
 function EntityScript:GetCurrentInteriorID()
-    local x, y, z = self.Transform:GetWorldPosition()
+    local x, _, z = self.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = x, z = z})
         return TheWorld.components.interiorspawner.interiors[interiorID] and interiorID
     end
+end
+
+function EntityScript:GetIsInInterior()
+    local x, _, z = self.Transform:GetWorldPosition()
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return true
+    end
+    return false
 end
 
 function EntityScript:Play2DSoundOutSide(path, soundname, distance, paramname, paramval)

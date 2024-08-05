@@ -11,7 +11,7 @@ return Class(function(self,inst)
 local DEBRIS_CHANCE_COMMON = 0.75 -- 75%
 local DEBRIS_CHANCE_RARE = DEBRIS_CHANCE_COMMON + 0.2 -- 20%
 local DEBRIS_CHANCE_VERY_RARE = DEBRIS_CHANCE_RARE + 0.04 -- 4%
-local DEBRIS_CHANCE_ULTRA_RARE = DEBRIS_CHANCE_VERY_RARE + 0.01 -- 1%
+-- local DEBRIS_CHANCE_ULTRA_RARE = DEBRIS_CHANCE_VERY_RARE + 0.01 -- 1%
 
 local DEBRIS_LOOT = {
     COMMON = {
@@ -100,7 +100,7 @@ local IsDebrisCritter = _ismastersim and function(prefab)
 end or nil
 
 local _BreakDebris = _ismastersim and function(debris)
-    local x, y, z = debris.Transform:GetWorldPosition()
+    local x, _, z = debris.Transform:GetWorldPosition()
     SpawnPrefab("ground_chunks_breaking").Transform:SetPosition(x, 0, z)
     debris:Remove()
 end or nil
@@ -415,7 +415,7 @@ local OnPlayerJoined = _ismastersim and function(src, player)
     end
     table.insert(_active_players, player)
 
-    local x, y ,z = player.Transform:GetWorldPosition()
+    local x, _ ,z = player.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         local room_id = TheWorld.components.interiorspawner:PositionToIndex({x = x, z = z})
         if _isquaking[room_id] then

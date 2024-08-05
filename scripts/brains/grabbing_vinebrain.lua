@@ -5,7 +5,7 @@ require("behaviours/standstill")
 local BrainCommon = require("brains/braincommon")
 
 local GO_HOME_DIST = 1
-local EAT_DIST = 0.5
+-- local EAT_DIST = 0.5
 local SEE_DIST = 5
 
 local NO_TAGS = {"FX", "NOCLICK", "DECOR", "INLIMBO"}

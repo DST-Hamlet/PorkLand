@@ -11,8 +11,8 @@ local SEE_PLAYER_DIST = 8
 local HIDE_PLAYER_DIST = 16
 
 local SEE_FOOD_DIST = 20
-local SEE_BUSH_DIST = 40
-local MAX_WANDER_DIST = 80
+-- local SEE_BUSH_DIST = 40
+-- local MAX_WANDER_DIST = 80
 
 local PeagawkBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)

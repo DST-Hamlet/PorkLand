@@ -9,7 +9,7 @@ local function onhackable(self)
 
     local shearable = self.inst.components.shearable
     if shearable then
-        shearable.canshaveable = self.inst:HasTag("HACK_workable")
+        shearable.canbesheared = self.inst:HasTag("HACK_workable")
     end
 end
 
@@ -408,7 +408,7 @@ function Hackable:Hack(hacker, numworks, shear_product_num, drop, from_shears)
             self.onhackedfn(self.inst, hacker, self.hacksleft, from_shears)
         end
 
-        if(self.hacksleft <= 0) then
+        if (self.hacksleft <= 0) then
             if self.transplanted and self.cycles_left ~= nil then
                 self.cycles_left = math.max(0, self.cycles_left - 1)
             end

@@ -78,7 +78,7 @@ return {
       objects = {
         {
           name = "",
-          type = "mandrake",
+          type = "mandrake_planted",
           shape = "rectangle",
           x = 285,
           y = 233,
@@ -89,7 +89,7 @@ return {
         },
         {
           name = "",
-          type = "mandrake",
+          type = "mandrake_planted",
           shape = "rectangle",
           x = 280,
           y = 278,
@@ -100,7 +100,7 @@ return {
         },
         {
           name = "",
-          type = "mandrake",
+          type = "mandrake_planted",
           shape = "rectangle",
           x = 234,
           y = 279,
@@ -287,7 +287,7 @@ return {
         },
         {
           name = "",
-          type = "lightrays",
+          type = "lightrays_jungle",
           shape = "rectangle",
           x = 257,
           y = 257,

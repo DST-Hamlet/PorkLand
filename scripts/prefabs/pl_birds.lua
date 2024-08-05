@@ -71,7 +71,7 @@ local function OnDropped(inst)
 end
 
 local function SpawnPrefabChooser(inst) -- 鸟在每次起飞的时候会调用本函数留下种子，而在室内会因为撞墙多次起飞，因此在室内不调用本函数留下种子
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local x, _, z = inst.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return nil
     end
@@ -230,7 +230,7 @@ end
 local function DoSpawn(inst)
     local DIST = 8
     local pigeon = SpawnPrefab("pigeon")
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local x, _, z = inst.Transform:GetWorldPosition()
     x = x + math.random() * DIST - DIST / 2
     z = z + math.random() * DIST - DIST / 2
     pigeon.Transform:SetPosition(x, 15, z)

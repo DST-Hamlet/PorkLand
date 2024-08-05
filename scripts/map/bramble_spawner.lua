@@ -4,19 +4,6 @@ require "maputil"
 
 local StaticLayout = require("map/static_layout")
 
-local DIR_STEP = {
-    {x=1, z=0},
-    {x=0, z=1},
-    {x=-1,z=0},
-    {x=0, z=-1},
-}
-
-local parks = {}
-local made_palace = false
-local made_cityhall = false
-local made_playerhouse = false
-
-
 local entities = {} -- the list of entities that will fill the whole world. imported from  world gen (forest_map)
 -- local world
 
@@ -88,7 +75,7 @@ end
 
 local function exportSpawnersToEntites()
     for i, spawner in ipairs(spawners)do
-        setEntity(spawner.prefab, spawner.x, spawner.z, spawner.city )
+        setEntity(spawner.prefab, spawner.x, spawner.z)
     end
 end
 
@@ -123,8 +110,6 @@ local function makeBrambleSites(entities, topology_save, worldsim, map_width, ma
         end
         return false
     end
-
-    local jungles = {}
 
     if topology_save.GlobalTags["Bramble"] then
         for task, nodes in pairs(topology_save.GlobalTags["Bramble"]) do

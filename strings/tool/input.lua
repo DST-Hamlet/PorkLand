@@ -7,11 +7,9 @@ package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-    ["PARROT_BLUE"] = "PARROT_BLUE",
-    ["KINGFISHER"] = "KINGFISHER",
-    ["PIGEON"] = "PIGEON",
-    --["LIFEPLANT"] = "LIFEPLANT",
-    --["PIGHOUSE_FARM"] = "PIGHOUSE_FARM",
+    ["OINC10"] = "OINC10",
+    ["OINC100"] = "OINC100",
+    ["OINC"] = "OINC",
 }
 
 cn_input_strings = require("string_cn")

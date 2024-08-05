@@ -195,3 +195,49 @@ local shelf2x3 =
 params["shelf_ruins"] = shelf1
 params["shelf_displayshelf_wood"] = shelf1x3
 params["shelf_wood"] = shelf2x3
+
+local widget_antchest = {
+    widget = {
+        slotpos = {},
+        animbank = "ui_chest_3x3",
+        animbuild = "ui_chest_3x3",
+        pos = Vector3(0, 200, 0),
+        side_align_tip = 160,
+    },
+    type = "chest",
+}
+
+for y = 2, 0, -1 do
+    for x = 0, 2 do
+        table.insert(widget_antchest.widget.slotpos, Vector3(80 * x - 80 * 2 + 80, 80 * y - 80 * 2 + 80, 0))
+    end
+end
+
+function widget_antchest.itemtestfn(contanier, item, slot)
+	return item.prefab == "honey" or item.prefab == "nectar_pod"
+end
+
+params["antchest"] = widget_antchest
+
+local widget_corkchest = {
+    widget = {
+        slotpos = {
+            Vector3(-162 + 75 / 2, -75 * 0 + 114, 0),
+            Vector3(-162 + 75 / 2, -75 * 1 + 114, 0),
+            Vector3(-162 + 75 / 2, -75 * 2 + 114, 0),
+            Vector3(-162 + 75 / 2, -75 * 3 + 114, 0),
+        },
+        animbank = "ui_thatchpack_1x4",
+        animbuild = "ui_thatchpack_1x4",
+        pos = Vector3(75, 200, 0),
+        side_align_tip = 160,
+    },
+    type = "chest",
+}
+
+params["corkchest"] = widget_corkchest
+
+params["roottrunk"] = deepcopy(params["shadowchester"])
+function params.roottrunk.itemtestfn(container, item, slot)
+    return not item:HasTag("irreplaceable")
+end

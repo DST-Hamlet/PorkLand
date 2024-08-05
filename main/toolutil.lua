@@ -47,7 +47,7 @@ function ToolUtil.GetUpvalue(fn, path)
         print(part)
         prv = fn
         value, i = get_upvalue(value, part)
-        assert(i ~= nil, "could't find " .. path .. " from: ", fn)
+        assert(i ~= nil, "could't find " .. path)
     end
     return value, i, prv
 end

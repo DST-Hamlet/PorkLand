@@ -62,6 +62,7 @@ local component_posts = {
     "wavemanager",
     "wisecracker",
     "witherable",
+    "workable",
     "worldstate",
 }
 
@@ -73,6 +74,8 @@ local prefab_posts = {
     "player",
     "player_classified",
     "player_common_extensions",
+    "pocketdimensioncontainer_defs",
+    "poop",
     "torch",
     "woodie",
     "world_network",

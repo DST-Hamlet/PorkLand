@@ -184,7 +184,7 @@ AncientRobot.States.AddCommonStates = function(states)
         end,
 
         onexit = function(inst)
-            local x, y, z = inst.Transform:GetWorldPosition()
+            local x, _, z = inst.Transform:GetWorldPosition()
             inst.Transform:SetPosition(x, 0, z)
         end,
     })

@@ -285,13 +285,13 @@ local states =
 
             inst.DynamicShadow:Enable(false)
             inst.components.health:SetInvincible(true)
-            local x, y, z = inst.Transform:GetWorldPosition()
+            local x, _, z = inst.Transform:GetWorldPosition()
             inst.Transform:SetPosition(x,15,z)
         end,
 
         onexit = function(inst)
             if not inst.sg.statemem.onground then
-                local x, y, z = inst.Transform:GetWorldPosition()
+                local x, _, z = inst.Transform:GetWorldPosition()
                 inst.Physics:Stop()
                 inst.Physics:Teleport(x, 0, z)
                 inst.DynamicShadow:Enable(true)

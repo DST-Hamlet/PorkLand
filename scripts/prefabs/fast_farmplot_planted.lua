@@ -8,12 +8,18 @@ local function GrowCrop(inst)
     end
 end
 
-local function OnCreate(inst)
-    if inst.components.grower then
-        local seed = SpawnPrefab("seeds")
-        inst.components.grower:PlantItem(seed)
-        inst:DoTaskInTime(0, GrowCrop)
+local function OnLoad(inst, data)
+    if not (data and data.no_nudge) then
+        if inst.components.grower then
+            local seed = SpawnPrefab("seeds")
+            inst.components.grower:PlantItem(seed)
+            inst:DoTaskInTime(0, GrowCrop)
+        end
     end
+end
+
+local function OnSave(inst, data)
+    data.no_nudge = true
 end
 
 local function fn()
@@ -25,7 +31,8 @@ local function fn()
         return inst
     end
 
-    inst.OnCreate = OnCreate
+    inst.OnLoad = OnLoad
+    inst.OnSave = OnSave
 
     return inst
 end

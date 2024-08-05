@@ -85,7 +85,7 @@ return Class(function(self, inst)
 
     local function OnSpawnCocoons(src)
         if math.random() < SPAWN_CHANCE and not _waitforspawn then
-            local _waitforspawn = true
+            _waitforspawn = true
             _spawntask, _spawntaskinfo = inst:ResumeTask(math.random(1, 29), TrySpawnCocoons)
         end
     end

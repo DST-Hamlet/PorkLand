@@ -1,6 +1,6 @@
-local STATUS_CALCULATING = 0 -- 复制自components/locomotor.lua
-local STATUS_FOUNDPATH = 1
-local STATUS_NOPATH = 2
+-- local STATUS_CALCULATING = 0 -- 复制自components/locomotor.lua
+-- local STATUS_FOUNDPATH = 1
+-- local STATUS_NOPATH = 2
 
 local WorldPathfinderManager = Class(function(self, inst)
     self.inst = inst

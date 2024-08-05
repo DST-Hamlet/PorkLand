@@ -11,7 +11,7 @@ local UIAnim = require("widgets/uianim")
 local ImageButton = require("widgets/imagebutton")
 local ContainerWidget = require("widgets/containerwidget")
 
-local DOUBLECLICKTIME = .33
+-- local DOUBLECLICKTIME = .33
 local HUD_ATLAS = "images/hud/pl_hud.xml"
 
 local _Open = ContainerWidget.Open
@@ -52,7 +52,6 @@ function ContainerWidget:Open(container, doer, boatwidget, ...)
             local lastX = widget.equipslotroot.x
             local lastY = widget.equipslotroot.y
             local spacing = 80
-            local eslot_order = {}
             for k, v in ipairs(self.boatEquipInfo) do
                 local slot = BoatEquipSlot(v.slot, v.atlas, v.image, self.owner)
                 self.boatEquip[v.slot] = self:AddChild(slot)

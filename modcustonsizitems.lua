@@ -15,7 +15,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local Customize = require("map/customize")
 
-local worldgen_atlas = "images/worldgen_customization.xml"
+-- local worldgen_atlas = "images/worldgen_customization.xml"
 local worldgen_item_atlas = "images/customisation.xml"
 local pl_atlas = "images/hud/customization_porkland.xml"
 
@@ -74,6 +74,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             "dungpile",
             "hippopotamoose",
             "peagawk",
+            pog = {image = "pogs.tex"},
             "pangolden",
             hanging_vine_patch = {image = "hanging_vine.tex"},
         },
