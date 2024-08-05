@@ -13,8 +13,8 @@ local function GetSkeletonPositions(w, h)
 end
 
 local function Clear(inst)
-    for k in pairs(inst.fx) do
-        k:Remove()
+    for _, fx in ipairs(inst.fx) do
+        fx:Remove()
     end
     inst.fx = {}
 end
@@ -74,32 +74,31 @@ local function SetUp(inst, data)
     wall_right:SetSize(inst.depth)
     wall_right.Transform:SetPosition(right_top_pos:Get())
 
-    for _,v in ipairs{wall_bg, wall_left, wall_right}do
+    for _, v in ipairs {wall_bg, wall_left, wall_right} do
         v:SetTexture(inst.walltexture)
     end
 
-    --for _,v in ipairs{floor, wall_bg, wall_left, wall_right}do -- 亚丹：SetParent并且本地位置不为000的话，有时会出现网络传输的问题
+    --for _, v in ipairs{floor, wall_bg, wall_left, wall_right}do -- 亚丹：SetParent并且本地位置不为000的话，有时会出现网络传输的问题
         --v.entity:SetParent(inst.entity)
     --end
 
     inst.fx = {
-        [floor] = true,
-        [wall_bg] = true,
-        [wall_left] = true,
-        [wall_right] = true,
+        floor,
+        wall_bg,
+        wall_left,
+        wall_right,
     }
 
-    local temp = {}
     local function wall(x, z)
-        local v = SpawnPrefab("invisiblewall")
-        table.insert(temp, v)
-        v:DoTaskInTime(0, function()
+        local wall = SpawnPrefab("invisiblewall")
+        table.insert(inst.fx, wall)
+        wall:DoTaskInTime(0, function()
             local pos = inst:GetPosition()
-            v.Physics:SetActive(true)
-            v.Physics:SetActive(false) -- use these wall for pathfinder only :p
-            v.Physics:Teleport(x + pos.x, 0, z + pos.z)
+            wall.Physics:SetActive(true)
+            wall.Physics:SetActive(false) -- use these wall for pathfinder only :p
+            wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
         end)
-        v.persists = false
+        wall.persists = false
         -- v:Debug()
     end
 
@@ -112,10 +111,6 @@ local function SetUp(inst, data)
         wall(i, -inst.width/2)
     end
 
-    for _,v in ipairs(temp) do
-        inst.fx[v] = true
-    end
-
     -- real wall
     local wall = SpawnPrefab("invisiblewall_long")
     wall:DoTaskInTime(0, function()
@@ -124,7 +119,7 @@ local function SetUp(inst, data)
         wall.depth:set(inst.depth + 0.2)
         wall.Transform:SetPosition(pos.x, 0, pos.z)
     end)
-    inst.fx[wall] = true
+    table.insert(inst.fx, wall)
 
     inst.interior_cc = data.interior_cc or data.cc or "images/colour_cubes/day05_cc.tex"
 end
@@ -135,8 +130,8 @@ end
 
 local function GetDoorById(inst, id)
     assert(TheWorld.ismastersim)
-    local x,_,z = inst:GetPosition():Get()
-    for _,v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})) do
+    local x, _, z = inst.Transform:GetWorldPosition()
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})) do
         if v.components.door.door_id == id then
             return v
         end
@@ -144,8 +139,8 @@ local function GetDoorById(inst, id)
 end
 
 local function GetDoorToExterior(inst)
-    local x,_,z = inst:GetPosition():Get()
-    for _,v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door", "door_exit"})) do
+    local x, _, z = inst.Transform:GetWorldPosition()
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door", "door_exit"})) do
         return v
     end
 end
@@ -154,8 +149,8 @@ local function GetIsSingleRoom(inst, no_cache)
     if inst.cached_is_single ~= nil and no_cache ~= true then
         return unpack(inst.cached_is_single)
     end
-    local x,_,z = inst:GetPosition():Get()
-    local ents = TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
+    local x, _, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
     if #ents == 1 and ents[1]:HasTag("door_exit") then
         inst.cached_is_single = {true, ents[1]}
         return true, ents[1]
@@ -194,7 +189,7 @@ local function CollectMinimapData(inst)
     }
     inst.net_id = result.net_id
     local ents = result.ents
-    for _,v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
+    for _, v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
         if v.MiniMapEntity ~= nil then
             local pos = v:GetPosition()
             local offset = pos - center
@@ -228,7 +223,7 @@ local TAGS = {
 }
 
 local TAGS_VALUE_DESCENDING = {}
-for k,v in pairs(TAGS) do
+for k, v in pairs(TAGS) do
     table.insert(TAGS_VALUE_DESCENDING, {name = k, value = v})
 end
 table.sort(TAGS_VALUE_DESCENDING, function(a, b) return a.value > b.value end)
@@ -236,7 +231,7 @@ table.sort(TAGS_VALUE_DESCENDING, function(a, b) return a.value > b.value end)
 local function OnTagsMaskChange(inst)
     local mask = inst.interior_tags_mask:value()
     local tags = {}
-    for _,v in ipairs(TAGS_VALUE_DESCENDING) do
+    for _, v in ipairs(TAGS_VALUE_DESCENDING) do
         if mask >= v.value then
             mask = mask % v.value
             tags[v.name] = true
@@ -260,7 +255,7 @@ local function OnTagsChange(inst)
 end
 
 local function AddInteriorTags(inst, ...)
-    for _,v in ipairs({...}) do
+    for _, v in ipairs({...}) do
         v = string.upper(v)
         if not TAGS[v] then
             print("WARNING: Invalid interior tag: "..v)
@@ -272,7 +267,7 @@ local function AddInteriorTags(inst, ...)
 end
 
 local function RemoveInteriorTags(inst, ...)
-    for _,v in ipairs({...}) do
+    for _, v in ipairs({...}) do
         v = string.upper(v)
         inst.interior_tags[v] = nil
     end
@@ -314,15 +309,15 @@ end
 
 local function UpdateState(inst)
     if ThePlayer and ThePlayer:IsNear(inst, 64) then
-        for k,v in pairs(inst.fx) do
-            if k.OnThePlayerNear then
-                k:OnThePlayerNear()
+        for _, fx in ipairs(inst.fx) do
+            if fx.OnThePlayerNear then
+                fx:OnThePlayerNear()
             end
         end
     else
-        for k,v in pairs(inst.fx) do
-            if k.OnThePlayerFar then
-                k:OnThePlayerFar()
+        for _, fx in ipairs(inst.fx) do
+            if fx.OnThePlayerFar then
+                fx:OnThePlayerFar()
             end
         end
     end
@@ -410,8 +405,6 @@ local function fn()
 
     inst.walltexture = nil
     inst.floortexture = nil
-
-    inst.fx = {}
 
     inst:ListenForEvent("onremove", Clear)
 

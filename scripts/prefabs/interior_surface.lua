@@ -17,7 +17,7 @@ local function UpdateFx(inst)
     local index = inst.texture_index:value()
     if TEXTURE_DEF[index] then
         local path = TEXTURE_DEF[index].path
-        for k,v in pairs(inst.fx)do
+        for k, v in pairs(inst.fx) do
             k:Remove()
         end
         inst.fx = {}
