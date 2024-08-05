@@ -294,6 +294,8 @@ Assets = {
     Asset("ANIM", "anim/tree_leaf_short_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
 
+    Asset("ANIM", "anim/generating_hamlet.zip"),
+
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
 
