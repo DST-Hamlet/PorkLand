@@ -279,6 +279,12 @@ return {
             GENERIC = "Hey, hey, I got nothing on my hand.",
             SLEEPING = "It must be dreaming of giant pine cones.",
         },
+        POG = {
+            APORKALYPSE = "I don't want to hurt you!",
+            FOLLOWER = "Good boy.",
+            GENERIC = "Howdy. little chihuahua.",
+            SLEEPING = "Sleep sleepy.",
+        },
         POISONBALM = "Hyuyu, someone's getting crafty!",
         PORKLAND_INTRO_BALLOON = "Humph, that's not necessarily a bad thing.",
         PORKLAND_INTRO_BASKET = "Humph, that's not necessarily a bad thing.",
@@ -318,6 +324,7 @@ return {
         ROCK_BASALT = "This imp will not be contained so easily.",
         ROCK_FLIPPABLE = "We should turn it over and look at it.",
         ROOTTRUNK_CHILD = "So I don't always have to carry them with!",
+        RUG_BEARD = "Uh uh uh.",
         SAIL_SNAKESKIN = "The stripes complement the colour, I say, I say.",
         SCORPION = {
             DEAD = "It has met its end.",
@@ -346,6 +353,7 @@ return {
         SPIDER_MONKEY_NEST = "Should it be here?",
         SPIDER_MONKEY_TREE = "Wrapped in thick blanket.",
         SPRINKLER = "A mortal's own version of rainmaker.",
+        STONE_DOOR = "The stone chamber is decorated with stone temples.",
         TEA = "Mortal's drink.",
         TEATREE = "The foundation of the squirrel kingdom.",
         TEATREE_NUT = "Very nice nuts and clears up my nose.",
