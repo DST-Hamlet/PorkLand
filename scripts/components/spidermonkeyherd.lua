@@ -70,7 +70,8 @@ local function OnUpdate(self, dt)
     -- Remove for monkeys away from herd
     for _, monkey in pairs(_monkeys) do
         if monkey and monkey:IsValid() then
-            if monkey.herd and monkey.herd.leader and monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
+            if monkey.herd and monkey.herd.leader and monkey.herd.leader:IsValid()
+                and monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
                 self:RemoveFromHerd(monkey)
             else
                 self:AddToHerd(monkey)
@@ -137,11 +138,11 @@ function self:SpawnNewMonkey(herd)
     end
 
     local tree = FindEntity(herd.leader, FIND_NEW_TREE_DIST, function(ent)
-        local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider"}, {"burnt", "stump", "rotten"})
+        local other_monkey_tree = FindEntity(ent, 7, nil, {"has_spider"}, {"burnt", "stump", "rotten_tree"})
         local x, y, z = ent.Transform:GetWorldPosition()
         local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
         return other_monkey_tree == nil and tile == WORLD_TILES.DEEPRAINFOREST
-    end, nil, {"burnt", "stump", "rotten", "has_spider"}, {"rainforesttree", "spider_monkey_tree"})
+    end, nil, {"burnt", "stump", "rotten_tree", "has_spider"}, {"rainforesttree", "spider_monkey_tree"})
 
     if tree then
         local new_monkey = SpawnPrefab("spider_monkey")

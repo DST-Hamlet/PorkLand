@@ -3,7 +3,7 @@ local Hiddendanger = Class(function(self, inst)
     self.effect = "hiddendanger_fx"
     self.offset = {x = 0, y = 0, z = 0}
 
-    -- ziwbi: just add those listeners to Wagstaff goggles 
+    -- ziwbi: just add those listeners to Wagstaff goggles
     -- GetPlayer():ListenForEvent("equip", function() self:TestShouldShowDanger() end )
     -- GetPlayer():ListenForEvent("unequip", function() self:TestShouldShowDanger() end)
     -- self.inst:ListenForEvent("entitywake", function() self:TestShouldShowDanger() end)
@@ -55,7 +55,7 @@ function Hiddendanger:ShowDanger(state)
         if not self.fx and self.inst:IsValid() then
 
             self.fx = SpawnPrefab(self.effect)
-            local x,y,z = self.inst.Transform:GetWorldPosition()
+            local x, y, z = self.inst.Transform:GetWorldPosition()
 
             self.fx.Transform:SetPosition(x+self.offset.x,y+self.offset.y,z+self.offset.z)
             self.fx:ListenForEvent("onremove", function() if self.inst:IsValid() then self.fx = nil end end)

@@ -64,7 +64,7 @@ end
 function InteriorVisitor:UpdatePlayerAndCreaturePhysics(ent)
     local center = ent:GetPosition()
     local radius = ent:GetSearchRadius()
-    for _,v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_invisiblewall"}))do
+    for _,v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_invisiblewall"})) do
         if v.Physics ~= nil and v.Physics:GetCollisionGroup() ~= COLLISION.OBSTACLES then
             self:TunePhysics(v, ent)
         end
@@ -76,8 +76,8 @@ function InteriorVisitor:TunePhysics(inst, ent)
         local player_pos = inst:GetPosition()
         local center_pos = ent:GetPosition()
         local offset = center_pos - player_pos
-        local size = { ent:GetSize() }
-        if (math.abs(offset.x) > size[2]/2 + 1 or math.abs(offset.z) > size[1]/2 + 1)
+        local width, depth = ent:GetSize()
+        if (math.abs(offset.x) > depth/2 + 1 or math.abs(offset.z) > width/2 + 1)
             and #(TheSim:FindEntities(player_pos.x, 0, player_pos.z, 2, {"pl_invisiblewall"})) > 0 then
             local mask = inst.Physics:GetCollisionMask()
             if BitAND(mask, COLLISION.OBSTACLES) > 0 then
@@ -111,7 +111,7 @@ end
 
 function InteriorVisitor:UpdateExteriorPos()
     local spawner = TheWorld.components.interiorspawner
-    local x,_,z = self.inst.Transform:GetWorldPosition()
+    local x, _, z = self.inst.Transform:GetWorldPosition()
     local ent = spawner:GetInteriorCenterAt_Generic(x, z)
     self.center_ent = ent
 
@@ -134,9 +134,9 @@ function InteriorVisitor:UpdateExteriorPos()
 
         local single, door = ent:GetIsSingleRoom() -- check if this room is single, if so, get the unique exit
         if single then
-            local house = spawner:GetExteriorByInteriorIndex(door.components.door.interior_name)
+            local house = spawner:GetExteriorById(door.components.door.interior_name)
             if house ~= nil then
-                local x,_,z = house.Transform:GetWorldPosition()
+                local x, _, z = house.Transform:GetWorldPosition()
                 -- when opening minimap inside a single room,
                 -- focus on exterior house position
                 self.exterior_pos_x = x

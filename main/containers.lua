@@ -142,7 +142,7 @@ local boat_cargo = {
     enableboatequipslots = true,
 }
 
-for i = 6, 1,-1 do
+for i = 6, 1, -1 do
     table.insert(boat_cargo.widget.slotpos, Vector3(-13 - (80 * (i + 2)), 40 ,0))
 end
 
@@ -241,3 +241,22 @@ params["roottrunk"] = deepcopy(params["shadowchester"])
 function params.roottrunk.itemtestfn(container, item, slot)
     return not item:HasTag("irreplaceable")
 end
+
+local widget_armor_vortex_cloak = {
+    widget = {
+        slotpos = {},
+        animbank = "ui_krampusbag_2x5",
+        animbuild = "ui_krampusbag_2x5",
+        pos = Vector3(-5, -70, 0),
+    },
+    issidewidget = true,
+    type = "pack",
+    openlimit = 1,
+}
+
+for y = 0, 4 do
+    table.insert(widget_armor_vortex_cloak.widget.slotpos, Vector3(-162, -y * 75 + 114, 0))
+    table.insert(widget_armor_vortex_cloak.widget.slotpos, Vector3(-162 +75, -y * 75 + 114, 0))
+end
+
+params["armorvortexcloak"] = widget_armor_vortex_cloak

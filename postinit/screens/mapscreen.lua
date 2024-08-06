@@ -41,8 +41,7 @@ function MapScreen:OnLeaveInterior()
 end
 
 AddClassPostConstruct("screens/mapscreen", function(self)
-    local minimap = self.minimap
-    if minimap.minimap == TheWorld.minimap.MiniMap then
+    if self.minimap.minimap == TheWorld.minimap.MiniMap then
         if TheCamera.inside_interior then
             self:OnEnterInterior(ThePlayer.replica.interiorvisitor:GetCenterEnt())
         end
@@ -56,9 +55,9 @@ AddClassPostConstruct("screens/mapscreen", function(self)
     self.inst:ListenForEvent("interiorvisitor.resetinteriorcamera", function()
         -- TODO: 这里会有一帧的闪烁，以后可以优化一下
         self.inst:DoTaskInTime(0, function()
-            local ent = self.owner.replica.interiorvisitor:GetCenterEnt()
-            if ent ~= nil then
-                self:OnEnterInterior(ent)
+            local center = self.owner.replica.interiorvisitor:GetCenterEnt()
+            if center then
+                self:OnEnterInterior(center)
             end
         end)
     end, self.owner)

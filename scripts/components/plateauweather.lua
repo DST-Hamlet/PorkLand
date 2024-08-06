@@ -562,6 +562,10 @@ return Class(function(self, inst)
     local LIGHTNINGSTRIKE_ONEOF_TAGS = {"lightningrod", "lightningtarget", "lightningblocker"}
     local LIGHTNINGSTRIKE_SEARCH_RANGE = 40
     local OnSendLightningStrike = _ismastersim and function(src, pos)
+        if _world.components.interiorspawner and _world.components.interiorspawner:IsInInteriorRegion(pos.x, pos.z) then
+            return
+        end
+
         local closest_generic = nil
         local closest_rod = nil
         local closest_blocker = nil
@@ -661,6 +665,15 @@ return Class(function(self, inst)
         ForceResync(_moisture)
         ForceResync(_wetness)
     end or nil
+
+    --------------------------------------------------------------------------
+    --[[ Public functions ]]
+    --------------------------------------------------------------------------
+
+    if _ismastersim then function self:GetMoistureRate()
+        local preciprate = CalculatePrecipitationRate()
+        return CalculateWetnessRate(_temperature, preciprate)
+    end end
 
     --------------------------------------------------------------------------
     --[[ Initialization ]]

@@ -267,7 +267,7 @@ local function OnHackedFinal(inst, data)
 end
 
 local function CanBloom(inst)
-    return not inst:HasTag("stump") and not inst:HasTag("burnt") and not inst:HasTag("rotten")
+    return not inst:HasTag("stump") and not inst:HasTag("burnt")
 end
 
 local function StartBloom(inst)

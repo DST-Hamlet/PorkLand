@@ -36,7 +36,7 @@ function WorldPathfinderManager:SubmitSearch(x, y, z, tx, ty, tz, data) -- è®¡ç®
 end
 
 function WorldPathfinderManager:KillSearch(search)
-    for i,v in ipairs(self.pathfinder_searchs) do
+    for i, v in ipairs(self.pathfinder_searchs) do
         if v == search then
             table.remove(self.pathfinder_searchs, i)
             break

@@ -673,7 +673,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                     local x, y, z = inst.Transform:GetWorldPosition()
                     local torches = TheSim:FindEntities(x, y, z, 50, {"wall_torch"})
 
-                    for _, torch in pairs(torches)do
+                    for _, torch in pairs(torches) do
                         if not torch.components.cooker then
                             should_close_doors = true
                         end
@@ -698,7 +698,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 local x, y, z = inst.Transform:GetWorldPosition()
                 local torches = TheSim:FindEntities(x, y, z, 50, {"wall_torch"})
 
-                for _, torch in pairs(torches)do
+                for _, torch in pairs(torches) do
                     if not torch.components.cooker then
                         should_open_doors = false
                     end

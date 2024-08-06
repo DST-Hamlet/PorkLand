@@ -58,7 +58,7 @@ local function OnDay(inst)
 end
 
 local function Close(inst)
-    if inst.components.pickable and inst.components.pickable:CanBePicked() then
+    if inst.components.pickable and inst.components.pickable:CanBePicked() and not inst.closed then
         inst.AnimState:PlayAnimation("close")
         inst.AnimState:PushAnimation("idle_plant_close", true)
         inst.closed = true

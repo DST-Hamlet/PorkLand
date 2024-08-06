@@ -1,5 +1,6 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local BatSonar = require("widgets/batsonar")
 local BoatOver = require("widgets/boatover")
 local FogOver = require("widgets/fogover")
 local LeavesOver = require("widgets/pl_leaf_canopy")
@@ -13,6 +14,10 @@ local PlayerHud = require("screens/playerhud")
 local _CreateOverlays = PlayerHud.CreateOverlays
 function PlayerHud:CreateOverlays(owner, ...)
     _CreateOverlays(self, owner, ...)
+
+    self.batsonar = self.overlayroot:AddChild(BatSonar(owner))
+    self.inst:ListenForEvent("startbatsonar", function(inst, data) return self.batsonar:StartSonar() end, self.owner)
+    self.inst:ListenForEvent("stopbatsonar", function(inst, data) return self.batsonar:StopSonar() end, self.owner)
 
     self.boatover = self.overlayroot:AddChild(BoatOver(owner))
     self.inst:ListenForEvent("boatattacked", function(inst, data) return self.boatover:Flash() end, self.owner)
@@ -103,7 +108,7 @@ function PlayerHud:OpenBoat(boat, sailing)
 
         boatwidget:Open(boat, self.owner, not sailing)
 
-        for k,v in pairs(self.controls.containers) do
+        for k, v in pairs(self.controls.containers) do
             if v.container then
                 if v.parent == boatwidget.parent or k == boat then
                     v:Close()

@@ -31,7 +31,7 @@ local DAMAGE_NO_TAGS = {"playerghost", "FX", "NOCLICK", "DECOR", "spear_trap", "
 local function DoDamage(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, radius, nil, DAMAGE_NO_TAGS)
-    for _, ent in pairs(ents)do
+    for _, ent in pairs(ents) do
         if ent.components.health then
             inst.components.combat:DoAttack(ent)
         elseif ent.components.workable and ent.components.workable.workleft > 0 then

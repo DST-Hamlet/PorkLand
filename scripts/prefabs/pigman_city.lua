@@ -294,14 +294,32 @@ local function ShouldAcceptItem(inst, item)
     return false
 end
 
-local function OnGetItemFromPlayer(inst, giver, item)
-
-    if not inst:HasTag("guard") then -- or inst:HasTag("pigqueen")
-
-        local city = 1
-        if inst:HasTag("city2") then
-            city = 2
+local function OnGetBribe(inst, item)
+    if inst:HasTag("angry_at_player") then
+        if not inst.bribe_count then
+            inst.bribe_count = 0
         end
+        inst.bribe_count = inst.bribe_count + item.oincvalue * item.components.stackable.stacksize
+
+        local bribe_threshold = inst:HasTag("guard") and 10 or 1
+        if inst.bribe_count >= bribe_threshold then
+            inst:RemoveTag("angry_at_player")
+
+            if inst.components.combat and inst.components.combat.target and inst.components.combat.target:HasTag("player") then
+                inst.components.combat:GiveUp()
+            end
+
+            inst.bribe_count = 0
+            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_FORGIVE_PLAYER"))
+        else
+            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_NOT_ENOUGH"))
+        end
+    end
+end
+
+local function OnGetItemFromPlayer(inst, giver, item)
+    if not inst:HasTag("guard") then -- or inst:HasTag("pigqueen")
+        local city = inst:HasTag("city2") and 2 or 1
 
         -- I wear hats (but should they? the art doesn't show)
         if inst:HasTag("pigqueen") and item.components.equippable then
@@ -403,6 +421,10 @@ local function OnGetItemFromPlayer(inst, giver, item)
         inst.components.follower:AddLoyaltyTime(TUNING.PIG_LOYALTY_MAXTIME)
         item:Remove()
     end
+
+    if item:HasTag("oinc") then
+        OnGetBribe(inst, item)
+    end
 end
 
 local function OnRefuseItem(inst, item)
@@ -444,14 +466,14 @@ local function OnAttackedByDecidRoot(inst, attacker)
 
     if ents then
         local num_helpers = 0
-        for k, v in pairs(ents) do
-            if v ~= inst and v.components.combat and not (v.components.health and v.components.health:IsDead()) and
-                fn(v) then
-                if v:PushEvent("suggest_tree_target", {
-                    tree = attacker,
-                }) then
-                    num_helpers = num_helpers + 1
-                end
+        for _, v in ipairs(ents) do
+            if v ~= inst
+                and v.components.combat
+                and not (v.components.health and v.components.health:IsDead())
+                and fn(v) then
+
+                v:PushEvent("suggest_tree_target", {tree = attacker})
+                num_helpers = num_helpers + 1
             end
             if num_helpers >= MAX_TARGET_SHARES then
                 break
@@ -569,9 +591,7 @@ local function NormalShouldSleep(inst)
     if inst.components.follower and inst.components.follower.leader then
         local fire = FindEntity(inst, 6, function(ent)
             return ent.components.burnable and ent.components.burnable:IsBurning()
-        end, {
-            "campfire",
-        })
+        end, {"campfire"})
         return DefaultSleepTest(inst) and fire and (not inst.LightWatcher or inst.LightWatcher:IsInLight())
     else
         return DefaultSleepTest(inst)
@@ -608,37 +628,9 @@ local function SetNormalPig(inst, brain_id)
         end
     end)
 
-    inst:ListenForEvent("itemreceived", function(inst, data)
-        if data.item.prefab == "oinc" or data.item.prefab == "oinc10" or data.item.prefab == "oinc100" then
-            if inst:HasTag("angry_at_player") then
-                if not inst.bribe_count then
-                    inst.bribe_count = 0
-                end
-
-                -- If the item is not an oinc it's obviously an oinc10, so we count the bribe accordingly
-                if data.item.prefab == "oinc" then
-                    inst.bribe_count = inst.bribe_count + 1
-                elseif data.item.prefab == "oinc10" then
-                    inst.bribe_count = inst.bribe_count + 10
-                elseif data.item.prefab == "oinc100" then
-                    inst.bribe_count = inst.bribe_count + 100
-                end
-                inst.bribe_count = inst.bribe_count * data.item.components.stackable.stacksize
-
-                local bribe_threshold = inst:HasTag("guard") and 10 or 1
-                if inst.bribe_count >= bribe_threshold then
-                    inst:RemoveTag("angry_at_player")
-
-                    if inst.components.combat and inst.components.combat.target and inst.components.combat.target:HasTag("player") then
-                        inst.components.combat:GiveUp()
-                    end
-
-                    inst.bribe_count = 0
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_FORGIVE_PLAYER"))
-                else
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_NOT_ENOUGH"))
-                end
-            end
+    inst:ListenForEvent("itemget", function(inst, data)
+        if data.item:HasTag("oinc") then
+            OnGetBribe(inst, data.item)
         end
     end)
 
@@ -673,7 +665,7 @@ local function throwcrackers(inst)
     tossdir.z = -math.sin(rot)
 
     inst.components.inventory:DropItem(cracker, nil, nil, nil, nil, tossdir)
-    cracker.components.fuse:StartFuse()
+    cracker.components.burnable:Ignite(nil, nil, inst)
 end
 
 local function OnSave(inst, data)
@@ -990,26 +982,6 @@ local function EquipItems(inst)
     end
 end
 
-local function OnDeath_Guard(inst, data)
-    local torch = inst.components.inventory:FindItem(function(item)
-        if item.prefab == "torch" and item.components.fueled and item.components.fueled.unlimited_fuel then
-            return true
-        end
-    end)
-    if torch then
-        NormalizeTorch(torch, inst)
-    end
-
-    local axe = inst.components.inventory:FindItem(function(item)
-        if item.prefab == "halberd" and item.components.finiteuses and item.components.finiteuses.unlimited_uses then
-            return true
-        end
-    end)
-    if axe then
-        NormalizeHalberd(axe, inst)
-    end
-end
-
 local function OnDropItem(inst, data)
     local item = data.item
     if not item or not item:IsValid() then
@@ -1082,7 +1054,6 @@ local function pig_guard_master_postinit(inst)
 
     inst.equiptask = inst:DoTaskInTime(0, EquipItems)
 
-    inst:ListenForEvent("death", OnDeath_Guard)
     inst:ListenForEvent("dropitem", OnDropItem)
 
     inst:WatchWorldState("isday", OnIsDay)
@@ -1116,6 +1087,7 @@ local function CloseShop(inst)
 end
 
 local function shopkeeper_common_postinit(inst)
+    inst:AddTag("shopkeep")
     inst.AnimState:AddOverrideBuild("townspig_shop_wip")
 end
 
@@ -1135,8 +1107,6 @@ local function shopkeeper_master_postinit(inst)
 end
 
 local function MakeShopKeeper(name, build, sex, tags, econprefab)
-    tags = shallowcopy(tags or {})
-    table.insert(tags, "shopkeep")
     return MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit, econprefab)
 end
 
@@ -1207,7 +1177,7 @@ return MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
        MakeShopKeeper("pigman_mechanic_shopkeep",   "pig_mechanic",   MALE,   nil,        "pigman_mechanic"),
 
        MakeCityPigman("pigman_royalguard", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
-       MakeCityPigman("pigman_royalguard_2", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
+       MakeCityPigman("pigman_royalguard_2", "pig_royalguard_2", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
 
        MakeCityPigman("pigman_mechanic", "pig_mechanic", MALE, nil, nil, MechanicMasterPostinit),
 

@@ -170,8 +170,8 @@ local function MakeCityPossession(inst)
         inst:SetType("pigman_royalguard_2", "flag_post_royal_build")
     elseif inst.components.citypossession.cityID == 2 then
         inst:SetType("pigman_royalguard_2", "flag_post_perdy_build")
-    elseif inst.components.citypossession.cityID == 1 then
-        inst:SetType("pigman_royalguard_2", "flag_post_duster_build")
+    else
+        inst:SetType("pigman_royalguard", "flag_post_duster_build")
     end
 end
 

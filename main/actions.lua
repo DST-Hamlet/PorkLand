@@ -43,6 +43,7 @@ if not rawget(_G, "HotReloading") then
         SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
+        GAS = Action({distance = 1.5, mount_enabled = true}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -271,28 +272,36 @@ end
 
 local function DoTeleport(player, pos)
     player:StartThread(function()
+        local x, y, z = pos:Get()
+
         -- local invincible = player.components.health.invincible
-        --player.components.health:SetInvincible(true)
-        if player.components.playercontroller ~= nil then
+        -- player.components.health:SetInvincible(true)
+        if player.components.playercontroller then
             player.components.playercontroller:EnableMapControls(false)
             player.components.playercontroller:Enable(false)
         end
 
         player:ScreenFade(false, 0.4)
+
         Sleep(0.4)
-        -- recheck interior
-        if not TheWorld.components.interiorspawner:IsInInteriorRegion(pos.x, pos.z)
-            or TheWorld.components.interiorspawner:IsInInterior(pos.x, pos.z) then
-            player.Physics:Teleport(pos:Get())
-        end
+
+        player.Physics:Teleport(x, y, z)
         player.components.interiorvisitor:UpdateExteriorPos()
         -- player.components.health:SetInvincible(invincible)
-        Sleep(0.1) -- 出于未知原因，当 Sleep(0) 的时候 SnapCamera 执行时玩家的位置仍未发生变化，因此改为 0.1
-        if player.components.playercontroller ~= nil then
+
+        Sleep(0.1)
+
+        if player.components.playercontroller then
             player.components.playercontroller:EnableMapControls(true)
             player.components.playercontroller:Enable(true)
         end
-        player:SnapCamera()
+
+        if TheWorld.components.interiorspawner:IsInInterior(x, z) then
+            player:SnapCamera()
+        else
+            player.replica.interiorvisitor:RestoreOutsideInteriorCamera()
+        end
+
         player:ScreenFade(true, 0.4)
         player.sg:GoToState("idle")
     end)
@@ -305,7 +314,7 @@ local function OnTeleportFailed(player)
     -- end
 end
 
-ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内容应该移到component上去
+ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内容应该移到 component 上去
     local door = act.target
     if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
         return false, "DISABLED"
@@ -319,14 +328,13 @@ ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内�
 
     if target_interior == "EXTERIOR" then
         -- use `target_exterior` firstly, then use current room id as default
-        local index = door.components.door.target_exterior or door.components.door.interior_name
-        local house = TheWorld.components.interiorspawner:GetExteriorByInteriorIndex(index)
-        -- print(index, type(index), house)
-        if house ~= nil then
+        local id = door.components.door.target_exterior or door.components.door.interior_name
+        local house = TheWorld.components.interiorspawner:GetExteriorById(id)
+        if house then
             DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
             PlayDoorSound()
             act.doer:PushEvent("used_door", {door = door, exterior = true})
-            if house.components.hackable and house.stage > 0 then -- 内部门用vineable, 外部门用hackable...需要代码清理
+            if house.components.hackable and house.stage > 0 then -- 内部门用 vineable, 外部门用 hackable... 需要代码清理
                 house.stage = 1
                 house.components.hackable:Hack(act.doer, 9999)
             end
@@ -479,6 +487,14 @@ ACTIONS.STOCK.fn = function(act)
         act.doer.changestock = nil
         return true
     end
+end
+
+ACTIONS.GAS.fn = function(act)
+	if act.invobject and act.invobject.components.gasser then
+        local pos = (act.pos and act:GetActionPoint()) or (act.target and act.target:GetPosition())
+		act.invobject.components.gasser:Gas(pos)
+		return true
+	end
 end
 
 
@@ -732,6 +748,11 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.DISARM)
             end
         end,
+        explosive = function(inst, doer, target, actions, right)
+            if target:HasTag("blunderbuss") then
+                table.insert(actions, ACTIONS.GIVE)
+            end
+        end,
         poisonhealer = function(inst, doer, target, actions, right)
             if target and target:HasTag("poisonable") then
                 if target:HasTag("poison") or (target:HasTag("player") and
@@ -744,11 +765,20 @@ local PL_COMPONENT_ACTIONS =
     },
 
     POINT = { -- args: inst, doer, pos, actions, right, target
-
+        gasser = function (inst, doer, pos, actions, right, target)
+            if right then
+                table.insert(actions, ACTIONS.GAS)
+            end
+        end
     },
 
     EQUIPPED = { -- args: inst, doer, target, actions, right
-
+        -- ziwbi: added gasser to EQUIPPED. why wouldn't you just spray on gnats directly?
+        gasser = function (inst, doer, pos, actions, right, target)
+            if right then
+                table.insert(actions, ACTIONS.GAS)
+            end
+        end
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
@@ -938,6 +968,13 @@ function INVENTORY.equippable(inst, doer, actions, ...)
         else
             _INVENTORY_equippable(inst, doer, actions, ...)
         end
+    end
+end
+
+local _SCENE_pickable = SCENE.pickable
+function SCENE.pickable(inst, doer, actions, ...)
+    if not inst:HasTag("unsuited") then
+        return _SCENE_pickable(inst, doer, actions, ...)
     end
 end
 

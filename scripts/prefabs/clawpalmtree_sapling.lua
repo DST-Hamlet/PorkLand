@@ -33,7 +33,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle_planted")
     inst.AnimState:SetScale(0.7, 0.7, 0.7)
 
-    inst:AddTag("plant")
+    inst:AddTag("deployedplant")
     inst:AddTag("cattoy")
 
     inst.entity:SetPristine()

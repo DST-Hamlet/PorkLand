@@ -125,12 +125,12 @@ local function SetMinimapData(inst, data)
 
     -- TODO: support priority
     -- "ents":{"vamp_cave_burrow.tex":[[0,0]],"winona.tex":[[-7.5001220703125,0]],"vamp_bat_cave_exit.tex":[[-9,0]],"stalagmite_tall.tex":[[-2.5570068359375,3.3013305664062]]},"pos":[986,906]}
-    for icon, pos_list in pairs(data.ents)do
+    for icon, pos_list in pairs(data.ents) do
         if inst.icons[icon] == nil then
             inst.icons[icon] = {}
         end
         local ent_list = inst.icons[icon]
-        for i, pos in ipairs(pos_list)do
+        for i, pos in ipairs(pos_list) do
             if ent_list[i] == nil then
                 ent_list[i] = local_icon()
                 ent_list[i].entity:SetParent(inst.entity)
@@ -148,9 +148,9 @@ local function SetMinimapData(inst, data)
             ent_list[i].MiniMapEntity:SetEnabled(false)
         end
     end
-    for icon, ents in pairs(inst.icons)do
+    for icon, ents in pairs(inst.icons) do
         if data.ents[icon] == nil then
-            for _, v in ipairs(ents)do
+            for _, v in ipairs(ents) do
                 v.MiniMapEntity:SetEnabled(false)
             end
         end
@@ -176,8 +176,8 @@ local function room()
         inst.render = value
         inst.MiniMapEntity:SetEnabled(value)
         if value == false then
-            for _, ents in pairs(inst.icons)do
-                for _,v in ipairs(ents)do
+            for _, ents in pairs(inst.icons) do
+                for _,v in ipairs(ents) do
                     v.MiniMapEntity:SetEnabled(false)
                 end
             end
@@ -196,7 +196,7 @@ local function Update(inst)
         return
     end
 
-    for _,v in pairs(inst.icons)do
+    for _, v in pairs(inst.icons) do
         v.MiniMapEntity:SetEnabled(false)
     end
 
@@ -206,7 +206,7 @@ local function Update(inst)
         inst.MiniMapEntity:SetIcon("pl_frame_"..SizeToString(width, height)..".tex")
         inst.MiniMapEntity:SetEnabled(true)
         local x, _, z = ent.Transform:GetWorldPosition()
-        for _,v in ipairs(TheSim:FindEntities(x, 0, z, ent:GetSearchRadius(), nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"}))do
+        for _, v in ipairs(TheSim:FindEntities(x, 0, z, ent:GetSearchRadius(), nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
             if v.Network ~= nil and v.MiniMapEntity ~= nil then
                 local id = v.Network:GetNetworkID()
                 if inst.icons[id] == nil then

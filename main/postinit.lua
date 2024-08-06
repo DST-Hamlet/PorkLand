@@ -44,6 +44,7 @@ local component_posts = {
     "moisture",
     "oceancolor",
     "oldager",
+    "pickable",
     "playeractionpicker",
     "playercontroller",
     "playervision",
@@ -51,6 +52,7 @@ local component_posts = {
     "positionalwarp",
     "regrowthmanager",
     "repairable",
+    "resistance",
     "rider_replica",
     "rider",
     "seasons",
@@ -78,12 +80,14 @@ local prefab_posts = {
     "pocketdimensioncontainer_defs",
     "poop",
     "torch",
+    "waterprojectiles",
     "woodie",
     "world_network",
     "world",
     "shard_network",
     "statueruins",
     "walls",
+    "waterballoon",
     "wormwood",
     "wortox",
 }
@@ -120,6 +124,7 @@ local widget_posts = {
     "bloodover",
     "containerwidget",
     "inventorybar",
+    "healthbadge",
     "seasonclock",
     "statusdisplay",
     "uianim",
@@ -158,6 +163,7 @@ modimport("postinit/pathfinder")
 modimport("postinit/groundcreep")
 modimport("postinit/groundcreepentity")
 modimport("postinit/soundemitter")
+modimport("postinit/preparedfoods")
 
 
 for _, file_name in ipairs(behaviour_posts) do
