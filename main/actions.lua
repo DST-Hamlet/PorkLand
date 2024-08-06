@@ -402,11 +402,11 @@ ACTIONS.STOCK.fn = function(act)
 end
 
 ACTIONS.GAS.fn = function(act)
-	if act.invobject and act.invobject.components.gasser then
+    if act.invobject and act.invobject.components.gasser then
         local pos = (act.pos and act:GetActionPoint()) or (act.target and act.target:GetPosition())
-		act.invobject.components.gasser:Gas(pos)
-		return true
-	end
+        act.invobject.components.gasser:Gas(pos)
+        return true
+    end
 end
 
 

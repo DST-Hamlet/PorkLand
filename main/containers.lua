@@ -214,7 +214,7 @@ for y = 2, 0, -1 do
 end
 
 function widget_antchest.itemtestfn(contanier, item, slot)
-	return item.prefab == "honey" or item.prefab == "nectar_pod"
+    return item.prefab == "honey" or item.prefab == "nectar_pod"
 end
 
 params["antchest"] = widget_antchest

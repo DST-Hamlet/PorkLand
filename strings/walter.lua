@@ -121,6 +121,7 @@ return {
         DECO_CHAIR_OTTOMAN = "Don't bite it, Woby!",
         DECO_CHAIR_ROCKING = "Don't bite it, Woby!",
         DECO_CHAIR_STUFFED = "Don't bite it, Woby!",
+        DECO_WALLORNAMENT_AXE = "It looks like Lucy!",
         DISARMING_KIT = "Adventure activities, cool!",
         DUG_NETTLE = "Warby! Let’s find a good place to plant it back!",
         DUNGBALL = "How did she... nevermind.",
@@ -291,6 +292,12 @@ return {
             GENERIC = "I must catch it!",
             SLEEPING = "It fell asleep.",
         },
+        POG = {
+            APORKALYPSE = "I thought we'd be friends forever!",
+            FOLLOWER = "Follow me to sweet home.",
+            GENERIC = "And you can't find your home?",
+            SLEEPING = "Have a nice dream.",
+        },
         POISONBALM = "I'll gladly take a balm over a syrup...",
         PORKLAND_INTRO_BALLOON = "It's a shame I didn't hold on longer.",
         PORKLAND_INTRO_BASKET = "That was the end of the first balloon trip.",
@@ -330,6 +337,7 @@ return {
         ROCK_BASALT = "Stone created by robots.",
         ROCK_FLIPPABLE = "Guess what's underneath?",
         ROOTTRUNK_CHILD = "Just like Mr. Maxwell's magic!",
+        RUG_BEARD = "That's a...very curious collection.",
         SAIL_SNAKESKIN = "The snakes wouldn't end up like this if they didn't try to eat me!",
         SCORPION = {
             DEAD = "Ouch...we killed it.",

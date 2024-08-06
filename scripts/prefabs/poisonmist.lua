@@ -1,13 +1,13 @@
 local assets =
 {
-	Asset( "ANIM", "anim/mist_fx.zip" )
+    Asset( "ANIM", "anim/mist_fx.zip" )
 }
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
     inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBuild("mist_fx")

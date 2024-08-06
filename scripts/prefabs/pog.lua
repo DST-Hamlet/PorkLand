@@ -46,7 +46,7 @@ local function RetargetFn(inst)
     end
 
     return FindEntity(inst, RETARGET_DIST, function(ent)
-        return 	(ent.components.health and not ent.components.health:IsDead() and inst.components.combat:CanTarget(ent))
+        return (ent.components.health and not ent.components.health:IsDead() and inst.components.combat:CanTarget(ent))
             and not (inst.components.follower and inst.components.follower:IsLeaderSame(ent))
         end, nil, RETARGET_NO_TAGS, RETARGET_ONE_OF_TASG)
 end
