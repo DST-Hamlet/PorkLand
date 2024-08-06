@@ -73,11 +73,9 @@ local TREASURE_LIST = {
     },
 }
 
-local UPDATE_PERIOD = 10
-local BANDIT_RESPAWN_TIME = 30 * 16 * 1.5 -- 9 minutes
-
 local CITY1_TAG = "City1"
 local CITY2_TAG = "City2"
+local BANDIT_TIMER_NAME = "pig_bandit_respawn_time_" -- one bandit for each city... one day
 
 -- Public
 self.inst = inst
@@ -90,31 +88,93 @@ local _worldsettingstimer = _world.components.worldsettingstimer
 local _active_players = {}
 local _bandit
 local _stored_bandit
-local _deathtime = 0
 local _stolen_oincs = {oinc = 0, oinc10 = 0, oinc100 = 0}
 local _disabled = false
 local _diffmod = 1
 
-local function OnUpdate(world, dt)
-    if _disabled then
-        return
+--------------------------------------------------------------------------
+--[[ Private event handlers ]]
+--------------------------------------------------------------------------
+
+local function StartRespawnTimer()
+    _worldsettingstimer:StopTimer(BANDIT_TIMER_NAME)
+    _worldsettingstimer:StartTimer(BANDIT_TIMER_NAME, TUNING.PIG_BANDIT_RESPAWN_TIME, false)
+end
+
+local function OnBanditDeath(src, data)
+    StartRespawnTimer()
+    _bandit = nil
+end
+
+local function OnBanditEscaped(src, data)
+    local oincs = _bandit.components.inventory:GetItemsWithTag("oinc")
+    for _, oinc in pairs(oincs) do
+        if _stolen_oincs[oinc.prefab] then
+            _stolen_oincs[oinc.prefab] = _stolen_oincs[oinc.prefab] + oinc.components.stackable:StackSize()
+        end
+    end
+    for _, oinc in pairs(oincs) do
+        _bandit.components.inventory:RemoveItem(oinc)
+        oinc:Remove()
     end
 
-    if _deathtime > 0 then
-        local time = dt or UPDATE_PERIOD
-        _deathtime = _deathtime - time
-        return
+    _bandit.components.health:SetPercent(1)
+    _bandit.attacked = nil
+    _stored_bandit = _bandit:GetSaveRecord()
+    _bandit:Remove()
+    _bandit = nil
+
+    StartRespawnTimer()
+end
+
+local function OnBanditTreasureDug(src, data)
+    _stolen_oincs.oinc = 0
+    _stolen_oincs.oinc10 = 0
+    _stolen_oincs.oinc100 = 0
+end
+
+local function OnPlayerJoined(src, player)
+    for _, v in ipairs(_active_players) do
+        if v == player then
+            return
+        end
+    end
+    table.insert(_active_players, player)
+end
+
+local function OnPlayerLeft(src, player)
+    for i, v in ipairs(_active_players) do
+        if v == player then
+            table.remove(_active_players, i)
+            return
+        end
+    end
+end
+
+local function IsPlayerInCity(player)
+    local x, y, z = player.Transform:GetWorldPosition()
+    local node_index = _map:GetNodeIdAtPoint(x, y, z)
+    local node = _world.topology.nodes[node_index]
+    if node == nil or node.tags == nil then
+        return false
     end
 
+    for _, tag in pairs(node.tags) do
+        if tag == CITY1_TAG or tag == CITY2_TAG then
+            return true
+        end
+    end
+    return false
+end
+
+local function TrySpawnBanit()
     if self:GetIsBanditActive() then
         return
     end
 
     local choices = {}
     for _, player in pairs(_active_players) do
-        local x, y, z = player.Transform:GetWorldPosition()
-        local tag = _map:GetIslandTagAtPoint(x, y, z)
-        if not IsEntityDeadOrGhost(player) and (tag == CITY1_TAG or tag == CITY2_TAG) then
+        if not IsEntityDeadOrGhost(player) and IsPlayerInCity(player) then
             choices[#choices+1] = player
         end
     end
@@ -155,57 +215,6 @@ local function OnUpdate(world, dt)
     chance = chance * _diffmod
     if roll < chance then
         self:SpawnBanditOnPlayer(player)
-    end
-end
-
---------------------------------------------------------------------------
---[[ Private event handlers ]]
---------------------------------------------------------------------------
-
-local function OnBanditDeath(src, data)
-    _deathtime = BANDIT_RESPAWN_TIME
-    _bandit = nil
-end
-
-local function OnBanditEscaped(src, data)
-    local oincs = _bandit.components.inventory:GetItemsWithTag("oinc")
-    for _, oinc in pairs(oincs) do
-        if _stolen_oincs[oinc.prefab] then
-            _stolen_oincs[oinc.prefab] = _stolen_oincs[oinc.prefab] + oinc.components.stackable:StackSize()
-        end
-    end
-    for _, oinc in pairs(oincs) do
-        _bandit.components.inventory:RemoveItem(oinc)
-        oinc:Remove()
-    end
-
-    _bandit.components.health:SetPercent(1)
-    _bandit.attacked = nil
-    _stored_bandit = _bandit:GetSaveRecord()
-    _bandit:Remove()
-end
-
-local function OnBanditTreasureDug(src, data)
-    _stolen_oincs.oinc = 0
-    _stolen_oincs.oinc10 = 0
-    _stolen_oincs.oinc100 = 0
-end
-
-local function OnPlayerJoined(src, player)
-    for _, v in ipairs(_active_players) do
-        if v == player then
-            return
-        end
-    end
-    table.insert(_active_players, player)
-end
-
-local function OnPlayerLeft(src, player)
-    for i, v in ipairs(_active_players) do
-        if v == player then
-            table.remove(_active_players, i)
-            return
-        end
     end
 end
 
@@ -326,8 +335,6 @@ for i, v in ipairs(AllPlayers) do
     table.insert(_active_players, v)
 end
 
-self.inst:DoPeriodicTask(UPDATE_PERIOD, OnUpdate)
-
 -- Register events
 self.inst:ListenForEvent("bandit_death", OnBanditDeath)
 self.inst:ListenForEvent("bandit_escaped", OnBanditEscaped)
@@ -335,6 +342,13 @@ self.inst:ListenForEvent("bandittreasure_dug", OnBanditTreasureDug)
 self.inst:ListenForEvent("ms_playerjoined", OnPlayerJoined, _world)
 self.inst:ListenForEvent("ms_playerleft", OnPlayerLeft, _world)
 
+_worldsettingstimer:AddTimer(BANDIT_TIMER_NAME, TUNING.PIG_BANDIT_RESPAWN_TIME, TUNING.PIG_BANDIT_ENABLED, function()
+    TrySpawnBanit()
+    if not _bandit then
+        StartRespawnTimer()
+    end
+end)
+StartRespawnTimer()
 
 --------------------------------------------------------------------------
 --[[ Save/Load ]]
@@ -349,8 +363,6 @@ function self:OnSave()
         oinc10 = _stolen_oincs.oinc10,
         oinc100 = _stolen_oincs.oinc100,
     }
-
-    data.deathtime = _deathtime
 
     if _bandit then
         data.bandit = _bandit.GUID
@@ -368,8 +380,6 @@ function self:OnLoad(data)
     _stolen_oincs.oinc = data.stolen_oincs.oinc or 0
     _stolen_oincs.oinc10 = data.stolen_oincs.oinc10 or 0
     _stolen_oincs.oinc100 = data.stolen_oincs.oinc100 or 0
-
-    _deathtime = data.deathtime
 end
 
 function self:LoadPostPass(ents, data)
@@ -379,28 +389,16 @@ function self:LoadPostPass(ents, data)
 end
 
 --------------------------------------------------------------------------
---[[ Update ]]
---------------------------------------------------------------------------
-
-function self:LongUpdate(dt)
-    local cycles = math.floor(dt / UPDATE_PERIOD)
-    local remainder = dt % UPDATE_PERIOD
-
-    if cycles > 0 then
-        for i = 1, cycles do
-            OnUpdate(UPDATE_PERIOD)
-        end
-    end
-
-    if remainder > 0 then
-        OnUpdate(remainder)
-    end
-end
-
---------------------------------------------------------------------------
 --[[ Debug ]]
 --------------------------------------------------------------------------
 
+function self:GetDebugString()
+    local s = string.format("Stolen Oincs: %d Active Bandit: %s Respawns In: %2.2f",
+        (_stolen_oincs.oinc + 10 * _stolen_oincs.oinc10 + 100 * _stolen_oincs.oinc100), tostring(self:GetIsBanditActive()),
+        _worldsettingstimer:GetTimeLeft(BANDIT_TIMER_NAME) or -1)
+
+    return s
+end
 
 --------------------------------------------------------------------------
 --[[ End ]]

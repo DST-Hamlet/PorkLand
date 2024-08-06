@@ -119,6 +119,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             glowflycycle = {image = "glowfly_life_cycle.tex", desc = enable_descriptions},
             poison = {desc = enable_descriptions},
             hayfever = {desc = enable_descriptions},
+            pigbandit = {image = "pig_bandit.tex", desc = frequency_descriptions},
             pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = enable_descriptions},
             vampirebat = {image = "vampire_bats.tex", desc = frequency_descriptions},
         },

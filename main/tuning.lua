@@ -587,6 +587,8 @@ local tuning = {
     PIG_BANDIT_MIN_POOP_PERIOD = seg_time * .5,
     PIG_BANDIT_RUN_SPEED = 7,
     PIG_BANDIT_WALK_SPEED = 3,
+    PIG_BANDIT_ENABLED = true,
+    PIG_BANDIT_RESPAWN_TIME = 30 * 16 * 1.5 -- 9 minutes
 }
 
 

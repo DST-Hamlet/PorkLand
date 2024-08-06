@@ -389,6 +389,31 @@ applyoverrides_pre.hippopotamoose_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+applyoverrides_pre.pigbandit = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            PIG_BANDIT_ENABLED = false,
+        },
+        rare = {
+            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 0,5,
+        },
+        --[[
+        default = {
+            PIG_BANDIT_ENABLED = true,
+            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5,
+        },
+        --]]
+        often = {
+            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 1.5,
+        },
+        always = {
+            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 2.5,
+        }
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 --------------------------------------------------------------------------
 --[[ WORLDSETTINGS POST ]]
 --------------------------------------------------------------------------
