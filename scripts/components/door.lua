@@ -58,8 +58,92 @@ function Door:SetTargetOffset(x, y, z)
     dest.target_offset_z = z
 end
 
+local function DoTeleport(player, pos)
+    player:StartThread(function()
+        local x, y, z = pos:Get()
+
+        -- local invincible = player.components.health.invincible
+        -- player.components.health:SetInvincible(true)
+        if player.components.playercontroller then
+            player.components.playercontroller:EnableMapControls(false)
+            player.components.playercontroller:Enable(false)
+        end
+
+        player:ScreenFade(false, 0.4)
+
+        Sleep(0.4)
+
+        player.Physics:Teleport(x, y, z)
+        player.components.interiorvisitor:UpdateExteriorPos()
+        -- player.components.health:SetInvincible(invincible)
+
+        Sleep(0.1)
+
+        if player.components.playercontroller then
+            player.components.playercontroller:EnableMapControls(true)
+            player.components.playercontroller:Enable(true)
+        end
+
+        if TheWorld.components.interiorspawner:IsInInterior(x, z) then
+            player:SnapCamera()
+        else
+            player.replica.interiorvisitor:RestoreOutsideInteriorCamera()
+        end
+
+        player:ScreenFade(true, 0.4)
+        player.sg:GoToState("idle")
+    end)
+end
+
 function Door:Activate(doer)
-    self.inst:PushEvent("usedoor", {doer = doer})
+    if not self.target_interior then
+        print("WARNING: this door gets activated but it doesn't have a target interior!", self.inst)
+        return false
+    end
+
+    local function PlayDoorSound()
+        self.inst:PushEvent("usedoor", {doer = doer})
+    end
+
+    if self.target_interior == "EXTERIOR" then
+        -- use `target_exterior` firstly, then use current room id as default
+        local id = self.target_exterior or self.interior_name
+        local house = TheWorld.components.interiorspawner:GetExteriorById(id)
+        if house then
+            DoTeleport(doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
+            PlayDoorSound()
+            doer:PushEvent("used_door", {door = self.inst, exterior = true})
+            if house.components.hackable and house.stage > 0 then -- 内部门用 vineable, 外部门用 hackable... 需要代码清理
+                house.stage = 1
+                house.components.hackable:Hack(doer, 9999)
+            end
+            return true
+        end
+    else
+        local room = TheWorld.components.interiorspawner:GetInteriorByIndex(self.target_interior)
+
+        local target_door = room and room:GetDoorById(self.target_door_id)
+        if target_door then
+            -- don't throw player directly on door
+            -- instead, give a slight offset to room center
+            local door_pos = target_door:GetPosition()
+            local room_pos = room:GetPosition()
+            local offset = (room_pos - door_pos):GetNormalized() * 1.0
+            DoTeleport(doer, door_pos + offset)
+            PlayDoorSound()
+            doer:PushEvent("used_door", {door = self.inst, exterior = false})
+            if target_door.components.vineable
+                and target_door.components.vineable.vines
+                and target_door.components.vineable.vines.components.hackable
+                and target_door.components.vineable.vines.stage > 0 then
+
+                target_door.components.vineable.vines.stage = 1
+                target_door.components.vineable.vines.components.hackable:Hack(doer, 9999)
+            end
+            return true
+        end
+    end
+    return false
 end
 
 function Door:SetDoorDisabled(status, cause)
