@@ -84,14 +84,14 @@ local function MakeHat(name)
     end
 
     -- This is not really implemented, can just use _onequip
-	fns.simple_onequip =  function(inst, owner, from_ground)
-		_onequip(inst, owner)
-	end
+    fns.simple_onequip =  function(inst, owner, from_ground)
+        _onequip(inst, owner)
+    end
 
     -- This is not really implemented, can just use _onunequip
-	fns.simple_onunequip = function(inst, owner, from_ground)
-		_onunequip(inst, owner)
-	end
+    fns.simple_onunequip = function(inst, owner, from_ground)
+        _onunequip(inst, owner)
+    end
 
     fns.opentop_onequip = function(inst, owner)
         _base_onequip(inst, owner)
@@ -662,31 +662,31 @@ local function MakeHat(name)
     local assets = {Asset("ANIM", "anim/" .. fname .. ".zip") }
     local prefabs = nil
 
-	if name == "candle" then
-		fn = fns.candle
-	elseif name == "bandit" then
-		fn = fns.bandit
-	elseif name == "pith" then
-		fn = fns.pith
-	elseif name == "gasmask" then
-		fn = fns.gasmask
-	elseif name == "pigcrown" then
-		fn = fns.pigcrown
-	elseif name == "antmask" then
-		fn = fns.antmask
-	elseif name == "bat" then
-		fn = fns.bat
+    if name == "candle" then
+        fn = fns.candle
+    elseif name == "bandit" then
+        fn = fns.bandit
+    elseif name == "pith" then
+        fn = fns.pith
+    elseif name == "gasmask" then
+        fn = fns.gasmask
+    elseif name == "pigcrown" then
+        fn = fns.pigcrown
+    elseif name == "antmask" then
+        fn = fns.antmask
+    elseif name == "bat" then
+        fn = fns.bat
         table.insert(assets, Asset("IMAGE", "images/colour_cubes/bat_vision_on_cc.tex"))
-	elseif name == "snakeskin" then
-		fn = fns.snakeskin
+    elseif name == "snakeskin" then
+        fn = fns.snakeskin
         table.insert(assets, Asset("ANIM", "anim/hat_snakeskin_scaly.zip"))
-	elseif name == "thunder" then
-		fn = fns.thunder
-	elseif name == "metalplate" then
-		fn = fns.metalplate
-	elseif name == "disguise" then
-		fn = fns.disguise
-	end
+    elseif name == "thunder" then
+        fn = fns.thunder
+    elseif name == "metalplate" then
+        fn = fns.metalplate
+    elseif name == "disguise" then
+        fn = fns.disguise
+    end
 
     table.insert(ALL_HAT_PREFAB_NAMES, prefabname)
 

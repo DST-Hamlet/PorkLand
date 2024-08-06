@@ -5,9 +5,9 @@ local Fixer = Class(function(self, inst)
 end)
 
 function Fixer:CanFix(target)
-	if not target then
-		return false
-	end
+    if not target then
+        return false
+    end
     return true
 end
 

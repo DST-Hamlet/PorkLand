@@ -290,7 +290,7 @@ function Cityalarms:LongUpdate(dt)
             self.cities[c].task:Cancel()
             self.cities[c].task = nil
         end
-        --	self.cities[c].task = self.inst:DoTaskInTime(self.cities[c].guard_ready_time, function() self:ReadyGuard(c) end)
+        -- self.cities[c].task = self.inst:DoTaskInTime(self.cities[c].guard_ready_time, function() self:ReadyGuard(c) end)
     end
 end
 
