@@ -24,7 +24,7 @@ local RANGE = 8
 local UPDATE_TIME = 0.2
 
 local function SpawnDrop(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local x, _, z = inst.Transform:GetWorldPosition()
     for i = 1, 2 do
         local drop = SpawnPrefab("raindrop")
         local angle = math.random() * 2 * PI
@@ -189,7 +189,7 @@ local function GetValidWaterPointNearby(pt)
 end
 
 local function RotateToTarget(inst, dest)
-    local px, py, pz = inst.Transform:GetWorldPosition()
+    local px, _, pz = inst.Transform:GetWorldPosition()
     local dz = pz - dest.z
     local dx = dest.x - px
     local angle = math.atan2(dz, dx) / DEGREES

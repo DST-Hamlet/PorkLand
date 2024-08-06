@@ -414,7 +414,7 @@ local function ShelfPlaceTest(inst, pt)
         local dist = 2
         local newpt = {}
         local backdiff =  pt.x < (originpt.x - depth/2 + dist)
-        local frontdiff = pt.x > (originpt.x + depth/2 - dist)
+        -- local frontdiff = pt.x > (originpt.x + depth/2 - dist)
         local rightdiff = pt.z > (originpt.z + width/2 - dist)
         local leftdiff =  pt.z < (originpt.z - width/2 + dist)
 

@@ -8,7 +8,7 @@ package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
     ["PIG_RUINS_PIG"] = "PIG_RUINS_PIG",
-
+  
     ["DECO_RUINS_BEAM_ROOM"] = "DECO_RUINS_BEAM_ROOM",
     ["DECO_CAVE_BEAM_ROOM"] = "DECO_CAVE_BEAM_ROOM",
     ["DECO_CAVE_BAT_BURROW"] = "DECO_CAVE_BAT_BURROW",
