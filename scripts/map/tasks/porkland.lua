@@ -125,7 +125,7 @@ AddTask("Deep_rainforest", {
 AddTask("Pigtopia", {
     locks = LOCKS.CIVILIZATION_1,
     keys_given = KEYS.CIVILIZATION_2,
-    room_tags = {"island_accademy"},
+    room_tags = {"island_accademy", "City1"},
     room_choices = {
         ["suburb_base_1"] = math.random(2, 3),
     },
@@ -137,7 +137,7 @@ AddTask("Pigtopia", {
 AddTask("Pigtopia_capital", {
     locks = LOCKS.CIVILIZATION_2,
     keys_given = KEYS.ISLAND_2,
-    room_tags = {"island_accademy"},
+    room_tags = {"island_accademy", "City1"},
     room_choices = {
         ["city_base_1"] = math.random(2, 3),
     },
@@ -362,7 +362,7 @@ AddTask("Other_edge_of_civilization", {
 AddTask("Other_pigtopia", {
     locks = LOCKS.OTHER_CIVILIZATION_1,
     keys_given = KEYS.OTHER_CIVILIZATION_2,
-    room_tags = {"island_royal"},
+    room_tags = {"island_royal", "City2"},
     room_choices = {
         ["suburb_base_2"] = math.random(2, 3),
     },
@@ -374,7 +374,7 @@ AddTask("Other_pigtopia", {
 AddTask("Other_pigtopia_capital", {
     locks = LOCKS.OTHER_CIVILIZATION_2,
     keys_given = KEYS.ISLAND_3,
-    room_tags = {"island_royal"},
+    room_tags = {"island_royal", "City2"},
     room_choices = {
         ["city_base_2"] = math.random(2, 3),
     },

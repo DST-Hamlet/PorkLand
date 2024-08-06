@@ -26,13 +26,13 @@ local suburb_contents =  {
 AddRoom("suburb_base_1", {
     colour = {r = .3, g = 0.3, b = 0.3, a = 0.3},
     value = WORLD_TILES.SUBURB,
-    tags = {"ExitPiece", "City_Foundation", "City1", "Suburb"},
+    tags = {"ExitPiece", "City_Foundation", "Suburb"},
     contents = suburb_contents
 })
 
 AddRoom("suburb_base_2", {
     colour = {r = .3,g = 0.3, b = 0.3, a = 0.3},
     value = WORLD_TILES.SUBURB,
-    tags = {"ExitPiece", "City_Foundation", "City2", "Suburb"},
+    tags = {"ExitPiece", "City_Foundation", "Suburb"},
     contents = suburb_contents
 })

@@ -89,8 +89,6 @@ local _active_players = {}
 local _bandit
 local _stored_bandit
 local _stolen_oincs = {oinc = 0, oinc10 = 0, oinc100 = 0}
-local _disabled = false
-local _diffmod = 1
 
 --------------------------------------------------------------------------
 --[[ Private event handlers ]]
@@ -188,7 +186,7 @@ local function TrySpawnBanit()
 
     local oincs = player.components.inventory:GetItemsWithTag("oinc")
     for _, oinc in pairs(oincs) do
-        value = value + oinc.oincvalue * oinc.components.stackable:GetStackSize()
+        value = value + oinc.oincvalue * oinc.components.stackable:StackSize()
     end
 
     if _world.state.isdusk then
@@ -212,7 +210,6 @@ local function TrySpawnBanit()
     end
 
     local roll = math.random()
-    chance = chance * _diffmod
     if roll < chance then
         self:SpawnBanditOnPlayer(player)
     end
@@ -246,12 +243,6 @@ end
 --------------------------------------------------------------------------
 
 function self:SpawnBanditOnPlayer(player)
-    if _bandit and _bandit:IsValid() then
-        return
-    else
-        _bandit = nil
-    end
-
     local x, y, z = player.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 40, {"bandit_cover"})
 
@@ -266,20 +257,12 @@ function self:SpawnBanditOnPlayer(player)
         end
 
         local cx, cy, cz = cover.Transform:GetWorldPosition()
-        local angle = TheCamera.headingtarget
+        local angle = TheCamera:GetHeadingTarget() * DEGREES
         cx = cx - 1 * math.cos(angle)
         cz = cz - 1 * math.sin(angle)
 
         _bandit.Transform:SetPosition(cx, 0, cz)
     end
-end
-
-function self:SetDiffMod(diff)
-    _diffmod = diff
-end
-
-function self:SetDisabled(disabled)
-    _disabled = disabled == true
 end
 
 function self:GetLoot()
@@ -344,7 +327,9 @@ self.inst:ListenForEvent("ms_playerleft", OnPlayerLeft, _world)
 
 _worldsettingstimer:AddTimer(BANDIT_TIMER_NAME, TUNING.PIG_BANDIT_RESPAWN_TIME, TUNING.PIG_BANDIT_ENABLED, function()
     TrySpawnBanit()
-    if not _bandit then
+    if _bandit then
+        _worldsettingstimer:StopTimer(BANDIT_TIMER_NAME)
+    else
         StartRespawnTimer()
     end
 end)
