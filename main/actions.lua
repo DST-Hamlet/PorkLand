@@ -522,15 +522,15 @@ ACTIONS.SHOP.fn = function(act)
 
     if sell then
         doer.components.shopper:PayFor(target)
-        target:MakeShopKeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
+        target:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
         return true
     else
         if reason == "money" then
-            target:MakeShopKeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
+            target:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
         elseif reason == "goods" then
-            target:MakeShopKeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
+            target:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
         elseif reason == "closed" then
-            target:MakeShopKeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
+            target:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
         end
         return true -- Shouldn't this be false?
     end

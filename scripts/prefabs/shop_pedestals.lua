@@ -3,11 +3,11 @@ local assets =
     Asset("ANIM", "anim/pedestal_crate.zip"),
 }
 
-local function MakeShopKeeperSpeech(inst, speech)
+local function MakeShopkeeperSpeech(inst, speech)
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 20, {"shopkeep"})
-    for _, shop_keeper in ipairs(ents) do
-        shop_keeper:ShopKeeperSpeech(speech)
+    for _, shopkeeper in ipairs(ents) do
+        shopkeeper:ShopkeeperSpeech(speech)
     end
 end
 
@@ -108,7 +108,7 @@ local function restock(inst, force)
     elseif inst:HasTag("robbed") then
         inst.costprefab = "cost-nil"
         SetCost(inst, "cost-nil")
-        MakeShopKeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
+        MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
     elseif (inst:IsInLimbo() and (inst.imagename == "" or math.random() < 0.16) and not inst:HasTag("justsellonce")) or force then
         print("CHANGING ITEM")
         local newproduct = inst.components.shopped.shop.components.shopinterior:GetNewProduct(inst.components.shopped.shoptype)
@@ -253,7 +253,7 @@ local function common()
     inst.SetImageFromName = SetImageFromName
     inst.SpawnInventory = SpawnInventory
     inst.TimedInventory = TimedInventory
-    inst.MakeShopKeeperSpeech = MakeShopKeeperSpeech
+    inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
     inst.SoldItem = SoldItem
 
     inst.OnSave = onsave
