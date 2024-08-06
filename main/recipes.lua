@@ -279,7 +279,7 @@ SortAfter("goldenmachete", "goldenaxe", "TOOLS")
 AddRecipe2("shears", {Ingredient("twigs", 2),Ingredient("iron", 2)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
 SortAfter("shears", "goldenpitchfork", "TOOLS")
 
---war
+--WAR
 AddRecipe2("blunderbuss", {Ingredient("boards", 2), Ingredient("oinc10", 1), Ingredient("gears", 1)}, TECH.SCIENCE_TWO, {}, {"WEAPONS"})
 SortAfter("blunderbuss", "blowdart_sleep", "WEAPONS")
 
@@ -338,7 +338,7 @@ SortAfter("armor_snakeskin", "raincoat", "RAIN")
 AddRecipe2("gasmaskhat", {Ingredient("peagawkfeather", 4), Ingredient("pigskin", 1), Ingredient("fabric", 1)}, TECH.SCIENCE_TWO, {}, {"CLOTHING", "ENVIRONMENT_PROTECTION"})
 SortAfter("gasmaskhat", "icehat", "CLOTHING")
 
-AddRecipe2("thunderhat", {Ingredient("feather_thunder", 1), Ingredient("goldnugget", 1),Ingredient("cork", 2)}, TECH.SCIENCE_TWO, {}, {"CLOTHING", "RAIN"})
+AddRecipe2("thunderhat", {Ingredient("feather_thunder", 1), Ingredient("goldnugget", 1),Ingredient("cork", 2)}, TECH.SCIENCE_TWO, {}, {"CLOTHING", "RAIN","ENVIRONMENT_PROTECTION"})
 SortAfter("thunderhat", "pithhat", "CLOTHING")
 SortAfter("thunderhat", "eyebrellahat", "RAIN")
 
