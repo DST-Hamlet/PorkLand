@@ -152,7 +152,7 @@ local function fn()
     for _, tag in pairs(RESISTANCES) do
         inst.components.resistance:AddResistance(tag)
     end
-    inst.components.resistance:SetNoTags({"shadow"}) -- doesn't protect from shadow creatures 
+    inst.components.resistance:SetNoTags({"shadow"}) -- doesn't protect from shadow creatures
 
     inst:AddComponent("fueled")
     inst.components.fueled:InitializeFuelLevel(4 * TUNING.LARGE_FUEL)
@@ -167,7 +167,7 @@ local function fn()
     inst.components.equippable:SetOnUnequip(OnUnequip)
 
     inst:AddComponent("shadowlevel")
-	inst.components.shadowlevel:SetDefaultLevel(TUNING.ARMOTVORTEX_SHADOW_LEVEL)
+    inst.components.shadowlevel:SetDefaultLevel(TUNING.ARMOTVORTEX_SHADOW_LEVEL)
 
     MakeHauntableLaunchAndDropFirstItem(inst)
 

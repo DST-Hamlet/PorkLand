@@ -21,8 +21,8 @@ local function onHammered(inst, worker)
 end
 
 local function onHit(inst, worker)
-	inst.AnimState:PlayAnimation("hit")
-	inst.AnimState:PushAnimation("idle", false)
+    inst.AnimState:PlayAnimation("hit")
+    inst.AnimState:PushAnimation("idle", false)
 
     local fx = SpawnPrefab("robot_leaf_fx")
     local x, y, z = inst.Transform:GetWorldPosition()

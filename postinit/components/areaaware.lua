@@ -28,7 +28,7 @@ function AreaAware:GetDebugString() -- 替换原函数以避免调试崩溃
         end
         return s
     else
-		local x, y = TheWorld.Map:GetTileCoordsAtPoint(self.inst.Transform:GetWorldPosition())
+        local x, y = TheWorld.Map:GetTileCoordsAtPoint(self.inst.Transform:GetWorldPosition())
         return "No current node: "..x..", "..y
     end
 end

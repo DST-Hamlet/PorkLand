@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/antsuit.zip"),
+    Asset("ANIM", "anim/antsuit.zip"),
 }
 
 local function OnEquip(inst, owner)
@@ -22,18 +22,18 @@ end
 local function OnTakenDamage(inst, damage_amount)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/antsuit/hit")
 
-	if inst.components.fueled then
-		local percent = inst.components.fueled:GetPercent()
-		local new_percent = percent - (damage_amount * inst.components.armor.absorb_percent / inst.components.armor.maxcondition)
-		inst.components.fueled:SetPercent(new_percent)
-	end
+    if inst.components.fueled then
+        local percent = inst.components.fueled:GetPercent()
+        local new_percent = percent - (damage_amount * inst.components.armor.absorb_percent / inst.components.armor.maxcondition)
+        inst.components.fueled:SetPercent(new_percent)
+    end
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
@@ -61,7 +61,7 @@ local function fn()
 
     inst:AddComponent("armor")
     inst.components.armor:InitCondition(TUNING.ARMORWOOD, TUNING.ARMORWOOD_ABSORPTION)
-	inst.components.armor.ontakedamage = OnTakenDamage
+    inst.components.armor.ontakedamage = OnTakenDamage
 
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY

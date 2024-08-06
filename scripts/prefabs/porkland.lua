@@ -157,8 +157,8 @@ local function master_postinit(inst)
     inst:AddComponent("periodicpoopmanager")
 
     inst:AddComponent("cityalarms")
-	inst.components.cityalarms:AddCity(1)
-	inst.components.cityalarms:AddCity(2)
+    inst.components.cityalarms:AddCity(1)
+    inst.components.cityalarms:AddCity(2)
 end
 
 return MakeWorld("porkland", prefabs, assets, common_postinit, master_postinit, {"porkland"}, {tile_physics_init = tile_physics_init})

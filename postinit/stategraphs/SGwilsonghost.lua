@@ -19,7 +19,7 @@ local states = {
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
-			inst.AnimState:PlayAnimation("dissipate")
+            inst.AnimState:PlayAnimation("dissipate")
             inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_haunt", nil, nil, true)
         end,
 

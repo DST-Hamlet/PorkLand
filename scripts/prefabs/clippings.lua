@@ -1,13 +1,13 @@
 local assets =
 {
-	Asset("ANIM", "anim/cut_hedge.zip"),
+    Asset("ANIM", "anim/cut_hedge.zip"),
 }
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
@@ -26,7 +26,7 @@ local function fn()
     end
 
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
     inst:AddComponent("edible")
     inst.components.edible.foodtype = FOODTYPE.VEGGIE
@@ -37,7 +37,7 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
-	MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
+    MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
 
     inst:AddComponent("fuel")
