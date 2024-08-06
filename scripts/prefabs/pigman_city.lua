@@ -1097,9 +1097,13 @@ local function shopkeeper_master_postinit(inst)
     inst.separatedesk = separatedesk
     inst.ShopkeeperSpeech = ShopkeeperSpeech
 
+    -- TODO: Make it greet every new customer
     -- TheWorld:ListenForEvent("enterroom", function(data)
     --     inst:ShopkeeperSpeech("CITY_PIG_SHOPKEEPER_GREETING")
     -- end)
+    inst:ListenForEvent("entitywake", function()
+        inst:ShopkeeperSpeech("CITY_PIG_SHOPKEEPER_GREETING")
+    end)
 
     inst:ListenForEvent("death", OnDeath_ShopKeep)
 
