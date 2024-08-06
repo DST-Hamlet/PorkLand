@@ -273,13 +273,9 @@ end
 ACTIONS.USEDOOR.fn = function(act, forcesuccess)
     local door = act.target
     if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
-        return false, "DISABLED"
+        return false, "LOCKED"
     end
-    local success = door.components.door:Activate(act.doer)
-    if success then
-        return true
-    end
-    return false, "ERROR"
+    return door.components.door:Activate(act.doer)
 end
 
 ACTIONS.VAMPIREBAT_FLYAWAY.fn = function(act)
