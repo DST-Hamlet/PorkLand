@@ -3,22 +3,6 @@ local assets =
     Asset("ANIM", "anim/cropdust_fx.zip"),
 }
 
-local function OnEnterGas(inst)
-    if inst.OnGasChange then
-        inst:OnGasChange(true)
-    else
-        if inst:HasTag("insect") and inst.components.poisonable then
-            inst.components.poisonable:Poison(true)
-        end
-    end
-end
-
-local function OnLeaveGas(inst)
-    if inst.OnGasChange then
-        inst:OnGasChange(false)
-    end
-end
-
 local function Spawn(inst)
     inst.AnimState:PlayAnimation("appear")
     inst.AnimState:PushAnimation("idle_loop", true)
@@ -29,7 +13,7 @@ local function Despawn(inst)
     -- should probably disable DynamicShadow here
     inst:ListenForEvent("animover", function()
         for _, ent in ipairs(inst.ents_in_gas) do
-            OnLeaveGas(ent)
+            StopTakingGasDamage(ent)
         end
         inst:Remove()
     end)
@@ -38,8 +22,8 @@ end
 
 local START_RANGE = 2
 local END_RANGE = 2.2
-local DO_GAS_ONE_OF_TAGS = { "animal", "character", "monster", "insect" }
-local DO_GAS_NO_TAGS = {"gas"} -- no inlimbo tag?
+local DO_GAS_ONE_OF_TAGS = {"animal", "character", "monster", "insect"}
+local DO_GAS_NO_TAGS = {"gas", "INLIMBO"}
 
 local function OnUpdate(inst, dt)
     local x, y, z = inst.Transform:GetWorldPosition()
@@ -62,12 +46,15 @@ local function OnUpdate(inst, dt)
         end
 
         if not was_in_gas then
-            OnEnterGas(ent)
+            if ent.OnGasChange then -- gnat
+                ent:OnGasChange()
+            end
+            StartTakingGasDamage(ent)
         end
     end
 
     for _, ent in ipairs(old_ents) do
-        OnLeaveGas(ent)
+        StopTakingGasDamage(ent)
     end
 end
 

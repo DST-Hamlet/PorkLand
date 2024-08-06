@@ -24,7 +24,7 @@ end
 
 local function PlayerSeenBugsDie(inst)
     for _, player in pairs(AllPlayers) do
-        if not player:HasTag("playerghost") and inst:GetDistanceSqToInst(player) < 10*10 then
+        if not player:HasTag("playerghost") and inst:GetDistanceSqToInst(player) < 10 * 10 then
             player:DoTaskInTime(0.5, function()
                 player.components.talker:Say(GetString(player.prefab, "ANNOUNCE_GNATS_DIED"))
             end)
@@ -33,12 +33,10 @@ local function PlayerSeenBugsDie(inst)
 end
 
 local function OnGasChange(inst, onGas)
-    if onGas then
-        inst:DoTaskInTime(1, function()
-            inst.components.health:Kill()
-            PlayerSeenBugsDie(inst)
-        end)
-    end
+    inst:DoTaskInTime(1, function()
+        inst.components.health:Kill()
+        PlayerSeenBugsDie(inst)
+    end)
 end
 
 local FIND_LIGHT_DIST = 15
@@ -143,10 +141,6 @@ local function fn()
     inst:AddComponent("infester")
 
     inst:AddComponent("lootdropper")
-
-    -- inst:AddComponent("tiletracker")
-    -- inst.components.tiletracker:SetOnGasChangeFn(OnGasChange)
-    -- inst.components.tiletracker:Start()
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGgnat")

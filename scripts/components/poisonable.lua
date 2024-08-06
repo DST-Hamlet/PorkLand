@@ -6,6 +6,20 @@ local function OnKilled(inst)
     end
 end
 
+local function UpdateTile(self)
+    local was_in_gas = self._in_gas
+    local in_gas = false
+    local x, y, z = self.inst.Transform:GetWorldPosition()
+    if TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.GASJUNGLE then
+        in_gas = true
+    end
+    if was_in_gas and not in_gas then
+        StopTakingGasDamage(self.inst)
+    elseif not was_in_gas and in_gas then
+        StartTakingGasDamage(self.inst)
+    end
+end
+
 -- Binary state problematic for non-players? should have a timer that gets set to infinite for players and some discrete time for non-players
 local Poisonable = Class(function(self, inst)
     self.inst = inst
@@ -37,6 +51,9 @@ local Poisonable = Class(function(self, inst)
     self.blockall = nil
 
     self.inst:ListenForEvent("death", OnKilled)
+    self.inst:DoPeriodicTask(1, function()
+        UpdateTile(self)
+    end)
 end)
 
 function Poisonable:IsPoisonBlockerEquiped()
@@ -113,9 +130,9 @@ function Poisonable:SetOnCuredFn(fn)
 end
 
 -- Add an effect to be spawned when poisoning
----@param prefab The prefab to spawn as the effect
----@param offset The offset from the poisoning entity/symbol that the effect should appear at
----@param followsymbol Optional symbol for the effect to follow
+---@param prefab string The prefab to spawn as the effect
+---@param offset Vector3 The offset from the poisoning entity/symbol that the effect should appear at
+---@param followsymbol string Optional symbol for the effect to follow
 function Poisonable:AddPoisonFX(prefab, offset, followsymbol)
     table.insert(self.fxdata, {prefab = prefab, x = offset.x, y = offset.y, z = offset.z, follow = followsymbol})
 end

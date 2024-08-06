@@ -398,3 +398,38 @@ function DoSectorAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
 
     return DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
 end
+
+-- Putting these here because both gas cloud and gas jundle turf uses those
+local POISON_DAMAGE_INSECT = 60
+local POISON_DAMAGE_NON_INSECT = 5
+function StartTakingGasDamage(inst)
+    if not inst.components.poisonable then
+        return
+    end
+
+    -- already in gas
+    if inst._poison_damage_task then
+        return
+    end
+
+    local damage = inst:HasTag("insect") and POISON_DAMAGE_INSECT or POISON_DAMAGE_NON_INSECT
+    inst._poison_damage_task = inst:DoPeriodicTask(1, function()
+        inst.components.health:DoDelta(-damage, nil, "gascloud")
+    end)
+
+    if inst.components.poisonable.show_fx then
+        inst.components.poisonable:SpawnFX()
+    end
+end
+
+function StopTakingGasDamage(inst)
+    if inst._poison_damage_task then
+        inst._poison_damage_task:Cancel()
+        inst._poison_damage_task = nil
+    end
+
+    -- Don't kill fx if we are still poisoned
+    if not inst.components.poisonable:IsPoisoned() then
+        inst.components.poisonable:KillFX()
+    end
+end
