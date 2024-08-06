@@ -142,6 +142,7 @@ AddPlayerPostInit(function(inst)
 
     inst:AddComponent("interiorvisitor")
     inst:AddComponent("sailor")
+    inst:AddComponent("infestable")
 
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)

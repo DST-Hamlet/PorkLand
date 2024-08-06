@@ -44,6 +44,8 @@ if not rawget(_G, "HotReloading") then
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
         GAS = Action({distance = 1.5, mount_enabled = true}),
+        INFEST = Action({distance = 0.5}),
+        BUILD_MOUND = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -490,13 +492,40 @@ ACTIONS.STOCK.fn = function(act)
 end
 
 ACTIONS.GAS.fn = function(act)
-	if act.invobject and act.invobject.components.gasser then
+    if act.invobject and act.invobject.components.gasser then
         local pos = (act.pos and act:GetActionPoint()) or (act.target and act.target:GetPosition())
-		act.invobject.components.gasser:Gas(pos)
-		return true
-	end
+        act.invobject.components.gasser:Gas(pos)
+        return true
+    end
 end
 
+ACTIONS.INFEST.fn = function(act)
+    if not act.doer.components.infester.infested then
+        act.doer.components.infester:Infest(act.target)
+        return true
+    end
+
+    return false
+end
+
+ACTIONS.INFEST.validfn = function(act)
+    local AGRO_STOP_DIST = 7
+    return act.doer:GetDistanceSqToInst(act.target) <= AGRO_STOP_DIST * AGRO_STOP_DIST
+end
+
+ACTIONS.BUILD_MOUND.fn = function(act)
+    local x, y, z = act.doer.Transform:GetWorldPosition()
+
+    local home = SpawnPrefab("gnatmound")
+    home.Transform:SetPosition(x, y, z)
+    home.components.workable.workleft = 1
+    home.components.childspawner:TakeOwnership(act.doer)
+    home.components.childspawner.childreninside = home.components.childspawner.childreninside - 1
+    home:UpdateAnimations()
+
+    act.doer:PushEvent("takeoff")
+    act.doer.makehome = nil
+end
 
 
 -- Patch for hackable things
