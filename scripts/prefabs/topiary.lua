@@ -23,8 +23,8 @@ local function onhammered(inst, worker)
 end
 
 local function onhit(inst, worker)
-	inst.AnimState:PlayAnimation("hit")
-	inst.AnimState:PushAnimation("idle", false)
+    inst.AnimState:PlayAnimation("hit")
+    inst.AnimState:PushAnimation("idle", false)
 
     local fx = SpawnPrefab("robot_leaf_fx")
     local x, y, z = inst.Transform:GetWorldPosition()
@@ -35,8 +35,8 @@ end
 
 
 local function onbuilt(inst)
-	inst.AnimState:PlayAnimation("place")
-	inst.AnimState:PushAnimation("idle")
+    inst.AnimState:PlayAnimation("place")
+    inst.AnimState:PushAnimation("idle")
 end
 
 local function makeitem(name, build, frame)
