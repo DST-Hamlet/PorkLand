@@ -1,6 +1,5 @@
 local assets =
 {
-    --Asset("ANIM", "anim/store_items.zip"),
     Asset("ANIM", "anim/pedestal_crate.zip"),
 }
 
@@ -168,20 +167,36 @@ local function onload(inst, data)
     end
 end
 
-local function setobstical(inst)
-    local ground = GetWorld()
-    if ground then
-        local pt = Point(inst.Transform:GetWorldPosition())
-        ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
+local function OnIsPathFindingDirty(inst)
+    if inst._ispathfinding:value() then
+        if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
+            inst._pfpos = inst:GetPosition()
+            TheWorld.Pathfinder:AddWall(inst._pfpos:Get())
+        end
+    elseif inst._pfpos ~= nil then
+        TheWorld.Pathfinder:RemoveWall(inst._pfpos:Get())
+        inst._pfpos = nil
     end
 end
 
-local function clearobstacle(inst)
-    local ground = GetWorld()
-    if ground then
-    	local pt = Point(inst.Transform:GetWorldPosition())
-    	ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)
-    end
+local function InitializePathFinding(inst)
+    inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
+    OnIsPathFindingDirty(inst)
+end
+
+local function MakeObstacle(inst)
+    inst.Physics:SetActive(true)
+    inst._ispathfinding:set(true)
+end
+
+local function ClearObstacle(inst)
+    inst.Physics:SetActive(false)
+    inst._ispathfinding:set(false)
+end
+
+local function onremove(inst)
+    inst._ispathfinding:set_local(false)
+    OnIsPathFindingDirty(inst)
 end
 
 local function OnEntityWake(inst)
@@ -214,6 +229,17 @@ local function common()
 
     inst.imagename = nil
 
+    ------- Copied from prefabs/wall.lua -------
+    inst._pfpos = nil
+    inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+    MakeObstacle(inst)
+    -- Delay this because makeobstacle sets pathfinding on by default
+    -- but we don't to handle it until after our position is set
+    inst:DoTaskInTime(0, InitializePathFinding)
+
+    inst:ListenForEvent("onremove", onremove)
+    --------------------------------------------
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -235,12 +261,6 @@ local function common()
     inst.OnLoad = onload
     inst.restock = restock
 
-    inst.setobstical = setobstical
-	inst:DoTaskInTime(0, function()
-							-- defer, our position hasn't been set
-						    inst.setobstical(inst)
-						end)
-
     inst.OnEntityWake = OnEntityWake
 
     return inst
@@ -258,6 +278,7 @@ local function buyer()
 
     inst:WatchWorldState("isday", restock)
     inst:WatchWorldState("isfiesta", restock)
+
     return inst
 end
 
