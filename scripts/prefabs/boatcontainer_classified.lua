@@ -489,7 +489,7 @@ end
 local function ReturnActiveItemToSlot(inst, slot)
     -- inventory_classified:ReturnActiveItem will call PushNewActiveItem and SendRPCToServer
     if not IsBusy(inst) then
-        local inventory, active_item, busy = QueryActiveItem()
+        local _, active_item, busy = QueryActiveItem()
         if not busy and active_item ~= nil then
             local item = inst:GetItemInSlot(slot)
             if item == nil then

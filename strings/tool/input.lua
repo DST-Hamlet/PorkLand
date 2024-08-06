@@ -10,7 +10,7 @@ keys = {  -- copy key = over key
     --["POG"] = "POG",
 
     ["CANDLEHAT"] = "CANDLEHAT",
-    ["CORK_BAT"] = "CORK_BAT", 
+    ["CORK_BAT"] = "CORK_BAT",
     ["ANTMASKHAT"] = "ANTMASKHAT",
     ["ANTSUIT"] = "ANTSUIT",
     ["BUGREPELLENT"] = "BUGREPELLENT",
@@ -56,8 +56,6 @@ keys = {  -- copy key = over key
     ["PIG_RUINS_EXIT4"] = "PIG_RUINS_EXIT4",
 
     ["ANTMAN"] = "ANTMAN",
-    ["ANTMASKHAT"] = "ANTMASKHAT",
-    ["ANTSUIT"] = "ANTSUIT",
     ["ANTMAN_WARRIOR"] = "ANTMAN_WARRIOR",
 
     ["PHEROMONESTONE"] = "PHEROMONESTONE",
