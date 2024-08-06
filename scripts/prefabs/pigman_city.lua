@@ -1073,7 +1073,7 @@ local function OnDeath_ShopKeep(inst, data)
 end
 
 -- This is different from Don't Starve Hamlet, we use thing like "CITY_PIG_SHOPKEEPER_CLOSING" instead of STRINGS.CITY_PIG_SHOPKEEPER_CLOSING[0]
-local function shopkeeper_speech(inst, speech)
+local function ShopKeeperSpeech(inst, speech)
     if inst:IsValid() and not inst:IsAsleep() and not inst.components.combat.target and not inst:IsInLimbo() then
         inst:SayLine(speech)
     end
@@ -1082,7 +1082,7 @@ end
 local function CloseShop(inst)
     if inst:IsValid() and not inst:IsAsleep() and not inst.components.combat.target and not inst:IsInLimbo() then
         inst.sg:GoToState("idle")
-        shopkeeper_speech(inst, "CITY_PIG_SHOPKEEPER_CLOSING")
+        inst:ShopKeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
     end
 end
 
@@ -1095,10 +1095,10 @@ local function shopkeeper_master_postinit(inst)
     inst.components.sleeper.onlysleepsfromitems = true
 
     inst.separatedesk = separatedesk
-    inst.shopkeeper_speech = shopkeeper_speech
+    inst.ShopKeeperSpeech = ShopKeeperSpeech
 
     -- TheWorld:ListenForEvent("enterroom", function(data)
-    --     shopkeeper_speech(inst, getSpeechType(inst, "CITY_PIG_SHOPKEEPER_GREETING"))
+    --     inst:ShopKeeperSpeech("CITY_PIG_SHOPKEEPER_GREETING")
     -- end)
 
     inst:ListenForEvent("death", OnDeath_ShopKeep)

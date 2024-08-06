@@ -36,6 +36,8 @@ if not rawget(_G, "HotReloading") then
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
         MAKEHOME = Action({distance = 1}),
+        GAS = Action({distance = 1.5, mount_enabled = true}),
+
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         PAY_TAX = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -43,7 +45,8 @@ if not rawget(_G, "HotReloading") then
         SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
-        GAS = Action({distance = 1.5, mount_enabled = true}),
+
+        SHOP = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -486,6 +489,50 @@ ACTIONS.STOCK.fn = function(act)
         act.target.restock(act.target,true)
         act.doer.changestock = nil
         return true
+    end
+end
+
+ACTIONS.SHOP.fn = function(act)
+    local doer = act.doer
+    local target = act.target
+	if not (doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
+        return false
+    end
+
+    if not doer.components.shopper:IsWatching(target) then
+        doer.components.shopper:Take(target)
+        return true
+    end
+
+    local sell = true
+    local reason = nil
+
+    if target:HasTag("shopclosed") or TheWorld.state.isnight then
+        reason = "closed"
+        sell = false
+    elseif not doer.components.shopper:CanPayFor(target) then
+        local prefab_wanted = target.costprefab
+        if prefab_wanted == "oinc" then
+            reason = "money"
+        else
+            reason = "goods"
+        end
+        sell = false
+    end
+
+    if sell then
+        doer.components.shopper:PayFor(target)
+        target:MakeShopKeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
+        return true
+    else
+        if reason == "money" then
+            target:MakeShopKeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
+        elseif reason == "goods" then
+            target:MakeShopKeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
+        elseif reason == "closed" then
+            target:MakeShopKeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
+        end
+        return true -- Shouldn't this be false?
     end
 end
 
