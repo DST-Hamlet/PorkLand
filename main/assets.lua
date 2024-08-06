@@ -176,6 +176,7 @@ PrefabFiles = {
     "city_lamp",
     "hedge",
     "lawnornaments",
+    "topiary",
     "clippings",
     "reconstruction_project",
     "city_hammer",
