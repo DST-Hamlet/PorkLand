@@ -420,13 +420,6 @@ local function MakeHedgeType(data)
         return inst
     end
 
-    local function fn_repaired(Sim)
-        local inst = fn(Sim)
-        inst.components.health:SetPercent(1)
-        inst:SetPrefabName("wall_" .. data.name)
-        return inst
-    end
-
     return Prefab(data.name, fn, assets, prefabs),
         Prefab(data.name .. "_item", itemfn, assets, {data.name, data.name .. "_item_placer", "collapse_small"}),
         MakePlacer(data.name .. "_item_placer", "hedge", "hedge" .. data.hedgetype .. "_build", "growth1", false, false, true, nil, nil, "eight")
