@@ -944,7 +944,7 @@ function PlayerController:DoActionAutoEquip(buffaction, ...)
     if buffaction.action == ACTIONS.PUTONSHELF then
         return
     end
-    return do_action_auto_equip(self, ...)
+    return do_action_auto_equip(self, buffaction, ...)
 end
 
 function PLENV.OnHotReload()
