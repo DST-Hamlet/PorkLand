@@ -708,7 +708,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 -- saves the roomID on the object
-                if object.components.shopinterior or object.components.shopped or object.components.shopdispenser then
+                if object.components.shopped then
                     object.interiorID = interior.unique_name
                 end
 
