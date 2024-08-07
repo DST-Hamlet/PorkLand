@@ -1229,7 +1229,6 @@ PROP_DEFS.pig_shop_academy = function (depth, width, exterior_door_def)
         },
 
         {name = "deco_roomglow", x_offset = 0, z_offset = 0},
-        {name = "shop_spawner", x_offset = -3, z_offset = 0, shop_type = "pig_shop_academy"},
         {name = "pigman_professor_shopkeep", x_offset = -2.3, z_offset = 4, startstate = "desk_pre"},
         {name = "shlef_midcentury", x_offset = -4.5, z_offset = -3.3, shelfitems = {{1, "trinket_1"}, {5, "trinket_2"}, {6, "trinket_3"}}},
 
@@ -1276,7 +1275,6 @@ PROP_DEFS.pig_shop_antiquities = function (depth, width, exterior_door_def)
 
         {name = "pigman_collector_shopkeep", x_offset = -3, z_offset = 4, startstate = "desk_pre"},
         {name = "deco_roomglow", x_offset = 0, z_offset = 0},
-        {name = "shop_spawner", x_offset = -3, z_offset = 0, shop_type = "pig_shop_antiquities"},
         {name = "shelf_midcentury", x_offset = -4.5, z_offset = 0, shelfitems = {{1, "trinket_1"}, {5, "trinket_2"}, {6, "trinket_3"}}},
         {name = "shelf_cinderblocks", x_offset = -4.5, z_offset = -5},
 
@@ -1328,7 +1326,6 @@ PROP_DEFS.pig_shop_hatshop = function(depth, width, exterior_door_def)
         {name = "shelf_floating", x_offset = -5,   z_offset = 0, shelfitems={{1,"petals"},{2,"petals"},{3,"petals"}, {4,"cutgrass"}, {5,"cutgrass"},{6,"petals"}} },
 
         {name = "deco_roomglow", x_offset = 0, z_offset = 0},
-        {name = "shop_spawner", x_offset = -3, z_offset = 0, shop_type = "pig_shop_hatshop"},
         {name = "pigman_hatmaker_shopkeep", x_offset = -3.5, z_offset = 5, startstate = "desk_pre"},
 
         {name = "shelf_pipe", x_offset = -4.5, z_offset = -3.5},
@@ -1387,7 +1384,6 @@ PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def)
 
         {name = "shelf_midcentury", x_offset = -4.5, z_offset = 4, shelfitems={{5, "twigs"}, {6, "twigs"}, {3, "twigs"}, {4, "twigs"}}},
         {name = "deco_roomglow", x_offset =  0,    z_offset =  0 },
-        {name = "shop_spawner", x_offset = -3,    z_offset =  0, shop_type = "pig_shop_weapons" },
         {name = "pigman_hunter_shopkeep", x_offset = -3,    z_offset =  0, startstate = "desk_pre" },
         {name = "shield_axes", x_offset = -width/2, z_offset =  0 },
 
@@ -1436,7 +1432,6 @@ PROP_DEFS.pig_shop_arcane = function (depth, width, exterior_door_def)
 
         { name = "pigman_erudite_shopkeep", x_offset = -3,   z_offset = 4, startstate = "desk_pre" },
         { name = "deco_roomglow",           x_offset = 0,    z_offset = 0 },
-        { name = "shop_spawner",            x_offset = -3,   z_offset = 0, shop_type = "pig_shop_arcane", saveID = true },
         { name = "shelf_glass",           x_offset = -4.5, z_offset = -4, rotation=-90, shelfitems={{1,"trinket_1"},{5,"trinket_2"},{6,"trinket_3"}} },
         { name = "deco_arcane_bookshelf",   x_offset = -4.5, z_offset = 0},
 
@@ -1477,7 +1472,6 @@ PROP_DEFS.pig_shop_florist = function (depth, width, exterior_door_def)
 
         { name = "pigman_florist_shopkeep", x_offset = -1,   z_offset =  4,    startstate = "desk_pre" },
         { name = "deco_roomglow",           x_offset =  0,   z_offset =  0 },
-        { name = "shop_spawner",            x_offset =  0,   z_offset =  0,    shop_type = "pig_shop_florist" },
         { name = "shelf_hutch",           x_offset = -4.5, z_offset = -2.6, shelfitems={{3,"seeds"},{4,"seeds"},{5,"seeds"},{6,"seeds"}} },
 
         { name = "rug_rectangle", x_offset = -2.3, z_offset = -width/4+1,   rotation = 92},
@@ -1522,7 +1516,6 @@ PROP_DEFS.pig_shop_hoofspa = function (depth, width, exterior_door_def)
 
         { name = "pigman_beautician_shopkeep", x_offset = -3, z_offset = 3, startstate = "desk_pre" },
         { name = "deco_roomglow",              x_offset = 0,  z_offset = 0 },
-        { name = "shop_spawner",               x_offset = -3, z_offset = 0, shop_type = "pig_shop_hoofspa" },
 
         { name = "shelf_marble", x_offset = -4.5, z_offset = -3,  rotation=-90, shelfitems={{3,"petals"},{4,"petals"},{5,"petals"},{6,"petals"}}},
 
@@ -1566,7 +1559,6 @@ PROP_DEFS.pig_shop_general = function (depth, width, exterior_door_def)
         },
 
         { name = "pigman_banker_shopkeep", x_offset = -1, z_offset = 4, startstate = "desk_pre" },
-        { name = "shop_spawner", x_offset = -3,   z_offset =  0, shop_type = "pig_shop_general" },
         { name = "shelf_wood", x_offset = -4.5, z_offset = -4, shelfitems={{3,"rocks"},{4,"rocks"},{5,"rocks"},{6,"rocks"}} },
         { name = "shelf_wood", x_offset = -4.5, z_offset =  4, shelfitems={{3,"cutgrass"},{4,"cutgrass"},{5,"cutgrass"},{6,"cutgrass"}} },
         { name = "rug_hedgehog", x_offset = -0.2, z_offset =  4, rotation = 90},
@@ -1613,7 +1605,6 @@ PROP_DEFS.pig_shop_produce = function (depth, width, exterior_door_def)
             usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_storeowner_shopkeep", x_offset = -2.5,         z_offset = 4, startstate = "desk_pre" },
-        { name = "shop_spawner",               x_offset = -3,           z_offset = 0, shop_type = "pig_shop_produce"},
         { name = "rug_rectangle",              x_offset = depth/6+1,    z_offset = width/6+1, rotation =  95},
         { name = "rug_rectangle",              x_offset = -depth/6+1,   z_offset = width/6+1, rotation =  91},
         { name = "rug_rectangle",              x_offset = depth/6+0.5,  z_offset = -width/6,  rotation = -95},
@@ -1660,7 +1651,6 @@ PROP_DEFS.pig_shop_deli = function (depth, width, exterior_door_def)
             usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_storeowner_shopkeep", x_offset = -1, z_offset = 4, startstate = "desk_pre" },
-        { name = "shop_spawner",               x_offset = -3, z_offset = 0, shop_type = "pig_shop_deli" },
         { name = "shelf_fridge", x_offset = -4.5, z_offset = -4, rotation=-90,  shelfitems={{1,"fish_raw_small"},{2,"fish_raw_small"},{3,"bird_egg"},{4,"bird_egg"},{5,"froglegs"},{6,"froglegs"}} },
 
         { name = "deco_general_hangingscale",     x_offset = -2, z_offset =  4.7 },
@@ -1701,7 +1691,6 @@ PROP_DEFS.pig_shop_cityhall = function (depth, width, exterior_door_def)
 
         { name = "pigman_mayor_shopkeep",    x_offset = -3, z_offset = 4 },
         { name = "deco_roomglow",            x_offset = 0,  z_offset = 0 },
-        { name = "shop_spawner",             x_offset = -3, z_offset = 0, shop_type = "pig_shop_cityhall" },
 
         { name = "deco_cityhall_desk",       x_offset = -1.3,     z_offset =  0 },
         { name = "deco_cityhall_bookshelf",  x_offset = -depth/2, z_offset =  width/3 },
@@ -1742,7 +1731,6 @@ PROP_DEFS.pig_shop_cityhall_player = function (depth, width, exterior_door_def)
             my_door_id = exterior_door_def.target_door_id, target_door_id = exterior_door_def.my_door_id, addtags={"guard_entrance"}, usesounds={EXIT_SHOP_SOUND} },
 
         { name = "deco_roomglow",            x_offset = 0,  z_offset = 0 },
-        { name = "shop_spawner",             x_offset = -3, z_offset = 0, shop_type = "pig_shop_cityhall_player" },
 
         { name = "deco_cityhall_desk",       x_offset = -1.3,     z_offset =  0 },
         { name = "deco_cityhall_bookshelf",  x_offset = -depth/2, z_offset =  width/3 },
@@ -1779,7 +1767,6 @@ PROP_DEFS.pig_shop_bank = function (depth, width, exterior_door_def)
             addtags = {"guard_entrance", "shop_music"}, usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_banker_shopkeep",     x_offset = -2.5,         z_offset = 0, startstate = "desk_pre" },
-        { name = "shop_spawner",               x_offset = -3,           z_offset = 0, shop_type = "pig_shop_bank" },
 
         { name = "deco_roomglow",            x_offset = 0,  z_offset = 0 },
 
@@ -1843,7 +1830,6 @@ PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def)
         },
 
         { name = "pigman_mechanic_shopkeep",     x_offset = -2,         z_offset = -3, startstate = "desk_pre" },
-        { name = "shop_spawner",               x_offset = -3,           z_offset = 0, shop_type = "pig_shop_tinker" },
 
         { name = "deco_roomglow",            x_offset = 0,  z_offset = 0 },
 

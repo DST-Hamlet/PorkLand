@@ -72,17 +72,11 @@ local function SpawnInventory(inst, prefabtype, costprefab, cost)
     inst.costprefab = costprefab
     inst.cost = cost
 
-    local item = nil
-    if prefabtype ~= nil then
-        item = SpawnPrefab(prefabtype)
-    else
-        item = SpawnPrefab(inst.prefabtype)
-    end
-
-    if item ~= nil then
+    local item = SpawnPrefab(prefabtype or inst.prefabtype)
+    if item then
         inst:SetImage(item)
         inst:SetCost(costprefab,cost)
-        inst.components.shopdispenser:SetItem(item)
+        inst.components.shopped:SetItemPrefab(item.prefab)
         item:Remove()
     end
 end
@@ -91,13 +85,13 @@ end
 local function TimedInventory(inst, prefabtype)
     inst.prefabtype = prefabtype
     local time = 300 + math.random() * 300
-    inst.components.shopdispenser:RemoveItem()
+    inst.components.shopped:RemoveItem()
     inst:SetImage(nil)
     inst:DoTaskInTime(time, function() inst:SpawnInventory(nil) end)
 end
 
 local function SoldItem(inst)
-    inst.components.shopdispenser:RemoveItem()
+    inst.components.shopped:RemoveItem()
     inst:SetImage(nil)
 end
 
@@ -111,14 +105,10 @@ local function restock(inst, force)
         MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
     elseif (inst:IsInLimbo() and (inst.imagename == "" or math.random() < 0.16) and not inst:HasTag("justsellonce")) or force then
         print("CHANGING ITEM")
-        local newproduct = inst.components.shopped.shop.components.shopinterior:GetNewProduct(inst.components.shopped.shoptype)
-        if inst.saleitem then
-            newproduct = inst.saleitem
-        end
-        SpawnInventory(inst, newproduct[1],newproduct[2],newproduct[3])
+        local newproduct = inst.saleitem or inst.components.shopped:GetNewProduct()
+        SpawnInventory(inst, newproduct[1], newproduct[2], newproduct[3])
     end
 end
-
 
 local function displaynamefn(inst)
     return "whatever"
@@ -206,7 +196,7 @@ local function OnEntityWake(inst)
     end
 end
 
-local function common()
+local function fn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
@@ -248,6 +238,9 @@ local function common()
     MakeMediumBurnable(inst)
     MakeSmallPropagator(inst)
 
+    inst:AddComponent("shopdispenser")
+    inst:AddComponent("shopped")
+
     inst.SetImage = SetImage
     inst.SetCost = SetCost
     inst.SetImageFromName = SetImageFromName
@@ -262,29 +255,10 @@ local function common()
 
     inst.OnEntityWake = OnEntityWake
 
-    return inst
-end
-
-local function buyer()
-    local inst = common()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    inst:AddComponent("shopdispenser")
-    inst:AddComponent("shopped")
-
     inst:WatchWorldState("isday", restock)
     inst:WatchWorldState("isfiesta", restock)
 
     return inst
 end
 
-local function seller()
-    local inst = common()
-    return inst
-end
-
-return Prefab("shop_buyer", buyer, assets),
-       Prefab("shop_seller", seller, assets)
+return Prefab("shop_buyer", fn, assets)

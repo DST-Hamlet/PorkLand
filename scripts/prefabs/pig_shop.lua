@@ -459,6 +459,12 @@ local function CreateInterior(inst)
         wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
         PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
     interior_spawner:SpawnInterior(def)
+
+    local room_position = interior_spawner:IndexToPosition(id)
+    local pedestals = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shop_pedestal"})
+    for _, pedestal in ipairs(pedestals) do
+        pedestals.components.shopped:InitShop(inst.prefab)
+    end
 end
 
 local function OnSave(inst, data)
