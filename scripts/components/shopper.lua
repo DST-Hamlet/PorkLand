@@ -106,13 +106,11 @@ end
 function Shopper:IsWatching(item)
     if item:HasTag("cost_one_oinc") or item.components.shopped then
         local x, y, z = item.Transform:GetWorldPosition()
-          local ents = TheSim:FindEntities(x, y, z, 50, {"shopkeep"}, {"INLIMBO"})
-          if #ents > 0 then
-              for _, ent in ipairs(ents) do
-                  if not ent.components.sleeper or not ent.components.sleeper:IsAsleep() then
-                      return true
-                  end
-              end
+        local shopkeeps = TheSim:FindEntities(x, y, z, 50, {"shopkeep"}, {"INLIMBO"})
+        for _, shopkeep in ipairs(shopkeeps) do
+            if not shopkeep.components.sleeper or not shopkeep.components.sleeper:IsAsleep() then
+                return true
+            end
         end
     end
     return false

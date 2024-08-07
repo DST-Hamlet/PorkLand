@@ -404,12 +404,14 @@ ACTIONS.STOCK.fn = function(act)
     end
 end
 
+-- TODO: Migrate shelves to use this as well
 ACTIONS.SHOP.stroverridefn = function(act)
-	if not (act.target and act.target.replica.shopped) then
+    local target = act.target
+	if not (target and target.replica.shopped) then
 		return
     end
 
-    local item = act.target.replica.shopped:GetItemToSell()
+    local item = target.replica.shopped:GetItemToSell()
     local blueprint = false
     local blueprintstart = string.find(item, "_blueprint")
     if blueprintstart then
@@ -418,34 +420,46 @@ ACTIONS.SHOP.stroverridefn = function(act)
     end
 
     -- TODO: See if we want to get rid of this
-    local wantitem = STRINGS.NAMES[string.upper(item)]
+    local want_item = STRINGS.NAMES[string.upper(item)]
     if blueprint then
-        wantitem = string.format(STRINGS.BLUEPRINT_ITEM, wantitem)
+        want_item = string.format(STRINGS.BLUEPRINT_ITEM, want_item)
     end
-    if not wantitem then
+    if not want_item then
         local temp = SpawnPrefab(item)
         if temp.displaynamefn then
-            wantitem = temp:displaynamefn()
+            want_item = temp:displaynamefn()
         else
-            wantitem = item
+            want_item = item
         end
         temp:Remove()
     end
 
-    local cost_prefab = act.target.replica.shopped:GetCostPrefab()
+    local cost_prefab = target.replica.shopped:GetCostPrefab()
+    local cost = target.replica.shopped:GetCost()
     local payitem = STRINGS.NAMES[string.upper(cost_prefab)]
     local qty = ""
     if cost_prefab == "oinc" then
-        qty = act.target.cost
-        if act.target.cost > 1 then
+        qty = cost
+        if cost > 1 then
             payitem = STRINGS.NAMES.OINC_PL
         end
     end
 
-    if act.doer.components.shopper:IsWatching(act.target) then
-        return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = wantitem, qty = qty, payitem = payitem })
+    -- TODO: See if we want to move this to shopper replica or something
+    local is_watching = false
+    if target:HasTag("cost_one_oinc") or target.replica.shopped then
+        local x, y, z = target.Transform:GetWorldPosition()
+        local shopkeeps = TheSim:FindEntities(x, y, z, 50, {"shopkeep"}, {"INLIMBO"})
+        for _, shopkeep in ipairs(shopkeeps) do
+            -- if not shopkeep.components.sleeper or not shopkeep.components.sleeper:IsAsleep() then
+                return true
+            -- end
+        end
+    end
+    if is_watching then
+        return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = want_item, qty = qty, payitem = payitem })
     else
-        return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = wantitem })
+        return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = want_item })
     end
 end
 
@@ -468,7 +482,7 @@ ACTIONS.SHOP.fn = function(act)
         reason = "closed"
         sell = false
     elseif not doer.components.shopper:CanPayFor(target) then
-        local prefab_wanted = target.costprefab
+        local prefab_wanted = target.components.shopped:GetCostPrefab()
         if prefab_wanted == "oinc" then
             reason = "money"
         else
