@@ -398,7 +398,7 @@ end
 
 ACTIONS.STOCK.fn = function(act)
     if act.target then
-        act.target.restock(act.target,true)
+        act.target:Restock(true)
         act.doer.changestock = nil
         return true
     end

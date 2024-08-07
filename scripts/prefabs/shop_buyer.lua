@@ -81,21 +81,12 @@ local function SpawnInventory(inst, prefabtype, costprefab, cost)
     end
 end
 
-
-local function TimedInventory(inst, prefabtype)
-    inst.prefabtype = prefabtype
-    local time = 300 + math.random() * 300
-    inst.components.shopped:RemoveItem()
-    inst:SetImage(nil)
-    inst:DoTaskInTime(time, function() inst:SpawnInventory(nil) end)
-end
-
 local function SoldItem(inst)
     inst.components.shopped:RemoveItem()
     inst:SetImage(nil)
 end
 
-local function restock(inst, force)
+local function Restock(inst, force)
     if inst:HasTag("nodailyrestock") then
         print("NO DAILY RESTOCK")
         return
@@ -103,18 +94,14 @@ local function restock(inst, force)
         inst.costprefab = "cost-nil"
         SetCost(inst, "cost-nil")
         MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
-    elseif (inst:IsInLimbo() and (inst.imagename == "" or math.random() < 0.16) and not inst:HasTag("justsellonce")) or force then
+    elseif force or (inst:IsAsleep() and (inst.imagename == "" or math.random() < 0.16) and not inst:HasTag("justsellonce")) then
         print("CHANGING ITEM")
         local newproduct = inst.saleitem or inst.components.shopped:GetNewProduct()
         SpawnInventory(inst, newproduct[1], newproduct[2], newproduct[3])
     end
 end
 
-local function displaynamefn(inst)
-    return "whatever"
-end
-
-local function onsave(inst, data)
+local function OnSave(inst, data)
     data.imagename = inst.imagename
     data.costprefab = inst.costprefab
     data.cost = inst.cost
@@ -125,7 +112,7 @@ local function onsave(inst, data)
     data.nodailyrestock = inst:HasTag("nodailyrestock")
 end
 
-local function onload(inst, data)
+local function OnLoad(inst, data)
     if data then
         if data.imagename then
             SetImageFromName(inst, data.imagename)
@@ -244,18 +231,17 @@ local function fn()
     inst.SetCost = SetCost
     inst.SetImageFromName = SetImageFromName
     inst.SpawnInventory = SpawnInventory
-    inst.TimedInventory = TimedInventory
     inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
     inst.SoldItem = SoldItem
+    inst.Restock = Restock
 
-    inst.OnSave = onsave
-    inst.OnLoad = onload
-    inst.restock = restock
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     inst.OnEntityWake = OnEntityWake
 
-    inst:WatchWorldState("isday", restock)
-    inst:WatchWorldState("isfiesta", restock)
+    inst:WatchWorldState("cycle", Restock)
+    inst:WatchWorldState("isfiesta", Restock)
 
     return inst
 end

@@ -492,7 +492,7 @@ function CityPigBrain:OnStart()
                 RunAway(self.inst, GoToIdleStateWrap(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end), RUN_AWAY_DIST, STOP_RUN_AWAY_DIST )--[[, "alarmed"]]),
 
             WhileNode(function() return ReplaceStockCondition(self.inst) end, "replenish",
-                DoAction(self.inst, ReplenishStockAction,"restock", true)),
+                DoAction(self.inst, ReplenishStockAction, "restock", true)),
 
             -- For the shop pig when they're at their desk.
             WhileNode(function() return self.inst:HasTag("atdesk") end, "AtDesk",
