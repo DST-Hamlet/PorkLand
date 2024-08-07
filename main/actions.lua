@@ -698,7 +698,12 @@ local PL_COMPONENT_ACTIONS =
             if not inst:HasTag("empty") then
                 table.insert(actions, ACTIONS.TAKEFROMSHELF)
             end
-        end
+        end,
+        shopped = function(inst, doer, actions, right)
+            if inst:HasTag("has_item_to_sell") then
+                table.insert(actions, ACTIONS.SHOP)
+            end
+        end,
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right

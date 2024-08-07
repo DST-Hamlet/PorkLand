@@ -116,7 +116,6 @@ function Shopper:IsWatching(prefab)
         end
     end
     return false
-
 end
 
 function Shopper:CanPayFor(pedestal)
