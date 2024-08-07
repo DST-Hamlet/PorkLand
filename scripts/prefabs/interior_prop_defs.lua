@@ -853,8 +853,8 @@ PROP_DEFS.pig_ruins_treasure_secret = function(depth, width, exits_open, exits_v
 
     local function getitem()
         local items =  {
-            redgem =30,
-            bluegem =20,
+            redgem = 30,
+            bluegem = 20,
             relic_1 = 10,
             relic_2 = 10,
             relic_3 = 10,
@@ -865,7 +865,7 @@ PROP_DEFS.pig_ruins_treasure_secret = function(depth, width, exits_open, exits_v
             armorruins = 1,
             multitool_axe_pickaxe = 1,
         }
-        return weighted_random_choices(items, 1)
+        return { {1, weighted_random_choice(items)} }
     end
 
     if not dungeondef.smallsecret then
@@ -1231,7 +1231,7 @@ PROP_DEFS.pig_shop_academy = function (depth, width, exterior_door_def)
         {name = "deco_roomglow", x_offset = 0, z_offset = 0},
         {name = "shop_spawner", x_offset = -3, z_offset = 0, shop_type = "pig_shop_academy"},
         {name = "pigman_professor_shopkeep", x_offset = -2.3, z_offset = 4, startstate = "desk_pre"},
-        {name = "shelves_midcentury", x_offset = -4.5, z_offset = -3.3, shelfitems = {{1, "trinket_1"}, {5, "trinket_2"}, {6, "trinket_3"}}},
+        {name = "shlef_midcentury", x_offset = -4.5, z_offset = -3.3, shelfitems = {{1, "trinket_1"}, {5, "trinket_2"}, {6, "trinket_3"}}},
 
         {name = "deco_accademy_beam", x_offset = -5, z_offset = width / 2, flip = true},
         {name = "deco_accademy_beam", x_offset = -5, z_offset = -width / 2},
@@ -1277,8 +1277,8 @@ PROP_DEFS.pig_shop_antiquities = function (depth, width, exterior_door_def)
         {name = "pigman_collector_shopkeep", x_offset = -3, z_offset = 4, startstate = "desk_pre"},
         {name = "deco_roomglow", x_offset = 0, z_offset = 0},
         {name = "shop_spawner", x_offset = -3, z_offset = 0, shop_type = "pig_shop_antiquities"},
-        {name = "shelves_midcentury", x_offset = -4.5, z_offset = 0, shelfitems = {{1, "trinket_1"}, {5, "trinket_2"}, {6, "trinket_3"}}},
-        {name = "shelves_cinderblocks", x_offset = -4.5, z_offset = -5},
+        {name = "shelf_midcentury", x_offset = -4.5, z_offset = 0, shelfitems = {{1, "trinket_1"}, {5, "trinket_2"}, {6, "trinket_3"}}},
+        {name = "shelf_cinderblocks", x_offset = -4.5, z_offset = -5},
 
         {name = "rug_porcupuss", x_offset = 0, z_offset = 0},
 
@@ -1325,13 +1325,13 @@ PROP_DEFS.pig_shop_hatshop = function(depth, width, exterior_door_def)
             usesounds = {EXIT_SHOP_SOUND}
         },
 
-        {name = "shelves_floating", x_offset = -5,   z_offset = 0, shelfitems={{1,"petals"},{2,"petals"},{3,"petals"}, {4,"cutgrass"}, {5,"cutgrass"},{6,"petals"}} },
+        {name = "shelf_floating", x_offset = -5,   z_offset = 0, shelfitems={{1,"petals"},{2,"petals"},{3,"petals"}, {4,"cutgrass"}, {5,"cutgrass"},{6,"petals"}} },
 
         {name = "deco_roomglow", x_offset = 0, z_offset = 0},
         {name = "shop_spawner", x_offset = -3, z_offset = 0, shop_type = "pig_shop_hatshop"},
         {name = "pigman_hatmaker_shopkeep", x_offset = -3.5, z_offset = 5, startstate = "desk_pre"},
 
-        {name = "shelves_pipe", x_offset = -4.5, z_offset = -3.5},
+        {name = "shelf_pipe", x_offset = -4.5, z_offset = -3.5},
 
         {name = "rug_rectangle", x_offset =  0, z_offset = 0, rotation = 90},
         {name = "hat_lamp_side", x_offset =  2, z_offset = -width / 2},
@@ -1385,7 +1385,7 @@ PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def)
             usesounds = {EXIT_SHOP_SOUND}
         },
 
-        {name = "shelves_midcentury", x_offset = -4.5, z_offset = 4, shelfitems={{5, "twigs"}, {6, "twigs"}, {3, "twigs"}, {4, "twigs"}}},
+        {name = "shelf_midcentury", x_offset = -4.5, z_offset = 4, shelfitems={{5, "twigs"}, {6, "twigs"}, {3, "twigs"}, {4, "twigs"}}},
         {name = "deco_roomglow", x_offset =  0,    z_offset =  0 },
         {name = "shop_spawner", x_offset = -3,    z_offset =  0, shop_type = "pig_shop_weapons" },
         {name = "pigman_hunter_shopkeep", x_offset = -3,    z_offset =  0, startstate = "desk_pre" },
@@ -1437,7 +1437,7 @@ PROP_DEFS.pig_shop_arcane = function (depth, width, exterior_door_def)
         { name = "pigman_erudite_shopkeep", x_offset = -3,   z_offset = 4, startstate = "desk_pre" },
         { name = "deco_roomglow",           x_offset = 0,    z_offset = 0 },
         { name = "shop_spawner",            x_offset = -3,   z_offset = 0, shop_type = "pig_shop_arcane", saveID = true },
-        { name = "shelves_glass",           x_offset = -4.5, z_offset = -4, rotation=-90, shelfitems={{1,"trinket_1"},{5,"trinket_2"},{6,"trinket_3"}} },
+        { name = "shelf_glass",           x_offset = -4.5, z_offset = -4, rotation=-90, shelfitems={{1,"trinket_1"},{5,"trinket_2"},{6,"trinket_3"}} },
         { name = "deco_arcane_bookshelf",   x_offset = -4.5, z_offset = 0},
 
         { name = "rug_round",  x_offset = 0, z_offset = 0},
@@ -1478,7 +1478,7 @@ PROP_DEFS.pig_shop_florist = function (depth, width, exterior_door_def)
         { name = "pigman_florist_shopkeep", x_offset = -1,   z_offset =  4,    startstate = "desk_pre" },
         { name = "deco_roomglow",           x_offset =  0,   z_offset =  0 },
         { name = "shop_spawner",            x_offset =  0,   z_offset =  0,    shop_type = "pig_shop_florist" },
-        { name = "shelves_hutch",           x_offset = -4.5, z_offset = -2.6, shelfitems={{3,"seeds"},{4,"seeds"},{5,"seeds"},{6,"seeds"}} },
+        { name = "shelf_hutch",           x_offset = -4.5, z_offset = -2.6, shelfitems={{3,"seeds"},{4,"seeds"},{5,"seeds"},{6,"seeds"}} },
 
         { name = "rug_rectangle", x_offset = -2.3, z_offset = -width/4+1,   rotation = 92},
         { name = "rug_rectangle", x_offset =  1.5, z_offset = -width/4+0.5, rotation = 86},
@@ -1524,7 +1524,7 @@ PROP_DEFS.pig_shop_hoofspa = function (depth, width, exterior_door_def)
         { name = "deco_roomglow",              x_offset = 0,  z_offset = 0 },
         { name = "shop_spawner",               x_offset = -3, z_offset = 0, shop_type = "pig_shop_hoofspa" },
 
-        { name = "shelves_marble", x_offset = -4.5, z_offset = -3,  rotation=-90, shelfitems={{3,"petals"},{4,"petals"},{5,"petals"},{6,"petals"}}},
+        { name = "shelf_marble", x_offset = -4.5, z_offset = -3,  rotation=-90, shelfitems={{3,"petals"},{4,"petals"},{5,"petals"},{6,"petals"}}},
 
         { name = "deco_marble_cornerbeam",  x_offset = -5,    z_offset = -width/2 },
         { name = "deco_marble_cornerbeam",  x_offset = -5,    z_offset =  width/2,         flip = true },
@@ -1567,8 +1567,8 @@ PROP_DEFS.pig_shop_general = function (depth, width, exterior_door_def)
 
         { name = "pigman_banker_shopkeep", x_offset = -1, z_offset = 4, startstate = "desk_pre" },
         { name = "shop_spawner", x_offset = -3,   z_offset =  0, shop_type = "pig_shop_general" },
-        { name = "shelves_wood", x_offset = -4.5, z_offset = -4, shelfitems={{3,"rocks"},{4,"rocks"},{5,"rocks"},{6,"rocks"}} },
-        { name = "shelves_wood", x_offset = -4.5, z_offset =  4, shelfitems={{3,"cutgrass"},{4,"cutgrass"},{5,"cutgrass"},{6,"cutgrass"}} },
+        { name = "shelf_wood", x_offset = -4.5, z_offset = -4, shelfitems={{3,"rocks"},{4,"rocks"},{5,"rocks"},{6,"rocks"}} },
+        { name = "shelf_wood", x_offset = -4.5, z_offset =  4, shelfitems={{3,"cutgrass"},{4,"cutgrass"},{5,"cutgrass"},{6,"cutgrass"}} },
         { name = "rug_hedgehog", x_offset = -0.2, z_offset =  4, rotation = 90},
 
         { name = "deco_roomglow",             x_offset =  0, z_offset =  0 },
@@ -1661,7 +1661,7 @@ PROP_DEFS.pig_shop_deli = function (depth, width, exterior_door_def)
 
         { name = "pigman_storeowner_shopkeep", x_offset = -1, z_offset = 4, startstate = "desk_pre" },
         { name = "shop_spawner",               x_offset = -3, z_offset = 0, shop_type = "pig_shop_deli" },
-        { name = "shelves_fridge", x_offset = -4.5, z_offset = -4, rotation=-90,  shelfitems={{1,"fish_raw_small"},{2,"fish_raw_small"},{3,"bird_egg"},{4,"bird_egg"},{5,"froglegs"},{6,"froglegs"}} },
+        { name = "shelf_fridge", x_offset = -4.5, z_offset = -4, rotation=-90,  shelfitems={{1,"fish_raw_small"},{2,"fish_raw_small"},{3,"bird_egg"},{4,"bird_egg"},{5,"froglegs"},{6,"froglegs"}} },
 
         { name = "deco_general_hangingscale",     x_offset = -2, z_offset =  4.7 },
         { name = "deco_roomglow",                 x_offset =  0, z_offset =  0 },
@@ -1811,10 +1811,10 @@ PROP_DEFS.pig_shop_bank = function (depth, width, exterior_door_def)
         { name = "deco_accademy_barrier_vert",  x_offset = -2,  z_offset =  5, flip = true },
         { name = "deco_accademy_barrier_vert",  x_offset =  2.3,  z_offset =  5, flip = true },
 
-        { name = "shelves_displaycase_metal", x_offset = -2, z_offset = -width/2+0.75, rotation = 90, flip = true, shelfitems={{1,"flint"},{2,"rocks"},{3,"flint"}} },
-        { name = "shelves_displaycase_metal", x_offset = -2, z_offset = width/2-0.75, rotation = 90, shelfitems={{1,"rocks"},{2,"rocks"},{3,"rocks"}} },
-        { name = "shelves_displaycase_metal", x_offset = 2.3, z_offset = -width/2+0.75, rotation = 90, flip = true, shelfitems={{1,"nitre"},{2,"nitre"},{3,"rocks"}} },
-        { name = "shelves_displaycase_metal", x_offset = 2.3, z_offset = width/2-0.75, rotation = 90, shelfitems={{1,"rocks"},{2,"charcoal"},{3,"charcoal"}} },
+        { name = "shelf_displaycase_metal", x_offset = -2, z_offset = -width/2+0.75, rotation = 90, flip = true, shelfitems={{1,"flint"},{2,"rocks"},{3,"flint"}} },
+        { name = "shelf_displaycase_metal", x_offset = -2, z_offset = width/2-0.75, rotation = 90, shelfitems={{1,"rocks"},{2,"rocks"},{3,"rocks"}} },
+        { name = "shelf_displaycase_metal", x_offset = 2.3, z_offset = -width/2+0.75, rotation = 90, flip = true, shelfitems={{1,"nitre"},{2,"nitre"},{3,"rocks"}} },
+        { name = "shelf_displaycase_metal", x_offset = 2.3, z_offset = width/2-0.75, rotation = 90, shelfitems={{1,"rocks"},{2,"charcoal"},{3,"charcoal"}} },
 
         { name = "swinging_light_bank", x_offset = -1.7, z_offset = -width/4.5 },
 
@@ -1860,7 +1860,7 @@ PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def)
         { name = "shop_buyer", x_offset = -1.7,  z_offset = width/6 +0.5,     startAnim = "idle_metal" },
         { name = "shop_buyer", x_offset = -1.7,  z_offset = 0.5,            startAnim = "idle_metal" },
 
-        { name = "shelves_metal", x_offset = -4.0, z_offset = 4,  rotation=-90, shelfitems={{3,"charcoal"},{4,"nitre"},{5,"papyrus"},{6,"charcoal"}}},
+        { name = "shelf_metal", x_offset = -4.0, z_offset = 4,  rotation=-90, shelfitems={{3,"charcoal"},{4,"nitre"},{5,"papyrus"},{6,"charcoal"}}},
 
         { name = "window_round_backwall",   x_offset = -depth/2, z_offset = 0 },
 
@@ -2057,11 +2057,11 @@ PROP_DEFS.pig_palace_gallery = function (depth, width, togiftshop_door_def, topa
         { name = "deco_palace_beam_room_tall", x_offset = 12/6, z_offset =  18/6, rotation = 90 },
 
 
-        { name = "shelves_queen_display_1", x_offset = -12/4, z_offset =  -18/3, rotation = 90, shelfitems={{1,"key_to_city"}} },
-        { name = "shelves_queen_display_2", x_offset =     0, z_offset =      0, rotation = 90, shelfitems={{1,"trinket_giftshop_4"}} },
-        { name = "shelves_queen_display_3", x_offset = -12/4, z_offset =   18/3, rotation = 90, flip = true, shelfitems={{1,"city_hammer"}} },
-        --{ name = "shelves_queen_display_1", x_offset =  12/4, z_offset =  -18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
-        --{ name = "shelves_queen_display_4", x_offset =  12/4, z_offset =   18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
+        { name = "shelf_queen_display_1", x_offset = -12/4, z_offset =  -18/3, rotation = 90, shelfitems={{1,"key_to_city"}} },
+        { name = "shelf_queen_display_2", x_offset =     0, z_offset =      0, rotation = 90, shelfitems={{1,"trinket_giftshop_4"}} },
+        { name = "shelf_queen_display_3", x_offset = -12/4, z_offset =   18/3, rotation = 90, flip = true, shelfitems={{1,"city_hammer"}} },
+        --{ name = "shelf_queen_display_1", x_offset =  12/4, z_offset =  -18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
+        --{ name = "shelf_queen_display_4", x_offset =  12/4, z_offset =   18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
 
        -- { name = "shop_buyer", x_offset = -12/4, z_offset =  -18/3,  saveID = true, startAnim = "lock19_east" },
        -- { name = "shop_buyer", x_offset =     0, z_offset =      0,  saveID = true, startAnim = "lock17_east" },
@@ -2074,7 +2074,7 @@ PROP_DEFS.pig_palace_gallery = function (depth, width, togiftshop_door_def, topa
         { name = "deco_palace_banner_small_sidewall", x_offset =  12/14 * 3, z_offset =  -18/2, rotation = 90, flip = true },
         { name = "deco_palace_banner_small_sidewall", x_offset =  12/14 * 3, z_offset =   18/2, rotation = 90 },
 
-        { name = "shelves_marble", x_offset = -12/2, z_offset = 0, shelfitems={{5,"trinket_20"},{6,"trinket_14"},{3,"trinket_4"},{4,"trinket_2"}}  },
+        { name = "shelf_marble", x_offset = -12/2, z_offset = 0, shelfitems={{5,"trinket_20"},{6,"trinket_14"},{3,"trinket_4"},{4,"trinket_2"}}  },
     }
 end
 
@@ -2121,15 +2121,15 @@ PROP_DEFS.pig_palace_giftshop = function (depth, width, toexit_door_def, togalle
         { name = "deco_cityhall_picture2", x_offset = -10/5, z_offset = -15/2, rotation = 90, flip = true },
         { name = "deco_cityhall_picture1", x_offset =  10/5, z_offset = -15/2, rotation = 90, flip = true },
 
-        { name = "shelves_wood", x_offset = -10/2, z_offset = -15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{2,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
-        { name = "shelves_wood", x_offset = -10/2, z_offset =  15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{4,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
+        { name = "shelf_wood", x_offset = -10/2, z_offset = -15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{2,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
+        { name = "shelf_wood", x_offset = -10/2, z_offset =  15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{4,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
 
         { name = "swinging_light_floral_bloomer", x_offset = 0, z_offset = 0 },
 
-        { name = "shelves_displaycase", x_offset = -10/5, z_offset = -15/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_1"},{2,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
-        { name = "shelves_displaycase", x_offset =  10/5, z_offset =  15/3, rotation = 90,              shelfitems={{1,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
-        { name = "shelves_displaycase", x_offset =  10/5, z_offset = -15/3, rotation = 90, flip = true, shelfitems={{2,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
-        { name = "shelves_displaycase", x_offset = -10/5, z_offset =  15/3, rotation = 90,              shelfitems={{1,"trinket_giftshop_1"},{2,"trinket_giftshop_1"}} },
+        { name = "shelf_displaycase_wood", x_offset = -10/5, z_offset = -15/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_1"},{2,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
+        { name = "shelf_displaycase_wood", x_offset =  10/5, z_offset =  15/3, rotation = 90,              shelfitems={{1,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
+        { name = "shelf_displaycase_wood", x_offset =  10/5, z_offset = -15/3, rotation = 90, flip = true, shelfitems={{2,"trinket_giftshop_1"},{3,"trinket_giftshop_1"}} },
+        { name = "shelf_displaycase_wood", x_offset = -10/5, z_offset =  15/3, rotation = 90,              shelfitems={{1,"trinket_giftshop_1"},{2,"trinket_giftshop_1"}} },
     }
     -- if not Profile:IsCharacterUnlocked("wilba") then
     --     table.insert(addprops, { name = "grounded_wilba", x_offset = 0, z_offset = 0 })

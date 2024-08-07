@@ -1,6 +1,7 @@
 local assets =
 {
     Asset("ANIM", "anim/room_shelves.zip"),
+    Asset("ANIM", "anim/pedestal_crate.zip")
 }
 
 local function MakeObstacle(inst)
@@ -14,7 +15,7 @@ local function GetSlotSymbol(inst, slot)
     return inst.anim_def.slot_symbol_prefix .. slot
 end
 
-local function MakeShelf(name, physics_round, anim_def, slot_num)
+local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix)
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -29,11 +30,13 @@ local function MakeShelf(name, physics_round, anim_def, slot_num)
             inst:DoTaskInTime(0, MakeObstacle)
         end
 
+        local animation = anim_def.animation or name
+
         inst.Transform:SetRotation(-90)
 
         inst.AnimState:SetBuild(anim_def.build or "room_shelves")
         inst.AnimState:SetBank(anim_def.bank or "bookcase")
-        inst.AnimState:PlayAnimation(anim_def.animation, anim_def.loop)
+        inst.AnimState:PlayAnimation(animation)
         -- inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGroundFixed) -- ds is ANIM_ORIENTATION.RotatingBillboard
 
         if anim_def.layer then
@@ -46,8 +49,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_num)
         inst.AnimState:SetFinalOffset(-1)
 
         inst.anim_def = anim_def
-        inst.anim_def.slot_bank = anim_def.animation .. "_visual_slot"
-        inst.anim_def.slot_symbol_prefix = "SWAP_img"
+        inst.anim_def.slot_bank = animation .. "_visual_slot"
+        inst.anim_def.slot_symbol_prefix = slot_symbol_prefix or "SWAP_img"
         inst.GetSlotSymbol = GetSlotSymbol
 
         inst:AddTag("NOCLICK")
@@ -74,6 +77,29 @@ local function MakeShelf(name, physics_round, anim_def, slot_num)
     return Prefab("shelf_" .. name, fn, assets)
 end
 
-return MakeShelf("wood", nil, {animation = "wood", layer = LAYER_WORLD_BACKGROUND, order = 3}),
-    MakeShelf("displayshelf_wood", true, {animation = "displayshelf_wood"}),
+return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("basic", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("metal", false, {animation = "metalcrates", layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("marble", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("glass", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("ladder", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("industrial", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("adjustable", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("fridge", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("cinderblocks", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("midcentury", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("wallmount", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("aframe", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("crates", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    -- MakeShelf("hooks", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("pipe", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("hattree", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("pallet", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("floating", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
+    MakeShelf("displaycase_wood", true, {animation = "displayshelf_wood"}),
+    MakeShelf("displaycase_metal", true, {animation = "displayshelf_metal"}),
+    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east"}, "SWAP_SIGN"),
+    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east"}, "SWAP_SIGN"),
+    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west"}, "SWAP_SIGN"),
+    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west"}, "SWAP_SIGN"),
     MakeShelf("ruins", true, {animation = "ruins"})
