@@ -937,6 +937,16 @@ function SCENE.pickable(inst, doer, actions, ...)
     end
 end
 
+local PlayerController = require("components/playercontroller")
+
+local do_action_auto_equip = PlayerController.DoActionAutoEquip
+function PlayerController:DoActionAutoEquip(buffaction, ...)
+    if buffaction.action == ACTIONS.PUTONSHELF then
+        return
+    end
+    return do_action_auto_equip(self, ...)
+end
+
 function PLENV.OnHotReload()
     ToolUtil.SetUpvalue(ACTIONS.CHOP.fn, _DoToolWork, "DoToolWork")
 
