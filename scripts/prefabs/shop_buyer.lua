@@ -12,25 +12,25 @@ local function MakeShopkeeperSpeech(inst, speech)
 end
 
 local function SetImage(inst, ent)
-    local src = ent
-    local image = nil
+    -- local src = ent
+    -- local image = nil
 
-    if src ~= nil and src.components.inventoryitem ~= nil then
-        image = src.prefab
-        if src.components.inventoryitem then
-            image = src.components.inventoryitem:GetImage():gsub("%.tex", "")
-        end
-    end
+    -- if src ~= nil and src.components.inventoryitem ~= nil then
+    --     image = src.prefab
+    --     if src.components.inventoryitem then
+    --         image = src.components.inventoryitem:GetImage():gsub("%.tex", "")
+    --     end
+    -- end
 
-    if image ~= nil then
-        local texname = image..".tex"
-        inst.AnimState:OverrideSymbol("SWAP_SIGN", GetInventoryItemAtlas(texname), texname)
-        --inst.AnimState:OverrideSymbol("SWAP_SIGN", "store_items", image)
-        inst.imagename = image
-    else
-        inst.imagename = ""
-        inst.AnimState:ClearOverrideSymbol("SWAP_SIGN")
-    end
+    -- if image ~= nil then
+    --     local texname = image..".tex"
+    --     inst.AnimState:OverrideSymbol("SWAP_SIGN", GetInventoryItemAtlas(texname), texname)
+    --     --inst.AnimState:OverrideSymbol("SWAP_SIGN", "store_items", image)
+    --     inst.imagename = image
+    -- else
+    --     inst.imagename = ""
+    --     inst.AnimState:ClearOverrideSymbol("SWAP_SIGN")
+    -- end
 end
 
 local function SetImageFromName(inst, name)
@@ -238,7 +238,6 @@ local function fn()
     MakeMediumBurnable(inst)
     MakeSmallPropagator(inst)
 
-    inst:AddComponent("shopdispenser")
     inst:AddComponent("shopped")
 
     inst.SetImage = SetImage

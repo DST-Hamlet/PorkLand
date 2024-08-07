@@ -30,8 +30,8 @@ function Shopped:InitShop(shop_type)
 end
 
 function Shopped:BoughtItem(buyer)
-    if buyer.components.inventory and self.inst.components.shopdispenser then
-        local item = SpawnPrefab(self.inst.components.shopdispenser:GetItem())
+    if buyer.components.inventory then
+        local item = SpawnPrefab(self.item_to_sell)
         if item.OnBought then
             item:OnBought()
         end

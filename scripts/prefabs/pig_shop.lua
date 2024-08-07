@@ -463,7 +463,7 @@ local function CreateInterior(inst)
     local room_position = interior_spawner:IndexToPosition(id)
     local pedestals = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shop_pedestal"})
     for _, pedestal in ipairs(pedestals) do
-        pedestals.components.shopped:InitShop(inst.prefab)
+        pedestal.components.shopped:InitShop(inst.prefab)
     end
 end
 

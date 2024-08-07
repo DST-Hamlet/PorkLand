@@ -103,9 +103,9 @@ function Shopper:GetMoney()
     return money
 end
 
-function Shopper:IsWatching(prefab)
-    if prefab:HasTag("cost_one_oinc") or prefab.components.shopped then
-        local x, y, z = prefab.Transform:GetWorldPosition()
+function Shopper:IsWatching(item)
+    if item:HasTag("cost_one_oinc") or item.components.shopped then
+        local x, y, z = item.Transform:GetWorldPosition()
           local ents = TheSim:FindEntities(x, y, z, 50, {"shopkeep"}, {"INLIMBO"})
           if #ents > 0 then
               for _, ent in ipairs(ents) do
@@ -118,22 +118,22 @@ function Shopper:IsWatching(prefab)
     return false
 end
 
-function Shopper:CanPayFor(pedestal)
-    if not self:IsWatching(pedestal) then
+function Shopper:CanPayFor(item)
+    if not self:IsWatching(item) then
         print("NOT WATCHED")
         return true
     end
 
-    if pedestal.components.shopped then
-        if not pedestal.components.shopped:GetItem() then
+    if item.components.shopped then
+        if not item.components.shopped:GetItem() then
             return false
         end
 
-        local prefab_wanted = pedestal.costprefab
+        local prefab_wanted = item.costprefab
         print("TESTING prefab_wanted", prefab_wanted)
 
         if prefab_wanted == "oinc" then
-             if self:GetMoney() >= pedestal.cost then
+             if self:GetMoney() >= item.cost then
                  return true
              end
         else
@@ -145,7 +145,7 @@ function Shopper:CanPayFor(pedestal)
             end
         end
     else
-        if pedestal:HasTag("cost_one_oinc") then
+        if item:HasTag("cost_one_oinc") then
              if self:GetMoney() >= 1 then
                  return true
              end
@@ -154,38 +154,38 @@ function Shopper:CanPayFor(pedestal)
     return false, "REPAIRBOAT"
 end
 
-function Shopper:PayFor(pedestal)
-    if pedestal:HasTag("cost_one_oinc") then
+function Shopper:PayFor(item)
+    if item:HasTag("cost_one_oinc") then
         self:PayMoney(1)
     else
-        if not pedestal.components.shopped:GetItem() then
+        if not item.components.shopped:GetItem() then
             return false
         end
 
-        if pedestal.costprefab then
-            if pedestal.costprefab == "oinc" then
-                self:PayMoney(pedestal.cost)
-                pedestal:BoughtItem(self.inst)
+        if item.costprefab then
+            if item.costprefab == "oinc" then
+                self:PayMoney(item.cost)
+                item:BoughtItem(self.inst)
             else
-                local item = self.inst.components.inventory:FindItem(function(look) return look.prefab == pedestal.costprefab end)
+                local item = self.inst.components.inventory:FindItem(function(look) return look.prefab == item.costprefab end)
                 if item then
                     self.inst.components.inventory:RemoveItem(item)
-                    pedestal:BoughtItem(self.inst)
+                    item:BoughtItem(self.inst)
                 end
             end
         end
     end
 end
 
-function Shopper:Take(pedestal)
-    if not pedestal.components.shopped:GetItem() then
+function Shopper:Take(shop_buyer)
+    if not shop_buyer.components.shopped:GetItem() then
         return false
     end
 
     if self.inst.components.inventory then
-        pedestal:AddTag("robbed")
+        shop_buyer:AddTag("robbed")
         self.inst.components.kramped:OnNaughtyAction(6)
-        pedestal:BoughtItem(self.inst)
+        shop_buyer:BoughtItem(self.inst)
     end
 end
 

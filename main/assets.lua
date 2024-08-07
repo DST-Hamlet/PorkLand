@@ -180,6 +180,7 @@ PrefabFiles = {
     "clippings",
     "reconstruction_project",
     "city_hammer",
+    "shop_buyer",
 
     "oinc",
     "bramble",
