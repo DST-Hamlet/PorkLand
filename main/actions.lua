@@ -471,7 +471,7 @@ ACTIONS.SHOP.fn = function(act)
     end
 
     if not doer.components.shopper:IsWatching(target) then
-        doer.components.shopper:Take(target)
+        target.components.shopped:GetRobbed(target)
         return true
     end
 

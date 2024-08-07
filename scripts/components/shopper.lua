@@ -92,15 +92,11 @@ function Shopper:PayMoney(cost)
 end
 
 function Shopper:GetMoney()
-    local money = 0
-
     local inventory = self.inst.components.inventory
     local _, oincamount = inventory:Has("oinc", 0, true)
     local _, oinc10amount = inventory:Has("oinc10", 0, true)
     local _, oinc100amount = inventory:Has("oinc100", 0, true)
-
-    money = oincamount + (oinc10amount * 10) + (oinc100amount * 100)
-    return money
+    return oincamount + (oinc10amount * 10) + (oinc100amount * 100)
 end
 
 function Shopper:IsWatching(item)
@@ -127,11 +123,11 @@ function Shopper:CanPayFor(item)
             return false
         end
 
-        local prefab_wanted = item.costprefab
+        local prefab_wanted = item.components.shopped:GetCostPrefab()
         print("TESTING prefab_wanted", prefab_wanted)
 
         if prefab_wanted == "oinc" then
-             if self:GetMoney() >= item.cost then
+             if self:GetMoney() >= item.components.shopped:GetCost() then
                  return true
              end
         else
@@ -160,30 +156,19 @@ function Shopper:PayFor(item)
             return false
         end
 
-        if item.costprefab then
-            if item.costprefab == "oinc" then
-                self:PayMoney(item.cost)
+        local cost_prefab = item.components.shopped:GetCostPrefab()
+        if cost_prefab then
+            if cost_prefab == "oinc" then
+                self:PayMoney(item.components.shopped:GetCost())
                 item:BoughtItem(self.inst)
             else
-                local item = self.inst.components.inventory:FindItem(function(look) return look.prefab == item.costprefab end)
+                local item = self.inst.components.inventory:FindItem(function(look) return look.prefab == cost_prefab end)
                 if item then
                     self.inst.components.inventory:RemoveItem(item)
                     item:BoughtItem(self.inst)
                 end
             end
         end
-    end
-end
-
-function Shopper:Take(shop_buyer)
-    if not shop_buyer.components.shopped:GetItem() then
-        return false
-    end
-
-    if self.inst.components.inventory then
-        shop_buyer:AddTag("robbed")
-        self.inst.components.kramped:OnNaughtyAction(6)
-        shop_buyer:BoughtItem(self.inst)
     end
 end
 

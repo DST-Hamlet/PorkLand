@@ -68,6 +68,16 @@ function Shopped:BoughtItem(buyer)
     end
 end
 
+function Shopped:GetRobbed(doer)
+    if not self:GetItem() then
+        return false
+    end
+    self.inst:AddTag("robbed")
+    -- TODO: Make this work
+    -- TheWorld.components.kramped:OnNaughtyAction(6)
+    self:BoughtItem(doer)
+end
+
 function Shopped:OnSave()
     return {
         shop_type = self.shop_type,
