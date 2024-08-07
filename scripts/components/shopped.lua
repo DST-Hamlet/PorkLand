@@ -4,16 +4,44 @@ local Shopped = Class(function(self, inst)
     self.inst = inst
     self.shop_type = nil
     self.item_to_sell = nil
+    self.cost_prefab = nil
+    self.cost = nil
 end)
 
-function Shopped:SetItemPrefab(prefab)
+function Shopped:SetItemToSell(prefab)
     self.item_to_sell = prefab
-    self.inst:AddTag("has_item_to_sell")
+    self.inst.replica.shopped:SetItemToSell(prefab)
 end
 
-function Shopped:RemoveItem()
-    self.item_to_sell = nil
-    self.inst:RemoveTag("has_item_to_sell")
+function Shopped:RemoveItemToSell()
+    self:SetItemToSell()
+end
+
+function Shopped:GetItemToSell()
+    return self.item_to_sell
+end
+
+function Shopped:SetCost(cost_prefab, cost)
+    self.cost_prefab = cost_prefab
+    self.cost = cost
+    self.inst.replica.shopped:SetCost(cost_prefab, cost)
+
+    local image = cost_prefab == "oinc" and cost and "cost-"..cost or cost_prefab
+    if image ~= nil then
+        local texname = image..".tex"
+        self.inst.AnimState:OverrideSymbol("SWAP_COST", GetInventoryItemAtlas(texname), texname)
+        --self.inst.AnimState:OverrideSymbol("SWAP_SIGN", "store_items", image)
+    else
+        self.inst.AnimState:ClearOverrideSymbol("SWAP_COST")
+    end
+end
+
+function Shopped:GetCost()
+    return self.cost
+end
+
+function Shopped:GetCostPrefab()
+    return self.cost_prefab
 end
 
 function Shopped:GetNewProduct()
@@ -31,7 +59,7 @@ end
 
 function Shopped:BoughtItem(buyer)
     if buyer.components.inventory then
-        local item = SpawnPrefab(self.item_to_sell)
+        local item = SpawnPrefab(self:GetItemToSell())
         if item.OnBought then
             item:OnBought()
         end
@@ -44,7 +72,9 @@ function Shopped:OnSave()
     return {
         shop_type = self.shop_type,
         robbed = self.inst:HasTag("robbed"),
-        item_to_sell = self.item_to_sell,
+        item_to_sell = self:GetItemToSell(),
+        cost = self:GetCost(),
+        cost_prefab = self.cost_prefab,
     }
 end
 
@@ -59,7 +89,10 @@ function Shopped:OnLoad(data)
         self.inst:AddTag("robbed")
     end
     if data.item_to_sell then
-        self:SetItemPrefab(data.item_to_sell)
+        self:SetItemToSell(data.item_to_sell)
+    end
+    if data.cost_prefab and data.cost then
+        self:SetCost(data.cost_prefab, data.cost)
     end
 end
 

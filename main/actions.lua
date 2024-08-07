@@ -404,6 +404,51 @@ ACTIONS.STOCK.fn = function(act)
     end
 end
 
+ACTIONS.SHOP.stroverridefn = function(act)
+	if not (act.target and act.target.replica.shopped) then
+		return
+    end
+
+    local item = act.target.replica.shopped:GetItemToSell()
+    local blueprint = false
+    local blueprintstart = string.find(item, "_blueprint")
+    if blueprintstart then
+        item = string.sub(item, 1, blueprintstart - 1)
+        blueprint = true
+    end
+
+    -- TODO: See if we want to get rid of this
+    local wantitem = STRINGS.NAMES[string.upper(item)]
+    if blueprint then
+        wantitem = string.format(STRINGS.BLUEPRINT_ITEM, wantitem)
+    end
+    if not wantitem then
+        local temp = SpawnPrefab(item)
+        if temp.displaynamefn then
+            wantitem = temp:displaynamefn()
+        else
+            wantitem = item
+        end
+        temp:Remove()
+    end
+
+    local cost_prefab = act.target.replica.shopped:GetCostPrefab()
+    local payitem = STRINGS.NAMES[string.upper(cost_prefab)]
+    local qty = ""
+    if cost_prefab == "oinc" then
+        qty = act.target.cost
+        if act.target.cost > 1 then
+            payitem = STRINGS.NAMES.OINC_PL
+        end
+    end
+
+    if act.doer.components.shopper:IsWatching(act.target) then
+        return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = wantitem, qty = qty, payitem = payitem })
+    else
+        return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = wantitem })
+    end
+end
+
 ACTIONS.SHOP.fn = function(act)
     local doer = act.doer
     local target = act.target

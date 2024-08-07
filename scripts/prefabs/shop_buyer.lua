@@ -47,27 +47,6 @@ local function SetImageFromName(inst, name)
     end
 end
 
-local function SetCost(inst, costprefab, cost)
-    local image = nil
-
-    if costprefab then
-        image = costprefab
-    end
-    if costprefab == "oinc" and cost then
-        image = "cost-"..cost
-    end
-
-    if image ~= nil then
-        local texname = image..".tex"
-        inst.AnimState:OverrideSymbol("SWAP_COST", GetInventoryItemAtlas(texname), texname)
-        --inst.AnimState:OverrideSymbol("SWAP_SIGN", "store_items", image)
-        inst.costimagename = image
-    else
-        inst.costimagename = ""
-        inst.AnimState:ClearOverrideSymbol("SWAP_COST")
-    end
-end
-
 local function SpawnInventory(inst, prefabtype, costprefab, cost)
     inst.costprefab = costprefab
     inst.cost = cost
@@ -75,7 +54,7 @@ local function SpawnInventory(inst, prefabtype, costprefab, cost)
     local item = SpawnPrefab(prefabtype or inst.prefabtype)
     if item then
         inst:SetImage(item)
-        inst:SetCost(costprefab,cost)
+        inst.components.shopped:SetCost(costprefab, cost)
         inst.components.shopped:SetItemPrefab(item.prefab)
         item:Remove()
     end
@@ -91,10 +70,9 @@ local function Restock(inst, force)
         print("NO DAILY RESTOCK")
         return
     elseif inst:HasTag("robbed") then
-        inst.costprefab = "cost-nil"
-        SetCost(inst, "cost-nil")
+        inst.components.shopped:SetCost("cost-nil")
         MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
-    elseif force or (inst:IsAsleep() and (inst.imagename == "" or math.random() < 0.16) and not inst:HasTag("justsellonce")) then
+    elseif force or (inst:IsAsleep() and not inst:HasTag("justsellonce") and (not inst.components.shopped:GetItemToSell() or math.random() < 0.16)) then
         print("CHANGING ITEM")
         local newproduct = inst.saleitem or inst.components.shopped:GetNewProduct()
         SpawnInventory(inst, newproduct[1], newproduct[2], newproduct[3])
@@ -103,8 +81,6 @@ end
 
 local function OnSave(inst, data)
     data.imagename = inst.imagename
-    data.costprefab = inst.costprefab
-    data.cost = inst.cost
     data.interiorID = inst.interiorID
     data.startAnim = inst.startAnim
     data.saleitem = inst.saleitem
@@ -116,13 +92,6 @@ local function OnLoad(inst, data)
     if data then
         if data.imagename then
             SetImageFromName(inst, data.imagename)
-        end
-        if data.cost then
-            inst.cost = data.cost
-        end
-        if data.costprefab then
-           inst.costprefab = data.costprefab
-           SetCost(inst, inst.costprefab, inst.cost)
         end
         if data.interiorID then
             inst.interiorID  = data.interiorID
@@ -228,7 +197,6 @@ local function fn()
     inst:AddComponent("shopped")
 
     inst.SetImage = SetImage
-    inst.SetCost = SetCost
     inst.SetImageFromName = SetImageFromName
     inst.SpawnInventory = SpawnInventory
     inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
@@ -240,8 +208,8 @@ local function fn()
 
     inst.OnEntityWake = OnEntityWake
 
-    inst:WatchWorldState("cycle", Restock)
-    inst:WatchWorldState("isfiesta", Restock)
+    inst:WatchWorldState("cycle", function() inst:Restock() end)
+    inst:WatchWorldState("isfiesta", function() inst:Restock() end)
 
     return inst
 end
