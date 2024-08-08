@@ -221,6 +221,8 @@ params["shelf_queen_display_2"] = shelf1
 params["shelf_queen_display_3"] = shelf1
 params["shelf_queen_display_4"] = shelf1
 
+params["shop_buyer"] = shelf1
+
 
 local widget_antchest = {
     widget = {

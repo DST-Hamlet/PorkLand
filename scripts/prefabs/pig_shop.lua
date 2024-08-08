@@ -333,6 +333,20 @@ local function OnBuilt(inst)
     inst.AnimState:PushAnimation("idle")
 end
 
+local function InitShopped(inst)
+    local interior_spawner = TheWorld.components.interiorspawner
+    local room_position = interior_spawner:IndexToPosition(inst.interiorID)
+    local pedestals = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shop_pedestal"})
+    for _, pedestal in ipairs(pedestals) do
+        pedestal.components.shopped:InitShop(inst.prefab)
+    end
+    local shelves = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shelf"})
+    for _, shelf in ipairs(shelves) do
+        shelf:AddComponent("shopped")
+        shelf.components.shopped:SetCost("oinc", 1)
+    end
+end
+
 local function CreateInteriorPalace(inst, exterior_door_def)
     local interior_spawner = TheWorld.components.interiorspawner
 
@@ -406,6 +420,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     local giftshop_addprops = GetPropDef("pig_palace_giftshop", depth, width, toexit_door_def, togallery_door_def)
     def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, giftshop_id, giftshop_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
+    InitShopped(inst)
 end
 
 local function CreateInterior(inst)
@@ -459,12 +474,7 @@ local function CreateInterior(inst)
         wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
         PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
     interior_spawner:SpawnInterior(def)
-
-    local room_position = interior_spawner:IndexToPosition(id)
-    local pedestals = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shop_pedestal"})
-    for _, pedestal in ipairs(pedestals) do
-        pedestal.components.shopped:InitShop(inst.prefab)
-    end
+    InitShopped(inst)
 end
 
 local function OnSave(inst, data)
@@ -538,7 +548,7 @@ local function OnLoad(inst, data)
                         { x_offset = -1,  z_offset =  TUNING.ROOM_TINY_WIDTH/2-2 },
                     }
 
-                    local startAnim = "idle_globe_bar"
+                    local animation = "idle_globe_bar"
 
                     if interior.visited then
                         for _, ent in pairs(interior_ents) do
@@ -561,7 +571,7 @@ local function OnLoad(inst, data)
                     for i = 1, #saleitems do
                         local offset = offsets[i]
                         local saleitem = saleitems[i]
-                        local prefab_data = {saleitem = saleitem, startAnim = startAnim }
+                        local prefab_data = {saleitem = saleitem, animation = animation }
 
                         -- If the interior has been visited we have to spawn the prefab, initialize it and put it in the interior
                         if interior.visited then
@@ -569,8 +579,8 @@ local function OnLoad(inst, data)
                             -- Sets position, item and animation
                             pedestal.Transform:SetPosition(pt.x + offset.x_offset, 0, pt.z + offset.z_offset) -- HERE
                             pedestal.saleitem = saleitem -- HERE
-                            pedestal.AnimState:PlayAnimation(startAnim)
-                            pedestal.startAnim = startAnim
+                            pedestal.AnimState:PlayAnimation(animation)
+                            pedestal.animation = animation
 
                             -- Shop spawner contains a bunch of info about the store itself, so we need it to initialize our pedestals
                             local shop_spawner = nil

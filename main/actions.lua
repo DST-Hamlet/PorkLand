@@ -406,36 +406,15 @@ end
 
 -- TODO: Migrate shelves to use this as well
 ACTIONS.SHOP.stroverridefn = function(act)
-    local target = act.target
-	if not (target and target.replica.shopped) then
+    local shelf = act.target.replica.visualslot:GetShelf()
+    local item = act.target.replica.visualslot:GetItem()
+
+	if not (shelf and item and shelf.replica.shopped) then
 		return
     end
 
-    local item = target.replica.shopped:GetItemToSell()
-    local blueprint = false
-    local blueprintstart = string.find(item, "_blueprint")
-    if blueprintstart then
-        item = string.sub(item, 1, blueprintstart - 1)
-        blueprint = true
-    end
-
-    -- TODO: See if we want to get rid of this
-    local want_item = STRINGS.NAMES[string.upper(item)]
-    if blueprint then
-        want_item = string.format(STRINGS.BLUEPRINT_ITEM, want_item)
-    end
-    if not want_item then
-        local temp = SpawnPrefab(item)
-        if temp.displaynamefn then
-            want_item = temp:displaynamefn()
-        else
-            want_item = item
-        end
-        temp:Remove()
-    end
-
-    local cost_prefab = target.replica.shopped:GetCostPrefab()
-    local cost = target.replica.shopped:GetCost()
+    local cost_prefab = shelf.replica.shopped:GetCostPrefab()
+    local cost = shelf.replica.shopped:GetCost()
     local payitem = STRINGS.NAMES[string.upper(cost_prefab)]
     local qty = ""
     if cost_prefab == "oinc" then
@@ -447,8 +426,8 @@ ACTIONS.SHOP.stroverridefn = function(act)
 
     -- TODO: See if we want to move this to shopper replica or something
     local is_watching = false
-    if target:HasTag("cost_one_oinc") or target.replica.shopped then
-        local x, y, z = target.Transform:GetWorldPosition()
+    if shelf:HasTag("cost_one_oinc") or shelf.replica.shopped then
+        local x, y, z = shelf.Transform:GetWorldPosition()
         local shopkeeps = TheSim:FindEntities(x, y, z, 50, {"shopkeep"}, {"INLIMBO"})
         for _, shopkeep in ipairs(shopkeeps) do
             -- if not shopkeep.components.sleeper or not shopkeep.components.sleeper:IsAsleep() then
@@ -457,32 +436,34 @@ ACTIONS.SHOP.stroverridefn = function(act)
         end
     end
     if is_watching then
-        return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = want_item, qty = qty, payitem = payitem })
+        return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = item:GetBasicDisplayName(), qty = qty, payitem = payitem })
     else
-        return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = want_item })
+        return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = item:GetBasicDisplayName() })
     end
 end
 
 ACTIONS.SHOP.fn = function(act)
     local doer = act.doer
-    local target = act.target
-	if not (doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
+    local shelf = act.target.replica.visualslot:GetShelf()
+    local slot = act.target.replica.visualslot:GetSlot()
+
+	if not (shelf and shelf.components.shopped and doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
         return false
     end
 
-    if not doer.components.shopper:IsWatching(target) then
-        target.components.shopped:GetRobbed(target)
+    if not shelf.components.shopped:IsBeingWatched() then
+        shelf.components.shopped:GetRobbed(shelf, slot)
         return true
     end
 
     local sell = true
     local reason = nil
 
-    if target:HasTag("shopclosed") or TheWorld.state.isnight then
+    if shelf:HasTag("shopclosed") or TheWorld.state.isnight then
         reason = "closed"
         sell = false
-    elseif not doer.components.shopper:CanPayFor(target) then
-        local prefab_wanted = target.components.shopped:GetCostPrefab()
+    elseif not doer.components.shopper:CanPayFor(shelf) then
+        local prefab_wanted = shelf.components.shopped:GetCostPrefab()
         if prefab_wanted == "oinc" then
             reason = "money"
         else
@@ -492,16 +473,16 @@ ACTIONS.SHOP.fn = function(act)
     end
 
     if sell then
-        doer.components.shopper:PayFor(target)
-        target:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
+        doer.components.shopper:Buy(shelf, slot)
+        shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
         return true
     else
         if reason == "money" then
-            target:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
+            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
         elseif reason == "goods" then
-            target:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
+            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
         elseif reason == "closed" then
-            target:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
+            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
         end
         return true -- Shouldn't this be false?
     end
@@ -755,14 +736,19 @@ local PL_COMPONENT_ACTIONS =
         end,
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
-                table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                local shelf = inst.replica.visualslot:GetShelf()
+                if shelf and shelf.replica.shopped then
+                    table.insert(actions, ACTIONS.SHOP)
+                else
+                    table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                end
             end
         end,
-        shopped = function(inst, doer, actions, right)
-            if inst:HasTag("has_item_to_sell") then
-                table.insert(actions, ACTIONS.SHOP)
-            end
-        end,
+        -- shopped = function(inst, doer, actions, right)
+        --     if inst:HasTag("has_item_to_sell") then
+        --         table.insert(actions, ACTIONS.SHOP)
+        --     end
+        -- end,
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right

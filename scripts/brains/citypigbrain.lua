@@ -322,7 +322,6 @@ local function ReplaceStockCondition(inst)
 end
 
 local function ExtinguishfireAction(inst)
-
     if not inst:HasTag("guard") then
         return false
     end

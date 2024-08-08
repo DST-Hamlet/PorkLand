@@ -1000,15 +1000,15 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
 
     -- Adds fake wall cracks
     if exits_open.north and math.random() < 0.10  then
-        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = -depth/2, z_offset = 0, startAnim = "north_closed", animdata = {anim = "north"}}
+        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = -depth/2, z_offset = 0, animation = "north_closed", animdata = {anim = "north"}}
         exits_open.north = false
     end
     if exits_open.west and math.random() < 0.10  then
-        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = 0, z_offset = -width/2, startAnim = "west_closed", animdata = {anim = "west"}}
+        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = 0, z_offset = -width/2, animation = "west_closed", animdata = {anim = "west"}}
         exits_open.west = false
     end
     if exits_open.east and math.random() < 0.10  then
-        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = 0, z_offset = width/2, startAnim = "east_closed", animdata = {anim = "east"}}
+        addprops[#addprops + 1] = {name = "wallcrack_ruins", x_offset = 0, z_offset = width/2, animation = "east_closed", animdata = {anim = "east"}}
         exits_open.east = false
     end
 
@@ -1248,9 +1248,9 @@ PROP_DEFS.pig_shop_academy = function (depth, width, exterior_door_def)
         {name = "deco_accademy_potterywheel_urn", x_offset = -3.5, z_offset = 0},
         {name = "deco_accademy_barrier", x_offset = -2.5, z_offset = 0},
 
-        {name = "shop_buyer", x_offset = 1, z_offset = 0.5, saleitem = {"oinc10", "relic_1", 1}, startAnim = "idle_stoneslab"},
-        {name = "shop_buyer", x_offset = 1.5, z_offset = 3, saleitem = {"oinc10", "relic_2", 1}, startAnim = "idle_stoneslab"},
-        {name = "shop_buyer", x_offset = 2, z_offset = 5.5, saleitem = {"oinc10", "relic_3", 1}, startAnim = "idle_stoneslab"},
+        {name = "shop_buyer", x_offset = 1, z_offset = 0.5, saleitem = {"oinc10", "relic_1", 1}, animation = "idle_stoneslab"},
+        {name = "shop_buyer", x_offset = 1.5, z_offset = 3, saleitem = {"oinc10", "relic_2", 1}, animation = "idle_stoneslab"},
+        {name = "shop_buyer", x_offset = 2, z_offset = 5.5, saleitem = {"oinc10", "relic_3", 1}, animation = "idle_stoneslab"},
     }
 end
 
@@ -1293,14 +1293,14 @@ PROP_DEFS.pig_shop_antiquities = function (depth, width, exterior_door_def)
         {name = "window_round_curtains_nails", x_offset = 0, z_offset = -width / 2},
         {name = "window_round_light", x_offset = 0, z_offset = -width / 2},
 
-        {name = "shop_buyer", x_offset = -2, z_offset = width / 2 - 3, startAnim = "idle_barrel_dome"},
-        {name = "shop_buyer", x_offset = 1.7, z_offset = width / 2 - 2.5, startAnim = "idle_barrel_dome"},
-        {name = "shop_buyer", x_offset = -2, z_offset = 2, startAnim = "idle_barrel_dome"},
-        {name = "shop_buyer", x_offset = 2.9, z_offset = 3, startAnim = "idle_barrel_dome"},
-        {name = "shop_buyer", x_offset = -2, z_offset = -width / 2 + 3, startAnim = "idle_barrel_dome"},
-        {name = "shop_buyer", x_offset = 1.9, z_offset = -width / 2 + 2.5, startAnim = "idle_barrel_dome"},
-        {name = "shop_buyer", x_offset = -2, z_offset = -2, startAnim = "idle_barrel_dome"},
-        {name = "shop_buyer", x_offset = 2.9, z_offset = -3, startAnim = "idle_barrel_dome"},
+        {name = "shop_buyer", x_offset = -2, z_offset = width / 2 - 3, animation = "idle_barrel_dome"},
+        {name = "shop_buyer", x_offset = 1.7, z_offset = width / 2 - 2.5, animation = "idle_barrel_dome"},
+        {name = "shop_buyer", x_offset = -2, z_offset = 2, animation = "idle_barrel_dome"},
+        {name = "shop_buyer", x_offset = 2.9, z_offset = 3, animation = "idle_barrel_dome"},
+        {name = "shop_buyer", x_offset = -2, z_offset = -width / 2 + 3, animation = "idle_barrel_dome"},
+        {name = "shop_buyer", x_offset = 1.9, z_offset = -width / 2 + 2.5, animation = "idle_barrel_dome"},
+        {name = "shop_buyer", x_offset = -2, z_offset = -2, animation = "idle_barrel_dome"},
+        {name = "shop_buyer", x_offset = 2.9, z_offset = -3, animation = "idle_barrel_dome"},
     }
 end
 
@@ -1353,13 +1353,13 @@ PROP_DEFS.pig_shop_hatshop = function(depth, width, exterior_door_def)
         {name = "picture_1", x_offset = -2.5, z_offset = width / 2, flip = true},
         {name = "picture_2", x_offset = 2.5, z_offset = width / 2, flip = true},
 
-        {name = "shop_buyer", x_offset = -1, z_offset = -3.5, startAnim = "idle_hatbox2"},
-        {name = "shop_buyer", x_offset = -1, z_offset = -1, startAnim = "idle_hatbox4"},
-        {name = "shop_buyer", x_offset = -1, z_offset = 1.5, startAnim = "idle_hatbox2"},
-        {name = "shop_buyer", x_offset = 1.5, z_offset = -4.5, startAnim = "idle_hatbox3"},
-        {name = "shop_buyer", x_offset = 1.5, z_offset = -2, startAnim = "idle_hatbox1"},
-        {name = "shop_buyer", x_offset = 1.5, z_offset = 0.5, startAnim = "idle_hatbox1"},
-        {name = "shop_buyer", x_offset = 1.5, z_offset = 3, startAnim = "idle_hatbox3"},
+        {name = "shop_buyer", x_offset = -1, z_offset = -3.5, animation = "idle_hatbox2"},
+        {name = "shop_buyer", x_offset = -1, z_offset = -1, animation = "idle_hatbox4"},
+        {name = "shop_buyer", x_offset = -1, z_offset = 1.5, animation = "idle_hatbox2"},
+        {name = "shop_buyer", x_offset = 1.5, z_offset = -4.5, animation = "idle_hatbox3"},
+        {name = "shop_buyer", x_offset = 1.5, z_offset = -2, animation = "idle_hatbox1"},
+        {name = "shop_buyer", x_offset = 1.5, z_offset = 0.5, animation = "idle_hatbox1"},
+        {name = "shop_buyer", x_offset = 1.5, z_offset = 3, animation = "idle_hatbox3"},
     }
 end
 
@@ -1406,13 +1406,13 @@ PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def)
         {name = "deco_displaycase", x_offset = -4,  z_offset = -5.5},
         {name = "deco_displaycase", x_offset = -4,  z_offset = -4},
 
-        {name = "shop_buyer", x_offset =  2.5, z_offset = -2,   saveID = true, startAnim = "idle_cablespool"},
-        {name = "shop_buyer", x_offset = -0.5, z_offset = -2.5, saveID = true, startAnim = "idle_cablespool"},
-        {name = "shop_buyer", x_offset =  1.5, z_offset = -5,   saveID = true, startAnim = "idle_cablespool"},
-        {name = "shop_buyer", x_offset = -1.5, z_offset = -5.5, saveID = true, startAnim = "idle_cablespool"},
-        {name = "shop_buyer", x_offset =  0,   z_offset =  3.5, saveID = true, startAnim = "idle_cablespool"},
-        {name = "shop_buyer", x_offset =  3.5, z_offset =  2.5, saveID = true, startAnim = "idle_cablespool"},
-        {name = "shop_buyer", x_offset =  2.5, z_offset =  5.5, saveID = true, startAnim = "idle_cablespool"},
+        {name = "shop_buyer", x_offset =  2.5, z_offset = -2,   saveID = true, animation = "idle_cablespool"},
+        {name = "shop_buyer", x_offset = -0.5, z_offset = -2.5, saveID = true, animation = "idle_cablespool"},
+        {name = "shop_buyer", x_offset =  1.5, z_offset = -5,   saveID = true, animation = "idle_cablespool"},
+        {name = "shop_buyer", x_offset = -1.5, z_offset = -5.5, saveID = true, animation = "idle_cablespool"},
+        {name = "shop_buyer", x_offset =  0,   z_offset =  3.5, saveID = true, animation = "idle_cablespool"},
+        {name = "shop_buyer", x_offset =  3.5, z_offset =  2.5, saveID = true, animation = "idle_cablespool"},
+        {name = "shop_buyer", x_offset =  2.5, z_offset =  5.5, saveID = true, animation = "idle_cablespool"},
     }
 end
 
@@ -1452,12 +1452,12 @@ PROP_DEFS.pig_shop_arcane = function (depth, width, exterior_door_def)
         { name = "window_round_arcane",            x_offset = 0,    z_offset = -width/2, rotation = -90  },
         { name = "window_round_light",             x_offset = 0,    z_offset = -width/2, rotation = -90  },
 
-        { name = "shop_buyer", x_offset = -0.5, z_offset =  2.5,  saveID = true, startAnim="idle_marble"},
-        { name = "shop_buyer", x_offset = -0.5, z_offset = -2.5,  saveID = true, startAnim="idle_marblesilk"},
-        { name = "shop_buyer", x_offset =  2.5, z_offset =  2.5,  saveID = true, startAnim="idle_marble"},
-        { name = "shop_buyer", x_offset =  2.5, z_offset = -2.5,  saveID = true, startAnim="idle_marblesilk"},
-        { name = "shop_buyer", x_offset =  0.5, z_offset = (width/2) - 2.5,  saveID = true, startAnim="idle_marblesilk"},
-        { name = "shop_buyer", x_offset =  0.5, z_offset = (-width/2) + 2.5, saveID = true, startAnim="idle_marble"},
+        { name = "shop_buyer", x_offset = -0.5, z_offset =  2.5,  saveID = true, animation="idle_marble"},
+        { name = "shop_buyer", x_offset = -0.5, z_offset = -2.5,  saveID = true, animation="idle_marblesilk"},
+        { name = "shop_buyer", x_offset =  2.5, z_offset =  2.5,  saveID = true, animation="idle_marble"},
+        { name = "shop_buyer", x_offset =  2.5, z_offset = -2.5,  saveID = true, animation="idle_marblesilk"},
+        { name = "shop_buyer", x_offset =  0.5, z_offset = (width/2) - 2.5,  saveID = true, animation="idle_marblesilk"},
+        { name = "shop_buyer", x_offset =  0.5, z_offset = (-width/2) + 2.5, saveID = true, animation="idle_marble"},
     }
 end
 
@@ -1495,12 +1495,12 @@ PROP_DEFS.pig_shop_florist = function (depth, width, exterior_door_def)
 
         { name = "swinging_light_floral_scallop", x_offset = -2, z_offset =  2 },
 
-        { name = "shop_buyer", x_offset = -2,   z_offset =  (-width/2) + 3.5, startAnim="idle_cart"},
-        { name = "shop_buyer", x_offset =  1.5, z_offset =  (-width/2) + 3,   startAnim="idle_cart"},
-        { name = "shop_buyer", x_offset = -2,   z_offset = -1.5,              startAnim="idle_traystand"},
-        { name = "shop_buyer", x_offset = 1.5, z_offset =  -2,                startAnim="idle_traystand"},
-        { name = "shop_buyer", x_offset = 1.5,  z_offset =  2,                startAnim="idle_traystand"},
-        { name = "shop_buyer", x_offset = 1.5,  z_offset =  (width/2) - 3,    startAnim="idle_wagon"},
+        { name = "shop_buyer", x_offset = -2,   z_offset =  (-width/2) + 3.5, animation="idle_cart"},
+        { name = "shop_buyer", x_offset =  1.5, z_offset =  (-width/2) + 3,   animation="idle_cart"},
+        { name = "shop_buyer", x_offset = -2,   z_offset = -1.5,              animation="idle_traystand"},
+        { name = "shop_buyer", x_offset = 1.5, z_offset =  -2,                animation="idle_traystand"},
+        { name = "shop_buyer", x_offset = 1.5,  z_offset =  2,                animation="idle_traystand"},
+        { name = "shop_buyer", x_offset = 1.5,  z_offset =  (width/2) - 3,    animation="idle_wagon"},
     }
 end
 
@@ -1532,11 +1532,11 @@ PROP_DEFS.pig_shop_hoofspa = function (depth, width, exterior_door_def)
         { name = "wall_mirror",                x_offset = -1, z_offset = -width/2 },
         { name = "swinging_light_floral_bulb", x_offset = -2, z_offset = 0 },
 
-        { name = "shop_buyer", x_offset = 2.3,  z_offset =  -4.5,   startAnim = "idle_cakestand" },
-        { name = "shop_buyer", x_offset = 2.3,  z_offset =  -2.6,   startAnim = "idle_cakestand" },
-        { name = "shop_buyer", x_offset = -0.5, z_offset =  0,      startAnim = "idle_marble" },
-        { name = "shop_buyer", x_offset = -0.5, z_offset =  3,      startAnim = "idle_marble" },
-        { name = "shop_buyer", x_offset = 2,    z_offset =  4.4,    startAnim = "idle_marblesilk" },
+        { name = "shop_buyer", x_offset = 2.3,  z_offset =  -4.5,   animation = "idle_cakestand" },
+        { name = "shop_buyer", x_offset = 2.3,  z_offset =  -2.6,   animation = "idle_cakestand" },
+        { name = "shop_buyer", x_offset = -0.5, z_offset =  0,      animation = "idle_marble" },
+        { name = "shop_buyer", x_offset = -0.5, z_offset =  3,      animation = "idle_marble" },
+        { name = "shop_buyer", x_offset = 2,    z_offset =  4.4,    animation = "idle_marblesilk" },
     }
 end
 
@@ -1581,16 +1581,16 @@ PROP_DEFS.pig_shop_general = function (depth, width, exterior_door_def)
 
         { name = "swinging_light_chandalier_candles", x_offset = -1.3, z_offset = 0 },
 
-        { name = "shop_buyer", x_offset = -1.8, z_offset = -4.1, startAnim="idle_cablespool" },
-        { name = "shop_buyer", x_offset = -1.8, z_offset = -1.9, startAnim="idle_barrel" },
-        { name = "shop_buyer", x_offset = -2,   z_offset =  0.3, startAnim="idle_barrel" },
+        { name = "shop_buyer", x_offset = -1.8, z_offset = -4.1, animation="idle_cablespool" },
+        { name = "shop_buyer", x_offset = -1.8, z_offset = -1.9, animation="idle_barrel" },
+        { name = "shop_buyer", x_offset = -2,   z_offset =  0.3, animation="idle_barrel" },
 
-        { name = "shop_buyer", x_offset = 1.1, z_offset = -4.4,  startAnim = "idle_barrel" },
-        { name = "shop_buyer", x_offset = 1.3, z_offset = -2.2,  startAnim = "idle_barrel" },
-        { name = "shop_buyer", x_offset = 1.1, z_offset =  0,    startAnim = "idle_cablespool" },
+        { name = "shop_buyer", x_offset = 1.1, z_offset = -4.4,  animation = "idle_barrel" },
+        { name = "shop_buyer", x_offset = 1.3, z_offset = -2.2,  animation = "idle_barrel" },
+        { name = "shop_buyer", x_offset = 1.1, z_offset =  0,    animation = "idle_cablespool" },
 
-        { name = "shop_buyer", x_offset = 1.5, z_offset = 5,     startAnim = "idle_barrel" },
-        { name = "shop_buyer", x_offset = 1.5, z_offset = 2.5,   startAnim = "idle_barrel" },
+        { name = "shop_buyer", x_offset = 1.5, z_offset = 5,     animation = "idle_barrel" },
+        { name = "shop_buyer", x_offset = 1.5, z_offset = 2.5,   animation = "idle_barrel" },
     }
 end
 
@@ -1628,17 +1628,17 @@ PROP_DEFS.pig_shop_produce = function (depth, width, exterior_door_def)
         { name = "swinging_light_pendant_cherries", x_offset = -1, z_offset =  -width/6 },
 
 
-        { name = "shop_buyer", x_offset = -2.5, z_offset = -4.9, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset = -2.5, z_offset = -2.7, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset = -2.8, z_offset = -0.5, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset = -0.3, z_offset =  2.2, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset = -0.3, z_offset =  4.4, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset =  1,   z_offset = -5.1, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset =  1,   z_offset = -2.7, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset =  1,   z_offset = -0.5, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset =  2.7, z_offset =  2.2, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset =  2.7, z_offset =  4.4, startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset =  4,   z_offset = -4,   startAnim = "idle_ice_bucket", saleitem={"ice","oinc",1},},
+        { name = "shop_buyer", x_offset = -2.5, z_offset = -4.9, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset = -2.5, z_offset = -2.7, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset = -2.8, z_offset = -0.5, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset = -0.3, z_offset =  2.2, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset = -0.3, z_offset =  4.4, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset =  1,   z_offset = -5.1, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset =  1,   z_offset = -2.7, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset =  1,   z_offset = -0.5, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset =  2.7, z_offset =  2.2, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset =  2.7, z_offset =  4.4, animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset =  4,   z_offset = -4,   animation = "idle_ice_bucket", saleitem={"ice","oinc",1},},
     }
 end
 
@@ -1670,14 +1670,14 @@ PROP_DEFS.pig_shop_deli = function (depth, width, exterior_door_def)
 
         { name = "swinging_light_basic_metal", x_offset = -1.3, z_offset = -width/6+0.5 },
 
-        { name = "shop_buyer", x_offset = -1.8, z_offset = -5.1,  startAnim = "idle_cakestand_dome" },
-        { name = "shop_buyer", x_offset = -1.8, z_offset = -2.4,  startAnim = "idle_cakestand_dome" },
-        { name = "shop_buyer", x_offset = -2,   z_offset =  0.3,  startAnim = "idle_cakestand_dome" },
-        { name = "shop_buyer", x_offset = 3.1,  z_offset = -5.4,  startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset = 1,    z_offset = -4.6,  startAnim = "idle_ice_box" },
-        { name = "shop_buyer", x_offset = 2.1,  z_offset = -2,    startAnim = "idle_ice_bucket" },
-        { name = "shop_buyer", x_offset = 2.5,  z_offset = 5,     startAnim = "idle_fridge_display" },
-        { name = "shop_buyer", x_offset = 2.5,  z_offset = 2.5,   startAnim = "idle_fridge_display" },
+        { name = "shop_buyer", x_offset = -1.8, z_offset = -5.1,  animation = "idle_cakestand_dome" },
+        { name = "shop_buyer", x_offset = -1.8, z_offset = -2.4,  animation = "idle_cakestand_dome" },
+        { name = "shop_buyer", x_offset = -2,   z_offset =  0.3,  animation = "idle_cakestand_dome" },
+        { name = "shop_buyer", x_offset = 3.1,  z_offset = -5.4,  animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset = 1,    z_offset = -4.6,  animation = "idle_ice_box" },
+        { name = "shop_buyer", x_offset = 2.1,  z_offset = -2,    animation = "idle_ice_bucket" },
+        { name = "shop_buyer", x_offset = 2.5,  z_offset = 5,     animation = "idle_fridge_display" },
+        { name = "shop_buyer", x_offset = 2.5,  z_offset = 2.5,   animation = "idle_fridge_display" },
     }
 end
 
@@ -1716,11 +1716,11 @@ PROP_DEFS.pig_shop_cityhall = function (depth, width, exterior_door_def)
 
         { name = "wall_mirror", x_offset = -1, z_offset = -width/2 },
 
-        { name = "shop_buyer", x_offset = 1.75,   z_offset =  width/2-5, saleitem = {"deed","oinc", 50},                  startAnim = "idle_globe_bar", justsellonce = true},
-        { name = "shop_buyer", x_offset = 3.5, z_offset =  width/2-2, saleitem = {"construction_permit", "oinc", 50 }, startAnim = "idle_globe_bar"  },
-        { name = "shop_buyer", x_offset = -1, z_offset =  width/2-2, saleitem = {"demolition_permit",   "oinc", 10 }, startAnim = "idle_globe_bar"  },
+        { name = "shop_buyer", x_offset = 1.75,   z_offset =  width/2-5, saleitem = {"deed","oinc", 50},                  animation = "idle_globe_bar", justsellonce = true},
+        { name = "shop_buyer", x_offset = 3.5, z_offset =  width/2-2, saleitem = {"construction_permit", "oinc", 50 }, animation = "idle_globe_bar"  },
+        { name = "shop_buyer", x_offset = -1, z_offset =  width/2-2, saleitem = {"demolition_permit",   "oinc", 10 }, animation = "idle_globe_bar"  },
 
-        { name = "shop_buyer", x_offset = 2,   z_offset = -width/2+3, saleitem = {"securitycontract",    "oinc", 10 }, startAnim = "idle_marble_dome"},
+        { name = "shop_buyer", x_offset = 2,   z_offset = -width/2+3, saleitem = {"securitycontract",    "oinc", 10 }, animation = "idle_marble_dome"},
     }
 end
 
@@ -1784,9 +1784,9 @@ PROP_DEFS.pig_shop_bank = function (depth, width, exterior_door_def)
         { name = "deco_bank_clock1_side",   x_offset = 0,  z_offset =  -width/2 },
         { name = "deco_bank_clock2_side",   x_offset = depth/4,  z_offset =  -width/2},
 
-        { name = "shop_buyer", x_offset = 2.3,  z_offset = -width/4.5,    startAnim = "idle_marble_dome", saleitem={"oinc10","oinc",10} },
-        { name = "shop_buyer", x_offset = -1.7,  z_offset = -width/4.5,   startAnim = "idle_marble_dome", saleitem={"oinc100","oinc",100} },
-        { name = "shop_buyer", x_offset = -1.7,  z_offset = width/4.5,     startAnim = "idle_marble_dome", saleitem={"goldnugget","oinc",10} },
+        { name = "shop_buyer", x_offset = 2.3,  z_offset = -width/4.5,    animation = "idle_marble_dome", saleitem={"oinc10","oinc",10} },
+        { name = "shop_buyer", x_offset = -1.7,  z_offset = -width/4.5,   animation = "idle_marble_dome", saleitem={"oinc100","oinc",100} },
+        { name = "shop_buyer", x_offset = -1.7,  z_offset = width/4.5,     animation = "idle_marble_dome", saleitem={"goldnugget","oinc",10} },
 
         { name = "deco_bank_vault",            x_offset = -depth/2,    z_offset =  0  },
 
@@ -1841,10 +1841,10 @@ PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def)
         { name = "deco_bank_clock1_side",   x_offset = -depth/4,  z_offset =  width/2, flip=true },
         { name = "deco_bank_clock2_side",   x_offset = 0,  z_offset =  -width/2},
 
-        { name = "shop_buyer", x_offset = 1.3,  z_offset = -width/6 -1.75,     startAnim = "idle_metal" },
-        { name = "shop_buyer", x_offset = 1.3,  z_offset = -1.75,            startAnim = "idle_metal" },
-        { name = "shop_buyer", x_offset = -1.7,  z_offset = width/6 +0.5,     startAnim = "idle_metal" },
-        { name = "shop_buyer", x_offset = -1.7,  z_offset = 0.5,            startAnim = "idle_metal" },
+        { name = "shop_buyer", x_offset = 1.3,  z_offset = -width/6 -1.75,     animation = "idle_metal" },
+        { name = "shop_buyer", x_offset = 1.3,  z_offset = -1.75,            animation = "idle_metal" },
+        { name = "shop_buyer", x_offset = -1.7,  z_offset = width/6 +0.5,     animation = "idle_metal" },
+        { name = "shop_buyer", x_offset = -1.7,  z_offset = 0.5,            animation = "idle_metal" },
 
         { name = "shelf_metal", x_offset = -4.0, z_offset = 4,  rotation=-90, shelfitems={{3,"charcoal"},{4,"nitre"},{5,"papyrus"},{6,"charcoal"}}},
 
@@ -2049,11 +2049,11 @@ PROP_DEFS.pig_palace_gallery = function (depth, width, togiftshop_door_def, topa
         --{ name = "shelf_queen_display_1", x_offset =  12/4, z_offset =  -18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
         --{ name = "shelf_queen_display_4", x_offset =  12/4, z_offset =   18/3, rotation = 90, flip = true, shelfitems={{1,"trinket_giftshop_3"}} },
 
-       -- { name = "shop_buyer", x_offset = -12/4, z_offset =  -18/3,  saveID = true, startAnim = "lock19_east" },
-       -- { name = "shop_buyer", x_offset =     0, z_offset =      0,  saveID = true, startAnim = "lock17_east" },
-       -- { name = "shop_buyer", x_offset = -12/4, z_offset =   18/3,  saveID = true, startAnim = "lock12_west" },
-       -- { name = "shop_buyer", x_offset =  12/4, z_offset =  -18/3,  saveID = true, startAnim = "lock19_east" },
-       -- { name = "shop_buyer", x_offset =  12/4, z_offset =   18/3,  saveID = true, startAnim = "lock12_west" },
+       -- { name = "shop_buyer", x_offset = -12/4, z_offset =  -18/3,  saveID = true, animation = "lock19_east" },
+       -- { name = "shop_buyer", x_offset =     0, z_offset =      0,  saveID = true, animation = "lock17_east" },
+       -- { name = "shop_buyer", x_offset = -12/4, z_offset =   18/3,  saveID = true, animation = "lock12_west" },
+       -- { name = "shop_buyer", x_offset =  12/4, z_offset =  -18/3,  saveID = true, animation = "lock19_east" },
+       -- { name = "shop_buyer", x_offset =  12/4, z_offset =   18/3,  saveID = true, animation = "lock12_west" },
 
         { name = "deco_palace_banner_small_sidewall", x_offset = -12/14 * 3, z_offset =  -18/2, rotation = 90, flip = true },
         { name = "deco_palace_banner_small_sidewall", x_offset = -12/14 * 3, z_offset =   18/2, rotation = 90 },

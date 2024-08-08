@@ -3,113 +3,8 @@ local assets =
     Asset("ANIM", "anim/pedestal_crate.zip"),
 }
 
-local function MakeShopkeeperSpeech(inst, speech)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, 20, {"shopkeep"})
-    for _, shopkeeper in ipairs(ents) do
-        shopkeeper:ShopkeeperSpeech(speech)
-    end
-end
-
-local function SetImage(inst, ent)
-    -- local src = ent
-    -- local image = nil
-
-    -- if src ~= nil and src.components.inventoryitem ~= nil then
-    --     image = src.prefab
-    --     if src.components.inventoryitem then
-    --         image = src.components.inventoryitem:GetImage():gsub("%.tex", "")
-    --     end
-    -- end
-
-    -- if image ~= nil then
-    --     local texname = image..".tex"
-    --     inst.AnimState:OverrideSymbol("SWAP_SIGN", GetInventoryItemAtlas(texname), texname)
-    --     --inst.AnimState:OverrideSymbol("SWAP_SIGN", "store_items", image)
-    --     inst.imagename = image
-    -- else
-    --     inst.imagename = ""
-    --     inst.AnimState:ClearOverrideSymbol("SWAP_SIGN")
-    -- end
-end
-
-local function SetImageFromName(inst, name)
-    local image = name
-
-    if image ~= nil then
-        local texname = image..".tex"
-        inst.AnimState:OverrideSymbol("SWAP_SIGN", GetInventoryItemAtlas(texname), texname)
-        --inst.AnimState:OverrideSymbol("SWAP_SIGN", "store_items", image)
-        inst.imagename = image
-    else
-        inst.imagename = ""
-        inst.AnimState:ClearOverrideSymbol("SWAP_SIGN")
-    end
-end
-
-local function SpawnInventory(inst, prefabtype, costprefab, cost)
-    inst.costprefab = costprefab
-    inst.cost = cost
-
-    local item = SpawnPrefab(prefabtype or inst.prefabtype)
-    if item then
-        inst:SetImage(item)
-        inst.components.shopped:SetCost(costprefab, cost)
-        inst.components.shopped:SetItemPrefab(item.prefab)
-        item:Remove()
-    end
-end
-
-local function SoldItem(inst)
-    inst.components.shopped:RemoveItem()
-    inst:SetImage(nil)
-end
-
-local function Restock(inst, force)
-    if inst:HasTag("nodailyrestock") then
-        print("NO DAILY RESTOCK")
-        return
-    elseif inst:HasTag("robbed") then
-        inst.components.shopped:SetCost("cost-nil")
-        MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
-    elseif force or (inst:IsAsleep() and not inst:HasTag("justsellonce") and (not inst.components.shopped:GetItemToSell() or math.random() < 0.16)) then
-        print("CHANGING ITEM")
-        local newproduct = inst.saleitem or inst.components.shopped:GetNewProduct()
-        SpawnInventory(inst, newproduct[1], newproduct[2], newproduct[3])
-    end
-end
-
-local function OnSave(inst, data)
-    data.imagename = inst.imagename
-    data.interiorID = inst.interiorID
-    data.startAnim = inst.startAnim
-    data.saleitem = inst.saleitem
-    data.justsellonce = inst:HasTag("justsellonce")
-    data.nodailyrestock = inst:HasTag("nodailyrestock")
-end
-
-local function OnLoad(inst, data)
-    if data then
-        if data.imagename then
-            SetImageFromName(inst, data.imagename)
-        end
-        if data.interiorID then
-            inst.interiorID  = data.interiorID
-        end
-        if data.startAnim then
-            inst.startAnim = data.startAnim
-            inst.AnimState:PlayAnimation(data.startAnim)
-        end
-        if data.saleitem then
-            inst.saleitem = data.saleitem
-        end
-        if data.justsellonce then
-            inst:AddTag("justsellonce")
-        end
-        if data.nodailyrestock then
-            inst:AddTag("nodailyrestock")
-        end
-    end
+local function GetSlotSymbol(inst, slot)
+    return inst.anim_def.slot_symbol_prefix .. slot
 end
 
 local function OnIsPathFindingDirty(inst)
@@ -148,7 +43,70 @@ local function OnEntityWake(inst)
     if TheWorld.state.isfiesta then
         inst.AnimState:PlayAnimation("idle_yotp")
     else
-        inst.AnimState:PlayAnimation(inst.startAnim)
+        inst.AnimState:PlayAnimation(inst.animation)
+    end
+end
+
+local function MakeShopkeeperSpeech(inst, speech)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, 20, {"shopkeep"})
+    for _, shopkeeper in ipairs(ents) do
+        shopkeeper:ShopkeeperSpeech(speech)
+    end
+end
+
+local function Restock(inst, force)
+    if inst:HasTag("nodailyrestock") then
+        -- print("NO DAILY RESTOCK")
+        return
+    elseif inst:HasTag("robbed") then
+        inst.components.shopped:SetCost("cost-nil")
+        MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
+    elseif force or (inst:IsAsleep() and not inst:HasTag("justsellonce") and (not inst.components.shopped:GetItemToSell() or math.random() < 0.16)) then
+        print("CHANGING ITEM")
+        local newproduct = inst.saleitem or inst.components.shopped:GetNewProduct()
+        inst.components.shopped:SpawnInventory(newproduct[1], newproduct[2], newproduct[3])
+    end
+end
+
+local function OnSetCost(inst, cost_prefab, cost)
+    local image = cost_prefab == "oinc" and cost and "cost-"..cost or cost_prefab
+    if image then
+        local texname = image..".tex"
+        inst.AnimState:OverrideSymbol("SWAP_COST", GetInventoryItemAtlas(texname), texname)
+        -- inst.AnimState:OverrideSymbol("SWAP_SIGN", "store_items", image)
+    else
+        inst.AnimState:ClearOverrideSymbol("SWAP_COST")
+    end
+end
+
+local function OnSave(inst, data)
+    data.interiorID = inst.interiorID
+    data.animation = inst.animation
+
+    data.saleitem = inst.saleitem
+    data.justsellonce = inst:HasTag("justsellonce")
+    data.nodailyrestock = inst:HasTag("nodailyrestock")
+end
+
+local function OnLoad(inst, data)
+    if data then
+        if data.interiorID then
+            inst.interiorID  = data.interiorID
+        end
+        if data.animation then
+            inst.animation = data.animation
+            inst.AnimState:PlayAnimation(data.animation)
+        end
+        if data.saleitem then
+            inst.saleitem = data.saleitem
+        end
+        if data.justsellonce then
+            inst:AddTag("justsellonce")
+        end
+        if data.nodailyrestock then
+            inst:AddTag("nodailyrestock")
+        end
     end
 end
 
@@ -170,9 +128,12 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
     inst.AnimState:SetFinalOffset(1)
 
-    inst:AddTag("shop_pedestal")
+    inst.anim_def = {}
+    inst.anim_def.slot_bank = "lock12_west_visual_slot"
+    inst.anim_def.slot_symbol_prefix = "SWAP_SIGN"
+    inst.GetSlotSymbol = GetSlotSymbol
 
-    inst.imagename = nil
+    inst:AddTag("shop_pedestal")
 
     ------- Copied from prefabs/wall.lua -------
     inst._pfpos = nil
@@ -191,25 +152,28 @@ local function fn()
         return inst
     end
 
-    MakeMediumBurnable(inst)
-    MakeSmallPropagator(inst)
+    inst:AddComponent("container")
+    inst.components.container:WidgetSetup("shelf_")
+    inst.components.container.Open = function() end
+    inst.components.container.skipopensnd = true
 
     inst:AddComponent("shopped")
+    inst.components.shopped:OnSetCost(OnSetCost)
 
-    inst.SetImage = SetImage
-    inst.SetImageFromName = SetImageFromName
-    inst.SpawnInventory = SpawnInventory
+    inst:AddComponent("visualslotmanager")
+
     inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
-    inst.SoldItem = SoldItem
     inst.Restock = Restock
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
-
     inst.OnEntityWake = OnEntityWake
 
     inst:WatchWorldState("cycle", function() inst:Restock() end)
     inst:WatchWorldState("isfiesta", function() inst:Restock() end)
+
+    MakeMediumBurnable(inst)
+    MakeSmallPropagator(inst)
 
     return inst
 end

@@ -3,37 +3,39 @@ local SHOPTYPES = require("prefabs/pig_shop_defs").SHOPTYPES
 local Shopped = Class(function(self, inst)
     self.inst = inst
     self.shop_type = nil
-    self.item_to_sell = nil
+
     self.cost_prefab = nil
     self.cost = nil
+    self.on_set_cost = nil
 end)
 
-function Shopped:SetItemToSell(prefab)
-    self.item_to_sell = prefab
-    self.inst.replica.shopped:SetItemToSell(prefab)
+function Shopped:SetItemToSell(prefab, slot)
+    local old = self:RemoveItemToSell(slot)
+    if old then
+        old:Remove()
+    end
+
+    local item = SpawnPrefab(prefab)
+    self.inst.components.container:GiveItem(item, slot)
 end
 
-function Shopped:RemoveItemToSell()
-    self:SetItemToSell()
+function Shopped:RemoveItemToSell(slot)
+    return self.inst.components.container:RemoveItemBySlot(slot)
 end
 
-function Shopped:GetItemToSell()
-    return self.item_to_sell
+function Shopped:GetItemToSell(slot)
+    return self.inst.components.container:GetItemInSlot(slot)
+end
+
+function Shopped:OnSetCost(fn)
+    self.on_set_cost = fn
 end
 
 function Shopped:SetCost(cost_prefab, cost)
     self.cost_prefab = cost_prefab
     self.cost = cost
     self.inst.replica.shopped:SetCost(cost_prefab, cost)
-
-    local image = cost_prefab == "oinc" and cost and "cost-"..cost or cost_prefab
-    if image ~= nil then
-        local texname = image..".tex"
-        self.inst.AnimState:OverrideSymbol("SWAP_COST", GetInventoryItemAtlas(texname), texname)
-        --self.inst.AnimState:OverrideSymbol("SWAP_SIGN", "store_items", image)
-    else
-        self.inst.AnimState:ClearOverrideSymbol("SWAP_COST")
-    end
+    self.on_set_cost(self.inst, cost_prefab, cost)
 end
 
 function Shopped:GetCost()
@@ -45,46 +47,63 @@ function Shopped:GetCostPrefab()
 end
 
 function Shopped:GetNewProduct()
+    if not self.shop_type then
+        return
+    end
     local items = TheWorld.state.isfiesta and SHOPTYPES[self.shop_type.."_fiesta"] or SHOPTYPES[self.shop_type]
     if items then
         return GetRandomItem(items)
     end
 end
 
+function Shopped:SpawnInventory(prefabtype, costprefab, cost)
+    self:SetCost(costprefab, cost)
+    self:SetItemPrefab(prefabtype)
+end
+
 function Shopped:InitShop(shop_type)
     self.shop_type = shop_type
     local itemset = self.inst.saleitem or self:GetNewProduct()
-    self.inst:SpawnInventory(itemset[1], itemset[2], itemset[3])
+    self:SpawnInventory(itemset[1], itemset[2], itemset[3])
 end
 
-function Shopped:BoughtItem(buyer)
+function Shopped:BoughtItem(buyer, slot)
     if buyer.components.inventory then
-        local item = SpawnPrefab(self:GetItemToSell())
+        local item = self:RemoveItemToSell(slot)
+        if not item then
+            return
+        end
+
         if item.OnBought then
             item:OnBought()
         end
+
         buyer.components.inventory:GiveItem(item, nil, self.inst)
-        self.inst:SoldItem()
     end
 end
 
-function Shopped:GetRobbed(doer)
-    if not self:GetItem() then
+function Shopped:GetRobbed(doer, slot)
+    if not self:GetItemToSell() then
         return false
     end
+
     self.inst:AddTag("robbed")
     -- TODO: Make this work
     -- TheWorld.components.kramped:OnNaughtyAction(6)
-    self:BoughtItem(doer)
+    self:BoughtItem(doer, slot)
+end
+
+function Shopped:IsBeingWatched()
+    return self.inst.replica.shopped:IsBeingWatched()
 end
 
 function Shopped:OnSave()
     return {
         shop_type = self.shop_type,
         robbed = self.inst:HasTag("robbed"),
-        item_to_sell = self:GetItemToSell(),
         cost = self:GetCost(),
         cost_prefab = self.cost_prefab,
+        add_component_if_missing = true,
     }
 end
 
@@ -97,9 +116,6 @@ function Shopped:OnLoad(data)
     end
     if data.robbed then
         self.inst:AddTag("robbed")
-    end
-    if data.item_to_sell then
-        self:SetItemToSell(data.item_to_sell)
     end
     if data.cost_prefab and data.cost then
         self:SetCost(data.cost_prefab, data.cost)

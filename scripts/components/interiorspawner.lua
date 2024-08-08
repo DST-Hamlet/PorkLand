@@ -713,9 +713,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 -- sets an anim to start playing
-                if prefab.startAnim then
-                    object.AnimState:PlayAnimation(prefab.startAnim)
-                    object.startAnim = prefab.startAnim
+                if prefab.animation then
+                    object.AnimState:PlayAnimation(prefab.animation)
+                    object.animation = prefab.animation
                 end
 
                 if prefab.usesounds then

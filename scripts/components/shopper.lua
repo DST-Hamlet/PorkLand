@@ -99,76 +99,42 @@ function Shopper:GetMoney()
     return oincamount + (oinc10amount * 10) + (oinc100amount * 100)
 end
 
-function Shopper:IsWatching(item)
-    if item:HasTag("cost_one_oinc") or item.components.shopped then
-        local x, y, z = item.Transform:GetWorldPosition()
-        local shopkeeps = TheSim:FindEntities(x, y, z, 50, {"shopkeep"}, {"INLIMBO"})
-        for _, shopkeep in ipairs(shopkeeps) do
-            if not shopkeep.components.sleeper or not shopkeep.components.sleeper:IsAsleep() then
-                return true
-            end
-        end
-    end
-    return false
-end
-
 function Shopper:CanPayFor(item)
-    if not self:IsWatching(item) then
+    if not item.components.shopped:IsBeingWatched() then
         print("NOT WATCHED")
         return true
     end
+    if not item.components.shopped:GetItemToSell() then
+        return false
+    end
 
-    if item.components.shopped then
-        if not item.components.shopped:GetItem() then
-            return false
-        end
+    local prefab_wanted = item.components.shopped:GetCostPrefab()
+    print("TESTING prefab_wanted", prefab_wanted)
 
-        local prefab_wanted = item.components.shopped:GetCostPrefab()
-        print("TESTING prefab_wanted", prefab_wanted)
-
-        if prefab_wanted == "oinc" then
-             if self:GetMoney() >= item.components.shopped:GetCost() then
-                 return true
-             end
-        else
-            if prefab_wanted then
-                local item = self.inst.components.inventory:FindItem(function(look) return look.prefab == prefab_wanted end)
-                if item then
-                    return true
-                end
-            end
+    if prefab_wanted == "oinc" then
+        if self:GetMoney() >= item.components.shopped:GetCost() then
+            return true
         end
     else
-        if item:HasTag("cost_one_oinc") then
-             if self:GetMoney() >= 1 then
-                 return true
-             end
+        if prefab_wanted then
+            local item = self.inst.components.inventory:FindItem(function(look) return look.prefab == prefab_wanted end)
+            if item then
+                return true
+            end
         end
     end
     return false, "REPAIRBOAT"
 end
 
-function Shopper:PayFor(item)
-    if item:HasTag("cost_one_oinc") then
-        self:PayMoney(1)
-    else
-        if not item.components.shopped:GetItem() then
-            return false
-        end
+function Shopper:Buy(shelf, slot)
+    if not shelf.components.shopped:GetItemToSell() then
+        return false
+    end
 
-        local cost_prefab = item.components.shopped:GetCostPrefab()
-        if cost_prefab then
-            if cost_prefab == "oinc" then
-                self:PayMoney(item.components.shopped:GetCost())
-                item:BoughtItem(self.inst)
-            else
-                local item = self.inst.components.inventory:FindItem(function(look) return look.prefab == cost_prefab end)
-                if item then
-                    self.inst.components.inventory:RemoveItem(item)
-                    item:BoughtItem(self.inst)
-                end
-            end
-        end
+    local cost_prefab = shelf.components.shopped:GetCostPrefab()
+    if cost_prefab then
+        self:PayMoney(shelf.components.shopped:GetCost())
+        shelf.components.shopped:BoughtItem(self.inst, slot)
     end
 end
 

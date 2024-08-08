@@ -15,6 +15,18 @@ local function GetSlotSymbol(inst, slot)
     return inst.anim_def.slot_symbol_prefix .. slot
 end
 
+local function OnSave(inst, data)
+    data.interiorID = inst.interiorID
+end
+
+local function OnLoad(inst, data)
+    if data then
+        if data.interiorID then
+            inst.interiorID  = data.interiorID
+        end
+    end
+end
+
 local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix)
     local function fn()
         local inst = CreateEntity()
@@ -70,6 +82,9 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix)
         inst.components.container.skipopensnd = true
 
         inst:AddComponent("visualslotmanager")
+
+        inst.OnSave = OnSave
+        inst.OnLoad = OnLoad
 
         return inst
     end
