@@ -12,6 +12,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.TAKEFROMSHELF, "doshortaction"),
     ActionHandler(ACTIONS.PUTONSHELF, "doshortaction"),
+    ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.RETRIEVE, "dolongaction"),
     ActionHandler(ACTIONS.TOGGLEON, "give"),
     ActionHandler(ACTIONS.TOGGLEOFF, "give"),

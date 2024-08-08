@@ -91,6 +91,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.TAKEFROMSHELF, "doshortaction"),
     ActionHandler(ACTIONS.PUTONSHELF, "doshortaction"),
+    ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.EMBARK, "embark"),
     ActionHandler(ACTIONS.DISEMBARK, "disembark"),
     ActionHandler(ACTIONS.RETRIEVE, "dolongaction"),
