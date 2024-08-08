@@ -1,8 +1,5 @@
-local SHOPTYPES = require("prefabs/pig_shop_defs").SHOPTYPES
-
 local Shopped = Class(function(self, inst)
     self.inst = inst
-    self.shop_type = nil
 
     self.cost_prefab = nil
     self.cost = nil
@@ -20,11 +17,11 @@ function Shopped:SetItemToSell(prefab, slot)
 end
 
 function Shopped:RemoveItemToSell(slot)
-    return self.inst.components.container:RemoveItemBySlot(slot)
+    return self.inst.components.container:RemoveItemBySlot(slot or 1)
 end
 
 function Shopped:GetItemToSell(slot)
-    return self.inst.components.container:GetItemInSlot(slot)
+    return self.inst.components.container:GetItemInSlot(slot or 1)
 end
 
 function Shopped:OnSetCost(fn)
@@ -35,7 +32,10 @@ function Shopped:SetCost(cost_prefab, cost)
     self.cost_prefab = cost_prefab
     self.cost = cost
     self.inst.replica.shopped:SetCost(cost_prefab, cost)
-    self.on_set_cost(self.inst, cost_prefab, cost)
+
+    if self.on_set_cost then
+        self.on_set_cost(self.inst, cost_prefab, cost)
+    end
 end
 
 function Shopped:GetCost()
@@ -44,27 +44,6 @@ end
 
 function Shopped:GetCostPrefab()
     return self.cost_prefab
-end
-
-function Shopped:GetNewProduct()
-    if not self.shop_type then
-        return
-    end
-    local items = TheWorld.state.isfiesta and SHOPTYPES[self.shop_type.."_fiesta"] or SHOPTYPES[self.shop_type]
-    if items then
-        return GetRandomItem(items)
-    end
-end
-
-function Shopped:SpawnInventory(prefabtype, costprefab, cost)
-    self:SetCost(costprefab, cost)
-    self:SetItemPrefab(prefabtype)
-end
-
-function Shopped:InitShop(shop_type)
-    self.shop_type = shop_type
-    local itemset = self.inst.saleitem or self:GetNewProduct()
-    self:SpawnInventory(itemset[1], itemset[2], itemset[3])
 end
 
 function Shopped:BoughtItem(buyer, slot)
@@ -99,7 +78,6 @@ end
 
 function Shopped:OnSave()
     return {
-        shop_type = self.shop_type,
         robbed = self.inst:HasTag("robbed"),
         cost = self:GetCost(),
         cost_prefab = self.cost_prefab,
@@ -110,9 +88,6 @@ end
 function Shopped:OnLoad(data)
     if not data then
         return
-    end
-    if data.shop_type then
-        self.shop_type = data.shoptype
     end
     if data.robbed then
         self.inst:AddTag("robbed")

@@ -1,3 +1,5 @@
+local SHOPTYPES = require("prefabs/pig_shop_defs").SHOPTYPES
+
 local assets =
 {
     Asset("ANIM", "anim/pedestal_crate.zip"),
@@ -39,6 +41,27 @@ local function onremove(inst)
     OnIsPathFindingDirty(inst)
 end
 
+local function GetNewProduct(inst)
+    if not inst.shop_type then
+        return
+    end
+    local items = TheWorld.state.isfiesta and SHOPTYPES[inst.shop_type.."_fiesta"] or SHOPTYPES[inst.shop_type]
+    if items then
+        return GetRandomItem(items)
+    end
+end
+
+local function SpawnInventory(inst, prefab, costprefab, cost)
+    inst.components.shopped:SetCost(costprefab, cost)
+    inst.components.shopped:SetItemToSell(prefab)
+end
+
+local function InitShop(inst, shop_type)
+    inst.shop_type = shop_type
+    local itemset = inst.saleitem or GetNewProduct(inst)
+    SpawnInventory(inst, itemset[1], itemset[2], itemset[3])
+end
+
 local function OnEntityWake(inst)
     if TheWorld.state.isfiesta then
         inst.AnimState:PlayAnimation("idle_yotp")
@@ -64,8 +87,8 @@ local function Restock(inst, force)
         MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
     elseif force or (inst:IsAsleep() and not inst:HasTag("justsellonce") and (not inst.components.shopped:GetItemToSell() or math.random() < 0.16)) then
         print("CHANGING ITEM")
-        local newproduct = inst.saleitem or inst.components.shopped:GetNewProduct()
-        inst.components.shopped:SpawnInventory(newproduct[1], newproduct[2], newproduct[3])
+        local newproduct = inst.saleitem or GetNewProduct(inst)
+        SpawnInventory(inst, newproduct[1], newproduct[2], newproduct[3])
     end
 end
 
@@ -84,6 +107,7 @@ local function OnSave(inst, data)
     data.interiorID = inst.interiorID
     data.animation = inst.animation
 
+    data.shop_type = inst.shop_type
     data.saleitem = inst.saleitem
     data.justsellonce = inst:HasTag("justsellonce")
     data.nodailyrestock = inst:HasTag("nodailyrestock")
@@ -91,16 +115,15 @@ end
 
 local function OnLoad(inst, data)
     if data then
-        if data.interiorID then
-            inst.interiorID  = data.interiorID
-        end
+        inst.saleitem = data.saleitem
+        inst.interiorID = data.interiorID
+        inst.shop_type = data.shop_type
+
         if data.animation then
             inst.animation = data.animation
             inst.AnimState:PlayAnimation(data.animation)
         end
-        if data.saleitem then
-            inst.saleitem = data.saleitem
-        end
+
         if data.justsellonce then
             inst:AddTag("justsellonce")
         end
@@ -133,6 +156,7 @@ local function fn()
     inst.anim_def.slot_symbol_prefix = "SWAP_SIGN"
     inst.GetSlotSymbol = GetSlotSymbol
 
+    inst:AddTag("NOCLICK")
     inst:AddTag("shop_pedestal")
 
     ------- Copied from prefabs/wall.lua -------
@@ -152,18 +176,21 @@ local function fn()
         return inst
     end
 
+    inst.animation = "idle"
+
     inst:AddComponent("container")
-    inst.components.container:WidgetSetup("shelf_")
+    inst.components.container:WidgetSetup("shop_buyer")
     inst.components.container.Open = function() end
     inst.components.container.skipopensnd = true
+
+    inst:AddComponent("visualslotmanager")
 
     inst:AddComponent("shopped")
     inst.components.shopped:OnSetCost(OnSetCost)
 
-    inst:AddComponent("visualslotmanager")
-
     inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
     inst.Restock = Restock
+    inst.InitShop = InitShop
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

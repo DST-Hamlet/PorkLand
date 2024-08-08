@@ -625,7 +625,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
     local pt = self:IndexToPosition(interior.unique_name)
     self:ClearInteriorContents(pt)
 
-    print("InteriorSpawner:SpawnInterior", pt)
+    -- print("InteriorSpawner:SpawnInterior", pt)
 
     local center = SpawnPrefab("interiorworkblank")
     center.Transform:SetPosition(pt:Get())

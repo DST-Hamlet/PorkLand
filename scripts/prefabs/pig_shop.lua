@@ -338,7 +338,7 @@ local function InitShopped(inst)
     local room_position = interior_spawner:IndexToPosition(inst.interiorID)
     local pedestals = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shop_pedestal"})
     for _, pedestal in ipairs(pedestals) do
-        pedestal.components.shopped:InitShop(inst.prefab)
+        pedestal:InitShop(inst.prefab)
     end
     local shelves = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shelf"})
     for _, shelf in ipairs(shelves) do
