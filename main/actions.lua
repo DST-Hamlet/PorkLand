@@ -46,7 +46,7 @@ if not rawget(_G, "HotReloading") then
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
 
-        SHOP = Action({}),
+        SHOP = Action({ distance = 2 }),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do

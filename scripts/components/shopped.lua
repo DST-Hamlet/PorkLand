@@ -57,7 +57,7 @@ function Shopped:BoughtItem(buyer, slot)
             item:OnBought()
         end
 
-        buyer.components.inventory:GiveItem(item, nil, self.inst)
+        buyer.components.inventory:GiveItem(item, nil, self.inst:GetPosition())
     end
 end
 
