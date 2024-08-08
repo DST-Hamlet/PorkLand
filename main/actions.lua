@@ -44,6 +44,7 @@ if not rawget(_G, "HotReloading") then
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
         GAS = Action({distance = 1.5, mount_enabled = true}),
+        THUNDERBIRD_CAST = Action({distance = 1.2}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -407,6 +408,11 @@ ACTIONS.GAS.fn = function(act)
         act.invobject.components.gasser:Gas(pos)
         return true
     end
+end
+
+ACTIONS.THUNDERBIRD_CAST.fn = function(act)
+    act.doer.sg:GoToState("thunder_attack")
+    return true
 end
 
 
