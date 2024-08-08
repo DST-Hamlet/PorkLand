@@ -473,15 +473,23 @@ ACTIONS.SHOP.fn = function(act)
 
     if sell then
         doer.components.shopper:Buy(shelf, slot)
-        shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
+        if shelf.MakeShopkeeperSpeech then
+            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
+        end
         return true
     else
         if reason == "money" then
-            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
+            end
         elseif reason == "goods" then
-            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
+            end
         elseif reason == "closed" then
-            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
+            end
         end
         return true -- Shouldn't this be false?
     end
