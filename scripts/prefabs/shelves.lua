@@ -15,6 +15,14 @@ local function GetSlotSymbol(inst, slot)
     return inst.anim_def.slot_symbol_prefix .. slot
 end
 
+local function Curse(inst)
+    if math.random() < 0.3 then
+        local ghost = SpawnPrefab("pigghost")
+        local pt = Vector3(inst.Transform:GetWorldPosition())
+        ghost.Transform:SetPosition(pt.x,pt.y,pt.z)
+    end
+end
+
 local function OnSave(inst, data)
     data.interiorID = inst.interiorID
 end
@@ -27,7 +35,7 @@ local function OnLoad(inst, data)
     end
 end
 
-local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix)
+local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, curse)
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -83,6 +91,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix)
 
         inst:AddComponent("visualslotmanager")
 
+        inst.Curse = curse
+
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
 
@@ -117,4 +127,4 @@ return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east"}, "SWAP_SIGN"),
     MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west"}, "SWAP_SIGN"),
     MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west"}, "SWAP_SIGN"),
-    MakeShelf("ruins", true, {animation = "ruins"})
+    MakeShelf("ruins", true, {animation = "ruins"}, nil, Curse)

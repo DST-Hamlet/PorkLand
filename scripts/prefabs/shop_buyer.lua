@@ -103,6 +103,11 @@ local function OnSetCost(inst, cost_prefab, cost)
     end
 end
 
+local function OnRobbed(inst, robber)
+    -- This is exposed through postinit/components/kramped.lua
+    TheWorld.components.kramped:OnNaughtyAction(6, robber)
+end
+
 local function OnSave(inst, data)
     data.interiorID = inst.interiorID
     data.animation = inst.animation
@@ -187,6 +192,7 @@ local function fn()
 
     inst:AddComponent("shopped")
     inst.components.shopped:OnSetCost(OnSetCost)
+    inst.components.shopped:OnRobbed(OnRobbed)
 
     inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
     inst.Restock = Restock

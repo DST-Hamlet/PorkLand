@@ -39,6 +39,7 @@ local component_posts = {
     "inventoryitem_replica",
     "inventoryitem",
     "inventoryitemmoisture",
+    "kramped",
     "locomotor",
     "lootdropper",
     "moisture",

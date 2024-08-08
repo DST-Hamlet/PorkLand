@@ -4,6 +4,8 @@ local Shopped = Class(function(self, inst)
     self.cost_prefab = nil
     self.cost = nil
     self.on_set_cost = nil
+
+    self.on_robbed = nil
 end)
 
 function Shopped:SetItemToSell(prefab, slot)
@@ -61,15 +63,20 @@ function Shopped:BoughtItem(buyer, slot)
     end
 end
 
-function Shopped:GetRobbed(doer, slot)
+function Shopped:SetOnRobbed(fn)
+    self.on_robbed = fn
+end
+
+function Shopped:GetRobbed(robber, slot)
     if not self:GetItemToSell() then
         return false
     end
 
     self.inst:AddTag("robbed")
-    -- TODO: Make this work
-    -- TheWorld.components.kramped:OnNaughtyAction(6)
-    self:BoughtItem(doer, slot)
+    if self.on_robbed then
+        self.on_robbed(self.inst, robber)
+    end
+    self:BoughtItem(robber, slot)
 end
 
 function Shopped:IsBeingWatched()
