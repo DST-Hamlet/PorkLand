@@ -41,7 +41,7 @@ local states =
         tags = {"idle", "canrotate"},
 
         onenter = function(inst)
-            if inst.fx and math.random() < 0.1 then
+            if inst.fx and not inst.components.timer:TimerExists("charge_cd") and math.random() < 0.1 then
                 inst.fx.AnimState:PlayAnimation("idle")
             end
 
@@ -98,7 +98,7 @@ local states =
             inst.Physics:Stop()
         end,
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("charge") end ),
         },
@@ -130,7 +130,7 @@ local states =
             inst.AnimState:PlayAnimation("charge_pst")
         end,
 
-        events=
+        events =
         {
             EventHandler("animover", function(inst)
                 inst.charging = false

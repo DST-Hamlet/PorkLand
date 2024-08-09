@@ -1,6 +1,7 @@
-local assets=
+local assets =
 {
     Asset("ANIM", "anim/thunderbird.zip"),
+    Asset("ANIM", "anim/thunderbird_build.zip"),
     Asset("ANIM", "anim/thunderbird_fx.zip"),
 }
 
@@ -27,6 +28,7 @@ local function OnTimerDone(inst, data)
         inst.is_fleeing = false
     elseif data.name == "charge_cd" then
         inst.cooling_down = false
+        inst.components.timer:SetTimeLeft("fleeing_cd", 0) -- stop fleeing
     end
 end
 
@@ -50,11 +52,11 @@ end
 local function SpawnFX(inst)
     if not inst.fx then
         inst.fx = inst:SpawnChild("thunderbird_fx")
-        inst.fx.Transform:SetPosition(0,0,0)
+        inst.fx.Transform:SetPosition(0, 0, 0)
    end
 end
 
-local brain = require "brains/thunderbirdbrain"
+local brain = require("brains/thunderbirdbrain")
 
 local function fn()
     local inst = CreateEntity()
@@ -76,7 +78,7 @@ local function fn()
     inst.Transform:SetFourFaced()
 
     inst.AnimState:SetBank("thunderbird")
-    inst.AnimState:SetBuild("thunderbird")
+    inst.AnimState:SetBuild("thunderbird_build")
     inst.AnimState:Hide("hat")
 
     MakeCharacterPhysics(inst, 50, 0.5)
