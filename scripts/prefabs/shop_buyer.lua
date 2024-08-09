@@ -205,7 +205,7 @@ local function fn()
 
     inst:AddComponent("shopped")
     inst.components.shopped:OnSetCost(OnSetCost)
-    inst.components.shopped:OnRobbed(OnRobbed)
+    inst.components.shopped:SetOnRobbed(OnRobbed)
 
     inst.MakeShopkeeperSpeech = MakeShopkeeperSpeech
     inst.Restock = Restock
