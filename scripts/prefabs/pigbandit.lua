@@ -76,7 +76,7 @@ local function OnHitOther(inst, other, damage)
 
     while oincs and (#oincs > 0) do
         for i, oinc in ipairs(oincs) do
-            inst.components.thief:StealItem(other, oinc, true)
+            inst.components.thief:StealItem(other, oinc, false)
         end
 
         oincs = FindOincs(other)

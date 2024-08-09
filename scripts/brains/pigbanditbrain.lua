@@ -12,7 +12,7 @@ local STOP_RUN_AWAY_DIST = 8
 local SEE_STOLEN_ITEM_DIST = 10
 local MAX_WANDER_DIST = 20
 
-local PICKUP_OINC_MUST_TAGS = {"inventoryitem", "oinc"}
+local PICKUP_OINC_MUST_TAGS = {"_inventoryitem", "oinc"}
 local PICKUP_OINC_NO_TAGS = {"INLIMBO", "outofreach", "trap"}
 
 local function OincNearby(inst)
