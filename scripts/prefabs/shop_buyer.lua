@@ -197,6 +197,7 @@ local function fn()
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("shop_buyer")
+    inst.components.container.CanTakeItemInSlot = function() return true end
     inst.components.container.Open = function() end
     inst.components.container.skipopensnd = true
 
