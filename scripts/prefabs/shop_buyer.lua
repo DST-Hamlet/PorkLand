@@ -45,7 +45,7 @@ local function GetNewProduct(inst)
     if not inst.shop_type then
         return
     end
-    local items = TheWorld.state.isfiesta and SHOPTYPES[inst.shop_type.."_fiesta"] or SHOPTYPES[inst.shop_type]
+    local items = TheWorld.state.isfiesta and SHOPTYPES[inst.shop_type .. "_fiesta"] or SHOPTYPES[inst.shop_type]
     if items then
         return GetRandomItem(items)
     end
@@ -60,14 +60,6 @@ local function InitShop(inst, shop_type)
     inst.shop_type = shop_type
     local itemset = inst.saleitem or GetNewProduct(inst)
     SpawnInventory(inst, itemset[1], itemset[2], itemset[3])
-end
-
-local function OnEntityWake(inst)
-    if TheWorld.state.isfiesta then
-        inst.AnimState:PlayAnimation("idle_yotp")
-    else
-        inst.AnimState:PlayAnimation(inst.animation)
-    end
 end
 
 local function MakeShopkeeperSpeech(inst, speech)
@@ -138,6 +130,26 @@ local function OnLoad(inst, data)
     end
 end
 
+local function OnEntityWake(inst)
+    if TheWorld.state.isfiesta then
+        inst.AnimState:PlayAnimation("idle_yotp")
+    else
+        inst.AnimState:PlayAnimation(inst.animation)
+    end
+end
+
+local function OnItemGet(inst, data)
+    if data and data.item and data.item.components.perishable then
+        data.item.components.perishable:StopPerishing()
+    end
+end
+
+local function OnItemLose(inst, data)
+    if data and data.prev_item and data.prev_item.components.perishable then
+        data.prev_item.components.perishable:StartPerishing()
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -202,6 +214,8 @@ local function fn()
     inst.OnLoad = OnLoad
     inst.OnEntityWake = OnEntityWake
 
+    inst:ListenForEvent("itemget", OnItemGet)
+    inst:ListenForEvent("itemlose", OnItemLose)
     inst:WatchWorldState("cycle", function() inst:Restock() end)
     inst:WatchWorldState("isfiesta", function() inst:Restock() end)
 
