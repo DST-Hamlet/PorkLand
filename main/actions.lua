@@ -456,7 +456,7 @@ ACTIONS.SHOP.fn = function(act)
     end
 
     if not shelf.components.shopped:IsBeingWatched() then
-        shelf.components.shopped:GetRobbed(shelf, slot)
+        shelf.components.shopped:GetRobbed(doer, slot)
         return true
     end
 
