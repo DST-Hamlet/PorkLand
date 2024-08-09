@@ -44,10 +44,9 @@ end
 function ToolUtil.GetUpvalue(fn, path)
     local value, prv, i = fn, nil, nil ---@type any, function | nil, number | nil
     for part in path:gmatch("[^%.]+") do
-        print(part)
+        -- print(part)
         prv = fn
         value, i = get_upvalue(value, part)
-        assert(i ~= nil, "could't find " .. path)
     end
     return value, i, prv
 end

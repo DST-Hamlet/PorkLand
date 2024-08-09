@@ -625,7 +625,7 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
     local pt = self:IndexToPosition(interior.unique_name)
     self:ClearInteriorContents(pt)
 
-    print("InteriorSpawner:SpawnInterior", pt)
+    -- print("InteriorSpawner:SpawnInterior", pt)
 
     local center = SpawnPrefab("interiorworkblank")
     center.Transform:SetPosition(pt:Get())
@@ -708,14 +708,14 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 -- saves the roomID on the object
-                if object.components.shopinterior or object.components.shopped or object.components.shopdispenser then
+                if object.components.shopped then
                     object.interiorID = interior.unique_name
                 end
 
                 -- sets an anim to start playing
-                if prefab.startAnim then
-                    object.AnimState:PlayAnimation(prefab.startAnim)
-                    object.startAnim = prefab.startAnim
+                if prefab.animation then
+                    object.AnimState:PlayAnimation(prefab.animation)
+                    object.animation = prefab.animation
                 end
 
                 if prefab.usesounds then
@@ -746,8 +746,8 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 if prefab.shelfitems then
-                    for _, item in ipairs(prefab.shelfitems) do
-                        object.components.container:GiveItem(SpawnPrefab(item))
+                    for _, data in ipairs(prefab.shelfitems) do
+                        object.components.container:GiveItem(SpawnPrefab(data[2]), data[1])
                     end
                 end
 

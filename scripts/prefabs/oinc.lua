@@ -35,7 +35,7 @@ local function MakeOinc(name, build, value)
         MakeInventoryPhysics(inst)
         PorkLandMakeInventoryFloatable(inst)
 
-        inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+        inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
 
         inst.AnimState:SetBank("coin")
         inst.AnimState:SetBuild(build)
@@ -83,4 +83,3 @@ end
 return MakeOinc("oinc", "pig_coin", 1),
     MakeOinc("oinc10", "pig_coin_silver", 10),
     MakeOinc("oinc100", "pig_coin_jade", 100)
-

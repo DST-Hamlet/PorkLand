@@ -36,6 +36,8 @@ if not rawget(_G, "HotReloading") then
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
         MAKEHOME = Action({distance = 1}),
+        GAS = Action({distance = 1.5, mount_enabled = true}),
+
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         PAY_TAX = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -43,7 +45,8 @@ if not rawget(_G, "HotReloading") then
         SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
-        GAS = Action({distance = 1.5, mount_enabled = true}),
+
+        SHOP = Action({ distance = 2 }),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -325,6 +328,11 @@ ACTIONS.TAKEFROMSHELF.fn = function(act)
         local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualslot:GetSlot())
         act.doer.components.inventory:GiveItem(item, nil, act.doer:GetPosition())
 
+        -- Currently only used by pig ruin shelf
+        if shelf.Curse then
+            shelf:Curse()
+        end
+
         return true
     end
 end
@@ -395,9 +403,100 @@ end
 
 ACTIONS.STOCK.fn = function(act)
     if act.target then
-        act.target.restock(act.target,true)
+        act.target:Restock(true)
         act.doer.changestock = nil
         return true
+    end
+end
+
+-- ACTIONS.SHOP.stroverridefn = function(act)
+--     local shelf = act.target.replica.visualslot:GetShelf()
+--     local item = act.target.replica.visualslot:GetItem()
+
+-- 	if not (shelf and item and shelf.replica.shopped) then
+-- 		return
+--     end
+
+--     local cost_prefab = shelf.replica.shopped:GetCostPrefab()
+--     local cost = shelf.replica.shopped:GetCost()
+--     local payitem = STRINGS.NAMES[string.upper(cost_prefab)]
+--     local qty = ""
+--     if cost_prefab == "oinc" then
+--         qty = cost
+--         if cost > 1 then
+--             payitem = STRINGS.NAMES.OINC_PL
+--         end
+--     end
+
+--     -- TODO: See if we want to move this to shopper replica or something
+--     local is_watching = false
+--     if shelf:HasTag("cost_one_oinc") or shelf.replica.shopped then
+--         local x, y, z = shelf.Transform:GetWorldPosition()
+--         local shopkeeps = TheSim:FindEntities(x, y, z, 50, {"shopkeep"}, {"INLIMBO"})
+--         for _, shopkeep in ipairs(shopkeeps) do
+--             -- if not shopkeep.components.sleeper or not shopkeep.components.sleeper:IsAsleep() then
+--                 return true
+--             -- end
+--         end
+--     end
+--     if is_watching then
+--         return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = item:GetBasicDisplayName(), qty = qty, payitem = payitem })
+--     else
+--         return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = item:GetBasicDisplayName() })
+--     end
+-- end
+
+ACTIONS.SHOP.fn = function(act)
+    local doer = act.doer
+    local shelf = act.target.replica.visualslot:GetShelf()
+    local slot = act.target.replica.visualslot:GetSlot()
+
+	if not (shelf and shelf.components.shopped and doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
+        return false
+    end
+
+    if not shelf.components.shopped:IsBeingWatched() then
+        shelf.components.shopped:GetRobbed(doer, slot)
+        return true
+    end
+
+    local sell = true
+    local reason = nil
+
+    if shelf:HasTag("shopclosed") or TheWorld.state.isnight then
+        reason = "closed"
+        sell = false
+    elseif not doer.components.shopper:CanPayFor(shelf) then
+        local prefab_wanted = shelf.components.shopped:GetCostPrefab()
+        if prefab_wanted == "oinc" then
+            reason = "money"
+        else
+            reason = "goods"
+        end
+        sell = false
+    end
+
+    if sell then
+        doer.components.shopper:Buy(shelf, slot)
+        if shelf.MakeShopkeeperSpeech then
+            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
+        end
+        return true
+    else
+        if reason == "money" then
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
+            end
+        elseif reason == "goods" then
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
+            end
+        elseif reason == "closed" then
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
+            end
+        end
+        return true -- Shouldn't this be false?
     end
 end
 
@@ -649,9 +748,19 @@ local PL_COMPONENT_ACTIONS =
         end,
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
-                table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                local shelf = inst.replica.visualslot:GetShelf()
+                if shelf and shelf.replica.shopped then
+                    table.insert(actions, ACTIONS.SHOP)
+                else
+                    table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                end
             end
-        end
+        end,
+        -- shopped = function(inst, doer, actions, right)
+        --     if inst:HasTag("has_item_to_sell") then
+        --         table.insert(actions, ACTIONS.SHOP)
+        --     end
+        -- end,
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right
@@ -888,6 +997,16 @@ function SCENE.pickable(inst, doer, actions, ...)
     if not inst:HasTag("unsuited") then
         return _SCENE_pickable(inst, doer, actions, ...)
     end
+end
+
+local PlayerController = require("components/playercontroller")
+
+local do_action_auto_equip = PlayerController.DoActionAutoEquip
+function PlayerController:DoActionAutoEquip(buffaction, ...)
+    if buffaction.action == ACTIONS.PUTONSHELF then
+        return
+    end
+    return do_action_auto_equip(self, buffaction, ...)
 end
 
 function PLENV.OnHotReload()
