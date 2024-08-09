@@ -2,7 +2,7 @@ local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 AddComponentPostInit("kramped", function(self, inst)
-    for _, listener in ipairs(inst.inst.event_listening["ms_playerjoined"][TheWorld]) do
+    for _, listener in ipairs(inst.event_listening["ms_playerjoined"][TheWorld]) do
         local OnNaughtyAction = ToolUtil.GetUpvalue(listener, "OnKilledOther.OnNaughtyAction")
         if OnNaughtyAction then
             local _activeplayers = ToolUtil.GetUpvalue(inst.OnUpdate, "_activeplayers")
