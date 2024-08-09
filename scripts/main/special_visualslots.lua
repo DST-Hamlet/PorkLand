@@ -51,7 +51,7 @@ local function CreateInventorySparkleFX()
     sparkle_fx.entity:AddTransform()
     sparkle_fx.entity:AddAnimState()
 
-    sparkle_fx.AnimState:SetFinalOffset(2)
+    sparkle_fx.AnimState:SetFinalOffset(3)
     sparkle_fx.AnimState:SetBank("inventory_fx_sparkle")
     sparkle_fx.AnimState:SetBuild("inventory_fx_sparkle")
     sparkle_fx.AnimState:PlayAnimation("idle", true)
@@ -288,6 +288,20 @@ client_postinitfns.reviver = function(inst, shelf, slot, item)
     end
    inst.visual_reviver:DoTaskInTime(.75 + math.random() * .75, ReviverBeat)
 end
+
+local function oinc(inst, shelf, slot, item)
+    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+
+    local sparkle_fx = CreateInventorySparkleFX()
+    sparkle_fx.entity:SetParent(inst.entity)
+    SparkleInventoryItem(sparkle_fx)
+
+    return true
+end
+
+master_postinitfns.oinc = oinc
+master_postinitfns.oinc10 = oinc
+master_postinitfns.oinc100 = oinc
 
 return {
     master_postinitfns = master_postinitfns,
