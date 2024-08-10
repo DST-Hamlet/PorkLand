@@ -38,7 +38,7 @@ local function HomePos(inst)
         return inst.components.homeseeker:GetHomePos()
     end
 
-    return Vector3(0,0,0)
+    return Vector3(0, 0, 0)
 end
 
 local function IsHome(inst)
@@ -95,7 +95,11 @@ end
 local function RunAwayAction(inst)
     if ThreatInAttackRange(inst) then
         inst.is_fleeing = true
-        inst.components.timer:StartTimer("fleeing_cd", MAX_FLEE_TIME)
+        if inst.components.timer:TimerExists("fleeing_cd") then
+            inst.components.timer:SetTimeLeft("fleeing_cd", MAX_FLEE_TIME)
+        else
+            inst.components.timer:StartTimer("fleeing_cd", MAX_FLEE_TIME)
+        end
 
         inst.Transform:SetFourFaced()
         inst.lightning_target = nil

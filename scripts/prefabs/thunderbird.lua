@@ -1,6 +1,6 @@
 local assets =
 {
-    Asset("ANIM", "anim/thunderbird.zip"),
+    Asset("ANIM", "anim/thunderbird_basic.zip"),
     Asset("ANIM", "anim/thunderbird_build.zip"),
     Asset("ANIM", "anim/thunderbird_fx.zip"),
 }
@@ -78,7 +78,7 @@ local function fn()
     inst.Transform:SetFourFaced()
 
     inst.AnimState:SetBank("thunderbird")
-    inst.AnimState:SetBuild("thunderbird_build")
+    inst.AnimState:SetBuild("thunderbird")
     inst.AnimState:Hide("hat")
 
     MakeCharacterPhysics(inst, 50, 0.5)
