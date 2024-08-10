@@ -1,5 +1,6 @@
 local assets =
 {
+    Asset("ANIM", "anim/messagebottle.zip"),
     Asset("ANIM", "anim/stash_map.zip"),
     Asset("ANIM", "anim/x_marks_spot_bandit.zip"),
 }

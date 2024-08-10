@@ -125,14 +125,15 @@ end
 
 local function FindMoneyAction(inst)
     local target = FindEntity(inst, SEE_MONEY_DIST, function(item)
-                if not item:IsOnValidGround() then
-                    return false
-                end
-               -- local itempos = Vector3(item.Transform:GetWorldPosition())
-               -- local instpos = inst:GetPosition()
-                --and GetWorld().Pathfinder:IsClear(itempos.x, itempos.y, itempos.z, instpos.x, instpos.y, instpos.z,  {ignorewalls = false})
-                return item.prefab == "oinc" or item.prefab == "oinc10"
-            end)
+        if not item:IsOnValidGround() then
+            return false
+        end
+        -- local itempos = Vector3(item.Transform:GetWorldPosition())
+        -- local instpos = inst:GetPosition()
+        --and GetWorld().Pathfinder:IsClear(itempos.x, itempos.y, itempos.z, instpos.x, instpos.y, instpos.z,  {ignorewalls = false})
+        return true
+    end, {"oinc"}, {"INLIMBO"})
+
     if target then
         return BufferedAction(inst, target, ACTIONS.PICKUP)
     end
