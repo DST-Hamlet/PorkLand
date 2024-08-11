@@ -89,7 +89,7 @@ AddTask("plains_ruins", {
 AddTask("Edge_of_civilization", {
     locks = LOCKS.JUNGLE_DEPTH_1,
     keys_given = KEYS.CIVILIZATION_1,
-    room_tags = {"island_accademy"},
+    room_tags = {"island_accademy", "City1"},
     room_choices = {
         ["cultivated_base_1"] = math.random(3, 5),
         ["piko_land"] = math.random(2, 3),
@@ -350,7 +350,7 @@ AddTask("Path_to_the_others", {
 AddTask("Other_edge_of_civilization", {
     locks = LOCKS.OTHER_JUNGLE_DEPTH_1,
     keys_given = KEYS.OTHER_CIVILIZATION_1,
-    room_tags = {"island_royal"},
+    room_tags = {"island_royal", "City1"},
     room_choices = {
         ["cultivated_base_2"] = math.random(1, 3),
     },
