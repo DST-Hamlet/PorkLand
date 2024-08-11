@@ -213,10 +213,10 @@ local function OnSave(inst, data)
         table.insert(references, data.dust)
     end
 
-    if inst.swinglight then
-        data.swinglight = inst.swinglight.GUID
-        table.insert(references, data.swinglight)
-    end
+    -- if inst.swinglight then
+    --     data.swinglight = inst.swinglight.GUID
+    --     table.insert(references, data.swinglight)
+    -- end
 
     if inst.animdata then
         data.animdata = inst.animdata
@@ -243,8 +243,8 @@ local function OnLoad(inst, data)
             inst.Transform:SetRotation(data.rotation)
         end
     end
-    if data.scalex  then
-        inst.Transform:SetScale( data.scalex, data.scaley, data.scalez)
+    if data.scalex then
+        inst.Transform:SetScale(data.scalex, data.scaley, data.scalez)
     end
     if data.sunraysspawned then
         inst.sunraysspawned = data.sunraysspawned
@@ -268,7 +268,7 @@ local function OnLoad(inst, data)
         inst:AddTag("playercrafted")
     end
     if data.setbackground then
-        inst.AnimState:SetLayer( LAYER_WORLD_BACKGROUND )
+        inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
         inst.AnimState:SetSortOrder(data.setbackground)
         inst.setbackground = data.setbackground
     end
@@ -281,7 +281,7 @@ local function OnLoad(inst, data)
             inst.AnimState:SetBank(inst.animdata.bank)
         end
         if inst.animdata.anim then
-            inst.AnimState:PlayAnimation(inst.animdata.anim,inst.animdata.animloop)
+            inst.AnimState:PlayAnimation(inst.animdata.anim, inst.animdata.animloop)
         end
     end
 
@@ -302,12 +302,12 @@ end
 
 local function OnLoadPostPass(inst,ents, data)
     if data then
-        if data.swinglight then
-            local swinglight = ents[data.swinglight]
-            if swinglight then
-                inst.swinglight = swinglight.entity
-            end
-        end
+        -- if data.swinglight then
+        --     local swinglight = ents[data.swinglight]
+        --     if swinglight then
+        --         inst.swinglight = swinglight.entity
+        --     end
+        -- end
         if data.dust then
             local dust = ents[data.dust]
             if dust then
