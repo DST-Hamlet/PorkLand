@@ -77,6 +77,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             pog = {image = "pogs.tex"},
             "pangolden",
             hanging_vine_patch = {image = "hanging_vine.tex"},
+            thunderbirdnest = {image = "thunderbirds.tex"},
         },
         resources = {
             "asparagus",
@@ -109,6 +110,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             hippopotamoose_setting = {image = "hippopotamoose.tex"},
             mandrakeman_setting = {image = "mandrake_men.tex"},
             piko_setting = {image = "orange_pikos.tex"},
+            thunderbird_setting = {image = "thunderbirds.tex"},
         },
         resources = {
             asparagus_regrowth = {image = "asparagus.tex"},

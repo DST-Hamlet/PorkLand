@@ -209,6 +209,8 @@ PrefabFiles = {
     "water_pipe",
     "water_spray",
     "pl_plantables",
+    "thunderbird",
+    "thunderbirdnest",
 }
 
 Assets = {
