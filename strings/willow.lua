@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Ugh, why would I do that now?",
         },
+        SHOP = {
+            CANTPAY = "It's too expensive.",
+            GENERIC = "I didn't want it anyway.",
+        },
         USEDOOR = {
             GENERIC = "Probably boring in there anyway.",
             LOCKED = "How am I supposed to get in?!",
@@ -681,6 +685,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "Aw. The flower didn't even burn.",
         TUBER_CROP = "Should be ripe before I burn it.",
         TUBER_CROP_COOKED = "Fire: it always makes things better.",
+        TUNACAN = "Aw, but I like mine with ballphin!",
         TURF_COBBLEROAD = "The road is boring.",
         TURF_DEEPRAINFOREST = "The ground is boring.",
         TURF_DEEPRAINFOREST_NOCANOPY = "The ground is boring.",

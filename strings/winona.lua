@@ -385,6 +385,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "dinner time!",
         TUBER_CROP = "I feel like it's not yet cooked.",
         TUBER_CROP_COOKED = "This is still a bit risky.",
+        TUNACAN = "Crazy what you find out at sea.",
         TURF_COBBLEROAD = "That's a chunk of road.",
         TURF_DEEPRAINFOREST = "That's a chunk of ground.",
         TURF_DEEPRAINFOREST_NOCANOPY = "That's a chunk of ground.",

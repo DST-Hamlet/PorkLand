@@ -70,6 +70,21 @@ msgctxt "STRINGS.ACTIONS.SHEAR"
 msgid "Shear"
 msgstr "剪"
 
+#. STRINGS.ACTIONS.SHOP
+msgctxt "STRINGS.ACTIONS.SHOP"
+msgid "Purchase"
+msgstr "购买"
+
+#. STRINGS.ACTIONS.SHOP_LONG
+msgctxt "STRINGS.ACTIONS.SHOP_LONG"
+msgid "Buy {wantitem}\nfor {qty} {payitem}"
+msgstr "花费{qty}{payitem}\n换取{wantitem}"
+
+#. STRINGS.ACTIONS.SHOP_TAKE
+msgctxt "STRINGS.ACTIONS.SHOP_TAKE"
+msgid "Steal {wantitem}"
+msgstr "偷走{wantitem}"
+
 #. STRINGS.ACTIONS.SMELT
 msgctxt "STRINGS.ACTIONS.SMELT"
 msgid "Smelt"
@@ -104,6 +119,16 @@ msgstr "防护！"
 msgctxt "STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "She's floating just fine right now."
 msgstr "它现在状态很好。"
+
+#. STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.SHOP.CANTPAY"
+msgid "I can't pay for that."
+msgstr "我买不起这个。"
+
+#. STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.SHOP.GENERIC"
+msgid "I can't do that."
+msgstr "我做不到。"
 
 #. STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.USEDOOR.GENERIC"
@@ -2870,6 +2895,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TUBER_CROP_COOKED"
 msgid "I wonder if it's still poisonous?"
 msgstr "我想知道它是不是仍然存在着毒性？"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TUNACAN"
+msgid "Where did this can come from?"
+msgstr "这罐头是哪儿来的？"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.TURF_COBBLEROAD"
 msgid "Some nicely cobbled together rocks."
@@ -3054,6 +3084,16 @@ msgstr "我想看看木门另一边有什么。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "This vessel has already been repaired to its optimum level."
 msgstr "这艘船已经修复到它的最佳水平了。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ACTIONFAIL.SHOP.CANTPAY"
+msgid "Goods do not come cheap here."
+msgstr "这里的商品可不便宜。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ACTIONFAIL.SHOP.GENERIC"
+msgid "I'm familiar with the unattainable."
+msgstr "我太清楚这种不可能做到的感觉了。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.ACTIONFAIL.USEDOOR.GENERIC"
@@ -5805,6 +5845,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Even the stems are edible when they are cooked."
 msgstr "就算是根茎，煮熟的时候也是可以吃的。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TUNACAN"
+msgid "What an extraordinary opening device!"
+msgstr "多么了不起的开罐装置啊！"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.TURF_COBBLEROAD"
 msgid "Ah. A nice cobblestone road."
@@ -5989,6 +6034,16 @@ msgstr "我开阔了我的眼界。还有我家也有出口了。"
 msgctxt "STRINGS.CHARACTERS.WALANI.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "It doesn't need any work."
 msgstr "它不需要任何处理。"
+
+#. STRINGS.CHARACTERS.WALANI.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WALANI.ACTIONFAIL.SHOP.CANTPAY"
+msgid "Yeesh. Everything's so expensive here."
+msgstr "噫，这里的物价太贵了。"
+
+#. STRINGS.CHARACTERS.WALANI.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WALANI.ACTIONFAIL.SHOP.GENERIC"
+msgid "I guess it's not for sale."
+msgstr "我猜这是非卖品。"
 
 #. STRINGS.CHARACTERS.WALANI.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WALANI.ACTIONFAIL.USEDOOR.GENERIC"
@@ -8750,6 +8805,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Can I eat it now?"
 msgstr "我现在可以吃了吗？"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TUNACAN"
+msgid "Whoa! Righteous non-spoilage!"
+msgstr "哇！真正不会变质！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.TURF_COBBLEROAD"
 msgid "Rocky road. Mmmm..."
@@ -10414,6 +10474,11 @@ msgstr "我想知道现在的它是什么味道的？"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TUBER_CROP_COOKED"
 msgid "看起来也不差。"
 msgstr "看起来也不差。"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TUNACAN"
+msgid "Not catching it yourself takes the joy out of it."
+msgstr "不是自己抓住的就会失去乐趣。"
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TURF_COBBLEROAD"
@@ -12905,6 +12970,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Even after treatment it is highly toxic."
 msgstr "即使经过处理它也有剧毒。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TUNACAN"
+msgid "Hmm, this lunch was packed with its own temporally-isolated pocket."
+msgstr "嗯，这顿午餐被用时间隔离容器装起来了。"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.TURF_COBBLEROAD"
 msgid "A road to where, exactly?"
@@ -13084,6 +13154,16 @@ msgstr "通往另一个房间。"
 msgctxt "STRINGS.CHARACTERS.WARLY.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "It will not work."
 msgstr "这样做没用。"
+
+#. STRINGS.CHARACTERS.WARLY.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WARLY.ACTIONFAIL.SHOP.CANTPAY"
+msgid "I can't afford that."
+msgstr "我可负担不起。"
+
+#. STRINGS.CHARACTERS.WARLY.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WARLY.ACTIONFAIL.SHOP.GENERIC"
+msgid "Oh. Can't buy that."
+msgstr "哦，那个买不了。"
 
 #. STRINGS.CHARACTERS.WARLY.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WARLY.ACTIONFAIL.USEDOOR.GENERIC"
@@ -15820,6 +15900,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Not my best work."
 msgstr "并非我的最佳作品。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TUNACAN"
+msgid "Tuna, packed in oil!"
+msgstr "浸在油里的金枪鱼！"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.TURF_COBBLEROAD"
 msgid "It's like an ingredient for the road."
@@ -16004,6 +16089,16 @@ msgstr "这门散发的气味像是橡木。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "My vessel is renewed!"
 msgstr "我的船已经翻新过了！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ACTIONFAIL.SHOP.CANTPAY"
+msgid "I vow to win more treasures and return!"
+msgstr "我一定要拿着更多宝藏再回来！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ACTIONFAIL.SHOP.GENERIC"
+msgid "It has been kept from me!"
+msgstr "它离我有点远！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.ACTIONFAIL.USEDOOR.GENERIC"
@@ -18740,6 +18835,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Fire does nothing to make it edible!"
 msgstr "火焰也不能让它入我的口！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TUNACAN"
+msgid "Food that can survive a voyage!"
+msgstr "可以维持航行的食物！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TURF_COBBLEROAD"
 msgid "The road to battle leads wherever I choose."
@@ -18924,6 +19024,16 @@ msgstr "此处向前就是另一个房间了！"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "Not right now."
 msgstr "现在不用。"
+
+#. STRINGS.CHARACTERS.WAXWELL.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ACTIONFAIL.SHOP.CANTPAY"
+msgid "Hmmph. Overpriced if you ask me."
+msgstr "噢。要我说的话你价定的太高了。"
+
+#. STRINGS.CHARACTERS.WAXWELL.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.ACTIONFAIL.SHOP.GENERIC"
+msgid "Not for sale."
+msgstr "非卖品。"
 
 #. STRINGS.CHARACTERS.WAXWELL.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WAXWELL.ACTIONFAIL.USEDOOR.GENERIC"
@@ -21660,6 +21770,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Ugh. Should I even eat this?"
 msgstr "呃，我甚至要吃这个？"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TUNACAN"
+msgid "Fish is presumably contained inside."
+msgstr "大概里面含有鱼。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TURF_COBBLEROAD"
 msgid "A good cobble road."
@@ -21844,6 +21959,16 @@ msgstr "这是一扇门。你可以通过它。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "No need. It already floats our boat."
 msgstr "没必要。我们的船已经好好地漂着了。"
+
+#. STRINGS.CHARACTERS.WEBBER.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WEBBER.ACTIONFAIL.SHOP.CANTPAY"
+msgid "We'll have to save up a bit more for that."
+msgstr "我们得再多存点钱。"
+
+#. STRINGS.CHARACTERS.WEBBER.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WEBBER.ACTIONFAIL.SHOP.GENERIC"
+msgid "Oops. They're not selling that."
+msgstr "噢。他们不卖这个。"
 
 #. STRINGS.CHARACTERS.WEBBER.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WEBBER.ACTIONFAIL.USEDOOR.GENERIC"
@@ -24565,6 +24690,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Yummy."
 msgstr "好吃。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TUNACAN"
+msgid "We left our can opener at home."
+msgstr "我们把开罐器落在家里了。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.TURF_COBBLEROAD"
 msgid "Some road that we dug up."
@@ -24749,6 +24879,16 @@ msgstr "通向另一个房间的门。"
 msgctxt "STRINGS.CHARACTERS.WENDY.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "It's already in better shape than I am."
 msgstr "它的状态已经好过我了。"
+
+#. STRINGS.CHARACTERS.WENDY.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WENDY.ACTIONFAIL.SHOP.CANTPAY"
+msgid "I didn't want it anyway."
+msgstr "反正我也不想要。"
+
+#. STRINGS.CHARACTERS.WENDY.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WENDY.ACTIONFAIL.SHOP.GENERIC"
+msgid "Once again, I'm disappointed."
+msgstr "再一次的，我感到了失望。"
 
 #. STRINGS.CHARACTERS.WENDY.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WENDY.ACTIONFAIL.USEDOOR.GENERIC"
@@ -27475,6 +27615,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Perhaps I'm lucky and it's still poisoned."
 msgstr "也许我很幸运但它仍然充满毒性。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TUNACAN"
+msgid "This is plainly false advertising."
+msgstr "这明显是虚假广告。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.TURF_COBBLEROAD"
 msgid "Some road."
@@ -27659,6 +27804,16 @@ msgstr "穿过那扇门只会有失望罢了。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "It's not going to get fixed any more than it already is."
 msgstr "再修也不能让它比现在还牢固。"
+
+#. STRINGS.CHARACTERS.WHEELER.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WHEELER.ACTIONFAIL.SHOP.CANTPAY"
+msgid "I need to improve my finances first."
+msgstr "我得先改善一下我的财物状况才能买东西。"
+
+#. STRINGS.CHARACTERS.WHEELER.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.ACTIONFAIL.SHOP.GENERIC"
+msgid "Why is it even in here if it's not for sale?"
+msgstr "如果不卖的话为什么要摆在这里呢？"
 
 #. STRINGS.CHARACTERS.WHEELER.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WHEELER.ACTIONFAIL.USEDOOR.GENERIC"
@@ -30415,6 +30570,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TUBER_CROP_COOKED"
 msgid "A nice meal of tubers."
 msgstr "一顿美味的块茎大餐。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TUNACAN"
+msgid "Canned fish! What an adventure!"
+msgstr "是鱼罐头！多么的冒险啊！"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.TURF_COBBLEROAD"
 msgid "Do I really need to drag this road around with me?"
@@ -30599,6 +30759,16 @@ msgstr "有更多的储存空间了。我很喜欢它！"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "Tip top!"
 msgstr "这艘船状态一流！"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ACTIONFAIL.SHOP.CANTPAY"
+msgid "Requires more funds than I currently possess."
+msgstr "它所需要的资金超过我的持有量。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ACTIONFAIL.SHOP.GENERIC"
+msgid "Currently unavailable."
+msgstr "还尚未发售。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.ACTIONFAIL.USEDOOR.GENERIC"
@@ -33320,6 +33490,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TUBER_CROP_COOKED"
 msgid "I suspect the poison has not been cooked out."
 msgstr "我觉得它的毒素还没被烤掉。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TUNACAN"
+msgid "Preserved fish."
+msgstr "防腐的鱼。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TURF_COBBLEROAD"
 msgid "The ground. You step on it."
@@ -33504,6 +33679,16 @@ msgstr "很适合当一个图书馆的入口。"
 msgctxt "STRINGS.CHARACTERS.WILBA.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "WILBA CAN'ST NAUGHT FIX IT"
 msgstr "薇尔芭能够修好它"
+
+#. STRINGS.CHARACTERS.WILBA.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WILBA.ACTIONFAIL.SHOP.CANTPAY"
+msgid "WILBA HATH NAUGHT THE MONEYS"
+msgstr "薇尔芭没有钱"
+
+#. STRINGS.CHARACTERS.WILBA.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILBA.ACTIONFAIL.SHOP.GENERIC"
+msgid "WHY CAN NAUGHT WILBA HATH IT?"
+msgstr "为什么薇尔芭不能拥有它？"
 
 #. STRINGS.CHARACTERS.WILBA.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WILBA.ACTIONFAIL.USEDOOR.GENERIC"
@@ -36230,6 +36415,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TUBER_CROP_COOKED"
 msgid "TUBER, OR FWOOSH'DED TUBER?"
 msgstr "块茎，还是煮熟的块茎？这是个问题"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TUNACAN"
+msgid "HOWFORE WILBA OPEN-ETH?"
+msgstr "薇尔芭怎么才能打开它呢？"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.TURF_COBBLEROAD"
 msgid "'TIS ROAD"
@@ -36414,6 +36604,16 @@ msgstr "薇尔芭进去了"
 msgctxt "STRINGS.CHARACTERS.WILLOW.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "Ugh, why would I do that now?"
 msgstr "呃，为什么我要现在干那个？"
+
+#. STRINGS.CHARACTERS.WILLOW.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WILLOW.ACTIONFAIL.SHOP.CANTPAY"
+msgid "It's too expensive."
+msgstr "它太贵了。"
+
+#. STRINGS.CHARACTERS.WILLOW.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WILLOW.ACTIONFAIL.SHOP.GENERIC"
+msgid "I didn't want it anyway."
+msgstr "反正我也不想要。"
 
 #. STRINGS.CHARACTERS.WILLOW.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WILLOW.ACTIONFAIL.USEDOOR.GENERIC"
@@ -39115,6 +39315,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Fire: it always makes things better."
 msgstr "用火烤一烤更好。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TUNACAN"
+msgid "Aw, but I like mine with ballphin!"
+msgstr "噢，但我喜欢和宽吻海豚在一起！"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.TURF_COBBLEROAD"
 msgid "The road is boring."
@@ -40830,6 +41035,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TUBER_CROP_COOKED"
 msgid "This is still a bit risky."
 msgstr "这还是有一点风险。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TUNACAN"
+msgid "Crazy what you find out at sea."
+msgstr "在海上发现的东西太疯狂了。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TURF_COBBLEROAD"
 msgid "That's a chunk of road."
@@ -41009,6 +41219,16 @@ msgstr "打通这堵墙。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "Small boat has no damages to repair! Wolfgang could punch it?"
 msgstr "小船没有要修理的地方！沃尔夫冈给它来一拳？"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ACTIONFAIL.SHOP.CANTPAY"
+msgid "Wolfgang is too poor."
+msgstr "沃尔夫冈太穷了。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.ACTIONFAIL.SHOP.GENERIC"
+msgid "Is not for sale."
+msgstr "它是非卖品。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.ACTIONFAIL.USEDOOR.GENERIC"
@@ -43730,6 +43950,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Is good food?"
 msgstr "这食物好吗？"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TUNACAN"
+msgid "I will open with bare hands!"
+msgstr "我要徒手把它打开！"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TURF_COBBLEROAD"
 msgid "Step stones."
@@ -43914,6 +44139,16 @@ msgstr "沃尔夫冈亲手雕刻的木门。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "I'm afraid I can't."
 msgstr "我恐怕做不到。"
+
+#. STRINGS.CHARACTERS.WOODIE.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WOODIE.ACTIONFAIL.SHOP.CANTPAY"
+msgid "I'm short a few coins."
+msgstr "我还缺几块零钱。"
+
+#. STRINGS.CHARACTERS.WOODIE.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODIE.ACTIONFAIL.SHOP.GENERIC"
+msgid "Guess it's not for sale."
+msgstr "我猜它是非卖品。"
 
 #. STRINGS.CHARACTERS.WOODIE.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WOODIE.ACTIONFAIL.USEDOOR.GENERIC"
@@ -46630,6 +46865,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Nothing fancy, just some tubers."
 msgstr "没什么花哨的，就是一些块茎。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TUNACAN"
+msgid "Lucy'll open'er up."
+msgstr "露西会帮我把它打开。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.TURF_COBBLEROAD"
 msgid "Just some road, eh?"
@@ -46814,6 +47054,16 @@ msgstr "嗯。那是一扇好门。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "It be jus'like new!"
 msgstr "它像新的一样！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ACTIONFAIL.SHOP.CANTPAY"
+msgid "Ol' Woodlegs d'na ha'tha doubloons fer't."
+msgstr "老伍德莱格没有那么多的金币。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.ACTIONFAIL.SHOP.GENERIC"
+msgid "Arrrg. 'tis na fer sale."
+msgstr "哎呀。这是非卖品。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.ACTIONFAIL.USEDOOR.GENERIC"
@@ -49535,6 +49785,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Not m'usual grub."
 msgstr "俺平常不吃这种食物。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TUNACAN"
+msgid "Fish inna can!"
+msgstr "鱼肉装在罐头里！"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.TURF_COBBLEROAD"
 msgid "Me ain't no ground lubber."
@@ -49719,6 +49974,16 @@ msgstr "伍德莱格购得了另一个尾楼。"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "Nope. Can't fix "
 msgstr "不行，不能修复"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ACTIONFAIL.SHOP.CANTPAY"
+msgid "Can't pay"
+msgstr "不能付"
+
+#. STRINGS.CHARACTERS.WORMWOOD.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.ACTIONFAIL.SHOP.GENERIC"
+msgid "Can't buy"
+msgstr "不能买"
 
 #. STRINGS.CHARACTERS.WORMWOOD.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.ACTIONFAIL.USEDOOR.GENERIC"
@@ -52480,6 +52745,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Good now"
 msgstr "现在好了"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TUNACAN"
+msgid "Glub Glub inside?"
+msgstr "噗噜噗噜在里面？"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.TURF_COBBLEROAD"
 msgid "Not dirt"
@@ -54114,6 +54384,11 @@ msgstr "凡人的食物，但还没熟。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TUBER_CROP_COOKED"
 msgid "I don't think even a mortal could eat this."
 msgstr "我想即使是凡人也吃不了这个。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TUNACAN"
+msgid "Looks like it preserves all but the best part."
+msgstr "看起来它唯独没保存最好的那部分。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TURF_COBBLEROAD"
@@ -55850,6 +56125,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TUBER_CROP_COOKED"
 msgid "Looks good?"
 msgstr "看起来还好？"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TUNACAN"
+msgid "Is fishie inside?"
+msgstr "是鱼鱼在里面吗？"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TURF_COBBLEROAD"
 msgid "Make ground walk-ier!"
@@ -56024,6 +56304,16 @@ msgstr "用来看外面。"
 msgctxt "STRINGS.CHARACTERS.WX78.ACTIONFAIL.REPAIRBOAT.GENERIC"
 msgid "IT REQUIRES NO MAINTENANCE"
 msgstr "它不需要维护"
+
+#. STRINGS.CHARACTERS.WX78.ACTIONFAIL.SHOP.CANTPAY
+msgctxt "STRINGS.CHARACTERS.WX78.ACTIONFAIL.SHOP.CANTPAY"
+msgid "INSUFFICIENT FUNDS"
+msgstr "资金不足"
+
+#. STRINGS.CHARACTERS.WX78.ACTIONFAIL.SHOP.GENERIC
+msgctxt "STRINGS.CHARACTERS.WX78.ACTIONFAIL.SHOP.GENERIC"
+msgid "CURRENTLY UNAVAILABLE"
+msgstr "当前不可用"
 
 #. STRINGS.CHARACTERS.WX78.ACTIONFAIL.USEDOOR.GENERIC
 msgctxt "STRINGS.CHARACTERS.WX78.ACTIONFAIL.USEDOOR.GENERIC"
@@ -58745,6 +59035,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TUBER_CROP_COOKED"
 msgid "UNDERRIPE AND UNDERCOOKED"
 msgstr "未成熟而且未全熟"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.TUNACAN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TUNACAN"
+msgid "HERMETICALLY SEALED FOODSTUFFS"
+msgstr "密封的食品"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.TURF_COBBLEROAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.TURF_COBBLEROAD"
 msgid "GROUND PARTS"
@@ -58932,117 +59227,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Henrietta"
+msgid "Charlotte"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Luella"
+msgid "Della"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Alexandrina"
+msgid "Henrietta"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Arabella"
+msgid "Lilian"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Belle"
+msgid "Louise"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Beryl"
+msgid "Ottilie"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Briar"
+msgid "Ophelia"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Beatrice"
+msgid "Sophronia"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Alice"
+msgid "Luella"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Agnes"
+msgid "Alexandrina"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Catherine"
+msgid "Alice"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Ebba"
+msgid "Arabella"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Edith"
+msgid "Belle"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Flora"
+msgid "Beryl"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Florence"
+msgid "Briar"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Georgette"
+msgid "Beatrice"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Charlotte"
+msgid "Agnes"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Della"
+msgid "Catherine"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Lilian"
+msgid "Ebba"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Louise"
+msgid "Edith"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Ottilie"
+msgid "Flora"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Ophelia"
+msgid "Florence"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Sophronia"
+msgid "Georgette"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -59052,122 +59347,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Merritt"
+msgid "Herbert"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Frederick"
+msgid "Oliver"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "George"
+msgid "Merritt"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Charles"
+msgid "Sterling"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Leopold"
+msgid "Tesla"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Albert"
+msgid "Thaddeus"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Alfred"
+msgid "Wellington"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Arthur"
+msgid "Gulliver"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Edward"
+msgid "Clarence"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Ewart"
+msgid "Frederick"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Henry"
+msgid "Edward"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Charley"
+msgid "George"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Douglas"
+msgid "Charles"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Edison"
+msgid "Leopold"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Edmund"
+msgid "Albert"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Larkin"
+msgid "Alfred"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Herbert"
+msgid "Arthur"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Oliver"
+msgid "Ewart"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Sterling"
+msgid "Henry"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Tesla"
+msgid "Charley"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Thaddeus"
+msgid "Douglas"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Wellington"
+msgid "Edison"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Gulliver"
+msgid "Edmund"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Clarence"
+msgid "Larkin"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -59177,77 +59472,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Hastings"
+msgid "Aberdeen"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Aberdeen"
+msgid "Talbot"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Talbot"
+msgid "Thames"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Thames"
+msgid "Stockton"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Stockton"
+msgid "Darlington"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Darlington"
+msgid "Peel"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Peel"
+msgid "Derby"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Derby"
+msgid "Palmerston"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Palmerston"
+msgid "Gladstone"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Gladstone"
+msgid "Disraeli"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Disraeli"
+msgid "Salisbury"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Salisbury"
+msgid "Kensington"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Kensington"
+msgid "Conroy"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Conroy"
+msgid "Greville"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Greville"
+msgid "Hastings"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -64210,6 +64505,11 @@ msgctxt "STRINGS.NAMES.CLAWPALMTREE_SAPLING"
 msgid "Claw Palm Sapling"
 msgstr "爪棕榈树苗"
 
+#. STRINGS.NAMES.CLAWPALMTREE_SAPLING_ITEM
+msgctxt "STRINGS.NAMES.CLAWPALMTREE_SAPLING_ITEM"
+msgid "Claw Palm Sapling"
+msgstr "爪棕榈树苗"
+
 #. STRINGS.NAMES.CLIPPINGS
 msgctxt "STRINGS.NAMES.CLIPPINGS"
 msgid "Clippings"
@@ -65267,7 +65567,7 @@ msgstr "“猪圈”奇异商店"
 
 #. STRINGS.NAMES.PIG_SHOP_ARCANE
 msgctxt "STRINGS.NAMES.PIG_SHOP_ARCANE"
-msgid "The Flying Pig\nArcane Shop"
+msgid "The Flying Pig Arcane Shop"
 msgstr "飞猪神秘商店"
 
 #. STRINGS.NAMES.PIG_SHOP_BANK
@@ -65292,22 +65592,22 @@ msgstr "高纯度熟猪食店"
 
 #. STRINGS.NAMES.PIG_SHOP_FLORIST
 msgctxt "STRINGS.NAMES.PIG_SHOP_FLORIST"
-msgid "Miss Sow's\nFloral Arrangements"
+msgid "Miss Sow's Floral Arrangements"
 msgstr "母猪小姐的花香物语"
 
 #. STRINGS.NAMES.PIG_SHOP_GENERAL
 msgctxt "STRINGS.NAMES.PIG_SHOP_GENERAL"
-msgid "Pigg and Pigglet's\nGeneral Store"
+msgid "Pigg and Pigglet's General Store"
 msgstr "猪猪与居居的杂货店"
 
 #. STRINGS.NAMES.PIG_SHOP_HATSHOP
 msgctxt "STRINGS.NAMES.PIG_SHOP_HATSHOP"
-msgid "The Sow's Ear\nHat Shop"
+msgid "The Sow's Ear Hat Shop"
 msgstr "母猪耳朵帽子店"
 
 #. STRINGS.NAMES.PIG_SHOP_HOOFSPA
 msgctxt "STRINGS.NAMES.PIG_SHOP_HOOFSPA"
-msgid "Curly Tails\nMud Spa"
+msgid "Curly Tails Mud Spa"
 msgstr "卷尾巴的泥浆水疗店"
 
 #. STRINGS.NAMES.PIG_SHOP_PRODUCE
@@ -65322,7 +65622,7 @@ msgstr "小发明匠的塔楼"
 
 #. STRINGS.NAMES.PIG_SHOP_WEAPONS
 msgctxt "STRINGS.NAMES.PIG_SHOP_WEAPONS"
-msgid "The Boar's Tusk\nWeapon Shop"
+msgid "The Boar's Tusk Weapon Shop"
 msgstr "野猪獠牙武器店"
 
 #. STRINGS.NAMES.PIKO
@@ -65780,6 +66080,16 @@ msgctxt "STRINGS.NAMES.SHELVES_WOOD"
 msgid "Carved Bookshelf"
 msgstr "木刻书架"
 
+#. STRINGS.NAMES.SHOP_BUYER
+msgctxt "STRINGS.NAMES.SHOP_BUYER"
+msgid ""
+msgstr ""
+
+#. STRINGS.NAMES.SHOP_SELLER
+msgctxt "STRINGS.NAMES.SHOP_SELLER"
+msgid "Sell"
+msgstr "出售"
+
 #. STRINGS.NAMES.SLUGBUG
 msgctxt "STRINGS.NAMES.SLUGBUG"
 msgid "Gummy Slug"
@@ -65989,6 +66299,11 @@ msgstr "块茎"
 msgctxt "STRINGS.NAMES.TUBER_CROP_COOKED"
 msgid "Fried Tuber"
 msgstr "煎块茎"
+
+#. STRINGS.NAMES.TUNACAN
+msgctxt "STRINGS.NAMES.TUNACAN"
+msgid "\"Ballphin Free\" Tuna"
+msgstr "金枪鱼罐头"
 
 #. STRINGS.NAMES.TURF_COBBLEROAD
 msgctxt "STRINGS.NAMES.TURF_COBBLEROAD"
@@ -66260,10 +66575,10 @@ msgctxt "STRINGS.RECIPE_DESC.CITY_LAMP"
 msgid "I can't believe I can make this."
 msgstr "不敢相信我居然可以做这个。"
 
-#. STRINGS.RECIPE_DESC.CLAWPALMTREE_SAPLING
-msgctxt "STRINGS.RECIPE_DESC.CLAWPALMTREE_SAPLING"
+#. STRINGS.RECIPE_DESC.CLAWPALMTREE_SAPLING_ITEM
+msgctxt "STRINGS.RECIPE_DESC.CLAWPALMTREE_SAPLING_ITEM"
 msgid "It's a wonder these things grow at all."
-msgstr "这些东西都在成长，真是奇迹。"
+msgstr "这些东西能生长真是个奇迹。"
 
 #. STRINGS.RECIPE_DESC.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.RECIPE_DESC.CONSTRUCTION_PERMIT"
@@ -67350,6 +67665,11 @@ msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.BILL_SETTING"
 msgid "Platapines"
 msgstr "鸭嘴豪猪"
 
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.BRAMBLES
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.BRAMBLES"
+msgid "Brambles"
+msgstr "荆棘"
+
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.DEEP_JUNGLE_FERN_NOISE
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.DEEP_JUNGLE_FERN_NOISE"
 msgid "Jungle Floor Ferns"
@@ -67465,6 +67785,11 @@ msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.PEAGAWK"
 msgid "Peagawk"
 msgstr "呆望雀"
 
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.PIGBANDIT
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.PIGBANDIT"
+msgid "Masked Pig"
+msgstr "蒙面猪人"
+
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.PIKO_SETTING
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.PIKO_SETTING"
 msgid "Piko"
@@ -67474,6 +67799,11 @@ msgstr "异食松鼠"
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.PL_CLOCKTYPE"
 msgid "Clock Type"
 msgstr "时钟类型"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.POG
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.POG"
+msgid "Pogs"
+msgstr "哈巴狸"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.POISON
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.POISON"
@@ -67510,6 +67840,16 @@ msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.TEMPERATE"
 msgid "Temperate"
 msgstr "平和季"
 
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.THUNDERBIRDNEST
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.THUNDERBIRDNEST"
+msgid "Thundernest"
+msgstr "雷鸟巢"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.THUNDERBIRD_SETTING
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.THUNDERBIRD_SETTING"
+msgid "Thunderbirds"
+msgstr "雷鸟"
+
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.VAMPIREBAT
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.VAMPIREBAT"
 msgid "Vampire Bat Attacks"
@@ -67527,7 +67867,7 @@ msgstr "味道：尚不明确。——W"
 
 #. STRINGS.UI.PLANTREGISTRY.DESCRIPTIONS.RADISH
 msgctxt "STRINGS.UI.PLANTREGISTRY.DESCRIPTIONS.RADISH"
-msgid "It’s totally rad. -W"
+msgid "It's totally rad. -W"
 msgstr "全都是红色的。——W"
 
 #. STRINGS.UI.SANDBOXMENU.CHOOSEWORLD

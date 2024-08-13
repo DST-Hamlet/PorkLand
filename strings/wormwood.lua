@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Nope. Can't fix ",
         },
+        SHOP = {
+            CANTPAY = "Can't pay",
+            GENERIC = "Can't buy",
+        },
         USEDOOR = {
             GENERIC = "Won't open",
             LOCKED = "Nope. Locked",
@@ -699,6 +703,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "Hello flower friend!",
         TUBER_CROP = "Not ready",
         TUBER_CROP_COOKED = "Good now",
+        TUNACAN = "Glub Glub inside?",
         TURF_COBBLEROAD = "Not dirt",
         TURF_DEEPRAINFOREST = "Dirt",
         TURF_DEEPRAINFOREST_NOCANOPY = "Dirt. Good dirt",
