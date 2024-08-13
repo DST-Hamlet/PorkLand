@@ -716,6 +716,15 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 if prefab.animation then
                     object.AnimState:PlayAnimation(prefab.animation)
                     object.animation = prefab.animation
+                    if object.frontvisual then
+                        object.frontvisual.AnimState:PlayAnimation(prefab.animation)
+                    end
+                    if object.clochevisual then
+                        object.clochevisual.AnimState:PlayAnimation(prefab.animation)
+                    end
+                    if object.costvisual then
+                        object.costvisual:UpdateVisual(prefab.animation)
+                    end
                 end
 
                 if prefab.usesounds then

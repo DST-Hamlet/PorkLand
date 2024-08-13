@@ -3,6 +3,8 @@ local SHOPTYPES = require("prefabs/pig_shop_defs").SHOPTYPES
 local assets =
 {
     Asset("ANIM", "anim/pedestal_crate.zip"),
+    Asset("ANIM", "anim/pedestal_crate_cloche.zip"),
+    Asset("ANIM", "anim/pedestal_crate_cost.zip"),
 }
 
 local function GetSlotSymbol(inst, slot)
@@ -88,10 +90,10 @@ local function OnSetCost(inst, cost_prefab, cost)
     local image = cost_prefab == "oinc" and cost and "cost-"..cost or cost_prefab
     if image then
         local texname = image..".tex"
-        inst.AnimState:OverrideSymbol("SWAP_COST", GetInventoryItemAtlas(texname), texname)
+        inst.costvisual.AnimState:OverrideSymbol("SWAP_COST", GetInventoryItemAtlas(texname), texname)
         -- inst.AnimState:OverrideSymbol("SWAP_SIGN", "store_items", image)
     else
-        inst.AnimState:ClearOverrideSymbol("SWAP_COST")
+        inst.costvisual.AnimState:ClearOverrideSymbol("SWAP_COST")
     end
 end
 
@@ -119,6 +121,8 @@ local function OnLoad(inst, data)
         if data.animation then
             inst.animation = data.animation
             inst.AnimState:PlayAnimation(data.animation)
+            inst.clochevisual.AnimState:PlayAnimation(data.animation)
+            inst.costvisual:UpdateVisual(data.animation)
         end
 
         if data.justsellonce then
@@ -133,8 +137,12 @@ end
 local function OnEntityWake(inst)
     if TheWorld.state.isfiesta then
         inst.AnimState:PlayAnimation("idle_yotp")
+        inst.clochevisual.AnimState:PlayAnimation("idle_yotp")
+        inst.costvisual:UpdateVisual("idle_yotp")
     else
         inst.AnimState:PlayAnimation(inst.animation)
+        inst.clochevisual.AnimState:PlayAnimation(inst.animation)
+        inst.costvisual:UpdateVisual(inst.animation)
     end
 end
 
@@ -148,6 +156,80 @@ local function OnItemLose(inst, data)
     if data and data.prev_item and data.prev_item.components.perishable then
         data.prev_item.components.perishable:StartPerishing()
     end
+end
+
+local function CreateClocheVisual(inst) -- 玻璃罩
+    local clochevisual = CreateEntity()
+    --[[Non-networked entity]]
+    clochevisual.entity:AddTransform()
+    clochevisual.entity:AddAnimState()
+    clochevisual.entity:AddFollower()
+    clochevisual:AddTag("NOCLICK")
+    clochevisual:AddTag("FX")
+    clochevisual.entity:SetParent(inst.entity)
+    clochevisual.persists = false
+
+    clochevisual.AnimState:SetBuild("pedestal_crate_cloche")
+    clochevisual.AnimState:SetBank("pedestal")
+    clochevisual.AnimState:PlayAnimation("idle") -- 注意：在parent改变动画时也需要改变clochevisual的动画
+
+    clochevisual.AnimState:SetFinalOffset(3)
+
+    return clochevisual
+end
+
+local front_cost_visuals =
+{
+    idle_traystand = true,
+    idle_cablespool = true,
+    idle_wagon = true,
+    idle_cakestand_dome = true,
+    idle_fridge_display = true,
+    idle_mahoganycase = true,
+    idle_stoneslab = true,
+    idle_metal = true,
+    idle_yotp = true,
+    idle_marble_dome = true,
+}
+
+local function UpdateCostVisual(inst, anim)
+    inst.AnimState:PlayAnimation(anim)
+    if front_cost_visuals[anim] then
+        inst.AnimState:SetFinalOffset(4)
+        inst.Follower:FollowSymbol(inst.parentshelf.GUID, nil, 0, 0, 0.002) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+    else
+        inst.AnimState:SetFinalOffset(0)
+        inst.Follower:FollowSymbol(inst.parentshelf.GUID, nil, 0, 0, 0.0005) -- 价格牌默认图层低于玻璃罩和物品，高于货架本体
+    end
+end
+
+local function CreateCostVisual(inst) -- 价格牌
+    local costvisual = SpawnPrefab("shop_buyer_costvisual")
+    costvisual.parentshelf = inst
+    costvisual.entity:SetParent(inst.entity)
+
+    costvisual:UpdateVisual(inst.animation)
+
+    return costvisual
+end
+
+local function costvisual_fn() -- 价格牌
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddFollower()
+    inst.entity:AddNetwork()
+    inst:AddTag("NOCLICK")
+    inst:AddTag("FX")
+    inst.persists = false
+
+    inst.AnimState:SetBuild("pedestal_crate_cost")
+    inst.AnimState:SetBank("pedestal")
+    inst.AnimState:PlayAnimation("idle")
+
+    inst.UpdateVisual = UpdateCostVisual -- 注意：在parent改变动画时需要调用这个函数以改变costvisual的动画
+
+    return inst
 end
 
 local function fn()
@@ -166,7 +248,7 @@ local function fn()
     inst.AnimState:SetBank("pedestal")
     inst.AnimState:SetBuild("pedestal_crate")
     inst.AnimState:PlayAnimation("idle")
-    inst.AnimState:SetFinalOffset(1)
+    inst.AnimState:SetFinalOffset(-1)
 
     inst.anim_def = {}
     inst.anim_def.slot_bank = "lock12_west_visual_slot"
@@ -187,13 +269,27 @@ local function fn()
     inst:ListenForEvent("onremove", onremove)
     --------------------------------------------
 
+    inst.clochevisual = CreateClocheVisual(inst)
+
+    inst:DoStaticTaskInTime(0, function()
+        inst.clochevisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+    end)
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
 
+    inst:AddComponent("gridnudger")
+
     inst.animation = "idle"
+
+    inst.costvisual = CreateCostVisual(inst)
+
+    inst:DoStaticTaskInTime(0, function()
+        inst.costvisual:UpdateVisual(inst.animation) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+    end)
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("shop_buyer")
@@ -226,4 +322,5 @@ local function fn()
     return inst
 end
 
-return Prefab("shop_buyer", fn, assets)
+return Prefab("shop_buyer", fn, assets),
+    Prefab("shop_buyer_costvisual", costvisual_fn, assets)

@@ -1,14 +1,13 @@
 local assets =
 {
     Asset("ANIM", "anim/room_shelves.zip"),
+    Asset("ANIM", "anim/room_shelves_front.zip"),
     Asset("ANIM", "anim/pedestal_crate.zip")
 }
 
 local function MakeObstacle(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
-    TheWorld.Pathfinder:AddWall(x, y, z - 1)
     TheWorld.Pathfinder:AddWall(x, y, z)
-    TheWorld.Pathfinder:AddWall(x, y, z + 1)
 end
 
 local function GetSlotSymbol(inst, slot)
@@ -35,6 +34,36 @@ local function OnLoad(inst, data)
     end
 end
 
+local function CreateFrontVisual(inst, name, anim_def)
+    local frontvisual = CreateEntity()
+    --[[Non-networked entity]]
+    frontvisual.entity:AddTransform()
+    frontvisual.entity:AddAnimState()
+    frontvisual.entity:AddFollower()
+    frontvisual:AddTag("NOCLICK")
+    frontvisual:AddTag("FX")
+    frontvisual.entity:SetParent(inst.entity)
+    frontvisual.persists = false
+
+    frontvisual.AnimState:SetBuild(anim_def.build and anim_def.build .. "_front" or "room_shelves_front")
+    frontvisual.AnimState:SetBank(anim_def.bank or "bookcase")
+    local animation = anim_def.animation or name
+    frontvisual.AnimState:PlayAnimation(animation)
+
+    if anim_def.layer then
+        frontvisual.AnimState:SetLayer(anim_def.layer)
+    end
+    if anim_def.order then
+        frontvisual.AnimState:SetSortOrder(anim_def.order)
+    end
+
+    frontvisual.AnimState:SetFinalOffset(3)
+
+    frontvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.002) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+
+    return frontvisual
+end
+
 local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, curse)
     local function fn()
         local inst = CreateEntity()
@@ -45,9 +74,10 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, curs
 
         if physics_round then
             MakeObstaclePhysics(inst, .5)
-        else
-            MakeInteriorPhysics(inst, 1.6, 1, 0.2)
             inst:DoTaskInTime(0, MakeObstacle)
+        else
+            -- MakeInteriorPhysics(inst, 2, 1, 0.5) -- 暂时取消这些贴边物体的碰撞体和寻路，以减少卡位的可能性
+            -- inst:DoTaskInTime(0, MakeObstacle)
         end
 
         local animation = anim_def.animation or name
@@ -78,10 +108,20 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, curs
         inst:AddTag("furniture")
         inst:AddTag("shelf")
 
+        inst.frontvisual = CreateFrontVisual(inst, name, anim_def)
+
+        inst:DoStaticTaskInTime(0, function()
+            inst.frontvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+        end)
+
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
             return inst
+        end
+
+        if physics_round then
+            inst:AddComponent("gridnudger")
         end
 
         inst:AddComponent("container")
