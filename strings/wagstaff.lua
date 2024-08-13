@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "This vessel has already been repaired to its optimum level.",
         },
+        SHOP = {
+            CANTPAY = "Goods do not come cheap here.",
+            GENERIC = "I'm familiar with the unattainable.",
+        },
         USEDOOR = {
             GENERIC = "Something prevents me from getting inside.",
             LOCKED = "I'll have to discover a way to open it.",
@@ -699,6 +703,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "Ah, the petals of the corolla are a nice touch.",
         TUBER_CROP = "Given my delicate constitution, I'll refrain from eating it raw.",
         TUBER_CROP_COOKED = "Even the stems are edible when they are cooked.",
+        TUNACAN = "What an extraordinary opening device!",
         TURF_COBBLEROAD = "Ah. A nice cobblestone road.",
         TURF_DEEPRAINFOREST = "This will help with the germinating of plantlife.",
         TURF_DEEPRAINFOREST_NOCANOPY = "Perfect for plants native to the jungle.",

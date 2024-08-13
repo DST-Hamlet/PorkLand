@@ -393,6 +393,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "So delicious.",
         TUBER_CROP = "Ms.Wickbottom told us not to eat it.",
         TUBER_CROP_COOKED = "Looks good?",
+        TUNACAN = "Is fishie inside?",
         TURF_COBBLEROAD = "Make ground walk-ier!",
         TURF_DEEPRAINFOREST = "Ground bit.",
         TURF_DEEPRAINFOREST_NOCANOPY = "Ground bit.",

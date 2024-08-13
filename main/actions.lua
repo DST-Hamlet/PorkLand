@@ -37,6 +37,7 @@ if not rawget(_G, "HotReloading") then
         RANSACK = Action({distance = 0.5}),
         MAKEHOME = Action({distance = 1}),
         GAS = Action({distance = 1.5, mount_enabled = true}),
+        THUNDERBIRD_CAST = Action({distance = 1.2}),
 
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -506,6 +507,11 @@ ACTIONS.GAS.fn = function(act)
         act.invobject.components.gasser:Gas(pos)
         return true
     end
+end
+
+ACTIONS.THUNDERBIRD_CAST.fn = function(act)
+    act.doer.sg:GoToState("thunder_attack")
+    return true
 end
 
 

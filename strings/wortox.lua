@@ -369,6 +369,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "Hyuyu, eat like this?",
         TUBER_CROP = "Mortal food, but not ripe yet.",
         TUBER_CROP_COOKED = "I don't think even a mortal could eat this.",
+        TUNACAN = "Looks like it preserves all but the best part.",
         TURF_COBBLEROAD = "Floor or ceiling, depending on your perspective.",
         TURF_DEEPRAINFOREST = "Floor or ceiling, depending on your perspective.",
         TURF_DEEPRAINFOREST_NOCANOPY = "Floor or ceiling, depending on your perspective.",

@@ -586,6 +586,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "Well, a staple meal that is rare here.",
         TUBER_CROP = "It's not ready to eat yet.",
         TUBER_CROP_COOKED = "Even after treatment it is highly toxic.",
+        TUNACAN = "Hmm, this lunch was packed with its own temporally-isolated pocket.",
         TURF_COBBLEROAD = "A road to where, exactly?",
         TURF_DEEPRAINFOREST = "Why am I wasting time staring at the ground?",
         TURF_DEEPRAINFOREST_NOCANOPY = "Why am I wasting time staring at the ground?",

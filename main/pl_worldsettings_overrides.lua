@@ -389,6 +389,30 @@ applyoverrides_pre.hippopotamoose_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+applyoverrides_pre.thunderbird_setting = function(difficulty)
+    local tuning_vars = {
+        never = {
+            THUNDERBIRD_ENABLED = false,
+        },
+        rare = {
+            THUNDERBIRDNEST_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 10,
+        },
+        --[[
+        default = {
+            THUNDERBIRD_ENABLED = true,
+            THUNDERBIRDNEST_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 5,
+        },
+        --]]
+        often = {
+            THUNDERBIRDNEST_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 2.5,
+        },
+        always = {
+            THUNDERBIRDNEST_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 1,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 --------------------------------------------------------------------------
 --[[ WORLDSETTINGS POST ]]
 --------------------------------------------------------------------------
