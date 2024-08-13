@@ -6,7 +6,7 @@ end)
 
 function Shopped:SetCost(cost_prefab, cost)
     self._cost:set(cost)
-    self._cost_prefab:set(cost)
+    self._cost_prefab:set(cost_prefab)
 end
 
 function Shopped:GetCost()
@@ -19,7 +19,7 @@ end
 
 function Shopped:IsBeingWatched()
     local x, y, z = self.inst.Transform:GetWorldPosition()
-    local shopkeeps = TheSim:FindEntities(x, y, z, 50, {"shopkeep"}, {"INLIMBO"})
+    local shopkeeps = TheSim:FindEntities(x, y, z, 20, {"shopkeep"}, {"INLIMBO"})
     for _, shopkeep in ipairs(shopkeeps) do
         if not IsEntityDead(shopkeep) and not shopkeep.components.sleeper or not shopkeep.components.sleeper:IsAsleep() then
             return true
