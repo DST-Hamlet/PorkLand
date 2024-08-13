@@ -381,6 +381,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "看起来相当诱人。",
         TUBER_CROP = "我想知道现在的它是什么味道的？",
         TUBER_CROP_COOKED = "看起来也不差。",
+        TUNACAN = "Not catching it yourself takes the joy out of it.",
         TURF_COBBLEROAD = "Some road.",
         TURF_DEEPRAINFOREST = "A patch of ground.",
         TURF_DEEPRAINFOREST_NOCANOPY = "A patch of ground.",

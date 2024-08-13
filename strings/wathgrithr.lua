@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "My vessel is renewed!",
         },
+        SHOP = {
+            CANTPAY = "I vow to win more treasures and return!",
+            GENERIC = "It has been kept from me!",
+        },
         USEDOOR = {
             GENERIC = "It cannot be opened!",
             LOCKED = "I will unlock it. This I vow!",
@@ -688,6 +692,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "I care not if it is cooked.",
         TUBER_CROP = "Unripe non-meat.",
         TUBER_CROP_COOKED = "Fire does nothing to make it edible!",
+        TUNACAN = "Food that can survive a voyage!",
         TURF_COBBLEROAD = "The road to battle leads wherever I choose.",
         TURF_DEEPRAINFOREST = "A piece of the battlefield.",
         TURF_DEEPRAINFOREST_NOCANOPY = "A piece of the battlefield.",

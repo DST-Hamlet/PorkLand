@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Tip top!",
         },
+        SHOP = {
+            CANTPAY = "Requires more funds than I currently possess.",
+            GENERIC = "Currently unavailable.",
+        },
         USEDOOR = {
             GENERIC = "I am unable to open this.",
             LOCKED = "Requires something to unlock it.",
@@ -683,6 +687,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "Cooked tubers are a staple in many cultures.",
         TUBER_CROP = "It's rather poisonous when it's not ripe.",
         TUBER_CROP_COOKED = "I suspect the poison has not been cooked out.",
+        TUNACAN = "Preserved fish.",
         TURF_COBBLEROAD = "The ground. You step on it.",
         TURF_DEEPRAINFOREST = "The ground. You step on it.",
         TURF_DEEPRAINFOREST_NOCANOPY = "The ground. You step on it.",
