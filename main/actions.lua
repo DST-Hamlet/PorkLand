@@ -411,6 +411,9 @@ ACTIONS.STOCK.fn = function(act)
 end
 
 ACTIONS.SHOP.stroverridefn = function(act)
+    if not (act.target and act.target:IsValid()) then
+        return
+    end
     local shelf = act.target.replica.visualslot:GetShelf()
     local item = act.target.replica.visualslot:GetItem()
 
@@ -923,14 +926,16 @@ end
 
 local _USEITEM_inventoryitem = USEITEM.inventoryitem
 function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
-    if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
-        target and target:HasTag("weighdownable") then
+    if not inst.replica.inventoryitem:CanOnlyGoInPocket() then
+        if target:HasTag("weighdownable") then
             table.insert(actions, ACTIONS.WEIGHDOWN)
-            return
-    elseif target and target:HasTag("visual_slot") then
-        if target:HasTag("empty") and not inst.replica.inventoryitem:CanOnlyGoInPocket() then
-            table.insert(actions, ACTIONS.PUTONSHELF)
-            return
+        elseif target:HasTag("visual_slot") then
+            if target:HasTag("empty") then
+                local shelf = target.replica.visualslot:GetShelf()
+                if not (shelf and shelf.replica.shopped) then
+                    table.insert(actions, ACTIONS.PUTONSHELF)
+                end
+            end
         end
     else
         _USEITEM_inventoryitem(inst, doer, target, actions, right, ...)
