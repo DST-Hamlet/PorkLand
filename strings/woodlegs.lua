@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "It be jus'like new!",
         },
+        SHOP = {
+            CANTPAY = "Ol' Woodlegs d'na ha'tha doubloons fer't.",
+            GENERIC = "Arrrg. 'tis na fer sale.",
+        },
         USEDOOR = {
             GENERIC = "'tis closed ta me.",
             LOCKED = "It be needin' somethin' ta open't.",
@@ -683,6 +687,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "A fine meal fer a fine fellow.",
         TUBER_CROP = "Give ya a bout of scurvy that.",
         TUBER_CROP_COOKED = "Not m'usual grub.",
+        TUNACAN = "Fish inna can!",
         TURF_COBBLEROAD = "Me ain't no ground lubber.",
         TURF_DEEPRAINFOREST = "Me ain't no ground lubber.",
         TURF_DEEPRAINFOREST_NOCANOPY = "Me ain't no ground lubber.",

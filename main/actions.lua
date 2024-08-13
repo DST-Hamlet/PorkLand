@@ -37,6 +37,7 @@ if not rawget(_G, "HotReloading") then
         RANSACK = Action({distance = 0.5}),
         MAKEHOME = Action({distance = 1}),
         GAS = Action({distance = 1.5, mount_enabled = true}),
+        THUNDERBIRD_CAST = Action({distance = 1.2}),
 
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -409,42 +410,40 @@ ACTIONS.STOCK.fn = function(act)
     end
 end
 
--- ACTIONS.SHOP.stroverridefn = function(act)
---     local shelf = act.target.replica.visualslot:GetShelf()
---     local item = act.target.replica.visualslot:GetItem()
+ACTIONS.SHOP.stroverridefn = function(act)
+    if not (act.target and act.target:IsValid()) then
+        return
+    end
+    local shelf = act.target.replica.visualslot:GetShelf()
+    local item = act.target.replica.visualslot:GetItem()
 
--- 	if not (shelf and item and shelf.replica.shopped) then
--- 		return
---     end
+	if not (shelf and item and shelf.replica.shopped) then
+		return
+    end
 
---     local cost_prefab = shelf.replica.shopped:GetCostPrefab()
---     local cost = shelf.replica.shopped:GetCost()
---     local payitem = STRINGS.NAMES[string.upper(cost_prefab)]
---     local qty = ""
---     if cost_prefab == "oinc" then
---         qty = cost
---         if cost > 1 then
---             payitem = STRINGS.NAMES.OINC_PL
---         end
---     end
+    local cost_prefab = shelf.replica.shopped:GetCostPrefab()
+    local cost = shelf.replica.shopped:GetCost()
+    local payitem = STRINGS.NAMES[string.upper(cost_prefab)]
+    local qty = ""
+    if cost_prefab == "oinc" then
+        qty = cost
+        if cost > 1 then
+            payitem = STRINGS.NAMES.OINC_PL
+        end
+    end
 
---     -- TODO: See if we want to move this to shopper replica or something
---     local is_watching = false
---     if shelf:HasTag("cost_one_oinc") or shelf.replica.shopped then
---         local x, y, z = shelf.Transform:GetWorldPosition()
---         local shopkeeps = TheSim:FindEntities(x, y, z, 50, {"shopkeep"}, {"INLIMBO"})
---         for _, shopkeep in ipairs(shopkeeps) do
---             -- if not shopkeep.components.sleeper or not shopkeep.components.sleeper:IsAsleep() then
---                 return true
---             -- end
---         end
---     end
---     if is_watching then
---         return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = item:GetBasicDisplayName(), qty = qty, payitem = payitem })
---     else
---         return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = item:GetBasicDisplayName() })
---     end
--- end
+    -- TODO: See if we want to move this to shopper replica or something
+    if shelf:HasTag("cost_one_oinc") or shelf.replica.shopped then
+        local x, y, z = shelf.Transform:GetWorldPosition()
+        local shopkeeps = TheSim:FindEntities(x, y, z, 20, {"shopkeep"}, {"INLIMBO"})
+        for _, shopkeep in ipairs(shopkeeps) do
+            -- if not shopkeep.components.sleeper or not shopkeep.components.sleeper:IsAsleep() then
+                return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = item:GetBasicDisplayName(), qty = qty, payitem = payitem })
+            -- end
+        end
+    end
+    return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = item:GetBasicDisplayName() })
+end
 
 ACTIONS.SHOP.fn = function(act)
     local doer = act.doer
@@ -506,6 +505,11 @@ ACTIONS.GAS.fn = function(act)
         act.invobject.components.gasser:Gas(pos)
         return true
     end
+end
+
+ACTIONS.THUNDERBIRD_CAST.fn = function(act)
+    act.doer.sg:GoToState("thunder_attack")
+    return true
 end
 
 
@@ -922,14 +926,16 @@ end
 
 local _USEITEM_inventoryitem = USEITEM.inventoryitem
 function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
-    if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
-        target and target:HasTag("weighdownable") then
+    if not inst.replica.inventoryitem:CanOnlyGoInPocket() then
+        if target:HasTag("weighdownable") then
             table.insert(actions, ACTIONS.WEIGHDOWN)
-            return
-    elseif target and target:HasTag("visual_slot") then
-        if target:HasTag("empty") and not inst.replica.inventoryitem:CanOnlyGoInPocket() then
-            table.insert(actions, ACTIONS.PUTONSHELF)
-            return
+        elseif target:HasTag("visual_slot") then
+            if target:HasTag("empty") then
+                local shelf = target.replica.visualslot:GetShelf()
+                if not (shelf and shelf.replica.shopped) then
+                    table.insert(actions, ACTIONS.PUTONSHELF)
+                end
+            end
         end
     else
         _USEITEM_inventoryitem(inst, doer, target, actions, right, ...)

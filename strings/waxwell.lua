@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Not right now.",
         },
+        SHOP = {
+            CANTPAY = "Hmmph. Overpriced if you ask me.",
+            GENERIC = "Not for sale.",
+        },
         USEDOOR = {
             GENERIC = "It refuses to open for me.",
             LOCKED = "I'll get it open somehow.",
@@ -692,6 +696,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "Looks... edible?",
         TUBER_CROP = "Looks unripe.",
         TUBER_CROP_COOKED = "Ugh. Should I even eat this?",
+        TUNACAN = "Fish is presumably contained inside.",
         TURF_COBBLEROAD = "A good cobble road.",
         TURF_DEEPRAINFOREST = "Fertile turf.",
         TURF_DEEPRAINFOREST_NOCANOPY = "Fertile turf.",

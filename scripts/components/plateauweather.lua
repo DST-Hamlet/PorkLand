@@ -558,7 +558,7 @@ return Class(function(self, inst)
         _maxlightningdelay = data.max
     end or nil
 
-    local LIGHTNINGSTRIKE_CANT_TAGS = {"playerghost", "INLIMBO"}
+    local LIGHTNINGSTRIKE_CANT_TAGS = {"playerghost", "INLIMBO", "thunderbird"}
     local LIGHTNINGSTRIKE_ONEOF_TAGS = {"lightningrod", "lightningtarget", "lightningblocker"}
     local LIGHTNINGSTRIKE_SEARCH_RANGE = 40
     local OnSendLightningStrike = _ismastersim and function(src, pos)

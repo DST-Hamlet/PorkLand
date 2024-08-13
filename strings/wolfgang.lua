@@ -3,6 +3,10 @@ return {
         REPAIRBOAT = {
             GENERIC = "Small boat has no damages to repair! Wolfgang could punch it?",
         },
+        SHOP = {
+            CANTPAY = "Wolfgang is too poor.",
+            GENERIC = "Is not for sale.",
+        },
         USEDOOR = {
             GENERIC = "Open for Wolfgang!",
             LOCKED = "Wolfgang needs a mighty key.",
@@ -683,6 +687,7 @@ return {
         TUBER_BLOOM_CROP_COOKED = "Wolfgang eat.",
         TUBER_CROP = "Is food?",
         TUBER_CROP_COOKED = "Is good food?",
+        TUNACAN = "I will open with bare hands!",
         TURF_COBBLEROAD = "Step stones.",
         TURF_DEEPRAINFOREST = "Step stones.",
         TURF_DEEPRAINFOREST_NOCANOPY = "Step stones.",
