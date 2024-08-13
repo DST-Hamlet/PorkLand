@@ -223,7 +223,11 @@ local function GenerateTreasure(player)
     local pos = player:GetPosition()
     local angle = math.random() * 2 * PI
     local radius = math.random(120, 200)
-    local offset = FindWalkableOffset(pos, angle, radius, 18)
+    local offset = FindWalkableOffset(pos, angle, radius, 18, nil, nil, function(spawn_pos)
+        local current_island = _map:GetIslandTagAtPoint(pos.x, 0, pos.z)
+        local target_island = _map:GetIslandTagAtPoint(spawn_pos.x, 0, spawn_pos.z)
+        return current_island == target_island
+    end)
 
     if offset then
         local spawn_pos = pos + offset
@@ -234,6 +238,7 @@ local function GenerateTreasure(player)
         local map = SpawnPrefab("banditmap")
         map.treasure = treasure
 
+        _bandit.components.inventory:ConsumeByName("banditmap", 15) -- delete previous map
         _bandit.components.inventory:GiveItem(map)
     end
 end
@@ -251,10 +256,11 @@ function self:SpawnBanditOnPlayer(player)
     if cover then
         if _stored_bandit then
             _bandit = SpawnSaveRecord(_stored_bandit)
+            _stored_bandit = nil
         else
             _bandit = SpawnPrefab("pigbandit")
-            GenerateTreasure(player)
         end
+        GenerateTreasure(player)
 
         local cx, cy, cz = cover.Transform:GetWorldPosition()
         local angle = TheCamera:GetHeadingTarget() * DEGREES
@@ -354,6 +360,10 @@ function self:OnSave()
         table.insert(refs, _bandit.GUID)
     end
 
+    if _stored_bandit then
+        data.stored_bandit = _stored_bandit
+    end
+
     return data, refs
 end
 
@@ -365,6 +375,8 @@ function self:OnLoad(data)
     _stolen_oincs.oinc = data.stolen_oincs.oinc or 0
     _stolen_oincs.oinc10 = data.stolen_oincs.oinc10 or 0
     _stolen_oincs.oinc100 = data.stolen_oincs.oinc100 or 0
+
+    _stored_bandit = data.stored_bandit or nil
 end
 
 function self:LoadPostPass(ents, data)

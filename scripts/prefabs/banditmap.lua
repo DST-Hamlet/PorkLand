@@ -40,6 +40,12 @@ local function MapOnLoadPostPass(inst, newents, data)
     inst.message = data.message
 end
 
+local function MapOnRemove(inst)
+    if inst.treasure and inst.treasure:IsValid() and not inst.treasure.revealed then
+        inst.treasure:Remove()
+    end
+end
+
 local function banditmapfn()
     local inst = CreateEntity()
 
@@ -82,6 +88,7 @@ local function banditmapfn()
     inst.OnSave = MapOnSave
     inst.OnLoadPostPass = MapOnLoadPostPass
 
+    inst:ListenForEvent("onremove", MapOnRemove)
     inst:ListenForEvent("on_reveal_map_spot_pre", function()
         inst.treasure:PushEvent("reveal")
     end)
