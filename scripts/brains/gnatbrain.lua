@@ -1,8 +1,8 @@
-require "behaviours/wander"
-require "behaviours/doaction"
-require "behaviours/panic"
-require "behaviours/findlight"
-require "behaviours/follow"
+require("behaviours/wander")
+require("behaviours/doaction")
+require("behaviours/panic")
+require("behaviours/findlight")
+require("behaviours/follow")
 
 local BrainCommon = require("brains/braincommon")
 
@@ -21,12 +21,8 @@ local function GetInfestTarget(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local target = FindClosestPlayerInRange(x, y, z, AGRO_DIST, true)
 
-    -- bush hat
-    if target:HasTag("hiding") then
-        return
-    end
-
-    if not target or inst.components.infester.infested then
+    -- hiding is for bush hat
+    if not target or target:HasTag("hiding") or inst.components.infester.infested then
         return false
     end
 
@@ -74,15 +70,14 @@ function GnatBrain:OnStart()
                 WhileNode(function() return  TheWorld.state.isdusk or TheWorld.state.isnight end, "Chase Light",
                     Follow(self.inst, function() return GetLightTarget(self.inst) end, 0, 1, 1)),
 
-                    WhileNode(function() return not self.inst.components.infester.infested end, "not infesting",
+                WhileNode(function() return not self.inst.components.infester.infested end, "not infesting",
 
                 DoAction(self.inst, function() return GetInfestTarget(self.inst) end, "infest", true)),
 
                 DoAction(self.inst, function() return MakeNest(self.inst) end, "make nest", true),
 
                 Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
-            }
-            , 0.5)
+            } , 0.5)
     }, 1)
 
 
