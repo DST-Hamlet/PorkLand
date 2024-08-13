@@ -40,10 +40,13 @@ local function CreateFrontVisual(inst, name, anim_def)
     frontvisual.entity:AddTransform()
     frontvisual.entity:AddAnimState()
     frontvisual.entity:AddFollower()
+
     frontvisual:AddTag("NOCLICK")
     frontvisual:AddTag("FX")
     frontvisual.entity:SetParent(inst.entity)
     frontvisual.persists = false
+    frontvisual.Transform:SetTwoFaced()
+    frontvisual.Transform:SetRotation(-90)
 
     frontvisual.AnimState:SetBuild(anim_def.build and anim_def.build .. "_front" or "room_shelves_front")
     frontvisual.AnimState:SetBank(anim_def.bank or "bookcase")
@@ -82,6 +85,7 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, curs
 
         local animation = anim_def.animation or name
 
+        inst.Transform:SetTwoFaced()
         inst.Transform:SetRotation(-90)
 
         inst.AnimState:SetBuild(anim_def.build or "room_shelves")
