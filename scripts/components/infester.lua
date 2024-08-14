@@ -34,7 +34,7 @@ function Infester:Infest(target)
     target:AddChild(self.inst)
     target.components.infestable:Infest(self.inst)
 
-    self.inst.AnimState:SetFinalOffset(-1)
+    self.inst.AnimState:SetFinalOffset(1)
     self.inst.Transform:SetPosition(0, 0, 0)
 end
 
@@ -44,7 +44,11 @@ function Infester:Uninfest()
     if self.target then
         self.target:RemoveChild(self.inst)
         local pos = Vector3(self.target.Transform:GetWorldPosition())
-        self.inst.Transform:SetPosition(pos.x, pos.y, pos.z)
+        if self.inst.Physics then
+            self.inst.Physics:Teleport(pos.x, pos.y, pos.z)
+        else
+            self.inst.Transform:SetPosition(pos.x, pos.y, pos.z)
+        end
 
         self.target.components.infestable:Uninfest(self.inst)
 
