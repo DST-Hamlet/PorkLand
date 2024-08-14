@@ -1651,7 +1651,7 @@ PROP_DEFS.pig_shop_deli = function (depth, width, exterior_door_def)
             usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_storeowner_shopkeep", x_offset = -1, z_offset = 4, startstate = "desk_pre" },
-        { name = "shelf_fridge", x_offset = -4.5, z_offset = -4, rotation=-90,  shelfitems={{1,"fish_raw_small"},{2,"fish_raw_small"},{3,"bird_egg"},{4,"bird_egg"},{5,"froglegs"},{6,"froglegs"}} },
+        { name = "shelf_fridge", x_offset = -4.5, z_offset = -4, rotation=-90,  shelfitems={{1,"fishmeat_small"},{2,"fishmeat_small"},{3,"bird_egg"},{4,"bird_egg"},{5,"froglegs"},{6,"froglegs"}} },
 
         { name = "deco_general_hangingscale",     x_offset = -2, z_offset =  4.7 },
         { name = "deco_roomglow",                 x_offset =  0, z_offset =  0 },

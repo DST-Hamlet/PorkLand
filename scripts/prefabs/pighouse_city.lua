@@ -216,6 +216,7 @@ local function OnSave(inst, data)
         data.burnt = true
     end
     data.build = inst.build
+    data.scale = inst.scale
     data.bank = inst.bank
     data.color = inst.color
     if inst.components.spawner.childname then
@@ -228,6 +229,10 @@ local function OnLoad(inst, data)
         if data.build then
             inst.build = data.build
             inst.AnimState:SetBuild(inst.build)
+        end
+        if data.scale then
+            inst.scale = data.scale
+            inst.AnimState:SetScale(inst.scale, inst.scale, inst.scale)
         end
         if data.bank then
             inst.bank = data.bank

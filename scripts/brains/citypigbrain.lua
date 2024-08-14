@@ -432,7 +432,7 @@ function CityPigBrain:OnStart()
                 DoAction(self.inst, FindFoodAction )),
 
             -- after hours shop pig wants you to leave
-            IfNode(function() return (self.inst:HasTag("shopkeep") or self.inst:HasTag("pigqueen")) and self.inst:GetIsInInterior() end, "shopkeeper closing",
+            IfNode(function() return (self.inst:HasTag("shopkeep") or self.inst:HasTag("pigqueen")) and self.inst:GetIsInInterior() and TheWorld.state.isnight end, "shopkeeper closing",
                 Wander(self.inst, GetNoLeaderHomePos, MAX_WANDER_DIST)),
 
             IfNode(function() return not self.inst:HasTag("guard") and not self.inst:HasTag("shopkeep") and not TheWorld.state.isfiesta end, "gohome",

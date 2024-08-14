@@ -107,6 +107,8 @@ local function spawndesk(inst, spawndesk)
 
         inst.desk = SpawnPrefab("pigman_shopkeeper_desk")
         inst.desk.Transform:SetPosition(desklocation.x, desklocation.y, desklocation.z)
+        inst.desk:AddComponent("citypossession")
+        inst.desk.components.citypossession:SetCity(inst.components.citypossession.cityID)
         inst:AddComponent("homeseeker")
         inst.components.homeseeker:SetHome(inst.desk)
     else
