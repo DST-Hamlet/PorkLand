@@ -153,6 +153,7 @@ local function master_postinit(inst)
 
     inst:AddComponent("economy")
     inst.components.economy:AddCity(1)
+    inst.components.economy:AddCity(2)
 
     inst:AddComponent("periodicpoopmanager")
 

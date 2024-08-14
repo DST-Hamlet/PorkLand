@@ -120,7 +120,7 @@ local TRADER = {
     },
 }
 
-for i=1, NUM_TRINKETS do
+for i = 1, NUM_TRINKETS do
     table.insert(TRADER.pigman_collector.items, "trinket_" .. i)
 end
 
