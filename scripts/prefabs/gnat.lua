@@ -34,6 +34,7 @@ end
 
 local function OnGasChange(inst, onGas)
     inst:DoTaskInTime(1, function()
+        inst.components.health:SetInvincible(false) -- health:kill is ignored by invincible :/
         inst.components.health:Kill()
         PlayerSeenBugsDie(inst)
     end)
@@ -62,12 +63,15 @@ local function OnUnfreeze(inst)
 end
 
 local function OnTeleported(inst)
+    inst.SoundEmitter:KillSound("move")
+
     if inst.components.freezable:IsFrozen() then
         inst.components.health:SetInvincible(false)
     else
         inst.components.health:SetInvincible(true)
     end
-    inst.components.infester:Uninfest()
+
+    inst.components.infester:Uninfest(true)
 end
 
 local brain = require("brains/gnatbrain")
@@ -132,6 +136,8 @@ local function fn()
     inst.components.combat:SetRetargetFunction(1, RetargetFn)
 
     inst:AddComponent("knownlocations")
+
+    inst:AddComponent("homeseeker")
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_TINY * 2

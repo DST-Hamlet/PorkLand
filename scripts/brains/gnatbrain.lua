@@ -9,6 +9,10 @@ local BrainCommon = require("brains/braincommon")
 local MAX_WANDER_DIST = 20
 local AGRO_DIST = 5
 
+local function ShouldChaseLight(inst)
+    return TheWorld.state.isdusk or TheWorld.state.isnight or inst:GetCurrentInteriorID() ~= nil
+end
+
 local function GetLightTarget(inst)
     return inst:FindLight()
 end
@@ -30,8 +34,8 @@ local function GetInfestTarget(inst)
 end
 
 local function CanBuildMoundAtPoint(x, y, z)
-    local ents = TheSim:FindEntities(x, y, z, 4, nil, {"FX", "NOCLICK", "DECOR","INLIMBO"})
-    return #ents <= 1 and IsSurroundedByLand(x, y, z, 2)
+    local ents = TheSim:FindEntities(x, y, z, 4, nil, {"FX", "NOCLICK", "DECOR", "INLIMBO"})
+    return #ents <= 1 and TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.PAINTED and IsSurroundedByLand(x, y, z, 2)
 end
 
 local function MakeNest(inst)
@@ -67,7 +71,7 @@ function GnatBrain:OnStart()
             PriorityNode{
                 BrainCommon.PanicTrigger(self.inst),
 
-                WhileNode(function() return  TheWorld.state.isdusk or TheWorld.state.isnight end, "Chase Light",
+                WhileNode(function() return ShouldChaseLight(self.inst) end, "Chase Light",
                     Follow(self.inst, function() return GetLightTarget(self.inst) end, 0, 1, 1)),
 
                 WhileNode(function() return not self.inst.components.infester.infested end, "not infesting",

@@ -39,15 +39,14 @@ function Infester:Infest(target)
 end
 
 
-function Infester:Uninfest()
+function Infester:Uninfest(is_teleported)
     self.infested = false
     if self.target then
         self.target:RemoveChild(self.inst)
-        local pos = Vector3(self.target.Transform:GetWorldPosition())
-        if self.inst.Physics then
-            self.inst.Physics:Teleport(pos.x, pos.y, pos.z)
-        else
-            self.inst.Transform:SetPosition(pos.x, pos.y, pos.z)
+
+        if not is_teleported then
+            local x, y, z = self.target.Transform:GetWorldPosition()
+            self.inst.Transform:SetPosition(x, y, z) -- need to SetPosition here, otherwise self.inst would be left at (0, 0, 0)
         end
 
         self.target.components.infestable:Uninfest(self.inst)

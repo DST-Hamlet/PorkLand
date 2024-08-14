@@ -15,8 +15,10 @@ local function UpdateTile(self)
     end
     if was_in_gas and not in_gas then
         StopTakingGasDamage(self.inst)
+        self._in_gas = false
     elseif not was_in_gas and in_gas then
         StartTakingGasDamage(self.inst)
+        self._in_gas = true
     end
 end
 
@@ -49,6 +51,8 @@ local Poisonable = Class(function(self, inst)
     self.inst:AddTag("poisonable")
 
     self.blockall = nil
+
+    self._in_gas = false
 
     self.inst:ListenForEvent("death", OnKilled)
     self.inst:DoPeriodicTask(1, function()
@@ -340,7 +344,7 @@ function Poisonable:SpawnFX()
     self:KillFX()
 
     if not self.fxdata then
-        self.fxdata = {prefab = "poisonbubble", x = 0, y = 0, z = 0, level = self:GetFXLevel()}
+        self.fxdata = {{prefab = "poisonbubble", x = 0, y = 0, z = 0, level = self:GetFXLevel()}}
     end
 
     if self.inst:IsInLimbo() then

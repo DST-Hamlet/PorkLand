@@ -48,6 +48,7 @@ local function OnUpdate(inst, dt)
         if not was_in_gas then
             if ent.OnGasChange then -- gnat
                 ent:OnGasChange()
+                return
             end
             StartTakingGasDamage(ent)
         end

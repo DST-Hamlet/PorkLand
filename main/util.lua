@@ -412,9 +412,12 @@ function StartTakingGasDamage(inst)
         return
     end
 
+    inst.components.poisonable.start_time = GetTime()
+
     local damage = inst:HasTag("insect") and POISON_DAMAGE_INSECT or POISON_DAMAGE_NON_INSECT
     inst._poison_damage_task = inst:DoPeriodicTask(1, function()
         inst.components.health:DoDelta(-damage, nil, "gascloud")
+        inst:PushEvent("poisondamage") -- screen flash
     end)
 
     if inst.components.poisonable.show_fx then
@@ -430,6 +433,6 @@ function StopTakingGasDamage(inst)
 
     -- Don't kill fx if we are still poisoned
     if not inst.components.poisonable:IsPoisoned() then
-        inst.components.poisonable:KillFX()
+        inst.components.poisonable:DonePoisoning()
     end
 end
