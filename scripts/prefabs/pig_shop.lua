@@ -851,7 +851,7 @@ return MakeShop("pig_shop_deli",            "pig_shop_deli",        nil,        
        MakeShop("pig_shop_tinker",          "pig_shop_tinker",      nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
        MakeShop("pig_shop_cityhall",        "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true}),
        MakeShop("pig_shop_cityhall_player", "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true, unburnable = true, no_shop_music = true}),
-       MakeShop("pig_palace",               "palace",               "palace",       {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true, spawner = {prefab = "pigman_banker", delay = TUNING.TOTAL_DAY_TIME * 4}}),
+       MakeShop("pig_palace",               "palace",               "palace",       {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true}),
 
        MakePlacer("pig_shop_deli_placer",        "pig_shop",     "pig_shop_deli",        "idle", false, false, true),
        MakePlacer("pig_shop_general_placer",     "pig_shop",     "pig_shop_general",     "idle", false, false, true),

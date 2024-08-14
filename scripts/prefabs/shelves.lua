@@ -2,7 +2,9 @@ local assets =
 {
     Asset("ANIM", "anim/room_shelves.zip"),
     Asset("ANIM", "anim/room_shelves_front.zip"),
-    Asset("ANIM", "anim/pedestal_crate.zip")
+    Asset("ANIM", "anim/pedestal_crate.zip"),
+    Asset("ANIM", "anim/pedestal_crate_cloche.zip"),
+    Asset("ANIM", "anim/pedestal_crate_cost.zip"),
 }
 
 local function MakeObstacle(inst)
@@ -23,11 +25,18 @@ local function Curse(inst)
 end
 
 local function OnSave(inst, data)
+    data.rotation = inst.Transform:GetRotation()
     data.interiorID = inst.interiorID
 end
 
 local function OnLoad(inst, data)
     if data then
+        if data.rotation then
+            if inst.components.rotatingbillboard == nil then
+                -- this component handle rotation save/load itself
+                inst.Transform:SetRotation(data.rotation)
+            end
+        end
         if data.interiorID then
             inst.interiorID  = data.interiorID
         end
@@ -48,8 +57,13 @@ local function CreateFrontVisual(inst, name, anim_def)
     frontvisual.Transform:SetTwoFaced()
     frontvisual.Transform:SetRotation(-90)
 
-    frontvisual.AnimState:SetBuild(anim_def.build and anim_def.build .. "_front" or "room_shelves_front")
-    frontvisual.AnimState:SetBank(anim_def.bank or "bookcase")
+    if anim_def.is_pedestal then
+        frontvisual.AnimState:SetBuild(anim_def.build and anim_def.build .. "_cloche" or "pedestal_crate_cloche")
+        frontvisual.AnimState:SetBank(anim_def.bank or "pedestal")
+    else
+        frontvisual.AnimState:SetBuild(anim_def.build and anim_def.build .. "_front" or "room_shelves_front")
+        frontvisual.AnimState:SetBank(anim_def.bank or "bookcase")
+    end
     local animation = anim_def.animation or name
     frontvisual.AnimState:PlayAnimation(animation)
 
@@ -167,8 +181,8 @@ return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("floating", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("displaycase_wood", true, {animation = "displayshelf_wood"}),
     MakeShelf("displaycase_metal", true, {animation = "displayshelf_metal"}),
-    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east"}, "SWAP_SIGN"),
-    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east"}, "SWAP_SIGN"),
-    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west"}, "SWAP_SIGN"),
-    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west"}, "SWAP_SIGN"),
+    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true}, "SWAP_SIGN"),
+    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true}, "SWAP_SIGN"),
+    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN"),
+    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN"),
     MakeShelf("ruins", true, {animation = "ruins"}, nil, Curse)
