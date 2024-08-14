@@ -416,8 +416,8 @@ ACTIONS.SHOP.stroverridefn = function(act)
     end
     local shelf = act.target.replica.visualslot:GetShelf()
     local item = act.target.replica.visualslot:GetItem()
-	if not (shelf and item and shelf.replica.shopped) then
-		return
+    if not (shelf and item and shelf.replica.shopped) then
+        return
     end
 
     if not shelf.replica.shopped:IsBeingWatched() then
@@ -442,7 +442,7 @@ ACTIONS.SHOP.fn = function(act)
     local shelf = act.target.components.visualslot:GetShelf()
     local slot = act.target.components.visualslot:GetSlot()
 
-	if not (shelf and shelf.components.shopped and doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
+    if not (shelf and shelf.components.shopped and doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
         return false
     end
 
