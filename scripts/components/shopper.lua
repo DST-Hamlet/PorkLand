@@ -4,17 +4,6 @@ local Shopper = Class(function(self, inst)
     self.inst = inst
 end)
 
-local function FindItem(inventory, list)
-    local item = inventory:FindItem(function(look)
-        for _, v in ipairs(list) do
-            if look.prefab == v then
-                return look
-            end
-        end
-    end)
-    return item
-end
-
 function Shopper:PayMoney(cost)
     local inventory = self.inst.components.inventory
     local _, oincamount = inventory:Has("oinc", 0, true)
@@ -101,7 +90,7 @@ end
 
 function Shopper:CanPayFor(item)
     if not item.components.shopped:IsBeingWatched() then
-        print("NOT WATCHED")
+        -- print("NOT WATCHED")
         return true
     end
     if not item.components.shopped:GetItemToSell() then
@@ -109,7 +98,7 @@ function Shopper:CanPayFor(item)
     end
 
     local prefab_wanted = item.components.shopped:GetCostPrefab()
-    print("TESTING prefab_wanted", prefab_wanted)
+    -- print("TESTING prefab_wanted", prefab_wanted)
 
     if prefab_wanted == "oinc" then
         if self:GetMoney() >= item.components.shopped:GetCost() then
@@ -132,9 +121,15 @@ function Shopper:Buy(shelf, slot)
     end
 
     local cost_prefab = shelf.components.shopped:GetCostPrefab()
-    if cost_prefab then
+    if cost_prefab == "oinc" then
         self:PayMoney(shelf.components.shopped:GetCost())
         shelf.components.shopped:BoughtItem(self.inst, slot)
+    else
+        local item = self.inst.components.inventory:FindItem(function(look) return look.prefab == cost_prefab end)
+        if item then
+            self.inst.components.inventory:RemoveItem(item)
+            shelf.components.shopped:BoughtItem(self.inst, slot)
+        end
     end
 end
 
