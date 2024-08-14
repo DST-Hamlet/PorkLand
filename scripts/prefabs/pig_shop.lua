@@ -333,12 +333,13 @@ local function OnBuilt(inst)
     inst.AnimState:PushAnimation("idle")
 end
 
-local function InitShopped(inst)
-    local interior_spawner = TheWorld.components.interiorspawner
-    local room_position = interior_spawner:IndexToPosition(inst.interiorID)
-    local pedestals = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shop_pedestal"})
-    for _, pedestal in ipairs(pedestals) do
-        pedestal:InitShop(inst.prefab)
+local function InitShopped(room_id, shop_type)
+    local room_position = TheWorld.components.interiorspawner:IndexToPosition(room_id)
+    if shop_type then
+        local pedestals = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shop_pedestal"})
+        for _, pedestal in ipairs(pedestals) do
+            pedestal:InitShop(shop_type)
+        end
     end
     local shelves = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shelf"})
     for _, shelf in ipairs(shelves) do
@@ -374,6 +375,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     local palace_addprops = GetPropDef("pig_palace", depth, width, exterior_door_def, togallery_door_def)
     local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, inst.interiorID, palace_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
+    InitShopped(inst.interiorID)
 
     -- CREATE GALLERY
 
@@ -397,6 +399,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     local gallery_addprops = GetPropDef("pig_palace_gallery", depth, width, togiftshop_door_def, topalace_door_def)
     def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, gallery_id, gallery_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id ,PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
+    InitShopped(gallery_id)
 
     -- CREATE GIFT SHOP
 
@@ -420,7 +423,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     local giftshop_addprops = GetPropDef("pig_palace_giftshop", depth, width, toexit_door_def, togallery_door_def)
     def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, giftshop_id, giftshop_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
-    InitShopped(inst)
+    InitShopped(giftshop_id)
 end
 
 local function CreateInterior(inst)
@@ -474,7 +477,7 @@ local function CreateInterior(inst)
         wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
         PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
     interior_spawner:SpawnInterior(def)
-    InitShopped(inst)
+    InitShopped(inst.interiorID, inst.prefab)
 end
 
 local function OnSave(inst, data)
