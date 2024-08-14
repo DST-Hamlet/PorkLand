@@ -263,29 +263,29 @@ local function OnHammered(inst, worker)
     inst:Remove()
 end
 
-local function OnPhaseChange(inst, phase)
+local function OnNight(inst, isnight)
     if inst:HasTag("burnt") then
         return
     end
 
-    if phase == "day" then
-        if inst.doortask then
-            inst.doortask:Cancel()
-        end
-        inst.doortask = inst:DoTaskInTime(1, LightsOn)
-
-        if inst:HasTag("pig_shop_cityhall_player") then
-            inst.components.door.disabled = nil
-        end
-    elseif phase == "night" then
+    if isnight then
         if inst.doortask then
             inst.doortask:Cancel()
             inst.doortask = nil
         end
         LightsOff(inst)
 
-        if inst:HasTag("pig_shop_cityhall_player") then
-            inst.components.door.disabled = true
+        if inst.prefab ~= "pig_shop_cityhall_player" and inst.prefab ~= "pig_palace" then
+            inst.components.door:SetDoorDisabled(true, "close_store_at_night")
+        end
+    else
+        if inst.doortask then
+            inst.doortask:Cancel()
+        end
+        inst.doortask = inst:DoTaskInTime(1, LightsOn)
+
+        if inst.prefab ~= "pig_shop_cityhall_player" and inst.prefab ~= "pig_palace" then
+            inst.components.door:SetDoorDisabled(false, "close_store_at_night")
         end
     end
 end
@@ -795,8 +795,8 @@ local function MakeShop(name, build, bank, data)
         inst:ListenForEvent("usedoor", UseDoor)
         inst:ListenForEvent("burntup", OnBurntUp)
 
-        inst:WatchWorldState("phase", OnPhaseChange)
-        OnPhaseChange(inst, TheWorld.state.isdusk and "day" or TheWorld.state.phase) -- Turn lights on for dusk too
+        inst:WatchWorldState("isnight", OnNight)
+        OnNight(inst, TheWorld.state.isnight)
         inst:WatchWorldState("isfiesta", OnIsFiesta)
         OnIsFiesta(inst, TheWorld.state.isfiesta)
 
