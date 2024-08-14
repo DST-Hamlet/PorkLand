@@ -416,9 +416,12 @@ ACTIONS.SHOP.stroverridefn = function(act)
     end
     local shelf = act.target.replica.visualslot:GetShelf()
     local item = act.target.replica.visualslot:GetItem()
-
 	if not (shelf and item and shelf.replica.shopped) then
 		return
+    end
+
+    if not shelf.replica.shopped:IsBeingWatched() then
+        return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = item:GetBasicDisplayName() })
     end
 
     local cost_prefab = shelf.replica.shopped:GetCostPrefab()
@@ -431,24 +434,13 @@ ACTIONS.SHOP.stroverridefn = function(act)
             payitem = STRINGS.NAMES.OINC_PL
         end
     end
-
-    -- TODO: See if we want to move this to shopper replica or something
-    if shelf:HasTag("cost_one_oinc") or shelf.replica.shopped then
-        local x, y, z = shelf.Transform:GetWorldPosition()
-        local shopkeeps = TheSim:FindEntities(x, y, z, 20, {"shopkeep"}, {"INLIMBO"})
-        for _, shopkeep in ipairs(shopkeeps) do
-            -- if not shopkeep.components.sleeper or not shopkeep.components.sleeper:IsAsleep() then
-                return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = item:GetBasicDisplayName(), qty = qty, payitem = payitem })
-            -- end
-        end
-    end
-    return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = item:GetBasicDisplayName() })
+    return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = item:GetBasicDisplayName(), qty = qty, payitem = payitem })
 end
 
 ACTIONS.SHOP.fn = function(act)
     local doer = act.doer
-    local shelf = act.target.replica.visualslot:GetShelf()
-    local slot = act.target.replica.visualslot:GetSlot()
+    local shelf = act.target.components.visualslot:GetShelf()
+    local slot = act.target.components.visualslot:GetSlot()
 
 	if not (shelf and shelf.components.shopped and doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
         return false
@@ -465,7 +457,7 @@ ACTIONS.SHOP.fn = function(act)
     if shelf:HasTag("shopclosed") or TheWorld.state.isnight then
         reason = "closed"
         sell = false
-    elseif not doer.components.shopper:CanPayFor(shelf) then
+    elseif not doer.components.shopper:CanPayFor(shelf, slot) then
         local prefab_wanted = shelf.components.shopped:GetCostPrefab()
         if prefab_wanted == "oinc" then
             reason = "money"

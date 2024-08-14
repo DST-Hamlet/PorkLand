@@ -68,7 +68,7 @@ function Shopped:SetOnRobbed(fn)
 end
 
 function Shopped:GetRobbed(robber, slot)
-    if not self:GetItemToSell() then
+    if not self:GetItemToSell(slot) then
         return false
     end
 
@@ -99,9 +99,7 @@ function Shopped:OnLoad(data)
     if data.robbed then
         self.inst:AddTag("robbed")
     end
-    if data.cost_prefab and data.cost then
-        self:SetCost(data.cost_prefab, data.cost)
-    end
+    self:SetCost(data.cost_prefab, data.cost)
 end
 
 return Shopped

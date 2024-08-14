@@ -88,12 +88,12 @@ function Shopper:GetMoney()
     return oincamount + (oinc10amount * 10) + (oinc100amount * 100)
 end
 
-function Shopper:CanPayFor(item)
+function Shopper:CanPayFor(item, slot)
     if not item.components.shopped:IsBeingWatched() then
         -- print("NOT WATCHED")
         return true
     end
-    if not item.components.shopped:GetItemToSell() then
+    if not item.components.shopped:GetItemToSell(slot) then
         return false
     end
 
@@ -116,7 +116,7 @@ function Shopper:CanPayFor(item)
 end
 
 function Shopper:Buy(shelf, slot)
-    if not shelf.components.shopped:GetItemToSell() then
+    if not shelf.components.shopped:GetItemToSell(slot) then
         return false
     end
 

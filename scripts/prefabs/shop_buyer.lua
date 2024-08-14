@@ -77,7 +77,7 @@ local function Restock(inst, force)
         -- print("NO DAILY RESTOCK")
         return
     elseif inst:HasTag("robbed") then
-        inst.components.shopped:SetCost("cost-nil", 1)
+        inst.components.shopped:SetCost("cost-nil", nil)
         inst:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
     elseif force or (inst:IsAsleep() and not inst:HasTag("justsellonce") and (not inst.components.shopped:GetItemToSell() or math.random() < 0.16)) then
         print("CHANGING ITEM")
