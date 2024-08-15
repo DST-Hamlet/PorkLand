@@ -36,8 +36,11 @@ function Infestable:OnSave()
             table.insert(references, data.infesters[k].GUID)
 
             if v.components.homeseeker then
-                data.infesters[k].home =  v.components.homeseeker:GetHome().GUID
-                table.insert(references, data.infesters[k].home)
+                local home = v.components.homeseeker:GetHome()
+                if home then
+                    data.infesters[k].home = home.GUID
+                    table.insert(references, data.infesters[k].home)
+                end
             end
         end
     end

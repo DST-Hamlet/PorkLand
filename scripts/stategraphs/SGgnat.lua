@@ -89,6 +89,13 @@ local states =
             inst.SoundEmitter:KillSound("move")
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/gnat/death")
         end,
+
+        timeline =
+        {
+            TimeEvent(16 * FRAMES, function(inst)
+                LandFlyingCreature(inst)
+            end)
+        }
     },
 
     State{
@@ -239,6 +246,7 @@ local states =
             inst:PerformBufferedAction()
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("sleep_loop", true)
+            LandFlyingCreature(inst)
         end,
 
         events =
@@ -247,9 +255,11 @@ local states =
                 inst.sg:GoToState("takeoff")
             end),
         },
+
+        onexit = RaiseFlyingCreature,
     },
 }
 
-CommonStates.AddFrozenStates(states)
+CommonStates.AddFrozenStates(states, LandFlyingCreature, RaiseFlyingCreature)
 
 return StateGraph("gnat", states, events, "spawn", actionhandlers)
