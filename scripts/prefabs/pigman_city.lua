@@ -107,6 +107,8 @@ local function spawndesk(inst, spawndesk)
 
         inst.desk = SpawnPrefab("pigman_shopkeeper_desk")
         inst.desk.Transform:SetPosition(desklocation.x, desklocation.y, desklocation.z)
+        inst.desk:AddComponent("citypossession")
+        inst.desk.components.citypossession:SetCity(inst.components.citypossession.cityID)
         inst:AddComponent("homeseeker")
         inst.components.homeseeker:SetHome(inst.desk)
     else
@@ -241,7 +243,7 @@ local function ShouldAcceptItem(inst, item)
         end
 
         if item.prefab == "purplegem" and (inst.prefab == "pigman_banker" or inst.prefab == "pigman_banker_shopkeep") then
-            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_PURPLEGEM"))
+            inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_PURPLEGEM"))
             return false
         end
 
@@ -264,9 +266,9 @@ local function ShouldAcceptItem(inst, item)
             local delay = econ:GetDelay(econprefab, city, inst)
             if delay > 0 then
                 if delay == 1 then
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW"))
                 else
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_GIFT_DELAY"), delay)
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_GIFT_DELAY"), delay)
                 end
                 return false
             else
@@ -275,16 +277,16 @@ local function ShouldAcceptItem(inst, item)
         else
             if item:HasTag("relic") then
                 if item.prefab == "relic_4" or item.prefab == "relic_5" then
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_PRICELESS_GIFT"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_PRICELESS_GIFT"))
                 else
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_RELIC_GIFT"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_RELIC_GIFT"))
                 end
             else
                 if item.prefab == "trinket_giftshop_1" or item.prefab == "trinket_giftshop_3" and inst:HasTag("city1") then
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_TRINKET_GIFT"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_TRINKET_GIFT"))
                 else
                     -- HUGO
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_GIFT"), {line = desc})
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_GIFT"), {line = desc})
                 end
             end
             return false
@@ -310,9 +312,9 @@ local function OnGetBribe(inst, item)
             end
 
             inst.bribe_count = 0
-            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_FORGIVE_PLAYER"))
+            inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_FORGIVE_PLAYER"))
         else
-            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_NOT_ENOUGH"))
+            inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_NOT_ENOUGH"))
         end
     end
 end
@@ -373,7 +375,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             if trinket then
                 if giver.components.inventory then
                     inst:AddTag("recieved_trinket")
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_GIVE_TRINKET_REWARD"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_GIVE_TRINKET_REWARD"))
 
                     local reward = {
                         "kabobs",
@@ -395,7 +397,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             end
             if reward then
                 if giver.components.inventory then
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_GIVE_REWARD"), 1, {line = desc})
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_GIVE_REWARD"), 1, {line = desc})
 
                     for i = 1, qty do
                         local rewarditem = SpawnPrefab(reward)
@@ -403,12 +405,12 @@ local function OnGetItemFromPlayer(inst, giver, item)
                     end
                 end
             else
-                inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_TAKE_GIFT"), 1, {line = desc})
+                inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_TAKE_GIFT"), 1, {line = desc})
             end
         end
         if item:HasTag("relic") and (inst.prefab == "pigman_collector_shopkeep" or inst.prefab == "pigman_collector") then
             if giver.components.inventory then
-                inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_GIVE_RELIC_REWARD"))
+                inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_GIVE_RELIC_REWARD"))
                 local rewarditem = SpawnPrefab("oinc10")
                 giver.components.inventory:GiveItem(rewarditem, nil, inst:GetPosition())
             end
@@ -569,7 +571,7 @@ local function NormalRetargetFn(inst)
                 and not guy.components.health:IsDead() and inst.components.combat:CanTarget(guy)
                 and not (inst.components.combat.target and inst.components.combat.target:HasTag("player")) then
 
-                inst:SayLine(GetSpeechType(inst, "CITY_PIG_GUARD_TALK_ANGRY_PLAYER"))
+                inst:SayLine(inst:GetSpeechType("CITY_PIG_GUARD_TALK_ANGRY_PLAYER"))
                 -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER) )
             end
 
@@ -1025,7 +1027,7 @@ local function OnIsDusk(inst, isdusk)
         return
     end
 
-    inst:SayLine(GetSpeechType(inst, "CITY_PIG_GUARD_LIGHT_TORCH"))
+    inst:SayLine(inst:GetSpeechType("CITY_PIG_GUARD_LIGHT_TORCH"))
     inst:DoTaskInTime(0.5 + (math.random() * 1), function()
         local torch = inst.components.inventory:FindItem(function(item)
             if item.prefab == "torch" then
@@ -1073,7 +1075,7 @@ local function OnDeath_ShopKeep(inst, data)
 end
 
 -- This is different from Don't Starve Hamlet, we use thing like "CITY_PIG_SHOPKEEPER_CLOSING" instead of STRINGS.CITY_PIG_SHOPKEEPER_CLOSING[0]
-local function shopkeeper_speech(inst, speech)
+local function ShopkeeperSpeech(inst, speech)
     if inst:IsValid() and not inst:IsAsleep() and not inst.components.combat.target and not inst:IsInLimbo() then
         inst:SayLine(speech)
     end
@@ -1082,7 +1084,7 @@ end
 local function CloseShop(inst)
     if inst:IsValid() and not inst:IsAsleep() and not inst.components.combat.target and not inst:IsInLimbo() then
         inst.sg:GoToState("idle")
-        shopkeeper_speech(inst, "CITY_PIG_SHOPKEEPER_CLOSING")
+        inst:ShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
     end
 end
 
@@ -1095,11 +1097,15 @@ local function shopkeeper_master_postinit(inst)
     inst.components.sleeper.onlysleepsfromitems = true
 
     inst.separatedesk = separatedesk
-    inst.shopkeeper_speech = shopkeeper_speech
+    inst.ShopkeeperSpeech = ShopkeeperSpeech
 
+    -- TODO: Make it greet every new customer
     -- TheWorld:ListenForEvent("enterroom", function(data)
-    --     shopkeeper_speech(inst, getSpeechType(inst, "CITY_PIG_SHOPKEEPER_GREETING"))
+    --     inst:ShopkeeperSpeech(inst:GetSpeechType("CITY_PIG_SHOPKEEPER_GREETING"))
     -- end)
+    inst:ListenForEvent("entitywake", function()
+        inst:ShopkeeperSpeech(inst:GetSpeechType("CITY_PIG_SHOPKEEPER_GREETING"))
+    end)
 
     inst:ListenForEvent("death", OnDeath_ShopKeep)
 

@@ -442,6 +442,10 @@ applyoverrides_post.lush = function(difficulty)
 end
 
 applyoverrides_post.brambles = function(difficulty)
+    if not TheWorld.components.bramblemanager then
+        return
+    end
+
     if difficulty == "never" then
         TheWorld.components.bramblemanager:Disable(true)
     else

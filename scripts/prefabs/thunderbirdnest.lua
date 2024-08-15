@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/thunderbird_nest.zip"),
+    Asset("ANIM", "anim/thunderbird_nest.zip"),
 }
 
 local prefabs =
@@ -33,14 +33,14 @@ local function OnChildKilledFn(inst)
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddNetwork()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
 
-	inst.entity:AddMiniMapEntity()
-	inst.MiniMapEntity:SetIcon("thunderbirdnest.tex")
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("thunderbirdnest.tex")
 
     inst.AnimState:SetBuild("thunderbird_nest")
     inst.AnimState:SetBank("thunderbird_nest")

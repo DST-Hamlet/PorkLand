@@ -263,29 +263,29 @@ local function OnHammered(inst, worker)
     inst:Remove()
 end
 
-local function OnPhaseChange(inst, phase)
+local function OnNight(inst, isnight)
     if inst:HasTag("burnt") then
         return
     end
 
-    if phase == "day" then
-        if inst.doortask then
-            inst.doortask:Cancel()
-        end
-        inst.doortask = inst:DoTaskInTime(1, LightsOn)
-
-        if inst:HasTag("pig_shop_cityhall_player") then
-            inst.components.door.disabled = nil
-        end
-    elseif phase == "night" then
+    if isnight then
         if inst.doortask then
             inst.doortask:Cancel()
             inst.doortask = nil
         end
         LightsOff(inst)
 
-        if inst:HasTag("pig_shop_cityhall_player") then
-            inst.components.door.disabled = true
+        if inst.prefab ~= "pig_shop_cityhall_player" and inst.prefab ~= "pig_palace" then
+            inst.components.door:SetDoorDisabled(true, "close_store_at_night")
+        end
+    else
+        if inst.doortask then
+            inst.doortask:Cancel()
+        end
+        inst.doortask = inst:DoTaskInTime(1, LightsOn)
+
+        if inst.prefab ~= "pig_shop_cityhall_player" and inst.prefab ~= "pig_palace" then
+            inst.components.door:SetDoorDisabled(false, "close_store_at_night")
         end
     end
 end
@@ -333,6 +333,21 @@ local function OnBuilt(inst)
     inst.AnimState:PushAnimation("idle")
 end
 
+local function InitShopped(room_id, shop_type)
+    local room_position = TheWorld.components.interiorspawner:IndexToPosition(room_id)
+    if shop_type then
+        local pedestals = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shop_pedestal"})
+        for _, pedestal in ipairs(pedestals) do
+            pedestal:InitShop(shop_type)
+        end
+    end
+    local shelves = TheSim:FindEntities(room_position.x, room_position.y, room_position.z, 10, {"shelf"})
+    for _, shelf in ipairs(shelves) do
+        shelf:AddComponent("shopped")
+        shelf.components.shopped:SetCost("oinc", 1)
+    end
+end
+
 local function CreateInteriorPalace(inst, exterior_door_def)
     local interior_spawner = TheWorld.components.interiorspawner
 
@@ -360,6 +375,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     local palace_addprops = GetPropDef("pig_palace", depth, width, exterior_door_def, togallery_door_def)
     local def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, inst.interiorID, palace_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
+    InitShopped(inst.interiorID)
 
     -- CREATE GALLERY
 
@@ -383,6 +399,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     local gallery_addprops = GetPropDef("pig_palace_gallery", depth, width, togiftshop_door_def, topalace_door_def)
     def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, gallery_id, gallery_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id ,PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
+    InitShopped(gallery_id)
 
     -- CREATE GIFT SHOP
 
@@ -406,6 +423,7 @@ local function CreateInteriorPalace(inst, exterior_door_def)
     local giftshop_addprops = GetPropDef("pig_palace_giftshop", depth, width, toexit_door_def, togallery_door_def)
     def = interior_spawner:CreateRoom("generic_interior", width, height, depth, name, giftshop_id, giftshop_addprops, {}, wall_texture, floor_texture, minimap_texture, city_id, PIG_SHOP_COLOUR_CUBE, nil, nil, "palace", "PALACE", "STONE")
     interior_spawner:SpawnInterior(def)
+    InitShopped(giftshop_id)
 end
 
 local function CreateInterior(inst)
@@ -459,6 +477,7 @@ local function CreateInterior(inst)
         wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
         PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
     interior_spawner:SpawnInterior(def)
+    InitShopped(inst.interiorID, inst.prefab)
 end
 
 local function OnSave(inst, data)
@@ -532,7 +551,7 @@ local function OnLoad(inst, data)
                         { x_offset = -1,  z_offset =  TUNING.ROOM_TINY_WIDTH/2-2 },
                     }
 
-                    local startAnim = "idle_globe_bar"
+                    local animation = "idle_globe_bar"
 
                     if interior.visited then
                         for _, ent in pairs(interior_ents) do
@@ -555,7 +574,7 @@ local function OnLoad(inst, data)
                     for i = 1, #saleitems do
                         local offset = offsets[i]
                         local saleitem = saleitems[i]
-                        local prefab_data = {saleitem = saleitem, startAnim = startAnim }
+                        local prefab_data = {saleitem = saleitem, animation = animation }
 
                         -- If the interior has been visited we have to spawn the prefab, initialize it and put it in the interior
                         if interior.visited then
@@ -563,8 +582,8 @@ local function OnLoad(inst, data)
                             -- Sets position, item and animation
                             pedestal.Transform:SetPosition(pt.x + offset.x_offset, 0, pt.z + offset.z_offset) -- HERE
                             pedestal.saleitem = saleitem -- HERE
-                            pedestal.AnimState:PlayAnimation(startAnim)
-                            pedestal.startAnim = startAnim
+                            pedestal.AnimState:PlayAnimation(animation)
+                            pedestal.animation = animation
 
                             -- Shop spawner contains a bunch of info about the store itself, so we need it to initialize our pedestals
                             local shop_spawner = nil
@@ -779,8 +798,8 @@ local function MakeShop(name, build, bank, data)
         inst:ListenForEvent("usedoor", UseDoor)
         inst:ListenForEvent("burntup", OnBurntUp)
 
-        inst:WatchWorldState("phase", OnPhaseChange)
-        OnPhaseChange(inst, TheWorld.state.isdusk and "day" or TheWorld.state.phase) -- Turn lights on for dusk too
+        inst:WatchWorldState("isnight", OnNight)
+        OnNight(inst, TheWorld.state.isnight)
         inst:WatchWorldState("isfiesta", OnIsFiesta)
         OnIsFiesta(inst, TheWorld.state.isfiesta)
 
@@ -832,7 +851,7 @@ return MakeShop("pig_shop_deli",            "pig_shop_deli",        nil,        
        MakeShop("pig_shop_tinker",          "pig_shop_tinker",      nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
        MakeShop("pig_shop_cityhall",        "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true}),
        MakeShop("pig_shop_cityhall_player", "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true, unburnable = true, no_shop_music = true}),
-       MakeShop("pig_palace",               "palace",               "palace",       {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true, spawner = {prefab = "pigman_banker", delay = TUNING.TOTAL_DAY_TIME * 4}}),
+       MakeShop("pig_palace",               "palace",               "palace",       {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true}),
 
        MakePlacer("pig_shop_deli_placer",        "pig_shop",     "pig_shop_deli",        "idle", false, false, true),
        MakePlacer("pig_shop_general_placer",     "pig_shop",     "pig_shop_general",     "idle", false, false, true),

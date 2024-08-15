@@ -88,7 +88,7 @@ end
 function Economy:AddCity(city)
     self.cities[city] = {}
 
-    for trader_prefab, _ in pairs(TRADER) do
+    for trader_prefab in ipairs(TRADER) do
         self.cities[city][trader_prefab] = {
             GUIDS = {},
         }

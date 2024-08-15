@@ -152,7 +152,7 @@ function Door:SetDoorDisabled(status, cause)
     end
 
     self.disabled = false
-    for _cause, setting in pairs(self.disable_causes) do
+    for _, setting in pairs(self.disable_causes) do
         if setting then
             self.disabled = true
         end
