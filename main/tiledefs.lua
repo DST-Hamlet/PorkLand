@@ -268,9 +268,10 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "blocky",
             noise_texture = "noise_ruinsbrick_scaled",
-            runsound = "dontstarve/movement/run_slate",
-            walksound = "dontstarve/movement/walk_slate",
+            runsound = "dontstarve/movement/run_dirt",
+            walksound = "dontstarve/movement/walk_dirt",
             snowsound = "run_ice",
+            hard = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -291,9 +292,11 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "stoneroad",
             noise_texture = "Ground_noise_cobbleroad",
-            runsound = "dontstarve/movement/run_rock",
-            walksound = "dontstarve/movement/walk_rock",
+            runsound = "dontstarve/movement/run_dirt",
+            walksound = "dontstarve/movement/walk_dirt",
             snowsound = "run_ice",
+            hard = true,
+            roadways = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -338,6 +341,7 @@ local pl_tiledefs = {
             runsound = "dontstarve/movement/run_dirt",
             walksound = "dontstarve/movement/walk_dirt",
             snowsound = "run_ice",
+            hard = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -355,6 +359,7 @@ local pl_tiledefs = {
             runsound = "dontstarve/movement/run_dirt",
             walksound = "dontstarve/movement/walk_dirt",
             snowsound = "run_ice",
+            hard = true,
         },
         minimap_tile_def = {
             name = "map_edge",
