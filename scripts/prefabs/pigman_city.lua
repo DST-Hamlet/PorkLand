@@ -511,14 +511,14 @@ end
 
 local function spawn_guard_tasks(inst, attacker)
     if not inst.task_guard1 then
-        inst.task_guard1 = inst:DoTaskInTime(math.random(1) + 1, function()
+        inst.task_guard1 = inst:DoTaskInTime(2, function()
             call_guards(inst, attacker)
             inst.task_guard1:Cancel()
             inst.task_guard1 = nil
         end)
     end
-    if not inst.task_guard1 then
-        inst.task_guard2 = inst:DoTaskInTime(math.random(1) + 1.5, function()
+    if not inst.task_guard2 then
+        inst.task_guard2 = inst:DoTaskInTime(2.5, function()
             call_guards(inst, attacker)
             inst.task_guard2:Cancel()
             inst.task_guard2 = nil
