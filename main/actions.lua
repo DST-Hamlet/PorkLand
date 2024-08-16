@@ -329,11 +329,6 @@ ACTIONS.TAKEFROMSHELF.fn = function(act)
         local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualslot:GetSlot())
         act.doer.components.inventory:GiveItem(item, nil, act.doer:GetPosition())
 
-        -- Currently only used by pig ruin shelf
-        if shelf.Curse then
-            shelf:Curse()
-        end
-
         return true
     end
 end

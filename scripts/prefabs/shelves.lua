@@ -81,7 +81,7 @@ local function CreateFrontVisual(inst, name, anim_def)
     return frontvisual
 end
 
-local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, curse)
+local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed)
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -149,7 +149,10 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, curs
 
         inst:AddComponent("visualslotmanager")
 
-        inst.Curse = curse
+        if on_robbed then
+            inst:AddComponent("shopped")
+            inst.components.shopped:SetOnRobbed(on_robbed)
+        end
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
