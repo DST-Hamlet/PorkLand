@@ -18,7 +18,9 @@ local InteriorVisitor = Class(function(self, inst)
     -- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
     self.inst:ListenForEvent("interiorvisitor.restoreoutsideinteriorcamera", function()
         self:OnUpdate()
-        TheCamera:RestoreOutsideInteriorCamera()
+        if self.inst == ThePlayer then
+            TheCamera:RestoreOutsideInteriorCamera()
+        end
     end)
 
     inst:StartUpdatingComponent(self)
