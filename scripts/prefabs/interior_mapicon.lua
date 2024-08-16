@@ -177,7 +177,7 @@ local function room()
         inst.MiniMapEntity:SetEnabled(value)
         if value == false then
             for _, ents in pairs(inst.icons) do
-                for _,v in ipairs(ents) do
+                for _, v in ipairs(ents) do
                     v.MiniMapEntity:SetEnabled(false)
                 end
             end
@@ -250,7 +250,7 @@ local function room_client()
     inst.Render = function(inst, value)
         if not value then
             inst.MiniMapEntity:SetEnabled(false)
-            for _,v in pairs(inst.icons) do
+            for _, v in pairs(inst.icons) do
                 v.MiniMapEntity:SetEnabled(false)
             end
         else

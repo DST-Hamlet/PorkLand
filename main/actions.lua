@@ -711,6 +711,7 @@ ACTIONS.BLINK.fn = function(act, ...)
     end
 end
 
+-- For pig guards
 local _MANUALEXTINGUISH_fn = ACTIONS.MANUALEXTINGUISH.fn
 ACTIONS.MANUALEXTINGUISH.fn = function(act, ...)
     if act.doer:HasTag("extinguisher") then
