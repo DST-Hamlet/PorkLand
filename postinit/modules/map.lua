@@ -364,11 +364,16 @@ function Map:GetTileAtPoint(x, y, z, ...)
     end
 end
 
-local _GetTile = Map.GetTile
-function Map:GetTile(x, y, ...)
+function Map:GetPointAtTile(x, y)
     local w, h = TheWorld.Map:GetSize()
     local tx = (x - w / 2) * TILE_SCALE
     local tz = (y - h / 2) * TILE_SCALE
+    return tx, 0, tz
+end
+
+local _GetTile = Map.GetTile
+function Map:GetTile(x, y, ...)
+    local tx, _, tz = self:GetPointAtTile(x, y)
     if x and y and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(tx, tz) then
         if TheWorld.components.interiorspawner:IsInInteriorRoom(tx, tz) then
             return WORLD_TILES.INTERIOR
