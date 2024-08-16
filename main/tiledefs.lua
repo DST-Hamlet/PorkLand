@@ -138,7 +138,7 @@ local pl_tiledefs = {
         },
         minimap_tile_def = {
             name = "map_edge",
-            noise_texture = "mini_noise_jungle_deep",
+            noise_texture = "mini_noise_jungle_deep_nocanopy",
         },
         turf_def = {
             name = "deeprainforest_nocanopy",
