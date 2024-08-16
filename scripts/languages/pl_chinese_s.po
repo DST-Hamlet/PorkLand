@@ -15,6 +15,11 @@ msgctxt "STRINGS.ACTIONS.DISEMBARK.GENERIC"
 msgid "Exit"
 msgstr "退出"
 
+#. STRINGS.ACTIONS.DISLODGE
+msgctxt "STRINGS.ACTIONS.DISLODGE"
+msgid "Chisel"
+msgstr "凿"
+
 #. STRINGS.ACTIONS.EMBARK.GENERIC
 msgctxt "STRINGS.ACTIONS.EMBARK.GENERIC"
 msgid "Drive"
@@ -99,6 +104,11 @@ msgstr "取下"
 msgctxt "STRINGS.ACTIONS.USEDOOR"
 msgid "Enter"
 msgstr "进入"
+
+#. STRINGS.ACTIONS.WEIGHDOWN
+msgctxt "STRINGS.ACTIONS.WEIGHDOWN"
+msgid "Weigh Down"
+msgstr "压下去"
 
 #. STRINGS.BANDIT_TALK_FIGHT.1
 msgctxt "STRINGS.BANDIT_TALK_FIGHT.1"
@@ -59227,117 +59237,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Charlotte"
+msgid "Luella"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Della"
+msgid "Alexandrina"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Henrietta"
+msgid "Alice"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Lilian"
+msgid "Arabella"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Louise"
+msgid "Belle"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Ottilie"
+msgid "Beryl"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Ophelia"
+msgid "Briar"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Sophronia"
+msgid "Beatrice"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Luella"
+msgid "Agnes"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Alexandrina"
+msgid "Catherine"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Alice"
+msgid "Charlotte"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Arabella"
+msgid "Ebba"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Belle"
+msgid "Edith"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Beryl"
+msgid "Flora"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Briar"
+msgid "Florence"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Beatrice"
+msgid "Georgette"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Agnes"
+msgid "Della"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Catherine"
+msgid "Henrietta"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Ebba"
+msgid "Lilian"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Edith"
+msgid "Louise"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Flora"
+msgid "Ottilie"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Florence"
+msgid "Ophelia"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Georgette"
+msgid "Sophronia"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -59347,122 +59357,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Herbert"
+msgid "Clarence"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Oliver"
+msgid "Frederick"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Merritt"
+msgid "Edward"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Sterling"
+msgid "George"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Tesla"
+msgid "Charles"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Thaddeus"
+msgid "Leopold"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Wellington"
+msgid "Albert"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Gulliver"
+msgid "Alfred"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Clarence"
+msgid "Arthur"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Frederick"
+msgid "Ewart"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Edward"
+msgid "Herbert"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "George"
+msgid "Henry"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Charles"
+msgid "Charley"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Leopold"
+msgid "Douglas"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Albert"
+msgid "Edison"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Alfred"
+msgid "Edmund"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Arthur"
+msgid "Larkin"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Ewart"
+msgid "Oliver"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Henry"
+msgid "Merritt"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Charley"
+msgid "Sterling"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Douglas"
+msgid "Tesla"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Edison"
+msgid "Thaddeus"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Edmund"
+msgid "Wellington"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Larkin"
+msgid "Gulliver"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -59472,77 +59482,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Aberdeen"
+msgid "Gladstone"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Talbot"
+msgid "Disraeli"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Thames"
+msgid "Salisbury"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Stockton"
+msgid "Kensington"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Darlington"
+msgid "Conroy"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Peel"
+msgid "Greville"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Derby"
+msgid "Hastings"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Palmerston"
+msgid "Aberdeen"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Gladstone"
+msgid "Talbot"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Disraeli"
+msgid "Thames"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Salisbury"
+msgid "Stockton"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Kensington"
+msgid "Darlington"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Conroy"
+msgid "Peel"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Greville"
+msgid "Derby"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Hastings"
+msgid "Palmerston"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -64092,82 +64102,82 @@ msgstr "箣竹"
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr "山茱萸"
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Betula"
+msgid "Juniperus"
 msgstr "柏桧"
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr "马利筋"
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr "栎"
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr "大葱"
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr "豌豆"
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr "荆蓟"
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr "麝香草"
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr "大豆"
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Juniperus"
+msgid "Betula"
 msgstr "桦木"
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr "覆盆子"
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr "胡萝卜"
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr "甘蓝"
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr "齿栗叶"
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr "车轴草"
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr "黄瓜"
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -65294,6 +65304,11 @@ msgstr "十元呼噜币"
 msgctxt "STRINGS.NAMES.OINC100"
 msgid "Centapiece Oinc"
 msgstr "百元呼噜币"
+
+#. STRINGS.NAMES.OINC_PL
+msgctxt "STRINGS.NAMES.OINC_PL"
+msgid "Oincs"
+msgstr "呼噜币"
 
 #. STRINGS.NAMES.ORGANIC_DOOR
 msgctxt "STRINGS.NAMES.ORGANIC_DOOR"

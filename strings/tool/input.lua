@@ -7,11 +7,9 @@ package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-    ["SHOP_LONG"] = "SHOP_LONG",
-    ["SHOP_TAKE"] = "SHOP_TAKE",
-    ["SHOP_SELLER"] = "SHOP_SELLER",
-    ["SHOP_BUYER"] = "SHOP_BUYER",
-    ["TUNACAN"] = "TUNACAN",
+    ["WEIGHDOWN"] = "WEIGHDOWN",
+    ["OINC_PL"] = "OINC_PL",
+    ["DISLODGE"] = "DISLODGE",
     --MOONDIAL
 }
 
