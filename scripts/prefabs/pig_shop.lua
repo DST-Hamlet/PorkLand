@@ -510,7 +510,7 @@ local function UseDoor(inst, data)
 end
 
 local function OnBurntUp(inst, data)
-    inst.components.fixable:AddRecinstructionStageData("burnt", inst.bank, inst.build, nil, 1)
+    inst.components.fixable:AddReconstructionStageData("burnt", inst.bank, inst.build, nil, 1)
     if inst.doortask then
         inst.doortask:Cancel()
         inst.doortask = nil
@@ -655,8 +655,8 @@ local function MakeShop(name, build, bank, data)
         inst.components.door.outside = true
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("rubble", inst.bank, inst.build)
-        inst.components.fixable:AddRecinstructionStageData("unbuilt", inst.bank, inst.build)
+        inst.components.fixable:AddReconstructionStageData("rubble", inst.bank, inst.build)
+        inst.components.fixable:AddReconstructionStageData("unbuilt", inst.bank, inst.build)
 
         if not data.indestructable then
             inst:AddComponent("workable")

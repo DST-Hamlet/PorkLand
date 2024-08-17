@@ -169,7 +169,7 @@ local function OnIgnite(inst)
 end
 
 local function OnBurntUp(inst)
-    inst.components.fixable:AddRecinstructionStageData("burnt", "pig_townhouse", inst.build, inst.scale, 1)
+    inst.components.fixable:AddReconstructionStageData("burnt", "pig_townhouse", inst.build, inst.scale, 1)
     inst:Remove()
 end
 
@@ -380,8 +380,8 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst.components.workable:SetOnFinishCallback(OnHammered)
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("rubble", "pig_townhouse", inst.build, inst.scale)
-        inst.components.fixable:AddRecinstructionStageData("unbuilt", "pig_townhouse", inst.build, inst.scale)
+        inst.components.fixable:AddReconstructionStageData("rubble", "pig_townhouse", inst.build, inst.scale)
+        inst.components.fixable:AddReconstructionStageData("unbuilt", "pig_townhouse", inst.build, inst.scale)
 
         inst:AddComponent("spawner")
         inst.components.spawner:SetOnVacateFn(OnVacate)

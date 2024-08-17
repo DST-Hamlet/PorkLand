@@ -58,7 +58,7 @@ function Fixable:OnRemoveEntity()
     end
 end
 
-function Fixable:AddRecinstructionStageData(anim, bank, build, scale, stage)
+function Fixable:AddReconstructionStageData(anim, bank, build, scale, stage)
     if not stage then
         stage = #self.reconstruction_stages + 1
     end

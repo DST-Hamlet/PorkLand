@@ -212,7 +212,7 @@ end
 -- end
 
 local function OnBurntUp(inst, data)
-    inst.components.fixable:AddRecinstructionStageData("burnt", "pig_townhouse", inst.build, 0.75, 1)
+    inst.components.fixable:AddReconstructionStageData("burnt", "pig_townhouse", inst.build, 0.75, 1)
     if inst.doortask then
         inst.doortask:Cancel()
         inst.doortask = nil
@@ -286,8 +286,8 @@ local function fn()
     inst:ListenForEvent("burntup", OnBurntUp)
 
     inst:AddComponent("fixable")
-    inst.components.fixable:AddRecinstructionStageData("rubble", "pig_townhouse", inst.build, 0.75)
-    inst.components.fixable:AddRecinstructionStageData("unbuilt", "pig_townhouse", inst.build, 0.75)
+    inst.components.fixable:AddReconstructionStageData("rubble", "pig_townhouse", inst.build, 0.75)
+    inst.components.fixable:AddReconstructionStageData("unbuilt", "pig_townhouse", inst.build, 0.75)
 
     inst.BuyHouse = BuyHouse
     inst:ListenForEvent("deedbought", function() inst:BuyHouse() end, TheWorld)

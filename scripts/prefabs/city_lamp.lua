@@ -218,7 +218,7 @@ local function fn()
     inst.audiotask = inst:DoPeriodicTask(1.0, UpdateAudio, math.random())
 
     inst:AddComponent("fixable")
-    inst.components.fixable:AddRecinstructionStageData("rubble", "lamp_post", "lamp_post2_city_build")
+    inst.components.fixable:AddReconstructionStageData("rubble", "lamp_post", "lamp_post2_city_build")
 
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake

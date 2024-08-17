@@ -84,7 +84,7 @@ local function MakeLawnornament(n)
         inst:ListenForEvent("onbuilt", OnBuilt)
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("burnt", "topiary0".. n, "topiary0".. n)
+        inst.components.fixable:AddReconstructionStageData("burnt", "topiary0".. n, "topiary0".. n)
 
         MakeMediumBurnable(inst, nil, nil, true)
         MakeMediumPropagator(inst)
