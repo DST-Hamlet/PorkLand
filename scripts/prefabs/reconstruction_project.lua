@@ -16,7 +16,7 @@ end
 
 local function DisplayNameFn(inst)
     local name = inst._name:value()
-    return name ~= "" and STRINGS.NAMES[name] or "MISSING NAME"
+    return name ~= "" and STRINGS.NAMES[string.upper(name)] or "MISSING NAME"
 end
 
 local function SetReconstructionStage(inst, stage)
