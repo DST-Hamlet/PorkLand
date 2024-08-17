@@ -93,7 +93,7 @@ local function makeitem(name, build, frame)
         MakeSnowCovered(inst)
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("burnt", build, build)
+        inst.components.fixable:AddReconstructionStageData("burnt", build, build)
 
         return inst
     end

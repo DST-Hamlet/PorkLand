@@ -168,10 +168,11 @@ PrefabFiles = {
     "pl_chests",
 
 
-    "pigman_city",
     "pighouse_city",
     "pig_shop",
     "pig_guard_tower",
+    "playerhouse_city",
+    "pigman_city",
     "pigman_shopkeeper_desk",
     "city_lamp",
     "hedge",
@@ -182,6 +183,7 @@ PrefabFiles = {
     "city_hammer",
     "shop_buyer",
     "trinkets_giftshop",
+    "deed",
     "securitycontract",
 
     "oinc",

@@ -300,8 +300,8 @@ local function fn()
     inst:AddComponent("lootdropper")
 
     inst:AddComponent("fixable")
-    inst.components.fixable:AddRecinstructionStageData("rubble", "pig_shop", "pig_tower_build")
-    inst.components.fixable:AddRecinstructionStageData("unbuilt", "pig_shop", "pig_tower_build")
+    inst.components.fixable:AddReconstructionStageData("rubble", "pig_shop", "pig_tower_build")
+    inst.components.fixable:AddReconstructionStageData("unbuilt", "pig_shop", "pig_tower_build")
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

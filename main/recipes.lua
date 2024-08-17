@@ -32,6 +32,35 @@ local function SortAfter(a, b, filter_name)  -- a after b
     SortRecipe(a, b, filter_name, 1)
 end
 
+local TechTree = require("techtree")
+local function rebuild_techtree(name)
+    TECH.NONE = TechTree.Create()
+
+    for k, v in pairs(AllRecipes) do
+        v.level = TechTree.Create(v.level)
+    end
+
+    for k, v in pairs(TUNING.PROTOTYPER_TREES) do
+        v = TechTree.Create(v)
+        TUNING.PROTOTYPER_TREES[k] = TUNING.PROTOTYPER_TREES[k] or {}
+        TUNING.PROTOTYPER_TREES[k][name] = TUNING.PROTOTYPER_TREES[k][name] or 0
+    end
+end
+
+-- Taken from GlassicAPI
+-- custom tech allows you to build custom prototyper or allows muliti prototypers to bonus a tech simultaneously.
+-- e.g. GlassicAPI.AddTech("FRIENDSHIPRING")
+---@param name string
+local function AddTech(name, bonus_available)
+    table.insert(TechTree.AVAILABLE_TECH, name)
+    if bonus_available then
+       table.insert(TechTree.BONUS_TECH, name)
+    end
+    rebuild_techtree(name)
+end
+
+AddTech("CITY", false)
+
 local function AquaticRecipe(name, data)
     if AllRecipes[name] then
         -- data = {distance=, shore_distance=, platform_distance=, shore_buffer_max=, shore_buffer_min=, platform_buffer_max=, platform_buffer_min=, aquatic_buffer_min=, noshore=}
@@ -94,6 +123,12 @@ AddRecipeFilter({
     name = "ENVIRONMENT_PROTECTION",
     atlas = "images/hud/pl_crafting_menu_icons.xml",
     image = "filter_environment_protection.tex",
+}, #CRAFTING_FILTER_DEFS)
+
+AddRecipeFilter({
+    name = "CITY",
+    atlas = "images/hud/pl_crafting_menu_icons.xml",
+    image = "filter_city.tex",
 }, #CRAFTING_FILTER_DEFS)
 
 --- ARCHAEOLOGY ---
@@ -283,6 +318,49 @@ AddRecipe2("sprinkler", {Ingredient("alloy", 2), Ingredient("bluegem", 1), Ingre
 AddRecipe2("corkchest", {Ingredient("cork", 2), Ingredient("rope", 1)}, TECH.SCIENCE_ONE, {placer="corkchest_placer", min_spacing=1}, {"STRUCTURES", "CONTAINERS"})
 
 AddRecipe2("roottrunk_child", {Ingredient("bramble_bulb", 1), Ingredient("venus_stalk", 2), Ingredient("boards", 3)}, TECH.MAGIC_TWO, {placer="roottrunk_child_placer", min_spacing=2}, {"STRUCTURES", "CONTAINERS", "MAGIC"})
+
+--- CITY ---
+AddRecipe2("turf_foundation", {Ingredient("cutstone", 1)}, TECH.CITY, {nounlock = true}, {"CITY"})
+AddRecipe2("turf_cobbleroad", {Ingredient("cutstone", 2), Ingredient("boards", 1)}, TECH.CITY, {nounlock = true}, {"CITY"})
+AddRecipe2("city_lamp", {Ingredient("alloy", 1), Ingredient("transistor", 1),Ingredient("lantern",1)},  TECH.CITY, {nounlock = true, placer = "city_lamp_placer"}, {"CITY"})
+
+AddRecipe2("pighouse_city", {Ingredient("boards", 4), Ingredient("cutstone", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pighouse_city_placer"}, {"CITY"})
+
+AddRecipe2("pig_shop_deli", {Ingredient("boards", 4), Ingredient("honeyham", 1), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_deli_placer"}, {"CITY"})
+AddRecipe2("pig_shop_general", {Ingredient("boards", 4), Ingredient("axe", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_general_placer"}, {"CITY"})
+
+AddRecipe2("pig_shop_hoofspa", {Ingredient("boards", 4), Ingredient("bandage", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_hoofspa_placer"}, {"CITY"})
+AddRecipe2("pig_shop_produce", {Ingredient("boards", 4), Ingredient("eggplant", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_produce_placer"}, {"CITY"})
+
+AddRecipe2("pig_shop_florist", {Ingredient("boards", 4), Ingredient("petals", 12), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_florist_placer"}, {"CITY"})
+AddRecipe2("pig_shop_antiquities", {Ingredient("boards", 4), Ingredient("ballpein_hammer", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_antiquities_placer"}, {"CITY"})
+
+AddRecipe2("pig_shop_arcane", {Ingredient("boards", 4), Ingredient("nightmarefuel", 1), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_arcane_placer"}, {"CITY"})
+AddRecipe2("pig_shop_weapons", {Ingredient("boards", 4), Ingredient("spear", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_weapons_placer"}, {"CITY"})
+AddRecipe2("pig_shop_hatshop", {Ingredient("boards", 4), Ingredient("tophat", 2), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_hatshop_placer"}, {"CITY"})
+AddRecipe2("pig_shop_bank", {Ingredient("cutstone", 4), Ingredient("oinc", 100), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_bank_placer"}, {"CITY"})
+
+AddRecipe2("pig_shop_tinker", {Ingredient("magnifying_glass", 2), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_tinker_placer"}, {"CITY"})
+
+AddRecipe2("pig_shop_cityhall_player", {Ingredient("boards", 4), Ingredient("goldnugget", 4), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_cityhall_placer"}, {"CITY"})
+
+AddRecipe2("pig_guard_tower", {Ingredient("cutstone", 3), Ingredient("halberd", 1), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_guard_tower_placer"}, {"CITY"})
+
+AddRecipe2("securitycontract", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true}, {"CITY"})
+
+AddRecipe2("playerhouse_city", {Ingredient("boards", 4), Ingredient("cutstone", 3), Ingredient("oinc", 30)}, TECH.CITY, {nounlock = true, placer = "playerhouse_city_placer"}, {"CITY"})
+
+AddRecipe2("hedge_block_item", {Ingredient("clippings", 9), Ingredient("nitre", 1)}, TECH.CITY, {nounlock = true, min_spacing = 3}, {"CITY"})
+AddRecipe2("hedge_cone_item", {Ingredient("clippings", 9), Ingredient("nitre", 1)}, TECH.CITY, {nounlock = true, min_spacing = 3}, {"CITY"})
+AddRecipe2("hedge_layered_item", {Ingredient("clippings", 9), Ingredient("nitre", 1)}, TECH.CITY, {nounlock = true, min_spacing = 3}, {"CITY"})
+
+AddRecipe2("lawnornament_1", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_1_placer"}, {"CITY"})
+AddRecipe2("lawnornament_2", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_2_placer"}, {"CITY"})
+AddRecipe2("lawnornament_3", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_3_placer"}, {"CITY"})
+AddRecipe2("lawnornament_4", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_4_placer"}, {"CITY"})
+AddRecipe2("lawnornament_5", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_5_placer"}, {"CITY"})
+AddRecipe2("lawnornament_6", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_6_placer"}, {"CITY"})
+AddRecipe2("lawnornament_7", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_7_placer"}, {"CITY"})
 
 -- Deconstruct ---
 AddDeconstructRecipe("pig_guard_tower_palace", {Ingredient("cutstone", 3), Ingredient("halberd", 2), Ingredient("pigskin", 4)})

@@ -38,6 +38,8 @@ function Fixable:OnRemoveEntity()
     fixer.reconstruction_overridebuild = self.overridebuild
     fixer.interiorID = self.inst.interiorID
     fixer.cityID = self.inst.components.citypossession and self.inst.components.citypossession.cityID
+    -- For player house
+    fixer.bought = self.inst.bought
 
     if self.inst.components.spawner then
         fixer.spawner_data = {
@@ -56,7 +58,7 @@ function Fixable:OnRemoveEntity()
     end
 end
 
-function Fixable:AddRecinstructionStageData(anim, bank, build, scale, stage)
+function Fixable:AddReconstructionStageData(anim, bank, build, scale, stage)
     if not stage then
         stage = #self.reconstruction_stages + 1
     end
