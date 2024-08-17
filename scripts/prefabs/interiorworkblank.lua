@@ -19,6 +19,11 @@ local function Clear(inst)
     inst.fx = {}
 end
 
+local function OnRemove(inst)
+    Clear(inst)
+    TheWorld.components.interiorspawner:RemoveInteriorCenter(inst)
+end
+
 -- ROOM DIMENSIONS
 --      +-------------+
 --     /[height]      |\
@@ -50,6 +55,9 @@ local function SetUp(inst, data)
     inst.walltexture = data.walltexture or inst.walltexture or "antcave_wall_rock"
     inst.floortexture = data.floortexture or inst.floortexture or "antcave_floor"
     inst.interiorID = data.interiorID or inst.interiorID
+    if inst.interiorID then
+        TheWorld.components.interiorspawner:AddInteriorCenter(inst)
+    end
 
     local sp = GetSkeletonPositions(width, depth)
 
@@ -383,7 +391,7 @@ local function fn()
     inst.walltexture = nil
     inst.floortexture = nil
 
-    inst:ListenForEvent("onremove", Clear)
+    inst:ListenForEvent("onremove", OnRemove)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

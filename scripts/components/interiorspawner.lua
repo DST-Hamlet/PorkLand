@@ -344,11 +344,10 @@ end
 
 function InteriorSpawner:AddInteriorCenter(center)
     self.interiors[center.interiorID] = center
-    self.inst:ListenForEvent("onremove", function() self:RemoveInteriorCenter(center) end)
 end
 
 function InteriorSpawner:RemoveInteriorCenter(center)
-    self.interiors[center.interiorID] = center
+    self.interiors[center.interiorID] = nil
     self.interior_defs[center.interiorID] = nil
     table.insert(self.reuse_interior_ids, center.interiorID)
 end
@@ -629,10 +628,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
 
     local center = SpawnPrefab("interiorworkblank")
     center.Transform:SetPosition(pt:Get())
-    center:SetUp(interior)
     center.interiorID = interior.unique_name
+    center:SetUp(interior)
     center.uuid = uuid()
-    self:AddInteriorCenter(center)
 
     if enqueue_update_layout then
         center:DoTaskInTime(0, function()
