@@ -441,3 +441,7 @@ function Map:FindPointByIslandTag(island_tag, num_tries, allow_water)
 
     return nil
 end
+
+function Map:IsWater(tile)
+    return TileGroupManager:IsOceanTile(tile)
+end
