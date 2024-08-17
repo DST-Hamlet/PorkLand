@@ -442,6 +442,6 @@ function Map:FindPointByIslandTag(island_tag, num_tries, allow_water)
     return nil
 end
 
-function Map:IsWater(tile)
+function Map:IsWater(tile) -- 给几何mod用的
     return TileGroupManager:IsOceanTile(tile)
 end
