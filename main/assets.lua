@@ -181,6 +181,7 @@ PrefabFiles = {
     "reconstruction_project",
     "city_hammer",
     "shop_buyer",
+    "trinkets_giftshop",
 
     "oinc",
     "bramble",
