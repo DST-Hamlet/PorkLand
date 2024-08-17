@@ -655,6 +655,9 @@ local TechTree = require("techtree")
 TUNING.PROTOTYPER_TREES.HOGUSPORKUSATOR = TechTree.Create({
     MAGIC = 2,
 })
+TUNING.PROTOTYPER_TREES.CITY = TechTree.Create({
+    CITY = 2,
+})
 
 
 for key, value in pairs(tuning) do
