@@ -637,17 +637,17 @@ local function OnBurntUp(inst, data)
     inst:Remove()
 end
 
-local function canburn(inst)
-    local interior_spawner = TheWorld.components.interiorspawner
-    if inst.components.door then
-        local interior = inst.components.door.target_interior
-        if interior_spawner:IsPlayerConsideredInside(interior) then
-            -- try again in 2-5 seconds
-            return false, 2 + math.random() * 3
-        end
-    end
-    return true
-end
+-- local function canburn(inst)
+--     local interior_spawner = TheWorld.components.interiorspawner
+--     if inst.components.door then
+--         local interior = inst.components.door.target_interior
+--         if interior_spawner:IsPlayerConsideredInside(interior) then
+--             -- try again in 2-5 seconds
+--             return false, 2 + math.random() * 3
+--         end
+--     end
+--     return true
+-- end
 
 local function OnIsPathFindingDirty(inst)
     if inst._ispathfinding:value() then

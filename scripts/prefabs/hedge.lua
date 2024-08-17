@@ -114,11 +114,6 @@ local function MakeHedgeType(data)
             inst.components.burnable:Extinguish()
         end
 
-        inst.reconstruction_project_spawn_state = {
-            bank = "hedge",
-            build = "hedge" .. data.hedgetype .. "_build",
-            anim = "growth0_45s",
-        }
         if not inst.components.fixable then
             inst.components.lootdropper:SpawnLootPrefab("clippings")
             inst.components.lootdropper:SpawnLootPrefab("clippings")
