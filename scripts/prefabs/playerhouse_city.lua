@@ -212,7 +212,7 @@ end
 -- end
 
 local function OnBurntUp(inst, data)
-    inst.components.fixable:AddRecinstructionStageData("burnt", "pig_townhouse", inst.build, 1, 0.75)
+    inst.components.fixable:AddRecinstructionStageData("burnt", "pig_townhouse", inst.build, 0.75, 1)
     if inst.doortask then
         inst.doortask:Cancel()
         inst.doortask = nil
