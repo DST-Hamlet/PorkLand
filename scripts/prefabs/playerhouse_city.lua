@@ -103,7 +103,7 @@ local function OnReconstructe(inst)
     end
 end
 
-local function onsave(inst, data)
+local function OnSave(inst, data)
     if inst:HasTag("burnt") then
         data.burnt = true
     end
@@ -115,7 +115,7 @@ local function onsave(inst, data)
     data.minimapicon = inst.minimapicon
 end
 
-local function onload(inst, data)
+local function OnLoad(inst, data)
     if data then
         if data.interiorID then
             inst.interiorID = data.interiorID
@@ -295,29 +295,10 @@ local function fn()
     inst.interiors = {}
     inst:DoTaskInTime(0, CreatInterior)
 
-    inst.OnSave = onsave
-    inst.OnLoad = onload
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     inst:ListenForEvent("onbuilt", onbuilt)
-
-    -- inst.RevealFog = function(inst)
-    --     -- print("house fog revealed")
-    --     local x, y, z = inst.Transform:GetLocalPosition()
-    --     local minimap = TheWorld.minimap.MiniMap
-    --     local map = TheWorld.Map
-    --     local cx, cy, cz = map:GetTileCenterPoint(x, 0, z)
-    --     minimap:ShowArea(cx, cy, cz, 30)
-    --     map:VisitTile(map:GetTileCoordsAtPoint(cx, cy, cz))
-    -- end
-
-    -- inst.FocusMinimap = function(inst, bottle)
-    --     local px, py, pz = GetPlayer().Transform:GetWorldPosition()
-    --     local x, y, z = inst.Transform:GetLocalPosition()
-    --     local minimap = TheWorld.minimap.MiniMap
-    --     print("Find house on minimap (" .. x .. ", " .. z .. ")")
-    --     GetPlayer().HUD.controls:ToggleMap()
-    --     minimap:Focus(x - px, z - pz, -minimap:GetZoom()) -- Zoom in all the way
-    -- end
 
     inst.usesounds = {
         "dontstarve_DLC003/common/objects/store/door_open",
@@ -326,6 +307,8 @@ local function fn()
     inst:ListenForEvent("usedoor", UseDoor)
 
     inst.OnReconstructe = OnReconstructe
+
+    TheWorld.playerhouse = inst
 
     return inst
 end

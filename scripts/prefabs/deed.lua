@@ -3,33 +3,16 @@ local assets =
     Asset("ANIM", "anim/deed.zip"),
 }
 
--- local function revealHouse(inst)
---     local house = TheWorld.playerhouse
---     if house and house:IsValid() then
---         house:RevealFog(house)
---     end
--- end
-
--- local function showOnMinimap(house, reader)
---     if house and house:IsValid() then
---         house:FocusMinimap(house)
---     end
--- end
-
--- local function readfn(inst, reader)
---     -- if not SaveGameIndex:IsModePorkland() or TheCamera.interior then
-
---     --     reader.components.talker:Say(GetString(reader.prefab, "ANNOUCE_OTHERWORLD_DEED"))
---     --     return true
---     -- end
-
---     if TheWorld.playerhouse then
---         revealHouse(inst)
---         TheWorld.playerhouse:DoTaskInTime(0, function() showOnMinimap(TheWorld.playerhouse, reader) end)
---     end
-
---     return true
--- end
+local function GetRevealTargetPos(inst)
+    if not TheWorld.playerhouse then
+        return
+    end
+    local x, _, z = inst.Transform:GetWorldPosition()
+    if TheWorld.components.interiorspawner:IsInInterior(x, z) then
+        return
+    end
+    return TheWorld.playerhouse:GetPosition()
+end
 
 local function OnBought(inst)
     print("DEED BOUGHT")
@@ -55,9 +38,8 @@ local function fn(inst)
         return inst
     end
 
-    -- inst:AddComponent("book")
-    -- inst.components.book:SetOnReadFn(readfn)
-    -- inst.components.book:SetAction(ACTIONS.READMAP)
+    inst:AddComponent("mapspotrevealer")
+	inst.components.mapspotrevealer:SetGetTargetFn(GetRevealTargetPos)
 
     inst:AddComponent("inspectable")
 
