@@ -182,6 +182,7 @@ PrefabFiles = {
     "city_hammer",
     "shop_buyer",
     "trinkets_giftshop",
+    "securitycontract",
 
     "oinc",
     "bramble",
