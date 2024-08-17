@@ -6,7 +6,7 @@ local Uptile = Class(function(self, inst)
     }
 end)
 
-function Uptile:FixAllTiles(force)
+function Uptile:FixAllTiles(force) -- 请确保在世界第一次加载时执行，或者在undertile和uptile都完成onload后执行
     local undertile = TheWorld.components.undertile
     local alltilefixed = true
     for k, v in pairs(self.tilesfixed) do
@@ -21,12 +21,13 @@ function Uptile:FixAllTiles(force)
         for x = 0, width - 1 do
             for y = 0, height - 1 do
                 local tile = map:GetTile(x, y)
+                local tile_under = undertile:GetTileUnderneath(x, y)
                 local tx, _, tz = map:GetPointAtTile(x, y)
                 local node_index = map:GetNodeIdAtPoint(tx, 0, tz)
                 local node = TheWorld.topology.nodes[node_index]
                 if node and node.tags then
                     if not self.tilesfixed["pigruins"] then
-                        if tile == WORLD_TILES.PIGRUINS then
+                        if tile == WORLD_TILES.PIGRUINS and not tile_under then
                             local tilevalue = table.contains(node.tags, "Gas_Jungle") and WORLD_TILES.GASJUNGLE or WORLD_TILES.DEEPRAINFOREST
                             undertile:SetTileUnderneath(x, y, tilevalue)
                         elseif tile == WORLD_TILES.PIGRUINS_NOCANOPY then
@@ -48,7 +49,6 @@ function Uptile:OnLoad(data)
             end
         end
     end
-    self:FixAllTiles()
 end
 
 return Uptile

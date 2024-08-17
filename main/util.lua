@@ -402,6 +402,7 @@ end
 local SpeciaTileDrop =
 {
     [WORLD_TILES.PIGRUINS] = "cutstone",
+    [WORLD_TILES.PIGRUINS_NOCANOPY] = "cutstone",
 }
 
 local _HandleDugGround = HandleDugGround
