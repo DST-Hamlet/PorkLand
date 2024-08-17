@@ -1230,7 +1230,7 @@ PROP_DEFS.pig_shop_academy = function (depth, width, exterior_door_def)
 
         {name = "deco_roomglow", x_offset = 0, z_offset = 0},
         {name = "pigman_professor_shopkeep", x_offset = -2.3, z_offset = 4, startstate = "desk_pre"},
-        {name = "shlef_midcentury", x_offset = -4.5, z_offset = -3.3, shelfitems = {{1, "trinket_1"}, {5, "trinket_2"}, {6, "trinket_3"}}},
+        {name = "shelf_midcentury", x_offset = -4.5, z_offset = -3.3, shelfitems = {{1, "trinket_1"}, {5, "trinket_2"}, {6, "trinket_3"}}},
 
         {name = "deco_accademy_beam", x_offset = -5, z_offset = width / 2, flip = true},
         {name = "deco_accademy_beam", x_offset = -5, z_offset = -width / 2},
