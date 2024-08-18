@@ -143,7 +143,11 @@ function PlayerController:GetAttackTarget(force_attack, force_target, isretarget
     function Sim:FindEntities_Registered(x, y, z, radius, registered_tags)
         local last_resorts = _FindEntities_Registered(self, x, y, z, radius, TheSim:RegisterFindTags({"lastresort"}, {"INLIMBO"}))
         local ents = _FindEntities_Registered(self, x, y, z, radius, TheSim:RegisterFindTags({"_combat"}, {"INLIMBO", "lastresort"}))
-        return ConcatArrays(ents, last_resorts)
+        if #ents > 0 then
+            return ents
+        else
+            return ConcatArrays(ents, last_resorts)
+        end
     end
 
     local target = _GetAttackTarget(self, force_attack, force_target, isretarget, use_remote_predict)

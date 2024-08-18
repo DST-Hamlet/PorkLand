@@ -3,9 +3,13 @@ local Infester = Class(function(self, inst)
     self.infested = false
     self.inst:ListenForEvent("death", function() self:Uninfest() end)
     self.inst:ListenForEvent("freeze", function() self:Uninfest() end)
+    self.inst:ListenForEvent("teleported", function() self:Uninfest(true) end)
     self.basetime = 8
     self.randtime = 8
     self.inst:AddTag("infester")
+    self._ontargetremove = function(target)
+        self:Uninfest()
+    end
 end)
 
 local function ShouldStopInfesting(inst)
@@ -36,18 +40,30 @@ function Infester:Infest(target)
 
     self.inst.AnimState:SetFinalOffset(1)
     self.inst.Transform:SetPosition(0, 0, 0)
-end
 
+    self.inst:ListenForEvent("onremove", self._ontargetremove, target)
+    if target:HasTag("player") then
+        self.inst:ListenForEvent("player_despawn", self._ontargetremove, target)
+    end
+end
 
 function Infester:Uninfest(is_teleported)
     self.infested = false
     if self.target then
+        self.inst:RemoveEventCallback("onremove", self._ontargetremove, self.target)
+        if self.target:HasTag("player") then
+            self.inst:RemoveEventCallback("player_despawn", self._ontargetremove, self.target)
+        end
+
         self.target:RemoveChild(self.inst)
 
-        if not is_teleported then
-            local x, y, z = self.target.Transform:GetWorldPosition()
-            self.inst.Transform:SetPosition(x, y, z) -- need to SetPosition here, otherwise self.inst would be left at (0, 0, 0)
+        local x, y, z = self.target.Transform:GetWorldPosition()
+
+        if is_teleported then
+            x, y, z = self.inst.Transform:GetWorldPosition()
         end
+
+        self.inst.Physics:Teleport(x, y, z) -- need to SetPosition here, otherwise self.inst would be left at (0, 0, 0)
 
         self.target.components.infestable:Uninfest(self.inst)
 

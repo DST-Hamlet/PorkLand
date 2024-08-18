@@ -74,20 +74,6 @@ local function OnChangePhase(inst)
     inst:DoTaskInTime(2 + math.random(), UpdateLight)
 end
 
-local function OnChangeArea(inst, data)
-    if data and data.tags and table.contains(data.tags, "Canopy") then
-        if not inst:HasTag("under_leaf_canopy") then
-            inst:AddTag("under_leaf_canopy")
-            inst:PushEvent("onchangecanopyzone", true)
-            OnChangePhase(inst)
-        end
-    elseif inst:HasTag("under_leaf_canopy") then
-        inst:RemoveTag("under_leaf_canopy")
-        inst:PushEvent("onchangecanopyzone", false)
-        OnChangePhase(inst)
-    end
-end
-
 local function commonfn()
     local inst = CreateEntity()
 
@@ -129,7 +115,6 @@ local function commonfn()
     end
 
     inst:AddComponent("fader")
-    inst:AddComponent("areaaware")
     inst:AddComponent("inspectable")
 
     inst:AddComponent("health")
@@ -141,14 +126,13 @@ local function commonfn()
     inst.components.lootdropper:SetChanceLootTable('glowfly')
 
     inst:ListenForEvent("death", OnDeath)
-    inst:ListenForEvent("changearea", OnChangeArea)
     inst:WatchWorldState("phase", OnChangePhase)
 
     inst:DoTaskInTime(0, UpdateLight)
 
     MakeHauntablePanicAndIgnite(inst)
-    MakePoisonableCharacter(inst, "upper_body", Vector3(0, -1, 1))
-    MakeSmallBurnableCharacter(inst, "upper_body", Vector3(0, -1, 1))
+    MakePoisonableCharacter(inst, "upper_body", Vector3(0, -1, 0))
+    MakeSmallBurnableCharacter(inst, "upper_body", Vector3(0, -1, 0))
 
     return inst
 end

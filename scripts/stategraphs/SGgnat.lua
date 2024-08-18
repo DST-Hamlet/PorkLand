@@ -10,7 +10,7 @@ local actionhandlers =
 local events =
 {
     EventHandler("locomote", function(inst)
-        if inst.sg:HasStateTag("busy")  then
+        if inst.sg:HasStateTag("busy") then
             return
         end
 
@@ -25,8 +25,23 @@ local events =
         end
     end),
 
-    EventHandler("doattack", function(inst, data) inst.sg:GoToState("attack", data.target) end),
-    EventHandler("blocked", function(inst) inst.sg:GoToState("hit") end),
+    EventHandler("doattack", function(inst, data)
+        if inst.sg:HasStateTag("hit") then
+            return
+        end
+        inst.sg:GoToState("attack", data.target)
+    end),
+    EventHandler("blocked", function(inst)
+        if inst.sg:HasStateTag("frozen") then
+            return
+        end
+        inst.sg:GoToState("hit") end),
+    EventHandler("avoidattack", function(inst)
+        inst.sg:GoToState("hit")
+        if inst.sg:HasStateTag("frozen") then
+            return
+        end
+    end),
     EventHandler("death", function(inst) inst.sg:GoToState("death") end),
     CommonHandlers.OnFreeze(),
 }
@@ -135,7 +150,7 @@ local states =
 
     State{
         name = "hit",
-        tags = {"busy"},
+        tags = {"busy", "hit"},
 
         onenter = function(inst)
             inst.AnimState:PlayAnimation("hit")

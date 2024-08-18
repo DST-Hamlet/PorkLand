@@ -25,8 +25,6 @@ function HealthBadge:OnUpdate(...)
         end
     end
 
-    print("widget poison", self.poison, poison)
-
     local anim = "neutral"
 
     if self.arrowdir ~= "arrow_loop_decrease_more" and self.arrowdir ~= "arrow_loop_decrease_most" then
