@@ -36,7 +36,6 @@ if not rawget(_G, "HotReloading") then
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
         MAKEHOME = Action({distance = 1}),
-        GAS = Action({distance = 1.5, mount_enabled = true}),
         THUNDERBIRD_CAST = Action({distance = 1.2}),
 
         -- For City Pigs
