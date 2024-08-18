@@ -129,7 +129,7 @@ local foods = {
     {
         test = function(cooker, names, tags) return (names.meat or names.meat_cooked) and (tags.veggie and tags.veggie >= 2) and names.foliage end,
         priority = 5,
-        foodtype = "MEAT",
+        foodtype = FOODTYPE.MEAT,
         health = TUNING.HEALING_LARGE,
         hunger = TUNING.CALORIES_LARGE,
         perishtime = TUNING.PERISH_FAST,
@@ -140,10 +140,10 @@ local foods = {
 
     hardshell_tacos =
     {
-        test = function(cooker, names, tags) return (names.weevole_carapace == 2) and  tags.veggie end,
+        test = function(cooker, names, tags) return names.weevole_carapace == 2 and tags.veggie end,
 
         priority = 1,
-        foodtype = "VEGGIE",
+        foodtype = FOODTYPE.VEGGIE,
         health = TUNING.HEALING_MED,
         hunger = TUNING.CALORIES_LARGE,
         perishtime = TUNING.PERISH_SLOW,
@@ -151,6 +151,34 @@ local foods = {
         cooktime = 1,
         yotp = true,
     },
+
+    nettlelosange =
+	{
+		test = function(cooker, names, tags) return tags.antihistamine and tags.antihistamine >= 3 end,
+		priority = 0,
+		foodtype = FOODTYPE.VEGGIE,
+		health = TUNING.HEALING_MED,
+		hunger = TUNING.CALORIES_MED,
+		perishtime = TUNING.PERISH_FAST,
+		sanity = TUNING.SANITY_TINY,
+		antihistamine = 720,
+		cooktime = .5,
+		yotp = true,
+	},
+
+    meated_nettle =
+	{
+		test = function(cooker, names, tags) return (tags.antihistamine and tags.antihistamine >= 2) and (tags.meat and tags.meat >= 1) and (not tags.monster or tags.monster <= 1) and not tags.inedible end,
+		priority = 1,
+		foodtype = FOODTYPE.MEAT,
+		health = TUNING.HEALING_MED,
+		hunger = TUNING.CALORIES_LARGE,
+		perishtime = TUNING.PERISH_FASTISH,
+		sanity = TUNING.SANITY_TINY,
+		antihistamine = 600,
+		cooktime = 1,
+		yotp = true,
+	},
 }
 
 for k, v in pairs(foods) do
