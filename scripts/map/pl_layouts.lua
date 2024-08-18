@@ -167,8 +167,8 @@ AllLayouts["roc_nest"].ground_types = ground_types
 AllLayouts["roc_cave"] = StaticLayout.Get("map/static_layouts/roc_cave")
 AllLayouts["roc_cave"].ground_types = ground_types
 
-AllLayouts["teleportato_hamlet_potato_layout"] = StaticLayout.Get("map/static_layouts/teleportato_hamlet_potato_layout")
-AllLayouts["teleportato_hamlet_potato_layout"].ground_types = ground_types
+--AllLayouts["teleportato_hamlet_potato_layout"] = StaticLayout.Get("map/static_layouts/teleportato_hamlet_potato_layout")
+--AllLayouts["teleportato_hamlet_potato_layout"].ground_types = ground_types
 
 AllLayouts["city_park_1"] = StaticLayout.Get("map/static_layouts/city_park_1")
 AllLayouts["city_park_1"].ground_types = ground_types

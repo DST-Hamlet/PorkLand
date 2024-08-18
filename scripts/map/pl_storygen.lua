@@ -404,100 +404,6 @@ function Story:Pl_InsertAdditionalSetPieces(task_nodes)
     end
 end
 
-function Story:Pl_PlaceTeleportatoParts()
-    local RemoveExitTag = function(node)
-        local newtags = {}
-        for i, tag in ipairs(node.data.tags) do
-            if tag ~= "ExitPiece" then
-                table.insert(newtags, tag)
-            end
-        end
-        node.data.tags = newtags
-    end
-
-    local IsNodeAnExit = function(node)
-        if not node.data.tags then
-            return false
-        end
-        for i, tag in ipairs(node.data.tags) do
-            if tag == "ExitPiece" then
-                return true
-            end
-        end
-        return false
-    end
-
-    local iswaternode = function(node)
-        local water_node = node.data.type == "water" or IsOceanTile(node.data.value)
-        return water_node
-        -- return ((setpiece_data.restrict_to == nil or setpiece_data.restrict_to ~= "water") and room.data.type ~= "water") or (setpiece_data.restrict_to and setpiece_data.restrict_to == "water" and (room.data.type == "water" or WorldSim:IsWater(room.data.value)))
-    end
-
-    local AddPartToTask = function(part, task)
-        local nodeNames = shuffledKeys(task.nodes)
-        for i, name in ipairs(nodeNames) do
-            if IsNodeAnExit(task.nodes[name]) and not iswaternode(task.nodes[name]) then
-                local extra = task.nodes[name].data.terrain_contents_extra
-                if not extra then
-                    extra = {}
-                end
-                if not extra.static_layouts then
-                    extra.static_layouts = {}
-                end
-                table.insert(extra.static_layouts, part)
-                RemoveExitTag(task.nodes[name])
-                return true
-            end
-        end
-        return false
-    end
-
-    local InsertPartnumIntoATask = function(targetDepth, part, tasks)
-        for id, task in pairs(tasks) do
-            if task.story_depth == targetDepth then
-                local success = AddPartToTask(part, task)
-                -- Not sure why we need this, was causeing crash
-                -- assert( success or task.id == "TEST_TASK"or task.id == "MaxHome", "Could not add an exit part to task "..task.id)
-                return success
-            end
-        end
-        return false
-    end
-
-    local parts = self.level.ordered_story_setpieces or {}
-    local maxdepth = -1
-
-    for id, task_node in pairs(self.rootNode:GetChildren()) do
-        if task_node.story_depth > maxdepth then
-            maxdepth = task_node.story_depth
-        end
-    end
-
-
-    local partSpread = maxdepth / #parts
-    local range = math.ceil(maxdepth / 10)
-    local plusminus = math.ceil(range / 2)
-
-    for partnum = 1, #parts do
-        -- local minDepth = partnum * partSpread - plusminus
-        -- local maxDepth = partnum * partSpread + plusminus
-        local targetDepth = math.ceil(partnum * partSpread)
-        local success = InsertPartnumIntoATask(targetDepth, parts[partnum], self.rootNode:GetChildren())
-        if success == false then
-            for i = 1, plusminus do
-                local tryDepth = targetDepth - i
-                if InsertPartnumIntoATask(tryDepth, parts[partnum], self.rootNode:GetChildren()) then
-                    break
-                end
-                tryDepth = targetDepth + i
-                if InsertPartnumIntoATask(tryDepth, parts[partnum], self.rootNode:GetChildren()) then
-                    break
-                end
-            end
-        end
-    end
-end
-
 local function RestrictNodesByKey(story, startParentNode, unusedTasks)
     local lastNode = startParentNode
     print("Startparent node:", startParentNode.id)
@@ -672,7 +578,6 @@ local function BuildPorkLandStory(tasks, story_gen_params, level)
 
     story:Pl_AddBGNodes(min_bg, max_bg)
     story:Pl_InsertAdditionalSetPieces()
-    story:Pl_PlaceTeleportatoParts()
 
     return { root = story.rootNode, startNode = story.startNode, GlobalTags = story.GlobalTags }, story
 end
