@@ -164,6 +164,7 @@ local foods = {
 		antihistamine = 720,
 		cooktime = .5,
 		yotp = true,
+        oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_ANTIHISTAMINE,
 	},
 
     meated_nettle =
@@ -178,6 +179,7 @@ local foods = {
 		antihistamine = 600,
 		cooktime = 1,
 		yotp = true,
+        oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_ANTIHISTAMINE,
 	},
 }
 
