@@ -514,17 +514,9 @@ ACTIONS.INFEST.validfn = function(act)
 end
 
 ACTIONS.BUILD_MOUND.fn = function(act)
-    local x, y, z = act.doer.Transform:GetWorldPosition()
-
-    local home = SpawnPrefab("gnatmound")
-    home.Transform:SetPosition(x, y, z)
-    home.components.workable.workleft = 1
-    home.components.childspawner:TakeOwnership(act.doer)
-    home.components.childspawner.childreninside = home.components.childspawner.childreninside - 1
-    home:UpdateAnimations()
-
-    act.doer:PushEvent("takeoff")
-    act.doer.makehome = nil
+    if act.doer.build_mound_action then
+		return act.doer:build_mound_action()
+	end
 end
 
 

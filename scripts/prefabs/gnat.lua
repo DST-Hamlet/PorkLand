@@ -74,6 +74,38 @@ local function OnTeleported(inst)
     inst.components.infester:Uninfest(true)
 end
 
+local function CanBuildMoundAtPoint(x, y, z)
+    local ents = TheSim:FindEntities(x, y, z, 4, nil, {"FX", "NOCLICK", "DECOR", "INLIMBO"})
+    return #ents <= 1 and TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.PAINTED and IsSurroundedByLand(x, y, z, 2)
+end
+
+local function BuildHome(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+
+    if not inst.CanBuildMoundAtPoint(x, y, z) then
+        return false
+    end
+
+    local home = SpawnPrefab("gnatmound")
+    home.Transform:SetPosition(x, y, z)
+    home.components.workable.workleft = 1
+    home.components.childspawner:TakeOwnership(inst)
+    home.components.childspawner.childreninside = home.components.childspawner.childreninside - 1
+    home:UpdateAnimations()
+
+    inst:PushEvent("takeoff")
+    inst.makehome = nil
+    inst.components.timer:StopTimer("build_mount_cd", TUNING.TOTAL_DAY_TIME * (0.5 + math.random() * 0.5))
+
+    return true
+end
+
+local function TryBuildHome(inst)
+    if not inst.components.timer:TimerExists("build_mount_cd") and not inst.components.homeseeker:HasHome() then
+        inst:build_mound_action()
+    end
+end
+
 local brain = require("brains/gnatbrain")
 
 local function fn()
@@ -137,7 +169,15 @@ local function fn()
 
     inst:AddComponent("knownlocations")
 
+    inst:AddComponent("timer")
+
     inst:AddComponent("homeseeker")
+    local _onhomeremoved = inst.components.homeseeker.onhomeremoved
+    inst.components.homeseeker.onhomeremoved =
+        function(home, ...)
+            inst.components.timer:StartTimer("build_mount_cd", TUNING.TOTAL_DAY_TIME * (0.5 + math.random() * 0.5))
+            return _onhomeremoved(home, ...)
+        end
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_TINY * 2
@@ -147,6 +187,9 @@ local function fn()
     inst:AddComponent("infester")
 
     inst:AddComponent("lootdropper")
+
+    inst:AddComponent("entitysleeptask")
+    inst.components.entitysleeptask:SetSleepPeriodFn(TryBuildHome, math.random() * 5 + 27.5)
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGgnat")
@@ -161,6 +204,9 @@ local function fn()
 
     inst.OnGasChange = OnGasChange
     inst.FindLight = FindLight
+
+    inst.build_mound_action = BuildHome
+    inst.CanBuildMoundAtPoint = CanBuildMoundAtPoint
 
     return inst
 end

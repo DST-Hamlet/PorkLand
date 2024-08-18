@@ -33,28 +33,11 @@ local function GetInfestTarget(inst)
     return BufferedAction(inst, target, ACTIONS.INFEST)
 end
 
-local function CanBuildMoundAtPoint(x, y, z)
-    local ents = TheSim:FindEntities(x, y, z, 4, nil, {"FX", "NOCLICK", "DECOR", "INLIMBO"})
-    return #ents <= 1 and TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.PAINTED and IsSurroundedByLand(x, y, z, 2)
-end
-
 local function MakeNest(inst)
-    if not inst.components.homeseeker and not inst.ready_to_build and not inst.make_home_task then
-        inst.make_home_task = inst:DoTaskInTime(TUNING.TOTAL_DAY_TIME * (0.5 + math.random() * 0.5), function()
-            inst.ready_to_build = true
-        end)
-    end
-
-    if inst.ready_to_build and not inst.components.homeseeker then
+    if not inst.components.timer:TimerExists("build_mount_cd") and not inst.components.homeseeker:HasHome() then
         local x, y, z = inst.Transform:GetWorldPosition()
-        if not CanBuildMoundAtPoint(x, y, z) then
+        if not inst.CanBuildMoundAtPoint(x, y, z) then
             return
-        end
-
-        inst.ready_to_build = nil
-        if inst.make_home_task then
-            inst.make_home_task:Cancel()
-            inst.make_home_task = nil
         end
 
         return BufferedAction(inst, nil, ACTIONS.BUILD_MOUND)
@@ -89,3 +72,4 @@ function GnatBrain:OnStart()
 end
 
 return GnatBrain
+
