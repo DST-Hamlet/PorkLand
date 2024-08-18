@@ -153,34 +153,34 @@ local foods = {
     },
 
     nettlelosange =
-	{
-		test = function(cooker, names, tags) return tags.antihistamine and tags.antihistamine >= 3 end,
-		priority = 0,
-		foodtype = FOODTYPE.VEGGIE,
-		health = TUNING.HEALING_MED,
-		hunger = TUNING.CALORIES_MED,
-		perishtime = TUNING.PERISH_FAST,
-		sanity = TUNING.SANITY_TINY,
-		antihistamine = 720,
-		cooktime = .5,
-		yotp = true,
+    {
+        test = function(cooker, names, tags) return tags.antihistamine and tags.antihistamine >= 3 end,
+        priority = 0,
+        foodtype = FOODTYPE.VEGGIE,
+        health = TUNING.HEALING_MED,
+        hunger = TUNING.CALORIES_MED,
+        perishtime = TUNING.PERISH_FAST,
+        sanity = TUNING.SANITY_TINY,
+        antihistamine = 720,
+        cooktime = .5,
+        yotp = true,
         oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_ANTIHISTAMINE,
-	},
+    },
 
     meated_nettle =
-	{
-		test = function(cooker, names, tags) return (tags.antihistamine and tags.antihistamine >= 2) and (tags.meat and tags.meat >= 1) and (not tags.monster or tags.monster <= 1) and not tags.inedible end,
-		priority = 1,
-		foodtype = FOODTYPE.MEAT,
-		health = TUNING.HEALING_MED,
-		hunger = TUNING.CALORIES_LARGE,
-		perishtime = TUNING.PERISH_FASTISH,
-		sanity = TUNING.SANITY_TINY,
-		antihistamine = 600,
-		cooktime = 1,
-		yotp = true,
+    {
+        test = function(cooker, names, tags) return (tags.antihistamine and tags.antihistamine >= 2) and (tags.meat and tags.meat >= 1) and (not tags.monster or tags.monster <= 1) and not tags.inedible end,
+        priority = 1,
+        foodtype = FOODTYPE.MEAT,
+        health = TUNING.HEALING_MED,
+        hunger = TUNING.CALORIES_LARGE,
+        perishtime = TUNING.PERISH_FASTISH,
+        sanity = TUNING.SANITY_TINY,
+        antihistamine = 600,
+        cooktime = 1,
+        yotp = true,
         oneat_desc = STRINGS.UI.COOKBOOK.FOOD_EFFECTS_ANTIHISTAMINE,
-	},
+    },
 }
 
 for k, v in pairs(foods) do
