@@ -90,6 +90,7 @@ function InteriorSpawner:OnSave()
     end
     return {
         interiors = interior_defs,
+        next_interior_id = self.next_interior_id,
         reuse_interior_ids = self.reuse_interior_ids,
     }
 end
@@ -100,6 +101,12 @@ function InteriorSpawner:OnLoad(data)
             for _, def in pairs(data.interiors) do
                 self:AddInterior(def)
             end
+        end
+        if data.next_interior_id then
+            self.next_interior_id = data.next_interior_id
+        end
+        if data.reuse_interior_ids then
+            self.reuse_interior_ids = data.reuse_interior_ids
         end
     end
     self:SetInteriorPos()
@@ -117,10 +124,9 @@ end
 
 function InteriorSpawner:GetNewID() -- 注意：每次该函数被调用，都会占用一个 interiorID 及其对应的室内区域，因此确定有使用需求再调用此函数
         -- 并且需要在该室内区域移除后需要触发回调，通过 reuse_interior_ids 来重复使用 interiorID
-    if #self.reuse_interior_ids > 0 then
-        table.sort(self.reuse_interior_ids) -- 从小到大排序
-        local reuse_id = self.reuse_interior_ids[1]
-        table.remove(self.reuse_interior_ids, 1) -- 使用后删除最小项
+    local reuse_id = next(self.reuse_interior_ids)
+    if reuse_id then
+        self.reuse_interior_ids[reuse_id] = nil
         return reuse_id
     end
     self.next_interior_id = self.next_interior_id + 1
@@ -344,13 +350,12 @@ end
 
 function InteriorSpawner:AddInteriorCenter(center)
     self.interiors[center.interiorID] = center
-    self.inst:ListenForEvent("onremove", function() self:RemoveInteriorCenter(center) end)
 end
 
 function InteriorSpawner:RemoveInteriorCenter(center)
-    self.interiors[center.interiorID] = center
+    self.interiors[center.interiorID] = nil
     self.interior_defs[center.interiorID] = nil
-    table.insert(self.reuse_interior_ids, center.interiorID)
+    self.reuse_interior_ids[center.interiorID] = true
 end
 
 local function CheckRoomSize(width, depth)
@@ -629,10 +634,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
 
     local center = SpawnPrefab("interiorworkblank")
     center.Transform:SetPosition(pt:Get())
-    center:SetUp(interior)
     center.interiorID = interior.unique_name
+    center:SetUp(interior)
     center.uuid = uuid()
-    self:AddInteriorCenter(center)
 
     if enqueue_update_layout then
         center:DoTaskInTime(0, function()
@@ -798,7 +802,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 if interior.cityID then
-                    object:AddComponent("citypossession")
+                    if not object.components.citypossession then
+                        object:AddComponent("citypossession")
+                    end
                     object.components.citypossession:SetCity(interior.cityID)
                 end
 

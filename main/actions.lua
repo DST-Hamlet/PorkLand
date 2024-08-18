@@ -27,8 +27,8 @@ if not rawget(_G, "HotReloading") then
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2, mount_enabled = true}),
-        PUTONSHELF = Action({ distance = 2 }),
-        TAKEFROMSHELF = Action({ distance = 2, priority = 1 }),
+        PUTONSHELF = Action({ distance = 2.5 }),
+        TAKEFROMSHELF = Action({ distance = 2.5, priority = 1 }),
         ASSEMBLE_ROBOT = Action({}),
         CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
         CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
@@ -47,7 +47,7 @@ if not rawget(_G, "HotReloading") then
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
 
-        SHOP = Action({ distance = 2 }),
+        SHOP = Action({ distance = 2.5 }),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do

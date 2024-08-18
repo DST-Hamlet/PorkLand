@@ -109,7 +109,9 @@ local function spawndesk(inst, spawndesk)
         inst.desk.Transform:SetPosition(desklocation.x, desklocation.y, desklocation.z)
         inst.desk:AddComponent("citypossession")
         inst.desk.components.citypossession:SetCity(inst.components.citypossession.cityID)
-        inst:AddComponent("homeseeker")
+        if not inst.components.homeseeker then
+            inst:AddComponent("homeseeker")
+        end
         inst.components.homeseeker:SetHome(inst.desk)
     else
         if inst.desk then
@@ -680,15 +682,6 @@ local function OnSave(inst, data)
         data.desk = inst.desk.GUID
     end
 
-    if inst.torch then
-        table.insert(data.children, inst.torch.GUID)
-        data.torch = inst.torch.GUID
-    end
-    if inst.axe then
-        table.insert(data.children, inst.axe.GUID)
-        data.axe = inst.axe.GUID
-    end
-
     if inst:HasTag("atdesk") then
         data.atdesk = true
     end
@@ -769,7 +762,7 @@ local function OnLoadPostPass(inst, ents, data)
     end
 end
 
-local function MakeCityPigman(name, build, sex, tags, common_postinit, master_postinit, econprefab)
+local function MakeCityPigman(name, build, sex, tags, common_postinit, master_postinit, econprefab, name_override)
     local function fn()
         local inst = CreateEntity()
 
@@ -842,8 +835,17 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         end
 
         inst:AddComponent("named")
-        inst.components.named.possiblenames = JoinArrays(STRINGS.CITYPIGNAMES["UNISEX"], STRINGS.CITYPIGNAMES[sex])
-        inst.components.named:PickNewName()
+        if name_override then
+           if type(name_override) == "table" then
+                inst.components.named.possiblenames = shallowcopy(name_override)
+                inst.components.named:PickNewName()
+           else
+                inst.components.named:SetName(name_override)
+            end
+        else
+            inst.components.named.possiblenames = JoinArrays(STRINGS.CITYPIGNAMES["UNISEX"], STRINGS.CITYPIGNAMES[sex])
+            inst.components.named:PickNewName()
+        end
 
         inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
         inst.components.locomotor.runspeed = TUNING.PIG_RUN_SPEED -- 5
@@ -1112,8 +1114,8 @@ local function shopkeeper_master_postinit(inst)
     inst:WatchWorldState("isnight", CloseShop)
 end
 
-local function MakeShopKeeper(name, build, sex, tags, econprefab)
-    return MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit, econprefab)
+local function MakeShopKeeper(name, build, sex, tags, econprefab, name_override)
+    return MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit, econprefab, name_override)
 end
 
 --[[ Pig Mechanic ]]--
@@ -1135,21 +1137,6 @@ end
 
 local function QueenCommonPostinit(inst)
     MakeCharacterPhysics(inst, 50, 0.75)
-end
-
-local function QueenMasterPostinit(inst)
-    inst.components.named.possiblenames = STRINGS.QUEENPIGNAMES
-    inst.components.named:PickNewName()
-end
-
---[[ Pig Mayor ]]--
-
-local function MayorMasterPostinit(inst)
-    inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
-end
-
-local function MayorShopkeeperMasterPostinit(inst)
-    inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
 end
 
 local NOHAT_TAGS = {"emote_nohat"}
@@ -1181,12 +1168,12 @@ return MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
        MakeShopKeeper("pigman_collector_shopkeep",  "pig_collector",  MALE,   nil,        "pigman_collector"),
        MakeShopKeeper("pigman_professor_shopkeep",  "pig_professor",  MALE,   nil,        "pigman_professor"),
        MakeShopKeeper("pigman_mechanic_shopkeep",   "pig_mechanic",   MALE,   nil,        "pigman_mechanic"),
+       MakeShopKeeper("pigman_mayor_shopkeep",      "pig_mayor",      MALE,   nil,        "pigman_mayor",   STRINGS.NAMES.PIGMAN_MAYOR),
 
        MakeCityPigman("pigman_royalguard", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
        MakeCityPigman("pigman_royalguard_2", "pig_royalguard_2", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
 
        MakeCityPigman("pigman_mechanic", "pig_mechanic", MALE, nil, nil, MechanicMasterPostinit),
 
-       MakeCityPigman("pigman_mayor", "pig_mayor", MALE, nil, nil, MayorMasterPostinit),
-       MakeCityPigman("pigman_mayor_shopkeep", "pig_mayor", MALE, nil, shopkeeper_common_postinit, MayorShopkeeperMasterPostinit, "pigman_mayor"),
-       MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, QueenMasterPostinit)
+       MakeCityPigman("pigman_mayor", "pig_mayor", MALE, nil, nil, nil, nil, STRINGS.NAMES.PIGMAN_MAYOR),
+       MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, nil, nil, STRINGS.QUEENPIGNAMES)

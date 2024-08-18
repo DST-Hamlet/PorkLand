@@ -498,125 +498,6 @@ local function OnLoad(inst, data)
 
     if data.interiorID then
         inst.interiorID = data.interiorID
-
-        -- Checks if the cityhall has the construction_permit for sale, and if it doesn't, it patches it in
-        --[[
-        if inst.prefab == "pig_shop_cityhall" then
-            inst:DoTaskInTime(0, function()
-
-                local patched = false
-                local interior_ents = {}
-
-                local interior_spawner = GetInteriorSpawner()
-                local interior = interior_spawner:GetInteriorByName(inst.interiorID)
-                local inside_interior = interior == interior_spawner.current_interior
-                local pt = interior_spawner:getSpawnOrigin()
-
-                -- Gets the interior entities wether the interior has been visited or not
-                local function GetInteriorEnts()
-                    if inside_interior then
-                        return TheSim:FindEntities(pt.x, pt.y, pt.z, 50, nil, {"INTERIOR_LIMBO", "INLIMBO"})
-                    else
-                        return interior.object_list
-                    end
-                end
-
-                interior_ents = GetInteriorEnts()
-
-                -- Checks if we have 3 pedestals, if we do, cancel the patching
-                local buyer_count = 0
-                for _, ent in pairs(interior_ents) do
-                    if ent.prefab == "shop_buyer" then
-                        buyer_count = buyer_count + 1
-                        if buyer_count >= 4 then
-                            patched = true
-                            break
-                        end
-                    end
-                end
-
-                -- x_offset = 1.75,   z_offset =  width/2-5
-
-                if not patched then
-
-                    local saleitems =
-                    {
-                        {"construction_permit", "oinc", 50 },
-                        {"demolition_permit",   "oinc", 10 },
-                    }
-
-                    local offsets =
-                    {
-                        { x_offset = 3.5, z_offset =  TUNING.ROOM_TINY_WIDTH/2-2 },
-                        { x_offset = -1,  z_offset =  TUNING.ROOM_TINY_WIDTH/2-2 },
-                    }
-
-                    local animation = "idle_globe_bar"
-
-                    if interior.visited then
-                        for _, ent in pairs(interior_ents) do
-                            if ent.prefab == "shop_buyer" and ent.components.shopdispenser.item_served == "deed" then
-                                local x, y, z = ent.Transform:GetWorldPosition()
-                                ent.Transform:SetPosition(x + 1.75, y, z -2)
-                                c_select(ent)
-                                break
-                            end
-                        end
-                    else
-                        for _, prefab in ipairs(interior.prefabs) do
-                            if prefab.name == "shop_buyer" and prefab.saleitem[1] == "deed" then
-                                prefab.x_offset = 1.75
-                                prefab.z_offset = TUNING.ROOM_TINY_WIDTH/2-5
-                            end
-                        end
-                    end
-
-                    for i = 1, #saleitems do
-                        local offset = offsets[i]
-                        local saleitem = saleitems[i]
-                        local prefab_data = {saleitem = saleitem, animation = animation }
-
-                        -- If the interior has been visited we have to spawn the prefab, initialize it and put it in the interior
-                        if interior.visited then
-                            local pedestal = SpawnPrefab("shop_buyer")
-                            -- Sets position, item and animation
-                            pedestal.Transform:SetPosition(pt.x + offset.x_offset, 0, pt.z + offset.z_offset) -- HERE
-                            pedestal.saleitem = saleitem -- HERE
-                            pedestal.AnimState:PlayAnimation(animation)
-                            pedestal.animation = animation
-
-                            -- Shop spawner contains a bunch of info about the store itself, so we need it to initialize our pedestals
-                            local shop_spawner = nil
-                            for _, ent in pairs(interior_ents) do
-                                if ent.prefab == "shop_spawner" then
-                                    shop_spawner = ent
-                                    break
-                                end
-                            end
-
-                            -- This shouldn't happen
-                            if not shop_spawner then
-                                print ("ERROR: COULD NOT FIND SHOP SPAWNER")
-                            else -- Sets the proper products and what not
-                                local product = shop_spawner.components.shopinterior:GetNewProduct("pig_shop_cityhall")
-
-                                pedestal.components.shopped:SetShop(shop_spawner, "pig_shop_cityhall")
-                                pedestal:AddTag("pig_shop_item")
-                                pedestal:SpawnInventory(saleitem[1], saleitem[2], saleitem[3]) -- HERE
-
-                                -- If we're not currently in the interior, put the pedestal in limbo
-                                if interior ~= interior_spawner.current_interior then
-                                    interior_spawner:PutPropIntoInteriorLimbo(pedestal, interior)
-                                end
-                            end
-                        else -- If the interior hasn't been visited, just insert the prefab. Easy.
-                            interior_spawner:insertprefab(interior, "shop_buyer", offset, prefab_data) -- HERE
-                        end
-                    end
-                end
-            end)
-        end
-        ]]
     end
 end
 
@@ -629,7 +510,7 @@ local function UseDoor(inst, data)
 end
 
 local function OnBurntUp(inst, data)
-    inst.components.fixable:AddRecinstructionStageData("burnt", inst.bank, inst.build, nil, 1)
+    inst.components.fixable:AddReconstructionStageData("burnt", inst.bank, inst.build, nil, 1)
     if inst.doortask then
         inst.doortask:Cancel()
         inst.doortask = nil
@@ -637,17 +518,17 @@ local function OnBurntUp(inst, data)
     inst:Remove()
 end
 
-local function canburn(inst)
-    local interior_spawner = TheWorld.components.interiorspawner
-    if inst.components.door then
-        local interior = inst.components.door.target_interior
-        if interior_spawner:IsPlayerConsideredInside(interior) then
-            -- try again in 2-5 seconds
-            return false, 2 + math.random() * 3
-        end
-    end
-    return true
-end
+-- local function canburn(inst)
+--     local interior_spawner = TheWorld.components.interiorspawner
+--     if inst.components.door then
+--         local interior = inst.components.door.target_interior
+--         if interior_spawner:IsPlayerConsideredInside(interior) then
+--             -- try again in 2-5 seconds
+--             return false, 2 + math.random() * 3
+--         end
+--     end
+--     return true
+-- end
 
 local function OnIsPathFindingDirty(inst)
     if inst._ispathfinding:value() then
@@ -689,6 +570,10 @@ end
 local function OnRemove(inst)
     inst._ispathfinding:set_local(false)
     OnIsPathFindingDirty(inst)
+end
+
+local function PlayerCityHallMasterInit(inst)
+    TheWorld.components.pigtaxmanager:RegisterPlayerCityHall(inst)
 end
 
 local function MakeShop(name, build, bank, data)
@@ -739,10 +624,6 @@ local function MakeShop(name, build, bank, data)
             inst:AddTag("shop_music")
         end
 
-        -- if name == "pig_shop_cityhall_player" then
-        --     GetPlayer():AddTag("mayor")
-        -- end
-
         ------- Copied from prefabs/wall.lua -------
         inst._pfpos = nil
         inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
@@ -774,8 +655,8 @@ local function MakeShop(name, build, bank, data)
         inst.components.door.outside = true
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("rubble", inst.bank, inst.build)
-        inst.components.fixable:AddRecinstructionStageData("unbuilt", inst.bank, inst.build)
+        inst.components.fixable:AddReconstructionStageData("rubble", inst.bank, inst.build)
+        inst.components.fixable:AddReconstructionStageData("unbuilt", inst.bank, inst.build)
 
         if not data.indestructable then
             inst:AddComponent("workable")
@@ -817,24 +698,19 @@ local function MakeShop(name, build, bank, data)
         MakeSnowCovered(inst, 0.01)
         MakeHauntableWork(inst)
 
+        if data.master_init_fn then
+            data.master_init_fn(inst)
+        end
+
         return inst
     end
 
     return Prefab(name, fn, assets, prefabs)
 end
 
--- TODO: Make this work
-local function PlaceTestFn(inst)
+local function HideLayers(inst)
     inst.AnimState:Hide("YOTP")
     inst.AnimState:Hide("SNOW")
-
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    if tile == WORLD_TILES.INTERIOR then
-        return false
-    end
-
-    return true
 end
 
 return MakeShop("pig_shop_deli",            "pig_shop_deli",        nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}}),
@@ -850,18 +726,18 @@ return MakeShop("pig_shop_deli",            "pig_shop_deli",        nil,        
        MakeShop("pig_shop_bank",            "pig_shop_bank",        nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
        MakeShop("pig_shop_tinker",          "pig_shop_tinker",      nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
        MakeShop("pig_shop_cityhall",        "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true}),
-       MakeShop("pig_shop_cityhall_player", "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true, unburnable = true, no_shop_music = true}),
+       MakeShop("pig_shop_cityhall_player", "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true, unburnable = true, no_shop_music = true, master_init_fn = PlayerCityHallMasterInit}),
        MakeShop("pig_palace",               "palace",               "palace",       {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true}),
 
-       MakePlacer("pig_shop_deli_placer",        "pig_shop",     "pig_shop_deli",        "idle", false, false, true),
-       MakePlacer("pig_shop_general_placer",     "pig_shop",     "pig_shop_general",     "idle", false, false, true),
-       MakePlacer("pig_shop_hoofspa_placer",     "pig_shop",     "pig_shop_hoofspa",     "idle", false, false, true),
-       MakePlacer("pig_shop_produce_placer",     "pig_shop",     "pig_shop_produce",     "idle", false, false, true),
-       MakePlacer("pig_shop_florist_placer",     "pig_shop",     "pig_shop_florist",     "idle", false, false, true),
-       MakePlacer("pig_shop_antiquities_placer", "pig_shop",     "pig_shop_antiquities", "idle", false, false, true),
-       MakePlacer("pig_shop_arcane_placer",      "pig_shop",     "pig_shop_arcane",      "idle", false, false, true),
-       MakePlacer("pig_shop_weapons_placer",     "pig_shop",     "pig_shop_weapons",     "idle", false, false, true),
-       MakePlacer("pig_shop_hatshop_placer",     "pig_shop",     "pig_shop_millinery",   "idle", false, false, true),
-       MakePlacer("pig_shop_cityhall_placer",    "pig_cityhall", "pig_cityhall",         "idle", false, false, true),
-       MakePlacer("pig_shop_bank_placer",        "pig_shop",     "pig_shop_bank",        "idle", false, false, true),
-       MakePlacer("pig_shop_tinker_placer",      "pig_shop",     "pig_shop_tinker",      "idle", false, false, true)
+       MakePlacer("pig_shop_deli_placer",        "pig_shop",     "pig_shop_deli",        "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_general_placer",     "pig_shop",     "pig_shop_general",     "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_hoofspa_placer",     "pig_shop",     "pig_shop_hoofspa",     "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_produce_placer",     "pig_shop",     "pig_shop_produce",     "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_florist_placer",     "pig_shop",     "pig_shop_florist",     "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_antiquities_placer", "pig_shop",     "pig_shop_antiquities", "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_arcane_placer",      "pig_shop",     "pig_shop_arcane",      "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_weapons_placer",     "pig_shop",     "pig_shop_weapons",     "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_hatshop_placer",     "pig_shop",     "pig_shop_millinery",   "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_cityhall_placer",    "pig_cityhall", "pig_cityhall",         "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_bank_placer",        "pig_shop",     "pig_shop_bank",        "idle", false, false, true, nil, nil, nil, HideLayers),
+       MakePlacer("pig_shop_tinker_placer",      "pig_shop",     "pig_shop_tinker",      "idle", false, false, true, nil, nil, nil, HideLayers)

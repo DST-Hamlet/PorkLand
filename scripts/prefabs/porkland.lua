@@ -165,6 +165,9 @@ local function master_postinit(inst)
     inst:AddComponent("cityalarms")
     inst.components.cityalarms:AddCity(1)
     inst.components.cityalarms:AddCity(2)
+
+    -- Not a component from Hamlet
+    inst:AddComponent("pigtaxmanager")
 end
 
 return MakeWorld("porkland", prefabs, assets, common_postinit, master_postinit, {"porkland"}, {tile_physics_init = tile_physics_init})

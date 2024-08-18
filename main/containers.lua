@@ -201,6 +201,7 @@ params["shelf_metal"] = shelf2x3
 params["shelf_marble"] = shelf2x3
 params["shelf_glass"] = shelf2x3
 params["shelf_ladder"] = shelf2x3
+params["shelf_hutch"] = shelf2x3
 params["shelf_industrial"] = shelf2x3
 params["shelf_adjustable"] = shelf2x3
 params["shelf_fridge"] = shelf2x3

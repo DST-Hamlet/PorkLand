@@ -124,6 +124,33 @@ local foods = {
         cooktime = 0.5,
         yotp = true,
     },
+
+	steamedhamsandwich =
+	{
+		test = function(cooker, names, tags) return (names.meat or names.meat_cooked) and (tags.veggie and tags.veggie >= 2) and names.foliage end,
+		priority = 5,
+		foodtype = "MEAT",
+		health = TUNING.HEALING_LARGE,
+		hunger = TUNING.CALORIES_LARGE,
+		perishtime = TUNING.PERISH_FAST,
+		sanity = TUNING.SANITY_MED,
+		cooktime = 2,
+		yotp = true,
+	},
+
+    hardshell_tacos =
+	{
+		test = function(cooker, names, tags) return (names.weevole_carapace == 2) and  tags.veggie end,
+
+		priority = 1,
+		foodtype = "VEGGIE",
+		health = TUNING.HEALING_MED,
+		hunger = TUNING.CALORIES_LARGE,
+		perishtime = TUNING.PERISH_SLOW,
+		sanity = TUNING.SANITY_TINY,
+		cooktime = 1,
+		yotp = true,
+	},
 }
 
 for k, v in pairs(foods) do

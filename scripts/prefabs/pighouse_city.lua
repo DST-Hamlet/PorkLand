@@ -169,8 +169,32 @@ local function OnIgnite(inst)
 end
 
 local function OnBurntUp(inst)
-    inst.components.fixable:AddRecinstructionStageData("burnt", "pig_townhouse", inst.build, inst.scale, 1)
+    inst.components.fixable:AddReconstructionStageData("burnt", "pig_townhouse", inst.build, inst.scale, 1)
     inst:Remove()
+end
+
+local function PayTax(inst)
+    inst:DoTaskInTime(4, function()
+        if inst.components.spawner.child then
+            inst.components.spawner.child:AddTag("paytax")
+        end
+        inst:RemoveTag("paytax")
+    end)
+end
+
+local function CheckTax(inst)
+    if TheWorld.components.pigtaxmanager
+        and TheWorld.components.pigtaxmanager:HasPlayerCityHall()
+        and TheWorld.components.pigtaxmanager:IsTaxDay()
+        -- a player build pighouse doesn't have a city possesion component.. so that's how I'm checking for tax paying houses right now
+        and not inst.components.citypossession
+        and inst.components.spawner.child
+        and inst.lasttaxday ~= TheWorld.state.cycles then
+
+        inst.lasttaxday = TheWorld.state.cycles
+        inst:AddTag("paytax")
+        PayTax(inst)
+    end
 end
 
 local function OnDay(inst, isday)
@@ -185,6 +209,8 @@ local function OnDay(inst, isday)
             end
         end)
     end
+
+    CheckTax(inst)
 end
 
 local function OnInit(inst)
@@ -222,6 +248,8 @@ local function OnSave(inst, data)
     if inst.components.spawner.childname then
         data.childname = inst.components.spawner.childname
     end
+    data.paytax = inst:HasTag("paytax")
+    data.lasttaxday = inst.lasttaxday
 end
 
 local function OnLoad(inst, data)
@@ -247,6 +275,14 @@ local function OnLoad(inst, data)
         end
         if data.burnt then
             inst.components.burnable.onburnt(inst)
+        end
+
+        if data.lasttaxday then
+            inst.lasttaxday = data.lasttaxday
+        end
+        if data.paytax then
+            inst:AddTag("paytax")
+            PayTax(inst)
         end
     end
 end
@@ -380,8 +416,8 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst.components.workable:SetOnFinishCallback(OnHammered)
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("rubble", "pig_townhouse", inst.build, inst.scale)
-        inst.components.fixable:AddRecinstructionStageData("unbuilt", "pig_townhouse", inst.build, inst.scale)
+        inst.components.fixable:AddReconstructionStageData("rubble", "pig_townhouse", inst.build, inst.scale)
+        inst.components.fixable:AddReconstructionStageData("unbuilt", "pig_townhouse", inst.build, inst.scale)
 
         inst:AddComponent("spawner")
         inst.components.spawner:SetOnVacateFn(OnVacate)
@@ -413,24 +449,13 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
     return Prefab(name, fn, assets)
 end
 
--- TODO: Make this work
-local function placetestfn(inst)
+local function HideLayers(inst)
     inst.AnimState:Hide("YOTP")
     inst.AnimState:Hide("SNOW")
-
-    local pt = inst:GetPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(pt.x, pt.y, pt.z)
-    if tile == WORLD_TILES.INTERIOR then
-        return false
-    end
-
-    return true
 end
 
 return MakePigHouse("pighouse_city", nil, nil),
     MakePigHouse("pighouse_farm", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_farm),
     MakePigHouse("pighouse_mine", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_mine),
 
-    MakePlacer("pighouse_city_placer", "pig_shop", "pig_townhouse1_green_build", "idle", nil, true, nil, 0.75)
-
--- MakePlacer("pighouse_placer", "pig_house", "pig_house", "idle")
+    MakePlacer("pighouse_city_placer", "pig_shop", "pig_townhouse1_green_build", "idle", false, false, true, nil, nil, nil, HideLayers)

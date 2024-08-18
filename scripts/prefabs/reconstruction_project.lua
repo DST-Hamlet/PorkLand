@@ -16,7 +16,7 @@ end
 
 local function DisplayNameFn(inst)
     local name = inst._name:value()
-    return name ~= "" and STRINGS.NAMES[name] or "MISSING NAME"
+    return name ~= "" and STRINGS.NAMES[string.upper(name)] or "MISSING NAME"
 end
 
 local function SetReconstructionStage(inst, stage)
@@ -76,6 +76,9 @@ local function Fix(inst, fixer)
             end
         end
 
+        -- For player house
+        reconstructed.bought = inst.bought
+
         if reconstructed.OnReconstructe then
             reconstructed:OnReconstructe()
         end
@@ -108,6 +111,8 @@ local function OnSave(inst, data)
     data.interiorID = inst.interiorID
     data.cityID = inst.cityID
     data.name = inst._name:value()
+    -- For player house
+    data.bought = inst.bought
 
     if inst.spawner_data and inst.spawner_data.child and inst.spawner_data.child:IsValid() then
         data.childname = inst.spawner_data.childname
@@ -126,6 +131,8 @@ local function OnLoad(inst, data)
         inst.reconstruction_overridebuild = data.reconstruction_overridebuild
         inst.interiorID = data.interiorID
         inst.cityID = data.cityID
+        -- For player house
+        inst.bought = data.bought
 
         inst:SetConstructionPrefabName(data.name)
         inst:SetReconstructionStage(data.reconstruction_stage)
