@@ -449,24 +449,13 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
     return Prefab(name, fn, assets)
 end
 
--- TODO: Make this work
-local function placetestfn(inst)
+local function HideLayers(inst)
     inst.AnimState:Hide("YOTP")
     inst.AnimState:Hide("SNOW")
-
-    local pt = inst:GetPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(pt.x, pt.y, pt.z)
-    if tile == WORLD_TILES.INTERIOR then
-        return false
-    end
-
-    return true
 end
 
 return MakePigHouse("pighouse_city", nil, nil),
     MakePigHouse("pighouse_farm", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_farm),
     MakePigHouse("pighouse_mine", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_mine),
 
-    MakePlacer("pighouse_city_placer", "pig_shop", "pig_townhouse1_green_build", "idle", nil, true, nil, 0.75)
-
--- MakePlacer("pighouse_placer", "pig_house", "pig_house", "idle")
+    MakePlacer("pighouse_city_placer", "pig_shop", "pig_townhouse1_green_build", "idle", false, false, true, nil, nil, nil, HideLayers)

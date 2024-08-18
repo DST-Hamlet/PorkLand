@@ -8,7 +8,7 @@ local function onHammered(inst, worker)
         local fx = SpawnPrefab("robot_leaf_fx")
         fx.Transform:SetPosition(x + (math.random() * 2) , y + math.random() * 0.5, z + (math.random() * 2))
         if math.random() < 0.5 then
-            fx.Transform:SetScale(-1,1,-1)
+            fx.Transform:SetScale(-1, 1, -1)
         end
     end
 

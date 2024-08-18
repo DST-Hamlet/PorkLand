@@ -201,8 +201,7 @@ local function MakeHedgeType(data)
         end
     end
 
-    local function itemfn(Sim)
-
+    local function itemfn()
         local inst = CreateEntity()
         inst:AddTag("wallbuilder")
 

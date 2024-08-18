@@ -349,20 +349,11 @@ local function palacefn()
     return inst
 end
 
--- TODO: Make this work
-local function PlaceTestFn(inst)
+local function HideLayers(inst)
     inst.AnimState:Hide("YOTP")
     inst.AnimState:Hide("SNOW")
-
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    if tile == WORLD_TILES.INTERIOR then
-        return false
-    end
-
-    return true
 end
 
 return Prefab("pig_guard_tower", fn, assets, prefabs),
     Prefab("pig_guard_tower_palace", palacefn, assets, prefabs),
-    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, true)
+    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, false, true, nil, nil, nil, HideLayers)

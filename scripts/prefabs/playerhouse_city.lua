@@ -313,15 +313,10 @@ local function fn()
     return inst
 end
 
--- TODO: Make this work
--- local function placetestfn(inst)
---     return not TheCamera.interior
--- end
-
--- local function HideLayers(inst)
---     inst.AnimState:Hide("snow")
---     inst.AnimState:Hide("boards")
--- end
+local function HideLayers(inst)
+    inst.AnimState:Hide("snow")
+    inst.AnimState:Hide("boards")
+end
 
 return Prefab("playerhouse_city", fn, assets, prefabs),
-    MakePlacer("playerhouse_city_placer", "pig_house_sale", "pig_house_sale", "idle", nil, nil, nil, 0.75)
+    MakePlacer("playerhouse_city_placer", "pig_house_sale", "pig_house_sale", "idle", nil, nil, nil, 0.75, nil, nil, HideLayers)
