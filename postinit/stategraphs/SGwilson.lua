@@ -88,6 +88,7 @@ local function shoot(inst, is_full_charge)
 end
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.TAKEFROMSHELF, "doshortaction"),
     ActionHandler(ACTIONS.PUTONSHELF, "doshortaction"),
     ActionHandler(ACTIONS.EMBARK, "embark"),
@@ -687,11 +688,11 @@ local states = {
 
             local skin_build = source and source:GetSkinBuild() or nil
             if skin_build ~= nil then
-                for k,v in pairs(plant_symbols) do
+                for k, v in pairs(plant_symbols) do
                     inst.AnimState:OverrideItemSkinSymbol(v, skin_build, v, inst.GUID, "lifeplant")
                 end
             else
-                for k,v in pairs(plant_symbols) do
+                for k, v in pairs(plant_symbols) do
                     inst.AnimState:OverrideSymbol(v, "lifeplant", v)
                 end
             end

@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/meteor_impact.zip"),
+    Asset("ANIM", "anim/meteor_impact.zip"),
 }
 
 local function RemoveImpact(inst)
@@ -15,9 +15,9 @@ local function OnTimerDone(inst, data)
 end
 
 local function fn()
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("meteorimpact")

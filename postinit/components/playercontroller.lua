@@ -25,6 +25,9 @@ local GetPickupAction = function(self, target, tool, ...)
     if target:HasTag("interior_door") and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
         rets[1] = ACTIONS.USEDOOR
     end
+    if target:HasTag("pickable") and target:HasTag("unsuited") then
+        rets[1] = nil
+    end
     return unpack(rets)
 end
 ToolUtil.SetUpvalue(PlayerController.GetActionButtonAction, GetPickupAction, "GetPickupAction")
@@ -87,7 +90,7 @@ function PlayerController:RemapMapAction(act, position)
             local remap_pos, data = TheWorld.components.worldmapiconproxy:RemapSoulhopPosition(act.doer, position, self.interior_remapped)
             if remap_pos ~= nil and data ~= nil and data.type == "interior" then
                 local act_remap = BufferedAction(act.doer, nil, ACTIONS.BLINK_MAP, act.invobject, remap_pos)
-                for k,v in pairs(data.data)do
+                for k, v in pairs(data.data) do
                     act_remap[k] = v
                 end
                 return act_remap

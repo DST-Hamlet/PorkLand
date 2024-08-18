@@ -5,20 +5,20 @@ local PeriodicPoopManager = Class(function(self, inst)
     self.poop_data = {}
 end)
 
-
 function PeriodicPoopManager:OnSave()
-    local data =
-    {
+    local data = {
         poop_data = self.poop_data
     }
-
-    return data
+    local references = table.getkeys(self.poop_data)
+    return data, references
 end
 
 function PeriodicPoopManager:LoadPostPass(ents, data)
-    for k, v in pairs(data.poop_data) do
-        if ents[k] and ents[k].entity and v then
-            ents[k].entity.cityID = v
+    for guid, city_id in pairs(data.poop_data) do
+        local poop = ents[guid] and ents[guid].entity
+        if poop then
+            poop.cityID = city_id
+            self:OnPoop(city_id, poop)
         end
     end
 end

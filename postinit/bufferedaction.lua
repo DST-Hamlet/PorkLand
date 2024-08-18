@@ -54,7 +54,7 @@ function BufferedAction:Succeed(...)
         and self.target.components.citypossession.cityID then
 
         if CITYALARM_TRIGGER_ACTIONS[self.action] then
-            TheWorld.components.cityalarms:ChangeStatus(self.target.components.citypossession.cityID, true, self.doer)
+            TheWorld.components.cityalarms:TriggerAlarm(self.target.components.citypossession.cityID, self.doer)
             if self.action == ACTIONS.PICKUP then
                 self.target.components.citypossession:Disable()
             end

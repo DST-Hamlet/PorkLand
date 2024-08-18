@@ -3,20 +3,25 @@
 
 local function GetSkeletonPositions(w, h)
     return {
-        LEFT_TOP     = Point(-h/2, 0, -w/2),
-        RIGHT_TOP     = Point(-h/2, 0,  w/2),
-        LEFT_BOTTOM  = Point(h/2, 0, -w/2),
-        RIGHT_BOTTOM = Point(h/2, 0,  w/2),
-        BOTTOM         = Point(h/2, 0, 0),
-        CENTER         = Point(0, 0, 0),
+        LEFT_TOP     = Point(-h / 2, 0, -w / 2),
+        RIGHT_TOP    = Point(-h / 2, 0,  w / 2),
+        LEFT_BOTTOM  = Point( h / 2, 0, -w / 2),
+        RIGHT_BOTTOM = Point( h / 2, 0,  w / 2),
+        BOTTOM       = Point( h / 2, 0,      0),
+        CENTER       = Point(     0, 0,      0),
     }
 end
 
 local function Clear(inst)
-    for k in pairs(inst.fx)do
-        k:Remove()
+    for _, fx in ipairs(inst.fx) do
+        fx:Remove()
     end
     inst.fx = {}
+end
+
+local function OnRemove(inst)
+    Clear(inst)
+    TheWorld.components.interiorspawner:RemoveInteriorCenter(inst)
 end
 
 -- ROOM DIMENSIONS
@@ -33,10 +38,10 @@ local function SetUp(inst, data)
     Clear(inst)
 
     data = data or {}
-    inst.width = data.width or inst.width
+    local width = data.width or inst._width:value()
+    local depth = data.depth or inst._depth:value()
+    inst:SetSize(width, depth)
     inst.height = data.height or inst.height
-    inst.depth = data.depth or inst.depth
-    inst.size_net:set(inst.width, inst.depth)
     inst.search_radius = inst:GetSearchRadius()
 
     if inst.components.interiorpathfinder then
@@ -50,93 +55,105 @@ local function SetUp(inst, data)
     inst.walltexture = data.walltexture or inst.walltexture or "antcave_wall_rock"
     inst.floortexture = data.floortexture or inst.floortexture or "antcave_floor"
     inst.interiorID = data.interiorID or inst.interiorID
+    if inst.interiorID then
+        TheWorld.components.interiorspawner:AddInteriorCenter(inst)
+    end
 
-    local sp = GetSkeletonPositions(inst.width, inst.depth)
+    local sp = GetSkeletonPositions(width, depth)
 
     local left_top_pos = sp.LEFT_TOP + inst:GetPosition()
 
     local floor = SpawnPrefab("interiorfloor")
-    floor:SetSize(inst.depth, inst.width) -- depth => size_x, width => size_z
+    floor:SetSize(depth, width) -- depth => size_x, width => size_z
     floor:SetTexture(inst.floortexture)
     floor.Transform:SetPosition(left_top_pos:Get())
 
     local wall_bg = SpawnPrefab("interiorwall_z")
-    wall_bg:SetSize(inst.width)
+    wall_bg:SetSize(width)
     wall_bg.Transform:SetPosition(left_top_pos:Get())
+    wall_bg:SetTexture(inst.walltexture)
 
     local wall_left = SpawnPrefab("interiorwall_x")
-    wall_left:SetSize(inst.depth)
+    wall_left:SetSize(depth)
     wall_left.Transform:SetPosition(left_top_pos:Get())
+    wall_left:SetTexture(inst.walltexture)
 
     local right_top_pos = sp.RIGHT_TOP + inst:GetPosition()
 
     local wall_right = SpawnPrefab("interiorwall_x")
-    wall_right:SetSize(inst.depth)
+    wall_right:SetSize(depth)
     wall_right.Transform:SetPosition(right_top_pos:Get())
+    wall_right:SetTexture(inst.walltexture)
 
-    for _,v in ipairs{wall_bg, wall_left, wall_right}do
-        v:SetTexture(inst.walltexture)
-    end
-
-    --for _,v in ipairs{floor, wall_bg, wall_left, wall_right}do -- 亚丹：SetParent并且本地位置不为000的话，有时会出现网络传输的问题
-        --v.entity:SetParent(inst.entity)
-    --end
+    -- for _, v in ipairs {floor, wall_bg, wall_left, wall_right} do -- 亚丹：SetParent 并且本地位置不为 000 的话，有时会出现网络传输的问题
+    --     v.entity:SetParent(inst.entity)
+    -- end
 
     inst.fx = {
-        [floor] = true,
-        [wall_bg] = true,
-        [wall_left] = true,
-        [wall_right] = true,
+        floor,
+        wall_bg,
+        wall_left,
+        wall_right,
     }
 
-    local temp = {}
     local function wall(x, z)
-        local v = SpawnPrefab("invisiblewall")
-        table.insert(temp, v)
-        v:DoTaskInTime(0, function()
+        local wall = SpawnPrefab("invisiblewall")
+        wall.persists = false
+        wall:DoTaskInTime(0, function()
             local pos = inst:GetPosition()
-            v.Physics:SetActive(true)
-            v.Physics:SetActive(false) -- use these wall for pathfinder only :p
-            v.Physics:Teleport(x + pos.x, 0, z + pos.z)
+            wall.Physics:SetActive(true)
+            wall.Physics:SetActive(false) -- use these wall for pathfinder only :p
+            wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
         end)
-        v.persists = false
-        -- v:Debug()
+        -- wall:Debug()
+        table.insert(inst.fx, wall)
     end
 
-    for i = -inst.width/2 - 1, inst.width/2 + 1 do
-        wall(inst.depth/2, i)
-        wall(-inst.depth/2, i)
+    local half_width = width / 2
+    local half_depth = depth / 2
+    for i = -half_width - 1, half_width + 1 do
+        wall(half_depth, i)
+        wall(-half_depth, i)
     end
-    for i = -inst.depth/2 - 1, inst.depth/2 + 1 do
-        wall(i, inst.width/2)
-        wall(i, -inst.width/2)
-    end
-
-    for _,v in ipairs(temp)do
-        inst.fx[v] = true
+    for i = -half_depth - 1, half_depth + 1 do
+        wall(i, half_width)
+        wall(i, -half_width)
     end
 
     -- real wall
     local wall = SpawnPrefab("invisiblewall_long")
     wall:DoTaskInTime(0, function()
         local pos = inst:GetPosition()
-        wall.width:set(inst.width + 0.2)
-        wall.depth:set(inst.depth + 0.2)
+        wall.width:set(width + 0.2)
+        wall.depth:set(depth + 0.2)
         wall.Transform:SetPosition(pos.x, 0, pos.z)
     end)
-    inst.fx[wall] = true
+    table.insert(inst.fx, wall)
 
     inst.interior_cc = data.interior_cc or data.cc or "images/colour_cubes/day05_cc.tex"
 end
 
+local function GetWidth(inst)
+    return inst._width:value()
+end
+
+local function GetDepth(inst)
+    return inst._depth:value()
+end
+
 local function GetSize(inst)
-    return inst.size_net:value()
+    return GetWidth(inst), GetDepth(inst)
+end
+
+local function SetSize(inst, width, depth)
+    inst._width:set(width)
+    inst._depth:set(depth)
 end
 
 local function GetDoorById(inst, id)
     assert(TheWorld.ismastersim)
-    local x,_,z = inst:GetPosition():Get()
-    for _,v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}))do
+    local x, _, z = inst.Transform:GetWorldPosition()
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})) do
         if v.components.door.door_id == id then
             return v
         end
@@ -144,18 +161,18 @@ local function GetDoorById(inst, id)
 end
 
 local function GetDoorToExterior(inst)
-    local x,_,z = inst:GetPosition():Get()
-    for _,v in ipairs(TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door", "door_exit"}))do
+    local x, _, z = inst.Transform:GetWorldPosition()
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door", "door_exit"})) do
         return v
     end
 end
 
 local function GetIsSingleRoom(inst, no_cache)
-    if inst.cached_is_single ~= nil and no_cache ~= true then
+    if inst.cached_is_single ~= nil and not no_cache then
         return unpack(inst.cached_is_single)
     end
-    local x,_,z = inst:GetPosition():Get()
-    local ents = TheSim:FindEntities(x,0,z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
+    local x, _, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
     if #ents == 1 and ents[1]:HasTag("door_exit") then
         inst.cached_is_single = {true, ents[1]}
         return true, ents[1]
@@ -182,11 +199,13 @@ local function CollectMinimapData(inst)
     if not inst:HasInteriorMinimap() then
         return { center = center, no_minimap = true }
     end
+    local width = inst:GetWidth()
+    local depth = inst:GetDepth()
     local radius = inst:GetSearchRadius()
     local result = {
         center = center,
-        width = inst.width,
-        depth = inst.depth,
+        width = width,
+        depth = depth,
         net_id = inst.Network:GetNetworkID(),
         interiorID = inst.interiorID,
         guid = inst.entity:GetGUID(),
@@ -194,12 +213,12 @@ local function CollectMinimapData(inst)
     }
     inst.net_id = result.net_id
     local ents = result.ents
-    for _,v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"}))do
+    for _, v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
         if v.MiniMapEntity ~= nil then
             local pos = v:GetPosition()
             local offset = pos - center
             -- check if entity is in room
-            if math.abs(offset.z) < inst.width / 2 + 1 and math.abs(offset.x) < inst.depth / 2 + 1 then
+            if math.abs(offset.z) < width / 2 + 1 and math.abs(offset.x) < depth / 2 + 1 then
                 local icon = v.MiniMapEntity:GetIcon() -- see interior_map.lua
                 local priority = v.MiniMapEntity:GetPriority() -- see interior_map.lua
                 if icon ~= nil and icon ~= "" then
@@ -228,7 +247,7 @@ local TAGS = {
 }
 
 local TAGS_VALUE_DESCENDING = {}
-for k,v in pairs(TAGS)do
+for k, v in pairs(TAGS) do
     table.insert(TAGS_VALUE_DESCENDING, {name = k, value = v})
 end
 table.sort(TAGS_VALUE_DESCENDING, function(a, b) return a.value > b.value end)
@@ -236,7 +255,7 @@ table.sort(TAGS_VALUE_DESCENDING, function(a, b) return a.value > b.value end)
 local function OnTagsMaskChange(inst)
     local mask = inst.interior_tags_mask:value()
     local tags = {}
-    for _,v in ipairs(TAGS_VALUE_DESCENDING)do
+    for _, v in ipairs(TAGS_VALUE_DESCENDING) do
         if mask >= v.value then
             mask = mask % v.value
             tags[v.name] = true
@@ -253,26 +272,26 @@ end
 
 local function OnTagsChange(inst)
     local sum = 0
-    for k in pairs(inst.interior_tags)do
+    for k in pairs(inst.interior_tags) do
         sum = sum + TAGS[k]
     end
     inst.interior_tags_mask:set(sum)
 end
 
 local function AddInteriorTags(inst, ...)
-    for _,v in ipairs({...})do
-        v = string.upper(v)
-        if not TAGS[v] then
-            print("WARNING: Invalid interior tag: "..v)
+    for _, tag in ipairs({...}) do
+        tag = string.upper(tag)
+        if not TAGS[tag] then
+            print("WARNING: Invalid interior tag: "..tag)
         else
-            inst.interior_tags[v] = true
+            inst.interior_tags[tag] = true
         end
     end
     OnTagsChange(inst)
 end
 
 local function RemoveInteriorTags(inst, ...)
-    for _,v in ipairs({...})do
+    for _, v in ipairs({...}) do
         v = string.upper(v)
         inst.interior_tags[v] = nil
     end
@@ -290,9 +309,9 @@ local function AttachMinimapOverride(inst)
 end
 
 local function OnSave(inst, data)
-    data.width = inst.width
+    data.width = inst:GetWidth()
+    data.depth = inst:GetDepth()
     data.height = inst.height
-    data.depth = inst.depth
     data.walltexture = inst.walltexture
     data.floortexture = inst.floortexture
     data.interiorID = inst.interiorID
@@ -312,36 +331,6 @@ local function OnLoad(inst, data)
     end
 end
 
-local function UpdateState(inst)
-    if ThePlayer and ThePlayer:IsNear(inst, 64) then
-        for k,v in pairs(inst.fx) do
-            if k.OnThePlayerNear then
-                k:OnThePlayerNear()
-            end
-        end
-    else
-        for k,v in pairs(inst.fx) do
-            if k.OnThePlayerFar then
-                k:OnThePlayerFar()
-            end
-        end
-    end
-end
-
-local function StartUpdateState(inst)
-    if inst.updatefxtask == nil then
-        inst.updatefxtask = inst:DoPeriodicTask(FRAMES, UpdateState)
-    end
-end
-
-local function StopUpdateState(inst)
-    UpdateState(inst)
-    if inst.updatefxtask then
-        inst.updatefxtask:Cancel()
-        inst.updatefxtask = nil
-    end
-end
-
 local function fn()
     local inst = CreateEntity()
 
@@ -358,18 +347,18 @@ local function fn()
 
     inst.fx = {}
 
+    inst._width = net_byte(inst.GUID, "interiorworkblank.width", "sizedirty")
+    inst._width:set_local(TUNING.ROOM_TINY_WIDTH)
+    inst._depth = net_byte(inst.GUID, "interiorworkblank.depth", "sizedirty")
+    inst._depth:set_local(TUNING.ROOM_TINY_DEPTH)
+    inst.height = 5
+
+    inst.GetWidth = GetWidth
+    inst.GetDepth = GetDepth
+    inst.GetSize = GetSize
+    inst.SetSize = SetSize
+
     inst.cc_index = net_byte(inst.GUID, "cc_index", "cc_index")
-    inst.size_net = {
-        width = net_byte(inst.GUID, "size.width", "sizedirty"),
-        depth = net_byte(inst.GUID, "size.depth", "sizedirty"),
-        set = function(self, w, d)
-            self.width:set(w)
-            self.depth:set(d)
-        end,
-        value = function(self)
-            return self.width:value(), self.depth:value()
-        end,
-    }
     inst.interior_tags = {}
     inst.interior_tags_mask = net_ushortint(inst.GUID, "interior_tags_mask", "interior_tags_mask")
 
@@ -377,7 +366,6 @@ local function fn()
     inst.minimap_coord_x = net_shortint(inst.GUID, "minimap_coord_x", "minimap_coord")
     inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
 
-    inst.GetSize = GetSize
     inst.GetSearchRadius = GetSearchRadius
     inst.GetDoorById = GetDoorById
     inst.GetDoorToExterior = GetDoorToExterior
@@ -385,15 +373,9 @@ local function fn()
     inst.HasInteriorMinimap = HasInteriorMinimap
     inst.HasInteriorTag = HasInteriorTag
 
-    TheWorld.components.interiorspawner:AddInteriorCenter(inst)
     TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
 
     inst:AddComponent("interiorpathfinder")
-
-    if not TheNet:IsDedicated() then
-        inst.OnEntitySleep = StopUpdateState
-        inst.OnEntityWake = StartUpdateState
-    end
 
     inst.entity:SetPristine()
 
@@ -403,18 +385,13 @@ local function fn()
         return inst
     end
 
-    inst.width = TUNING.ROOM_TINY_WIDTH
-    inst.height = 5
-    inst.depth = TUNING.ROOM_TINY_DEPTH
     inst.SetUp = SetUp
     inst.CollectMinimapData = CollectMinimapData
 
     inst.walltexture = nil
     inst.floortexture = nil
 
-    inst.fx = {}
-
-    inst:ListenForEvent("onremove", Clear)
+    inst:ListenForEvent("onremove", OnRemove)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

@@ -23,13 +23,12 @@ local prefabs =
 }
 
 local function common(bank, build, foodtype)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
 
     inst.AnimState:SetBank(bank)
     inst.AnimState:SetBuild(build)
@@ -47,7 +46,7 @@ local function common(bank, build, foodtype)
     inst.components.edible.foodtype = foodtype
 
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
     inst:AddComponent("tradable")
     inst:AddComponent("inspectable")
@@ -58,11 +57,12 @@ local function common(bank, build, foodtype)
     inst:AddComponent("inventoryitem")
 
     inst:AddComponent("perishable")
-	inst.components.perishable:SetPerishTime(TUNING.PERISH_SUPERSLOW)
-	inst.components.perishable:StartPerishing()
-	inst.components.perishable.onperishreplacement = "spoiled_food"
+    inst.components.perishable:SetPerishTime(TUNING.PERISH_SUPERSLOW)
+    inst.components.perishable:StartPerishing()
+    inst.components.perishable.onperishreplacement = "spoiled_food"
 
     MakeHauntableLaunchAndPerish(inst)
+    MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
 
     return inst
 end
@@ -102,7 +102,7 @@ local function jellybug_cooked()
     end
 
     inst.components.edible.foodstate = "COOKED"
-	inst.components.edible.healthvalue = TUNING.HEALING_TINY
+    inst.components.edible.healthvalue = TUNING.HEALING_TINY
     inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
     inst.components.edible.sanityvalue = -TUNING.SANITY_TINY
     inst.components.perishable:SetPerishTime(TUNING.PERISH_MED)

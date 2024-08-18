@@ -81,7 +81,7 @@ function Grogginess.OnEquipChange(inst, data)
     if hotitems then
         if data and data.item then
             name = nil
-            for eslot, item in ipairs(hotitems)do
+            for eslot, item in ipairs(hotitems) do
                 if item == data.item then
                     name = item.name
                     break

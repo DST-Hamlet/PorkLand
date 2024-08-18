@@ -204,18 +204,23 @@ function Cityalarms:ReadyGuard(city)
     end)
 end
 
-function Cityalarms:isThreat(target)
-    for _, city in ipairs(self.cities) do
-        for _, threat in ipairs(city.threats) do
-            if target == threat then
-                return true
-            end
-        end
-    end
-    return false
-end
+-- function Cityalarms:isThreat(target)
+--     for _, city in ipairs(self.cities) do
+--         for _, threat in ipairs(city.threats) do
+--             if target == threat then
+--                 return true
+--             end
+--         end
+--     end
+--     return false
+-- end
 
-function Cityalarms:ChangeStatus(city, alarmed, threat, ignore_royal_status)
+-- Modified from ChangeStatus, ignore_royal_status is currently unused
+function Cityalarms:TriggerAlarm(city, threat, ignore_royal_status)
+    -- threat can be interiorspawner's destroyer which doesn't have Transform
+    if not (threat:IsValid() and threat.Transform) then
+        return
+    end
 
     -- print("&&&&&&&&&&&&&&&&&&&&", threat.prefab)
 
@@ -225,7 +230,7 @@ function Cityalarms:ChangeStatus(city, alarmed, threat, ignore_royal_status)
         end
     end
 
-    if alarmed and threat:IsValid() and (not threat:HasTag("pigroyalty") or ignore_royal_status) then
+    if not threat:HasTag("pigroyalty") or ignore_royal_status then
         local x, y, z = threat.Transform:GetWorldPosition()
 
         local range = PIG_SIGHT_RANGE
@@ -277,8 +282,8 @@ function Cityalarms:AddCity(idx)
     -- self.cities[idx].task = self.inst:DoTaskInTime(self.cities[idx].guard_ready_time, function() self:ReadyGuard(idx) end)
 end
 
-function Cityalarms:OnUpdate(dt)
-end
+-- function Cityalarms:OnUpdate(dt)
+-- end
 
 function Cityalarms:LongUpdate(dt)
     for c, city in ipairs(self.cities) do
@@ -290,7 +295,7 @@ function Cityalarms:LongUpdate(dt)
             self.cities[c].task:Cancel()
             self.cities[c].task = nil
         end
-        --	self.cities[c].task = self.inst:DoTaskInTime(self.cities[c].guard_ready_time, function() self:ReadyGuard(c) end)
+        -- self.cities[c].task = self.inst:DoTaskInTime(self.cities[c].guard_ready_time, function() self:ReadyGuard(c) end)
     end
 end
 

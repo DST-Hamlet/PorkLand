@@ -262,7 +262,7 @@ local function BuildMaze(inst, exterior_door_def)
 
         -- fail if this room of the maze is already set up.
         if not failed then
-            for _, room_to_check in pairs(rooms)do
+            for _, room_to_check in pairs(rooms) do
                 if room_to_check.x == room_connecting_to.x + dir[dir_choice].x
                     and room_to_check.y == room_connecting_to.y + dir[dir_choice].y then
                     failed = true

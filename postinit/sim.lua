@@ -35,7 +35,7 @@ Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold)
         if center then
             local sum = 0
             local pos = center:GetPosition()
-            for _,v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"INLIMBO"}))do
+            for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"INLIMBO"})) do
                 if v.Light and v.Light:IsEnabled() then
                     local light = GetLight(v.Light, math.sqrt(v:GetPosition():DistSq(Point(x, y, z))))
                     sum = sum + light

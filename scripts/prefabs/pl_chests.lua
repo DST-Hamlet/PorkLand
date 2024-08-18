@@ -2,15 +2,15 @@ require("prefabutil")
 
 local assets_ant =
 {
-	Asset("ANIM", "anim/ant_chest.zip"),
-	Asset("ANIM", "anim/ant_chest_honey_build.zip"),
-	Asset("ANIM", "anim/ant_chest_nectar_build.zip"),
+    Asset("ANIM", "anim/ant_chest.zip"),
+    Asset("ANIM", "anim/ant_chest_honey_build.zip"),
+    Asset("ANIM", "anim/ant_chest_nectar_build.zip"),
     Asset("ANIM", "anim/ui_chest_3x3.zip"),
 }
 
 local prefabs_ant =
 {
-	"collapse_small",
+    "collapse_small",
 }
 
 local assets_cork =
@@ -212,16 +212,16 @@ local function RefreshAntChestBuild(inst)
         end
     end
 
-	if has_honey then
-		inst.AnimState:SetBuild("ant_chest_honey_build")
-		inst.MiniMapEntity:SetIcon("ant_chest_honey.tex")
-	elseif has_nectar then
-		inst.AnimState:SetBuild("ant_chest_nectar_build")
-		inst.MiniMapEntity:SetIcon("ant_chest_nectar.tex")
-	else
-		inst.AnimState:SetBuild("ant_chest")
-		inst.MiniMapEntity:SetIcon("ant_chest.tex")
-	end
+    if has_honey then
+        inst.AnimState:SetBuild("ant_chest_honey_build")
+        inst.MiniMapEntity:SetIcon("ant_chest_honey.tex")
+    elseif has_nectar then
+        inst.AnimState:SetBuild("ant_chest_nectar_build")
+        inst.MiniMapEntity:SetIcon("ant_chest_nectar.tex")
+    else
+        inst.AnimState:SetBuild("ant_chest")
+        inst.MiniMapEntity:SetIcon("ant_chest.tex")
+    end
 end
 
 local function ant_perish_rate_multiplier(inst, item)
@@ -282,7 +282,7 @@ local function roottrunk_fn()
     inst.AnimState:SetBuild("treasure_chest_roottrunk")
     inst.AnimState:PlayAnimation("closed")
 
-	inst:AddComponent("container_proxy")
+    inst:AddComponent("container_proxy")
 
     inst.entity:SetPristine()
 
@@ -292,8 +292,8 @@ local function roottrunk_fn()
 
     inst:AddComponent("inspectable")
 
-	inst.components.container_proxy:SetOnOpenFn(OnOpen)
-	inst.components.container_proxy:SetOnCloseFn(OnClose)
+    inst.components.container_proxy:SetOnOpenFn(OnOpen)
+    inst.components.container_proxy:SetOnCloseFn(OnClose)
 
     inst:AddComponent("lootdropper")
 
@@ -317,11 +317,11 @@ local function roottrunk_fn()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
-	inst.OnLoadPostPass = AttachRootContainer
+    inst.OnLoadPostPass = AttachRootContainer
 
-	if not POPULATING then
-		AttachRootContainer(inst)
-	end
+    if not POPULATING then
+        AttachRootContainer(inst)
+    end
 
     return inst
 end

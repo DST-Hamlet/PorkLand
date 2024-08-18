@@ -11,7 +11,7 @@ function Workable:Destroy(destroyer, ...)
         and self.inst.components.citypossession.enabled
         and self.inst.components.citypossession.cityID then
 
-        TheWorld.components.cityalarms:ChangeStatus(self.inst.components.citypossession.cityID, true, destroyer)
+        TheWorld.components.cityalarms:TriggerAlarm(self.inst.components.citypossession.cityID, destroyer)
     end
 
     return unpack(ret)

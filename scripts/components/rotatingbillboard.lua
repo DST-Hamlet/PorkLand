@@ -31,7 +31,7 @@ local function CanMouseThrough(inst)
         local mask = inst.components.rotatingbillboard ~= nil
                  and inst.components.rotatingbillboard:GetMask()
         if mask and mask:IsValid() then
-            for i,v in ipairs(TheInput.entitiesundermouse) do
+            for i, v in ipairs(TheInput.entitiesundermouse) do
                 if v == mask then
                     return false
                 end

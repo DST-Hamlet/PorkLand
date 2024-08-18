@@ -19,7 +19,7 @@ function Inventory:Equip(item, ...)
 end
 
 function Inventory:HasPoisonBlockerEquip()
-    for k,v in pairs (self.equipslots) do
+    for k, v in pairs (self.equipslots) do
         if v.components.equippable ~= nil and v.components.equippable:IsPoisonBlocker() then
             return true
         end
@@ -27,7 +27,7 @@ function Inventory:HasPoisonBlockerEquip()
 end
 
 function Inventory:HasPoisonGasBlockerEquip()
-    for k,v in pairs (self.equipslots) do
+    for k, v in pairs (self.equipslots) do
         if v.components.equippable ~= nil and v.components.equippable:IsPoisonGasBlocker() then
             return true
         end

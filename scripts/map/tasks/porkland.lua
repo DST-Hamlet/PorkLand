@@ -270,7 +270,7 @@ AddTask("Land_Divide_1", {
 })
 
 --[[
-for i=1,49 do
+for i=1, 49 do
     AddTask("Land_Divide_1_"..i, {
         locks = {
         LOCKS.ISLAND_2,

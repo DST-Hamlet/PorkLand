@@ -15,7 +15,7 @@ function InventoryBar:GetInventoryLists(same_container_only, ...)
         end
         local containers = self.owner.HUD:GetOpenContainerWidgets()
         if containers then
-            for k,v in pairs(containers) do
+            for k, v in pairs(containers) do
                 if v and v ~= firstcontainer then
                     table.insert(lists, v.inv)
                     if v.boatEquip then

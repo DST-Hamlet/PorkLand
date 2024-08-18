@@ -310,30 +310,18 @@ local function ReplaceStockCondition(inst)
     end
 
     local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH / 2, {"shop_pedestal"})
-    if #ents == 0 then
-        return false
-    end
-
-    local changestock = nil
-
+    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH / 2, {"shop_pedestal"}, {"justsellonce"})
     for _, ent in ipairs(ents) do
-        if ent.imagename and ent.imagename == "" and not ent:HasTag("justsellonce") and
-            (not ent.costimagename or ent.costimagename ~= "cost-nil") then
-            changestock = ent
-            break
+        if ent.components.shopped and ent.components.shopped:GetCost() and not ent.components.shopped:GetItemToSell() then
+            inst.changestock = ent
+            return true
         end
     end
-    if not changestock then
-        return false
-    end
 
-    inst.changestock = changestock
-    return true
+    return false
 end
 
 local function ExtinguishfireAction(inst)
-
     if not inst:HasTag("guard") then
         return false
     end
@@ -341,20 +329,15 @@ local function ExtinguishfireAction(inst)
     -- find fire
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH / 2, {"campfire"})
-    if #ents == 0 then
-        return false
-    end
-
     for _, ent in ipairs(ents) do
         if ent.components.burnable and ent.components.burnable:IsBurning() then
-            local pt = inst:GetPosition()
-            local tiletype = TheWorld.Map:GetTileAtPoint(pt)
-
+            local tiletype = TheWorld.Map:GetTileAtPoint(x, y, z)
             if tiletype == WORLD_TILES.SUBURB or tiletype == WORLD_TILES.FOUNDATION or tiletype == WORLD_TILES.COBBLEROAD or tiletype == WORLD_TILES.LAWN or tiletype == WORLD_TILES.FIELDS then
                 return BufferedAction(inst, ent, ACTIONS.MANUALEXTINGUISH)
             end
         end
     end
+    return false
 end
 
 local function ReplenishStockAction(inst)
@@ -444,7 +427,7 @@ function CityPigBrain:OnStart()
                 DoAction(self.inst, FindFoodAction )),
 
             -- after hours shop pig wants you to leave
-            IfNode(function() return (self.inst:HasTag("shopkeep") or self.inst:HasTag("pigqueen")) and self.inst:GetIsInInterior() end, "shopkeeper closing",
+            IfNode(function() return (self.inst:HasTag("shopkeep") or self.inst:HasTag("pigqueen")) and self.inst:GetIsInInterior() and TheWorld.state.isnight end, "shopkeeper closing",
                 Wander(self.inst, GetNoLeaderHomePos, MAX_WANDER_DIST)),
 
             IfNode(function() return not self.inst:HasTag("guard") and not self.inst:HasTag("shopkeep") and not TheWorld.state.isfiesta end, "gohome",
@@ -492,7 +475,7 @@ function CityPigBrain:OnStart()
                 RunAway(self.inst, GoToIdleStateWrap(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end), RUN_AWAY_DIST, STOP_RUN_AWAY_DIST )--[[, "alarmed"]]),
 
             WhileNode(function() return ReplaceStockCondition(self.inst) end, "replenish",
-                DoAction(self.inst, ReplenishStockAction,"restock", true)),
+                DoAction(self.inst, ReplenishStockAction, "restock", true)),
 
             -- For the shop pig when they're at their desk.
             WhileNode(function() return self.inst:HasTag("atdesk") end, "AtDesk",

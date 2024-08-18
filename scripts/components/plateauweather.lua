@@ -558,7 +558,7 @@ return Class(function(self, inst)
         _maxlightningdelay = data.max
     end or nil
 
-    local LIGHTNINGSTRIKE_CANT_TAGS = {"playerghost", "INLIMBO"}
+    local LIGHTNINGSTRIKE_CANT_TAGS = {"playerghost", "INLIMBO", "thunderbird"}
     local LIGHTNINGSTRIKE_ONEOF_TAGS = {"lightningrod", "lightningtarget", "lightningblocker"}
     local LIGHTNINGSTRIKE_SEARCH_RANGE = 40
     local OnSendLightningStrike = _ismastersim and function(src, pos)
@@ -665,6 +665,15 @@ return Class(function(self, inst)
         ForceResync(_moisture)
         ForceResync(_wetness)
     end or nil
+
+    --------------------------------------------------------------------------
+    --[[ Public functions ]]
+    --------------------------------------------------------------------------
+
+    if _ismastersim then function self:GetMoistureRate()
+        local preciprate = CalculatePrecipitationRate()
+        return CalculateWetnessRate(_temperature, preciprate)
+    end end
 
     --------------------------------------------------------------------------
     --[[ Initialization ]]

@@ -19,7 +19,7 @@ local states = {
     State{
         name = "usedoor_pre",
         tags = { "doing", "busy", "canrotate" },
-		server_states = { "usedoor_pre"},
+        server_states = { "usedoor_pre"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -31,7 +31,7 @@ local states = {
         end,
 
         onupdate = function(inst)
-			if inst.sg:ServerStateMatches() then
+            if inst.sg:ServerStateMatches() then
                 if inst.entity:FlattenMovementPrediction() then
                     inst.sg:GoToState("idle", "noanim")
                 end

@@ -7,7 +7,7 @@ local function set_entity(entities, prop, x, z)
 end
 
 local function export_spawners_to_entites(entities, borders)
-    for _, item in ipairs(borders)do
+    for _, item in ipairs(borders) do
         set_entity(entities, item.prefab, item.x, item.z)
     end
 end
@@ -24,7 +24,7 @@ local function test_tile(world_sim, valid_tile_types, x,y)
     -- print("TILE", original_tile_type)
 
     local valid = false
-    for _, testtype in ipairs(valid_tile_types)do
+    for _, testtype in ipairs(valid_tile_types) do
         --  print("testing",testtype)
         if original_tile_type == testtype then
             valid = true

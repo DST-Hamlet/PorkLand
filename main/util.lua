@@ -398,3 +398,26 @@ function DoSectorAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
 
     return DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
 end
+
+local SpeciaTileDrop =
+{
+    [WORLD_TILES.PIGRUINS] = "cutstone",
+    [WORLD_TILES.PIGRUINS_NOCANOPY] = "cutstone",
+}
+
+local _HandleDugGround = HandleDugGround
+function HandleDugGround(dug_ground, x, y, z, ...)
+    if SpeciaTileDrop[dug_ground] then
+        local loot = SpawnPrefab(SpeciaTileDrop[dug_ground])
+        if loot.components.inventoryitem ~= nil then
+			loot.components.inventoryitem:InheritWorldWetnessAtXZ(x, z)
+        end
+        loot.Transform:SetPosition(x, y, z)
+        if loot.Physics ~= nil then
+            local angle = math.random() * TWOPI
+            loot.Physics:SetVel(2 * math.cos(angle), 10, 2 * math.sin(angle))
+        end
+    else
+        return _HandleDugGround(dug_ground, x, y, z, ...)
+    end
+end

@@ -39,11 +39,13 @@ local component_posts = {
     "inventoryitem_replica",
     "inventoryitem",
     "inventoryitemmoisture",
+    "kramped",
     "locomotor",
     "lootdropper",
     "moisture",
     "oceancolor",
     "oldager",
+    "pickable",
     "playeractionpicker",
     "playercontroller",
     "playervision",
@@ -60,6 +62,7 @@ local component_posts = {
     "sleeper",
     "strafer",
     "teamleader",
+    "undertile",
     "waterproofer",
     "wavemanager",
     "wisecracker",
@@ -79,12 +82,14 @@ local prefab_posts = {
     "pocketdimensioncontainer_defs",
     "poop",
     "torch",
+    "waterprojectiles",
     "woodie",
     "world_network",
     "world",
     "shard_network",
     "statueruins",
     "walls",
+    "waterballoon",
     "wormwood",
     "wortox",
 }
@@ -131,6 +136,7 @@ local widget_posts = {
 
 local module_posts = {
     ["components/map"] = "map",
+    ["shadeeffects"] = "shadeeffects",
 }
 
 local _require = require
@@ -160,6 +166,7 @@ modimport("postinit/pathfinder")
 modimport("postinit/groundcreep")
 modimport("postinit/groundcreepentity")
 modimport("postinit/soundemitter")
+modimport("postinit/preparedfoods")
 
 
 for _, file_name in ipairs(behaviour_posts) do

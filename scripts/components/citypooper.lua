@@ -23,7 +23,7 @@ function CityPooper:TestForPoop(force)
                 poop.cityID = city_id
                 poop_manager:OnPoop(city_id, poop)
         else
-            if TheWorld.state.isday and math.random() <= 0.5 then
+            if TheWorld.state.isday and math.random() <= 0.5 and not self.inst:HasTag("shopkeep") then
                 local poop = SpawnPrefab("poop")
                 poop.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
                 poop.cityID = city_id

@@ -107,7 +107,11 @@ local function spawndesk(inst, spawndesk)
 
         inst.desk = SpawnPrefab("pigman_shopkeeper_desk")
         inst.desk.Transform:SetPosition(desklocation.x, desklocation.y, desklocation.z)
-        inst:AddComponent("homeseeker")
+        inst.desk:AddComponent("citypossession")
+        inst.desk.components.citypossession:SetCity(inst.components.citypossession.cityID)
+        if not inst.components.homeseeker then
+            inst:AddComponent("homeseeker")
+        end
         inst.components.homeseeker:SetHome(inst.desk)
     else
         if inst.desk then
@@ -241,7 +245,7 @@ local function ShouldAcceptItem(inst, item)
         end
 
         if item.prefab == "purplegem" and (inst.prefab == "pigman_banker" or inst.prefab == "pigman_banker_shopkeep") then
-            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_PURPLEGEM"))
+            inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_PURPLEGEM"))
             return false
         end
 
@@ -264,9 +268,9 @@ local function ShouldAcceptItem(inst, item)
             local delay = econ:GetDelay(econprefab, city, inst)
             if delay > 0 then
                 if delay == 1 then
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_GIFT_DELAY_TOMORROW"))
                 else
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_GIFT_DELAY"), delay)
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_GIFT_DELAY"), delay)
                 end
                 return false
             else
@@ -275,16 +279,16 @@ local function ShouldAcceptItem(inst, item)
         else
             if item:HasTag("relic") then
                 if item.prefab == "relic_4" or item.prefab == "relic_5" then
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_PRICELESS_GIFT"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_PRICELESS_GIFT"))
                 else
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_RELIC_GIFT"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_RELIC_GIFT"))
                 end
             else
                 if item.prefab == "trinket_giftshop_1" or item.prefab == "trinket_giftshop_3" and inst:HasTag("city1") then
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_TRINKET_GIFT"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_TRINKET_GIFT"))
                 else
                     -- HUGO
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_REFUSE_GIFT"), {line = desc})
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_REFUSE_GIFT"), {line = desc})
                 end
             end
             return false
@@ -310,9 +314,9 @@ local function OnGetBribe(inst, item)
             end
 
             inst.bribe_count = 0
-            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_FORGIVE_PLAYER"))
+            inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_FORGIVE_PLAYER"))
         else
-            inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_NOT_ENOUGH"))
+            inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_NOT_ENOUGH"))
         end
     end
 end
@@ -373,7 +377,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             if trinket then
                 if giver.components.inventory then
                     inst:AddTag("recieved_trinket")
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_GIVE_TRINKET_REWARD"))
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_GIVE_TRINKET_REWARD"))
 
                     local reward = {
                         "kabobs",
@@ -395,7 +399,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             end
             if reward then
                 if giver.components.inventory then
-                    inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_GIVE_REWARD"), 1, {line = desc})
+                    inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_GIVE_REWARD"), 1, {line = desc})
 
                     for i = 1, qty do
                         local rewarditem = SpawnPrefab(reward)
@@ -403,12 +407,12 @@ local function OnGetItemFromPlayer(inst, giver, item)
                     end
                 end
             else
-                inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_TAKE_GIFT"), 1, {line = desc})
+                inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_TAKE_GIFT"), 1, {line = desc})
             end
         end
         if item:HasTag("relic") and (inst.prefab == "pigman_collector_shopkeep" or inst.prefab == "pigman_collector") then
             if giver.components.inventory then
-                inst:SayLine(GetSpeechType(inst, "CITY_PIG_TALK_GIVE_RELIC_REWARD"))
+                inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_GIVE_RELIC_REWARD"))
                 local rewarditem = SpawnPrefab("oinc10")
                 giver.components.inventory:GiveItem(rewarditem, nil, inst:GetPosition())
             end
@@ -509,14 +513,14 @@ end
 
 local function spawn_guard_tasks(inst, attacker)
     if not inst.task_guard1 then
-        inst.task_guard1 = inst:DoTaskInTime(math.random(1) + 1, function()
+        inst.task_guard1 = inst:DoTaskInTime(2, function()
             call_guards(inst, attacker)
             inst.task_guard1:Cancel()
             inst.task_guard1 = nil
         end)
     end
-    if not inst.task_guard1 then
-        inst.task_guard2 = inst:DoTaskInTime(math.random(1) + 1.5, function()
+    if not inst.task_guard2 then
+        inst.task_guard2 = inst:DoTaskInTime(2.5, function()
             call_guards(inst, attacker)
             inst.task_guard2:Cancel()
             inst.task_guard2 = nil
@@ -569,7 +573,7 @@ local function NormalRetargetFn(inst)
                 and not guy.components.health:IsDead() and inst.components.combat:CanTarget(guy)
                 and not (inst.components.combat.target and inst.components.combat.target:HasTag("player")) then
 
-                inst:SayLine(GetSpeechType(inst, "CITY_PIG_GUARD_TALK_ANGRY_PLAYER"))
+                inst:SayLine(inst:GetSpeechType("CITY_PIG_GUARD_TALK_ANGRY_PLAYER"))
                 -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER) )
             end
 
@@ -678,15 +682,6 @@ local function OnSave(inst, data)
         data.desk = inst.desk.GUID
     end
 
-    if inst.torch then
-        table.insert(data.children, inst.torch.GUID)
-        data.torch = inst.torch.GUID
-    end
-    if inst.axe then
-        table.insert(data.children, inst.axe.GUID)
-        data.axe = inst.axe.GUID
-    end
-
     if inst:HasTag("atdesk") then
         data.atdesk = true
     end
@@ -767,7 +762,7 @@ local function OnLoadPostPass(inst, ents, data)
     end
 end
 
-local function MakeCityPigman(name, build, sex, tags, common_postinit, master_postinit, econprefab)
+local function MakeCityPigman(name, build, sex, tags, common_postinit, master_postinit, econprefab, name_override)
     local function fn()
         local inst = CreateEntity()
 
@@ -840,8 +835,17 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         end
 
         inst:AddComponent("named")
-        inst.components.named.possiblenames = JoinArrays(STRINGS.CITYPIGNAMES["UNISEX"], STRINGS.CITYPIGNAMES[sex])
-        inst.components.named:PickNewName()
+        if name_override then
+           if type(name_override) == "table" then
+                inst.components.named.possiblenames = shallowcopy(name_override)
+                inst.components.named:PickNewName()
+           else
+                inst.components.named:SetName(name_override)
+            end
+        else
+            inst.components.named.possiblenames = JoinArrays(STRINGS.CITYPIGNAMES["UNISEX"], STRINGS.CITYPIGNAMES[sex])
+            inst.components.named:PickNewName()
+        end
 
         inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
         inst.components.locomotor.runspeed = TUNING.PIG_RUN_SPEED -- 5
@@ -1025,7 +1029,7 @@ local function OnIsDusk(inst, isdusk)
         return
     end
 
-    inst:SayLine(GetSpeechType(inst, "CITY_PIG_GUARD_LIGHT_TORCH"))
+    inst:SayLine(inst:GetSpeechType("CITY_PIG_GUARD_LIGHT_TORCH"))
     inst:DoTaskInTime(0.5 + (math.random() * 1), function()
         local torch = inst.components.inventory:FindItem(function(item)
             if item.prefab == "torch" then
@@ -1073,7 +1077,7 @@ local function OnDeath_ShopKeep(inst, data)
 end
 
 -- This is different from Don't Starve Hamlet, we use thing like "CITY_PIG_SHOPKEEPER_CLOSING" instead of STRINGS.CITY_PIG_SHOPKEEPER_CLOSING[0]
-local function shopkeeper_speech(inst, speech)
+local function ShopkeeperSpeech(inst, speech)
     if inst:IsValid() and not inst:IsAsleep() and not inst.components.combat.target and not inst:IsInLimbo() then
         inst:SayLine(speech)
     end
@@ -1082,7 +1086,7 @@ end
 local function CloseShop(inst)
     if inst:IsValid() and not inst:IsAsleep() and not inst.components.combat.target and not inst:IsInLimbo() then
         inst.sg:GoToState("idle")
-        shopkeeper_speech(inst, "CITY_PIG_SHOPKEEPER_CLOSING")
+        inst:ShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
     end
 end
 
@@ -1095,19 +1099,23 @@ local function shopkeeper_master_postinit(inst)
     inst.components.sleeper.onlysleepsfromitems = true
 
     inst.separatedesk = separatedesk
-    inst.shopkeeper_speech = shopkeeper_speech
+    inst.ShopkeeperSpeech = ShopkeeperSpeech
 
+    -- TODO: Make it greet every new customer
     -- TheWorld:ListenForEvent("enterroom", function(data)
-    --     shopkeeper_speech(inst, getSpeechType(inst, "CITY_PIG_SHOPKEEPER_GREETING"))
+    --     inst:ShopkeeperSpeech(inst:GetSpeechType("CITY_PIG_SHOPKEEPER_GREETING"))
     -- end)
+    inst:ListenForEvent("entitywake", function()
+        inst:ShopkeeperSpeech(inst:GetSpeechType("CITY_PIG_SHOPKEEPER_GREETING"))
+    end)
 
     inst:ListenForEvent("death", OnDeath_ShopKeep)
 
     inst:WatchWorldState("isnight", CloseShop)
 end
 
-local function MakeShopKeeper(name, build, sex, tags, econprefab)
-    return MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit, econprefab)
+local function MakeShopKeeper(name, build, sex, tags, econprefab, name_override)
+    return MakeCityPigman(name, build, sex, tags, shopkeeper_common_postinit, shopkeeper_master_postinit, econprefab, name_override)
 end
 
 --[[ Pig Mechanic ]]--
@@ -1129,21 +1137,6 @@ end
 
 local function QueenCommonPostinit(inst)
     MakeCharacterPhysics(inst, 50, 0.75)
-end
-
-local function QueenMasterPostinit(inst)
-    inst.components.named.possiblenames = STRINGS.QUEENPIGNAMES
-    inst.components.named:PickNewName()
-end
-
---[[ Pig Mayor ]]--
-
-local function MayorMasterPostinit(inst)
-    inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
-end
-
-local function MayorShopkeeperMasterPostinit(inst)
-    inst.components.named:SetName(STRINGS.NAMES.PIGMAN_MAYOR)
 end
 
 local NOHAT_TAGS = {"emote_nohat"}
@@ -1175,12 +1168,12 @@ return MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
        MakeShopKeeper("pigman_collector_shopkeep",  "pig_collector",  MALE,   nil,        "pigman_collector"),
        MakeShopKeeper("pigman_professor_shopkeep",  "pig_professor",  MALE,   nil,        "pigman_professor"),
        MakeShopKeeper("pigman_mechanic_shopkeep",   "pig_mechanic",   MALE,   nil,        "pigman_mechanic"),
+       MakeShopKeeper("pigman_mayor_shopkeep",      "pig_mayor",      MALE,   nil,        "pigman_mayor",   STRINGS.NAMES.PIGMAN_MAYOR),
 
        MakeCityPigman("pigman_royalguard", "pig_royalguard", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
        MakeCityPigman("pigman_royalguard_2", "pig_royalguard_2", MALE, GUARD_TAGS, nil, pig_guard_master_postinit),
 
        MakeCityPigman("pigman_mechanic", "pig_mechanic", MALE, nil, nil, MechanicMasterPostinit),
 
-       MakeCityPigman("pigman_mayor", "pig_mayor", MALE, nil, nil, MayorMasterPostinit),
-       MakeCityPigman("pigman_mayor_shopkeep", "pig_mayor", MALE, nil, shopkeeper_common_postinit, MayorShopkeeperMasterPostinit, "pigman_mayor"),
-       MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, QueenMasterPostinit)
+       MakeCityPigman("pigman_mayor", "pig_mayor", MALE, nil, nil, nil, nil, STRINGS.NAMES.PIGMAN_MAYOR),
+       MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, nil, nil, STRINGS.QUEENPIGNAMES)
