@@ -802,7 +802,9 @@ function InteriorSpawner:SpawnInterior(interior, enqueue_update_layout)
                 end
 
                 if interior.cityID then
-                    object:AddComponent("citypossession")
+                    if not object.components.citypossession then
+                        object:AddComponent("citypossession")
+                    end
                     object.components.citypossession:SetCity(interior.cityID)
                 end
 
