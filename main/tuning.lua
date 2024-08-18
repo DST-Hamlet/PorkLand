@@ -588,9 +588,9 @@ local tuning = {
     PIG_BANDIT_RUN_SPEED = 7,
     PIG_BANDIT_WALK_SPEED = 3,
     PIG_BANDIT_ENABLED = true,
-    PIG_BANDIT_RESPAWN_TIME = 30 * 16 * 1.5 -- 9 minutes
+    PIG_BANDIT_RESPAWN_TIME = 30 * 16 * 1.5, -- 9 minutes
 
-    NETTLE_REGROW_TIME = total_day_time*3,
+    NETTLE_REGROW_TIME = total_day_time * 3,
     NETTLE_MOISTURE_WET_THRESHOLD = 20,
     NETTLE_MOISTURE_DRY_THRESHOLD = 10,
     SPRINKLER_MAX_FUEL_TIME = total_day_time,

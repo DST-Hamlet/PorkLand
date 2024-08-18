@@ -952,11 +952,11 @@ local function make_cities(entities, topology_save, worldsim, width, height, set
                         poly = {x = poly_x, y = poly_y}
                     }
 
-                    if is_in_nested_list(node.id, topology_save.GlobalTags["City_Foundation"]) then  -- and not nodedata.suburb == true
+                    if is_in_nested_list(node, topology_save.GlobalTags["City_Foundation"]) then  -- and not nodedata.suburb == true
                         table.insert(cities[city_id].citynodes, nodedata)
-                      end
+                    end
 
-                    if is_in_nested_list(node.id, topology_save.GlobalTags["Cultivated"]) then
+                    if is_in_nested_list(node, topology_save.GlobalTags["Cultivated"]) then
                         table.insert(cities[city_id].farmnodes, nodedata)
                     end
                 end
