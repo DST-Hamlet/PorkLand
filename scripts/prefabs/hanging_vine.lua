@@ -84,6 +84,7 @@ local function fn()
     inst.DynamicShadow:SetSize(0, 0)
 
     inst:AddTag("hangingvine")
+    inst:AddTag("veggie")
 
     inst.vine = math.random() < 0.5 and "vine01" or "vine02"
     inst.AnimState:SetBuild(inst.vine .. "_build")

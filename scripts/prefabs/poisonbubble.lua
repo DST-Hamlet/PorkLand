@@ -37,6 +37,8 @@ local function common(level, loop)
         return inst
     end
 
+    inst.persists = false
+
     inst.level = level or 2
     inst.loop = loop == nil and true or loop
 
@@ -142,7 +144,7 @@ return MakeBubble("poisonbubble"),
     MakeBubble("poisonbubble_level1", 1, false),
     MakeBubble("poisonbubble_level1_loop", 1, true),
     MakeBubble("poisonbubble_level2", 2, false),
-    MakeBubble("poisonbubble_level2_loop", 2, false),
+    MakeBubble("poisonbubble_level2_loop", 2, true),
     MakeBubble("poisonbubble_level3", 3, false),
     MakeBubble("poisonbubble_level3_loop", 3, true),
     MakeBubble("poisonbubble_level4", 4, false),

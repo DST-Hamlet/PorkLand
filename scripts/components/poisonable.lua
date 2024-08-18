@@ -7,18 +7,18 @@ local function OnKilled(inst)
 end
 
 local function UpdateTile(self)
-    local was_in_gas = self._in_gas
-    local in_gas = false
+    local was_in_gastile = self._in_gastile
+    local in_gastile = false
     local x, y, z = self.inst.Transform:GetWorldPosition()
     if TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.GASJUNGLE then
-        in_gas = true
+        in_gastile = true
     end
-    if was_in_gas and not in_gas then
-        StopTakingGasDamage(self.inst)
-        self._in_gas = false
-    elseif not was_in_gas and in_gas then
-        StartTakingGasDamage(self.inst)
-        self._in_gas = true
+    if was_in_gastile and not in_gastile then
+        StopTakingGasDamage(self.inst, "gastile")
+        self._in_gastile = false
+    elseif not was_in_gastile and in_gastile then
+        StartTakingGasDamage(self.inst, "gastile")
+        self._in_gastile = true
     end
 end
 
@@ -52,7 +52,8 @@ local Poisonable = Class(function(self, inst)
 
     self.blockall = nil
 
-    self._in_gas = false
+    self._in_gastile = false
+    self.gassources = {} -- 这张表的元素可能是字符串也可能是另一张表
 
     self.inst:ListenForEvent("death", OnKilled)
     self.inst:DoPeriodicTask(1, function()
@@ -222,7 +223,11 @@ end
 
 function Poisonable:GetFXLevel()
     if not self.start_time then
-        return 0
+        if self.inst._poison_damage_task then
+            return 1
+        else
+            return 0
+        end
     else
         local elapsed_time = GetTime() - self.start_time
         local level = 1
@@ -341,6 +346,19 @@ function Poisonable:SetBlockAll(blockall)
 end
 
 function Poisonable:SpawnFX()
+    local max_loop_level = 0
+    for k, fx in pairs(self.fxchildren) do
+        if fx.loop and fx.level and fx.level > max_loop_level then
+            max_loop_level = fx.level
+        end
+    end
+
+    if self:GetFXLevel() == max_loop_level then
+        return
+    end
+
+    print("max_loop_level:",max_loop_level)
+
     self:KillFX()
 
     if not self.fxdata then
@@ -353,25 +371,26 @@ function Poisonable:SpawnFX()
 
     if self.fxdata then
         for _, data in pairs(self.fxdata) do
-            data.level = self:GetFXLevel()
+            data.level = data.level or self:GetFXLevel()
             local loop = self.loop_fx and "_loop" or ""
             local fx = SpawnPrefab(data.prefab .. "_level" .. data.level .. loop)
+            print("spawn poison bubble!",fx)
 
             if fx then
                 fx.Transform:SetScale(self.inst.Transform:GetScale())
-            if self.immune then
-                fx.AnimState:SetMultColour(183/255, 33/255, 63/255, 0.5)
-            else
-                fx.AnimState:SetMultColour(1, 1, 1, 1)
-            end
+                if self.immune then
+                    fx.AnimState:SetMultColour(183/255, 33/255, 63/255, 0.5)
+                else
+                    fx.AnimState:SetMultColour(1, 1, 1, 1)
+                end
 
-            if data.follow then
-                local follower = fx.entity:AddFollower()
-                follower:FollowSymbol(self.inst.GUID, data.follow, data.x, data.y, data.z)
-            else
-                self.inst:AddChild(fx)
-                fx.Transform:SetPosition(data.x, data.y, data.z)
-            end
+                if data.follow then
+                    local follower = fx.entity:AddFollower()
+                    follower:FollowSymbol(self.inst.GUID, data.follow, data.x, data.y, data.z)
+                else
+                    self.inst:AddChild(fx)
+                    fx.Transform:SetPosition(data.x, data.y, data.z)
+                end
                 table.insert(self.fxchildren, fx)
             end
         end
@@ -380,7 +399,9 @@ end
 
 function Poisonable:KillFX()
     for k, fx in pairs(self.fxchildren) do
-        fx:StopBubbles()
+        if fx.StopBubbles then
+            fx:StopBubbles()
+        end
         self.fxchildren[k] = nil
     end
 end
@@ -408,6 +429,7 @@ function Poisonable:OnLoad(data)
         if data.poisontimeelapsed > 0 then
             self:Poison(false, data.poisontimeelapsed)
             self.inst:DoTaskInTime(0, function(inst)
+                inst.ispoisoned = true
                 if inst.player_classified then inst.player_classified.ispoisoned:set(true) end
             end)
         end

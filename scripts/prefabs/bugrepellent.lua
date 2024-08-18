@@ -61,9 +61,7 @@ local function fn()
     inst.components.finiteuses:SetMaxUses(TUNING.BUGREPELLENT_USES)
     inst.components.finiteuses:SetUses(TUNING.BUGREPELLENT_USES)
     inst.components.finiteuses:SetOnFinished(inst.Remove)
-
-    inst:AddComponent("tool")
-    inst.components.tool:SetAction(ACTIONS.GAS, 1)
+    inst.components.finiteuses:SetConsumption(ACTIONS.GAS, 1)
 
     MakeHauntableLaunch(inst)
 

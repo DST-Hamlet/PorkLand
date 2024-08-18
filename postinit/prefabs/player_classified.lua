@@ -217,6 +217,7 @@ end
 
 AddPrefabPostInit("player_classified", function(inst)
     inst.ispoisoned = net_bool(inst.GUID, "poisonable.ispoisoned")
+    inst.isingas = net_bool(inst.GUID, "poisonable.isingas")
     inst.poisonpulse = net_bool(inst.GUID, "poisonable.poisonpulse", "poisonpulsedirty")
     inst.riderspeedmultiplier = net_float(inst.GUID, "rider.riderspeedmultiplier")
     inst.isquaking = net_bool(inst.GUID, "interiorquaker.isquaking", "isquakingdirty")
@@ -226,6 +227,7 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.instantironlord = inst.instant_ironlord or net_bool(inst.GUID, "livingartifact.instantironlord") -- just a flag for loading
 
     inst.ispoisoned:set(false)
+    inst.isingas:set(false)
     inst.riderspeedmultiplier:set(1)
     inst.isquaking:set(false)
 

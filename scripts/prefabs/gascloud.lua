@@ -13,7 +13,7 @@ local function Despawn(inst)
     -- should probably disable DynamicShadow here
     inst:ListenForEvent("animover", function()
         for _, ent in ipairs(inst.ents_in_gas) do
-            StopTakingGasDamage(ent)
+            StopTakingGasDamage(ent, inst)
         end
         inst:Remove()
     end)
@@ -37,7 +37,7 @@ local function OnUpdate(inst, dt)
     for _, ent in ipairs(inst.ents_in_gas) do
         local was_in_gas = false
 
-        for i = 1, num_old_ents do -- don't use pairs for this
+        for i = 1, num_old_ents do -- don't use ipairs for this
             if old_ents[i] == ent then
                 was_in_gas = true
                 old_ents[i] = nil
@@ -46,16 +46,14 @@ local function OnUpdate(inst, dt)
         end
 
         if not was_in_gas then
-            if ent.OnGasChange then -- gnat
-                ent:OnGasChange()
-                return
-            end
-            StartTakingGasDamage(ent)
+            StartTakingGasDamage(ent, inst)
         end
     end
 
-    for _, ent in ipairs(old_ents) do
-        StopTakingGasDamage(ent)
+    for i = 1, num_old_ents do
+        if old_ents[i] then
+            StopTakingGasDamage(old_ents[i], inst)
+        end
     end
 end
 

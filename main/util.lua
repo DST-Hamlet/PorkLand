@@ -402,36 +402,60 @@ end
 -- Putting these here because both gas cloud and gas jundle turf uses those
 local POISON_DAMAGE_INSECT = 60
 local POISON_DAMAGE_NON_INSECT = 5
-function StartTakingGasDamage(inst)
+function StartTakingGasDamage(inst, cause)
     if not inst.components.poisonable then
         return
     end
 
-    -- already in gas
+    inst.components.poisonable.gassources[cause] = true
+
     if inst._poison_damage_task then
         return
     end
 
-    inst.components.poisonable.start_time = GetTime()
+    if inst.player_classified then
+        inst.player_classified.isingas:set(true)
+        inst.isingas = true
+    end
 
     local damage = inst:HasTag("insect") and POISON_DAMAGE_INSECT or POISON_DAMAGE_NON_INSECT
     inst._poison_damage_task = inst:DoPeriodicTask(1, function()
+        if inst.components.poisonable and inst.components.poisonable.show_fx then
+            if inst.components.poisonable.show_fx then
+                inst.components.poisonable:SpawnFX()
+            end
+        end
         inst.components.health:DoDelta(-damage, nil, "gascloud")
         inst:PushEvent("poisondamage") -- screen flash
-    end)
-
-    if inst.components.poisonable.show_fx then
-        inst.components.poisonable:SpawnFX()
-    end
+        inst:PushEvent("gasdamage")
+    end, 0) -- 结尾的0代表第一次判定开始的延迟
 end
 
-function StopTakingGasDamage(inst)
+function StopTakingGasDamage(inst, cause)
+    if not inst.components.poisonable then
+        return
+    end
+
+    inst.components.poisonable.gassources[cause] = nil
+
+    local has_gassource = false
+    for k, v in pairs(inst.components.poisonable.gassources) do
+        has_gassource = true
+    end
+    if has_gassource then
+        return
+    end
+
     if inst._poison_damage_task then
         inst._poison_damage_task:Cancel()
         inst._poison_damage_task = nil
+
+        if inst.player_classified then
+            inst.player_classified.isingas:set(false)
+            inst.isingas = false
+        end
     end
 
-    -- Don't kill fx if we are still poisoned
     if not inst.components.poisonable:IsPoisoned() then
         inst.components.poisonable:DonePoisoning()
     end

@@ -32,14 +32,6 @@ local function PlayerSeenBugsDie(inst)
     end
 end
 
-local function OnGasChange(inst, onGas)
-    inst:DoTaskInTime(1, function()
-        inst.components.health:SetInvincible(false) -- health:kill is ignored by invincible :/
-        inst.components.health:Kill()
-        PlayerSeenBugsDie(inst)
-    end)
-end
-
 local FIND_LIGHT_DIST = 15
 local FIND_LIGHT_MUST_TAGS = {"lightsource"}
 local FIND_LIGHT_NO_TAGS = {"INLIMBO"}
@@ -51,27 +43,6 @@ local function FindLight(inst)
     end, FIND_LIGHT_MUST_TAGS, FIND_LIGHT_NO_TAGS)
 
     return light
-end
-
-local function OnFreeze(inst)
-    inst.components.health:SetInvincible(false)
-    inst.components.infester:Uninfest()
-end
-
-local function OnUnfreeze(inst)
-    inst.components.health:SetInvincible(true)
-end
-
-local function OnTeleported(inst)
-    inst.SoundEmitter:KillSound("move")
-
-    if inst.components.freezable:IsFrozen() then
-        inst.components.health:SetInvincible(false)
-    else
-        inst.components.health:SetInvincible(true)
-    end
-
-    inst.components.infester:Uninfest(true)
 end
 
 local function CanBuildMoundAtPoint(x, y, z)
@@ -104,6 +75,10 @@ local function TryBuildHome(inst)
     if not inst.components.timer:TimerExists("build_mount_cd") and not inst.components.homeseeker:HasHome() then
         inst:build_mound_action()
     end
+end
+
+local function gnat_redirect(inst, amount, overtime, cause, ignore_invincible, afflicter, ignore_absorb)
+    return cause ~= "poison" and cause ~=  "gascloud"
 end
 
 local brain = require("brains/gnatbrain")
@@ -158,7 +133,7 @@ local function fn()
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(1)
-    inst.components.health.invincible = true
+    inst.components.health.redirect = gnat_redirect
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "fx_puff"
@@ -198,11 +173,6 @@ local function fn()
     MakePoisonableCharacter(inst)
     MakeTinyFreezableCharacter(inst, "fx_puff")
 
-    inst:ListenForEvent("freeze", OnFreeze)
-    inst:ListenForEvent("unfreeze", OnUnfreeze)
-    inst:ListenForEvent("teleported", OnTeleported)
-
-    inst.OnGasChange = OnGasChange
     inst.FindLight = FindLight
 
     inst.build_mound_action = BuildHome

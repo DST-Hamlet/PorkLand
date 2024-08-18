@@ -43,7 +43,7 @@ if not rawget(_G, "HotReloading") then
         SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
-        GAS = Action({distance = 1.5, mount_enabled = true}),
+        GAS = Action({distance = 2.5, mount_enabled = true}), -- 适当增加了距离，以使得毒气不会毒到自己
         INFEST = Action({distance = 0.5}),
         BUILD_MOUND = Action({}),
     }

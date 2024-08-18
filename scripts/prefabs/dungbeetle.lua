@@ -85,6 +85,7 @@ local function fn()
     inst:AddTag("hasdung")
     inst:AddTag("animal")
     inst:AddTag("dungbeetle")
+    inst:AddTag("insect")
 
     inst.AnimState:SetBank("dung_beetle")
     inst.AnimState:SetBuild("dung_beetle_build")
@@ -128,6 +129,7 @@ local function fn()
     MakeHauntablePanicAndIgnite(inst)
     MakeSmallBurnableCharacter(inst, "body")
     MakeTinyFreezableCharacter(inst, "body")
+    MakePoisonableCharacter(inst, "body")
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
