@@ -211,6 +211,10 @@ PrefabFiles = {
     "lavapool",
     "meteor_impact",
     "obsidian",
+    "pigbandit",
+    "banditmap",
+    "tunacan",
+
     "nettle_plant",
     "sprinkler",
     "water_pipe",
@@ -274,6 +278,8 @@ Assets = {
     Asset("ANIM", "anim/player_actions_speargun.zip"),
     Asset("ANIM", "anim/player_mount_actions_cropdust.zip"),
     Asset("ANIM", "anim/player_mount_actions_speargun.zip"),
+    Asset("ANIM", "anim/player_actions_scroll.zip"),
+    Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),

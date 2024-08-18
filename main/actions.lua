@@ -46,7 +46,8 @@ if not rawget(_G, "HotReloading") then
         SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
-
+        GAS = Action({distance = 1.5, mount_enabled = true}),
+        PIG_BANDIT_EXIT = Action({}),
         SHOP = Action({ distance = 2.5 }),
     }
 
@@ -499,6 +500,9 @@ ACTIONS.THUNDERBIRD_CAST.fn = function(act)
     return true
 end
 
+ACTIONS.PIG_BANDIT_EXIT.fn = function(act)
+    return true
+end
 
 
 -- Patch for hackable things

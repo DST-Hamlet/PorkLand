@@ -579,6 +579,17 @@ local tuning = {
     PITHHAT_PERISHTIME = total_day_time*8,
     GASMASK_PERISHTIME = total_day_time*3,
 
+    PIG_BANDIT_DAMAGE = 33,
+    PIG_BANDIT_HEALTH = 250,
+    PIG_BANDIT_ATTACK_PERIOD = 3,
+    PIG_BANDIT_LOYALTY_MAXTIME = 2.5*total_day_time,
+    PIG_BANDIT_LOYALTY_PER_HUNGER = total_day_time/25,
+    PIG_BANDIT_MIN_POOP_PERIOD = seg_time * .5,
+    PIG_BANDIT_RUN_SPEED = 7,
+    PIG_BANDIT_WALK_SPEED = 3,
+    PIG_BANDIT_ENABLED = true,
+    PIG_BANDIT_RESPAWN_TIME = 30 * 16 * 1.5 -- 9 minutes
+
     NETTLE_REGROW_TIME = total_day_time*3,
     NETTLE_MOISTURE_WET_THRESHOLD = 20,
     NETTLE_MOISTURE_DRY_THRESHOLD = 10,

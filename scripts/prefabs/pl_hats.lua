@@ -219,6 +219,7 @@ local function MakeHat(name)
 
     local function bat_onequip(inst, owner)
         _onequip(inst, owner)
+        inst:AddTag("venting")
 
         if not owner:HasTag("player") then
             return
@@ -230,6 +231,7 @@ local function MakeHat(name)
 
     local function bat_onunequip(inst, owner)
         _onunequip(inst, owner)
+        inst:RemoveTag("venting")
 
         if not owner:HasTag("player") then
             return
@@ -523,6 +525,21 @@ local function MakeHat(name)
 
     -----------------------------------------------------------------------------
 
+    local function bandit_onequip(inst, owner)
+        _onequip(inst, owner)
+        owner:AddTag("sneaky")
+        inst.monster = owner:HasTag("monster")
+        owner:AddTag("monster") -- wouldn't this make regular pigs target you too?
+    end
+
+    local function bandit_onunequip(inst, owner)
+        _onunequip(inst, owner)
+        owner:RemoveTag("sneaky")
+        if not inst.monster then
+            owner:RemoveTag("monster")
+        end
+    end
+
     local function bandit_custom_init(inst)
         inst:AddTag("sneaky")
     end
@@ -534,6 +551,8 @@ local function MakeHat(name)
             return inst
         end
 
+        inst.components.equippable:SetOnEquip(bandit_onequip)
+        inst.components.equippable:SetOnUnequip(bandit_onunequip)
         inst.components.equippable.dapperness = TUNING.DAPPERNESS_SMALL
 
         inst:AddComponent("fueled")
@@ -545,6 +564,16 @@ local function MakeHat(name)
     end
 
     -----------------------------------------------------------------------------
+
+    local function pith_onequip(inst, owner)
+        _onequip(inst, owner)
+        inst:AddTag("venting")
+    end
+
+    local function pith_onunequip(inst, owner)
+        _onequip(inst, owner)
+        inst:RemoveTag("venting")
+    end
 
     local function pith_custom_init(inst)
         inst:AddTag("venting")
@@ -558,6 +587,8 @@ local function MakeHat(name)
             return inst
         end
 
+        inst.components.equippable:SetOnEquip(pith_onequip)
+        inst.components.equippable:SetOnUnequip(pith_onunequip)
         inst.components.equippable.dapperness = TUNING.DAPPERNESS_SMALL
 
         inst:AddComponent("fueled")
@@ -572,6 +603,16 @@ local function MakeHat(name)
     end
 
     -----------------------------------------------------------------------------
+
+    local function gasmask_onequip(inst, owner)
+        fns.opentop_onequip(inst, owner)
+        inst:AddTag("has_gasmask")
+    end
+
+    local function gasmask_onunequip(inst, owner)
+        _onequip(inst, owner)
+        inst:RemoveTag("has_gasmask")
+    end
 
     local function gasmask_custom_init(inst)
         inst:AddTag("gasmask")
@@ -589,7 +630,8 @@ local function MakeHat(name)
 
         inst.components.equippable.poisongasblocker = true
 
-        inst.components.equippable:SetOnEquip(fns.opentop_onequip)
+        inst.components.equippable:SetOnEquip(gasmask_onequip)
+        inst.components.equippable:SetOnUnequip(gasmask_onunequip)
 
         inst:AddComponent("fueled")
         inst.components.fueled.fueltype = FUELTYPE.USAGE
@@ -620,6 +662,16 @@ local function MakeHat(name)
 
     -----------------------------------------------------------------------------
 
+    local function antmask_onequip(inst, owner)
+        _onequip(inst, owner)
+        inst:AddTag("has_antmask")
+    end
+
+    local function antmask_onunequip(inst, owner)
+        _onequip(inst, owner)
+        inst:RemoveTag("has_antmask")
+    end
+
     local function antmask_onupdate(inst)
         inst.components.armor:SetPercent(inst.components.fueled:GetPercent())
     end
@@ -642,6 +694,9 @@ local function MakeHat(name)
         if not TheWorld.ismastersim then
             return inst
         end
+
+        inst.components.equippable:SetOnEquip(antmask_onequip)
+        inst.components.equippable:SetOnUnequip(antmask_onunequip)
 
         inst:AddComponent("armor")
         inst.components.armor:InitCondition(TUNING.ARMOR_FOOTBALLHAT, TUNING.ARMOR_FOOTBALLHAT_ABSORPTION)

@@ -121,7 +121,7 @@ function self:AddHippo(hippo)
     local max_time = TUNING.HIPPO_MATING_SEASON_BABYDELAY + TUNING.HIPPO_MATING_SEASON_BABYDELAY_VARIANCE
 
     _hippos[hippo] = hippo
-    _worldsettingstimer:AddTimer(GetTimerName(hippo), max_time, true, function()
+    _worldsettingstimer:AddTimer(GetTimerName(hippo), max_time, TUNING.HIPPO_ENABLED, function()
         self:SpawnHippo(hippo)
     end)
     _worldsettingstimer:StartTimer(GetTimerName(hippo), time)

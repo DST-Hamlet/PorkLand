@@ -110,6 +110,17 @@ function Combat:CalcDamage(target, weapon, multiplier, ...)
     return unpack(rets)
 end
 
+local _SuggestTarget = Combat.SuggestTarget
+function Combat:SuggestTarget(target)
+    if not self.target and target and target:HasTag("sneaky") then
+        if self.inst:GetDistanceSqToInst(target) > 6 * 6 then
+            return false
+        end
+    end
+
+    return _SuggestTarget(self, target)
+end
+
 AddComponentPostInit("combat", function(self, inst)
     self.poisonstrength = 1
 
