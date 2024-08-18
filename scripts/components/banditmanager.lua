@@ -262,7 +262,7 @@ function self:SpawnBanditOnPlayer(player)
         end
         GenerateTreasure(player)
 
-        local cx, cy, cz = cover.Transform:GetWorldPosition()
+        local cx, _, cz = cover.Transform:GetWorldPosition()
         local angle = TheCamera:GetHeadingTarget() * DEGREES
         cx = cx - 1 * math.cos(angle)
         cz = cz - 1 * math.sin(angle)

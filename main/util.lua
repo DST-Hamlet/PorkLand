@@ -410,7 +410,7 @@ function HandleDugGround(dug_ground, x, y, z, ...)
     if SpeciaTileDrop[dug_ground] then
         local loot = SpawnPrefab(SpeciaTileDrop[dug_ground])
         if loot.components.inventoryitem ~= nil then
-			loot.components.inventoryitem:InheritWorldWetnessAtXZ(x, z)
+            loot.components.inventoryitem:InheritWorldWetnessAtXZ(x, z)
         end
         loot.Transform:SetPosition(x, y, z)
         if loot.Physics ~= nil then

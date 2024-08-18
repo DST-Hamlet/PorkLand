@@ -11,8 +11,8 @@ return Class(function(self, inst)
     --------------------------------------------------------------------------
     --[[ Private constants ]]
     --------------------------------------------------------------------------
-    local GRID_RADIUS = 7		-- number of tiles around player
-    local CULL_RADIUS = 8		-- grid elements get culled when this many tiles away from the player
+    local GRID_RADIUS = 7        -- number of tiles around player
+    local CULL_RADIUS = 8        -- grid elements get culled when this many tiles away from the player
     local CANOPY_SCALE = 7      -- distance in world units between grid elements
     local HALF_CANOPY_SCALE = CANOPY_SCALE * 0.5
     local CANOPY_OFFSET = 0

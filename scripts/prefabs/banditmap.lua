@@ -81,7 +81,7 @@ local function banditmapfn()
     inst.components.waterproofer:SetEffectiveness(0)
 
     inst:AddComponent("mapspotrevealer")
-	inst.components.mapspotrevealer:SetGetTargetFn(GetRevealTarget)
+    inst.components.mapspotrevealer:SetGetTargetFn(GetRevealTarget)
 
     inst.treasure = nil
 
