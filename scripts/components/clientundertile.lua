@@ -4,7 +4,7 @@ local ClientUnderTile = Class(function(self, inst)
 end)
 
 function ClientUnderTile:GetTileUnderneath(x, y)
-    if TheWorld.components.undertile and false then
+    if TheWorld.components.undertile then
         return TheWorld.components.undertile:GetTileUnderneath(x, y)
     else
         local tile_under = nil
