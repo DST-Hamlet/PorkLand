@@ -238,8 +238,8 @@ local function LookAtFn(inst)
         inst.components.locomotor:Stop()
     end
 
-    local x1, y1, z1 = inst.Transform:GetWorldPosition()
-    local x2, y2, z2 = inst.lightning_target.Transform:GetWorldPosition()
+    local x1, _, z1 = inst.Transform:GetWorldPosition()
+    local x2, _, z2 = inst.lightning_target.Transform:GetWorldPosition()
 
     local angle = math.atan2(z2 - z1, x2 - x1)
 

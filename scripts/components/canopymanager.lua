@@ -58,7 +58,7 @@ return Class(function(self, inst)
     end
 
     local function SpawnShadeTile(cx, cz, tile)
-        local x, y, z = GetCanopyCenterPoint(cx, cz)
+        local x, _, z = GetCanopyCenterPoint(cx, cz)
         local id = _tile_to_shade[tile].spawn(x, z)
         _canopy_grid:SetDataAtPoint(cx, cz, {id = id, tile = tile})
     end
@@ -123,7 +123,7 @@ return Class(function(self, inst)
 
         local px, py, pz = player.Transform:GetWorldPosition()
         local cx, cz = GetCanopyCoordsAtPoint(px, py, pz)
-        local center_x, center_y, center_z = GetCanopyCenterPoint(cx, cz)
+        local center_x, _, center_z = GetCanopyCenterPoint(cx, cz)
 
         -- cull shade
         for index, data in pairs(_canopy_grid.grid) do

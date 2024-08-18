@@ -285,12 +285,6 @@ end
 local function GetValidWaterPointNearby(pt)
     local range = 20
 
-    local cx, cy = TheWorld.Map:GetTileCoordsAtPoint(pt.x, 0, pt.z)
-    local center_tile = TheWorld.Map:GetTile(cx, cy)
-
-    local min_sq_dist = 999999999999
-    local best_point = nil
-
     for x = pt.x - range, pt.x + range, 4 do
         for z = pt.z - range, pt.z + range, 4 do
             local tx, ty = TheWorld.Map:GetTileCoordsAtPoint(x, 0, z)

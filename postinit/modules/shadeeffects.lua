@@ -1,4 +1,3 @@
-local IAENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
 if TheNet:IsDedicated() then
