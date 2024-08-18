@@ -109,7 +109,9 @@ local function spawndesk(inst, spawndesk)
         inst.desk.Transform:SetPosition(desklocation.x, desklocation.y, desklocation.z)
         inst.desk:AddComponent("citypossession")
         inst.desk.components.citypossession:SetCity(inst.components.citypossession.cityID)
-        inst:AddComponent("homeseeker")
+        if not inst.components.homeseeker then
+            inst:AddComponent("homeseeker")
+        end
         inst.components.homeseeker:SetHome(inst.desk)
     else
         if inst.desk then
@@ -678,15 +680,6 @@ local function OnSave(inst, data)
     if inst.desk then
         table.insert(data.children, inst.desk.GUID)
         data.desk = inst.desk.GUID
-    end
-
-    if inst.torch then
-        table.insert(data.children, inst.torch.GUID)
-        data.torch = inst.torch.GUID
-    end
-    if inst.axe then
-        table.insert(data.children, inst.axe.GUID)
-        data.axe = inst.axe.GUID
     end
 
     if inst:HasTag("atdesk") then
