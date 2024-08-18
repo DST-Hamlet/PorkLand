@@ -62,6 +62,7 @@ local component_posts = {
     "sleeper",
     "strafer",
     "teamleader",
+    "undertile",
     "waterproofer",
     "wavemanager",
     "wisecracker",
@@ -135,6 +136,7 @@ local widget_posts = {
 
 local module_posts = {
     ["components/map"] = "map",
+    ["shadeeffects"] = "shadeeffects",
 }
 
 local _require = require

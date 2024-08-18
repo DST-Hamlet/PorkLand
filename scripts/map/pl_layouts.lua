@@ -32,6 +32,10 @@ local ground_types = {
     WORLD_TILES.BATTLEGROUND, WORLD_TILES.INTERIOR, WORLD_TILES.FIELDS
 }
 
+local ground_types_rainforest = {
+    WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.GASJUNGLE,
+}
+
 AllLayouts["PorkLandStart"] = StaticLayout.Get("map/static_layouts/porkland_start", {
     start_mask = PLACE_MASK.IGNORE_IMPASSABLE_BARREN_RESERVED,
     fill_mask = PLACE_MASK.IGNORE_IMPASSABLE_BARREN_RESERVED,
@@ -74,8 +78,7 @@ AllLayouts["PigRuinsHead"] = StaticLayout.Get("map/static_layouts/pig_ruins_head
         end
     }
 })
-AllLayouts["PigRuinsHead"].ground_types = ground_types
-AllLayouts["PigRuinsHead"].only_in_tiles = {WORLD_TILES.DEEPRAINFOREST, WORLD_TILES.GASJUNGLE}
+AllLayouts["PigRuinsHead"].ground_types = ground_types_rainforest
 
 local function GetRandomSmashingpot()
     return math.random() < 0.7 and {"smashingpot"} or nil
@@ -91,7 +94,7 @@ AllLayouts["PigRuinsArtichoke"] = StaticLayout.Get("map/static_layouts/pig_ruins
         item2 = {"pig_ruins_artichoke"}
     }
 })
-AllLayouts["PigRuinsArtichoke"].ground_types = ground_types
+AllLayouts["PigRuinsArtichoke"].ground_types = ground_types_rainforest
 
 local function PigRuinsEntranceProps()
     return {
