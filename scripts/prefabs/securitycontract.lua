@@ -31,6 +31,8 @@ local function fn(inst)
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.foleysound = "dontstarve/movement/foley/jewlery"
 
+    MakeHauntableLaunch(inst)
+
     return inst
 end
 

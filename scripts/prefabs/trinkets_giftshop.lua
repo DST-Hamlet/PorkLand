@@ -45,6 +45,8 @@ local function MakeTrinket(num)
         inst:AddTag("cattoy")
         inst:AddTag("trinket")
 
+        MakeHauntableLaunch(inst)
+
         return inst
     end
 

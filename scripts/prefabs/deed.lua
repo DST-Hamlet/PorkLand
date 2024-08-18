@@ -48,6 +48,8 @@ local function fn(inst)
 
     inst.OnBought = OnBought
 
+    MakeHauntableLaunch(inst)
+
     return inst
 end
 

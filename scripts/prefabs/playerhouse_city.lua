@@ -282,6 +282,8 @@ local function fn()
     MakeMediumBurnable(inst, nil, nil, true)
     MakeLargePropagator(inst)
 
+    MakeHauntableWork(inst)
+
     -- inst.components.burnable:SetCanActuallyBurnFunction(canburn)
     inst:ListenForEvent("burntup", OnBurntUp)
 
