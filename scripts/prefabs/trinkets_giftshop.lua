@@ -26,7 +26,7 @@ local function MakeTrinket(num)
 
         inst:AddComponent("inspectable")
         inst:AddComponent("stackable")
-		inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+        inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
         inst:AddComponent("inventoryitem")
         inst:AddComponent("tradable")

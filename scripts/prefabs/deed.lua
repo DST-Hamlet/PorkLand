@@ -39,7 +39,7 @@ local function fn(inst)
     end
 
     inst:AddComponent("mapspotrevealer")
-	inst.components.mapspotrevealer:SetGetTargetFn(GetRevealTargetPos)
+    inst.components.mapspotrevealer:SetGetTargetFn(GetRevealTargetPos)
 
     inst:AddComponent("inspectable")
 
