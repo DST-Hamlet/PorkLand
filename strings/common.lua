@@ -2436,6 +2436,7 @@ return {
             ARCHAEOLOGY = "Treasure Hunting",
             ENVIRONMENT_PROTECTION = "Environmental Shielding",
             NAUTICAL = "Nautical",
+            CITY = "City Planning",
         },
         CUSTOMIZATIONSCREEN = {
             ASPARAGUS = "Asparagus",
