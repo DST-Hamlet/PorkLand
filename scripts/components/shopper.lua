@@ -4,78 +4,84 @@ local Shopper = Class(function(self, inst)
     self.inst = inst
 end)
 
+local function RemoveMoney(inventory, prefab, amount)
+    for i = 1, amount do
+        local item = next(inventory:GetItemByName(prefab, 1, true))
+        if not item then
+            print("Can't remove all the amount of money requested")
+            return false
+        end
+        inventory:RemoveItem(item, false, true):Remove()
+    end
+    return true
+end
+
 function Shopper:PayMoney(cost)
     local inventory = self.inst.components.inventory
-    local _, oincamount = inventory:Has("oinc", 0, true)
-    local _, oinc10amount = inventory:Has("oinc10", 0, true)
-    local _, oinc100amount = inventory:Has("oinc100", 0, true)
+    local _, oinc_amount = inventory:Has("oinc", 0, true)
+    local _, oinc10_amount = inventory:Has("oinc10", 0, true)
+    local _, oinc100_amount = inventory:Has("oinc100", 0, true)
     local debt = cost
 
-    local oincused = 0
-    local oinc10used = 0
-    local oinc100used = 0
-    local oincgained = 0
-    local oinc10gained = 0
+    local oinc_used = 0
+    local oinc10_used = 0
+    local oinc100_used = 0
+    local oinc_gained = 0
+    local oinc10_gained = 0
 
     if self.inst.components.builder and self.inst.components.builder.freebuildmode then
         return
     else
         while debt > 0 do
-            while debt > 0 and oincamount > 0 do
-                oincamount = oincamount - 1
+            while debt > 0 and oinc_amount > 0 do
+                oinc_amount = oinc_amount - 1
                 debt = debt - 1
-                oincused = oincused + 1
+                oinc_used = oinc_used + 1
             end
             if debt > 0 then
-                if oinc10amount > 0 then
-                    oinc10amount = oinc10amount - 1
-                    oinc10used = oinc10used + 1
+                if oinc10_amount > 0 then
+                    oinc10_amount = oinc10_amount - 1
+                    oinc10_used = oinc10_used + 1
                     for i = 1, 10 do
-                        oincamount = oincamount + 1
-                        oincgained = oincgained + 1
+                        oinc_amount = oinc_amount + 1
+                        oinc_gained = oinc_gained + 1
                     end
-                elseif oinc100amount > 0 then
-                    oinc100amount = oinc100amount - 1
-                    oinc100used = oinc100used + 1
+                elseif oinc100_amount > 0 then
+                    oinc100_amount = oinc100_amount - 1
+                    oinc100_used = oinc100_used + 1
                     for i = 1, 10 do
-                        oinc10amount = oinc10amount + 1
-                        oinc10gained = oinc10gained + 1
+                        oinc10_amount = oinc10_amount + 1
+                        oinc10_gained = oinc10_gained + 1
                     end
                 end
             end
         end
 
-        local oincresult = oincgained - oincused
-        if oincresult > 0 then
-            for i = 1, oincresult do
+        local oinc_result = oinc_gained - oinc_used
+        if oinc_result > 0 then
+            for i = 1, oinc_result do
                 local coin = SpawnPrefab("oinc")
                 inventory:GiveItem(coin)
             end
         end
-        if oincresult < 0 then
-            for i = 1, math.abs(oincresult) do
-                inventory:ConsumeByName("oinc", 1, true)
-            end
+        if oinc_result < 0 then
+            RemoveMoney(inventory, "oinc", math.abs(oinc_result))
         end
 
-        local oinc10result = oinc10gained - oinc10used
-        if oinc10result > 0 then
-            for i = 1, oinc10result do
+        local oinc10_result = oinc10_gained - oinc10_used
+        if oinc10_result > 0 then
+            for i = 1, oinc10_result do
                 local coin = SpawnPrefab("oinc10")
                 inventory:GiveItem(coin)
             end
         end
-        if oinc10result < 0 then
-            for i = 1, math.abs(oinc10result) do
-                inventory:ConsumeByName("oinc10", 1, true)
-            end
+        if oinc10_result < 0 then
+            RemoveMoney(inventory, "oinc10", math.abs(oinc10_result))
         end
 
-        local oinc100result = 0 - oinc100used
-        if oinc100result < 0 then
-            for i = 1, math.abs(oinc100result) do
-                inventory:ConsumeByName("oinc100", 1, true)
-            end
+        local oinc100_result = 0 - oinc100_used
+        if oinc100_result < 0 then
+            RemoveMoney(inventory, "oinc100", math.abs(oinc100_result))
         end
     end
 end
