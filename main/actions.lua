@@ -710,10 +710,10 @@ end
 local _MANUALEXTINGUISH_fn = ACTIONS.MANUALEXTINGUISH.fn
 ACTIONS.MANUALEXTINGUISH.fn = function(act, ...)
     if act.doer:HasTag("extinguisher") then
-		if act.target.components.burnable and act.target.components.burnable:IsBurning() then
-			act.target.components.burnable:Extinguish(true, TUNING.SMOTHERER_EXTINGUISH_HEAT_PERCENT)
-			return true
-		end
+        if act.target.components.burnable and act.target.components.burnable:IsBurning() then
+            act.target.components.burnable:Extinguish(true, TUNING.SMOTHERER_EXTINGUISH_HEAT_PERCENT)
+            return true
+        end
     end
     return _MANUALEXTINGUISH_fn(act, ...)
 end

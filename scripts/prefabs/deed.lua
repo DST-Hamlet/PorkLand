@@ -39,7 +39,7 @@ local function fn(inst)
     end
 
     inst:AddComponent("mapspotrevealer")
-	inst.components.mapspotrevealer:SetGetTargetFn(GetRevealTargetPos)
+    inst.components.mapspotrevealer:SetGetTargetFn(GetRevealTargetPos)
 
     inst:AddComponent("inspectable")
 
@@ -47,6 +47,8 @@ local function fn(inst)
     inst.components.inventoryitem.foleysound = "dontstarve/movement/foley/jewlery"
 
     inst.OnBought = OnBought
+
+    MakeHauntableLaunch(inst)
 
     return inst
 end

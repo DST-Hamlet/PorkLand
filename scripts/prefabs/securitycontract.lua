@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/security_contract.zip"),
+    Asset("ANIM", "anim/security_contract.zip"),
 }
 
 local function fn(inst)
@@ -30,6 +30,8 @@ local function fn(inst)
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.foleysound = "dontstarve/movement/foley/jewlery"
+
+    MakeHauntableLaunch(inst)
 
     return inst
 end

@@ -56,4 +56,13 @@ ISLAND_TAGS = {
 FUELTYPE.CORK = "CORK"
 FUELTYPE.ANCIENT_REMNANT = "ANCIENT_REMNANT"
 
-TECH.CITY = {CITY = 2}
+TECH.CITY = {
+    CITY = 2
+}
+RECIPETABS.CITY = {
+    str = "CITY",
+    sort = 100,
+    icon = "filter_city.tex",
+    crafting_station = true,
+    icon_atlas = "images/hud/pl_crafting_menu_icons.xml"
+}
