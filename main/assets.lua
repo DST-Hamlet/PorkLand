@@ -185,6 +185,7 @@ PrefabFiles = {
     "trinkets_giftshop",
     "deed",
     "securitycontract",
+    "key_to_city",
 
     "oinc",
     "bramble",
