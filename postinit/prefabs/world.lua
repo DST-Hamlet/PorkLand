@@ -16,6 +16,15 @@ AddPrefabPostInit("world", function(inst)
         inst.components.economy:AddCity(1)
     end
 
+    if not TheWorld.components.uptile then
+        inst:AddComponent("uptile")
+    end
+
+    if not TheWorld.components.scenariorunner then
+        inst:AddComponent("scenariorunner")
+        inst.components.scenariorunner:SetScript("set_uptiles")
+    end
+
     if not TheWorld.components.periodicpoopmanager then
         inst:AddComponent("periodicpoopmanager")
     end

@@ -96,6 +96,10 @@ local function common_postinit(inst)
         inst:AddComponent("colourcube")
         inst:AddComponent("hallucinations")
         inst:AddComponent("wavemanager")
+        inst:AddComponent("canopymanager")
+        local rainforest_shade = {spawn = SpawnRainforestCanopy, despawn = DespawnRainforestCanopy}
+        inst.components.canopymanager:AddShadeTile(WORLD_TILES.DEEPRAINFOREST, rainforest_shade)
+        inst.components.canopymanager:AddShadeTile(WORLD_TILES.GASJUNGLE, rainforest_shade)
         inst.Map:SetUndergroundFadeHeight(0)
         inst.Map:AlwaysDrawWaves(true)
         inst.Map:DoOceanRender(true)
@@ -106,6 +110,7 @@ local function common_postinit(inst)
     inst:AddComponent("worldmapiconproxy")
     inst:AddComponent("interiorquaker")
     inst:AddComponent("worldsoundmanager")
+    inst:AddComponent("clientundertile")
 end
 
 local function master_postinit(inst)

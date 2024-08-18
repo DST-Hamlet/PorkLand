@@ -246,9 +246,9 @@ AddRecipe2("venomgland", {Ingredient("froglegs_poison", 3)}, TECH.SCIENCE_TWO, {
 -- DECOR ---
 -- AddRecipe2("turf_foundation", {Ingredient("cutstone", 1)}, TECH.CITY, cityRecipeGameTypes, nil, nil, true)
 -- AddRecipe2("turf_cobbleroad", {Ingredient("cutstone", 2), Ingredient("boards", 1)}, TECH.CITY, cityRecipeGameTypes, nil, nil, true)
--- AddRecipe2("turf_lawn", {Ingredient("cutgrass", 2), Ingredient("nitre", 1)}, TECH.SCIENCE_TWO)
--- AddRecipe2("turf_fields", {Ingredient("turf_rainforest", 1), Ingredient("ash", 1)}, TECH.SCIENCE_TWO)
--- AddRecipe2("turf_deeprainforest_nocanopy", {Ingredient("bramble_bulb", 1), Ingredient("cutgrass", 2), Ingredient("ash", 1)}, TECH.SCIENCE_TWO)
+AddRecipe2("turf_lawn", {Ingredient("cutgrass", 2), Ingredient("nitre", 1)}, TECH.SCIENCE_TWO, {numtogive=4}, {"DECOR"})
+AddRecipe2("turf_fields", {Ingredient("turf_rainforest", 1), Ingredient("ash", 1)}, TECH.SCIENCE_TWO, {numtogive=4}, {"DECOR"})
+AddRecipe2("turf_deeprainforest_nocanopy", {Ingredient("bramble_bulb", 1), Ingredient("cutgrass", 2), Ingredient("ash", 1)}, TECH.SCIENCE_TWO, {numtogive=4}, {"DECOR"})
 
 -- NAUTICAL ---
 AddRecipe2("boat_lograft", {Ingredient("log", 6), Ingredient("cutgrass", 4)}, TECH.NONE, {placer = "boat_lograft_placer", build_mode = BUILDMODE.WATER, build_distance = 4}, {"NAUTICAL"})
@@ -291,24 +291,18 @@ local function GetValidWaterPointNearby(pt)
     local min_sq_dist = 999999999999
     local best_point = nil
 
-    for x = pt.x - range, pt.x + range, 1 do
-        for z = pt.z - range, pt.z + range, 1 do
+    for x = pt.x - range, pt.x + range, 4 do
+        for z = pt.z - range, pt.z + range, 4 do
             local tx, ty = TheWorld.Map:GetTileCoordsAtPoint(x, 0, z)
             local tile = TheWorld.Map:GetTile(tx, ty)
 
-            if IsValidSprinklerTile(center_tile) and TileGroupManager:IsOceanTile(tile) then
-                local cur_point = Vector3(x, 0, z)
-                local cur_sq_dist = cur_point:DistSq(pt)
-
-                if cur_sq_dist < min_sq_dist then
-                    min_sq_dist = cur_sq_dist
-                    best_point = cur_point
-                end
+            if TileGroupManager:IsOceanTile(tile) then
+                return true
             end
         end
     end
 
-    return best_point
+    return false
 end
 
 local function sprinkler_placetest(pt, rot)
