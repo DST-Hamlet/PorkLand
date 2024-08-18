@@ -90,6 +90,7 @@ function InteriorSpawner:OnSave()
     end
     return {
         interiors = interior_defs,
+        next_interior_id = self.next_interior_id,
         reuse_interior_ids = self.reuse_interior_ids,
     }
 end
@@ -100,6 +101,12 @@ function InteriorSpawner:OnLoad(data)
             for _, def in pairs(data.interiors) do
                 self:AddInterior(def)
             end
+        end
+        if data.next_interior_id then
+            self.next_interior_id = data.next_interior_id
+        end
+        if data.reuse_interior_ids then
+            self.reuse_interior_ids = data.reuse_interior_ids
         end
     end
     self:SetInteriorPos()
