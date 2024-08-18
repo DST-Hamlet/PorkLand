@@ -326,8 +326,8 @@ local function NotInInterior(pt)
 end
 
 --- CITY ---
-AddRecipe2("turf_foundation", {Ingredient("cutstone", 1)}, TECH.CITY, {nounlock = true})
-AddRecipe2("turf_cobbleroad", {Ingredient("cutstone", 2), Ingredient("boards", 1)}, TECH.CITY, {nounlock = true})
+AddRecipe2("turf_foundation", {Ingredient("cutstone", 1)}, TECH.CITY, {nounlock = true,numtogive=4})
+AddRecipe2("turf_cobbleroad", {Ingredient("cutstone", 2), Ingredient("boards", 1)}, TECH.CITY, {nounlock = true,numtogive=4})
 AddRecipe2("city_lamp", {Ingredient("alloy", 1), Ingredient("transistor", 1),Ingredient("lantern",1)},  TECH.CITY, {nounlock = true, placer = "city_lamp_placer"})
 
 AddRecipe2("pighouse_city", {Ingredient("boards", 4), Ingredient("cutstone", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pighouse_city_placer", testfn = NotInInterior})

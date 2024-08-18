@@ -30,7 +30,7 @@ local UNIQUE_PARK_CHOICES = {
 }
 
 local REQUIRED_FARMS = {
-    "teleportato_hamlet_potato_layout",
+    --"teleportato_hamlet_potato_layout",
 }
 
 local FARM_CHOICES = {
