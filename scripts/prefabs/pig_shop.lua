@@ -572,6 +572,10 @@ local function OnRemove(inst)
     OnIsPathFindingDirty(inst)
 end
 
+local function PlayerCityHallMasterInit(inst)
+    TheWorld.components.pigtaxmanager:RegisterPlayerCityHall(inst)
+end
+
 local function MakeShop(name, build, bank, data)
     data = data or {}
     local function fn()
@@ -619,10 +623,6 @@ local function MakeShop(name, build, bank, data)
         if not data.no_shop_music then
             inst:AddTag("shop_music")
         end
-
-        -- if name == "pig_shop_cityhall_player" then
-        --     GetPlayer():AddTag("mayor")
-        -- end
 
         ------- Copied from prefabs/wall.lua -------
         inst._pfpos = nil
@@ -698,6 +698,10 @@ local function MakeShop(name, build, bank, data)
         MakeSnowCovered(inst, 0.01)
         MakeHauntableWork(inst)
 
+        if data.master_init_fn then
+            data.master_init_fn(inst)
+        end
+
         return inst
     end
 
@@ -731,7 +735,7 @@ return MakeShop("pig_shop_deli",            "pig_shop_deli",        nil,        
        MakeShop("pig_shop_bank",            "pig_shop_bank",        nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
        MakeShop("pig_shop_tinker",          "pig_shop_tinker",      nil,            {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true}),
        MakeShop("pig_shop_cityhall",        "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true}),
-       MakeShop("pig_shop_cityhall_player", "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true, unburnable = true, no_shop_music = true}),
+       MakeShop("pig_shop_cityhall_player", "pig_cityhall",         "pig_cityhall", {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, use_stone_break_sound = true, unburnable = true, no_shop_music = true, master_init_fn = PlayerCityHallMasterInit}),
        MakeShop("pig_palace",               "palace",               "palace",       {sounds = {SHOPSOUND_ENTER1, SHOPSOUND_ENTER2}, indestructable = true, unburnable = true, no_shop_music = true}),
 
        MakePlacer("pig_shop_deli_placer",        "pig_shop",     "pig_shop_deli",        "idle", false, false, true),

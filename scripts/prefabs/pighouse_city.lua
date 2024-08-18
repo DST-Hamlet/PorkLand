@@ -173,6 +173,30 @@ local function OnBurntUp(inst)
     inst:Remove()
 end
 
+local function PayTax(inst)
+    inst:DoTaskInTime(4, function()
+        if inst.components.spawner.child then
+            inst.components.spawner.child:AddTag("paytax")
+        end
+        inst:RemoveTag("paytax")
+    end)
+end
+
+local function CheckTax(inst)
+    if TheWorld.components.pigtaxmanager
+        and TheWorld.components.pigtaxmanager:HasPlayerCityHall()
+        and TheWorld.components.pigtaxmanager:IsTaxDay()
+        -- a player build pighouse doesn't have a city possesion component.. so that's how I'm checking for tax paying houses right now
+        and not inst.components.citypossession
+        and inst.components.spawner.child
+        and inst.lasttaxday ~= TheWorld.state.cycles then
+
+        inst.lasttaxday = TheWorld.state.cycles
+        inst:AddTag("paytax")
+        PayTax(inst)
+    end
+end
+
 local function OnDay(inst, isday)
     if not isday then
         return
@@ -185,6 +209,8 @@ local function OnDay(inst, isday)
             end
         end)
     end
+
+    CheckTax(inst)
 end
 
 local function OnInit(inst)
@@ -222,6 +248,8 @@ local function OnSave(inst, data)
     if inst.components.spawner.childname then
         data.childname = inst.components.spawner.childname
     end
+    data.paytax = inst:HasTag("paytax")
+    data.lasttaxday = inst.lasttaxday
 end
 
 local function OnLoad(inst, data)
@@ -247,6 +275,14 @@ local function OnLoad(inst, data)
         end
         if data.burnt then
             inst.components.burnable.onburnt(inst)
+        end
+
+        if data.lasttaxday then
+            inst.lasttaxday = data.lasttaxday
+        end
+        if data.paytax then
+            inst:AddTag("paytax")
+            PayTax(inst)
         end
     end
 end
