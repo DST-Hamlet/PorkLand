@@ -445,10 +445,6 @@ local tuning = {
 
     ROOM_FINDENTITIES_RADIUS = 30, -- NOTE: this value is determined by TUNING.ROOM_LARGE_WIDTH and TUNING.ROOM_LARGE_DEPTH
 
-    INTERIOR_MINIMAP_PRIORITY_START = 1000,
-    INTERIOR_MINIMAP_DOOR_SPACE = 10,
-    INTERIOR_MINIMAP_POSITION_SCALE = 2.8, -- NOTE: do not change this value
-
     PL_MANUAL_LIGHT_OFFSET = {
         -- {[K: prefab]: {height, z_off}}
         DEFAULT = {2, .5},
