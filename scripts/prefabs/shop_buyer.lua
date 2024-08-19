@@ -137,12 +137,16 @@ end
 local function OnEntityWake(inst)
     if TheWorld.state.isfiesta then
         inst.AnimState:PlayAnimation("idle_yotp")
-        inst.clochevisual.AnimState:PlayAnimation("idle_yotp")
-        inst.costvisual:UpdateVisual("idle_yotp")
+        if TheWorld.ismastersim then
+            inst.clochevisual.AnimState:PlayAnimation("idle_yotp")
+            inst.costvisual:UpdateVisual("idle_yotp")
+        end
     else
         inst.AnimState:PlayAnimation(inst.animation)
-        inst.clochevisual.AnimState:PlayAnimation(inst.animation)
-        inst.costvisual:UpdateVisual(inst.animation)
+        if TheWorld.ismastersim then
+            inst.clochevisual.AnimState:PlayAnimation(inst.animation)
+            inst.costvisual:UpdateVisual(inst.animation)
+        end
     end
 end
 
@@ -159,23 +163,29 @@ local function OnItemLose(inst, data)
 end
 
 local function CreateClocheVisual(inst) -- 玻璃罩
-    local clochevisual = CreateEntity()
-    --[[Non-networked entity]]
-    clochevisual.entity:AddTransform()
-    clochevisual.entity:AddAnimState()
-    clochevisual.entity:AddFollower()
-    clochevisual:AddTag("NOCLICK")
-    clochevisual:AddTag("FX")
+    local clochevisual = SpawnPrefab("shop_buyer_clochevisual")
+    clochevisual.parentshelf = inst
     clochevisual.entity:SetParent(inst.entity)
-    clochevisual.persists = false
-
-    clochevisual.AnimState:SetBuild("pedestal_crate_cloche")
-    clochevisual.AnimState:SetBank("pedestal")
-    clochevisual.AnimState:PlayAnimation("idle") -- 注意：在parent改变动画时也需要改变clochevisual的动画
-
-    clochevisual.AnimState:SetFinalOffset(3)
-
     return clochevisual
+end
+
+local function clochevisual_fn() -- 玻璃罩
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddFollower()
+    inst.entity:AddNetwork()
+    inst:AddTag("NOCLICK")
+    inst:AddTag("FX")
+    inst.persists = false
+
+    inst.AnimState:SetBuild("pedestal_crate_cloche")
+    inst.AnimState:SetBank("pedestal")
+    inst.AnimState:PlayAnimation("idle")
+
+    inst.AnimState:SetFinalOffset(3)
+
+    return inst
 end
 
 local front_cost_visuals =
@@ -269,12 +279,6 @@ local function fn()
     inst:ListenForEvent("onremove", onremove)
     --------------------------------------------
 
-    inst.clochevisual = CreateClocheVisual(inst)
-
-    inst:DoStaticTaskInTime(0, function()
-        inst.clochevisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
-    end)
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -284,6 +288,12 @@ local function fn()
     inst:AddComponent("gridnudger")
 
     inst.animation = "idle"
+
+    inst.clochevisual = CreateClocheVisual(inst)
+
+    inst:DoStaticTaskInTime(0, function()
+        inst.clochevisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+    end)
 
     inst.costvisual = CreateCostVisual(inst)
 
@@ -323,4 +333,5 @@ local function fn()
 end
 
 return Prefab("shop_buyer", fn, assets),
+    Prefab("shop_buyer_clochevisual", clochevisual_fn, assets),
     Prefab("shop_buyer_costvisual", costvisual_fn, assets)
