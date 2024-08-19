@@ -205,7 +205,7 @@ local function sort_priority(a, b)
     return a.priority < b.priority
 end
 
-local function CollectMinimapData(inst)
+local function CollectMinimapData(inst, ignore_non_cacheable)
     if not inst:HasInteriorMinimap() then
         return
     end
@@ -217,13 +217,13 @@ local function CollectMinimapData(inst)
 
     local icons = {}
     for _, ent in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
-        if ent.MiniMapEntity ~= nil then
+        if ent.MiniMapEntity and (not ignore_non_cacheable or ent.MiniMapEntity:GetCanUseCache()) then  -- see postinit/minimapentity.lua
             local pos = ent:GetPosition()
             local offset = pos - position
             -- check if entity is in room
             if math.abs(offset.z) < width / 2 + 1 and math.abs(offset.x) < depth / 2 + 1 then
-                local icon = ent.MiniMapEntity:GetIcon() -- see interior_map.lua
-                local priority = ent.MiniMapEntity:GetPriority() -- see interior_map.lua
+                local icon = ent.MiniMapEntity:GetIcon() -- see postinit/minimapentity.lua
+                local priority = ent.MiniMapEntity:GetPriority() -- see postinit/minimapentity.lua
                 if icon ~= nil and icon ~= "" then
                     table.insert(icons, {
                         icon = icon,

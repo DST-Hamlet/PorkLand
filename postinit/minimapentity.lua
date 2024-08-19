@@ -2,6 +2,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local icon_name = {}
 local icon_priority = {}
+local icon_can_use_cache = {}
 local icon_offset = {}
 
 local _SetIcon = MiniMapEntity.SetIcon
@@ -22,6 +23,17 @@ end
 
 function MiniMapEntity:GetPriority()
     return icon_priority[self]
+end
+
+local _SetCanUseCache = MiniMapEntity.SetCanUseCache
+function MiniMapEntity:SetCanUseCache(can_use, ...)
+    icon_can_use_cache[self] = can_use
+    return _SetCanUseCache(self, can_use, ...)
+end
+
+function MiniMapEntity:GetCanUseCache()
+    -- Cacheable by default, so nil is true
+    return icon_can_use_cache[self] ~= false
 end
 
 function MiniMapEntity:SetIconOffset(x, y)

@@ -31,6 +31,7 @@ local InteriorVisitor = Class(function(self, inst)
     self.exterior_pos_z = 0
     self.interior_cc = "images/colour_cubes/day05_cc.tex"
     self.center_ent = nil
+    self.last_center_ent = nil
     self.visited_uuid = {}
     self.interior_map = {}
 
@@ -119,7 +120,15 @@ function InteriorVisitor:UpdateExteriorPos()
     local spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
     local ent = spawner:GetInteriorCenterAt_Generic(x, z)
+
     self.center_ent = ent
+    local last_center_ent = self.last_center_ent
+    self.last_center_ent = ent
+
+    -- Record again and ignore non cacheable things once we're out of the last visited room
+    if last_center_ent and last_center_ent ~= ent and last_center_ent:IsValid() then
+        self:RecordMap(last_center_ent.interiorID, last_center_ent:CollectMinimapData(true))
+    end
 
     local grue = self.inst.components.grue or {}
 

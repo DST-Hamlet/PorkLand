@@ -37,31 +37,31 @@ local function SizeToString(width, depth)
     end
 end
 
-local function get_atlas(imagename)
-    local atlas = GetMinimapAtlas_Internal(imagename)
+local function get_atlas(image_name)
+    local atlas = GetMinimapAtlas_Internal(image_name)
     if atlas then
         return atlas
     end
     for _, atlases in ipairs(ModManager:GetPostInitData("MinimapAtlases")) do
         for _, path in ipairs(atlases) do
-            if TheSim:AtlasContains(resolvefilepath(path), imagename) then
+            if TheSim:AtlasContains(resolvefilepath(path), image_name) then
                 return path
             end
         end
     end
 end
 
-local minimapAtlasLookup = {}
-local function GetMinimapAtlas(imagename)
-	local atlas = minimapAtlasLookup[imagename]
+local minimap_atlas_cache = {}
+local function GetMinimapAtlas(image_name)
+	local atlas = minimap_atlas_cache[image_name]
 	if atlas then
 		return atlas
 	end
 
-    atlas = get_atlas(imagename)
+    atlas = get_atlas(image_name)
 
 	if atlas ~= nil then
-		minimapAtlasLookup[imagename] = atlas
+		minimap_atlas_cache[image_name] = atlas
 	end
 
 	return atlas
@@ -76,16 +76,16 @@ end
 -- }
 local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_room_id, offset)
     visited_rooms[current_room_id] = true
-
     local room = data[current_room_id]
-    local room_widget = Image("interior_minimap/interior_minimap.xml", "pl_frame_" .. SizeToString(room.width, room.depth) .. ".tex")
-    room_widget.position_offset = offset
-    table.insert(widgets.backgrounds, room_widget)
+
+    local room_background = Image("interior_minimap/interior_minimap.xml", "pl_frame_" .. SizeToString(room.width, room.depth) .. ".tex")
+    room_background.position_offset = offset
+    table.insert(widgets.backgrounds, room_background)
 
     for _, icon_data in ipairs(room.icons) do
         local atlas = GetMinimapAtlas(icon_data.icon)
         if atlas then
-            local icon = Image(GetMinimapAtlas(icon_data.icon), icon_data.icon)
+            local icon = Image(atlas, icon_data.icon)
             icon.position_offset = offset + Vector3(icon_data.offset_x, 0, icon_data.offset_z)
             table.insert(widgets.icons, icon)
         end
@@ -124,13 +124,6 @@ local on_update = MapWidget.OnUpdate
 function MapWidget:OnUpdate(...)
     on_update(self, ...)
 
-    -- if self.interior_map_widget then
-    --     self.interior_map_widget:SetScale(1 - Easing.outExpo(TheWorld.minimap.MiniMap:GetZoom() - 1, 0, 0.75, 8))
-    --     self.interior_map_widget:SetPosition(WorldPosToScreenPos(Vector3()))
-    --     -- if TheWorld.minimap.MiniMap:IsVisible() then
-    --     --     TheWorld.minimap.MiniMap:ToggleVisibility()
-    --     -- end
-    -- end
     if self.interior_map_widgets then
         for _, widget in ipairs(self.interior_map_widgets) do
             local zoomscale = 0.75 / self.minimap:GetZoom()
