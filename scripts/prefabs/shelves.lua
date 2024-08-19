@@ -19,8 +19,8 @@ end
 local function Curse(inst)
     if math.random() < 0.3 then
         local ghost = SpawnPrefab("pigghost")
-        local pt = Vector3(inst.Transform:GetWorldPosition())
-        ghost.Transform:SetPosition(pt.x,pt.y,pt.z)
+        local x, y, z = inst.Transform:GetWorldPosition()
+        ghost.Transform:SetPosition(x, y, z)
     end
 end
 
@@ -81,7 +81,7 @@ local function CreateFrontVisual(inst, name, anim_def)
     return frontvisual
 end
 
-local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed)
+local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed, master_postinit)
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -128,6 +128,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
 
         inst.frontvisual = CreateFrontVisual(inst, name, anim_def)
 
+        inst.highlightchildren = { inst.frontvisual }
+
         inst:DoStaticTaskInTime(0, function()
             inst.frontvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
         end)
@@ -138,6 +140,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             return inst
         end
 
+        inst:AddComponent("inspectable")
+
         if physics_round then
             inst:AddComponent("gridnudger")
         end
@@ -145,6 +149,7 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst:AddComponent("container")
         inst.components.container:WidgetSetup("shelf_" .. name)
         inst.components.container.Open = function() end
+        inst.components.container.canbeopened = false
         inst.components.container.skipopensnd = true
 
         inst:AddComponent("visualslotmanager")
@@ -157,10 +162,36 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
 
+        if master_postinit then
+            master_postinit(inst)
+        end
+
         return inst
     end
 
     return Prefab("shelf_" .. name, fn, assets)
+end
+
+local function OnLock(inst)
+    inst.AnimState:Show("LOCK")
+    inst:AddTag("locked")
+    inst:RemoveTag("NOCLICK")
+end
+
+local function OnUnLock(inst, key, doer)
+    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/royal_gallery/unlock")
+    inst.AnimState:Hide("LOCK")
+    inst:RemoveTag("locked")
+    inst:AddTag("NOCLICK")
+end
+
+local function makeLock(inst)
+    inst:AddComponent("lock")
+    inst.components.lock.locktype = LOCKTYPE.ROYAL
+    inst.components.lock:SetOnLockedFn(OnLock)
+    inst.components.lock:SetOnUnlockedFn(OnUnLock)
+    inst.components.lock.islocked = false
+    inst.components.lock:SetLocked(true)
 end
 
 return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
@@ -185,8 +216,8 @@ return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("floating", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("displaycase_wood", true, {animation = "displayshelf_wood"}),
     MakeShelf("displaycase_metal", true, {animation = "displayshelf_metal"}),
-    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true}, "SWAP_SIGN"),
-    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true}, "SWAP_SIGN"),
-    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN"),
-    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN"),
+    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true}, "SWAP_SIGN", nil, makeLock),
+    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true}, "SWAP_SIGN", nil, makeLock),
+    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN", nil, makeLock),
+    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN", nil, makeLock),
     MakeShelf("ruins", true, {animation = "ruins"}, nil, Curse)

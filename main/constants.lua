@@ -66,3 +66,5 @@ RECIPETABS.CITY = {
     crafting_station = true,
     icon_atlas = "images/hud/pl_crafting_menu_icons.xml"
 }
+
+LOCKTYPE.ROYAL = "royal"
