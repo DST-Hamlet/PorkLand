@@ -418,6 +418,11 @@ function StartTakingGasDamage(inst, cause)
         inst.isingas = true
     end
 
+    local delaytime = 0
+    if inst.no_gas_time then
+        delaytime = math.max(inst.no_gas_time - GetTime(), 0)
+    end
+
     local damage = inst:HasTag("insect") and POISON_DAMAGE_INSECT or POISON_DAMAGE_NON_INSECT
     inst._poison_damage_task = inst:DoPeriodicTask(1, function()
         if inst.components.poisonable and inst.components.poisonable.show_fx then
@@ -447,6 +452,9 @@ function StopTakingGasDamage(inst, cause)
     end
 
     if inst._poison_damage_task then
+        if inst._poison_damage_task:NextTime() then
+            inst.no_gas_time = GetTime()  --防止频繁进出毒气导致毒气掉血判定超过1秒一次
+        end
         inst._poison_damage_task:Cancel()
         inst._poison_damage_task = nil
 
