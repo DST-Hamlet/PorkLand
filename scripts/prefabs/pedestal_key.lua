@@ -8,6 +8,7 @@ local function fn()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddNetwork()
     MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("pedestal_key")
