@@ -32,6 +32,8 @@ local function fn()
     inst:AddComponent("key")
     inst.components.key.keytype = LOCKTYPE.ROYAL
 
+    MakeHauntableLaunch(inst)
+
     return inst
 end
 
