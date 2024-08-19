@@ -24,7 +24,7 @@ local function ShouldStopInfesting(inst)
 end
 
 function Infester:Infest(target)
-    if not target:HasTag("player") or not target.components.infestable then
+    if not target.components.infestable then
         return
     end
 

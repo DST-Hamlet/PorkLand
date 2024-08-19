@@ -665,6 +665,8 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
         inst.entity:AddMiniMapEntity()
         inst.entity:AddNetwork()
 
+        inst.Light:Enable(false)
+
         MakeObstaclePhysics(inst, 1.20)
 
         inst.AnimState:SetBank("pig_ruins_entrance")
