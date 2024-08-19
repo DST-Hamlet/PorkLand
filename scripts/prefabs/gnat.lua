@@ -78,16 +78,18 @@ local function TryBuildHome(inst)
 end
 
 local function gnat_redirect(inst, amount, overtime, cause, ignore_invincible, afflicter, ignore_absorb)
-    print("gnat_redirect", cause)
     return (cause ~= "poison" and cause ~= "gascloud")
         and not inst.components.freezable:IsFrozen()
 end
 
-local function CanBeHit(inst, data)
-    print("inst.components.freezable:IsFrozen()",inst.components.freezable:IsFrozen())
-    print("data.weapon",data.weapon)
+local function CanBeAttack(inst, data)
     return inst.components.freezable:IsFrozen()
-        or (data.weapon and data.weapon:HasTag("rangedweapon"))
+        or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon", "blowdart", "blowpipe", "slingshot", "thrown"})))
+end
+
+local function CanBeHit(inst, data)
+    return inst.components.freezable:IsFrozen()
+        or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon"})))
 end
 
 local brain = require("brains/gnatbrain")
@@ -187,6 +189,7 @@ local function fn()
     inst.build_mound_action = BuildHome
     inst.CanBuildMoundAtPoint = CanBuildMoundAtPoint
 
+    inst.CanBeAttack = CanBeAttack
     inst.CanBeHit = CanBeHit
 
     return inst

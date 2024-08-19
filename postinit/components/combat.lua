@@ -112,12 +112,23 @@ end
 
 local _DoAttack = Combat.DoAttack
 function Combat:DoAttack(targ, weapon, projectile, ...)
-    if targ and targ:HasTag("difficult_to_hit") and not self.AOEarc then
-        if not targ:CanBeHit({ attacker = self.inst, weapon = weapon or self:GetWeapon() }) then
-            targ:PushEvent("avoidattack", { attacker = self.inst, weapon = weapon or self:GetWeapon() })
-            self.inst:PushEvent("onmissother", { target = targ, weapon = weapon or self:GetWeapon() })
-            self:ClearAttackTemps()
-            return
+    if projectile == nil then
+        if targ and targ:HasTag("difficult_to_hit") and not self.AOEarc then
+            if not targ:CanBeAttack({ attacker = self.inst, weapon = weapon or self:GetWeapon() }) then
+                targ:PushEvent("avoidattack", { attacker = self.inst, weapon = weapon or self:GetWeapon() })
+                self.inst:PushEvent("onmissother", { target = targ, weapon = weapon or self:GetWeapon() })
+                self:ClearAttackTemps()
+                return
+            end
+        end
+    else
+        if targ and targ:HasTag("difficult_to_hit") and not self.AOEarc then
+            if not targ:CanBeHit({ attacker = self.inst, weapon = weapon or self:GetWeapon() }) then
+                targ:PushEvent("avoidattack", { attacker = self.inst, weapon = weapon or self:GetWeapon() })
+                self.inst:PushEvent("onmissother", { target = targ, weapon = weapon or self:GetWeapon() })
+                self:ClearAttackTemps()
+                return
+            end
         end
     end
     return _DoAttack(self, targ, weapon, projectile, ...)
