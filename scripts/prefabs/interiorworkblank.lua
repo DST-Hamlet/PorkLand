@@ -201,6 +201,10 @@ local DIRECTION_NAMES = {
     "west"
 }
 
+local function sort_priority(a, b)
+    return a.priority < b.priority
+end
+
 local function CollectMinimapData(inst)
     if not inst:HasInteriorMinimap() then
         return
@@ -231,6 +235,7 @@ local function CollectMinimapData(inst)
             end
         end
     end
+    table.sort(icons, sort_priority)
 
     local doors = {}
     for _, door in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, {"interior_door"})) do
