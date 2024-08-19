@@ -433,7 +433,7 @@ function StartTakingGasDamage(inst, cause)
         inst.components.health:DoDelta(-damage, nil, "gascloud")
         inst:PushEvent("poisondamage") -- screen flash
         inst:PushEvent("gasdamage")
-    end, 0) -- 结尾的0代表第一次判定开始的延迟
+    end, delaytime) -- 结尾的0代表第一次判定开始的延迟
 end
 
 function StopTakingGasDamage(inst, cause)
