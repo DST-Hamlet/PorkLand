@@ -225,17 +225,17 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
                 local icon = ent.MiniMapEntity:GetIcon() -- see postinit/minimapentity.lua
                 local priority = ent.MiniMapEntity:GetPriority() -- see postinit/minimapentity.lua
                 if icon ~= nil and icon ~= "" then
-                    table.insert(icons, {
+                    local id = ent.Network:GetNetworkID()
+                    icons[id] = {
                         icon = icon,
                         offset_x = offset.x,
                         offset_z = offset.z,
                         priority = priority or 0,
-                    })
+                    }
                 end
             end
         end
     end
-    table.sort(icons, sort_priority)
 
     local doors = {}
     for _, door in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, {"interior_door"})) do
@@ -268,7 +268,7 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
     -- {
     --     width: number,
     --     depth: number,
-    --     icons: { icon: string, offset_x: number, offset_z: number, priority: number }[]
+    --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
     --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
     -- }
 end
@@ -402,8 +402,6 @@ local function fn()
     inst.GetIsSingleRoom = GetIsSingleRoom
     inst.HasInteriorMinimap = HasInteriorMinimap
     inst.HasInteriorTag = HasInteriorTag
-
-    -- TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
 
     inst:AddComponent("interiorpathfinder")
 

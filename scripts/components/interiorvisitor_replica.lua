@@ -24,6 +24,7 @@ local InteriorVisitor = Class(function(self, inst)
     end)
 
     self.interior_map = {}
+    self.interior_map_dirty = false
 
     inst:StartUpdatingComponent(self)
 end)
@@ -109,6 +110,13 @@ function InteriorVisitor:RestoreOutsideInteriorCamera()
     self.restore_outside_interior_camera:push()
 end
 
+function InteriorVisitor:UpdateInteriorMinimap()
+    local center = self.center_ent:value()
+    local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.inst:GetPosition())
+    self.interior_map[current_room_id] = center:CollectMinimapData()
+    self.interior_map_dirty = true
+end
+
 function InteriorVisitor:OnUpdate()
     if self.inst.components.interiorvisitor then
         self.inst.components.interiorvisitor:UpdateExteriorPos()
@@ -137,6 +145,10 @@ function InteriorVisitor:OnUpdate()
             end
 
             TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud_interior.tex")) -- disable clouds
+        end
+
+        if room_center_ent:HasInteriorMinimap() then
+            self:UpdateInteriorMinimap()
         end
     else
         self.inst:RemoveTag("inside_interior")
@@ -174,6 +186,7 @@ function InteriorVisitor:GetCCTable()
     }
 end
 
+-- Receiving from interior_map client RPC
 function InteriorVisitor:OnNewInteriorMapData(data)
     for id, data in pairs(data) do
         self.interior_map[id] = data
