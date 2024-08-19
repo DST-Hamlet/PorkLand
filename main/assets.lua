@@ -315,6 +315,12 @@ Assets = {
     -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_marble_royal.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_marble_royal.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_ruins_slab.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_ruins_slab.tex"),
+
+    Asset("SHADER", "shaders/ui_fillmode.ksh"),
 }
 
 for _, v in ipairs(require("main/interior_texture_defs").Assets) do

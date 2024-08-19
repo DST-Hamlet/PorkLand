@@ -45,8 +45,7 @@ for _, v in ipairs({
     "levels/textures/map_interior/exit.tex",                    "levels/textures/map_interior/mini_vamp_cave_noise.tex",
     "levels/textures/map_interior/frame.tex",                   "levels/textures/map_interior/passage.tex",
     "levels/textures/map_interior/mini_antcave_floor.tex",      "levels/textures/map_interior/passage_blocked.tex",
-    "levels/textures/map_interior/mini_floor_marble_royal.tex", "levels/textures/map_interior/passage_unknown.tex",
-    "levels/textures/map_interior/mini_ruins_slab.tex",
+    "levels/textures/map_interior/passage_unknown.tex",
 }) do
     table.insert(Assets, Asset("IMAGE", v))
     table.insert(MINIMAP_DEF, {

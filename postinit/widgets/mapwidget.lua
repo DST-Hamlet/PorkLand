@@ -6,7 +6,7 @@ local Easing = require("easing")
 local Widget = require "widgets/widget"
 local Image = require "widgets/image"
 
-local INTERIOR_MINIMAP_DOOR_SPACE = 5
+local INTERIOR_MINIMAP_DOOR_SPACE = 3
 local INTERIOR_MINIMAP_POSITION_SCALE = 3
 
 local DIRECTION_VECTORS = {
@@ -79,6 +79,7 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     local room = data[current_room_id]
     local room_widgets = {
         backgrounds = {},
+        tiles = {},
         icons = {},
         doors = {},
         offset = offset,
@@ -88,6 +89,14 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     local room_background = Image("interior_minimap/interior_minimap.xml", "pl_frame_" .. SizeToString(room.width, room.depth) .. ".tex")
     room_background.position_offset = offset
     table.insert(room_widgets.backgrounds, room_background)
+
+    local room_tiles = Image("levels/textures/map_interior/mini_ruins_slab.xml", "mini_ruins_slab.tex")
+    room_tiles.position_offset = offset
+    room_tiles.tile_width = room.width
+    room_tiles.tile_depth = room.depth
+    room_tiles.inst.ImageWidget:SetEffect(resolvefilepath("shaders/ui_fillmode.ksh"))
+    table.insert(room_widgets.tiles, room_tiles)
+    room_tiles:SetEffectParams(0, 0, 0, 0)
 
     for id, icon_data in pairs(room.icons) do
         local atlas = GetMinimapAtlas(icon_data.icon)
@@ -175,9 +184,24 @@ end
 
 local MapWidget = require("widgets/mapwidget")
 
+local INTERIOR_BG_SCALE = 0.8
+local INTERIOR_TILE_SCALE = 1
+
 local function UpdateWidgetPositionScale(widget, scale)
     widget:SetScale(scale, scale, 1)
     widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
+end
+
+local function UpdateWidgetPositionScale_Tile(widget, scale)
+    if widget.tile_width then
+        local width = widget.tile_width
+        local depth = widget.tile_depth
+        widget:SetScale(scale * (width / 4), scale * (depth / 4), 1)
+        widget:SetEffectParams((width / 4) - 1, (depth / 4) - 1, 0, 0)
+        widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
+    else
+        UpdateWidgetPositionScale(widget, scale)
+    end
 end
 
 local on_update = MapWidget.OnUpdate
@@ -209,7 +233,10 @@ function MapWidget:OnUpdate(...)
     local scale = 0.75 / self.minimap:GetZoom()
     for _, widgets in pairs(self.interior_map_widgets) do
         for _, background in ipairs(widgets.backgrounds) do
-            UpdateWidgetPositionScale(background, scale)
+            UpdateWidgetPositionScale(background, scale * INTERIOR_BG_SCALE)
+        end
+        for _, tile in ipairs(widgets.tiles) do
+            UpdateWidgetPositionScale_Tile(tile, scale * INTERIOR_TILE_SCALE)
         end
         for _, icon_data in ipairs(widgets.icons) do
             UpdateWidgetPositionScale(icon_data.widget, scale)
@@ -229,6 +256,9 @@ function MapWidget:OnEnterInterior()
         for _, widgets in pairs(self.interior_map_widgets) do
             for _, background in ipairs(widgets.backgrounds) do
                 self:AddChild(background)
+            end
+            for _, tile in ipairs(widgets.tiles) do
+                self:AddChild(tile)
             end
             for _, icon_data in ipairs(widgets.icons) do
                 self:AddChild(icon_data.widget)
