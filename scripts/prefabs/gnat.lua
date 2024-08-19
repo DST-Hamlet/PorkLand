@@ -8,6 +8,8 @@ local prefabs =
 
 }
 
+local brain = require("brains/gnatbrain")
+
 local function KeepTargetFn(inst, target)
    return target and inst.components.combat:CanTarget(target) and target.components.health and not target.components.health:IsDead()
 end
@@ -92,8 +94,6 @@ local function CanBeHit(inst, data)
         or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon"})))
 end
 
-local brain = require("brains/gnatbrain")
-
 local function fn()
     local inst = CreateEntity()
 
@@ -159,11 +159,10 @@ local function fn()
 
     inst:AddComponent("homeseeker")
     local _onhomeremoved = inst.components.homeseeker.onhomeremoved
-    inst.components.homeseeker.onhomeremoved =
-        function(home, ...)
-            inst.components.timer:StartTimer("build_mount_cd", TUNING.TOTAL_DAY_TIME * (0.5 + math.random() * 0.5))
-            return _onhomeremoved(home, ...)
-        end
+    inst.components.homeseeker.onhomeremoved = function(home, ...)
+        inst.components.timer:StartTimer("build_mount_cd", TUNING.TOTAL_DAY_TIME * (0.5 + math.random() * 0.5))
+        return _onhomeremoved(home, ...)
+    end
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_TINY * 2

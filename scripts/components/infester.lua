@@ -36,10 +36,12 @@ function Infester:Infest(target)
     self.bite_task = self.inst:DoTaskInTime(self.basetime + (math.random() * self.randtime), function() self:Bite() end)
 
     target:AddChild(self.inst)
-    target.components.infestable:Infest(self.inst)
 
     self.inst.AnimState:SetFinalOffset(1)
     self.inst.Transform:SetPosition(0, 0, 0)
+
+    target.components.infestable:Infest(self.inst)
+    self.inst.persists = false
 
     self.inst:ListenForEvent("onremove", self._ontargetremove, target)
     if target:HasTag("player") then
@@ -56,6 +58,7 @@ function Infester:Uninfest(is_teleported)
         end
 
         self.target:RemoveChild(self.inst)
+        self.inst.persists = true
 
         local x, y, z = self.target.Transform:GetWorldPosition()
 
@@ -69,6 +72,7 @@ function Infester:Uninfest(is_teleported)
 
         self.target = nil
     end
+
     if self.bite_task then
         self.bite_task:Cancel()
         self.bite_task = nil

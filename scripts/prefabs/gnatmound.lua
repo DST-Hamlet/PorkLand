@@ -95,6 +95,11 @@ local function fn()
         return inst
     end
 
+    inst:AddComponent("inspectable")
+
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetChanceLootTable("gnatmound")
+
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
     inst.components.workable:SetMaxWork(TUNING.GNATMOUND_MAX_WORK)
@@ -110,19 +115,55 @@ local function fn()
     inst.components.childspawner.canspawnfn = function() return not TheWorld.state.israining end
     inst.components.childspawner:StartSpawning()
 
-    inst:AddComponent("inspectable")
+    -- when child have parent, they can't be save right
+    -- see scripts/components/infester.lua line 43
+    local _OnSave = inst.components.childspawner.OnSave
+    inst.components.childspawner.OnSave = function(self)
+        local data, references = _OnSave(self)
+        data.follow_parent_childs = {}
+        for child in pairs(self.childrenoutside) do
+            if child.entity:GetParent() then
+                if data.childrenoutside then
+                    table.removearrayvalue(data.childrenoutside, child.GUID)
+                end
+                table.removearrayvalue(references, child.GUID)
 
-    inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetChanceLootTable("gnatmound")
+                local record, refs = child:GetSaveRecord()
+                table.insert(data.follow_parent_childs, record)
+                if refs then
+                    for k, v in pairs(refs) do
+                        table.insert(references, v)
+                    end
+                end
+            end
+        end
+        return data, references
+    end
 
-    MakeSnowCovered(inst)
-    MakeHauntable(inst)
+    local _OnLoad = inst.components.childspawner.OnLoad
+    inst.components.childspawner.OnLoad = function(self, data, newents)
+        local ret = {_OnLoad(self, data, newents)}
+
+        for _, record in ipairs(data.follow_parent_childs) do
+            local child = SpawnSaveRecord(record, newents)
+            if child then
+                self:TakeOwnership(child)
+            end
+        end
+        self:StartUpdate()
+        self:TryStopUpdate()
+
+        return unpack(ret)
+    end
 
     inst.rebuild_task = inst:DoPeriodicTask(TUNING.TOTAL_DAY_TIME *1.5 + math.random() * TUNING.TOTAL_DAY_TIME * 0.5, Rebuild)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
     inst.UpdateAnimations = UpdateAnimations
+
+    MakeSnowCovered(inst)
+    MakeHauntable(inst)
 
     return inst
 end
