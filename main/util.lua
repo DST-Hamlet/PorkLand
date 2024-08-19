@@ -453,7 +453,7 @@ function StopTakingGasDamage(inst, cause)
 
     if inst._poison_damage_task then
         if inst._poison_damage_task:NextTime() then
-            inst.no_gas_time = GetTime()  --防止频繁进出毒气导致毒气掉血判定超过1秒一次
+            inst.no_gas_time = inst._poison_damage_task:NextTime()  --防止频繁进出毒气导致毒气掉血判定超过1秒一次
         end
         inst._poison_damage_task:Cancel()
         inst._poison_damage_task = nil
