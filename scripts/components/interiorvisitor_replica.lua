@@ -25,8 +25,6 @@ local InteriorVisitor = Class(function(self, inst)
 
     self.interior_map = {}
 
-    self.player_icon = SpawnPrefab("pl_local_icon")
-
     inst:StartUpdatingComponent(self)
 end)
 
@@ -126,13 +124,7 @@ function InteriorVisitor:OnUpdate()
     if IsInInteriorRectangle(self.inst:GetPosition(), room_center_ent) then
         self.inst:AddTag("inside_interior")
         self:ApplyInteriorCamera(room_center_ent)
-        if room_center_ent:HasInteriorMinimap() then
-            self.player_icon.MiniMapEntity:SetEnabled(false)
-        else
-            self.player_icon.MiniMapEntity:CopyIcon(self.inst.MiniMapEntity)
-            self.player_icon.MiniMapEntity:SetEnabled(true)
-            self.player_icon.Transform:SetPosition(self:GetExteriorPos():Get())
-        end
+
         if last_center_ent ~= room_center_ent then
             self.last_center_ent = room_center_ent
             self.inst:PushEvent("enterinterior", {from = last_center_ent, to = room_center_ent})
@@ -148,9 +140,9 @@ function InteriorVisitor:OnUpdate()
         end
     else
         self.inst:RemoveTag("inside_interior")
-        self.player_icon.MiniMapEntity:SetEnabled(false)
         TheCamera.inside_interior = false
         self.last_center_ent = nil
+
         if last_center_ent ~= room_center_ent then
             self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
 

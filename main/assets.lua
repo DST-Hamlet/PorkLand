@@ -118,7 +118,6 @@ PrefabFiles = {
     "deco_ruins_fountain",
     "deco_swinging_light",
     "deco_table",
-    "interior_mapicon",
     "interior_boundary",
     "interior_surface",
     "interiorwall_fx",

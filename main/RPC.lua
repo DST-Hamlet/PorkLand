@@ -100,26 +100,6 @@ AddClientModRPCHandler("Porkland", "interior_map", function(data)
     end
 end)
 
-AddClientModRPCHandler("Porkland", "mapdata", function(data)
-    if type(data) == "string" then
-        data = TheSim:DecodeAndUnzipString(data)
-        TheWorld.components.worldmapiconproxy:OnGetMapDataFromServer(data)
-    end
-end)
-
-AddClientModRPCHandler("Porkland", "layoutdata", function(data)
-    if type(data) == "string" then
-        data = TheSim:DecodeAndUnzipString(data)
-        TheWorld.components.interiorspawner:OnGetLayoutDataFromServer(data)
-    end
-end)
-
-AddClientModRPCHandler("Porkland", "visited_uuid", function(data)
-    if type(data) == "string" then
-        TheWorld.components.worldmapiconproxy:OnGetVisitedUUIDFromServer(data)
-    end
-end)
-
 AddUserCommand("saveme", {
     aliases = nil,
     prettyname = nil,

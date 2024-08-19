@@ -350,16 +350,12 @@ local function OnSave(inst, data)
     data.floortexture = inst.floortexture
     data.interiorID = inst.interiorID
     data.interior_tags = inst.interior_tags
-    data.uuid = inst.uuid
     data.interior_cc = inst.interior_cc
     data.cc = inst.interior_cc
 end
 
 local function OnLoad(inst, data)
     inst:SetUp(data)
-    if data.uuid then
-        inst.uuid = data.uuid
-    end
     if data.interior_tags then
         inst:AddInteriorTags(unpack(table.getkeys(data.interior_tags)))
     end

@@ -32,7 +32,6 @@ local InteriorVisitor = Class(function(self, inst)
     self.interior_cc = "images/colour_cubes/day05_cc.tex"
     self.center_ent = nil
     self.last_center_ent = nil
-    self.visited_uuid = {}
     self.interior_map = {}
 
     -- self.restore_physics_task = nil
@@ -108,14 +107,6 @@ function InteriorVisitor:RecordMap(id, data)
     SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, TheSim:ZipAndEncodeString(DataDumper({[id] = data})))
 end
 
-function InteriorVisitor:RecordUUID(id)
-    self.visited_uuid[id] = true
-end
-
-function InteriorVisitor:IsVisited(id)
-    return self.visited_uuid[id] == true
-end
-
 function InteriorVisitor:UpdateExteriorPos()
     local spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
@@ -143,9 +134,6 @@ function InteriorVisitor:UpdateExteriorPos()
             self.inst:RemoveTag("pl_no_light_interior")
         end
         self:UpdatePlayerAndCreaturePhysics(ent)
-        if ent.uuid then
-            self:RecordUUID(ent.uuid)
-        end
 
         local single, door = ent:GetIsSingleRoom() -- check if this room is single, if so, get the unique exit
         if single then
@@ -177,16 +165,12 @@ end
 
 function InteriorVisitor:OnSave()
     return {
-        -- visited_uuid = self.visited_uuid,
         last_mainland_pos = self.last_mainland_pos,
         interior_map = self.interior_map,
     }
 end
 
 function InteriorVisitor:OnLoad(data)
-    -- if data.visited_uuid then
-    --     self.visited_uuid = data.visited_uuid
-    -- end
     if data.last_mainland_pos then
         self.last_mainland_pos = data.last_mainland_pos
     end
