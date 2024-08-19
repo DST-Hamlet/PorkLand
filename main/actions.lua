@@ -1011,9 +1011,14 @@ end
 
 local PlayerController = require("components/playercontroller")
 
+local NON_AUTO_EQUIP_ACTIONS = {
+    [ACTIONS.PUTONSHELF] = true,
+    [ACTIONS.WEIGHDOWN] = true,
+}
+
 local do_action_auto_equip = PlayerController.DoActionAutoEquip
 function PlayerController:DoActionAutoEquip(buffaction, ...)
-    if buffaction.action == ACTIONS.PUTONSHELF then
+    if NON_AUTO_EQUIP_ACTIONS[buffaction.action] then
         return
     end
     return do_action_auto_equip(self, buffaction, ...)
