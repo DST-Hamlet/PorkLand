@@ -80,33 +80,30 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     local room = data[current_room_id]
     local room_widget = Image("interior_minimap/interior_minimap.xml", "pl_frame_" .. SizeToString(room.width, room.depth) .. ".tex")
     room_widget.position_offset = offset
-    table.insert(widgets, room_widget)
+    table.insert(widgets.backgrounds, room_widget)
 
     for _, icon_data in ipairs(room.icons) do
         local atlas = GetMinimapAtlas(icon_data.icon)
         if atlas then
             local icon = Image(GetMinimapAtlas(icon_data.icon), icon_data.icon)
-            -- local icon = Image("minimap/minimap_data.xml", "messagebottletreasure_marker.png")
-            -- icon:SetPosition(WorldPosToScreenPos(Vector3(icon_data.offset_x, 0, icon_data.offset_z)))
             icon.position_offset = offset + Vector3(icon_data.offset_x, 0, icon_data.offset_z)
-            table.insert(widgets, icon)
+            table.insert(widgets.icons, icon)
         end
     end
 
     for _, door in ipairs(room.doors) do
-        local direction = DIRECTION_VECTORS[door.direction]
-        local door_icon_offset
-        if direction.x ~= 0 then
-            door_icon_offset = direction * (room.depth / 2 + INTERIOR_MINIMAP_DOOR_SPACE)
-        else
-            door_icon_offset = direction * (room.width / 2 + INTERIOR_MINIMAP_DOOR_SPACE)
-        end
-        local door_icon = Image("interior_minimap/interior_minimap.xml", direction.x ~= 0 and "pl_interior_passage4.tex" or "pl_interior_passage3.tex")
-        -- door_icon:SetPosition(WorldPosToScreenPos(door_icon_offset))
-        door_icon.position_offset = offset + door_icon_offset
-        table.insert(widgets, door_icon)
-
         if not visited_rooms[door.target_interior] then
+            local direction = DIRECTION_VECTORS[door.direction]
+            local door_icon_offset
+            if direction.x ~= 0 then
+                door_icon_offset = direction * (room.depth / 2 + INTERIOR_MINIMAP_DOOR_SPACE)
+            else
+                door_icon_offset = direction * (room.width / 2 + INTERIOR_MINIMAP_DOOR_SPACE)
+            end
+            local door_icon = Image("interior_minimap/interior_minimap.xml", direction.x ~= 0 and "pl_interior_passage4.tex" or "pl_interior_passage3.tex")
+            door_icon.position_offset = offset + door_icon_offset
+            table.insert(widgets.doors, door_icon)
+
             local target_room = data[door.target_interior]
             if target_room then
                 local target_interior_offset
@@ -144,12 +141,16 @@ function MapWidget:OnUpdate(...)
 end
 
 function MapWidget:OnEnterInterior()
-    -- self.interior_map_widget = self:AddChild(Widget("interior map"))
-    self.interior_map_widgets = {}
     local data = self.owner.replica.interiorvisitor.interior_map
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
     if data[current_room_id] then
-        BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, current_room_id, Vector3())
+        local widgets = {
+            backgrounds = {},
+            icons = {},
+            doors = {},
+        }
+        BuildInteriorMinimapLayout(widgets, data, {}, current_room_id, Vector3())
+        self.interior_map_widgets = JoinArrays(widgets.backgrounds, widgets.icons, widgets.doors)
         for _, widget in ipairs(self.interior_map_widgets) do
             self:AddChild(widget)
         end
