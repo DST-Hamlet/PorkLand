@@ -12,9 +12,6 @@ local function Despawn(inst)
     inst.AnimState:PlayAnimation("disappear")
     -- should probably disable DynamicShadow here
     inst:ListenForEvent("animover", function()
-        for _, ent in ipairs(inst.ents_in_gas) do
-            StopTakingGasDamage(ent, inst)
-        end
         inst:Remove()
     end)
     inst.persists = false
@@ -91,6 +88,12 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:DoTaskInTime(20, Despawn)
+
+    inst:ListenForEvent("onremove", function()
+        for _, ent in ipairs(inst.ents_in_gas) do
+            StopTakingGasDamage(ent, inst)
+        end
+    end)
 
     inst.ents_in_gas = {}
 

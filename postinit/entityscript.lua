@@ -187,6 +187,18 @@ function EntityScript:GetCurrentAnimation()
 end
 
 local _GetIsWet = EntityScript.GetIsWet
-function EntityScript:GetIsWet()
-    return self:HasTag("temporary_wet") or _GetIsWet(self)
+function EntityScript:GetIsWet(...)
+    return self:HasTag("temporary_wet") or _GetIsWet(self, ...)
+end
+
+local _RestartBrain = EntityScript.RestartBrain
+function EntityScript:RestartBrain(...)
+    if self.components.freezable and self.components.freezable:IsFrozen() then
+        self:StopBrain()
+        return
+    elseif self.components.sleeper and self.components.sleeper:IsAsleep() then
+        self:StopBrain()
+        return
+    end
+    return _RestartBrain(self, ...)
 end

@@ -13,7 +13,7 @@ local Infester = Class(function(self, inst)
 end)
 
 local function ShouldStopInfesting(inst)
-    if TheWorld.state.isday then
+    if TheWorld.state.isday and inst:GetCurrentInteriorID() == nil then
         return false
     end
 
