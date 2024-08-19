@@ -132,6 +132,7 @@ local widget_posts = {
     "uianim",
     "uiclock",
     "widget",
+    "mapwidget",
 }
 
 local module_posts = {

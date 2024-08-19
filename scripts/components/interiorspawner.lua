@@ -231,7 +231,7 @@ function InteriorSpawner:OnRemoveExterior(entity)
 
     local room = self:GetInteriorByIndex(entity.interiorID)
     if room then
-        local allrooms = self:GatherAllRooms_Impl(room, {}, true)
+        local allrooms = self:GatherAllRooms_Impl(room, {})
         for k in pairs(allrooms) do
             self:ClearInteriorContents(k:GetPosition(), entity:GetPosition())
             if k.interiorID then
@@ -512,10 +512,10 @@ function InteriorSpawner:AddInterior(def)
     def.object_list = {}
     self.interior_defs[def.unique_name] = def
 
-    if TheWorld.components.worldmapiconproxy then
-        -- TODO: impl minimap
-        TheWorld.components.worldmapiconproxy:RegisterInterior(def.unique_name)
-    end
+    -- if TheWorld.components.worldmapiconproxy then
+    --     -- TODO: impl minimap
+    --     TheWorld.components.worldmapiconproxy:RegisterInterior(def.unique_name)
+    -- end
 
     if def.batted and TheWorld.components.batted then
         TheWorld.components.batted:RegisterBatCave(def.unique_name) -- unique_name is interiorID
@@ -833,18 +833,18 @@ function InteriorSpawner:GatherAllRooms_Impl(center, allrooms, usemap)
         if v.prefab == "prop_door" then
             local id = v.components.door.target_interior
             if id ~= nil and id ~= "EXTERIOR" then
-                local room = usemap and self.interiors[id] or self:GetInteriorByIndex(id)
+                local room = self.interiors[id] or self:GetInteriorByIndex(id)
                 assert(room, "Room not exists: "..id)
 
                 center.doors[v] = {target = room, dir = "unknown"} -- for easy access after searching
-                for _, name in ipairs(dir_str) do
-                    if v:HasTag("door_"..name) then
-                        center.doors[v].dir = name
+                for _, direction in ipairs(dir_str) do
+                    if v:HasTag("door_"..direction) then
+                        center.doors[v].dir = direction
                         break
                     end
                 end
 
-                self:GatherAllRooms_Impl(room, allrooms, usemap)
+                self:GatherAllRooms_Impl(room, allrooms)
             end
         end
     end

@@ -32,6 +32,7 @@ local InteriorVisitor = Class(function(self, inst)
     self.interior_cc = "images/colour_cubes/day05_cc.tex"
     self.center_ent = nil
     self.visited_uuid = {}
+    self.interior_map = {}
 
     -- self.restore_physics_task = nil
 
@@ -54,7 +55,7 @@ end, nil,
 local function BitAND(a,b)
     local p, c = 1, 0
     while a > 0 and b > 0 do
-        local ra,rb = a%2,b%2
+        local ra, rb = a%2, b%2
         if ra + rb >1 then c = c + p end
         a, b, p = (a-ra)/2, (b-rb)/2, p*2
     end
@@ -101,6 +102,11 @@ function InteriorVisitor:DelayRestorePhysics(inst, delay)
     end)
 end
 
+function InteriorVisitor:RecordMap(id, data)
+    self.interior_map[id] = data
+    SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, TheSim:ZipAndEncodeString(DataDumper({[id] = data})))
+end
+
 function InteriorVisitor:RecordUUID(id)
     self.visited_uuid[id] = true
 end
@@ -144,6 +150,8 @@ function InteriorVisitor:UpdateExteriorPos()
                 return
             end
         end
+
+        self:RecordMap(ent.interiorID, ent:CollectMinimapData())
     else
         self.inst:RemoveTag("inside_interior")
         grue.pl_no_light_interior = false
@@ -160,17 +168,24 @@ end
 
 function InteriorVisitor:OnSave()
     return {
-        visited_uuid = self.visited_uuid,
+        -- visited_uuid = self.visited_uuid,
         last_mainland_pos = self.last_mainland_pos,
+        interior_map = self.interior_map,
     }
 end
 
 function InteriorVisitor:OnLoad(data)
-    if data.visited_uuid then
-        self.visited_uuid = data.visited_uuid
-    end
+    -- if data.visited_uuid then
+    --     self.visited_uuid = data.visited_uuid
+    -- end
     if data.last_mainland_pos then
         self.last_mainland_pos = data.last_mainland_pos
+    end
+    if data.interior_map then
+        self.interior_map = data.interior_map
+        self.inst:DoStaticTaskInTime(0, function()
+            SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, TheSim:ZipAndEncodeString(DataDumper(self.interior_map)))
+        end)
     end
 
     -- restore player position if interior was destroyed

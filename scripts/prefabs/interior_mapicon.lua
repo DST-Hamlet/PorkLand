@@ -192,10 +192,6 @@ local function room()
 end
 
 local function Update(inst)
-    if ThePlayer == nil or TheNet:IsDedicated() then
-        return
-    end
-
     for _, v in pairs(inst.icons) do
         v.MiniMapEntity:SetEnabled(false)
     end

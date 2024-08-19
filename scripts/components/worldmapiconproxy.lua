@@ -117,7 +117,7 @@ return Class(function(self, inst)
 
             else
                 local data = ent:CollectMinimapData()
-                if data.no_minimap then
+                if not data then
                     -- do nothing
                 else
                     local diff, s = CheckDirty(data)

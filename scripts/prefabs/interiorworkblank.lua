@@ -194,48 +194,77 @@ local function GetSearchRadius(inst)
     return inst.search_radius
 end
 
+local DIRECTION_NAMES = {
+    "north",
+    "east",
+    "south",
+    "west"
+}
+
 local function CollectMinimapData(inst)
-    local center = inst:GetPosition()
     if not inst:HasInteriorMinimap() then
-        return { center = center, no_minimap = true }
+        return
     end
+
+    local position = inst:GetPosition()
     local width = inst:GetWidth()
     local depth = inst:GetDepth()
     local radius = inst:GetSearchRadius()
-    local result = {
-        center = center,
-        width = width,
-        depth = depth,
-        net_id = inst.Network:GetNetworkID(),
-        interiorID = inst.interiorID,
-        guid = inst.entity:GetGUID(),
-        ents = {}
-    }
-    inst.net_id = result.net_id
-    local ents = result.ents
-    for _, v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
-        if v.MiniMapEntity ~= nil then
-            local pos = v:GetPosition()
-            local offset = pos - center
+
+    local icons = {}
+    for _, ent in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
+        if ent.MiniMapEntity ~= nil then
+            local pos = ent:GetPosition()
+            local offset = pos - position
             -- check if entity is in room
             if math.abs(offset.z) < width / 2 + 1 and math.abs(offset.x) < depth / 2 + 1 then
-                local icon = v.MiniMapEntity:GetIcon() -- see interior_map.lua
-                local priority = v.MiniMapEntity:GetPriority() -- see interior_map.lua
+                local icon = ent.MiniMapEntity:GetIcon() -- see interior_map.lua
+                local priority = ent.MiniMapEntity:GetPriority() -- see interior_map.lua
                 if icon ~= nil and icon ~= "" then
-                    local list = ents[icon] or {}
-                    table.insert(list, {offset.x, offset.z, priority or 0})
-                    ents[icon] = list
+                    table.insert(icons, {
+                        icon = icon,
+                        offset_x = offset.x,
+                        offset_z = offset.z,
+                        priority = priority or 0,
+                    })
                 end
             end
         end
     end
-    return result
+
+    local doors = {}
+    for _, door in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, {"interior_door"})) do
+        local target_interior = door.components.door.target_interior
+        if target_interior ~= "EXTERIOR" then
+            local door_direction
+            for _, direction in ipairs(DIRECTION_NAMES) do
+                if door:HasTag("door_"..direction) then
+                    door_direction = direction
+                    break
+                end
+            end
+            if door_direction then
+                table.insert(doors, {
+                    target_interior = target_interior,
+                    direction = door_direction,
+                })
+            else
+                print("This door doesn't have a direction!", door)
+            end
+        end
+    end
+
+    return {
+        width = width,
+        depth = depth,
+        icons = icons,
+        doors = doors,
+    }
     -- {
-    --     center: Point,
-    --     net_id: number,
-    --     guid: number,
-    --     width: number, depth: number,
-    --     ents: {[icon: string]: Array<[x: number, z: number]>}
+    --     width: number,
+    --     depth: number,
+    --     icons: { icon: string, offset_x: number, offset_z: number, priority: number }[]
+    --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
     -- }
 end
 
@@ -373,7 +402,7 @@ local function fn()
     inst.HasInteriorMinimap = HasInteriorMinimap
     inst.HasInteriorTag = HasInteriorTag
 
-    TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
+    -- TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
 
     inst:AddComponent("interiorpathfinder")
 
