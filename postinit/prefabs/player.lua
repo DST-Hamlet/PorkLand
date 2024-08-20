@@ -147,6 +147,15 @@ AddPlayerPostInit(function(inst)
 
     inst._oinc_sound = net_byte(inst.GUID, "player._oincsoundpush", "oincsounddirty")
 
+    if inst.components.hudindicatable then
+        local _shouldtrackfn = inst.components.hudindicatable.shouldtrackfn
+        local function ShouldTrackfn(inst, viewer, ...)
+            return _shouldtrackfn(inst, viewer, ...)
+                and inst:IsNear(viewer, TUNING.MAX_INDICATOR_RANGE * 1.5)
+        end
+        inst.components.hudindicatable:SetShouldTrackFunction(ShouldTrackfn)
+    end
+
     if not TheWorld.ismastersim then
         return
     end
