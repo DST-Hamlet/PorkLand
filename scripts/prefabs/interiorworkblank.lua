@@ -212,7 +212,7 @@ local function CollectMinimapIcons(inst, ignore_non_cacheable)
     local radius = inst:GetSearchRadius()
 
     local icons = {}
-    for _, ent in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
+    for _, ent in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, nil, {"INLIMBO", "pl_interior_no_minimap"})) do
         if ent.MiniMapEntity and (not ignore_non_cacheable or ent.MiniMapEntity:GetCanUseCache()) then  -- see postinit/minimapentity.lua
             local pos = ent:GetPosition()
             local offset = pos - position
