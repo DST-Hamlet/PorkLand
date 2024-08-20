@@ -319,6 +319,10 @@ Assets = {
     Asset("IMAGE", "levels/textures/map_interior/mini_floor_marble_royal.tex"),
     Asset("ATLAS", "levels/textures/map_interior/mini_ruins_slab.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_ruins_slab.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_antcave_floor.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_antcave_floor.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
 
     Asset("SHADER", "shaders/ui_fillmode.ksh"),
 }
