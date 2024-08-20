@@ -99,6 +99,12 @@ local function MakeTimeChanger(inst)
     inst.timechanger = true
 end
 
+-- TODO: Combine these two and add a getter
+local function set_minimap_icon(inst, icon)
+    inst.minimapicon = icon
+    inst._minimap_name:set(icon)
+end
+
 local function InitInteriorPrefab(inst, doer, prefab_definition, interior_definition)
     --If we are spawned inside of a building, then update our door to point at our interior
     local door_definition =
@@ -153,7 +159,7 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
             local minimap = inst.entity:AddMiniMapEntity()
             minimap:SetIcon(prefab_definition.animdata.minimapicon)
 
-            inst.minimapicon = prefab_definition.animdata.minimapicon
+            set_minimap_icon(inst, prefab_definition.animdata.minimapicon)
         end
     end
 
@@ -264,7 +270,7 @@ local function OnLoad(inst, data)
         inst.AnimState:PushAnimation(inst.baseanimname.."_closed")
     end
     if data.minimapicon then
-        inst.minimapicon = data.minimapicon
+        set_minimap_icon(inst, data.minimapicon)
         inst.entity:AddMiniMapEntity()
         inst.MiniMapEntity:SetIcon(inst.minimapicon)
     end
@@ -387,6 +393,14 @@ local function testPlayerHouseDoor(inst)
     end
 end
 
+local function OnMinimapNameDirty(inst)
+    local name = inst._minimap_name:value()
+    if not inst.MiniMapEntity then
+        inst.entity:AddMiniMapEntity()
+        inst.MiniMapEntity:SetIcon(name)
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -420,9 +434,13 @@ local function fn()
         anim = "idle"
     }
 
+    inst._minimap_name = net_string(inst.GUID, "prop_door._minimap_name", "minimap_name_dirty")
+    inst._minimap_name:set_local("")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
+        inst:ListenForEvent("minimap_name_dirty", OnMinimapNameDirty)
         return inst
     end
 
