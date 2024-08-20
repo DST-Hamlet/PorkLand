@@ -246,6 +246,10 @@ function MapWidget:OnUpdate(...)
 end
 
 function MapWidget:OnEnterInterior()
+    if self.interior_map_widgets then
+        return
+    end
+
     local data = self.owner.replica.interiorvisitor.interior_map
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
     if data[current_room_id] then
