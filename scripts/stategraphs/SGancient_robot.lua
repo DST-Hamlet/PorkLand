@@ -60,7 +60,8 @@ AncientRobot.Events.OnAttacked = function()
                     inst.wantstodeactivate = nil
                     inst:RemoveTag("dormant")
                     inst:PushEvent("shock")
-                    inst.components.timer:SetTimeLeft("discharge", 20)
+                    inst.components.timer:StopTimer("discharge", TUNING.ROBOT_DISCHARGE_TIME)
+                    inst.components.timer:StartTimer("discharge", 20)
                     if not TheWorld.state.isaporkalypse then
                         inst.components.timer:ResumeTimer("discharge")
                     end
