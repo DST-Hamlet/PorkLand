@@ -100,7 +100,7 @@ local function MakeTimeChanger(inst)
 end
 
 -- TODO: Combine these two and add a getter
-local function set_minimap_icon(inst, icon)
+local function SetMinimapIcon(inst, icon)
     inst.minimapicon = icon
     inst._minimap_name:set(icon)
 end
@@ -159,7 +159,7 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
             local minimap = inst.entity:AddMiniMapEntity()
             minimap:SetIcon(prefab_definition.animdata.minimapicon)
 
-            set_minimap_icon(inst, prefab_definition.animdata.minimapicon)
+            inst:SetMinimapIcon(prefab_definition.animdata.minimapicon)
         end
     end
 
@@ -183,12 +183,6 @@ local function InitHouseDoor(inst, dir)
     inst.baseanimname = dir
     inst.AnimState:PlayAnimation(dir .. "_open")
     inst.AnimState:PushAnimation(dir, true)
-end
-
-local function SaveInteriorData(inst, save_data)
-end
-
-local function InitFromInteriorSave(inst, save_data)
 end
 
 local function OnSave(inst, data)
@@ -270,7 +264,7 @@ local function OnLoad(inst, data)
         inst.AnimState:PushAnimation(inst.baseanimname.."_closed")
     end
     if data.minimapicon then
-        set_minimap_icon(inst, data.minimapicon)
+        inst:SetMinimapIcon(data.minimapicon)
         inst.entity:AddMiniMapEntity()
         inst.MiniMapEntity:SetIcon(inst.minimapicon)
     end
@@ -381,7 +375,7 @@ local function CloseDoor(inst, nospread)
     end
 end
 
-local function testPlayerHouseDoor(inst)
+local function test_player_house_door(inst)
     local door = inst.components.door
     if door then
         local interior = TheWorld.components.interiorspawner:GetInteriorByIndex(door.interior_name)
@@ -393,12 +387,8 @@ local function testPlayerHouseDoor(inst)
     end
 end
 
-local function OnMinimapNameDirty(inst)
-    local name = inst._minimap_name:value()
-    if not inst.MiniMapEntity then
-        inst.entity:AddMiniMapEntity()
-        inst.MiniMapEntity:SetIcon(name)
-    end
+local function GetMinimapIcon(inst)
+    return inst._minimap_name:value()
 end
 
 local function fn()
@@ -424,7 +414,7 @@ local function fn()
 
     inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
 
-    inst:DoTaskInTime(0, testPlayerHouseDoor)
+    inst:DoTaskInTime(0, test_player_house_door)
 
     inst.Transform:SetRotation(-90)
     inst:AddComponent("rotatingbillboard")
@@ -437,6 +427,9 @@ local function fn()
     inst._minimap_name = net_string(inst.GUID, "prop_door._minimap_name", "minimap_name_dirty")
     inst._minimap_name:set_local("")
 
+    -- Used by scripts/prefabs/interiorworkblank.lua
+    inst.GetMinimapIcon = GetMinimapIcon
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -444,13 +437,13 @@ local function fn()
         return inst
     end
 
+    inst.SetMinimapIcon = SetMinimapIcon
+
     inst:AddComponent("door")
 
     inst:AddComponent("vineable")
 
     inst.initInteriorPrefab = InitInteriorPrefab
-    inst.saveInteriorData = SaveInteriorData
-    inst.initFromInteriorSave = InitFromInteriorSave
 
     MakeHauntableDoor(inst) -- 门关上时，鬼魂玩家仍然可以通过
 

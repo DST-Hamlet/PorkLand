@@ -213,13 +213,15 @@ local function CollectMinimapIcons(inst, ignore_non_cacheable)
 
     local icons = {}
     for _, ent in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, nil, {"INLIMBO", "pl_interior_no_minimap"})) do
-        if ent.MiniMapEntity and (not ignore_non_cacheable or ent.MiniMapEntity:GetCanUseCache()) then  -- see postinit/minimapentity.lua
+        -- prop_door sets the minimap entity after the creation,
+        -- and will cause ghost icons if set on client, so use a netvar instead
+        if ent.prefab == "prop_door" or ent.MiniMapEntity and (not ignore_non_cacheable or ent.MiniMapEntity:GetCanUseCache()) then  -- see postinit/minimapentity.lua
             local pos = ent:GetPosition()
             local offset = pos - position
             -- check if entity is in room
             if math.abs(offset.z) < width / 2 + 1 and math.abs(offset.x) < depth / 2 + 1 then
-                local icon = ent.MiniMapEntity:GetIcon() -- see postinit/minimapentity.lua
-                local priority = ent.MiniMapEntity:GetPriority() -- see postinit/minimapentity.lua
+                local icon = ent.prefab == "prop_door" and ent:GetMinimapIcon() or ent.MiniMapEntity:GetIcon() -- see postinit/minimapentity.lua
+                local priority = ent.prefab == "prop_door" and 0 or ent.MiniMapEntity:GetPriority() -- see postinit/minimapentity.lua
                 if icon ~= nil and icon ~= "" then
                     local id = ent.Network:GetNetworkID()
                     icons[id] = {
@@ -422,7 +424,6 @@ local function fn()
     inst.GetDoorToExterior = GetDoorToExterior
     inst.GetIsSingleRoom = GetIsSingleRoom
     inst.HasInteriorMinimap = HasInteriorMinimap
-    inst.CollectMinimapData = CollectMinimapData
     inst.CollectMinimapIcons = CollectMinimapIcons
     inst.HasInteriorTag = HasInteriorTag
 
@@ -437,6 +438,7 @@ local function fn()
     end
 
     inst.SetUp = SetUp
+    inst.CollectMinimapData = CollectMinimapData
 
     inst.walltexture = nil
     inst.floortexture = nil
