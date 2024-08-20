@@ -195,8 +195,8 @@ end
 -- 世界大小设置与单机猪镇保持一致
 WORLDGEN_GROUP["misc"].items["world_size"].desc =  {
     { text = STRINGS.UI.SANDBOXMENU.SLIDESMALL, data = "small"},
-    { text = STRINGS.UI.SANDBOXMENU.SLIDESMEDIUM, data = "medium"},
     { text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default"},
+    { text = STRINGS.UI.SANDBOXMENU.SLIDESMEDIUM, data = "medium"},
     { text = STRINGS.UI.SANDBOXMENU.SLIDESLARGE, data = "large"},
     { text = STRINGS.UI.SANDBOXMENU.SLIDESHUGE, data = "huge"},
 }
