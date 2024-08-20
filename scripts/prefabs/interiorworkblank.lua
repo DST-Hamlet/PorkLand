@@ -205,11 +205,7 @@ local function sort_priority(a, b)
     return a.priority < b.priority
 end
 
-local function CollectMinimapData(inst, ignore_non_cacheable)
-    if not inst:HasInteriorMinimap() then
-        return
-    end
-
+local function CollectMinimapIcons(inst, ignore_non_cacheable)
     local position = inst:GetPosition()
     local width = inst:GetWidth()
     local depth = inst:GetDepth()
@@ -236,6 +232,20 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
             end
         end
     end
+    return icons
+end
+
+local function CollectMinimapData(inst, ignore_non_cacheable)
+    if not inst:HasInteriorMinimap() then
+        return
+    end
+
+    local position = inst:GetPosition()
+    local width = inst:GetWidth()
+    local depth = inst:GetDepth()
+    local radius = inst:GetSearchRadius()
+
+    local icons = CollectMinimapIcons(inst, ignore_non_cacheable)
 
     local doors = {}
     for _, door in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, {"interior_door"})) do
@@ -401,6 +411,8 @@ local function fn()
     inst.GetDoorToExterior = GetDoorToExterior
     inst.GetIsSingleRoom = GetIsSingleRoom
     inst.HasInteriorMinimap = HasInteriorMinimap
+    inst.CollectMinimapData = CollectMinimapData
+    inst.CollectMinimapIcons = CollectMinimapIcons
     inst.HasInteriorTag = HasInteriorTag
 
     inst:AddComponent("interiorpathfinder")
@@ -414,7 +426,6 @@ local function fn()
     end
 
     inst.SetUp = SetUp
-    inst.CollectMinimapData = CollectMinimapData
 
     inst.walltexture = nil
     inst.floortexture = nil

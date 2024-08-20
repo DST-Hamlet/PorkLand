@@ -38,10 +38,6 @@ local function SizeToString(width, depth)
 end
 
 local function get_atlas(image_name)
-    local atlas = GetMinimapAtlas_Internal(image_name)
-    if atlas then
-        return atlas
-    end
     for _, atlases in ipairs(ModManager:GetPostInitData("MinimapAtlases")) do
         for _, path in ipairs(atlases) do
             if TheSim:AtlasContains(resolvefilepath(path), image_name) then
@@ -52,8 +48,8 @@ local function get_atlas(image_name)
 end
 
 local minimap_atlas_cache = {}
-local function GetMinimapAtlas(image_name)
-	local atlas = minimap_atlas_cache[image_name]
+local function get_minimap_atlas(image_name)
+	local atlas = minimap_atlas_cache[image_name] or GetMinimapAtlas(image_name)
 	if atlas then
 		return atlas
 	end
@@ -67,6 +63,10 @@ local function GetMinimapAtlas(image_name)
 	return atlas
 end
 
+local function sort_priority(a, b)
+    return a.priority < b.priority
+end
+
 -- For data's structure, see scripts/prefabs/interiorworkblank.lua
 -- {
 --     width: number,
@@ -77,35 +77,35 @@ end
 local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_room_id, offset)
     visited_rooms[current_room_id] = true
     local room = data[current_room_id]
+
+    local room_tile = Image("levels/textures/map_interior/mini_ruins_slab.xml", "mini_ruins_slab.tex")
+    room_tile.position_offset = offset
+    room_tile.tile_width = room.width
+    room_tile.tile_depth = room.depth
+    room_tile.inst.ImageWidget:SetEffect(resolvefilepath("shaders/ui_fillmode.ksh"))
+    room_tile:SetEffectParams(0, 0, 0, 0)
+
+    local room_frame = Image("interior_minimap/interior_minimap.xml", "pl_frame_" .. SizeToString(room.width, room.depth) .. ".tex")
+    room_frame.position_offset = offset
+
     local room_widgets = {
-        backgrounds = {},
-        tiles = {},
+        tile = room_tile,
+        frame = room_frame,
         icons = {},
         doors = {},
         offset = offset,
     }
     widgets[current_room_id] = room_widgets
 
-    local room_background = Image("interior_minimap/interior_minimap.xml", "pl_frame_" .. SizeToString(room.width, room.depth) .. ".tex")
-    room_background.position_offset = offset
-    table.insert(room_widgets.backgrounds, room_background)
-
-    local room_tiles = Image("levels/textures/map_interior/mini_ruins_slab.xml", "mini_ruins_slab.tex")
-    room_tiles.position_offset = offset
-    room_tiles.tile_width = room.width
-    room_tiles.tile_depth = room.depth
-    room_tiles.inst.ImageWidget:SetEffect(resolvefilepath("shaders/ui_fillmode.ksh"))
-    table.insert(room_widgets.tiles, room_tiles)
-    room_tiles:SetEffectParams(0, 0, 0, 0)
-
     for id, icon_data in pairs(room.icons) do
-        local atlas = GetMinimapAtlas(icon_data.icon)
+        local atlas = get_minimap_atlas(icon_data.icon)
         if atlas then
             local icon = Image(atlas, icon_data.icon)
             icon.position_offset = offset + Vector3(icon_data.offset_x, 0, icon_data.offset_z)
             table.insert(room_widgets.icons, {widget = icon, id = id, priority = icon_data.priority})
         end
     end
+    table.sort(room_widgets.icons, sort_priority)
 
     for _, door in ipairs(room.doors) do
         if not visited_rooms[door.target_interior] then
@@ -132,10 +132,6 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
             end
         end
     end
-end
-
-local function sort_priority(a, b)
-    return a.priority < b.priority
 end
 
 local function DiffWidget(self, incoming_data, room_id)
@@ -185,23 +181,18 @@ end
 local MapWidget = require("widgets/mapwidget")
 
 local INTERIOR_BG_SCALE = 0.8
-local INTERIOR_TILE_SCALE = 1
 
 local function UpdateWidgetPositionScale(widget, scale)
     widget:SetScale(scale, scale, 1)
     widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
 end
 
-local function UpdateWidgetPositionScale_Tile(widget, scale)
-    if widget.tile_width then
-        local width = widget.tile_width
-        local depth = widget.tile_depth
-        widget:SetScale(scale * (width / 4), scale * (depth / 4), 1)
-        widget:SetEffectParams((width / 4) - 1, (depth / 4) - 1, 0, 0)
-        widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
-    else
-        UpdateWidgetPositionScale(widget, scale)
-    end
+local function UpdateTileWidgetPositionScale(widget, scale)
+    local width = widget.tile_width
+    local depth = widget.tile_depth
+    widget:SetScale(scale * (width / INTERIOR_MINIMAP_POSITION_SCALE), scale * (depth / INTERIOR_MINIMAP_POSITION_SCALE), 1)
+    widget:SetEffectParams((width / INTERIOR_MINIMAP_POSITION_SCALE) - 1, (depth / INTERIOR_MINIMAP_POSITION_SCALE) - 1, 0, 0)
+    widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
 end
 
 local on_update = MapWidget.OnUpdate
@@ -219,11 +210,11 @@ function MapWidget:OnUpdate(...)
         self.interior_map_widgets[current_room_id].icons = new_icons
         if has_new_icons then
             for _, widgets in pairs(self.interior_map_widgets) do
-                for _, icon_data in ipairs(widgets.icons) do
-                    icon_data.widget:MoveToFront()
-                end
                 for _, door in ipairs(widgets.doors) do
                     door:MoveToFront()
+                end
+                for _, icon_data in ipairs(widgets.icons) do
+                    icon_data.widget:MoveToFront()
                 end
             end
         end
@@ -232,12 +223,9 @@ function MapWidget:OnUpdate(...)
 
     local scale = 0.75 / self.minimap:GetZoom()
     for _, widgets in pairs(self.interior_map_widgets) do
-        for _, background in ipairs(widgets.backgrounds) do
-            UpdateWidgetPositionScale(background, scale * INTERIOR_BG_SCALE)
-        end
-        for _, tile in ipairs(widgets.tiles) do
-            UpdateWidgetPositionScale_Tile(tile, scale * INTERIOR_TILE_SCALE)
-        end
+        UpdateWidgetPositionScale(widgets.frame, scale * INTERIOR_BG_SCALE)
+        UpdateTileWidgetPositionScale(widgets.tile, scale * INTERIOR_BG_SCALE)
+
         for _, icon_data in ipairs(widgets.icons) do
             UpdateWidgetPositionScale(icon_data.widget, scale)
         end
@@ -251,22 +239,32 @@ function MapWidget:OnEnterInterior()
     local data = self.owner.replica.interiorvisitor.interior_map
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
     if data[current_room_id] then
+        -- {
+        --     [room_id: number]: {
+        --         tile: Image,
+        --         frame: Image,
+        --         doors: Image[],
+        --         icons: { widget: Image, id: number, priority: number }[],
+        --         offset: Vector3,
+        --     }
+        -- }
         self.interior_map_widgets = {}
         BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, current_room_id, Vector3())
         for _, widgets in pairs(self.interior_map_widgets) do
-            for _, background in ipairs(widgets.backgrounds) do
-                self:AddChild(background)
-            end
-            for _, tile in ipairs(widgets.tiles) do
-                self:AddChild(tile)
-            end
-            for _, icon_data in ipairs(widgets.icons) do
-                self:AddChild(icon_data.widget)
-            end
+            self:AddChild(widgets.tile)
+            self:AddChild(widgets.frame)
+        end
+        for _, widgets in pairs(self.interior_map_widgets) do
             for _, door in ipairs(widgets.doors) do
                 self:AddChild(door)
             end
         end
+        for _, widgets in pairs(self.interior_map_widgets) do
+            for _, icon_data in ipairs(widgets.icons) do
+                self:AddChild(icon_data.widget)
+            end
+        end
+        -- Hide the normal minimap
         self.img:Hide()
     end
 end

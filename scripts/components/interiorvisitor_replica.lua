@@ -113,8 +113,11 @@ end
 function InteriorVisitor:UpdateInteriorMinimap()
     local center = self.center_ent:value()
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.inst:GetPosition())
-    self.interior_map[current_room_id] = center:CollectMinimapData()
-    self.interior_map_dirty = true
+    local current_room_data = self.interior_map[current_room_id]
+    if current_room_data then
+        current_room_data.icons = center:CollectMinimapIcons()
+        self.interior_map_dirty = true
+    end
 end
 
 function InteriorVisitor:OnUpdate()
