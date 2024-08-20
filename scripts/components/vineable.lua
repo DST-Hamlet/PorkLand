@@ -46,7 +46,7 @@ function Vineable:SetGrowTask(time)
 end
 
 function Vineable:BeginRegrow()
-    self:SetGrowTask(20 + math.random() * 20)
+    self:SetGrowTask(TUNING.TOTAL_DAY_TIME * (1 + math.random()))
 end
 
 function Vineable:UpdateVineVisual()

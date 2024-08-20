@@ -42,7 +42,7 @@ local function MakePlantedVeggie(base_veggie, anim, animation, scale, regrow)
         MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
         if regrow then
-            AddToRegrowthManager(inst)
+            -- AddToRegrowthManager(inst)
         end
 
         return inst

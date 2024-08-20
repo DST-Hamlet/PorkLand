@@ -522,6 +522,7 @@ ACTIONS.BUILD_MOUND.fn = function(act)
     if act.doer.build_mound_action then
 		return act.doer:build_mound_action()
 	end
+end
 
 ACTIONS.THUNDERBIRD_CAST.fn = function(act)
     act.doer.sg:GoToState("thunder_attack")
@@ -530,6 +531,7 @@ end
 
 ACTIONS.PIG_BANDIT_EXIT.fn = function(act)
     return true
+end
 
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn

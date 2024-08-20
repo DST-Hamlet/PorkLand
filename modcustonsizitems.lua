@@ -113,7 +113,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             thunderbird_setting = {image = "thunderbirds.tex"},
         },
         resources = {
-            asparagus_regrowth = {image = "asparagus.tex"},
+            -- asparagus_regrowth = {image = "asparagus.tex"},
         },
         misc = {
             brambles = {desc = enable_descriptions},
@@ -134,7 +134,6 @@ local change_items = {  -- change dst custonsiz settings
         misc = {"task_set", "start_location", "world_size", "touchstone", "boons"},
     },
     world_settings = {
-        resources = {"regrowth", "flowers_regrowth", "reeds_regrowth"},
         animals = {"butterfly"},
         misc = {"lightning", "weather"}
     }
@@ -158,6 +157,33 @@ for category, category_data in pairs(change_items) do  -- use dst custonsiz sett
     for group, items in pairs(category_data) do
         for _, item in ipairs(items) do
             table.insert(GROUP[group].items[item].world, "porkland")
+        end
+    end
+end
+
+local delete_items = {  -- change dst custonsiz settings
+    worldgen = {
+
+    },
+    world_settings = {
+        global = {"specialevent", "autumn", "winter", "spring", "summer", "spawnmode", "beefaloheat"},
+        survivors = {"seasonalstartingitems", "temperaturedamage", "brightmarecreatures"},
+        events = "all",
+        resources = "all"
+    }
+}
+
+for category, category_data in pairs(delete_items) do  -- use dst custonsiz settings for porkland
+    local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
+    for group, groupitems in pairs(category_data) do
+        if type(groupitems) == "string" then
+            for _, item in pairs(GROUP[group].items) do
+                item.world = {}
+            end
+        else
+            for _, itemname in pairs(groupitems) do
+                GROUP[group].items[itemname].world = {}
+            end
         end
     end
 end
