@@ -194,48 +194,105 @@ local function GetSearchRadius(inst)
     return inst.search_radius
 end
 
-local function CollectMinimapData(inst)
-    local center = inst:GetPosition()
-    if not inst:HasInteriorMinimap() then
-        return { center = center, no_minimap = true }
-    end
+local DIRECTION_NAMES = {
+    "north",
+    "east",
+    "south",
+    "west"
+}
+
+local function sort_priority(a, b)
+    return a.priority < b.priority
+end
+
+local function CollectMinimapIcons(inst, ignore_non_cacheable)
+    local position = inst:GetPosition()
     local width = inst:GetWidth()
     local depth = inst:GetDepth()
     local radius = inst:GetSearchRadius()
-    local result = {
-        center = center,
-        width = width,
-        depth = depth,
-        net_id = inst.Network:GetNetworkID(),
-        interiorID = inst.interiorID,
-        guid = inst.entity:GetGUID(),
-        ents = {}
-    }
-    inst.net_id = result.net_id
-    local ents = result.ents
-    for _, v in ipairs(TheSim:FindEntities(center.x, 0, center.z, radius, nil, {"INLIMBO", "pl_mapicon", "pl_interior_no_minimap"})) do
-        if v.MiniMapEntity ~= nil then
-            local pos = v:GetPosition()
-            local offset = pos - center
+
+    local icons = {}
+    for _, ent in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, nil, {"INLIMBO", "pl_interior_no_minimap"})) do
+        -- prop_door sets the minimap entity after the creation,
+        -- and will cause ghost icons if set on client, so use a netvar instead
+        if ent.prefab == "prop_door" or ent.MiniMapEntity and (not ignore_non_cacheable or ent.MiniMapEntity:GetCanUseCache()) then  -- see postinit/minimapentity.lua
+            local pos = ent:GetPosition()
+            local offset = pos - position
             -- check if entity is in room
             if math.abs(offset.z) < width / 2 + 1 and math.abs(offset.x) < depth / 2 + 1 then
-                local icon = v.MiniMapEntity:GetIcon() -- see interior_map.lua
-                local priority = v.MiniMapEntity:GetPriority() -- see interior_map.lua
+                local icon = ent.prefab == "prop_door" and ent:GetMinimapIcon() or ent.MiniMapEntity:GetIcon() -- see postinit/minimapentity.lua
+                local priority = ent.prefab == "prop_door" and 0 or ent.MiniMapEntity:GetPriority() -- see postinit/minimapentity.lua
                 if icon ~= nil and icon ~= "" then
-                    local list = ents[icon] or {}
-                    table.insert(list, {offset.x, offset.z, priority or 0})
-                    ents[icon] = list
+                    local id = ent.Network:GetNetworkID()
+                    icons[id] = {
+                        icon = icon,
+                        offset_x = offset.x,
+                        offset_z = offset.z,
+                        priority = priority or 0,
+                    }
                 end
             end
         end
     end
-    return result
+    return icons
+end
+
+-- levels/textures/map_interior/mini_ruins_slab.tex -> mini_ruins_slab
+local function basename(path)
+    return string.match(path, "([^/]+)%.%w+$")
+end
+
+local function CollectMinimapData(inst, ignore_non_cacheable)
+    if not inst:HasInteriorMinimap() then
+        return
+    end
+
+    local position = inst:GetPosition()
+    local width = inst:GetWidth()
+    local depth = inst:GetDepth()
+    local radius = inst:GetSearchRadius()
+
+    local icons = CollectMinimapIcons(inst, ignore_non_cacheable)
+
+    local doors = {}
+    for _, door in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, {"interior_door"})) do
+        local target_interior = door.components.door.target_interior
+        if target_interior ~= "EXTERIOR" then
+            local door_direction
+            for _, direction in ipairs(DIRECTION_NAMES) do
+                if door:HasTag("door_"..direction) then
+                    door_direction = direction
+                    break
+                end
+            end
+            if door_direction then
+                table.insert(doors, {
+                    target_interior = target_interior,
+                    direction = door_direction,
+                })
+            else
+                print("This door doesn't have a direction!", door)
+            end
+        end
+    end
+
+    local interior_def = TheWorld.components.interiorspawner:GetInteriorDefByPosition(position)
+    -- Fallback to mini_ruins_slab
+    local floor_texture = interior_def and basename(interior_def.minimaptexture) or "mini_ruins_slab"
+
+    return {
+        width = width,
+        depth = depth,
+        floor_texture = floor_texture,
+        icons = icons,
+        doors = doors,
+    }
     -- {
-    --     center: Point,
-    --     net_id: number,
-    --     guid: number,
-    --     width: number, depth: number,
-    --     ents: {[icon: string]: Array<[x: number, z: number]>}
+    --     width: number,
+    --     depth: number,
+    --     floor_texture: string,
+    --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
+    --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
     -- }
 end
 
@@ -316,16 +373,12 @@ local function OnSave(inst, data)
     data.floortexture = inst.floortexture
     data.interiorID = inst.interiorID
     data.interior_tags = inst.interior_tags
-    data.uuid = inst.uuid
     data.interior_cc = inst.interior_cc
     data.cc = inst.interior_cc
 end
 
 local function OnLoad(inst, data)
     inst:SetUp(data)
-    if data.uuid then
-        inst.uuid = data.uuid
-    end
     if data.interior_tags then
         inst:AddInteriorTags(unpack(table.getkeys(data.interior_tags)))
     end
@@ -371,9 +424,8 @@ local function fn()
     inst.GetDoorToExterior = GetDoorToExterior
     inst.GetIsSingleRoom = GetIsSingleRoom
     inst.HasInteriorMinimap = HasInteriorMinimap
+    inst.CollectMinimapIcons = CollectMinimapIcons
     inst.HasInteriorTag = HasInteriorTag
-
-    TheWorld.components.worldmapiconproxy:AddInteriorCenter(inst)
 
     inst:AddComponent("interiorpathfinder")
 

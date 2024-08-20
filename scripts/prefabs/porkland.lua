@@ -107,7 +107,6 @@ local function common_postinit(inst)
 
     inst:AddComponent("interiorspawner")
     inst:AddComponent("worldpathfindermanager")
-    inst:AddComponent("worldmapiconproxy")
     inst:AddComponent("interiorquaker")
     inst:AddComponent("worldsoundmanager")
     inst:AddComponent("clientundertile")

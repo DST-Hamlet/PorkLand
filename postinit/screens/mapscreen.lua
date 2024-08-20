@@ -26,6 +26,7 @@ function MapScreen:OnEnterInterior(ent)
     if ent ~= nil then
         if ent:HasInteriorMinimap() then
             FocusMapOnWorldPosition(self, 0, 0)
+            self.minimap:OnEnterInterior()
         else
             local pos = self.owner.replica.interiorvisitor:GetExteriorPos()
             FocusMapOnWorldPosition(self, pos.x, pos.z)

@@ -118,7 +118,6 @@ PrefabFiles = {
     "deco_ruins_fountain",
     "deco_swinging_light",
     "deco_table",
-    "interior_mapicon",
     "interior_boundary",
     "interior_surface",
     "interiorwall_fx",
@@ -318,6 +317,16 @@ Assets = {
     -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_marble_royal.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_marble_royal.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_ruins_slab.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_ruins_slab.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_antcave_floor.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_antcave_floor.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
+
+    Asset("SHADER", "shaders/ui_fillmode.ksh"),
 }
 
 for _, v in ipairs(require("main/interior_texture_defs").Assets) do

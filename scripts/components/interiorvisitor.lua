@@ -31,7 +31,8 @@ local InteriorVisitor = Class(function(self, inst)
     self.exterior_pos_z = 0
     self.interior_cc = "images/colour_cubes/day05_cc.tex"
     self.center_ent = nil
-    self.visited_uuid = {}
+    self.last_center_ent = nil
+    self.interior_map = {}
 
     -- self.restore_physics_task = nil
 
@@ -54,7 +55,7 @@ end, nil,
 local function BitAND(a,b)
     local p, c = 1, 0
     while a > 0 and b > 0 do
-        local ra,rb = a%2,b%2
+        local ra, rb = a%2, b%2
         if ra + rb >1 then c = c + p end
         a, b, p = (a-ra)/2, (b-rb)/2, p*2
     end
@@ -101,19 +102,29 @@ function InteriorVisitor:DelayRestorePhysics(inst, delay)
     end)
 end
 
-function InteriorVisitor:RecordUUID(id)
-    self.visited_uuid[id] = true
-end
-
-function InteriorVisitor:IsVisited(id)
-    return self.visited_uuid[id] == true
+function InteriorVisitor:RecordMap(id, data)
+    self.interior_map[id] = data
+    SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, TheSim:ZipAndEncodeString(DataDumper({[id] = data})))
 end
 
 function InteriorVisitor:UpdateExteriorPos()
     local spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
     local ent = spawner:GetInteriorCenterAt_Generic(x, z)
+
     self.center_ent = ent
+    local last_center_ent = self.last_center_ent
+    self.last_center_ent = ent
+
+    if last_center_ent ~= ent then
+        if ent then
+            self:RecordMap(ent.interiorID, ent:CollectMinimapData())
+        end
+        -- Record again and ignore non cacheable things once we're out of the last visited room
+        if last_center_ent and last_center_ent:IsValid() then
+            self:RecordMap(last_center_ent.interiorID, last_center_ent:CollectMinimapData(true))
+        end
+    end
 
     local grue = self.inst.components.grue or {}
 
@@ -128,9 +139,6 @@ function InteriorVisitor:UpdateExteriorPos()
             self.inst:RemoveTag("pl_no_light_interior")
         end
         self:UpdatePlayerAndCreaturePhysics(ent)
-        if ent.uuid then
-            self:RecordUUID(ent.uuid)
-        end
 
         local single, door = ent:GetIsSingleRoom() -- check if this room is single, if so, get the unique exit
         if single then
@@ -160,17 +168,20 @@ end
 
 function InteriorVisitor:OnSave()
     return {
-        visited_uuid = self.visited_uuid,
         last_mainland_pos = self.last_mainland_pos,
+        interior_map = self.interior_map,
     }
 end
 
 function InteriorVisitor:OnLoad(data)
-    if data.visited_uuid then
-        self.visited_uuid = data.visited_uuid
-    end
     if data.last_mainland_pos then
         self.last_mainland_pos = data.last_mainland_pos
+    end
+    if data.interior_map then
+        self.interior_map = data.interior_map
+        self.inst:DoStaticTaskInTime(0, function()
+            SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, TheSim:ZipAndEncodeString(DataDumper(self.interior_map)))
+        end)
     end
 
     -- restore player position if interior was destroyed
