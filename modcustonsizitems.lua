@@ -77,6 +77,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             pog = {image = "pogs.tex"},
             "pangolden",
             hanging_vine_patch = {image = "hanging_vine.tex"},
+            thunderbirdnest = {image = "thunderbirds.tex"},
         },
         resources = {
             "asparagus",
@@ -109,6 +110,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             hippopotamoose_setting = {image = "hippopotamoose.tex"},
             mandrakeman_setting = {image = "mandrake_men.tex"},
             piko_setting = {image = "orange_pikos.tex"},
+            thunderbird_setting = {image = "thunderbirds.tex"},
         },
         resources = {
             asparagus_regrowth = {image = "asparagus.tex"},
@@ -119,6 +121,7 @@ local custonsiz_items = {  -- add in dst custonsiz
             glowflycycle = {image = "glowfly_life_cycle.tex", desc = enable_descriptions},
             poison = {desc = enable_descriptions},
             hayfever = {desc = enable_descriptions},
+            pigbandit = {image = "pig_bandit.tex", desc = frequency_descriptions},
             pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = enable_descriptions},
             vampirebat = {image = "vampire_bats.tex", desc = frequency_descriptions},
         },

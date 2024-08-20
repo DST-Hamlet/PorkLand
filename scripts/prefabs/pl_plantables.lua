@@ -89,7 +89,7 @@ end
 
 local plantables =
 {
-	{
+    {
         name = "nettle",
         minspace = 2
     },

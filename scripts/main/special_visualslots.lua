@@ -51,7 +51,7 @@ local function CreateInventorySparkleFX()
     sparkle_fx.entity:AddTransform()
     sparkle_fx.entity:AddAnimState()
 
-    sparkle_fx.AnimState:SetFinalOffset(2)
+    sparkle_fx.AnimState:SetFinalOffset(3)
     sparkle_fx.AnimState:SetBank("inventory_fx_sparkle")
     sparkle_fx.AnimState:SetBuild("inventory_fx_sparkle")
     sparkle_fx.AnimState:PlayAnimation("idle", true)
@@ -87,7 +87,7 @@ for k, colour in ipairs({"purple", "blue", "red", "orange", "yellow", "green", "
         inst.AnimState:PlayAnimation(colour.."gem_idle", true)
 
         local offest = gem_offests[colour] or {}
-        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), offest.x or 0, offest.y or 50, offest.z or 0)
+        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), offest.x or 0, offest.y or 50, offest.z or 0.001)
 
         inst:DoTaskInTime(1, SparkleGem, colour, true)
 
@@ -102,7 +102,7 @@ for k, colour in ipairs({"purple", "blue", "red", "orange", "yellow", "green"}) 
         inst.AnimState:SetBuild("mooneyes")
         inst.AnimState:PlayAnimation(colour .. "gem_idle")
         inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 60, 0)
+        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 60, 0.001)
 
         inst:DoTaskInTime(0, SparkleGem, colour, false)
 
@@ -115,7 +115,7 @@ master_postinitfns.goldnugget = function(inst, shelf, slot, item)
     inst.AnimState:SetBuild("gold_nugget")
     inst.AnimState:PlayAnimation("idle", true)
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 60, 0)
+    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 60, 0.001)
 
     inst:DoTaskInTime(1, SparkleInventoryItem)
 
@@ -146,7 +146,7 @@ for _, fish_def in pairs(FISH_DATA.fish) do
         inst.AnimState:SetBuild(fish_def.build)
         inst.AnimState:PlayAnimation("flop_pst")
 
-        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
+        inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0.001)
 
         Flop(inst)
 
@@ -167,7 +167,7 @@ master_postinitfns.lightbulb = function(inst, shelf, slot, item)
     inst.Light:SetColour(237 / 255, 237 / 255, 209 / 255)
     inst.Light:Enable(true)
 
-    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
+    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0.001)
 
     ScaleShelfSlot(inst, shelf, slot)
 end
@@ -183,7 +183,7 @@ master_postinitfns.purebrilliance = function(inst, shelf, slot, item)
     inst.AnimState:SetLightOverride(.1)
     inst.AnimState:SetFrame(math.random(inst.AnimState:GetCurrentAnimationNumFrames()) - 1)
 
-    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
+    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0.001)
 
     ScaleShelfSlot(inst, shelf, slot)
 end
@@ -202,7 +202,7 @@ master_postinitfns.moonglass_charged = function(inst, shelf, slot, item)
     inst.Light:SetRadius(1)
     inst.Light:Enable(true)
 
-    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
+    inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0.001)
 
     ScaleShelfSlot(inst, shelf, slot)
 end
@@ -215,7 +215,7 @@ end
 --     inst.AnimState:UsePointFiltering(true)
 --     inst.AnimState:SetFrame(math.random(inst.AnimState:GetCurrentAnimationNumFrames()) - 1)
 
---     inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
+--     inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0.001)
 
 --     ScaleShelfSlot(inst, shelf, slot)
 -- end
@@ -229,7 +229,7 @@ end
 
 --     inst.AnimState:SetFrame(math.random(inst.AnimState:GetCurrentAnimationNumFrames()) - 1)
 
---     inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0)
+--     inst.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 50, 0.001)
 
 --     ScaleShelfSlot(inst, shelf, slot)
 -- end
@@ -280,7 +280,7 @@ client_postinitfns.reviver = function(inst, shelf, slot, item)
         inst.visual_reviver = CreateCopyAnimEntity(inst, item)
 
         inst.visual_reviver.entity:AddSoundEmitter()
-        inst.visual_reviver.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 20, 0)
+        inst.visual_reviver.Follower:FollowSymbol(shelf.GUID, shelf:GetSlotSymbol(slot), 0, 20, 0.001)
         ScaleShelfSlot(inst.visual_reviver, shelf, slot)
 
         inst.visual_reviver.PlayBeatAnimation = PlayBeatAnimation
@@ -288,6 +288,20 @@ client_postinitfns.reviver = function(inst, shelf, slot, item)
     end
    inst.visual_reviver:DoTaskInTime(.75 + math.random() * .75, ReviverBeat)
 end
+
+local function oinc(inst, shelf, slot, item)
+    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+
+    local sparkle_fx = CreateInventorySparkleFX()
+    sparkle_fx.entity:SetParent(inst.entity)
+    SparkleInventoryItem(sparkle_fx)
+
+    return true
+end
+
+master_postinitfns.oinc = oinc
+master_postinitfns.oinc10 = oinc
+master_postinitfns.oinc100 = oinc
 
 return {
     master_postinitfns = master_postinitfns,

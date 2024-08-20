@@ -92,12 +92,13 @@ PrefabFiles = {
     "tree_pillar",
     "tuber",
     "tubertrees",
-    "wave_ripple",
+    "undertile_marker",
     "vampirebat",
     "venomgland",
     "venus_stalk",
     "walkingstick",
     "waterdrop",
+    "wave_ripple",
     "weevole_carapace",
     "weevole",
     "windtrail",
@@ -117,7 +118,6 @@ PrefabFiles = {
     "deco_ruins_fountain",
     "deco_swinging_light",
     "deco_table",
-    "interior_mapicon",
     "interior_boundary",
     "interior_surface",
     "interiorwall_fx",
@@ -168,17 +168,24 @@ PrefabFiles = {
     "pl_chests",
 
 
-    "pigman_city",
     "pighouse_city",
     "pig_shop",
     "pig_guard_tower",
+    "playerhouse_city",
+    "pigman_city",
     "pigman_shopkeeper_desk",
     "city_lamp",
     "hedge",
     "lawnornaments",
+    "topiary",
     "clippings",
     "reconstruction_project",
     "city_hammer",
+    "shop_buyer",
+    "trinkets_giftshop",
+    "deed",
+    "securitycontract",
+    "key_to_city",
 
     "oinc",
     "bramble",
@@ -203,11 +210,21 @@ PrefabFiles = {
     "lavapool",
     "meteor_impact",
     "obsidian",
+    "pigbandit",
+    "banditmap",
+    "tunacan",
+
     "nettle_plant",
     "sprinkler",
     "water_pipe",
     "water_spray",
     "pl_plantables",
+
+    "thunderbird",
+    "thunderbirdnest",
+
+    "pedestal_key",
+  
     "gnat",
     "gnatmound",
 }
@@ -266,6 +283,8 @@ Assets = {
     Asset("ANIM", "anim/player_actions_speargun.zip"),
     Asset("ANIM", "anim/player_mount_actions_cropdust.zip"),
     Asset("ANIM", "anim/player_mount_actions_speargun.zip"),
+    Asset("ANIM", "anim/player_actions_scroll.zip"),
+    Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
@@ -302,6 +321,16 @@ Assets = {
     -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_marble_royal.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_marble_royal.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_ruins_slab.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_ruins_slab.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_antcave_floor.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_antcave_floor.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
+
+    Asset("SHADER", "shaders/ui_fillmode.ksh"),
 }
 
 for _, v in ipairs(require("main/interior_texture_defs").Assets) do

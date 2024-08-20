@@ -445,10 +445,6 @@ local tuning = {
 
     ROOM_FINDENTITIES_RADIUS = 30, -- NOTE: this value is determined by TUNING.ROOM_LARGE_WIDTH and TUNING.ROOM_LARGE_DEPTH
 
-    INTERIOR_MINIMAP_PRIORITY_START = 1000,
-    INTERIOR_MINIMAP_DOOR_SPACE = 10,
-    INTERIOR_MINIMAP_POSITION_SCALE = 2.8, -- NOTE: do not change this value
-
     PL_MANUAL_LIGHT_OFFSET = {
         -- {[K: prefab]: {height, z_off}}
         DEFAULT = {2, .5},
@@ -579,7 +575,18 @@ local tuning = {
     PITHHAT_PERISHTIME = total_day_time*8,
     GASMASK_PERISHTIME = total_day_time*3,
 
-    NETTLE_REGROW_TIME = total_day_time*3,
+    PIG_BANDIT_DAMAGE = 33,
+    PIG_BANDIT_HEALTH = 250,
+    PIG_BANDIT_ATTACK_PERIOD = 3,
+    PIG_BANDIT_LOYALTY_MAXTIME = 2.5*total_day_time,
+    PIG_BANDIT_LOYALTY_PER_HUNGER = total_day_time/25,
+    PIG_BANDIT_MIN_POOP_PERIOD = seg_time * .5,
+    PIG_BANDIT_RUN_SPEED = 7,
+    PIG_BANDIT_WALK_SPEED = 3,
+    PIG_BANDIT_ENABLED = true,
+    PIG_BANDIT_RESPAWN_TIME = 30 * 16 * 1.5, -- 9 minutes
+
+    NETTLE_REGROW_TIME = total_day_time * 3,
     NETTLE_MOISTURE_WET_THRESHOLD = 20,
     NETTLE_MOISTURE_DRY_THRESHOLD = 10,
     SPRINKLER_MAX_FUEL_TIME = total_day_time,
@@ -592,6 +599,25 @@ local tuning = {
 
     GNAT_WALK_SPEED = 2,
     GNAT_RUN_SPEED = 7,
+  
+    THUNDERBIRDNEST_RELEASE_TIME = 1,
+    THUNDERBIRDNEST_REGEN_TIME = total_day_time * 5,
+    THUNDERBIRDNEST_MAXCHILDREN = 1,
+    THUNDERBIRDNEST_REGROW_TIME = total_day_time * 3,
+
+    THUNDERBIRD_ENABLED = true,
+    THUNDERBIRD_RUN_SPEED = 5.5,
+    THUNDERBIRD_WALK_SPEED = 2,
+    THUNDERBIRD_HEALTH = 50,
+
+    -- Note: in DS the following two values are 1.5 and 2.0 by default but they get overriden manually in the porkland prefab -Half
+    RAINFOREST_CANOPY_ROTATION_SPEED = 5,           -- 5 seconds per rotation
+    RAINFOREST_CANOPY_TRANSLATION_SPEED = 5,        -- 5 seconds per translation
+    RAINFOREST_CANOPY_MAX_ROTATION = 20,            -- max 20 degrees from base rotation
+    RAINFOREST_CANOPY_MAX_TRANSLATION = 1,          -- max 1 world unit from base position
+    RAINFOREST_CANOPY_SCALE = 6,                    -- scale for the texture
+    RAINFOREST_CANOPY_MIN_STRENGTH = 0.2,           -- blend min strength - modulated with avg ambient
+    RAINFOREST_CANOPY_MAX_STRENGTH = 0.7,           -- blend max strength - modulated with avg ambient
 }
 
 
@@ -652,6 +678,9 @@ local TechTree = require("techtree")
 
 TUNING.PROTOTYPER_TREES.HOGUSPORKUSATOR = TechTree.Create({
     MAGIC = 2,
+})
+TUNING.PROTOTYPER_TREES.CITY = TechTree.Create({
+    CITY = 2,
 })
 
 

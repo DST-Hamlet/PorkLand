@@ -39,6 +39,7 @@ local component_posts = {
     "inventoryitem_replica",
     "inventoryitem",
     "inventoryitemmoisture",
+    "kramped",
     "locomotor",
     "lootdropper",
     "moisture",
@@ -59,8 +60,10 @@ local component_posts = {
     "shard_clock",
     "shard_seasons",
     "sleeper",
+    "spawner",
     "strafer",
     "teamleader",
+    "undertile",
     "waterproofer",
     "wavemanager",
     "wisecracker",
@@ -130,10 +133,12 @@ local widget_posts = {
     "uianim",
     "uiclock",
     "widget",
+    "mapwidget",
 }
 
 local module_posts = {
     ["components/map"] = "map",
+    ["shadeeffects"] = "shadeeffects",
 }
 
 local _require = require

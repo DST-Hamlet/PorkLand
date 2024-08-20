@@ -1,13 +1,13 @@
 local assets =
 {
-	Asset("ANIM", "anim/city_hammer.zip"),
-	Asset("ANIM", "anim/swap_city_hammer.zip"),
+    Asset("ANIM", "anim/city_hammer.zip"),
+    Asset("ANIM", "anim/swap_city_hammer.zip"),
 }
 
 local prefabs =
 {
-	"collapse_small",
-	"collapse_big",
+    "collapse_small",
+    "collapse_big",
 }
 
 local function onequip(inst, owner)
@@ -22,11 +22,11 @@ local function onunequip(inst, owner)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddNetwork()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
     PorkLandMakeInventoryFloatable(inst)

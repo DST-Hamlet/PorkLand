@@ -96,6 +96,10 @@ local function common_postinit(inst)
         inst:AddComponent("colourcube")
         inst:AddComponent("hallucinations")
         inst:AddComponent("wavemanager")
+        inst:AddComponent("canopymanager")
+        local rainforest_shade = {spawn = SpawnRainforestCanopy, despawn = DespawnRainforestCanopy}
+        inst.components.canopymanager:AddShadeTile(WORLD_TILES.DEEPRAINFOREST, rainforest_shade)
+        inst.components.canopymanager:AddShadeTile(WORLD_TILES.GASJUNGLE, rainforest_shade)
         inst.Map:SetUndergroundFadeHeight(0)
         inst.Map:AlwaysDrawWaves(true)
         inst.Map:DoOceanRender(true)
@@ -103,9 +107,9 @@ local function common_postinit(inst)
 
     inst:AddComponent("interiorspawner")
     inst:AddComponent("worldpathfindermanager")
-    inst:AddComponent("worldmapiconproxy")
     inst:AddComponent("interiorquaker")
     inst:AddComponent("worldsoundmanager")
+    inst:AddComponent("clientundertile")
 end
 
 local function master_postinit(inst)
@@ -117,6 +121,7 @@ local function master_postinit(inst)
     inst:AddComponent("spidermonkeyherd")
     inst:AddComponent("batted")
     inst:AddComponent("bramblemanager")
+    inst:AddComponent("banditmanager")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")
@@ -153,12 +158,16 @@ local function master_postinit(inst)
 
     inst:AddComponent("economy")
     inst.components.economy:AddCity(1)
+    inst.components.economy:AddCity(2)
 
     inst:AddComponent("periodicpoopmanager")
 
     inst:AddComponent("cityalarms")
-	inst.components.cityalarms:AddCity(1)
-	inst.components.cityalarms:AddCity(2)
+    inst.components.cityalarms:AddCity(1)
+    inst.components.cityalarms:AddCity(2)
+
+    -- Not a component from Hamlet
+    inst:AddComponent("pigtaxmanager")
 end
 
 return MakeWorld("porkland", prefabs, assets, common_postinit, master_postinit, {"porkland"}, {tile_physics_init = tile_physics_init})

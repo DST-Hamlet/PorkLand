@@ -96,7 +96,7 @@ return {
         },
         {
           name = "",
-          type = "rainforesttree",
+          type = "rainforesttree_rot",
           shape = "rectangle",
           x = 78,
           y = 50,
@@ -107,7 +107,7 @@ return {
         },
         {
           name = "",
-          type = "rainforesttree",
+          type = "rainforesttree_rot",
           shape = "rectangle",
           x = 51,
           y = 117,
@@ -118,7 +118,7 @@ return {
         },
         {
           name = "",
-          type = "rainforesttree",
+          type = "rainforesttree_rot",
           shape = "rectangle",
           x = 336,
           y = 29,
@@ -129,7 +129,7 @@ return {
         },
         {
           name = "",
-          type = "rainforesttree",
+          type = "rainforesttree_rot",
           shape = "rectangle",
           x = 368,
           y = 237,
@@ -140,7 +140,7 @@ return {
         },
         {
           name = "",
-          type = "rainforesttree",
+          type = "rainforesttree_rot",
           shape = "rectangle",
           x = 43,
           y = 300,
@@ -184,7 +184,7 @@ return {
         },
         {
           name = "",
-          type = "rainforesttree",
+          type = "rainforesttree_rot",
           shape = "rectangle",
           x = 277,
           y = 14,
@@ -195,7 +195,7 @@ return {
         },
         {
           name = "",
-          type = "rainforesttree",
+          type = "rainforesttree_rot",
           shape = "rectangle",
           x = 204,
           y = 41,
@@ -206,7 +206,7 @@ return {
         },
         {
           name = "",
-          type = "rainforesttree",
+          type = "rainforesttree_rot",
           shape = "rectangle",
           x = 408,
           y = 350,
@@ -217,7 +217,7 @@ return {
         },
         {
           name = "",
-          type = "rainforesttree",
+          type = "rainforesttree_rot",
           shape = "rectangle",
           x = 338,
           y = 405,

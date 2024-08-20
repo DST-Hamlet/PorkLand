@@ -88,6 +88,7 @@ local function shoot(inst, is_full_charge)
 end
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.TAKEFROMSHELF, "doshortaction"),
     ActionHandler(ACTIONS.PUTONSHELF, "doshortaction"),
     ActionHandler(ACTIONS.EMBARK, "embark"),
@@ -2263,6 +2264,44 @@ local states = {
             end),
         },
     },
+
+    State{
+        name = "map",
+        tags = {"doing"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("scroll", false)
+            inst.AnimState:OverrideSymbol("scroll", "messagebottle", "scroll")
+            inst.AnimState:PushAnimation("scroll_pst", false)
+
+            inst.AnimState:Show("ARM_normal")
+        end,
+
+        onexit = function(inst)
+            if inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS) and not inst.were then
+                inst.AnimState:Show("ARM_carry")
+                inst.AnimState:Hide("ARM_normal")
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(24 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_open") end),
+            TimeEvent(58 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_close") end),
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst:PerformBufferedAction()
+            end),
+
+            EventHandler("animqueueover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -2320,6 +2359,15 @@ AddStategraphPostInit("wilson", function(sg)
         else
             return _light_deststate(inst, ...)
         end
+    end
+
+    local _teach_deststatae = sg.actionhandlers[ACTIONS.TEACH].deststate
+    sg.actionhandlers[ACTIONS.TEACH].deststate = function(inst, ...)
+        local buffaction = inst:GetBufferedAction()
+        if buffaction and buffaction.invobject then
+            return "map"
+        end
+        return _teach_deststatae(inst, ...)
     end
 
     local _attacked_eventhandler = sg.events.attacked.fn

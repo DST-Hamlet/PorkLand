@@ -23,32 +23,17 @@ all_clients_require_mod = true
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
-server_filter_tags = { "hamltet", "porkland" }
+server_filter_tags = { "Hamlet", "Porkland" }
 
 folder_name = folder_name or "workshop-"
 if not folder_name:find("workshop-") then
     name = name .. "-[" .. folder_name .."]"
 end
 
----@param title_en string
----@param title_zh string
----@return mod_configuration
 local function Breaker(title_en, title_zh) -- hover does not work, as this item cannot be hovered
     return { name = en_zh(title_en, title_zh), options = { {description = "", data = false} }, default = false }
 end
 
 configuration_options = {
-    Breaker("Misc", "杂项"),
-    {
-        name = "locale",
-        label = en_zh("Translation", "翻译"),
-        hover = en_zh("Select a translation to enable it regardless of language packs.", "选择翻译，而不是自动"),
-        options =
-        {
-            {description = "Auto", data = false},
-            {description = "English", data = "en"},
-            {description = "中文（简体）", data = "sc"},
-        },
-        default = false,
-    },
+    -- Breaker("Misc", "杂项"),
 }

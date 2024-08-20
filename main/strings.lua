@@ -88,11 +88,8 @@ if not IsTheFrontEnd then
     end
 end
 
-local desiredlang = nil
-local PL_CONFIG = rawget(_G, "PL_CONFIG")
-if PL_CONFIG and PL_CONFIG.locale then
-    desiredlang = PL_CONFIG.locale
-elseif (IsTheFrontEnd or PL_CONFIG) and LanguageTranslator.defaultlang then  -- only use default in FrontEnd or if locale is not set
+local desiredlang = LOC.GetLocaleCode()
+if (IsTheFrontEnd and not desiredlang) and LanguageTranslator.defaultlang then  -- only use default in FrontEnd or if locale is not set
     desiredlang = LanguageTranslator.defaultlang
 end
 

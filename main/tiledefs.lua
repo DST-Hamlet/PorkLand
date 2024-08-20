@@ -91,7 +91,6 @@ local pl_tiledefs = {
             noise_texture = "Ground_noise_rainforest",
             runsound = "dontstarve/movement/run_woods",
             walksound = "dontstarve/movement/walk_woods",
-            flashpoint_modifier = 0,
             floor = true,
         },
         minimap_tile_def = {
@@ -115,7 +114,7 @@ local pl_tiledefs = {
             noise_texture = "Ground_noise_jungle_deep",
             runsound = "dontstarve/movement/run_woods",
             walksound = "dontstarve/movement/walk_woods",
-            flashpoint_modifier = 0,
+            cannotbedug = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -133,14 +132,13 @@ local pl_tiledefs = {
         },
         ground_tile_def  = {
             name = "jungle_deep",
-            noise_texture = "Ground_noise_jungle_deep",
+            noise_texture = "Ground_noise_jungle_deep_nocanopy",
             runsound = "dontstarve/movement/run_woods",
             walksound = "dontstarve/movement/walk_woods",
-            flashpoint_modifier = 0,
         },
         minimap_tile_def = {
             name = "map_edge",
-            noise_texture = "mini_noise_jungle_deep",
+            noise_texture = "mini_noise_jungle_deep_nocanopy",
         },
         turf_def = {
             name = "deeprainforest_nocanopy",
@@ -159,6 +157,7 @@ local pl_tiledefs = {
             noise_texture = "ground_noise_gas",
             runsound = "dontstarve/movement/run_moss",
             walksound = "dontstarve/movement/walk_moss",
+            cannotbedug = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -268,9 +267,11 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "blocky",
             noise_texture = "noise_ruinsbrick_scaled",
-            runsound = "dontstarve/movement/run_slate",
-            walksound = "dontstarve/movement/walk_slate",
+            runsound = "dontstarve/movement/run_dirt",
+            walksound = "dontstarve/movement/walk_dirt",
             snowsound = "run_ice",
+            flooring = true,
+            hard = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -291,9 +292,12 @@ local pl_tiledefs = {
         ground_tile_def = {
             name = "stoneroad",
             noise_texture = "Ground_noise_cobbleroad",
-            runsound = "dontstarve/movement/run_rock",
-            walksound = "dontstarve/movement/walk_rock",
+            runsound = "dontstarve/movement/run_dirt",
+            walksound = "dontstarve/movement/walk_dirt",
             snowsound = "run_ice",
+            flooring = true,
+            hard = true,
+            roadways = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -338,6 +342,8 @@ local pl_tiledefs = {
             runsound = "dontstarve/movement/run_dirt",
             walksound = "dontstarve/movement/walk_dirt",
             snowsound = "run_ice",
+            flooring = true,
+            hard = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -355,6 +361,8 @@ local pl_tiledefs = {
             runsound = "dontstarve/movement/run_dirt",
             walksound = "dontstarve/movement/walk_dirt",
             snowsound = "run_ice",
+            flooring = true,
+            hard = true,
         },
         minimap_tile_def = {
             name = "map_edge",
@@ -376,7 +384,7 @@ local pl_tiledefs = {
             noise_texture = "Ground_lilypond2",
             runsound = "run_marsh",
             walksound = "walk_marsh",
-            flashpoint_modifier = 250,
+            -- flashpoint_modifier = 250, -- 亚丹：不知道谁给莲花池地皮加上的更高起火点特性，我先注释掉了，虽然在水上起火慢很合理
             is_shoreline = true,
             ocean_depth = "SHALLOW",
             cannotbedug = true,

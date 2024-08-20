@@ -3,7 +3,6 @@ local assets =
     Asset("ANIM", "anim/lamp_post2.zip"),
     Asset("ANIM", "anim/lamp_post2_city_build.zip"),
     Asset("ANIM", "anim/lamp_post2_yotp_build.zip"),
-    Asset("INV_IMAGE", "city_lamp"),
 }
 
 local INTENSITY = 0.6
@@ -218,7 +217,7 @@ local function fn()
     inst.audiotask = inst:DoPeriodicTask(1.0, UpdateAudio, math.random())
 
     inst:AddComponent("fixable")
-    inst.components.fixable:AddRecinstructionStageData("rubble","lamp_post","lamp_post2_city_build")
+    inst.components.fixable:AddReconstructionStageData("rubble", "lamp_post", "lamp_post2_city_build")
 
     inst.OnEntitySleep = OnEntitySleep
     inst.OnEntityWake = OnEntityWake

@@ -27,8 +27,8 @@ if not rawget(_G, "HotReloading") then
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2, mount_enabled = true}),
-        PUTONSHELF = Action({ distance = 2 }),
-        TAKEFROMSHELF = Action({ distance = 2, priority = 1 }),
+        PUTONSHELF = Action({ distance = 2.5 }),
+        TAKEFROMSHELF = Action({ distance = 2.5, priority = 1 }),
         ASSEMBLE_ROBOT = Action({}),
         CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
         CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
@@ -36,6 +36,11 @@ if not rawget(_G, "HotReloading") then
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
         MAKEHOME = Action({distance = 1}),
+        THUNDERBIRD_CAST = Action({distance = 1.2}),
+        GAS = Action({distance = 2.5, mount_enabled = true}),
+        INFEST = Action({distance = 0.5}),
+        BUILD_MOUND = Action({}),
+
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         PAY_TAX = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -43,9 +48,9 @@ if not rawget(_G, "HotReloading") then
         SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
-        GAS = Action({distance = 2.5, mount_enabled = true}), -- 适当增加了距离，以使得毒气不会毒到自己
-        INFEST = Action({distance = 0.5}),
-        BUILD_MOUND = Action({}),
+        PIG_BANDIT_EXIT = Action({}),
+
+        SHOP = Action({ distance = 2.5 }),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -272,100 +277,12 @@ ACTIONS.SPY.fn = function(act)
     end
 end
 
-local function DoTeleport(player, pos)
-    player:StartThread(function()
-        local x, y, z = pos:Get()
-
-        -- local invincible = player.components.health.invincible
-        -- player.components.health:SetInvincible(true)
-        if player.components.playercontroller then
-            player.components.playercontroller:EnableMapControls(false)
-            player.components.playercontroller:Enable(false)
-        end
-
-        player:ScreenFade(false, 0.4)
-
-        Sleep(0.4)
-
-        player.Physics:Teleport(x, y, z)
-        player.components.interiorvisitor:UpdateExteriorPos()
-        -- player.components.health:SetInvincible(invincible)
-
-        Sleep(0.1)
-
-        if player.components.playercontroller then
-            player.components.playercontroller:EnableMapControls(true)
-            player.components.playercontroller:Enable(true)
-        end
-
-        if TheWorld.components.interiorspawner:IsInInterior(x, z) then
-            player:SnapCamera()
-        else
-            player.replica.interiorvisitor:RestoreOutsideInteriorCamera()
-        end
-
-        player:ScreenFade(true, 0.4)
-        player.sg:GoToState("idle")
-    end)
-end
-
-local function OnTeleportFailed(player)
-    print("teleportfailed_event failed")
-    -- if player.player_classified then
-    --     player.player_classified.teleportfailed_event:push()
-    -- end
-end
-
-ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内容应该移到 component 上去
+ACTIONS.USEDOOR.fn = function(act, forcesuccess)
     local door = act.target
     if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
-        return false, "DISABLED"
+        return false, "LOCKED"
     end
-    local target_interior = door.components.door.target_interior
-    local target_door_id = door.components.door.target_door_id
-
-    local function PlayDoorSound()
-        door:PushEvent("usedoor", {doer = act.doer})
-    end
-
-    if target_interior == "EXTERIOR" then
-        -- use `target_exterior` firstly, then use current room id as default
-        local id = door.components.door.target_exterior or door.components.door.interior_name
-        local house = TheWorld.components.interiorspawner:GetExteriorById(id)
-        if house then
-            DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
-            PlayDoorSound()
-            act.doer:PushEvent("used_door", {door = door, exterior = true})
-            if house.components.hackable and house.stage > 0 then -- 内部门用 vineable, 外部门用 hackable... 需要代码清理
-                house.stage = 1
-                house.components.hackable:Hack(act.doer, 9999)
-            end
-            return true
-        end
-    else
-        local room = TheWorld.components.interiorspawner:GetInteriorByIndex(target_interior)
-
-        local target_door = room and room:GetDoorById(target_door_id)
-        if target_door then
-            -- don't throw player directly on door
-            -- instead, give a slight offset to room center
-            local door_pos = target_door:GetPosition()
-            local room_pos = room:GetPosition()
-            local offset = (room_pos - door_pos):GetNormalized() * 1.0
-            DoTeleport(act.doer, door_pos + offset)
-            PlayDoorSound()
-            act.doer:PushEvent("used_door", {door = door, exterior = false})
-            if target_door.components.vineable and target_door.components.vineable.vines and
-                target_door.components.vineable.vines.components.hackable and target_door.components.vineable.vines.stage > 0 then
-                    target_door.components.vineable.vines.stage = 1
-                    target_door.components.vineable.vines.components.hackable:Hack(act.doer, 9999)
-            end
-            return true
-        end
-    end
-
-    OnTeleportFailed(act.doer)
-    return false, "ERROR"
+    return door.components.door:Activate(act.doer)
 end
 
 ACTIONS.VAMPIREBAT_FLYAWAY.fn = function(act)
@@ -410,6 +327,10 @@ end
 
 ACTIONS.TAKEFROMSHELF.fn = function(act)
     local shelf = act.target.components.visualslot:GetShelf()
+
+    if shelf.components.lock and shelf.components.lock:IsLocked() then
+        return false
+    end
 
     if shelf.components.container then
         local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualslot:GetSlot())
@@ -485,9 +406,94 @@ end
 
 ACTIONS.STOCK.fn = function(act)
     if act.target then
-        act.target.restock(act.target,true)
+        act.target:Restock(true)
         act.doer.changestock = nil
         return true
+    end
+end
+
+ACTIONS.SHOP.stroverridefn = function(act)
+    if not (act.target and act.target:IsValid()) then
+        return
+    end
+    local shelf = act.target.replica.visualslot:GetShelf()
+    local item = act.target.replica.visualslot:GetItem()
+    if not (shelf and item and shelf.replica.shopped) then
+        return
+    end
+
+    if not shelf.replica.shopped:IsBeingWatched() then
+        return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = item:GetBasicDisplayName() })
+    end
+
+    local cost_prefab = shelf.replica.shopped:GetCostPrefab()
+    local cost = shelf.replica.shopped:GetCost()
+    local payitem = STRINGS.NAMES[string.upper(cost_prefab)]
+    local qty = ""
+    if cost_prefab == "oinc" then
+        qty = cost
+        if cost > 1 then
+            payitem = STRINGS.NAMES.OINC_PL
+        end
+    end
+    return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = item:GetBasicDisplayName(), qty = qty, payitem = payitem })
+end
+
+ACTIONS.SHOP.fn = function(act)
+    local doer = act.doer
+    local shelf = act.target.components.visualslot:GetShelf()
+    local slot = act.target.components.visualslot:GetSlot()
+
+    if not (shelf and shelf.components.shopped and doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
+        return false
+    end
+
+    if shelf.components.lock and shelf.components.lock:IsLocked() then
+        return false
+    end
+
+    if not shelf.components.shopped:IsBeingWatched() then
+        shelf.components.shopped:GetRobbed(doer, slot)
+        return true
+    end
+
+    local sell = true
+    local reason = nil
+
+    if shelf:HasTag("shopclosed") or TheWorld.state.isnight then
+        reason = "closed"
+        sell = false
+    elseif not doer.components.shopper:CanPayFor(shelf, slot) then
+        local prefab_wanted = shelf.components.shopped:GetCostPrefab()
+        if prefab_wanted == "oinc" then
+            reason = "money"
+        else
+            reason = "goods"
+        end
+        sell = false
+    end
+
+    if sell then
+        doer.components.shopper:Buy(shelf, slot)
+        if shelf.MakeShopkeeperSpeech then
+            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
+        end
+        return true
+    else
+        if reason == "money" then
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
+            end
+        elseif reason == "goods" then
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
+            end
+        elseif reason == "closed" then
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
+            end
+        end
+        return true -- Shouldn't this be false?
     end
 end
 
@@ -498,7 +504,6 @@ ACTIONS.GAS.fn = function(act)
         return true
     end
 end
-
 ACTIONS.INFEST.fn = function(act)
     if not act.doer.components.infester.infested then
         act.doer.components.infester:Infest(act.target)
@@ -517,8 +522,14 @@ ACTIONS.BUILD_MOUND.fn = function(act)
     if act.doer.build_mound_action then
 		return act.doer:build_mound_action()
 	end
+
+ACTIONS.THUNDERBIRD_CAST.fn = function(act)
+    act.doer.sg:GoToState("thunder_attack")
+    return true
 end
 
+ACTIONS.PIG_BANDIT_EXIT.fn = function(act)
+    return true
 
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
@@ -725,6 +736,18 @@ ACTIONS.BLINK.fn = function(act, ...)
     end
 end
 
+-- For pig guards
+local _MANUALEXTINGUISH_fn = ACTIONS.MANUALEXTINGUISH.fn
+ACTIONS.MANUALEXTINGUISH.fn = function(act, ...)
+    if act.doer:HasTag("extinguisher") then
+        if act.target.components.burnable and act.target.components.burnable:IsBurning() then
+            act.target.components.burnable:Extinguish(true, TUNING.SMOTHERER_EXTINGUISH_HEAT_PERCENT)
+            return true
+        end
+    end
+    return _MANUALEXTINGUISH_fn(act, ...)
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world
@@ -758,9 +781,21 @@ local PL_COMPONENT_ACTIONS =
         end,
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
-                table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                local shelf = inst.replica.visualslot:GetShelf()
+                if not shelf:HasTag("locked") then
+                    if shelf and shelf.replica.shopped then
+                        table.insert(actions, ACTIONS.SHOP)
+                    else
+                        table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                    end
+                end
             end
-        end
+        end,
+        -- shopped = function(inst, doer, actions, right)
+        --     if inst:HasTag("has_item_to_sell") then
+        --         table.insert(actions, ACTIONS.SHOP)
+        --     end
+        -- end,
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right
@@ -922,18 +957,21 @@ end
 
 local _USEITEM_inventoryitem = USEITEM.inventoryitem
 function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
-    if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
-        target and target:HasTag("weighdownable") then
+    if not inst.replica.inventoryitem:CanOnlyGoInPocket() then
+        if target:HasTag("weighdownable") then
             table.insert(actions, ACTIONS.WEIGHDOWN)
             return
-    elseif target and target:HasTag("visual_slot") then
-        if target:HasTag("empty") and not inst.replica.inventoryitem:CanOnlyGoInPocket() then
-            table.insert(actions, ACTIONS.PUTONSHELF)
-            return
+        elseif target:HasTag("visual_slot") then
+            if target:HasTag("empty") then
+                local shelf = target.replica.visualslot:GetShelf()
+                if not (shelf and shelf.replica.shopped) then
+                    table.insert(actions, ACTIONS.PUTONSHELF)
+                    return
+                end
+            end
         end
-    else
-        _USEITEM_inventoryitem(inst, doer, target, actions, right, ...)
     end
+    return _USEITEM_inventoryitem(inst, doer, target, actions, right, ...)
 end
 
 local _USEITEM_tool = USEITEM.tool
@@ -997,6 +1035,21 @@ function SCENE.pickable(inst, doer, actions, ...)
     if not inst:HasTag("unsuited") then
         return _SCENE_pickable(inst, doer, actions, ...)
     end
+end
+
+local PlayerController = require("components/playercontroller")
+
+local NON_AUTO_EQUIP_ACTIONS = {
+    [ACTIONS.PUTONSHELF] = true,
+    [ACTIONS.WEIGHDOWN] = true,
+}
+
+local do_action_auto_equip = PlayerController.DoActionAutoEquip
+function PlayerController:DoActionAutoEquip(buffaction, ...)
+    if NON_AUTO_EQUIP_ACTIONS[buffaction.action] then
+        return
+    end
+    return do_action_auto_equip(self, buffaction, ...)
 end
 
 function PLENV.OnHotReload()

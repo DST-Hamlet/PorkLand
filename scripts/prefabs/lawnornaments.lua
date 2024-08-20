@@ -8,7 +8,7 @@ local function onHammered(inst, worker)
         local fx = SpawnPrefab("robot_leaf_fx")
         fx.Transform:SetPosition(x + (math.random() * 2) , y + math.random() * 0.5, z + (math.random() * 2))
         if math.random() < 0.5 then
-            fx.Transform:SetScale(-1,1,-1)
+            fx.Transform:SetScale(-1, 1, -1)
         end
     end
 
@@ -21,8 +21,8 @@ local function onHammered(inst, worker)
 end
 
 local function onHit(inst, worker)
-	inst.AnimState:PlayAnimation("hit")
-	inst.AnimState:PushAnimation("idle", false)
+    inst.AnimState:PlayAnimation("hit")
+    inst.AnimState:PushAnimation("idle", false)
 
     local fx = SpawnPrefab("robot_leaf_fx")
     local x, y, z = inst.Transform:GetWorldPosition()
@@ -41,7 +41,6 @@ local function MakeLawnornament(n)
     local assets = {
         Asset("ANIM", "anim/topiary0"..n..".zip"),
         Asset("MINIMAP_IMAGE", "lawnornaments_"..n),
-        Asset("INV_IMAGE", "lawnornament_"..n),
     }
 
     local function fn(Sim)
@@ -84,7 +83,7 @@ local function MakeLawnornament(n)
         inst:ListenForEvent("onbuilt", OnBuilt)
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("burnt", "topiary0".. n, "topiary0".. n)
+        inst.components.fixable:AddReconstructionStageData("burnt", "topiary0".. n, "topiary0".. n)
 
         MakeMediumBurnable(inst, nil, nil, true)
         MakeMediumPropagator(inst)

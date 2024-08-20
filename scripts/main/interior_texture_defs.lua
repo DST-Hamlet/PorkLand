@@ -6,7 +6,7 @@ local MINIMAP_DEF_INDEX = {}
 local CC_DEF = {}
 local CC_DEF_INDEX = {}
 
-for _,v in ipairs({
+for _, v in ipairs({
     "levels/textures/interiors/antcave_floor.tex",           "levels/textures/interiors/shop_floor_sheetmetal.tex",
     "levels/textures/interiors/antcave_wall_rock.tex",       "levels/textures/interiors/shop_floor_woodmetal.tex",
     "levels/textures/interiors/batcave_floor.tex",           "levels/textures/interiors/shop_floor_woodpaneling2.tex",
@@ -41,12 +41,11 @@ do
     })
 end
 
-for _,v in ipairs({
+for _, v in ipairs({
     "levels/textures/map_interior/exit.tex",                    "levels/textures/map_interior/mini_vamp_cave_noise.tex",
     "levels/textures/map_interior/frame.tex",                   "levels/textures/map_interior/passage.tex",
     "levels/textures/map_interior/mini_antcave_floor.tex",      "levels/textures/map_interior/passage_blocked.tex",
-    "levels/textures/map_interior/mini_floor_marble_royal.tex", "levels/textures/map_interior/passage_unknown.tex",
-    "levels/textures/map_interior/mini_ruins_slab.tex",
+    "levels/textures/map_interior/passage_unknown.tex",
 }) do
     table.insert(Assets, Asset("IMAGE", v))
     table.insert(MINIMAP_DEF, {
@@ -57,7 +56,7 @@ for _,v in ipairs({
 end
 
 -- list of cc used in interior
-for _,v in ipairs({
+for _, v in ipairs({
     "images/colour_cubes/day05_cc.tex",
     "images/colour_cubes/pigshop_interior_cc.tex",
 }) do

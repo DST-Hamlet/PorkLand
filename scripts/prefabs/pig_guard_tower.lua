@@ -300,8 +300,8 @@ local function fn()
     inst:AddComponent("lootdropper")
 
     inst:AddComponent("fixable")
-    inst.components.fixable:AddRecinstructionStageData("rubble", "pig_shop", "pig_tower_build")
-    inst.components.fixable:AddRecinstructionStageData("unbuilt", "pig_shop", "pig_tower_build")
+    inst.components.fixable:AddReconstructionStageData("rubble", "pig_shop", "pig_tower_build")
+    inst.components.fixable:AddReconstructionStageData("unbuilt", "pig_shop", "pig_tower_build")
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
@@ -349,20 +349,11 @@ local function palacefn()
     return inst
 end
 
--- TODO: Make this work
-local function PlaceTestFn(inst)
+local function HideLayers(inst)
     inst.AnimState:Hide("YOTP")
     inst.AnimState:Hide("SNOW")
-
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    if tile == WORLD_TILES.INTERIOR then
-        return false
-    end
-
-    return true
 end
 
 return Prefab("pig_guard_tower", fn, assets, prefabs),
     Prefab("pig_guard_tower_palace", palacefn, assets, prefabs),
-    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, true)
+    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", nil, true, nil, nil, nil, nil, HideLayers)
