@@ -26,7 +26,7 @@ local function GetInfestTarget(inst)
     local target = FindClosestPlayerInRange(x, y, z, AGRO_DIST, true)
 
     -- hiding is for bush hat
-    if not target or target:HasTag("hiding") or inst.components.infester.infested then
+    if not target or target:HasTag("hiding") or target:HasTag("notarget") or inst.components.infester.infested then
         return false
     end
 
