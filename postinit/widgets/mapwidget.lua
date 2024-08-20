@@ -6,8 +6,9 @@ local Easing = require("easing")
 local Widget = require "widgets/widget"
 local Image = require "widgets/image"
 
-local INTERIOR_MINIMAP_DOOR_SPACE = 3
+local INTERIOR_MINIMAP_DOOR_SPACE = 2
 local INTERIOR_MINIMAP_POSITION_SCALE = 3
+local INTERIOR_MINIMAP_TILE_SCALE = 6
 
 local DIRECTION_VECTORS = {
     north = Vector3(-1, 0,  0),
@@ -89,8 +90,8 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
 
     local room_tile = Image("levels/textures/map_interior/" .. room.floor_texture .. ".xml", room.floor_texture .. ".tex")
     room_tile.position_offset = offset
-    room_tile.tile_scale_x = room.width / INTERIOR_MINIMAP_POSITION_SCALE
-    room_tile.tile_scale_y = room.depth / INTERIOR_MINIMAP_POSITION_SCALE
+    room_tile.tile_scale_x = room.width / INTERIOR_MINIMAP_TILE_SCALE
+    room_tile.tile_scale_y = room.depth / INTERIOR_MINIMAP_TILE_SCALE
     room_tile.inst.ImageWidget:SetEffect(resolvefilepath("shaders/ui_fillmode.ksh"))
     room_tile:SetEffectParams(0, 0, 0, 0)
 
@@ -191,6 +192,8 @@ end
 local MapWidget = require("widgets/mapwidget")
 
 local INTERIOR_BG_SCALE = 0.8
+local INTERIOR_DOOR_SCALE = 0.8
+local INTERIOR_TILE_SCALE = 2
 
 local function UpdateWidgetPositionScale(widget, scale)
     widget:SetScale(scale, scale, 1)
@@ -232,14 +235,14 @@ function MapWidget:OnUpdate(...)
     local scale = 0.75 / self.minimap:GetZoom()
     for _, rooms in pairs(self.interior_map_widgets.rooms) do
         UpdateWidgetPositionScale(rooms.frame, scale * INTERIOR_BG_SCALE)
-        UpdateTileWidgetPositionScale(rooms.tile, scale * INTERIOR_BG_SCALE)
+        UpdateTileWidgetPositionScale(rooms.tile, scale * INTERIOR_BG_SCALE * INTERIOR_TILE_SCALE)
 
         for _, icon_data in ipairs(rooms.icons) do
             UpdateWidgetPositionScale(icon_data.widget, scale)
         end
     end
     for _, door in pairs(self.interior_map_widgets.doors) do
-        UpdateWidgetPositionScale(door, scale)
+        UpdateWidgetPositionScale(door, scale * INTERIOR_DOOR_SCALE)
     end
 end
 
