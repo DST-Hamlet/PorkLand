@@ -116,9 +116,14 @@ function InteriorVisitor:UpdateExteriorPos()
     local last_center_ent = self.last_center_ent
     self.last_center_ent = ent
 
-    -- Record again and ignore non cacheable things once we're out of the last visited room
-    if last_center_ent and last_center_ent ~= ent and last_center_ent:IsValid() then
-        self:RecordMap(last_center_ent.interiorID, last_center_ent:CollectMinimapData(true))
+    if last_center_ent ~= ent then
+        if ent then
+            self:RecordMap(ent.interiorID, ent:CollectMinimapData())
+        end
+        -- Record again and ignore non cacheable things once we're out of the last visited room
+        if last_center_ent and last_center_ent:IsValid() then
+            self:RecordMap(last_center_ent.interiorID, last_center_ent:CollectMinimapData(true))
+        end
     end
 
     local grue = self.inst.components.grue or {}
@@ -147,8 +152,6 @@ function InteriorVisitor:UpdateExteriorPos()
                 return
             end
         end
-
-        self:RecordMap(ent.interiorID, ent:CollectMinimapData())
     else
         self.inst:RemoveTag("inside_interior")
         grue.pl_no_light_interior = false
