@@ -71,6 +71,7 @@ end
 -- {
 --     width: number,
 --     depth: number,
+--     floor_texture: string,
 --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
 --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
 -- }
@@ -78,7 +79,7 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     visited_rooms[current_room_id] = true
     local room = data[current_room_id]
 
-    local room_tile = Image("levels/textures/map_interior/mini_ruins_slab.xml", "mini_ruins_slab.tex")
+    local room_tile = Image("levels/textures/map_interior/" .. room.floor_texture .. ".xml", room.floor_texture .. ".tex")
     room_tile.position_offset = offset
     room_tile.tile_width = room.width
     room_tile.tile_depth = room.depth

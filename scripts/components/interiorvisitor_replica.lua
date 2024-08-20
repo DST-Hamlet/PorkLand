@@ -50,10 +50,6 @@ function InteriorVisitor:GetInteriorCenterGeneric()
     end
 end
 
--- function InteriorVisitor:GetInteriorCenterDedicated()
---     return TheWorld.components.interiorspawner:PositionToInteriorCenter()
--- end
-
 local function IsInInteriorRectangle(player_pos, ent)
     if ent == nil or not ent:IsValid() then
         return false

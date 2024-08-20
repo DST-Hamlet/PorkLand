@@ -235,6 +235,11 @@ local function CollectMinimapIcons(inst, ignore_non_cacheable)
     return icons
 end
 
+-- levels/textures/map_interior/mini_ruins_slab.tex -> mini_ruins_slab
+local function basename(path)
+    return string.match(path, "([^/]+)%.%w+$")
+end
+
 local function CollectMinimapData(inst, ignore_non_cacheable)
     if not inst:HasInteriorMinimap() then
         return
@@ -269,15 +274,21 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         end
     end
 
+    local interior_def = TheWorld.components.interiorspawner:GetInteriorDefByPosition(position)
+    -- Fallback to mini_ruins_slab
+    local floor_texture = interior_def and basename(interior_def.minimaptexture) or "mini_ruins_slab"
+
     return {
         width = width,
         depth = depth,
+        floor_texture = floor_texture,
         icons = icons,
         doors = doors,
     }
     -- {
     --     width: number,
     --     depth: number,
+    --     floor_texture: string,
     --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
     --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
     -- }

@@ -188,7 +188,7 @@ function InteriorSpawner:PositionToIndex(pos)
     return z_index * x_size + x_index
 end
 
-function InteriorSpawner:PositionToInteriorCenter(pos)
+function InteriorSpawner:GetInteriorDefByPosition(pos)
     local index = self:PositionToIndex(pos)
     return self.interior_defs[index]
 end
