@@ -60,6 +60,7 @@ local component_posts = {
     "shard_clock",
     "shard_seasons",
     "sleeper",
+    "spawner",
     "strafer",
     "teamleader",
     "undertile",

@@ -28,9 +28,8 @@ end
 function Citypossession:OnLoad(data)
     if data then
         if data.cityID then
-            self.cityID = data.cityID
+            self:SetCity(data.cityID)
         end
-        self:SetCity(self.cityID)
         if data.enabled ~= nil then
             self.enabled = data.enabled
         end
