@@ -26,7 +26,6 @@ local assets = {
     Asset("MINIMAP_IMAGE", "pig_house_sale"),
 
     Asset("SOUND", "sound/pig.fsb"),
-    Asset("INV_IMAGE", "playerhouse_city"),
 }
 
 local prefabs = {

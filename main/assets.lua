@@ -222,6 +222,8 @@ PrefabFiles = {
     "pl_plantables",
     "thunderbird",
     "thunderbirdnest",
+
+    "pedestal_key",
 }
 
 Assets = {

@@ -326,6 +326,10 @@ end
 ACTIONS.TAKEFROMSHELF.fn = function(act)
     local shelf = act.target.components.visualslot:GetShelf()
 
+    if shelf.components.lock and shelf.components.lock:IsLocked() then
+        return false
+    end
+
     if shelf.components.container then
         local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualslot:GetSlot())
         act.doer.components.inventory:GiveItem(item, nil, act.doer:GetPosition())
@@ -439,6 +443,10 @@ ACTIONS.SHOP.fn = function(act)
     local slot = act.target.components.visualslot:GetSlot()
 
     if not (shelf and shelf.components.shopped and doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
+        return false
+    end
+
+    if shelf.components.lock and shelf.components.lock:IsLocked() then
         return false
     end
 
@@ -756,10 +764,12 @@ local PL_COMPONENT_ACTIONS =
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
                 local shelf = inst.replica.visualslot:GetShelf()
-                if shelf and shelf.replica.shopped then
-                    table.insert(actions, ACTIONS.SHOP)
-                else
-                    table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                if not shelf:HasTag("locked") then
+                    if shelf and shelf.replica.shopped then
+                        table.insert(actions, ACTIONS.SHOP)
+                    else
+                        table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                    end
                 end
             end
         end,
