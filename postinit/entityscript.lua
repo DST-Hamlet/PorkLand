@@ -194,10 +194,14 @@ end
 local _RestartBrain = EntityScript.RestartBrain
 function EntityScript:RestartBrain(...)
     if self.components.freezable and self.components.freezable:IsFrozen() then
-        self.brain:Stop()
+        if self.brain then
+            self.brain:Stop()
+        end
         return
     elseif self.components.sleeper and self.components.sleeper:IsAsleep() then
-        self.brain:Stop()
+        if self.brain then
+            self.brain:Stop()
+        end
         return
     end
     return _RestartBrain(self, ...)

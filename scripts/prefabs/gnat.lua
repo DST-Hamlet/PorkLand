@@ -139,6 +139,7 @@ local function fn()
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor:EnableGroundSpeedMultiplier(false)
     inst.components.locomotor:SetTriggersCreep(false)
+    inst.components.locomotor.pathcaps = {ignorewalls = true, ignorecreep = true, allowocean = true}
     inst.components.locomotor.walkspeed = TUNING.GNAT_WALK_SPEED
     inst.components.locomotor.runspeed = TUNING.GNAT_RUN_SPEED
 

@@ -12,14 +12,22 @@ local Infester = Class(function(self, inst)
     end
 end)
 
-local function ShouldStopInfesting(inst)
+function Infester:ShouldStopInfesting(inst)
+    if not self.target or not self.target:IsValid() then
+        return true
+    end
+
+    if self.target and (self.target.components.health:IsDead() or self.target:HasTag("playerghost")) then
+        return true
+    end
+
     if TheWorld.state.isday and inst:GetCurrentInteriorID() == nil then
         return false
     end
 
-    local target = inst:FindLight()
-    if target and inst:GetDistanceSqToInst(target) > 5 * 5 then
-        return target
+    local lighttarget = inst:FindLight()
+    if lighttarget and inst:GetDistanceSqToInst(lighttarget) > 5 * 5 then
+        return lighttarget
     end
 end
 
@@ -94,7 +102,7 @@ function Infester:Bite()
 end
 
 function Infester:OnUpdate(dt)
-    if ShouldStopInfesting(self.inst) then
+    if self:ShouldStopInfesting(self.inst) then
         self:Uninfest()
     end
 end

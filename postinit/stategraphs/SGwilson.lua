@@ -2324,6 +2324,12 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attacked_eventhandler = sg.events.attacked.fn
     sg.events.attacked.fn = function(inst, data)
+        if inst:HasTag("ironlord") then
+            if inst.sg.currentstate.name == "idle" or inst.sg.currentstate.name == "ironlord_idle" then
+                inst.sg:GoToState("ironlord_hit")
+                return
+            end
+        end
         if inst.components.sailor and inst.components.sailor:IsSailing() then
             local boat = inst.components.sailor:GetBoat()
             if not inst.components.health:IsDead() and not (boat and boat.components.boathealth and boat.components.boathealth:IsDead()) then
@@ -2617,15 +2623,4 @@ AddStategraphPostInit("wilson", function(sg)
             return _hammer_deststate and _hammer_deststate(inst, action)
         end
     end
-
-    local _attacked_handler_fn = sg.events["attacked"].fn
-    sg.events["attacked"] = EventHandler("attacked", function(inst, data)
-        if inst:HasTag("ironlord") then
-            if inst.sg.currentstate.name == "idle" or inst.sg.currentstate.name == "ironlord_idle" then
-                inst.sg:GoToState("ironlord_hit")
-            end
-        else
-            _attacked_handler_fn(inst, data)
-        end
-    end)
 end)

@@ -59,8 +59,29 @@ end
 ---@param ignore_walls boolean
 ---@param customcheckfn function
 ---@return Vector3
+local _FindWalkableOffset = FindWalkableOffset
+FindWalkableOffset = function(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, allow_water, allow_boats, can_walk_in_water, ...)
+    if can_walk_in_water then
+        return FindValidPositionByFan(start_angle, radius, attempts,
+                function(offset)
+                    local x = position.x + offset.x
+                    local y = position.y + offset.y
+                    local z = position.z + offset.z
+                    return (TheWorld.Map:IsAboveGroundAtPoint(x, y, z, allow_water) or (allow_boats and TheWorld.Map:GetPlatformAtPoint(x,z) ~= nil))
+                        and (not check_los or
+                            TheWorld.Pathfinder:IsClear(
+                                position.x, position.y, position.z,
+                                x, y, z,
+                                { ignorewalls = ignore_walls ~= false, ignorecreep = true, allowocean = can_walk_in_water }))
+                        and (customcheckfn == nil or customcheckfn(Vector3(x, y, z)))
+                end)
+    else
+        return _FindWalkableOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, allow_water, allow_boats, can_walk_in_water, ...)
+    end
+end
+
 function FindAmphibiousOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn)
-    return FindWalkableOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, true, false)
+    return FindWalkableOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, true, false, true)
 end
 
 function CanPVPTarget(inst, target)
