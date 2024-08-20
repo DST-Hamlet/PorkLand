@@ -156,6 +156,15 @@ function Door:Activate(doer)
                 target_door.components.vineable.vines.stage = 1
                 target_door.components.vineable.vines.components.hackable:Hack(doer, 9999)
             end
+            if target_door.components.vineable
+                and target_door.regrowtask
+                and target_door:TimeRemainingInTask(target_door.regrowtaskinfo) < TUNING.TOTAL_DAY_TIME then
+
+                target_door.regrowtask:Cancel()
+                target_door.regrowtask = nil
+                target_door.regrowtaskinfo = nil
+                target_door.components.vineable:BeginRegrow()
+            end
             return true
         end
     end

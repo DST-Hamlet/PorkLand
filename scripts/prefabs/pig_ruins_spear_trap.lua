@@ -132,8 +132,8 @@ local function fn()
     inst.Physics:SetActive(false)
 
     inst:AddTag("spear_trap")
-    inst:AddTag("tree")
     inst:AddTag("structure")
+    inst:AddTag("mech")
 
     inst.entity:SetPristine()
 

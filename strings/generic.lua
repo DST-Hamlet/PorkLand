@@ -620,7 +620,7 @@ return {
         ROCK_ANTCAVE = "It's a rock.",
         ROCK_BASALT = "A rock infused with other rocks.",
         ROCK_FLIPPABLE = "You never know what you'll find under a rock.",
-        ROOTTRUNK_CHILD = "It rooted out all my things!",
+        ROOTTRUNK = "It rooted out all my things!",
         ROUND_DOOR = "A little like being eaten.",
         RUG_BEARD = "Is that my beard?",
         RUG_BRAID = "It's a rug.",

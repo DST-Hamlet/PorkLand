@@ -601,7 +601,7 @@ return {
         ROCK_ANTCAVE = "A pointy mizz'nmast.",
         ROCK_BASALT = "'tis a rock. Nothin' ta lose yer 'ead over.",
         ROCK_FLIPPABLE = "Plenty o'booty t'be found under a rock.",
-        ROOTTRUNK_CHILD = "Yarr! All o'Woodleg's treasures!",
+        ROOTTRUNK = "Yarr! All o'Woodleg's treasures!",
         ROUND_DOOR = "Ah, she'll eat ol' Woodlegs clean up.",
         RUG_BEARD = "Aye. Must've been a fine beard.",
         RUG_BRAID = "'Tis made from the hemp rope.",

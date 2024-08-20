@@ -43,7 +43,8 @@ local function KeepTargetFn(inst, target)
 end
 
 local function OnLightning(inst, data)
-    inst.components.timer:SetTimeLeft("discharge", TUNING.ROBOT_DISCHARGE_TIME)
+    inst.components.timer:StopTimer("discharge", TUNING.ROBOT_DISCHARGE_TIME)
+    inst.components.timer:StartTimer("discharge", TUNING.ROBOT_DISCHARGE_TIME)
     if not TheWorld.state.isaporkalypse then
         inst.components.timer:ResumeTimer("discharge")
     end
@@ -190,7 +191,6 @@ local function commonfn()
     inst.components.workable.undestroyable = true
 
     inst:AddComponent("timer")
-    inst.components.timer:StartTimer("discharge", TUNING.ROBOT_DISCHARGE_TIME, true)
 
     inst:SetBrain(brain)
 
@@ -219,6 +219,8 @@ end
 
 local function ribs_fn()
     local inst = commonfn()
+
+    inst.Transform:SetTwoFaced()
 
     inst.entity:AddDynamicShadow()
 

@@ -20,6 +20,9 @@ local poisonimmune_tags = {
     "ghost",
     "veggie",
     "balloon",
+    "merm",
+    "smashable",
+    "shadowcreature",
 }
 
 AddPrefabPostInitAny(function(inst)

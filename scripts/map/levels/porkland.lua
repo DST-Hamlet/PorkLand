@@ -12,6 +12,9 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 
         prefabswaps_start = "classic",
 
+        spawnmode = "fixed",
+        specialevent = "none",
+
         roads = "never",
         branching = "least",
 

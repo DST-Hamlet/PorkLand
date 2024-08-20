@@ -601,7 +601,7 @@ return {
         ROCK_ANTCAVE = "A stalagmite.",
         ROCK_BASALT = "An igneous rock formation.",
         ROCK_FLIPPABLE = "The most interesting insects are found under rocks.",
-        ROOTTRUNK_CHILD = "A complex root system appears to allow the passage of goods.",
+        ROOTTRUNK = "A complex root system appears to allow the passage of goods.",
         ROUND_DOOR = "I can see a Porcine influence to this door.",
         RUG_BEARD = "Entirely inappropriate.",
         RUG_BRAID = "Soft enough.",

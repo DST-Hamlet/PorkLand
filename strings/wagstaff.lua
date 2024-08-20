@@ -617,7 +617,7 @@ return {
         ROCK_ANTCAVE = "An altogether common rock formation.",
         ROCK_BASALT = "An angular formation of rocks formed by a giant automaton.",
         ROCK_FLIPPABLE = "I have learned the benefits of flipping over rocks to see what is underneath.",
-        ROOTTRUNK_CHILD = "A complex intelligent root system is moving my belongings for me. Fascinating!",
+        ROOTTRUNK = "A complex intelligent root system is moving my belongings for me. Fascinating!",
         ROUND_DOOR = "Cordial.",
         RUG_BEARD = "Hirsute.",
         RUG_BRAID = "Textile.",

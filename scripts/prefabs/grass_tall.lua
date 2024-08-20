@@ -103,6 +103,13 @@ local function OnHack(inst, target, hacksleft, from_shears)
 end
 
 local function OnRegen(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
+    if not NUTRIENT_TILES[tile] then
+        local shortgrass = ReplacePrefab(inst, "grass")
+        shortgrass.components.pickable.onregenfn(shortgrass)
+        return
+    end
     inst.AnimState:PlayAnimation("grow")
     inst.AnimState:PushAnimation("idle", true)
     inst.components.hackable.hacksleft = inst.components.hackable.maxhacks

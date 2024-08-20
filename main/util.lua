@@ -420,7 +420,6 @@ function DoSectorAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
     return DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
 end
 
-=======
 -- Putting these here because both gas cloud and gas jundle turf uses those
 local POISON_DAMAGE_INSECT = 60
 local POISON_DAMAGE_NON_INSECT = 5

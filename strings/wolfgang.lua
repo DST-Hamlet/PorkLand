@@ -601,7 +601,7 @@ return {
         ROCK_ANTCAVE = "Wolfgang is stronger.",
         ROCK_BASALT = "Is rock.",
         ROCK_FLIPPABLE = "Wolfgang strong. Wolfgang flip big stone.",
-        ROOTTRUNK_CHILD = "Wolfgang's stuff many places now!",
+        ROOTTRUNK = "Wolfgang's stuff many places now!",
         ROUND_DOOR = "Is mighty mouth.",
         RUG_BEARD = "Is manly.",
         RUG_BRAID = "Is soft.",

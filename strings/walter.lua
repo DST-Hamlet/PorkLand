@@ -346,7 +346,7 @@ return {
         RELIC_5 = "Looks precious.",
         ROCK_BASALT = "Stone created by robots.",
         ROCK_FLIPPABLE = "Guess what's underneath?",
-        ROOTTRUNK_CHILD = "Just like Mr. Maxwell's magic!",
+        ROOTTRUNK = "Just like Mr. Maxwell's magic!",
         RUG_BEARD = "That's a...very curious collection.",
         SAIL_SNAKESKIN = "The snakes wouldn't end up like this if they didn't try to eat me!",
         SCORPION = {

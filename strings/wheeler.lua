@@ -618,7 +618,7 @@ return {
         ROCK_ANTCAVE = "It's a rock. I've seen others.",
         ROCK_BASALT = "A rock. You see a lot of them around here.",
         ROCK_FLIPPABLE = "My grandma taught me to always look under rocks.",
-        ROOTTRUNK_CHILD = "All my storage problems, solved!",
+        ROOTTRUNK = "All my storage problems, solved!",
         ROUND_DOOR = "Is it... going to eat me?",
         RUG_BEARD = "Don't ask where the hair came from.",
         RUG_BRAID = "I braided it myself.",

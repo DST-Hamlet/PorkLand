@@ -349,7 +349,7 @@ return {
         RELIC_5 = "Be careful not to break it.",
         ROCK_BASALT = "Natural stone bricks.",
         ROCK_FLIPPABLE = "There might be something useful down there.",
-        ROOTTRUNK_CHILD = "Automated logistics is the future.",
+        ROOTTRUNK = "Automated logistics is the future.",
         ROUND_DOOR = "Get through the wall.",
         SAIL_SNAKESKIN = "Just watch those scales catch the wind!",
         SCORPION = {
