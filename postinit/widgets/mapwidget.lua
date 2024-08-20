@@ -67,6 +67,14 @@ local function sort_priority(a, b)
     return a.priority < b.priority
 end
 
+local function get_door_id(current_room_id, target_interior_id)
+    if current_room_id < target_interior_id then
+        return tostring(current_room_id) .. "-" .. tostring(target_interior_id)
+    else
+        return tostring(target_interior_id) .. "-" .. tostring(current_room_id)
+    end
+end
+
 -- For data's structure, see scripts/prefabs/interiorworkblank.lua
 -- {
 --     width: number,
@@ -93,10 +101,9 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
         tile = room_tile,
         frame = room_frame,
         icons = {},
-        doors = {},
         offset = offset,
     }
-    widgets[current_room_id] = room_widgets
+    widgets.rooms[current_room_id] = room_widgets
 
     for id, icon_data in pairs(room.icons) do
         local atlas = get_minimap_atlas(icon_data.icon)
@@ -109,8 +116,10 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     table.sort(room_widgets.icons, sort_priority)
 
     for _, door in ipairs(room.doors) do
-        if not visited_rooms[door.target_interior] then
-            local direction = DIRECTION_VECTORS[door.direction]
+        local direction = DIRECTION_VECTORS[door.direction]
+
+        local door_id = get_door_id(current_room_id, door.target_interior)
+        if not widgets.doors[door_id] then
             local door_icon_offset
             if direction.x ~= 0 then
                 door_icon_offset = direction * (room.depth / 2 + INTERIOR_MINIMAP_DOOR_SPACE)
@@ -119,8 +128,10 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
             end
             local door_icon = Image("interior_minimap/interior_minimap.xml", direction.x ~= 0 and "pl_interior_passage4.tex" or "pl_interior_passage3.tex")
             door_icon.position_offset = offset + door_icon_offset
-            table.insert(room_widgets.doors, door_icon)
+            widgets.doors[door_id] = door_icon
+        end
 
+        if not visited_rooms[door.target_interior] then
             local target_room = data[door.target_interior]
             if target_room then
                 local target_interior_offset
@@ -137,7 +148,7 @@ end
 
 local function DiffWidget(self, incoming_data, room_id)
     local incoming_icons = incoming_data[room_id]
-    local current_data = self.interior_map_widgets[room_id]
+    local current_data = self.interior_map_widgets.rooms[room_id]
     local current_icons = current_data.icons
     if not incoming_icons then
         return current_icons, false
@@ -206,15 +217,13 @@ function MapWidget:OnUpdate(...)
     if interiorvisitor.interior_map_icons_override then
         local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
         local new_icons, has_new_icons = DiffWidget(self, interiorvisitor.interior_map_icons_override, current_room_id)
-        self.interior_map_widgets[current_room_id].icons = new_icons
+        self.interior_map_widgets.rooms[current_room_id].icons = new_icons
         if has_new_icons then
-            for _, widgets in pairs(self.interior_map_widgets) do
-                for _, door in ipairs(widgets.doors) do
-                    door:MoveToFront()
-                end
+            for _, door in pairs(self.interior_map_widgets.doors) do
+                door:MoveToFront()
             end
-            for _, widgets in pairs(self.interior_map_widgets) do
-                for _, icon_data in ipairs(widgets.icons) do
+            for _, room in pairs(self.interior_map_widgets.rooms) do
+                for _, icon_data in ipairs(room.icons) do
                     icon_data.widget:MoveToFront()
                 end
             end
@@ -223,16 +232,16 @@ function MapWidget:OnUpdate(...)
     end
 
     local scale = 0.75 / self.minimap:GetZoom()
-    for _, widgets in pairs(self.interior_map_widgets) do
-        UpdateWidgetPositionScale(widgets.frame, scale * INTERIOR_BG_SCALE)
-        UpdateTileWidgetPositionScale(widgets.tile, scale * INTERIOR_BG_SCALE)
+    for _, rooms in pairs(self.interior_map_widgets.rooms) do
+        UpdateWidgetPositionScale(rooms.frame, scale * INTERIOR_BG_SCALE)
+        UpdateTileWidgetPositionScale(rooms.tile, scale * INTERIOR_BG_SCALE)
 
-        for _, icon_data in ipairs(widgets.icons) do
+        for _, icon_data in ipairs(rooms.icons) do
             UpdateWidgetPositionScale(icon_data.widget, scale)
         end
-        for _, door in ipairs(widgets.doors) do
-            UpdateWidgetPositionScale(door, scale)
-        end
+    end
+    for _, door in pairs(self.interior_map_widgets.doors) do
+        UpdateWidgetPositionScale(door, scale)
     end
 end
 
@@ -241,27 +250,32 @@ function MapWidget:OnEnterInterior()
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
     if data[current_room_id] then
         -- {
-        --     [room_id: number]: {
+        --     rooms: {
+        --         [room_id: number]: {
         --         tile: Image,
         --         frame: Image,
-        --         doors: Image[],
         --         icons: { widget: Image, id: number, priority: number }[],
         --         offset: Vector3,
-        --     }
+        --         }
+        --     },
+        --     doors: {
+        --         [door_id: string]: Image
+        --     },
         -- }
-        self.interior_map_widgets = {}
+        self.interior_map_widgets = {
+            rooms = {},
+            doors = {},
+        }
         BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, current_room_id, Vector3())
-        for _, widgets in pairs(self.interior_map_widgets) do
-            self:AddChild(widgets.tile)
-            self:AddChild(widgets.frame)
+        for _, room in pairs(self.interior_map_widgets.rooms) do
+            self:AddChild(room.tile)
+            self:AddChild(room.frame)
         end
-        for _, widgets in pairs(self.interior_map_widgets) do
-            for _, door in ipairs(widgets.doors) do
-                self:AddChild(door)
-            end
+        for _, door in pairs(self.interior_map_widgets.doors) do
+            self:AddChild(door)
         end
-        for _, widgets in pairs(self.interior_map_widgets) do
-            for _, icon_data in ipairs(widgets.icons) do
+        for _, room in pairs(self.interior_map_widgets.rooms) do
+            for _, icon_data in ipairs(room.icons) do
                 self:AddChild(icon_data.widget)
             end
         end
