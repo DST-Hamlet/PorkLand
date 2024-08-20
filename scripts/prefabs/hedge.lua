@@ -83,9 +83,6 @@ local function MakeHedgeType(data)
     local assets = {
         Asset("ANIM", "anim/hedge.zip"),
         Asset("ANIM", "anim/hedge" .. data.hedgetype .. "_build.zip"),
-        Asset("INV_IMAGE", "hedge_block_item"),
-        Asset("INV_IMAGE", "hedge_cone_item"),
-        Asset("INV_IMAGE", "hedge_layered_item"),
     }
 
     local prefabs = {

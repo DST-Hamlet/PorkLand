@@ -1,6 +1,5 @@
 local assets = {
     Asset("ANIM", "anim/key_to_city.zip"),
-    Asset("INV_IMAGE", "key_to_city"),
 }
 
 local function OnActivate(inst)

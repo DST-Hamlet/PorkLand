@@ -5,6 +5,7 @@ local assets =
     Asset("ANIM", "anim/pedestal_crate.zip"),
     Asset("ANIM", "anim/pedestal_crate_cloche.zip"),
     Asset("ANIM", "anim/pedestal_crate_cost.zip"),
+    Asset("ANIM", "anim/pedestal_crate_lock.zip"),
 }
 
 local function MakeObstacle(inst)
@@ -19,8 +20,8 @@ end
 local function Curse(inst)
     if math.random() < 0.3 then
         local ghost = SpawnPrefab("pigghost")
-        local pt = Vector3(inst.Transform:GetWorldPosition())
-        ghost.Transform:SetPosition(pt.x,pt.y,pt.z)
+        local x, y, z = inst.Transform:GetWorldPosition()
+        ghost.Transform:SetPosition(x, y, z)
     end
 end
 
@@ -43,20 +44,8 @@ local function OnLoad(inst, data)
     end
 end
 
-local function CreateFrontVisual(inst, name, anim_def)
-    local frontvisual = CreateEntity()
-    --[[Non-networked entity]]
-    frontvisual.entity:AddTransform()
-    frontvisual.entity:AddAnimState()
-    frontvisual.entity:AddFollower()
-
-    frontvisual:AddTag("NOCLICK")
-    frontvisual:AddTag("FX")
-    frontvisual.entity:SetParent(inst.entity)
-    frontvisual.persists = false
-    frontvisual.Transform:SetTwoFaced()
-    frontvisual.Transform:SetRotation(-90)
-
+local function CreateFrontVisual(inst, name, anim_def) -- 柜子前方用于遮挡的图片
+    local frontvisual = SpawnPrefab("shelves_frontvisual")
     if anim_def.is_pedestal then
         frontvisual.AnimState:SetBuild(anim_def.build and anim_def.build .. "_cloche" or "pedestal_crate_cloche")
         frontvisual.AnimState:SetBank(anim_def.bank or "pedestal")
@@ -76,12 +65,67 @@ local function CreateFrontVisual(inst, name, anim_def)
 
     frontvisual.AnimState:SetFinalOffset(3)
 
-    frontvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.002) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
-
+    frontvisual.parentshelf = inst
+    frontvisual.entity:SetParent(inst.entity)
     return frontvisual
 end
 
-local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed)
+local function frontvisual_fn(inst, name, anim_def)
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddFollower()
+    inst.entity:AddNetwork()
+    inst:AddTag("NOCLICK")
+    inst:AddTag("FX")
+    inst.persists = false
+    inst.Transform:SetTwoFaced()
+
+    inst.AnimState:SetFinalOffset(3)
+    return inst
+end
+
+local function CreateLockVisual(inst, name, anim_def) -- 柜子前方用于遮挡的图片
+    local lockvisual = SpawnPrefab("shelves_lockvisual")
+
+    local animation = anim_def.animation or name
+    lockvisual.AnimState:PlayAnimation(animation)
+
+    if anim_def.layer then
+        lockvisual.AnimState:SetLayer(anim_def.layer)
+    end
+    if anim_def.order then
+        lockvisual.AnimState:SetSortOrder(anim_def.order)
+    end
+
+    lockvisual.AnimState:SetFinalOffset(4)
+
+    lockvisual.parentshelf = inst
+    lockvisual.entity:SetParent(inst.entity)
+    return lockvisual
+end
+
+local function lockvisual_fn() -- 锁
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddFollower()
+    inst.entity:AddNetwork()
+    inst:AddTag("NOCLICK")
+    inst:AddTag("FX")
+    inst.persists = false
+
+    inst.AnimState:SetBuild("pedestal_crate_lock")
+    inst.AnimState:SetBank("pedestal")
+    inst.AnimState:PlayAnimation("idle")
+    return inst
+end
+
+local function OnVisualChange(inst)
+    inst.highlightchildren = {inst._frontvisual:value(), inst._lockvisual:value()}
+end
+
+local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed, master_postinit)
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -114,6 +158,9 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             inst.AnimState:SetSortOrder(anim_def.order)
         end
 
+        inst._frontvisual = net_entity(inst.GUID, "_frontvisual", "frontvisualdirty")
+        inst._lockvisual = net_entity(inst.GUID, "_lockvisual", "lockvisualdirty")
+
         inst.AnimState:SetFinalOffset(-1)
 
         inst.anim_def = anim_def
@@ -126,17 +173,26 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst:AddTag("furniture")
         inst:AddTag("shelf")
 
-        inst.frontvisual = CreateFrontVisual(inst, name, anim_def)
-
-        inst:DoStaticTaskInTime(0, function()
-            inst.frontvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
-        end)
-
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
+            inst:ListenForEvent("frontvisualdirty", OnVisualChange)
+            inst:ListenForEvent("lockvisualdirty", OnVisualChange)
             return inst
         end
+
+        inst.frontvisual = CreateFrontVisual(inst, name, anim_def)
+        inst._frontvisual:set(inst.frontvisual)
+
+        inst.lockvisual = CreateLockVisual(inst, name, anim_def)
+        inst._lockvisual:set(inst.lockvisual)
+
+        inst:DoStaticTaskInTime(0, function()
+            inst.frontvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.0015) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+            inst.lockvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.002) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
+        end)
+
+        inst:AddComponent("inspectable")
 
         if physics_round then
             inst:AddComponent("gridnudger")
@@ -145,6 +201,7 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst:AddComponent("container")
         inst.components.container:WidgetSetup("shelf_" .. name)
         inst.components.container.Open = function() end
+        inst.components.container.canbeopened = false
         inst.components.container.skipopensnd = true
 
         inst:AddComponent("visualslotmanager")
@@ -157,10 +214,42 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
 
+        if master_postinit then
+            master_postinit(inst)
+        end
+
         return inst
     end
 
     return Prefab("shelf_" .. name, fn, assets)
+end
+
+local function OnLock(inst)
+    inst.AnimState:Show("LOCK")
+    if inst.lockvisual then
+        inst.lockvisual.AnimState:Show("LOCK")
+    end
+    inst:AddTag("locked")
+    inst:RemoveTag("NOCLICK")
+end
+
+local function OnUnLock(inst, key, doer)
+    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/royal_gallery/unlock")
+    inst.AnimState:Hide("LOCK")
+    if inst.lockvisual then
+        inst.lockvisual.AnimState:Hide("LOCK")
+    end
+    inst:RemoveTag("locked")
+    inst:AddTag("NOCLICK")
+end
+
+local function makeLock(inst)
+    inst:AddComponent("lock")
+    inst.components.lock.locktype = LOCKTYPE.ROYAL
+    inst.components.lock:SetOnLockedFn(OnLock)
+    inst.components.lock:SetOnUnlockedFn(OnUnLock)
+    inst.components.lock.islocked = false
+    inst.components.lock:SetLocked(true)
 end
 
 return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
@@ -185,8 +274,10 @@ return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("floating", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("displaycase_wood", true, {animation = "displayshelf_wood"}),
     MakeShelf("displaycase_metal", true, {animation = "displayshelf_metal"}),
-    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true}, "SWAP_SIGN"),
-    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true}, "SWAP_SIGN"),
-    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN"),
-    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN"),
-    MakeShelf("ruins", true, {animation = "ruins"}, nil, Curse)
+    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true}, "SWAP_SIGN", nil, makeLock),
+    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true}, "SWAP_SIGN", nil, makeLock),
+    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN", nil, makeLock),
+    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN", nil, makeLock),
+    MakeShelf("ruins", true, {animation = "ruins"}, nil, Curse),
+    Prefab("shelves_lockvisual", lockvisual_fn, assets),
+    Prefab("shelves_frontvisual", frontvisual_fn, assets)

@@ -41,7 +41,6 @@ local function MakeLawnornament(n)
     local assets = {
         Asset("ANIM", "anim/topiary0"..n..".zip"),
         Asset("MINIMAP_IMAGE", "lawnornaments_"..n),
-        Asset("INV_IMAGE", "lawnornament_"..n),
     }
 
     local function fn(Sim)

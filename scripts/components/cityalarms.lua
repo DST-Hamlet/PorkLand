@@ -34,7 +34,7 @@ local function spawn_guard_pig_from_offscreen(inst, city, threat)
                 else
                     guard.Transform:SetPosition(pos:Get())
                 end
-                guard.components.citypossession.cityID = city
+                guard.components.citypossession:SetCity(city)
                 guard.components.knownlocations:RememberLocation("home", pos)
                 guard:PushEvent("attacked", {
                     attacker = threat,
@@ -79,7 +79,7 @@ local function spawn_guard_pig_from_tower(inst, city, tower, threat)
     if guard.components.knownlocations then
         guard.components.knownlocations:RememberLocation("home", pos)
     end
-    guard.components.citypossession.cityID = city
+    guard.components.citypossession:SetCity(city)
     guard:PushEvent("attacked", {
         attacker = threat,
         damage = 0,

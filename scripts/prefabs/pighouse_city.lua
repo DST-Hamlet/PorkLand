@@ -366,6 +366,23 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
 
         MakeObstaclePhysics(inst, 1)
 
+        ------- Copied from prefabs/wall.lua -------
+        inst._pfpos = nil
+        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+        MakeObstacle(inst)
+        -- Delay this because makeobstacle sets pathfinding on by default
+        -- but we don't to handle it until after our position is set
+        inst:DoTaskInTime(0, InitializePathFinding)
+
+        inst:ListenForEvent("onremove", OnRemove)
+        --------------------------------------------
+
+        inst.entity:SetPristine()
+
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
         inst.build = build
         if not inst.build then
             inst.build = house_builds[math.random(#house_builds)]
@@ -384,23 +401,6 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst.AnimState:SetScale(inst.scale, inst.scale, inst.scale)
         inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
         inst.AnimState:Hide("YOTP")
-
-        ------- Copied from prefabs/wall.lua -------
-        inst._pfpos = nil
-        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
-        MakeObstacle(inst)
-        -- Delay this because makeobstacle sets pathfinding on by default
-        -- but we don't to handle it until after our position is set
-        inst:DoTaskInTime(0, InitializePathFinding)
-
-        inst:ListenForEvent("onremove", OnRemove)
-        --------------------------------------------
-
-        inst.entity:SetPristine()
-
-        if not TheWorld.ismastersim then
-            return inst
-        end
 
         inst:AddComponent("gridnudger")
         inst.components.gridnudger.snap_to_grid = true
