@@ -498,7 +498,7 @@ return {
         RELIC_5 = "What a strange look.",
         ROCK_BASALT = "A very ordinary stone.",
         ROCK_FLIPPABLE = "Just open it. What's to be afraid of?",
-        ROOTTRUNK_CHILD = "It's hard to imagine how extensive the root system is.",
+        ROOTTRUNK = "It's hard to imagine how extensive the root system is.",
         ROUND_DOOR = "To another room.",
         RUG_BEARD = "Disgusting!",
         RUG_BRAID = "A fine carpet.",

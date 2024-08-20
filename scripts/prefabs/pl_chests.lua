@@ -261,7 +261,7 @@ end
 --[[ Root Trunk ]]--
 
 local function AttachRootContainer(inst)
-    inst.components.container_proxy:SetMaster(TheWorld:GetPocketDimensionContainer("roottrunk"))
+    inst.components.container_proxy:SetMaster(TheWorld:GetPocketDimensionContainer("root"))
 end
 
 local function roottrunk_fn()
@@ -276,7 +276,7 @@ local function roottrunk_fn()
     inst.MiniMapEntity:SetIcon("root_chest.tex")
 
     inst:AddTag("structure")
-    inst:AddTag("chest")
+    -- inst:AddTag("chest")
 
     inst.AnimState:SetBank("roottrunk")
     inst.AnimState:SetBuild("treasure_chest_roottrunk")

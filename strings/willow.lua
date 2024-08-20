@@ -599,7 +599,7 @@ return {
         ROCK_ANTCAVE = "I can't burn it.",
         ROCK_BASALT = "It's a rock. I can't even burn it.",
         ROCK_FLIPPABLE = "Might as well see what's underneath.",
-        ROOTTRUNK_CHILD = "Now I don't have to lug everything around with me.",
+        ROOTTRUNK = "Now I don't have to lug everything around with me.",
         ROUND_DOOR = "What's it smiling about?",
         RUG_BEARD = "Ew.",
         RUG_BRAID = "Soft and ugly.",

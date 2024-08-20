@@ -333,7 +333,7 @@ return {
         RELIC_5 = "This would be a fun keepsake.",
         ROCK_BASALT = "This imp will not be contained so easily.",
         ROCK_FLIPPABLE = "We should turn it over and look at it.",
-        ROOTTRUNK_CHILD = "So I don't always have to carry them with!",
+        ROOTTRUNK = "So I don't always have to carry them with!",
         RUG_BEARD = "Uh uh uh.",
         SAIL_SNAKESKIN = "The stripes complement the colour, I say, I say.",
         SCORPION = {

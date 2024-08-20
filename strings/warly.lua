@@ -606,7 +606,7 @@ return {
         ROCK_ANTCAVE = "What mysteries are baked within.",
         ROCK_BASALT = "I could serve lunch on that rock.",
         ROCK_FLIPPABLE = "There may be some protein under there.",
-        ROOTTRUNK_CHILD = "Mon dieu! What a wonderful time saver!",
+        ROOTTRUNK = "Mon dieu! What a wonderful time saver!",
         ROUND_DOOR = "Another mouth to feed!",
         RUG_BEARD = "Unappetizing.",
         RUG_BRAID = "Appetizing.",

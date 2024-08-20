@@ -161,6 +161,8 @@ local function fn()
     inst.TransformToBush = TransformToBush
     inst.TransformToAnimal = TransformToAnimal
 
+    inst:ListenForEvent("freeze", inst.TransformToAnimal)
+
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = TUNING.PEAGAWK_RUN_SPEED
     inst.components.locomotor.walkspeed = TUNING.PEAGAWK_WALK_SPEED

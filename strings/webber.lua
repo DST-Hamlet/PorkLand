@@ -601,7 +601,7 @@ return {
         ROCK_ANTCAVE = "That's a rock.",
         ROCK_BASALT = "It's a rock. The robot made it.",
         ROCK_FLIPPABLE = "What's under here?",
-        ROOTTRUNK_CHILD = "Now we don't have to carry our stuff everywhere.",
+        ROOTTRUNK = "Now we don't have to carry our stuff everywhere.",
         ROUND_DOOR = "Is it... gonna eat us?",
         RUG_BEARD = "It's kinda scratchy.",
         RUG_BRAID = "This rug's really soft.",

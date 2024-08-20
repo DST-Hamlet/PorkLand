@@ -602,7 +602,7 @@ return {
         ROCK_ANTCAVE = "It's a rock.",
         ROCK_BASALT = "A rock from the bowels of the earth.",
         ROCK_FLIPPABLE = "If only I could hide under a rock.",
-        ROOTTRUNK_CHILD = "Saves my possessions. But it can't save my heart.",
+        ROOTTRUNK = "Saves my possessions. But it can't save my heart.",
         ROUND_DOOR = "Only leads to disappointment.",
         RUG_BEARD = "Ew.",
         RUG_BRAID = "Ornamentation is pointless.",

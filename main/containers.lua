@@ -271,6 +271,11 @@ function params.roottrunk.itemtestfn(container, item, slot)
     return not item:HasTag("irreplaceable")
 end
 
+params["roottrunk_container"] = deepcopy(params["shadowchester"])
+function params.roottrunk.itemtestfn(container, item, slot)
+    return not item:HasTag("irreplaceable")
+end
+
 local widget_armor_vortex_cloak = {
     widget = {
         slotpos = {},

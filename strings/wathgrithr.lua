@@ -606,7 +606,7 @@ return {
         ROCK_ANTCAVE = "A smashable rock!",
         ROCK_BASALT = "A battle has been fought here!",
         ROCK_FLIPPABLE = "Stone! Reveal to me your secrets!",
-        ROOTTRUNK_CHILD = "The spoils of the battle now follow me!",
+        ROOTTRUNK = "The spoils of the battle now follow me!",
         ROUND_DOOR = "Does it consume all that enter it?",
         RUG_BEARD = "Odin's beard 'tis a fine rug.",
         RUG_BRAID = "Rug! Prepare to be stepped upon!",

@@ -84,12 +84,12 @@ local custonsiz_items = {  -- add in dst custonsiz
             "grass_tall",
             "grass_tall_bunches",
             "lotus",
+            lost_relics = {desc = frequency_descriptions},
+            ruined_sculptures = {image = "lost_sculptures.tex", desc = frequency_descriptions},
         },
         misc = {
             jungle_border_vine = {desc = frequency_descriptions},
             deep_jungle_fern_noise = {desc = frequency_descriptions},
-            lost_relics = {desc = frequency_descriptions},
-            ruined_sculptures = {image = "lost_sculptures.tex", desc = frequency_descriptions},
         }
     },
     [LEVELCATEGORY.SETTINGS] = {
@@ -131,7 +131,7 @@ local custonsiz_items = {  -- add in dst custonsiz
 local change_items = {  -- change dst custonsiz settings
     worldgen = {
         resources = {"rock", "sapling", "grass", "flowers", "reeds", "mushroom"},
-        misc = {"task_set", "start_location", "world_size", "touchstone", "boons"},
+        misc = {"task_set", "world_size", "boons"},
     },
     world_settings = {
         animals = {"butterfly"},
@@ -178,17 +178,30 @@ for category, category_data in pairs(delete_items) do  -- use dst custonsiz sett
     for group, groupitems in pairs(category_data) do
         if type(groupitems) == "string" then
             for _, item in pairs(GROUP[group].items) do
-                item.world = {}
+                if item.world == nil then
+                    item.world = {}
+                end
             end
         else
             for _, itemname in pairs(groupitems) do
-                GROUP[group].items[itemname].world = {}
+                if GROUP[group].items[itemname].world == nil then
+                    GROUP[group].items[itemname].world = {}
+                end
             end
         end
     end
 end
 
-for name, data in pairs(pl_customize_table) do  -- add we customize
+-- 世界大小设置与单机猪镇保持一致
+WORLDGEN_GROUP["misc"].items["world_size"].desc =  {
+    { text = STRINGS.UI.SANDBOXMENU.SLIDESMALL, data = "small"},
+    { text = STRINGS.UI.SANDBOXMENU.SLIDESMEDIUM, data = "medium"},
+    { text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default"},
+    { text = STRINGS.UI.SANDBOXMENU.SLIDESLARGE, data = "large"},
+    { text = STRINGS.UI.SANDBOXMENU.SLIDESHUGE, data = "huge"},
+}
+
+for name, data in pairs(pl_customize_table) do  -- add our customize
     add_group_and_item(data.category, name, data.text, data.desc, data.atlas, data.order, data.items)
 end
 

@@ -617,7 +617,7 @@ return {
         ROCK_ANTCAVE = "Rock. Looks hard",
         ROCK_BASALT = "Rock",
         ROCK_FLIPPABLE = "Things hiding?",
-        ROOTTRUNK_CHILD = "Friends help carry stuff",
+        ROOTTRUNK = "Friends help carry stuff",
         ROUND_DOOR = "Big mouth door",
         RUG_BEARD = "Ground thing",
         RUG_BRAID = "Ground thing",

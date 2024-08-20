@@ -339,7 +339,7 @@ return {
         RELIC_5 = "Can't ate, but shining.",
         ROCK_BASALT = "Rock.",
         ROCK_FLIPPABLE = "A flat rock.",
-        ROOTTRUNK_CHILD = "Vines haunt the box.",
+        ROOTTRUNK = "Vines haunt the box.",
         RUG_BEARD = "Lack the swamp smell.",
         RUG_BRAID = "Lack the swamp smell.",
         RUG_CATCOON = "Lack the swamp smell.",
