@@ -24,7 +24,7 @@ local InteriorVisitor = Class(function(self, inst)
     end)
 
     self.interior_map = {}
-    self.interior_map_dirty = false
+    self.interior_map_icons_override = nil
 
     inst:StartUpdatingComponent(self)
 end)
@@ -111,8 +111,9 @@ function InteriorVisitor:UpdateInteriorMinimap()
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.inst:GetPosition())
     local current_room_data = self.interior_map[current_room_id]
     if current_room_data then
-        current_room_data.icons = center:CollectMinimapIcons()
-        self.interior_map_dirty = true
+        self.interior_map_icons_override = {
+            [current_room_id] = center:CollectMinimapIcons()
+        }
     end
 end
 

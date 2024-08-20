@@ -136,14 +136,12 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
 end
 
 local function DiffWidget(self, incoming_data, room_id)
-    local incoming_room_data = incoming_data[room_id]
+    local incoming_icons = incoming_data[room_id]
     local current_data = self.interior_map_widgets[room_id]
     local current_icons = current_data.icons
-    if not incoming_room_data then
+    if not incoming_icons then
         return current_icons, false
     end
-
-    local incoming_icons = incoming_room_data.icons
 
     local result_icons = {}
     local result_icons_set = {}
@@ -204,22 +202,24 @@ function MapWidget:OnUpdate(...)
         return
     end
 
-    if self.owner.replica.interiorvisitor.interior_map_dirty then
-        local data = self.owner.replica.interiorvisitor.interior_map
+    local interiorvisitor = self.owner.replica.interiorvisitor
+    if interiorvisitor.interior_map_icons_override then
         local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
-        local new_icons, has_new_icons = DiffWidget(self, data, current_room_id)
+        local new_icons, has_new_icons = DiffWidget(self, interiorvisitor.interior_map_icons_override, current_room_id)
         self.interior_map_widgets[current_room_id].icons = new_icons
         if has_new_icons then
             for _, widgets in pairs(self.interior_map_widgets) do
                 for _, door in ipairs(widgets.doors) do
                     door:MoveToFront()
                 end
+            end
+            for _, widgets in pairs(self.interior_map_widgets) do
                 for _, icon_data in ipairs(widgets.icons) do
                     icon_data.widget:MoveToFront()
                 end
             end
         end
-        self.owner.replica.interiorvisitor.interior_map_dirty = false
+        interiorvisitor.interior_map_icons_override = nil
     end
 
     local scale = 0.75 / self.minimap:GetZoom()
