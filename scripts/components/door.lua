@@ -91,7 +91,10 @@ local function DoTeleport(player, pos)
         end
 
         player:ScreenFade(true, 0.4)
-        player.sg:GoToState("idle")
+
+        if not player.sg:HasStateTag("dead") then
+            player.sg:GoToState("idle")
+        end
 
         if player:HasTag("wanted_by_guards") then
             player:RemoveTag("wanted_by_guards")
