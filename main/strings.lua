@@ -89,7 +89,7 @@ if not IsTheFrontEnd then
 end
 
 local desiredlang = nil
-if IsTheFrontEnd and LanguageTranslator.defaultlang then  -- only use default in FrontEnd or if locale is not set
+if IsTheFrontEnd and LanguageTranslator.defaultlang then
     desiredlang = LanguageTranslator.defaultlang
 end
 
