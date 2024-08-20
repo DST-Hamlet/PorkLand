@@ -3,22 +3,6 @@ local assets =
     Asset("ANIM", "anim/cropdust_fx.zip"),
 }
 
-local function OnEnterGas(inst)
-    if inst.OnGasChange then
-        inst:OnGasChange(true)
-    else
-        if inst:HasTag("insect") and inst.components.poisonable then
-            inst.components.poisonable:Poison(true)
-        end
-    end
-end
-
-local function OnLeaveGas(inst)
-    if inst.OnGasChange then
-        inst:OnGasChange(false)
-    end
-end
-
 local function Spawn(inst)
     inst.AnimState:PlayAnimation("appear")
     inst.AnimState:PushAnimation("idle_loop", true)
@@ -28,9 +12,6 @@ local function Despawn(inst)
     inst.AnimState:PlayAnimation("disappear")
     -- should probably disable DynamicShadow here
     inst:ListenForEvent("animover", function()
-        for _, ent in ipairs(inst.ents_in_gas) do
-            OnLeaveGas(ent)
-        end
         inst:Remove()
     end)
     inst.persists = false
@@ -38,8 +19,8 @@ end
 
 local START_RANGE = 2
 local END_RANGE = 2.2
-local DO_GAS_ONE_OF_TAGS = { "animal", "character", "monster", "insect" }
-local DO_GAS_NO_TAGS = {"gas"} -- no inlimbo tag?
+local DO_GAS_ONE_OF_TAGS = {"animal", "character", "monster", "insect"}
+local DO_GAS_NO_TAGS = {"gas", "INLIMBO"}
 
 local function OnUpdate(inst, dt)
     local x, y, z = inst.Transform:GetWorldPosition()
@@ -53,7 +34,7 @@ local function OnUpdate(inst, dt)
     for _, ent in ipairs(inst.ents_in_gas) do
         local was_in_gas = false
 
-        for i = 1, num_old_ents do -- don't use pairs for this
+        for i = 1, num_old_ents do -- don't use ipairs for this
             if old_ents[i] == ent then
                 was_in_gas = true
                 old_ents[i] = nil
@@ -62,12 +43,14 @@ local function OnUpdate(inst, dt)
         end
 
         if not was_in_gas then
-            OnEnterGas(ent)
+            StartTakingGasDamage(ent, inst)
         end
     end
 
-    for _, ent in ipairs(old_ents) do
-        OnLeaveGas(ent)
+    for i = 1, num_old_ents do
+        if old_ents[i] then
+            StopTakingGasDamage(old_ents[i], inst)
+        end
     end
 end
 
@@ -105,6 +88,12 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:DoTaskInTime(20, Despawn)
+
+    inst:ListenForEvent("onremove", function()
+        for _, ent in ipairs(inst.ents_in_gas) do
+            StopTakingGasDamage(ent, inst)
+        end
+    end)
 
     inst.ents_in_gas = {}
 

@@ -257,12 +257,13 @@ function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, att
         inst.components.poisonable.loop_fx = false
     elseif fxstyle == "player" then
         inst.components.poisonable.show_fx = true
-        inst.components.poisonable.loop_fx = false
+        inst.components.poisonable.loop_fx = true
     end
 
     inst.components.poisonable:SetOnPoisonedFn(function()
         if inst.player_classified then
             inst.player_classified.ispoisoned:set(true)
+            inst.ispoisoned = true
         end
 
         if inst.components.combat then
@@ -286,6 +287,7 @@ function MakePoisonableCharacter(inst, sym, offset, fxstyle, damage_penalty, att
     inst.components.poisonable:SetOnPoisonDoneFn(function()
         if inst.player_classified then
             inst.player_classified.ispoisoned:set(false)
+            inst.ispoisoned = false
         end
 
         if inst.components.combat then

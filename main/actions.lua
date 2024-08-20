@@ -37,7 +37,9 @@ if not rawget(_G, "HotReloading") then
         RANSACK = Action({distance = 0.5}),
         MAKEHOME = Action({distance = 1}),
         THUNDERBIRD_CAST = Action({distance = 1.2}),
-        GAS = Action({distance = 1.5, mount_enabled = true}),
+        GAS = Action({distance = 2.5, mount_enabled = true}),
+        INFEST = Action({distance = 0.5}),
+        BUILD_MOUND = Action({}),
 
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -502,6 +504,24 @@ ACTIONS.GAS.fn = function(act)
         return true
     end
 end
+ACTIONS.INFEST.fn = function(act)
+    if not act.doer.components.infester.infested then
+        act.doer.components.infester:Infest(act.target)
+        return true
+    end
+
+    return false
+end
+
+ACTIONS.INFEST.validfn = function(act)
+    local AGRO_STOP_DIST = 7
+    return act.doer:GetDistanceSqToInst(act.target) <= AGRO_STOP_DIST * AGRO_STOP_DIST
+end
+
+ACTIONS.BUILD_MOUND.fn = function(act)
+    if act.doer.build_mound_action then
+		return act.doer:build_mound_action()
+	end
 
 ACTIONS.THUNDERBIRD_CAST.fn = function(act)
     act.doer.sg:GoToState("thunder_attack")
@@ -510,8 +530,6 @@ end
 
 ACTIONS.PIG_BANDIT_EXIT.fn = function(act)
     return true
-end
-
 
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn

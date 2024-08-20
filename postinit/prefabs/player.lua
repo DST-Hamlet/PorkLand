@@ -166,6 +166,9 @@ AddPlayerPostInit(function(inst)
 
     inst:AddComponent("interiorvisitor")
     inst:AddComponent("sailor")
+
+    inst:AddComponent("infestable")
+
     inst:AddComponent("shopper")
 
     inst:ListenForEvent("death", OnDeath)

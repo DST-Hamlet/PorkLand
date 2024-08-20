@@ -75,14 +75,6 @@ local function OnTimerDone(inst, data)
     end
 end
 
-local function OnChangeArea(inst, data)
-    if data and data.tags and table.contains(data.tags, "Gas_Jungle") then
-        if inst.components.poisonable then
-            inst.components.poisonable:Poison(true, nil, 30)
-        end
-    end
-end
-
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -120,9 +112,7 @@ local function fn()
     end
 
     inst:AddComponent("drownable")
-    inst:AddComponent("areaaware")
     inst:AddComponent("inspectable")
-    -- inst:AddComponent("follower")
 
     -- locomotor must be constructed before the stategraph!
     inst:AddComponent("locomotor")
@@ -143,7 +133,6 @@ local function fn()
     inst.components.health.murdersound = "dontstarve_DLC003/creatures/enemy/rabid_beetle/death"
 
     inst:AddComponent("eater")
-    -- inst.components.eater:SetCarnivore()
     inst.components.eater:SetDiet({FOODTYPE.MEAT}, {FOODTYPE.MEAT})
     inst.components.eater:SetCanEatHorrible()
     inst.components.eater:SetStrongStomach(true)  -- can eat monster meat!
@@ -191,7 +180,6 @@ local function fn()
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("onattackother", OnAttackOther)
     inst:ListenForEvent("timerdone", OnTimerDone)
-    inst:ListenForEvent("changearea", OnChangeArea)
 
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst, "bottom")

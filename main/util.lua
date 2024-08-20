@@ -59,8 +59,29 @@ end
 ---@param ignore_walls boolean
 ---@param customcheckfn function
 ---@return Vector3
+local _FindWalkableOffset = FindWalkableOffset
+FindWalkableOffset = function(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, allow_water, allow_boats, can_walk_in_water, ...)
+    if can_walk_in_water then
+        return FindValidPositionByFan(start_angle, radius, attempts,
+                function(offset)
+                    local x = position.x + offset.x
+                    local y = position.y + offset.y
+                    local z = position.z + offset.z
+                    return (TheWorld.Map:IsAboveGroundAtPoint(x, y, z, allow_water) or (allow_boats and TheWorld.Map:GetPlatformAtPoint(x,z) ~= nil))
+                        and (not check_los or
+                            TheWorld.Pathfinder:IsClear(
+                                position.x, position.y, position.z,
+                                x, y, z,
+                                { ignorewalls = ignore_walls ~= false, ignorecreep = true, allowocean = can_walk_in_water }))
+                        and (customcheckfn == nil or customcheckfn(Vector3(x, y, z)))
+                end)
+    else
+        return _FindWalkableOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, allow_water, allow_boats, can_walk_in_water, ...)
+    end
+end
+
 function FindAmphibiousOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn)
-    return FindWalkableOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, true, false)
+    return FindWalkableOffset(position, start_angle, radius, attempts, check_los, ignore_walls, customcheckfn, true, false, true)
 end
 
 function CanPVPTarget(inst, target)
@@ -397,6 +418,77 @@ function DoSectorAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
     end
 
     return DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
+end
+
+=======
+-- Putting these here because both gas cloud and gas jundle turf uses those
+local POISON_DAMAGE_INSECT = 60
+local POISON_DAMAGE_NON_INSECT = 5
+function StartTakingGasDamage(inst, cause)
+    if not inst.components.poisonable then
+        return
+    end
+
+    inst.components.poisonable.gassources[cause] = true
+
+    if inst._poison_damage_task then
+        return
+    end
+
+    if inst.player_classified then
+        inst.player_classified.isingas:set(true)
+        inst.isingas = true
+    end
+
+    local delaytime = 0
+    if inst.no_gas_time then
+        delaytime = math.max(inst.no_gas_time - GetTime(), 0)
+    end
+
+    local damage = inst:HasTag("insect") and POISON_DAMAGE_INSECT or POISON_DAMAGE_NON_INSECT
+    inst._poison_damage_task = inst:DoPeriodicTask(1, function()
+        if inst.components.poisonable and inst.components.poisonable.show_fx then
+            if inst.components.poisonable.show_fx then
+                inst.components.poisonable:SpawnFX()
+            end
+        end
+        inst.components.health:DoDelta(-damage, nil, "gascloud")
+        inst:PushEvent("poisondamage") -- screen flash
+        inst:PushEvent("gasdamage")
+    end, delaytime) -- 结尾的0代表第一次判定开始的延迟
+end
+
+function StopTakingGasDamage(inst, cause)
+    if not inst.components.poisonable then
+        return
+    end
+
+    inst.components.poisonable.gassources[cause] = nil
+
+    local has_gassource = false
+    for k, v in pairs(inst.components.poisonable.gassources) do
+        has_gassource = true
+    end
+    if has_gassource then
+        return
+    end
+
+    if inst._poison_damage_task then
+        if inst._poison_damage_task:NextTime() then
+            inst.no_gas_time = inst._poison_damage_task:NextTime()  --防止频繁进出毒气导致毒气掉血判定超过1秒一次
+        end
+        inst._poison_damage_task:Cancel()
+        inst._poison_damage_task = nil
+
+        if inst.player_classified then
+            inst.player_classified.isingas:set(false)
+            inst.isingas = false
+        end
+    end
+
+    if not inst.components.poisonable:IsPoisoned() then
+        inst.components.poisonable:DonePoisoning()
+    end
 end
 
 local SpeciaTileDrop =

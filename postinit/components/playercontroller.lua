@@ -136,6 +136,36 @@ function PlayerController:OnUpdate(dt)
     return unpack(ret)
 end
 
+local Sim = getmetatable(TheSim).__index
+local _FindEntities_Registered = Sim.FindEntities_Registered
+local _GetAttackTarget = PlayerController.GetAttackTarget
+function PlayerController:GetAttackTarget(force_attack, force_target, isretarget, use_remote_predict)
+
+    function Sim:FindEntities_Registered(x, y, z, radius, registered_tags)
+        local ents = _FindEntities_Registered(self, x, y, z, radius, TheSim:RegisterFindTags({"_combat"}, {"INLIMBO", "lastresort"}))
+        return ents
+    end
+
+    local target = _GetAttackTarget(self, force_attack, force_target, isretarget, use_remote_predict)
+
+    Sim.FindEntities_Registered = _FindEntities_Registered
+
+    local hastarget = false
+    if target == nil then
+        if self.locomotor ~= nil then
+			local buffaction = self.locomotor.bufferedaction
+            if buffaction and buffaction.action == ACTIONS.ATTACK then
+                hastarget = true
+            end
+        end
+        if hastarget == false then
+            target = _GetAttackTarget(self, force_attack, force_target, isretarget, use_remote_predict)
+        end
+    end
+
+    return target
+end
+
 AddComponentPostInit("playercontroller", function(self)
     self.lasttick_controlpressed = {}
 end)

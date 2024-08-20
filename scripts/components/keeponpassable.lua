@@ -27,7 +27,7 @@ end
 
 local KeepOnPassable = Class(function(self, inst)
     self.inst = inst
-    self.period = 0.5
+    self.period = 60
 
     self:Schedule()
 end)
@@ -53,13 +53,11 @@ function KeepOnPassable:ForceUpdate()
 end
 
 function KeepOnPassable:OnEntitySleep()
-    self:Stop()
-    self:ForceUpdate()
+    self:Schedule(60)
 end
 
 function KeepOnPassable:OnEntityWake()
-    self:ForceUpdate()
-    self:Schedule()
+    self:Schedule(0.5)
 end
 
 KeepOnPassable.OnRemoveEntity = KeepOnPassable.Stop

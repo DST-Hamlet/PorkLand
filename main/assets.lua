@@ -219,10 +219,14 @@ PrefabFiles = {
     "water_pipe",
     "water_spray",
     "pl_plantables",
+
     "thunderbird",
     "thunderbirdnest",
 
     "pedestal_key",
+  
+    "gnat",
+    "gnatmound",
 }
 
 Assets = {

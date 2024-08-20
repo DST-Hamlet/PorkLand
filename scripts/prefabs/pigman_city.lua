@@ -890,7 +890,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
 
         inst:AddComponent("citypooper")
 
-        MakePoisonableCharacter(inst)
+        MakePoisonableCharacter(inst, "torso")
         MakeMediumBurnableCharacter(inst, "torso")
         MakeMediumFreezableCharacter(inst, "torso")
         MakeHauntablePanic(inst)
@@ -932,14 +932,6 @@ local function ShouldAcceptItem_Guard(inst, item)
     end
 
     return ShouldAcceptItem(inst, item)
-end
-
-local function OnChangeArea(inst, data)
-    if data and data.tags and table.contains(data.tags, "Gas_Jungle") then
-        if inst.components.poisonable then
-            inst.components.poisonable:Poison(true, nil, true)
-        end
-    end
 end
 
 local function NormalizeTorch(torch, owner)
@@ -1050,9 +1042,6 @@ local function pig_guard_master_postinit(inst)
     inst.components.inspectable.getstatus = GetStatus_Guard
 
     inst.components.trader:SetAcceptTest(ShouldAcceptItem_Guard)
-
-    inst:AddComponent("areaaware")
-    inst:ListenForEvent("changearea", OnChangeArea)
 
     inst:SetBrain(guard_brain)
 
