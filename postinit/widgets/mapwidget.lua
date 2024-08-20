@@ -89,8 +89,8 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
 
     local room_tile = Image("levels/textures/map_interior/" .. room.floor_texture .. ".xml", room.floor_texture .. ".tex")
     room_tile.position_offset = offset
-    room_tile.tile_width = room.width
-    room_tile.tile_depth = room.depth
+    room_tile.tile_scale_x = room.width / INTERIOR_MINIMAP_POSITION_SCALE
+    room_tile.tile_scale_y = room.depth / INTERIOR_MINIMAP_POSITION_SCALE
     room_tile.inst.ImageWidget:SetEffect(resolvefilepath("shaders/ui_fillmode.ksh"))
     room_tile:SetEffectParams(0, 0, 0, 0)
 
@@ -198,10 +198,8 @@ local function UpdateWidgetPositionScale(widget, scale)
 end
 
 local function UpdateTileWidgetPositionScale(widget, scale)
-    local width = widget.tile_width
-    local depth = widget.tile_depth
-    widget:SetScale(scale * (width / INTERIOR_MINIMAP_POSITION_SCALE), scale * (depth / INTERIOR_MINIMAP_POSITION_SCALE), 1)
-    widget:SetEffectParams((width / INTERIOR_MINIMAP_POSITION_SCALE) - 1, (depth / INTERIOR_MINIMAP_POSITION_SCALE) - 1, 0, 0)
+    widget:SetScale(scale * widget.tile_scale_x, scale * widget.tile_scale_y, 1)
+    widget:SetEffectParams(widget.tile_scale_x - 1, widget.tile_scale_y - 1, 0, 0)
     widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
 end
 
