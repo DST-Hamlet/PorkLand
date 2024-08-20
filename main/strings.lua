@@ -88,8 +88,8 @@ if not IsTheFrontEnd then
     end
 end
 
-local desiredlang = nil
-if IsTheFrontEnd and LanguageTranslator.defaultlang then
+local desiredlang = LOC.GetLocaleCode()
+if (IsTheFrontEnd and not desiredlang) and LanguageTranslator.defaultlang then  -- only use default in FrontEnd or if locale is not set
     desiredlang = LanguageTranslator.defaultlang
 end
 
