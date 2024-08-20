@@ -159,6 +159,7 @@ local function fn()
     inst:AddComponent("timer")
 
     inst:AddComponent("homeseeker")
+    inst.components.homeseeker.removecomponent = false
     local _onhomeremoved = inst.components.homeseeker.onhomeremoved
     inst.components.homeseeker.onhomeremoved = function(home, ...)
         inst.components.timer:StartTimer("build_mount_cd", TUNING.TOTAL_DAY_TIME * (0.5 + math.random() * 0.5))
