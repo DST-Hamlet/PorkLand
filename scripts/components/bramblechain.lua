@@ -107,6 +107,8 @@ function BrambleChain:Destroy(count)
         count = count -1
     end
 
+    self.natural_decay = true
+
     if self.destroy_count < count then -- destroy_count is the number of brambles to kill on either side
         self.destroy_count = count
     end
@@ -156,6 +158,14 @@ function BrambleChain:OnSave()
         refs.parent = self.parent.GUID
     end
 
+    if self.natural_decay then
+        data.natural_decay = self.natural_decay
+    end
+
+    if self.destroy_count then
+        data.destroy_count = self.destroy_count
+    end
+
     return data, refs
 end
 
@@ -174,6 +184,14 @@ function BrambleChain:LoadPostPass(ents, data)
 
     if data.parent and ents[data.parent] then
         self.parent = ents[data.parent].entity
+    end
+
+    if data.natural_decay then
+        self.natural_decay = data.natural_decay
+    end
+
+    if data.destroy_count then
+        self.destroy_count = data.destroy_count
     end
 end
 

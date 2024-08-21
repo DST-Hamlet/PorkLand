@@ -13,27 +13,38 @@ local function UpdateSound(inst)
         end
     end
     if inst._soundpath:value() ~= "" then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        local distancesq = 0
         if ThePlayer then
-            local x, y, z = inst.Transform:GetWorldPosition()
-            local distancesq = ThePlayer:GetDistanceSqToPoint(x, y, z)
-            if inst.emitter == nil then
-                inst.emitter = SpawnPrefab("worldsoundemitter")
-                inst.emitter.entity:SetParent(inst.entity)
-                if distancesq > inst._distance:value() * inst._distance:value() then
-                    inst.emitter.SoundEmitter:SetVolume(inst._sound:value(), 0)
-                else
-                    inst.emitter.SoundEmitter:SetVolume(inst._sound:value(), 1)
-                end
-                inst.emitter.SoundEmitter:PlaySound(inst._soundpath:value(), inst._sound:value())
-                inst.emitter.SoundEmitter:SetParameter(inst._sound:value(), inst._param:value(), inst._paramval:value())
-            end
+            distancesq = ThePlayer:GetDistanceSqToPoint(x, y, z)
+        end
+        if inst.emitter == nil then
+            inst.emitter = SpawnPrefab("worldsoundemitter")
+            inst.emitter.entity:SetParent(inst.entity)
             if distancesq > inst._distance:value() * inst._distance:value() then
                 inst.emitter.SoundEmitter:SetVolume(inst._sound:value(), 0)
             else
                 inst.emitter.SoundEmitter:SetVolume(inst._sound:value(), 1)
             end
+            inst.emitter.SoundEmitter:PlaySound(inst._soundpath:value(), inst._sound:value())
             inst.emitter.SoundEmitter:SetParameter(inst._sound:value(), inst._param:value(), inst._paramval:value())
         end
+        if distancesq > inst._distance:value() * inst._distance:value() then
+            inst.emitter.SoundEmitter:SetVolume(inst._sound:value(), 0)
+        else
+            inst.emitter.SoundEmitter:SetVolume(inst._sound:value(), 1)
+        end
+        inst.emitter.SoundEmitter:SetParameter(inst._sound:value(), inst._param:value(), inst._paramval:value())
+
+        if inst.emitter and not inst.emitter.SoundEmitter:PlayingSound(inst._sound:value()) then
+            inst.emitter:Remove()
+            inst:Remove()
+        end
+    else
+        if inst.emitter then
+            inst.emitter:Remove()
+        end
+        inst:Remove()
     end
 end
 
@@ -45,6 +56,8 @@ local function fn()
     inst.entity:SetPristine()
 
     inst.persists = false
+
+    inst.entity:SetCanSleep(false)
 
     inst:AddTag("NOBLOCK")
     inst:AddTag("CLASSIFIED")
