@@ -619,6 +619,7 @@ local function MakeShop(name, build, bank, data)
         inst:AddTag(name)
         inst:AddTag("structure")
         inst:AddTag("city_hammerable")
+        inst:AddTag("client_forward_action_target")
 
         if not data.no_shop_music then
             inst:AddTag("shop_music")

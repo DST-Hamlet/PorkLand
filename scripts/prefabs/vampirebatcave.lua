@@ -85,6 +85,7 @@ local function fn()
     inst.MiniMapEntity:SetIcon("vamp_bat_cave.tex")
 
     inst:AddTag("batcave")
+    inst:AddTag("client_forward_action_target")
 
     inst.entity:SetPristine()
 

@@ -188,7 +188,7 @@ end
 
 local _GetIsWet = EntityScript.GetIsWet
 function EntityScript:GetIsWet(...)
-    return self:HasTag("temporary_wet") or _GetIsWet(self, ...)
+    return self:HasTag("temporary_wet") or (_GetIsWet(self, ...) and not self:GetIsInInterior())
 end
 
 local _RestartBrain = EntityScript.RestartBrain

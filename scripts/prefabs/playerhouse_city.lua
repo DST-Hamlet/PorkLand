@@ -242,6 +242,7 @@ local function fn()
 
     inst:AddTag("playerhouse")
     inst:AddTag("renovatable")
+    inst:AddTag("client_forward_action_target")
 
     inst.build = "pig_house_sale"
     inst.AnimState:SetBuild(inst.build)
