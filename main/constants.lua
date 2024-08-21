@@ -76,6 +76,8 @@ RECIPETABS.CITY = {
 
 LOCKTYPE.ROYAL = "royal"
 
+-- City pigman is dont in pigman_city.lua
+
 NAUGHTY_VALUE["hippopotamoose"] = 4
 NAUGHTY_VALUE["pangolden"] = 4
 
