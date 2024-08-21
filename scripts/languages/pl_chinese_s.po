@@ -10,6 +10,21 @@ msgctxt "STRINGS.ACTIONS.CHARGE_UP"
 msgid "Charge"
 msgstr "充能"
 
+#. STRINGS.ACTIONS.CUREPOISON.GENERIC
+msgctxt "STRINGS.ACTIONS.CUREPOISON.GENERIC"
+msgid "Quaff"
+msgstr "喝下"
+
+#. STRINGS.ACTIONS.CUREPOISON.GLAND
+msgctxt "STRINGS.ACTIONS.CUREPOISON.GLAND"
+msgid "Ingest"
+msgstr "吞下"
+
+#. STRINGS.ACTIONS.DISARM
+msgctxt "STRINGS.ACTIONS.DISARM"
+msgid "Disarm"
+msgstr "拆除"
+
 #. STRINGS.ACTIONS.DISEMBARK.GENERIC
 msgctxt "STRINGS.ACTIONS.DISEMBARK.GENERIC"
 msgid "Exit"
@@ -1630,6 +1645,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEAGAWK_BUSH"
 msgid "Look! An iris bush."
 msgstr "看！一丛鸢尾灌木。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PEDESTAL_KEY"
+msgid "Royal-key."
+msgstr "皇家的钥匙。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PHEROMONESTONE"
 msgid "A nasaltelepathical bug communicator."
@@ -2509,6 +2529,11 @@ msgstr "它的根连接着我的物品！"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROUND_DOOR"
 msgid "A little like being eaten."
 msgstr "这些物品从里面拿出来像被吃过一样。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROYAL_GALLERY"
+msgid "Fancy enough to be behind glass."
+msgstr "足够花哨的玻璃制品在展馆后面。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RUG_BEARD"
@@ -4720,6 +4745,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEAGAWK_BUSH.SLEEPING"
 msgid "That insight that spied on me was gone."
 msgstr "那种监视我的洞察力消失了。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PEDESTAL_KEY"
+msgid "Theoretically, it fits a lock somewhere."
+msgstr "从理论上讲，某个地方的一把锁能用它解开。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PHEROMONESTONE"
 msgid "Absolutely inspiring! A scent converter!"
@@ -5569,6 +5599,11 @@ msgstr "真迷人！一个复杂的智能根茎系统在运输我的物品。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROUND_DOOR"
 msgid "Cordial."
 msgstr "很亲切。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROYAL_GALLERY"
+msgid "A glass case displaying invaluable objects behind a hefty lock."
+msgstr "一个陈列着无价之宝的带锁玻璃柜。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RUG_BEARD"
@@ -7775,6 +7810,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEAGAWK_BUSH"
 msgid "What a cool looking bush!"
 msgstr "多么酷的一丛灌木啊！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PEDESTAL_KEY"
+msgid "Wonder what it opens."
+msgstr "我想知道它能打开什么。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PHEROMONESTONE"
 msgid "Now I can commune with nature!"
@@ -8639,6 +8679,11 @@ msgstr "现在我不需要走太远就能拿到我的物品了。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROUND_DOOR"
 msgid "Is that pig gonna eat me?"
 msgstr "那只猪会吃我吗？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROYAL_GALLERY"
+msgid "Ooh. Looks expensive."
+msgstr "噢。看起来很贵。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RUG_BEARD"
@@ -15125,6 +15170,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEAGAWK_BUSH"
 msgid "It's a bright blue bush."
 msgstr "亮蓝色的灌木丛。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PEDESTAL_KEY"
+msgid "It must unlock something."
+msgstr "它一定能打开某种东西。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PHEROMONESTONE"
 msgid "I always wanted to learn another language."
@@ -15964,6 +16014,11 @@ msgstr "我的天啊！这能让我省下多少时间啊！"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROUND_DOOR"
 msgid "Another mouth to feed!"
 msgstr "又多了一张要喂的嘴！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROYAL_GALLERY"
+msgid "Like fine wine, it is to be admired behind glass."
+msgstr "就像美酒一样, 它可以放在玻璃后面欣赏."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RUG_BEARD"
@@ -18170,6 +18225,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEAGAWK_BUSH"
 msgid "Do you think you can hide from me?"
 msgstr "你觉得你能藏起来不让我发现吗？"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PEDESTAL_KEY"
+msgid "A key for which to open treasures."
+msgstr "开启宝藏的钥匙。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PHEROMONESTONE"
 msgid "A stone of magic language."
@@ -19009,6 +19069,11 @@ msgstr "现在我的战利品可以从这个箱子跟过来了！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROUND_DOOR"
 msgid "Does it consume all that enter it?"
 msgstr "它会把进入它的东西都给吞掉吗？"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROYAL_GALLERY"
+msgid "Trapped beneath a glass shield."
+msgstr "里面的东西被困在了一个玻璃罩之下。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RUG_BEARD"
@@ -21200,6 +21265,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEAGAWK_BUSH"
 msgid "I've my suspicions about that bush."
 msgstr "我对那丛灌木表示怀疑。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PEDESTAL_KEY"
+msgid "This seems rather ornate."
+msgstr "它看起来非常华丽。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PHEROMONESTONE"
 msgid "Now I can control those insects."
@@ -22054,6 +22124,11 @@ msgstr "它能把我的东西放在我想放的地方。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROUND_DOOR"
 msgid "A little like being eaten."
 msgstr "进这门就有点像是被它吃了。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROYAL_GALLERY"
+msgid "Is it really worth keeping that under glass?"
+msgstr "玻璃罩下的东西就很值钱吗？"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RUG_BEARD"
@@ -24245,6 +24320,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Neat. A weird bush!"
 msgstr "优美但又有点奇怪的灌木丛！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PEDESTAL_KEY"
+msgid "It's a key to open stuff."
+msgstr "这是开启装置的钥匙。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PHEROMONESTONE"
 msgid "Smells like bugs. It's nice."
@@ -25084,6 +25164,11 @@ msgstr "现在我们不用带着东西到处走了。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROUND_DOOR"
 msgid "Is it... gonna eat us?"
 msgstr "它这是...要吃了我们吗？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROYAL_GALLERY"
+msgid "Wow. It must be pretty valuable."
+msgstr "哇哦。它一定很值钱。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RUG_BEARD"
@@ -27275,6 +27360,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEAGAWK_BUSH"
 msgid "Just a bush..."
 msgstr "只是一个灌木丛…"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PEDESTAL_KEY"
+msgid "A key to trinkets."
+msgstr "一把钥匙，用来拿到那些小玩具。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PHEROMONESTONE"
 msgid "Let my words be known to those who creep and crawl."
@@ -28119,6 +28209,11 @@ msgstr "它能保存我的物品。但不能保住我的心。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROUND_DOOR"
 msgid "Only leads to disappointment."
 msgstr "穿过那扇门只会有失望罢了。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROYAL_GALLERY"
+msgid "Under lock and key."
+msgstr "保管妥善。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RUG_BEARD"
@@ -30335,6 +30430,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEAGAWK_BUSH"
 msgid "Something's hiding in there."
 msgstr "有东西藏在那里。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PEDESTAL_KEY"
+msgid "Locks and keys. The cornerstone of every good adventure."
+msgstr "锁和钥匙。一场好冒险的基石。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PHEROMONESTONE"
 msgid "Now I can make small talk with the big bugs."
@@ -31184,6 +31284,11 @@ msgstr "我关于储存的全部问题，都解决啦！"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROUND_DOOR"
 msgid "Is it... going to eat me?"
 msgstr "它这是...要吃我吗？"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROYAL_GALLERY"
+msgid "A tribute to someone else's adventures."
+msgstr "向别人的冒险致敬。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RUG_BEARD"
@@ -33375,6 +33480,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEAGAWK_BUSH"
 msgid "I have questions about that bush."
 msgstr "我对那灌木丛有些疑惑。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PEDESTAL_KEY"
+msgid "A key. But to what?"
+msgstr "一把钥匙，但是它是用在哪的呢？"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PHEROMONESTONE"
 msgid "I will uncover the secrets of arthropod speech."
@@ -34214,6 +34324,11 @@ msgstr "它复杂的根系似乎能输送物品。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROUND_DOOR"
 msgid "I can see a Porcine influence to this door."
 msgstr "我能看出猪对这扇门的影响。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROYAL_GALLERY"
+msgid "Needs a key to reach its contents."
+msgstr "需要一把钥匙才能拿到里面的东西。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RUG_BEARD"
@@ -36410,6 +36525,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEAGAWK_BUSH"
 msgid "'TIS NAUGHT A BUSH"
 msgstr "它不是灌木丛"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PEDESTAL_KEY"
+msgid "WHATFORE IT OPEN-ETH?"
+msgstr "这把钥匙能打开什么？"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PHEROMONESTONE"
 msgid "'TIS A STONE O' SMELLINESS"
@@ -37249,6 +37369,11 @@ msgstr "保存着薇尔芭的东西"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROUND_DOOR"
 msgid "IS ROUNDED WITH CHEEK"
 msgstr "它的面颊很圆润"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROYAL_GALLERY"
+msgid "OPEN, LOCKS, WHOEVER KNOCKS, AND HATH THE KEY"
+msgstr "开锁，不管是谁，只要有钥匙就行"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RUG_BEARD"
@@ -39455,6 +39580,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEAGAWK_BUSH"
 msgid "A bush. I think."
 msgstr "一株灌木丛，至少我觉得是。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PEDESTAL_KEY"
+msgid "I just have to find out what it locks."
+msgstr "我一定要找出它锁了什么。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PHEROMONESTONE"
 msgid "Ughhhh, it stinks!"
@@ -40259,6 +40389,11 @@ msgstr "我现在不需要把所有东西都带在身上了。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROUND_DOOR"
 msgid "What's it smiling about?"
 msgstr "它在笑什么？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROYAL_GALLERY"
+msgid "How am I supposed to unlock that?"
+msgstr "我该怎么解锁呢？"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RUG_BEARD"
@@ -44225,6 +44360,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEAGAWK_BUSH"
 msgid "Is just bush."
 msgstr "仅仅是灌木丛。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PEDESTAL_KEY"
+msgid "Is key."
+msgstr "一把钥匙。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PHEROMONESTONE"
 msgid "Is smell like bug."
@@ -45064,6 +45204,11 @@ msgstr "现在到处都是沃尔夫冈的东西！"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROUND_DOOR"
 msgid "Is mighty mouth."
 msgstr "一张大嘴巴。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROYAL_GALLERY"
+msgid "Is needing key."
+msgstr "需要钥匙。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RUG_BEARD"
@@ -47255,6 +47400,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEAGAWK_BUSH"
 msgid "There's a wretched bird nearby. I feel it."
 msgstr "这附近有一只卑鄙的鸟。我能感觉到它。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PEDESTAL_KEY"
+msgid "What do you think this opens?"
+msgstr "你觉得这意味着什么？"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PHEROMONESTONE"
 msgid "One man's stench is another's perfume."
@@ -48094,6 +48244,11 @@ msgstr "它能把我所有的东西都拿着。那真是太棒了。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROUND_DOOR"
 msgid "That's a strange door, eh Lucy?"
 msgstr "那扇门真奇怪，是吧露西？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROYAL_GALLERY"
+msgid "Oh. Fancy."
+msgstr "哦。有趣。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RUG_BEARD"
@@ -50280,6 +50435,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEAGAWK_BUSH"
 msgid "'Tis unsettlin' t'b'sure."
 msgstr "这灌木很令人不安。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PEDESTAL_KEY"
+msgid "Argh! 'Tis fer tha'treasure?"
+msgstr "啊！这是为了开启宝藏的钥匙吗？"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PHEROMONESTONE"
 msgid "Be a stone'o'tongues."
@@ -51119,6 +51279,11 @@ msgstr "耶！全部都是老伍德莱格的宝藏！"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROUND_DOOR"
 msgid "Ah, she'll eat ol' Woodlegs clean up."
 msgstr "啊，她会吃掉老伍德莱格的。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROYAL_GALLERY"
+msgid "A treasure!"
+msgstr "宝藏！"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RUG_BEARD"
@@ -53325,6 +53490,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEAGAWK_BUSH"
 msgid "Looking good!"
 msgstr "看上去不错！"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PEDESTAL_KEY"
+msgid "Little key"
+msgstr "小小的钥匙"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PHEROMONESTONE"
 msgid "Smells like Chr'ik"
@@ -54189,6 +54359,11 @@ msgstr "朋友帮我搬了东西"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROUND_DOOR"
 msgid "Big mouth door"
 msgstr "一张大嘴巴门"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROYAL_GALLERY"
+msgid "Has little lock"
+msgstr "有一把小锁"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RUG_BEARD"
@@ -59870,6 +60045,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEAGAWK_BUSH"
 msgid "GROUND PART"
 msgstr "地面部分"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PEDESTAL_KEY
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PEDESTAL_KEY"
+msgid "PASSKEY"
+msgstr "钥匙"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PHEROMONESTONE
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PHEROMONESTONE"
 msgid "COMMUNICATION SOFTWARE FOR INSECTOIDS"
@@ -60710,6 +60890,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROUND_DOOR"
 msgid "EXPANSION PORT DISGUISED AS LARGE FLESH SACK"
 msgstr "伪装成肉袋的扩展端口"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROYAL_GALLERY
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROYAL_GALLERY"
+msgid "IT REQUIRES A PASSKEY"
+msgstr "它需要密钥"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RUG_BEARD"
 msgid "GROUND ACCESSORY MADE FROM DISGUSTING HUMAN HAIR"
@@ -61412,117 +61597,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Henrietta"
+msgid "Alice"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Luella"
+msgid "Agnes"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Alexandrina"
+msgid "Catherine"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Lilian"
+msgid "Arabella"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Louise"
+msgid "Belle"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Ottilie"
+msgid "Beryl"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Ophelia"
+msgid "Briar"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Sophronia"
+msgid "Beatrice"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Alice"
+msgid "Charlotte"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Agnes"
+msgid "Della"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Catherine"
+msgid "Henrietta"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Arabella"
+msgid "Ebba"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Belle"
+msgid "Edith"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Beryl"
+msgid "Flora"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Briar"
+msgid "Florence"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Beatrice"
+msgid "Georgette"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Charlotte"
+msgid "Luella"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Della"
+msgid "Alexandrina"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Ebba"
+msgid "Lilian"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Edith"
+msgid "Louise"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Flora"
+msgid "Ottilie"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Florence"
+msgid "Ophelia"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Georgette"
+msgid "Sophronia"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -61532,122 +61717,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Edmund"
+msgid "Wellington"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Oliver"
+msgid "Frederick"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Gulliver"
+msgid "Alfred"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Clarence"
+msgid "Arthur"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Merritt"
+msgid "Edward"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Sterling"
+msgid "George"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Tesla"
+msgid "Charles"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Thaddeus"
+msgid "Leopold"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Wellington"
+msgid "Albert"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Frederick"
+msgid "Ewart"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Alfred"
+msgid "Edmund"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Arthur"
+msgid "Larkin"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Edward"
+msgid "Herbert"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "George"
+msgid "Henry"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Charles"
+msgid "Charley"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Leopold"
+msgid "Douglas"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Albert"
+msgid "Edison"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Ewart"
+msgid "Oliver"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Larkin"
+msgid "Gulliver"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Herbert"
+msgid "Clarence"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Henry"
+msgid "Merritt"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Charley"
+msgid "Sterling"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Douglas"
+msgid "Tesla"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Edison"
+msgid "Thaddeus"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -61657,77 +61842,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Stockton"
+msgid "Kensington"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Darlington"
+msgid "Conroy"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Peel"
+msgid "Greville"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Derby"
+msgid "Hastings"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Palmerston"
+msgid "Aberdeen"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Gladstone"
+msgid "Talbot"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Disraeli"
+msgid "Thames"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Salisbury"
+msgid "Stockton"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Kensington"
+msgid "Darlington"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Conroy"
+msgid "Peel"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Greville"
+msgid "Derby"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Hastings"
+msgid "Palmerston"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Aberdeen"
+msgid "Gladstone"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Talbot"
+msgid "Disraeli"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Thames"
+msgid "Salisbury"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -61998,7 +62183,7 @@ msgstr "你要买药吗？"
 #. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_beautician.3
 msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_beautician.3"
 msgid "NEED'ST THINGS FOR BOO-BOOS?"
-msgstr "要买后悔药吗？"
+msgstr "要买治伤的东西吗？"
 
 #. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_collector.1
 msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_collector.1"
@@ -62028,7 +62213,7 @@ msgstr "我卖魔法道具？"
 #. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_erudite.3
 msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_erudite.3"
 msgid "I SELLEST THINGS BAD DREAMS ARE MADE ON"
-msgstr "我出售噩梦制品"
+msgstr "我出售坏梦做的东西"
 
 #. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.1
 msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_florist.1"
@@ -62068,7 +62253,7 @@ msgstr "从我这买顶帽子"
 #. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.1
 msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.1"
 msgid "IN NEED O' WEAPONS"
-msgstr "收购武器"
+msgstr "你需要一把武器"
 
 #. STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.2
 msgctxt "STRINGS.CITY_PIG_SHOPKEEPER_GREETING.pigman_hunter.2"
@@ -64623,12 +64808,12 @@ msgstr "遇见你真好"
 #. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.4
 msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.4"
 msgid "GOOD FORTUNE, THOSE WHO HAVE %s"
-msgstr "运气不错，那些人有%s"
+msgstr "我的财富留给那些有%s的人"
 
 #. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.5
 msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.DEFAULT.5"
 msgid "MY KINGDOM FOR SOME %s"
-msgstr "我的王国需要一些%s"
+msgstr "我愿换取一些%s"
 
 #. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_banker.1
 msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_banker.1"
@@ -64653,7 +64838,7 @@ msgstr "你有羽毛吗？"
 #. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.2
 msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.2"
 msgid "VISIT YON SHOP IF THOU HAS'T BOO-BOOS"
-msgstr "如果你有轻伤的话，可以来店里看看"
+msgstr "如果你需要治伤的话，可以来店里看看"
 
 #. STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.3
 msgctxt "STRINGS.CITY_PIG_TALK_LOOKATWILSON_TRADER.pigman_beautician.3"
@@ -66277,82 +66462,82 @@ msgstr "箣竹"
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr "山茱萸"
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Betula"
+msgid "Juniperus"
 msgstr "柏桧"
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr "马利筋"
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr "栎"
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr "大葱"
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr "豌豆"
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr "荆蓟"
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr "麝香草"
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr "大豆"
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Juniperus"
+msgid "Betula"
 msgstr "桦木"
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr "覆盆子"
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr "胡萝卜"
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr "甘蓝"
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr "齿栗叶"
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr "车轴草"
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr "黄瓜"
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -67585,6 +67770,11 @@ msgctxt "STRINGS.NAMES.PEAGAWK_BUSH"
 msgid "Blinkbush"
 msgstr "眨眼的灌木丛"
 
+#. STRINGS.NAMES.PEDESTAL_KEY
+msgctxt "STRINGS.NAMES.PEDESTAL_KEY"
+msgid "Royal Gallery Key"
+msgstr "皇家画廊钥匙"
+
 #. STRINGS.NAMES.PHEROMONESTONE
 msgctxt "STRINGS.NAMES.PHEROMONESTONE"
 msgid "Pherostone"
@@ -68114,6 +68304,11 @@ msgstr "根箱"
 msgctxt "STRINGS.NAMES.ROUND_DOOR"
 msgid "Round Doorway"
 msgstr "圆形的大门"
+
+#. STRINGS.NAMES.ROYAL_GALLERY
+msgctxt "STRINGS.NAMES.ROYAL_GALLERY"
+msgid "Royal Gallery Exhibit"
+msgstr "皇家画廊展柜"
 
 #. STRINGS.NAMES.RUG_BEARD
 msgctxt "STRINGS.NAMES.RUG_BEARD"
@@ -69980,11 +70175,6 @@ msgctxt "STRINGS.UI.CRAFTING_FILTERS.ARCHAEOLOGY"
 msgid "Treasure Hunting"
 msgstr "寻宝"
 
-#. STRINGS.UI.CRAFTING_FILTERS.CITY
-msgctxt "STRINGS.UI.CRAFTING_FILTERS.CITY"
-msgid "City Planning"
-msgstr "城镇规划"
-
 #. STRINGS.UI.CRAFTING_FILTERS.ENVIRONMENT_PROTECTION
 msgctxt "STRINGS.UI.CRAFTING_FILTERS.ENVIRONMENT_PROTECTION"
 msgid "Environmental Shielding"
@@ -69994,6 +70184,11 @@ msgstr "环境防护"
 msgctxt "STRINGS.UI.CRAFTING_FILTERS.NAUTICAL"
 msgid "Nautical"
 msgstr "航海"
+
+#. STRINGS.UI.CRAFTING_STATION_FILTERS.CITY
+msgctxt "STRINGS.UI.CRAFTING_STATION_FILTERS.CITY"
+msgid "City Planning"
+msgstr "城镇规划"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.ASPARAGUS
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.ASPARAGUS"

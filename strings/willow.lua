@@ -354,6 +354,7 @@ return {
         },
         PEAGAWKFEATHER = "Fancy feathers.",
         PEAGAWK_BUSH = "A bush. I think.",
+        PEDESTAL_KEY = "I just have to find out what it locks.",
         PHEROMONESTONE = "Ughhhh, it stinks!",
         PIGBANDIT = "He's after my money!",
         PIGEON = {
@@ -601,6 +602,7 @@ return {
         ROCK_FLIPPABLE = "Might as well see what's underneath.",
         ROOTTRUNK = "Now I don't have to lug everything around with me.",
         ROUND_DOOR = "What's it smiling about?",
+        ROYAL_GALLERY = "How am I supposed to unlock that?",
         RUG_BEARD = "Ew.",
         RUG_BRAID = "Soft and ugly.",
         RUG_CATCOON = "Ha! That's what you get.",

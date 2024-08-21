@@ -354,6 +354,7 @@ return {
         },
         PEAGAWKFEATHER = "A priceless beauty.",
         PEAGAWK_BUSH = "Do you think you can hide from me?",
+        PEDESTAL_KEY = "A key for which to open treasures.",
         PHEROMONESTONE = "A stone of magic language.",
         PIGBANDIT = "Touch not my gold!",
         PIGEON = {
@@ -608,6 +609,7 @@ return {
         ROCK_FLIPPABLE = "Stone! Reveal to me your secrets!",
         ROOTTRUNK = "The spoils of the battle now follow me!",
         ROUND_DOOR = "Does it consume all that enter it?",
+        ROYAL_GALLERY = "Trapped beneath a glass shield.",
         RUG_BEARD = "Odin's beard 'tis a fine rug.",
         RUG_BRAID = "Rug! Prepare to be stepped upon!",
         RUG_CATCOON = "This animal hath been conquered.",

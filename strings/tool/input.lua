@@ -7,16 +7,10 @@ package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-    ["QUEENPIGNAMES"] = "QUEENPIGNAMES",
-
-    ["BAMBOO"] = "BAMBOO",
-    ["FABRIC"] = "FABRIC",
-    ["OX_HORN"] = "OX_HORN",
-    ["OX_FLUTE"] = "OX_FLUTE",
-    ["CUTLASS"] = "CUTLASS",
-    ["COCONADE"] = "COCONADE",
-    ["TRAWLNETDROPPED"] = "TRAWLNETDROPPED",
-    ["TRAWLNET"] = "TRAWLNET",
+    ["ROYAL_GALLERY"] = "ROYAL_GALLERY",
+    ["PEDESTAL_KEY"] = "PEDESTAL_KEY",
+    ["DISARM"] = "DISARM",
+    ["CUREPOISON"] = "CUREPOISON",
     --MOONDIAL
 }
 

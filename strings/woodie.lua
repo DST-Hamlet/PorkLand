@@ -349,6 +349,7 @@ return {
         },
         PEAGAWKFEATHER = "It has a foul bird stench.",
         PEAGAWK_BUSH = "There's a wretched bird nearby. I feel it.",
+        PEDESTAL_KEY = "What do you think this opens?",
         PHEROMONESTONE = "One man's stench is another's perfume.",
         PIGBANDIT = "He looks a little shady.",
         PIGEON = {
@@ -603,6 +604,7 @@ return {
         ROCK_FLIPPABLE = "We should flip it.",
         ROOTTRUNK = "It moves all my stuff for me. That's nice.",
         ROUND_DOOR = "That's a strange door, eh Lucy?",
+        ROYAL_GALLERY = "Oh. Fancy.",
         RUG_BEARD = "Good use for beard hair.",
         RUG_BRAID = "Yep. That's a rug.",
         RUG_CATCOON = "Good use for an animal pelt.",

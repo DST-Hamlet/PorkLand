@@ -357,6 +357,7 @@ return {
             GENERIC = "I'm experiencing the inescapable perception that I'm being watched.",
             SLEEPING = "That insight that spied on me was gone.",
         },
+        PEDESTAL_KEY = "Theoretically, it fits a lock somewhere.",
         PHEROMONESTONE = "Absolutely inspiring! A scent converter!",
         PIGBANDIT = "Theoretically, he's a rogue of some sort.",
         PIGEON = {
@@ -619,6 +620,7 @@ return {
         ROCK_FLIPPABLE = "I have learned the benefits of flipping over rocks to see what is underneath.",
         ROOTTRUNK = "A complex intelligent root system is moving my belongings for me. Fascinating!",
         ROUND_DOOR = "Cordial.",
+        ROYAL_GALLERY = "A glass case displaying invaluable objects behind a hefty lock.",
         RUG_BEARD = "Hirsute.",
         RUG_BRAID = "Textile.",
         RUG_CATCOON = "Morbid.",

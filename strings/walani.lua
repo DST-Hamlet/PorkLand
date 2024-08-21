@@ -354,6 +354,7 @@ return {
         },
         PEAGAWKFEATHER = "Nature makes such pretty things.",
         PEAGAWK_BUSH = "What a cool looking bush!",
+        PEDESTAL_KEY = "Wonder what it opens.",
         PHEROMONESTONE = "Now I can commune with nature!",
         PIGBANDIT = "Not cool! He's tryin' to steal my stuff!",
         PIGEON = {
@@ -623,6 +624,7 @@ return {
         ROCK_FLIPPABLE = "What's under there?",
         ROOTTRUNK = "Now I don't gotta go far to get all my stuff.",
         ROUND_DOOR = "Is that pig gonna eat me?",
+        ROYAL_GALLERY = "Ooh. Looks expensive.",
         RUG_BEARD = "Ew.",
         RUG_BRAID = "I've made these before.",
         RUG_CATCOON = "Aww...sorry little guy.",

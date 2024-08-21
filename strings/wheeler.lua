@@ -358,6 +358,7 @@ return {
         },
         PEAGAWKFEATHER = "Normally I don't mind feathers, but this one keeps staring at me.",
         PEAGAWK_BUSH = "Something's hiding in there.",
+        PEDESTAL_KEY = "Locks and keys. The cornerstone of every good adventure.",
         PHEROMONESTONE = "Now I can make small talk with the big bugs.",
         PIGBANDIT = "Don't like your attitude, but I admire your sense of style.",
         PIGEON = {
@@ -620,6 +621,7 @@ return {
         ROCK_FLIPPABLE = "My grandma taught me to always look under rocks.",
         ROOTTRUNK = "All my storage problems, solved!",
         ROUND_DOOR = "Is it... going to eat me?",
+        ROYAL_GALLERY = "A tribute to someone else's adventures.",
         RUG_BEARD = "Don't ask where the hair came from.",
         RUG_BRAID = "I braided it myself.",
         RUG_CATCOON = "It was dead when I found it.",
