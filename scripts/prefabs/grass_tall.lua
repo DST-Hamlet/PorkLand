@@ -106,7 +106,10 @@ local function OnRegen(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
     if not NUTRIENT_TILES[tile] then
+        local cycles_left = inst.components.hackable.cycles_left
         local shortgrass = ReplacePrefab(inst, "grass")
+        shortgrass.components.pickable.transplanted = true
+        shortgrass.components.pickable.cycles_left = cycles_left
         shortgrass.components.pickable.onregenfn(shortgrass)
         return
     end
@@ -204,8 +207,8 @@ local function grass_tall()
     inst.components.workable:SetWorkLeft(1)
 
     inst:AddComponent("hackable")
-    inst.components.hackable.max_cycles = 20
-    inst.components.hackable.cycles_left = 20
+    inst.components.hackable.max_cycles = TUNING.GRASS_CYCLES
+    inst.components.hackable.cycles_left = TUNING.GRASS_CYCLES
     inst.components.hackable.hacksleft = 2.5
     inst.components.hackable.maxhacks = 2.5
     inst.components.hackable:SetUp("cutgrass", TUNING.VINE_REGROW_TIME)

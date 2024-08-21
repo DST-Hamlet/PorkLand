@@ -156,6 +156,7 @@ local function fn()
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
     inst.components.combat:SetRange(TUNING.RABID_BEETLE_ATTACK_RANGE)
     inst.components.combat:SetHurtSound("dontstarve_DLC003/creatures/enemy/rabid_beetle/hurt")
+    inst.components.combat:SetPlayerStunlock(PLAYERSTUNLOCK.NEVER)
 
     local lifetime = TUNING.TOTAL_DAY_TIME + (3 * math.random() - 2) * TUNING.SEG_TIME
 
