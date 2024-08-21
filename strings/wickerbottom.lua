@@ -349,6 +349,7 @@ return {
         },
         PEAGAWKFEATHER = "Feather of the male Pavo Cristatus.",
         PEAGAWK_BUSH = "I have questions about that bush.",
+        PEDESTAL_KEY = "A key. But to what?",
         PHEROMONESTONE = "I will uncover the secrets of arthropod speech.",
         PIGBANDIT = "Quite rude!",
         PIGEON = {
@@ -603,6 +604,7 @@ return {
         ROCK_FLIPPABLE = "The most interesting insects are found under rocks.",
         ROOTTRUNK = "A complex root system appears to allow the passage of goods.",
         ROUND_DOOR = "I can see a Porcine influence to this door.",
+        ROYAL_GALLERY = "Needs a key to reach its contents.",
         RUG_BEARD = "Entirely inappropriate.",
         RUG_BRAID = "Soft enough.",
         RUG_CATCOON = "Deceased wildcat.",

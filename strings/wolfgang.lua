@@ -349,6 +349,7 @@ return {
         },
         PEAGAWKFEATHER = "Is blink-blink bird feather.",
         PEAGAWK_BUSH = "Is just bush.",
+        PEDESTAL_KEY = "Is key.",
         PHEROMONESTONE = "Is smell like bug.",
         PIGBANDIT = "Leave Wolfgang money alone!",
         PIGEON = {
@@ -603,6 +604,7 @@ return {
         ROCK_FLIPPABLE = "Wolfgang strong. Wolfgang flip big stone.",
         ROOTTRUNK = "Wolfgang's stuff many places now!",
         ROUND_DOOR = "Is mighty mouth.",
+        ROYAL_GALLERY = "Is needing key.",
         RUG_BEARD = "Is manly.",
         RUG_BRAID = "Is soft.",
         RUG_CATCOON = "Wolfgang wins!",

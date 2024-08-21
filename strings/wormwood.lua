@@ -354,6 +354,7 @@ return {
         },
         PEAGAWKFEATHER = "Gubble Gubble Tweeter clothes",
         PEAGAWK_BUSH = "Looking good!",
+        PEDESTAL_KEY = "Little key",
         PHEROMONESTONE = "Smells like Chr'ik",
         PIGBANDIT = "Sneaky Twirly Tail",
         PIGEON = {
@@ -619,6 +620,7 @@ return {
         ROCK_FLIPPABLE = "Things hiding?",
         ROOTTRUNK = "Friends help carry stuff",
         ROUND_DOOR = "Big mouth door",
+        ROYAL_GALLERY = "Has little lock",
         RUG_BEARD = "Ground thing",
         RUG_BRAID = "Ground thing",
         RUG_CATCOON = "Oh",

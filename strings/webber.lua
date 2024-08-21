@@ -349,6 +349,7 @@ return {
         },
         PEAGAWKFEATHER = "It's pretty.",
         PEAGAWK_BUSH = "Neat. A weird bush!",
+        PEDESTAL_KEY = "It's a key to open stuff.",
         PHEROMONESTONE = "Smells like bugs. It's nice.",
         PIGBANDIT = "He looks sneaky.",
         PIGEON = {
@@ -603,6 +604,7 @@ return {
         ROCK_FLIPPABLE = "What's under here?",
         ROOTTRUNK = "Now we don't have to carry our stuff everywhere.",
         ROUND_DOOR = "Is it... gonna eat us?",
+        ROYAL_GALLERY = "Wow. It must be pretty valuable.",
         RUG_BEARD = "It's kinda scratchy.",
         RUG_BRAID = "This rug's really soft.",
         RUG_CATCOON = "Aww...Poor little guy.",

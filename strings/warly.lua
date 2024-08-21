@@ -354,6 +354,7 @@ return {
         },
         PEAGAWKFEATHER = "It's quite soft.",
         PEAGAWK_BUSH = "It's a bright blue bush.",
+        PEDESTAL_KEY = "It must unlock something.",
         PHEROMONESTONE = "I always wanted to learn another language.",
         PIGBANDIT = "Mon dieu! He's after my coin!",
         PIGEON = {
@@ -608,6 +609,7 @@ return {
         ROCK_FLIPPABLE = "There may be some protein under there.",
         ROOTTRUNK = "Mon dieu! What a wonderful time saver!",
         ROUND_DOOR = "Another mouth to feed!",
+        ROYAL_GALLERY = "Like fine wine, it is to be admired behind glass.",
         RUG_BEARD = "Unappetizing.",
         RUG_BRAID = "Appetizing.",
         RUG_CATCOON = "Tasteful.",

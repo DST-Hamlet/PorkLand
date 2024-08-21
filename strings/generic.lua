@@ -350,6 +350,7 @@ return {
         },
         PEAGAWKFEATHER = "Still blinking.",
         PEAGAWK_BUSH = "Look! An iris bush.",
+        PEDESTAL_KEY = "Royal-key.",
         PHEROMONESTONE = "A nasaltelepathical bug communicator.",
         PIGBANDIT = "Swindling swine.",
         PIGEON = {
@@ -622,6 +623,7 @@ return {
         ROCK_FLIPPABLE = "You never know what you'll find under a rock.",
         ROOTTRUNK = "It rooted out all my things!",
         ROUND_DOOR = "A little like being eaten.",
+        ROYAL_GALLERY = "Fancy enough to be behind glass.",
         RUG_BEARD = "Is that my beard?",
         RUG_BRAID = "It's a rug.",
         RUG_CATCOON = "There's a dead animal on the floor.",

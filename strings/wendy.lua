@@ -349,6 +349,7 @@ return {
         },
         PEAGAWKFEATHER = "I spy, with my little eye...",
         PEAGAWK_BUSH = "Just a bush...",
+        PEDESTAL_KEY = "A key to trinkets.",
         PHEROMONESTONE = "Let my words be known to those who creep and crawl.",
         PIGBANDIT = "He can steal my money, but not my soul.",
         PIGEON = {
@@ -604,6 +605,7 @@ return {
         ROCK_FLIPPABLE = "If only I could hide under a rock.",
         ROOTTRUNK = "Saves my possessions. But it can't save my heart.",
         ROUND_DOOR = "Only leads to disappointment.",
+        ROYAL_GALLERY = "Under lock and key.",
         RUG_BEARD = "Ew.",
         RUG_BRAID = "Ornamentation is pointless.",
         RUG_CATCOON = "Death becomes decoration.",

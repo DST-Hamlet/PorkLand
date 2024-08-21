@@ -349,6 +349,7 @@ return {
         },
         PEAGAWKFEATHER = "Feather'o'glimmer.",
         PEAGAWK_BUSH = "'Tis unsettlin' t'b'sure.",
+        PEDESTAL_KEY = "Argh! 'Tis fer tha'treasure?",
         PHEROMONESTONE = "Be a stone'o'tongues.",
         PIGBANDIT = "Argh! Stay away from me gold!",
         PIGEON = {
@@ -603,6 +604,7 @@ return {
         ROCK_FLIPPABLE = "Plenty o'booty t'be found under a rock.",
         ROOTTRUNK = "Yarr! All o'Woodleg's treasures!",
         ROUND_DOOR = "Ah, she'll eat ol' Woodlegs clean up.",
+        ROYAL_GALLERY = "A treasure!",
         RUG_BEARD = "Aye. Must've been a fine beard.",
         RUG_BRAID = "'Tis made from the hemp rope.",
         RUG_CATCOON = "Aye. It's been run through.",
