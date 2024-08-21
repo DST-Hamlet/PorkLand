@@ -379,6 +379,11 @@ local function StopShopMusic(player)
     end
 end
 
+local function StopAllInteriorMusic(player)
+    StopPlayingTone(player)
+    StopShopMusic(player)
+end
+
 local function OnUsedDoor(player, data)
     if not data or not data.door then
         return
@@ -410,6 +415,7 @@ local function StartPlayerListeners(player)
     inst:ListenForEvent("canopyin", StartJungleTone, player)
     inst:ListenForEvent("canopyout", function() StopPlayingTone("jungle") end, player)
     inst:ListenForEvent("used_door", OnUsedDoor, player)
+    inst:ListenForEvent("leaveinterior", StopPlayingTone, player)
 end
 
 local function StopPlayerListeners(player)
