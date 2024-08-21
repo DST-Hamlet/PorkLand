@@ -82,9 +82,6 @@ function Vineable:OnSave()
 
     if self.inst.regrowtask then
         data.regrowtimeleft = self.inst:TimeRemainingInTask(self.inst.regrowtaskinfo)
-        self.inst.regrowtask:Cancel()
-        self.inst.regrowtask = nil
-        self.inst.regrowtaskinfo = nil
     end
     if self.vines_open then
         data.vines_open = self.vines_open

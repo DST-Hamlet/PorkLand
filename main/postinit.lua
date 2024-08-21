@@ -83,6 +83,7 @@ local prefab_posts = {
     "player_common_extensions",
     "pocketdimensioncontainer_defs",
     "poop",
+    "thunder_close",
     "torch",
     "waterprojectiles",
     "woodie",

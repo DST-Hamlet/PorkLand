@@ -450,13 +450,13 @@ local function MakeHat(name)
         end
         inst.components.fueled:StopConsuming()
 
+        inst.SoundEmitter:KillSound("torch")
+
         if inst.fire then
             inst.fire:Remove()
             inst.fire = nil
+            inst.SoundEmitter:PlaySound("dontstarve/common/fireOut")
         end
-
-        inst.SoundEmitter:KillSound("torch")
-        inst.SoundEmitter:PlaySound("dontstarve/common/fireOut")
     end
 
     local function candle_equip(inst, owner)
@@ -571,7 +571,7 @@ local function MakeHat(name)
     end
 
     local function pith_onunequip(inst, owner)
-        _onequip(inst, owner)
+        _onunequip(inst, owner)
         inst:RemoveTag("venting")
     end
 

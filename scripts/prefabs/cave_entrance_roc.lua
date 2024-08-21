@@ -329,6 +329,7 @@ local function InitMaze(inst)
     local exterior_door_def = {
         my_door_id = ROC_CAVE_NAME .. "_ENTRANCE1",
         target_door_id = ROC_CAVE_NAME .. "_EXIT1",
+        target_interior = inst.interiorID
     }
     BuildMaze(inst, exterior_door_def)
     TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def)
@@ -365,6 +366,8 @@ local function fn()
     inst.AnimState:SetBuild("cave_entrance")
 
     inst.MiniMapEntity:SetIcon("cave_closed.png")
+
+    inst:AddTag("client_forward_action_target")
 
     inst.entity:SetPristine()
 
@@ -405,6 +408,8 @@ local function exitfn()
     inst.AnimState:PlayAnimation("full")
 
     inst.MiniMapEntity:SetIcon("rock_batcave.tex")
+
+    inst:AddTag("client_forward_action_target")
 
     inst.entity:SetPristine()
 

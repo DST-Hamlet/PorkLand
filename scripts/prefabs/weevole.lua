@@ -109,6 +109,7 @@ local function fn()
     inst.components.combat:SetDefaultDamage(TUNING.WEEVOLE_DAMAGE)
     inst.components.combat:SetAttackPeriod(GetRandomMinMax(TUNING.WEEVOLE_PERIOD_MIN, TUNING.WEEVOLE_PERIOD_MAX))
     inst.components.combat:SetRange(TUNING.WEEVOLE_ATTACK_RANGE, TUNING.WEEVOLE_HIT_RANGE)
+    inst.components.combat:SetPlayerStunlock(PLAYERSTUNLOCK.NEVER)
 
     inst:SetStateGraph("SGweevole")
     inst:SetBrain(brain)

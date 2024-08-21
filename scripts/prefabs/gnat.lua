@@ -153,6 +153,7 @@ local function fn()
     inst.components.combat:SetDefaultDamage(1)
     inst.components.combat:SetAttackPeriod(10)
     inst.components.combat:SetRetargetFunction(1, RetargetFn)
+    inst.components.combat:SetPlayerStunlock(PLAYERSTUNLOCK.NEVER)
 
     inst:AddComponent("knownlocations")
 

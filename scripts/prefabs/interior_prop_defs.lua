@@ -2138,7 +2138,7 @@ PROP_DEFS.playerhouse_city = function(exterior_door_def)
 
         { name = "deco_roomglow", x_offset = 0, z_offset = 0 },
 
-        { name = "shelves_cinderblocks",      x_offset = -4.5, z_offset = -15/3.5, rotation= -90, addtags={"playercrafted"} },
+        { name = "shelf_cinderblocks",      x_offset = -4.5, z_offset = -15/3.5, rotation= -90, addtags={"playercrafted"} },
         { name = "deco_antiquities_wallfish", x_offset = -5,   z_offset =  3.9,    rotation = 90, addtags={"playercrafted"} },
 
         { name = "deco_antiquities_cornerbeam",  x_offset = -5,  z_offset =  -15/2, rotation =  90, flip=true, addtags={"playercrafted"} },

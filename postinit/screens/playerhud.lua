@@ -83,7 +83,7 @@ function PlayerHud:UpdateFogClouds(camera)
         intensity = intensity * 0.3
     end
 
-    if self.owner.replica.inventory:EquipHasTag("clearfog") then
+    if self.owner.replica.inventory:EquipHasTag("clearfog") or self.owner:HasTag("inside_interior") then
         intensity = 0
     end
 

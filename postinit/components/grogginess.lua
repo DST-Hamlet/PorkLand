@@ -20,8 +20,10 @@ end
 
 local _RemoveEventCallback = Grogginess.OnRemoveFromEntity
 function Grogginess:OnRemoveFromEntity(...)
-    self.inst:RemoveEventCallback("equip", self.OnEquipChange)
-    self.inst:RemoveEventCallback("unequip", self.OnEquipChange)
+    self.inst:RemoveEventCallback("equip", self.OnFogProofChange)
+    self.inst:RemoveEventCallback("unequip", self.OnFogProofChange)
+    self.inst:RemoveEventCallback("enterinterior", self.OnFogProofChange)
+    self.inst:RemoveEventCallback("leaveinterior", self.OnFogProofChange)
     self.foggygroggy = false
 
     _RemoveEventCallback(self, ...)
@@ -49,7 +51,7 @@ function Grogginess:HasOverHeatinggear()
     end
 end
 
-function Grogginess.OnEquipChange(inst, data)
+function Grogginess.OnFogProofChange(inst, data)
     local self = inst.components.grogginess
 
     if not self then
@@ -59,7 +61,7 @@ function Grogginess.OnEquipChange(inst, data)
     local hotitems = self:HasOverHeatinggear()
 
     if self.foggygroggy then
-        self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil  -- if equip venting
+        self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil and not self.inst:HasTag("inside_interior")  -- if equip venting
 
         if not self.foggygroggy then
             if inst.components.talker then
@@ -69,7 +71,7 @@ function Grogginess.OnEquipChange(inst, data)
         end
     end
 
-    self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil
+    self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil and not self.inst:HasTag("inside_interior")
 
     if not self.foggygroggy then
         return
@@ -105,13 +107,17 @@ function Grogginess.SetFogyGroggy(inst, enable)
     end
 
     if enable then
-        inst:ListenForEvent("equip", self.OnEquipChange)
-        inst:ListenForEvent("unequip", self.OnEquipChange)
-        self.OnEquipChange(inst)
+        inst:ListenForEvent("equip", self.OnFogProofChange)
+        inst:ListenForEvent("unequip", self.OnFogProofChange)
+        inst:ListenForEvent("enterinterior", self.OnFogProofChange)
+        inst:ListenForEvent("leaveinterior", self.OnFogProofChange)
+        self.OnFogProofChange(inst)
     else
-        inst:RemoveEventCallback("equip", self.OnEquipChange)
-        inst:RemoveEventCallback("unequip", self.OnEquipChange)
-        self.OnEquipChange(inst)
+        inst:RemoveEventCallback("equip", self.OnFogProofChange)
+        inst:RemoveEventCallback("unequip", self.OnFogProofChange)
+        inst:RemoveEventCallback("enterinterior", self.OnFogProofChange)
+        inst:RemoveEventCallback("leaveinterior", self.OnFogProofChange)
+        self.OnFogProofChange(inst)
     end
 end
 

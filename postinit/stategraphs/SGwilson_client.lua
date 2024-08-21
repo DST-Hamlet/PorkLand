@@ -36,6 +36,15 @@ local actionhandlers = {
     ActionHandler(ACTIONS.DISLODGE, function(inst)
         return not inst.sg:HasStateTag("pretap") and "tap_start" or nil
     end),
+    ActionHandler(ACTIONS.CUREPOISON, function(inst, action)
+        local target = action.target
+
+        if not target or target == inst then
+            return "curepoison"
+        else
+            return "give"
+        end
+    end),
     ActionHandler(ACTIONS.USEDOOR, "usedoor"),
     ActionHandler(ACTIONS.WEIGHDOWN, "doshortaction"),
     ActionHandler(ACTIONS.DISARM, "dolongaction"),
@@ -80,6 +89,35 @@ local eventhandlers = {
 }
 
 local states = {
+    State{
+        name = "curepoison",
+        tags = { "busy" },
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("quick_eat_pre")
+            inst.AnimState:PushAnimation("quick_eat_lag", false)
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("busy") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.sg:GoToState("idle")
+        end,
+    },
+
     State{
         name = "row_start",
         tags = {"moving", "running", "rowing", "boating", "canrotate"},

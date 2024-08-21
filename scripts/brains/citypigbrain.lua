@@ -426,6 +426,9 @@ function CityPigBrain:OnStart()
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FIND_MEAT"),
                 DoAction(self.inst, FindFoodAction )),
 
+            WhileNode(function() return self.inst:HasTag("shopkeep") and not self.inst:HasTag("atdesk") and not self.inst.changestock and TheWorld.state.isdusk end, "shopkeeper opening",
+                DoAction(self.inst, ShopkeeperSitAtDesk, "SitAtDesk", true )  ),
+
             -- after hours shop pig wants you to leave
             IfNode(function() return (self.inst:HasTag("shopkeep") or self.inst:HasTag("pigqueen")) and self.inst:GetIsInInterior() and TheWorld.state.isnight end, "shopkeeper closing",
                 Wander(self.inst, GetNoLeaderHomePos, MAX_WANDER_DIST)),

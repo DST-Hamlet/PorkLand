@@ -677,6 +677,8 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
 
         inst.dungeon_name = dungeon_name
 
+        inst:AddTag("client_forward_action_target")
+
         inst:AddTag("ruins_exit")
         if dungeon_name == "RUINS_1" then
             inst:AddTag("top_ornament")
