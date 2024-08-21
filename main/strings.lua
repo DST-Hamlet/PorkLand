@@ -94,11 +94,12 @@ if (IsTheFrontEnd and not desiredlang) and LanguageTranslator.defaultlang then  
 end
 
 if desiredlang and languages[desiredlang] then
-    -- local temp_lang = desiredlang .. "_temp"
+    print("LOAD PORKLAND LANGUAGE!!!", desiredlang)
 
-    PLENV.LoadPOFile("scripts/languages/pl_" .. languages[desiredlang] .. ".po", desiredlang)
-    -- ToolUtil.MergeTable(LanguageTranslator.languages[desiredlang], LanguageTranslator.languages[temp_lang])
-    -- TranslateStringTable(STRINGS)
-    -- LanguageTranslator.languages[temp_lang] = nil
-    -- LanguageTranslator.defaultlang = desiredlang
+    local temp_lang = desiredlang .. "_temp"
+    LanguageTranslator:LoadPOFile("scripts/languages/pl_" .. languages[desiredlang] .. ".po", temp_lang)
+    ToolUtil.MergeTable(LanguageTranslator.languages[desiredlang], LanguageTranslator.languages[temp_lang])
+    TranslateStringTable(STRINGS)
+    LanguageTranslator.languages[temp_lang] = nil
+    LanguageTranslator.defaultlang = desiredlang
 end

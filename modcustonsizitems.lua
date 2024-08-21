@@ -163,7 +163,7 @@ end
 
 local delete_items = {  -- change dst custonsiz settings
     worldgen = {
-
+        global = {"season_start"}
     },
     world_settings = {
         global = {"specialevent", "autumn", "winter", "spring", "summer", "spawnmode", "beefaloheat"},
@@ -173,19 +173,19 @@ local delete_items = {  -- change dst custonsiz settings
     }
 }
 
-for category, category_data in pairs(delete_items) do  -- use dst custonsiz settings for porkland
+for category, category_data in pairs(delete_items) do  -- 删掉对猪镇来说多余的设置
     local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
     for group, groupitems in pairs(category_data) do
         if type(groupitems) == "string" then
             for _, item in pairs(GROUP[group].items) do
                 if item.world == nil then
-                    item.world = {}
+                    item.world = {"forest"}
                 end
             end
         else
             for _, itemname in pairs(groupitems) do
                 if GROUP[group].items[itemname].world == nil then
-                    GROUP[group].items[itemname].world = {}
+                    GROUP[group].items[itemname].world = {"forest"}
                 end
             end
         end
