@@ -433,7 +433,6 @@ local function fn()
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
-        inst:ListenForEvent("minimap_name_dirty", OnMinimapNameDirty)
         return inst
     end
 
