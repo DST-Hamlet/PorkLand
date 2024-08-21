@@ -299,7 +299,7 @@ local function ShouldAcceptItem(inst, item)
 end
 
 local function OnGetBribe(inst, item)
-    if inst:HasTag("angry_at_player") then
+    if not IsTableEmpty(inst.angry_at_players) then
         if not inst.bribe_count then
             inst.bribe_count = 0
         end
@@ -307,7 +307,7 @@ local function OnGetBribe(inst, item)
 
         local bribe_threshold = inst:HasTag("guard") and 10 or 1
         if inst.bribe_count >= bribe_threshold then
-            inst:RemoveTag("angry_at_player")
+            inst.angry_at_players = {}
 
             if inst.components.combat and inst.components.combat.target and inst.components.combat.target:HasTag("player") then
                 inst.components.combat:GiveUp()
@@ -539,8 +539,8 @@ local function OnAttacked(inst, data)
             inst.components.combat:SetTarget(attacker)
 
             if inst:HasTag("guard") then
-                if attacker:HasTag("player") then
-                    inst:AddTag("angry_at_player")
+                if attacker:HasTag("player") and attacker.userid then
+                    inst.angry_at_players[attacker] = attacker.userid
                 end
                 inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
                     return dude:HasTag("pig") and (dude:HasTag("guard") or not attacker:HasTag("pig"))
@@ -569,15 +569,15 @@ local function NormalRetargetFn(inst)
     return FindEntity(inst, TUNING.CITY_PIG_GUARD_TARGET_DIST, function(guy)
         if not guy.LightWatcher or guy.LightWatcher:IsInLight() then
 
-            if guy:HasTag("player") and inst:HasTag("angry_at_player") and guy.components.health
-                and not guy.components.health:IsDead() and inst.components.combat:CanTarget(guy)
+            if inst.angry_at_players[guy]
+                and guy.components.health and not guy.components.health:IsDead()
+                and inst.components.combat:CanTarget(guy)
                 and not (inst.components.combat.target and inst.components.combat.target:HasTag("player")) then
 
                 inst:SayLine(inst:GetSpeechType("CITY_PIG_GUARD_TALK_ANGRY_PLAYER"))
-                -- inst.components.talker:Say( getSpeechType(inst,STRINGS.CITY_PIG_GUARD_TALK_ANGRY_PLAYER) )
             end
 
-            return (guy:HasTag("monster") or (guy:HasTag("player") and inst:HasTag("angry_at_player"))) and
+            return (guy:HasTag("monster") or inst.angry_at_players[guy]) and
                        guy.components.health and not guy.components.health:IsDead() and
                        inst.components.combat:CanTarget(guy) and
                        not (inst.components.follower.leader ~= nil and guy:HasTag("abigail"))
@@ -623,6 +623,7 @@ local function SetNormalPig(inst, brain_id)
     inst.components.lootdropper:AddRandomLoot("pigskin", 1)
     inst.components.lootdropper.numrandomloot = 1
 
+    inst.angry_at_players = {}
     inst.components.health:SetMaxHealth(TUNING.PIG_HEALTH)
     inst.components.combat:SetRetargetFunction(3, NormalRetargetFn)
     inst.components.combat:SetTarget(nil)
@@ -673,12 +674,13 @@ local function throwcrackers(inst)
 end
 
 local function OnSave(inst, data)
+    local references = {}
+
     data.build = inst.build
 
-    data.children = {}
     -- for the shopkeepers if they have spawned their desk
     if inst.desk then
-        table.insert(data.children, inst.desk.GUID)
+        table.insert(references, inst.desk.GUID)
         data.desk = inst.desk.GUID
     end
 
@@ -693,14 +695,25 @@ local function OnSave(inst, data)
     end
     -- end shopkeeper stuff
 
-    data.angryatplayer = inst:HasTag("angry_at_player")
+    local cached_angry_at_player_ids = inst.cached_angry_at_player_ids or {}
+    for player, id in pairs(inst.angry_at_players) do
+        if player:IsValid() then
+            cached_angry_at_player_ids[id] = true
+        else
+            inst.angry_at_players[player] = nil
+        end
+    end
+    if not IsTableEmpty(cached_angry_at_player_ids) then
+        data.cached_angry_at_player_ids = cached_angry_at_player_ids
+    end
+
     data.equipped = inst.equipped
     data.recieved_trinket = inst:HasTag("recieved_trinket")
     data.paytax = inst:HasTag("paytax")
     data.daily_gift = inst.daily_gift
 
-    if data.children and #data.children > 0 then
-        return data.children
+    if not IsTableEmpty(references) then
+        return references
     end
 end
 
@@ -728,8 +741,35 @@ local function OnLoad(inst, data)
         -- inst.equiptask = nil
     end
 
-    if data.angryatplayer then
-        inst:AddTag("angry_at_player")
+    if data.cached_angry_at_player_ids then
+        inst.cached_angry_at_player_ids = data.cached_angry_at_player_ids
+
+        local cached_player_join_fn
+        local cached_new_player_spawned_fn
+
+        local function clear_callbacks_when_done(player)
+            if inst.cached_angry_at_player_ids[player.userid] then
+                inst.cached_angry_at_player_ids[player.userid] = nil
+            end
+            if IsTableEmpty(inst.cached_angry_at_player_ids) then
+                inst:RemoveEventCallback("ms_playerjoined", cached_player_join_fn, TheWorld)
+                inst:RemoveEventCallback("ms_newplayerspawned", cached_new_player_spawned_fn, TheWorld)
+            end
+        end
+
+        cached_player_join_fn = function(_, player)
+            if inst.cached_angry_at_player_ids[player.userid] then
+                inst.angry_at_players[player] = true
+            end
+            clear_callbacks_when_done(player)
+        end
+
+        cached_new_player_spawned_fn = function(_, player)
+            clear_callbacks_when_done(player)
+        end
+
+        inst:ListenForEvent("ms_playerjoined", cached_player_join_fn, TheWorld)
+        inst:ListenForEvent("ms_newplayerspawned", cached_new_player_spawned_fn, TheWorld)
     end
 
     if data.recieved_trinket then
@@ -746,19 +786,15 @@ local function OnLoad(inst, data)
 end
 
 local function OnLoadPostPass(inst, ents, data)
-    if not data or not data.children then
+    if not data then
         return
     end
 
-    for _, v in pairs(data.children) do
-        local item = ents[v]
-        if item then
-            if data.desk and data.desk == v then
-                inst.desk = item.entity
-                inst:AddComponent("homeseeker")
-                inst.components.homeseeker:SetHome(inst.desk)
-            end
-        end
+    local desk = ents[data.desk]
+    if desk then
+        inst.desk = desk.entity
+        inst:AddComponent("homeseeker")
+        inst.components.homeseeker:SetHome(inst.desk)
     end
 end
 

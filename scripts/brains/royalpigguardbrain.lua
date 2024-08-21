@@ -140,7 +140,15 @@ local function FindMoneyAction(inst)
 end
 
 local function checknotangry(inst)
-    return not inst:HasTag("angry_at_player") or inst:IsNearPlayer(4)
+    if IsTableEmpty(inst.angry_at_players) then
+        return true
+    end
+    for _, player in ipairs(AllPlayers) do
+        if inst.angry_at_players[player] and inst:IsNear(player, 4) then
+            return false
+        end
+    end
+    return true
 end
 
 local function KeepChoppingAction(inst)
