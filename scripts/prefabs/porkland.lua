@@ -39,6 +39,8 @@ for _, prefab in pairs(Prefabs["forest"].deps) do
     table.insert(prefabs, prefab)
 end
 
+local ex_fns = require("prefabs/player_common_extensions")
+
 -- https://forums.kleientertainment.com/forums/topic/140904-tiles-changes-and-more/
 local function tile_physics_init(inst, ...)
     -- a slightly modified version of the forest map's primary collider.
@@ -69,6 +71,11 @@ local function tile_physics_init(inst, ...)
         TileGroups.ImpassableTiles, false,
         0.25, 128
     )
+end
+
+
+local function OnNewPlayerSpawned(src, player)
+    ex_fns.GivePlayerStartingItems(player, { "machete" })
 end
 
 local function common_postinit(inst)
@@ -168,6 +175,8 @@ local function master_postinit(inst)
 
     -- Not a component from Hamlet
     inst:AddComponent("pigtaxmanager")
+
+    inst:ListenForEvent("ms_newplayerspawned", OnNewPlayerSpawned)
 end
 
 return MakeWorld("porkland", prefabs, assets, common_postinit, master_postinit, {"porkland"}, {tile_physics_init = tile_physics_init})

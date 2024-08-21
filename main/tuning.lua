@@ -599,7 +599,7 @@ local tuning = {
 
     GNAT_WALK_SPEED = 2,
     GNAT_RUN_SPEED = 7,
-  
+
     THUNDERBIRDNEST_RELEASE_TIME = 1,
     THUNDERBIRDNEST_REGEN_TIME = total_day_time * 5,
     THUNDERBIRDNEST_MAXCHILDREN = 1,
@@ -682,7 +682,6 @@ TUNING.PROTOTYPER_TREES.HOGUSPORKUSATOR = TechTree.Create({
 TUNING.PROTOTYPER_TREES.CITY = TechTree.Create({
     CITY = 2,
 })
-
 
 for key, value in pairs(tuning) do
     if TUNING[key] then

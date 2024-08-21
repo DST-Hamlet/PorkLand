@@ -116,7 +116,7 @@ local function OnLoad(inst, data, ...)
             return unpack(_rets)
         end or nil, ...)
     end
-    local rets = {inst.Pl_OnLoad(inst, data, ...)}
+    local rets = {inst.__OnLoad(inst, data, ...)}
     inst.DoTaskInTime = _DoTaskInTime
     return unpack(rets)
 end
@@ -178,7 +178,8 @@ AddPlayerPostInit(function(inst)
     inst:ListenForEvent("itemlose", OnItemLose)
 
     if inst.OnLoad then
-        inst.Pl_OnLoad = inst.OnLoad
+        inst.__OnLoad = inst.OnLoad
         inst.OnLoad = OnLoad
     end
+
 end)
