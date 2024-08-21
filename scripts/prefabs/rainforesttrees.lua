@@ -336,7 +336,7 @@ local function OnBurnt(inst)
     inst.AnimState:PlayAnimation(anims[inst.stage].burnt, true)
     inst.MiniMapEntity:SetIcon("rainforesttree_burnt.tex")
 
-    inst.AnimState:SetRayTestOnBB(true)
+    -- inst.AnimState:SetRayTestOnBB(true) -- 这个会影响鼠标选取判定
 
     inst.seed_task = inst:DoTaskInTime(10, function()
         local pt = inst:GetPosition()

@@ -414,12 +414,12 @@ end
 
 ACTIONS.SHOP.stroverridefn = function(act)
     if not (act.target and act.target:IsValid()) then
-        return
+        return ""
     end
     local shelf = act.target.replica.visualslot:GetShelf()
     local item = act.target.replica.visualslot:GetItem()
     if not (shelf and item and shelf.replica.shopped) then
-        return
+        return ""
     end
 
     if not shelf.replica.shopped:IsBeingWatched() then
@@ -784,7 +784,10 @@ local PL_COMPONENT_ACTIONS =
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
                 local shelf = inst.replica.visualslot:GetShelf()
-                if not shelf:HasTag("locked") then
+                if not shelf:HasTag("locked")
+                    and inst.replica.visualslot:GetItem() ~= nil
+                    and inst.replica.visualslot:GetItem():IsValid() then
+
                     if shelf and shelf.replica.shopped then
                         table.insert(actions, ACTIONS.SHOP)
                     else
@@ -960,7 +963,7 @@ function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
         elseif target:HasTag("visual_slot") then
             if target:HasTag("empty") then
                 local shelf = target.replica.visualslot:GetShelf()
-                if not (shelf and shelf.replica.shopped) then
+                if not (shelf and shelf.replica.shopped) or (shelf and shelf:HasTag("not_property")) then
                     table.insert(actions, ACTIONS.PUTONSHELF)
                     return
                 end
