@@ -153,7 +153,7 @@ function PlayerController:GetAttackTarget(force_attack, force_target, isretarget
     local hastarget = false
     if target == nil then
         if self.locomotor ~= nil then
-			local buffaction = self.locomotor.bufferedaction
+            local buffaction = self.locomotor.bufferedaction
             if buffaction and buffaction.action == ACTIONS.ATTACK then
                 hastarget = true
             end

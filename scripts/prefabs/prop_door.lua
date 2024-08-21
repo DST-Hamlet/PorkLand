@@ -424,7 +424,7 @@ local function fn()
         anim = "idle"
     }
 
-    inst._minimap_name = net_string(inst.GUID, "prop_door._minimap_name", "minimap_name_dirty")
+    inst._minimap_name = net_string(inst.GUID, "prop_door._minimap_name")
     inst._minimap_name:set_local("")
 
     -- Used by scripts/prefabs/interiorworkblank.lua

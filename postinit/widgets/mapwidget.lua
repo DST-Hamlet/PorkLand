@@ -50,18 +50,18 @@ end
 
 local minimap_atlas_cache = {}
 local function get_minimap_atlas(image_name)
-	local atlas = minimap_atlas_cache[image_name] or GetMinimapAtlas(image_name)
-	if atlas then
-		return atlas
-	end
+    local atlas = minimap_atlas_cache[image_name] or GetMinimapAtlas(image_name)
+    if atlas then
+        return atlas
+    end
 
     atlas = get_atlas(image_name)
 
-	if atlas ~= nil then
-		minimap_atlas_cache[image_name] = atlas
-	end
+    if atlas ~= nil then
+        minimap_atlas_cache[image_name] = atlas
+    end
 
-	return atlas
+    return atlas
 end
 
 local function sort_priority(a, b)
