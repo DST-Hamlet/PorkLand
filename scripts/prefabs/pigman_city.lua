@@ -799,6 +799,8 @@ local function OnLoadPostPass(inst, ents, data)
 end
 
 local function MakeCityPigman(name, build, sex, tags, common_postinit, master_postinit, econprefab, name_override)
+    NAUGHTY_VALUE[name] = 6 -- honestly this is the easiest way
+
     local function fn()
         local inst = CreateEntity()
 
