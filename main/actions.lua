@@ -520,8 +520,8 @@ end
 
 ACTIONS.BUILD_MOUND.fn = function(act)
     if act.doer.build_mound_action then
-		return act.doer:build_mound_action()
-	end
+        return act.doer:build_mound_action()
+    end
 end
 
 ACTIONS.THUNDERBIRD_CAST.fn = function(act)
