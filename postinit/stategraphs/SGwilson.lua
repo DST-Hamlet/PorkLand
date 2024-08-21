@@ -1010,7 +1010,8 @@ local states = {
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
-            inst.AnimState:PlayAnimation("quick_eat")
+            inst.AnimState:PlayAnimation("quick_eat_pre")
+            inst.AnimState:PushAnimation("quick_eat", false)
         end,
 
         timeline =
@@ -1024,7 +1025,10 @@ local states = {
 
         events =
         {
-            EventHandler("animover", function(inst) inst.sg:GoToState("celebrate") end),
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("celebrate")
+                end end),
         },
     },
 

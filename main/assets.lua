@@ -3,6 +3,7 @@ local TheNet = GLOBAL.TheNet
 PrefabFiles = {
     "adult_flytrap",
     "alloy",
+    "antivenom",
     "aporkalypse_clock",
     "armor_metalplate",
     "ballpein_hammer",
@@ -224,7 +225,7 @@ PrefabFiles = {
     "thunderbirdnest",
 
     "pedestal_key",
-  
+
     "gnat",
     "gnatmound",
 }

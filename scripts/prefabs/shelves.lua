@@ -192,6 +192,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             inst.lockvisual.Follower:FollowSymbol(inst.GUID, nil, 0, 0, 0.002) -- 毫无疑问，这是为了解决层级bug的屎山，因为有时SetFinalOffset会失效（特别是在离0点特别远的位置）
         end)
 
+        inst.highlightchildren = {inst.frontvisual, inst.lockvisual}
+
         inst:AddComponent("inspectable")
 
         if physics_round then
@@ -231,6 +233,7 @@ local function OnLock(inst)
     end
     inst:AddTag("locked")
     inst:RemoveTag("NOCLICK")
+    inst.components.visualslotmanager:SetCanClick(false)
 end
 
 local function OnUnLock(inst, key, doer)
@@ -241,6 +244,7 @@ local function OnUnLock(inst, key, doer)
     end
     inst:RemoveTag("locked")
     inst:AddTag("NOCLICK")
+    inst.componentsvisualslotmanager:SetCanClick(true)
 end
 
 local function makeLock(inst)

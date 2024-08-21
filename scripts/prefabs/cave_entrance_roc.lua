@@ -367,6 +367,8 @@ local function fn()
 
     inst.MiniMapEntity:SetIcon("cave_closed.png")
 
+    inst:AddTag("client_forward_action_target")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

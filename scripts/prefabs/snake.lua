@@ -133,7 +133,7 @@ local function fn()
 
     MakeAmphibious(inst, "snake", "snake_water")
     MakeMediumFreezableCharacter(inst, "body")
-    MakeMediumBurnableCharacter(inst) --, "body")
+    MakeMediumBurnableCharacter(inst, nil, Vector3(0, 0, 0))
     MakeHauntablePanic(inst)
 
     inst:SetBrain(brain)

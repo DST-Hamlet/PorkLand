@@ -812,12 +812,8 @@ local PL_COMPONENT_ACTIONS =
             end
         end,
         poisonhealer = function(inst, doer, target, actions, right)
-            if target and target:HasTag("poisonable") then
-                if target:HasTag("poison") or (target:HasTag("player") and
-                    ((target.components.poisonable and target.components.poisonable:IsPoisoned()) or
-                    (target.player_classified and target.player_classified.ispoisoned:value()))) then
-                    table.insert(actions, ACTIONS.CUREPOISON)
-                end
+            if right and target and target:HasTag("poisonable") then
+                table.insert(actions, ACTIONS.CUREPOISON)
             end
         end,
     },
@@ -850,9 +846,7 @@ local PL_COMPONENT_ACTIONS =
             end
         end,
         poisonhealer = function(inst, doer, actions, right)
-            if doer:HasTag("poisonable") and (doer:HasTag("player") and
-                ((doer.components.poisonable and doer.components.poisonable:IsPoisoned()) or
-                (doer.player_classified and doer.player_classified.ispoisoned:value()))) then
+            if (doer:HasTag("poisonable") or doer:HasTag("player")) then
                 table.insert(actions, ACTIONS.CUREPOISON)
             end
         end,

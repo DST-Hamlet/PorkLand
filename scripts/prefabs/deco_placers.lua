@@ -619,7 +619,7 @@ return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",          
         MakePlacer("chair_rocking_placer",          "interior_chair", "interior_chair", "chair_rocking",    nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
         MakePlacer("chair_ottoman_placer",          "interior_chair", "interior_chair", "chair_ottoman",    nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
 
-        -- SHELVES
+        -- SHELF
         MakePlacer("shelf_wood_placer",               "bookcase", "room_shelves", "wood",             nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
         MakePlacer("shelf_basic_placer",              "bookcase", "room_shelves", "basic",            nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
         MakePlacer("shelf_cinderblocks_placer",       "bookcase", "room_shelves", "cinderblocks",     nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),

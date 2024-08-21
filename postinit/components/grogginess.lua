@@ -22,8 +22,8 @@ local _RemoveEventCallback = Grogginess.OnRemoveFromEntity
 function Grogginess:OnRemoveFromEntity(...)
     self.inst:RemoveEventCallback("equip", self.OnFogProofChange)
     self.inst:RemoveEventCallback("unequip", self.OnFogProofChange)
-    inst:RemoveEventCallback("enterinterior", self.OnFogProofChange)
-    inst:RemoveEventCallback("leaveinterior", self.OnFogProofChange)
+    self.inst:RemoveEventCallback("enterinterior", self.OnFogProofChange)
+    self.inst:RemoveEventCallback("leaveinterior", self.OnFogProofChange)
     self.foggygroggy = false
 
     _RemoveEventCallback(self, ...)
