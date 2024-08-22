@@ -36,6 +36,7 @@ local component_posts = {
     "hauntable",
     "health",
     "inventory",
+    "inventory_replica",
     "inventoryitem_replica",
     "inventoryitem",
     "inventoryitemmoisture",
@@ -128,6 +129,7 @@ local brain_posts = {
 local widget_posts = {
     "bloodover",
     "containerwidget",
+    "craftingmenu_ingredients",
     "inventorybar",
     "healthbadge",
     "seasonclock",
@@ -136,6 +138,7 @@ local widget_posts = {
     "uiclock",
     "widget",
     "mapwidget",
+    "recipepopup",
 }
 
 local module_posts = {
