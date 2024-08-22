@@ -161,6 +161,9 @@ function EntityScript:GetCurrentInteriorID()
 end
 
 function EntityScript:GetIsInInterior()
+    if not self:IsValid() then
+        return false
+    end
     local x, _, z = self.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return true
