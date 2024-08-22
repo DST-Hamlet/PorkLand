@@ -61,6 +61,7 @@ PrefabFiles = {
     "pl_planted_tree",
     "pl_preparedfoods",
     "pl_veggies",
+    "pl_walls",
     "pl_planted_veggies",
     "pl_foodbuffs",
     "peagawkfeather",
