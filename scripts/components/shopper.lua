@@ -29,60 +29,56 @@ function Shopper:PayMoney(cost)
     local oinc_gained = 0
     local oinc10_gained = 0
 
-    if self.inst.components.builder and self.inst.components.builder.freebuildmode then
-        return
-    else
-        while debt > 0 do
-            while debt > 0 and oinc_amount > 0 do
-                oinc_amount = oinc_amount - 1
-                debt = debt - 1
-                oinc_used = oinc_used + 1
-            end
-            if debt > 0 then
-                if oinc10_amount > 0 then
-                    oinc10_amount = oinc10_amount - 1
-                    oinc10_used = oinc10_used + 1
-                    for i = 1, 10 do
-                        oinc_amount = oinc_amount + 1
-                        oinc_gained = oinc_gained + 1
-                    end
-                elseif oinc100_amount > 0 then
-                    oinc100_amount = oinc100_amount - 1
-                    oinc100_used = oinc100_used + 1
-                    for i = 1, 10 do
-                        oinc10_amount = oinc10_amount + 1
-                        oinc10_gained = oinc10_gained + 1
-                    end
+    while debt > 0 do
+        while debt > 0 and oinc_amount > 0 do
+            oinc_amount = oinc_amount - 1
+            debt = debt - 1
+            oinc_used = oinc_used + 1
+        end
+        if debt > 0 then
+            if oinc10_amount > 0 then
+                oinc10_amount = oinc10_amount - 1
+                oinc10_used = oinc10_used + 1
+                for i = 1, 10 do
+                    oinc_amount = oinc_amount + 1
+                    oinc_gained = oinc_gained + 1
+                end
+            elseif oinc100_amount > 0 then
+                oinc100_amount = oinc100_amount - 1
+                oinc100_used = oinc100_used + 1
+                for i = 1, 10 do
+                    oinc10_amount = oinc10_amount + 1
+                    oinc10_gained = oinc10_gained + 1
                 end
             end
         end
+    end
 
-        local oinc_result = oinc_gained - oinc_used
-        if oinc_result > 0 then
-            for i = 1, oinc_result do
-                local coin = SpawnPrefab("oinc")
-                inventory:GiveItem(coin)
-            end
+    local oinc_result = oinc_gained - oinc_used
+    if oinc_result > 0 then
+        for i = 1, oinc_result do
+            local coin = SpawnPrefab("oinc")
+            inventory:GiveItem(coin)
         end
-        if oinc_result < 0 then
-            RemoveMoney(inventory, "oinc", math.abs(oinc_result))
-        end
+    end
+    if oinc_result < 0 then
+        RemoveMoney(inventory, "oinc", math.abs(oinc_result))
+    end
 
-        local oinc10_result = oinc10_gained - oinc10_used
-        if oinc10_result > 0 then
-            for i = 1, oinc10_result do
-                local coin = SpawnPrefab("oinc10")
-                inventory:GiveItem(coin)
-            end
+    local oinc10_result = oinc10_gained - oinc10_used
+    if oinc10_result > 0 then
+        for i = 1, oinc10_result do
+            local coin = SpawnPrefab("oinc10")
+            inventory:GiveItem(coin)
         end
-        if oinc10_result < 0 then
-            RemoveMoney(inventory, "oinc10", math.abs(oinc10_result))
-        end
+    end
+    if oinc10_result < 0 then
+        RemoveMoney(inventory, "oinc10", math.abs(oinc10_result))
+    end
 
-        local oinc100_result = 0 - oinc100_used
-        if oinc100_result < 0 then
-            RemoveMoney(inventory, "oinc100", math.abs(oinc100_result))
-        end
+    local oinc100_result = 0 - oinc100_used
+    if oinc100_result < 0 then
+        RemoveMoney(inventory, "oinc100", math.abs(oinc100_result))
     end
 end
 
