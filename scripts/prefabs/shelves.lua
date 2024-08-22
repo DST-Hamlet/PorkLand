@@ -125,7 +125,7 @@ local function OnVisualChange(inst)
     inst.highlightchildren = {inst._frontvisual:value(), inst._lockvisual:value()}
 end
 
-local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed, master_postinit, in_shop)
+local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed, master_postinit)
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -211,9 +211,6 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         if on_robbed then
             inst:AddComponent("shopped")
             inst.components.shopped:SetOnRobbed(on_robbed)
-            if not in_shop then
-                inst:AddTag("not_property")
-            end
         end
 
         inst.OnSave = OnSave

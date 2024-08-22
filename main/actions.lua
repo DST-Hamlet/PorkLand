@@ -963,7 +963,7 @@ function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
         elseif target:HasTag("visual_slot") then
             if target:HasTag("empty") then
                 local shelf = target.replica.visualslot:GetShelf()
-                if not (shelf and shelf.replica.shopped) or (shelf and shelf:HasTag("not_property")) then
+                if not (shelf and shelf.replica.shopped) then
                     table.insert(actions, ACTIONS.PUTONSHELF)
                     return
                 end
