@@ -7,10 +7,11 @@ function Builder:MakeRecipeAtPoint(recipe, pt, rot, skin)
         return -- NOTES(JBK): The inventory was hidden by gameplay do not allow crafting.
     end
 
-    if recipe.placer ~= nil and
-        self:KnowsRecipe(recipe) and
-        self:IsBuildBuffered(recipe.name) and
-        TheWorld.Map:CanDeployRecipeAtPoint(pt, recipe, rot, self.inst) then
+    if recipe.placer
+        and (self:KnowsRecipe(recipe) or self:CanLearn(recipe.name) and CanPrototypeRecipe(recipe.level, self.accessible_tech_trees))
+        and self:IsBuildBuffered(recipe.name)
+        and TheWorld.Map:CanDeployRecipeAtPoint(pt, recipe, rot, self.inst) then
+
         self:MakeRecipe(recipe, pt, rot, skin)
     end
 end
