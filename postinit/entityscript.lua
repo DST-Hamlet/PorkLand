@@ -172,7 +172,9 @@ function EntityScript:GetIsInInterior()
 end
 
 function EntityScript:Play2DSoundOutSide(path, soundname, distance, paramname, paramval)
-    print("WARNING: EntityScript:Play2DSoundOutSide must have soundname")
+    if not soundname then
+        print("WARNING: EntityScript:Play2DSoundOutSide must have soundname")
+    end
     local pos = self:GetPosition()
     local followentity = self
     local areamode = AREAMODES.DISTANCE

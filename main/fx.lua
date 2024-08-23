@@ -210,7 +210,7 @@ local pl_fx = {
     },
     {
         name = "cloudpuff",
-        bank = "splash_clouds_drop",
+        bank = "cloud_puff_soft",
         build = "cloud_puff_soft",
         anim = "idle_sink",
     },

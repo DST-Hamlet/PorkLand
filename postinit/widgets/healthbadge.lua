@@ -11,7 +11,8 @@ function HealthBadge:OnUpdate(...)
     _OnUpdate(self, ...)
 
     local poison = self.owner.ispoisoned or (self.owner.player_classified and self.owner.player_classified.ispoisoned:value())
-    local in_gas = self.owner.isingas or (self.owner.player_classified and self.owner.player_classified.isingas:value())
+    local in_gas = (self.owner.isingas or (self.owner.player_classified and self.owner.player_classified.isingas:value()))
+        and not self.owner.replica.inventory:EquipHasTag("has_gasmask")
 
     if self.poison ~= poison then
         self.poison = poison

@@ -11,7 +11,7 @@ local function fn()
     --[[Non-networked entity]]
 
     inst.AnimState:SetBuild("cloud_puff_soft")
-    inst.AnimState:SetBank("splash_clouds_drop")
+    inst.AnimState:SetBank("cloud_puff_soft")
     inst.AnimState:PlayAnimation("idle_sink", false)
 
     inst:AddTag("FX")
