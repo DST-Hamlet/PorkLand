@@ -2,13 +2,12 @@ local assets = {
     Asset("ANIM", "anim/pighouse_rubble.zip"),
 }
 
--- 30~60 seconds
--- local REBUILD_REACTION_TIME = TUNING.SEG_TIME
--- local REBUILD_REACTION_VARIANCE = TUNING.SEG_TIME
+-- 30 ~ 60 seconds
+local REBUILD_REACTION_TIME = TUNING.SEG_TIME
+local REBUILD_REACTION_VARIANCE = TUNING.SEG_TIME
 
--- local OFF_SCREENDIST = 30
--- local AUTO_REPAIRDIST = 100
--- local AUTO_REPAIRDIST_SQ = AUTO_REPAIRDIST * AUTO_REPAIRDIST
+local OFF_SCREENDIST = 30
+local AUTO_REPAIRDIST = 100
 
 local function SetConstructionPrefabName(inst, name)
     inst._name:set(name)
@@ -152,6 +151,62 @@ local function OnLoadPostPass(inst, newents, data)
     end
 end
 
+local function GetSpawnPoint(inst, pt)
+    local theta = math.random() * 2 * PI
+    local radius = OFF_SCREENDIST
+
+    local offset = FindWalkableOffset(pt, theta, radius, 12, true)
+    if offset then
+        local pos = pt + offset
+        local on_water = TheWorld.Map:IsWater(inst:GetCurrentTileType(pos:Get()))
+        if not on_water then
+            return pos
+        end
+    end
+end
+
+local function SetFixer(inst, fixer)
+    fixer.components.fixer:SetTarget(inst)
+    inst.fixer = fixer
+end
+
+local function SpawnFixer(inst)
+    -- if away from player fix, else
+    -- look for fixer pig
+    -- spawn if none
+    -- set pig's fixer target to this inst.
+    if not inst:IsNearPlayer(AUTO_REPAIRDIST) then
+        Fix(inst)
+        return
+    end
+    if inst.cityID and (not inst.fixer or inst.fixer.components.health:IsDead()) then -- Spawn the pig only for city structures.
+        inst.fixer = nil
+        if TheWorld.state.isday then
+            local fixer = FindEntity(inst, 30, function(ent)
+                return ent.components.fixer and not ent.components.fixer.target
+            end, {"fixer"})
+            if fixer then
+                SetFixer(inst, fixer)
+            else
+                local player = FindClosestPlayerToInstOnLand(inst, AUTO_REPAIRDIST_SQ)
+                if player then
+                    local spawn_pt = GetSpawnPoint(inst, player:GetPosition())
+                    if spawn_pt then
+                        local fixer = SpawnPrefab("pigman_mechanic")
+                        fixer.Physics:Teleport(spawn_pt:Get())
+                        SetFixer(inst, fixer)
+                    end
+                end
+            end
+        end
+    end
+    inst.components.timer:StartTimer("spawn_fixer", REBUILD_REACTION_TIME + (math.random() * REBUILD_REACTION_VARIANCE))
+end
+
+local function OnTimerDone(inst, data)
+    SpawnFixer(inst)
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -180,7 +235,9 @@ local function fn()
     inst.reconstruction_stage = 1
     inst.reconstruction_stages = {}
 
-    -- inst:AddComponent("timer")
+    inst:AddComponent("timer")
+    inst.components.timer:StartTimer("spawn_fixer", REBUILD_REACTION_TIME + (math.random() * REBUILD_REACTION_VARIANCE))
+    inst:ListenForEvent("timerdone", OnTimerDone)
 
     inst:AddComponent("lootdropper")
 
