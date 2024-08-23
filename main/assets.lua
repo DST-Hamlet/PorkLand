@@ -229,6 +229,8 @@ PrefabFiles = {
 
     "gnat",
     "gnatmound",
+
+    "waterfall_lilypond",
 }
 
 Assets = {
@@ -319,6 +321,9 @@ Assets = {
 
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
+
+    -- Waterfall
+    Asset("SHADER", "shaders/anim_waterfall.ksh"),
 
     -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
