@@ -154,9 +154,9 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
         else
             sizes = {
                 ["tiny"] = 250,
-                ["small"] = 250,
-                ["default"] = 350,
-                ["medium"] = 400, -- default == large, at the moment...
+                ["small"] = 350,
+                ["medium"] = 400,
+                ["default"] = 425, -- default == large, at the moment...
                 ["large"] = 425,
                 ["huge"] = 450,
             }

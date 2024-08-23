@@ -192,15 +192,6 @@ for category, category_data in pairs(delete_items) do  -- 删掉对猪镇来说�
     end
 end
 
--- 世界大小设置与单机猪镇保持一致
-WORLDGEN_GROUP["misc"].items["world_size"].desc =  {
-    { text = STRINGS.UI.SANDBOXMENU.SLIDESMALL, data = "small"},
-    { text = STRINGS.UI.SANDBOXMENU.SLIDEDEFAULT, data = "default"},
-    { text = STRINGS.UI.SANDBOXMENU.SLIDESMEDIUM, data = "medium"},
-    { text = STRINGS.UI.SANDBOXMENU.SLIDESLARGE, data = "large"},
-    { text = STRINGS.UI.SANDBOXMENU.SLIDESHUGE, data = "huge"},
-}
-
 for name, data in pairs(pl_customize_table) do  -- add our customize
     add_group_and_item(data.category, name, data.text, data.desc, data.atlas, data.order, data.items)
 end
