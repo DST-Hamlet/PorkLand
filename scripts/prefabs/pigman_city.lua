@@ -979,6 +979,7 @@ local function NormalizeTorch(torch, owner)
         torch:AddComponent("citypossession")
     end
     torch.components.citypossession:SetCity(owner.components.citypossession.cityID)
+    torch.persists = true
 end
 
 local function NormalizeHalberd(halberd, owner)
@@ -988,32 +989,11 @@ local function NormalizeHalberd(halberd, owner)
         halberd:AddComponent("citypossession")
     end
     halberd.components.citypossession:SetCity(owner.components.citypossession.cityID)
+    halberd.persists = true
 end
 
-local function EquipItems(inst)
-    if inst.equipped then
-        local torches = inst.components.inventory:FindItems(function(item) return item.prefab == "torch" end)
-        for _, torch in ipairs(torches) do
-            torch.components.burnable.ignorefuel = true
-        end
-        local halberds = inst.components.inventory:FindItems(function(item) return item.prefab == "halberd" end)
-        for _, axe in ipairs(halberds) do
-            axe.components.finiteuses:SetIgnoreCombatDurabilityLoss(true)
-        end
-    else
-        inst.equipped = true
-
-        local torch = SpawnPrefab("torch")
-        torch.components.burnable.ignorefuel = true
-        inst.components.inventory:GiveItem(torch)
-
-        local axe = SpawnPrefab("halberd")
-        axe.components.finiteuses:SetIgnoreCombatDurabilityLoss(true)
-        inst.components.inventory:Equip(axe)
-
-        local armour = SpawnPrefab("armorwood")
-        inst.components.inventory:Equip(armour)
-    end
+local function NormalizeHammer(hammer, owner)
+    hammer.persists = true
 end
 
 local function OnDropItem(inst, data)
@@ -1024,15 +1004,13 @@ local function OnDropItem(inst, data)
 
     if item.prefab == "torch" then
         NormalizeTorch(item, inst)
-    end
-
-    if item.prefab == "halberd" then
+    elseif item.prefab == "halberd" then
         NormalizeHalberd(item, inst)
-    end
-
-    if item.prefab == "armorwood" then
+    elseif item.prefab == "armorwood" then
         local citypossession = item.components.citypossession or item:AddComponent("citypossession")
         citypossession:SetCity(inst.components.citypossession.cityID)
+    elseif item.prefab == "hammer" then
+        NormalizeHammer(item, inst)
     end
 end
 
@@ -1070,6 +1048,27 @@ local function OnIsDusk(inst, isdusk)
             inst.components.inventory:Equip(torch)
         end
     end)
+end
+
+local function EquipItems(inst)
+    local torch = SpawnPrefab("torch")
+    torch.components.burnable.ignorefuel = true
+    torch.persists = false
+    inst.components.inventory:GiveItem(torch)
+
+    local axe = SpawnPrefab("halberd")
+    axe.components.finiteuses:SetIgnoreCombatDurabilityLoss(true)
+    axe.persists = false
+    inst.components.inventory:Equip(axe)
+
+    if not inst.equipped then
+        inst.equipped = true
+        local armour = SpawnPrefab("armorwood")
+        inst.components.inventory:Equip(armour)
+    end
+
+    OnIsDay(inst, TheWorld.state.isday)
+    OnIsDusk(inst, TheWorld.state.isdusk)
 end
 
 local guard_brain = require("brains/royalpigguardbrain")
@@ -1158,6 +1157,7 @@ local function MechanicMasterPostinit(inst)
             tool.persists = false
         end
     end)
+    inst:ListenForEvent("dropitem", OnDropItem)
 end
 
 --[[ Pig Queen ]]--
