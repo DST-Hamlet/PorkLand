@@ -71,8 +71,6 @@ function Economy:MakeTrade(traderprefab, city, inst)
 end
 
 function Economy:ProcessDelays()
-    print("Resetting trade delays")
-
     for c, city in ipairs(self.cities) do
         for i, trader in pairs(city) do
             for guid, data in pairs(trader.GUIDS) do

@@ -80,7 +80,6 @@ local function Restock(inst, force)
         inst.components.shopped:SetCost("cost-nil", nil)
         inst:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_ROBBED")
     elseif force or (inst:IsAsleep() and not inst:HasTag("justsellonce") and (not inst.components.shopped:GetItemToSell() or math.random() < 0.16)) then
-        print("CHANGING ITEM")
         local newproduct = inst.saleitem or GetNewProduct(inst)
         SpawnInventory(inst, newproduct[1], newproduct[2], newproduct[3])
     end
