@@ -4,6 +4,18 @@ local AddRecipeFilter = AddRecipeFilter
 local AddPrototyperDef = AddPrototyperDef
 GLOBAL.setfenv(1, GLOBAL)
 
+local DISABLE_RECIPES = require("main/recipes_change").DISABLE_RECIPES
+
+local _GetValidRecipe = GetValidRecipe
+function GetValidRecipe(recname, ...)
+    local recipe = _GetValidRecipe(recname, ...)
+    if TheWorld and TheWorld:HasTag("porkland") and recipe and DISABLE_RECIPES[recipe] then
+        return
+    end
+
+    return recipe
+end
+
 local function SortRecipe(a, b, filter_name, offset)
     local filter = CRAFTING_FILTERS[filter_name]
     if filter and filter.recipes then
@@ -60,8 +72,6 @@ local function AddTech(name, bonus_available)
     rebuild_techtree(name)
 end
 
-AddTech("CITY", false)
-
 local function AquaticRecipe(name, data)
     if AllRecipes[name] then
         -- data = {distance=, shore_distance=, platform_distance=, shore_buffer_max=, shore_buffer_min=, platform_buffer_max=, platform_buffer_min=, aquatic_buffer_min=, noshore=}
@@ -99,6 +109,8 @@ local function telebase_testfn(pt, rot)
     end
     return true
 end
+
+AddTech("CITY", false)
 
 -- AddRecipeFilter(filter_def, index)
 -- index: insertion order

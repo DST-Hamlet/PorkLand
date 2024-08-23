@@ -130,6 +130,8 @@ local widget_posts = {
     "bloodover",
     "containerwidget",
     "craftingmenu_ingredients",
+    "craftingmenu_widget",
+    "grid",
     "inventorybar",
     "healthbadge",
     "seasonclock",
