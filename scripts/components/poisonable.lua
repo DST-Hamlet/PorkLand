@@ -357,8 +357,6 @@ function Poisonable:SpawnFX()
         return
     end
 
-    print("max_loop_level:",max_loop_level)
-
     self:KillFX()
 
     if not self.fxdata then
@@ -374,7 +372,6 @@ function Poisonable:SpawnFX()
             data.level = data.level or self:GetFXLevel()
             local loop = self.loop_fx and "_loop" or ""
             local fx = SpawnPrefab(data.prefab .. "_level" .. data.level .. loop)
-            print("spawn poison bubble!",fx)
 
             if fx then
                 fx.Transform:SetScale(self.inst.Transform:GetScale())
