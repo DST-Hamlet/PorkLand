@@ -216,8 +216,8 @@ end
 local function OnInit(inst)
     if inst.components.spawner
         and not inst.components.spawner.child
-        and inst.components.spawner.childname and
-        not inst.components.spawner:IsSpawnPending() then
+        and inst.components.spawner.childname
+        and not inst.components.spawner:IsSpawnPending() then
 
         local child = SpawnPrefab(inst.components.spawner.childname)
         if child then
@@ -236,7 +236,6 @@ local function OnBuilt(inst)
     ConfigureSpawner(inst, JoinArrays(city_citizens[1], city_citizens[2]))
 end
 
-
 local function OnSave(inst, data)
     if inst:HasTag("burnt") or inst:HasTag("fire") then
         data.burnt = true
@@ -247,6 +246,7 @@ local function OnSave(inst, data)
     data.color = inst.color
     if inst.components.spawner.childname then
         data.childname = inst.components.spawner.childname
+        data.delay = inst.components.spawner.delay
     end
     data.paytax = inst:HasTag("paytax")
     data.lasttaxday = inst.lasttaxday
@@ -271,7 +271,8 @@ local function OnLoad(inst, data)
             inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
         end
         if data.childname then
-            inst.components.spawner.childname = data.childname
+            inst.components.spawner:Configure(data.childname, data.delay or TUNING.PIGHOUSE_CITY_RESPAWNTIME)
+            inst.components.spawner:CancelSpawning()
         end
         if data.burnt then
             inst.components.burnable.onburnt(inst)
