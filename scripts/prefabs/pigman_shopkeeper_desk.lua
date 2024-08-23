@@ -8,11 +8,11 @@ local prefabs =
     "boards",
 }
 
-SetSharedLootTable('shopkeeper_desk',
+SetSharedLootTable("shopkeeper_desk",
 {
-    {'boards',  1.00},
-    {'boards',  1.00},
-    {'boards',  0.5},
+    {"boards", 1.00},
+    {"boards", 1.00},
+    {"boards", 0.5},
 })
 
 
@@ -39,6 +39,7 @@ local function desk(Sim)
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
+    inst.entity:AddNetwork()
 
     MakeObstaclePhysics(inst, .5)
 
@@ -53,7 +54,7 @@ local function desk(Sim)
     end
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetChanceLootTable('shopkeeper_desk')
+    inst.components.lootdropper:SetChanceLootTable("shopkeeper_desk")
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
