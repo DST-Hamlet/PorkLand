@@ -115,7 +115,7 @@ local function a_star(start, goal, grid, width, depth, ignorewalls) -- 亚丹：
                 table.insert(path, 1, {current.x, current.y})
                 current = current.parent
             end
-            print("searchtimes", 512 - max_search_times)
+            -- print("searchtimes", 512 - max_search_times)
             return path
         end
 

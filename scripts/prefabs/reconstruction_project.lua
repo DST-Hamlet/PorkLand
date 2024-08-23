@@ -6,7 +6,7 @@ local assets = {
 local REBUILD_REACTION_TIME = TUNING.SEG_TIME
 local REBUILD_REACTION_VARIANCE = TUNING.SEG_TIME
 
-local OFF_SCREENDIST = 30
+-- local OFF_SCREENDIST = 30
 local AUTO_REPAIRDIST = 100
 
 local function SetConstructionPrefabName(inst, name)
@@ -151,19 +151,19 @@ local function OnLoadPostPass(inst, newents, data)
     end
 end
 
-local function GetSpawnPoint(inst, pt)
-    local theta = math.random() * 2 * PI
-    local radius = OFF_SCREENDIST
+-- local function GetSpawnPoint(inst, pt)
+--     local theta = math.random() * 2 * PI
+--     local radius = OFF_SCREENDIST
 
-    local offset = FindWalkableOffset(pt, theta, radius, 12, true)
-    if offset then
-        local pos = pt + offset
-        local on_water = TheWorld.Map:IsWater(inst:GetCurrentTileType(pos:Get()))
-        if not on_water then
-            return pos
-        end
-    end
-end
+--     local offset = FindWalkableOffset(pt, theta, radius, 12, true)
+--     if offset then
+--         local pos = pt + offset
+--         local on_water = TheWorld.Map:IsWater(inst:GetCurrentTileType(pos:Get()))
+--         if not on_water then
+--             return pos
+--         end
+--     end
+-- end
 
 local function SetFixer(inst, fixer)
     fixer.components.fixer:SetTarget(inst)
@@ -187,16 +187,16 @@ local function SpawnFixer(inst)
             end, {"fixer"})
             if fixer then
                 SetFixer(inst, fixer)
-            else
-                local player = FindClosestPlayerToInstOnLand(inst, AUTO_REPAIRDIST_SQ)
-                if player then
-                    local spawn_pt = GetSpawnPoint(inst, player:GetPosition())
-                    if spawn_pt then
-                        local fixer = SpawnPrefab("pigman_mechanic")
-                        fixer.Physics:Teleport(spawn_pt:Get())
-                        SetFixer(inst, fixer)
-                    end
-                end
+            -- else
+            --     local player = FindClosestPlayerToInstOnLand(inst, AUTO_REPAIRDIST_SQ)
+            --     if player then
+            --         local spawn_pt = GetSpawnPoint(inst, player:GetPosition())
+            --         if spawn_pt then
+            --             local fixer = SpawnPrefab("pigman_mechanic")
+            --             fixer.Physics:Teleport(spawn_pt:Get())
+            --             SetFixer(inst, fixer)
+            --         end
+            --     end
             end
         end
     end
