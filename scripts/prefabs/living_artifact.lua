@@ -22,8 +22,8 @@ local function LoadPlayerData(player, data)
     player.AnimState:ClearOverrideBuild("living_suit_build_morph")
     player.AnimState:SetBuild(data.build)
     player.components.skinner:SetSkinName(data.skins.base, true)
-    for _, skin in pairs(data.skins) do
-        player.components.skinner:SetClothing(skin)
+    for skin_type, skin_name in pairs(data.skins) do
+        player.components.skinner:SetClothing(skin_name)
     end
 
     player.components.health.redirect = data.health_redirect
@@ -31,29 +31,6 @@ local function LoadPlayerData(player, data)
     -- Wagstaff stuff
     -- player.components.vision.nearsighted = data.wasnearsighted
     -- player.components.vision:CheckForGlasses()
-end
-
-local function drop_inventory_items(player)
-    local self = player.components.inventory
-    if self.activeitem then
-        self:DropItem(self.activeitem, true, true)
-        self:SetActiveItem(nil)
-    end
-
-    for k = 1, self.maxslots do
-        local v = self.itemslots[k]
-        if v and not (ondeath and v.components.inventoryitem.keepondeath) then
-            self:DropItem(v, true, true)
-        end
-    end
-
-        -- if self.inst.EmptyBeard ~= nil then
-        --     self.inst:EmptyBeard()
-        -- end
-
-    for k, v in pairs(self.equipslots) do
-        self:DropItem(v, true, true)
-    end
 end
 
 local function BecomeIronLord_post(inst)
