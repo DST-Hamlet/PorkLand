@@ -7,10 +7,7 @@ package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-    ["ROYAL_GALLERY"] = "ROYAL_GALLERY",
-    ["PEDESTAL_KEY"] = "PEDESTAL_KEY",
-    ["DISARM"] = "DISARM",
-    ["CUREPOISON"] = "CUREPOISON",
+    ["CITY_PIG_TALK_REFUSE_PURPLEGEM"] = "CITY_PIG_TALK_REFUSE_PURPLEGEM",
     --MOONDIAL
 }
 
