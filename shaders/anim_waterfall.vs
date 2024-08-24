@@ -12,7 +12,7 @@ attribute vec4 POS2D_UV;                  // x, y, u + samplerIndex * 2, v
 varying vec3 PS_TEXCOORD;
 varying vec3 PS_POS;
 
-const float INDEX_SIZE = 9.0;
+const float INDEX_SIZE = 9.0; // 预留的顶点数据数量
 
 vec3 WaterfallOffset[int(INDEX_SIZE)];
 
@@ -27,18 +27,18 @@ void init() // 猪咪手算顶点核心科技
     WaterfallOffset[4] = vec3(2.536, -2.06, 0.); // 0.123904 + 1.721344 = 1.3584 ^ 2
     WaterfallOffset[5] = vec3(2.56, -5.56, 0.); // 0.000576 + 12.25 = 3.5001 ^ 2
 	WaterfallOffset[6] = vec3(2.56, -10.56, 0.); // 5
-    WaterfallOffset[7] = vec3(0., 0., 0.);
-    WaterfallOffset[8] = vec3(0., 0., 0.);
+    WaterfallOffset[7] = vec3(2.56, -15.56, 0.); // 5
+    WaterfallOffset[8] = vec3(2.56, -20.56, 0.); // 5
 
-	UVOffset[0] = 0.0;
-	UVOffset[1] = 1.28;
-	UVOffset[2] = 1.8059;
-	UVOffset[3] = 2.4971;
-	UVOffset[4] = 3.8555;
-	UVOffset[5] = 7.3556;
-	UVOffset[6] = 12.3556;
-	UVOffset[7] = 13.3556;
-	UVOffset[6] = 14.3556;
+	UVOffset[0] = 0.0; // scale
+	UVOffset[1] = 1.706667; // 0.75
+	UVOffset[2] = 2.325373; // 0.85
+	UVOffset[3] = 3.016573; // 1
+	UVOffset[4] = 4.103293; // 1.25
+	UVOffset[5] = 6.436693; // 1.5
+	UVOffset[6] = 8.936693; // 2
+	UVOffset[7] = 11.436693; // 2
+	UVOffset[6] = 13.936693; // 2
 }
 
 void main()
@@ -65,12 +65,12 @@ void main()
 
 	vec3 origin = vec3(X, 0, Z);
 	vec3 offset = world_pos.xyz - origin;
-	int waterfall_index = int(offset.x * 0.25 + 0.1);
+	int waterfall_index = int(offset.x * 0.25 + 0.1); // 根据顶点位置得到对应的顶点序号
 	float old_x = offset.x;
 	offset += WaterfallOffset[waterfall_index];
 	offset -= vec3(old_x, 0., 0.);
 	
-	vec3 offset_trans_3 = offset;
+	vec3 offset_trans_3 = offset * rot;
 	world_pos.xyz = offset_trans_3 + origin;
 
 	mat4 mtxPV = MatrixP * MatrixV;

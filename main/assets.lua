@@ -324,7 +324,7 @@ Assets = {
 
     -- Waterfall
     Asset("SHADER", "shaders/anim_waterfall.ksh"),
-    Asset("SHADER", "shaders/anim_waterfall_alpha.ksh"),
+    Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
 
     -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
