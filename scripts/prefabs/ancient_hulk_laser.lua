@@ -73,7 +73,7 @@ local function LaserAOE(inst, targets, skiptoss)
 
     local x, y, z = inst.Transform:GetWorldPosition()
     if inst.AnimState ~= nil then
-        inst.AnimState:PlayAnimation("hit_"..tostring(math.random(5)))
+        inst.AnimState:PlayAnimation("hit_" .. tostring(math.random(5)))
         inst:Show()
         inst:DoTaskInTime(inst.AnimState:GetCurrentAnimationLength() + 2 * FRAMES, inst.Remove)
 
@@ -123,10 +123,10 @@ local function common_fn(isempty)
         inst.AnimState:SetLightOverride(1)
 
         inst.entity:AddLight()
-        inst.Light:SetIntensity(.6)
+        inst.Light:SetIntensity(0.6)
         inst.Light:SetRadius(1)
-        inst.Light:SetFalloff(.7)
-        inst.Light:SetColour(1, .2, .3)
+        inst.Light:SetFalloff(0.7)
+        inst.Light:SetColour(1, 0.2, 0.3)
         inst.Light:Enable(false)
     end
 

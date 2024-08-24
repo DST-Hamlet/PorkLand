@@ -1911,6 +1911,7 @@ local states = {
         {
             EventHandler("animqueueover", function(inst)
                 inst.sg:GoToState("ironlord_idle")
+                inst:PushEvent("start_ironlord_music")
             end),
         },
 
@@ -2375,6 +2376,15 @@ AddStategraphPostInit("wilson", function(sg)
     end
 
     local _attacked_eventhandler = sg.events.attacked.fn
+
+    local _DoHurtSound = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
+    ToolUtil.SetUpvalue(_attacked_eventhandler, function(inst)
+        if inst:HasTag("ironlord") then
+            return
+        end
+        _DoHurtSound(inst)
+    end, "DoHurtSound")
+
     sg.events.attacked.fn = function(inst, data)
         if inst:HasTag("ironlord") then
             if inst.sg.currentstate.name == "idle" or inst.sg.currentstate.name == "ironlord_idle" then
