@@ -63,6 +63,7 @@ local function banditmapfn()
 
     -- waterproofer (from waterproofer component) added to pristine state for optimization
     inst:AddTag("waterproofer")
+    inst:AddTag("treasuremap")
 
     inst.no_wet_prefix = true
 
