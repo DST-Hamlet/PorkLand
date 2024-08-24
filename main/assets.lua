@@ -232,6 +232,9 @@ PrefabFiles = {
 
     "waterfall_lilypond",
 
+    "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗
+    "inv_bamboo",
+  
     "roc_nest",
     "ro_bin_egg",
     "ro_bin_gizzard_stone",

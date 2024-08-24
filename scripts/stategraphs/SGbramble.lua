@@ -14,9 +14,9 @@ local states =
 
         onenter = function(inst, push_anim)
             if push_anim then
-                inst.AnimState:PushAnimation("idle")
+                inst.AnimState:PushAnimation("idle", false)
             else
-                inst.AnimState:PlayAnimation("idle")
+                inst.AnimState:PlayAnimation("idle", false)
             end
         end
     },

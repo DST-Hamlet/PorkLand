@@ -66,6 +66,9 @@ local actionhandlers = {
             inst.sg.mem.shootpos = action:GetActionPoint()
         end
     end),
+    ActionHandler(ACTIONS.GAS, function(inst)
+        return "crop_dust"
+    end),
 }
 
 local eventhandlers = {
@@ -776,6 +779,39 @@ local states = {
                 inst.replica.combat:CancelAttack()
             end
         end,
+    },
+
+    State{
+        name = "crop_dust",
+        tags = {"busy", "canrotate"},
+        server_states = {"crop_dust"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+
+            inst.AnimState:PlayAnimation("cropdust_pre")
+            inst.AnimState:PushAnimation("cropdust_loop")
+
+            inst:PerformPreviewBufferedAction()
+            inst.sg:SetTimeout(TIMEOUT)
+        end,
+
+        onupdate = function(inst)
+			if inst.sg:ServerStateMatches() then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.AnimState:PlayAnimation("cropdust_pst")
+                inst.sg:GoToState("idle", true)
+            end
+        end,
+
+        ontimeout = function(inst)
+            inst:ClearBufferedAction()
+            inst.AnimState:PlayAnimation("cropdust_pst")
+            inst.sg:GoToState("idle", true)
+        end
     },
 }
 

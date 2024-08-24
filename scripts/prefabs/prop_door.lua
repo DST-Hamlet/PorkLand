@@ -209,7 +209,7 @@ local function OnSave(inst, data)
     data.guard_entrance = inst:HasTag("guard_entrance")
     data.lockable_door = inst:HasTag("lockable_door")
     data.roc_cave_delete_me = inst:HasTag("roc_cave_delete_me")
-    data.ruins_entrance = inst:HasTag("ruins_entrance")
+    data.ruins_exit = inst:HasTag("ruins_exit")
     data.secret = inst:HasTag("secret")
     data.shop_music = inst:HasTag("shop_music")
     data.timechange_anims = inst:HasTag("timechange_anims")
@@ -273,7 +273,7 @@ local function OnLoad(inst, data)
         inst:AddTag("guard_entrance")
     end
     if data.ruins_entrance then
-        inst:AddTag("ruins_entrance")
+        inst:AddTag("ruins_exit")
     end
     if data.shop_music then
         inst:AddTag("shop_music")

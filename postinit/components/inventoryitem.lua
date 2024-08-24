@@ -115,7 +115,7 @@ function SinkEntity(entity, ...)
         entity.components.container:DropEverything()
     end
 
-    local fx = SpawnPrefab((TheWorld.Map:IsValidTileAtPoint(px, py, pz) and "splash_sink") or "splash_clouds_drop")
+    local fx = SpawnPrefab((TheWorld.Map:IsImpassableAtPoint(px, py, pz) and "splash_clouds_drop") or "splash_sink")
     fx.Transform:SetPosition(px, py, pz)
 
     -- If the entity is irreplaceable, respawn it at the player

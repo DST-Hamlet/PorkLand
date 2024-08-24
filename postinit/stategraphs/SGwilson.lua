@@ -2369,7 +2369,7 @@ AddStategraphPostInit("wilson", function(sg)
     local _teach_deststatae = sg.actionhandlers[ACTIONS.TEACH].deststate
     sg.actionhandlers[ACTIONS.TEACH].deststate = function(inst, ...)
         local buffaction = inst:GetBufferedAction()
-        if buffaction and buffaction.invobject then
+        if buffaction and buffaction.invobject and buffaction.invobject:HasTag("treasuremap") then
             return "map"
         end
         return _teach_deststatae(inst, ...)

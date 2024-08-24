@@ -5,7 +5,7 @@ local AddStategraphActionHandler = AddStategraphActionHandler
 local AddStategraphPostInit = AddStategraphPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
--- local TIMEOUT = 2
+local TIMEOUT = 2
 
 local actionhandlers = {
     ActionHandler(ACTIONS.USEDOOR, "usedoor_pre"),
