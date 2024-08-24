@@ -389,9 +389,9 @@ local function OnUsedDoor(player, data)
         return
     end
 
-    if data.door:HasTag("ruins_entrance") then -- the tags are the wrong way round...
+    if data.door:HasTag("ruins_exit") then
         StopPlayingTone("ruins")
-    elseif data.door:HasTag("ruins_exit") then
+    elseif data.door:HasTag("ruins_entrance") then
         StartPigRuinsTone(player)
     elseif data.door:HasTag("shop_music") then
         if data.exterior then
