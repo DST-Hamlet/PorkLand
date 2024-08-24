@@ -39,7 +39,9 @@ local function OnWorkCallback(inst, worker)
     inst.AnimState:PlayAnimation(inst.animname .. "_hit")
     inst.AnimState:PushAnimation(inst.animname)
 
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")
+    if inst.action_type and inst.action_type == ACTIONS.CHOP then
+        inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")
+    end
 end
 
 local function OnFinishCallback(inst, worker)
@@ -122,6 +124,8 @@ local function MakeDecor(name, build, anim, action, loot, numrandomloot, minimap
         if not TheWorld.ismastersim then
             return inst
         end
+
+        inst.action_type = action
 
         if action == ACTIONS.HAMMER or action == ACTIONS.CHOP or action == ACTIONS.MINE then
             inst:AddComponent("workable")
