@@ -231,6 +231,12 @@ PrefabFiles = {
     "gnatmound",
 
     "waterfall_lilypond",
+
+    "roc_nest",
+    "ro_bin_egg",
+    "ro_bin_gizzard_stone",
+    "ro_bin",
+    "pig_scepter",
 }
 
 Assets = {

@@ -618,6 +618,8 @@ local tuning = {
     RAINFOREST_CANOPY_SCALE = 6,                    -- scale for the texture
     RAINFOREST_CANOPY_MIN_STRENGTH = 0.2,           -- blend min strength - modulated with avg ambient
     RAINFOREST_CANOPY_MAX_STRENGTH = 0.7,           -- blend max strength - modulated with avg ambient
+
+    ROBIN_HATCH_TIME = total_day_time * 3,
 }
 
 
