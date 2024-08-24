@@ -8,12 +8,10 @@ local DISABLE_RECIPES = require("main/recipes_change").DISABLE_RECIPES
 
 local _GetValidRecipe = GetValidRecipe
 function GetValidRecipe(recname, ...)
-    local recipe = _GetValidRecipe(recname, ...)
-    if TheWorld and TheWorld:HasTag("porkland") and recipe and DISABLE_RECIPES[recipe] then
+    if TheWorld and TheWorld:HasTag("porkland") and DISABLE_RECIPES[recname] then
         return
     end
-
-    return recipe
+    return _GetValidRecipe(recname, ...)
 end
 
 local function SortRecipe(a, b, filter_name, offset)

@@ -1,5 +1,5 @@
 local DISABLE_RECIPES = {
-
+    boat_item = true,
 }
 
 local DISABLE_CRAFTING_FILTERS = {
