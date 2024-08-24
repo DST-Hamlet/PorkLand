@@ -208,11 +208,11 @@ local function build_porkland(entities, topology_save, map_width, map_height, cu
         entities["randomdust"] = nil
     end
 
-    -- if entities["pig_scepter"] then
-    --     while #entities["pig_scepter"] > 1 do
-    --         table.remove(entities["pig_scepter"], math.random(1, #entities["pig_scepter"]))
-    --     end
-    -- end
+    if entities["pig_scepter"] then
+        while #entities["pig_scepter"] > 1 do
+            table.remove(entities["pig_scepter"], math.random(1, #entities["pig_scepter"]))
+        end
+    end
 
     make_bramble_sites(entities, topology_save, map_width, map_height)
 end
