@@ -31,3 +31,5 @@ AddIngredientValues({"slugbug"}, {bug=1}, true)
 AddIngredientValues({"radish", "aloe"}, {veggie=1}, true)
 
 AddIngredientValues({"foliage"}, {veggie=1})
+
+AddIngredientValues({"cutnettle"}, {antihistamine=1})
