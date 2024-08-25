@@ -6,10 +6,10 @@ local function en_zh(en, zh) -- Other languages don't work
 end
 
 name = "Above the Clouds"
-author = "Jerry"
-description = "WIP"
+author = "Jerry, Tony, ziwbi, 亚丹, 鲁鲁, 小巫, 每年睡8760小时"
+description = "*警告：本mod仍在技术测试阶段，无法保证游玩体验*"
 
-version = "0.0.1"
+version = "0.0.4"
 forumthread = ""
 api_version = 10
 api_version_dst = 10
@@ -23,7 +23,7 @@ all_clients_require_mod = true
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
-server_filter_tags = { "Hamlet", "Porkland" }
+server_filter_tags = { "Hamlet", "Porkland", "哈姆雷特", "猪镇" }
 
 folder_name = folder_name or "workshop-"
 if not folder_name:find("workshop-") then

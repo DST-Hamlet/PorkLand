@@ -74,6 +74,7 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "birdcage",
     "boomerang",
     "buff_workeffectiveness",
     "grass",
@@ -105,6 +106,7 @@ local multipleprefab_posts = {
     "health",
     "notraptrigger",
     "poisonable",
+    "seeds",
 }
 
 local scenario_posts = {

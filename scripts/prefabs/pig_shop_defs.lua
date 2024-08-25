@@ -35,7 +35,7 @@ local SHOPTYPES = {
         { "watermelon_seeds",   "oinc", 1  },
         { "flowerhat",          "oinc", 2  },
         { "acorn",              "oinc", 1  },
-        { "pinecone",           "oinc", 1  },
+        -- { "pinecone",           "oinc", 1  },
         { "dug_berrybush2",     "oinc", 2  },
         { "dug_berrybush",      "oinc", 2  },
     },
@@ -80,7 +80,7 @@ local SHOPTYPES = {
     pig_shop_produce = {
         { "berries",            "oinc", 1  },
         { "watermelon",         "oinc", 1  },
-        { "sweet_potato",       "oinc", 1  },
+        -- { "sweet_potato",       "oinc", 1  },
         { "carrot",             "oinc", 1  },
         { "drumstick",          "oinc", 2  },
         { "eggplant",           "oinc", 2  },
@@ -89,7 +89,7 @@ local SHOPTYPES = {
         { "meat",               "oinc", 5  },
         { "pomegranate",        "oinc", 1  },
         { "cave_banana",        "oinc", 1  },
-        { "coconut",            "oinc", 3  },
+        -- { "coconut",            "oinc", 3  },
         { "froglegs",           "oinc", 2  },
     },
 

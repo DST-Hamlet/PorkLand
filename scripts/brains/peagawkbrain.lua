@@ -8,7 +8,7 @@ local BrainCommon = require("brains/braincommon")
 
 local STOP_RUN_DIST = 20
 local SEE_PLAYER_DIST = 8
-local HIDE_PLAYER_DIST = 16
+local HIDE_PLAYER_DIST = 8
 
 local SEE_FOOD_DIST = 20
 -- local SEE_BUSH_DIST = 40

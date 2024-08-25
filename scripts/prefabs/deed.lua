@@ -32,6 +32,8 @@ local function fn(inst)
     inst.AnimState:SetBuild("deed")
     inst.AnimState:PlayAnimation("idle")
 
+    inst:AddTag("treasuremap")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

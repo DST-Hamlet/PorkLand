@@ -79,6 +79,7 @@ local function MakePreparedFood(data)
 
         inst.yotp_override = data.yotp
         if inst.yotp_override then
+            inst:SetPrefabName(data.name) -- For inst.prefab used in OnFiestaChange
             inst.OnFiestaChange = function(src, isfiesta) OnFiestaChange(inst, isfiesta) end
             inst:WatchWorldState("fiestachange", inst.OnFiestaChange)
             OnFiestaChange(inst, TheWorld.state.isfiesta)

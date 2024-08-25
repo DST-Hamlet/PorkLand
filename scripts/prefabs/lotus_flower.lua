@@ -83,8 +83,6 @@ local function cooked_fn()
     inst.AnimState:SetBuild("lotus")
     inst.AnimState:PlayAnimation("cooked")
 
-    inst.entity:SetPristine()
-
     if not TheWorld.ismastersim then
         return inst
     end

@@ -27,7 +27,7 @@ end
 
 local KeepOnPassable = Class(function(self, inst)
     self.inst = inst
-    self.period = 60
+    self.period = inst:IsAsleep() and 60 or 0.5
 
     self:Schedule()
 end)

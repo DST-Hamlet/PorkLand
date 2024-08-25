@@ -1911,6 +1911,7 @@ local states = {
         {
             EventHandler("animqueueover", function(inst)
                 inst.sg:GoToState("ironlord_idle")
+                inst:PushEvent("start_ironlord_music")
             end),
         },
 
@@ -2368,13 +2369,22 @@ AddStategraphPostInit("wilson", function(sg)
     local _teach_deststatae = sg.actionhandlers[ACTIONS.TEACH].deststate
     sg.actionhandlers[ACTIONS.TEACH].deststate = function(inst, ...)
         local buffaction = inst:GetBufferedAction()
-        if buffaction and buffaction.invobject then
+        if buffaction and buffaction.invobject and buffaction.invobject:HasTag("treasuremap") then
             return "map"
         end
         return _teach_deststatae(inst, ...)
     end
 
     local _attacked_eventhandler = sg.events.attacked.fn
+
+    local _DoHurtSound = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
+    ToolUtil.SetUpvalue(_attacked_eventhandler, function(inst)
+        if inst:HasTag("ironlord") then
+            return
+        end
+        _DoHurtSound(inst)
+    end, "DoHurtSound")
+
     sg.events.attacked.fn = function(inst, data)
         if inst:HasTag("ironlord") then
             if inst.sg.currentstate.name == "idle" or inst.sg.currentstate.name == "ironlord_idle" then

@@ -941,7 +941,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             angle = 0,
             addtags = {
                 "timechange_anims",
-                "ruins_entrance"
+                "ruins_exit"
             },
         }
     end
@@ -966,7 +966,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             angle = 0,
             addtags = {
                 "timechange_anims",
-                "ruins_entrance"
+                "ruins_exit"
             },
         }
     end

@@ -218,6 +218,7 @@ local function MakeStump(inst)
     inst:RemoveTag("shelter")
 
     inst:RemoveComponent("burnable")
+    inst:RemoveComponent("bloomable")
     inst:RemoveComponent("propagator")
     inst:RemoveComponent("workable")
     inst:RemoveComponent("blowinwindgust")
@@ -242,7 +243,7 @@ local function MakeStump(inst)
 end
 
 local function drop_burr(inst,pt)
-    if inst.components.bloomable.blooming then
+    if inst.components.bloomable and inst.components.bloomable.blooming then
         local num_seeds = inst.components.growable.stage == 3 and 2 or 1
 
         for i = 1, num_seeds do
@@ -312,6 +313,7 @@ end
 local function OnBurntChanges(inst)
     inst:RemoveTag("shelter")
 
+    inst:RemoveComponent("bloomable")
     inst:RemoveComponent("growable")
     inst:RemoveComponent("burnable")
     inst:RemoveComponent("propagator")

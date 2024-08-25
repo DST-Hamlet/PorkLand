@@ -133,7 +133,6 @@ local function fn()
     inst.Transform:SetFourFaced()
 
     MakeCharacterPhysics(inst, 1, 0.5)
-    MakePoisonableCharacter(inst)
 
     inst.AnimState:SetBank("pog")
     inst.AnimState:SetBuild("pog_actions")
@@ -216,6 +215,7 @@ local function fn()
     MakeHauntablePanic(inst)
     MakeSmallBurnableCharacter(inst, "pog_chest", Vector3(1, 0, 1))
     MakeSmallFreezableCharacter(inst)
+    MakePoisonableCharacter(inst)
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGpog")

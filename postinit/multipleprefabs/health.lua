@@ -6,7 +6,8 @@ local function Init(inst)
         return
     end
 
-    inst:AddComponent("keeponpassable")
+    -- Disable for now for performance reason and also player might get squeezed out of world bound
+    -- inst:AddComponent("keeponpassable")
 end
 
 AddComponentPostInit("health", function(self)

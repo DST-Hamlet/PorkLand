@@ -229,6 +229,17 @@ PrefabFiles = {
 
     "gnat",
     "gnatmound",
+
+    "waterfall_lilypond",
+
+    "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗
+    "inv_bamboo",
+  
+    "roc_nest",
+    "ro_bin_egg",
+    "ro_bin_gizzard_stone",
+    "ro_bin",
+    "pig_scepter",
 }
 
 Assets = {
@@ -319,6 +330,10 @@ Assets = {
 
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
+
+    -- Waterfall
+    Asset("SHADER", "shaders/anim_waterfall.ksh"),
+    Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
 
     -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
