@@ -360,3 +360,9 @@ function HandleDugGround(dug_ground, x, y, z, ...)
         return _HandleDugGround(dug_ground, x, y, z, ...)
     end
 end
+
+function IsPlayerInAntDisguise(player)
+    return (player.components.inventory and (player.components.inventory:EquipHasTag("antmask") and player.components.inventory:EquipHasTag("antsuit")))
+        or (player.replica.inventory and (player.replica.inventory:EquipHasTag("antmask") and player.replica.inventory:EquipHasTag("antsuit")))
+        or false
+end

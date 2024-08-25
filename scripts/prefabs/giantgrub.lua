@@ -28,7 +28,7 @@ local function CanBeAttacked(inst, attacker)
 end
 
 local function IsPreferedTarget(target)
-    return (target:HasTag("has_antmask") and target:HasTag("has_antsuit")) or (target.prefab == "antman")
+    return IsPlayerInAntDisguise(target) or (target.prefab == "antman")
 end
 
 local RETARGET_DIST = 10

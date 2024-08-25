@@ -662,16 +662,6 @@ local function MakeHat(name)
 
     -----------------------------------------------------------------------------
 
-    local function antmask_onequip(inst, owner)
-        _onequip(inst, owner)
-        inst:AddTag("has_antmask")
-    end
-
-    local function antmask_onunequip(inst, owner)
-        _onequip(inst, owner)
-        inst:RemoveTag("has_antmask")
-    end
-
     local function antmask_onupdate(inst)
         inst.components.armor:SetPercent(inst.components.fueled:GetPercent())
     end
@@ -694,9 +684,6 @@ local function MakeHat(name)
         if not TheWorld.ismastersim then
             return inst
         end
-
-        inst.components.equippable:SetOnEquip(antmask_onequip)
-        inst.components.equippable:SetOnUnequip(antmask_onunequip)
 
         inst:AddComponent("armor")
         inst.components.armor:InitCondition(TUNING.ARMOR_FOOTBALLHAT, TUNING.ARMOR_FOOTBALLHAT_ABSORPTION)

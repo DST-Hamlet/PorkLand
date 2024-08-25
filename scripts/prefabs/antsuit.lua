@@ -6,13 +6,11 @@ local assets =
 local function OnEquip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_body", "antsuit", "swap_body")
     inst.components.fueled:StartConsuming()
-    owner:AddTag("has_antsuit")
 end
 
 local function OnUnequip(inst, owner)
     owner.AnimState:ClearOverrideSymbol("swap_body")
     inst.components.fueled:StopConsuming()
-    owner:RemoveTag("has_antsuit")
 end
 
 local function FueledUpdateFn(inst)

@@ -627,6 +627,24 @@ local tuning = {
     GIANT_GRUB_ATTACK_PERIOD = 3,
     GIANT_GRUB_ATTACK_RANGE = 3,
     GIANT_GRUB_TARGET_DIST = 25,
+
+    ANTMAN_DAMAGE = wilson_attack * 2/3,
+    ANTMAN_HEALTH = 250,
+    ANTMAN_ATTACK_PERIOD = 3,
+    ANTMAN_TARGET_DIST = 16,
+    ANTMAN_LOYALTY_MAXTIME = 2.5 * total_day_time,
+    ANTMAN_LOYALTY_PER_HUNGER = total_day_time / 25,
+    ANTMAN_MIN_POOP_PERIOD = seg_time * 0.5,
+
+    ANTMAN_RUN_SPEED = 5,
+    ANTMAN_WALK_SPEED = 3,
+
+    ANTMAN_MIN = 3,
+    ANTMAN_MAX = 4,
+    ANTMAN_REGEN_TIME = seg_time * 4,
+    ANTMAN_RELEASE_TIME = seg_time,
+
+    ANTMAN_ATTACK_ON_SIGHT_DIST = 4,
 }
 
 
