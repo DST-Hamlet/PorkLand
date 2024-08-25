@@ -299,6 +299,7 @@ return {
             GENERIC = "Ye live off'th'ocean too?",
             SLEEPING = "'Tis not on watch.",
         },
+        LAVAPOOL = "Hope me legs don't catch.",
         LAWNORNAMENT = {
             BURNING = "Ablaze!",
             BURNT = "Tha hull be burnt'out.",

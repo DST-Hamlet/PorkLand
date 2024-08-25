@@ -300,6 +300,7 @@ return {
             GENERIC = "MARRY, BUT IT HATH A BIG BEAK!",
             SLEEPING = "SUCH STUFFS AS DREAMS ARE MADE ON",
         },
+        LAVAPOOL = "'TIS WATER O' FWOOSHINESS",
         LAWNORNAMENT = {
             BURNING = "'TIS FWOOSHING!",
             BURNT = "FWOOSH'DED BITS",

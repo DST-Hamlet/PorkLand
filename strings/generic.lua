@@ -300,6 +300,7 @@ return {
             GENERIC = "What a pointy bill!",
             SLEEPING = "In a slumber.",
         },
+        LAVAPOOL = "A bit hot for my tastes.",
         LAWNORNAMENT = {
             BURNING = "Take that, gratuitous decoration!",
             BURNT = "Well, it's gone now.",

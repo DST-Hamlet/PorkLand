@@ -194,6 +194,7 @@ return {
             GENERIC = "Oh, a fisher bird!",
             SLEEPING = "Sleeping on the job.",
         },
+        LAVAPOOL = "Molten lava, stand back!",
         LAWNORNAMENT = {
             BURNING = "It's fire!",
             BURNT = "Maybe next time better.",

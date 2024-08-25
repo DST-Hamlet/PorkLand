@@ -184,6 +184,7 @@ return {
             GENERIC = "Bad bird! Get away from them!",
             SLEEPING = "Sleepy bad bird.",
         },
+        LAVAPOOL = "Too hot for swimming, florp!",
         LAWNORNAMENT = {
             BURNING = "Small tree is fire!",
             BURNT = "No more pretty small tree.",
