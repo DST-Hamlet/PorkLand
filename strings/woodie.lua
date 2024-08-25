@@ -299,6 +299,7 @@ return {
             GENERIC = "Looks shifty.",
             SLEEPING = "Hope he stays that way.",
         },
+        LAVAPOOL = "I'm breaking a sweat just looking at it.",
         LAWNORNAMENT = {
             BURNING = "That ain't long for this world.",
             BURNT = "Burnt right down.",

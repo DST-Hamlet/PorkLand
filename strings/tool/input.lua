@@ -7,7 +7,17 @@ package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-    ["CITY_PIG_TALK_REFUSE_PURPLEGEM"] = "CITY_PIG_TALK_REFUSE_PURPLEGEM",
+    ["HOME_MISC"] = "HOME_MISC",
+    ["HOME_COLUMN"] = "HOME_COLUMN",
+    ["HOME_RUG"] = "HOME_RUG",
+    ["HOME_HANGINGLAMP"] = "HOME_HANGINGLAMP",
+    ["HOME_LAMP"] = "HOME_LAMP",
+    ["HOME_PLANTHOLDER"] = "HOME_PLANTHOLDER",
+    ["HOME_FURNITURE"] = "HOME_FURNITURE",
+    ["HOME_WALL_DECORATION"] = "HOME_WALL_DECORATION",
+    ["HOME_WALLPAPER"] = "HOME_WALLPAPER",
+    ["HOME_FLOOR"] = "HOME_FLOOR",
+    ["HOME_DOOR"] = "HOME_DOOR",
     --MOONDIAL
 }
 

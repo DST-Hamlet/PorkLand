@@ -299,6 +299,7 @@ return {
             GENERIC = "A BIRD WITH LARGE BEAK MECHANISM",
             SLEEPING = "IDLE",
         },
+        LAVAPOOL = "VOLCANIC FIRE DEPOSIT",
         LAWNORNAMENT = {
             BURNING = "RADIANT YET STILL REDUNDANT",
             BURNT = "THE FIRE IS TERMINATED",

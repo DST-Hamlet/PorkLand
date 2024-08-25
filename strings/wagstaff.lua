@@ -304,6 +304,7 @@ return {
             GENERIC = "That remarkable beak would be excellent for crushing seeds.",
             SLEEPING = "The bird appears to be in some kind of sonamolant state.",
         },
+        LAVAPOOL = "Appears to have erupted from a creature, not the earth's core.",
         LAWNORNAMENT = {
             BURNING = "A delightful demonstration of combustion!",
             BURNT = "Presumably it was once not burnt.",

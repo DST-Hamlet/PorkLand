@@ -1445,6 +1445,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "In a slumber."
 msgstr "处在睡梦中。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LAVAPOOL"
+msgid "A bit hot for my tastes."
+msgstr "对我来说有点热。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "Take that, gratuitous decoration!"
@@ -4540,6 +4545,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "The bird appears to be in some kind of sonamolant state."
 msgstr "这只鸟正处于某种休眠状态。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LAVAPOOL"
+msgid "Appears to have erupted from a creature, not the earth's core."
+msgstr "似乎这是一个生物制造的，不是地壳中的岩浆。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "A delightful demonstration of combustion!"
@@ -7610,6 +7620,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "How do you sleep like that without falling over?"
 msgstr "你是怎样做到像那样睡觉而不摔倒的？"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LAVAPOOL"
+msgid "It's like a gooey campfire!"
+msgstr "就像一堆黏乎乎的营火！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "Who would do such a thing?"
@@ -10120,6 +10135,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Shhh, be quiet."
 msgstr "嘘，安静。"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LAVAPOOL"
+msgid "Yep, that's toasty alright."
+msgstr "是的，用那个烤暖没问题。"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "No fires on the lawn!"
@@ -12204,6 +12224,11 @@ msgstr "某种会捕鱼的鸟。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "It is asleep."
 msgstr "它在睡觉。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LAVAPOOL"
+msgid "It seems like a quick way to burn myself."
+msgstr "这似乎是一种快速烧伤自己的方法。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.LAWNORNAMENT.BURNING"
@@ -14969,6 +14994,11 @@ msgstr "那个喙非常适用于猎食。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "In a food coma, perhaps."
 msgstr "也许，它正餐后犯懒着呢。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LAVAPOOL"
+msgid "Spicy!"
+msgstr "好热！"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.LAWNORNAMENT.BURNING"
@@ -18025,6 +18055,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "It sleeps."
 msgstr "它睡着了。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LAVAPOOL"
+msgid "A puddle of fire!"
+msgstr "一滩火！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "Ablaze!"
@@ -21064,6 +21099,11 @@ msgstr "一个相当大的下颌骨。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Dormancy becomes it."
 msgstr "休眠了。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LAVAPOOL"
+msgid "Exceptionally toasty."
+msgstr "非常温暖。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.LAWNORNAMENT.BURNING"
@@ -24120,6 +24160,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "How does he sleep without tipping over?"
 msgstr "他是怎么不翻身就睡着的?"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LAVAPOOL"
+msgid "Blazing hot!"
+msgstr "好炎热！"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "It's on fire!"
@@ -27159,6 +27204,11 @@ msgstr "你的锋利的喙也许会从深海中把我刺穿。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "It slumbers, for now."
 msgstr "它在睡觉，起码现在是。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LAVAPOOL"
+msgid "This pool churns with the volcano's anger!"
+msgstr "这个池子翻搅着火山的愤怒！"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.LAWNORNAMENT.BURNING"
@@ -30230,6 +30280,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Like me, it probably dreams of flying."
 msgstr "就像我一样，它大概在睡梦中做着飞翔的梦。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LAVAPOOL"
+msgid "Swell. I'll just dip my toe in to test the temperature."
+msgstr "好吧。想测试温度的话我只要把脚伸进去蘸一下就行了。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "Finally we have proof that trees will burn."
@@ -33280,6 +33335,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Sleeping."
 msgstr "睡着了。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LAVAPOOL"
+msgid "I won't be wading in that pool."
+msgstr "我不会蹚过那个池子。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "Enkindled."
@@ -36324,6 +36384,11 @@ msgstr "与翠国王成婚吗，但它太吵闹了！"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "SUCH STUFFS AS DREAMS ARE MADE ON"
 msgstr "构成我们的材料也就是构成梦幻的材料"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LAVAPOOL"
+msgid "'TIS WATER O' FWOOSHINESS"
+msgstr "这是滚烫的火水"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.LAWNORNAMENT.BURNING"
@@ -39380,6 +39445,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "I should catch it while its guard is down."
 msgstr "我应该趁它放松警惕时抓住它。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LAVAPOOL"
+msgid "What marvelous heat and fury!"
+msgstr "多么惊人的热与怒！"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "It looks better this way."
@@ -41890,6 +41960,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Sleeping on the job."
 msgstr "干活时睡觉。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LAVAPOOL"
+msgid "Molten lava, stand back!"
+msgstr "炽热的熔岩，站后点！"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "It's fire!"
@@ -44159,6 +44234,11 @@ msgstr "小小的鸟有一张大大的嘴。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Shhh. Skinny bird is sleep."
 msgstr "嘘。小小的鸟在睡觉呢。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LAVAPOOL"
+msgid "Sad. I forget swim trunks."
+msgstr "可惜。我忘了带游泳裤。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.LAWNORNAMENT.BURNING"
@@ -47200,6 +47280,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Hope he stays that way."
 msgstr "甜蜜的梦乡。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LAVAPOOL"
+msgid "I'm breaking a sweat just looking at it."
+msgstr "只是看着它就让我满身大汗。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "That ain't long for this world."
@@ -50234,6 +50319,11 @@ msgstr "你也生活在海上吗？"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "'Tis not on watch."
 msgstr "它没有防备了。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LAVAPOOL"
+msgid "Hope me legs don't catch."
+msgstr "希望俺的腿不会引火上身。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.LAWNORNAMENT.BURNING"
@@ -53290,6 +53380,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Nighty night"
 msgstr "夜灯"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LAVAPOOL"
+msgid "Fire water. Stay back!"
+msgstr "火汁。退后！"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "Save friend! Save friend!"
@@ -55795,6 +55890,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Sleep and dream, little wing."
 msgstr "安睡吧，小小的翅膀。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LAVAPOOL"
+msgid "I won't dip my toe in."
+msgstr "我才不要伸脚进去。"
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "The last scene on the lawn."
@@ -57499,6 +57599,11 @@ msgstr "坏鸟！离它们远点！"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "Sleepy bad bird."
 msgstr "睡着的坏鸟。"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LAVAPOOL"
+msgid "Too hot for swimming, florp!"
+msgstr "太热了不能游泳，浮浪噗！"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.LAWNORNAMENT.BURNING"
@@ -59845,6 +59950,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.KINGFISHER.SLEEPING"
 msgid "IDLE"
 msgstr "待机中"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.LAVAPOOL
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LAVAPOOL"
+msgid "VOLCANIC FIRE DEPOSIT"
+msgstr "火山火沉淀物"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.LAWNORNAMENT.BURNING
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.LAWNORNAMENT.BURNING"
 msgid "RADIANT YET STILL REDUNDANT"
@@ -61597,117 +61707,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Charlotte"
+msgid "Agnes"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Della"
+msgid "Catherine"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Henrietta"
+msgid "Charlotte"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Ebba"
+msgid "Arabella"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Edith"
+msgid "Belle"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Flora"
+msgid "Beryl"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Florence"
+msgid "Briar"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Georgette"
+msgid "Beatrice"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Luella"
+msgid "Della"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Alexandrina"
+msgid "Henrietta"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Alice"
+msgid "Luella"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Lilian"
+msgid "Ebba"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Louise"
+msgid "Edith"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Ottilie"
+msgid "Flora"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Ophelia"
+msgid "Florence"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Sophronia"
+msgid "Georgette"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Agnes"
+msgid "Alexandrina"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Catherine"
+msgid "Alice"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Arabella"
+msgid "Lilian"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Belle"
+msgid "Louise"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Beryl"
+msgid "Ottilie"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Briar"
+msgid "Ophelia"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Beatrice"
+msgid "Sophronia"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -61717,122 +61827,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Albert"
+msgid "Thaddeus"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Ewart"
+msgid "Frederick"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Edmund"
+msgid "Albert"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Larkin"
+msgid "Alfred"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Herbert"
+msgid "Arthur"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Henry"
+msgid "Edward"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Charley"
+msgid "George"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Douglas"
+msgid "Charles"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Edison"
+msgid "Leopold"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Oliver"
+msgid "Ewart"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Wellington"
+msgid "Edison"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Gulliver"
+msgid "Edmund"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Clarence"
+msgid "Larkin"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Merritt"
+msgid "Herbert"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Sterling"
+msgid "Henry"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Tesla"
+msgid "Charley"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Thaddeus"
+msgid "Douglas"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Frederick"
+msgid "Oliver"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Alfred"
+msgid "Wellington"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Arthur"
+msgid "Gulliver"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Edward"
+msgid "Clarence"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "George"
+msgid "Merritt"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Charles"
+msgid "Sterling"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Leopold"
+msgid "Tesla"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -61842,77 +61952,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Darlington"
+msgid "Peel"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Peel"
+msgid "Derby"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Derby"
+msgid "Palmerston"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Palmerston"
+msgid "Gladstone"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Gladstone"
+msgid "Disraeli"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Disraeli"
+msgid "Salisbury"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Salisbury"
+msgid "Kensington"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Kensington"
+msgid "Conroy"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Conroy"
+msgid "Greville"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Greville"
+msgid "Hastings"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Hastings"
+msgid "Aberdeen"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Aberdeen"
+msgid "Talbot"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Talbot"
+msgid "Thames"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Thames"
+msgid "Stockton"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Stockton"
+msgid "Darlington"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -67595,6 +67705,11 @@ msgctxt "STRINGS.NAMES.KINGFISHER"
 msgid "Kingfisher"
 msgstr "翠鸟"
 
+#. STRINGS.NAMES.LAVAPOOL
+msgctxt "STRINGS.NAMES.LAVAPOOL"
+msgid "Lava Pool"
+msgstr "岩浆池"
+
 #. STRINGS.NAMES.LAWNORNAMENT
 msgctxt "STRINGS.NAMES.LAWNORNAMENT"
 msgid "Lawn Decoration"
@@ -67699,6 +67814,11 @@ msgstr "肉夹荨麻"
 msgctxt "STRINGS.NAMES.METALPLATEHAT"
 msgid "Fancy Helmet"
 msgstr "花哨的头盔"
+
+#. STRINGS.NAMES.MULTIPLAYER_PORTAL
+msgctxt "STRINGS.NAMES.MULTIPLAYER_PORTAL"
+msgid "Jury-Rigged Portal"
+msgstr "临时传送门"
 
 #. STRINGS.NAMES.NECTAR_POD
 msgctxt "STRINGS.NAMES.NECTAR_POD"
@@ -70189,6 +70309,61 @@ msgstr "寻宝"
 msgctxt "STRINGS.UI.CRAFTING_FILTERS.ENVIRONMENT_PROTECTION"
 msgid "Environmental Shielding"
 msgstr "环境防护"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_COLUMN
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_COLUMN"
+msgid "Columns"
+msgstr "柱子"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_DOOR
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_DOOR"
+msgid "Doors"
+msgstr "门"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_FLOOR
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_FLOOR"
+msgid "Floors"
+msgstr "地板"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_FURNITURE
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_FURNITURE"
+msgid "Furnitures"
+msgstr "家具"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_HANGINGLAMP
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_HANGINGLAMP"
+msgid "Pendants"
+msgstr "吊饰"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_LAMP
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_LAMP"
+msgid "Lamps"
+msgstr "灯"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_MISC
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_MISC"
+msgid "Items"
+msgstr "杂项"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_PLANTHOLDER
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_PLANTHOLDER"
+msgid "Plantholders"
+msgstr "盆栽"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_RUG
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_RUG"
+msgid "Rugs"
+msgstr "地毯"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_WALLPAPER
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_WALLPAPER"
+msgid "Wallpaper"
+msgstr "墙纸"
+
+#. STRINGS.UI.CRAFTING_FILTERS.HOME_WALL_DECORATION
+msgctxt "STRINGS.UI.CRAFTING_FILTERS.HOME_WALL_DECORATION"
+msgid "Ornaments"
+msgstr "装饰品"
 
 #. STRINGS.UI.CRAFTING_FILTERS.NAUTICAL
 msgctxt "STRINGS.UI.CRAFTING_FILTERS.NAUTICAL"

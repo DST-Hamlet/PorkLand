@@ -304,6 +304,7 @@ return {
             GENERIC = "That beak would be excellent for spearing food.",
             SLEEPING = "In a food coma, perhaps.",
         },
+        LAVAPOOL = "Spicy!",
         LAWNORNAMENT = {
             BURNING = "A fine place for a barbeque.",
             BURNT = "It's been deep fried.",

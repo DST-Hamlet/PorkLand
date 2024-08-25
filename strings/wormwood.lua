@@ -304,6 +304,7 @@ return {
             GENERIC = "Poke Nose Tweeter",
             SLEEPING = "Nighty night",
         },
+        LAVAPOOL = "Fire water. Stay back!",
         LAWNORNAMENT = {
             BURNING = "Save friend! Save friend!",
             BURNT = "(sob) No more",

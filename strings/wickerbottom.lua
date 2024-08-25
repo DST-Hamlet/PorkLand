@@ -299,6 +299,7 @@ return {
             GENERIC = "What a dear little Chloroceryle Amazona!",
             SLEEPING = "Sleeping.",
         },
+        LAVAPOOL = "I won't be wading in that pool.",
         LAWNORNAMENT = {
             BURNING = "Enkindled.",
             BURNT = "Thoroughly carbonized.",

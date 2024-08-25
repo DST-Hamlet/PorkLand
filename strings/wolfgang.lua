@@ -299,6 +299,7 @@ return {
             GENERIC = "Skinny bird is big beak.",
             SLEEPING = "Shhh. Skinny bird is sleep.",
         },
+        LAVAPOOL = "Sad. I forget swim trunks.",
         LAWNORNAMENT = {
             BURNING = "Is all fire!",
             BURNT = "All burned.",

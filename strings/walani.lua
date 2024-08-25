@@ -304,6 +304,7 @@ return {
             GENERIC = "Gnarly beak,dude.",
             SLEEPING = "How do you sleep like that without falling over?",
         },
+        LAVAPOOL = "It's like a gooey campfire!",
         LAWNORNAMENT = {
             BURNING = "Who would do such a thing?",
             BURNT = "Aww...Just a pile of ashes now.",
