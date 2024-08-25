@@ -108,6 +108,7 @@ local multipleprefab_posts = {
     "notraptrigger",
     "poisonable",
     "seeds",
+    "stalagmite",
 }
 
 local scenario_posts = {
