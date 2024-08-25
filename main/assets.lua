@@ -243,6 +243,8 @@ PrefabFiles = {
 
     "giantgrub",
     "antman",
+    "antman_warrior",
+    "antman_warrior_egg",
 }
 
 Assets = {

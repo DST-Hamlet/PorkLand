@@ -350,7 +350,9 @@ local function fn()
     end)
 
     inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
-    OnIsAporkalypse(inst, TheWorld.state.isaporkalypse)
+    inst:DoTaskInTime(0, function() -- needs a delay otherwise ants spawned during aporkalypse would transforme at (0,0,0)
+        OnIsAporkalypse(inst, TheWorld.state.isaporkalypse)
+    end)
 
     return inst
 end
