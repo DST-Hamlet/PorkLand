@@ -243,6 +243,7 @@ PrefabFiles = {
 
     "ox_horn",
     "ox_flute",
+    "porklandintro",
 }
 
 Assets = {
