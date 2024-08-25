@@ -624,6 +624,8 @@ local tuning = {
     PIGGHOST_REGEN_TIME = total_day_time / 2,
     PIGGHOST_RELEASE_TIME = 0,
     PIGGHOST_MAXCHILDREN = 3,
+
+    OX_FLUTE_USES = 5,
 }
 
 
