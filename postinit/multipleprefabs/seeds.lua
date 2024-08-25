@@ -14,7 +14,7 @@ local function veggie_seeds_postinit(inst)
         return
     end
 
-    inst:RemoveComponent("farmplantable")
+    -- inst:RemoveComponent("farmplantable")
 
     inst.components.deployable.ondeploy = OnDeploy
 end
