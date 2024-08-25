@@ -460,7 +460,7 @@ return Class(function(self, inst)
                 if data.progress > 0.1 then
                     _ishayfever = true
                 end
-            elseif data.progress > 0.02 or data.season == "aporkalypse" then
+            elseif data.progress > 0.02 then
                 _ishayfever = false
             end
         end
