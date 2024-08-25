@@ -69,7 +69,6 @@ local function fn()
     inst:AddTag("canbetrapped")
 
     MakeCharacterPhysics(inst, 10, 0.5)
-    MakePoisonableCharacter(inst)
 
     inst.AnimState:SetBank("scorpion")
     inst.AnimState:SetBuild("scorpion_build")
@@ -120,6 +119,7 @@ local function fn()
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_SMALL
 
+    MakePoisonableCharacter(inst)
     MakeMediumBurnableCharacter(inst, "scorpion_body")
     MakeMediumFreezableCharacter(inst, "scorpion_body")
     inst.components.burnable.flammability = TUNING.SCORPION_FLAMMABILITY
