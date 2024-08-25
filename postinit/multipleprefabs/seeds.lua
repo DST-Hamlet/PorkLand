@@ -9,7 +9,13 @@ local function OnDeploy(inst, pt, deployer) --, rot)
     inst:Remove()
 end
 
+local function Seed_GetDisplayName(inst)
+    return STRINGS.NAMES["KNOWN_"..string.upper(inst.prefab)]
+end
+
 local function veggie_seeds_postinit(inst)
+    inst.displaynamefn = Seed_GetDisplayName
+
     if not TheWorld.ismastersim then
         return
     end
