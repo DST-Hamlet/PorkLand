@@ -17,7 +17,7 @@ local function OnUpdate(inst, dt)
 end
 
 local function OnCollide(inst, other)
-    if other.components.freezable and not other.components.freezable:IsFrozen() and other ~= inst.host then
+    if other.components.freezable and (not other.components.freezable:IsFrozen() or other.components.freezable:IsThawing()) and other ~= inst.host then
         if inst.host:HasTag("player") and other:HasTag("player") and not inst.canhitplayers then
             return
         end
@@ -28,6 +28,9 @@ local function OnCollide(inst, other)
             other.components.freezable:SpawnShatterFX()
         end
         other.components.freezable:AddColdness(5)
+    end
+    if other.components.burnable and other:HasTag("fire") then
+        other.components.burnable:Extinguish()
     end
 end
 
