@@ -255,6 +255,7 @@ return {
             GENERIC = "Some kind of bird that catches fish.",
             SLEEPING = "It is asleep.",
         },
+        LAVAPOOL = "It seems like a quick way to burn myself.",
         LAWNORNAMENT = {
             BURNING = "Hey! That's my lawn!",
             BURNT = "I hope I can still get a refund.",

@@ -263,8 +263,7 @@ function Cityalarms:TriggerAlarm(city, threat, ignore_royal_status)
         end
 
         if threat:HasTag("player") and playmusic then
-            -- TODO: Add danger music
-            -- GetPlayer().components.dynamicmusic:OnStartDanger()
+            threat:PushEvent("start_city_alarm")
         end
     end
 end

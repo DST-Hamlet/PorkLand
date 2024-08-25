@@ -182,6 +182,7 @@ return {
             GENERIC = "That incisive beak is definitely unfamiliar.",
             SLEEPING = "Shhh, be quiet.",
         },
+        LAVAPOOL = "Yep, that's toasty alright.",
         LAWNORNAMENT = {
             BURNING = "No fires on the lawn!",
             BURNT = "Now we are in big trouble.",

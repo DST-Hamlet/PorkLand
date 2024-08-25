@@ -21,9 +21,7 @@ local Hayfever = Class(function(self, inst)
     self.imune = false
     self.nextsneeze = self:GetNextSneezTimeInitial()
 
-    self._onhayfever = function(_, ishayfever) self:OnHayFever(ishayfever) end
-
-    self.inst:WatchWorldState("ishayfever", self._onhayfever)
+    self:WatchWorldState("ishayfever", self.OnHayFever)
     self:OnHayFever(TheWorld.state.ishayfever)
 end,
 nil, {
@@ -149,7 +147,7 @@ end
 
 function Hayfever:OnRemoveEntity()
     self:Disable(true)
-    self.inst:StopWatchingWorldState("ishayfever", self._onhayfever)
+    self:StopWatchingWorldState("ishayfever", self.OnHayFever)
 end
 
 function Hayfever:OnSave()

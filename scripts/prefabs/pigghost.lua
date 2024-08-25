@@ -145,4 +145,37 @@ local function fn()
     return inst
 end
 
-return Prefab("pigghost", fn, assets, prefabs)
+local function OnIsAporkalypse_Spawner(inst, isaporkalypse)
+    if isaporkalypse then
+        inst.components.childspawner:StartSpawning()
+    else
+        inst.components.childspawner:StopSpawning()
+    end
+end
+
+local function spawner_fn()
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+    inst.entity:AddNetwork()
+
+    inst.entity:SetPristine()
+
+    if not TheWorld.ismastersim then
+        return inst
+    end
+
+    inst:AddComponent("childspawner")
+    inst.components.childspawner.childname = "pigghost"
+    inst.components.childspawner:SetRegenPeriod(TUNING.PIGGHOST_REGEN_TIME)
+    inst.components.childspawner:SetSpawnPeriod(TUNING.PIGGHOST_RELEASE_TIME, TUNING.PIGGHOST_RELEASE_TIME)
+    inst.components.childspawner:SetMaxChildren(TUNING.PIGGHOST_MAXCHILDREN)
+
+    inst:WatchWorldState("isaporkalypse", OnIsAporkalypse_Spawner)
+    OnIsAporkalypse_Spawner(inst, TheWorld.state.isaporkalypse)
+
+    return inst
+end
+
+return Prefab("pigghost", fn, assets, prefabs),
+       Prefab("pigghost_spawner", spawner_fn, {}, {})

@@ -299,6 +299,7 @@ return {
             GENERIC = "Thy sharp beak might impale me from the depths of the sea.",
             SLEEPING = "It slumbers, for now.",
         },
+        LAVAPOOL = "This pool churns with the volcano's anger!",
         LAWNORNAMENT = {
             BURNING = "Inevitable.",
             BURNT = "For the best.",

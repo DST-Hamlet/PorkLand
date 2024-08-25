@@ -79,6 +79,7 @@ local prefab_posts = {
     "buff_workeffectiveness",
     "grass",
     "meatrack",
+    "multiplayer_portal",
     "orangestaff",
     "player",
     "player_classified",
@@ -107,6 +108,7 @@ local multipleprefab_posts = {
     "notraptrigger",
     "poisonable",
     "seeds",
+    "stalagmite",
 }
 
 local scenario_posts = {

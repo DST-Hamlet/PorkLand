@@ -162,14 +162,6 @@ local function StartBusyTheme(player, theme, sound, duration, extendtime)
     end
 end
 
-local function StartRideoftheValkyrieMusic(player)
-    if _dangertask then
-        return
-    end
-
-    StartBusyTheme(player, BUSYTHEMES.RIDEOFTHEVALKYRIE, "dontstarve/music/music_wigfrid_valkyrie", 2)
-end
-
 local function ExtendBusy()
     if _busytask ~= nil then
         _extendtime = math.max(_extendtime, GetTime() + 10)
@@ -291,11 +283,6 @@ local function OnAttacked(player, data)
     end
 end
 
-local function OnHasInspirationBuff(player, data)
-    _hasinspirationbuff = (data ~= nil and data.on) and 1 or 0
-    _soundemitter:SetParameter("danger", "wathgrithr_intensity", _hasinspirationbuff)
-end
-
 local function OnInsane()
     if _dangertask == nil and _isenabled and (_extendtime == 0 or GetTime() >= _extendtime) then
         _soundemitter:PlaySound("dontstarve/sanity/gonecrazy_stinger")
@@ -350,13 +337,18 @@ local function SetTone(category)
     end
 end
 
+local SEASON_TONE_SUFFIX = {temperate = "", humid = "_humid", lush = "_lush"}
+
 local function StartPigRuinsTone(player)
     if _dangertask then
         return
     end
 
-    local tones = {humid = "_humid", lush = "_lush"}
-    SetTone("ruins" .. (tones[TheWorld.state.season] or ""))
+    SetTone("ruins" .. (SEASON_TONE_SUFFIX[TheWorld.state.season] or ""))
+end
+
+local function StopPigRuinsTone(player)
+    StopPlayingTone("ruins" .. (SEASON_TONE_SUFFIX[TheWorld.state.season] or ""))
 end
 
 local function StartJungleTone(player)
@@ -364,8 +356,11 @@ local function StartJungleTone(player)
         return
     end
 
-    local tones = {humid = "_humid", lush = "_lush"}
-    SetTone("jungle" .. (tones[TheWorld.state.season] or ""))
+    SetTone("jungle" .. (SEASON_TONE_SUFFIX[TheWorld.state.season] or ""))
+end
+
+local function StopJungleTone(player)
+    StopPlayingTone("jungle" .. (SEASON_TONE_SUFFIX[TheWorld.state.season] or ""))
 end
 
 local function StartShopMusic(player)
@@ -379,18 +374,13 @@ local function StopShopMusic(player)
     end
 end
 
-local function StopAllInteriorMusic(player)
-    StopPlayingTone(player)
-    StopShopMusic(player)
-end
-
 local function OnUsedDoor(player, data)
     if not data or not data.door then
         return
     end
 
     if data.door:HasTag("ruins_exit") then
-        StopPlayingTone("ruins")
+        StopPigRuinsTone(player)
     elseif data.door:HasTag("ruins_entrance") then
         StartPigRuinsTone(player)
     elseif data.door:HasTag("shop_music") then
@@ -409,13 +399,11 @@ local function StartPlayerListeners(player)
     inst:ListenForEvent("attacked", OnAttacked, player)
     inst:ListenForEvent("goinsane", OnInsane, player)
     inst:ListenForEvent("triggeredevent", StartTriggeredDanger, player)
-    inst:ListenForEvent("hasinspirationbuff", OnHasInspirationBuff, player)
-    inst:ListenForEvent("playrideofthevalkyrie", StartRideoftheValkyrieMusic, player)
+    inst:ListenForEvent("start_city_alarm", StartDanger, player)
 
     inst:ListenForEvent("canopyin", StartJungleTone, player)
-    inst:ListenForEvent("canopyout", function() StopPlayingTone("jungle") end, player)
+    inst:ListenForEvent("canopyout", StopJungleTone, player)
     inst:ListenForEvent("used_door", OnUsedDoor, player)
-    inst:ListenForEvent("leaveinterior", StopPlayingTone, player)
 end
 
 local function StopPlayerListeners(player)
@@ -425,13 +413,11 @@ local function StopPlayerListeners(player)
     inst:RemoveEventCallback("attacked", OnAttacked, player)
     inst:RemoveEventCallback("goinsane", OnInsane, player)
     inst:RemoveEventCallback("triggeredevent", StartTriggeredDanger, player)
-    inst:RemoveEventCallback("hasinspirationbuff", OnHasInspirationBuff, player)
-    inst:RemoveEventCallback("playrideofthevalkyrie", StartRideoftheValkyrieMusic, player)
+    inst:RemoveEventCallback("start_city_alarm", StartDanger, player)
 
     inst:RemoveEventCallback("canopyin", StartJungleTone, player)
-    inst:RemoveEventCallback("canopyout", function() StopPlayingTone("jungle") end, player)
-    inst:RemoveEventCallback("enteredruins", StartPigRuinsTone, player)
-    inst:RemoveEventCallback("exitedruins", function() StopPlayingTone("ruins") end, player)
+    inst:RemoveEventCallback("canopyout", StopJungleTone, player)
+    inst:RemoveEventCallback("used_door", OnUsedDoor, player)
 end
 
 local function OnPhase(inst, phase)

@@ -299,6 +299,7 @@ return {
             GENERIC = "For such a small bird he sure does have a big beak.",
             SLEEPING = "How does he sleep without tipping over?",
         },
+        LAVAPOOL = "Blazing hot!",
         LAWNORNAMENT = {
             BURNING = "It's on fire!",
             BURNT = "Nothing left but ash.",

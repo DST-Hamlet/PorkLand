@@ -304,6 +304,7 @@ return {
             GENERIC = "What's wrong with your face?",
             SLEEPING = "I should catch it while its guard is down.",
         },
+        LAVAPOOL = "What marvelous heat and fury!",
         LAWNORNAMENT = {
             BURNING = "It looks better this way.",
             BURNT = "Much more decorative.",

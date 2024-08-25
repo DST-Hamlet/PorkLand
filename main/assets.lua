@@ -240,6 +240,9 @@ PrefabFiles = {
     "ro_bin_gizzard_stone",
     "ro_bin",
     "pig_scepter",
+
+    "ox_horn",
+    "ox_flute",
 }
 
 Assets = {
@@ -327,6 +330,9 @@ Assets = {
     Asset("ANIM", "anim/tree_leaf_normal_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_short_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
+
+    -- multiplayer_portal
+    Asset("ANIM", "anim/portal_dst.zip"),
 
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),

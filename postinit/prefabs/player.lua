@@ -121,6 +121,21 @@ local function OnLoad(inst, data, ...)
     return unpack(rets)
 end
 
+local SANITY_MODIFIER_NAME = "PLAYERHOUSE_SANITY"
+
+local function UpdateInteriorSanity(inst, data)
+    if data.from then
+        inst.components.sanity.externalmodifiers:RemoveModifier(data.from, SANITY_MODIFIER_NAME) -- remove sanity from whichever room we were
+    end
+
+    if data.to then -- still inside
+        local interiorID = data.to.interiorID
+        if TheWorld.components.interiorspawner.interior_defs[interiorID].dungeon_name:find("playerhouse") then
+            inst.components.sanity.externalmodifiers:SetModifier(data.to, TUNING.SANITY_PLAYERHOUSE_GAIN, SANITY_MODIFIER_NAME)
+        end
+    end
+end
+
 AddPlayerPostInit(function(inst)
     if not TheNet:IsDedicated() then
         inst:DoTaskInTime(0, function()
@@ -176,6 +191,9 @@ AddPlayerPostInit(function(inst)
 
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)
+
+    inst:ListenForEvent("enterinterior", UpdateInteriorSanity)
+    inst:ListenForEvent("leaveinterior", UpdateInteriorSanity)
 
     if inst.OnLoad then
         inst.__OnLoad = inst.OnLoad

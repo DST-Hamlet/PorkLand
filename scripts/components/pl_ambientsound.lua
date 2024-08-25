@@ -210,19 +210,15 @@ local function OnSeasonTick(src, data)
     end
 end
 
-local function OnUsedDoor(src, data)
-    if not data or not data.door then
-        return
-    end
-
-    local target_interior = data.door.components.door.target_interior
-    if target_interior == "EXTERIOR" then
-        self:SetReverbPreset("default")
-    else
-        local def = TheWorld.components.interiorspawner.interiors[target_interior]
+local function UpdateInteriorReverb(src, data)
+    if data.to then -- still inside
+        local interiorID = data.to.interiorID
+        local def = TheWorld.components.interiorspawner.interior_defs[interiorID]
         if def then
             self:SetReverbPreset(def.reverb or "default")
         end
+    else -- outside
+        self:SetReverbPreset("default")
     end
 end
 
@@ -249,7 +245,10 @@ inst:ListenForEvent("seasontick", OnSeasonTick)
 inst:ListenForEvent("weathertick", OnWeatherTick)
 inst:ListenForEvent("precipitationchanged", OnPrecipitationChanged)
 
-inst:ListenForEvent("used_door", OnUsedDoor, ThePlayer)
+inst:DoTaskInTime(0, function() -- ThePlayer is nil when constructor is called
+    inst:ListenForEvent("enterinterior_client", UpdateInteriorReverb, ThePlayer)
+    inst:ListenForEvent("leaveinterior_client", UpdateInteriorReverb, ThePlayer)
+end)
 
 inst:WatchWorldState("phase", OnPhaseChange)
 

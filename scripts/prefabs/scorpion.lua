@@ -119,6 +119,7 @@ local function fn()
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_SMALL
 
+    MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
     MakeMediumBurnableCharacter(inst, "scorpion_body")
     MakeMediumFreezableCharacter(inst, "scorpion_body")

@@ -181,6 +181,7 @@ return {
             GENERIC = "Please don't peck my hand, little one.",
             SLEEPING = "Sleep and dream, little wing.",
         },
+        LAVAPOOL = "I won't dip my toe in.",
         LAWNORNAMENT = {
             BURNING = "The last scene on the lawn.",
             BURNT = "Turn into dust.",

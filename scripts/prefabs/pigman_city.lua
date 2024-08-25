@@ -350,6 +350,9 @@ local function OnGetItemFromPlayer(inst, giver, item)
             if behappy then
                 inst:PushEvent("behappy")
             end
+            if item.prefab ~= "pig_scepter" and item.prefab ~= "pigcrownhat" then
+                item:Remove() -- why doesn't trader use a function for deleteitemonaccept...
+            end
         end
 
         local econ = TheWorld.components.economy
@@ -1166,6 +1169,10 @@ local function QueenCommonPostinit(inst)
     MakeCharacterPhysics(inst, 50, 0.75)
 end
 
+local function QueenMasterPostInit(inst)
+    inst.components.trader.deleteitemonaccept = false
+end
+
 local NOHAT_TAGS = {"emote_nohat"}
 local GUARD_TAGS = {"emote_nocurtsy", "guard", "extinguisher"}
 
@@ -1203,4 +1210,4 @@ return MakeCityPigman("pigman_beautician", "pig_beautician", FEMALE),
        MakeCityPigman("pigman_mechanic", "pig_mechanic", MALE, nil, nil, MechanicMasterPostinit),
 
        MakeCityPigman("pigman_mayor", "pig_mayor", MALE, nil, nil, nil, nil, STRINGS.NAMES.PIGMAN_MAYOR),
-       MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, nil, nil, STRINGS.QUEENPIGNAMES)
+       MakeCityPigman("pigman_queen", "pig_queen", FEMALE, {"pigqueen", "emote_nohat"}, QueenCommonPostinit, QueenMasterPostInit, nil, STRINGS.QUEENPIGNAMES)

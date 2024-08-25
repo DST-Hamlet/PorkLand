@@ -130,6 +130,7 @@ function InteriorVisitor:UpdateExteriorPos()
 
     if ent then
         self.inst:AddTag("inside_interior")
+        self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
         self.interior_cc = ent.interior_cc
         grue.pl_no_light_interior = --[[ent:HasInteriorTag("NO_LIGHT") or]] true
         if grue.pl_no_light_interior then
@@ -153,7 +154,10 @@ function InteriorVisitor:UpdateExteriorPos()
             end
         end
     else
-        self.inst:RemoveTag("inside_interior")
+        if self.inst:HasTag("inside_interior") then
+            self.inst:RemoveTag("inside_interior")
+            self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
+        end
         grue.pl_no_light_interior = false
         self.inst:RemoveTag("pl_no_light_interior")
 

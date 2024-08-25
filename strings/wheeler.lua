@@ -308,6 +308,7 @@ return {
             GENERIC = "What an aerodynamic beak!",
             SLEEPING = "Like me, it probably dreams of flying.",
         },
+        LAVAPOOL = "Swell. I'll just dip my toe in to test the temperature.",
         LAWNORNAMENT = {
             BURNING = "Finally we have proof that trees will burn.",
             BURNT = "I was never really partial to it anyway.",

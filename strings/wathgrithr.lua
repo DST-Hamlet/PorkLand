@@ -304,6 +304,7 @@ return {
             GENERIC = "Possessor of the mightiest of beaks!",
             SLEEPING = "It sleeps.",
         },
+        LAVAPOOL = "A puddle of fire!",
         LAWNORNAMENT = {
             BURNING = "Ablaze!",
             BURNT = "Fire has consumed it.",

@@ -299,6 +299,7 @@ return {
             GENERIC = "A rather generous mandible.",
             SLEEPING = "Dormancy becomes it.",
         },
+        LAVAPOOL = "Exceptionally toasty.",
         LAWNORNAMENT = {
             BURNING = "Someone's a critic.",
             BURNT = "A waste of fine culture.",

@@ -272,7 +272,7 @@ local function OnLoad(inst, data)
     if data.guard_entrance then
         inst:AddTag("guard_entrance")
     end
-    if data.ruins_entrance then
+    if data.ruins_exit then
         inst:AddTag("ruins_exit")
     end
     if data.shop_music then

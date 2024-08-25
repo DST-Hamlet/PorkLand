@@ -8,7 +8,6 @@ local function SavePlayerData(player)
     local data = {}
 
     data.build = player.AnimState:GetBuild()
-    data.skins = player.components.skinner:GetClothing()
 
     data.health_redirect = player.components.health.redirect
 
@@ -21,10 +20,7 @@ end
 local function LoadPlayerData(player, data)
     player.AnimState:ClearOverrideBuild("living_suit_build_morph")
     player.AnimState:SetBuild(data.build)
-    player.components.skinner:SetSkinName(data.skins.base, true)
-    for skin_type, skin_name in pairs(data.skins) do
-        player.components.skinner:SetClothing(skin_name)
-    end
+    player.components.skinner:SetSkinMode("normal_skin")
 
     player.components.health.redirect = data.health_redirect
 
@@ -34,8 +30,8 @@ local function LoadPlayerData(player, data)
 end
 
 local function BecomeIronLord_post(inst)
-    inst.player.components.skinner:SetSkinName("", nil, true)
-    inst.player.components.skinner:ClearAllClothing()
+    inst.player.components.skinner:HideAllClothing(inst.player.AnimState)
+    inst.player.components.skinner:SetSkinMode("living_suit")
     inst.player.AnimState:SetBuild("living_suit_build")
     inst.player.AnimState:AddOverrideBuild("living_suit_build") -- override Wanda & Wolfgang's symbols
 
@@ -146,11 +142,9 @@ local function Revert(inst)
 
     local player = inst.player
 
-    LoadPlayerData(player, inst.player_data)
-
     player.AnimState:ClearOverrideBuild("living_suit_build")
-    player.AnimState:SetBank("wilson")
     player.AnimState:Show("beard")
+    LoadPlayerData(player, inst.player_data)
 
     player.SoundEmitter:KillSound("chargedup")
 
