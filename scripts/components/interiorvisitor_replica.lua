@@ -130,12 +130,11 @@ function InteriorVisitor:OnUpdate()
     local last_center_ent = self.last_center_ent
     local room_center_ent = self.center_ent:value()
     if IsInInteriorRectangle(self.inst:GetPosition(), room_center_ent) then
-        self.inst:AddTag("inside_interior")
         self:ApplyInteriorCamera(room_center_ent)
 
         if last_center_ent ~= room_center_ent then
             self.last_center_ent = room_center_ent
-            self.inst:PushEvent("enterinterior", {from = last_center_ent, to = room_center_ent})
+            self.inst:PushEvent("enterinterior_client", {from = last_center_ent, to = room_center_ent})
 
             if self.inst.MiniMapEntity then
                 self.inst.MiniMapEntity:SetEnabled(false)
@@ -151,12 +150,11 @@ function InteriorVisitor:OnUpdate()
             self:UpdateInteriorMinimap()
         end
     else
-        self.inst:RemoveTag("inside_interior")
         TheCamera.inside_interior = false
         self.last_center_ent = nil
 
         if last_center_ent ~= room_center_ent then
-            self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
+            self.inst:PushEvent("leaveinterior_client", {from = last_center_ent, to = nil})
 
             if self.inst.MiniMapEntity then
                 self.inst.MiniMapEntity:SetEnabled(true)

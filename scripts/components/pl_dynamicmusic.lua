@@ -416,7 +416,7 @@ local function StartPlayerListeners(player)
     inst:ListenForEvent("canopyin", StartJungleTone, player)
     inst:ListenForEvent("canopyout", function() StopPlayingTone("jungle") end, player)
     inst:ListenForEvent("used_door", OnUsedDoor, player)
-    inst:ListenForEvent("leaveinterior", StopPlayingTone, player)
+    inst:ListenForEvent("leaveinterior_client", StopPlayingTone, player)
 end
 
 local function StopPlayerListeners(player)

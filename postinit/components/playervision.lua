@@ -26,8 +26,8 @@ AddComponentPostInit("playervision", function(self)
     local NIGHTVISION_COLOURCUBES_APORKLYPSE = shallowcopy(NIGHTVISION_COLOURCUBES)
     NIGHTVISION_COLOURCUBES_APORKLYPSE.full_moon = NIGHTVISION_COLOURCUBES.dusk
 
-    self.inst:ListenForEvent("enterinterior", function() self:UpdateCCTable() end)
-    self.inst:ListenForEvent("leaveinterior", function() self:UpdateCCTable() end)
+    self.inst:ListenForEvent("enterinterior_client", function() self:UpdateCCTable() end)
+    self.inst:ListenForEvent("leaveinterior_client", function() self:UpdateCCTable() end)
 
     self.inst:WatchWorldState("isaporkalypse", function() self:UpdateCCTable() end)
 
