@@ -2,16 +2,24 @@ local AddDeconstructRecipe = AddDeconstructRecipe
 local AddRecipe2 = AddRecipe2
 local AddRecipeFilter = AddRecipeFilter
 local AddPrototyperDef = AddPrototyperDef
+local AddRecipePostInit = AddRecipePostInit
 GLOBAL.setfenv(1, GLOBAL)
 
-local DISABLE_RECIPES = require("main/recipes_change").DISABLE_RECIPES
+local DISABLE_RECIPES = require("main/disable_recipes")
+
+for i, recipe_name in ipairs(DISABLE_RECIPES) do
+    AddRecipePostInit(recipe_name, function(recipe)
+        recipe.disabled_worlds = { "porkland" }
+    end)
+end
 
 local _GetValidRecipe = GetValidRecipe
-function GetValidRecipe(recname, ...)
-    if TheWorld and TheWorld:HasTag("porkland") and DISABLE_RECIPES[recname] then
+function GetValidRecipe(recipe_name, ...)
+    local recipe = _GetValidRecipe(recipe_name, ...)
+    if recipe and TheWorld and (recipe.disabled_worlds and TheWorld:HasTags(recipe.disabled_worlds)) then
         return
     end
-    return _GetValidRecipe(recname, ...)
+    return recipe
 end
 
 local function SortRecipe(a, b, filter_name, offset)
@@ -136,12 +144,89 @@ AddRecipeFilter({
     image = "filter_environment_protection.tex",
 }, #CRAFTING_FILTER_DEFS)
 
-AddPrototyperDef("key_to_city", {
-    icon_atlas = "images/hud/pl_crafting_menu_icons.xml",
-    icon_image = "filter_city.tex",
-    is_crafting_station = true,
-    filter_text = STRINGS.UI.CRAFTING_STATION_FILTERS.CITY
-})
+-- home filter
+AddRecipeFilter({
+    name =  "HOME_MISC", -- "reno_tab_homekits",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "filter_city.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_COLUMN",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_columns.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_RUG",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_rugs.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_HANGINGLAMP",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_hanginglamps.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_LAMP",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_lamps.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_PLANTHOLDER",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_plantholders.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_FURNITURE",  -- shelves, chairs, tables
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_shelves.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_WALL_DECORATION",  -- ornaments
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_windows.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_WALLPAPER",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_wallpaper.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_FLOOR",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_floors.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_DOOR",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_doors.tex",
+    home_prototyper = true,
+}, 1)
+
+CRAFTING_FILTERS.SEAFARING.disabled_worlds = { "porkland" }
+CRAFTING_FILTERS.RIDING.disabled_worlds = { "porkland" }
+CRAFTING_FILTERS.WINTER.disabled_worlds = { "porkland" }
+CRAFTING_FILTERS.SUMMER.disabled_worlds = { "porkland" }
+CRAFTING_FILTERS.FISHING.disabled_worlds = { "porkland" }
 
 --- ARCHAEOLOGY ---
 AddRecipe2("disarming_kit", {Ingredient("iron", 2), Ingredient("cutreeds", 2)}, TECH.NONE, {}, {"ARCHAEOLOGY"})
