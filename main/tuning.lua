@@ -620,6 +620,13 @@ local tuning = {
     RAINFOREST_CANOPY_MAX_STRENGTH = 0.7,           -- blend max strength - modulated with avg ambient
 
     ROBIN_HATCH_TIME = total_day_time * 3,
+
+    GIANT_GRUB_WALK_SPEED = 2,
+    GIANT_GRUB_DAMAGE = 44,
+    GIANT_GRUB_HEALTH = 600,
+    GIANT_GRUB_ATTACK_PERIOD = 3,
+    GIANT_GRUB_ATTACK_RANGE = 3,
+    GIANT_GRUB_TARGET_DIST = 25,
 }
 
 

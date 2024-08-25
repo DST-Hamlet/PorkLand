@@ -240,6 +240,8 @@ PrefabFiles = {
     "ro_bin_gizzard_stone",
     "ro_bin",
     "pig_scepter",
+
+    "giantgrub",
 }
 
 Assets = {
