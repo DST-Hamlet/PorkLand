@@ -210,12 +210,15 @@ local function OnSeasonTick(src, data)
     end
 end
 
-local function UpdateInteriorReverb(src, data)
-    if data.to then -- still inside
-        local interiorID = data.to.interiorID
-        local def = TheWorld.components.interiorspawner.interior_defs[interiorID]
-        if def then
-            self:SetReverbPreset(def.reverb or "default")
+local function UpdateInteriorReverb(src)
+    local x, y, z = src.Transform:GetWorldPosition()
+    local room = TheWorld.components.interiorspawner:GetInteriorCenterAt_Generic(x, z)
+    if room then -- still inside
+        local reverb = room._reverb:value()
+        if reverb ~= "" then
+            self:SetReverbPreset(reverb or "default")
+        else
+            self:SetReverbPreset("default")
         end
     else -- outside
         self:SetReverbPreset("default")
@@ -244,11 +247,6 @@ inst:ListenForEvent("setambientsounddaytime", OnSetAmbientSoundDaytime)
 inst:ListenForEvent("seasontick", OnSeasonTick)
 inst:ListenForEvent("weathertick", OnWeatherTick)
 inst:ListenForEvent("precipitationchanged", OnPrecipitationChanged)
-
-inst:DoTaskInTime(0, function() -- ThePlayer is nil when constructor is called
-    inst:ListenForEvent("enterinterior_client", UpdateInteriorReverb, ThePlayer)
-    inst:ListenForEvent("leaveinterior_client", UpdateInteriorReverb, ThePlayer)
-end)
 
 inst:WatchWorldState("phase", OnPhaseChange)
 
@@ -324,6 +322,8 @@ function self:OnUpdate(dt)
         _lastplayerpos = nil
         wavesvolume = math.max(0, wavesvolume - dt)
     elseif _lastplayerpos == nil or player:GetDistanceSqToPoint(_lastplayerpos:Get()) >= 16 then
+        UpdateInteriorReverb(player)
+
         _lastplayerpos = player:GetPosition()
 
         local x, _, z = _lastplayerpos:Get()

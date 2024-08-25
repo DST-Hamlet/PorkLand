@@ -55,6 +55,10 @@ local function SetUp(inst, data)
     inst.walltexture = data.walltexture or inst.walltexture or "antcave_wall_rock"
     inst.floortexture = data.floortexture or inst.floortexture or "antcave_floor"
     inst.interiorID = data.interiorID or inst.interiorID
+    inst.footstep_tile = data.footstep_tile or inst.footstep_tile or WORLD_TILES.DIRT
+    inst._footstep_tile:set(inst.footstep_tile or WORLD_TILES.DIRT)
+    inst.reverb = data.reverb or inst.reverb or "default"
+    inst._reverb:set(inst.reverb or "default")
     if inst.interiorID then
         TheWorld.components.interiorspawner:AddInteriorCenter(inst)
     end
@@ -375,6 +379,8 @@ local function OnSave(inst, data)
     data.interior_tags = inst.interior_tags
     data.interior_cc = inst.interior_cc
     data.cc = inst.interior_cc
+    data.footstep_tile = inst.footstep_tile
+    data.reverb = inst.reverb
 end
 
 local function OnLoad(inst, data)
@@ -410,6 +416,9 @@ local function fn()
     inst.GetDepth = GetDepth
     inst.GetSize = GetSize
     inst.SetSize = SetSize
+
+    inst._reverb = net_string(inst.GUID, "_reverb")
+    inst._footstep_tile = net_int(inst.GUID, "_footstep_tile")
 
     inst.cc_index = net_byte(inst.GUID, "cc_index", "cc_index")
     inst.interior_tags = {}
