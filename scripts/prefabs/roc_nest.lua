@@ -23,7 +23,7 @@ local branch_loot = {
     {"twigs", 1}
 }
 local house_loot = {
-    {"cut_stone", 1},
+    {"cutstone", 1},
     {"boards", 1}
 }
 local lamp_loot = {
