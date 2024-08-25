@@ -620,6 +620,10 @@ local tuning = {
     RAINFOREST_CANOPY_MAX_STRENGTH = 0.7,           -- blend max strength - modulated with avg ambient
 
     ROBIN_HATCH_TIME = total_day_time * 3,
+
+    PIGGHOST_REGEN_TIME = total_day_time / 2,
+    PIGGHOST_RELEASE_TIME = 0,
+    PIGGHOST_MAXCHILDREN = 3,
 }
 
 

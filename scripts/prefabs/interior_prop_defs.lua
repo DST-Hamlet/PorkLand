@@ -903,7 +903,9 @@ local room_creatures  = {
 }
 
 PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, room, roomtype, dungeondef, exterior_door_def)
-    local addprops = {}
+    local addprops = {
+        { name = "pigghost_spawner", x_offset =  0, z_offset = 0, rotation = 0,},
+    }
 
     local addedprops = false
 
