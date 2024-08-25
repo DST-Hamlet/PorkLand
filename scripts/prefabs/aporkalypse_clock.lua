@@ -152,7 +152,7 @@ local function aporkalypse_clock_fn()
     MakeObstaclePhysics(inst, .45)
 
     inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("aporkalypse_clock.tex")
+    inst.MiniMapEntity:SetIcon("porkalypse_clock.tex")
 
     inst.AnimState:SetBank("totem")
     inst.AnimState:SetBuild("aporkalypse_totem")
@@ -249,11 +249,11 @@ local function MakeClock(clock_num)
         return inst
     end
 
-    return Prefab("common/objects/" .. name, fn, assets)
+    return Prefab(name, fn, assets)
 end
 
-return Prefab("common/objects/aporkalypse_clock", aporkalypse_clock_fn, aporkalypse_clock_assets),
-    Prefab("common/objects/aporkalypse_marker", aporkalypse_marker_fn, aporkalypse_marker_assets),
+return Prefab("aporkalypse_clock", aporkalypse_clock_fn, aporkalypse_clock_assets),
+    Prefab("aporkalypse_marker", aporkalypse_marker_fn, aporkalypse_marker_assets),
     MakeClock(1),
     MakeClock(2),
     MakeClock(3)
