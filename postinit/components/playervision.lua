@@ -34,7 +34,12 @@ AddComponentPostInit("playervision", function(self)
     local _UpdateCCTable = self.UpdateCCTable
     function self:UpdateCCTable()
         _UpdateCCTable(self)
-        if not self.currentcctable then
+        if self.inst.replica.inventory:EquipHasTag("bat_hat") then
+            local cc = BATVISION_COLOUR_CUBE
+            self.currentcctable = cc
+            self.inst:PushEvent("ccoverrides", cc)
+            self.inst:PushEvent("ccphasefn", BATVISION_PHASEFN)
+        elseif not self.currentcctable then
             if self.inst:HasTag("inside_interior") then
                 local cc = self.inst.replica.interiorvisitor:GetCCTable()
                 self.currentcctable = cc
@@ -53,13 +58,6 @@ AddComponentPostInit("playervision", function(self)
                 self.inst:PushEvent("ccoverrides", cc)
                 self.inst:PushEvent("ccphasefn", NIGHTVISION_PHASEFN)
             end
-        end
-
-        if self.inst.replica.inventory:EquipHasTag("bat_hat") then
-            local cc = BATVISION_COLOUR_CUBE
-            self.currentcctable = cc
-            self.inst:PushEvent("ccoverrides", cc)
-            self.inst:PushEvent("ccphasefn", BATVISION_PHASEFN)
         end
     end
 end)
