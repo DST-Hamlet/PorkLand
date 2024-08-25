@@ -955,6 +955,12 @@ return Class(function(self, inst)
                     end
                 end
             end
+        elseif _fogstate:value() == FOG_STATE.CLEAR then
+            if _fullfog or _hasfog and ThePlayer then
+                ThePlayer:PushEvent("stopfog")
+            end
+            _fullfog = false
+            _hasfog = false
         end
 
         if _ismastersim then

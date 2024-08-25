@@ -77,6 +77,8 @@ function PlayerHud:UpdateFogClouds(camera)
         intensity = intensityMax
     elseif TheWorld.state.fogstate == FOG_STATE.LIFTING then
         intensity = Remap(time, TheWorld.state.fog_transition_time, 0, intensityMax, 0)
+    elseif TheWorld.state.fogstate == FOG_STATE.CLEAR then
+        intensity = 0
     end
 
     if self.owner.replica.inventory:EquipHasTag("batvision") then
