@@ -38,7 +38,7 @@ function CraftingMenuWidget:MakeFilterPanel(...)
     Grid.FillGrid = function(grid, num_columns, coffset, roffset, items, ...)
         self.grid_buttons_wide = num_columns
         self:SetFilter(items)
-        local valid_filters = self:GetValidFilter(self.filters)
+        local valid_filters = self:GetValidFilter()
         return _FillGrid(grid, num_columns, coffset, roffset, valid_filters, ...)
     end
 
@@ -51,10 +51,9 @@ function CraftingMenuWidget:MakeFilterPanel(...)
     self.filter_line_pt = self.filter_line:GetPosition()
     self.filter_grid_pt = filter_panel.filter_grid:GetPosition()
 
-    local valid_prototyper_filters = self:GetValidFilter(self.prototyper_filters)
     local prototyper_filter_grid = filter_panel:AddChild(Grid())
     prototyper_filter_grid:SetLooping(false, false)
-	prototyper_filter_grid:FillGrid(self.grid_buttons_wide, self.grid_button_space, self.grid_button_space, valid_prototyper_filters)
+	prototyper_filter_grid:FillGrid(self.grid_buttons_wide, self.grid_button_space, self.grid_button_space, self.prototyper_filters)
     prototyper_filter_grid:SetPosition(self.filter_grid_pt.x, - self.grid_button_space)
     filter_panel.prototyper_filter_grid = prototyper_filter_grid
 
@@ -130,7 +129,7 @@ function CraftingMenuWidget:UpdateFrame(force)
         self.filter_panel.filter_grid:SetPosition(self.grid_left, self.filter_grid_pt.y - prototyper_filter_grid_height)
     end
 
-    local valid_filters = self:GetValidFilter(self.filters)
+    local valid_filters = self:GetValidFilter()
     self.filter_panel.filter_grid:RebuildLayout(self.grid_buttons_wide, self.grid_button_space, self.grid_button_space, valid_filters)
 
     delta = delta + _filter_grid_num_rows - self.filter_panel.filter_grid.num_rows
