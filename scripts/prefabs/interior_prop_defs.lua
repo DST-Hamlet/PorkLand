@@ -276,7 +276,7 @@ PROP_DEFS.pig_ruins_door_trap = function(depth, width, exits_open, exits_vined, 
         if exits_open.north or exits_open.south then
             table.insert(setups, "longhor")
         end
-        if exits_open.east or exits_open.west then
+        if (exits_open.east or exits_open.west) and not room.normal_pillars then
             table.insert(setups, "longvert")
         end
     end
@@ -1122,6 +1122,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             addroomcolumn( depth/6,  width/6)
             addroomcolumn( depth/6, -width/6)
             addroomcolumn(-depth/6,  width/6)
+            room.close_pillars = true
         elseif feature == 2 then
             if roomtype ~= "door_trap" and not room.pheromonestone then
                 addprops[#addprops + 1] = { name = "deco_ruins_fountain", x_offset = 0, z_offset =  0, rotation = -90 }
@@ -1131,11 +1132,13 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             if math.random()<0.5 then
                 addroomcolumn(-depth/6,  width/3)
                 addroomcolumn( depth/6, -width/3)
+                room.wide_pillars = true
             else
                 addroomcolumn(-depth/4, width/4)
                 addroomcolumn(-depth/4,-width/4)
                 addroomcolumn( depth/4,-width/4)
                 addroomcolumn( depth/4, width/4)
+                room.normal_pillars = true
             end
         elseif feature == 3 then
             addroomcolumn(-depth/4,width/6)
@@ -1144,6 +1147,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             addroomcolumn(-depth/4,-width/6)
             addroomcolumn(0,-width/6)
             addroomcolumn(depth/4,-width/6)
+            room.close_pillars = true
         end
     end
 
