@@ -448,8 +448,6 @@ local function orb_small_fn()
     --inst.Physics:CollidesWith(COLLISION.WAVES)
     inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
 
-    inst.Physics:SetCollisionCallback(OnCollidesmall)
-
     inst.AnimState:SetBank("metal_hulk_projectile")
     inst.AnimState:SetBuild("metal_hulk_projectile")
     inst.AnimState:PlayAnimation("spin_loop", true)
@@ -479,6 +477,8 @@ local function orb_small_fn()
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE/3)
     inst.components.combat.playerdamagepercent = 0.5
+
+    inst.Physics:SetCollisionCallback(OnCollidesmall)
 
     inst.Physics:SetMotorVelOverride(60, 0, 0)
 
