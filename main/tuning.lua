@@ -626,6 +626,8 @@ local tuning = {
     PIGGHOST_MAXCHILDREN = 3,
 
     OX_FLUTE_USES = 5,
+
+    SANITY_PLAYERHOUSE_GAIN = 100 / (day_time * 32),
 }
 
 
