@@ -362,7 +362,7 @@ function getfacespeech()
             inst:SayLine(speech, {line = desc})
         else
             if TheWorld.state.isnearaporkalypse then
-                inst:SayLine("CITY_PIG_TALK_APORKALYPSE_SOON")
+                inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_APORKALYPSE_SOON"))
             end
             return is_player_pig_loyalty
                 and inst:SayLine("CITY_PIG_TALK_LOOKATWILSON.ROYALTY")
