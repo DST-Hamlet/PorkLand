@@ -44,8 +44,6 @@ local InteriorSpawner = Class(function(self, inst)
     self.interior_layout_map = {} --{[id: interiorID]: MapData | redirected_id}
     self.interior_layout_dirty_keys = {} -- {[K in keyof self.interior_layout_map]: true}
 
-    self.homeprototyper = SpawnPrefab("home_prototyper") -- TODO: unimpl
-
     self.player_homes = {}
 
     inst:DoTaskInTime(0, function()

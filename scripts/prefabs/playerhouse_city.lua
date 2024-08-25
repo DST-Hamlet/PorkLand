@@ -29,7 +29,6 @@ local assets = {
 }
 
 local prefabs = {
-    "home_prototyper",
     "renovation_poof_fx",
 }
 
@@ -186,6 +185,9 @@ local function CreatInterior(inst)
     local addprops = GetPropDef("playerhouse_city", exterior_door_def)
     local def = interior_spawner:CreateRoom("generic_interior", 15, nil, 10, name, id, addprops, {}, walltexture, floortexture, minimaptexture, nil, colorcube, nil, true, "inside", "HOUSE", "WOOD")
     interior_spawner:SpawnInterior(def)
+
+    local room = interior_spawner:GetInteriorByIndex(id)
+    room:AddInteriorTags("home_prototyper")
 end
 
 local function UseDoor(inst, data)

@@ -82,13 +82,12 @@ function CraftingMenuWidget:SetFilter(filters)
     end
 end
 
-function CraftingMenuWidget:GetValidFilter(filters)
+function CraftingMenuWidget:GetValidFilter()
     local builder = self.owner ~= nil and self.owner.replica.builder or nil
 
     local valid_filters = {}
-    for i, filter in ipairs(filters) do
+    for i, filter in ipairs(self.filters) do
         if (builder and builder:IsFreeBuildMode())
-            or not TheWorld
             or not (filter.filter_def.disabled_worlds and TheWorld:HasTags(filter.filter_def.disabled_worlds))
             then
             filter:Show()
@@ -101,11 +100,22 @@ function CraftingMenuWidget:GetValidFilter(filters)
     return valid_filters
 end
 
+function CraftingMenuWidget:GetPrototyperFilter()
+    local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
+    local room = TheWorld.components.interiorspawner:GetInteriorByIndex(current_room_id)
+
+    if room and room:HasInteriorTag("home_prototyper") then
+        return self.prototyper_filters
+    end
+
+    return {}
+end
+
 function CraftingMenuWidget:UpdateFrame(force)
     local _filter_grid_num_rows = self.filter_panel.filter_grid.num_rows
     local _prototyper_filter_grid_num_rows = self.filter_panel.prototyper_filter_grid.num_rows
 
-    local valid_prototyper_filters = self:GetValidFilter(self.prototyper_filters)
+    local valid_prototyper_filters = self:GetPrototyperFilter()
     self.filter_panel.prototyper_filter_grid:RebuildLayout(self.grid_buttons_wide, self.grid_button_space, self.grid_button_space, valid_prototyper_filters)
     if #valid_prototyper_filters > 0 then
         self.filter_panel.prototyper_filter_grid:Show()

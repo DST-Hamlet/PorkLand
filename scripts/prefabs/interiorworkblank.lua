@@ -300,6 +300,7 @@ local TAGS = {
     FORCE_MINIMAP = 1, -- always render minimap even if the room is single
     FORCE_VISITED = 2, -- show minimap of the room before visiting
     NO_LIGHT = 4, -- should trigger grue if no light in room
+    HOME_PROTOTYPER = 8, -- player home prototype room
     TEST = 1024,
 }
 
