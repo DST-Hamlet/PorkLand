@@ -5,6 +5,8 @@ local AddPrototyperDef = AddPrototyperDef
 local AddRecipePostInit = AddRecipePostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+local TechTree = require("techtree")
+
 local change_recipes = require("main/change_recipes.lua")
 local DISABLE_RECIPES = change_recipes.DISABLE_RECIPES
 local LOST_RECIPES = change_recipes.LOST_RECIPES
@@ -59,7 +61,6 @@ local function SortAfter(a, b, filter_name)  -- a after b
     SortRecipe(a, b, filter_name, 1)
 end
 
-local TechTree = require("techtree")
 local function rebuild_techtree(name)
     TECH.NONE = TechTree.Create()
 
