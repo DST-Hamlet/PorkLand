@@ -222,6 +222,13 @@ AddRecipeFilter({
     home_prototyper = true,
 }, 1)
 
+AddPrototyperDef("key_to_city", {
+    icon_atlas = "images/hud/pl_crafting_menu_icons.xml",
+    icon_image = "filter_city.tex",
+    is_crafting_station = true,
+    filter_text = STRINGS.UI.CRAFTING_STATION_FILTERS.CITY
+})
+
 CRAFTING_FILTERS.SEAFARING.disabled_worlds = { "porkland" }
 CRAFTING_FILTERS.RIDING.disabled_worlds = { "porkland" }
 CRAFTING_FILTERS.WINTER.disabled_worlds = { "porkland" }
