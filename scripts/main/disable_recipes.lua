@@ -189,6 +189,9 @@ local DISABLE_RECIPES = {
     "saltlick_improved",
     "bedroll_furry",
     "redmooneye",
+    "featherfan",
+    "ocean_trawler_kit",
+    "fish_box",
 }
 
 return DISABLE_RECIPES
