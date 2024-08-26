@@ -18,7 +18,6 @@ for i, recipe_name in ipairs(DISABLE_RECIPES) do
 end
 
 for i, recipe_name in ipairs(LOST_RECIPES) do
-    print("recipe_name", recipe_name)
     AddRecipePostInit(recipe_name, function(recipe)
         recipe.level = TechTree.Create(TECH.LOST)
     end)

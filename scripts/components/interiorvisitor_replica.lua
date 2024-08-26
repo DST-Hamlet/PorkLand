@@ -114,7 +114,7 @@ function InteriorVisitor:OnUpdate()
 
     local ambientlighting = TheWorld.components.ambientlighting
     local last_center_ent = self.last_center_ent
-    local room_center_ent = self.center_ent:value()
+    local room_center_ent = TheWorld.components.interiorspawner:GetInteriorCenter(self.inst:GetPosition())
     if IsInInteriorRectangle(self.inst:GetPosition(), room_center_ent) then
         self:ApplyInteriorCamera(room_center_ent)
 

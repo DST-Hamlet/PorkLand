@@ -158,6 +158,10 @@ end
 -- Finds the interior center with position or index (interiorID)
 -- Uses FindEntities on client, so only works if you're close to that interiorworkblank (center)
 function InteriorSpawner:GetInteriorCenter(position_or_index)
+    if not position_or_index then
+        print("InteriorSpawner:GetInteriorCente the param position_or_index is nil!!!")
+        return nil
+    end
     local is_number = type(position_or_index) == "number"
     if TheWorld.ismastersim then
         local position = is_number and self:IndexToPosition(position_or_index) or position_or_index
