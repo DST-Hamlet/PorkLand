@@ -142,6 +142,7 @@ local widget_posts = {
     "inventorybar",
     "healthbadge",
     "seasonclock",
+    "skilltreetoast",
     "statusdisplay",
     "uianim",
     "uiclock",
@@ -183,6 +184,7 @@ modimport("postinit/groundcreep")
 modimport("postinit/groundcreepentity")
 modimport("postinit/soundemitter")
 modimport("postinit/preparedfoods")
+modimport("postinit/skilltrees")
 
 
 for _, file_name in ipairs(behaviour_posts) do
