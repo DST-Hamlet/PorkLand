@@ -37,13 +37,6 @@ local InteriorVisitor = Class(function(self, inst)
     -- self.restore_physics_task = nil
 
     self.last_mainland_pos = nil
-
-    -- for wortox
-    inst:ListenForEvent("soulhop", function()
-        if inst.replica.interiorvisitor then
-            inst.replica.interiorvisitor.resetinteriorcamera:push()
-        end
-    end)
 end, nil,
 {
     exterior_pos_x = on_x,

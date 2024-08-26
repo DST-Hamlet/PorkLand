@@ -12,7 +12,6 @@ local InteriorVisitor = Class(function(self, inst)
     self.exterior_pos_z:set_local(0)
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
-    self.resetinteriorcamera = net_event(inst.GUID, "interiorvisitor.resetinteriorcamera")
     self.restore_outside_interior_camera = net_event(inst.GUID, "interiorvisitor.restoreoutsideinteriorcamera")
 
     -- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
