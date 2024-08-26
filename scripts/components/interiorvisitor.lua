@@ -104,7 +104,7 @@ end
 
 function InteriorVisitor:RecordMap(id, data)
     self.interior_map[id] = data
-    SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, TheSim:ZipAndEncodeString(DataDumper({[id] = data})))
+    SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString({[id] = data}))
 end
 
 function InteriorVisitor:UpdateExteriorPos()
@@ -183,8 +183,11 @@ function InteriorVisitor:OnLoad(data)
     end
     if data.interior_map then
         self.interior_map = data.interior_map
-        self.inst:DoStaticTaskInTime(0, function()
-            SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, TheSim:ZipAndEncodeString(DataDumper(self.interior_map)))
+        -- Don't quite understand why ThePlayer can be nil when the client receives this,
+        -- from HandleClientRPC in networkclientrpc.lua, it shouldn't happen, but it does anyway,
+        -- since this is not critical to the client on initial load, use a delay here to mitigate this
+        self.inst:DoStaticTaskInTime(3, function()
+            SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString(self.interior_map))
         end)
     end
 

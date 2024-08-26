@@ -47,6 +47,8 @@ local function OnLightning(inst, data)
     inst.components.timer:StartTimer("discharge", TUNING.ROBOT_DISCHARGE_TIME)
     if not TheWorld.state.isaporkalypse then
         inst.components.timer:ResumeTimer("discharge")
+    else
+        inst.components.timer:PauseTimer("discharge")
     end
 
     if inst:HasTag("dormant") then

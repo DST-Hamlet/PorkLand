@@ -797,7 +797,7 @@ local states = {
         end,
 
         onupdate = function(inst)
-			if inst.sg:ServerStateMatches() then
+            if inst.sg:ServerStateMatches() then
                 if inst.entity:FlattenMovementPrediction() then
                     inst.sg:GoToState("idle", "noanim")
                 end
