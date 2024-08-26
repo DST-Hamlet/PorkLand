@@ -126,6 +126,7 @@ function Hayfever:Disable(nosay)
     if self.enabled then
         -- print("Hayvever over")
 
+        self.sneezed = false
         self.enabled = false
         self.nextsneeze = self:GetNextSneezTimeInitial()
 
@@ -166,8 +167,14 @@ function Hayfever:OnLoad(data)
         self.nextsneeze = data.nextsneeze or self:GetNextSneezTimeInitial()
     end
 
+
     if data.enabled then
-        self:Enable()
+        if TheWorld.state.ishayfever then
+            self:Enable()
+        else
+            self.sneezed = false
+            self.nextsneeze = self:GetNextSneezTimeInitial()
+        end
     end
 end
 
