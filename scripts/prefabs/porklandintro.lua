@@ -88,5 +88,5 @@ return MakeIntroDecor("porkland_intro_basket",   "basket",              {"boards
        MakeIntroDecor("porkland_intro_trunk",    "trunk",               {"trinket_8"}, nil, nil, true),
        MakeIntroDecor("porkland_intro_suitcase", "suitcase",            {"razor"},     nil, nil, true),
        MakeIntroDecor("porkland_intro_flags",    "flags",               {"rope"},      true),
-       MakeIntroDecor("porkland_intro_sandbag",  "sandbag"             --[[{"sand"}]]), -- no use in hamlet
+       MakeIntroDecor("porkland_intro_sandbag",  "sandbag",             {"sand"}), -- no use in hamlet
        MakeIntroDecor("porkland_intro_scrape",   "ground_scrape_decal", nil,           true)

@@ -158,17 +158,6 @@ return {
           height = 0,
           visible = true,
           properties = {}
-        },
-        {
-          name = "",
-          type = "machete",
-          shape = "rectangle",
-          x = 167,
-          y = 44,
-          width = 0,
-          height = 0,
-          visible = true,
-          properties = {}
         }
       }
     }
