@@ -101,7 +101,7 @@ end
 
 function CraftingMenuWidget:GetPrototyperFilter()
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
-    local room = TheWorld.components.interiorspawner:GetInteriorByIndex(current_room_id)
+    local room = TheWorld.components.interiorspawner:GetInteriorCenter(current_room_id)
 
     if room and room:HasInteriorTag("home_prototyper") then
         return self.prototyper_filters

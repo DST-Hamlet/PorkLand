@@ -7,7 +7,7 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local TechTree = require("techtree")
 
-local change_recipes = require("main/change_recipes.lua")
+local change_recipes = require("main/change_recipes")
 local DISABLE_RECIPES = change_recipes.DISABLE_RECIPES
 local LOST_RECIPES = change_recipes.LOST_RECIPES
 
@@ -18,6 +18,7 @@ for i, recipe_name in ipairs(DISABLE_RECIPES) do
 end
 
 for i, recipe_name in ipairs(LOST_RECIPES) do
+    print("recipe_name", recipe_name)
     AddRecipePostInit(recipe_name, function(recipe)
         recipe.level = TechTree.Create(TECH.LOST)
     end)
@@ -250,11 +251,16 @@ AddRecipe2("ballpein_hammer", {Ingredient("iron", 2), Ingredient("twigs", 1)}, T
 AddRecipe2("goldpan", {Ingredient("iron", 2), Ingredient("hammer", 1)}, TECH.SCIENCE_ONE, {}, {"ARCHAEOLOGY"})
 AddRecipe2("magnifying_glass", {Ingredient("iron", 1), Ingredient("twigs", 1), Ingredient("bluegem", 1)}, TECH.SCIENCE_TWO, {}, {"ARCHAEOLOGY"})
 
--- SCIENCE ---
-AddRecipe2("smelter", {Ingredient("cutstone", 6), Ingredient("boards", 4), Ingredient("redgem", 1)}, TECH.SCIENCE_TWO, {placer = "smelter_placer"}, {"TOOLS","STRUCTURES"})
+-- STRUCTURES ---
+AddRecipe2("smelter", {Ingredient("cutstone", 6), Ingredient("boards", 4), Ingredient("redgem", 1)}, TECH.SCIENCE_TWO, {placer = "smelter_placer"}, {"REFINE","STRUCTURES"})
+SortBefore("smelter", "rope", "REFINE")
 SortBefore("smelter", "cookpot", "STRUCTURES")
-SortAfter("smelter", "archive_resonator_item", "TOOLS")
 
+AddRecipe2("corkchest", {Ingredient("cork", 2), Ingredient("rope", 1)}, TECH.SCIENCE_ONE, {placer="corkchest_placer", min_spacing=1}, {"STRUCTURES", "CONTAINERS"})
+
+AddRecipe2("roottrunk", {Ingredient("bramble_bulb", 1), Ingredient("venus_stalk", 2), Ingredient("boards", 3)}, TECH.MAGIC_TWO, {placer="roottrunk_placer", min_spacing=2}, {"STRUCTURES", "CONTAINERS", "MAGIC"})
+
+-- SCIENCE ---
 AddRecipe2("basefan", {Ingredient("alloy", 2), Ingredient("transistor", 2), Ingredient("gears", 1)}, TECH.SCIENCE_TWO, {placer = "basefan_placer"}, {"STRUCTURES", "RAIN", "ENVIRONMENT_PROTECTION"})
 SortBefore("basefan", "firesuppressor", "STRUCTURES")
 SortBefore("basefan", "rainometer", "RAIN")
@@ -349,10 +355,16 @@ AddRecipe2("bonestaff", {Ingredient("pugalisk_skull", 1), Ingredient("boneshard"
 SortAfter("bonestaff", "antlionhat", "MAGIC")
 SortAfter("bonestaff", "trident", "WEAPONS")
 
+AddRecipe2("ox_flute", {Ingredient("ox_horn", 1), Ingredient("nightmarefuel", 2), Ingredient("rope", 1)}, TECH.LOST, nil, {"MAGIC"})
+SortAfter("ox_flute", "panflute", "MAGIC")
+
 -- REFINE ---
 AddRecipe2("goldnugget", {Ingredient("gold_dust", 6)}, TECH.SCIENCE_ONE, {no_deconstruction = true} , {"REFINE"})
 AddRecipe2("clawpalmtree_sapling_item", {Ingredient("cork", 1), Ingredient("poop", 1)}, TECH.SCIENCE_ONE, {no_deconstruction = true, image = "clawpalmtree_sapling.tex"}, {"REFINE"})
 AddRecipe2("venomgland", {Ingredient("froglegs_poison", 3)}, TECH.SCIENCE_TWO, {no_deconstruction = true} , {"REFINE"})
+
+AddRecipe2("fabric", {Ingredient("bamboo", 3)}, TECH.LOST, nil, {"REFINE"})
+SortAfter("fabric", "beeswax", "REFINE")
 
 -- DECOR ---
 -- AddRecipe2("turf_foundation", {Ingredient("cutstone", 1)}, TECH.CITY, cityRecipeGameTypes, nil, nil, true)
@@ -414,15 +426,12 @@ local function sprinkler_placetest(pt, rot)
     return GetValidWaterPointNearby(pt) ~= nil
 end
 
+--- GARDENING ---
 AddRecipe2("sprinkler", {Ingredient("alloy", 2), Ingredient("bluegem", 1), Ingredient("ice", 6)}, TECH.SCIENCE_TWO, {placer = "sprinkler_placer", testfn = sprinkler_placetest}, {"GARDENING", "STRUCTURES"})
 
 AddRecipe2("slow_farmplot", {Ingredient("cutgrass", 8), Ingredient("poop", 4), Ingredient("log", 4)}, TECH.SCIENCE_ONE, {placer = "slow_farmplot_placer"}, {"GARDENING"})
 
 AddRecipe2("fast_farmplot", {Ingredient("cutgrass", 10), Ingredient("poop", 6),Ingredient("rocks", 4)}, TECH.SCIENCE_TWO, {placer = "fast_farmplot_placer"}, {"GARDENING"})
-
-AddRecipe2("corkchest", {Ingredient("cork", 2), Ingredient("rope", 1)}, TECH.SCIENCE_ONE, {placer="corkchest_placer", min_spacing=1}, {"STRUCTURES", "CONTAINERS"})
-
-AddRecipe2("roottrunk", {Ingredient("bramble_bulb", 1), Ingredient("venus_stalk", 2), Ingredient("boards", 3)}, TECH.MAGIC_TWO, {placer="roottrunk_placer", min_spacing=2}, {"STRUCTURES", "CONTAINERS", "MAGIC"})
 
 local function NotInInterior(pt)
     return not TheWorld.components.interiorspawner:IsInInterior(pt.x, pt.z)

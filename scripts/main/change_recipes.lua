@@ -204,10 +204,10 @@ local LOST_RECIPES = {
     "icepack",
     "staff_tornado",
     "dragonflychest",
-    "trawlnet",
+    -- "trawlnet",
 }
 
 return {
-    DISABLE_RECIPES,
-    LOST_RECIPES,
+    DISABLE_RECIPES = DISABLE_RECIPES,
+    LOST_RECIPES = LOST_RECIPES,
 }
