@@ -102,6 +102,9 @@ local function UpdateMoisture(inst)
         inst.AnimState:ClearOverrideBuild(BULB_CLOSED_BUILD)
         inst.wet = true
         inst.components.pickable:MakeUnsuited(false)
+        if inst.components.pickable.paused then
+            inst.components.pickable:Resume()
+        end
         UpdateGrowthStatus(inst) -- start growing
     elseif moisture > TUNING.NETTLE_MOISTURE_DRY_THRESHOLD and inst.wet == true then
         -- if wet, keep wet
@@ -109,11 +112,17 @@ local function UpdateMoisture(inst)
         inst.AnimState:AddOverrideBuild(BULB_HALF_OPEN_BUILD)
         inst.wet = false
         inst.components.pickable:MakeUnsuited(true)
+        if not inst.components.pickable.paused then
+            inst.components.pickable:Pause()
+        end
         -- don't pause growth just yet, give players some time
     else -- too dry
         inst.AnimState:AddOverrideBuild(BULB_CLOSED_BUILD)
         inst.wet = false
         inst.components.pickable:MakeUnsuited(true)
+        if not inst.components.pickable.paused then
+            inst.components.pickable:Pause()
+        end
         UpdateGrowthStatus(inst) -- stop growing
     end
 end
