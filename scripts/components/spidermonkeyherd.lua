@@ -204,7 +204,7 @@ function self:LoadPostPass(ents, data)
                 monkeys = {},
                 next_regen = herd.next_regen,
             }
-            if ents[herd.leader].entity then
+            if ents[herd.leader] then
                 herd_data.leader = ents[herd.leader].entity
             end
             for _, monkey_GUID in pairs(herd.monkeys) do
