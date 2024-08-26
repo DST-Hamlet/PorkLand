@@ -157,7 +157,7 @@ function InteriorSpawner:IsInInterior(x, z)
     return self.world_width > 0 and self:IsInInteriorRegion(x, z) and self:IsInInteriorRoom(x, z)
 end
 
--- Finds the interior center with position for index (interiorID)
+-- Finds the interior center with position or index (interiorID)
 -- Uses FindEntities on client, so only works if you're close to that interiorworkblank (center)
 function InteriorSpawner:GetInteriorCenter(position_or_index)
     if TheWorld.ismastersim then
@@ -190,9 +190,10 @@ function InteriorSpawner:PositionToIndex(pos)
     return z_index * x_size + x_index
 end
 
-function InteriorSpawner:GetInteriorDefByPosition(pos)
-    local index = self:PositionToIndex(pos)
-    return self.interior_defs[index]
+-- Get the interior define with position or index (interiorID)
+function InteriorSpawner:GetInteriorDefine(position_or_id)
+    local id = type(position_or_id) == "number" and position_or_id or self:PositionToIndex(position_or_id)
+    return self.interior_defs[id]
 end
 
 function InteriorSpawner:AddExterior(entity)
