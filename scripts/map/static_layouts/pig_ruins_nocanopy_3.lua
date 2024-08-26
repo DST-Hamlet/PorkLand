@@ -70,14 +70,16 @@ return {
       objects = {
         {
           name = "",
-          type = "wall_pig_ruins_repaired",
+          type = "wall_pig_ruins",
           shape = "rectangle",
           x = 112,
           y = 192,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -147,25 +149,29 @@ return {
         },
         {
           name = "",
-          type = "wall_pig_ruins_repaired",
+          type = "wall_pig_ruins",
           shape = "rectangle",
           x = 288,
           y = 192,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
-          type = "wall_pig_ruins_repaired",
+          type = "wall_pig_ruins",
           shape = "rectangle",
           x = 224,
           y = 192,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         }
       }
     }
