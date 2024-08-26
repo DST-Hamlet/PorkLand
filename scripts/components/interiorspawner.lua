@@ -143,7 +143,7 @@ function InteriorSpawner:IsInInteriorRegion(x, z)
 end
 
 function InteriorSpawner:IsInInteriorRoom(x, z, padding)
-    padding = padding or 1
+    padding = padding or 0
     local position = Vector3(x, 0, z)
     local ent = self:GetInteriorCenter(position)
     if ent ~= nil then
