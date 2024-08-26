@@ -444,6 +444,7 @@ local function CreateInterior(inst)
     CreateQueenChambers(queen_chamber_count)
     BuildWalls(inst)
     RefreshDoors(inst)
+    TheWorld.components.interiorspawner:AddExterior(inst)
 
     inst.maze_generated = true
 end
@@ -540,8 +541,6 @@ local function makefn(is_entrance)
 
         inst.name = STRINGS.NAMES.ANTHILL
 
-        TheWorld.components.interiorspawner:AddExterior(inst)
-
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
@@ -550,12 +549,12 @@ local function makefn(is_entrance)
 
         inst:AddComponent("lootdropper")
 
-        -- inst:AddComponent("childspawner")
-        -- inst.components.childspawner.childname = "antman"
-        -- inst.components.childspawner:SetRegenPeriod(TUNING.ANTMAN_REGEN_TIME)
-        -- inst.components.childspawner:SetSpawnPeriod(TUNING.ANTMAN_RELEASE_TIME)
-        -- inst.components.childspawner:SetMaxChildren(math.random(TUNING.ANTMAN_MIN, TUNING.ANTMAN_MAX))
-        -- inst.components.childspawner:StartSpawning()
+        inst:AddComponent("childspawner")
+        inst.components.childspawner.childname = "antman"
+        inst.components.childspawner:SetRegenPeriod(TUNING.ANTMAN_REGEN_TIME)
+        inst.components.childspawner:SetSpawnPeriod(TUNING.ANTMAN_RELEASE_TIME)
+        inst.components.childspawner:SetMaxChildren(math.random(TUNING.ANTMAN_MIN, TUNING.ANTMAN_MAX))
+        inst.components.childspawner:StartSpawning()
 
         inst:AddComponent("playerprox")
         inst.components.playerprox:SetDist(10, 13)

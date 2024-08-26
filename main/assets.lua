@@ -245,6 +245,9 @@ PrefabFiles = {
     "antman",
     "antman_warrior",
     "antman_warrior_egg",
+    "anthill",
+    "antlarva",
+    "antqueen",
 }
 
 Assets = {
