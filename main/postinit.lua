@@ -79,6 +79,7 @@ local prefab_posts = {
     "buff_workeffectiveness",
     "grass",
     "meatrack",
+    "mosquitosack",
     "multiplayer_portal",
     "orangestaff",
     "player",
