@@ -12,7 +12,6 @@ local InteriorVisitor = Class(function(self, inst)
     self.exterior_pos_z:set_local(0)
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
-    self.resetinteriorcamera = net_event(inst.GUID, "interiorvisitor.resetinteriorcamera")
     self.restore_outside_interior_camera = net_event(inst.GUID, "interiorvisitor.restoreoutsideinteriorcamera")
 
     -- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
@@ -35,19 +34,6 @@ function InteriorVisitor:GetExteriorPos()
         0,
         self.exterior_pos_z:value()
     )
-end
-
--- TODO: Make this actually work
-function InteriorVisitor:IsInInterior(x, z)
-    -- local pos = self.inst:GetPosition()
-    -- local index = TheWorld.components.interiorspawner:PositionToIndex(pos)
-end
-
-function InteriorVisitor:GetInteriorCenterGeneric()
-    local pos = self.inst:GetPosition()
-    for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 30, {"pl_interiorcenter"})) do
-        return v
-    end
 end
 
 local function IsInInteriorRectangle(player_pos, ent)

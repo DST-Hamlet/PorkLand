@@ -610,7 +610,7 @@ local function MakeHat(name)
     end
 
     local function gasmask_onunequip(inst, owner)
-        _onequip(inst, owner)
+        _onunequip(inst, owner)
         inst:RemoveTag("has_gasmask")
     end
 

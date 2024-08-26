@@ -93,7 +93,7 @@ local function AddBatToCaves()
     end
 
     local interiorID = GetRandomItem(_batcaves)
-    local bat_cave = TheWorld.components.interiorspawner:GetInteriorByIndex(interiorID)
+    local bat_cave = TheWorld.components.interiorspawner:GetInteriorCenter(interiorID)
     local width, depth = bat_cave:GetSize()
     local offset = {x = math.random() * width - width / 2, y = 0, z = math.random() * depth - depth / 2}
 
@@ -318,7 +318,7 @@ end
 
 function self:UnRegisterBatCave(interiorID)
     local INTERIOR_RADIUS_SQUARE = 40 * 40 -- big enough to cover the bat cave
-    local bat_cave_center = TheWorld.components.interiorspawner:GetInteriorByIndex(interiorID)
+    local bat_cave_center = TheWorld.components.interiorspawner:GetInteriorCenter(interiorID)
     for _, bat in pairs(_bats) do
         if bat:GetDistanceSqToInst(bat_cave_center) < INTERIOR_RADIUS_SQUARE then
             OnBatRemoved(bat)

@@ -228,14 +228,16 @@ return {
         },
         {
           name = "",
-          type = "wall_pig_ruins_repaired",
+          type = "wall_pig_ruins",
           shape = "rectangle",
           x = 128,
           y = 48,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -250,14 +252,16 @@ return {
         },
         {
           name = "",
-          type = "wall_pig_ruins_repaired",
+          type = "wall_pig_ruins",
           shape = "rectangle",
           x = 400,
           y = 112,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",
@@ -283,14 +287,16 @@ return {
         },
         {
           name = "",
-          type = "wall_pig_ruins_repaired",
+          type = "wall_pig_ruins",
           shape = "rectangle",
           x = 128,
           y = 400,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         }
       }
     }

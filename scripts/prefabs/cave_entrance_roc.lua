@@ -75,10 +75,9 @@ local function ConnectInteriors(inst)
 
     door:initInteriorPrefab(nil, prefab_door_def, interior_door_def)
 
-    --interior_spawner:AddDoor(door, interior_door_def) -- 亚丹：在InitInteriorPrefab中已经执行
+    --interior_spawner:AddDoor(door, interior_door_def) -- 亚丹：在InitInteriorPrefab 中已经执行
 
-    local target_interior_pos = interior_spawner:IndexToPosition(interiorID) -- center of bat cave
-    local target_interior_center = interior_spawner:GetInteriorCenterAt_Generic(target_interior_pos.x, target_interior_pos.z)
+    local target_interior_center = interior_spawner:GetInteriorCenter(interiorID) -- center of bat cave
 
     local door_pos
     local blocker = FindEntity(target_interior_center, REMOVE_BLOCKERS_RAD, nil, BLOCKER_MUST_TAGS)

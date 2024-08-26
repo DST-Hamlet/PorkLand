@@ -141,11 +141,12 @@ function InteriorSpawner:IsInInteriorRegion(x, z)
 end
 
 function InteriorSpawner:IsInInteriorRoom(x, z, padding)
-    padding = padding or 1
-    local ent = self:GetInteriorCenterAt_Generic(x, z)
+    padding = padding or 0
+    local position = Vector3(x, 0, z)
+    local ent = self:GetInteriorCenter(position)
     if ent ~= nil then
         local width, depth = ent:GetSize()
-        local offset = ent:GetPosition() - Point(x, 0, z)
+        local offset = ent:GetPosition() - position
         return math.abs(offset.x) < depth/2 + padding and math.abs(offset.z) < width/2 + padding
     end
 end
@@ -154,18 +155,24 @@ function InteriorSpawner:IsInInterior(x, z)
     return self.world_width > 0 and self:IsInInteriorRegion(x, z) and self:IsInInteriorRoom(x, z)
 end
 
-function InteriorSpawner:GetInteriorCenterAt_Generic(x, z)
-    local radius = TUNING.ROOM_FINDENTITIES_RADIUS
-    for _, v in ipairs(TheSim:FindEntities(x, 0, z, radius, {"pl_interiorcenter"})) do
+-- Finds the interior center with position or index (interiorID)
+-- Uses FindEntities on client, so only works if you're close to that interiorworkblank (center)
+function InteriorSpawner:GetInteriorCenter(position_or_index)
+    local is_number = type(position_or_index) == "number"
+    if TheWorld.ismastersim then
+        local position = is_number and self:IndexToPosition(position_or_index) or position_or_index
+        if not self:IsInInteriorRegion(position.x, position.z) then
+            return
+        end
+        local index = is_number and position_or_index or self:PositionToIndex(position_or_index)
+        return self.interiors[index]
+    end
+
+    local position = is_number and self:IndexToPosition(position_or_index) or position_or_index
+    for _, v in ipairs(TheSim:FindEntities(position.x, 0, position.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"pl_interiorcenter"})) do
         return v
     end
 end
-
--- function InteriorSpawner:GetInteriorCenterAt_Dedicated(x, z)
---     -- should not be used in client (center_ent may asleep)
---     local index = self:PositionToIndex(Point(x, 0, z))
---     return self.interior_defs[index] and self.interior_defs[index].center_ent
--- end
 
 function InteriorSpawner:IndexToPosition(i)
     self:SetInteriorPos()
@@ -178,6 +185,7 @@ function InteriorSpawner:IndexToPosition(i)
         z_index * SPACE - 1000) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
 end
 
+-- Doesn't check if the position is in the interior area or ont
 function InteriorSpawner:PositionToIndex(pos)
     self:SetInteriorPos()
     local x_size = math.floor(MAX_X_OFFSET / SPACE)
@@ -186,9 +194,10 @@ function InteriorSpawner:PositionToIndex(pos)
     return z_index * x_size + x_index
 end
 
-function InteriorSpawner:GetInteriorDefByPosition(pos)
-    local index = self:PositionToIndex(pos)
-    return self.interior_defs[index]
+-- Get the interior define with position or index (interiorID)
+function InteriorSpawner:GetInteriorDefine(position_or_id)
+    local id = type(position_or_id) == "number" and position_or_id or self:PositionToIndex(position_or_id)
+    return self.interior_defs[id]
 end
 
 function InteriorSpawner:AddExterior(entity)
@@ -221,7 +230,7 @@ function InteriorSpawner:OnRemoveExterior(entity)
         return
     end
 
-    local room = self:GetInteriorByIndex(entity.interiorID)
+    local room = self:GetInteriorCenter(entity.interiorID)
     if room then
         local allrooms = self:GatherAllRooms_Impl(room, {})
         for center in pairs(allrooms) do
@@ -292,17 +301,21 @@ function InteriorSpawner:GetOppositeFromDirection(direction)
     end
 end
 
-function InteriorSpawner:AddDoor(inst, def)
-    self.doors[def.my_door_id] = { my_interior_name = def.my_interior_name, inst = inst, target_interior = def.target_interior }
+function InteriorSpawner:AddDoor(door, def)
+    self.doors[def.my_door_id] = {
+        inst = door,
+        my_interior_name = def.my_interior_name,
+        target_interior = def.target_interior,
+    }
 
-    local door = inst.components.door or inst:AddComponent("door")
+    local door_component = door.components.door or door:AddComponent("door")
 
-    door.door_id = def.my_door_id
-    door.interior_name = def.my_interior_name
-    door.target_door_id = def.target_door_id
-    door.target_interior = def.target_interior
-    door.target_exterior = def.target_exterior
-    door.is_exit = def.is_exit
+    door_component.door_id = def.my_door_id
+    door_component.interior_name = def.my_interior_name
+    door_component.target_door_id = def.target_door_id
+    door_component.target_interior = def.target_interior
+    door_component.target_exterior = def.target_exterior
+    door_component.is_exit = def.is_exit
 end
 
 function InteriorSpawner:RemoveDoor(door_id)
@@ -315,20 +328,17 @@ function InteriorSpawner:RemoveDoor(door_id)
 end
 
 function InteriorSpawner:SpawnObject(interiorID, prefab, offset)
-    local interior_pos = self:GetInteriorByIndex(interiorID):GetPosition() -- interior center point
-    if not interior_pos then
-        print("Error: Could not find interior of ID " .. interiorID)
-        return
-    end
-
     local object = SpawnPrefab(prefab)
     if not object then
         print("Error: Failed to spawn " .. prefab)
         return
     end
 
-    local spawn_point = interior_pos + (offset or Vector3(0, 0, 0))
-    object.Transform:SetPosition(spawn_point.x, spawn_point.y, spawn_point.z)
+    local spawn_point = self:IndexToPosition(interiorID)
+    if offset then
+        spawn_point = spawn_point + offset
+    end
+    object.Transform:SetPosition(spawn_point:Get())
     return object
 end
 
@@ -406,6 +416,7 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
     for heading, exit in pairs(exits) do
         -- convert to number
         if type(exit.target_room) == "string" then
+            print("WARNING: target_room is a string:", dungeon_name, exit.target_room)
             local index = assert(tonumber(select(3, exit.target_room:find("_(%d+)$"))), "Failed to convert to number: "..exit.target_room)
             exit.target_room = index
         end
@@ -503,19 +514,6 @@ function InteriorSpawner:AddInterior(def)
 
     if def.batted and TheWorld.components.batted then
         TheWorld.components.batted:RegisterBatCave(def.unique_name) -- unique_name is interiorID
-    end
-end
-
-function InteriorSpawner:GetInteriorByIndex(index)
-    -- convert string name
-    if type(index) == "string" then
-        -- should not happen
-        print("WARNING: GetInteriorByIndex with a string:", index)
-        index = assert(tonumber(select(3, index:find("_(%d+)$"))), "Failed to convert to number: "..index)
-    end
-    local pos = self:IndexToPosition(index)
-    for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 4, {"pl_interiorcenter"})) do
-        return v
     end
 end
 
@@ -794,7 +792,7 @@ function InteriorSpawner:GatherAllRooms_Impl(center, allrooms, usemap)
         if v.prefab == "prop_door" then
             local target_interior = v.components.door.target_interior
             if target_interior ~= nil and target_interior ~= "EXTERIOR" then
-                local room = self.interiors[target_interior] or self:GetInteriorByIndex(target_interior)
+                local room = self.interiors[target_interior] or self:GetInteriorCenter(target_interior)
                 assert(room, "Room not exists: "..target_interior)
                 self:GatherAllRooms_Impl(room, allrooms)
             end
@@ -808,7 +806,7 @@ function InteriorSpawner:ForEachPlayerInRoom(interiorID, fn, ...)
         return
     end
 
-    local room = self:GetInteriorByIndex(interiorID)
+    local room = self:GetInteriorCenter(interiorID)
     if not room or not room:IsValid() then
         return
     end

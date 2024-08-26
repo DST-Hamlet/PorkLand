@@ -36,6 +36,7 @@ SetSharedLootTable("teatree_tall",
 {
     {"log", 1.0},
     {"log", 1.0},
+    {"twigs", 1.0},
     {"teatree_nut", 1.0},
     {"teatree_nut", 1.0},
 })

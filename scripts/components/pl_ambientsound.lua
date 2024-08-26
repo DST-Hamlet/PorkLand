@@ -211,8 +211,7 @@ local function OnSeasonTick(src, data)
 end
 
 local function UpdateInteriorReverb(src)
-    local x, _, z = src.Transform:GetWorldPosition()
-    local room = TheWorld.components.interiorspawner:GetInteriorCenterAt_Generic(x, z)
+    local room = TheWorld.components.interiorspawner:GetInteriorCenter(src:GetPosition())
     if room then -- still inside
         local reverb = room._reverb:value()
         if reverb ~= "" then

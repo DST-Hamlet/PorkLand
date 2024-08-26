@@ -136,7 +136,7 @@ function Door:Activate(doer)
             return true
         end
     else
-        local room = TheWorld.components.interiorspawner:GetInteriorByIndex(self.target_interior)
+        local room = TheWorld.components.interiorspawner:GetInteriorCenter(self.target_interior)
 
         local target_door = room and room:GetDoorById(self.target_door_id)
         if target_door then

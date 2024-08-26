@@ -280,7 +280,7 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         end
     end
 
-    local interior_def = TheWorld.components.interiorspawner:GetInteriorDefByPosition(position)
+    local interior_def = TheWorld.components.interiorspawner:GetInteriorDefine(inst.interiorID)
     -- Fallback to mini_ruins_slab
     local floor_texture = interior_def and basename(interior_def.minimaptexture) or "mini_ruins_slab"
 
