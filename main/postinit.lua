@@ -134,7 +134,10 @@ local brain_posts = {
 local widget_posts = {
     "bloodover",
     "containerwidget",
+    "craftingmenu_hud",
     "craftingmenu_ingredients",
+    "craftingmenu_widget",
+    "grid",
     "inventorybar",
     "healthbadge",
     "seasonclock",

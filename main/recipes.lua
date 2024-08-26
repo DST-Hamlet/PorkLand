@@ -2,7 +2,35 @@ local AddDeconstructRecipe = AddDeconstructRecipe
 local AddRecipe2 = AddRecipe2
 local AddRecipeFilter = AddRecipeFilter
 local AddPrototyperDef = AddPrototyperDef
+local AddRecipePostInit = AddRecipePostInit
 GLOBAL.setfenv(1, GLOBAL)
+
+local TechTree = require("techtree")
+
+local change_recipes = require("main/change_recipes.lua")
+local DISABLE_RECIPES = change_recipes.DISABLE_RECIPES
+local LOST_RECIPES = change_recipes.LOST_RECIPES
+
+for i, recipe_name in ipairs(DISABLE_RECIPES) do
+    AddRecipePostInit(recipe_name, function(recipe)
+        recipe.disabled_worlds = { "porkland" }
+    end)
+end
+
+for i, recipe_name in ipairs(LOST_RECIPES) do
+    AddRecipePostInit(recipe_name, function(recipe)
+        recipe.level = TechTree.Create(TECH.LOST)
+    end)
+end
+
+local _GetValidRecipe = GetValidRecipe
+function GetValidRecipe(recipe_name, ...)
+    local recipe = _GetValidRecipe(recipe_name, ...)
+    if recipe and TheWorld and (recipe.disabled_worlds and TheWorld:HasTags(recipe.disabled_worlds)) then
+        return
+    end
+    return recipe
+end
 
 local function SortRecipe(a, b, filter_name, offset)
     local filter = CRAFTING_FILTERS[filter_name]
@@ -33,7 +61,6 @@ local function SortAfter(a, b, filter_name)  -- a after b
     SortRecipe(a, b, filter_name, 1)
 end
 
-local TechTree = require("techtree")
 local function rebuild_techtree(name)
     TECH.NONE = TechTree.Create()
 
@@ -59,8 +86,6 @@ local function AddTech(name, bonus_available)
     end
     rebuild_techtree(name)
 end
-
-AddTech("CITY", false)
 
 local function AquaticRecipe(name, data)
     if AllRecipes[name] then
@@ -100,6 +125,8 @@ local function telebase_testfn(pt, rot)
     return true
 end
 
+AddTech("CITY", false)
+
 -- AddRecipeFilter(filter_def, index)
 -- index: insertion order
 -- filter_def.name: This is the filter's id and will need the string added to STRINGS.UI.CRAFTING_FILTERS[name]
@@ -126,12 +153,96 @@ AddRecipeFilter({
     image = "filter_environment_protection.tex",
 }, #CRAFTING_FILTER_DEFS)
 
+-- home filter
+AddRecipeFilter({
+    name =  "HOME_MISC", -- "reno_tab_homekits",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "filter_city.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_COLUMN",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_columns.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_RUG",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_rugs.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_HANGINGLAMP",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_hanginglamps.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_LAMP",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_lamps.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_PLANTHOLDER",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_plantholders.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_FURNITURE",  -- shelves, chairs, tables
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_shelves.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_WALL_DECORATION",  -- ornaments
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_windows.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_WALLPAPER",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_wallpaper.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_FLOOR",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_floors.tex",
+    home_prototyper = true,
+}, 1)
+
+AddRecipeFilter({
+    name = "HOME_DOOR",
+    atlas = "images/hud/pl_inventoryimages.xml",
+    image = "reno_tab_doors.tex",
+    home_prototyper = true,
+}, 1)
+
 AddPrototyperDef("key_to_city", {
     icon_atlas = "images/hud/pl_crafting_menu_icons.xml",
     icon_image = "filter_city.tex",
     is_crafting_station = true,
     filter_text = STRINGS.UI.CRAFTING_STATION_FILTERS.CITY
 })
+
+CRAFTING_FILTERS.SEAFARING.disabled_worlds = { "porkland" }
+CRAFTING_FILTERS.RIDING.disabled_worlds = { "porkland" }
+CRAFTING_FILTERS.WINTER.disabled_worlds = { "porkland" }
+CRAFTING_FILTERS.SUMMER.disabled_worlds = { "porkland" }
+CRAFTING_FILTERS.FISHING.disabled_worlds = { "porkland" }
 
 --- ARCHAEOLOGY ---
 AddRecipe2("disarming_kit", {Ingredient("iron", 2), Ingredient("cutreeds", 2)}, TECH.NONE, {}, {"ARCHAEOLOGY"})
@@ -304,6 +415,10 @@ local function sprinkler_placetest(pt, rot)
 end
 
 AddRecipe2("sprinkler", {Ingredient("alloy", 2), Ingredient("bluegem", 1), Ingredient("ice", 6)}, TECH.SCIENCE_TWO, {placer = "sprinkler_placer", testfn = sprinkler_placetest}, {"GARDENING", "STRUCTURES"})
+
+AddRecipe2("slow_farmplot", {Ingredient("cutgrass", 8), Ingredient("poop", 4), Ingredient("log", 4)}, TECH.SCIENCE_ONE, {placer = "slow_farmplot_placer"}, {"GARDENING"})
+
+AddRecipe2("fast_farmplot", {Ingredient("cutgrass", 10), Ingredient("poop", 6),Ingredient("rocks", 4)}, TECH.SCIENCE_TWO, {placer = "fast_farmplot_placer"}, {"GARDENING"})
 
 AddRecipe2("corkchest", {Ingredient("cork", 2), Ingredient("rope", 1)}, TECH.SCIENCE_ONE, {placer="corkchest_placer", min_spacing=1}, {"STRUCTURES", "CONTAINERS"})
 
