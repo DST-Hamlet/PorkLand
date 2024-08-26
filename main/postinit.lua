@@ -109,6 +109,7 @@ local multipleprefab_posts = {
     "poisonable",
     "seeds",
     "stalagmite",
+    "tradable",
 }
 
 local scenario_posts = {
