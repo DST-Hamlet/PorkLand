@@ -38,8 +38,8 @@ for veggie in pairs(PL_VEGGIES) do
 end
 
 local function can_plant_seed(inst, pt, mouseover, deployer)
-	local x, z = pt.x, pt.z
-	return TheWorld.Map:CanTillSoilAtPoint(x, 0, z, true)
+    local x, z = pt.x, pt.z
+    return TheWorld.Map:CanTillSoilAtPoint(x, 0, z, true)
 end
 
 local function OnDeploy(inst, pt, deployer) --, rot)

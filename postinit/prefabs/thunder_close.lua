@@ -3,16 +3,16 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local _ScreenFlash
 local function ScreenFlash(self, ...)
-	if ThePlayer and not ThePlayer:HasTag("inside_interior") then
-		_ScreenFlash(self, ...)
-	end
+    if ThePlayer and not ThePlayer:HasTag("inside_interior") then
+        _ScreenFlash(self, ...)
+    end
 end
 
 local _OnRandDirty
 local function OnRandDirty(self, ...)
-	if ThePlayer and not ThePlayer:HasTag("inside_interior") then
-		_OnRandDirty(self, ...)
-	end
+    if ThePlayer and not ThePlayer:HasTag("inside_interior") then
+        _OnRandDirty(self, ...)
+    end
 end
 
 AddPrefabPostInit("thunder_close", function(inst)

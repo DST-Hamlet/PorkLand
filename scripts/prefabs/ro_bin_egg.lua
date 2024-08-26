@@ -1,22 +1,22 @@
 local assets =
 {
-	Asset("ANIM", "anim/roc_egg.zip"),
+    Asset("ANIM", "anim/roc_egg.zip"),
 }
 
 local prefabs =
 {
-	"ro_bin",
-	"tallbirdegg_cracked",
-	"tallbirdegg_cooked",
-	"spoiled_food",
+    "ro_bin",
+    "tallbirdegg_cracked",
+    "tallbirdegg_cooked",
+    "spoiled_food",
 }
 
 local function Hatch(inst)
     inst.components.inventoryitem.canbepickedup = false
     inst.AnimState:PlayAnimation("hatch")
-	inst.persists = false
-	inst:ListenForEvent("animover", inst.Remove)
-	inst:ListenForEvent("entitysleep", inst.Remove)
+    inst.persists = false
+    inst:ListenForEvent("animover", inst.Remove)
+    inst:ListenForEvent("entitysleep", inst.Remove)
 
     inst:DoTaskInTime(50/30, function()
         local stone = SpawnPrefab("ro_bin_gizzard_stone")
@@ -116,10 +116,10 @@ local function OnUpdateFn(inst, dt)
 end
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
@@ -169,7 +169,7 @@ local function fn()
 
     inst.playernear = false
 
-	return inst
+    return inst
 end
 
 return Prefab("roc_robin_egg", fn, assets, prefabs)

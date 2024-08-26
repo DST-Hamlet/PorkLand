@@ -100,7 +100,7 @@ local function fn()
     inst.components.health:StartRegen(TUNING.CHESTER_HEALTH_REGEN_AMOUNT, TUNING.CHESTER_HEALTH_REGEN_PERIOD)
 
     inst:AddComponent("inspectable")
-	inst.components.inspectable:RecordViews()
+    inst.components.inspectable:RecordViews()
 
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = 5
