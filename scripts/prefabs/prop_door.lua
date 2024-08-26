@@ -378,7 +378,7 @@ end
 local function test_player_house_door(inst)
     local door = inst.components.door
     if door then
-        local interior = TheWorld.components.interiorspawner:GetInteriorByIndex(door.interior_name)
+        local interior = TheWorld.components.interiorspawner:GetInteriorCenter(door.interior_name)
         if interior and interior.playerroom then
             inst.entity:AddMiniMapEntity()
             inst.MiniMapEntity:SetIcon("player_frontdoor.tex")

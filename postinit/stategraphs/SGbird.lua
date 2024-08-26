@@ -13,11 +13,11 @@ AddStategraphPostInit("bird", function(sg)
     end
 
     sg.states["flyaway"].onupdate = function(inst)
-        local x, y, z = inst.Transform:GetWorldPosition()
-        if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-            local room = TheWorld.components.interiorspawner:GetInteriorCenterAt_Generic(x, z)
+        local position = inst:GetPosition()
+        if TheWorld.components.interiorspawner:IsInInteriorRegion(position.x, position.z) then
+            local room = TheWorld.components.interiorspawner:GetInteriorCenter(position)
             if room and room.height then
-                if y >= room.height then
+                if position.y >= room.height then
                     inst.components.combat:GetAttacked(nil, 5, nil)
                 end
             end

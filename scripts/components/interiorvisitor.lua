@@ -110,7 +110,7 @@ end
 function InteriorVisitor:UpdateExteriorPos()
     local spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
-    local ent = spawner:GetInteriorCenterAt_Generic(x, z)
+    local ent = spawner:GetInteriorCenter(Vector3(x, 0, z))
 
     self.center_ent = ent
     local last_center_ent = self.last_center_ent

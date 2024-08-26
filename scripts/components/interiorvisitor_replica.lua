@@ -37,19 +37,6 @@ function InteriorVisitor:GetExteriorPos()
     )
 end
 
--- TODO: Make this actually work
-function InteriorVisitor:IsInInterior(x, z)
-    -- local pos = self.inst:GetPosition()
-    -- local index = TheWorld.components.interiorspawner:PositionToIndex(pos)
-end
-
-function InteriorVisitor:GetInteriorCenterGeneric()
-    local pos = self.inst:GetPosition()
-    for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 30, {"pl_interiorcenter"})) do
-        return v
-    end
-end
-
 local function IsInInteriorRectangle(player_pos, ent)
     if ent == nil or not ent:IsValid() then
         return false

@@ -33,9 +33,8 @@ end
 
 local _PlayFootstep = PlayFootstep
 function PlayFootstep(inst, volume, ispredicted, ...)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local room = TheWorld.components.interiorspawner:GetInteriorCenterAt_Generic(x, z)
-    if room ~= nil and inst.SoundEmitter then
+    local room = TheWorld.components.interiorspawner:GetInteriorCenter(inst:GetPosition())
+    if room and inst.SoundEmitter then
         local footstep_tile = room.footstep_tile or room._footstep_tile:value()
 
         local tile_info = GetTileInfo(footstep_tile) or GetTileInfo(WORLD_TILES.DIRT)
