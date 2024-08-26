@@ -160,12 +160,17 @@ end
 -- Finds the interior center with position or index (interiorID)
 -- Uses FindEntities on client, so only works if you're close to that interiorworkblank (center)
 function InteriorSpawner:GetInteriorCenter(position_or_index)
+    local is_number = type(position_or_index) == "number"
     if TheWorld.ismastersim then
-        local index = type(position_or_index) == "number" and position_or_index or self:PositionToIndex(position_or_index)
+        local position = is_number and self:IndexToPosition(position_or_index) or position_or_index
+        if not self:IsInInteriorRegion(position.x, position.z) then
+            return
+        end
+        local index = is_number and position_or_index or self:PositionToIndex(position_or_index)
         return self.interiors[index]
     end
 
-    local position = type(position_or_index) == "number" and self:IndexToPosition(position_or_index) or position_or_index
+    local position = is_number and self:IndexToPosition(position_or_index) or position_or_index
     for _, v in ipairs(TheSim:FindEntities(position.x, 0, position.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"pl_interiorcenter"})) do
         return v
     end
@@ -182,6 +187,7 @@ function InteriorSpawner:IndexToPosition(i)
         z_index * SPACE - 1000) -- 实际z坐标从-1000开始，因为在z<1000的位置，小地图同步会出现问题
 end
 
+-- Doesn't check if the position is in the interior area or ont
 function InteriorSpawner:PositionToIndex(pos)
     self:SetInteriorPos()
     local x_size = math.floor(MAX_X_OFFSET / SPACE)
