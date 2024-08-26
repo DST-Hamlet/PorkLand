@@ -6,10 +6,10 @@ local function en_zh(en, zh) -- Other languages don't work
 end
 
 name = "Above the Clouds"
-author = "Jerry, Tony, ziwbi, 亚丹, 鲁鲁, 小巫, 每年睡8760小时"
-description = "*警告：本mod仍在技术测试阶段，无法保证游玩体验*"
+author = "Jerry, Tony, ziwbi, 亚丹, 鲁鲁, 小巫, 每年睡8760小时, 老王"
+description = "*警告: 本mod仍在技术测试阶段, 无法保证游玩体验*"
 
-version = "0.0.6"
+version = "0.0.7"
 forumthread = ""
 api_version = 10
 api_version_dst = 10
