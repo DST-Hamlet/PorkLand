@@ -5,11 +5,19 @@ local AddPrototyperDef = AddPrototyperDef
 local AddRecipePostInit = AddRecipePostInit
 GLOBAL.setfenv(1, GLOBAL)
 
-local DISABLE_RECIPES = require("main/disable_recipes")
+local change_recipes = require("main/change_recipes.lua")
+local DISABLE_RECIPES = change_recipes.DISABLE_RECIPES
+local LOST_RECIPES = change_recipes.LOST_RECIPES
 
 for i, recipe_name in ipairs(DISABLE_RECIPES) do
     AddRecipePostInit(recipe_name, function(recipe)
         recipe.disabled_worlds = { "porkland" }
+    end)
+end
+
+for i, recipe_name in ipairs(LOST_RECIPES) do
+    AddRecipePostInit(recipe_name, function(recipe)
+        recipe.level = TechTree.Create(TECH.LOST)
     end)
 end
 

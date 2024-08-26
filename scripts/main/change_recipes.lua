@@ -14,7 +14,6 @@ local DISABLE_RECIPES = {
     "beefalo_groomer",
     "brush",
     "seedpouch",
-    "dragonflychest",
     "compostingbin",
     "boat_grass_item",
     "farm_hoe",
@@ -194,4 +193,21 @@ local DISABLE_RECIPES = {
     "fish_box",
 }
 
-return DISABLE_RECIPES
+local LOST_RECIPES = {
+    "ox_flute",
+    "molehat",
+    "beargervest",
+    "fabric",
+    "armordragonfly",
+    "eyebrellahat",
+    "cane",
+    "icepack",
+    "staff_tornado",
+    "dragonflychest",
+    "trawlnet",
+}
+
+return {
+    DISABLE_RECIPES,
+    LOST_RECIPES,
+}
