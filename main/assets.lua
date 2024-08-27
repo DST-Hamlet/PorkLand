@@ -123,6 +123,7 @@ PrefabFiles = {
     "deco_table",
     "interior_boundary",
     "interior_surface",
+    "interior_texture_packages",
     "interiorwall_fx",
     "interiorfloor_fx",
     "vampirebatcave",
