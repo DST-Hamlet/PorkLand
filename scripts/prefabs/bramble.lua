@@ -164,6 +164,12 @@ local function spikefn()
     inst:SetStateGraph("SGbramble")
     inst.sg:GoToState("grow")
 
+    inst:AddComponent("burnable")
+    inst.components.burnable.canlight = false
+    inst.components.burnable:SetFXLevel(2)
+    inst.components.burnable:SetBurnTime(99999)
+    inst.components.burnable:AddBurnFX("character_fire", Vector3(0, 0, 0))
+    MakeSmallPropagator(inst)
     MakeHauntable(inst)
 
     inst:ListenForEvent("attacked", OnAttacked)
@@ -329,6 +335,12 @@ local function corefn()
 
     inst:SetStateGraph("SGbramble")
 
+    inst:AddComponent("burnable")
+    inst.components.burnable.canlight = false
+    inst.components.burnable:SetFXLevel(3)
+    inst.components.burnable:SetBurnTime(99999)
+    inst.components.burnable:AddBurnFX("character_fire", Vector3(0, 0, 0))
+    MakeSmallPropagator(inst)
     MakeHauntable(inst)
 
     inst:ListenForEvent("attacked", OnAttacked)
