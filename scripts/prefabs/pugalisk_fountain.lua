@@ -105,8 +105,6 @@ local function fn()
 
     inst.MiniMapEntity:SetIcon("pig_ruins_well.tex")
 
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/fountain_LP", "burble")
-
     MakeObstaclePhysics(inst, 2)
 
     inst:AddTag("pugalisk_fountain")
@@ -132,6 +130,7 @@ local function fn()
     inst.OnLongUpdate = OnLongUpdate
 
     inst:DoTaskInTime(0, function()
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/fountain_LP", "burble")
         local drop = nil
         local plant = nil
         for k, v in pairs(Ents) do
