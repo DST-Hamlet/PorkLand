@@ -1,4 +1,3 @@
-local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
 local Grid = require ("widgets/grid")

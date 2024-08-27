@@ -53,7 +53,7 @@ function CraftingMenuWidget:MakeFilterPanel(...)
 
     local prototyper_filter_grid = filter_panel:AddChild(Grid())
     prototyper_filter_grid:SetLooping(false, false)
-	prototyper_filter_grid:FillGrid(self.grid_buttons_wide, self.grid_button_space, self.grid_button_space, self.prototyper_filters)
+    prototyper_filter_grid:FillGrid(self.grid_buttons_wide, self.grid_button_space, self.grid_button_space, self.prototyper_filters)
     prototyper_filter_grid:SetPosition(self.filter_grid_pt.x, - self.grid_button_space)
     filter_panel.prototyper_filter_grid = prototyper_filter_grid
 
