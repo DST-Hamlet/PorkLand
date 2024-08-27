@@ -100,13 +100,12 @@ function CraftingMenuWidget:GetValidFilter()
 end
 
 function CraftingMenuWidget:GetPrototyperFilter()
-    local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
-    local room = TheWorld.components.interiorspawner:GetInteriorCenter(current_room_id)
-
-    if room and room:HasInteriorTag("home_prototyper") then
-        return self.prototyper_filters
+    if self.owner.replica.builder then
+        local tech_bonus = self.owner.replica.builder:GetTechBonuses()
+        if tech_bonus.HOME >= 2 then
+            return self.prototyper_filters
+        end
     end
-
     return {}
 end
 

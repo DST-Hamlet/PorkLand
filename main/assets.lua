@@ -21,6 +21,7 @@ PrefabFiles = {
     "dungball",
     "dungbeetle",
     "dungpile",
+    "exterior_texture_packages",
     "fast_farmplot_planted",
     "flotsam",
     "flower_rainforest",

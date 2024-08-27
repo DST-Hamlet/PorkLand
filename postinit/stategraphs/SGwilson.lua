@@ -88,6 +88,7 @@ local function shoot(inst, is_full_charge)
 end
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.RENOVATE, "dolongaction"),
     ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.TAKEFROMSHELF, "doshortaction"),
     ActionHandler(ACTIONS.PUTONSHELF, "doshortaction"),

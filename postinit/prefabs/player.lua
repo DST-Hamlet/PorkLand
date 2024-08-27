@@ -136,6 +136,19 @@ local function UpdateInteriorSanity(inst, data)
     end
 end
 
+local function UpdateHomeTechBonus(inst, data)
+    if data.to and data.to:HasInteriorTag("home_prototyper") then
+        inst.components.builder.home_bonus = 2
+    else
+        inst.components.builder.home_bonus = 0
+    end
+end
+
+local function OnInteriorChange(inst, data)
+    UpdateInteriorSanity(inst, data)
+    UpdateHomeTechBonus(inst, data)
+end
+
 AddPlayerPostInit(function(inst)
     if not TheNet:IsDedicated() then
         inst:DoTaskInTime(0, function()
@@ -192,8 +205,8 @@ AddPlayerPostInit(function(inst)
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)
 
-    inst:ListenForEvent("enterinterior", UpdateInteriorSanity)
-    inst:ListenForEvent("leaveinterior", UpdateInteriorSanity)
+    inst:ListenForEvent("enterinterior", OnInteriorChange)
+    inst:ListenForEvent("leaveinterior", OnInteriorChange)
 
     if inst.OnLoad then
         inst.__OnLoad = inst.OnLoad
