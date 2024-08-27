@@ -428,14 +428,14 @@ end
 AddRecipe2("sprinkler", {Ingredient("alloy", 2), Ingredient("bluegem", 1), Ingredient("ice", 6)}, TECH.SCIENCE_TWO, {placer = "sprinkler_placer", testfn = sprinkler_placetest}, {"GARDENING", "STRUCTURES"})
 
 AddRecipe2("slow_farmplot", {Ingredient("cutgrass", 8), Ingredient("poop", 4), Ingredient("log", 4)}, TECH.SCIENCE_ONE, {placer = "slow_farmplot_placer"}, {"GARDENING"})
+AddRecipe2("fast_farmplot", {Ingredient("cutgrass", 10), Ingredient("poop", 6), Ingredient("rocks", 4)}, TECH.SCIENCE_TWO, {placer = "fast_farmplot_placer"}, {"GARDENING"})
 
-AddRecipe2("fast_farmplot", {Ingredient("cutgrass", 10), Ingredient("poop", 6),Ingredient("rocks", 4)}, TECH.SCIENCE_TWO, {placer = "fast_farmplot_placer"}, {"GARDENING"})
+--- CITY ---
 
 local function NotInInterior(pt)
     return not TheWorld.components.interiorspawner:IsInInterior(pt.x, pt.z)
 end
 
---- CITY ---
 AddRecipe2("turf_foundation", {Ingredient("cutstone", 1)}, TECH.CITY, {nounlock = true, numtogive = 4})
 AddRecipe2("turf_cobbleroad", {Ingredient("cutstone", 2), Ingredient("boards", 1)}, TECH.CITY, {nounlock = true, numtogive = 4})
 AddRecipe2("city_lamp", {Ingredient("alloy", 1), Ingredient("transistor", 1),Ingredient("lantern",1)},  TECH.CITY, {nounlock = true, placer = "city_lamp_placer"})
