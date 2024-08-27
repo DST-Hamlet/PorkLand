@@ -115,7 +115,7 @@ local function fn()
     inst.components.sanityaura.aurafn = CalcSanityAura
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(TUNING.DEERCLOPS_HEALTH)
+    inst.components.health:SetMaxHealth(TUNING.ANCIENT_HERALD_HEALTH)
     inst.components.health.destroytime = 3
 
     inst:AddComponent("combat")
