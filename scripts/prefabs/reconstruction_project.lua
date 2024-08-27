@@ -68,7 +68,7 @@ local function Fix(inst, fixer)
             reconstructed.components.citypossession:SetCity(inst.cityID)
         end
 
-        if inst.spawner_data then
+        if inst.spawner_data and reconstructed.components.spawner then
             reconstructed.components.spawner:Configure(inst.spawner_data.childname, inst.spawner_data.delay or 0, inst.spawner_data.delay or 0)
             if inst.spawner_data.child and inst.spawner_data.child:IsValid() then
                 reconstructed.components.spawner:TakeOwnership(inst.spawner_data.child)
