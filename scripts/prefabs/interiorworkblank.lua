@@ -307,6 +307,8 @@ local TAGS = {
     FORCE_VISITED = 2, -- show minimap of the room before visiting
     NO_LIGHT = 4, -- should trigger grue if no light in room
     HOME_PROTOTYPER = 8, -- player home prototype room
+    PIG_RUINS = 16, -- pig ruins rooms
+    PIG_SHOP = 32, -- pig shop rooms
     TEST = 1024,
 }
 

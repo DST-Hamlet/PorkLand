@@ -374,22 +374,23 @@ local function StopShopMusic(player)
     end
 end
 
-local function OnUsedDoor(player, data)
-    if not data or not data.door then
-        return
+local function OnEnterInterior(player, data)
+    if data.to:HasInteriorTag("pig_shop") then
+        StartShopMusic()
+    else
+        StopShopMusic()
     end
 
-    if data.door:HasTag("ruins_exit") then
-        StopPigRuinsTone(player)
-    elseif data.door:HasTag("ruins_entrance") then
-        StartPigRuinsTone(player)
-    elseif data.door:HasTag("shop_music") then
-        if data.exterior then
-            StopShopMusic()
-        else
-            StartShopMusic(player)
-        end
+    if data.to:HasInteriorTag("pig_ruins") then
+        StartPigRuinsTone()
+    else
+        StopPigRuinsTone()
     end
+end
+
+local function OnLeaveInterior(player, data)
+    StopShopMusic()
+    StopPigRuinsTone()
 end
 
 local function StartPlayerListeners(player)
@@ -403,7 +404,8 @@ local function StartPlayerListeners(player)
 
     inst:ListenForEvent("canopyin", StartJungleTone, player)
     inst:ListenForEvent("canopyout", StopJungleTone, player)
-    inst:ListenForEvent("used_door", OnUsedDoor, player)
+    inst:ListenForEvent("enterinterior_client", OnEnterInterior, player)
+    inst:ListenForEvent("leaveinterior_client", OnLeaveInterior, player)
 end
 
 local function StopPlayerListeners(player)
@@ -417,7 +419,8 @@ local function StopPlayerListeners(player)
 
     inst:RemoveEventCallback("canopyin", StartJungleTone, player)
     inst:RemoveEventCallback("canopyout", StopJungleTone, player)
-    inst:RemoveEventCallback("used_door", OnUsedDoor, player)
+    inst:RemoveEventCallback("enterinterior_client", OnEnterInterior, player)
+    inst:RemoveEventCallback("leaveinterior_client", OnLeaveInterior, player)
 end
 
 local function OnPhase(inst, phase)

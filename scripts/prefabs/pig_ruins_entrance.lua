@@ -477,6 +477,9 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
             PIG_RUINS_CAVE_REVERB, PIG_RUINS_CAVE_AMBIENT, PIG_RUINS_CAVE_GROUND_SOUND)
         def.room_type = room_type -- 获得更多调试信息
         interior_spawner:SpawnInterior(def)
+
+        local center_ent = interior_spawner:GetInteriorCenter(room.id)
+        center_ent:AddInteriorTags("pig_ruins") -- need this for dynamic music
     end
 
     return exit_room

@@ -477,6 +477,10 @@ local function CreateInterior(inst)
         wall_texture, floor_texture, minimap_texture, cityID, PIG_SHOP_COLOUR_CUBE, nil, nil, PIG_SHOP_REVERB,
         PIG_SHOP_AMBIENT_SOUND, PIG_SHOP_FOOTSTEP)
     interior_spawner:SpawnInterior(def)
+
+    local center_ent = interior_spawner:GetInteriorCenter(id)
+    center_ent:AddInteriorTags("pig_shop") -- need this for dynamic music
+
     InitShopped(inst.interiorID, inst.prefab)
 end
 
