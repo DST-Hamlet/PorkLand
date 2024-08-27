@@ -142,8 +142,7 @@ function MakePickableBlowInWindGust(inst, wind_speed, destroy_chance)
 
     inst.ongustpick = function(inst)
         if inst.components.pickable and inst.components.pickable:CanBePicked() then
-            inst.components.pickable:MakeEmpty()
-            inst.components.lootdropper:SpawnLootPrefab(inst.components.pickable.product)
+            inst.components.pickable:Pick(inst)
         end
     end
 
