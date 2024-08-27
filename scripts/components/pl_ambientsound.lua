@@ -401,7 +401,7 @@ function self:OnUpdate(dt)
         end
         _wavessound = WAVE_SOUNDS[_seasonmix]
         _wavesvolume = wavesvolume
-        if wavesvolume > 0 then
+        if _wavessound and wavesvolume > 0 then
             StartWavesSound()
             SetWavesVolume(wavesvolume)
         end
