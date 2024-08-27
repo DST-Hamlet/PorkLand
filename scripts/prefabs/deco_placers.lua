@@ -43,7 +43,7 @@ local function CornerPillarPlaceTest(inst, pt)
     inst.Transform:SetTwoFaced()
     inst.Transform:SetRotation(-90)
 
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
         local width = interiorSpawner.current_interior.width
         local depth = interiorSpawner.current_interior.depth
@@ -103,7 +103,7 @@ local function CeilingLightPlaceTest(inst, pt)
     inst.Transform:SetTwoFaced()
     inst.Transform:SetRotation(-90)
 
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
 
         local width = interiorSpawner.current_interior.width
@@ -140,7 +140,7 @@ local function WallPlaceTest(inst, pt, distance)
     inst.Transform:SetTwoFaced()
     inst.Transform:SetRotation(-90)
 
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
 
         local originpt = interiorSpawner:getSpawnOrigin()
@@ -226,7 +226,7 @@ end
 local function WindowPlaceTest(inst, pt)
     inst.Transform:SetRotation(-90)
 
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
 
         local originpt = interiorSpawner:getSpawnOrigin()
@@ -293,7 +293,7 @@ end
 local function WindowWidePlaceTest(inst, pt)
     inst.Transform:SetRotation(-90)
 
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
 
         local originpt = interiorSpawner:getSpawnOrigin()
@@ -356,55 +356,13 @@ local function WindowWidePlaceTest(inst, pt)
     return false
 end
 
-local function FurniturePlacerAnim(inst)
-    inst.Transform:SetTwoFaced()
-    inst.Transform:SetRotation(-90)
-end
-
-local function FurniturePlaceTest(inst, pt)
-    local interiorSpawner = GetWorld().components.interiorspawner
-    if interiorSpawner.current_interior then
-
-        local width = interiorSpawner.current_interior.width
-        local depth = interiorSpawner.current_interior.depth
-        local originpt = interiorSpawner:getSpawnOrigin()
-
-        local dMax = originpt.x + depth/2
-        local dMin = originpt.x - depth/2
-
-        local wMax = originpt.z + width/2
-        local wMin = originpt.z - width/2
-
-        local dist = 1
-
-        local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, 2,nil,{'player', 'fx', 'NOBLOCK'}) -- {"furniture"}
-
-        for i,ent in pairs(ents) do
-            if ent == inst or (ent.components.inventoryitem and ent.components.inventoryitem.owner) then
-                ents[i] = nil
-            end
-        end
-
-        local inbounds = true
-
-        if pt.x < dMin+dist or pt.x > dMax -dist or pt.z < wMin+dist or pt.z > wMax-dist then
-            inbounds = false
-        end
-
-        if inbounds and #ents < 1 then
-            return true
-        end
-    end
-    return false
-end
-
 local function ShelfPlacerAnim(inst)
     inst.Transform:SetTwoFaced()
     inst.Transform:SetRotation(-90)
 end
 
 local function ShelfPlaceTest(inst, pt)
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
 
         local originpt = interiorSpawner:getSpawnOrigin()
@@ -460,7 +418,7 @@ local function RugPropPlacerAnim(inst)
 end
 
 local function RugPropPlaceTest(inst, pt, distance)
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
 
         local width = interiorSpawner.current_interior.width
@@ -491,9 +449,9 @@ end
 local function RugPlacerAnim(inst)
     inst.flipsrotate = true
     inst.Transform:SetRotation(90)
-    inst.AnimState:SetOrientation( ANIM_ORIENTATION.OnGround )
-    inst.AnimState:SetLayer( LAYER_BACKGROUND )
-    inst.AnimState:SetSortOrder( 3 )
+    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+    inst.AnimState:SetLayer(LAYER_BACKGROUND)
+    inst.AnimState:SetSortOrder(3)
 end
 
 local function RugPlaceTestFn(inst, pt, distance)
@@ -506,7 +464,7 @@ local function RugPlaceTestFn(inst, pt, distance)
         inst.Transform:SetRotation(myrot)
     end
 
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
 
         local width = interiorSpawner.current_interior.width
@@ -549,7 +507,7 @@ local function modifypillarfn(inst)
 
     data.prefab_suffix = "_beam"
 
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
         local originpt = interiorSpawner:getSpawnOrigin()
         local pt = Point(inst.Transform:GetWorldPosition())
@@ -568,7 +526,7 @@ local function modifywallfn(inst)
 
     data.anim =  inst.animdata.anim
 
-    local interiorSpawner = GetWorld().components.interiorspawner
+    local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
         local originpt = interiorSpawner:getSpawnOrigin()
         local width = interiorSpawner.current_interior.width
@@ -608,16 +566,16 @@ return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",          
         MakePlacer("deco_marble_cornerbeam_placer",     "wall_decals_hoofspa",   "interior_wall_decals_hoofspa",     "pillar_corner",        nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
 
         -- CHAIRS
-        MakePlacer("chair_classic_placer",          "interior_chair", "interior_chair", "chair_classic",    nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("chair_corner_placer",           "interior_chair", "interior_chair", "chair_corner",     nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("chair_bench_placer",            "interior_chair", "interior_chair", "chair_bench",      nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("chair_horned_placer",           "interior_chair", "interior_chair", "chair_horned",     nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("chair_footrest_placer",         "interior_chair", "interior_chair", "chair_footrest",   nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("chair_lounge_placer",           "interior_chair", "interior_chair", "chair_lounge",     nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("chair_massager_placer",         "interior_chair", "interior_chair", "chair_massager",   nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("chair_stuffed_placer",          "interior_chair", "interior_chair", "chair_stuffed",    nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("chair_rocking_placer",          "interior_chair", "interior_chair", "chair_rocking",    nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("chair_ottoman_placer",          "interior_chair", "interior_chair", "chair_ottoman",    nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
+        MakePlacer("chair_classic_placer",  "interior_chair", "interior_chair", "chair_classic",  nil, nil, nil, nil, nil, "two"),
+        MakePlacer("chair_corner_placer",   "interior_chair", "interior_chair", "chair_corner",   nil, nil, nil, nil, nil, "two"),
+        MakePlacer("chair_bench_placer",    "interior_chair", "interior_chair", "chair_bench",    nil, nil, nil, nil, nil, "two"),
+        MakePlacer("chair_horned_placer",   "interior_chair", "interior_chair", "chair_horned",   nil, nil, nil, nil, nil, "two"),
+        MakePlacer("chair_footrest_placer", "interior_chair", "interior_chair", "chair_footrest", nil, nil, nil, nil, nil, "two"),
+        MakePlacer("chair_lounge_placer",   "interior_chair", "interior_chair", "chair_lounge",   nil, nil, nil, nil, nil, "two"),
+        MakePlacer("chair_massager_placer", "interior_chair", "interior_chair", "chair_massager", nil, nil, nil, nil, nil, "two"),
+        MakePlacer("chair_stuffed_placer",  "interior_chair", "interior_chair", "chair_stuffed",  nil, nil, nil, nil, nil, "two"),
+        MakePlacer("chair_rocking_placer",  "interior_chair", "interior_chair", "chair_rocking",  nil, nil, nil, nil, nil, "two"),
+        MakePlacer("chair_ottoman_placer",  "interior_chair", "interior_chair", "chair_ottoman",  nil, nil, nil, nil, nil, "two"),
 
         -- SHELF
         MakePlacer("shelf_wood_placer",               "bookcase", "room_shelves", "wood",             nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
@@ -640,18 +598,18 @@ return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",          
         MakePlacer("shelf_pallet_placer",             "bookcase", "room_shelves", "pallet",           nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
 
         -- HANGING LIGHTS
-        MakePlacer("swinging_light_basic_bulb_placer",         "ceiling_lights", "ceiling_lights", "light_basic_bulb",             nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_floral_bloomer_placer",     "ceiling_lights", "ceiling_lights", "light_floral_bloomer",         nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_basic_metal_placer",        "ceiling_lights", "ceiling_lights", "light_basic_metal",            nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_chandalier_candles_placer", "ceiling_lights", "ceiling_lights", "light_chandelier_candles",     nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_rope_1_placer",             "ceiling_lights", "ceiling_lights", "light_rope1",                  nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_rope_2_placer",             "ceiling_lights", "ceiling_lights", "light_rope2",                  nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_floral_bulb_placer",        "ceiling_lights", "ceiling_lights", "light_floral_bulb",            nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_pendant_cherries_placer",   "ceiling_lights", "ceiling_lights", "light_pendant_cherries",       nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_floral_scallop_placer",     "ceiling_lights", "ceiling_lights", "light_floral_scallop",         nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_floral_bloomer_placer",     "ceiling_lights", "ceiling_lights", "light_floral_bloomer",         nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_tophat_placer",             "ceiling_lights", "ceiling_lights", "light_tophat",                 nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
-        MakePlacer("swinging_light_derby_placer",              "ceiling_lights", "ceiling_lights", "light_derby",                  nil, nil, nil, nil, nil, nil, nil, nil, nil, CeilingLightPlaceTest),
+        MakePlacer("swinging_light_basic_bulb_placer",         "ceiling_lights", "ceiling_lights", "light_basic_bulb",             nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_floral_bloomer_placer",     "ceiling_lights", "ceiling_lights", "light_floral_bloomer",         nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_basic_metal_placer",        "ceiling_lights", "ceiling_lights", "light_basic_metal",            nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_chandalier_candles_placer", "ceiling_lights", "ceiling_lights", "light_chandelier_candles",     nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_rope_1_placer",             "ceiling_lights", "ceiling_lights", "light_rope1",                  nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_rope_2_placer",             "ceiling_lights", "ceiling_lights", "light_rope2",                  nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_floral_bulb_placer",        "ceiling_lights", "ceiling_lights", "light_floral_bulb",            nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_pendant_cherries_placer",   "ceiling_lights", "ceiling_lights", "light_pendant_cherries",       nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_floral_scallop_placer",     "ceiling_lights", "ceiling_lights", "light_floral_scallop",         nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_floral_bloomer_placer",     "ceiling_lights", "ceiling_lights", "light_floral_bloomer",         nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_tophat_placer",             "ceiling_lights", "ceiling_lights", "light_tophat",                 nil, nil, nil, nil, nil, "two"),
+        MakePlacer("swinging_light_derby_placer",              "ceiling_lights", "ceiling_lights", "light_derby",                  nil, nil, nil, nil, nil, "two"),
 
         -- WINDOWS
         MakePlacer("window_round_curtains_nails_placer",       "interior_window", "interior_window", "day_loop",                       nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowPlaceTest, modifywindowfn, WindowPlacerAnim),
@@ -666,83 +624,83 @@ return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",          
         MakePlacer("window_greenhouse_placer",                  "interior_window_greenhouse", "interior_window_greenhouse_build", "day_loop",nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowWidePlaceTest, modifywindowfn, CurtainWindowPlacerAnim),
 
 
-        MakePlacer("deco_lamp_fringe_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_fringe",         nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_stainglass_placer",    "interior_floorlamp", "interior_floorlamp", "floorlamp_stainglass",     nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_downbridge_placer",    "interior_floorlamp", "interior_floorlamp", "floorlamp_downbridge",     nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_2embroidered_placer",  "interior_floorlamp", "interior_floorlamp", "floorlamp_2embroidered",   nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_ceramic_placer",       "interior_floorlamp", "interior_floorlamp", "floorlamp_ceramic",        nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_glass_placer",         "interior_floorlamp", "interior_floorlamp", "floorlamp_glass",          nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_2fringes_placer",      "interior_floorlamp", "interior_floorlamp", "floorlamp_2fringes",       nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_candelabra_placer",    "interior_floorlamp", "interior_floorlamp", "floorlamp_candelabra",     nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_elizabethan_placer",   "interior_floorlamp", "interior_floorlamp", "floorlamp_elizabethan",    nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_gothic_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_gothic",         nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_orb_placer",           "interior_floorlamp", "interior_floorlamp", "floorlamp_orb",            nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_bellshade_placer",     "interior_floorlamp", "interior_floorlamp", "floorlamp_bellshade",      nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_crystals_placer",      "interior_floorlamp", "interior_floorlamp", "floorlamp_crystals",       nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_upturn_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_upturn",         nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_2upturns_placer",      "interior_floorlamp", "interior_floorlamp", "floorlamp_2upturns",       nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_spool_placer",         "interior_floorlamp", "interior_floorlamp", "floorlamp_spool",          nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_edison_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_edison",         nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_adjustable_placer",    "interior_floorlamp", "interior_floorlamp", "floorlamp_adjustable",     nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_rightangles_placer",   "interior_floorlamp", "interior_floorlamp", "floorlamp_rightangles",    nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
+        MakePlacer("deco_lamp_fringe_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_fringe",         nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_stainglass_placer",    "interior_floorlamp", "interior_floorlamp", "floorlamp_stainglass",     nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_downbridge_placer",    "interior_floorlamp", "interior_floorlamp", "floorlamp_downbridge",     nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_2embroidered_placer",  "interior_floorlamp", "interior_floorlamp", "floorlamp_2embroidered",   nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_ceramic_placer",       "interior_floorlamp", "interior_floorlamp", "floorlamp_ceramic",        nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_glass_placer",         "interior_floorlamp", "interior_floorlamp", "floorlamp_glass",          nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_2fringes_placer",      "interior_floorlamp", "interior_floorlamp", "floorlamp_2fringes",       nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_candelabra_placer",    "interior_floorlamp", "interior_floorlamp", "floorlamp_candelabra",     nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_elizabethan_placer",   "interior_floorlamp", "interior_floorlamp", "floorlamp_elizabethan",    nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_gothic_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_gothic",         nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_orb_placer",           "interior_floorlamp", "interior_floorlamp", "floorlamp_orb",            nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_bellshade_placer",     "interior_floorlamp", "interior_floorlamp", "floorlamp_bellshade",      nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_crystals_placer",      "interior_floorlamp", "interior_floorlamp", "floorlamp_crystals",       nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_upturn_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_upturn",         nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_2upturns_placer",      "interior_floorlamp", "interior_floorlamp", "floorlamp_2upturns",       nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_spool_placer",         "interior_floorlamp", "interior_floorlamp", "floorlamp_spool",          nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_edison_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_edison",         nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_adjustable_placer",    "interior_floorlamp", "interior_floorlamp", "floorlamp_adjustable",     nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_rightangles_placer",   "interior_floorlamp", "interior_floorlamp", "floorlamp_rightangles",    nil, nil, nil, nil, nil, "two"),
 
         -- ROOM PROPS
-        MakePlacer("deco_chaise_placer",               "interior_floor_decor", "interior_floor_decor", "chaise",     nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_lamp_hoofspa_placer",         "interior_floor_decor", "interior_floor_decor", "lamp",       nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_marble_placer",   "interior_floor_decor", "interior_floor_decor", "plant",      nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_table_banker_placer",         "interior_table", "interior_table", "table_banker",           nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_table_round_placer",          "interior_table", "interior_table", "table_round",            nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_table_diy_placer",            "interior_table", "interior_table", "table_diy",              nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_table_raw_placer",            "interior_table", "interior_table", "table_raw",              nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_table_crate_placer",          "interior_table", "interior_table", "table_crate",            nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_table_chess_placer",          "interior_table", "interior_table", "table_chess",            nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
+        MakePlacer("deco_chaise_placer",             "interior_floor_decor", "interior_floor_decor", "chaise",     nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_lamp_hoofspa_placer",       "interior_floor_decor", "interior_floor_decor", "lamp",       nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_marble_placer", "interior_floor_decor", "interior_floor_decor", "plant",      nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_table_banker_placer",       "interior_table", "interior_table", "table_banker",           nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_table_round_placer",        "interior_table", "interior_table", "table_round",            nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_table_diy_placer",          "interior_table", "interior_table", "table_diy",              nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_table_raw_placer",          "interior_table", "interior_table", "table_raw",              nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_table_crate_placer",        "interior_table", "interior_table", "table_crate",            nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_table_chess_placer",        "interior_table", "interior_table", "table_chess",            nil, nil, nil, nil, nil, "two"),
 
         -- RUGS
-        MakePlacer("rug_round_placer",              "rugs", "rugs", "rug_round",        nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug2PlaceTest,    nil, RugPlacerAnim),
-        MakePlacer("rug_square_placer",             "rugs", "rugs", "rug_square",       nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug2PlaceTest,    nil, RugPlacerAnim),
-        MakePlacer("rug_oval_placer",               "rugs", "rugs", "rug_oval",         nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_rectangle_placer",          "rugs", "rugs", "rug_rectangle",    nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_leather_placer",            "rugs", "rugs", "rug_leather",      nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_fur_placer",                "rugs", "rugs", "rug_fur",          nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_circle_placer",             "rugs", "rugs", "half_circle",      nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug2PlaceTest,    nil, RugPlacerAnim),
-        MakePlacer("rug_hedgehog_placer",           "rugs", "rugs", "rug_hedgehog",     nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug2PlaceTest,    nil, RugPlacerAnim),
-        MakePlacer("rug_porcupuss_placer",          "rugs", "rugs", "rug_porcupuss",    nil, nil, nil, nil, nil, nil, nil, nil, nil, RugPropPlaceTest, nil, RugPropPlacerAnim),
-        MakePlacer("rug_hoofprint_placer",          "rugs", "rugs", "rug_hoofprints",   nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_octagon_placer",            "rugs", "rugs", "rug_octagon",      nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_swirl_placer",              "rugs", "rugs", "rug_swirl",        nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_catcoon_placer",            "rugs", "rugs", "rug_catcoon",      nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_rubbermat_placer",          "rugs", "rugs", "rug_rubbermat",    nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_web_placer",                "rugs", "rugs", "rug_web",          nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_metal_placer",              "rugs", "rugs", "rug_metal",        nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_wormhole_placer",           "rugs", "rugs", "rug_wormhole",     nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_braid_placer",              "rugs", "rugs", "rug_braid",        nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_beard_placer",              "rugs", "rugs", "rug_beard",        nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_nailbed_placer",            "rugs", "rugs", "rug_nailbed",      nil, nil, nil, nil, nil, nil, nil, nil, nil, RugPropPlaceTest, nil, RugPropPlacerAnim),
-        MakePlacer("rug_crime_placer",              "rugs", "rugs", "rug_crime",        nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
-        MakePlacer("rug_tiles_placer",              "rugs", "rugs", "rug_tiles",        nil, nil, nil, nil, nil, nil, nil, nil, nil, Rug28PlaceTest,   nil, RugPlacerAnim),
+        MakePlacer("rug_round_placer",     "rugs", "rugs", "rug_round",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_square_placer",    "rugs", "rugs", "rug_square",     nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_oval_placer",      "rugs", "rugs", "rug_oval",       nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_rectangle_placer", "rugs", "rugs", "rug_rectangle",  nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_leather_placer",   "rugs", "rugs", "rug_leather",    nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_fur_placer",       "rugs", "rugs", "rug_fur",        nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_circle_placer",    "rugs", "rugs", "half_circle",    nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_hedgehog_placer",  "rugs", "rugs", "rug_hedgehog",   nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_porcupuss_placer", "rugs", "rugs", "rug_porcupuss",  nil, nil, nil, nil, nil, nil, RugPropPlacerAnim),
+        MakePlacer("rug_hoofprint_placer", "rugs", "rugs", "rug_hoofprints", nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_octagon_placer",   "rugs", "rugs", "rug_octagon",    nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_swirl_placer",     "rugs", "rugs", "rug_swirl",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_catcoon_placer",   "rugs", "rugs", "rug_catcoon",    nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_rubbermat_placer", "rugs", "rugs", "rug_rubbermat",  nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_web_placer",       "rugs", "rugs", "rug_web",        nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_metal_placer",     "rugs", "rugs", "rug_metal",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_wormhole_placer",  "rugs", "rugs", "rug_wormhole",   nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_braid_placer",     "rugs", "rugs", "rug_braid",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_beard_placer",     "rugs", "rugs", "rug_beard",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_nailbed_placer",   "rugs", "rugs", "rug_nailbed",    nil, nil, nil, nil, nil, nil, RugPropPlacerAnim),
+        MakePlacer("rug_crime_placer",     "rugs", "rugs", "rug_crime",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakePlacer("rug_tiles_placer",     "rugs", "rugs", "rug_tiles",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
 
         -- PLANTHOLDERS
-        MakePlacer("deco_plantholder_basic_placer",          "interior_plant", "interior_plant", "plant_basic",          nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_wip_placer",            "interior_plant", "interior_plant", "plant_wip",            nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_fancy_placer",          "interior_plant", "interior_plant", "plant_fancy",          nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_bonsai_placer",         "interior_plant", "interior_plant", "plant_bonsai",         nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_dishgarden_placer",     "interior_plant", "interior_plant", "plant_dishgarden",     nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_philodendron_placer",   "interior_plant", "interior_plant", "plant_philodendron",   nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_orchid_placer",         "interior_plant", "interior_plant", "plant_orchid",         nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_draceana_placer",       "interior_plant", "interior_plant", "plant_draceana",       nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_xerographica_placer",   "interior_plant", "interior_plant", "plant_xerographica",   nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_birdcage_placer",       "interior_plant", "interior_plant", "plant_birdcage",       nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_palm_placer",           "interior_plant", "interior_plant", "plant_palm",           nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_zz_placer",             "interior_plant", "interior_plant", "plant_zz",             nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_fernstand_placer",      "interior_plant", "interior_plant", "plant_fernstand",      nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_fern_placer",           "interior_plant", "interior_plant", "plant_fern",           nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_terrarium_placer",      "interior_plant", "interior_plant", "plant_terrarium",      nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_plantpet_placer",       "interior_plant", "interior_plant", "plant_plantpet",       nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_traps_placer",          "interior_plant", "interior_plant", "plant_traps",          nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_pitchers_placer",       "interior_plant", "interior_plant", "plant_pitchers",       nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest,    nil, FurniturePlacerAnim),
+        MakePlacer("deco_plantholder_basic_placer",          "interior_plant", "interior_plant", "plant_basic",        nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_wip_placer",            "interior_plant", "interior_plant", "plant_wip",          nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_fancy_placer",          "interior_plant", "interior_plant", "plant_fancy",        nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_bonsai_placer",         "interior_plant", "interior_plant", "plant_bonsai",       nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_dishgarden_placer",     "interior_plant", "interior_plant", "plant_dishgarden",   nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_philodendron_placer",   "interior_plant", "interior_plant", "plant_philodendron", nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_orchid_placer",         "interior_plant", "interior_plant", "plant_orchid",       nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_draceana_placer",       "interior_plant", "interior_plant", "plant_draceana",     nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_xerographica_placer",   "interior_plant", "interior_plant", "plant_xerographica", nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_birdcage_placer",       "interior_plant", "interior_plant", "plant_birdcage",     nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_palm_placer",           "interior_plant", "interior_plant", "plant_palm",         nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_zz_placer",             "interior_plant", "interior_plant", "plant_zz",           nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_fernstand_placer",      "interior_plant", "interior_plant", "plant_fernstand",    nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_fern_placer",           "interior_plant", "interior_plant", "plant_fern",         nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_terrarium_placer",      "interior_plant", "interior_plant", "plant_terrarium",    nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_plantpet_placer",       "interior_plant", "interior_plant", "plant_plantpet",     nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_traps_placer",          "interior_plant", "interior_plant", "plant_traps",        nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_pitchers_placer",       "interior_plant", "interior_plant", "plant_pitchers",     nil, nil, nil, nil, nil, "two"),
 
-        MakePlacer("deco_plantholder_winterfeasttreeofsadness_placer",   "interior_plant", "interior_plant", "plant_winterfeasttreeofsadness",  nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
-        MakePlacer("deco_plantholder_winterfeasttree_placer",            "interior_floorlamp", "interior_floorlamp", "festivetree_idle",        nil, nil, nil, nil, nil, nil, nil, nil, nil, FurniturePlaceTest, nil, FurniturePlacerAnim),
+        MakePlacer("deco_plantholder_winterfeasttreeofsadness_placer",   "interior_plant", "interior_plant", "plant_winterfeasttreeofsadness", nil, nil, nil, nil, nil, "two"),
+        MakePlacer("deco_plantholder_winterfeasttree_placer",            "interior_floorlamp", "interior_floorlamp", "festivetree_idle",       nil, nil, nil, nil, nil, "two"),
 
         -- WALL ORNAMENTS
 

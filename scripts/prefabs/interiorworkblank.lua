@@ -13,10 +13,14 @@ local function GetSkeletonPositions(w, h)
 end
 
 local function Clear(inst)
-    for _, fx in ipairs(inst.fx) do
+    for _, fx in pairs(inst.fx) do
         fx:Remove()
     end
+    for _, boundary in ipairs(inst.boundaries) do
+        boundary:Remove()
+    end
     inst.fx = {}
+    inst.boundaries = {}
 end
 
 local function OnRemove(inst)
@@ -96,10 +100,10 @@ local function SetUp(inst, data)
     -- end
 
     inst.fx = {
-        floor,
-        wall_bg,
-        wall_left,
-        wall_right,
+        floor = floor,
+        wall_bg = wall_bg,
+        wall_left = wall_left,
+        wall_right = wall_right,
     }
 
     local function wall(x, z)
@@ -112,7 +116,7 @@ local function SetUp(inst, data)
             wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
         end)
         -- wall:Debug()
-        table.insert(inst.fx, wall)
+        table.insert(inst.boundaries, wall)
     end
 
     local half_width = width / 2
@@ -134,7 +138,7 @@ local function SetUp(inst, data)
         wall.depth:set(depth + 0.2)
         wall.Transform:SetPosition(pos.x, 0, pos.z)
     end)
-    table.insert(inst.fx, wall)
+    table.insert(inst.boundaries, wall)
 
     inst.interior_cc = data.interior_cc or data.cc or "images/colour_cubes/day05_cc.tex"
 end
@@ -154,6 +158,30 @@ end
 local function SetSize(inst, width, depth)
     inst._width:set(width)
     inst._depth:set(depth)
+end
+
+local function SetInteriorFloorTexture(inst, texture)
+    inst.floortexture = texture
+    local floor = inst.fx.floor
+    if floor then
+        floor:SetTexture(texture)
+    end
+end
+
+local function SetInteriorWallsTexture(inst, texture)
+    inst.walltexture = texture
+    local wall_bg = inst.fx.wall_bg
+    if wall_bg then
+        wall_bg:SetTexture(texture)
+    end
+    local wall_left = inst.fx.wall_left
+    if wall_left then
+        wall_left:SetTexture(texture)
+    end
+    local wall_right = inst.fx.wall_right
+    if wall_right then
+        wall_right:SetTexture(texture)
+    end
 end
 
 local function GetDoorById(inst, id)
@@ -411,6 +439,7 @@ local function fn()
     inst:AddTag("NOBLOCK")
 
     inst.fx = {}
+    inst.boundaries = {}
 
     inst._width = net_byte(inst.GUID, "interiorworkblank.width", "sizedirty")
     inst._width:set_local(TUNING.ROOM_TINY_WIDTH)
@@ -458,6 +487,9 @@ local function fn()
 
     inst.walltexture = nil
     inst.floortexture = nil
+
+    inst.SetInteriorFloorTexture = SetInteriorFloorTexture
+    inst.SetInteriorWallsTexture = SetInteriorWallsTexture
 
     inst:ListenForEvent("onremove", OnRemove)
 

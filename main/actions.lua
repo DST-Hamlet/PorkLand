@@ -51,6 +51,7 @@ if not rawget(_G, "HotReloading") then
         PIG_BANDIT_EXIT = Action({}),
 
         SHOP = Action({ distance = 2.5 }),
+        RENOVATE = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -533,6 +534,18 @@ ACTIONS.PIG_BANDIT_EXIT.fn = function(act)
     return true
 end
 
+ACTIONS.RENOVATE.fn = function(act)
+    if act.target:HasTag("renovatable") then
+        if act.invobject.components.renovator then
+            act.invobject.components.renovator:Renovate(act.target)
+        end
+
+        act.invobject:Remove()
+
+        return true
+    end
+end
+
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
 function ACTIONS.FERTILIZE.fn(act, ...)
@@ -817,6 +830,11 @@ local PL_COMPONENT_ACTIONS =
         poisonhealer = function(inst, doer, target, actions, right)
             if right and target and target:HasTag("poisonable") then
                 table.insert(actions, ACTIONS.CUREPOISON)
+            end
+        end,
+        renovator = function(inst, doer, target, actions, right)
+            if target:HasTag("renovatable") then
+                table.insert(actions, ACTIONS.RENOVATE)
             end
         end,
     },
