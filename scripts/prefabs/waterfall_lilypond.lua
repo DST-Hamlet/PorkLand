@@ -23,11 +23,24 @@ local function OnLoad(inst, data)
     end
 end
 
+local function OnEntitySleep(inst, data)
+    if inst.SoundEmitter:PlayingSound("WATERFALL") then
+		inst.SoundEmitter:KillSound("WATERFALL")
+    end
+end
+
+local function OnEntityWake(inst, data)
+	if not inst.SoundEmitter:PlayingSound("WATERFALL") then
+		inst.SoundEmitter:PlaySound("dontstarve_DLC003/amb/Waterfall/LP_1", "WATERFALL")
+	end
+end
+
 local function fn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBuild("waterfall_lilypond_base")
@@ -58,6 +71,9 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
+
     return inst
 end
 
@@ -66,6 +82,7 @@ local function corner_fn()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBuild("waterfall_lilypond_corner_base")
@@ -95,6 +112,9 @@ local function corner_fn()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
 
     return inst
 end
