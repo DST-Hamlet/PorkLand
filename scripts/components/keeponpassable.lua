@@ -9,7 +9,9 @@ local function OnUpdate(inst)
 
     local x, y, z = inst.Transform:GetWorldPosition()
 
-    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) and TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
+    local isininteriorregion = TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
+
+    if TheWorld.components.interiorspawner and isininteriorregion and TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
         return
     end
 
@@ -19,12 +21,16 @@ local function OnUpdate(inst)
     end
 
     if not inst:CanOnLand() and TheWorld.Map:ReverseIsVisualGroundAtPoint(x, y, z) then
-        inst.components.keeponpassable:FallingTest("gravity")
+        inst.components.keeponpassable:FallingTest("nooxygen")
         return
     end
 
     if not inst:CanOnImpassable() and TheWorld.Map:IsImpassableAtPoint(x, y, z) then
-        inst.components.keeponpassable:FallingTest("squish")
+        if isininteriorregion then
+            inst.components.keeponpassable:FallingTest("squish")
+        else
+            inst.components.keeponpassable:FallingTest("gravity")
+        end
         return
     end
 end
