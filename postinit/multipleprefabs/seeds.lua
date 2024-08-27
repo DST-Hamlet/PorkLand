@@ -57,15 +57,13 @@ local random_veggies = table.invert({
 
 local function PickProduct()
     local total_weight = 0
-    for veggie_name, veggie_data in pairs(VEGGIES) do
-        if random_veggies[veggie_name] then
-            total_weight = total_weight + (veggie_data.seed_weight or 1)
-        end
+    for veggie_name in pairs(random_veggies) do
+        total_weight = total_weight + (VEGGIES[veggie_name].seed_weight or 1)
     end
 
     local random = math.random() * total_weight
-    for veggie_name, veggie_data in pairs(VEGGIES) do
-        random = random - (veggie_data.seed_weight or 1)
+    for veggie_name in pairs(random_veggies) do
+        random = random - (VEGGIES[veggie_name].seed_weight or 1)
         if random <= 0 then
             return veggie_name
         end
@@ -76,7 +74,7 @@ end
 
 local function OnDeployRandomSeed(inst, pt, deployer)
     local prefab
-    if inst.components.plantable.product and type(inst.components.plantable.product) == "function" then
+    if type(inst.components.plantable.product) == "function" then
         prefab = inst.components.plantable.product(inst)
     else
         prefab = inst.components.plantable.product or inst.prefab
@@ -94,7 +92,7 @@ local function random_seeds_postinit(inst)
         return
     end
 
-    inst:RemoveComponent("farmplantable")
+    -- inst:RemoveComponent("farmplantable")
 
     inst.components.deployable.ondeploy = OnDeployRandomSeed
 
