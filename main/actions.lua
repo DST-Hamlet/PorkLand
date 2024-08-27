@@ -535,15 +535,15 @@ ACTIONS.PIG_BANDIT_EXIT.fn = function(act)
 end
 
 ACTIONS.RENOVATE.fn = function(act)
-	if act.target:HasTag("renovatable") then
-		if act.invobject.components.renovator then
-			act.invobject.components.renovator:Renovate(act.target)
-		end
+    if act.target:HasTag("renovatable") then
+        if act.invobject.components.renovator then
+            act.invobject.components.renovator:Renovate(act.target)
+        end
 
-		act.invobject:Remove()
+        act.invobject:Remove()
 
-		return true
-	end
+        return true
+    end
 end
 
 -- Patch for hackable things
