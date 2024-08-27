@@ -322,7 +322,7 @@ local function fn()
 
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)
-    inst:WatchWorldState("cycle", function() inst:Restock() end)
+    inst:WatchWorldState("cycles", function() inst:Restock() end)
     inst:WatchWorldState("isfiesta", function() inst:Restock() end)
 
     MakeMediumBurnable(inst)
