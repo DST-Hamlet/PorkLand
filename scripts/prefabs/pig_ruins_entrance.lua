@@ -17,7 +17,7 @@ local PIG_RUINS_FLOOR_TEXTURE_BLUE = "levels/textures/interiors/ground_ruins_sla
 local PIG_RUINS_WALL_TEXTURE_BLUE = "levels/textures/interiors/pig_ruins_panel_blue.tex"
 local PIG_RUINS_COLOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
 local PIG_RUINS_CAVE_REVERB = "ruins"
-local PIG_RUINS_CAVE_AMBIENT = WORLD_TILES.RUINS
+local PIG_RUINS_CAVE_AMBIENT = "RUINS"
 local PIG_RUINS_CAVE_GROUND_SOUND = WORLD_TILES.DIRT
 
 local assets =

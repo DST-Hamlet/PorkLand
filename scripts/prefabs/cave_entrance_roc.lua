@@ -10,7 +10,7 @@ local ROC_CAVE_WALL_TEXTURE = "levels/textures/interiors/batcave_wall_rock.tex"
 local ROC_CAVE_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_vamp_cave_noise.tex"
 local ROC_CAVE_COULOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
 local ROC_CAVE_REVERB = "ruins"
-local ROC_CAVE_AMBIENT = WORLD_TILES.CAVE
+local ROC_CAVE_AMBIENT = "BAT_CAVE"
 local ROC_CAVE_GROUND_SOUND = WORLD_TILES.DIRT
 
 local assets =

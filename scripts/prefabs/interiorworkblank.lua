@@ -59,6 +59,8 @@ local function SetUp(inst, data)
     inst._footstep_tile:set(inst.footstep_tile or WORLD_TILES.DIRT)
     inst.reverb = data.reverb or inst.reverb or "default"
     inst._reverb:set(inst.reverb or "default")
+    inst.ambient_sound = data.ambient_sound or ""
+    inst._ambient_sound:set(inst.ambient_sound or "")
     if inst.interiorID then
         TheWorld.components.interiorspawner:AddInteriorCenter(inst)
     end
@@ -382,6 +384,7 @@ local function OnSave(inst, data)
     data.cc = inst.interior_cc
     data.footstep_tile = inst.footstep_tile
     data.reverb = inst.reverb
+    data.ambient_sound = inst.ambient_sound
 end
 
 local function OnLoad(inst, data)
@@ -420,6 +423,7 @@ local function fn()
 
     inst._reverb = net_string(inst.GUID, "_reverb")
     inst._footstep_tile = net_int(inst.GUID, "_footstep_tile")
+    inst._ambient_sound = net_string(inst.GUID, "_ambient_sound")
 
     inst.cc_index = net_byte(inst.GUID, "cc_index", "cc_index")
     inst.interior_tags = {}

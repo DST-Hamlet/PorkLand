@@ -340,10 +340,9 @@ function self:OnUpdate(dt)
                     wavecount = wavecount + 1
                 elseif tile ~= nil then
                     if is_interior then
-                        local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = test_x, z = test_z})
-                        local def = TheWorld.components.interiorspawner.interiors[interiorID]
-                        if def ~= nil then -- nil OnLoad
-                            tile = def.ambient_sound
+                        local center = TheWorld.components.interiorspawner:GetInteriorCenter(Vector3(test_x, 0, test_z))
+                        if center then
+                            tile = center.ambient_sound or center._ambient_sound:value()
                         end
                     end
                     tile = _tileoverrides[tile] or tile
