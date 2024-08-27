@@ -200,7 +200,7 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
             --     AddToNearSpotEmitter(inst, "treeherd", "tree_creak_emitter", TUNING.TREE_CREAK_RANGE)
             -- end
             inst.AnimState:PlayAnimation("blown_pre_".. stages[inst.components.growable.stage], false)
-            -- inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wind_tree_creak")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wind_tree_creak")
             inst:ListenForEvent("animover", OnGustAnimDone)
         end)
     end

@@ -30,6 +30,7 @@ local function WetAndDamage(inst, other)
 end
 
 local function Splash(inst)
+    inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wave_break")
     local splash_water = SpawnPrefab("splash_water")
     local x, y, z = inst.Transform:GetWorldPosition()
     splash_water.Transform:SetPosition(x, y, z)
@@ -43,8 +44,6 @@ local function OnCollideRipple(inst, other)
     end
 
     if other:HasTag("player") then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wave_break")
-
         local player_angle =  other.Transform:GetRotation()
         if player_angle < 0 then player_angle = player_angle + 360 end
 

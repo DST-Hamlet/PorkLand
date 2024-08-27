@@ -166,7 +166,7 @@ local states = {
             if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
                 inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
             end
-            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/paddle", nil, nil, true)
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat_paddle", nil, nil, true)
             DoFoleySounds(inst)
 
             local oar = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)

@@ -374,6 +374,8 @@ local sounds = {
     Asset("SOUND", "sound/DLC003_music_stream.fsb"),
     Asset("SOUND", "sound/DLC003_sfx.fsb"),
     Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev"),
+    Asset("SOUND", "sound/dontstarve_shipwreckedSFX.fsb"),
+    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC002.fev"),
 }
 
 if not TheNet:IsDedicated() then

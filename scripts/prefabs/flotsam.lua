@@ -8,7 +8,7 @@ local anim_appends =
 }
 
 local function Sink(inst)
-    inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/debris_submerge")
+    inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat_debris_submerge")
     inst.AnimState:PushAnimation("sink" .. inst.anim_append, false)
     inst:ListenForEvent("animover", inst.Remove)
 end
@@ -31,7 +31,7 @@ local function MakeFlotsam(name)
         -- just like Boat fragments, flotsam are always wet!
         inst:AddTag("wet")
 
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/debris_breakoff")
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat_debris_breakoff")
 
         inst.AnimState:SetBank("flotsam_debris_sw")
         inst.AnimState:SetBuild("flotsam_debris_" .. name .. "_build")
