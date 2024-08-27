@@ -14,7 +14,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 
         spawnmode = "fixed",
         specialevent = "none",
-        grassgekkos = "never"
+        grassgekkos = "never",
 
         roads = "never",
         branching = "least",
