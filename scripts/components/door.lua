@@ -88,25 +88,25 @@ local function DoTeleport(player, pos)
             player:SnapCamera()
         else
             player.replica.interiorvisitor:RestoreOutsideInteriorCamera()
+
+            if player:HasTag("wanted_by_guards") then
+                player:RemoveTag("wanted_by_guards")
+                local x, y, z = player.Transform:GetWorldPosition()
+                local ents = TheSim:FindEntities(x, y, z, 35, {"guard"})
+                for _, guard in ipairs(ents) do
+                    guard:PushEvent("attacked", {
+                        attacker = player,
+                        damage = 0,
+                        weapon = nil,
+                    })
+                end
+            end
         end
 
         player:ScreenFade(true, 0.4)
 
         if not player.sg:HasStateTag("dead") then
             player.sg:GoToState("idle")
-        end
-
-        if player:HasTag("wanted_by_guards") then
-            player:RemoveTag("wanted_by_guards")
-            local x, y, z = player.Transform:GetWorldPosition()
-            local ents = TheSim:FindEntities(x, y, z, 35, {"guard"})
-            for _, guard in ipairs(ents) do
-                guard:PushEvent("attacked", {
-                    attacker = player,
-                    damage = 0,
-                    weapon = nil,
-                })
-            end
         end
     end)
 end
