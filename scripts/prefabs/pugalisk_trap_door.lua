@@ -51,7 +51,7 @@ local function activate(inst)
         inst.AnimState:PlayAnimation("opening")
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/trap_door")
 
-        ShakeAllCameras(CAMERASHAKE.FULL, 1, 0.02, 40, inst, 45)
+        ShakeAllCameras(CAMERASHAKE.FULL, 1, 0.02, 0.2, inst, 45)
     end
 end
 

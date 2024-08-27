@@ -16,6 +16,12 @@ local function reset(inst)
     inst.AnimState:PushAnimation("flow_loop", true)
     inst.SoundEmitter:KillSound("burble")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/fountain_LP", "burble")
+
+    local ent = TheSim:FindFirstEntityWithTag("pugalisk_trap_door")
+    if ent then
+        ent:PushEvent("reactivate")
+    end
+
     if inst.resettask then
         inst.resettask:Cancel()
         inst.resettask = nil
