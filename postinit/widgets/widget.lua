@@ -1,8 +1,9 @@
+local AddClassPostConstruct = AddClassPostConstruct
 GLOBAL.setfenv(1, GLOBAL)
 
 local Widget = require("widgets/widget")
 
-function Widget:Shake(duration, speed, scale)
+local function Shake(self, duration, speed, scale) -- 亚丹：代码清理时请不要改变这个函数的写法
     if not self.inst.components.uianim then
         self.inst:AddComponent("uianim")
     end
@@ -16,3 +17,7 @@ function Widget:FindChild(fn)
         end
     end
 end
+
+AddClassPostConstruct("widgets/widget", function(self)
+    self.Shake = Shake
+end)
