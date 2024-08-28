@@ -668,19 +668,17 @@ local function MakeHat(name)
     end
 
     local function antmask_onunequip(inst, owner)
-        _onequip(inst, owner)
+        _onunequip(inst, owner)
         inst:RemoveTag("has_antmask")
     end
 
     local function antmask_onupdate(inst)
-        inst.components.armor:SetPercent(inst.components.fueled:GetPercent())
+        inst.components.armor:SetPercent(math.min(inst.components.fueled:GetPercent(), inst.components.armor:GetPercent()))
     end
 
     local function antmask_ontakedamage(inst, damage_amount)
         if inst.components.fueled then
-            local percent = inst.components.fueled:GetPercent()
-            local new_percent = percent - (damage_amount * inst.components.armor.absorb_percent / inst.components.armor.maxcondition)
-            inst.components.fueled:SetPercent(new_percent)
+            inst.components.fueled:SetPercent(math.min(inst.components.fueled:GetPercent(), inst.components.armor:GetPercent()))
         end
     end
 
