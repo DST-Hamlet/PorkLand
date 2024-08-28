@@ -74,6 +74,7 @@ return {
         ANCIENT_ROBOT_RIBS = "Just stay asleep little guy.",
         ANTCHEST = "It makes all the honey for me!",
         ANTCOMBHOME = "Looks like a home for the bug-dudes.",
+        ANTHILL = "I bet it took a ton of work to dig that.",
         ANTIVENOM = "This'll make the sickness go away.",
         ANTMAN = {
             DEAD = "That bugs me.",
@@ -81,7 +82,9 @@ return {
             SLEEPING = "Like a bug-dude in a rug, dude.",
         },
         ANTMAN_WARRIOR = "Aggh! Leave me alone!",
+        ANTMAN_WARRIOR_EGG = "Hope it stays in that egg.",
         ANTMASKHAT = "Sorry bug-dude.",
+        ANTQUEEN_CHAMBERS = "Is there a bed in there?",
         ANTQUEEN_THRONE = "I think there's stuff stuck in there.",
         ANTSUIT = "Nice threads!",
         ANT_CAVE_LANTERN = "Sweet light!",
@@ -675,6 +678,7 @@ return {
         RUG_WEB = "Kinda sticky.",
         RUG_WORMHOLE = "Does it work?",
         SAIL_SNAKESKIN = "Why bother when I have my board?",
+        SAND = "I like it between my toes and nowhere else.",
         SCORPION = {
             DEAD = "Ugh. Gnarly.",
             GENERIC = "Too close, scary dude!",

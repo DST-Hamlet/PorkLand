@@ -350,6 +350,7 @@ return {
         ROOTTRUNK = "Just like Mr. Maxwell's magic!",
         RUG_BEARD = "That's a...very curious collection.",
         SAIL_SNAKESKIN = "The snakes wouldn't end up like this if they didn't try to eat me!",
+        SAND = "That's sand.",
         SCORPION = {
             DEAD = "Ouch...we killed it.",
             GENERIC = "Where is my trap?",

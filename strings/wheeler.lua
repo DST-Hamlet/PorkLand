@@ -77,6 +77,7 @@ return {
         ANCIENT_ROBOT_RIBS = "I like it better when it's not awake.",
         ANTCHEST = "I need the storage space, but I want the honey.",
         ANTCOMBHOME = "Full of bundled up big baby bugs.",
+        ANTHILL = "Can't get more adventurous then going into a giant insect nest.",
         ANTIVENOM = "A cure for too much adventure.",
         ANTMAN = {
             DEAD = "I won't step on it out of respect.",
@@ -84,7 +85,9 @@ return {
             SLEEPING = "I'll just sneak on by.",
         },
         ANTMAN_WARRIOR = "Swell. This one's angry.",
+        ANTMAN_WARRIOR_EGG = "Better get dodging, Wheeler.",
         ANTMASKHAT = "Swell. Now I know what it smells like to be an insect.",
+        ANTQUEEN_CHAMBERS = "I can never say no to an adventure.",
         ANTQUEEN_THRONE = "I bet she was guarding some kind of treasure.",
         ANTSUIT = "All dressed up and ready to cr'kit.",
         ANT_CAVE_LANTERN = "Oh good. That keeps my hands free.",
@@ -672,6 +675,7 @@ return {
         RUG_WEB = "Not as sticky as you might think.",
         RUG_WORMHOLE = "A rug tribute to a fallen wormhole.",
         SAIL_SNAKESKIN = "Too heavy for balloon material. Just right for a sail.",
+        SAND = "I can fire it out my Pew-matic and it doesn't even gum up the works.",
         SCORPION = {
             DEAD = "I'll be honest, I don't care.",
             GENERIC = "Keep your stinger to yourself, mister!",

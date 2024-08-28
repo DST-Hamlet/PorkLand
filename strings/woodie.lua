@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "It's only full of iron, not wood.",
         ANTCHEST = "That's neat.",
         ANTCOMBHOME = "Not my idea of a model home, but to each his own.",
+        ANTHILL = "I hear something crawling around in there.",
         ANTIVENOM = "Tastes awful, but it works!",
         ANTMAN = {
             DEAD = "Out of his misery.",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "Snoozing.",
         },
         ANTMAN_WARRIOR = "Calm down there, buddy!",
+        ANTMAN_WARRIOR_EGG = "Scrambled eggs?",
         ANTMASKHAT = "I hope no one recognizes this guy.",
+        ANTQUEEN_CHAMBERS = "Looks fancy.",
         ANTQUEEN_THRONE = "There's stuff in there, eh?",
         ANTSUIT = "This feels a tad psychotic.",
         ANT_CAVE_LANTERN = "That's sweet.",
@@ -655,6 +658,7 @@ return {
         RUG_WEB = "Whoops. Spiders got in.",
         RUG_WORMHOLE = "Yep. That's a rug.",
         SAIL_SNAKESKIN = "Sailin' in style.",
+        SAND = "Sandy.",
         SCORPION = {
             DEAD = "For the best.",
             GENERIC = "Keep out of my boots.",

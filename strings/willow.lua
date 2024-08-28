@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "Aww... It won't burn.",
         ANTCHEST = "I won't burn it, but only because it makes me honey.",
         ANTCOMBHOME = "Gross!",
+        ANTHILL = "Ughh. I do  not want to go in there.",
         ANTIVENOM = "This'll help if I'm poisoned.",
         ANTMAN = {
             DEAD = "Gross and dead.",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "Still gross.",
         },
         ANTMAN_WARRIOR = "Yeesh. What are you so angry about?",
+        ANTMAN_WARRIOR_EGG = "A baby jerk.",
         ANTMASKHAT = "This is the nastiest thing I've ever made.",
+        ANTQUEEN_CHAMBERS = "Am I supposed to be impressed.",
         ANTQUEEN_THRONE = "There's stuff in there I can steal.",
         ANTSUIT = "This is the worst.",
         ANT_CAVE_LANTERN = "Sweet, sweet fire.",
@@ -653,6 +656,7 @@ return {
         RUG_WEB = "Ew.",
         RUG_WORMHOLE = "Ew.",
         SAIL_SNAKESKIN = "What a morbid sail.",
+        SAND = "Big deal, it's sand.",
         SCORPION = {
             DEAD = "Just as gross dead as alive.",
             GENERIC = "Ugh, gross!",

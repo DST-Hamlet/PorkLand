@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "An iron contraption.",
         ANTCHEST = "A particularly sticky facilitator of honey.",
         ANTCOMBHOME = "A fascinating insectoid habitat.",
+        ANTHILL = "A massive network of arthropod tunnels lie beneath.",
         ANTIVENOM = "The contents should make a most useful antidote.",
         ANTMAN = {
             DEAD = "It has ceased functioning.",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "It is hibernating.",
         },
         ANTMAN_WARRIOR = "A particularly aggressive colony defender.",
+        ANTMAN_WARRIOR_EGG = "The offspring of an aggressive Formicidae humanoid.",
         ANTMASKHAT = "This may be slightly unethical.",
+        ANTQUEEN_CHAMBERS = "An excellent nest.",
         ANTQUEEN_THRONE = "I should like to examine that a little closer.",
         ANTSUIT = "A hollowed out arthropod.",
         ANT_CAVE_LANTERN = "What a curious light source!",
@@ -655,6 +658,7 @@ return {
         RUG_WEB = "Oh dear.",
         RUG_WORMHOLE = "I hope it's not functional.",
         SAIL_SNAKESKIN = "A sail of serpent hide.",
+        SAND = "Sand always seems to find its way into my books.",
         SCORPION = {
             DEAD = "Deceased.",
             GENERIC = "Scorpiones. But I'm not sure of which subspecies.",

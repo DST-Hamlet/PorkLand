@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "'Tis an iron leviathan.",
         ANTCHEST = "'t be makin' tha sweet golden treasure!",
         ANTCOMBHOME = "Thar buggie beasties reside within.",
+        ANTHILL = "'Tis no mole hill.",
         ANTIVENOM = "'Tis th'sea thet'll claim me, not some sickly biter.",
         ANTMAN = {
             DEAD = "Its 'atches 'ave been battened.",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "Keelhaul tha beast!",
         },
         ANTMAN_WARRIOR = "Ye be meetin' yer match!",
+        ANTMAN_WARRIOR_EGG = "Full o'them fiery bugs.",
         ANTMASKHAT = "T'mask yer ugly mug.",
+        ANTQUEEN_CHAMBERS = "'Tis the cabin o'tha queen.",
         ANTQUEEN_THRONE = "Thar be treas're within.",
         ANTSUIT = "'Tis an unpleasant bus'niss.",
         ANT_CAVE_LANTERN = "'Tis a sweet lantern.",
@@ -655,6 +658,7 @@ return {
         RUG_WEB = "'Tis a rug from th'spider web.",
         RUG_WORMHOLE = "Be it safe to step on?",
         SAIL_SNAKESKIN = "Thet be a sail.",
+        SAND = "Handful o'land.",
         SCORPION = {
             DEAD = "Aye! 'Tis defeated!",
             GENERIC = "A terible foe t'be sure.",

@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "The carapace of a beautiful automaton!",
         ANTCHEST = "Theoretically, it automatically performs the enzymatic activity required to make honey.",
         ANTCOMBHOME = "A pentagonal nursery for hexapod invertebrates.",
+        ANTHILL = "Similar to the many hexapod invertebrate nests I've observed. But bigger.",
         ANTIVENOM = "A tincture of antibodies.",
         ANTMAN = {
             DEAD = "I wonder if they have funeral rites.",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "Oh! I can scrutinize him more closely now.",
         },
         ANTMAN_WARRIOR = "Fascinating! An infantry class of humanoid hexapod invertebrates!",
+        ANTMAN_WARRIOR_EGG = "Fascinating! They appear to hatch with a predisposition to violence.",
         ANTMASKHAT = "Evidently it masks my human scent as well.",
+        ANTQUEEN_CHAMBERS = "Evidence would suggest it's a room of some importance.",
         ANTQUEEN_THRONE = "Theoretically, the queen would be sitting on a reserve of valuables.",
         ANTSUIT = "What a wonderful way to infiltrate a suspicious society.",
         ANT_CAVE_LANTERN = "Outstanding! They appear to be using honey as a fuel!",
@@ -671,6 +674,7 @@ return {
         RUG_WEB = "Viscous.",
         RUG_WORMHOLE = "Intriguing.",
         SAIL_SNAKESKIN = "Theoretically, it's reliable despite its patchy appearance.",
+        SAND = "A fine grain, more useful for construction purposes than gardening.",
         SCORPION = {
             DEAD = "Cold and lifeless.",
             GENERIC = "A wonderful example of a predatory arachnid! And poisonous to boot!",

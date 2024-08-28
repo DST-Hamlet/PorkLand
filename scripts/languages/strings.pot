@@ -131,6 +131,1211 @@ msgctxt "STRINGS.ACTIONS.WEIGHDOWN"
 msgid "Weigh Down"
 msgstr ""
 
+#. STRINGS.ANTNAMES.1
+msgctxt "STRINGS.ANTNAMES.1"
+msgid "Drone #304012"
+msgstr ""
+
+#. STRINGS.ANTNAMES.10
+msgctxt "STRINGS.ANTNAMES.10"
+msgid "Drone #813462"
+msgstr ""
+
+#. STRINGS.ANTNAMES.100
+msgctxt "STRINGS.ANTNAMES.100"
+msgid "Drone #247395"
+msgstr ""
+
+#. STRINGS.ANTNAMES.11
+msgctxt "STRINGS.ANTNAMES.11"
+msgid "Drone #997578"
+msgstr ""
+
+#. STRINGS.ANTNAMES.12
+msgctxt "STRINGS.ANTNAMES.12"
+msgid "Drone #269451"
+msgstr ""
+
+#. STRINGS.ANTNAMES.13
+msgctxt "STRINGS.ANTNAMES.13"
+msgid "Drone #695666"
+msgstr ""
+
+#. STRINGS.ANTNAMES.14
+msgctxt "STRINGS.ANTNAMES.14"
+msgid "Drone #291737"
+msgstr ""
+
+#. STRINGS.ANTNAMES.15
+msgctxt "STRINGS.ANTNAMES.15"
+msgid "Drone #724410"
+msgstr ""
+
+#. STRINGS.ANTNAMES.16
+msgctxt "STRINGS.ANTNAMES.16"
+msgid "Drone #23085"
+msgstr ""
+
+#. STRINGS.ANTNAMES.17
+msgctxt "STRINGS.ANTNAMES.17"
+msgid "Drone #8749"
+msgstr ""
+
+#. STRINGS.ANTNAMES.18
+msgctxt "STRINGS.ANTNAMES.18"
+msgid "Drone #105423"
+msgstr ""
+
+#. STRINGS.ANTNAMES.19
+msgctxt "STRINGS.ANTNAMES.19"
+msgid "Drone #710609"
+msgstr ""
+
+#. STRINGS.ANTNAMES.2
+msgctxt "STRINGS.ANTNAMES.2"
+msgid "Drone #152038"
+msgstr ""
+
+#. STRINGS.ANTNAMES.20
+msgctxt "STRINGS.ANTNAMES.20"
+msgid "Drone #595955"
+msgstr ""
+
+#. STRINGS.ANTNAMES.21
+msgctxt "STRINGS.ANTNAMES.21"
+msgid "Drone #939922"
+msgstr ""
+
+#. STRINGS.ANTNAMES.22
+msgctxt "STRINGS.ANTNAMES.22"
+msgid "Drone #796084"
+msgstr ""
+
+#. STRINGS.ANTNAMES.23
+msgctxt "STRINGS.ANTNAMES.23"
+msgid "Drone #516589"
+msgstr ""
+
+#. STRINGS.ANTNAMES.24
+msgctxt "STRINGS.ANTNAMES.24"
+msgid "Drone #810438"
+msgstr ""
+
+#. STRINGS.ANTNAMES.25
+msgctxt "STRINGS.ANTNAMES.25"
+msgid "Drone #165508"
+msgstr ""
+
+#. STRINGS.ANTNAMES.26
+msgctxt "STRINGS.ANTNAMES.26"
+msgid "Drone #74758"
+msgstr ""
+
+#. STRINGS.ANTNAMES.27
+msgctxt "STRINGS.ANTNAMES.27"
+msgid "Drone #637855"
+msgstr ""
+
+#. STRINGS.ANTNAMES.28
+msgctxt "STRINGS.ANTNAMES.28"
+msgid "Drone #566784"
+msgstr ""
+
+#. STRINGS.ANTNAMES.29
+msgctxt "STRINGS.ANTNAMES.29"
+msgid "Drone #761823"
+msgstr ""
+
+#. STRINGS.ANTNAMES.3
+msgctxt "STRINGS.ANTNAMES.3"
+msgid "Drone #984604"
+msgstr ""
+
+#. STRINGS.ANTNAMES.30
+msgctxt "STRINGS.ANTNAMES.30"
+msgid "Drone #294798"
+msgstr ""
+
+#. STRINGS.ANTNAMES.31
+msgctxt "STRINGS.ANTNAMES.31"
+msgid "Drone #588569"
+msgstr ""
+
+#. STRINGS.ANTNAMES.32
+msgctxt "STRINGS.ANTNAMES.32"
+msgid "Drone #745431"
+msgstr ""
+
+#. STRINGS.ANTNAMES.33
+msgctxt "STRINGS.ANTNAMES.33"
+msgid "Drone #833404"
+msgstr ""
+
+#. STRINGS.ANTNAMES.34
+msgctxt "STRINGS.ANTNAMES.34"
+msgid "Drone #9093"
+msgstr ""
+
+#. STRINGS.ANTNAMES.35
+msgctxt "STRINGS.ANTNAMES.35"
+msgid "Drone #947361"
+msgstr ""
+
+#. STRINGS.ANTNAMES.36
+msgctxt "STRINGS.ANTNAMES.36"
+msgid "Drone #776904"
+msgstr ""
+
+#. STRINGS.ANTNAMES.37
+msgctxt "STRINGS.ANTNAMES.37"
+msgid "Drone #968233"
+msgstr ""
+
+#. STRINGS.ANTNAMES.38
+msgctxt "STRINGS.ANTNAMES.38"
+msgid "Drone #811655"
+msgstr ""
+
+#. STRINGS.ANTNAMES.39
+msgctxt "STRINGS.ANTNAMES.39"
+msgid "Drone #577172"
+msgstr ""
+
+#. STRINGS.ANTNAMES.4
+msgctxt "STRINGS.ANTNAMES.4"
+msgid "Drone #421036"
+msgstr ""
+
+#. STRINGS.ANTNAMES.40
+msgctxt "STRINGS.ANTNAMES.40"
+msgid "Drone #392814"
+msgstr ""
+
+#. STRINGS.ANTNAMES.41
+msgctxt "STRINGS.ANTNAMES.41"
+msgid "Drone #53836"
+msgstr ""
+
+#. STRINGS.ANTNAMES.42
+msgctxt "STRINGS.ANTNAMES.42"
+msgid "Drone #505656"
+msgstr ""
+
+#. STRINGS.ANTNAMES.43
+msgctxt "STRINGS.ANTNAMES.43"
+msgid "Drone #378222"
+msgstr ""
+
+#. STRINGS.ANTNAMES.44
+msgctxt "STRINGS.ANTNAMES.44"
+msgid "Drone #57389"
+msgstr ""
+
+#. STRINGS.ANTNAMES.45
+msgctxt "STRINGS.ANTNAMES.45"
+msgid "Drone #629312"
+msgstr ""
+
+#. STRINGS.ANTNAMES.46
+msgctxt "STRINGS.ANTNAMES.46"
+msgid "Drone #998873"
+msgstr ""
+
+#. STRINGS.ANTNAMES.47
+msgctxt "STRINGS.ANTNAMES.47"
+msgid "Drone #208872"
+msgstr ""
+
+#. STRINGS.ANTNAMES.48
+msgctxt "STRINGS.ANTNAMES.48"
+msgid "Drone #879424"
+msgstr ""
+
+#. STRINGS.ANTNAMES.49
+msgctxt "STRINGS.ANTNAMES.49"
+msgid "Drone #667041"
+msgstr ""
+
+#. STRINGS.ANTNAMES.5
+msgctxt "STRINGS.ANTNAMES.5"
+msgid "Drone #547209"
+msgstr ""
+
+#. STRINGS.ANTNAMES.50
+msgctxt "STRINGS.ANTNAMES.50"
+msgid "Drone #462375"
+msgstr ""
+
+#. STRINGS.ANTNAMES.51
+msgctxt "STRINGS.ANTNAMES.51"
+msgid "Drone #390780"
+msgstr ""
+
+#. STRINGS.ANTNAMES.52
+msgctxt "STRINGS.ANTNAMES.52"
+msgid "Drone #979317"
+msgstr ""
+
+#. STRINGS.ANTNAMES.53
+msgctxt "STRINGS.ANTNAMES.53"
+msgid "Drone #608235"
+msgstr ""
+
+#. STRINGS.ANTNAMES.54
+msgctxt "STRINGS.ANTNAMES.54"
+msgid "Drone #528536"
+msgstr ""
+
+#. STRINGS.ANTNAMES.55
+msgctxt "STRINGS.ANTNAMES.55"
+msgid "Drone #691324"
+msgstr ""
+
+#. STRINGS.ANTNAMES.56
+msgctxt "STRINGS.ANTNAMES.56"
+msgid "Drone #537508"
+msgstr ""
+
+#. STRINGS.ANTNAMES.57
+msgctxt "STRINGS.ANTNAMES.57"
+msgid "Drone #801491"
+msgstr ""
+
+#. STRINGS.ANTNAMES.58
+msgctxt "STRINGS.ANTNAMES.58"
+msgid "Drone #813727"
+msgstr ""
+
+#. STRINGS.ANTNAMES.59
+msgctxt "STRINGS.ANTNAMES.59"
+msgid "Drone #728529"
+msgstr ""
+
+#. STRINGS.ANTNAMES.6
+msgctxt "STRINGS.ANTNAMES.6"
+msgid "Drone #853905"
+msgstr ""
+
+#. STRINGS.ANTNAMES.60
+msgctxt "STRINGS.ANTNAMES.60"
+msgid "Drone #584364"
+msgstr ""
+
+#. STRINGS.ANTNAMES.61
+msgctxt "STRINGS.ANTNAMES.61"
+msgid "Drone #84511"
+msgstr ""
+
+#. STRINGS.ANTNAMES.62
+msgctxt "STRINGS.ANTNAMES.62"
+msgid "Drone #121917"
+msgstr ""
+
+#. STRINGS.ANTNAMES.63
+msgctxt "STRINGS.ANTNAMES.63"
+msgid "Drone #228529"
+msgstr ""
+
+#. STRINGS.ANTNAMES.64
+msgctxt "STRINGS.ANTNAMES.64"
+msgid "Drone #275658"
+msgstr ""
+
+#. STRINGS.ANTNAMES.65
+msgctxt "STRINGS.ANTNAMES.65"
+msgid "Drone #825691"
+msgstr ""
+
+#. STRINGS.ANTNAMES.66
+msgctxt "STRINGS.ANTNAMES.66"
+msgid "Drone #159623"
+msgstr ""
+
+#. STRINGS.ANTNAMES.67
+msgctxt "STRINGS.ANTNAMES.67"
+msgid "Drone #459116"
+msgstr ""
+
+#. STRINGS.ANTNAMES.68
+msgctxt "STRINGS.ANTNAMES.68"
+msgid "Drone #784606"
+msgstr ""
+
+#. STRINGS.ANTNAMES.69
+msgctxt "STRINGS.ANTNAMES.69"
+msgid "Drone #264238"
+msgstr ""
+
+#. STRINGS.ANTNAMES.7
+msgctxt "STRINGS.ANTNAMES.7"
+msgid "Drone #733328"
+msgstr ""
+
+#. STRINGS.ANTNAMES.70
+msgctxt "STRINGS.ANTNAMES.70"
+msgid "Drone #740063"
+msgstr ""
+
+#. STRINGS.ANTNAMES.71
+msgctxt "STRINGS.ANTNAMES.71"
+msgid "Drone #106644"
+msgstr ""
+
+#. STRINGS.ANTNAMES.72
+msgctxt "STRINGS.ANTNAMES.72"
+msgid "Drone #408903"
+msgstr ""
+
+#. STRINGS.ANTNAMES.73
+msgctxt "STRINGS.ANTNAMES.73"
+msgid "Drone #910235"
+msgstr ""
+
+#. STRINGS.ANTNAMES.74
+msgctxt "STRINGS.ANTNAMES.74"
+msgid "Drone #325292"
+msgstr ""
+
+#. STRINGS.ANTNAMES.75
+msgctxt "STRINGS.ANTNAMES.75"
+msgid "Drone #856048"
+msgstr ""
+
+#. STRINGS.ANTNAMES.76
+msgctxt "STRINGS.ANTNAMES.76"
+msgid "Drone #753306"
+msgstr ""
+
+#. STRINGS.ANTNAMES.77
+msgctxt "STRINGS.ANTNAMES.77"
+msgid "Drone #454600"
+msgstr ""
+
+#. STRINGS.ANTNAMES.78
+msgctxt "STRINGS.ANTNAMES.78"
+msgid "Drone #235264"
+msgstr ""
+
+#. STRINGS.ANTNAMES.79
+msgctxt "STRINGS.ANTNAMES.79"
+msgid "Drone #156745"
+msgstr ""
+
+#. STRINGS.ANTNAMES.8
+msgctxt "STRINGS.ANTNAMES.8"
+msgid "Drone #355643"
+msgstr ""
+
+#. STRINGS.ANTNAMES.80
+msgctxt "STRINGS.ANTNAMES.80"
+msgid "Drone #657963"
+msgstr ""
+
+#. STRINGS.ANTNAMES.81
+msgctxt "STRINGS.ANTNAMES.81"
+msgid "Drone #713346"
+msgstr ""
+
+#. STRINGS.ANTNAMES.82
+msgctxt "STRINGS.ANTNAMES.82"
+msgid "Drone #179498"
+msgstr ""
+
+#. STRINGS.ANTNAMES.83
+msgctxt "STRINGS.ANTNAMES.83"
+msgid "Drone #60053"
+msgstr ""
+
+#. STRINGS.ANTNAMES.84
+msgctxt "STRINGS.ANTNAMES.84"
+msgid "Drone #469072"
+msgstr ""
+
+#. STRINGS.ANTNAMES.85
+msgctxt "STRINGS.ANTNAMES.85"
+msgid "Drone #378294"
+msgstr ""
+
+#. STRINGS.ANTNAMES.86
+msgctxt "STRINGS.ANTNAMES.86"
+msgid "Drone #119619"
+msgstr ""
+
+#. STRINGS.ANTNAMES.87
+msgctxt "STRINGS.ANTNAMES.87"
+msgid "Drone #450987"
+msgstr ""
+
+#. STRINGS.ANTNAMES.88
+msgctxt "STRINGS.ANTNAMES.88"
+msgid "Drone #925483"
+msgstr ""
+
+#. STRINGS.ANTNAMES.89
+msgctxt "STRINGS.ANTNAMES.89"
+msgid "Drone #764431"
+msgstr ""
+
+#. STRINGS.ANTNAMES.9
+msgctxt "STRINGS.ANTNAMES.9"
+msgid "Drone #536920"
+msgstr ""
+
+#. STRINGS.ANTNAMES.90
+msgctxt "STRINGS.ANTNAMES.90"
+msgid "Drone #916828"
+msgstr ""
+
+#. STRINGS.ANTNAMES.91
+msgctxt "STRINGS.ANTNAMES.91"
+msgid "Drone #899635"
+msgstr ""
+
+#. STRINGS.ANTNAMES.92
+msgctxt "STRINGS.ANTNAMES.92"
+msgid "Drone #478919"
+msgstr ""
+
+#. STRINGS.ANTNAMES.93
+msgctxt "STRINGS.ANTNAMES.93"
+msgid "Drone #766"
+msgstr ""
+
+#. STRINGS.ANTNAMES.94
+msgctxt "STRINGS.ANTNAMES.94"
+msgid "Drone #273064"
+msgstr ""
+
+#. STRINGS.ANTNAMES.95
+msgctxt "STRINGS.ANTNAMES.95"
+msgid "Drone #109506"
+msgstr ""
+
+#. STRINGS.ANTNAMES.96
+msgctxt "STRINGS.ANTNAMES.96"
+msgid "Drone #945396"
+msgstr ""
+
+#. STRINGS.ANTNAMES.97
+msgctxt "STRINGS.ANTNAMES.97"
+msgid "Drone #124125"
+msgstr ""
+
+#. STRINGS.ANTNAMES.98
+msgctxt "STRINGS.ANTNAMES.98"
+msgid "Drone #202481"
+msgstr ""
+
+#. STRINGS.ANTNAMES.99
+msgctxt "STRINGS.ANTNAMES.99"
+msgid "Drone #407868"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.1
+msgctxt "STRINGS.ANTWARRIORNAMES.1"
+msgid "Warrior #973334"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.10
+msgctxt "STRINGS.ANTWARRIORNAMES.10"
+msgid "Warrior #476479"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.100
+msgctxt "STRINGS.ANTWARRIORNAMES.100"
+msgid "Warrior #246744"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.11
+msgctxt "STRINGS.ANTWARRIORNAMES.11"
+msgid "Warrior #823094"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.12
+msgctxt "STRINGS.ANTWARRIORNAMES.12"
+msgid "Warrior #245564"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.13
+msgctxt "STRINGS.ANTWARRIORNAMES.13"
+msgid "Warrior #421777"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.14
+msgctxt "STRINGS.ANTWARRIORNAMES.14"
+msgid "Warrior #420415"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.15
+msgctxt "STRINGS.ANTWARRIORNAMES.15"
+msgid "Warrior #349126"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.16
+msgctxt "STRINGS.ANTWARRIORNAMES.16"
+msgid "Warrior #588799"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.17
+msgctxt "STRINGS.ANTWARRIORNAMES.17"
+msgid "Warrior #221765"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.18
+msgctxt "STRINGS.ANTWARRIORNAMES.18"
+msgid "Warrior #653121"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.19
+msgctxt "STRINGS.ANTWARRIORNAMES.19"
+msgid "Warrior #139598"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.2
+msgctxt "STRINGS.ANTWARRIORNAMES.2"
+msgid "Warrior #278552"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.20
+msgctxt "STRINGS.ANTWARRIORNAMES.20"
+msgid "Warrior #411288"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.21
+msgctxt "STRINGS.ANTWARRIORNAMES.21"
+msgid "Warrior #230558"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.22
+msgctxt "STRINGS.ANTWARRIORNAMES.22"
+msgid "Warrior #906137"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.23
+msgctxt "STRINGS.ANTWARRIORNAMES.23"
+msgid "Warrior #716168"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.24
+msgctxt "STRINGS.ANTWARRIORNAMES.24"
+msgid "Warrior #858587"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.25
+msgctxt "STRINGS.ANTWARRIORNAMES.25"
+msgid "Warrior #609286"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.26
+msgctxt "STRINGS.ANTWARRIORNAMES.26"
+msgid "Warrior #10790"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.27
+msgctxt "STRINGS.ANTWARRIORNAMES.27"
+msgid "Warrior #101471"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.28
+msgctxt "STRINGS.ANTWARRIORNAMES.28"
+msgid "Warrior #730708"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.29
+msgctxt "STRINGS.ANTWARRIORNAMES.29"
+msgid "Warrior #922561"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.3
+msgctxt "STRINGS.ANTWARRIORNAMES.3"
+msgid "Warrior #379347"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.30
+msgctxt "STRINGS.ANTWARRIORNAMES.30"
+msgid "Warrior #690797"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.31
+msgctxt "STRINGS.ANTWARRIORNAMES.31"
+msgid "Warrior #774131"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.32
+msgctxt "STRINGS.ANTWARRIORNAMES.32"
+msgid "Warrior #926278"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.33
+msgctxt "STRINGS.ANTWARRIORNAMES.33"
+msgid "Warrior #865968"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.34
+msgctxt "STRINGS.ANTWARRIORNAMES.34"
+msgid "Warrior #737790"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.35
+msgctxt "STRINGS.ANTWARRIORNAMES.35"
+msgid "Warrior #330681"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.36
+msgctxt "STRINGS.ANTWARRIORNAMES.36"
+msgid "Warrior #104214"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.37
+msgctxt "STRINGS.ANTWARRIORNAMES.37"
+msgid "Warrior #393651"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.38
+msgctxt "STRINGS.ANTWARRIORNAMES.38"
+msgid "Warrior #103586"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.39
+msgctxt "STRINGS.ANTWARRIORNAMES.39"
+msgid "Warrior #543282"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.4
+msgctxt "STRINGS.ANTWARRIORNAMES.4"
+msgid "Warrior #821346"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.40
+msgctxt "STRINGS.ANTWARRIORNAMES.40"
+msgid "Warrior #948016"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.41
+msgctxt "STRINGS.ANTWARRIORNAMES.41"
+msgid "Warrior #119234"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.42
+msgctxt "STRINGS.ANTWARRIORNAMES.42"
+msgid "Warrior #202023"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.43
+msgctxt "STRINGS.ANTWARRIORNAMES.43"
+msgid "Warrior #625725"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.44
+msgctxt "STRINGS.ANTWARRIORNAMES.44"
+msgid "Warrior #561260"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.45
+msgctxt "STRINGS.ANTWARRIORNAMES.45"
+msgid "Warrior #638000"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.46
+msgctxt "STRINGS.ANTWARRIORNAMES.46"
+msgid "Warrior #665320"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.47
+msgctxt "STRINGS.ANTWARRIORNAMES.47"
+msgid "Warrior #89151"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.48
+msgctxt "STRINGS.ANTWARRIORNAMES.48"
+msgid "Warrior #563622"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.49
+msgctxt "STRINGS.ANTWARRIORNAMES.49"
+msgid "Warrior #221169"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.5
+msgctxt "STRINGS.ANTWARRIORNAMES.5"
+msgid "Warrior #839764"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.50
+msgctxt "STRINGS.ANTWARRIORNAMES.50"
+msgid "Warrior #12186"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.51
+msgctxt "STRINGS.ANTWARRIORNAMES.51"
+msgid "Warrior #579457"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.52
+msgctxt "STRINGS.ANTWARRIORNAMES.52"
+msgid "Warrior #687691"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.53
+msgctxt "STRINGS.ANTWARRIORNAMES.53"
+msgid "Warrior #49949"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.54
+msgctxt "STRINGS.ANTWARRIORNAMES.54"
+msgid "Warrior #778775"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.55
+msgctxt "STRINGS.ANTWARRIORNAMES.55"
+msgid "Warrior #574957"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.56
+msgctxt "STRINGS.ANTWARRIORNAMES.56"
+msgid "Warrior #897769"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.57
+msgctxt "STRINGS.ANTWARRIORNAMES.57"
+msgid "Warrior #687410"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.58
+msgctxt "STRINGS.ANTWARRIORNAMES.58"
+msgid "Warrior #745983"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.59
+msgctxt "STRINGS.ANTWARRIORNAMES.59"
+msgid "Warrior #385468"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.6
+msgctxt "STRINGS.ANTWARRIORNAMES.6"
+msgid "Warrior #853787"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.60
+msgctxt "STRINGS.ANTWARRIORNAMES.60"
+msgid "Warrior #954842"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.61
+msgctxt "STRINGS.ANTWARRIORNAMES.61"
+msgid "Warrior #190185"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.62
+msgctxt "STRINGS.ANTWARRIORNAMES.62"
+msgid "Warrior #411122"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.63
+msgctxt "STRINGS.ANTWARRIORNAMES.63"
+msgid "Warrior #323117"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.64
+msgctxt "STRINGS.ANTWARRIORNAMES.64"
+msgid "Warrior #478261"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.65
+msgctxt "STRINGS.ANTWARRIORNAMES.65"
+msgid "Warrior #93696"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.66
+msgctxt "STRINGS.ANTWARRIORNAMES.66"
+msgid "Warrior #155791"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.67
+msgctxt "STRINGS.ANTWARRIORNAMES.67"
+msgid "Warrior #314238"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.68
+msgctxt "STRINGS.ANTWARRIORNAMES.68"
+msgid "Warrior #816504"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.69
+msgctxt "STRINGS.ANTWARRIORNAMES.69"
+msgid "Warrior #937007"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.7
+msgctxt "STRINGS.ANTWARRIORNAMES.7"
+msgid "Warrior #400007"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.70
+msgctxt "STRINGS.ANTWARRIORNAMES.70"
+msgid "Warrior #66779"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.71
+msgctxt "STRINGS.ANTWARRIORNAMES.71"
+msgid "Warrior #863097"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.72
+msgctxt "STRINGS.ANTWARRIORNAMES.72"
+msgid "Warrior #72530"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.73
+msgctxt "STRINGS.ANTWARRIORNAMES.73"
+msgid "Warrior #465492"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.74
+msgctxt "STRINGS.ANTWARRIORNAMES.74"
+msgid "Warrior #154667"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.75
+msgctxt "STRINGS.ANTWARRIORNAMES.75"
+msgid "Warrior #392458"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.76
+msgctxt "STRINGS.ANTWARRIORNAMES.76"
+msgid "Warrior #453498"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.77
+msgctxt "STRINGS.ANTWARRIORNAMES.77"
+msgid "Warrior #888586"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.78
+msgctxt "STRINGS.ANTWARRIORNAMES.78"
+msgid "Warrior #82236"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.79
+msgctxt "STRINGS.ANTWARRIORNAMES.79"
+msgid "Warrior #112104"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.8
+msgctxt "STRINGS.ANTWARRIORNAMES.8"
+msgid "Warrior #485976"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.80
+msgctxt "STRINGS.ANTWARRIORNAMES.80"
+msgid "Warrior #448799"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.81
+msgctxt "STRINGS.ANTWARRIORNAMES.81"
+msgid "Warrior #156130"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.82
+msgctxt "STRINGS.ANTWARRIORNAMES.82"
+msgid "Warrior #500419"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.83
+msgctxt "STRINGS.ANTWARRIORNAMES.83"
+msgid "Warrior #418467"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.84
+msgctxt "STRINGS.ANTWARRIORNAMES.84"
+msgid "Warrior #599389"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.85
+msgctxt "STRINGS.ANTWARRIORNAMES.85"
+msgid "Warrior #433122"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.86
+msgctxt "STRINGS.ANTWARRIORNAMES.86"
+msgid "Warrior #86710"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.87
+msgctxt "STRINGS.ANTWARRIORNAMES.87"
+msgid "Warrior #922032"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.88
+msgctxt "STRINGS.ANTWARRIORNAMES.88"
+msgid "Warrior #155404"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.89
+msgctxt "STRINGS.ANTWARRIORNAMES.89"
+msgid "Warrior #369941"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.9
+msgctxt "STRINGS.ANTWARRIORNAMES.9"
+msgid "Warrior #467978"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.90
+msgctxt "STRINGS.ANTWARRIORNAMES.90"
+msgid "Warrior #693386"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.91
+msgctxt "STRINGS.ANTWARRIORNAMES.91"
+msgid "Warrior #51546"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.92
+msgctxt "STRINGS.ANTWARRIORNAMES.92"
+msgid "Warrior #155617"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.93
+msgctxt "STRINGS.ANTWARRIORNAMES.93"
+msgid "Warrior #570204"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.94
+msgctxt "STRINGS.ANTWARRIORNAMES.94"
+msgid "Warrior #832018"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.95
+msgctxt "STRINGS.ANTWARRIORNAMES.95"
+msgid "Warrior #26329"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.96
+msgctxt "STRINGS.ANTWARRIORNAMES.96"
+msgid "Warrior #759329"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.97
+msgctxt "STRINGS.ANTWARRIORNAMES.97"
+msgid "Warrior #238874"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.98
+msgctxt "STRINGS.ANTWARRIORNAMES.98"
+msgid "Warrior #1387"
+msgstr ""
+
+#. STRINGS.ANTWARRIORNAMES.99
+msgctxt "STRINGS.ANTWARRIORNAMES.99"
+msgid "Warrior #514236"
+msgstr ""
+
+#. STRINGS.ANT_TALK_ATTEMPT_TRADE.1
+msgctxt "STRINGS.ANT_TALK_ATTEMPT_TRADE.1"
+msgid "YOU WORK-K-K TOO?"
+msgstr ""
+
+#. STRINGS.ANT_TALK_ATTEMPT_TRADE.2
+msgctxt "STRINGS.ANT_TALK_ATTEMPT_TRADE.2"
+msgid "ASSIST-TK-TK COLONY?"
+msgstr ""
+
+#. STRINGS.ANT_TALK_ATTEMPT_TRADE.3
+msgctxt "STRINGS.ANT_TALK_ATTEMPT_TRADE.3"
+msgid "CONSTRUCT TK-TK-TOGETHER?"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FIGHT.1
+msgctxt "STRINGS.ANT_TALK_FIGHT.1"
+msgid "CHK-CHK-CHARGE!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FIGHT.2
+msgctxt "STRINGS.ANT_TALK_FIGHT.2"
+msgid "ATT-TK-TACK!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FIGHT.3
+msgctxt "STRINGS.ANT_TALK_FIGHT.3"
+msgid "HIVE MUST-TK-TK CONTINUE!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FIGHT.4
+msgctxt "STRINGS.ANT_TALK_FIGHT.4"
+msgid "PROTECT-KT-KT THE HIVE!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FIND_MEAT.1
+msgctxt "STRINGS.ANT_TALK_FIND_MEAT.1"
+msgid "STOCK-CK-CK FOOD!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FIND_MEAT.2
+msgctxt "STRINGS.ANT_TALK_FIND_MEAT.2"
+msgid "COLLECT-TK-TK FOOD!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FIND_MEAT.3
+msgctxt "STRINGS.ANT_TALK_FIND_MEAT.3"
+msgid "C-C-CONSUME!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FIND_MEAT.4
+msgctxt "STRINGS.ANT_TALK_FIND_MEAT.4"
+msgid "STASH MEAT-TK-TK!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FOLLOWWILSON.1
+msgctxt "STRINGS.ANT_TALK_FOLLOWWILSON.1"
+msgid "OBEY ROYAL-TK-TK-TY"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FOLLOWWILSON.2
+msgctxt "STRINGS.ANT_TALK_FOLLOWWILSON.2"
+msgid "AWAIT INSTRUCT-TK-TK-TIONS"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FOLLOWWILSON.3
+msgctxt "STRINGS.ANT_TALK_FOLLOWWILSON.3"
+msgid "ASSIST-T-T THE HIVE"
+msgstr ""
+
+#. STRINGS.ANT_TALK_FOLLOWWILSON.4
+msgctxt "STRINGS.ANT_TALK_FOLLOWWILSON.4"
+msgid "I CK-CK-COMPLY"
+msgstr ""
+
+#. STRINGS.ANT_TALK_HELP_CHOP_WOOD.1
+msgctxt "STRINGS.ANT_TALK_HELP_CHOP_WOOD.1"
+msgid "TK-TK-TASKS!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_HELP_CHOP_WOOD.2
+msgctxt "STRINGS.ANT_TALK_HELP_CHOP_WOOD.2"
+msgid "CHK-CHK-CHOP WOOD"
+msgstr ""
+
+#. STRINGS.ANT_TALK_HELP_CHOP_WOOD.3
+msgctxt "STRINGS.ANT_TALK_HELP_CHOP_WOOD.3"
+msgid "WORK-K-KT TOGETHER!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_HELP_CHOP_WOOD.4
+msgctxt "STRINGS.ANT_TALK_HELP_CHOP_WOOD.4"
+msgid "ACT-CT-CTIVITY!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_HELP_CHOP_WOOD.5
+msgctxt "STRINGS.ANT_TALK_HELP_CHOP_WOOD.5"
+msgid "CK-CK-CONSTRUCT!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_KEEP_AWAY.1
+msgctxt "STRINGS.ANT_TALK_KEEP_AWAY.1"
+msgid "K-K-KEEP BACK-CK-CK"
+msgstr ""
+
+#. STRINGS.ANT_TALK_KEEP_AWAY.2
+msgctxt "STRINGS.ANT_TALK_KEEP_AWAY.2"
+msgid "WE PROTECT-KT-KT QUEEN!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_KEEP_AWAY.3
+msgctxt "STRINGS.ANT_TALK_KEEP_AWAY.3"
+msgid "GET-TK-TK AWAY"
+msgstr ""
+
+#. STRINGS.ANT_TALK_PANIC.1
+msgctxt "STRINGS.ANT_TALK_PANIC.1"
+msgid "AAAAACH-CH-CH!!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_PANIC.2
+msgctxt "STRINGS.ANT_TALK_PANIC.2"
+msgid "RETREAT-TK-TK!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_PANIC.3
+msgctxt "STRINGS.ANT_TALK_PANIC.3"
+msgid "GET BACK-CK-CK!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_PANICFIRE.1
+msgctxt "STRINGS.ANT_TALK_PANICFIRE.1"
+msgid "SCORCH-CHK-CHK!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_PANICFIRE.2
+msgctxt "STRINGS.ANT_TALK_PANICFIRE.2"
+msgid "I COMBUST-TK-TK!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_PANICFIRE.3
+msgctxt "STRINGS.ANT_TALK_PANICFIRE.3"
+msgid "I SAC-C-CRIFICE!"
+msgstr ""
+
+#. STRINGS.ANT_TALK_RESCUE.1
+msgctxt "STRINGS.ANT_TALK_RESCUE.1"
+msgid "HELP ROYAL-TK-TK-TY"
+msgstr ""
+
+#. STRINGS.ANT_TALK_RESCUE.2
+msgctxt "STRINGS.ANT_TALK_RESCUE.2"
+msgid "ASSIST-T-T THE HIVE"
+msgstr ""
+
+#. STRINGS.ANT_TALK_UNTRANSLATED.1
+msgctxt "STRINGS.ANT_TALK_UNTRANSLATED.1"
+msgid "CHR'IK TIVIK"
+msgstr ""
+
+#. STRINGS.ANT_TALK_UNTRANSLATED.2
+msgctxt "STRINGS.ANT_TALK_UNTRANSLATED.2"
+msgid "CR'KIT CR'KIT"
+msgstr ""
+
+#. STRINGS.ANT_TALK_UNTRANSLATED.3
+msgctxt "STRINGS.ANT_TALK_UNTRANSLATED.3"
+msgid "KLICK VRR'TIK"
+msgstr ""
+
+#. STRINGS.ANT_TALK_UNTRANSLATED.4
+msgctxt "STRINGS.ANT_TALK_UNTRANSLATED.4"
+msgid "K'KRIT"
+msgstr ""
+
+#. STRINGS.ANT_TALK_UNTRANSLATED.5
+msgctxt "STRINGS.ANT_TALK_UNTRANSLATED.5"
+msgid "VVR'T C'CHAK"
+msgstr ""
+
+#. STRINGS.ANT_TALK_UNTRANSLATED.6
+msgctxt "STRINGS.ANT_TALK_UNTRANSLATED.6"
+msgid "TI'VIK TI'VOK"
+msgstr ""
+
+#. STRINGS.ANT_TALK_WANT_MEAT.1
+msgctxt "STRINGS.ANT_TALK_WANT_MEAT.1"
+msgid "I EAT-TK-TK MEAT"
+msgstr ""
+
+#. STRINGS.ANT_TALK_WANT_SEEDS.1
+msgctxt "STRINGS.ANT_TALK_WANT_SEEDS.1"
+msgid "I EAT-TK-TK SEEDS"
+msgstr ""
+
+#. STRINGS.ANT_TALK_WANT_VEGGIE.1
+msgctxt "STRINGS.ANT_TALK_WANT_VEGGIE.1"
+msgid "I EAT-TK-TK PLANTS"
+msgstr ""
+
+#. STRINGS.ANT_TALK_WANT_WOOD.1
+msgctxt "STRINGS.ANT_TALK_WANT_WOOD.1"
+msgid "I EAT-TK-TK TREES"
+msgstr ""
+
 #. STRINGS.BANDIT_TALK_FIGHT.1
 msgctxt "STRINGS.BANDIT_TALK_FIGHT.1"
 msgid "HAVE AT THEE"
@@ -426,6 +1631,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTCOMBHOME"
 msgid "Looks like it houses insects."
 msgstr ""
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTHILL"
+msgid "This must be where those giant bugs live."
+msgstr ""
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTIVENOM"
 msgid "Tastes horrible!"
@@ -451,9 +1661,19 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMAN_WARRIOR"
 msgid "I don't like the look of him."
 msgstr ""
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Don't hatch. Don't hatch. Don't hatch..."
+msgstr ""
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMASKHAT"
 msgid "There's still some goo stuck to the insides."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "That looks important."
 msgstr ""
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN_THRONE
@@ -2786,6 +4006,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Scale it and sail it!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SAND"
+msgid "A handy pile of pocket sand."
+msgstr ""
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SCORPION.DEAD"
 msgid "It's dead. Good."
@@ -3651,6 +4876,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTCOMBHOME"
 msgid "A pentagonal nursery for hexapod invertebrates."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTHILL"
+msgid "Similar to the many hexapod invertebrate nests I've observed. But bigger."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTIVENOM"
 msgid "A tincture of antibodies."
@@ -3676,9 +4906,19 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Fascinating! An infantry class of humanoid hexapod invertebrates!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Fascinating! They appear to hatch with a predisposition to violence."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMASKHAT"
 msgid "Evidently it masks my human scent as well."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "Evidence would suggest it's a room of some importance."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN_THRONE
@@ -6001,6 +7241,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Theoretically, it's reliable despite its patchy appearance."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SAND"
+msgid "A fine grain, more useful for construction purposes than gardening."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SCORPION.DEAD"
 msgid "Cold and lifeless."
@@ -6871,6 +8116,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTCOMBHOME"
 msgid "Looks like a home for the bug-dudes."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTHILL"
+msgid "I bet it took a ton of work to dig that."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTIVENOM"
 msgid "This'll make the sickness go away."
@@ -6896,9 +8146,19 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Aggh! Leave me alone!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Hope it stays in that egg."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMASKHAT"
 msgid "Sorry bug-dude."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "Is there a bed in there?"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN_THRONE
@@ -9226,6 +10486,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Why bother when I have my board?"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SAND"
+msgid "I like it between my toes and nowhere else."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SCORPION.DEAD"
 msgid "Ugh. Gnarly."
@@ -11164,6 +12429,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.SAIL_SNAKESKIN
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SAIL_SNAKESKIN"
 msgid "The snakes wouldn't end up like this if they didn't try to eat me!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SAND"
+msgid "That's sand."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.SCORPION.DEAD
@@ -13561,6 +14831,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SAIL_SNAKESKIN"
 msgid "There's no need to make a flag if the sail is colorful. Not that I need one."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SAND"
+msgid "Sand. You do tend to find a lot of it around here."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SCORPION.DEAD"
 msgid "Why it's still there?"
@@ -14381,6 +15656,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTCOMBHOME"
 msgid "Full of those ant guys."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTHILL"
+msgid "I could take a peek inside."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTIVENOM"
 msgid "Could come in very handy."
@@ -14404,6 +15684,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMAN_WARRIOR
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMAN_WARRIOR"
 msgid "I want no trouble, mon amie!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Mant omelet, perhaps?"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMASKHAT
@@ -16716,6 +18001,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Perhaps I'll sail to a land of spices."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SAND"
+msgid "Lots of tiny, tiny stones."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SCORPION.DEAD"
 msgid "Such senseless violence."
@@ -17581,6 +18871,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTCOMBHOME"
 msgid "A great hall for the bug beasts."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTHILL"
+msgid "There is dankness within!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTIVENOM"
 msgid "No venom shall flow through my veins!"
@@ -17606,9 +18901,19 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Let us do battle!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "A tiny warrior hides within."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMASKHAT"
 msgid "My helm would have sufficed."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "Pales in comparison to the halls of Valhalla."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN_THRONE
@@ -19916,6 +21221,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SAIL_SNAKESKIN"
 msgid "A sail made of murder!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SAND"
+msgid "You are a very clean dirt."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SCORPION.DEAD"
 msgid "It has been vanquished!"
@@ -20786,6 +22096,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTCOMBHOME"
 msgid "Oh those hideous creatures are industrious, aren't they."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTHILL"
+msgid "I've a mind to make a molehill of this."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTIVENOM"
 msgid "A cure to what ails you."
@@ -20811,9 +22126,19 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Such a grotesque display of aggression."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Where those pesky bugs hatch from."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMASKHAT"
 msgid "A hollowed out head. Don't ask where I got it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "All that for a bug?"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN_THRONE
@@ -23116,6 +24441,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SAIL_SNAKESKIN"
 msgid "For ease of travel."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SAND"
+msgid "Rocks so thoroughly beaten down they are no longer recognizable."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SCORPION.DEAD"
 msgid "It has felt the cruel sting of death."
@@ -23981,6 +25311,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTCOMBHOME"
 msgid "Those little ant guys live in here."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTHILL"
+msgid "Are we welcome in there?"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTIVENOM"
 msgid "This is medicine?"
@@ -24006,9 +25341,19 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMAN_WARRIOR"
 msgid "It's an Ant Soldier!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Aww... a little baby ant soldier."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMASKHAT"
 msgid "This seems a little mean."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "It's cozy in here."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN_THRONE
@@ -26301,6 +27646,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SAIL_SNAKESKIN"
 msgid "With our sheet of gross skins, we're ready for adventure."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SAND"
+msgid "It's nice to feel it beneath our many feet."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SCORPION.DEAD"
 msgid "I hope it had a good life!"
@@ -27166,6 +28516,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTCOMBHOME"
 msgid "The ant creatures live out their futile existence within."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTHILL"
+msgid "Shall I descend into the earth?"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTIVENOM"
 msgid "A potion to stave off the sickness."
@@ -27191,9 +28546,19 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Looking to kill something."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "The oospore of an abomination."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMASKHAT"
 msgid "The mind that dwelt within is long gone."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "A gilded cage."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN_THRONE
@@ -29491,6 +30856,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Gross, but efficient."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SAND"
+msgid "I wonder if the sand knows of its own insignificance?"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SCORPION.DEAD"
 msgid "You had no purpose in life."
@@ -30366,6 +31736,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTCOMBHOME"
 msgid "Full of bundled up big baby bugs."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTHILL"
+msgid "Can't get more adventurous then going into a giant insect nest."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTIVENOM"
 msgid "A cure for too much adventure."
@@ -30391,9 +31766,19 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Swell. This one's angry."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Better get dodging, Wheeler."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMASKHAT"
 msgid "Swell. Now I know what it smells like to be an insect."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "I can never say no to an adventure."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN_THRONE
@@ -32711,6 +34096,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Too heavy for balloon material. Just right for a sail."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SAND"
+msgid "I can fire it out my Pew-matic and it doesn't even gum up the works."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SCORPION.DEAD"
 msgid "I'll be honest, I don't care."
@@ -33576,6 +34966,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTCOMBHOME"
 msgid "A fascinating insectoid habitat."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTHILL"
+msgid "A massive network of arthropod tunnels lie beneath."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTIVENOM"
 msgid "The contents should make a most useful antidote."
@@ -33601,9 +34996,19 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMAN_WARRIOR"
 msgid "A particularly aggressive colony defender."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "The offspring of an aggressive Formicidae humanoid."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMASKHAT"
 msgid "This may be slightly unethical."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "An excellent nest."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN_THRONE
@@ -35896,6 +37301,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SAIL_SNAKESKIN"
 msgid "A sail of serpent hide."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SAND"
+msgid "Sand always seems to find its way into my books."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SCORPION.DEAD"
 msgid "Deceased."
@@ -36766,6 +38176,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTCOMBHOME"
 msgid "'TIS NAUGHT MINE HOUSEHOLD"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTHILL"
+msgid "'TIS NAUGHT MINE HOUSEHOLD"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTIVENOM"
 msgid "GOOD FOR WILBA BOO BOOS"
@@ -36791,9 +38206,19 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMAN_WARRIOR"
 msgid "HAVE AT THEE!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "'TIS BABY VILLAIN INSIDE"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMASKHAT"
 msgid "WILBA WEAR THE HEAD OF MINE ENEMIES"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "WILBA HAST BETTER ROOM"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN_THRONE
@@ -39086,6 +40511,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SAIL_SNAKESKIN"
 msgid "MAKETH THE WIND TO MINE LABOR"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SAND"
+msgid "ZOUNDS BUT SAND 'TIS EVERYWHERE!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SCORPION.DEAD"
 msgid "DEATH WILL HAS IS'T DAY"
@@ -39951,6 +41381,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTCOMBHOME"
 msgid "Gross!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTHILL"
+msgid "Ughh. I do  not want to go in there."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTIVENOM"
 msgid "This'll help if I'm poisoned."
@@ -39976,9 +41411,19 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Yeesh. What are you so angry about?"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "A baby jerk."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMASKHAT"
 msgid "This is the nastiest thing I've ever made."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "Am I supposed to be impressed."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN_THRONE
@@ -42251,6 +43696,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SAIL_SNAKESKIN"
 msgid "What a morbid sail."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SAND"
+msgid "Big deal, it's sand."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SCORPION.DEAD"
 msgid "Just as gross dead as alive."
@@ -44236,6 +45686,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Just watch those scales catch the wind!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SAND"
+msgid "Yep, I'm holding a pile of sand."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SCORPION.DEAD"
 msgid "Phew, now I don't have to be nervous all the time."
@@ -44896,6 +46351,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTCOMBHOME"
 msgid "Is looking like Bug Man home."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTHILL"
+msgid "Is big bug man pile."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTIVENOM"
 msgid "Wolfgang will flex poison out of veins!"
@@ -44921,9 +46381,19 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Wolfgang smash mighty Bug Man!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Is baby soldier bug."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMASKHAT"
 msgid "Make Wolfgang look like Bug Man."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "Fancy bug place."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN_THRONE
@@ -47216,6 +48686,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Skin of dead snake will help me sail."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SAND"
+msgid "When Wolfgang holds it it slips through his large, strong hands."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SCORPION.DEAD"
 msgid "Ha! Is dead!"
@@ -48081,6 +49556,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTCOMBHOME"
 msgid "Not my idea of a model home, but to each his own."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTHILL"
+msgid "I hear something crawling around in there."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTIVENOM"
 msgid "Tastes awful, but it works!"
@@ -48106,9 +49586,19 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Calm down there, buddy!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Scrambled eggs?"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMASKHAT"
 msgid "I hope no one recognizes this guy."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "Looks fancy."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN_THRONE
@@ -50401,6 +51891,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Sailin' in style."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SAND"
+msgid "Sandy."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SCORPION.DEAD"
 msgid "For the best."
@@ -51261,6 +52756,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTCOMBHOME"
 msgid "Thar buggie beasties reside within."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTHILL"
+msgid "'Tis no mole hill."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTIVENOM"
 msgid "'Tis th'sea thet'll claim me, not some sickly biter."
@@ -51286,9 +52786,19 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Ye be meetin' yer match!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Full o'them fiery bugs."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMASKHAT"
 msgid "T'mask yer ugly mug."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "'Tis the cabin o'tha queen."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN_THRONE
@@ -53581,6 +55091,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Thet be a sail."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SAND"
+msgid "Handful o'land."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SCORPION.DEAD"
 msgid "Aye! 'Tis defeated!"
@@ -54446,6 +55961,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTCOMBHOME"
 msgid "Little baby Chr'ik home"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTHILL"
+msgid "Anyone home?"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTIVENOM"
 msgid "Sick Fixer"
@@ -54471,9 +55991,19 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMAN_WARRIOR"
 msgid "Mad Chr'ik! Agh!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "Little Baby Chr'ik. Hello!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMASKHAT"
 msgid "Chr'ik clothes"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "Chr'ik Mommy room"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN_THRONE
@@ -56806,6 +58336,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SAIL_SNAKESKIN"
 msgid "Squirmy Wind Nabber"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SAND"
+msgid "Dirt"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SCORPION.DEAD"
 msgid "No more stabby"
@@ -58711,6 +60246,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SAIL_SNAKESKIN"
 msgid "The stripes complement the colour, I say, I say."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SAND"
+msgid "It's a handful of sand."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SCORPION.DEAD"
 msgid "It has met its end."
@@ -60521,6 +62061,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SAIL_SNAKESKIN"
 msgid "It sail made of colourful scales."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SAND"
+msgid "Feel nice on scales, florp!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SCORPION.DEAD"
 msgid "Good night forever, florp."
@@ -61171,6 +62716,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTCOMBHOME"
 msgid "CONTAINER FOR INSECTOIDS"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTHILL
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTHILL"
+msgid "INSECTOID HOUSING UNIT"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTIVENOM
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTIVENOM"
 msgid "ERADICATES CONTAGIONS FROM MAIN SYSTEM FUNCTIONS"
@@ -61196,9 +62746,19 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMAN_WARRIOR"
 msgid "EXTERMINATE!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMAN_WARRIOR_EGG"
+msgid "WARNING: BABY FLESHLINGS WITHIN"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMASKHAT"
 msgid "DECORATION MODULE ACQUIRED"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN_CHAMBERS"
+msgid "IT DOESN'T IMPRESS ME"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN_THRONE
@@ -63491,6 +65051,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SAIL_SNAKESKIN"
 msgid "REPTILIAN SCALES IMPROVE SAIL EFFICIENCY"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SAND
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SAND"
+msgid "GRAINS OF DEFEATED ROCK"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.SCORPION.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SCORPION.DEAD"
 msgid "TERMINATED"
@@ -64088,117 +65653,117 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Alexandrina"
+msgid "Catherine"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Alice"
+msgid "Charlotte"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Agnes"
+msgid "Della"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Lilian"
+msgid "Arabella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Louise"
+msgid "Belle"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Ottilie"
+msgid "Beryl"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Ophelia"
+msgid "Briar"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Sophronia"
+msgid "Beatrice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Catherine"
+msgid "Henrietta"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Charlotte"
+msgid "Luella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Della"
+msgid "Alexandrina"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Arabella"
+msgid "Ebba"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Belle"
+msgid "Edith"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Beryl"
+msgid "Flora"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Briar"
+msgid "Florence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Beatrice"
+msgid "Georgette"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Henrietta"
+msgid "Alice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Luella"
+msgid "Agnes"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Ebba"
+msgid "Lilian"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Edith"
+msgid "Louise"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Flora"
+msgid "Ottilie"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Florence"
+msgid "Ophelia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Georgette"
+msgid "Sophronia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -64208,122 +65773,122 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Douglas"
+msgid "Tesla"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Oliver"
+msgid "Frederick"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Thaddeus"
+msgid "Leopold"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Wellington"
+msgid "Albert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Gulliver"
+msgid "Alfred"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Clarence"
+msgid "Arthur"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Merritt"
+msgid "Edward"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Sterling"
+msgid "George"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Tesla"
+msgid "Charles"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Frederick"
+msgid "Ewart"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Leopold"
+msgid "Douglas"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Albert"
+msgid "Edison"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Alfred"
+msgid "Edmund"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Arthur"
+msgid "Larkin"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Edward"
+msgid "Herbert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "George"
+msgid "Henry"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Charles"
+msgid "Charley"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Ewart"
+msgid "Oliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Edison"
+msgid "Thaddeus"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Edmund"
+msgid "Wellington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Larkin"
+msgid "Gulliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Herbert"
+msgid "Clarence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Henry"
+msgid "Merritt"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Charley"
+msgid "Sterling"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -64333,77 +65898,77 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Derby"
+msgid "Hastings"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Palmerston"
+msgid "Aberdeen"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Gladstone"
+msgid "Talbot"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Disraeli"
+msgid "Thames"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Salisbury"
+msgid "Stockton"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Kensington"
+msgid "Darlington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Conroy"
+msgid "Peel"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Greville"
+msgid "Derby"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Hastings"
+msgid "Palmerston"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Aberdeen"
+msgid "Gladstone"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Talbot"
+msgid "Disraeli"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Thames"
+msgid "Salisbury"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Stockton"
+msgid "Kensington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Darlington"
+msgid "Conroy"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Peel"
+msgid "Greville"
 msgstr ""
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -68963,82 +70528,82 @@ msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Betula"
+msgid "Juniperus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Juniperus"
+msgid "Betula"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -69181,6 +70746,11 @@ msgctxt "STRINGS.NAMES.ANTCOMBHOME"
 msgid "Antcomb Home"
 msgstr ""
 
+#. STRINGS.NAMES.ANTHILL
+msgctxt "STRINGS.NAMES.ANTHILL"
+msgid "Mant Hill"
+msgstr ""
+
 #. STRINGS.NAMES.ANTIVENOM
 msgctxt "STRINGS.NAMES.ANTIVENOM"
 msgid "Anti Venom"
@@ -69191,9 +70761,19 @@ msgctxt "STRINGS.NAMES.ANTMAN_WARRIOR"
 msgid "Mant Warrior"
 msgstr ""
 
+#. STRINGS.NAMES.ANTMAN_WARRIOR_EGG
+msgctxt "STRINGS.NAMES.ANTMAN_WARRIOR_EGG"
+msgid "Mant Warrior Egg"
+msgstr ""
+
 #. STRINGS.NAMES.ANTMASKHAT
 msgctxt "STRINGS.NAMES.ANTMASKHAT"
 msgid "Mant Mask"
+msgstr ""
+
+#. STRINGS.NAMES.ANTQUEEN_CHAMBERS
+msgctxt "STRINGS.NAMES.ANTQUEEN_CHAMBERS"
+msgid "Queen Womant Chambers"
 msgstr ""
 
 #. STRINGS.NAMES.ANTQUEEN_THRONE
@@ -70381,6 +71961,11 @@ msgctxt "STRINGS.NAMES.NETTLELOSANGE"
 msgid "Nettle Rolls"
 msgstr ""
 
+#. STRINGS.NAMES.NOOXYGEN
+msgctxt "STRINGS.NAMES.NOOXYGEN"
+msgid "Suffocating"
+msgstr ""
+
 #. STRINGS.NAMES.OBSIDIAN
 msgctxt "STRINGS.NAMES.OBSIDIAN"
 msgid "Obsidian"
@@ -71089,6 +72674,11 @@ msgstr ""
 #. STRINGS.NAMES.SAIL_SNAKESKIN
 msgctxt "STRINGS.NAMES.SAIL_SNAKESKIN"
 msgid "Snakeskin Sail"
+msgstr ""
+
+#. STRINGS.NAMES.SAND
+msgctxt "STRINGS.NAMES.SAND"
+msgid "Sand"
 msgstr ""
 
 #. STRINGS.NAMES.SCORPION

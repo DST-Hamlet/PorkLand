@@ -74,6 +74,7 @@ return {
         ANCIENT_ROBOT_RIBS = "Well that looks interesting.",
         ANTCHEST = "They've done all the hard work.",
         ANTCOMBHOME = "Oh those hideous creatures are industrious, aren't they.",
+        ANTHILL = "I've a mind to make a molehill of this.",
         ANTIVENOM = "A cure to what ails you.",
         ANTMAN = {
             DEAD = "Serves it right for being so ugly.",
@@ -81,7 +82,9 @@ return {
             SLEEPING = "Still grotesque.",
         },
         ANTMAN_WARRIOR = "Such a grotesque display of aggression.",
+        ANTMAN_WARRIOR_EGG = "Where those pesky bugs hatch from.",
         ANTMASKHAT = "A hollowed out head. Don't ask where I got it.",
+        ANTQUEEN_CHAMBERS = "All that for a bug?",
         ANTQUEEN_THRONE = "Might be something interesting in there.",
         ANTSUIT = "The indignities I've suffered...",
         ANT_CAVE_LANTERN = "Oh look, they discovered light.",
@@ -664,6 +667,7 @@ return {
         RUG_WEB = "Rather sticky.",
         RUG_WORMHOLE = "Does it work?",
         SAIL_SNAKESKIN = "For ease of travel.",
+        SAND = "Rocks so thoroughly beaten down they are no longer recognizable.",
         SCORPION = {
             DEAD = "It has felt the cruel sting of death.",
             GENERIC = "You'll not be stinging me.",
