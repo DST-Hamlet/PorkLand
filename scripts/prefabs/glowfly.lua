@@ -235,15 +235,15 @@ local function glowflyfn()
     inst.components.locomotor.runspeed = TUNING.GLOWFLY_RUN_SPEED
 
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
+    -- inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
+    -- inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
     inst.components.inventoryitem:ChangeImageName("lantern_fly")
     inst.components.inventoryitem.canbepickedup = false
     inst.components.inventoryitem.canbepickedupalive = false
     inst.components.inventoryitem.nobounce = true
     inst.components.inventoryitem.pushlandedevents = false
 
-    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME * 2)
+    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME * 2, OnPutInInventory, OnDropped)
 
     inst.glowflyspawner = TheWorld.components.glowflyspawner
     if inst.glowflyspawner ~= nil then
