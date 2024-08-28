@@ -138,6 +138,7 @@ function EntityScript:CanOnWater(allow_invincible)
         or self:HasTag("flying")
         or self:HasTag("ignorewalkableplatformdrowning")
         or self:HasTag("shadow")
+        or self:HasTag("shadowminion")
         or (self:HasTag("player") and (self.components.drownable == nil or not self.components.drownable:CanDrownOverWater(allow_invincible)))
 end
 
