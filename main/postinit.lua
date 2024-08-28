@@ -79,6 +79,7 @@ local prefab_posts = {
     "boomerang",
     "buff_workeffectiveness",
     "grass",
+    "mandrake",
     "meatrack",
     "mosquitosack",
     "multiplayer_portal",

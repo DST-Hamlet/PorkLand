@@ -57,6 +57,10 @@ local function GetSpawnPoint(player)
     local rad = 25
     local mindistance = 36
     local x, y, z = player.Transform:GetWorldPosition()
+    if TheWorld.Map:GetTileAtPoint(x, y, z) == WORLD_TILES.GASJUNGLE then
+        return
+    end
+
     local flowers = TheSim:FindEntities(x, y, z, rad, MUST_TAGS)
 
     for i, flower in ipairs(flowers) do

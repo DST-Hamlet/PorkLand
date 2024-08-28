@@ -435,7 +435,9 @@ local function OnGetItemFromPlayer(inst, giver, item)
 end
 
 local function OnRefuseItem(inst, item)
-    inst.sg:GoToState("refuse")
+    if not inst.components.combat.target and not inst.sg:HasStateTag("busy") then
+        inst.sg:GoToState("refuse")
+    end
     if inst.components.sleeper:IsAsleep() then
         inst.components.sleeper:WakeUp()
     end

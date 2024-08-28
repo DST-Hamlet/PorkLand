@@ -140,7 +140,7 @@ local function fn()
     inst.components.combat:SetAttackPeriod(TUNING.PIG_BANDIT_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
-    inst.components.combat.hiteffectsymbol = "pig_torso"
+    inst.components.combat.hiteffectsymbol = "torso"
     inst.components.combat:SetRange(4)
     -- inst.components.combat.hiteffectsymbol = "chest"
     inst.components.combat.onhitotherfn = OnHitOther
