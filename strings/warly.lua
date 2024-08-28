@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "Not sure those ribs are good for BBQing.",
         ANTCHEST = "A honey maker!",
         ANTCOMBHOME = "Full of those ant guys.",
+        ANTHILL = "I could take a peek inside.",
         ANTIVENOM = "Could come in very handy.",
         ANTMAN = {
             DEAD = "He's met an untimely end.",
@@ -80,6 +81,7 @@ return {
             SLEEPING = "Good night, mon amie.",
         },
         ANTMAN_WARRIOR = "I want no trouble, mon amie!",
+        ANTMAN_WARRIOR_EGG = "Mant omelet, perhaps?",
         ANTMASKHAT = "The pith has been removed.",
         ANTQUEEN_THRONE = "There are many cherries hidden in that fruit salad.",
         ANTSUIT = "There's no meat inside.",
@@ -660,6 +662,7 @@ return {
         RUG_WEB = "Tacky.",
         RUG_WORMHOLE = "Pungent.",
         SAIL_SNAKESKIN = "Perhaps I'll sail to a land of spices.",
+        SAND = "Lots of tiny, tiny stones.",
         SCORPION = {
             DEAD = "Such senseless violence.",
             GENERIC = "Fried scorpion? Too dangerous.",

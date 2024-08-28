@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "Yikes. Looks scary.",
         ANTCHEST = "Wow! Look at how much honey it can hold.",
         ANTCOMBHOME = "Those little ant guys live in here.",
+        ANTHILL = "Are we welcome in there?",
         ANTIVENOM = "This is medicine?",
         ANTMAN = {
             DEAD = "Gee, that's too bad.",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "It must have been really tired.",
         },
         ANTMAN_WARRIOR = "It's an Ant Soldier!",
+        ANTMAN_WARRIOR_EGG = "Aww... a little baby ant soldier.",
         ANTMASKHAT = "This seems a little mean.",
+        ANTQUEEN_CHAMBERS = "It's cozy in here.",
         ANTQUEEN_THRONE = "There's stuff stuck in there.",
         ANTSUIT = "We could always use a spare thorax.",
         ANT_CAVE_LANTERN = "Sweet light. I wonder if we can eat it.",
@@ -655,6 +658,7 @@ return {
         RUG_WEB = "We like this one.",
         RUG_WORMHOLE = "I don't think it works.",
         SAIL_SNAKESKIN = "With our sheet of gross skins, we're ready for adventure.",
+        SAND = "It's nice to feel it beneath our many feet.",
         SCORPION = {
             DEAD = "I hope it had a good life!",
             GENERIC = "Hello, fellow arachnid.",

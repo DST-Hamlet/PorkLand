@@ -522,6 +522,7 @@ return {
         RUG_WEB = "Thankfully it's not real.",
         RUG_WORMHOLE = "Thankfully it's not real.",
         SAIL_SNAKESKIN = "There's no need to make a flag if the sail is colorful. Not that I need one.",
+        SAND = "Sand. You do tend to find a lot of it around here.",
         SCORPION = {
             DEAD = "Why it's still there?",
             GENERIC = "A cunning creature.",

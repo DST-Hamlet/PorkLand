@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "Wake, metal beast!",
         ANTCHEST = "A shieldmaiden has no use for a honey maker!",
         ANTCOMBHOME = "A great hall for the bug beasts.",
+        ANTHILL = "There is dankness within!",
         ANTIVENOM = "No venom shall flow through my veins!",
         ANTMAN = {
             DEAD = "It no longer lives.",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "It has let its guard down.",
         },
         ANTMAN_WARRIOR = "Let us do battle!",
+        ANTMAN_WARRIOR_EGG = "A tiny warrior hides within.",
         ANTMASKHAT = "My helm would have sufficed.",
+        ANTQUEEN_CHAMBERS = "Pales in comparison to the halls of Valhalla.",
         ANTQUEEN_THRONE = "It will be plundered!",
         ANTSUIT = "An armor not worthy of a shieldmaiden!",
         ANT_CAVE_LANTERN = "A lamp made of unfermented mead!",
@@ -660,6 +663,7 @@ return {
         RUG_WEB = "It sticketh to mine feet.",
         RUG_WORMHOLE = "A tribute to a mighty maw.",
         SAIL_SNAKESKIN = "A sail made of murder!",
+        SAND = "You are a very clean dirt.",
         SCORPION = {
             DEAD = "It has been vanquished!",
             GENERIC = "Your pointy tail is no match for me!",

@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "An undead instrument of death.",
         ANTCHEST = "Still not as sweet as Abigail.",
         ANTCOMBHOME = "The ant creatures live out their futile existence within.",
+        ANTHILL = "Shall I descend into the earth?",
         ANTIVENOM = "A potion to stave off the sickness.",
         ANTMAN = {
             DEAD = "Gone to a better place.",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "Perchance to dream...",
         },
         ANTMAN_WARRIOR = "Looking to kill something.",
+        ANTMAN_WARRIOR_EGG = "The oospore of an abomination.",
         ANTMASKHAT = "The mind that dwelt within is long gone.",
+        ANTQUEEN_CHAMBERS = "A gilded cage.",
         ANTQUEEN_THRONE = "There are mysteries hidden within there.",
         ANTSUIT = "As hollow as my heart.",
         ANT_CAVE_LANTERN = "It drips with innocence.",
@@ -656,6 +659,7 @@ return {
         RUG_WEB = "Does nothing to reassure me.",
         RUG_WORMHOLE = "Does nothing to reassure me.",
         SAIL_SNAKESKIN = "Gross, but efficient.",
+        SAND = "I wonder if the sand knows of its own insignificance?",
         SCORPION = {
             DEAD = "You had no purpose in life.",
             GENERIC = "One sting and it could be over.",

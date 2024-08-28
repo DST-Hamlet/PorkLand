@@ -362,6 +362,7 @@ return {
         RUG_WEB = "Webby-boy like it?",
         RUG_WORMHOLE = "Lack the swamp smell.",
         SAIL_SNAKESKIN = "It sail made of colourful scales.",
+        SAND = "Feel nice on scales, florp!",
         SCORPION = {
             DEAD = "Good night forever, florp.",
             GENERIC = "Sharp and scary, florp.",

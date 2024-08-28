@@ -74,6 +74,7 @@ return {
         ANCIENT_ROBOT_RIBS = "All that iron should be mine.",
         ANTCHEST = "Takes its sweet time making honey.",
         ANTCOMBHOME = "Looks like it houses insects.",
+        ANTHILL = "This must be where those giant bugs live.",
         ANTIVENOM = "Tastes horrible!",
         ANTMAN = {
             DEAD = "Exterminated.",
@@ -81,7 +82,9 @@ return {
             SLEEPING = "An bug at rest will stay at rest.",
         },
         ANTMAN_WARRIOR = "I don't like the look of him.",
+        ANTMAN_WARRIOR_EGG = "Don't hatch. Don't hatch. Don't hatch...",
         ANTMASKHAT = "There's still some goo stuck to the insides.",
+        ANTQUEEN_CHAMBERS = "That looks important.",
         ANTQUEEN_THRONE = "I should break that. For science.",
         ANTSUIT = "It's brittle.",
         ANT_CAVE_LANTERN = "Provides some light in an otherwise dark existence.",
@@ -674,6 +677,7 @@ return {
         RUG_WEB = "Oh what a tangled web we weave...",
         RUG_WORMHOLE = "Just a reproduction.",
         SAIL_SNAKESKIN = "Scale it and sail it!",
+        SAND = "A handy pile of pocket sand.",
         SCORPION = {
             DEAD = "It's dead. Good.",
             GENERIC = "That better not be poisonous.",

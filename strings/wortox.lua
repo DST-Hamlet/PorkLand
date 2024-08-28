@@ -337,6 +337,7 @@ return {
         ROOTTRUNK = "So I don't always have to carry them with!",
         RUG_BEARD = "Uh uh uh.",
         SAIL_SNAKESKIN = "The stripes complement the colour, I say, I say.",
+        SAND = "It's a handful of sand.",
         SCORPION = {
             DEAD = "It has met its end.",
             GENERIC = "We don't have to fight each other, okay?",

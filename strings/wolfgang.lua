@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "Wolfgang can eat ribs?",
         ANTCHEST = "Sweet stuff for Wolfgang!",
         ANTCOMBHOME = "Is looking like Bug Man home.",
+        ANTHILL = "Is big bug man pile.",
         ANTIVENOM = "Wolfgang will flex poison out of veins!",
         ANTMAN = {
             DEAD = "Bug Man is dead.",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "Night-night, Bug Man!",
         },
         ANTMAN_WARRIOR = "Wolfgang smash mighty Bug Man!",
+        ANTMAN_WARRIOR_EGG = "Is baby soldier bug.",
         ANTMASKHAT = "Make Wolfgang look like Bug Man.",
+        ANTQUEEN_CHAMBERS = "Fancy bug place.",
         ANTQUEEN_THRONE = "Stuff hiding in there.",
         ANTSUIT = "Wolfgang just want to fit in.",
         ANT_CAVE_LANTERN = "It sticky and keep dark away.",
@@ -655,6 +658,7 @@ return {
         RUG_WEB = "Is sticky.",
         RUG_WORMHOLE = "Is working?",
         SAIL_SNAKESKIN = "Skin of dead snake will help me sail.",
+        SAND = "When Wolfgang holds it it slips through his large, strong hands.",
         SCORPION = {
             DEAD = "Ha! Is dead!",
             GENERIC = "Stay away from Wolfgang!",

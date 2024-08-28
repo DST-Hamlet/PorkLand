@@ -73,6 +73,7 @@ return {
         ANCIENT_ROBOT_RIBS = "Piece of Clinky Rock Man",
         ANTCHEST = "Buzz juice! Where's Buzz?",
         ANTCOMBHOME = "Little baby Chr'ik home",
+        ANTHILL = "Anyone home?",
         ANTIVENOM = "Sick Fixer",
         ANTMAN = {
             DEAD = "(sniff) Too bad",
@@ -80,7 +81,9 @@ return {
             SLEEPING = "Sleep well",
         },
         ANTMAN_WARRIOR = "Mad Chr'ik! Agh!",
+        ANTMAN_WARRIOR_EGG = "Little Baby Chr'ik. Hello!",
         ANTMASKHAT = "Chr'ik clothes",
+        ANTQUEEN_CHAMBERS = "Chr'ik Mommy room",
         ANTQUEEN_THRONE = "Looks comfy",
         ANTSUIT = "Makes Chr'ik friends",
         ANT_CAVE_LANTERN = "Sticky light",
@@ -671,6 +674,7 @@ return {
         RUG_WEB = "Sticky",
         RUG_WORMHOLE = "Ground thing",
         SAIL_SNAKESKIN = "Squirmy Wind Nabber",
+        SAND = "Dirt",
         SCORPION = {
             DEAD = "No more stabby",
             GENERIC = "Stabby bzzter",
