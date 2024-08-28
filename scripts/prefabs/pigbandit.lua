@@ -161,9 +161,9 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
-    MakeMediumFreezableCharacter(inst, "pig_torso")
-    MakeMediumBurnableCharacter(inst, "pig_torso")
-    MakePoisonableCharacter(inst)
+    MakeMediumFreezableCharacter(inst, "torso")
+    MakeMediumBurnableCharacter(inst, "torso")
+    MakePoisonableCharacter(inst, "torso")
     MakeHauntablePanic(inst)
 
     inst:SetBrain(brain)
