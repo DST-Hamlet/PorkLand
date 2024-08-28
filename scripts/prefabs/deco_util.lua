@@ -65,14 +65,11 @@ local prefabs =
 
 local function smash(inst)
     if inst.components.lootdropper then
-        local interior_spawner = TheWorld.components.interiorspawner
-        if interior_spawner.current_interior then
-            local originpt = interior_spawner:getSpawnOrigin()
-            local x, _, z = inst.Transform:GetWorldPosition()
-            local dropdir = Vector3(originpt.x - x, 0, originpt.z - z):GetNormalized()
-            inst.components.lootdropper.dropdir = dropdir
-            inst.components.lootdropper:DropLoot()
+        local room = TheWorld.components.interiorspawner:GetInteriorCenter(inst:GetPosition())
+        if room then
+            inst.components.lootdropper:SetFlingTarget(room:GetPosition())
         end
+        inst.components.lootdropper:DropLoot()
     end
 
     local fx = SpawnPrefab("collapse_small")
@@ -89,11 +86,7 @@ local function SetPlayerUncraftable(inst)
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
     inst.components.workable:SetWorkLeft(1)
-    inst.components.workable:SetOnWorkCallback(function(inst, worker, workleft)
-        if workleft <= 0 then
-            smash(inst)
-        end
-    end)
+    inst.components.workable:SetOnFinishCallback(smash)
     inst:RemoveTag("NOCLICK")
 end
 
