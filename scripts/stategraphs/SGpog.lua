@@ -431,7 +431,7 @@ local states =
 
     State{
         name = "eat",
-        tags = {"preoccupied"},
+        tags = {"busy", "preoccupied"},
 
         onenter = function(inst, data)
             inst.Physics:Stop()
