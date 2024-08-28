@@ -128,6 +128,7 @@ local stategraph_posts = {
     "wilson_client",
     "wilsonghost",
     "wilsonghost_client",
+    "multiplayerportal",
 }
 
 local brain_posts = {
