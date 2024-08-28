@@ -118,6 +118,7 @@ local function commonfn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("health")
+    inst.components.health.murdersound = "dontstarve_DLC003/creatures/glowfly/death"
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "body"
