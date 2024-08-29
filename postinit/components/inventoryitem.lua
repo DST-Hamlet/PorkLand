@@ -46,13 +46,13 @@ end
 
 local _SetLanded = InventoryItem.SetLanded
 function InventoryItem:SetLanded(is_landed, should_poll_for_landing)
-    _SetLanded(self, is_landed, should_poll_for_landing)
     if is_landed or not should_poll_for_landing then
         self.inst:RemoveTag("falling")
     else
         self.inst:AddTag("falling")
         self:KeepOnInterior()
     end
+    _SetLanded(self, is_landed, should_poll_for_landing)
 end
 
 function InventoryItem:OnHitCloud()

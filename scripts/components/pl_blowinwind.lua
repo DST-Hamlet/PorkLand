@@ -52,24 +52,12 @@ function BlowInWind:OnEntitySleep()
 end
 
 function BlowInWind:OnEntityWake()
-    self:Start(self.wind_angle, self.velocity_multiplier)
+    self:Start()
 end
 
-function BlowInWind:Start(angle, velocity)
+function BlowInWind:Start()
     if self.inst:HasTag("falling") or (self.inst.components.inventoryitem and self.inst.components.inventoryitem.owner) then
         return
-    end
-
-    if angle then
-        self.wind_angle = angle
-        self.wind_vector = Vector3(math.cos(angle), 0, math.sin(angle)):GetNormalized()
-        self.current_angle = angle
-        self.current_vector = Vector3(math.cos(angle), 0, math.sin(angle)):GetNormalized()
-        self.inst.Transform:SetRotation(self.current_angle)
-    end
-
-    if velocity then
-        self.velocity_multiplier = velocity
     end
 
     if self.inst.SoundEmitter and self.soundPath and self.sound_name then
@@ -138,11 +126,6 @@ function BlowInWind:SpawnWindTrail(dt)
 end
 
 function BlowInWind:OnUpdate(dt)
-    if not self.inst then
-        self:Stop()
-        return
-    end
-
     if self.inst:GetCurrentInteriorID() ~= nil then
         -- inside an interior, don't blow
         return
@@ -150,8 +133,7 @@ function BlowInWind:OnUpdate(dt)
 
     if self.inst:HasTag("falling")
         or (self.inst.components.inventoryitem
-        and (self.inst.components.inventoryitem.owner
-        or not self.inst.components.inventoryitem.is_landed)) then
+        and self.inst.components.inventoryitem.owner) then
         return
     end
 
@@ -164,8 +146,7 @@ function BlowInWind:OnUpdate(dt)
     end
 
     if TheWorld:HasTag("porkland") then
-        if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy()
-            and not self.inst:GetIsInInterior() then
+        if TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy() then
             local windspeed = TheWorld.net.components.plateauwind:GetWindSpeed() -- from 0 to 1
             local windangle = TheWorld.net.components.plateauwind:GetWindAngle() * DEGREES
             self.velocity = Vector3(windspeed * math.cos(windangle), 0.0, windspeed * math.sin(windangle))
