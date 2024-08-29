@@ -1,5 +1,7 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local easing = require("easing")
+
 local BatSonar = require("widgets/batsonar")
 local BoatOver = require("widgets/boatover")
 local FogOver = require("widgets/fogover")
@@ -26,9 +28,6 @@ function PlayerHud:CreateOverlays(owner, ...)
 
     self.fogover = self.overlayroot:AddChild(FogOver(owner))
     self.fogover:Hide()
-    self.inst:ListenForEvent("startfog", function(inst, data) return self.fogover:StartFog() end, self.owner)
-    self.inst:ListenForEvent("stopfog", function(inst, data) return self.fogover:StopFog() end, self.owner)
-    self.inst:ListenForEvent("setfog", function(inst, data) return self.fogover:SetFog() end, self.owner)
 
     self.pollenover = self.overlayroot:AddChild(PollenOver(owner))
     self.pollenover:Hide()
@@ -53,15 +52,6 @@ function PlayerHud:UpdateClouds(camera)
 end
 
 function PlayerHud:UpdateFogClouds(camera)
-    -- if camera.interior then
-    --     self.clouds:Hide()
-    --     self.clouds_on = false
-    --     return
-    -- else
-        self.clouds:Show()
-        self.clouds_on = true
-    -- end
-
     if not TheFocalPoint.SoundEmitter:PlayingSound("windsound") then
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve/common/clouds", "windsound")
     end
@@ -87,6 +77,22 @@ function PlayerHud:UpdateFogClouds(camera)
 
     if self.owner.replica.inventory:EquipHasTag("clearfog") or self.owner:HasTag("inside_interior") then
         intensity = 0
+    end
+
+    if intensity > 0 then
+        self.clouds:Show()
+    end
+
+    if camera.distance and not camera.dollyzoom then
+        local dist_percent = (camera.distance - camera.mindist) / (camera.maxdist - camera.mindist)
+        local cutoff = TUNING.HUD_CLOUD_CUTOFF
+        if dist_percent > cutoff then
+            local p = easing.outCubic(dist_percent - cutoff, 0, .5, 1 - cutoff)
+            intensity = math.max(intensity, p)
+            self.clouds:Show()
+        elseif intensity == 0 then
+            self.clouds:Hide()
+        end
     end
 
     self.clouds:GetAnimState():SetMultColour(1, 1, 1, intensity)

@@ -21,43 +21,9 @@ local FogOver = Class(Widget, function(self, owner)
     self.time = self.transitiontime
 
     self:Hide()
+
+    self:StartUpdating()
 end)
-
-function FogOver:StartFog()
-    if not self.foggy then
-        self.foggy = true
-
-        self.time = self.transitiontime
-        self.alphagoal = 1
-
-        self:StartUpdating()
-    end
-end
-
-function FogOver:SetFog(off)
-    if off and self.foggy then
-        self.time = 0
-        self.alphagoal = 0
-        self.foggy = false
-        self.alpha = 0
-        self:StopUpdating()
-        self:Hide()
-    elseif not self.foggy then
-        self.time = 0
-        self.alphagoal = 1
-        self.foggy = true
-        self.alpha = 1
-        self:StartUpdating()
-    end
-end
-
-function FogOver:StopFog()
-    if self.foggy then
-        self.time = self.transitiontime
-        self.alphagoal = 0
-        self.foggy = false
-    end
-end
 
 function FogOver:UpdateAlpha(dt)
     if self.alphagoal ~= self.alpha then
@@ -73,6 +39,22 @@ function FogOver:UpdateAlpha(dt)
 end
 
 function FogOver:OnUpdate(dt)
+    if TheWorld.state.fogstate == FOG_STATE.SETTING then
+
+    elseif TheWorld.state.fogstate == FOG_STATE.FOGGY then
+        if self.alphagoal ~= 1 then
+            self.alphagoal = 1
+            self.time = 2
+        end
+    elseif TheWorld.state.fogstate == FOG_STATE.LIFTING then
+        if self.alphagoal ~= 0 then
+            self.alphagoal = 0
+            self.time = 2
+        end
+    elseif TheWorld.state.fogstate == FOG_STATE.CLEAR then
+
+    end
+
     self:UpdateAlpha(dt)
 
     local x, y, z = 0, 0, 0
@@ -88,7 +70,8 @@ function FogOver:OnUpdate(dt)
 
     if self.alpha == 0 and self.alphagoal == 0 then
         self:Hide()
-        self:StopUpdating()
+    else
+        self:Show()
     end
 
     if self.owner.replica.inventory:EquipHasTag("clearfog") or self.owner:HasTag("inside_interior") then

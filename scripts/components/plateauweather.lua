@@ -194,7 +194,6 @@ return Class(function(self, inst)
     local _groundoverlay = nil
 
     -- Fog
-    local _hasfog = false
     local _fullfog = false
 
     -- Dedicated server does not need to spawn the local fx
@@ -905,10 +904,6 @@ return Class(function(self, inst)
 
                 if _fogstate:value() == FOG_STATE.SETTING then
                     SetWithPeriodicSync(_fogtime, _fogtime:value() - dt, FRAMES, _ismastersim)
-                    if _fogtime:value() <= 5 and _hasfx and ThePlayer ~= nil then
-                        ThePlayer:PushEvent("startfog")
-                        _hasfog = true
-                    end
 
                     if _fogtime:value() <= 0 then
                         _fullfog = true
@@ -920,20 +915,11 @@ return Class(function(self, inst)
                 end
             elseif not _fullfog then  -- on load or change character
                 if _hasfx then
-                    if ThePlayer ~= nil then
-                        _fullfog = true
-                        ThePlayer:PushEvent("setfog")
-                    end
                 else
                     _fullfog = true
                 end
             end
         elseif _fogstate:value() ~= FOG_STATE.CLEAR then
-
-            if _hasfx and ThePlayer and _hasfog then
-                ThePlayer:PushEvent("stopfog")
-                _hasfog = false
-            end
 
             if _fogstate:value() ~= FOG_STATE.LIFTING then
                 TheSim:ClearDSP(.5)
@@ -956,11 +942,7 @@ return Class(function(self, inst)
                 end
             end
         elseif _fogstate:value() == FOG_STATE.CLEAR then
-            if _fullfog or _hasfog and ThePlayer then
-                ThePlayer:PushEvent("stopfog")
-            end
             _fullfog = false
-            _hasfog = false
         end
 
         if _ismastersim then
