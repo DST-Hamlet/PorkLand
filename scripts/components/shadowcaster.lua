@@ -1,24 +1,22 @@
--- This component is about shadow as in absent of light, not shadow magic
+-- This component is about shadow as in absence of light, not shadow magic
 
 local function unshadow(guid,data)
-
-    -- local inst = Ents[guid]
+    local inst = Ents[guid]
 
     -- if inst == GetPlayer() then
     --     inst:RemoveTag("under_shadowcaster")
     -- else
-    --     TheWorld.components.shadowmanager:PopShadow(inst)
+        TheWorld.components.shadowmanager:PopShadow(inst)
     -- end
 end
 
 local function shadow(guid)
-
-    -- local inst = Ents[guid]
+    local inst = Ents[guid]
 
     -- if inst == GetPlayer() then
     --     inst:AddTag("under_shadowcaster")
     -- else
-    --     GetWorld().components.shadowmanager:PushShadow(inst)
+        TheWorld.components.shadowmanager:PushShadow(inst)
     -- end
 end
 

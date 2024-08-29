@@ -32,10 +32,14 @@ local function OnRemoved(inst)
     TheWorld.components.rocmanager:RemoveRoc(inst)
 end
 
-function MakeNoPhysics(inst, mass, rad)
-    local physics = inst.entity:AddPhysics()
-
-
+local function OnPhaseChange(inst, phase)
+    if phase == "day" then
+        if not inst.components.areaaware:CurrentlyInTag("Canopy") then
+            inst.components.colourtweener:StartTween({1, 1, 1, 0.5}, 3)
+        end
+    elseif phase == "night" then
+        inst.components.colourtweener:StartTween({1, 1, 1, 0}, 3)
+    end
 end
 
 local function fn()
@@ -62,6 +66,7 @@ local function fn()
     inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.GROUND)
+    inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
 
     inst.Transform:SetScale(1.5, 1.5, 1.5)
 
@@ -93,34 +98,18 @@ local function fn()
     inst.components.roccontroller.scalefn = scalefn
 
     inst:AddComponent("colourtweener")
-    -- if not GetClock():IsNight() and not inst:HasTag("under_leaf_canopy") then
-    --     inst.components.colourtweener:StartTween({1,1,1,0.5}, 3)
-    -- else
-    --     inst.components.colourtweener:StartTween({1,1,1,0}, 3)
-    -- end
-    -- inst:ListenForEvent("daytime", function()
-    --     if not inst:HasTag("under_leaf_canopy") then
-    --         inst.components.colourtweener:StartTween({1,1,1,0.5}, 3)
-    --     end
-    -- end, GetWorld())
-
-    -- inst:ListenForEvent("nighttime", function()
-    --         inst.components.colourtweener:StartTween({1,1,1,0}, 3)
-    -- end, GetWorld())
-
-
 
     inst:ListenForEvent("onremove", OnRemoved)
+    inst:ListenForEvent("changearea", function()
+        if inst.components.areaaware:CurrentlyInTag("Canopy") then
+            inst.components.colourtweener:StartTween({1, 1, 1, 0}, 1)
+        elseif not TheWorld.state.isnight then
+            inst.components.colourtweener:StartTween({1, 1, 1, 0.5}, 1)
+        end
+    end)
 
-    -- inst:ListenForEvent("onchangecanopyzone", function()
-    --     if inst:HasTag("under_leaf_canopy") then
-    --         inst.components.colourtweener:StartTween({1,1,1,0}, 1)
-    --     else
-    --         if not GetClock():IsNight() then
-    --             inst.components.colourtweener:StartTween({1,1,1,0.5}, 1)
-    --         end
-    --     end
-    -- end, GetWorld())
+    inst:WatchWorldState("phase", OnPhaseChange)
+    OnPhaseChange(inst, TheWorld.state.phase)
 
     inst:SetStateGraph("SGroc")
 

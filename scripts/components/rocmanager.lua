@@ -107,7 +107,7 @@ end
 
 function self:RemoveRoc(roc)
     if roc == _roc then -- I don't get it, why bother checking if this is the roc spawned by this component? ds code is weird :/
-        _roc:Remove()
+        _roc = nil
     end
 end
 

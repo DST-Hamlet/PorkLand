@@ -76,6 +76,8 @@ local function headfn()
     inst.components.groundpounder.numRings = 3
 
     inst:SetStateGraph("SGroc_head")
+
+    return inst
 end
 
 local function legfn()

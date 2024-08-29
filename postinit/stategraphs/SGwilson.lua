@@ -192,6 +192,18 @@ local eventhandlers = {
             end
         end
     end),
+    EventHandler("cower", function(inst, data)
+        --NOTE: cower DO knock you out of shell/bush hat
+        --      yawns do NOT affect:
+        --       sleeping
+        --       frozen
+        --       pinned
+        if not (inst.components.health:IsDead() or
+                inst.sg:HasStateTag("sleeping") or
+                inst.sg:HasStateTag("frozen")) then
+            inst.sg:GoToState("cower", data)
+        end
+    end),
 }
 
 local plant_symbols =
@@ -2305,6 +2317,46 @@ local states = {
 
             EventHandler("animqueueover", function(inst)
                 inst.sg:GoToState("idle")
+            end),
+        },
+    },
+
+    State{
+        name = "cower",
+        tags = {"busy", "cower", "pausepredict"},
+
+        onenter = function(inst, data)
+            inst.components.locomotor:Stop()
+            inst:ClearBufferedAction()
+
+            inst.AnimState:PlayAnimation("cower")
+        end,
+
+        timeline =
+        {
+
+        },
+
+        events =
+        {
+            EventHandler("grabbed", function(inst)
+                inst.sg:GoToState("grabbed")
+            end),
+        },
+    },
+
+    State{
+        name = "grabbed",
+        tags = {"busy", "pausepredict"},
+
+        onenter = function(inst, data)
+            inst.AnimState:PlayAnimation("grab_loop")
+        end,
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst:Hide()
             end),
         },
     },

@@ -140,6 +140,7 @@ local function master_postinit(inst)
     inst:AddComponent("shadowhandspawner")
     inst:AddComponent("brightmarespawner")
     inst:AddComponent("pl_worldwind")
+    inst:AddComponent("shadowmanager")
 
     --inst:AddComponent("regrowthmanager")
     -- inst:AddComponent("desolationspawner")
