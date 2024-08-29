@@ -760,6 +760,9 @@ ACTIONS.MANUALEXTINGUISH.fn = function(act, ...)
             return true
         end
     end
+    if act.invobject == nil then
+        return false
+    end
     return _MANUALEXTINGUISH_fn(act, ...)
 end
 
