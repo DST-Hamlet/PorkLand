@@ -25,22 +25,67 @@ local function Curse(inst)
     end
 end
 
+local function OnFinish(inst, worker, workleft)
+    SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
+
+    if inst.components.container ~= nil then
+        inst.components.container:DropEverything()
+    end
+
+    if inst.components.lootdropper then
+        local interior_spawner = TheWorld.components.interiorspawner
+        if interior_spawner.current_interior then
+            local originpt = interior_spawner:getSpawnOrigin()
+            local x, _, z = inst.Transform:GetWorldPosition()
+            local dropdir = Vector3(originpt.x - x, 0, originpt.z - z):GetNormalized()
+            inst.components.lootdropper.dropdir = dropdir
+            inst.components.lootdropper:DropLoot()
+        end
+    end
+
+    inst:Remove()
+end
+
+local function SetPlayerCraftable(inst)
+    inst:AddTag("playercrafted")
+    inst:RemoveTag("NOCLICK")
+
+    inst:AddComponent("lootdropper")
+
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
+    inst.components.workable:SetWorkLeft(1)
+    inst.components.workable:SetOnFinishCallback(OnFinish)
+end
+
+local function InitInteriorPrefab(inst)
+    if inst:HasTag("playercrafted") then
+        SetPlayerCraftable(inst)
+    end
+end
+
 local function OnSave(inst, data)
     data.rotation = inst.Transform:GetRotation()
     data.interiorID = inst.interiorID
+    data.playercrafted = inst:HasTag("playercrafted")
 end
 
 local function OnLoad(inst, data)
-    if data then
-        if data.rotation then
-            if inst.components.rotatingbillboard == nil then
-                -- this component handle rotation save/load itself
-                inst.Transform:SetRotation(data.rotation)
-            end
+    if not data then
+        return
+    end
+
+    if data.rotation then
+        if inst.components.rotatingbillboard == nil then
+            -- this component handle rotation save/load itself
+            inst.Transform:SetRotation(data.rotation)
         end
-        if data.interiorID then
-            inst.interiorID  = data.interiorID
-        end
+    end
+    if data.interiorID then
+        inst.interiorID  = data.interiorID
+    end
+    if data.playercrafted then
+        SetPlayerCraftable(inst)
     end
 end
 
@@ -212,6 +257,9 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             inst:AddComponent("shopped")
             inst.components.shopped:SetOnRobbed(on_robbed)
         end
+
+        inst:ListenForEvent("onbuilt", SetPlayerCraftable)
+        inst.initInteriorPrefab = InitInteriorPrefab
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
