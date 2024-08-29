@@ -9,9 +9,9 @@ local function OnUpdate(inst)
 
     local x, y, z = inst.Transform:GetWorldPosition()
 
-    local isininteriorregion = TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
+    local isininteriorregion = TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
 
-    if TheWorld.components.interiorspawner and isininteriorregion and TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
+    if isininteriorregion and TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
         return
     end
 
