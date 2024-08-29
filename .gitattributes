@@ -1,2 +1,2 @@
-*.fsb filter=lfs diff=lfs merge=lfs -text
+* diff=lfs merge=lfs -text
 change_file

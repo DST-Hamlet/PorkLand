@@ -276,7 +276,7 @@ local function SetWavesVolume(volume)
 end
 
 local function StartWindSound()
-    inst.SoundEmitter:PlaySound("dontstarve_DLC002/rain/islandwindAMB", "WIND")
+    inst.SoundEmitter:PlaySound("porkland_soundpackagel/rain/islandwindAMB", "WIND")
 end
 
 local function SetWindIntensity(intensity)
@@ -289,7 +289,6 @@ end
 
 StartSanitySound()
 SetSanity(_sanityparam)
-StartWindSound()
 SetWindIntensity(_wind_intensity)
 
 inst:StartUpdatingComponent(self)

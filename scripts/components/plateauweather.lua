@@ -247,9 +247,9 @@ return Class(function(self, inst)
         end
         if not _rainsound then
             _rainsound = true
-            _world.SoundEmitter:PlaySound("dontstarve_DLC002/rain/islandrainAMB", "rain")
+            _world.SoundEmitter:PlaySound("porkland_soundpackagel/rain/islandrainAMB", "rain")
         end
-        _world.SoundEmitter:SetParameter("rain", "intensity", intensity)
+        _world.SoundEmitter:SetParameter("rain", "intensity", intensity * 3) -- 音效包里这个参数的范围是0——3
     end
 
     local function StopAmbientRainSound()
