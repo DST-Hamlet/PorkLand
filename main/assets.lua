@@ -234,7 +234,7 @@ PrefabFiles = {
 
     "waterfall_lilypond",
 
-    "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗
+    "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗 ziwbi: 排序一下不就好了
     "inv_bamboo",
     "sand",
 
@@ -247,6 +247,9 @@ PrefabFiles = {
     "ox_horn",
     "ox_flute",
     "porklandintro",
+
+    "roc",
+    "roc_body_parts"
 }
 
 Assets = {

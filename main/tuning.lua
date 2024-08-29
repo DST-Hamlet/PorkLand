@@ -631,6 +631,11 @@ local tuning = {
     OX_FLUTE_USES = 5,
 
     SANITY_PLAYERHOUSE_GAIN = 100 / (day_time * 32),
+
+    ROC_SPEED = 20,
+    ROC_SHADOWRANGE = 8,
+    ROC_LEGDSIT = 6,
+    ROC_ENABLED = true,
 }
 
 
