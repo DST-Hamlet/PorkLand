@@ -17,7 +17,7 @@ local SMALL_VOLUME = 0.80
 local MIN_FADE_VOLUME = 0.05
 local HALF_FADE_TIME = 0.20
 
-local WATERFALL_LOOP_SOUNDNAME = "porkland_soundpackagel/common/waterfall/waterfall", "WATERFALL"
+local WATERFALL_LOOP_SOUNDNAME = "porkland_soundpackage/common/waterfall/waterfall"
 local SOUND_EVENT_NAME = "waterfall"
 
 --------------------------------------------------------------------------

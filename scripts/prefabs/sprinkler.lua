@@ -73,7 +73,7 @@ local function TurnOff(inst)
 
     for GUID, ent in pairs(inst.moisture_targets) do
         if ent.components.moisture then
-            ent.components.moisture:RemoveExternalmRate(inst)
+            ent.components.moisture:RemoveExternalMoistureRate(inst)
         end
 
         if ent.components.moistureoverride then -- just in case
@@ -103,7 +103,7 @@ local function UpdateSpray(inst)
     local ents = TheSim:FindEntities(x, y, z, RANGE, nil, {"INLIMBO", "FX", "NOBLOCK", "NOCLICK"})
 
     local moisture_targets_old = {}
-    for GUID,v in pairs(inst.moisture_targets) do
+    for GUID, v in pairs(inst.moisture_targets) do
         moisture_targets_old[GUID] = v
     end
     inst.moisture_targets = {}
@@ -114,7 +114,7 @@ local function UpdateSpray(inst)
         local use_override = true
 
         if v.components.moisture then
-            v.components.moisture:AddExternalmRate(inst, TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY / UPDATE_TIME)
+            v.components.moisture:AddExternalMoistureRate(inst, TUNING.MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY / UPDATE_TIME)
             use_override = false
         end
 
@@ -145,7 +145,7 @@ local function UpdateSpray(inst)
 
         if not still_affected then
             if old_ent.components.moisture then
-                old_ent.components.moisture:RemoveExternalmRate(inst)
+                old_ent.components.moisture:RemoveExternalMoistureRate(inst)
             end
 
             if old_ent.components.moistureoverride then

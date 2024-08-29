@@ -32,7 +32,6 @@ self.inst = inst
 --------------------------------------------------------------------------
 
 local _hippos = {}
-local _on_hippo_removed
 local _worldsettingstimer = TheWorld.components.worldsettingstimer
 
 --------------------------------------------------------------------------

@@ -4,10 +4,8 @@ GLOBAL.setfenv(1, GLOBAL)
 local easing = require("easing")
 local Moisture = require("components/moisture")
 
-local _GetMoistureRate = Moisture.GetMoistureRate
 function Moisture:GetMoistureRate(...)
     local rate = self:_GetMoistureRateAssumingRain()
-    local x, _, z = self.inst.Transform:GetWorldPosition()
     local waterproofmult =
         (   self.inst.components.sheltered ~= nil and
             self.inst.components.sheltered.sheltered and
@@ -24,13 +22,13 @@ function Moisture:GetMoistureRate(...)
     if waterproofmult >= 1 then
         waterproofmult = 1
     end
+    local x, _, z = self.inst.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         rate = 0
-    end
-    if TheWorld.state.fullfog then
+    elseif TheWorld.state.fullfog then
         rate = rate * TUNING.FOG_MOISTURE_RATE_SCALE
     end
-    rate = rate + self:GetExternalmRate() * (1 - waterproofmult)
+    rate = rate + self:GetExternalMoistureRate() * (1 - waterproofmult)
     return rate  -- fog moisture rate
 end
 
@@ -48,15 +46,15 @@ function Moisture:GetDryingRate(...)
     return rate
 end
 
-function Moisture:AddExternalmRate(src, bonus, key)
+function Moisture:AddExternalMoistureRate(src, bonus, key)
     self.externalmoisturerate:SetModifier(src, bonus, key)
 end
 
-function Moisture:RemoveExternalmRate(src, key)
+function Moisture:RemoveExternalMoistureRate(src, key)
     self.externalmoisturerate:RemoveModifier(src, key)
 end
 
-function Moisture:GetExternalmRate()
+function Moisture:GetExternalMoistureRate()
     return self.externalmoisturerate:Get()
 end
 

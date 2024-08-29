@@ -80,19 +80,19 @@ return Class(function(self, inst)
         aporkalypse = 1
     }
 
-    local GROUND_OVERLAYS =
-    {
-        puddles =
-        {
-            texture = "levels/textures/mud.tex",
-            colour =
-            {
-                { 11 / 255, 15 / 255, 23 / 255, .3 },
-                { 11 / 255, 15 / 255, 23 / 255, .2 },
-                { 11 / 255, 15 / 255, 23 / 255, .12 },
-            },
-        },
-    }
+    -- local GROUND_OVERLAYS =
+    -- {
+    --     puddles =
+    --     {
+    --         texture = "levels/textures/mud.tex",
+    --         colour =
+    --         {
+    --             { 11 / 255, 15 / 255, 23 / 255, .3 },
+    --             { 11 / 255, 15 / 255, 23 / 255, .2 },
+    --             { 11 / 255, 15 / 255, 23 / 255, .12 },
+    --         },
+    --     },
+    -- }
 
     local POLLEN_PARTICLES = 1
 
@@ -247,7 +247,7 @@ return Class(function(self, inst)
         end
         if not _rainsound then
             _rainsound = true
-            _world.SoundEmitter:PlaySound("porkland_soundpackagel/rain/islandrainAMB", "rain")
+            _world.SoundEmitter:PlaySound("porkland_soundpackage/rain/islandrainAMB", "rain")
         end
         _world.SoundEmitter:SetParameter("rain", "intensity", intensity * 3) -- 音效包里这个参数的范围是0——3
     end

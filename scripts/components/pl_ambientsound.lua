@@ -276,7 +276,7 @@ local function SetWavesVolume(volume)
 end
 
 local function StartWindSound()
-    inst.SoundEmitter:PlaySound("porkland_soundpackagel/rain/islandwindAMB", "WIND")
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/rain/islandwindAMB", "WIND")
 end
 
 local function SetWindIntensity(intensity)
