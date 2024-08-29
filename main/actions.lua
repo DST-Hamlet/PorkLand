@@ -766,6 +766,10 @@ ACTIONS.MANUALEXTINGUISH.fn = function(act, ...)
     return _MANUALEXTINGUISH_fn(act, ...)
 end
 
+ACTIONS.MANUALEXTINGUISH.validfn = function(act)
+    return act.target and act.target:IsValid() and act.target.components.burnable and act.target.components.burnable:IsBurning()
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world
