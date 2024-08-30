@@ -177,7 +177,7 @@ local function MakeBird(name, sounds, feather_name)
         inst.components.inventoryitem:SetSinks(true)
 
         inst:AddComponent("cookable")
-        inst.components.cookable.product = name == "cookedsmallmeat"
+        inst.components.cookable.product = "cookedsmallmeat"
 
         inst:AddComponent("health")
         inst.components.health:SetMaxHealth(TUNING.BIRD_HEALTH)
