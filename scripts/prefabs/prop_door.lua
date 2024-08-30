@@ -213,6 +213,10 @@ local function OnSave(inst, data)
     data.secret = inst:HasTag("secret")
     data.shop_music = inst:HasTag("shop_music")
     data.timechange_anims = inst:HasTag("timechange_anims")
+
+    if inst.opentask then
+        data.opentimeleft = inst:TimeRemainingInTask(inst.opentaskinfo)
+    end
 end
 
 local function OnLoad(inst, data)
@@ -300,6 +304,14 @@ local function OnLoad(inst, data)
     if data.usesounds then
         inst.usesounds = data.usesounds
     end
+
+    if data.regrowtimeleft then
+        if inst.opentask then
+            inst.opentask:Cancel()
+            inst.opentask = nil
+        end
+        inst.opentask, inst.opentaskinfo = inst:ResumeTask(data.regrowtimeleft, function() inst:PushEvent("open") end)
+    end
 end
 
 local function DisableDoor(inst, setting, cause)
@@ -320,6 +332,10 @@ local function UseDoor(inst,data)
 end
 
 local function OpenDoor(inst, nospread)
+    if inst.opentask then
+        inst.opentask:Cancel()
+        inst.opentask = nil
+    end
     if inst.baseanimname and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] then
         if not inst:IsAsleep() then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/slide")
@@ -343,6 +359,11 @@ local function OpenDoor(inst, nospread)
 end
 
 local function CloseDoor(inst, nospread)
+    if inst.opentask then
+        inst.opentask:Cancel()
+        inst.opentask = nil
+    end
+    inst.opentask, inst.opentaskinfo = inst:ResumeTask(30, function() inst:PushEvent("open") end)
     -- once the player has used a door, the doors should freeze open
     if inst.components.door.disabled and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] == true then
         return
