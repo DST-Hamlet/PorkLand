@@ -176,7 +176,7 @@ local function spikefn()
     inst:ListenForEvent("death", OnDeath)
 
     inst:DoTaskInTime((math.random() * 2) + 1.5, function()
-        if not inst.spike_spawned then
+        if not inst.spike_spawned and not inst.components.health:IsDead() then
             PropegateHedge(inst)
         end
     end)

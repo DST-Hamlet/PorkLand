@@ -107,15 +107,13 @@ function BrambleChain:Destroy(count)
         count = count -1
     end
 
-    self.natural_decay = true
-
     if self.destroy_count < count then -- destroy_count is the number of brambles to kill on either side
         self.destroy_count = count
     end
 
     if self.destroy_count > 0 then
         self.inst:DoTaskInTime(0.2, function()
-            self.natrual_decay = true
+            self.natural_decay = true
             self.inst.components.health:Kill()
         end)
     end
