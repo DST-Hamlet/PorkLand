@@ -209,29 +209,28 @@ local function Wall4PlaceTest(inst, pt)
     return WallPlaceTest(inst,pt,4)
 end
 
-local function NoCurtainWindowPlacerAnim(inst, pt)
+local function NoCurtainWindowPlacerAnim(inst)
     inst.AnimState:Hide("curtain")
     inst.Transform:SetTwoFaced()
 end
 
-local function CurtainWindowPlacerAnim(inst ,pt)
+local function CurtainWindowPlacerAnim(inst)
     inst.Transform:SetTwoFaced()
 end
 
-local function WindowPlacerAnim(inst, pt)
+local function WindowPlacerAnim(inst)
     inst.Transform:SetTwoFaced()
     -- inst.AnimState:SetDefaultEffectHandle(resolvefilepath("shaders/animrotatingbillboard.ksh"))
 end
 
-local function WindowPlaceTest(inst, pt)
+local function WindowPlaceTest(inst)
     inst.Transform:SetRotation(-90)
+    local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
 
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
-
-        local originpt = interiorSpawner:getSpawnOrigin()
-        local width = interiorSpawner.current_interior.width
-        local depth = interiorSpawner.current_interior.depth
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(ThePlayer:GetPosition())
+    if current_interior then
+        local originpt = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
 
         local dist = 2
         local newpt = {}
@@ -260,10 +259,6 @@ local function WindowPlaceTest(inst, pt)
             canbuild = false
         end
 
-        if inst.parent then
-            inst.parent:RemoveChild(inst)
-        end
-
         if canbuild then
             inst.Transform:SetPosition(newpt.x, newpt.y, newpt.z)
             inst.Transform:SetRotation(rot)
@@ -283,22 +278,21 @@ local function WindowPlaceTest(inst, pt)
         ents = TheSim:FindEntities(newpt.x, newpt.y, newpt.z, 3, {"wallsection"})
 
         if #ents < 1 and canbuild then
-            return true
+            inst.accept_placement = true
+            return
         end
     end
-
-    return false
+    inst.accept_placement = false
 end
 
-local function WindowWidePlaceTest(inst, pt)
+local function WindowWidePlaceTest(inst)
     inst.Transform:SetRotation(-90)
+    local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
 
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
-
-        local originpt = interiorSpawner:getSpawnOrigin()
-        local width = interiorSpawner.current_interior.width
-        local depth = interiorSpawner.current_interior.depth
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(ThePlayer:GetPosition())
+    if current_interior then
+        local originpt = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
 
         local dist = 2
         local newpt = {}
@@ -327,10 +321,6 @@ local function WindowWidePlaceTest(inst, pt)
             canbuild = false
         end
 
-        if inst.parent then
-            inst.parent:RemoveChild(inst)
-        end
-
         if canbuild then
             inst.Transform:SetPosition(newpt.x, newpt.y, newpt.z)
             inst.Transform:SetRotation(rot)
@@ -349,11 +339,42 @@ local function WindowWidePlaceTest(inst, pt)
         ents = TheSim:FindEntities(newpt.x, newpt.y, newpt.z, 5, {"wallsection"})
 
         if #ents < 1 and canbuild then
-            return true
+            inst.accept_placement = true
+            return
         end
     end
+    inst.accept_placement = false
+end
 
-    return false
+local function placer_override_testfn(inst)
+    local can_build, mouse_blocked = true, false
+
+    if inst.components.placer.testfn ~= nil then
+        can_build, mouse_blocked = inst.components.placer.testfn(inst:GetPosition(), inst:GetRotation())
+    end
+
+    can_build = inst.accept_placement
+
+    return can_build, mouse_blocked
+end
+
+local function placer_override_build_point(inst)
+    return inst:GetPosition()
+end
+
+local function MakeWindowPlacer(name, bank, build, anim, animation_postinit, on_update_transform)
+    return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
+		inst.animdata = {
+            build = build,
+            anim = anim,
+            bank = bank,
+        }
+        animation_postinit(inst)
+        inst.components.placer.onupdatetransform = on_update_transform
+        inst.components.placer.override_build_point_fn = placer_override_build_point
+        inst.components.placer.override_testfn = placer_override_testfn
+        inst.accept_placement = false
+    end)
 end
 
 local function ShelfPlacerAnim(inst)
@@ -540,26 +561,6 @@ local function modifywallfn(inst)
     return data
 end
 
--- this changes the final recipe product of windows placed on walls.
-local function modifywindowfn(inst)
-    local data = {}
-
-    data.prefab_suffix = "_backwall"
-
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
-        local originpt = interiorSpawner:getSpawnOrigin()
-        local width = interiorSpawner.current_interior.width
-        local pt = Point(inst.Transform:GetWorldPosition())
-
-        if pt.z <= originpt.z -width/2 or pt.z >= originpt.z + width/2 then
-            data.prefab_suffix = ""
-        end
-    end
-
-    return data
-end
-
 return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",           "interior_wall_decals",             "4",                    nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
         MakePlacer("deco_millinery_cornerbeam_placer",  "wall_decals_millinery", "interior_wall_decals_millinery",   "pillar_corner",        nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
         MakePlacer("deco_round_cornerbeam_placer",      "wall_decals_accademia", "interior_wall_decals_accademia",   "pillar_round_corner",  nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
@@ -612,16 +613,16 @@ return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",          
         MakePlacer("swinging_light_derby_placer",              "ceiling_lights", "ceiling_lights", "light_derby",                  nil, nil, nil, nil, nil, "two"),
 
         -- WINDOWS
-        MakePlacer("window_round_curtains_nails_placer",       "interior_window", "interior_window", "day_loop",                       nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowPlaceTest, modifywindowfn, WindowPlacerAnim),
-        MakePlacer("window_round_burlap_placer",               "interior_window_burlap", "interior_window_burlap", "day_loop",         nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowPlaceTest, modifywindowfn, WindowPlacerAnim),
-        MakePlacer("window_small_peaked_curtain_placer",       "interior_window", "interior_window_small", "day_loop",                 nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowPlaceTest, modifywindowfn, NoCurtainWindowPlacerAnim),
-        MakePlacer("window_small_peaked_placer",               "interior_window", "interior_window_small", "day_loop",                 nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowPlaceTest, modifywindowfn, NoCurtainWindowPlacerAnim),
-        MakePlacer("window_large_square_placer",               "interior_window_large", "interior_window_large", "day_loop",           nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowPlaceTest, modifywindowfn, NoCurtainWindowPlacerAnim),
-        MakePlacer("window_tall_placer",                       "interior_window_tall", "interior_window_tall", "day_loop",             nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowPlaceTest, modifywindowfn, NoCurtainWindowPlacerAnim),
-        MakePlacer("window_large_square_curtain_placer",       "interior_window_large", "interior_window_large", "day_loop",           nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowPlaceTest, modifywindowfn, CurtainWindowPlacerAnim),
-        MakePlacer("window_tall_curtain_placer",               "interior_window_tall", "interior_window_tall", "day_loop",             nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowPlaceTest, modifywindowfn, CurtainWindowPlacerAnim),
+        MakeWindowPlacer("window_round_curtains_nails_placer",  "interior_window", "interior_window", "day_loop",                               WindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_round_burlap_placer",          "interior_window_burlap", "interior_window_burlap", "day_loop",                 WindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_small_peaked_curtain_placer",  "interior_window", "interior_window_small", "day_loop",                         NoCurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_small_peaked_placer",          "interior_window", "interior_window_small", "day_loop",                         NoCurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_large_square_placer",          "interior_window_large", "interior_window_large", "day_loop",                   NoCurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_tall_placer",                  "interior_window_tall", "interior_window_tall", "day_loop",                     NoCurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_large_square_curtain_placer",  "interior_window_large", "interior_window_large", "day_loop",                   CurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_tall_curtain_placer",          "interior_window_tall", "interior_window_tall", "day_loop",                     CurtainWindowPlacerAnim, WindowPlaceTest),
 
-        MakePlacer("window_greenhouse_placer",                  "interior_window_greenhouse", "interior_window_greenhouse_build", "day_loop",nil, nil, nil, nil, nil, nil, nil, nil, nil, WindowWidePlaceTest, modifywindowfn, CurtainWindowPlacerAnim),
+        MakeWindowPlacer("window_greenhouse_placer",            "interior_window_greenhouse", "interior_window_greenhouse_build", "day_loop",   CurtainWindowPlacerAnim, WindowWidePlaceTest),
 
 
         MakePlacer("deco_lamp_fringe_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_fringe",         nil, nil, nil, nil, nil, "two"),

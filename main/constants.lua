@@ -71,6 +71,9 @@ TECH.HOME = {
     HOME = 2
 }
 
+-- Just an arbitrary number
+BUILDMODE.HOME_DECOR = 10
+
 LOCKTYPE.ROYAL = "royal"
 
 -- City pigman is dont in pigman_city.lua
