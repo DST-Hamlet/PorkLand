@@ -634,7 +634,6 @@ local tuning = {
 
     ROC_SPEED = 20,
     ROC_SHADOWRANGE = 8,
-    ROC_LEGDSIT = 6,
     ROC_ENABLED = true,
 }
 

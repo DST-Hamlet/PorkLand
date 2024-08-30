@@ -1,5 +1,7 @@
 require("stategraphs/commonstates")
 
+local ROC_LEGDSIT = 6
+
 local actionhandlers =
 {
 }
@@ -91,7 +93,7 @@ local states =
 
         onenter = function(inst)
             local angle = inst.body.Transform:GetRotation() * DEGREES
-            local offset = Vector3(math.cos(angle + inst.legoffsetdir), 0, -math.sin(angle + inst.legoffsetdir)) * TUNING.ROC_LEGDSIT
+            local offset = Vector3(math.cos(angle + inst.legoffsetdir), 0, -math.sin(angle + inst.legoffsetdir)) * ROC_LEGDSIT
             local newpos = Vector3(inst.body.Transform:GetWorldPosition()) + offset
 
             if not TheWorld.Map:IsPassableAtPoint(newpos.x, 0, newpos.z) then
@@ -141,7 +143,7 @@ local states =
 
         onenter = function(inst)
             local angle = inst.body.Transform:GetRotation()*DEGREES
-            local offset = Vector3(math.cos(angle + inst.legoffsetdir), 0, -math.sin(angle + inst.legoffsetdir)) * TUNING.ROC_LEGDSIT
+            local offset = Vector3(math.cos(angle + inst.legoffsetdir), 0, -math.sin(angle + inst.legoffsetdir)) * ROC_LEGDSIT
             local newpos = Vector3(inst.body.Transform:GetWorldPosition()) + offset
 
             if not TheWorld.Map:IsPassableAtPoint(newpos.x, 0, newpos.z) then

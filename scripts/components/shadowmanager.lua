@@ -11,7 +11,7 @@ function ShadowManager:PushShadow(inst)
     if inst and inst.AnimState then
         if not inst:HasTag("shadow") then
             if not self.shadowed[inst.GUID] then
-                local data1,data2,data3,data4 = inst.AnimState:GetMultColour()
+                local data1, data2, data3, data4 = inst.AnimState:GetMultColour()
 
                 local r = data1 * SHADE
                 local g = data2 * SHADE
@@ -61,7 +61,7 @@ function ShadowManager:OnUpdate(dt)
     for GUID, data in pairs(self.shadowed) do
         local inst = Ents[GUID]
         if inst then
-            local data1,data2,data3,data4 = inst.AnimState:GetMultColour()
+            local data1, data2, data3, data4 = inst.AnimState:GetMultColour()
             if data.sources > 0 then -- should increase shade to full				
                 if data.shade.r ~= data.shadetotal.r then
                     data1, data.shade.r = GetShadeUp(dt, data1, data.shaderate.r, data.shade.r, data.shadetotal.r)

@@ -1,6 +1,6 @@
 local SCREEN_DIST = 50
 local HEAD_ATTACK_DIST = 0.1 -- 1.5
-local SCALERATE = 1/(30 *2)  -- 2 seconds to go from 0 to 1
+local SCALERATE = 1 / (30 * 2)  -- 2 seconds to go from 0 to 1
 
 local HEADDIST = 17
 local HEADDIST_TARGET = 15
@@ -8,11 +8,66 @@ local BODY_DIST_TOLLERANCE = 2
 
 local TAILDIST = 13
 
-local LEGDIST = TUNING.ROC_LEGDSIT
+local LEGDIST = 6
 local LEG_WALKDIST = 4
 local LEG_WALKDIST_BIG = 6
 local LAND_PROX = 15 --7
 local DISTANCE_FROM_WATER_OR_IMPASSABLE = 8
+
+local FIND_TARGET_DIST = 20
+
+local INVALID_STRUCTURE_TILES = {
+    [WORLD_TILES.FOUNDATION] = true,
+    [WORLD_TILES.COBBLEROAD] = true,
+    [WORLD_TILES.LAWN] = true,
+    [WORLD_TILES.LILYPOND] = true,
+}
+local STRUCTURE_MUST_TAGS = {"structure"}
+local STRUCTURE_ONE_OF_TAGS = {"NPC_workable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable", "SHEAR_workable"}
+
+local PLAYER_INVALID_TILES = {
+    [WORLD_TILES.FOUNDATION] = true,
+    [WORLD_TILES.COBBLEROAD] = true,
+    [WORLD_TILES.LAWN] = true,
+    [WORLD_TILES.LILYPOND] = true,
+    [WORLD_TILES.DEEPRAINFOREST] = true,
+    [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = true,
+    [WORLD_TILES.GASJUNGLE] = true,
+    [WORLD_TILES.INTERIOR] = true,
+}
+
+local function GetAnglePointToPoint(x1, z1, x2, z2)
+    local dz = z1 - z2
+    local dx = x2 - x1
+    local angle = math.atan2(dz, dx) / DEGREES
+    return angle
+end
+
+local function is_player_on_valid_tile(player)
+    if player.sg:HasStateTag("scary_to_predator") then
+        return false
+    end
+
+    -- Roc doesnt like the living artifact.
+    if player:HasOneOfTags({"ironlord", "inside_interior"}) then
+        return false
+    end
+
+    local px, py, pz = player.Transform:GetWorldPosition()
+
+    if not IsSurroundedByLand(px, py, pz, DISTANCE_FROM_WATER_OR_IMPASSABLE) then
+        return false
+    end
+
+    local tile = TheWorld.Map:GetTileAtPoint(px, py, pz)
+
+    if PLAYER_INVALID_TILES[tile] then
+        return false
+    end
+
+    return true
+end
+
 
 local RocController = Class(function(self, inst)
     self.inst = inst
@@ -22,7 +77,7 @@ local RocController = Class(function(self, inst)
 
     self.head_vel = 0
     self.head_acc = 3
-    self.head_vel_max = 6
+    self.head_velocity_max = 6
     self.body_vel = {x=0,z=0}
     self.body_acc = 0.3
     self.body_dec = 1
@@ -57,16 +112,15 @@ function RocController:Setup(speed, scale, stages)
 
     self.inst:ListenForEvent("liftoff", function()
         self.busy = true
+
         local head = self.head
         head:PushEvent("taunt")
-
         head:ListenForEvent("animover", function()
                 if head.AnimState:IsCurrentAnimation("taunt") then
                     self.busy = false
-                    self:doliftoff()
-                end
-            end)
-
+                self:DoLiftOff()
+            end
+        end)
     end, self.inst)
 
     self:SetScale(self.startscale)
@@ -78,7 +132,7 @@ function RocController:Setup(speed, scale, stages)
     end)
 
     self:CheckScale()
-    self.inst:DoPeriodicTask(1, function() self:CheckScale() end )
+    self.inst:DoPeriodicTask(1, function() self:CheckScale() end)
 end
 
 function RocController:CheckScale()
@@ -96,7 +150,7 @@ function RocController:SetScale(scale)
     self.inst.sound_distance = Remap(scale, self.startscale, 1, 0, 1)
 end
 
-function RocController:doliftoff()
+function RocController:DoLiftOff()
     if self.inst.bodyparts and #self.inst.bodyparts > 0 then
         for i,part in ipairs(self.inst.bodyparts) do
             part:PushEvent("exit")
@@ -167,19 +221,8 @@ function RocController:Spawnbodyparts()
 
 end
 
-local FIND_TARGET_DIST = 20
-
-local INVALID_STRUCTURE_TILES = {
-    [WORLD_TILES.FOUNDATION] = true,
-    [WORLD_TILES.COBBLEROAD] = true,
-    [WORLD_TILES.LAWN] = true,
-    [WORLD_TILES.LILYPOND] = true,
-}
-local STRUCTURE_MUST_TAGS = {"structure"}
-local STRUCTURE_ONE_OF_TAGS = {"NPC_workable", "CHOP_workable", "HAMMER_workable", "MINE_workable", "DIG_workable", "HACK_workable", "SHEAR_workable"}
-
 function RocController:GetTarget()
-    if not self.target or not self.target:IsValid() or self.target == ThePlayer then
+    if not self.target or not self.target:IsValid() or self.target == self.target_player then
         -- look for structures..
         local structure = FindClosestEntity(self.inst, FIND_TARGET_DIST, true, STRUCTURE_MUST_TAGS, nil, STRUCTURE_ONE_OF_TAGS, function(ent)
             local x, y, z = ent.Transform:GetWorldPosition()
@@ -195,6 +238,9 @@ function RocController:GetTarget()
         else
             -- look for player	
             self.target = FindClosestPlayerToInst(self.inst, 60, true)
+            if self.target then
+                self.target_player = self.target
+            end
         end
     end
 
@@ -206,40 +252,32 @@ end
 function RocController:UpdatePoop(dt)
     local onvaliddungtiles = false
 
-    local cx,cy,cz = self.inst.Transform:GetWorldPosition()
-    local roctile = TheWorld.Map:GetTileAtPoint(cx,cy,cz)
+    local cx, cy, cz = self.inst.Transform:GetWorldPosition()
+    local roctile = TheWorld.Map:GetTileAtPoint(cx, cy, cz)
 
     if roctile == WORLD_TILES.RAINFOREST or roctile == WORLD_TILES.PLAINS then
         onvaliddungtiles = true
     end
 
-    local dungok = true -- not GetWorld():IsWorldGenOptionNever("dungpile")
+    local dungok = true -- not GetWorld():IsWorldGenOptionNever("dungpile") TODO implment IsWorldGenOptionNever
 
     if not self.landed and onvaliddungtiles and dungok then
         if self.dungtime > 0 then
-            self.dungtime = math.max(self.dungtime - dt,0)
+            self.dungtime = math.max(self.dungtime - dt, 0)
         else
-            local pos = Vector3(self.inst.Transform:GetWorldPosition())
-            local ents = TheSim:FindEntities(pos.x,pos.y,pos.z, 50, {"dungpile"})
+            local x, y, z = self.inst.Transform:GetWorldPosition()
+            local ents = TheSim:FindEntities(x, y, z, 50, {"dungpile"})
             if #ents < 2 then
-
-                self.inst:DoTaskInTime(1 + Remap(self.inst.Transform:GetScale(), 0.35, 1,2,0), function()
+                self.inst:DoTaskInTime(1 + Remap(self.inst.Transform:GetScale(), 0.35, 1, 2, 0), function()
                     local crap = SpawnPrefab("dungpile")
                     crap.Transform:SetPosition(cx, cy, cz)
                     crap:Fall()
                 end)
             end
-            self.dungtime = math.random()*10 + 2
+            self.dungtime = math.random() * 10 + 2
         end
     end
 
-end
-
-local function getanglepointtopoint(x1,z1,x2,z2)
-    local dz = z1 - z2
-    local dx = x2 - x1
-    local angle = math.atan2(dz, dx) / DEGREES
-    return angle
 end
 
 function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
@@ -267,7 +305,7 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
         local targetpos = target:GetPosition()
         local head_distsq = self.head:GetDistanceSqToInst(target)
         if head_distsq > HEAD_ATTACK_DIST * HEAD_ATTACK_DIST then
-            self.head_vel = math.min(self.head_vel + (self.head_acc * dt), self.head_vel_max)
+            self.head_vel = math.min(self.head_vel + (self.head_acc * dt), self.head_velocity_max)
         else
             if self.target:HasTag("player") then
                 if not self.target.sg:HasStateTag("cower") then
@@ -305,7 +343,7 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
 
     if bodistsq > BODY_DIST_TOLLERANCE * BODY_DIST_TOLLERANCE then
         local cpbv = pos + Vector3(self.body_vel.x,0,self.body_vel.z)
-        local angle = getanglepointtopoint(cpbv.x,cpbv.z,targetpos.x,targetpos.z)*DEGREES
+        local angle = GetAnglePointToPoint(cpbv.x,cpbv.z,targetpos.x,targetpos.z)*DEGREES
         local offset = Vector3(BOD_ACC_MAX * math.cos( angle ), 0, -BOD_ACC_MAX * math.sin( angle ))
         local cpbvtv = cpbv + Vector3(offset.x,0,offset.z)
         local finalangle = self.inst:GetAngleToPoint(cpbvtv)*DEGREES
@@ -320,32 +358,31 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
     self.inst.Transform:SetPosition(pos.x+(self.body_vel.x * dt),0,pos.z+(self.body_vel.z *dt)	)
 
     --TAIL
-    local angle = (self.inst.Transform:GetRotation()*DEGREES) + PI
-    local tailtarget =  Vector3(TAILDIST * math.cos( angle ), 0, -TAILDIST * math.sin( angle ))
-    tailtarget =Vector3(self.inst.Transform:GetWorldPosition()) + tailtarget
-    local taildistsq = self.tail:GetDistanceSqToPoint(tailtarget)
-    local pos = Vector3(self.tail.Transform:GetWorldPosition())
+    angle = self.inst.Transform:GetRotation() * DEGREES + PI
+    local tail_target = Vector3(self.inst.Transform:GetWorldPosition()) + Vector3(TAILDIST * math.cos(angle), 0, -TAILDIST * math.sin(angle))
+    local tail_distsq = self.tail:GetDistanceSqToPoint(tail_target)
+    local tail_pos = self.tail:GetPosition()
     local TAIL_VEL_MAX = self.speed
     local TAIL_ACC_MAX = 0.3 --5
 
-    if taildistsq > 1 * 1 then
-        local cpbv = pos + Vector3(self.tail_vel.x,0,self.tail_vel.z)
-        local angle = getanglepointtopoint(cpbv.x,cpbv.z,tailtarget.x,tailtarget.z)*DEGREES
-        local offset = Vector3(TAIL_ACC_MAX * math.cos( angle ), 0, -TAIL_ACC_MAX * math.sin( angle ))
+    if tail_distsq > 1 * 1 then
+        local cpbv = tail_pos + Vector3(self.tail_vel.x,0,self.tail_vel.z)
+        angle = GetAnglePointToPoint(cpbv.x,cpbv.z,tail_target.x,tail_target.z)*DEGREES
+        offset = Vector3(TAIL_ACC_MAX * math.cos( angle ), 0, -TAIL_ACC_MAX * math.sin( angle ))
         local cpbvtv = cpbv + Vector3(offset.x,0,offset.z)
         local finalangle = self.tail:GetAngleToPoint(cpbvtv)*DEGREES
         local finalvel = math.min(TAIL_VEL_MAX, math.sqrt(self.tail:GetDistanceSqToPoint(cpbvtv))    )
         self.tail_vel = Vector3(finalvel * math.cos( finalangle ), 0, -finalvel * math.sin( finalangle ))
     else
 
-        local angle = self.tail:GetAngleToPoint(tailtarget)*DEGREES
+        local angle = self.tail:GetAngleToPoint(tail_target)*DEGREES
         local vel = math.max( math.sqrt((self.tail_vel.x * self.tail_vel.x) + (self.tail_vel.z * self.tail_vel.z)) - (TAIL_ACC_MAX*dt) , 0)
         self.tail_vel = Vector3(vel * math.cos( angle ), 0, -vel * math.sin( angle ))
     end
-    self.tail.Transform:SetPosition(pos.x+(self.tail_vel.x * dt),0,pos.z+(self.tail_vel.z *dt)	)
+    self.tail.Transform:SetPosition(tail_pos.x + self.tail_vel.x * dt, 0, tail_pos.z + self.tail_vel.z * dt)
 
     -- set rotations
-    local headpos =Vector3(self.head.Transform:GetWorldPosition())
+    local headpos = self.head:GetPosition()
 
     -- body rotation has velocity. 
     local body_angular_vel_max = 36/3
@@ -353,42 +390,40 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
         self.body_angle_vel = 0
     end
 
-    local targetAngle = self.inst:GetAngleToPoint(headpos)
-    local currentAngle = self.inst.Transform:GetRotation()
+    local target_angle = self.inst:GetAngleToPoint(headpos)
+    local current_angle = self.inst.Transform:GetRotation()
 
-    if math.abs(anglediff( currentAngle, targetAngle)) < 20 then
+    if math.abs(anglediff(current_angle, target_angle)) < 20 then
         if self.body_angle_vel > 0 then
-            self.body_angle_vel = math.max(0, self.body_angle_vel - (self.angular_body_acc *dt))
+            self.body_angle_vel = math.max(0, self.body_angle_vel - self.angular_body_acc * dt)
         elseif self.body_angle_vel < 0 then
-            self.body_angle_vel = math.min(0, self.body_angle_vel + (self.angular_body_acc *dt))
+            self.body_angle_vel = math.min(0, self.body_angle_vel + self.angular_body_acc * dt)
         end
     else
-        if targetAngle > currentAngle then
-            if targetAngle - currentAngle < 180 then
-                self.body_angle_vel = math.min(body_angular_vel_max, self.body_angle_vel + (self.angular_body_acc *dt))
+        if target_angle > current_angle then
+            if target_angle - current_angle < 180 then
+                self.body_angle_vel = math.min(body_angular_vel_max, self.body_angle_vel + self.angular_body_acc * dt)
             else
-                self.body_angle_vel = math.max(-body_angular_vel_max, self.body_angle_vel - (self.angular_body_acc *dt))
+                self.body_angle_vel = math.max(-body_angular_vel_max, self.body_angle_vel - self.angular_body_acc * dt)
             end
         else
-            if currentAngle - targetAngle < 180 then
-                self.body_angle_vel = math.max(-body_angular_vel_max, self.body_angle_vel - (self.angular_body_acc *dt))
+            if current_angle - target_angle < 180 then
+                self.body_angle_vel = math.max(-body_angular_vel_max, self.body_angle_vel - self.angular_body_acc * dt)
             else
-                self.body_angle_vel = math.min(body_angular_vel_max, self.body_angle_vel + (self.angular_body_acc *dt))
+                self.body_angle_vel = math.min(body_angular_vel_max, self.body_angle_vel + self.angular_body_acc * dt)
             end
         end
     end
 
-    --print("self.body_angle_vel",self.body_angle_vel)
-    currentAngle = currentAngle + (self.body_angle_vel*dt)
-    self.inst.Transform:SetRotation( currentAngle )
+    current_angle = current_angle + self.body_angle_vel * dt
+    self.inst.Transform:SetRotation(current_angle)
 
     if not self.head.sg:HasStateTag("busy") then
-        local targetpos =Vector3(target.Transform:GetWorldPosition())
-        local angle = self.head:GetAngleToPoint(targetpos.x,targetpos.y,targetpos.z)
+        targetpos = target:GetPosition()
+        angle = self.head:GetAngleToPoint(targetpos.x, targetpos.y, targetpos.z)
         self.head.Transform:SetRotation(angle)
     end
 
-    --self.head.Transform:SetRotation(self.inst.Transform:GetRotation())	
     self.tail.Transform:SetRotation(self.inst.Transform:GetRotation())
 
     -- LEGS
@@ -398,13 +433,13 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
             legdir = legdir * -1
         end
 
-        local angle = self.inst.Transform:GetRotation()*DEGREES
+        angle = self.inst.Transform:GetRotation() * DEGREES
 
-        local currentlegtargetpos = Vector3(self.inst.Transform:GetWorldPosition()) + Vector3(LEGDIST * math.cos( angle+legdir ), 0, -LEGDIST * math.sin( angle+legdir ))
-        local legdistsq = self.currentleg:GetDistanceSqToPoint(currentlegtargetpos)
+        local current_leg_target_pos = self.inst:GetPosition() + Vector3(math.cos(angle + legdir), 0, -math.sin(angle + legdir)) * LEGDIST
+        local legdistsq = self.currentleg:GetDistanceSqToPoint(current_leg_target_pos)
         local anglediff =  anglediff(self.currentleg.Transform:GetRotation(), self.inst.Transform:GetRotation())
         if legdistsq > LEG_WALKDIST * LEG_WALKDIST or anglediff > self.turn_threshold then
-            if legdistsq < LEG_WALKDIST_BIG*LEG_WALKDIST_BIG  or (anglediff > self.turn_threshold and legdistsq <= LEG_WALKDIST_BIG*LEG_WALKDIST_BIG ) then
+            if legdistsq < LEG_WALKDIST_BIG * LEG_WALKDIST_BIG or (anglediff > self.turn_threshold and legdistsq <= LEG_WALKDIST_BIG * LEG_WALKDIST_BIG) then
                 self.currentleg:PushEvent("walkfast")
             else
                 self.currentleg:PushEvent("walk")
@@ -420,45 +455,9 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
     -- move tail to point in position like head. 
 end
 
-local invalid_tiles = {
-    [WORLD_TILES.FOUNDATION] = true,
-    [WORLD_TILES.COBBLEROAD] = true,
-    [WORLD_TILES.LAWN] = true,
-    [WORLD_TILES.LILYPOND] = true,
-    [WORLD_TILES.DEEPRAINFOREST] = true,
-    [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = true,
-    [WORLD_TILES.GASJUNGLE] = true,
-    [WORLD_TILES.INTERIOR] = true,
-}
-
-local function is_player_on_valid_tile(player)
-    if player.sg:HasStateTag("scary_to_predator") then
-        return false
-    end
-
-    -- Roc doesnt like the living artifact.
-    if player:HasOneOfTags({"ironlord", "inside_interior"}) then
-        return false
-    end
-
-    local px, py, pz = player.Transform:GetWorldPosition()
-
-    -- if IsPointCloseToWaterOrImpassable(px, py, pz, DISTANCE_FROM_WATER_OR_IMPASSABLE) then
-    --     return false
-    -- end
-
-    local tile = TheWorld.Map:GetTileAtPoint(px, py, pz)
-
-    if invalid_tiles[tile] then
-        return false
-    end
-
-    return true
-end
-
 function RocController:OnUpdate(dt)
-    local player = ThePlayer
-    local px,py,pz = player.Transform:GetWorldPosition()
+    local player = self.target_player
+    local px, py, pz = player.Transform:GetWorldPosition()
     local player_on_valid_tile = is_player_on_valid_tile(player)
 
     local distance_sq_to_player = self.inst:GetDistanceSqToInst(player)
@@ -482,7 +481,7 @@ function RocController:OnUpdate(dt)
     end
 
     if self.inst.Transform:GetScale() == 1 and not self.landed and not self.liftoff then
-        if distance_sq_to_player < LAND_PROX*LAND_PROX and player_on_valid_tile then
+        if distance_sq_to_player < LAND_PROX * LAND_PROX and player_on_valid_tile then
             self.landed = true
             self.inst:PushEvent("land")
         end
@@ -494,7 +493,7 @@ end
 
 function RocController:FadeInFinished()
     -- Last step in transition
-    local player = ThePlayer
+    local player = self.target_player
 
     player.components.health:SetInvincible(self.player_was_invincible)
 
@@ -505,38 +504,38 @@ end
 function RocController:FadeOutFinished()
     self.inst:DoTaskInTime(2 , function()
         local pt = Vector3(self.inst.roc_nest.Transform:GetWorldPosition())
-        ThePlayer.Transform:SetPosition(pt.x, pt.y, pt.z)
-        ThePlayer.components.sanity:DoDelta(-TUNING.SANITY_MED)
+        self.target_player.Transform:SetPosition(pt.x, pt.y, pt.z)
+        self.target_player.components.sanity:DoDelta(-TUNING.SANITY_MED)
         self.inst.Transform:SetPosition(pt.x, pt.y, pt.z)
         TheCamera:Snap()
 
         TheFrontEnd:SetFadeLevel(1)
-        ThePlayer:Show()
-        ThePlayer.HUD:Show()
-        ThePlayer.sg:GoToState("wakeup")
-        ThePlayer.DynamicShadow:Enable(true)
+        self.target_player:Show()
+        self.target_player.HUD:Show()
+        self.target_player.sg:GoToState("wakeup")
+        self.target_player.DynamicShadow:Enable(true)
         TheFrontEnd:Fade(true, 2, function() self:FadeInFinished() end)
     end)
 end
 
-function RocController:teleport()
+function RocController:DoTeleport()
     TheFrontEnd:Fade(false, 2, function() self:FadeOutFinished() end)
 end
 
-function RocController:playergrabbed()
+function RocController:GrabPlayer()
     self.head:AddTag("HasPlayer")
 
-    self.player_was_invincible = ThePlayer.components.health:IsInvincible()
+    self.player_was_invincible = self.target_player.components.health:IsInvincible()
 
-    ThePlayer:PushEvent("grabbed")
-    ThePlayer.Transform:SetRotation(self.head.Transform:GetRotation())
-    ThePlayer.AnimState:SetFinalOffset(-10)
-    ThePlayer.components.health:SetInvincible(true)
-    ThePlayer.components.playercontroller:Enable(false)
-    ThePlayer.HUD:Hide()
-    ThePlayer.DynamicShadow:Enable(false)
+    self.target_player:PushEvent("grabbed")
+    self.target_player.Transform:SetRotation(self.head.Transform:GetRotation())
+    self.target_player.AnimState:SetFinalOffset(-10)
+    self.target_player.components.health:SetInvincible(true)
+    self.target_player.components.playercontroller:Enable(false)
+    self.target_player.HUD:Hide()
+    self.target_player.DynamicShadow:Enable(false)
 
-    self.inst:DoTaskInTime(2.5, function() self:teleport() end)
+    self.inst:DoTaskInTime(2.5, function() self:DoTeleport() end)
     self.inst.teleporting = true
 end
 
@@ -545,8 +544,8 @@ function RocController:UnchildPlayer(inst)
         inst = self.head
     end
 
-    ThePlayer.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    ThePlayer:Hide()
+    self.target_player.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    self.target_player:Hide()
     inst:RemoveTag("HasPlayer")
 end
 
@@ -581,19 +580,19 @@ function RocController:OnSave()
 
     if self.head then
         data.head = self.head.GUID
-        table.insert(refs,self.head.GUID)
+        table.insert(refs, self.head.GUID)
     end
     if self.tail then
         data.tail = self.tail.GUID
-        table.insert(refs,self.tail.GUID)
+        table.insert(refs, self.tail.GUID)
     end
     if self.leg1 then
         data.leg1 = self.leg1.GUID
-        table.insert(refs,self.leg1.GUID)
+        table.insert(refs, self.leg1.GUID)
     end
     if self.leg2 then
         data.leg2 = self.leg2.GUID
-        table.insert(refs,self.leg2.GUID)
+        table.insert(refs, self.leg2.GUID)
     end
 
     return data, refs
@@ -607,8 +606,8 @@ function RocController:OnLoad(data)
     data.tail_vel_z = self.tail_vel.z
 
     self.head_vel = data.head_vel
-    self.body_vel = {x=data.body_vel_x,z=data.body_vel_z}
-    self.tail_vel = {x=data.tail_vel_x,z=data.tail_vel_z}
+    self.body_vel = {x = data.body_vel_x, z = data.body_vel_z}
+    self.tail_vel = {x = data.tail_vel_x, z = data.tail_vel_z}
     self.dungtime = data.dungtime
 
     if data.currentleg then
@@ -636,24 +635,24 @@ function RocController:LoadPostPass(ents, data)
         self.head = ents[data.head].entity
         self.head.body = self.inst
         self.head.controller = self
-        table.insert(self.inst.bodyparts,self.head)
+        table.insert(self.inst.bodyparts, self.head)
     end
     if data.tail then
         self.tail = ents[data.tail].entity
         self.tail.body = self.inst
-        table.insert(self.inst.bodyparts,self.tail)
+        table.insert(self.inst.bodyparts, self.tail)
     end
     if data.leg1 then
         self.leg1 = ents[data.leg1].entity
         self.leg1.body = self.inst
         self.leg1.legoffsetdir = PI/2
-        table.insert(self.inst.bodyparts,self.leg1)
+        table.insert(self.inst.bodyparts, self.leg1)
     end
     if data.leg2 then
         self.leg2 = ents[data.leg2].entity
         self.leg2.body = self.inst
         self.leg2.legoffsetdir = - PI/2
-        table.insert(self.inst.bodyparts,self.leg2)
+        table.insert(self.inst.bodyparts, self.leg2)
     end
 end
 

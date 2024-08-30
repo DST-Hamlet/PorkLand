@@ -100,6 +100,7 @@ function self:SpawnRoc()
 
     local roc = SpawnPrefab("roc")
     roc.Transform:SetPosition(pt.x + offset.x, 0, pt.z + offset.z)
+    roc.components.roccontroller.target_player = player
 
     _roc = roc
     return true

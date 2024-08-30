@@ -34,7 +34,7 @@ end
 
 function Shadowcaster:OnRemoved()
     for i, data in pairs(self.effected)do
-        unshadow(i,data)
+        unshadow(i, data)
     end
 end
 

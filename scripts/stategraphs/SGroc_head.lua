@@ -23,7 +23,7 @@ local function DoGrab(inst)
     elseif controller.target:HasTag("player") then
         local dist = inst:GetDistanceSqToInst(controller.target)
         if dist < 2 then
-            controller:playergrabbed()
+            controller:GrabPlayer()
             inst.triggerliftoff = true
         end
     end
