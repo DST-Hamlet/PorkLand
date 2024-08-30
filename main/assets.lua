@@ -308,6 +308,8 @@ Assets = {
     Asset("ANIM", "anim/player_mount_actions_speargun.zip"),
     Asset("ANIM", "anim/player_actions_scroll.zip"),
     Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
+    Asset("ANIM", "anim/player_teleport_bfb.zip"),
+    Asset("ANIM", "anim/player_teleport_bfb2.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
