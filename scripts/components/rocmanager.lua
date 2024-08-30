@@ -18,7 +18,6 @@ self.inst = inst
 
 -- Private
 local _roc
-local _disabled = false
 local _world = TheWorld
 local _worldsettingstimer = _world.components.worldsettingstimer
 local _active_players = {}
@@ -66,15 +65,6 @@ end
 --[[ Public member functions ]]
 --------------------------------------------------------------------------
 
-function self:Disable(disabled)
-    _disabled = disabled == true
-    if _disabled then
-        StopRespawnTimer()
-    else
-        StartRespawnTimer()
-    end
-end
-
 ---@return boolean spawned whether the roc actually spawned
 function self:SpawnRoc()
     if _roc then
@@ -91,7 +81,7 @@ function self:SpawnRoc()
     local player = GetRandomItem(players)
 
     if not player then
-        return
+        return false
     end
 
     local pt = player:GetPosition()
@@ -163,6 +153,15 @@ function self:LoadPostPass(newents, savedata)
             _roc = roc.entity
         end
     end
+end
+
+
+function self:GetDebugString()
+    local s = string.format("Spawns In: %2.2f", _worldsettingstimer:GetTimeLeft(ROC_TIMER_NAME) or -1)
+    if _worldsettingstimer:IsPaused(ROC_TIMER_NAME) then
+        s = s .. "(Paused)"
+    end
+    return s
 end
 
 end)
