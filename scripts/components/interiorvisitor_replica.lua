@@ -96,7 +96,7 @@ function InteriorVisitor:UpdateInteriorMinimap()
     local center = self.center_ent:value()
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.inst:GetPosition())
     local current_room_data = self.interior_map[current_room_id]
-    if current_room_data then
+    if current_room_data and center then
         self.interior_map_icons_override = {
             [current_room_id] = center:CollectMinimapIcons()
         }
