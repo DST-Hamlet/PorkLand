@@ -16,20 +16,23 @@ local function on_window_built(inst)
         local is_backwall = backdiff and not rightdiff and not leftdiff
 
         if is_backwall then
-            inst.AnimState:SetBank(inst.bank:sub(1, -6)) -- Remove _side
-            inst.Transform:SetRotation(-90)
+            local bank = inst.bank:sub(1, -6) -- Remove _side
+            inst.AnimState:SetBank(bank)
             if inst.children_to_spawn then
                 for i, children in ipairs(inst.children_to_spawn) do
                     inst.children_to_spawn[i] = children .. "_backwall"
                 end
             end
-            inst:SetPrefabName(inst.prefab .. "_backwall")
+            inst.animdata = {
+                bank = bank,
+            }
         end
     end
 end
 
 local function on_window_built_with_curtain(inst)
     inst.AnimState:Show("curtain")
+    inst.has_curtain = true
     on_window_built(inst)
 end
 

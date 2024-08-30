@@ -218,6 +218,9 @@ local function OnSave(inst, data)
     if inst.animdata then
         data.animdata = inst.animdata
     end
+    if inst.has_curtain then
+        data.has_curtain = inst.has_curtain
+    end
 
     if inst.onbuilt then
         data.onbuilt = inst.onbuilt
@@ -280,6 +283,9 @@ local function OnLoad(inst, data)
         if inst.animdata.anim then
             inst.AnimState:PlayAnimation(inst.animdata.anim, inst.animdata.animloop)
         end
+    end
+    if data.has_curtain then
+        inst.AnimState:Show("curtain")
     end
 
     if data.onbuilt then
@@ -604,11 +610,25 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst:AddTag(tag)
         end
 
+        if prefabname then
+            if TheWorld.ismastersim and not inst.components.inspectable then
+                inst:AddComponent("inspectable")
+            end
+
+            inst:SetPrefabName(prefabname)
+        end
+
+        inst.entity:SetPristine()
+
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
         if data.children then
             inst.children_to_spawn = data.children -- Can be overriden in onbuilt
             inst:DoTaskInTime(0, function()
                 -- don't spawn child in client
-                if not TheWorld.ismastersim or inst.childrenspawned then
+                if inst.childrenspawned then
                     return
                 end
 
@@ -624,20 +644,6 @@ local function MakeDeco(build, bank, animframe, data, name)
                 end
                 inst.childrenspawned = true
            end)
-        end
-
-        if prefabname then
-            if TheWorld.ismastersim and not inst.components.inspectable then
-                inst:AddComponent("inspectable")
-            end
-
-            inst:SetPrefabName(prefabname)
-        end
-
-        inst.entity:SetPristine()
-
-        if not TheWorld.ismastersim then
-            return inst
         end
 
         if mirror then

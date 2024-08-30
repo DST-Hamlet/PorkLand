@@ -471,21 +471,94 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                 }
 
                 if not exit.secret then
-                    table.insert(interior_def.prefabs, { name = "prop_door_shadow", x_offset = (depth/2), z_offset = 0, animdata = { bank = exit.bank, build = exit.build, anim = "south_floor" } })
+                    table.insert(interior_def.prefabs, {
+                        name = "prop_door_shadow",
+                        x_offset = (depth / 2),
+                        z_offset = 0,
+                        animdata = {
+                            bank = exit.bank,
+                            build = exit.build,
+                            anim = "south_floor",
+                        },
+                    })
                 end
             elseif heading == EAST then
-                prefab = { name = "prop_door", x_offset = 0, z_offset = width/2, sg_name = exit.sg_name, startstate = exit.startstate, animdata = { minimapicon = exit.minimapicon, bank = exit.bank, build = exit.build, anim = "east", background = true },
-                            my_door_id = roomindex.."_EAST", target_door_id = exit.target_room.."_WEST", target_interior = exit.target_room, rotation = -90, hidden = false, angle=90, addtags = { "lockable_door", "door_east" } }
-
+                prefab = {
+                    name = "prop_door",
+                    x_offset = 0,
+                    z_offset = width / 2,
+                    sg_name = exit.sg_name,
+                    startstate = exit.startstate,
+                    animdata = {
+                        minimapicon = exit.minimapicon,
+                        bank = exit.bank,
+                        build = exit.build,
+                        anim = "east",
+                        background = true,
+                    },
+                    my_door_id = roomindex .. "_EAST",
+                    target_door_id = exit.target_room .. "_WEST",
+                    target_interior = exit.target_room,
+                    rotation = -90,
+                    hidden = false,
+                    angle = 90,
+                    addtags = {
+                        "lockable_door",
+                        "door_east",
+                    },
+                }
             elseif heading == WEST then
-                prefab = { name = "prop_door", x_offset = 0, z_offset = -width/2, sg_name = exit.sg_name, startstate = exit.startstate, animdata = { minimapicon = exit.minimapicon, bank = exit.bank, build = exit.build, anim = "west", background = true },
-                            my_door_id = roomindex.."_WEST", target_door_id = exit.target_room.."_EAST", target_interior = exit.target_room, rotation = -90, hidden = false, angle=270, addtags = { "lockable_door", "door_west" } }
+                prefab = {
+                    name = "prop_door",
+                    x_offset = 0,
+                    z_offset = -width / 2,
+                    sg_name = exit.sg_name,
+                    startstate = exit.startstate,
+                    animdata = {
+                        minimapicon = exit.minimapicon,
+                        bank = exit.bank,
+                        build = exit.build,
+                        anim = "west",
+                        background = true,
+                    },
+                    my_door_id = roomindex .. "_WEST",
+                    target_door_id = exit.target_room .. "_EAST",
+                    target_interior = exit.target_room,
+                    rotation = -90,
+                    hidden = false,
+                    angle = 270,
+                    addtags = {
+                        "lockable_door",
+                        "door_west",
+                    },
+                }
             end
         else
             local doordata = player_interior_exit_dir_data[heading.label]
-                prefab = { name = exit.prefab_name, x_offset = doordata.x_offset, z_offset = doordata.z_offset, sg_name = exit.sg_name, startstate = exit.startstate, animdata = { minimapicon = exit.minimapicon, bank = exit.bank, build = exit.build, anim = exit.prefab_name .. "_open_"..doordata.anim, background = doordata.background },
-                            my_door_id = roomindex..doordata.my_door_id_dir, target_door_id = exit.target_room..doordata.target_door_id_dir, target_interior = exit.target_room, rotation = -90, hidden = false, angle=doordata.angle, addtags = { "lockable_door", doordata.door_tag } }
-
+            prefab = {
+                name = exit.prefab_name,
+                x_offset = doordata.x_offset,
+                z_offset = doordata.z_offset,
+                sg_name = exit.sg_name,
+                startstate = exit.startstate,
+                animdata = {
+                    minimapicon = exit.minimapicon,
+                    bank = exit.bank,
+                    build = exit.build,
+                    anim = exit.prefab_name .. "_open_" .. doordata.anim,
+                    background = doordata.background,
+                },
+                my_door_id = roomindex .. doordata.my_door_id_dir,
+                target_door_id = exit.target_room .. doordata.target_door_id_dir,
+                target_interior = exit.target_room,
+                rotation = -90,
+                hidden = false,
+                angle = doordata.angle,
+                addtags = {
+                    "lockable_door",
+                    doordata.door_tag,
+                },
+            }
         end
 
         if exit.vined then

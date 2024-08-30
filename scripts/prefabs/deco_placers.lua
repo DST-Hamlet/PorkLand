@@ -159,16 +159,16 @@ local function WallPlaceTest(inst, pt, distance)
         local side = ""
         local rot = -90
         if backdiff and not rightdiff and not leftdiff then
-            newpt = {x= originpt.x - depth/2, y=0, z=pt.z}
+            newpt = {x = originpt.x - depth/2, z=pt.z}
           --  anim = "_front"
             rot = -90
         elseif rightdiff and not backdiff and not frontdiff then
-            newpt = {x= pt.x, y=0, z= originpt.z + width/2}
+            newpt = {x = pt.x, z= originpt.z + width/2}
           --  anim = "_sidewall"
             side = "_side"
             rot = 90
         elseif leftdiff and not backdiff and not frontdiff then
-            newpt = {x= pt.x, y=0, z= originpt.z - width/2}
+            newpt = {x = pt.x, z= originpt.z - width/2}
            -- anim = "_sidewall"
             side = "_side"
             rot = -90
@@ -177,8 +177,8 @@ local function WallPlaceTest(inst, pt, distance)
             canbuild = false
         end
 
-        if newpt.x and newpt.y and newpt.z then
-            inst.Transform:SetPosition(newpt.x,newpt.y,newpt.z)
+        if newpt.x and newpt.z then
+            inst.Transform:SetPosition(newpt.x,0,newpt.z)
         end
         if canbuild then
             inst.Transform:SetRotation(rot)
@@ -243,15 +243,15 @@ local function WindowPlaceTest(inst)
         local bank = ""
         local rot = -90
         if backdiff and not rightdiff and not leftdiff then
-            newpt = {x= originpt.x - depth/2, y=0, z=pt.z}
+            newpt = {x = originpt.x - depth/2, z=pt.z}
             bank = ""
             rot = -90
         elseif rightdiff and not backdiff and not frontdiff then
-            newpt = {x= pt.x, y=0, z= originpt.z + width/2}
+            newpt = {x = pt.x, z= originpt.z + width/2}
             bank = "_side"
             rot = 90
         elseif leftdiff and not backdiff and not frontdiff then
-            newpt = {x= pt.x, y=0, z= originpt.z - width/2}
+            newpt = {x = pt.x, z= originpt.z - width/2}
             bank = "_side"
             rot = -90
         else
@@ -260,7 +260,7 @@ local function WindowPlaceTest(inst)
         end
 
         if canbuild then
-            inst.Transform:SetPosition(newpt.x, newpt.y, newpt.z)
+            inst.Transform:SetPosition(newpt.x, 0, newpt.z)
             inst.Transform:SetRotation(rot)
         else
             inst.Transform:SetPosition(pt.x, pt.y, pt.z)
@@ -270,12 +270,12 @@ local function WindowPlaceTest(inst)
         inst.Transform:SetRotation(rot)
 
 
-        local ents = TheSim:FindEntities(newpt.x, newpt.y, newpt.z, 7, {"fullwallsection"})
+        local ents = TheSim:FindEntities(newpt.x, 0, newpt.z, 7, {"fullwallsection"})
         if #ents > 0 then
             canbuild = false
         end
 
-        ents = TheSim:FindEntities(newpt.x, newpt.y, newpt.z, 3, {"wallsection"})
+        ents = TheSim:FindEntities(newpt.x, 0, newpt.z, 3, {"wallsection"})
 
         if #ents < 1 and canbuild then
             inst.accept_placement = true
@@ -305,15 +305,15 @@ local function WindowWidePlaceTest(inst)
         local bank = ""
         local rot = -90
         if backdiff and not rightdiff and not leftdiff then
-            newpt = {x= originpt.x - depth/2, y=0, z=originpt.z}
+            newpt = {x = originpt.x - depth/2, z=originpt.z}
             bank = ""
             rot = -90
         elseif rightdiff and not backdiff and not frontdiff then
-            newpt = {x= originpt.x, y=0, z= originpt.z + width/2}
+            newpt = {x = originpt.x, z= originpt.z + width/2}
             bank = "_side"
             rot = 90
         elseif leftdiff and not backdiff and not frontdiff then
-            newpt = {x= originpt.x, y=0, z= originpt.z - width/2}
+            newpt = {x = originpt.x, z= originpt.z - width/2}
             bank = "_side"
             rot = -90
         else
@@ -322,7 +322,7 @@ local function WindowWidePlaceTest(inst)
         end
 
         if canbuild then
-            inst.Transform:SetPosition(newpt.x, newpt.y, newpt.z)
+            inst.Transform:SetPosition(newpt.x, 0, newpt.z)
             inst.Transform:SetRotation(rot)
         else
             inst.Transform:SetPosition(pt.x, pt.y, pt.z)
@@ -331,12 +331,12 @@ local function WindowWidePlaceTest(inst)
         inst.AnimState:SetBank(inst.animdata.bank .. bank)
         inst.Transform:SetRotation(rot)
 
-        local ents = TheSim:FindEntities(newpt.x, newpt.y, newpt.z, 7, {"fullwallsection"})
+        local ents = TheSim:FindEntities(newpt.x, 0, newpt.z, 7, {"fullwallsection"})
         if #ents > 0 then
             canbuild = false
         end
 
-        ents = TheSim:FindEntities(newpt.x, newpt.y, newpt.z, 5, {"wallsection"})
+        ents = TheSim:FindEntities(newpt.x, 0, newpt.z, 5, {"wallsection"})
 
         if #ents < 1 and canbuild then
             inst.accept_placement = true
@@ -400,7 +400,7 @@ local function ShelfPlaceTest(inst, pt)
         local canbuild = true
         local rot = -90
         if backdiff and not rightdiff and not leftdiff then
-            newpt = {x= originpt.x - depth/2, y=0, z=pt.z}
+            newpt = {x = originpt.x - depth/2, z=pt.z}
             rot = -90
         else
             newpt = pt
@@ -411,18 +411,18 @@ local function ShelfPlaceTest(inst, pt)
             inst.parent:RemoveChild(inst)
         end
 
-        inst.Transform:SetPosition(newpt.x, newpt.y, newpt.z)
+        inst.Transform:SetPosition(newpt.x, 0, newpt.z)
         if canbuild then
             inst.Transform:SetRotation(rot)
         end
 
-        local ents = TheSim:FindEntities(newpt.x, newpt.y, newpt.z, 7, {"fullwallsection"})
+        local ents = TheSim:FindEntities(newpt.x, 0, newpt.z, 7, {"fullwallsection"})
         if #ents > 0 then
             canbuild = false
         end
 
         local blockeddist = 4
-        ents = TheSim:FindEntities(newpt.x, newpt.y, newpt.z, blockeddist, nil, nil, {"furniture", "wallsection"})
+        ents = TheSim:FindEntities(newpt.x, 0, newpt.z, blockeddist, nil, nil, {"furniture", "wallsection"})
 
         if canbuild and #ents < 1 then
             return true
