@@ -305,12 +305,12 @@ local function OnLoad(inst, data)
         inst.usesounds = data.usesounds
     end
 
-    if data.regrowtimeleft then
+    if data.opentimeleft then
         if inst.opentask then
             inst.opentask:Cancel()
             inst.opentask = nil
         end
-        inst.opentask, inst.opentaskinfo = inst:ResumeTask(data.regrowtimeleft, function() inst:PushEvent("open") end)
+        inst.opentask, inst.opentaskinfo = inst:ResumeTask(data.opentimeleft, function() inst:PushEvent("open") end)
     end
 end
 

@@ -269,7 +269,7 @@ SortBefore("basefan", "rainometer", "RAIN")
 AddRecipe2("bugrepellent", {Ingredient("tuber_crop", 6), Ingredient("venus_stalk", 1)}, TECH.SCIENCE_ONE, {}, {"TOOLS", "ENVIRONMENT_PROTECTION"})
 SortAfter("bugrepellent", nil, "TOOLS")
 
-AddRecipe2("machete", {Ingredient("twigs", 1),Ingredient("flint", 3)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
+AddRecipe2("machete", {Ingredient("twigs", 1),Ingredient("flint", 3)}, TECH.NONE, {}, {"TOOLS"})
 SortAfter("machete", "axe", "TOOLS")
 
 AddRecipe2("goldenmachete", {Ingredient("twigs", 4),Ingredient("goldnugget", 2)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
