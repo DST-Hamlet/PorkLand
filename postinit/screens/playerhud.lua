@@ -79,10 +79,6 @@ function PlayerHud:UpdateFogClouds(camera)
         intensity = 0
     end
 
-    if intensity > 0 then
-        self.clouds:Show()
-    end
-
     if camera.distance and not camera.dollyzoom then
         local dist_percent = (camera.distance - camera.mindist) / (camera.maxdist - camera.mindist)
         local cutoff = TUNING.HUD_CLOUD_CUTOFF
@@ -90,7 +86,7 @@ function PlayerHud:UpdateFogClouds(camera)
             local p = easing.outCubic(dist_percent - cutoff, 0, .5, 1 - cutoff)
             intensity = math.max(intensity, p)
             self.clouds:Show()
-        elseif intensity == 0 then
+        elseif not (intensity > 0) then
             self.clouds:Hide()
         end
     end

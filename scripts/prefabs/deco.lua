@@ -228,8 +228,8 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_produce_stone_cornerbeam", "interior_wall_decals_deli", "wall_decals_deli", "pillar_sidewall",                           {decal=true, light=DecoCreator:GetLights().SMALL_YELLOW}),-- loopanim=true,
 
         -- city hall
-        DecoCreator:Create("deco_cityhall_picture1", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "picture1_sidewall",                {decal=true}, background=3),
-        DecoCreator:Create("deco_cityhall_picture2", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "picture2_sidewall",                {decal=true}, background=3),
+        DecoCreator:Create("deco_cityhall_picture1", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "picture1_sidewall",                {decal=true, background=3}),
+        DecoCreator:Create("deco_cityhall_picture2", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "picture2_sidewall",                {decal=true, background=3}),
         DecoCreator:Create("deco_cityhall_bookshelf", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "bookcase_backwall",               {decal=true}),
         DecoCreator:Create("deco_cityhall_pillar", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "pillar_round_corner",                {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL}),
         DecoCreator:Create("deco_cityhall_cornerbeam", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "pillar_flag_corner",             {decal=true, tags={"cornerpost"}}),  -- , background=3
