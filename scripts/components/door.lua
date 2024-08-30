@@ -74,9 +74,10 @@ local function DoTeleport(player, pos)
         Sleep(0.4)
 
         if TheWorld.components.interiorspawner
-            and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
-            and TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
+            and (TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
+            and not TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)) then
 
+        else
             player.Physics:Teleport(x, y, z)
         end
         player.components.interiorvisitor:UpdateExteriorPos()
