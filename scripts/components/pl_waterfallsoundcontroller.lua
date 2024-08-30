@@ -8,14 +8,9 @@ return Class(function(self, inst)
 --[[ Constants ]]
 --------------------------------------------------------------------------
 
-local EMITTER_MAXDSQ = 900
+local EMITTER_MAXDSQ = 2500
 
-local NUM_EMITTERS = 3
-
-local LARGE_VOLUME = 1
-local SMALL_VOLUME = 0.80
-local MIN_FADE_VOLUME = 0.05
-local HALF_FADE_TIME = 0.20
+local NUM_EMITTERS = 8
 
 local WATERFALL_LOOP_SOUNDNAME = "porkland_soundpackage/common/waterfall/waterfall"
 local SOUND_EVENT_NAME = "waterfall"
@@ -30,77 +25,31 @@ self.inst = inst
 --Private
 local _player = ThePlayer
 local _process_task = nil
-local _largepools = {}
+local _waterfalls = {}
 local _soundemitters = {}
 
 --------------------------------------------------------------------------
 --[[ Private member functions ]]
 --------------------------------------------------------------------------
 
-local function pool_sortfn(pool1, pool2)
-    return pool1[2] < pool2[2]
+local function waterfall_sortfn(waterfall1, waterfall2)
+    return waterfall1[2] < waterfall2[2]
 end
 
-local function get_pools_close_to_player_dsqsorted()
+local function get_waterfalls_close_to_player_dsqsorted()
     local px, py, pz = _player.Transform:GetWorldPosition()
 
-    local pools_with_dist = {}
-    for pool, _ in pairs(_largepools) do
-        local dsq_to_pool = pool:GetDistanceSqToPoint(px, py, pz)
-        if dsq_to_pool < EMITTER_MAXDSQ then
-            table.insert(pools_with_dist, {pool, dsq_to_pool, true})
+    local waterfalls_with_dist = {}
+    for waterfall, _ in pairs(_waterfalls) do
+        local dsq_to_waterfall = waterfall:GetDistanceSqToPoint(px, py, pz) - 0
+        if dsq_to_waterfall < 2500 then
+            table.insert(waterfalls_with_dist, {waterfall, dsq_to_waterfall, true})
         end
     end
 
-    table.sort(pools_with_dist, pool_sortfn)
+    table.sort(waterfalls_with_dist, waterfall_sortfn)
 
-    return pools_with_dist
-end
-
--- Try to match our NUM_EMITTERS closest pools, to emitters already playing sounds on them.
--- Any that are unmatched go into a subtable at ["unclaimed"] (nil if unnecessary)
-local function generate_emitter_pairs(pools_with_distances)
-    local emitter_pairs = {}
-
-    for i, pooldata in ipairs(pools_with_distances) do
-        if i > NUM_EMITTERS then
-            break
-        end
-
-        local paired = false
-        for _, emitter in ipairs(_soundemitters) do
-            if emitter._lastpooldata ~= nil and emitter._lastpooldata[1] == pooldata[1] then
-                paired = true
-                emitter_pairs[emitter] = pooldata
-                break
-            end
-        end
-
-        if not paired then
-            if emitter_pairs["unclaimed"] == nil then
-                emitter_pairs["unclaimed"] = {}
-            end
-            table.insert(emitter_pairs["unclaimed"], pooldata)
-        end
-    end
-
-    return emitter_pairs
-end
-
-local function is_valid_data(data)
-    return data ~= nil and data[1] ~= nil and data[1]:IsValid()
-end
-
-local function FadeUpdate(val, e)
-    e.SoundEmitter:SetVolume(SOUND_EVENT_NAME, val)
-    e._volume = val
-end
-
-local function FadeFinished(e, val2)
-    if is_valid_data(e._lastpooldata) then
-        e.Transform:SetPosition(e._lastpooldata[1].Transform:GetWorldPosition())
-        e.components.fader:Fade(MIN_FADE_VOLUME, (e._lastpooldata[3] and LARGE_VOLUME) or SMALL_VOLUME, HALF_FADE_TIME, FadeUpdate)
-    end
+    return waterfalls_with_dist
 end
 
 local function ProcessPlayer()
@@ -111,55 +60,59 @@ local function ProcessPlayer()
         return
     end
 
-    local pools_with_distances = get_pools_close_to_player_dsqsorted()
+    local waterfalls_with_distances = get_waterfalls_close_to_player_dsqsorted()
 
-    local emitter_pairs = generate_emitter_pairs(pools_with_distances)
+    local reuse_emitters = {}
 
-    for _, emitter in ipairs(_soundemitters) do
-        if emitter_pairs[emitter] == nil then
-            local new_pool_data = (emitter_pairs["unclaimed"] ~= nil and table.remove(emitter_pairs["unclaimed"])) or nil
+    for k, emitter in pairs(_soundemitters) do -- 寻找那些排序靠后的音效源
+        local is_closet = false
+        if emitter.target_waterfall ~= nil then
+            for i = 1, NUM_EMITTERS do
+                if waterfalls_with_distances[i] and waterfalls_with_distances[i][1] == emitter.target_waterfall then
+                    is_closet = true
+                end
+            end
+        else
+            is_closet = false
+        end
 
-            if new_pool_data == nil then
-                emitter.SoundEmitter:KillAllSounds()
-                emitter._lastpooldata = nil
-                emitter._volume = 0
-            elseif not emitter.SoundEmitter:PlayingSound(SOUND_EVENT_NAME) or not is_valid_data(emitter._lastpooldata) then
-                emitter.Transform:SetPosition(new_pool_data[1].Transform:GetWorldPosition())
+        if not is_closet then
+            table.insert(reuse_emitters, emitter)
+        end
+    end
 
-                local volume = (new_pool_data[3] and LARGE_VOLUME) or SMALL_VOLUME
-                emitter.SoundEmitter:PlaySound(WATERFALL_LOOP_SOUNDNAME, SOUND_EVENT_NAME, volume)
-                emitter.SoundEmitter:SetParameter(SOUND_EVENT_NAME, "intensity", 0.45)
-                emitter._volume = volume
-
-                emitter._lastpooldata = new_pool_data
-            else
-                local old_volume = emitter._volume or (emitter._lastpooldata[3] and LARGE_VOLUME) or SMALL_VOLUME
-
-                emitter._lastpooldata = new_pool_data
-
-                emitter.components.fader:StopAll()
-                emitter.components.fader:Fade(old_volume, MIN_FADE_VOLUME, HALF_FADE_TIME, FadeUpdate, FadeFinished)
+    for i = 1, NUM_EMITTERS do
+        if waterfalls_with_distances[i] then
+            local hasemitter = false
+            for k, emitter in pairs(_soundemitters) do
+                if waterfalls_with_distances[i][1] == emitter.target_waterfall then
+                    hasemitter = true
+                end
+            end
+            if not hasemitter and reuse_emitters[1] then
+                reuse_emitters[1].target_waterfall = waterfalls_with_distances[i][1]
+                table.remove(reuse_emitters, 1)
             end
         end
     end
 end
 
-local function StopTrackingPool(pool)
-    self.inst:RemoveEventCallback("onremove", StopTrackingPool, pool)
+local function StopTrackingWaterfall(waterfall)
+    self.inst:RemoveEventCallback("onremove", StopTrackingWaterfall, waterfall)
 
-    if _largepools[pool] ~= nil then
-        _largepools[pool] = nil
+    if _waterfalls[waterfall] ~= nil then
+        _waterfalls[waterfall] = nil
     end
 end
 
-local function TrackPool(inst, data)
-    local pool = data.pool
-    if pool ~= nil then
-        if not _largepools[pool] then
-            _largepools[pool] = true
+local function TrackWaterfall(inst, data)
+    local waterfall = data.waterfall
+    if waterfall ~= nil then
+        if not _waterfalls[waterfall] then
+            _waterfalls[waterfall] = true
         end
 
-        self.inst:ListenForEvent("onremove", StopTrackingPool, pool)
+        self.inst:ListenForEvent("onremove", StopTrackingWaterfall, waterfall)
     end
 end
 
@@ -172,12 +125,12 @@ end
 --------------------------------------------------------------------------
 
 --Register events
-inst:ListenForEvent("ms_registerwaterfall", TrackPool)
+inst:ListenForEvent("ms_registerwaterfall", TrackWaterfall)
 
 --Initialize
 local init_task = inst:DoTaskInTime(0, function(i)
     for _ = 1, NUM_EMITTERS do
-        table.insert(_soundemitters, SpawnPrefab("grottopool_sfx"))
+        table.insert(_soundemitters, SpawnPrefab("waterfall_sfx"))
     end
 end)
 _process_task = inst:DoPeriodicTask(5*FRAMES, ProcessPlayer)
@@ -187,7 +140,7 @@ _process_task = inst:DoPeriodicTask(5*FRAMES, ProcessPlayer)
 --------------------------------------------------------------------------
 
 function self:GetDebugString()
-    local num_largepools = GetTableSize(_largepools)
+    local num_waterfalls = GetTableSize(_waterfalls)
 
     local emitters_playing = 0
     for _, emitter in ipairs(_soundemitters) do
@@ -196,8 +149,8 @@ function self:GetDebugString()
         end
     end
 
-    return string.format("Large Pool Count: %d || Emitters Playing: %d",
-        num_largepools, emitters_playing)
+    return string.format("Large Waterfall Count: %d || Emitters Playing: %d",
+        num_waterfalls, emitters_playing)
 end
 
 --------------------------------------------------------------------------
