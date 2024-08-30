@@ -121,6 +121,10 @@ local function OnBuilt(inst)
             end
         end
     end
+
+    if inst.on_built_fn then
+        inst.on_built_fn(inst)
+    end
 end
 
 local function UpdateArtWorkable(inst, instant)
@@ -439,6 +443,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         inst.entity:AddNetwork()
 
         inst.AnimState:SetBuild(build)
+        inst.bank = bank -- Used in window's on_built_fn
         inst.AnimState:SetBank(bank)
         inst.AnimState:PlayAnimation(animframe, loopanim)
         if scale then
@@ -600,13 +605,14 @@ local function MakeDeco(build, bank, animframe, data, name)
         end
 
         if data.children then
+            inst.children_to_spawn = data.children -- Can be overriden in onbuilt
             inst:DoTaskInTime(0, function()
                 -- don't spawn child in client
                 if not TheWorld.ismastersim or inst.childrenspawned then
                     return
                 end
 
-                for _, child in pairs(data.children) do
+                for _, child in pairs(inst.children_to_spawn) do
                     local child_prop = SpawnPrefab(child)
                     local x, y, z = inst.Transform:GetWorldPosition()
                     child_prop.Transform:SetPosition(x, y, z)
@@ -714,6 +720,7 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         inst:ListenForEvent("onremove", OnRemove)
         if data.onbuilt then
+            inst.on_built_fn = data.on_built_fn
             inst:ListenForEvent("onbuilt", OnBuilt)
         end
         if data.dayevents then
