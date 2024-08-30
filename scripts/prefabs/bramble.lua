@@ -175,7 +175,7 @@ local function spikefn()
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
 
-    inst:DoTaskInTime((math.random() * 0.5) + 0.3, function()
+    inst:DoTaskInTime((math.random() * 2) + 1.5, function()
         if not inst.spike_spawned then
             PropegateHedge(inst)
         end
