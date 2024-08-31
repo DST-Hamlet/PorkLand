@@ -6,7 +6,9 @@ local function on_window_built(inst)
         inst.AnimState:SetBank(bank)
         if inst.children_to_spawn then
             for i, children in ipairs(inst.children_to_spawn) do
-                inst.children_to_spawn[i] = children .. "_backwall"
+                if children:sub(-8) ~= "backwall" then
+                    inst.children_to_spawn[i] = children .. "_backwall"
+                end
             end
         end
         inst.animdata = {
