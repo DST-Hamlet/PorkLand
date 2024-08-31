@@ -96,6 +96,7 @@ local prefab_posts = {
     "world_network",
     "world",
     "shard_network",
+    "spoiledfood",
     "statueruins",
     "walls",
     "waterballoon",

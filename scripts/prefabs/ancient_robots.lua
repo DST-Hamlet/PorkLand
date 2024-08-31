@@ -110,7 +110,7 @@ local function OnSave(inst, data)
     if inst.hits then
         data.hits = inst.hits
     end
-    if inst:HasTag("dormant") and not inst.components.timer:TimerExists("discharge") then -- 第二个条件是考虑到那些因为意外计时结束没有停下的robot
+    if inst:HasTag("dormant") or not inst.components.timer:TimerExists("discharge") then -- 第二个条件是考虑到那些因为意外计时结束没有停下的robot
         data.dormant = true
     end
     if inst:HasTag("mossy") then

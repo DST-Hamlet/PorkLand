@@ -32,7 +32,7 @@ local function OnEntityWake(inst, data)
 end
 
 local function register_pool(inst)
-    TheWorld:PushEvent("ms_registerwaterfall", {pool = inst})
+    TheWorld:PushEvent("ms_registerwaterfall", {waterfall = inst})
 end
 
 local function fn()

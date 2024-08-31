@@ -39,20 +39,16 @@ function FogOver:UpdateAlpha(dt)
 end
 
 function FogOver:OnUpdate(dt)
-    if TheWorld.state.fogstate == FOG_STATE.SETTING then
-
-    elseif TheWorld.state.fogstate == FOG_STATE.FOGGY then
+if TheWorld.state.fogstate == FOG_STATE.FOGGY then
         if self.alphagoal ~= 1 then
             self.alphagoal = 1
             self.time = 2
         end
-    elseif TheWorld.state.fogstate == FOG_STATE.LIFTING then
+    else
         if self.alphagoal ~= 0 then
             self.alphagoal = 0
             self.time = 2
         end
-    elseif TheWorld.state.fogstate == FOG_STATE.CLEAR then
-
     end
 
     self:UpdateAlpha(dt)

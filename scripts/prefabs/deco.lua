@@ -264,8 +264,8 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_produce_stone_cornerbeam", "interior_wall_decals_deli", "wall_decals_deli", "pillar_sidewall",                           {decal=true, light=DecoCreator:GetLights().SMALL_YELLOW}),-- loopanim=true,
 
         -- city hall
-        DecoCreator:Create("deco_cityhall_picture1", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "picture1_sidewall",                {decal=true}),
-        DecoCreator:Create("deco_cityhall_picture2", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "picture2_sidewall",                {decal=true}),
+        DecoCreator:Create("deco_cityhall_picture1", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "picture1_sidewall",                {decal=true, background=3}),
+        DecoCreator:Create("deco_cityhall_picture2", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "picture2_sidewall",                {decal=true, background=3}),
         DecoCreator:Create("deco_cityhall_bookshelf", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "bookcase_backwall",               {decal=true}),
         DecoCreator:Create("deco_cityhall_pillar", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "pillar_round_corner",                {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL}),
         DecoCreator:Create("deco_cityhall_cornerbeam", "interior_wall_decals_mayorsoffice", "wall_decals_mayorsoffice", "pillar_flag_corner",             {decal=true, tags={"cornerpost"}}),  -- , background=3
@@ -276,7 +276,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_palace_beam_room_tall", "interior_wall_decals_palace", "wall_decals_palace", "pillar_tall",                              {decal=true, physics="post_physics"}),
         DecoCreator:Create("deco_palace_beam_room_tall_lights", "interior_wall_decals_palace", "wall_decals_palace", "pillar_tall_lights",                {decal=true, physics="post_physics", light=DecoCreator:GetLights().SMALL}),
 
-        DecoCreator:Create("deco_palace_beam_room_tall_corner", "interior_wall_decals_palace", "wall_decals_palace", "pillar_tall_corner",                {decal=true, physics="post_physics"}),
+        DecoCreator:Create("deco_palace_beam_room_tall_corner", "interior_wall_decals_palace", "wall_decals_palace", "pillar_tall_corner",                {decal=true, background=3, physics="post_physics"}),
         DecoCreator:Create("deco_palace_beam_room_tall_corner_front", "interior_wall_decals_palace", "wall_decals_palace", "pillar_tall_front",           {decal=true, physics="post_physics"}),
         DecoCreator:Create("window_palace", "window_palace", "window_palace", "day_loop",                                                                 {loopanim=true, decal=true, background=3, curtains=true}),
         DecoCreator:Create("window_palace_stainglass", "window_palace_stainglass", "window_palace_stainglass", "day_loop",                                {loopanim=true, decal=true, background=3, curtains=true}),

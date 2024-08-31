@@ -503,6 +503,9 @@ AncientRobot.States.AddLeap = function(states, pre_timeline, loop_timeline, pst_
 
         onupdate = function(inst, dt)
             local percent = inst.sg.statemem.leap_time / inst.AnimState:GetCurrentAnimationLength()
+            if percent > 1 then
+                percent = 1
+            end
             inst.sg.statemem.leap_time = inst.sg.statemem.leap_time + dt
             local xdiff = inst.sg.statemem.targetpos.x - inst.sg.statemem.startpos.x
             local zdiff = inst.sg.statemem.targetpos.z - inst.sg.statemem.startpos.z
