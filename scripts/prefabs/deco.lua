@@ -21,6 +21,27 @@ local function on_window_built_with_curtain(inst)
     on_window_built(inst)
 end
 
+local function make_on_beam_built(corner_beam_animation, background)
+    return function(inst)
+        local position = inst:GetPosition()
+        local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+        if current_interior then
+            local originpt = current_interior:GetPosition()
+
+            if position.x <= originpt.x then
+                inst.animdata = {
+                    animation = corner_beam_animation,
+                }
+                if background then
+                    inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
+                    inst.AnimState:SetSortOrder(background)
+                    inst.setbackground = background
+                end
+            end
+        end
+    end
+end
+
 return  DecoCreator:Create("window_round",                 "interior_window", "interior_window_side", "day_loop",          {loopanim=true, decal=true, background=3, dayevents=true,                children={"window_round_light"},          tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built_with_curtain}),
         DecoCreator:Create("window_round_backwall",        "interior_window", "interior_window", "day_loop",               {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_round", name_override="window_round"}),
 
@@ -72,13 +93,13 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_wallpaper_rip_side4", "interior_wall_decals", "wall_decals", "9",  {tags={"NOBLOCK"}}),
 
         DecoCreator:Create("deco_wood_cornerbeam",  "interior_wall_decals", "wall_decals", "4", {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_wood", background=3 }),
-        DecoCreator:Create("deco_wood_beam",        "interior_wall_decals", "wall_decals", "3", {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_wood"}),
+        DecoCreator:Create("deco_wood_beam",        "interior_wall_decals", "wall_decals", "3", {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_wood", on_built_fn = make_on_beam_built("4", 3)}),
 
-        DecoCreator:Create("deco_round_beam",       "interior_wall_decals_accademia", "wall_decals_accademia", "pillar_round_front",  {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_round"}),
+        DecoCreator:Create("deco_round_beam",       "interior_wall_decals_accademia", "wall_decals_accademia", "pillar_round_front",  {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_round", on_built_fn = make_on_beam_built("pillar_round_corner", 3)}),
         DecoCreator:Create("deco_round_cornerbeam", "interior_wall_decals_accademia", "wall_decals_accademia", "pillar_round_corner", {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_round", background=3 }),
 
         -- hat store
-        DecoCreator:Create("deco_millinery_beam",        "interior_wall_decals_millinery", "wall_decals_millinery", "pillar_front",          {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_millinery"}),
+        DecoCreator:Create("deco_millinery_beam",        "interior_wall_decals_millinery", "wall_decals_millinery", "pillar_front",          {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_millinery", on_built_fn = make_on_beam_built("pillar_corner", 3)}),
         DecoCreator:Create("deco_millinery_beam2",       "interior_wall_decals_millinery", "wall_decals_millinery", "pillar_boxes_front",    {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true}),
         DecoCreator:Create("deco_millinery_beam3",       "interior_wall_decals_millinery", "wall_decals_millinery", "pillar_quilted_front",  {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true}),
 
@@ -113,7 +134,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("light_dust_fx", "light_dust_fx", "light_dust_fx", "idle", {loopanim=true, tags={"NOBLOCK"}}),
 
         -- hoofspa
-        DecoCreator:Create("deco_marble_beam", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "pillar",                  {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_marble"}),
+        DecoCreator:Create("deco_marble_beam", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "pillar",                  {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_marble", on_built_fn = make_on_beam_built("pillar_corner", 3)}),
         DecoCreator:Create("deco_marble_cornerbeam", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "pillar_corner",     {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_marble", background=3 }),
 
         DecoCreator:Create("deco_valence", "interior_wall_decals_hoofspa", "wall_decals_hoofspa",  "vallance_1pc",  {decal=true, background=3}),

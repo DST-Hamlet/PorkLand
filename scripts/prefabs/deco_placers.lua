@@ -32,38 +32,38 @@ local function CreateMarkers(inst, pts)
             marker.Transform:SetRotation(-90)
         end
 
-        local color = {0.025, 0.075, 0.025}
-        marker.AnimState:SetAddColour(color[1], color[2], color[3], 1)
+        marker.AnimState:SetAddColour(0.025, 0.075, 0.025, 1)
         marker.AnimState:SetMultColour(0.1, 0.1, 0.1, 0.1)
         marker.Transform:SetPosition(subpt.coord.x, subpt.coord.y, subpt.coord.z)
         if subpt.rot then
             marker.Transform:SetRotation(subpt.rot)
         end
 
-        inst.markers[#inst.markers + 1] = marker
+        table.insert(inst.markers, marker)
     end
 end
 
-local function CornerPillarPlacerAnim(inst, pt)
+local function ClearMarkers(inst)
+    if inst.markers then
+        for _, marker in ipairs(inst.markers) do
+            marker:Remove()
+        end
+    end
+end
+
+local function CornerPillarPlacerAnim(inst)
     inst.Transform:SetTwoFaced()
 end
 
-local function CornerPillarPlaceTest(inst, pt)
-
-    if inst.parent then
-        local px, py, pz = inst.Transform:GetWorldPosition()
-        inst.parent:RemoveChild(inst)
-        inst.Transform:SetPosition(px,py,pz)
-    end
-
+local function CornerPillarPlaceTest(inst)
     inst.Transform:SetTwoFaced()
     inst.Transform:SetRotation(-90)
 
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
-        local width = interiorSpawner.current_interior.width
-        local depth = interiorSpawner.current_interior.depth
-        local originpt = interiorSpawner:getSpawnOrigin()
+    local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(ThePlayer:GetPosition())
+    if current_interior then
+        local originpt = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
 
         local dMax = originpt.x + depth/2
         local dMin = originpt.x - depth/2
@@ -72,10 +72,10 @@ local function CornerPillarPlaceTest(inst, pt)
         local wMin = originpt.z - width/2
 
         local pts = {}
-        table.insert(pts, {coord=Vector3(dMax, 0, wMax), billboard=true})
-        table.insert(pts, {coord=Vector3(dMin, 0, wMax), billboard=true})
-        table.insert(pts, {coord=Vector3(dMax, 0, wMin), billboard=true})
-        table.insert(pts, {coord=Vector3(dMin, 0, wMin), billboard=true})
+        table.insert(pts, {coord = Vector3(dMax, 0, wMax), billboard = true})
+        table.insert(pts, {coord = Vector3(dMin, 0, wMax), billboard = true})
+        table.insert(pts, {coord = Vector3(dMax, 0, wMin), billboard = true})
+        table.insert(pts, {coord = Vector3(dMin, 0, wMin), billboard = true})
 
         for i, subpt in ipairs(pts) do
             local rot = 90
@@ -93,21 +93,33 @@ local function CornerPillarPlaceTest(inst, pt)
 
         for i, subpt in ipairs(pts) do
             if distsq(subpt.coord.x, subpt.coord.z, pt.x, pt.z) < 2 then
-                if inst.parent then
-                    inst.parent:RemoveChild(inst)
-                end
-
                 inst.Transform:SetPosition(subpt.coord.x, subpt.coord.y, subpt.coord.z)
                 inst.Transform:SetRotation(subpt.rot)
 
-                return true
+                inst.accept_placement = true
+                return
             end
         end
     end
 
-    return false
+    inst.accept_placement = false
 end
 
+local function MakePillarPlacer(name, bank, build, anim)
+    return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
+		inst.animdata = {
+            build = build,
+            anim = anim,
+            bank = bank,
+        }
+        CornerPillarPlacerAnim(inst)
+        inst.components.placer.onupdatetransform = CornerPillarPlaceTest
+        inst.components.placer.override_build_point_fn = placer_override_build_point
+        inst.components.placer.override_testfn = placer_override_testfn
+        inst.accept_placement = false
+        inst:ListenForEvent("remove", ClearMarkers)
+    end)
+end
 
 local function CeilingLightPlaceTest(inst, pt)
     if inst.parent then
@@ -550,10 +562,10 @@ local function modifypillarfn(inst)
     return data
 end
 
-return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",           "interior_wall_decals",             "4",                    nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
-        MakePlacer("deco_millinery_cornerbeam_placer",  "wall_decals_millinery", "interior_wall_decals_millinery",   "pillar_corner",        nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
-        MakePlacer("deco_round_cornerbeam_placer",      "wall_decals_accademia", "interior_wall_decals_accademia",   "pillar_round_corner",  nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
-        MakePlacer("deco_marble_cornerbeam_placer",     "wall_decals_hoofspa",   "interior_wall_decals_hoofspa",     "pillar_corner",        nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
+return  MakePillarPlacer("deco_wood_cornerbeam_placer",       "wall_decals",           "interior_wall_decals",             "4"),
+        MakePillarPlacer("deco_millinery_cornerbeam_placer",  "wall_decals_millinery", "interior_wall_decals_millinery",   "pillar_corner"),
+        MakePillarPlacer("deco_round_cornerbeam_placer",      "wall_decals_accademia", "interior_wall_decals_accademia",   "pillar_round_corner"),
+        MakePillarPlacer("deco_marble_cornerbeam_placer",     "wall_decals_hoofspa",   "interior_wall_decals_hoofspa",     "pillar_corner"),
 
         -- CHAIRS
         MakePlacer("chair_classic_placer",  "interior_chair", "interior_chair", "chair_classic",  nil, nil, nil, nil, nil, "two"),
