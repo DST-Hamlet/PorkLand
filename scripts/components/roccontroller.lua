@@ -247,6 +247,13 @@ function RocController:GetTarget()
     if self.target and self.target:IsValid() then
         return self.target
     end
+
+    local player = self.target_player or FindClosestPlayerToInst(self.inst, FIND_TARGET_DIST, true)
+    if player and player:IsValid() then
+        self.target = player
+        self.target_player = player
+        return self.target
+    end
 end
 
 function RocController:UpdatePoop(dt)
@@ -299,6 +306,11 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
     end
 
     local target = self:GetTarget()
+
+    if not target then
+        self.inst:PushEvent("liftoff")
+        return
+    end
 
     -- HEAD
     if not self.head.sg:HasStateTag("busy") then
