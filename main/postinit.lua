@@ -24,6 +24,7 @@ local component_posts = {
     "combat",
     "crop",
     "drownable",
+    "dryer",
     "edible",
     "equippable_replica",
     "equippable",
