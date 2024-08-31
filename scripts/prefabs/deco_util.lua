@@ -121,6 +121,10 @@ local function OnBuilt(inst)
             end
         end
     end
+
+    if inst.on_built_fn then
+        inst.on_built_fn(inst)
+    end
 end
 
 local function UpdateArtWorkable(inst, instant)
@@ -214,6 +218,9 @@ local function OnSave(inst, data)
     if inst.animdata then
         data.animdata = inst.animdata
     end
+    if inst.has_curtain then
+        data.has_curtain = inst.has_curtain
+    end
 
     if inst.onbuilt then
         data.onbuilt = inst.onbuilt
@@ -276,6 +283,9 @@ local function OnLoad(inst, data)
         if inst.animdata.anim then
             inst.AnimState:PlayAnimation(inst.animdata.anim, inst.animdata.animloop)
         end
+    end
+    if data.has_curtain then
+        inst.AnimState:Show("curtain")
     end
 
     if data.onbuilt then
@@ -439,6 +449,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         inst.entity:AddNetwork()
 
         inst.AnimState:SetBuild(build)
+        inst.bank = bank -- Used in wall ornaments and window's on_built_fn
         inst.AnimState:SetBank(bank)
         inst.AnimState:PlayAnimation(animframe, loopanim)
         if scale then
@@ -599,27 +610,6 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst:AddTag(tag)
         end
 
-        if data.children then
-            inst:DoTaskInTime(0, function()
-                -- don't spawn child in client
-                if not TheWorld.ismastersim or inst.childrenspawned then
-                    return
-                end
-
-                for _, child in pairs(data.children) do
-                    local child_prop = SpawnPrefab(child)
-                    local x, y, z = inst.Transform:GetWorldPosition()
-                    child_prop.Transform:SetPosition(x, y, z)
-                    child_prop.Transform:SetRotation(inst.Transform:GetRotation())
-                    if not inst.decochildrenToRemove then
-                        inst.decochildrenToRemove = {}
-                    end
-                    inst.decochildrenToRemove[#inst.decochildrenToRemove + 1] = child_prop
-                end
-                inst.childrenspawned = true
-           end)
-        end
-
         if prefabname then
             if TheWorld.ismastersim and not inst.components.inspectable then
                 inst:AddComponent("inspectable")
@@ -632,6 +622,28 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         if not TheWorld.ismastersim then
             return inst
+        end
+
+        if data.children then
+            inst.children_to_spawn = data.children -- Can be overriden in onbuilt
+            inst:DoTaskInTime(0, function()
+                -- don't spawn child in client
+                if inst.childrenspawned then
+                    return
+                end
+
+                for _, child in pairs(inst.children_to_spawn) do
+                    local child_prop = SpawnPrefab(child)
+                    local x, y, z = inst.Transform:GetWorldPosition()
+                    child_prop.Transform:SetPosition(x, y, z)
+                    child_prop.Transform:SetRotation(inst.Transform:GetRotation())
+                    if not inst.decochildrenToRemove then
+                        inst.decochildrenToRemove = {}
+                    end
+                    inst.decochildrenToRemove[#inst.decochildrenToRemove + 1] = child_prop
+                end
+                inst.childrenspawned = true
+           end)
         end
 
         if mirror then
@@ -714,6 +726,7 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         inst:ListenForEvent("onremove", OnRemove)
         if data.onbuilt then
+            inst.on_built_fn = data.on_built_fn
             inst:ListenForEvent("onbuilt", OnBuilt)
         end
         if data.dayevents then
@@ -794,6 +807,25 @@ end
 
 function DecoCreator:GetLights()
     return LIGHTS
+end
+
+function DecoCreator:IsBuiltOnBackWall(inst)
+    local position = inst:GetPosition()
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+    if current_interior then
+        local room_center = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
+
+        local dist = 2
+        local backdiff =  position.x < (room_center.x - depth/2 + dist)
+        -- local frontdiff = position.x > (room_center.x + depth/2 - dist)
+        local rightdiff = position.z > (room_center.z + width/2 - dist)
+        local leftdiff =  position.z < (room_center.z - width/2 + dist)
+
+        local is_backwall = backdiff and not rightdiff and not leftdiff
+        return is_backwall
+    end
+    return false
 end
 
 return DecoCreator

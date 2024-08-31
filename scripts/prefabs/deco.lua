@@ -1,44 +1,86 @@
 local DecoCreator = require("prefabs/deco_util")
 
-return  DecoCreator:Create("window_round",                 "interior_window", "interior_window_side", "day_loop",          {loopanim=true, decal=true, background=3, dayevents=true,                children={"window_round_light"},          tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+local function on_window_built(inst)
+    if DecoCreator:IsBuiltOnBackWall(inst) then
+        local bank = inst.bank:sub(1, -6) -- Remove _side
+        inst.AnimState:SetBank(bank)
+        if inst.children_to_spawn then
+            for i, children in ipairs(inst.children_to_spawn) do
+                inst.children_to_spawn[i] = children .. "_backwall"
+            end
+        end
+        inst.animdata = {
+            bank = bank,
+        }
+    end
+end
+
+local function on_window_built_with_curtain(inst)
+    inst.AnimState:Show("curtain")
+    inst.has_curtain = true
+    on_window_built(inst)
+end
+
+local function make_on_beam_built(corner_beam_animation, background)
+    return function(inst)
+        local position = inst:GetPosition()
+        local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+        if current_interior then
+            local originpt = current_interior:GetPosition()
+
+            if position.x <= originpt.x then
+                inst.animdata = {
+                    animation = corner_beam_animation,
+                }
+                if background then
+                    inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
+                    inst.AnimState:SetSortOrder(background)
+                    inst.setbackground = background
+                end
+            end
+        end
+    end
+end
+
+return  DecoCreator:Create("window_round",                 "interior_window", "interior_window_side", "day_loop",          {loopanim=true, decal=true, background=3, dayevents=true,                children={"window_round_light"},          tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built_with_curtain}),
         DecoCreator:Create("window_round_backwall",        "interior_window", "interior_window", "day_loop",               {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_round", name_override="window_round"}),
 
-        DecoCreator:Create("window_round_curtains_nails", "interior_window", "interior_window_side", "day_loop",           {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        DecoCreator:Create("window_round_curtains_nails", "interior_window", "interior_window_side", "day_loop",           {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_round_curtains_nails_backwall", "interior_window", "interior_window", "day_loop",       {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_round_curtains_nails"}),
 
-        DecoCreator:Create("window_round_burlap", "interior_window_burlap", "interior_window_burlap_side", "day_loop",     {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        DecoCreator:Create("window_round_burlap", "interior_window_burlap", "interior_window_burlap_side", "day_loop",     {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_round_burlap_backwall", "interior_window_burlap", "interior_window_burlap", "day_loop", {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_round_burlap"}),
 
-        DecoCreator:Create("window_small_peaked", "interior_window_small", "interior_window_small_side", "day_loop",       {loopanim=true, decal=nil, background=3, dayevents=true, curtains=nil, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        DecoCreator:Create("window_small_peaked", "interior_window_small", "interior_window_small_side", "day_loop",       {loopanim=true, decal=nil, background=3, dayevents=true, curtains=nil, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_small_peaked_backwall", "interior_window_small", "interior_window_small", "day_loop",   {loopanim=true, decal=nil, bckground=3, dayevents=true, curtains=nil, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_small_peaked"}),
 
-        DecoCreator:Create("window_large_square", "interior_window_large", "interior_window_side", "day_loop",             {loopanim=true, decal=nil, background=3, dayevents=true, curtains=nil, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        DecoCreator:Create("window_large_square", "interior_window_large", "interior_window_side", "day_loop",             {loopanim=true, decal=nil, background=3, dayevents=true, curtains=nil, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_large_square_backwall", "interior_window_large", "interior_window", "day_loop",         {loopanim=true, decal=nil, bckground=3, dayevents=true, curtains=nil, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_large_square"}),
 
-        DecoCreator:Create("window_tall", "interior_window_tall", "interior_window_tall_side", "day_loop",                 {loopanim=true, decal=nil, background=3, dayevents=true, curtains=nil, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        DecoCreator:Create("window_tall", "interior_window_tall", "interior_window_tall_side", "day_loop",                 {loopanim=true, decal=nil, background=3, dayevents=true, curtains=nil, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_tall_backwall", "interior_window_tall", "interior_window_tall", "day_loop",             {loopanim=true, decal=nil, bckground=3, dayevents=true, curtains=nil, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_tall"}),
 
-        --DecoCreator:Create("window_arcane", "interior_window", "interior_window_side", "day_loop",                        {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"wallsection"}, onbuilt=true}),
-        DecoCreator:Create("window_round_arcane", "window_arcane_build", "interior_window_large_side", "day_loop",         {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        --DecoCreator:Create("window_arcane", "interior_window", "interior_window_side", "day_loop",                        {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
+        DecoCreator:Create("window_round_arcane", "window_arcane_build", "interior_window_large_side", "day_loop",         {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_round_arcane_backwall", "window_arcane_build", "interior_window_large", "day_loop",     {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_round_arcane"}),
 
-        DecoCreator:Create("window_small_peaked_curtain", "interior_window_small", "interior_window_side", "day_loop",                      {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        DecoCreator:Create("window_small_peaked_curtain", "interior_window_small", "interior_window_side", "day_loop",                      {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_small_peaked_curtain_backwall", "interior_window_small", "interior_window", "day_loop",                  {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_small_peaked_curtain"}),
 
-        DecoCreator:Create("window_large_square_curtain", "interior_window_large", "interior_window_large_side", "day_loop",     {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        DecoCreator:Create("window_large_square_curtain", "interior_window_large", "interior_window_large_side", "day_loop",     {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_large_square_curtain_backwall", "interior_window_large", "interior_window_large", "day_loop", {loopanim=true, decal=nil, bckground=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_large_square_curtain"}),
 
-        DecoCreator:Create("window_tall_curtain", "interior_window_tall", "interior_window_tall_side", "day_loop",               {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        DecoCreator:Create("window_tall_curtain", "interior_window_tall", "interior_window_tall_side", "day_loop",               {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_tall_curtain_backwall", "interior_window_tall", "interior_window_tall", "day_loop",           {loopanim=true, decal=nil, bckground=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_tall_curtain"}),
 
-        DecoCreator:Create("window_round_light", "interior_window", "interior_window_light_side", "day_loop",                    {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustzmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
-        DecoCreator:Create("window_round_light_backwall",  "interior_window", "interior_window_light", "day_loop",               {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustxmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
-
-        DecoCreator:Create("window_square_weapons", "window_weapons_build", "interior_window_large_side", "day_loop",            {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true}),
+        DecoCreator:Create("window_square_weapons", "window_weapons_build", "interior_window_large_side", "day_loop",            {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_square_weapons_backwall", "window_weapons_build", "interior_window_large", "day_loop",        {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_square_weapons"}),
 
         DecoCreator:Create("window_greenhouse", "interior_window_greenhouse_build", "interior_window_greenhouse_side", "day_loop",     {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_big_light"}, tags={"NOBLOCK","wallsection","fullwallsection"}, onbuilt=true}),
         DecoCreator:Create("window_greenhouse_backwall", "interior_window_greenhouse_build", "interior_window_greenhouse", "day_loop", {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_big_light_backwall"}, tags={"NOBLOCK","wallsection","fullwallsection"}, onbuilt=true, recipeproxy="window_greenhouse"}),
+
+        DecoCreator:Create("window_round_light", "interior_window", "interior_window_light_side", "day_loop",                    {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustzmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
+        DecoCreator:Create("window_round_light_backwall",  "interior_window", "interior_window_light", "day_loop",               {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustxmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
 
         DecoCreator:Create("window_big_light", "interior_window_greenhouse_build", "interior_window_greenhouse_light_side", "day_loop",                    {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustzmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
         DecoCreator:Create("window_big_light_backwall",  "interior_window_greenhouse_build", "interior_window_greenhouse_light", "day_loop",               {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustxmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
@@ -51,13 +93,13 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_wallpaper_rip_side4", "interior_wall_decals", "wall_decals", "9",  {tags={"NOBLOCK"}}),
 
         DecoCreator:Create("deco_wood_cornerbeam",  "interior_wall_decals", "wall_decals", "4", {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_wood", background=3 }),
-        DecoCreator:Create("deco_wood_beam",        "interior_wall_decals", "wall_decals", "3", {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_wood"}),
+        DecoCreator:Create("deco_wood_beam",        "interior_wall_decals", "wall_decals", "3", {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_wood", on_built_fn = make_on_beam_built("4", 3)}),
 
-        DecoCreator:Create("deco_round_beam",       "interior_wall_decals_accademia", "wall_decals_accademia", "pillar_round_front",  {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_round"}),
+        DecoCreator:Create("deco_round_beam",       "interior_wall_decals_accademia", "wall_decals_accademia", "pillar_round_front",  {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_round", on_built_fn = make_on_beam_built("pillar_round_corner", 3)}),
         DecoCreator:Create("deco_round_cornerbeam", "interior_wall_decals_accademia", "wall_decals_accademia", "pillar_round_corner", {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_round", background=3 }),
 
         -- hat store
-        DecoCreator:Create("deco_millinery_beam",        "interior_wall_decals_millinery", "wall_decals_millinery", "pillar_front",          {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_millinery"}),
+        DecoCreator:Create("deco_millinery_beam",        "interior_wall_decals_millinery", "wall_decals_millinery", "pillar_front",          {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_millinery", on_built_fn = make_on_beam_built("pillar_corner", 3)}),
         DecoCreator:Create("deco_millinery_beam2",       "interior_wall_decals_millinery", "wall_decals_millinery", "pillar_boxes_front",    {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true}),
         DecoCreator:Create("deco_millinery_beam3",       "interior_wall_decals_millinery", "wall_decals_millinery", "pillar_quilted_front",  {decal=true, tags={"NOBLOCK","cornerpost"}, onbuilt=true}),
 
@@ -92,7 +134,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("light_dust_fx", "light_dust_fx", "light_dust_fx", "idle", {loopanim=true, tags={"NOBLOCK"}}),
 
         -- hoofspa
-        DecoCreator:Create("deco_marble_beam", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "pillar",                  {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_marble"}),
+        DecoCreator:Create("deco_marble_beam", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "pillar",                  {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_marble", on_built_fn = make_on_beam_built("pillar_corner", 3)}),
         DecoCreator:Create("deco_marble_cornerbeam", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "pillar_corner",     {decal=true, loopanim=true, light=DecoCreator:GetLights().SMALL, tags={"NOBLOCK","cornerpost"}, onbuilt=true, name_override = "deco_marble", background=3 }),
 
         DecoCreator:Create("deco_valence", "interior_wall_decals_hoofspa", "wall_decals_hoofspa",  "vallance_1pc",  {decal=true, background=3}),

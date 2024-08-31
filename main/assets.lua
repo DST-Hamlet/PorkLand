@@ -121,6 +121,7 @@ PrefabFiles = {
     "deco_ruins_fountain",
     "deco_swinging_light",
     "deco_table",
+    "deco_wall_ornament",
     "interior_boundary",
     "interior_surface",
     "interior_texture_packages",
