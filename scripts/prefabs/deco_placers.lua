@@ -388,13 +388,13 @@ local function ShelfPlacerAnim(inst)
     inst.Transform:SetRotation(-90)
 end
 
-local function ShelfPlaceTest(inst, pt)
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
+local function ShelfPlaceTest(inst)
+    local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
 
-        local originpt = interiorSpawner:getSpawnOrigin()
-        local width = interiorSpawner.current_interior.width
-        local depth = interiorSpawner.current_interior.depth
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(ThePlayer:GetPosition())
+    if current_interior then
+        local originpt = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
 
         local dist = 2
         local newpt = {}
@@ -413,10 +413,6 @@ local function ShelfPlaceTest(inst, pt)
             canbuild = false
         end
 
-        if inst.parent then
-            inst.parent:RemoveChild(inst)
-        end
-
         inst.Transform:SetPosition(newpt.x, 0, newpt.z)
         if canbuild then
             inst.Transform:SetRotation(rot)
@@ -431,10 +427,26 @@ local function ShelfPlaceTest(inst, pt)
         ents = TheSim:FindEntities(newpt.x, 0, newpt.z, blockeddist, nil, nil, {"furniture", "wallsection"})
 
         if canbuild and #ents < 1 then
-            return true
+            inst.accept_placement = true
+            return
         end
     end
-    return false
+    inst.accept_placement = false
+end
+
+local function MakeShelfPlacer(name, bank, build, anim)
+    return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
+		inst.animdata = {
+            build = build,
+            anim = anim,
+            bank = bank,
+        }
+        ShelfPlacerAnim(inst)
+        inst.components.placer.onupdatetransform = ShelfPlaceTest
+        inst.components.placer.override_build_point_fn = placer_override_build_point
+        inst.components.placer.override_testfn = placer_override_testfn
+        inst.accept_placement = false
+    end)
 end
 
 local function RugPropPlacerAnim(inst)
@@ -482,15 +494,6 @@ local function RugPlacerAnim(inst)
 end
 
 local function RugPlaceTestFn(inst, pt, distance)
-
-    if inst.parent then
-        local myrot = inst.Transform:GetRotation()
-        local px, py, pz = inst.Transform:GetWorldPosition()
-        inst.parent:RemoveChild(inst)
-        inst.Transform:SetPosition(px,py,pz)
-        inst.Transform:SetRotation(myrot)
-    end
-
     local interiorSpawner = TheWorld.components.interiorspawner
     if interiorSpawner.current_interior then
 
@@ -565,24 +568,24 @@ return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",          
         MakePlacer("chair_ottoman_placer",  "interior_chair", "interior_chair", "chair_ottoman",  nil, nil, nil, nil, nil, "two"),
 
         -- SHELF
-        MakePlacer("shelf_wood_placer",               "bookcase", "room_shelves", "wood",             nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_basic_placer",              "bookcase", "room_shelves", "basic",            nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_cinderblocks_placer",       "bookcase", "room_shelves", "cinderblocks",     nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_marble_placer",             "bookcase", "room_shelves", "marble",           nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_glass_placer",              "bookcase", "room_shelves", "glass",            nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_ladder_placer",             "bookcase", "room_shelves", "ladder",           nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_hutch_placer",              "bookcase", "room_shelves", "hutch",            nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_industrial_placer",         "bookcase", "room_shelves", "industrial",       nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_adjustable_placer",         "bookcase", "room_shelves", "adjustable",       nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_midcentury_placer",         "bookcase", "room_shelves", "midcentury",       nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_wallmount_placer",          "bookcase", "room_shelves", "wallmount",        nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_aframe_placer",             "bookcase", "room_shelves", "aframe",           nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_crates_placer",             "bookcase", "room_shelves", "crates",           nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_fridge_placer",             "bookcase", "room_shelves", "fridge",           nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_floating_placer",           "bookcase", "room_shelves", "floating",         nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_pipe_placer",               "bookcase", "room_shelves", "pipe",             nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_hattree_placer",            "bookcase", "room_shelves", "hattree",          nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
-        MakePlacer("shelf_pallet_placer",             "bookcase", "room_shelves", "pallet",           nil, nil, nil, nil, nil, nil, nil, nil, nil, ShelfPlaceTest, nil, ShelfPlacerAnim),
+        MakeShelfPlacer("shelf_wood_placer",         "bookcase", "room_shelves", "wood"),
+        MakeShelfPlacer("shelf_basic_placer",        "bookcase", "room_shelves", "basic"),
+        MakeShelfPlacer("shelf_cinderblocks_placer", "bookcase", "room_shelves", "cinderblocks"),
+        MakeShelfPlacer("shelf_marble_placer",       "bookcase", "room_shelves", "marble"),
+        MakeShelfPlacer("shelf_glass_placer",        "bookcase", "room_shelves", "glass"),
+        MakeShelfPlacer("shelf_ladder_placer",       "bookcase", "room_shelves", "ladder"),
+        MakeShelfPlacer("shelf_hutch_placer",        "bookcase", "room_shelves", "hutch"),
+        MakeShelfPlacer("shelf_industrial_placer",   "bookcase", "room_shelves", "industrial"),
+        MakeShelfPlacer("shelf_adjustable_placer",   "bookcase", "room_shelves", "adjustable"),
+        MakeShelfPlacer("shelf_midcentury_placer",   "bookcase", "room_shelves", "midcentury"),
+        MakeShelfPlacer("shelf_wallmount_placer",    "bookcase", "room_shelves", "wallmount"),
+        MakeShelfPlacer("shelf_aframe_placer",       "bookcase", "room_shelves", "aframe"),
+        MakeShelfPlacer("shelf_crates_placer",       "bookcase", "room_shelves", "crates"),
+        MakeShelfPlacer("shelf_fridge_placer",       "bookcase", "room_shelves", "fridge"),
+        MakeShelfPlacer("shelf_floating_placer",     "bookcase", "room_shelves", "floating"),
+        MakeShelfPlacer("shelf_pipe_placer",         "bookcase", "room_shelves", "pipe"),
+        MakeShelfPlacer("shelf_hattree_placer",      "bookcase", "room_shelves", "hattree"),
+        MakeShelfPlacer("shelf_pallet_placer",       "bookcase", "room_shelves", "pallet"),
 
         -- HANGING LIGHTS
         MakePlacer("swinging_light_basic_bulb_placer",         "ceiling_lights", "ceiling_lights", "light_basic_bulb",             nil, nil, nil, nil, nil, "two"),
@@ -599,17 +602,16 @@ return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",          
         MakePlacer("swinging_light_derby_placer",              "ceiling_lights", "ceiling_lights", "light_derby",                  nil, nil, nil, nil, nil, "two"),
 
         -- WINDOWS
-        MakeWindowPlacer("window_round_curtains_nails_placer",  "interior_window", "interior_window", "day_loop",                               WindowPlacerAnim, WindowPlaceTest),
-        MakeWindowPlacer("window_round_burlap_placer",          "interior_window_burlap", "interior_window_burlap", "day_loop",                 WindowPlacerAnim, WindowPlaceTest),
-        MakeWindowPlacer("window_small_peaked_curtain_placer",  "interior_window", "interior_window_small", "day_loop",                         NoCurtainWindowPlacerAnim, WindowPlaceTest),
-        MakeWindowPlacer("window_small_peaked_placer",          "interior_window", "interior_window_small", "day_loop",                         NoCurtainWindowPlacerAnim, WindowPlaceTest),
-        MakeWindowPlacer("window_large_square_placer",          "interior_window_large", "interior_window_large", "day_loop",                   NoCurtainWindowPlacerAnim, WindowPlaceTest),
-        MakeWindowPlacer("window_tall_placer",                  "interior_window_tall", "interior_window_tall", "day_loop",                     NoCurtainWindowPlacerAnim, WindowPlaceTest),
-        MakeWindowPlacer("window_large_square_curtain_placer",  "interior_window_large", "interior_window_large", "day_loop",                   CurtainWindowPlacerAnim, WindowPlaceTest),
-        MakeWindowPlacer("window_tall_curtain_placer",          "interior_window_tall", "interior_window_tall", "day_loop",                     CurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_round_curtains_nails_placer",  "interior_window", "interior_window", "day_loop",                             WindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_round_burlap_placer",          "interior_window_burlap", "interior_window_burlap", "day_loop",               WindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_small_peaked_curtain_placer",  "interior_window", "interior_window_small", "day_loop",                       NoCurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_small_peaked_placer",          "interior_window", "interior_window_small", "day_loop",                       NoCurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_large_square_placer",          "interior_window_large", "interior_window_large", "day_loop",                 NoCurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_tall_placer",                  "interior_window_tall", "interior_window_tall", "day_loop",                   NoCurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_large_square_curtain_placer",  "interior_window_large", "interior_window_large", "day_loop",                 CurtainWindowPlacerAnim, WindowPlaceTest),
+        MakeWindowPlacer("window_tall_curtain_placer",          "interior_window_tall", "interior_window_tall", "day_loop",                   CurtainWindowPlacerAnim, WindowPlaceTest),
 
-        MakeWindowPlacer("window_greenhouse_placer",            "interior_window_greenhouse", "interior_window_greenhouse_build", "day_loop",   CurtainWindowPlacerAnim, WindowWidePlaceTest),
-
+        MakeWindowPlacer("window_greenhouse_placer",            "interior_window_greenhouse", "interior_window_greenhouse_build", "day_loop", CurtainWindowPlacerAnim, WindowWidePlaceTest),
 
         MakePlacer("deco_lamp_fringe_placer",        "interior_floorlamp", "interior_floorlamp", "floorlamp_fringe",         nil, nil, nil, nil, nil, "two"),
         MakePlacer("deco_lamp_stainglass_placer",    "interior_floorlamp", "interior_floorlamp", "floorlamp_stainglass",     nil, nil, nil, nil, nil, "two"),
