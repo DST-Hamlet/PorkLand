@@ -10,7 +10,6 @@ local DISABLE_RECIPES = {
     "wateringcan",
     "purplemooneye",
     "trophyscale_oversizedveggies",
-    "lifeinjector",
     "beefalo_groomer",
     "brush",
     "seedpouch",

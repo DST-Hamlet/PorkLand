@@ -23,6 +23,8 @@ for i, recipe_name in ipairs(LOST_RECIPES) do
     end)
 end
 
+AllRecipes["cookbook"].ingredients = {Ingredient("papyrus", 1), Ingredient("radish", 1)} -- TODO: 检测世界来修改配方
+
 local _GetValidRecipe = GetValidRecipe
 function GetValidRecipe(recipe_name, ...)
     local recipe = _GetValidRecipe(recipe_name, ...)
