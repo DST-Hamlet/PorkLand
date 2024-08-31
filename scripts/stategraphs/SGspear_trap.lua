@@ -51,6 +51,7 @@ local function SetExtended(inst, extended)
         inst:AddTag("hostile")
         inst:RemoveTag("fireimmune")
         inst:RemoveTag("NOCLICK")
+        inst:RemoveTag("notarget")
 
         inst.name = STRINGS.NAMES.PIG_RUINS_SPEAR_TRAP_TRIGGERED
 
@@ -68,9 +69,10 @@ local function SetExtended(inst, extended)
             inst.MiniMapEntity:SetIcon("")
         end
 
-        inst:AddTag("NOCLICK")
-        inst:RemoveTag("hostile")
         inst:AddTag("fireimmune")
+        inst:AddTag("NOCLICK")
+        inst:AddTag("notarget")
+        inst:RemoveTag("hostile")
 
         inst.name = STRINGS.NAMES.PIG_RUINS_SPEAR_TRAP
 
