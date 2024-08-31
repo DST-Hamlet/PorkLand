@@ -183,7 +183,6 @@ local function commonfn()
     inst:AddTag("lightningrod")
     inst:AddTag("laser_immune")
     inst:AddTag("ancient_robot")
-    inst:AddTag("dontteleporttointerior")
     inst:AddTag("mech")
 
     inst.entity:SetPristine()
