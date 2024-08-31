@@ -1,3 +1,19 @@
+local function placer_override_testfn(inst)
+    local can_build, mouse_blocked = true, false
+
+    if inst.components.placer.testfn ~= nil then
+        can_build, mouse_blocked = inst.components.placer.testfn(inst:GetPosition(), inst:GetRotation())
+    end
+
+    can_build = inst.accept_placement
+
+    return can_build, mouse_blocked
+end
+
+local function placer_override_build_point(inst)
+    return inst:GetPosition()
+end
+
 local function CreateMarkers(inst, pts)
     for _, subpt in pairs(pts) do
         local marker = SpawnPrefab(inst.prefab)
@@ -130,22 +146,16 @@ local function CeilingLightPlaceTest(inst, pt)
     return false
 end
 
-local function WallPlaceTest(inst, pt, distance)
-    if inst.parent then
-        local px, py, pz = inst.Transform:GetWorldPosition()
-        inst.parent:RemoveChild(inst)
-        inst.Transform:SetPosition(px,py,pz)
-    end
+local function WallPlaceTest(inst, distance)
+    local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
 
     inst.Transform:SetTwoFaced()
     inst.Transform:SetRotation(-90)
 
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
-
-        local originpt = interiorSpawner:getSpawnOrigin()
-        local width = interiorSpawner.current_interior.width
-        local depth = interiorSpawner.current_interior.depth
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(ThePlayer:GetPosition())
+    if current_interior then
+        local originpt = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
 
         local dist = 2
         local newpt = {}
@@ -173,7 +183,6 @@ local function WallPlaceTest(inst, pt, distance)
             side = "_side"
             rot = -90
         else
-            print("canbuild fail 1")
             canbuild = false
         end
 
@@ -184,7 +193,7 @@ local function WallPlaceTest(inst, pt, distance)
             inst.Transform:SetRotation(rot)
         end
 
-        inst.AnimState:PlayAnimation( inst.animdata.anim )
+        inst.AnimState:PlayAnimation(inst.animdata.anim)
         inst.AnimState:SetBank(inst.animdata.bank .. side)
         inst.Transform:SetRotation(rot)
 
@@ -195,18 +204,31 @@ local function WallPlaceTest(inst, pt, distance)
 
         local dist = distance or 3
         ents = TheSim:FindEntities(pt.x, pt.y, pt.z, dist, {"wallsection"})
-        print("ENTS",#ents, canbuild)
-        --dumptable(ents,1,1,1)
         if #ents < 1 and canbuild then
-            return true
+            inst.accept_placement = true
+            return
         end
     end
 
-    return false
+    inst.accept_placement = false
 end
 
-local function Wall4PlaceTest(inst, pt)
-    return WallPlaceTest(inst,pt,4)
+local function Wall4PlaceTest(inst)
+    return WallPlaceTest(inst, 4)
+end
+
+local function MakeWallPlacer(name, bank, build, anim, on_update_transform)
+    return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
+		inst.animdata = {
+            build = build,
+            anim = anim,
+            bank = bank,
+        }
+        inst.components.placer.onupdatetransform = on_update_transform
+        inst.components.placer.override_build_point_fn = placer_override_build_point
+        inst.components.placer.override_testfn = placer_override_testfn
+        inst.accept_placement = false
+    end)
 end
 
 local function NoCurtainWindowPlacerAnim(inst)
@@ -344,22 +366,6 @@ local function WindowWidePlaceTest(inst)
         end
     end
     inst.accept_placement = false
-end
-
-local function placer_override_testfn(inst)
-    local can_build, mouse_blocked = true, false
-
-    if inst.components.placer.testfn ~= nil then
-        can_build, mouse_blocked = inst.components.placer.testfn(inst:GetPosition(), inst:GetRotation())
-    end
-
-    can_build = inst.accept_placement
-
-    return can_build, mouse_blocked
-end
-
-local function placer_override_build_point(inst)
-    return inst:GetPosition()
 end
 
 local function MakeWindowPlacer(name, bank, build, anim, animation_postinit, on_update_transform)
@@ -541,26 +547,6 @@ local function modifypillarfn(inst)
     return data
 end
 
--- This changes the final recipe product of things placed on walls so that it's using the right anim
-local function modifywallfn(inst)
-    local data = {}
-
-    data.anim =  inst.animdata.anim
-
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
-        local originpt = interiorSpawner:getSpawnOrigin()
-        local width = interiorSpawner.current_interior.width
-        local pt = Point(inst.Transform:GetWorldPosition())
-
-        if pt.z <= originpt.z -width/2 or pt.z >= originpt.z + width/2 then
-            data.bank = inst.animdata.bank .. "_side"
-        end
-    end
-
-    return data
-end
-
 return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",           "interior_wall_decals",             "4",                    nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
         MakePlacer("deco_millinery_cornerbeam_placer",  "wall_decals_millinery", "interior_wall_decals_millinery",   "pillar_corner",        nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
         MakePlacer("deco_round_cornerbeam_placer",      "wall_decals_accademia", "interior_wall_decals_accademia",   "pillar_round_corner",  nil, nil, nil, nil, nil, nil, nil, nil, nil, CornerPillarPlaceTest, modifypillarfn, CornerPillarPlacerAnim),
@@ -706,19 +692,19 @@ return  MakePlacer("deco_wood_cornerbeam_placer",       "wall_decals",          
         -- WALL ORNAMENTS
 
         -- WALL DECO
-        MakePlacer("deco_antiquities_wallfish_placer",             "interior_wallornament", "interior_wallornament", "fish",               nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_antiquities_beefalo_placer",              "interior_wallornament", "interior_wallornament", "beefalo",            nil, nil, nil, nil, nil, nil, nil, nil, nil, Wall4PlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_photo_placer",               "interior_wallornament", "interior_wallornament", "photo",              nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_fulllength_mirror_placer",   "interior_wallornament", "interior_wallornament", "fulllength_mirror",  nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_embroidery_hoop_placer",     "interior_wallornament", "interior_wallornament", "embroidery_hoop",    nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_mosaic_placer",              "interior_wallornament", "interior_wallornament", "mosaic",             nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_wreath_placer",              "interior_wallornament", "interior_wallornament", "wreath",             nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_axe_placer",                 "interior_wallornament", "interior_wallornament", "axe",                nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_hunt_placer",                "interior_wallornament", "interior_wallornament", "hunt",               nil, nil, nil, nil, nil, nil, nil, nil, nil, Wall4PlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_periodic_table_placer",      "interior_wallornament", "interior_wallornament", "periodic_table",     nil, nil, nil, nil, nil, nil, nil, nil, nil, Wall4PlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_gears_art_placer",           "interior_wallornament", "interior_wallornament", "gears_art",          nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_cape_placer",                "interior_wallornament", "interior_wallornament", "cape",               nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_no_smoking_placer",          "interior_wallornament", "interior_wallornament", "no_smoking",         nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn),
-        MakePlacer("deco_wallornament_black_cat_placer",           "interior_wallornament", "interior_wallornament", "black_cat",          nil, nil, nil, nil, nil, nil, nil, nil, nil, WallPlaceTest, modifywallfn)
+        MakeWallPlacer("deco_antiquities_wallfish_placer",             "interior_wallornament", "interior_wallornament", "fish",               WallPlaceTest),
+        MakeWallPlacer("deco_antiquities_beefalo_placer",              "interior_wallornament", "interior_wallornament", "beefalo",            Wall4PlaceTest),
+        MakeWallPlacer("deco_wallornament_photo_placer",               "interior_wallornament", "interior_wallornament", "photo",              WallPlaceTest),
+        MakeWallPlacer("deco_wallornament_fulllength_mirror_placer",   "interior_wallornament", "interior_wallornament", "fulllength_mirror",  WallPlaceTest),
+        MakeWallPlacer("deco_wallornament_embroidery_hoop_placer",     "interior_wallornament", "interior_wallornament", "embroidery_hoop",    WallPlaceTest),
+        MakeWallPlacer("deco_wallornament_mosaic_placer",              "interior_wallornament", "interior_wallornament", "mosaic",             WallPlaceTest),
+        MakeWallPlacer("deco_wallornament_wreath_placer",              "interior_wallornament", "interior_wallornament", "wreath",             WallPlaceTest),
+        MakeWallPlacer("deco_wallornament_axe_placer",                 "interior_wallornament", "interior_wallornament", "axe",                WallPlaceTest),
+        MakeWallPlacer("deco_wallornament_hunt_placer",                "interior_wallornament", "interior_wallornament", "hunt",               Wall4PlaceTest),
+        MakeWallPlacer("deco_wallornament_periodic_table_placer",      "interior_wallornament", "interior_wallornament", "periodic_table",     Wall4PlaceTest),
+        MakeWallPlacer("deco_wallornament_gears_art_placer",           "interior_wallornament", "interior_wallornament", "gears_art",          WallPlaceTest),
+        MakeWallPlacer("deco_wallornament_cape_placer",                "interior_wallornament", "interior_wallornament", "cape",               WallPlaceTest),
+        MakeWallPlacer("deco_wallornament_no_smoking_placer",          "interior_wallornament", "interior_wallornament", "no_smoking",         WallPlaceTest),
+        MakeWallPlacer("deco_wallornament_black_cat_placer",           "interior_wallornament", "interior_wallornament", "black_cat",          WallPlaceTest)
 
 --placeTestWallFlatFn

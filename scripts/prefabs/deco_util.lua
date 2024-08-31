@@ -449,7 +449,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         inst.entity:AddNetwork()
 
         inst.AnimState:SetBuild(build)
-        inst.bank = bank -- Used in window's on_built_fn
+        inst.bank = bank -- Used in wall ornaments and window's on_built_fn
         inst.AnimState:SetBank(bank)
         inst.AnimState:PlayAnimation(animframe, loopanim)
         if scale then
@@ -807,6 +807,25 @@ end
 
 function DecoCreator:GetLights()
     return LIGHTS
+end
+
+function DecoCreator:IsBuiltOnBackWall(inst)
+    local position = inst:GetPosition()
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+    if current_interior then
+        local room_center = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
+
+        local dist = 2
+        local backdiff =  position.x < (room_center.x - depth/2 + dist)
+        -- local frontdiff = position.x > (room_center.x + depth/2 - dist)
+        local rightdiff = position.z > (room_center.z + width/2 - dist)
+        local leftdiff =  position.z < (room_center.z - width/2 + dist)
+
+        local is_backwall = backdiff and not rightdiff and not leftdiff
+        return is_backwall
+    end
+    return false
 end
 
 return DecoCreator
