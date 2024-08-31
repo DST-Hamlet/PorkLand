@@ -73,6 +73,11 @@ local function Fix(inst, fixer)
             if inst.spawner_data.child and inst.spawner_data.child:IsValid() then
                 reconstructed.components.spawner:TakeOwnership(inst.spawner_data.child)
             end
+            -- cancelling this task for pig_guard_tower so the pig guards wouldn't spawn every time the tower is rebuilt
+            if reconstructed._spawner_init_task then
+                reconstructed._spawner_init_task:Cancel()
+                reconstructed._spawner_init_task = nil
+            end
         end
 
         -- For player house
