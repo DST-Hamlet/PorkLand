@@ -2549,7 +2549,7 @@ AddStategraphPostInit("wilson", function(sg)
         end
 
         local should_run = inst.components.locomotor:WantsToRun()
-        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
+        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
         if not should_move then
             if inst.components.sailor and inst.components.sailor.boat then
                 inst.components.sailor.boat:PushEvent("boatstopmoving")

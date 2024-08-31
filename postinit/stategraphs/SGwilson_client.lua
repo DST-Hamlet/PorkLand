@@ -847,7 +847,7 @@ AddStategraphPostInit("wilson_client", function(sg)
         end
 
         local should_run = inst.components.locomotor:WantsToRun()
-        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
+        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
 
         if inst:HasTag("_sailor") and inst:HasTag("sailing") then
             if not is_attacking then
