@@ -23,7 +23,7 @@ GLOBAL.PORKLAND_REQUIRED_PREFABS =
 }
 
 AddTaskSet("porkland", {
-    name = "porkland_set",
+    name = STRINGS.UI.CUSTOMIZATIONSCREEN.TASKSETNAMES.PORKLAND,
     location = "porkland",
 
     tasks = {

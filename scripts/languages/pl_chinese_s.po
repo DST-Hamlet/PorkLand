@@ -142,392 +142,392 @@ msgstr "雄蚁 #1252"
 
 #. STRINGS.ANTNAMES.10
 msgctxt "STRINGS.ANTNAMES.10"
-msgid "Drone #813462"
+msgid "Drone #8749"
 msgstr "雄蚁 #746605"
 
 #. STRINGS.ANTNAMES.100
 msgctxt "STRINGS.ANTNAMES.100"
-msgid "Drone #247395"
+msgid "Drone #407868"
 msgstr "雄蚁 #504807"
 
 #. STRINGS.ANTNAMES.11
 msgctxt "STRINGS.ANTNAMES.11"
-msgid "Drone #997578"
+msgid "Drone #105423"
 msgstr "雄蚁 #174109"
 
 #. STRINGS.ANTNAMES.12
 msgctxt "STRINGS.ANTNAMES.12"
-msgid "Drone #269451"
+msgid "Drone #710609"
 msgstr "雄蚁 #858944"
 
 #. STRINGS.ANTNAMES.13
 msgctxt "STRINGS.ANTNAMES.13"
-msgid "Drone #695666"
+msgid "Drone #152038"
 msgstr "雄蚁 #710502"
 
 #. STRINGS.ANTNAMES.14
 msgctxt "STRINGS.ANTNAMES.14"
-msgid "Drone #291737"
+msgid "Drone #595955"
 msgstr "雄蚁 #513535"
 
 #. STRINGS.ANTNAMES.15
 msgctxt "STRINGS.ANTNAMES.15"
-msgid "Drone #724410"
+msgid "Drone #939922"
 msgstr "雄蚁 #303995"
 
 #. STRINGS.ANTNAMES.16
 msgctxt "STRINGS.ANTNAMES.16"
-msgid "Drone #23085"
+msgid "Drone #796084"
 msgstr "雄蚁 #14985"
 
 #. STRINGS.ANTNAMES.17
 msgctxt "STRINGS.ANTNAMES.17"
-msgid "Drone #8749"
+msgid "Drone #516589"
 msgstr "雄蚁 #91403"
 
 #. STRINGS.ANTNAMES.18
 msgctxt "STRINGS.ANTNAMES.18"
-msgid "Drone #105423"
+msgid "Drone #810438"
 msgstr "雄蚁 #364453"
 
 #. STRINGS.ANTNAMES.19
 msgctxt "STRINGS.ANTNAMES.19"
-msgid "Drone #710609"
+msgid "Drone #165508"
 msgstr "雄蚁 #147313"
 
 #. STRINGS.ANTNAMES.2
 msgctxt "STRINGS.ANTNAMES.2"
-msgid "Drone #152038"
+msgid "Drone #813462"
 msgstr "雄蚁 #563586"
 
 #. STRINGS.ANTNAMES.20
 msgctxt "STRINGS.ANTNAMES.20"
-msgid "Drone #595955"
+msgid "Drone #74758"
 msgstr "雄蚁 #165899"
 
 #. STRINGS.ANTNAMES.21
 msgctxt "STRINGS.ANTNAMES.21"
-msgid "Drone #939922"
+msgid "Drone #637855"
 msgstr "雄蚁 #988526"
 
 #. STRINGS.ANTNAMES.22
 msgctxt "STRINGS.ANTNAMES.22"
-msgid "Drone #796084"
+msgid "Drone #566784"
 msgstr "雄蚁 #445693"
 
 #. STRINGS.ANTNAMES.23
 msgctxt "STRINGS.ANTNAMES.23"
-msgid "Drone #516589"
+msgid "Drone #761823"
 msgstr "雄蚁 #119084"
 
 #. STRINGS.ANTNAMES.24
 msgctxt "STRINGS.ANTNAMES.24"
-msgid "Drone #810438"
+msgid "Drone #984604"
 msgstr "雄蚁 #4670"
 
 #. STRINGS.ANTNAMES.25
 msgctxt "STRINGS.ANTNAMES.25"
-msgid "Drone #165508"
+msgid "Drone #294798"
 msgstr "雄蚁 #8912"
 
 #. STRINGS.ANTNAMES.26
 msgctxt "STRINGS.ANTNAMES.26"
-msgid "Drone #74758"
+msgid "Drone #588569"
 msgstr "雄蚁 #377881"
 
 #. STRINGS.ANTNAMES.27
 msgctxt "STRINGS.ANTNAMES.27"
-msgid "Drone #637855"
+msgid "Drone #745431"
 msgstr "雄蚁 #531663"
 
 #. STRINGS.ANTNAMES.28
 msgctxt "STRINGS.ANTNAMES.28"
-msgid "Drone #566784"
+msgid "Drone #833404"
 msgstr "雄蚁 #571185"
 
 #. STRINGS.ANTNAMES.29
 msgctxt "STRINGS.ANTNAMES.29"
-msgid "Drone #761823"
+msgid "Drone #9093"
 msgstr "雄蚁 #601764"
 
 #. STRINGS.ANTNAMES.3
 msgctxt "STRINGS.ANTNAMES.3"
-msgid "Drone #984604"
+msgid "Drone #247395"
 msgstr "雄蚁 #193305"
 
 #. STRINGS.ANTNAMES.30
 msgctxt "STRINGS.ANTNAMES.30"
-msgid "Drone #294798"
+msgid "Drone #947361"
 msgstr "雄蚁 #607166"
 
 #. STRINGS.ANTNAMES.31
 msgctxt "STRINGS.ANTNAMES.31"
-msgid "Drone #588569"
+msgid "Drone #776904"
 msgstr "雄蚁 #166235"
 
 #. STRINGS.ANTNAMES.32
 msgctxt "STRINGS.ANTNAMES.32"
-msgid "Drone #745431"
+msgid "Drone #968233"
 msgstr "雄蚁 #663046"
 
 #. STRINGS.ANTNAMES.33
 msgctxt "STRINGS.ANTNAMES.33"
-msgid "Drone #833404"
+msgid "Drone #811655"
 msgstr "雄蚁 #450789"
 
 #. STRINGS.ANTNAMES.34
 msgctxt "STRINGS.ANTNAMES.34"
-msgid "Drone #9093"
+msgid "Drone #577172"
 msgstr "雄蚁 #352123"
 
 #. STRINGS.ANTNAMES.35
 msgctxt "STRINGS.ANTNAMES.35"
-msgid "Drone #947361"
+msgid "Drone #421036"
 msgstr "雄蚁 #57040"
 
 #. STRINGS.ANTNAMES.36
 msgctxt "STRINGS.ANTNAMES.36"
-msgid "Drone #776904"
+msgid "Drone #392814"
 msgstr "雄蚁 #607685"
 
 #. STRINGS.ANTNAMES.37
 msgctxt "STRINGS.ANTNAMES.37"
-msgid "Drone #968233"
+msgid "Drone #53836"
 msgstr "雄蚁 #783319"
 
 #. STRINGS.ANTNAMES.38
 msgctxt "STRINGS.ANTNAMES.38"
-msgid "Drone #811655"
+msgid "Drone #505656"
 msgstr "雄蚁 #802607"
 
 #. STRINGS.ANTNAMES.39
 msgctxt "STRINGS.ANTNAMES.39"
-msgid "Drone #577172"
+msgid "Drone #378222"
 msgstr "雄蚁 #519883"
 
 #. STRINGS.ANTNAMES.4
 msgctxt "STRINGS.ANTNAMES.4"
-msgid "Drone #421036"
+msgid "Drone #997578"
 msgstr "雄蚁 #808741"
 
 #. STRINGS.ANTNAMES.40
 msgctxt "STRINGS.ANTNAMES.40"
-msgid "Drone #392814"
+msgid "Drone #57389"
 msgstr "雄蚁 #301951"
 
 #. STRINGS.ANTNAMES.41
 msgctxt "STRINGS.ANTNAMES.41"
-msgid "Drone #53836"
+msgid "Drone #629312"
 msgstr "雄蚁 #875973"
 
 #. STRINGS.ANTNAMES.42
 msgctxt "STRINGS.ANTNAMES.42"
-msgid "Drone #505656"
+msgid "Drone #998873"
 msgstr "雄蚁 #726677"
 
 #. STRINGS.ANTNAMES.43
 msgctxt "STRINGS.ANTNAMES.43"
-msgid "Drone #378222"
+msgid "Drone #208872"
 msgstr "雄蚁 #955901"
 
 #. STRINGS.ANTNAMES.44
 msgctxt "STRINGS.ANTNAMES.44"
-msgid "Drone #57389"
+msgid "Drone #879424"
 msgstr "雄蚁 #925718"
 
 #. STRINGS.ANTNAMES.45
 msgctxt "STRINGS.ANTNAMES.45"
-msgid "Drone #629312"
+msgid "Drone #667041"
 msgstr "雄蚁 #539354"
 
 #. STRINGS.ANTNAMES.46
 msgctxt "STRINGS.ANTNAMES.46"
-msgid "Drone #998873"
+msgid "Drone #547209"
 msgstr "雄蚁 #142339"
 
 #. STRINGS.ANTNAMES.47
 msgctxt "STRINGS.ANTNAMES.47"
-msgid "Drone #208872"
+msgid "Drone #462375"
 msgstr "雄蚁 #462081"
 
 #. STRINGS.ANTNAMES.48
 msgctxt "STRINGS.ANTNAMES.48"
-msgid "Drone #879424"
+msgid "Drone #390780"
 msgstr "雄蚁 #235329"
 
 #. STRINGS.ANTNAMES.49
 msgctxt "STRINGS.ANTNAMES.49"
-msgid "Drone #667041"
+msgid "Drone #979317"
 msgstr "雄蚁 #862240"
 
 #. STRINGS.ANTNAMES.5
 msgctxt "STRINGS.ANTNAMES.5"
-msgid "Drone #547209"
+msgid "Drone #269451"
 msgstr "雄蚁 #585010"
 
 #. STRINGS.ANTNAMES.50
 msgctxt "STRINGS.ANTNAMES.50"
-msgid "Drone #462375"
+msgid "Drone #608235"
 msgstr "雄蚁 #209602"
 
 #. STRINGS.ANTNAMES.51
 msgctxt "STRINGS.ANTNAMES.51"
-msgid "Drone #390780"
+msgid "Drone #528536"
 msgstr "雄蚁 #779657"
 
 #. STRINGS.ANTNAMES.52
 msgctxt "STRINGS.ANTNAMES.52"
-msgid "Drone #979317"
+msgid "Drone #691324"
 msgstr "雄蚁 #843654"
 
 #. STRINGS.ANTNAMES.53
 msgctxt "STRINGS.ANTNAMES.53"
-msgid "Drone #608235"
+msgid "Drone #537508"
 msgstr "雄蚁 #996796"
 
 #. STRINGS.ANTNAMES.54
 msgctxt "STRINGS.ANTNAMES.54"
-msgid "Drone #528536"
+msgid "Drone #801491"
 msgstr "雄蚁 #999695"
 
 #. STRINGS.ANTNAMES.55
 msgctxt "STRINGS.ANTNAMES.55"
-msgid "Drone #691324"
+msgid "Drone #813727"
 msgstr "雄蚁 #611500"
 
 #. STRINGS.ANTNAMES.56
 msgctxt "STRINGS.ANTNAMES.56"
-msgid "Drone #537508"
+msgid "Drone #728529"
 msgstr "雄蚁 #392438"
 
 #. STRINGS.ANTNAMES.57
 msgctxt "STRINGS.ANTNAMES.57"
-msgid "Drone #801491"
+msgid "Drone #853905"
 msgstr "雄蚁 #266213"
 
 #. STRINGS.ANTNAMES.58
 msgctxt "STRINGS.ANTNAMES.58"
-msgid "Drone #813727"
+msgid "Drone #584364"
 msgstr "雄蚁 #297281"
 
 #. STRINGS.ANTNAMES.59
 msgctxt "STRINGS.ANTNAMES.59"
-msgid "Drone #728529"
+msgid "Drone #84511"
 msgstr "雄蚁 #840145"
 
 #. STRINGS.ANTNAMES.6
 msgctxt "STRINGS.ANTNAMES.6"
-msgid "Drone #853905"
+msgid "Drone #695666"
 msgstr "雄蚁 #479874"
 
 #. STRINGS.ANTNAMES.60
 msgctxt "STRINGS.ANTNAMES.60"
-msgid "Drone #584364"
+msgid "Drone #121917"
 msgstr "雄蚁 #23744"
 
 #. STRINGS.ANTNAMES.61
 msgctxt "STRINGS.ANTNAMES.61"
-msgid "Drone #84511"
+msgid "Drone #228529"
 msgstr "雄蚁 #375866"
 
 #. STRINGS.ANTNAMES.62
 msgctxt "STRINGS.ANTNAMES.62"
-msgid "Drone #121917"
+msgid "Drone #275658"
 msgstr "雄蚁 #92624"
 
 #. STRINGS.ANTNAMES.63
 msgctxt "STRINGS.ANTNAMES.63"
-msgid "Drone #228529"
+msgid "Drone #825691"
 msgstr "雄蚁 #677206"
 
 #. STRINGS.ANTNAMES.64
 msgctxt "STRINGS.ANTNAMES.64"
-msgid "Drone #275658"
+msgid "Drone #159623"
 msgstr "雄蚁 #56216"
 
 #. STRINGS.ANTNAMES.65
 msgctxt "STRINGS.ANTNAMES.65"
-msgid "Drone #825691"
+msgid "Drone #459116"
 msgstr "雄蚁 #8790"
 
 #. STRINGS.ANTNAMES.66
 msgctxt "STRINGS.ANTNAMES.66"
-msgid "Drone #159623"
+msgid "Drone #784606"
 msgstr "雄蚁 #918791"
 
 #. STRINGS.ANTNAMES.67
 msgctxt "STRINGS.ANTNAMES.67"
-msgid "Drone #459116"
+msgid "Drone #264238"
 msgstr "雄蚁 #275888"
 
 #. STRINGS.ANTNAMES.68
 msgctxt "STRINGS.ANTNAMES.68"
-msgid "Drone #784606"
+msgid "Drone #733328"
 msgstr "雄蚁 #272897"
 
 #. STRINGS.ANTNAMES.69
 msgctxt "STRINGS.ANTNAMES.69"
-msgid "Drone #264238"
+msgid "Drone #740063"
 msgstr "雄蚁 #587909"
 
 #. STRINGS.ANTNAMES.7
 msgctxt "STRINGS.ANTNAMES.7"
-msgid "Drone #733328"
+msgid "Drone #291737"
 msgstr "雄蚁 #350292"
 
 #. STRINGS.ANTNAMES.70
 msgctxt "STRINGS.ANTNAMES.70"
-msgid "Drone #740063"
+msgid "Drone #106644"
 msgstr "雄蚁 #691184"
 
 #. STRINGS.ANTNAMES.71
 msgctxt "STRINGS.ANTNAMES.71"
-msgid "Drone #106644"
+msgid "Drone #408903"
 msgstr "雄蚁 #837612"
 
 #. STRINGS.ANTNAMES.72
 msgctxt "STRINGS.ANTNAMES.72"
-msgid "Drone #408903"
+msgid "Drone #910235"
 msgstr "雄蚁 #726494"
 
 #. STRINGS.ANTNAMES.73
 msgctxt "STRINGS.ANTNAMES.73"
-msgid "Drone #910235"
+msgid "Drone #325292"
 msgstr "雄蚁 #484940"
 
 #. STRINGS.ANTNAMES.74
 msgctxt "STRINGS.ANTNAMES.74"
-msgid "Drone #325292"
+msgid "Drone #856048"
 msgstr "雄蚁 #205360"
 
 #. STRINGS.ANTNAMES.75
 msgctxt "STRINGS.ANTNAMES.75"
-msgid "Drone #856048"
+msgid "Drone #753306"
 msgstr "雄蚁 #743737"
 
 #. STRINGS.ANTNAMES.76
 msgctxt "STRINGS.ANTNAMES.76"
-msgid "Drone #753306"
+msgid "Drone #454600"
 msgstr "雄蚁 #468460"
 
 #. STRINGS.ANTNAMES.77
 msgctxt "STRINGS.ANTNAMES.77"
-msgid "Drone #454600"
+msgid "Drone #235264"
 msgstr "雄蚁 #457961"
 
 #. STRINGS.ANTNAMES.78
 msgctxt "STRINGS.ANTNAMES.78"
-msgid "Drone #235264"
+msgid "Drone #156745"
 msgstr "雄蚁 #949157"
 
 #. STRINGS.ANTNAMES.79
 msgctxt "STRINGS.ANTNAMES.79"
-msgid "Drone #156745"
+msgid "Drone #355643"
 msgstr "雄蚁 #744439"
 
 #. STRINGS.ANTNAMES.8
 msgctxt "STRINGS.ANTNAMES.8"
-msgid "Drone #355643"
+msgid "Drone #724410"
 msgstr "雄蚁 #895963"
 
 #. STRINGS.ANTNAMES.80
@@ -582,57 +582,57 @@ msgstr "雄蚁 #425154"
 
 #. STRINGS.ANTNAMES.9
 msgctxt "STRINGS.ANTNAMES.9"
-msgid "Drone #536920"
+msgid "Drone #23085"
 msgstr "雄蚁 #822841"
 
 #. STRINGS.ANTNAMES.90
 msgctxt "STRINGS.ANTNAMES.90"
-msgid "Drone #916828"
+msgid "Drone #536920"
 msgstr "雄蚁 #802881"
 
 #. STRINGS.ANTNAMES.91
 msgctxt "STRINGS.ANTNAMES.91"
-msgid "Drone #899635"
+msgid "Drone #916828"
 msgstr "雄蚁 #517106"
 
 #. STRINGS.ANTNAMES.92
 msgctxt "STRINGS.ANTNAMES.92"
-msgid "Drone #478919"
+msgid "Drone #899635"
 msgstr "雄蚁 #989990"
 
 #. STRINGS.ANTNAMES.93
 msgctxt "STRINGS.ANTNAMES.93"
-msgid "Drone #766"
+msgid "Drone #478919"
 msgstr "雄蚁 #751549"
 
 #. STRINGS.ANTNAMES.94
 msgctxt "STRINGS.ANTNAMES.94"
-msgid "Drone #273064"
+msgid "Drone #766"
 msgstr "雄蚁 #345562"
 
 #. STRINGS.ANTNAMES.95
 msgctxt "STRINGS.ANTNAMES.95"
-msgid "Drone #109506"
+msgid "Drone #273064"
 msgstr "雄蚁 #168981"
 
 #. STRINGS.ANTNAMES.96
 msgctxt "STRINGS.ANTNAMES.96"
-msgid "Drone #945396"
+msgid "Drone #109506"
 msgstr "雄蚁 #657308"
 
 #. STRINGS.ANTNAMES.97
 msgctxt "STRINGS.ANTNAMES.97"
-msgid "Drone #124125"
+msgid "Drone #945396"
 msgstr "雄蚁 #491898"
 
 #. STRINGS.ANTNAMES.98
 msgctxt "STRINGS.ANTNAMES.98"
-msgid "Drone #202481"
+msgid "Drone #124125"
 msgstr "雄蚁 #63540"
 
 #. STRINGS.ANTNAMES.99
 msgctxt "STRINGS.ANTNAMES.99"
-msgid "Drone #407868"
+msgid "Drone #202481"
 msgstr "雄蚁 #699759"
 
 #. STRINGS.ANTWARRIORNAMES.1
@@ -642,392 +642,392 @@ msgstr "兵蚁 #147496"
 
 #. STRINGS.ANTWARRIORNAMES.10
 msgctxt "STRINGS.ANTWARRIORNAMES.10"
-msgid "Warrior #476479"
+msgid "Warrior #221765"
 msgstr "兵蚁 #683188"
 
 #. STRINGS.ANTWARRIORNAMES.100
 msgctxt "STRINGS.ANTWARRIORNAMES.100"
-msgid "Warrior #246744"
+msgid "Warrior #514236"
 msgstr "兵蚁 #290354"
 
 #. STRINGS.ANTWARRIORNAMES.11
 msgctxt "STRINGS.ANTWARRIORNAMES.11"
-msgid "Warrior #823094"
+msgid "Warrior #653121"
 msgstr "兵蚁 #153234"
 
 #. STRINGS.ANTWARRIORNAMES.12
 msgctxt "STRINGS.ANTWARRIORNAMES.12"
-msgid "Warrior #245564"
+msgid "Warrior #139598"
 msgstr "兵蚁 #877255"
 
 #. STRINGS.ANTWARRIORNAMES.13
 msgctxt "STRINGS.ANTWARRIORNAMES.13"
-msgid "Warrior #421777"
+msgid "Warrior #278552"
 msgstr "兵蚁 #821681"
 
 #. STRINGS.ANTWARRIORNAMES.14
 msgctxt "STRINGS.ANTWARRIORNAMES.14"
-msgid "Warrior #420415"
+msgid "Warrior #411288"
 msgstr "兵蚁 #582050"
 
 #. STRINGS.ANTWARRIORNAMES.15
 msgctxt "STRINGS.ANTWARRIORNAMES.15"
-msgid "Warrior #349126"
+msgid "Warrior #230558"
 msgstr "兵蚁 #191352"
 
 #. STRINGS.ANTWARRIORNAMES.16
 msgctxt "STRINGS.ANTWARRIORNAMES.16"
-msgid "Warrior #588799"
+msgid "Warrior #906137"
 msgstr "兵蚁 #177893"
 
 #. STRINGS.ANTWARRIORNAMES.17
 msgctxt "STRINGS.ANTWARRIORNAMES.17"
-msgid "Warrior #221765"
+msgid "Warrior #716168"
 msgstr "兵蚁 #817195"
 
 #. STRINGS.ANTWARRIORNAMES.18
 msgctxt "STRINGS.ANTWARRIORNAMES.18"
-msgid "Warrior #653121"
+msgid "Warrior #858587"
 msgstr "兵蚁 #475265"
 
 #. STRINGS.ANTWARRIORNAMES.19
 msgctxt "STRINGS.ANTWARRIORNAMES.19"
-msgid "Warrior #139598"
+msgid "Warrior #609286"
 msgstr "兵蚁 #155553"
 
 #. STRINGS.ANTWARRIORNAMES.2
 msgctxt "STRINGS.ANTWARRIORNAMES.2"
-msgid "Warrior #278552"
+msgid "Warrior #476479"
 msgstr "兵蚁 #949584"
 
 #. STRINGS.ANTWARRIORNAMES.20
 msgctxt "STRINGS.ANTWARRIORNAMES.20"
-msgid "Warrior #411288"
+msgid "Warrior #10790"
 msgstr "兵蚁 #503922"
 
 #. STRINGS.ANTWARRIORNAMES.21
 msgctxt "STRINGS.ANTWARRIORNAMES.21"
-msgid "Warrior #230558"
+msgid "Warrior #101471"
 msgstr "兵蚁 #732017"
 
 #. STRINGS.ANTWARRIORNAMES.22
 msgctxt "STRINGS.ANTWARRIORNAMES.22"
-msgid "Warrior #906137"
+msgid "Warrior #730708"
 msgstr "兵蚁 #405591"
 
 #. STRINGS.ANTWARRIORNAMES.23
 msgctxt "STRINGS.ANTWARRIORNAMES.23"
-msgid "Warrior #716168"
+msgid "Warrior #922561"
 msgstr "兵蚁 #279581"
 
 #. STRINGS.ANTWARRIORNAMES.24
 msgctxt "STRINGS.ANTWARRIORNAMES.24"
-msgid "Warrior #858587"
+msgid "Warrior #379347"
 msgstr "兵蚁 #568743"
 
 #. STRINGS.ANTWARRIORNAMES.25
 msgctxt "STRINGS.ANTWARRIORNAMES.25"
-msgid "Warrior #609286"
+msgid "Warrior #690797"
 msgstr "兵蚁 #682242"
 
 #. STRINGS.ANTWARRIORNAMES.26
 msgctxt "STRINGS.ANTWARRIORNAMES.26"
-msgid "Warrior #10790"
+msgid "Warrior #774131"
 msgstr "兵蚁 #755852"
 
 #. STRINGS.ANTWARRIORNAMES.27
 msgctxt "STRINGS.ANTWARRIORNAMES.27"
-msgid "Warrior #101471"
+msgid "Warrior #926278"
 msgstr "兵蚁 #721916"
 
 #. STRINGS.ANTWARRIORNAMES.28
 msgctxt "STRINGS.ANTWARRIORNAMES.28"
-msgid "Warrior #730708"
+msgid "Warrior #865968"
 msgstr "兵蚁 #475296"
 
 #. STRINGS.ANTWARRIORNAMES.29
 msgctxt "STRINGS.ANTWARRIORNAMES.29"
-msgid "Warrior #922561"
+msgid "Warrior #737790"
 msgstr "兵蚁 #123021"
 
 #. STRINGS.ANTWARRIORNAMES.3
 msgctxt "STRINGS.ANTWARRIORNAMES.3"
-msgid "Warrior #379347"
+msgid "Warrior #246744"
 msgstr "兵蚁 #141576"
 
 #. STRINGS.ANTWARRIORNAMES.30
 msgctxt "STRINGS.ANTWARRIORNAMES.30"
-msgid "Warrior #690797"
+msgid "Warrior #330681"
 msgstr "兵蚁 #367810"
 
 #. STRINGS.ANTWARRIORNAMES.31
 msgctxt "STRINGS.ANTWARRIORNAMES.31"
-msgid "Warrior #774131"
+msgid "Warrior #104214"
 msgstr "兵蚁 #834682"
 
 #. STRINGS.ANTWARRIORNAMES.32
 msgctxt "STRINGS.ANTWARRIORNAMES.32"
-msgid "Warrior #926278"
+msgid "Warrior #393651"
 msgstr "兵蚁 #35097"
 
 #. STRINGS.ANTWARRIORNAMES.33
 msgctxt "STRINGS.ANTWARRIORNAMES.33"
-msgid "Warrior #865968"
+msgid "Warrior #103586"
 msgstr "兵蚁 #517015"
 
 #. STRINGS.ANTWARRIORNAMES.34
 msgctxt "STRINGS.ANTWARRIORNAMES.34"
-msgid "Warrior #737790"
+msgid "Warrior #543282"
 msgstr "兵蚁 #662985"
 
 #. STRINGS.ANTWARRIORNAMES.35
 msgctxt "STRINGS.ANTWARRIORNAMES.35"
-msgid "Warrior #330681"
+msgid "Warrior #821346"
 msgstr "兵蚁 #426222"
 
 #. STRINGS.ANTWARRIORNAMES.36
 msgctxt "STRINGS.ANTWARRIORNAMES.36"
-msgid "Warrior #104214"
+msgid "Warrior #948016"
 msgstr "兵蚁 #104679"
 
 #. STRINGS.ANTWARRIORNAMES.37
 msgctxt "STRINGS.ANTWARRIORNAMES.37"
-msgid "Warrior #393651"
+msgid "Warrior #119234"
 msgstr "兵蚁 #949340"
 
 #. STRINGS.ANTWARRIORNAMES.38
 msgctxt "STRINGS.ANTWARRIORNAMES.38"
-msgid "Warrior #103586"
+msgid "Warrior #202023"
 msgstr "兵蚁 #921385"
 
 #. STRINGS.ANTWARRIORNAMES.39
 msgctxt "STRINGS.ANTWARRIORNAMES.39"
-msgid "Warrior #543282"
+msgid "Warrior #625725"
 msgstr "兵蚁 #549547"
 
 #. STRINGS.ANTWARRIORNAMES.4
 msgctxt "STRINGS.ANTWARRIORNAMES.4"
-msgid "Warrior #821346"
+msgid "Warrior #823094"
 msgstr "兵蚁 #905118"
 
 #. STRINGS.ANTWARRIORNAMES.40
 msgctxt "STRINGS.ANTWARRIORNAMES.40"
-msgid "Warrior #948016"
+msgid "Warrior #561260"
 msgstr "兵蚁 #345989"
 
 #. STRINGS.ANTWARRIORNAMES.41
 msgctxt "STRINGS.ANTWARRIORNAMES.41"
-msgid "Warrior #119234"
+msgid "Warrior #638000"
 msgstr "兵蚁 #471725"
 
 #. STRINGS.ANTWARRIORNAMES.42
 msgctxt "STRINGS.ANTWARRIORNAMES.42"
-msgid "Warrior #202023"
+msgid "Warrior #665320"
 msgstr "兵蚁 #374981"
 
 #. STRINGS.ANTWARRIORNAMES.43
 msgctxt "STRINGS.ANTWARRIORNAMES.43"
-msgid "Warrior #625725"
+msgid "Warrior #89151"
 msgstr "兵蚁 #846981"
 
 #. STRINGS.ANTWARRIORNAMES.44
 msgctxt "STRINGS.ANTWARRIORNAMES.44"
-msgid "Warrior #561260"
+msgid "Warrior #563622"
 msgstr "兵蚁 #316874"
 
 #. STRINGS.ANTWARRIORNAMES.45
 msgctxt "STRINGS.ANTWARRIORNAMES.45"
-msgid "Warrior #638000"
+msgid "Warrior #221169"
 msgstr "兵蚁 #456100"
 
 #. STRINGS.ANTWARRIORNAMES.46
 msgctxt "STRINGS.ANTWARRIORNAMES.46"
-msgid "Warrior #665320"
+msgid "Warrior #839764"
 msgstr "兵蚁 #271890"
 
 #. STRINGS.ANTWARRIORNAMES.47
 msgctxt "STRINGS.ANTWARRIORNAMES.47"
-msgid "Warrior #89151"
+msgid "Warrior #12186"
 msgstr "兵蚁 #982971"
 
 #. STRINGS.ANTWARRIORNAMES.48
 msgctxt "STRINGS.ANTWARRIORNAMES.48"
-msgid "Warrior #563622"
+msgid "Warrior #579457"
 msgstr "兵蚁 #297800"
 
 #. STRINGS.ANTWARRIORNAMES.49
 msgctxt "STRINGS.ANTWARRIORNAMES.49"
-msgid "Warrior #221169"
+msgid "Warrior #687691"
 msgstr "兵蚁 #739189"
 
 #. STRINGS.ANTWARRIORNAMES.5
 msgctxt "STRINGS.ANTWARRIORNAMES.5"
-msgid "Warrior #839764"
+msgid "Warrior #245564"
 msgstr "兵蚁 #692893"
 
 #. STRINGS.ANTWARRIORNAMES.50
 msgctxt "STRINGS.ANTWARRIORNAMES.50"
-msgid "Warrior #12186"
+msgid "Warrior #49949"
 msgstr "兵蚁 #567279"
 
 #. STRINGS.ANTWARRIORNAMES.51
 msgctxt "STRINGS.ANTWARRIORNAMES.51"
-msgid "Warrior #579457"
+msgid "Warrior #778775"
 msgstr "兵蚁 #195990"
 
 #. STRINGS.ANTWARRIORNAMES.52
 msgctxt "STRINGS.ANTWARRIORNAMES.52"
-msgid "Warrior #687691"
+msgid "Warrior #574957"
 msgstr "兵蚁 #761315"
 
 #. STRINGS.ANTWARRIORNAMES.53
 msgctxt "STRINGS.ANTWARRIORNAMES.53"
-msgid "Warrior #49949"
+msgid "Warrior #897769"
 msgstr "兵蚁 #839443"
 
 #. STRINGS.ANTWARRIORNAMES.54
 msgctxt "STRINGS.ANTWARRIORNAMES.54"
-msgid "Warrior #778775"
+msgid "Warrior #687410"
 msgstr "兵蚁 #397657"
 
 #. STRINGS.ANTWARRIORNAMES.55
 msgctxt "STRINGS.ANTWARRIORNAMES.55"
-msgid "Warrior #574957"
+msgid "Warrior #745983"
 msgstr "兵蚁 #500901"
 
 #. STRINGS.ANTWARRIORNAMES.56
 msgctxt "STRINGS.ANTWARRIORNAMES.56"
-msgid "Warrior #897769"
+msgid "Warrior #385468"
 msgstr "兵蚁 #890164"
 
 #. STRINGS.ANTWARRIORNAMES.57
 msgctxt "STRINGS.ANTWARRIORNAMES.57"
-msgid "Warrior #687410"
+msgid "Warrior #853787"
 msgstr "兵蚁 #27467"
 
 #. STRINGS.ANTWARRIORNAMES.58
 msgctxt "STRINGS.ANTWARRIORNAMES.58"
-msgid "Warrior #745983"
+msgid "Warrior #954842"
 msgstr "兵蚁 #994629"
 
 #. STRINGS.ANTWARRIORNAMES.59
 msgctxt "STRINGS.ANTWARRIORNAMES.59"
-msgid "Warrior #385468"
+msgid "Warrior #190185"
 msgstr "兵蚁 #572589"
 
 #. STRINGS.ANTWARRIORNAMES.6
 msgctxt "STRINGS.ANTWARRIORNAMES.6"
-msgid "Warrior #853787"
+msgid "Warrior #421777"
 msgstr "兵蚁 #303049"
 
 #. STRINGS.ANTWARRIORNAMES.60
 msgctxt "STRINGS.ANTWARRIORNAMES.60"
-msgid "Warrior #954842"
+msgid "Warrior #411122"
 msgstr "兵蚁 #50509"
 
 #. STRINGS.ANTWARRIORNAMES.61
 msgctxt "STRINGS.ANTWARRIORNAMES.61"
-msgid "Warrior #190185"
+msgid "Warrior #323117"
 msgstr "兵蚁 #531328"
 
 #. STRINGS.ANTWARRIORNAMES.62
 msgctxt "STRINGS.ANTWARRIORNAMES.62"
-msgid "Warrior #411122"
+msgid "Warrior #478261"
 msgstr "兵蚁 #194068"
 
 #. STRINGS.ANTWARRIORNAMES.63
 msgctxt "STRINGS.ANTWARRIORNAMES.63"
-msgid "Warrior #323117"
+msgid "Warrior #93696"
 msgstr "兵蚁 #843044"
 
 #. STRINGS.ANTWARRIORNAMES.64
 msgctxt "STRINGS.ANTWARRIORNAMES.64"
-msgid "Warrior #478261"
+msgid "Warrior #155791"
 msgstr "兵蚁 #626759"
 
 #. STRINGS.ANTWARRIORNAMES.65
 msgctxt "STRINGS.ANTWARRIORNAMES.65"
-msgid "Warrior #93696"
+msgid "Warrior #314238"
 msgstr "兵蚁 #657613"
 
 #. STRINGS.ANTWARRIORNAMES.66
 msgctxt "STRINGS.ANTWARRIORNAMES.66"
-msgid "Warrior #155791"
+msgid "Warrior #816504"
 msgstr "兵蚁 #197852"
 
 #. STRINGS.ANTWARRIORNAMES.67
 msgctxt "STRINGS.ANTWARRIORNAMES.67"
-msgid "Warrior #314238"
+msgid "Warrior #937007"
 msgstr "兵蚁 #842159"
 
 #. STRINGS.ANTWARRIORNAMES.68
 msgctxt "STRINGS.ANTWARRIORNAMES.68"
-msgid "Warrior #816504"
+msgid "Warrior #400007"
 msgstr "兵蚁 #123326"
 
 #. STRINGS.ANTWARRIORNAMES.69
 msgctxt "STRINGS.ANTWARRIORNAMES.69"
-msgid "Warrior #937007"
+msgid "Warrior #66779"
 msgstr "兵蚁 #109928"
 
 #. STRINGS.ANTWARRIORNAMES.7
 msgctxt "STRINGS.ANTWARRIORNAMES.7"
-msgid "Warrior #400007"
+msgid "Warrior #420415"
 msgstr "兵蚁 #426558"
 
 #. STRINGS.ANTWARRIORNAMES.70
 msgctxt "STRINGS.ANTWARRIORNAMES.70"
-msgid "Warrior #66779"
+msgid "Warrior #863097"
 msgstr "兵蚁 #743126"
 
 #. STRINGS.ANTWARRIORNAMES.71
 msgctxt "STRINGS.ANTWARRIORNAMES.71"
-msgid "Warrior #863097"
+msgid "Warrior #72530"
 msgstr "兵蚁 #314066"
 
 #. STRINGS.ANTWARRIORNAMES.72
 msgctxt "STRINGS.ANTWARRIORNAMES.72"
-msgid "Warrior #72530"
+msgid "Warrior #465492"
 msgstr "兵蚁 #941069"
 
 #. STRINGS.ANTWARRIORNAMES.73
 msgctxt "STRINGS.ANTWARRIORNAMES.73"
-msgid "Warrior #465492"
+msgid "Warrior #154667"
 msgstr "兵蚁 #286081"
 
 #. STRINGS.ANTWARRIORNAMES.74
 msgctxt "STRINGS.ANTWARRIORNAMES.74"
-msgid "Warrior #154667"
+msgid "Warrior #392458"
 msgstr "兵蚁 #336314"
 
 #. STRINGS.ANTWARRIORNAMES.75
 msgctxt "STRINGS.ANTWARRIORNAMES.75"
-msgid "Warrior #392458"
+msgid "Warrior #453498"
 msgstr "兵蚁 #140264"
 
 #. STRINGS.ANTWARRIORNAMES.76
 msgctxt "STRINGS.ANTWARRIORNAMES.76"
-msgid "Warrior #453498"
+msgid "Warrior #888586"
 msgstr "兵蚁 #733086"
 
 #. STRINGS.ANTWARRIORNAMES.77
 msgctxt "STRINGS.ANTWARRIORNAMES.77"
-msgid "Warrior #888586"
+msgid "Warrior #82236"
 msgstr "兵蚁 #834621"
 
 #. STRINGS.ANTWARRIORNAMES.78
 msgctxt "STRINGS.ANTWARRIORNAMES.78"
-msgid "Warrior #82236"
+msgid "Warrior #112104"
 msgstr "兵蚁 #707999"
 
 #. STRINGS.ANTWARRIORNAMES.79
 msgctxt "STRINGS.ANTWARRIORNAMES.79"
-msgid "Warrior #112104"
+msgid "Warrior #485976"
 msgstr "兵蚁 #600239"
 
 #. STRINGS.ANTWARRIORNAMES.8
 msgctxt "STRINGS.ANTWARRIORNAMES.8"
-msgid "Warrior #485976"
+msgid "Warrior #349126"
 msgstr "兵蚁 #70376"
 
 #. STRINGS.ANTWARRIORNAMES.80
@@ -1082,57 +1082,57 @@ msgstr "兵蚁 #553210"
 
 #. STRINGS.ANTWARRIORNAMES.9
 msgctxt "STRINGS.ANTWARRIORNAMES.9"
-msgid "Warrior #467978"
+msgid "Warrior #588799"
 msgstr "兵蚁 #966613"
 
 #. STRINGS.ANTWARRIORNAMES.90
 msgctxt "STRINGS.ANTWARRIORNAMES.90"
-msgid "Warrior #693386"
+msgid "Warrior #467978"
 msgstr "兵蚁 #14253"
 
 #. STRINGS.ANTWARRIORNAMES.91
 msgctxt "STRINGS.ANTWARRIORNAMES.91"
-msgid "Warrior #51546"
+msgid "Warrior #693386"
 msgstr "兵蚁 #113774"
 
 #. STRINGS.ANTWARRIORNAMES.92
 msgctxt "STRINGS.ANTWARRIORNAMES.92"
-msgid "Warrior #155617"
+msgid "Warrior #51546"
 msgstr "兵蚁 #454513"
 
 #. STRINGS.ANTWARRIORNAMES.93
 msgctxt "STRINGS.ANTWARRIORNAMES.93"
-msgid "Warrior #570204"
+msgid "Warrior #155617"
 msgstr "兵蚁 #752221"
 
 #. STRINGS.ANTWARRIORNAMES.94
 msgctxt "STRINGS.ANTWARRIORNAMES.94"
-msgid "Warrior #832018"
+msgid "Warrior #570204"
 msgstr "兵蚁 #686148"
 
 #. STRINGS.ANTWARRIORNAMES.95
 msgctxt "STRINGS.ANTWARRIORNAMES.95"
-msgid "Warrior #26329"
+msgid "Warrior #832018"
 msgstr "兵蚁 #543444"
 
 #. STRINGS.ANTWARRIORNAMES.96
 msgctxt "STRINGS.ANTWARRIORNAMES.96"
-msgid "Warrior #759329"
+msgid "Warrior #26329"
 msgstr "兵蚁 #73886"
 
 #. STRINGS.ANTWARRIORNAMES.97
 msgctxt "STRINGS.ANTWARRIORNAMES.97"
-msgid "Warrior #238874"
+msgid "Warrior #759329"
 msgstr "兵蚁 #436720"
 
 #. STRINGS.ANTWARRIORNAMES.98
 msgctxt "STRINGS.ANTWARRIORNAMES.98"
-msgid "Warrior #1387"
+msgid "Warrior #238874"
 msgstr "兵蚁 #201941"
 
 #. STRINGS.ANTWARRIORNAMES.99
 msgctxt "STRINGS.ANTWARRIORNAMES.99"
-msgid "Warrior #514236"
+msgid "Warrior #1387"
 msgstr "兵蚁 #696219"
 
 #. STRINGS.ANT_TALK_ATTEMPT_TRADE.1
@@ -1854,6 +1854,11 @@ msgstr "它看起来很顽强。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CANDLEHAT"
 msgid "What a bright idea!"
 msgstr "多么聪明的主意啊！"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CAVE_EXIT_ROC"
+msgid "It's plugging up something."
+msgstr "它堵住了一些东西。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN"
@@ -3030,6 +3035,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGBANDIT"
 msgid "Swindling swine."
 msgstr "骗人的猪。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGCROWNHAT"
+msgid "Don't mess up my hair, crown."
+msgstr "别弄乱我的头发，皇冠。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGEON.DEAD"
 msgid "It has passed."
@@ -3389,6 +3399,11 @@ msgstr "几根棍子或木头能让它亮起来。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A few sticks or logs will brighten this up."
 msgstr "几根棍子或木头能让它亮起来。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_SCEPTER"
+msgid "It must have scientifical properties."
+msgstr "它一定具有一个科学的原理。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -3890,6 +3905,106 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROCK_FLIPPABLE"
 msgid "You never know what you'll find under a rock."
 msgstr "你永远也不知道会在岩石下面发现什么。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_HEAD"
+msgid "Three heads are better than one."
+msgstr "三个头总比一个好。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_LEG"
+msgid "A leg up."
+msgstr "一条巨腿。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Something big moved that there."
+msgstr "有什么大家伙把它搬到这里了。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Maybe it's branching out."
+msgstr "也许它还会生长吧。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BUSH"
+msgid "Looks bushed."
+msgstr "看上去是个草丛。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A sticky situation."
+msgstr "一个棘手的情况。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Stick to your tree, stick."
+msgstr "你是一个棘手，手状荆棘。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Those sticks sure stick together."
+msgstr "那些荆棘搅和在一起。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "It's in the sticks."
+msgstr "它在荆棘之中。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG1"
+msgid "Eggshell-ent"
+msgstr "零散的蛋壳"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG2"
+msgid "What eggsactly is that?"
+msgstr "那究竟是什么蛋？"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG3"
+msgid "That makes me egg-stremely nervous."
+msgstr "这些零散的蛋壳使我紧张。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG4"
+msgid "Egg-sploded."
+msgstr "空的蛋。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Anyone home?"
+msgstr "有人在家吗？"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Busted and rusted."
+msgstr "长满锈菌还很破烂。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TREE1"
+msgid "Science says it's a tree."
+msgstr "科学说它是一棵树。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TREE2"
+msgid "Tree-mendous."
+msgstr "树枝繁茂。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TRUNK"
+msgid "What could've broken that?"
+msgstr "是谁破坏了这个呢？"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Stone cold."
+msgstr "石头很冷。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_TAIL"
+msgid "The tail end."
+msgstr "一个尾巴尖。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROOTTRUNK"
 msgid "It rooted out all my things!"
@@ -3904,6 +4019,16 @@ msgstr "这些物品从里面拿出来像被吃过一样。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROYAL_GALLERY"
 msgid "Fancy enough to be behind glass."
 msgstr "足够花哨的玻璃制品在展馆后面。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RO_BIN"
+msgid "Carryin' bird."
+msgstr "能运物的鸟儿。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "How does this even happen?"
+msgstr "这块石头是怎么生成的呢？"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RUG_BEARD"
@@ -5115,6 +5240,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CANDLEHAT"
 msgid "Presumably the cork will act as an insulator so my head doesn't burn."
 msgstr "推测软木能起到隔绝的作用，所以我的头才不会烧起来。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CAVE_EXIT_ROC"
+msgid "An egress to the outside world."
+msgstr "通向外面世界的出口。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN"
 msgid "Wonderful! The exoskeleton of a deceased insect!"
@@ -6295,6 +6425,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGBANDIT"
 msgid "Theoretically, he's a rogue of some sort."
 msgstr "从理论上来讲，他是一个无赖。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGCROWNHAT"
+msgid "Symbolic head wear that is respected by the porcine population."
+msgstr "象征皇室的头冠，受到类猪生物们的尊敬。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGEON.DEAD"
 msgid "Theoretically, it's dead."
@@ -6634,6 +6769,11 @@ msgstr "一种奇特的装置，只要与燃料接触就会燃烧。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Remarkable! It only requires a source of fuel to ignite."
 msgstr "奇特非凡！它只需要一点燃料就能燃烧。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_SCEPTER"
+msgid "Presumably, it belongs to royalty of some sort."
+msgstr "可能，它是属于某个皇室成员的。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -7125,6 +7265,106 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROCK_FLIPPABLE"
 msgid "I have learned the benefits of flipping over rocks to see what is underneath."
 msgstr "我已经学会翻开石板看下面会藏着什么好东西了。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_HEAD"
+msgid "If I'm lucky I'll be swallowed and I can glimpse its extraordinary insides!"
+msgstr "如果我有幸被它吞下去，我应该能看到它不可思议的内部。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_LEG"
+msgid "The phalanges of an enormous fowl!"
+msgstr "一只巨大飞禽的趾骨！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "A branch. In theory it could be a source of wood."
+msgstr "一根树枝。从理论上讲，它可能来自一棵树。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Evidence would suggest it was carried here. Intriguing."
+msgstr "真有趣。有证据表明它是被搬到这儿的。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BUSH"
+msgid "I believe it's a bush of some sort."
+msgstr "我认为这是某种灌木。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Evidently, it's a stick."
+msgstr "很显然，它是一根树枝。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Theoretically, it has the same properties as other sticks."
+msgstr "从理论上讲，它与别的树枝作用是一样的。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Tree by products appear strange here but serve the same purpose."
+msgstr "这树产出的树枝在这里看起来很奇怪，但是和其他树枝作用一样。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "In theory, it's part of a nest."
+msgstr "从理论上讲，它是鸟巢的一部分。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG1"
+msgid "Evidently, it's an egg shell."
+msgstr "很显然，这是一个蛋壳。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG2"
+msgid "The shell of an egg. I would like to know what it's made of."
+msgstr "一个蛋壳。我想知道它是什么材质做的。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG3"
+msgid "The protective shell of an ovum. This requires further investigation."
+msgstr "一个卵的外保护壳。这需要进一步的调查。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG4"
+msgid "Evidence would suggest that shell has been petrified."
+msgstr "有证据表明蛋壳已经石化了。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_HOUSE"
+msgid "I wonder if anyone dwells within that domestic structure."
+msgstr "我想知道是否有什么住在这个鸟巢。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "A lamp of some sort. Presumably it no longer functions."
+msgstr "某种路灯。大概它不会再运作了。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TREE1"
+msgid "Theoretically it's a tree."
+msgstr "从理论上来讲，这是颗树。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TREE2"
+msgid "Evidence would suggest there are trees here too."
+msgstr "有证据表明这儿也有树。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Evidently, it's been broken by something big."
+msgstr "很显然，它被某个庞然大物破坏了。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_ROBIN_EGG"
+msgid "A large bird is incubating inside!"
+msgstr "在里面孵化着一只大鸟！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_TAIL"
+msgid "the posterior plumage of a giant fowl. How fascinating!"
+msgstr "巨型飞禽的尾羽。真迷人！"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROOTTRUNK"
 msgid "A complex intelligent root system is moving my belongings for me. Fascinating!"
@@ -7139,6 +7379,16 @@ msgstr "很亲切。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROYAL_GALLERY"
 msgid "A glass case displaying invaluable objects behind a hefty lock."
 msgstr "一个陈列着无价之宝的带锁玻璃柜。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RO_BIN"
+msgid "This species' regurgitation abilities are truly astounding!"
+msgstr "这个物种的反刍能力令人震惊！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Has some kind of synergic relationship with the huge bird species."
+msgstr "它与那只大鸟有着某种协同关系。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RUG_BEARD"
@@ -8355,6 +8605,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CANDLEHAT"
 msgid "Sweet. Now my hands are free."
 msgstr "真棒。现在我的双手解放了。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CAVE_EXIT_ROC"
+msgid "I bet it's a way out."
+msgstr "我打赌这是出口。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN"
 msgid "Probably wouldn't make a good surfboard."
@@ -9525,6 +9780,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGBANDIT"
 msgid "Not cool! He's tryin' to steal my stuff!"
 msgstr "他想偷我的东西！下流！"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGCROWNHAT"
+msgid "This is way too much responsibility for me."
+msgstr "对于我来说这责任太重了。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGEON.DEAD"
 msgid "I hope he died in his sleep."
@@ -9869,6 +10129,11 @@ msgstr "那是一个点火的好地方。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "That's a good place for that."
 msgstr "那是一个点火的好地方。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_SCEPTER"
+msgid "I guess it's important to the pig dudes."
+msgstr "我想这对猪人们来说很重要。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -10370,6 +10635,106 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROCK_FLIPPABLE"
 msgid "What's under there?"
 msgstr "那下面有什么？"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_HEAD"
+msgid "How's the weather up there?"
+msgstr "天气怎么样？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_LEG"
+msgid "Nice gams!"
+msgstr "这腿棒极了！"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Just a branch."
+msgstr "只是树枝而已。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Just a branch."
+msgstr "只是树枝而已。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BUSH"
+msgid "Must've taken a lot of work to make this."
+msgstr "做这个一定费了不少功夫。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Hey stick!"
+msgstr "嘿，树枝！"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "How's it going, stick?"
+msgstr "怎么样了，树枝？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "What's up, stick?"
+msgstr "怎么了，树枝？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Stay cool, stick!"
+msgstr "保持冷静，树枝!"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG1"
+msgid "I didn't break it."
+msgstr "我打不碎它。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG2"
+msgid "Where's the bird?"
+msgstr "鸟儿在哪里？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG3"
+msgid "I'm not cleaning that up."
+msgstr "我不会收拾它的。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG4"
+msgid "Looks kinda old."
+msgstr "看起来已经很久了。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Maybe I could move in."
+msgstr "也许我可以搬进来。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Huh. Doesn't even work."
+msgstr "呼。它不能运作了。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TREE1"
+msgid "How'd that get here?"
+msgstr "它是怎么到这来的？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TREE2"
+msgid "A nice tree-climbing tree."
+msgstr "一棵不错的歪脖子树。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Harsh."
+msgstr "真难看。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_ROBIN_EGG"
+msgid "What's inside?!"
+msgstr "这里面有什么？！"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_TAIL"
+msgid "Reminds me of a wave I carved one time."
+msgstr "让我想起我曾经划过的波浪。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROOTTRUNK"
 msgid "Now I don't gotta go far to get all my stuff."
@@ -10384,6 +10749,16 @@ msgstr "那只猪会吃我吗？"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROYAL_GALLERY"
 msgid "Ooh. Looks expensive."
 msgstr "噢。看起来很贵。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RO_BIN"
+msgid "Hey, wanna carry all my stuff?"
+msgstr "嘿，你能把我所有的东西都带上吗？"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Still a little goopy."
+msgstr "它还是有点黏黏的。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RUG_BEARD"
@@ -15890,6 +16265,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CANDLEHAT"
 msgid "Handy for some nighttime cooking."
 msgstr "晚上做饭时很方便。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CAVE_EXIT_ROC"
+msgid "It's like when the icing dries in my decorating tips."
+msgstr "它就像我的装饰技巧里的铺好的糖霜干了一样。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN"
 msgid "Completely inedible."
@@ -17065,6 +17445,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGBANDIT"
 msgid "Mon dieu! He's after my coin!"
 msgstr "我的天啊！他在窥视我的钱！"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGCROWNHAT"
+msgid "I have no desire to be a leader."
+msgstr "我没有当领导者的打算。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGEON.DEAD"
 msgid "Squab?"
@@ -17409,6 +17794,11 @@ msgstr "点灯的好地方。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A fine place for a light."
 msgstr "点灯的好地方。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_SCEPTER"
+msgid "I don't think I'm cut out for royalty."
+msgstr "我不认为我取缔了皇室特权。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -17885,6 +18275,106 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROCK_FLIPPABLE"
 msgid "There may be some protein under there."
 msgstr "那个下面也许藏有一些蛋白。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_HEAD"
+msgid "That's three mouths to feed!"
+msgstr "那里有三张嘴要吃东西！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_LEG"
+msgid "Chicken legs for days!"
+msgstr "够吃几天的鸡腿！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "A barbeque spit."
+msgstr "一支烤肉叉。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "A barbeque spit."
+msgstr "一支烤肉叉。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BUSH"
+msgid "Pity there are no berries on it."
+msgstr "很遗憾，上面没有浆果。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A fine stick."
+msgstr "一根很棒的树枝。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "A palatable stick."
+msgstr "一根美味的树枝。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "I can't eat it."
+msgstr "我不能吃它。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Innocent enough."
+msgstr "天真无邪。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG1"
+msgid "Was somebody making an omelet?"
+msgstr "曾经有人在做煎蛋卷吗？"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG2"
+msgid "Shame the yolk is missing."
+msgstr "真可惜，蛋黄不在了。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG3"
+msgid "There's no meat in there."
+msgstr "里面没有肉。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG4"
+msgid "Mon dieu!"
+msgstr "我的天啊！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_HOUSE"
+msgid "'Allo?"
+msgstr "哈喽？"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Not working."
+msgstr "故障了。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TREE1"
+msgid "Strange place for a tree."
+msgstr "不该长树的奇怪地方。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TREE2"
+msgid "Strange place for a tree."
+msgstr "不该长树的奇怪地方。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Mon dieu!"
+msgstr "我的天啊！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Can I make eggs benedict with this?"
+msgstr "我可以用这个做煎蛋卷吗？"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_TAIL"
+msgid "Think of the rump roast I could make!"
+msgstr "想想我能做出的烤臀肉吧！"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROOTTRUNK"
 msgid "Mon dieu! What a wonderful time saver!"
@@ -17899,6 +18389,16 @@ msgstr "又多了一张要喂的嘴！"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROYAL_GALLERY"
 msgid "Like fine wine, it is to be admired behind glass."
 msgstr "就像美酒一样, 它可以放在玻璃后面欣赏."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RO_BIN"
+msgid "I can feed it all my things."
+msgstr "我所有的东西都可以喂给它。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Birds have such strange stomachs."
+msgstr "要用石头来进行消化，鸟儿的胃可真是奇怪。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RUG_BEARD"
@@ -19110,6 +19610,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CANDLEHAT"
 msgid "My hands are now free to pillage ruins!"
 msgstr "我的手空出来了可以肆意掠夺遗迹了！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CAVE_EXIT_ROC"
+msgid "I will conquer this stone."
+msgstr "我会攻克这块石头的。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN"
 msgid "The feeble armor of the bug."
@@ -20285,6 +20790,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGBANDIT"
 msgid "Touch not my gold!"
 msgstr "你这家伙别我碰我的金币！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGCROWNHAT"
+msgid "Power gifted by the gods."
+msgstr "诸神授予的权力。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGEON.DEAD"
 msgid "It has been bested in battle!"
@@ -20629,6 +21139,11 @@ msgstr "一个生火的地方。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A place for light."
 msgstr "一个生火的地方。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_SCEPTER"
+msgid "A most powerful scepter!"
+msgstr "最强大的权杖！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -21105,6 +21620,106 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Stone! Reveal to me your secrets!"
 msgstr "石头！快把你的秘密告诉我！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_HEAD"
+msgid "I will slay all three of its heads."
+msgstr "我要把它三个头都给砍掉。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_LEG"
+msgid "The leg of a mighty beast!"
+msgstr "强大野兽的腿。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Already vanquished."
+msgstr "已经被征服了。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Already defeated."
+msgstr "已经被击败了。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BUSH"
+msgid "Concerns me not!"
+msgstr "与我无关！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A stick!"
+msgstr "一根树枝！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Not more than a stick!"
+msgstr "只是根树枝罢了！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A stick does not concerns me."
+msgstr "我才不会在乎一根小树枝。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Not worthy of the attention of a shielmaiden."
+msgstr "这根小树枝不值得女战士去关注。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG1"
+msgid "Cracked!"
+msgstr "裂开了！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG2"
+msgid "Has birthed a mighty bird."
+msgstr "一只凶猛的鸟儿诞生了。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG3"
+msgid "Once housed a hearty beast."
+msgstr "曾经有一只强大的野兽养着它。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG4"
+msgid "The egg of a mighty bird."
+msgstr "一种强大鸟类的蛋。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Not my house!"
+msgstr "不是我的房子！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "It lights not!"
+msgstr "这盏灯不亮了！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TREE1"
+msgid "I cannot chop it!"
+msgstr "我砍不倒它！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TREE2"
+msgid "Not something I can chop!"
+msgstr "这棵树不是我能砍倒的！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TRUNK"
+msgid "What beast did break it?"
+msgstr "什么样的野兽能把它弄坏了？"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Unleash the tiny bird!"
+msgstr "蛋壳快把小鸟放出来！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_TAIL"
+msgid "The rump of a mighty beast!"
+msgstr "强大野兽的屁股！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROOTTRUNK"
 msgid "The spoils of the battle now follow me!"
@@ -21119,6 +21734,16 @@ msgstr "它会把进入它的东西都给吞掉吗？"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROYAL_GALLERY"
 msgid "Trapped beneath a glass shield."
 msgstr "里面的东西被困在了一个玻璃罩之下。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RO_BIN"
+msgid "A companion for my many conquests!"
+msgstr "一个陪我参与了多次远征的伙伴！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "It has come from the depths of a mighty bird!"
+msgstr "它来自一只强壮的鸟儿的胃中！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RUG_BEARD"
@@ -22320,6 +22945,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CANDLEHAT"
 msgid "The wax better not drip on my suit."
 msgstr "蜡最好不要滴在我的西装上。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Those rocks are hiding something."
+msgstr "这些石头后藏着东西。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN"
 msgid "We all have our defenses."
@@ -23490,6 +24120,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGBANDIT"
 msgid "He's after my money!"
 msgstr "它想偷我的钱！"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGCROWNHAT"
+msgid "I was meant to be king."
+msgstr "我生而为王。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGEON.DEAD"
 msgid "As filthy in death as it was in life."
@@ -23834,6 +24469,11 @@ msgstr "这个死闷地方的一点点光亮。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A little light in this dreary place."
 msgstr "这个死闷地方的一点点光亮。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_SCEPTER"
+msgid "I shall be a great leader."
+msgstr "我将成为伟大的领袖。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -24325,6 +24965,106 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROCK_FLIPPABLE"
 msgid "What will this unearth?"
 msgstr "能发掘出什么宝贝呢？"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_HEAD"
+msgid "Its got its head in the clouds."
+msgstr "它的头扎进云端。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_LEG"
+msgid "This is why good foot hygiene is important."
+msgstr "这就是为什么良好的足部卫生很重要。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "What a mess."
+msgstr "真是一团糟。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "A big stick."
+msgstr "一根大树枝。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BUSH"
+msgid "What a mess."
+msgstr "真是一团糟。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "How boring."
+msgstr "真无聊。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "An ordinary stick. Droll."
+msgstr "一根普通的棍子，搞笑。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A stick."
+msgstr "一根树枝。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "It's a stick."
+msgstr "这是根树枝。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG1"
+msgid "I'd hate to see what came out of there."
+msgstr "我不愿意看到从那里出来的东西。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG2"
+msgid "Does no one clean up around here?"
+msgstr "这里没人打扫吗？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG3"
+msgid "Looks like it's been around for a while."
+msgstr "看起来它已经存在一段时间了。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG4"
+msgid "Cracked."
+msgstr "破裂。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Who lives there?"
+msgstr "谁住在那里？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "It's seen brighter days."
+msgstr "它曾经有过好日子。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TREE1"
+msgid "It's seen better days."
+msgstr "它曾经有过好日子。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TREE2"
+msgid "What could have uprooted that?"
+msgstr "是什么把它连根拔起？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TRUNK"
+msgid "I wonder what broke that?"
+msgstr "不知道是什么把它弄坏的？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Is it a stone or an egg?"
+msgstr "这是石头还是蛋？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_TAIL"
+msgid "Hate to see the end of that."
+msgstr "我不想看到这东西的尾巴。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROOTTRUNK"
 msgid "Keeps my things just where I want them."
@@ -24339,6 +25079,16 @@ msgstr "进这门就有点像是被它吃了。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROYAL_GALLERY"
 msgid "Is it really worth keeping that under glass?"
 msgstr "玻璃罩下的东西就很值钱吗？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RO_BIN"
+msgid "Just useful enough to keep around. "
+msgstr "它已经够实用的了，可以把它带在身边了。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Ugh. Really."
+msgstr "真的很恶心。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RUG_BEARD"
@@ -25535,6 +26285,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CANDLEHAT"
 msgid "Cool hat! Now our hands are free."
 msgstr "好酷的帽子！现在我们的双手解放了。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CAVE_EXIT_ROC"
+msgid "There's something under there!"
+msgstr "有什么东西在下面！"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN"
 msgid "Hope no one's missing that."
@@ -26710,6 +27465,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGBANDIT"
 msgid "He looks sneaky."
 msgstr "他看起来鬼鬼祟祟的。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGCROWNHAT"
+msgid "Haha! We're the king!"
+msgstr "哈哈！我们是国王！"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGEON.DEAD"
 msgid "Poor thing."
@@ -27054,6 +27814,11 @@ msgstr "这是个点灯的好地方。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "That's a good place for some light."
 msgstr "这是个点灯的好地方。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_SCEPTER"
+msgid "It's a really cool stick!"
+msgstr "这棒子看起来真酷！"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -27530,6 +28295,106 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROCK_FLIPPABLE"
 msgid "What's under here?"
 msgstr "下面有什么呢?"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_HEAD"
+msgid "Yeesh! Look out!"
+msgstr "呀！小心！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_LEG"
+msgid "Woah. That's a big chicken leg!"
+msgstr "嚯。好大一只鸡腿。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "What could've moved that over here?"
+msgstr "什么东西能够把它挪到这呢？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Looks like a heavy branch."
+msgstr "看起来像是一根很重的树枝。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BUSH"
+msgid "There's no berries on it."
+msgstr "上面没有浆果。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "It's a stick."
+msgstr "是一根棍子。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Do we want another stick?"
+msgstr "我们还需要其他的棍子吗？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A stick."
+msgstr "一根棍子。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "A stick. It's kinda old."
+msgstr "一根棍子。还有点破旧。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG1"
+msgid "Where's the bird?"
+msgstr "鸟在哪里？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG2"
+msgid "Is there a baby birdy around?"
+msgstr "这里有鸟宝宝吗？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG3"
+msgid "It already hatched."
+msgstr "它已经孵化了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG4"
+msgid "What hatched out of that?"
+msgstr "里面会孵出什么呢？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Hello? Anyone home?"
+msgstr "你好? 有人在家吗？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Doesn't work."
+msgstr "坏掉了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TREE1"
+msgid "Can't climb that tree."
+msgstr "我们爬不上那棵树。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TREE2"
+msgid "Gosh, how'd that get way out here?"
+msgstr "天呐。怎样才能找到出去的路？"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Yeesh. What could've broken that?"
+msgstr "噫。什么能折断它吗?"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_ROBIN_EGG"
+msgid "I think there's something in there."
+msgstr "我想里面有东西。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_TAIL"
+msgid "Keep away from us, please!"
+msgstr "请离我们远点！"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROOTTRUNK"
 msgid "Now we don't have to carry our stuff everywhere."
@@ -27544,6 +28409,16 @@ msgstr "它这是...要吃了我们吗？"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROYAL_GALLERY"
 msgid "Wow. It must be pretty valuable."
 msgstr "哇哦。它一定很值钱。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RO_BIN"
+msgid "A new friend!"
+msgstr "一个新朋友！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "That big bird seems to really like this."
+msgstr "那只大鸟儿看起来真的很喜欢这块石头。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RUG_BEARD"
@@ -28740,6 +29615,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CANDLEHAT"
 msgid "Only Abigail can light up my life."
 msgstr "只有阿比盖尔能点亮我的生活。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CAVE_EXIT_ROC"
+msgid "The way to freedom is once again blocked to us."
+msgstr "我们通向自由的出路再一次被阻挡。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN"
 msgid "This shell is poor protection from life's horrors."
@@ -29915,6 +30795,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGBANDIT"
 msgid "He can steal my money, but not my soul."
 msgstr "他能偷走我的财富，却不能偷走我的灵魂。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGCROWNHAT"
+msgid "Heavy hangs the crown."
+msgstr "欲戴王冠必承其重。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGEON.DEAD"
 msgid "I don't blame you."
@@ -30264,6 +31149,11 @@ msgstr "它不能永远抵挡黑暗。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "It cannot keep out the darkness forever."
 msgstr "它不能永远抵挡黑暗。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_SCEPTER"
+msgid "The symbol of a people's burden."
+msgstr "象征着人民的负担。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -30740,6 +31630,106 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROCK_FLIPPABLE"
 msgid "If only I could hide under a rock."
 msgstr "要是我能藏在石头下就好了。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_HEAD"
+msgid "Destruction inside doom inside catastrophe."
+msgstr "破坏蕴藏着毁灭，毁灭蕴藏着灾厄。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_LEG"
+msgid "Big enough to crush me."
+msgstr "大到足以轻松碾碎我。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Weathered, like my soul."
+msgstr "被风化了，如同我的灵魂。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Weathered, like my soul."
+msgstr "被风化了，如同我的灵魂。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BUSH"
+msgid "I believe it is an impostor."
+msgstr "我相信这是个谎言。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "It has endured hardship."
+msgstr "它历经磨难。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "It has withstood much."
+msgstr "它饱经风霜。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "It has suffered."
+msgstr "它遭受煎熬。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "An old stick."
+msgstr "一根枯枝。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG1"
+msgid "Broken, like my soul."
+msgstr "支离破碎，如同我的灵魂。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG2"
+msgid "Whatever hatched from it, is probably dead by now."
+msgstr "不论这会孵化出什么，它马上就会死了。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG3"
+msgid "Why bother hatching?"
+msgstr "为什么要破壳而出呢？"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG4"
+msgid "Fragile, like my soul."
+msgstr "脆弱，如同我的灵魂。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_HOUSE"
+msgid "An empty house. How apropos."
+msgstr "一个空荡荡的房子，真应景。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Rusted, like my soul."
+msgstr "锈迹斑斑，如同我的灵魂。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TREE1"
+msgid "More industrious than me."
+msgstr "它比我勤劳。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TREE2"
+msgid "I've never seen that kind of tree before."
+msgstr "我以前从来没看到过那种树。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Broken, like my soul."
+msgstr "支离破碎，如同我的灵魂。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_ROBIN_EGG"
+msgid "I doubt it will ever hatch."
+msgstr "我怀疑它马上就要孵化了。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_TAIL"
+msgid "The tail end of doom."
+msgstr "毁灭的尾巴。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROOTTRUNK"
 msgid "Saves my possessions. But it can't save my heart."
@@ -30754,6 +31744,16 @@ msgstr "穿过那扇门只会有失望罢了。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROYAL_GALLERY"
 msgid "Under lock and key."
 msgstr "保管妥善。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RO_BIN"
+msgid "It will hold my things in the depths of its being."
+msgstr "它将把我的东西藏在它的胃中。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "It came from the recesses of a large bird."
+msgstr "它来自一只大鸟的胃中。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RUG_BEARD"
@@ -31975,6 +32975,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CANDLEHAT"
 msgid "Swell. I feel completely safe with an open flame on my head."
 msgstr "好吧。我的头上顶着明火，我觉得还挺安全的。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Time to get back to 'reality'."
+msgstr "是时候回到“现实”了。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN"
 msgid "I'm going to need more of these."
@@ -33150,6 +34155,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGBANDIT"
 msgid "Don't like your attitude, but I admire your sense of style."
 msgstr "我不喜欢你的作派，但是我欣赏你的风格。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGCROWNHAT"
+msgid "Something about this tells me it belongs to royalty."
+msgstr "这东西我觉得是属于皇室的。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGEON.DEAD"
 msgid "Always sad to see a fellow flyer go down."
@@ -33489,6 +34499,11 @@ msgstr "另加了一根火把！它们居然知道怎么讨姑娘开心！"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Complementary torches! They really know how to treat a gal right!"
 msgstr "另加了一根火把！它们居然知道怎么讨姑娘开心！"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_SCEPTER"
+msgid "Looks good enough to bonk someone on the head with."
+msgstr "看起来很不错啊，足以用它来敲别人的头了。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -33980,6 +34995,106 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROCK_FLIPPABLE"
 msgid "My grandma taught me to always look under rocks."
 msgstr "我奶奶教我总要看看岩石下面有什么。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_HEAD"
+msgid "Yes! Fly me away from here!"
+msgstr "好！带我飞离这里！"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_LEG"
+msgid "Maybe if I can hang onto its legs, I can fly again."
+msgstr "也许我抓住它的腿，我就能再次飞翔了。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Maybe I can get some wood out of it."
+msgstr "也许我能从这里弄出点木头来。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Probably good for some wood."
+msgstr "也许能弄出些木头来。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BUSH"
+msgid "Swell. Another bush. How unusual."
+msgstr "好吧。另一丛灌木。真别致。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Someone left their junk lying around."
+msgstr "有人把垃圾扔在这附近。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "That bird isn't exactly keen on cleaning up."
+msgstr "那只鸟好像不太喜欢打扫卫生啊。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Not the kind of treasure I was expecting."
+msgstr "这并不是我想找的那种宝藏。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "It might be worth breaking it apart."
+msgstr "也许值得把它弄碎。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG1"
+msgid "Parts of an egg."
+msgstr "蛋的一部分。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG2"
+msgid "Please let it belong to a bird and not a reptile."
+msgstr "请让这个蛋壳是属于鸟而不是爬行动物的。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG3"
+msgid "Someone making scrambled eggs?"
+msgstr "有人在这儿做炒蛋吗？"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG4"
+msgid "It's an egg shell. I don't suppose there's a bird around."
+msgstr "它是一个蛋壳。我没看见周围有鸟儿啊。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Well, they probably have a nice view."
+msgstr "嗯，它们的视野肯定不错。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Maybe it's good for parts?"
+msgstr "也许这些零件对它有好处？"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TREE1"
+msgid "It's just an old tree."
+msgstr "只是一棵老树而已。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TREE2"
+msgid "It's just an old tree."
+msgstr "只是一棵老树而已。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Hope that bird doesn't break me in half like that."
+msgstr "我希望那只鸟儿不会像那样把我摔成两半。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Maybe if I help it hatch, it'll fly me away from here."
+msgstr "也许我帮它孵蛋，它就能够带我飞离这里了。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_TAIL"
+msgid "Those feathers look big enough to lift me off the ground."
+msgstr "那些羽毛看起来大的能带我飞起来。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROOTTRUNK"
 msgid "All my storage problems, solved!"
@@ -33994,6 +35109,16 @@ msgstr "它这是...要吃我吗？"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROYAL_GALLERY"
 msgid "A tribute to someone else's adventures."
 msgstr "向别人的冒险致敬。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RO_BIN"
+msgid "Not a flyer, but it has a lot of cargo space."
+msgstr "它不会飞，但是它有很多储物的空间。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Not sure what's worse: the slime, or the weird eye."
+msgstr "我不知道哪个更糟糕：是黏糊糊的粘液，还是奇怪的眼球。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RUG_BEARD"
@@ -35190,6 +36315,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CANDLEHAT"
 msgid "A portable reading light."
 msgstr "一个便携的阅读灯。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CAVE_EXIT_ROC"
+msgid "There's something under that rock."
+msgstr "那块石头下面有东西。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN"
 msgid "The exoskeleton of an arthropod."
@@ -36365,6 +37495,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGBANDIT"
 msgid "Quite rude!"
 msgstr "真是粗鲁！"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGCROWNHAT"
+msgid "A valued relic of wealth and authority."
+msgstr "财富与权力的象征。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGEON.DEAD"
 msgid "The remains of a disease carrying bird."
@@ -36709,6 +37844,11 @@ msgstr "一个古代的猪火盆。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Some light couldn't possibly hurt."
 msgstr "有些火光并不会造成伤害。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_SCEPTER"
+msgid "A symbol of leadership."
+msgstr "领导阶级的象征。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -37185,6 +38325,106 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROCK_FLIPPABLE"
 msgid "The most interesting insects are found under rocks."
 msgstr "有趣的是，昆虫是在岩石底下发现的。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_HEAD"
+msgid "Tri-headed. My goodness!"
+msgstr "我的天啊。它有三个头！"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_LEG"
+msgid "The leg of a gigantis accipitridae."
+msgstr "一条巨型鹰科动物的腿。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "That's been here for a while."
+msgstr "这已经有一段时间了。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "I'm not familiar with that type of wood."
+msgstr "我不熟悉那种木头。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BUSH"
+msgid "I'm not familiar with that species."
+msgstr "我不熟悉那个物种。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Quite seasoned."
+msgstr "风干很久了。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "It's seen better days."
+msgstr "它曾经有过好日子。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A stick. But I'm not sure from what tree."
+msgstr "一根树枝。但我不确定是从哪棵树上掉下来的。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Has weathered many storms."
+msgstr "经历过许多风暴。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG1"
+msgid "The ovum of a large bird."
+msgstr "一只巨大鸟类的卵。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG2"
+msgid "I am very much interested in examining that."
+msgstr "我非常有兴趣研究一下。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG3"
+msgid "Full of calcium."
+msgstr "含有丰富的钙。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG4"
+msgid "I should like to examine the hatchling."
+msgstr "我想查看一下幼仔的孵化。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Looks abandoned."
+msgstr "看起来被抛弃了。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Nonfunctional."
+msgstr "不起作用了。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TREE1"
+msgid "Looks like it's been transplanted there."
+msgstr "看起来好像是被转移到这里来的。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TREE2"
+msgid "An orphan tree."
+msgstr "一棵孤独的树。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Goodness, what catastrophe has struck that?!"
+msgstr "天哪，这发生了什么灾难？！"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Perhaps I should incubate this."
+msgstr "也许我应该孵化它。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_TAIL"
+msgid "I would like to examine those feathers."
+msgstr "我想看看那些羽毛。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROOTTRUNK"
 msgid "A complex root system appears to allow the passage of goods."
@@ -37199,6 +38439,16 @@ msgstr "我能看出猪对这扇门的影响。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROYAL_GALLERY"
 msgid "Needs a key to reach its contents."
 msgstr "需要一把钥匙才能拿到里面的东西。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RO_BIN"
+msgid "An oddly cavernous variant of the Turdidae family."
+msgstr "鸫科中的一种奇怪的巨大变种。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "That bird is oddly attractedt to this bezoar."
+msgstr "很奇怪，那只鸟被这块胃石吸引了。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RUG_BEARD"
@@ -38400,6 +39650,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CANDLEHAT"
 msgid "ON, ON, BRIEF CANDLE!"
 msgstr "点着，点着，蜡烛点燃时间很短！"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CAVE_EXIT_ROC"
+msgid "WHATFORE UNDER THERE?"
+msgstr "那下面是什么？"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN"
 msgid "YON BUGGY ARMOR"
@@ -39575,6 +40830,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGBANDIT"
 msgid "'TIS FIEND!"
 msgstr "这是个坏蛋！"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGCROWNHAT"
+msgid "UNEASY LIES HEAD THAT LOST'DED THE CROWN"
+msgstr "位高心不宁，为王者难安"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGEON.DEAD"
 msgid "ALL LIVES MUST DIE"
@@ -39919,6 +41179,11 @@ msgstr "需要一些木棍"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "NEED'ST SOME STICKS"
 msgstr "需要一些木棍"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_SCEPTER"
+msgid "WILBA DOST NAUGHT WANTS TO RULE"
+msgstr "薇尔芭不想要统治权"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -40395,6 +41660,106 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROCK_FLIPPABLE"
 msgid "WHATFORE HIDETH 'NEATH YON STONE?"
 msgstr "石头下面藏着什么呢？"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_HEAD"
+msgid "UNEASY LIES HIS HEAD"
+msgstr "头高心不宁"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_LEG"
+msgid "BIG BIRDIE IS'T AFOOTS"
+msgstr "大鸟的脚"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "'TIS BIG STICKING PLACE"
+msgstr "树枝粘成的大鸟巢"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "'TIS BIG STICKING PLACE"
+msgstr "树枝粘成的大鸟巢"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BUSH"
+msgid "AY, THERE'S THE SHRUB"
+msgstr "呀，那是灌木丛"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "'TIS A STICK"
+msgstr "这是一根树枝"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "'TIS STICK O' OLD"
+msgstr "这是一根老树枝"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "IT COME'ST FROM A TREE"
+msgstr "它来自一棵树"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "'TIS BORING"
+msgstr "无聊"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG1"
+msgid "'TIS BROK'DEN"
+msgstr "裂开了"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG2"
+msgid "WHEREFORE LITTLE BIRDIE?"
+msgstr "小鸟在哪里呢？"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG3"
+msgid "'TIS CRUNCH'D, AND CRUNCH'D, AND CRUNCH'D"
+msgstr "吱嘎吱嘎，还有吱嘎吱嘎，和吱嘎吱嘎"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG4"
+msgid "WHYFORE NO BIRDIE?"
+msgstr "为什么没有小鸟？"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_HOUSE"
+msgid "'TIS HOUSE O' LONELY"
+msgstr "一座孤零零的房子"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "'TIS BROK'DEN"
+msgstr "裂开了"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TREE1"
+msgid "OVER-WEATHER'D"
+msgstr "枯死了"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TREE2"
+msgid "OVER-WEATHER'D"
+msgstr "枯死了"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TRUNK"
+msgid "'TIS BROK'DEN"
+msgstr "裂开了"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_ROBIN_EGG"
+msgid "AS COLD AS ANY STONE"
+msgstr "和石头一样冰冷"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_TAIL"
+msgid "BEAST WITH BIG BACK"
+msgstr "大野兽的背面"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROOTTRUNK"
 msgid "KEEPETH WILBA'S STUFF"
@@ -40409,6 +41774,16 @@ msgstr "它的面颊很圆润"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROYAL_GALLERY"
 msgid "OPEN, LOCKS, WHOEVER KNOCKS, AND HATH THE KEY"
 msgstr "开锁，不管是谁，只要有钥匙就行"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RO_BIN"
+msgid "RO BIN SHALL RESTORE AMENDS"
+msgstr "露比会让我过得更好的"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "STONE O' THE BIRDIE GUT"
+msgstr "一块鸟肠石"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RUG_BEARD"
@@ -41620,6 +42995,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CANDLEHAT"
 msgid "A little fire hat."
 msgstr "小小的火焰帽子。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CAVE_EXIT_ROC"
+msgid "I should wreck that."
+msgstr "我应该毁掉它。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN"
 msgid "Bug skin."
@@ -42795,6 +44175,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGBANDIT"
 msgid "He's after my money!"
 msgstr "他想要我的钱！"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGCROWNHAT"
+msgid "I think it suits me."
+msgstr "我觉得这很适合我。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGEON.DEAD"
 msgid "Whoops."
@@ -43139,6 +44524,11 @@ msgstr "我应该点着它！"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "I could put fire in there!"
 msgstr "我可以在这里点火！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_SCEPTER"
+msgid "This means everyone has to listen to me."
+msgstr "这意味着每个人都必须听我命令。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -43580,6 +44970,106 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Might as well see what's underneath."
 msgstr "不妨看看下面是什么。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_HEAD"
+msgid "A little too pecky for me."
+msgstr "看起来有点太傻了。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_LEG"
+msgid "That would look good barbequed."
+msgstr "那看起来很棒。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Wish I could burn it."
+msgstr "希望我可以把它烧了。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "That'd look good up in flames."
+msgstr "火焰看起来很好看。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BUSH"
+msgid "Wish I could burn it!"
+msgstr "希望我可以把它烧了！"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "What's that doing there?"
+msgstr "那是怎么回事?"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Who leaves a stick just laying around?"
+msgstr "谁在这放的树枝？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "It's a stick."
+msgstr "一根树枝。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "A weird looking stick."
+msgstr "一根奇怪的树枝。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG1"
+msgid "Do egg shells burn?"
+msgstr "把蛋壳烧了？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG2"
+msgid "Needs some fire."
+msgstr "需要更多的火。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG3"
+msgid "Where's the bird?"
+msgstr "鸟在哪里？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG4"
+msgid "It looks old."
+msgstr "看起来很古老。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Anyone there?"
+msgstr "有人在吗？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Aww... can't even light a fire in there."
+msgstr "哇...甚至不能在这里点火。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TREE1"
+msgid "I can't even burn it."
+msgstr "我甚至不能点燃它。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TREE2"
+msgid "It would look better burnt."
+msgstr "烧着了会看起来更好。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Broken, but not burnt."
+msgstr "破碎，而不是烧焦。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_ROBIN_EGG"
+msgid "It needs fire. Like me."
+msgstr "它需要火。就像我一样。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_TAIL"
+msgid "That's a big bird butt."
+msgstr "是一个大大的鸟屁股。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROOTTRUNK"
 msgid "Now I don't have to lug everything around with me."
@@ -43594,6 +45084,16 @@ msgstr "它在笑什么？"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROYAL_GALLERY"
 msgid "How am I supposed to unlock that?"
 msgstr "我该怎么解锁呢？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RO_BIN"
+msgid "Do you have to squeek all the time?"
+msgstr "你始终都要这样叫下去吗？"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Ugh. I really want to burn it."
+msgstr "呃。我真想把它给烧了。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RUG_BEARD"
@@ -46575,6 +48075,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CANDLEHAT"
 msgid "Now Wolfgang hands free for punching."
 msgstr "现在沃尔夫冈可以腾出手揍人了。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Wolfgang smash it!"
+msgstr "沃尔夫冈砸碎它！"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN"
 msgid "Icky bug pieces."
@@ -47750,6 +49255,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGBANDIT"
 msgid "Leave Wolfgang money alone!"
 msgstr "离沃尔夫冈的钱远点！"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGCROWNHAT"
+msgid "Little crown for mighty head."
+msgstr "为我强大的脑袋准备的小皇冠。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGEON.DEAD"
 msgid "Is dead."
@@ -48094,6 +49604,11 @@ msgstr "光亮是沃尔夫冈的朋友。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Wolfgang like light."
 msgstr "沃尔夫冈喜欢光亮。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_SCEPTER"
+msgid "Pigs like pretty stick."
+msgstr "猪人们喜欢漂亮的棍子。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -48570,6 +50085,106 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Wolfgang strong. Wolfgang flip big stone."
 msgstr "沃尔夫冈很强大，沃尔夫冈翻开大石头。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_HEAD"
+msgid "No fair. Wolfgang only have one head."
+msgstr "不公平，沃尔夫冈只有一个脑袋。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_LEG"
+msgid "Is leg day?"
+msgstr "今天是属于腿的？"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Is old."
+msgstr "很老。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Is big stick."
+msgstr "大木棒。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BUSH"
+msgid "Is teensy bush."
+msgstr "非常渺小的灌木丛。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Is stick."
+msgstr "木棒。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Is stick."
+msgstr "木棒。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Is stick."
+msgstr "木棒。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Is stick. Wolfgang like."
+msgstr "木棒，沃尔夫冈喜欢它。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG1"
+msgid "Is broken."
+msgstr "碎掉了。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG2"
+msgid "Where is birdie?"
+msgstr "小鸟在哪里？"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG3"
+msgid "Is omelet Wolfgang can eat?"
+msgstr "沃尔夫冈可以吃煎蛋卷吗？"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG4"
+msgid "Is smashed."
+msgstr "它被摧毁了。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Hello? Is anyone home?"
+msgstr "你好？有人在家吗？"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Is broken."
+msgstr "碎掉了。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TREE1"
+msgid "Wolfgang is stronger."
+msgstr "沃尔夫冈更强壮。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TREE2"
+msgid "Not as strong as Wolfgang."
+msgstr "没有沃尔夫冈强壮。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Wolfgang can break tree too, if he want."
+msgstr "沃尔夫冈可以砍倒任何他想砍的树。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Wolfgang break it open."
+msgstr "沃尔夫冈把它破开。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_TAIL"
+msgid "Wolfgang is hoping there is no poop."
+msgstr "沃尔夫冈希望这里没有便便。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROOTTRUNK"
 msgid "Wolfgang's stuff many places now!"
@@ -48584,6 +50199,16 @@ msgstr "一张大嘴巴。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROYAL_GALLERY"
 msgid "Is needing key."
 msgstr "需要钥匙。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RO_BIN"
+msgid "Hello big birdie!"
+msgstr "你好啊，大鸟！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Is from birdie gut."
+msgstr "这从鸟的内脏中取出的。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RUG_BEARD"
@@ -49780,6 +51405,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CANDLEHAT"
 msgid "Now I can chop trees in the dark."
 msgstr "现在我可以在黑暗中砍树了。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CAVE_EXIT_ROC"
+msgid "There's something under there, eh."
+msgstr "那底下有些东西，嗯。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN"
 msgid "It's got some heft to it."
@@ -50955,6 +52585,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGBANDIT"
 msgid "He looks a little shady."
 msgstr "它看起来有点可疑。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGCROWNHAT"
+msgid "It's nice to be appreciated."
+msgstr "它非常好，值得被赏识。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGEON.DEAD"
 msgid "Good."
@@ -51299,6 +52934,11 @@ msgstr "这很适合点把火。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Nice place for a light."
 msgstr "这很适合点把火。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_SCEPTER"
+msgid "I'd rather have an axe in my hand."
+msgstr "我宁愿手里拿把斧头。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -51775,6 +53415,106 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROCK_FLIPPABLE"
 msgid "We should flip it."
 msgstr "我们应该翻开它看看。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_HEAD"
+msgid "Three times the horrible."
+msgstr "三倍的恐惧。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_LEG"
+msgid "Chopping that is almost as enjoyable as wood."
+msgstr "砍这个和砍树一样令人愉快。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Aw. Somebody already chopped it."
+msgstr "噢，有已经已经砍过了。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Looks old."
+msgstr "看起来很旧。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BUSH"
+msgid "Must be bushed."
+msgstr "累坏了。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Wood."
+msgstr "木材。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Don't have to chop that."
+msgstr "砍都不用砍。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Came from a tree."
+msgstr "来自一棵树。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Where's the tree."
+msgstr "树在哪里。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG1"
+msgid "Someone chopped it."
+msgstr "被人砍过了。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG2"
+msgid "I hope there wasn't a bird in there."
+msgstr "希望里面没有雏鸟。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG3"
+msgid "As long as it's not a bird."
+msgstr "只要不是鸟就好。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG4"
+msgid "Cracked."
+msgstr "碎了。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_HOUSE"
+msgid "That's nice."
+msgstr "很好看。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "It's broken."
+msgstr "被损坏了。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TREE1"
+msgid "Doesn't look like we can chop it."
+msgstr "看起来我们没法砍它。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TREE2"
+msgid "Can't chop that yet."
+msgstr "还没法砍。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Tsk. Bad chopping form."
+msgstr "啧啧，砍得真难看。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Does a stone egg still hatch?"
+msgstr "这个石头蛋可以孵化？"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_TAIL"
+msgid "Too much of a coward to face me."
+msgstr "一个不敢正视我的懦夫。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROOTTRUNK"
 msgid "It moves all my stuff for me. That's nice."
@@ -51789,6 +53529,16 @@ msgstr "那扇门真奇怪，是吧露西？"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROYAL_GALLERY"
 msgid "Oh. Fancy."
 msgstr "哦。有趣。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RO_BIN"
+msgid "I don't want him near my stuff."
+msgstr "我不太想让它装着我的东西。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Birds are disgusting."
+msgstr "鸟类可真恶心。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RUG_BEARD"
@@ -52980,6 +54730,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CANDLEHAT"
 msgid "A fine hat fer lootin' temples."
 msgstr "一顶用来洗劫古庙的好帽子。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Thar be a way out!"
+msgstr "那是条出去的路！"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN"
 msgid "A harden'd hull."
@@ -54155,6 +55910,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGBANDIT"
 msgid "Argh! Stay away from me gold!"
 msgstr "啊！离俺的金子远点！"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGCROWNHAT"
+msgid "Treasure!"
+msgstr "宝藏！"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGEON.DEAD"
 msgid "Tells no tales."
@@ -54499,6 +56259,11 @@ msgstr "用来点火的地方。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A port fer fire."
 msgstr "用来点火的地方。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_SCEPTER"
+msgid "Thet b'treasure for sure!"
+msgstr "毫无疑问这是宝藏！"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -54975,6 +56740,106 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Plenty o'booty t'be found under a rock."
 msgstr "在岩石下面能找到很多战利品。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_HEAD"
+msgid "A livin'ship wit' three heads!"
+msgstr "长了三个头的活船！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_LEG"
+msgid "A great movin'mast."
+msgstr "会动的巨行桅杆。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Too old fer'a mast."
+msgstr "作为桅杆来说它太老旧了。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "'Tis good fer nothin'."
+msgstr "这不是什么好东西。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BUSH"
+msgid "Has no berries to speak of."
+msgstr "别指望它会结出果子了。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A stick."
+msgstr "一根树枝。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "It be'a stick."
+msgstr "它是一根树枝。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "There be'a stick."
+msgstr "这里有根树枝。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "A stick, t'be sure."
+msgstr "俺确信，它是一根树枝。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG1"
+msgid "Been run aground!"
+msgstr "它搁浅了。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG2"
+msgid "Been run through!"
+msgstr "它被刺穿了心脏！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG3"
+msgid "Been keel'auled!"
+msgstr "它被实施拖刑了！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG4"
+msgid "Been marooned!"
+msgstr "它被流放了！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Captain's cabin."
+msgstr "船长的舱室。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "It's been run through!"
+msgstr "它被刺穿了心脏！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TREE1"
+msgid "A land mast."
+msgstr "一根陆生桅杆。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TREE2"
+msgid "A land mast far from home."
+msgstr "一根家住陆地的桅杆。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Have ta careen this nest t'fix it."
+msgstr "得把这个窝倾倒一边才能修理它。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_ROBIN_EGG"
+msgid "'Tis treasure within!"
+msgstr "里面藏着宝藏！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_TAIL"
+msgid "Them feathers'd make fer good sails."
+msgstr "它们的羽毛很适合用来制成船帆。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROOTTRUNK"
 msgid "Yarr! All o'Woodleg's treasures!"
@@ -54989,6 +56854,16 @@ msgstr "啊，她会吃掉老伍德莱格的。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROYAL_GALLERY"
 msgid "A treasure!"
 msgstr "宝藏！"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RO_BIN"
+msgid "'e be keepin' me treasures in'is gullet."
+msgstr "鸟儿把俺的财宝藏在它的食道里。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "'t be'a birdie treasure."
+msgstr "这是鸟儿的宝藏。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RUG_BEARD"
@@ -56200,6 +58075,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CANDLEHAT"
 msgid "Scary head thing!"
 msgstr "可怕的头戴物！"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Goes away from here"
+msgstr "从这里离开"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN"
 msgid "Bzzter clothes"
@@ -57375,6 +59255,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGBANDIT"
 msgid "Sneaky Twirly Tail"
 msgstr "鬼鬼祟祟的卷尾巴"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGCROWNHAT"
+msgid "Twirly Tail head thing"
+msgstr "卷尾巴头戴物"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGEON.DEAD"
 msgid "(sob)"
@@ -57729,6 +59614,11 @@ msgstr "燃烧的棍子朋友"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Burns stick friends"
 msgstr "燃烧的棍子朋友"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_SCEPTER"
+msgid "Makes friends with Twirly Tails!"
+msgstr "和卷尾巴交个朋友！"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -58220,6 +60110,106 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Things hiding?"
 msgstr "有东西藏起来了？"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_HEAD"
+msgid "Hungry?"
+msgstr "饿了吗？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_LEG"
+msgid "Wump Tweeter"
+msgstr "山峰般的叽喳"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Lost?"
+msgstr "迷路了？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Lost?"
+msgstr "迷路了？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BUSH"
+msgid "Like your hair"
+msgstr "喜欢你的头发"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Friend!"
+msgstr "朋友！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Hello, stick!"
+msgstr "你好，棍子！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Friend?"
+msgstr "朋友？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "You live around here?"
+msgstr "你住在这附近吗？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG1"
+msgid "Broken"
+msgstr "坏了"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG2"
+msgid "Broken"
+msgstr "坏了"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG3"
+msgid "Broken"
+msgstr "坏了"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG4"
+msgid "Broken"
+msgstr "坏了"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_HOUSE"
+msgid "No one there"
+msgstr "这里没有人"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Working?"
+msgstr "运转？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TREE1"
+msgid "Friend?"
+msgstr "朋友？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TREE2"
+msgid "Hello!"
+msgstr "你好！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TRUNK"
+msgid "You alright?"
+msgstr "你还好吗？"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Needs warm"
+msgstr "需要温暖"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_TAIL"
+msgid "Wump Tweeter bum"
+msgstr "山峰般叽喳屁股"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROOTTRUNK"
 msgid "Friends help carry stuff"
@@ -58234,6 +60224,16 @@ msgstr "一张大嘴巴门"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROYAL_GALLERY"
 msgid "Has little lock"
 msgstr "有一把小锁"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RO_BIN"
+msgid "Pack Tweeter!"
+msgstr "包裹叽喳！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Oh, hello!"
+msgstr "噢，你好！"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RUG_BEARD"
@@ -62940,6 +64940,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CANDLEHAT"
 msgid "PORTABLE ILLUMINATION UNIT"
 msgstr "便携式照明单元"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CAVE_EXIT_ROC"
+msgid "A STONE FIREWALL"
+msgstr "一道石头防火墙"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN"
 msgid "INFERIOR ORGANIC BODY PLATING"
@@ -64115,6 +66120,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIGBANDIT"
 msgid "WARNING: IT WANTS MY MONEY"
 msgstr "警告：它想夺走我的钱"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIGCROWNHAT"
+msgid "I DESERVE THIS"
+msgstr "这是我应得的"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIGEON.DEAD"
 msgid "BROKEN BIRD"
@@ -64459,6 +66469,11 @@ msgstr "能够释放热能"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "CAN RELEASE EXOTHERMIC ENERGY"
 msgstr "能够释放热能"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_SCEPTER"
+msgid "KNEEL TO YOUR OVERLORD"
+msgstr "向你的领主下跪"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_SHOP_ACADEMY.BURNING"
@@ -64935,6 +66950,106 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROCK_FLIPPABLE"
 msgid "FLIP ROCK TO PERFORM RUMMAGE"
 msgstr "翻开岩石进行搜寻"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_HEAD"
+msgid "CONTAINS REDUNDANT HEADS"
+msgstr "过于累赘的头部"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_LEG"
+msgid "LEG SIZE EXCEEDING COGNITIVE LIMITS"
+msgstr "腿的尺寸超出认知极限"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "OUTDATED TECHNOLOGY"
+msgstr "过时的科技"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "OLD"
+msgstr "土得掉渣"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BUSH"
+msgid "EXCESSIVE DECORATION"
+msgstr "装饰过度"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A STICK"
+msgstr "一根棍子"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "A STICK"
+msgstr "一根棍子"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A STICK"
+msgstr "一根棍子"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "A STICK"
+msgstr "一根棍子"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG1"
+msgid "SHELL REDUNDANCY"
+msgstr "过于累赘的壳"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG2"
+msgid "SHELL REDUNDANCY"
+msgstr "过于累赘的壳"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG3"
+msgid "SHELL REDUNDANCY"
+msgstr "过于累赘的壳"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG4"
+msgid "SHELL REDUNDANCY"
+msgstr "过于累赘的壳"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_HOUSE"
+msgid "REDUNDANT HOME"
+msgstr "过于累赘的房子"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "SENSELESSLY SLAUGHTERED BY RUST"
+msgstr "被铁锈无情地侵蚀"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TREE1"
+msgid "REDUNDANT WOOD STRUCTURE"
+msgstr "冗余的木质结构"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TREE2"
+msgid "REDUNDANT REDUNDANCY"
+msgstr "全是累赘"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TRUNK"
+msgid "NONFUNCTIONING WOODS"
+msgstr "无用的木头"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_ROBIN_EGG"
+msgid "PROTECTED BY FIREWALL"
+msgstr "被防火墙保护着"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_TAIL"
+msgid "EXIT PORT"
+msgstr "出口"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROOTTRUNK"
 msgid "ACCESS TO ROOT DIRECTORY"
@@ -64949,6 +67064,16 @@ msgstr "伪装成肉袋的扩展端口"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROYAL_GALLERY"
 msgid "IT REQUIRES A PASSKEY"
 msgstr "它需要密钥"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RO_BIN"
+msgid "A USEFUL FLESHSACK. I WILL KEEP IT"
+msgstr "一只有用的肉团。我会留着它的。"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "FLESHSACKS DISGUST ME"
+msgstr "让我恶心的肉团"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.RUG_BEARD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RUG_BEARD"
@@ -65657,117 +67782,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Catherine"
+msgid "Henrietta"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Charlotte"
+msgid "Luella"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Della"
+msgid "Alexandrina"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Arabella"
+msgid "Ebba"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Belle"
+msgid "Edith"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Beryl"
+msgid "Flora"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Briar"
+msgid "Florence"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Beatrice"
+msgid "Georgette"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Henrietta"
+msgid "Alice"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Luella"
+msgid "Agnes"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Alexandrina"
+msgid "Catherine"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Ebba"
+msgid "Lilian"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Edith"
+msgid "Louise"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Flora"
+msgid "Ottilie"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Florence"
+msgid "Ophelia"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Georgette"
+msgid "Sophronia"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Alice"
+msgid "Charlotte"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Agnes"
+msgid "Della"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Lilian"
+msgid "Arabella"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Louise"
+msgid "Belle"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Ottilie"
+msgid "Beryl"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Ophelia"
+msgid "Briar"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Sophronia"
+msgid "Beatrice"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -65777,122 +67902,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Tesla"
+msgid "Charles"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Frederick"
+msgid "Ewart"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Leopold"
+msgid "Douglas"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Albert"
+msgid "Edison"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Alfred"
+msgid "Edmund"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Arthur"
+msgid "Larkin"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Edward"
+msgid "Herbert"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "George"
+msgid "Henry"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Charles"
+msgid "Charley"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Ewart"
+msgid "Oliver"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Douglas"
+msgid "Tesla"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Edison"
+msgid "Thaddeus"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Edmund"
+msgid "Wellington"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Larkin"
+msgid "Gulliver"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Herbert"
+msgid "Clarence"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Henry"
+msgid "Merritt"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Charley"
+msgid "Sterling"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Oliver"
+msgid "Frederick"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Thaddeus"
+msgid "Leopold"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Wellington"
+msgid "Albert"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Gulliver"
+msgid "Alfred"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Clarence"
+msgid "Arthur"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Merritt"
+msgid "Edward"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Sterling"
+msgid "George"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -65902,77 +68027,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Hastings"
+msgid "Palmerston"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Aberdeen"
+msgid "Gladstone"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Talbot"
+msgid "Disraeli"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Thames"
+msgid "Salisbury"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Stockton"
+msgid "Kensington"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Darlington"
+msgid "Conroy"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Peel"
+msgid "Greville"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Derby"
+msgid "Hastings"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Palmerston"
+msgid "Aberdeen"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Gladstone"
+msgid "Talbot"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Disraeli"
+msgid "Thames"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Salisbury"
+msgid "Stockton"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Kensington"
+msgid "Darlington"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Conroy"
+msgid "Peel"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Greville"
+msgid "Derby"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -70532,82 +72657,82 @@ msgstr "箣竹"
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr "山茱萸"
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Juniperus"
+msgid "Betula"
 msgstr "柏桧"
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr "马利筋"
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr "栎"
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr "大葱"
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr "豌豆"
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr "荆蓟"
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr "麝香草"
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr "大豆"
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Betula"
+msgid "Juniperus"
 msgstr "桦木"
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr "覆盆子"
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr "胡萝卜"
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr "甘蓝"
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr "齿栗叶"
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr "车轴草"
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr "黄瓜"
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -70944,6 +73069,11 @@ msgstr "雨林树苗"
 msgctxt "STRINGS.NAMES.CANDLEHAT"
 msgid "Cork Candle Hat"
 msgstr "软木蜡烛帽"
+
+#. STRINGS.NAMES.CAVE_EXIT_ROC
+msgctxt "STRINGS.NAMES.CAVE_EXIT_ROC"
+msgid "Stone Plug"
+msgstr "堵塞物"
 
 #. STRINGS.NAMES.CHITIN
 msgctxt "STRINGS.NAMES.CHITIN"
@@ -72050,6 +74180,11 @@ msgctxt "STRINGS.NAMES.PIGBANDIT"
 msgid "Masked Pig"
 msgstr "蒙面猪人"
 
+#. STRINGS.NAMES.PIGCROWNHAT
+msgctxt "STRINGS.NAMES.PIGCROWNHAT"
+msgid "Royal Crown"
+msgstr "王冠"
+
 #. STRINGS.NAMES.PIGEON
 msgctxt "STRINGS.NAMES.PIGEON"
 msgid "Pigeon"
@@ -72269,6 +74404,11 @@ msgstr "破损的火盆"
 msgctxt "STRINGS.NAMES.PIG_RUINS_TORCH_WALL"
 msgid "Wall Brazier"
 msgstr "墙上的火盆"
+
+#. STRINGS.NAMES.PIG_SCEPTER
+msgctxt "STRINGS.NAMES.PIG_SCEPTER"
+msgid "Regal Scepter"
+msgstr "帝王权杖"
 
 #. STRINGS.NAMES.PIG_SHOP_ACADEMY
 msgctxt "STRINGS.NAMES.PIG_SHOP_ACADEMY"
@@ -72560,6 +74700,106 @@ msgctxt "STRINGS.NAMES.ROCK_FLIPPABLE"
 msgid "Stone Slab"
 msgstr "小石板"
 
+#. STRINGS.NAMES.ROC_HEAD
+msgctxt "STRINGS.NAMES.ROC_HEAD"
+msgid "BFB"
+msgstr "友善的大鹏"
+
+#. STRINGS.NAMES.ROC_LEG
+msgctxt "STRINGS.NAMES.ROC_LEG"
+msgid "BFB"
+msgstr "友善的大鹏"
+
+#. STRINGS.NAMES.ROC_NEST_BRANCH1
+msgctxt "STRINGS.NAMES.ROC_NEST_BRANCH1"
+msgid "Weathered Branch"
+msgstr "风化的树枝"
+
+#. STRINGS.NAMES.ROC_NEST_BRANCH2
+msgctxt "STRINGS.NAMES.ROC_NEST_BRANCH2"
+msgid "Weathered Branch"
+msgstr "风化的树枝"
+
+#. STRINGS.NAMES.ROC_NEST_BUSH
+msgctxt "STRINGS.NAMES.ROC_NEST_BUSH"
+msgid "Weathered Shrub"
+msgstr "风化的灌木丛"
+
+#. STRINGS.NAMES.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.NAMES.ROC_NEST_DEBRIS1"
+msgid "Weathered Stick"
+msgstr "风化的树枝"
+
+#. STRINGS.NAMES.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.NAMES.ROC_NEST_DEBRIS2"
+msgid "Weathered Stick"
+msgstr "风化的树枝"
+
+#. STRINGS.NAMES.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.NAMES.ROC_NEST_DEBRIS3"
+msgid "Weathered Stick"
+msgstr "风化的树枝"
+
+#. STRINGS.NAMES.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.NAMES.ROC_NEST_DEBRIS4"
+msgid "Weathered Stick"
+msgstr "风化的树枝"
+
+#. STRINGS.NAMES.ROC_NEST_EGG1
+msgctxt "STRINGS.NAMES.ROC_NEST_EGG1"
+msgid "Petrified Egg"
+msgstr "石化的蛋"
+
+#. STRINGS.NAMES.ROC_NEST_EGG2
+msgctxt "STRINGS.NAMES.ROC_NEST_EGG2"
+msgid "Petrified Egg"
+msgstr "石化的蛋"
+
+#. STRINGS.NAMES.ROC_NEST_EGG3
+msgctxt "STRINGS.NAMES.ROC_NEST_EGG3"
+msgid "Petrified Egg"
+msgstr "石化的蛋"
+
+#. STRINGS.NAMES.ROC_NEST_EGG4
+msgctxt "STRINGS.NAMES.ROC_NEST_EGG4"
+msgid "Petrified Egg"
+msgstr "石化的蛋"
+
+#. STRINGS.NAMES.ROC_NEST_HOUSE
+msgctxt "STRINGS.NAMES.ROC_NEST_HOUSE"
+msgid "Weathered House"
+msgstr "风化的房子"
+
+#. STRINGS.NAMES.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.NAMES.ROC_NEST_RUSTY_LAMP"
+msgid "Rusty Lamp"
+msgstr "生锈的街灯"
+
+#. STRINGS.NAMES.ROC_NEST_TREE1
+msgctxt "STRINGS.NAMES.ROC_NEST_TREE1"
+msgid "Weathered Tree"
+msgstr "风化的树木"
+
+#. STRINGS.NAMES.ROC_NEST_TREE2
+msgctxt "STRINGS.NAMES.ROC_NEST_TREE2"
+msgid "Weathered Tree"
+msgstr "风化的树木"
+
+#. STRINGS.NAMES.ROC_NEST_TRUNK
+msgctxt "STRINGS.NAMES.ROC_NEST_TRUNK"
+msgid "Weathered Trunk"
+msgstr "风化的树桩"
+
+#. STRINGS.NAMES.ROC_ROBIN_EGG
+msgctxt "STRINGS.NAMES.ROC_ROBIN_EGG"
+msgid "Stone Egg"
+msgstr "岩蛋"
+
+#. STRINGS.NAMES.ROC_TAIL
+msgctxt "STRINGS.NAMES.ROC_TAIL"
+msgid "BFB"
+msgstr "友善的大鹏"
+
 #. STRINGS.NAMES.ROOTTRUNK
 msgctxt "STRINGS.NAMES.ROOTTRUNK"
 msgid "Root Trunk"
@@ -72574,6 +74814,16 @@ msgstr "圆形的大门"
 msgctxt "STRINGS.NAMES.ROYAL_GALLERY"
 msgid "Royal Gallery Exhibit"
 msgstr "皇家画廊展柜"
+
+#. STRINGS.NAMES.RO_BIN
+msgctxt "STRINGS.NAMES.RO_BIN"
+msgid "Ro Bin"
+msgstr "露比"
+
+#. STRINGS.NAMES.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.NAMES.RO_BIN_GIZZARD_STONE"
+msgid "Ro Bin Gizzard Stone"
+msgstr "露比的砂囊石"
 
 #. STRINGS.NAMES.RUG_BEARD
 msgctxt "STRINGS.NAMES.RUG_BEARD"
@@ -74840,10 +77090,20 @@ msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.PUGALISK_FOUNTAIN"
 msgid "Fountain of Youth"
 msgstr "不老泉"
 
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.ROC_SETTING
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.ROC_SETTING"
+msgid "BFB"
+msgstr "友善的大鹏"
+
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.RUINED_SCULPTURES
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.RUINED_SCULPTURES"
 msgid "Ruined Sculptures"
 msgstr "毁坏的雕塑"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.TASKSETNAMES.PORKLAND
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.TASKSETNAMES.PORKLAND"
+msgid "Hamlet"
+msgstr "村庄"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.TEMPERATE
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.TEMPERATE"

@@ -138,392 +138,392 @@ msgstr ""
 
 #. STRINGS.ANTNAMES.10
 msgctxt "STRINGS.ANTNAMES.10"
-msgid "Drone #813462"
+msgid "Drone #8749"
 msgstr ""
 
 #. STRINGS.ANTNAMES.100
 msgctxt "STRINGS.ANTNAMES.100"
-msgid "Drone #247395"
+msgid "Drone #407868"
 msgstr ""
 
 #. STRINGS.ANTNAMES.11
 msgctxt "STRINGS.ANTNAMES.11"
-msgid "Drone #997578"
+msgid "Drone #105423"
 msgstr ""
 
 #. STRINGS.ANTNAMES.12
 msgctxt "STRINGS.ANTNAMES.12"
-msgid "Drone #269451"
+msgid "Drone #710609"
 msgstr ""
 
 #. STRINGS.ANTNAMES.13
 msgctxt "STRINGS.ANTNAMES.13"
-msgid "Drone #695666"
+msgid "Drone #152038"
 msgstr ""
 
 #. STRINGS.ANTNAMES.14
 msgctxt "STRINGS.ANTNAMES.14"
-msgid "Drone #291737"
+msgid "Drone #595955"
 msgstr ""
 
 #. STRINGS.ANTNAMES.15
 msgctxt "STRINGS.ANTNAMES.15"
-msgid "Drone #724410"
+msgid "Drone #939922"
 msgstr ""
 
 #. STRINGS.ANTNAMES.16
 msgctxt "STRINGS.ANTNAMES.16"
-msgid "Drone #23085"
+msgid "Drone #796084"
 msgstr ""
 
 #. STRINGS.ANTNAMES.17
 msgctxt "STRINGS.ANTNAMES.17"
-msgid "Drone #8749"
+msgid "Drone #516589"
 msgstr ""
 
 #. STRINGS.ANTNAMES.18
 msgctxt "STRINGS.ANTNAMES.18"
-msgid "Drone #105423"
+msgid "Drone #810438"
 msgstr ""
 
 #. STRINGS.ANTNAMES.19
 msgctxt "STRINGS.ANTNAMES.19"
-msgid "Drone #710609"
+msgid "Drone #165508"
 msgstr ""
 
 #. STRINGS.ANTNAMES.2
 msgctxt "STRINGS.ANTNAMES.2"
-msgid "Drone #152038"
+msgid "Drone #813462"
 msgstr ""
 
 #. STRINGS.ANTNAMES.20
 msgctxt "STRINGS.ANTNAMES.20"
-msgid "Drone #595955"
+msgid "Drone #74758"
 msgstr ""
 
 #. STRINGS.ANTNAMES.21
 msgctxt "STRINGS.ANTNAMES.21"
-msgid "Drone #939922"
+msgid "Drone #637855"
 msgstr ""
 
 #. STRINGS.ANTNAMES.22
 msgctxt "STRINGS.ANTNAMES.22"
-msgid "Drone #796084"
+msgid "Drone #566784"
 msgstr ""
 
 #. STRINGS.ANTNAMES.23
 msgctxt "STRINGS.ANTNAMES.23"
-msgid "Drone #516589"
+msgid "Drone #761823"
 msgstr ""
 
 #. STRINGS.ANTNAMES.24
 msgctxt "STRINGS.ANTNAMES.24"
-msgid "Drone #810438"
+msgid "Drone #984604"
 msgstr ""
 
 #. STRINGS.ANTNAMES.25
 msgctxt "STRINGS.ANTNAMES.25"
-msgid "Drone #165508"
+msgid "Drone #294798"
 msgstr ""
 
 #. STRINGS.ANTNAMES.26
 msgctxt "STRINGS.ANTNAMES.26"
-msgid "Drone #74758"
+msgid "Drone #588569"
 msgstr ""
 
 #. STRINGS.ANTNAMES.27
 msgctxt "STRINGS.ANTNAMES.27"
-msgid "Drone #637855"
+msgid "Drone #745431"
 msgstr ""
 
 #. STRINGS.ANTNAMES.28
 msgctxt "STRINGS.ANTNAMES.28"
-msgid "Drone #566784"
+msgid "Drone #833404"
 msgstr ""
 
 #. STRINGS.ANTNAMES.29
 msgctxt "STRINGS.ANTNAMES.29"
-msgid "Drone #761823"
+msgid "Drone #9093"
 msgstr ""
 
 #. STRINGS.ANTNAMES.3
 msgctxt "STRINGS.ANTNAMES.3"
-msgid "Drone #984604"
+msgid "Drone #247395"
 msgstr ""
 
 #. STRINGS.ANTNAMES.30
 msgctxt "STRINGS.ANTNAMES.30"
-msgid "Drone #294798"
+msgid "Drone #947361"
 msgstr ""
 
 #. STRINGS.ANTNAMES.31
 msgctxt "STRINGS.ANTNAMES.31"
-msgid "Drone #588569"
+msgid "Drone #776904"
 msgstr ""
 
 #. STRINGS.ANTNAMES.32
 msgctxt "STRINGS.ANTNAMES.32"
-msgid "Drone #745431"
+msgid "Drone #968233"
 msgstr ""
 
 #. STRINGS.ANTNAMES.33
 msgctxt "STRINGS.ANTNAMES.33"
-msgid "Drone #833404"
+msgid "Drone #811655"
 msgstr ""
 
 #. STRINGS.ANTNAMES.34
 msgctxt "STRINGS.ANTNAMES.34"
-msgid "Drone #9093"
+msgid "Drone #577172"
 msgstr ""
 
 #. STRINGS.ANTNAMES.35
 msgctxt "STRINGS.ANTNAMES.35"
-msgid "Drone #947361"
+msgid "Drone #421036"
 msgstr ""
 
 #. STRINGS.ANTNAMES.36
 msgctxt "STRINGS.ANTNAMES.36"
-msgid "Drone #776904"
+msgid "Drone #392814"
 msgstr ""
 
 #. STRINGS.ANTNAMES.37
 msgctxt "STRINGS.ANTNAMES.37"
-msgid "Drone #968233"
+msgid "Drone #53836"
 msgstr ""
 
 #. STRINGS.ANTNAMES.38
 msgctxt "STRINGS.ANTNAMES.38"
-msgid "Drone #811655"
+msgid "Drone #505656"
 msgstr ""
 
 #. STRINGS.ANTNAMES.39
 msgctxt "STRINGS.ANTNAMES.39"
-msgid "Drone #577172"
+msgid "Drone #378222"
 msgstr ""
 
 #. STRINGS.ANTNAMES.4
 msgctxt "STRINGS.ANTNAMES.4"
-msgid "Drone #421036"
+msgid "Drone #997578"
 msgstr ""
 
 #. STRINGS.ANTNAMES.40
 msgctxt "STRINGS.ANTNAMES.40"
-msgid "Drone #392814"
+msgid "Drone #57389"
 msgstr ""
 
 #. STRINGS.ANTNAMES.41
 msgctxt "STRINGS.ANTNAMES.41"
-msgid "Drone #53836"
+msgid "Drone #629312"
 msgstr ""
 
 #. STRINGS.ANTNAMES.42
 msgctxt "STRINGS.ANTNAMES.42"
-msgid "Drone #505656"
+msgid "Drone #998873"
 msgstr ""
 
 #. STRINGS.ANTNAMES.43
 msgctxt "STRINGS.ANTNAMES.43"
-msgid "Drone #378222"
+msgid "Drone #208872"
 msgstr ""
 
 #. STRINGS.ANTNAMES.44
 msgctxt "STRINGS.ANTNAMES.44"
-msgid "Drone #57389"
+msgid "Drone #879424"
 msgstr ""
 
 #. STRINGS.ANTNAMES.45
 msgctxt "STRINGS.ANTNAMES.45"
-msgid "Drone #629312"
+msgid "Drone #667041"
 msgstr ""
 
 #. STRINGS.ANTNAMES.46
 msgctxt "STRINGS.ANTNAMES.46"
-msgid "Drone #998873"
+msgid "Drone #547209"
 msgstr ""
 
 #. STRINGS.ANTNAMES.47
 msgctxt "STRINGS.ANTNAMES.47"
-msgid "Drone #208872"
+msgid "Drone #462375"
 msgstr ""
 
 #. STRINGS.ANTNAMES.48
 msgctxt "STRINGS.ANTNAMES.48"
-msgid "Drone #879424"
+msgid "Drone #390780"
 msgstr ""
 
 #. STRINGS.ANTNAMES.49
 msgctxt "STRINGS.ANTNAMES.49"
-msgid "Drone #667041"
+msgid "Drone #979317"
 msgstr ""
 
 #. STRINGS.ANTNAMES.5
 msgctxt "STRINGS.ANTNAMES.5"
-msgid "Drone #547209"
+msgid "Drone #269451"
 msgstr ""
 
 #. STRINGS.ANTNAMES.50
 msgctxt "STRINGS.ANTNAMES.50"
-msgid "Drone #462375"
+msgid "Drone #608235"
 msgstr ""
 
 #. STRINGS.ANTNAMES.51
 msgctxt "STRINGS.ANTNAMES.51"
-msgid "Drone #390780"
+msgid "Drone #528536"
 msgstr ""
 
 #. STRINGS.ANTNAMES.52
 msgctxt "STRINGS.ANTNAMES.52"
-msgid "Drone #979317"
+msgid "Drone #691324"
 msgstr ""
 
 #. STRINGS.ANTNAMES.53
 msgctxt "STRINGS.ANTNAMES.53"
-msgid "Drone #608235"
+msgid "Drone #537508"
 msgstr ""
 
 #. STRINGS.ANTNAMES.54
 msgctxt "STRINGS.ANTNAMES.54"
-msgid "Drone #528536"
+msgid "Drone #801491"
 msgstr ""
 
 #. STRINGS.ANTNAMES.55
 msgctxt "STRINGS.ANTNAMES.55"
-msgid "Drone #691324"
+msgid "Drone #813727"
 msgstr ""
 
 #. STRINGS.ANTNAMES.56
 msgctxt "STRINGS.ANTNAMES.56"
-msgid "Drone #537508"
+msgid "Drone #728529"
 msgstr ""
 
 #. STRINGS.ANTNAMES.57
 msgctxt "STRINGS.ANTNAMES.57"
-msgid "Drone #801491"
+msgid "Drone #853905"
 msgstr ""
 
 #. STRINGS.ANTNAMES.58
 msgctxt "STRINGS.ANTNAMES.58"
-msgid "Drone #813727"
+msgid "Drone #584364"
 msgstr ""
 
 #. STRINGS.ANTNAMES.59
 msgctxt "STRINGS.ANTNAMES.59"
-msgid "Drone #728529"
+msgid "Drone #84511"
 msgstr ""
 
 #. STRINGS.ANTNAMES.6
 msgctxt "STRINGS.ANTNAMES.6"
-msgid "Drone #853905"
+msgid "Drone #695666"
 msgstr ""
 
 #. STRINGS.ANTNAMES.60
 msgctxt "STRINGS.ANTNAMES.60"
-msgid "Drone #584364"
+msgid "Drone #121917"
 msgstr ""
 
 #. STRINGS.ANTNAMES.61
 msgctxt "STRINGS.ANTNAMES.61"
-msgid "Drone #84511"
+msgid "Drone #228529"
 msgstr ""
 
 #. STRINGS.ANTNAMES.62
 msgctxt "STRINGS.ANTNAMES.62"
-msgid "Drone #121917"
+msgid "Drone #275658"
 msgstr ""
 
 #. STRINGS.ANTNAMES.63
 msgctxt "STRINGS.ANTNAMES.63"
-msgid "Drone #228529"
+msgid "Drone #825691"
 msgstr ""
 
 #. STRINGS.ANTNAMES.64
 msgctxt "STRINGS.ANTNAMES.64"
-msgid "Drone #275658"
+msgid "Drone #159623"
 msgstr ""
 
 #. STRINGS.ANTNAMES.65
 msgctxt "STRINGS.ANTNAMES.65"
-msgid "Drone #825691"
+msgid "Drone #459116"
 msgstr ""
 
 #. STRINGS.ANTNAMES.66
 msgctxt "STRINGS.ANTNAMES.66"
-msgid "Drone #159623"
+msgid "Drone #784606"
 msgstr ""
 
 #. STRINGS.ANTNAMES.67
 msgctxt "STRINGS.ANTNAMES.67"
-msgid "Drone #459116"
+msgid "Drone #264238"
 msgstr ""
 
 #. STRINGS.ANTNAMES.68
 msgctxt "STRINGS.ANTNAMES.68"
-msgid "Drone #784606"
+msgid "Drone #733328"
 msgstr ""
 
 #. STRINGS.ANTNAMES.69
 msgctxt "STRINGS.ANTNAMES.69"
-msgid "Drone #264238"
+msgid "Drone #740063"
 msgstr ""
 
 #. STRINGS.ANTNAMES.7
 msgctxt "STRINGS.ANTNAMES.7"
-msgid "Drone #733328"
+msgid "Drone #291737"
 msgstr ""
 
 #. STRINGS.ANTNAMES.70
 msgctxt "STRINGS.ANTNAMES.70"
-msgid "Drone #740063"
+msgid "Drone #106644"
 msgstr ""
 
 #. STRINGS.ANTNAMES.71
 msgctxt "STRINGS.ANTNAMES.71"
-msgid "Drone #106644"
+msgid "Drone #408903"
 msgstr ""
 
 #. STRINGS.ANTNAMES.72
 msgctxt "STRINGS.ANTNAMES.72"
-msgid "Drone #408903"
+msgid "Drone #910235"
 msgstr ""
 
 #. STRINGS.ANTNAMES.73
 msgctxt "STRINGS.ANTNAMES.73"
-msgid "Drone #910235"
+msgid "Drone #325292"
 msgstr ""
 
 #. STRINGS.ANTNAMES.74
 msgctxt "STRINGS.ANTNAMES.74"
-msgid "Drone #325292"
+msgid "Drone #856048"
 msgstr ""
 
 #. STRINGS.ANTNAMES.75
 msgctxt "STRINGS.ANTNAMES.75"
-msgid "Drone #856048"
+msgid "Drone #753306"
 msgstr ""
 
 #. STRINGS.ANTNAMES.76
 msgctxt "STRINGS.ANTNAMES.76"
-msgid "Drone #753306"
+msgid "Drone #454600"
 msgstr ""
 
 #. STRINGS.ANTNAMES.77
 msgctxt "STRINGS.ANTNAMES.77"
-msgid "Drone #454600"
+msgid "Drone #235264"
 msgstr ""
 
 #. STRINGS.ANTNAMES.78
 msgctxt "STRINGS.ANTNAMES.78"
-msgid "Drone #235264"
+msgid "Drone #156745"
 msgstr ""
 
 #. STRINGS.ANTNAMES.79
 msgctxt "STRINGS.ANTNAMES.79"
-msgid "Drone #156745"
+msgid "Drone #355643"
 msgstr ""
 
 #. STRINGS.ANTNAMES.8
 msgctxt "STRINGS.ANTNAMES.8"
-msgid "Drone #355643"
+msgid "Drone #724410"
 msgstr ""
 
 #. STRINGS.ANTNAMES.80
@@ -578,57 +578,57 @@ msgstr ""
 
 #. STRINGS.ANTNAMES.9
 msgctxt "STRINGS.ANTNAMES.9"
-msgid "Drone #536920"
+msgid "Drone #23085"
 msgstr ""
 
 #. STRINGS.ANTNAMES.90
 msgctxt "STRINGS.ANTNAMES.90"
-msgid "Drone #916828"
+msgid "Drone #536920"
 msgstr ""
 
 #. STRINGS.ANTNAMES.91
 msgctxt "STRINGS.ANTNAMES.91"
-msgid "Drone #899635"
+msgid "Drone #916828"
 msgstr ""
 
 #. STRINGS.ANTNAMES.92
 msgctxt "STRINGS.ANTNAMES.92"
-msgid "Drone #478919"
+msgid "Drone #899635"
 msgstr ""
 
 #. STRINGS.ANTNAMES.93
 msgctxt "STRINGS.ANTNAMES.93"
-msgid "Drone #766"
+msgid "Drone #478919"
 msgstr ""
 
 #. STRINGS.ANTNAMES.94
 msgctxt "STRINGS.ANTNAMES.94"
-msgid "Drone #273064"
+msgid "Drone #766"
 msgstr ""
 
 #. STRINGS.ANTNAMES.95
 msgctxt "STRINGS.ANTNAMES.95"
-msgid "Drone #109506"
+msgid "Drone #273064"
 msgstr ""
 
 #. STRINGS.ANTNAMES.96
 msgctxt "STRINGS.ANTNAMES.96"
-msgid "Drone #945396"
+msgid "Drone #109506"
 msgstr ""
 
 #. STRINGS.ANTNAMES.97
 msgctxt "STRINGS.ANTNAMES.97"
-msgid "Drone #124125"
+msgid "Drone #945396"
 msgstr ""
 
 #. STRINGS.ANTNAMES.98
 msgctxt "STRINGS.ANTNAMES.98"
-msgid "Drone #202481"
+msgid "Drone #124125"
 msgstr ""
 
 #. STRINGS.ANTNAMES.99
 msgctxt "STRINGS.ANTNAMES.99"
-msgid "Drone #407868"
+msgid "Drone #202481"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.1
@@ -638,392 +638,392 @@ msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.10
 msgctxt "STRINGS.ANTWARRIORNAMES.10"
-msgid "Warrior #476479"
+msgid "Warrior #221765"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.100
 msgctxt "STRINGS.ANTWARRIORNAMES.100"
-msgid "Warrior #246744"
+msgid "Warrior #514236"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.11
 msgctxt "STRINGS.ANTWARRIORNAMES.11"
-msgid "Warrior #823094"
+msgid "Warrior #653121"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.12
 msgctxt "STRINGS.ANTWARRIORNAMES.12"
-msgid "Warrior #245564"
+msgid "Warrior #139598"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.13
 msgctxt "STRINGS.ANTWARRIORNAMES.13"
-msgid "Warrior #421777"
+msgid "Warrior #278552"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.14
 msgctxt "STRINGS.ANTWARRIORNAMES.14"
-msgid "Warrior #420415"
+msgid "Warrior #411288"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.15
 msgctxt "STRINGS.ANTWARRIORNAMES.15"
-msgid "Warrior #349126"
+msgid "Warrior #230558"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.16
 msgctxt "STRINGS.ANTWARRIORNAMES.16"
-msgid "Warrior #588799"
+msgid "Warrior #906137"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.17
 msgctxt "STRINGS.ANTWARRIORNAMES.17"
-msgid "Warrior #221765"
+msgid "Warrior #716168"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.18
 msgctxt "STRINGS.ANTWARRIORNAMES.18"
-msgid "Warrior #653121"
+msgid "Warrior #858587"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.19
 msgctxt "STRINGS.ANTWARRIORNAMES.19"
-msgid "Warrior #139598"
+msgid "Warrior #609286"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.2
 msgctxt "STRINGS.ANTWARRIORNAMES.2"
-msgid "Warrior #278552"
+msgid "Warrior #476479"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.20
 msgctxt "STRINGS.ANTWARRIORNAMES.20"
-msgid "Warrior #411288"
+msgid "Warrior #10790"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.21
 msgctxt "STRINGS.ANTWARRIORNAMES.21"
-msgid "Warrior #230558"
+msgid "Warrior #101471"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.22
 msgctxt "STRINGS.ANTWARRIORNAMES.22"
-msgid "Warrior #906137"
+msgid "Warrior #730708"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.23
 msgctxt "STRINGS.ANTWARRIORNAMES.23"
-msgid "Warrior #716168"
+msgid "Warrior #922561"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.24
 msgctxt "STRINGS.ANTWARRIORNAMES.24"
-msgid "Warrior #858587"
+msgid "Warrior #379347"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.25
 msgctxt "STRINGS.ANTWARRIORNAMES.25"
-msgid "Warrior #609286"
+msgid "Warrior #690797"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.26
 msgctxt "STRINGS.ANTWARRIORNAMES.26"
-msgid "Warrior #10790"
+msgid "Warrior #774131"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.27
 msgctxt "STRINGS.ANTWARRIORNAMES.27"
-msgid "Warrior #101471"
+msgid "Warrior #926278"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.28
 msgctxt "STRINGS.ANTWARRIORNAMES.28"
-msgid "Warrior #730708"
+msgid "Warrior #865968"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.29
 msgctxt "STRINGS.ANTWARRIORNAMES.29"
-msgid "Warrior #922561"
+msgid "Warrior #737790"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.3
 msgctxt "STRINGS.ANTWARRIORNAMES.3"
-msgid "Warrior #379347"
+msgid "Warrior #246744"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.30
 msgctxt "STRINGS.ANTWARRIORNAMES.30"
-msgid "Warrior #690797"
+msgid "Warrior #330681"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.31
 msgctxt "STRINGS.ANTWARRIORNAMES.31"
-msgid "Warrior #774131"
+msgid "Warrior #104214"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.32
 msgctxt "STRINGS.ANTWARRIORNAMES.32"
-msgid "Warrior #926278"
+msgid "Warrior #393651"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.33
 msgctxt "STRINGS.ANTWARRIORNAMES.33"
-msgid "Warrior #865968"
+msgid "Warrior #103586"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.34
 msgctxt "STRINGS.ANTWARRIORNAMES.34"
-msgid "Warrior #737790"
+msgid "Warrior #543282"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.35
 msgctxt "STRINGS.ANTWARRIORNAMES.35"
-msgid "Warrior #330681"
+msgid "Warrior #821346"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.36
 msgctxt "STRINGS.ANTWARRIORNAMES.36"
-msgid "Warrior #104214"
+msgid "Warrior #948016"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.37
 msgctxt "STRINGS.ANTWARRIORNAMES.37"
-msgid "Warrior #393651"
+msgid "Warrior #119234"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.38
 msgctxt "STRINGS.ANTWARRIORNAMES.38"
-msgid "Warrior #103586"
+msgid "Warrior #202023"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.39
 msgctxt "STRINGS.ANTWARRIORNAMES.39"
-msgid "Warrior #543282"
+msgid "Warrior #625725"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.4
 msgctxt "STRINGS.ANTWARRIORNAMES.4"
-msgid "Warrior #821346"
+msgid "Warrior #823094"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.40
 msgctxt "STRINGS.ANTWARRIORNAMES.40"
-msgid "Warrior #948016"
+msgid "Warrior #561260"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.41
 msgctxt "STRINGS.ANTWARRIORNAMES.41"
-msgid "Warrior #119234"
+msgid "Warrior #638000"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.42
 msgctxt "STRINGS.ANTWARRIORNAMES.42"
-msgid "Warrior #202023"
+msgid "Warrior #665320"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.43
 msgctxt "STRINGS.ANTWARRIORNAMES.43"
-msgid "Warrior #625725"
+msgid "Warrior #89151"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.44
 msgctxt "STRINGS.ANTWARRIORNAMES.44"
-msgid "Warrior #561260"
+msgid "Warrior #563622"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.45
 msgctxt "STRINGS.ANTWARRIORNAMES.45"
-msgid "Warrior #638000"
+msgid "Warrior #221169"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.46
 msgctxt "STRINGS.ANTWARRIORNAMES.46"
-msgid "Warrior #665320"
+msgid "Warrior #839764"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.47
 msgctxt "STRINGS.ANTWARRIORNAMES.47"
-msgid "Warrior #89151"
+msgid "Warrior #12186"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.48
 msgctxt "STRINGS.ANTWARRIORNAMES.48"
-msgid "Warrior #563622"
+msgid "Warrior #579457"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.49
 msgctxt "STRINGS.ANTWARRIORNAMES.49"
-msgid "Warrior #221169"
+msgid "Warrior #687691"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.5
 msgctxt "STRINGS.ANTWARRIORNAMES.5"
-msgid "Warrior #839764"
+msgid "Warrior #245564"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.50
 msgctxt "STRINGS.ANTWARRIORNAMES.50"
-msgid "Warrior #12186"
+msgid "Warrior #49949"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.51
 msgctxt "STRINGS.ANTWARRIORNAMES.51"
-msgid "Warrior #579457"
+msgid "Warrior #778775"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.52
 msgctxt "STRINGS.ANTWARRIORNAMES.52"
-msgid "Warrior #687691"
+msgid "Warrior #574957"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.53
 msgctxt "STRINGS.ANTWARRIORNAMES.53"
-msgid "Warrior #49949"
+msgid "Warrior #897769"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.54
 msgctxt "STRINGS.ANTWARRIORNAMES.54"
-msgid "Warrior #778775"
+msgid "Warrior #687410"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.55
 msgctxt "STRINGS.ANTWARRIORNAMES.55"
-msgid "Warrior #574957"
+msgid "Warrior #745983"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.56
 msgctxt "STRINGS.ANTWARRIORNAMES.56"
-msgid "Warrior #897769"
+msgid "Warrior #385468"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.57
 msgctxt "STRINGS.ANTWARRIORNAMES.57"
-msgid "Warrior #687410"
+msgid "Warrior #853787"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.58
 msgctxt "STRINGS.ANTWARRIORNAMES.58"
-msgid "Warrior #745983"
+msgid "Warrior #954842"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.59
 msgctxt "STRINGS.ANTWARRIORNAMES.59"
-msgid "Warrior #385468"
+msgid "Warrior #190185"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.6
 msgctxt "STRINGS.ANTWARRIORNAMES.6"
-msgid "Warrior #853787"
+msgid "Warrior #421777"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.60
 msgctxt "STRINGS.ANTWARRIORNAMES.60"
-msgid "Warrior #954842"
+msgid "Warrior #411122"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.61
 msgctxt "STRINGS.ANTWARRIORNAMES.61"
-msgid "Warrior #190185"
+msgid "Warrior #323117"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.62
 msgctxt "STRINGS.ANTWARRIORNAMES.62"
-msgid "Warrior #411122"
+msgid "Warrior #478261"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.63
 msgctxt "STRINGS.ANTWARRIORNAMES.63"
-msgid "Warrior #323117"
+msgid "Warrior #93696"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.64
 msgctxt "STRINGS.ANTWARRIORNAMES.64"
-msgid "Warrior #478261"
+msgid "Warrior #155791"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.65
 msgctxt "STRINGS.ANTWARRIORNAMES.65"
-msgid "Warrior #93696"
+msgid "Warrior #314238"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.66
 msgctxt "STRINGS.ANTWARRIORNAMES.66"
-msgid "Warrior #155791"
+msgid "Warrior #816504"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.67
 msgctxt "STRINGS.ANTWARRIORNAMES.67"
-msgid "Warrior #314238"
+msgid "Warrior #937007"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.68
 msgctxt "STRINGS.ANTWARRIORNAMES.68"
-msgid "Warrior #816504"
+msgid "Warrior #400007"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.69
 msgctxt "STRINGS.ANTWARRIORNAMES.69"
-msgid "Warrior #937007"
+msgid "Warrior #66779"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.7
 msgctxt "STRINGS.ANTWARRIORNAMES.7"
-msgid "Warrior #400007"
+msgid "Warrior #420415"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.70
 msgctxt "STRINGS.ANTWARRIORNAMES.70"
-msgid "Warrior #66779"
+msgid "Warrior #863097"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.71
 msgctxt "STRINGS.ANTWARRIORNAMES.71"
-msgid "Warrior #863097"
+msgid "Warrior #72530"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.72
 msgctxt "STRINGS.ANTWARRIORNAMES.72"
-msgid "Warrior #72530"
+msgid "Warrior #465492"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.73
 msgctxt "STRINGS.ANTWARRIORNAMES.73"
-msgid "Warrior #465492"
+msgid "Warrior #154667"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.74
 msgctxt "STRINGS.ANTWARRIORNAMES.74"
-msgid "Warrior #154667"
+msgid "Warrior #392458"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.75
 msgctxt "STRINGS.ANTWARRIORNAMES.75"
-msgid "Warrior #392458"
+msgid "Warrior #453498"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.76
 msgctxt "STRINGS.ANTWARRIORNAMES.76"
-msgid "Warrior #453498"
+msgid "Warrior #888586"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.77
 msgctxt "STRINGS.ANTWARRIORNAMES.77"
-msgid "Warrior #888586"
+msgid "Warrior #82236"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.78
 msgctxt "STRINGS.ANTWARRIORNAMES.78"
-msgid "Warrior #82236"
+msgid "Warrior #112104"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.79
 msgctxt "STRINGS.ANTWARRIORNAMES.79"
-msgid "Warrior #112104"
+msgid "Warrior #485976"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.8
 msgctxt "STRINGS.ANTWARRIORNAMES.8"
-msgid "Warrior #485976"
+msgid "Warrior #349126"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.80
@@ -1078,57 +1078,57 @@ msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.9
 msgctxt "STRINGS.ANTWARRIORNAMES.9"
-msgid "Warrior #467978"
+msgid "Warrior #588799"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.90
 msgctxt "STRINGS.ANTWARRIORNAMES.90"
-msgid "Warrior #693386"
+msgid "Warrior #467978"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.91
 msgctxt "STRINGS.ANTWARRIORNAMES.91"
-msgid "Warrior #51546"
+msgid "Warrior #693386"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.92
 msgctxt "STRINGS.ANTWARRIORNAMES.92"
-msgid "Warrior #155617"
+msgid "Warrior #51546"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.93
 msgctxt "STRINGS.ANTWARRIORNAMES.93"
-msgid "Warrior #570204"
+msgid "Warrior #155617"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.94
 msgctxt "STRINGS.ANTWARRIORNAMES.94"
-msgid "Warrior #832018"
+msgid "Warrior #570204"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.95
 msgctxt "STRINGS.ANTWARRIORNAMES.95"
-msgid "Warrior #26329"
+msgid "Warrior #832018"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.96
 msgctxt "STRINGS.ANTWARRIORNAMES.96"
-msgid "Warrior #759329"
+msgid "Warrior #26329"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.97
 msgctxt "STRINGS.ANTWARRIORNAMES.97"
-msgid "Warrior #238874"
+msgid "Warrior #759329"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.98
 msgctxt "STRINGS.ANTWARRIORNAMES.98"
-msgid "Warrior #1387"
+msgid "Warrior #238874"
 msgstr ""
 
 #. STRINGS.ANTWARRIORNAMES.99
 msgctxt "STRINGS.ANTWARRIORNAMES.99"
-msgid "Warrior #514236"
+msgid "Warrior #1387"
 msgstr ""
 
 #. STRINGS.ANT_TALK_ATTEMPT_TRADE.1
@@ -1849,6 +1849,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CANDLEHAT
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CANDLEHAT"
 msgid "What a bright idea!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CAVE_EXIT_ROC"
+msgid "It's plugging up something."
 msgstr ""
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHITIN
@@ -3026,6 +3031,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGBANDIT"
 msgid "Swindling swine."
 msgstr ""
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGCROWNHAT"
+msgid "Don't mess up my hair, crown."
+msgstr ""
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIGEON.DEAD"
 msgid "It has passed."
@@ -3384,6 +3394,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A few sticks or logs will brighten this up."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_SCEPTER"
+msgid "It must have scientifical properties."
 msgstr ""
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -3886,6 +3901,106 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROCK_FLIPPABLE"
 msgid "You never know what you'll find under a rock."
 msgstr ""
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_HEAD"
+msgid "Three heads are better than one."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_LEG"
+msgid "A leg up."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Something big moved that there."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Maybe it's branching out."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_BUSH"
+msgid "Looks bushed."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A sticky situation."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Stick to your tree, stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Those sticks sure stick together."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "It's in the sticks."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG1"
+msgid "Eggshell-ent"
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG2"
+msgid "What eggsactly is that?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG3"
+msgid "That makes me egg-stremely nervous."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_EGG4"
+msgid "Egg-sploded."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Anyone home?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Busted and rusted."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TREE1"
+msgid "Science says it's a tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TREE2"
+msgid "Tree-mendous."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_NEST_TRUNK"
+msgid "What could've broken that?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Stone cold."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROC_TAIL"
+msgid "The tail end."
+msgstr ""
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROOTTRUNK"
 msgid "It rooted out all my things!"
@@ -3899,6 +4014,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROYAL_GALLERY"
 msgid "Fancy enough to be behind glass."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RO_BIN"
+msgid "Carryin' bird."
+msgstr ""
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "How does this even happen?"
 msgstr ""
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.RUG_BEARD
@@ -5111,6 +5236,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CANDLEHAT"
 msgid "Presumably the cork will act as an insulator so my head doesn't burn."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CAVE_EXIT_ROC"
+msgid "An egress to the outside world."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CHITIN"
 msgid "Wonderful! The exoskeleton of a deceased insect!"
@@ -6291,6 +6421,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGBANDIT"
 msgid "Theoretically, he's a rogue of some sort."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGCROWNHAT"
+msgid "Symbolic head wear that is respected by the porcine population."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIGEON.DEAD"
 msgid "Theoretically, it's dead."
@@ -6629,6 +6764,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Remarkable! It only requires a source of fuel to ignite."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_SCEPTER"
+msgid "Presumably, it belongs to royalty of some sort."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -7121,6 +7261,106 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROCK_FLIPPABLE"
 msgid "I have learned the benefits of flipping over rocks to see what is underneath."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_HEAD"
+msgid "If I'm lucky I'll be swallowed and I can glimpse its extraordinary insides!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_LEG"
+msgid "The phalanges of an enormous fowl!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "A branch. In theory it could be a source of wood."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Evidence would suggest it was carried here. Intriguing."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_BUSH"
+msgid "I believe it's a bush of some sort."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Evidently, it's a stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Theoretically, it has the same properties as other sticks."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Tree by products appear strange here but serve the same purpose."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "In theory, it's part of a nest."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG1"
+msgid "Evidently, it's an egg shell."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG2"
+msgid "The shell of an egg. I would like to know what it's made of."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG3"
+msgid "The protective shell of an ovum. This requires further investigation."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_EGG4"
+msgid "Evidence would suggest that shell has been petrified."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_HOUSE"
+msgid "I wonder if anyone dwells within that domestic structure."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "A lamp of some sort. Presumably it no longer functions."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TREE1"
+msgid "Theoretically it's a tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TREE2"
+msgid "Evidence would suggest there are trees here too."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Evidently, it's been broken by something big."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_ROBIN_EGG"
+msgid "A large bird is incubating inside!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROC_TAIL"
+msgid "the posterior plumage of a giant fowl. How fascinating!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROOTTRUNK"
 msgid "A complex intelligent root system is moving my belongings for me. Fascinating!"
@@ -7134,6 +7374,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ROYAL_GALLERY"
 msgid "A glass case displaying invaluable objects behind a hefty lock."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RO_BIN"
+msgid "This species' regurgitation abilities are truly astounding!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Has some kind of synergic relationship with the huge bird species."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.RUG_BEARD
@@ -8351,6 +8601,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CANDLEHAT"
 msgid "Sweet. Now my hands are free."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CAVE_EXIT_ROC"
+msgid "I bet it's a way out."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CHITIN"
 msgid "Probably wouldn't make a good surfboard."
@@ -9521,6 +9776,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGBANDIT"
 msgid "Not cool! He's tryin' to steal my stuff!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGCROWNHAT"
+msgid "This is way too much responsibility for me."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIGEON.DEAD"
 msgid "I hope he died in his sleep."
@@ -9864,6 +10124,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "That's a good place for that."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_SCEPTER"
+msgid "I guess it's important to the pig dudes."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -10366,6 +10631,106 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROCK_FLIPPABLE"
 msgid "What's under there?"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_HEAD"
+msgid "How's the weather up there?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_LEG"
+msgid "Nice gams!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Just a branch."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Just a branch."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_BUSH"
+msgid "Must've taken a lot of work to make this."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Hey stick!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "How's it going, stick?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "What's up, stick?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Stay cool, stick!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG1"
+msgid "I didn't break it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG2"
+msgid "Where's the bird?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG3"
+msgid "I'm not cleaning that up."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_EGG4"
+msgid "Looks kinda old."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Maybe I could move in."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Huh. Doesn't even work."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TREE1"
+msgid "How'd that get here?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TREE2"
+msgid "A nice tree-climbing tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Harsh."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_ROBIN_EGG"
+msgid "What's inside?!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROC_TAIL"
+msgid "Reminds me of a wave I carved one time."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROOTTRUNK"
 msgid "Now I don't gotta go far to get all my stuff."
@@ -10379,6 +10744,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ROYAL_GALLERY"
 msgid "Ooh. Looks expensive."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RO_BIN"
+msgid "Hey, wanna carry all my stuff?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Still a little goopy."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.RUG_BEARD
@@ -15886,6 +16261,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CANDLEHAT"
 msgid "Handy for some nighttime cooking."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CAVE_EXIT_ROC"
+msgid "It's like when the icing dries in my decorating tips."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CHITIN"
 msgid "Completely inedible."
@@ -17061,6 +17441,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGBANDIT"
 msgid "Mon dieu! He's after my coin!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGCROWNHAT"
+msgid "I have no desire to be a leader."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIGEON.DEAD"
 msgid "Squab?"
@@ -17404,6 +17789,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A fine place for a light."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_SCEPTER"
+msgid "I don't think I'm cut out for royalty."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -17881,6 +18271,106 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROCK_FLIPPABLE"
 msgid "There may be some protein under there."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_HEAD"
+msgid "That's three mouths to feed!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_LEG"
+msgid "Chicken legs for days!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "A barbeque spit."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "A barbeque spit."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_BUSH"
+msgid "Pity there are no berries on it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A fine stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "A palatable stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "I can't eat it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Innocent enough."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG1"
+msgid "Was somebody making an omelet?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG2"
+msgid "Shame the yolk is missing."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG3"
+msgid "There's no meat in there."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_EGG4"
+msgid "Mon dieu!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_HOUSE"
+msgid "'Allo?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Not working."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TREE1"
+msgid "Strange place for a tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TREE2"
+msgid "Strange place for a tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Mon dieu!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Can I make eggs benedict with this?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROC_TAIL"
+msgid "Think of the rump roast I could make!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROOTTRUNK"
 msgid "Mon dieu! What a wonderful time saver!"
@@ -17894,6 +18384,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ROYAL_GALLERY"
 msgid "Like fine wine, it is to be admired behind glass."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RO_BIN"
+msgid "I can feed it all my things."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Birds have such strange stomachs."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.RUG_BEARD
@@ -19106,6 +19606,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CANDLEHAT"
 msgid "My hands are now free to pillage ruins!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CAVE_EXIT_ROC"
+msgid "I will conquer this stone."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CHITIN"
 msgid "The feeble armor of the bug."
@@ -20281,6 +20786,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGBANDIT"
 msgid "Touch not my gold!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGCROWNHAT"
+msgid "Power gifted by the gods."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIGEON.DEAD"
 msgid "It has been bested in battle!"
@@ -20624,6 +21134,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A place for light."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_SCEPTER"
+msgid "A most powerful scepter!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -21101,6 +21616,106 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Stone! Reveal to me your secrets!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_HEAD"
+msgid "I will slay all three of its heads."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_LEG"
+msgid "The leg of a mighty beast!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Already vanquished."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Already defeated."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_BUSH"
+msgid "Concerns me not!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A stick!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Not more than a stick!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A stick does not concerns me."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Not worthy of the attention of a shielmaiden."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG1"
+msgid "Cracked!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG2"
+msgid "Has birthed a mighty bird."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG3"
+msgid "Once housed a hearty beast."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_EGG4"
+msgid "The egg of a mighty bird."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Not my house!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "It lights not!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TREE1"
+msgid "I cannot chop it!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TREE2"
+msgid "Not something I can chop!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_NEST_TRUNK"
+msgid "What beast did break it?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Unleash the tiny bird!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROC_TAIL"
+msgid "The rump of a mighty beast!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROOTTRUNK"
 msgid "The spoils of the battle now follow me!"
@@ -21114,6 +21729,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ROYAL_GALLERY"
 msgid "Trapped beneath a glass shield."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RO_BIN"
+msgid "A companion for my many conquests!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "It has come from the depths of a mighty bird!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.RUG_BEARD
@@ -22316,6 +22941,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CANDLEHAT"
 msgid "The wax better not drip on my suit."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Those rocks are hiding something."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CHITIN"
 msgid "We all have our defenses."
@@ -23486,6 +24116,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGBANDIT"
 msgid "He's after my money!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGCROWNHAT"
+msgid "I was meant to be king."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIGEON.DEAD"
 msgid "As filthy in death as it was in life."
@@ -23829,6 +24464,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A little light in this dreary place."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_SCEPTER"
+msgid "I shall be a great leader."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -24321,6 +24961,106 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROCK_FLIPPABLE"
 msgid "What will this unearth?"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_HEAD"
+msgid "Its got its head in the clouds."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_LEG"
+msgid "This is why good foot hygiene is important."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "What a mess."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "A big stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_BUSH"
+msgid "What a mess."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "How boring."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "An ordinary stick. Droll."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "It's a stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG1"
+msgid "I'd hate to see what came out of there."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG2"
+msgid "Does no one clean up around here?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG3"
+msgid "Looks like it's been around for a while."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_EGG4"
+msgid "Cracked."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Who lives there?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "It's seen brighter days."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TREE1"
+msgid "It's seen better days."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TREE2"
+msgid "What could have uprooted that?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_NEST_TRUNK"
+msgid "I wonder what broke that?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Is it a stone or an egg?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROC_TAIL"
+msgid "Hate to see the end of that."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROOTTRUNK"
 msgid "Keeps my things just where I want them."
@@ -24334,6 +25074,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ROYAL_GALLERY"
 msgid "Is it really worth keeping that under glass?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RO_BIN"
+msgid "Just useful enough to keep around. "
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Ugh. Really."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.RUG_BEARD
@@ -25531,6 +26281,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CANDLEHAT"
 msgid "Cool hat! Now our hands are free."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CAVE_EXIT_ROC"
+msgid "There's something under there!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CHITIN"
 msgid "Hope no one's missing that."
@@ -26706,6 +27461,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGBANDIT"
 msgid "He looks sneaky."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGCROWNHAT"
+msgid "Haha! We're the king!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIGEON.DEAD"
 msgid "Poor thing."
@@ -27049,6 +27809,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "That's a good place for some light."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_SCEPTER"
+msgid "It's a really cool stick!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -27526,6 +28291,106 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROCK_FLIPPABLE"
 msgid "What's under here?"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_HEAD"
+msgid "Yeesh! Look out!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_LEG"
+msgid "Woah. That's a big chicken leg!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "What could've moved that over here?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Looks like a heavy branch."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_BUSH"
+msgid "There's no berries on it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "It's a stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Do we want another stick?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "A stick. It's kinda old."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG1"
+msgid "Where's the bird?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG2"
+msgid "Is there a baby birdy around?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG3"
+msgid "It already hatched."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_EGG4"
+msgid "What hatched out of that?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Hello? Anyone home?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Doesn't work."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TREE1"
+msgid "Can't climb that tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TREE2"
+msgid "Gosh, how'd that get way out here?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Yeesh. What could've broken that?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_ROBIN_EGG"
+msgid "I think there's something in there."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROC_TAIL"
+msgid "Keep away from us, please!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROOTTRUNK"
 msgid "Now we don't have to carry our stuff everywhere."
@@ -27539,6 +28404,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ROYAL_GALLERY"
 msgid "Wow. It must be pretty valuable."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RO_BIN"
+msgid "A new friend!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "That big bird seems to really like this."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.RUG_BEARD
@@ -28736,6 +29611,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CANDLEHAT"
 msgid "Only Abigail can light up my life."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CAVE_EXIT_ROC"
+msgid "The way to freedom is once again blocked to us."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CHITIN"
 msgid "This shell is poor protection from life's horrors."
@@ -29911,6 +30791,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGBANDIT"
 msgid "He can steal my money, but not my soul."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGCROWNHAT"
+msgid "Heavy hangs the crown."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIGEON.DEAD"
 msgid "I don't blame you."
@@ -30259,6 +31144,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "It cannot keep out the darkness forever."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_SCEPTER"
+msgid "The symbol of a people's burden."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -30736,6 +31626,106 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROCK_FLIPPABLE"
 msgid "If only I could hide under a rock."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_HEAD"
+msgid "Destruction inside doom inside catastrophe."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_LEG"
+msgid "Big enough to crush me."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Weathered, like my soul."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Weathered, like my soul."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_BUSH"
+msgid "I believe it is an impostor."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "It has endured hardship."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "It has withstood much."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "It has suffered."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "An old stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG1"
+msgid "Broken, like my soul."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG2"
+msgid "Whatever hatched from it, is probably dead by now."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG3"
+msgid "Why bother hatching?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_EGG4"
+msgid "Fragile, like my soul."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_HOUSE"
+msgid "An empty house. How apropos."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Rusted, like my soul."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TREE1"
+msgid "More industrious than me."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TREE2"
+msgid "I've never seen that kind of tree before."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Broken, like my soul."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_ROBIN_EGG"
+msgid "I doubt it will ever hatch."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROC_TAIL"
+msgid "The tail end of doom."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROOTTRUNK"
 msgid "Saves my possessions. But it can't save my heart."
@@ -30749,6 +31739,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ROYAL_GALLERY"
 msgid "Under lock and key."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RO_BIN"
+msgid "It will hold my things in the depths of its being."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "It came from the recesses of a large bird."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.RUG_BEARD
@@ -31971,6 +32971,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CANDLEHAT"
 msgid "Swell. I feel completely safe with an open flame on my head."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Time to get back to 'reality'."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CHITIN"
 msgid "I'm going to need more of these."
@@ -33146,6 +34151,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGBANDIT"
 msgid "Don't like your attitude, but I admire your sense of style."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGCROWNHAT"
+msgid "Something about this tells me it belongs to royalty."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIGEON.DEAD"
 msgid "Always sad to see a fellow flyer go down."
@@ -33484,6 +34494,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Complementary torches! They really know how to treat a gal right!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_SCEPTER"
+msgid "Looks good enough to bonk someone on the head with."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -33976,6 +34991,106 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROCK_FLIPPABLE"
 msgid "My grandma taught me to always look under rocks."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_HEAD"
+msgid "Yes! Fly me away from here!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_LEG"
+msgid "Maybe if I can hang onto its legs, I can fly again."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Maybe I can get some wood out of it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Probably good for some wood."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_BUSH"
+msgid "Swell. Another bush. How unusual."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Someone left their junk lying around."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "That bird isn't exactly keen on cleaning up."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Not the kind of treasure I was expecting."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "It might be worth breaking it apart."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG1"
+msgid "Parts of an egg."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG2"
+msgid "Please let it belong to a bird and not a reptile."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG3"
+msgid "Someone making scrambled eggs?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_EGG4"
+msgid "It's an egg shell. I don't suppose there's a bird around."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Well, they probably have a nice view."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Maybe it's good for parts?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TREE1"
+msgid "It's just an old tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TREE2"
+msgid "It's just an old tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Hope that bird doesn't break me in half like that."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Maybe if I help it hatch, it'll fly me away from here."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROC_TAIL"
+msgid "Those feathers look big enough to lift me off the ground."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROOTTRUNK"
 msgid "All my storage problems, solved!"
@@ -33989,6 +35104,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ROYAL_GALLERY"
 msgid "A tribute to someone else's adventures."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RO_BIN"
+msgid "Not a flyer, but it has a lot of cargo space."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Not sure what's worse: the slime, or the weird eye."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.RUG_BEARD
@@ -35186,6 +36311,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CANDLEHAT"
 msgid "A portable reading light."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CAVE_EXIT_ROC"
+msgid "There's something under that rock."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHITIN"
 msgid "The exoskeleton of an arthropod."
@@ -36361,6 +37491,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGBANDIT"
 msgid "Quite rude!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGCROWNHAT"
+msgid "A valued relic of wealth and authority."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIGEON.DEAD"
 msgid "The remains of a disease carrying bird."
@@ -36704,6 +37839,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Some light couldn't possibly hurt."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_SCEPTER"
+msgid "A symbol of leadership."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -37181,6 +38321,106 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROCK_FLIPPABLE"
 msgid "The most interesting insects are found under rocks."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_HEAD"
+msgid "Tri-headed. My goodness!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_LEG"
+msgid "The leg of a gigantis accipitridae."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "That's been here for a while."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "I'm not familiar with that type of wood."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_BUSH"
+msgid "I'm not familiar with that species."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Quite seasoned."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "It's seen better days."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A stick. But I'm not sure from what tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Has weathered many storms."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG1"
+msgid "The ovum of a large bird."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG2"
+msgid "I am very much interested in examining that."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG3"
+msgid "Full of calcium."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_EGG4"
+msgid "I should like to examine the hatchling."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Looks abandoned."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Nonfunctional."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TREE1"
+msgid "Looks like it's been transplanted there."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TREE2"
+msgid "An orphan tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Goodness, what catastrophe has struck that?!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Perhaps I should incubate this."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROC_TAIL"
+msgid "I would like to examine those feathers."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROOTTRUNK"
 msgid "A complex root system appears to allow the passage of goods."
@@ -37194,6 +38434,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ROYAL_GALLERY"
 msgid "Needs a key to reach its contents."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RO_BIN"
+msgid "An oddly cavernous variant of the Turdidae family."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "That bird is oddly attractedt to this bezoar."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.RUG_BEARD
@@ -38396,6 +39646,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CANDLEHAT"
 msgid "ON, ON, BRIEF CANDLE!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CAVE_EXIT_ROC"
+msgid "WHATFORE UNDER THERE?"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CHITIN"
 msgid "YON BUGGY ARMOR"
@@ -39571,6 +40826,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGBANDIT"
 msgid "'TIS FIEND!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGCROWNHAT"
+msgid "UNEASY LIES HEAD THAT LOST'DED THE CROWN"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIGEON.DEAD"
 msgid "ALL LIVES MUST DIE"
@@ -39914,6 +41174,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "NEED'ST SOME STICKS"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_SCEPTER"
+msgid "WILBA DOST NAUGHT WANTS TO RULE"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -40391,6 +41656,106 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROCK_FLIPPABLE"
 msgid "WHATFORE HIDETH 'NEATH YON STONE?"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_HEAD"
+msgid "UNEASY LIES HIS HEAD"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_LEG"
+msgid "BIG BIRDIE IS'T AFOOTS"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "'TIS BIG STICKING PLACE"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "'TIS BIG STICKING PLACE"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_BUSH"
+msgid "AY, THERE'S THE SHRUB"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "'TIS A STICK"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "'TIS STICK O' OLD"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "IT COME'ST FROM A TREE"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "'TIS BORING"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG1"
+msgid "'TIS BROK'DEN"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG2"
+msgid "WHEREFORE LITTLE BIRDIE?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG3"
+msgid "'TIS CRUNCH'D, AND CRUNCH'D, AND CRUNCH'D"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_EGG4"
+msgid "WHYFORE NO BIRDIE?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_HOUSE"
+msgid "'TIS HOUSE O' LONELY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "'TIS BROK'DEN"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TREE1"
+msgid "OVER-WEATHER'D"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TREE2"
+msgid "OVER-WEATHER'D"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_NEST_TRUNK"
+msgid "'TIS BROK'DEN"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_ROBIN_EGG"
+msgid "AS COLD AS ANY STONE"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROC_TAIL"
+msgid "BEAST WITH BIG BACK"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROOTTRUNK"
 msgid "KEEPETH WILBA'S STUFF"
@@ -40404,6 +41769,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ROYAL_GALLERY"
 msgid "OPEN, LOCKS, WHOEVER KNOCKS, AND HATH THE KEY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RO_BIN"
+msgid "RO BIN SHALL RESTORE AMENDS"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "STONE O' THE BIRDIE GUT"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.RUG_BEARD
@@ -41616,6 +42991,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CANDLEHAT"
 msgid "A little fire hat."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CAVE_EXIT_ROC"
+msgid "I should wreck that."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHITIN"
 msgid "Bug skin."
@@ -42791,6 +44171,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGBANDIT"
 msgid "He's after my money!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGCROWNHAT"
+msgid "I think it suits me."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIGEON.DEAD"
 msgid "Whoops."
@@ -43134,6 +44519,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "I could put fire in there!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_SCEPTER"
+msgid "This means everyone has to listen to me."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -43576,6 +44966,106 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Might as well see what's underneath."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_HEAD"
+msgid "A little too pecky for me."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_LEG"
+msgid "That would look good barbequed."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Wish I could burn it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "That'd look good up in flames."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_BUSH"
+msgid "Wish I could burn it!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "What's that doing there?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Who leaves a stick just laying around?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "It's a stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "A weird looking stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG1"
+msgid "Do egg shells burn?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG2"
+msgid "Needs some fire."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG3"
+msgid "Where's the bird?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_EGG4"
+msgid "It looks old."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Anyone there?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Aww... can't even light a fire in there."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TREE1"
+msgid "I can't even burn it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TREE2"
+msgid "It would look better burnt."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Broken, but not burnt."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_ROBIN_EGG"
+msgid "It needs fire. Like me."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROC_TAIL"
+msgid "That's a big bird butt."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROOTTRUNK"
 msgid "Now I don't have to lug everything around with me."
@@ -43589,6 +45079,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ROYAL_GALLERY"
 msgid "How am I supposed to unlock that?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RO_BIN"
+msgid "Do you have to squeek all the time?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Ugh. I really want to burn it."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.RUG_BEARD
@@ -46571,6 +48071,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CANDLEHAT"
 msgid "Now Wolfgang hands free for punching."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Wolfgang smash it!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHITIN"
 msgid "Icky bug pieces."
@@ -47746,6 +49251,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGBANDIT"
 msgid "Leave Wolfgang money alone!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGCROWNHAT"
+msgid "Little crown for mighty head."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIGEON.DEAD"
 msgid "Is dead."
@@ -48089,6 +49599,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Wolfgang like light."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_SCEPTER"
+msgid "Pigs like pretty stick."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -48566,6 +50081,106 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Wolfgang strong. Wolfgang flip big stone."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_HEAD"
+msgid "No fair. Wolfgang only have one head."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_LEG"
+msgid "Is leg day?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Is old."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Is big stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_BUSH"
+msgid "Is teensy bush."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Is stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Is stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Is stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Is stick. Wolfgang like."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG1"
+msgid "Is broken."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG2"
+msgid "Where is birdie?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG3"
+msgid "Is omelet Wolfgang can eat?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_EGG4"
+msgid "Is smashed."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Hello? Is anyone home?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Is broken."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TREE1"
+msgid "Wolfgang is stronger."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TREE2"
+msgid "Not as strong as Wolfgang."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Wolfgang can break tree too, if he want."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Wolfgang break it open."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROC_TAIL"
+msgid "Wolfgang is hoping there is no poop."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROOTTRUNK"
 msgid "Wolfgang's stuff many places now!"
@@ -48579,6 +50194,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ROYAL_GALLERY"
 msgid "Is needing key."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RO_BIN"
+msgid "Hello big birdie!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Is from birdie gut."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.RUG_BEARD
@@ -49776,6 +51401,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CANDLEHAT"
 msgid "Now I can chop trees in the dark."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CAVE_EXIT_ROC"
+msgid "There's something under there, eh."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHITIN"
 msgid "It's got some heft to it."
@@ -50951,6 +52581,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGBANDIT"
 msgid "He looks a little shady."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGCROWNHAT"
+msgid "It's nice to be appreciated."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIGEON.DEAD"
 msgid "Good."
@@ -51294,6 +52929,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Nice place for a light."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_SCEPTER"
+msgid "I'd rather have an axe in my hand."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -51771,6 +53411,106 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROCK_FLIPPABLE"
 msgid "We should flip it."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_HEAD"
+msgid "Three times the horrible."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_LEG"
+msgid "Chopping that is almost as enjoyable as wood."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Aw. Somebody already chopped it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Looks old."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_BUSH"
+msgid "Must be bushed."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Wood."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Don't have to chop that."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Came from a tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "Where's the tree."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG1"
+msgid "Someone chopped it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG2"
+msgid "I hope there wasn't a bird in there."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG3"
+msgid "As long as it's not a bird."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_EGG4"
+msgid "Cracked."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_HOUSE"
+msgid "That's nice."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "It's broken."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TREE1"
+msgid "Doesn't look like we can chop it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TREE2"
+msgid "Can't chop that yet."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Tsk. Bad chopping form."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Does a stone egg still hatch?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROC_TAIL"
+msgid "Too much of a coward to face me."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROOTTRUNK"
 msgid "It moves all my stuff for me. That's nice."
@@ -51784,6 +53524,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ROYAL_GALLERY"
 msgid "Oh. Fancy."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RO_BIN"
+msgid "I don't want him near my stuff."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Birds are disgusting."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.RUG_BEARD
@@ -52976,6 +54726,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CANDLEHAT"
 msgid "A fine hat fer lootin' temples."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Thar be a way out!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CHITIN"
 msgid "A harden'd hull."
@@ -54151,6 +55906,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGBANDIT"
 msgid "Argh! Stay away from me gold!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGCROWNHAT"
+msgid "Treasure!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIGEON.DEAD"
 msgid "Tells no tales."
@@ -54494,6 +56254,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "A port fer fire."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_SCEPTER"
+msgid "Thet b'treasure for sure!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -54971,6 +56736,106 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Plenty o'booty t'be found under a rock."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_HEAD"
+msgid "A livin'ship wit' three heads!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_LEG"
+msgid "A great movin'mast."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Too old fer'a mast."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "'Tis good fer nothin'."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_BUSH"
+msgid "Has no berries to speak of."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "It be'a stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "There be'a stick."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "A stick, t'be sure."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG1"
+msgid "Been run aground!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG2"
+msgid "Been run through!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG3"
+msgid "Been keel'auled!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_EGG4"
+msgid "Been marooned!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_HOUSE"
+msgid "Captain's cabin."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "It's been run through!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TREE1"
+msgid "A land mast."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TREE2"
+msgid "A land mast far from home."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_NEST_TRUNK"
+msgid "Have ta careen this nest t'fix it."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_ROBIN_EGG"
+msgid "'Tis treasure within!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROC_TAIL"
+msgid "Them feathers'd make fer good sails."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROOTTRUNK"
 msgid "Yarr! All o'Woodleg's treasures!"
@@ -54984,6 +56849,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ROYAL_GALLERY"
 msgid "A treasure!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RO_BIN"
+msgid "'e be keepin' me treasures in'is gullet."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "'t be'a birdie treasure."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.RUG_BEARD
@@ -56196,6 +58071,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CANDLEHAT"
 msgid "Scary head thing!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CAVE_EXIT_ROC"
+msgid "Goes away from here"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CHITIN"
 msgid "Bzzter clothes"
@@ -57371,6 +59251,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGBANDIT"
 msgid "Sneaky Twirly Tail"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGCROWNHAT"
+msgid "Twirly Tail head thing"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIGEON.DEAD"
 msgid "(sob)"
@@ -57724,6 +59609,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "Burns stick friends"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_SCEPTER"
+msgid "Makes friends with Twirly Tails!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -58216,6 +60106,106 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROCK_FLIPPABLE"
 msgid "Things hiding?"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_HEAD"
+msgid "Hungry?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_LEG"
+msgid "Wump Tweeter"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "Lost?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "Lost?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_BUSH"
+msgid "Like your hair"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "Friend!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "Hello, stick!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "Friend?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "You live around here?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG1"
+msgid "Broken"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG2"
+msgid "Broken"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG3"
+msgid "Broken"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_EGG4"
+msgid "Broken"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_HOUSE"
+msgid "No one there"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "Working?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TREE1"
+msgid "Friend?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TREE2"
+msgid "Hello!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_NEST_TRUNK"
+msgid "You alright?"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_ROBIN_EGG"
+msgid "Needs warm"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROC_TAIL"
+msgid "Wump Tweeter bum"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROOTTRUNK"
 msgid "Friends help carry stuff"
@@ -58229,6 +60219,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ROYAL_GALLERY"
 msgid "Has little lock"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RO_BIN"
+msgid "Pack Tweeter!"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "Oh, hello!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.RUG_BEARD
@@ -62936,6 +64936,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CANDLEHAT"
 msgid "PORTABLE ILLUMINATION UNIT"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.CAVE_EXIT_ROC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CAVE_EXIT_ROC"
+msgid "A STONE FIREWALL"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CHITIN"
 msgid "INFERIOR ORGANIC BODY PLATING"
@@ -64111,6 +66116,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIGBANDIT"
 msgid "WARNING: IT WANTS MY MONEY"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PIGCROWNHAT
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIGCROWNHAT"
+msgid "I DESERVE THIS"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PIGEON.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIGEON.DEAD"
 msgid "BROKEN BIRD"
@@ -64454,6 +66464,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_RUINS_TORCH_WALL"
 msgid "CAN RELEASE EXOTHERMIC ENERGY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_SCEPTER
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_SCEPTER"
+msgid "KNEEL TO YOUR OVERLORD"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.PIG_SHOP_ACADEMY.BURNING
@@ -64931,6 +66946,106 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROCK_FLIPPABLE"
 msgid "FLIP ROCK TO PERFORM RUMMAGE"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_HEAD
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_HEAD"
+msgid "CONTAINS REDUNDANT HEADS"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_LEG
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_LEG"
+msgid "LEG SIZE EXCEEDING COGNITIVE LIMITS"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BRANCH1
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BRANCH1"
+msgid "OUTDATED TECHNOLOGY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BRANCH2
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BRANCH2"
+msgid "OLD"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BUSH
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_BUSH"
+msgid "EXCESSIVE DECORATION"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS1"
+msgid "A STICK"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS2"
+msgid "A STICK"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS3"
+msgid "A STICK"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_DEBRIS4"
+msgid "A STICK"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG1
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG1"
+msgid "SHELL REDUNDANCY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG2
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG2"
+msgid "SHELL REDUNDANCY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG3
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG3"
+msgid "SHELL REDUNDANCY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG4
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_EGG4"
+msgid "SHELL REDUNDANCY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_HOUSE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_HOUSE"
+msgid "REDUNDANT HOME"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_RUSTY_LAMP"
+msgid "SENSELESSLY SLAUGHTERED BY RUST"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TREE1
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TREE1"
+msgid "REDUNDANT WOOD STRUCTURE"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TREE2
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TREE2"
+msgid "REDUNDANT REDUNDANCY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TRUNK
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_NEST_TRUNK"
+msgid "NONFUNCTIONING WOODS"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_ROBIN_EGG
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_ROBIN_EGG"
+msgid "PROTECTED BY FIREWALL"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_TAIL
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROC_TAIL"
+msgid "EXIT PORT"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ROOTTRUNK
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROOTTRUNK"
 msgid "ACCESS TO ROOT DIRECTORY"
@@ -64944,6 +67059,16 @@ msgstr ""
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ROYAL_GALLERY
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ROYAL_GALLERY"
 msgid "IT REQUIRES A PASSKEY"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RO_BIN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RO_BIN"
+msgid "A USEFUL FLESHSACK. I WILL KEEP IT"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.RO_BIN_GIZZARD_STONE"
+msgid "FLESHSACKS DISGUST ME"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.RUG_BEARD
@@ -65653,117 +67778,117 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Catherine"
+msgid "Henrietta"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Charlotte"
+msgid "Luella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Della"
+msgid "Alexandrina"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Arabella"
+msgid "Ebba"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Belle"
+msgid "Edith"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Beryl"
+msgid "Flora"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Briar"
+msgid "Florence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Beatrice"
+msgid "Georgette"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Henrietta"
+msgid "Alice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Luella"
+msgid "Agnes"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Alexandrina"
+msgid "Catherine"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Ebba"
+msgid "Lilian"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Edith"
+msgid "Louise"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Flora"
+msgid "Ottilie"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Florence"
+msgid "Ophelia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Georgette"
+msgid "Sophronia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Alice"
+msgid "Charlotte"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Agnes"
+msgid "Della"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Lilian"
+msgid "Arabella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Louise"
+msgid "Belle"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Ottilie"
+msgid "Beryl"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Ophelia"
+msgid "Briar"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Sophronia"
+msgid "Beatrice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -65773,122 +67898,122 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Tesla"
+msgid "Charles"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Frederick"
+msgid "Ewart"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Leopold"
+msgid "Douglas"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Albert"
+msgid "Edison"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Alfred"
+msgid "Edmund"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Arthur"
+msgid "Larkin"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Edward"
+msgid "Herbert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "George"
+msgid "Henry"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Charles"
+msgid "Charley"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Ewart"
+msgid "Oliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Douglas"
+msgid "Tesla"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Edison"
+msgid "Thaddeus"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Edmund"
+msgid "Wellington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Larkin"
+msgid "Gulliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Herbert"
+msgid "Clarence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Henry"
+msgid "Merritt"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Charley"
+msgid "Sterling"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Oliver"
+msgid "Frederick"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Thaddeus"
+msgid "Leopold"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Wellington"
+msgid "Albert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Gulliver"
+msgid "Alfred"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Clarence"
+msgid "Arthur"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Merritt"
+msgid "Edward"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Sterling"
+msgid "George"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -65898,77 +68023,77 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Hastings"
+msgid "Palmerston"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Aberdeen"
+msgid "Gladstone"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Talbot"
+msgid "Disraeli"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Thames"
+msgid "Salisbury"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Stockton"
+msgid "Kensington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Darlington"
+msgid "Conroy"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Peel"
+msgid "Greville"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Derby"
+msgid "Hastings"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Palmerston"
+msgid "Aberdeen"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Gladstone"
+msgid "Talbot"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Disraeli"
+msgid "Thames"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Salisbury"
+msgid "Stockton"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Kensington"
+msgid "Darlington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Conroy"
+msgid "Peel"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Greville"
+msgid "Derby"
 msgstr ""
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -70528,82 +72653,82 @@ msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Juniperus"
+msgid "Betula"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Betula"
+msgid "Juniperus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -70939,6 +73064,11 @@ msgstr ""
 #. STRINGS.NAMES.CANDLEHAT
 msgctxt "STRINGS.NAMES.CANDLEHAT"
 msgid "Cork Candle Hat"
+msgstr ""
+
+#. STRINGS.NAMES.CAVE_EXIT_ROC
+msgctxt "STRINGS.NAMES.CAVE_EXIT_ROC"
+msgid "Stone Plug"
 msgstr ""
 
 #. STRINGS.NAMES.CHITIN
@@ -72046,6 +74176,11 @@ msgctxt "STRINGS.NAMES.PIGBANDIT"
 msgid "Masked Pig"
 msgstr ""
 
+#. STRINGS.NAMES.PIGCROWNHAT
+msgctxt "STRINGS.NAMES.PIGCROWNHAT"
+msgid "Royal Crown"
+msgstr ""
+
 #. STRINGS.NAMES.PIGEON
 msgctxt "STRINGS.NAMES.PIGEON"
 msgid "Pigeon"
@@ -72264,6 +74399,11 @@ msgstr ""
 #. STRINGS.NAMES.PIG_RUINS_TORCH_WALL
 msgctxt "STRINGS.NAMES.PIG_RUINS_TORCH_WALL"
 msgid "Wall Brazier"
+msgstr ""
+
+#. STRINGS.NAMES.PIG_SCEPTER
+msgctxt "STRINGS.NAMES.PIG_SCEPTER"
+msgid "Regal Scepter"
 msgstr ""
 
 #. STRINGS.NAMES.PIG_SHOP_ACADEMY
@@ -72556,6 +74696,106 @@ msgctxt "STRINGS.NAMES.ROCK_FLIPPABLE"
 msgid "Stone Slab"
 msgstr ""
 
+#. STRINGS.NAMES.ROC_HEAD
+msgctxt "STRINGS.NAMES.ROC_HEAD"
+msgid "BFB"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_LEG
+msgctxt "STRINGS.NAMES.ROC_LEG"
+msgid "BFB"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_BRANCH1
+msgctxt "STRINGS.NAMES.ROC_NEST_BRANCH1"
+msgid "Weathered Branch"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_BRANCH2
+msgctxt "STRINGS.NAMES.ROC_NEST_BRANCH2"
+msgid "Weathered Branch"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_BUSH
+msgctxt "STRINGS.NAMES.ROC_NEST_BUSH"
+msgid "Weathered Shrub"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_DEBRIS1
+msgctxt "STRINGS.NAMES.ROC_NEST_DEBRIS1"
+msgid "Weathered Stick"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_DEBRIS2
+msgctxt "STRINGS.NAMES.ROC_NEST_DEBRIS2"
+msgid "Weathered Stick"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_DEBRIS3
+msgctxt "STRINGS.NAMES.ROC_NEST_DEBRIS3"
+msgid "Weathered Stick"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_DEBRIS4
+msgctxt "STRINGS.NAMES.ROC_NEST_DEBRIS4"
+msgid "Weathered Stick"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_EGG1
+msgctxt "STRINGS.NAMES.ROC_NEST_EGG1"
+msgid "Petrified Egg"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_EGG2
+msgctxt "STRINGS.NAMES.ROC_NEST_EGG2"
+msgid "Petrified Egg"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_EGG3
+msgctxt "STRINGS.NAMES.ROC_NEST_EGG3"
+msgid "Petrified Egg"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_EGG4
+msgctxt "STRINGS.NAMES.ROC_NEST_EGG4"
+msgid "Petrified Egg"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_HOUSE
+msgctxt "STRINGS.NAMES.ROC_NEST_HOUSE"
+msgid "Weathered House"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_RUSTY_LAMP
+msgctxt "STRINGS.NAMES.ROC_NEST_RUSTY_LAMP"
+msgid "Rusty Lamp"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_TREE1
+msgctxt "STRINGS.NAMES.ROC_NEST_TREE1"
+msgid "Weathered Tree"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_TREE2
+msgctxt "STRINGS.NAMES.ROC_NEST_TREE2"
+msgid "Weathered Tree"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_NEST_TRUNK
+msgctxt "STRINGS.NAMES.ROC_NEST_TRUNK"
+msgid "Weathered Trunk"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_ROBIN_EGG
+msgctxt "STRINGS.NAMES.ROC_ROBIN_EGG"
+msgid "Stone Egg"
+msgstr ""
+
+#. STRINGS.NAMES.ROC_TAIL
+msgctxt "STRINGS.NAMES.ROC_TAIL"
+msgid "BFB"
+msgstr ""
+
 #. STRINGS.NAMES.ROOTTRUNK
 msgctxt "STRINGS.NAMES.ROOTTRUNK"
 msgid "Root Trunk"
@@ -72569,6 +74809,16 @@ msgstr ""
 #. STRINGS.NAMES.ROYAL_GALLERY
 msgctxt "STRINGS.NAMES.ROYAL_GALLERY"
 msgid "Royal Gallery Exhibit"
+msgstr ""
+
+#. STRINGS.NAMES.RO_BIN
+msgctxt "STRINGS.NAMES.RO_BIN"
+msgid "Ro Bin"
+msgstr ""
+
+#. STRINGS.NAMES.RO_BIN_GIZZARD_STONE
+msgctxt "STRINGS.NAMES.RO_BIN_GIZZARD_STONE"
+msgid "Ro Bin Gizzard Stone"
 msgstr ""
 
 #. STRINGS.NAMES.RUG_BEARD
@@ -74836,9 +77086,19 @@ msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.PUGALISK_FOUNTAIN"
 msgid "Fountain of Youth"
 msgstr ""
 
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.ROC_SETTING
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.ROC_SETTING"
+msgid "BFB"
+msgstr ""
+
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.RUINED_SCULPTURES
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.RUINED_SCULPTURES"
 msgid "Ruined Sculptures"
+msgstr ""
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.TASKSETNAMES.PORKLAND
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.TASKSETNAMES.PORKLAND"
+msgid "Hamlet"
 msgstr ""
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.TEMPERATE
