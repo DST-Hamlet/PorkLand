@@ -280,6 +280,9 @@ end
 
 ACTIONS.USEDOOR.fn = function(act, forcesuccess)
     local door = act.target
+    if not door then
+        return false
+    end
     if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
         return false, "LOCKED"
     end
