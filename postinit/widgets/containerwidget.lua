@@ -1,4 +1,5 @@
 local AddClassPostConstruct = AddClassPostConstruct
+local PLENV = env
 GLOBAL.setfenv(1, GLOBAL)
 
 local BoatEquipSlot = require("widgets/boatequipslot")
@@ -13,6 +14,65 @@ local ContainerWidget = require("widgets/containerwidget")
 
 -- local DOUBLECLICKTIME = .33
 local HUD_ATLAS = "images/hud/pl_hud.xml"
+
+function ContainerWidget:AddBoatEquipSlot(slot, atlas, image, sortkey)
+    sortkey = sortkey or #self.boatEquipInfo
+    table.insert(self.boatEquipInfo, {slot = slot, atlas = atlas, image = image, sortkey = sortkey})
+    table.sort(self.boatEquipInfo, function(a,b) return a.sortkey < b.sortkey end)
+end
+
+function ContainerWidget:BoatDelta(boat, data)
+    if data.damage then
+        self:Shake(0.25, 0.05, 5)
+    end
+
+    self.boatbadge:SetPercent(data.percent, data.maxhealth)
+
+    if data.percent <= .25 then
+        self.boatbadge:StartWarning()
+    else
+        self.boatbadge:StopWarning()
+    end
+
+    if self.prev_boat_pct and data.percent > self.prev_boat_pct then
+        self.boatbadge:PulseGreen()
+        --TheFrontEnd:GetSound():PlaySound("dontstarve/HUD/health_up")
+    elseif self.prev_boat_pct and data.damage and data.percent < self.prev_boat_pct then
+        self.boatbadge:PulseRed()
+        --TheFrontEnd:GetSound():PlaySound("dontstarve/HUD/health_down")
+    end
+    self.prev_boat_pct = data.percent
+end
+
+function ContainerWidget:OnItemEquip(item, slot)
+    if slot ~= nil and self.boatEquip[slot] ~= nil then
+        self.boatEquip[slot]:SetTile(ItemTile(item))
+    end
+end
+
+function ContainerWidget:OnItemUnequip(item, slot)
+    if slot ~= nil and self.boatEquip[slot] ~= nil then
+        self.boatEquip[slot]:SetTile(nil)
+    end
+end
+
+local _Refresh = ContainerWidget.Refresh
+function ContainerWidget:Refresh(...)
+    _Refresh(self, ...)
+    local boatequips = self.container.replica.container.GetBoatEquips and self.container.replica.container:GetBoatEquips() or {}
+    for k, v in pairs(self.boatEquip) do
+        local item = boatequips[k]
+        if item == nil then
+            if v.tile ~= nil then
+                v:SetTile(nil)
+            end
+        elseif v.tile == nil or v.tile.item ~= item then
+            v:SetTile(ItemTile(item))
+        else
+            v.tile:Refresh()
+        end
+    end
+end
 
 local _Open = ContainerWidget.Open
 function ContainerWidget:Open(container, doer, boatwidget, ...)
@@ -73,66 +133,6 @@ function ContainerWidget:Open(container, doer, boatwidget, ...)
     end
 end
 
-function ContainerWidget:AddBoatEquipSlot(slot, atlas, image, sortkey)
-    sortkey = sortkey or #self.boatEquipInfo
-    table.insert(self.boatEquipInfo, {slot = slot, atlas = atlas, image = image, sortkey = sortkey})
-    table.sort(self.boatEquipInfo, function(a,b) return a.sortkey < b.sortkey end)
-end
-
-function ContainerWidget:BoatDelta(boat, data)
-    if data.damage then
-        self:Shake(0.25, 0.05, 5)
-    end
-
-    self.boatbadge:SetPercent(data.percent, data.maxhealth)
-
-    if data.percent <= .25 then
-        self.boatbadge:StartWarning()
-    else
-        self.boatbadge:StopWarning()
-    end
-
-    if self.prev_boat_pct and data.percent > self.prev_boat_pct then
-        self.boatbadge:PulseGreen()
-        --TheFrontEnd:GetSound():PlaySound("dontstarve/HUD/health_up")
-    elseif self.prev_boat_pct and data.damage and data.percent < self.prev_boat_pct then
-        self.boatbadge:PulseRed()
-        --TheFrontEnd:GetSound():PlaySound("dontstarve/HUD/health_down")
-    end
-    self.prev_boat_pct = data.percent
-end
-
-function ContainerWidget:OnItemEquip(item, slot)
-    if slot ~= nil and self.boatEquip[slot] ~= nil then
-        self.boatEquip[slot]:SetTile(ItemTile(item))
-    end
-end
-
-function ContainerWidget:OnItemUnequip(item, slot)
-    if slot ~= nil and self.boatEquip[slot] ~= nil then
-        self.boatEquip[slot]:SetTile(nil)
-    end
-end
-
-
-local _Refresh = ContainerWidget.Refresh
-function ContainerWidget:Refresh(...)
-    _Refresh(self, ...)
-    local boatequips = self.container.replica.container.GetBoatEquips and self.container.replica.container:GetBoatEquips() or {}
-    for k, v in pairs(self.boatEquip) do
-        local item = boatequips[k]
-        if item == nil then
-            if v.tile ~= nil then
-                v:SetTile(nil)
-            end
-        elseif v.tile == nil or v.tile.item ~= item then
-            v:SetTile(ItemTile(item))
-        else
-            v.tile:Refresh()
-        end
-    end
-end
-
 local _Close = ContainerWidget.Close
 function ContainerWidget:Close(...)
     if self.isopen then
@@ -156,10 +156,18 @@ function ContainerWidget:Close(...)
     end
 end
 
-AddClassPostConstruct("widgets/containerwidget", function(self)
-    self.boatEquipInfo = {}
-    self.boatEquip = {}
+if not rawget(_G, "HotReloading") then
+    AddClassPostConstruct("widgets/containerwidget", function(self)
+        self.boatEquipInfo = {}
+        self.boatEquip = {}
 
-    self.boatbadge = self:AddChild(BoatBadge(self.owner, self))
-    self.boatbadge:Hide()
-end)
+        self.boatbadge = self:AddChild(BoatBadge(self.owner, self))
+        self.boatbadge:Hide()
+    end)
+end
+
+function PLENV.OnHotReload()
+    ContainerWidget.Refresh = _Refresh
+    ContainerWidget.Open = _Open
+    ContainerWidget.Close = _Close
+end
