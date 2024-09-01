@@ -76,10 +76,8 @@ local function DoTeleport(player, pos)
         -- player.components.health:SetInvincible(invincible)
 
         if TheWorld.components.interiorspawner:IsInInterior(x, z) then
-            player:SnapCamera()
-        else
-            player.replica.interiorvisitor:RestoreOutsideInteriorCamera()
 
+        else
             if player:HasTag("wanted_by_guards") then
                 player:RemoveTag("wanted_by_guards")
                 local x, y, z = player.Transform:GetWorldPosition()

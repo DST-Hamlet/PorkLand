@@ -12,16 +12,6 @@ local InteriorVisitor = Class(function(self, inst)
     self.exterior_pos_z:set_local(0)
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
-    self.restore_outside_interior_camera = net_event(inst.GUID, "interiorvisitor.restoreoutsideinteriorcamera")
-
-    -- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
-    self.inst:ListenForEvent("interiorvisitor.restoreoutsideinteriorcamera", function()
-        self:OnUpdate()
-        if self.inst == ThePlayer then
-            TheCamera:RestoreOutsideInteriorCamera()
-        end
-    end)
-
     self.interior_map = {}
     self.interior_map_icons_override = nil
 
@@ -88,10 +78,6 @@ function InteriorVisitor:ApplyInteriorCamera(interior_center)
     TheCamera.pl_interior_distance = zoom
 end
 
-function InteriorVisitor:RestoreOutsideInteriorCamera()
-    self.restore_outside_interior_camera:push()
-end
-
 function InteriorVisitor:UpdateInteriorMinimap()
     local center = self.center_ent:value()
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.inst:GetPosition())
@@ -118,7 +104,7 @@ function InteriorVisitor:OnUpdate()
     if IsInInteriorRectangle(self.inst:GetPosition(), room_center_ent) then
         self:ApplyInteriorCamera(room_center_ent)
 
-        if last_center_ent ~= room_center_ent then
+        if last_center_ent ~= room_center_ent and self.inst:HasTag("inside_interior") then
             self.last_center_ent = room_center_ent
             self.inst:PushEvent("enterinterior_client", {from = last_center_ent, to = room_center_ent})
 
@@ -140,7 +126,11 @@ function InteriorVisitor:OnUpdate()
             self:UpdateInteriorMinimap()
         end
     else
-        TheCamera.inside_interior = false
+        if TheCamera.inside_interior then
+            TheCamera:RestoreOutsideInteriorCamera()
+            TheCamera.inside_interior = false
+            TheCamera:Snap()
+        end
         self.last_center_ent = nil
 
         if last_center_ent ~= room_center_ent then

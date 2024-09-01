@@ -33,7 +33,6 @@ AddComponentPostInit("playervision", function(self)
 
     local _UpdateCCTable = self.UpdateCCTable
     function self:UpdateCCTable()
-        _UpdateCCTable(self)
         local has_pl_cctable = false
         if self.inst.replica.inventory:EquipHasTag("bat_hat") then
             local cc = BATVISION_COLOUR_CUBE
@@ -47,6 +46,7 @@ AddComponentPostInit("playervision", function(self)
                 self.currentcctable = cc
                 self.inst:PushEvent("ccoverrides", cc)
                 self.inst:PushEvent("ccphasefn", nil)
+                has_pl_cctable = true
             end
         elseif self.currentcctable == NIGHTVISION_COLOURCUBES then
             if self.inst:HasTag("inside_interior") then
@@ -54,12 +54,17 @@ AddComponentPostInit("playervision", function(self)
                 self.currentcctable = cc
                 self.inst:PushEvent("ccoverrides", cc)
                 self.inst:PushEvent("ccphasefn", NIGHTVISION_PHASEFN)
+                has_pl_cctable = true
             elseif TheWorld.state.isaporkalypse then
                 local cc = NIGHTVISION_COLOURCUBES_APORKLYPSE
                 self.currentcctable = cc
                 self.inst:PushEvent("ccoverrides", cc)
                 self.inst:PushEvent("ccphasefn", NIGHTVISION_PHASEFN)
+                has_pl_cctable = true
             end
+        end
+        if not has_pl_cctable then
+            _UpdateCCTable(self)
         end
     end
 end)

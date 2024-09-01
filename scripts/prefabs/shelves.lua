@@ -170,6 +170,18 @@ local function OnVisualChange(inst)
     inst.highlightchildren = {inst._frontvisual:value(), inst._lockvisual:value()}
 end
 
+local function IsHighPriorityAction(act, force_inspect)
+    return act and act.action == ACTIONS.HAMMER
+end
+
+local function CanMouseThrough(inst)
+    if not inst:HasTag("fire") and ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil then
+        local force_inspect = ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller:IsControlPressed(CONTROL_FORCE_INSPECT)
+        local lmb, rmb = ThePlayer.components.playeractionpicker:DoGetMouseActions(inst:GetPosition(), inst)
+        return not IsHighPriorityAction(rmb, force_inspect)
+    end
+end
+
 local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed, master_postinit)
     local function fn()
         local inst = CreateEntity()
@@ -217,6 +229,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst:AddTag("wallsection")
         inst:AddTag("furniture")
         inst:AddTag("shelf")
+
+        inst.CanMouseThrough = CanMouseThrough
 
         inst.entity:SetPristine()
 
