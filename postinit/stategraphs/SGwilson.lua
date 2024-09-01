@@ -1871,7 +1871,6 @@ local states = {
             inst.components.locomotor:StopMoving()
 
             if pushanim then
-                inst.AnimState:PlayAnimation(pushanim)
                 inst.AnimState:PushAnimation("idle_loop", true)
             else
                 inst.AnimState:PlayAnimation("idle_loop", true)
@@ -1937,8 +1936,7 @@ local states = {
             TimeEvent(6  * FRAMES, function(inst) inst:PerformBufferedAction() end),
             TimeEvent(12 * FRAMES, function(inst) inst.sg:RemoveStateTag("working") inst.sg:RemoveStateTag("busy") end),
             TimeEvent(13 * FRAMES, function(inst)
-                if not inst.sg.statemem.iswoodcutter and
-                    inst.components.playercontroller ~= nil and
+                if inst.components.playercontroller ~= nil and
                     inst.components.playercontroller:IsAnyOfControlsPressed(
                         CONTROL_PRIMARY,
                         CONTROL_ACTION,
@@ -1958,9 +1956,12 @@ local states = {
             end),
         },
 
-        EventHandler("animover", function(inst)
-            inst.sg:GoToState("idle", true)
-        end),
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("ironlord_idle", true)
+            end),
+        },
     },
 
     State{
