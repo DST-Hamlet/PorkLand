@@ -150,7 +150,11 @@ local function OnIronlordDirty(inst)
     if inst.isironlord:value() then
         TheWorld:PushEvent("enabledynamicmusic", false)
         if inst.instantironlord then -- in case of loading
-            push_music()
+            inst:DoTaskInTime(151 * FRAMES, function()
+                if inst.instantironlord then -- 你永远不会知道自己在151帧后是否还是ironlord
+                    push_music()
+                end
+            end)
         end
 
         player:PushEvent("livingartifactoveron")
