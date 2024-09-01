@@ -91,6 +91,7 @@ local function fn()
     inst:AddTag("nopunch")
     inst:AddTag("nosteal")
     inst:AddTag("show_spoilage")
+    inst:AddTag("allow_action_on_impassable")
     -- shadowlevel (from shadowlevel component) added to pristine state for optimization
     inst:AddTag("shadowlevel")
 
@@ -101,6 +102,7 @@ local function fn()
     inst.components.reticule.targetfn = function()
         return Vector3(ThePlayer.entity:LocalToWorldSpace(5, 0.001, 0))
     end
+    inst.components.reticule.ispassableatallpoints = true
 
     inst.entity:SetPristine()
 
