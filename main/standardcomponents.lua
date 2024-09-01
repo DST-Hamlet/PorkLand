@@ -391,9 +391,30 @@ function UpdateSailorPathcaps(inst, allowocean)
 end
 
 local _MakeInventoryPhysics = MakeInventoryPhysics
-function MakeInventoryPhysics(inst, mass, rad)
-    local physics = _MakeInventoryPhysics(inst, mass, rad)
+function MakeInventoryPhysics(inst, mass, rad, ...)
+    local physics = _MakeInventoryPhysics(inst, mass, rad, ...)
     if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
+local _MakeProjectilePhysics = MakeProjectilePhysics
+function MakeProjectilePhysics(inst, mass, rad, ...)
+    local physics = _MakeProjectilePhysics(inst, mass, rad, ...)
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
+local _RemovePhysicsColliders = RemovePhysicsColliders
+function RemovePhysicsColliders(inst, ...)
+    _RemovePhysicsColliders(inst, ...)
+    local physics = inst.Physics
+    if TheWorld:HasTag("porkland") and physics:GetMass() > 0 then
         physics:ClearCollidesWith(COLLISION.LIMITS)
         physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
     end
