@@ -132,6 +132,10 @@ function InteriorVisitor:OnUpdate()
             TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud_interior.tex")) -- disable clouds
         end
 
+        if ambientlighting then
+            ambientlighting:Pl_Refresh()
+        end
+
         if room_center_ent:HasInteriorMinimap() then
             self:UpdateInteriorMinimap()
         end

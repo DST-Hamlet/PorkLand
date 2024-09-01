@@ -64,14 +64,6 @@ local function DoTeleport(player, pos)
 
         -- local invincible = player.components.health.invincible
         -- player.components.health:SetInvincible(true)
-        if player.components.playercontroller then
-            player.components.playercontroller:EnableMapControls(false)
-            player.components.playercontroller:Enable(false)
-        end
-
-        player:ScreenFade(false, 0.4)
-
-        Sleep(0.4)
 
         if TheWorld.components.interiorspawner
             and (TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
@@ -82,13 +74,6 @@ local function DoTeleport(player, pos)
         end
         player.components.interiorvisitor:UpdateExteriorPos()
         -- player.components.health:SetInvincible(invincible)
-
-        Sleep(0.1)
-
-        if player.components.playercontroller then
-            player.components.playercontroller:EnableMapControls(true)
-            player.components.playercontroller:Enable(true)
-        end
 
         if TheWorld.components.interiorspawner:IsInInterior(x, z) then
             player:SnapCamera()
@@ -107,12 +92,6 @@ local function DoTeleport(player, pos)
                     })
                 end
             end
-        end
-
-        player:ScreenFade(true, 0.4)
-
-        if not player.sg:HasStateTag("dead") then
-            player.sg:GoToState("idle")
         end
     end)
 end

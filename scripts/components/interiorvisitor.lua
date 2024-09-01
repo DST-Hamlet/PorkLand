@@ -122,7 +122,9 @@ function InteriorVisitor:UpdateExteriorPos()
     local grue = self.inst.components.grue or {}
 
     if ent then
-        self.inst:AddTag("inside_interior")
+        if not self.inst:HasTag("inside_interior") then
+            self.inst:AddTag("inside_interior")
+        end
         self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
         self.interior_cc = ent.interior_cc
         grue.pl_no_light_interior = --[[ent:HasInteriorTag("NO_LIGHT") or]] true

@@ -1689,19 +1689,38 @@ local states = {
         onenter = function(inst)
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("give")
+            inst.AnimState:PushAnimation("give_pst", false)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(false)
+                inst.components.playercontroller:Enable(false)
+            end
+            inst:ScreenFade(false, 0.4)
         end,
 
-        onexit = function(inst)
-
-        end,
-
-        events = {
-            EventHandler("animover", function(inst)
+        timeline =
+        {
+            TimeEvent(15 * FRAMES, function(inst)
                 inst:PerformBufferedAction()
-                inst.AnimState:PlayAnimation("give_pst", false)
-                inst.sg:GoToState("idle", true)
+                inst:ScreenFade(true, 0.4)
+                if inst.components.playercontroller then
+                    inst.components.playercontroller:EnableMapControls(true)
+                    inst.components.playercontroller:Enable(true)
+                end
+                inst.sg:RemoveStateTag("busy")
+            end),
+
+            TimeEvent(30 * FRAMES, function(inst)
+                inst.sg:GoToState("idle")
             end),
         },
+
+        onexit = function(inst)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(true)
+                inst.components.playercontroller:Enable(true)
+            end
+            inst:ScreenFade(true, 0.4)
+        end,
     },
 
     State{
