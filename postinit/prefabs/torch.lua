@@ -8,13 +8,22 @@ local function startrowing(inst, data)
     end
 end
 local function stoprowing(inst, data)
-    inst.components.equippable.onequipfn(inst, data and data.owner or nil)
+    inst.components.equippable.old_onequipfn(inst, data and data.owner or nil)
 end
 
 local function PostInit(inst)
     if not TheWorld.ismastersim then
         return
     end
+
+    local _onequipfn = inst.components.equippable.onequipfn
+    inst.components.equippable:SetOnEquip(function(inst, owner, from_ground, ...)
+        if owner and owner.sg and owner.sg:HasStateTag("rowing") then
+            return
+        end
+        return _onequipfn(inst, owner, from_ground, ...)
+    end)
+    inst.components.equippable.old_onequipfn = _onequipfn
 
     inst:ListenForEvent("startrowing", startrowing)
     inst:ListenForEvent("stoprowing", stoprowing)
