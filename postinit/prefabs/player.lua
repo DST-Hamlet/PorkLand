@@ -22,8 +22,8 @@ local function ScheduleOincSoundEvent(inst, amount)
     inst.oinc_transaction = inst.oinc_transaction + amount
     if not inst.oinc_transaction_task then
         inst.oinc_transaction_task = inst:DoTaskInTime(0, function()
+            inst._oinc_sound:set_local(0)
             inst._oinc_sound:set(inst.oinc_transaction)
-            inst._oinc_soundevent:push()
             inst.oinc_transaction = nil
             inst.oinc_transaction_task = nil
         end)
@@ -153,7 +153,7 @@ AddPlayerPostInit(function(inst)
     if not TheNet:IsDedicated() then
         inst:DoTaskInTime(0, function()
             if inst == ThePlayer then -- only do this for the local player character
-                inst:ListenForEvent("player._oinc_soundevent", PlayOincSound)
+                inst:ListenForEvent("oincsounddirty", PlayOincSound)
                 if TheWorld:HasTag("porkland") then
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
@@ -173,8 +173,7 @@ AddPlayerPostInit(function(inst)
         end
     end
 
-    inst._oinc_sound = net_byte(inst.GUID, "player._oincsoundpush")
-    inst._oinc_soundevent = net_event(inst.GUID, "player._oinc_soundevent")
+    inst._oinc_sound = net_byte(inst.GUID, "player._oincsoundpush", "oincsounddirty")
 
     if inst.components.hudindicatable then
         local _shouldtrackfn = inst.components.hudindicatable.shouldtrackfn
