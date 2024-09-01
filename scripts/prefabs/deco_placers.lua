@@ -107,7 +107,7 @@ end
 
 local function MakePillarPlacer(name, bank, build, anim)
     return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
-		inst.animdata = {
+        inst.animdata = {
             build = build,
             anim = anim,
             bank = bank,
@@ -231,7 +231,7 @@ end
 
 local function MakeWallPlacer(name, bank, build, anim, on_update_transform)
     return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
-		inst.animdata = {
+        inst.animdata = {
             build = build,
             anim = anim,
             bank = bank,
@@ -382,7 +382,7 @@ end
 
 local function MakeWindowPlacer(name, bank, build, anim, animation_postinit, on_update_transform)
     return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
-		inst.animdata = {
+        inst.animdata = {
             build = build,
             anim = anim,
             bank = bank,
@@ -448,7 +448,7 @@ end
 
 local function MakeShelfPlacer(name, bank, build, anim)
     return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
-		inst.animdata = {
+        inst.animdata = {
             build = build,
             anim = anim,
             bank = bank,
