@@ -529,7 +529,7 @@ local function OnSave(inst, data)
 end
 
 local function OnLoadPostPass(inst, newents, data)
-    if data and data.home then
+    if data and data.home and newents[data.home] then
         local home = newents[data.home].entity
         if home then
             inst.home = home
