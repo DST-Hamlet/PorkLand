@@ -86,6 +86,7 @@ local function OnEquip(inst, owner)
     inst.fx_task = inst:DoPeriodicTask(0.1, function() SpawnFx(owner) end)
 
     inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/LP", "vortex")
+    inst.SoundEmitter:SetVolume("vortex", 0.5)
     SetSoundparam(inst)
 end
 
@@ -161,6 +162,7 @@ local function fn()
     inst.components.fueled.secondaryfueltype = FUELTYPE.ANCIENT_REMNANT
     inst.components.fueled:SetTakeFuelFn(OnTakeFuel)
     inst.components.fueled.accepting = true
+    inst.components.fueled.bonusmult = 0.4
 
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY
