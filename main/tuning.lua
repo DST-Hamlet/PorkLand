@@ -631,6 +631,9 @@ local tuning = {
     OX_FLUTE_USES = 5,
 
     SANITY_PLAYERHOUSE_GAIN = 100 / (day_time * 32),
+
+    CUTLASS_DAMAGE = wilson_attack * 2,
+    CUTLASS_USES = 150,
 }
 
 
