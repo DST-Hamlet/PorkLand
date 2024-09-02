@@ -16,3 +16,15 @@ function Builder:HasIngredients(recipe, ...)
     self.inst.replica.inventory.check_all_oincs = check_all_oincs
     return unpack(ret)
 end
+
+local _GetCurrentPrototyper = Builder.GetCurrentPrototyper
+function Builder:GetCurrentPrototyper(...)
+    local prototyper = _GetCurrentPrototyper(self, ...)
+    if not prototyper then
+        if self.inst.replica.inventory then
+            return self.inst.replica.inventory:GetItem("key_to_city")
+        end
+    end
+
+    return prototyper
+end

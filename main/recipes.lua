@@ -127,7 +127,7 @@ local function telebase_testfn(pt, rot)
     return true
 end
 
-AddTech("CITY", false)
+AddTech("CITY", true)
 AddTech("HOME", true)
 
 -- AddRecipeFilter(filter_def, index)

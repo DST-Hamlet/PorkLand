@@ -32,30 +32,42 @@ end
 
 local function OnItemGet(inst, data)
     local item = data.item
-    if not item or not item:HasTag("oinc") then
+    if not item then
         return
     end
 
-    ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
+    if item:HasTag("oinc") then
+        ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
 
-    item.oinc_sound_stackchange_listener = function(_, data)
-        local amount_changed = math.abs(data.stacksize - data.oldstacksize)
-        ScheduleOincSoundEvent(inst, amount_changed)
+        item.oinc_sound_stackchange_listener = function(_, data)
+            local amount_changed = math.abs(data.stacksize - data.oldstacksize)
+            ScheduleOincSoundEvent(inst, amount_changed)
+        end
+        item:ListenForEvent("stacksizechange", item.oinc_sound_stackchange_listener)
     end
-    item:ListenForEvent("stacksizechange", item.oinc_sound_stackchange_listener)
+
+    if item.prefab == "key_to_city" then
+        inst.components.builder.city_bonus = 2
+    end
 end
 
 local function OnItemLose(inst, data)
     local item = data.prev_item
-    if not item or not item:HasTag("oinc") then
+    if not item then
         return
     end
 
-    ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
+    if item:HasTag("oinc") then
+        ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
 
-    if item.oinc_sound_stackchange_listener then
-        item:RemoveEventCallback("stacksizechange", item.oinc_sound_stackchange_listener)
-        item.oinc_sound_stackchange_listener = nil
+        if item.oinc_sound_stackchange_listener then
+            item:RemoveEventCallback("stacksizechange", item.oinc_sound_stackchange_listener)
+            item.oinc_sound_stackchange_listener = nil
+        end
+    end
+
+    if item.prefab == "key_to_city" and item.activeitem == false then
+        inst.components.builder.city_bonus = 0
     end
 end
 
