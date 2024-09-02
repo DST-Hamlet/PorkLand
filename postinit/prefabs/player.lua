@@ -71,19 +71,6 @@ local function OnItemLose(inst, data)
     end
 end
 
-local function OnDay(inst, isday)
-    if not isday then
-        return
-    end
-    if TheWorld.components.pigtaxmanager
-        and TheWorld.components.pigtaxmanager:HasPlayerCityHall()
-        and TheWorld.components.pigtaxmanager:IsTaxDay() then
-
-        inst:DoTaskInTime(2, function()
-            inst.components.talker:Say(GetString(inst.prefab, "ANNOUNCE_TAXDAY"))
-        end)
-    end
-end
 
 local function OnDeath(inst, data)
     if inst.components.poisonable ~= nil then
@@ -169,7 +156,6 @@ AddPlayerPostInit(function(inst)
                 if TheWorld:HasTag("porkland") then
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
-                    inst:WatchWorldState("isday", OnDay)
                 end
             end
         end)
