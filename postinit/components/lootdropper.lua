@@ -6,8 +6,12 @@ local _SpawnLootPrefab = LootDropper.SpawnLootPrefab
 function LootDropper:SpawnLootPrefab(lootprefab, pt, ...)
     local item = _SpawnLootPrefab(self, lootprefab, pt, ...)
 
-    if self.inst.components.poisonable and self.inst.components.poisonable:IsPoisoned() and item.components.perishable then
-        item.components.perishable:ReducePercent(TUNING.POISON_PERISH_PENALTY)
+    if item.components.perishable then
+        if self.inst.components.poisonable and self.inst.components.poisonable:IsPoisoned() then
+            item.components.perishable:ReducePercent(TUNING.POISON_PERISH_PENALTY)
+        elseif self.inst._poison_damage_task then
+            item.components.perishable:ReducePercent(TUNING.POISON_PERISH_PENALTY)
+        end
     end
 
     if self.inst.components.citypossession then
