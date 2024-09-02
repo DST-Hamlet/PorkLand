@@ -1694,13 +1694,19 @@ local states = {
                 inst.components.playercontroller:EnableMapControls(false)
                 inst.components.playercontroller:Enable(false)
             end
-            inst:ScreenFade(false, 0.4)
         end,
 
         timeline =
         {
+            TimeEvent(2 * FRAMES, function(inst)
+                inst:ScreenFade(false, 0.4)
+            end),
+
             TimeEvent(15 * FRAMES, function(inst)
                 inst:PerformBufferedAction()
+            end),
+
+            TimeEvent(19 * FRAMES, function(inst)
                 inst:ScreenFade(true, 0.4)
                 if inst.components.playercontroller then
                     inst.components.playercontroller:EnableMapControls(true)

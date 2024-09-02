@@ -436,7 +436,7 @@ local function MakeHat(name)
 
         if not inst.fire then
             inst.fire = SpawnPrefab("candlefire")
-            inst.fire.entity:SetParent(inst.entity)
+            inst.fire.entity:SetParent(owner.entity)
             local follower = inst.fire.entity:AddFollower()
             follower:FollowSymbol(owner.GUID, "swap_hat", 0, -250, 0)
         end
