@@ -53,7 +53,7 @@ local function SetExtended(inst, extended)
         inst:RemoveTag("NOCLICK")
         inst:RemoveTag("notarget")
 
-        inst.name = STRINGS.NAMES.PIG_RUINS_SPEAR_TRAP_TRIGGERED
+        inst.components.inspectable.nameoverride = "PIG_RUINS_SPEAR_TRAP_TRIGGERED"
 
         inst.extended = true
 
@@ -74,7 +74,7 @@ local function SetExtended(inst, extended)
         inst:AddTag("notarget")
         inst:RemoveTag("hostile")
 
-        inst.name = STRINGS.NAMES.PIG_RUINS_SPEAR_TRAP
+        inst.components.inspectable.nameoverride = nil
 
         inst.extended = nil
 
