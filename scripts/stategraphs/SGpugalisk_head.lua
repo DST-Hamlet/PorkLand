@@ -61,7 +61,7 @@ local events =
     end),
 
     EventHandler("attacked", function(inst, data)
-        if inst.sg:HasStateTag("idle") and not inst:HasTag("tail") and data.vulnerable_segment then
+        if inst.sg:HasStateTag("idle") and not inst:HasTag("tail") and data.vulnerable_segment and not CommonHandlers.HitRecoveryDelay(inst) then
             inst.sg:GoToState("hit")
         end
     end),
@@ -224,6 +224,7 @@ local states =
         onenter = function(inst, start_anim)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("hit")
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
         end,
 
         timeline =
