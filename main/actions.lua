@@ -65,6 +65,10 @@ end
 local _ValidToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.validfn, "ValidToolWork")
 local _DoToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
 local function DoToolWork(act, workaction, ...)
+    if act.doer and act.doer.player_classified then
+        act.doer.player_classified._last_work_target:set(act.target)
+        act.doer.player_classified:ClearLastTarget()
+    end
     if act.target.components.hackable ~= nil and act.target.components.hackable:CanBeHacked() and workaction == ACTIONS.HACK then
         if act.invobject and act.invobject.components.obsidiantool then
             act.invobject.components.obsidiantool:Use(act.doer, act.target)
