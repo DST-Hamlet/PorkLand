@@ -109,8 +109,8 @@ local function AddSetPeices(level, addall)
     local boons_override = "default"
     local touchstone_override = "default"
     local traps_override = "default"
-    local poi_override = "default"
-    local protected_override = "default"
+    local poi_override = "never"
+    local protected_override = "never"
 
     if level.overrides ~= nil then
         if level.overrides.boons ~= nil then
