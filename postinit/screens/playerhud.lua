@@ -18,8 +18,6 @@ function PlayerHud:CreateOverlays(owner, ...)
     _CreateOverlays(self, owner, ...)
 
     self.batsonar = self.overlayroot:AddChild(BatSonar(owner))
-    self.inst:ListenForEvent("startbatsonar", function(inst, data) return self.batsonar:StartSonar() end, self.owner)
-    self.inst:ListenForEvent("stopbatsonar", function(inst, data) return self.batsonar:StopSonar() end, self.owner)
 
     self.boatover = self.overlayroot:AddChild(BoatOver(owner))
     self.inst:ListenForEvent("boatattacked", function(inst, data) return self.boatover:Flash() end, self.owner)
@@ -132,5 +130,13 @@ function PlayerHud:OnUpdate(dt, ...)
 
     if self.leavesover then
         self.leavesover:OnUpdate(dt)
+    end
+
+    if self.owner and self.batsonar then
+        if self.owner.replica.inventory:EquipHasTag("bat_hat") then
+            self.batsonar:StartSonar()
+        else
+            self.batsonar:StopSonar()
+        end
     end
 end
