@@ -5,11 +5,11 @@ local function en_zh(en, zh) -- Other languages don't work
     return (locale == "zh" or locale == "zhr" or locale == "zht") and zh or en
 end
 
-name = "Above the Clouds"
+name = "云霄国度-(Above the Clouds)"
 author = "Jerry, Tony, ziwbi, 亚丹, 鲁鲁, 小巫, 每年睡8760小时, 老王"
-description = "*警告: 本mod仍在技术测试阶段, 无法保证游玩体验*"
+description = "*本mod仍处于测试阶段*"
 
-version = "1.0.0"
+version = "0.0.3"
 forumthread = ""
 api_version = 10
 api_version_dst = 10
