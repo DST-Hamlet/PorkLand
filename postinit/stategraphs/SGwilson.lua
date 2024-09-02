@@ -2520,6 +2520,7 @@ AddStategraphPostInit("wilson", function(sg)
         end
         return _transform_werebeaver_exit(inst, ...)
     end
+
     local _transform_weremoose_exit = sg.states["transform_weremoose"].onexit
     sg.states["transform_weremoose"].onexit = function(inst, ...)
         if not inst.sg:HasStateTag("transform") and inst.components.sailor and inst.components.sailor:IsSailing() then
@@ -2529,6 +2530,7 @@ AddStategraphPostInit("wilson", function(sg)
         end
         return _transform_weremoose_exit(inst, ...)
     end
+
     local _transform_weregoose_exit = sg.states["transform_weregoose"].onexit
     sg.states["transform_weregoose"].onexit = function(inst, ...)
         -- if inst.sg:HasStateTag("drowning") then return end -- simple hack to prevent looping
@@ -2555,6 +2557,29 @@ AddStategraphPostInit("wilson", function(sg)
         if equip and equip:HasTag("corkbat") then
             inst.sg:SetTimeout(23 * FRAMES)
         end
+    end
+
+    local _play_flute_onenter = sg.states["play_flute"].onenter
+    sg.states["play_flute"].onenter = function(inst, ...)  -- fuck klei
+        local inv_obj = inst.bufferedaction and inst.bufferedaction.invobject or nil
+
+        local _AnimState = inst.AnimState
+        local AnimState = setmetatable({}, {__index = function(t, k)
+            if k ~= "OverrideSymbol" then
+                return function(t, ...)
+                    return _AnimState[k](_AnimState, ...)
+                end
+            end
+
+            return function(t, override_symbol, build, symbol, ...)
+                return _AnimState:OverrideSymbol(override_symbol, inv_obj.flutebuild or "pan_flute", inv_obj.flutesymbol or "pan_flute01")
+            end
+        end})
+        rawset(inst, "AnimState", AnimState)
+
+        _play_flute_onenter(inst, ...)
+
+        rawset(inst, "AnimState", _AnimState)
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn
