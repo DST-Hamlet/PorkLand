@@ -24,7 +24,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    PorkLandMakeInventoryFloatable("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst, "idle_water", "idle")
 
     inst.AnimState:SetBank("cutlass")
     inst.AnimState:SetBuild("cutlass")
