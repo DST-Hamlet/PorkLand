@@ -56,6 +56,10 @@ function BlowInWind:OnEntityWake()
 end
 
 function BlowInWind:Start()
+    if self.inst:IsAsleep() then
+        return
+    end
+
     if self.inst:HasTag("falling") or (self.inst.components.inventoryitem and self.inst.components.inventoryitem.owner) then
         return
     end
