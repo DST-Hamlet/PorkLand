@@ -9,6 +9,8 @@ local actionhandlers =
 
 local SHAKE_DIST = 40
 
+local PUGALISK_TAUNT_CHANCE = 0.001
+
 local function dogroundpound(inst)
     inst.components.groundpounder:GroundPound()
     ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.5, 0.03, 2, inst, SHAKE_DIST)
@@ -166,6 +168,10 @@ local states =
         tags = {"idle", "canrotate"},
 
         onenter = function(inst, start_anim)
+            if math.random() < PUGALISK_TAUNT_CHANCE then
+                inst.sg:GoToState("tongue")
+                return
+            end
             inst.Physics:Stop()
             if inst:HasTag("tail") then
                 if start_anim then
