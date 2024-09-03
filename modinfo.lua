@@ -5,7 +5,7 @@ local function en_zh(en, zh) -- Other languages don't work
     return (locale == "zh" or locale == "zhr" or locale == "zht") and zh or en
 end
 
-name = "云霄国度-(Above the Clouds)"
+name = "云霄国度-Above the Clouds"
 author = "Jerry, Tony, ziwbi, 亚丹, 鲁鲁, 小巫, 每年睡8760小时, 老王"
 description = "*本mod仍处于测试阶段*"
 
