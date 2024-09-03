@@ -276,7 +276,9 @@ function MapWidget:OnEnterInterior()
         --         }
         --     },
         --     doors: {
-        --         [door_id: string]: Image
+        --         [door_id: string]: Widget: {
+        --              lock: Image    
+        --          }
         --     },
         -- }
         self.interior_map_widgets = {
