@@ -1,0 +1,20 @@
+<Atlas>
+    <Texture filename="pl_cook_pot_food_image.tex"/>
+    <Elements>
+        <Element name="icedtea.tex" u1="0.35546875" u2="0.515625" v1="0.2265625" v2="0.38671875"/>
+        <Element name="slaw.tex" u1="0.52734375" u2="0.7265625" v1="0.58203125" v2="0.78125"/>
+        <Element name="coffee.tex" u1="0.8515625" u2="0.99609375" v1="0.4296875" v2="0.57421875"/>
+        <Element name="tea.tex" u1="0.265625" u2="0.46484375" v1="0.5390625" v2="0.73828125"/>
+        <Element name="steamedhamsandwich.tex" u1="0.52734375" u2="0.74609375" v1="0.78125" v2="1"/>
+        <Element name="spicyvegstinger.tex" u1="0" u2="0.1953125" v1="0.5390625" v2="0.734375"/>
+        <Element name="snakebonesoup.tex" u1="0.74609375" u2="0.9609375" v1="0.78515625" v2="1"/>
+        <Element name="nettlelosange.tex" u1="0.46484375" u2="0.66015625" v1="0.38671875" v2="0.58203125"/>
+        <Element name="meated_nettle.tex" u1="0.74609375" u2="0.95703125" v1="0.57421875" v2="0.78515625"/>
+        <Element name="hardshell_tacos.tex" u1="0" u2="0.265625" v1="0.734375" v2="1"/>
+        <Element name="gummy_cake.tex" u1="0.265625" u2="0.52734375" v1="0.73828125" v2="1"/>
+        <Element name="frenchonionsoup.tex" u1="0.8515625" u2="0.98828125" v1="0.29296875" v2="0.4296875"/>
+        <Element name="feijoada.tex" u1="0.66015625" u2="0.8515625" v1="0.3828125" v2="0.57421875"/>
+        <Element name="bubbletea.tex" u1="0.1875" u2="0.35546875" v1="0.37109375" v2="0.5390625"/>
+        <Element name="asparagussoup.tex" u1="0" u2="0.1875" v1="0.3515625" v2="0.5390625"/>
+    </Elements>
+</Atlas>

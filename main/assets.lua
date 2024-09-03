@@ -363,6 +363,10 @@ Assets = {
     Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
 
+    -- Cookbook HD icons
+    Asset("ATLAS", "images/hud/pl_cook_pot_food_image.xml"),
+    Asset("IMAGE", "images/hud/pl_cook_pot_food_image.tex"),
+
     Asset("SHADER", "shaders/ui_fillmode.ksh"),
 }
 
