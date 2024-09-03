@@ -38,6 +38,9 @@ end
 local KeepOnPassable = Class(function(self, inst)
     self.inst = inst
     self.period = inst:IsAsleep() and UPDATE_PERIOD_SLEEP or UPDATE_PERIOD_WAKE
+    if self.inst:HasTag("player") then
+        self.period = UPDATE_PERIOD_PLAYER
+    end
 
     self:Schedule()
 end)
