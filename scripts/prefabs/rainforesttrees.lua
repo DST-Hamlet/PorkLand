@@ -308,7 +308,9 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst:ListenForEvent("entitysleep", inst.Remove)
 
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
-    inst.components.lootdropper:DropLoot()
+    if math.random() < 0.4 then
+        inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    end
 end
 
 local function OnBurntChanges(inst)
