@@ -131,6 +131,7 @@ local function master_postinit(inst)
     inst:AddComponent("batted")
     inst:AddComponent("bramblemanager")
     inst:AddComponent("banditmanager")
+    inst:AddComponent("rainforestflowerregrowth")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")
