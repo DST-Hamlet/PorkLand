@@ -1,13 +1,15 @@
 <Atlas>
     <Texture filename="pl_inventoryimages.tex"/>
     <Elements>
+        <Element name="meated_nettle_yotp.tex" u1="0" u2="0.03125" v1="0.96875" v2="1"/>
+        <Element name="meated_nettle.tex" u1="0.03125" u2="0.0625" v1="0.96875" v2="1"/>
         <Element name="accomplishment_shrine.tex" u1="0.0625" u2="0.09375" v1="0.96875" v2="1"/>
         <Element name="aerodynamichat.tex" u1="0.09375" u2="0.125" v1="0.96875" v2="1"/>
         <Element name="algae.tex" u1="0.125" u2="0.15625" v1="0.96875" v2="1"/>
         <Element name="alloy.tex" u1="0.15625" u2="0.1875" v1="0.96875" v2="1"/>
         <Element name="aloe.tex" u1="0.1875" u2="0.21875" v1="0.96875" v2="1"/>
         <Element name="aloe_cooked.tex" u1="0.21875" u2="0.25" v1="0.96875" v2="1"/>
-        <Element name="aloe_seeds.tex" u1="0.03125" u2="0.0625" v1="0.96875" v2="1"/>
+        <Element name="aloe_seeds.tex" u1="0.25" u2="0.28125" v1="0.96875" v2="1"/>
         <Element name="ancient_remnant.tex" u1="0.28125" u2="0.3125" v1="0.96875" v2="1"/>
         <Element name="antivenom.tex" u1="0.3125" u2="0.34375" v1="0.96875" v2="1"/>
         <Element name="antler.tex" u1="0.34375" u2="0.375" v1="0.96875" v2="1"/>
@@ -356,7 +358,7 @@
         <Element name="rabid_beetle.tex" u1="0.0625" u2="0.09375" v1="0.625" v2="0.65625"/>
         <Element name="radish.tex" u1="0.09375" u2="0.125" v1="0.625" v2="0.65625"/>
         <Element name="radish_cooked.tex" u1="0.125" u2="0.15625" v1="0.625" v2="0.65625"/>
-        <Element name="radish_seeds.tex" u1="0" u2="0.03125" v1="0.96875" v2="1"/>
+        <Element name="radish_seeds.tex" u1="0.15625" u2="0.1875" v1="0.625" v2="0.65625"/>
         <Element name="raft.tex" u1="0.1875" u2="0.21875" v1="0.625" v2="0.65625"/>
         <Element name="rainbowjellyfish.tex" u1="0.21875" u2="0.25" v1="0.625" v2="0.65625"/>
         <Element name="rainbowjellyfish_cooked.tex" u1="0.25" u2="0.28125" v1="0.625" v2="0.65625"/>
