@@ -111,7 +111,6 @@ local function common_postinit(inst)
 
         inst.Map:SetUndergroundFadeHeight(0)
         inst.Map:AlwaysDrawWaves(true)
-        inst.Map:DoOceanRender(true)
     end
 
     inst:AddComponent("interiorspawner")
