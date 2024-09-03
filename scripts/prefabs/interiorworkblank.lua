@@ -303,6 +303,8 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
                 table.insert(doors, {
                     target_interior = target_interior,
                     direction = door_direction,
+                    hidden = door:HasTag("door_hidden"),
+                    disabled = door:HasTag("door_disabled"),
                 })
             else
                 print("This door doesn't have a direction!", door)

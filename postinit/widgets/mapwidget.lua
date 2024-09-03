@@ -116,10 +116,10 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     end
     table.sort(room_widgets.icons, sort_priority)
 
-    for _, door in ipairs(room.doors) do
-        local direction = DIRECTION_VECTORS[door.direction]
+    for _, door_data in ipairs(room.doors) do
+        local direction = DIRECTION_VECTORS[door_data.direction]
 
-        local door_id = get_door_id(current_room_id, door.target_interior)
+        local door_id = get_door_id(current_room_id, door_data.target_interior)
         if not widgets.doors[door_id] then
             local door_icon_offset
             if direction.x ~= 0 then
@@ -127,13 +127,25 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
             else
                 door_icon_offset = direction * (room.width / 2 + INTERIOR_MINIMAP_DOOR_SPACE)
             end
-            local door_icon = Image("interior_minimap/interior_minimap.xml", direction.x ~= 0 and "pl_interior_passage4.tex" or "pl_interior_passage3.tex")
+            local door_icon = Widget("InteriorDoor")
+            door_icon:AddChild(Image("interior_minimap/interior_minimap.xml", direction.x ~= 0 and "pl_interior_passage4.tex" or "pl_interior_passage3.tex"))
+            door_icon.lock = door_icon:AddChild(Image("interior_minimap/interior_minimap.xml", "passage_blocked.tex"))
             door_icon.position_offset = offset + door_icon_offset
+            if not door_data.disabled then
+                door_icon.lock:Hide()
+            else
+                door_icon.lock:Show()
+            end
+            if door_data.hidden then
+                door_icon:Hide()
+            else
+                door_icon:Show()
+            end
             widgets.doors[door_id] = door_icon
         end
 
-        if not visited_rooms[door.target_interior] then
-            local target_room = data[door.target_interior]
+        if not visited_rooms[door_data.target_interior] then
+            local target_room = data[door_data.target_interior]
             if target_room then
                 local target_interior_offset
                 if direction.x ~= 0 then
@@ -141,7 +153,7 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
                 else
                     target_interior_offset = direction * (room.width / 2 + target_room.width / 2 + INTERIOR_MINIMAP_DOOR_SPACE * 2)
                 end
-                BuildInteriorMinimapLayout(widgets, data, visited_rooms, door.target_interior, offset + target_interior_offset)
+                BuildInteriorMinimapLayout(widgets, data, visited_rooms, door_data.target_interior, offset + target_interior_offset)
             end
         end
     end
