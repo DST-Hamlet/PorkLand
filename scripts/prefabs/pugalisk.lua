@@ -398,6 +398,11 @@ local function bodyfn()
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/movement_LP", "speed")
     inst.SoundEmitter:SetParameter("speed", "intensity", 0)
 
+    -- now I see why klei devs screamed "KILLLL GEARS!!!!!!!!!" in ancient_hulk.lua, SoundEmitter is so buggy :/
+    inst:ListenForEvent("remove", function()
+        inst.SoundEmitter:KillSound("speed")
+    end)
+
     return inst
 end
 
