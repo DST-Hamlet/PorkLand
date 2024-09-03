@@ -6,6 +6,11 @@ local _SpawnLootPrefab = LootDropper.SpawnLootPrefab
 function LootDropper:SpawnLootPrefab(lootprefab, pt, ...)
     local item = _SpawnLootPrefab(self, lootprefab, pt, ...)
 
+    if not item then
+        print("WARNING! don't have prefab:", lootprefab)
+        return item
+    end
+
     if item.components.perishable then
         if self.inst.components.poisonable and self.inst.components.poisonable:IsPoisoned() then
             item.components.perishable:ReducePercent(TUNING.POISON_PERISH_PENALTY)
