@@ -142,7 +142,7 @@ PrefabFiles = {
     "smashingpot",
     "pig_ruins_dart",
     "pig_ruins_torch",
-    "light_rays",
+    "lightrays_jungle",
     "pig_ruins_spear_trap",
     "pigghost",
     "rugs",
