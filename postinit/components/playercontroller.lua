@@ -30,7 +30,7 @@ local GetPickupAction = function(self, target, tool, ...)
     if (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
         action = ACTIONS.USEDOOR
     end
-    if target:HasTag("pickable") and target:HasTag("unsuited") then
+    if action == ACTIONS.PICK and target:HasTag("pickable") and target:HasTag("unsuited") then
         action = nil
     end
     if action == ACTIONS.HAMMER and tool and tool:HasTag("fixable_crusher") and not target:HasTag("fixable") then
