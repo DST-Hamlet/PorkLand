@@ -252,6 +252,7 @@ PrefabFiles = {
     "anthill",
 
     "cutlass",
+    "pl_feathers"
 }
 
 Assets = {
