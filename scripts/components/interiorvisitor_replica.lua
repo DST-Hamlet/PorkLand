@@ -123,9 +123,8 @@ function InteriorVisitor:OnUpdate()
         end
     else
         if TheCamera.inside_interior then
-            TheCamera:RestoreOutsideInteriorCamera()
             TheCamera.inside_interior = false
-            TheCamera:Snap()
+            TheCamera:RestoreOutsideInteriorCamera()
         end
         self.last_center_ent = nil
 
