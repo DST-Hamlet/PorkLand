@@ -127,6 +127,24 @@ local function UpdateMoisture(inst)
     end
 end
 
+local function OnTerraform(inst, data)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local tx, ty = TheWorld.Map:GetTileCoordsAtPoint(x, y, z)
+    if tx ~= data.x or ty ~= data.y then
+        return
+    end
+
+    OnTransplanted(inst)
+end
+
+local function OnEntityWake(inst)
+    inst:ListenForEvent("onterraform", inst.OnTerraform, TheWorld)
+end
+
+local function OnEntitySleep(inst)
+    inst:RemoveEventCallback("onterraform", inst.OnTerraform, TheWorld)
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -181,6 +199,12 @@ local function fn()
     MakeSmallPropagator(inst)
     MakeNoGrowInWinter(inst)
     MakePickableBlowInWindGust(inst, TUNING.GRASS_WINDBLOWN_SPEED, TUNING.GRASS_WINDBLOWN_FALL_CHANCE)
+
+    inst.OnTerraform = function(src, data)
+        OnTerraform(inst, data)
+    end
+    inst.OnEntityWake = OnEntityWake
+    inst.OnEntitySleep = OnEntitySleep
 
     inst.wet = false
     inst:DoPeriodicTask(1, UpdateMoisture)
