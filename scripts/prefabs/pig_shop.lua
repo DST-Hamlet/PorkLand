@@ -479,7 +479,9 @@ local function CreateInterior(inst)
     interior_spawner:SpawnInterior(def)
 
     local center_ent = interior_spawner:GetInteriorCenter(id)
-    center_ent:AddInteriorTags("pig_shop") -- need this for dynamic music
+    if not inst:HasOneOfTags({"pig_shop_cityhall", "pig_shop_cityhall_player"}) then
+        center_ent:AddInteriorTags("pig_shop") -- need this for dynamic music
+    end
 
     InitShopped(inst.interiorID, inst.prefab)
 end
