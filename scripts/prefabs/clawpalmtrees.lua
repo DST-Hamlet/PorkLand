@@ -165,6 +165,7 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst:ListenForEvent("animover", inst.Remove)
     inst:ListenForEvent("entitysleep", inst.Remove)
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    inst.components.lootdropper:DropLoot()
 end
 
 local function OnWorkCallback(inst, chopper, chops)

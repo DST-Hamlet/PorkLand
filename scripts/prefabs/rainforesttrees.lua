@@ -308,6 +308,7 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst:ListenForEvent("entitysleep", inst.Remove)
 
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    inst.components.lootdropper:DropLoot()
 end
 
 local function OnBurntChanges(inst)
@@ -336,7 +337,7 @@ local function OnBurnt(inst)
     inst:AddTag("burnt")
 
     inst.AnimState:PlayAnimation(anims[inst.stage].burnt, true)
-    inst.MiniMapEntity:SetIcon("rainforesttree_burnt.tex")
+    inst.MiniMapEntity:SetIcon("tree_rainforest_burnt.tex")
 
     -- inst.AnimState:SetRayTestOnBB(true) -- 这个会影响鼠标选取判定
 
