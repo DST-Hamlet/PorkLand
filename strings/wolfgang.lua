@@ -735,6 +735,7 @@ return {
         SPIDER_MONKEY_NEST = "Bad things come out.",
         SPIDER_MONKEY_TREE = "Is tree for bad things.",
         SPRINKLER = "Weeee. Wolfgang play in sprinkler!",
+        STEAMEDHAMSANDWICH = "Is mouth watering hamburgers.",
         STONE_DOOR = "Mighty door for mighty room.",
         SWINGING_LIGHT1 = "Wolfgang not fancy.",
         SWINGING_LIGHT_BASIC_BULB = "Wolfgang not fancy.",

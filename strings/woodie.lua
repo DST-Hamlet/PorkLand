@@ -734,6 +734,7 @@ return {
         },
         SPIDER_MONKEY_NEST = "Real dangerous creatures in there.",
         SPRINKLER = "Good for watering.",
+        STEAMEDHAMSANDWICH = "Mouth watering hamburgers.",
         STONE_DOOR = "That's a door, eh.",
         SWINGING_LIGHT1 = "We don't need a fancy light.",
         SWINGING_LIGHT_BASIC_BULB = "We don't need a fancy light.",

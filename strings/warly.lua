@@ -739,6 +739,7 @@ return {
         SPIDER_MONKEY_NEST = "I'll bet there's no kitchen in there.",
         SPIDER_MONKEY_TREE = "Those strange monkeys must hang out here.",
         SPRINKLER = "It garnishes the plants with water.",
+        STEAMEDHAMSANDWICH = "Tastes like fast food.",
         STONE_DOOR = "Like entering a traditional stone oven.",
         SWINGING_LIGHT1 = "Bland.",
         SWINGING_LIGHT_BASIC_BULB = "Bland.",

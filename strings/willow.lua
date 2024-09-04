@@ -733,6 +733,7 @@ return {
         SPIDER_MONKEY_NEST = "This must burn!",
         SPIDER_MONKEY_TREE = "Looks burnable.",
         SPRINKLER = "It better not put out any of my fires.",
+        STEAMEDHAMSANDWICH = "It's a ham sandwich.",
         STONE_DOOR = "Not even burnable.",
         SWINGING_LIGHT1 = "Sheesh. Someone doesn't care.",
         SWINGING_LIGHT_BASIC_BULB = "Sheesh. Someone doesn't care.",

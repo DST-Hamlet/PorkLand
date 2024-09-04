@@ -751,6 +751,7 @@ return {
         SPIDER_MONKEY_NEST = "Curious. How does the big behemoth get up the tree?",
         SPIDER_MONKEY_TREE = "A tree asphyxiated by webbing. Truly amazing!",
         SPRINKLER = "A dynamic mechanical atomizer of H2O!",
+        STEAMEDHAMSANDWICH = "Delightfully devilish.",
         STONE_DOOR = "The doorway to expanding my horizons.",
         SWINGING_LIGHT1 = "Auroral.",
         SWINGING_LIGHT_BASIC_BULB = "Revolutionary!",

@@ -736,6 +736,7 @@ return {
         SPIDER_MONKEY_NEST = "Evil dwells within.",
         SPIDER_MONKEY_TREE = "Evil dwells inside.",
         SPRINKLER = "It cannot water my parched soul.",
+        STEAMEDHAMSANDWICH = "Old family recipe.",
         STONE_DOOR = "Only leads to disappointment.",
         SWINGING_LIGHT1 = "A futile attempt to battle the darkness.",
         SWINGING_LIGHT_BASIC_BULB = "A futile attempt to battle the darkness.",

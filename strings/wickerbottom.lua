@@ -735,6 +735,7 @@ return {
         SPIDER_MONKEY_NEST = "The nest of the Arachnid Hominidae.",
         SPIDER_MONKEY_TREE = "A tree frequented by the Arachnid Hominidae.",
         SPRINKLER = "Some much needed hydration.",
+        STEAMEDHAMSANDWICH = "I am prepared for an unforgettable luncheon.",
         STONE_DOOR = "What a lovely keystone.",
         SWINGING_LIGHT1 = "Necessary for night reading.",
         SWINGING_LIGHT_BASIC_BULB = "Necessary for night reading.",

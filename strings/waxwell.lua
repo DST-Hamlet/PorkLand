@@ -744,6 +744,7 @@ return {
         SPIDER_MONKEY_NEST = "I would rather not disturb it.",
         SPIDER_MONKEY_TREE = "Filthy creatures reside within.",
         SPRINKLER = "Good. Now I don't have to water by hand.",
+        STEAMEDHAMSANDWICH = "They're obviously grilled.",
         STONE_DOOR = "A door to another room.",
         SWINGING_LIGHT1 = "A ceiling light.",
         SWINGING_LIGHT_BASIC_BULB = "Well, that's boring.",
