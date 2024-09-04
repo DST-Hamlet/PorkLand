@@ -13,12 +13,12 @@ assert(TheWorld.ismastersim, "RainforestFlowerRegrowth should not exist on clien
 local UPDATE_PERIOD = 10 -- seconds
 local NUM_POINTS_PER_SITE = 1
 local COUNTER_REQUIREMENT = 5
-local FLOWER_DENSITY = 50 -- 1 per unit distance
+local FLOWER_DENSITY = 5 -- 0.1 per unit distance
 local FIND_FLOWER_RADIUS = 50
 local FIND_FLOWER_MUST_TAGS = {"flower_rainforest"}
 local VALID_FLOWER_TILES = {
     [WORLD_TILES.DEEPRAINFOREST] = true,
-    [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = true,
+    -- [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = true,
     [WORLD_TILES.RAINFOREST] = true,
 }
 
@@ -40,7 +40,8 @@ local function is_point_suitable(x, z)
         return false
     end
 
-    if not _map:CanPlantAtPoint(x, 0, z) then
+    if not _map:CanPlantAtPoint(x, 0, z)
+    and _map:IsDeployPointClear(Vector3(x, 0, z), nil, DEPLOYSPACING_RADIUS[DEPLOYSPACING.DEFAULT]) then
         return false
     end
 
