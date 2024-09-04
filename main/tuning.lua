@@ -406,6 +406,8 @@ local tuning = {
     WALLWOOD_WINDBLOWN_SPEED = 0.2,
     WALLWOOD_WINDBLOWN_DAMAGE_CHANCE = 0.9,
     WALLWOOD_WINDBLOWN_DAMAGE = 0.5*wilson_attack,
+    SAND_WINDBLOWN_SPEED = 0.2,
+    SAND_WINDBLOWN_FALL_CHANCE = 0.1,
 
     EVERGREEN_WINDBLOWN_SPEED = 0.2,
     EVERGREEN_WINDBLOWN_FALL_CHANCE = 0.01,
@@ -584,7 +586,8 @@ local tuning = {
     PIG_BANDIT_RUN_SPEED = 7,
     PIG_BANDIT_WALK_SPEED = 3,
     PIG_BANDIT_ENABLED = true,
-    PIG_BANDIT_RESPAWN_TIME = 30 * 16 * 1.5, -- 9 minutes
+    PIG_BANDIT_RESPAWN_TIME = 10,
+    PIG_BANDIT_DEATH_RESPAWN_TIME = 30 * 16 * 1.5, -- 9 minutes
 
     NETTLE_REGROW_TIME = total_day_time * 3,
     NETTLE_MOISTURE_WET_THRESHOLD = 20,
@@ -620,6 +623,17 @@ local tuning = {
     RAINFOREST_CANOPY_MAX_STRENGTH = 0.7,           -- blend max strength - modulated with avg ambient
 
     ROBIN_HATCH_TIME = total_day_time * 3,
+
+    PIGGHOST_REGEN_TIME = total_day_time / 2,
+    PIGGHOST_RELEASE_TIME = 0,
+    PIGGHOST_MAXCHILDREN = 3,
+
+    OX_FLUTE_USES = 5,
+
+    SANITY_PLAYERHOUSE_GAIN = 100 / (day_time * 32),
+
+    CUTLASS_DAMAGE = wilson_attack * 2,
+    CUTLASS_USES = 150,
 
     GIANT_GRUB_WALK_SPEED = 2,
     GIANT_GRUB_DAMAGE = 44,

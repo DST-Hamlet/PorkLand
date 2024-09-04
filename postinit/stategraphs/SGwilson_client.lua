@@ -9,6 +9,7 @@ local TIMEOUT = 2
 local DoFoleySounds = nil
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.RENOVATE, "dolongaction"),
     ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.TAKEFROMSHELF, "doshortaction"),
     ActionHandler(ACTIONS.PUTONSHELF, "doshortaction"),
@@ -165,7 +166,7 @@ local states = {
             if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
                 inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
             end
-            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/paddle", nil, nil, true)
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat_paddle", nil, nil, true)
             DoFoleySounds(inst)
 
             local oar = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
@@ -797,7 +798,7 @@ local states = {
         end,
 
         onupdate = function(inst)
-			if inst.sg:ServerStateMatches() then
+            if inst.sg:ServerStateMatches() then
                 if inst.entity:FlattenMovementPrediction() then
                     inst.sg:GoToState("idle", "noanim")
                 end
@@ -846,7 +847,7 @@ AddStategraphPostInit("wilson_client", function(sg)
         end
 
         local should_run = inst.components.locomotor:WantsToRun()
-        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
+        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
 
         if inst:HasTag("_sailor") and inst:HasTag("sailing") then
             if not is_attacking then

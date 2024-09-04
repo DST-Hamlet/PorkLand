@@ -102,6 +102,9 @@ local function UpdateMoisture(inst)
         inst.AnimState:ClearOverrideBuild(BULB_CLOSED_BUILD)
         inst.wet = true
         inst.components.pickable:MakeUnsuited(false)
+        if inst.components.pickable.paused then
+            inst.components.pickable:Resume()
+        end
         UpdateGrowthStatus(inst) -- start growing
     elseif moisture > TUNING.NETTLE_MOISTURE_DRY_THRESHOLD and inst.wet == true then
         -- if wet, keep wet
@@ -109,13 +112,37 @@ local function UpdateMoisture(inst)
         inst.AnimState:AddOverrideBuild(BULB_HALF_OPEN_BUILD)
         inst.wet = false
         inst.components.pickable:MakeUnsuited(true)
+        if not inst.components.pickable.paused then
+            inst.components.pickable:Pause()
+        end
         -- don't pause growth just yet, give players some time
     else -- too dry
         inst.AnimState:AddOverrideBuild(BULB_CLOSED_BUILD)
         inst.wet = false
         inst.components.pickable:MakeUnsuited(true)
+        if not inst.components.pickable.paused then
+            inst.components.pickable:Pause()
+        end
         UpdateGrowthStatus(inst) -- stop growing
     end
+end
+
+local function OnTerraform(inst, data)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local tx, ty = TheWorld.Map:GetTileCoordsAtPoint(x, y, z)
+    if tx ~= data.x or ty ~= data.y then
+        return
+    end
+
+    OnTransplanted(inst)
+end
+
+local function OnEntityWake(inst)
+    inst:ListenForEvent("onterraform", inst.OnTerraform, TheWorld)
+end
+
+local function OnEntitySleep(inst)
+    inst:RemoveEventCallback("onterraform", inst.OnTerraform, TheWorld)
 end
 
 local function fn()
@@ -172,6 +199,12 @@ local function fn()
     MakeSmallPropagator(inst)
     MakeNoGrowInWinter(inst)
     MakePickableBlowInWindGust(inst, TUNING.GRASS_WINDBLOWN_SPEED, TUNING.GRASS_WINDBLOWN_FALL_CHANCE)
+
+    inst.OnTerraform = function(src, data)
+        OnTerraform(inst, data)
+    end
+    inst.OnEntityWake = OnEntityWake
+    inst.OnEntitySleep = OnEntitySleep
 
     inst.wet = false
     inst:DoPeriodicTask(1, UpdateMoisture)

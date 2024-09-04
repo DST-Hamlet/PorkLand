@@ -255,6 +255,7 @@ return {
             GENERIC = "Some kind of bird that catches fish.",
             SLEEPING = "It is asleep.",
         },
+        LAVAPOOL = "It seems like a quick way to burn myself.",
         LAWNORNAMENT = {
             BURNING = "Hey! That's my lawn!",
             BURNT = "I hope I can still get a refund.",
@@ -521,6 +522,7 @@ return {
         RUG_WEB = "Thankfully it's not real.",
         RUG_WORMHOLE = "Thankfully it's not real.",
         SAIL_SNAKESKIN = "There's no need to make a flag if the sail is colorful. Not that I need one.",
+        SAND = "Sand. You do tend to find a lot of it around here.",
         SCORPION = {
             DEAD = "Why it's still there?",
             GENERIC = "A cunning creature.",

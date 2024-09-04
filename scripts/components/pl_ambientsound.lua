@@ -210,19 +210,17 @@ local function OnSeasonTick(src, data)
     end
 end
 
-local function OnUsedDoor(src, data)
-    if not data or not data.door then
-        return
-    end
-
-    local target_interior = data.door.components.door.target_interior
-    if target_interior == "EXTERIOR" then
-        self:SetReverbPreset("default")
-    else
-        local def = TheWorld.components.interiorspawner.interiors[target_interior]
-        if def then
-            self:SetReverbPreset(def.reverb or "default")
+local function UpdateInteriorReverb(src)
+    local room = TheWorld.components.interiorspawner:GetInteriorCenter(src:GetPosition())
+    if room then -- still inside
+        local reverb = room._reverb:value()
+        if reverb ~= "" then
+            self:SetReverbPreset(reverb or "default")
+        else
+            self:SetReverbPreset("default")
         end
+    else -- outside
+        self:SetReverbPreset("default")
     end
 end
 
@@ -248,8 +246,6 @@ inst:ListenForEvent("setambientsounddaytime", OnSetAmbientSoundDaytime)
 inst:ListenForEvent("seasontick", OnSeasonTick)
 inst:ListenForEvent("weathertick", OnWeatherTick)
 inst:ListenForEvent("precipitationchanged", OnPrecipitationChanged)
-
-inst:ListenForEvent("used_door", OnUsedDoor, ThePlayer)
 
 inst:WatchWorldState("phase", OnPhaseChange)
 
@@ -280,7 +276,7 @@ local function SetWavesVolume(volume)
 end
 
 local function StartWindSound()
-    inst.SoundEmitter:PlaySound("dontstarve_DLC002/rain/islandwindAMB", "WIND")
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/rain/islandwindAMB", "WIND")
 end
 
 local function SetWindIntensity(intensity)
@@ -293,7 +289,6 @@ end
 
 StartSanitySound()
 SetSanity(_sanityparam)
-StartWindSound()
 SetWindIntensity(_wind_intensity)
 
 inst:StartUpdatingComponent(self)
@@ -325,6 +320,8 @@ function self:OnUpdate(dt)
         _lastplayerpos = nil
         wavesvolume = math.max(0, wavesvolume - dt)
     elseif _lastplayerpos == nil or player:GetDistanceSqToPoint(_lastplayerpos:Get()) >= 16 then
+        UpdateInteriorReverb(player)
+
         _lastplayerpos = player:GetPosition()
 
         local x, _, z = _lastplayerpos:Get()
@@ -342,10 +339,9 @@ function self:OnUpdate(dt)
                     wavecount = wavecount + 1
                 elseif tile ~= nil then
                     if is_interior then
-                        local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = test_x, z = test_z})
-                        local def = TheWorld.components.interiorspawner.interiors[interiorID]
-                        if def ~= nil then -- nil OnLoad
-                            tile = def.ambient_sound
+                        local center = TheWorld.components.interiorspawner:GetInteriorCenter(Vector3(test_x, 0, test_z))
+                        if center then
+                            tile = center.ambient_sound or center._ambient_sound:value()
                         end
                     end
                     tile = _tileoverrides[tile] or tile
@@ -404,7 +400,7 @@ function self:OnUpdate(dt)
         end
         _wavessound = WAVE_SOUNDS[_seasonmix]
         _wavesvolume = wavesvolume
-        if wavesvolume > 0 then
+        if _wavessound and wavesvolume > 0 then
             StartWavesSound()
             SetWavesVolume(wavesvolume)
         end

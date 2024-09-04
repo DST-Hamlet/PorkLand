@@ -6,6 +6,9 @@ local function ongusthammerfn(inst)
 end
 
 AddPrefabPostInit("wall_wood", function(inst)
+    if not TheWorld.ismastersim then
+        return
+    end
     inst.windblown_damage = TUNING.WALLWOOD_WINDBLOWN_DAMAGE
     inst:AddComponent("blowinwindgust")
     inst.components.blowinwindgust:SetWindSpeedThreshold(TUNING.WALLWOOD_WINDBLOWN_SPEED)
@@ -15,6 +18,9 @@ AddPrefabPostInit("wall_wood", function(inst)
 end)
 
 AddPrefabPostInit("wall_hay", function(inst)
+    if not TheWorld.ismastersim then
+        return
+    end
     inst.windblown_damage = TUNING.WALLHAY_WINDBLOWN_DAMAGE
     inst:AddComponent("blowinwindgust")
     inst.components.blowinwindgust:SetWindSpeedThreshold(TUNING.WALLHAY_WINDBLOWN_SPEED)

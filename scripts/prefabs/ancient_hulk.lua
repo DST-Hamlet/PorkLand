@@ -162,7 +162,6 @@ local function fn()
     inst:AddTag("scarytoprey")
     inst:AddTag("largecreature")
     inst:AddTag("ancient_hulk")
-    inst:AddTag("dontteleporttointerior")
     inst:AddTag("laser_immune")
     inst:AddTag("mech")
     inst:AddTag("noember")
@@ -226,7 +225,7 @@ local function fn()
     inst.orbs = 2
 
     inst:ListenForEvent("attacked", OnAttacked)
-    inst:ListenForEvent("remove", function() inst.SoundEmitter:KillSound("gears") end)
+    inst:ListenForEvent("onremove", function() inst.SoundEmitter:KillSound("gears") end)
 
     inst:ListenForEvent("killed", function(inst, data)
         if inst.components.combat and data and data.victim == inst.components.combat.target then

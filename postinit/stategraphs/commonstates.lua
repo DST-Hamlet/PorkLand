@@ -33,9 +33,10 @@ end
 
 local _PlayFootstep = PlayFootstep
 function PlayFootstep(inst, volume, ispredicted, ...)
-    local interiorID = inst:GetCurrentInteriorID()
-    if interiorID ~= nil and inst.SoundEmitter then
-        local footstep_tile = TheWorld.components.interiorspawner.interiors[interiorID].footstep_tile
+    local room = TheWorld.components.interiorspawner:GetInteriorCenter(inst:GetPosition())
+    if room and inst.SoundEmitter then
+        local footstep_tile = room.footstep_tile or room._footstep_tile:value()
+
         local tile_info = GetTileInfo(footstep_tile) or GetTileInfo(WORLD_TILES.DIRT)
         local runsound = tile_info.runsound or "dontstarve/movement/run_woods"
         local walksound = tile_info.walksound or "dontstarve/movement/walk_woods"

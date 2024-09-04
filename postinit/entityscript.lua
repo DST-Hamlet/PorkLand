@@ -138,6 +138,7 @@ function EntityScript:CanOnWater(allow_invincible)
         or self:HasTag("flying")
         or self:HasTag("ignorewalkableplatformdrowning")
         or self:HasTag("shadow")
+        or self:HasTag("shadowminion")
         or (self:HasTag("player") and (self.components.drownable == nil or not self.components.drownable:CanDrownOverWater(allow_invincible)))
 end
 
@@ -152,7 +153,7 @@ function EntityScript:CanOnImpassable(allow_invincible)
 end
 
 -- Returns the interiorID of the room this entity is in
-function EntityScript:GetCurrentInteriorID()
+function EntityScript:GetCurrentInteriorID() -- 亚丹：请暂时不要在客机使用这个函数
     local x, _, z = self.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = x, z = z})

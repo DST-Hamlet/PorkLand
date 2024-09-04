@@ -62,7 +62,7 @@ local function fn_long()
     inst.width = net_float(inst.GUID, "width", "width")
     inst.depth = net_float(inst.GUID, "depth", "depth")
 
-    inst:DoTaskInTime(0.5, init)
+    inst:DoTaskInTime(2 * FRAMES, init)
 
     inst.entity:SetPristine()
     if not TheWorld.ismastersim then

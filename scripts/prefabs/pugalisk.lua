@@ -398,6 +398,11 @@ local function bodyfn()
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/movement_LP", "speed")
     inst.SoundEmitter:SetParameter("speed", "intensity", 0)
 
+    -- now I see why klei devs screamed "KILLLL GEARS!!!!!!!!!" in ancient_hulk.lua, SoundEmitter is so buggy :/
+    inst:ListenForEvent("onremove", function()
+        inst.SoundEmitter:KillSound("speed")
+    end)
+
     return inst
 end
 
@@ -529,7 +534,7 @@ local function OnSave(inst, data)
 end
 
 local function OnLoadPostPass(inst, newents, data)
-    if data and data.home then
+    if data and data.home and newents[data.home] then
         local home = newents[data.home].entity
         if home then
             inst.home = home

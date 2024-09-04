@@ -294,6 +294,13 @@ function StartTakingGasDamage(inst, cause)
             return
         end
 
+        if inst:HasTag("playerghost") then
+            if not inst.components.poisonable:IsPoisoned() then
+                inst.components.poisonable:DonePoisoning()
+            end
+            return
+        end
+
         if inst.components.poisonable and inst.components.poisonable.show_fx then
             if inst.components.poisonable.show_fx then
                 inst.components.poisonable:SpawnFX()

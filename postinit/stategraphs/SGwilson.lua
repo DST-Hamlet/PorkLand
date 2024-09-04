@@ -88,6 +88,7 @@ local function shoot(inst, is_full_charge)
 end
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.RENOVATE, "dolongaction"),
     ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.TAKEFROMSHELF, "doshortaction"),
     ActionHandler(ACTIONS.PUTONSHELF, "doshortaction"),
@@ -1111,7 +1112,7 @@ local states = {
             if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
                 inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
             end
-            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/paddle", nil, nil, true)
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat_paddle", nil, nil, true)
             DoFoleySounds(inst)
 
             local oar = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
@@ -1688,19 +1689,44 @@ local states = {
         onenter = function(inst)
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("give")
+            inst.AnimState:PushAnimation("give_pst", false)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(false)
+                inst.components.playercontroller:Enable(false)
+            end
         end,
 
-        onexit = function(inst)
+        timeline =
+        {
+            TimeEvent(2 * FRAMES, function(inst)
+                inst:ScreenFade(false, 0.4)
+            end),
 
-        end,
-
-        events = {
-            EventHandler("animover", function(inst)
+            TimeEvent(15 * FRAMES, function(inst)
                 inst:PerformBufferedAction()
-                inst.AnimState:PlayAnimation("give_pst", false)
-                inst.sg:GoToState("idle", true)
+            end),
+
+            TimeEvent(19 * FRAMES, function(inst)
+                inst:ScreenFade(true, 0.4)
+                if inst.components.playercontroller then
+                    inst.components.playercontroller:EnableMapControls(true)
+                    inst.components.playercontroller:Enable(true)
+                end
+                inst.sg:RemoveStateTag("busy")
+            end),
+
+            TimeEvent(30 * FRAMES, function(inst)
+                inst.sg:GoToState("idle")
             end),
         },
+
+        onexit = function(inst)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(true)
+                inst.components.playercontroller:Enable(true)
+            end
+            inst:ScreenFade(true, 0.4)
+        end,
     },
 
     State{
@@ -1870,7 +1896,6 @@ local states = {
             inst.components.locomotor:StopMoving()
 
             if pushanim then
-                inst.AnimState:PlayAnimation(pushanim)
                 inst.AnimState:PushAnimation("idle_loop", true)
             else
                 inst.AnimState:PlayAnimation("idle_loop", true)
@@ -1936,8 +1961,7 @@ local states = {
             TimeEvent(6  * FRAMES, function(inst) inst:PerformBufferedAction() end),
             TimeEvent(12 * FRAMES, function(inst) inst.sg:RemoveStateTag("working") inst.sg:RemoveStateTag("busy") end),
             TimeEvent(13 * FRAMES, function(inst)
-                if not inst.sg.statemem.iswoodcutter and
-                    inst.components.playercontroller ~= nil and
+                if inst.components.playercontroller ~= nil and
                     inst.components.playercontroller:IsAnyOfControlsPressed(
                         CONTROL_PRIMARY,
                         CONTROL_ACTION,
@@ -1957,9 +1981,12 @@ local states = {
             end),
         },
 
-        EventHandler("animover", function(inst)
-            inst.sg:GoToState("idle", true)
-        end),
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("ironlord_idle", true)
+            end),
+        },
     },
 
     State{
@@ -2499,6 +2526,7 @@ AddStategraphPostInit("wilson", function(sg)
         end
         return _transform_werebeaver_exit(inst, ...)
     end
+
     local _transform_weremoose_exit = sg.states["transform_weremoose"].onexit
     sg.states["transform_weremoose"].onexit = function(inst, ...)
         if not inst.sg:HasStateTag("transform") and inst.components.sailor and inst.components.sailor:IsSailing() then
@@ -2508,6 +2536,7 @@ AddStategraphPostInit("wilson", function(sg)
         end
         return _transform_weremoose_exit(inst, ...)
     end
+
     local _transform_weregoose_exit = sg.states["transform_weregoose"].onexit
     sg.states["transform_weregoose"].onexit = function(inst, ...)
         -- if inst.sg:HasStateTag("drowning") then return end -- simple hack to prevent looping
@@ -2536,6 +2565,29 @@ AddStategraphPostInit("wilson", function(sg)
         end
     end
 
+    local _play_flute_onenter = sg.states["play_flute"].onenter
+    sg.states["play_flute"].onenter = function(inst, ...)  -- fuck klei
+        local inv_obj = inst.bufferedaction and inst.bufferedaction.invobject or nil
+
+        local _AnimState = inst.AnimState
+        local AnimState = setmetatable({}, {__index = function(t, k)
+            if k ~= "OverrideSymbol" then
+                return function(t, ...)
+                    return _AnimState[k](_AnimState, ...)
+                end
+            end
+
+            return function(t, override_symbol, build, symbol, ...)
+                return _AnimState:OverrideSymbol(override_symbol, inv_obj.flutebuild or "pan_flute", inv_obj.flutesymbol or "pan_flute01")
+            end
+        end})
+        rawset(inst, "AnimState", AnimState)
+
+        _play_flute_onenter(inst, ...)
+
+        rawset(inst, "AnimState", _AnimState)
+    end
+
     local _locomote_eventhandler = sg.events.locomote.fn
     sg.events.locomote.fn = function(inst, data, ...)
         local is_attacking = inst.sg:HasStateTag("attack")
@@ -2548,7 +2600,7 @@ AddStategraphPostInit("wilson", function(sg)
         end
 
         local should_run = inst.components.locomotor:WantsToRun()
-        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
+        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
         if not should_move then
             if inst.components.sailor and inst.components.sailor.boat then
                 inst.components.sailor.boat:PushEvent("boatstopmoving")

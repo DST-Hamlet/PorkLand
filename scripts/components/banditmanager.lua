@@ -94,13 +94,13 @@ local _stolen_oincs = {oinc = 0, oinc10 = 0, oinc100 = 0}
 --[[ Private event handlers ]]
 --------------------------------------------------------------------------
 
-local function StartRespawnTimer()
+local function StartRespawnTimer(time)
     _worldsettingstimer:StopTimer(BANDIT_TIMER_NAME)
-    _worldsettingstimer:StartTimer(BANDIT_TIMER_NAME, TUNING.PIG_BANDIT_RESPAWN_TIME, false)
+    _worldsettingstimer:StartTimer(BANDIT_TIMER_NAME, time or TUNING.PIG_BANDIT_RESPAWN_TIME, false)
 end
 
 local function OnBanditDeath(src, data)
-    StartRespawnTimer()
+    StartRespawnTimer(TUNING.PIG_BANDIT_DEATH_RESPAWN_TIME)
     _bandit = nil
 end
 

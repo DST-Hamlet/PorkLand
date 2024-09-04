@@ -11,24 +11,27 @@ local function GetBird(inst)
 end
 
 local function DigestFood(inst, food)
-    if food.components.edible.foodtype == FOODTYPE.MEAT then
-        --If the food is meat:
-            --Spawn an egg.
-        inst.components.lootdropper:SpawnLootPrefab("bird_egg")
-    else
-        local seed_name = string.lower(food.prefab .. "_seeds")
+    local stacksize = food and food.components.stackable and food.components.stackable.stacksize or 1
+    for k = 1, stacksize do
+        if food.components.edible.foodtype == FOODTYPE.MEAT then
+            --If the food is meat:
+                --Spawn an egg.
+            inst.components.lootdropper:SpawnLootPrefab("bird_egg")
+        else
+            local seed_name = string.lower(food.prefab .. "_seeds")
 
-        if Prefabs[seed_name] then
-            local num_seeds = math.random(2)
-            for i = 1, num_seeds do
-                inst.components.lootdropper:SpawnLootPrefab(seed_name)
-            end
+            if Prefabs[seed_name] then
+                local num_seeds = math.random(2)
+                for i = 1, num_seeds do
+                    inst.components.lootdropper:SpawnLootPrefab(seed_name)
+                end
 
-            if math.random() < 0.5 then
+                if math.random() < 0.5 then
+                    inst.components.lootdropper:SpawnLootPrefab("seeds")
+                end
+            else
                 inst.components.lootdropper:SpawnLootPrefab("seeds")
             end
-        else
-            inst.components.lootdropper:SpawnLootPrefab("seeds")
         end
     end
 

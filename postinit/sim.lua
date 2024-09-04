@@ -31,13 +31,14 @@ local old_GetLightAtPoint = Sim.GetLightAtPoint
 Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold)
     if TheWorld and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInterior(x, z) then
         -- ignore ambient light, only check lighters
-        local center = TheWorld.components.interiorspawner:GetInteriorCenterAt_Generic(x, z)
+        local position = Vector3(x, y, z)
+        local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
         if center then
             local sum = 0
-            local pos = center:GetPosition()
-            for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"INLIMBO"})) do
+            local center_position = center:GetPosition()
+            for _, v in ipairs(TheSim:FindEntities(center_position.x, 0, center_position.z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"INLIMBO"})) do
                 if v.Light and v.Light:IsEnabled() then
-                    local light = GetLight(v.Light, math.sqrt(v:GetPosition():DistSq(Point(x, y, z))))
+                    local light = GetLight(v.Light, math.sqrt(v:GetPosition():DistSq(position)))
                     sum = sum + light
                     if sum > (light_threshold or math.huge) then
                         return sum
@@ -48,4 +49,14 @@ Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold)
         end
     end
     return old_GetLightAtPoint(sim, x, y, z, light_threshold)
+end
+
+local _CanEntitySeeTarget = CanEntitySeeTarget
+function CanEntitySeeTarget(inst, target, ...)
+    if inst and inst.player_classified then
+        if target and target:IsValid() and inst.player_classified._last_work_target:value() == target then
+            return true
+        end
+    end
+    return _CanEntitySeeTarget(inst, target, ...)
 end

@@ -12,19 +12,9 @@ local InteriorVisitor = Class(function(self, inst)
     self.exterior_pos_z:set_local(0)
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
-    self.resetinteriorcamera = net_event(inst.GUID, "interiorvisitor.resetinteriorcamera")
-    self.restore_outside_interior_camera = net_event(inst.GUID, "interiorvisitor.restoreoutsideinteriorcamera")
-
-    -- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
-    self.inst:ListenForEvent("interiorvisitor.restoreoutsideinteriorcamera", function()
-        self:OnUpdate()
-        if self.inst == ThePlayer then
-            TheCamera:RestoreOutsideInteriorCamera()
-        end
-    end)
-
     self.interior_map = {}
     self.interior_map_icons_override = nil
+    self.interior_door_status = {}
 
     inst:StartUpdatingComponent(self)
 end)
@@ -35,19 +25,6 @@ function InteriorVisitor:GetExteriorPos()
         0,
         self.exterior_pos_z:value()
     )
-end
-
--- TODO: Make this actually work
-function InteriorVisitor:IsInInterior(x, z)
-    -- local pos = self.inst:GetPosition()
-    -- local index = TheWorld.components.interiorspawner:PositionToIndex(pos)
-end
-
-function InteriorVisitor:GetInteriorCenterGeneric()
-    local pos = self.inst:GetPosition()
-    for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 30, {"pl_interiorcenter"})) do
-        return v
-    end
 end
 
 local function IsInInteriorRectangle(player_pos, ent)
@@ -102,15 +79,11 @@ function InteriorVisitor:ApplyInteriorCamera(interior_center)
     TheCamera.pl_interior_distance = zoom
 end
 
-function InteriorVisitor:RestoreOutsideInteriorCamera()
-    self.restore_outside_interior_camera:push()
-end
-
 function InteriorVisitor:UpdateInteriorMinimap()
     local center = self.center_ent:value()
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.inst:GetPosition())
     local current_room_data = self.interior_map[current_room_id]
-    if current_room_data then
+    if current_room_data and center then
         self.interior_map_icons_override = {
             [current_room_id] = center:CollectMinimapIcons()
         }
@@ -128,14 +101,13 @@ function InteriorVisitor:OnUpdate()
 
     local ambientlighting = TheWorld.components.ambientlighting
     local last_center_ent = self.last_center_ent
-    local room_center_ent = self.center_ent:value()
+    local room_center_ent = TheWorld.components.interiorspawner:GetInteriorCenter(self.inst:GetPosition())
     if IsInInteriorRectangle(self.inst:GetPosition(), room_center_ent) then
-        self.inst:AddTag("inside_interior")
         self:ApplyInteriorCamera(room_center_ent)
 
-        if last_center_ent ~= room_center_ent then
+        if last_center_ent ~= room_center_ent and self.inst:HasTag("inside_interior") then
             self.last_center_ent = room_center_ent
-            self.inst:PushEvent("enterinterior", {from = last_center_ent, to = room_center_ent})
+            self.inst:PushEvent("enterinterior_client", {from = last_center_ent, to = room_center_ent})
 
             if self.inst.MiniMapEntity then
                 self.inst.MiniMapEntity:SetEnabled(false)
@@ -151,12 +123,14 @@ function InteriorVisitor:OnUpdate()
             self:UpdateInteriorMinimap()
         end
     else
-        self.inst:RemoveTag("inside_interior")
-        TheCamera.inside_interior = false
+        if TheCamera.inside_interior then
+            TheCamera.inside_interior = false
+            TheCamera:RestoreOutsideInteriorCamera()
+        end
         self.last_center_ent = nil
 
         if last_center_ent ~= room_center_ent then
-            self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
+            self.inst:PushEvent("leaveinterior_client", {from = last_center_ent, to = nil})
 
             if self.inst.MiniMapEntity then
                 self.inst.MiniMapEntity:SetEnabled(true)
@@ -191,6 +165,23 @@ function InteriorVisitor:OnNewInteriorMapData(data)
     for id, data in pairs(data) do
         self.interior_map[id] = data
     end
+end
+
+local function get_door_id(current_room_id, target_interior_id)
+    if current_room_id < target_interior_id then
+        return tostring(current_room_id) .. "-" .. tostring(target_interior_id)
+    else
+        return tostring(target_interior_id) .. "-" .. tostring(current_room_id)
+    end
+end
+
+-- Receiving from interior_door client RPC
+function InteriorVisitor:OnNewInteriorDoorData(data)
+    -- only getting data for current room
+    if not self.interior_door_status[data.current_interior] then
+        self.interior_door_status[data.current_interior] = {}
+    end
+    self.interior_door_status[data.current_interior][get_door_id(data.current_interior, data.target_interior)] = data
 end
 
 -- function InteriorVisitor:OnRemoveFromEntity()

@@ -163,8 +163,8 @@ local function snakeskinsail_fn()
     inst.AnimState:SetBuild("swap_sail_snakeskin")
     inst.AnimState:PlayAnimation("idle")
 
-    inst.loopsound = "dontstarve_DLC002/common/sail_LP/snakeskin"
-    inst.flapsound = "dontstarve_DLC002/common/sail_flap/snakeskin"
+    inst.loopsound = "dontstarve_DLC002/common/sail_LP_snakeskin"
+    inst.flapsound = "dontstarve_DLC002/common/sail_flap_snakeskin"
 
     if not TheWorld.ismastersim then
         return inst

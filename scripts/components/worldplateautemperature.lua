@@ -20,7 +20,7 @@ local TEMPERATURE_NOISE_MAG = 8
 local MIN_TEMPERATURE = 30
 local HUMID_CROSSOVER_TEMPERATURE = 35
 local LUSH_CROSSOVER_TEMPERATURE = 40
-local APORKALYPSE_TEMPERATURE = 40
+-- local APORKALYPSE_TEMPERATURE = 40
 
 local PHASE_TEMPERATURES =
 {
@@ -37,7 +37,6 @@ self.inst = inst
 
 -- Private
 local _world = TheWorld
-local _map = _world.Map
 local _ismastersim = _world.ismastersim
 
 -- Temperature

@@ -1,36 +1,44 @@
 local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
+
 local PlayerController = require("components/playercontroller")
 
-local _GetPickupAction = ToolUtil.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
-local GetPickupAction = function(self, target, tool, ...)
-    if target:HasTag("smolder") then
-        return ACTIONS.SMOTHER
-    elseif tool ~= nil then
-        for action, _ in pairs(TOOLACTIONS) do
-            if target:HasTag(action .. "_workable") then
-                if tool:HasTag(action .. "_tool") then
-                    return ACTIONS[action]
-                end
-                -- break
+local function get_tool_action(tool, target)
+    if not tool then
+        return
+    end
+    for action in pairs(TOOLACTIONS) do
+        if target:HasTag(action .. "_workable") then
+            if tool:HasTag(action .. "_tool") then
+                return ACTIONS[action]
             end
+            -- break
         end
     end
+end
 
-    local rets = {_GetPickupAction(self, target, tool, ...)}
-    if rets[1] == ACTIONS.PICKUP and TheWorld.items_pass_ground and not target:IsOnPassablePoint() and self.inst:IsOnPassablePoint()  and
-        not TheWorld.Map:IsLandTileAtPoint(target.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
-        rets[1] = ACTIONS.RETRIEVE
+local _GetPickupAction, i = ToolUtil.GetUpvalue(PlayerController.GetActionButtonAction, "GetPickupAction")
+local GetPickupAction = function(self, target, tool, ...)
+    local action = _GetPickupAction(self, target, tool, ...)
+    if not action then
+        action = get_tool_action(tool, target)
+    end
+    if action == ACTIONS.PICKUP and TheWorld.items_pass_ground and not target:IsOnPassablePoint() and self.inst:IsOnPassablePoint()
+        and not TheWorld.Map:IsLandTileAtPoint(target.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
+        action = ACTIONS.RETRIEVE
     end
     if (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
-        rets[1] = ACTIONS.USEDOOR
+        action = ACTIONS.USEDOOR
     end
-    if target:HasTag("pickable") and target:HasTag("unsuited") then
-        rets[1] = nil
+    if action == ACTIONS.PICK and target:HasTag("pickable") and target:HasTag("unsuited") then
+        action = nil
     end
-    return unpack(rets)
+    if action == ACTIONS.HAMMER and tool and tool:HasTag("fixable_crusher") and not target:HasTag("fixable") then
+        action = nil
+    end
+    return action
 end
-ToolUtil.SetUpvalue(PlayerController.GetActionButtonAction, GetPickupAction, "GetPickupAction")
+debug.setupvalue(PlayerController.GetActionButtonAction, i, GetPickupAction)
 
 -- local _GetGroundUseAction = PlayerController.GetGroundUseAction
 -- function PlayerController:GetGroundUseAction(position, ...)

@@ -42,6 +42,7 @@ local CITYALARM_TRIGGER_ACTIONS = {
     [ACTIONS.MINE] = true,
     [ACTIONS.CHOP] = true,
     [ACTIONS.PICKUP] = true,
+    [ACTIONS.ATTACK] = true, -- for walls
 }
 
 local succeed = BufferedAction.Succeed

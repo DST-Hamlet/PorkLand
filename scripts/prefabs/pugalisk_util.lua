@@ -1,7 +1,7 @@
 local GAZE_DIST_MIN = 8
 local GAZE_DIST_MAX = 20
 local PUGALISK_MOVE_DIST = 6 -- The distance between two pugalisk_body
-local PUGALISK_TAUNT_CHANCE = 0.0001
+local PUGALISK_TAUNT_CHANCE = 0.05
 
 local function FindCurrentTarget(inst)
     -- looks for a combat target, if none, sets target as home if range is too far
@@ -97,11 +97,6 @@ local function DetermineAction(inst)
     local wasgazing = inst.wantstogaze
     inst.wantstogaze = nil
 
-    if math.random() < PUGALISK_TAUNT_CHANCE then
-
-        inst.wantstotaunt = true
-    end
-
     local dist = target and inst:GetDistanceSqToInst(target)
 
     if dist and target.components.freezable and not target.components.freezable:IsFrozen()
@@ -134,7 +129,7 @@ local function DetermineAction(inst)
         end
         inst:PushEvent("stopmove")
     -- If we are more than 6 unit distance away, keep moving to target
-    elseif not inst.wantstogaze and not inst.wantstotaunt then
+    elseif not inst.wantstogaze then
         local angle = FindDirectionToDive(inst, target)
         inst.movecommited = true
 

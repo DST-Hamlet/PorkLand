@@ -13,3 +13,27 @@ function Inventory:Has(prefab, amount, checkallcontainers, ...)
     end
     return has(self, prefab, amount, checkallcontainers, ...)
 end
+
+function Inventory:GetItem(prefab)
+    local item = self:GetActiveItem()
+    if item and item.prefab == prefab then
+        return item
+    end
+
+    local containers = {}
+    local inventory = self.inst.replica.inventory
+    table.insert(containers, inventory)
+    local backpack = inventory:GetOverflowContainer()
+    if backpack then
+        table.insert(containers, backpack)
+    end
+    for _, inv in ipairs(containers) do
+        local items = inv:GetItems()
+        for slot, item in pairs(items) do
+            if item.prefab == prefab then
+                return item
+            end
+        end
+    end
+
+end

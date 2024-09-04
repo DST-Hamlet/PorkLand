@@ -23,11 +23,24 @@ local function OnLoad(inst, data)
     end
 end
 
+local function OnEntitySleep(inst, data)
+
+end
+
+local function OnEntityWake(inst, data)
+
+end
+
+local function register_pool(inst)
+    TheWorld:PushEvent("ms_registerwaterfall", {waterfall = inst})
+end
+
 local function fn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBuild("waterfall_lilypond_base")
@@ -49,6 +62,10 @@ local function fn()
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")
 
+    if not TheNet:IsDedicated() then
+        inst:DoTaskInTime(0, register_pool)
+    end
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -58,6 +75,9 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
+
     return inst
 end
 
@@ -66,6 +86,7 @@ local function corner_fn()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBuild("waterfall_lilypond_corner_base")
@@ -87,6 +108,10 @@ local function corner_fn()
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")
 
+    if not TheNet:IsDedicated() then
+        inst:DoTaskInTime(0, register_pool)
+    end
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -95,6 +120,9 @@ local function corner_fn()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
 
     return inst
 end

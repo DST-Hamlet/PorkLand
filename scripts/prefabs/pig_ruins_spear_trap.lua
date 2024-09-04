@@ -3,6 +3,12 @@ local assets =
     Asset("ANIM", "anim/spear_trap.zip"),
 }
 
+local function displaynamefn(inst, viewer)
+    if inst:HasTag("hostile") then
+        return STRINGS.NAMES.PIG_RUINS_SPEAR_TRAP_TRIGGERED
+    end
+end
+
 local function OnKilled(inst)
     local debris = SpawnPrefab("pig_ruins_spear_trap_broken")
     debris.AnimState:PlayAnimation("breaking")
@@ -135,6 +141,8 @@ local function fn()
     inst:AddTag("structure")
     inst:AddTag("mech")
 
+    inst.displaynamefn = displaynamefn
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -147,6 +155,7 @@ local function fn()
     inst:AddComponent("hiddendanger")
 
     inst:AddComponent("inspectable")
+    -- inst.components.inspectable.descriptionfn = descriptionfn
 
     MakeHauntable(inst)
 

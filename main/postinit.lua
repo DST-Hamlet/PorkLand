@@ -24,6 +24,7 @@ local component_posts = {
     "combat",
     "crop",
     "drownable",
+    "dryer",
     "edible",
     "equippable_replica",
     "equippable",
@@ -64,6 +65,7 @@ local component_posts = {
     "spawner",
     "strafer",
     "teamleader",
+    "uianim",
     "undertile",
     "waterproofer",
     "wavemanager",
@@ -78,13 +80,17 @@ local prefab_posts = {
     "boomerang",
     "buff_workeffectiveness",
     "grass",
+    "mandrake",
     "meatrack",
+    "mosquitosack",
+    "multiplayer_portal",
     "orangestaff",
     "player",
     "player_classified",
     "player_common_extensions",
     "pocketdimensioncontainer_defs",
     "poop",
+    "telebase",
     "thunder_close",
     "torch",
     "waterprojectiles",
@@ -92,6 +98,7 @@ local prefab_posts = {
     "world_network",
     "world",
     "shard_network",
+    "spoiledfood",
     "statueruins",
     "walls",
     "waterballoon",
@@ -107,6 +114,8 @@ local multipleprefab_posts = {
     "notraptrigger",
     "poisonable",
     "seeds",
+    "stalagmite",
+    "tradable",
 }
 
 local scenario_posts = {
@@ -123,6 +132,7 @@ local stategraph_posts = {
     "wilson_client",
     "wilsonghost",
     "wilsonghost_client",
+    "multiplayerportal",
 }
 
 local brain_posts = {
@@ -132,11 +142,13 @@ local widget_posts = {
     "bloodover",
     "containerwidget",
     "craftingmenu_ingredients",
+    "craftingmenu_widget",
+    "grid",
     "inventorybar",
     "healthbadge",
     "seasonclock",
+    "skilltreetoast",
     "statusdisplay",
-    "uianim",
     "uiclock",
     "widget",
     "mapwidget",
@@ -176,6 +188,7 @@ modimport("postinit/groundcreep")
 modimport("postinit/groundcreepentity")
 modimport("postinit/soundemitter")
 modimport("postinit/preparedfoods")
+modimport("postinit/skilltrees")
 
 
 for _, file_name in ipairs(behaviour_posts) do

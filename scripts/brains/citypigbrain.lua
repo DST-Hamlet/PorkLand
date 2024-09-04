@@ -321,25 +321,6 @@ local function ReplaceStockCondition(inst)
     return false
 end
 
-local function ExtinguishfireAction(inst)
-    if not inst:HasTag("guard") then
-        return false
-    end
-
-    -- find fire
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, FAR_ENOUGH / 2, {"campfire"})
-    for _, ent in ipairs(ents) do
-        if ent.components.burnable and ent.components.burnable:IsBurning() then
-            local tiletype = TheWorld.Map:GetTileAtPoint(x, y, z)
-            if tiletype == WORLD_TILES.SUBURB or tiletype == WORLD_TILES.FOUNDATION or tiletype == WORLD_TILES.COBBLEROAD or tiletype == WORLD_TILES.LAWN or tiletype == WORLD_TILES.FIELDS then
-                return BufferedAction(inst, ent, ACTIONS.MANUALEXTINGUISH)
-            end
-        end
-    end
-    return false
-end
-
 local function ReplenishStockAction(inst)
     if inst.changestock and inst.changestock:IsValid() then
         inst.sg:GoToState("idle")
@@ -362,7 +343,7 @@ function getfacespeech()
             inst:SayLine(speech, {line = desc})
         else
             if TheWorld.state.isnearaporkalypse then
-                inst:SayLine("CITY_PIG_TALK_APORKALYPSE_SOON")
+                inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_APORKALYPSE_SOON"))
             end
             return is_player_pig_loyalty
                 and inst:SayLine("CITY_PIG_TALK_LOOKATWILSON.ROYALTY")

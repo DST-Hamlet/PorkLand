@@ -7,7 +7,7 @@ local Hayfever = Class(function(self, inst)
     self.inst = inst
 
     self._enabled = net_bool(inst.GUID, "hayfever.enabled")
-    self._sneezetime = net_byte(inst.GUID, "hayfever.sneezetime", "sneezetimedirty")
+    self._sneezetime = net_float(inst.GUID, "hayfever.sneezetime", "sneezetimedirty")
 
     if not TheNet:IsDedicated() then
         inst:ListenForEvent("sneezetimedirty", OnSneezetimeDirty)

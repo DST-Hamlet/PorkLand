@@ -190,6 +190,7 @@ for k, v in pairs(foods) do
 
     v.cookbook_category = "cookpot"
     v.overridebuild = "pl_cook_pot_food"
+    v.cookbook_atlas = "images/hud/pl_cook_pot_food_image.xml"
 end
 
 return foods

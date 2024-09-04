@@ -213,6 +213,10 @@ local function OnSave(inst, data)
     data.secret = inst:HasTag("secret")
     data.shop_music = inst:HasTag("shop_music")
     data.timechange_anims = inst:HasTag("timechange_anims")
+
+    if inst.opentask then
+        data.opentimeleft = inst:TimeRemainingInTask(inst.opentaskinfo)
+    end
 end
 
 local function OnLoad(inst, data)
@@ -272,7 +276,7 @@ local function OnLoad(inst, data)
     if data.guard_entrance then
         inst:AddTag("guard_entrance")
     end
-    if data.ruins_entrance then
+    if data.ruins_exit then
         inst:AddTag("ruins_exit")
     end
     if data.shop_music then
@@ -300,6 +304,14 @@ local function OnLoad(inst, data)
     if data.usesounds then
         inst.usesounds = data.usesounds
     end
+
+    if data.opentimeleft then
+        if inst.opentask then
+            inst.opentask:Cancel()
+            inst.opentask = nil
+        end
+        inst.opentask, inst.opentaskinfo = inst:ResumeTask(data.opentimeleft, function() inst:PushEvent("open") end)
+    end
 end
 
 local function DisableDoor(inst, setting, cause)
@@ -320,6 +332,10 @@ local function UseDoor(inst,data)
 end
 
 local function OpenDoor(inst, nospread)
+    if inst.opentask then
+        inst.opentask:Cancel()
+        inst.opentask = nil
+    end
     if inst.baseanimname and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] then
         if not inst:IsAsleep() then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/slide")
@@ -343,6 +359,11 @@ local function OpenDoor(inst, nospread)
 end
 
 local function CloseDoor(inst, nospread)
+    if inst.opentask then
+        inst.opentask:Cancel()
+        inst.opentask = nil
+    end
+    inst.opentask, inst.opentaskinfo = inst:ResumeTask(30, function() inst:PushEvent("open") end)
     -- once the player has used a door, the doors should freeze open
     if inst.components.door.disabled and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] == true then
         return
@@ -378,7 +399,7 @@ end
 local function test_player_house_door(inst)
     local door = inst.components.door
     if door then
-        local interior = TheWorld.components.interiorspawner:GetInteriorByIndex(door.interior_name)
+        local interior = TheWorld.components.interiorspawner:GetInteriorCenter(door.interior_name)
         if interior and interior.playerroom then
             inst.entity:AddMiniMapEntity()
             inst.MiniMapEntity:SetIcon("player_frontdoor.tex")

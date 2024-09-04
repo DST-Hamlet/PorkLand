@@ -37,13 +37,6 @@ local InteriorVisitor = Class(function(self, inst)
     -- self.restore_physics_task = nil
 
     self.last_mainland_pos = nil
-
-    -- for wortox
-    inst:ListenForEvent("soulhop", function()
-        if inst.replica.interiorvisitor then
-            inst.replica.interiorvisitor.resetinteriorcamera:push()
-        end
-    end)
 end, nil,
 {
     exterior_pos_x = on_x,
@@ -104,13 +97,13 @@ end
 
 function InteriorVisitor:RecordMap(id, data)
     self.interior_map[id] = data
-    SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, TheSim:ZipAndEncodeString(DataDumper({[id] = data})))
+    SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString({[id] = data}))
 end
 
 function InteriorVisitor:UpdateExteriorPos()
     local spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
-    local ent = spawner:GetInteriorCenterAt_Generic(x, z)
+    local ent = spawner:GetInteriorCenter(Vector3(x, 0, z))
 
     self.center_ent = ent
     local last_center_ent = self.last_center_ent
@@ -129,7 +122,10 @@ function InteriorVisitor:UpdateExteriorPos()
     local grue = self.inst.components.grue or {}
 
     if ent then
-        self.inst:AddTag("inside_interior")
+        if not self.inst:HasTag("inside_interior") then
+            self.inst:AddTag("inside_interior")
+        end
+        self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
         self.interior_cc = ent.interior_cc
         grue.pl_no_light_interior = --[[ent:HasInteriorTag("NO_LIGHT") or]] true
         if grue.pl_no_light_interior then
@@ -153,7 +149,10 @@ function InteriorVisitor:UpdateExteriorPos()
             end
         end
     else
-        self.inst:RemoveTag("inside_interior")
+        if self.inst:HasTag("inside_interior") then
+            self.inst:RemoveTag("inside_interior")
+            self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
+        end
         grue.pl_no_light_interior = false
         self.inst:RemoveTag("pl_no_light_interior")
 
@@ -179,8 +178,11 @@ function InteriorVisitor:OnLoad(data)
     end
     if data.interior_map then
         self.interior_map = data.interior_map
-        self.inst:DoStaticTaskInTime(0, function()
-            SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, TheSim:ZipAndEncodeString(DataDumper(self.interior_map)))
+        -- Don't quite understand why ThePlayer can be nil when the client receives this,
+        -- from HandleClientRPC in networkclientrpc.lua, it shouldn't happen, but it does anyway,
+        -- since this is not critical to the client on initial load, use a delay here to mitigate this
+        self.inst:DoStaticTaskInTime(3, function()
+            SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString(self.interior_map))
         end)
     end
 

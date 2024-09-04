@@ -6,9 +6,11 @@ local UnderTile = require("components/undertile")
 
 function UnderTile:SpawnMarkAtTile(x, y, tile)
     self:ClearMarkAtTile(x, y)
-    local mark = SpawnPrefab("undertile_marker")
-    mark.Transform:SetPosition(TheWorld.Map:GetPointAtTile(x, y))
-    mark._tile:set(tile)
+    if tile then
+        local mark = SpawnPrefab("undertile_marker")
+        mark.Transform:SetPosition(TheWorld.Map:GetPointAtTile(x, y))
+        mark._tile:set(tile)
+    end
 end
 
 function UnderTile:ClearMarkAtTile(x, y)

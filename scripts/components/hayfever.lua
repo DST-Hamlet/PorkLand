@@ -21,9 +21,7 @@ local Hayfever = Class(function(self, inst)
     self.imune = false
     self.nextsneeze = self:GetNextSneezTimeInitial()
 
-    self._onhayfever = function(_, ishayfever) self:OnHayFever(ishayfever) end
-
-    self.inst:WatchWorldState("ishayfever", self._onhayfever)
+    self:WatchWorldState("ishayfever", self.OnHayFever)
     self:OnHayFever(TheWorld.state.ishayfever)
 end,
 nil, {
@@ -51,7 +49,7 @@ function Hayfever:CanSneeze()
     local x, y, z = self.inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 30, MUST_TAGS)
 
-    if self.inst:HasTag("has_gasmask") or self.inst:HasTag("has_hayfeverhat") or #ents > 0 then
+    if self.inst.components.inventory:EquipHasTag("gasmask") or self.inst:HasTag("has_hayfeverhat") or #ents > 0 then
         return false
     end
 
@@ -128,6 +126,7 @@ function Hayfever:Disable(nosay)
     if self.enabled then
         -- print("Hayvever over")
 
+        self.sneezed = false
         self.enabled = false
         self.nextsneeze = self:GetNextSneezTimeInitial()
 
@@ -149,7 +148,7 @@ end
 
 function Hayfever:OnRemoveEntity()
     self:Disable(true)
-    self.inst:StopWatchingWorldState("ishayfever", self._onhayfever)
+    self:StopWatchingWorldState("ishayfever", self.OnHayFever)
 end
 
 function Hayfever:OnSave()
@@ -168,8 +167,14 @@ function Hayfever:OnLoad(data)
         self.nextsneeze = data.nextsneeze or self:GetNextSneezTimeInitial()
     end
 
+
     if data.enabled then
-        self:Enable()
+        if TheWorld.state.ishayfever then
+            self:Enable()
+        else
+            self.sneezed = false
+            self.nextsneeze = self:GetNextSneezTimeInitial()
+        end
     end
 end
 

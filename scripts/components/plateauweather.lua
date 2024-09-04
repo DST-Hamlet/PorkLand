@@ -80,19 +80,19 @@ return Class(function(self, inst)
         aporkalypse = 1
     }
 
-    local GROUND_OVERLAYS =
-    {
-        puddles =
-        {
-            texture = "levels/textures/mud.tex",
-            colour =
-            {
-                { 11 / 255, 15 / 255, 23 / 255, .3 },
-                { 11 / 255, 15 / 255, 23 / 255, .2 },
-                { 11 / 255, 15 / 255, 23 / 255, .12 },
-            },
-        },
-    }
+    -- local GROUND_OVERLAYS =
+    -- {
+    --     puddles =
+    --     {
+    --         texture = "levels/textures/mud.tex",
+    --         colour =
+    --         {
+    --             { 11 / 255, 15 / 255, 23 / 255, .3 },
+    --             { 11 / 255, 15 / 255, 23 / 255, .2 },
+    --             { 11 / 255, 15 / 255, 23 / 255, .12 },
+    --         },
+    --     },
+    -- }
 
     local POLLEN_PARTICLES = 1
 
@@ -193,10 +193,6 @@ return Class(function(self, inst)
     local _seasonprogress = 0
     local _groundoverlay = nil
 
-    -- Fog
-    local _hasfog = false
-    local _fullfog = false
-
     -- Dedicated server does not need to spawn the local fx
     local _hasfx = not TheNet:IsDedicated()
     local _rainfx = _hasfx and SpawnPrefab("rain") or nil
@@ -247,9 +243,9 @@ return Class(function(self, inst)
         end
         if not _rainsound then
             _rainsound = true
-            _world.SoundEmitter:PlaySound("dontstarve_DLC002/rain/islandrainAMB", "rain")
+            _world.SoundEmitter:PlaySound("porkland_soundpackage/rain/islandrainAMB", "rain")
         end
-        _world.SoundEmitter:SetParameter("rain", "intensity", intensity)
+        _world.SoundEmitter:SetParameter("rain", "intensity", intensity * 3) -- 音效包里这个参数的范围是0——3
     end
 
     local function StopAmbientRainSound()
@@ -414,7 +410,6 @@ return Class(function(self, inst)
         local data =
         {
             moisture = _moisture:value(),
-            fullfog = _fullfog,
             fogstate = _fogstate:value(),
             fogtime = _fogtime:value(),
             fog_transition_time = FOG_TRANSITION_TIME,
@@ -460,7 +455,7 @@ return Class(function(self, inst)
                 if data.progress > 0.1 then
                     _ishayfever = true
                 end
-            elseif data.progress > 0.02 or data.season == "aporkalypse" then
+            elseif data.progress > 0.02 then
                 _ishayfever = false
             end
         end
@@ -490,9 +485,6 @@ return Class(function(self, inst)
         if _hasfx then
             _rainfx.entity:SetParent(nil)
             _pollenfx.entity:SetParent(nil)
-            if player == ThePlayer then
-                _fullfog = false
-            end
         end
     end
 
@@ -856,7 +848,7 @@ return Class(function(self, inst)
         end
 
         -- Update precipitation effects
-        if _preciptype:value() == PRECIP_TYPES.rain and not _fullfog then
+        if _preciptype:value() == PRECIP_TYPES.rain and TheWorld.state.fogstate ~= FOG_STATE.FOGGY then
             local preciprate_sound = preciprate
             if _activatedplayer == nil then
                 StartTreeRainSound(0)
@@ -905,35 +897,16 @@ return Class(function(self, inst)
 
                 if _fogstate:value() == FOG_STATE.SETTING then
                     SetWithPeriodicSync(_fogtime, _fogtime:value() - dt, FRAMES, _ismastersim)
-                    if _fogtime:value() <= 5 and _hasfx and ThePlayer ~= nil then
-                        ThePlayer:PushEvent("startfog")
-                        _hasfog = true
-                    end
 
                     if _fogtime:value() <= 0 then
-                        _fullfog = true
                         if _ismastersim then
                             _fogtime:set(0)
                             _fogstate:set(FOG_STATE.FOGGY)
                         end
                     end
                 end
-            elseif not _fullfog then  -- on load or change character
-                if _hasfx then
-                    if ThePlayer ~= nil then
-                        _fullfog = true
-                        ThePlayer:PushEvent("setfog")
-                    end
-                else
-                    _fullfog = true
-                end
             end
         elseif _fogstate:value() ~= FOG_STATE.CLEAR then
-
-            if _hasfx and ThePlayer and _hasfog then
-                ThePlayer:PushEvent("stopfog")
-                _hasfog = false
-            end
 
             if _fogstate:value() ~= FOG_STATE.LIFTING then
                 TheSim:ClearDSP(.5)
@@ -942,7 +915,6 @@ return Class(function(self, inst)
                     _fogtime:set(FOG_TRANSITION_TIME)
                     _fogstate:set(FOG_STATE.LIFTING)
                 end
-                _fullfog = false
             end
 
             if _fogstate:value() == FOG_STATE.LIFTING then
@@ -955,6 +927,8 @@ return Class(function(self, inst)
                     end
                 end
             end
+        elseif _fogstate:value() == FOG_STATE.CLEAR then
+
         end
 
         if _ismastersim then

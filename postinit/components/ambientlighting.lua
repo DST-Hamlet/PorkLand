@@ -45,6 +45,6 @@ AddComponentPostInit("ambientlighting", function(self, inst)
     ToolUtil.SetUpvalue(DoUpdateFlash, Pl_ComputeTargetColour, "ComputeTargetColour")
 
     function self:Pl_Refresh()
-        Pl_ComputeTargetColour(_overridecolour, 0.25)
+        Pl_ComputeTargetColour(_overridecolour, 0.1)
     end
 end)

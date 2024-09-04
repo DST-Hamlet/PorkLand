@@ -50,16 +50,7 @@ AddClassPostConstruct("screens/mapscreen", function(self)
         print("Warning: Failed to find minimap c handler")
     end
 
-    self.inst:ListenForEvent("enterinterior", function(_, data) self:OnEnterInterior(data and data.to) end, self.owner)
-    self.inst:ListenForEvent("leaveinterior", function() self:OnLeaveInterior() end, self.owner)
+    self.inst:ListenForEvent("enterinterior_client", function(_, data) self:OnEnterInterior(data and data.to) end, self.owner)
+    self.inst:ListenForEvent("leaveinterior_client", function() self:OnLeaveInterior() end, self.owner)
     self.inst:ListenForEvent("interiorvisitor.exterior_pos", function() self:OnEnterInterior() end, self.owner)
-    self.inst:ListenForEvent("interiorvisitor.resetinteriorcamera", function()
-        -- TODO: 这里会有一帧的闪烁，以后可以优化一下
-        self.inst:DoTaskInTime(0, function()
-            local center = self.owner.replica.interiorvisitor:GetCenterEnt()
-            if center then
-                self:OnEnterInterior(center)
-            end
-        end)
-    end, self.owner)
 end)

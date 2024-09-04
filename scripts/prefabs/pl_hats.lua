@@ -225,7 +225,6 @@ local function MakeHat(name)
             return
         end
 
-        inst.bat_sonar_on:push()
         owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/on")
     end
 
@@ -237,7 +236,6 @@ local function MakeHat(name)
             return
         end
 
-        inst.bat_sonar_off:push()
         owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/off")
     end
 
@@ -247,23 +245,6 @@ local function MakeHat(name)
         inst:AddTag("nightvision")
         inst:AddTag("no_sewing")
         inst:AddTag("venting")
-
-        inst.bat_sonar_on = net_event(inst.GUID, "bat_sonar_on")
-        inst.bat_sonar_off = net_event(inst.GUID, "bat_sonar_off")
-
-        if not TheNet:IsDedicated() then
-            inst:ListenForEvent("bat_sonar_on", function()
-                if ThePlayer.replica.inventory:EquipHasTag("bat_hat") then
-                    ThePlayer:PushEvent("startbatsonar")
-                end
-            end)
-
-            inst:ListenForEvent("bat_sonar_off", function()
-                if not ThePlayer.replica.inventory:EquipHasTag("bat_hat") then
-                    ThePlayer:PushEvent("stopbatsonar")
-                end
-            end)
-        end
     end
 
     fns.bat = function()
@@ -436,6 +417,7 @@ local function MakeHat(name)
 
         if not inst.fire then
             inst.fire = SpawnPrefab("candlefire")
+            inst.fire.entity:SetParent(owner.entity)
             local follower = inst.fire.entity:AddFollower()
             follower:FollowSymbol(owner.GUID, "swap_hat", 0, -250, 0)
         end
@@ -604,16 +586,6 @@ local function MakeHat(name)
 
     -----------------------------------------------------------------------------
 
-    local function gasmask_onequip(inst, owner)
-        fns.opentop_onequip(inst, owner)
-        inst:AddTag("has_gasmask")
-    end
-
-    local function gasmask_onunequip(inst, owner)
-        _onequip(inst, owner)
-        inst:RemoveTag("has_gasmask")
-    end
-
     local function gasmask_custom_init(inst)
         inst:AddTag("gasmask")
         inst:AddTag("muffler") -- TODO add missing sound effects
@@ -627,11 +599,8 @@ local function MakeHat(name)
         end
 
         inst.components.equippable.dapperness = TUNING.CRAZINESS_SMALL
-
         inst.components.equippable.poisongasblocker = true
-
-        inst.components.equippable:SetOnEquip(gasmask_onequip)
-        inst.components.equippable:SetOnUnequip(gasmask_onunequip)
+        inst.components.equippable:SetOnEquip(fns.opentop_onequip)
 
         inst:AddComponent("fueled")
         inst.components.fueled.fueltype = FUELTYPE.USAGE
@@ -662,15 +631,23 @@ local function MakeHat(name)
 
     -----------------------------------------------------------------------------
 
+    local function antmask_onequip(inst, owner)
+        _onequip(inst, owner)
+        inst:AddTag("has_antmask")
+    end
+
+    local function antmask_onunequip(inst, owner)
+        _onunequip(inst, owner)
+        inst:RemoveTag("has_antmask")
+    end
+
     local function antmask_onupdate(inst)
-        inst.components.armor:SetPercent(inst.components.fueled:GetPercent())
+        inst.components.armor:SetPercent(math.min(inst.components.fueled:GetPercent(), inst.components.armor:GetPercent()))
     end
 
     local function antmask_ontakedamage(inst, damage_amount)
         if inst.components.fueled then
-            local percent = inst.components.fueled:GetPercent()
-            local new_percent = percent - (damage_amount * inst.components.armor.absorb_percent / inst.components.armor.maxcondition)
-            inst.components.fueled:SetPercent(new_percent)
+            inst.components.fueled:SetPercent(math.min(inst.components.fueled:GetPercent(), inst.components.armor:GetPercent()))
         end
     end
 

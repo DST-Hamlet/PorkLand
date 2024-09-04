@@ -13,7 +13,6 @@ local function PlayOincSound(inst)
     else
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/coins/3_plus")
     end
-    inst._oinc_sound:set_local(0)
 end
 
 local function ScheduleOincSoundEvent(inst, amount)
@@ -23,6 +22,7 @@ local function ScheduleOincSoundEvent(inst, amount)
     inst.oinc_transaction = inst.oinc_transaction + amount
     if not inst.oinc_transaction_task then
         inst.oinc_transaction_task = inst:DoTaskInTime(0, function()
+            inst._oinc_sound:set_local(0)
             inst._oinc_sound:set(inst.oinc_transaction)
             inst.oinc_transaction = nil
             inst.oinc_transaction_task = nil
@@ -32,46 +32,45 @@ end
 
 local function OnItemGet(inst, data)
     local item = data.item
-    if not item or not item:HasTag("oinc") then
+    if not item then
         return
     end
 
-    ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
+    if item:HasTag("oinc") then
+        ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
 
-    item.oinc_sound_stackchange_listener = function(_, data)
-        local amount_changed = math.abs(data.stacksize - data.oldstacksize)
-        ScheduleOincSoundEvent(inst, amount_changed)
+        item.oinc_sound_stackchange_listener = function(_, data)
+            local amount_changed = math.abs(data.stacksize - data.oldstacksize)
+            ScheduleOincSoundEvent(inst, amount_changed)
+        end
+        item:ListenForEvent("stacksizechange", item.oinc_sound_stackchange_listener)
     end
-    item:ListenForEvent("stacksizechange", item.oinc_sound_stackchange_listener)
+
+    if item.prefab == "key_to_city" then
+        inst.components.builder.city_bonus = 2
+    end
 end
 
 local function OnItemLose(inst, data)
     local item = data.prev_item
-    if not item or not item:HasTag("oinc") then
+    if not item then
         return
     end
 
-    ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
+    if item:HasTag("oinc") then
+        ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
 
-    if item.oinc_sound_stackchange_listener then
-        item:RemoveEventCallback("stacksizechange", item.oinc_sound_stackchange_listener)
-        item.oinc_sound_stackchange_listener = nil
+        if item.oinc_sound_stackchange_listener then
+            item:RemoveEventCallback("stacksizechange", item.oinc_sound_stackchange_listener)
+            item.oinc_sound_stackchange_listener = nil
+        end
+    end
+
+    if item.prefab == "key_to_city" and item.activeitem == false then
+        inst.components.builder.city_bonus = 0
     end
 end
 
-local function OnDay(inst, isday)
-    if not isday then
-        return
-    end
-    if TheWorld.components.pigtaxmanager
-        and TheWorld.components.pigtaxmanager:HasPlayerCityHall()
-        and TheWorld.components.pigtaxmanager:IsTaxDay() then
-
-        inst:DoTaskInTime(2, function()
-            inst.components.talker:Say(GetString(inst.prefab, "ANNOUNCE_TAXDAY"))
-        end)
-    end
-end
 
 local function OnDeath(inst, data)
     if inst.components.poisonable ~= nil then
@@ -121,6 +120,34 @@ local function OnLoad(inst, data, ...)
     return unpack(rets)
 end
 
+local SANITY_MODIFIER_NAME = "PLAYERHOUSE_SANITY"
+
+local function UpdateInteriorSanity(inst, data)
+    if data.from then
+        inst.components.sanity.externalmodifiers:RemoveModifier(data.from, SANITY_MODIFIER_NAME) -- remove sanity from whichever room we were
+    end
+
+    if data.to then -- still inside
+        local interiorID = data.to.interiorID
+        if TheWorld.components.interiorspawner:GetInteriorDefine(interiorID).dungeon_name:find("playerhouse") then
+            inst.components.sanity.externalmodifiers:SetModifier(data.to, TUNING.SANITY_PLAYERHOUSE_GAIN, SANITY_MODIFIER_NAME)
+        end
+    end
+end
+
+local function UpdateHomeTechBonus(inst, data)
+    if data.to and data.to:HasInteriorTag("home_prototyper") then
+        inst.components.builder.home_bonus = 2
+    else
+        inst.components.builder.home_bonus = 0
+    end
+end
+
+local function OnInteriorChange(inst, data)
+    UpdateInteriorSanity(inst, data)
+    UpdateHomeTechBonus(inst, data)
+end
+
 AddPlayerPostInit(function(inst)
     if not TheNet:IsDedicated() then
         inst:DoTaskInTime(0, function()
@@ -129,7 +156,6 @@ AddPlayerPostInit(function(inst)
                 if TheWorld:HasTag("porkland") then
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
-                    inst:WatchWorldState("isday", OnDay)
                 end
             end
         end)
@@ -176,6 +202,9 @@ AddPlayerPostInit(function(inst)
 
     inst:ListenForEvent("itemget", OnItemGet)
     inst:ListenForEvent("itemlose", OnItemLose)
+
+    inst:ListenForEvent("enterinterior", OnInteriorChange)
+    inst:ListenForEvent("leaveinterior", OnInteriorChange)
 
     if inst.OnLoad then
         inst.__OnLoad = inst.OnLoad

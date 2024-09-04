@@ -142,8 +142,7 @@ function MakePickableBlowInWindGust(inst, wind_speed, destroy_chance)
 
     inst.ongustpick = function(inst)
         if inst.components.pickable and inst.components.pickable:CanBePicked() then
-            inst.components.pickable:MakeEmpty()
-            inst.components.lootdropper:SpawnLootPrefab(inst.components.pickable.product)
+            inst.components.pickable:Pick(inst)
         end
     end
 
@@ -201,7 +200,7 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
             --     AddToNearSpotEmitter(inst, "treeherd", "tree_creak_emitter", TUNING.TREE_CREAK_RANGE)
             -- end
             inst.AnimState:PlayAnimation("blown_pre_".. stages[inst.components.growable.stage], false)
-            -- inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wind_tree_creak")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/wind_tree_creak")
             inst:ListenForEvent("animover", OnGustAnimDone)
         end)
     end
@@ -392,9 +391,30 @@ function UpdateSailorPathcaps(inst, allowocean)
 end
 
 local _MakeInventoryPhysics = MakeInventoryPhysics
-function MakeInventoryPhysics(inst, mass, rad)
-    local physics = _MakeInventoryPhysics(inst, mass, rad)
+function MakeInventoryPhysics(inst, mass, rad, ...)
+    local physics = _MakeInventoryPhysics(inst, mass, rad, ...)
     if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
+local _MakeProjectilePhysics = MakeProjectilePhysics
+function MakeProjectilePhysics(inst, mass, rad, ...)
+    local physics = _MakeProjectilePhysics(inst, mass, rad, ...)
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
+local _RemovePhysicsColliders = RemovePhysicsColliders
+function RemovePhysicsColliders(inst, ...)
+    _RemovePhysicsColliders(inst, ...)
+    local physics = inst.Physics
+    if TheWorld:HasTag("porkland") and physics:GetMass() > 0 then
         physics:ClearCollidesWith(COLLISION.LIMITS)
         physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
     end

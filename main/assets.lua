@@ -21,6 +21,7 @@ PrefabFiles = {
     "dungball",
     "dungbeetle",
     "dungpile",
+    "exterior_texture_packages",
     "fast_farmplot_planted",
     "flotsam",
     "flower_rainforest",
@@ -120,8 +121,10 @@ PrefabFiles = {
     "deco_ruins_fountain",
     "deco_swinging_light",
     "deco_table",
+    "deco_wall_ornament",
     "interior_boundary",
     "interior_surface",
+    "interior_texture_packages",
     "interiorwall_fx",
     "interiorfloor_fx",
     "vampirebatcave",
@@ -139,7 +142,7 @@ PrefabFiles = {
     "smashingpot",
     "pig_ruins_dart",
     "pig_ruins_torch",
-    "light_rays",
+    "lightrays_jungle",
     "pig_ruins_spear_trap",
     "pigghost",
     "rugs",
@@ -231,15 +234,25 @@ PrefabFiles = {
     "gnatmound",
 
     "waterfall_lilypond",
+    "waterfall_sfx",
 
     "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗
     "inv_bamboo",
+    "sand",
+
 
     "roc_nest",
     "ro_bin_egg",
     "ro_bin_gizzard_stone",
     "ro_bin",
     "pig_scepter",
+
+    "ox_horn",
+    "ox_flute",
+    "porklandintro",
+
+    "cutlass",
+    "pl_feathers",
 
     "giantgrub",
     "antman",
@@ -336,6 +349,9 @@ Assets = {
     Asset("ANIM", "anim/tree_leaf_short_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
 
+    -- multiplayer_portal
+    Asset("ANIM", "anim/portal_dst.zip"),
+
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
 
@@ -355,6 +371,10 @@ Assets = {
     Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
 
+    -- Cookbook HD icons
+    Asset("ATLAS", "images/hud/pl_cook_pot_food_image.xml"),
+    Asset("IMAGE", "images/hud/pl_cook_pot_food_image.tex"),
+
     Asset("SHADER", "shaders/ui_fillmode.ksh"),
 }
 
@@ -372,6 +392,10 @@ local sounds = {
     Asset("SOUND", "sound/DLC003_music_stream.fsb"),
     Asset("SOUND", "sound/DLC003_sfx.fsb"),
     Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev"),
+    Asset("SOUND", "sound/dontstarve_shipwreckedSFX.fsb"),
+    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC002.fev"),
+    Asset("SOUND", "sound/porkland_soundpackage_bank_1.fsb"),
+    Asset("SOUNDPACKAGE", "sound/porkland_soundpackage.fev"),
 }
 
 if not TheNet:IsDedicated() then

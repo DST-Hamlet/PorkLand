@@ -435,7 +435,9 @@ local function OnGetItemFromPlayer(inst, giver, item)
 end
 
 local function OnRefuseItem(inst, item)
-    inst.sg:GoToState("refuse")
+    if not inst.components.combat.target and not inst.sg:HasStateTag("busy") then
+        inst.sg:GoToState("refuse")
+    end
     if inst.components.sleeper:IsAsleep() then
         inst.components.sleeper:WakeUp()
     end
@@ -771,6 +773,10 @@ local function OnLoad(inst, data)
             clear_callbacks_when_done(player)
         end
 
+        -- need to check existing players, same way some world components do when adding _activeplayers
+        for _, player in pairs(AllPlayers) do
+            cached_player_join_fn(nil, player)
+        end
         inst:ListenForEvent("ms_playerjoined", cached_player_join_fn, TheWorld)
         inst:ListenForEvent("ms_newplayerspawned", cached_new_player_spawned_fn, TheWorld)
     end

@@ -25,22 +25,67 @@ local function Curse(inst)
     end
 end
 
+local function OnFinish(inst, worker, workleft)
+    SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
+
+    if inst.components.container ~= nil then
+        inst.components.container:DropEverything()
+    end
+
+    if inst.components.lootdropper then
+        local interior_spawner = TheWorld.components.interiorspawner
+        if interior_spawner.current_interior then
+            local originpt = interior_spawner:getSpawnOrigin()
+            local x, _, z = inst.Transform:GetWorldPosition()
+            local dropdir = Vector3(originpt.x - x, 0, originpt.z - z):GetNormalized()
+            inst.components.lootdropper.dropdir = dropdir
+            inst.components.lootdropper:DropLoot()
+        end
+    end
+
+    inst:Remove()
+end
+
+local function SetPlayerCraftable(inst)
+    inst:AddTag("playercrafted")
+    inst:RemoveTag("NOCLICK")
+
+    inst:AddComponent("lootdropper")
+
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
+    inst.components.workable:SetWorkLeft(1)
+    inst.components.workable:SetOnFinishCallback(OnFinish)
+end
+
+local function InitInteriorPrefab(inst)
+    if inst:HasTag("playercrafted") then
+        SetPlayerCraftable(inst)
+    end
+end
+
 local function OnSave(inst, data)
     data.rotation = inst.Transform:GetRotation()
     data.interiorID = inst.interiorID
+    data.playercrafted = inst:HasTag("playercrafted")
 end
 
 local function OnLoad(inst, data)
-    if data then
-        if data.rotation then
-            if inst.components.rotatingbillboard == nil then
-                -- this component handle rotation save/load itself
-                inst.Transform:SetRotation(data.rotation)
-            end
+    if not data then
+        return
+    end
+
+    if data.rotation then
+        if inst.components.rotatingbillboard == nil then
+            -- this component handle rotation save/load itself
+            inst.Transform:SetRotation(data.rotation)
         end
-        if data.interiorID then
-            inst.interiorID  = data.interiorID
-        end
+    end
+    if data.interiorID then
+        inst.interiorID  = data.interiorID
+    end
+    if data.playercrafted then
+        SetPlayerCraftable(inst)
     end
 end
 
@@ -125,6 +170,18 @@ local function OnVisualChange(inst)
     inst.highlightchildren = {inst._frontvisual:value(), inst._lockvisual:value()}
 end
 
+local function IsHighPriorityAction(act, force_inspect)
+    return act and act.action == ACTIONS.HAMMER
+end
+
+local function CanMouseThrough(inst)
+    if not inst:HasTag("fire") and ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil then
+        local force_inspect = ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller:IsControlPressed(CONTROL_FORCE_INSPECT)
+        local lmb, rmb = ThePlayer.components.playeractionpicker:DoGetMouseActions(inst:GetPosition(), inst)
+        return not IsHighPriorityAction(rmb, force_inspect)
+    end
+end
+
 local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed, master_postinit)
     local function fn()
         local inst = CreateEntity()
@@ -173,6 +230,8 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst:AddTag("furniture")
         inst:AddTag("shelf")
 
+        inst.CanMouseThrough = CanMouseThrough
+
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
@@ -212,6 +271,9 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             inst:AddComponent("shopped")
             inst.components.shopped:SetOnRobbed(on_robbed)
         end
+
+        inst:ListenForEvent("onbuilt", SetPlayerCraftable)
+        inst.initInteriorPrefab = InitInteriorPrefab
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad

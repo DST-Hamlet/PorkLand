@@ -266,13 +266,8 @@ local widget_corkchest = {
 
 params["corkchest"] = widget_corkchest
 
-params["roottrunk"] = deepcopy(params["shadowchester"])
-function params.roottrunk.itemtestfn(container, item, slot)
-    return not item:HasTag("irreplaceable")
-end
-
 params["roottrunk_container"] = deepcopy(params["shadowchester"])
-function params.roottrunk.itemtestfn(container, item, slot)
+function params.roottrunk_container.itemtestfn(container, item, slot)
     return not item:HasTag("irreplaceable")
 end
 

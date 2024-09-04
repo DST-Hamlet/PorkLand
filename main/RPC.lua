@@ -86,17 +86,16 @@ AddModRPCHandler("Porkland", "StrafeFacing_pl", function(player, dir)
 end)
 
 AddClientModRPCHandler("Porkland", "interior_map", function(data)
-    if type(data) == "string" then
-        local unzipped = TheSim:DecodeAndUnzipString(data)
-        local succeed, result = RunInSandboxSafe(unzipped)
-        if succeed then
-            local interiorvisitor = ThePlayer.replica.interiorvisitor
-            if interiorvisitor then
-                interiorvisitor:OnNewInteriorMapData(result)
-            end
-        else
-            print("Failed to unserialize interior map data", unzipped)
-        end
+    local interiorvisitor = ThePlayer and ThePlayer.replica.interiorvisitor
+    if interiorvisitor then
+        interiorvisitor:OnNewInteriorMapData(DecodeAndUnzipString(data))
+    end
+end)
+
+AddClientModRPCHandler("Porkland", "interior_door", function(data)
+    local interiorvisitor = ThePlayer and ThePlayer.replica.interiorvisitor
+    if interiorvisitor then
+        interiorvisitor:OnNewInteriorDoorData(DecodeAndUnzipString(data))
     end
 end)
 

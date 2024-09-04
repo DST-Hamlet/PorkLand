@@ -10,7 +10,7 @@ local ROC_CAVE_WALL_TEXTURE = "levels/textures/interiors/batcave_wall_rock.tex"
 local ROC_CAVE_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_vamp_cave_noise.tex"
 local ROC_CAVE_COULOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
 local ROC_CAVE_REVERB = "ruins"
-local ROC_CAVE_AMBIENT = WORLD_TILES.CAVE
+local ROC_CAVE_AMBIENT = "BAT_CAVE"
 local ROC_CAVE_GROUND_SOUND = WORLD_TILES.DIRT
 
 local assets =
@@ -75,10 +75,9 @@ local function ConnectInteriors(inst)
 
     door:initInteriorPrefab(nil, prefab_door_def, interior_door_def)
 
-    --interior_spawner:AddDoor(door, interior_door_def) -- 亚丹：在InitInteriorPrefab中已经执行
+    --interior_spawner:AddDoor(door, interior_door_def) -- 亚丹：在InitInteriorPrefab 中已经执行
 
-    local target_interior_pos = interior_spawner:IndexToPosition(interiorID) -- center of bat cave
-    local target_interior_center = interior_spawner:GetInteriorCenterAt_Generic(target_interior_pos.x, target_interior_pos.z)
+    local target_interior_center = interior_spawner:GetInteriorCenter(interiorID) -- center of bat cave
 
     local door_pos
     local blocker = FindEntity(target_interior_center, REMOVE_BLOCKERS_RAD, nil, BLOCKER_MUST_TAGS)
@@ -210,7 +209,7 @@ local function Close(inst)
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"rocks", "rocks", "flint", "flint", "flint"})
 
-    inst.name = STRINGS.NAMES.CAVE_ENTRANCE_CLOSED
+    inst.name = STRINGS.NAMES.CAVE_ENTRANCE_CLOSED_CAVE
 
     inst.open = false
 

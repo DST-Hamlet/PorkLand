@@ -71,6 +71,8 @@ local BUILDING_QUOTAS_2 = {
 
 local VALID_TILES = {WORLD_TILES.SUBURB, WORLD_TILES.FOUNDATION}
 
+local VALID_TILES_CITY = {WORLD_TILES.LAWN, WORLD_TILES.FOUNDATION}
+
 local function opp_dir(dir)
     if dir == 1 then
         return 3
@@ -409,9 +411,12 @@ local function set_shop(spawners, pt, dir, i, offset, nil_wieght, city)
 
     local pigshops_spawners = find_temp_ents(spawners, new_pt.x, new_pt.z, 1, {spawn})
 
-    -- local ground = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
+    local groundtile = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
 
-    if #pigshops_spawners == 0 and IsLandTile(WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))) then
+    if #pigshops_spawners == 0
+        and IsLandTile(groundtile)
+        and test_tile(new_pt, VALID_TILES_CITY) then
+
         add_temp_ents(spawners, new_pt.x, new_pt.z, spawn, city.city_id)
     end
 end

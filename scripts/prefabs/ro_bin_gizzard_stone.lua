@@ -9,10 +9,10 @@ local function GetSpawnPoint(pt)
     local theta = math.random() * 2 * PI
     local radius = SPAWN_DIST
 
-	local offset = FindWalkableOffset(pt, theta, radius, 12, true)
-	if offset then
-		return pt+offset
-	end
+    local offset = FindWalkableOffset(pt, theta, radius, 12, true)
+    if offset then
+        return pt+offset
+    end
 end
 
 local function SpawnRoBin(inst, spawn_pt, spawnevent)
@@ -86,27 +86,27 @@ local function OnRoBinDeath(inst)
 end
 
 local function FixRoBin(inst)
-	inst.fixtask = nil
-	--take an existing ro_bin if there is one
-	if not RebindRoBin(inst) then
+    inst.fixtask = nil
+    --take an existing ro_bin if there is one
+    if not RebindRoBin(inst) then
         inst.AnimState:PlayAnimation("dead", true)
         inst.components.inventoryitem:ChangeImageName(inst.closedEye)
 
-		if inst.components.inventoryitem.owner then
-			local time_remaining = 0
-			local time = GetTime()
-			if inst.respawntime and inst.respawntime > time then
-				time_remaining = inst.respawntime - time
-			end
-			StartRespawn(inst, time_remaining)
-		end
-	end
+        if inst.components.inventoryitem.owner then
+            local time_remaining = 0
+            local time = GetTime()
+            if inst.respawntime and inst.respawntime > time then
+                time_remaining = inst.respawntime - time
+            end
+            StartRespawn(inst, time_remaining)
+        end
+    end
 end
 
 local function OnPutInInventory(inst)
-	if not inst.fixtask then
-		inst.fixtask = inst:DoTaskInTime(1, function() FixRoBin(inst) end)
-	end
+    if not inst.fixtask then
+        inst.fixtask = inst:DoTaskInTime(1, function() FixRoBin(inst) end)
+    end
 end
 
 local function OnSave(inst, data)
@@ -121,8 +121,8 @@ end
 
 local function OnLoad(inst, data)
     if data and data.respawntimeremaining then
-		inst.respawntime = data.respawntimeremaining + GetTime()
-	end
+        inst.respawntime = data.respawntimeremaining + GetTime()
+    end
     if data and data.robinspawned then
         inst.robinspawned = data.robinspawned
     end
@@ -149,7 +149,7 @@ local function fn()
 
     inst:AddTag("ro_bin_gizzard_stone")
     inst:AddTag("irreplaceable")
-	inst:AddTag("nonpotatable")
+    inst:AddTag("nonpotatable")
     inst:AddTag("follower_leash")
 
     inst.entity:SetPristine()
@@ -167,7 +167,7 @@ local function fn()
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
-	inst.components.inspectable:RecordViews()
+    inst.components.inspectable:RecordViews()
 
     inst:AddComponent("leader")
 
@@ -177,7 +177,7 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnRoBinDeath = OnRoBinDeath
 
-	inst.fixtask = inst:DoTaskInTime(1, function() FixRoBin(inst) end)
+    inst.fixtask = inst:DoTaskInTime(1, function() FixRoBin(inst) end)
 
     return inst
 end

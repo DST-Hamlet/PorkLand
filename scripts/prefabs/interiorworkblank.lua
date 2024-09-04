@@ -13,10 +13,14 @@ local function GetSkeletonPositions(w, h)
 end
 
 local function Clear(inst)
-    for _, fx in ipairs(inst.fx) do
+    for _, fx in pairs(inst.fx) do
         fx:Remove()
     end
+    for _, boundary in ipairs(inst.boundaries) do
+        boundary:Remove()
+    end
     inst.fx = {}
+    inst.boundaries = {}
 end
 
 local function OnRemove(inst)
@@ -55,6 +59,12 @@ local function SetUp(inst, data)
     inst.walltexture = data.walltexture or inst.walltexture or "antcave_wall_rock"
     inst.floortexture = data.floortexture or inst.floortexture or "antcave_floor"
     inst.interiorID = data.interiorID or inst.interiorID
+    inst.footstep_tile = data.footstep_tile or inst.footstep_tile or WORLD_TILES.DIRT
+    inst._footstep_tile:set(inst.footstep_tile or WORLD_TILES.DIRT)
+    inst.reverb = data.reverb or inst.reverb or "default"
+    inst._reverb:set(inst.reverb or "default")
+    inst.ambient_sound = data.ambient_sound or ""
+    inst._ambient_sound:set(inst.ambient_sound or "")
     if inst.interiorID then
         TheWorld.components.interiorspawner:AddInteriorCenter(inst)
     end
@@ -90,10 +100,10 @@ local function SetUp(inst, data)
     -- end
 
     inst.fx = {
-        floor,
-        wall_bg,
-        wall_left,
-        wall_right,
+        floor = floor,
+        wall_bg = wall_bg,
+        wall_left = wall_left,
+        wall_right = wall_right,
     }
 
     local function wall(x, z)
@@ -106,7 +116,7 @@ local function SetUp(inst, data)
             wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
         end)
         -- wall:Debug()
-        table.insert(inst.fx, wall)
+        table.insert(inst.boundaries, wall)
     end
 
     local half_width = width / 2
@@ -128,7 +138,7 @@ local function SetUp(inst, data)
         wall.depth:set(depth + 0.2)
         wall.Transform:SetPosition(pos.x, 0, pos.z)
     end)
-    table.insert(inst.fx, wall)
+    table.insert(inst.boundaries, wall)
 
     inst.interior_cc = data.interior_cc or data.cc or "images/colour_cubes/day05_cc.tex"
 end
@@ -148,6 +158,30 @@ end
 local function SetSize(inst, width, depth)
     inst._width:set(width)
     inst._depth:set(depth)
+end
+
+local function SetInteriorFloorTexture(inst, texture)
+    inst.floortexture = texture
+    local floor = inst.fx.floor
+    if floor then
+        floor:SetTexture(texture)
+    end
+end
+
+local function SetInteriorWallsTexture(inst, texture)
+    inst.walltexture = texture
+    local wall_bg = inst.fx.wall_bg
+    if wall_bg then
+        wall_bg:SetTexture(texture)
+    end
+    local wall_left = inst.fx.wall_left
+    if wall_left then
+        wall_left:SetTexture(texture)
+    end
+    local wall_right = inst.fx.wall_right
+    if wall_right then
+        wall_right:SetTexture(texture)
+    end
 end
 
 local function GetDoorById(inst, id)
@@ -269,6 +303,8 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
                 table.insert(doors, {
                     target_interior = target_interior,
                     direction = door_direction,
+                    hidden = door:HasTag("door_hidden"),
+                    disabled = door:HasTag("door_disabled"),
                 })
             else
                 print("This door doesn't have a direction!", door)
@@ -276,7 +312,7 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         end
     end
 
-    local interior_def = TheWorld.components.interiorspawner:GetInteriorDefByPosition(position)
+    local interior_def = TheWorld.components.interiorspawner:GetInteriorDefine(inst.interiorID)
     -- Fallback to mini_ruins_slab
     local floor_texture = interior_def and basename(interior_def.minimaptexture) or "mini_ruins_slab"
 
@@ -300,6 +336,9 @@ local TAGS = {
     FORCE_MINIMAP = 1, -- always render minimap even if the room is single
     FORCE_VISITED = 2, -- show minimap of the room before visiting
     NO_LIGHT = 4, -- should trigger grue if no light in room
+    HOME_PROTOTYPER = 8, -- player home prototype room
+    PIG_RUINS = 16, -- pig ruins rooms
+    PIG_SHOP = 32, -- pig shop rooms
     TEST = 1024,
 }
 
@@ -375,6 +414,9 @@ local function OnSave(inst, data)
     data.interior_tags = inst.interior_tags
     data.interior_cc = inst.interior_cc
     data.cc = inst.interior_cc
+    data.footstep_tile = inst.footstep_tile
+    data.reverb = inst.reverb
+    data.ambient_sound = inst.ambient_sound
 end
 
 local function OnLoad(inst, data)
@@ -399,6 +441,7 @@ local function fn()
     inst:AddTag("NOBLOCK")
 
     inst.fx = {}
+    inst.boundaries = {}
 
     inst._width = net_byte(inst.GUID, "interiorworkblank.width", "sizedirty")
     inst._width:set_local(TUNING.ROOM_TINY_WIDTH)
@@ -410,6 +453,10 @@ local function fn()
     inst.GetDepth = GetDepth
     inst.GetSize = GetSize
     inst.SetSize = SetSize
+
+    inst._reverb = net_string(inst.GUID, "_reverb")
+    inst._footstep_tile = net_int(inst.GUID, "_footstep_tile")
+    inst._ambient_sound = net_string(inst.GUID, "_ambient_sound")
 
     inst.cc_index = net_byte(inst.GUID, "cc_index", "cc_index")
     inst.interior_tags = {}
@@ -442,6 +489,9 @@ local function fn()
 
     inst.walltexture = nil
     inst.floortexture = nil
+
+    inst.SetInteriorFloorTexture = SetInteriorFloorTexture
+    inst.SetInteriorWallsTexture = SetInteriorWallsTexture
 
     inst:ListenForEvent("onremove", OnRemove)
 

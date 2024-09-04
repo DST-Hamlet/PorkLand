@@ -24,4 +24,8 @@ With Bash
 GIT_LFS_SKIP_SMUDGE=1
 ```
 
-After `git clone`, you need to copy the missing sound files from Don't Starve's folder (for example `C:\Program Files (x86)\Steam\steamapps\common\dont_starve\data\DLC0003\sound`) manually
+After `git clone`, you'll need to copy the missing sound files from Don't Starve's folder (for example `C:/Program Files (x86)/Steam/steamapps/common/dont_starve/data/DLC0003/sound/`) manually, currently you need
+
+- `dont_starve/data/DLC0003/sound/DLC003_AMB_stream.fsb`
+- `dont_starve/data/DLC0003/sound/DLC003_music_stream.fsb`
+- `dont_starve/data/DLC0003/sound/DLC003_sfx.fsb`

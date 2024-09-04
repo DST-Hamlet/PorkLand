@@ -1,0 +1,10 @@
+name: Missing Feature
+description: This is a feature that's in the Don't Starve Hamlet but not in this mod yet
+labels: ["missing feature"]
+body:
+  - type: textarea
+    id: what-is-missing
+    attributes:
+      label: What is missing?
+    validations:
+      required: true

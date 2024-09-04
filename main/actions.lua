@@ -51,6 +51,7 @@ if not rawget(_G, "HotReloading") then
         PIG_BANDIT_EXIT = Action({}),
 
         SHOP = Action({ distance = 2.5 }),
+        RENOVATE = Action({}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -64,6 +65,10 @@ end
 local _ValidToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.validfn, "ValidToolWork")
 local _DoToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
 local function DoToolWork(act, workaction, ...)
+    if act.doer and act.doer.player_classified then
+        act.doer.player_classified._last_work_target:set(act.target)
+        act.doer.player_classified:ClearLastTarget()
+    end
     if act.target.components.hackable ~= nil and act.target.components.hackable:CanBeHacked() and workaction == ACTIONS.HACK then
         if act.invobject and act.invobject.components.obsidiantool then
             act.invobject.components.obsidiantool:Use(act.doer, act.target)
@@ -279,6 +284,9 @@ end
 
 ACTIONS.USEDOOR.fn = function(act, forcesuccess)
     local door = act.target
+    if not door or not door.components.door then
+        return false
+    end
     if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
         return false, "LOCKED"
     end
@@ -533,6 +541,18 @@ ACTIONS.PIG_BANDIT_EXIT.fn = function(act)
     return true
 end
 
+ACTIONS.RENOVATE.fn = function(act)
+    if act.target:HasTag("renovatable") then
+        if act.invobject.components.renovator then
+            act.invobject.components.renovator:Renovate(act.target)
+        end
+
+        act.invobject:Remove()
+
+        return true
+    end
+end
+
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
 function ACTIONS.FERTILIZE.fn(act, ...)
@@ -747,7 +767,14 @@ ACTIONS.MANUALEXTINGUISH.fn = function(act, ...)
             return true
         end
     end
+    if act.invobject == nil then
+        return false
+    end
     return _MANUALEXTINGUISH_fn(act, ...)
+end
+
+ACTIONS.MANUALEXTINGUISH.validfn = function(act)
+    return act.target and act.target:IsValid() and act.target.components.burnable and act.target.components.burnable:IsBurning()
 end
 
 -- SCENE        using an object in the world
@@ -817,6 +844,11 @@ local PL_COMPONENT_ACTIONS =
         poisonhealer = function(inst, doer, target, actions, right)
             if right and target and target:HasTag("poisonable") then
                 table.insert(actions, ACTIONS.CUREPOISON)
+            end
+        end,
+        renovator = function(inst, doer, target, actions, right)
+            if target:HasTag("renovatable") then
+                table.insert(actions, ACTIONS.RENOVATE)
             end
         end,
     },

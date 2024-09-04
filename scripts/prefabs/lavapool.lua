@@ -110,6 +110,7 @@ local function fn()
     inst.components.fueled.maxfuel = TUNING.LAVAPOOL_FUEL_MAX
     inst.components.fueled.accepting = false
     inst.components.fueled.rate = 1
+    inst.components.fueled:StartConsuming()
 
     inst:AddComponent("inspectable")
 

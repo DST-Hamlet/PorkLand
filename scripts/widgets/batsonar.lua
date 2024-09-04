@@ -33,6 +33,7 @@ end)
 function BatSonar:StartSonar()
     if not self.active then
         self.time = TRANSITION_TIME_IN
+        self.alpha = 1
         self.alpha_goal = 1
         self.active = true
         self:StartUpdating()

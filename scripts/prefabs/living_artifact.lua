@@ -56,6 +56,8 @@ local function BecomeIronLord(inst, instant)
     player:AddTag("laser_immune")
     player:AddTag("mech")
 
+    player.components.inventory:Hide()
+
     player:DoTaskInTime(0, function() -- wait for player_classified to be constructed
         player.player_classified.instantironlord:set(true)
         player.player_classified.isironlord:set(true)
@@ -155,6 +157,7 @@ local function Revert(inst)
     player:RemoveTag("fireimmune")
 
     player.player_classified.isironlord:set(false)
+    player.components.inventory:Show()
 
     player:RemoveComponent("worker")
 

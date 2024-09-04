@@ -142,6 +142,7 @@ local function spikefn()
 
     inst:AddTag("hostile")
     inst:AddTag("bramble")
+    inst:AddTag("soulless")
 
     inst.entity:SetPristine()
 
@@ -163,13 +164,19 @@ local function spikefn()
     inst:SetStateGraph("SGbramble")
     inst.sg:GoToState("grow")
 
+    inst:AddComponent("burnable")
+    inst.components.burnable.canlight = false
+    inst.components.burnable:SetFXLevel(2)
+    inst.components.burnable:SetBurnTime(99999)
+    inst.components.burnable:AddBurnFX("character_fire", Vector3(0, 0, 0))
+    MakeSmallPropagator(inst)
     MakeHauntable(inst)
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
 
-    inst:DoTaskInTime((math.random() * 0.5) + 0.3, function()
-        if not inst.spike_spawned then
+    inst:DoTaskInTime((math.random() * 2) + 1.5, function()
+        if not inst.spike_spawned and not inst.components.health:IsDead() then
             PropegateHedge(inst)
         end
     end)
@@ -305,6 +312,7 @@ local function corefn()
     inst:AddTag("hostile")
     inst:AddTag("bramble")
     inst:AddTag("bramble_core")
+    inst:AddTag("soulless")
 
     inst.entity:SetPristine()
 
@@ -327,6 +335,12 @@ local function corefn()
 
     inst:SetStateGraph("SGbramble")
 
+    inst:AddComponent("burnable")
+    inst.components.burnable.canlight = false
+    inst.components.burnable:SetFXLevel(3)
+    inst.components.burnable:SetBurnTime(99999)
+    inst.components.burnable:AddBurnFX("character_fire", Vector3(0, 0, 0))
+    MakeSmallPropagator(inst)
     MakeHauntable(inst)
 
     inst:ListenForEvent("attacked", OnAttacked)
