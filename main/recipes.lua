@@ -160,7 +160,7 @@ AddRecipeFilter({
 AddRecipeFilter({
     name =  "HOME_MISC", -- "reno_tab_homekits",
     atlas = "images/hud/pl_inventoryimages.xml",
-    image = "filter_city.tex",
+    image = "reno_tab_homekits.tex",
     home_prototyper = true,
 }, 1)
 

@@ -41,7 +41,7 @@ local function is_point_suitable(x, z)
     end
 
     if not _map:CanPlantAtPoint(x, 0, z)
-    and _map:IsDeployPointClear(Vector3(x, 0, z), nil, DEPLOYSPACING_RADIUS[DEPLOYSPACING.DEFAULT]) then
+    or not _map:IsDeployPointClear(Vector3(x, 0, z), nil, DEPLOYSPACING_RADIUS[DEPLOYSPACING.DEFAULT]) then
         return false
     end
 
@@ -70,6 +70,8 @@ local function OnUpdate()
                 if _counters[index] >= COUNTER_REQUIREMENT then
                     local flower = SpawnPrefab("flower_rainforest")
                     flower.Transform:SetPosition(x, 0, z) -- could use some anim/player vision check
+                    flower.AnimState:PlayAnimation("grow_"..flower.animname)
+                    flower.AnimState:PushAnimation(flower.animname)
                     _counters[index] = 0
                 end
             end
