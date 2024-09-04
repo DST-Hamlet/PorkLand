@@ -117,7 +117,7 @@ local function MakePillarPlacer(name, bank, build, anim)
         inst.components.placer.override_build_point_fn = placer_override_build_point
         inst.components.placer.override_testfn = placer_override_testfn
         inst.accept_placement = false
-        inst:ListenForEvent("remove", ClearMarkers)
+        inst:ListenForEvent("onremove", ClearMarkers)
     end)
 end
 
