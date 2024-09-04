@@ -7,7 +7,7 @@ local Mystery = Class(function(self, inst)
 	    	if not self.rolled then
 	    		self:RollForMystery()
 	    	end
-    	end)
+    	end) -- 或许可以不在玩家进入世界的第一帧进行这部分计算
 end)
 
 function Mystery:GenerateReward()
