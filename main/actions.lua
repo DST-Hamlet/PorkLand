@@ -52,6 +52,8 @@ if not rawget(_G, "HotReloading") then
 
         SHOP = Action({ distance = 2.5 }),
         RENOVATE = Action({}),
+
+        SEARCH = Action({priority = -1, distance = 1}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -279,6 +281,18 @@ ACTIONS.SPY.fn = function(act)
     elseif act.target and act.target.components.mystery_door then
         act.target.components.mystery_door:Investigate(act.doer)
         return true
+    end
+end
+
+ACTIONS.SEARCH.fn = function(act)
+    if act.target and act.target.components.mystery then
+        return act.target.components.mystery:SearchTest(act.doer)
+    end
+end
+
+ACTIONS.SEARCH.validfn = function(act)
+    if act.target then
+        return act.target:HasTag("mystery")
     end
 end
 
@@ -803,9 +817,14 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.REARM)
             end
         end,
-        livingartifact = function (inst, doer, actions, right)
+        livingartifact = function(inst, doer, actions, right)
             if not inst:HasTag("enabled") and right then
                 table.insert(actions, ACTIONS.USE_LIVING_ARTIFACT)
+            end
+        end,
+        mystery = function(inst, doer, actions, right)
+            if right and inst:HasTag("mystery") then
+                table.insert(actions, ACTIONS.SEARCH)
             end
         end,
         visualslot = function(inst, doer, actions, right)

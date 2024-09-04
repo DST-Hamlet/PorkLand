@@ -1,4 +1,5 @@
 return {
+    MYSTERIOUS = "Peculiar",
     ACTIONS = {
         CHARGE_UP = "Charge",
         CUREPOISON = {

@@ -197,6 +197,8 @@ AddPlayerPostInit(function(inst)
 
     inst:AddComponent("shopper")
 
+    inst:AddComponent("uniqueidentity")
+
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)
 

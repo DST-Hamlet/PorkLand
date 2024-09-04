@@ -11,6 +11,11 @@ return {
             GENERIC = "It won't open.",
             LOCKED = "It's locked.",
         },
+        SEARCH = {
+            GENERIC = "A magnifying glass would be better.",--1 to 10
+            SEARCHFORAWHILE = "Where there is Willson is a way!",--10 to 50
+            CLOSETOSUCCESS = "Very close...",--50 plus
+        },
     },
     ANNOUCE_ALARMOVER = "I think I got away.",
     ANNOUCE_BATS = "I don't like the look of this.",

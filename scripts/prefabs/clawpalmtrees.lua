@@ -414,7 +414,7 @@ local function MakeTree(name, stage, data)
 
         inst:AddComponent("lootdropper")
 
-        -- inst:AddComponent("mystery")
+        inst:AddComponent("mystery")
 
         inst:AddComponent("growable")
         inst.components.growable.stages = growth_stages

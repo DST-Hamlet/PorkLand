@@ -223,3 +223,13 @@ function EntityScript:RestartBrain(...)
     end
     return _RestartBrain(self, ...)
 end
+
+local _GetAdjectivedName = EntityScript.GetAdjectivedName
+function EntityScript:GetAdjectivedName(...)
+    local name = self:GetBasicDisplayName()
+    if self:HasTag("mystery") then
+        name = ConstructAdjectivedName(self, name, STRINGS.MYSTERIOUS)
+        return name
+    end
+    return _GetAdjectivedName(self, ...)
+end
