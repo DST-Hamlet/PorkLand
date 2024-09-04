@@ -50,7 +50,7 @@ end
 
 function Mystery:RollForMystery()
 	self.rolled = true
-	if math.random() <= 0.5 then
+	if math.random() <= 0.05 then
 		self:AddReward()
 	end
 end
