@@ -735,6 +735,7 @@ return {
         SPIDER_MONKEY_NEST = "Whut slumbers wit'in?",
         SPIDER_MONKEY_TREE = "Be'fulla tha beasties.",
         SPRINKLER = "Relief fer tha'plants.",
+        STEAMEDHAMSANDWICH = "'Tis a'unforgettable luncheon.",
         STONE_DOOR = "Heavier than m'anchor.",
         SWINGING_LIGHT1 = "F'ncy pants lantern.",
         SWINGING_LIGHT_BASIC_BULB = "Barebones lantern.",

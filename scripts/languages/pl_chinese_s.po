@@ -5,16 +5,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT Version: 2.0"
 
-#. STRINGS.ACTIONS.USE_LIVING_ARTIFACT
-msgctxt "STRINGS.ACTIONS.USE_LIVING_ARTIFACT"
-msgid "Use"
-msgstr "使用"
-
-#. STRINGS.ACTIONS.GAS
-msgctxt "STRINGS.ACTIONS.GAS"
-msgid "Gas"
-msgstr "喷洒"
-
 #. STRINGS.ACTIONS.CHARGE_UP
 msgctxt "STRINGS.ACTIONS.CHARGE_UP"
 msgid "Charge"
@@ -64,6 +54,11 @@ msgstr "钓鱼"
 msgctxt "STRINGS.ACTIONS.FISH.RETRIEVE"
 msgid "Retrieve"
 msgstr "回收"
+
+#. STRINGS.ACTIONS.GAS
+msgctxt "STRINGS.ACTIONS.GAS"
+msgid "Gas"
+msgstr "喷洒"
 
 #. STRINGS.ACTIONS.HACK
 msgctxt "STRINGS.ACTIONS.HACK"
@@ -139,6 +134,11 @@ msgstr "卸下"
 msgctxt "STRINGS.ACTIONS.USEDOOR"
 msgid "Enter"
 msgstr "进入"
+
+#. STRINGS.ACTIONS.USE_LIVING_ARTIFACT
+msgctxt "STRINGS.ACTIONS.USE_LIVING_ARTIFACT"
+msgid "Use"
+msgstr "使用"
 
 #. STRINGS.ACTIONS.WEIGHDOWN
 msgctxt "STRINGS.ACTIONS.WEIGHDOWN"
@@ -3374,6 +3374,11 @@ msgstr "实木的"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SPRINKLER"
 msgid "Water you think it's for?"
 msgstr "你以为那是用来喝水的吗？"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "Science says it's a hamburger."
+msgstr "科学说那是一个汉堡。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.STONE_DOOR"
@@ -6734,6 +6739,11 @@ msgstr "一棵被蛛网紧紧裹住的树。真是太神奇了！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SPRINKLER"
 msgid "A dynamic mechanical atomizer of H2O!"
 msgstr "一个充满活力的机械水雾化器！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "Delightfully devilish."
+msgstr "真是好吃的高脂恶魔。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.STONE_DOOR"
@@ -10104,6 +10114,11 @@ msgstr "冲啊，那是小蜘蛛猴的东西。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SPRINKLER"
 msgid "Does all my watering for me."
 msgstr "所有的水都为我而洒。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "It's fast food."
+msgstr "这是快餐。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.STONE_DOOR"
@@ -17745,6 +17760,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SPRINKLER"
 msgid "It garnishes the plants with water."
 msgstr "它用水来点缀植物."
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "Tastes like fast food."
+msgstr "一份快餐。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.STONE_DOOR"
 msgid "Like entering a traditional stone oven."
@@ -21089,6 +21109,11 @@ msgstr "一颗爬行野兽的树。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SPRINKLER"
 msgid "Rain comes from within it's workings."
 msgstr "在它的工作范围内都会下起雨。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "Obviously grilled!"
+msgstr "很显然它被烤过了！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.STONE_DOOR"
@@ -24435,6 +24460,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SPRINKLER"
 msgid "Good. Now I don't have to water by hand."
 msgstr "不错,现在我不用亲自浇水了。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "They're obviously grilled."
+msgstr "显然用烤的会更好。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.STONE_DOOR"
 msgid "A door to another room."
@@ -27764,6 +27794,11 @@ msgstr "我打赌那些猴子喜欢这地方。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SPRINKLER"
 msgid "Let's run through it."
 msgstr "我们快点跑出去。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "These are just hamburgers."
+msgstr "这是块火腿三明治。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.STONE_DOOR"
@@ -31099,6 +31134,11 @@ msgstr "罪恶深居其中。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SPRINKLER"
 msgid "It cannot water my parched soul."
 msgstr "它无法满足我干涸的灵魂。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "Old family recipe."
+msgstr "古老的家传秘方。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.STONE_DOOR"
@@ -34465,6 +34505,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SPRINKLER"
 msgid "I'll be honest, I'm probably going to run through it."
 msgstr "平心而论，我可能会被它淋几次。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "I thought I was having steamed clams."
+msgstr "我还以为我吃的是蒸蛤蜊。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.STONE_DOOR"
 msgid "Keep the doorway up while I'm gone adventuring."
@@ -37794,6 +37839,11 @@ msgstr "蛛形纲人科动物常出没的树。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SPRINKLER"
 msgid "Some much needed hydration."
 msgstr "有些东西会需要水合反应。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "I am prepared for an unforgettable luncheon."
+msgstr "我准备了一份难忘的午餐。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.STONE_DOOR"
@@ -41130,6 +41180,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SPRINKLER"
 msgid "'TIS DRINKIES FOR WILBA FOODS"
 msgstr "这是薇尔芭的食物的饮料"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "WILBA THOUGHT SHE WAS'T HAVING STEAMED CLAMS"
+msgstr "薇尔芭认为她没有吃过蒸蛤蜊"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.STONE_DOOR"
 msgid "AS COLDETH AS ANY STONE"
@@ -44439,6 +44494,11 @@ msgstr "看起来很可燃。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SPRINKLER"
 msgid "It better not put out any of my fires."
 msgstr "最好别熄灭我的火。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "It's a ham sandwich."
+msgstr "是一个火腿三明治。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.STONE_DOOR"
@@ -49555,6 +49615,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SPRINKLER"
 msgid "Weeee. Wolfgang play in sprinkler!"
 msgstr "哇哦哦哦哦。沃尔夫冈在喷水器里玩！"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "Is mouth watering hamburgers."
+msgstr "是个火腿三明治。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.STONE_DOOR"
 msgid "Mighty door for mighty room."
@@ -52879,6 +52944,11 @@ msgstr "那里有真正可怕的生物。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SPRINKLER"
 msgid "Good for watering."
 msgstr "有利于浇水"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "Mouth watering hamburgers."
+msgstr "火腿三明治。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.STONE_DOOR"
@@ -56209,6 +56279,11 @@ msgstr "住满着野兽。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SPRINKLER"
 msgid "Relief fer tha'plants."
 msgstr "这是救济植物用的。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "'Tis a'unforgettable luncheon."
+msgstr "这是一顿难以忘蛙的午餐。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.STONE_DOOR"
@@ -59579,6 +59654,11 @@ msgstr "被困的朋友吗？"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SPRINKLER"
 msgid "Makes air water"
 msgstr "让空气变得湿润"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "Egads!"
+msgstr "天哪！"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.STONE_DOOR"
@@ -66420,6 +66500,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SPRINKLER"
 msgid "AN ENEMY BARRAGE!"
 msgstr "敌人的一种的喷射式攻击！"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.STEAMEDHAMSANDWICH"
+msgid "AN UNFORGETTABLE LUNCHEON"
+msgstr "一顿难忘的午餐"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.STONE_DOOR
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.STONE_DOOR"
 msgid "EXTERNAL EXPANSION PORT"
@@ -66792,117 +66877,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Henrietta"
+msgid "Alice"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Luella"
+msgid "Agnes"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Alexandrina"
+msgid "Catherine"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Ebba"
+msgid "Lilian"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Edith"
+msgid "Louise"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Flora"
+msgid "Ottilie"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Florence"
+msgid "Ophelia"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Georgette"
+msgid "Sophronia"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Alice"
+msgid "Charlotte"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Agnes"
+msgid "Della"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Catherine"
+msgid "Henrietta"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Lilian"
+msgid "Arabella"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Louise"
+msgid "Belle"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Ottilie"
+msgid "Beryl"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Ophelia"
+msgid "Briar"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Sophronia"
+msgid "Beatrice"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Charlotte"
+msgid "Luella"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Della"
+msgid "Alexandrina"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Arabella"
+msgid "Ebba"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Belle"
+msgid "Edith"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Beryl"
+msgid "Flora"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Briar"
+msgid "Florence"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Beatrice"
+msgid "Georgette"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -66912,122 +66997,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Charles"
+msgid "Charley"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Ewart"
+msgid "Oliver"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Douglas"
+msgid "Tesla"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Edison"
+msgid "Thaddeus"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Edmund"
+msgid "Wellington"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Larkin"
+msgid "Gulliver"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Herbert"
+msgid "Clarence"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Henry"
+msgid "Merritt"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Charley"
+msgid "Sterling"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Oliver"
+msgid "Frederick"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Tesla"
+msgid "Charles"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Thaddeus"
+msgid "Leopold"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Wellington"
+msgid "Albert"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Gulliver"
+msgid "Alfred"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Clarence"
+msgid "Arthur"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Merritt"
+msgid "Edward"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Sterling"
+msgid "George"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Frederick"
+msgid "Ewart"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Leopold"
+msgid "Douglas"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Albert"
+msgid "Edison"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Alfred"
+msgid "Edmund"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Arthur"
+msgid "Larkin"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Edward"
+msgid "Herbert"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "George"
+msgid "Henry"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -67037,77 +67122,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Palmerston"
+msgid "Aberdeen"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Gladstone"
+msgid "Talbot"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Disraeli"
+msgid "Thames"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Salisbury"
+msgid "Stockton"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Kensington"
+msgid "Darlington"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Conroy"
+msgid "Peel"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Greville"
+msgid "Derby"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Hastings"
+msgid "Palmerston"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Aberdeen"
+msgid "Gladstone"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Talbot"
+msgid "Disraeli"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Thames"
+msgid "Salisbury"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Stockton"
+msgid "Kensington"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Darlington"
+msgid "Conroy"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Peel"
+msgid "Greville"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Derby"
+msgid "Hastings"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -71667,82 +71752,82 @@ msgstr "箣竹"
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr "山茱萸"
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Betula"
+msgid "Juniperus"
 msgstr "柏桧"
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr "马利筋"
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr "栎"
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr "大葱"
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr "豌豆"
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr "荆蓟"
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr "麝香草"
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr "大豆"
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Juniperus"
+msgid "Betula"
 msgstr "桦木"
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr "覆盆子"
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr "胡萝卜"
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr "甘蓝"
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr "齿栗叶"
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr "车轴草"
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr "黄瓜"
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -71910,6 +71995,11 @@ msgctxt "STRINGS.NAMES.ANTMASKHAT"
 msgid "Mant Mask"
 msgstr "蚁人面具"
 
+#. STRINGS.NAMES.ANTNAMES_PREFIX
+msgctxt "STRINGS.NAMES.ANTNAMES_PREFIX"
+msgid "Drone #"
+msgstr "工蚁 #"
+
 #. STRINGS.NAMES.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.NAMES.ANTQUEEN_CHAMBERS"
 msgid "Queen Womant Chambers"
@@ -71924,6 +72014,11 @@ msgstr "石笋王座"
 msgctxt "STRINGS.NAMES.ANTSUIT"
 msgid "Mant Suit"
 msgstr "蚁人盔甲"
+
+#. STRINGS.NAMES.ANTWARRIORNAMES_PREFIX
+msgctxt "STRINGS.NAMES.ANTWARRIORNAMES_PREFIX"
+msgid "Warrior #"
+msgstr "兵蚁 #"
 
 #. STRINGS.NAMES.ANT_CAVE_LANTERN
 msgctxt "STRINGS.NAMES.ANT_CAVE_LANTERN"
@@ -74145,6 +74240,11 @@ msgctxt "STRINGS.NAMES.SQUISH"
 msgid "Squeezing"
 msgstr "挤压"
 
+#. STRINGS.NAMES.STEAMEDHAMSANDWICH
+msgctxt "STRINGS.NAMES.STEAMEDHAMSANDWICH"
+msgid "Steamed Ham Sandwich"
+msgstr "蒸火腿三明治"
+
 #. STRINGS.NAMES.STONE_DOOR
 msgctxt "STRINGS.NAMES.STONE_DOOR"
 msgid "Stone Archway"
@@ -74489,16 +74589,6 @@ msgstr "椭圆玻璃窗帘"
 msgctxt "STRINGS.NAMES.WOOD_DOOR"
 msgid "Hardwood Door"
 msgstr "硬木门"
-
-#. STRINGS.NAMES.ANTNAMES_PREFIX
-msgctxt "STRINGS.NAMES.ANTNAMES_PREFIX"
-msgid "Drone #"
-msgstr "工蚁 #"
-
-#. STRINGS.NAMES.ANTWARRIORNAMES_PREFIX
-msgctxt "STRINGS.NAMES.ANTWARRIORNAMES_PREFIX"
-msgid "Warrior #"
-msgstr "兵蚁 #"
 
 #. STRINGS.QUEENPIGNAMES.1
 msgctxt "STRINGS.QUEENPIGNAMES.1"

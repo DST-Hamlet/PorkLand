@@ -735,6 +735,7 @@ return {
         SPIDER_MONKEY_NEST = "Oh! A spider nest!",
         SPIDER_MONKEY_TREE = "Bet those monkey things like this place.",
         SPRINKLER = "Let's run through it.",
+        STEAMEDHAMSANDWICH = "These are just hamburgers.",
         STONE_DOOR = "That door rocks!",
         SWINGING_LIGHT1 = "Good. We need a light.",
         SWINGING_LIGHT_BASIC_BULB = "Good. We need a light.",

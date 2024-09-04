@@ -752,6 +752,7 @@ return {
         SPIDER_MONKEY_NEST = "Looks sticky. And stinky.",
         SPIDER_MONKEY_TREE = "Not really a 'tree climbing' tree.",
         SPRINKLER = "I'll be honest, I'm probably going to run through it.",
+        STEAMEDHAMSANDWICH = "I thought I was having steamed clams.",
         STONE_DOOR = "Keep the doorway up while I'm gone adventuring.",
         SWINGING_LIGHT1 = "It's a light. Nothing else.",
         SWINGING_LIGHT_BASIC_BULB = "A light from above.",

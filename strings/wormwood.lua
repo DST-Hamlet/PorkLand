@@ -751,6 +751,7 @@ return {
         SPIDER_MONKEY_NEST = "Anyone home?",
         SPIDER_MONKEY_TREE = "Trapped friend?",
         SPRINKLER = "Makes air water",
+        STEAMEDHAMSANDWICH = "Egads!",
         STONE_DOOR = "Another room",
         SWINGING_LIGHT1 = "Light!",
         SWINGING_LIGHT_BASIC_BULB = "Light",

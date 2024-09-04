@@ -335,6 +335,7 @@ local ruin_data = {
         loot = "relic_5",
         master_postinit = function(inst)
             inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_MUSHROOM"])
+            inst.components.inspectable.nameoverride = "PIG_RUINS_MUSHROOM"
         end
     },
     pig_ruins_sow = {

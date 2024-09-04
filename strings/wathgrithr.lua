@@ -740,6 +740,7 @@ return {
         SPIDER_MONKEY_NEST = "Come out and fight!",
         SPIDER_MONKEY_TREE = "A tree for climbing beasties.",
         SPRINKLER = "Rain comes from within it's workings.",
+        STEAMEDHAMSANDWICH = "Obviously grilled!",
         STONE_DOOR = "Yonder lies another room!",
         SWINGING_LIGHT1 = "It shall light my conquests!",
         SWINGING_LIGHT_BASIC_BULB = "It shall light my conquests.",

@@ -754,6 +754,7 @@ return {
         SPIDER_MONKEY_NEST = "I do not want to see what lives in there.",
         SPIDER_MONKEY_TREE = "Wooden.",
         SPRINKLER = "Water you think it's for?",
+        STEAMEDHAMSANDWICH = "Science says it's a hamburger.",
         STONE_DOOR = "That door rocks.",
         SWINGING_LIGHT1 = "Not very enlightening.",
         SWINGING_LIGHT_BASIC_BULB = "Looks pretty sad.",
