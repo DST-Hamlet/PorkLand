@@ -20,7 +20,7 @@ local function InitEnvelopes()
         }
     )
 
-    local SCALE = 1.5
+    local SCALE = 2.92975
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
@@ -78,6 +78,8 @@ local function SetTexture(inst, texture)
     end
     if texture:find("noise_woodfloor") then
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME2)
+    elseif texture:find("floor") then
+        inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
     end
 end
 

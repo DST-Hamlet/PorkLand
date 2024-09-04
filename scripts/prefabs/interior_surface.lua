@@ -31,6 +31,8 @@ local function UpdateFx(inst)
         local mod = 1
         if path:find("noise_woodfloor") then
             mod = 7/8
+        elseif path:find("floor") then
+            mod = 5/8
         end
         local FLOOR_TILE_SCALE = FLOOR_TILE_SCALE * mod
         for x = 0, w/FLOOR_TILE_SCALE do
