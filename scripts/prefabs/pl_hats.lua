@@ -586,16 +586,6 @@ local function MakeHat(name)
 
     -----------------------------------------------------------------------------
 
-    local function gasmask_onequip(inst, owner)
-        fns.opentop_onequip(inst, owner)
-        inst:AddTag("has_gasmask")
-    end
-
-    local function gasmask_onunequip(inst, owner)
-        _onunequip(inst, owner)
-        inst:RemoveTag("has_gasmask")
-    end
-
     local function gasmask_custom_init(inst)
         inst:AddTag("gasmask")
         inst:AddTag("muffler") -- TODO add missing sound effects
@@ -609,11 +599,8 @@ local function MakeHat(name)
         end
 
         inst.components.equippable.dapperness = TUNING.CRAZINESS_SMALL
-
         inst.components.equippable.poisongasblocker = true
-
-        inst.components.equippable:SetOnEquip(gasmask_onequip)
-        inst.components.equippable:SetOnUnequip(gasmask_onunequip)
+        inst.components.equippable:SetOnEquip(fns.opentop_onequip)
 
         inst:AddComponent("fueled")
         inst.components.fueled.fueltype = FUELTYPE.USAGE

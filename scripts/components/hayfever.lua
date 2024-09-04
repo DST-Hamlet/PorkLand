@@ -49,7 +49,7 @@ function Hayfever:CanSneeze()
     local x, y, z = self.inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 30, MUST_TAGS)
 
-    if self.inst:HasTag("has_gasmask") or self.inst:HasTag("has_hayfeverhat") or #ents > 0 then
+    if self.inst.components.inventory:EquipHasTag("gasmask") or self.inst:HasTag("has_hayfeverhat") or #ents > 0 then
         return false
     end
 
