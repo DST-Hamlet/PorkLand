@@ -14,6 +14,7 @@ local InteriorVisitor = Class(function(self, inst)
 
     self.interior_map = {}
     self.interior_map_icons_override = nil
+    self.interior_door_status = {}
 
     inst:StartUpdatingComponent(self)
 end)
@@ -164,6 +165,12 @@ function InteriorVisitor:OnNewInteriorMapData(data)
     for id, data in pairs(data) do
         self.interior_map[id] = data
     end
+end
+
+-- Receiving from interior_door client RPC
+function InteriorVisitor:OnNewInteriorDoorData(data)
+    -- only getting data for current room
+    self.interior_door_status[data.current_interior] = data
 end
 
 -- function InteriorVisitor:OnRemoveFromEntity()

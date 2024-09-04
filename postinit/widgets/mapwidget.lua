@@ -218,6 +218,27 @@ local function UpdateTileWidgetPositionScale(widget, scale)
     widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
 end
 
+local function UpdateDoorWidgetStatus(widgets, data)
+    local door_id = get_door_id(data.current_interior, data.target_interior)
+    local door_widget = widgets.doors[door_id]
+    if not door_widget then
+        return
+    end
+
+    if data.hidden then
+        door_widget:Hide()
+        return
+    else
+        door_widget:Show()
+    end
+
+    if data.disabled then
+        door_widget.lock:Show()
+    else
+        door_widget.lock:Hide()
+    end
+end
+
 local on_update = MapWidget.OnUpdate
 function MapWidget:OnUpdate(...)
     on_update(self, ...)
@@ -226,9 +247,9 @@ function MapWidget:OnUpdate(...)
         return
     end
 
+    local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
     local interiorvisitor = self.owner.replica.interiorvisitor
     if interiorvisitor.interior_map_icons_override then
-        local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
         local new_icons, has_new_icons = DiffWidget(self, interiorvisitor.interior_map_icons_override, current_room_id)
         self.interior_map_widgets.rooms[current_room_id].icons = new_icons
         if has_new_icons then
@@ -242,6 +263,10 @@ function MapWidget:OnUpdate(...)
             end
         end
         interiorvisitor.interior_map_icons_override = nil
+    end
+
+    if interiorvisitor.interior_door_status[current_room_id] then
+        UpdateDoorWidgetStatus(self.interior_map_widgets, interiorvisitor.interior_door_status[current_room_id])
     end
 
     local scale = 0.75 / self.minimap:GetZoom()

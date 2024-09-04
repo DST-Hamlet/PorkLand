@@ -1,3 +1,15 @@
+local function ondoorstatus(self)
+    local data = {
+        disabled = self.disabled,
+        hidden = self.hidden,
+        target_interior = self.target_interior,
+        current_interior = self.inst:GetCurrentInteriorID(),
+    }
+    TheWorld.components.interiorspawner:ForEachPlayerInRoom(data.current_interior, function(player)
+        SendModRPCToClient(GetClientModRPC("PorkLand", "interior_door"), player.userid, ZipAndEncodeString(data))
+    end)
+end
+
 local function ondisabled(self, value)
     if value then
         self.inst:AddTag("door_disabled")
@@ -159,11 +171,16 @@ function Door:SetDoorDisabled(status, cause)
         self.disable_causes[cause] = status
     end
 
+    local was_disabled = self.disabled
     self.disabled = false
     for _, setting in pairs(self.disable_causes) do
         if setting then
             self.disabled = true
         end
+    end
+
+    if was_disabled ~= self.disabled then
+        ondoorstatus(self)
     end
 end
 
@@ -184,7 +201,11 @@ function Door:UpdateDoorVis()
 end
 
 function Door:SetHidden(hidden)
+    local was_hidden = self.hidden
     self.hidden = hidden
+    if was_hidden ~= self.hidden then
+        ondoorstatus(self)
+    end
 end
 
 function Door:OnSave()
