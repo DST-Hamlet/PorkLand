@@ -167,10 +167,21 @@ function InteriorVisitor:OnNewInteriorMapData(data)
     end
 end
 
+local function get_door_id(current_room_id, target_interior_id)
+    if current_room_id < target_interior_id then
+        return tostring(current_room_id) .. "-" .. tostring(target_interior_id)
+    else
+        return tostring(target_interior_id) .. "-" .. tostring(current_room_id)
+    end
+end
+
 -- Receiving from interior_door client RPC
 function InteriorVisitor:OnNewInteriorDoorData(data)
     -- only getting data for current room
-    self.interior_door_status[data.current_interior] = data
+    if not self.interior_door_status[data.current_interior] then
+        self.interior_door_status[data.current_interior] = {}
+    end
+    self.interior_door_status[data.current_interior][get_door_id(data.current_interior, data.target_interior)] = data
 end
 
 -- function InteriorVisitor:OnRemoveFromEntity()

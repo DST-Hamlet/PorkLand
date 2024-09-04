@@ -10,19 +10,25 @@ local function ondoorstatus(self)
     end)
 end
 
-local function ondisabled(self, value)
+local function ondisabled(self, value, old_value)
     if value then
         self.inst:AddTag("door_disabled")
     else
         self.inst:RemoveTag("door_disabled")
     end
+    if value ~= old_value then
+        ondoorstatus(self)
+    end
 end
 
-local function onhidden(self, value)
+local function onhidden(self, value, old_value)
     if value then
         self.inst:AddTag("door_hidden")
     else
         self.inst:RemoveTag("door_hidden")
+    end
+    if value ~= old_value then
+        ondoorstatus(self)
     end
 end
 
@@ -171,16 +177,11 @@ function Door:SetDoorDisabled(status, cause)
         self.disable_causes[cause] = status
     end
 
-    local was_disabled = self.disabled
     self.disabled = false
     for _, setting in pairs(self.disable_causes) do
         if setting then
             self.disabled = true
         end
-    end
-
-    if was_disabled ~= self.disabled then
-        ondoorstatus(self)
     end
 end
 
@@ -201,11 +202,7 @@ function Door:UpdateDoorVis()
 end
 
 function Door:SetHidden(hidden)
-    local was_hidden = self.hidden
     self.hidden = hidden
-    if was_hidden ~= self.hidden then
-        ondoorstatus(self)
-    end
 end
 
 function Door:OnSave()

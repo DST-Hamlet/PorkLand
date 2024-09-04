@@ -130,16 +130,17 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
             local door_icon = Widget("InteriorDoor")
             door_icon:AddChild(Image("interior_minimap/interior_minimap.xml", direction.x ~= 0 and "pl_interior_passage4.tex" or "pl_interior_passage3.tex"))
             door_icon.lock = door_icon:AddChild(Image("interior_minimap/interior_minimap.xml", "passage_blocked.tex"))
+            door_icon.lock:ScaleToSize(128, 128)
             door_icon.position_offset = offset + door_icon_offset
-            if not door_data.disabled then
-                door_icon.lock:Hide()
-            else
-                door_icon.lock:Show()
-            end
             if door_data.hidden then
                 door_icon:Hide()
             else
                 door_icon:Show()
+                if not door_data.disabled then
+                    door_icon.lock:Hide()
+                else
+                    door_icon.lock:Show()
+                end
             end
             widgets.doors[door_id] = door_icon
         end
@@ -218,24 +219,20 @@ local function UpdateTileWidgetPositionScale(widget, scale)
     widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
 end
 
-local function UpdateDoorWidgetStatus(widgets, data)
-    local door_id = get_door_id(data.current_interior, data.target_interior)
-    local door_widget = widgets.doors[door_id]
-    if not door_widget then
+local function UpdateDoorWidgetStatus(door_widget, data)
+    if not data then
         return
     end
 
     if data.hidden then
         door_widget:Hide()
-        return
     else
         door_widget:Show()
-    end
-
-    if data.disabled then
-        door_widget.lock:Show()
-    else
-        door_widget.lock:Hide()
+        if data.disabled then
+            door_widget.lock:Show()
+        else
+            door_widget.lock:Hide()
+        end
     end
 end
 
@@ -265,10 +262,6 @@ function MapWidget:OnUpdate(...)
         interiorvisitor.interior_map_icons_override = nil
     end
 
-    if interiorvisitor.interior_door_status[current_room_id] then
-        UpdateDoorWidgetStatus(self.interior_map_widgets, interiorvisitor.interior_door_status[current_room_id])
-    end
-
     local scale = 0.75 / self.minimap:GetZoom()
     for _, rooms in pairs(self.interior_map_widgets.rooms) do
         UpdateWidgetPositionScale(rooms.frame, scale * INTERIOR_BG_SCALE)
@@ -278,8 +271,11 @@ function MapWidget:OnUpdate(...)
             UpdateWidgetPositionScale(icon_data.widget, scale)
         end
     end
-    for _, door in pairs(self.interior_map_widgets.doors) do
+    for door_id, door in pairs(self.interior_map_widgets.doors) do
         UpdateWidgetPositionScale(door, scale * INTERIOR_DOOR_SCALE)
+        if interiorvisitor.interior_door_status[current_room_id] then
+            UpdateDoorWidgetStatus(door, interiorvisitor.interior_door_status[current_room_id][door_id])
+        end
     end
 end
 
