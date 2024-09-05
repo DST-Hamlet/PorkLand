@@ -135,23 +135,23 @@ local function UpdateArtWorkable(inst, instant)
             inst.AnimState:PlayAnimation("pillar_front_crumble")
             inst.AnimState:PushAnimation("pillar_front_crumble_idle")
             if inst.components.rotatingbillboard then
-                inst.components.rotatingbillboard.animdata.animation = "pillar_front_crumble_idle"
+                inst.components.rotatingbillboard.animdata.anim = "pillar_front_crumble_idle"
             end
         else
             inst.AnimState:PlayAnimation("pillar_front_crumble_idle")
             if inst.components.rotatingbillboard then
-                inst.components.rotatingbillboard.animdata.animation = "pillar_front_crumble_idle"
+                inst.components.rotatingbillboard.animdata.anim = "pillar_front_crumble_idle"
             end
         end
     elseif anim_level < 1 / 3 then
         inst.AnimState:PlayAnimation("pillar_front_break_2")
         if inst.components.rotatingbillboard then
-            inst.components.rotatingbillboard.animdata.animation = "pillar_front_break_2"
+            inst.components.rotatingbillboard.animdata.anim = "pillar_front_break_2"
         end
     elseif anim_level < 2 / 3 then
         inst.AnimState:PlayAnimation("pillar_front_break_1")
         if inst.components.rotatingbillboard then
-            inst.components.rotatingbillboard.animdata.animation = "pillar_front_break_1"
+            inst.components.rotatingbillboard.animdata.anim = "pillar_front_break_1"
         end
     end
     if work_left <= 0 then
@@ -282,6 +282,9 @@ local function OnLoad(inst, data)
         end
         if inst.animdata.anim then
             inst.AnimState:PlayAnimation(inst.animdata.anim, inst.animdata.animloop)
+        end
+        if inst.components.rotatingbillboard then
+            inst.components.rotatingbillboard:SetAnimation_Server(shallowcopy(inst.animdata, inst.components.rotatingbillboard.anim))
         end
     end
     if data.has_curtain then
@@ -582,7 +585,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.components.rotatingbillboard.animdata = {
                     bank = bank,
                     build = build,
-                    animation = animframe,
+                    anim = animframe,
                 }
             else
                 inst.Transform:SetTwoFaced()
