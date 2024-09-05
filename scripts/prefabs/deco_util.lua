@@ -94,6 +94,13 @@ local function OnBuilt(inst)
     SetPlayerUncraftable(inst)
     inst.onbuilt = true
 
+    if inst:HasTag("rotate_fix") then
+        inst.Transform:SetRotation(-90)
+        if inst.components.rotatingbillboard then
+            inst.components.rotatingbillboard:OnUpdate()
+        end
+    end
+
     local x, y, z = inst.Transform:GetWorldPosition()
     if inst:HasTag("cornerpost") then
         local ents = TheSim:FindEntities(x, y, z, 1, {"cornerpost"})
