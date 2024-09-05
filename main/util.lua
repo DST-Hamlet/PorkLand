@@ -291,6 +291,9 @@ function StartTakingGasDamage(inst, cause)
     local damage = inst:HasTag("insect") and POISON_DAMAGE_INSECT or POISON_DAMAGE_NON_INSECT
     inst._poison_damage_task = inst:DoPeriodicTask(1, function()
         if inst.components.inventory and inst.components.inventory:EquipHasTag("gasmask") then
+            if not inst.components.poisonable:IsPoisoned() then
+                inst.components.poisonable:DonePoisoning()
+            end
             return
         end
 
