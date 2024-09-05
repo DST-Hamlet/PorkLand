@@ -62,6 +62,15 @@ local QUAKE_LEVELS = {
         quake_intensity = 0.1,
     },
     [INTERIOR_QUAKE_LEVELS.MINOR_QUAKE] = {},
+    [INTERIOR_QUAKE_LEVELS.ANTHILL_REBUILT] = {
+        quake_time = function() return 5.5 end,
+        debrispersecond = function() return 0 end,
+        debrisbreakchance = 1,
+        max_critters = 0,
+        critter_spawn_offset = {},
+        level = 0,
+        quake_intensity = 0.6,
+    },
 }
 
 local DENSITYRADIUS = 5 -- the minimum radius that can contain 3 debris (allows for some clumping)
@@ -211,7 +220,7 @@ local OnRemoveDebris = _ismastersim and function(debris)
 end or nil
 
 local GetTimeForNextDebris = _ismastersim and function(interiorID)
-    return 1 / _debris_spawn_rates[interiorID]
+    return _debris_spawn_rates[interiorID] > 0 and (1 / _debris_spawn_rates[interiorID]) or math.huge
 end or nil
 
 local GetDebrisSpawnPoint = _ismastersim and function(interiorID, is_critter)

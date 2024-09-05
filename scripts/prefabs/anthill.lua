@@ -44,7 +44,7 @@ local EAST_DOOR_IDX  = 1
 local WEST_DOOR_IDX  = 2
 local NORTH_DOOR_IDX = 3
 local SOUTH_DOOR_IDX = 4
-local NUM_ENTRANCES = 2--3
+local NUM_ENTRANCES = 3
 local NUM_CHAMBER_ENTRANCES = 1
 local NUM_ROWS = 5
 local NUM_COLS = 5
@@ -312,13 +312,6 @@ local function CreateRegularRooms(inst)
 
                 doorway_prefabs[doorway_count].interiorID = room.id
                 TheWorld.components.interiorspawner:AddDoor(doorway_prefabs[doorway_count], exterior_door_def)
-
-                print("----------------------------------")
-                dumptable(doorway_prefabs[doorway_count].components.door)
-                print("----------------------------------")
-                dumptable(exterior_door_def)
-                print("----------------------------------")
-
                 TheWorld.components.interiorspawner:AddExterior(doorway_prefabs[doorway_count])
 
                 doorway_count = doorway_count + 1
@@ -410,34 +403,24 @@ local function RefreshDoors(inst)
     end
 end
 
-local function SpawnDust(inst, dustCount)
-    if dustCount > 0 then
-        local interior_spawner = GetWorld().components.interiorspawner
-
-        local pt = interior_spawner:getSpawnOrigin()
-        local fx = SpawnPrefab("int_ceiling_dust_fx")
+local function SpawnDust(inst, dust_count, interiorID)
+    if dust_count > 0 then
         local VARIANCE = 8.0
-
-        fx.Transform:SetPosition(pt.x + math.random(-VARIANCE, VARIANCE), 0.0, pt.z + math.random(-VARIANCE, VARIANCE))
+        local offset = Vector3(math.random(-VARIANCE, VARIANCE), 0, math.random(-VARIANCE, VARIANCE))
+        local fx = TheWorld.components.interiorspawner:SpawnObject(interiorID, "int_ceiling_dust_fx", offset)
         fx.Transform:SetScale(2.0, 2.0, 2.0)
-        inst:DoTaskInTime(0.5, function() SpawnDust(inst, dustCount - 1) end)
-    else
-        inst:DoTaskInTime(0.5, function() inst.SoundEmitter:KillSound("miniearthquake") end)
+        inst:DoTaskInTime(0.5, function() SpawnDust(inst, dust_count - 1, interiorID) end)
     end
 end
 
 local function Earthquake(inst)
-    local interior_spawner = TheWorld.components.interiorspawner
-
-    -- for i = 1, NUM_ROWS do
-    --     for j = 1, NUM_COLS do
-    --         local room = inst.rooms[i][j]
-    --     interior_spawner.interiorCamera:Shake("FULL", 5.0, 0.025, 0.8)
-    --     inst.SoundEmitter:PlaySound("dontstarve/cave/earthquake", "miniearthquake")
-    --     inst.SoundEmitter:SetParameter("miniearthquake", "intensity", 1)
-    --     SpawnDust(inst, 10)
-    --     end
-    -- end
+    for i = 1, NUM_ROWS do
+        for j = 1, NUM_COLS do
+            local room = inst.rooms[i][j]
+            TheWorld:PushEvent("interior_startquake", {interiorID = room.id, quake_level = INTERIOR_QUAKE_LEVELS.ANTHILL_REBUILT})
+            SpawnDust(inst, 10, room.id)
+        end
+    end
 end
 
 local function CreateInterior(inst)
