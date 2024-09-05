@@ -31,11 +31,9 @@ local function make_on_beam_built(corner_beam_animation, background)
             local originpt = current_interior:GetPosition()
 
             if position.x <= originpt.x then
-                inst.animdata = {
-                    anim = corner_beam_animation,
-                }
                 local animdata = shallowcopy(inst.components.rotatingbillboard.animdata)
                 animdata.anim = corner_beam_animation
+                inst.animdata = animdata
                 inst.components.rotatingbillboard:SetAnimation_Server(animdata)
                 if not inst.AnimState:IsCurrentAnimation(corner_beam_animation) then
                     inst.AnimState:PlayAnimation(corner_beam_animation)
