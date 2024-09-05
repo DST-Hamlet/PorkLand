@@ -13,6 +13,11 @@ end)
 function Mystery:GenerateReward()
     local mid_tier = {"flint", "goldnugget", "oinc", "oinc10"}
 
+    local toy_tier = {}
+    for i=1,NUM_TRINKETS do
+		table.insert(toy_tier, "trinket_" .. tostring(i))
+	end
+
     local high_tier = {}
     for i=1,3 do
         table.insert(high_tier, "relic_" .. tostring(i))
@@ -21,7 +26,11 @@ function Mystery:GenerateReward()
     if math.random() < 0.4 then
         return nil
     elseif math.random() < 0.7 then
-        return mid_tier[math.random(#mid_tier)]
+        if math.random() < 0.5 and #toy_tier > 0 then
+            return toy_tier[math.random(#toy_tier)]
+        else
+            return mid_tier[math.random(#mid_tier)]
+        end
     else
         return high_tier[math.random(#high_tier)]
     end
@@ -61,7 +70,7 @@ function Mystery:SearchTest(doer, searchtimes)
         if self.investigaters[doer_uniqueid] == nil then
             self.investigaters[doer_uniqueid] = 0
         end
-        if math.random() < self.investigaters[doer_uniqueid]/1000 + 1/500 then
+        if math.random() < self.investigaters[doer_uniqueid]/2000 + 1/500 then
             if self.reward == nil then
                 doer.components.talker:Say(GetString(doer.prefab, "ANNOUNCE_MYSTERY_NOREWARD"))
             end
@@ -72,7 +81,7 @@ function Mystery:SearchTest(doer, searchtimes)
             doer:PushEvent("onsearchmystery_failed", {searchtimes = self.investigaters[doer_uniqueid]})
             if self.investigaters[doer_uniqueid] < 10 then
                 return false, "JUSTSTART"
-            elseif self.investigaters[doer_uniqueid] < 30 then
+            elseif self.investigaters[doer_uniqueid] < 40 then
                 return false, "SEARCHFORAWHILE"
             else
                 return false, "CLOSETOSUCCESS"
