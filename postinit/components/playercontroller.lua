@@ -40,6 +40,21 @@ local GetPickupAction = function(self, target, tool, ...)
 end
 debug.setupvalue(PlayerController.GetActionButtonAction, i, GetPickupAction)
 
+
+local _GetActionButtonAction = PlayerController.GetActionButtonAction
+function PlayerController:GetActionButtonAction(force_target, ...)
+    local buffaction = _GetActionButtonAction(self, force_target, ...)
+    if buffaction then
+        local target = buffaction.target
+        if target and (target:HasTag("interior_door") or target:HasTag("exterior_door")) and not target:HasTag("door_hidden") and not target:HasTag("door_disabled") then
+            if buffaction.action.code == ACTIONS.HAUNT.code then
+                return BufferedAction(self.inst, target, ACTIONS.USEDOOR)
+            end
+        end
+    end
+    return buffaction
+end
+
 -- local _GetGroundUseAction = PlayerController.GetGroundUseAction
 -- function PlayerController:GetGroundUseAction(position, ...)
 --     if self.inst:IsSailing() then
