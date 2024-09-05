@@ -55,12 +55,14 @@ local function SpawnWarrior(inst)
 
     local shadow = SpawnPrefab("warningshadow")
     shadow.Transform:SetPosition(x, 0.2, z)
-    shadow:shrink(1.5, 1.5, 0.25)
 
     inst.warrior_count = inst.warrior_count + 1
 end
 
 local function WarriorKilled(inst)
+    if not inst:IsValid() then
+        return
+    end
     inst.warrior_count = inst.warrior_count - 1
     if inst.warrior_count <= 0 then
         inst.components.combat.canattack = true
@@ -170,29 +172,24 @@ local function queen_fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
     inst.SpawnWarrior = SpawnWarrior
-    inst.WarriorKilled = function () WarriorKilled(inst) end
+    inst.WarriorKilled = WarriorKilled
 
-    TheWorld:ListenForEvent("exitinterior", function(world, data)
-        if data.to_target.prefab and data.to_target:HasTag("anthill_outside") then
-            inst.sg:GoToState("sleep")
-            inst.components.combat.target = nil
-        end
-    end)
+    inst.OnEntitySleep = function(inst)
+        inst.sg:GoToState("sleep")
+        inst.components.combat.target = nil
+        inst.chamber_exit_time = GetTime()
+    end
 
-    TheWorld:ListenForEvent("doorused", function( world, data)
-        if data.from_door.components.door.target_interior == "FINAL_QUEEN_CHAMBER" then
-            if inst.last_attack_time and inst.chamber_exit_time then
-                inst.last_attack_time = GetTime() - (inst.chamber_exit_time - inst.last_attack_time)
-            end
-        else
-            inst.chamber_exit_time = GetTime()
+    inst.OnEntityWake = function(inst)
+        if inst.last_attack_time and inst.chamber_exit_time then
+            inst.last_attack_time = GetTime() - (inst.chamber_exit_time - inst.last_attack_time)
         end
-    end)
+    end
 
     inst:ListenForEvent("attacked", function()
         if inst.sg.currentstate.name == "sleeping" or inst.sg.currentstate.name == "sleep" then
             if inst.components.combat.target == nil then
-                inst.components.combat:SetTarget(GetPlayer())
+                inst.components.combat:SetTarget(FindClosestPlayerToInst(inst, 50, true))
                 inst.sg:GoToState("wake")
             end
         end
@@ -202,6 +199,7 @@ local function queen_fn()
 end
 
 -- These "thrones" are just entities used to properly create queens physics
+-- Maybe we should build custom collision mesh
 local function MakeThrone(name, physics_size)
     local function fn()
         local inst = CreateEntity()
@@ -225,6 +223,6 @@ local function MakeThrone(name, physics_size)
     return Prefab(name, fn, assets, prefabs)
 end
 
-return --Prefab("antqueen", queen_fn, assets, prefabs),
+return Prefab("antqueen", queen_fn, assets, prefabs),
        MakeThrone("throne_wall", 0.25),
        MakeThrone("throne_wall_large", 0.5)

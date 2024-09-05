@@ -27,7 +27,7 @@ local function CanAttack(inst)
 end
 
 local function IsQuaking(inst)
-    return GetWorld().components.quaker_interior:IsQuaking() and not (inst.components.health:GetPercent() <= 0.3)
+    return TheWorld.components.interiorquaker:IsRoomQuaking(inst:GetCurrentInteriorID()) and not (inst.components.health:GetPercent() <= 0.3)
 end
 
 local function WakeUpFn(inst)
@@ -45,7 +45,7 @@ end
 local jump_attack_chance = { 0.9, 0.5, 0.25, }
 local function TryJumpAttack(inst)
     if inst.jump_attack_count < inst.max_jump_attack_count and CanAttack(inst) and not IsQuaking(inst) then
-        if math.random () < jump_attack_chance[inst.jump_attack_count + 1] then
+        if math.random() < jump_attack_chance[inst.jump_attack_count + 1] then
             return true
         end
     end
@@ -87,7 +87,10 @@ local function SummonWarriors(inst)
 end
 
 local function TrySanityAttack(inst)
-    return inst.components.health:GetPercent() <= 0.75 and inst.sanity_attack_count < inst.max_sanity_attack_count and CanAttack(inst) and not GetWorld().components.quaker_interior:IsQuaking()
+    return inst.components.health:GetPercent() <= 0.75
+        and inst.sanity_attack_count < inst.max_sanity_attack_count
+        and CanAttack(inst)
+        and not TheWorld.components.interiorquaker:IsRoomQuaking(inst:GetCurrentInteriorID())
 end
 
 local function SanityAttack(inst)
@@ -110,7 +113,7 @@ function AntQueenBrain:OnStart()
             and (self.inst.sg.currentstate.name == "sleeping" or self.inst.sg.currentstate.name == "sleep") end, "PlayerInVicinity",
             DoAction(self.inst, function()
                 if self.inst.components.combat.target == nil then
-                    self.inst.components.combat:SetTarget(GetPlayer())
+                    self.inst.components.combat:SetTarget(FindClosestPlayerToInst(self.inst, 50, true))
                     WakeUpFn(self.inst)
                 end
             end, "WakingUp")),

@@ -192,6 +192,18 @@ local eventhandlers = {
             end
         end
     end),
+    -- Happens when the Ant Queen uses her song attack
+    EventHandler ("sanity_stun",
+    function(inst, data)
+        for k, v in pairs(inst.components.inventory.equipslots) do
+            if v:HasTag("earmuffshat") then
+                return
+            end
+        end
+
+        inst.sg:GoToState("sanity_stun", data.duration)
+        inst.components.sanity:DoDelta(-TUNING.SANITY_LARGE)
+    end),
 }
 
 local plant_symbols =
@@ -2333,6 +2345,37 @@ local states = {
                 inst.sg:GoToState("idle")
             end),
         },
+    },
+    State{
+        name = "sanity_stun",
+        tags = {"busy", "nopredict"},
+
+        onenter = function(inst, duration)
+            inst.components.playercontroller:Enable(false)
+            inst.components.locomotor:Stop()
+
+            inst.AnimState:PlayAnimation("idle_sanity_pre", false)
+            inst.AnimState:PushAnimation("idle_sanity_loop", true)
+
+            inst.sanity_stunned = true
+
+            inst.sg:SetTimeout(duration)
+        end,
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("idle")
+        end,
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
+        },
+
+        onexit = function(inst)
+            inst.components.playercontroller:Enable(true)
+            inst.sanity_stunned = false
+            inst:PushEvent("sanity_stun_over")
+        end
     },
 }
 

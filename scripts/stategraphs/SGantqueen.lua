@@ -80,7 +80,7 @@ local states =
             TimeEvent(21 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/land") end),
             TimeEvent(24 * FRAMES, function(inst)
                 local interiorID = inst:GetCurrentInteriorID()
-                TheWorld:PushEvent("interior_startquake", {level = INTERIOR_QUAKE_LEVELS.QUEEN_ATTACK, interiorID = interiorID})
+                TheWorld:PushEvent("interior_startquake", {quake_level = INTERIOR_QUAKE_LEVELS.QUEEN_ATTACK, interiorID = interiorID})
             end),
         },
 
@@ -138,11 +138,13 @@ local states =
         timeline =
         {
             TimeEvent(5  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/atk_3_breath_in") end),
-            TimeEvent(22 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/insane_LP","insane") end),
+            TimeEvent(22 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/insane_LP", "insane") end),
             TimeEvent(25 * FRAMES, function(inst)
-                -- if not GetPlayer().components.inventory:IsItemNameEquipped("earmuffshat") then
-                --     GetPlayer():PushEvent("sanity_stun", {duration = 3.5})
-                -- end
+                local x, y, z = inst.Transform:GetWorldPosition()
+                local players = TheSim:FindEntities(x, y, z, 50, {"player"}, {"player_ghost"})
+                for _, player in pairs(players) do
+                    player:PushEvent("sanity_stun", {duration = 3.5})
+                end
             end),
         },
 

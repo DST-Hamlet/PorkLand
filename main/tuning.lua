@@ -672,6 +672,8 @@ local tuning = {
     ANTMAN_WARRIOR_RELEASE_TIME = seg_time,
 
     ANTMAN_WARRIOR_ATTACK_ON_SIGHT_DIST = 8,
+
+    ANTQUEEN_HEALTH = 3500,
 }
 
 
