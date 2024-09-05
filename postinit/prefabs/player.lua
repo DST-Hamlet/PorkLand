@@ -66,7 +66,7 @@ local function OnItemLose(inst, data)
         end
     end
 
-    if item.prefab == "key_to_city" and item.activeitem == false then
+    if item.prefab == "key_to_city" and not item.activeitem then
         inst.components.builder.city_bonus = 0
     end
 end
