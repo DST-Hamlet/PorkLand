@@ -353,7 +353,7 @@ local function CreateQueenChambers(room_count)
 
             def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, "QUEEN_CHAMBERS_DUNGEON_" .. i,
                 queen_chamber_ids[i], addprops, {}, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil,
-                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill","ANT_HIVE", WORLD_TILES.DIRT)
+                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT)
         end
 
         interior_spawner:SpawnInterior(def)
@@ -361,10 +361,21 @@ local function CreateQueenChambers(room_count)
 end
 
 local function SetCurrentDoorHiddenStatus(door, show, direction)
+    local isaleep = door:IsAsleep()
     if show and door.components.door.hidden then
-        door.sg:GoToState("open_" .. direction)
+        if isaleep then
+            door.components.door:SetHidden(false)
+            door.sg:GoToState("idle_" .. direction)
+        else
+            door.sg:GoToState("open_" .. direction)
+        end
     elseif not show and not door.components.door.hidden then
-        door.sg:GoToState("shut_" .. direction)
+        if isaleep then
+            door.components.door:SetHidden(true)
+            door.sg:GoToState("idle_" .. direction)
+        else
+            door.sg:GoToState("shut_" .. direction)
+        end
     end
 end
 
