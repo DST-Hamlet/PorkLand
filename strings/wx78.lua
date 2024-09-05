@@ -3,7 +3,7 @@ return {
         REPAIRBOAT = {
             GENERIC = "IT REQUIRES NO MAINTENANCE",
         },
-        SEARCH = {
+        SEARCH_MYSTERY = {
             CLOSETOSUCCESS = "I REFUSE TO FAIL",
             GENERIC = "REQUIRE VISUAL ENHANCER ATTACHMENT",
             SEARCHFORAWHILE = "WATCH THIS, FLESHLINGS",

@@ -3,7 +3,7 @@ return {
         REPAIRBOAT = {
             GENERIC = "She's floating just fine right now.",
         },
-        SEARCH = {
+        SEARCH_MYSTERY = {
             CLOSETOSUCCESS = "Very close...",
             GENERIC = "A magnifying glass would be better.",
             SEARCHFORAWHILE = "Where there is Willson is a way!",

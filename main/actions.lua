@@ -53,7 +53,7 @@ if not rawget(_G, "HotReloading") then
         SHOP = Action({ distance = 2.5 }),
         RENOVATE = Action({}),
 
-        SEARCH = Action({priority = -1, distance = 1}),
+        SEARCH_MYSTERY = Action({priority = -1, distance = 1}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -284,13 +284,13 @@ ACTIONS.SPY.fn = function(act)
     end
 end
 
-ACTIONS.SEARCH.fn = function(act)
+ACTIONS.SEARCH_MYSTERY.fn = function(act)
     if act.target and act.target.components.mystery then
         return act.target.components.mystery:SearchTest(act.doer)
     end
 end
 
-ACTIONS.SEARCH.validfn = function(act)
+ACTIONS.SEARCH_MYSTERY.validfn = function(act)
     if act.target then
         return act.target:HasTag("mystery")
     end
@@ -824,7 +824,7 @@ local PL_COMPONENT_ACTIONS =
         end,
         mystery = function(inst, doer, actions, right)
             if right and inst:HasTag("mystery") then
-                table.insert(actions, ACTIONS.SEARCH)
+                table.insert(actions, ACTIONS.SEARCH_MYSTERY)
             end
         end,
         visualslot = function(inst, doer, actions, right)

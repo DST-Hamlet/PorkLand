@@ -28,7 +28,7 @@ return {
         RENOVATE = "Renovate",
         REPAIRBOAT = "Repair",
         RETRIEVE = "Retrieve",
-        SEARCH = "Enter",
+        SEARCH_MYSTERY = "Search",
         SHEAR = "Shear",
         SHOP = "Purchase",
         SHOP_LONG = "Buy {wantitem}\nfor {qty} {payitem}",

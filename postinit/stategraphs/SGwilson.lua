@@ -155,7 +155,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.GAS, function(inst)
         return "crop_dust"
     end),
-    ActionHandler(ACTIONS.SEARCH, "dolongaction"),
+    ActionHandler(ACTIONS.SEARCH_MYSTERY, "dolongaction"),
 }
 
 local eventhandlers = {
