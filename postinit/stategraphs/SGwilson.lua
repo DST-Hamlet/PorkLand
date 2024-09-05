@@ -2555,6 +2555,8 @@ AddStategraphPostInit("wilson", function(sg)
             inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/halberd")
         elseif equip and equip:HasTag("corkbat") then
             inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/corkbat")
+        elseif equip and equip:HasTag("cutlass") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC002/common/swordfish_sword")
         end
 
         _attack_onenter(inst, data)
