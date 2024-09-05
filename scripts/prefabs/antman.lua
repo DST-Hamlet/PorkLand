@@ -32,7 +32,7 @@ local function speech_override_fn(inst, speech)
     if not ThePlayer or ThePlayer:HasTag("antlingual") then
         return speech
     else
-        GetRandomItem(STRINGS.ANT_TALK_UNTRANSLATED)
+        return GetRandomItem(STRINGS.ANT_TALK_UNTRANSLATED)
     end
 end
 
@@ -256,11 +256,11 @@ local function fn()
     inst.Transform:SetScale(1.15, 1.15, 1.15)
 
     inst:AddComponent("talker")
-    inst.components.talker.ontalk = OnTalk
+    inst.components.talker.ontalkfn = OnTalk -- ontalkfn runs on client
     inst.components.talker.fontsize = 35
     inst.components.talker.font = TALKINGFONT
     inst.components.talker.offset = Vector3(0, -400, 0)
-    -- inst.components.talker:StopIgnoringAll()
+    inst.components.talker:StopIgnoringAll()
     inst.components.talker:MakeChatter()
 
     inst:AddTag("character")

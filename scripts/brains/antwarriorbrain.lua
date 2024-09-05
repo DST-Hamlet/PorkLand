@@ -9,6 +9,8 @@ require "behaviours/panic"
 require "behaviours/chattynode"
 require "behaviours/leash"
 
+local BrainCommon = require("brains/braincommon")
+
 local MAX_CHASE_TIME = 40
 
 local function HasValidHome(inst)
@@ -35,7 +37,7 @@ end)
 function AntWarriorBrain:OnStart()
     local root = PriorityNode(
     {
-        WhileNode(function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
+        BrainCommon.PanicTrigger(self.inst),
 
         ChaseAndAttack(self.inst, MAX_CHASE_TIME),
 

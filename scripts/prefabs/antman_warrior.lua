@@ -19,10 +19,6 @@ local prefabs =
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 30
 
-local function OnTalk(inst, script)
-	inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/crickant/abandon")
-end
-
 local function OnAttackedByDecidRoot(inst, attacker)
     local fn = function(dude) return dude:HasTag("ant") end
 
@@ -155,13 +151,6 @@ local function fn()
 
     inst.Transform:SetFourFaced()
     inst.Transform:SetScale(1.15, 1.15, 1.15)
-
-    inst:AddComponent("talker")
-    inst.components.talker.ontalk = OnTalk
-    inst.components.talker.fontsize = 35
-    inst.components.talker.font = TALKINGFONT
-    inst.components.talker.offset = Vector3(0, -400, 0)
-    inst.components.talker:StopIgnoringAll()
 
     inst:AddTag("character")
     inst:AddTag("ant")
