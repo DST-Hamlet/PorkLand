@@ -196,21 +196,23 @@ AddPlayerPostInit(function(inst)
 
     ToolUtil.SetUpvalue(_OnSetOwner, RegisterActivePlayerEventListeners, "RegisterActivePlayerEventListeners")
 
-    local _OnGotNewItem = ToolUtil.GetUpvalue(_RegisterActivePlayerEventListeners, "OnGotNewItem")
+    local _OnGotNewItem, i = ToolUtil.GetUpvalue(_RegisterActivePlayerEventListeners, "OnGotNewItem")
 
-    local function OnGotNewItem(inst, data, ...)
-        if TheWorld:HasTag("porkland") then
-            if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
-                if inst.replica.sailor and inst.replica.sailor:GetBoat() then
-                    TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
-                    return
+    if i ~= nil then -- 不知道为什么，有时候会因为i为nil而崩溃，因此加上了这个检测
+        local function OnGotNewItem(inst, data, ...)
+            if TheWorld:HasTag("porkland") then
+                if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
+                    if inst.replica.sailor and inst.replica.sailor:GetBoat() then
+                        TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
+                        return
+                    end
                 end
             end
+            return _OnGotNewItem(inst, data, ...)
         end
-        return _OnGotNewItem(inst, data, ...)
-    end
 
-    ToolUtil.SetUpvalue(_RegisterActivePlayerEventListeners, OnGotNewItem, "OnGotNewItem")
+        ToolUtil.SetUpvalue(_RegisterActivePlayerEventListeners, OnGotNewItem, "OnGotNewItem")
+    end
 
     if not TheWorld.ismastersim then
         return
