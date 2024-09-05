@@ -18,6 +18,14 @@ function UniqueIdentity:SetRandomID()
     self.uniqueid = TheWorld.components.globalidentity:CraeteNewID()
 end
 
+function UniqueIdentity:SetID(id_number)
+    if id_number == nil then
+        print("WARNING!!! try to set a nil value to uniqueid")
+        return
+    end
+    self.uniqueid = id_number
+end
+
 function UniqueIdentity:OnSave()
     local data = {}
     data.uniqueid = self.uniqueid

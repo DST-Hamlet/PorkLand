@@ -151,7 +151,7 @@ local function OnLoad(inst, data)
 end
 
 local function OnLoadPostPass(inst, newents, data)
-    if data.child then
+    if data.child and newents[data.child] then
         inst.spawner_data.child = newents[data.child].entity
     end
 end

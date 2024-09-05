@@ -161,6 +161,8 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
+    inst:AddComponent("uniqueidentity")
+
     MakeMediumFreezableCharacter(inst, "torso")
     MakeMediumBurnableCharacter(inst, "torso")
     MakePoisonableCharacter(inst, "torso")

@@ -272,7 +272,7 @@ local function OnSave(inst, data)
 end
 
 local function OnLoadPostPass(inst, newents, data)
-    if data and data.tree then
+    if data and data.tree and newents[data.tree] then
         inst.tree = newents[data.tree].entity
     end
 end
