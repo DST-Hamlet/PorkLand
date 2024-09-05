@@ -68,6 +68,7 @@ function Builder:RemoveIngredients(ingredients, recname, discounted, ...)
             local cost = get_oinc_cost(recipe)
             if cost then
                 self.inst.components.shopper:PayMoney(math.max(1, RoundBiasedUp(cost * self.ingredientmod)))
+                ingredients["oinc"] = nil
             end
         end
     end
