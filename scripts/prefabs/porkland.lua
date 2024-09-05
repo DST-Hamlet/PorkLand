@@ -82,6 +82,12 @@ local function common_postinit(inst)
     inst.has_pl_ocean = true
     inst.items_pass_ground = true
 
+    if PICKUPSOUNDS then
+        for k, v in pairs(PICKUPSOUNDS) do
+            PICKUPSOUNDS[k] = "dontstarve/HUD/collect_resource"
+        end
+    end
+
     -- Add waves
     inst.entity:AddWaveComponent()
     inst.WaveComponent:SetWaveParams(13.5, 2.5, -1)  -- wave texture u repeat, forward distance between waves
