@@ -171,7 +171,7 @@ local RETARGET_ONE_OF_TAGS = {"monster", "player"}
 
 local function RetargetFn(inst)
     return FindEntity(inst, RETARGET_DIST, function(ent)
-        if not inst.components.combat:CanTarget(ent) or not IsPlayerInAntDisguise(ent) then
+        if not inst.components.combat:CanTarget(ent) or IsPlayerInAntDisguise(ent) then
             return
         end
 
@@ -187,8 +187,8 @@ end
 
 local function KeepTargetFn(inst, target)
     --give up on dead guys, or guys in the dark
-    return inst.components.combat:CanTarget(target)
-        and (not target.LightWatcher or target.LightWatcher:IsInLight())
+    return (inst.components.combat:CanTarget(target)
+        and (not target.LightWatcher or target.LightWatcher:IsInLight())) -- needs discussion
 end
 
 local function ShouldSleepTest(inst)

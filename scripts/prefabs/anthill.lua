@@ -293,7 +293,6 @@ local function CreateRegularRooms(inst)
             table.insert(doorway_prefabs, ent)
         end
     end
-    print("doorway_prefabs", #doorway_prefabs)
 
     for i = 1, NUM_ROWS do
         for j = 1, NUM_COLS do
@@ -313,6 +312,13 @@ local function CreateRegularRooms(inst)
 
                 doorway_prefabs[doorway_count].interiorID = room.id
                 TheWorld.components.interiorspawner:AddDoor(doorway_prefabs[doorway_count], exterior_door_def)
+
+                print("----------------------------------")
+                dumptable(doorway_prefabs[doorway_count].components.door)
+                print("----------------------------------")
+                dumptable(exterior_door_def)
+                print("----------------------------------")
+
                 TheWorld.components.interiorspawner:AddExterior(doorway_prefabs[doorway_count])
 
                 doorway_count = doorway_count + 1
