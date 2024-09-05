@@ -4,27 +4,27 @@ local Mystery = Class(function(self, inst)
     self.investigaters = {}
 
     inst:DoTaskInTime(0, function()
-	    	if not self.rolled then
-	    		self:RollForMystery()
-	    	end
-    	end) -- 或许可以不在玩家进入世界的第一帧进行这部分计算
+            if not self.rolled then
+                self:RollForMystery()
+            end
+        end) -- 或许可以不在玩家进入世界的第一帧进行这部分计算
 end)
 
 function Mystery:GenerateReward()
-	local mid_tier = {"flint", "goldnugget", "oinc", "oinc10"}
+    local mid_tier = {"flint", "goldnugget", "oinc", "oinc10"}
 
-	local high_tier = {}
-	for i=1,3 do
-		table.insert(high_tier, "relic_" .. tostring(i))
-	end
+    local high_tier = {}
+    for i=1,3 do
+        table.insert(high_tier, "relic_" .. tostring(i))
+    end
 
-	if math.random() < 0.4 then
-		return nil
-	elseif math.random() < 0.7 then
-		return mid_tier[math.random(#mid_tier)]
-	else
-		return high_tier[math.random(#high_tier)]
-	end
+    if math.random() < 0.4 then
+        return nil
+    elseif math.random() < 0.7 then
+        return mid_tier[math.random(#mid_tier)]
+    else
+        return high_tier[math.random(#high_tier)]
+    end
 end
 
 function Mystery:AddReward(reward)
@@ -33,11 +33,11 @@ function Mystery:AddReward(reward)
     -- end
     -- self.inst.components.hiddendanger.effect = "peculiar_marker_fx"
 
-	local color = 0.5 + math.random() * 0.5
+    local color = 0.5 + math.random() * 0.5
     self.inst.AnimState:SetMultColour(color-0.15, color-0.15, color, 1)
 
-	self.inst:AddTag("mystery")
-	self.reward = reward or self:GenerateReward()
+    self.inst:AddTag("mystery")
+    self.reward = reward or self:GenerateReward()
 end
 
 function Mystery:SpawnReward()
@@ -49,10 +49,10 @@ function Mystery:SpawnReward()
 end
 
 function Mystery:RollForMystery()
-	self.rolled = true
-	if math.random() <= 0.05 then
-		self:AddReward()
-	end
+    self.rolled = true
+    if math.random() <= 0.05 then
+        self:AddReward()
+    end
 end
 
 function Mystery:SearchTest(doer, searchtimes)
@@ -82,34 +82,34 @@ function Mystery:SearchTest(doer, searchtimes)
 end
 
 function Mystery:OnLoad(data)
-	if data.reward then
-		self.reward = data.reward
-	end
+    if data.reward then
+        self.reward = data.reward
+    end
 
-	if data.reward then
-		self:AddReward(data.reward)
-	end
-	if data.rolled then
-		self.rolled = data.rolled
-	end
+    if data.reward then
+        self:AddReward(data.reward)
+    end
+    if data.rolled then
+        self.rolled = data.rolled
+    end
     if data.investigaters then
         self.investigaters = data.investigaters
     end
 end
 
 function Mystery:OnSave()
-	local data = {}
+    local data = {}
 
-	if self.reward then
-		data.reward = self.reward
-	end
+    if self.reward then
+        data.reward = self.reward
+    end
 
     if self.investigaters then
-		data.investigaters = self.investigaters
-	end
+        data.investigaters = self.investigaters
+    end
 
-	data.rolled = self.rolled
-	return data
+    data.rolled = self.rolled
+    return data
 end
 
 function Mystery:Investigate(doer)

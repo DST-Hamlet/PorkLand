@@ -58,7 +58,7 @@ local function OnUpdate()
         local points_x, points_y = _map:GetRandomPointsForSite(area.x, area.y, area.poly, NUM_POINTS_PER_SITE)
         if #points_x == 1 and #points_y == 1 then
             local x = points_x[1]
-			local z = points_y[1]
+            local z = points_y[1]
 
             local suitable = is_point_suitable(x, z)
             if suitable then
