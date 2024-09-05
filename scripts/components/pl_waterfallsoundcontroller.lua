@@ -8,11 +8,11 @@ return Class(function(self, inst)
 --[[ Constants ]]
 --------------------------------------------------------------------------
 
-local EMITTER_MAXDSQ = 2500
+-- local EMITTER_MAXDSQ = 2500
 
 local NUM_EMITTERS = 8
 
-local WATERFALL_LOOP_SOUNDNAME = "porkland_soundpackage/common/waterfall/waterfall"
+-- local WATERFALL_LOOP_SOUNDNAME = "porkland_soundpackage/common/waterfall/waterfall"
 local SOUND_EVENT_NAME = "waterfall"
 
 --------------------------------------------------------------------------
@@ -24,7 +24,7 @@ self.inst = inst
 
 --Private
 local _player = ThePlayer
-local _process_task = nil
+-- local _process_task = nil
 local _waterfalls = {}
 local _soundemitters = {}
 
@@ -128,12 +128,13 @@ end
 inst:ListenForEvent("ms_registerwaterfall", TrackWaterfall)
 
 --Initialize
-local init_task = inst:DoTaskInTime(0, function(i)
+inst:DoTaskInTime(0, function(i)
     for _ = 1, NUM_EMITTERS do
         table.insert(_soundemitters, SpawnPrefab("waterfall_sfx"))
     end
 end)
-_process_task = inst:DoPeriodicTask(5*FRAMES, ProcessPlayer)
+inst:DoPeriodicTask(5*FRAMES, ProcessPlayer)
+-- _process_task = inst:DoPeriodicTask(5*FRAMES, ProcessPlayer)
 
 --------------------------------------------------------------------------
 --[[ Debug ]]

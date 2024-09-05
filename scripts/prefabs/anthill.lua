@@ -419,7 +419,7 @@ local function SpawnDust(inst, dustCount)
 end
 
 local function Earthquake(inst)
-    local interior_spawner = TheWorld.components.interiorspawner
+    -- local interior_spawner = TheWorld.components.interiorspawner
 
     -- for i = 1, NUM_ROWS do
     --     for j = 1, NUM_COLS do
