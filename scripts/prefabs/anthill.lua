@@ -44,7 +44,7 @@ local EAST_DOOR_IDX  = 1
 local WEST_DOOR_IDX  = 2
 local NORTH_DOOR_IDX = 3
 local SOUTH_DOOR_IDX = 4
-local NUM_ENTRANCES = 3
+local NUM_ENTRANCES = 2--3
 local NUM_CHAMBER_ENTRANCES = 1
 local NUM_ROWS = 5
 local NUM_COLS = 5
@@ -293,6 +293,7 @@ local function CreateRegularRooms(inst)
             table.insert(doorway_prefabs, ent)
         end
     end
+    print("doorway_prefabs", #doorway_prefabs)
 
     for i = 1, NUM_ROWS do
         for j = 1, NUM_COLS do
@@ -312,6 +313,7 @@ local function CreateRegularRooms(inst)
 
                 doorway_prefabs[doorway_count].interiorID = room.id
                 TheWorld.components.interiorspawner:AddDoor(doorway_prefabs[doorway_count], exterior_door_def)
+                TheWorld.components.interiorspawner:AddExterior(doorway_prefabs[doorway_count])
 
                 doorway_count = doorway_count + 1
             end
@@ -360,11 +362,6 @@ local function CreateQueenChambers(room_count)
 end
 
 local function SetCurrentDoorHiddenStatus(door, show, direction)
-    if not door.sg then
-        print("MISSING sg FOR DIRECTION (" .. direction .. ") AND PREFAB (" .. door.prefab ..")")
-        return
-    end
-
     if show and door.components.door.hidden then
         door.sg:GoToState("open_" .. direction)
     elseif not show and not door.components.door.hidden then
@@ -373,16 +370,21 @@ local function SetCurrentDoorHiddenStatus(door, show, direction)
 end
 
 local function RefreshCurrentDoor(room, door)
-    if door.components.door then
-        if door:HasTag("door_north") then
-            SetCurrentDoorHiddenStatus(door, room.doors_enabled[NORTH_DOOR_IDX], "north")
-        elseif door:HasTag("door_south") then
-            SetCurrentDoorHiddenStatus(door, room.doors_enabled[SOUTH_DOOR_IDX], "south")
-        elseif door:HasTag("door_east") then
-            SetCurrentDoorHiddenStatus(door, room.doors_enabled[EAST_DOOR_IDX], "east")
-        elseif door:HasTag("door_west") then
-            SetCurrentDoorHiddenStatus(door, room.doors_enabled[WEST_DOOR_IDX], "west")
-        end
+    if not door.components.door then
+        return
+    end
+    if door.components.door.target_interior == "EXTERIOR" then
+        return
+    end
+
+    if door:HasTag("door_north") then
+        SetCurrentDoorHiddenStatus(door, room.doors_enabled[NORTH_DOOR_IDX], "north")
+    elseif door:HasTag("door_south") then
+        SetCurrentDoorHiddenStatus(door, room.doors_enabled[SOUTH_DOOR_IDX], "south")
+    elseif door:HasTag("door_east") then
+        SetCurrentDoorHiddenStatus(door, room.doors_enabled[EAST_DOOR_IDX], "east")
+    elseif door:HasTag("door_west") then
+        SetCurrentDoorHiddenStatus(door, room.doors_enabled[WEST_DOOR_IDX], "west")
     end
 end
 

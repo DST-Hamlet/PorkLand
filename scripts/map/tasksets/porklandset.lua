@@ -12,6 +12,10 @@ GLOBAL.PORKLAND_REQUIRED_PREFABS =
     "pig_ruins_exit2",
     "pig_ruins_exit4",
 
+    "anthill_exit",
+    "anthill_exit",
+    -- "anthill_exit",
+
     --"teleportato_hamlet_base",
     --"teleportato_hamlet_box",
     --"teleportato_hamlet_crank",
