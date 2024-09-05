@@ -3,6 +3,11 @@ return {
         REPAIRBOAT = {
             GENERIC = "She's floating just fine right now.",
         },
+        SEARCH = {
+            CLOSETOSUCCESS = "Very close...",
+            GENERIC = "A magnifying glass would be better.",
+            SEARCHFORAWHILE = "Where there is Willson is a way!",
+        },
         SHOP = {
             CANTPAY = "I can't pay for that.",
             GENERIC = "I can't do that.",
@@ -10,11 +15,6 @@ return {
         USEDOOR = {
             GENERIC = "It won't open.",
             LOCKED = "It's locked.",
-        },
-        SEARCH = {
-            GENERIC = "A magnifying glass would be better.",--1 to 10
-            SEARCHFORAWHILE = "Where there is Willson is a way!",--10 to 50
-            CLOSETOSUCCESS = "Very close...",--50 plus
         },
     },
     ANNOUCE_ALARMOVER = "I think I got away.",

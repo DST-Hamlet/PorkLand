@@ -3,6 +3,11 @@ return {
         REPAIRBOAT = {
             GENERIC = "IT REQUIRES NO MAINTENANCE",
         },
+        SEARCH = {
+            CLOSETOSUCCESS = "I REFUSE TO FAIL",
+            GENERIC = "REQUIRE VISUAL ENHANCER ATTACHMENT",
+            SEARCHFORAWHILE = "WATCH THIS, FLESHLINGS",
+        },
         SHOP = {
             CANTPAY = "INSUFFICIENT FUNDS",
             GENERIC = "CURRENTLY UNAVAILABLE",
