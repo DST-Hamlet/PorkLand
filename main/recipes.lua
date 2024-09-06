@@ -668,14 +668,14 @@ AddRecipe2("swinging_light_tophat",             {Ingredient("oinc", 12)}, TECH.H
 AddRecipe2("swinging_light_derby",              {Ingredient("oinc", 12)}, TECH.HOME, {nounlock = true, placer = "swinging_light_derby_placer",              image = "reno_light_derby.tex"},              {"HOME_HANGINGLAMP"})
 
 -- -- DOORS
--- AddRecipe2("wood_door",     {Ingredient("oinc", 10)},     RENO_RECIPETABS.DOORS, TECH.HOME, "wood_door_placer",    nil, true, nil, nil, nil, true, false, "wood_door",    true )
--- AddRecipe2("stone_door",    {Ingredient("oinc", 10)},     RENO_RECIPETABS.DOORS, TECH.HOME, "stone_door_placer",   nil, true, nil, nil, nil, true, false, "stone_door",   true )
--- AddRecipe2("organic_door",     {Ingredient("oinc", 15)},     RENO_RECIPETABS.DOORS, TECH.HOME, "organic_door_placer", nil, true, nil, nil, nil, true, false, "organic_door", true )
--- AddRecipe2("iron_door",     {Ingredient("oinc", 15)},     RENO_RECIPETABS.DOORS, TECH.HOME, "iron_door_placer",    nil, true, nil, nil, nil, true, false, "iron_door",    true )
--- AddRecipe2("curtain_door",     {Ingredient("oinc", 15)},     RENO_RECIPETABS.DOORS, TECH.HOME, "curtain_door_placer", nil, true, nil, nil, nil, true, false, "curtain_door", true )
--- AddRecipe2("plate_door",     {Ingredient("oinc", 15)},     RENO_RECIPETABS.DOORS, TECH.HOME, "plate_door_placer",     nil, true, nil, nil, nil, true, false, "plate_door",   true )
--- AddRecipe2("round_door",     {Ingredient("oinc", 20)},     RENO_RECIPETABS.DOORS, TECH.HOME, "round_door_placer",     nil, true, nil, nil, nil, true, false, "round_door",   true )
--- AddRecipe2("pillar_door",     {Ingredient("oinc", 20)},     RENO_RECIPETABS.DOORS, TECH.HOME, "pillar_door_placer",  nil, true, nil, nil, nil, true, false, "pillar_door",  true )
+AddRecipe2("wood_door",     {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "wood_door_placer",    image = "wood_door.tex"},    {"HOME_DOOR"})
+AddRecipe2("stone_door",    {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "stone_door_placer",   image = "stone_door.tex"},   {"HOME_DOOR"})
+AddRecipe2("organic_door",  {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "organic_door_placer", image = "organic_door.tex"}, {"HOME_DOOR"})
+AddRecipe2("iron_door",     {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "iron_door_placer",    image = "iron_door.tex"},    {"HOME_DOOR"})
+AddRecipe2("curtain_door",  {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "curtain_door_placer", image = "curtain_door.tex"}, {"HOME_DOOR"})
+AddRecipe2("plate_door",    {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "plate_door_placer",   image = "plate_door.tex"},   {"HOME_DOOR"})
+AddRecipe2("round_door",    {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "round_door_placer",   image = "round_door.tex"},   {"HOME_DOOR"})
+AddRecipe2("pillar_door",   {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "pillar_door_placer",  image = "pillar_door.tex"},  {"HOME_DOOR"})
 
 -- AddRecipe2("construction_permit", {Ingredient("oinc", 50)}, RECIPETABS.HOME, TECH.HOME, nil, nil, true)
 -- AddRecipe2("demolition_permit", {Ingredient("oinc", 10)},     RECIPETABS.HOME, TECH.HOME, nil, nil, true)
