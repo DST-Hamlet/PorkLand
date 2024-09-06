@@ -23,10 +23,6 @@ local function IsState(inst, state)
     return inst.State == string.lower(state)
 end
 
-local function CanBeAttacked(inst, attacker)
-    return inst.State == "above"
-end
-
 local function IsPreferedTarget(target)
     return IsPlayerInAntDisguise(target) or (target.prefab == "antman")
 end
@@ -80,7 +76,7 @@ local function fn()
     inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
 
-    MakeCharacterPhysics(inst, 1, 0.5)
+    MakeCharacterPhysics(inst, 1000, 0.5)
 
     inst.AnimState:SetBank("giant_grub")
     inst.AnimState:SetBuild("giant_grub")
@@ -131,7 +127,6 @@ local function fn()
     inst.components.combat:SetRange(TUNING.GIANT_GRUB_ATTACK_RANGE, TUNING.GIANT_GRUB_ATTACK_RANGE)
     inst.components.combat:SetRetargetFunction(3, RetargetFn)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
-    inst.components.combat.canbeattackedfn = CanBeAttacked
     inst.components.combat.hiteffectsymbol = "chest"
 
     inst:SetBrain(brain)

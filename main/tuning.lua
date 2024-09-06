@@ -674,6 +674,9 @@ local tuning = {
     ANTMAN_WARRIOR_ATTACK_ON_SIGHT_DIST = 8,
 
     ANTQUEEN_HEALTH = 3500,
+
+    GIANT_GRUB_RESPAWN_TIME = total_day_time,
+    GIANT_GRUB_ENABLED = true,
 }
 
 

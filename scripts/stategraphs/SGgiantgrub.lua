@@ -137,12 +137,16 @@ local states =
                     inst.AnimState:PlayAnimation("idle_under", true)
                 end
             end
+
+            if inst.State == "under" then
+                inst.sg:AddStateTag("invisible")
+            end
         end,
     },
 
     State{
         name = "walk_pre",
-        tags = {"moving", "canrotate"},
+        tags = {"moving", "canrotate", "invisible"},
 
         onenter = function(inst)
             inst.AnimState:PlayAnimation("walk_pre")
@@ -160,7 +164,7 @@ local states =
 
     State{
         name = "walk",
-        tags = {"moving", "canrotate"},
+        tags = {"moving", "canrotate", "invisible"},
 
         onenter = function(inst)
             inst.components.locomotor:WalkForward()
@@ -170,7 +174,7 @@ local states =
 
     State{
         name = "walk_pst",
-        tags = {"canrotate"},
+        tags = {"canrotate", "invisible"},
 
         onenter = function(inst)
             inst.components.locomotor:StopMoving()
