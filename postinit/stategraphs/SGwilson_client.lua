@@ -841,7 +841,7 @@ local states = {
             TimeEvent(12*FRAMES, function(inst)
                 inst:PerformPreviewBufferedAction()
                 inst.sg:RemoveStateTag("abouttoattack")
-                inst.SoundEmitter:PlaySound("ia/common/use_speargun", nil, nil, true)
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot")
             end),
             TimeEvent(20*FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
         },
@@ -858,6 +858,51 @@ local states = {
                 inst.replica.combat:CancelAttack()
             end
         end,
+    },
+
+    State{
+        name = "map",
+        tags = {"doing"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("scroll", false)
+            inst.AnimState:OverrideSymbol("scroll", "messagebottle", "scroll")
+            inst.AnimState:PushAnimation("scroll_pst", false)
+
+            inst:PerformPreviewBufferedAction()
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("doing") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        timeline=
+        {
+            TimeEvent(24 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_open") end),
+            TimeEvent(58 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_close") end),
+        },
+
+        events=
+        {
+            EventHandler("animover", function(inst)
+                inst:PerformBufferedAction()
+            end),
+
+
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst:ClearBufferedAction()
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
     },
 }
 
@@ -917,12 +962,12 @@ AddStategraphPostInit("wilson_client", function(sg)
     end
 
     local _castspell_deststate = sg.actionhandlers[ACTIONS.CASTSPELL].deststate
-    sg.actionhandlers[ACTIONS.CASTSPELL].deststate = function(inst, action)
+    sg.actionhandlers[ACTIONS.CASTSPELL].deststate = function(inst, action, ...)
         local staff = action.invobject or action.doer.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
         if staff:HasTag("bonestaff") then
             return "castspell_bone"
         else
-            return _castspell_deststate and _castspell_deststate(inst, action)
+            return _castspell_deststate and _castspell_deststate(inst, action, ...)
         end
     end
 
@@ -960,6 +1005,25 @@ AddStategraphPostInit("wilson_client", function(sg)
             end
             return _attack_deststate and _attack_deststate(inst, ...)
         end
+    end
+
+    local _light_deststate = sg.actionhandlers[ACTIONS.LIGHT].deststate
+    sg.actionhandlers[ACTIONS.LIGHT].deststate = function(inst, ...)
+        local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+        if equipped and equipped:HasTag("magnifying_glass") then
+            return "investigate_start"
+        else
+            return _light_deststate(inst, ...)
+        end
+    end
+
+    local _teach_deststatae = sg.actionhandlers[ACTIONS.TEACH].deststate
+    sg.actionhandlers[ACTIONS.TEACH].deststate = function(inst, action, ...)
+        if action and action.invobject and action.invobject:HasTag("treasuremap") then
+            return "map"
+        end
+        return _teach_deststatae(inst, ...)
     end
 
     local _chop_deststate = sg.actionhandlers[ACTIONS.CHOP].deststate
