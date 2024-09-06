@@ -815,6 +815,50 @@ local states = {
             inst.sg:GoToState("idle", true)
         end
     },
+
+    State{
+        name = "blunderbuss",
+        tags = {"attack", "notalking", "abouttoattack"},
+
+        onenter = function(inst)
+            if inst:HasTag("_sailor") and inst:HasTag("sailing") then
+                inst.sg:AddStateTag("boating")
+            end
+			local target = inst.replica.combat:GetTarget()
+            inst.sg.statemem.target = target
+            inst.replica.combat:StartAttack()
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("speargun")
+
+			if target and target:IsValid() then
+				inst:FacePoint(target.Transform:GetWorldPosition())
+            end
+        end,
+
+        timeline=
+        {
+
+            TimeEvent(12*FRAMES, function(inst)
+                inst:PerformPreviewBufferedAction()
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst.SoundEmitter:PlaySound("ia/common/use_speargun", nil, nil, true)
+            end),
+            TimeEvent(20*FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
+        },
+
+        events=
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.sg:HasStateTag("abouttoattack") and inst.replica.combat ~= nil then
+                inst.replica.combat:CancelAttack()
+            end
+        end,
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -882,11 +926,37 @@ AddStategraphPostInit("wilson_client", function(sg)
         end
     end
 
+    local _attack_onenter = sg.states["attack"].onenter
+    sg.states["attack"].onenter = function(inst, data)
+        local equip = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+        if equip and equip:HasTag("halberd") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/halberd")
+        elseif equip and equip:HasTag("corkbat") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/corkbat")
+        elseif equip and equip:HasTag("cutlass") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC002/common/swordfish_sword")
+        end
+
+        _attack_onenter(inst, data)
+
+        inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", nil)
+
+        if equip and equip:HasTag("corkbat") then
+            inst.sg:SetTimeout(23 * FRAMES)
+        end
+    end
+
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
         if not inst.sg:HasStateTag("sneeze") then
             if inst:HasTag("ironlord") then
                 return "ironlord_attack"
+            end
+            if not (inst.sg:HasStateTag("attack") and action.target == inst.sg.statemem.attacktarget or inst.replica.health:IsDead()) then
+                local equip = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+                if equip and equip:HasTag("blunderbuss_loaded") then
+                    return "blunderbuss"
+                end
             end
             return _attack_deststate and _attack_deststate(inst, ...)
         end
