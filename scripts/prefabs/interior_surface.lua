@@ -13,6 +13,10 @@ local WALL_TILE_X_OFFSET = 0.21
 local FLOOR_TILE_SCALE = 16
 
 local function UpdateFx(inst)
+    if not ThePlayer then
+        return
+    end
+
     -- NOTE: a surface entity only support single texture
     local index = inst.texture_index:value()
     local texture = TEXTURE_DEF[index]
