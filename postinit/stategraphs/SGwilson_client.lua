@@ -55,7 +55,7 @@ local actionhandlers = {
             if action.invobject ~= nil and action.invobject:HasTag("goggles") then
                 return "goggle"
             else
-                return "investigate"
+                return "investigate_start"
             end
         end
     end),
@@ -593,7 +593,7 @@ local states = {
         end,
 
         onupdate = function(inst)
-            if inst:HasTag("investigating") then
+            if inst.sg:ServerStateMatches() then
                 if inst.entity:FlattenMovementPrediction() then
                     inst.sg:GoToState("idle", "noanim")
                 end
