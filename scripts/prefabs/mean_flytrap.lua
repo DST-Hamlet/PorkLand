@@ -201,7 +201,7 @@ local function fn()
     inst:AddTag("hostile")
     inst:AddTag("animal")
     inst:AddTag("usefastrun")
-    inst:AddTag("veggie")
+    inst:AddTag("plantcreature")
 
     MakeCharacterPhysics(inst, 10, .5)
 

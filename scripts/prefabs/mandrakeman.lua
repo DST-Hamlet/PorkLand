@@ -218,7 +218,7 @@ local function fn()
     inst.Transform:SetFourFaced()
     inst.Transform:SetScale(1.25, 1.25, 1.25)
 
-    inst:AddTag("veggie")
+    inst:AddTag("plantcreature")
     inst:AddTag("character")
     inst:AddTag("mandrakeman")
     inst:AddTag("scarytoprey")
