@@ -195,7 +195,9 @@ local function DeactivateSelf(inst)
     inst:RemoveTag("interior_door")
     inst:RemoveTag(PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].door_tag)
 
-    inst:AddComponent("inspectable")
+    if not inst.components.inspectable then
+        inst:AddComponent("inspectable")
+    end
     inst.AnimState:PlayAnimation(inst.prefab .. "_close_" .. PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].anim)
 
     -- clear door connectivity....
@@ -207,24 +209,6 @@ local function DeactivateSelf(inst)
     inst.door_data_animstate = nil
 end
 
-local function clamp_position(work, origin, w, h)
-	local dx = work.x - origin.x
-	local dz = work.z - origin.z
-
-	if dx > w then
-		work.x = origin.x + w
-	elseif dx < -w then
-		work.x = origin.z - w
-	end
-
-	if dz > h then
-		work.z = origin.z + h
-	elseif dz < -h then
-		work.z = origin.z - h
-	end
-	return work
-end
-
 -- Used to remove things on the wall on the other side of a recently built door
 -- Can also be used when hammering a door
 local function ClearObstruction(inst)
@@ -234,9 +218,7 @@ local function ClearObstruction(inst)
     fx.Transform:SetPosition(pt.x, pt.y, pt.z)
     fx:SetMaterial("wood")
 
-    local origin = TheWorld.components.interiorspawner:GetInteriorCenter(inst:GetCurrentInteriorID()):GetPosition()
-    local new_pos = clamp_position(pt, origin, DEPTH/2 - 1, WIDTH/2 - 1)
-    inst.components.lootdropper:DropLoot(new_pos)
+    inst.components.lootdropper:DropLoot()
 
     inst:Remove()
 end
@@ -341,19 +323,18 @@ local function OnLoadPostPass(inst)
     end
 end
 
-local function OnEntitySleep(inst)
+local function OnEntityWake(inst)
     if not inst.checked_obstruction then
         local x, y, z = inst.Transform:GetWorldPosition()
         local ents = TheSim:FindEntities(x, y, z, 3, {"wallsection"})
-    if #ents >= 1 then
-        for _, ent in pairs(ents) do
-            if ent ~= inst then
-                ClearObstruction(ent)
-                ent:Remove()
+        if #ents >= 1 then
+            for _, ent in pairs(ents) do
+                if ent ~= inst then
+                    ClearObstruction(ent)
+                end
             end
         end
-    end
-    inst.checked_obstruction = true
+        inst.checked_obstruction = true
     end
 
     CheckForShadow(inst)
@@ -449,6 +430,18 @@ local function OnBuilt(inst)
     end
 end
 
+local function CheckForRemoval(inst)
+    local interior_spawner = TheWorld.components.interiorspawner
+    local interiorID = inst:GetCurrentInteriorID()
+    local house_id = interior_spawner:GetPlayerHouseByRoomID(interiorID)
+    inst.door_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname)
+    inst.room_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
+end
+
+local function CanBeRemoved(inst)
+    return inst.door_can_be_removed and inst.room_can_be_removed
+end
+
 local function MakeHouseDoor(name)
     local function house_fn()
         local inst = CreateEntity()
@@ -501,6 +494,7 @@ local function MakeHouseDoor(name)
 
         MakeHauntable(inst)
 
+        inst.CanBeRemoved = CanBeRemoved
         inst.InitHouseDoor = InitHouseDoor
         inst.initInteriorPrefab = InitHouseDoorInteriorPrefab
         inst.ActivateSelf = ActivateSelf
@@ -509,8 +503,10 @@ local function MakeHouseDoor(name)
         inst.OnLoad = OnLoad
         inst.OnLoadPostPass = OnLoadPostPass
         -- Finds obstructions on the way of the new door and deconstructs them
-        inst.OnEntitySleep = OnEntitySleep
-
+        inst.OnEntityWake = function()
+            OnEntityWake(inst)
+            CheckForRemoval(inst)
+        end
         inst.OnBuilt = function()
             OnBuilt(inst)
 
@@ -529,11 +525,13 @@ local function MakeHouseDoor(name)
             end
         end
 
-        inst.CanBeRemoved = function()
-            return true
-        end
-
-        -- TODO listen for room built and open door
+        inst:DoTaskInTime(0, CheckForRemoval)
+        inst:ListenForEvent("door_removed", function()
+            CheckForRemoval(inst)
+        end, TheWorld)
+        inst:ListenForEvent("room_removed", function()
+            CheckForRemoval(inst)
+        end, TheWorld)
 
         return inst
     end

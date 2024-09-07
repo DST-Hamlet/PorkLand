@@ -2593,6 +2593,18 @@ AddStategraphPostInit("wilson", function(sg)
         rawset(inst, "AnimState", _AnimState)
     end
 
+    local _hammer_start_onenter = sg.states["hammer_start"].onenter
+    sg.states["hammer_start"].onenter = function(inst, ...)
+        local action = inst:GetBufferedAction()
+        if action and action.target:HasTag("interior_door") and action.target:HasTag("house_door") and not action.target:CanBeRemoved() then
+            inst:ClearBufferedAction()
+            inst.components.talker:Say(GetString(inst.prefab, "ANNOUNCE_ROOM_STUCK"))
+            inst.sg:GoToState("talk")
+        else
+            return _hammer_start_onenter(inst, ...)
+        end
+    end
+
     local _locomote_eventhandler = sg.events.locomote.fn
     sg.events.locomote.fn = function(inst, data, ...)
         local is_attacking = inst.sg:HasStateTag("attack")
