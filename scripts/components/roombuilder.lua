@@ -159,6 +159,7 @@ function RoomBuilder:BuildRoom(door_frame, permit)
     end
 
     door_frame:AddTag("interior_door")
+    door_frame:AddTag("client_forward_action_target")
     door_frame:RemoveTag("predoor")
 
     if permit then
