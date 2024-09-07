@@ -433,8 +433,6 @@ local function OnBuilt(inst)
             --         z_offset = prefabdata.z_offset
             --     }, prefabdata)
             -- end
-        -- else
-        --     print("NO CONNECTING NO ROOM FOUND")
         end
     end
 

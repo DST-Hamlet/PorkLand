@@ -88,6 +88,9 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
     local def = interior_spawner:CreateRoom("generic_interior", width, nil, depth, name, ID, addprops, room_exits, walltexture, floortexture, minimaptexture, nil, colorcube, nil, true, "inside", "HOUSE", WORLD_TILES.WOODFLOOR)
     interior_spawner:SpawnInterior(def)
 
+    local room = interior_spawner:GetInteriorCenter(ID)
+    room:AddInteriorTags("home_prototyper")
+
     -- Activates all the doors in the adjacent rooms
     for door_to_activate, adjacent_room_id in pairs(doors_to_activate) do
         door_to_activate:ActivateSelf(ID, adjacent_room_id)
@@ -116,6 +119,23 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
     door_frame.InitHouseDoor(door_frame, dir)
 end
 
+local function ConnectRoom(door_frame, current_room_id, target_room_id)
+    local interior_spawner = TheWorld.components.interiorspawner
+
+    local dir = door_frame.baseanimname
+
+    local door_def =
+    {
+        my_interior_name = current_room_id,
+        my_door_id = current_room_id .. PLAYER_INTERIOR_EXIT_DIR_DATA[dir].my_door_id_dir,
+        target_interior = target_room_id,
+        target_door_id = target_room_id .. PLAYER_INTERIOR_EXIT_DIR_DATA[dir].target_door_id_dir
+    }
+
+    interior_spawner:AddDoor(door_frame, door_def)
+    door_frame:ActivateSelf(target_room_id, current_room_id)
+end
+
 function RoomBuilder:BuildRoom(door_frame, permit)
     if not door_frame:HasTag("predoor") then
         return false, "ALREADY_BUILT"
@@ -132,7 +152,8 @@ function RoomBuilder:BuildRoom(door_frame, permit)
     end
 
     if cause == "CONNECTING" then -- change this logic?
-        door_frame:InitHouseDoor()
+        local target_interior_id = interior_spawner:GetPlayerRoomInDirection(house_id, current_room_id, interior_spawner:GetDirByLabel(door_frame.baseanimname))
+        ConnectRoom(door_frame, current_room_id, target_interior_id)
     else
         CreateNewRoom(door_frame, current_interior, house_id)
     end
