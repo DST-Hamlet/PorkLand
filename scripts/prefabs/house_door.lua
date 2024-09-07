@@ -143,6 +143,7 @@ local function InitHouseDoorInteriorPrefab(inst, doer, prefab_definition, interi
     end
     inst.components.door:SetDoorDisabled(false, "house_prop")
     inst:AddTag("interior_door")
+    inst:AddTag("client_forward_action_target")
     inst:RemoveTag("predoor")
 
     CheckForShadow(inst)
@@ -181,6 +182,7 @@ local function ActivateSelf(inst, target_interior, current_interior)
     inst.InitHouseDoor(inst, inst.baseanimname)
 
     inst:AddTag("interior_door")
+    inst:AddTag("client_forward_action_target")
     inst:RemoveTag("predoor")
     inst:AddTag(PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].door_tag)
 
@@ -193,6 +195,7 @@ local function DeactivateSelf(inst)
     TheWorld.components.interiorspawner:RemoveDoor(inst.components.door.door_id)
     inst:AddTag("predoor")
     inst:RemoveTag("interior_door")
+    inst:RemoveTag("client_forward_action_target")
     inst:RemoveTag(PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].door_tag)
 
     if not inst.components.inspectable then
@@ -314,6 +317,7 @@ end
 local function OnLoadPostPass(inst)
     if inst.components.door.target_door_id then
         inst:AddTag("interior_door")
+        inst:AddTag("client_forward_action_target")
         inst:RemoveTag("predoor")
         inst:RemoveComponent("inspectable")
 

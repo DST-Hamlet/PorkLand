@@ -179,7 +179,7 @@ local function CreatInterior(inst)
 
     local floortexture = "levels/textures/noise_woodfloor.tex"
     local walltexture = "levels/textures/interiors/shop_wall_woodwall.tex"
-    local minimaptexture = "levels/textures/map_interior/mini_ruins_slab.tex"
+    local minimaptexture = "levels/textures/map_interior/mini_floor_wood.tex"
     local colorcube = "images/colour_cubes/pigshop_interior_cc.tex"
 
     local addprops = GetPropDef("playerhouse_city", exterior_door_def)

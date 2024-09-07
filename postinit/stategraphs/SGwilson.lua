@@ -2571,7 +2571,7 @@ AddStategraphPostInit("wilson", function(sg)
     end
 
     local _play_flute_onenter = sg.states["play_flute"].onenter
-    sg.states["play_flute"].onenter = function(inst, ...)  -- fuck klei
+    sg.states["play_flute"].onenter = function(inst, ...)
         local inv_obj = inst.bufferedaction and inst.bufferedaction.invobject or nil
 
         local _AnimState = inst.AnimState
