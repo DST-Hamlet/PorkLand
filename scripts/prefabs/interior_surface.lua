@@ -12,6 +12,13 @@ local WALL_TILE_SHEAR = 0.91
 local WALL_TILE_X_OFFSET = 0.21
 local FLOOR_TILE_SCALE = 16
 
+local function ClearFx(inst)
+    for k, v in pairs(inst.fx) do
+        v:Remove()
+        inst.fx[k] = nil
+    end
+end
+
 local function UpdateFx(inst)
     -- NOTE: a surface entity only support single texture
     local index = inst.texture_index:value()
@@ -21,10 +28,10 @@ local function UpdateFx(inst)
     end
 
     local path = texture.path
-    for k, v in pairs(inst.fx) do
-        k:Remove()
+    ClearFx(inst)
+    if inst.fx == nil then
+        inst.fx = {}
     end
-    inst.fx = {}
     if inst.interior_type == SURFACE.FLOOR then
         local w = inst.size_x:value()
         local h = inst.size_z:value()
@@ -47,7 +54,7 @@ local function UpdateFx(inst)
                 fx.w_percent = z_left < 1 and z_left or nil
                 fx:SetTexture(path)
                 fx.entity:SetParent(inst.entity)
-                inst.fx[fx] = true
+                table.insert(inst.fx, fx)
             end
         end
     elseif inst.interior_type == SURFACE.WALL then
@@ -67,6 +74,7 @@ local function UpdateFx(inst)
         local WALL_TILE_SCALE = WALL_TILE_SCALE * mod
         for x = 0, w/WALL_TILE_SCALE do
             local fx = SpawnPrefab("interiorwall_fx")
+            table.insert(inst.fx, fx)
             if inst.prefab:find("_x") then
                 fx.is_x = true
                 fx.Transform:SetPosition((x + 0.5) * WALL_TILE_SCALE - xoffset - y * 0.25, y, 0)
@@ -74,7 +82,6 @@ local function UpdateFx(inst)
                 fx.Transform:SetPosition( - y * 0.5, y, (x + 0.5) * WALL_TILE_SCALE)
             end
             fx.entity:SetParent(inst.entity)
-            inst.fx[fx] = true
             last_fx = fx -- get last one by override
         end
 
@@ -90,16 +97,9 @@ local function UpdateFx(inst)
             end
         end
 
-        for fx in pairs(inst.fx) do
+        for k, fx in pairs(inst.fx) do
             fx:SetTexture(path)
         end
-    end
-end
-
-local function ClearFx(inst)
-    for k, v in pairs(inst.fx) do
-        inst.fx[k] = nil
-        k:Remove()
     end
 end
 
@@ -148,6 +148,8 @@ local function floor_fn()
     inst.entity:AddTransform()
     inst.entity:AddNetwork()
 
+    inst.persists = false
+
     inst.interior_type = SURFACE.FLOOR
 
     inst.size_x = net_byte(inst.GUID, "size_x", "size")
@@ -189,6 +191,8 @@ local function wall_fn()
 
     inst.entity:AddTransform()
     inst.entity:AddNetwork()
+
+    inst.persists = false
 
     inst.interior_type = SURFACE.WALL
 
