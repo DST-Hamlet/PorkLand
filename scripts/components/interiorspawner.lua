@@ -167,7 +167,7 @@ end
 -- Uses FindEntities on client, so only works if you're close to that interiorworkblank (center)
 function InteriorSpawner:GetInteriorCenter(position_or_index)
     if not position_or_index then
-        print("InteriorSpawner:GetInteriorCente the param position_or_index is nil!!!")
+        print("InteriorSpawner:GetInteriorCenter the param position_or_index is nil!!!")
         return nil
     end
     local is_number = type(position_or_index) == "number"
@@ -931,10 +931,9 @@ function InteriorSpawner:RegisterPlayerHouse(house_entity)
     -- assume only 1 door leads to exterior
     assert(self.player_houses[starting_room_interiorID] == nil, "THIS PLAYER ROOM ALREADY EXISTS: ".. starting_room_interiorID)
 
-    -- 10 rooms max, so each side can extend 9 rooms, so grid width should be 1 + 9 + 9 = 19
     -- {[interiorID: number]: {x:number, y:number}}
     -- in terms of direction: east is +x, west is -x, north is +y, south is -y
-    self.player_houses[starting_room_interiorID] = {[starting_room_interiorID] = {x = MAX_PLAYER_ROOM_COUNT, y = MAX_PLAYER_ROOM_COUNT}}
+    self.player_houses[starting_room_interiorID] = {[starting_room_interiorID] = {x = 0, y = 0}}
 end
 
 function InteriorSpawner:DeregisterPlayerHouse(house_entity)

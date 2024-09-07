@@ -256,6 +256,7 @@ PrefabFiles = {
 
     "house_door",
     "construction_permit",
+    "demolition_permit",
 }
 
 Assets = {

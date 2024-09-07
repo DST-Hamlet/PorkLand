@@ -53,6 +53,7 @@ if not rawget(_G, "HotReloading") then
         SHOP = Action({ distance = 2.5 }),
         RENOVATE = Action({}),
         BUILD_ROOM = Action({}),
+        DEMOLISH_ROOM = Action({}),
 
         SEARCH_MYSTERY = Action({priority = -1, distance = 1}),
     }
@@ -575,6 +576,13 @@ ACTIONS.BUILD_ROOM.fn = function(act)
     return false
 end
 
+ACTIONS.DEMOLISH_ROOM.fn = function(act)
+    if act.invobject.components.roomdemolisher and act.target:HasTag("house_door") and act.target:HasTag("interior_door") then
+        return act.invobject.components.roomdemolisher:DemolishRoom(act.doer, act.target, act.invobject)
+    end
+    return false
+end
+
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
 function ACTIONS.FERTILIZE.fn(act, ...)
@@ -882,7 +890,12 @@ local PL_COMPONENT_ACTIONS =
             if target:HasTag("predoor") then
                 table.insert(actions, ACTIONS.BUILD_ROOM)
             end
-        end
+        end,
+        roomdemolisher = function(inst, doer, target, actions, right)
+            if target:HasTag("interior_door") and target:HasTag("house_door") then
+                table.insert(actions, ACTIONS.DEMOLISH_ROOM)
+            end
+        end,
     },
 
     POINT = { -- args: inst, doer, pos, actions, right, target

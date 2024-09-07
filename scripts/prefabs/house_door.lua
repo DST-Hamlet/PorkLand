@@ -1,4 +1,4 @@
-local interiorspawner = require "components/interiorspawner"
+local interiorspawner = require("components/interiorspawner")
 
 local assets =
 {
@@ -21,7 +21,7 @@ PLAYER_INTERIOR_EXIT_DIR_DATA =
         target_door_id_dir = "_SOUTH",
         x_offset = -DEPTH/2,
         z_offset = 0,
-        opposing_exit_dir = interiorspawner and interiorspawner:GetSouth(),
+        opposing_exit_dir = interiorspawner:GetSouth(),
         op_dir = "south",
         angle = 0,
         background = true,
@@ -34,7 +34,7 @@ PLAYER_INTERIOR_EXIT_DIR_DATA =
         target_door_id_dir = "_NORTH",
         x_offset = DEPTH/2,
         z_offset = 0,
-        opposing_exit_dir = interiorspawner and interiorspawner:GetNorth(),
+        opposing_exit_dir = interiorspawner:GetNorth(),
         op_dir = "north",
         angle = 180,
         background = false,
@@ -49,7 +49,7 @@ PLAYER_INTERIOR_EXIT_DIR_DATA =
         target_door_id_dir = "_WEST",
         x_offset = 0,
         z_offset = WIDTH/2,
-        opposing_exit_dir = interiorspawner and interiorspawner:GetWest(),
+        opposing_exit_dir = interiorspawner:GetWest(),
         op_dir = "west",
         angle = 90,
         background = true,
@@ -62,7 +62,7 @@ PLAYER_INTERIOR_EXIT_DIR_DATA =
         target_door_id_dir = "_EAST",
         x_offset = 0,
         z_offset = -WIDTH/2,
-        opposing_exit_dir = interiorspawner and interiorspawner:GetEast(),
+        opposing_exit_dir = interiorspawner:GetEast(),
         op_dir = "east",
         angle = 270,
         background = true,
@@ -97,7 +97,6 @@ local function GetBaseAnimName(inst)
             return "east"
         end
     end
-
 end
 
 local function InitHouseDoorInteriorPrefab(inst, doer, prefab_definition, interior_definition)
@@ -208,38 +207,53 @@ local function DeactivateSelf(inst)
     inst.door_data_animstate = nil
 end
 
+local function clamp_position(work, origin, w, h)
+	local dx = work.x - origin.x
+	local dz = work.z - origin.z
+
+	if dx > w then
+		work.x = origin.x + w
+	elseif dx < -w then
+		work.x = origin.z - w
+	end
+
+	if dz > h then
+		work.z = origin.z + h
+	elseif dz < -h then
+		work.z = origin.z - h
+	end
+	return work
+end
+
 -- Used to remove things on the wall on the other side of a recently built door
 -- Can also be used when hammering a door
 local function ClearObstruction(inst)
-    if inst.components.lootdropper then
-        local pt = Vector3(inst.Transform:GetWorldPosition())
-        local modifiedPos = nil
-        -- local roomID = TheWorld.components.interiorspawner:getPropInterior(inst)
-        -- if roomID then
-        --     local room = TheWorld.components.interiorspawner.interiors[roomID]
-        --     local origin = TheWorld.components.interiorspawner:getOriginForInteriorInst(inst)
-        --     modifiedPos = TheWorld.components.interiorspawner:ClampPosition(pt, origin, room.depth/2 - 1, room.width/2 - 1)
-        -- end
-        inst.components.lootdropper:DropLoot(modifiedPos)
-    end
-    SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
-    if inst.SoundEmitter then
-        inst.SoundEmitter:PlaySound("dontstarve/common/destroy_wood")
-    end
+    local pt = inst:GetPosition()
+
+    local fx = SpawnPrefab("collapse_small")
+    fx.Transform:SetPosition(pt.x, pt.y, pt.z)
+    fx:SetMaterial("wood")
+
+    local origin = TheWorld.components.interiorspawner:GetInteriorCenter(inst:GetCurrentInteriorID()):GetPosition()
+    local new_pos = clamp_position(pt, origin, DEPTH/2 - 1, WIDTH/2 - 1)
+    inst.components.lootdropper:DropLoot(new_pos)
 
     inst:Remove()
 end
 
 local function OnFinishCallback(inst, worker)
-    local room = TheWorld.components.interiorspawner:GetInteriorCenter(inst.components.door.target_interior)
+    if inst.components.door.target_interior then
+        local room = TheWorld.components.interiorspawner:GetInteriorCenter(inst.components.door.target_interior)
 
-    local target_door = room and room:GetDoorById(inst.components.door.target_door_id)
-    if target_door then
-        target_door:Remove() -- Remove door instance on the other side
+        local target_door = room and room:GetDoorById(inst.components.door.target_door_id)
+        if target_door then
+            target_door:Remove() -- Remove door instance on the other side
+        end
+
+        TheWorld.components.interiorspawner:RemoveDoor(inst.components.door.target_door_id) -- Remove target door from interior_spawner
+        TheWorld.components.interiorspawner:RemoveDoor(inst.components.door.door_id) -- Remove self from interior_spawner
     end
 
-    TheWorld.components.interiorspawner:RemoveDoor(inst.components.door.target_door_id) -- Remove target door from interior_spawner
-    TheWorld.components.interiorspawner:RemoveDoor(inst.components.door.door_id) -- Remove self from interior_spawner
     ClearObstruction(inst) -- Destroy self and drop loot
 end
 
@@ -515,6 +529,10 @@ local function MakeHouseDoor(name)
                     inst.AnimState:SetLayer(LAYER_WORLD)
                 end
             end
+        end
+
+        inst.CanBeRemoved = function()
+            return true
         end
 
         -- TODO listen for room built and open door
