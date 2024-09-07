@@ -255,6 +255,7 @@ PrefabFiles = {
     "pl_feathers",
 
     "house_door",
+    "construction_permit",
 }
 
 Assets = {

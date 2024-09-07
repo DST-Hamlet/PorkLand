@@ -949,11 +949,11 @@ end
 function InteriorSpawner:RegisterPlayerRoom(house_id, new_room_id, from_id, direction)
     assert(self.player_houses[house_id] ~= nil, "Attempt to register player room without player house: ".. house_id, new_room_id)
 
-    local room_from =  self.player_houses[from_id]
+    local room_from =  self.player_houses[house_id][from_id]
     local new_x = room_from.x + direction.x
     local new_y = room_from.y + direction.y
 
-    self.player_houses[house_id] = {[new_room_id] = {x = new_x, y = new_y}}
+    self.player_houses[house_id][new_room_id] = {x = new_x, y = new_y}
 end
 
 function InteriorSpawner:DeregisterPlayerRoom(house_id, room_id)
@@ -1000,6 +1000,45 @@ function InteriorSpawner:GetPlayerRoomInDirection(house_id, room_from_id, direct
     -- assuming interior <room_from_id> exists
     local x, y = self:GetPlayerRoomIndexByID(house_id, room_from_id)
     return self:GetPlayerRoomIDByIndex(house_id, x + direction.x, y + direction.y)
+end
+
+function InteriorSpawner:GetPlayerHouseByRoomID(room_id)
+    for house_id, house_grid in pairs(self.player_houses) do
+        if house_grid[room_id] then
+            return house_id
+        end
+    end
+end
+
+-- surrounding mean can be connected with a door, so each room has max 4 surrounding rooms 
+function InteriorSpawner:GetSurroundingPlayerRooms(house_id, room_id)
+    local rooms = {}
+    local x, y = self:GetPlayerRoomIndexByID(house_id, room_id)
+    if not x then
+        return rooms
+    end
+
+    for interiorID, data in pairs(self.player_houses[house_id]) do
+        local dir_x = 0
+        local dir_y = 0
+        if data.x == x then
+            if data.y == y - 1 then
+                dir_y = -1
+            elseif data.y == y + 1 then
+                dir_y = 1
+            end
+        elseif data.y == y then
+            if data.x == x - 1 then
+                dir_x = -1
+            elseif data.x == x + 1 then
+                dir_x = 1
+            end
+        end
+        if dir_x ~= dir_y then
+            table.insert(rooms, {id = interiorID, dir = {x = dir_x, y = dir_y}})
+        end
+    end
+    return rooms
 end
 
 return InteriorSpawner

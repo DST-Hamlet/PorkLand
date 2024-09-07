@@ -71,8 +71,8 @@ PLAYER_INTERIOR_EXIT_DIR_DATA =
 
 local function CheckForShadow(inst)
     inst:DoTaskInTime(0, function()
-        if inst.baseanimname == "south" and not inst:HasChildPrefab("house_door_shadow") then
-            inst:AddChild(SpawnPrefab("house_door_shadow"))
+        if inst.baseanimname == "south" and not inst._house_door_shadow then
+            inst._house_door_shadow = inst:AddChild(SpawnPrefab("house_door_shadow"))
         end
     end)
 end
@@ -149,7 +149,8 @@ local function InitHouseDoorInteriorPrefab(inst, doer, prefab_definition, interi
     CheckForShadow(inst)
 end
 
-local function InitHouseDoor(inst, dir)
+local function InitHouseDoor(inst)
+    local dir = GetBaseAnimName(inst)
     inst.door_data_animstate = inst.prefab .. "_open_" .. PLAYER_INTERIOR_EXIT_DIR_DATA[dir].anim
     inst.baseanimname = GetBaseAnimName(inst)
 
@@ -272,10 +273,14 @@ local function OnSave(inst, data)
     if inst.checked_obstruction then
         data.checked_obstruction = inst.checked_obstruction
     end
+
+    if inst.baseanimname then
+        data.baseanimname = inst.baseanimname
+    end
 end
 
 local function OnLoad(inst, data)
-    inst.baseanimname = GetBaseAnimName(inst)
+    inst.baseanimname = data.baseanimname or "north"
 
     if data.door_data_animstate then
         inst.AnimState:PlayAnimation(data.door_data_animstate, true)
@@ -367,7 +372,8 @@ local function OnBuilt(inst)
 
     if not replace_existing_door then
         local connecting_room_id = interior_spawner:GetPlayerRoomInDirection(nil, current_room_id, interior_spawner:GetDirByLabel(baseanimname))
-        if connecting_room_id then
+        local house_id = interior_spawner:GetPlayerHouseByRoomID(connecting_room_id)
+        if connecting_room_id and house_id ~= connecting_room_id then
             local interior_def = interior_spawner:GetInteriorDefine(connecting_room_id)
             ActivateSelf(inst, connecting_room_id, current_room_id)
 
@@ -413,8 +419,8 @@ local function OnBuilt(inst)
             --         z_offset = prefabdata.z_offset
             --     }, prefabdata)
             -- end
-        else
-            print("NO CONNECTING NO ROOM FOUND")
+        -- else
+        --     print("NO CONNECTING NO ROOM FOUND")
         end
     end
 
@@ -468,8 +474,8 @@ local function MakeHouseDoor(name)
 
         inst:AddComponent("inspectable")
 
-        -- inst:AddComponent("door")
-        -- inst.components.door:SetDoorDisabled(true, "house_prop")
+        inst:AddComponent("door")
+        inst.components.door:SetDoorDisabled(true, "house_prop")
 
         inst:AddComponent("lootdropper")
 
@@ -510,6 +516,8 @@ local function MakeHouseDoor(name)
                 end
             end
         end
+
+        -- TODO listen for room built and open door
 
         return inst
     end

@@ -177,6 +177,9 @@ end
 
 -- Receiving from interior_door client RPC
 function InteriorVisitor:OnNewInteriorDoorData(data)
+    if not data or not data.target_interior then
+        return
+    end
     -- only getting data for current room
     if not self.interior_door_status[data.current_interior] then
         self.interior_door_status[data.current_interior] = {}
