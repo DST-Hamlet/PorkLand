@@ -40,7 +40,7 @@ PLAYER_INTERIOR_EXIT_DIR_DATA =
         background = false,
     },
 
-    -- Note that the anims for east and west are reversed. 
+    -- Note that the anims for east and west are reversed.
     -- If we clean up the source assets we should only need to change these
     ["east"] = {
         anim = "west",
@@ -303,7 +303,7 @@ local function OnLoad(inst, data)
         inst.AnimState:PlayAnimation(inst.prefab .. "_close_" .. PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].anim, true)
     end
 
-    if data.rotation then
+    if data.rotation and inst.components.rotatingbillboard == nil then
         inst.Transform:SetRotation(data.rotation)
     end
 
