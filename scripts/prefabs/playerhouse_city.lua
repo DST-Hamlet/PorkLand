@@ -188,6 +188,8 @@ local function CreatInterior(inst)
 
     local room = interior_spawner:GetInteriorCenter(id)
     room:AddInteriorTags("home_prototyper")
+
+    interior_spawner:RegisterPlayerHouse(inst)
 end
 
 local function UseDoor(inst, data)
@@ -313,6 +315,10 @@ local function fn()
     inst.OnReconstructe = OnReconstructe
 
     TheWorld.playerhouse = inst
+
+    inst:ListenForEvent("onremove", function()
+        TheWorld.components.interiorspawner:DeregisterPlayerHouse(inst)
+    end)
 
     return inst
 end

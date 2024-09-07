@@ -291,7 +291,10 @@ function Door:OnLoad(data)
         target_interior = data.target_interior,
         target_exterior = data.target_exterior,
     }
-    TheWorld.components.interiorspawner:AddDoor(self.inst, door_definition)
+    if not self.inst:HasTag("predoor") then
+        TheWorld.components.interiorspawner:AddDoor(self.inst, door_definition)
+    end
+
     self:SetDoorDisabled()
 end
 

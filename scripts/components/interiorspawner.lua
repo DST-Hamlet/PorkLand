@@ -19,6 +19,10 @@
 -- 亚丹：实际上，在上方注释版本的代码中，z的范围是(+BORDER + 2000,+infinite)
 -- 亚丹：将z的坐标范围修改为(-1000,+infinite)，注意当z小于-2000时渲染会因为超出TheSim:UpdateRenderExtents而出现问题
 
+local DataGrid = require("datagrid")
+
+local MAX_PLAYER_ROOM_COUNT = 10 -- 10 per house
+
 
 local SPACE = 120
 local MAX_X_OFFSET = 2000
@@ -44,7 +48,7 @@ local InteriorSpawner = Class(function(self, inst)
     self.interior_layout_map = {} --{[id: interiorID]: MapData | redirected_id}
     self.interior_layout_dirty_keys = {} -- {[K in keyof self.interior_layout_map]: true}
 
-    self.player_homes = {}
+    self.player_houses = {}
 
     inst:DoTaskInTime(0, function()
         self:SetInteriorPos() -- 保证室内位于渲染范围内
@@ -84,6 +88,7 @@ function InteriorSpawner:OnSave()
         interiors = interior_defs,
         next_interior_id = self.next_interior_id,
         reuse_interior_ids = self.reuse_interior_ids,
+        player_houses = self.player_houses,
     }
 end
 
@@ -99,6 +104,9 @@ function InteriorSpawner:OnLoad(data)
         end
         if data.reuse_interior_ids then
             self.reuse_interior_ids = data.reuse_interior_ids
+        end
+        if data.player_houses then
+            self.player_houses = data.player_houses
         end
     end
     self:SetInteriorPos()
@@ -302,6 +310,19 @@ function InteriorSpawner:GetOppositeFromDirection(direction)
         return self:GetNorth()
     else
         return self:GetEast()
+    end
+end
+
+-- maybe this should be consistent with the function above...
+function InteriorSpawner:GetDirByLabel(label)
+    if label == EAST.label then
+        return EAST
+    elseif label == WEST.label then
+        return WEST
+    elseif label == NORTH.label then
+        return NORTH
+    else
+        return SOUTH
     end
 end
 
@@ -534,7 +555,7 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                 }
             end
         else
-            local doordata = player_interior_exit_dir_data[heading.label]
+            local doordata = PLAYER_INTERIOR_EXIT_DIR_DATA[heading.label]
             prefab = {
                 name = exit.prefab_name,
                 x_offset = doordata.x_offset,
@@ -583,11 +604,6 @@ function InteriorSpawner:AddInterior(def)
 
     def.object_list = {}
     self.interior_defs[def.unique_name] = def
-
-    -- if TheWorld.components.worldmapiconproxy then
-    --     -- TODO: impl minimap
-    --     TheWorld.components.worldmapiconproxy:RegisterInterior(def.unique_name)
-    -- end
 
     if def.batted and TheWorld.components.batted then
         TheWorld.components.batted:RegisterBatCave(def.unique_name) -- unique_name is interiorID
@@ -908,6 +924,82 @@ function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
     end
 
     return false
+end
+
+function InteriorSpawner:RegisterPlayerHouse(house_entity)
+    local starting_room_interiorID = house_entity.interiorID
+    -- assume only 1 door leads to exterior
+    assert(self.player_houses[starting_room_interiorID] == nil, "THIS PLAYER ROOM ALREADY EXISTS: ".. starting_room_interiorID)
+
+    -- 10 rooms max, so each side can extend 9 rooms, so grid width should be 1 + 9 + 9 = 19
+    -- {[interiorID: number]: {x:number, y:number}}
+    -- in terms of direction: east is +x, west is -x, north is +y, south is -y
+    self.player_houses[starting_room_interiorID] = {[starting_room_interiorID] = {x = MAX_PLAYER_ROOM_COUNT, y = MAX_PLAYER_ROOM_COUNT}}
+end
+
+function InteriorSpawner:DeregisterPlayerHouse(house_entity)
+    self.player_houses[house_entity.interiorID] = nil
+end
+
+function InteriorSpawner:CanBuildMorePlayerRoom(house_id)
+    return GetTableSize(self.player_houses[house_id]) < MAX_PLAYER_ROOM_COUNT
+end
+
+---@param house_id number house_entity.interiorID
+function InteriorSpawner:RegisterPlayerRoom(house_id, new_room_id, from_id, direction)
+    assert(self.player_houses[house_id] ~= nil, "Attempt to register player room without player house: ".. house_id, new_room_id)
+
+    local room_from =  self.player_houses[from_id]
+    local new_x = room_from.x + direction.x
+    local new_y = room_from.y + direction.y
+
+    self.player_houses[house_id] = {[new_room_id] = {x = new_x, y = new_y}}
+end
+
+function InteriorSpawner:DeregisterPlayerRoom(house_id, room_id)
+    if self.player_houses[house_id] then
+        self.player_houses[house_id][room_id] = nil
+    end
+end
+
+---@return number|nil x
+---@return number|nil y
+function InteriorSpawner:GetPlayerRoomIndexByID(house_id, room_id)
+    if self.player_houses[house_id] then
+        local data = self.player_houses[house_id][room_id]
+        if data then
+            return data.x, data.y
+        end
+    end
+end
+
+---@return integer|nil interiorID returns nil if room not found
+function InteriorSpawner:GetPlayerRoomIDByIndex(house_id, x, y)
+    for interiorID, data in pairs(self.player_houses[house_id]) do
+        if data.x == x and data.y == y then
+            return interiorID
+        end
+    end
+end
+
+---@return integer|nil interiorID returns nil if room not found
+function InteriorSpawner:GetPlayerRoomInDirection(house_id, room_from_id, direction)
+    if not house_id then
+        for _house_id, house_grid in pairs(self.player_houses) do -- go through each house
+            if house_grid[room_from_id] then -- found it
+                house_id = _house_id
+                break
+            end
+        end
+    end
+
+    if not house_id then
+        return
+    end
+
+    -- assuming interior <room_from_id> exists
+    local x, y = self:GetPlayerRoomIndexByID(house_id, room_from_id)
+    return self:GetPlayerRoomIDByIndex(house_id, x + direction.x, y + direction.y)
 end
 
 return InteriorSpawner
