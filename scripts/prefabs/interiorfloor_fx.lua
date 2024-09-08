@@ -20,7 +20,7 @@ local function InitEnvelopes()
         }
     )
 
-    local SCALE = 2.92975
+    local SCALE = 2.9296875 -- 3000/1024
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
@@ -29,7 +29,7 @@ local function InitEnvelopes()
         }
     )
 
-    local SCALE2 = 2.07
+    local SCALE2 = 2.05078125
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME2,
         {
@@ -38,7 +38,7 @@ local function InitEnvelopes()
         }
     )
 
-    local SCALE3 = 4.69
+    local SCALE3 = 4.6875
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME3,
         {
