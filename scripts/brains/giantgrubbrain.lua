@@ -8,19 +8,19 @@ local MAX_WANDER_DIST = 20
 local MAX_CHASE_TIME = 30
 
 local GiantGrubBrain = Class(Brain, function(self, inst)
-	Brain._ctor(self, inst)
+    Brain._ctor(self, inst)
 end)
 
 function GiantGrubBrain:OnStart()
-	local root = PriorityNode({
-		BrainCommon.PanicTrigger(self.inst),
+    local root = PriorityNode({
+        BrainCommon.PanicTrigger(self.inst),
 
-		ChaseAndAttack(self.inst, MAX_CHASE_TIME),
+        ChaseAndAttack(self.inst, MAX_CHASE_TIME),
 
-		Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
-	}, 0.25)
+        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
+    }, 0.25)
 
-	self.bt = BT(self.inst, root)
+    self.bt = BT(self.inst, root)
 end
 
 function GiantGrubBrain:OnInitializationComplete()

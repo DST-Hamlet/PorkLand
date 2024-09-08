@@ -30,7 +30,7 @@ local states =
         tags = {"idle"},
 
         onenter = function(inst)
-			inst.Physics:Stop()
+            inst.Physics:Stop()
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/crickant/hunger")
             inst.AnimState:PlayAnimation("idle_angry")
         end,
@@ -73,14 +73,14 @@ local states =
     },
 
     State{
-		name = "abandon",
-		tags = {"busy"},
+        name = "abandon",
+        tags = {"busy"},
 
-		onenter = function(inst, leader)
-			inst.Physics:Stop()
-			inst.AnimState:PlayAnimation("abandon")
+        onenter = function(inst, leader)
+            inst.Physics:Stop()
+            inst.AnimState:PlayAnimation("abandon")
             inst:FacePoint(Vector3(leader.Transform:GetWorldPosition()))
-		end,
+        end,
 
         events =
         {
@@ -172,23 +172,23 @@ local states =
 }
 
 CommonStates.AddWalkStates(states, {
-	walktimeline = {
-		TimeEvent(0  * FRAMES, PlayFootstep),
-		TimeEvent(12 * FRAMES, PlayFootstep),
-	},
+    walktimeline = {
+        TimeEvent(0  * FRAMES, PlayFootstep),
+        TimeEvent(12 * FRAMES, PlayFootstep),
+    },
 })
 
 CommonStates.AddRunStates(states, {
-	runtimeline = {
-		TimeEvent(0  * FRAMES, PlayFootstep),
-		TimeEvent(10 * FRAMES, PlayFootstep),
-	},
+    runtimeline = {
+        TimeEvent(0  * FRAMES, PlayFootstep),
+        TimeEvent(10 * FRAMES, PlayFootstep),
+    },
 })
 
 CommonStates.AddSleepStates(states, {
-	sleeptimeline = {
-		TimeEvent(35 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/crickant/sleep") end),
-	},
+    sleeptimeline = {
+        TimeEvent(35 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/crickant/sleep") end),
+    },
 })
 
 CommonStates.AddIdle(states,"funnyidle")

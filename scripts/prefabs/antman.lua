@@ -1,8 +1,8 @@
 local assets =
 {
-	Asset("ANIM", "anim/antman_basic.zip"),
-	Asset("ANIM", "anim/antman_attacks.zip"),
-	Asset("ANIM", "anim/antman_actions.zip"),
+    Asset("ANIM", "anim/antman_basic.zip"),
+    Asset("ANIM", "anim/antman_attacks.zip"),
+    Asset("ANIM", "anim/antman_actions.zip"),
 
     Asset("ANIM", "anim/antman_translucent_build.zip"),
 }
@@ -40,7 +40,7 @@ local function OnTalk(inst, script)
     if IsPlayerInAntDisguise(ThePlayer) then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/crickant/pick_up")
     else
-	   inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/crickant/abandon")
+       inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/crickant/abandon")
     end
 end
 
@@ -75,15 +75,15 @@ local function ShouldAcceptItem(inst, item)
         end
 
         if (item.components.edible.foodtype == FOODTYPE.VEGGIE or item.components.edible.foodtype == FOODTYPE.RAW) then
-			local last_eat_time = inst.components.eater:TimeSinceLastEating()
-			if last_eat_time and last_eat_time < TUNING.PIG_MIN_POOP_PERIOD then
-				return false
-			end
+            local last_eat_time = inst.components.eater:TimeSinceLastEating()
+            if last_eat_time and last_eat_time < TUNING.PIG_MIN_POOP_PERIOD then
+                return false
+            end
 
             if inst.components.inventory:Has(item.prefab, 1) then
                 return false
             end
-		end
+        end
 
         return true
     end
@@ -99,8 +99,8 @@ local function OnGetItemFromPlayer(inst, giver, item)
             if inst.components.combat.target and inst.components.combat.target == giver then
                 inst.components.combat:SetTarget(nil)
             elseif giver.components.leader then
-				inst.SoundEmitter:PlaySound("dontstarve/common/makeFriend")
-				giver.components.leader:AddFollower(inst)
+                inst.SoundEmitter:PlaySound("dontstarve/common/makeFriend")
+                giver.components.leader:AddFollower(inst)
                 inst.components.follower:AddLoyaltyTime(item.components.edible:GetHunger() * TUNING.ANTMAN_LOYALTY_PER_HUNGER)
             end
         end
@@ -234,14 +234,14 @@ end
 local brain = require("brains/antbrain")
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddDynamicShadow()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddDynamicShadow()
     inst.entity:AddLightWatcher()
-	inst.entity:AddNetwork()
+    inst.entity:AddNetwork()
 
     MakeCharacterPhysics(inst, 50, 0.5)
 
@@ -327,7 +327,7 @@ local function fn()
     inst.components.named:PickNewName()
 
     inst:AddComponent("eater")
-	inst.components.eater:SetCanEatHorrible()
+    inst.components.eater:SetCanEatHorrible()
     inst.components.eater:SetStrongStomach(true)
     inst.eattype = math.random(4)
     SetEatType(inst, inst.eattype)

@@ -1,8 +1,8 @@
 local assets =
 {
-	Asset("ANIM", "anim/antman_basic.zip"),
-	Asset("ANIM", "anim/antman_attacks.zip"),
-	Asset("ANIM", "anim/antman_actions.zip"),
+    Asset("ANIM", "anim/antman_basic.zip"),
+    Asset("ANIM", "anim/antman_attacks.zip"),
+    Asset("ANIM", "anim/antman_actions.zip"),
     Asset("ANIM", "anim/antman_egghatch.zip"),
     Asset("ANIM", "anim/antman_guard_build.zip"),
     Asset("ANIM", "anim/antman_warpaint_build.zip"),
@@ -124,12 +124,12 @@ end
 local brain = require("brains/antwarriorbrain")
 
 local function fn()
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddDynamicShadow()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddDynamicShadow()
     inst.entity:AddLight()
     inst.entity:AddLightWatcher()
     inst.entity:AddNetwork()
@@ -141,7 +141,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle_loop")
     inst.AnimState:Hide("hat")
 
-	inst.DynamicShadow:SetSize(1.5, 0.75)
+    inst.DynamicShadow:SetSize(1.5, 0.75)
 
     inst.Light:SetFalloff(0.35)
     inst.Light:SetIntensity(0.25)

@@ -234,9 +234,9 @@ local pl_fx = {
     },
     {
         name = "int_ceiling_dust_fx",
-    	bank = "int_ceiling_dust_fx",
-    	build = "int_ceiling_dust_fx",
-    	anim = "idle",
+        bank = "int_ceiling_dust_fx",
+        build = "int_ceiling_dust_fx",
+        anim = "idle",
     }
 }
 

@@ -357,6 +357,11 @@ local function CreateQueenChambers(room_count)
         end
 
         interior_spawner:SpawnInterior(def)
+
+        if is_queen_chamber then
+            local center_ent = interior_spawner:GetInteriorCenter(queen_chamber_ids[i])
+            center_ent:AddInteriorTags("antqueen") -- need this antman_warrior_egg
+        end
     end
 end
 

@@ -27,10 +27,10 @@ local FIND_ANT_RADIUS = 40
 local MIN_ANT_COUNT = 3
 
 local function LaunchProjectile(inst, targetpos)
-    -- local projectile = SpawnPrefab("antlarva")
-    -- projectile.owner = inst
-    -- projectile.Transform:SetPosition(inst:GetPosition():Get())
-    -- projectile.components.complexprojectile:Launch(targetpos)
+    local projectile = SpawnPrefab("antlarva")
+    projectile.owner = inst
+    projectile.Transform:SetPosition(inst:GetPosition():Get())
+    projectile.components.pl_complexprojectile:Launch(targetpos)
 end
 
 local function maintainantpop(inst)

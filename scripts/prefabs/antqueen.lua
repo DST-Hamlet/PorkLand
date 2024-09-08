@@ -38,6 +38,21 @@ local spawn_positions =
     {x = 6, z = 0 },
 }
 
+local function start_shrinking(shadow, queen)
+    shadow.AnimState:SetMultColour(1, 1, 1, 0.33)
+    shadow.Transform:SetScale(1.5, 1.5, 1.5)
+
+    if queen and queen.SoundEmitter then
+        queen.SoundEmitter:PlaySound("dontstarve_DLC002/common/bomb_fall")
+    end
+
+    shadow:AddComponent("colourtweener")
+    shadow:AddComponent("sizetweener")
+
+    shadow.components.colourtweener:StartTween({1, 1, 1, 0.75}, 1.5)
+    shadow.components.sizetweener:StartTween(0.5, 1.5, shadow.Remove)
+end
+
 local function SpawnWarrior(inst)
 
     local x, y, z = inst.Transform:GetWorldPosition()
@@ -55,6 +70,7 @@ local function SpawnWarrior(inst)
 
     local shadow = SpawnPrefab("warningshadow")
     shadow.Transform:SetPosition(x, 0.2, z)
+    start_shrinking(shadow, inst)
 
     inst.warrior_count = inst.warrior_count + 1
 end
