@@ -677,8 +677,8 @@ AddRecipe2("plate_door",    {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = tru
 AddRecipe2("round_door",    {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "round_door_placer",   image = "round_door.tex"},   {"HOME_DOOR"})
 AddRecipe2("pillar_door",   {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "pillar_door_placer",  image = "pillar_door.tex"},  {"HOME_DOOR"})
 
-AddRecipe2("construction_permit", {Ingredient("oinc", 50)}, TECH.HOME, {nounlock = true}, {"HOME_MISC"})
-AddRecipe2("demolition_permit",   {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true}, {"HOME_MISC"})
+AddRecipe2("construction_permit", {Ingredient("oinc", 50)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
+AddRecipe2("demolition_permit",   {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
 
 -- Deconstruct ---
 AddDeconstructRecipe("pig_guard_tower_palace", {Ingredient("cutstone", 3), Ingredient("halberd", 2), Ingredient("pigskin", 4)})
