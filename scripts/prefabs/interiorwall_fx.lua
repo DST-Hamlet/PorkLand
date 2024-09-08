@@ -1,5 +1,5 @@
 local TEXTURE = "levels/textures/interiors/antcave_wall_rock.tex"
-local SHADER = "shaders/vfx_particle.ksh"
+local SHADER = "shaders/interior_wall_particle.ksh"
 
 local COLOUR_ENVELOPE_NAME = "pl_wallcolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_wallscaleenvelope"

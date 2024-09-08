@@ -1,5 +1,5 @@
 local TEXTURE = "levels/textures/interiors/shop_floor_woodmetal.tex"
-local SHADER = "shaders/vfx_particle.ksh"
+local SHADER = "shaders/interior_wall_particle.ksh"
 
 local COLOUR_ENVELOPE_NAME = "pl_floorcolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_floorscaleenvelope" -- for 512x512
