@@ -38,7 +38,7 @@ local function InitEnvelopes()
         }
     )
 
-    local SCALE3 = 4.6875
+    local SCALE3 = 5.859375
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME3,
         {
@@ -76,8 +76,10 @@ local function SetTexture(inst, texture)
     if not TheNet:IsDedicated() then
         inst.VFXEffect:SetRenderResources(0, resolvefilepath(texture), resolvefilepath(SHADER))
     end
-    if texture:find("noise_woodfloor") then
+    if texture:find("noise_woodfloor") then -- 特殊情况
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME2)
+    elseif texture:find("batcave_floor") then
+        inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME3)
     elseif texture:find("floor") then
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
     end

@@ -7,9 +7,15 @@ local SURFACE = {
     FLOOR = "floor",
 }
 
-local WALL_TILE_SCALE = 5
-local WALL_TILE_SHEAR = 0.91
-local WALL_TILE_X_OFFSET = 0.21
+-- 特殊情况：
+--     蝙蝠洞：墙的地皮和纹理都是默认尺寸的2倍
+--     蚂蚁洞：墙的地皮和纹理都是默认尺寸的2倍
+--     皇宫：墙的高度是默认尺寸的1.25倍，宽度是2倍
+--     木地板：纹理缩放倍率是默认的7/5，因为这样视觉效果更好
+
+local WALL_TILE_SCALE = 6.25 -- 5/8
+local WALL_TILE_SHEAR = 0
+local WALL_TILE_X_OFFSET = 0
 local FLOOR_TILE_SCALE = 16
 
 local function ClearFx(inst)
@@ -36,8 +42,10 @@ local function UpdateFx(inst)
         local w = inst.size_x:value()
         local h = inst.size_z:value()
         local mod = 1
-        if path:find("noise_woodfloor") then
+        if path:find("noise_woodfloor") then -- 特殊情况
             mod = 7/8
+        elseif path:find("batcave_floor") then
+            mod = 10/8
         elseif path:find("floor") then
             mod = 5/8
         end
@@ -60,16 +68,14 @@ local function UpdateFx(inst)
     elseif inst.interior_type == SURFACE.WALL then
         local w = inst.size_x:value()
         local last_fx = nil
-        local y = 0.5*WALL_TILE_SCALE*WALL_TILE_SHEAR
-        local xoffset = 0.5*WALL_TILE_SCALE*WALL_TILE_X_OFFSET
-        local mod = 1
+        local y = 2.2360679775 -- sqr(5)
+        local mod = 0.8
         if path:find("wall_royal_high") then
-            y = y * 2
-            xoffset = xoffset * 2
+            y = y * 2.5
+            mod = mod * 2
         elseif path:find("batcave_wall_rock") then
-            y = y * 1.8
-            xoffset = xoffset * 1.8
-            mod = 1.8
+            y = y * 2
+            mod = mod * 2
         end
         local WALL_TILE_SCALE = WALL_TILE_SCALE * mod
         for x = 0, w/WALL_TILE_SCALE do
@@ -77,7 +83,7 @@ local function UpdateFx(inst)
             table.insert(inst.fx, fx)
             if inst.prefab:find("_x") then
                 fx.is_x = true
-                fx.Transform:SetPosition((x + 0.5) * WALL_TILE_SCALE - xoffset - y * 0.25, y, 0)
+                fx.Transform:SetPosition((x + 0.5) * WALL_TILE_SCALE - y * 0.5, y, 0)
             else
                 fx.Transform:SetPosition( - y * 0.5, y, (x + 0.5) * WALL_TILE_SCALE)
             end
@@ -87,7 +93,7 @@ local function UpdateFx(inst)
 
         -- fix render of last wall tile
         if last_fx then
-            local p = select(2, math.modf(w/WALL_TILE_SCALE))
+            local p = w/WALL_TILE_SCALE - math.floor(w/WALL_TILE_SCALE)
             last_fx.w_percent = p
             local x, _, z = last_fx.Transform:GetLocalPosition()
             if inst.prefab:find("_x") then
