@@ -11,6 +11,13 @@ end
 local function OnUnequip(inst, owner)
     owner.AnimState:ClearOverrideSymbol("swap_body")
     inst.components.fueled:StopConsuming()
+    if owner.components.leader then
+        owner:DoTaskInTime(0, function() -- in case of equipment swapping 
+            if not IsPlayerInAntDisguise(owner) then
+                owner.components.leader:RemoveFollowersByTag("ant")
+            end
+        end)
+    end
 end
 
 local function FueledUpdateFn(inst)

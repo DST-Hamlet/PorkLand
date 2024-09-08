@@ -155,9 +155,9 @@ local function OnAttacked(inst, data)
     local attacker = data.attacker
     inst:ClearBufferedAction()
 
-    if attacker.prefab == "deciduous_root" and attacker.owner then
+    if attacker and attacker.prefab == "deciduous_root" and attacker.owner then
         OnAttackedByDecidRoot(inst, attacker.owner)
-    elseif attacker.prefab ~= "deciduous_root" then
+    elseif attacker and attacker.prefab ~= "deciduous_root" then
         inst.components.combat:SetTarget(attacker)
         inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent)
             return ent:HasTag("ant")
@@ -299,6 +299,7 @@ local function fn()
     inst.components.trader:SetAcceptTest(ShouldAcceptItem)
     inst.components.trader.onaccept = OnGetItemFromPlayer
     inst.components.trader.onrefuse = OnRefuseItem
+    inst.components.trader.deleteitemonaccept = false
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aurafn = CalcSanityAura
