@@ -366,8 +366,11 @@ Assets = {
     Asset("IMAGE", "levels/textures/map_interior/mini_antcave_floor.tex"),
     Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
+
     Asset("ATLAS", "levels/textures/map_interior/mini_floor_wood.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_floor_wood.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_woodpanels.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_woodpanels.tex"),
 
     -- Cookbook HD icons
     Asset("ATLAS", "images/hud/pl_cook_pot_food_image.xml"),

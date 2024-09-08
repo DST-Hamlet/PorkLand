@@ -47,6 +47,7 @@ local function SetUp(inst, data)
     inst:SetSize(width, depth)
     inst.height = data.height or inst.height
     inst.search_radius = inst:GetSearchRadius()
+    inst:SetFloorMinimapTex(data.minimaptexture or "mini_floor_wood.tex")
 
     if inst.components.interiorpathfinder then
         inst.components.interiorpathfinder:PopulateRoom()
@@ -158,6 +159,14 @@ end
 local function SetSize(inst, width, depth)
     inst._width:set(width)
     inst._depth:set(depth)
+end
+
+local function SetFloorMinimapTex(inst, texture)
+    inst._floor_minimaptex:set(texture)
+end
+
+local function GetFloorMinimapTex(inst)
+    return inst._floor_minimaptex:value()
 end
 
 local function SetInteriorFloorTexture(inst, texture)
@@ -312,21 +321,20 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         end
     end
 
-    local interior_def = TheWorld.components.interiorspawner:GetInteriorDefine(inst.interiorID)
     -- Fallback to mini_ruins_slab
-    local floor_texture = interior_def and basename(interior_def.minimaptexture) or "mini_ruins_slab"
+    local minimap_floor_texture = inst:GetFloorMinimapTex() or "mini_ruins_slab.tex"
 
     return {
         width = width,
         depth = depth,
-        floor_texture = floor_texture,
+        minimap_floor_texture = basename(minimap_floor_texture),
         icons = icons,
         doors = doors,
     }
     -- {
     --     width: number,
     --     depth: number,
-    --     floor_texture: string,
+    --     minimap_floor_texture: string,
     --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
     --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
     -- }
@@ -465,6 +473,7 @@ local function fn()
     inst.major_id = net_ushortint(inst.GUID, "major_id", "major_id")
     inst.minimap_coord_x = net_shortint(inst.GUID, "minimap_coord_x", "minimap_coord")
     inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
+    inst._floor_minimaptex = net_string(inst.GUID, "_floor_minimaptex", "_floor_minimaptex")
 
     inst.GetSearchRadius = GetSearchRadius
     inst.GetDoorById = GetDoorById
@@ -489,6 +498,9 @@ local function fn()
 
     inst.walltexture = nil
     inst.floortexture = nil
+
+    inst.SetFloorMinimapTex = SetFloorMinimapTex
+    inst.GetFloorMinimapTex = GetFloorMinimapTex
 
     inst.SetInteriorFloorTexture = SetInteriorFloorTexture
     inst.SetInteriorWallsTexture = SetInteriorWallsTexture
