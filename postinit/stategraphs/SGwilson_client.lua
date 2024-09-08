@@ -997,7 +997,7 @@ AddStategraphPostInit("wilson_client", function(sg)
             if inst:HasTag("ironlord") then
                 return "ironlord_attack"
             end
-            if not (inst.sg:HasStateTag("attack") and action.target == inst.sg.statemem.attacktarget or inst.replica.health:IsDead()) then
+            if not (inst.sg:HasStateTag("attack") and action and action.target == inst.sg.statemem.attacktarget or inst.replica.health:IsDead()) then
                 local equip = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
                 if equip and equip:HasTag("blunderbuss_loaded") then
                     return "blunderbuss"
