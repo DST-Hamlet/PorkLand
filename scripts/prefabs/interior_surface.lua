@@ -49,7 +49,7 @@ local function UpdateFx(inst)
         if path:find("noise_woodfloor") then -- 特殊情况
             mod = 7/8
         elseif path:find("batcave_floor") then
-            mod = 10/8
+            mod = 9/8
         elseif path:find("floor") then
             mod = 5/8
         end

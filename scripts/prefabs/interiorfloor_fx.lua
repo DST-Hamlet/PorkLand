@@ -38,7 +38,7 @@ local function InitEnvelopes()
         }
     )
 
-    local SCALE3 = 5.859375
+    local SCALE3 = 5.2734375
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME3,
         {
