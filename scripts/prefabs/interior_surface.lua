@@ -72,7 +72,7 @@ local function UpdateFx(inst)
     elseif inst.interior_type == SURFACE.WALL then
         local w = inst.size_x:value()
         local last_fx = nil
-        local y = 2.2360679775 * 1.05 -- sqr(5)
+        local y = 2.2360679775 * 1.08 -- sqr(5)
         local mod = 0.8
         if path:find("wall_royal_high") then
             y = y * 2.2
