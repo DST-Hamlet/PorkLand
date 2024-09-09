@@ -341,16 +341,28 @@ function InteriorSpawner:AddDoor(door, def)
     door_component.target_interior = def.target_interior
     door_component.target_exterior = def.target_exterior
     door_component.is_exit = def.is_exit
+
+    local center = self:GetInteriorCenter(door:GetPosition())
+    if center then
+        center:OnDoorChange(door, true)
+    end
 end
 
 function InteriorSpawner:RemoveDoor(door_id)
-    if not self.doors[door_id] then
+    local door_data = self.doors[door_id]
+    if not door_data then
         print("ERROR: TRYING TO REMOVE A NON EXISTING DOOR DEFINITION")
         return
     end
 
     self.doors[door_id] = nil
     TheWorld:PushEvent("door_removed")
+
+    local door = door_data.inst
+    local center = self:GetInteriorCenter(door:GetPosition())
+    if center then
+        center:OnDoorChange(door, false)
+    end
 end
 
 function InteriorSpawner:SpawnObject(interiorID, prefab, offset)
@@ -947,7 +959,7 @@ end
 
 ---@param house_id number house_entity.interiorID
 function InteriorSpawner:RegisterPlayerRoom(house_id, new_room_id, from_id, direction)
-    assert(self.player_houses[house_id] ~= nil, "Attempt to register player room without player house: ".. house_id, new_room_id)
+    assert(self.player_houses[house_id] ~= nil, "Attempt to register player room without player house: " .. house_id)
 
     local room_from =  self.player_houses[house_id][from_id]
     local new_x = room_from.x + direction.x
@@ -1005,7 +1017,7 @@ function InteriorSpawner:GetPlayerHouseByRoomID(room_id)
     end
 end
 
--- surrounding mean can be connected with a door, so each room has max 4 surrounding rooms 
+-- surrounding mean can be connected with a door, so each room has max 4 surrounding rooms
 function InteriorSpawner:GetSurroundingPlayerRooms(house_id, room_id)
     local rooms = {}
     local x, y = self:GetPlayerRoomIndexByID(house_id, room_id)

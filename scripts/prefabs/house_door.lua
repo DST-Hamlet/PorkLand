@@ -179,7 +179,7 @@ local function ActivateSelf(inst, target_interior, current_interior)
     }
 
     TheWorld.components.interiorspawner:AddDoor(inst, door_def)
-    inst.InitHouseDoor(inst, inst.baseanimname)
+    inst:InitHouseDoor(inst.baseanimname)
 
     inst:AddTag("interior_door")
     inst:AddTag("client_forward_action_target")
@@ -346,11 +346,12 @@ end
 
 local function OnBuilt(inst)
     local interior_spawner = TheWorld.components.interiorspawner
-    local current_interior = interior_spawner:GetInteriorCenter(ThePlayer:GetPosition())
+    local current_interior = interior_spawner:GetInteriorCenter(inst:GetPosition())
     local current_room_id = current_interior.interiorID
 
     local baseanimname = GetBaseAnimName(inst)
     inst.baseanimname = baseanimname
+    inst:AddTag("door_" .. baseanimname)
     CheckForShadow(inst)
 
     -- players can build a new door directly on the old door to change its look

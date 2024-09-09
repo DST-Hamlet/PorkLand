@@ -136,8 +136,8 @@ function InteriorVisitor:UpdateExteriorPos()
         end
         self:UpdatePlayerAndCreaturePhysics(ent)
 
-        local single, door = ent:GetIsSingleRoom() -- check if this room is single, if so, get the unique exit
-        if single then
+        if ent:GetIsSingleRoom() then -- check if this room is single, if so, get the unique exit
+            local door = ent:GetDoorToExterior()
             local house = spawner:GetExteriorById(door.components.door.interior_name)
             if house ~= nil then
                 local x, _, z = house.Transform:GetWorldPosition()

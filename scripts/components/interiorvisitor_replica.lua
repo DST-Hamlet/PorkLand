@@ -165,6 +165,9 @@ function InteriorVisitor:OnNewInteriorMapData(data)
     for id, data in pairs(data) do
         self.interior_map[id] = data
     end
+    if self.inst == ThePlayer then
+        self.inst:PushEvent("refresh_interior_minimap")
+    end
 end
 
 local function get_door_id(current_room_id, target_interior_id)

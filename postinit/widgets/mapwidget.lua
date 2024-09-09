@@ -280,9 +280,20 @@ end
 --     end
 -- end
 
-function MapWidget:OnEnterInterior()
+function MapWidget:ApplyInteriorMinimap()
     if self.interior_map_widgets then
-        return
+        for _, room in pairs(self.interior_map_widgets.rooms) do
+            room.tile:Kill()
+            room.frame:Kill()
+        end
+        for _, door in pairs(self.interior_map_widgets.doors) do
+            door:Kill()
+        end
+        for _, room in pairs(self.interior_map_widgets.rooms) do
+            for _, icon_data in ipairs(room.icons) do
+                icon_data.widget:Kill()
+            end
+        end
     end
 
     local data = self.owner.replica.interiorvisitor.interior_map
@@ -328,16 +339,6 @@ end
 -- Delay a frame since we have higher priority
 scheduler:ExecuteInTime(0, function()
     AddClassPostConstruct("widgets/mapwidget", function(self)
-        -- local interior_center = self.owner.replica.interiorvisitor:GetCenterEnt()
-        -- if interior_center and interior_center:HasInteriorMinimap() then
-        --     self.interior_map_widget = self:AddChild(Widget("interior map"))
-        --     local data = self.owner.replica.interiorvisitor.interior_map
-        --     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
-        --     if data[current_room_id] then
-        --         BuildInteriorMinimapLayout(self.interior_map_widget, data, {}, current_room_id, Vector3())
-        --     end
-        -- end
-
         -- Do it here instead to be compatible with Global Positions
         local on_update = self.OnUpdate
         self.OnUpdate = function(self, ...)
