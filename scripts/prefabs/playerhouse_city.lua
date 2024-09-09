@@ -149,6 +149,11 @@ local function OnLoad(inst, data)
         if data.burnt then
             inst.components.burnable.onburnt(inst)
         end
+
+        -- keep compatible with older saves
+        if not TheWorld.components.interiorspawner:IsPlayerHouseRegistered(inst) then
+            TheWorld.components.interiorspawner:RegisterPlayerHouse(inst)
+        end
     end
 end
 

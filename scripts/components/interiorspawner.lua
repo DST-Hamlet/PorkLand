@@ -19,9 +19,7 @@
 -- 亚丹：实际上，在上方注释版本的代码中，z的范围是(+BORDER + 2000,+infinite)
 -- 亚丹：将z的坐标范围修改为(-1000,+infinite)，注意当z小于-2000时渲染会因为超出TheSim:UpdateRenderExtents而出现问题
 
-local DataGrid = require("datagrid")
-
-local MAX_PLAYER_ROOM_COUNT = 10 -- 10 per house
+local MAX_PLAYER_ROOM_COUNT = 25 -- 25 per house
 
 
 local SPACE = 120
@@ -940,6 +938,13 @@ function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
     end
 
     return false
+end
+
+function InteriorSpawner:IsPlayerHouseRegistered(house_entity)
+    if not house_entity or not house_entity.interiorID then
+        return false
+    end
+    return self.player_houses[house_entity.interiorID] ~= nil
 end
 
 function InteriorSpawner:RegisterPlayerHouse(house_entity)
