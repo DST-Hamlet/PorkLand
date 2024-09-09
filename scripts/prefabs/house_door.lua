@@ -261,10 +261,6 @@ local function OnSave(inst, data)
         data.flipped = inst.flipped
     end
 
-    if inst.minimapicon then
-        data.minimapicon = inst.minimapicon
-    end
-
     if inst.checked_obstruction then
         data.checked_obstruction = inst.checked_obstruction
     end
@@ -297,12 +293,6 @@ local function OnLoad(inst, data)
         inst.door_data_background = data.door_data_background
     else
         inst.AnimState:SetLayer(LAYER_WORLD)
-    end
-
-    if data.minimapicon then
-        inst.minimapicon = data.minimapicon
-        local minimap = inst.entity:AddMiniMapEntity()
-        minimap:SetIcon(inst.minimapicon)
     end
 
     if data.checked_obstruction then
