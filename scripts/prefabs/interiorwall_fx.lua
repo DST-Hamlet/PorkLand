@@ -20,7 +20,7 @@ local function InitEnvelopes()
         }
     )
 
-    local width, height = 1.46484375, 1.46484375
+    local width, height = 1.46484375, 1.46484375 * 1.05
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
@@ -29,7 +29,7 @@ local function InitEnvelopes()
         }
     )
 
-    local width2, height2 = 2.9296875, 2.9296875 -- 3000/1024
+    local width2, height2 = 2.9296875, 2.9296875 * 1.05 -- 3000/1024
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME2,
         {
@@ -38,7 +38,7 @@ local function InitEnvelopes()
         }
     )
 
-    local width3, height3 = 2.9296875, 1.8310546875 -- 2, 1.25
+    local width3, height3 = 2.9296875, 1.611328125 * 1.05 -- 2, 1.1
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME3,
         {

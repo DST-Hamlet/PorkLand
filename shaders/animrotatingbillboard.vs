@@ -53,7 +53,7 @@ void main()
 	vec3 origin = vec3(X, 0, Z);
 	vec3 offset = world_pos.xyz - origin;
 	vec3 offset_trans_3 = rot* flip_back* offset;
-	offset_trans_3 += vec3(0.0, offset_trans_3.y * -0.105572809, 0.0); // 1 - sqr(5) / 2
+	offset_trans_3 += vec3(0.0, offset_trans_3.y * -0.08, 0.0); // 1 - sqr(5) / 2
 	offset_trans_3 += vec3(offset_trans_3.y * -0.5, 0.0, 0.0);
 	world_pos.xyz = offset_trans_3 + origin;
 

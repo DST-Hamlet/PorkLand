@@ -8,9 +8,9 @@ local SURFACE = {
 }
 
 -- 特殊情况：
---     蝙蝠洞：墙的地皮和纹理都是默认尺寸的2倍
---     蚂蚁洞：墙的地皮和纹理都是默认尺寸的2倍
---     皇宫：墙的高度是默认尺寸的1.25倍，宽度是2倍
+--     蝙蝠洞：墙的纹理都是默认尺寸的2倍，地皮的纹理都是默认尺寸的1.8倍
+--     蚂蚁洞：墙的纹理都是默认尺寸的2倍，地皮的纹理都是默认尺寸的1.8倍
+--     皇宫：墙的高度是默认尺寸的1.2倍，宽度是2倍
 --     木地板：纹理缩放倍率是默认的7/5，因为这样视觉效果更好
 
 local WALL_TILE_SCALE = 6.25 -- 5/8
@@ -48,7 +48,7 @@ local function UpdateFx(inst)
         local mod = 1
         if path:find("noise_woodfloor") then -- 特殊情况
             mod = 7/8
-        elseif path:find("batcave_floor") then
+        elseif path:find("batcave_floor") or path:find("ground_ruins_slab") then
             mod = 9/8
         elseif path:find("floor") then
             mod = 5/8
@@ -72,10 +72,10 @@ local function UpdateFx(inst)
     elseif inst.interior_type == SURFACE.WALL then
         local w = inst.size_x:value()
         local last_fx = nil
-        local y = 2.2360679775 -- sqr(5)
+        local y = 2.2360679775 * 1.05 -- sqr(5)
         local mod = 0.8
         if path:find("wall_royal_high") then
-            y = y * 2.5
+            y = y * 2.2
             mod = mod * 2
         elseif path:find("batcave_wall_rock") then
             y = y * 2
