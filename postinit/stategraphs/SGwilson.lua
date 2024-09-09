@@ -2406,21 +2406,19 @@ AddStategraphPostInit("wilson", function(sg)
     local _attacked_eventhandler = sg.events.attacked.fn
 
     local _DoHurtSound, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
-    if DoHurtSound_i ~= nil then -- 不知道为什么，有时候会因为i为nil而崩溃，因此加上了这个检测
-        ToolUtil.SetUpvalue(_attacked_eventhandler, function(inst)
-            if inst:HasTag("ironlord") then
-                return
-            end
-            _DoHurtSound(inst)
-        end, "DoHurtSound")
-    end
+    debug.setupvalue(_attacked_eventhandler, DoHurtSound_i,function(inst)
+        if inst:HasTag("ironlord") then
+            return
+        end
+        _DoHurtSound(inst)
+    end)
 
     sg.events.attacked.fn = function(inst, data)
         if inst:HasTag("ironlord") then
             if inst.sg.currentstate.name == "idle" or inst.sg.currentstate.name == "ironlord_idle" then
                 inst.sg:GoToState("ironlord_hit")
-                return
             end
+            return
         end
         if inst.components.sailor and inst.components.sailor:IsSailing() then
             local boat = inst.components.sailor:GetBoat()
