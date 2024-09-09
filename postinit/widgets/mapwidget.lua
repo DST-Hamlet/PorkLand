@@ -186,7 +186,7 @@ local function DiffWidget(self, incoming_data, room_id)
     for id, new_data in pairs(incoming_icons) do
         local current_icon = result_icons_set[id]
         if not current_icon then
-            local atlas = GetMinimapAtlas(new_data.icon)
+            local atlas = get_minimap_atlas(new_data.icon)
             if atlas then
                 local icon = Image(atlas, new_data.icon)
                 icon.position_offset = current_data.offset + Vector3(new_data.offset_x, 0, new_data.offset_z)
