@@ -333,12 +333,26 @@ function MapWidget:ApplyInteriorMinimap()
         end
         -- Hide the normal minimap
         self.img:Hide()
+        self.interior_frontend:MoveToFront()
     end
 end
 
 -- Delay a frame since we have higher priority
 scheduler:ExecuteInTime(0, function()
     AddClassPostConstruct("widgets/mapwidget", function(self)
+        self.bg.inst.ImageWidget:SetTexture("images/global.xml", "square.tex")
+        self.bg:SetTint(0,0,0,1)
+
+        self.interior_frontend = self:AddChild(Image("images/hud/pl_minimaphud.xml", "pl_minimaphud.tex"))
+        self.interior_frontend:SetVRegPoint(ANCHOR_MIDDLE)
+        self.interior_frontend:SetHRegPoint(ANCHOR_MIDDLE)
+        self.interior_frontend:SetVAnchor(ANCHOR_MIDDLE)
+        self.interior_frontend:SetHAnchor(ANCHOR_MIDDLE)
+        self.interior_frontend:SetScaleMode(SCALEMODE_FILLSCREEN)
+        self.interior_frontend.inst.ImageWidget:SetBlendMode(BLENDMODE.Additive)
+        self.interior_frontend:MoveToFront()
+        self.interior_frontend:Show()
+
         -- Do it here instead to be compatible with Global Positions
         local on_update = self.OnUpdate
         self.OnUpdate = function(self, ...)
@@ -382,5 +396,6 @@ scheduler:ExecuteInTime(0, function()
                 end
             end
         end
+        self.interior_frontend:MoveToFront()
     end)
 end)

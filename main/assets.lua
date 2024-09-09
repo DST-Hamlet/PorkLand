@@ -274,6 +274,10 @@ Assets = {
     -- crafting menu icons
     Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
 
+    -- minimap hud
+    Asset("ATLAS", "images/hud/pl_minimaphud.xml"),
+    Asset("IMAGE", "images/hud/pl_minimaphud.tex"),
+
     -- hud
     Asset("ATLAS", "images/overlays/fx3.xml"), -- poison, boat_over
     Asset("IMAGE", "images/overlays/fx3.tex"),
