@@ -168,13 +168,16 @@ end
 function InteriorSpawner:GetInteriorCenter(position_or_index)
     if not position_or_index then
         print("InteriorSpawner:GetInteriorCenter the param position_or_index is nil!!!")
-        return nil
+        return
     end
     local is_number = type(position_or_index) == "number"
     if TheWorld.ismastersim then
-        local position = is_number and self:IndexToPosition(position_or_index) or position_or_index
-        if not self:IsInInteriorRegion(position.x, position.z) then
-            return
+        -- If we're finding by position, check if it's in the interior region
+        if not is_number then
+            local position = position_or_index
+            if not self:IsInInteriorRegion(position.x, position.z) then
+                return
+            end
         end
         local index = is_number and position_or_index or self:PositionToIndex(position_or_index)
         return self.interiors[index]
