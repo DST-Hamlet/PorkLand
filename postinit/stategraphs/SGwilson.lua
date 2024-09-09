@@ -2405,13 +2405,15 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attacked_eventhandler = sg.events.attacked.fn
 
-    local _DoHurtSound = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
-    ToolUtil.SetUpvalue(_attacked_eventhandler, function(inst)
-        if inst:HasTag("ironlord") then
-            return
-        end
-        _DoHurtSound(inst)
-    end, "DoHurtSound")
+    local _DoHurtSound, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
+    if DoHurtSound_i ~= nil then -- 不知道为什么，有时候会因为i为nil而崩溃，因此加上了这个检测
+        ToolUtil.SetUpvalue(_attacked_eventhandler, function(inst)
+            if inst:HasTag("ironlord") then
+                return
+            end
+            _DoHurtSound(inst)
+        end, "DoHurtSound")
+    end
 
     sg.events.attacked.fn = function(inst, data)
         if inst:HasTag("ironlord") then
