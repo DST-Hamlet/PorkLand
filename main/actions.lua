@@ -570,7 +570,7 @@ ACTIONS.RENOVATE.fn = function(act)
 end
 
 ACTIONS.BUILD_ROOM.fn = function(act)
-	if act.invobject.components.roombuilder and act.target:HasTag("predoor") then
+    if act.invobject.components.roombuilder and act.target:HasTag("predoor") then
         return act.invobject.components.roombuilder:BuildRoom(act.target, act.invobject)
     end
     return false

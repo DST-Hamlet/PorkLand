@@ -5,10 +5,6 @@ local assets =
     Asset("ANIM", "anim/player_house_doors.zip"),
 }
 
-local prefabs =
-{
-}
-
 local DEPTH = 10
 local WIDTH = 15
 
@@ -327,6 +323,14 @@ local function OnLoadPostPass(inst)
     end
 end
 
+local function CheckForRemoval(inst)
+    local interior_spawner = TheWorld.components.interiorspawner
+    local interiorID = inst:GetCurrentInteriorID()
+    local house_id = interior_spawner:GetPlayerHouseByRoomID(interiorID)
+    inst.door_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname)
+    inst.room_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
+end
+
 local function OnEntityWake(inst)
     if not inst.checked_obstruction then
         local x, y, z = inst.Transform:GetWorldPosition()
@@ -342,6 +346,7 @@ local function OnEntityWake(inst)
     end
 
     CheckForShadow(inst)
+    CheckForRemoval(inst)
 end
 
 local function OnBuilt(inst)
@@ -433,14 +438,20 @@ local function OnBuilt(inst)
             end
         end
     end
-end
 
-local function CheckForRemoval(inst)
-    local interior_spawner = TheWorld.components.interiorspawner
-    local interiorID = inst:GetCurrentInteriorID()
-    local house_id = interior_spawner:GetPlayerHouseByRoomID(interiorID)
-    inst.door_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname)
-    inst.room_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
+    if not inst.initialized then
+        inst.animdata.anim = inst.prefab .. "_close_" .. PLAYER_INTERIOR_EXIT_DIR_DATA[GetBaseAnimName(inst)].anim
+        inst.animdata.animation = inst.animdata.anim
+        inst.AnimState:PlayAnimation(inst.animdata.anim)
+        inst.components.rotatingbillboard:SetAnimation_Server(inst.animdata)
+
+        local background = PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].background
+        if background then
+            inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
+        else
+            inst.AnimState:SetLayer(LAYER_WORLD)
+        end
+    end
 end
 
 local function CanBeRemoved(inst)
@@ -508,27 +519,8 @@ local function MakeHouseDoor(name)
         inst.OnLoad = OnLoad
         inst.OnLoadPostPass = OnLoadPostPass
         -- Finds obstructions on the way of the new door and deconstructs them
-        inst.OnEntityWake = function()
-            OnEntityWake(inst)
-            CheckForRemoval(inst)
-        end
-        inst.OnBuilt = function()
-            OnBuilt(inst)
-
-            if not inst.initialized then
-                inst.animdata.anim = inst.prefab .. "_close_" .. PLAYER_INTERIOR_EXIT_DIR_DATA[GetBaseAnimName(inst)].anim
-                inst.animdata.animation = inst.animdata.anim
-                inst.AnimState:PlayAnimation(inst.animdata.anim)
-                inst.components.rotatingbillboard:SetAnimation_Server(inst.animdata)
-
-                local background = PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].background
-                if background then
-                    inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
-                else
-                    inst.AnimState:SetLayer(LAYER_WORLD)
-                end
-            end
-        end
+        inst.OnEntityWake = OnEntityWake
+        inst.OnBuilt = OnBuilt
 
         inst:DoTaskInTime(0, CheckForRemoval)
         inst:ListenForEvent("door_removed", function()
@@ -541,7 +533,7 @@ local function MakeHouseDoor(name)
         return inst
     end
 
-    return Prefab(name, house_fn, assets, prefabs)
+    return Prefab(name, house_fn, assets)
 end
 
 local function place_door_test_fn(inst)
@@ -700,4 +692,4 @@ return MakeHouseDoor("wood_door"),
        MakeHouseDoorPlacer("round_door",   "player_house_doors", "player_house_doors"),
        MakeHouseDoorPlacer("plate_door",   "player_house_doors", "player_house_doors"),
 
-       Prefab("house_door_shadow", shadowfn, assets, prefabs)
+       Prefab("house_door_shadow", shadowfn, assets)

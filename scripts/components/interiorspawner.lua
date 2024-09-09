@@ -1049,29 +1049,29 @@ function InteriorSpawner:GetSurroundingPlayerRooms(house_id, room_id)
 end
 
 function InteriorSpawner:GetConnectedSurroundingPlayerRooms(house_id, id, exclude_dir)
-	local found_doors = {}
+    local found_doors = {}
     local pos = self:GetInteriorCenter(id):GetPosition()
-	local doors = TheSim:FindEntities(pos.x, pos.y, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
-	local curr_x, curr_y = self:GetPlayerRoomIndexByID(house_id, id)
+    local doors = TheSim:FindEntities(pos.x, pos.y, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
+    local curr_x, curr_y = self:GetPlayerRoomIndexByID(house_id, id)
 
-	for _, door in pairs(doors) do
-		if door.prefab ~= "prop_door" then
+    for _, door in pairs(doors) do
+        if door.prefab ~= "prop_door" then
             local target_interior = door.components.door.target_interior
-			local target_x, target_y = self:GetPlayerRoomIndexByID(house_id, target_interior)
+            local target_x, target_y = self:GetPlayerRoomIndexByID(house_id, target_interior)
 
-			if target_y > curr_y and exclude_dir ~= "north" then -- North door
-				found_doors["north"] = target_interior
-			elseif target_y < curr_y and exclude_dir ~= "south" then -- South door
-				found_doors["south"] = target_interior
-			elseif target_x > curr_x and exclude_dir ~= "east" then -- East Door
-				found_doors["east"] = target_interior
-			elseif target_x < curr_x and exclude_dir ~= "west" then -- West Door
-				found_doors["west"] = target_interior
-			end
-		end
-	end
+            if target_y > curr_y and exclude_dir ~= "north" then -- North door
+                found_doors["north"] = target_interior
+            elseif target_y < curr_y and exclude_dir ~= "south" then -- South door
+                found_doors["south"] = target_interior
+            elseif target_x > curr_x and exclude_dir ~= "east" then -- East Door
+                found_doors["east"] = target_interior
+            elseif target_x < curr_x and exclude_dir ~= "west" then -- West Door
+                found_doors["west"] = target_interior
+            end
+        end
+    end
 
-	return found_doors
+    return found_doors
 end
 
 function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
@@ -1115,11 +1115,11 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
 end
 
 function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, exclude_dir, exclude_room_id)
-	if not self.player_houses[house_id] then
-		return false
-	end
+    if not self.player_houses[house_id] then
+        return false
+    end
 
-	local checked_rooms = {}
+    local checked_rooms = {}
 
     local op_dir_str =
     {
@@ -1129,36 +1129,36 @@ function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, excl
         ["west"]  = "east",
     }
 
-	local function DirConnected(current_interior_id, direction)
-		if current_interior_id == exclude_room_id then
-			return false
-		end
+    local function DirConnected(current_interior_id, direction)
+        if current_interior_id == exclude_room_id then
+            return false
+        end
 
-		checked_rooms[current_interior_id] = true
+        checked_rooms[current_interior_id] = true
 
-		local index_x, index_y = self:GetPlayerRoomIndexByID(house_id, current_interior_id)
-		if index_x == 0 and index_y == 0 then
-			return true
-		end
+        local index_x, index_y = self:GetPlayerRoomIndexByID(house_id, current_interior_id)
+        if index_x == 0 and index_y == 0 then
+            return true
+        end
 
-		local surrounding_rooms = self:GetConnectedSurroundingPlayerRooms(house_id, current_interior_id, direction)
-		if next(surrounding_rooms) == nil then
-			return false
-		end
+        local surrounding_rooms = self:GetConnectedSurroundingPlayerRooms(house_id, current_interior_id, direction)
+        if next(surrounding_rooms) == nil then
+            return false
+        end
 
-		for next_dir, room_id in pairs(surrounding_rooms) do
-			if not checked_rooms[room_id] then
-				local dir_connected = DirConnected(room_id, op_dir_str[next_dir])
-				if dir_connected then
-					return true
-				elseif not dir_connected and next(surrounding_rooms, next_dir) == nil then
-					return false
-				end
-			end
-		end
-	end
+        for next_dir, room_id in pairs(surrounding_rooms) do
+            if not checked_rooms[room_id] then
+                local dir_connected = DirConnected(room_id, op_dir_str[next_dir])
+                if dir_connected then
+                    return true
+                elseif not dir_connected and next(surrounding_rooms, next_dir) == nil then
+                    return false
+                end
+            end
+        end
+    end
 
-	return DirConnected(interior_id, exclude_dir)
+    return DirConnected(interior_id, exclude_dir)
 end
 
 
