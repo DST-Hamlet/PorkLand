@@ -55,7 +55,7 @@ local actionhandlers = {
             if action.invobject ~= nil and action.invobject:HasTag("goggles") then
                 return "goggle"
             else
-                return "investigate"
+                return "investigate_start"
             end
         end
     end),
@@ -593,7 +593,7 @@ local states = {
         end,
 
         onupdate = function(inst)
-            if inst:HasTag("investigating") then
+            if inst.sg:ServerStateMatches() then
                 if inst.entity:FlattenMovementPrediction() then
                     inst.sg:GoToState("idle", "noanim")
                 end
@@ -815,6 +815,95 @@ local states = {
             inst.sg:GoToState("idle", true)
         end
     },
+
+    State{
+        name = "blunderbuss",
+        tags = {"attack", "notalking", "abouttoattack"},
+
+        onenter = function(inst)
+            if inst:HasTag("_sailor") and inst:HasTag("sailing") then
+                inst.sg:AddStateTag("boating")
+            end
+			local target = inst.replica.combat:GetTarget()
+            inst.sg.statemem.target = target
+            inst.replica.combat:StartAttack()
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("speargun")
+
+			if target and target:IsValid() then
+				inst:FacePoint(target.Transform:GetWorldPosition())
+            end
+        end,
+
+        timeline=
+        {
+
+            TimeEvent(12*FRAMES, function(inst)
+                inst:PerformPreviewBufferedAction()
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot")
+            end),
+            TimeEvent(20*FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
+        },
+
+        events=
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.sg:HasStateTag("abouttoattack") and inst.replica.combat ~= nil then
+                inst.replica.combat:CancelAttack()
+            end
+        end,
+    },
+
+    State{
+        name = "map",
+        tags = {"doing"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("scroll", false)
+            inst.AnimState:OverrideSymbol("scroll", "messagebottle", "scroll")
+            inst.AnimState:PushAnimation("scroll_pst", false)
+
+            inst:PerformPreviewBufferedAction()
+        end,
+
+        onupdate = function(inst)
+            if inst:HasTag("doing") then
+                if inst.entity:FlattenMovementPrediction() then
+                    inst.sg:GoToState("idle", "noanim")
+                end
+            elseif inst.bufferedaction == nil then
+                inst.sg:GoToState("idle")
+            end
+        end,
+
+        timeline=
+        {
+            TimeEvent(24 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_open") end),
+            TimeEvent(58 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_close") end),
+        },
+
+        events=
+        {
+            EventHandler("animover", function(inst)
+                inst:PerformBufferedAction()
+            end),
+
+
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst:ClearBufferedAction()
+                    inst.sg:GoToState("idle")
+                end
+            end),
+        },
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -873,12 +962,32 @@ AddStategraphPostInit("wilson_client", function(sg)
     end
 
     local _castspell_deststate = sg.actionhandlers[ACTIONS.CASTSPELL].deststate
-    sg.actionhandlers[ACTIONS.CASTSPELL].deststate = function(inst, action)
+    sg.actionhandlers[ACTIONS.CASTSPELL].deststate = function(inst, action, ...)
         local staff = action.invobject or action.doer.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
         if staff:HasTag("bonestaff") then
             return "castspell_bone"
         else
-            return _castspell_deststate and _castspell_deststate(inst, action)
+            return _castspell_deststate and _castspell_deststate(inst, action, ...)
+        end
+    end
+
+    local _attack_onenter = sg.states["attack"].onenter
+    sg.states["attack"].onenter = function(inst, data)
+        local equip = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+        if equip and equip:HasTag("halberd") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/halberd")
+        elseif equip and equip:HasTag("corkbat") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/corkbat")
+        elseif equip and equip:HasTag("cutlass") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC002/common/swordfish_sword")
+        end
+
+        _attack_onenter(inst, data)
+
+        inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", nil)
+
+        if equip and equip:HasTag("corkbat") then
+            inst.sg:SetTimeout(23 * FRAMES)
         end
     end
 
@@ -888,8 +997,33 @@ AddStategraphPostInit("wilson_client", function(sg)
             if inst:HasTag("ironlord") then
                 return "ironlord_attack"
             end
+            if not (inst.sg:HasStateTag("attack") and action and action.target == inst.sg.statemem.attacktarget or inst.replica.health:IsDead()) then
+                local equip = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+                if equip and equip:HasTag("blunderbuss_loaded") then
+                    return "blunderbuss"
+                end
+            end
             return _attack_deststate and _attack_deststate(inst, ...)
         end
+    end
+
+    local _light_deststate = sg.actionhandlers[ACTIONS.LIGHT].deststate
+    sg.actionhandlers[ACTIONS.LIGHT].deststate = function(inst, ...)
+        local equipped = inst.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+
+        if equipped and equipped:HasTag("magnifying_glass") then
+            return "investigate_start"
+        else
+            return _light_deststate(inst, ...)
+        end
+    end
+
+    local _teach_deststatae = sg.actionhandlers[ACTIONS.TEACH].deststate
+    sg.actionhandlers[ACTIONS.TEACH].deststate = function(inst, action, ...)
+        if action and action.invobject and action.invobject:HasTag("treasuremap") then
+            return "map"
+        end
+        return _teach_deststatae(inst, ...)
     end
 
     local _chop_deststate = sg.actionhandlers[ACTIONS.CHOP].deststate

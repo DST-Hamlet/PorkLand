@@ -140,7 +140,7 @@ local actionhandlers = {
             if action.invobject ~= nil and action.invobject:HasTag("goggles") then
                 return "goggle"
             else
-                return "investigate"
+                return "investigate_start"
             end
         end
     end),
