@@ -361,7 +361,7 @@ local states =
         {
             EventHandler("animover", function(inst)
                 inst.sg:GoToState("gaze_loop")
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/gaze_start")
+                inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/pugalisk/gaze_start")
             end),
         },
     },

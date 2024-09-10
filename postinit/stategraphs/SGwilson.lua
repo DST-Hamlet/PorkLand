@@ -1927,8 +1927,7 @@ local states = {
 
         timeline =
         {
-            TimeEvent(0   * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/music/iron_lord") end),
-            TimeEvent(15  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/morph") end),
+            TimeEvent(15  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/morph") end),
             TimeEvent(105 * FRAMES, function(inst) ShakeAllCameras(CAMERASHAKE.FULL, 0.7, 0.02, 0.5, inst, 40) end),
             TimeEvent(105 * FRAMES, function(inst) inst.AnimState:Hide("beard") end),
         },
@@ -1998,7 +1997,7 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("charge_pre")
             inst.AnimState:PushAnimation("charge_grow")
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/charge_up_LP", "chargedup")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/charge_up_LP", "chargedup")
 
             inst.sg.statemem.ready_to_shoot = false
             inst.sg.statemem.should_shoot = false
@@ -2035,7 +2034,7 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("charge_super_pre")
             inst.AnimState:PushAnimation("charge_super_loop", true)
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/electro")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro")
 
             inst.sg.statemem.ready_to_shoot = false
             inst.sg.statemem.should_shoot = false
@@ -2110,9 +2109,9 @@ local states = {
             TimeEvent(8  * FRAMES, function(inst) inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/common/crafted/iron_lord/small_explosion", {intensity = 0.4}) end),
             TimeEvent(12 * FRAMES, function(inst) inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/common/crafted/iron_lord/small_explosion", {intensity = 0.6}) end),
             TimeEvent(19 * FRAMES, function(inst) inst.SoundEmitter:PlaySoundWithParams("dontstarve_DLC003/common/crafted/iron_lord/small_explosion", {intensity = 1.0}) end),
-            TimeEvent(26 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/electro", nil, 0.5) end),
-            TimeEvent(35 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/electro", nil, 0.5) end),
-            TimeEvent(54 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/explosion") end),
+            TimeEvent(26 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro", nil, 0.5) end),
+            TimeEvent(35 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro", nil, 0.5) end),
+            TimeEvent(54 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/explosion") end),
 
             TimeEvent(52 * FRAMES, function(inst)
                 local explosion = SpawnPrefab("living_suit_explode_fx")
@@ -2406,12 +2405,14 @@ AddStategraphPostInit("wilson", function(sg)
     local _attacked_eventhandler = sg.events.attacked.fn
 
     local _DoHurtSound, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
-    debug.setupvalue(_attacked_eventhandler, DoHurtSound_i,function(inst)
-        if inst:HasTag("ironlord") then
-            return
-        end
-        _DoHurtSound(inst)
-    end)
+    if DoHurtSound_i then
+        debug.setupvalue(_attacked_eventhandler, DoHurtSound_i,function(inst)
+            if inst:HasTag("ironlord") then
+                return
+            end
+            _DoHurtSound(inst)
+        end)
+    end
 
     sg.events.attacked.fn = function(inst, data)
         if inst:HasTag("ironlord") then

@@ -176,14 +176,18 @@ function EntityScript:Play2DSoundOutSide(path, soundname, distance, paramname, p
     if not soundname then
         print("WARNING: EntityScript:Play2DSoundOutSide must have soundname")
     end
-    local pos = self:GetPosition()
-    local followentity = self
-    local areamode = AREAMODES.DISTANCE
-    TheWorld.components.worldsoundmanager:PlayWorldSound(path, soundname, paramname, paramval, pos, followentity, areamode, distance)
+    if TheWorld.ismastersim then
+        local pos = self:GetPosition()
+        local followentity = self
+        local areamode = AREAMODES.DISTANCE
+        TheWorld.components.worldsoundmanager:PlayWorldSound(path, soundname, paramname, paramval, pos, followentity, areamode, distance)
+    end
 end
 
 function EntityScript:Kill2DSound(soundname)
-    TheWorld.components.worldsoundmanager:KillWorldSound(self, soundname)
+    if TheWorld.ismastersim then
+        TheWorld.components.worldsoundmanager:KillWorldSound(self, soundname)
+    end
 end
 
 function EntityScript:GetCurrentAnimation()

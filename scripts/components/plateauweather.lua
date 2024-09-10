@@ -245,7 +245,7 @@ return Class(function(self, inst)
             _rainsound = true
             _world.SoundEmitter:PlaySound("porkland_soundpackage/rain/islandrainAMB", "rain")
         end
-        _world.SoundEmitter:SetParameter("rain", "intensity", intensity * 3) -- 音效包里这个参数的范围是0——3
+        _world.SoundEmitter:SetParameter("rain", "intensity", intensity)
     end
 
     local function StopAmbientRainSound()

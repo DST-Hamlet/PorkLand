@@ -210,7 +210,9 @@ AddPlayerPostInit(function(inst)
         return _OnGotNewItem(inst, data, ...)
     end
 
-    debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
+    if i then
+        debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
+    end
 
     if not TheWorld.ismastersim then
         return

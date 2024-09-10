@@ -225,7 +225,7 @@ local function MakeHat(name)
             return
         end
 
-        owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/on")
+        owner.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/batmask/on")
     end
 
     local function bat_onunequip(inst, owner)
@@ -236,7 +236,7 @@ local function MakeHat(name)
             return
         end
 
-        owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/off")
+        owner.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/batmask/off")
     end
 
     local function bat_custom_init(inst)

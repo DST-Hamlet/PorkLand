@@ -60,7 +60,7 @@ local function CastSpell(staff, target, pos, caster)
 
     local owner = staff.components.inventoryitem:GetGrandOwner()
     if owner then
-        staff.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/gaze_start")
+        staff.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/pugalisk/gaze_start")
         staff.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/gaze_LP", "gazor")
         staff.gazetask = staff:DoPeriodicTask(0.4, function()
             if owner.sg:HasStateTag("spell") then
