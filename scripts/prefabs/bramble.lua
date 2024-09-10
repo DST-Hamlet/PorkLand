@@ -24,7 +24,7 @@ local function PropegateHedge(inst)
         return
     end
 
-    if not TheWorld.state.season == SEASONS.LUSH then
+    if not (TheWorld.state.season == SEASONS.LUSH) then -- not的优先级比==高
         return
     end
 
