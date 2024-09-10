@@ -27,7 +27,7 @@ AddPrefabPostInit("grass", function(inst)
         local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
         if NUTRIENT_TILES[tile] then
             local tallgrass = ReplacePrefab(inst, "grass_tall")
-            tallgrass.components.hackable:MakeBarren()
+            tallgrass.components.hackable:MakeEmpty()
             return
         end
         _ontransplantfn(inst, ...)
