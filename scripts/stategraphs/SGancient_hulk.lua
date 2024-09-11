@@ -45,9 +45,8 @@ local function LaunchProjectile(inst, direction)
         local projectile = SpawnPrefab("ancient_hulk_mine")
         projectile.AnimState:PlayAnimation("spin_loop",true)
         projectile.Transform:SetPosition(x, 1, z)
-        projectile.components.complexprojectile:SetHorizontalSpeed(speed)
-        projectile.components.complexprojectile:SetGravity(-25)
-        projectile.components.complexprojectile:Launch(spawn_point, inst, inst)
+        projectile.components.throwable.speed = speed
+        projectile.components.throwable:Throw(spawn_point, inst)
         projectile.owner = inst
     end
 end

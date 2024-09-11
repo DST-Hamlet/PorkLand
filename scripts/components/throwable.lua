@@ -6,7 +6,7 @@ local Throwable = Class(function(self, inst)
     self.onthrown = nil
     -- self.onland = nil
     self.throwdistance_controller = 10
-    self.random_angle = 10
+    self.random_angle = 0
 
     self.yOffset = 1
 
