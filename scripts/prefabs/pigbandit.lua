@@ -83,6 +83,21 @@ local function OnHitOther(inst, other, damage)
     end
 end
 
+local function OnEntitySleep(inst)
+    if inst.escapetask then
+        inst.escapetask:Cancel()
+        inst.escapetask = nil
+    end
+    inst.escapetask = inst:DoTaskInTime(20, function() TheWorld:PushEvent("bandit_escaped") end)
+end
+
+local function OnEntityWake(inst)
+    if inst.escapetask then
+        inst.escapetask:Cancel()
+        inst.escapetask = nil
+    end
+end
+
 local brain = require("brains/pigbanditbrain")
 
 local function fn()
@@ -161,6 +176,8 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
+    inst:AddComponent("uniqueidentity")
+
     MakeMediumFreezableCharacter(inst, "torso")
     MakeMediumBurnableCharacter(inst, "torso")
     MakePoisonableCharacter(inst, "torso")
@@ -174,6 +191,9 @@ local function fn()
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
+
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
 
     return inst
 end

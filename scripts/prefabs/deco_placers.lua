@@ -57,7 +57,8 @@ end
 
 local function CornerPillarPlaceTest(inst)
     inst.Transform:SetTwoFaced()
-    inst.Transform:SetRotation(-90)
+    -- inst.Transform:SetRotation(-90)
+    inst.components.rotatingbillboard:SetRotation(-90)
 
     local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
     local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(ThePlayer:GetPosition())
@@ -94,7 +95,13 @@ local function CornerPillarPlaceTest(inst)
         for i, subpt in ipairs(pts) do
             if distsq(subpt.coord.x, subpt.coord.z, pt.x, pt.z) < 2 then
                 inst.Transform:SetPosition(subpt.coord.x, subpt.coord.y, subpt.coord.z)
-                inst.Transform:SetRotation(subpt.rot)
+                -- inst.Transform:SetRotation(subpt.rot)
+                inst.components.rotatingbillboard:SetRotation(-90)
+                if subpt.rot < 0 then
+                    inst.Transform:SetScale(1,1,1)
+                else
+                    inst.Transform:SetScale(-1,1,1)
+                end
 
                 inst.accept_placement = true
                 return
@@ -112,6 +119,16 @@ local function MakePillarPlacer(name, bank, build, anim)
             anim = anim,
             bank = bank,
         }
+
+        inst.Transform:SetRotation(-90)
+        inst:AddComponent("rotatingbillboard")
+        inst.components.rotatingbillboard.animdata =
+        {
+            bank = bank,
+            build = build,
+            animation = anim,
+        }
+
         CornerPillarPlacerAnim(inst)
         inst.components.placer.onupdatetransform = CornerPillarPlaceTest
         inst.components.placer.override_build_point_fn = placer_override_build_point

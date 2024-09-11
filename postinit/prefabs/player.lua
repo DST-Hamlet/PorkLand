@@ -66,7 +66,7 @@ local function OnItemLose(inst, data)
         end
     end
 
-    if item.prefab == "key_to_city" and item.activeitem == false then
+    if item.prefab == "key_to_city" and not item.activeitem then
         inst.components.builder.city_bonus = 0
     end
 end
@@ -182,6 +182,38 @@ AddPlayerPostInit(function(inst)
         inst.components.hudindicatable:SetShouldTrackFunction(ShouldTrackfn)
     end
 
+    local _OnSetOwner = inst:GetEventCallbacks("setowner", inst, "scripts/prefabs/player_common.lua")
+    local _RegisterActivePlayerEventListeners = ToolUtil.GetUpvalue(_OnSetOwner, "RegisterActivePlayerEventListeners")
+
+    local function RegisterActivePlayerEventListeners(inst)
+        _RegisterActivePlayerEventListeners(inst)
+        if inst._PICKUPSOUNDS then
+            for k, v in pairs(inst._PICKUPSOUNDS) do
+                inst._PICKUPSOUNDS[k] = "dontstarve/HUD/collect_resource"
+            end
+        end
+    end
+
+    ToolUtil.SetUpvalue(_OnSetOwner, RegisterActivePlayerEventListeners, "RegisterActivePlayerEventListeners")
+
+    local _OnGotNewItem, i = ToolUtil.GetUpvalue(_RegisterActivePlayerEventListeners, "OnGotNewItem")
+
+    local function OnGotNewItem(inst, data, ...)
+        if TheWorld:HasTag("porkland") then
+            if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
+                if inst.replica.sailor and inst.replica.sailor:GetBoat() then
+                    TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
+                    return
+                end
+            end
+        end
+        return _OnGotNewItem(inst, data, ...)
+    end
+
+    if i then
+        debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
+    end
+
     if not TheWorld.ismastersim then
         return
     end
@@ -196,6 +228,8 @@ AddPlayerPostInit(function(inst)
     inst:AddComponent("infestable")
 
     inst:AddComponent("shopper")
+
+    inst:AddComponent("uniqueidentity")
 
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)

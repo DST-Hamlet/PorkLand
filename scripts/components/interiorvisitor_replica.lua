@@ -129,7 +129,7 @@ function InteriorVisitor:OnUpdate()
         end
         self.last_center_ent = nil
 
-        if last_center_ent ~= room_center_ent then
+        if last_center_ent ~= room_center_ent and not self.inst:HasTag("inside_interior")  then
             self.inst:PushEvent("leaveinterior_client", {from = last_center_ent, to = nil})
 
             if self.inst.MiniMapEntity then

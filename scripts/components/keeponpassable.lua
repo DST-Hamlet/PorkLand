@@ -3,7 +3,7 @@ local UPDATE_PERIOD_SLEEP = 60
 local UPDATE_PERIOD_PLAYER = FRAMES * 2
 
 local function OnUpdate(inst)
-    if inst:IsInLimbo() or inst.components.inventoryitem or (not inst.components.health or inst.components.health:IsDead()) then
+    if inst:IsInLimbo() or not inst:IsValid() or inst.components.inventoryitem or (not inst.components.health or inst.components.health:IsDead()) then
         return
     end
 

@@ -3,6 +3,11 @@ return {
         REPAIRBOAT = {
             GENERIC = "She's floating just fine right now.",
         },
+        SEARCH_MYSTERY = {
+            CLOSETOSUCCESS = "Very close...",
+            GENERIC = "A magnifying glass would be better.",
+            SEARCHFORAWHILE = "Where there is Willson is a way!",
+        },
         SHOP = {
             CANTPAY = "I can't pay for that.",
             GENERIC = "I can't do that.",

@@ -133,6 +133,8 @@ local function GetStageFn(stage)
             inst.components.lootdropper:SetChanceLootTable("rainforesttree_" .. stage)
         end
 
+        inst.components.lootdropper.chanceloot = {}
+
         if math.random() < 0.5 and not inst:HasTag("rotten_tree") and not inst:HasTag("spider_monkey_tree") then
             for i = 1, TUNING["SNAKE_JUNGLETREE_AMOUNT_" .. string.upper(stage)] do
                 if math.random() < 0.5 and TheWorld.state.cycles >= TUNING.SNAKE_POISON_START_DAY then
@@ -690,6 +692,8 @@ local function MakeTree(name, build, stage, data)
         inst.components.workable:SetOnFinishCallback(OnFinishCallback)
 
         inst:AddComponent("lootdropper")
+
+        inst:AddComponent("mystery")
 
         inst:AddComponent("growable")
         inst.components.growable.stages = growth_stages

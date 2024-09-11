@@ -1,7 +1,7 @@
 local GAZE_DIST_MIN = 8
 local GAZE_DIST_MAX = 20
 local PUGALISK_MOVE_DIST = 6 -- The distance between two pugalisk_body
-local PUGALISK_TAUNT_CHANCE = 0.05
+-- local PUGALISK_TAUNT_CHANCE = 0.05
 
 local function FindCurrentTarget(inst)
     -- looks for a combat target, if none, sets target as home if range is too far

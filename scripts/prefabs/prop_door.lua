@@ -235,7 +235,7 @@ local function OnLoad(inst, data)
     inst.components.rotatingbillboard:SetAnimation_Server({
         bank = data.door_data_bank,
         build = data.door_data_build,
-        animation = data.door_data_animstate,
+        anim = data.door_data_animstate,
     })
     if data.rotation and inst.components.rotatingbillboard == nil then
         inst.Transform:SetRotation(data.rotation)

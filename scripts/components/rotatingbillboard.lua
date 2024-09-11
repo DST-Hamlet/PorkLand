@@ -119,7 +119,7 @@ function RotatingBillboard:SyncMaskAnimation()
         local anim = self.mask.AnimState
         anim:SetBank(data.bank or self.inst.AnimState:GetCurrentBankName())
         anim:SetBuild(data.build or self.inst.AnimState:GetBuild())
-        local animation = data.animation or select(2, self.inst.AnimState:GetHistoryData())
+        local animation = data.anim or select(2, self.inst.AnimState:GetHistoryData())
         if not anim:IsCurrentAnimation(animation) then
             anim:PlayAnimation(animation)
         end

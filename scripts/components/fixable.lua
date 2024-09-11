@@ -50,7 +50,7 @@ function Fixable:OnRemoveEntity()
     end
 
     fixer:SetReconstructionStage(1)
-    fixer:SetConstructionPrefabName(self.nameoverride or self.inst.prefab)
+    fixer:SetConstructionPrefabName(self.inst.nameoverride or self.inst.prefab)
     fixer.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
 
     if fixer.interiorID then

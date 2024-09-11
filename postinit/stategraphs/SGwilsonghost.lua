@@ -23,6 +23,17 @@ local states = {
             inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_haunt", nil, nil, true)
         end,
 
+        timeline =
+        {
+            TimeEvent(2 * FRAMES, function(inst)
+                inst:ScreenFade(false, 0.4)
+            end),
+        },
+
+        onexit = function(inst)
+            inst:ScreenFade(true, 0.4)
+        end,
+
         events =
         {
             EventHandler("animover", function(inst)

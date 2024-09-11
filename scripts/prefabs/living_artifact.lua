@@ -51,10 +51,11 @@ local function BecomeIronLord(inst, instant)
     player.AnimState:AddOverrideBuild("player_living_suit_morph")
 
     player:AddTag("fireimmune")
-    player:AddTag("has_gasmask")
+    player:AddTag("poisonimmune")
     player:AddTag("ironlord")
     player:AddTag("laser_immune")
     player:AddTag("mech")
+    player:AddTag("has_gasmask")
 
     player.components.inventory:Hide()
 
@@ -153,8 +154,9 @@ local function Revert(inst)
     player:RemoveTag("ironlord")
     player:RemoveTag("laser_immune")
     player:RemoveTag("mech")
-    player:RemoveTag("has_gasmask")
     player:RemoveTag("fireimmune")
+    player:RemoveTag("poisonimmune")
+    player:RemoveTag("has_gasmask")
 
     player.player_classified.isironlord:set(false)
     player.components.inventory:Show()

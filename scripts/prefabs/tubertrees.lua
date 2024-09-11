@@ -453,7 +453,7 @@ local function MakeTree(name, build, stage, data)
         inst.components.growable.springgrowth = true
         inst.components.growable:StartGrowing()
 
-        --inst:AddComponent("mystery")
+        inst:AddComponent("mystery")
 
         inst:AddComponent("bloomable")
         inst.components.bloomable:SetCanBloom(CanBloom)

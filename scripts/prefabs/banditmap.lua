@@ -6,6 +6,9 @@ local assets =
 }
 
 local function GetRevealTarget(inst, doer)
+    if not inst.treasure and inst.unique_id then
+        inst.treasure = TheWorld.components.globalidentityinfo:GetRuntimeIndentityInfo(inst.unique_id).bandit_treasure
+    end
     if inst.treasure and inst.treasure:IsValid() then
         return inst.treasure:GetPosition()
     else
@@ -20,6 +23,11 @@ end
 
 local function MapOnSave(inst, data)
     local refs = {}
+
+    if inst.unique_id then
+        data.unique_id = inst.unique_id
+    end
+
     if inst.treasure then
         data.treasure = inst.treasure.GUID
         table.insert(refs, inst.treasure.GUID)
@@ -38,6 +46,16 @@ local function MapOnLoadPostPass(inst, newents, data)
         inst.treasure = newents[data.treasure].entity
     end
     inst.message = data.message
+end
+
+local function MapOnLoad(inst, data)
+    if not data then
+        return
+    end
+
+    if data and data.unique_id then
+        inst.unique_id = data.unique_id
+    end
 end
 
 local function MapOnRemove(inst)
@@ -88,6 +106,7 @@ local function banditmapfn()
 
     inst.OnSave = MapOnSave
     inst.OnLoadPostPass = MapOnLoadPostPass
+    inst.OnLoad = MapOnLoad
 
     inst:ListenForEvent("onremove", MapOnRemove)
     inst:ListenForEvent("on_reveal_map_spot_pre", function()
@@ -105,6 +124,10 @@ local function GetStatus(inst)
 end
 
 local function TreasureOnSave(inst, data)
+    if inst.unique_id then
+        data.unique_id = inst.unique_id
+    end
+
     if not inst.components.workable then
         data.dug = true
     end
@@ -115,6 +138,11 @@ local function TreasureOnSave(inst, data)
 end
 
 local function TreasureOnLoad(inst, data)
+    if data and data.unique_id then
+        inst.unique_id = data.unique_id
+        TheWorld.components.globalidentityinfo:GetRuntimeIndentityInfo(inst.unique_id).bandit_treasure = inst
+    end
+
     if data and data.dug or not inst.components.workable then
         inst:RemoveComponent("workable")
         inst:RemoveTag("NOCLICK")
@@ -215,6 +243,12 @@ local function bandittreasurefn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst:DoTaskInTime(0, function()
+        if inst.unique_id then
+            TheWorld.components.globalidentityinfo:GetRuntimeIndentityInfo(inst.unique_id).bandit_treasure = inst
+        end
+    end)
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus

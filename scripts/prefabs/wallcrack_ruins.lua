@@ -67,9 +67,9 @@ local function Reveal(inst, nochain)
         end
         inst.door:RemoveTag("secret")
 
-        inst.SoundEmitter:PlaySound("dontstarve/common/destroy_stone")
-        -- TODO make this client side
-        inst:Play2DSoundOutSide("dontstarve_DLC003/music/secret_found", "crack", 40)
+        inst.door.SoundEmitter:PlaySound("dontstarve/common/destroy_stone")
+
+        inst.door.SoundEmitter:PlaySound("porkland_soundpackage/music/secret_found")
 
         -- The rest of the function unlocks the equivalent door within the secret room
         local interior_spawner = TheWorld.components.interiorspawner

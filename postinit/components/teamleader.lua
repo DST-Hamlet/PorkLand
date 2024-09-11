@@ -26,3 +26,11 @@ function TeamLeader:GetTheta(dt, ...)
         return _GetTheta(self, dt, ...)
     end
 end
+
+local _SetNewThreat = TeamLeader.SetNewThreat
+function TeamLeader:SetNewThreat(threat)
+    if threat == self.inst then -- 这就是发生了
+        return
+    end
+    return _SetNewThreat(self, threat)
+end

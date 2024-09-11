@@ -3,6 +3,11 @@ return {
         REPAIRBOAT = {
             GENERIC = "Tip top!",
         },
+        SEARCH_MYSTERY = {
+            CLOSETOSUCCESS = "I must finish my present work first...",
+            GENERIC = "The slits are too small for my eyes.",
+            SEARCHFORAWHILE = "It is possible if I careful enough.",
+        },
         SHOP = {
             CANTPAY = "Requires more funds than I currently possess.",
             GENERIC = "Currently unavailable.",

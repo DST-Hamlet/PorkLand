@@ -277,7 +277,7 @@ local function OnLoadPostPass(inst, newents, data)
     end
 
     for i, pipe in ipairs(data.pipes) do
-        local new_pipe = newents[pipe].entity
+        local new_pipe = newents[pipe] and newents[pipe].entity or nil
 
         if new_pipe then
             new_pipe.pipe_owner = inst
