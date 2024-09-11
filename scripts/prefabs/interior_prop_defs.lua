@@ -544,10 +544,12 @@ PROP_DEFS.anthill_queen_chamber = function(depth, width, i, queen_chamber_ids)
         {name = "ant_cave_lantern", x_offset = 0,        z_offset = (-depth/2) - 1},
 
         {name = "throne_wall_large", x_offset = -2.5,     z_offset = -2.5},
-        {name = "throne_wall_large", x_offset = -2.5,     z_offset = -1.5},
-        {name = "throne_wall_large", x_offset = -2.5,     z_offset = -0.5},
-        {name = "throne_wall_large", x_offset = -2.5,     z_offset = 0.5},
-        {name = "throne_wall_large", x_offset = -2.5,     z_offset = 1.5},
+
+        {name = "throne_wall_large", x_offset = -3.5,     z_offset = -1.5},
+        {name = "throne_wall_large", x_offset = -3.5,     z_offset = -0.5},
+        {name = "throne_wall_large", x_offset = -3.5,     z_offset = 0.5},
+        {name = "throne_wall_large", x_offset = -3.5,     z_offset = 1.5},
+
         {name = "throne_wall_large", x_offset = -2.5,     z_offset = 2.5},
 
         {name = "throne_wall_large", x_offset = -1.5,     z_offset = -2.5},

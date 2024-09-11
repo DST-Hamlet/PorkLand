@@ -95,10 +95,10 @@ local function UpdatePhase(inst)
     elseif health_percent <= 0.5 and health_percent > 0.25 then
         inst.max_sanity_attack_count = 3
         inst.max_jump_attack_count = 3
-        inst.min_combat_cooldown = 5
+        inst.min_combat_cooldown = 7
         inst.max_combat_cooldown = 7
     elseif health_percent <= 0.25 then
-        inst.min_combat_cooldown = 3
+        inst.min_combat_cooldown = 5
         inst.max_combat_cooldown = 5
     end
 end
