@@ -315,7 +315,7 @@ local function mine_fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    MakeInventoryPhysics(inst, 75, 0.5)
+    MakeThrowablePhysics(inst, 75, 0.5)
 
     inst.AnimState:SetBank("metal_hulk_mine")
     inst.AnimState:SetBuild("metal_hulk_bomb")
