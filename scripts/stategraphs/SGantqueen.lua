@@ -169,7 +169,7 @@ local states =
         tags = {"busy"},
 
         onenter = function (inst)
-            TheMixer:PushMix("mute")
+            -- TheMixer:PushMix("mute") -- 等哪一天搞明白了Mixer再说
             inst.AnimState:PlayAnimation("atk3_loop", true)
             inst.sg:SetTimeout(4 * 23 / 30)
         end,
@@ -184,7 +184,7 @@ local states =
                 inst.SoundEmitter:KillSound("insane")
             end
             inst.dontstopinsane = nil
-            TheMixer:PopMix("mute")
+            -- TheMixer:PopMix("mute")
         end,
     },
 
