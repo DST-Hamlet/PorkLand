@@ -90,16 +90,16 @@ local function UpdatePhase(inst)
 
     if health_percent <= 0.75 and health_percent > 0.5 then
         inst.summon_count = 4
-        inst.min_combat_cooldown = 5
-        inst.max_combat_cooldown = 7
+        inst.min_combat_cooldown = 7
+        inst.max_combat_cooldown = 9
     elseif health_percent <= 0.5 and health_percent > 0.25 then
         inst.max_sanity_attack_count = 3
         inst.max_jump_attack_count = 3
+        inst.min_combat_cooldown = 5
+        inst.max_combat_cooldown = 7
+    elseif health_percent <= 0.25 then
         inst.min_combat_cooldown = 3
         inst.max_combat_cooldown = 5
-    elseif health_percent <= 0.25 then
-        inst.min_combat_cooldown = 1
-        inst.max_combat_cooldown = 1
     end
 end
 
@@ -182,8 +182,8 @@ local function queen_fn()
     inst.summon_count = 3
     inst.current_summon_count = 0
 
-    inst.min_combat_cooldown = 5
-    inst.max_combat_cooldown = 7
+    inst.min_combat_cooldown = 13
+    inst.max_combat_cooldown = 13
 
     inst.warrior_count = 0
 
@@ -216,6 +216,28 @@ local function queen_fn()
     return inst
 end
 
+local function OnIsPathFindingDirty(inst)
+    if inst._ispathfinding:value() then
+        if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
+            inst._pfpos = inst:GetPosition()
+            TheWorld.Pathfinder:AddWall(inst._pfpos:Get())
+        end
+    elseif inst._pfpos ~= nil then
+        TheWorld.Pathfinder:RemoveWall(inst._pfpos:Get())
+        inst._pfpos = nil
+    end
+end
+
+local function InitializePathFinding(inst)
+    inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
+    OnIsPathFindingDirty(inst)
+end
+
+local function MakeObstacle(inst)
+    inst.Physics:SetActive(true)
+    inst._ispathfinding:set(true)
+end
+
 -- These "thrones" are just entities used to properly create queens physics
 -- Maybe we should build custom collision mesh
 local function MakeThrone(name, physics_size)
@@ -226,6 +248,12 @@ local function MakeThrone(name, physics_size)
         inst.entity:AddNetwork()
 
         MakeObstaclePhysics(inst, physics_size)
+
+        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+        MakeObstacle(inst)
+        -- Delay this because makeobstacle sets pathfinding on by default
+        -- but we don't to handle it until after our position is set
+        inst:DoTaskInTime(0, InitializePathFinding)
 
         inst:AddTag("throne_wall")
 
