@@ -2348,7 +2348,7 @@ local states = {
     },
     State{
         name = "sanity_stun",
-        tags = {"busy", "nopredict"},
+        tags = {"busy", "nopredict", "nointerrupt"},
 
         onenter = function(inst, duration)
             inst.components.playercontroller:Enable(false)

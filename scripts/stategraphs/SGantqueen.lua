@@ -9,7 +9,7 @@ local events =
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
     CommonHandlers.OnAttack(),
-    CommonHandlers.OnAttacked(true),
+    CommonHandlers.OnAttacked(TUNING.BOSS_HITREACT_COOLDOWN, TUNING.BOSS_MAX_STUN_LOCKS),
     CommonHandlers.OnDeath(),
 }
 
@@ -44,7 +44,7 @@ local states =
         timeline =
         {
             TimeEvent(18 * FRAMES, function(inst)
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/taunt")
+                inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/antqueen/taunt")
             end),
         },
 
@@ -138,7 +138,7 @@ local states =
         timeline =
         {
             TimeEvent(5  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/atk_3_breath_in") end),
-            TimeEvent(22 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/insane_LP", "insane") end),
+            TimeEvent(22 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/antqueen/insane_LP", "insane") end),
             TimeEvent(25 * FRAMES, function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()
                 local players = TheSim:FindEntities(x, y, z, 50, {"player"}, {"player_ghost"})
@@ -220,7 +220,7 @@ local states =
 
         timeline =
         {
-            TimeEvent(6  * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/death") end),
+            TimeEvent(6  * FRAMES, function (inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/antqueen/death") end),
             TimeEvent(6  * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/explode", nil, 0.2) end),
             TimeEvent(10 * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/explode", nil, 0.3) end),
             TimeEvent(14 * FRAMES, function (inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/explode", nil, 0.4) end),
@@ -244,7 +244,7 @@ local states =
 
     State{
         name = "hit",
-        tags = {"busy"},
+        tags = {"busy", "hit"},
 
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/antqueen/hit")

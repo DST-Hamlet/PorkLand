@@ -677,6 +677,10 @@ local tuning = {
 
     GIANT_GRUB_RESPAWN_TIME = total_day_time,
     GIANT_GRUB_ENABLED = true,
+
+    CHARACTER_MAX_STUN_LOCKS = 5,
+    BOSS_HITREACT_COOLDOWN = 1,
+    BOSS_MAX_STUN_LOCKS = 1,
 }
 
 

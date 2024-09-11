@@ -12,7 +12,7 @@ local events =
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
     CommonHandlers.OnAttack(),
-    CommonHandlers.OnAttacked(true),
+    CommonHandlers.OnAttacked(nil, TUNING.CHARACTER_MAX_STUN_LOCKS),
     CommonHandlers.OnDeath(),
     EventHandler("doaction", function(inst, data)
         if not inst.components.health:IsDead() and not inst.sg:HasStateTag("busy") then
@@ -117,7 +117,7 @@ local states =
 
     State{
         name = "hit",
-        tags = {"busy"},
+        tags = {"busy", "hit"},
 
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/crickant/hit")
