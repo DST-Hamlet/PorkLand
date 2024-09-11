@@ -1058,8 +1058,13 @@ end
 
 function InteriorSpawner:GetConnectedSurroundingPlayerRooms(house_id, id, exclude_dir)
     local found_doors = {}
-    local pos = self:GetInteriorCenter(id):GetPosition()
-    local doors = TheSim:FindEntities(pos.x, pos.y, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
+    local center = self:GetInteriorCenter(id)
+    if not center then
+        return found_doors
+    end
+
+    local x, y, z = center.Transform:GetWorldPosition()
+    local doors = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
     local curr_x, curr_y = self:GetPlayerRoomIndexByID(house_id, id)
 
     for _, door in pairs(doors) do
@@ -1067,17 +1072,19 @@ function InteriorSpawner:GetConnectedSurroundingPlayerRooms(house_id, id, exclud
             local target_interior = door.components.door.target_interior
             local target_x, target_y = self:GetPlayerRoomIndexByID(house_id, target_interior)
 
-            if target_y > curr_y and exclude_dir ~= "north" then -- North door
+            if target_y > curr_y then -- North door
                 found_doors["north"] = target_interior
-            elseif target_y < curr_y and exclude_dir ~= "south" then -- South door
+            elseif target_y < curr_y then -- South door
                 found_doors["south"] = target_interior
-            elseif target_x > curr_x and exclude_dir ~= "east" then -- East Door
+            elseif target_x > curr_x then -- East Door
                 found_doors["east"] = target_interior
-            elseif target_x < curr_x and exclude_dir ~= "west" then -- West Door
+            elseif target_x < curr_x then -- West Door
                 found_doors["west"] = target_interior
             end
         end
     end
+
+    found_doors[exclude_dir] = nil
 
     return found_doors
 end
@@ -1150,7 +1157,7 @@ function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, excl
         end
 
         local surrounding_rooms = self:GetConnectedSurroundingPlayerRooms(house_id, current_interior_id, direction)
-        if next(surrounding_rooms) == nil then
+        if IsTableEmpty(surrounding_rooms) then
             return false
         end
 
@@ -1159,7 +1166,7 @@ function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, excl
                 local dir_connected = DirConnected(room_id, op_dir_str[next_dir])
                 if dir_connected then
                     return true
-                elseif not dir_connected and next(surrounding_rooms, next_dir) == nil then
+                elseif not dir_connected and not surrounding_rooms[next_dir] then
                     return false
                 end
             end
