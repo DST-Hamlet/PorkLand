@@ -339,9 +339,10 @@ local function mine_fn()
 
     inst:AddComponent("locomotor")
 
-    inst:AddComponent("pl_complexprojectile")
-    inst.components.pl_complexprojectile:SetOnHit(OnHit)
-    inst.components.pl_complexprojectile.yOffset = 2.5
+    inst:AddComponent("throwable")
+    inst.components.throwable:SetOnHitFn(OnHit)
+    inst.components.throwable.yOffset = 2.5
+    inst.components.throwable.speed = 60
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE)
@@ -354,7 +355,7 @@ local function mine_fn()
     return inst
 end
 
-local function OnHitOrb(inst, dist)
+local function OnHitOrb(inst, other)
     ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.4, 0.03, 1.5, inst, SHAKE_DIST)
 
     inst.AnimState:PlayAnimation("impact")
@@ -382,7 +383,7 @@ local function orb_fn()
     inst.entity:AddLight()
     inst.entity:AddNetwork()
 
-    MakeInventoryPhysics(inst, 75, 0.5)
+    MakeThrowablePhysics(inst, 75, 0.5)
 
     inst.AnimState:SetBank("metal_hulk_projectile")
     inst.AnimState:SetBuild("metal_hulk_projectile")
@@ -408,9 +409,10 @@ local function orb_fn()
 
     inst:AddComponent("locomotor")
 
-    inst:AddComponent("pl_complexprojectile")
-    inst.components.pl_complexprojectile:SetOnHit(OnHitOrb)
-    inst.components.pl_complexprojectile.yOffset = 2.5
+    inst:AddComponent("throwable")
+    inst.components.throwable:SetOnHitFn(OnHitOrb)
+    inst.components.throwable.yOffset = 2.5
+    inst.components.throwable.speed = 60
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE)

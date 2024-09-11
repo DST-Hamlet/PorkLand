@@ -66,14 +66,11 @@ local function shoot(inst, is_full_charge)
     if is_full_charge and inst.sg.mem.shootpos then
         local beam = SpawnPrefab("ancient_hulk_orb")
         beam.AnimState:PlayAnimation("spin_loop", true)
-        beam.Transform:SetPosition(newpt.x, newpt.y, newpt.z)
         beam.owner = player
 
         local targetpos = inst.sg.mem.shootpos
 
-        beam.components.pl_complexprojectile:SetHorizontalSpeed(60)
-        beam.components.pl_complexprojectile:SetGravity(-1)
-        beam.components.pl_complexprojectile:Launch(targetpos, player)
+        beam.components.throwable:Throw(targetpos, player)
         beam.components.combat.proxy = inst
         beam.owner = inst
     else

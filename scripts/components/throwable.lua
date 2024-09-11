@@ -11,6 +11,8 @@ local Throwable = Class(function(self, inst)
     self.yOffset = 1
 
     self.speed = 10
+
+    self.maxdistance = math.huge
 end)
 
 function Throwable:GetThrowPoint()
@@ -30,6 +32,25 @@ function Throwable:GetThrowPoint()
     end
 end
 
+local function ThrowableOnCollide(inst, other)
+    if inst.components.throwable and not inst.components.throwable.stopped then
+        inst.components.throwable.stopped = true
+        inst.Physics:Stop()
+        if inst.components.throwable.collidegroundtask then
+            inst.components.throwable.collidegroundtask:Cancel()
+            inst.components.throwable.collidegroundtask = nil
+        end
+        inst.components.throwable.onhitfn(inst, other)
+    end
+end
+
+function Throwable:SetOnHitFn(fn)
+    self.onhitfn = fn
+    if self.inst.Physics then
+        self.inst.Physics:SetCollisionCallback(ThrowableOnCollide)
+    end
+end
+
 function Throwable:Throw(pt, thrower)
     local tothrow = self.inst
 
@@ -37,13 +58,12 @@ function Throwable:Throw(pt, thrower)
         thrower = self.inst.components.inventoryitem:GetGrandOwner()
     end
 
-
     if thrower and self.inst.components.inventoryitem and self.inst.components.inventoryitem:GetGrandOwner() == thrower then
         tothrow = thrower.components.inventory:DropItem(self.inst)
         print("Item after being dropped from the inventory: " .. tostring(tothrow) .. " / prefab = " .. tostring(tothrow.prefab))
     end
 
-    local grav = 39.24 -- 饥荒世界的重力是现实的4倍
+    local grav = self.gravity or 39.24 -- 饥荒世界的重力是现实的4倍
     local yOffset = self.yOffset
     local pos = (thrower and thrower:GetPosition()) or (self.inst:IsValid() and not self.inst:IsInLimbo() and self.inst:GetPosition()) or nil
 
@@ -52,10 +72,12 @@ function Throwable:Throw(pt, thrower)
     end
 
     local offset = Vector3(0, yOffset, 0)
-    local distance = pos:Dist(pt)
+    local distance = math.min(self.maxdistance, pos:Dist(pt))
     local totarget = pt - pos
     local angle = math.atan2(totarget.z, totarget.x) + (math.random()*self.random_angle - (self.random_angle * 0.5))*DEGREES
     local time_to_target = distance/self.speed
+
+    self.collidegroundtask = self.inst:DoTaskInTime(time_to_target, ThrowableOnCollide)
 
     local Viy = ((grav*0.5*(time_to_target^2))-yOffset)/time_to_target
 
