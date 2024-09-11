@@ -15,8 +15,6 @@ local function dohatch(inst, hatch_time)
         inst.components.health:SetInvincible(true)
 
         inst.updatetask = inst:DoTaskInTime(11 * FRAMES, function()
-            ChangeToInventoryPhysics(inst)
-
             local queen = inst.queen
             local warrior = ReplacePrefab(inst, "antman_warrior")
             warrior.sg:GoToState("hatch")
@@ -38,32 +36,52 @@ local function dohatch(inst, hatch_time)
     end)
 end
 
-local function ground_detection(inst)
+local function OnHitGround(inst)
     local pos = inst:GetPosition()
+    inst.Transform:SetPosition(pos.x, 0, pos.z)
+    ChangeToObstaclePhysics(inst)
+    inst.AnimState:PlayAnimation("land")
+    inst.AnimState:PushAnimation("idle", true)
 
-    if pos.y <= 0.2 then
-        inst.Transform:SetPosition(pos.x, 0, pos.z)
-        ChangeToObstaclePhysics(inst)
-        inst.AnimState:PlayAnimation("land")
-        inst.AnimState:PushAnimation("idle", true)
-
-        if inst.updatetask then
-            inst.updatetask:Cancel()
-            inst.updatetask = nil
-        end
-
-        dohatch(inst, math.random(2, 6))
+    if inst.updatetask then
+        inst.updatetask:Cancel()
+        inst.updatetask = nil
     end
-end
+    if inst.updateperiodtask then
+        inst.updateperiodtask:Cancel()
+        inst.updateperiodtask = nil
+    end
 
-local function start_grounddetection(inst)
-    inst.updatetask = inst:DoPeriodicTask(FRAMES, ground_detection)
+    dohatch(inst, math.random(2, 6))
 end
 
 local function onremove(inst)
     if inst.updatetask then
         inst.updatetask:Cancel()
         inst.updatetask = nil
+    end
+    if inst.updateperiodtask then
+        inst.updateperiodtask:Cancel()
+        inst.updateperiodtask = nil
+    end
+end
+
+local function start_grounddetection(inst)
+    inst.updateperiodtask = inst:DoPeriodicTask(FRAMES, function()
+        local pos = inst:GetPosition()
+        if pos.y <= 0.01 then
+            OnHitGround(inst)
+        end
+    end)
+end
+
+local function OnHit(inst)
+    if inst.components.health:IsDead() then
+        inst.AnimState:PlayAnimation("break")
+        inst.queen:WarriorKilled()
+        onremove(inst)
+    elseif not inst.components.health:IsInvincible() then
+        inst.AnimState:PlayAnimation("hit", false)
     end
 end
 
@@ -100,6 +118,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
+    inst.Physics:SetRestitution(0)
 
     inst.AnimState:SetBank("antman_egg")
     inst.AnimState:SetBuild("antman_guard_build")
@@ -121,18 +140,14 @@ local function fn()
     inst.components.health:SetMaxHealth(200)
 
     inst:AddComponent("combat")
-    inst.components.combat:SetOnHit(function()
-        if inst.components.health:IsDead() then
-            inst.AnimState:PlayAnimation("break")
-            inst.queen:WarriorKilled()
-            onremove(inst)
-        elseif not inst.components.health:IsInvincible() then
-            inst.AnimState:PlayAnimation("hit", false)
-        end
-    end)
+    inst.components.combat:SetOnHit(OnHit)
 
+	inst:AddComponent("throwable")
+	inst.components.throwable.onthrown = start_grounddetection
+	inst.components.throwable.random_angle = 0
+	inst.components.throwable.speed = 3
+	inst.components.throwable.yOffset = 7
     inst.OnRemoveEntity = onremove
-
 
     inst:ListenForEvent("animover", function (inst)
         if inst.AnimState:IsCurrentAnimation("hatch") then
@@ -142,7 +157,6 @@ local function fn()
 
     inst.OnEntityWake = OnEntityWake
 
-    inst.start_grounddetection = start_grounddetection
     inst.eggify = function (inst)
         inst.AnimState:PlayAnimation("eggify", false)
         inst.AnimState:PushAnimation("idle", false)

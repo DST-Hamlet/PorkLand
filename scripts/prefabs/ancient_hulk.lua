@@ -339,9 +339,9 @@ local function mine_fn()
 
     inst:AddComponent("locomotor")
 
-    inst:AddComponent("complexprojectile")
-    inst.components.complexprojectile:SetOnHit(OnHit)
-    inst.components.complexprojectile.yOffset = 2.5
+    inst:AddComponent("pl_complexprojectile")
+    inst.components.pl_complexprojectile:SetOnHit(OnHit)
+    inst.components.pl_complexprojectile.yOffset = 2.5
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE)

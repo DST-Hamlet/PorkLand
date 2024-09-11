@@ -19,7 +19,7 @@ end
 local function InAvailableState(inst)
     return inst.sg.currentstate.name ~= "taunt" and inst.sg.currentstate.name ~= "wake" and
            inst.sg.currentstate.name ~= "sleeping" and inst.sg.currentstate.name ~= "sleep"
-           and not table.contains(inst.sg.currentstate.tags, "busy")
+           and not inst.sg.tags["busy"]
 end
 
 local function CanAttack(inst)
@@ -45,7 +45,9 @@ end
 local jump_attack_chance = { 0.9, 0.5, 0.25, }
 local function TryJumpAttack(inst)
     if inst.jump_attack_count < inst.max_jump_attack_count and CanAttack(inst) and not IsQuaking(inst) then
-        if math.random() < jump_attack_chance[inst.jump_attack_count + 1] then
+        if (inst.components.health:GetPercent() > 0.75)
+            or math.random() < (jump_attack_chance[inst.jump_attack_count + 1] or 0.1) then
+
             return true
         end
     end
@@ -53,6 +55,10 @@ local function TryJumpAttack(inst)
 end
 
 local function JumpAttack(inst)
+    if not TryJumpAttack(inst) then
+        return false
+    end
+
     inst.sanity_attack_count = 0
     inst.last_attack_time = GetTime()
     inst.jump_attack_count = inst.jump_attack_count + 1
@@ -94,7 +100,11 @@ local function TrySanityAttack(inst)
 end
 
 local function SanityAttack(inst)
-    --inst.jump_attack_count = 0
+    if not TrySanityAttack(inst) then
+        return false
+    end
+
+    inst.jump_attack_count = 0
     inst.sanity_attack_count = inst.sanity_attack_count + 1
     inst.last_attack_time = GetTime()
 

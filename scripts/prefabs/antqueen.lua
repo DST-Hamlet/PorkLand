@@ -58,18 +58,17 @@ local function SpawnWarrior(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local random_offset = spawn_positions[math.random(1, #spawn_positions)]
 
-    x = x + random_offset.x + math.random(-1.5, 1.5)
-    y = 35
-    z = z + random_offset.z + math.random(-1.5, 1.5)
+    local tx = x + random_offset.x + math.random(-1.5, 1.5)
+    local ty = 0
+    local tz = z + random_offset.z + math.random(-1.5, 1.5)
 
     local egg = SpawnPrefab("antman_warrior_egg")
     egg.queen = inst
-    egg.Physics:Teleport(x, y, z)
 
-    egg.start_grounddetection(egg)
+    egg.components.throwable:Throw(Vector3(tx, 0, tz), inst)
 
     local shadow = SpawnPrefab("warningshadow")
-    shadow.Transform:SetPosition(x, 0.2, z)
+    shadow.Transform:SetPosition(tx, 0.1, tz)
     start_shrinking(shadow, inst)
 
     inst.warrior_count = inst.warrior_count + 1
@@ -86,12 +85,32 @@ local function WarriorKilled(inst)
     end
 end
 
+local function UpdatePhase(inst)
+    local health_percent = inst.components.health:GetPercent()
+
+    if health_percent <= 0.75 and health_percent > 0.5 then
+        inst.summon_count = 4
+        inst.min_combat_cooldown = 5
+        inst.max_combat_cooldown = 7
+    elseif health_percent <= 0.5 and health_percent > 0.25 then
+        inst.max_sanity_attack_count = 3
+        inst.max_jump_attack_count = 3
+        inst.min_combat_cooldown = 3
+        inst.max_combat_cooldown = 5
+    elseif health_percent <= 0.25 then
+        inst.min_combat_cooldown = 1
+        inst.max_combat_cooldown = 1
+    end
+end
+
 local function OnLoad(inst, data)
     if data.currentstate then
         inst.sg:GoToState(data.currentstate)
     end
 
     inst.warrior_count = data.warrior_count
+
+    UpdatePhase(inst)
 end
 
 local function OnSave(inst, data)
@@ -136,23 +155,7 @@ local function queen_fn()
     inst:AddComponent("combat")
     inst.components.combat.canattack = false
     inst.components.combat.debris_immune = true
-    inst.components.combat:SetOnHit(function()
-        local health_percent = inst.components.health:GetPercent()
-
-        if health_percent <= 0.75 and health_percent > 0.5 then
-            inst.summon_count = 4
-            inst.min_combat_cooldown = 3
-            inst.max_combat_cooldown = 5
-        elseif health_percent <= 0.5 and health_percent > 0.25 then
-            inst.max_sanity_attack_count = 3
-            inst.max_jump_attack_count = 3
-            inst.min_combat_cooldown = 1
-            inst.max_combat_cooldown = 3
-        elseif health_percent <= 0.25 then
-            inst.min_combat_cooldown = 1
-            inst.max_combat_cooldown = 1
-        end
-    end)
+    inst.components.combat:SetOnHit(UpdatePhase)
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.ANTQUEEN_HEALTH)
@@ -170,9 +173,8 @@ local function queen_fn()
     MakePoisonableCharacter(inst, "crick_torso")
 
     -- Used in SGantqueen
-    inst.jump_count = 1
     inst.jump_attack_count = 0
-    inst.max_jump_attack_count = 3
+    inst.max_jump_attack_count = 999999 -- 一阶段没有sanity_attack，因此只会一直使用跳跃攻击
 
     inst.sanity_attack_count = 0
     inst.max_sanity_attack_count = 2
