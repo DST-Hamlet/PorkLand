@@ -19,13 +19,7 @@ local function larava_fn()
     inst.AnimState:SetBank("ant_larva")
     inst.AnimState:SetBuild("ant_larva")
 
-    inst.Physics:SetMass(1)
-    inst.Physics:SetCapsule(0.2, 0.2)
-    inst.Physics:SetFriction(10)
-    inst.Physics:SetDamping(5)
-    inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
-    inst.Physics:ClearCollisionMask()
-    inst.Physics:CollidesWith(COLLISION.GROUND)
+    MakeThrowablePhysics(inst, 75, 0.5)
 
     inst.entity:SetPristine()
 
@@ -37,9 +31,10 @@ local function larava_fn()
 
     inst:AddComponent("locomotor")
 
-    inst:AddComponent("pl_complexprojectile")
-    inst.components.pl_complexprojectile:SetOnHit(OnHit)
-    inst.components.pl_complexprojectile.yOffset = 2.5
+    inst:AddComponent("throwable")
+    inst.components.throwable:SetOnHitFn(OnHit)
+    inst.components.throwable.yOffset = 4
+    inst.components.throwable.speed = 10
 
     inst:SetStateGraph("SGantlarva")
 
