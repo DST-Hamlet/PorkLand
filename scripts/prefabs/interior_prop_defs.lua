@@ -336,7 +336,7 @@ local function RandomisePosition(addprops, room)
     end
 end
 
-PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPrefabs, queenchamber_placement_id, queen_chamber_ids)
+PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPrefabs)
     local addprops = {}
     if room.is_entrance then
         if doorway_count > NUM_ENTRANCES then
@@ -380,25 +380,12 @@ PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPr
         }
 
         local spawn_pt = GetRandomItem(antqueen_chamber_pts)
-        queenchamber_placement_id[1] = room.id
         addprops = {
             {
-                name = "prop_door",
+                name = "antqueen_chamber_entrance",
                 x_offset = spawn_pt.x,
                 z_offset = spawn_pt.z,
-                animdata = {
-                    minimapicon = "ant_queen_entrance.tex",
-                    bank = "entrance",
-                    build = "ant_queen_entrance",
-                    anim = "idle"
-                },
-                my_door_id = "ANTQUEEN_CHAMBERS_ENTRANCE",
-                target_door_id = "ANTQUEEN_CHAMBERS_EXIT",
-                target_interior = queen_chamber_ids[1],
-                make_obstacle = true,
-                obstacle_scale = 2,
                 rotation = -90,
-                addtags = {"chamber_entrance"},
             }
         }
 
@@ -416,10 +403,10 @@ PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPr
     return addprops
 end
 
-PROP_DEFS.anthill_empty = function(depth, width, room, doorway, doorwayPrefabs, queenchamber_placement_id, queen_chamber_ids)
+PROP_DEFS.anthill_empty = function(depth, width, room, doorway, doorwayPrefabs)
     -- creating a seperate table here to not randomise addprops_common, don't want to move all the pillars and doors in it
     local addprops = {}
-    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs, queenchamber_placement_id, queen_chamber_ids)
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
 
     AddLanternTables(addprops, MIN_LANTERNS, MAX_LANTERNS)
     RandomisePosition(addprops, room)
@@ -427,9 +414,9 @@ PROP_DEFS.anthill_empty = function(depth, width, room, doorway, doorwayPrefabs, 
     return JoinArrays(addprops, addprops_common)
 end
 
-PROP_DEFS.anthill_ant_home = function(depth, width, room, doorway, doorwayPrefabs, queenchamber_placement_id, queen_chamber_ids)
+PROP_DEFS.anthill_ant_home = function(depth, width, room, doorway, doorwayPrefabs)
     local addprops = {}
-    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs, queenchamber_placement_id, queen_chamber_ids)
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
 
     AddItemTables("antcombhome", addprops, 1, 2)
     AddItemTables("antman", addprops, 3, 4)
@@ -438,9 +425,9 @@ PROP_DEFS.anthill_ant_home = function(depth, width, room, doorway, doorwayPrefab
     return JoinArrays(addprops, addprops_common)
 end
 
-PROP_DEFS.anthill_wandering_ant = function(depth, width, room, doorway, doorwayPrefabs, queenchamber_placement_id, queen_chamber_ids)
+PROP_DEFS.anthill_wandering_ant = function(depth, width, room, doorway, doorwayPrefabs)
     local addprops = {}
-    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs, queenchamber_placement_id, queen_chamber_ids)
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
 
     AddItemTables("antman", addprops, 1, 3)
     AddLanternTables(addprops, MIN_LANTERNS, MAX_LANTERNS)
@@ -448,9 +435,9 @@ PROP_DEFS.anthill_wandering_ant = function(depth, width, room, doorway, doorwayP
     return JoinArrays(addprops, addprops_common)
 end
 
-PROP_DEFS.anthill_treasure = function(depth, width, room, doorway, doorwayPrefabs, queenchamber_placement_id, queen_chamber_ids)
+PROP_DEFS.anthill_treasure = function(depth, width, room, doorway, doorwayPrefabs)
     local addprops = {}
-    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs, queenchamber_placement_id, queen_chamber_ids)
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
 
     AddItemTables("antcombhome", addprops, 1, 1)
     AddItemTables("antman", addprops, 1, 2)
@@ -460,7 +447,7 @@ PROP_DEFS.anthill_treasure = function(depth, width, room, doorway, doorwayPrefab
     return JoinArrays(addprops, addprops_common)
 end
 
-PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chamber_ids, queenchamber_placement_id)
+PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chamber_ids)
     local addprops = {
         {
             name = "prop_door",
@@ -469,7 +456,7 @@ PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chambe
             animdata = {
                 bank = "ant_cave_door",
                 build = "ant_cave_door",
-                anim = "day_loop",
+                anim = "north",
             },
             my_door_id = FROM_STRING .. queen_chamber_ids[i], -- door connecting from chamber [i](this room) to chamber [i + 1](next room)
             target_door_id = TO_STRING .. queen_chamber_ids[i + 1],
@@ -485,7 +472,7 @@ PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chambe
         local door_to_exterior = {
             my_door_id = "ANTQUEEN_CHAMBERS_EXIT",
             target_door_id = "ANTQUEEN_CHAMBERS_ENTRANCE",
-            target_interior = queenchamber_placement_id[1],
+            target_interior = nil,
         }
 
         table.insert(addprops, {
@@ -498,6 +485,7 @@ PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chambe
                 build = "ant_cave_door",
                 anim = "south",
             },
+            is_exit = true,
             my_door_id = door_to_exterior.my_door_id,
             target_door_id = door_to_exterior.target_door_id,
             target_interior = door_to_exterior.target_interior,

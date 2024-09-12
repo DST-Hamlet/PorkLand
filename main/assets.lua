@@ -261,6 +261,7 @@ PrefabFiles = {
     "anthill",
     "antlarva",
     "antqueen",
+    "antqueen_chamber",
 }
 
 Assets = {

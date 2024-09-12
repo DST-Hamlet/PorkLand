@@ -47,10 +47,6 @@ local function OnHitGround(inst)
         inst.updatetask:Cancel()
         inst.updatetask = nil
     end
-    if inst.updateperiodtask then
-        inst.updateperiodtask:Cancel()
-        inst.updateperiodtask = nil
-    end
 
     dohatch(inst, math.random(2, 6))
 end
@@ -60,19 +56,6 @@ local function onremove(inst)
         inst.updatetask:Cancel()
         inst.updatetask = nil
     end
-    if inst.updateperiodtask then
-        inst.updateperiodtask:Cancel()
-        inst.updateperiodtask = nil
-    end
-end
-
-local function start_grounddetection(inst)
-    inst.updateperiodtask = inst:DoPeriodicTask(FRAMES, function()
-        local pos = inst:GetPosition()
-        if pos.y <= 0.01 then
-            OnHitGround(inst)
-        end
-    end)
 end
 
 local function OnHit(inst)
@@ -143,7 +126,7 @@ local function fn()
     inst.components.combat:SetOnHit(OnHit)
 
 	inst:AddComponent("throwable")
-	inst.components.throwable.onthrown = start_grounddetection
+	inst.components.throwable:SetOnHitFn(OnHitGround)
 	inst.components.throwable.random_angle = 0
 	inst.components.throwable.speed = 3
 	inst.components.throwable.yOffset = 7

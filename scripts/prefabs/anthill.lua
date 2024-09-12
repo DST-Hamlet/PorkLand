@@ -268,9 +268,6 @@ local function BuildWalls(inst)
     until (last_room == start_room)
 end
 
-local queenchamber_placement_id = {}
-local queen_chamber_ids = {}
-
 local room_types = {"anthill_empty", "anthill_ant_home", "anthill_wandering_ant", "anthill_treasure"}
 
 local function CreateRegularRooms(inst)
@@ -301,7 +298,7 @@ local function CreateRegularRooms(inst)
             current_room_setup_index = current_room_setup_index + 1
 
             local addprops = GenerateProps(room_type, ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, room, doorway_count,
-                doorway_prefabs, queenchamber_placement_id, queen_chamber_ids)
+                doorway_prefabs)
 
             if room.is_entrance then
                 local exterior_door_def = {
@@ -321,46 +318,6 @@ local function CreateRegularRooms(inst)
                 room.exits, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil, ANT_CAVE_COLOUR_CUBE,
                 nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT)
             interior_spawner:SpawnInterior(def)
-        end
-    end
-end
-
--- We generate these outside of the CreateQueenChambers function because we need the ids to link it to the regular anthill
-local function GenerateQueenChamberIDS(room_count)
-    local interior_spawner = TheWorld.components.interiorspawner
-
-    for i = 1, room_count do
-        local newid = interior_spawner:GetNewID()
-        table.insert(queen_chamber_ids, newid)
-    end
-end
-
-local function CreateQueenChambers(room_count)
-    local interior_spawner = TheWorld.components.interiorspawner
-
-    for i = 1, room_count do
-        local is_queen_chamber = i == room_count -- last room is ant queen room
-
-        local addprops, def
-        if is_queen_chamber then
-            addprops = GenerateProps("anthill_queen_chamber", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids)
-
-            def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, "QUEEN_CHAMBERS_DUNGEON_" .. i,
-                queen_chamber_ids[i], addprops, {}, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil,
-                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT, -3.5, 40)
-        else
-            addprops = GenerateProps("anthill_queen_chamber_hallway", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids, queenchamber_placement_id)
-
-            def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, "QUEEN_CHAMBERS_DUNGEON_" .. i,
-                queen_chamber_ids[i], addprops, {}, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil,
-                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT)
-        end
-
-        interior_spawner:SpawnInterior(def)
-
-        if is_queen_chamber then
-            local center_ent = interior_spawner:GetInteriorCenter(queen_chamber_ids[i])
-            center_ent:AddInteriorTags("antqueen") -- need this antman_warrior_egg
         end
     end
 end
@@ -444,11 +401,8 @@ local function CreateInterior(inst)
         return
     end
 
-    local queen_chamber_count = math.random(QUEEN_CHAMBER_COUNT_MIN, QUEEN_CHAMBER_COUNT_MAX)
-    GenerateQueenChamberIDS(queen_chamber_count)
     BuildGrid(inst)
     CreateRegularRooms(inst)
-    CreateQueenChambers(queen_chamber_count)
     BuildWalls(inst)
     RefreshDoors(inst)
     TheWorld.components.interiorspawner:AddExterior(inst)
@@ -540,6 +494,7 @@ local function makefn(is_entrance)
         inst.Transform:SetScale(0.8, 0.8, 0.8)
 
         inst:AddTag("structure")
+        inst:AddTag("client_forward_action_target")
         if is_entrance then
             inst:AddTag("ant_hill_entrance")
         else
