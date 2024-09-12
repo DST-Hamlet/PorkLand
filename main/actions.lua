@@ -1087,6 +1087,42 @@ function SCENE.pickable(inst, doer, actions, ...)
     end
 end
 
+local _USEITEM_weapon = USEITEM.weapon
+function USEITEM.weapon(inst, doer, target, actions, right, ...)
+    if target and target:HasTag("civilized") then
+        if right then
+            return _USEITEM_weapon(inst, doer, target, actions, false, ...)
+        else
+            return
+        end
+    end
+    return _USEITEM_weapon(inst, doer, target, actions, right, ...)
+end
+
+local _EQUIPPED_weapon = EQUIPPED.weapon
+function EQUIPPED.weapon(inst, doer, target, actions, right, ...)
+    if target and target:HasTag("civilized") then
+        if right then
+            return _EQUIPPED_weapon(inst, doer, target, actions, false, ...)
+        else
+            return
+        end
+    end
+    return _EQUIPPED_weapon(inst, doer, target, actions, right, ...)
+end
+
+local _USEITEM_healer = USEITEM.healer
+function USEITEM.healer(inst, doer, target, actions, right, ...)
+    if target and target:HasTag("trader") then
+        if right then
+            return _USEITEM_healer(inst, doer, target, actions, false, ...)
+        else
+            return
+        end
+    end
+    return _USEITEM_healer(inst, doer, target, actions, right, ...)
+end
+
 local PlayerController = require("components/playercontroller")
 
 local NON_AUTO_EQUIP_ACTIONS = {
