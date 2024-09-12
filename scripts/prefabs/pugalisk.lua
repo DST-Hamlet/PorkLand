@@ -292,6 +292,14 @@ local function ClientPerdictPosition(inst, dt, should_update_position)
     end
 end
 
+local function OnOtherBodyDirty(inst, data)
+    local otherbody = inst._other_body:value()
+    if otherbody and otherbody:IsValid() then
+        inst.redirects = {inst, otherbody}
+        otherbody.redirects = {inst, otherbody}
+    end
+end
+
 local function bodyfn()
     local inst = CreateEntity()
 
@@ -323,7 +331,7 @@ local function bodyfn()
 
     inst.invulnerable = true
     inst.name = STRINGS.NAMES.PUGALISK
-    inst.redirects = {}
+    inst.redirects = {inst}
     inst.segs = {}
 
     -- The speed of the segment
@@ -341,6 +349,9 @@ local function bodyfn()
         x = net_float(inst.GUID, "_end_point.x"),
         z = net_float(inst.GUID, "_end_point.z"),
     }
+
+    inst._other_body = net_entity(inst.GUID, "_other_body", "otherbodydirty")
+    inst:ListenForEvent("otherbodydirty", OnOtherBodyDirty)
 
     inst._hit = net_float(inst.GUID, "_hit")
 
