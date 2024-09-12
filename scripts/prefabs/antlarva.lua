@@ -33,7 +33,7 @@ local function larava_fn()
 
     inst:AddComponent("throwable")
     inst.components.throwable:SetOnHitFn(OnHit)
-    inst.components.throwable.yOffset = 4
+    inst.components.throwable.yOffset = 5
     inst.components.throwable.speed = 10
 
     inst:SetStateGraph("SGantlarva")
