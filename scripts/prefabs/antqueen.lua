@@ -238,6 +238,11 @@ local function MakeObstacle(inst)
     inst._ispathfinding:set(true)
 end
 
+local function OnRemove(inst)
+    inst._ispathfinding:set_local(false)
+    OnIsPathFindingDirty(inst)
+end
+
 -- These "thrones" are just entities used to properly create queens physics
 -- Maybe we should build custom collision mesh
 local function MakeThrone(name, physics_size)
@@ -254,6 +259,8 @@ local function MakeThrone(name, physics_size)
         -- Delay this because makeobstacle sets pathfinding on by default
         -- but we don't to handle it until after our position is set
         inst:DoTaskInTime(0, InitializePathFinding)
+
+        inst:ListenForEvent("onremove", OnRemove)
 
         inst:AddTag("throne_wall")
 

@@ -8,9 +8,31 @@ local assets =
     Asset("ANIM", "anim/pedestal_crate_lock.zip"),
 }
 
+local function OnIsPathFindingDirty(inst)
+    if inst._ispathfinding:value() then
+        if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
+            inst._pfpos = inst:GetPosition()
+            TheWorld.Pathfinder:AddWall(inst._pfpos:Get())
+        end
+    elseif inst._pfpos ~= nil then
+        TheWorld.Pathfinder:RemoveWall(inst._pfpos:Get())
+        inst._pfpos = nil
+    end
+end
+
+local function InitializePathFinding(inst)
+    inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
+    OnIsPathFindingDirty(inst)
+end
+
 local function MakeObstacle(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     TheWorld.Pathfinder:AddWall(x, y, z)
+end
+
+local function OnRemove(inst)
+    inst._ispathfinding:set_local(false)
+    OnIsPathFindingDirty(inst)
 end
 
 local function GetSlotSymbol(inst, slot)
@@ -192,7 +214,9 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
 
         if physics_round then
             MakeObstaclePhysics(inst, .5)
-            inst:DoTaskInTime(0, MakeObstacle)
+            inst:DoTaskInTime(0, InitializePathFinding)
+
+            inst:ListenForEvent("onremove", OnRemove)
         else
             -- MakeInteriorPhysics(inst, 2, 1, 0.5) -- 暂时取消这些贴边物体的碰撞体和寻路，以减少卡位的可能性
             -- inst:DoTaskInTime(0, MakeObstacle)
