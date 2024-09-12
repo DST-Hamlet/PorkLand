@@ -312,6 +312,9 @@ Assets = {
     Asset("ANIM", "anim/player_actions_scroll.zip"),
     Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
 
+    -- replace_anim
+    Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),
+
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
     Asset("ANIM", "anim/boat_hud_raft.zip"),
