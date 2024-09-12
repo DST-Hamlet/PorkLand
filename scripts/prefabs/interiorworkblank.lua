@@ -339,7 +339,7 @@ local TAGS = {
     HOME_PROTOTYPER = 8, -- player home prototype room
     PIG_RUINS = 16, -- pig ruins rooms
     PIG_SHOP = 32, -- pig shop rooms
-    antqueen = 64, -- final chamber
+    ANTQUEEN = 64, -- final chamber
     TEST = 1024,
 }
 
