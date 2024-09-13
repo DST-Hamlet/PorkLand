@@ -874,13 +874,6 @@ function InteriorSpawner:SpawnInterior(interior)
                     end
                     object.components.citypossession:SetCity(interior.cityID)
                 end
-
-                if object.decochildrenToRemove then
-                    for _, child in ipairs(object.decochildrenToRemove) do
-                        child.Transform:SetPosition(object.Transform:GetWorldPosition())
-                        child.Transform:SetRotation(object.Transform:GetRotation())
-                    end
-                end
             end
         end
     end

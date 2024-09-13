@@ -123,7 +123,11 @@ function RotatingBillboard:SyncMaskAnimation()
         if not anim:IsCurrentAnimation(animation) then
             anim:PlayAnimation(animation)
         end
-        self._maskdirty:push()
+        anim:SetScale(self.inst.Transform:GetScale())
+
+        if TheWorld.ismastersim then
+            self._maskdirty:push()
+        end
     end
 end
 

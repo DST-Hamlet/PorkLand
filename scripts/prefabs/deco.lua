@@ -11,9 +11,26 @@ local function on_window_built(inst)
                 end
             end
         end
-        inst.animdata = {
-            bank = bank,
-        }
+    end
+
+    if inst.components.rotatingbillboard then
+        local position = inst:GetPosition()
+        local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+        if current_interior then
+            local originpt = current_interior:GetPosition()
+            if position.z >= originpt.z then
+                inst.Transform:SetScale(-1,1,1)
+            end
+
+            local animdata = shallowcopy(inst.components.rotatingbillboard.animdata)
+            animdata.bank = inst.bank
+            if DecoCreator:IsBuiltOnBackWall(inst) then
+                animdata.bank = inst.bank:sub(1, -6) -- Remove _side
+            end
+
+            inst.animdata = animdata
+            inst.components.rotatingbillboard:SetAnimation_Server(animdata)
+        end
     end
 end
 
@@ -30,6 +47,10 @@ local function make_on_beam_built(corner_beam_animation, background)
         if current_interior then
             local originpt = current_interior:GetPosition()
 
+            if position.z >= originpt.z then
+                inst.Transform:SetScale(-1,1,1)
+            end
+
             if position.x <= originpt.x then
                 local animdata = shallowcopy(inst.components.rotatingbillboard.animdata)
                 animdata.anim = corner_beam_animation
@@ -43,9 +64,6 @@ local function make_on_beam_built(corner_beam_animation, background)
                     inst.AnimState:SetSortOrder(background)
                     inst.setbackground = background
                 end
-            end
-            if position.z >= originpt.z then
-                inst.Transform:SetScale(-1,1,1)
             end
         end
     end
@@ -85,8 +103,8 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("window_square_weapons", "window_weapons_build", "interior_window_large_side", "day_loop",            {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, on_built_fn = on_window_built}),
         DecoCreator:Create("window_square_weapons_backwall", "window_weapons_build", "interior_window_large", "day_loop",        {loopanim=true, decal=true, background=3, dayevents=true, curtains=true, children={"window_round_light_backwall"}, tags={"NOBLOCK","wallsection"}, onbuilt=true, recipeproxy="window_square_weapons"}),
 
-        DecoCreator:Create("window_greenhouse", "interior_window_greenhouse_build", "interior_window_greenhouse_side", "day_loop",     {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_big_light"}, tags={"NOBLOCK","wallsection","fullwallsection"}, onbuilt=true, on_built_fn = on_window_built}),
-        DecoCreator:Create("window_greenhouse_backwall", "interior_window_greenhouse_build", "interior_window_greenhouse", "day_loop", {loopanim=true, decal=nil, background=3, dayevents=true, curtains=true, children={"window_big_light_backwall"}, tags={"NOBLOCK","wallsection","fullwallsection"}, onbuilt=true, recipeproxy="window_greenhouse"}),
+        DecoCreator:Create("window_greenhouse", "interior_window_greenhouse_build", "interior_window_greenhouse_side", "day_loop",     {loopanim=true, decal=nil, rotatingbillboard = true, background=3, dayevents=true, curtains=true, children={"window_big_light"}, tags={"NOBLOCK","wallsection","fullwallsection","rotate_fix"}, onbuilt=true, on_built_fn = on_window_built}),
+        DecoCreator:Create("window_greenhouse_backwall", "interior_window_greenhouse_build", "interior_window_greenhouse", "day_loop", {loopanim=true, decal=nil, rotatingbillboard = true, background=3, dayevents=true, curtains=true, children={"window_big_light_backwall"}, tags={"NOBLOCK","wallsection","fullwallsection","rotate_fix"}, onbuilt=true, recipeproxy="window_greenhouse"}),
 
         DecoCreator:Create("window_round_light", "interior_window", "interior_window_light_side", "day_loop",                    {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustzmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
         DecoCreator:Create("window_round_light_backwall",  "interior_window", "interior_window_light", "day_loop",               {loopanim=true, decal=true, light=true, dayevents=true, followlight ="natural", windowlight =true, dustxmod=1.3, tags={"NOBLOCK","NOCLICK"}}),
