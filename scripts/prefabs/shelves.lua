@@ -55,14 +55,7 @@ local function OnFinish(inst, worker, workleft)
     end
 
     if inst.components.lootdropper then
-        local interior_spawner = TheWorld.components.interiorspawner
-        if interior_spawner.current_interior then
-            local originpt = interior_spawner:getSpawnOrigin()
-            local x, _, z = inst.Transform:GetWorldPosition()
-            local dropdir = Vector3(originpt.x - x, 0, originpt.z - z):GetNormalized()
-            inst.components.lootdropper.dropdir = dropdir
-            inst.components.lootdropper:DropLoot()
-        end
+        inst.components.lootdropper:DropLoot()
     end
 
     inst:Remove()
