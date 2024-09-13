@@ -198,21 +198,46 @@ AddPlayerPostInit(function(inst)
 
     local _OnGotNewItem, i = ToolUtil.GetUpvalue(_RegisterActivePlayerEventListeners, "OnGotNewItem")
 
-    if i ~= nil then -- 不知道为什么，有时候会因为i为nil而崩溃，因此加上了这个检测
-        local function OnGotNewItem(inst, data, ...)
-            if TheWorld:HasTag("porkland") then
-                if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
-                    if inst.replica.sailor and inst.replica.sailor:GetBoat() then
-                        TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
-                        return
-                    end
+    local function OnGotNewItem(inst, data, ...)
+        if TheWorld:HasTag("porkland") then
+            if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
+                if inst.replica.sailor and inst.replica.sailor:GetBoat() then
+                    TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
+                    return
                 end
             end
-            return _OnGotNewItem(inst, data, ...)
+        end
+        return _OnGotNewItem(inst, data, ...)
+    end
+
+    if i then
+        debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
+    end
+
+    local REPLACE_ANIMS =
+    {
+        ["atk_pre"] = "atk_pre_old",
+        ["atk_lag"] = "atk_lag_old",
+        ["atk"] = "atk_old",
+    }
+
+    local _AnimState = inst.AnimState
+    local AnimState = setmetatable({}, {__index = function(t, k)
+        if k == "PlayAnimation" then
+            return function(t, animname, ...)
+                return _AnimState:PlayAnimation(REPLACE_ANIMS[animname] or animname, ...)
+            end
+        elseif k == "PushAnimation" then
+            return function(t, animname, ...)
+                return _AnimState:PushAnimation(REPLACE_ANIMS[animname] or animname, ...)
+            end
         end
 
-        ToolUtil.SetUpvalue(_RegisterActivePlayerEventListeners, OnGotNewItem, "OnGotNewItem")
-    end
+        return function(t, ...)
+            return _AnimState[k](_AnimState, ...)
+        end
+    end})
+    rawset(inst, "AnimState", AnimState)
 
     if not TheWorld.ismastersim then
         return

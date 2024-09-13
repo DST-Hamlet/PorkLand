@@ -223,6 +223,8 @@ local function SpawnBatsForPlayer(player)
 
             -- Don't remove/append values when iterating through a table
             mark_for_remove[#mark_for_remove + 1] = key
+
+            num_spawned = num_spawned + 1
         end
     end
 

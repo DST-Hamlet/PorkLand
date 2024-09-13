@@ -23,6 +23,8 @@ local Hayfever = Class(function(self, inst)
 
     self:WatchWorldState("ishayfever", self.OnHayFever)
     self:OnHayFever(TheWorld.state.ishayfever)
+
+    self.inst:StartUpdatingComponent(self)
 end,
 nil, {
     imune = onimune,
@@ -62,7 +64,14 @@ function Hayfever:DoSneezeEffects()
     end
 
     -- cause player to drop stuff here.
-    local itemstodrop = math.random(1, 5) - 1
+    local itemstodrop = 0
+
+    local rand = math.random()
+    if math.random() < 0.1 then
+        itemstodrop = 4
+    elseif math.random() < 0.6 then
+        itemstodrop = 1
+    end
 
     if itemstodrop > 0 then
         for i = 1, itemstodrop do
@@ -79,7 +88,13 @@ end
 
 function Hayfever:OnUpdate(dt)
     if self:CanSneeze() then
-        if self.nextsneeze <= 0 then
+        if not self.enabled then
+            if self.nextsneeze <= 60 then
+                self.nextsneeze = 60
+            else
+                self.nextsneeze = self.nextsneeze - dt
+            end
+        elseif self.nextsneeze <= 0 then
             if not self.inst.sg.wantstosneeze then
                 -- large chance to sneeze twice in a row
                 if self.sneezed or math.random() > 0.7 then
@@ -118,8 +133,6 @@ function Hayfever:Enable(nosay)
         end
         self.enabled = true
     end
-
-    self.inst:StartUpdatingComponent(self)
 end
 
 function Hayfever:Disable(nosay)
@@ -128,14 +141,14 @@ function Hayfever:Disable(nosay)
 
         self.sneezed = false
         self.enabled = false
-        self.nextsneeze = self:GetNextSneezTimeInitial()
+        if self.nextsneeze < 60 then
+            self.nextsneeze = self:GetNextSneezTimeInitial()
+        end
 
         if not nosay then
             self.inst.components.talker:Say(GetString(self.inst, "ANNOUNCE_HAYFEVER_OFF"))
         end
     end
-
-    self.inst:StopUpdatingComponent(self)
 end
 
 function Hayfever:OnHayFever(enabled, nosay)

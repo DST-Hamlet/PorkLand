@@ -651,7 +651,7 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("charge_pre")
             inst.AnimState:PushAnimation("charge_grow")
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/charge_up_LP", "chargedup")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/charge_up_LP", "chargedup")
 
             inst.sg.statemem.ready_to_shoot = false
             inst.sg.statemem.should_shoot = false
@@ -681,7 +681,7 @@ local states = {
             TimeEvent(20 * FRAMES, function(inst)
                 inst.AnimState:PlayAnimation("charge_super_pre")
                 inst.AnimState:PushAnimation("charge_super_loop", true)
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/electro")
+                inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro")
                 inst.sg.statemem.ready_to_shoot = false
             end),
             TimeEvent(25 * FRAMES, function(inst) inst.sg.statemem.ready_to_shoot = true end),

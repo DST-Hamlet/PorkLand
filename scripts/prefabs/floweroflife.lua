@@ -131,7 +131,7 @@ local function OnResurrect(inst, player)
     inst.persists = false
 
     inst.AnimState:PlayAnimation("transform")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/flower_of_life/rebirth")
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/flower_of_life/rebirth")
 
     player.sg:GoToState("rebirth_floweroflife")
 
