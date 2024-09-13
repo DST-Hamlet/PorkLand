@@ -1,5 +1,13 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local _TempTile_HandleTileChange_Void = TempTile_HandleTileChange_Void
+function TempTile_HandleTileChange_Void(x, y, z)
+    if TheWorld and TheWorld:HasTag("porkland") then
+        return
+    end
+    return _TempTile_HandleTileChange_Void(x, y, z)
+end
+
 function GetWorldSetting(setting, default)
     local worldsettings = TheWorld and TheWorld.components.worldsettings
     if worldsettings then
