@@ -213,6 +213,7 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst.entity:AddNetwork()
 
         if physics_round then
+            inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
             MakeObstaclePhysics(inst, .5)
             inst:DoTaskInTime(0, InitializePathFinding)
 
