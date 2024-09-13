@@ -97,3 +97,14 @@ if desiredlang and languages[desiredlang] then
     PLENV.LoadPOFile("scripts/languages/pl_" .. languages[desiredlang] .. ".po", desiredlang)
     TranslateStringTable(STRINGS)
 end
+
+-- this is bad
+STRINGS.ANTNAMES={}
+for i=1, 100 do
+    table.insert(STRINGS.ANTNAMES,"Drone #"..math.random(1,1000000))
+end
+
+STRINGS.ANTWARRIORNAMES = {}
+for i=1, 100 do
+    table.insert(STRINGS.ANTWARRIORNAMES,"Warrior #"..math.random(1,1000000))
+end

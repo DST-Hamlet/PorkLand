@@ -66,14 +66,11 @@ local function shoot(inst, is_full_charge)
     if is_full_charge and inst.sg.mem.shootpos then
         local beam = SpawnPrefab("ancient_hulk_orb")
         beam.AnimState:PlayAnimation("spin_loop", true)
-        beam.Transform:SetPosition(newpt.x, newpt.y, newpt.z)
         beam.owner = player
 
         local targetpos = inst.sg.mem.shootpos
 
-        beam.components.pl_complexprojectile:SetHorizontalSpeed(60)
-        beam.components.pl_complexprojectile:SetGravity(-1)
-        beam.components.pl_complexprojectile:Launch(targetpos, player)
+        beam.components.throwable:Throw(targetpos, player)
         beam.components.combat.proxy = inst
         beam.owner = inst
     else
@@ -194,6 +191,18 @@ local eventhandlers = {
                 inst.sg:GoToState("sneeze")
             end
         end
+    end),
+    -- Happens when the Ant Queen uses her song attack
+    EventHandler ("sanity_stun",
+    function(inst, data)
+        for k, v in pairs(inst.components.inventory.equipslots) do
+            if v:HasTag("earmuffshat") then
+                return
+            end
+        end
+
+        inst.sg:GoToState("sanity_stun", data.duration)
+        inst.components.sanity:DoDelta(-TUNING.SANITY_LARGE)
     end),
 }
 
@@ -2335,6 +2344,37 @@ local states = {
                 inst.sg:GoToState("idle")
             end),
         },
+    },
+    State{
+        name = "sanity_stun",
+        tags = {"busy", "nopredict", "nointerrupt"},
+
+        onenter = function(inst, duration)
+            inst.components.playercontroller:Enable(false)
+            inst.components.locomotor:Stop()
+
+            inst.AnimState:PlayAnimation("idle_sanity_pre", false)
+            inst.AnimState:PushAnimation("idle_sanity_loop", true)
+
+            inst.sanity_stunned = true
+
+            inst.sg:SetTimeout(duration)
+        end,
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("idle")
+        end,
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
+        },
+
+        onexit = function(inst)
+            inst.components.playercontroller:Enable(true)
+            inst.sanity_stunned = false
+            inst:PushEvent("sanity_stun_over")
+        end
     },
 }
 

@@ -73,7 +73,7 @@ local states =
         onenter = function(inst)
             inst.AnimState:PlayAnimation("appear")
             inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_howl")
-            TheMixer:PushMix("shadow") -- this doesn't work at all actually
+            -- TheMixer:PushMix("shadow") -- this doesn't work at all actually -- 等哪一天搞明白了Mixer再说
         end,
 
         timeline =

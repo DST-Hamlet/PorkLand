@@ -241,9 +241,7 @@ local function ShootProjectile(inst, targetpos)
 
     local pt = inst.shotspawn:GetPosition()
     projectile.Transform:SetPosition(pt.x, pt.y, pt.z)
-    projectile.components.pl_complexprojectile:SetHorizontalSpeed(60)
-    projectile.components.pl_complexprojectile:SetGravity(-25)
-    projectile.components.pl_complexprojectile:Launch(targetpos, inst, inst)
+    projectile.components.throwable:Throw(targetpos, inst)
     projectile.owner = inst
 end
 

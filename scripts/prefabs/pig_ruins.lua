@@ -54,10 +54,10 @@ SetSharedLootTable("antqueen_throne", {
     {"gold_dust", 0.6},
     {"gold_dust", 0.6},
 
-    {"gold_nugget", 1.0},
-    {"gold_nugget", 1.0},
-    {"gold_nugget", 0.3},
-    {"gold_nugget", 0.3},
+    {"goldnugget", 1.0},
+    {"goldnugget", 1.0},
+    {"goldnugget", 0.3},
+    {"goldnugget", 0.3},
 
     {"bluegem", 0.5},
     {"bluegem", 0.5},

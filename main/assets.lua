@@ -240,6 +240,7 @@ PrefabFiles = {
     "inv_bamboo",
     "sand",
 
+
     "roc_nest",
     "ro_bin_egg",
     "ro_bin_gizzard_stone",
@@ -249,10 +250,18 @@ PrefabFiles = {
     "ox_horn",
     "ox_flute",
     "porklandintro",
-    "anthill",
 
     "cutlass",
     "pl_feathers",
+
+    "giantgrub",
+    "antman",
+    "antman_warrior",
+    "antman_warrior_egg",
+    "anthill",
+    "antlarva",
+    "antqueen",
+    "antqueen_chamber",
 
     "house_door",
     "construction_permit",

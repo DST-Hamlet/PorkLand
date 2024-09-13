@@ -210,6 +210,7 @@ local function RegisterNetListeners(inst)
         inst:ListenForEvent("poisondamage", OnPoisonDamage, inst._parent)
         inst:ListenForEvent("start_ironlord_music", function() inst.startironlordmusic:push() end)
         inst:ListenForEvent("start_city_alarm", function() inst.cityalarmevent:push() end)
+        inst:ListenForEvent("sanity_stun", function() inst.sanitystunevent:push() end)
         inst:ListenForEvent("worktargetdirty", inst.ClearLastTarget)
     else
         inst.poisonpulse:set_local(false)
@@ -226,6 +227,9 @@ local function RegisterNetListeners(inst)
         inst:ListenForEvent("startironlordmusicdirty", push_music)
         inst:ListenForEvent("start_city_alarm", function()
             inst._parent:PushEvent("start_city_alarm")
+        end)
+        inst:ListenForEvent("start_sanity_stun", function()
+            inst._parent:PushEvent("sanity_stun")
         end)
     end
 
@@ -245,6 +249,7 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.instantironlord = inst.instant_ironlord or net_bool(inst.GUID, "livingartifact.instantironlord") -- just a flag for loading
     inst.startironlordmusic = inst.startironlordmusic or net_event(inst.GUID, "livingartifact.startironlordmusic", "startironlordmusicdirty")
     inst.cityalarmevent = inst.cityalarmevent or net_event(inst.GUID, "cityalarms.startmusic", "start_city_alarm")
+    inst.sanitystunevent = inst.sanitystunevent or net_event(inst.GUID, "antqueen.sanitystun", "start_sanity_stun")
 
     inst.ispoisoned:set(false)
     inst.isingas:set(false)
