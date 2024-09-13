@@ -25,6 +25,13 @@ local function on_interior_cc(self, value)
     end
 end
 
+local function init(inst)
+    local interiorvisitor = inst.components.interiorvisitor
+    if interiorvisitor then
+        interiorvisitor:Init()
+    end
+end
+
 local InteriorVisitor = Class(function(self, inst)
     self.inst = inst
     self.exterior_pos_x = 0
@@ -37,6 +44,12 @@ local InteriorVisitor = Class(function(self, inst)
     -- self.restore_physics_task = nil
 
     self.last_mainland_pos = nil
+
+    self.inst:DoStaticTaskInTime(0, init)
+    self.record_map_on_room_removal = function(_, data)
+        self:RecordMap(data.id, nil)
+    end
+    self.inst:ListenForEvent("room_removed", self.record_map_on_room_removal, TheWorld)
 end, nil,
 {
     exterior_pos_x = on_x,
@@ -44,6 +57,10 @@ end, nil,
     center_ent = on_center_ent,
     interior_cc = on_interior_cc,
 })
+
+function InteriorVisitor:OnRemoveFromEntity()
+    self.inst:RemoveEventCallback("room_removed", self.record_map_on_room_removal, TheWorld)
+end
 
 local function BitAND(a,b)
     local p, c = 1, 0
@@ -98,6 +115,16 @@ end
 function InteriorVisitor:RecordMap(id, data)
     self.interior_map[id] = data
     SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString({[id] = data}))
+end
+
+function InteriorVisitor:ValidateMap()
+    for id, map_data in pairs(self.interior_map) do
+        local center = TheWorld.components.interiorspawner:GetInteriorCenter(id)
+        if not center or (map_data.uuid and map_data.uuid ~= center.uuid) then
+            print("remove invalid map data", map_data.uuid, center.uuid)
+            self.interior_map[id] = nil
+        end
+    end
 end
 
 function InteriorVisitor:UpdateExteriorPos()
@@ -178,12 +205,6 @@ function InteriorVisitor:OnLoad(data)
     end
     if data.interior_map then
         self.interior_map = data.interior_map
-        -- Don't quite understand why ThePlayer can be nil when the client receives this,
-        -- from HandleClientRPC in networkclientrpc.lua, it shouldn't happen, but it does anyway,
-        -- since this is not critical to the client on initial load, use a delay here to mitigate this
-        self.inst:DoStaticTaskInTime(3, function()
-            SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString(self.interior_map))
-        end)
     end
 
     -- restore player position if interior was destroyed
@@ -194,6 +215,16 @@ function InteriorVisitor:OnLoad(data)
             self.inst.Transform:SetPosition(self.last_mainland_pos.x, 0, self.last_mainland_pos.z)
         end
     end
+end
+
+function InteriorVisitor:Init()
+    self:ValidateMap()
+    -- Don't quite understand why ThePlayer can be nil when the client receives this,
+    -- from HandleClientRPC in networkclientrpc.lua, it shouldn't happen, but it does anyway,
+    -- since this is not critical to the client on initial load, use a delay here to mitigate this
+    self.inst:DoStaticTaskInTime(3, function()
+        SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString(self.interior_map))
+    end)
 end
 
 return InteriorVisitor

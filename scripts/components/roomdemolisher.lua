@@ -14,7 +14,7 @@ function RoomDemolisher:DemolishRoom(doer, door_frame, permit)
 
     if door_frame:CanBeRemoved() and not (index_x == 0 and index_y == 0) then
         interior_spawner:DemolishPlayerRoom(target_interior, door_frame:GetPosition())
-        interior_spawner:DeregisterPlayerRoom(house_id, target_interior)
+        interior_spawner:UnregisterPlayerRoom(house_id, target_interior)
 
         local fx = SpawnPrefab("collapse_small")
         fx.Transform:SetPosition(door_frame.Transform:GetWorldPosition())

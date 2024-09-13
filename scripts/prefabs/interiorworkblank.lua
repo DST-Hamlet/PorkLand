@@ -71,8 +71,9 @@ local function SetUp(inst, data)
     end
 
     local sp = GetSkeletonPositions(width, depth)
+    local pos = inst:GetPosition()
 
-    local left_top_pos = sp.LEFT_TOP + inst:GetPosition()
+    local left_top_pos = sp.LEFT_TOP + pos
 
     local floor = SpawnPrefab("interiorfloor")
     floor:SetSize(depth, width) -- depth => size_x, width => size_z
@@ -89,7 +90,7 @@ local function SetUp(inst, data)
     wall_left.Transform:SetPosition(left_top_pos:Get())
     wall_left:SetTexture(inst.walltexture)
 
-    local right_top_pos = sp.RIGHT_TOP + inst:GetPosition()
+    local right_top_pos = sp.RIGHT_TOP + pos
 
     local wall_right = SpawnPrefab("interiorwall_x")
     wall_right:SetSize(depth)
@@ -110,12 +111,9 @@ local function SetUp(inst, data)
     local function wall(x, z)
         local wall = SpawnPrefab("invisiblewall")
         wall.persists = false
-        wall:DoTaskInTime(0, function()
-            local pos = inst:GetPosition()
-            wall.Physics:SetActive(true)
-            wall.Physics:SetActive(false) -- use these wall for pathfinder only :p
-            wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
-        end)
+        wall.Physics:SetActive(true)
+        wall.Physics:SetActive(false) -- use these wall for pathfinder only :p
+        wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
         -- wall:Debug()
         table.insert(inst.boundaries, wall)
     end
@@ -133,12 +131,9 @@ local function SetUp(inst, data)
 
     -- real wall
     local wall = SpawnPrefab("invisiblewall_long")
-    wall:DoTaskInTime(0, function()
-        local pos = inst:GetPosition()
-        wall.width:set(width + 0.2)
-        wall.depth:set(depth + 0.2)
-        wall.Transform:SetPosition(pos.x, 0, pos.z)
-    end)
+    wall.width:set(width + 0.2)
+    wall.depth:set(depth + 0.2)
+    wall.Transform:SetPosition(pos.x, 0, pos.z)
     table.insert(inst.boundaries, wall)
 
     inst.interior_cc = data.interior_cc or data.cc or "images/colour_cubes/day05_cc.tex"
@@ -346,6 +341,7 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
     local minimap_floor_texture = inst:GetFloorMinimapTex() or "mini_ruins_slab.tex"
 
     return {
+        uuid = inst.uuid,
         width = width,
         depth = depth,
         minimap_floor_texture = basename(minimap_floor_texture),
@@ -353,6 +349,7 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         doors = doors,
     }
     -- {
+    --     uuid: string,
     --     width: number,
     --     depth: number,
     --     minimap_floor_texture: string,
@@ -435,6 +432,7 @@ local function AttachMinimapOverride(inst)
 end
 
 local function OnSave(inst, data)
+    data.uuid = inst.uuid
     data.width = inst:GetWidth()
     data.depth = inst:GetDepth()
     data.height = inst.height
@@ -447,13 +445,57 @@ local function OnSave(inst, data)
     data.footstep_tile = inst.footstep_tile
     data.reverb = inst.reverb
     data.ambient_sound = inst.ambient_sound
+
+    local doors = {}
+    for _, door in ipairs(inst.doors) do
+       table.insert(doors, door.GUID)
+    end
+    data.doors = doors
+
+    return doors
 end
 
 local function OnLoad(inst, data)
+    if data.uuid then
+        inst.uuid = data.uuid
+    end
     inst:SetUp(data)
     if data.interior_tags then
         inst:AddInteriorTags(unpack(table.getkeys(data.interior_tags)))
     end
+end
+
+local function MigrateDoors(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    inst.doors = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}, {"predoor"})
+    inst:SetIsSingleRoom(#inst.doors == 1 and inst.doors[1]:HasTag("door_exit"))
+end
+
+local function OnLoadPostPass(inst, newents, savedata)
+    if savedata and savedata.doors then
+        inst.doors = {}
+        for _, door_guid in ipairs(savedata.doors) do
+            local door = newents[door_guid]
+            if door then
+                inst:OnDoorChange(door.entity, true)
+            end
+        end
+    else
+        inst:DoStaticTaskInTime(0, MigrateDoors)
+    end
+end
+
+local function generate_uuid(length)
+    local chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    local uuid = {}
+    local random = math.random
+
+    for i = 1, length do
+        local rand_index = random(1, #chars)
+        table.insert(uuid, chars:sub(rand_index, rand_index))
+    end
+
+    return table.concat(uuid)
 end
 
 local function fn()
@@ -518,6 +560,9 @@ local function fn()
         return inst
     end
 
+    -- Used for minimap data
+    inst.uuid = generate_uuid(8)
+
     inst.SetUp = SetUp
     inst.CollectMinimapData = CollectMinimapData
 
@@ -538,6 +583,7 @@ local function fn()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+    inst.OnLoadPostPass = OnLoadPostPass
     inst.AddInteriorTags = AddInteriorTags
     inst.RemoveInteriorTags = RemoveInteriorTags
 

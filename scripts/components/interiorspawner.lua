@@ -976,7 +976,7 @@ function InteriorSpawner:RegisterPlayerRoom(house_id, new_room_id, from_id, dire
     self.player_houses[house_id][new_room_id] = {x = new_x, y = new_y}
 end
 
-function InteriorSpawner:DeregisterPlayerRoom(house_id, room_id)
+function InteriorSpawner:UnregisterPlayerRoom(house_id, room_id)
     if self.player_houses[house_id] then
         self.player_houses[house_id][room_id] = nil
     end
@@ -1126,7 +1126,7 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
         v.Transform:SetPosition(exit_pos:Get())
     end
 
-    TheWorld:PushEvent("room_removed")
+    TheWorld:PushEvent("room_removed", {id = room_id})
 end
 
 function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, exclude_dir, exclude_room_id)
