@@ -618,10 +618,11 @@ AddRecipe2("window_tall_curtain",         {Ingredient("oinc", 5)}, TECH.HOME, {n
 
 AddRecipe2("window_greenhouse",           {Ingredient("oinc", 8)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "window_greenhouse_placer",            image = "reno_window_greenhouse.tex"},              {"HOME_WALL_DECORATION"})
 
-AddRecipe2("deco_wood_beam",      {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_wood_cornerbeam_placer",      image = "reno_cornerbeam_wood.tex"},      {"HOME_COLUMN"})
-AddRecipe2("deco_millinery_beam", {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_millinery_cornerbeam_placer", image = "reno_cornerbeam_millinery.tex"}, {"HOME_COLUMN"})
-AddRecipe2("deco_round_beam",     {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_round_cornerbeam_placer",     image = "reno_cornerbeam_round.tex"},     {"HOME_COLUMN"})
-AddRecipe2("deco_marble_beam",    {Ingredient("oinc", 5)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_marble_cornerbeam_placer",    image = "reno_cornerbeam_marble.tex"},    {"HOME_COLUMN"})
+--cassielu: why change them?
+AddRecipe2("deco_wood_beam",      {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_wood_cornerbeam_placer",      image = "reno_cornerbeam_wood.tex",      nameoverride = "deco_wood",      description = "deco_wood"},      {"HOME_COLUMN"})
+AddRecipe2("deco_millinery_beam", {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_millinery_cornerbeam_placer", image = "reno_cornerbeam_millinery.tex", nameoverride = "deco_millinery", description = "deco_millinery"}, {"HOME_COLUMN"})
+AddRecipe2("deco_round_beam",     {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_round_cornerbeam_placer",     image = "reno_cornerbeam_round.tex",     nameoverride = "deco_round",     description = "deco_round"},     {"HOME_COLUMN"})
+AddRecipe2("deco_marble_beam",    {Ingredient("oinc", 5)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_marble_cornerbeam_placer",    image = "reno_cornerbeam_marble.tex",    nameoverride = "deco_marble",    description = "deco_marble"},    {"HOME_COLUMN"})
 
 AddRecipe2("interior_floor_wood",        {Ingredient("oinc", 5)},  TECH.HOME, {nounlock = true}, {"HOME_FLOOR"})
 AddRecipe2("interior_floor_marble",      {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true}, {"HOME_FLOOR"})
