@@ -7,8 +7,9 @@ package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-["SPY"] = "SPY",
-["SEARCH"] = "SEARCH",
+["BUILD_ROOM"] = "BUILD_ROOM",
+["DEMOLISH_ROOM"] = "DEMOLISH_ROOM",
+["ROYAL_GALLERY"] = "ROYAL_GALLERY",
 --MOONDIAL
 }
 
