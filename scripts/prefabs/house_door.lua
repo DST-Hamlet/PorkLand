@@ -457,6 +457,8 @@ local function MakeHouseDoor(name)
         inst.entity:AddSoundEmitter()
         inst.entity:AddNetwork()
 
+        inst.Transform:SetRotation(-90)
+
         local anim_data = {
             bank = "player_house_doors",
             build = "player_house_doors",
