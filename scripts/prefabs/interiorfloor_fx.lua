@@ -78,7 +78,7 @@ local function SetTexture(inst, texture)
     end
     if texture:find("noise_woodfloor") then -- 特殊情况
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME2)
-    elseif texture:find("batcave_floor") or texture:find("ground_ruins_slab") then
+    elseif texture:find("batcave_floor") or texture:find("ground_ruins_slab") or texture:find("antcave_floor") then
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME3)
     elseif texture:find("floor") then
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)

@@ -5,6 +5,7 @@ local COLOUR_ENVELOPE_NAME = "pl_wallcolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_wallscaleenvelope"
 local SCALE_ENVELOPE_NAME2 = "pl_wallscaleenvelope2"
 local SCALE_ENVELOPE_NAME3 = "pl_wallscaleenvelope3"
+local SCALE_ENVELOPE_NAME4 = "pl_wallscaleenvelope4"
 
 local assets =
 {
@@ -44,6 +45,15 @@ local function InitEnvelopes()
         {
             { 0,    { width3, height3 } },
             { 1,    { width3, height3 } },
+        }
+    )
+
+    local width4, height4 = 2.197265625, 1.8310546875 * 1.08 -- 1.5, 1
+    EnvelopeManager:AddVector2Envelope(
+        SCALE_ENVELOPE_NAME4,
+        {
+            { 0,    { width4, height4 } },
+            { 1,    { width4, height4 } },
         }
     )
 
@@ -93,6 +103,8 @@ local function SetTexture(inst, texture)
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME3)
     elseif texture:find("batcave_wall_rock") then
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME2)
+    elseif texture:find("antcave_wall_rock") then
+        inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME4)
     end
 end
 

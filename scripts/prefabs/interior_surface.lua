@@ -48,7 +48,7 @@ local function UpdateFx(inst)
         local mod = 1
         if path:find("noise_woodfloor") then -- 特殊情况
             mod = 7/8
-        elseif path:find("batcave_floor") or path:find("ground_ruins_slab") then
+        elseif path:find("batcave_floor") or path:find("ground_ruins_slab") or path:find("antcave_floor") then
             mod = 9/8
         elseif path:find("floor") then
             mod = 5/8
@@ -80,6 +80,9 @@ local function UpdateFx(inst)
         elseif path:find("batcave_wall_rock") then
             y = y * 2
             mod = mod * 2
+        elseif path:find("antcave_wall_rock") then
+            y = y * 1.25
+            mod = mod * 1.5
         end
         local WALL_TILE_SCALE = WALL_TILE_SCALE * mod
         for x = 0, w/WALL_TILE_SCALE do
