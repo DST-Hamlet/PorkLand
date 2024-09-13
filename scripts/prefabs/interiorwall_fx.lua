@@ -105,6 +105,8 @@ local function SetTexture(inst, texture)
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME2)
     elseif texture:find("antcave_wall_rock") then
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME4)
+    else
+        inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
     end
 end
 

@@ -585,6 +585,7 @@ local function MakeDeco(build, bank, animframe, data, name)
             if name:find("_corner")
                 or name:find("_beam")
                 or name:find("_pillar")
+                or (bank and bank:find("wall_decals"))
                 or data.rotatingbillboard then
                 -- skip this 2024/6/13
                 inst:AddComponent("rotatingbillboard")
