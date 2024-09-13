@@ -325,7 +325,9 @@ local function UseDoor(inst,data)
     if inst.usesounds then
         if data and data.doer and data.doer.SoundEmitter then
             for _, sound in ipairs(inst.usesounds) do
-                data.doer.SoundEmitter:PlaySound(sound)
+                data.doer:DoTaskInTime(FRAMES * 2, function()
+                    data.doer.SoundEmitter:PlaySound(sound)
+                end)
             end
         end
     end
