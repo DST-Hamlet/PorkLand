@@ -10,7 +10,6 @@ local CHASE_DIST = 32
 local MAX_WANDER_DIST = CHASE_DIST
 local CHASE_TIME = 20
 
-local SUMMON_COOLDOWN = 15
 local TAUNT_COOLDOWN = 100
 local TAUNT_CHANCE = 0.10
 
@@ -47,7 +46,7 @@ end
 
 local function DoSummon(inst)
     inst.sg:GoToState("summon")
-    inst.components.timer:StartTimer("summon_cd", SUMMON_COOLDOWN)
+    inst.components.timer:StartTimer("summon_cd", TUNING.ANCIENT_HERALD_SUMMON_COOLDOWN)
 end
 
 local function CanTaunt(inst)

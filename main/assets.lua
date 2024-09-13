@@ -262,6 +262,10 @@ PrefabFiles = {
     "antlarva",
     "antqueen",
     "antqueen_chamber",
+
+    "house_door",
+    "construction_permit",
+    "demolition_permit",
 }
 
 Assets = {
@@ -278,6 +282,10 @@ Assets = {
 
     -- crafting menu icons
     Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
+
+    -- minimap hud
+    Asset("ATLAS", "images/hud/pl_minimaphud.xml"),
+    Asset("IMAGE", "images/hud/pl_minimaphud.tex"),
 
     -- hud
     Asset("ATLAS", "images/overlays/fx3.xml"), -- poison, boat_over
@@ -320,6 +328,9 @@ Assets = {
     Asset("ANIM", "anim/player_mount_actions_speargun.zip"),
     Asset("ANIM", "anim/player_actions_scroll.zip"),
     Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
+
+    -- replace_anim
+    Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
@@ -371,6 +382,11 @@ Assets = {
     Asset("IMAGE", "levels/textures/map_interior/mini_antcave_floor.tex"),
     Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
+
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_wood.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_wood.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_woodpanels.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_woodpanels.tex"),
 
     -- Cookbook HD icons
     Asset("ATLAS", "images/hud/pl_cook_pot_food_image.xml"),

@@ -153,6 +153,8 @@ local actionhandlers = {
         return "crop_dust"
     end),
     ActionHandler(ACTIONS.SEARCH_MYSTERY, "dolongaction"),
+    ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
+    ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
 }
 
 local eventhandlers = {
@@ -2610,7 +2612,7 @@ AddStategraphPostInit("wilson", function(sg)
     end
 
     local _play_flute_onenter = sg.states["play_flute"].onenter
-    sg.states["play_flute"].onenter = function(inst, ...)  -- fuck klei
+    sg.states["play_flute"].onenter = function(inst, ...)
         local inv_obj = inst.bufferedaction and inst.bufferedaction.invobject or nil
 
         local _AnimState = inst.AnimState
@@ -2630,6 +2632,18 @@ AddStategraphPostInit("wilson", function(sg)
         _play_flute_onenter(inst, ...)
 
         rawset(inst, "AnimState", _AnimState)
+    end
+
+    local _hammer_start_onenter = sg.states["hammer_start"].onenter
+    sg.states["hammer_start"].onenter = function(inst, ...)
+        local action = inst:GetBufferedAction()
+        if action and action.target:HasTag("interior_door") and action.target:HasTag("house_door") and not action.target:CanBeRemoved() then
+            inst:ClearBufferedAction()
+            inst.components.talker:Say(GetString(inst.prefab, "ANNOUNCE_ROOM_STUCK"))
+            inst.sg:GoToState("talk")
+        else
+            return _hammer_start_onenter(inst, ...)
+        end
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn

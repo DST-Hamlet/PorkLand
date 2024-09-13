@@ -165,6 +165,9 @@ function InteriorVisitor:OnNewInteriorMapData(data)
     for id, data in pairs(data) do
         self.interior_map[id] = data
     end
+    if self.inst == ThePlayer then
+        self.inst:PushEvent("refresh_interior_minimap")
+    end
 end
 
 local function get_door_id(current_room_id, target_interior_id)
@@ -177,6 +180,9 @@ end
 
 -- Receiving from interior_door client RPC
 function InteriorVisitor:OnNewInteriorDoorData(data)
+    if not data or not data.target_interior then
+        return
+    end
     -- only getting data for current room
     if not self.interior_door_status[data.current_interior] then
         self.interior_door_status[data.current_interior] = {}

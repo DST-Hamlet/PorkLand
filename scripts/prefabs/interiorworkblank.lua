@@ -47,6 +47,7 @@ local function SetUp(inst, data)
     inst:SetSize(width, depth)
     inst.height = data.height or inst.height
     inst.search_radius = inst:GetSearchRadius()
+    inst:SetFloorMinimapTex(data.minimaptexture or "mini_floor_wood.tex")
 
     if inst.components.interiorpathfinder then
         inst.components.interiorpathfinder:PopulateRoom()
@@ -160,6 +161,14 @@ local function SetSize(inst, width, depth)
     inst._depth:set(depth)
 end
 
+local function SetFloorMinimapTex(inst, texture)
+    inst._floor_minimaptex:set(texture)
+end
+
+local function GetFloorMinimapTex(inst)
+    return inst._floor_minimaptex:value()
+end
+
 local function SetInteriorFloorTexture(inst, texture)
     inst.floortexture = texture
     local floor = inst.fx.floor
@@ -201,18 +210,39 @@ local function GetDoorToExterior(inst)
     end
 end
 
-local function GetIsSingleRoom(inst, no_cache)
-    if inst.cached_is_single ~= nil and not no_cache then
-        return unpack(inst.cached_is_single)
+local function OnDoorChange(inst, door, add)
+    if add then
+        table.insert(inst.doors, door)
+    else
+        table.removearrayvalue(inst.doors, door)
     end
-    local x, _, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
-    if #ents == 1 and ents[1]:HasTag("door_exit") then
-        inst.cached_is_single = {true, ents[1]}
-        return true, ents[1]
+    inst:SetIsSingleRoom(#inst.doors == 1 and inst.doors[1]:HasTag("door_exit"))
+end
+
+local function GetIsSingleRoom(inst)
+    return inst._is_single_room:value()
+end
+
+local function SetIsSingleRoom(inst, is_single)
+    return inst._is_single_room:set(is_single)
+end
+
+local function OnIsSingleRoomChange(inst)
+    if TheWorld.ismastersim then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        local players = FindPlayersInRange(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS)
+        if #players ~= 0 then
+            local minimap_data = inst:CollectMinimapData()
+            for _, player in ipairs(players) do
+                if player.components.interiorvisitor then
+                    player.components.interiorvisitor:RecordMap(inst.interiorID, minimap_data)
+                end
+            end
+        end
     end
-    inst.cached_is_single = {false}
-    return false
+    if ThePlayer and ThePlayer:IsNear(inst, TUNING.ROOM_FINDENTITIES_RADIUS) then
+        ThePlayer:PushEvent("refresh_interior_minimap")
+    end
 end
 
 local function HasInteriorMinimap(inst)
@@ -312,21 +342,20 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         end
     end
 
-    local interior_def = TheWorld.components.interiorspawner:GetInteriorDefine(inst.interiorID)
     -- Fallback to mini_ruins_slab
-    local floor_texture = interior_def and basename(interior_def.minimaptexture) or "mini_ruins_slab"
+    local minimap_floor_texture = inst:GetFloorMinimapTex() or "mini_ruins_slab.tex"
 
     return {
         width = width,
         depth = depth,
-        floor_texture = floor_texture,
+        minimap_floor_texture = basename(minimap_floor_texture),
         icons = icons,
         doors = doors,
     }
     -- {
     --     width: number,
     --     depth: number,
-    --     floor_texture: string,
+    --     minimap_floor_texture: string,
     --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
     --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
     -- }
@@ -466,6 +495,10 @@ local function fn()
     inst.major_id = net_ushortint(inst.GUID, "major_id", "major_id")
     inst.minimap_coord_x = net_shortint(inst.GUID, "minimap_coord_x", "minimap_coord")
     inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
+    inst._floor_minimaptex = net_string(inst.GUID, "_floor_minimaptex", "_floor_minimaptex")
+
+    inst._is_single_room = net_bool(inst.GUID, "interiorworkblank._is_single_room", "is_single_room_change")
+    inst:ListenForEvent("is_single_room_change", OnIsSingleRoomChange)
 
     inst.GetSearchRadius = GetSearchRadius
     inst.GetDoorById = GetDoorById
@@ -491,8 +524,15 @@ local function fn()
     inst.walltexture = nil
     inst.floortexture = nil
 
+    inst.SetFloorMinimapTex = SetFloorMinimapTex
+    inst.GetFloorMinimapTex = GetFloorMinimapTex
+
     inst.SetInteriorFloorTexture = SetInteriorFloorTexture
     inst.SetInteriorWallsTexture = SetInteriorWallsTexture
+
+    inst.doors = {}
+    inst.OnDoorChange = OnDoorChange
+    inst.SetIsSingleRoom = SetIsSingleRoom
 
     inst:ListenForEvent("onremove", OnRemove)
 

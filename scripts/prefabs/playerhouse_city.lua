@@ -149,6 +149,11 @@ local function OnLoad(inst, data)
         if data.burnt then
             inst.components.burnable.onburnt(inst)
         end
+
+        -- keep compatible with older saves
+        if not TheWorld.components.interiorspawner:IsPlayerHouseRegistered(inst) then
+            TheWorld.components.interiorspawner:RegisterPlayerHouse(inst)
+        end
     end
 end
 
@@ -179,7 +184,7 @@ local function CreatInterior(inst)
 
     local floortexture = "levels/textures/noise_woodfloor.tex"
     local walltexture = "levels/textures/interiors/shop_wall_woodwall.tex"
-    local minimaptexture = "levels/textures/map_interior/mini_ruins_slab.tex"
+    local minimaptexture = "levels/textures/map_interior/mini_floor_wood.tex"
     local colorcube = "images/colour_cubes/pigshop_interior_cc.tex"
 
     local addprops = GetPropDef("playerhouse_city", exterior_door_def)
@@ -188,6 +193,8 @@ local function CreatInterior(inst)
 
     local room = interior_spawner:GetInteriorCenter(id)
     room:AddInteriorTags("home_prototyper")
+
+    interior_spawner:RegisterPlayerHouse(inst)
 end
 
 local function UseDoor(inst, data)
@@ -313,6 +320,10 @@ local function fn()
     inst.OnReconstructe = OnReconstructe
 
     TheWorld.playerhouse = inst
+
+    inst:ListenForEvent("onremove", function()
+        TheWorld.components.interiorspawner:DeregisterPlayerHouse(inst)
+    end)
 
     return inst
 end

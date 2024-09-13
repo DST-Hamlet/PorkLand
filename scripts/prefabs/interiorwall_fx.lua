@@ -1,9 +1,10 @@
 local TEXTURE = "levels/textures/interiors/antcave_wall_rock.tex"
-local SHADER = "shaders/vfx_particle.ksh"
+local SHADER = "shaders/interior_wall_particle.ksh"
 
 local COLOUR_ENVELOPE_NAME = "pl_wallcolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_wallscaleenvelope"
 local SCALE_ENVELOPE_NAME2 = "pl_wallscaleenvelope2"
+local SCALE_ENVELOPE_NAME3 = "pl_wallscaleenvelope3"
 
 local assets =
 {
@@ -19,7 +20,7 @@ local function InitEnvelopes()
         }
     )
 
-    local width, height = 1.475, 1.475
+    local width, height = 1.46484375, 1.46484375 * 1.08
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
@@ -28,12 +29,21 @@ local function InitEnvelopes()
         }
     )
 
-    local width2, height2 = 2.7, 2.7
+    local width2, height2 = 2.9296875, 2.9296875 * 1.08 -- 3000/1024
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME2,
         {
             { 0,    { width2, height2 } },
             { 1,    { width2, height2 } },
+        }
+    )
+
+    local width3, height3 = 2.9296875, 1.611328125 * 1.08 -- 2, 1.1
+    EnvelopeManager:AddVector2Envelope(
+        SCALE_ENVELOPE_NAME3,
+        {
+            { 0,    { width3, height3 } },
+            { 1,    { width3, height3 } },
         }
     )
 
@@ -59,7 +69,7 @@ local function emit_fn(inst, effect)
     if inst.w_percent ~= 1 then
         effect:SetUVFrameSize(0, inst.w_percent, 1)
     end
-    -- local uvoffset_x, uvoffset_y = Lerp(0.5,0, inst.uv_x or 0), Lerp(0.5,0, inst.uv_y or 1)   --Asura: here you can change position of cutting point use 1 or 0
+
     effect:AddParticleUV(
         0,
         MAX_LIFETIME,   -- lifetime
@@ -79,7 +89,9 @@ local function SetTexture(inst, texture)
     if not TheNet:IsDedicated() then
         inst.VFXEffect:SetRenderResources(0, resolvefilepath(texture), resolvefilepath(SHADER))
     end
-    if texture:find("batcave_wall_rock") then
+    if texture:find("wall_royal_high") then -- 特殊情况
+        inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME3)
+    elseif texture:find("batcave_wall_rock") then
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME2)
     end
 end

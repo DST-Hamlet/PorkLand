@@ -214,6 +214,31 @@ AddPlayerPostInit(function(inst)
         debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
     end
 
+    local REPLACE_ANIMS =
+    {
+        ["atk_pre"] = "atk_pre_old",
+        ["atk_lag"] = "atk_lag_old",
+        ["atk"] = "atk_old",
+    }
+
+    local _AnimState = inst.AnimState
+    local AnimState = setmetatable({}, {__index = function(t, k)
+        if k == "PlayAnimation" then
+            return function(t, animname, ...)
+                return _AnimState:PlayAnimation(REPLACE_ANIMS[animname] or animname, ...)
+            end
+        elseif k == "PushAnimation" then
+            return function(t, animname, ...)
+                return _AnimState:PushAnimation(REPLACE_ANIMS[animname] or animname, ...)
+            end
+        end
+
+        return function(t, ...)
+            return _AnimState[k](_AnimState, ...)
+        end
+    end})
+    rawset(inst, "AnimState", AnimState)
+
     if not TheWorld.ismastersim then
         return
     end
