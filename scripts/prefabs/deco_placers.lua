@@ -57,7 +57,6 @@ end
 
 local function CornerPillarPlaceTest(inst)
     inst.Transform:SetTwoFaced()
-    -- inst.Transform:SetRotation(-90)
     inst.components.rotatingbillboard:SetRotation(-90)
 
     local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
@@ -120,7 +119,6 @@ local function MakePillarPlacer(name, bank, build, anim)
             bank = bank,
         }
 
-        inst.Transform:SetRotation(-90)
         inst:AddComponent("rotatingbillboard")
         inst.components.rotatingbillboard.animdata =
         {
@@ -128,6 +126,7 @@ local function MakePillarPlacer(name, bank, build, anim)
             build = build,
             animation = anim,
         }
+        inst.components.rotatingbillboard:SetRotation(-90)
 
         CornerPillarPlacerAnim(inst)
         inst.components.placer.onupdatetransform = CornerPillarPlaceTest
