@@ -142,6 +142,12 @@ local function InitHouseDoorInteriorPrefab(inst, doer, prefab_definition, interi
     inst:AddTag("client_forward_action_target")
     inst:RemoveTag("predoor")
 
+    if prefab_definition.addtags then
+        for _, tag in ipairs(prefab_definition.addtags) do
+            inst:AddTag(tag)
+        end
+    end
+
     CheckForShadow(inst)
 end
 
@@ -314,8 +320,8 @@ local function CheckForRemoval(inst)
     local interior_spawner = TheWorld.components.interiorspawner
     local interiorID = inst:GetCurrentInteriorID()
     local house_id = interior_spawner:GetPlayerHouseByRoomId(interiorID)
-    inst.door_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname)
-    inst.room_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
+    inst.door_can_be_removed = interior_spawner:AreAllRoomsReachable(house_id, interiorID, inst.baseanimname)
+    inst.room_can_be_removed = interior_spawner:AreAllRoomsReachable(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
 end
 
 local function OnEntityWake(inst)

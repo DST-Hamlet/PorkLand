@@ -1132,12 +1132,16 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
     TheWorld:PushEvent("room_removed", {id = room_id})
 end
 
-function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, exclude_dir, exclude_room_id)
-    if not self.player_houses[house_id] then
+-- function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, exclude_dir, exclude_room_id)
+function InteriorSpawner:AreAllRoomsReachable(house_id, interior_id, exclude_dir, exclude_room_id)
+    local rooms = self.player_houses[house_id]
+    if not rooms then
         return false
     end
 
+    local target_rooms = GetTableSize(rooms) - 1
     local checked_rooms = {}
+    local reached_rooms = 0
 
     local op_dir_str =
     {
@@ -1153,11 +1157,16 @@ function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, excl
         end
 
         checked_rooms[current_interior_id] = true
+        reached_rooms = reached_rooms + 1
 
-        local index_x, index_y = self:GetPlayerRoomIndexByID(house_id, current_interior_id)
-        if index_x == 0 and index_y == 0 then
+        if reached_rooms == target_rooms then
             return true
         end
+
+        -- local index_x, index_y = self:GetPlayerRoomIndexByID(house_id, current_interior_id)
+        -- if index_x == 0 and index_y == 0 then
+        --     return true
+        -- end
 
         local surrounding_rooms = self:GetConnectedSurroundingPlayerRooms(house_id, current_interior_id, direction)
         if IsTableEmpty(surrounding_rooms) then
