@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "Ye be meetin' yer match!",
         ANTMAN_WARRIOR_EGG = "Full o'them fiery bugs.",
         ANTMASKHAT = "T'mask yer ugly mug.",
+        ANTQUEEN = "Full o'tha blubber.",
         ANTQUEEN_CHAMBERS = "'Tis the cabin o'tha queen.",
         ANTQUEEN_THRONE = "Thar be treas're within.",
         ANTSUIT = "'Tis an unpleasant bus'niss.",

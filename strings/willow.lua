@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "Yeesh. What are you so angry about?",
         ANTMAN_WARRIOR_EGG = "A baby jerk.",
         ANTMASKHAT = "This is the nastiest thing I've ever made.",
+        ANTQUEEN = "Ugh. Ugly.",
         ANTQUEEN_CHAMBERS = "Am I supposed to be impressed.",
         ANTQUEEN_THRONE = "There's stuff in there I can steal.",
         ANTSUIT = "This is the worst.",

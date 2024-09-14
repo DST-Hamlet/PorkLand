@@ -84,6 +84,7 @@ return {
         ANTMAN_WARRIOR = "Such a grotesque display of aggression.",
         ANTMAN_WARRIOR_EGG = "Where those pesky bugs hatch from.",
         ANTMASKHAT = "A hollowed out head. Don't ask where I got it.",
+        ANTQUEEN = "A bit huffy.",
         ANTQUEEN_CHAMBERS = "All that for a bug?",
         ANTQUEEN_THRONE = "Might be something interesting in there.",
         ANTSUIT = "The indignities I've suffered...",

@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "Calm down there, buddy!",
         ANTMAN_WARRIOR_EGG = "Scrambled eggs?",
         ANTMASKHAT = "I hope no one recognizes this guy.",
+        ANTQUEEN = "How d'you do, ma'am?",
         ANTQUEEN_CHAMBERS = "Looks fancy.",
         ANTQUEEN_THRONE = "There's stuff in there, eh?",
         ANTSUIT = "This feels a tad psychotic.",

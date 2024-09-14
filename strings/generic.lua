@@ -89,6 +89,7 @@ return {
         ANTMAN_WARRIOR = "I don't like the look of him.",
         ANTMAN_WARRIOR_EGG = "Don't hatch. Don't hatch. Don't hatch...",
         ANTMASKHAT = "There's still some goo stuck to the insides.",
+        ANTQUEEN = "The Queen regn-ant.",
         ANTQUEEN_CHAMBERS = "That looks important.",
         ANTQUEEN_THRONE = "I should break that. For science.",
         ANTSUIT = "It's brittle.",

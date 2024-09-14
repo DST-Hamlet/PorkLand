@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "I want no trouble, mon amie!",
         ANTMAN_WARRIOR_EGG = "Mant omelet, perhaps?",
         ANTMASKHAT = "The pith has been removed.",
+        ANTQUEEN = "I have no grief with you, madam.",
         ANTQUEEN_THRONE = "There are many cherries hidden in that fruit salad.",
         ANTSUIT = "There's no meat inside.",
         ANT_CAVE_LANTERN = "Can I harvest any honey from that?",

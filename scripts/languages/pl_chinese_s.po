@@ -720,6 +720,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMASKHAT"
 msgid "There's still some goo stuck to the insides."
 msgstr "这里面还有一些黏黏的粘液。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN"
+msgid "The Queen regn-ant."
+msgstr "摄政蚁后。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "That looks important."
@@ -4100,6 +4105,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMASKHAT"
 msgid "Evidently it masks my human scent as well."
 msgstr "显然这可以遮掩我的人类气味。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN"
+msgid "Fascinatingly vicious! She deserves more study."
+msgstr "迷人的邪恶！她值得我深入研究。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "Evidence would suggest it's a room of some importance."
@@ -7474,6 +7484,11 @@ msgstr "希望它留在那个蛋里。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMASKHAT"
 msgid "Sorry bug-dude."
 msgstr "抱歉了，虫伙计们。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN"
+msgid "Yeesh. She really needs to chill-out."
+msgstr "嘘。她真的需要冷静一下。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -15150,6 +15165,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMASKHAT"
 msgid "The pith has been removed."
 msgstr "脑髓部分已经被剔除了。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN"
+msgid "I have no grief with you, madam."
+msgstr "我没有为你感到悲伤, 夫人。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN_THRONE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN_THRONE"
 msgid "There are many cherries hidden in that fruit salad."
@@ -18499,6 +18519,11 @@ msgstr "一个小战士藏在里面."
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMASKHAT"
 msgid "My helm would have sufficed."
 msgstr "我不需要它，我有我的战盔就够了。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN"
+msgid "Your royal status means nothing to me!"
+msgstr "你的皇权对我来说什么都不是！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -21860,6 +21885,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMASKHAT"
 msgid "A hollowed out head. Don't ask where I got it."
 msgstr "一个被掏空的脑袋，别问我从哪弄的。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN"
+msgid "A bit huffy."
+msgstr "有点暴躁."
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "All that for a bug?"
@@ -25210,6 +25240,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMASKHAT"
 msgid "This seems a little mean."
 msgstr "这东西看起来有点意思。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN"
+msgid "Yeesh. She's mad about something."
+msgstr "是的。她在为一些事感到生气。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "It's cozy in here."
@@ -28549,6 +28584,11 @@ msgstr "令人讨厌的卵孢子"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMASKHAT"
 msgid "The mind that dwelt within is long gone."
 msgstr "里面的思想早已远去。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN"
+msgid "The empty life of an aristocrat has made her irate."
+msgstr "贵族的空虚生活使她恼火。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -31904,6 +31944,11 @@ msgstr "最好避开这些，薇勒尔。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMASKHAT"
 msgid "Swell. Now I know what it smells like to be an insect."
 msgstr "好吧。现在我知道昆虫是什么味了。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN"
+msgid "Ma'am, this is no way to treat a guest!"
+msgstr "这位女士，这可不是招待客人的方式啊！"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -35285,6 +35330,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMASKHAT"
 msgid "This may be slightly unethical."
 msgstr "这可能有些不道德。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN"
+msgid "The gyne of these insectoids."
+msgstr "虫群中的雌蚁。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "An excellent nest."
@@ -38630,6 +38680,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMASKHAT"
 msgid "WILBA WEAR THE HEAD OF MINE ENEMIES"
 msgstr "薇尔芭把敌人的头戴在了头上"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN"
+msgid "'TIS A VILLAIN QUEEN!"
+msgstr "是一个恶毒皇后"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "WILBA HAST BETTER ROOM"
@@ -41969,6 +42024,11 @@ msgstr "一个小混蛋。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMASKHAT"
 msgid "This is the nastiest thing I've ever made."
 msgstr "这真是我做过的最糟糕的东西。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN"
+msgid "Ugh. Ugly."
+msgstr "额。真丑。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -47075,6 +47135,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMASKHAT"
 msgid "Make Wolfgang look like Bug Man."
 msgstr "让沃尔夫冈看起来像个虫人。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN"
+msgid "Is big strong bug woman."
+msgstr "是个巨大强壮的虫女人。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "Fancy bug place."
@@ -50415,6 +50480,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMASKHAT"
 msgid "I hope no one recognizes this guy."
 msgstr "我希望没有人知道它是谁。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN"
+msgid "How d'you do, ma'am?"
+msgstr "您好，夫人？"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "Looks fancy."
@@ -53749,6 +53819,11 @@ msgstr "全是易怒的小虫子。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMASKHAT"
 msgid "T'mask yer ugly mug."
 msgstr "你丑陋的面具脸。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN"
+msgid "Full o'tha blubber."
+msgstr "全都是脂肪。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -57089,6 +57164,11 @@ msgstr "小咔喀喀宝宝，你好！"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMASKHAT"
 msgid "Chr'ik clothes"
 msgstr "咔喀喀的衣服"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN"
+msgid "Chr'ik Mommy"
+msgstr "咔喀喀妈咪"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -63995,6 +64075,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMASKHAT"
 msgid "DECORATION MODULE ACQUIRED"
 msgstr "已获取装饰模块"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN"
+msgid "A FLESHLING I WILL DESTROY"
+msgstr "即将被我毁灭的肉体生物"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "IT DOESN'T IMPRESS ME"
@@ -67027,117 +67112,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Agnes"
+msgid "Alexandrina"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Catherine"
+msgid "Alice"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Charlotte"
+msgid "Agnes"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Lilian"
+msgid "Ebba"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Louise"
+msgid "Edith"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Ottilie"
+msgid "Flora"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Ophelia"
+msgid "Florence"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Sophronia"
+msgid "Georgette"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Della"
+msgid "Catherine"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Henrietta"
+msgid "Charlotte"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Luella"
+msgid "Della"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Arabella"
+msgid "Lilian"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Belle"
+msgid "Louise"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Beryl"
+msgid "Ottilie"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Briar"
+msgid "Ophelia"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Beatrice"
+msgid "Sophronia"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Alexandrina"
+msgid "Henrietta"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Alice"
+msgid "Luella"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Ebba"
+msgid "Arabella"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Edith"
+msgid "Belle"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Flora"
+msgid "Beryl"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Florence"
+msgid "Briar"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Georgette"
+msgid "Beatrice"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -67147,122 +67232,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Henry"
+msgid "Edward"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Oliver"
+msgid "Ewart"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Sterling"
+msgid "Henry"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Tesla"
+msgid "Charley"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Thaddeus"
+msgid "Douglas"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Wellington"
+msgid "Edison"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Gulliver"
+msgid "Edmund"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Clarence"
+msgid "Larkin"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Merritt"
+msgid "Herbert"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Frederick"
+msgid "Oliver"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "George"
+msgid "Merritt"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Charles"
+msgid "Sterling"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Leopold"
+msgid "Tesla"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Albert"
+msgid "Thaddeus"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Alfred"
+msgid "Wellington"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Arthur"
+msgid "Gulliver"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Edward"
+msgid "Clarence"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Ewart"
+msgid "Frederick"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Charley"
+msgid "George"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Douglas"
+msgid "Charles"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Edison"
+msgid "Leopold"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Edmund"
+msgid "Albert"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Larkin"
+msgid "Alfred"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Herbert"
+msgid "Arthur"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -67272,77 +67357,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Disraeli"
+msgid "Salisbury"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Salisbury"
+msgid "Kensington"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Kensington"
+msgid "Conroy"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Conroy"
+msgid "Greville"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Greville"
+msgid "Hastings"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Hastings"
+msgid "Aberdeen"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Aberdeen"
+msgid "Talbot"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Talbot"
+msgid "Thames"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Thames"
+msgid "Stockton"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Stockton"
+msgid "Darlington"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Darlington"
+msgid "Peel"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Peel"
+msgid "Derby"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Derby"
+msgid "Palmerston"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Palmerston"
+msgid "Gladstone"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Gladstone"
+msgid "Disraeli"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -72155,6 +72240,11 @@ msgctxt "STRINGS.NAMES.ANTNAMES_PREFIX"
 msgid "Drone #"
 msgstr "工蚁 #"
 
+#. STRINGS.NAMES.ANTQUEEN
+msgctxt "STRINGS.NAMES.ANTQUEEN"
+msgid "Queen Womant"
+msgstr "蚁后"
+
 #. STRINGS.NAMES.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.NAMES.ANTQUEEN_CHAMBERS"
 msgid "Queen Womant Chambers"
@@ -76224,6 +76314,11 @@ msgstr "雾"
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.FROG_POISON_SETTING"
 msgid "Poison Dartfrogs"
 msgstr "箭毒蛙"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.GIANTGRUB_SETTING
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GIANTGRUB_SETTING"
+msgid "Giant Grub"
+msgstr "巨型蛆虫"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.GLOWFLYCYCLE
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GLOWFLYCYCLE"

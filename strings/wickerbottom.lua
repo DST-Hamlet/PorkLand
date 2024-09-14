@@ -88,6 +88,7 @@ return {
         ANTMAN_WARRIOR = "A particularly aggressive colony defender.",
         ANTMAN_WARRIOR_EGG = "The offspring of an aggressive Formicidae humanoid.",
         ANTMASKHAT = "This may be slightly unethical.",
+        ANTQUEEN = "The gyne of these insectoids.",
         ANTQUEEN_CHAMBERS = "An excellent nest.",
         ANTQUEEN_THRONE = "I should like to examine that a little closer.",
         ANTSUIT = "A hollowed out arthropod.",

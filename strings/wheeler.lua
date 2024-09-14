@@ -87,6 +87,7 @@ return {
         ANTMAN_WARRIOR = "Swell. This one's angry.",
         ANTMAN_WARRIOR_EGG = "Better get dodging, Wheeler.",
         ANTMASKHAT = "Swell. Now I know what it smells like to be an insect.",
+        ANTQUEEN = "Ma'am, this is no way to treat a guest!",
         ANTQUEEN_CHAMBERS = "I can never say no to an adventure.",
         ANTQUEEN_THRONE = "I bet she was guarding some kind of treasure.",
         ANTSUIT = "All dressed up and ready to cr'kit.",

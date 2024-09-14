@@ -716,6 +716,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMASKHAT"
 msgid "There's still some goo stuck to the insides."
 msgstr ""
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN"
+msgid "The Queen regn-ant."
+msgstr ""
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "That looks important."
@@ -4096,6 +4101,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMASKHAT"
 msgid "Evidently it masks my human scent as well."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN"
+msgid "Fascinatingly vicious! She deserves more study."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "Evidence would suggest it's a room of some importance."
@@ -7469,6 +7479,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMASKHAT"
 msgid "Sorry bug-dude."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN"
+msgid "Yeesh. She really needs to chill-out."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN_CHAMBERS
@@ -15146,6 +15161,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMASKHAT"
 msgid "The pith has been removed."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN"
+msgid "I have no grief with you, madam."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN_THRONE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN_THRONE"
 msgid "There are many cherries hidden in that fruit salad."
@@ -18494,6 +18514,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMASKHAT"
 msgid "My helm would have sufficed."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN"
+msgid "Your royal status means nothing to me!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN_CHAMBERS
@@ -21856,6 +21881,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMASKHAT"
 msgid "A hollowed out head. Don't ask where I got it."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN"
+msgid "A bit huffy."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "All that for a bug?"
@@ -25206,6 +25236,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMASKHAT"
 msgid "This seems a little mean."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN"
+msgid "Yeesh. She's mad about something."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "It's cozy in here."
@@ -28544,6 +28579,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMASKHAT"
 msgid "The mind that dwelt within is long gone."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN"
+msgid "The empty life of an aristocrat has made her irate."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN_CHAMBERS
@@ -31899,6 +31939,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMASKHAT"
 msgid "Swell. Now I know what it smells like to be an insect."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN"
+msgid "Ma'am, this is no way to treat a guest!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN_CHAMBERS
@@ -35281,6 +35326,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMASKHAT"
 msgid "This may be slightly unethical."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN"
+msgid "The gyne of these insectoids."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "An excellent nest."
@@ -38626,6 +38676,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMASKHAT"
 msgid "WILBA WEAR THE HEAD OF MINE ENEMIES"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN"
+msgid "'TIS A VILLAIN QUEEN!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "WILBA HAST BETTER ROOM"
@@ -41964,6 +42019,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMASKHAT"
 msgid "This is the nastiest thing I've ever made."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN"
+msgid "Ugh. Ugly."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN_CHAMBERS
@@ -47071,6 +47131,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMASKHAT"
 msgid "Make Wolfgang look like Bug Man."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN"
+msgid "Is big strong bug woman."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "Fancy bug place."
@@ -50411,6 +50476,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMASKHAT"
 msgid "I hope no one recognizes this guy."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN"
+msgid "How d'you do, ma'am?"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "Looks fancy."
@@ -53744,6 +53814,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMASKHAT"
 msgid "T'mask yer ugly mug."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN"
+msgid "Full o'tha blubber."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN_CHAMBERS
@@ -57084,6 +57159,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMASKHAT
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMASKHAT"
 msgid "Chr'ik clothes"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN"
+msgid "Chr'ik Mommy"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN_CHAMBERS
@@ -63991,6 +64071,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMASKHAT"
 msgid "DECORATION MODULE ACQUIRED"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN"
+msgid "A FLESHLING I WILL DESTROY"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN_CHAMBERS"
 msgid "IT DOESN'T IMPRESS ME"
@@ -67023,117 +67108,117 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Agnes"
+msgid "Alexandrina"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Catherine"
+msgid "Alice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Charlotte"
+msgid "Agnes"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Lilian"
+msgid "Ebba"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Louise"
+msgid "Edith"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Ottilie"
+msgid "Flora"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Ophelia"
+msgid "Florence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Sophronia"
+msgid "Georgette"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Della"
+msgid "Catherine"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Henrietta"
+msgid "Charlotte"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Luella"
+msgid "Della"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Arabella"
+msgid "Lilian"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Belle"
+msgid "Louise"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Beryl"
+msgid "Ottilie"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Briar"
+msgid "Ophelia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Beatrice"
+msgid "Sophronia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Alexandrina"
+msgid "Henrietta"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Alice"
+msgid "Luella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Ebba"
+msgid "Arabella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Edith"
+msgid "Belle"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Flora"
+msgid "Beryl"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Florence"
+msgid "Briar"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Georgette"
+msgid "Beatrice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -67143,122 +67228,122 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Henry"
+msgid "Edward"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Oliver"
+msgid "Ewart"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Sterling"
+msgid "Henry"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Tesla"
+msgid "Charley"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Thaddeus"
+msgid "Douglas"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Wellington"
+msgid "Edison"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Gulliver"
+msgid "Edmund"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Clarence"
+msgid "Larkin"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Merritt"
+msgid "Herbert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Frederick"
+msgid "Oliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "George"
+msgid "Merritt"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Charles"
+msgid "Sterling"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Leopold"
+msgid "Tesla"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Albert"
+msgid "Thaddeus"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Alfred"
+msgid "Wellington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Arthur"
+msgid "Gulliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Edward"
+msgid "Clarence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Ewart"
+msgid "Frederick"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Charley"
+msgid "George"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Douglas"
+msgid "Charles"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Edison"
+msgid "Leopold"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Edmund"
+msgid "Albert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Larkin"
+msgid "Alfred"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Herbert"
+msgid "Arthur"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -67268,77 +67353,77 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Disraeli"
+msgid "Salisbury"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Salisbury"
+msgid "Kensington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Kensington"
+msgid "Conroy"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Conroy"
+msgid "Greville"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Greville"
+msgid "Hastings"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Hastings"
+msgid "Aberdeen"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Aberdeen"
+msgid "Talbot"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Talbot"
+msgid "Thames"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Thames"
+msgid "Stockton"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Stockton"
+msgid "Darlington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Darlington"
+msgid "Peel"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Peel"
+msgid "Derby"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Derby"
+msgid "Palmerston"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Palmerston"
+msgid "Gladstone"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Gladstone"
+msgid "Disraeli"
 msgstr ""
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -72151,6 +72236,11 @@ msgctxt "STRINGS.NAMES.ANTNAMES_PREFIX"
 msgid "Drone #"
 msgstr ""
 
+#. STRINGS.NAMES.ANTQUEEN
+msgctxt "STRINGS.NAMES.ANTQUEEN"
+msgid "Queen Womant"
+msgstr ""
+
 #. STRINGS.NAMES.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.NAMES.ANTQUEEN_CHAMBERS"
 msgid "Queen Womant Chambers"
@@ -76219,6 +76309,11 @@ msgstr ""
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.FROG_POISON_SETTING
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.FROG_POISON_SETTING"
 msgid "Poison Dartfrogs"
+msgstr ""
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.GIANTGRUB_SETTING
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GIANTGRUB_SETTING"
+msgid "Giant Grub"
 msgstr ""
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.GLOWFLYCYCLE

@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "Mad Chr'ik! Agh!",
         ANTMAN_WARRIOR_EGG = "Little Baby Chr'ik. Hello!",
         ANTMASKHAT = "Chr'ik clothes",
+        ANTQUEEN = "Chr'ik Mommy",
         ANTQUEEN_CHAMBERS = "Chr'ik Mommy room",
         ANTQUEEN_THRONE = "Looks comfy",
         ANTSUIT = "Makes Chr'ik friends",

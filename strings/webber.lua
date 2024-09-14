@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "It's an Ant Soldier!",
         ANTMAN_WARRIOR_EGG = "Aww... a little baby ant soldier.",
         ANTMASKHAT = "This seems a little mean.",
+        ANTQUEEN = "Yeesh. She's mad about something.",
         ANTQUEEN_CHAMBERS = "It's cozy in here.",
         ANTQUEEN_THRONE = "There's stuff stuck in there.",
         ANTSUIT = "We could always use a spare thorax.",
