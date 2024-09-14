@@ -156,7 +156,8 @@ local function fn()
     inst.SetState = SetState
     inst.IsState = IsState
 
-    inst.OnEntitySleep = OnSleep
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
     inst.OnRemoveEntity = OnRemove
 
     return inst
