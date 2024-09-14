@@ -443,7 +443,7 @@ local function NotInInterior(pt)
 end
 
 local function NotInInterior_canbuild(inst, builder, pt)
-    return not NotInInterior(pt)
+    return NotInInterior(pt)
 end
 
 AddRecipe2("turf_foundation", {Ingredient("cutstone", 1)}, TECH.CITY, {nounlock = true, numtogive = 4})
