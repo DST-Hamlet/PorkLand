@@ -267,6 +267,7 @@ return {
         },
         GASCLOUD = "Not a cloud I'm fond of flying through.",
         GASMASKHAT = "Stylish. I'd wear this even if it didn't save my life.",
+        GIANTGRUB = "My guess is he's not too interested in making friends.",
         GLOWFLY = {
             DEAD = "I guess it can't fly me out of here now.",
             GENERIC = "A flyer and a glower. My new best friend.",

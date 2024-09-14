@@ -258,6 +258,7 @@ return {
         },
         GASCLOUD = "Stay away from that, eh?",
         GASMASKHAT = "Keeps my lungs clear.",
+        GIANTGRUB = "Hope it's not a wood-boring worm.",
         GLOWFLY = {
             DEAD = "Dead.",
             GENERIC = "Thanks for lightin' the way, buddy.",

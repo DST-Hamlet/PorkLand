@@ -258,6 +258,7 @@ return {
         },
         GASCLOUD = "Wolfgang stay away.",
         GASMASKHAT = "Is good for Wolfgang lungs.",
+        GIANTGRUB = "Not as mighty as Wolfgang.",
         GLOWFLY = {
             DEAD = "Light bug is lights out.",
             GENERIC = "Is light bug.",

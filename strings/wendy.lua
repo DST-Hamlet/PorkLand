@@ -258,6 +258,7 @@ return {
         },
         GASCLOUD = "A cloud of death.",
         GASMASKHAT = "It filters air but not despair.",
+        GIANTGRUB = "It thinks only of destruction.",
         GLOWFLY = {
             DEAD = "Its light hath been extinguished forever.",
             GENERIC = "A small light in a dark world.",

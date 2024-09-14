@@ -1531,6 +1531,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GASMASKHAT"
 msgid "Now I can breathe anywhere."
 msgstr ""
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GIANTGRUB"
+msgid "I'm not going anywhere near that!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD"
 msgid "Lights out forever."
@@ -4921,6 +4926,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GASMASKHAT"
 msgid "It appears that those ocular plumes are great at air filtration."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GIANTGRUB"
+msgid "It appears to have a contentious relationship with the humanoid hexapod invertebrates."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD"
 msgid "Cadaverous."
@@ -8284,6 +8294,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GASMASKHAT
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GASMASKHAT"
 msgid "Out with the bad air, in with the good."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GIANTGRUB"
+msgid "Yeesh. That guy needs to chill out."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.DEAD
@@ -15956,6 +15971,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GASMASKHAT"
 msgid "I could use this in the smoke house."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GIANTGRUB"
+msgid "I could make it more palatable if I could mash it into a paste."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD"
 msgid "Such a shame. And not even edible."
@@ -19306,6 +19326,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GASMASKHAT"
 msgid "Poisonous air will not consume me!!"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GIANTGRUB"
+msgid "It will give me a battle!"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD"
 msgid "Alas, it is dead."
@@ -22639,6 +22664,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GASMASKHAT
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GASMASKHAT"
 msgid "This clears the vapors."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GIANTGRUB"
+msgid "It's doing all my work for me."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.DEAD
@@ -25991,6 +26021,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GASMASKHAT"
 msgid "Now we won't cough so much."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GIANTGRUB"
+msgid "Pretty destructive for a big baby bug."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD"
 msgid "Oh no! It died!"
@@ -29324,6 +29359,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GASMASKHAT
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GASMASKHAT"
 msgid "It filters air but not despair."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GIANTGRUB"
+msgid "It thinks only of destruction."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.DEAD
@@ -32691,6 +32731,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GASMASKHAT"
 msgid "Stylish. I'd wear this even if it didn't save my life."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GIANTGRUB"
+msgid "My guess is he's not too interested in making friends."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD"
 msgid "I guess it can't fly me out of here now."
@@ -36051,6 +36096,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GASMASKHAT"
 msgid "For investigating dangerous areas."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GIANTGRUB"
+msgid "I would hate to see that grub fully grown."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD"
 msgid "Its existence has reached an end."
@@ -39389,6 +39439,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GASMASKHAT
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GASMASKHAT"
 msgid "IT FIT-ETH OVER MINE SNOUT"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GIANTGRUB"
+msgid "THERE'S THE GRUB"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.DEAD
@@ -42739,6 +42794,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GASMASKHAT
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GASMASKHAT"
 msgid "Cuts down on the coughing."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GIANTGRUB"
+msgid "Likes destroying things as much as I do."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.DEAD
@@ -47826,6 +47886,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GASMASKHAT"
 msgid "Is good for Wolfgang lungs."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GIANTGRUB"
+msgid "Not as mighty as Wolfgang."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD"
 msgid "Light bug is lights out."
@@ -51161,6 +51226,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GASMASKHAT"
 msgid "Keeps my lungs clear."
 msgstr ""
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GIANTGRUB"
+msgid "Hope it's not a wood-boring worm."
+msgstr ""
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD"
 msgid "Dead."
@@ -54489,6 +54559,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GASMASKHAT
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GASMASKHAT"
 msgid "Cuts down onna coughin'."
+msgstr ""
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GIANTGRUB"
+msgid "A leviathan from tha' depths."
 msgstr ""
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.DEAD
@@ -57839,6 +57914,11 @@ msgstr ""
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GASMASKHAT
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GASMASKHAT"
 msgid "Breather with Tweeter clothes"
+msgstr ""
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GIANTGRUB"
+msgid "Dirt wiggly!"
 msgstr ""
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.DEAD
@@ -64726,6 +64806,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GASMASKHAT"
 msgid "AIR FILTER UNIT ACQUIRED"
 msgstr ""
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GIANTGRUB"
+msgid "A MALWARE FLESHSACK"
+msgstr ""
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD"
 msgid "IT HAS BEEN TURNED OFF"
@@ -66938,117 +67023,117 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Luella"
+msgid "Agnes"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Alexandrina"
+msgid "Catherine"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Alice"
+msgid "Charlotte"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Ebba"
+msgid "Lilian"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Edith"
+msgid "Louise"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Flora"
+msgid "Ottilie"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Florence"
+msgid "Ophelia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Georgette"
+msgid "Sophronia"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Agnes"
+msgid "Della"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Catherine"
+msgid "Henrietta"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Charlotte"
+msgid "Luella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Lilian"
+msgid "Arabella"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Louise"
+msgid "Belle"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Ottilie"
+msgid "Beryl"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Ophelia"
+msgid "Briar"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Sophronia"
+msgid "Beatrice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Della"
+msgid "Alexandrina"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Henrietta"
+msgid "Alice"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Arabella"
+msgid "Ebba"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Belle"
+msgid "Edith"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Beryl"
+msgid "Flora"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Briar"
+msgid "Florence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Beatrice"
+msgid "Georgette"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -67058,122 +67143,122 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "George"
+msgid "Henry"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Ewart"
+msgid "Oliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Charley"
+msgid "Sterling"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Douglas"
+msgid "Tesla"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Edison"
+msgid "Thaddeus"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Edmund"
+msgid "Wellington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Larkin"
+msgid "Gulliver"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Herbert"
+msgid "Clarence"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Henry"
+msgid "Merritt"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Oliver"
+msgid "Frederick"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Sterling"
+msgid "George"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Tesla"
+msgid "Charles"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Thaddeus"
+msgid "Leopold"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Wellington"
+msgid "Albert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Gulliver"
+msgid "Alfred"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Clarence"
+msgid "Arthur"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Merritt"
+msgid "Edward"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Frederick"
+msgid "Ewart"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Charles"
+msgid "Charley"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Leopold"
+msgid "Douglas"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Albert"
+msgid "Edison"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Alfred"
+msgid "Edmund"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Arthur"
+msgid "Larkin"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Edward"
+msgid "Herbert"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -67183,77 +67268,77 @@ msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Talbot"
+msgid "Disraeli"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Thames"
+msgid "Salisbury"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Stockton"
+msgid "Kensington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Darlington"
+msgid "Conroy"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Peel"
+msgid "Greville"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Derby"
+msgid "Hastings"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Palmerston"
+msgid "Aberdeen"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Gladstone"
+msgid "Talbot"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Disraeli"
+msgid "Thames"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Salisbury"
+msgid "Stockton"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Kensington"
+msgid "Darlington"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Conroy"
+msgid "Peel"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Greville"
+msgid "Derby"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Hastings"
+msgid "Palmerston"
 msgstr ""
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Aberdeen"
+msgid "Gladstone"
 msgstr ""
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -71813,82 +71898,82 @@ msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Juniperus"
+msgid "Betula"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Betula"
+msgid "Juniperus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr ""
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr ""
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -72839,6 +72924,11 @@ msgstr ""
 #. STRINGS.NAMES.GASMASKHAT
 msgctxt "STRINGS.NAMES.GASMASKHAT"
 msgid "Gas Mask"
+msgstr ""
+
+#. STRINGS.NAMES.GIANTGRUB
+msgctxt "STRINGS.NAMES.GIANTGRUB"
+msgid "Giant Grub"
 msgstr ""
 
 #. STRINGS.NAMES.GLOWFLY

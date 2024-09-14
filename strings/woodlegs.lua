@@ -258,6 +258,7 @@ return {
         },
         GASCLOUD = "An ill wind.",
         GASMASKHAT = "Cuts down onna coughin'.",
+        GIANTGRUB = "A leviathan from tha' depths.",
         GLOWFLY = {
             DEAD = "Tells no tales.",
             GENERIC = "A fly'o'glow!",

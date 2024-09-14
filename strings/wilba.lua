@@ -259,6 +259,7 @@ return {
         },
         GASCLOUD = "'TIS COUGH COUGH CLOUD",
         GASMASKHAT = "IT FIT-ETH OVER MINE SNOUT",
+        GIANTGRUB = "THERE'S THE GRUB",
         GLOWFLY = {
             DEAD = "'TIS SQUISH'DED",
             GENERIC = "IS'T A BUG O' GLOWY BUTT",

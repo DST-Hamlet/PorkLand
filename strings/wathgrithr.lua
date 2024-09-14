@@ -263,6 +263,7 @@ return {
         },
         GASCLOUD = "Noxious fumes. I will leave them be!",
         GASMASKHAT = "Poisonous air will not consume me!!",
+        GIANTGRUB = "It will give me a battle!",
         GLOWFLY = {
             DEAD = "Alas, it is dead.",
             GENERIC = "Fly free, small friend.",

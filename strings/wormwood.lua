@@ -263,6 +263,7 @@ return {
         },
         GASCLOUD = "Bad air",
         GASMASKHAT = "Breather with Tweeter clothes",
+        GIANTGRUB = "Dirt wiggly!",
         GLOWFLY = {
             DEAD = "(sob)",
             GENERIC = "Bzzter with bright peepers",

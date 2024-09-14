@@ -263,6 +263,7 @@ return {
         },
         GASCLOUD = "Harsh.",
         GASMASKHAT = "Out with the bad air, in with the good.",
+        GIANTGRUB = "Yeesh. That guy needs to chill out.",
         GLOWFLY = {
             DEAD = "I wish it hadn't died.",
             GENERIC = "I could lay down and watch them all night.",

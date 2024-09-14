@@ -264,6 +264,7 @@ return {
         },
         GASCLOUD = "A cloud of coughs.",
         GASMASKHAT = "Now I can breathe anywhere.",
+        GIANTGRUB = "I'm not going anywhere near that!",
         GLOWFLY = {
             DEAD = "Lights out forever.",
             GENERIC = "A light aflight.",

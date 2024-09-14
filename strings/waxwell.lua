@@ -258,6 +258,7 @@ return {
         },
         GASCLOUD = "That'll keep those bugs away.",
         GASMASKHAT = "This clears the vapors.",
+        GIANTGRUB = "It's doing all my work for me.",
         GLOWFLY = {
             DEAD = "Lights out.",
             GENERIC = "Disgusting, but helpful.",

@@ -263,6 +263,7 @@ return {
         },
         GASCLOUD = "TOXIC CLOUD SOFTWARE",
         GASMASKHAT = "AIR FILTER UNIT ACQUIRED",
+        GIANTGRUB = "A MALWARE FLESHSACK",
         GLOWFLY = {
             DEAD = "IT HAS BEEN TURNED OFF",
             GENERIC = "IT IS RELEASING PHOTONS",

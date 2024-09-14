@@ -263,6 +263,7 @@ return {
         },
         GASCLOUD = "A nimbus of contaminated air.",
         GASMASKHAT = "For investigating dangerous areas.",
+        GIANTGRUB = "I would hate to see that grub fully grown.",
         GLOWFLY = {
             DEAD = "Its existence has reached an end.",
             GENERIC = "A bioluminescent insecta.",

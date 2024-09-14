@@ -262,6 +262,7 @@ return {
         },
         GASCLOUD = "Mon dieu! A poisonous cloud!",
         GASMASKHAT = "I could use this in the smoke house.",
+        GIANTGRUB = "I could make it more palatable if I could mash it into a paste.",
         GLOWFLY = {
             DEAD = "Such a shame. And not even edible.",
             GENERIC = "Light the way, mon amie.",

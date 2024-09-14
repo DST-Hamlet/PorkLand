@@ -263,6 +263,7 @@ return {
         },
         GASCLOUD = "A cloud of toxic chemicals. Intriguing!",
         GASMASKHAT = "It appears that those ocular plumes are great at air filtration.",
+        GIANTGRUB = "It appears to have a contentious relationship with the humanoid hexapod invertebrates.",
         GLOWFLY = {
             DEAD = "Cadaverous.",
             GENERIC = "The luminous oculus on this pterygota is inspiring!",

@@ -263,6 +263,7 @@ return {
         },
         GASCLOUD = "Ugh. That looks deadly. And not in a good way.",
         GASMASKHAT = "Cuts down on the coughing.",
+        GIANTGRUB = "Likes destroying things as much as I do.",
         GLOWFLY = {
             DEAD = "Squashed.",
             GENERIC = "Looks slimy.",
