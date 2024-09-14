@@ -19,6 +19,8 @@
 -- 亚丹：实际上，在上方注释版本的代码中，z的范围是(+BORDER + 2000,+infinite)
 -- 亚丹：将z的坐标范围修改为(-1000,+infinite)，注意当z小于-2000时渲染会因为超出TheSim:UpdateRenderExtents而出现问题
 
+local MAX_PLAYER_ROOM_COUNT = 25 -- 25 per house
+
 
 local SPACE = 120
 local MAX_X_OFFSET = 2000
@@ -44,7 +46,7 @@ local InteriorSpawner = Class(function(self, inst)
     self.interior_layout_map = {} --{[id: interiorID]: MapData | redirected_id}
     self.interior_layout_dirty_keys = {} -- {[K in keyof self.interior_layout_map]: true}
 
-    self.player_homes = {}
+    self.player_houses = {}
 
     inst:DoTaskInTime(0, function()
         self:SetInteriorPos() -- 保证室内位于渲染范围内
@@ -84,6 +86,7 @@ function InteriorSpawner:OnSave()
         interiors = interior_defs,
         next_interior_id = self.next_interior_id,
         reuse_interior_ids = self.reuse_interior_ids,
+        player_houses = self.player_houses,
     }
 end
 
@@ -99,6 +102,9 @@ function InteriorSpawner:OnLoad(data)
         end
         if data.reuse_interior_ids then
             self.reuse_interior_ids = data.reuse_interior_ids
+        end
+        if data.player_houses then
+            self.player_houses = data.player_houses
         end
     end
     self:SetInteriorPos()
@@ -239,7 +245,7 @@ function InteriorSpawner:OnRemoveExterior(entity)
 
     local room = self:GetInteriorCenter(entity.interiorID)
     if room then
-        local allrooms = self:GatherAllRooms_Impl(room, {})
+        local allrooms = self:GetAllConnectedRooms(room, {})
         for center in pairs(allrooms) do
             self:ClearInteriorContents(center:GetPosition(), entity:GetPosition())
             if center.interiorID then
@@ -308,6 +314,19 @@ function InteriorSpawner:GetOppositeFromDirection(direction)
     end
 end
 
+-- maybe this should be consistent with the function above...
+function InteriorSpawner:GetDirByLabel(label)
+    if label == EAST.label then
+        return EAST
+    elseif label == WEST.label then
+        return WEST
+    elseif label == NORTH.label then
+        return NORTH
+    else
+        return SOUTH
+    end
+end
+
 function InteriorSpawner:AddDoor(door, def)
     self.doors[def.my_door_id] = {
         inst = door,
@@ -323,15 +342,28 @@ function InteriorSpawner:AddDoor(door, def)
     door_component.target_interior = def.target_interior
     door_component.target_exterior = def.target_exterior
     door_component.is_exit = def.is_exit
+
+    local center = self:GetInteriorCenter(door:GetPosition())
+    if center then
+        center:OnDoorChange(door, true)
+    end
 end
 
 function InteriorSpawner:RemoveDoor(door_id)
-    if not self.doors[door_id] then
+    local door_data = self.doors[door_id]
+    if not door_data then
         print("ERROR: TRYING TO REMOVE A NON EXISTING DOOR DEFINITION")
         return
     end
 
     self.doors[door_id] = nil
+    TheWorld:PushEvent("door_removed")
+
+    local door = door_data.inst
+    local center = self:GetInteriorCenter(door:GetPosition())
+    if center then
+        center:OnDoorChange(door, false)
+    end
 end
 
 function InteriorSpawner:SpawnObject(interiorID, prefab, offset)
@@ -537,7 +569,7 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                 }
             end
         else
-            local doordata = player_interior_exit_dir_data[heading.label]
+            local doordata = PLAYER_INTERIOR_EXIT_DIR_DATA[heading.label]
             prefab = {
                 name = exit.prefab_name,
                 x_offset = doordata.x_offset,
@@ -586,11 +618,6 @@ function InteriorSpawner:AddInterior(def)
 
     def.object_list = {}
     self.interior_defs[def.unique_name] = def
-
-    -- if TheWorld.components.worldmapiconproxy then
-    --     -- TODO: impl minimap
-    --     TheWorld.components.worldmapiconproxy:RegisterInterior(def.unique_name)
-    -- end
 
     if def.batted and TheWorld.components.batted then
         TheWorld.components.batted:RegisterBatCave(def.unique_name) -- unique_name is interiorID
@@ -847,13 +874,6 @@ function InteriorSpawner:SpawnInterior(interior)
                     end
                     object.components.citypossession:SetCity(interior.cityID)
                 end
-
-                if object.decochildrenToRemove then
-                    for _, child in ipairs(object.decochildrenToRemove) do
-                        child.Transform:SetPosition(object.Transform:GetWorldPosition())
-                        child.Transform:SetRotation(object.Transform:GetRotation())
-                    end
-                end
             end
         end
     end
@@ -861,7 +881,7 @@ function InteriorSpawner:SpawnInterior(interior)
     interior.visited = true
 end
 
-function InteriorSpawner:GatherAllRooms_Impl(center, allrooms, usemap)
+function InteriorSpawner:GetAllConnectedRooms(center, allrooms, usemap)
     -- WARNING: this method is quite expensive and server only
     if allrooms[center] then
         return
@@ -874,7 +894,7 @@ function InteriorSpawner:GatherAllRooms_Impl(center, allrooms, usemap)
             if target_interior ~= nil and target_interior ~= "EXTERIOR" then
                 local room = self.interiors[target_interior] or self:GetInteriorCenter(target_interior)
                 assert(room, "Room not exists: "..target_interior)
-                self:GatherAllRooms_Impl(room, allrooms)
+                self:GetAllConnectedRooms(room, allrooms)
             end
         end
     end
@@ -912,5 +932,254 @@ function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
 
     return false
 end
+
+function InteriorSpawner:IsPlayerHouseRegistered(house_entity)
+    if not house_entity or not house_entity.interiorID then
+        return false
+    end
+    return self.player_houses[house_entity.interiorID] ~= nil
+end
+
+function InteriorSpawner:RegisterPlayerHouse(house_entity)
+    local starting_room_interiorID = house_entity.interiorID
+    -- assume only 1 door leads to exterior
+    assert(self.player_houses[starting_room_interiorID] == nil, "THIS PLAYER ROOM ALREADY EXISTS: ".. starting_room_interiorID)
+
+    -- {[interiorID: number]: {x:number, y:number}}
+    -- in terms of direction: east is +x, west is -x, north is +y, south is -y
+    self.player_houses[starting_room_interiorID] = {[starting_room_interiorID] = {x = 0, y = 0}}
+end
+
+function InteriorSpawner:UnregisterPlayerHouse(house_entity)
+    self.player_houses[house_entity.interiorID] = nil
+end
+
+function InteriorSpawner:CanBuildMorePlayerRoom(house_id)
+    return GetTableSize(self.player_houses[house_id]) < MAX_PLAYER_ROOM_COUNT
+end
+
+---@param house_id number house_entity.interiorID
+function InteriorSpawner:RegisterPlayerRoom(house_id, new_room_id, from_id, direction)
+    assert(self.player_houses[house_id] ~= nil, "Attempt to register player room without player house: " .. house_id)
+
+    local room_from =  self.player_houses[house_id][from_id]
+    local new_x = room_from.x + direction.x
+    local new_y = room_from.y + direction.y
+
+    self.player_houses[house_id][new_room_id] = {x = new_x, y = new_y}
+end
+
+function InteriorSpawner:UnregisterPlayerRoom(house_id, room_id)
+    if self.player_houses[house_id] then
+        self.player_houses[house_id][room_id] = nil
+    end
+end
+
+---@return number|nil x
+---@return number|nil y
+function InteriorSpawner:GetPlayerRoomIndexByID(house_id, room_id)
+    if self.player_houses[house_id] then
+        local data = self.player_houses[house_id][room_id]
+        if data then
+            return data.x, data.y
+        end
+    end
+end
+
+---@return integer|nil interiorID returns nil if room not found
+function InteriorSpawner:GetPlayerRoomIdByIndex(house_id, x, y)
+    for interiorID, data in pairs(self.player_houses[house_id]) do
+        if data.x == x and data.y == y then
+            return interiorID
+        end
+    end
+end
+
+---@return integer|nil interiorID returns nil if room not found
+function InteriorSpawner:GetPlayerRoomInDirection(house_id, room_from_id, direction)
+    if not house_id then
+        house_id = self:GetPlayerHouseByRoomId(room_from_id)
+    end
+
+    if not house_id then
+        return
+    end
+
+    -- assuming interior <room_from_id> exists
+    local x, y = self:GetPlayerRoomIndexByID(house_id, room_from_id)
+    return self:GetPlayerRoomIdByIndex(house_id, x + direction.x, y + direction.y)
+end
+
+function InteriorSpawner:GetPlayerHouseByRoomId(room_id)
+    for house_id, house_grid in pairs(self.player_houses) do
+        if house_grid[room_id] then
+            return house_id
+        end
+    end
+end
+
+-- surrounding mean can be connected with a door, so each room has max 4 surrounding rooms
+function InteriorSpawner:GetSurroundingPlayerRooms(house_id, room_id)
+    local rooms = {}
+    local x, y = self:GetPlayerRoomIndexByID(house_id, room_id)
+    if not x then
+        return rooms
+    end
+
+    for interiorID, data in pairs(self.player_houses[house_id]) do
+        local dir_x = 0
+        local dir_y = 0
+        if data.x == x then
+            if data.y == y - 1 then
+                dir_y = -1
+            elseif data.y == y + 1 then
+                dir_y = 1
+            end
+        elseif data.y == y then
+            if data.x == x - 1 then
+                dir_x = -1
+            elseif data.x == x + 1 then
+                dir_x = 1
+            end
+        end
+        if dir_x ~= dir_y then
+            table.insert(rooms, {id = interiorID, dir = {x = dir_x, y = dir_y}})
+        end
+    end
+    return rooms
+end
+
+function InteriorSpawner:GetConnectedSurroundingPlayerRooms(house_id, id, exclude_dir)
+    local found_doors = {}
+    local center = self:GetInteriorCenter(id)
+    if not center then
+        return found_doors
+    end
+
+    local x, y, z = center.Transform:GetWorldPosition()
+    local doors = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
+    local curr_x, curr_y = self:GetPlayerRoomIndexByID(house_id, id)
+
+    for _, door in pairs(doors) do
+        if door.prefab ~= "prop_door" then
+            local target_interior = door.components.door.target_interior
+            local target_x, target_y = self:GetPlayerRoomIndexByID(house_id, target_interior)
+
+            if target_y > curr_y then -- North door
+                found_doors["north"] = target_interior
+            elseif target_y < curr_y then -- South door
+                found_doors["south"] = target_interior
+            elseif target_x > curr_x then -- East Door
+                found_doors["east"] = target_interior
+            elseif target_x < curr_x then -- West Door
+                found_doors["west"] = target_interior
+            end
+        end
+    end
+
+    found_doors[exclude_dir] = nil
+
+    return found_doors
+end
+
+function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
+    assert(TheWorld.ismastersim)
+
+    local center = self:GetInteriorCenter(room_id)
+
+    for _, door in ipairs(center.doors) do
+        local connected_room = self:GetInteriorCenter(door.components.door.target_interior)
+        if connected_room then
+            for _, v in ipairs(connected_room.doors) do
+                if v.components.door.target_interior == center.interiorID then
+                    v:DeactivateSelf()
+                end
+            end
+        end
+    end
+
+    local x, _, z = center.Transform:GetWorldPosition()
+
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"player"})) do
+        if exit_pos ~= nil then
+            v.Physics:Teleport(exit_pos:Get())
+            v:SnapCamera()
+        else
+            TheWorld.components.playerspawner:SpawnAtNextLocation(v)
+            v:SnapCamera()
+        end
+    end
+
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"_inventoryitem"})) do
+        if v:HasTag("irreplaceable") then
+            SinkEntity(v)
+        elseif v.components.workable then
+            v.components.workable:Destroy(self.destroyer)
+        elseif v.components.health then
+            if not v:HasTag("shadowcreature") then
+                v.components.health:DoDelta(-math.random(10, 50))
+                v.Transform:SetPosition(exit_pos:Get())
+            end
+        elseif v:IsValid() then
+            v:Remove()
+        end
+    end
+
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"_inventoryitem"})) do
+        v.Transform:SetPosition(exit_pos:Get())
+    end
+
+    TheWorld:PushEvent("room_removed", {id = room_id})
+end
+
+-- function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, exclude_dir, exclude_room_id)
+function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior_id, exclude_dir, exclude_room_id)
+    local rooms = self.player_houses[house_id]
+    if not rooms then
+        return false
+    end
+
+    local target_rooms = GetTableSize(rooms)
+    if exclude_room_id then
+        target_rooms = target_rooms - 1
+    end
+    local checked_rooms = {}
+    local reached_rooms = 0
+
+    local connected_to_exit = false
+
+    local op_dir_str =
+    {
+        ["north"] = "south",
+        ["east"]  = "west",
+        ["south"] = "north",
+        ["west"]  = "east",
+    }
+
+    local function WalkRooms(current_interior_id, exclude_direction)
+        if current_interior_id == exclude_room_id then
+            return
+        end
+
+        checked_rooms[current_interior_id] = true
+        reached_rooms = reached_rooms + 1
+
+        local index_x, index_y = self:GetPlayerRoomIndexByID(house_id, current_interior_id)
+        if index_x == 0 and index_y == 0 then
+            connected_to_exit = true
+        end
+
+        local surrounding_rooms = self:GetConnectedSurroundingPlayerRooms(house_id, current_interior_id, exclude_direction)
+        for next_dir, room_id in pairs(surrounding_rooms) do
+            if not checked_rooms[room_id] then
+                WalkRooms(room_id, op_dir_str[next_dir])
+            end
+        end
+    end
+    WalkRooms(interior_id, exclude_dir)
+
+    return connected_to_exit and reached_rooms == target_rooms
+end
+
 
 return InteriorSpawner

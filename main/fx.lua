@@ -232,6 +232,12 @@ local pl_fx = {
         build = "vortex_cloak_fx",
         anim = "idle",
     },
+    {
+        name = "int_ceiling_dust_fx",
+        bank = "int_ceiling_dust_fx",
+        build = "int_ceiling_dust_fx",
+        anim = "idle",
+    }
 }
 
 -- Sneakily add these to the FX table

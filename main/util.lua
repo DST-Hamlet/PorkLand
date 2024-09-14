@@ -1,5 +1,13 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local _TempTile_HandleTileChange_Void = TempTile_HandleTileChange_Void
+function TempTile_HandleTileChange_Void(x, y, z)
+    if TheWorld and TheWorld:HasTag("porkland") then
+        return
+    end
+    return _TempTile_HandleTileChange_Void(x, y, z)
+end
+
 function GetWorldSetting(setting, default)
     local worldsettings = TheWorld and TheWorld.components.worldsettings
     if worldsettings then
@@ -354,4 +362,10 @@ function HandleDugGround(dug_ground, x, y, z, ...)
     else
         return _HandleDugGround(dug_ground, x, y, z, ...)
     end
+end
+
+function IsPlayerInAntDisguise(player)
+    return (player.components.inventory and (player.components.inventory:EquipHasTag("antmask") and player.components.inventory:EquipHasTag("antsuit")))
+        or (player.replica.inventory and (player.replica.inventory:EquipHasTag("antmask") and player.replica.inventory:EquipHasTag("antsuit")))
+        or false
 end

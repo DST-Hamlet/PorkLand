@@ -52,3 +52,8 @@ function c_characterembark(boat_prefab)
     boat.Transform:SetPosition(x, y, z)
     wilson.components.sailor:Embark(boat)
 end
+
+function c_reseterror()
+    TheSim:ResetError()
+    c_reset()
+end

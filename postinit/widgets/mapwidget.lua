@@ -80,7 +80,7 @@ end
 -- {
 --     width: number,
 --     depth: number,
---     floor_texture: string,
+--     minimap_floor_texture: string,
 --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
 --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
 -- }
@@ -88,7 +88,7 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     visited_rooms[current_room_id] = true
     local room = data[current_room_id]
 
-    local room_tile = Image("levels/textures/map_interior/" .. room.floor_texture .. ".xml", room.floor_texture .. ".tex")
+    local room_tile = Image("levels/textures/map_interior/" .. room.minimap_floor_texture .. ".xml", room.minimap_floor_texture .. ".tex")
     room_tile.position_offset = offset
     room_tile.tile_scale_x = room.width / INTERIOR_MINIMAP_TILE_SCALE
     room_tile.tile_scale_y = room.depth / INTERIOR_MINIMAP_TILE_SCALE
@@ -186,7 +186,7 @@ local function DiffWidget(self, incoming_data, room_id)
     for id, new_data in pairs(incoming_icons) do
         local current_icon = result_icons_set[id]
         if not current_icon then
-            local atlas = GetMinimapAtlas(new_data.icon)
+            local atlas = get_minimap_atlas(new_data.icon)
             if atlas then
                 local icon = Image(atlas, new_data.icon)
                 icon.position_offset = current_data.offset + Vector3(new_data.offset_x, 0, new_data.offset_z)
@@ -280,9 +280,20 @@ end
 --     end
 -- end
 
-function MapWidget:OnEnterInterior()
+function MapWidget:ApplyInteriorMinimap()
     if self.interior_map_widgets then
-        return
+        for _, room in pairs(self.interior_map_widgets.rooms) do
+            room.tile:Kill()
+            room.frame:Kill()
+        end
+        for _, door in pairs(self.interior_map_widgets.doors) do
+            door:Kill()
+        end
+        for _, room in pairs(self.interior_map_widgets.rooms) do
+            for _, icon_data in ipairs(room.icons) do
+                icon_data.widget:Kill()
+            end
+        end
     end
 
     local data = self.owner.replica.interiorvisitor.interior_map
@@ -322,21 +333,25 @@ function MapWidget:OnEnterInterior()
         end
         -- Hide the normal minimap
         self.img:Hide()
+        self.interior_frontend:MoveToFront()
     end
 end
 
 -- Delay a frame since we have higher priority
 scheduler:ExecuteInTime(0, function()
     AddClassPostConstruct("widgets/mapwidget", function(self)
-        -- local interior_center = self.owner.replica.interiorvisitor:GetCenterEnt()
-        -- if interior_center and interior_center:HasInteriorMinimap() then
-        --     self.interior_map_widget = self:AddChild(Widget("interior map"))
-        --     local data = self.owner.replica.interiorvisitor.interior_map
-        --     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
-        --     if data[current_room_id] then
-        --         BuildInteriorMinimapLayout(self.interior_map_widget, data, {}, current_room_id, Vector3())
-        --     end
-        -- end
+        self.bg.inst.ImageWidget:SetTexture("images/global.xml", "square.tex")
+        self.bg:SetTint(0,0,0,1)
+
+        self.interior_frontend = self:AddChild(Image("images/hud/pl_minimaphud.xml", "pl_minimaphud.tex"))
+        self.interior_frontend:SetVRegPoint(ANCHOR_MIDDLE)
+        self.interior_frontend:SetHRegPoint(ANCHOR_MIDDLE)
+        self.interior_frontend:SetVAnchor(ANCHOR_MIDDLE)
+        self.interior_frontend:SetHAnchor(ANCHOR_MIDDLE)
+        self.interior_frontend:SetScaleMode(SCALEMODE_FILLSCREEN)
+        self.interior_frontend.inst.ImageWidget:SetBlendMode(BLENDMODE.Additive)
+        self.interior_frontend:MoveToFront()
+        self.interior_frontend:Show()
 
         -- Do it here instead to be compatible with Global Positions
         local on_update = self.OnUpdate
@@ -381,5 +396,6 @@ scheduler:ExecuteInTime(0, function()
                 end
             end
         end
+        self.interior_frontend:MoveToFront()
     end)
 end)

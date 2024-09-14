@@ -22,6 +22,7 @@ local function OnBuilt(inst)
     if room then
         if inst.face == FACE.FLOOR then
             room:SetInteriorFloorTexture(inst.texture)
+            room:SetFloorMinimapTex(inst.minimap_texture)
         elseif inst.face == FACE.WALL then
             room:SetInteriorWallsTexture(inst.texture)
         end
@@ -29,7 +30,7 @@ local function OnBuilt(inst)
     inst:Remove()
 end
 
-local function material(name, face, texture)
+local function material(name, face, texture, minimap_texture)
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -40,6 +41,7 @@ local function material(name, face, texture)
 
         inst.face = face
         inst.texture = texture
+        inst.minimap_texture = minimap_texture or "levels/textures/map_interior/mini_floor_wood.tex"
 
         inst:ListenForEvent("onbuilt", OnBuilt)
         inst:DoTaskInTime(0, inst.Remove)
@@ -66,7 +68,7 @@ return  material("interior_floor_marble", FACE.FLOOR, "levels/textures/interiors
         material("interior_floor_geometrictiles", FACE.FLOOR, "levels/textures/interiors/floor_geometrictiles.tex"),
         material("interior_floor_shag_carpet", FACE.FLOOR, "levels/textures/interiors/floor_shag_carpet.tex"),
         material("interior_floor_transitional", FACE.FLOOR, "levels/textures/interiors/floor_transitional.tex"),
-        material("interior_floor_woodpanels", FACE.FLOOR, "levels/textures/interiors/floor_woodpanels.tex"),
+        material("interior_floor_woodpanels", FACE.FLOOR, "levels/textures/interiors/floor_woodpanels.tex", "levels/textures/map_interior/mini_floor_woodpanels.tex"),
         material("interior_floor_herringbone", FACE.FLOOR, "levels/textures/interiors/shop_floor_herringbone.tex"),
         material("interior_floor_hexagon", FACE.FLOOR, "levels/textures/interiors/shop_floor_hexagon.tex"),
         material("interior_floor_hoof_curvy", FACE.FLOOR, "levels/textures/interiors/shop_floor_hoof_curvy.tex"),

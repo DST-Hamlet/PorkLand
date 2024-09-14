@@ -96,6 +96,7 @@ local custonsiz_items = {  -- add in dst custonsiz
         monsters = {
             bill_setting = {image = "platypine.tex"},
             frog_poison_setting = {image = "poison_dart_frogs.tex"},
+            giantgrub_setting = {image = "giant_grubs.tex"},
             mosquito_setting = {image = "mosquitos.tex"},
             --adult_flytrap_setting = {image = "adult_flytraps.tex"},
             --mean_flytrap_setting = {image = "mean_flytraps.tex"},

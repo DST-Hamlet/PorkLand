@@ -66,14 +66,11 @@ local function shoot(inst, is_full_charge)
     if is_full_charge and inst.sg.mem.shootpos then
         local beam = SpawnPrefab("ancient_hulk_orb")
         beam.AnimState:PlayAnimation("spin_loop", true)
-        beam.Transform:SetPosition(newpt.x, newpt.y, newpt.z)
         beam.owner = player
 
         local targetpos = inst.sg.mem.shootpos
 
-        beam.components.pl_complexprojectile:SetHorizontalSpeed(60)
-        beam.components.pl_complexprojectile:SetGravity(-1)
-        beam.components.pl_complexprojectile:Launch(targetpos, player)
+        beam.components.throwable:Throw(targetpos, player)
         beam.components.combat.proxy = inst
         beam.owner = inst
     else
@@ -156,6 +153,8 @@ local actionhandlers = {
         return "crop_dust"
     end),
     ActionHandler(ACTIONS.SEARCH_MYSTERY, "dolongaction"),
+    ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
+    ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
 }
 
 local eventhandlers = {
@@ -192,6 +191,18 @@ local eventhandlers = {
                 inst.sg:GoToState("sneeze")
             end
         end
+    end),
+    -- Happens when the Ant Queen uses her song attack
+    EventHandler ("sanity_stun",
+    function(inst, data)
+        for k, v in pairs(inst.components.inventory.equipslots) do
+            if v:HasTag("earmuffshat") then
+                return
+            end
+        end
+
+        inst.sg:GoToState("sanity_stun", data.duration)
+        inst.components.sanity:DoDelta(-TUNING.SANITY_LARGE)
     end),
 }
 
@@ -2334,6 +2345,37 @@ local states = {
             end),
         },
     },
+    State{
+        name = "sanity_stun",
+        tags = {"busy", "nopredict", "nointerrupt"},
+
+        onenter = function(inst, duration)
+            inst.components.playercontroller:Enable(false)
+            inst.components.locomotor:Stop()
+
+            inst.AnimState:PlayAnimation("idle_sanity_pre", false)
+            inst.AnimState:PushAnimation("idle_sanity_loop", true)
+
+            inst.sanity_stunned = true
+
+            inst.sg:SetTimeout(duration)
+        end,
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("idle")
+        end,
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),
+        },
+
+        onexit = function(inst)
+            inst.components.playercontroller:Enable(true)
+            inst.sanity_stunned = false
+            inst:PushEvent("sanity_stun_over")
+        end
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -2570,7 +2612,7 @@ AddStategraphPostInit("wilson", function(sg)
     end
 
     local _play_flute_onenter = sg.states["play_flute"].onenter
-    sg.states["play_flute"].onenter = function(inst, ...)  -- fuck klei
+    sg.states["play_flute"].onenter = function(inst, ...)
         local inv_obj = inst.bufferedaction and inst.bufferedaction.invobject or nil
 
         local _AnimState = inst.AnimState
@@ -2590,6 +2632,18 @@ AddStategraphPostInit("wilson", function(sg)
         _play_flute_onenter(inst, ...)
 
         rawset(inst, "AnimState", _AnimState)
+    end
+
+    local _hammer_start_onenter = sg.states["hammer_start"].onenter
+    sg.states["hammer_start"].onenter = function(inst, ...)
+        local action = inst:GetBufferedAction()
+        if action and action.target:HasTag("interior_door") and action.target:HasTag("house_door") and not action.target:DoorCanBeRemoved() then
+            inst:ClearBufferedAction()
+            inst.components.talker:Say(GetString(inst.prefab, "ANNOUNCE_ROOM_STUCK"))
+            inst.sg:GoToState("talk")
+        else
+            return _hammer_start_onenter(inst, ...)
+        end
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn

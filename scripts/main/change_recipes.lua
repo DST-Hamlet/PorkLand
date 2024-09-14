@@ -190,6 +190,7 @@ local DISABLE_RECIPES = {
     "featherfan",
     "ocean_trawler_kit",
     "fish_box",
+    "rope_bridge_kit",
 }
 
 local LOST_RECIPES = {

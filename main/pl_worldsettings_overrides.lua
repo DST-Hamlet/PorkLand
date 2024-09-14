@@ -439,6 +439,30 @@ applyoverrides_pre.thunderbird_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+applyoverrides_pre.giantgrub_setting = function(difficulty)
+    local tuning_vars = {
+        never = {
+            GIANT_GRUB_ENABLED = false,
+        },
+        rare = {
+            GIANT_GRUB_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 2,
+        },
+        --[[
+        default = {
+            GIANT_GRUB_ENABLED = true,
+            GIANT_GRUB_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME,
+        },
+        --]]
+        often = {
+            GIANT_GRUB_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 0.5,
+        },
+        always = {
+            GIANT_GRUB_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 0.25,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 --------------------------------------------------------------------------
 --[[ WORLDSETTINGS POST ]]
 --------------------------------------------------------------------------

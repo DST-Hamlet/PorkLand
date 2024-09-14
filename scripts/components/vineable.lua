@@ -15,10 +15,10 @@ function Vineable:SetUpVine()
     end
     self.vines_open = false
 
-    -- self.inst:ListenForEvent("exitedruins", function() self:SetDoorDissabled(true) end, GetPlayer())
+    -- self.inst:ListenForEvent("exitedruins", function() self:SetDoorDisabled(true) end, GetPlayer())
 end
 
-function Vineable:SetDoorDissabled(setting)
+function Vineable:SetDoorDisabled(setting)
     self.inst.disableDoor(self.inst, setting, "vines")
     if setting then
         if self.inst.regrowtask then
@@ -41,7 +41,7 @@ end
 
 function Vineable:SetGrowTask(time)
      self.inst.regrowtask, self.inst.regrowtaskinfo = self.inst:ResumeTask(time, function()
-        self:SetDoorDissabled(true)
+        self:SetDoorDisabled(true)
     end)
 end
 
@@ -66,11 +66,11 @@ end
 function Vineable:InitInteriorPrefab()
     if self.inst.components.door and self.inst.components.door.disable_causes and self.inst.components.door.disable_causes["vines"] == true then
         if self.vined then
-            self:SetDoorDissabled(true)
+            self:SetDoorDisabled(true)
         end
     else
         if self.vined then
-            self:SetDoorDissabled(false)
+            self:SetDoorDisabled(false)
         end
     end
 end
@@ -97,9 +97,9 @@ function Vineable:LoadPostPass(ents, data)
         self:SetUpVine()
 
         if data.vines_open then
-            self:SetDoorDissabled(false)
+            self:SetDoorDisabled(false)
         else
-            self:SetDoorDissabled(true)
+            self:SetDoorDisabled(true)
         end
     end
 

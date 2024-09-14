@@ -423,11 +423,15 @@ local function GetValidWaterPointNearby(pt)
 end
 
 local function sprinkler_placetest(pt, rot)
-    return GetValidWaterPointNearby(pt) ~= nil
+    return GetValidWaterPointNearby(pt)
+end
+
+local function sprinkler_canbuild(inst, builder, pt)
+    return sprinkler_placetest(pt)
 end
 
 --- GARDENING ---
-AddRecipe2("sprinkler", {Ingredient("alloy", 2), Ingredient("bluegem", 1), Ingredient("ice", 6)}, TECH.SCIENCE_TWO, {placer = "sprinkler_placer", testfn = sprinkler_placetest}, {"GARDENING", "STRUCTURES"})
+AddRecipe2("sprinkler", {Ingredient("alloy", 2), Ingredient("bluegem", 1), Ingredient("ice", 6)}, TECH.SCIENCE_TWO, {placer = "sprinkler_placer", testfn = sprinkler_placetest, canbuild = sprinkler_canbuild}, {"GARDENING", "STRUCTURES"})
 
 AddRecipe2("slow_farmplot", {Ingredient("cutgrass", 8), Ingredient("poop", 4), Ingredient("log", 4)}, TECH.SCIENCE_ONE, {placer = "slow_farmplot_placer"}, {"GARDENING"})
 AddRecipe2("fast_farmplot", {Ingredient("cutgrass", 10), Ingredient("poop", 6), Ingredient("rocks", 4)}, TECH.SCIENCE_TWO, {placer = "fast_farmplot_placer"}, {"GARDENING"})
@@ -438,35 +442,39 @@ local function NotInInterior(pt)
     return not TheWorld.components.interiorspawner:IsInInterior(pt.x, pt.z)
 end
 
+local function NotInInterior_canbuild(inst, builder, pt)
+    return NotInInterior(pt)
+end
+
 AddRecipe2("turf_foundation", {Ingredient("cutstone", 1)}, TECH.CITY, {nounlock = true, numtogive = 4})
 AddRecipe2("turf_cobbleroad", {Ingredient("cutstone", 2), Ingredient("boards", 1)}, TECH.CITY, {nounlock = true, numtogive = 4})
 AddRecipe2("city_lamp", {Ingredient("alloy", 1), Ingredient("transistor", 1),Ingredient("lantern",1)},  TECH.CITY, {nounlock = true, placer = "city_lamp_placer"})
 
-AddRecipe2("pighouse_city", {Ingredient("boards", 4), Ingredient("cutstone", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pighouse_city_placer", testfn = NotInInterior})
+AddRecipe2("pighouse_city", {Ingredient("boards", 4), Ingredient("cutstone", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pighouse_city_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
-AddRecipe2("pig_shop_deli", {Ingredient("boards", 4), Ingredient("honeyham", 1), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_deli_placer", testfn = NotInInterior})
-AddRecipe2("pig_shop_general", {Ingredient("boards", 4), Ingredient("axe", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_general_placer", testfn = NotInInterior})
+AddRecipe2("pig_shop_deli", {Ingredient("boards", 4), Ingredient("honeyham", 1), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_deli_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("pig_shop_general", {Ingredient("boards", 4), Ingredient("axe", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_general_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
-AddRecipe2("pig_shop_hoofspa", {Ingredient("boards", 4), Ingredient("bandage", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_hoofspa_placer", testfn = NotInInterior})
-AddRecipe2("pig_shop_produce", {Ingredient("boards", 4), Ingredient("eggplant", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_produce_placer", testfn = NotInInterior})
+AddRecipe2("pig_shop_hoofspa", {Ingredient("boards", 4), Ingredient("bandage", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_hoofspa_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("pig_shop_produce", {Ingredient("boards", 4), Ingredient("eggplant", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_produce_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
-AddRecipe2("pig_shop_florist", {Ingredient("boards", 4), Ingredient("petals", 12), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_florist_placer", testfn = NotInInterior})
-AddRecipe2("pig_shop_antiquities", {Ingredient("boards", 4), Ingredient("ballpein_hammer", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_antiquities_placer", testfn = NotInInterior})
+AddRecipe2("pig_shop_florist", {Ingredient("boards", 4), Ingredient("petals", 12), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_florist_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("pig_shop_antiquities", {Ingredient("boards", 4), Ingredient("ballpein_hammer", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_antiquities_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
-AddRecipe2("pig_shop_arcane", {Ingredient("boards", 4), Ingredient("nightmarefuel", 1), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_arcane_placer", testfn = NotInInterior})
-AddRecipe2("pig_shop_weapons", {Ingredient("boards", 4), Ingredient("spear", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_weapons_placer", testfn = NotInInterior})
-AddRecipe2("pig_shop_hatshop", {Ingredient("boards", 4), Ingredient("tophat", 2), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_hatshop_placer", testfn = NotInInterior})
-AddRecipe2("pig_shop_bank", {Ingredient("cutstone", 4), Ingredient("oinc", 100), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_bank_placer", testfn = NotInInterior})
+AddRecipe2("pig_shop_arcane", {Ingredient("boards", 4), Ingredient("nightmarefuel", 1), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_arcane_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("pig_shop_weapons", {Ingredient("boards", 4), Ingredient("spear", 3), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_weapons_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("pig_shop_hatshop", {Ingredient("boards", 4), Ingredient("tophat", 2), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_hatshop_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("pig_shop_bank", {Ingredient("cutstone", 4), Ingredient("oinc", 100), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_bank_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
-AddRecipe2("pig_shop_tinker", {Ingredient("magnifying_glass", 2), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_tinker_placer", testfn = NotInInterior})
+AddRecipe2("pig_shop_tinker", {Ingredient("magnifying_glass", 2), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_tinker_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
-AddRecipe2("pig_shop_cityhall_player", {Ingredient("boards", 4), Ingredient("goldnugget", 4), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_cityhall_placer", testfn = NotInInterior})
+AddRecipe2("pig_shop_cityhall_player", {Ingredient("boards", 4), Ingredient("goldnugget", 4), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_shop_cityhall_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
-AddRecipe2("pig_guard_tower", {Ingredient("cutstone", 3), Ingredient("halberd", 1), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_guard_tower_placer", testfn = NotInInterior})
+AddRecipe2("pig_guard_tower", {Ingredient("cutstone", 3), Ingredient("halberd", 1), Ingredient("pigskin", 4)}, TECH.CITY, {nounlock = true, placer = "pig_guard_tower_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
 AddRecipe2("securitycontract", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true})
 
-AddRecipe2("playerhouse_city", {Ingredient("boards", 4), Ingredient("cutstone", 3), Ingredient("oinc", 30)}, TECH.CITY, {nounlock = true, placer = "playerhouse_city_placer", testfn = NotInInterior})
+AddRecipe2("playerhouse_city", {Ingredient("boards", 4), Ingredient("cutstone", 3), Ingredient("oinc", 30)}, TECH.CITY, {nounlock = true, placer = "playerhouse_city_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
 AddRecipe2("hedge_block_item", {Ingredient("clippings", 9), Ingredient("nitre", 1)}, TECH.CITY, {nounlock = true, numtogive = 3})
 AddRecipe2("hedge_cone_item", {Ingredient("clippings", 9), Ingredient("nitre", 1)}, TECH.CITY, {nounlock = true, numtogive = 3})
@@ -618,10 +626,11 @@ AddRecipe2("window_tall_curtain",         {Ingredient("oinc", 5)}, TECH.HOME, {n
 
 AddRecipe2("window_greenhouse",           {Ingredient("oinc", 8)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "window_greenhouse_placer",            image = "reno_window_greenhouse.tex"},              {"HOME_WALL_DECORATION"})
 
-AddRecipe2("deco_wood_beam",      {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_wood_cornerbeam_placer",      image = "reno_cornerbeam_wood.tex"},      {"HOME_COLUMN"})
-AddRecipe2("deco_millinery_beam", {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_millinery_cornerbeam_placer", image = "reno_cornerbeam_millinery.tex"}, {"HOME_COLUMN"})
-AddRecipe2("deco_round_beam",     {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_round_cornerbeam_placer",     image = "reno_cornerbeam_round.tex"},     {"HOME_COLUMN"})
-AddRecipe2("deco_marble_beam",    {Ingredient("oinc", 5)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_marble_cornerbeam_placer",    image = "reno_cornerbeam_marble.tex"},    {"HOME_COLUMN"})
+--cassielu: why change them?
+AddRecipe2("deco_wood_beam",      {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_wood_cornerbeam_placer",      image = "reno_cornerbeam_wood.tex",      nameoverride = "deco_wood",      description = "deco_wood"},      {"HOME_COLUMN"})
+AddRecipe2("deco_millinery_beam", {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_millinery_cornerbeam_placer", image = "reno_cornerbeam_millinery.tex", nameoverride = "deco_millinery", description = "deco_millinery"}, {"HOME_COLUMN"})
+AddRecipe2("deco_round_beam",     {Ingredient("oinc", 1)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_round_cornerbeam_placer",     image = "reno_cornerbeam_round.tex",     nameoverride = "deco_round",     description = "deco_round"},     {"HOME_COLUMN"})
+AddRecipe2("deco_marble_beam",    {Ingredient("oinc", 5)},  TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "deco_marble_cornerbeam_placer",    image = "reno_cornerbeam_marble.tex",    nameoverride = "deco_marble",    description = "deco_marble"},    {"HOME_COLUMN"})
 
 AddRecipe2("interior_floor_wood",        {Ingredient("oinc", 5)},  TECH.HOME, {nounlock = true}, {"HOME_FLOOR"})
 AddRecipe2("interior_floor_marble",      {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true}, {"HOME_FLOOR"})
@@ -668,17 +677,17 @@ AddRecipe2("swinging_light_tophat",             {Ingredient("oinc", 12)}, TECH.H
 AddRecipe2("swinging_light_derby",              {Ingredient("oinc", 12)}, TECH.HOME, {nounlock = true, placer = "swinging_light_derby_placer",              image = "reno_light_derby.tex"},              {"HOME_HANGINGLAMP"})
 
 -- -- DOORS
--- AddRecipe2("wood_door",     {Ingredient("oinc", 10)},     RENO_RECIPETABS.DOORS, TECH.HOME, "wood_door_placer",    nil, true, nil, nil, nil, true, false, "wood_door",    true )
--- AddRecipe2("stone_door",    {Ingredient("oinc", 10)},     RENO_RECIPETABS.DOORS, TECH.HOME, "stone_door_placer",   nil, true, nil, nil, nil, true, false, "stone_door",   true )
--- AddRecipe2("organic_door",     {Ingredient("oinc", 15)},     RENO_RECIPETABS.DOORS, TECH.HOME, "organic_door_placer", nil, true, nil, nil, nil, true, false, "organic_door", true )
--- AddRecipe2("iron_door",     {Ingredient("oinc", 15)},     RENO_RECIPETABS.DOORS, TECH.HOME, "iron_door_placer",    nil, true, nil, nil, nil, true, false, "iron_door",    true )
--- AddRecipe2("curtain_door",     {Ingredient("oinc", 15)},     RENO_RECIPETABS.DOORS, TECH.HOME, "curtain_door_placer", nil, true, nil, nil, nil, true, false, "curtain_door", true )
--- AddRecipe2("plate_door",     {Ingredient("oinc", 15)},     RENO_RECIPETABS.DOORS, TECH.HOME, "plate_door_placer",     nil, true, nil, nil, nil, true, false, "plate_door",   true )
--- AddRecipe2("round_door",     {Ingredient("oinc", 20)},     RENO_RECIPETABS.DOORS, TECH.HOME, "round_door_placer",     nil, true, nil, nil, nil, true, false, "round_door",   true )
--- AddRecipe2("pillar_door",     {Ingredient("oinc", 20)},     RENO_RECIPETABS.DOORS, TECH.HOME, "pillar_door_placer",  nil, true, nil, nil, nil, true, false, "pillar_door",  true )
+AddRecipe2("wood_door",     {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "wood_door_placer",    image = "wood_door.tex"},    {"HOME_DOOR"})
+AddRecipe2("stone_door",    {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "stone_door_placer",   image = "stone_door.tex"},   {"HOME_DOOR"})
+AddRecipe2("organic_door",  {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "organic_door_placer", image = "organic_door.tex"}, {"HOME_DOOR"})
+AddRecipe2("iron_door",     {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "iron_door_placer",    image = "iron_door.tex"},    {"HOME_DOOR"})
+AddRecipe2("curtain_door",  {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "curtain_door_placer", image = "curtain_door.tex"}, {"HOME_DOOR"})
+AddRecipe2("plate_door",    {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "plate_door_placer",   image = "plate_door.tex"},   {"HOME_DOOR"})
+AddRecipe2("round_door",    {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "round_door_placer",   image = "round_door.tex"},   {"HOME_DOOR"})
+AddRecipe2("pillar_door",   {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "pillar_door_placer",  image = "pillar_door.tex"},  {"HOME_DOOR"})
 
--- AddRecipe2("construction_permit", {Ingredient("oinc", 50)}, RECIPETABS.HOME, TECH.HOME, nil, nil, true)
--- AddRecipe2("demolition_permit", {Ingredient("oinc", 10)},     RECIPETABS.HOME, TECH.HOME, nil, nil, true)
+AddRecipe2("construction_permit", {Ingredient("oinc", 50)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
+AddRecipe2("demolition_permit",   {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
 
 -- Deconstruct ---
 AddDeconstructRecipe("pig_guard_tower_palace", {Ingredient("cutstone", 3), Ingredient("halberd", 2), Ingredient("pigskin", 4)})

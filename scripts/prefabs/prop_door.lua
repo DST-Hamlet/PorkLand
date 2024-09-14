@@ -325,7 +325,9 @@ local function UseDoor(inst,data)
     if inst.usesounds then
         if data and data.doer and data.doer.SoundEmitter then
             for _, sound in ipairs(inst.usesounds) do
-                data.doer.SoundEmitter:PlaySound(sound)
+                data.doer:DoTaskInTime(FRAMES * 2, function()
+                    data.doer.SoundEmitter:PlaySound(sound)
+                end)
             end
         end
     end
@@ -396,18 +398,6 @@ local function CloseDoor(inst, nospread)
     end
 end
 
-local function test_player_house_door(inst)
-    local door = inst.components.door
-    if door then
-        local interior = TheWorld.components.interiorspawner:GetInteriorCenter(door.interior_name)
-        if interior and interior.playerroom then
-            inst.entity:AddMiniMapEntity()
-            inst.MiniMapEntity:SetIcon("player_frontdoor.tex")
-            inst.MiniMapEntity:SetIconOffset(4, 0)
-        end
-    end
-end
-
 local function GetMinimapIcon(inst)
     return inst._minimap_name:value()
 end
@@ -434,8 +424,6 @@ local function fn()
     inst:AddTag("NOBLOCK")
 
     inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
-
-    inst:DoTaskInTime(0, test_player_house_door)
 
     inst.Transform:SetRotation(-90)
     inst:AddComponent("rotatingbillboard")

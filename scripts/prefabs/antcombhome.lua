@@ -27,10 +27,9 @@ local FIND_ANT_RADIUS = 40
 local MIN_ANT_COUNT = 3
 
 local function LaunchProjectile(inst, targetpos)
-    -- local projectile = SpawnPrefab("antlarva")
-    -- projectile.owner = inst
-    -- projectile.Transform:SetPosition(inst:GetPosition():Get())
-    -- projectile.components.complexprojectile:Launch(targetpos)
+    local projectile = SpawnPrefab("antlarva")
+    projectile.owner = inst
+    projectile.components.throwable:Throw(targetpos, inst)
 end
 
 local function maintainantpop(inst)
@@ -47,9 +46,8 @@ local function maintainantpop(inst)
     if #ents < MIN_ANT_COUNT then
         local theta = math.random() * TWOPI
         local radius = math.random() * 4 + 4
-        local pt = Vector3(x, y, z)
-        local offset = FindWalkableOffset(pt, theta, math.random() * radius, 12, true) or Vector3(0, 0, 0) -- TODO?
-        LaunchProjectile(inst, pt + offset)
+        local pos = Vector3(x + radius * math.cos(theta), 0, z + radius * math.sin(theta))
+        LaunchProjectile(inst, pos)
     end
 end
 

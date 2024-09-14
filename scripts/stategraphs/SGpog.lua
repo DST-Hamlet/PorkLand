@@ -11,7 +11,7 @@ local events =
 {
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
-    CommonHandlers.OnAttacked(true),
+    CommonHandlers.OnAttacked(nil, TUNING.CHARACTER_MAX_STUN_LOCKS),
     CommonHandlers.OnAttack(),
     CommonHandlers.OnDeath(),
     CommonHandlers.OnLocomote(true, true),

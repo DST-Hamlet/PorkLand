@@ -631,14 +631,15 @@ local function MakeHat(name)
 
     -----------------------------------------------------------------------------
 
-    local function antmask_onequip(inst, owner)
-        _onequip(inst, owner)
-        inst:AddTag("has_antmask")
-    end
-
     local function antmask_onunequip(inst, owner)
         _onunequip(inst, owner)
-        inst:RemoveTag("has_antmask")
+        if owner.components.leader then
+            owner:DoTaskInTime(0, function() -- in case of equipment swapping 
+                if not IsPlayerInAntDisguise(owner) then
+                    owner.components.leader:RemoveFollowersByTag("ant")
+                end
+            end)
+        end
     end
 
     local function antmask_onupdate(inst)
@@ -662,9 +663,6 @@ local function MakeHat(name)
             return inst
         end
 
-        inst.components.equippable:SetOnEquip(antmask_onequip)
-        inst.components.equippable:SetOnUnequip(antmask_onunequip)
-
         inst:AddComponent("armor")
         inst.components.armor:InitCondition(TUNING.ARMOR_FOOTBALLHAT, TUNING.ARMOR_FOOTBALLHAT_ABSORPTION)
         inst.components.armor.ontakedamage = antmask_ontakedamage
@@ -674,6 +672,8 @@ local function MakeHat(name)
         inst.components.fueled:InitializeFuelLevel(TUNING.ANTMASKHAT_PERISHTIME)
         inst.components.fueled:SetDepletedFn(inst.Remove)
         inst.components.fueled:SetUpdateFn(antmask_onupdate)
+
+        inst.components.equippable:SetOnUnequip(antmask_onunequip)
 
         return inst
     end
