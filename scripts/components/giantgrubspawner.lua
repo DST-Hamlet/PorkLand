@@ -33,6 +33,13 @@ local function SpawnGiantGrub()
         return
     end
 
+    if not _anthill then
+        _anthill = TheSim:FindFirstEntityWithTag("ant_hill_entrance")
+        if not _anthill then
+            return
+        end
+    end
+
     local random_x, random_y = math.random(1, 5), math.random(1, 5)
     local interiorID = _anthill.rooms[random_x][random_y].id
     local centre = _world.components.interiorspawner:GetInteriorCenter(interiorID)
