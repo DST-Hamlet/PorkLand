@@ -57,10 +57,21 @@ local function KeepTarget(inst, target)
     return inst.components.combat:CanTarget(target) and (target:HasTag("player"))
 end
 
-local function OnSleep(inst)
+local function OnEntitySleep(inst)
     inst.SoundEmitter:KillAllSounds()
+    if inst.escapetask then
+        inst.escapetask:Cancel()
+        inst.escapetask = nil
+    end
+    inst.escapetask = inst:DoTaskInTime((2 + math.random()) * TUNING.TOTAL_DAY_TIME, function() inst:Remove() end)
 end
 
+local function OnEntityWake(inst)
+    if inst.escapetask then
+        inst.escapetask:Cancel()
+        inst.escapetask = nil
+    end
+end
 local function OnRemove(inst)
     inst.SoundEmitter:KillAllSounds()
 end
