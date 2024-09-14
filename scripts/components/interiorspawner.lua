@@ -1178,8 +1178,6 @@ function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior
     end
     WalkRooms(interior_id, exclude_dir)
 
-    local x, y = self:GetPlayerRoomIndexByID(house_id, interior_id)
-    print("connected_to_exit, reached_rooms, target_rooms", connected_to_exit, reached_rooms, target_rooms, x, y)
     return connected_to_exit and reached_rooms == target_rooms
 end
 
