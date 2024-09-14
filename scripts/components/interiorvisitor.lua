@@ -125,7 +125,6 @@ function InteriorVisitor:ValidateMap()
     for id, map_data in pairs(self.interior_map) do
         local center = TheWorld.components.interiorspawner:GetInteriorCenter(id)
         if not center or (map_data.uuid and map_data.uuid ~= center.uuid) then
-            print("remove invalid map data", map_data.uuid, center.uuid)
             self.interior_map[id] = nil
         end
     end
