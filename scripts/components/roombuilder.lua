@@ -145,7 +145,7 @@ function RoomBuilder:BuildRoom(door_frame, permit)
     local current_interior = interior_spawner:GetInteriorCenter(door_frame:GetPosition())
     local current_room_id = current_interior.interiorID
 
-    local house_id = interior_spawner:GetPlayerHouseByRoomID(current_room_id)
+    local house_id = interior_spawner:GetPlayerHouseByRoomId(current_room_id)
     local can_build, cause = self:CanBuildRoomAtDirection(house_id, current_room_id, door_frame.baseanimname)
     if not can_build then
         return false, cause

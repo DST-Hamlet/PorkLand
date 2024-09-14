@@ -987,7 +987,7 @@ function InteriorSpawner:GetPlayerRoomIndexByID(house_id, room_id)
 end
 
 ---@return integer|nil interiorID returns nil if room not found
-function InteriorSpawner:GetPlayerRoomIDByIndex(house_id, x, y)
+function InteriorSpawner:GetPlayerRoomIdByIndex(house_id, x, y)
     for interiorID, data in pairs(self.player_houses[house_id]) do
         if data.x == x and data.y == y then
             return interiorID
@@ -998,7 +998,7 @@ end
 ---@return integer|nil interiorID returns nil if room not found
 function InteriorSpawner:GetPlayerRoomInDirection(house_id, room_from_id, direction)
     if not house_id then
-        house_id = self:GetPlayerHouseByRoomID(room_from_id)
+        house_id = self:GetPlayerHouseByRoomId(room_from_id)
     end
 
     if not house_id then
@@ -1007,10 +1007,10 @@ function InteriorSpawner:GetPlayerRoomInDirection(house_id, room_from_id, direct
 
     -- assuming interior <room_from_id> exists
     local x, y = self:GetPlayerRoomIndexByID(house_id, room_from_id)
-    return self:GetPlayerRoomIDByIndex(house_id, x + direction.x, y + direction.y)
+    return self:GetPlayerRoomIdByIndex(house_id, x + direction.x, y + direction.y)
 end
 
-function InteriorSpawner:GetPlayerHouseByRoomID(room_id)
+function InteriorSpawner:GetPlayerHouseByRoomId(room_id)
     for house_id, house_grid in pairs(self.player_houses) do
         if house_grid[room_id] then
             return house_id
@@ -1086,6 +1086,18 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
     assert(TheWorld.ismastersim)
 
     local center = self:GetInteriorCenter(room_id)
+
+    for _, door in ipairs(center.doors) do
+        local connected_room = self:GetInteriorCenter(door.components.door.target_interior)
+        if connected_room then
+            for _, v in ipairs(connected_room.doors) do
+                if v.components.door.target_interior == center.interiorID then
+                    v:DeactivateSelf()
+                end
+            end
+        end
+    end
+
     local x, _, z = center.Transform:GetWorldPosition()
 
     for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"player"})) do

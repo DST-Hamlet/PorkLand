@@ -313,7 +313,7 @@ end
 local function CheckForRemoval(inst)
     local interior_spawner = TheWorld.components.interiorspawner
     local interiorID = inst:GetCurrentInteriorID()
-    local house_id = interior_spawner:GetPlayerHouseByRoomID(interiorID)
+    local house_id = interior_spawner:GetPlayerHouseByRoomId(interiorID)
     inst.door_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname)
     inst.room_can_be_removed = interior_spawner:IsPlayerRoomConnectedToExit(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
 end
@@ -363,9 +363,9 @@ local function OnBuilt(inst)
     end
 
     if not replace_existing_door then
-        local connecting_room_id = interior_spawner:GetPlayerRoomInDirection(nil, current_room_id, interior_spawner:GetDirByLabel(baseanimname))
-        local house_id = interior_spawner:GetPlayerHouseByRoomID(connecting_room_id)
-        if connecting_room_id and house_id ~= connecting_room_id then
+        local house_id = interior_spawner:GetPlayerHouseByRoomId(current_room_id)
+        local connecting_room_id = interior_spawner:GetPlayerRoomInDirection(house_id, current_room_id, interior_spawner:GetDirByLabel(baseanimname))
+        if connecting_room_id then
             local interior_def = interior_spawner:GetInteriorDefine(connecting_room_id)
             ActivateSelf(inst, connecting_room_id, current_room_id)
 
