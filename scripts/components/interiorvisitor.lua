@@ -210,6 +210,14 @@ function InteriorVisitor:OnLoad(data)
         self.interior_map = data.interior_map
     end
 
+    for id, map_data in pairs(self.interior_map) do -- 转换旧存档的数据格式
+        if map_data.floor_texture then
+            print("map_data.minimap_floor_texture = map_data.floor_texture")
+            map_data.minimap_floor_texture = map_data.floor_texture
+            map_data.floor_texture = nil
+        end
+    end
+
     -- restore player position if interior was destroyed
     if GetTick() > 0 and self.last_mainland_pos ~= nil then
         local x, _, z = self.inst.Transform:GetWorldPosition()

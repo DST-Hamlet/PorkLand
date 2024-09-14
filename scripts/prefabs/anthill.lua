@@ -308,6 +308,7 @@ local function CreateRegularRooms(inst)
                 }
 
                 doorway_prefabs[doorway_count].interiorID = room.id
+                doorway_prefabs[doorway_count].doorway_index = doorway_count
                 TheWorld.components.interiorspawner:AddDoor(doorway_prefabs[doorway_count], exterior_door_def)
                 TheWorld.components.interiorspawner:AddExterior(doorway_prefabs[doorway_count])
 
@@ -446,6 +447,7 @@ local function OnSave(inst, data)
             end
         end
     end
+    data.doorway_index = inst.doorway_index
 end
 
 local function OnLoad(inst, data)
@@ -459,6 +461,8 @@ local function OnLoad(inst, data)
 
     if data.interiorID then
         inst.interiorID = data.interiorID
+        inst.doorway_index = data.doorway_index
+        TheWorld.components.interiorspawner:AddExterior(inst)
     end
 
     if data.rooms then

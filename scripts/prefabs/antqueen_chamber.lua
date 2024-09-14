@@ -133,6 +133,7 @@ local function OnLoad(inst, data)
 
     if data.interiorID then
         inst.interiorID = data.interiorID
+        TheWorld.components.interiorspawner:AddExterior(inst)
     end
 
     if data.rooms then
