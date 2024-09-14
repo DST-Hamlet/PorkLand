@@ -74,9 +74,9 @@ local function CheckForShadow(inst)
 end
 
 local function GetBaseAnimName(inst)
-    local centre = TheWorld.components.interiorspawner:GetInteriorCenter(inst:GetCurrentInteriorID())
     local position = inst:GetPosition()
-    local origin = centre:GetPosition()
+    local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+    local origin = center:GetPosition()
     local delta = position - origin
     if math.abs(delta.x) > math.abs(delta.z) then
         -- north or south

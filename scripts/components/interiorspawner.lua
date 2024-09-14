@@ -245,7 +245,7 @@ function InteriorSpawner:OnRemoveExterior(entity)
 
     local room = self:GetInteriorCenter(entity.interiorID)
     if room then
-        local allrooms = self:GatherAllRooms_Impl(room, {})
+        local allrooms = self:GetAllConnectedRooms(room, {})
         for center in pairs(allrooms) do
             self:ClearInteriorContents(center:GetPosition(), entity:GetPosition())
             if center.interiorID then
@@ -881,7 +881,7 @@ function InteriorSpawner:SpawnInterior(interior)
     interior.visited = true
 end
 
-function InteriorSpawner:GatherAllRooms_Impl(center, allrooms, usemap)
+function InteriorSpawner:GetAllConnectedRooms(center, allrooms, usemap)
     -- WARNING: this method is quite expensive and server only
     if allrooms[center] then
         return
@@ -894,7 +894,7 @@ function InteriorSpawner:GatherAllRooms_Impl(center, allrooms, usemap)
             if target_interior ~= nil and target_interior ~= "EXTERIOR" then
                 local room = self.interiors[target_interior] or self:GetInteriorCenter(target_interior)
                 assert(room, "Room not exists: "..target_interior)
-                self:GatherAllRooms_Impl(room, allrooms)
+                self:GetAllConnectedRooms(room, allrooms)
             end
         end
     end
