@@ -950,7 +950,7 @@ function InteriorSpawner:RegisterPlayerHouse(house_entity)
     self.player_houses[starting_room_interiorID] = {[starting_room_interiorID] = {x = 0, y = 0}}
 end
 
-function InteriorSpawner:DeregisterPlayerHouse(house_entity)
+function InteriorSpawner:UnregisterPlayerHouse(house_entity)
     self.player_houses[house_entity.interiorID] = nil
 end
 

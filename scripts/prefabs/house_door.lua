@@ -180,7 +180,6 @@ local function ActivateSelf(inst, target_interior, current_interior)
     inst:AddTag("interior_door")
     inst:AddTag("client_forward_action_target")
     inst:RemoveTag("predoor")
-    inst:AddTag(PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].door_tag)
 
     inst:RemoveComponent("inspectable")
     inst.checked_obstruction = true
@@ -192,7 +191,6 @@ local function DeactivateSelf(inst)
     inst:AddTag("predoor")
     inst:RemoveTag("interior_door")
     inst:RemoveTag("client_forward_action_target")
-    inst:RemoveTag(PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].door_tag)
 
     if not inst.components.inspectable then
         inst:AddComponent("inspectable")
@@ -306,11 +304,10 @@ local function OnLoadPostPass(inst)
         inst:AddTag("client_forward_action_target")
         inst:RemoveTag("predoor")
         inst:RemoveComponent("inspectable")
-
-        inst.baseanimname = GetBaseAnimName(inst)
-
-        inst:AddTag(PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].door_tag)
     end
+
+    inst.baseanimname = GetBaseAnimName(inst)
+    inst:AddTag(PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].door_tag)
 end
 
 local function CheckForRemoval(inst)
@@ -346,7 +343,7 @@ local function OnBuilt(inst)
 
     local baseanimname = GetBaseAnimName(inst)
     inst.baseanimname = baseanimname
-    inst:AddTag("door_" .. baseanimname)
+    inst:AddTag(PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].door_tag)
     CheckForShadow(inst)
 
     -- players can build a new door directly on the old door to change its look

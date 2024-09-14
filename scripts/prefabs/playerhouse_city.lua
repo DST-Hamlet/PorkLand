@@ -324,7 +324,7 @@ local function fn()
     TheWorld.playerhouse = inst
 
     inst:ListenForEvent("onremove", function()
-        TheWorld.components.interiorspawner:DeregisterPlayerHouse(inst)
+        TheWorld.components.interiorspawner:UnregisterPlayerHouse(inst)
     end)
 
     return inst
