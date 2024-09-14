@@ -16,6 +16,8 @@ local InteriorVisitor = Class(function(self, inst)
     self.interior_map_icons_override = nil
     self.interior_door_status = {}
 
+    self.ininterior = false
+
     inst:StartUpdatingComponent(self)
 end)
 
@@ -105,7 +107,9 @@ function InteriorVisitor:OnUpdate()
     if IsInInteriorRectangle(self.inst:GetPosition(), room_center_ent) then
         self:ApplyInteriorCamera(room_center_ent)
 
-        if last_center_ent ~= room_center_ent and self.inst:HasTag("inside_interior") then
+        if not self.ininterior and self.inst:HasTag("inside_interior") then
+            self.ininterior = true
+
             self.last_center_ent = room_center_ent
             self.inst:PushEvent("enterinterior_client", {from = last_center_ent, to = room_center_ent})
 
@@ -129,7 +133,9 @@ function InteriorVisitor:OnUpdate()
         end
         self.last_center_ent = nil
 
-        if last_center_ent ~= room_center_ent and not self.inst:HasTag("inside_interior")  then
+        if self.ininterior and not self.inst:HasTag("inside_interior")  then
+            self.ininterior = false
+
             self.inst:PushEvent("leaveinterior_client", {from = last_center_ent, to = nil})
 
             if self.inst.MiniMapEntity then
