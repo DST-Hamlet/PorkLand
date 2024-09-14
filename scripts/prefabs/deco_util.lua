@@ -123,7 +123,7 @@ local function OnBuilt(inst)
     if inst:HasTag("wallsection") then
         local ents = TheSim:FindEntities(x, y, z, 1, {"wallsection"})
         for _, ent in pairs(ents) do
-            if ent ~= inst and not (ent:HasTag("interior_door") and not ent.doorcanberemoved) then
+            if ent ~= inst and not (ent:HasTag("interior_door") and not ent:DoorCanBeRemoved()) then
                smash(ent)
             end
         end

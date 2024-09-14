@@ -1146,6 +1146,8 @@ function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior
     local checked_rooms = {}
     local reached_rooms = 0
 
+    local connected_to_exit = false
+
     local op_dir_str =
     {
         ["north"] = "south",
@@ -1154,9 +1156,9 @@ function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior
         ["west"]  = "east",
     }
 
-    local function DirConnected(current_interior_id, direction)
+    local function WalkRooms(current_interior_id, exclude_direction)
         if current_interior_id == exclude_room_id then
-            return false
+            return
         end
 
         checked_rooms[current_interior_id] = true
@@ -1164,27 +1166,21 @@ function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior
 
         local index_x, index_y = self:GetPlayerRoomIndexByID(house_id, current_interior_id)
         if index_x == 0 and index_y == 0 then
-            return true
+            connected_to_exit = true
         end
 
-        local surrounding_rooms = self:GetConnectedSurroundingPlayerRooms(house_id, current_interior_id, direction)
-        if IsTableEmpty(surrounding_rooms) then
-            return false
-        end
-
+        local surrounding_rooms = self:GetConnectedSurroundingPlayerRooms(house_id, current_interior_id, exclude_direction)
         for next_dir, room_id in pairs(surrounding_rooms) do
             if not checked_rooms[room_id] then
-                local dir_connected = DirConnected(room_id, op_dir_str[next_dir])
-                if dir_connected then
-                    return true
-                elseif not dir_connected and not surrounding_rooms[next_dir] then
-                    return false
-                end
+                WalkRooms(room_id, op_dir_str[next_dir])
             end
         end
     end
+    WalkRooms(interior_id, exclude_dir)
 
-    return DirConnected(interior_id, exclude_dir) and reached_rooms == target_rooms
+    local x, y = self:GetPlayerRoomIndexByID(house_id, interior_id)
+    print("connected_to_exit, reached_rooms, target_rooms", connected_to_exit, reached_rooms, target_rooms, x, y)
+    return connected_to_exit and reached_rooms == target_rooms
 end
 
 

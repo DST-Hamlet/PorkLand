@@ -2637,7 +2637,7 @@ AddStategraphPostInit("wilson", function(sg)
     local _hammer_start_onenter = sg.states["hammer_start"].onenter
     sg.states["hammer_start"].onenter = function(inst, ...)
         local action = inst:GetBufferedAction()
-        if action and action.target:HasTag("interior_door") and action.target:HasTag("house_door") and not action.target:CanBeRemoved() then
+        if action and action.target:HasTag("interior_door") and action.target:HasTag("house_door") and not action.target:DoorCanBeRemoved() then
             inst:ClearBufferedAction()
             inst.components.talker:Say(GetString(inst.prefab, "ANNOUNCE_ROOM_STUCK"))
             inst.sg:GoToState("talk")

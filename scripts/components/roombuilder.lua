@@ -64,8 +64,8 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
     for _, room_data in pairs(surrounding_rooms) do
         local direction = room_data.dir
         local room_id = room_data.id
-        local centre = interior_spawner:GetInteriorCenter(room_id)
-        local x, y, z = centre.Transform:GetWorldPosition()
+        local center = interior_spawner:GetInteriorCenter(room_id)
+        local x, y, z = center.Transform:GetWorldPosition()
         local doors = TheSim:FindEntities(x, y, z, 50, {"predoor"})
         for _, obj in pairs(doors) do
             local op_dir = PLAYER_INTERIOR_EXIT_DIR_DATA[direction] and PLAYER_INTERIOR_EXIT_DIR_DATA[direction].op_dir

@@ -316,14 +316,6 @@ local function OnLoadPostPass(inst)
     inst:AddTag(PLAYER_INTERIOR_EXIT_DIR_DATA[inst.baseanimname].door_tag)
 end
 
-local function CheckForRemoval(inst)
-    local interior_spawner = TheWorld.components.interiorspawner
-    local interiorID = inst:GetCurrentInteriorID()
-    local house_id = interior_spawner:GetPlayerHouseByRoomId(interiorID)
-    inst.door_can_be_removed = interior_spawner:ConnectedToExitAndNoUnreachableRooms(house_id, interiorID, inst.baseanimname)
-    inst.room_can_be_removed = interior_spawner:ConnectedToExitAndNoUnreachableRooms(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
-end
-
 local function OnEntityWake(inst)
     if not inst.checked_obstruction then
         local x, y, z = inst.Transform:GetWorldPosition()
@@ -339,7 +331,6 @@ local function OnEntityWake(inst)
     end
 
     CheckForShadow(inst)
-    CheckForRemoval(inst)
 end
 
 local function OnBuilt(inst)
@@ -447,8 +438,18 @@ local function OnBuilt(inst)
     end
 end
 
-local function CanBeRemoved(inst)
-    return inst.door_can_be_removed and inst.room_can_be_removed
+local function DoorCanBeRemoved(inst)
+    local interior_spawner = TheWorld.components.interiorspawner
+    local interiorID = inst:GetCurrentInteriorID()
+    local house_id = interior_spawner:GetPlayerHouseByRoomId(interiorID)
+    return interior_spawner:ConnectedToExitAndNoUnreachableRooms(house_id, interiorID, inst.baseanimname)
+end
+
+local function RoomCanBeRemoved(inst)
+    local interior_spawner = TheWorld.components.interiorspawner
+    local interiorID = inst:GetCurrentInteriorID()
+    local house_id = interior_spawner:GetPlayerHouseByRoomId(interiorID)
+    return interior_spawner:ConnectedToExitAndNoUnreachableRooms(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
 end
 
 local function MakeHouseDoor(name)
@@ -505,7 +506,8 @@ local function MakeHouseDoor(name)
 
         MakeHauntable(inst)
 
-        inst.CanBeRemoved = CanBeRemoved
+        inst.DoorCanBeRemoved = DoorCanBeRemoved
+        inst.RoomCanBeRemoved = RoomCanBeRemoved
         inst.InitHouseDoor = InitHouseDoor
         inst.initInteriorPrefab = InitHouseDoorInteriorPrefab
         inst.ActivateSelf = ActivateSelf
@@ -516,14 +518,6 @@ local function MakeHouseDoor(name)
         -- Finds obstructions on the way of the new door and deconstructs them
         inst.OnEntityWake = OnEntityWake
         inst.OnBuilt = OnBuilt
-
-        inst:DoTaskInTime(0, CheckForRemoval)
-        inst:ListenForEvent("door_removed", function()
-            CheckForRemoval(inst)
-        end, TheWorld)
-        inst:ListenForEvent("room_removed", function()
-            CheckForRemoval(inst)
-        end, TheWorld)
 
         return inst
     end
