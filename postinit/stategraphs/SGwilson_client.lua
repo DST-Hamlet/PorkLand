@@ -71,6 +71,8 @@ local actionhandlers = {
         return "crop_dust"
     end),
     ActionHandler(ACTIONS.SEARCH_MYSTERY, "dolongaction"),
+    ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
+    ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
 }
 
 local eventhandlers = {
