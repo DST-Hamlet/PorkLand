@@ -1133,7 +1133,7 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
 end
 
 -- function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, exclude_dir, exclude_room_id)
-function InteriorSpawner:AreAllRoomsReachable(house_id, interior_id, exclude_dir, exclude_room_id)
+function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior_id, exclude_dir, exclude_room_id)
     local rooms = self.player_houses[house_id]
     if not rooms then
         return false
@@ -1159,14 +1159,10 @@ function InteriorSpawner:AreAllRoomsReachable(house_id, interior_id, exclude_dir
         checked_rooms[current_interior_id] = true
         reached_rooms = reached_rooms + 1
 
-        if reached_rooms == target_rooms then
+        local index_x, index_y = self:GetPlayerRoomIndexByID(house_id, current_interior_id)
+        if index_x == 0 and index_y == 0 then
             return true
         end
-
-        -- local index_x, index_y = self:GetPlayerRoomIndexByID(house_id, current_interior_id)
-        -- if index_x == 0 and index_y == 0 then
-        --     return true
-        -- end
 
         local surrounding_rooms = self:GetConnectedSurroundingPlayerRooms(house_id, current_interior_id, direction)
         if IsTableEmpty(surrounding_rooms) then
@@ -1185,7 +1181,7 @@ function InteriorSpawner:AreAllRoomsReachable(house_id, interior_id, exclude_dir
         end
     end
 
-    return DirConnected(interior_id, exclude_dir)
+    return DirConnected(interior_id, exclude_dir) and reached_rooms == target_rooms
 end
 
 

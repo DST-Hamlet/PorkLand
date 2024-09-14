@@ -320,8 +320,8 @@ local function CheckForRemoval(inst)
     local interior_spawner = TheWorld.components.interiorspawner
     local interiorID = inst:GetCurrentInteriorID()
     local house_id = interior_spawner:GetPlayerHouseByRoomId(interiorID)
-    inst.door_can_be_removed = interior_spawner:AreAllRoomsReachable(house_id, interiorID, inst.baseanimname)
-    inst.room_can_be_removed = interior_spawner:AreAllRoomsReachable(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
+    inst.door_can_be_removed = interior_spawner:ConnectedToExitAndNoUnreachableRooms(house_id, interiorID, inst.baseanimname)
+    inst.room_can_be_removed = interior_spawner:ConnectedToExitAndNoUnreachableRooms(house_id, interiorID, inst.baseanimname, inst.components.door.target_interior)
 end
 
 local function OnEntityWake(inst)
