@@ -59,10 +59,21 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
 
     local doors_to_activate = {}
     -- Finds all the rooms surrounding the newly built room
-    local surrounding_rooms = interior_spawner:GetSurroundingPlayerRooms(name, ID, PLAYER_INTERIOR_EXIT_DIR_DATA[dir].op_dir)
+    local surrounding_rooms = interior_spawner:GetSurroundingPlayerRooms(house_id, ID, PLAYER_INTERIOR_EXIT_DIR_DATA[dir].op_dir)
     -- Goes through all the adjacent rooms, checks if they have a pre built door and adds them to doors_to_activate
     for _, room_data in pairs(surrounding_rooms) do
-        local direction = room_data.dir
+        local direction
+        local current_x, current_y = interior_spawner:GetPlayerRoomIndexByID(house_id, current_interior.interiorID)
+        if room_data.dir.y > current_y then
+            direction = "north"
+        elseif room_data.dir.y < current_y then
+            direction = "south"
+        elseif room_data.dir.x > current_x then
+            direction = "east"
+        elseif room_data.dir.x < current_x then
+            direction = "west"
+        end
+
         local room_id = room_data.id
         local center = interior_spawner:GetInteriorCenter(room_id)
         local x, y, z = center.Transform:GetWorldPosition()
