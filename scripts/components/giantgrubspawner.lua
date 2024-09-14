@@ -71,8 +71,8 @@ function self:OnSave()
         table.insert(refs.grubs, grub.GUID)
     end
 
-    data.anthill = _anthill.GUID
-    refs.anthill = _anthill.GUID
+    data.anthill = _anthill and _anthill.GUID
+    refs.anthill = _anthill and _anthill.GUID
 
     return data, refs
 end

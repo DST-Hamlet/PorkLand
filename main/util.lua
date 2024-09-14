@@ -365,6 +365,10 @@ function HandleDugGround(dug_ground, x, y, z, ...)
 end
 
 function IsPlayerInAntDisguise(player)
+    if not (player and player:IsValid()) then
+        return false
+    end
+
     return (player.components.inventory and (player.components.inventory:EquipHasTag("antmask") and player.components.inventory:EquipHasTag("antsuit")))
         or (player.replica.inventory and (player.replica.inventory:EquipHasTag("antmask") and player.replica.inventory:EquipHasTag("antsuit")))
         or false
