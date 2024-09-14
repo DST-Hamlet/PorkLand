@@ -1139,7 +1139,10 @@ function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior
         return false
     end
 
-    local target_rooms = GetTableSize(rooms) - 1
+    local target_rooms = GetTableSize(rooms)
+    if exclude_room_id then
+        target_rooms = target_rooms - 1
+    end
     local checked_rooms = {}
     local reached_rooms = 0
 
