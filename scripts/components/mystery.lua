@@ -14,12 +14,12 @@ function Mystery:GenerateReward()
     local mid_tier = {"flint", "goldnugget", "oinc", "oinc10"}
 
     local toy_tier = {}
-    for i=1,NUM_TRINKETS do
-		table.insert(toy_tier, "trinket_" .. tostring(i))
-	end
+    for i = 1, NUM_TRINKETS do
+        table.insert(toy_tier, "trinket_" .. tostring(i))
+    end
 
     local high_tier = {}
-    for i=1,3 do
+    for i = 1, 3 do
         table.insert(high_tier, "relic_" .. tostring(i))
     end
 

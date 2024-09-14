@@ -824,14 +824,14 @@ local states = {
             if inst:HasTag("_sailor") and inst:HasTag("sailing") then
                 inst.sg:AddStateTag("boating")
             end
-			local target = inst.replica.combat:GetTarget()
+            local target = inst.replica.combat:GetTarget()
             inst.sg.statemem.target = target
             inst.replica.combat:StartAttack()
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("speargun")
 
-			if target and target:IsValid() then
-				inst:FacePoint(target.Transform:GetWorldPosition())
+            if target and target:IsValid() then
+                inst:FacePoint(target.Transform:GetWorldPosition())
             end
         end,
 

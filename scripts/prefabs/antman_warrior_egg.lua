@@ -125,11 +125,11 @@ local function fn()
     inst:AddComponent("combat")
     inst.components.combat:SetOnHit(OnHit)
 
-	inst:AddComponent("throwable")
-	inst.components.throwable:SetOnHitFn(OnHitGround)
-	inst.components.throwable.random_angle = 0
-	inst.components.throwable.speed = 3
-	inst.components.throwable.yOffset = 7
+    inst:AddComponent("throwable")
+    inst.components.throwable:SetOnHitFn(OnHitGround)
+    inst.components.throwable.random_angle = 0
+    inst.components.throwable.speed = 3
+    inst.components.throwable.yOffset = 7
     inst.OnRemoveEntity = onremove
 
     inst:ListenForEvent("animover", function (inst)

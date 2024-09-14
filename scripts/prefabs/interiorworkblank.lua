@@ -486,7 +486,7 @@ local function OnLoadPostPass(inst, newents, savedata)
 end
 
 local function generate_uuid(length)
-    local chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    local chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     local uuid = {}
     local random = math.random
 
