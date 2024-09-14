@@ -114,7 +114,11 @@ end
 
 function InteriorVisitor:RecordMap(id, data)
     self.interior_map[id] = data
-    SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString({[id] = data}))
+    if data then
+        SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString({[id] = data}))
+    else
+        SendModRPCToClient(GetClientModRPC("PorkLand", "remove_interior_map"), self.inst.userid, id)
+    end
 end
 
 function InteriorVisitor:ValidateMap()

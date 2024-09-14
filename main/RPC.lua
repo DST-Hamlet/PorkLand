@@ -92,6 +92,13 @@ AddClientModRPCHandler("Porkland", "interior_map", function(data)
     end
 end)
 
+AddClientModRPCHandler("Porkland", "remove_interior_map", function(id)
+    local interiorvisitor = ThePlayer and ThePlayer.replica.interiorvisitor
+    if interiorvisitor then
+        interiorvisitor:RemoveInteriorMapData(id)
+    end
+end)
+
 AddClientModRPCHandler("Porkland", "interior_door", function(data)
     local interiorvisitor = ThePlayer and ThePlayer.replica.interiorvisitor
     if interiorvisitor then

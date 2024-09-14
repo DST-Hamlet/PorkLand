@@ -165,7 +165,13 @@ function InteriorVisitor:OnNewInteriorMapData(data)
     for id, data in pairs(data) do
         self.interior_map[id] = data
     end
-    if self.inst == ThePlayer then
+    self.inst:PushEvent("refresh_interior_minimap")
+end
+
+-- Receiving from remove_interior_map client RPC
+function InteriorVisitor:RemoveInteriorMapData(id)
+    if self.interior_map[id] then
+        self.interior_map[id] = nil
         self.inst:PushEvent("refresh_interior_minimap")
     end
 end

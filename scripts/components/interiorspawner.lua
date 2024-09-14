@@ -1085,10 +1085,10 @@ end
 function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
     assert(TheWorld.ismastersim)
 
-    local pos = self:GetInteriorCenter(room_id):GetPosition()
+    local center = self:GetInteriorCenter(room_id)
+    local x, _, z = center.Transform:GetWorldPosition()
 
-    local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"player"})
-    for _, v in ipairs(ents) do
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"player"})) do
         if exit_pos ~= nil then
             v.Physics:Teleport(exit_pos:Get())
             v:SnapCamera()
@@ -1098,8 +1098,7 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
         end
     end
 
-    ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"_inventoryitem"})
-    for _, v in ipairs(ents) do
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"_inventoryitem"})) do
         if v:HasTag("irreplaceable") then
             SinkEntity(v)
         elseif v.components.workable then
@@ -1114,8 +1113,7 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
         end
     end
 
-    ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"_inventoryitem"})
-    for _, v in ipairs(ents) do
+    for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"_inventoryitem"})) do
         v.Transform:SetPosition(exit_pos:Get())
     end
 
