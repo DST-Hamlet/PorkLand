@@ -14,7 +14,7 @@ GLOBAL.PORKLAND_REQUIRED_PREFABS =
 
     "anthill_exit",
     "anthill_exit",
-    -- "anthill_exit",
+    "anthill",
 
     --"teleportato_hamlet_base",
     --"teleportato_hamlet_box",
