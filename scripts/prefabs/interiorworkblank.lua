@@ -47,7 +47,6 @@ local function SetUp(inst, data)
     inst:SetSize(width, depth)
     inst.height = data.height or inst.height
     inst.search_radius = inst:GetSearchRadius()
-    inst:SetFloorMinimapTex(data.minimaptexture or "mini_floor_wood.tex")
 
     if inst.components.interiorpathfinder then
         inst.components.interiorpathfinder:PopulateRoom()
@@ -68,6 +67,14 @@ local function SetUp(inst, data)
     inst._ambient_sound:set(inst.ambient_sound or "")
     if inst.interiorID then
         TheWorld.components.interiorspawner:AddInteriorCenter(inst)
+    end
+
+    if data.minimaptexture then
+        inst:SetFloorMinimapTex(data.minimaptexture or "mini_floor_wood.tex")
+    else
+        local interior_def = TheWorld.components.interiorspawner:GetInteriorDefine(inst.interiorID) -- 将旧存档中的floor_texture转移到实体上
+        local floor_texture = interior_def and interior_def.minimaptexture or "mini_floor_wood.tex"
+        inst:SetFloorMinimapTex(floor_texture)
     end
 
     local sp = GetSkeletonPositions(width, depth)
@@ -337,8 +344,8 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         end
     end
 
-    -- Fallback to mini_ruins_slab
-    local minimap_floor_texture = inst:GetFloorMinimapTex() or "mini_ruins_slab.tex"
+    -- Fallback to mini_floor_wood
+    local minimap_floor_texture = inst:GetFloorMinimapTex() or "mini_floor_wood.tex"
 
     return {
         uuid = inst.uuid,
@@ -445,6 +452,7 @@ local function OnSave(inst, data)
     data.footstep_tile = inst.footstep_tile
     data.reverb = inst.reverb
     data.ambient_sound = inst.ambient_sound
+    data.minimaptexture = inst:GetFloorMinimapTex()
 
     local doors = {}
     for _, door in ipairs(inst.doors) do
