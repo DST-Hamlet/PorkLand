@@ -192,6 +192,17 @@ local function LoadHoneyFirstTime(inst)
     inst.spawned = true
 end
 
+local function TryTransformToHoney(inst)
+    for index = 1, inst.components.container.numslots do
+        local item = inst.components.container.slots[index]
+        if item and item:IsValid() then
+            if item.prefab == "nectar_pod" and item.components.converter then
+                item.components.converter:DoDelta(0.5)
+            end
+        end
+    end
+end
+
 local function AntOnLoad(inst, data)
     if data and data.spawned then
         inst.spawned = true
@@ -225,8 +236,13 @@ local function RefreshAntChestBuild(inst)
 end
 
 local function ant_perish_rate_multiplier(inst, item)
-    if item.prefab == "nectar_pod" then
-        return 0
+    if item then
+        if item.prefab == "nectar_pod" then
+            return 0
+        end
+        if item.prefab == "honey" then
+            return 0
+        end
     end
 end
 
@@ -240,7 +256,10 @@ local function ant_master_postinit(inst)
     inst.OnSave = AntOnSave
     inst.OnLoad = AntOnLoad
 
+    inst.ents_in_transform = {}
+
     inst:DoTaskInTime(0, LoadHoneyFirstTime)
+    inst:DoPeriodicTask(0, TryTransformToHoney)
     inst:ListenForEvent("itemget", RefreshAntChestBuild)
     inst:ListenForEvent("itemlose", RefreshAntChestBuild)
     RefreshAntChestBuild(inst)
