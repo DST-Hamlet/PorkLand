@@ -41,6 +41,10 @@ local function maintainantpop(inst)
         return
     end
 
+    if inst:IsAsleep() then
+        return
+    end
+
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, FIND_ANT_RADIUS, ANT_TAGS)
     if #ents < MIN_ANT_COUNT then
