@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "Looking to kill something.",
         ANTMAN_WARRIOR_EGG = "The oospore of an abomination.",
         ANTMASKHAT = "The mind that dwelt within is long gone.",
+        ANTQUEEN = "The empty life of an aristocrat has made her irate.",
         ANTQUEEN_CHAMBERS = "A gilded cage.",
         ANTQUEEN_THRONE = "There are mysteries hidden within there.",
         ANTSUIT = "As hollow as my heart.",
@@ -258,6 +259,7 @@ return {
         },
         GASCLOUD = "A cloud of death.",
         GASMASKHAT = "It filters air but not despair.",
+        GIANTGRUB = "It thinks only of destruction.",
         GLOWFLY = {
             DEAD = "Its light hath been extinguished forever.",
             GENERIC = "A small light in a dark world.",

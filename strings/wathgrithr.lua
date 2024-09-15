@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "Let us do battle!",
         ANTMAN_WARRIOR_EGG = "A tiny warrior hides within.",
         ANTMASKHAT = "My helm would have sufficed.",
+        ANTQUEEN = "Your royal status means nothing to me!",
         ANTQUEEN_CHAMBERS = "Pales in comparison to the halls of Valhalla.",
         ANTQUEEN_THRONE = "It will be plundered!",
         ANTSUIT = "An armor not worthy of a shieldmaiden!",
@@ -263,6 +264,7 @@ return {
         },
         GASCLOUD = "Noxious fumes. I will leave them be!",
         GASMASKHAT = "Poisonous air will not consume me!!",
+        GIANTGRUB = "It will give me a battle!",
         GLOWFLY = {
             DEAD = "Alas, it is dead.",
             GENERIC = "Fly free, small friend.",

@@ -84,6 +84,7 @@ return {
         ANTMAN_WARRIOR = "Aggh! Leave me alone!",
         ANTMAN_WARRIOR_EGG = "Hope it stays in that egg.",
         ANTMASKHAT = "Sorry bug-dude.",
+        ANTQUEEN = "Yeesh. She really needs to chill-out.",
         ANTQUEEN_CHAMBERS = "Is there a bed in there?",
         ANTQUEEN_THRONE = "I think there's stuff stuck in there.",
         ANTSUIT = "Nice threads!",
@@ -263,6 +264,7 @@ return {
         },
         GASCLOUD = "Harsh.",
         GASMASKHAT = "Out with the bad air, in with the good.",
+        GIANTGRUB = "Yeesh. That guy needs to chill out.",
         GLOWFLY = {
             DEAD = "I wish it hadn't died.",
             GENERIC = "I could lay down and watch them all night.",

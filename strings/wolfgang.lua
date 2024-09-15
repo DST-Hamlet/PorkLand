@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "Wolfgang smash mighty Bug Man!",
         ANTMAN_WARRIOR_EGG = "Is baby soldier bug.",
         ANTMASKHAT = "Make Wolfgang look like Bug Man.",
+        ANTQUEEN = "Is big strong bug woman.",
         ANTQUEEN_CHAMBERS = "Fancy bug place.",
         ANTQUEEN_THRONE = "Stuff hiding in there.",
         ANTSUIT = "Wolfgang just want to fit in.",
@@ -258,6 +259,7 @@ return {
         },
         GASCLOUD = "Wolfgang stay away.",
         GASMASKHAT = "Is good for Wolfgang lungs.",
+        GIANTGRUB = "Not as mighty as Wolfgang.",
         GLOWFLY = {
             DEAD = "Light bug is lights out.",
             GENERIC = "Is light bug.",

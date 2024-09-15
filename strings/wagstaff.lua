@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "Fascinating! An infantry class of humanoid hexapod invertebrates!",
         ANTMAN_WARRIOR_EGG = "Fascinating! They appear to hatch with a predisposition to violence.",
         ANTMASKHAT = "Evidently it masks my human scent as well.",
+        ANTQUEEN = "Fascinatingly vicious! She deserves more study.",
         ANTQUEEN_CHAMBERS = "Evidence would suggest it's a room of some importance.",
         ANTQUEEN_THRONE = "Theoretically, the queen would be sitting on a reserve of valuables.",
         ANTSUIT = "What a wonderful way to infiltrate a suspicious society.",
@@ -263,6 +264,7 @@ return {
         },
         GASCLOUD = "A cloud of toxic chemicals. Intriguing!",
         GASMASKHAT = "It appears that those ocular plumes are great at air filtration.",
+        GIANTGRUB = "It appears to have a contentious relationship with the humanoid hexapod invertebrates.",
         GLOWFLY = {
             DEAD = "Cadaverous.",
             GENERIC = "The luminous oculus on this pterygota is inspiring!",

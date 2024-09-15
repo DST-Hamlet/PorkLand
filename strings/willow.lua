@@ -83,6 +83,7 @@ return {
         ANTMAN_WARRIOR = "Yeesh. What are you so angry about?",
         ANTMAN_WARRIOR_EGG = "A baby jerk.",
         ANTMASKHAT = "This is the nastiest thing I've ever made.",
+        ANTQUEEN = "Ugh. Ugly.",
         ANTQUEEN_CHAMBERS = "Am I supposed to be impressed.",
         ANTQUEEN_THRONE = "There's stuff in there I can steal.",
         ANTSUIT = "This is the worst.",
@@ -263,6 +264,7 @@ return {
         },
         GASCLOUD = "Ugh. That looks deadly. And not in a good way.",
         GASMASKHAT = "Cuts down on the coughing.",
+        GIANTGRUB = "Likes destroying things as much as I do.",
         GLOWFLY = {
             DEAD = "Squashed.",
             GENERIC = "Looks slimy.",
