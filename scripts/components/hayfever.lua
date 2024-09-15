@@ -84,6 +84,14 @@ function Hayfever:DoSneezeEffects()
             end
         end
     end
+
+    if self.sneezed or math.random() > 0.7 then
+        self.sneezed = false
+        self.nextsneeze = self:GetNextSneezTime()
+    else
+        self.sneezed = true
+        self.nextsneeze = 1
+    end
 end
 
 function Hayfever:OnUpdate(dt)
@@ -97,15 +105,11 @@ function Hayfever:OnUpdate(dt)
         elseif self.nextsneeze <= 0 then
             if not self.inst.sg.wantstosneeze then
                 -- large chance to sneeze twice in a row
-                if self.sneezed or math.random() > 0.7 then
-                    self.sneezed = false
-                    self.nextsneeze = self:GetNextSneezTime()
-                else
-                    self.sneezed = true
-                    self.nextsneeze = 1
-                end
-
                 self.inst:PushEvent("sneeze")
+
+                if self.inst.components.health:IsInvincible() then -- 测试时的上帝模式不打喷嚏
+                    self.nextsneeze = self:GetNextSneezTime()
+                end
             end
         else
             self.nextsneeze = self.nextsneeze - dt
