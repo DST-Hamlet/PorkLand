@@ -95,7 +95,9 @@ local function OnLoadPostPass(inst, ents, data)
     if data.queen_guid and ents[data.queen_guid] then
         inst.queen = ents[data.queen_guid].entity
         inst:ListenForEvent("death", function(warrior, data)
-            inst.queen.WarriorKilled()
+            if inst.queen and inst.queen:IsValid() then
+                inst.queen:WarriorKilled()
+            end
         end)
     end
 

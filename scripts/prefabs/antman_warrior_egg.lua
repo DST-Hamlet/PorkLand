@@ -29,7 +29,9 @@ local function dohatch(inst, hatch_time)
 
             if warrior.queen then
                 warrior:ListenForEvent("death", function(warrior, data)
-                    warrior.queen:WarriorKilled()
+                    if warrior.queen and warrior.queen:IsValid() then
+                        warrior.queen:WarriorKilled()
+                    end
                 end)
             end
         end)
@@ -61,7 +63,9 @@ end
 local function OnHit(inst)
     if inst.components.health:IsDead() then
         inst.AnimState:PlayAnimation("break")
-        inst.queen:WarriorKilled()
+        if inst.queen and inst.queen:IsValid() then
+            inst.queen:WarriorKilled()
+        end
         onremove(inst)
     elseif not inst.components.health:IsInvincible() then
         inst.AnimState:PlayAnimation("hit", false)
@@ -77,7 +81,9 @@ end
 local function OnLoadPostPass(inst, ents, data)
     if data.queen_guid and ents[data.queen_guid] then
         local queen = ents[data.queen_guid].entity
-        queen.WarriorKilled()
+        if inst.queen and inst.queen:IsValid() then
+            inst.queen:WarriorKilled()
+        end
     end
 
     inst:Remove()

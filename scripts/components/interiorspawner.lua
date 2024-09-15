@@ -328,6 +328,10 @@ function InteriorSpawner:GetDirByLabel(label)
 end
 
 function InteriorSpawner:AddDoor(door, def)
+    if not def.my_door_id then
+        print("WARNING: def.my_door_id is nil when AddDoor")
+        return
+    end
     self.doors[def.my_door_id] = {
         inst = door,
         my_interior_name = def.my_interior_name,
