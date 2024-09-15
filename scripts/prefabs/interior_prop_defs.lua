@@ -356,7 +356,8 @@ PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPr
                     bank = "ant_cave_door",
                     build = "ant_cave_door",
                     anim = "day_loop",
-                    light = true
+                    light = true,
+                    background = true,
                 },
                 is_exit = true,
                 my_door_id = "ANTHILL_" .. doorway_count .. "_EXIT",
@@ -457,6 +458,7 @@ PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chambe
                 bank = "ant_cave_door",
                 build = "ant_cave_door",
                 anim = "north",
+                background = true,
             },
             my_door_id = FROM_STRING .. queen_chamber_ids[i], -- door connecting from chamber [i](this room) to chamber [i + 1](next room)
             target_door_id = TO_STRING .. queen_chamber_ids[i + 1],

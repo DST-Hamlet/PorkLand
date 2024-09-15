@@ -88,7 +88,7 @@ local function ConnectRooms(dirIndex, room_from, room_to)
         build = "ant_cave_door",
         room  = room_from.id,
         sg_name = "SGanthilldoor_" .. dir_names[dirIndex],
-        startstate = "idle_" .. dir_names[dirIndex],
+        startstate = "idle",
     }
 
     room_to.exits[dirs_opposite[dirIndex]] = {
@@ -97,7 +97,7 @@ local function ConnectRooms(dirIndex, room_from, room_to)
         build = "ant_cave_door",
         room  = room_to.id,
         sg_name = "SGanthilldoor_" .. dirNamesOpposite[dirIndex],
-        startstate = "idle_" .. dirNamesOpposite[dirIndex],
+        startstate = "idle",
     }
 end
 
@@ -328,16 +328,16 @@ local function SetCurrentDoorHiddenStatus(door, show, direction)
     if show and door.components.door.hidden then
         if isaleep then
             door.components.door:SetHidden(false)
-            door.sg:GoToState("idle_" .. direction)
+            door.sg:GoToState("idle")
         else
-            door.sg:GoToState("open_" .. direction)
+            door.sg:GoToState("open")
         end
     elseif not show and not door.components.door.hidden then
         if isaleep then
             door.components.door:SetHidden(true)
-            door.sg:GoToState("idle_" .. direction)
+            door.sg:GoToState("idle")
         else
-            door.sg:GoToState("shut_" .. direction)
+            door.sg:GoToState("shut")
         end
     end
 end
@@ -532,16 +532,16 @@ local function makefn(is_entrance)
         inst:AddComponent("door")
         inst.components.door.outside = true
 
-        if is_entrance then
-            inst:DoTaskInTime(0, CreateInterior)
-            inst:DoPeriodicTask(TUNING.TOTAL_DAY_TIME / 3, inst.GenerateMaze)
-        end
-
         MakeSnowCovered(inst, 0.01)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
         inst.GenerateMaze = GenerateMaze
+
+        if is_entrance then
+            inst:DoTaskInTime(0, CreateInterior)
+            inst:DoPeriodicTask(TUNING.TOTAL_DAY_TIME / 3, inst.GenerateMaze)
+        end
 
         return inst
     end

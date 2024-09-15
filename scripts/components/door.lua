@@ -185,17 +185,29 @@ function Door:SetDoorDisabled(status, cause)
     end
 end
 
+function Door:GetShadow()
+    if not self.shadow and self.inst:HasTag("door_south") then
+        local x, y, z = self.inst.Transform:GetWorldPosition()
+        local shadows = TheSim:FindEntities(x, y, z, 2, {"door_shadow"})
+        for i, v in ipairs(shadows) do
+            self.shadow = v
+            break
+        end
+    end
+    return self.shadow
+end
+
 function Door:UpdateDoorVis()
     if not self.inst:IsInLimbo() then
         if self.hidden then
             self.inst:Hide()
-            if self.inst.shadow then
-                self.inst.shadow:Hide()
+            if self:GetShadow() then
+                self:GetShadow():Hide()
             end
         else
             self.inst:Show()
-            if self.inst.shadow then
-                self.inst.shadow:Show()
+            if self:GetShadow() then
+                self:GetShadow():Show()
             end
         end
     end
@@ -203,6 +215,7 @@ end
 
 function Door:SetHidden(hidden)
     self.hidden = hidden
+    self:UpdateDoorVis()
 end
 
 function Door:OnSave()

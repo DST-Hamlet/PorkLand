@@ -240,7 +240,9 @@ local function OnLoad(inst, data)
     if data.rotation and inst.components.rotatingbillboard == nil then
         inst.Transform:SetRotation(data.rotation)
     end
-    if data.door_data_background then
+    if data.door_data_background
+        or (data.door_data_animstate and data.door_data_animstate == "day_loop") then -- 第二个条件用于旧存档兼容
+
         inst.AnimState:SetLayer(LAYER_BACKGROUND)
         inst.AnimState:SetSortOrder(3)
         inst.door_data_background = data.door_data_background
@@ -311,6 +313,16 @@ local function OnLoad(inst, data)
             inst.opentask = nil
         end
         inst.opentask, inst.opentaskinfo = inst:ResumeTask(data.opentimeleft, function() inst:PushEvent("open") end)
+    end
+
+    if inst.components.door then -- 针对旧存档的兼容
+        inst.components.door:UpdateDoorVis()
+        local shadow = inst.components.door:GetShadow()
+        if shadow then
+            shadow.door_data_bank = inst.door_data_bank
+            shadow.door_data_build = inst.door_data_build
+            shadow.door_data_animstate = "south_floor"
+        end
     end
 end
 
@@ -402,6 +414,26 @@ local function GetMinimapIcon(inst)
     return inst._minimap_name:value()
 end
 
+local function OnEntitySleep(inst)
+    if inst.sg:HasStateTag("moving") then
+        door.components.door:SetHidden(false)
+        door.sg:GoToState("idle")
+    elseif inst.sg:HasStateTag("shut") then
+        door.components.door:SetHidden(true)
+        door.sg:GoToState("idle")
+    end
+end
+
+local function OnEntityWake(inst)
+    if inst.sg:HasStateTag("moving") then
+        door.components.door:SetHidden(false)
+        door.sg:GoToState("idle")
+    elseif inst.sg:HasStateTag("shut") then
+        door.components.door:SetHidden(true)
+        door.sg:GoToState("idle")
+    end
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -416,6 +448,8 @@ local function fn()
     inst.AnimState:SetBank("acorn")
     inst.AnimState:SetBuild("acorn")
     inst.AnimState:PlayAnimation("idle")
+
+    inst.AnimState:SetSortOrder(4)
 
     inst.Light:Enable(false)
 
@@ -472,6 +506,10 @@ end
 local function InitInteriorPrefab_shadow(inst, doer, prefab_definition, interior_definition)
     --If we are spawned inside of a building, then update our door to point at our interior
 
+    if not prefab_definition then
+        return
+    end
+
     if prefab_definition.animdata then
         if prefab_definition.animdata.bank then
             inst.AnimState:SetBank(prefab_definition.animdata.bank)
@@ -490,6 +528,19 @@ local function InitInteriorPrefab_shadow(inst, doer, prefab_definition, interior
     end
 end
 
+local function ShadowOnSave(inst, data)
+    data.animdata =
+    {
+        bank = inst.door_data_bank,
+        build = inst.door_data_build,
+        anim = inst.door_data_animstate,
+    }
+end
+
+local function ShadowOnLoad(inst, data)
+    InitInteriorPrefab_shadow(inst, nil, data, nil)
+end
+
 local function shadowfn()
     local inst = CreateEntity()
 
@@ -502,12 +553,16 @@ local function shadowfn()
 
     inst:AddTag("NOCLICK")  -- Note for future self: Was commented out, but not sure why.. if it's not there, the shadow eats the click on the door.
     inst:AddTag("NOBLOCK")
+    inst:AddTag("door_shadow")
     inst.initInteriorPrefab = InitInteriorPrefab_shadow
 
     inst:AddTag("SELECT_ME")
 
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(3)
+
+    inst.OnSave = ShadowOnSave
+    inst.OnLoad = ShadowOnLoad
     return inst
 end
 
