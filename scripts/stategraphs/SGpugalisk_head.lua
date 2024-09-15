@@ -219,7 +219,7 @@ local states =
 
     State{
         name = "hit",
-        tags = {"canrotate"},
+        tags = {"busy", "hit", "canrotate"},
 
         onenter = function(inst, start_anim)
             inst.Physics:Stop()
