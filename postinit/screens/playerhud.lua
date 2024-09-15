@@ -25,6 +25,7 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.poisonover = self.overlayroot:AddChild(PoisonOver(owner))
 
     self.fogover = self.overlayroot:AddChild(FogOver(owner))
+    self.fogover:MoveToBack()
     self.fogover:Hide()
 
     self.pollenover = self.overlayroot:AddChild(PollenOver(owner))
