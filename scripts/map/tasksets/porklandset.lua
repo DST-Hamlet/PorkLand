@@ -24,6 +24,10 @@ GLOBAL.PORKLAND_REQUIRED_PREFABS =
 
     "ancient_robot_ribs",
     "ancient_robot_head",
+    "ancient_robot_claw",
+    "ancient_robot_claw",
+    "ancient_robot_leg",
+    "ancient_robot_leg",
 }
 
 AddTaskSet("porkland", {
