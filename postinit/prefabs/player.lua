@@ -221,15 +221,25 @@ AddPlayerPostInit(function(inst)
         ["atk"] = "atk_old",
     }
 
+    local wilson_bank_hash = inst.AnimState:GetBankHash()
+
     local _AnimState = inst.AnimState
     local AnimState = setmetatable({}, {__index = function(t, k)
         if k == "PlayAnimation" then
             return function(t, animname, ...)
-                return _AnimState:PlayAnimation(REPLACE_ANIMS[animname] or animname, ...)
+                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
+                    return _AnimState:PlayAnimation(REPLACE_ANIMS[animname], ...)
+                else
+                    return _AnimState:PlayAnimation(animname, ...)
+                end
             end
         elseif k == "PushAnimation" then
             return function(t, animname, ...)
-                return _AnimState:PushAnimation(REPLACE_ANIMS[animname] or animname, ...)
+                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
+                    return _AnimState:PushAnimation(REPLACE_ANIMS[animname], ...)
+                else
+                    return _AnimState:PushAnimation(animname, ...)
+                end
             end
         end
 
