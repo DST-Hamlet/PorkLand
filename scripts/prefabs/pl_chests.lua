@@ -197,7 +197,7 @@ local function TryTransformToHoney(inst)
         local item = inst.components.container.slots[index]
         if item and item:IsValid() then
             if item.prefab == "nectar_pod" and item.components.converter then
-                item.components.converter:DoDelta(0.5)
+                item.components.converter:DoDelta(1 / TUNING.TOTAL_DAY_TIME * 0.1)
             end
         end
     end
@@ -259,7 +259,7 @@ local function ant_master_postinit(inst)
     inst.ents_in_transform = {}
 
     inst:DoTaskInTime(0, LoadHoneyFirstTime)
-    inst:DoPeriodicTask(0, TryTransformToHoney)
+    inst:DoPeriodicTask(1, TryTransformToHoney)
     inst:ListenForEvent("itemget", RefreshAntChestBuild)
     inst:ListenForEvent("itemlose", RefreshAntChestBuild)
     RefreshAntChestBuild(inst)

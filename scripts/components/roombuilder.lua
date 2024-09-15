@@ -58,8 +58,8 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
     interior_spawner:RegisterPlayerRoom(house_id, ID, current_interior.interiorID, interior_spawner:GetDirByLabel(dir))
 
     local doors_to_activate = {}
-    -- Finds all the rooms surrounding the newly built room
-    local surrounding_rooms = interior_spawner:GetSurroundingPlayerRooms(house_id, ID, PLAYER_INTERIOR_EXIT_DIR_DATA[dir].op_dir)
+    -- Finds all the rooms surrounding the newly built room -- 暂时注释了这部分，因为算法有误
+    local surrounding_rooms = {} -- interior_spawner:GetSurroundingPlayerRooms(house_id, ID, PLAYER_INTERIOR_EXIT_DIR_DATA[dir].op_dir)
     -- Goes through all the adjacent rooms, checks if they have a pre built door and adds them to doors_to_activate
     for _, room_data in pairs(surrounding_rooms) do
         local direction
