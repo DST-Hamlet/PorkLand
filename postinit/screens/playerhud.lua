@@ -39,12 +39,13 @@ function PlayerHud:CreateOverlays(owner, ...)
     self.inst:ListenForEvent("livingartifactoveroff", function(inst, data) self.livingartifactover:TurnOff() end, self.owner)
     self.inst:ListenForEvent("livingartifactoverpulse", function(inst, data) self.livingartifactover:Flash(data) end, self.owner)
 
-    self.inst:ListenForEvent("sanity_stun", function(inst, data) self:GoInsane() end, self.owner)
-    self.inst:ListenForEvent("sanity_stun_over", function(inst, data)
-        if self.owner.replica.sanity:IsSane() then
-            self:GoSane()
-        end
-    end, self.owner)
+    -- 亚丹: 暂时注释掉这一部分, 因为太屎山了
+    -- self.inst:ListenForEvent("sanity_stun", function(inst, data) self:GoInsane() end, self.owner)
+    -- self.inst:ListenForEvent("sanity_stun_over", function(inst, data)
+        -- if self.owner.replica.sanity:IsSane() then
+            -- self:GoSane()
+        -- end
+    -- end, self.owner)
 end
 
 local _UpdateClouds = PlayerHud.UpdateClouds

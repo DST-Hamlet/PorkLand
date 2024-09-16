@@ -193,10 +193,10 @@ local eventhandlers = {
         end
     end),
     -- Happens when the Ant Queen uses her song attack
-    EventHandler ("sanity_stun",
+    EventHandler("sanity_stun",
     function(inst, data)
         for k, v in pairs(inst.components.inventory.equipslots) do
-            if v:HasTag("earmuffshat") then
+            if v:HasTag("earmuff") then
                 return
             end
         end
