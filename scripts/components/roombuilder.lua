@@ -58,28 +58,27 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
     interior_spawner:RegisterPlayerRoom(house_id, ID, current_interior.interiorID, interior_spawner:GetDirByLabel(dir))
 
     local doors_to_activate = {}
-    -- Finds all the rooms surrounding the newly built room -- 暂时注释了这部分，因为算法有误
-    local surrounding_rooms = {} -- interior_spawner:GetSurroundingPlayerRooms(house_id, ID, PLAYER_INTERIOR_EXIT_DIR_DATA[dir].op_dir)
+    -- Finds all the rooms surrounding the newly built room
+    local surrounding_rooms = interior_spawner:GetSurroundingPlayerRooms(house_id, ID)
     -- Goes through all the adjacent rooms, checks if they have a pre built door and adds them to doors_to_activate
     for _, room_data in pairs(surrounding_rooms) do
         local direction
-        local current_x, current_y = interior_spawner:GetPlayerRoomIndexByID(house_id, current_interior.interiorID)
-        if room_data.dir.y > current_y then
+        if room_data.dir.y == interior_spawner:GetNorth().y then
             direction = "north"
-        elseif room_data.dir.y < current_y then
+        elseif room_data.dir.y == interior_spawner:GetSouth().y then
             direction = "south"
-        elseif room_data.dir.x > current_x then
+        elseif room_data.dir.x == interior_spawner:GetEast().x then
             direction = "east"
-        elseif room_data.dir.x < current_x then
+        elseif room_data.dir.x == interior_spawner:GetWest().x then
             direction = "west"
         end
 
         local room_id = room_data.id
         local center = interior_spawner:GetInteriorCenter(room_id)
         local x, y, z = center.Transform:GetWorldPosition()
-        local doors = TheSim:FindEntities(x, y, z, 50, {"predoor"})
+        local doors = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"predoor"})
         for _, obj in pairs(doors) do
-            local op_dir = PLAYER_INTERIOR_EXIT_DIR_DATA[direction] and PLAYER_INTERIOR_EXIT_DIR_DATA[direction].op_dir
+            local op_dir = direction and PLAYER_INTERIOR_EXIT_DIR_DATA[direction].op_dir
             if obj.baseanimname == op_dir then
                 room_exits[PLAYER_INTERIOR_EXIT_DIR_DATA[op_dir].opposing_exit_dir] = {
                     target_room = room_id,
