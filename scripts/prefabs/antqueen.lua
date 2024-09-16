@@ -55,11 +55,10 @@ end
 
 local function SpawnWarrior(inst)
 
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local x, _, z = inst.Transform:GetWorldPosition()
     local random_offset = spawn_positions[math.random(1, #spawn_positions)]
 
     local tx = x + random_offset.x + math.random(-1.5, 1.5)
-    local ty = 0
     local tz = z + random_offset.z + math.random(-1.5, 1.5)
 
     local egg = SpawnPrefab("antman_warrior_egg")

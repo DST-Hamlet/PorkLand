@@ -66,7 +66,6 @@ function Hayfever:DoSneezeEffects()
     -- cause player to drop stuff here.
     local itemstodrop = 0
 
-    local rand = math.random()
     if math.random() < 0.1 then
         itemstodrop = 4
     elseif math.random() < 0.6 then
