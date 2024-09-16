@@ -12,7 +12,7 @@ local function OnUnequip(inst, owner)
     owner.AnimState:ClearOverrideSymbol("swap_body")
     inst.components.fueled:StopConsuming()
     if owner.components.leader then
-        owner:DoTaskInTime(0, function() -- in case of equipment swapping 
+        owner:DoTaskInTime(0, function() -- in case of equipment swapping
             if not IsPlayerInAntDisguise(owner) then
                 owner.components.leader:RemoveFollowersByTag("ant")
             end
@@ -21,16 +21,14 @@ local function OnUnequip(inst, owner)
 end
 
 local function FueledUpdateFn(inst)
-    inst.components.armor:SetPercent(inst.components.fueled:GetPercent())
+    inst.components.armor:SetPercent(math.min(inst.components.fueled:GetPercent(), inst.components.armor:GetPercent()))
 end
 
 local function OnTakenDamage(inst, damage_amount)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/antsuit/hit")
 
     if inst.components.fueled then
-        local percent = inst.components.fueled:GetPercent()
-        local new_percent = percent - (damage_amount * inst.components.armor.absorb_percent / inst.components.armor.maxcondition)
-        inst.components.fueled:SetPercent(new_percent)
+        inst.components.fueled:SetPercent(math.min(inst.components.fueled:GetPercent(), inst.components.armor:GetPercent()))
     end
 end
 
@@ -75,6 +73,7 @@ local function fn()
 
     inst:AddComponent("fueled")
     inst.components.fueled.fueltype = FUELTYPE.USAGE
+    inst.components.fueled.no_sewing = true
     inst.components.fueled:InitializeFuelLevel(TUNING.ANTSUIT_PERISHTIME)
     inst.components.fueled:SetDepletedFn(inst.Remove)
     inst.components.fueled:SetUpdateFn(FueledUpdateFn)

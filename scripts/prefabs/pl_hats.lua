@@ -634,7 +634,7 @@ local function MakeHat(name)
     local function antmask_onunequip(inst, owner)
         _onunequip(inst, owner)
         if owner.components.leader then
-            owner:DoTaskInTime(0, function() -- in case of equipment swapping 
+            owner:DoTaskInTime(0, function() -- in case of equipment swapping
                 if not IsPlayerInAntDisguise(owner) then
                     owner.components.leader:RemoveFollowersByTag("ant")
                 end
@@ -669,6 +669,7 @@ local function MakeHat(name)
 
         inst:AddComponent("fueled")
         inst.components.fueled.fueltype = FUELTYPE.USAGE
+        inst.components.fueled.no_sewing = true
         inst.components.fueled:InitializeFuelLevel(TUNING.ANTMASKHAT_PERISHTIME)
         inst.components.fueled:SetDepletedFn(inst.Remove)
         inst.components.fueled:SetUpdateFn(antmask_onupdate)

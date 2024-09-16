@@ -13,9 +13,9 @@ local function MakeVegStats(seedweight, hunger, health, perish_time, sanity, coo
     }
 end
 
-local COMMON = 3
--- local UNCOMMON = 1
--- local RARE = .5
+local COMMON = TUNING.SEED_CHANCE_COMMON
+local UNCOMMON = TUNING.SEED_CHANCE_UNCOMMON
+local RARE = TUNING.SEED_CHANCE_RARE
 
 local SEEDLESS =
 {

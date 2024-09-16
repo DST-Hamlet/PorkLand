@@ -331,6 +331,7 @@ Assets = {
 
     -- replace_anim
     Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),
+    Asset("ANIM", "anim/replace_anim/player_hits_old.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),

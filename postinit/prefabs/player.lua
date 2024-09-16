@@ -219,6 +219,8 @@ AddPlayerPostInit(function(inst)
         ["atk_pre"] = "atk_pre_old",
         ["atk_lag"] = "atk_lag_old",
         ["atk"] = "atk_old",
+        ["hit"] = "hit_old",
+        ["hit_goo"] = "hit_goo_old",
     }
 
     local wilson_bank_hash = inst.AnimState:GetBankHash()
