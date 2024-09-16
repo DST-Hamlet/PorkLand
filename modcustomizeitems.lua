@@ -63,7 +63,7 @@ local pl_customize_table = {  -- we customize
     },
 }
 
-local custonsiz_items = {  -- add in dst custonsiz
+local customize_items = {  -- add in dst customize
     [LEVELCATEGORY.WORLDGEN] = {
         ["global"] = {  -- global is keywords
             porkland_season_start = {image = "season_start.tex", options_remap = {img = "blank_season_red.tex", atlas = worldgen_item_atlas}, desc = season_start_descriptions, master_controlled = true, order = 2}
@@ -129,7 +129,7 @@ local custonsiz_items = {  -- add in dst custonsiz
     }
 }
 
-local change_items = {  -- change dst custonsiz settings
+local change_items = {  -- change dst customize settings
     worldgen = {
         resources = {"rock", "sapling", "grass", "flowers", "reeds", "mushroom"},
         misc = {"task_set", "world_size", "boons"},
@@ -153,7 +153,7 @@ end
 
 local WORLDGEN_GROUP = ToolUtil.GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
 local WORLDSETTINGS_GROUP = ToolUtil.GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
-for category, category_data in pairs(change_items) do  -- use dst custonsiz settings for porkland
+for category, category_data in pairs(change_items) do  -- use dst customize settings for porkland
     local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
     for group, items in pairs(category_data) do
         for _, item in ipairs(items) do
@@ -162,7 +162,7 @@ for category, category_data in pairs(change_items) do  -- use dst custonsiz sett
     end
 end
 
-local delete_items = {  -- change dst custonsiz settings
+local delete_items = {  -- change dst customize settings
     worldgen = {
         global = {"season_start"}
     },
@@ -197,7 +197,7 @@ for name, data in pairs(pl_customize_table) do  -- add our customize
     add_group_and_item(data.category, name, data.text, data.desc, data.atlas, data.order, data.items)
 end
 
-for category, category_data in pairs(custonsiz_items) do  -- -- add to dst custonsiz
+for category, category_data in pairs(customize_items) do  -- -- add to dst customize
     for group, group_data in pairs(category_data) do
         for item, data in pairs(group_data) do
             local name = item

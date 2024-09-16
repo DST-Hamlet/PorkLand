@@ -397,7 +397,7 @@ applyoverrides_pre.pigbandit = function(difficulty)
             PIG_BANDIT_ENABLED = false,
         },
         rare = {
-            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 0,5,
+            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 0.5,
         },
         --[[
         default = {
