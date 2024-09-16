@@ -61,6 +61,7 @@ local component_posts = {
     "seasons",
     "shard_clock",
     "shard_seasons",
+    "skinner",
     "sleeper",
     "spawner",
     "strafer",

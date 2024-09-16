@@ -20,7 +20,14 @@ end
 local function LoadPlayerData(player, data)
     player.AnimState:ClearOverrideBuild("living_suit_build_morph")
     player.AnimState:SetBuild(data.build)
-    player.components.skinner:SetSkinMode("normal_skin")
+    if player.components.skinner:GetSkinMode() == "living_suit" then
+        player.components.skinner:SetSkinMode("normal_skin")
+    else
+        -- We blocked animation change on ironlord form,
+        -- actually apply it here
+        -- Also see postinit/components/skinner.lua
+        player.components.skinner:SetSkinMode()
+    end
 
     player.components.health.redirect = data.health_redirect
 
@@ -145,18 +152,18 @@ local function Revert(inst)
 
     local player = inst.player
 
-    player.AnimState:ClearOverrideBuild("living_suit_build")
-    player.AnimState:Show("beard")
-    LoadPlayerData(player, inst.player_data)
-
-    player.SoundEmitter:KillSound("chargedup")
-
     player:RemoveTag("ironlord")
     player:RemoveTag("laser_immune")
     player:RemoveTag("mech")
     player:RemoveTag("fireimmune")
     player:RemoveTag("poisonimmune")
     player:RemoveTag("has_gasmask")
+
+    player.AnimState:ClearOverrideBuild("living_suit_build")
+    player.AnimState:Show("beard")
+    LoadPlayerData(player, inst.player_data)
+
+    player.SoundEmitter:KillSound("chargedup")
 
     player.player_classified.isironlord:set(false)
     player.components.inventory:Show()
