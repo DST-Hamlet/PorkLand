@@ -102,7 +102,7 @@ function Hayfever:OnUpdate(dt)
                 self.nextsneeze = self.nextsneeze - dt
             end
         elseif self.nextsneeze <= 0 then
-            if not self.inst.sg.wantstosneeze then
+            if not self.inst.sg:HasStateTag("sneeze") then
                 -- large chance to sneeze twice in a row
                 self.inst:PushEvent("sneeze")
 
