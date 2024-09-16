@@ -5,9 +5,7 @@ body:
   - type: textarea
     id: what-happened
     attributes:
-      label: |-
-        What happened?
-        发生了什么？
+      label: What happened? 发生了什么？
       description: |-
         Also tell us, what did you expect to happen? And how to reproduce if possible
         也请告诉我们你觉得怎么样是对的，如果可以的话也请告诉我们怎么复现
@@ -17,9 +15,7 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: |-
-        Relevant log output
-        相关的日志
+      label: Relevant log output 相关的日志
       description: |-
         If it's a crash, copy and paste in the log here, this will be automatically formatted into code, so no need for backticks.
         如果是个崩溃，把日志复制粘贴到这里，日志会自动转成代码格式，不需要额外加 `
