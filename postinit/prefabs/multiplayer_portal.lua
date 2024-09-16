@@ -5,10 +5,6 @@ AddPrefabPostInit("multiplayer_portal", function(inst)
     inst.AnimState:SetBank("portal_dst_classic")
     inst.AnimState:SetBuild("portal_dst_classic")
 
-    if not TheWorld.ismastersim then
-        return
-    end
-
     inst.sounds = {
         idle_loop = nil,
         idle = "dontstarve/common/spawn/spawnportal_idle",
@@ -26,4 +22,8 @@ AddPrefabPostInit("multiplayer_portal", function(inst)
         transmute_pre = nil,
         transmute =nil,
     }
+
+    if not TheWorld.ismastersim then
+        return
+    end
 end)
