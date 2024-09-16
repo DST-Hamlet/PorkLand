@@ -154,6 +154,9 @@ end
 
 -- Returns the interiorID of the room this entity is in
 function EntityScript:GetCurrentInteriorID() -- 亚丹：请暂时不要在客机使用这个函数
+    if not self:IsValid() then
+        return
+    end
     local x, _, z = self.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = x, z = z})
