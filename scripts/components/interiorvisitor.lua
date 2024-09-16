@@ -212,7 +212,6 @@ function InteriorVisitor:OnLoad(data)
 
     for id, map_data in pairs(self.interior_map) do -- 转换旧存档的数据格式
         if map_data.floor_texture then
-            print("map_data.minimap_floor_texture = map_data.floor_texture")
             map_data.minimap_floor_texture = map_data.floor_texture
             map_data.floor_texture = nil
         end
