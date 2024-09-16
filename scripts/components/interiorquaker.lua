@@ -220,7 +220,7 @@ local OnRemoveDebris = _ismastersim and function(debris)
 end or nil
 
 local GetTimeForNextDebris = _ismastersim and function(interiorID)
-    return _debris_spawn_rates[interiorID] > 0 and (1 / _debris_spawn_rates[interiorID]) or 2,147,483,647 -- 2^31-1
+    return _debris_spawn_rates[interiorID] > 0 and (1 / _debris_spawn_rates[interiorID]) or 2147483647 -- 2^31-1
 end or nil
 
 local GetDebrisSpawnPoint = _ismastersim and function(interiorID, is_critter)
