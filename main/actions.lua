@@ -807,6 +807,15 @@ ACTIONS.MANUALEXTINGUISH.validfn = function(act)
     return act.target and act.target:IsValid() and act.target.components.burnable and act.target.components.burnable:IsBurning()
 end
 
+local _UNWRAPstrfn = ACTIONS.UNWRAP.strfn
+function ACTIONS.UNWRAP.strfn(act, ...)
+    local tunacan = act.target or act.invobject
+    if tunacan ~= nil and tunacan:HasTag("tincan") then
+        return "OPENCAN"
+    end
+    return _UNWRAPstrfn and _UNWRAPstrfn(act, ...)
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world
