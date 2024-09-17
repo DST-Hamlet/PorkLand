@@ -149,6 +149,7 @@ local _wavesvolume = 0
 local _ambientvolume = 1
 local _tileoverrides = {}
 local _playing_wind = false
+local _playing_interiorquake = false
 local _wind_intensity = 0
 
 --------------------------------------------------------------------------
@@ -285,6 +286,15 @@ end
 
 local function StopWindSound()
     inst.SoundEmitter:KillSound("WIND")
+end
+
+local function StartInteriorQuakeSound()
+	self.inst.SoundEmitter:PlaySound("dontstarve/cave/earthquake", "interiorquake")
+	self.inst.SoundEmitter:SetParameter("interiorquake", "intensity", 1)
+end
+
+local function StopInteriorQuakeSound()
+	self.inst.SoundEmitter:KillSound("interiorquake")
 end
 
 StartSanitySound()
@@ -471,6 +481,21 @@ function self:OnUpdate(dt)
             _playing_wind = false
         end
     end
+    if player ~= nil and player:IsValid() then
+        local room = TheWorld.components.interiorspawner:GetInteriorCenter(player:GetPosition())
+        if room and room:IsValid() and (room._isquaking:value() == true) then
+            if not _playing_interiorquake then
+                StartInteriorQuakeSound()
+                _playing_interiorquake = true
+            end
+        else
+            if _playing_interiorquake then
+                StopInteriorQuakeSound()
+                _playing_interiorquake = false
+            end
+        end
+    end
+
 end
 
 --------------------------------------------------------------------------

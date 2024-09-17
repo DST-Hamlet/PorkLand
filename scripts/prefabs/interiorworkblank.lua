@@ -550,6 +550,8 @@ local function fn()
     inst._is_single_room = net_bool(inst.GUID, "interiorworkblank._is_single_room", "is_single_room_change")
     inst:ListenForEvent("is_single_room_change", OnIsSingleRoomChange)
 
+    inst._isquaking = net_bool(inst.GUID, "interiorworkblank._isquaking")
+
     inst.GetSearchRadius = GetSearchRadius
     inst.GetDoorById = GetDoorById
     inst.GetDoorToExterior = GetDoorToExterior
