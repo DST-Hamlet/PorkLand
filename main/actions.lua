@@ -56,6 +56,8 @@ if not rawget(_G, "HotReloading") then
         DEMOLISH_ROOM = Action({}),
 
         SEARCH_MYSTERY = Action({priority = -1, distance = 1}),
+
+        THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -583,6 +585,18 @@ ACTIONS.DEMOLISH_ROOM.fn = function(act)
     return false
 end
 
+ACTIONS.THROW.fn = function(act)
+    local thrown = act.invobject or act.doer.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+    if act.target and not act.pos then
+        act:SetActionPoint(act.target:GetPosition())
+    end
+    if thrown and thrown.components.throwable then
+        local pos = act.GetActionPoint and act:GetActionPoint() or act.pos or act.doer:GetPosition()  --act.doer:GetPosition() Prevent error from monkey when throwing  -jerry
+        thrown.components.throwable:Throw(pos, act.doer)
+        return true
+    end
+end
+
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
 function ACTIONS.FERTILIZE.fn(act, ...)
@@ -912,16 +926,32 @@ local PL_COMPONENT_ACTIONS =
             if right then
                 table.insert(actions, ACTIONS.GAS)
             end
-        end
+        end,
+        throwable = function(inst, doer, pos, actions, right, target)
+            if right and not TheWorld.Map:IsGroundTargetBlocked(pos) and not (inst.replica.equippable and not inst.replica.equippable:IsEquipped()) then
+                table.insert(actions, ACTIONS.THROW)
+            end
+        end,
     },
 
     EQUIPPED = { -- args: inst, doer, target, actions, right
         -- ziwbi: added gasser to EQUIPPED. why wouldn't you just spray on gnats directly?
-        gasser = function (inst, doer, pos, actions, right, target)
+        gasser = function(inst, doer, target, actions, right)
             if right then
                 table.insert(actions, ACTIONS.GAS)
             end
-        end
+        end,
+        throwable = function(inst, doer, target, actions, right)
+            if right
+                and not (doer.components.playercontroller ~= nil
+                and doer.components.playercontroller.isclientcontrollerattached)
+                and not TheWorld.Map:IsGroundTargetBlocked(target:GetPosition())
+                and not (inst.replica.equippable and not inst.replica.equippable:IsEquipped())
+                and target ~= doer then
+
+                table.insert(actions, ACTIONS.THROW)
+            end
+        end,
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
@@ -1156,6 +1186,19 @@ function USEITEM.healer(inst, doer, target, actions, right, ...)
         end
     end
     return _USEITEM_healer(inst, doer, target, actions, right, ...)
+end
+
+local _USEITEMlighter = USEITEM.lighter
+function USEITEM.lighter(inst, doer, target, actions, ...)
+    local wasLimbo = false
+    if target:HasTag("allowinventoryburning") and target:HasTag("INLIMBO") then
+        target:RemoveTag("INLIMBO")
+        wasLimbo = true
+    end
+    _USEITEMlighter(inst, doer, target, actions, ...)
+    if wasLimbo and target:IsValid() and target.inlimbo then
+        target:AddTag("INLIMBO")
+    end
 end
 
 local PlayerController = require("components/playercontroller")

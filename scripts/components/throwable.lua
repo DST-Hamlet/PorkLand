@@ -35,12 +35,14 @@ end
 local function ThrowableOnCollide(inst, other)
     if inst.components.throwable and not inst.components.throwable.stopped then
         inst.components.throwable.stopped = true
-        inst.Physics:Stop()
         if inst.components.throwable.collidegroundtask then
             inst.components.throwable.collidegroundtask:Cancel()
             inst.components.throwable.collidegroundtask = nil
         end
-        inst.components.throwable.onhitfn(inst, other)
+        if inst.components.throwable.onhitfn ~= nil then
+            inst.Physics:Stop()
+            inst.components.throwable.onhitfn(inst, other)
+        end
     end
 end
 
@@ -77,12 +79,18 @@ function Throwable:Throw(pt, thrower)
     local angle = math.atan2(totarget.z, totarget.x) + (math.random()*self.random_angle - (self.random_angle * 0.5))*DEGREES
     local time_to_target = distance/self.speed
 
+    self.stopped = false
     self.collidegroundtask = self.inst:DoTaskInTime(time_to_target, ThrowableOnCollide)
 
     local Viy = ((grav*0.5*(time_to_target^2))-yOffset)/time_to_target
 
     tothrow.Transform:SetPosition((pos + offset):Get())
-    tothrow.Physics:SetVel(self.speed*math.cos(angle), Viy, self.speed*math.sin(angle))
+    local throwvel = Vector3(self.speed*math.cos(angle), Viy, self.speed*math.sin(angle))
+    if tothrow.components.inventoryitem then
+        tothrow.components.inventoryitem:Launch(throwvel)
+    else
+        tothrow.Physics:SetVel(throwvel.x, throwvel.y, throwvel.z)
+    end
 
     local dir = Vector3((time_to_target*self.speed)*math.cos(angle), 0, (time_to_target*self.speed)*math.sin(angle))
 

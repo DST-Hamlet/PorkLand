@@ -155,6 +155,7 @@ local actionhandlers = {
     ActionHandler(ACTIONS.SEARCH_MYSTERY, "dolongaction"),
     ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
     ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
+    ActionHandler(ACTIONS.THROW, "throw"),
 }
 
 local eventhandlers = {

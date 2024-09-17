@@ -4,6 +4,11 @@ local Explosive = require("components/explosive")
 
 local _OnBurnt = Explosive.OnBurnt
 function Explosive:OnBurnt()
+    local owner = self.inst and self.inst.components.inventoryitem and self.inst.components.inventoryitem:GetGrandOwner() or nil
+    if owner and owner:HasTag("pocketdimension_container") then
+        self.inst:Remove()
+        return
+    end
     local interiorID = self.inst:GetCurrentInteriorID()
     if interiorID then
         local name = TheWorld.components.interiorspawner.interior_defs[interiorID].dungeon_name
@@ -12,5 +17,5 @@ function Explosive:OnBurnt()
         end
     end
 
-    _OnBurnt(self)
+    return _OnBurnt(self)
 end

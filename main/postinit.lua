@@ -18,6 +18,7 @@ local component_posts = {
     "blinkstaff",
     "builder_replica",
     "builder",
+    "burnable",
     "circler",
     "clock",
     "colourcube",
@@ -42,6 +43,7 @@ local component_posts = {
     "inventoryitem",
     "inventoryitemmoisture",
     "kramped",
+    "lighter",
     "locomotor",
     "lootdropper",
     "moisture",
@@ -82,6 +84,7 @@ local prefab_posts = {
     "buff_workeffectiveness",
     "earmuffshat",
     "grass",
+    "inventoryitem_classified",
     "mandrake",
     "meatrack",
     "mosquitosack",
@@ -156,6 +159,7 @@ local widget_posts = {
     "widget",
     "mapwidget",
     "recipepopup",
+    "itemtile",
 }
 
 local module_posts = {
