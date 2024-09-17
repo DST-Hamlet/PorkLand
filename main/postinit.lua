@@ -126,6 +126,7 @@ local scenario_posts = {
 local screens_posts = {
     "mapscreen",
     "playerhud",
+    "worldgenscreen",
 }
 
 local stategraph_posts = {

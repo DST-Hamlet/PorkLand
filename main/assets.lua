@@ -365,6 +365,9 @@ Assets = {
     -- multiplayer_portal
     Asset("ANIM", "anim/portal_dst.zip"),
 
+    -- worldgen screen
+    Asset("ANIM", "anim/generating_hamlet.zip"),
+
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
 
