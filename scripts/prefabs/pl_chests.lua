@@ -197,7 +197,7 @@ local function TryTransformToHoney(inst)
         local item = inst.components.container.slots[index]
         if item and item:IsValid() then
             if item.prefab == "nectar_pod" and item.components.converter then
-                item.components.converter:DoDelta(1 / TUNING.TOTAL_DAY_TIME * 0.1)
+                item.components.converter:DoDelta(10 / TUNING.TOTAL_DAY_TIME)
             end
         end
     end
