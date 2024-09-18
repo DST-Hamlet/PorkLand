@@ -66,20 +66,20 @@ end)
 StartRespawnTimer()
 
 function self:OnSave()
+    local refs = {}
     local data = {
-        grubs = {}
-    }
-    local refs = {
         grubs = {}
     }
 
     for _, grub in pairs(_giant_grubs) do
         table.insert(data.grubs, grub.GUID)
-        table.insert(refs.grubs, grub.GUID)
+        table.insert(refs, grub.GUID)
     end
 
-    data.anthill = _anthill and _anthill.GUID
-    refs.anthill = _anthill and _anthill.GUID
+    if _anthill then
+        data.anthill = _anthill.GUID
+        table.insert(refs, _anthill.GUID)
+    end
 
     return data, refs
 end
