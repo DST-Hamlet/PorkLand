@@ -239,28 +239,28 @@ local pl_fx = {
         anim = "idle",
     },
     {
-	    name = "explode_large",
-	    bank = "explode_large",
-	    build = "explode_large",
-	    anim = "large",
+        name = "explode_large",
+        bank = "explode_large",
+        build = "explode_large",
+        anim = "large",
         bloom = true,
-		sound = "dontstarve/common/blackpowder_explo",
+        sound = "dontstarve/common/blackpowder_explo",
         fn = function(inst)
-			inst.AnimState:SetLightOverride(1)
-		end,
+            inst.AnimState:SetLightOverride(1)
+        end,
     },
     {
-    	name = "explodering_fx",
-    	bank = "explode_ring_fx",
-    	build = "explode_ring_fx",
-    	anim = "idle",
+        name = "explodering_fx",
+        bank = "explode_ring_fx",
+        build = "explode_ring_fx",
+        anim = "idle",
         fn = function(inst)
-			inst.AnimState:SetFinalOffset(-1)
-			inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-			inst.AnimState:SetLayer(LAYER_BACKGROUND)
-			inst.AnimState:SetSortOrder( -3 )
-		end,
-	},
+            inst.AnimState:SetFinalOffset(-1)
+            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+            inst.AnimState:SetLayer(LAYER_BACKGROUND)
+            inst.AnimState:SetSortOrder( -3 )
+        end,
+    },
 }
 
 -- Sneakily add these to the FX table

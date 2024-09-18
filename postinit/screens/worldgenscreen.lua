@@ -1,4 +1,3 @@
-local AddClassPostConstruct = AddClassPostConstruct
 GLOBAL.setfenv(1, GLOBAL)
 
 local WorldGenScreen = require("screens/worldgenscreen")

@@ -289,12 +289,12 @@ local function StopWindSound()
 end
 
 local function StartInteriorQuakeSound()
-	self.inst.SoundEmitter:PlaySound("dontstarve/cave/earthquake", "interiorquake")
-	self.inst.SoundEmitter:SetParameter("interiorquake", "intensity", 1)
+    self.inst.SoundEmitter:PlaySound("dontstarve/cave/earthquake", "interiorquake")
+    self.inst.SoundEmitter:SetParameter("interiorquake", "intensity", 1)
 end
 
 local function StopInteriorQuakeSound()
-	self.inst.SoundEmitter:KillSound("interiorquake")
+    self.inst.SoundEmitter:KillSound("interiorquake")
 end
 
 StartSanitySound()

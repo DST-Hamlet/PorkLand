@@ -58,7 +58,7 @@ end
 function InventoryItem:OnHitCloud()
     local x, y, z = self.inst.Transform:GetWorldPosition()
     if self.inst:HasTag("irreplaceable") then
-        local sx, sy, sz = FindRandomPointOnShoreFromOcean(x, y, z)
+        local sx, _, sz = FindRandomPointOnShoreFromOcean(x, y, z)
         if sx then
             if self.inst.Physics then
                 self.inst.Physics:Stop()
@@ -156,7 +156,7 @@ function SinkEntity(entity, ...)
 
     -- If the entity is irreplaceable, respawn it at the player
     if entity:HasTag("irreplaceable") then
-        local sx, sy, sz = FindRandomPointOnShoreFromOcean(px, py, pz)
+        local sx, _, sz = FindRandomPointOnShoreFromOcean(px, py, pz)
         if sx ~= nil then
             if entity.Physics then
                 entity.Physics:Stop()

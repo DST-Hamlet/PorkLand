@@ -16,8 +16,8 @@ local prefabs =
 
 local function addfirefx(inst, owner)
     if not inst.fire then
-		inst.SoundEmitter:KillSound("hiss")
-    	inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/cocnade_fuse_loop", "hiss")
+        inst.SoundEmitter:KillSound("hiss")
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/cocnade_fuse_loop", "hiss")
         inst.fire = SpawnPrefab("torchfire")
         inst.fire.entity:AddFollower()
     end
@@ -97,13 +97,13 @@ local function onignite(inst)
 end
 
 local function OnExtinguished(inst)
-	inst.SoundEmitter:KillSound("hiss")
-	removefirefx(inst)
-	inst.components.fuse:StopFuse()
+    inst.SoundEmitter:KillSound("hiss")
+    removefirefx(inst)
+    inst.components.fuse:StopFuse()
 
-	if inst.LightTask then
-		inst.LightTask:Cancel()
-	end
+    if inst.LightTask then
+        inst.LightTask:Cancel()
+    end
 end
 
 local function ondepleted(inst)
@@ -224,12 +224,12 @@ local function firefn()
         return inst
     end
 
-	masterfn(inst)
+    masterfn(inst)
 
-	inst.components.explosive:SetOnExplodeFn(onexplode)
-	inst.components.explosive.explosivedamage = TUNING.COCONADE_DAMAGE
-	inst.components.explosive.explosiverange = TUNING.COCONADE_EXPLOSIONRANGE
-	inst.components.explosive.buildingdamage = TUNING.COCONADE_BUILDINGDAMAGE
+    inst.components.explosive:SetOnExplodeFn(onexplode)
+    inst.components.explosive.explosivedamage = TUNING.COCONADE_DAMAGE
+    inst.components.explosive.explosiverange = TUNING.COCONADE_EXPLOSIONRANGE
+    inst.components.explosive.buildingdamage = TUNING.COCONADE_BUILDINGDAMAGE
 
     return inst
 end
