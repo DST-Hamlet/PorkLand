@@ -86,9 +86,11 @@ local function Reveal(inst, nochain)
 
         inst:Remove()
     else
-        inst.revealed = true
-        inst.AnimState:PlayAnimation(inst.baseanimname .. "_open")
-        inst.AnimState:PushAnimation(inst.baseanimname)
+        if not inst.revealed then
+            inst.revealed = true
+            inst.AnimState:PlayAnimation(inst.baseanimname .. "_open")
+            inst.AnimState:PushAnimation(inst.baseanimname)
+        end
     end
 end
 
