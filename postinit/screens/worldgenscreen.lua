@@ -30,8 +30,8 @@ function WorldGenScreen:_ctor(profile, cb, world_gen_data, hidden, ...)
     dumptable(location_data)
 
     self.bg:SetTint(unpack(location_data.colour))
-    self.worldanim:GetAnimState():SetBuild(location_data.build)
-    self.worldanim:GetAnimState():SetBank(location_data.anim)
+    -- self.worldanim:GetAnimState():SetBuild(location_data.build)
+    -- self.worldanim:GetAnimState():SetBank(location_data.anim)
     self.worldgentext:SetString(location_data.title)
 
     -- TheFrontEnd:GetSound():KillSound("worldgensound")

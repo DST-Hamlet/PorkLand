@@ -527,9 +527,7 @@ ACTIONS.GAS.fn = function(act)
     if act.doer and act.invobject and act.invobject.components.gasser then
         local pos = act:GetActionPoint() or (act.target and act.target:GetPosition())
         local doer_pos = act.doer:GetPosition()
-        if doer_pos:Dist(pos) > act.action.distance then
-            pos = doer_pos + (pos - doer_pos):Normalize() * act.action.distance
-        end
+        pos = doer_pos + (pos - doer_pos):Normalize() * act.action.distance
         act.invobject.components.gasser:Gas(pos)
         return true
     end
@@ -929,7 +927,7 @@ local PL_COMPONENT_ACTIONS =
 
     POINT = { -- args: inst, doer, pos, actions, right, target
         gasser = function (inst, doer, pos, actions, right, target)
-            if right then
+            if right and doer ~= target then
                 table.insert(actions, ACTIONS.GAS)
             end
         end,
@@ -943,7 +941,7 @@ local PL_COMPONENT_ACTIONS =
     EQUIPPED = { -- args: inst, doer, target, actions, right
         -- ziwbi: added gasser to EQUIPPED. why wouldn't you just spray on gnats directly?
         gasser = function(inst, doer, target, actions, right)
-            if right then
+            if right and doer ~= target then
                 table.insert(actions, ACTIONS.GAS)
             end
         end,
