@@ -750,6 +750,8 @@ function ACTIONS.UNEQUIP.fn(act, ...)
     end
 end
 
+ACTIONS.STORE.priority = -1
+
 local _STORE_stroverridefn = ACTIONS.STORE.stroverridefn
 function ACTIONS.STORE.stroverridefn(act, ...)
     if act.target and act.target:HasTag("smelter") then
