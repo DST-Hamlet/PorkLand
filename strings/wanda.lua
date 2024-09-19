@@ -34,7 +34,7 @@ return {
         "You can't get through here.",
         "Where... where is it?",
     },
-    ANNOUNCE_ROOM_STUCK = "I don't wanna to stay in this room forever.",
+    ANNOUNCE_ROOM_STUCK = "Nobody wanna to stay in this room forever.",
     ANNOUNCE_SNEEZE = "Ah Choo!",
     ANNOUNCE_SUITUP = "Just matter of TIME!!!",
     ANNOUNCE_TAXDAY = "Tick tock. Is time for tax. Citizens hurry up.",
