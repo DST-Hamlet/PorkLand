@@ -55,8 +55,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("nectar")
 

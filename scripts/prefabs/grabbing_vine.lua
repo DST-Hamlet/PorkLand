@@ -32,7 +32,7 @@ end
 
 local NoTags = {"FX", "NOCLICK", "INLIMBO"}
 local function RetargetFn(inst)
-    if not inst.components.health:IsDead() then
+    if not inst.components.health:IsDead() and not inst.sg:HasStateTag("up") then
         return FindEntity(inst, TUNING.GRABBING_VINE_TARGET_DIST, function(guy)
             return guy.components.inventory ~= nil and not guy:HasTag("plantkin")
         end, nil, NoTags)
@@ -111,6 +111,7 @@ local function commonfn()
     inst:AddTag("flying")
     inst:AddTag("hangingvine")
     inst:AddTag("animal")
+    inst:AddTag("plantcreature")
 
     if not TheNet:IsDedicated() then
         inst:AddComponent("distancefade")
@@ -168,9 +169,9 @@ local function commonfn()
 
     inst:AddComponent("burnable")
     inst.components.burnable.canlight = false
-    inst.components.burnable:SetFXLevel(3)
-    inst.components.burnable:SetBurnTime(10)
-    inst.components.burnable:AddBurnFX("campfirefire", Vector3(0, 20, 0), "swap_fire")
+    inst.components.burnable:SetFXLevel(2)
+    inst.components.burnable:SetBurnTime(99999)
+    inst.components.burnable:AddBurnFX("character_fire", Vector3(0, 20, 0), "swap_fire")
     MakeSmallPropagator(inst)
     MakeHauntablePanic(inst)
 

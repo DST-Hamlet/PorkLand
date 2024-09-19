@@ -14,10 +14,6 @@ local assets =
     Asset("ANIM", "anim/player_house_doors.zip"),
 }
 
-local prefabs =
-{
-}
-
 local lights =
 {
     day  = {rad = 3, intensity = 0.75, falloff = 0.5, color = {1, 1, 1}},
@@ -103,6 +99,12 @@ local function MakeTimeChanger(inst)
     inst.timechanger = true
 end
 
+-- TODO: Combine these two and add a getter
+local function SetMinimapIcon(inst, icon)
+    inst.minimapicon = icon
+    inst._minimap_name:set(icon)
+end
+
 local function InitInteriorPrefab(inst, doer, prefab_definition, interior_definition)
     --If we are spawned inside of a building, then update our door to point at our interior
     local door_definition =
@@ -157,7 +159,7 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
             local minimap = inst.entity:AddMiniMapEntity()
             minimap:SetIcon(prefab_definition.animdata.minimapicon)
 
-            inst.minimapicon = prefab_definition.animdata.minimapicon
+            inst:SetMinimapIcon(prefab_definition.animdata.minimapicon)
         end
     end
 
@@ -181,12 +183,6 @@ local function InitHouseDoor(inst, dir)
     inst.baseanimname = dir
     inst.AnimState:PlayAnimation(dir .. "_open")
     inst.AnimState:PushAnimation(dir, true)
-end
-
-local function SaveInteriorData(inst, save_data)
-end
-
-local function InitFromInteriorSave(inst, save_data)
 end
 
 local function OnSave(inst, data)
@@ -213,10 +209,14 @@ local function OnSave(inst, data)
     data.guard_entrance = inst:HasTag("guard_entrance")
     data.lockable_door = inst:HasTag("lockable_door")
     data.roc_cave_delete_me = inst:HasTag("roc_cave_delete_me")
-    data.ruins_entrance = inst:HasTag("ruins_entrance")
+    data.ruins_exit = inst:HasTag("ruins_exit")
     data.secret = inst:HasTag("secret")
     data.shop_music = inst:HasTag("shop_music")
     data.timechange_anims = inst:HasTag("timechange_anims")
+
+    if inst.opentask then
+        data.opentimeleft = inst:TimeRemainingInTask(inst.opentaskinfo)
+    end
 end
 
 local function OnLoad(inst, data)
@@ -235,7 +235,7 @@ local function OnLoad(inst, data)
     inst.components.rotatingbillboard:SetAnimation_Server({
         bank = data.door_data_bank,
         build = data.door_data_build,
-        animation = data.door_data_animstate,
+        anim = data.door_data_animstate,
     })
     if data.rotation and inst.components.rotatingbillboard == nil then
         inst.Transform:SetRotation(data.rotation)
@@ -268,7 +268,7 @@ local function OnLoad(inst, data)
         inst.AnimState:PushAnimation(inst.baseanimname.."_closed")
     end
     if data.minimapicon then
-        inst.minimapicon = data.minimapicon
+        inst:SetMinimapIcon(data.minimapicon)
         inst.entity:AddMiniMapEntity()
         inst.MiniMapEntity:SetIcon(inst.minimapicon)
     end
@@ -276,8 +276,8 @@ local function OnLoad(inst, data)
     if data.guard_entrance then
         inst:AddTag("guard_entrance")
     end
-    if data.ruins_entrance then
-        inst:AddTag("ruins_entrance")
+    if data.ruins_exit then
+        inst:AddTag("ruins_exit")
     end
     if data.shop_music then
         inst:AddTag("shop_music")
@@ -304,10 +304,18 @@ local function OnLoad(inst, data)
     if data.usesounds then
         inst.usesounds = data.usesounds
     end
+
+    if data.opentimeleft then
+        if inst.opentask then
+            inst.opentask:Cancel()
+            inst.opentask = nil
+        end
+        inst.opentask, inst.opentaskinfo = inst:ResumeTask(data.opentimeleft, function() inst:PushEvent("open") end)
+    end
 end
 
 local function DisableDoor(inst, setting, cause)
-    assert(cause,"needs a cause")
+    assert(cause, "needs a cause")
 
     local door = inst.components.door
     door:SetDoorDisabled(setting, cause)
@@ -316,7 +324,7 @@ end
 local function UseDoor(inst,data)
     if inst.usesounds then
         if data and data.doer and data.doer.SoundEmitter then
-            for i,sound in ipairs(inst.usesounds)do
+            for _, sound in ipairs(inst.usesounds) do
                 data.doer.SoundEmitter:PlaySound(sound)
             end
         end
@@ -324,6 +332,10 @@ local function UseDoor(inst,data)
 end
 
 local function OpenDoor(inst, nospread)
+    if inst.opentask then
+        inst.opentask:Cancel()
+        inst.opentask = nil
+    end
     if inst.baseanimname and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] then
         if not inst:IsAsleep() then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/stone_door/slide")
@@ -347,6 +359,11 @@ local function OpenDoor(inst, nospread)
 end
 
 local function CloseDoor(inst, nospread)
+    if inst.opentask then
+        inst.opentask:Cancel()
+        inst.opentask = nil
+    end
+    inst.opentask, inst.opentaskinfo = inst:ResumeTask(30, function() inst:PushEvent("open") end)
     -- once the player has used a door, the doors should freeze open
     if inst.components.door.disabled and inst.components.door.disable_causes and inst.components.door.disable_causes["door"] == true then
         return
@@ -379,16 +396,20 @@ local function CloseDoor(inst, nospread)
     end
 end
 
-local function testPlayerHouseDoor(inst)
+local function test_player_house_door(inst)
     local door = inst.components.door
     if door then
-        local interior = TheWorld.components.interiorspawner:GetInteriorByIndex(door.interior_name)
+        local interior = TheWorld.components.interiorspawner:GetInteriorCenter(door.interior_name)
         if interior and interior.playerroom then
             inst.entity:AddMiniMapEntity()
             inst.MiniMapEntity:SetIcon("player_frontdoor.tex")
             inst.MiniMapEntity:SetIconOffset(4, 0)
         end
     end
+end
+
+local function GetMinimapIcon(inst)
+    return inst._minimap_name:value()
 end
 
 local function fn()
@@ -414,7 +435,7 @@ local function fn()
 
     inst:DoTaskInTime(0, function() inst.Physics:SetActive(false) end)
 
-    inst:DoTaskInTime(0, testPlayerHouseDoor)
+    inst:DoTaskInTime(0, test_player_house_door)
 
     inst.Transform:SetRotation(-90)
     inst:AddComponent("rotatingbillboard")
@@ -424,19 +445,25 @@ local function fn()
         anim = "idle"
     }
 
+    inst._minimap_name = net_string(inst.GUID, "prop_door._minimap_name")
+    inst._minimap_name:set_local("")
+
+    -- Used by scripts/prefabs/interiorworkblank.lua
+    inst.GetMinimapIcon = GetMinimapIcon
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
 
+    inst.SetMinimapIcon = SetMinimapIcon
+
     inst:AddComponent("door")
 
     inst:AddComponent("vineable")
 
     inst.initInteriorPrefab = InitInteriorPrefab
-    inst.saveInteriorData = SaveInteriorData
-    inst.initFromInteriorSave = InitFromInteriorSave
 
     MakeHauntableDoor(inst) -- 门关上时，鬼魂玩家仍然可以通过
 
@@ -497,5 +524,5 @@ local function shadowfn()
 end
 
 
-return Prefab("prop_door", fn, assets, prefabs),
-       Prefab("prop_door_shadow", shadowfn, assets, prefabs)
+return Prefab("prop_door", fn, assets),
+       Prefab("prop_door_shadow", shadowfn, assets)

@@ -13,7 +13,6 @@ local events =
     AncientRobot.Events.DoBeamAttack(),
     AncientRobot.Events.OnAttacked(),
     AncientRobot.Events.OnShocked(),
-    AncientRobot.Events.OnActivate(),
     AncientRobot.Events.OnDeactivate(),
 }
 
@@ -40,13 +39,19 @@ AncientRobot.States.AddActivate(states, {
     TimeEvent(30 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/electro") end),
     TimeEvent(33 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/electro") end),
     TimeEvent(36 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/electro") end),
-    TimeEvent(39 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/electro") end),
+    TimeEvent(39 * FRAMES, function(inst)
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/electro")
+        inst.Transform:SetFourFaced()
+    end),
 })
 AncientRobot.States.AddDeactivate(states, {
     TimeEvent(0  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/ribs/green") end),
     TimeEvent(9  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/ribs/green") end),
     TimeEvent(14 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/ribs/green") end),
-    TimeEvent(21 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/ribs/green") end),
+    TimeEvent(21 * FRAMES, function(inst)
+        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/ribs/green")
+        inst.Transform:SetTwoFaced()
+    end),
 }, "dontstarve_DLC003/creatures/enemy/metal_robot/ribs/stop")
 AncientRobot.States.AddTaunt(states, {
     TimeEvent(4  * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/ribs/servo") end),

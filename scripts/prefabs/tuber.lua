@@ -18,8 +18,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.AnimState:SetBank("tuber_crop")
     inst.AnimState:SetBuild("tuber_crop")
@@ -73,8 +72,7 @@ local function cookedfn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("cooked_water", "idle")
+    PorkLandMakeInventoryFloatable(inst, "cooked_water", "idle")
 
     inst.AnimState:SetBank("tuber_crop")
     inst.AnimState:SetBuild("tuber_crop")
@@ -127,8 +125,7 @@ local function bloomfn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.AnimState:SetBank("tuber_bloom_crop")
     inst.AnimState:SetBuild("tuber_bloom_crop")
@@ -179,8 +176,7 @@ local function cookedbloomfn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("cooked_water", "idle")
+    PorkLandMakeInventoryFloatable(inst, "cooked_water", "idle")
 
     inst.AnimState:SetBank("tuber_bloom_crop")
     inst.AnimState:SetBuild("tuber_bloom_crop")

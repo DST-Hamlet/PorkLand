@@ -149,7 +149,6 @@ local function fn()
     inst:AddTag("mech")
     inst:AddTag("monster")
     inst:AddTag("ancient_robots_assembly")
-    inst:AddTag("dontteleporttointerior")
 
     inst.entity:SetPristine()
 

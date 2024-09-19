@@ -196,6 +196,7 @@ local function OnBurntChanges(inst)
     inst:RemoveComponent("burnable")
     inst:RemoveComponent("propagator")
     inst:RemoveComponent("hauntable")
+    inst:RemoveComponent("bloomable")
     inst:RemoveComponent("blowinwindgust")
     MakeHauntableWork(inst)
 
@@ -267,11 +268,11 @@ local function OnHackedFinal(inst, data)
 end
 
 local function CanBloom(inst)
-    return not inst:HasTag("stump") and not inst:HasTag("burnt") and not inst:HasTag("rotten")
+    return not inst:HasTag("stump") and not inst:HasTag("burnt")
 end
 
 local function StartBloom(inst)
-    if not inst.components.bloomable:CanBloom() then
+    if not (inst.components.bloomable and inst.components.bloomable:CanBloom()) then
         return
     end
 
@@ -281,7 +282,7 @@ local function StartBloom(inst)
 end
 
 local function StopBloom(inst)
-    if not inst.components.bloomable:CanBloom() then
+    if not (inst.components.bloomable and inst.components.bloomable:CanBloom()) then
         return
     end
 
@@ -382,6 +383,10 @@ end
 
 local function OnseasonChange(inst, season)
     local bloomable = inst.components.bloomable
+    if not bloomable then
+        return
+    end
+
     if season == SEASONS.LUSH and not bloomable:IsBlooming() then
         bloomable:StartBloomTask()
     elseif season ~= SEASONS.LUSH and bloomable:IsBlooming() then
@@ -448,7 +453,7 @@ local function MakeTree(name, build, stage, data)
         inst.components.growable.springgrowth = true
         inst.components.growable:StartGrowing()
 
-        --inst:AddComponent("mystery")
+        inst:AddComponent("mystery")
 
         inst:AddComponent("bloomable")
         inst.components.bloomable:SetCanBloom(CanBloom)

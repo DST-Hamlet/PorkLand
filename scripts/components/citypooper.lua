@@ -4,43 +4,31 @@ local CityPooper = Class(function(self, inst)
     self:SetPoopTask()
 end)
 
-function CityPooper:OnSave(inst)
-    local data = {}
-    return data
-end
-
-function CityPooper:OnLoad(data)
-    --self:TestForPoop()
-    self:SetPoopTask()
-end
-
 function CityPooper:TestForPoop(force)
     local poop_manager = TheWorld.components.periodicpoopmanager
-    local cityID = self.inst.components.citypossession.cityID
+    local city_id = self.inst.components.citypossession.cityID
 
-    if force then
-        if poop_manager:AllowPoop(cityID) then
-            local poop = SpawnPrefab("poop")
-            -- find a place to spawn us, not too close to us
-            local pt = self.inst:GetPosition()
-            local dist = math.random(4) + 4
-            local angle = math.random(2*PI)
-            local offset = FindWalkableOffset(pt,angle,dist)
-            if offset then
-                pt = pt + offset
+    if poop_manager:AllowPoop(city_id) then
+        if force then
+                local poop = SpawnPrefab("poop")
+                -- find a place to spawn us, not too close to us
+                local pt = self.inst:GetPosition()
+                local dist = math.random(4) + 4
+                local angle = math.random() * TWOPI
+                local offset = FindWalkableOffset(pt, angle, dist)
+                if offset then
+                    pt = pt + offset
+                end
+                poop.Transform:SetPosition(pt:Get())
+                poop.cityID = city_id
+                poop_manager:OnPoop(city_id, poop)
+        else
+            if TheWorld.state.isday and math.random() <= 0.5 and not self.inst:HasTag("shopkeep") then
+                local poop = SpawnPrefab("poop")
+                poop.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
+                poop.cityID = city_id
+                poop_manager:OnPoop(city_id, poop)
             end
-
-            poop.Transform:SetPosition(pt.x, pt.y, pt.z)
-            poop.cityID = cityID
-            poop_manager:OnPoop(cityID, poop)
-        end
-    else
-        if ((math.random() <= 0.5) or force) and poop_manager:AllowPoop(cityID) and TheWorld.state.isday then
-            local poop = SpawnPrefab("poop")
-            poop.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
-
-            poop.cityID = cityID
-            poop_manager:OnPoop(cityID, poop)
         end
     end
 
@@ -55,11 +43,10 @@ function CityPooper:SetPoopTask(time)
     end
 
     if not time then
-        time = (math.random() * (TUNING.TOTAL_DAY_TIME * 2))
+        time = math.random() * TUNING.TOTAL_DAY_TIME * 2
     end
 
-    self.poop_task, self.poop_info = self.inst:ResumeTask( time,
-    function()
+    self.poop_task, self.poop_info = self.inst:ResumeTask(time, function()
         self:TestForPoop()
     end)
 end

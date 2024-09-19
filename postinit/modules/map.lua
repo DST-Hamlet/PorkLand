@@ -313,12 +313,10 @@ function Map:CanDeployRecipeAtPoint(pt, recipe, rot, player, ...)
         return is_valid_ground and (recipe.testfn == nil or recipe.testfn(pt, rot)) and self:IsDeployPointClear(pt, nil, recipe.min_spacing or 3.2)
     end
 
-    -- TODO: 目前只判定了一般建筑物，还需要额外考虑房间装饰物
-    if recipe and pt then
-        local interior = TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(pt.x, pt.z)
-        if recipe.pl_is_house and interior then -- recipe types
-            return false
-        elseif interior and not TheWorld.components.interiorspawner:IsInInteriorRoom(pt.x, pt.z, -1) then
+    if recipe and pt and TheWorld.components.interiorspawner:IsInInteriorRegion(pt.x, pt.z) then
+        if recipe.build_mode == BUILDMODE.HOME_DECOR then
+            return true
+        elseif not TheWorld.components.interiorspawner:IsInInteriorRoom(pt.x, pt.z, -1) then
             return false
         end
     end
@@ -364,11 +362,16 @@ function Map:GetTileAtPoint(x, y, z, ...)
     end
 end
 
+function Map:GetPointAtTile(x, y)
+    local w, h = TheWorld.Map:GetSize()
+    local tx = (x - w / 2) * TILE_SCALE
+    local tz = (y - h / 2) * TILE_SCALE
+    return tx, 0, tz
+end
+
 local _GetTile = Map.GetTile
 function Map:GetTile(x, y, ...)
-    local w, h = TheWorld.Map:GetSize()
-    local tx = x * TILE_SCALE - w / 2
-    local tz = y * TILE_SCALE - h / 2
+    local tx, _, tz = self:GetPointAtTile(x, y)
     if x and y and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(tx, tz) then
         if TheWorld.components.interiorspawner:IsInInteriorRoom(tx, tz) then
             return WORLD_TILES.INTERIOR
@@ -379,7 +382,6 @@ function Map:GetTile(x, y, ...)
         return _GetTile(self, x, y, ...)
     end
 end
-
 
 function Map:GetIslandTagAtPoint(x, y, z)
     -- Note: If you care about the tile overlap then use FindVisualNodeAtPoint
@@ -404,36 +406,40 @@ function Map:GetIslandTagAtPoint(x, y, z)
     return island_tag
 end
 
-function Map:FindPointByIslandTag(islandtag, trytimes, allowwater)
-    local try = trytimes or 10000
+function Map:FindPointByIslandTag(island_tag, num_tries, allow_water)
+    num_tries = num_tries or 10000
 
-    local hasisland = false
-    for i,v in ipairs(ISLAND_TAGS) do
-        if islandtag == v then
-            hasisland = true
+    local found_island = false
+    for _, v in pairs(ISLAND_TAGS) do
+        if island_tag == v then
+            found_island = true
+            break
         end
     end
 
-    if not hasisland then
-        print("WARNING!!! Cant find island with tag: ", islandtag)
+    if not found_island then
+        print("WARNING!!! Cant find island with tag: ", island_tag)
         return nil
     end
 
-    for i = 1, try do
-        local topology = TheWorld.topology
-        local area = topology.nodes[math.random(#topology.nodes)]
-        if table.contains(area.tags, islandtag) then
+    local topology = TheWorld.topology
+    for i = 1, num_tries do
+        local area = GetRandomItem(topology.nodes)
+        if table.contains(area.tags, island_tag) then
             local points_x, points_y = TheWorld.Map:GetRandomPointsForSite(area.x, area.y, area.poly, 1)
             if #points_x == 1 and #points_y == 1
-                and (allowwater or self:ReverseIsVisualGroundAtPoint(points_x[1], 0, points_y[1]))
+                and (allow_water or self:ReverseIsVisualGroundAtPoint(points_x[1], 0, points_y[1]))
                 and not self:IsImpassableAtPoint(points_x[1], 0, points_y[1]) then
-                    local x = points_x[1]
-                    local z = points_y[1]
-                    return Vector3(x, 0, z)
+                return Vector3(points_x[1], 0, points_y[1])
             end
         end
     end
 
     print("WARNING!!! Cant find island after max trytimes!!!")
+
     return nil
+end
+
+function Map:IsWater(tile) -- 给几何mod用的
+    return TileGroupManager:IsOceanTile(tile)
 end

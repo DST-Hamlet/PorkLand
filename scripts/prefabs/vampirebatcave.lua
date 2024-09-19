@@ -22,32 +22,34 @@ local prefabs =
     "cave_fern",
 }
 
-local function CreatInterior(inst)
+local function CreateInterior(inst)
+    local id = inst.interiorID
+    local can_reuse_interior = id ~= nil
+
     local interior_spawner = TheWorld.components.interiorspawner
-    local ID = inst.interiorID
-    if not ID then
-        ID = interior_spawner:GetNewID()
-    end
-    print("CreatInterior id: ",ID)
-
-    if not inst.interiorID == nil then
-        return
+    if not can_reuse_interior then
+        id = interior_spawner:GetNewID()
+        inst.interiorID = id
+        print("CreateInterior id:", id)
     end
 
-    local newID = ID
-    inst.interiorID = newID
-    local name = "vampirebatcave" .. newID
+    local name = "vampirebatcave" .. id
 
     local exterior_door_def = {
         my_door_id = name .. "_door",
         target_door_id = name .. "_exit",
-        target_interior = newID,
+        target_interior = id,
     }
-
     interior_spawner:AddDoor(inst, exterior_door_def)
+    interior_spawner:AddExterior(inst)
+
+    if can_reuse_interior then
+        -- Reuse old interior, but we still need to re-register the door
+        return
+    end
 
     local addprops = GetPropDef("vampirebatcave", exterior_door_def, BAT_CAVE_DEPTH, BAT_CAVE_WIDTH)
-    local def = interior_spawner:CreateRoom(BAT_CAVE_NAME, BAT_CAVE_WIDTH, 10, BAT_CAVE_DEPTH, name, newID, addprops, {},
+    local def = interior_spawner:CreateRoom(BAT_CAVE_NAME, BAT_CAVE_WIDTH, 10, BAT_CAVE_DEPTH, name, id, addprops, {},
         BAT_CAVE_WALL_TEXTURE, BAT_CAVE_FLOOR_TEXTURE, BAT_CAVE_MINIMAP_TEXTURE, nil, BAT_CAVE_COULOUR_CUBE, true, nil,
         BAT_CAVE_REVERB, BAT_CAVE_AMBIENT, BAT_CAVE_GROUND_SOUND, nil, nil, true)
     interior_spawner:SpawnInterior(def)
@@ -59,13 +61,10 @@ local function OnSave(inst, data)
 end
 
 local function OnLoad(inst, data)
-    if data == nil or (data and data.interiorID == nil) then
-        CreatInterior(inst)
-        return
-    end
     if data then
         inst.interiorID = data.interiorID
     end
+    CreateInterior(inst)
 end
 
 local function fn()
@@ -86,14 +85,13 @@ local function fn()
     inst.MiniMapEntity:SetIcon("vamp_bat_cave.tex")
 
     inst:AddTag("batcave")
+    inst:AddTag("client_forward_action_target")
 
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
-
-    TheWorld.components.interiorspawner:AddExterior(inst)
 
     inst:AddComponent("inspectable")
 

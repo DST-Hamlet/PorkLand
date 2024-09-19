@@ -65,14 +65,11 @@ local prefabs =
 
 local function smash(inst)
     if inst.components.lootdropper then
-        local interior_spawner = TheWorld.components.interiorspawner
-        if interior_spawner.current_interior then
-            local originpt = interior_spawner:getSpawnOrigin()
-            local x, _, z = inst.Transform:GetWorldPosition()
-            local dropdir = Vector3(originpt.x - x, 0, originpt.z - z):GetNormalized()
-            inst.components.lootdropper.dropdir = dropdir
-            inst.components.lootdropper:DropLoot()
+        local room = TheWorld.components.interiorspawner:GetInteriorCenter(inst:GetPosition())
+        if room then
+            inst.components.lootdropper:SetFlingTarget(room:GetPosition())
         end
+        inst.components.lootdropper:DropLoot()
     end
 
     local fx = SpawnPrefab("collapse_small")
@@ -89,17 +86,20 @@ local function SetPlayerUncraftable(inst)
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
     inst.components.workable:SetWorkLeft(1)
-    inst.components.workable:SetOnWorkCallback(function(inst, worker, workleft)
-        if workleft <= 0 then
-            smash(inst)
-        end
-    end)
+    inst.components.workable:SetOnFinishCallback(smash)
     inst:RemoveTag("NOCLICK")
 end
 
 local function OnBuilt(inst)
     SetPlayerUncraftable(inst)
     inst.onbuilt = true
+
+    if inst:HasTag("rotate_fix") then
+        inst.Transform:SetRotation(-90)
+        if inst.components.rotatingbillboard then
+            inst.components.rotatingbillboard:OnUpdate()
+        end
+    end
 
     local x, y, z = inst.Transform:GetWorldPosition()
     if inst:HasTag("cornerpost") then
@@ -128,6 +128,10 @@ local function OnBuilt(inst)
             end
         end
     end
+
+    if inst.on_built_fn then
+        inst.on_built_fn(inst)
+    end
 end
 
 local function UpdateArtWorkable(inst, instant)
@@ -138,23 +142,23 @@ local function UpdateArtWorkable(inst, instant)
             inst.AnimState:PlayAnimation("pillar_front_crumble")
             inst.AnimState:PushAnimation("pillar_front_crumble_idle")
             if inst.components.rotatingbillboard then
-                inst.components.rotatingbillboard.animdata.animation = "pillar_front_crumble_idle"
+                inst.components.rotatingbillboard.animdata.anim = "pillar_front_crumble_idle"
             end
         else
             inst.AnimState:PlayAnimation("pillar_front_crumble_idle")
             if inst.components.rotatingbillboard then
-                inst.components.rotatingbillboard.animdata.animation = "pillar_front_crumble_idle"
+                inst.components.rotatingbillboard.animdata.anim = "pillar_front_crumble_idle"
             end
         end
     elseif anim_level < 1 / 3 then
         inst.AnimState:PlayAnimation("pillar_front_break_2")
         if inst.components.rotatingbillboard then
-            inst.components.rotatingbillboard.animdata.animation = "pillar_front_break_2"
+            inst.components.rotatingbillboard.animdata.anim = "pillar_front_break_2"
         end
     elseif anim_level < 2 / 3 then
         inst.AnimState:PlayAnimation("pillar_front_break_1")
         if inst.components.rotatingbillboard then
-            inst.components.rotatingbillboard.animdata.animation = "pillar_front_break_1"
+            inst.components.rotatingbillboard.animdata.anim = "pillar_front_break_1"
         end
     end
     if work_left <= 0 then
@@ -213,13 +217,16 @@ local function OnSave(inst, data)
         table.insert(references, data.dust)
     end
 
-    if inst.swinglight then
-        data.swinglight = inst.swinglight.GUID
-        table.insert(references, data.swinglight)
-    end
+    -- if inst.swinglight then
+    --     data.swinglight = inst.swinglight.GUID
+    --     table.insert(references, data.swinglight)
+    -- end
 
     if inst.animdata then
         data.animdata = inst.animdata
+    end
+    if inst.has_curtain then
+        data.has_curtain = inst.has_curtain
     end
 
     if inst.onbuilt then
@@ -243,8 +250,8 @@ local function OnLoad(inst, data)
             inst.Transform:SetRotation(data.rotation)
         end
     end
-    if data.scalex  then
-        inst.Transform:SetScale( data.scalex, data.scaley, data.scalez)
+    if data.scalex then
+        inst.Transform:SetScale(data.scalex, data.scaley, data.scalez)
     end
     if data.sunraysspawned then
         inst.sunraysspawned = data.sunraysspawned
@@ -268,7 +275,7 @@ local function OnLoad(inst, data)
         inst:AddTag("playercrafted")
     end
     if data.setbackground then
-        inst.AnimState:SetLayer( LAYER_WORLD_BACKGROUND )
+        inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
         inst.AnimState:SetSortOrder(data.setbackground)
         inst.setbackground = data.setbackground
     end
@@ -281,8 +288,14 @@ local function OnLoad(inst, data)
             inst.AnimState:SetBank(inst.animdata.bank)
         end
         if inst.animdata.anim then
-            inst.AnimState:PlayAnimation(inst.animdata.anim,inst.animdata.animloop)
+            inst.AnimState:PlayAnimation(inst.animdata.anim, inst.animdata.animloop)
         end
+        if inst.components.rotatingbillboard then
+            inst.components.rotatingbillboard:SetAnimation_Server(shallowcopy(inst.animdata, inst.components.rotatingbillboard.anim))
+        end
+    end
+    if data.has_curtain then
+        inst.AnimState:Show("curtain")
     end
 
     if data.onbuilt then
@@ -302,12 +315,12 @@ end
 
 local function OnLoadPostPass(inst,ents, data)
     if data then
-        if data.swinglight then
-            local swinglight = ents[data.swinglight]
-            if swinglight then
-                inst.swinglight = swinglight.entity
-            end
-        end
+        -- if data.swinglight then
+        --     local swinglight = ents[data.swinglight]
+        --     if swinglight then
+        --         inst.swinglight = swinglight.entity
+        --     end
+        -- end
         if data.dust then
             local dust = ents[data.dust]
             if dust then
@@ -446,6 +459,7 @@ local function MakeDeco(build, bank, animframe, data, name)
         inst.entity:AddNetwork()
 
         inst.AnimState:SetBuild(build)
+        inst.bank = bank -- Used in wall ornaments and window's on_built_fn
         inst.AnimState:SetBank(bank)
         inst.AnimState:PlayAnimation(animframe, loopanim)
         if scale then
@@ -578,7 +592,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 inst.components.rotatingbillboard.animdata = {
                     bank = bank,
                     build = build,
-                    animation = animframe,
+                    anim = animframe,
                 }
             else
                 inst.Transform:SetTwoFaced()
@@ -606,27 +620,6 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst:AddTag(tag)
         end
 
-        if data.children then
-            inst:DoTaskInTime(0, function()
-                -- don't spawn child in client
-                if not TheWorld.ismastersim or inst.childrenspawned then
-                    return
-                end
-
-                for _, child in pairs(data.children) do
-                    local child_prop = SpawnPrefab(child)
-                    local x, y, z = inst.Transform:GetWorldPosition()
-                    child_prop.Transform:SetPosition(x, y, z)
-                    child_prop.Transform:SetRotation(inst.Transform:GetRotation())
-                    if not inst.decochildrenToRemove then
-                        inst.decochildrenToRemove = {}
-                    end
-                    inst.decochildrenToRemove[#inst.decochildrenToRemove + 1] = child_prop
-                end
-                inst.childrenspawned = true
-           end)
-        end
-
         if prefabname then
             if TheWorld.ismastersim and not inst.components.inspectable then
                 inst:AddComponent("inspectable")
@@ -639,6 +632,28 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         if not TheWorld.ismastersim then
             return inst
+        end
+
+        if data.children then
+            inst.children_to_spawn = data.children -- Can be overriden in onbuilt
+            inst:DoTaskInTime(0, function()
+                -- don't spawn child in client
+                if inst.childrenspawned then
+                    return
+                end
+
+                for _, child in pairs(inst.children_to_spawn) do
+                    local child_prop = SpawnPrefab(child)
+                    local x, y, z = inst.Transform:GetWorldPosition()
+                    child_prop.Transform:SetPosition(x, y, z)
+                    child_prop.Transform:SetRotation(inst.Transform:GetRotation())
+                    if not inst.decochildrenToRemove then
+                        inst.decochildrenToRemove = {}
+                    end
+                    inst.decochildrenToRemove[#inst.decochildrenToRemove + 1] = child_prop
+                end
+                inst.childrenspawned = true
+           end)
         end
 
         if mirror then
@@ -673,7 +688,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                     local x, y, z = inst.Transform:GetWorldPosition()
                     local torches = TheSim:FindEntities(x, y, z, 50, {"wall_torch"})
 
-                    for _, torch in pairs(torches)do
+                    for _, torch in pairs(torches) do
                         if not torch.components.cooker then
                             should_close_doors = true
                         end
@@ -698,7 +713,7 @@ local function MakeDeco(build, bank, animframe, data, name)
                 local x, y, z = inst.Transform:GetWorldPosition()
                 local torches = TheSim:FindEntities(x, y, z, 50, {"wall_torch"})
 
-                for _, torch in pairs(torches)do
+                for _, torch in pairs(torches) do
                     if not torch.components.cooker then
                         should_open_doors = false
                     end
@@ -721,6 +736,7 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         inst:ListenForEvent("onremove", OnRemove)
         if data.onbuilt then
+            inst.on_built_fn = data.on_built_fn
             inst:ListenForEvent("onbuilt", OnBuilt)
         end
         if data.dayevents then
@@ -801,6 +817,25 @@ end
 
 function DecoCreator:GetLights()
     return LIGHTS
+end
+
+function DecoCreator:IsBuiltOnBackWall(inst)
+    local position = inst:GetPosition()
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+    if current_interior then
+        local room_center = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
+
+        local dist = 2
+        local backdiff =  position.x < (room_center.x - depth/2 + dist)
+        -- local frontdiff = position.x > (room_center.x + depth/2 - dist)
+        local rightdiff = position.z > (room_center.z + width/2 - dist)
+        local leftdiff =  position.z < (room_center.z - width/2 + dist)
+
+        local is_backwall = backdiff and not rightdiff and not leftdiff
+        return is_backwall
+    end
+    return false
 end
 
 return DecoCreator

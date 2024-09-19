@@ -114,10 +114,10 @@ local function OnOccupied(inst, child)
     end
 end
 
-
 local function ConfigureSpawner(inst, selected_citizens)
     if inst.components.spawner then
         inst.components.spawner:Configure(selected_citizens[math.random(1, #selected_citizens)], TUNING.PIGHOUSE_CITY_RESPAWNTIME, 1)
+        inst.components.spawner:CancelSpawning()
     end
 end
 
@@ -169,8 +169,32 @@ local function OnIgnite(inst)
 end
 
 local function OnBurntUp(inst)
-    inst.components.fixable:AddRecinstructionStageData("burnt", "pig_townhouse", inst.build, inst.scale, 1)
+    inst.components.fixable:AddReconstructionStageData("burnt", "pig_townhouse", inst.build, inst.scale, 1)
     inst:Remove()
+end
+
+local function PayTax(inst)
+    inst:DoTaskInTime(4, function()
+        if inst.components.spawner.child then
+            inst.components.spawner.child:AddTag("paytax")
+        end
+        inst:RemoveTag("paytax")
+    end)
+end
+
+local function CheckTax(inst)
+    if TheWorld.components.pigtaxmanager
+        and TheWorld.components.pigtaxmanager:HasPlayerCityHall()
+        and TheWorld.components.pigtaxmanager:IsTaxDay()
+        -- a player build pighouse doesn't have a city possesion component.. so that's how I'm checking for tax paying houses right now
+        and not inst.components.citypossession
+        and inst.components.spawner.child
+        and inst.lasttaxday ~= TheWorld.state.cycles then
+
+        inst.lasttaxday = TheWorld.state.cycles
+        inst:AddTag("paytax")
+        PayTax(inst)
+    end
 end
 
 local function OnDay(inst, isday)
@@ -185,6 +209,24 @@ local function OnDay(inst, isday)
             end
         end)
     end
+
+    CheckTax(inst)
+end
+
+local function OnInit(inst)
+    if inst.components.spawner
+        and not inst.components.spawner.child
+        and inst.components.spawner.childname
+        and not inst.components.spawner:IsSpawnPending() then
+
+        local child = SpawnPrefab(inst.components.spawner.childname)
+        if child then
+            inst.components.spawner:TakeOwnership(child)
+            inst.components.spawner:GoHome(child)
+        end
+    end
+    inst:WatchWorldState("isday", OnDay)
+    OnDay(inst, TheWorld.state.isday)
 end
 
 local function OnBuilt(inst)
@@ -194,17 +236,20 @@ local function OnBuilt(inst)
     ConfigureSpawner(inst, JoinArrays(city_citizens[1], city_citizens[2]))
 end
 
-
 local function OnSave(inst, data)
     if inst:HasTag("burnt") or inst:HasTag("fire") then
         data.burnt = true
     end
     data.build = inst.build
+    data.scale = inst.scale
     data.bank = inst.bank
     data.color = inst.color
     if inst.components.spawner.childname then
         data.childname = inst.components.spawner.childname
+        data.delay = inst.components.spawner.delay
     end
+    data.paytax = inst:HasTag("paytax")
+    data.lasttaxday = inst.lasttaxday
 end
 
 local function OnLoad(inst, data)
@@ -212,6 +257,10 @@ local function OnLoad(inst, data)
         if data.build then
             inst.build = data.build
             inst.AnimState:SetBuild(inst.build)
+        end
+        if data.scale then
+            inst.scale = data.scale
+            inst.AnimState:SetScale(inst.scale, inst.scale, inst.scale)
         end
         if data.bank then
             inst.bank = data.bank
@@ -222,10 +271,19 @@ local function OnLoad(inst, data)
             inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
         end
         if data.childname then
-            inst.components.spawner.childname = data.childname
+            inst.components.spawner:Configure(data.childname, data.delay or TUNING.PIGHOUSE_CITY_RESPAWNTIME)
+            inst.components.spawner:CancelSpawning()
         end
         if data.burnt then
             inst.components.burnable.onburnt(inst)
+        end
+
+        if data.lasttaxday then
+            inst.lasttaxday = data.lasttaxday
+        end
+        if data.paytax then
+            inst:AddTag("paytax")
+            PayTax(inst)
         end
     end
 end
@@ -309,6 +367,23 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
 
         MakeObstaclePhysics(inst, 1)
 
+        ------- Copied from prefabs/wall.lua -------
+        inst._pfpos = nil
+        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
+        MakeObstacle(inst)
+        -- Delay this because makeobstacle sets pathfinding on by default
+        -- but we don't to handle it until after our position is set
+        inst:DoTaskInTime(0, InitializePathFinding)
+
+        inst:ListenForEvent("onremove", OnRemove)
+        --------------------------------------------
+
+        inst.entity:SetPristine()
+
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
         inst.build = build
         if not inst.build then
             inst.build = house_builds[math.random(#house_builds)]
@@ -328,23 +403,6 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
         inst.AnimState:Hide("YOTP")
 
-        ------- Copied from prefabs/wall.lua -------
-        inst._pfpos = nil
-        inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
-        MakeObstacle(inst)
-        -- Delay this because makeobstacle sets pathfinding on by default
-        -- but we don't to handle it until after our position is set
-        inst:DoTaskInTime(0, InitializePathFinding)
-
-        inst:ListenForEvent("onremove", OnRemove)
-        --------------------------------------------
-
-        inst.entity:SetPristine()
-
-        if not TheWorld.ismastersim then
-            return inst
-        end
-
         inst:AddComponent("gridnudger")
         inst.components.gridnudger.snap_to_grid = true
 
@@ -359,22 +417,20 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         inst.components.workable:SetOnFinishCallback(OnHammered)
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("rubble", "pig_townhouse", inst.build, inst.scale)
-        inst.components.fixable:AddRecinstructionStageData("unbuilt", "pig_townhouse", inst.build, inst.scale)
+        inst.components.fixable:AddReconstructionStageData("rubble", "pig_townhouse", inst.build, inst.scale)
+        inst.components.fixable:AddReconstructionStageData("unbuilt", "pig_townhouse", inst.build, inst.scale)
 
         inst:AddComponent("spawner")
         inst.components.spawner:SetOnVacateFn(OnVacate)
         inst.components.spawner:SetOnOccupiedFn(OnOccupied)
         inst.components.spawner:SetWaterSpawning(false, true)
-
         if spawn_list then
             ConfigureSpawner(inst, spawn_list)
         else
             inst.OnCityPossession = OnCityPossession
         end
+        inst:DoTaskInTime(0, OnInit)
 
-        inst:WatchWorldState("isday", OnDay)
-        OnDay(inst, TheWorld.state.isday)
         inst:ListenForEvent("burntup", OnBurntUp)
         inst:ListenForEvent("onignite", OnIgnite)
         inst:ListenForEvent("onbuilt", OnBuilt)
@@ -386,6 +442,7 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
         MakeSnowCovered(inst, .01)
         MakeLargeBurnable(inst, nil, nil, true)
         MakeLargePropagator(inst)
+        MakeHauntableWork(inst)
 
         return inst
     end
@@ -393,24 +450,13 @@ local function MakePigHouse(name, bank, build, minimapicon, spawn_list)
     return Prefab(name, fn, assets)
 end
 
--- TODO: Make this work
-local function placetestfn(inst)
+local function HideLayers(inst)
     inst.AnimState:Hide("YOTP")
     inst.AnimState:Hide("SNOW")
-
-    local pt = inst:GetPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(pt.x, pt.y, pt.z)
-    if tile == WORLD_TILES.INTERIOR then
-        return false
-    end
-
-    return true
 end
 
 return MakePigHouse("pighouse_city", nil, nil),
     MakePigHouse("pighouse_farm", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_farm),
     MakePigHouse("pighouse_mine", "pig_shop", "pig_farmhouse_build", "pig_farmhouse.tex", spawned_mine),
 
-    MakePlacer("pighouse_city_placer", "pig_shop", "pig_townhouse1_green_build", "idle", nil, true, nil, 0.75)
-
--- MakePlacer("pighouse_placer", "pig_house", "pig_house", "idle")
+    MakePlacer("pighouse_city_placer", "pig_shop", "pig_townhouse1_green_build", "idle", nil, true, nil, 0.75, nil, nil, HideLayers)

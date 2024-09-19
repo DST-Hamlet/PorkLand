@@ -8,7 +8,7 @@ local BrainCommon = require("brains/braincommon")
 
 local STOP_RUN_DIST = 20
 local SEE_PLAYER_DIST = 8
-local HIDE_PLAYER_DIST = 16
+local HIDE_PLAYER_DIST = 8
 
 local SEE_FOOD_DIST = 20
 -- local SEE_BUSH_DIST = 40
@@ -63,15 +63,16 @@ function PeagawkBrain:OnStart()
     {
         BrainCommon.PanicTrigger(self.inst),
 
-        RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST),
+        IfNode(function() return not self.inst.is_bush and not self.inst.components.health:IsDead() end, "ThreatInRange",
+            RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST)),
 
         WhileNode(function() return self.inst.sg:HasStateTag("attacked") end, "Attacked", Panic(self.inst)),
 
         DoAction(self.inst, EatFoodAction, "Eat Food"),
 
-        IfNode(function() return self.inst.is_bush and not self.inst.components.health:IsDead() end, "Bush", StandStill(self.inst)),
-
         DoAction(self.inst, TransformAction, "Transform", true),
+
+        IfNode(function() return self.inst.is_bush and not self.inst.components.health:IsDead() end, "Bush", StandStill(self.inst)),
     }, .25)
 
     self.bt = BT(self.inst, root)

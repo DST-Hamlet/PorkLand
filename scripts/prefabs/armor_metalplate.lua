@@ -30,8 +30,7 @@ local function fn()
     inst.AnimState:PlayAnimation("anim")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "anim")
+    PorkLandMakeInventoryFloatable(inst, "idle_water", "anim")
 
     inst:AddTag("metal")
     inst:AddTag("smeltable")  -- Smelter
@@ -45,6 +44,7 @@ local function fn()
     end
 
     inst:AddComponent("inspectable")
+
     inst:AddComponent("inventoryitem")
 
     inst:AddComponent("armor")
@@ -53,7 +53,6 @@ local function fn()
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY
     inst.components.equippable.walkspeedmult = TUNING.ARMORMETAL_SLOW
-
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)
 

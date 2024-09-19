@@ -18,9 +18,26 @@ local function boostbywave(inst, data)
     end
 end
 
+local function gasdamage(inst, data)
+    if not inst.last_in_gas_talk or GetTime() - inst.last_in_gas_talk > 5 then
+        inst.last_in_gas_talk = GetTime()
+        inst.components.talker:Say(GetString(inst, "ANNOUNCE_GAS_DAMAGE"))
+    end
+end
+
+local function OnNewDay(inst)
+    if TheWorld.components.pigtaxmanager and TheWorld.components.pigtaxmanager:HasPlayerCityHall() and TheWorld.components.pigtaxmanager:IsTaxDay() then
+        inst:DoTaskInTime(2, function()
+            inst.components.talker:Say(GetString(inst.prefab, "ANNOUNCE_TAXDAY"))
+        end)
+    end
+end
+
 AddComponentPostInit("wisecracker", function(cmp)
     cmp.inst:ListenForEvent("boat_damaged", boat_damaged)
     cmp.inst:ListenForEvent("boostbywave", boostbywave)
+    cmp.inst:ListenForEvent("gasdamage", gasdamage)
+    cmp.inst:WatchWorldState("cycles", OnNewDay)
 
     cmp.pl_enterlight_time = math.huge
     cmp.pl_enterdark_time = math.huge

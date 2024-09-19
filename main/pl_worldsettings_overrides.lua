@@ -389,6 +389,56 @@ applyoverrides_pre.hippopotamoose_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
+
+applyoverrides_pre.pigbandit = function(difficulty)
+    local tuning_vars =
+    {
+        never = {
+            PIG_BANDIT_ENABLED = false,
+        },
+        rare = {
+            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 0,5,
+        },
+        --[[
+        default = {
+            PIG_BANDIT_ENABLED = true,
+            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5,
+        },
+        --]]
+        often = {
+            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 1.5,
+        },
+        always = {
+            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 2.5,
+        },
+    }
+  OverrideTuningVariables(tuning_vars[difficulty])
+end
+
+applyoverrides_pre.thunderbird_setting = function(difficulty)
+    local tuning_vars = {
+        never = {
+            THUNDERBIRD_ENABLED = false,
+        },
+        rare = {
+            THUNDERBIRDNEST_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 10,
+        },
+        --[[
+        default = {
+            THUNDERBIRD_ENABLED = true,
+            THUNDERBIRDNEST_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 5,
+        },
+        --]]
+        often = {
+            THUNDERBIRDNEST_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 2.5,
+        },
+        always = {
+            THUNDERBIRDNEST_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 1,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
 --------------------------------------------------------------------------
 --[[ WORLDSETTINGS POST ]]
 --------------------------------------------------------------------------
@@ -414,6 +464,18 @@ applyoverrides_post.lush = function(difficulty)
         TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "lush", length = GetRandomItem(SEASON_VERYHARSH_LENGTHS), random = true})
     else
         TheWorld:PushEvent("ms_setseasonlength_plateau", {season = "lush", length = SEASON_VERYHARSH_LENGTHS[difficulty]})
+    end
+end
+
+applyoverrides_post.brambles = function(difficulty)
+    if not TheWorld.components.bramblemanager then
+        return
+    end
+
+    if difficulty == "never" then
+        TheWorld.components.bramblemanager:Disable(true)
+    else
+        TheWorld.components.bramblemanager:Disable(false)
     end
 end
 

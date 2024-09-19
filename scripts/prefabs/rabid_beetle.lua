@@ -34,6 +34,9 @@ end
 
 local function OnPickedUp(inst)
     inst.components.lootdropper:SetChanceLootTable("rabid_beetle_inventory")
+    inst.components.perishable:StartPerishing()
+    inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
+
 end
 
 local CANT_TAGS = {"FX", "NOCLICK", "INLIMBO", "wall", "rabid_beetle", "glowfly", "cocoon", "structure"}
@@ -75,14 +78,6 @@ local function OnTimerDone(inst, data)
     end
 end
 
-local function OnChangeArea(inst, data)
-    if data and data.tags and table.contains(data.tags, "Gas_Jungle") then
-        if inst.components.poisonable then
-            inst.components.poisonable:Poison(true, nil, 30)
-        end
-    end
-end
-
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -120,9 +115,7 @@ local function fn()
     end
 
     inst:AddComponent("drownable")
-    inst:AddComponent("areaaware")
     inst:AddComponent("inspectable")
-    -- inst:AddComponent("follower")
 
     -- locomotor must be constructed before the stategraph!
     inst:AddComponent("locomotor")
@@ -143,7 +136,6 @@ local function fn()
     inst.components.health.murdersound = "dontstarve_DLC003/creatures/enemy/rabid_beetle/death"
 
     inst:AddComponent("eater")
-    -- inst.components.eater:SetCarnivore()
     inst.components.eater:SetDiet({FOODTYPE.MEAT}, {FOODTYPE.MEAT})
     inst.components.eater:SetCanEatHorrible()
     inst.components.eater:SetStrongStomach(true)  -- can eat monster meat!
@@ -154,8 +146,8 @@ local function fn()
     inst.components.sleeper:SetSleepTest(ShouldSleep)
 
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickedUp)
+    -- inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
+    -- inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickedUp)
     inst.components.inventoryitem.canbepickedup = false
     inst.components.inventoryitem.canbepickedupalive = false
     inst.components.inventoryitem.nobounce = true
@@ -167,20 +159,16 @@ local function fn()
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
     inst.components.combat:SetRange(TUNING.RABID_BEETLE_ATTACK_RANGE)
     inst.components.combat:SetHurtSound("dontstarve_DLC003/creatures/enemy/rabid_beetle/hurt")
+    inst.components.combat:SetPlayerStunlock(PLAYERSTUNLOCK.NEVER)
 
     local lifetime = TUNING.TOTAL_DAY_TIME + (3 * math.random() - 2) * TUNING.SEG_TIME
 
     inst:AddComponent("timer")
     inst.components.timer:StartTimer("endlife", lifetime) -- 每当疯狂甲虫被陷阱捕捉就会重置这个计时，因为陷阱捕捉会删掉旧实体生成新实体
 
-    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME)
+    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME, OnPickedUp, OnDropped)
     inst.components.eater:SetOnEatFn(nil)
     inst:DoStaticTaskInTime(0, function()
-        inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
-    end)
-
-    inst.components.inventoryitem:SetOnPutInInventoryFn(function(inst, owner)
-        inst.components.perishable:StartPerishing()
         inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
     end)
 
@@ -191,7 +179,6 @@ local function fn()
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("onattackother", OnAttackOther)
     inst:ListenForEvent("timerdone", OnTimerDone)
-    inst:ListenForEvent("changearea", OnChangeArea)
 
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst, "bottom")

@@ -138,6 +138,7 @@ function EntityScript:CanOnWater(allow_invincible)
         or self:HasTag("flying")
         or self:HasTag("ignorewalkableplatformdrowning")
         or self:HasTag("shadow")
+        or self:HasTag("shadowminion")
         or (self:HasTag("player") and (self.components.drownable == nil or not self.components.drownable:CanDrownOverWater(allow_invincible)))
 end
 
@@ -152,7 +153,7 @@ function EntityScript:CanOnImpassable(allow_invincible)
 end
 
 -- Returns the interiorID of the room this entity is in
-function EntityScript:GetCurrentInteriorID()
+function EntityScript:GetCurrentInteriorID() -- 亚丹：请暂时不要在客机使用这个函数
     local x, _, z = self.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = x, z = z})
@@ -161,6 +162,9 @@ function EntityScript:GetCurrentInteriorID()
 end
 
 function EntityScript:GetIsInInterior()
+    if not self:IsValid() then
+        return false
+    end
     local x, _, z = self.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return true
@@ -169,6 +173,9 @@ function EntityScript:GetIsInInterior()
 end
 
 function EntityScript:Play2DSoundOutSide(path, soundname, distance, paramname, paramval)
+    if not soundname then
+        print("WARNING: EntityScript:Play2DSoundOutSide must have soundname")
+    end
     local pos = self:GetPosition()
     local followentity = self
     local areamode = AREAMODES.DISTANCE
@@ -184,4 +191,45 @@ function EntityScript:GetCurrentAnimation()
     if debug_string then
         return string.match(debug_string, "anim:%s+(%S+)%s+")
     end
+end
+
+local _GetIsWet = EntityScript.GetIsWet
+function EntityScript:GetIsWet(...)
+    return self:HasTag("temporary_wet") or (_GetIsWet(self, ...) and not self:GetIsInInterior())
+end
+
+local _RestartBrain = EntityScript.RestartBrain
+function EntityScript:RestartBrain(...)
+    if self.components.freezable and self.components.freezable:IsFrozen() then
+        self:StopBrain()
+        if self.brainfn ~= nil then
+            self.brain = self.brainfn()
+            if self.brain ~= nil then
+                self.brain.inst = self
+                self.brain:Stop()
+            end
+        end
+        return
+    elseif self.components.sleeper and self.components.sleeper:IsAsleep() then
+        self:StopBrain()
+        if self.brainfn ~= nil then
+            self.brain = self.brainfn()
+            if self.brain ~= nil then
+                self.brain.inst = self
+                self.brain:Stop()
+            end
+        end
+        return
+    end
+    return _RestartBrain(self, ...)
+end
+
+local _GetAdjectivedName = EntityScript.GetAdjectivedName
+function EntityScript:GetAdjectivedName(...)
+    local name = self:GetBasicDisplayName()
+    if self:HasTag("mystery") then
+        name = ConstructAdjectivedName(self, name, STRINGS.MYSTERIOUS)
+        return name
+    end
+    return _GetAdjectivedName(self, ...)
 end

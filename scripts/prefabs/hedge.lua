@@ -83,9 +83,6 @@ local function MakeHedgeType(data)
     local assets = {
         Asset("ANIM", "anim/hedge.zip"),
         Asset("ANIM", "anim/hedge" .. data.hedgetype .. "_build.zip"),
-        Asset("INV_IMAGE", "hedge_block_item"),
-        Asset("INV_IMAGE", "hedge_cone_item"),
-        Asset("INV_IMAGE", "hedge_layered_item"),
     }
 
     local prefabs = {
@@ -114,11 +111,6 @@ local function MakeHedgeType(data)
             inst.components.burnable:Extinguish()
         end
 
-        inst.reconstruction_project_spawn_state = {
-            bank = "hedge",
-            build = "hedge" .. data.hedgetype .. "_build",
-            anim = "growth0_45s",
-        }
         if not inst.components.fixable then
             inst.components.lootdropper:SpawnLootPrefab("clippings")
             inst.components.lootdropper:SpawnLootPrefab("clippings")
@@ -206,20 +198,21 @@ local function MakeHedgeType(data)
         end
     end
 
-    local function itemfn(Sim)
-
+    local function itemfn()
         local inst = CreateEntity()
         inst:AddTag("wallbuilder")
 
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
+        inst.entity:AddNetwork()
+
         MakeInventoryPhysics(inst)
 
         inst.AnimState:SetBank("hedge")
         inst.AnimState:SetBuild("hedge" .. data.hedgetype .. "_build")
         inst.AnimState:PlayAnimation("idle")
 
-        MakeInventoryFloatable(inst, "idle_water", "idle")
+        PorkLandMakeInventoryFloatable(inst)
 
         inst.entity:SetPristine()
 
@@ -249,6 +242,8 @@ local function MakeHedgeType(data)
         inst:AddComponent("deployable")
         inst.components.deployable.ondeploy = ondeploywall
         inst.components.deployable:SetDeployMode(DEPLOYMODE.WALL)
+
+        MakeHauntableLaunch(inst)
 
         return inst
     end
@@ -388,7 +383,7 @@ local function MakeHedgeType(data)
         inst.components.workable:SetOnWorkCallback(onhit)
 
         inst:AddComponent("fixable")
-        inst.components.fixable:AddRecinstructionStageData("broken", "hedge", "hedge" .. data.hedgetype .. "_build")
+        inst.components.fixable:AddReconstructionStageData("broken", "hedge", "hedge" .. data.hedgetype .. "_build")
         inst.components.fixable.reconstruction_prefab = data.name
         inst.components.fixable.reconstruction_anims = { play = "place", push = "growth1" }
 
@@ -411,13 +406,8 @@ local function MakeHedgeType(data)
         inst.components.shaveable:SetPrize("clippings", 0)
         inst.components.shaveable.on_shaved = unage
 
-        return inst
-    end
+        MakeHauntableWork(inst)
 
-    local function fn_repaired(Sim)
-        local inst = fn(Sim)
-        inst.components.health:SetPercent(1)
-        inst:SetPrefabName("wall_" .. data.name)
         return inst
     end
 

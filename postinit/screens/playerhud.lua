@@ -1,5 +1,8 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local easing = require("easing")
+
+local BatSonar = require("widgets/batsonar")
 local BoatOver = require("widgets/boatover")
 local FogOver = require("widgets/fogover")
 local LeavesOver = require("widgets/pl_leaf_canopy")
@@ -14,6 +17,8 @@ local _CreateOverlays = PlayerHud.CreateOverlays
 function PlayerHud:CreateOverlays(owner, ...)
     _CreateOverlays(self, owner, ...)
 
+    self.batsonar = self.overlayroot:AddChild(BatSonar(owner))
+
     self.boatover = self.overlayroot:AddChild(BoatOver(owner))
     self.inst:ListenForEvent("boatattacked", function(inst, data) return self.boatover:Flash() end, self.owner)
 
@@ -21,9 +26,6 @@ function PlayerHud:CreateOverlays(owner, ...)
 
     self.fogover = self.overlayroot:AddChild(FogOver(owner))
     self.fogover:Hide()
-    self.inst:ListenForEvent("startfog", function(inst, data) return self.fogover:StartFog() end, self.owner)
-    self.inst:ListenForEvent("stopfog", function(inst, data) return self.fogover:StopFog() end, self.owner)
-    self.inst:ListenForEvent("setfog", function(inst, data) return self.fogover:SetFog() end, self.owner)
 
     self.pollenover = self.overlayroot:AddChild(PollenOver(owner))
     self.pollenover:Hide()
@@ -48,15 +50,6 @@ function PlayerHud:UpdateClouds(camera)
 end
 
 function PlayerHud:UpdateFogClouds(camera)
-    -- if camera.interior then
-    --     self.clouds:Hide()
-    --     self.clouds_on = false
-    --     return
-    -- else
-        self.clouds:Show()
-        self.clouds_on = true
-    -- end
-
     if not TheFocalPoint.SoundEmitter:PlayingSound("windsound") then
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve/common/clouds", "windsound")
     end
@@ -72,14 +65,28 @@ function PlayerHud:UpdateFogClouds(camera)
         intensity = intensityMax
     elseif TheWorld.state.fogstate == FOG_STATE.LIFTING then
         intensity = Remap(time, TheWorld.state.fog_transition_time, 0, intensityMax, 0)
+    elseif TheWorld.state.fogstate == FOG_STATE.CLEAR then
+        intensity = 0
     end
 
     if self.owner.replica.inventory:EquipHasTag("batvision") then
         intensity = intensity * 0.3
     end
 
-    if self.owner.replica.inventory:EquipHasTag("clearfog") then
+    if self.owner.replica.inventory:EquipHasTag("clearfog") or self.owner:HasTag("inside_interior") then
         intensity = 0
+    end
+
+    if camera.distance and not camera.dollyzoom then
+        local dist_percent = (camera.distance - camera.mindist) / (camera.maxdist - camera.mindist)
+        local cutoff = TUNING.HUD_CLOUD_CUTOFF
+        if dist_percent > cutoff then
+            local p = easing.outCubic(dist_percent - cutoff, 0, .5, 1 - cutoff)
+            intensity = math.max(intensity, p)
+            self.clouds:Show()
+        elseif not (intensity > 0) then
+            self.clouds:Hide()
+        end
     end
 
     self.clouds:GetAnimState():SetMultColour(1, 1, 1, intensity)
@@ -103,7 +110,7 @@ function PlayerHud:OpenBoat(boat, sailing)
 
         boatwidget:Open(boat, self.owner, not sailing)
 
-        for k,v in pairs(self.controls.containers) do
+        for k, v in pairs(self.controls.containers) do
             if v.container then
                 if v.parent == boatwidget.parent or k == boat then
                     v:Close()
@@ -123,5 +130,13 @@ function PlayerHud:OnUpdate(dt, ...)
 
     if self.leavesover then
         self.leavesover:OnUpdate(dt)
+    end
+
+    if self.owner and self.batsonar then
+        if self.owner.replica.inventory:EquipHasTag("bat_hat") then
+            self.batsonar:StartSonar()
+        else
+            self.batsonar:StopSonar()
+        end
     end
 end

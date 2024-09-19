@@ -1,8 +1,7 @@
 local AncientHulkUtil = require("prefabs/ancient_hulk_util")
 
 local SetLightValueWithFade = AncientHulkUtil.SetLightValueWithFade
-local ApplyDamageToEntities = AncientHulkUtil.ApplyDamageToEntities
-local DoSectorAOE = AncientHulkUtil.DoSectorAOE
+local DoCircularAOE = AncientHulkUtil.DoCircularAOE
 
 local SHAKE_DIST = 40
 
@@ -163,7 +162,6 @@ local function fn()
     inst:AddTag("scarytoprey")
     inst:AddTag("largecreature")
     inst:AddTag("ancient_hulk")
-    inst:AddTag("dontteleporttointerior")
     inst:AddTag("laser_immune")
     inst:AddTag("mech")
     inst:AddTag("noember")
@@ -227,7 +225,7 @@ local function fn()
     inst.orbs = 2
 
     inst:ListenForEvent("attacked", OnAttacked)
-    inst:ListenForEvent("remove", function() inst.SoundEmitter:KillSound("gears") end)
+    inst:ListenForEvent("onremove", function() inst.SoundEmitter:KillSound("gears") end)
 
     inst:ListenForEvent("killed", function(inst, data)
         if inst.components.combat and data and data.victim == inst.components.combat.target then
@@ -247,7 +245,7 @@ local function fn()
 end
 
 local function OnNearMine(inst, ents)
-    SetLightValueWithFade(inst, 0, 0.75, 0.2 )
+    SetLightValueWithFade(inst, 0, 0.75, 0.2)
     inst.AnimState:PlayAnimation("red_loop", true)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/active_LP", "boom_loop")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/electro")
@@ -258,7 +256,10 @@ local function OnNearMine(inst, ents)
 
         local ring = SpawnPrefab("laser_ring")
         ring.Transform:SetPosition(inst.Transform:GetWorldPosition())
-        inst:DoTaskInTime(0.3, function() DoSectorAOE(inst, 3.5) inst:Remove() end)
+        inst:DoTaskInTime(0.3, function()
+            DoCircularAOE(inst, 3.5)
+            inst:Remove()
+        end)
 
         local explosion = SpawnPrefab("laser_explosion")
         explosion.Transform:SetPosition(inst.Transform:GetWorldPosition())
@@ -363,9 +364,12 @@ local function OnHitOrb(inst, dist)
         end
     end)
 
+    local x, y, z = inst.Transform:GetWorldPosition()
+    inst:DoTaskInTime(0.3, function() DoCircularAOE(inst, 3.5) end)
+
+    -- TODO: use different visual and sound effects hitting clouds/water(spawn some waves maybe?)
     local ring = SpawnPrefab("laser_ring")
-    ring.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst:DoTaskInTime(0.3, function() DoSectorAOE(inst, 3.5) end)
+    ring.Transform:SetPosition(x, y, z)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/smash_2")
 end
 
@@ -416,7 +420,7 @@ local function orb_fn()
 end
 
 local function OnCollidesmall(inst, other)
-    ApplyDamageToEntities(inst, other, nil, nil, true)
+    DoCircularAOE(inst, 1)
 
     local explosion = SpawnPrefab("laser_explosion")
     explosion.Transform:SetPosition(inst.Transform:GetWorldPosition())
@@ -441,9 +445,7 @@ local function orb_small_fn()
     inst.Physics:CollidesWith(COLLISION.OBSTACLES)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
     --inst.Physics:CollidesWith(COLLISION.WAVES)
-    inst.Physics:CollidesWith(COLLISION.GROUND)
-
-    inst.Physics:SetCollisionCallback(OnCollidesmall)
+    inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
 
     inst.AnimState:SetBank("metal_hulk_projectile")
     inst.AnimState:SetBuild("metal_hulk_projectile")
@@ -475,6 +477,8 @@ local function orb_small_fn()
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE/3)
     inst.components.combat.playerdamagepercent = 0.5
 
+    inst.Physics:SetCollisionCallback(OnCollidesmall)
+
     inst.Physics:SetMotorVelOverride(60, 0, 0)
 
     inst:DoTaskInTime(2, inst.Remove)
@@ -495,7 +499,7 @@ local function OnCollidecharge(inst, other)
 
     local ring = SpawnPrefab("laser_ring")
     ring.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst:DoTaskInTime(0.3, function() DoSectorAOE(inst, 3.5) end)
+    inst:DoTaskInTime(0.3, function() DoCircularAOE(inst, 3.5) end)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/smash_2")
 end
 
@@ -509,8 +513,6 @@ local function orb_charge_fn()
     inst.entity:AddNetwork()
 
     MakeCharacterPhysics(inst, 1, 0.5)
-
-    inst.Physics:SetCollisionCallback(OnCollidecharge)
 
     inst.AnimState:SetBank("metal_hulk_projectile")
     inst.AnimState:SetBuild("metal_hulk_projectile")
@@ -541,6 +543,7 @@ local function orb_charge_fn()
     inst.components.combat.playerdamagepercent = 0.5
 
     inst.Physics:SetMotorVelOverride(40, 0, 0)
+    inst.Physics:SetCollisionCallback(OnCollidecharge)
 
     inst:DoTaskInTime(2, inst.Remove)
 

@@ -65,11 +65,7 @@ function MechAssembly:Dissemble()
         part.spawned = true
 
         part:DoTaskInTime(math.random() * 0.6,function()
-            part:PushEvent("shock")
-            part.components.timer:SetTimeLeft("discharge", 20 * (math.random() + 1))
-            if not TheWorld.state.isaporkalypse then
-                part.components.timer:ResumeTimer("discharge")
-            end
+            part:ActiveRobot(20 * math.random() + 20)
         end)
     end
 

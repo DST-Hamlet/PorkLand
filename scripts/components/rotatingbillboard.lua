@@ -31,7 +31,7 @@ local function CanMouseThrough(inst)
         local mask = inst.components.rotatingbillboard ~= nil
                  and inst.components.rotatingbillboard:GetMask()
         if mask and mask:IsValid() then
-            for i,v in ipairs(TheInput.entitiesundermouse) do
+            for i, v in ipairs(TheInput.entitiesundermouse) do
                 if v == mask then
                     return false
                 end
@@ -46,7 +46,7 @@ local RotatingBillboard = Class(function(self, inst)
     self.rotation_net = net_float(inst.GUID, "rotatingbillboard.rotation_net", "rotatingbillboard.rotation_net")
     self.rotation = 0
     self.always_on_updating = false
-    self.setted = false -- 用于判断是否在实体生成后至少传入一次立体参数
+    self.rotation_set = false -- 用于判断是否在实体生成后至少传入一次立体参数
 
     self.animdata = {}
 
@@ -119,7 +119,7 @@ function RotatingBillboard:SyncMaskAnimation()
         local anim = self.mask.AnimState
         anim:SetBank(data.bank or self.inst.AnimState:GetCurrentBankName())
         anim:SetBuild(data.build or self.inst.AnimState:GetBuild())
-        local animation = data.animation or select(2, self.inst.AnimState:GetHistoryData())
+        local animation = data.anim or select(2, self.inst.AnimState:GetHistoryData())
         if not anim:IsCurrentAnimation(animation) then
             anim:PlayAnimation(animation)
         end
@@ -131,11 +131,11 @@ function RotatingBillboard:GetRotation()
     return self.rotation
 end
 
-function RotatingBillboard:SetRotation(rot)
-    self.rotation = rot
-    self.setted = true
+function RotatingBillboard:SetRotation(rotation)
+    self.rotation = rotation
+    self.rotation_set = true
     local x, _, z = self.inst.Transform:GetWorldPosition()
-    self.inst.AnimState:SetFloatParams(x, z, rot* DEGREES + PI)
+    self.inst.AnimState:SetFloatParams(x, z, rotation * DEGREES + PI)
 
     self:UpdateLightPosition()
 end
@@ -176,7 +176,7 @@ end
 
 function RotatingBillboard:OnUpdate()
     local rot = self.inst.Transform:GetRotation()
-    if rot ~= 0 or not self.setted then
+    if rot ~= 0 or not self.rotation_set then
         self:SetRotation(rot)
         self.inst.Transform:SetRotation(0) -- set transform rot to 0 to make anim align to xz
     end

@@ -5,11 +5,11 @@ local function en_zh(en, zh) -- Other languages don't work
     return (locale == "zh" or locale == "zhr" or locale == "zht") and zh or en
 end
 
-name = "Above the Clouds"
-author = "Jerry"
-description = "WIP"
+name = "云霄国度-Above the Clouds"
+author = "Jerry, Tony, ziwbi, 亚丹, 鲁鲁, 小巫, 每年睡8760小时, 老王"
+description = "*本mod仍处于测试阶段*"
 
-version = "0.0.1"
+version = "0.0.12"
 forumthread = ""
 api_version = 10
 api_version_dst = 10
@@ -23,32 +23,17 @@ all_clients_require_mod = true
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
-server_filter_tags = { "hamltet", "porkland" }
+server_filter_tags = { "Hamlet", "Porkland", "哈姆雷特", "猪镇" }
 
 folder_name = folder_name or "workshop-"
 if not folder_name:find("workshop-") then
     name = name .. "-[" .. folder_name .."]"
 end
 
----@param title_en string
----@param title_zh string
----@return mod_configuration
 local function Breaker(title_en, title_zh) -- hover does not work, as this item cannot be hovered
     return { name = en_zh(title_en, title_zh), options = { {description = "", data = false} }, default = false }
 end
 
 configuration_options = {
-    Breaker("Misc", "杂项"),
-    {
-        name = "locale",
-        label = en_zh("Translation", "翻译"),
-        hover = en_zh("Select a translation to enable it regardless of language packs.", "选择翻译，而不是自动"),
-        options =
-        {
-            {description = "Auto", data = false},
-            {description = "English", data = "en"},
-            {description = "中文（简体）", data = "sc"},
-        },
-        default = false,
-    },
+    -- Breaker("Misc", "杂项"),
 }

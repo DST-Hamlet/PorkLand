@@ -5,6 +5,7 @@ TOOLACTIONS.PAN = true
 TOOLACTIONS.SHEAR = true
 TOOLACTIONS.DISLODGE = true
 TOOLACTIONS.SPY = true
+TOOLACTIONS.GAS = true
 
 SEASONS.TEMPERATE = "temperate"
 SEASONS.HUMID = "humid"
@@ -52,4 +53,42 @@ ISLAND_TAGS = {
     "island_ancient",
 }
 
+NUTRIENT_TILES = {
+    [WORLD_TILES.PLAINS] = true,
+    [WORLD_TILES.RAINFOREST] = true,
+    [WORLD_TILES.DEEPRAINFOREST] = true,
+    [WORLD_TILES.DEEPRAINFOREST_NOCANOPY] = true,
+}
+
 FUELTYPE.CORK = "CORK"
+FUELTYPE.ANCIENT_REMNANT = "ANCIENT_REMNANT"
+
+TECH.CITY = {
+    CITY = 2
+}
+
+TECH.HOME = {
+    HOME = 2
+}
+
+-- Just an arbitrary number
+BUILDMODE.HOME_DECOR = 10
+
+LOCKTYPE.ROYAL = "royal"
+
+-- City pigman is dont in pigman_city.lua
+
+NAUGHTY_VALUE["hippopotamoose"] = 4
+NAUGHTY_VALUE["pangolden"] = 4
+
+NAUGHTY_VALUE["dungbeetle"] = 3
+NAUGHTY_VALUE["mandrakeman"] = 3
+NAUGHTY_VALUE["peagawk"] = 3
+
+NAUGHTY_VALUE["kingfisher"] = 2
+NAUGHTY_VALUE["piko_orange"] = 2
+NAUGHTY_VALUE["pog"] = 2
+
+NAUGHTY_VALUE["glowfly"] = 1
+NAUGHTY_VALUE["pigeon"] = 1
+NAUGHTY_VALUE["piko"] = 1

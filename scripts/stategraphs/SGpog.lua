@@ -82,7 +82,7 @@ local function bark_at_friends(inst)
     local ents = TheSim:FindEntities(x, y, z, BARK_AT_FRIENDS_RANGE, POG_TAGS)
 
     local nottriggered = true
-    for _, ent in pairs(ents)do
+    for _, ent in pairs(ents) do
         local belly = false
         if ent.sg:HasStateTag("idle") then
             if nottriggered then
@@ -431,7 +431,7 @@ local states =
 
     State{
         name = "eat",
-        tags = {"preoccupied"},
+        tags = {"busy", "preoccupied"},
 
         onenter = function(inst, data)
             inst.Physics:Stop()

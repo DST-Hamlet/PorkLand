@@ -46,7 +46,7 @@ local function RetargetFn(inst)
     end
 
     return FindEntity(inst, RETARGET_DIST, function(ent)
-        return 	(ent.components.health and not ent.components.health:IsDead() and inst.components.combat:CanTarget(ent))
+        return (ent.components.health and not ent.components.health:IsDead() and inst.components.combat:CanTarget(ent))
             and not (inst.components.follower and inst.components.follower:IsLeaderSame(ent))
         end, nil, RETARGET_NO_TAGS, RETARGET_ONE_OF_TASG)
 end
@@ -93,7 +93,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             inst.components.combat:SetTarget(nil)
             inst.SoundEmitter:PlaySound("dontstarve_DLC001/creatures/catcoon/pickup")
         elseif giver.components.leader then
-            inst.SoundEmitter:PlaySound("dontstarve/common/makeFriend")
+            giver:PushEvent("makefriend")
             giver.components.leader:AddFollower(inst)
             inst.components.follower:AddLoyaltyTime(TUNING.POG_LOYALTY_PER_ITEM)
         end
@@ -103,7 +103,7 @@ end
 local function OnRefuseItem(inst, giver, item)
     if inst.components.sleeper:IsAsleep() then
         inst.components.sleeper:WakeUp()
-    elseif not inst.sg:HasStateTag("busy") then
+    elseif not inst.components.combat.target and not inst.sg:HasStateTag("busy") then
         inst:FacePoint(giver.Transform:GetWorldPosition())
         inst.sg:GoToState("refuse")
     end
@@ -133,7 +133,6 @@ local function fn()
     inst.Transform:SetFourFaced()
 
     MakeCharacterPhysics(inst, 1, 0.5)
-    MakePoisonableCharacter(inst)
 
     inst.AnimState:SetBank("pog")
     inst.AnimState:SetBuild("pog_actions")
@@ -216,6 +215,7 @@ local function fn()
     MakeHauntablePanic(inst)
     MakeSmallBurnableCharacter(inst, "pog_chest", Vector3(1, 0, 1))
     MakeSmallFreezableCharacter(inst)
+    MakePoisonableCharacter(inst)
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGpog")

@@ -48,9 +48,8 @@ local function ShouldSleep(inst)
     and not(inst.components.poisonable ~= nil and inst.components.poisonable:IsPoisoned())
     and not inst.sg:HasStateTag("busy")
     and not (target and not target:HasTag("playerghost"))
-    and inst.components.amphibiouscreature.in_water
+    and (inst.components.amphibiouscreature.in_water or TheWorld.state.isnight)
     and not TheWorld.state.isdusk
-    or TheWorld.state.isnight
 end
 
 local function OnAttacked(inst, data)

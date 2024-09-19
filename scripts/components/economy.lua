@@ -51,6 +51,7 @@ function Economy:GetTradeItems(traderprefab)
     return TRADER[traderprefab] and TRADER[traderprefab].items or nil
 end
 
+-- This is different from Don't Starve Hamlet, we use thing like "CITY_PIG_BANKER_TRADE" instead of STRINGS.CITY_PIG_BANKER_TRADE
 function Economy:GetTradeItemDesc(traderprefab)
     return TRADER[traderprefab] and TRADER[traderprefab].desc or nil
 end
@@ -70,8 +71,6 @@ function Economy:MakeTrade(traderprefab, city, inst)
 end
 
 function Economy:ProcessDelays()
-    print("Resetting trade delays")
-
     for c, city in ipairs(self.cities) do
         for i, trader in pairs(city) do
             for guid, data in pairs(trader.GUIDS) do
@@ -87,7 +86,7 @@ end
 function Economy:AddCity(city)
     self.cities[city] = {}
 
-    for trader_prefab, _ in pairs(TRADER) do
+    for trader_prefab in pairs(TRADER) do
         self.cities[city][trader_prefab] = {
             GUIDS = {},
         }

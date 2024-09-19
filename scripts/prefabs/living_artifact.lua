@@ -8,7 +8,6 @@ local function SavePlayerData(player)
     local data = {}
 
     data.build = player.AnimState:GetBuild()
-    data.skins = player.components.skinner:GetClothing()
 
     data.health_redirect = player.components.health.redirect
 
@@ -21,10 +20,7 @@ end
 local function LoadPlayerData(player, data)
     player.AnimState:ClearOverrideBuild("living_suit_build_morph")
     player.AnimState:SetBuild(data.build)
-    player.components.skinner:SetSkinName(data.skins.base, true)
-    for _, skin in pairs(data.skins) do
-        player.components.skinner:SetClothing(skin)
-    end
+    player.components.skinner:SetSkinMode("normal_skin")
 
     player.components.health.redirect = data.health_redirect
 
@@ -33,32 +29,9 @@ local function LoadPlayerData(player, data)
     -- player.components.vision:CheckForGlasses()
 end
 
-local function drop_inventory_items(player)
-    local self = player.components.inventory
-    if self.activeitem then
-        self:DropItem(self.activeitem, true, true)
-        self:SetActiveItem(nil)
-    end
-
-    for k = 1, self.maxslots do
-        local v = self.itemslots[k]
-        if v and not (ondeath and v.components.inventoryitem.keepondeath) then
-            self:DropItem(v, true, true)
-        end
-    end
-
-        -- if self.inst.EmptyBeard ~= nil then
-        --     self.inst:EmptyBeard()
-        -- end
-
-    for k, v in pairs(self.equipslots) do
-        self:DropItem(v, true, true)
-    end
-end
-
 local function BecomeIronLord_post(inst)
-    inst.player.components.skinner:SetSkinName("", nil, true)
-    inst.player.components.skinner:ClearAllClothing()
+    inst.player.components.skinner:HideAllClothing(inst.player.AnimState)
+    inst.player.components.skinner:SetSkinMode("living_suit")
     inst.player.AnimState:SetBuild("living_suit_build")
     inst.player.AnimState:AddOverrideBuild("living_suit_build") -- override Wanda & Wolfgang's symbols
 
@@ -78,10 +51,13 @@ local function BecomeIronLord(inst, instant)
     player.AnimState:AddOverrideBuild("player_living_suit_morph")
 
     player:AddTag("fireimmune")
-    player:AddTag("has_gasmask")
+    player:AddTag("poisonimmune")
     player:AddTag("ironlord")
     player:AddTag("laser_immune")
     player:AddTag("mech")
+    player:AddTag("has_gasmask")
+
+    player.components.inventory:Hide()
 
     player:DoTaskInTime(0, function() -- wait for player_classified to be constructed
         player.player_classified.instantironlord:set(true)
@@ -169,21 +145,21 @@ local function Revert(inst)
 
     local player = inst.player
 
-    LoadPlayerData(player, inst.player_data)
-
     player.AnimState:ClearOverrideBuild("living_suit_build")
-    player.AnimState:SetBank("wilson")
     player.AnimState:Show("beard")
+    LoadPlayerData(player, inst.player_data)
 
     player.SoundEmitter:KillSound("chargedup")
 
     player:RemoveTag("ironlord")
     player:RemoveTag("laser_immune")
     player:RemoveTag("mech")
-    player:RemoveTag("has_gasmask")
     player:RemoveTag("fireimmune")
+    player:RemoveTag("poisonimmune")
+    player:RemoveTag("has_gasmask")
 
     player.player_classified.isironlord:set(false)
+    player.components.inventory:Show()
 
     player:RemoveComponent("worker")
 
@@ -289,8 +265,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.AnimState:SetBank("living_artifact")
     inst.AnimState:SetBuild("living_artifact")

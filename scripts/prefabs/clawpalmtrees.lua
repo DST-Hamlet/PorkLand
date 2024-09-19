@@ -13,9 +13,6 @@ local prefabs =
     "charcoal",
     "chop_mangrove_blue",
     "fall_mangrove_blue",
-    "snake_amphibious",
-    "bird_egg",
-    "scorpion",
 }
 
 SetSharedLootTable("clawpalmtree_short",
@@ -165,6 +162,9 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst:ListenForEvent("animover", inst.Remove)
     inst:ListenForEvent("entitysleep", inst.Remove)
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    if math.random() < 0.4 then
+        inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    end
 end
 
 local function OnWorkCallback(inst, chopper, chops)
@@ -257,21 +257,6 @@ local function drop_critter(inst, prefab)
     critter.Transform:SetPosition(pt:Get())
 end
 
-local function OnIgnite(inst)
-    DefaultIgniteFn(inst)
-
-    if not inst.flushed and math.random() < 0.4 then
-        inst.flushed = true
-
-        local prefab = math.random() < 0.5 and "scorpion" or "snake_amphibious"
-
-        inst:DoTaskInTime(math.random() * 0.5, function() drop_critter(inst, prefab) end)
-        if math.random() < 0.3 and prefab == "snake_amphibious" then
-            inst:DoTaskInTime(math.random() * 0.5, function() drop_critter(inst, prefab) end)
-        end
-    end
-end
-
 local function GrowFromSeed(inst)
     inst.components.growable:SetStage(1)
     inst.AnimState:PlayAnimation("grow_seed_to_short")
@@ -285,7 +270,6 @@ local function onsave(inst, data)
     end
     data.stump = inst:HasTag("stump")
     data.stage = inst.stage
-    data.flushed = inst.flushed
 end
 
 local function onload(inst, data)
@@ -308,10 +292,6 @@ local function onload(inst, data)
         else
             Sway(inst)
         end
-    end
-
-    if data.flushed then
-        inst.flushed = data.flushed
     end
 end
 
@@ -411,7 +391,7 @@ local function MakeTree(name, stage, data)
 
         inst:AddComponent("lootdropper")
 
-        -- inst:AddComponent("mystery")
+        inst:AddComponent("mystery")
 
         inst:AddComponent("growable")
         inst.components.growable.stages = growth_stages
@@ -420,12 +400,8 @@ local function MakeTree(name, stage, data)
         inst.components.growable.springgrowth = true
         inst.components.growable:StartGrowing()
 
-        MakeLargeBurnable(inst)
-        inst.components.burnable:SetFXLevel(3)
-        inst.components.burnable:SetOnBurntFn(OnBurnt)
-
-        MakeSmallPropagator(inst)
-        inst.components.burnable:SetOnIgniteFn(OnIgnite)
+        MakeTreeBurnable(inst)
+        MakeLargePropagator(inst)
 
         MakeSnowCovered(inst, .01)
         MakeHauntableWork(inst)

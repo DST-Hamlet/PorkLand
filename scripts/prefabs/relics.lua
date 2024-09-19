@@ -78,8 +78,7 @@ local function MakeRelic(num)
         inst.AnimState:PlayAnimation(tostring(num))
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations(tostring(num).."_water", tostring(num))
+        PorkLandMakeInventoryFloatable(inst, tostring(num).."_water", tostring(num))
 
         inst.entity:SetPristine()
 

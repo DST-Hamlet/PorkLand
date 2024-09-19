@@ -155,7 +155,7 @@ function Hackable:GetDebugString()
     if not self.transplanted then
         str = str .. "Not transplanted "
     elseif self.max_cycles ~= nil and self.cycles_left ~= nil then
-        str = str .. string.format("transplated; cycles: %d/%d ", self.cycles_left, self.max_cycles)
+        str = str .. string.format("transplanted; cycles: %d/%d ", self.cycles_left, self.max_cycles)
     end
     if self.protected_cycles ~= nil and self.protected_cycles > 0 then
         str = str .. string.format("protected cycles: %d ", self.protected_cycles)

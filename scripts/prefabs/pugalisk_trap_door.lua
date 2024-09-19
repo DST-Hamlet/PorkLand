@@ -25,7 +25,7 @@ local STATE_TO_ANIMATION = {
 local function DoSpawnPugalisk(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local pugalisk = SpawnPrefab("pugalisk")
-    pugalisk.Transform:SetPosition(x,y,z)
+    pugalisk.Transform:SetPosition(x, y, z)
     pugalisk.home = TheSim:FindFirstEntityWithTag("pugalisk_fountain")
     pugalisk.sg:GoToState("emerge_taunt")
     pugalisk.wantstotaunt = false
@@ -51,7 +51,7 @@ local function activate(inst)
         inst.AnimState:PlayAnimation("opening")
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/trap_door")
 
-        ShakeAllCameras(CAMERASHAKE.FULL, 1, 0.02, 40, inst, 45)
+        ShakeAllCameras(CAMERASHAKE.FULL, 1, 0.02, 0.2, inst, 45)
     end
 end
 

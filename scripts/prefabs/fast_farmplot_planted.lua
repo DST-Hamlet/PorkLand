@@ -1,25 +1,19 @@
 local function GrowCrop(inst)
-    for ent, _ in ipairs(inst.components.grower.crops) do
-        if ent.components.crop then
+    for crop in pairs(inst.components.grower.crops) do
+        if crop.components.crop then
             for i = 1, 10 do
-                ent.components.crop:DoGrow(9999)
+                crop.components.crop:DoGrow(9999)
             end
         end
     end
 end
 
-local function OnLoad(inst, data)
-    if not (data and data.no_nudge) then
-        if inst.components.grower then
-            local seed = SpawnPrefab("seeds")
-            inst.components.grower:PlantItem(seed)
-            inst:DoTaskInTime(0, GrowCrop)
-        end
+local function OnCityPossession(inst)
+    if inst.components.grower then
+        local seed = SpawnPrefab("seeds")
+        inst.components.grower:PlantItem(seed)
+        inst:DoTaskInTime(0, GrowCrop)
     end
-end
-
-local function OnSave(inst, data)
-    data.no_nudge = true
 end
 
 local function fn()
@@ -31,8 +25,7 @@ local function fn()
         return inst
     end
 
-    inst.OnLoad = OnLoad
-    inst.OnSave = OnSave
+    inst.OnCityPossession = OnCityPossession
 
     return inst
 end

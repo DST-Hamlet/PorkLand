@@ -3,7 +3,6 @@ local CC_DEF = require("main/interior_texture_defs").CC_DEF
 
 local InteriorVisitor = Class(function(self, inst)
     self.inst = inst
-    self.interiorspawner = TheWorld.components.interiorspawner
 
     self.center_ent = net_entity(inst.GUID, "interiorvisitor.center_ent")
     self.last_center_ent = nil
@@ -13,12 +12,11 @@ local InteriorVisitor = Class(function(self, inst)
     self.exterior_pos_z:set_local(0)
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
-    self.resetinteriorcamera = net_event(inst.GUID, "interiorvisitor.resetinteriorcamera")
-    -- inst:ListenForEvent("interiorvisitor.center_ent", OnCenterEntChanged)
+    self.interior_map = {}
+    self.interior_map_icons_override = nil
+    self.interior_door_status = {}
 
     inst:StartUpdatingComponent(self)
-
-    self.player_icon = SpawnPrefab("pl_local_icon")
 end)
 
 function InteriorVisitor:GetExteriorPos()
@@ -27,23 +25,6 @@ function InteriorVisitor:GetExteriorPos()
         0,
         self.exterior_pos_z:value()
     )
-end
-
--- TODO: Make this actually work
-function InteriorVisitor:IsInInterior(x, z)
-    local pos = self.inst:GetPosition()
-    local index = self.interiorspawner:PositionToIndex(pos)
-end
-
-function InteriorVisitor:GetInteriorCenterGeneric()
-    local pos = self.inst:GetPosition()
-    for _, v in ipairs(TheSim:FindEntities(pos.x, 0, pos.z, 30, {"pl_interiorcenter"}))do
-        return v
-    end
-end
-
-function InteriorVisitor:GetInteriorCenterDedicated()
-    return self.interiorspawner:PositionToInteriorCenter()
 end
 
 local function IsInInteriorRectangle(player_pos, ent)
@@ -55,22 +36,22 @@ local function IsInInteriorRectangle(player_pos, ent)
     return math.abs(offset.x) < d/2 + 2 and math.abs(offset.z) < w/2 + 2
 end
 
-function InteriorVisitor:Activate()
-    print("InteriorVisitor:Activate()")
-end
+-- function InteriorVisitor:Activate()
+--     print("InteriorVisitor:Activate()")
+-- end
 
-function InteriorVisitor:Deactivate()
-    print("InteriorVisitor:Deactivate()")
-end
+-- function InteriorVisitor:Deactivate()
+--     print("InteriorVisitor:Deactivate()")
+-- end
 
-function InteriorVisitor:ApplyInteriorCamera(ent)
+function InteriorVisitor:ApplyInteriorCamera(interior_center)
     local cameraoffset = -2.5         --10x15
     local zoom = 23
-    local width, depth = ent.size_net:value()
+    local depth = interior_center:GetDepth()
 
-    if ent.cameraoffset and ent.zoom then
-        cameraoffset = ent.cameraoffset
-        zoom = ent.zoom
+    if interior_center.cameraoffset and interior_center.zoom then
+        cameraoffset = interior_center.cameraoffset
+        zoom = interior_center.zoom
     elseif depth == 12 then    --12x18
         cameraoffset = -2
         zoom = 25
@@ -83,71 +64,82 @@ function InteriorVisitor:ApplyInteriorCamera(ent)
     end
 
     -- custom value
-    if ent.pl_interior_distance ~= nil then
-        zoom = ent.pl_interior_distance
+    if interior_center.pl_interior_distance ~= nil then
+        zoom = interior_center.pl_interior_distance
     end
-    if ent.pl_interior_cameraoffset ~= nil then
-        cameraoffset = ent.pl_interior_cameraoffset
+    if interior_center.pl_interior_cameraoffset ~= nil then
+        cameraoffset = interior_center.pl_interior_cameraoffset
     else
         cameraoffset = Vector3(cameraoffset, 0, 0)
     end
 
-    local pos = ent:GetPosition()
+    local pos = interior_center:GetPosition()
     TheCamera.inside_interior = true
     TheCamera.pl_interior_currentpos = pos + cameraoffset
     TheCamera.pl_interior_distance = zoom
+end
+
+function InteriorVisitor:UpdateInteriorMinimap()
+    local center = self.center_ent:value()
+    local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.inst:GetPosition())
+    local current_room_data = self.interior_map[current_room_id]
+    if current_room_data and center then
+        self.interior_map_icons_override = {
+            [current_room_id] = center:CollectMinimapIcons()
+        }
+    end
 end
 
 function InteriorVisitor:OnUpdate()
     if self.inst.components.interiorvisitor then
         self.inst.components.interiorvisitor:UpdateExteriorPos()
     end
+
+    if self.inst ~= ThePlayer then
+        return
+    end
+
     local ambientlighting = TheWorld.components.ambientlighting
-    if self.inst == ThePlayer then
-        local last_center_ent = self.last_center_ent
-        local ent = self.center_ent:value()
-        local is_in = IsInInteriorRectangle(self.inst:GetPosition(), ent)
-        if is_in then
-            self.inst:AddTag("inside_interior")
-            self:ApplyInteriorCamera(ent)
-            if ent:HasInteriorMinimap() then
-                self.player_icon.MiniMapEntity:SetEnabled(false)
-            else
-                self.player_icon.MiniMapEntity:CopyIcon(self.inst.MiniMapEntity)
-                self.player_icon.MiniMapEntity:SetEnabled(true)
-                self.player_icon.Transform:SetPosition(self:GetExteriorPos():Get())
+    local last_center_ent = self.last_center_ent
+    local room_center_ent = TheWorld.components.interiorspawner:GetInteriorCenter(self.inst:GetPosition())
+    if IsInInteriorRectangle(self.inst:GetPosition(), room_center_ent) then
+        self:ApplyInteriorCamera(room_center_ent)
 
+        if last_center_ent ~= room_center_ent and self.inst:HasTag("inside_interior") then
+            self.last_center_ent = room_center_ent
+            self.inst:PushEvent("enterinterior_client", {from = last_center_ent, to = room_center_ent})
+
+            if self.inst.MiniMapEntity then
+                self.inst.MiniMapEntity:SetEnabled(false)
             end
-            if last_center_ent ~= ent then
-                self.last_center_ent = ent
-                self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
-
-                if self.inst.MiniMapEntity then
-                    self.inst.MiniMapEntity:SetEnabled(false)
-                end
-                if ambientlighting then
-                    ambientlighting:Pl_Refresh()
-                end
-
-                TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud_interior.tex")) -- disable clouds
+            if ambientlighting then
+                ambientlighting:Pl_Refresh()
             end
-        else
-            self.inst:RemoveTag("inside_interior")
-            self.player_icon.MiniMapEntity:SetEnabled(false)
+
+            TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud_interior.tex")) -- disable clouds
+        end
+
+        if room_center_ent:HasInteriorMinimap() then
+            self:UpdateInteriorMinimap()
+        end
+    else
+        if TheCamera.inside_interior then
             TheCamera.inside_interior = false
-            self.last_center_ent = nil
-            if last_center_ent ~= ent then
-                self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
+            TheCamera:RestoreOutsideInteriorCamera()
+        end
+        self.last_center_ent = nil
 
-                if self.inst.MiniMapEntity then
-                    self.inst.MiniMapEntity:SetEnabled(true)
-                end
-                if ambientlighting then
-                    ambientlighting:Pl_Refresh()
-                end
+        if last_center_ent ~= room_center_ent and not self.inst:HasTag("inside_interior")  then
+            self.inst:PushEvent("leaveinterior_client", {from = last_center_ent, to = nil})
 
-                TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex")) -- enable clouds again
+            if self.inst.MiniMapEntity then
+                self.inst.MiniMapEntity:SetEnabled(true)
             end
+            if ambientlighting then
+                ambientlighting:Pl_Refresh()
+            end
+
+            TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex")) -- enable clouds again
         end
     end
 end
@@ -168,10 +160,34 @@ function InteriorVisitor:GetCCTable()
     }
 end
 
-function InteriorVisitor:OnRemoveFromEntity()
-    self:Deactivate()
+-- Receiving from interior_map client RPC
+function InteriorVisitor:OnNewInteriorMapData(data)
+    for id, data in pairs(data) do
+        self.interior_map[id] = data
+    end
 end
 
-InteriorVisitor.OnRemoveEntity = InteriorVisitor.OnRemoveFromEntity
+local function get_door_id(current_room_id, target_interior_id)
+    if current_room_id < target_interior_id then
+        return tostring(current_room_id) .. "-" .. tostring(target_interior_id)
+    else
+        return tostring(target_interior_id) .. "-" .. tostring(current_room_id)
+    end
+end
+
+-- Receiving from interior_door client RPC
+function InteriorVisitor:OnNewInteriorDoorData(data)
+    -- only getting data for current room
+    if not self.interior_door_status[data.current_interior] then
+        self.interior_door_status[data.current_interior] = {}
+    end
+    self.interior_door_status[data.current_interior][get_door_id(data.current_interior, data.target_interior)] = data
+end
+
+-- function InteriorVisitor:OnRemoveFromEntity()
+--     self:Deactivate()
+-- end
+
+-- InteriorVisitor.OnRemoveEntity = InteriorVisitor.OnRemoveFromEntity
 
 return InteriorVisitor

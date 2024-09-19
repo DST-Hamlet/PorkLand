@@ -13,11 +13,44 @@ local function MakeVegStats(seedweight, hunger, health, perish_time, sanity, coo
     }
 end
 
-PL_VEGGIES = {
-    coffeebeans = MakeVegStats(0, TUNING.CALORIES_TINY, 0, TUNING.PERISH_FAST, 0, TUNING.CALORIES_TINY, 0, TUNING.PERISH_SLOW, -TUNING.SANITY_TINY),
+local COMMON = 3
+-- local UNCOMMON = 1
+-- local RARE = .5
+
+local SEEDLESS =
+{
+    coffeebeans = true,
 }
 
-local function MakeVeggie(name)
+local assets_seeds =
+{
+    Asset("ANIM", "anim/seeds.zip"),
+    Asset("ANIM", "anim/pl_farm_plant_seeds.zip"),
+}
+
+PL_VEGGIES = {
+    coffeebeans = MakeVegStats(0, TUNING.CALORIES_TINY, 0, TUNING.PERISH_FAST, 0, TUNING.CALORIES_TINY, 0, TUNING.PERISH_SLOW, -TUNING.SANITY_TINY),
+    radish = MakeVegStats(COMMON, TUNING.CALORIES_SMALL, TUNING.HEALING_TINY, TUNING.PERISH_SLOW, 0, TUNING.CALORIES_SMALL, TUNING.HEALING_SMALL, TUNING.PERISH_MED, 0),
+    aloe = MakeVegStats(COMMON, TUNING.CALORIES_TINY, TUNING.HEALING_MEDSMALL, TUNING.PERISH_FAST, 0, TUNING.CALORIES_SMALL, TUNING.HEALING_SMALL, TUNING.PERISH_SUPERFAST, 0),
+}
+for veggie in pairs(PL_VEGGIES) do
+    VEGGIES[veggie] = PL_VEGGIES[veggie]
+end
+
+local function can_plant_seed(inst, pt, mouseover, deployer)
+    local x, z = pt.x, pt.z
+    return TheWorld.Map:CanTillSoilAtPoint(x, 0, z, true)
+end
+
+local function OnDeploy(inst, pt, deployer) --, rot)
+    local plant = SpawnPrefab("plant_normal_ground")
+    plant.components.crop:StartGrowing(inst.components.plantable.product, inst.components.plantable.growtime)
+    plant.Transform:SetPosition(pt.x, 0, pt.z)
+    plant.SoundEmitter:PlaySound("dontstarve/wilson/plant_seeds")
+    inst:Remove()
+end
+
+local function MakeVeggie(name, has_seeds)
     local assets =
     {
         Asset("ANIM", "anim/" .. name .. ".zip"),
@@ -34,6 +67,10 @@ local function MakeVeggie(name)
         "spoiled_food",
     }
 
+    if has_seeds then
+        table.insert(prefabs, name .. "_seeds")
+    end
+
     local function fn()
         local inst = CreateEntity()
 
@@ -42,8 +79,7 @@ local function MakeVeggie(name)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations("idle_water", "idle")
+        PorkLandMakeInventoryFloatable(inst)
 
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)
@@ -101,8 +137,7 @@ local function MakeVeggie(name)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations("cooked_water", "idle")
+        PorkLandMakeInventoryFloatable(inst, "cooked_water", "idle")
 
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)
@@ -153,17 +188,97 @@ local function MakeVeggie(name)
         return inst
     end
 
+    local function fn_seeds()
+        local inst = CreateEntity()
+
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddNetwork()
+
+        MakeInventoryPhysics(inst)
+
+        inst.AnimState:SetBank("pl_farm_plant_seeds")
+        inst.AnimState:SetBuild("pl_farm_plant_seeds")
+        inst.AnimState:PlayAnimation(name)
+        inst.AnimState:SetRayTestOnBB(true)
+
+        -- inst.pickupsound = "vegetation_firm"
+
+        --cookable (from cookable component) added to pristine state for optimization
+        inst:AddTag("cookable")
+        inst:AddTag("deployedplant")
+        inst:AddTag("deployedfarmplant")
+        inst:AddTag("oceanfishing_lure")
+
+        inst.overridedeployplacername = "seeds_placer"
+
+        inst._custom_candeploy_fn = can_plant_seed -- for DEPLOYMODE.CUSTOM
+
+        MakeInventoryFloatable(inst)
+
+        inst.entity:SetPristine()
+
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
+        inst:AddComponent("edible")
+        inst.components.edible.foodtype = FOODTYPE.SEEDS
+
+        inst:AddComponent("stackable")
+        inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+
+        inst:AddComponent("tradable")
+
+        inst:AddComponent("inspectable")
+
+        inst:AddComponent("inventoryitem")
+
+        inst.components.edible.healthvalue = TUNING.HEALING_TINY / 2
+        inst.components.edible.hungervalue = TUNING.CALORIES_TINY
+
+        inst:AddComponent("perishable")
+        inst.components.perishable:SetPerishTime(TUNING.PERISH_SUPERSLOW)
+        inst.components.perishable:StartPerishing()
+        inst.components.perishable.onperishreplacement = "spoiled_food"
+
+        inst:AddComponent("cookable")
+        inst.components.cookable.product = "seeds_cooked"
+
+        inst:AddComponent("bait")
+
+        inst:AddComponent("plantable")
+        inst.components.plantable.growtime = TUNING.SEEDS_GROW_TIME
+        inst.components.plantable.product = name
+
+        inst:AddComponent("deployable")
+        inst.components.deployable:SetDeployMode(DEPLOYMODE.CUSTOM) -- use inst._custom_candeploy_fn
+        inst.components.deployable.restrictedtag = "plantkin"
+        inst.components.deployable.ondeploy = OnDeploy
+
+        MakeSmallBurnable(inst)
+        MakeSmallPropagator(inst)
+
+        MakeHauntableLaunchAndPerish(inst)
+
+        return inst
+    end
+
     local exported_prefabs = {}
 
     table.insert(exported_prefabs, Prefab(name, fn, assets, prefabs))
-    table.insert(exported_prefabs, Prefab(name.."_cooked", fn_cooked, assets_cooked))
+    table.insert(exported_prefabs, Prefab(name .. "_cooked", fn_cooked, assets_cooked))
+
+    if has_seeds then
+        table.insert(exported_prefabs, Prefab(name .. "_seeds", fn_seeds, assets_seeds))
+    end
 
     return exported_prefabs
 end
 
 local prefs = {}
 for veggiename, veggiedata in pairs(PL_VEGGIES) do
-    local veggies = MakeVeggie(veggiename)
+    local veggies = MakeVeggie(veggiename, not SEEDLESS[veggiename])
     for _, v in ipairs(veggies) do
         table.insert(prefs, v)
     end

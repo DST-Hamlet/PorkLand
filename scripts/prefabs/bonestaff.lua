@@ -23,21 +23,11 @@ end
 local function SpawnGaze(inst)
     local owner = nil
     owner = inst.components.inventoryitem:GetGrandOwner()
-    local mousepos = TheInput:GetWorldPosition()
     local rotation = nil
-
-    if TheInput:ControllerAttached() then
-        local pc = ThePlayer.components.playercontroller
-        if pc.reticule and pc.reticule.targetpos then
-            local pt = pc.reticule.targetpos
-            rotation = owner:GetAngleToPoint(pt.x, pt.y, pt.z)
-        end
-
-        if not rotation then
-            rotation = owner.Transform:GetRotation()
-        end
+    if owner then
+        rotation = owner.Transform:GetRotation()
     else
-        rotation = owner:GetAngleToPoint(mousepos.x, mousepos.y, mousepos.z)
+        return
     end
 
     local beam = SpawnPrefab("gaze_beam")
@@ -91,8 +81,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("bonestaff_water", "bonestaff")
+    PorkLandMakeInventoryFloatable(inst, "bonestaff_water", "bonestaff")
 
     inst.AnimState:SetBank("staffs")
     inst.AnimState:SetBuild("pl_staffs")
@@ -102,6 +91,7 @@ local function fn()
     inst:AddTag("nopunch")
     inst:AddTag("nosteal")
     inst:AddTag("show_spoilage")
+    inst:AddTag("allow_action_on_impassable")
     -- shadowlevel (from shadowlevel component) added to pristine state for optimization
     inst:AddTag("shadowlevel")
 
@@ -112,6 +102,7 @@ local function fn()
     inst.components.reticule.targetfn = function()
         return Vector3(ThePlayer.entity:LocalToWorldSpace(5, 0.001, 0))
     end
+    inst.components.reticule.ispassableatallpoints = true
 
     inst.entity:SetPristine()
 

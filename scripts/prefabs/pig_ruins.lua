@@ -335,6 +335,7 @@ local ruin_data = {
         loot = "relic_5",
         master_postinit = function(inst)
             inst.components.named:SetName(STRINGS.NAMES["PIG_RUINS_MUSHROOM"])
+            inst.components.inspectable.nameoverride = "PIG_RUINS_MUSHROOM"
         end
     },
     pig_ruins_sow = {
@@ -377,7 +378,7 @@ local ruin_data = {
             inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE_GIANT)
             inst:ListenForEvent("onremove", function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()
-                local ents = TheSim:FindEntities(x,y,z, 10, {"throne_wall"})
+                local ents = TheSim:FindEntities(x, y, z, 10, {"throne_wall"})
                 for _, v in pairs(ents) do
                     v:Remove()
                 end

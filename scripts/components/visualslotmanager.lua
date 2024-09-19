@@ -20,6 +20,7 @@ local VisualSlotManager = Class(function(self, inst)
 
     self.inst = inst
     self.enable = true
+    self.canclick = true
     self.visual_slots = {}
 
     self.inst:DoTaskInTime(1, function()
@@ -31,6 +32,17 @@ local VisualSlotManager = Class(function(self, inst)
 end, nil, {
     enable = onenable
 })
+
+function VisualSlotManager:SetCanClick(canclick)
+    self.canclick = canclick
+    for k, v in pairs(self.visual_slots) do
+        if self.canclick then
+            v:RemoveTag("NOCLICK")
+        else
+            v:AddTag("NOCLICK")
+        end
+    end
+end
 
 function VisualSlotManager:ForceOutOfLimbo(item)
     item:ForceOutOfLimbo(true)
@@ -50,10 +62,15 @@ function VisualSlotManager:SetVisualSlot(slot, item)
 
     visual_slot = SpawnPrefab("visual_slot")
     self.visual_slots[slot] = visual_slot
+    if self.canclick then
+        visual_slot:RemoveTag("NOCLICK")
+    else
+        visual_slot:AddTag("NOCLICK")
+    end
 
     visual_slot.components.visualslot:SetShelf(self.inst, slot)
     visual_slot.entity:SetParent(self.inst.entity)
-    visual_slot.Follower:FollowSymbol(self.inst.GUID, self.inst:GetSlotSymbol(slot))
+    visual_slot.Follower:FollowSymbol(self.inst.GUID, self.inst:GetSlotSymbol(slot), 0, 0, 0.001)
 
     if item then
         self:ForceOutOfLimbo(item)

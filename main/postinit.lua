@@ -24,6 +24,7 @@ local component_posts = {
     "combat",
     "crop",
     "drownable",
+    "dryer",
     "edible",
     "equippable_replica",
     "equippable",
@@ -31,18 +32,22 @@ local component_posts = {
     "fishingrod",
     "floater",
     "grogginess",
+    "grower",
     "grue",
     "hauntable",
     "health",
     "inventory",
+    "inventory_replica",
     "inventoryitem_replica",
     "inventoryitem",
     "inventoryitemmoisture",
+    "kramped",
     "locomotor",
     "lootdropper",
     "moisture",
     "oceancolor",
     "oldager",
+    "pickable",
     "playeractionpicker",
     "playercontroller",
     "playervision",
@@ -50,14 +55,18 @@ local component_posts = {
     "positionalwarp",
     "regrowthmanager",
     "repairable",
+    "resistance",
     "rider_replica",
     "rider",
     "seasons",
     "shard_clock",
     "shard_seasons",
     "sleeper",
+    "spawner",
     "strafer",
     "teamleader",
+    "uianim",
+    "undertile",
     "waterproofer",
     "wavemanager",
     "wisecracker",
@@ -67,22 +76,32 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "birdcage",
     "boomerang",
     "buff_workeffectiveness",
+    "grass",
+    "mandrake",
     "meatrack",
+    "mosquitosack",
+    "multiplayer_portal",
     "orangestaff",
     "player",
     "player_classified",
     "player_common_extensions",
     "pocketdimensioncontainer_defs",
     "poop",
+    "telebase",
+    "thunder_close",
     "torch",
+    "waterprojectiles",
     "woodie",
     "world_network",
     "world",
     "shard_network",
+    "spoiledfood",
     "statueruins",
     "walls",
+    "waterballoon",
     "wormwood",
     "wortox",
 }
@@ -94,6 +113,9 @@ local multipleprefab_posts = {
     "health",
     "notraptrigger",
     "poisonable",
+    "seeds",
+    "stalagmite",
+    "tradable",
 }
 
 local scenario_posts = {
@@ -110,6 +132,7 @@ local stategraph_posts = {
     "wilson_client",
     "wilsonghost",
     "wilsonghost_client",
+    "multiplayerportal",
 }
 
 local brain_posts = {
@@ -118,16 +141,23 @@ local brain_posts = {
 local widget_posts = {
     "bloodover",
     "containerwidget",
+    "craftingmenu_ingredients",
+    "craftingmenu_widget",
+    "grid",
     "inventorybar",
+    "healthbadge",
     "seasonclock",
+    "skilltreetoast",
     "statusdisplay",
-    "uianim",
     "uiclock",
     "widget",
+    "mapwidget",
+    "recipepopup",
 }
 
 local module_posts = {
     ["components/map"] = "map",
+    ["shadeeffects"] = "shadeeffects",
 }
 
 local _require = require
@@ -154,6 +184,12 @@ modimport("postinit/emittermanager")
 modimport("postinit/minimapentity")
 modimport("postinit/sim")
 modimport("postinit/pathfinder")
+modimport("postinit/groundcreep")
+modimport("postinit/groundcreepentity")
+modimport("postinit/soundemitter")
+modimport("postinit/preparedfoods")
+modimport("postinit/skilltrees")
+
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

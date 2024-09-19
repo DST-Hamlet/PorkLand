@@ -33,10 +33,9 @@ local function MakeOinc(name, build, value)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst, "idle_water", "idle")
-        MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
+        PorkLandMakeInventoryFloatable(inst)
 
-        inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+        inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
 
         inst.AnimState:SetBank("coin")
         inst.AnimState:SetBuild(build)
@@ -62,9 +61,6 @@ local function MakeOinc(name, build, value)
         inst:AddComponent("stackable")
         inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
-        -- inst:AddComponent("appeasement")
-        -- inst.components.appeasement.appeasementvalue = TUNING.APPEASEMENT_TINY
-
         inst:AddComponent("waterproofer")
         inst.components.waterproofer.effectiveness = 0
         inst:AddComponent("inventoryitem")
@@ -76,6 +72,9 @@ local function MakeOinc(name, build, value)
 
         inst.OnEntityWake = onwake
 
+        MakeHauntableLaunch(inst)
+        MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.MEDIUM, TUNING.WINDBLOWN_SCALE_MAX.MEDIUM)
+
         return inst
     end
     return Prefab(name, fn, assets)
@@ -84,4 +83,3 @@ end
 return MakeOinc("oinc", "pig_coin", 1),
     MakeOinc("oinc10", "pig_coin_silver", 10),
     MakeOinc("oinc100", "pig_coin_jade", 100)
-

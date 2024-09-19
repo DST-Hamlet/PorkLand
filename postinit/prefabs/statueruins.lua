@@ -8,8 +8,8 @@ local ruins_statue = {
 
 local function OnDislodged(inst)
     local ruins_statue = SpawnPrefab(inst.prefab .. "_nogem")
-    local x,y,z = inst.Transform:GetWorldPosition()
-    ruins_statue.Transform:SetPosition(x,y,z)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    ruins_statue.Transform:SetPosition(x, y, z)
 
     inst:DoTaskInTime(0, inst.Remove)
 end

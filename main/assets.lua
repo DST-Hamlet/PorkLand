@@ -3,9 +3,9 @@ local TheNet = GLOBAL.TheNet
 PrefabFiles = {
     "adult_flytrap",
     "alloy",
+    "antivenom",
     "aporkalypse_clock",
     "armor_metalplate",
-    "asparagus_planted",
     "ballpein_hammer",
     "basefan",
     "bill_quill",
@@ -15,11 +15,13 @@ PrefabFiles = {
     "boatrepairkit",
     "boats",
     "bonestaff",
+    "bugfood",
     "chitin",
     "deep_jungle_fern_noise",
     "dungball",
     "dungbeetle",
     "dungpile",
+    "exterior_texture_packages",
     "fast_farmplot_planted",
     "flotsam",
     "flower_rainforest",
@@ -54,11 +56,14 @@ PrefabFiles = {
     "peagawk",
     -- "peagawk_spawner",
     "piko",
+    "pl_chests",
     "pl_frog",
     "pl_froglegs",
     "pl_planted_tree",
     "pl_preparedfoods",
     "pl_veggies",
+    "pl_walls",
+    "pl_planted_veggies",
     "pl_foodbuffs",
     "peagawkfeather",
     "poisonbubble",
@@ -72,6 +77,7 @@ PrefabFiles = {
     "rabid_beetle",
     "relics",
     "reeds_water",
+    "rock_flippable",
     "rowboat_wake",
     "sail",
     "scorpion",
@@ -89,12 +95,13 @@ PrefabFiles = {
     "tree_pillar",
     "tuber",
     "tubertrees",
-    "wave_ripple",
+    "undertile_marker",
     "vampirebat",
     "venomgland",
     "venus_stalk",
     "walkingstick",
     "waterdrop",
+    "wave_ripple",
     "weevole_carapace",
     "weevole",
     "windtrail",
@@ -114,9 +121,10 @@ PrefabFiles = {
     "deco_ruins_fountain",
     "deco_swinging_light",
     "deco_table",
-    "interior_mapicon",
+    "deco_wall_ornament",
     "interior_boundary",
     "interior_surface",
+    "interior_texture_packages",
     "interiorwall_fx",
     "interiorfloor_fx",
     "vampirebatcave",
@@ -134,7 +142,7 @@ PrefabFiles = {
     "smashingpot",
     "pig_ruins_dart",
     "pig_ruins_torch",
-    "light_rays",
+    "lightrays_jungle",
     "pig_ruins_spear_trap",
     "pigghost",
     "rugs",
@@ -161,19 +169,90 @@ PrefabFiles = {
     "bramble_bulb",
     "pog",
     "pogherd",
+    "spider_monkey",
+    "pl_chests",
 
-    "pigman_city",
+
     "pighouse_city",
     "pig_shop",
     "pig_guard_tower",
+    "playerhouse_city",
+    "pigman_city",
     "pigman_shopkeeper_desk",
     "city_lamp",
     "hedge",
     "lawnornaments",
+    "topiary",
     "clippings",
     "reconstruction_project",
+    "city_hammer",
+    "shop_buyer",
+    "trinkets_giftshop",
+    "deed",
+    "securitycontract",
+    "key_to_city",
 
     "oinc",
+    "bramble",
+    "antsuit",
+    "armor_weevole",
+    "blunderbuss",
+    "bugrepellent",
+    "candlefire",
+    "corkbat",
+    "gascloud",
+    "pl_hats",
+    "pl_turfs",
+    "poisonbalm",
+    "snakeskin_jacket",
+    "pl_magicprototyper",
+    "cloudpuff",
+    "batsonar_fx",
+    "ancient_herald",
+    "armor_vortex_cloak",
+    "herald_tatters",
+    "firerain",
+    "lavapool",
+    "meteor_impact",
+    "obsidian",
+    "pigbandit",
+    "banditmap",
+    "tunacan",
+
+    "nettle_plant",
+    "sprinkler",
+    "water_pipe",
+    "water_spray",
+    "pl_plantables",
+
+    "thunderbird",
+    "thunderbirdnest",
+
+    "pedestal_key",
+
+    "gnat",
+    "gnatmound",
+
+    "waterfall_lilypond",
+    "waterfall_sfx",
+
+    "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗
+    "inv_bamboo",
+    "sand",
+
+    "roc_nest",
+    "ro_bin_egg",
+    "ro_bin_gizzard_stone",
+    "ro_bin",
+    "pig_scepter",
+
+    "ox_horn",
+    "ox_flute",
+    "porklandintro",
+    "anthill",
+
+    "cutlass",
+    "pl_feathers"
 }
 
 Assets = {
@@ -202,6 +281,7 @@ Assets = {
     Asset("IMAGE", "images/overlays/fx6.tex"),
     Asset("ANIM", "anim/leaves_canopy2.zip"),  -- canopy
     Asset("ANIM", "anim/livingartifact_meter.zip"),
+    Asset("ANIM", "anim/poison_meter_overlay.zip"),
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"), -- blood moon
 
@@ -225,6 +305,12 @@ Assets = {
     Asset("ANIM", "anim/player_living_suit_morph.zip"),
     Asset("ANIM", "anim/player_living_suit_punch.zip"),
     Asset("ANIM", "anim/player_living_suit_shoot.zip"),
+    Asset("ANIM", "anim/player_actions_cropdust.zip"),
+    Asset("ANIM", "anim/player_actions_speargun.zip"),
+    Asset("ANIM", "anim/player_mount_actions_cropdust.zip"),
+    Asset("ANIM", "anim/player_mount_actions_speargun.zip"),
+    Asset("ANIM", "anim/player_actions_scroll.zip"),
+    Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
 
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
@@ -255,12 +341,33 @@ Assets = {
     Asset("ANIM", "anim/tree_leaf_short_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
 
+    -- multiplayer_portal
+    Asset("ANIM", "anim/portal_dst.zip"),
+
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
+
+    -- Waterfall
+    Asset("SHADER", "shaders/anim_waterfall.ksh"),
+    Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
 
     -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_marble_royal.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_marble_royal.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_ruins_slab.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_ruins_slab.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_antcave_floor.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_antcave_floor.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
+
+    -- Cookbook HD icons
+    Asset("ATLAS", "images/hud/pl_cook_pot_food_image.xml"),
+    Asset("IMAGE", "images/hud/pl_cook_pot_food_image.tex"),
+
+    Asset("SHADER", "shaders/ui_fillmode.ksh"),
 }
 
 for _, v in ipairs(require("main/interior_texture_defs").Assets) do
@@ -277,6 +384,10 @@ local sounds = {
     Asset("SOUND", "sound/DLC003_music_stream.fsb"),
     Asset("SOUND", "sound/DLC003_sfx.fsb"),
     Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev"),
+    Asset("SOUND", "sound/dontstarve_shipwreckedSFX.fsb"),
+    Asset("SOUNDPACKAGE", "sound/dontstarve_DLC002.fev"),
+    Asset("SOUND", "sound/porkland_soundpackage_bank_1.fsb"),
+    Asset("SOUNDPACKAGE", "sound/porkland_soundpackage.fev"),
 }
 
 if not TheNet:IsDedicated() then

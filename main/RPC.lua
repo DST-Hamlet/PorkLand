@@ -85,23 +85,17 @@ AddModRPCHandler("Porkland", "StrafeFacing_pl", function(player, dir)
     end
 end)
 
-AddClientModRPCHandler("Porkland", "mapdata", function(data)
-    if type(data) == "string" then
-        data = TheSim:DecodeAndUnzipString(data)
-        TheWorld.components.worldmapiconproxy:OnGetMapDataFromServer(data)
+AddClientModRPCHandler("Porkland", "interior_map", function(data)
+    local interiorvisitor = ThePlayer and ThePlayer.replica.interiorvisitor
+    if interiorvisitor then
+        interiorvisitor:OnNewInteriorMapData(DecodeAndUnzipString(data))
     end
 end)
 
-AddClientModRPCHandler("Porkland", "layoutdata", function(data)
-    if type(data) == "string" then
-        data = TheSim:DecodeAndUnzipString(data)
-        TheWorld.components.interiorspawner:OnGetLayoutDataFromServer(data)
-    end
-end)
-
-AddClientModRPCHandler("Porkland", "visited_uuid", function(data)
-    if type(data) == "string" then
-        TheWorld.components.worldmapiconproxy:OnGetVisitedUUIDFromServer(data)
+AddClientModRPCHandler("Porkland", "interior_door", function(data)
+    local interiorvisitor = ThePlayer and ThePlayer.replica.interiorvisitor
+    if interiorvisitor then
+        interiorvisitor:OnNewInteriorDoorData(DecodeAndUnzipString(data))
     end
 end)
 

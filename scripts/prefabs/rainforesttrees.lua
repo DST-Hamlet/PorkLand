@@ -2,14 +2,14 @@ local assets =
 {
     Asset("ANIM", "anim/tree_forest_rot_build.zip"),
     Asset("ANIM", "anim/tree_rainforest_gas_build.zip"),
-
     Asset("ANIM", "anim/tree_forest_bloom_build.zip"),
-
+    Asset("ANIM", "anim/tree_rainforest_web_build.zip"),
     Asset("ANIM", "anim/tree_rainforest_build.zip"),
     Asset("ANIM", "anim/tree_rainforest_bloom_build.zip"),
     Asset("ANIM", "anim/tree_rainforest_normal.zip"),
     Asset("ANIM", "anim/tree_rainforest_short.zip"),
     Asset("ANIM", "anim/tree_rainforest_tall.zip"),
+    Asset("ANIM", "anim/tree_rainforest_changetoweb.zip"),
     Asset("ANIM", "anim/dust_fx.zip"),
 }
 
@@ -41,6 +41,29 @@ SetSharedLootTable("rainforesttree_tall",
     {"log", 1.0},
     {"log", 1.0},
     {"log", 1.0},
+})
+
+SetSharedLootTable("spider_monkey_tree_short",
+{
+    {"log", 1.0},
+    {"silk", 1.0},
+})
+
+SetSharedLootTable("spider_monkey_tree_normal",
+{
+    {"log", 1.0},
+    {"log", 1.0},
+    {"silk", 1.0},
+    {"silk", 1.0},
+})
+
+SetSharedLootTable("spider_monkey_tree_tall",
+{
+    {"log", 1.0},
+    {"log", 1.0},
+    {"log", 1.0},
+    {"silk", 1.0},
+    {"silk", 1.0},
 })
 
 local function MakeAnims(stage)
@@ -92,15 +115,27 @@ local scales = {
     tall = 0.7,
 }
 
+local STAGES = {
+    [1] = "short",
+    [2] = "normal",
+    [3] = "tall",
+}
+
 local function GetStageFn(stage)
     return function(inst)
         inst.stage = inst.components.growable.stage
         if inst.components.workable then
             inst.components.workable:SetWorkLeft(TUNING["JUNGLETREE_CHOPS_" .. string.upper(stage)])
         end
-        inst.components.lootdropper:SetChanceLootTable("rainforesttree_" .. stage)
+        if inst:HasTag("spider_monkey_tree") then
+            inst.components.lootdropper:SetChanceLootTable("spider_monkey_tree_" .. stage)
+        else
+            inst.components.lootdropper:SetChanceLootTable("rainforesttree_" .. stage)
+        end
 
-        if math.random() < 0.5 then
+        inst.components.lootdropper.chanceloot = {}
+
+        if math.random() < 0.5 and not inst:HasTag("rotten_tree") and not inst:HasTag("spider_monkey_tree") then
             for i = 1, TUNING["SNAKE_JUNGLETREE_AMOUNT_" .. string.upper(stage)] do
                 if math.random() < 0.5 and TheWorld.state.cycles >= TUNING.SNAKE_POISON_START_DAY then
                     inst.components.lootdropper:AddChanceLoot("scorpion", TUNING.SNAKE_JUNGLETREE_POISON_CHANCE)
@@ -108,7 +143,7 @@ local function GetStageFn(stage)
                     inst.components.lootdropper:AddChanceLoot("snake_amphibious", TUNING.SNAKE_JUNGLETREE_CHANCE)
                 end
             end
-        elseif stage ~= "short" then
+        elseif stage ~= "short" and not inst:HasTag("rotten_tree") and not inst:HasTag("spider_monkey_tree") then
             inst.components.lootdropper:AddChanceLoot("bird_egg", 1.0)
         end
 
@@ -123,6 +158,9 @@ local function GetGrowFn(stage, grow_animation, grow_sound)
     return function(inst)
         inst.AnimState:PlayAnimation(grow_animation)
         inst.SoundEmitter:PlaySound(grow_sound)
+        if inst:HasTag("spider_monkey_tree") then
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderLair_grow")
+        end
         PushSway(inst)
     end
 end
@@ -155,6 +193,9 @@ local function OnWorkCallback(inst, chopper)
             "dontstarve/characters/woodie/beaver_chop_tree" or
             "dontstarve/wilson/use_axe_tree"
         )
+        if inst:HasTag("spider_monkey_tree") then
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderLair_hit")
+        end
     end
 
     local fx = SpawnPrefab("chop_mangrove_pink")
@@ -179,6 +220,7 @@ local function MakeStump(inst)
     inst:RemoveTag("shelter")
 
     inst:RemoveComponent("burnable")
+    inst:RemoveComponent("bloomable")
     inst:RemoveComponent("propagator")
     inst:RemoveComponent("workable")
     inst:RemoveComponent("blowinwindgust")
@@ -203,7 +245,7 @@ local function MakeStump(inst)
 end
 
 local function drop_burr(inst,pt)
-    if inst.components.bloomable.blooming then
+    if inst.components.bloomable and inst.components.bloomable.blooming then
         local num_seeds = inst.components.growable.stage == 3 and 2 or 1
 
         for i = 1, num_seeds do
@@ -268,11 +310,15 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst:ListenForEvent("entitysleep", inst.Remove)
 
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    if math.random() < 0.4 then
+        inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    end
 end
 
 local function OnBurntChanges(inst)
     inst:RemoveTag("shelter")
 
+    inst:RemoveComponent("bloomable")
     inst:RemoveComponent("growable")
     inst:RemoveComponent("burnable")
     inst:RemoveComponent("propagator")
@@ -295,9 +341,9 @@ local function OnBurnt(inst)
     inst:AddTag("burnt")
 
     inst.AnimState:PlayAnimation(anims[inst.stage].burnt, true)
-    inst.MiniMapEntity:SetIcon("rainforesttree_burnt.tex")
+    inst.MiniMapEntity:SetIcon("tree_rainforest_burnt.tex")
 
-    inst.AnimState:SetRayTestOnBB(true)
+    -- inst.AnimState:SetRayTestOnBB(true) -- 这个会影响鼠标选取判定
 
     inst.seed_task = inst:DoTaskInTime(10, function()
         local pt = inst:GetPosition()
@@ -329,10 +375,26 @@ end
 
 local function OnIgnite(inst)
     DefaultIgniteFn(inst)
+    if inst:HasTag("stump") then
+        return false
+    end
+
+    if inst:HasTag("burnt") then
+        return
+    end
+
+    if inst:HasTag("rotten_tree") then
+        return false
+    end
+
+    if inst:HasTag("spider_monkey_tree") then
+        return false
+    end
+
     if not inst.flushed and math.random() < 0.4 then
         inst.flushed = true
 
-        local prefab = math.random() < 0.5 and "scorpion" or "snake_amphibious"
+        local prefab = math.random() < 0.5 and TheWorld.state.cycles >= TUNING.SNAKE_POISON_START_DAY and "scorpion" or "snake_amphibious"
 
         inst:DoTaskInTime(math.random() * 0.5, function() drop_critter(inst, prefab) end)
         if math.random() < 0.3 and prefab == "snake_amphibious" then
@@ -373,7 +435,15 @@ local function CanBloom(inst)
         return false
     end
 
-    if inst:HasTag("rotten") then
+    if inst:HasTag("burnt") then
+        return
+    end
+
+    if inst:HasTag("rotten_tree") then
+        return false
+    end
+
+    if inst:HasTag("spider_monkey_tree") then
         return false
     end
 
@@ -381,7 +451,7 @@ local function CanBloom(inst)
 end
 
 local function StartBloom(inst)
-    if inst:HasTag("rotten") then
+    if inst:HasTag("rotten_tree") then
         return
     end
     inst.AnimState:SetBuild("tree_rainforest_bloom_build")
@@ -389,11 +459,17 @@ local function StartBloom(inst)
 end
 
 local function StopBloom(inst)
-    if inst:HasTag("rotten") then
+    if inst:HasTag("rotten_tree") then
         return
     end
     inst.AnimState:SetBuild("tree_rainforest_build")
     inst.build = "normal"
+end
+
+local function PlayWebFX(inst)
+    inst.AnimState:PlayAnimation("change_to_web_" .. STAGES[inst.stage or 1])
+    inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderLair_grow")
+    inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderExitLair")
 end
 
 local function OnSave(inst, data)
@@ -413,6 +489,8 @@ local function OnSave(inst, data)
     if inst.unbloomtaskinfo then
         data.unbloomtask = inst:TimeRemainingInTask(inst.unbloomtaskinfo)
     end
+
+    data.spider = inst:HasTag("has_spider")
 end
 
 local function OnLoad(inst, data)
@@ -450,7 +528,7 @@ local function OnLoad(inst, data)
         if inst.bloomtask then inst.bloomtask:Cancel() inst.bloomtask = nil end
         inst.bloomtaskinfo = nil
         inst.bloomtask, inst.bloomtaskinfo = inst:ResumeTask(data.bloomtask, function()
-            if not inst:HasTag("rotten") then
+            if not inst:HasTag("rotten_tree") then
                 inst.build = "tree_rainforest_bloom_build"
                 inst.AnimState:SetBuild(inst.build)
             end
@@ -460,11 +538,15 @@ local function OnLoad(inst, data)
         if inst.unbloomtask then inst.unbloomtask:Cancel() inst.unbloomtask = nil end
         inst.unbloomtaskinfo = nil
         inst.unbloomtask, inst.unbloomtaskinfo = inst:ResumeTask(data.unbloomtask, function()
-            if not inst:HasTag("rotten") then
+            if not inst:HasTag("rotten_tree") then
                 inst.build = "tree_rainforest_build"
                 inst.AnimState:SetBuild(inst.build)
             end
         end)
+    end
+
+    if data.spider then
+        inst:AddTag("has_spider")
     end
 end
 
@@ -517,7 +599,6 @@ local function OnEntityWake(inst)
     end
 end
 
-
 local function OnBlownByWind(inst, data)
     if inst.components.bloomable and inst.components.bloomable:CanBloom() then
         if math.random() < 0.30 then
@@ -539,8 +620,6 @@ local function OnseasonChange(inst, season)
     end
 end
 
-
-
 local function MakeTree(name, build, stage, data)
     local function fn()
         local inst = CreateEntity()
@@ -549,19 +628,33 @@ local function MakeTree(name, build, stage, data)
         inst.entity:AddAnimState()
         inst.entity:AddSoundEmitter()
         inst.entity:AddMiniMapEntity()
+        if build == "spider" then
+            inst.entity:AddGroundCreepEntity()
+            inst.GroundCreepEntity:SetRadius(5)
+        end
         inst.entity:AddNetwork()
 
         MakeObstaclePhysics(inst, 0.25)
 
         local color = 0.5 + math.random() * 0.5
 
-        inst.AnimState:SetBuild(build == "rot" and "tree_rainforest_gas_build" or "tree_rainforest_build")
+        if build == "rot" then
+            inst.AnimState:SetBuild("tree_rainforest_gas_build")
+        elseif build == "spider" then
+            inst.AnimState:SetBuild("tree_rainforest_web_build")
+        else
+            inst.AnimState:SetBuild("tree_rainforest_build")
+        end
         inst.AnimState:SetBank("rainforesttree")
         inst.AnimState:SetTime(math.random() * 2)
 
         inst.AnimState:SetMultColour(color, color, color, 1)
 
-        inst.MiniMapEntity:SetIcon("tree_rainforest.tex")
+        if build == "spider" then
+            inst.MiniMapEntity:SetIcon("spiderTree.tex")
+        else
+            inst.MiniMapEntity:SetIcon("tree_rainforest.tex")
+        end
         inst.MiniMapEntity:SetPriority(-1)
 
         inst:AddTag("plant")
@@ -571,9 +664,13 @@ local function MakeTree(name, build, stage, data)
         inst:AddTag("shelter")
         inst:AddTag("gustable")
         if build == "rot" then
-            inst:AddTag("rotten")
+            inst:AddTag("rotten_tree")
             inst.build = "tree_rainforest_gas_build"
             inst:SetPrefabName("rainforesttree_rot")
+        elseif build == "spider" then
+            inst:AddTag("spider_monkey_tree")
+            inst.build = "tree_rainforest_web_build"
+            inst:SetPrefabName("spider_monkey_tree")
         else
             inst:SetPrefabName("rainforesttree")
         end
@@ -595,6 +692,8 @@ local function MakeTree(name, build, stage, data)
         inst.components.workable:SetOnFinishCallback(OnFinishCallback)
 
         inst:AddComponent("lootdropper")
+
+        inst:AddComponent("mystery")
 
         inst:AddComponent("growable")
         inst.components.growable.stages = growth_stages
@@ -625,6 +724,7 @@ local function MakeTree(name, build, stage, data)
             MakeStump(inst)
         end
 
+        inst.PlayWebFX = PlayWebFX
         inst.growfromseed = GrowFromSeed
         inst.OnEntitySleep = OnEntitySleep
         inst.OnEntityWake = OnEntityWake
@@ -633,8 +733,10 @@ local function MakeTree(name, build, stage, data)
 
         inst:ListenForEvent("blownbywind", OnBlownByWind)
         inst:ListenForEvent("loot_prefab_spawned", OnLootSpawned)
-        inst:WatchWorldState("season", OnseasonChange)
-        OnseasonChange(inst, TheWorld.state.season)
+        if build ~= "spider" then
+            inst:WatchWorldState("season", OnseasonChange)
+            OnseasonChange(inst, TheWorld.state.season)
+        end
 
         return inst
     end
@@ -654,4 +756,11 @@ return  MakeTree("rainforesttree", "normal", 0),
         MakeTree("rainforesttree_rot_tall", "rot", 3),
         MakeTree("rainforesttree_rot_short", "rot", 1),
         MakeTree("rainforesttree_rot_burnt", "rot", 0, "burnt"),
-        MakeTree("rainforesttree_rot_stump", "rot", 0, "stump")
+        MakeTree("rainforesttree_rot_stump", "rot", 0, "stump"),
+
+        MakeTree("spider_monkey_tree", "spider", 0),
+        MakeTree("spider_monkey_tree_normal", "spider", 2),
+        MakeTree("spider_monkey_tree_tall", "spider", 3),
+        MakeTree("spider_monkey_tree_short", "spider", 1),
+        MakeTree("spider_monkey_tree_burnt", "spider", 0, "burnt"),
+        MakeTree("spider_monkey_tree_stump", "spider", 0, "stump")

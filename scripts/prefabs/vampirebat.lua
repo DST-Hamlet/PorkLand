@@ -148,7 +148,7 @@ local function fn()
     inst.Transform:SetFourFaced()
 
     MakeFlyingCharacterPhysics(inst, 1, 0.5)
-    MakeInventoryFloatable(inst)
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("vampirebat")
     inst:AddTag("scarytoprey")
@@ -301,7 +301,7 @@ end
 
 local function OnLoadPostPassShadow(inst, ents, data)
     if data and data.player and ents[data.player] then
-        inst.components.circler:SetCircleTarget(ents[data.player])
+        inst.components.circler:SetCircleTarget(ents[data.player].entity)
     end
 
     inst.components.circler.dontfollowinterior = true

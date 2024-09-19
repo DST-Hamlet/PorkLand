@@ -3,7 +3,7 @@ local AddIngredientValues = AddIngredientValues
 GLOBAL.setfenv(1, GLOBAL)
 
 local foods = require("main/preparedfoods")
-for k,recipe in pairs (foods) do
+for _, recipe in pairs(foods) do
     AddCookerRecipe("cookpot", recipe)
     AddCookerRecipe("portablecookpot", recipe)
     AddCookerRecipe("archive_cookpot", recipe)
@@ -24,3 +24,13 @@ AddIngredientValues({"coffeebeans"}, {fruit = 0.5})
 AddIngredientValues({"coffeebeans_cooked"}, {fruit = 1})
 AddIngredientValues({"piko_orange"}, {})
 AddIngredientValues({"snake_bone"}, {bone=1})
+
+AddIngredientValues({"jellybug"}, {bug=1}, true)
+AddIngredientValues({"slugbug"}, {bug=1}, true)
+AddIngredientValues({"weevole_carapace"}, {inedible=1})
+
+AddIngredientValues({"radish", "aloe"}, {veggie=1}, true)
+
+AddIngredientValues({"foliage"}, {veggie=1})
+
+AddIngredientValues({"cutnettle"}, {antihistamine=1})

@@ -58,14 +58,16 @@ return {
       objects = {
         {
           name = "",
-          type = "wall_pig_ruins_repaired",
+          type = "wall_pig_ruins",
           shape = "rectangle",
           x = 80,
           y = 64,
           width = 0,
           height = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["data.health.percent"] = "1"
+          }
         },
         {
           name = "",

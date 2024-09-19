@@ -77,18 +77,19 @@ local custonsiz_items = {  -- add in dst custonsiz
             pog = {image = "pogs.tex"},
             "pangolden",
             hanging_vine_patch = {image = "hanging_vine.tex"},
+            thunderbirdnest = {image = "thunderbirds.tex"},
         },
         resources = {
             "asparagus",
             "grass_tall",
             "grass_tall_bunches",
             "lotus",
+            lost_relics = {desc = frequency_descriptions},
+            ruined_sculptures = {image = "lost_sculptures.tex", desc = frequency_descriptions},
         },
         misc = {
             jungle_border_vine = {desc = frequency_descriptions},
             deep_jungle_fern_noise = {desc = frequency_descriptions},
-            lost_relics = {desc = frequency_descriptions},
-            ruined_sculptures = {image = "lost_sculptures.tex", desc = frequency_descriptions},
         }
     },
     [LEVELCATEGORY.SETTINGS] = {
@@ -109,15 +110,18 @@ local custonsiz_items = {  -- add in dst custonsiz
             hippopotamoose_setting = {image = "hippopotamoose.tex"},
             mandrakeman_setting = {image = "mandrake_men.tex"},
             piko_setting = {image = "orange_pikos.tex"},
+            thunderbird_setting = {image = "thunderbirds.tex"},
         },
         resources = {
-            asparagus_regrowth = {image = "asparagus.tex"},
+            -- asparagus_regrowth = {image = "asparagus.tex"},
         },
         misc = {
+            brambles = {desc = enable_descriptions},
             fog = {desc = enable_descriptions},
             glowflycycle = {image = "glowfly_life_cycle.tex", desc = enable_descriptions},
             poison = {desc = enable_descriptions},
             hayfever = {desc = enable_descriptions},
+            pigbandit = {image = "pig_bandit.tex", desc = frequency_descriptions},
             pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = enable_descriptions},
             vampirebat = {image = "vampire_bats.tex", desc = frequency_descriptions},
         },
@@ -127,10 +131,9 @@ local custonsiz_items = {  -- add in dst custonsiz
 local change_items = {  -- change dst custonsiz settings
     worldgen = {
         resources = {"rock", "sapling", "grass", "flowers", "reeds", "mushroom"},
-        misc = {"task_set", "start_location", "world_size", "touchstone", "boons"},
+        misc = {"task_set", "world_size", "boons"},
     },
     world_settings = {
-        resources = {"regrowth", "flowers_regrowth", "reeds_regrowth"},
         animals = {"butterfly"},
         misc = {"lightning", "weather"}
     }
@@ -158,7 +161,38 @@ for category, category_data in pairs(change_items) do  -- use dst custonsiz sett
     end
 end
 
-for name, data in pairs(pl_customize_table) do  -- add we customize
+local delete_items = {  -- change dst custonsiz settings
+    worldgen = {
+        global = {"season_start"}
+    },
+    world_settings = {
+        global = {"specialevent", "autumn", "winter", "spring", "summer", "spawnmode", "beefaloheat"},
+        survivors = {"seasonalstartingitems", "temperaturedamage", "brightmarecreatures"},
+        events = "all",
+        resources = "all"
+    }
+}
+
+for category, category_data in pairs(delete_items) do  -- 删掉对猪镇来说多余的设置
+    local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
+    for group, groupitems in pairs(category_data) do
+        if type(groupitems) == "string" then
+            for _, item in pairs(GROUP[group].items) do
+                if item.world == nil then
+                    item.world = {"forest"}
+                end
+            end
+        else
+            for _, itemname in pairs(groupitems) do
+                if GROUP[group].items[itemname].world == nil then
+                    GROUP[group].items[itemname].world = {"forest"}
+                end
+            end
+        end
+    end
+end
+
+for name, data in pairs(pl_customize_table) do  -- add our customize
     add_group_and_item(data.category, name, data.text, data.desc, data.atlas, data.order, data.items)
 end
 

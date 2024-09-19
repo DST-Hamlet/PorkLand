@@ -110,6 +110,41 @@ function Combat:CalcDamage(target, weapon, multiplier, ...)
     return unpack(rets)
 end
 
+local _DoAttack = Combat.DoAttack
+function Combat:DoAttack(targ, weapon, projectile, ...)
+    if projectile == nil then
+        if targ and targ:HasTag("difficult_to_hit") and not self.AOEarc then
+            if not targ:CanBeAttack({ attacker = self.inst, weapon = weapon or self:GetWeapon() }) then
+                targ:PushEvent("avoidattack", { attacker = self.inst, weapon = weapon or self:GetWeapon() })
+                self.inst:PushEvent("onmissother", { target = targ, weapon = weapon or self:GetWeapon() })
+                self:ClearAttackTemps()
+                return
+            end
+        end
+    else
+        if targ and targ:HasTag("difficult_to_hit") and not self.AOEarc then
+            if not targ:CanBeHit({ attacker = self.inst, weapon = weapon or self:GetWeapon() }) then
+                targ:PushEvent("avoidattack", { attacker = self.inst, weapon = weapon or self:GetWeapon() })
+                self.inst:PushEvent("onmissother", { target = targ, weapon = weapon or self:GetWeapon() })
+                self:ClearAttackTemps()
+                return
+            end
+        end
+    end
+    return _DoAttack(self, targ, weapon, projectile, ...)
+end
+
+local _SuggestTarget = Combat.SuggestTarget
+function Combat:SuggestTarget(target)
+    if not self.target and target and target:HasTag("sneaky") then
+        if self.inst:GetDistanceSqToInst(target) > 6 * 6 then
+            return false
+        end
+    end
+
+    return _SuggestTarget(self, target)
+end
+
 AddComponentPostInit("combat", function(self, inst)
     self.poisonstrength = 1
 

@@ -35,8 +35,7 @@ local function fn()
     inst.AnimState:SetBuild("ballpein_hammer")
     inst.AnimState:PlayAnimation("idle")
 
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()
 

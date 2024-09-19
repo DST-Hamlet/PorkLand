@@ -88,6 +88,8 @@ local function shoot(inst, is_full_charge)
 end
 
 local actionhandlers = {
+    ActionHandler(ACTIONS.RENOVATE, "dolongaction"),
+    ActionHandler(ACTIONS.SHOP, "doshortaction"),
     ActionHandler(ACTIONS.TAKEFROMSHELF, "doshortaction"),
     ActionHandler(ACTIONS.PUTONSHELF, "doshortaction"),
     ActionHandler(ACTIONS.EMBARK, "embark"),
@@ -138,7 +140,7 @@ local actionhandlers = {
             if action.invobject ~= nil and action.invobject:HasTag("goggles") then
                 return "goggle"
             else
-                return "investigate"
+                return "investigate_start"
             end
         end
     end),
@@ -150,6 +152,10 @@ local actionhandlers = {
             inst.sg.mem.shootpos = action:GetActionPoint()
         end
     end),
+    ActionHandler(ACTIONS.GAS, function(inst)
+        return "crop_dust"
+    end),
+    ActionHandler(ACTIONS.SEARCH_MYSTERY, "dolongaction"),
 }
 
 local eventhandlers = {
@@ -684,11 +690,11 @@ local states = {
 
             local skin_build = source and source:GetSkinBuild() or nil
             if skin_build ~= nil then
-                for k,v in pairs(plant_symbols) do
+                for k, v in pairs(plant_symbols) do
                     inst.AnimState:OverrideItemSkinSymbol(v, skin_build, v, inst.GUID, "lifeplant")
                 end
             else
-                for k,v in pairs(plant_symbols) do
+                for k, v in pairs(plant_symbols) do
                     inst.AnimState:OverrideSymbol(v, "lifeplant", v)
                 end
             end
@@ -732,15 +738,13 @@ local states = {
 
     State{
         name = "castspell_bone",
-        tags = {"doing", "busy", "canrotate", "spell"},
+        tags = {"doing", "busy", "canrotate", "spell", "strafing"},
 
         onenter = function(inst)
-            if inst.components.playercontroller ~= nil then
-                inst.components.playercontroller:Enable(false)
-            end
             inst.AnimState:PlayAnimation("staff_pre")
             inst.AnimState:PushAnimation("staff", false)
             inst.components.locomotor:Stop()
+            inst.components.locomotor:StartStrafing()
 
             --Spawn an effect on the player's location
             local staff = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
@@ -758,9 +762,7 @@ local states = {
         end,
 
         onexit = function(inst)
-            if inst.components.playercontroller then
-                inst.components.playercontroller:Enable(true)
-            end
+            inst.components.locomotor:StopStrafing()
             if inst.sg.statemem.stafffx and inst.sg.statemem.stafffx:IsValid() then
                 inst.sg.statemem.stafffx:Remove()
             end
@@ -782,9 +784,7 @@ local states = {
                 end
 
                 inst.sg:RemoveStateTag("busy")
-                if inst.components.playercontroller ~= nil then
-                    inst.components.playercontroller:Enable(true)
-                end
+                inst.components.locomotor:StopStrafing()
             end),
         },
 
@@ -1012,7 +1012,8 @@ local states = {
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
-            inst.AnimState:PlayAnimation("quick_eat")
+            inst.AnimState:PlayAnimation("quick_eat_pre")
+            inst.AnimState:PushAnimation("quick_eat", false)
         end,
 
         timeline =
@@ -1026,7 +1027,10 @@ local states = {
 
         events =
         {
-            EventHandler("animover", function(inst) inst.sg:GoToState("celebrate") end),
+            EventHandler("animqueueover", function(inst)
+                if inst.AnimState:AnimDone() then
+                    inst.sg:GoToState("celebrate")
+                end end),
         },
     },
 
@@ -1109,7 +1113,7 @@ local states = {
             if boat and boat.replica.sailable and boat.replica.sailable.creaksound then
                 inst.SoundEmitter:PlaySound(boat.replica.sailable.creaksound, nil, nil, true)
             end
-            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/paddle", nil, nil, true)
+            inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat_paddle", nil, nil, true)
             DoFoleySounds(inst)
 
             local oar = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
@@ -1686,19 +1690,44 @@ local states = {
         onenter = function(inst)
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("give")
+            inst.AnimState:PushAnimation("give_pst", false)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(false)
+                inst.components.playercontroller:Enable(false)
+            end
         end,
 
-        onexit = function(inst)
+        timeline =
+        {
+            TimeEvent(2 * FRAMES, function(inst)
+                inst:ScreenFade(false, 0.4)
+            end),
 
-        end,
-
-        events = {
-            EventHandler("animover", function(inst)
+            TimeEvent(15 * FRAMES, function(inst)
                 inst:PerformBufferedAction()
-                inst.AnimState:PlayAnimation("give_pst", false)
-                inst.sg:GoToState("idle", true)
+            end),
+
+            TimeEvent(19 * FRAMES, function(inst)
+                inst:ScreenFade(true, 0.4)
+                if inst.components.playercontroller then
+                    inst.components.playercontroller:EnableMapControls(true)
+                    inst.components.playercontroller:Enable(true)
+                end
+                inst.sg:RemoveStateTag("busy")
+            end),
+
+            TimeEvent(30 * FRAMES, function(inst)
+                inst.sg:GoToState("idle")
             end),
         },
+
+        onexit = function(inst)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(true)
+                inst.components.playercontroller:Enable(true)
+            end
+            inst:ScreenFade(true, 0.4)
+        end,
     },
 
     State{
@@ -1868,7 +1897,6 @@ local states = {
             inst.components.locomotor:StopMoving()
 
             if pushanim then
-                inst.AnimState:PlayAnimation(pushanim)
                 inst.AnimState:PushAnimation("idle_loop", true)
             else
                 inst.AnimState:PlayAnimation("idle_loop", true)
@@ -1909,6 +1937,7 @@ local states = {
         {
             EventHandler("animqueueover", function(inst)
                 inst.sg:GoToState("ironlord_idle")
+                inst:PushEvent("start_ironlord_music")
             end),
         },
 
@@ -1933,8 +1962,7 @@ local states = {
             TimeEvent(6  * FRAMES, function(inst) inst:PerformBufferedAction() end),
             TimeEvent(12 * FRAMES, function(inst) inst.sg:RemoveStateTag("working") inst.sg:RemoveStateTag("busy") end),
             TimeEvent(13 * FRAMES, function(inst)
-                if not inst.sg.statemem.iswoodcutter and
-                    inst.components.playercontroller ~= nil and
+                if inst.components.playercontroller ~= nil and
                     inst.components.playercontroller:IsAnyOfControlsPressed(
                         CONTROL_PRIMARY,
                         CONTROL_ACTION,
@@ -1954,14 +1982,17 @@ local states = {
             end),
         },
 
-        EventHandler("animover", function(inst)
-            inst.sg:GoToState("idle", true)
-        end),
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("ironlord_idle", true)
+            end),
+        },
     },
 
     State{
         name = "ironlord_charge",
-        tags = {"busy", "doing", "strafing"},
+        tags = {"busy", "doing", "strafing", "charge"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -1998,7 +2029,7 @@ local states = {
 
     State{
         name = "ironlord_charge_full",
-        tags = {"busy", "doing", "strafing"},
+        tags = {"busy", "doing", "strafing", "charge"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -2150,6 +2181,160 @@ local states = {
             end),
         },
     },
+
+    State{
+        name = "crop_dust",
+        tags = {"busy", "canrotate"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+
+            local action = inst:GetBufferedAction()
+            local pos
+            if action.pos then -- POINT action
+                pos = action:GetActionPoint()
+            else -- EQUIPPED action
+                pos = action.target:GetPosition()
+            end
+
+            inst:FacePoint(Point(pos.x, pos.y, pos.z))
+
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("cropdust_pre")
+            inst.AnimState:PushAnimation("cropdust_loop")
+            inst.AnimState:PushAnimation("cropdust_pst", false)
+        end,
+
+        timeline =
+        {
+            TimeEvent(20 * FRAMES, function(inst)
+                inst:PerformBufferedAction()
+                inst.sg:RemoveStateTag("busy")
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/bugrepellant")
+            end),
+        },
+
+        events =
+        {
+            EventHandler("animqueueover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+    },
+
+    State{
+        name = "blunderbuss",
+        tags = {"attack", "notalking", "abouttoattack"},
+
+        onenter = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetFourFaced()
+            end
+
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction and buffaction.target
+            inst.sg.statemem.target = target
+            inst.sg.statemem.target_position = target and target:GetPosition()
+
+            inst.components.combat:StartAttack()
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("speargun")
+
+            if target and target:IsValid() then
+                inst:FacePoint(target:GetPosition())
+            end
+        end,
+
+        onexit = function(inst)
+            if inst.components.rider:IsRiding() then
+                inst.Transform:SetSixFaced()
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(12 * FRAMES, function(inst)
+                inst.sg:RemoveStateTag("abouttoattack")
+                inst.components.combat:DoAttack(inst.sg.statemem.target)
+
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/items/weapon/blunderbuss_shoot")
+
+                local target_position
+                if inst.sg.statemem.target and inst.sg.statemem.target:IsValid() then
+                    target_position = inst.sg.statemem.target:GetPosition()
+                elseif inst.sg.statemem.target_position then
+                    target_position = inst.sg.statemem.target_position
+                end
+
+                local angle =  target_position and (inst:GetAngleToPoint(target_position.x, target_position.y, target_position.z) - 90) * DEGREES
+
+                inst.sg.statemem.target = nil
+                inst.sg.statemem.target_position = nil
+
+                local DIST = 1.5
+                local pt = Vector3(inst.Transform:GetWorldPosition())
+                local offset = Vector3(math.cos(angle + PI / 2), 0, -math.sin(angle + PI / 2)) * DIST
+                local y = inst.components.rider:IsRiding() and 4.5 or 2
+
+                local cloud = SpawnPrefab("cloudpuff")
+                cloud.Transform:SetPosition(pt.x + offset.x, y, pt.z + offset.z)
+            end),
+            TimeEvent(20 * FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+    },
+
+    State{
+        name = "map",
+        tags = {"doing"},
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst.AnimState:PlayAnimation("scroll", false)
+            inst.AnimState:OverrideSymbol("scroll", "messagebottle", "scroll")
+            inst.AnimState:PushAnimation("scroll_pst", false)
+
+            inst.AnimState:Show("ARM_normal")
+        end,
+
+        onexit = function(inst)
+            if inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS) and not inst.were then
+                inst.AnimState:Show("ARM_carry")
+                inst.AnimState:Hide("ARM_normal")
+            end
+        end,
+
+        timeline =
+        {
+            TimeEvent(24 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_open") end),
+            TimeEvent(58 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/treasuremap_close") end),
+        },
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst:PerformBufferedAction()
+            end),
+
+            EventHandler("animqueueover", function(inst)
+                inst.sg:GoToState("idle")
+            end),
+        },
+    },
 }
 
 for _, actionhandler in ipairs(actionhandlers) do
@@ -2190,6 +2375,10 @@ AddStategraphPostInit("wilson", function(sg)
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
         if not inst.sg:HasStateTag("sneeze") then
+            local weapon = inst.components.combat ~= nil and inst.components.combat:GetWeapon()
+            if weapon and weapon:HasTag("blunderbuss_loaded") then
+                return "blunderbuss"
+            end
             return _attack_deststate and _attack_deststate(inst, ...)
         end
     end
@@ -2205,8 +2394,32 @@ AddStategraphPostInit("wilson", function(sg)
         end
     end
 
+    local _teach_deststatae = sg.actionhandlers[ACTIONS.TEACH].deststate
+    sg.actionhandlers[ACTIONS.TEACH].deststate = function(inst, ...)
+        local buffaction = inst:GetBufferedAction()
+        if buffaction and buffaction.invobject and buffaction.invobject:HasTag("treasuremap") then
+            return "map"
+        end
+        return _teach_deststatae(inst, ...)
+    end
+
     local _attacked_eventhandler = sg.events.attacked.fn
+
+    local _DoHurtSound, DoHurtSound_i = ToolUtil.GetUpvalue(_attacked_eventhandler, "DoHurtSound")
+    debug.setupvalue(_attacked_eventhandler, DoHurtSound_i,function(inst)
+        if inst:HasTag("ironlord") then
+            return
+        end
+        _DoHurtSound(inst)
+    end)
+
     sg.events.attacked.fn = function(inst, data)
+        if inst:HasTag("ironlord") then
+            if inst.sg.currentstate.name == "idle" or inst.sg.currentstate.name == "ironlord_idle" then
+                inst.sg:GoToState("ironlord_hit")
+            end
+            return
+        end
         if inst.components.sailor and inst.components.sailor:IsSailing() then
             local boat = inst.components.sailor:GetBoat()
             if not inst.components.health:IsDead() and not (boat and boat.components.boathealth and boat.components.boathealth:IsDead()) then
@@ -2314,6 +2527,7 @@ AddStategraphPostInit("wilson", function(sg)
         end
         return _transform_werebeaver_exit(inst, ...)
     end
+
     local _transform_weremoose_exit = sg.states["transform_weremoose"].onexit
     sg.states["transform_weremoose"].onexit = function(inst, ...)
         if not inst.sg:HasStateTag("transform") and inst.components.sailor and inst.components.sailor:IsSailing() then
@@ -2323,6 +2537,7 @@ AddStategraphPostInit("wilson", function(sg)
         end
         return _transform_weremoose_exit(inst, ...)
     end
+
     local _transform_weregoose_exit = sg.states["transform_weregoose"].onexit
     sg.states["transform_weregoose"].onexit = function(inst, ...)
         -- if inst.sg:HasStateTag("drowning") then return end -- simple hack to prevent looping
@@ -2331,6 +2546,49 @@ AddStategraphPostInit("wilson", function(sg)
             inst.components.sailor:Disembark(nil, nil, true)
         end
         return _transform_weregoose_exit(inst, ...)
+    end
+
+    local _attack_onenter = sg.states["attack"].onenter
+    sg.states["attack"].onenter = function(inst, data)
+        local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+        if equip and equip:HasTag("halberd") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/halberd")
+        elseif equip and equip:HasTag("corkbat") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC003/common/items/weapon/corkbat")
+        elseif equip and equip:HasTag("cutlass") then
+            inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", "dontstarve_DLC002/common/swordfish_sword")
+        end
+
+        _attack_onenter(inst, data)
+
+        inst.SoundEmitter:OverrideSound("dontstarve/wilson/attack_weapon", nil)
+
+        if equip and equip:HasTag("corkbat") then
+            inst.sg:SetTimeout(23 * FRAMES)
+        end
+    end
+
+    local _play_flute_onenter = sg.states["play_flute"].onenter
+    sg.states["play_flute"].onenter = function(inst, ...)  -- fuck klei
+        local inv_obj = inst.bufferedaction and inst.bufferedaction.invobject or nil
+
+        local _AnimState = inst.AnimState
+        local AnimState = setmetatable({}, {__index = function(t, k)
+            if k ~= "OverrideSymbol" then
+                return function(t, ...)
+                    return _AnimState[k](_AnimState, ...)
+                end
+            end
+
+            return function(t, override_symbol, build, symbol, ...)
+                return _AnimState:OverrideSymbol(override_symbol, inv_obj.flutebuild or "pan_flute", inv_obj.flutesymbol or "pan_flute01")
+            end
+        end})
+        rawset(inst, "AnimState", AnimState)
+
+        _play_flute_onenter(inst, ...)
+
+        rawset(inst, "AnimState", _AnimState)
     end
 
     local _locomote_eventhandler = sg.events.locomote.fn
@@ -2345,7 +2603,7 @@ AddStategraphPostInit("wilson", function(sg)
         end
 
         local should_run = inst.components.locomotor:WantsToRun()
-        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
+        local hasSail = inst.replica.sailor and inst.replica.sailor:GetBoat() and inst.replica.sailor:GetBoat().replica.sailable and inst.replica.sailor:GetBoat().replica.sailable:GetIsSailEquipped() or false
         if not should_move then
             if inst.components.sailor and inst.components.sailor.boat then
                 inst.components.sailor.boat:PushEvent("boatstopmoving")
@@ -2482,15 +2740,4 @@ AddStategraphPostInit("wilson", function(sg)
             return _hammer_deststate and _hammer_deststate(inst, action)
         end
     end
-
-    local _attacked_handler_fn = sg.events["attacked"].fn
-    sg.events["attacked"] = EventHandler("attacked", function(inst, data)
-        if inst:HasTag("ironlord") then
-            if inst.sg.currentstate.name == "idle" or inst.sg.currentstate.name == "ironlord_idle" then
-                inst.sg:GoToState("ironlord_hit")
-            end
-        else
-            _attacked_handler_fn(inst, data)
-        end
-    end)
 end)

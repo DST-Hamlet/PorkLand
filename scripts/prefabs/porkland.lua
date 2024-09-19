@@ -39,6 +39,8 @@ for _, prefab in pairs(Prefabs["forest"].deps) do
     table.insert(prefabs, prefab)
 end
 
+local ex_fns = require("prefabs/player_common_extensions")
+
 -- https://forums.kleientertainment.com/forums/topic/140904-tiles-changes-and-more/
 local function tile_physics_init(inst, ...)
     -- a slightly modified version of the forest map's primary collider.
@@ -71,6 +73,11 @@ local function tile_physics_init(inst, ...)
     )
 end
 
+
+local function OnNewPlayerSpawned(src, player)
+    ex_fns.GivePlayerStartingItems(player, { "machete" })
+end
+
 local function common_postinit(inst)
     inst.has_pl_ocean = true
     inst.items_pass_ground = true
@@ -79,7 +86,7 @@ local function common_postinit(inst)
     inst.entity:AddWaveComponent()
     inst.WaveComponent:SetWaveParams(13.5, 2.5, -1)  -- wave texture u repeat, forward distance between waves
     inst.WaveComponent:SetWaveSize(80, 3.5)  -- wave mesh width and height
-    inst.WaveComponent:SetWaveMotion(3, 0.5, 0.25)
+    inst.WaveComponent:SetWaveMotion(0.3, 0.5, 0.25)
     inst.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex"))
     -- See source\game\components\WaveRegion.h
     inst.WaveComponent:SetWaveEffect("shaders/waves.ksh")
@@ -96,16 +103,21 @@ local function common_postinit(inst)
         inst:AddComponent("colourcube")
         inst:AddComponent("hallucinations")
         inst:AddComponent("wavemanager")
+        inst:AddComponent("canopymanager")
+        local rainforest_shade = {spawn = SpawnRainforestCanopy, despawn = DespawnRainforestCanopy}
+        inst.components.canopymanager:AddShadeTile(WORLD_TILES.DEEPRAINFOREST, rainforest_shade)
+        inst.components.canopymanager:AddShadeTile(WORLD_TILES.GASJUNGLE, rainforest_shade)
+        inst:AddComponent("pl_waterfallsoundcontroller")
+
         inst.Map:SetUndergroundFadeHeight(0)
         inst.Map:AlwaysDrawWaves(true)
-        inst.Map:DoOceanRender(true)
     end
 
     inst:AddComponent("interiorspawner")
     inst:AddComponent("worldpathfindermanager")
-    inst:AddComponent("worldmapiconproxy")
     inst:AddComponent("interiorquaker")
     inst:AddComponent("worldsoundmanager")
+    inst:AddComponent("clientundertile")
 end
 
 local function master_postinit(inst)
@@ -114,7 +126,11 @@ local function master_postinit(inst)
     inst:AddComponent("butterflyspawner")
     inst:AddComponent("glowflyspawner")
     inst:AddComponent("hippospawner")
+    inst:AddComponent("spidermonkeyherd")
     inst:AddComponent("batted")
+    inst:AddComponent("bramblemanager")
+    inst:AddComponent("banditmanager")
+    inst:AddComponent("rainforestflowerregrowth")
 
     inst:AddComponent("worlddeciduoustreeupdater")
     inst:AddComponent("kramped")
@@ -126,7 +142,7 @@ local function master_postinit(inst)
     inst:AddComponent("brightmarespawner")
     inst:AddComponent("pl_worldwind")
 
-    inst:AddComponent("regrowthmanager")
+    --inst:AddComponent("regrowthmanager")
     -- inst:AddComponent("desolationspawner")
     -- inst:AddComponent("forestpetrification")
 
@@ -151,12 +167,18 @@ local function master_postinit(inst)
 
     inst:AddComponent("economy")
     inst.components.economy:AddCity(1)
+    inst.components.economy:AddCity(2)
 
     inst:AddComponent("periodicpoopmanager")
 
     inst:AddComponent("cityalarms")
-	inst.components.cityalarms:AddCity(1)
-	inst.components.cityalarms:AddCity(2)
+    inst.components.cityalarms:AddCity(1)
+    inst.components.cityalarms:AddCity(2)
+
+    -- Not a component from Hamlet
+    inst:AddComponent("pigtaxmanager")
+
+    inst:ListenForEvent("ms_newplayerspawned", OnNewPlayerSpawned)
 end
 
 return MakeWorld("porkland", prefabs, assets, common_postinit, master_postinit, {"porkland"}, {tile_physics_init = tile_physics_init})

@@ -86,9 +86,9 @@ local function ShouldAssemble(inst)
     local mergetarget = nil
     local dist = 9999
     local hulk = nil
-    for _, ent in ipairs(ents)do
+    for _, ent in ipairs(ents) do
         -- a valid merge target is when there is only one active bot. And a hulk should have priority
-        if ent ~= inst then
+        if ent ~= inst and ent:IsValid() then
             if ent:HasTag("ancient_robots_assembly") or (ent:HasTag("dormant") and not hulk) then
                 if ent:HasTag("ancient_robots_assembly") then
                     if not hulk then
@@ -133,7 +133,7 @@ function AncientRobotBrain:OnStart()
         IfNode(function() return self.inst.wantstodeactivate or self.inst:HasTag("dormant") end, "Should deactivate",
             DoAction(self.inst, function() return Deactivate(self.inst) end, "Deactivate", true)),
 
-        WhileNode(function() return not self.inst:HasTag("dormant") end, "Is activated",
+        WhileNode(function() return self.inst.components.timer:TimerExists("discharge") end, "Is activated",
             PriorityNode(
             {
                 WhileNode(function() return ShouldAssemble(self.inst) end, "Should assemble",

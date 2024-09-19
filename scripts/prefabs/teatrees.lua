@@ -36,6 +36,7 @@ SetSharedLootTable("teatree_tall",
 {
     {"log", 1.0},
     {"log", 1.0},
+    {"twigs", 1.0},
     {"teatree_nut", 1.0},
     {"teatree_nut", 1.0},
 })
@@ -536,7 +537,7 @@ local function MakeTeaTree(name, stage, state)
 
         inst:AddComponent("lootdropper")
 
-        --inst:AddComponent("mystery")
+        inst:AddComponent("mystery")
 
         inst:AddComponent("inspectable")
         inst.components.inspectable.getstatus = GetStatus

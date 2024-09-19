@@ -30,7 +30,7 @@ local UNIQUE_PARK_CHOICES = {
 }
 
 local REQUIRED_FARMS = {
-    "teleportato_hamlet_potato_layout",
+    --"teleportato_hamlet_potato_layout",
 }
 
 local FARM_CHOICES = {
@@ -71,6 +71,8 @@ local BUILDING_QUOTAS_2 = {
 
 local VALID_TILES = {WORLD_TILES.SUBURB, WORLD_TILES.FOUNDATION}
 
+local VALID_TILES_CITY = {WORLD_TILES.LAWN, WORLD_TILES.FOUNDATION}
+
 local function opp_dir(dir)
     if dir == 1 then
         return 3
@@ -98,10 +100,10 @@ end
 local function find_temp_ents(data, x, z, range, prefabs)
     local ents = {}
 
-    for i, entity in ipairs(data)do
+    for i, entity in ipairs(data) do
         local test = prefabs == nil
         if not test then
-            for p, prefab in ipairs(prefabs)do
+            for p, prefab in ipairs(prefabs) do
                 if entity.prefab == prefab then
                     test = true
                 end
@@ -169,7 +171,7 @@ local function find_entities(entities, x, z, range, props)
 end
 
 local function export_spawners_to_entites(entities, width, height, spawners)
-    for i, spawner in ipairs(spawners)do
+    for i, spawner in ipairs(spawners) do
         set_entity(entities, width, height, spawner.prefab, spawner.x, spawner.z, spawner.city, spawner.properties)
     end
 end
@@ -362,7 +364,7 @@ local function spawn_setpiece(entities, width, height, spawners, layout, pt, cit
         end
 
         for prefab, list in pairs(setpiece.layout) do
-            for t, data in ipairs(list)do
+            for t, data in ipairs(list) do
                 -- local spawnprop = SpawnPrefab(prop)
 
                 local new_pt = {}
@@ -409,9 +411,12 @@ local function set_shop(spawners, pt, dir, i, offset, nil_wieght, city)
 
     local pigshops_spawners = find_temp_ents(spawners, new_pt.x, new_pt.z, 1, {spawn})
 
-    -- local ground = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
+    local groundtile = WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))
 
-    if #pigshops_spawners == 0 and IsLandTile(WorldSim:GetTile(math.floor(new_pt.x), math.floor(new_pt.z))) then
+    if #pigshops_spawners == 0
+        and IsLandTile(groundtile)
+        and test_tile(new_pt, VALID_TILES_CITY) then
+
         add_temp_ents(spawners, new_pt.x, new_pt.z, spawn, city.city_id)
     end
 end
@@ -572,7 +577,7 @@ end
 
 local function is_pt_in_list(pt, data)
     local idx = nil
-    for i,coord in ipairs(data)do
+    for i,coord in ipairs(data) do
         if coord.x == pt.x and coord.y == pt.y and coord.z == pt.z then
             idx = i
             break
@@ -786,7 +791,7 @@ local function place_farm(entities, width, height, spawners, nodes, city, total,
         while #tested_nodes < total_nodes and finished == false do
             local farm_num = math.random(1, #nodes)
             local untested = true
-            for i, checked_node in ipairs(tested_nodes)do
+            for i, checked_node in ipairs(tested_nodes) do
                 if checked_node == farm_num then
                     untested = false
                 end
@@ -853,12 +858,12 @@ local function set_buildings(spawners, city)
         set = BUILDING_QUOTAS_2
     end
 
-    for item, data in pairs(set)do
+    for item, data in pairs(set) do
         building_quotas[item] = data
     end
 
     local eligable_list = {}
-    for i, spawn in ipairs(spawners)do
+    for i, spawn in ipairs(spawners) do
         if spawn.prefab == "pig_shop_spawner" and spawn.city == city.city_id then
             table.insert(eligable_list, i)
         end
@@ -934,31 +939,22 @@ local function make_cities(entities, topology_save, worldsim, width, height, set
         cities[city_id].city_id = city_id
         -- cities[city_id].spawners = {}
 
-        if topology_save.GlobalTags["City" .. city_id] then
-            for task, nodes in pairs(topology_save.GlobalTags["City" .. city_id]) do
-                for i, node in ipairs(nodes)do
-                    local c_x, c_y = WorldSim:GetSiteCentroid(topology_save.GlobalTags["City" .. city_id][task][i])
+        for task, node in pairs(topology_save.root:GetNodes(true)) do
+            if table.contains(node.data.tags, "City" .. city_id) then
+                local poly_x, poly_y = WorldSim:GetPointsForSite(node.id)
+                local c_x, c_y = WorldSim:GetSiteCentroid(node.id)
+                local nodedata = {
+                    cent = {c_x, c_y},
+                    id = node.id,
+                    poly = {x = poly_x, y = poly_y}
+                }
 
-                    -- for i,task in pairs(topology_save.GlobalTags["City_Foundation"]) do
-                    --     for t,node in ipairs(task) do
-                    --         dumptable(node)
-                    --     end
-                    -- end
+                if is_in_nested_list(node.id, topology_save.GlobalTags["City_Foundation"]) then  -- and not nodedata.suburb == true
+                    table.insert(cities[city_id].citynodes, nodedata)
+                end
 
-                    local poly_x, poly_y = WorldSim:GetSitePolygon(node)
-                    local nodedata = {
-                        cent = {c_x, c_y},
-                        id = node,
-                        poly = {x = poly_x, y = poly_y}
-                    }
-
-                    if is_in_nested_list(node, topology_save.GlobalTags["City_Foundation"]) then  -- and not nodedata.suburb == true
-                        table.insert(cities[city_id].citynodes, nodedata)
-                    end
-
-                    if is_in_nested_list(node, topology_save.GlobalTags["Cultivated"]) then
-                        table.insert(cities[city_id].farmnodes, nodedata)
-                    end
+                if is_in_nested_list(node.id, topology_save.GlobalTags["Cultivated"]) then
+                    table.insert(cities[city_id].farmnodes, nodedata)
                 end
             end
         end
@@ -966,7 +962,7 @@ local function make_cities(entities, topology_save, worldsim, width, height, set
 
     place_unique_farms(entities, width, height, spawners, cities)
 
-    for city_ID, city in ipairs(cities)do
+    for city_ID, city in ipairs(cities) do
         create_city(entities, width, height, spawners, city)
         make_parks(entities, width, height, spawners, city, true, 2)
         make_parks(entities, width, height, spawners, city)

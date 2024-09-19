@@ -217,10 +217,9 @@ end or nil
 local GetDebrisSpawnPoint = _ismastersim and function(interiorID, is_critter)
     local interior_spawner = TheWorld.components.interiorspawner
 
-    local interior_center = interior_spawner:GetInteriorByIndex(interiorID)
+    local interior_center = interior_spawner:GetInteriorCenter(interiorID)
     local center_position = interior_center:GetPosition()
-    local width = interior_center.size_net.width:value()
-    local depth = interior_center.size_net.depth:value()
+    local width, depth = interior_center:GetSize()
     local offset = Vector3(0, 0, 0)
 
     local critter_spawn_offset = QUAKE_LEVELS[_isquaking[interiorID]].critter_spawn_offset

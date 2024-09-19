@@ -27,7 +27,7 @@ local parrot_blue_sounds = {
 }
 
 local kingfisher_sounds = {
-    takeoff = "dontstarve/birds/takeoff_faster",
+    takeoff = "porkland_soundpackage/birds/takeoff_faster",
     takeoff_2 = "dontstarve_DLC003/creatures/king_fisher/take_off",
     chirp = "dontstarve_DLC003/creatures/king_fisher/chirp",
     flyin = "dontstarve/birds/flyin",
@@ -177,7 +177,7 @@ local function MakeBird(name, sounds, feather_name)
         inst.components.inventoryitem:SetSinks(true)
 
         inst:AddComponent("cookable")
-        inst.components.cookable.product = name == "cookedsmallmeat"
+        inst.components.cookable.product = "cookedsmallmeat"
 
         inst:AddComponent("health")
         inst.components.health:SetMaxHealth(TUNING.BIRD_HEALTH)

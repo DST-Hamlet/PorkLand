@@ -101,16 +101,35 @@ local function OnIsFiesta(inst, isfiesta)
     end
 end
 
-local function OnIsAporkalypse(inst, isaporkalypse)
+local function OnDay(inst, isday)
     if inst:HasTag("burnt") then
         return
     end
-
-    if inst.components.spawner:IsOccupied() then
+    if not inst:HasTag("burnt") then
         inst.doortask = inst:DoTaskInTime(1 + math.random() * 2, function()
-            inst.components.spawner:ReleaseChild()
+            if inst.components.spawner:IsOccupied() then
+                LightsOff(inst)
+                inst.components.spawner:ReleaseChild()
+                inst.doortask = nil
+            end
         end)
     end
+end
+
+local function OnInit(inst)
+    if inst.components.spawner
+        and not inst.components.spawner.child
+        and inst.components.spawner.childname and
+        not inst.components.spawner:IsSpawnPending() then
+
+        local child = SpawnPrefab(inst.components.spawner.childname)
+        if child then
+            inst.components.spawner:TakeOwnership(child)
+            inst.components.spawner:GoHome(child)
+        end
+    end
+    inst:WatchWorldState("isday", OnDay)
+    OnDay(inst, TheWorld.state.isday)
 end
 
 local function OnBuilt(inst)
@@ -151,8 +170,8 @@ local function MakeCityPossession(inst)
         inst:SetType("pigman_royalguard_2", "flag_post_royal_build")
     elseif inst.components.citypossession.cityID == 2 then
         inst:SetType("pigman_royalguard_2", "flag_post_perdy_build")
-    elseif inst.components.citypossession.cityID == 1 then
-        inst:SetType("pigman_royalguard_2", "flag_post_duster_build")
+    else
+        inst:SetType("pigman_royalguard", "flag_post_duster_build")
     end
 end
 
@@ -281,8 +300,8 @@ local function fn()
     inst:AddComponent("lootdropper")
 
     inst:AddComponent("fixable")
-    inst.components.fixable:AddRecinstructionStageData("rubble", "pig_shop", "pig_tower_build")
-    inst.components.fixable:AddRecinstructionStageData("unbuilt", "pig_shop", "pig_tower_build")
+    inst.components.fixable:AddReconstructionStageData("rubble", "pig_shop", "pig_tower_build")
+    inst.components.fixable:AddReconstructionStageData("unbuilt", "pig_shop", "pig_tower_build")
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
@@ -295,6 +314,8 @@ local function fn()
     inst.components.spawner:SetOnVacateFn(OnVacate)
     inst.components.spawner:SetOnOccupiedFn(OnOccupied)
     inst.components.spawner:SetWaterSpawning(false, true)
+    inst.components.spawner:CancelSpawning()
+    inst._spawner_init_task = inst:DoTaskInTime(0, OnInit)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
@@ -308,10 +329,8 @@ local function fn()
     inst:WatchWorldState("isfiesta", OnIsFiesta)
     OnIsFiesta(inst, TheWorld.state.isfiesta)
 
-    inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
-    OnIsAporkalypse(inst, TheWorld.state.isaporkalypse)
-
     MakeSnowCovered(inst, 0.01)
+    MakeHauntableWork(inst)
 
     return inst
 end
@@ -330,20 +349,11 @@ local function palacefn()
     return inst
 end
 
--- TODO: Make this work
-local function PlaceTestFn(inst)
+local function HideLayers(inst)
     inst.AnimState:Hide("YOTP")
     inst.AnimState:Hide("SNOW")
-
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    if tile == WORLD_TILES.INTERIOR then
-        return false
-    end
-
-    return true
 end
 
 return Prefab("pig_guard_tower", fn, assets, prefabs),
     Prefab("pig_guard_tower_palace", palacefn, assets, prefabs),
-    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", false, true)
+    MakePlacer("pig_guard_tower_placer", "pig_shop", "pig_tower_build", "idle", nil, true, nil, nil, nil, nil, HideLayers)

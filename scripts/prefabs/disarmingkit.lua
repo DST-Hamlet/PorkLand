@@ -15,8 +15,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.AnimState:SetBank("disarm_kit")
     inst.AnimState:SetBuild("disarm_kit")

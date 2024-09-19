@@ -45,8 +45,7 @@ local function pristinefn()
     -- weapon (from weapon component) added to pristine state for optimization
     inst:AddTag("weapon")
 
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     return inst
 end

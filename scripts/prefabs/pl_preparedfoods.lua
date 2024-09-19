@@ -1,4 +1,3 @@
-
 local prefabs =
 {
     "spoiled_food",
@@ -29,8 +28,7 @@ local function MakePreparedFood(data)
         inst.entity:AddNetwork()
 
         MakeInventoryPhysics(inst)
-        MakeInventoryFloatable(inst)
-        inst.components.floater:UpdateAnimations(data.name .. "_water", data.name)
+        PorkLandMakeInventoryFloatable(inst, data.name .. "_water", data.name)
 
         inst.AnimState:SetBuild("pl_cook_pot_food")
         inst.AnimState:SetBank(data.is_shipwreck_food and "sw_food" or "pl_food")
@@ -57,13 +55,6 @@ local function MakePreparedFood(data)
         inst.components.edible.antihistamine = data.antihistamine or 0
         inst.components.edible:SetOnEatenFn(data.oneatenfn)
 
-        inst.yotp_override = data.yotp
-        if inst.yotp_override then
-            inst.OnFiestaChange = function(src, isfiesta) OnFiestaChange(inst, isfiesta) end
-            inst:WatchWorldState("fiestachange", inst.OnFiestaChange)
-            OnFiestaChange(inst, TheWorld.state.isfiesta)
-        end
-
         inst:AddComponent("inspectable")
 
         inst:AddComponent("inventoryitem")
@@ -85,6 +76,14 @@ local function MakePreparedFood(data)
         MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
         MakeHauntableLaunchAndPerish(inst)
+
+        inst.yotp_override = data.yotp
+        if inst.yotp_override then
+            inst:SetPrefabName(data.name) -- For inst.prefab used in OnFiestaChange
+            inst.OnFiestaChange = function(src, isfiesta) OnFiestaChange(inst, isfiesta) end
+            inst:WatchWorldState("fiestachange", inst.OnFiestaChange)
+            OnFiestaChange(inst, TheWorld.state.isfiesta)
+        end
 
         return inst
     end

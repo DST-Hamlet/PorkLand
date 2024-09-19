@@ -66,7 +66,7 @@ local function fn()
     MakeSmallBurnable(inst)
     -- inst.components.burnable:MakeDragonflyBait(1)  -- dst don't use
     MakeSmallPropagator(inst)
-    AddToRegrowthManager(inst)
+    -- AddToRegrowthManager(inst)
     MakeHauntableChangePrefab(inst, "flower_evil")
 
     inst.OnSave = OnSave

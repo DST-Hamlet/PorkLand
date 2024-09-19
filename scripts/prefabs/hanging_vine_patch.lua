@@ -93,7 +93,7 @@ end
 local function OnSave(inst, data)
     if inst.spawn_tasks then
         data.spawn_tasks = {}
-        for guid, prefab in pairs(inst.spawn_tasks)do
+        for guid, prefab in pairs(inst.spawn_tasks) do
             data.spawn_tasks[guid] = prefab
         end
     end
@@ -101,7 +101,7 @@ end
 
 local function OnLoad(inst, data)
     if data and data.spawn_tasks then
-        for guid, prefab in pairs(data.spawn_tasks)do
+        for guid, prefab in pairs(data.spawn_tasks) do
             inst.spawn_tasks[guid] = prefab
         end
     end

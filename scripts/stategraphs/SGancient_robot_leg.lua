@@ -5,7 +5,7 @@ local AncientHulkUtil = require("prefabs/ancient_hulk_util")
 local SHAKE_DIST = 40
 
 local DoDamage = AncientHulkUtil.DoDamage
-local PowerGlow = AncientHulkUtil.powerglow
+local PowerGlow = AncientHulkUtil.PowerGlow
 
 local actionhandlers =
 {
@@ -19,7 +19,6 @@ local events =
     AncientRobot.Events.DoLeapAttack(),
     AncientRobot.Events.OnAttacked(),
     AncientRobot.Events.OnShocked(),
-    AncientRobot.Events.OnActivate(),
     AncientRobot.Events.OnDeactivate(),
 }
 

@@ -142,7 +142,7 @@ local boat_cargo = {
     enableboatequipslots = true,
 }
 
-for i = 6, 1,-1 do
+for i = 6, 1, -1 do
     table.insert(boat_cargo.widget.slotpos, Vector3(-13 - (80 * (i + 2)), 40 ,0))
 end
 
@@ -192,9 +192,38 @@ local shelf2x3 =
     acceptsstacks = false,
 }
 
-params["shelf_ruins"] = shelf1
-params["shelf_displayshelf_wood"] = shelf1x3
+params["shelf_displaycase_wood"] = shelf1x3
+params["shelf_displaycase_metal"] = shelf1x3
+
 params["shelf_wood"] = shelf2x3
+params["shelf_basic"] = shelf2x3
+params["shelf_metal"] = shelf2x3
+params["shelf_marble"] = shelf2x3
+params["shelf_glass"] = shelf2x3
+params["shelf_ladder"] = shelf2x3
+params["shelf_hutch"] = shelf2x3
+params["shelf_industrial"] = shelf2x3
+params["shelf_adjustable"] = shelf2x3
+params["shelf_fridge"] = shelf2x3
+params["shelf_cinderblocks"] = shelf2x3
+params["shelf_midcentury"] = shelf2x3
+params["shelf_wallmount"] = shelf2x3
+params["shelf_aframe"] = shelf2x3
+params["shelf_crates"] = shelf2x3
+params["shelf_hooks"] = shelf2x3
+params["shelf_pipe"] = shelf2x3
+params["shelf_hattree"] = shelf2x3
+params["shelf_pallet"] = shelf2x3
+params["shelf_floating"] = shelf2x3
+
+params["shelf_ruins"] = shelf1
+params["shelf_queen_display_1"] = shelf1
+params["shelf_queen_display_2"] = shelf1
+params["shelf_queen_display_3"] = shelf1
+params["shelf_queen_display_4"] = shelf1
+
+params["shop_buyer"] = shelf1
+
 
 local widget_antchest = {
     widget = {
@@ -214,7 +243,7 @@ for y = 2, 0, -1 do
 end
 
 function widget_antchest.itemtestfn(contanier, item, slot)
-	return item.prefab == "honey" or item.prefab == "nectar_pod"
+    return item.prefab == "honey" or item.prefab == "nectar_pod"
 end
 
 params["antchest"] = widget_antchest
@@ -237,7 +266,26 @@ local widget_corkchest = {
 
 params["corkchest"] = widget_corkchest
 
-params["roottrunk"] = deepcopy(params["shadowchester"])
-function params.roottrunk.itemtestfn(container, item, slot)
+params["roottrunk_container"] = deepcopy(params["shadowchester"])
+function params.roottrunk_container.itemtestfn(container, item, slot)
     return not item:HasTag("irreplaceable")
 end
+
+local widget_armor_vortex_cloak = {
+    widget = {
+        slotpos = {},
+        animbank = "ui_krampusbag_2x5",
+        animbuild = "ui_krampusbag_2x5",
+        pos = Vector3(-5, -70, 0),
+    },
+    issidewidget = true,
+    type = "pack",
+    openlimit = 1,
+}
+
+for y = 0, 4 do
+    table.insert(widget_armor_vortex_cloak.widget.slotpos, Vector3(-162, -y * 75 + 114, 0))
+    table.insert(widget_armor_vortex_cloak.widget.slotpos, Vector3(-162 +75, -y * 75 + 114, 0))
+end
+
+params["armorvortexcloak"] = widget_armor_vortex_cloak

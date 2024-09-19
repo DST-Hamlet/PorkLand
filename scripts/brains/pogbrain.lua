@@ -49,7 +49,7 @@ local function EatFoodAction(inst)
         local x, y, z = inst.Transform:GetWorldPosition()
         local ents = TheSim:FindEntities(x, y, z, EAT_FOOD_DIST, POG_TAGS)
 
-        for _, ent in pairs(ents)do
+        for _, ent in pairs(ents) do
             -- if another nearby pog is already going to this food, maybe go after it?
             if ((ent.components.locomotor.bufferedaction and ent.components.locomotor.bufferedaction.target and ent.components.locomotor.bufferedaction.target == target) or
                 (inst.bufferedaction and inst.bufferedaction.target and inst.bufferedaction.target == target)) and ent ~= inst then

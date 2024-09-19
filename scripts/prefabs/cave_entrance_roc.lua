@@ -10,7 +10,7 @@ local ROC_CAVE_WALL_TEXTURE = "levels/textures/interiors/batcave_wall_rock.tex"
 local ROC_CAVE_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_vamp_cave_noise.tex"
 local ROC_CAVE_COULOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
 local ROC_CAVE_REVERB = "ruins"
-local ROC_CAVE_AMBIENT = WORLD_TILES.CAVE
+local ROC_CAVE_AMBIENT = "BAT_CAVE"
 local ROC_CAVE_GROUND_SOUND = WORLD_TILES.DIRT
 
 local assets =
@@ -75,10 +75,9 @@ local function ConnectInteriors(inst)
 
     door:initInteriorPrefab(nil, prefab_door_def, interior_door_def)
 
-    --interior_spawner:AddDoor(door, interior_door_def) -- 亚丹：在InitInteriorPrefab中已经执行
+    --interior_spawner:AddDoor(door, interior_door_def) -- 亚丹：在InitInteriorPrefab 中已经执行
 
-    local target_interior_pos = interior_spawner:IndexToPosition(interiorID) -- center of bat cave
-    local target_interior_center = interior_spawner:GetInteriorCenterAt_Generic(target_interior_pos.x, target_interior_pos.z)
+    local target_interior_center = interior_spawner:GetInteriorCenter(interiorID) -- center of bat cave
 
     local door_pos
     local blocker = FindEntity(target_interior_center, REMOVE_BLOCKERS_RAD, nil, BLOCKER_MUST_TAGS)
@@ -210,7 +209,7 @@ local function Close(inst)
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"rocks", "rocks", "flint", "flint", "flint"})
 
-    inst.name = STRINGS.NAMES.CAVE_ENTRANCE_CLOSED
+    inst.name = STRINGS.NAMES.CAVE_ENTRANCE_CLOSED_CAVE
 
     inst.open = false
 
@@ -225,23 +224,25 @@ end
 
 local function BuildMaze(inst, exterior_door_def)
     if inst.interiorID then
+        -- Maze already generated
         return
     end
 
     local interior_spawner = TheWorld.components.interiorspawner
 
+    local id = interior_spawner:GetNewID()
+    inst.interiorID = id
     local rooms = {
         {
             x = 0, -- x, y are used to keep track of the relative position of those rooms
             y = 0,
-            id = interior_spawner:GetNewID(),
+            id = id,
             exits = {},
             blocked_exits = {},
             is_entrance_room = true, -- this is the room you enter from the roc island
         },
     }
-    inst.interiorID = rooms[1].id
-    exterior_door_def.target_interior = rooms[1].id
+    exterior_door_def.target_interior = id
 
     while #rooms < ROC_CAVE_NUM_ROOMS do
         local dir = interior_spawner:GetDir()
@@ -260,7 +261,7 @@ local function BuildMaze(inst, exterior_door_def)
 
         -- fail if this room of the maze is already set up.
         if not failed then
-            for _, room_to_check in pairs(rooms)do
+            for _, room_to_check in pairs(rooms) do
                 if room_to_check.x == room_connecting_to.x + dir[dir_choice].x
                     and room_to_check.y == room_connecting_to.y + dir[dir_choice].y then
                     failed = true
@@ -306,7 +307,7 @@ local function BuildMaze(inst, exterior_door_def)
     end
     GetRandomItem(available_exits).is_exit_room = true -- make this room connect to the bat cave
 
-    for _, room in pairs(rooms) do
+    for _, room in ipairs(rooms) do
         local exits_open = {
             west = not room.exits[interior_spawner:GetWest()],
             south = not room.exits[interior_spawner:GetSouth()],
@@ -324,36 +325,27 @@ local function BuildMaze(inst, exterior_door_def)
 end
 
 local function InitMaze(inst)
-    if inst.maze_generated then
-        return
-    end
-
     local exterior_door_def = {
         my_door_id = ROC_CAVE_NAME .. "_ENTRANCE1",
         target_door_id = ROC_CAVE_NAME .. "_EXIT1",
+        target_interior = inst.interiorID
     }
-
     BuildMaze(inst, exterior_door_def)
     TheWorld.components.interiorspawner:AddDoor(inst, exterior_door_def)
-
-    inst.maze_generated = true
+    TheWorld.components.interiorspawner:AddExterior(inst)
 end
 
 local function OnSave(inst, data)
-    data.maze_generated = inst.maze_generated
     data.open = inst.open
     data.interiorID = inst.interiorID
 end
 
 local function OnLoad(inst, data)
-    if data == nil or (data and data.interiorID == nil) then
-        InitMaze(inst)
-        return
+    if data and data.interiorID then
+        inst.interiorID = data.interiorID
     end
-
-    inst.maze_generated = data.maze_generated
-    inst.interiorID = data.interiorID
-    if data.open then
+    InitMaze(inst)
+    if data and data.open then
         Open(inst)
     end
 end
@@ -374,6 +366,8 @@ local function fn()
 
     inst.MiniMapEntity:SetIcon("cave_closed.png")
 
+    inst:AddTag("client_forward_action_target")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -389,7 +383,6 @@ local function fn()
 
     -- MakeHauntableDoor(inst) -- 这部分功能在action中处理了
 
-    TheWorld.components.interiorspawner:AddExterior(inst)
     Close(inst)
 
     inst.OnSave = OnSave
@@ -414,6 +407,8 @@ local function exitfn()
     inst.AnimState:PlayAnimation("full")
 
     inst.MiniMapEntity:SetIcon("rock_batcave.tex")
+
+    inst:AddTag("client_forward_action_target")
 
     inst.entity:SetPristine()
 

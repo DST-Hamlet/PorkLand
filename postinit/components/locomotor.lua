@@ -4,6 +4,10 @@ GLOBAL.setfenv(1, GLOBAL)
 local function GetWindSpeed(self)
     local wind_speed = 1
 
+    if self.inst:HasTag("inside_interior") then
+        return wind_speed
+    end
+
     -- get a wind speed adjustment
     if TheWorld.net ~= nil and TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy()
         and not self.inst:HasTag("windspeedimmune")

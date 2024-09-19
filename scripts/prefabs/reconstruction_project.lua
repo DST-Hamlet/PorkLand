@@ -2,13 +2,12 @@ local assets = {
     Asset("ANIM", "anim/pighouse_rubble.zip"),
 }
 
--- 30~60 seconds
--- local REBUILD_REACTION_TIME = TUNING.SEG_TIME
--- local REBUILD_REACTION_VARIANCE = TUNING.SEG_TIME
+-- 30 ~ 60 seconds
+local REBUILD_REACTION_TIME = TUNING.SEG_TIME
+local REBUILD_REACTION_VARIANCE = TUNING.SEG_TIME
 
 -- local OFF_SCREENDIST = 30
--- local AUTO_REPAIRDIST = 100
--- local AUTO_REPAIRDIST_SQ = AUTO_REPAIRDIST * AUTO_REPAIRDIST
+local AUTO_REPAIRDIST = 100
 
 local function SetConstructionPrefabName(inst, name)
     inst._name:set(name)
@@ -16,7 +15,7 @@ end
 
 local function DisplayNameFn(inst)
     local name = inst._name:value()
-    return name ~= "" and STRINGS.NAMES[name] or "MISSING NAME"
+    return name ~= "" and STRINGS.NAMES[string.upper(name)] or "MISSING NAME"
 end
 
 local function SetReconstructionStage(inst, stage)
@@ -50,6 +49,9 @@ local function Fix(inst, fixer)
         reconstructed.Transform:SetPosition(inst.Transform:GetWorldPosition())
 
         reconstructed.interiorID = inst.interiorID
+        if reconstructed.interiorID then
+            TheWorld.components.interiorspawner:TransferExterior(inst, reconstructed)
+        end
 
         local reconstruction_anims = inst.reconstruction_anims or {}
         reconstructed.AnimState:PlayAnimation(reconstruction_anims.play or "place")
@@ -66,17 +68,24 @@ local function Fix(inst, fixer)
             reconstructed.components.citypossession:SetCity(inst.cityID)
         end
 
-        if inst.spawner_data then
+        if inst.spawner_data and reconstructed.components.spawner then
             reconstructed.components.spawner:Configure(inst.spawner_data.childname, inst.spawner_data.delay or 0, inst.spawner_data.delay or 0)
             if inst.spawner_data.child and inst.spawner_data.child:IsValid() then
                 reconstructed.components.spawner:TakeOwnership(inst.spawner_data.child)
             end
+            -- cancelling this task for pig_guard_tower so the pig guards wouldn't spawn every time the tower is rebuilt
+            if reconstructed._spawner_init_task then
+                reconstructed._spawner_init_task:Cancel()
+                reconstructed._spawner_init_task = nil
+            end
         end
+
+        -- For player house
+        reconstructed.bought = inst.bought
 
         if reconstructed.OnReconstructe then
             reconstructed:OnReconstructe()
         end
-
     end
 
     inst:Remove()
@@ -106,6 +115,8 @@ local function OnSave(inst, data)
     data.interiorID = inst.interiorID
     data.cityID = inst.cityID
     data.name = inst._name:value()
+    -- For player house
+    data.bought = inst.bought
 
     if inst.spawner_data and inst.spawner_data.child and inst.spawner_data.child:IsValid() then
         data.childname = inst.spawner_data.childname
@@ -124,6 +135,8 @@ local function OnLoad(inst, data)
         inst.reconstruction_overridebuild = data.reconstruction_overridebuild
         inst.interiorID = data.interiorID
         inst.cityID = data.cityID
+        -- For player house
+        inst.bought = data.bought
 
         inst:SetConstructionPrefabName(data.name)
         inst:SetReconstructionStage(data.reconstruction_stage)
@@ -138,9 +151,65 @@ local function OnLoad(inst, data)
 end
 
 local function OnLoadPostPass(inst, newents, data)
-    if data.child then
+    if data.child and newents[data.child] then
         inst.spawner_data.child = newents[data.child].entity
     end
+end
+
+-- local function GetSpawnPoint(inst, pt)
+--     local theta = math.random() * 2 * PI
+--     local radius = OFF_SCREENDIST
+
+--     local offset = FindWalkableOffset(pt, theta, radius, 12, true)
+--     if offset then
+--         local pos = pt + offset
+--         local on_water = TheWorld.Map:IsWater(inst:GetCurrentTileType(pos:Get()))
+--         if not on_water then
+--             return pos
+--         end
+--     end
+-- end
+
+local function SetFixer(inst, fixer)
+    fixer.components.fixer:SetTarget(inst)
+    inst.fixer = fixer
+end
+
+local function SpawnFixer(inst)
+    -- if away from player fix, else
+    -- look for fixer pig
+    -- spawn if none
+    -- set pig's fixer target to this inst.
+    if not inst:IsNearPlayer(AUTO_REPAIRDIST) then
+        Fix(inst)
+        return
+    end
+    if inst.cityID and (not inst.fixer or inst.fixer.components.health:IsDead()) then -- Spawn the pig only for city structures.
+        inst.fixer = nil
+        if TheWorld.state.isday then
+            local fixer = FindEntity(inst, 30, function(ent)
+                return ent.components.fixer and not ent.components.fixer.target
+            end, {"fixer"})
+            if fixer then
+                SetFixer(inst, fixer)
+            -- else
+            --     local player = FindClosestPlayerToInstOnLand(inst, AUTO_REPAIRDIST_SQ)
+            --     if player then
+            --         local spawn_pt = GetSpawnPoint(inst, player:GetPosition())
+            --         if spawn_pt then
+            --             local fixer = SpawnPrefab("pigman_mechanic")
+            --             fixer.Physics:Teleport(spawn_pt:Get())
+            --             SetFixer(inst, fixer)
+            --         end
+            --     end
+            end
+        end
+    end
+    inst.components.timer:StartTimer("spawn_fixer", REBUILD_REACTION_TIME + (math.random() * REBUILD_REACTION_VARIANCE))
+end
+
+local function OnTimerDone(inst, data)
+    SpawnFixer(inst)
 end
 
 local function fn()
@@ -171,7 +240,9 @@ local function fn()
     inst.reconstruction_stage = 1
     inst.reconstruction_stages = {}
 
-    -- inst:AddComponent("timer")
+    inst:AddComponent("timer")
+    inst.components.timer:StartTimer("spawn_fixer", REBUILD_REACTION_TIME + (math.random() * REBUILD_REACTION_VARIANCE))
+    inst:ListenForEvent("timerdone", OnTimerDone)
 
     inst:AddComponent("lootdropper")
 

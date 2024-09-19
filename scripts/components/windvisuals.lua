@@ -14,6 +14,10 @@ function WindVisuals:SpawnWindSwirl(x, y, z, angle)
 end
 
 function WindVisuals:OnUpdate(dt)
+    if self.inst:HasTag("inside_interior") then
+        return
+    end
+
     -- No need to check for plateauwind component, WindVisuals is only added in Hamlet
     local windspeed = TheWorld.net.components.plateauwind:GetWindSpeed()
     if windspeed > 0.01 and TheWorld.net.components.plateauwind:GetIsWindy() then

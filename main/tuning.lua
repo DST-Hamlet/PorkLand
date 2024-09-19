@@ -96,6 +96,9 @@ local tuning = {
     ASPARAGUS_REGROWTH_TIME = day_time * 20,
     ASPARAGUS_REGROWTH_TIME_MULT = 1,
 
+    FLIPPABLE_ROCK_REPOPULATE_TIME = total_day_time * 8,
+    FLIPPABLE_ROCK_REPOPULATE_VARIANCE = total_day_time * 2,
+
     CLAWPALMTREE_GROW_TIME = {
         {base = 8 * day_time, random = 0.5 * day_time},  -- tall to short
         {base = 12 * day_time, random = 5 * day_time},   -- short to normal
@@ -403,6 +406,8 @@ local tuning = {
     WALLWOOD_WINDBLOWN_SPEED = 0.2,
     WALLWOOD_WINDBLOWN_DAMAGE_CHANCE = 0.9,
     WALLWOOD_WINDBLOWN_DAMAGE = 0.5*wilson_attack,
+    SAND_WINDBLOWN_SPEED = 0.2,
+    SAND_WINDBLOWN_FALL_CHANCE = 0.1,
 
     EVERGREEN_WINDBLOWN_SPEED = 0.2,
     EVERGREEN_WINDBLOWN_FALL_CHANCE = 0.01,
@@ -441,10 +446,6 @@ local tuning = {
     HONEY_LANTERN_MINE = 6,
 
     ROOM_FINDENTITIES_RADIUS = 30, -- NOTE: this value is determined by TUNING.ROOM_LARGE_WIDTH and TUNING.ROOM_LARGE_DEPTH
-
-    INTERIOR_MINIMAP_PRIORITY_START = 1000,
-    INTERIOR_MINIMAP_DOOR_SPACE = 10,
-    INTERIOR_MINIMAP_POSITION_SCALE = 2.8, -- NOTE: do not change this value
 
     PL_MANUAL_LIGHT_OFFSET = {
         -- {[K: prefab]: {height, z_off}}
@@ -516,6 +517,123 @@ local tuning = {
     POG_LOYALTY_MAXTIME = total_day_time,
     POG_LOYALTY_PER_ITEM = total_day_time * 0.1,
     POG_EAT_DELAY = 0.5,
+
+    ANCIENT_HERALD_HEALTH = 2000,
+    ANCIENT_HERALD_DAMAGE = 50,
+    ARMORVORTEX = wilson_health*3,
+    ARMORVORTEX_ABSORPTION = 1,
+    ARMORVORTEX_DMG_AS_SANITY = 0.20,
+    ARMORVORTEX_REFUEL_PERCENT = 0.10,
+    ARMOTVORTEX_SHADOW_LEVEL = 3,
+
+    VOLCANO_FIRERAIN_WARNING = 2,
+    VOLCANO_FIRERAIN_RADIUS = 20,
+    VOLCANO_FIRERAIN_DAMAGE = 300,
+    VOLCANO_FIRERAIN_LAVA_CHANCE = 0.5,
+    VOLCANO_DRAGOONEGG_CHANCE = 0.25,
+
+    LAVAPOOL_FUEL_MAX = (night_time+dusk_time),
+    LAVAPOOL_FUEL_START = (night_time+dusk_time)*.75,
+
+    SPIDER_MONKEY_SPEED_AGITATED = 5.5,  --4
+    SPIDER_MONKEY_SPEED = 5.5, --2
+    SPIDER_MONKEY_HEALTH = 550,
+
+    SPIDER_MONKEY_DAMAGE = 60,
+    SPIDER_MONKEY_ATTACK_PERIOD = 2,
+    SPIDER_MONKEY_ATTACK_RANGE = 4,
+    SPIDER_MONKEY_HIT_RANGE = 3,
+    SPIDER_MONKEY_MELEE_RANGE = 4,
+
+    SPIDER_MONKEY_MATING_SEASON_BABYDELAY = total_day_time * 1.5,
+    SPIDER_MONKEY_MATING_SEASON_BABYDELAY_VARIANCE = total_day_time * 0.5,
+
+    BRAMBLE_THORN_DAMAGE = 3,
+    BRAMBLE_THORN_HEALTH = 40,
+    BRAMBLE_CORE_HEALTH = 200,
+
+    BUGREPELLENT_USES = 20,
+    CORK_BAT_USES = 20,
+    CORK_BAT_DAMAGE = wilson_attack * 1.5,
+
+    BLUNDERBUSS_ATTACK_RANGE = 9,
+    BLUNDERBUSS_HIT_RANGE = 11,
+
+    ARMOR_WEEVOLE_DURABILITY = wilson_health*6,
+    ARMOR_WEEVOLE_ABSORPTION = .65,
+
+    CANDLEHAT_LIGHTTIME = night_time*2,
+
+    ANTMASKHAT_PERISHTIME = total_day_time*10,
+    ANTSUIT_PERISHTIME = total_day_time*10,
+    BATHAT_PERISHTIME = total_day_time*2,
+    ARMOR_SNAKESKIN_PERISHTIME = total_day_time*8, --was 10
+    SNAKESKINHAT_PERISHTIME = total_day_time*8, --was 10
+    BANDITHAT_PERISHTIME = total_day_time*1,
+    THUNDERHAT_PERISHTIME = total_day_time*4,
+    THUNDERHAT_USAGE_PER_LIGHTINING_STRIKE = 0.05, -- Percent
+    ARMOR_KNIGHT = wilson_health*8,
+    ARMOR_KNIGHT_ABSORPTION = .85,
+    PITHHAT_PERISHTIME = total_day_time*8,
+    GASMASK_PERISHTIME = total_day_time*3,
+
+    PIG_BANDIT_DAMAGE = 33,
+    PIG_BANDIT_HEALTH = 250,
+    PIG_BANDIT_ATTACK_PERIOD = 3,
+    PIG_BANDIT_LOYALTY_MAXTIME = 2.5*total_day_time,
+    PIG_BANDIT_LOYALTY_PER_HUNGER = total_day_time/25,
+    PIG_BANDIT_MIN_POOP_PERIOD = seg_time * .5,
+    PIG_BANDIT_RUN_SPEED = 7,
+    PIG_BANDIT_WALK_SPEED = 3,
+    PIG_BANDIT_ENABLED = true,
+    PIG_BANDIT_RESPAWN_TIME = 10,
+    PIG_BANDIT_DEATH_RESPAWN_TIME = 30 * 16 * 1.5, -- 9 minutes
+
+    NETTLE_REGROW_TIME = total_day_time * 3,
+    NETTLE_MOISTURE_WET_THRESHOLD = 20,
+    NETTLE_MOISTURE_DRY_THRESHOLD = 10,
+    SPRINKLER_MAX_FUEL_TIME = total_day_time,
+    MOISTURE_SPRINKLER_PERCENT_INCREASE_PER_SPRAY = 0.5,
+
+    GNATMOUND_REGEN_TIME = seg_time * 4,
+    GNATMOUND_RELEASE_TIME = seg_time,
+    GNATMOUND_MAX_WORK = 6,
+    GNATMOUND_MAX_CHILDREN = 1,
+
+    GNAT_WALK_SPEED = 2,
+    GNAT_RUN_SPEED = 7,
+
+    THUNDERBIRDNEST_RELEASE_TIME = 1,
+    THUNDERBIRDNEST_REGEN_TIME = total_day_time * 5,
+    THUNDERBIRDNEST_MAXCHILDREN = 1,
+    THUNDERBIRDNEST_REGROW_TIME = total_day_time * 3,
+
+    THUNDERBIRD_ENABLED = true,
+    THUNDERBIRD_RUN_SPEED = 5.5,
+    THUNDERBIRD_WALK_SPEED = 2,
+    THUNDERBIRD_HEALTH = 50,
+
+    -- Note: in DS the following two values are 1.5 and 2.0 by default but they get overriden manually in the porkland prefab -Half
+    RAINFOREST_CANOPY_ROTATION_SPEED = 5,           -- 5 seconds per rotation
+    RAINFOREST_CANOPY_TRANSLATION_SPEED = 5,        -- 5 seconds per translation
+    RAINFOREST_CANOPY_MAX_ROTATION = 20,            -- max 20 degrees from base rotation
+    RAINFOREST_CANOPY_MAX_TRANSLATION = 1,          -- max 1 world unit from base position
+    RAINFOREST_CANOPY_SCALE = 6,                    -- scale for the texture
+    RAINFOREST_CANOPY_MIN_STRENGTH = 0.2,           -- blend min strength - modulated with avg ambient
+    RAINFOREST_CANOPY_MAX_STRENGTH = 0.7,           -- blend max strength - modulated with avg ambient
+
+    ROBIN_HATCH_TIME = total_day_time * 3,
+
+    PIGGHOST_REGEN_TIME = total_day_time / 2,
+    PIGGHOST_RELEASE_TIME = 0,
+    PIGGHOST_MAXCHILDREN = 3,
+
+    OX_FLUTE_USES = 5,
+
+    SANITY_PLAYERHOUSE_GAIN = 100 / (day_time * 32),
+
+    CUTLASS_DAMAGE = wilson_attack * 2,
+    CUTLASS_USES = 150,
 }
 
 
@@ -572,7 +690,14 @@ TUNING.ROOM_MEDIUM_DEPTH = 16
 TUNING.ROOM_LARGE_WIDTH  = 26
 TUNING.ROOM_LARGE_DEPTH  = 18
 
+local TechTree = require("techtree")
 
+TUNING.PROTOTYPER_TREES.HOGUSPORKUSATOR = TechTree.Create({
+    MAGIC = 2,
+})
+TUNING.PROTOTYPER_TREES.CITY = TechTree.Create({
+    CITY = 2,
+})
 
 for key, value in pairs(tuning) do
     if TUNING[key] then

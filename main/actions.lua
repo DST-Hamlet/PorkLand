@@ -27,14 +27,19 @@ if not rawget(_G, "HotReloading") then
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2, mount_enabled = true}),
-        PUTONSHELF = Action({ distance = 2 }),
-        TAKEFROMSHELF = Action({ distance = 2, priority = 1 }),
+        PUTONSHELF = Action({ distance = 2.5 }),
+        TAKEFROMSHELF = Action({ distance = 2.5, priority = 1 }),
         ASSEMBLE_ROBOT = Action({}),
         CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
         CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
         USE_LIVING_ARTIFACT = Action({priority = 2, invalid_hold_action = true, mount_enabled = false, rmb = true}),
         BARK = Action({distance = 3}),
         RANSACK = Action({distance = 0.5}),
+        MAKEHOME = Action({distance = 1}),
+        THUNDERBIRD_CAST = Action({distance = 1.2}),
+        GAS = Action({distance = 2.5, mount_enabled = true}),
+        INFEST = Action({distance = 0.5}),
+        BUILD_MOUND = Action({}),
 
         -- For City Pigs
         POOP_TIP = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
@@ -43,6 +48,12 @@ if not rawget(_G, "HotReloading") then
         SIT_AT_DESK = Action({distance = 1.2}), -- Replacing SPECIAL_ACTION
         FIX = Action({distance = 2}), -- for pigs reparing broken pig town structures
         STOCK = Action({}),
+        PIG_BANDIT_EXIT = Action({}),
+
+        SHOP = Action({ distance = 2.5 }),
+        RENOVATE = Action({}),
+
+        SEARCH_MYSTERY = Action({priority = -1, distance = 1}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -56,6 +67,10 @@ end
 local _ValidToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.validfn, "ValidToolWork")
 local _DoToolWork = ToolUtil.GetUpvalue(ACTIONS.CHOP.fn, "DoToolWork")
 local function DoToolWork(act, workaction, ...)
+    if act.doer and act.doer.player_classified then
+        act.doer.player_classified._last_work_target:set(act.target)
+        act.doer.player_classified:ClearLastTarget()
+    end
     if act.target.components.hackable ~= nil and act.target.components.hackable:CanBeHacked() and workaction == ACTIONS.HACK then
         if act.invobject and act.invobject.components.obsidiantool then
             act.invobject.components.obsidiantool:Use(act.doer, act.target)
@@ -88,8 +103,8 @@ ACTIONS.HACK.fn = function(act)
 end
 
 ACTIONS.HACK.validfn = function(act) -- this fixes hacking a nonvalid target when holding the mouse
-    return (act.target.components.hackable and act.target.components.hackable:CanBeHacked()) or
-        (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.HACK)
+    return (act.target.components.hackable and act.target.components.hackable:CanBeHacked())
+        or (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.HACK)
 end
 
 ACTIONS.PAN.fn = function(act)
@@ -109,8 +124,8 @@ ACTIONS.SHEAR.fn = function(act)
 end
 
 ACTIONS.SHEAR.validfn = function(act)
-    return (act.target.components.shearable and act.target.components.shearable:CanShear()) or
-        (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.SHEAR)
+    return (act.target.components.shearable and act.target.components.shearable:CanShear())
+        or (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.SHEAR)
 end
 
 ACTIONS.PEAGAWK_TRANSFORM.fn = function(act)
@@ -269,93 +284,27 @@ ACTIONS.SPY.fn = function(act)
     end
 end
 
-local function DoTeleport(player, pos)
-    player:StartThread(function()
-        -- local invincible = player.components.health.invincible
-        --player.components.health:SetInvincible(true)
-        if player.components.playercontroller ~= nil then
-            player.components.playercontroller:EnableMapControls(false)
-            player.components.playercontroller:Enable(false)
-        end
-
-        player:ScreenFade(false, 0.4)
-        Sleep(0.4)
-        -- recheck interior
-        if not TheWorld.components.interiorspawner:IsInInteriorRegion(pos.x, pos.z)
-            or TheWorld.components.interiorspawner:IsInInterior(pos.x, pos.z) then
-            player.Physics:Teleport(pos:Get())
-        end
-        player.components.interiorvisitor:UpdateExteriorPos()
-        -- player.components.health:SetInvincible(invincible)
-        Sleep(0.1) -- 出于未知原因，当 Sleep(0) 的时候 SnapCamera 执行时玩家的位置仍未发生变化，因此改为 0.1
-        if player.components.playercontroller ~= nil then
-            player.components.playercontroller:EnableMapControls(true)
-            player.components.playercontroller:Enable(true)
-        end
-        player:SnapCamera()
-        player:ScreenFade(true, 0.4)
-        player.sg:GoToState("idle")
-    end)
+ACTIONS.SEARCH_MYSTERY.fn = function(act)
+    if act.target and act.target.components.mystery then
+        return act.target.components.mystery:SearchTest(act.doer)
+    end
 end
 
-local function OnTeleportFailed(player)
-    print("teleportfailed_event failed")
-    -- if player.player_classified then
-    --     player.player_classified.teleportfailed_event:push()
-    -- end
+ACTIONS.SEARCH_MYSTERY.validfn = function(act)
+    if act.target then
+        return act.target:HasTag("mystery")
+    end
 end
 
-ACTIONS.USEDOOR.fn = function(act, forcesuccess) -- 感觉这里大部分的内容应该移到component上去
+ACTIONS.USEDOOR.fn = function(act, forcesuccess)
     local door = act.target
+    if not door or not door.components.door then
+        return false
+    end
     if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
-        return false, "DISABLED"
+        return false, "LOCKED"
     end
-    local target_interior = door.components.door.target_interior
-    local target_door_id = door.components.door.target_door_id
-
-    local function PlayDoorSound()
-        door:PushEvent("usedoor", {doer = act.doer})
-    end
-
-    if target_interior == "EXTERIOR" then
-        -- use `target_exterior` firstly, then use current room id as default
-        local index = door.components.door.target_exterior or door.components.door.interior_name
-        local house = TheWorld.components.interiorspawner:GetExteriorByInteriorIndex(index)
-        -- print(index, type(index), house)
-        if house ~= nil then
-            DoTeleport(act.doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
-            PlayDoorSound()
-            act.doer:PushEvent("used_door", {door = door, exterior = true})
-            if house.components.hackable and house.stage > 0 then -- 内部门用vineable, 外部门用hackable...需要代码清理
-                house.stage = 1
-                house.components.hackable:Hack(act.doer, 9999)
-            end
-            return true
-        end
-    else
-        local room = TheWorld.components.interiorspawner:GetInteriorByIndex(target_interior)
-
-        local target_door = room and room:GetDoorById(target_door_id)
-        if target_door then
-            -- don't throw player directly on door
-            -- instead, give a slight offset to room center
-            local door_pos = target_door:GetPosition()
-            local room_pos = room:GetPosition()
-            local offset = (room_pos - door_pos):GetNormalized() * 1.0
-            DoTeleport(act.doer, door_pos + offset)
-            PlayDoorSound()
-            act.doer:PushEvent("used_door", {door = door, exterior = false})
-            if target_door.components.vineable and target_door.components.vineable.vines and
-                target_door.components.vineable.vines.components.hackable and target_door.components.vineable.vines.stage > 0 then
-                    target_door.components.vineable.vines.stage = 1
-                    target_door.components.vineable.vines.components.hackable:Hack(act.doer, 9999)
-            end
-            return true
-        end
-    end
-
-    OnTeleportFailed(act.doer)
-    return false, "ERROR"
+    return door.components.door:Activate(act.doer)
 end
 
 ACTIONS.VAMPIREBAT_FLYAWAY.fn = function(act)
@@ -370,9 +319,8 @@ ACTIONS.WEIGHDOWN.fn = function(act)
     if act.target == nil then
         return false
     end
-    local pos = Vector3(act.target.Transform:GetWorldPosition())
     if act.doer.components.inventory then
-        return act.doer.components.inventory:DropItem(act.invobject, false, false, pos)
+        return act.doer.components.inventory:DropItem(act.invobject, false, false, act.target:GetPosition())
     end
 end
 
@@ -383,7 +331,7 @@ ACTIONS.PUTONSHELF.fn = function(act)
         local item = act.invobject.components.inventoryitem:RemoveFromOwner(shelf.components.container.acceptsstacks)
         local success = shelf.components.container:GiveItem(item, act.target.components.visualslot:GetSlot(), nil, false)
         if item:HasTag("small_livestock") then -- TODO: 需要加一个对容器所属的展示柜的检测，使得生物无法离开带有罩子的展示柜
-            if act.doer and  item:HasTag("canbetrapped") then -- 鸟类之外的可被抓的生物都有canbetrapped标签
+            if act.doer and item:HasTag("canbetrapped") then -- 鸟类之外的可被抓的生物都有 canbetrapped 标签
                 local d_pos = act.doer:GetPosition()
                 local s_pos = shelf:GetPosition()
                 shelf.components.container:DropItemBySlot(act.target.components.visualslot:GetSlot(), (d_pos + s_pos) / 2)
@@ -402,7 +350,11 @@ end
 ACTIONS.TAKEFROMSHELF.fn = function(act)
     local shelf = act.target.components.visualslot:GetShelf()
 
-    if shelf.components.container ~= nil then
+    if shelf.components.lock and shelf.components.lock:IsLocked() then
+        return false
+    end
+
+    if shelf.components.container then
         local item = shelf.components.container:RemoveItemBySlot(act.target.components.visualslot:GetSlot())
         act.doer.components.inventory:GiveItem(item, nil, act.doer:GetPosition())
 
@@ -435,6 +387,14 @@ end
 ACTIONS.RANSACK.fn = function(act)
     return true
 end
+
+ACTIONS.MAKEHOME.fn = function(act)
+    if act.doer and act.target then
+        return act.doer:MakeHomeAction(act.target)
+    end
+    return false
+end
+
 ACTIONS.POOP_TIP.fn = function(act)
     act.target.components.inventory:GiveItem(SpawnPrefab("oinc"), nil, act.doer:GetPosition())
     return true
@@ -468,13 +428,144 @@ end
 
 ACTIONS.STOCK.fn = function(act)
     if act.target then
-        act.target.restock(act.target,true)
+        act.target:Restock(true)
         act.doer.changestock = nil
         return true
     end
 end
 
+ACTIONS.SHOP.stroverridefn = function(act)
+    if not (act.target and act.target:IsValid()) then
+        return ""
+    end
+    local shelf = act.target.replica.visualslot:GetShelf()
+    local item = act.target.replica.visualslot:GetItem()
+    if not (shelf and item and shelf.replica.shopped) then
+        return ""
+    end
 
+    if not shelf.replica.shopped:IsBeingWatched() then
+        return subfmt(STRINGS.ACTIONS.SHOP_TAKE, { wantitem = item:GetBasicDisplayName() })
+    end
+
+    local cost_prefab = shelf.replica.shopped:GetCostPrefab()
+    local cost = shelf.replica.shopped:GetCost()
+    local payitem = STRINGS.NAMES[string.upper(cost_prefab)]
+    local qty = ""
+    if cost_prefab == "oinc" then
+        qty = cost
+        if cost > 1 then
+            payitem = STRINGS.NAMES.OINC_PL
+        end
+    end
+    return subfmt(STRINGS.ACTIONS.SHOP_LONG, { wantitem = item:GetBasicDisplayName(), qty = qty, payitem = payitem })
+end
+
+ACTIONS.SHOP.fn = function(act)
+    local doer = act.doer
+    local shelf = act.target.components.visualslot:GetShelf()
+    local slot = act.target.components.visualslot:GetSlot()
+
+    if not (shelf and shelf.components.shopped and doer:HasTag("player") and doer.components.inventory and doer.components.shopper) then
+        return false
+    end
+
+    if shelf.components.lock and shelf.components.lock:IsLocked() then
+        return false
+    end
+
+    if not shelf.components.shopped:IsBeingWatched() then
+        shelf.components.shopped:GetRobbed(doer, slot)
+        return true
+    end
+
+    local sell = true
+    local reason = nil
+
+    if shelf:HasTag("shopclosed") or TheWorld.state.isnight then
+        reason = "closed"
+        sell = false
+    elseif not doer.components.shopper:CanPayFor(shelf, slot) then
+        local prefab_wanted = shelf.components.shopped:GetCostPrefab()
+        if prefab_wanted == "oinc" then
+            reason = "money"
+        else
+            reason = "goods"
+        end
+        sell = false
+    end
+
+    if sell then
+        doer.components.shopper:Buy(shelf, slot)
+        if shelf.MakeShopkeeperSpeech then
+            shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_SALE")
+        end
+        return true
+    else
+        if reason == "money" then
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_NOT_ENOUGH")
+            end
+        elseif reason == "goods" then
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_DONT_HAVE")
+            end
+        elseif reason == "closed" then
+            if shelf.MakeShopkeeperSpeech then
+                shelf:MakeShopkeeperSpeech("CITY_PIG_SHOPKEEPER_CLOSING")
+            end
+        end
+        return true -- Shouldn't this be false?
+    end
+end
+
+ACTIONS.GAS.fn = function(act)
+    if act.invobject and act.invobject.components.gasser then
+        local pos = (act.pos and act:GetActionPoint()) or (act.target and act.target:GetPosition())
+        act.invobject.components.gasser:Gas(pos)
+        return true
+    end
+end
+ACTIONS.INFEST.fn = function(act)
+    if not act.doer.components.infester.infested then
+        act.doer.components.infester:Infest(act.target)
+        return true
+    end
+
+    return false
+end
+
+ACTIONS.INFEST.validfn = function(act)
+    local AGRO_STOP_DIST = 7
+    return act.doer:GetDistanceSqToInst(act.target) <= AGRO_STOP_DIST * AGRO_STOP_DIST
+end
+
+ACTIONS.BUILD_MOUND.fn = function(act)
+    if act.doer.build_mound_action then
+        return act.doer:build_mound_action()
+    end
+end
+
+ACTIONS.THUNDERBIRD_CAST.fn = function(act)
+    act.doer.sg:GoToState("thunder_attack")
+    return true
+end
+
+ACTIONS.PIG_BANDIT_EXIT.fn = function(act)
+    return true
+end
+
+ACTIONS.RENOVATE.fn = function(act)
+    if act.target:HasTag("renovatable") then
+        if act.invobject.components.renovator then
+            act.invobject.components.renovator:Renovate(act.target)
+        end
+
+        act.invobject:Remove()
+
+        return true
+    end
+end
 
 -- Patch for hackable things
 local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
@@ -506,7 +597,7 @@ function ACTIONS.EQUIP.fn(act, ...)
 end
 
 local _ExtraDropDist = ACTIONS.DROP.extra_arrive_dist
-local ExtraDropDist = function (doer, dest, bufferedaction, ...)--copy from scripts/actions.lua
+local ExtraDropDist = function (doer, dest, bufferedaction, ...) -- copied from scripts/actions.lua
     if not TheWorld:HasTag("porkland") then
         return _ExtraDropDist(doer, dest, bufferedaction, ...)
     end
@@ -583,10 +674,11 @@ end
 
 local _RUMMAGE_strfn = ACTIONS.RUMMAGE.strfn
 function ACTIONS.RUMMAGE.strfn(act, ...)
-    local targ = act.target or act.invobject
-
-    return targ ~= nil and targ.replica.container and targ.replica.container.type == "boat" and
-        (targ.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT") or _RUMMAGE_strfn(act, ...)
+    local target = act.target or act.invobject
+    if target and target.replica.container and target.replica.container.type == "boat" then
+        return target.replica.container:IsOpenedBy(act.doer) and "CLOSE" or "INSPECT"
+    end
+    return _RUMMAGE_strfn(act, ...)
 end
 
 local _RUMMAGE_fn = ACTIONS.RUMMAGE.fn
@@ -657,11 +749,11 @@ end
 
 local function TryToSoulhop(act, act_target, consumeall)
     return act.doer ~= nil
-    and act.doer.sg ~= nil
-    and act.doer.sg.currentstate.name == "portal_jumpin_pre"
-    and act_target ~= nil
-    and act.doer.TryToPortalHop ~= nil
-    and act.doer:TryToPortalHop(act.distancecount, consumeall)
+        and act.doer.sg ~= nil
+        and act.doer.sg.currentstate.name == "portal_jumpin_pre"
+        and act_target ~= nil
+        and act.doer.TryToPortalHop ~= nil
+        and act.doer:TryToPortalHop(act.distancecount, consumeall)
 end
 
 local _BLINK_fn = ACTIONS.BLINK.fn
@@ -678,6 +770,25 @@ ACTIONS.BLINK.fn = function(act, ...)
     else
         return _BLINK_fn(act, ...)
     end
+end
+
+-- For pig guards
+local _MANUALEXTINGUISH_fn = ACTIONS.MANUALEXTINGUISH.fn
+ACTIONS.MANUALEXTINGUISH.fn = function(act, ...)
+    if act.doer:HasTag("extinguisher") then
+        if act.target.components.burnable and act.target.components.burnable:IsBurning() then
+            act.target.components.burnable:Extinguish(true, TUNING.SMOTHERER_EXTINGUISH_HEAT_PERCENT)
+            return true
+        end
+    end
+    if act.invobject == nil then
+        return false
+    end
+    return _MANUALEXTINGUISH_fn(act, ...)
+end
+
+ACTIONS.MANUALEXTINGUISH.validfn = function(act)
+    return act.target and act.target:IsValid() and act.target.components.burnable and act.target.components.burnable:IsBurning()
 end
 
 -- SCENE        using an object in the world
@@ -706,16 +817,36 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.REARM)
             end
         end,
-        livingartifact = function (inst, doer, actions, right)
+        livingartifact = function(inst, doer, actions, right)
             if not inst:HasTag("enabled") and right then
                 table.insert(actions, ACTIONS.USE_LIVING_ARTIFACT)
             end
         end,
+        mystery = function(inst, doer, actions, right)
+            if right and inst:HasTag("mystery") then
+                table.insert(actions, ACTIONS.SEARCH_MYSTERY)
+            end
+        end,
         visualslot = function(inst, doer, actions, right)
             if not inst:HasTag("empty") then
-                table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                local shelf = inst.replica.visualslot:GetShelf()
+                if not shelf:HasTag("locked")
+                    and inst.replica.visualslot:GetItem() ~= nil
+                    and inst.replica.visualslot:GetItem():IsValid() then
+
+                    if shelf and shelf.replica.shopped then
+                        table.insert(actions, ACTIONS.SHOP)
+                    else
+                        table.insert(actions, ACTIONS.TAKEFROMSHELF)
+                    end
+                end
             end
-        end
+        end,
+        -- shopped = function(inst, doer, actions, right)
+        --     if inst:HasTag("has_item_to_sell") then
+        --         table.insert(actions, ACTIONS.SHOP)
+        --     end
+        -- end,
     },
 
     USEITEM = { -- args: inst, doer, target, actions, right
@@ -724,23 +855,38 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.DISARM)
             end
         end,
+        explosive = function(inst, doer, target, actions, right)
+            if target:HasTag("blunderbuss") then
+                table.insert(actions, ACTIONS.GIVE)
+            end
+        end,
         poisonhealer = function(inst, doer, target, actions, right)
-            if target and target:HasTag("poisonable") then
-                if target:HasTag("poison") or (target:HasTag("player") and
-                    ((target.components.poisonable and target.components.poisonable:IsPoisoned()) or
-                    (target.player_classified and target.player_classified.ispoisoned:value()))) then
-                    table.insert(actions, ACTIONS.CUREPOISON)
-                end
+            if right and target and target:HasTag("poisonable") then
+                table.insert(actions, ACTIONS.CUREPOISON)
+            end
+        end,
+        renovator = function(inst, doer, target, actions, right)
+            if target:HasTag("renovatable") then
+                table.insert(actions, ACTIONS.RENOVATE)
             end
         end,
     },
 
     POINT = { -- args: inst, doer, pos, actions, right, target
-
+        gasser = function (inst, doer, pos, actions, right, target)
+            if right then
+                table.insert(actions, ACTIONS.GAS)
+            end
+        end
     },
 
     EQUIPPED = { -- args: inst, doer, target, actions, right
-
+        -- ziwbi: added gasser to EQUIPPED. why wouldn't you just spray on gnats directly?
+        gasser = function (inst, doer, pos, actions, right, target)
+            if right then
+                table.insert(actions, ACTIONS.GAS)
+            end
+        end
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
@@ -754,9 +900,7 @@ local PL_COMPONENT_ACTIONS =
             end
         end,
         poisonhealer = function(inst, doer, actions, right)
-            if doer:HasTag("poisonable") and (doer:HasTag("player") and
-                ((doer.components.poisonable and doer.components.poisonable:IsPoisoned()) or
-                (doer.player_classified and doer.player_classified.ispoisoned:value()))) then
+            if (doer:HasTag("poisonable") or doer:HasTag("player")) then
                 table.insert(actions, ACTIONS.CUREPOISON)
             end
         end,
@@ -826,14 +970,16 @@ end
 
 local _SCENE_inventoryitem = SCENE.inventoryitem
 function SCENE.inventoryitem(inst, doer, actions, right, ...)
-   if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint() and
-        not TheWorld.Map:IsLandTileAtPoint(inst.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
-        if inst.replica.inventoryitem:CanBePickedUp() and
-        doer.replica.inventory ~= nil and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable ~= nil) and
-        not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder")))) and
-        (not inst:HasTag("spider") or (doer:HasTag("spiderwhisperer") and right)) and
-        (right or not inst:HasTag("heavy")) and
-        not (right and inst.replica.container ~= nil and inst.replica.equippable == nil) then  --coryfrom SCENE.inventoryitem
+    if TheWorld.items_pass_ground and not inst:IsOnPassablePoint() and doer:IsOnPassablePoint()
+        and not TheWorld.Map:IsLandTileAtPoint(inst.Transform:GetWorldPosition()) then --让物品在靠近岸边时被捡起而不是回收
+
+        if inst.replica.inventoryitem:CanBePickedUp()
+            and doer.replica.inventory and (doer.replica.inventory:GetNumSlots() > 0 or inst.replica.equippable)
+            and not (inst:HasTag("catchable") or (not inst:HasTag("ignoreburning") and (inst:HasTag("fire") or inst:HasTag("smolder"))))
+            and (not inst:HasTag("spider") or (doer:HasTag("spiderwhisperer") and right))
+            and (right or not inst:HasTag("heavy"))
+            and not (right and inst.replica.container and not inst.replica.equippable) then  -- copied from SCENE.inventoryitem
+
             table.insert(actions, ACTIONS.RETRIEVE)
         end
     else
@@ -861,24 +1007,49 @@ end
 
 local _USEITEM_inventoryitem = USEITEM.inventoryitem
 function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
-    if not (inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanOnlyGoInPocket()) and
-        target and target:HasTag("weighdownable") then
+    if not inst.replica.inventoryitem:CanOnlyGoInPocket() then
+        if target:HasTag("weighdownable") then
             table.insert(actions, ACTIONS.WEIGHDOWN)
             return
-    elseif target and target:HasTag("visual_slot") then
-        if target:HasTag("empty") and not inst.replica.inventoryitem:CanOnlyGoInPocket() then
-            table.insert(actions, ACTIONS.PUTONSHELF)
-            return
+        elseif target:HasTag("visual_slot") then
+            if target:HasTag("empty") then
+                local shelf = target.replica.visualslot:GetShelf()
+                if not (shelf and shelf.replica.shopped) then
+                    table.insert(actions, ACTIONS.PUTONSHELF)
+                    return
+                end
+            end
         end
-    else
-        _USEITEM_inventoryitem(inst, doer, target, actions, right, ...)
     end
+    return _USEITEM_inventoryitem(inst, doer, target, actions, right, ...)
+end
+
+local _USEITEM_tool = USEITEM.tool
+function USEITEM.tool(inst, doer, target, actions, right, ...)
+    if inst:HasTag("fixable_crusher")
+        and inst:HasTag(ACTIONS.HAMMER.id .. "_tool")
+        and target:IsActionValid(ACTIONS.HAMMER, right)
+        and not target:HasTag("fixable") then
+        return
+    end
+    return _USEITEM_tool(inst, doer, target, actions, right, ...)
 end
 
 function EQUIPPED.blinkstaff(inst, doer, target, actions, right, ...)
     if right and target and target:HasTag("sailable") then
         table.insert(actions, ACTIONS.BLINK)
     end
+end
+
+local _EQUIPPED_tool = EQUIPPED.tool
+function EQUIPPED.tool(inst, doer, target, actions, right, ...)
+    if inst:HasTag("fixable_crusher")
+        and inst:HasTag(ACTIONS.HAMMER.id .. "_tool")
+        and target:IsActionValid(ACTIONS.HAMMER, right)
+        and not target:HasTag("fixable") then
+        return
+    end
+    return _EQUIPPED_tool(inst, doer, target, actions, right, ...)
 end
 
 local _INVENTORY_equippable = INVENTORY.equippable
@@ -907,6 +1078,28 @@ function INVENTORY.equippable(inst, doer, actions, ...)
             _INVENTORY_equippable(inst, doer, actions, ...)
         end
     end
+end
+
+local _SCENE_pickable = SCENE.pickable
+function SCENE.pickable(inst, doer, actions, ...)
+    if not inst:HasTag("unsuited") then
+        return _SCENE_pickable(inst, doer, actions, ...)
+    end
+end
+
+local PlayerController = require("components/playercontroller")
+
+local NON_AUTO_EQUIP_ACTIONS = {
+    [ACTIONS.PUTONSHELF] = true,
+    [ACTIONS.WEIGHDOWN] = true,
+}
+
+local do_action_auto_equip = PlayerController.DoActionAutoEquip
+function PlayerController:DoActionAutoEquip(buffaction, ...)
+    if NON_AUTO_EQUIP_ACTIONS[buffaction.action] then
+        return
+    end
+    return do_action_auto_equip(self, buffaction, ...)
 end
 
 function PLENV.OnHotReload()

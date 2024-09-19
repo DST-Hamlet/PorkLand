@@ -40,13 +40,13 @@ local prefabs = {
 
 local function OnOpen(inst)
     if inst.components.sailable.sailor == nil then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/inventory_open")
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_boat_inventory_open")
     end
 end
 
 local function OnClose(inst)
     if inst.components.sailable.sailor == nil then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/boat/inventory_close")
+        inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_boat_inventory_close")
     end
 end
 
@@ -178,14 +178,14 @@ local function commonfn()
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
-            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/bamboo"
+            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks_bamboo"
             inst.replica.sailable.basicspeedbonus = TUNING.BOAT_RAFT_SPEED
         end
         return inst
     end
 
     inst.landsound = "dontstarve_DLC002/common/boatjump_land_bamboo"
-    inst.sinksound = "dontstarve_DLC002/common/boat/sinking/bamboo"
+    inst.sinksound = "dontstarve_DLC002/common/boat_sinking_bamboo"
 
     inst.waveboost = TUNING.WAVEBOOST
 
@@ -200,7 +200,7 @@ local function commonfn()
     inst:AddComponent("sailable")
     inst.components.sailable.flotsambuild = "flotsam_bamboo_build"
 
-    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/bamboo"
+    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks_bamboo"
     inst.replica.sailable.basicspeedbonus = TUNING.BOAT_RAFT_SPEED
 
     inst:AddComponent("repairable")
@@ -209,6 +209,7 @@ local function commonfn()
     inst.components.repairable.onrepaired = OnRepaired
 
     inst:AddReplaceComponent("boatcontainer", "container")
+    inst.components.container.stay_open_on_hide = true
     inst.components.container.onopenfn = OnOpen
     inst.components.container.onclosefn = OnClose
 
@@ -222,7 +223,7 @@ local function commonfn()
     inst.components.boathealth:SetDepletedFn(Sink)
     inst.components.boathealth:SetHealth(TUNING.BOAT_RAFT_HEALTH, TUNING.BOAT_RAFT_PERISHTIME)
     inst.components.boathealth.leakinghealth = TUNING.BOAT_RAFT_LEAKING_HEALTH
-    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat_damage_rowboat"
+    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat_damage_bamboo"
     inst.components.boathealth.hitfx = "boat_hit_fx_raft_bamboo"
 
     inst:AddComponent("flotsamspawner")
@@ -249,7 +250,7 @@ local function lograftfn()
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
-            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/log"
+            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks_log"
             inst.replica.sailable.basicspeedbonus = TUNING.BOAT_LOGRAFT_SPEED
         end
         return inst
@@ -260,18 +261,18 @@ local function lograftfn()
     inst.components.boatvisualmanager:SpawnBoatEquipVisuals(inst, inst.boatname)
 
     inst.landsound = "dontstarve_DLC002/common/boatjump_land_log"
-    inst.sinksound = "dontstarve_DLC002/common/boat/sinking/log_cargo"
+    inst.sinksound = "dontstarve_DLC002/common/boat_sinking_log_cargo"
 
     inst.components.container:WidgetSetup("boat_lograft")
 
     inst.components.boathealth:SetHealth(TUNING.BOAT_LOGRAFT_HEALTH, TUNING.BOAT_LOGRAFT_PERISHTIME)
     inst.components.boathealth.leakinghealth = TUNING.BOAT_LOGRAFT_LEAKING_HEALTH
-    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat/damage/log"
+    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat_damage_log"
     inst.components.boathealth.hitfx = "boat_hit_fx_raft_log"
 
     inst.components.sailable.flotsambuild = "flotsam_lograft_build"
 
-    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/log"
+    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks_log"
     inst.replica.sailable.basicspeedbonus = TUNING.BOAT_LOGRAFT_SPEED
 
     inst.components.flotsamspawner.flotsamprefab = "flotsam_lograft"
@@ -300,14 +301,14 @@ local function rowboatfn()
     inst.components.boatvisualmanager:SpawnBoatEquipVisuals(inst, inst.boatname)
 
     inst.landsound = "dontstarve_DLC002/common/boatjump_land_wood"
-    inst.sinksound = "dontstarve_DLC002/common/boat/sinking/row"
+    inst.sinksound = "dontstarve_DLC002/common/boat_sinking_rowboat"
 
     inst.components.container:WidgetSetup("boat_row")
 
     inst.components.boathealth:SetMaxHealth(TUNING.BOAT_ROW_HEALTH)
     inst.components.boathealth:SetHealth(TUNING.BOAT_ROW_HEALTH, TUNING.BOAT_ROW_PERISHTIME)
     inst.components.boathealth.leakinghealth = TUNING.BOAT_ROW_LEAKING_HEALTH
-    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat/damage/row"
+    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat_damage_rowboat"
     inst.components.boathealth.hitfx = "boat_hit_fx_rowboat"
 
     inst.components.sailable.flotsambuild = "flotsam_rowboat_build"
@@ -330,7 +331,7 @@ local function cargofn()
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
-            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/cargo"
+            inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks_cargo"
             inst.replica.sailable.basicspeedbonus = TUNING.BOAT_CARGO_SPEED
         end
         return inst
@@ -341,18 +342,18 @@ local function cargofn()
     inst.components.boatvisualmanager:SpawnBoatEquipVisuals(inst, inst.boatname)
 
     inst.landsound = "dontstarve_DLC002/common/boatjump_land_wood"
-    inst.sinksound = "dontstarve_DLC002/common/boat/sinking/log_cargo"
+    inst.sinksound = "dontstarve_DLC002/common/boat_sinking_log_cargo"
 
     inst.components.container:WidgetSetup("boat_cargo")
 
     inst.components.boathealth:SetMaxHealth(TUNING.BOAT_CARGO_HEALTH)
     inst.components.boathealth:SetHealth(TUNING.BOAT_CARGO_HEALTH, TUNING.BOAT_CARGO_PERISHTIME)
-    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat/damage/cargo"
+    inst.components.boathealth.damagesound = "dontstarve_DLC002/common/boat_damage_cargo"
     inst.components.boathealth.hitfx = "boat_hit_fx_cargoboat"
 
     inst.components.sailable.flotsambuild = "flotsam_rowboat_build"
 
-    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat/creaks/cargo"
+    inst.replica.sailable.creaksound = "dontstarve_DLC002/common/boat_creaks_cargo"
     inst.replica.sailable.basicspeedbonus = TUNING.BOAT_CARGO_SPEED
 
     inst.components.flotsamspawner.flotsamprefab = "flotsam_cargo"
@@ -418,8 +419,7 @@ local function corkboatitemfn()
     inst.MiniMapEntity:SetIcon("coracle_boat.tex")
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
-    inst.components.floater:UpdateAnimations("idle_water", "idle")
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("small_boat")
     inst:AddTag("boatbuilder") -- for deploy string

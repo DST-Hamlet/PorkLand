@@ -54,7 +54,7 @@ local Sailable = Class(function(self, inst)
         end)
     end
 
-    self.creaksound = "dontstarve_DLC002/common/boat/creaks/creaks"
+    self.creaksound = "dontstarve_DLC002/common/boat_creaks"
 
     self.alwayssail = false
 

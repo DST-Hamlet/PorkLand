@@ -86,7 +86,7 @@ local function MakeVisualBoatEquip(name, assets, prefabs, commonfn, masterfn, on
         end
 
         startanimframe = 0
-        for k,v in pairs(boat.boatvisuals) do
+        for k, v in pairs(boat.boatvisuals) do
             if k ~= inst and k.visualchild and k.visualchild.AnimState then
                 if k.visualchild.AnimState:IsCurrentAnimation("idle_loop") then
                     startanim = "idle_loop"

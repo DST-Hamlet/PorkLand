@@ -11,7 +11,7 @@ local function common()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
-    MakeInventoryFloatable(inst)
+    PorkLandMakeInventoryFloatable(inst)
 
     inst:AddTag("cattoy")
     inst:AddTag("billfood")
@@ -82,8 +82,6 @@ local function cooked_fn()
     inst.AnimState:SetBank("lotus")
     inst.AnimState:SetBuild("lotus")
     inst.AnimState:PlayAnimation("cooked")
-
-    inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst

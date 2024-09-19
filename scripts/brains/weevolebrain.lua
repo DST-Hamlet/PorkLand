@@ -7,7 +7,7 @@ require("behaviours/panic")
 require("behaviours/attackwall")
 require("behaviours/useshield")
 
---local BrainCommon = require "brains/braincommon"
+local BrainCommon = require "brains/braincommon"
 
 -- local RETURN_HOME_DELAY_MIN = 15
 -- local RETURN_HOME_DELAY_MAX = 25
@@ -23,7 +23,6 @@ local STOP_RUN_AWAY_DIST = 5
 local DAMAGE_UNTIL_SHIELD = 100
 local SHIELD_TIME = 3
 local AVOID_PROJECTILE_ATTACKS = false
-local HIDE_WHEN_SCARED = true
 
 local SEE_FOOD_DIST = 10
 
@@ -67,6 +66,7 @@ end)
 function WeevoleBrain:OnStart()
     local root = PriorityNode(
     {
+        BrainCommon.PanicTrigger(self.inst),
         WhileNode(
             function() return not self.inst.sg:HasStateTag("jumping") end, "AttackAndWander",
             PriorityNode(
