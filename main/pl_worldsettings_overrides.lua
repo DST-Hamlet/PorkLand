@@ -397,19 +397,22 @@ applyoverrides_pre.pigbandit = function(difficulty)
             PIG_BANDIT_ENABLED = false,
         },
         rare = {
-            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 0.5,
+            PIG_BANDIT_RESPAWN_TIME = 10 / 0.5,
+            PIG_BANDIT_DEATH_RESPAWN_TIME = total_day_time * 1.5 / 0.5,
         },
         --[[
         default = {
             PIG_BANDIT_ENABLED = true,
-            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5,
+            PIG_BANDIT_DEATH_RESPAWN_TIME = total_day_time * 1.5,
         },
         --]]
         often = {
-            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 1.5,
+            PIG_BANDIT_RESPAWN_TIME = 10 / 1.5,
+            PIG_BANDIT_DEATH_RESPAWN_TIME = total_day_time * 1.5 / 1.5,
         },
         always = {
-            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 2.5,
+            PIG_BANDIT_RESPAWN_TIME = 10 / 2.5,
+            PIG_BANDIT_DEATH_RESPAWN_TIME = total_day_time * 1.5 / 2.5,
         },
     }
   OverrideTuningVariables(tuning_vars[difficulty])
