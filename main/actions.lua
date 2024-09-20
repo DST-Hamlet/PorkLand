@@ -974,7 +974,7 @@ local PL_COMPONENT_ACTIONS =
             end
         end,
         repairer = function(inst, doer, actions, right)
-            if doer and doer.replica.sailor and doer.replica.sailor:GetBoat() then
+            if doer and doer.replica.sailor and doer.replica.sailor:GetBoat() and inst and inst:HasTag("boat_repairer") then
                 local boat = doer.replica.sailor:GetBoat()
                 if boat:HasTag("repairable_boat") and boat.replica.boathealth and not boat.replica.boathealth:IsFull() then
                     table.insert(actions, ACTIONS.REPAIRBOAT)
