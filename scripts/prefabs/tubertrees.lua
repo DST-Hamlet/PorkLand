@@ -180,6 +180,9 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/bamboo_hack")
 
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    if math.random() < 0.4 then
+        inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    end
     inst.components.lootdropper:DropLoot()
 
     inst.persists = false
