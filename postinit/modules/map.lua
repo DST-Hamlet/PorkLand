@@ -301,7 +301,7 @@ function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
     end
     if TheWorld.has_pl_ocean then
         local valid_water_tile = (allow_water == true) and self:ReverseIsVisualWaterAtPoint(x, y, z)
-        return valid_water_tile or self:IsVisualGroundAtPoint(x, y, z)
+        return valid_water_tile or _IsAboveGroundAtPoint(self, x, y, z, ...)
     end
     return _IsAboveGroundAtPoint(self, x, y, z, ...)
 end

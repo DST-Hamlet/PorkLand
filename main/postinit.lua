@@ -4,6 +4,7 @@ GLOBAL.setfenv(1, GLOBAL)
 -- Update this list when adding files
 local behaviour_posts = {
     "chaseandattack",
+    "runaway",
     "wander",
 }
 
