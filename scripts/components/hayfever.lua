@@ -59,6 +59,11 @@ function Hayfever:CanSneeze()
 end
 
 function Hayfever:DoSneezeEffects()
+    if self.nextsneeze > 0 then
+        self.sneezed = false
+        return
+    end
+
     if self.inst.components.sanity ~= nil then
         self.inst.components.sanity:DoDelta(-TUNING.SANITY_SUPERTINY * 3)
     end
