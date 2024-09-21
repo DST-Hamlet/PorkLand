@@ -245,9 +245,10 @@ function InteriorSpawner:OnRemoveExterior(entity)
 
     local room = self:GetInteriorCenter(entity.interiorID)
     if room then
+        local exterior_pos = entity:GetPosition()
         local allrooms = self:GetAllConnectedRooms(room, {})
         for center in pairs(allrooms) do
-            self:ClearInteriorContents(center:GetPosition(), entity:GetPosition())
+            self:ClearInteriorContents(center:GetPosition(), exterior_pos)
             if center.interiorID then
                 self.interior_defs[center.interiorID] = nil
             end
@@ -642,6 +643,7 @@ end
 --     end
 -- end
 
+-- This also destroies the interior center
 function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     assert(TheWorld.ismastersim)
 
@@ -659,6 +661,9 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
         end
     end
 
+    -- This destroies the interior center
+    -- and this can generate more inventoryitems,
+    -- so we do another pass afterwards to push them to the exit position
     local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS)
     if #ents > 0 then
         print("WARNING: Find "..#ents.." entities around pt "..tostring(pos)
@@ -893,13 +898,11 @@ function InteriorSpawner:GetAllConnectedRooms(center, allrooms, usemap)
     allrooms[center] = true
     local x, _, z = center.Transform:GetWorldPosition()
     for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})) do
-        if v.prefab == "prop_door" then
-            local target_interior = v.components.door.target_interior
-            if target_interior ~= nil and target_interior ~= "EXTERIOR" then
-                local room = self.interiors[target_interior] or self:GetInteriorCenter(target_interior)
-                assert(room, "Room not exists: "..target_interior)
-                self:GetAllConnectedRooms(room, allrooms)
-            end
+        local target_interior = v.components.door and v.components.door.target_interior
+        if target_interior and target_interior ~= "EXTERIOR" then
+            local room = self.interiors[target_interior] or self:GetInteriorCenter(target_interior)
+            assert(room, "Room not exists: "..target_interior)
+            self:GetAllConnectedRooms(room, allrooms)
         end
     end
     return allrooms
@@ -1086,6 +1089,7 @@ function InteriorSpawner:GetConnectedSurroundingPlayerRooms(house_id, id, exclud
     return found_doors
 end
 
+-- This also destroies the interior center
 function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
     assert(TheWorld.ismastersim)
 
@@ -1114,6 +1118,9 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
         end
     end
 
+    -- This destroies the interior center,
+    -- and this can generate more inventoryitems,
+    -- so we do another pass afterwards to push them to the exit position
     for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"_inventoryitem"})) do
         if v:HasTag("irreplaceable") then
             SinkEntity(v)
