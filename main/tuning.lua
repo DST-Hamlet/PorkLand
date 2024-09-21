@@ -362,6 +362,7 @@ local tuning = {
     WALKING_STICK_SPEED_MULT = 1.3,
     WALKING_STICK_PERISHTIME = total_day_time * 3,
 
+    PUGALISK_RESPAWN = total_day_time * 15,
     PUGALISK_HEALTH = 3000,
     PUGALISK_ATTACK_PERIOD = 3,
     PUGALISK_MELEE_RANGE = 6,

@@ -2,7 +2,7 @@
 GLOBAL.PORKLAND_REQUIRED_PREFABS =
 {
     "pugalisk_fountain",
-    --"roc_nest",
+    "roc_nest",
     "pig_ruins_entrance",
     "pig_ruins_entrance2",
     "pig_ruins_entrance3",

@@ -103,6 +103,7 @@ local customize_items = {  -- add in dst customize
             --mean_flytrap_setting = {image = "mean_flytraps.tex"},
             weevole_setting = {image = "weevole.tex"},
             --vampirebat = {image = "vampire_bats.tex"},
+            pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = frequency_descriptions},
         },
         animals = {
             dungbeetle_setting = {image = "dungbeetle.tex"},
@@ -124,7 +125,6 @@ local customize_items = {  -- add in dst customize
             poison = {desc = enable_descriptions},
             hayfever = {desc = enable_descriptions},
             pigbandit = {image = "pig_bandit.tex", desc = frequency_descriptions},
-            pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = enable_descriptions},
             vampirebat = {image = "vampire_bats.tex", desc = frequency_descriptions},
         },
     }

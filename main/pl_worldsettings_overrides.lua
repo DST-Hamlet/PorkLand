@@ -535,10 +535,28 @@ applyoverrides_post.hayfever = function(difficulty)
 end
 
 applyoverrides_post.pugalisk_fountain = function(difficulty)
-    local worldsettings = TheWorld.components.worldsettings
-    if worldsettings then
-        worldsettings:SetSetting("pugalisk_fountain", difficulty == "default")
-    end
+    local tuning_vars =
+    {
+        never = {
+            PUGALISK_ENABLED = false,
+        },
+        rare = {
+            PEAGAWK_REGEN_TIME = total_day_time * 20,
+        },
+        --[[
+        default = {
+            PUGALISK_ENABLED = true,
+            PUGALISK_RESPAWN = total_day_time * 15,
+        },
+        --]]
+        often = {
+            PUGALISK_RESPAWN = total_day_time * 10,
+        },
+        always = {
+            PUGALISK_RESPAWN = total_day_time * 5,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
 end
 
 applyoverrides_post.vampirebat = function (difficulty)
