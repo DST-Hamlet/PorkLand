@@ -206,7 +206,9 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
     end
 
     local function OnGustFall(inst)
-        inst.components.workable.onfinish(inst, TheWorld)
+        if inst.components.workable then
+            inst.components.workable.onfinish(inst, TheWorld)
+        end
     end
 
     inst:AddComponent("blowinwindgust")
