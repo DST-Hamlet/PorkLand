@@ -91,6 +91,7 @@ local prefab_posts = {
     "mosquitosack",
     "multiplayer_portal",
     "orangestaff",
+    "pigskin",
     "player",
     "player_classified",
     "player_common_extensions",
