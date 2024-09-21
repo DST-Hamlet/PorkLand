@@ -5,6 +5,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT Version: 2.0"
 
+#. STRINGS.ACTIONS.THROW
+msgctxt "STRINGS.ACTIONS.THROW"
+msgid "Throw At"
+msgstr "投向"
+
 #. STRINGS.ACTIONS.BUILD_ROOM
 msgctxt "STRINGS.ACTIONS.BUILD_ROOM"
 msgid "Build Room"
@@ -12407,8 +12412,8 @@ msgstr "在哪里...它在哪里？"
 
 #. STRINGS.CHARACTERS.WANDA.ANNOUNCE_ROOM_STUCK
 msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_ROOM_STUCK"
-msgid "I don't wanna to stay in this room forever."
-msgstr "我可不想呆在这个房间里直到永远。"
+msgid "Nobody wanna to stay in this room forever."
+msgstr "没人会想呆在这个房间里直到永远。"
 
 #. STRINGS.CHARACTERS.WANDA.ANNOUNCE_SNEEZE
 msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_SNEEZE"
@@ -30663,7 +30668,7 @@ msgstr "我为什么还要延续自己的生命？"
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PUGALISK_RUINS_PILLAR
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PUGALISK_RUINS_PILLAR"
 msgid "It's fragile, like life."
-msgstr "它想生命一样脆弱。"
+msgstr "它像生命一样脆弱。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PUGALISK_SKULL
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PUGALISK_SKULL"
@@ -71023,7 +71028,7 @@ msgstr "令人感激的非猪"
 #. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.1
 msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.1"
 msgid "OUT, DAMNED PLOP!"
-msgstr "它消失了，该死的便便！"
+msgstr "滚开，该死的便便！"
 
 #. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.2
 msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.2"
@@ -71133,12 +71138,12 @@ msgstr "明天再来吧"
 #. STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.1
 msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.1"
 msgid "NO 'TIS PRICELESS!"
-msgstr "不,这是无价之宝!"
+msgstr "不，这是无价之宝！"
 
 #. STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.2
 msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.2"
 msgid "IT IS FOUND! MUST FIND QUEEN"
-msgstr "它被找到了!一定要去找女王"
+msgstr "它被找到了！一定要去找女王"
 
 #. STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.3
 msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.3"
@@ -71173,7 +71178,7 @@ msgstr "学会才是适合它的地方"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.1"
 msgid "OUT, DAMNED PLOP"
-msgstr "滚开,该死的便便"
+msgstr "滚开，该死的便便"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.2"
@@ -71258,7 +71263,7 @@ msgstr "你的行为令我们尊敬"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.1"
 msgid "THOU ART THE FINEST OF PLOP PICKERS!"
-msgstr "你是最好的捡屎者!"
+msgstr "你是最好的捡屎者！"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.2"
@@ -71278,7 +71283,7 @@ msgstr "能接受我的硬币吗?"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.2"
 msgid "OUT, DAMNED PLOP"
-msgstr "滚开,该死的便便"
+msgstr "滚开，该死的便便"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.3
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.3"
@@ -71318,12 +71323,12 @@ msgstr "能接受我的硬币吗?"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.1"
 msgid "OUT, DAMNED PLOP!"
-msgstr "滚开,该死的便便"
+msgstr "滚开，该死的便便"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.2"
 msgid "THOU ART THE FINEST OF PLOP PICKERS!"
-msgstr "你是最好的捡屎者!"
+msgstr "你是最好的捡屎者！"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.3
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.3"
@@ -71333,7 +71338,7 @@ msgstr "你的行为令我们尊敬"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.1"
 msgid "OUT, DAMNED PLOP!"
-msgstr "滚开,该死的便便"
+msgstr "滚开，该死的便便"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.2"
@@ -71343,7 +71348,7 @@ msgstr "付给皇家粪便清理员的"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.3
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.3"
 msgid "HUMBLEST OF THANKS, YOUR MAJESTY"
-msgstr "向你致以我恭谦的谢意,阁下"
+msgstr "向你致以我恭谦的谢意，阁下"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.1"
@@ -73777,7 +73782,7 @@ msgstr "“猪圈”奇异商店"
 
 #. STRINGS.NAMES.PIG_SHOP_ARCANE
 msgctxt "STRINGS.NAMES.PIG_SHOP_ARCANE"
-msgid "The Flying Pig Arcane Shop"
+msgid "The Flying Pig\nArcane Shop"
 msgstr "飞猪神秘商店"
 
 #. STRINGS.NAMES.PIG_SHOP_BANK
@@ -73802,22 +73807,22 @@ msgstr "高纯度熟猪食店"
 
 #. STRINGS.NAMES.PIG_SHOP_FLORIST
 msgctxt "STRINGS.NAMES.PIG_SHOP_FLORIST"
-msgid "Miss Sow's Floral Arrangements"
+msgid "Miss Sow's\nFloral Arrangements"
 msgstr "母猪小姐的花香物语"
 
 #. STRINGS.NAMES.PIG_SHOP_GENERAL
 msgctxt "STRINGS.NAMES.PIG_SHOP_GENERAL"
-msgid "Pigg and Pigglet's General Store"
+msgid "Pigg and Pigglet's\nGeneral Store"
 msgstr "猪猪与居居的杂货店"
 
 #. STRINGS.NAMES.PIG_SHOP_HATSHOP
 msgctxt "STRINGS.NAMES.PIG_SHOP_HATSHOP"
-msgid "The Sow's Ear Hat Shop"
+msgid "The Sow's Ear\nHat Shop"
 msgstr "母猪耳朵帽子店"
 
 #. STRINGS.NAMES.PIG_SHOP_HOOFSPA
 msgctxt "STRINGS.NAMES.PIG_SHOP_HOOFSPA"
-msgid "Curly Tails Mud Spa"
+msgid "Curly Tails\nMud Spa"
 msgstr "卷尾巴的泥浆水疗店"
 
 #. STRINGS.NAMES.PIG_SHOP_PRODUCE
@@ -73832,7 +73837,7 @@ msgstr "小发明匠的塔楼"
 
 #. STRINGS.NAMES.PIG_SHOP_WEAPONS
 msgctxt "STRINGS.NAMES.PIG_SHOP_WEAPONS"
-msgid "The Boar's Tusk Weapon Shop"
+msgid "The Boar's Tusk\nWeapon Shop"
 msgstr "野猪獠牙武器店"
 
 #. STRINGS.NAMES.PIKO
@@ -74933,7 +74938,7 @@ msgstr "海上照明工具。"
 #. STRINGS.RECIPE_DESC.BONESTAFF
 msgctxt "STRINGS.RECIPE_DESC.BONESTAFF"
 msgid "Wield the gaze of the Pugalisk!"
-msgstr "感受来自翘鼻蛇怪的凝视吧!"
+msgstr "感受来自翘鼻蛇怪的凝视吧！"
 
 #. STRINGS.RECIPE_DESC.BUGREPELLENT
 msgctxt "STRINGS.RECIPE_DESC.BUGREPELLENT"
