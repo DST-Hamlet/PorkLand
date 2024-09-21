@@ -4,6 +4,10 @@ local function on_window_built(inst)
     if DecoCreator:IsBuiltOnBackWall(inst) then
         local bank = inst.bank:sub(1, -6) -- Remove _side
         inst.AnimState:SetBank(bank)
+        inst.bank = bank
+        inst.animdata = {
+            bank = bank,
+        }
         if inst.children_to_spawn then
             for i, children in ipairs(inst.children_to_spawn) do
                 if children:sub(-8) ~= "backwall" then
