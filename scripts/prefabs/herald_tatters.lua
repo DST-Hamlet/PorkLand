@@ -35,7 +35,7 @@ local function fn()
 
     inst:AddComponent("fuel")
     inst.components.fuel.fueltype = FUELTYPE.ANCIENT_REMNANT
-    inst.components.fuel.fuelvalue = TUNING.LARGE_FUEL
+    inst.components.fuel.fuelvalue = TUNING.LARGE_FUEL * 10
 
     MakeHauntableLaunch(inst)
     MakeBlowInHurricane(inst, TUNING.WINDBLOWN_SCALE_MIN.LIGHT, TUNING.WINDBLOWN_SCALE_MAX.LIGHT)
