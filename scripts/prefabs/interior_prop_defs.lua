@@ -397,6 +397,8 @@ PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPr
         for i = 1, math.random(2, 4) do
             addprops[#addprops + 1] = {name = "ant_cave_lantern", x_offset = GetPosToCenter(depth * 0.65, 5, true), z_offset = GetPosToCenter(width * 0.65, 5, true)}
         end
+
+        AddCommonDeco(addprops)
     else
         AddDeco(addprops, width, depth)
     end
