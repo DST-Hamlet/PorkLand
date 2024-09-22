@@ -122,7 +122,7 @@ local function SetLandSpeed(inst)
     inst.components.glidemotor.runspeed = TUNING.ROC_SPEED_LAND
     inst.components.glidemotor.runspeed_turnfast = 0
     inst.components.glidemotor.turnspeed = 20
-    inst.components.glidemotor.turnspeed_fast = 45
+    inst.components.glidemotor.turnspeed_fast = 60
 end
 
 local function fn()

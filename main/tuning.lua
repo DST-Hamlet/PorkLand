@@ -636,6 +636,9 @@ local tuning = {
     ROC_SPEED_LAND = 6,
     ROC_SHADOWRANGE = 8,
     ROC_ENABLED = true,
+
+    ROC_HEAD_SPEED = 10,
+    ROC_TAIL_SPEED = 8,
 }
 
 

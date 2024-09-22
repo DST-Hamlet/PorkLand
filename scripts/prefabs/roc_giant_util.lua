@@ -140,13 +140,13 @@ local function UpdateHeadPos(inst, pos, dt)
     local head = inst.bodyparts.head
     if head and not head.sg:HasStateTag("busy") then
         local tx, ty ,tz = inst.entity:LocalToWorldSpace(head.offset:Get())
-        local targetpt = Vector3(tx, ty ,tz)
+        local targetpt = pos or Vector3(tx, ty ,tz)
         head:FacePoint(targetpt:Get())
         local offset = targetpt - head:GetPosition()
         local speed = math.sqrt(offset.x * offset.x + offset.z * offset.z)
         if speed > 0.5 then
             local speed = math.sqrt(offset.x * offset.x + offset.z * offset.z)
-            speed = math.min(speed, TUNING.ROC_SPEED_LAND + 2)
+            speed = math.min(speed, TUNING.ROC_HEAD_SPEED)
             head.Physics:SetMotorVel(speed, 0, 0)
         else
             head.Physics:SetMotorVel(0, 0, 0)
@@ -164,7 +164,7 @@ local function UpdateTailPos(inst, pos, dt)
         local speed = math.sqrt(offset.x * offset.x + offset.z * offset.z)
         if speed > 0.5 then
             local speed = math.sqrt(offset.x * offset.x + offset.z * offset.z)
-            speed = math.min(speed, TUNING.ROC_SPEED_LAND + 2)
+            speed = math.min(speed, TUNING.ROC_TAIL_SPEED)
             tail.Physics:SetMotorVel(speed, 0, 0)
         else
             tail.Physics:SetMotorVel(0, 0, 0)
@@ -175,7 +175,7 @@ end
 local function LandBehaviorUpdate(inst, dt, currentdata, braindata)
     local head = inst.bodyparts.head
     local target = braindata.tracktarget
-
+    local headpt = nil
 
     if not CheckKeepHeadTarget(inst, target) then
         target = TryFindHeadTarget(inst)
@@ -185,10 +185,29 @@ local function LandBehaviorUpdate(inst, dt, currentdata, braindata)
     if CheckKeepHeadTarget(inst, target) and head and not head.sg:HasStateTag("busy") then
         local hx, hy, hz = inst.entity:LocalToWorldSpace(head.offset:Get())
         local targetpt = target:GetPosition()
-
-        if target:GetDistanceSqToPoint(hx, hy, hz) > 5 * 5 then
+        local targetinrange = (target:GetDistanceSqToPoint(hx, hy, hz) < HEADDIST * HEADDIST) and inst:IsNear(target, HEADDIST + 8)
+        if targetinrange then
+            headpt = targetpt
+        end
+        if not targetinrange or not inst.components.glidemotor.stopped then
             inst.components.glidemotor:EnableMove(true)
-            inst.components.glidemotor:SetTargetPos(targetpt)
+            local angle = inst.Transform:GetRotation()
+            local anglediff = inst:GetAngleToPoint(targetpt.x,targetpt.y,targetpt.z) - angle
+            if anglediff > 180 then
+                anglediff = anglediff - 360
+            elseif anglediff < -180 then
+                anglediff = anglediff + 360
+            end
+            if math.abs(anglediff) < 3 then
+                if targetinrange and inst:IsNear(target, HEADDIST) then
+                    inst.components.glidemotor:EnableMove(false)
+                end
+                inst.components.glidemotor:SetTargetPos(targetpt)
+                inst.components.glidemotor:TurnFast(-1)
+            else
+                inst.components.glidemotor:SetTargetPos(targetpt)
+                inst.components.glidemotor:TurnFast(1)
+            end
         else
             inst.components.glidemotor:EnableMove(false)
         end
@@ -198,7 +217,7 @@ local function LandBehaviorUpdate(inst, dt, currentdata, braindata)
     end
 
 
-    UpdateHeadPos(inst, nil, dt)
+    UpdateHeadPos(inst, headpt, dt)
     UpdateTailPos(inst, nil, dt)
 end
 
