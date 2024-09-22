@@ -633,6 +633,7 @@ local tuning = {
     SANITY_PLAYERHOUSE_GAIN = 100 / (day_time * 32),
 
     ROC_SPEED = 20,
+    ROC_SPEED_LAND = 6,
     ROC_SHADOWRANGE = 8,
     ROC_ENABLED = true,
 }

@@ -31,6 +31,16 @@ local function commonfn()
 	inst:AddTag("roc")
 	inst:AddTag("noteleport")
 
+    inst.Physics:SetMass(9999999)
+    inst.Physics:SetCapsule(1.5, 1)
+    inst.Physics:SetFriction(0)
+    inst.Physics:SetDamping(5)
+    inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith(COLLISION.GROUND)
+    inst.Physics:ClearCollidesWith(COLLISION.LIMITS)
+    inst.Physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
