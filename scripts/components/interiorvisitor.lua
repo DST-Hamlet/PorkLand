@@ -130,10 +130,59 @@ function InteriorVisitor:ValidateMap()
     end
 end
 
+local op_dir_str = {
+    north = "south",
+    east  = "west",
+    south = "north",
+    west  = "east",
+}
+
+local function get_door_at_direction(center, direction)
+    local x, _, z = center.Transform:GetWorldPosition()
+    local doors = TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door", "door_"..direction})
+    return doors[1]
+end
+
+function InteriorVisitor:UpdateSurroundingDoorMaps(center_ent, last_center_ent, map_data)
+    if not map_data then
+        return
+    end
+    local interior_spawner = TheWorld.components.interiorspawner
+    for _, door in ipairs(map_data.doors) do
+        local target_interior = door.target_interior
+        local target_interior_map = self.interior_map[target_interior]
+        if target_interior_map then
+            local target_center = interior_spawner:GetInteriorCenter(target_interior)
+            if target_center and target_center ~= last_center_ent then
+                local door_ent = get_door_at_direction(center_ent, door.direction)
+                local hidden = door_ent:HasTag("door_hidden")
+                local disabled = door_ent:HasTag("door_disabled")
+                for _, target_interior_door in ipairs(target_interior_map.doors) do
+                    if target_interior_door.direction == op_dir_str[door.direction] then
+                        local dirty = false
+                        if target_interior_door.hidden ~= hidden then
+                            target_interior_door.hidden = hidden
+                            dirty = true
+                        end
+                        if target_interior_door.disabled ~= disabled then
+                            target_interior_door.disabled = disabled
+                            dirty = true
+                        end
+                        if dirty then
+                            self:RecordMap(target_interior, target_interior_map)
+                        end
+                        break
+                    end
+                end
+            end
+        end
+    end
+end
+
 function InteriorVisitor:UpdateExteriorPos()
-    local spawner = TheWorld.components.interiorspawner
+    local interior_spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
-    local ent = spawner:GetInteriorCenter(Vector3(x, 0, z))
+    local ent = interior_spawner:GetInteriorCenter(Vector3(x, 0, z))
 
     self.center_ent = ent
     local last_center_ent = self.last_center_ent
@@ -141,11 +190,15 @@ function InteriorVisitor:UpdateExteriorPos()
 
     if last_center_ent ~= ent then
         if ent then
-            self:RecordMap(ent.interiorID, ent:CollectMinimapData())
+            local map_data = ent:CollectMinimapData()
+            self:UpdateSurroundingDoorMaps(ent, last_center_ent, map_data)
+            self:RecordMap(ent.interiorID, map_data)
         end
         -- Record again and ignore non cacheable things once we're out of the last visited room
         if last_center_ent and last_center_ent:IsValid() then
-            self:RecordMap(last_center_ent.interiorID, last_center_ent:CollectMinimapData(true))
+            local map_data = last_center_ent:CollectMinimapData(true)
+            self:UpdateSurroundingDoorMaps(last_center_ent, ent, map_data)
+            self:RecordMap(last_center_ent.interiorID, map_data)
         end
     end
 
@@ -168,7 +221,7 @@ function InteriorVisitor:UpdateExteriorPos()
 
         if ent:GetIsSingleRoom() then -- check if this room is single, if so, get the unique exit
             local door = ent:GetDoorToExterior()
-            local house = spawner:GetExteriorById(door.components.door.interior_name)
+            local house = interior_spawner:GetExteriorById(door.components.door.interior_name)
             if house ~= nil then
                 local x, _, z = house.Transform:GetWorldPosition()
                 -- when opening minimap inside a single room,
@@ -186,7 +239,7 @@ function InteriorVisitor:UpdateExteriorPos()
         grue.pl_no_light_interior = false
         self.inst:RemoveTag("pl_no_light_interior")
 
-        if not spawner:IsInInteriorRegion(x, z) then
+        if not interior_spawner:IsInInteriorRegion(x, z) then
             self.last_mainland_pos = {x = x, z = z}
         end
     end
