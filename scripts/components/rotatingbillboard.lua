@@ -18,6 +18,7 @@ local function Mask(parent)
     inst.AnimState:SetLayer(LAYER_BELOW_GROUND)
     inst.AnimState:SetFinalOffset(FINALOFFSET_MIN)
     inst.Transform:SetTwoFaced()
+    inst.Transform:SetRotation(-90)
 
     inst.persists = false
     inst.parent = parent
@@ -115,15 +116,20 @@ end
 
 function RotatingBillboard:SyncMaskAnimation()
     if self.mask then
+        self.mask.Transform:SetRotation(self.rotation)
         local data = self.animdata or {}
         local anim = self.mask.AnimState
         anim:SetBank(data.bank or self.inst.AnimState:GetCurrentBankName())
         anim:SetBuild(data.build or self.inst.AnimState:GetBuild())
-        local animation = data.animation or select(2, self.inst.AnimState:GetHistoryData())
+        local animation = data.anim or select(2, self.inst.AnimState:GetHistoryData())
         if not anim:IsCurrentAnimation(animation) then
             anim:PlayAnimation(animation)
         end
-        self._maskdirty:push()
+        anim:SetScale(self.inst.Transform:GetScale())
+
+        if TheWorld.ismastersim then
+            self._maskdirty:push()
+        end
     end
 end
 
@@ -138,6 +144,7 @@ function RotatingBillboard:SetRotation(rotation)
     self.inst.AnimState:SetFloatParams(x, z, rotation * DEGREES + PI)
 
     self:UpdateLightPosition()
+    self:SyncMaskAnimation()
 end
 
 function RotatingBillboard:UpdateLightPosition()

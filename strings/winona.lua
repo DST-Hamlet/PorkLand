@@ -353,6 +353,7 @@ return {
         ROOTTRUNK = "Automated logistics is the future.",
         ROUND_DOOR = "Get through the wall.",
         SAIL_SNAKESKIN = "Just watch those scales catch the wind!",
+        SAND = "Yep, I'm holding a pile of sand.",
         SCORPION = {
             DEAD = "Phew, now I don't have to be nervous all the time.",
             GENERIC = "I don't like you.",

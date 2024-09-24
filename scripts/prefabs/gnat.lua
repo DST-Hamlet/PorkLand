@@ -182,6 +182,10 @@ local function fn()
     inst:SetBrain(brain)
     inst:SetStateGraph("SGgnat")
 
+    inst:ListenForEvent("teleported", function()
+        inst.SoundEmitter:KillSound("move") -- stupid sound engine bug...
+    end)
+
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
     MakeTinyFreezableCharacter(inst, "fx_puff")

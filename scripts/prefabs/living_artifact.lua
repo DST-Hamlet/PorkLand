@@ -20,7 +20,14 @@ end
 local function LoadPlayerData(player, data)
     player.AnimState:ClearOverrideBuild("living_suit_build_morph")
     player.AnimState:SetBuild(data.build)
-    player.components.skinner:SetSkinMode("normal_skin")
+    if player.components.skinner:GetSkinMode() == "living_suit" then
+        player.components.skinner:SetSkinMode("normal_skin")
+    else
+        -- We blocked animation change on ironlord form,
+        -- actually apply it here
+        -- Also see postinit/components/skinner.lua
+        player.components.skinner:SetSkinMode()
+    end
 
     player.components.health.redirect = data.health_redirect
 
@@ -51,10 +58,13 @@ local function BecomeIronLord(inst, instant)
     player.AnimState:AddOverrideBuild("player_living_suit_morph")
 
     player:AddTag("fireimmune")
-    player:AddTag("has_gasmask")
+    player:AddTag("poisonimmune")
     player:AddTag("ironlord")
     player:AddTag("laser_immune")
     player:AddTag("mech")
+    player:AddTag("has_gasmask")
+
+    player.components.inventory:Hide()
 
     player:DoTaskInTime(0, function() -- wait for player_classified to be constructed
         player.player_classified.instantironlord:set(true)
@@ -142,19 +152,21 @@ local function Revert(inst)
 
     local player = inst.player
 
+    player:RemoveTag("ironlord")
+    player:RemoveTag("laser_immune")
+    player:RemoveTag("mech")
+    player:RemoveTag("fireimmune")
+    player:RemoveTag("poisonimmune")
+    player:RemoveTag("has_gasmask")
+
     player.AnimState:ClearOverrideBuild("living_suit_build")
     player.AnimState:Show("beard")
     LoadPlayerData(player, inst.player_data)
 
     player.SoundEmitter:KillSound("chargedup")
 
-    player:RemoveTag("ironlord")
-    player:RemoveTag("laser_immune")
-    player:RemoveTag("mech")
-    player:RemoveTag("has_gasmask")
-    player:RemoveTag("fireimmune")
-
     player.player_classified.isironlord:set(false)
+    player.components.inventory:Show()
 
     player:RemoveComponent("worker")
 

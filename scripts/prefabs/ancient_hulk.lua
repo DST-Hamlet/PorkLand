@@ -162,7 +162,6 @@ local function fn()
     inst:AddTag("scarytoprey")
     inst:AddTag("largecreature")
     inst:AddTag("ancient_hulk")
-    inst:AddTag("dontteleporttointerior")
     inst:AddTag("laser_immune")
     inst:AddTag("mech")
     inst:AddTag("noember")
@@ -226,7 +225,7 @@ local function fn()
     inst.orbs = 2
 
     inst:ListenForEvent("attacked", OnAttacked)
-    inst:ListenForEvent("remove", function() inst.SoundEmitter:KillSound("gears") end)
+    inst:ListenForEvent("onremove", function() inst.SoundEmitter:KillSound("gears") end)
 
     inst:ListenForEvent("killed", function(inst, data)
         if inst.components.combat and data and data.victim == inst.components.combat.target then
@@ -316,7 +315,7 @@ local function mine_fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    MakeInventoryPhysics(inst, 75, 0.5)
+    MakeThrowablePhysics(inst, 75, 0.5)
 
     inst.AnimState:SetBank("metal_hulk_mine")
     inst.AnimState:SetBuild("metal_hulk_bomb")
@@ -340,9 +339,10 @@ local function mine_fn()
 
     inst:AddComponent("locomotor")
 
-    inst:AddComponent("complexprojectile")
-    inst.components.complexprojectile:SetOnHit(OnHit)
-    inst.components.complexprojectile.yOffset = 2.5
+    inst:AddComponent("throwable")
+    inst.components.throwable:SetOnHitFn(OnHit)
+    inst.components.throwable.yOffset = 2.5
+    inst.components.throwable.speed = 60
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE)
@@ -355,7 +355,7 @@ local function mine_fn()
     return inst
 end
 
-local function OnHitOrb(inst, dist)
+local function OnHitOrb(inst, other)
     ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.4, 0.03, 1.5, inst, SHAKE_DIST)
 
     inst.AnimState:PlayAnimation("impact")
@@ -383,7 +383,7 @@ local function orb_fn()
     inst.entity:AddLight()
     inst.entity:AddNetwork()
 
-    MakeInventoryPhysics(inst, 75, 0.5)
+    MakeThrowablePhysics(inst, 75, 0.5)
 
     inst.AnimState:SetBank("metal_hulk_projectile")
     inst.AnimState:SetBuild("metal_hulk_projectile")
@@ -409,9 +409,11 @@ local function orb_fn()
 
     inst:AddComponent("locomotor")
 
-    inst:AddComponent("pl_complexprojectile")
-    inst.components.pl_complexprojectile:SetOnHit(OnHitOrb)
-    inst.components.pl_complexprojectile.yOffset = 2.5
+    inst:AddComponent("throwable")
+    inst.components.throwable:SetOnHitFn(OnHitOrb)
+    inst.components.throwable.yOffset = 2.5
+    inst.components.throwable.speed = 60
+    inst.components.throwable.maxdistance = 64
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE)
@@ -504,53 +506,6 @@ local function OnCollidecharge(inst, other)
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/smash_2")
 end
 
-local function orb_charge_fn()
-    local inst = CreateEntity()
-
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddLight()
-    inst.entity:AddSoundEmitter()
-    inst.entity:AddNetwork()
-
-    MakeCharacterPhysics(inst, 1, 0.5)
-
-    inst.AnimState:SetBank("metal_hulk_projectile")
-    inst.AnimState:SetBuild("metal_hulk_projectile")
-    inst.AnimState:PlayAnimation("spin_loop", true)
-
-    inst.Light:SetIntensity(0.6)
-    inst.Light:SetRadius(3)
-    inst.Light:SetFalloff(1)
-    inst.Light:SetColour(1, 0.3, 0.3)
-    inst.Light:Enable(true)
-
-    inst:AddComponent("fader")
-
-    inst:AddTag("projectile")
-
-    inst.entity:SetPristine()
-
-    if not TheWorld.ismastersim then
-        return inst
-    end
-
-    inst.persists = false
-
-    inst:AddComponent("locomotor")
-
-    inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE)
-    inst.components.combat.playerdamagepercent = 0.5
-
-    inst.Physics:SetMotorVelOverride(40, 0, 0)
-    inst.Physics:SetCollisionCallback(OnCollidecharge)
-
-    inst:DoTaskInTime(2, inst.Remove)
-
-    return inst
-end
-
 local function marker_fn()
     local inst = CreateEntity()
 
@@ -572,5 +527,4 @@ return Prefab("ancient_hulk", fn, assets, prefabs),
        Prefab("ancient_hulk_mine", mine_fn, assets, prefabs),
        Prefab("ancient_hulk_orb", orb_fn, assets, prefabs),
        Prefab("ancient_hulk_orb_small", orb_small_fn, assets, prefabs),
-       Prefab("ancient_hulk_orb_charge", orb_charge_fn, assets, prefabs),
        Prefab("ancient_hulk_marker", marker_fn, assets, prefabs)

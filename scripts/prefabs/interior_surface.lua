@@ -7,12 +7,29 @@ local SURFACE = {
     FLOOR = "floor",
 }
 
-local WALL_TILE_SCALE = 5
-local WALL_TILE_SHEAR = 0.91
-local WALL_TILE_X_OFFSET = 0.21
+-- 特殊情况：
+--     蝙蝠洞：墙的纹理都是默认尺寸的2倍，地皮的纹理都是默认尺寸的1.8倍
+--     蚂蚁洞：墙的纹理都是默认尺寸的2倍，地皮的纹理都是默认尺寸的1.8倍
+--     皇宫：墙的高度是默认尺寸的1.2倍，宽度是2倍
+--     木地板：纹理缩放倍率是默认的7/5，因为这样视觉效果更好
+
+local WALL_TILE_SCALE = 6.25 -- 5/8
+local WALL_TILE_SHEAR = 0
+local WALL_TILE_X_OFFSET = 0
 local FLOOR_TILE_SCALE = 16
 
+local function ClearFx(inst)
+    for k, v in pairs(inst.fx) do
+        v:Remove()
+        inst.fx[k] = nil
+    end
+end
+
 local function UpdateFx(inst)
+    if not ThePlayer then
+        return
+    end
+
     -- NOTE: a surface entity only support single texture
     local index = inst.texture_index:value()
     local texture = TEXTURE_DEF[index]
@@ -21,16 +38,20 @@ local function UpdateFx(inst)
     end
 
     local path = texture.path
-    for k, v in pairs(inst.fx) do
-        k:Remove()
+    ClearFx(inst)
+    if inst.fx == nil then
+        inst.fx = {}
     end
-    inst.fx = {}
     if inst.interior_type == SURFACE.FLOOR then
         local w = inst.size_x:value()
         local h = inst.size_z:value()
         local mod = 1
-        if path:find("noise_woodfloor") then
+        if path:find("noise_woodfloor") then -- 特殊情况
             mod = 7/8
+        elseif path:find("batcave_floor") or path:find("ground_ruins_slab") or path:find("antcave_floor") then
+            mod = 9/8
+        elseif path:find("floor") then
+            mod = 5/8
         end
         local FLOOR_TILE_SCALE = FLOOR_TILE_SCALE * mod
         for x = 0, w/FLOOR_TILE_SCALE do
@@ -45,40 +66,41 @@ local function UpdateFx(inst)
                 fx.w_percent = z_left < 1 and z_left or nil
                 fx:SetTexture(path)
                 fx.entity:SetParent(inst.entity)
-                inst.fx[fx] = true
+                table.insert(inst.fx, fx)
             end
         end
     elseif inst.interior_type == SURFACE.WALL then
         local w = inst.size_x:value()
         local last_fx = nil
-        local y = 0.5*WALL_TILE_SCALE*WALL_TILE_SHEAR
-        local xoffset = 0.5*WALL_TILE_SCALE*WALL_TILE_X_OFFSET
-        local mod = 1
+        local y = 2.2360679775 * 1.08 -- sqr(5)
+        local mod = 0.8
         if path:find("wall_royal_high") then
-            y = y * 2
-            xoffset = xoffset * 2
+            y = y * 2.2
+            mod = mod * 2
         elseif path:find("batcave_wall_rock") then
-            y = y * 1.8
-            xoffset = xoffset * 1.8
-            mod = 1.8
+            y = y * 2
+            mod = mod * 2
+        elseif path:find("antcave_wall_rock") then
+            y = y * 1.25
+            mod = mod * 1.5
         end
         local WALL_TILE_SCALE = WALL_TILE_SCALE * mod
         for x = 0, w/WALL_TILE_SCALE do
             local fx = SpawnPrefab("interiorwall_fx")
+            table.insert(inst.fx, fx)
             if inst.prefab:find("_x") then
                 fx.is_x = true
-                fx.Transform:SetPosition((x + 0.5) * WALL_TILE_SCALE - xoffset - y * 0.25, y, 0)
+                fx.Transform:SetPosition((x + 0.5) * WALL_TILE_SCALE - y * 0.5, y, 0)
             else
                 fx.Transform:SetPosition( - y * 0.5, y, (x + 0.5) * WALL_TILE_SCALE)
             end
             fx.entity:SetParent(inst.entity)
-            inst.fx[fx] = true
             last_fx = fx -- get last one by override
         end
 
         -- fix render of last wall tile
         if last_fx then
-            local p = select(2, math.modf(w/WALL_TILE_SCALE))
+            local p = w/WALL_TILE_SCALE - math.floor(w/WALL_TILE_SCALE)
             last_fx.w_percent = p
             local x, _, z = last_fx.Transform:GetLocalPosition()
             if inst.prefab:find("_x") then
@@ -88,16 +110,9 @@ local function UpdateFx(inst)
             end
         end
 
-        for fx in pairs(inst.fx) do
+        for k, fx in pairs(inst.fx) do
             fx:SetTexture(path)
         end
-    end
-end
-
-local function ClearFx(inst)
-    for k, v in pairs(inst.fx) do
-        inst.fx[k] = nil
-        k:Remove()
     end
 end
 
@@ -146,6 +161,8 @@ local function floor_fn()
     inst.entity:AddTransform()
     inst.entity:AddNetwork()
 
+    inst.persists = false
+
     inst.interior_type = SURFACE.FLOOR
 
     inst.size_x = net_byte(inst.GUID, "size_x", "size")
@@ -187,6 +204,8 @@ local function wall_fn()
 
     inst.entity:AddTransform()
     inst.entity:AddNetwork()
+
+    inst.persists = false
 
     inst.interior_type = SURFACE.WALL
 

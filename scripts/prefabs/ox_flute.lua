@@ -33,6 +33,9 @@ local function fn()
         return inst
     end
 
+    inst.flutebuild = "ox_flute"
+    inst.flutesymbol = "ox_flute01"
+
     inst:AddComponent("inspectable")
 
     inst:AddComponent("instrument")
@@ -45,13 +48,10 @@ local function fn()
     inst:AddComponent("finiteuses")
     inst.components.finiteuses:SetMaxUses(TUNING.OX_FLUTE_USES)
     inst.components.finiteuses:SetUses(TUNING.OX_FLUTE_USES)
-    inst.components.finiteuses:SetOnFinished( onfinished)
+    inst.components.finiteuses:SetOnFinished(onfinished)
     inst.components.finiteuses:SetConsumption(ACTIONS.PLAY, 1)
 
     inst:AddComponent("inventoryitem")
-
-    inst.flutebuild = "ox_flute"
-    inst.flutesymbol = "ox_flute01"
 
     return inst
 end

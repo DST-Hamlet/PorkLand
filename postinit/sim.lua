@@ -50,3 +50,13 @@ Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold)
     end
     return old_GetLightAtPoint(sim, x, y, z, light_threshold)
 end
+
+local _CanEntitySeeTarget = CanEntitySeeTarget
+function CanEntitySeeTarget(inst, target, ...)
+    if inst and inst.player_classified then
+        if target and target:IsValid() and inst.player_classified._last_work_target:value() == target then
+            return true
+        end
+    end
+    return _CanEntitySeeTarget(inst, target, ...)
+end

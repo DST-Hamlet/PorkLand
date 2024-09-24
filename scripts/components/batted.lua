@@ -175,7 +175,7 @@ local function CollectBatsForAttack()
 
     -- Equally split among all players, each player gets at least 1 bat,
     -- if there are less bats than players, some players will not be attacked
-    _bat_per_player = math.min(math.floor(suitable_bat_count / GetTableSize(_active_players)), 1)
+    _bat_per_player = math.floor(suitable_bat_count / math.max(GetTableSize(_active_players), 1))
 end
 
 local function GetSpawnPointForPlayer(player)
@@ -223,6 +223,8 @@ local function SpawnBatsForPlayer(player)
 
             -- Don't remove/append values when iterating through a table
             mark_for_remove[#mark_for_remove + 1] = key
+
+            num_spawned = num_spawned + 1
         end
     end
 

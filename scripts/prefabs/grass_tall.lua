@@ -145,7 +145,7 @@ local function OnSpawnWeevole(inst, weevole)
     end
     if weevole and weevole:IsValid() then
         weevole.sg:GoToState("emerge")
-        print("weevole.sg:GoToState(emerge)")
+        -- print("weevole.sg:GoToState(emerge)")
     end
 end
 

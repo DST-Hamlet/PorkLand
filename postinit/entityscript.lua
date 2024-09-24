@@ -154,6 +154,9 @@ end
 
 -- Returns the interiorID of the room this entity is in
 function EntityScript:GetCurrentInteriorID() -- 亚丹：请暂时不要在客机使用这个函数
+    if not self:IsValid() then
+        return
+    end
     local x, _, z = self.Transform:GetWorldPosition()
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         local interiorID = TheWorld.components.interiorspawner:PositionToIndex({x = x, z = z})
@@ -176,14 +179,18 @@ function EntityScript:Play2DSoundOutSide(path, soundname, distance, paramname, p
     if not soundname then
         print("WARNING: EntityScript:Play2DSoundOutSide must have soundname")
     end
-    local pos = self:GetPosition()
-    local followentity = self
-    local areamode = AREAMODES.DISTANCE
-    TheWorld.components.worldsoundmanager:PlayWorldSound(path, soundname, paramname, paramval, pos, followentity, areamode, distance)
+    if TheWorld.ismastersim then
+        local pos = self:GetPosition()
+        local followentity = self
+        local areamode = AREAMODES.DISTANCE
+        TheWorld.components.worldsoundmanager:PlayWorldSound(path, soundname, paramname, paramval, pos, followentity, areamode, distance)
+    end
 end
 
 function EntityScript:Kill2DSound(soundname)
-    TheWorld.components.worldsoundmanager:KillWorldSound(self, soundname)
+    if TheWorld.ismastersim then
+        TheWorld.components.worldsoundmanager:KillWorldSound(self, soundname)
+    end
 end
 
 function EntityScript:GetCurrentAnimation()
@@ -222,4 +229,14 @@ function EntityScript:RestartBrain(...)
         return
     end
     return _RestartBrain(self, ...)
+end
+
+local _GetAdjectivedName = EntityScript.GetAdjectivedName
+function EntityScript:GetAdjectivedName(...)
+    local name = self:GetBasicDisplayName()
+    if self:HasTag("mystery") then
+        name = ConstructAdjectivedName(self, name, STRINGS.MYSTERIOUS)
+        return name
+    end
+    return _GetAdjectivedName(self, ...)
 end

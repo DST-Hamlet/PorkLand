@@ -54,16 +54,16 @@ local function CLIENT_PlayFuelSound(inst)
     local parent = inst.entity:GetParent()
     local container = parent ~= nil and (parent.replica.inventory or parent.replica.container) or nil
     if container ~= nil and container:IsOpenedBy(ThePlayer) then
-        TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/add_fuel")
+        TheFocalPoint.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/add_fuel")
     end
 end
 
 local function SERVER_PlayFuelSound(inst)
     local owner = inst.components.inventoryitem.owner
     if owner == nil then
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/add_fuel")
+        inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/add_fuel")
     elseif inst.components.equippable:IsEquipped() and owner.SoundEmitter ~= nil then
-        owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/add_fuel")
+        owner.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/add_fuel")
     else
         inst.playfuelsound:push()
         -- Dedicated server does not need to trigger sfx
@@ -79,19 +79,20 @@ end
 
 local function OnEquip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_body", "armor_vortex_cloak", "swap_body")
-    owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/equip_off")
+    owner.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/equip_off")
 
     inst.components.container:Open(owner)
 
     inst.fx_task = inst:DoPeriodicTask(0.1, function() SpawnFx(owner) end)
 
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/LP", "vortex")
+    -- 由于许多人反映这个音效干扰性过强，因此暂时禁用这个音效——或许可以仅在玩家移动时播放这个音效？
+    -- inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/LP", "vortex")
     SetSoundparam(inst)
 end
 
 local function OnUnequip(inst, owner)
     owner.AnimState:ClearOverrideSymbol("swap_body")
-    owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/vortex_armour/equip_on")
+    owner.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/vortex_armour/equip_on")
 
     inst.components.container:Close(owner)
 
@@ -161,6 +162,7 @@ local function fn()
     inst.components.fueled.secondaryfueltype = FUELTYPE.ANCIENT_REMNANT
     inst.components.fueled:SetTakeFuelFn(OnTakeFuel)
     inst.components.fueled.accepting = true
+    inst.components.fueled.bonusmult = 0.4
 
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY

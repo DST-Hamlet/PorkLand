@@ -42,20 +42,40 @@ local function KeepTargetFn(inst, target)
     return true
 end
 
-local function OnLightning(inst, data)
-    inst.components.timer:StopTimer("discharge", TUNING.ROBOT_DISCHARGE_TIME)
-    inst.components.timer:StartTimer("discharge", TUNING.ROBOT_DISCHARGE_TIME)
-    if not TheWorld.state.isaporkalypse then
-        inst.components.timer:ResumeTimer("discharge")
+local function CheckPause(inst)
+    if not inst.components.timer:TimerExists("discharge") then
+        if not inst:HasTag("dormant") then
+            inst:AddTag("dormant")
+            inst.sg:GoToState("idle_dormant")
+        end
     else
-        inst.components.timer:PauseTimer("discharge")
+        if TheWorld.state.isaporkalypse then
+            inst.components.timer:PauseTimer("discharge")
+        else
+            inst.components.timer:ResumeTimer("discharge")
+        end
+    end
+end
+
+local function ActiveRobot(inst, time)
+    local old_time = inst.components.timer:GetTimeLeft("discharge")
+    if old_time then
+        inst.components.timer:SetTimeLeft(math.max(old_time, time))
+    else
+        inst.components.timer:StartTimer("discharge", time)
     end
 
+    CheckPause(inst)
+
     if inst:HasTag("dormant") then
+        inst:PushEvent("shock")
         inst.wantstodeactivate = nil
         inst:RemoveTag("dormant")
-        inst:PushEvent("shock")
     end
+end
+
+local function OnLightning(inst, data)
+    inst:ActiveRobot(TUNING.ROBOT_DISCHARGE_TIME)
 end
 
 local function OnAttacked(inst, data)
@@ -76,7 +96,7 @@ local function OnAporkalypse(inst, isaporkalypse)
     if isaporkalypse then
         OnLightning(inst)
     else
-        inst.components.timer:ResumeTimer("discharge")
+        CheckPause(inst)
     end
 end
 
@@ -90,7 +110,7 @@ local function OnSave(inst, data)
     if inst.hits then
         data.hits = inst.hits
     end
-    if inst:HasTag("dormant") then
+    if inst:HasTag("dormant") or not inst.components.timer:TimerExists("discharge") then -- 第二个条件是考虑到那些因为意外计时结束没有停下的robot
         data.dormant = true
     end
     if inst:HasTag("mossy") then
@@ -163,9 +183,7 @@ local function commonfn()
     inst:AddTag("lightningrod")
     inst:AddTag("laser_immune")
     inst:AddTag("ancient_robot")
-    inst:AddTag("dontteleporttointerior")
     inst:AddTag("mech")
-    inst:AddTag("monster")
 
     inst.entity:SetPristine()
 
@@ -202,11 +220,14 @@ local function commonfn()
     inst.OnLoad = OnLoad
     inst.OnLoadPostPass = OnLoadPostPass
 
+    inst.ActiveRobot = ActiveRobot
+
     inst.spawntask = inst:DoTaskInTime(0, function()
         if not inst.spawned then
             inst:AddTag("mossy")
             inst:AddTag("dormant")
             inst.sg:GoToState("idle_dormant")
+            inst:StopBrain()
             inst.spawned = true
         end
     end)

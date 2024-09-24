@@ -39,6 +39,8 @@ local function OnActivate(inst, doer)
     inst.components.activatable.inactive = false
     inst.dry = true
 
+    inst:OnDeactivate()
+
     local drop = SpawnPrefab("waterdrop")
     drop.fountain = inst
     doer.components.inventory:GiveItem(drop) --, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
@@ -50,8 +52,8 @@ local function OnActivate(inst, doer)
 end
 
 local function OnDeactivate(inst)
-    if not inst.resettask then
-        inst.resettask, inst.resettaskinfo = inst:ResumeTask(TUNING.TOTAL_DAY_TIME, reset)
+    if not inst.resettask and TUNING.PUGALISK_ENABLED then
+        inst.resettask, inst.resettaskinfo = inst:ResumeTask(TUNING.PUGALISK_RESPAWN, reset)
     end
 end
 
@@ -129,29 +131,18 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable:RecordViews()
 
-    inst:ListenForEvent("deactivate", OnDeactivate)
-
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
     inst.OnLongUpdate = OnLongUpdate
+
+    inst.OnDeactivate = OnDeactivate
 
     inst:DoTaskInTime(0, function()
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/fountain_LP", "burble")
         local drop = nil
         local plant = nil
-        for k, v in pairs(Ents) do
-            if v:HasTag("lifeplant") then
-                plant = true
-            end
-            if v:HasTag("waterdrop") then
-                drop = true
-            end
-            if plant and drop then
-                break
-            end
-        end
-        if not plant and not drop and inst.dry then
-            OnDeactivate(inst)
+        if inst.dry then
+            inst:OnDeactivate()
         end
     end)
 

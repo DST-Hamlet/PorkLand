@@ -206,7 +206,9 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
     end
 
     local function OnGustFall(inst)
-        inst.components.workable.onfinish(inst, TheWorld)
+        if inst.components.workable then
+            inst.components.workable.onfinish(inst, TheWorld)
+        end
     end
 
     inst:AddComponent("blowinwindgust")
@@ -391,9 +393,38 @@ function UpdateSailorPathcaps(inst, allowocean)
 end
 
 local _MakeInventoryPhysics = MakeInventoryPhysics
-function MakeInventoryPhysics(inst, mass, rad)
-    local physics = _MakeInventoryPhysics(inst, mass, rad)
+function MakeInventoryPhysics(inst, mass, rad, ...)
+    local physics = _MakeInventoryPhysics(inst, mass, rad, ...)
     if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
+function MakeThrowablePhysics(inst, mass, rad, ...)
+    local physics = MakeInventoryPhysics(inst, mass, rad, ...)
+    inst.Physics:SetFriction(100)
+    inst.Physics:SetRestitution(0)
+
+    return physics
+end
+
+local _MakeProjectilePhysics = MakeProjectilePhysics
+function MakeProjectilePhysics(inst, mass, rad, ...)
+    local physics = _MakeProjectilePhysics(inst, mass, rad, ...)
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
+local _RemovePhysicsColliders = RemovePhysicsColliders
+function RemovePhysicsColliders(inst, ...)
+    _RemovePhysicsColliders(inst, ...)
+    local physics = inst.Physics
+    if TheWorld:HasTag("porkland") and physics:GetMass() > 0 then
         physics:ClearCollidesWith(COLLISION.LIMITS)
         physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
     end

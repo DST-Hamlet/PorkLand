@@ -301,7 +301,7 @@ function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
     end
     if TheWorld.has_pl_ocean then
         local valid_water_tile = (allow_water == true) and self:ReverseIsVisualWaterAtPoint(x, y, z)
-        return valid_water_tile or self:IsVisualGroundAtPoint(x, y, z)
+        return valid_water_tile or _IsAboveGroundAtPoint(self, x, y, z, ...)
     end
     return _IsAboveGroundAtPoint(self, x, y, z, ...)
 end
@@ -313,12 +313,10 @@ function Map:CanDeployRecipeAtPoint(pt, recipe, rot, player, ...)
         return is_valid_ground and (recipe.testfn == nil or recipe.testfn(pt, rot)) and self:IsDeployPointClear(pt, nil, recipe.min_spacing or 3.2)
     end
 
-    -- TODO: 目前只判定了一般建筑物，还需要额外考虑房间装饰物
-    if recipe and pt then
-        local interior = TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(pt.x, pt.z)
-        if recipe.pl_is_house and interior then -- recipe types
-            return false
-        elseif interior and not TheWorld.components.interiorspawner:IsInInteriorRoom(pt.x, pt.z, -1) then
+    if recipe and pt and TheWorld.components.interiorspawner:IsInInteriorRegion(pt.x, pt.z) then
+        if recipe.build_mode == BUILDMODE.HOME_DECOR then
+            return true
+        elseif not TheWorld.components.interiorspawner:IsInInteriorRoom(pt.x, pt.z, -1) then
             return false
         end
     end

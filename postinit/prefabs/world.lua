@@ -28,4 +28,12 @@ AddPrefabPostInit("world", function(inst)
     if not TheWorld.components.periodicpoopmanager then
         inst:AddComponent("periodicpoopmanager")
     end
+
+    if not TheWorld.components.globalidentity then
+        inst:AddComponent("globalidentity")
+    end
+
+    if not TheWorld.components.globalidentityinfo then
+        inst:AddComponent("globalidentityinfo")
+    end
 end)

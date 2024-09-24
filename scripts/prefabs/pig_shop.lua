@@ -479,7 +479,9 @@ local function CreateInterior(inst)
     interior_spawner:SpawnInterior(def)
 
     local center_ent = interior_spawner:GetInteriorCenter(id)
-    center_ent:AddInteriorTags("pig_shop") -- need this for dynamic music
+    if not inst:HasOneOfTags({"pig_shop_cityhall", "pig_shop_cityhall_player"}) then
+        center_ent:AddInteriorTags("pig_shop") -- need this for dynamic music
+    end
 
     InitShopped(inst.interiorID, inst.prefab)
 end
@@ -508,7 +510,9 @@ end
 local function UseDoor(inst, data)
     if inst.use_sounds and data and data.doer and data.doer.SoundEmitter then
         for _, sound in ipairs(inst.use_sounds) do
-            data.doer.SoundEmitter:PlaySound(sound)
+            data.doer:DoTaskInTime(FRAMES * 2, function()
+                data.doer.SoundEmitter:PlaySound(sound)
+            end)
         end
     end
 end

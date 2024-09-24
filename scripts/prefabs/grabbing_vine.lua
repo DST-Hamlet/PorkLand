@@ -111,6 +111,7 @@ local function commonfn()
     inst:AddTag("flying")
     inst:AddTag("hangingvine")
     inst:AddTag("animal")
+    inst:AddTag("plantcreature")
 
     if not TheNet:IsDedicated() then
         inst:AddComponent("distancefade")

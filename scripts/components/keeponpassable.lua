@@ -3,15 +3,15 @@ local UPDATE_PERIOD_SLEEP = 60
 local UPDATE_PERIOD_PLAYER = FRAMES * 2
 
 local function OnUpdate(inst)
-    if inst:IsInLimbo() or inst.components.inventoryitem or (not inst.components.health or inst.components.health:IsDead()) then
+    if inst:IsInLimbo() or not inst:IsValid() or inst.components.inventoryitem or (not inst.components.health or inst.components.health:IsDead()) then
         return
     end
 
     local x, y, z = inst.Transform:GetWorldPosition()
 
-    local isininteriorregion = TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
+    local isininteriorregion = TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
 
-    if TheWorld.components.interiorspawner and isininteriorregion and TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
+    if isininteriorregion and TheWorld.components.interiorspawner:IsInInteriorRoom(x, z) then
         return
     end
 
@@ -38,6 +38,9 @@ end
 local KeepOnPassable = Class(function(self, inst)
     self.inst = inst
     self.period = inst:IsAsleep() and UPDATE_PERIOD_SLEEP or UPDATE_PERIOD_WAKE
+    if self.inst:HasTag("player") then
+        self.period = UPDATE_PERIOD_PLAYER
+    end
 
     self:Schedule()
 end)

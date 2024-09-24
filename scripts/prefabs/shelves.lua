@@ -8,9 +8,31 @@ local assets =
     Asset("ANIM", "anim/pedestal_crate_lock.zip"),
 }
 
+local function OnIsPathFindingDirty(inst)
+    if inst._ispathfinding:value() then
+        if inst._pfpos == nil and inst:GetCurrentPlatform() == nil then
+            inst._pfpos = inst:GetPosition()
+            TheWorld.Pathfinder:AddWall(inst._pfpos:Get())
+        end
+    elseif inst._pfpos ~= nil then
+        TheWorld.Pathfinder:RemoveWall(inst._pfpos:Get())
+        inst._pfpos = nil
+    end
+end
+
+local function InitializePathFinding(inst)
+    inst:ListenForEvent("onispathfindingdirty", OnIsPathFindingDirty)
+    OnIsPathFindingDirty(inst)
+end
+
 local function MakeObstacle(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     TheWorld.Pathfinder:AddWall(x, y, z)
+end
+
+local function OnRemove(inst)
+    inst._ispathfinding:set_local(false)
+    OnIsPathFindingDirty(inst)
 end
 
 local function GetSlotSymbol(inst, slot)
@@ -25,22 +47,60 @@ local function Curse(inst)
     end
 end
 
+local function OnFinish(inst, worker, workleft)
+    SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
+
+    if inst.components.container ~= nil then
+        inst.components.container:DropEverything()
+    end
+
+    if inst.components.lootdropper then
+        inst.components.lootdropper:DropLoot()
+    end
+
+    inst:Remove()
+end
+
+local function SetPlayerCraftable(inst)
+    inst:AddTag("playercrafted")
+    inst:RemoveTag("NOCLICK")
+
+    inst:AddComponent("lootdropper")
+
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
+    inst.components.workable:SetWorkLeft(1)
+    inst.components.workable:SetOnFinishCallback(OnFinish)
+end
+
+local function InitInteriorPrefab(inst)
+    if inst:HasTag("playercrafted") then
+        SetPlayerCraftable(inst)
+    end
+end
+
 local function OnSave(inst, data)
     data.rotation = inst.Transform:GetRotation()
     data.interiorID = inst.interiorID
+    data.playercrafted = inst:HasTag("playercrafted")
 end
 
 local function OnLoad(inst, data)
-    if data then
-        if data.rotation then
-            if inst.components.rotatingbillboard == nil then
-                -- this component handle rotation save/load itself
-                inst.Transform:SetRotation(data.rotation)
-            end
+    if not data then
+        return
+    end
+
+    if data.rotation then
+        if inst.components.rotatingbillboard == nil then
+            -- this component handle rotation save/load itself
+            inst.Transform:SetRotation(data.rotation)
         end
-        if data.interiorID then
-            inst.interiorID  = data.interiorID
-        end
+    end
+    if data.interiorID then
+        inst.interiorID  = data.interiorID
+    end
+    if data.playercrafted then
+        SetPlayerCraftable(inst)
     end
 end
 
@@ -125,6 +185,18 @@ local function OnVisualChange(inst)
     inst.highlightchildren = {inst._frontvisual:value(), inst._lockvisual:value()}
 end
 
+local function IsHighPriorityAction(act, force_inspect)
+    return act and act.action == ACTIONS.HAMMER
+end
+
+local function CanMouseThrough(inst)
+    if not inst:HasTag("fire") and ThePlayer ~= nil and ThePlayer.components.playeractionpicker ~= nil then
+        local force_inspect = ThePlayer.components.playercontroller ~= nil and ThePlayer.components.playercontroller:IsControlPressed(CONTROL_FORCE_INSPECT)
+        local lmb, rmb = ThePlayer.components.playeractionpicker:DoGetMouseActions(inst:GetPosition(), inst)
+        return not IsHighPriorityAction(rmb, force_inspect)
+    end
+end
+
 local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_robbed, master_postinit)
     local function fn()
         local inst = CreateEntity()
@@ -134,8 +206,11 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst.entity:AddNetwork()
 
         if physics_round then
+            inst._ispathfinding = net_bool(inst.GUID, "_ispathfinding", "onispathfindingdirty")
             MakeObstaclePhysics(inst, .5)
-            inst:DoTaskInTime(0, MakeObstacle)
+            inst:DoTaskInTime(0, InitializePathFinding)
+
+            inst:ListenForEvent("onremove", OnRemove)
         else
             -- MakeInteriorPhysics(inst, 2, 1, 0.5) -- 暂时取消这些贴边物体的碰撞体和寻路，以减少卡位的可能性
             -- inst:DoTaskInTime(0, MakeObstacle)
@@ -172,6 +247,12 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
         inst:AddTag("wallsection")
         inst:AddTag("furniture")
         inst:AddTag("shelf")
+
+        if anim_def.name then
+            inst.name = anim_def.name
+        end
+
+        inst.CanMouseThrough = CanMouseThrough
 
         inst.entity:SetPristine()
 
@@ -212,6 +293,9 @@ local function MakeShelf(name, physics_round, anim_def, slot_symbol_prefix, on_r
             inst:AddComponent("shopped")
             inst.components.shopped:SetOnRobbed(on_robbed)
         end
+
+        inst:ListenForEvent("onbuilt", SetPlayerCraftable)
+        inst.initInteriorPrefab = InitInteriorPrefab
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
@@ -278,10 +362,10 @@ return MakeShelf("wood", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("floating", false, {layer = LAYER_WORLD_BACKGROUND, order = 3}),
     MakeShelf("displaycase_wood", true, {animation = "displayshelf_wood"}),
     MakeShelf("displaycase_metal", true, {animation = "displayshelf_metal"}),
-    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true}, "SWAP_SIGN", nil, MakeLock),
-    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true}, "SWAP_SIGN", nil, MakeLock),
-    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN", nil, MakeLock),
-    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_1", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock19_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_2", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock17_east", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_3", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
+    MakeShelf("queen_display_4", true, {build = "pedestal_crate", bank = "pedestal", animation = "lock12_west", is_pedestal = true, name = STRINGS.NAMES.ROYAL_GALLERY}, "SWAP_SIGN", nil, MakeLock),
     MakeShelf("ruins", true, {animation = "ruins"}, nil, Curse),
     Prefab("shelves_lockvisual", lockvisual_fn, assets),
     Prefab("shelves_frontvisual", frontvisual_fn, assets)

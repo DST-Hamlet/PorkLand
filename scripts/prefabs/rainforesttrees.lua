@@ -133,6 +133,8 @@ local function GetStageFn(stage)
             inst.components.lootdropper:SetChanceLootTable("rainforesttree_" .. stage)
         end
 
+        inst.components.lootdropper.chanceloot = {}
+
         if math.random() < 0.5 and not inst:HasTag("rotten_tree") and not inst:HasTag("spider_monkey_tree") then
             for i = 1, TUNING["SNAKE_JUNGLETREE_AMOUNT_" .. string.upper(stage)] do
                 if math.random() < 0.5 and TheWorld.state.cycles >= TUNING.SNAKE_POISON_START_DAY then
@@ -308,6 +310,9 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst:ListenForEvent("entitysleep", inst.Remove)
 
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    if math.random() < 0.4 then
+        inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    end
 end
 
 local function OnBurntChanges(inst)
@@ -336,7 +341,7 @@ local function OnBurnt(inst)
     inst:AddTag("burnt")
 
     inst.AnimState:PlayAnimation(anims[inst.stage].burnt, true)
-    inst.MiniMapEntity:SetIcon("rainforesttree_burnt.tex")
+    inst.MiniMapEntity:SetIcon("tree_rainforest_burnt.tex")
 
     -- inst.AnimState:SetRayTestOnBB(true) -- 这个会影响鼠标选取判定
 
@@ -687,6 +692,8 @@ local function MakeTree(name, build, stage, data)
         inst.components.workable:SetOnFinishCallback(OnFinishCallback)
 
         inst:AddComponent("lootdropper")
+
+        inst:AddComponent("mystery")
 
         inst:AddComponent("growable")
         inst.components.growable.stages = growth_stages

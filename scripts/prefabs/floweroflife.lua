@@ -91,16 +91,10 @@ end
 local function OnPlanted(inst, data)
     inst.AnimState:PlayAnimation("grow")
     inst.AnimState:PushAnimation("idle_loop",true)
-    if data.fountain then
-        inst.fountain = data.fountain
-    end
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/flower_of_life/plant")
 end
 
 local function OnRemoved(inst)
-    if inst.fountain and not inst.dug then
-        inst.fountain:PushEvent("deactivate")
-    end
     inst.SoundEmitter:KillSound("drainloop")
 end
 
@@ -131,7 +125,7 @@ local function OnResurrect(inst, player)
     inst.persists = false
 
     inst.AnimState:PlayAnimation("transform")
-    inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/flower_of_life/rebirth")
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/flower_of_life/rebirth")
 
     player.sg:GoToState("rebirth_floweroflife")
 
@@ -140,11 +134,6 @@ local function OnResurrect(inst, player)
     end)
 
     inst:DoTaskInTime(7, function()
-        -- Reset fountain
-        if inst.fountain then
-            inst.fountain:PushEvent("deactivate")
-        end
-
         local tick_time = TheSim:GetTickTime()
         local time_to_erode = 4
         inst:StartThread( function()
@@ -302,11 +291,6 @@ local function OnSave(inst, data)
     if inst:HasTag("burnt") or (inst.components.burnable and inst.components.burnable:IsBurning()) then
         data.burnt = true
     end
-
-    if inst.fountain and inst.fountain:IsValid() then
-        data.fountainID = inst.fountain.GUID
-        return {inst.fountain and inst.fountain.GUID}
-    end
 end
 
 local function OnLoad(inst, data)
@@ -316,9 +300,7 @@ local function OnLoad(inst, data)
 end
 
 local function OnLoadPostPass(inst, newents, data)
-    if data ~= nil and data.fountainID ~= nil then
-        inst.fountain = newents[data.fountainID].entity
-    end
+
 end
 
 local function fn()

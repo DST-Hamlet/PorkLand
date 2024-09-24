@@ -34,6 +34,9 @@ end
 
 local function OnPickedUp(inst)
     inst.components.lootdropper:SetChanceLootTable("rabid_beetle_inventory")
+    inst.components.perishable:StartPerishing()
+    inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
+
 end
 
 local CANT_TAGS = {"FX", "NOCLICK", "INLIMBO", "wall", "rabid_beetle", "glowfly", "cocoon", "structure"}
@@ -143,8 +146,8 @@ local function fn()
     inst.components.sleeper:SetSleepTest(ShouldSleep)
 
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickedUp)
+    -- inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
+    -- inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickedUp)
     inst.components.inventoryitem.canbepickedup = false
     inst.components.inventoryitem.canbepickedupalive = false
     inst.components.inventoryitem.nobounce = true
@@ -163,14 +166,9 @@ local function fn()
     inst:AddComponent("timer")
     inst.components.timer:StartTimer("endlife", lifetime) -- 每当疯狂甲虫被陷阱捕捉就会重置这个计时，因为陷阱捕捉会删掉旧实体生成新实体
 
-    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME)
+    MakeFeedableSmallLivestock(inst, TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME, OnPickedUp, OnDropped)
     inst.components.eater:SetOnEatFn(nil)
     inst:DoStaticTaskInTime(0, function()
-        inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
-    end)
-
-    inst.components.inventoryitem:SetOnPutInInventoryFn(function(inst, owner)
-        inst.components.perishable:StartPerishing()
         inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
     end)
 

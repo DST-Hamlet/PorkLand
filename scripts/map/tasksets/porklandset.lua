@@ -12,6 +12,10 @@ GLOBAL.PORKLAND_REQUIRED_PREFABS =
     "pig_ruins_exit2",
     "pig_ruins_exit4",
 
+    "anthill_exit",
+    "anthill_exit",
+    "anthill",
+
     --"teleportato_hamlet_base",
     --"teleportato_hamlet_box",
     --"teleportato_hamlet_crank",
@@ -20,10 +24,14 @@ GLOBAL.PORKLAND_REQUIRED_PREFABS =
 
     "ancient_robot_ribs",
     "ancient_robot_head",
+    "ancient_robot_claw",
+    "ancient_robot_claw",
+    "ancient_robot_leg",
+    "ancient_robot_leg",
 }
 
 AddTaskSet("porkland", {
-    name = "porkland_set",
+    name = GLOBAL.STRINGS.UI.CUSTOMIZATIONSCREEN.TASKSETNAMES.PORKLAND,
     location = "porkland",
 
     tasks = {

@@ -24,15 +24,15 @@ local function OnLoad(inst, data)
 end
 
 local function OnEntitySleep(inst, data)
-    if inst.SoundEmitter:PlayingSound("WATERFALL") then
-		inst.SoundEmitter:KillSound("WATERFALL")
-    end
+
 end
 
 local function OnEntityWake(inst, data)
-	if not inst.SoundEmitter:PlayingSound("WATERFALL") then
-		inst.SoundEmitter:PlaySound("dontstarve_DLC003/amb/Waterfall/LP_1", "WATERFALL")
-	end
+
+end
+
+local function register_pool(inst)
+    TheWorld:PushEvent("ms_registerwaterfall", {waterfall = inst})
 end
 
 local function fn()
@@ -61,6 +61,10 @@ local function fn()
 
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")
+
+    if not TheNet:IsDedicated() then
+        inst:DoTaskInTime(0, register_pool)
+    end
 
     inst.entity:SetPristine()
 
@@ -103,6 +107,10 @@ local function corner_fn()
 
     inst:AddTag("FX")
     inst:AddTag("NOCLICK")
+
+    if not TheNet:IsDedicated() then
+        inst:DoTaskInTime(0, register_pool)
+    end
 
     inst.entity:SetPristine()
 

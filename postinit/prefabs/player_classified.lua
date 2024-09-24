@@ -150,7 +150,11 @@ local function OnIronlordDirty(inst)
     if inst.isironlord:value() then
         TheWorld:PushEvent("enabledynamicmusic", false)
         if inst.instantironlord then -- in case of loading
-            push_music()
+            inst:DoTaskInTime(151 * FRAMES, function()
+                if inst.instantironlord then -- 你永远不会知道自己在151帧后是否还是ironlord
+                    push_music()
+                end
+            end)
         end
 
         player:PushEvent("livingartifactoveron")
@@ -192,12 +196,22 @@ local function OnIronlordTimeDirty(inst)
     inst._parent:PushEvent("ironlorddelta", {percent = inst.ironlordtimeleft:value() / TUNING.IRON_LORD_TIME})
 end
 
+local function ClearLastTarget(inst)
+    if inst.clearlastworktargettask then
+        inst.clearlastworktargettask:Cancel()
+    end
+    inst.clearlastworktargettask = nil
+    inst.clearlastworktargettask = inst:DoTaskInTime(1, function() inst._last_work_target:set(nil) end)
+end
+
 local function RegisterNetListeners(inst)
     if TheWorld.ismastersim then
         inst._parent = inst.entity:GetParent()
         inst:ListenForEvent("poisondamage", OnPoisonDamage, inst._parent)
         inst:ListenForEvent("start_ironlord_music", function() inst.startironlordmusic:push() end)
         inst:ListenForEvent("start_city_alarm", function() inst.cityalarmevent:push() end)
+        inst:ListenForEvent("sanity_stun", function() inst.sanitystunevent:push() end)
+        inst:ListenForEvent("worktargetdirty", inst.ClearLastTarget)
     else
         inst.poisonpulse:set_local(false)
         inst.isquaking:set_local(false)
@@ -214,6 +228,9 @@ local function RegisterNetListeners(inst)
         inst:ListenForEvent("start_city_alarm", function()
             inst._parent:PushEvent("start_city_alarm")
         end)
+        inst:ListenForEvent("start_sanity_stun", function()
+            inst._parent:PushEvent("sanity_stun")
+        end)
     end
 
     inst:ListenForEvent("ironlorddirty", OverrideAction)
@@ -225,17 +242,21 @@ AddPrefabPostInit("player_classified", function(inst)
     inst.poisonpulse = net_bool(inst.GUID, "poisonable.poisonpulse", "poisonpulsedirty")
     inst.riderspeedmultiplier = net_float(inst.GUID, "rider.riderspeedmultiplier")
     inst.isquaking = net_bool(inst.GUID, "interiorquaker.isquaking", "isquakingdirty")
+    inst._last_work_target = net_entity(inst.GUID, "_last_work_target", "worktargetdirty")
 
     inst.isironlord = inst.isironlord or net_bool(inst.GUID, "livingartifact.isironlord", "ironlorddirty")
     inst.ironlordtimeleft = inst.ironlordtimeleft or net_float(inst.GUID, "livingartifact.ironlordtimeleft", "ironlordtimedirty")
     inst.instantironlord = inst.instant_ironlord or net_bool(inst.GUID, "livingartifact.instantironlord") -- just a flag for loading
     inst.startironlordmusic = inst.startironlordmusic or net_event(inst.GUID, "livingartifact.startironlordmusic", "startironlordmusicdirty")
     inst.cityalarmevent = inst.cityalarmevent or net_event(inst.GUID, "cityalarms.startmusic", "start_city_alarm")
+    inst.sanitystunevent = inst.sanitystunevent or net_event(inst.GUID, "antqueen.sanitystun", "start_sanity_stun")
 
     inst.ispoisoned:set(false)
     inst.isingas:set(false)
     inst.riderspeedmultiplier:set(1)
     inst.isquaking:set(false)
+
+    inst.ClearLastTarget = ClearLastTarget
 
     inst:DoTaskInTime(0, RegisterNetListeners)
 end)

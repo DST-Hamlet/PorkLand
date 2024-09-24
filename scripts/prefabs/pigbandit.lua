@@ -83,6 +83,21 @@ local function OnHitOther(inst, other, damage)
     end
 end
 
+local function OnEntitySleep(inst)
+    if inst.escapetask then
+        inst.escapetask:Cancel()
+        inst.escapetask = nil
+    end
+    inst.escapetask = inst:DoTaskInTime(20, function() TheWorld:PushEvent("bandit_escaped") end)
+end
+
+local function OnEntityWake(inst)
+    if inst.escapetask then
+        inst.escapetask:Cancel()
+        inst.escapetask = nil
+    end
+end
+
 local brain = require("brains/pigbanditbrain")
 
 local function fn()
@@ -140,7 +155,7 @@ local function fn()
     inst.components.combat:SetAttackPeriod(TUNING.PIG_BANDIT_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
-    inst.components.combat.hiteffectsymbol = "pig_torso"
+    inst.components.combat.hiteffectsymbol = "torso"
     inst.components.combat:SetRange(4)
     -- inst.components.combat.hiteffectsymbol = "chest"
     inst.components.combat.onhitotherfn = OnHitOther
@@ -161,6 +176,8 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
+    inst:AddComponent("uniqueidentity")
+
     MakeMediumFreezableCharacter(inst, "torso")
     MakeMediumBurnableCharacter(inst, "torso")
     MakePoisonableCharacter(inst, "torso")
@@ -174,6 +191,9 @@ local function fn()
 
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("death", OnDeath)
+
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
 
     return inst
 end

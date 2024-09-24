@@ -118,6 +118,7 @@ local function commonfn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("health")
+    inst.components.health.murdersound = "dontstarve_DLC003/creatures/glowfly/death"
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "body"
@@ -276,6 +277,9 @@ end
 
 local function CocoonExpire(inst)
     inst.expiretask, inst.expiretaskinfo = nil, nil
+    if not inst.components.health:IsDead() then
+        inst.components.health:Kill()
+    end
     inst.sg:GoToState("cocoon_expire")
 end
 

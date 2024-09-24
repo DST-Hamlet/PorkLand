@@ -1,5 +1,5 @@
 local TEXTURE = "levels/textures/interiors/shop_floor_woodmetal.tex"
-local SHADER = "shaders/vfx_particle.ksh"
+local SHADER = "shaders/interior_wall_particle.ksh"
 
 local COLOUR_ENVELOPE_NAME = "pl_floorcolourenvelope"
 local SCALE_ENVELOPE_NAME = "pl_floorscaleenvelope" -- for 512x512
@@ -20,7 +20,7 @@ local function InitEnvelopes()
         }
     )
 
-    local SCALE = 1.5
+    local SCALE = 2.9296875 -- 3000/1024
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME,
         {
@@ -29,7 +29,7 @@ local function InitEnvelopes()
         }
     )
 
-    local SCALE2 = 2.07
+    local SCALE2 = 2.05078125
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME2,
         {
@@ -38,7 +38,7 @@ local function InitEnvelopes()
         }
     )
 
-    local SCALE3 = 4.69
+    local SCALE3 = 5.2734375
     EnvelopeManager:AddVector2Envelope(
         SCALE_ENVELOPE_NAME3,
         {
@@ -76,8 +76,12 @@ local function SetTexture(inst, texture)
     if not TheNet:IsDedicated() then
         inst.VFXEffect:SetRenderResources(0, resolvefilepath(texture), resolvefilepath(SHADER))
     end
-    if texture:find("noise_woodfloor") then
+    if texture:find("noise_woodfloor") then -- 特殊情况
         inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME2)
+    elseif texture:find("batcave_floor") or texture:find("ground_ruins_slab") or texture:find("antcave_floor") then
+        inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME3)
+    elseif texture:find("floor") then
+        inst.VFXEffect:SetScaleEnvelope(0, SCALE_ENVELOPE_NAME)
     end
 end
 

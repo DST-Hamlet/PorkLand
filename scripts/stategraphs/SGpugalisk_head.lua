@@ -9,6 +9,8 @@ local actionhandlers =
 
 local SHAKE_DIST = 40
 
+local PUGALISK_TAUNT_CHANCE = 0.001
+
 local function dogroundpound(inst)
     inst.components.groundpounder:GroundPound()
     ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.5, 0.03, 2, inst, SHAKE_DIST)
@@ -59,7 +61,7 @@ local events =
     end),
 
     EventHandler("attacked", function(inst, data)
-        if inst.sg:HasStateTag("idle") and not inst:HasTag("tail") and data.vulnerable_segment then
+        if inst.sg:HasStateTag("idle") and not inst:HasTag("tail") and data.vulnerable_segment and not CommonHandlers.HitRecoveryDelay(inst) then
             inst.sg:GoToState("hit")
         end
     end),
@@ -166,6 +168,10 @@ local states =
         tags = {"idle", "canrotate"},
 
         onenter = function(inst, start_anim)
+            if math.random() < PUGALISK_TAUNT_CHANCE then
+                inst.sg:GoToState("tongue")
+                return
+            end
             inst.Physics:Stop()
             if inst:HasTag("tail") then
                 if start_anim then
@@ -213,11 +219,12 @@ local states =
 
     State{
         name = "hit",
-        tags = {"canrotate"},
+        tags = {"busy", "hit", "canrotate"},
 
         onenter = function(inst, start_anim)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("hit")
+            CommonHandlers.UpdateHitRecoveryDelay(inst)
         end,
 
         timeline =
@@ -354,7 +361,7 @@ local states =
         {
             EventHandler("animover", function(inst)
                 inst.sg:GoToState("gaze_loop")
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/gaze_start")
+                inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/pugalisk/gaze_start")
             end),
         },
     },

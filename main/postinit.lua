@@ -4,6 +4,7 @@ GLOBAL.setfenv(1, GLOBAL)
 -- Update this list when adding files
 local behaviour_posts = {
     "chaseandattack",
+    "runaway",
     "wander",
 }
 
@@ -18,12 +19,14 @@ local component_posts = {
     "blinkstaff",
     "builder_replica",
     "builder",
+    "burnable",
     "circler",
     "clock",
     "colourcube",
     "combat",
     "crop",
     "drownable",
+    "dryer",
     "edible",
     "equippable_replica",
     "equippable",
@@ -41,6 +44,7 @@ local component_posts = {
     "inventoryitem",
     "inventoryitemmoisture",
     "kramped",
+    "lighter",
     "locomotor",
     "lootdropper",
     "moisture",
@@ -60,6 +64,7 @@ local component_posts = {
     "seasons",
     "shard_clock",
     "shard_seasons",
+    "skinner",
     "sleeper",
     "spawner",
     "strafer",
@@ -78,16 +83,21 @@ local prefab_posts = {
     "birdcage",
     "boomerang",
     "buff_workeffectiveness",
+    "earmuffshat",
     "grass",
+    "inventoryitem_classified",
+    "mandrake",
     "meatrack",
     "mosquitosack",
     "multiplayer_portal",
     "orangestaff",
+    "pigskin",
     "player",
     "player_classified",
     "player_common_extensions",
     "pocketdimensioncontainer_defs",
     "poop",
+    "telebase",
     "thunder_close",
     "torch",
     "waterprojectiles",
@@ -95,6 +105,7 @@ local prefab_posts = {
     "world_network",
     "world",
     "shard_network",
+    "spoiledfood",
     "statueruins",
     "walls",
     "waterballoon",
@@ -120,6 +131,7 @@ local scenario_posts = {
 local screens_posts = {
     "mapscreen",
     "playerhud",
+    "worldgenscreen",
 }
 
 local stategraph_posts = {
@@ -149,6 +161,7 @@ local widget_posts = {
     "widget",
     "mapwidget",
     "recipepopup",
+    "itemtile",
 }
 
 local module_posts = {

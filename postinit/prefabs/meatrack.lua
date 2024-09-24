@@ -35,4 +35,16 @@ PLENV.AddPrefabPostInit("meatrack", function(inst)
     end
 
     inst.components.dryer:SetDoneDryingFn(OnDoneDrying)
+
+    local _StartDrying = inst.components.dryer.StartDrying
+    local function StartDrying(self, dryable, ...)
+        if inst:GetIsInInterior() then
+            inst.components.dryer.protectedfromrain = true
+        else
+            inst.components.dryer.protectedfromrain = nil
+        end
+        return _StartDrying(self, dryable, ...)
+    end
+
+    inst.components.dryer.StartDrying = StartDrying
 end)

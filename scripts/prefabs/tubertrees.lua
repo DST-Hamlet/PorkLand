@@ -180,6 +180,9 @@ local function OnFinishCallbackBurnt(inst, chopper)
     inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/bamboo_hack")
 
     inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    if math.random() < 0.4 then
+        inst.components.lootdropper:SpawnLootPrefab("charcoal")
+    end
     inst.components.lootdropper:DropLoot()
 
     inst.persists = false
@@ -453,7 +456,7 @@ local function MakeTree(name, build, stage, data)
         inst.components.growable.springgrowth = true
         inst.components.growable:StartGrowing()
 
-        --inst:AddComponent("mystery")
+        inst:AddComponent("mystery")
 
         inst:AddComponent("bloomable")
         inst.components.bloomable:SetCanBloom(CanBloom)

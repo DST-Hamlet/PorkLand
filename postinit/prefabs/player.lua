@@ -13,7 +13,6 @@ local function PlayOincSound(inst)
     else
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/coins/3_plus")
     end
-    inst._oinc_sound:set_local(0)
 end
 
 local function ScheduleOincSoundEvent(inst, amount)
@@ -23,6 +22,7 @@ local function ScheduleOincSoundEvent(inst, amount)
     inst.oinc_transaction = inst.oinc_transaction + amount
     if not inst.oinc_transaction_task then
         inst.oinc_transaction_task = inst:DoTaskInTime(0, function()
+            inst._oinc_sound:set_local(0)
             inst._oinc_sound:set(inst.oinc_transaction)
             inst.oinc_transaction = nil
             inst.oinc_transaction_task = nil
@@ -32,46 +32,45 @@ end
 
 local function OnItemGet(inst, data)
     local item = data.item
-    if not item or not item:HasTag("oinc") then
+    if not item then
         return
     end
 
-    ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
+    if item:HasTag("oinc") then
+        ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
 
-    item.oinc_sound_stackchange_listener = function(_, data)
-        local amount_changed = math.abs(data.stacksize - data.oldstacksize)
-        ScheduleOincSoundEvent(inst, amount_changed)
+        item.oinc_sound_stackchange_listener = function(_, data)
+            local amount_changed = math.abs(data.stacksize - data.oldstacksize)
+            ScheduleOincSoundEvent(inst, amount_changed)
+        end
+        item:ListenForEvent("stacksizechange", item.oinc_sound_stackchange_listener)
     end
-    item:ListenForEvent("stacksizechange", item.oinc_sound_stackchange_listener)
+
+    if item.prefab == "key_to_city" then
+        inst.components.builder.city_bonus = 2
+    end
 end
 
 local function OnItemLose(inst, data)
     local item = data.prev_item
-    if not item or not item:HasTag("oinc") then
+    if not item then
         return
     end
 
-    ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
+    if item:HasTag("oinc") then
+        ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
 
-    if item.oinc_sound_stackchange_listener then
-        item:RemoveEventCallback("stacksizechange", item.oinc_sound_stackchange_listener)
-        item.oinc_sound_stackchange_listener = nil
+        if item.oinc_sound_stackchange_listener then
+            item:RemoveEventCallback("stacksizechange", item.oinc_sound_stackchange_listener)
+            item.oinc_sound_stackchange_listener = nil
+        end
+    end
+
+    if item.prefab == "key_to_city" and not item.activeitem then
+        inst.components.builder.city_bonus = 0
     end
 end
 
-local function OnDay(inst, isday)
-    if not isday then
-        return
-    end
-    if TheWorld.components.pigtaxmanager
-        and TheWorld.components.pigtaxmanager:HasPlayerCityHall()
-        and TheWorld.components.pigtaxmanager:IsTaxDay() then
-
-        inst:DoTaskInTime(2, function()
-            inst.components.talker:Say(GetString(inst.prefab, "ANNOUNCE_TAXDAY"))
-        end)
-    end
-end
 
 local function OnDeath(inst, data)
     if inst.components.poisonable ~= nil then
@@ -157,7 +156,6 @@ AddPlayerPostInit(function(inst)
                 if TheWorld:HasTag("porkland") then
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
-                    inst:WatchWorldState("isday", OnDay)
                 end
             end
         end)
@@ -184,6 +182,75 @@ AddPlayerPostInit(function(inst)
         inst.components.hudindicatable:SetShouldTrackFunction(ShouldTrackfn)
     end
 
+    local _OnSetOwner = inst:GetEventCallbacks("setowner", inst, "scripts/prefabs/player_common.lua")
+    local _RegisterActivePlayerEventListeners = ToolUtil.GetUpvalue(_OnSetOwner, "RegisterActivePlayerEventListeners")
+
+    local function RegisterActivePlayerEventListeners(inst)
+        _RegisterActivePlayerEventListeners(inst)
+        if inst._PICKUPSOUNDS then
+            for k, v in pairs(inst._PICKUPSOUNDS) do
+                inst._PICKUPSOUNDS[k] = "dontstarve/HUD/collect_resource"
+            end
+        end
+    end
+
+    ToolUtil.SetUpvalue(_OnSetOwner, RegisterActivePlayerEventListeners, "RegisterActivePlayerEventListeners")
+
+    local _OnGotNewItem, i = ToolUtil.GetUpvalue(_RegisterActivePlayerEventListeners, "OnGotNewItem")
+
+    local function OnGotNewItem(inst, data, ...)
+        if TheWorld:HasTag("porkland") then
+            if data.slot ~= nil or data.eslot ~= nil or data.toactiveitem ~= nil then
+                if inst.replica.sailor and inst.replica.sailor:GetBoat() then
+                    TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC002/common/HUD_water_collect_resource")
+                    return
+                end
+            end
+        end
+        return _OnGotNewItem(inst, data, ...)
+    end
+
+    if i then
+        debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
+    end
+
+    local REPLACE_ANIMS =
+    {
+        -- ["atk_pre"] = "atk_pre_old",
+        -- ["atk_lag"] = "atk_lag_old",
+        -- ["atk"] = "atk_old",
+        ["hit"] = "hit_old",
+        ["hit_goo"] = "hit_goo_old",
+    }
+
+    local wilson_bank_hash = inst.AnimState:GetBankHash()
+
+    local _AnimState = inst.AnimState
+    local AnimState = setmetatable({}, {__index = function(t, k)
+        if k == "PlayAnimation" then
+            return function(t, animname, ...)
+                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
+                    return _AnimState:PlayAnimation(REPLACE_ANIMS[animname], ...)
+                else
+                    return _AnimState:PlayAnimation(animname, ...)
+                end
+            end
+        elseif k == "PushAnimation" then
+            return function(t, animname, ...)
+                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
+                    return _AnimState:PushAnimation(REPLACE_ANIMS[animname], ...)
+                else
+                    return _AnimState:PushAnimation(animname, ...)
+                end
+            end
+        end
+
+        return function(t, ...)
+            return _AnimState[k](_AnimState, ...)
+        end
+    end})
+    rawset(inst, "AnimState", AnimState)
+
     if not TheWorld.ismastersim then
         return
     end
@@ -198,6 +265,8 @@ AddPlayerPostInit(function(inst)
     inst:AddComponent("infestable")
 
     inst:AddComponent("shopper")
+
+    inst:AddComponent("uniqueidentity")
 
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("respawnfromghost", OnRespawnFromGhost)

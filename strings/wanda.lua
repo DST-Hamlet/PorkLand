@@ -34,7 +34,7 @@ return {
         "You can't get through here.",
         "Where... where is it?",
     },
-    ANNOUNCE_ROOM_STUCK = "I don't wanna to stay in this room forever.",
+    ANNOUNCE_ROOM_STUCK = "Nobody wanna to stay in this room forever.",
     ANNOUNCE_SNEEZE = "Ah Choo!",
     ANNOUNCE_SUITUP = "Just matter of TIME!!!",
     ANNOUNCE_TAXDAY = "Tick tock. Is time for tax. Citizens hurry up.",
@@ -522,6 +522,7 @@ return {
         RUG_WEB = "Thankfully it's not real.",
         RUG_WORMHOLE = "Thankfully it's not real.",
         SAIL_SNAKESKIN = "There's no need to make a flag if the sail is colorful. Not that I need one.",
+        SAND = "Sand. You do tend to find a lot of it around here.",
         SCORPION = {
             DEAD = "Why it's still there?",
             GENERIC = "A cunning creature.",

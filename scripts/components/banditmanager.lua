@@ -232,11 +232,15 @@ local function GenerateTreasure(player)
     if offset then
         local spawn_pos = pos + offset
 
+        local bandit_unique_id = _bandit.components.uniqueidentity:GetID()
+
         local treasure = SpawnPrefab("bandittreasure")
         treasure.Transform:SetPosition(spawn_pos:Get())
+        treasure.unique_id = bandit_unique_id
 
         local map = SpawnPrefab("banditmap")
         map.treasure = treasure
+        map.unique_id = bandit_unique_id
 
         _bandit.components.inventory:ConsumeByName("banditmap", 15) -- delete previous map
         _bandit.components.inventory:GiveItem(map)

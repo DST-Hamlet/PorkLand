@@ -315,7 +315,7 @@ local function fn()
     inst.components.spawner:SetOnOccupiedFn(OnOccupied)
     inst.components.spawner:SetWaterSpawning(false, true)
     inst.components.spawner:CancelSpawning()
-    inst:DoTaskInTime(0, OnInit)
+    inst._spawner_init_task = inst:DoTaskInTime(0, OnInit)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

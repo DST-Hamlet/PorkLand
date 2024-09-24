@@ -5,7 +5,7 @@ GLOBAL.setfenv(1, GLOBAL)
 modimport("main/toolutil")
 modimport("main/strings")
 modimport("modfrontendmain")
-modimport("modcustonsizitems")
+modimport("modcustomizeitems")
 
 local TEMPLATES = require("widgets/redux/templates")
 local PopupDialogScreen = require("screens/redux/popupdialog")
@@ -42,7 +42,7 @@ scheduler:ExecuteInTime(0, function()  -- Delay a frame so we can get ServerCrea
     end
 
     for i, world_tab in ipairs(servercreationscreen.world_tabs) do
-        if servercreationscreen:CanResume() and world_tab:GetLocation() ~= SERVER_LEVEL_LOCATIONS[i] then
+        if world_tab:GetLocation() ~= SERVER_LEVEL_LOCATIONS[i] and servercreationscreen:CanResume() then  -- and servercreationscreen:CanResume()
             SERVER_LEVEL_LOCATIONS[i] = world_tab:GetLocation()
             servercreationscreen.world_tabs[i]:RefreshOptionItems()
             local text = servercreationscreen.world_tabs[i]:GetLocationTabName()
@@ -62,7 +62,7 @@ scheduler:ExecuteInTime(0, function()  -- Delay a frame so we can get ServerCrea
         end
     end
 
-    if not servercreationscreen:CanResume() then  -- Only when first time creating the world
-        SetLevelLocations(servercreationscreen, "porkland", 1)  -- Automatically try switching to the porkland Preset
-    end
+    -- if not servercreationscreen:CanResume() then  -- Only when first time creating the world
+        SetLevelLocations(servercreationscreen, "porkland", 1)  -- Automatically try switching to the porkland preset
+    -- end
 end)

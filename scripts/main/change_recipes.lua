@@ -10,7 +10,6 @@ local DISABLE_RECIPES = {
     "wateringcan",
     "purplemooneye",
     "trophyscale_oversizedveggies",
-    "lifeinjector",
     "beefalo_groomer",
     "brush",
     "seedpouch",
@@ -191,6 +190,7 @@ local DISABLE_RECIPES = {
     "featherfan",
     "ocean_trawler_kit",
     "fish_box",
+    "rope_bridge_kit",
 }
 
 local LOST_RECIPES = {

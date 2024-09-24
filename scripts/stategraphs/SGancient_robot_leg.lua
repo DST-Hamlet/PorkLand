@@ -19,7 +19,6 @@ local events =
     AncientRobot.Events.DoLeapAttack(),
     AncientRobot.Events.OnAttacked(),
     AncientRobot.Events.OnShocked(),
-    AncientRobot.Events.OnActivate(),
     AncientRobot.Events.OnDeactivate(),
 }
 

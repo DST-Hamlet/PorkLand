@@ -395,19 +395,22 @@ applyoverrides_pre.pigbandit = function(difficulty)
             PIG_BANDIT_ENABLED = false,
         },
         rare = {
-            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 0,5,
+            PIG_BANDIT_RESPAWN_TIME = 10 / 0.5,
+            PIG_BANDIT_DEATH_RESPAWN_TIME = total_day_time * 1.5 / 0.5,
         },
         --[[
         default = {
             PIG_BANDIT_ENABLED = true,
-            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5,
+            PIG_BANDIT_DEATH_RESPAWN_TIME = total_day_time * 1.5,
         },
         --]]
         often = {
-            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 1.5,
+            PIG_BANDIT_RESPAWN_TIME = 10 / 1.5,
+            PIG_BANDIT_DEATH_RESPAWN_TIME = total_day_time * 1.5 / 1.5,
         },
         always = {
-            PIG_BANDIT_RESPAWN_TIME = total_day_time * 1.5 / 2.5,
+            PIG_BANDIT_RESPAWN_TIME = 10 / 2.5,
+            PIG_BANDIT_DEATH_RESPAWN_TIME = total_day_time * 1.5 / 2.5,
         },
     }
   OverrideTuningVariables(tuning_vars[difficulty])
@@ -447,6 +450,30 @@ applyoverrides_pre.roc_setting = function(difficulty)
             ROC_ENABLED = true
         }
         ]]
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
+applyoverrides_pre.giantgrub_setting = function(difficulty)
+    local tuning_vars = {
+        never = {
+            GIANT_GRUB_ENABLED = false,
+        },
+        rare = {
+            GIANT_GRUB_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 2,
+        },
+        --[[
+        default = {
+            GIANT_GRUB_ENABLED = true,
+            GIANT_GRUB_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME,
+        },
+        --]]
+        often = {
+            GIANT_GRUB_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 0.5,
+        },
+        always = {
+            GIANT_GRUB_RESPAWN_TIME = TUNING.TOTAL_DAY_TIME * 0.25,
+        },
     }
     OverrideTuningVariables(tuning_vars[difficulty])
 end
@@ -520,10 +547,28 @@ applyoverrides_post.hayfever = function(difficulty)
 end
 
 applyoverrides_post.pugalisk_fountain = function(difficulty)
-    local worldsettings = TheWorld.components.worldsettings
-    if worldsettings then
-        worldsettings:SetSetting("pugalisk_fountain", difficulty == "default")
-    end
+    local tuning_vars =
+    {
+        never = {
+            PUGALISK_ENABLED = false,
+        },
+        rare = {
+            PEAGAWK_REGEN_TIME = total_day_time * 20,
+        },
+        --[[
+        default = {
+            PUGALISK_ENABLED = true,
+            PUGALISK_RESPAWN = total_day_time * 15,
+        },
+        --]]
+        often = {
+            PUGALISK_RESPAWN = total_day_time * 10,
+        },
+        always = {
+            PUGALISK_RESPAWN = total_day_time * 5,
+        },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
 end
 
 applyoverrides_post.vampirebat = function (difficulty)

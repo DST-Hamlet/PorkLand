@@ -38,6 +38,7 @@ INTERIOR_QUAKE_LEVELS = {
     PILLAR_DESTROYED = 2,
     QUEEN_ATTACK = 3,
     MINOR_QUAKE = 4,
+    ANTHILL_REBUILT = 5,
 }
 
 AREAMODES = {
@@ -70,6 +71,9 @@ TECH.CITY = {
 TECH.HOME = {
     HOME = 2
 }
+
+-- Just an arbitrary number
+BUILDMODE.HOME_DECOR = 10
 
 LOCKTYPE.ROYAL = "royal"
 

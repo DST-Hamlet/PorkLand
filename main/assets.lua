@@ -121,6 +121,7 @@ PrefabFiles = {
     "deco_ruins_fountain",
     "deco_swinging_light",
     "deco_table",
+    "deco_wall_ornament",
     "interior_boundary",
     "interior_surface",
     "interior_texture_packages",
@@ -141,7 +142,7 @@ PrefabFiles = {
     "smashingpot",
     "pig_ruins_dart",
     "pig_ruins_torch",
-    "light_rays",
+    "lightrays_jungle",
     "pig_ruins_spear_trap",
     "pigghost",
     "rugs",
@@ -233,10 +234,12 @@ PrefabFiles = {
     "gnatmound",
 
     "waterfall_lilypond",
+    "waterfall_sfx",
 
     "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗 ziwbi: 排序一下不就好了
     "inv_bamboo",
     "sand",
+
 
     "roc_nest",
     "ro_bin_egg",
@@ -250,6 +253,24 @@ PrefabFiles = {
 
     "roc",
     "roc_body_parts"
+
+    "cutlass",
+    "pl_feathers",
+
+    "giantgrub",
+    "antman",
+    "antman_warrior",
+    "antman_warrior_egg",
+    "anthill",
+    "antlarva",
+    "antqueen",
+    "antqueen_chamber",
+
+    "house_door",
+    "construction_permit",
+    "demolition_permit",
+
+    "coconade",
 }
 
 Assets = {
@@ -266,6 +287,10 @@ Assets = {
 
     -- crafting menu icons
     Asset("ATLAS", "images/hud/pl_crafting_menu_icons.xml"),
+
+    -- minimap hud
+    Asset("ATLAS", "images/hud/pl_minimaphud.xml"),
+    Asset("IMAGE", "images/hud/pl_minimaphud.tex"),
 
     -- hud
     Asset("ATLAS", "images/overlays/fx3.xml"), -- poison, boat_over
@@ -311,6 +336,10 @@ Assets = {
     Asset("ANIM", "anim/player_teleport_bfb.zip"),
     Asset("ANIM", "anim/player_teleport_bfb2.zip"),
 
+    -- replace_anim
+    Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),
+    Asset("ANIM", "anim/replace_anim/player_hits_old.zip"),
+
     -- boat ui
     Asset("ANIM", "anim/boat_health.zip"),
     Asset("ANIM", "anim/boat_hud_raft.zip"),
@@ -343,6 +372,9 @@ Assets = {
     -- multiplayer_portal
     Asset("ANIM", "anim/portal_dst.zip"),
 
+    -- worldgen screen
+    -- Asset("ANIM", "anim/generating_hamlet.zip"),
+
     -- Billboard
     Asset("SHADER", "shaders/animrotatingbillboard.ksh"),
 
@@ -361,6 +393,15 @@ Assets = {
     Asset("IMAGE", "levels/textures/map_interior/mini_antcave_floor.tex"),
     Asset("ATLAS", "levels/textures/map_interior/mini_vamp_cave_noise.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_vamp_cave_noise.tex"),
+
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_wood.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_wood.tex"),
+    Asset("ATLAS", "levels/textures/map_interior/mini_floor_woodpanels.xml"),
+    Asset("IMAGE", "levels/textures/map_interior/mini_floor_woodpanels.tex"),
+
+    -- Cookbook HD icons
+    Asset("ATLAS", "images/hud/pl_cook_pot_food_image.xml"),
+    Asset("IMAGE", "images/hud/pl_cook_pot_food_image.tex"),
 
     Asset("SHADER", "shaders/ui_fillmode.ksh"),
 }
@@ -381,6 +422,8 @@ local sounds = {
     Asset("SOUNDPACKAGE", "sound/dontstarve_DLC003.fev"),
     Asset("SOUND", "sound/dontstarve_shipwreckedSFX.fsb"),
     Asset("SOUNDPACKAGE", "sound/dontstarve_DLC002.fev"),
+    Asset("SOUND", "sound/porkland_soundpackage_bank_1.fsb"),
+    Asset("SOUNDPACKAGE", "sound/porkland_soundpackage.fev"),
 }
 
 if not TheNet:IsDedicated() then

@@ -17,8 +17,8 @@ local function Plant(point)
 end
 
 local function OnDeploy(inst, point)
-    inst = inst.components.stackable:Get()
-    inst:Remove()
+    local newinst = inst.components.stackable:Get()
+    newinst:Remove()
 
     Plant(point)
 end
@@ -78,7 +78,7 @@ local function fn()
     MakeHauntableLaunch(inst)
 
     inst:WatchWorldState("season", OnseasonChange)
-    OnseasonChange(inst, TheWorld.state.season)
+    inst:DoTaskInTime(math.random(), function() OnseasonChange(inst, TheWorld.state.season) end)
 
     return inst
 end

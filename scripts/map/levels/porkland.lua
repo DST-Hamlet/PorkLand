@@ -24,6 +24,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 
         deerclops = "never",
         bearger = "never",
+        deciduousmonster = "never",
 
         perd = "never",  --火鸡
         penguins = "never",  -- 企鹅

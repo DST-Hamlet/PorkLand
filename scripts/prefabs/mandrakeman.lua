@@ -59,7 +59,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             if inst.components.combat.target and inst.components.combat.target == giver then
                 inst.components.combat:SetTarget(nil)
             elseif giver.components.leader then
-                inst.SoundEmitter:PlaySound("dontstarve/common/makeFriend")
+                giver:PushEvent("makefriend")
                 giver.components.leader:AddFollower(inst)
                 inst.components.follower:AddLoyaltyTime(TUNING.RABBIT_CARROT_LOYALTY)
             end
@@ -83,7 +83,9 @@ local function OnGetItemFromPlayer(inst, giver, item)
 end
 
 local function OnRefuseItem(inst, item)
-    inst.sg:GoToState("refuse")
+    if not inst.components.combat.target and not inst.sg:HasStateTag("busy") then
+        inst.sg:GoToState("refuse")
+    end
     if inst.components.sleeper:IsAsleep() then
         inst.components.sleeper:WakeUp()
     end
@@ -146,10 +148,13 @@ end
 local function OnDeath(inst, data)
     inst.SoundEmitter:PlaySound("dontstarve/creatures/mandrake/death")
     local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, TUNING.MANDRAKE_SLEEP_RANGE, {"sleeper"})
+    local ents = TheSim:FindEntities(x, y, z, TUNING.MANDRAKE_SLEEP_RANGE, nil, {"playerghost", "FX", "DECOR", "INLIMBO"}, {"sleeper", "player"})
     for _, v in pairs(ents) do
         if v.components.sleeper then
             v.components.sleeper:AddSleepiness(10, TUNING.MANDRAKE_SLEEP_TIME)
+        end
+        if v.components.grogginess then
+            v.components.grogginess:AddGrogginess(2, TUNING.MANDRAKE_SLEEP_TIME)
         end
     end
 end
@@ -213,7 +218,7 @@ local function fn()
     inst.Transform:SetFourFaced()
     inst.Transform:SetScale(1.25, 1.25, 1.25)
 
-    inst:AddTag("veggie")
+    inst:AddTag("plantcreature")
     inst:AddTag("character")
     inst:AddTag("mandrakeman")
     inst:AddTag("scarytoprey")
@@ -252,7 +257,7 @@ local function fn()
     inst.components.eater:SetCanEatRaw()
 
     inst:AddComponent("combat")
-    inst.components.combat.hiteffectsymbol = "elderdrake_torso"
+    inst.components.combat.hiteffectsymbol = "torso"
     inst.components.combat.panic_thresh = TUNING.MANDRAKEMAN_PANIC_THRESH
     inst.components.combat.GetBattleCryString = GetBattleCryString
     inst.components.combat.GetGiveUpString = GetGiveUpString
@@ -279,6 +284,7 @@ local function fn()
     inst.components.trader:SetAcceptTest(ShouldAcceptItem)
     inst.components.trader.onaccept = OnGetItemFromPlayer
     inst.components.trader.onrefuse = OnRefuseItem
+    inst.components.trader.deleteitemonaccept = false
     inst.components.trader:Enable()
 
     inst:AddComponent("sanityaura")
@@ -294,9 +300,9 @@ local function fn()
     inst:SetBrain(brain)
     inst:SetStateGraph("SGmandrakeman")
 
-    MakeMediumFreezableCharacter(inst, "elderdrake_torso")
-    MakeMediumBurnableCharacter(inst, "elderdrake_torso")
-    MakePoisonableCharacter(inst, "elderdrake_torso")
+    MakeMediumFreezableCharacter(inst, "torso")
+    MakeMediumBurnableCharacter(inst, "torso")
+    MakePoisonableCharacter(inst, "torso")
     MakeHauntablePanic(inst)
 
     inst:ListenForEvent("attacked", OnAttacked)

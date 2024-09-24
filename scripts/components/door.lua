@@ -1,16 +1,34 @@
-local function ondisabled(self, value)
+local function ondoorstatus(self)
+    local data = {
+        disabled = self.disabled,
+        hidden = self.hidden,
+        target_interior = self.target_interior,
+        current_interior = self.inst:GetCurrentInteriorID(),
+    }
+    TheWorld.components.interiorspawner:ForEachPlayerInRoom(data.current_interior, function(player)
+        SendModRPCToClient(GetClientModRPC("PorkLand", "interior_door"), player.userid, ZipAndEncodeString(data))
+    end)
+end
+
+local function ondisabled(self, value, old_value)
     if value then
         self.inst:AddTag("door_disabled")
     else
         self.inst:RemoveTag("door_disabled")
     end
+    if value ~= old_value then
+        ondoorstatus(self)
+    end
 end
 
-local function onhidden(self, value)
+local function onhidden(self, value, old_value)
     if value then
         self.inst:AddTag("door_hidden")
     else
         self.inst:RemoveTag("door_hidden")
+    end
+    if value ~= old_value then
+        ondoorstatus(self)
     end
 end
 
@@ -64,31 +82,20 @@ local function DoTeleport(player, pos)
 
         -- local invincible = player.components.health.invincible
         -- player.components.health:SetInvincible(true)
-        if player.components.playercontroller then
-            player.components.playercontroller:EnableMapControls(false)
-            player.components.playercontroller:Enable(false)
+
+        if TheWorld.components.interiorspawner
+            and (TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
+            and not TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)) then
+
+        else
+            player.Physics:Teleport(x, y, z)
         end
-
-        player:ScreenFade(false, 0.4)
-
-        Sleep(0.4)
-
-        player.Physics:Teleport(x, y, z)
         player.components.interiorvisitor:UpdateExteriorPos()
         -- player.components.health:SetInvincible(invincible)
 
-        Sleep(0.1)
-
-        if player.components.playercontroller then
-            player.components.playercontroller:EnableMapControls(true)
-            player.components.playercontroller:Enable(true)
-        end
-
         if TheWorld.components.interiorspawner:IsInInterior(x, z) then
-            player:SnapCamera()
-        else
-            player.replica.interiorvisitor:RestoreOutsideInteriorCamera()
 
+        else
             if player:HasTag("wanted_by_guards") then
                 player:RemoveTag("wanted_by_guards")
                 local x, y, z = player.Transform:GetWorldPosition()
@@ -101,12 +108,6 @@ local function DoTeleport(player, pos)
                     })
                 end
             end
-        end
-
-        player:ScreenFade(true, 0.4)
-
-        if not player.sg:HasStateTag("dead") then
-            player.sg:GoToState("idle")
         end
     end)
 end
@@ -184,17 +185,29 @@ function Door:SetDoorDisabled(status, cause)
     end
 end
 
+function Door:GetShadow()
+    if not self.shadow and self.inst:HasTag("door_south") then
+        local x, y, z = self.inst.Transform:GetWorldPosition()
+        local shadows = TheSim:FindEntities(x, y, z, 2, {"door_shadow"})
+        for i, v in ipairs(shadows) do
+            self.shadow = v
+            break
+        end
+    end
+    return self.shadow
+end
+
 function Door:UpdateDoorVis()
     if not self.inst:IsInLimbo() then
         if self.hidden then
             self.inst:Hide()
-            if self.inst.shadow then
-                self.inst.shadow:Hide()
+            if self:GetShadow() then
+                self:GetShadow():Hide()
             end
         else
             self.inst:Show()
-            if self.inst.shadow then
-                self.inst.shadow:Show()
+            if self:GetShadow() then
+                self:GetShadow():Show()
             end
         end
     end
@@ -202,6 +215,7 @@ end
 
 function Door:SetHidden(hidden)
     self.hidden = hidden
+    self:UpdateDoorVis()
 end
 
 function Door:OnSave()
@@ -290,7 +304,10 @@ function Door:OnLoad(data)
         target_interior = data.target_interior,
         target_exterior = data.target_exterior,
     }
-    TheWorld.components.interiorspawner:AddDoor(self.inst, door_definition)
+    if not self.inst:HasTag("predoor") then
+        TheWorld.components.interiorspawner:AddDoor(self.inst, door_definition)
+    end
+
     self:SetDoorDisabled()
 end
 

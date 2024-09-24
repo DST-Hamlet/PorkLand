@@ -8,29 +8,62 @@ end)
 
 local InventoryItem = require("components/inventoryitem")
 
+function InventoryItem:KeepOnInterior()
+    local x, y, z = self.inst.Transform:GetWorldPosition()
+
+    if TheWorld.components.interiorspawner == nil then
+        return
+    end
+
+    local isininteriorregion = TheWorld.components.interiorspawner:IsInInteriorRegion(x, z)
+
+    local isininteriorroom = TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+
+    if isininteriorregion and not isininteriorroom then
+        local pt = Vector3(x, y, z)
+        local dest = FindNearbyLand(pt, 1)
+        if not dest then
+            dest = FindNearbyLand(pt, 2)
+        end
+        if not dest then
+            dest = FindNearbyLand(pt, 4)
+        end
+        if dest ~= nil then
+            if self.inst.Physics ~= nil then
+                self.inst.Physics:Teleport(dest:Get())
+            elseif self.inst.Transform ~= nil then
+                self.inst.Transform:SetPosition(dest:Get())
+            end
+        end
+    end
+end
+
 local _OnDropped = InventoryItem.OnDropped
 function InventoryItem:OnDropped(randomdir, speedmult, skipfall)
     _OnDropped(self, randomdir, speedmult)
-    if not skipfall then
-        self.inst:AddTag("falling")
-    end
+    self:SetLanded(false, true)
 end
 
 local _SetLanded = InventoryItem.SetLanded
 function InventoryItem:SetLanded(is_landed, should_poll_for_landing)
-    _SetLanded(self, is_landed, should_poll_for_landing)
-    if is_landed then
+    if is_landed or not should_poll_for_landing then
         self.inst:RemoveTag("falling")
+    else
+        self.inst:AddTag("falling")
+        self:KeepOnInterior()
     end
+    _SetLanded(self, is_landed, should_poll_for_landing)
 end
 
 function InventoryItem:OnHitCloud()
-    self.inst:RemoveTag("falling")
     local x, y, z = self.inst.Transform:GetWorldPosition()
     if self.inst:HasTag("irreplaceable") then
-        local sx, sy, sz = FindRandomPointOnShoreFromOcean(x, y, z)
+        local sx, _, sz = FindRandomPointOnShoreFromOcean(x, y, z)
         if sx then
-            self.inst.Transform:SetPosition(sx, sy, sz)
+            if self.inst.Physics then
+                self.inst.Physics:Stop()
+            end
+            self.inst.Transform:SetPosition(sx, 5, sz)
         else
             -- Our reasonable cases are out... so let's loop to find the portal and respawn there.
             for k, v in pairs(Ents) do
@@ -53,11 +86,10 @@ function InventoryItem:OnUpdate(dt, ...)
     if x and y and z and self.inst.Physics and self.inst.Physics:GetCollisionGroup() == COLLISION.ITEMS then
         if self.inst.Physics then
             if not self.onimpassable and TheWorld.Map:IsImpassableAtPoint(x, 0, z) then
-                self.inst:AddTag("falling")
+                self:SetLanded(false, true)
                 self.onimpassable = true
                 self.inst.Physics:ClearCollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
             elseif self.onimpassable and not TheWorld.Map:IsImpassableAtPoint(x, 0, z) then
-                self.inst:RemoveTag("falling")
                 self.onimpassable = false
                 self.inst.Physics:CollidesWith(COLLISION.GROUND - COLLISION.VOID_LIMITS)
                 self.inst.AnimState:SetLayer(LAYER_WORLD)
@@ -75,11 +107,15 @@ function InventoryItem:OnUpdate(dt, ...)
             end
             if y < -2 then
                 self:TryToSink()
-                self.inst:StopUpdatingComponent(self)
+                if not self.inst:HasTag("irreplaceable") then
+                    self.inst:StopUpdatingComponent(self)
+                end
             end
         else
             self:TryToSink()
-            self.inst:StopUpdatingComponent(self)
+            if not self.inst:HasTag("irreplaceable") then
+                self.inst:StopUpdatingComponent(self)
+            end
         end
     else
         return _OnUpdate(self, dt, ...)
@@ -91,7 +127,7 @@ function InventoryItem:Launch(veldirect)  --应当使用Launch函数替换所有
         return
     end
 
-    self.inst.components.inventoryitem:SetLanded(false, true)
+    self:SetLanded(false, true)
 
     self.inst.Physics:SetVel(veldirect:Get())
 end
@@ -120,9 +156,12 @@ function SinkEntity(entity, ...)
 
     -- If the entity is irreplaceable, respawn it at the player
     if entity:HasTag("irreplaceable") then
-        local sx, sy, sz = FindRandomPointOnShoreFromOcean(px, py, pz)
+        local sx, _, sz = FindRandomPointOnShoreFromOcean(px, py, pz)
         if sx ~= nil then
-            entity.Transform:SetPosition(sx, sy, sz)
+            if entity.Physics then
+                entity.Physics:Stop()
+            end
+            entity.Transform:SetPosition(sx, 5, sz)
         else
             -- Our reasonable cases are out... so let's loop to find the portal and respawn there.
             for k, v in pairs(Ents) do

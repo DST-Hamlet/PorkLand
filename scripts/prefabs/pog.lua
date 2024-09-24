@@ -93,7 +93,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
             inst.components.combat:SetTarget(nil)
             inst.SoundEmitter:PlaySound("dontstarve_DLC001/creatures/catcoon/pickup")
         elseif giver.components.leader then
-            inst.SoundEmitter:PlaySound("dontstarve/common/makeFriend")
+            giver:PushEvent("makefriend")
             giver.components.leader:AddFollower(inst)
             inst.components.follower:AddLoyaltyTime(TUNING.POG_LOYALTY_PER_ITEM)
         end
@@ -103,7 +103,7 @@ end
 local function OnRefuseItem(inst, giver, item)
     if inst.components.sleeper:IsAsleep() then
         inst.components.sleeper:WakeUp()
-    elseif not inst.sg:HasStateTag("busy") then
+    elseif not inst.components.combat.target and not inst.sg:HasStateTag("busy") then
         inst:FacePoint(giver.Transform:GetWorldPosition())
         inst.sg:GoToState("refuse")
     end

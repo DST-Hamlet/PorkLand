@@ -153,6 +153,10 @@ local function OnIsAporkalypse_Spawner(inst, isaporkalypse)
     end
 end
 
+local function OnChildSpawned(inst, child)
+    child:AddTag("aporkalypse_cleanup")
+end
+
 local function spawner_fn()
     local inst = CreateEntity()
 
@@ -167,9 +171,11 @@ local function spawner_fn()
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "pigghost"
+    inst.components.childspawner.spawnradius = TUNING.ROOM_SMALL_DEPTH / 2
     inst.components.childspawner:SetRegenPeriod(TUNING.PIGGHOST_REGEN_TIME)
     inst.components.childspawner:SetSpawnPeriod(TUNING.PIGGHOST_RELEASE_TIME, TUNING.PIGGHOST_RELEASE_TIME)
     inst.components.childspawner:SetMaxChildren(TUNING.PIGGHOST_MAXCHILDREN)
+    inst.components.childspawner:SetSpawnedFn(OnChildSpawned)
 
     inst:WatchWorldState("isaporkalypse", OnIsAporkalypse_Spawner)
     OnIsAporkalypse_Spawner(inst, TheWorld.state.isaporkalypse)

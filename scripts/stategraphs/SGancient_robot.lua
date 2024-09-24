@@ -56,15 +56,8 @@ AncientRobot.Events.OnAttacked = function()
             inst.hits = 0
 
             if inst:HasTag("dormant") then
-                if  math.random() < 0.6 then
-                    inst.wantstodeactivate = nil
-                    inst:RemoveTag("dormant")
-                    inst:PushEvent("shock")
-                    inst.components.timer:StopTimer("discharge", TUNING.ROBOT_DISCHARGE_TIME)
-                    inst.components.timer:StartTimer("discharge", 20)
-                    if not TheWorld.state.isaporkalypse then
-                        inst.components.timer:ResumeTimer("discharge")
-                    end
+                if math.random() < 0.6 then
+                    inst:ActiveRobot(18 + math.random() * 4)
                 end
             elseif not inst.sg:HasStateTag("attack") and not inst.sg:HasStateTag("activating") then
                 inst.sg:GoToState("hit")
@@ -79,25 +72,13 @@ end
 
 AncientRobot.Events.OnShocked = function()
     return EventHandler("shock", function(inst, data)
-        inst.wantstodeactivate = nil
-        inst:RemoveTag("dormant")
         inst.sg:GoToState("shock")
-    end)
-end
-
-AncientRobot.Events.OnActivate = function()
-    return EventHandler("activate", function(inst, data)
-        inst.wantstodeactivate = nil
-        inst:RemoveTag("dormant")
-        inst.sg:GoToState("activate")
     end)
 end
 
 AncientRobot.Events.OnDeactivate = function()
     return EventHandler("deactivate", function(inst, data)
         if not inst:HasTag("dormant") then
-            inst.wantstodeactivate = nil
-            inst:AddTag("dormant")
             inst.sg:GoToState("deactivate")
         end
     end)
@@ -232,6 +213,7 @@ AncientRobot.States.AddCommonStates = function(states)
             inst:PushEvent("removemoss")
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("shock")
+            inst:RestartBrain()
         end,
 
         timeline =
@@ -280,6 +262,7 @@ AncientRobot.States.AddActivate = function(states, timeline)
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/metal_robot/gears_LP", "gears")
             inst.SoundEmitter:SetParameter("gears", "intensity", 0.5)
             inst:AddTag("hostile")
+            inst:AddTag("monster")
         end,
 
         timeline = timeline,
@@ -299,10 +282,17 @@ AncientRobot.States.AddDeactivate = function(states, timeline, onenter_sound)
         tags = {"busy", "deactivating"},
 
         onenter = function(inst, pushanim)
-            inst.components.locomotor:StopMoving()
+            inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("deactivate")
             inst.SoundEmitter:PlaySound(onenter_sound)
             inst:RemoveTag("hostile")
+            inst:RemoveTag("monster")
+            inst:StopBrain()
+
+            if not inst:HasTag("dormant") then
+                inst.wantstodeactivate = nil
+                inst:AddTag("dormant")
+            end
         end,
 
         timeline = timeline,
@@ -513,6 +503,9 @@ AncientRobot.States.AddLeap = function(states, pre_timeline, loop_timeline, pst_
 
         onupdate = function(inst, dt)
             local percent = inst.sg.statemem.leap_time / inst.AnimState:GetCurrentAnimationLength()
+            if percent > 1 then
+                percent = 1
+            end
             inst.sg.statemem.leap_time = inst.sg.statemem.leap_time + dt
             local xdiff = inst.sg.statemem.targetpos.x - inst.sg.statemem.startpos.x
             local zdiff = inst.sg.statemem.targetpos.z - inst.sg.statemem.startpos.z

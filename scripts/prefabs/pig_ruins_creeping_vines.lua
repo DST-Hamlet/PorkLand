@@ -31,14 +31,14 @@ end
 local function BlockDoor(inst)
     -- send event to dissable the door.  the listener will respond if it's the door OR the target door
     if inst.door then
-        inst.door.components.vineable:SetDoorDissabled(true)
+        inst.door.components.vineable:SetDoorDisabled(true)
     end
 end
 
 local function ClearDoor(inst)
     -- send event to enable the door. the listener will respond if it's the door OR the target door
     if inst.door then
-        inst.door.components.vineable:SetDoorDissabled(false)
+        inst.door.components.vineable:SetDoorDisabled(false)
     end
 end
 
