@@ -16,6 +16,8 @@ local DISTANCE_FROM_WATER_OR_IMPASSABLE = 8
 
 local FIND_TARGET_DIST = 20
 
+local KEPP_PLAYER_TARGET_DIST = 200
+
 local INVALID_STRUCTURE_TILES = {
     [WORLD_TILES.FOUNDATION] = true,
     [WORLD_TILES.COBBLEROAD] = true,
@@ -111,16 +113,22 @@ function RocController:Setup(speed, scale, stages)
     end
 
     self.inst:ListenForEvent("liftoff", function()
-        self.busy = true
-
-        local head = self.head
-        head:PushEvent("taunt")
-        head:ListenForEvent("animover", function()
-                if head.AnimState:IsCurrentAnimation("taunt") then
-                    self.busy = false
+        if not self.liftoff then
+            self.busy = true
+            local head = self.head
+            if head then
+                head:PushEvent("taunt")
+                head:ListenForEvent("animover", function()
+                    if head.AnimState:IsCurrentAnimation("taunt") then
+                        self.busy = false
+                        self:DoLiftOff()
+                    end
+                end)
+            else
+                self.busy = false
                 self:DoLiftOff()
             end
-        end)
+        end
     end, self.inst)
 
     self:SetScale(self.startscale)
@@ -151,6 +159,10 @@ function RocController:SetScale(scale)
 end
 
 function RocController:DoLiftOff()
+    self.liftoff = true
+    self.landed = nil
+    self.inst:PushEvent("takeoff")
+
     if self.inst.bodyparts and #self.inst.bodyparts > 0 then
         for i,part in ipairs(self.inst.bodyparts) do
             part:PushEvent("exit")
@@ -160,11 +172,7 @@ function RocController:DoLiftOff()
         self.tail = nil
         self.leg1 = nil
         self.leg2 = nil
-        self.liftoff = true
-        self.landed = nil
         self.currentleg = nil
-
-        self.inst:PushEvent("takeoff")
     end
 end
 
@@ -236,7 +244,7 @@ function RocController:GetTarget()
         if structure then
             self.target = structure
         else
-            -- look for player	
+            -- look for player
             self.target = FindClosestPlayerToInst(self.inst, 60, true)
             if self.target then
                 self.target_player = self.target
@@ -253,6 +261,19 @@ function RocController:GetTarget()
         self.target = player
         self.target_player = player
         return self.target
+    end
+end
+
+function RocController:CheckTargetPlayer()
+    if self.target_player then
+        if not self.target_player:IsValid() then
+            self.target_player = nil
+        elseif not self.target_player:IsNear(self.inst, KEPP_PLAYER_TARGET_DIST) then
+            self.target_player = nil
+        end
+    end
+    if not self.target_player then
+        self:GetTarget()
     end
 end
 
@@ -287,7 +308,7 @@ function RocController:UpdatePoop(dt)
 
 end
 
-function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
+function RocController:MoveBodyParts(dt, player)
     if self.busy then
         return
     end
@@ -300,9 +321,13 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
         return
     end
 
-    if not player_on_valid_tile or TheWorld.state.isnight or IsEntityDeadOrGhost(player) then
-        self.inst:PushEvent("liftoff")
-        return
+    if player then
+        local player_on_valid_tile = is_player_on_valid_tile(player)
+
+        if not player_on_valid_tile or TheWorld.state.isnight or IsEntityDeadOrGhost(player) then
+            self.inst:PushEvent("liftoff")
+            return
+        end
     end
 
     local target = self:GetTarget()
@@ -396,7 +421,7 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
     -- set rotations
     local headpos = self.head:GetPosition()
 
-    -- body rotation has velocity. 
+    -- body rotation has velocity.
     local body_angular_vel_max = 36/3
     if not self.body_angle_vel then
         self.body_angle_vel = 0
@@ -464,21 +489,38 @@ function RocController:MoveBodyParts(dt, player_on_valid_tile, player)
             end
         end
     end
-    -- move tail to point in position like head. 
+    -- move tail to point in position like head.
 end
 
 function RocController:OnUpdate(dt)
-    local player = self.target_player
-    local px, py, pz = player.Transform:GetWorldPosition()
-    local player_on_valid_tile = is_player_on_valid_tile(player)
+    self:CheckTargetPlayer()
 
-    local distance_sq_to_player = self.inst:GetDistanceSqToInst(player)
-    if distance_sq_to_player > SCREEN_DIST * SCREEN_DIST then
-        -- has landed and is flying again, should leave now
+    local player = self.target_player
+
+    if player then
+        local px, py, pz = player.Transform:GetWorldPosition()
+        local player_on_valid_tile = is_player_on_valid_tile(player)
+
+        local distance_sq_to_player = self.inst:GetDistanceSqToInst(player)
+        if distance_sq_to_player > SCREEN_DIST * SCREEN_DIST then
+            -- has landed and is flying again, should leave now
+            if self.liftoff and not self.inst.teleporting then
+                self.inst:Remove()
+            elseif not self.landed then
+                self.inst.Transform:SetRotation(self.inst:GetAngleToPoint(px, py, pz))
+            end
+        end
+
+        if self.inst.Transform:GetScale() == 1 and not self.landed and not self.liftoff then
+            if distance_sq_to_player < LAND_PROX * LAND_PROX and player_on_valid_tile then
+                self.landed = true
+                self.inst:PushEvent("land")
+            end
+        end
+    else
+        self.inst:PushEvent("liftoff")
         if self.liftoff and not self.inst.teleporting then
             self.inst:Remove()
-        elseif not self.landed then
-            self.inst.Transform:SetRotation(self.inst:GetAngleToPoint(px, py, pz))
         end
     end
 
@@ -492,15 +534,8 @@ function RocController:OnUpdate(dt)
         end
     end
 
-    if self.inst.Transform:GetScale() == 1 and not self.landed and not self.liftoff then
-        if distance_sq_to_player < LAND_PROX * LAND_PROX and player_on_valid_tile then
-            self.landed = true
-            self.inst:PushEvent("land")
-        end
-    end
-
     self:UpdatePoop(dt)
-    self:MoveBodyParts(dt, player_on_valid_tile, player)
+    self:MoveBodyParts(dt, player)
 end
 
 function RocController:FadeInFinished()
