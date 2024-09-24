@@ -542,10 +542,8 @@ function RocController:FadeInFinished()
     -- Last step in transition
     local player = self.target_player
 
-    player.components.health:SetInvincible(self.player_was_invincible)
-
-    player.components.playercontroller:Enable(true)
     self.inst.teleporting = nil
+    player.components.health:SetInvincible(self.player_was_invincible)
 end
 
 function RocController:FadeOutFinished()
@@ -554,19 +552,15 @@ function RocController:FadeOutFinished()
         self.target_player.Transform:SetPosition(pt.x, pt.y, pt.z)
         self.target_player.components.sanity:DoDelta(-TUNING.SANITY_MED)
         self.inst.Transform:SetPosition(pt.x, pt.y, pt.z)
-        TheCamera:Snap()
 
-        TheFrontEnd:SetFadeLevel(1)
-        self.target_player:Show()
-        self.target_player.HUD:Show()
         self.target_player.sg:GoToState("wakeup")
-        self.target_player.DynamicShadow:Enable(true)
-        TheFrontEnd:Fade(true, 2, function() self:FadeInFinished() end)
+
+        self:FadeInFinished()
     end)
 end
 
 function RocController:DoTeleport()
-    TheFrontEnd:Fade(false, 2, function() self:FadeOutFinished() end)
+    self.inst:DoTaskInTime(2, function() self:FadeOutFinished() end)
 end
 
 function RocController:GrabPlayer()
@@ -578,9 +572,6 @@ function RocController:GrabPlayer()
     self.target_player.Transform:SetRotation(self.head.Transform:GetRotation())
     self.target_player.AnimState:SetFinalOffset(-10)
     self.target_player.components.health:SetInvincible(true)
-    self.target_player.components.playercontroller:Enable(false)
-    self.target_player.HUD:Hide()
-    self.target_player.DynamicShadow:Enable(false)
 
     self.inst:DoTaskInTime(2.5, function() self:DoTeleport() end)
     self.inst.teleporting = true

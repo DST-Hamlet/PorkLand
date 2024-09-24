@@ -252,7 +252,7 @@ PrefabFiles = {
     "porklandintro",
 
     "roc",
-    "roc_body_parts"
+    "roc_body_parts",
 
     "cutlass",
     "pl_feathers",

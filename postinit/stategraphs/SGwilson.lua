@@ -1716,7 +1716,7 @@ local states = {
             inst.AnimState:PlayAnimation("give")
             inst.AnimState:PushAnimation("give_pst", false)
             if inst.components.playercontroller then
-                inst.components.playercontroller:EnableMapControls(false)
+                -- inst.components.playercontroller:EnableMapControls(false)
                 inst.components.playercontroller:Enable(false)
             end
         end,
@@ -1734,7 +1734,7 @@ local states = {
             TimeEvent(19 * FRAMES, function(inst)
                 inst:ScreenFade(true, 0.4)
                 if inst.components.playercontroller then
-                    inst.components.playercontroller:EnableMapControls(true)
+                    -- inst.components.playercontroller:EnableMapControls(true)
                     inst.components.playercontroller:Enable(true)
                 end
                 inst.sg:RemoveStateTag("busy")
@@ -2363,7 +2363,9 @@ local states = {
         tags = {"busy", "nopredict", "nointerrupt"},
 
         onenter = function(inst, duration)
-            inst.components.playercontroller:Enable(false)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:Enable(false)
+            end
             inst.components.locomotor:Stop()
 
             inst.AnimState:PlayAnimation("idle_sanity_pre", false)
@@ -2384,7 +2386,9 @@ local states = {
         },
 
         onexit = function(inst)
-            inst.components.playercontroller:Enable(true)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:Enable(true)
+            end
             inst.sanity_stunned = false
             inst:PushEvent("sanity_stun_over")
         end
@@ -2419,13 +2423,38 @@ local states = {
         tags = {"busy", "pausepredict"},
 
         onenter = function(inst, data)
+            inst:ShowHUD(false)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(false)
+                inst.components.playercontroller:Enable(false)
+            end
             inst.AnimState:PlayAnimation("grab_loop")
+        end,
+
+        timeline =
+        {
+            TimeEvent(105 * FRAMES, function(inst)
+                inst:ScreenFade(false, 2)
+            end),
+        },
+
+        onexit = function(inst)
+            inst:SnapCamera()
+            inst:ShowHUD(true)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(true)
+                inst.components.playercontroller:Enable(true)
+            end
+            inst:Show()
+            inst:ScreenFade(true, 2)
+            inst.DynamicShadow:Enable(true)
         end,
 
         events =
         {
             EventHandler("animover", function(inst)
                 inst:Hide()
+                inst.DynamicShadow:Enable(false)
             end),
         },
     },
