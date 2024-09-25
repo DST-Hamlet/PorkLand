@@ -10,6 +10,7 @@ PrefabFiles = {
     "basefan",
     "bill_quill",
     "bill",
+    "birdwhistle",
     "boat_torch",
     "boatcontainer_classified",
     "boatrepairkit",

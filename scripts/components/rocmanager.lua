@@ -96,6 +96,29 @@ function self:SpawnRoc()
     return true
 end
 
+
+function self:SpawnRocToPlayer(player)
+    if _roc then
+        return false
+    end
+
+    if not player then
+        return false
+    end
+
+    local pt = player:GetPosition()
+    local angle = math.random()* 2 * PI
+    local offset = Vector3(math.cos(angle), 0, -math.sin(angle)) * SPAWNDIST
+
+    local roc = SpawnPrefab("roc")
+    roc.Transform:SetPosition(pt.x + offset.x, 0, pt.z + offset.z)
+    roc.components.roccontroller.target_player = player
+
+    _roc = roc
+    return true
+end
+
+
 function self:RemoveRoc(roc)
     if roc == _roc then -- I don't get it, why bother checking if this is the roc spawned by this component? ds code is weird :/
         _roc = nil
