@@ -995,7 +995,7 @@ AddStategraphPostInit("wilson_client", function(sg)
     end
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
-    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
+    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, action, ...)
         if not inst.sg:HasStateTag("sneeze") then
             if inst:HasTag("ironlord") then
                 return "ironlord_attack"
