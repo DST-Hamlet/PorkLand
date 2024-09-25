@@ -93,6 +93,11 @@ local function fn()
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.runspeed = TUNING.ROC_SPEED
 
+    inst:AddComponent("glidemotor")
+    inst.components.glidemotor.runspeed = TUNING.ROC_SPEED
+    inst.components.glidemotor.runspeed_turnfast = TUNING.ROC_SPEED * 2 / 3
+    inst.components.glidemotor:EnableMove(false)
+
     inst:AddComponent("roccontroller")
     inst.components.roccontroller:Setup(TUNING.ROC_SPEED, 0.35, 3)
     inst.components.roccontroller:Start()

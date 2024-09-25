@@ -1,6 +1,7 @@
 local SCREEN_DIST = 50
+local TURN_DIST = 50 * 2
 local HEAD_ATTACK_DIST = 0.1 -- 1.5
-local SCALERATE = 1 / (30 * 2)  -- 2 seconds to go from 0 to 1
+local SCALERATE = 1 / (30 * 3)  -- 3 seconds to go from 0 to 1
 
 local HEADDIST = 17
 local HEADDIST_TARGET = 15
@@ -16,6 +17,7 @@ local DISTANCE_FROM_WATER_OR_IMPASSABLE = 8
 
 local FIND_TARGET_DIST = 20
 
+local FIND_PLAYER_TARGET_DIST = 100
 local KEPP_PLAYER_TARGET_DIST = 200
 
 local INVALID_STRUCTURE_TILES = {
@@ -245,7 +247,7 @@ function RocController:GetTarget()
             self.target = structure
         else
             -- look for player
-            self.target = FindClosestPlayerToInst(self.inst, 60, true)
+            self.target = FindClosestPlayerToInst(self.inst, FIND_PLAYER_TARGET_DIST, true)
             if self.target then
                 self.target_player = self.target
             end
@@ -256,7 +258,7 @@ function RocController:GetTarget()
         return self.target
     end
 
-    local player = self.target_player or FindClosestPlayerToInst(self.inst, FIND_TARGET_DIST, true)
+    local player = self.target_player or FindClosestPlayerToInst(self.inst, FIND_PLAYER_TARGET_DIST, true)
     if player and player:IsValid() then
         self.target = player
         self.target_player = player
@@ -497,18 +499,34 @@ function RocController:OnUpdate(dt)
 
     local player = self.target_player
 
+    local scale_sq = self.inst.Transform:GetScale() * self.inst.Transform:GetScale()
+
     if player then
         local px, py, pz = player.Transform:GetWorldPosition()
         local player_on_valid_tile = is_player_on_valid_tile(player)
 
+        if self.liftoff then
+            self.inst.components.glidemotor:SetTargetPos(nil)
+        else
+            self.inst.components.glidemotor:SetTargetPos(player:GetPosition())
+        end
+
         local distance_sq_to_player = self.inst:GetDistanceSqToInst(player)
-        if distance_sq_to_player > SCREEN_DIST * SCREEN_DIST then
+        if distance_sq_to_player > TURN_DIST * TURN_DIST * scale_sq then
             -- has landed and is flying again, should leave now
             if self.liftoff and not self.inst.teleporting then
                 self.inst:Remove()
             elseif not self.landed then
-                self.inst.Transform:SetRotation(self.inst:GetAngleToPoint(px, py, pz))
+                -- self.inst.Transform:SetRotation(self.inst:GetAngleToPoint(px, py, pz))
+                self.inst:PushEvent("turn")
             end
+            self.turning = true
+        elseif (distance_sq_to_player > SCREEN_DIST * SCREEN_DIST * scale_sq) and self.turning then
+            if not self.landed then
+                self.inst:PushEvent("turn")
+            end
+        else
+            self.turning = nil
         end
 
         if self.inst.Transform:GetScale() == 1 and not self.landed and not self.liftoff then
@@ -518,6 +536,7 @@ function RocController:OnUpdate(dt)
             end
         end
     else
+        self.inst.components.glidemotor:SetTargetPos(nil)
         self.inst:PushEvent("liftoff")
         if self.liftoff and not self.inst.teleporting then
             self.inst:Remove()
