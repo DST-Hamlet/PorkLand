@@ -259,8 +259,12 @@ SortBefore("smelter", "rope", "REFINE")
 SortBefore("smelter", "cookpot", "STRUCTURES")
 
 AddRecipe2("corkchest", {Ingredient("cork", 2), Ingredient("rope", 1)}, TECH.SCIENCE_ONE, {placer="corkchest_placer", min_spacing=1}, {"STRUCTURES", "CONTAINERS"})
+SortBefore("corkchest", "treasurechest", "CONTAINERS")
+SortBefore("corkchest", "treasurechest", "STRUCTURES")
 
 AddRecipe2("roottrunk", {Ingredient("bramble_bulb", 1), Ingredient("venus_stalk", 2), Ingredient("boards", 3)}, TECH.MAGIC_TWO, {placer="roottrunk_placer", min_spacing=2}, {"STRUCTURES", "CONTAINERS", "MAGIC"})
+SortAfter("roottrunk", "magician_chest", "CONTAINERS")
+SortAfter("roottrunk", "magician_chest", "STRUCTURES")
 
 -- SCIENCE ---
 AddRecipe2("basefan", {Ingredient("alloy", 2), Ingredient("transistor", 2), Ingredient("gears", 1)}, TECH.SCIENCE_TWO, {placer = "basefan_placer"}, {"STRUCTURES", "RAIN", "ENVIRONMENT_PROTECTION"})
@@ -279,6 +283,12 @@ SortAfter("goldenmachete", "goldenaxe", "TOOLS")
 
 AddRecipe2("shears", {Ingredient("twigs", 2),Ingredient("iron", 2)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
 SortAfter("shears", "goldenpitchfork", "TOOLS")
+
+AddRecipe2("antler", {Ingredient("hippo_antler", 1),Ingredient("bill_quill", 3),Ingredient("flint", 1)}, TECH.SCIENCE_ONE, {}, {"TOOLS"})
+
+AddRecipe2("antler_corrupted", {Ingredient("antler", 1), Ingredient("ancient_remnant", 2)}, TECH.MAGIC_TWO, {}, {"TOOLS","MAGIC"})
+SortAfter("antler_corrupted", "dreadstonehat", "MAGIC")
+SortAfter("antler_corrupted", "antler", "TOOLS")
 
 -- WAR ---
 AddRecipe2("blunderbuss", {Ingredient("boards", 2), Ingredient("oinc10", 1), Ingredient("gears", 1)}, TECH.SCIENCE_TWO, {}, {"WEAPONS"})
@@ -370,8 +380,11 @@ SortAfter("fabric", "beeswax", "REFINE")
 
 -- DECOR ---
 AddRecipe2("turf_lawn", {Ingredient("cutgrass", 2), Ingredient("nitre", 1)}, TECH.SCIENCE_TWO, {numtogive = 4}, {"DECOR"})
+SortAfter("turf_lawn", "turf_beard_rug", "DECOR")
 AddRecipe2("turf_fields", {Ingredient("turf_rainforest", 1), Ingredient("ash", 1)}, TECH.SCIENCE_TWO, {numtogive = 4}, {"DECOR"})
-AddRecipe2("turf_deeprainforest_nocanopy", {Ingredient("bramble_bulb", 1), Ingredient("cutgrass", 2), Ingredient("ash", 1)}, TECH.SCIENCE_TWO, {numtogive = 4}, {"DECOR"})
+SortAfter("turf_fields", "turf_lawn", "DECOR")
+AddRecipe2("turf_deeprainforest_nocanopy", {Ingredient("bramble_bulb", 1), Ingredient("cutgrass", 2), Ingredient("ash", 1)}, TECH.SCIENCE_TWO, {numtogive = 4}, {"DECOR","GARDENING"})
+SortAfter("turf_deeprainforest_nocanopy", "turf_fields", "DECOR")
 
 -- NAUTICAL ---
 AddRecipe2("boat_lograft", {Ingredient("log", 6), Ingredient("cutgrass", 4)}, TECH.NONE, {placer = "boat_lograft_placer", build_mode = BUILDMODE.WATER, build_distance = 4}, {"NAUTICAL"})

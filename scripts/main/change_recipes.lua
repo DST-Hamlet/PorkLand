@@ -26,7 +26,6 @@ local DISABLE_RECIPES = {
     "slow_farmplot",
     "heatrock",
     "earmuffshat",
-    "turf_beard_rug",
     "cookiecutterhat",
     "icehat",
     "rabbithouse",

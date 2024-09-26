@@ -81,6 +81,8 @@ return {
         ANTCOMBHOME = "Looks like it houses insects.",
         ANTHILL = "This must be where those giant bugs live.",
         ANTIVENOM = "Tastes horrible!",
+        ANTLER = "For the bird.",
+        ANTLER_CORRUPTED = "This should scare off that big bird.",
         ANTMAN = {
             DEAD = "Exterminated.",
             GENERIC = "What a huge bug!",
@@ -107,6 +109,7 @@ return {
         BANDITTREASURE = "Treasure!",
         BASEFAN = "Fan-tastic.",
         BATHAT = "A hat, made of bat.",
+        BAT_HIDE = "Is the bat hide-ing in there?",
         BILL = {
             DEAD = "Haha. It's dead.",
             GENERIC = "A spinny spiny sort.",
@@ -819,6 +822,7 @@ return {
             SLEEPING = "Hopefully it won't get up again.",
         },
         VAMPIREBATCAVE = "A den of bloodsuckers.",
+        VAMPIRE_BAT_WING = "I hate those things, even when they're dead.",
         VENOMGLAND = "Only poison can cure poison.",
         VENUS_STALK = "I bet I could find a use for it.",
         VINE = "Maybe I can tie stuff up with this.",

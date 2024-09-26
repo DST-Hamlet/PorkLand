@@ -76,6 +76,8 @@ return {
         ANTCOMBHOME = "Oh those hideous creatures are industrious, aren't they.",
         ANTHILL = "I've a mind to make a molehill of this.",
         ANTIVENOM = "A cure to what ails you.",
+        ANTLER = "Why would I want to call that bird?",
+        ANTLER_CORRUPTED = "This should rid me of that giant pest.",
         ANTMAN = {
             DEAD = "Serves it right for being so ugly.",
             GENERIC = "What a hideous creature.",
@@ -102,6 +104,7 @@ return {
         BANDITTREASURE = "Hello...",
         BASEFAN = "Ah. Civilization.",
         BATHAT = "How delightfully horrific.",
+        BAT_HIDE = "Who knew bat and pig skins were so similar?",
         BILL = {
             DEAD = "It happens to the best of us.",
             GENERIC = "A beautiful mutation.",
@@ -804,6 +807,7 @@ return {
             SLEEPING = "Even creatures of the night must sleep.",
         },
         VAMPIREBATCAVE = "Villainy lurks within.",
+        VAMPIRE_BAT_WING = "I'm not eating that.",
         VENOMGLAND = "Could this be the cure?",
         VENUS_STALK = "All stalk and no action.",
         VINE = "It's twisted and gnarled.",

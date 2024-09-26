@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "Gross!",
         ANTHILL = "Ughh. I do  not want to go in there.",
         ANTIVENOM = "This'll help if I'm poisoned.",
+        ANTLER = "Here birdie birdie...",
+        ANTLER_CORRUPTED = "Seeya round big birdie. Or not.",
         ANTMAN = {
             DEAD = "Gross and dead.",
             GENERIC = "You're gross.",
@@ -101,6 +103,7 @@ return {
         BANDITTREASURE = "I should dig there.",
         BASEFAN = "Fan the flames.",
         BATHAT = "Ugh. I can still smell the jerkiness.",
+        BAT_HIDE = "Weird. Is it from a pig bat?",
         BILL = {
             DEAD = "That's what you get.",
             GENERIC = "You're weird.",
@@ -793,6 +796,7 @@ return {
             SLEEPING = "It must be tired from being such a jerk.",
         },
         VAMPIREBATCAVE = "Creepy things live there.",
+        VAMPIRE_BAT_WING = "Yuck!",
         VENOMGLAND = "Gross! I wish I had gloves.",
         VENUS_STALK = "Looks like kindling.",
         VINE = "I could use this for something. Or I could just burn it.",

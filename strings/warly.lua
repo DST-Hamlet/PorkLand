@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "Full of those ant guys.",
         ANTHILL = "I could take a peek inside.",
         ANTIVENOM = "Could come in very handy.",
+        ANTLER = "Like a dinner bell for a bird!",
+        ANTLER_CORRUPTED = "Au revoir giant bird, no dinner for you!",
         ANTMAN = {
             DEAD = "He's met an untimely end.",
             GENERIC = "Let's break bread!",
@@ -100,6 +102,7 @@ return {
         BANDITTREASURE = "I've found it!",
         BASEFAN = "Good ventilation in the kitchen is an must.",
         BATHAT = "Ah, I can see through the eyes of a bat.",
+        BAT_HIDE = "Is it from a bat or a pig?",
         BILL = {
             DEAD = "The other white meat.",
             GENERIC = "He could skewer me!",
@@ -799,6 +802,7 @@ return {
             SLEEPING = "Peaceful for now.",
         },
         VAMPIREBATCAVE = "Not the best place to hide, I think.",
+        VAMPIRE_BAT_WING = "Hmmm, maybe a soup stock of batwings?",
         VENOMGLAND = "The worst kind of gland!",
         VENUS_STALK = "Possesses a flavor reminiscent of artichoke hearts.",
         VINE = "Not a single grape on it...",

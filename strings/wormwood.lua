@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "Little baby Chr'ik home",
         ANTHILL = "Anyone home?",
         ANTIVENOM = "Sick Fixer",
+        ANTLER = "Sounds like Womp Tweeter!",
+        ANTLER_CORRUPTED = "Scares Womp Tweeter",
         ANTMAN = {
             DEAD = "(sniff) Too bad",
             GENERIC = "Chr'ik?",
@@ -101,6 +103,7 @@ return {
         BANDITTREASURE = "Stuff!",
         BASEFAN = "Wind",
         BATHAT = "Woo Woo Head Thing",
+        BAT_HIDE = "Bum. Twirly Tail bum?",
         BILL = {
             DEAD = "Oh. Oh dear",
             GENERIC = "Prick beast",
@@ -811,6 +814,7 @@ return {
             SLEEPING = "Sleeping down side up",
         },
         VAMPIREBATCAVE = "Smells good!",
+        VAMPIRE_BAT_WING = "Can't fly anymore",
         VENOMGLAND = "For sickness",
         VENUS_STALK = "Mmmm...",
         VINE = "String branches",

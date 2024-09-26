@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "Is looking like Bug Man home.",
         ANTHILL = "Is big bug man pile.",
         ANTIVENOM = "Wolfgang will flex poison out of veins!",
+        ANTLER = "Wolfgang sings like big birdy.",
+        ANTLER_CORRUPTED = "Birds not like it, makes scary sound!",
         ANTMAN = {
             DEAD = "Bug Man is dead.",
             GENERIC = "Hello, Bug Man!",
@@ -101,6 +103,7 @@ return {
         BANDITTREASURE = "Wolfgang find it!",
         BASEFAN = "Is cool on Wolfgang skin.",
         BATHAT = "Is funny little bat hat.",
+        BAT_HIDE = "Is confusing pig skin.",
         BILL = {
             DEAD = "Wolfgang win.",
             GENERIC = "Wolfgang stronger than spiky goose rat.",
@@ -795,6 +798,7 @@ return {
             SLEEPING = "Flappy bad guy is night-night.",
         },
         VAMPIREBATCAVE = "Wolfgang is no like dark hole.",
+        VAMPIRE_BAT_WING = "Is all hairy and gross.",
         VENOMGLAND = "Is weapon of cowards.",
         VENUS_STALK = "Is Plant Men parts.",
         VINE = "For string enemies together.",
