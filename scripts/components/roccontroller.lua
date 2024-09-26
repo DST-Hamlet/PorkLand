@@ -245,12 +245,6 @@ function RocController:GetTarget()
 
         if structure then
             self.target = structure
-        else
-            -- look for player
-            self.target = FindClosestPlayerToInst(self.inst, FIND_PLAYER_TARGET_DIST, true)
-            if self.target then
-                self.target_player = self.target
-            end
         end
     end
 
@@ -559,20 +553,27 @@ end
 
 function RocController:FadeInFinished()
     -- Last step in transition
-    local player = self.target_player
+    local player = self.grabbed_player
 
     self.inst.teleporting = nil
-    player.components.health:SetInvincible(self.player_was_invincible)
+
+    if player and player:IsValid() then
+        player.components.health:SetInvincible(self.player_was_invincible)
+    end
 end
 
 function RocController:FadeOutFinished()
     self.inst:DoTaskInTime(2 , function()
         local pt = Vector3(self.inst.roc_nest.Transform:GetWorldPosition())
-        self.target_player.Transform:SetPosition(pt.x, pt.y, pt.z)
-        self.target_player.components.sanity:DoDelta(-TUNING.SANITY_MED)
         self.inst.Transform:SetPosition(pt.x, pt.y, pt.z)
 
-        self.target_player.sg:GoToState("wakeup")
+        local player = self.grabbed_player
+        if player and player:IsValid() then
+            self.grabbed_player.Transform:SetPosition(pt.x, pt.y, pt.z)
+            self.grabbed_player.components.sanity:DoDelta(-TUNING.SANITY_MED)
+
+            self.grabbed_player.sg:GoToState("wakeup")
+        end
 
         self:FadeInFinished()
     end)
@@ -585,12 +586,17 @@ end
 function RocController:GrabPlayer()
     self.head:AddTag("HasPlayer")
 
-    self.player_was_invincible = self.target_player.components.health:IsInvincible()
+    self.grabbed_player = self.target_player
+    local player = self.grabbed_player
 
-    self.target_player:PushEvent("grabbed")
-    self.target_player.Transform:SetRotation(self.head.Transform:GetRotation())
-    self.target_player.AnimState:SetFinalOffset(-10)
-    self.target_player.components.health:SetInvincible(true)
+    if player and player:IsValid() then
+        self.player_was_invincible = player.components.health:IsInvincible()
+
+        player:PushEvent("grabbed")
+        player.Transform:SetRotation(self.head.Transform:GetRotation())
+        player.AnimState:SetFinalOffset(-10)
+        player.components.health:SetInvincible(true)
+    end
 
     self.inst:DoTaskInTime(2.5, function() self:DoTeleport() end)
     self.inst.teleporting = true
@@ -600,9 +606,11 @@ function RocController:UnchildPlayer(inst)
     if not inst then
         inst = self.head
     end
+    local player = self.grabbed_player
 
-    self.target_player.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    self.target_player:Hide()
+    if player and player:IsValid() then
+        player.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    end
     inst:RemoveTag("HasPlayer")
 end
 

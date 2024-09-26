@@ -2429,6 +2429,7 @@ local states = {
                 inst.components.playercontroller:Enable(false)
             end
             inst.AnimState:PlayAnimation("grab_loop")
+            inst.sg:SetTimeout(10)
         end,
 
         timeline =
