@@ -13,6 +13,7 @@ local corruptedassets = {
 local function OnPlayedNormal(inst, musician)
     local rocmanager = TheWorld.components.rocmanager
     if not TheCamera.interior and rocmanager then
+        rocmanager:Enable()
         rocmanager:SpawnRocToPlayer(musician)
     end
 end
@@ -96,14 +97,12 @@ local function CorruptedFn()
     end
 
     inst.components.instrument.onplayed = OnPlayedCorrupted
-
-    inst.flutebuild = "swap_antler_corrupted"
-    inst.flutesymbol = "swap_antler_corrupted"
+    inst.components.instrument:SetAssetOverrides("swap_antler_corrupted", "swap_antler_corrupted", "dontstarve_DLC003/common/crafted/roc_flute")
 
     return inst
 end
 
 return
-    Prefab("antler",           NormalFn,    normalassets   )
-    -- Prefab("antler_corrupted", CorruptedFn, corruptedassets)
+    Prefab("antler",           NormalFn,    normalassets   ),
+    Prefab("antler_corrupted", CorruptedFn, corruptedassets)
 

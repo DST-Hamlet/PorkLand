@@ -21,6 +21,7 @@ local _roc
 local _world = TheWorld
 local _worldsettingstimer = _world.components.worldsettingstimer
 local _active_players = {}
+local _enable = true
 
 --------------------------------------------------------------------------
 --[[ Private event handlers ]]
@@ -84,20 +85,21 @@ function self:SpawnRoc()
         return false
     end
 
-    local pt = player:GetPosition()
-    local angle = math.random()* 2 * PI
-    local offset = Vector3(math.cos(angle), 0, -math.sin(angle)) * SPAWNDIST
+    self:SpawnRocToPlayer(player)
 
-    local roc = SpawnPrefab("roc")
-    roc.Transform:SetPosition(pt.x + offset.x, 0, pt.z + offset.z)
-    roc.components.roccontroller.target_player = player
-
-    _roc = roc
     return true
 end
 
 
 function self:SpawnRocToPlayer(player)
+    if not _enable then
+        return false
+    end
+
+    if TheWorld.state.isaporkalypse then
+        return false
+    end
+
     if _roc then
         return false
     end
@@ -118,6 +120,13 @@ function self:SpawnRocToPlayer(player)
     return true
 end
 
+function self:Disable()
+    _enable = false
+end
+
+function self:Enable()
+    _enable = true
+end
 
 function self:RemoveRoc(roc)
     if roc == _roc then -- I don't get it, why bother checking if this is the roc spawned by this component? ds code is weird :/
@@ -166,7 +175,19 @@ function self:OnSave()
         table.insert(refs, _roc.GUID)
     end
 
+    data.enable = _enable
+
     return data, refs
+end
+
+function self:OnLoad(data)
+    if not data then
+        return
+    end
+
+    if data.enable then
+        _enable = data.enable
+    end
 end
 
 function self:LoadPostPass(newents, savedata)
