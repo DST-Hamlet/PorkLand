@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "A great hall for the bug beasts.",
         ANTHILL = "There is dankness within!",
         ANTIVENOM = "No venom shall flow through my veins!",
+        ANTLER = "Calls upon the mighty bird beast!",
+        ANTLER_CORRUPTED = "Calls off the mighty bird beast.",
         ANTMAN = {
             DEAD = "It no longer lives.",
             GENERIC = "Be you friend or foe?",
@@ -101,6 +103,7 @@ return {
         BANDITTREASURE = "Mine!",
         BASEFAN = "Conquers the heat!",
         BATHAT = "To see through the eyes of my enemy!",
+        BAT_HIDE = "Hide which takes the guise of another hide.",
         BILL = {
             DEAD = "Ha! Vanquished!",
             GENERIC = "I will vanquish you, skewered one!",
@@ -800,6 +803,7 @@ return {
             SLEEPING = "Unwise, little beast.",
         },
         VAMPIREBATCAVE = "Creatures of darkness lurk within.",
+        VAMPIRE_BAT_WING = "Like the wings of my helm, only meatier.",
         VENOMGLAND = "The source of the fevers.",
         VENUS_STALK = "The heart of a defeated plant warrior.",
         VINE = "What can you do for me?",

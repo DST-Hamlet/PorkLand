@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "Thar buggie beasties reside within.",
         ANTHILL = "'Tis no mole hill.",
         ANTIVENOM = "'Tis th'sea thet'll claim me, not some sickly biter.",
+        ANTLER = "Fer tha'callin' o'tha big feather'd beastie.",
+        ANTLER_CORRUPTED = "Fer chasin' off tha big feather'd beastie.",
         ANTMAN = {
             DEAD = "Its 'atches 'ave been battened.",
             GENERIC = "Whut mann'r o'beast be ye?",
@@ -101,6 +103,7 @@ return {
         BANDITTREASURE = "Let's get'ta diggin'!",
         BASEFAN = "A cool wind blows from thee!",
         BATHAT = "Has the look o' tha' flyin' beasties.",
+        BAT_HIDE = "Woodlegs don't care what ye call it.",
         BILL = {
             DEAD = "It's been run through.",
             GENERIC = "A cannonball o' fur.",
@@ -795,6 +798,7 @@ return {
             SLEEPING = "'Tha scurvy dog be defenceless.",
         },
         VAMPIREBATCAVE = "Inta th'depths wit'ye.",
+        VAMPIRE_BAT_WING = "Wit' a wee bit o'ranch dressin'...",
         VENOMGLAND = "Aye, 'tis th'source o'th'venom.",
         VENUS_STALK = "A plant skelerton.",
         VINE = "Them's be th'stranglin' kind.",

@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "Not my idea of a model home, but to each his own.",
         ANTHILL = "I hear something crawling around in there.",
         ANTIVENOM = "Tastes awful, but it works!",
+        ANTLER = "That bird is a nuisance.",
+        ANTLER_CORRUPTED = "Bird repellant.",
         ANTMAN = {
             DEAD = "Out of his misery.",
             GENERIC = "How ya doin' there, buddy?",
@@ -101,6 +103,7 @@ return {
         BANDITTREASURE = "Found it.",
         BASEFAN = "Yep. That's a nice breeze.",
         BATHAT = "It's a little batty.",
+        BAT_HIDE = "I'm sure I could use this for something.",
         BILL = {
             DEAD = "Well that's too bad.",
             GENERIC = "Doesn't he get dizzy?",
@@ -794,6 +797,7 @@ return {
             SLEEPING = "Let sleeping bats lie, I say.",
         },
         VAMPIREBATCAVE = "Don't look none too inviting.",
+        VAMPIRE_BAT_WING = "Gross!",
         VENOMGLAND = "It smells kind of funny.",
         VENUS_STALK = "I got it from that big leafy hoser.",
         VINE = "Sigh. Not a tree.",

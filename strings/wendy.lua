@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "The ant creatures live out their futile existence within.",
         ANTHILL = "Shall I descend into the earth?",
         ANTIVENOM = "A potion to stave off the sickness.",
+        ANTLER = "Do you enjoy the wistful sound of bird song, Abigail?",
+        ANTLER_CORRUPTED = "It has a most haunting sound.",
         ANTMAN = {
             DEAD = "Gone to a better place.",
             GENERIC = "A creature of dirt and purpose.",
@@ -101,6 +103,7 @@ return {
         BANDITTREASURE = "Sigh. I suppose I should dig it up.",
         BASEFAN = "Alas the relief it brings is only temporary.",
         BATHAT = "Peers into the darkness.",
+        BAT_HIDE = "It doesn't matter if it's pig or bat skin, it's still dead.",
         BILL = {
             DEAD = "Death is inescapable.",
             GENERIC = "A horror.",
@@ -796,6 +799,7 @@ return {
             SLEEPING = "I wish you nightmares.",
         },
         VAMPIREBATCAVE = "The maw of death itself.",
+        VAMPIRE_BAT_WING = "If only I could fly away.",
         VENOMGLAND = "Their dead drop the cure to their sickness.",
         VENUS_STALK = "Objects from a dead thing.",
         VINE = "Unruly life.",

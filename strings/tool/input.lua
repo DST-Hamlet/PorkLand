@@ -7,7 +7,10 @@ package.path = package.path .. ";".. dst_string_path .. "/?.lua"
 package.path = package.path .. ";".. ds_path .. "/data/scripts" .. "/?.lua"
 
 keys = {  -- copy key = over key
-["ANTQUEEN"] = "ANTQUEEN",
+["ANTLER_CORRUPTED"] = "ANTLER_CORRUPTED",
+["ANTLER"] = "ANTLER",
+["BAT_HIDE"] = "BAT_HIDE",
+["VAMPIRE_BAT_WING"] = "VAMPIRE_BAT_WING",
 --MOONDIAL
 }
 

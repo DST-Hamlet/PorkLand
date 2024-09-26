@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "Those little ant guys live in here.",
         ANTHILL = "Are we welcome in there?",
         ANTIVENOM = "This is medicine?",
+        ANTLER = "Now we can sing to that big friendly birdie.",
+        ANTLER_CORRUPTED = "The big birdie doesn't like the sounds it makes.",
         ANTMAN = {
             DEAD = "Gee, that's too bad.",
             GENERIC = "We should be friends!",
@@ -101,6 +103,7 @@ return {
         BANDITTREASURE = "Hey, there's the treasure!",
         BASEFAN = "That breeze feels nice on our fur.",
         BATHAT = "Cool. Now we're like a Bat Spider Boy.",
+        BAT_HIDE = "Huh. It's pig hide but it came from a bat.",
         BILL = {
             DEAD = "Aww.",
             GENERIC = "Haha! He looks funny!",
@@ -795,6 +798,7 @@ return {
             SLEEPING = "We should be very quiet so he doesn't wake up.",
         },
         VAMPIREBATCAVE = "That's probably where those mean bats live.",
+        VAMPIRE_BAT_WING = "This thing drives me batty.",
         VENOMGLAND = "The key to feeling better if we get sick.",
         VENUS_STALK = "It came off that mean plant.",
         VINE = "This stuff is wild.",

@@ -79,6 +79,8 @@ return {
         ANTCOMBHOME = "Full of bundled up big baby bugs.",
         ANTHILL = "Can't get more adventurous then going into a giant insect nest.",
         ANTIVENOM = "A cure for too much adventure.",
+        ANTLER = "Maybe this bird whistle will convince a bird to fly me out of here.",
+        ANTLER_CORRUPTED = "This should make any giant birds steer clear.",
         ANTMAN = {
             DEAD = "I won't step on it out of respect.",
             GENERIC = "Travel. See the world. Meet some interesting insects.",
@@ -105,6 +107,7 @@ return {
         BANDITTREASURE = "If you're going to hide a treasure, don't put a fancy feather on it.",
         BASEFAN = "A plane propeller would be better.",
         BATHAT = "Aw... It doesn't even let me fly.",
+        BAT_HIDE = "Hmmm... never noticed those bats had a springy tail.",
         BILL = {
             DEAD = "Spun himself to death.",
             GENERIC = "Excuse me while I avoid your quills.",
@@ -812,6 +815,7 @@ return {
             SLEEPING = "If I could only steal its wings while its asleep.",
         },
         VAMPIREBATCAVE = "Those bats are wasting their time in a cave when they should be outside flying.",
+        VAMPIRE_BAT_WING = "Maybe if I flapped it really fast I could get off the ground.",
         VENOMGLAND = "Swell. A sack of goop from an animal.",
         VENUS_STALK = "Hope this comes in handy. Otherwise that flytrap died for nothing.",
         VINE = "The kind of thing that would be more useful if I had a bunch of them.",

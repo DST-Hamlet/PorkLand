@@ -76,6 +76,8 @@ return {
         ANTCOMBHOME = "Looks like a home for the bug-dudes.",
         ANTHILL = "I bet it took a ton of work to dig that.",
         ANTIVENOM = "This'll make the sickness go away.",
+        ANTLER = "Here birdy birdy.",
+        ANTLER_CORRUPTED = "Bye birdy birdy.",
         ANTMAN = {
             DEAD = "That bugs me.",
             GENERIC = "Hey, bug-dude!",
@@ -102,6 +104,7 @@ return {
         BANDITTREASURE = "I found it!",
         BASEFAN = "A nice breeze.",
         BATHAT = "Kinda grody.",
+        BAT_HIDE = "Weird. It looks like pig skin.",
         BILL = {
             DEAD = "Aw...",
             GENERIC = "Hey little barbed dude.",
@@ -815,6 +818,7 @@ return {
             SLEEPING = "It'd be great if you could just stay asleep.",
         },
         VAMPIREBATCAVE = "I don't get good vibes from that place.",
+        VAMPIRE_BAT_WING = "A couple more of these and I'll be flyin'!",
         VENOMGLAND = "What a terrible gland.",
         VENUS_STALK = "Gnarly.",
         VINE = "Good for lashing stuff down.",
