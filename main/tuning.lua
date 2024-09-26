@@ -635,6 +635,14 @@ local tuning = {
 
     SANITY_PLAYERHOUSE_GAIN = 100 / (day_time * 32),
 
+    ROC_SPEED = 20,
+    ROC_SPEED_LAND = 6,
+    ROC_SHADOWRANGE = 8,
+    ROC_ENABLED = true,
+
+    ROC_HEAD_SPEED = 10,
+    ROC_TAIL_SPEED = 8,
+
     CUTLASS_DAMAGE = wilson_attack * 2,
     CUTLASS_USES = 150,
 
@@ -689,6 +697,8 @@ local tuning = {
     COCONADE_DAMAGE = 250,
     COCONADE_EXPLOSIONRANGE = 6,
     COCONADE_BUILDINGDAMAGE = 10,
+
+    BIRDWHISLE_USES = 5,
 }
 
 

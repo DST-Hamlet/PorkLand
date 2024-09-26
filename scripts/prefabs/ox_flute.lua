@@ -33,14 +33,11 @@ local function fn()
         return inst
     end
 
-    inst.flutebuild = "ox_flute"
-    inst.flutesymbol = "ox_flute01"
-
     inst:AddComponent("inspectable")
 
     inst:AddComponent("instrument")
     inst.components.instrument.onplayed = OnPlayed
-    inst.components.instrument.sound_noloop = "dontstarve_DLC002/common/ox_flute"
+    inst.components.instrument:SetAssetOverrides("ox_flute", "ox_flute01", "dontstarve_DLC002/common/ox_flute")
 
     inst:AddComponent("tool")
     inst.components.tool:SetAction(ACTIONS.PLAY)

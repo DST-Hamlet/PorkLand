@@ -101,6 +101,7 @@ local customize_items = {  -- add in dst customize
             mosquito_setting = {image = "mosquitos.tex"},
             --adult_flytrap_setting = {image = "adult_flytraps.tex"},
             --mean_flytrap_setting = {image = "mean_flytraps.tex"},
+            roc_setting = {image = "roc.tex", desc = enable_descriptions},
             weevole_setting = {image = "weevole.tex"},
             --vampirebat = {image = "vampire_bats.tex"},
             pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = frequency_descriptions},

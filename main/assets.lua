@@ -10,6 +10,7 @@ PrefabFiles = {
     "basefan",
     "bill_quill",
     "bill",
+    "birdwhistle",
     "boat_torch",
     "boatcontainer_classified",
     "boatrepairkit",
@@ -236,7 +237,7 @@ PrefabFiles = {
     "waterfall_lilypond",
     "waterfall_sfx",
 
-    "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗
+    "fabric", -- 亚丹：这个表一开始不是说按照字母顺序进行排序的吗 ziwbi: 排序一下不就好了
     "inv_bamboo",
     "sand",
 
@@ -250,6 +251,9 @@ PrefabFiles = {
     "ox_horn",
     "ox_flute",
     "porklandintro",
+
+    "roc",
+    "roc_body_parts",
 
     "cutlass",
     "pl_feathers",
@@ -330,6 +334,8 @@ Assets = {
     Asset("ANIM", "anim/player_mount_actions_speargun.zip"),
     Asset("ANIM", "anim/player_actions_scroll.zip"),
     Asset("ANIM", "anim/player_mount_actions_scroll.zip"),
+    Asset("ANIM", "anim/player_teleport_bfb.zip"),
+    Asset("ANIM", "anim/player_teleport_bfb2.zip"),
 
     -- replace_anim
     Asset("ANIM", "anim/replace_anim/player_attacks_old.zip"),

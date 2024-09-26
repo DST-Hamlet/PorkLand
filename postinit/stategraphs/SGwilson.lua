@@ -205,6 +205,18 @@ local eventhandlers = {
         inst.sg:GoToState("sanity_stun", data.duration)
         inst.components.sanity:DoDelta(-TUNING.SANITY_LARGE)
     end),
+    EventHandler("cower", function(inst, data)
+        --NOTE: cower DO knock you out of shell/bush hat
+        --      yawns do NOT affect:
+        --       sleeping
+        --       frozen
+        --       pinned
+        if not (inst.components.health:IsDead() or
+                inst.sg:HasStateTag("sleeping") or
+                inst.sg:HasStateTag("frozen")) then
+            inst.sg:GoToState("cower", data)
+        end
+    end),
 }
 
 local plant_symbols =
@@ -1704,7 +1716,7 @@ local states = {
             inst.AnimState:PlayAnimation("give")
             inst.AnimState:PushAnimation("give_pst", false)
             if inst.components.playercontroller then
-                inst.components.playercontroller:EnableMapControls(false)
+                -- inst.components.playercontroller:EnableMapControls(false)
                 inst.components.playercontroller:Enable(false)
             end
         end,
@@ -1722,7 +1734,7 @@ local states = {
             TimeEvent(19 * FRAMES, function(inst)
                 inst:ScreenFade(true, 0.4)
                 if inst.components.playercontroller then
-                    inst.components.playercontroller:EnableMapControls(true)
+                    -- inst.components.playercontroller:EnableMapControls(true)
                     inst.components.playercontroller:Enable(true)
                 end
                 inst.sg:RemoveStateTag("busy")
@@ -2351,7 +2363,9 @@ local states = {
         tags = {"busy", "nopredict", "nointerrupt"},
 
         onenter = function(inst, duration)
-            inst.components.playercontroller:Enable(false)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:Enable(false)
+            end
             inst.components.locomotor:Stop()
 
             inst.AnimState:PlayAnimation("idle_sanity_pre", false)
@@ -2372,10 +2386,78 @@ local states = {
         },
 
         onexit = function(inst)
-            inst.components.playercontroller:Enable(true)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:Enable(true)
+            end
             inst.sanity_stunned = false
             inst:PushEvent("sanity_stun_over")
         end
+    },
+
+    State{
+        name = "cower",
+        tags = {"busy", "cower", "pausepredict"},
+
+        onenter = function(inst, data)
+            inst.components.locomotor:Stop()
+            inst:ClearBufferedAction()
+
+            inst.AnimState:PlayAnimation("cower")
+        end,
+
+        timeline =
+        {
+
+        },
+
+        events =
+        {
+            EventHandler("grabbed", function(inst)
+                inst.sg:GoToState("grabbed")
+            end),
+        },
+    },
+
+    State{
+        name = "grabbed",
+        tags = {"busy", "pausepredict"},
+
+        onenter = function(inst, data)
+            inst:ShowHUD(false)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(false)
+                inst.components.playercontroller:Enable(false)
+            end
+            inst.AnimState:PlayAnimation("grab_loop")
+            inst.sg:SetTimeout(10)
+        end,
+
+        timeline =
+        {
+            TimeEvent(105 * FRAMES, function(inst)
+                inst:ScreenFade(false, 2)
+            end),
+        },
+
+        onexit = function(inst)
+            inst:SnapCamera()
+            inst:ShowHUD(true)
+            if inst.components.playercontroller then
+                inst.components.playercontroller:EnableMapControls(true)
+                inst.components.playercontroller:Enable(true)
+            end
+            inst:Show()
+            inst:ScreenFade(true, 2)
+            inst.DynamicShadow:Enable(true)
+        end,
+
+        events =
+        {
+            EventHandler("animover", function(inst)
+                inst:Hide()
+                inst.DynamicShadow:Enable(false)
+            end),
+        },
     },
 }
 
@@ -2610,29 +2692,6 @@ AddStategraphPostInit("wilson", function(sg)
         if equip and equip:HasTag("corkbat") then
             inst.sg:SetTimeout(23 * FRAMES)
         end
-    end
-
-    local _play_flute_onenter = sg.states["play_flute"].onenter
-    sg.states["play_flute"].onenter = function(inst, ...)
-        local inv_obj = inst.bufferedaction and inst.bufferedaction.invobject or nil
-
-        local _AnimState = inst.AnimState
-        local AnimState = setmetatable({}, {__index = function(t, k)
-            if k ~= "OverrideSymbol" then
-                return function(t, ...)
-                    return _AnimState[k](_AnimState, ...)
-                end
-            end
-
-            return function(t, override_symbol, build, symbol, ...)
-                return _AnimState:OverrideSymbol(override_symbol, inv_obj.flutebuild or "pan_flute", inv_obj.flutesymbol or "pan_flute01")
-            end
-        end})
-        rawset(inst, "AnimState", AnimState)
-
-        _play_flute_onenter(inst, ...)
-
-        rawset(inst, "AnimState", _AnimState)
     end
 
     local _hammer_start_onenter = sg.states["hammer_start"].onenter
