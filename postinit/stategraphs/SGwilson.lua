@@ -2694,29 +2694,6 @@ AddStategraphPostInit("wilson", function(sg)
         end
     end
 
-    local _play_flute_onenter = sg.states["play_flute"].onenter
-    sg.states["play_flute"].onenter = function(inst, ...)
-        local inv_obj = inst.bufferedaction and inst.bufferedaction.invobject or nil
-
-        local _AnimState = inst.AnimState
-        local AnimState = setmetatable({}, {__index = function(t, k)
-            if k ~= "OverrideSymbol" then
-                return function(t, ...)
-                    return _AnimState[k](_AnimState, ...)
-                end
-            end
-
-            return function(t, override_symbol, build, symbol, ...)
-                return _AnimState:OverrideSymbol(override_symbol, inv_obj.flutebuild or "pan_flute", inv_obj.flutesymbol or "pan_flute01")
-            end
-        end})
-        rawset(inst, "AnimState", AnimState)
-
-        _play_flute_onenter(inst, ...)
-
-        rawset(inst, "AnimState", _AnimState)
-    end
-
     local _hammer_start_onenter = sg.states["hammer_start"].onenter
     sg.states["hammer_start"].onenter = function(inst, ...)
         local action = inst:GetBufferedAction()
