@@ -16,6 +16,8 @@ local ROC_TIMER_NAME = "ROC_RESPAWN_TIMER"
 -- Public
 self.inst = inst
 
+self.nexttime = 0 -- 防止因为开启insight导致崩溃的占位符变量
+
 -- Private
 local _roc
 local _world = TheWorld
