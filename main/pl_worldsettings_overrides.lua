@@ -164,7 +164,6 @@ applyoverrides_pre.glowfly_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
-
 applyoverrides_pre.piko_setting = function(difficulty)
     local tuning_vars =
     {
@@ -389,7 +388,6 @@ applyoverrides_pre.hippopotamoose_setting = function(difficulty)
     OverrideTuningVariables(tuning_vars[difficulty])
 end
 
-
 applyoverrides_pre.pigbandit = function(difficulty)
     local tuning_vars =
     {
@@ -438,6 +436,20 @@ applyoverrides_pre.thunderbird_setting = function(difficulty)
         always = {
             THUNDERBIRDNEST_REGEN_TIME = TUNING.TOTAL_DAY_TIME * 1,
         },
+    }
+    OverrideTuningVariables(tuning_vars[difficulty])
+end
+
+applyoverrides_pre.roc_setting = function(difficulty)
+    local tuning_vars = {
+        never = {
+            ROC_ENABLED = false
+        },
+        --[[
+        default = {
+            ROC_ENABLED = true
+        }
+        ]]
     }
     OverrideTuningVariables(tuning_vars[difficulty])
 end

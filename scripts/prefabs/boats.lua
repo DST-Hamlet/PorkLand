@@ -157,7 +157,7 @@ local function commonfn()
     inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
-    inst.Physics:SetCylinder(0.25, 2)
+    inst.Physics:SetCapsule(0.25, 1.5)
     inst.Transform:SetFourFaced()
     inst.MiniMapEntity:SetPriority(5)
 
