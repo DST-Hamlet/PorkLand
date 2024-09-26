@@ -104,7 +104,7 @@ function self:SpawnRocToPlayer(player)
         return false
     end
 
-    if not player then
+    if not player or player:HasTag("inside_interior") then
         return false
     end
 
