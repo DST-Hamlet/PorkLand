@@ -52,6 +52,7 @@ local function OnItemGet(inst, data)
 end
 
 local function OnItemLose(inst, data)
+    local activeitem = data.activeitem
     local item = data.prev_item
     if not item then
         return
@@ -66,7 +67,7 @@ local function OnItemLose(inst, data)
         end
     end
 
-    if item.prefab == "key_to_city" and not item.activeitem then
+    if item.prefab == "key_to_city" and not activeitem then
         inst.components.builder.city_bonus = 0
     end
 end
