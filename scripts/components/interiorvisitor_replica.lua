@@ -150,7 +150,7 @@ function InteriorVisitor:OnUpdate()
         end
     end
 
-    if last_center_ent then
+    if last_center_ent and last_center_ent ~= room_center_ent then
         self.interior_door_status[last_center_ent] = nil
     end
 end
