@@ -1006,7 +1006,7 @@ AddStategraphPostInit("wilson_client", function(sg)
                     return "blunderbuss"
                 end
             end
-            return _attack_deststate and _attack_deststate(inst, ...)
+            return _attack_deststate and _attack_deststate(inst, action, ...)
         end
     end
 

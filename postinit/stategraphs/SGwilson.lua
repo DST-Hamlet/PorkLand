@@ -2497,13 +2497,13 @@ AddStategraphPostInit("wilson", function(sg)
     DoWortoxPortalTint = ToolUtil.GetUpvalue(_portal_jumpin_onupdate, "DoWortoxPortalTint")
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
-    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
+    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, action, ...)
         if not inst.sg:HasStateTag("sneeze") then
             local weapon = inst.components.combat ~= nil and inst.components.combat:GetWeapon()
             if weapon and weapon:HasTag("blunderbuss_loaded") then
                 return "blunderbuss"
             end
-            return _attack_deststate and _attack_deststate(inst, ...)
+            return _attack_deststate and _attack_deststate(inst, action, ...)
         end
     end
 
