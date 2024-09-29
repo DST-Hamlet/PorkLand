@@ -333,7 +333,15 @@ endtimeline =
         end
     end),
 },
-}, nil, true)
+}, {
+    walk = function(inst)
+        inst.sg.mem.altwalk = not inst.sg.mem.altwalk -- 左右脚交替走路
+        if not inst.onwater and inst.sg.mem.altwalk then
+            return "walk_loop_alt"
+        end
+        return "walk_loop"
+    end
+}, true)
 
 CommonStates.AddSleepStates(states, {
 starttimeline =
