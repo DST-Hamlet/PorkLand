@@ -525,7 +525,7 @@ inst:StartUpdatingComponent(self)
 
 function self:OnUpdate(dt)
     for k, v in pairs(_intensities) do
-        if v then
+        if v and _soundemitter then
             _soundemitter:SetParameter(k, v.paramname, v.paramval) -- 每帧只对同一个音效执行一次SetParameter, 不然会出问题
         end
         _intensities[k] = nil
