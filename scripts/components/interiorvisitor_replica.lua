@@ -104,6 +104,7 @@ function InteriorVisitor:OnUpdate()
     local ambientlighting = TheWorld.components.ambientlighting
     local last_center_ent = self.last_center_ent
     local room_center_ent = TheWorld.components.interiorspawner:GetInteriorCenter(self.inst:GetPosition())
+
     if IsInInteriorRectangle(self.inst:GetPosition(), room_center_ent) then
         self:ApplyInteriorCamera(room_center_ent)
 
@@ -147,6 +148,10 @@ function InteriorVisitor:OnUpdate()
 
             TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex")) -- enable clouds again
         end
+    end
+
+    if last_center_ent and last_center_ent ~= room_center_ent then
+        self.interior_door_status[last_center_ent] = nil
     end
 end
 
