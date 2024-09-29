@@ -689,15 +689,55 @@ AddRecipe2("swinging_light_floral_bloomer",     {Ingredient("oinc", 12)}, TECH.H
 AddRecipe2("swinging_light_tophat",             {Ingredient("oinc", 12)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "swinging_light_tophat_placer",             image = "reno_light_tophat.tex"},             {"HOME_HANGINGLAMP"})
 AddRecipe2("swinging_light_derby",              {Ingredient("oinc", 12)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, placer = "swinging_light_derby_placer",              image = "reno_light_derby.tex"},              {"HOME_HANGINGLAMP"})
 
--- -- DOORS
-AddRecipe2("wood_door",     {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "wood_door_placer",    image = "wood_door.tex"},    {"HOME_DOOR"})
-AddRecipe2("stone_door",    {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "stone_door_placer",   image = "stone_door.tex"},   {"HOME_DOOR"})
-AddRecipe2("organic_door",  {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "organic_door_placer", image = "organic_door.tex"}, {"HOME_DOOR"})
-AddRecipe2("iron_door",     {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "iron_door_placer",    image = "iron_door.tex"},    {"HOME_DOOR"})
-AddRecipe2("curtain_door",  {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "curtain_door_placer", image = "curtain_door.tex"}, {"HOME_DOOR"})
-AddRecipe2("plate_door",    {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "plate_door_placer",   image = "plate_door.tex"},   {"HOME_DOOR"})
-AddRecipe2("round_door",    {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "round_door_placer",   image = "round_door.tex"},   {"HOME_DOOR"})
-AddRecipe2("pillar_door",   {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR,  placer = "pillar_door_placer",  image = "pillar_door.tex"},  {"HOME_DOOR"})
+-- DOORS
+local function GetDoorDirection(pt)
+    local center = TheWorld.components.interiorspawner:GetInteriorCenter(pt)
+    local origin = center:GetPosition()
+    local delta = pt - origin
+    if math.abs(delta.x) > math.abs(delta.z) then
+        -- north or south
+        if delta.x > 0 then
+            return "south"
+        else
+            return "north"
+        end
+    else
+        -- east or west
+        if delta.z < 0 then
+            return "west"
+        else
+            return "east"
+        end
+    end
+end
+
+-- Check if the door is facing the initial room's exit
+local function CanBuildHouseDoor(recipe, builder, pt)
+    local interior_spawner = TheWorld.components.interiorspawner
+    if not interior_spawner:IsInInteriorRegion(pt.x, pt.z) then
+        return false
+    end
+    local room_id = interior_spawner:PositionToIndex(pt)
+    local house_id = interior_spawner:GetPlayerHouseByRoomId(room_id)
+    if not house_id then
+        return false
+    end
+    -- Just test if it's pointing north and that room is the origin room for now
+    if GetDoorDirection(pt) == "north" then
+        local x, y = interior_spawner:GetPlayerRoomInDirection(house_id, room_id, interior_spawner:GetNorth())
+        return (x and y) and not (x == 0 and y == 0)
+    end
+    return true
+end
+
+AddRecipe2("wood_door",     {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, canbuild = CanBuildHouseDoor, placer = "wood_door_placer",    image = "wood_door.tex"},    {"HOME_DOOR"})
+AddRecipe2("stone_door",    {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, canbuild = CanBuildHouseDoor, placer = "stone_door_placer",   image = "stone_door.tex"},   {"HOME_DOOR"})
+AddRecipe2("organic_door",  {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, canbuild = CanBuildHouseDoor, placer = "organic_door_placer", image = "organic_door.tex"}, {"HOME_DOOR"})
+AddRecipe2("iron_door",     {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, canbuild = CanBuildHouseDoor, placer = "iron_door_placer",    image = "iron_door.tex"},    {"HOME_DOOR"})
+AddRecipe2("curtain_door",  {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, canbuild = CanBuildHouseDoor, placer = "curtain_door_placer", image = "curtain_door.tex"}, {"HOME_DOOR"})
+AddRecipe2("plate_door",    {Ingredient("oinc", 15)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, canbuild = CanBuildHouseDoor, placer = "plate_door_placer",   image = "plate_door.tex"},   {"HOME_DOOR"})
+AddRecipe2("round_door",    {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, canbuild = CanBuildHouseDoor, placer = "round_door_placer",   image = "round_door.tex"},   {"HOME_DOOR"})
+AddRecipe2("pillar_door",   {Ingredient("oinc", 20)}, TECH.HOME, {nounlock = true, build_mode = BUILDMODE.HOME_DECOR, canbuild = CanBuildHouseDoor, placer = "pillar_door_placer",  image = "pillar_door.tex"},  {"HOME_DOOR"})
 
 AddRecipe2("construction_permit", {Ingredient("oinc", 50)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})
 AddRecipe2("demolition_permit",   {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true}, {"HOME_DOOR"})

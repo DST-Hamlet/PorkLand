@@ -984,7 +984,7 @@ end
 
 ---@return number|nil x
 ---@return number|nil y
-function InteriorSpawner:GetPlayerRoomIndexByID(house_id, room_id)
+function InteriorSpawner:GetPlayerRoomIndexById(house_id, room_id)
     if self.player_houses[house_id] then
         local data = self.player_houses[house_id][room_id]
         if data then
@@ -1013,7 +1013,7 @@ function InteriorSpawner:GetPlayerRoomInDirection(house_id, room_from_id, direct
     end
 
     -- assuming interior <room_from_id> exists
-    local x, y = self:GetPlayerRoomIndexByID(house_id, room_from_id)
+    local x, y = self:GetPlayerRoomIndexById(house_id, room_from_id)
     return self:GetPlayerRoomIdByIndex(house_id, x + direction.x, y + direction.y)
 end
 
@@ -1028,7 +1028,7 @@ end
 -- surrounding mean can be connected with a door, so each room has max 4 surrounding rooms
 function InteriorSpawner:GetSurroundingPlayerRooms(house_id, room_id)
     local rooms = {}
-    local x, y = self:GetPlayerRoomIndexByID(house_id, room_id)
+    local x, y = self:GetPlayerRoomIndexById(house_id, room_id)
     if not x then
         return rooms
     end
@@ -1065,12 +1065,12 @@ function InteriorSpawner:GetConnectedSurroundingPlayerRooms(house_id, id, exclud
 
     local x, y, z = center.Transform:GetWorldPosition()
     local doors = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
-    local curr_x, curr_y = self:GetPlayerRoomIndexByID(house_id, id)
+    local curr_x, curr_y = self:GetPlayerRoomIndexById(house_id, id)
 
     for _, door in pairs(doors) do
         if door.prefab ~= "prop_door" then
             local target_interior = door.components.door.target_interior
-            local target_x, target_y = self:GetPlayerRoomIndexByID(house_id, target_interior)
+            local target_x, target_y = self:GetPlayerRoomIndexById(house_id, target_interior)
 
             if target_y > curr_y then -- North door
                 found_doors["north"] = target_interior
@@ -1175,7 +1175,7 @@ function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior
         checked_rooms[current_interior_id] = true
         reached_rooms = reached_rooms + 1
 
-        local index_x, index_y = self:GetPlayerRoomIndexByID(house_id, current_interior_id)
+        local index_x, index_y = self:GetPlayerRoomIndexById(house_id, current_interior_id)
         if index_x == 0 and index_y == 0 then
             connected_to_exit = true
         end

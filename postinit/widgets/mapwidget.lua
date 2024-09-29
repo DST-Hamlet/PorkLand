@@ -364,7 +364,9 @@ scheduler:ExecuteInTime(0, function()
 
             local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
             local interiorvisitor = self.owner.replica.interiorvisitor
-            if interiorvisitor.interior_map_icons_override then
+            -- Checking self.interior_map_widgets.rooms[current_room_id] here
+            -- because we can get teleported out of the interior during debugging
+            if self.interior_map_widgets.rooms[current_room_id] and interiorvisitor.interior_map_icons_override then
                 local new_icons, has_new_icons = DiffWidget(self, interiorvisitor.interior_map_icons_override, current_room_id)
                 self.interior_map_widgets.rooms[current_room_id].icons = new_icons
                 if has_new_icons then
