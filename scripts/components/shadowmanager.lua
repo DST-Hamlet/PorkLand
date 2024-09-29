@@ -62,7 +62,7 @@ function ShadowManager:OnUpdate(dt)
         local inst = Ents[GUID]
         if inst then
             local data1, data2, data3, data4 = inst.AnimState:GetMultColour()
-            if data.sources > 0 then -- should increase shade to full				
+            if data.sources > 0 then -- should increase shade to full
                 if data.shade.r ~= data.shadetotal.r then
                     data1, data.shade.r = GetShadeUp(dt, data1, data.shaderate.r, data.shade.r, data.shadetotal.r)
                 end
@@ -72,7 +72,7 @@ function ShadowManager:OnUpdate(dt)
                 if data.shade.b ~= data.shadetotal.b then
                     data3, data.shade.b = GetShadeUp(dt, data3, data.shaderate.b, data.shade.b, data.shadetotal.b)
                 end
-            else  -- decrease till none				
+            else  -- decrease till none
                 if data.shade.r ~= 0 then
                     data1, data.shade.r = GetShadeDown(dt,data1,data.shaderate.r,data.shade.r, data.shadetotal.r)
                 end

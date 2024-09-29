@@ -80,7 +80,7 @@ end
 
 local function OnLoadPostPass(inst, ents, data)
     if data.queen_guid and ents[data.queen_guid] then
-        local queen = ents[data.queen_guid].entity
+        inst.queen = ents[data.queen_guid].entity
         if inst.queen and inst.queen:IsValid() then
             inst.queen:WarriorKilled()
         end

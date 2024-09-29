@@ -139,8 +139,6 @@ local function fn()
 
     inst:DoTaskInTime(0, function()
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/fountain_LP", "burble")
-        local drop = nil
-        local plant = nil
         if inst.dry then
             inst:OnDeactivate()
         end

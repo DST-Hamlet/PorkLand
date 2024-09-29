@@ -1,14 +1,14 @@
 local HEADDIST = 17
-local HEADDIST_TARGET = 15
-local BODY_DIST_TOLLERANCE = 2
+-- local HEADDIST_TARGET = 15
+-- local BODY_DIST_TOLLERANCE = 2
 
-local TAILDIST = 13
+-- local TAILDIST = 13
 
-local LEGDIST = 6
-local LEG_WALKDIST = 4
-local LEG_WALKDIST_BIG = 6
-local LAND_PROX = 15 --7
-local DISTANCE_FROM_WATER_OR_IMPASSABLE = 8
+-- local LEGDIST = 6
+-- local LEG_WALKDIST = 4
+-- local LEG_WALKDIST_BIG = 6
+-- local LAND_PROX = 15 --7
+-- local DISTANCE_FROM_WATER_OR_IMPASSABLE = 8
 
 local FIND_TARGET_DIST = 40
 
@@ -36,7 +36,6 @@ local function TryFindLand(inst)
     end
 
     local start_angle = math.random() * 360
-    local landpoints = {}
     local steps = 16
     for i = 1, steps do
         local testangle = start_angle + 360 / steps
@@ -48,7 +47,7 @@ local function TryFindLand(inst)
 end
 
 local function FlyBehaviorUpdate(inst, dt, currentdata, braindata)
-    local x, y, z = inst.Transform:GetWorldPosition()
+    local x, _, z = inst.Transform:GetWorldPosition()
 
     local isinimpassable = TheWorld.Map:IsImpassableAtPoint(x, 0, z)
 
@@ -101,7 +100,6 @@ local function FlyBehaviorUpdate(inst, dt, currentdata, braindata)
 end
 
 local function TryFindHeadTarget(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
     local x, y, z = inst.Transform:GetWorldPosition()
 
     local head = inst.bodyparts.head

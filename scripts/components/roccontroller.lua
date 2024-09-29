@@ -388,7 +388,7 @@ function RocController:MoveBodyParts(dt, player)
         local vel = math.max( math.sqrt((self.body_vel.x * self.body_vel.x) + (self.body_vel.z * self.body_vel.z)) - (BOD_ACC_MAX*dt) , 0)
         self.body_vel = Vector3(vel * math.cos( angle ), 0, -vel * math.sin( angle ))
     end
-    self.inst.Transform:SetPosition(pos.x+(self.body_vel.x * dt),0,pos.z+(self.body_vel.z *dt)	)
+    self.inst.Transform:SetPosition(pos.x+(self.body_vel.x * dt),0,pos.z+(self.body_vel.z *dt))
 
     --TAIL
     angle = self.inst.Transform:GetRotation() * DEGREES + PI
@@ -496,7 +496,6 @@ function RocController:OnUpdate(dt)
     local scale_sq = self.inst.Transform:GetScale() * self.inst.Transform:GetScale()
 
     if player then
-        local px, py, pz = player.Transform:GetWorldPosition()
         local player_on_valid_tile = is_player_on_valid_tile(player)
 
         if self.liftoff then
