@@ -11,7 +11,7 @@ local _HasResistance = Resistance.HasResistance
 function Resistance:HasResistance(attacker, weapon)
     if self.not_tags then
         for _, tag in pairs(self.not_tags) do
-            if attacker:HasTag(tag) then
+            if attacker and attacker:HasTag(tag) then
                 return false
             end
         end
