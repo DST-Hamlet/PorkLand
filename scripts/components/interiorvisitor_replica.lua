@@ -13,8 +13,7 @@ local InteriorVisitor = Class(function(self, inst)
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
     self.interior_map = {}
-    self.interior_map_icons_override = nil
-    self.interior_door_status = {}
+    self.local_interior_map_override = {}
 
     self.ininterior = false
 
@@ -83,11 +82,19 @@ end
 
 function InteriorVisitor:UpdateInteriorMinimap()
     local center = self.center_ent:value()
+    if not center then
+        self.local_interior_map_override = {}
+        return
+    end
+
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.inst:GetPosition())
-    local current_room_data = self.interior_map[current_room_id]
-    if current_room_data and center then
-        self.interior_map_icons_override = {
-            [current_room_id] = center:CollectMinimapIcons()
+    if self.interior_map[current_room_id] then
+        self.local_interior_map_override = {
+            [current_room_id] = {
+                icons = center:CollectMinimapIcons(),
+                -- minimap_floor_texture = center:CollectMinimapIcons(),
+                -- doors = center:CollectMinimapIcons(),
+            }
         }
     end
 end
@@ -149,10 +156,6 @@ function InteriorVisitor:OnUpdate()
             TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex")) -- enable clouds again
         end
     end
-
-    if last_center_ent and last_center_ent ~= room_center_ent then
-        self.interior_door_status[last_center_ent] = nil
-    end
 end
 
 function InteriorVisitor:GetCenterEnt()
@@ -185,26 +188,6 @@ function InteriorVisitor:RemoveInteriorMapData(id)
         self.interior_map[id] = nil
         self.inst:PushEvent("refresh_interior_minimap")
     end
-end
-
-local function get_door_id(current_room_id, target_interior_id)
-    if current_room_id < target_interior_id then
-        return tostring(current_room_id) .. "-" .. tostring(target_interior_id)
-    else
-        return tostring(target_interior_id) .. "-" .. tostring(current_room_id)
-    end
-end
-
--- Receiving from interior_door client RPC
-function InteriorVisitor:OnNewInteriorDoorData(data)
-    if not data or not data.target_interior then
-        return
-    end
-    -- only getting data for current room
-    if not self.interior_door_status[data.current_interior] then
-        self.interior_door_status[data.current_interior] = {}
-    end
-    self.interior_door_status[data.current_interior][get_door_id(data.current_interior, data.target_interior)] = data
 end
 
 -- function InteriorVisitor:OnRemoveFromEntity()

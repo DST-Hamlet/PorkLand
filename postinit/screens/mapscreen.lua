@@ -49,6 +49,7 @@ end
 function MapScreen:OnLeaveInterior()
     self.inst:DoTaskInTime(0, function()
         self.minimap.minimap:ResetOffset()
+        self.minimap:ClearInteriorMinimap()
     end)
 end
 

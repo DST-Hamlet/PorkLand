@@ -344,8 +344,7 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         end
     end
 
-    -- Fallback to mini_floor_wood
-    local minimap_floor_texture = inst:GetFloorMinimapTex() or "mini_floor_wood.tex"
+    local minimap_floor_texture = inst:GetFloorMinimapTex()
 
     return {
         uuid = inst.uuid,

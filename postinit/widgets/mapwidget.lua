@@ -88,7 +88,9 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     visited_rooms[current_room_id] = true
     local room = data[current_room_id]
 
-    local room_tile = Image("levels/textures/map_interior/" .. room.minimap_floor_texture .. ".xml", room.minimap_floor_texture .. ".tex")
+    -- Fallback to mini_floor_wood
+    local minimap_floor_texture = room.minimap_floor_texture == "" and "mini_floor_wood" or room.minimap_floor_texture
+    local room_tile = Image("levels/textures/map_interior/" .. minimap_floor_texture .. ".xml", minimap_floor_texture .. ".tex")
     room_tile.position_offset = offset
     room_tile.tile_scale_x = room.width / INTERIOR_MINIMAP_TILE_SCALE
     room_tile.tile_scale_y = room.depth / INTERIOR_MINIMAP_TILE_SCALE
@@ -160,9 +162,8 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     end
 end
 
-local function DiffWidget(self, incoming_data, room_id)
-    local incoming_icons = incoming_data[room_id]
-    local current_data = self.interior_map_widgets.rooms[room_id]
+local function DiffWidget(self, current_data, incoming_data, room_id)
+    local incoming_icons = incoming_data.icons
     local current_icons = current_data.icons
     if not incoming_icons then
         return current_icons, false
@@ -236,65 +237,8 @@ local function UpdateDoorWidgetStatus(door_widget, data)
     end
 end
 
--- See below (end of this file)
--- local on_update = MapWidget.OnUpdate
--- function MapWidget:OnUpdate(...)
---     on_update(self, ...)
-
---     if not (self.interior_map_widgets and self.shown) then
---         return
---     end
-
---     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
---     local interiorvisitor = self.owner.replica.interiorvisitor
---     if interiorvisitor.interior_map_icons_override then
---         local new_icons, has_new_icons = DiffWidget(self, interiorvisitor.interior_map_icons_override, current_room_id)
---         self.interior_map_widgets.rooms[current_room_id].icons = new_icons
---         if has_new_icons then
---             for _, door in pairs(self.interior_map_widgets.doors) do
---                 door:MoveToFront()
---             end
---             for _, room in pairs(self.interior_map_widgets.rooms) do
---                 for _, icon_data in ipairs(room.icons) do
---                     icon_data.widget:MoveToFront()
---                 end
---             end
---         end
---         interiorvisitor.interior_map_icons_override = nil
---     end
-
---     local scale = 0.75 / self.minimap:GetZoom()
---     for _, rooms in pairs(self.interior_map_widgets.rooms) do
---         UpdateWidgetPositionScale(rooms.frame, scale * INTERIOR_BG_SCALE)
---         UpdateTileWidgetPositionScale(rooms.tile, scale * INTERIOR_BG_SCALE * INTERIOR_TILE_SCALE)
-
---         for _, icon_data in ipairs(rooms.icons) do
---             UpdateWidgetPositionScale(icon_data.widget, scale)
---         end
---     end
---     for door_id, door in pairs(self.interior_map_widgets.doors) do
---         UpdateWidgetPositionScale(door, scale * INTERIOR_DOOR_SCALE)
---         if interiorvisitor.interior_door_status[current_room_id] then
---             UpdateDoorWidgetStatus(door, interiorvisitor.interior_door_status[current_room_id][door_id])
---         end
---     end
--- end
-
 function MapWidget:ApplyInteriorMinimap()
-    if self.interior_map_widgets then
-        for _, room in pairs(self.interior_map_widgets.rooms) do
-            room.tile:Kill()
-            room.frame:Kill()
-        end
-        for _, door in pairs(self.interior_map_widgets.doors) do
-            door:Kill()
-        end
-        for _, room in pairs(self.interior_map_widgets.rooms) do
-            for _, icon_data in ipairs(room.icons) do
-                icon_data.widget:Kill()
-            end
-        end
-    end
+    self:ClearInteriorMinimap()
 
     local data = self.owner.replica.interiorvisitor.interior_map
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
@@ -334,10 +278,36 @@ function MapWidget:ApplyInteriorMinimap()
         -- Hide the normal minimap
         self.img:Hide()
         self.interior_frontend:MoveToFront()
+
+        local local_interior_map_override = self.owner.replica.interiorvisitor.local_interior_map_override[current_room_id]
+        if local_interior_map_override then
+            local_interior_map_override.applied = nil
+        end
+
+        self:OnUpdate(0)
     end
 end
 
--- Delay a frame since we have higher priority
+function MapWidget:ClearInteriorMinimap()
+    if self.interior_map_widgets then
+        for _, room in pairs(self.interior_map_widgets.rooms) do
+            room.tile:Kill()
+            room.frame:Kill()
+        end
+        for _, door in pairs(self.interior_map_widgets.doors) do
+            door:Kill()
+        end
+        for _, room in pairs(self.interior_map_widgets.rooms) do
+            for _, icon_data in ipairs(room.icons) do
+                icon_data.widget:Kill()
+            end
+        end
+        self.interior_map_widgets = nil
+    end
+    self.img:Show()
+end
+
+-- Delay a frame so this is loaded after Global Positions to OnUpdate compatible with it
 scheduler:ExecuteInTime(0, function()
     AddClassPostConstruct("widgets/mapwidget", function(self)
         self.bg.inst.ImageWidget:SetTexture("images/pl_hud.xml", "blackbg.tex")
@@ -357,7 +327,6 @@ scheduler:ExecuteInTime(0, function()
         self.interior_frontend:AddChild(self.centerreticle)
         self.centerreticle:MoveToFront()
 
-        -- Do it here instead to be compatible with Global Positions
         local on_update = self.OnUpdate
         self.OnUpdate = function(self, ...)
             on_update(self, ...)
@@ -370,9 +339,11 @@ scheduler:ExecuteInTime(0, function()
             local interiorvisitor = self.owner.replica.interiorvisitor
             -- Checking self.interior_map_widgets.rooms[current_room_id] here
             -- because we can get teleported out of the interior during debugging
-            if self.interior_map_widgets.rooms[current_room_id] and interiorvisitor.interior_map_icons_override then
-                local new_icons, has_new_icons = DiffWidget(self, interiorvisitor.interior_map_icons_override, current_room_id)
-                self.interior_map_widgets.rooms[current_room_id].icons = new_icons
+            local current_data = self.interior_map_widgets.rooms[current_room_id]
+            local local_interior_map_override = interiorvisitor.local_interior_map_override[current_room_id]
+            if current_data and local_interior_map_override and not local_interior_map_override.applied then
+                local new_icons, has_new_icons = DiffWidget(self, current_data, local_interior_map_override, current_room_id)
+                current_data.icons = new_icons
                 if has_new_icons then
                     for _, door in pairs(self.interior_map_widgets.doors) do
                         door:MoveToFront()
@@ -383,7 +354,7 @@ scheduler:ExecuteInTime(0, function()
                         end
                     end
                 end
-                interiorvisitor.interior_map_icons_override = nil
+                local_interior_map_override.applied = true
             end
 
             local scale = 0.75 / self.minimap:GetZoom()
@@ -397,9 +368,6 @@ scheduler:ExecuteInTime(0, function()
             end
             for door_id, door in pairs(self.interior_map_widgets.doors) do
                 UpdateWidgetPositionScale(door, scale * INTERIOR_DOOR_SCALE)
-                if interiorvisitor.interior_door_status[current_room_id] then
-                    UpdateDoorWidgetStatus(door, interiorvisitor.interior_door_status[current_room_id][door_id])
-                end
             end
         end
         self.interior_frontend:MoveToFront()
