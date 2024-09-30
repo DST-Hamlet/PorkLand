@@ -248,7 +248,7 @@ local function DoDive(inst)
     end
 
     -- allow water but not interior
-    if player and player:IsValid() and not player:HasTag("inside_interior") and inst:IsOnPassablePoint(true) then
+    if player and player:IsValid() and not player:GetIsInInterior() and inst:IsOnPassablePoint(true) then
         local bat = SpawnPrefab("vampirebat")
         local spawn_point = inst:GetPosition()
         if bat and spawn_point then

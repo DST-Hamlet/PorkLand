@@ -76,7 +76,7 @@ function self:SpawnRoc()
 
     local players = {}
     for _, player in pairs(_active_players) do
-        if not player:HasTag("inside_interior") then
+        if not player:GetIsInInterior() then
             table.insert(players, player)
         end
     end
@@ -106,7 +106,7 @@ function self:SpawnRocToPlayer(player)
         return false
     end
 
-    if not player or player:HasTag("inside_interior") then
+    if not player or player:GetIsInInterior() then
         return false
     end
 

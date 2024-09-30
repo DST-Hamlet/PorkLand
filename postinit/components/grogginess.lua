@@ -61,7 +61,7 @@ function Grogginess.OnFogProofChange(inst, data)
     local hotitems = self:HasOverHeatinggear()
 
     if self.foggygroggy then
-        self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil and not self.inst:HasTag("inside_interior")  -- if equip venting
+        self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil and not self.inst:GetIsInInterior()  -- if equip venting
 
         if not self.foggygroggy then
             if inst.components.talker then
@@ -71,7 +71,7 @@ function Grogginess.OnFogProofChange(inst, data)
         end
     end
 
-    self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil and not self.inst:HasTag("inside_interior")
+    self.foggygroggy = TheWorld.state.fullfog and hotitems ~= nil and not self.inst:GetIsInInterior()
 
     if not self.foggygroggy then
         return

@@ -164,7 +164,7 @@ AddPlayerPostInit(function(inst)
 
     local _IsInLight = inst.IsInLight
     function inst:IsInLight()
-        if inst:HasTag("inside_interior") then
+        if inst:GetIsInInterior() then
             local pos = inst:GetPosition()
             return TheSim:GetLightAtPoint(pos.x, pos.y, pos.z, 0.1) > 0.1
         else
