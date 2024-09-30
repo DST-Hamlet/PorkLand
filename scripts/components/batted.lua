@@ -35,6 +35,7 @@ self.inst = inst
 -- Private
 local _spawnmode = "normal"
 local _active_players = {}
+local target_players = {}
 local _batcaves = {}
 local _bats = {}
 local _bats_to_attack = {}
@@ -42,6 +43,7 @@ local _bat_count = 0
 local _bat_regen_time = 0
 local _bat_attack_time = 0
 local _bat_per_player = 0
+local _bat_remainder = 0
 local _time_modifiers = SourceModifierList(inst, 1)
 
 --------------------------------------------------------------------------
@@ -165,6 +167,13 @@ local function IsBatSuitableForAttack(bat)
 end
 
 local function CollectBatsForAttack()
+    for _, player in pairs(_active_players) do
+        if not player:HasTag("inside_interior") then
+            table.insert(target_players, player)
+        end
+    end
+    shuffleArray(target_players)
+
     local suitable_bat_count = 0
     for _, bat in pairs(_bats) do
         if IsBatSuitableForAttack(bat) then
@@ -175,7 +184,8 @@ local function CollectBatsForAttack()
 
     -- Equally split among all players, each player gets at least 1 bat,
     -- if there are less bats than players, some players will not be attacked
-    _bat_per_player = math.floor(suitable_bat_count / math.max(GetTableSize(_active_players), 1))
+    _bat_per_player = suitable_bat_count / math.max(GetTableSize(target_players), 1)
+    _bat_remainder = suitable_bat_count % math.max(GetTableSize(target_players), 1)
 end
 
 local function GetSpawnPointForPlayer(player)
@@ -201,13 +211,18 @@ local function SpawnBatsForPlayer(player)
         return false
     end
 
-    player:DoTaskInTime(5, function() player.components.talker:Say(GetString(player.prefab, "ANNOUCE_BATS")) end)
-
     local num_spawned = 0
     local mark_for_remove = {}
     for key, bat in pairs(_bats_to_attack) do
         if num_spawned >= _bat_per_player then
             break
+        end
+
+        if num_spawned >= math.floor(_bat_per_player) then
+            if (_bat_remainder <= 0) then
+                break
+            end
+            _bat_remainder = _bat_remainder - 1
         end
 
         local spawn_point = GetSpawnPointForPlayer(player)
@@ -226,6 +241,10 @@ local function SpawnBatsForPlayer(player)
 
             num_spawned = num_spawned + 1
         end
+    end
+
+    if num_spawned > 0 then
+        player:DoTaskInTime(5, function() player.components.talker:Say(GetString(player.prefab, "ANNOUCE_BATS")) end)
     end
 
     for _, key in pairs(mark_for_remove) do
@@ -338,18 +357,29 @@ function self:OnUpdate(dt)
     _bat_attack_time = _bat_attack_time - dt
     if _bat_attack_time <= 0 then
         CollectBatsForAttack()
+        local spawnfailed = false
+
         if next(_bats_to_attack) then
             local no_bat_left
-            for _, player in pairs(_active_players) do
-                no_bat_left = SpawnBatsForPlayer(player)
-                if no_bat_left then
-                    break
+            if #target_players > 0 then
+                for _, player in pairs(target_players) do
+                    no_bat_left = SpawnBatsForPlayer(player)
+                    if no_bat_left then
+                        break
+                    end
                 end
+            else
+                spawnfailed = true
+                print("bat attack cant find any available player")
             end
-            _bats_to_attack = {} -- reset it since all bats were removed from table
+            _bats_to_attack = {} -- reset it since all bats were removed
         end
 
-        _bat_attack_time = GetNextAttackTime()
+        if spawnfailed then
+            _bat_attack_time = GetNextAttackTime() / 5
+        else
+            _bat_attack_time = GetNextAttackTime()
+        end
     end
 
     -- slowly fill bat caves on a timer.
@@ -389,18 +419,30 @@ function self:LongUpdate(dt)
         else
             dt_bat_attack = dt_bat_attack - _bat_attack_time
             CollectBatsForAttack()
+            local spawnfailed = false
+
             if next(_bats_to_attack) then
                 local no_bat_left
-                for _, player in pairs(_active_players) do
-                    no_bat_left = SpawnBatsForPlayer(player)
-                    if no_bat_left then
-                        break
+                local target_players = {}
+                if #target_players > 0 then
+                    for _, player in pairs(target_players) do
+                        no_bat_left = SpawnBatsForPlayer(player)
+                        if no_bat_left then
+                            break
+                        end
                     end
+                else
+                    spawnfailed = true
+                    print("bat attack cant find any available player")
                 end
                 _bats_to_attack = {} -- reset it since all bats were removed
             end
 
-            _bat_attack_time = GetNextAttackTime()
+            if spawnfailed then
+                _bat_attack_time = GetNextAttackTime() / 5
+            else
+                _bat_attack_time = GetNextAttackTime()
+            end
         end
     end
 end
