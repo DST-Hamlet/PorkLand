@@ -271,6 +271,30 @@ local function sort_priority(a, b)
     return a.priority < b.priority
 end
 
+local function CollectLocalDoorMinimap(inst, ignore_non_cacheable)
+    local position = inst:GetPosition()
+    local radius = inst:GetSearchRadius()
+    local doors = {}
+    for _, door in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, {"interior_door"})) do
+        local door_direction
+        for _, direction in ipairs(DIRECTION_NAMES) do
+            if door:HasTag("door_"..direction) then
+                door_direction = direction
+                break
+            end
+        end
+        if door_direction then
+            doors[door_direction] = {
+                hidden = door:HasTag("door_hidden"),
+                disabled = door:HasTag("door_disabled"),
+            }
+        else
+            print("This door doesn't have a direction!", door)
+        end
+    end
+    return doors
+end
+
 local function CollectMinimapIcons(inst, ignore_non_cacheable)
     local position = inst:GetPosition()
     local width = inst:GetWidth()
@@ -557,6 +581,7 @@ local function fn()
     inst.GetIsSingleRoom = GetIsSingleRoom
     inst.HasInteriorMinimap = HasInteriorMinimap
     inst.CollectMinimapIcons = CollectMinimapIcons
+    inst.CollectLocalDoorMinimap = CollectLocalDoorMinimap
     inst.HasInteriorTag = HasInteriorTag
 
     inst:AddComponent("interiorpathfinder")

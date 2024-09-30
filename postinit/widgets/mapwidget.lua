@@ -136,13 +136,9 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
             door_icon.position_offset = offset + door_icon_offset
             if door_data.hidden then
                 door_icon:Hide()
-            else
-                door_icon:Show()
-                if not door_data.disabled then
-                    door_icon.lock:Hide()
-                else
-                    door_icon.lock:Show()
-                end
+            end
+            if not door_data.disabled then
+                door_icon.lock:Hide()
             end
             widgets.doors[door_id] = door_icon
         end
@@ -163,15 +159,42 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
 end
 
 local function DiffWidget(self, current_data, incoming_data, room_id)
-    local incoming_icons = incoming_data.icons
-    local current_icons = current_data.icons
-    if not incoming_icons then
-        return current_icons, false
-    end
-
     local result_icons = {}
     local result_icons_set = {}
     local has_new_icons = false
+
+    local incoming_icons = incoming_data.icons
+    local current_icons = current_data.icons
+
+    if incoming_data.minimap_floor_texture ~= "" then
+        current_data.tile:SetTexture(
+            "levels/textures/map_interior/" .. incoming_data.minimap_floor_texture .. ".xml",
+            incoming_data.minimap_floor_texture .. ".tex"
+        )
+    end
+
+    local current_room_data = self.owner.replica.interiorvisitor.interior_map[room_id]
+    if current_room_data then
+        for _, door in ipairs(current_room_data.doors) do
+            local override_data = incoming_data.doors[door.direction]
+            if override_data then
+                local id = get_door_id(room_id, door.target_interior)
+                local door_widget = self.interior_map_widgets.doors[id]
+                if door_widget then
+                    if override_data.hidden then
+                        door_widget:Hide()
+                    else
+                        door_widget:Show()
+                    end
+                    if override_data.disabled then
+                        door_widget.lock:Show()
+                    else
+                        door_widget.lock:Hide()
+                    end
+                end
+            end
+        end
+    end
 
     for _, current_icon in ipairs(current_icons) do
         local incoming_icon = incoming_icons[current_icon.id]
@@ -218,23 +241,6 @@ local function UpdateTileWidgetPositionScale(widget, scale)
     widget:SetScale(scale * widget.tile_scale_x, scale * widget.tile_scale_y, 1)
     widget:SetEffectParams(widget.tile_scale_x - 1, widget.tile_scale_y - 1, 0, 0)
     widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
-end
-
-local function UpdateDoorWidgetStatus(door_widget, data)
-    if not data then
-        return
-    end
-
-    if data.hidden then
-        door_widget:Hide()
-    else
-        door_widget:Show()
-        if data.disabled then
-            door_widget.lock:Show()
-        else
-            door_widget.lock:Hide()
-        end
-    end
 end
 
 function MapWidget:ApplyInteriorMinimap()

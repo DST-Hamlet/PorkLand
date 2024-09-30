@@ -80,6 +80,11 @@ function InteriorVisitor:ApplyInteriorCamera(interior_center)
     TheCamera.pl_interior_distance = zoom
 end
 
+-- levels/textures/map_interior/mini_ruins_slab.tex -> mini_ruins_slab
+local function basename(path)
+    return string.match(path, "([^/]+)%.%w+$")
+end
+
 function InteriorVisitor:UpdateInteriorMinimap()
     local center = self.center_ent:value()
     if not center then
@@ -92,8 +97,8 @@ function InteriorVisitor:UpdateInteriorMinimap()
         self.local_interior_map_override = {
             [current_room_id] = {
                 icons = center:CollectMinimapIcons(),
-                -- minimap_floor_texture = center:CollectMinimapIcons(),
-                -- doors = center:CollectMinimapIcons(),
+                minimap_floor_texture = basename(center:GetFloorMinimapTex()),
+                doors = center:CollectLocalDoorMinimap(),
             }
         }
     end
