@@ -309,12 +309,12 @@ local function MakeHat(name)
 
     local function thunder_equip(inst, owner)
         _onequip(inst, owner)
-        inst:AddTag("lightningrod")
+        owner:AddTag("lightningrod")
     end
 
     local function thunder_unequip(inst, owner)
         _onunequip(inst, owner)
-        inst:RemoveTag("lightningrod")
+        owner:RemoveTag("lightningrod")
     end
 
     fns.thunder = function()
