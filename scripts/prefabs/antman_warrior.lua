@@ -57,6 +57,7 @@ local function OnAttacked(inst, data)
 end
 
 local RETARGET_DIST = 16
+local KEEP_TARGET_DIST = 40
 local ATTACK_ONSIGHT_DISTSQ = 8 * 8
 local RETARGET_ONE_OF_TAGS = {"monster", "player"}
 
@@ -78,7 +79,13 @@ local function RetargetFn(inst)
 end
 
 local function KeepTargetFn(inst, target)
-    return inst.components.combat:CanTarget(target) and (not target.LightWatcher or target.LightWatcher:IsInLight())
+    if inst.components.combat:CanTarget(target) then
+        local distsq = target:GetDistanceSqToInst(inst)
+        return distsq < KEEP_TARGET_DIST * KEEP_TARGET_DIST
+    else
+        return false
+    end
+    return inst.components.combat:CanTarget(target)
 end
 
 local function OnSave(inst, data)

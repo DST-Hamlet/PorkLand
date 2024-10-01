@@ -188,7 +188,6 @@ end
 local function KeepTargetFn(inst, target)
     --give up on dead guys, or guys in the dark
     return (inst.components.combat:CanTarget(target)
-        and (not target.LightWatcher or target.LightWatcher:IsInLight())) -- needs discussion
 end
 
 local function ShouldSleepTest(inst)
@@ -197,7 +196,7 @@ local function ShouldSleepTest(inst)
             return ent.components.burnable and ent.components.burnable:IsBurning()
         end, {"campfire"})
 
-        return DefaultSleepTest(inst) and fire and (not inst.LightWatcher or inst.LightWatcher:IsInLight())
+        return DefaultSleepTest(inst) and fire
     else
         return DefaultSleepTest(inst)
     end
