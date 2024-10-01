@@ -834,6 +834,17 @@ function ACTIONS.UNWRAP.strfn(act, ...)
     return _UNWRAPstrfn and _UNWRAPstrfn(act, ...)
 end
 
+local _LIGHTfn = ACTIONS.LIGHT.fn
+function ACTIONS.LIGHT.fn(act, ...)
+    if act.invobject ~= nil and act.invobject:HasTag("magnifying_glass") and act.target then
+        local x, y, z = act.target.Transform:GetWorldPosition()
+        if TheSim:GetLightAtPoint(x, y, z) < TUNING.MAGNIFYING_GLASS_LIGHT then
+            return "TOODARK"
+        end
+    end
+    return _LIGHTfn(act, ...)
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world

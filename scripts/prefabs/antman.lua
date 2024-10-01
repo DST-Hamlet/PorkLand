@@ -187,7 +187,7 @@ end
 
 local function KeepTargetFn(inst, target)
     --give up on dead guys, or guys in the dark
-    return (inst.components.combat:CanTarget(target)
+    return (inst.components.combat:CanTarget(target))
 end
 
 local function ShouldSleepTest(inst)
