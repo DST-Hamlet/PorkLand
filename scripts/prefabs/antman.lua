@@ -92,7 +92,7 @@ local function ShouldAcceptItem(inst, item)
 end
 
 local function OnGetItemFromPlayer(inst, giver, item)
-    --I eat food    
+    --I eat food
     if inst.components.eater:CanEat(item) then
         --meat makes us friends
         if inst.components.eater:CanEat(item) then
@@ -332,10 +332,10 @@ local function fn()
     inst.eattype = math.random(4)
     SetEatType(inst, inst.eattype)
 
+    MakeHauntablePanic(inst)
     MakeMediumBurnableCharacter(inst, "antman_torso")
     MakeMediumFreezableCharacter(inst, "antman_torso")
     MakePoisonableCharacter(inst, "antman_torso")
-    MakeHauntablePanic(inst)
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGant")

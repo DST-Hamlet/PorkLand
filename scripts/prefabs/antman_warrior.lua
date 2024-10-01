@@ -200,6 +200,7 @@ local function fn()
     inst:SetBrain(brain)
     inst:SetStateGraph("SGantwarrior")
 
+    MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst, "antman_torso")
     MakeMediumBurnableCharacter(inst, "antman_torso")
     MakeMediumFreezableCharacter(inst, "antman_torso")

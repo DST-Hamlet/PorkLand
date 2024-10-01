@@ -152,6 +152,8 @@ local function fn()
         dohatch(inst, 1)
     end
 
+    MakeHauntable(inst)
+
     inst.OnSave = OnSave
     inst.OnLoadPostPass = OnLoadPostPass
 
