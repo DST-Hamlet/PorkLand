@@ -956,6 +956,18 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.THROW)
             end
         end,
+
+        investigater = function(inst, doer, target, actions, right)
+            if not right then
+                if target and (target:HasTag("mystery") or target:HasTag("secret_room")) then
+                    table.insert(actions, ACTIONS.SPY)
+                end
+            else
+                if target and target:HasTag("mystery") then
+                    table.insert(actions, ACTIONS.SEARCH_MYSTERY)
+                end
+            end
+        end,
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
@@ -992,12 +1004,6 @@ local PL_COMPONENT_ACTIONS =
         end,
         dislodgeable = function(inst, action, right)
             return action == ACTIONS.DISLODGE and inst:HasTag("DISLODGE_workable")
-        end,
-        mystery = function(inst, action, right)
-            return action == ACTIONS.SPY and inst:HasTag("mystery")
-        end,
-        mystery_door = function(inst, action, right)
-            return action == ACTIONS.SPY and inst:HasTag("secret_room")
         end,
     },
 }
