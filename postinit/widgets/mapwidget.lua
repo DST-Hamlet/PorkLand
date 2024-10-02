@@ -342,10 +342,12 @@ scheduler:ExecuteInTime(0, function()
             end
 
             local owner_position = self.owner:GetPosition()
-            if self.owner_last_position then
-                self.minimap:Offset(owner_position.z - self.owner_last_position.z, self.owner_last_position.x - owner_position.x)
-            end
-            self.owner_last_position = owner_position
+            -- Try to compensate map shifts from player movements
+            -- This doesn't quite work, the map will be shaking
+            -- if self.owner_last_position then
+            --     self.minimap:Offset(owner_position.z - self.owner_last_position.z, self.owner_last_position.x - owner_position.x)
+            -- end
+            -- self.owner_last_position = owner_position
 
             local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(owner_position)
             local interiorvisitor = self.owner.replica.interiorvisitor
