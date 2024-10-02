@@ -266,10 +266,13 @@ local states=
             TimeEvent(8 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/seacreature_movement/water_emerge_med") end),
         },
 
+        onexit = function(inst)
+            inst.AnimState:SetBank("hippo")
+        end,
+
         events =
         {
             EventHandler("animover", function(inst)
-                inst.AnimState:SetBank("hippo")
                 inst.sg:GoToState("idle")
             end),
         },
