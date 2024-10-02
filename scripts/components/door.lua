@@ -1,23 +1,8 @@
-local function ondoorstatus(self)
-    local data = {
-        disabled = self.disabled,
-        hidden = self.hidden,
-        target_interior = self.target_interior,
-        current_interior = self.inst:GetCurrentInteriorID(),
-    }
-    TheWorld.components.interiorspawner:ForEachPlayerInRoom(data.current_interior, function(player)
-        SendModRPCToClient(GetClientModRPC("PorkLand", "interior_door"), player.userid, ZipAndEncodeString(data))
-    end)
-end
-
 local function ondisabled(self, value, old_value)
     if value then
         self.inst:AddTag("door_disabled")
     else
         self.inst:RemoveTag("door_disabled")
-    end
-    if value ~= old_value then
-        ondoorstatus(self)
     end
 end
 
@@ -26,9 +11,6 @@ local function onhidden(self, value, old_value)
         self.inst:AddTag("door_hidden")
     else
         self.inst:RemoveTag("door_hidden")
-    end
-    if value ~= old_value then
-        ondoorstatus(self)
     end
 end
 

@@ -271,6 +271,30 @@ local function sort_priority(a, b)
     return a.priority < b.priority
 end
 
+local function CollectLocalDoorMinimap(inst, ignore_non_cacheable)
+    local position = inst:GetPosition()
+    local radius = inst:GetSearchRadius()
+    local doors = {}
+    for _, door in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, {"interior_door"})) do
+        local door_direction
+        for _, direction in ipairs(DIRECTION_NAMES) do
+            if door:HasTag("door_"..direction) then
+                door_direction = direction
+                break
+            end
+        end
+        if door_direction then
+            doors[door_direction] = {
+                hidden = door:HasTag("door_hidden"),
+                disabled = door:HasTag("door_disabled"),
+            }
+        else
+            print("This door doesn't have a direction!", door)
+        end
+    end
+    return doors
+end
+
 local function CollectMinimapIcons(inst, ignore_non_cacheable)
     local position = inst:GetPosition()
     local width = inst:GetWidth()
@@ -344,8 +368,7 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         end
     end
 
-    -- Fallback to mini_floor_wood
-    local minimap_floor_texture = inst:GetFloorMinimapTex() or "mini_floor_wood.tex"
+    local minimap_floor_texture = inst:GetFloorMinimapTex()
 
     return {
         uuid = inst.uuid,
@@ -547,6 +570,8 @@ local function fn()
     inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
     inst._floor_minimaptex = net_string(inst.GUID, "_floor_minimaptex", "_floor_minimaptex")
 
+    inst.GetFloorMinimapTex = GetFloorMinimapTex
+
     inst._is_single_room = net_bool(inst.GUID, "interiorworkblank._is_single_room", "is_single_room_change")
     inst:ListenForEvent("is_single_room_change", OnIsSingleRoomChange)
 
@@ -558,6 +583,7 @@ local function fn()
     inst.GetIsSingleRoom = GetIsSingleRoom
     inst.HasInteriorMinimap = HasInteriorMinimap
     inst.CollectMinimapIcons = CollectMinimapIcons
+    inst.CollectLocalDoorMinimap = CollectLocalDoorMinimap
     inst.HasInteriorTag = HasInteriorTag
 
     inst:AddComponent("interiorpathfinder")
@@ -580,7 +606,6 @@ local function fn()
     inst.floortexture = nil
 
     inst.SetFloorMinimapTex = SetFloorMinimapTex
-    inst.GetFloorMinimapTex = GetFloorMinimapTex
 
     inst.SetInteriorFloorTexture = SetInteriorFloorTexture
     inst.SetInteriorWallsTexture = SetInteriorWallsTexture
