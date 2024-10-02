@@ -72,6 +72,7 @@ local function fn()
     inst.DynamicShadow:SetSize(2, 1.5)
 
     inst.MiniMapEntity:SetIcon("ro_bin.tex")
+    inst.MiniMapEntity:SetCanUseCache(false)
 
     inst.Transform:SetFourFaced()
 

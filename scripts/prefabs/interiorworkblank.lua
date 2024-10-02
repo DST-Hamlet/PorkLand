@@ -570,6 +570,8 @@ local function fn()
     inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
     inst._floor_minimaptex = net_string(inst.GUID, "_floor_minimaptex", "_floor_minimaptex")
 
+    inst.GetFloorMinimapTex = GetFloorMinimapTex
+
     inst._is_single_room = net_bool(inst.GUID, "interiorworkblank._is_single_room", "is_single_room_change")
     inst:ListenForEvent("is_single_room_change", OnIsSingleRoomChange)
 
@@ -604,7 +606,6 @@ local function fn()
     inst.floortexture = nil
 
     inst.SetFloorMinimapTex = SetFloorMinimapTex
-    inst.GetFloorMinimapTex = GetFloorMinimapTex
 
     inst.SetInteriorFloorTexture = SetInteriorFloorTexture
     inst.SetInteriorWallsTexture = SetInteriorWallsTexture
