@@ -341,7 +341,13 @@ scheduler:ExecuteInTime(0, function()
                 return
             end
 
-            local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
+            local owner_position = self.owner:GetPosition()
+            if self.owner_last_position then
+                self.minimap:Offset(owner_position.z - self.owner_last_position.z, self.owner_last_position.x - owner_position.x)
+            end
+            self.owner_last_position = owner_position
+
+            local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(owner_position)
             local interiorvisitor = self.owner.replica.interiorvisitor
             -- Checking self.interior_map_widgets.rooms[current_room_id] here
             -- because we can get teleported out of the interior during debugging
