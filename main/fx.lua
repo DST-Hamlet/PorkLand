@@ -43,6 +43,16 @@ local pl_fx = {
         bank = "splash_water",
         build = "splash_water",
         anim = "idle",
+        sound = "dontstarve_DLC002/common/wave_break",
+        fn = TintOceantFx,
+    },
+    {
+        name = "splash_water_boost",
+        bank = "splash_water",
+        build = "splash_water",
+        anim = "idle",
+        sound = "dontstarve_DLC002/common/wave_break",
+        sound2 = "dontstarve_DLC002/common/wave_boost",
         fn = TintOceantFx,
     },
     {
