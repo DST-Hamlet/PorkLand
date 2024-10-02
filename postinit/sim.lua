@@ -29,7 +29,7 @@ end
 local Sim = getmetatable(TheSim).__index
 local old_GetLightAtPoint = Sim.GetLightAtPoint
 Sim.GetLightAtPoint = function(sim, x, y, z, light_threshold)
-    if TheWorld and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInterior(x, z) then
+    if TheWorld and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInterior(x, z, 0.01) then
         -- ignore ambient light, only check lighters
         local position = Vector3(x, y, z)
         local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
@@ -54,6 +54,9 @@ end
 local _CanEntitySeeTarget = CanEntitySeeTarget
 function CanEntitySeeTarget(inst, target, ...)
     if inst and inst.player_classified then
+        if target and target:IsValid() and inst.components.persistencevision and inst.components.persistencevision.persistence_ents[target] then
+            return true
+        end
         if target and target:IsValid() and inst.player_classified._last_work_target:value() == target then
             return true
         end

@@ -157,6 +157,7 @@ AddPlayerPostInit(function(inst)
                 if TheWorld:HasTag("porkland") then
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
+                    inst:AddComponent("persistencevision")
                 end
             end
         end)

@@ -157,8 +157,8 @@ function InteriorSpawner:IsInInteriorRoom(x, z, padding)
     end
 end
 
-function InteriorSpawner:IsInInterior(x, z)
-    return self.world_width > 0 and self:IsInInteriorRegion(x, z) and self:IsInInteriorRoom(x, z)
+function InteriorSpawner:IsInInterior(x, z, padding)
+    return self.world_width > 0 and self:IsInInteriorRegion(x, z) and self:IsInInteriorRoom(x, z, padding)
 end
 
 -- Finds the interior center with position or index (interiorID)
