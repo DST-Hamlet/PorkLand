@@ -420,10 +420,12 @@ local states =
         tags = {"busy"},
 
         onenter = function(inst)
-            local line = inst.poop_tip:HasTag("pigroyalty")
-                and inst:GetSpeechType("CITY_PIG_TALK_ROYAL_POOPTIP")
-                or inst:GetSpeechType("CITY_PIG_TALK_POOPTIP")
-            inst:SayLine(line)
+            if inst.poop_tip then
+                local line = inst.poop_tip:HasTag("pigroyalty")
+                    and inst:GetSpeechType("CITY_PIG_TALK_ROYAL_POOPTIP")
+                    or inst:GetSpeechType("CITY_PIG_TALK_POOPTIP")
+                inst:SayLine(line)
+            end
             inst.AnimState:PlayAnimation("interact")
             inst.Physics:Stop()
         end,

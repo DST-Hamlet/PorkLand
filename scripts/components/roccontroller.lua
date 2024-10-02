@@ -248,14 +248,17 @@ function RocController:GetTarget()
         end
     end
 
+    if not self.target_player or not self.target_player:IsValid() then
+        self.target_player = FindClosestPlayerToInst(self.inst, FIND_PLAYER_TARGET_DIST, true)
+    end
+
     if self.target and self.target:IsValid() then
         return self.target
     end
 
-    local player = self.target_player or FindClosestPlayerToInst(self.inst, FIND_PLAYER_TARGET_DIST, true)
+    local player = self.target_player
     if player and player:IsValid() then
         self.target = player
-        self.target_player = player
         return self.target
     end
 end

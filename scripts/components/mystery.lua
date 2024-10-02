@@ -124,7 +124,7 @@ end
 function Mystery:Investigate(doer)
     if doer and doer.components.uniqueidentity then
         local doer_uniqueid = doer.components.uniqueidentity:GetID()
-        self.investigaters[doer_uniqueid] = 1000
+        self.investigaters[doer_uniqueid] = 99999
     end
     if doer and doer.components.talker then
         if self.reward then

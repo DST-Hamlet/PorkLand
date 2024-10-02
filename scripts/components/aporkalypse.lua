@@ -306,7 +306,7 @@ return Class(function(self, inst)
             if _herald_time <= 0 then
                 local players = {}
                 for _, player in pairs(AllPlayers) do
-                    if not player:HasTag("inside_interior") then
+                    if not player:GetIsInInterior() then
                         table.insert(players, player)
                     end
                 end

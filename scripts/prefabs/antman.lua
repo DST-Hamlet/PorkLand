@@ -92,7 +92,7 @@ local function ShouldAcceptItem(inst, item)
 end
 
 local function OnGetItemFromPlayer(inst, giver, item)
-    --I eat food    
+    --I eat food
     if inst.components.eater:CanEat(item) then
         --meat makes us friends
         if inst.components.eater:CanEat(item) then
@@ -187,8 +187,7 @@ end
 
 local function KeepTargetFn(inst, target)
     --give up on dead guys, or guys in the dark
-    return (inst.components.combat:CanTarget(target)
-        and (not target.LightWatcher or target.LightWatcher:IsInLight())) -- needs discussion
+    return (inst.components.combat:CanTarget(target))
 end
 
 local function ShouldSleepTest(inst)
@@ -197,7 +196,7 @@ local function ShouldSleepTest(inst)
             return ent.components.burnable and ent.components.burnable:IsBurning()
         end, {"campfire"})
 
-        return DefaultSleepTest(inst) and fire and (not inst.LightWatcher or inst.LightWatcher:IsInLight())
+        return DefaultSleepTest(inst) and fire
     else
         return DefaultSleepTest(inst)
     end
@@ -332,10 +331,10 @@ local function fn()
     inst.eattype = math.random(4)
     SetEatType(inst, inst.eattype)
 
+    MakeHauntablePanic(inst)
     MakeMediumBurnableCharacter(inst, "antman_torso")
     MakeMediumFreezableCharacter(inst, "antman_torso")
     MakePoisonableCharacter(inst, "antman_torso")
-    MakeHauntablePanic(inst)
 
     inst:SetBrain(brain)
     inst:SetStateGraph("SGant")

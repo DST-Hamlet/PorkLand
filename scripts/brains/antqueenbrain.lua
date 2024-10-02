@@ -3,7 +3,7 @@ require "behaviours/doaction"
 local WAKE_UP_DIST = 7.5
 
 local function IsPlayerInVicinity(inst)
-    return GetClosestInstWithTag("player", inst, WAKE_UP_DIST) ~= nil
+    return FindEntity(inst, WAKE_UP_DIST, nil, {"player"}, {"INLIMBO", "playerghost"}) ~= nil
 end
 
 local function IsFirstEncounter(inst)

@@ -235,7 +235,9 @@ function AntBrain:OnStart()
             ChattyNode(self.inst, "ANT_TALK_PANICFIRE",
                 Panic(self.inst))),
 
-        -- TODO ghost panic string
+        WhileNode( function() return self.inst.components.hauntable and self.inst.components.hauntable.panic end, "PanicHaunted",
+            ChattyNode(self.inst, "ANT_TALK_PANIC",
+                Panic(self.inst))),
 
         WhileNode(function() return ShouldPanic(self.inst) end, "Threat Panic",
             ChattyNode(self.inst, "ANT_TALK_PANIC",

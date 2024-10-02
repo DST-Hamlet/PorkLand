@@ -471,6 +471,7 @@ local tuning = {
 
     MAGNIFYING_GLASS_DAMAGE = wilson_attack * 0.125,
     MAGNIFYING_GLASS_USES = 10,
+    MAGNIFYING_GLASS_LIGHT = 0.5,
 
     ROBOT_TARGET_DIST = 15,
     ROBOT_RIBS_DAMAGE = wilson_attack,

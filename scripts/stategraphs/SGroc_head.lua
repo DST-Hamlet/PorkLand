@@ -12,7 +12,7 @@ local events =
     EventHandler("exit", function(inst) if not inst.sg:HasStateTag("grab") then inst.sg:GoToState("exit") end end),
     EventHandler("bash", function(inst) if not inst.sg:HasStateTag("grab") then inst.sg:GoToState("bash") end end),
     EventHandler("gobble", function(inst) if not inst.sg:HasStateTag("grab") then inst.sg:GoToState("grab") end end),
-    EventHandler("taunt", function(inst) if not inst.sg:HasStateTag("grab") then inst.sg:GoToState("taunt") end end),
+    EventHandler("taunt", function(inst) if not inst.sg:HasStateTag("grab") and not inst.sg:HasStateTag("taunt") then inst.sg:GoToState("taunt") end end),
 }
 
 local function DoGrab(inst)
@@ -136,7 +136,7 @@ local states =
 
     State{
         name = "taunt",
-        tags = {"idle", "canrotate", "busy"},
+        tags = {"idle", "canrotate", "busy", "taunt"},
 
         onenter = function(inst)
             inst.AnimState:PlayAnimation("taunt")
