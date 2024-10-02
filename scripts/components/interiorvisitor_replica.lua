@@ -188,11 +188,11 @@ function InteriorVisitor:OnNewInteriorMapData(data)
 end
 
 -- Receiving from remove_interior_map client RPC
-function InteriorVisitor:RemoveInteriorMapData(id)
-    if self.interior_map[id] then
-        self.interior_map[id] = nil
-        self.inst:PushEvent("refresh_interior_minimap")
+function InteriorVisitor:RemoveInteriorMapData(data)
+    for _, id in ipairs(data) do
+        self.interior_map[id] = data
     end
+    self.inst:PushEvent("refresh_interior_minimap")
 end
 
 -- function InteriorVisitor:OnRemoveFromEntity()

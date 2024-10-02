@@ -40,6 +40,10 @@ local InteriorVisitor = Class(function(self, inst)
     self.center_ent = nil
     self.last_center_ent = nil
     self.interior_map = {}
+    self.scheduled_sync_map_data = {
+        addition = {},
+        deletion = {},
+    }
 
     -- self.restore_physics_task = nil
 
@@ -114,10 +118,25 @@ end
 
 function InteriorVisitor:RecordMap(id, data)
     self.interior_map[id] = data
-    if data then
-        SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString({[id] = data}))
-    else
-        SendModRPCToClient(GetClientModRPC("PorkLand", "remove_interior_map"), self.inst.userid, id)
+
+    self.scheduled_sync_map_data.addition[id] = data
+    if not data then
+        table.insert(self.scheduled_sync_map_data.deletion, id)
+    end
+    if not self.scheduled_sync_map_data_task then
+        self.scheduled_sync_map_data_task = self.inst:DoStaticTaskInTime(0, function()
+            if not IsTableEmpty(self.scheduled_sync_map_data.deletion) then
+                SendModRPCToClient(GetClientModRPC("PorkLand", "remove_interior_map"), self.inst.userid, ZipAndEncodeString(self.scheduled_sync_map_data.deletion))
+            end
+            if not IsTableEmpty(self.scheduled_sync_map_data.addition) then
+                SendModRPCToClient(GetClientModRPC("PorkLand", "interior_map"), self.inst.userid, ZipAndEncodeString(self.scheduled_sync_map_data.addition))
+            end
+            self.scheduled_sync_map_data = {
+                addition = {},
+                deletion = {},
+            }
+            self.scheduled_sync_map_data_task = nil
+        end)
     end
 end
 
