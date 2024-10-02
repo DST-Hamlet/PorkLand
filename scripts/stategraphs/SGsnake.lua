@@ -213,10 +213,13 @@ local states =
             inst.AnimState:PlayAnimation("emerge")
         end,
 
+        onexit = function(inst)
+            inst.AnimState:SetBank("snake")
+        end,
+
         events =
         {
             EventHandler("animover", function(inst)
-                inst.AnimState:SetBank("snake")
                 inst.sg:GoToState("idle")
             end),
         },
