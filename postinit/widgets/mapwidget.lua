@@ -140,6 +140,10 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
             if not door_data.disabled then
                 door_icon.lock:Hide()
             end
+            if door_data.unknown then
+                door_icon.unknown = door_icon:AddChild(Image("interior_minimap/interior_minimap.xml", "passage_unknown.tex"))
+                door_icon.unknown:ScaleToSize(128, 128)
+            end
             widgets.doors[door_id] = door_icon
         end
 
