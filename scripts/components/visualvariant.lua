@@ -17,6 +17,7 @@ end)
 
 function VisualVariant:SetVariantData(prefab)
     self.variants = VARIANTS[prefab]
+    TryReCalculate(self.inst)
 end
 
 function VisualVariant:GetVariantData(variant)
