@@ -96,13 +96,20 @@ local function PowerGlow(inst)
 end
 
 local function SpawnLaser(inst)
-    assert(inst.sg.statemem.targetpos)
+    local targetpos = inst.sg.statemem.targetpos
+    if targetpos == nil then
+        local angle =  inst.Transform:GetRotation() * DEGREES
+
+        local DIST = 3
+        local pt = Vector3(inst.Transform:GetWorldPosition())
+        targetpos = pt + Vector3(math.cos(angle + PI / 2), 0, -math.sin(angle + PI / 2)) * DIST
+    end
     local numsteps = 10
     local x, _, z = inst.Transform:GetWorldPosition()
 
-    local xt = inst.sg.statemem.targetpos.x
-    local yt = inst.sg.statemem.targetpos.y
-    local zt = inst.sg.statemem.targetpos.z
+    local xt = targetpos.x
+    local yt = targetpos.y
+    local zt = targetpos.z
 
     local dist =  math.sqrt(inst:GetDistanceSqToPoint(Vector3(xt, yt, zt))) -3
     local angle = (inst:GetAngleToPoint(xt, yt, zt) +90)* DEGREES
