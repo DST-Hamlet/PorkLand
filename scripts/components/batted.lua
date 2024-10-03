@@ -193,11 +193,10 @@ local function GetSpawnPointForPlayer(player)
     local angle = math.random() * 2 * PI
     local radius = BAT_SPAWN_DIST
 
-    -- check walls, allow water
-    local offset = FindWalkableOffset(pt, angle, math.random() * radius, 12, true, false, nil, true)
+    local targetpt = FindNearbyLand(pt, math.random() * radius, 12)
 
-    if offset then
-        return pt + offset
+    if targetpt then
+        return targetpt
     end
 end
 

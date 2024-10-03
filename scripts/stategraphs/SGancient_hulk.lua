@@ -17,9 +17,16 @@ local function Teleport(inst)
     local theta = math.random() * 2 * PI
 
     local offset, radius
-    while not offset do
+    for i = 1, 16 do
         radius = 12 + math.random() * 5
-        offset = FindWalkableOffset(target_position, theta, radius, 12, true)
+        offset = FindWalkableOffset(target_position, theta, radius, 12, false)
+        if offset then
+            break
+        end
+    end
+
+    if offset == nil then
+        offset = Vector3(0, 0, 0)
     end
 
     inst.Physics:SetActive(true)
@@ -32,7 +39,7 @@ local function LaunchProjectile(inst, direction)
     local theta = direction - PI / 6 + math.random() * PI / 3
     local radius = 6 + math.random() * 6
 
-    local offset = FindWalkableOffset(Vector3(x, y, z), theta, radius, 12, true)
+    local offset = FindWalkableOffset(Vector3(x, y, z), theta, radius, 12, false)
 
     if offset then
         local spawn_point = Vector3(x, y, z) + offset

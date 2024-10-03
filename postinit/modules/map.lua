@@ -384,7 +384,14 @@ function Map:GetTile(x, y, ...)
 end
 
 function Map:GetIslandTagAtPoint(x, y, z)
-    -- Note: If you care about the tile overlap then use FindVisualNodeAtPoint
+    local on_land = self:IsLandTileAtPoint(x, 0, z)
+    if not on_land then
+        local pt = Vector3(x, y, z)
+        local dest = FindNearbyLand(pt, 1)
+        if dest then
+            x, y, z = dest:Get()
+        end
+    end
     local node_index = self:GetNodeIdAtPoint(x, y, z)
     local node = TheWorld.topology.nodes[node_index]
     if node == nil or node.tags == nil then
