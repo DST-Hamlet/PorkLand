@@ -421,8 +421,6 @@ function self:LongUpdate(dt)
             local spawnfailed = false
 
             if next(_bats_to_attack) then
-                local no_bat_left
-                local target_players = {}
                 if #target_players > 0 then
                     for _, player in pairs(target_players) do
                         no_bat_left = SpawnBatsForPlayer(player)
