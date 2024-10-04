@@ -405,6 +405,9 @@ AddRecipe2("boat_torch", {Ingredient("twigs", 2), Ingredient("torch", 1)}, TECH.
 
 AddRecipe2("sail_snakeskin", {Ingredient("log", 4), Ingredient("rope", 2), Ingredient("snakeskin", 2, nil, nil, "snakeskin_scaly.tex")}, TECH.SCIENCE_TWO, {image = "sail_snakeskin_scaly.tex"}, {"NAUTICAL"})
 
+AddRecipe2("trawlnet", {Ingredient("rope", 3), Ingredient("bamboo", 2)}, TECH.LOST, nil, {"TOOLS", "NAUTICAL"})
+SortAfter("trawlnet", "fishingrod", "TOOLS")
+
 -- CHARACTER ---
 
 AddRecipe2("disguisehat", {Ingredient("twigs", 2), Ingredient("pigskin", 1), Ingredient("beardhair", 1)}, TECH.NONE, {builder_tag = "monster"}, {"CHARACTER", "CLOTHING"})

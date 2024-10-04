@@ -752,6 +752,15 @@ function ACTIONS.UNEQUIP.fn(act, ...)
     end
 end
 
+local _UNEQUIPstrfn = ACTIONS.UNEQUIP.strfn
+ACTIONS.UNEQUIP.strfn = function(act, ...)
+    return ((act.invobject ~= nil and
+        act.invobject:HasTag("trawlnet") or
+        GetGameModeProperty("non_item_equips") or
+        act.doer.replica.inventory:GetNumSlots() <= 0)
+        and "TRAWLNET") or _UNEQUIPstrfn(act, ...)
+end
+
 ACTIONS.STORE.priority = -1
 
 local _STORE_stroverridefn = ACTIONS.STORE.stroverridefn

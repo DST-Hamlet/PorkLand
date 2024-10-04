@@ -2,6 +2,15 @@ local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 ----------------------------------------------------------------------------------------
+local function SerializeInvSpace(inst, percent)
+    inst.invspace:set((percent or 0) * 63)
+end
+
+local function DeserializeInvSpace(inst)
+    if inst._parent ~= nil then
+        inst._parent:PushEvent("invspacechange", {percent = inst.invspace:value() / 63})
+    end
+end
 
 local function SerializeFuse(inst, time)
     inst.fuse:set(time or 0)
@@ -14,6 +23,7 @@ local function DeserializeFuse(inst)
 end
 
 local function RegisterNetListeners(inst)
+    inst:ListenForEvent("invspacedirty", DeserializeInvSpace)
     inst:ListenForEvent("fusedirty", DeserializeFuse)
 end
 
@@ -22,12 +32,14 @@ end
 ----------------------------------------------------------------------------------------
 
 AddPrefabPostInit("inventoryitem_classified", function(inst)
+    inst.invspace = net_smallbyte(inst.GUID, "inventory.invspace", "invspacedirty")
     inst.fuse = net_smallbyte(inst.GUID, "fuse.fuse", "fusedirty")
 
     inst.fuse:set(0)
 
     if not TheWorld.ismastersim then
 
+        inst.DeserializeInvSpace = DeserializeInvSpace
         inst.DeserializeFuse = DeserializeFuse
 
         --Delay net listeners until after initial values are deserialized
@@ -36,5 +48,6 @@ AddPrefabPostInit("inventoryitem_classified", function(inst)
 
     end
 
+    inst.SerializeInvSpace = SerializeInvSpace
     inst.SerializeFuse = SerializeFuse
 end)

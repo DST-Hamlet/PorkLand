@@ -274,6 +274,7 @@ PrefabFiles = {
     "demolition_permit",
 
     "coconade",
+    "trawlnet",
 }
 
 Assets = {
@@ -307,6 +308,7 @@ Assets = {
     Asset("ANIM", "anim/leaves_canopy2.zip"),  -- canopy
     Asset("ANIM", "anim/livingartifact_meter.zip"),
     Asset("ANIM", "anim/poison_meter_overlay.zip"),
+    Asset("ANIM", "anim/trawlnet_meter.zip"),
 
     Asset("ANIM", "anim/moon_aporkalypse_phases.zip"), -- blood moon
 

@@ -327,6 +327,13 @@ local tuning = {
     SAIL_SNAKESKIN_ACCEL_MULT = 0.25,
     SAIL_SNAKESKIN_PERISH_TIME = total_day_time * 4,
 
+    TRAWLNET_MAX_ITEMS = 9,
+    TRAWLNET_ITEM_DISTANCE = 100, --How far you have to travel to get another item
+    TRAWLING_SPEED_MULT = 0.25, --This is actually speed reduction (speed = 1 - speed_mult)
+    TRAWL_SINK_TIME = seg_time * 3,
+
+    SUNKENPREFAB_REMOVE_TIME = total_day_time * 2,
+
     MANDRAKEMAN_SPAWN_TIME = total_day_time,
     MANDRAKEMAN_ENABLED = true,
 

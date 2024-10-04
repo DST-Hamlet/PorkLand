@@ -243,7 +243,7 @@ local function torch_visual_common(inst)
     inst.visualchild.AnimState:SetBank("sail_visual")
     inst.visualchild.AnimState:SetBuild("swap_torch_boat")
     inst.visualchild.AnimState:PlayAnimation("idle_loop", true)
-    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- below the player
+    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 2)  -- below the player
 
     inst._oversymbol = net_string(inst.GUID, "_oversymbol", "symboldirty")
     inst._oversymbol:set("swap_lantern_off")
@@ -259,9 +259,9 @@ local function torch_visual_common(inst)
 
     function inst.components.boatvisualanims.update(inst, dt)
         if inst.visualchild.AnimState:GetCurrentFacing() == FACING_UP then
-            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)  -- above the player
+            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 2)  -- above the player
         else
-            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MAX - 1)  -- below the player
+            inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MAX - 2)  -- below the player
         end
     end
 end
