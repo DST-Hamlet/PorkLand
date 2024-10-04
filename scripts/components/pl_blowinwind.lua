@@ -146,6 +146,7 @@ function BlowInWind:OnUpdate(dt)
         self.check_land_time = 1 -- don't care about time accumulation
         if self.inst.components.inventoryitem then
             self.inst.components.inventoryitem:SetLanded(true, false)
+            self.inst:PushEvent("on_landed") -- force this event for floater component, since it's already landed
         end
     end
 
@@ -224,6 +225,7 @@ function BlowInWind:OnUpdate(dt)
         end
     elseif TileGroupManager:IsImpassableTile(tile) and not TheWorld.Map:IsVisualGroundAtPoint(x, y, z) then
         self.inst.components.inventoryitem:SetLanded(false, true)
+        self.inst:PushEvent("on_landed") -- force this event for floater component, since it's already landed
         self.inst.Physics:SetMotorVel(0, 0, 0)
     end
 end
