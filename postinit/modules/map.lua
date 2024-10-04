@@ -53,11 +53,14 @@ function Map:GetVisualTileAtPoint(x, y, z)
 end
 
 local _IsPassableAtPoint = Map.IsPassableAtPoint
-function Map:IsPassableAtPoint(x, y, z, ...)
+function Map:IsPassableAtPoint(x, y, z, allow_water, ...)
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
-    return _IsPassableAtPoint(self, x, y, z, ...)
+    if not allow_water and self:ReverseIsVisualWaterAtPoint(x, y, z) then
+        return false
+    end
+    return _IsPassableAtPoint(self, x, y, z, allow_water, ...)
 end
 
 function Map:IsImpassableAtPoint(x, y, z, ...)
