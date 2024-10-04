@@ -268,6 +268,7 @@ local states=
 
         onexit = function(inst)
             inst.AnimState:SetBank("hippo")
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
         end,
 
         events =
@@ -276,10 +277,6 @@ local states=
                 inst.sg:GoToState("idle")
             end),
         },
-
-        onexit = function(inst)
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
-        end,
     },
 
     State{
