@@ -134,6 +134,7 @@ PrefabFiles = {
     "prop_door",
     "pig_ruins_creeping_vines",
     "pl_birds",
+    "pl_fish",
     "bat_hide",
     "cave_entrance_roc",
     "pig_ruins_light_beam",
