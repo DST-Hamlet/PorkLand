@@ -80,7 +80,6 @@ local function fn()
     MakeHauntableLaunch(inst)
 
     inst:WatchWorldState("season", OnseasonChange)
-    inst:DoTaskInTime(math.random(), function() OnseasonChange(inst, TheWorld.state.season) end)
 
     return inst
 end
