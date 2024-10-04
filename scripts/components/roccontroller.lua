@@ -612,6 +612,7 @@ function RocController:UnchildPlayer(inst)
 
     if player and player:IsValid() then
         player.Transform:SetPosition(inst.Transform:GetWorldPosition())
+        player.AnimState:SetFinalOffset(0)
     end
     inst:RemoveTag("HasPlayer")
 end
