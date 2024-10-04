@@ -11,7 +11,7 @@ local prefabs =
     "guano",
     "monstermeat",
     "bat_hide",
-    -- "vampire_bat_wing",
+    "vampire_bat_wing",
     "batwing",
 }
 
@@ -19,8 +19,8 @@ SetSharedLootTable("vampirebat",
 {
     {"monstermeat",      0.5},
     {"bat_hide",         0.5},
-    -- {"vampire_bat_wing", 0.1},
-    {"batwing", 0.1},
+    {"vampire_bat_wing", 0.1},
+    -- {"batwing", 0.1},
 })
 
 local MAX_TARGET_SHARES = 5

@@ -20,7 +20,43 @@ local VARIANTS = {
             visualprefab = "sail_snakeskin_scaly",
             inv_image = "sail_snakeskin_scaly"
         }
-    }
+    },
+    grass = {
+        default = {
+            build = "grass1",
+        },
+        porkland = {
+            build = "grassgreen_build",
+            minimap = "grassGreen.tex"
+        }
+    },
+    dug_grass = {
+        default = {
+            build = "grass1",
+        },
+        porkland = {
+            build = "grassgreen_build",
+            inv_image = "dug_grass_green"
+        }
+    },
+    cutgrass = {
+        default = {
+            build = "cutgrass",
+        },
+        porkland = {
+            build = "cutgrassgreen",
+            inv_image = "cutgrass_green"
+        }
+    },
+    log = {
+        default = {
+            build = "log",
+        },
+        porkland = {
+            build = "log_rainforest",
+            inv_image = "log_rainforest"
+        }
+    },
 }
 
 local SW_ICONS =
@@ -30,10 +66,10 @@ local SW_ICONS =
 local PL_ICONS =
 {
     ["snakeskin"] = "snakeskin_scaly",
-    ["sail_snakeskin"] = "sail_snakeskin_scaly"
-    -- ["dug_grass"] = "dug_grass_tropical",
-    -- ["cutgrass"] = "cutgrass_tropical",
-    -- ["log"] = "log_plateu",
+    ["sail_snakeskin"] = "sail_snakeskin_scaly",
+    ["dug_grass"] = "dug_grass_green",
+    ["cutgrass"] = "cutgrass_green",
+    ["log"] = "log_rainforest",
     --
     -- ["snake"] = "snake_scaly",
     -- ["snakeskinsail"] = "snakeskinsail_scaly",

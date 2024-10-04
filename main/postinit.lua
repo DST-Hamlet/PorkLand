@@ -80,6 +80,7 @@ local component_posts = {
 }
 
 local prefab_posts = {
+    "batwing",
     "birdcage",
     "boomerang",
     "buff_workeffectiveness",
@@ -123,6 +124,7 @@ local multipleprefab_posts = {
     "seeds",
     "stalagmite",
     "tradable",
+    "visualvariant",
 }
 
 local scenario_posts = {

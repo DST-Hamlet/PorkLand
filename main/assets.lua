@@ -97,6 +97,7 @@ PrefabFiles = {
     "tuber",
     "tubertrees",
     "undertile_marker",
+    "vampire_bat_wing",
     "vampirebat",
     "venomgland",
     "venus_stalk",
@@ -369,6 +370,11 @@ Assets = {
     Asset("ANIM", "anim/tree_leaf_normal_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_short_blown.zip"),
     Asset("ANIM", "anim/tree_leaf_tall_blown.zip"),
+
+    -- visualvariant
+    Asset("ANIM", "anim/grassgreen_build.zip"),
+    Asset("ANIM", "anim/cutgrassgreen.zip"),
+    Asset("ANIM", "anim/log_rainforest.zip"),
 
     -- multiplayer_portal
     Asset("ANIM", "anim/portal_dst.zip"),
