@@ -178,7 +178,7 @@ function InteriorVisitor:RecordAnthillDoorMapReset(no_send)
             end
         end
     end
-    if self.center_ent then
+    if self.center_ent and is_anthill_room(self.center_ent.interiorID) then
         self:UpdateSurroundingDoorMaps(self.center_ent, nil, self.interior_map[self.center_ent.interiorID])
     end
 end
