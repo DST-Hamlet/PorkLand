@@ -598,6 +598,9 @@ local function MakeShop(name, build, bank, data)
 
         MakeObstaclePhysics(inst, 1.25)
 
+        -- For OnNight
+        inst:SetPrefabName(name)
+
         inst.bank = bank or "pig_shop"
         inst.build = build
 
