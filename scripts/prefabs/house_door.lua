@@ -346,7 +346,7 @@ local function OnBuilt(inst)
     -- players can build a new door directly on the old door to change its look
     local replace_existing_door = false
     local cx, cy, cz = current_interior.Transform:GetWorldPosition()
-    local doors = TheSim:FindEntities(cx, cy, cz, 50, {"interior_door"})
+    local doors = TheSim:FindEntities(cx, cy, cz, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
     for i, door in ipairs(doors) do
         if door and door.baseanimname then
             -- Built a new door in the same direction of a previously built door (Multiple doors on a single wall)

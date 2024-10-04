@@ -361,6 +361,7 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
                     direction = door_direction,
                     hidden = door:HasTag("door_hidden"),
                     disabled = door:HasTag("door_disabled"),
+                    -- unknown = nil,
                 })
             else
                 print("This door doesn't have a direction!", door)
@@ -384,7 +385,13 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
     --     depth: number,
     --     minimap_floor_texture: string,
     --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
-    --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
+    --     doors: {
+    --         target_interior: interiorID,
+    --         direction: keyof DIRECTION_NAMES }[],
+    --         hidden: boolean,
+    --         disabled: boolean,
+    --         unknown?: boolean,
+    --     }
     -- }
 end
 

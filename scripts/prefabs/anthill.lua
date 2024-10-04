@@ -17,8 +17,8 @@ local prefabs =
     "antqueen",
 }
 
-local QUEEN_CHAMBER_COUNT_MAX = 6
-local QUEEN_CHAMBER_COUNT_MIN = 3
+-- local QUEEN_CHAMBER_COUNT_MAX = 6
+-- local QUEEN_CHAMBER_COUNT_MIN = 3
 
 local ANT_CAVE_DEPTH = 18
 local ANT_CAVE_WIDTH = 26
@@ -369,7 +369,7 @@ local function RefreshDoors(inst)
 
             local centre = interior_spawner:GetInteriorCenter(room.id)
             local x, y, z = centre.Transform:GetWorldPosition()
-            local ents = TheSim:FindEntities(x, y, z, 50, {"interior_door"})
+            local ents = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
             for _, door in pairs(ents) do
                 RefreshCurrentDoor(room, door)
             end
@@ -416,6 +416,15 @@ local function GenerateMaze(inst)
     BuildWalls(inst)
     RefreshDoors(inst)
     Earthquake(inst)
+
+    inst.maze_reset_count = inst.maze_reset_count + 1
+
+    for _, player in ipairs(AllPlayers) do
+        local interiorvisitor = player.components.interiorvisitor
+        if interiorvisitor then
+            interiorvisitor:RecordAnthillDoorMapReset()
+        end
+    end
 end
 
 -- end of interior stuff
@@ -434,6 +443,7 @@ end
 
 local function OnSave(inst, data)
     data.maze_generated = inst.maze_generated
+    data.maze_reset_count = inst.maze_reset_count
     data.interiorID = inst.interiorID
     if inst.rooms then
         data.rooms = inst.rooms
@@ -457,6 +467,10 @@ local function OnLoad(inst, data)
 
     if data.maze_generated then
         inst.maze_generated = data.maze_generated
+    end
+
+    if data.maze_reset_count then
+        inst.maze_reset_count = data.maze_reset_count
     end
 
     if data.interiorID then
@@ -541,6 +555,9 @@ local function makefn(is_entrance)
         if is_entrance then
             inst:DoTaskInTime(0, CreateInterior)
             inst:DoPeriodicTask(TUNING.TOTAL_DAY_TIME / 3, inst.GenerateMaze)
+
+            TheWorld.anthill_entrance = inst
+            inst.maze_reset_count = 0
         end
 
         return inst

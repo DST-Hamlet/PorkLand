@@ -44,6 +44,7 @@ local InteriorVisitor = Class(function(self, inst)
         addition = {},
         deletion = {},
     }
+    self.anthill_visited_time = {}
 
     -- self.restore_physics_task = nil
 
@@ -103,7 +104,6 @@ function InteriorVisitor:TunePhysics(inst, ent)
     end
 end
 
-
 function InteriorVisitor:DelayRestorePhysics(inst, delay)
     if inst.interiorvisitor_restore_physics_task then
         inst.interiorvisitor_restore_physics_task:Cancel()
@@ -116,8 +116,26 @@ function InteriorVisitor:DelayRestorePhysics(inst, delay)
     end)
 end
 
-function InteriorVisitor:RecordMap(id, data)
+local function is_anthill_room(id)
+    local interior_spawner = TheWorld.components.interiorspawner
+    local interior_define = interior_spawner:GetInteriorDefine(id)
+    return interior_define and interior_define.dungeon_name == "ANTHILL1"
+end
+
+function InteriorVisitor:RecordMap(id, data, no_send)
     self.interior_map[id] = data
+
+    if is_anthill_room(id) then
+        if data then
+            self.anthill_visited_time[id] = TheWorld.anthill_entrance.maze_reset_count
+        else
+            self.anthill_visited_time[id] = nil
+        end
+    end
+
+    if no_send then
+        return
+    end
 
     self.scheduled_sync_map_data.addition[id] = data
     if not data then
@@ -140,13 +158,40 @@ function InteriorVisitor:RecordMap(id, data)
     end
 end
 
+function InteriorVisitor:RecordAnthillDoorMapReset(no_send)
+    local anthill_entrance = TheWorld.anthill_entrance
+    if not anthill_entrance then
+        print("No anthill entrance!")
+        return
+    end
+
+    for id, data in pairs(self.interior_map) do
+        if is_anthill_room(id) then
+            if id == (self.center_ent and self.center_ent.interiorID) then
+                self:RecordMap(id, data, true)
+            elseif not (self.anthill_visited_time[id] and self.anthill_visited_time[id] >= TheWorld.anthill_entrance.maze_reset_count) then
+                for _, door in ipairs(data.doors) do
+                    door.unknown = true
+                    door.hidden = false
+                end
+                self:RecordMap(id, data, no_send)
+            end
+        end
+    end
+    if self.center_ent and is_anthill_room(self.center_ent.interiorID) then
+        self:UpdateSurroundingDoorMaps(self.center_ent, nil, self.interior_map[self.center_ent.interiorID])
+    end
+end
+
 function InteriorVisitor:ValidateMap()
     for id, map_data in pairs(self.interior_map) do
         local center = TheWorld.components.interiorspawner:GetInteriorCenter(id)
         if not center or (map_data.uuid and map_data.uuid ~= center.uuid) then
             self.interior_map[id] = nil
+            self.anthill_visited_time[id] = nil
         end
     end
+    self:RecordAnthillDoorMapReset(true)
 end
 
 local op_dir_str = {
@@ -185,6 +230,10 @@ function InteriorVisitor:UpdateSurroundingDoorMaps(center_ent, last_center_ent, 
                         end
                         if target_interior_door.disabled ~= disabled then
                             target_interior_door.disabled = disabled
+                            dirty = true
+                        end
+                        if target_interior_door.unknown then
+                            target_interior_door.unknown = nil
                             dirty = true
                         end
                         if dirty then
@@ -271,6 +320,7 @@ function InteriorVisitor:OnSave()
     return {
         last_mainland_pos = self.last_mainland_pos,
         interior_map = self.interior_map,
+        anthill_visited_time = self.anthill_visited_time,
     }
 end
 
@@ -280,6 +330,9 @@ function InteriorVisitor:OnLoad(data)
     end
     if data.interior_map then
         self.interior_map = data.interior_map
+    end
+    if data.anthill_visited_time then
+        self.anthill_visited_time = data.anthill_visited_time
     end
 
     for id, map_data in pairs(self.interior_map) do -- 转换旧存档的数据格式
