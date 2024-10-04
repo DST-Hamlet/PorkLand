@@ -26,7 +26,7 @@ end
 local function OnseasonChange(inst, season)
     if season ~= SEASONS.LUSH
         and not inst:IsInLimbo()
-        and TheWorld.Map:ReverseIsVisualGroundAtPoint(inst:GetPosition()) then
+        and custom_candeploy_fn(inst, inst:GetPosition()) then
         inst.components.deployable:Deploy(inst:GetPosition(), inst)
     end
 end
