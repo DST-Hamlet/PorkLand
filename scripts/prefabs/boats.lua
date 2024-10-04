@@ -246,7 +246,7 @@ local function lograftfn()
 
     inst:AddTag("noslot")
 
-    inst.MiniMapEntity:SetIcon("raft.tex")
+    inst.MiniMapEntity:SetIcon("lograft.tex")
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
