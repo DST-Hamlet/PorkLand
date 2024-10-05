@@ -129,6 +129,7 @@ function self:RemoveFromHerd(monkey)
     if monkey.herd then
         RemoveByValue(monkey.herd.monkeys, monkey)
         monkey.herd = nil
+        monkey.inherd = false
     else
         for _, herd in pairs(_herds) do
             for k, herdmonkey in pairs(herd.monkeys) do
