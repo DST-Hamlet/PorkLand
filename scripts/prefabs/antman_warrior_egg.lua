@@ -9,7 +9,7 @@ local assets =
     Asset("ANIM", "anim/antman_translucent_build.zip"),
 }
 
-local function dohatch(inst, hatch_time)
+local function dohatch(inst, hatch_time, home)
     inst.updatetask = inst:DoTaskInTime(hatch_time, function()
         inst.AnimState:PlayAnimation("hatch")
         inst.components.health:SetInvincible(true)
@@ -23,6 +23,10 @@ local function dohatch(inst, hatch_time)
                 warrior.queen = queen
             elseif TheWorld.state.isaporkalypse then
                 warrior:AddTag("aporkalypse_cleanup")
+            end
+
+            if home then
+                home.components.childspawner:TakeOwnership(warrior)
             end
 
             -- warrior.components.combat:SetTarget(GetPlayer())
@@ -146,10 +150,10 @@ local function fn()
 
     inst.OnEntityWake = OnEntityWake
 
-    inst.eggify = function (inst)
+    inst.eggify = function (inst, home)
         inst.AnimState:PlayAnimation("eggify", false)
         inst.AnimState:PushAnimation("idle", false)
-        dohatch(inst, 1)
+        dohatch(inst, 1, home)
     end
 
     MakeHauntable(inst)

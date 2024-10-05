@@ -204,8 +204,12 @@ end
 
 local function TransformToWarrior(inst, from_limbo_or_asleep)
     if from_limbo_or_asleep then
+        local home = inst.components.homeseeker and inst.components.homeseeker:GetHome()
         local warrior = ReplacePrefab(inst, "antman_warrior")
         warrior:AddTag("aporkalypse_cleanup")
+        if home then
+            home.components.childspawner:TakeOwnership(warrior)
+        end
     else
         inst.sg:GoToState("transform")
     end

@@ -216,7 +216,7 @@ local states =
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("eggify")
             local egg = ReplacePrefab(inst, "antman_warrior_egg")
-            egg:eggify()
+            egg:eggify(inst.components.homeseeker and inst.components.homeseeker:GetHome())
             egg:AddTag("aporkalypse_cleanup")
         end,
 

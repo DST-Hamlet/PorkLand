@@ -120,7 +120,11 @@ local function OnIsAporkalypse(inst, isaporkalypse)
         inst.AnimState:SetBuild("antman_warpaint_build")
     else
         if inst:HasTag("aporkalypse_cleanup") then -- this ant warrior is transformed from regular ant
-            ReplacePrefab(inst, "antman")
+            local home = inst.components.homeseeker and inst.components.homeseeker:GetHome()
+            local ant = ReplacePrefab(inst, "antman")
+            if home then
+                home.components.childspawner:TakeOwnership(ant)
+            end
             return
         end
 
