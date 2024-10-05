@@ -63,11 +63,19 @@ local function fn()
 	inst.AnimState:SetBank("bubbles_sunk")
 	inst.AnimState:SetBuild("bubbles_sunk")
 
+    inst:AddTag("sunkencontainer")
+    inst:AddTag("fishable")
+
+    inst._sunkenvisual = net_entity(inst.GUID, "_sunkenvisual", "sunkenvisualdirty")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
+        inst:ListenForEvent("sunkenvisualdirty", function() inst.highlightchildren = {inst._sunkenvisual:value()} end)
         return inst
     end
+
+    inst:AddComponent("inspectable")
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("sunkenprefab")
@@ -78,12 +86,11 @@ local function fn()
 
 	inst:DoTaskInTime((math.random() * 15 + 15), dobubblefx)
 
-	inst:AddTag("FX")
-	inst:AddTag("NOCLICK")
-
     inst:ListenForEvent("itemget", function(inst, data)
         if not inst.visual then
             inst.visual = SpawnPrefab("sunkenvisual")
+            inst.highlightchildren = {inst.visual}
+            inst._sunkenvisual:set(inst.visual)
         end
         inst.visual:SetUp(inst, data.item)
     end)

@@ -153,7 +153,7 @@ ACTIONS.PANGOLDEN_POOP.fn = function(act)
 end
 
 ACTIONS.FISH.strfn = function(act)
-    if act.target and act.target:HasTag("sink") then
+    if act.target and (act.target:HasTag("sink") or act.target:HasTag("sunkencontainer")) then
         return "RETRIEVE"
     else
         return "GENERIC"
