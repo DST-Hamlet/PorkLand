@@ -141,6 +141,19 @@ function SinkEntity(entity, ...)
     local px, py, pz = 0, 0, 0
     if entity.Transform then
         px, py, pz = entity.Transform:GetWorldPosition()
+
+        if entity.persists
+            and entity.components.inventoryitem
+            and entity.components.inventoryitem.cangoincontainer
+            -- and TheWorld.Map:GetTileAtPoint(px, py, pz) ~= WORLD_TILES.OCEAN_DEEP then
+            and TheWorld.Map:GetTileAtPoint(px, py, pz) == WORLD_TILES.LILYPOND then
+
+            local sunkenprefab = SpawnPrefab("sunkenprefab")
+            sunkenprefab:Initialize(entity)
+            local fx = SpawnPrefab("splash_sink")
+            fx.Transform:SetPosition(px, py, pz)
+            return
+        end
     end
 
     if entity.components.inventory then

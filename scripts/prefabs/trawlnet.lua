@@ -304,8 +304,6 @@ local function onunequip(inst, owner)
 	end
 end
 
-local loots = {}
-
 local function net(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
