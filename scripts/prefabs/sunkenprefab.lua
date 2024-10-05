@@ -104,7 +104,6 @@ local function SetUp(inst, parent, item)
         inst.AnimState:PlayAnimation(anim, false)
     end
 
-    inst.parent = parent
     inst.entity:SetParent(parent.entity)
     inst.Transform:SetPosition(0, 0, 0)
 end
