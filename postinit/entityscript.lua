@@ -200,6 +200,13 @@ function EntityScript:GetCurrentAnimation()
     end
 end
 
+function EntityScript:GetCurrentBank()
+    local debug_string = self.entity:GetDebugString()
+    if debug_string then
+        return string.match(debug_string, "bank:%s+(%S+)%s+")
+    end
+end
+
 local _GetIsWet = EntityScript.GetIsWet
 function EntityScript:GetIsWet(...)
     return self:HasTag("temporary_wet") or (_GetIsWet(self, ...) and not self:GetIsInInterior())

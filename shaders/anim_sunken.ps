@@ -1,0 +1,319 @@
+#if defined( GL_ES )
+precision mediump float;
+#endif
+
+uniform mat4 MatrixW;
+
+
+#if defined( TRIPLE_ATLAS )
+    uniform sampler2D SAMPLER[6];
+#else
+    uniform sampler2D SAMPLER[5];
+#endif
+
+#ifndef LIGHTING_H
+#define LIGHTING_H
+
+#if !defined( UI_CC )
+// Lighting
+varying vec3 PS_POS;
+#endif
+
+// xy = min, zw = max
+uniform vec4 LIGHTMAP_WORLD_EXTENTS;
+
+#define LIGHTMAP_TEXTURE SAMPLER[3]
+
+#ifndef LIGHTMAP_TEXTURE
+	#error If you use lighting, you must #define the sampler that the lightmap belongs to
+#endif
+
+#if defined( UI_CC )
+vec3 CalculateLightingContribution(vec2 pos)
+{
+	vec2 uv = ( pos - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+#else
+vec3 CalculateLightingContribution()
+{
+	vec2 uv = ( PS_POS.xz - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+
+vec3 CalculateLightingContribution( vec3 normal )
+{
+	return vec3( 1, 1, 1 );
+}
+#endif
+
+#endif //LIGHTING.h
+
+
+varying vec3 PS_TEXCOORD;
+
+uniform vec4 TIMEPARAMS;
+
+uniform mat4 COLOUR_XFORM;
+uniform vec3 PARAMS;
+uniform vec3 FLOAT_PARAMS;
+uniform vec4 HAUNTPARAMS;
+uniform vec4 HAUNTPARAMS2;
+uniform vec4 OCEAN_BLEND_PARAMS;
+uniform vec3 CAMERARIGHT;
+
+#define ALPHA_TEST PARAMS.x
+#define LIGHT_OVERRIDE PARAMS.y
+#define BLOOM_TOGGLE PARAMS.z
+
+#if defined( FADE_OUT )
+    uniform vec3 EROSION_PARAMS; 
+    varying vec2 FADE_UV;
+
+	#if defined( HOLO )
+		#define HOLO_SAMPLER			SAMPLER[2]
+		#define HOLO_ERODE_INTENSITY	EROSION_PARAMS.x
+		#define HOLO_Y_CUTOFF			EROSION_PARAMS.y
+		#define NEGATIVE_HOLO_LERP		EROSION_PARAMS.z
+	#else
+    	#define ERODE_SAMPLER			SAMPLER[2]
+		#define EROSION_MIN				EROSION_PARAMS.x
+		#define EROSION_RANGE			EROSION_PARAMS.y
+		#define EROSION_LERP			EROSION_PARAMS.z
+	#endif
+#endif
+
+uniform vec4 OCEAN_WORLD_EXTENTS;
+#define OCEAN_SAMPLER SAMPLER[4]
+
+#if defined( HOLO )
+	float filmSkipRand() // This should match the function with the same name in anim.vs
+	{
+		float steps = 12.;
+		float c = fract(sin(ceil(TIMEPARAMS.x * steps) / steps) * 10000.);
+		return (c * -.36) * step(.78, c);
+	}
+#endif
+
+void main()
+{
+    vec4 colour;
+    vec3 colour_offset = vec3(0.07,0.12,0.12);
+
+#if defined( TRIPLE_ATLAS )
+    if( PS_TEXCOORD.z < 0.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
+    }
+    else if( PS_TEXCOORD.z < 1.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
+    }
+    else
+    {
+        colour.rgba = texture2D( SAMPLER[5], PS_TEXCOORD.xy );
+    }
+#else
+    if( PS_TEXCOORD.z < 0.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
+    }
+    else
+    {
+        colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
+    }
+#endif
+
+	if (BLOOM_TOGGLE == 1.0)
+	{
+		gl_FragColor.rgba = vec4(0, 0, 0, colour.a);
+		return;
+	}
+
+    if(FLOAT_PARAMS.y > 0.0)
+    {
+    	if(PS_POS.y < FLOAT_PARAMS.x)
+    	{
+    		discard;
+    	}
+    }
+
+#if defined ( FADE_OUT )
+	if (colour.a >= ALPHA_TEST)
+#else
+	if (ALPHA_TEST > 0.0)
+	{
+		if (colour.a >= ALPHA_TEST)
+		{
+			gl_FragColor = colour.rgba;	
+		}
+		else
+		{
+			discard;
+		}
+	}
+    else
+#endif
+    {
+		gl_FragColor.rgba = colour.rgba * COLOUR_XFORM;
+        if (colour.a > 0.8)
+        {
+            gl_FragColor.rgb += colour_offset;
+        }
+        else
+		{
+			gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+		}
+        gl_FragColor.rgb *= min(max(1.0,  1.2 - PS_POS.y * 0.01), 1.5);
+        gl_FragColor.rgba *= min(1.0, 0.5  - PS_POS.y * 0.008);
+
+#if defined( FADE_OUT )
+		#if defined( HOLO )
+			if (PS_POS.y < (.36 - filmSkipRand()) * .096 + HOLO_Y_CUTOFF)
+			{
+				discard;
+			}
+
+			vec4 orig = gl_FragColor;
+			
+			vec2 lineUV = vec2(FADE_UV.x * 1., TIMEPARAMS.x * .16);
+			float rgbLines = smoothstep(1., .75, texture2D( HOLO_SAMPLER, lineUV ).g);
+			float alphaLines = step(HOLO_ERODE_INTENSITY - .01, texture2D( HOLO_SAMPLER, lineUV ).g);
+
+			float filmGrainTime = ceil(TIMEPARAMS.x * 10.) * .1; // Grain runs on 1/10 framerate
+			
+			float grain = texture2D( HOLO_SAMPLER, FADE_UV.xy * 1. + mod(filmGrainTime * 192.7249753, 9e4)).b;
+			float mask = grain * rgbLines;
+			gl_FragColor.rgb *= .35 + mask * .65;
+			
+			// Color grading
+			gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(.85, .68, .57), .05);
+
+			// Fluctuating exposure
+			float exposureAdd = texture2D( HOLO_SAMPLER, vec2(mod(TIMEPARAMS.x, 1.), mod(floor(TIMEPARAMS.x) / 256., 256.))).r;
+			gl_FragColor.rgb += vec3(exposureAdd * .22);
+
+			float baseAlpha = gl_FragColor.a;
+			float alpha = baseAlpha * alphaLines;
+			gl_FragColor = mix(orig, vec4(gl_FragColor.r * alpha, gl_FragColor.g * alpha, gl_FragColor.b * alpha, alpha), abs(NEGATIVE_HOLO_LERP));
+		#else
+			float height = texture2D( ERODE_SAMPLER, FADE_UV.xy ).a;
+			float erode_val = clamp( ( height - EROSION_MIN ) / EROSION_RANGE, 0.0, 1.0 );
+			gl_FragColor.rgba = mix( gl_FragColor.rgba, gl_FragColor.rgba * erode_val, EROSION_LERP );
+		#endif
+#endif
+		
+		vec2 world_uv = ( PS_POS.xz - OCEAN_WORLD_EXTENTS.xy ) * OCEAN_WORLD_EXTENTS.zw;
+		vec3 world_tint = texture2D( OCEAN_SAMPLER, world_uv ).rgb;
+		gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * world_tint.rgb, OCEAN_BLEND_PARAMS.x);
+
+        vec3 light = CalculateLightingContribution();
+
+        gl_FragColor.rgb *= max( light.rgb, vec3( LIGHT_OVERRIDE, LIGHT_OVERRIDE, LIGHT_OVERRIDE ) );
+#if defined( HAUNT )
+		// first part should move to the vertex shader
+  	  	float xp = PS_POS.x;
+  	  	float yp = PS_POS.y;
+  	  	float zp = PS_POS.z;
+
+#if 1	// do it in local space (so moving objects don't expose a world space pattern)
+		float objx = MatrixW[3][0];
+		xp -= objx;
+		float objz = MatrixW[3][2];
+		zp -= objz;
+		// Add in a random base to desynchronise identical objects
+		xp += HAUNTPARAMS.y;
+		zp += HAUNTPARAMS.y;
+		yp += HAUNTPARAMS.y;
+#endif
+
+		const float PI = 3.1415;
+		const float TWO_PI = 2.0 * PI;
+
+		xp *= 5.;
+		yp *= 5.;
+		zp *= 5.;
+
+		float time = HAUNTPARAMS.x;
+
+		float cx = CAMERARIGHT.x;
+		float cz = CAMERARIGHT.z;
+
+		float resx = cx * xp;
+		float resz = cz * zp;
+
+		float x = resx+resz;
+		float y = yp;
+
+		// scale the effect
+		x *= HAUNTPARAMS.w;	
+		y *= HAUNTPARAMS.w;
+
+		float strength = HAUNTPARAMS.z;
+#if defined(BLOOM)
+		// Hmmm, still unsure if it looks better with bloom at a different rate. It adds some obfuscation to the pattern
+		time *= -2.0;
+#else
+		time *= 3.0;
+#endif
+		float pix = 
+        (
+              (sin((x + time * 7.0) * HAUNTPARAMS2.x))
+            + (cos((y + time * 1.5)  * HAUNTPARAMS2.y))
+            + (sin((x + y + 3.0 * time ) / (16.0 + 0.3 * sin(time / 100.0))))
+            + (sin(sqrt((x * x + y * y)) * HAUNTPARAMS2.z))
+        ) / 4.0;
+
+		// either this:
+		pix = 0.5 + 0.5 * sin(pix * PI);
+		// or this
+		//pix = 0.5 + 0.5 * pix;
+		//pix = 0.5 + 0.5 * sin(pix * TWO_PI);
+
+		float orig_a = gl_FragColor.a;
+		// pix is the new alpha
+		// Take the alpha out of the source pixel
+		gl_FragColor.rgb /= orig_a;	
+
+//if (pix > 0.8) pix = 0.8;
+//if (pix < 0.95) pix = 0.0;
+
+		float r = gl_FragColor.r;
+		float g = gl_FragColor.g;
+		float b = gl_FragColor.b;
+		float r2 = r * 3.0;
+		float g2 = g * 3.0;
+		float b2 = b * 3.0;
+		vec3 rgb2 = vec3(r2,g2,b2);
+
+		pix = pix * strength;
+		gl_FragColor.rgb = (1.0-pix) * gl_FragColor.rgb + pix * rgb2;
+
+		// Multiply in the original alpha
+		gl_FragColor.r *= orig_a;
+		gl_FragColor.g *= orig_a;
+		gl_FragColor.b *= orig_a;
+
+#if defined(BLOOM)
+		// This condition isn't needed but if I take it out opengl errs out because sampler accesses are optimized out
+//		if ((HAUNTPARAMS.y > 0.5))	// 1 in the bloompass. Could also multiply instead
+		{
+			float v = pix;
+			v *= 0.5;
+			v *= orig_a;
+			v *= strength;
+			// To stop OpenGL on crapping out on unused samplers.....
+			gl_FragColor = gl_FragColor * 0.0001 + vec4(v,v,v,orig_a) * 0.9999;
+		}
+#endif
+		// To see the plasma
+
+#endif  
+    }
+#if defined ( FADE_OUT )
+	else
+	{
+		discard;
+	}
+#endif
+}

@@ -146,7 +146,7 @@ function SinkEntity(entity, ...)
             and entity.components.inventoryitem
             and entity.components.inventoryitem.cangoincontainer
             -- and TheWorld.Map:GetTileAtPoint(px, py, pz) ~= WORLD_TILES.OCEAN_DEEP then
-            and TheWorld.Map:GetTileAtPoint(px, py, pz) == WORLD_TILES.LILYPOND then
+            and TheWorld.Map:ReverseIsVisualWaterAtPoint(px, py, pz) then
 
             local sunkenprefab = SpawnPrefab("sunkenprefab")
             sunkenprefab:Initialize(entity)
