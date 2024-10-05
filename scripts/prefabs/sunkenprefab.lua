@@ -32,14 +32,18 @@ local function init(inst, item)
                 for k, v in pairs(loots) do
                     local loot = SpawnPrefab(v)
                     if loot then
-                        inst.components.container:GiveItem(loot)
+                        if not inst.components.container:GiveItem(loot, nil, nil, false) then
+                            loot:Remove()
+                        end
                     end
                 end
             end
         end
         item:Remove()
     else
-        inst.components.container:GiveItem(item)
+        if not inst.components.container:GiveItem(item, nil, nil, false) then
+            item:Remove()
+        end
     end
 
     inst.components.timer:StartTimer("destroy", TUNING.SUNKENPREFAB_REMOVE_TIME)
@@ -61,6 +65,7 @@ local function fn()
     end
 
     inst:AddComponent("container")
+    inst.components.container:WidgetSetup("sunkenprefab")
 
 	inst:AddComponent("timer")
 	inst:ListenForEvent("timerdone", ontimerdone)
