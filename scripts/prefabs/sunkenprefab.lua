@@ -66,6 +66,7 @@ local function fn()
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("sunkenprefab")
+    inst.components.container.canbeopened = false
 
 	inst:AddComponent("timer")
 	inst:ListenForEvent("timerdone", ontimerdone)
