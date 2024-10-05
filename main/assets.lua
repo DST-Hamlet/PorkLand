@@ -275,6 +275,7 @@ PrefabFiles = {
 
     "coconade",
     "trawlnet",
+    "sunkenprefab",
 }
 
 Assets = {

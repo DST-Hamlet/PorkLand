@@ -79,11 +79,9 @@ local SPECIAL_CASE_PREFABS = {
     end,
 
     sunkenprefab = function(inst)
-        local sunken = SpawnSaveRecord(inst.components.sunkenprefabinfo:GetSunkenPrefab())
-        sunken:LongUpdate(inst.components.sunkenprefabinfo:GetTimeSubmerged())
-
+        local item = inst.components.container:RemoveItemBySlot(1)
         inst:Remove()
-        return sunken
+        return item
     end,
 
     lobster = function(inst)
