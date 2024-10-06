@@ -3,6 +3,7 @@ local SHADER = "shaders/anim_sunken.ksh"
 local assets =
 {
 	Asset("ANIM", "anim/bubbles_sunk.zip"),
+    Asset("ANIM", "anim/sunken_visual_slot.zip"),
     Asset("SHADER", SHADER),
 }
 
@@ -101,24 +102,18 @@ local function fn()
 end
 
 local function SetUp(inst, parent, item)
-    if item and item:IsValid() and item.AnimState then
-        local bank = item:GetCurrentBank()
-        local build = item.AnimState:GetBuild()
-        local anim = item:GetCurrentAnimation()
-        print(bank, build, anim)
-        inst.AnimState:SetBank(bank)
-        inst.AnimState:SetBuild(build)
-        inst.AnimState:PlayAnimation(anim, false)
-    end
+    inst.AnimState:OverrideSymbol("visual_slot", item.replica.inventoryitem:GetAtlas(), item.replica.inventoryitem:GetImage())
 
     inst.entity:SetParent(parent.entity)
     inst.Transform:SetPosition(0, 0, 0)
+    inst.Follower:FollowSymbol(parent.GUID, nil, 0, 100, 0)
 end
 
 local function SunkenVisualfn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddFollower()
     inst.entity:AddNetwork()
 
     inst:AddTag("noblock")
@@ -127,7 +122,10 @@ local function SunkenVisualfn()
     inst.AnimState:SetDefaultEffectHandle(resolvefilepath(SHADER))
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetFinalOffset(FINALOFFSET_MIN)
-    inst.AnimState:SetMultColour(0.0, 0.0, 0.1, 1)
+    inst.AnimState:SetMultColour(0.0, 0.0, 0.0, 1)
+    inst.AnimState:SetBank("sunken_visual_slot")
+    inst.AnimState:SetBuild("visual_slot")
+    inst.AnimState:PlayAnimation("idle")
 
     inst.persists = false
 

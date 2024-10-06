@@ -35,7 +35,6 @@ void main()
     vec3 TEXCOORD0 = vec3(POS2D_UV.z - 2.0*samplerIndex, POS2D_UV.w, samplerIndex);
 
 	vec3 object_pos = POSITION.xyz;
-	object_pos.y += 150.0;
 
 	vec4 world_pos = MatrixW * vec4( object_pos, 1.0 );
 
