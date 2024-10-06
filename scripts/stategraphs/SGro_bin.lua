@@ -160,60 +160,6 @@ local states =
     },
 
     State{
-        name = "take_off",
-        tags = {"canrotate", "busy"},
-
-        onenter = function(inst)
-            local should_move = inst.components.locomotor:WantsToMoveForward()
-            local should_run = inst.components.locomotor:WantsToRun()
-            if should_move then
-                inst.components.locomotor:WalkForward()
-            elseif should_run then
-                inst.components.locomotor:RunForward()
-            end
-            inst.AnimState:SetBank("robin_flight")
-            inst.AnimState:PlayAnimation("takeoff")
-        end,
-
-        events =
-        {
-            EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle")
-            end),
-        },
-    },
-
-    State{
-        name = "land",
-        tags = {"canrotate", "busy"},
-
-        onenter = function(inst)
-            local should_move = inst.components.locomotor:WantsToMoveForward()
-            local should_run = inst.components.locomotor:WantsToRun()
-            if should_move then
-                inst.components.locomotor:WalkForward()
-            elseif should_run then
-                inst.components.locomotor:RunForward()
-            end
-            inst.AnimState:SetBank("robin_land")
-            inst.AnimState:PlayAnimation("takeoff")
-        end,
-
-        events =
-        {
-            EventHandler("animover", function(inst)
-                inst.sg:GoToState("idle")
-            end),
-        },
-
-        timeline =
-        {
-            TimeEvent(0 * FRAMES, function(inst)inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/mouth_open") end),
-            TimeEvent(8 * FRAMES, function(inst)inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/mouth_open", nil, 0.5) end),
-        },
-    },
-
-    State{
         name = "spawn",
         tags = {"canrotate", "busy"},
 
@@ -243,6 +189,10 @@ local states =
             end
             inst.AnimState:SetBank("ro_bin_water")
             inst.AnimState:PlayAnimation("land")
+        end,
+
+        onexit = function(inst)
+            inst.AnimState:SetBank("ro_bin")
         end,
 
         events =

@@ -244,7 +244,6 @@ local states=
 
         onenter = function(inst, noanim)
             if noanim then
-                inst.AnimState:SetBank("hippo")
                 inst.sg:GoToState("idle")
                 return
             end
@@ -267,7 +266,7 @@ local states=
         },
 
         onexit = function(inst)
-            inst.AnimState:SetBank("hippo")
+            inst.components.amphibiouscreature:RefreshBankFn()
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
         end,
 
@@ -309,6 +308,10 @@ local states=
                 SpawnWaves(inst, 6, 360, 2, "wave_ripple", nil, nil, nil, true)
             end),
         },
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
+        end,
 
         events =
         {

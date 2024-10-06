@@ -382,6 +382,14 @@ function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_wat
     inst:AddComponent("amphibiouscreature")
     inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
     inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
+    inst.components.amphibiouscreature.RefreshBankFn = function(self)
+        local x, y, z = self.inst.Transform:GetWorldPosition()
+        if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+            self.inst.AnimState:SetBank(water_bank)
+        else
+            self.inst.AnimState:SetBank(land_bank)
+        end
+    end
 end
 
 function UpdateSailorPathcaps(inst, allowocean)

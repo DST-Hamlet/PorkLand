@@ -316,7 +316,6 @@ local states=
 
         onenter = function(inst, noanim)
             if noanim then
-                inst.AnimState:SetBank("frog")
                 inst.sg:GoToState("idle")
                 return
             end
@@ -333,7 +332,7 @@ local states=
         end,
 
         onexit = function(inst)
-            inst.AnimState:SetBank("frog")
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events=
@@ -361,7 +360,7 @@ local states=
         end,
 
         onexit = function(inst)
-            inst.AnimState:SetBank("frog")
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events=
@@ -393,6 +392,10 @@ local states=
 
             inst.AnimState:SetBank("frog_water")
             inst.AnimState:PlayAnimation("jumpin_pre")
+        end,
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events=
