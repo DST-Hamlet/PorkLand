@@ -1038,7 +1038,7 @@ end
 local COMPONENT_ACTIONS = ToolUtil.GetUpvalue(EntityScript.CollectActions, "COMPONENT_ACTIONS")
 local SCENE = COMPONENT_ACTIONS.SCENE
 local USEITEM = COMPONENT_ACTIONS.USEITEM
--- local POINT = COMPONENT_ACTIONS.POINT
+local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 
@@ -1228,6 +1228,13 @@ function USEITEM.lighter(inst, doer, target, actions, ...)
     _USEITEMlighter(inst, doer, target, actions, ...)
     if wasLimbo and target:IsValid() and target.inlimbo then
         target:AddTag("INLIMBO")
+    end
+end
+
+local _POINTfishingrod = POINT.fishingrod
+function POINT.fishingrod(inst, doer, pos, actions, right, target, ...)
+    if TheWorld:HasTag("porkland") then
+        return
     end
 end
 
