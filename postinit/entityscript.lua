@@ -247,3 +247,17 @@ function EntityScript:GetAdjectivedName(...)
     end
     return _GetAdjectivedName(self, ...)
 end
+
+function EntityScript:IsInSameIsland(target)
+    if not (target and target:IsValid()) then
+        return false
+    end
+
+    local x, y, z = self.Transform:GetWorldPosition()
+    local tx, ty, tz = target.Transform:GetWorldPosition()
+
+    local current_island = TheWorld.Map:GetIslandTagAtPoint(x, 0, z)
+    local target_island = TheWorld.Map:GetIslandTagAtPoint(tx, ty, tz)
+
+    return current_island == target_island
+end

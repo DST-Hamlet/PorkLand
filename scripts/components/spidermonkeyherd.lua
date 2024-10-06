@@ -71,7 +71,8 @@ local function OnUpdate(self, dt)
     for _, monkey in pairs(_monkeys) do
         if monkey and monkey:IsValid() then
             if monkey.herd and monkey.herd.leader and monkey.herd.leader:IsValid()
-                and monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ then
+                and (monkey:GetDistanceSqToInst(monkey.herd.leader) > REMOVE_FROM_HERD_DISTSQ
+                or not monkey:IsInSameIsland(monkey.herd.leader)) then
                 self:RemoveFromHerd(monkey)
             else
                 self:AddToHerd(monkey)
@@ -221,6 +222,7 @@ function self:LoadPostPass(ents, data)
                 if ents[monkey_GUID] and not added_monkeys[monkey_GUID] then -- 解决旧存档的重复蜘蛛猴
                     added_monkeys[monkey_GUID] = true
                     ents[monkey_GUID].entity.inherd = true
+                    ents[monkey_GUID].entity.herd = herd_data
                     table.insert(herd_data.monkeys, ents[monkey_GUID].entity)
                 end
             end
