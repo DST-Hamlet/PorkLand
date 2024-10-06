@@ -406,6 +406,7 @@ function MakeThrowablePhysics(inst, mass, rad, ...)
     local physics = MakeInventoryPhysics(inst, mass, rad, ...)
     inst.Physics:SetFriction(100)
     inst.Physics:SetRestitution(0)
+    inst.Physics:SetDontRemoveOnSleep(true)
 
     return physics
 end

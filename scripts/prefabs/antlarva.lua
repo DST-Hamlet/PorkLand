@@ -19,6 +19,8 @@ local function larava_fn()
     inst.AnimState:SetBank("ant_larva")
     inst.AnimState:SetBuild("ant_larva")
 
+    inst:AddTag("ant")
+
     MakeThrowablePhysics(inst, 75, 0.5)
 
     inst.entity:SetPristine()
