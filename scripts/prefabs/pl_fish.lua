@@ -44,7 +44,7 @@ local function commonfn(bank, build, anim, loop, dryable, cookable)
         inst:AddTag("cookable")
     end
 
-    MakeInventoryFloatable(inst)
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()
 
