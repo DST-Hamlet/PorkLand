@@ -210,7 +210,7 @@ local function Close(inst)
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"rocks", "rocks", "flint", "flint", "flint"})
 
-    inst.name = STRINGS.NAMES.CAVE_ENTRANCE_CLOSED_CAVE
+    inst.name = STRINGS.NAMES.CAVE_ENTRANCE
 
     inst.open = false
 

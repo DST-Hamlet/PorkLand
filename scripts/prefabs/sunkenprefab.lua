@@ -77,6 +77,8 @@ local function fn()
     end
 
     inst:AddComponent("inspectable")
+    
+    inst:SetPrefabNameOverride("SUNKEN_RELIC")
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("sunkenprefab")
