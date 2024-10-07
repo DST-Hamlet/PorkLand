@@ -170,7 +170,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
 
         DecoCreator:Create("deco_valence", "interior_wall_decals_hoofspa", "wall_decals_hoofspa",  "vallance_1pc",  {decal=true, background=3}),
         DecoCreator:Create("wall_mirror",  "interior_wall_mirror",         "wall_mirror",          "idle",          {background=3, followlight=true, mirror=true}),
-        DecoCreator:Create("deco_chaise",  "interior_floor_decor",         "interior_floor_decor", "chaise",        {physics="sofa_physics", tags={"furniture", "rotatableobject"}, onbuilt=true }),
+        DecoCreator:Create("deco_chaise",  "interior_floor_decor",         "interior_floor_decor", "chaise",        {physics="sofa_physics", tags={"furniture", "rotatableobject", "limited_chair"}, onbuilt=true, cansit = true}),
 
         DecoCreator:Create("wall_light_hoofspa", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "sconce_sidewall",       {light=DecoCreator:GetLights().SMALL}),
         DecoCreator:Create("wall_light_hoofspa", "interior_wall_decals_hoofspa", "wall_decals_hoofspa", "sconce_backwall",       {light=DecoCreator:GetLights().SMALL}),

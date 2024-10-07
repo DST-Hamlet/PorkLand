@@ -161,6 +161,9 @@ end
 local function makefish(bank, build, nameoverride, data)
     local function makerawfn()
         local raw = rawfn(bank, build, nameoverride)
+        if not TheWorld.ismastersim then
+            return raw
+        end
         if data.cookproduct then
             raw.components.cookable.product = data.cookproduct
         end

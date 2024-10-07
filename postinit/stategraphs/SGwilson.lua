@@ -2715,6 +2715,36 @@ AddStategraphPostInit("wilson", function(sg)
         end
     end
 
+    local _sit_jumpon_onenter = sg.states["sit_jumpon"].onenter
+    sg.states["sit_jumpon"].onenter = function(inst, chair, ...)
+        _sit_jumpon_onenter(inst, chair, ...)
+        if chair and chair:HasTag("limited_chair") then
+            if chair:HasTag("rotatableobject") then
+                inst.Transform:SetTwoFaced()
+            end
+        end
+    end
+
+    local _sitting_onenter = sg.states["sitting"].onenter
+    sg.states["sitting"].onenter = function(inst, chair, ...)
+        _sitting_onenter(inst, chair, ...)
+        if inst.sg.statemem.chair and inst.sg.statemem.chair:HasTag("limited_chair") then
+            if inst.sg.statemem.chair:HasTag("rotatableobject") then
+                inst.Transform:SetTwoFaced()
+            end
+        end
+    end
+
+    local _stop_sitting_onenter = sg.states["stop_sitting"].onenter
+    sg.states["stop_sitting"].onenter = function(inst, chair, ...)
+        _stop_sitting_onenter(inst, chair, ...)
+        if inst.sg.statemem.chair and inst.sg.statemem.chair:HasTag("limited_chair") then
+            if inst.sg.statemem.chair:HasTag("rotatableobject") then
+                inst.Transform:SetTwoFaced()
+            end
+        end
+    end
+
     local _locomote_eventhandler = sg.events.locomote.fn
     sg.events.locomote.fn = function(inst, data, ...)
         local is_attacking = inst.sg:HasStateTag("attack")
