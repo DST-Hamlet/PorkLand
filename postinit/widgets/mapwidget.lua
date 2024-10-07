@@ -320,7 +320,7 @@ end
 -- Delay a frame so this is loaded after Global Positions to OnUpdate compatible with it
 scheduler:ExecuteInTime(0, function()
     AddClassPostConstruct("widgets/mapwidget", function(self)
-        self.bg.inst.ImageWidget:SetTexture("images/pl_hud.xml", "blackbg.tex")
+        self.bg.inst.ImageWidget:SetTexture("images/hud/pl_hud.xml", "blackbg.tex")
         self.bg:SetTint(0,0,0,1)
 
         self.interior_frontend = self:AddChild(Image("images/hud/pl_minimaphud.xml", "pl_minimaphud.tex"))
