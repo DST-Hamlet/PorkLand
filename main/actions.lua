@@ -854,6 +854,21 @@ function ACTIONS.LIGHT.fn(act, ...)
     return _LIGHTfn(act, ...)
 end
 
+local _ROTATE_FENCEfn = ACTIONS.ROTATE_FENCE.fn
+ACTIONS.ROTATE_FENCE.fn = function(act)
+    if act.invobject ~= nil and act.target ~= nil and act.target:HasTag("furniture") then
+        if not (act.invobject.components.itemmimic and act.invobject.components.itemmimic.fail_as_invobject) then
+            local fencerotator = act.invobject.components.fencerotator
+            if fencerotator then
+                fencerotator:Rotate(act.target, TUNING.FENCE_FURNITURE_ROTATION)
+                return true
+            end
+        end
+    end
+
+    return _ROTATE_FENCEfn(act)
+end
+
 -- SCENE        using an object in the world
 -- USEITEM      using an inventory item on an object in the world
 -- POINT        using an inventory item on a point in the world

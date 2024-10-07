@@ -707,6 +707,8 @@ local tuning = {
     COCONADE_BUILDINGDAMAGE = 10,
 
     BIRDWHISLE_USES = 5,
+
+    FENCE_FURNITURE_ROTATION = 180,
 }
 
 
