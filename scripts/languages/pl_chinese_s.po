@@ -5,6 +5,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT Version: 2.0"
 
+#. STRINGS.ACTIONS.BUILD_ROOM
+msgctxt "STRINGS.ACTIONS.BUILD_ROOM"
+msgid "Build Room"
+msgstr "建造房间"
+
 #. STRINGS.ACTIONS.CHARGE_UP
 msgctxt "STRINGS.ACTIONS.CHARGE_UP"
 msgid "Charge"
@@ -19,6 +24,11 @@ msgstr "喝下"
 msgctxt "STRINGS.ACTIONS.CUREPOISON.GLAND"
 msgid "Ingest"
 msgstr "吞下"
+
+#. STRINGS.ACTIONS.DEMOLISH_ROOM
+msgctxt "STRINGS.ACTIONS.DEMOLISH_ROOM"
+msgid "Demolish Room"
+msgstr "拆除房间"
 
 #. STRINGS.ACTIONS.DISARM
 msgctxt "STRINGS.ACTIONS.DISARM"
@@ -134,6 +144,11 @@ msgstr "调查"
 msgctxt "STRINGS.ACTIONS.TAKEFROMSHELF"
 msgid "Retrieve"
 msgstr "取下"
+
+#. STRINGS.ACTIONS.THROW
+msgctxt "STRINGS.ACTIONS.THROW"
+msgid "Throw At"
+msgstr "投向"
 
 #. STRINGS.ACTIONS.UNEQUIP.TRAWLNET
 msgctxt "STRINGS.ACTIONS.UNEQUIP.TRAWLNET"
@@ -680,6 +695,16 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTIVENOM"
 msgid "Tastes horrible!"
 msgstr "尝起来真糟糕！"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTLER"
+msgid "For the bird."
+msgstr "为了鸟儿。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTLER_CORRUPTED"
+msgid "This should scare off that big bird."
+msgstr "这应该能吓跑那只大鸟。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMAN.DEAD"
 msgid "Exterminated."
@@ -709,6 +734,11 @@ msgstr "千万别孵出来。千万别孵出来。千万别孵出来..."
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTMASKHAT"
 msgid "There's still some goo stuck to the insides."
 msgstr "这里面还有一些黏黏的粘液。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN"
+msgid "The Queen regn-ant."
+msgstr "摄政蚁后。"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -794,6 +824,11 @@ msgstr "风-趣。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BATHAT"
 msgid "A hat, made of bat."
 msgstr "帽子，它是由蝙蝠做成的。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BAT_HIDE"
+msgid "Is the bat hide-ing in there?"
+msgstr "蝙蝠躲在里面吗？"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.BILL.DEAD"
@@ -1524,6 +1559,11 @@ msgstr "一朵令人咳嗽的云雾。"
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GASMASKHAT"
 msgid "Now I can breathe anywhere."
 msgstr "现在我在哪都能呼吸了。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GIANTGRUB"
+msgid "I'm not going anywhere near that!"
+msgstr "我是不会靠近那个的！"
 
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.GLOWFLY.DEAD"
@@ -3670,6 +3710,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.VAMPIREBATCAVE"
 msgid "A den of bloodsuckers."
 msgstr "一个吸血鬼的巢穴。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "I hate those things, even when they're dead."
+msgstr "我很讨厌它们，就算它们死掉了也很讨厌。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.VENOMGLAND"
 msgid "Only poison can cure poison."
@@ -4055,6 +4100,16 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTIVENOM"
 msgid "A tincture of antibodies."
 msgstr "一种抗体酊剂。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTLER"
+msgid "A bird whistle that appears to call an exceedingly large bird."
+msgstr "一支鸟笛，似乎能呼唤一种非常巨大的鸟。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTLER_CORRUPTED"
+msgid "This model appears to deter the exceedingly large bird."
+msgstr "这个模型似乎对那只非常巨大的鸟起到了震慑作用。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMAN.DEAD"
 msgid "I wonder if they have funeral rites."
@@ -4084,6 +4139,11 @@ msgstr "真迷人！它们似乎天生就有暴力倾向。"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTMASKHAT"
 msgid "Evidently it masks my human scent as well."
 msgstr "显然这可以遮掩我的人类气味。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN"
+msgid "Fascinatingly vicious! She deserves more study."
+msgstr "迷人的邪恶！她值得我深入研究。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -4169,6 +4229,11 @@ msgstr "真棒啊！多么神奇的工程啊！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BATHAT"
 msgid "Incredible. It's just like my goggles!"
 msgstr "不可思议。这就像我的护目镜！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BAT_HIDE"
+msgid "Curious. It looks remarkably like a pig bottom."
+msgstr "真奇怪。这看起来非常像是猪的屁股。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.BILL.DEAD"
@@ -4914,6 +4979,11 @@ msgstr "一团化学毒气云。真有趣！"
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GASMASKHAT"
 msgid "It appears that those ocular plumes are great at air filtration."
 msgstr "看来这种有眼睛的羽毛对空气过滤很有帮助。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GIANTGRUB"
+msgid "It appears to have a contentious relationship with the humanoid hexapod invertebrates."
+msgstr "它似乎与类人六足无脊椎动物有敌对关系。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.GLOWFLY.DEAD"
@@ -7035,6 +7105,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VAMPIREBATCAVE"
 msgid "Based on its depth and malodorous smell, I deduce this hole houses bats."
 msgstr "根据这洞穴的深度和臭味，我断定这个洞里住着蝙蝠。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Oddly heavy for a flying appendage."
+msgstr "这种蝙蝠的翅膀的附属物这么重也能飞起来，太奇怪了。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.VENOMGLAND"
 msgid "Excellent! A sack of zootoxin."
@@ -7425,6 +7500,16 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTIVENOM"
 msgid "This'll make the sickness go away."
 msgstr "这可以消除疾病。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTLER"
+msgid "Here birdy birdy."
+msgstr "到这儿来，小鸟。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTLER_CORRUPTED"
+msgid "Bye birdy birdy."
+msgstr "再见，小鸟。"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMAN.DEAD"
 msgid "That bugs me."
@@ -7454,6 +7539,11 @@ msgstr "希望它留在那个蛋里。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTMASKHAT"
 msgid "Sorry bug-dude."
 msgstr "抱歉了，虫伙计们。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN"
+msgid "Yeesh. She really needs to chill-out."
+msgstr "嘘。她真的需要冷静一下。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -7539,6 +7629,11 @@ msgstr "宜人的微风。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BATHAT"
 msgid "Kinda grody."
 msgstr "有点脏。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BAT_HIDE"
+msgid "Weird. It looks like pig skin."
+msgstr "真奇怪。这看起来像是猪皮。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.BILL.DEAD"
@@ -8279,6 +8374,11 @@ msgstr "有毒。"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GASMASKHAT"
 msgid "Out with the bad air, in with the good."
 msgstr "外面的毒气，经过它净化就是无毒的了。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GIANTGRUB"
+msgid "Yeesh. That guy needs to chill out."
+msgstr "噫。那个家伙需要冷静一下。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.GLOWFLY.DEAD"
@@ -10410,6 +10510,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.VAMPIREBATCAVE"
 msgid "I don't get good vibes from that place."
 msgstr "那个地方让我感觉不舒服。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "A couple more of these and I'll be flyin'!"
+msgstr "再多吃几个我就能飞翔了！"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.VENOMGLAND"
 msgid "What a terrible gland."
@@ -12367,8 +12472,8 @@ msgstr "在哪里...它在哪里？"
 
 #. STRINGS.CHARACTERS.WANDA.ANNOUNCE_ROOM_STUCK
 msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_ROOM_STUCK"
-msgid "I don't wanna to stay in this room forever."
-msgstr "我可不想呆在这个房间里直到永远。"
+msgid "Nobody wanna to stay in this room forever."
+msgstr "没人会想呆在这个房间里直到永远。"
 
 #. STRINGS.CHARACTERS.WANDA.ANNOUNCE_SNEEZE
 msgctxt "STRINGS.CHARACTERS.WANDA.ANNOUNCE_SNEEZE"
@@ -15095,6 +15200,16 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTIVENOM"
 msgid "Could come in very handy."
 msgstr "很方便。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTLER"
+msgid "Like a dinner bell for a bird!"
+msgstr "就像鸟儿用的晚餐铃铛！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTLER_CORRUPTED"
+msgid "Au revoir giant bird, no dinner for you!"
+msgstr "再会，巨鸟，没晚餐给你！"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMAN.DEAD"
 msgid "He's met an untimely end."
@@ -15124,6 +15239,11 @@ msgstr "蚁人煎蛋卷, 也许吧?"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTMASKHAT"
 msgid "The pith has been removed."
 msgstr "脑髓部分已经被剔除了。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN"
+msgid "I have no grief with you, madam."
+msgstr "我没有为你感到悲伤, 夫人。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN_THRONE
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.ANTQUEEN_THRONE"
@@ -15204,6 +15324,11 @@ msgstr "厨房必须通风良好。"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BATHAT"
 msgid "Ah, I can see through the eyes of a bat."
 msgstr "啊, 我能通过蝙蝠的眼睛看到东西."
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BAT_HIDE"
+msgid "Is it from a bat or a pig?"
+msgstr "这是来自蝙蝠的还是来自猪的?"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.BILL.DEAD"
@@ -15949,6 +16074,11 @@ msgstr "我的天啊！一片毒云！"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GASMASKHAT"
 msgid "I could use this in the smoke house."
 msgstr "我可以在烟熏房里用这个。"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GIANTGRUB"
+msgid "I could make it more palatable if I could mash it into a paste."
+msgstr "如果我能把它捣成浆糊的话我就能把它做的更好吃。"
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.GLOWFLY.DEAD"
@@ -18055,6 +18185,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.VAMPIREBATCAVE"
 msgid "Not the best place to hide, I think."
 msgstr "我觉得，这不是最好的藏身之处。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Hmmm, maybe a soup stock of batwings?"
+msgstr "呣，也许我可以炖一锅蝙蝠翅膀汤？"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.VENOMGLAND"
 msgid "The worst kind of gland!"
@@ -18440,6 +18575,16 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTIVENOM"
 msgid "No venom shall flow through my veins!"
 msgstr "我的静脉中不该有毒液流过！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTLER"
+msgid "Calls upon the mighty bird beast!"
+msgstr "召唤强大的鸟兽!"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTLER_CORRUPTED"
+msgid "Calls off the mighty bird beast."
+msgstr "能唤走强大的鸟兽。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMAN.DEAD"
 msgid "It no longer lives."
@@ -18469,6 +18614,11 @@ msgstr "一个小战士藏在里面."
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTMASKHAT"
 msgid "My helm would have sufficed."
 msgstr "我不需要它，我有我的战盔就够了。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN"
+msgid "Your royal status means nothing to me!"
+msgstr "你的皇权对我来说什么都不是！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -18554,6 +18704,11 @@ msgstr "驱散高温!"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BATHAT"
 msgid "To see through the eyes of my enemy!"
 msgstr "通过敌人的眼睛观察这个世界！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BAT_HIDE"
+msgid "Hide which takes the guise of another hide."
+msgstr "披着另一种皮的皮。"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BILL.DEAD"
@@ -19299,6 +19454,11 @@ msgstr "毒雾。我会远离它们的！"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GASMASKHAT"
 msgid "Poisonous air will not consume me!!"
 msgstr "毒气能奈我何！！"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GIANTGRUB"
+msgid "It will give me a battle!"
+msgstr "它会给我来一场战斗的！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GLOWFLY.DEAD"
@@ -21405,6 +21565,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VAMPIREBATCAVE"
 msgid "Creatures of darkness lurk within."
 msgstr "黑暗生物潜伏在里面。"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Like the wings of my helm, only meatier."
+msgstr "就像我的头盔上面的翅膀一样，只不过它是肉翅膀。"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.VENOMGLAND"
 msgid "The source of the fevers."
@@ -21795,6 +21960,16 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTIVENOM"
 msgid "A cure to what ails you."
 msgstr "中毒的解药。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTLER"
+msgid "Why would I want to call that bird?"
+msgstr "我为什么要把那只鸟叫来？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTLER_CORRUPTED"
+msgid "This should rid me of that giant pest."
+msgstr "这个应该能帮我除掉那只巨大的害虫。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMAN.DEAD"
 msgid "Serves it right for being so ugly."
@@ -21824,6 +21999,11 @@ msgstr "这就是那些讨厌的虫子孵出来的地方。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTMASKHAT"
 msgid "A hollowed out head. Don't ask where I got it."
 msgstr "一个被掏空的脑袋，别问我从哪弄的。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN"
+msgid "A bit huffy."
+msgstr "有点暴躁."
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -21909,6 +22089,11 @@ msgstr "哈，现代文明。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BATHAT"
 msgid "How delightfully horrific."
 msgstr "惊惧中带着一丝喜悦。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BAT_HIDE"
+msgid "Who knew bat and pig skins were so similar?"
+msgstr "谁能想到蝙蝠皮和猪皮会这么像？"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BILL.DEAD"
@@ -22634,6 +22819,11 @@ msgstr "这可以把那些虫子赶走。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GASMASKHAT"
 msgid "This clears the vapors."
 msgstr "这样就可以净化空气。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GIANTGRUB"
+msgid "It's doing all my work for me."
+msgstr "我该干的事情它都帮我干了。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GLOWFLY.DEAD"
@@ -24755,6 +24945,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VAMPIREBATCAVE"
 msgid "Villainy lurks within."
 msgstr "这里住着邪恶的东西。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "I'm not eating that."
+msgstr "我不想吃那个。"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.VENOMGLAND"
 msgid "Could this be the cure?"
@@ -25140,6 +25335,16 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTIVENOM"
 msgid "This is medicine?"
 msgstr "这是一种药物？"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTLER"
+msgid "Now we can sing to that big friendly birdie."
+msgstr "现在我们能对着那只友好的大鸟儿唱歌了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTLER_CORRUPTED"
+msgid "The big birdie doesn't like the sounds it makes."
+msgstr "大鸟不喜欢它发出的声音。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMAN.DEAD"
 msgid "Gee, that's too bad."
@@ -25169,6 +25374,11 @@ msgstr "噢…一只小蚂蚁战士。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTMASKHAT"
 msgid "This seems a little mean."
 msgstr "这东西看起来有点意思。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN"
+msgid "Yeesh. She's mad about something."
+msgstr "是的。她在为一些事感到生气。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -25254,6 +25464,11 @@ msgstr "微风吹过毛皮的感觉很惬意。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BATHAT"
 msgid "Cool. Now we're like a Bat Spider Boy."
 msgstr "酷。我们现在就像是蝙蝠-蜘蛛男孩。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BAT_HIDE"
+msgid "Huh. It's pig hide but it came from a bat."
+msgstr "哈。这是猪皮，但它来自一只蝙蝠。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.BILL.DEAD"
@@ -25984,6 +26199,11 @@ msgstr "呀。我们离那远点！"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GASMASKHAT"
 msgid "Now we won't cough so much."
 msgstr "现在我们不会咳的那么厉害了。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GIANTGRUB"
+msgid "Pretty destructive for a big baby bug."
+msgstr "这只大虫宝宝杀伤力还挺强的。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.GLOWFLY.DEAD"
@@ -28090,6 +28310,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.VAMPIREBATCAVE"
 msgid "That's probably where those mean bats live."
 msgstr "很可能那就是那些坏蝙蝠住的地方。"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "This thing drives me batty."
+msgstr "这个东西让我变得很古怪。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.VENOMGLAND"
 msgid "The key to feeling better if we get sick."
@@ -28475,6 +28700,16 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTIVENOM"
 msgid "A potion to stave off the sickness."
 msgstr "缓解疾病的药剂。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTLER"
+msgid "Do you enjoy the wistful sound of bird song, Abigail?"
+msgstr "你喜欢那思念之鸣吗，阿比盖尔？"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTLER_CORRUPTED"
+msgid "It has a most haunting sound."
+msgstr "它有一个十分恐怖的声音。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMAN.DEAD"
 msgid "Gone to a better place."
@@ -28504,6 +28739,11 @@ msgstr "令人讨厌的卵孢子"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTMASKHAT"
 msgid "The mind that dwelt within is long gone."
 msgstr "里面的思想早已远去。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN"
+msgid "The empty life of an aristocrat has made her irate."
+msgstr "贵族的空虚生活使她恼火。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -28589,6 +28829,11 @@ msgstr "哎，这只能缓解片刻。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BATHAT"
 msgid "Peers into the darkness."
 msgstr "凝望黑暗。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BAT_HIDE"
+msgid "It doesn't matter if it's pig or bat skin, it's still dead."
+msgstr "无论是猪皮还是蝙蝠皮，它都是死的。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.BILL.DEAD"
@@ -29319,6 +29564,11 @@ msgstr "死亡之雾。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GASMASKHAT"
 msgid "It filters air but not despair."
 msgstr "它能够防止人死，却防不住心死。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GIANTGRUB"
+msgid "It thinks only of destruction."
+msgstr "它一心只想着搞破坏。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.GLOWFLY.DEAD"
@@ -30573,7 +30823,7 @@ msgstr "我为什么还要延续自己的生命？"
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PUGALISK_RUINS_PILLAR
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PUGALISK_RUINS_PILLAR"
 msgid "It's fragile, like life."
-msgstr "它想生命一样脆弱。"
+msgstr "它像生命一样脆弱。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.PUGALISK_SKULL
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.PUGALISK_SKULL"
@@ -31430,6 +31680,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.VAMPIREBATCAVE"
 msgid "The maw of death itself."
 msgstr "死神的胃。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "If only I could fly away."
+msgstr "我要是能用蝙蝠翅膀飞出去就好了。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.VENOMGLAND"
 msgid "Their dead drop the cure to their sickness."
@@ -31825,6 +32080,16 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTIVENOM"
 msgid "A cure for too much adventure."
 msgstr "治疗过于冒险时的药物。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTLER"
+msgid "Maybe this bird whistle will convince a bird to fly me out of here."
+msgstr "也许这根鸟哨能呼唤一只鸟带我离开这里。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTLER_CORRUPTED"
+msgid "This should make any giant birds steer clear."
+msgstr "这个应该能让任何巨鸟回避。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMAN.DEAD"
 msgid "I won't step on it out of respect."
@@ -31854,6 +32119,11 @@ msgstr "最好避开这些，薇勒尔。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTMASKHAT"
 msgid "Swell. Now I know what it smells like to be an insect."
 msgstr "好吧。现在我知道昆虫是什么味了。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN"
+msgid "Ma'am, this is no way to treat a guest!"
+msgstr "这位女士，这可不是招待客人的方式啊！"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -31939,6 +32209,11 @@ msgstr "要是用飞机的螺旋桨当叶片就更好了。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BATHAT"
 msgid "Aw... It doesn't even let me fly."
 msgstr "啊...它连让我飞的功能都没有。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BAT_HIDE"
+msgid "Hmmm... never noticed those bats had a springy tail."
+msgstr "呣...我没有注意过那些蝙蝠的尾部如此有弹性。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.BILL.DEAD"
@@ -32684,6 +32959,11 @@ msgstr "我飞行的时候不太想见到这云。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GASMASKHAT"
 msgid "Stylish. I'd wear this even if it didn't save my life."
 msgstr "真的很时尚。即使这顶帽子不能救我的命我也会戴着它的。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GIANTGRUB"
+msgid "My guess is he's not too interested in making friends."
+msgstr "我猜它对交朋友这件事情不感兴趣。"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.GLOWFLY.DEAD"
@@ -34800,6 +35080,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.VAMPIREBATCAVE"
 msgid "Those bats are wasting their time in a cave when they should be outside flying."
 msgstr "那些蝙蝠应该去外面飞翔，它们却在洞里面浪费时间。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Maybe if I flapped it really fast I could get off the ground."
+msgstr "也许我拿着蝙蝠的翅膀快速拍打就能飞离地面了。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.VENOMGLAND"
 msgid "Swell. A sack of goop from an animal."
@@ -35200,6 +35485,16 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTIVENOM"
 msgid "The contents should make a most useful antidote."
 msgstr "这些物质应该能做成最有用的解毒剂。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTLER"
+msgid "I do enjoy a good bird song."
+msgstr "我确实喜欢听鸟唱好听的歌。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTLER_CORRUPTED"
+msgid "One bird in particular does not seem to enjoy it."
+msgstr "好像就有那么一只鸟不喜欢它。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMAN.DEAD"
 msgid "It has ceased functioning."
@@ -35229,6 +35524,11 @@ msgstr "好斗的蚁科类人生物的后代。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTMASKHAT"
 msgid "This may be slightly unethical."
 msgstr "这可能有些不道德。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN"
+msgid "The gyne of these insectoids."
+msgstr "虫群中的雌蚁。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -35314,6 +35614,11 @@ msgstr "恢复装置。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BATHAT"
 msgid "Rather clever use of echolocation."
 msgstr "回声定位的巧妙利用。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BAT_HIDE"
+msgid "Absurd! This clearly came from a bat."
+msgstr "真荒谬！这显然来自一只蝙蝠。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BILL.DEAD"
@@ -36044,6 +36349,11 @@ msgstr "一团被污染的空气。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GASMASKHAT"
 msgid "For investigating dangerous areas."
 msgstr "用于调查危险地区。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GIANTGRUB"
+msgid "I would hate to see that grub fully grown."
+msgstr "我可不想看见这只蛆成虫后的样子。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GLOWFLY.DEAD"
@@ -38150,6 +38460,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VAMPIREBATCAVE"
 msgid "The natural habitat of a the Mammalian Hematophagous."
 msgstr "哺乳类吸血动物的自然栖息地。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Technically edible."
+msgstr "严格地来说它是可以吃的。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.VENOMGLAND"
 msgid "A useful substance for poison prevention."
@@ -38540,6 +38855,16 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTIVENOM"
 msgid "GOOD FOR WILBA BOO BOOS"
 msgstr "能好好的解决薇尔芭的伤"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTLER"
+msgid "WILBA SING LIKE BIG BIRDIE"
+msgstr "薇尔芭像大鸟一样唱歌"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTLER_CORRUPTED"
+msgid "BIG BIRDIE LIKETH NOT ITS SONG"
+msgstr "大鸟不喜欢它的歌"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMAN.DEAD"
 msgid "HATH BEEN VANQUISH'DED"
@@ -38569,6 +38894,11 @@ msgstr "里面有个小坏蛋"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTMASKHAT"
 msgid "WILBA WEAR THE HEAD OF MINE ENEMIES"
 msgstr "薇尔芭把敌人的头戴在了头上"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN"
+msgid "'TIS A VILLAIN QUEEN!"
+msgstr "是一个恶毒皇后"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -38654,6 +38984,11 @@ msgstr "吹吧 风啊！"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BATHAT"
 msgid "UNEASY LIES THE HEAD THAT WEARS THE FLYING RAT"
 msgstr "位高心不宁，为飞鼠难安"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BAT_HIDE"
+msgid "'TIS THE PIG SKIN O' THE BAT"
+msgstr "这是蝙蝠身上的猪皮"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.BILL.DEAD"
@@ -39384,6 +39719,11 @@ msgstr "这是让猪咳嗽的云"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GASMASKHAT"
 msgid "IT FIT-ETH OVER MINE SNOUT"
 msgstr "它很适合我的鼻子诶"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GIANTGRUB"
+msgid "THERE'S THE GRUB"
+msgstr "这个生物是蛆"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.GLOWFLY.DEAD"
@@ -41490,6 +41830,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.VAMPIREBATCAVE"
 msgid "WHERE THE BAT SUCKS"
 msgstr "蝙蝠在那里吮吸"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "WILBA WISHETH IT MAKETH HER FLY"
+msgstr "希望它能让薇尔芭飞起来"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.VENOMGLAND"
 msgid "CAN'ST BE US'DED FOR WILBA BOO BOOS"
@@ -41875,6 +42220,16 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTIVENOM"
 msgid "This'll help if I'm poisoned."
 msgstr "在我中毒的时候这个能派上用场"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTLER"
+msgid "Here birdie birdie..."
+msgstr "小小鸟到这边来..."
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTLER_CORRUPTED"
+msgid "Seeya round big birdie. Or not."
+msgstr "再见，大鸟。不如不见。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMAN.DEAD"
 msgid "Gross and dead."
@@ -41904,6 +42259,11 @@ msgstr "一个小混蛋。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTMASKHAT"
 msgid "This is the nastiest thing I've ever made."
 msgstr "这真是我做过的最糟糕的东西。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN"
+msgid "Ugh. Ugly."
+msgstr "额。真丑。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -41989,6 +42349,11 @@ msgstr "煽风点火。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BATHAT"
 msgid "Ugh. I can still smell the jerkiness."
 msgstr "呃。我还能闻到那种恶心的味道"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BAT_HIDE"
+msgid "Weird. Is it from a pig bat?"
+msgstr "奇怪。它是从猪还是蝙蝠身上来的？"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.BILL.DEAD"
@@ -42734,6 +43099,11 @@ msgstr "啊。这看起来很致命。而且不是往好的方向。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GASMASKHAT"
 msgid "Cuts down on the coughing."
 msgstr "减少咳嗽。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GIANTGRUB"
+msgid "Likes destroying things as much as I do."
+msgstr "它像我一样喜欢破坏东西。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.GLOWFLY.DEAD"
@@ -44804,6 +45174,11 @@ msgstr "它一定是犯浑犯累了。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.VAMPIREBATCAVE"
 msgid "Creepy things live there."
 msgstr "可怕的家伙们住在这里。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Yuck!"
+msgstr "恶心！"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.VENOMGLAND"
@@ -46975,6 +47350,16 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTIVENOM"
 msgid "Wolfgang will flex poison out of veins!"
 msgstr "沃尔夫冈会用肌肉的力量把毒排出去！"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTLER"
+msgid "Wolfgang sings like big birdy."
+msgstr "沃尔夫冈像大鸟一样唱歌。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTLER_CORRUPTED"
+msgid "Birds not like it, makes scary sound!"
+msgstr "鸟儿不喜欢它，因为它发出可怕的声音！"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMAN.DEAD"
 msgid "Bug Man is dead."
@@ -47004,6 +47389,11 @@ msgstr "是小军虫。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTMASKHAT"
 msgid "Make Wolfgang look like Bug Man."
 msgstr "让沃尔夫冈看起来像个虫人。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN"
+msgid "Is big strong bug woman."
+msgstr "是个巨大强壮的虫女人。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -47089,6 +47479,11 @@ msgstr "沃尔夫冈感到很凉快。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BATHAT"
 msgid "Is funny little bat hat."
 msgstr "一顶滑稽的小蝙蝠帽。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BAT_HIDE"
+msgid "Is confusing pig skin."
+msgstr "很奇怪的猪皮。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BILL.DEAD"
@@ -47819,6 +48214,11 @@ msgstr "沃尔夫冈躲远远的。"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GASMASKHAT"
 msgid "Is good for Wolfgang lungs."
 msgstr "对沃尔夫冈的肺有好处。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GIANTGRUB"
+msgid "Not as mighty as Wolfgang."
+msgstr "它没有沃尔夫冈那般强大。"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GLOWFLY.DEAD"
@@ -49925,6 +50325,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VAMPIREBATCAVE"
 msgid "Wolfgang is no like dark hole."
 msgstr "沃尔夫冈不喜欢暗暗的洞。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Is all hairy and gross."
+msgstr "毛茸茸的翅膀。"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.VENOMGLAND"
 msgid "Is weapon of cowards."
@@ -50310,6 +50715,16 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTIVENOM"
 msgid "Tastes awful, but it works!"
 msgstr "味道很糟糕，但确实有效！"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTLER"
+msgid "That bird is a nuisance."
+msgstr "那只鸟真的很讨厌。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTLER_CORRUPTED"
+msgid "Bird repellant."
+msgstr "驱鸟器。"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMAN.DEAD"
 msgid "Out of his misery."
@@ -50339,6 +50754,11 @@ msgstr "炒蛋？"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTMASKHAT"
 msgid "I hope no one recognizes this guy."
 msgstr "我希望没有人知道它是谁。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN"
+msgid "How d'you do, ma'am?"
+msgstr "您好，夫人？"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -50424,6 +50844,11 @@ msgstr "嗯。一阵微风。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BATHAT"
 msgid "It's a little batty."
 msgstr "它有点疯狂。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BAT_HIDE"
+msgid "I'm sure I could use this for something."
+msgstr "我很确定我可以用这个做点什么。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.BILL.DEAD"
@@ -51154,6 +51579,11 @@ msgstr "离那东西远点，嗯？"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GASMASKHAT"
 msgid "Keeps my lungs clear."
 msgstr "保持我的肺畅通。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GIANTGRUB"
+msgid "Hope it's not a wood-boring worm."
+msgstr "希望它不是一条蛀木的虫。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.GLOWFLY.DEAD"
@@ -53255,6 +53685,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.VAMPIREBATCAVE"
 msgid "Don't look none too inviting."
 msgstr "看起来一点也不诱人。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Gross!"
+msgstr "太恶心了！"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.VENOMGLAND"
 msgid "It smells kind of funny."
@@ -53640,6 +54075,16 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTIVENOM"
 msgid "'Tis th'sea thet'll claim me, not some sickly biter."
 msgstr "夺走我性命的只会是大海，而不是什么恶心的咬人怪。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTLER"
+msgid "Fer tha'callin' o'tha big feather'd beastie."
+msgstr "用来呼唤那头长羽毛的大野兽。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTLER_CORRUPTED"
+msgid "Fer chasin' off tha big feather'd beastie."
+msgstr "用来赶走那头长羽毛的大野兽。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMAN.DEAD"
 msgid "Its 'atches 'ave been battened."
@@ -53669,6 +54114,11 @@ msgstr "全是易怒的小虫子。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTMASKHAT"
 msgid "T'mask yer ugly mug."
 msgstr "你丑陋的面具脸。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN"
+msgid "Full o'tha blubber."
+msgstr "全都是脂肪。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -53754,6 +54204,11 @@ msgstr "凉爽的风向你身上吹来！"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BATHAT"
 msgid "Has the look o' tha' flyin' beasties."
 msgstr "像会飞的野兽一样观察四周。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BAT_HIDE"
+msgid "Woodlegs don't care what ye call it."
+msgstr "伍德莱格才不管它叫啥。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.BILL.DEAD"
@@ -54484,6 +54939,11 @@ msgstr "不吉利的风。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GASMASKHAT"
 msgid "Cuts down onna coughin'."
 msgstr "这可以止住咳嗽。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GIANTGRUB"
+msgid "A leviathan from tha' depths."
+msgstr "一条来自深渊的大怪物。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.GLOWFLY.DEAD"
@@ -56590,6 +57050,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VAMPIREBATCAVE"
 msgid "Inta th'depths wit'ye."
 msgstr "和你一起坠入深渊。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Wit' a wee bit o'ranch dressin'..."
+msgstr "可以加点沙拉酱进行调味..."
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.VENOMGLAND"
 msgid "Aye, 'tis th'source o'th'venom."
@@ -56975,6 +57440,16 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTIVENOM"
 msgid "Sick Fixer"
 msgstr "疾病修复器"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTLER"
+msgid "Sounds like Womp Tweeter!"
+msgstr "听起来像山一样的啾啾！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTLER_CORRUPTED"
+msgid "Scares Womp Tweeter"
+msgstr "吓走山一样的啾啾"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMAN.DEAD"
 msgid "(sniff) Too bad"
@@ -57004,6 +57479,11 @@ msgstr "小咔喀喀宝宝，你好！"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTMASKHAT"
 msgid "Chr'ik clothes"
 msgstr "咔喀喀的衣服"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN"
+msgid "Chr'ik Mommy"
+msgstr "咔喀喀妈咪"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -57089,6 +57569,11 @@ msgstr "上发条"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BATHAT"
 msgid "Woo Woo Head Thing"
 msgstr "呜呜叫的头戴物"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BAT_HIDE"
+msgid "Bum. Twirly Tail bum?"
+msgstr "屁股，卷尾巴的屁股？"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.BILL.DEAD"
@@ -57834,6 +58319,11 @@ msgstr "坏空气"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GASMASKHAT"
 msgid "Breather with Tweeter clothes"
 msgstr "插有叽喳衣服的呼吸器"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GIANTGRUB"
+msgid "Dirt wiggly!"
+msgstr "土扭扭！"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.GLOWFLY.DEAD"
@@ -59964,6 +60454,11 @@ msgstr "侧着睡着了"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VAMPIREBATCAVE"
 msgid "Smells good!"
 msgstr "真香！"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "Can't fly anymore"
+msgstr "再也不能飞了"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.VENOMGLAND"
@@ -63875,6 +64370,16 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTIVENOM"
 msgid "ERADICATES CONTAGIONS FROM MAIN SYSTEM FUNCTIONS"
 msgstr "从主系统功能消灭感染"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTLER
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTLER"
+msgid "FOR INTERFACING WITH A FLYING FLESHLING"
+msgstr "用于联系飞翔的肉体生物"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTLER_CORRUPTED
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTLER_CORRUPTED"
+msgid "AVIAN ANXIETY INDUCER"
+msgstr "禽类焦虑诱导器"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMAN.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMAN.DEAD"
 msgid "NONFUNCTIONING"
@@ -63904,6 +64409,11 @@ msgstr "警告：内含未成熟的肉体生物"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTMASKHAT"
 msgid "DECORATION MODULE ACQUIRED"
 msgstr "已获取装饰模块"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN"
+msgid "A FLESHLING I WILL DESTROY"
+msgstr "即将被我毁灭的肉体生物"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.ANTQUEEN_CHAMBERS"
@@ -63989,6 +64499,11 @@ msgstr "冷却风扇"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BATHAT"
 msgid "I WEAR THIS SKULL AS PART OF MY VICTORY!!"
 msgstr "我戴着这个头骨作为我胜利的一部分！！"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.BAT_HIDE
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BAT_HIDE"
+msgid "ERROR: BAT DOES NOT EQUAL PIG"
+msgstr "错误：蝙蝠不等于猪"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.BILL.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.BILL.DEAD"
@@ -64719,6 +65234,11 @@ msgstr "有毒云软件"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GASMASKHAT"
 msgid "AIR FILTER UNIT ACQUIRED"
 msgstr "获得空气过滤单元"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.GIANTGRUB
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GIANTGRUB"
+msgid "A MALWARE FLESHSACK"
+msgstr "一条肉团病毒"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.GLOWFLY.DEAD"
@@ -66825,6 +67345,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.VAMPIREBATCAVE"
 msgid "STORAGE UNIT FOR WINGED RODENTS"
 msgstr "飞行啮齿动物的存储单元"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.VAMPIRE_BAT_WING
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.VAMPIRE_BAT_WING"
+msgid "FLYING MECHANISM"
+msgstr "飞行装置"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.VENOMGLAND
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.VENOMGLAND"
 msgid "COULD BE A POISON ANTIDOTE"
@@ -66932,117 +67457,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Charlotte"
+msgid "Catherine"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Della"
+msgid "Charlotte"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Henrietta"
+msgid "Della"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Arabella"
+msgid "Lilian"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Belle"
+msgid "Louise"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Beryl"
+msgid "Ottilie"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Briar"
+msgid "Ophelia"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Beatrice"
+msgid "Sophronia"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Luella"
+msgid "Henrietta"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Alexandrina"
+msgid "Luella"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Alice"
+msgid "Alexandrina"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Ebba"
+msgid "Arabella"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Edith"
+msgid "Belle"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Flora"
+msgid "Beryl"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Florence"
+msgid "Briar"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Georgette"
+msgid "Beatrice"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Agnes"
+msgid "Alice"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Catherine"
+msgid "Agnes"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Lilian"
+msgid "Ebba"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Louise"
+msgid "Edith"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Ottilie"
+msgid "Flora"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Ophelia"
+msgid "Florence"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Sophronia"
+msgid "Georgette"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -67052,122 +67577,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Sterling"
+msgid "Herbert"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Frederick"
+msgid "Oliver"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Charles"
+msgid "Merritt"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Leopold"
+msgid "Sterling"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Albert"
+msgid "Tesla"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Alfred"
+msgid "Thaddeus"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Arthur"
+msgid "Wellington"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Edward"
+msgid "Gulliver"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "George"
+msgid "Clarence"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Ewart"
+msgid "Frederick"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Charley"
+msgid "Edward"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "Douglas"
+msgid "George"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Edison"
+msgid "Charles"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Edmund"
+msgid "Leopold"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Larkin"
+msgid "Albert"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Herbert"
+msgid "Alfred"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Henry"
+msgid "Arthur"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Oliver"
+msgid "Ewart"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Tesla"
+msgid "Henry"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Thaddeus"
+msgid "Charley"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Wellington"
+msgid "Douglas"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Gulliver"
+msgid "Edison"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Clarence"
+msgid "Edmund"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Merritt"
+msgid "Larkin"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -67177,77 +67702,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Gladstone"
+msgid "Stockton"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Disraeli"
+msgid "Darlington"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Salisbury"
+msgid "Peel"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Kensington"
+msgid "Derby"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Conroy"
+msgid "Palmerston"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Greville"
+msgid "Gladstone"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Hastings"
+msgid "Disraeli"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Aberdeen"
+msgid "Salisbury"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Talbot"
+msgid "Kensington"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Thames"
+msgid "Conroy"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Stockton"
+msgid "Greville"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Darlington"
+msgid "Hastings"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Peel"
+msgid "Aberdeen"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Derby"
+msgid "Talbot"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Palmerston"
+msgid "Thames"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -70843,7 +71368,7 @@ msgstr "令人感激的非猪"
 #. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.1
 msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.1"
 msgid "OUT, DAMNED PLOP!"
-msgstr "它消失了，该死的便便！"
+msgstr "滚开，该死的便便！"
 
 #. STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.2
 msgctxt "STRINGS.CITY_PIG_TALK_POOPTIP.pigman_mechanic.2"
@@ -70953,12 +71478,12 @@ msgstr "明天再来吧"
 #. STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.1
 msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.1"
 msgid "NO 'TIS PRICELESS!"
-msgstr "不,这是无价之宝!"
+msgstr "不，这是无价之宝！"
 
 #. STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.2
 msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.2"
 msgid "IT IS FOUND! MUST FIND QUEEN"
-msgstr "它被找到了!一定要去找女王"
+msgstr "它被找到了！一定要去找女王"
 
 #. STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.3
 msgctxt "STRINGS.CITY_PIG_TALK_REFUSE_PRICELESS_GIFT.DEFAULT.3"
@@ -70993,7 +71518,7 @@ msgstr "学会才是适合它的地方"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.1"
 msgid "OUT, DAMNED PLOP"
-msgstr "滚开,该死的便便"
+msgstr "滚开，该死的便便"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.DEFAULT.2"
@@ -71078,7 +71603,7 @@ msgstr "你的行为令我们尊敬"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.1"
 msgid "THOU ART THE FINEST OF PLOP PICKERS!"
-msgstr "你是最好的捡屎者!"
+msgstr "你是最好的捡屎者！"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_florist.2"
@@ -71098,7 +71623,7 @@ msgstr "能接受我的硬币吗?"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.2"
 msgid "OUT, DAMNED PLOP"
-msgstr "滚开,该死的便便"
+msgstr "滚开，该死的便便"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.3
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_hatmaker.3"
@@ -71138,12 +71663,12 @@ msgstr "能接受我的硬币吗?"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.1"
 msgid "OUT, DAMNED PLOP!"
-msgstr "滚开,该死的便便"
+msgstr "滚开，该死的便便"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.2"
 msgid "THOU ART THE FINEST OF PLOP PICKERS!"
-msgstr "你是最好的捡屎者!"
+msgstr "你是最好的捡屎者！"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.3
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_mechanic.3"
@@ -71153,7 +71678,7 @@ msgstr "你的行为令我们尊敬"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.1"
 msgid "OUT, DAMNED PLOP!"
-msgstr "滚开,该死的便便"
+msgstr "滚开，该死的便便"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.2
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.2"
@@ -71163,7 +71688,7 @@ msgstr "付给皇家粪便清理员的"
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.3
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_miner.3"
 msgid "HUMBLEST OF THANKS, YOUR MAJESTY"
-msgstr "向你致以我恭谦的谢意,阁下"
+msgstr "向你致以我恭谦的谢意，阁下"
 
 #. STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.1
 msgctxt "STRINGS.CITY_PIG_TALK_ROYAL_POOPTIP.pigman_professor.1"
@@ -71807,82 +72332,82 @@ msgstr "箣竹"
 
 #. STRINGS.MANDRAKEMANNAMES.10
 msgctxt "STRINGS.MANDRAKEMANNAMES.10"
-msgid "Fabaceae"
+msgid "Cornus"
 msgstr "山茱萸"
 
 #. STRINGS.MANDRAKEMANNAMES.11
 msgctxt "STRINGS.MANDRAKEMANNAMES.11"
-msgid "Betula"
+msgid "Juniperus"
 msgstr "柏桧"
 
 #. STRINGS.MANDRAKEMANNAMES.12
 msgctxt "STRINGS.MANDRAKEMANNAMES.12"
-msgid "Rubus"
+msgid "Asclepias"
 msgstr "马利筋"
 
 #. STRINGS.MANDRAKEMANNAMES.13
 msgctxt "STRINGS.MANDRAKEMANNAMES.13"
-msgid "Daucus carota"
+msgid "Quercus"
 msgstr "栎"
 
 #. STRINGS.MANDRAKEMANNAMES.14
 msgctxt "STRINGS.MANDRAKEMANNAMES.14"
-msgid "Brassica oleracea"
+msgid "Allium"
 msgstr "大葱"
 
 #. STRINGS.MANDRAKEMANNAMES.15
 msgctxt "STRINGS.MANDRAKEMANNAMES.15"
-msgid "Castanea"
+msgid "Pisum sativum"
 msgstr "豌豆"
 
 #. STRINGS.MANDRAKEMANNAMES.16
 msgctxt "STRINGS.MANDRAKEMANNAMES.16"
-msgid "Trifolium"
+msgid "Cirsium arvense"
 msgstr "荆蓟"
 
 #. STRINGS.MANDRAKEMANNAMES.17
 msgctxt "STRINGS.MANDRAKEMANNAMES.17"
-msgid "Cucumis sativus"
+msgid "Thymus"
 msgstr "麝香草"
 
 #. STRINGS.MANDRAKEMANNAMES.2
 msgctxt "STRINGS.MANDRAKEMANNAMES.2"
-msgid "Cornus"
+msgid "Fabaceae"
 msgstr "大豆"
 
 #. STRINGS.MANDRAKEMANNAMES.3
 msgctxt "STRINGS.MANDRAKEMANNAMES.3"
-msgid "Juniperus"
+msgid "Betula"
 msgstr "桦木"
 
 #. STRINGS.MANDRAKEMANNAMES.4
 msgctxt "STRINGS.MANDRAKEMANNAMES.4"
-msgid "Asclepias"
+msgid "Rubus"
 msgstr "覆盆子"
 
 #. STRINGS.MANDRAKEMANNAMES.5
 msgctxt "STRINGS.MANDRAKEMANNAMES.5"
-msgid "Quercus"
+msgid "Daucus carota"
 msgstr "胡萝卜"
 
 #. STRINGS.MANDRAKEMANNAMES.6
 msgctxt "STRINGS.MANDRAKEMANNAMES.6"
-msgid "Allium"
+msgid "Brassica oleracea"
 msgstr "甘蓝"
 
 #. STRINGS.MANDRAKEMANNAMES.7
 msgctxt "STRINGS.MANDRAKEMANNAMES.7"
-msgid "Pisum sativum"
+msgid "Castanea"
 msgstr "齿栗叶"
 
 #. STRINGS.MANDRAKEMANNAMES.8
 msgctxt "STRINGS.MANDRAKEMANNAMES.8"
-msgid "Cirsium arvense"
+msgid "Trifolium"
 msgstr "车轴草"
 
 #. STRINGS.MANDRAKEMANNAMES.9
 msgctxt "STRINGS.MANDRAKEMANNAMES.9"
-msgid "Thymus"
+msgid "Cucumis sativus"
 msgstr "黄瓜"
 
 #. STRINGS.MANDRAKEMAN_BATTLECRY.1
@@ -72040,6 +72565,16 @@ msgctxt "STRINGS.NAMES.ANTIVENOM"
 msgid "Anti Venom"
 msgstr "抗毒血清"
 
+#. STRINGS.NAMES.ANTLER
+msgctxt "STRINGS.NAMES.ANTLER"
+msgid "Bird Whistle"
+msgstr "鸟笛"
+
+#. STRINGS.NAMES.ANTLER_CORRUPTED
+msgctxt "STRINGS.NAMES.ANTLER_CORRUPTED"
+msgid "Nightmarish Bird Whistle"
+msgstr "噩梦鸟笛"
+
 #. STRINGS.NAMES.ANTMAN_WARRIOR
 msgctxt "STRINGS.NAMES.ANTMAN_WARRIOR"
 msgid "Mant Warrior"
@@ -72059,6 +72594,11 @@ msgstr "蚁人面具"
 msgctxt "STRINGS.NAMES.ANTNAMES_PREFIX"
 msgid "Drone #"
 msgstr "工蚁 #"
+
+#. STRINGS.NAMES.ANTQUEEN
+msgctxt "STRINGS.NAMES.ANTQUEEN"
+msgid "Queen Womant"
+msgstr "蚁后"
 
 #. STRINGS.NAMES.ANTQUEEN_CHAMBERS
 msgctxt "STRINGS.NAMES.ANTQUEEN_CHAMBERS"
@@ -72149,6 +72689,11 @@ msgstr "摆动风扇"
 msgctxt "STRINGS.NAMES.BATHAT"
 msgid "Cowl"
 msgstr "蝙蝠兜帽"
+
+#. STRINGS.NAMES.BAT_HIDE
+msgctxt "STRINGS.NAMES.BAT_HIDE"
+msgid "Pig Skin?"
+msgstr "猪皮？"
 
 #. STRINGS.NAMES.BILL
 msgctxt "STRINGS.NAMES.BILL"
@@ -72834,6 +73379,11 @@ msgstr "毒雾"
 msgctxt "STRINGS.NAMES.GASMASKHAT"
 msgid "Gas Mask"
 msgstr "防毒面具"
+
+#. STRINGS.NAMES.GIANTGRUB
+msgctxt "STRINGS.NAMES.GIANTGRUB"
+msgid "Giant Grub"
+msgstr "巨型蛆虫"
 
 #. STRINGS.NAMES.GLOWFLY
 msgctxt "STRINGS.NAMES.GLOWFLY"
@@ -73587,7 +74137,7 @@ msgstr "“猪圈”奇异商店"
 
 #. STRINGS.NAMES.PIG_SHOP_ARCANE
 msgctxt "STRINGS.NAMES.PIG_SHOP_ARCANE"
-msgid "The Flying Pig Arcane Shop"
+msgid "The Flying Pig\nArcane Shop"
 msgstr "飞猪神秘商店"
 
 #. STRINGS.NAMES.PIG_SHOP_BANK
@@ -73612,22 +74162,22 @@ msgstr "高纯度熟猪食店"
 
 #. STRINGS.NAMES.PIG_SHOP_FLORIST
 msgctxt "STRINGS.NAMES.PIG_SHOP_FLORIST"
-msgid "Miss Sow's Floral Arrangements"
+msgid "Miss Sow's\nFloral Arrangements"
 msgstr "母猪小姐的花香物语"
 
 #. STRINGS.NAMES.PIG_SHOP_GENERAL
 msgctxt "STRINGS.NAMES.PIG_SHOP_GENERAL"
-msgid "Pigg and Pigglet's General Store"
+msgid "Pigg and Pigglet's\nGeneral Store"
 msgstr "猪猪与居居的杂货店"
 
 #. STRINGS.NAMES.PIG_SHOP_HATSHOP
 msgctxt "STRINGS.NAMES.PIG_SHOP_HATSHOP"
-msgid "The Sow's Ear Hat Shop"
+msgid "The Sow's Ear\nHat Shop"
 msgstr "母猪耳朵帽子店"
 
 #. STRINGS.NAMES.PIG_SHOP_HOOFSPA
 msgctxt "STRINGS.NAMES.PIG_SHOP_HOOFSPA"
-msgid "Curly Tails Mud Spa"
+msgid "Curly Tails\nMud Spa"
 msgstr "卷尾巴的泥浆水疗店"
 
 #. STRINGS.NAMES.PIG_SHOP_PRODUCE
@@ -73642,7 +74192,7 @@ msgstr "小发明匠的塔楼"
 
 #. STRINGS.NAMES.PIG_SHOP_WEAPONS
 msgctxt "STRINGS.NAMES.PIG_SHOP_WEAPONS"
-msgid "The Boar's Tusk Weapon Shop"
+msgid "The Boar's Tusk\nWeapon Shop"
 msgstr "野猪獠牙武器店"
 
 #. STRINGS.NAMES.PIKO
@@ -74550,6 +75100,11 @@ msgctxt "STRINGS.NAMES.VAMPIREBATCAVE"
 msgid "Cave Cleft"
 msgstr "洞穴裂缝"
 
+#. STRINGS.NAMES.VAMPIRE_BAT_WING
+msgctxt "STRINGS.NAMES.VAMPIRE_BAT_WING"
+msgid "Batilisk Wing?"
+msgstr "蝙蝠翅膀？"
+
 #. STRINGS.NAMES.VENOMGLAND
 msgctxt "STRINGS.NAMES.VENOMGLAND"
 msgid "Venom Gland"
@@ -74660,6 +75215,16 @@ msgctxt "STRINGS.RECIPE_DESC.ANTIVENOM"
 msgid "Poison be gone!"
 msgstr "毒物退散！"
 
+#. STRINGS.RECIPE_DESC.ANTLER
+msgctxt "STRINGS.RECIPE_DESC.ANTLER"
+msgid "For calling birds. Did you make it too big?"
+msgstr "用来呼唤鸟儿的，你是不是造太大了？"
+
+#. STRINGS.RECIPE_DESC.ANTLER_CORRUPTED
+msgctxt "STRINGS.RECIPE_DESC.ANTLER_CORRUPTED"
+msgid "Strikes fear into even the biggest birds."
+msgstr "即使是最大的鸟类也会感到恐惧。"
+
 #. STRINGS.RECIPE_DESC.ANTMASKHAT
 msgctxt "STRINGS.RECIPE_DESC.ANTMASKHAT"
 msgid "A face only a Mant could love."
@@ -74743,7 +75308,7 @@ msgstr "海上照明工具。"
 #. STRINGS.RECIPE_DESC.BONESTAFF
 msgctxt "STRINGS.RECIPE_DESC.BONESTAFF"
 msgid "Wield the gaze of the Pugalisk!"
-msgstr "感受来自翘鼻蛇怪的凝视吧!"
+msgstr "感受来自翘鼻蛇怪的凝视吧！"
 
 #. STRINGS.RECIPE_DESC.BUGREPELLENT
 msgctxt "STRINGS.RECIPE_DESC.BUGREPELLENT"
@@ -76124,6 +76689,11 @@ msgstr "雾"
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.FROG_POISON_SETTING"
 msgid "Poison Dartfrogs"
 msgstr "箭毒蛙"
+
+#. STRINGS.UI.CUSTOMIZATIONSCREEN.GIANTGRUB_SETTING
+msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GIANTGRUB_SETTING"
+msgid "Giant Grub"
+msgstr "巨型蛆虫"
 
 #. STRINGS.UI.CUSTOMIZATIONSCREEN.GLOWFLYCYCLE
 msgctxt "STRINGS.UI.CUSTOMIZATIONSCREEN.GLOWFLYCYCLE"

@@ -13,8 +13,9 @@ local InteriorVisitor = Class(function(self, inst)
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
     self.interior_map = {}
-    self.interior_map_icons_override = nil
-    self.interior_door_status = {}
+    self.local_interior_map_override = {}
+
+    self.ininterior = false
 
     inst:StartUpdatingComponent(self)
 end)
@@ -79,13 +80,26 @@ function InteriorVisitor:ApplyInteriorCamera(interior_center)
     TheCamera.pl_interior_distance = zoom
 end
 
+-- levels/textures/map_interior/mini_ruins_slab.tex -> mini_ruins_slab
+local function basename(path)
+    return string.match(path, "([^/]+)%.%w+$")
+end
+
 function InteriorVisitor:UpdateInteriorMinimap()
     local center = self.center_ent:value()
+    if not center then
+        self.local_interior_map_override = {}
+        return
+    end
+
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.inst:GetPosition())
-    local current_room_data = self.interior_map[current_room_id]
-    if current_room_data and center then
-        self.interior_map_icons_override = {
-            [current_room_id] = center:CollectMinimapIcons()
+    if self.interior_map[current_room_id] then
+        self.local_interior_map_override = {
+            [current_room_id] = {
+                icons = center:CollectMinimapIcons(),
+                minimap_floor_texture = basename(center:GetFloorMinimapTex()),
+                doors = center:CollectLocalDoorMinimap(),
+            }
         }
     end
 end
@@ -102,10 +116,13 @@ function InteriorVisitor:OnUpdate()
     local ambientlighting = TheWorld.components.ambientlighting
     local last_center_ent = self.last_center_ent
     local room_center_ent = TheWorld.components.interiorspawner:GetInteriorCenter(self.inst:GetPosition())
+
     if IsInInteriorRectangle(self.inst:GetPosition(), room_center_ent) then
         self:ApplyInteriorCamera(room_center_ent)
 
-        if last_center_ent ~= room_center_ent and self.inst:HasTag("inside_interior") then
+        if not self.ininterior and self.inst:HasTag("inside_interior") then
+            self.ininterior = true
+
             self.last_center_ent = room_center_ent
             self.inst:PushEvent("enterinterior_client", {from = last_center_ent, to = room_center_ent})
 
@@ -129,7 +146,9 @@ function InteriorVisitor:OnUpdate()
         end
         self.last_center_ent = nil
 
-        if last_center_ent ~= room_center_ent and not self.inst:HasTag("inside_interior")  then
+        if self.ininterior and not self.inst:HasTag("inside_interior")  then
+            self.ininterior = false
+
             self.inst:PushEvent("leaveinterior_client", {from = last_center_ent, to = nil})
 
             if self.inst.MiniMapEntity then
@@ -165,23 +184,15 @@ function InteriorVisitor:OnNewInteriorMapData(data)
     for id, data in pairs(data) do
         self.interior_map[id] = data
     end
+    self.inst:PushEvent("refresh_interior_minimap")
 end
 
-local function get_door_id(current_room_id, target_interior_id)
-    if current_room_id < target_interior_id then
-        return tostring(current_room_id) .. "-" .. tostring(target_interior_id)
-    else
-        return tostring(target_interior_id) .. "-" .. tostring(current_room_id)
+-- Receiving from remove_interior_map client RPC
+function InteriorVisitor:RemoveInteriorMapData(data)
+    for _, id in ipairs(data) do
+        self.interior_map[id] = data
     end
-end
-
--- Receiving from interior_door client RPC
-function InteriorVisitor:OnNewInteriorDoorData(data)
-    -- only getting data for current room
-    if not self.interior_door_status[data.current_interior] then
-        self.interior_door_status[data.current_interior] = {}
-    end
-    self.interior_door_status[data.current_interior][get_door_id(data.current_interior, data.target_interior)] = data
+    self.inst:PushEvent("refresh_interior_minimap")
 end
 
 -- function InteriorVisitor:OnRemoveFromEntity()

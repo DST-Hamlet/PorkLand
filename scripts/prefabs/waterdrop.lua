@@ -18,29 +18,21 @@ end
 local function OnDeploy(inst, pt, deployer)
     local plant = SpawnPrefab("lifeplant")
     plant.Transform:SetPosition(pt:Get())
-    plant:PushEvent("planted", {fountain = inst.fountain, deployer = deployer})
 
     inst.planted = true
     inst:Remove()
 end
 
 local function OnRemove(inst)
-    if inst.fountain and not inst.planted then
-        inst.fountain:PushEvent("deactivate")
-    end
+
 end
 
 local function OnSave(inst, data)
-    if inst.fountain and inst.fountain:IsValid() then
-        data.fountainID = inst.fountain.GUID
-        return {inst.fountain and inst.fountain.GUID}
-    end
+
 end
 
 local function OnLoadPostPass(inst, newents, data)
-    if data ~= nil and data.fountainID ~= nil then
-        inst.fountain = newents[data.fountainID].entity
-    end
+
 end
 
 local function fn()

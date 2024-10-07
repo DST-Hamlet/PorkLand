@@ -289,3 +289,8 @@ for y = 0, 4 do
 end
 
 params["armorvortexcloak"] = widget_armor_vortex_cloak
+
+params["ro_bin"] = deepcopy(params["chester"])
+
+params["trawlnetdropped"] = deepcopy(params["treasurechest"])
+params["sunkenprefab"] = deepcopy(params["treasurechest"])

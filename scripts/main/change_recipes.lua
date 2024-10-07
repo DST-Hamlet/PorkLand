@@ -26,7 +26,6 @@ local DISABLE_RECIPES = {
     "slow_farmplot",
     "heatrock",
     "earmuffshat",
-    "turf_beard_rug",
     "cookiecutterhat",
     "icehat",
     "rabbithouse",
@@ -190,6 +189,7 @@ local DISABLE_RECIPES = {
     "featherfan",
     "ocean_trawler_kit",
     "fish_box",
+    "rope_bridge_kit",
 }
 
 local LOST_RECIPES = {

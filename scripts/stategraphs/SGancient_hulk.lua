@@ -17,9 +17,16 @@ local function Teleport(inst)
     local theta = math.random() * 2 * PI
 
     local offset, radius
-    while not offset do
+    for i = 1, 16 do
         radius = 12 + math.random() * 5
-        offset = FindWalkableOffset(target_position, theta, radius, 12, true)
+        offset = FindWalkableOffset(target_position, theta, radius, 12, false)
+        if offset then
+            break
+        end
+    end
+
+    if offset == nil then
+        offset = Vector3(0, 0, 0)
     end
 
     inst.Physics:SetActive(true)
@@ -32,7 +39,7 @@ local function LaunchProjectile(inst, direction)
     local theta = direction - PI / 6 + math.random() * PI / 3
     local radius = 6 + math.random() * 6
 
-    local offset = FindWalkableOffset(Vector3(x, y, z), theta, radius, 12, true)
+    local offset = FindWalkableOffset(Vector3(x, y, z), theta, radius, 12, false)
 
     if offset then
         local spawn_point = Vector3(x, y, z) + offset
@@ -45,9 +52,8 @@ local function LaunchProjectile(inst, direction)
         local projectile = SpawnPrefab("ancient_hulk_mine")
         projectile.AnimState:PlayAnimation("spin_loop",true)
         projectile.Transform:SetPosition(x, 1, z)
-        projectile.components.complexprojectile:SetHorizontalSpeed(speed)
-        projectile.components.complexprojectile:SetGravity(-25)
-        projectile.components.complexprojectile:Launch(spawn_point, inst, inst)
+        projectile.components.throwable.speed = speed
+        projectile.components.throwable:Throw(spawn_point, inst)
         projectile.owner = inst
     end
 end
@@ -250,7 +256,7 @@ local states =
             TimeEvent(67 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/explode_small", nil, 0.6) end),
             TimeEvent(77 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/explode_small", nil, 0.7) end),
             TimeEvent(79 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/explode_small", nil, 0.6) end),
-            TimeEvent(82 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/explode") end),
+            TimeEvent(82 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("porkland_soundpackage/creatures/boss/hulk_metal_robot/explode") end),
 
             TimeEvent(81 * FRAMES, function(inst)
                 ShakeAllCameras(CAMERASHAKE.FULL, 0.7, 0.02, 2, inst, SHAKE_DIST)
@@ -372,13 +378,13 @@ local states =
 
             TimeEvent(15 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/leg/step", nil, 0.5) end),
             TimeEvent(19 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/leg/step", nil, 0.5) end),
-            TimeEvent(16 * FRAMES, function(inst) TheMixer:PushMix("boom") end),
+            -- TimeEvent(16 * FRAMES, function(inst) TheMixer:PushMix("boom") end), -- 等哪一天搞明白了Mixer再说
             TimeEvent(17 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC001/creatures/bearger/groundpound") end),
             TimeEvent(17 * FRAMES, function(inst)
                 ShakeAllCameras(CAMERASHAKE.FULL, 0.7, 0.02, 2, inst, SHAKE_DIST)
                 inst.components.groundpounder:GroundPound()
             end),
-            TimeEvent(19 * FRAMES, function(inst) TheMixer:PopMix("boom") end),
+            -- TimeEvent(19 * FRAMES, function(inst) TheMixer:PopMix("boom") end), -- 等哪一天搞明白了Mixer再说
         },
     },
 
@@ -567,8 +573,8 @@ local states =
             TimeEvent(30 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/burn_LP", "laserburn") end),
             TimeEvent(49 * FRAMES, function(inst) inst.SoundEmitter:KillSound("laserburn") end),
 
-            TimeEvent(49 * FRAMES, function(inst) TheMixer:PushMix("boom") end),
-            TimeEvent(51 * FRAMES, function(inst) TheMixer:PopMix("boom") end),
+            -- TimeEvent(49 * FRAMES, function(inst) TheMixer:PushMix("boom") end), -- 等哪一天搞明白了Mixer再说
+            -- TimeEvent(51 * FRAMES, function(inst) TheMixer:PopMix("boom") end), -- 等哪一天搞明白了Mixer再说
 
             TimeEvent(37 * FRAMES, function(inst)
                 DoSectorAOE(inst, BEAM_RADIUS, 0, 45)
@@ -644,8 +650,8 @@ local states =
             TimeEvent(12 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/ribs/step") end),
             TimeEvent(19 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/hulk_metal_robot/barrier") end),
             TimeEvent(67 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC001/creatures/bearger/groundpound")end),
-            TimeEvent(67 * FRAMES, function(inst) TheMixer:PushMix("boom")end),
-            TimeEvent(90 * FRAMES, function(inst) TheMixer:PopMix("boom")end),
+            -- TimeEvent(67 * FRAMES, function(inst) TheMixer:PushMix("boom")end), -- 等哪一天搞明白了Mixer再说
+            -- TimeEvent(90 * FRAMES, function(inst) TheMixer:PopMix("boom")end), -- 等哪一天搞明白了Mixer再说
             TimeEvent(64 * FRAMES, function(inst)
                 inst.components.groundpounder.damageRings = 4
                 inst.components.groundpounder.destructionRings = 4

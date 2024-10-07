@@ -43,6 +43,7 @@ end
 local function OnNoLongerLanded(inst)
     inst:RemoveTag("fishable")
     inst.name = inst.oldname
+    inst._name:set(inst.name)
     inst.components.inventoryitem.canbefishedup = false
     inst.components.inventoryitem.canbepickedup = true
 end
@@ -51,6 +52,7 @@ local function OnHitWater(inst)
     inst:AddTag("fishable")
     inst.oldname = inst.name
     inst.name = STRINGS.NAMES.SUNKEN_RELIC
+    inst._name:set(inst.name)
     inst.components.inventoryitem.canbefishedup = true
     inst.components.inventoryitem.canbepickedup = false
 end
@@ -80,9 +82,12 @@ local function MakeRelic(num)
         MakeInventoryPhysics(inst)
         PorkLandMakeInventoryFloatable(inst, tostring(num).."_water", tostring(num))
 
+        inst._name = net_string(inst.GUID, "_name", "namedirty")
+
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
+            inst:ListenForEvent("namedirty", function() inst.name = inst._name:value() end)
             return inst
         end
 

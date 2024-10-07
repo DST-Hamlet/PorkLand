@@ -225,7 +225,7 @@ local function MakeHat(name)
             return
         end
 
-        owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/on")
+        owner.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/batmask/on")
     end
 
     local function bat_onunequip(inst, owner)
@@ -236,7 +236,7 @@ local function MakeHat(name)
             return
         end
 
-        owner.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/batmask/off")
+        owner.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/batmask/off")
     end
 
     local function bat_custom_init(inst)
@@ -309,12 +309,12 @@ local function MakeHat(name)
 
     local function thunder_equip(inst, owner)
         _onequip(inst, owner)
-        inst:AddTag("lightningrod")
+        owner:AddTag("lightningrod")
     end
 
     local function thunder_unequip(inst, owner)
         _onunequip(inst, owner)
-        inst:RemoveTag("lightningrod")
+        owner:RemoveTag("lightningrod")
     end
 
     fns.thunder = function()
@@ -631,14 +631,15 @@ local function MakeHat(name)
 
     -----------------------------------------------------------------------------
 
-    local function antmask_onequip(inst, owner)
-        _onequip(inst, owner)
-        inst:AddTag("has_antmask")
-    end
-
     local function antmask_onunequip(inst, owner)
         _onunequip(inst, owner)
-        inst:RemoveTag("has_antmask")
+        if owner.components.leader then
+            owner:DoTaskInTime(0, function() -- in case of equipment swapping
+                if not IsPlayerInAntDisguise(owner) then
+                    owner.components.leader:RemoveFollowersByTag("ant")
+                end
+            end)
+        end
     end
 
     local function antmask_onupdate(inst)
@@ -662,18 +663,18 @@ local function MakeHat(name)
             return inst
         end
 
-        inst.components.equippable:SetOnEquip(antmask_onequip)
-        inst.components.equippable:SetOnUnequip(antmask_onunequip)
-
         inst:AddComponent("armor")
         inst.components.armor:InitCondition(TUNING.ARMOR_FOOTBALLHAT, TUNING.ARMOR_FOOTBALLHAT_ABSORPTION)
         inst.components.armor.ontakedamage = antmask_ontakedamage
 
         inst:AddComponent("fueled")
         inst.components.fueled.fueltype = FUELTYPE.USAGE
+        inst.components.fueled.no_sewing = true
         inst.components.fueled:InitializeFuelLevel(TUNING.ANTMASKHAT_PERISHTIME)
         inst.components.fueled:SetDepletedFn(inst.Remove)
         inst.components.fueled:SetUpdateFn(antmask_onupdate)
+
+        inst.components.equippable:SetOnUnequip(antmask_onunequip)
 
         return inst
     end

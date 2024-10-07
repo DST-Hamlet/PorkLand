@@ -9,8 +9,10 @@ local assets =
 local prefabs =
 {
     "guano",
-    "vampire_bat_wing",
+    "monstermeat",
     "bat_hide",
+    "vampire_bat_wing",
+    "batwing",
 }
 
 SetSharedLootTable("vampirebat",
@@ -18,6 +20,7 @@ SetSharedLootTable("vampirebat",
     {"monstermeat",      0.5},
     {"bat_hide",         0.5},
     {"vampire_bat_wing", 0.1},
+    -- {"batwing", 0.1},
 })
 
 local MAX_TARGET_SHARES = 5
@@ -245,7 +248,7 @@ local function DoDive(inst)
     end
 
     -- allow water but not interior
-    if player and player:IsValid() and not player:HasTag("inside_interior") and inst:IsOnPassablePoint(true) then
+    if player and player:IsValid() and not player:GetIsInInterior() and inst:IsOnPassablePoint(true) then
         local bat = SpawnPrefab("vampirebat")
         local spawn_point = inst:GetPosition()
         if bat and spawn_point then

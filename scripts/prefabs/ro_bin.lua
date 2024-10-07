@@ -64,7 +64,7 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    MakeAmphibiousCharacterPhysics(inst, 1, 0.5)
+    MakeAmphibiousCharacterPhysics(inst, 75, 0.5)
 
     inst.AnimState:SetBank("ro_bin")
     inst.AnimState:SetBuild("ro_bin_build")
@@ -72,6 +72,7 @@ local function fn()
     inst.DynamicShadow:SetSize(2, 1.5)
 
     inst.MiniMapEntity:SetIcon("ro_bin.tex")
+    inst.MiniMapEntity:SetCanUseCache(false)
 
     inst.Transform:SetFourFaced()
 

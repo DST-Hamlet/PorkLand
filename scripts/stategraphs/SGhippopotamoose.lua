@@ -244,7 +244,6 @@ local states=
 
         onenter = function(inst, noanim)
             if noanim then
-                inst.AnimState:SetBank("hippo")
                 inst.sg:GoToState("idle")
                 return
             end
@@ -266,17 +265,17 @@ local states=
             TimeEvent(8 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC002/creatures/seacreature_movement/water_emerge_med") end),
         },
 
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
+        end,
+
         events =
         {
             EventHandler("animover", function(inst)
-                inst.AnimState:SetBank("hippo")
                 inst.sg:GoToState("idle")
             end),
         },
-
-        onexit = function(inst)
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/hippo/walk")
-        end,
     },
 
     State{
@@ -309,6 +308,10 @@ local states=
                 SpawnWaves(inst, 6, 360, 2, "wave_ripple", nil, nil, nil, true)
             end),
         },
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
+        end,
 
         events =
         {

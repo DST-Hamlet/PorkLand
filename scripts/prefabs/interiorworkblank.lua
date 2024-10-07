@@ -69,9 +69,18 @@ local function SetUp(inst, data)
         TheWorld.components.interiorspawner:AddInteriorCenter(inst)
     end
 
-    local sp = GetSkeletonPositions(width, depth)
+    if data.minimaptexture then
+        inst:SetFloorMinimapTex(data.minimaptexture or "mini_floor_wood.tex")
+    else
+        local interior_def = TheWorld.components.interiorspawner:GetInteriorDefine(inst.interiorID) -- 将旧存档中的floor_texture转移到实体上
+        local floor_texture = interior_def and interior_def.minimaptexture or "mini_floor_wood.tex"
+        inst:SetFloorMinimapTex(floor_texture)
+    end
 
-    local left_top_pos = sp.LEFT_TOP + inst:GetPosition()
+    local sp = GetSkeletonPositions(width, depth)
+    local pos = inst:GetPosition()
+
+    local left_top_pos = sp.LEFT_TOP + pos
 
     local floor = SpawnPrefab("interiorfloor")
     floor:SetSize(depth, width) -- depth => size_x, width => size_z
@@ -88,7 +97,7 @@ local function SetUp(inst, data)
     wall_left.Transform:SetPosition(left_top_pos:Get())
     wall_left:SetTexture(inst.walltexture)
 
-    local right_top_pos = sp.RIGHT_TOP + inst:GetPosition()
+    local right_top_pos = sp.RIGHT_TOP + pos
 
     local wall_right = SpawnPrefab("interiorwall_x")
     wall_right:SetSize(depth)
@@ -109,12 +118,9 @@ local function SetUp(inst, data)
     local function wall(x, z)
         local wall = SpawnPrefab("invisiblewall")
         wall.persists = false
-        wall:DoTaskInTime(0, function()
-            local pos = inst:GetPosition()
-            wall.Physics:SetActive(true)
-            wall.Physics:SetActive(false) -- use these wall for pathfinder only :p
-            wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
-        end)
+        wall.Physics:SetActive(true)
+        wall.Physics:SetActive(false) -- use these wall for pathfinder only :p
+        wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
         -- wall:Debug()
         table.insert(inst.boundaries, wall)
     end
@@ -132,12 +138,9 @@ local function SetUp(inst, data)
 
     -- real wall
     local wall = SpawnPrefab("invisiblewall_long")
-    wall:DoTaskInTime(0, function()
-        local pos = inst:GetPosition()
-        wall.width:set(width + 0.2)
-        wall.depth:set(depth + 0.2)
-        wall.Transform:SetPosition(pos.x, 0, pos.z)
-    end)
+    wall.width:set(width + 0.2)
+    wall.depth:set(depth + 0.2)
+    wall.Transform:SetPosition(pos.x, 0, pos.z)
     table.insert(inst.boundaries, wall)
 
     inst.interior_cc = data.interior_cc or data.cc or "images/colour_cubes/day05_cc.tex"
@@ -158,6 +161,14 @@ end
 local function SetSize(inst, width, depth)
     inst._width:set(width)
     inst._depth:set(depth)
+end
+
+local function SetFloorMinimapTex(inst, texture)
+    inst._floor_minimaptex:set(texture)
+end
+
+local function GetFloorMinimapTex(inst)
+    return inst._floor_minimaptex:value()
 end
 
 local function SetInteriorFloorTexture(inst, texture)
@@ -201,18 +212,39 @@ local function GetDoorToExterior(inst)
     end
 end
 
-local function GetIsSingleRoom(inst, no_cache)
-    if inst.cached_is_single ~= nil and not no_cache then
-        return unpack(inst.cached_is_single)
+local function OnDoorChange(inst, door, add)
+    if add then
+        table.insert(inst.doors, door)
+    else
+        table.removearrayvalue(inst.doors, door)
     end
-    local x, _, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
-    if #ents == 1 and ents[1]:HasTag("door_exit") then
-        inst.cached_is_single = {true, ents[1]}
-        return true, ents[1]
+    inst:SetIsSingleRoom(#inst.doors == 1 and inst.doors[1]:HasTag("door_exit"))
+end
+
+local function GetIsSingleRoom(inst)
+    return inst._is_single_room:value()
+end
+
+local function SetIsSingleRoom(inst, is_single)
+    return inst._is_single_room:set(is_single)
+end
+
+local function OnIsSingleRoomChange(inst)
+    if TheWorld.ismastersim then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        local players = FindPlayersInRange(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS)
+        if #players ~= 0 then
+            local minimap_data = inst:CollectMinimapData()
+            for _, player in ipairs(players) do
+                if player.components.interiorvisitor then
+                    player.components.interiorvisitor:RecordMap(inst.interiorID, minimap_data)
+                end
+            end
+        end
     end
-    inst.cached_is_single = {false}
-    return false
+    if ThePlayer and ThePlayer:IsNear(inst, TUNING.ROOM_FINDENTITIES_RADIUS) then
+        ThePlayer:PushEvent("refresh_interior_minimap")
+    end
 end
 
 local function HasInteriorMinimap(inst)
@@ -237,6 +269,30 @@ local DIRECTION_NAMES = {
 
 local function sort_priority(a, b)
     return a.priority < b.priority
+end
+
+local function CollectLocalDoorMinimap(inst, ignore_non_cacheable)
+    local position = inst:GetPosition()
+    local radius = inst:GetSearchRadius()
+    local doors = {}
+    for _, door in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, {"interior_door"})) do
+        local door_direction
+        for _, direction in ipairs(DIRECTION_NAMES) do
+            if door:HasTag("door_"..direction) then
+                door_direction = direction
+                break
+            end
+        end
+        if door_direction then
+            doors[door_direction] = {
+                hidden = door:HasTag("door_hidden"),
+                disabled = door:HasTag("door_disabled"),
+            }
+        else
+            print("This door doesn't have a direction!", door)
+        end
+    end
+    return doors
 end
 
 local function CollectMinimapIcons(inst, ignore_non_cacheable)
@@ -305,6 +361,7 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
                     direction = door_direction,
                     hidden = door:HasTag("door_hidden"),
                     disabled = door:HasTag("door_disabled"),
+                    -- unknown = nil,
                 })
             else
                 print("This door doesn't have a direction!", door)
@@ -312,23 +369,29 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
         end
     end
 
-    local interior_def = TheWorld.components.interiorspawner:GetInteriorDefine(inst.interiorID)
-    -- Fallback to mini_ruins_slab
-    local floor_texture = interior_def and basename(interior_def.minimaptexture) or "mini_ruins_slab"
+    local minimap_floor_texture = inst:GetFloorMinimapTex()
 
     return {
+        uuid = inst.uuid,
         width = width,
         depth = depth,
-        floor_texture = floor_texture,
+        minimap_floor_texture = basename(minimap_floor_texture),
         icons = icons,
         doors = doors,
     }
     -- {
+    --     uuid: string,
     --     width: number,
     --     depth: number,
-    --     floor_texture: string,
+    --     minimap_floor_texture: string,
     --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
-    --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
+    --     doors: {
+    --         target_interior: interiorID,
+    --         direction: keyof DIRECTION_NAMES }[],
+    --         hidden: boolean,
+    --         disabled: boolean,
+    --         unknown?: boolean,
+    --     }
     -- }
 end
 
@@ -339,6 +402,7 @@ local TAGS = {
     HOME_PROTOTYPER = 8, -- player home prototype room
     PIG_RUINS = 16, -- pig ruins rooms
     PIG_SHOP = 32, -- pig shop rooms
+    ANTQUEEN = 64, -- final chamber
     TEST = 1024,
 }
 
@@ -405,6 +469,7 @@ local function AttachMinimapOverride(inst)
 end
 
 local function OnSave(inst, data)
+    data.uuid = inst.uuid
     data.width = inst:GetWidth()
     data.depth = inst:GetDepth()
     data.height = inst.height
@@ -417,13 +482,58 @@ local function OnSave(inst, data)
     data.footstep_tile = inst.footstep_tile
     data.reverb = inst.reverb
     data.ambient_sound = inst.ambient_sound
+    data.minimaptexture = inst:GetFloorMinimapTex()
+
+    local doors = {}
+    for _, door in ipairs(inst.doors) do
+       table.insert(doors, door.GUID)
+    end
+    data.doors = doors
+
+    return doors
 end
 
 local function OnLoad(inst, data)
+    if data.uuid then
+        inst.uuid = data.uuid
+    end
     inst:SetUp(data)
     if data.interior_tags then
         inst:AddInteriorTags(unpack(table.getkeys(data.interior_tags)))
     end
+end
+
+local function MigrateDoors(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    inst.doors = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}, {"predoor"})
+    inst:SetIsSingleRoom(#inst.doors == 1 and inst.doors[1]:HasTag("door_exit"))
+end
+
+local function OnLoadPostPass(inst, newents, savedata)
+    if savedata and savedata.doors then
+        inst.doors = {}
+        for _, door_guid in ipairs(savedata.doors) do
+            local door = newents[door_guid]
+            if door then
+                inst:OnDoorChange(door.entity, true)
+            end
+        end
+    else
+        inst:DoStaticTaskInTime(0, MigrateDoors)
+    end
+end
+
+local function generate_uuid(length)
+    local chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    local uuid = {}
+    local random = math.random
+
+    for i = 1, length do
+        local rand_index = random(1, #chars)
+        table.insert(uuid, chars:sub(rand_index, rand_index))
+    end
+
+    return table.concat(uuid)
 end
 
 local function fn()
@@ -465,6 +575,14 @@ local function fn()
     inst.major_id = net_ushortint(inst.GUID, "major_id", "major_id")
     inst.minimap_coord_x = net_shortint(inst.GUID, "minimap_coord_x", "minimap_coord")
     inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
+    inst._floor_minimaptex = net_string(inst.GUID, "_floor_minimaptex", "_floor_minimaptex")
+
+    inst.GetFloorMinimapTex = GetFloorMinimapTex
+
+    inst._is_single_room = net_bool(inst.GUID, "interiorworkblank._is_single_room", "is_single_room_change")
+    inst:ListenForEvent("is_single_room_change", OnIsSingleRoomChange)
+
+    inst._isquaking = net_bool(inst.GUID, "interiorworkblank._isquaking")
 
     inst.GetSearchRadius = GetSearchRadius
     inst.GetDoorById = GetDoorById
@@ -472,6 +590,7 @@ local function fn()
     inst.GetIsSingleRoom = GetIsSingleRoom
     inst.HasInteriorMinimap = HasInteriorMinimap
     inst.CollectMinimapIcons = CollectMinimapIcons
+    inst.CollectLocalDoorMinimap = CollectLocalDoorMinimap
     inst.HasInteriorTag = HasInteriorTag
 
     inst:AddComponent("interiorpathfinder")
@@ -484,19 +603,29 @@ local function fn()
         return inst
     end
 
+    -- Used for minimap data
+    inst.uuid = generate_uuid(8)
+
     inst.SetUp = SetUp
     inst.CollectMinimapData = CollectMinimapData
 
     inst.walltexture = nil
     inst.floortexture = nil
 
+    inst.SetFloorMinimapTex = SetFloorMinimapTex
+
     inst.SetInteriorFloorTexture = SetInteriorFloorTexture
     inst.SetInteriorWallsTexture = SetInteriorWallsTexture
+
+    inst.doors = {}
+    inst.OnDoorChange = OnDoorChange
+    inst.SetIsSingleRoom = SetIsSingleRoom
 
     inst:ListenForEvent("onremove", OnRemove)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+    inst.OnLoadPostPass = OnLoadPostPass
     inst.AddInteriorTags = AddInteriorTags
     inst.RemoveInteriorTags = RemoveInteriorTags
 

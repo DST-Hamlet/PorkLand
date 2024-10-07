@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "A great hall for the bug beasts.",
         ANTHILL = "There is dankness within!",
         ANTIVENOM = "No venom shall flow through my veins!",
+        ANTLER = "Calls upon the mighty bird beast!",
+        ANTLER_CORRUPTED = "Calls off the mighty bird beast.",
         ANTMAN = {
             DEAD = "It no longer lives.",
             GENERIC = "Be you friend or foe?",
@@ -83,6 +85,7 @@ return {
         ANTMAN_WARRIOR = "Let us do battle!",
         ANTMAN_WARRIOR_EGG = "A tiny warrior hides within.",
         ANTMASKHAT = "My helm would have sufficed.",
+        ANTQUEEN = "Your royal status means nothing to me!",
         ANTQUEEN_CHAMBERS = "Pales in comparison to the halls of Valhalla.",
         ANTQUEEN_THRONE = "It will be plundered!",
         ANTSUIT = "An armor not worthy of a shieldmaiden!",
@@ -100,6 +103,7 @@ return {
         BANDITTREASURE = "Mine!",
         BASEFAN = "Conquers the heat!",
         BATHAT = "To see through the eyes of my enemy!",
+        BAT_HIDE = "Hide which takes the guise of another hide.",
         BILL = {
             DEAD = "Ha! Vanquished!",
             GENERIC = "I will vanquish you, skewered one!",
@@ -263,6 +267,7 @@ return {
         },
         GASCLOUD = "Noxious fumes. I will leave them be!",
         GASMASKHAT = "Poisonous air will not consume me!!",
+        GIANTGRUB = "It will give me a battle!",
         GLOWFLY = {
             DEAD = "Alas, it is dead.",
             GENERIC = "Fly free, small friend.",
@@ -798,6 +803,7 @@ return {
             SLEEPING = "Unwise, little beast.",
         },
         VAMPIREBATCAVE = "Creatures of darkness lurk within.",
+        VAMPIRE_BAT_WING = "Like the wings of my helm, only meatier.",
         VENOMGLAND = "The source of the fevers.",
         VENUS_STALK = "The heart of a defeated plant warrior.",
         VINE = "What can you do for me?",

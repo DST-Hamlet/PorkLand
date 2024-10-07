@@ -17,14 +17,16 @@ local function Plant(point)
 end
 
 local function OnDeploy(inst, point)
-    inst = inst.components.stackable:Get()
-    inst:Remove()
+    local newinst = inst.components.stackable:Get()
+    newinst:Remove()
 
     Plant(point)
 end
 
 local function OnseasonChange(inst, season)
-    if season ~= SEASONS.LUSH and not inst:IsInLimbo() then
+    if season ~= SEASONS.LUSH
+        and not inst:IsInLimbo()
+        and custom_candeploy_fn(inst, inst:GetPosition()) then
         inst.components.deployable:Deploy(inst:GetPosition(), inst)
     end
 end
@@ -78,7 +80,6 @@ local function fn()
     MakeHauntableLaunch(inst)
 
     inst:WatchWorldState("season", OnseasonChange)
-    OnseasonChange(inst, TheWorld.state.season)
 
     return inst
 end

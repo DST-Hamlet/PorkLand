@@ -81,6 +81,8 @@ return {
         ANTCOMBHOME = "Looks like it houses insects.",
         ANTHILL = "This must be where those giant bugs live.",
         ANTIVENOM = "Tastes horrible!",
+        ANTLER = "For the bird.",
+        ANTLER_CORRUPTED = "This should scare off that big bird.",
         ANTMAN = {
             DEAD = "Exterminated.",
             GENERIC = "What a huge bug!",
@@ -89,6 +91,7 @@ return {
         ANTMAN_WARRIOR = "I don't like the look of him.",
         ANTMAN_WARRIOR_EGG = "Don't hatch. Don't hatch. Don't hatch...",
         ANTMASKHAT = "There's still some goo stuck to the insides.",
+        ANTQUEEN = "The Queen regn-ant.",
         ANTQUEEN_CHAMBERS = "That looks important.",
         ANTQUEEN_THRONE = "I should break that. For science.",
         ANTSUIT = "It's brittle.",
@@ -106,6 +109,7 @@ return {
         BANDITTREASURE = "Treasure!",
         BASEFAN = "Fan-tastic.",
         BATHAT = "A hat, made of bat.",
+        BAT_HIDE = "Is the bat hide-ing in there?",
         BILL = {
             DEAD = "Haha. It's dead.",
             GENERIC = "A spinny spiny sort.",
@@ -264,6 +268,7 @@ return {
         },
         GASCLOUD = "A cloud of coughs.",
         GASMASKHAT = "Now I can breathe anywhere.",
+        GIANTGRUB = "I'm not going anywhere near that!",
         GLOWFLY = {
             DEAD = "Lights out forever.",
             GENERIC = "A light aflight.",
@@ -817,6 +822,7 @@ return {
             SLEEPING = "Hopefully it won't get up again.",
         },
         VAMPIREBATCAVE = "A den of bloodsuckers.",
+        VAMPIRE_BAT_WING = "I hate those things, even when they're dead.",
         VENOMGLAND = "Only poison can cure poison.",
         VENUS_STALK = "I bet I could find a use for it.",
         VINE = "Maybe I can tie stuff up with this.",

@@ -52,6 +52,7 @@ local function OnItemGet(inst, data)
 end
 
 local function OnItemLose(inst, data)
+    local activeitem = data.activeitem
     local item = data.prev_item
     if not item then
         return
@@ -66,7 +67,7 @@ local function OnItemLose(inst, data)
         end
     end
 
-    if item.prefab == "key_to_city" and not item.activeitem then
+    if item.prefab == "key_to_city" and not activeitem then
         inst.components.builder.city_bonus = 0
     end
 end
@@ -156,6 +157,7 @@ AddPlayerPostInit(function(inst)
                 if TheWorld:HasTag("porkland") then
                     inst:AddComponent("windvisuals")
                     inst:AddComponent("cloudpuffmanager")
+                    inst:AddComponent("persistencevision")
                 end
             end
         end)
@@ -163,7 +165,7 @@ AddPlayerPostInit(function(inst)
 
     local _IsInLight = inst.IsInLight
     function inst:IsInLight()
-        if inst:HasTag("inside_interior") then
+        if inst:GetIsInInterior() then
             local pos = inst:GetPosition()
             return TheSim:GetLightAtPoint(pos.x, pos.y, pos.z, 0.1) > 0.1
         else
@@ -210,7 +212,46 @@ AddPlayerPostInit(function(inst)
         return _OnGotNewItem(inst, data, ...)
     end
 
-    debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
+    if i then
+        debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
+    end
+
+    local REPLACE_ANIMS =
+    {
+        -- ["atk_pre"] = "atk_pre_old",
+        -- ["atk_lag"] = "atk_lag_old",
+        -- ["atk"] = "atk_old",
+        ["hit"] = "hit_old",
+        ["hit_goo"] = "hit_goo_old",
+    }
+
+    local wilson_bank_hash = inst.AnimState:GetBankHash()
+
+    local _AnimState = inst.AnimState
+    local AnimState = setmetatable({}, {__index = function(t, k)
+        if k == "PlayAnimation" then
+            return function(t, animname, ...)
+                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
+                    return _AnimState:PlayAnimation(REPLACE_ANIMS[animname], ...)
+                else
+                    return _AnimState:PlayAnimation(animname, ...)
+                end
+            end
+        elseif k == "PushAnimation" then
+            return function(t, animname, ...)
+                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
+                    return _AnimState:PushAnimation(REPLACE_ANIMS[animname], ...)
+                else
+                    return _AnimState:PushAnimation(animname, ...)
+                end
+            end
+        end
+
+        return function(t, ...)
+            return _AnimState[k](_AnimState, ...)
+        end
+    end})
+    rawset(inst, "AnimState", AnimState)
 
     if not TheWorld.ismastersim then
         return

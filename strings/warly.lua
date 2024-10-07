@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "Full of those ant guys.",
         ANTHILL = "I could take a peek inside.",
         ANTIVENOM = "Could come in very handy.",
+        ANTLER = "Like a dinner bell for a bird!",
+        ANTLER_CORRUPTED = "Au revoir giant bird, no dinner for you!",
         ANTMAN = {
             DEAD = "He's met an untimely end.",
             GENERIC = "Let's break bread!",
@@ -83,6 +85,7 @@ return {
         ANTMAN_WARRIOR = "I want no trouble, mon amie!",
         ANTMAN_WARRIOR_EGG = "Mant omelet, perhaps?",
         ANTMASKHAT = "The pith has been removed.",
+        ANTQUEEN = "I have no grief with you, madam.",
         ANTQUEEN_THRONE = "There are many cherries hidden in that fruit salad.",
         ANTSUIT = "There's no meat inside.",
         ANT_CAVE_LANTERN = "Can I harvest any honey from that?",
@@ -99,6 +102,7 @@ return {
         BANDITTREASURE = "I've found it!",
         BASEFAN = "Good ventilation in the kitchen is an must.",
         BATHAT = "Ah, I can see through the eyes of a bat.",
+        BAT_HIDE = "Is it from a bat or a pig?",
         BILL = {
             DEAD = "The other white meat.",
             GENERIC = "He could skewer me!",
@@ -262,6 +266,7 @@ return {
         },
         GASCLOUD = "Mon dieu! A poisonous cloud!",
         GASMASKHAT = "I could use this in the smoke house.",
+        GIANTGRUB = "I could make it more palatable if I could mash it into a paste.",
         GLOWFLY = {
             DEAD = "Such a shame. And not even edible.",
             GENERIC = "Light the way, mon amie.",
@@ -797,6 +802,7 @@ return {
             SLEEPING = "Peaceful for now.",
         },
         VAMPIREBATCAVE = "Not the best place to hide, I think.",
+        VAMPIRE_BAT_WING = "Hmmm, maybe a soup stock of batwings?",
         VENOMGLAND = "The worst kind of gland!",
         VENUS_STALK = "Possesses a flavor reminiscent of artichoke hearts.",
         VINE = "Not a single grape on it...",

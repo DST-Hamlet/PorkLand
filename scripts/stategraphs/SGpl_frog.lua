@@ -218,7 +218,7 @@ local states=
         {
             TimeEvent(18 * FRAMES, function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()
-                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+                if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                     inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/water/small_submerge")
                 end
             end),
@@ -316,7 +316,6 @@ local states=
 
         onenter = function(inst, noanim)
             if noanim then
-                inst.AnimState:SetBank("frog")
                 inst.sg:GoToState("idle")
                 return
             end
@@ -330,6 +329,10 @@ local states=
             end
             inst.AnimState:SetBank("frog_water")
             inst.AnimState:PlayAnimation("jumpout_pre")
+        end,
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events=
@@ -352,13 +355,17 @@ local states=
             elseif should_run then
                 inst.components.locomotor:RunForward()
             end
+            inst.AnimState:SetBank("frog_water")
             inst.AnimState:PlayAnimation("jumpout")
+        end,
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events=
         {
             EventHandler("animover", function(inst)
-                inst.AnimState:SetBank("frog")
                 inst.sg:GoToState("idle")
             end),
         },
@@ -385,6 +392,10 @@ local states=
 
             inst.AnimState:SetBank("frog_water")
             inst.AnimState:PlayAnimation("jumpin_pre")
+        end,
+
+        onexit = function(inst)
+            inst.components.amphibiouscreature:RefreshBankFn()
         end,
 
         events=

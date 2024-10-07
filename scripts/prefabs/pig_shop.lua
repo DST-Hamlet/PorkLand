@@ -510,7 +510,9 @@ end
 local function UseDoor(inst, data)
     if inst.use_sounds and data and data.doer and data.doer.SoundEmitter then
         for _, sound in ipairs(inst.use_sounds) do
-            data.doer.SoundEmitter:PlaySound(sound)
+            data.doer:DoTaskInTime(FRAMES * 2, function()
+                data.doer.SoundEmitter:PlaySound(sound)
+            end)
         end
     end
 end
@@ -595,6 +597,9 @@ local function MakeShop(name, build, bank, data)
         inst.entity:AddNetwork()
 
         MakeObstaclePhysics(inst, 1.25)
+
+        -- For OnNight
+        inst:SetPrefabName(name)
 
         inst.bank = bank or "pig_shop"
         inst.build = build

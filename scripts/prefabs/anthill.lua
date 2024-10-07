@@ -3,7 +3,7 @@ local GenerateProps = require("prefabs/interior_prop_defs")
 local assets =
 {
     Asset("ANIM", "anim/ant_hill_entrance.zip"),
-    -- Asset("ANIM", "anim/ant_queen_entrance.zip"),
+    Asset("ANIM", "anim/ant_queen_entrance.zip"),
 }
 
 local prefabs =
@@ -17,8 +17,8 @@ local prefabs =
     "antqueen",
 }
 
-local QUEEN_CHAMBER_COUNT_MAX = 6
-local QUEEN_CHAMBER_COUNT_MIN = 3
+-- local QUEEN_CHAMBER_COUNT_MAX = 6
+-- local QUEEN_CHAMBER_COUNT_MIN = 3
 
 local ANT_CAVE_DEPTH = 18
 local ANT_CAVE_WIDTH = 26
@@ -37,7 +37,7 @@ local ANTHILL_WANDERING_ANT_COUNT = 10
 local ANTHILL_TREASURE_COUNT = 3
 local ROOM_CARDINALITY = {ANTHILL_EMPTY_COUNT, ANTHILL_ANT_HOME_COUNT, ANTHILL_WANDERING_ANT_COUNT, ANTHILL_TREASURE_COUNT}
 
-local dirNames = { "east", "west", "north", "south" }
+local dir_names = { "east", "west", "north", "south" }
 local dirNamesOpposite = { "west", "east", "south", "north" }
 
 local EAST_DOOR_IDX  = 1
@@ -82,13 +82,13 @@ local function ConnectRooms(dirIndex, room_from, room_to)
     local dirs = interior_spawner:GetDir()
     local dirs_opposite = interior_spawner:GetDirOpposite()
 
-    room_from.exits[dirs[dirIndex]] ={
+    room_from.exits[dirs[dirIndex]] = {
         target_room = room_to.id,
         bank  = "ant_cave_door",
         build = "ant_cave_door",
         room  = room_from.id,
-        sg_name = "SGanthilldoor_" .. dirNames[dirIndex],
-        startstate = "idle_" .. dirNames[dirIndex],
+        sg_name = "SGanthilldoor_" .. dir_names[dirIndex],
+        startstate = "idle",
     }
 
     room_to.exits[dirs_opposite[dirIndex]] = {
@@ -97,7 +97,7 @@ local function ConnectRooms(dirIndex, room_from, room_to)
         build = "ant_cave_door",
         room  = room_to.id,
         sg_name = "SGanthilldoor_" .. dirNamesOpposite[dirIndex],
-        startstate = "idle_" .. dirNamesOpposite[dirIndex],
+        startstate = "idle",
     }
 end
 
@@ -153,9 +153,9 @@ local function BuildGrid(inst)
                 exits = {},
                 is_entrance = false,
                 isChamberEntrance = false,
-                parentRoom = nil,
-                doorsEnabled = {false, false, false, false},
-                dirsExplored = {false, false, false, false},
+                parent_room = nil,
+                doors_enabled = {false, false, false, false},
+                dirs_explored = {false, false, false, false},
             }
 
             table.insert(roomRow, room)
@@ -167,7 +167,7 @@ local function BuildGrid(inst)
     ChooseEntrances(inst)
     ChooseChamberEntrances(inst)
 
-    -- All possible doors are built, and then the doorsEnabled flag
+    -- All possible doors are built, and then the doors_enabled flag
     -- is what indicates if they should actually be in use or not.
     ConnectDoors(inst)
 end
@@ -175,9 +175,9 @@ end
 local function RebuildGrid(inst)
     for i = 1, NUM_ROWS do
         for j = 1, NUM_COLS do
-            inst.rooms[i][j].parentRoom = nil
-            inst.rooms[i][j].doorsEnabled = {false, false, false, false}
-            inst.rooms[i][j].dirsExplored = {false, false, false, false}
+            inst.rooms[i][j].parent_room = nil
+            inst.rooms[i][j].doors_enabled = {false, false, false, false}
+            inst.rooms[i][j].dirs_explored = {false, false, false, false}
         end
     end
 end
@@ -193,15 +193,15 @@ local function link(inst, room)
     end
 
     -- While there are still directions to explore.
-    while not (room.dirsExplored[EAST_DOOR_IDX]
-        and room.dirsExplored[WEST_DOOR_IDX]
-        and room.dirsExplored[NORTH_DOOR_IDX]
-        and room.dirsExplored[SOUTH_DOOR_IDX]) do
-        local dirIndex = math.random(#room.dirsExplored)
+    while not (room.dirs_explored[EAST_DOOR_IDX]
+        and room.dirs_explored[WEST_DOOR_IDX]
+        and room.dirs_explored[NORTH_DOOR_IDX]
+        and room.dirs_explored[SOUTH_DOOR_IDX]) do
+        local dirIndex = math.random(#room.dirs_explored)
 
         -- If already explored, then try again.
-        if not room.dirsExplored[dirIndex] then
-            room.dirsExplored[dirIndex] = true
+        if not room.dirs_explored[dirIndex] then
+            room.dirs_explored[dirIndex] = true
 
             local dirPossible = false
             if dirIndex == EAST_DOOR_IDX then -- EAST
@@ -241,10 +241,10 @@ local function link(inst, room)
                 -- Get destination node into pointer (makes things a tiny bit faster)
                 local destination_room = inst.rooms[row][col]
 
-                if (destination_room.parentRoom == nil) then -- If destination is a linked node already - abort
-                    destination_room.parentRoom = room -- Otherwise, adopt node
-                    room.doorsEnabled[dirIndex] = true -- Remove wall between nodes (ie. Create door.)
-                    destination_room.doorsEnabled[dirsOpposite[dirIndex]] = true
+                if (destination_room.parent_room == nil) then -- If destination is a linked node already - abort
+                    destination_room.parent_room = room -- Otherwise, adopt node
+                    room.doors_enabled[dirIndex] = true -- Remove wall between nodes (ie. Create door.)
+                    destination_room.doors_enabled[dirsOpposite[dirIndex]] = true
 
                     -- Return address of the child node
                     return destination_room
@@ -254,12 +254,12 @@ local function link(inst, room)
     end
 
     -- If nothing more can be done here - return parent's address
-    return room.parentRoom
+    return room.parent_room
 end
 
 local function BuildWalls(inst)
     local start_room = inst.rooms[1][1]
-    start_room.parentRoom = start_room
+    start_room.parent_room = start_room
     local last_room = start_room
 
     -- Connect nodes until start node is reached and can't be left
@@ -267,9 +267,6 @@ local function BuildWalls(inst)
         last_room = link(inst, last_room)
     until (last_room == start_room)
 end
-
-local queenchamber_placement_id = {}
-local queen_chamber_ids = {}
 
 local room_types = {"anthill_empty", "anthill_ant_home", "anthill_wandering_ant", "anthill_treasure"}
 
@@ -301,7 +298,7 @@ local function CreateRegularRooms(inst)
             current_room_setup_index = current_room_setup_index + 1
 
             local addprops = GenerateProps(room_type, ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, room, doorway_count,
-                doorway_prefabs, queenchamber_placement_id, queen_chamber_ids)
+                doorway_prefabs)
 
             if room.is_entrance then
                 local exterior_door_def = {
@@ -311,78 +308,56 @@ local function CreateRegularRooms(inst)
                 }
 
                 doorway_prefabs[doorway_count].interiorID = room.id
+                doorway_prefabs[doorway_count].doorway_index = doorway_count
                 TheWorld.components.interiorspawner:AddDoor(doorway_prefabs[doorway_count], exterior_door_def)
+                TheWorld.components.interiorspawner:AddExterior(doorway_prefabs[doorway_count])
 
                 doorway_count = doorway_count + 1
             end
 
             local def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, ANTHILL_DUNGEON_NAME, room.id, addprops,
                 room.exits, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil, ANT_CAVE_COLOUR_CUBE,
-                nil, nil, "anthill","ANT_HIVE","DIRT")
+                nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT)
             interior_spawner:SpawnInterior(def)
         end
     end
 end
 
--- We generate these outside of the CreateQueenChambers function because we need the ids to link it to the regular anthill
-local function GenerateQueenChamberIDS(room_count)
-    local interior_spawner = TheWorld.components.interiorspawner
-
-    for i = 1, room_count do
-        local newid = interior_spawner:GetNewID()
-        table.insert(queen_chamber_ids, newid)
-    end
-end
-
-local function CreateQueenChambers(room_count)
-    local interior_spawner = TheWorld.components.interiorspawner
-
-    for i = 1, room_count do
-        local is_queen_chamber = i == room_count -- last room is ant queen room
-
-        local addprops, def
-        if is_queen_chamber then
-            addprops = GenerateProps("anthill_queen_chamber", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids)
-
-            def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, "QUEEN_CHAMBERS_DUNGEON_" .. i,
-                queen_chamber_ids[i], addprops, {}, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil,
-                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill","ANT_HIVE","DIRT", -3.5, 40)
-        else
-            addprops = GenerateProps("anthill_queen_chamber_hallway", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids, queenchamber_placement_id)
-
-            def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, "QUEEN_CHAMBERS_DUNGEON_" .. i,
-                queen_chamber_ids[i], addprops, {}, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil,
-                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill","ANT_HIVE","DIRT")
-        end
-
-        interior_spawner:SpawnInterior(def)
-    end
-end
-
 local function SetCurrentDoorHiddenStatus(door, show, direction)
-    if not door.sg then
-        print("MISSING sg FOR DIRECTION (" .. direction .. ") AND PREFAB (" .. door.prefab ..")")
-        return
-    end
-
+    local isaleep = door:IsAsleep()
     if show and door.components.door.hidden then
-        door.sg:GoToState("open_" .. direction)
+        if isaleep then
+            door.components.door:SetHidden(false)
+            door.sg:GoToState("idle")
+        else
+            door.sg:GoToState("open")
+        end
     elseif not show and not door.components.door.hidden then
-        door.sg:GoToState("shut_" .. direction)
+        if isaleep then
+            door.components.door:SetHidden(true)
+            door.sg:GoToState("idle")
+        else
+            door.sg:GoToState("shut")
+        end
     end
 end
 
 local function RefreshCurrentDoor(room, door)
-    if door.components.door then
-        if door:HasTag("door_north") then
-            SetCurrentDoorHiddenStatus(door, room.doorsEnabled[NORTH_DOOR_IDX], "north")
-        elseif door:HasTag("door_south") then
-            SetCurrentDoorHiddenStatus(door, room.doorsEnabled[SOUTH_DOOR_IDX], "south")
-        elseif door:HasTag("door_east") then
-            SetCurrentDoorHiddenStatus(door, room.doorsEnabled[EAST_DOOR_IDX], "east")
-        elseif door:HasTag("door_west") then
-            SetCurrentDoorHiddenStatus(door, room.doorsEnabled[WEST_DOOR_IDX], "west")
-        end
+    if not door.components.door then
+        return
+    end
+    if door.components.door.target_interior == "EXTERIOR" then
+        return
+    end
+
+    if door:HasTag("door_north") then
+        SetCurrentDoorHiddenStatus(door, room.doors_enabled[NORTH_DOOR_IDX], "north")
+    elseif door:HasTag("door_south") then
+        SetCurrentDoorHiddenStatus(door, room.doors_enabled[SOUTH_DOOR_IDX], "south")
+    elseif door:HasTag("door_east") then
+        SetCurrentDoorHiddenStatus(door, room.doors_enabled[EAST_DOOR_IDX], "east")
+    elseif door:HasTag("door_west") then
+        SetCurrentDoorHiddenStatus(door, room.doors_enabled[WEST_DOOR_IDX], "west")
     end
 end
 
@@ -392,9 +367,9 @@ local function RefreshDoors(inst)
         for j = 1, NUM_COLS do
             local room = inst.rooms[i][j]
 
-            local interior = interior_spawner:GetInteriorByIndex(room.id)
-            local x, y, z = interior.Transform:GetWorldPosition()
-            local ents = TheSim:FindEntities(x, y, z, 50, {"interior_door"})
+            local centre = interior_spawner:GetInteriorCenter(room.id)
+            local x, y, z = centre.Transform:GetWorldPosition()
+            local ents = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
             for _, door in pairs(ents) do
                 RefreshCurrentDoor(room, door)
             end
@@ -402,34 +377,24 @@ local function RefreshDoors(inst)
     end
 end
 
-local function SpawnDust(inst, dustCount)
-    if dustCount > 0 then
-        local interior_spawner = GetWorld().components.interiorspawner
-
-        local pt = interior_spawner:getSpawnOrigin()
-        local fx = SpawnPrefab("int_ceiling_dust_fx")
+local function SpawnDust(inst, dust_count, interiorID)
+    if dust_count > 0 then
         local VARIANCE = 8.0
-
-        fx.Transform:SetPosition(pt.x + math.random(-VARIANCE, VARIANCE), 0.0, pt.z + math.random(-VARIANCE, VARIANCE))
+        local offset = Vector3(math.random(-VARIANCE, VARIANCE), 0, math.random(-VARIANCE, VARIANCE))
+        local fx = TheWorld.components.interiorspawner:SpawnObject(interiorID, "int_ceiling_dust_fx", offset)
         fx.Transform:SetScale(2.0, 2.0, 2.0)
-        inst:DoTaskInTime(0.5, function() SpawnDust(inst, dustCount - 1) end)
-    else
-        inst:DoTaskInTime(0.5, function() inst.SoundEmitter:KillSound("miniearthquake") end)
+        inst:DoTaskInTime(0.5, function() SpawnDust(inst, dust_count - 1, interiorID) end)
     end
 end
 
 local function Earthquake(inst)
-    -- local interior_spawner = TheWorld.components.interiorspawner
-
-    -- for i = 1, NUM_ROWS do
-    --     for j = 1, NUM_COLS do
-    --         local room = inst.rooms[i][j]
-    --     interior_spawner.interiorCamera:Shake("FULL", 5.0, 0.025, 0.8)
-    --     inst.SoundEmitter:PlaySound("dontstarve/cave/earthquake", "miniearthquake")
-    --     inst.SoundEmitter:SetParameter("miniearthquake", "intensity", 1)
-    --     SpawnDust(inst, 10)
-    --     end
-    -- end
+    for i = 1, NUM_ROWS do
+        for j = 1, NUM_COLS do
+            local room = inst.rooms[i][j]
+            TheWorld:PushEvent("interior_startquake", {interiorID = room.id, quake_level = INTERIOR_QUAKE_LEVELS.ANTHILL_REBUILT})
+            SpawnDust(inst, 10, room.id)
+        end
+    end
 end
 
 local function CreateInterior(inst)
@@ -437,11 +402,8 @@ local function CreateInterior(inst)
         return
     end
 
-    local queen_chamber_count = math.random(QUEEN_CHAMBER_COUNT_MIN, QUEEN_CHAMBER_COUNT_MAX)
-    GenerateQueenChamberIDS(queen_chamber_count)
     BuildGrid(inst)
     CreateRegularRooms(inst)
-    CreateQueenChambers(queen_chamber_count)
     BuildWalls(inst)
     RefreshDoors(inst)
     TheWorld.components.interiorspawner:AddExterior(inst)
@@ -454,6 +416,15 @@ local function GenerateMaze(inst)
     BuildWalls(inst)
     RefreshDoors(inst)
     Earthquake(inst)
+
+    inst.maze_reset_count = inst.maze_reset_count + 1
+
+    for _, player in ipairs(AllPlayers) do
+        local interiorvisitor = player.components.interiorvisitor
+        if interiorvisitor then
+            interiorvisitor:RecordAnthillDoorMapReset()
+        end
+    end
 end
 
 -- end of interior stuff
@@ -472,19 +443,21 @@ end
 
 local function OnSave(inst, data)
     data.maze_generated = inst.maze_generated
+    data.maze_reset_count = inst.maze_reset_count
     data.interiorID = inst.interiorID
     if inst.rooms then
         data.rooms = inst.rooms
 
-        -- parentRoom and exits are not necessary to save and cause the
+        -- parent_room and exits are not necessary to save and cause the
         -- game to crash upon saving, so they are stripped out here.
         for i = 1, NUM_ROWS do
             for j = 1, NUM_COLS do
-                data.rooms[i][j].parentRoom = nil
+                data.rooms[i][j].parent_room = nil
                 data.rooms[i][j].exits = nil
             end
         end
     end
+    data.doorway_index = inst.doorway_index
 end
 
 local function OnLoad(inst, data)
@@ -496,8 +469,14 @@ local function OnLoad(inst, data)
         inst.maze_generated = data.maze_generated
     end
 
+    if data.maze_reset_count then
+        inst.maze_reset_count = data.maze_reset_count
+    end
+
     if data.interiorID then
         inst.interiorID = data.interiorID
+        inst.doorway_index = data.doorway_index
+        TheWorld.components.interiorspawner:AddExterior(inst)
     end
 
     if data.rooms then
@@ -533,6 +512,7 @@ local function makefn(is_entrance)
         inst.Transform:SetScale(0.8, 0.8, 0.8)
 
         inst:AddTag("structure")
+        inst:AddTag("client_forward_action_target")
         if is_entrance then
             inst:AddTag("ant_hill_entrance")
         else
@@ -549,12 +529,12 @@ local function makefn(is_entrance)
 
         inst:AddComponent("lootdropper")
 
-        -- inst:AddComponent("childspawner")
-        -- inst.components.childspawner.childname = "antman"
-        -- inst.components.childspawner:SetRegenPeriod(TUNING.ANTMAN_REGEN_TIME)
-        -- inst.components.childspawner:SetSpawnPeriod(TUNING.ANTMAN_RELEASE_TIME)
-        -- inst.components.childspawner:SetMaxChildren(math.random(TUNING.ANTMAN_MIN, TUNING.ANTMAN_MAX))
-        -- inst.components.childspawner:StartSpawning()
+        inst:AddComponent("childspawner")
+        inst.components.childspawner.childname = "antman"
+        inst.components.childspawner:SetRegenPeriod(TUNING.ANTMAN_REGEN_TIME)
+        inst.components.childspawner:SetSpawnPeriod(TUNING.ANTMAN_RELEASE_TIME)
+        inst.components.childspawner:SetMaxChildren(math.random(TUNING.ANTMAN_MIN, TUNING.ANTMAN_MAX))
+        inst.components.childspawner:StartSpawning()
 
         inst:AddComponent("playerprox")
         inst.components.playerprox:SetDist(10, 13)
@@ -563,24 +543,22 @@ local function makefn(is_entrance)
         inst.components.inspectable.getstatus = GetStatus
         inst.components.inspectable.nameoverride = "anthill"
 
-        -- inst:AddComponent("door")
-        -- inst.components.door.outside = true
-
-        -- if is_entrance then
-        --     inst:DoTaskInTime(0, CreateInterior)
-        --     inst:DoPeriodicTask(TUNING.TOTAL_DAY_TIME / 3, GenerateMaze)
-        --     inst.OnRemoveEntity = function()
-        --         -- this is really bad but apparently can happen. But how....
-        --         assert(false, "anthill got removed.  Please submit a bug report!")
-        --     end
-        -- end
+        inst:AddComponent("door")
+        inst.components.door.outside = true
 
         MakeSnowCovered(inst, 0.01)
-        MakeHauntable(inst)
 
-        -- inst.OnSave = OnSave
-        -- inst.OnLoad = OnLoad
-        -- inst.generateMaze = GenerateMaze
+        inst.OnSave = OnSave
+        inst.OnLoad = OnLoad
+        inst.GenerateMaze = GenerateMaze
+
+        if is_entrance then
+            inst:DoTaskInTime(0, CreateInterior)
+            inst:DoPeriodicTask(TUNING.TOTAL_DAY_TIME / 3, inst.GenerateMaze)
+
+            TheWorld.anthill_entrance = inst
+            inst.maze_reset_count = 0
+        end
 
         return inst
     end

@@ -80,6 +80,8 @@ return {
         ANTCOMBHOME = "A fascinating insectoid habitat.",
         ANTHILL = "A massive network of arthropod tunnels lie beneath.",
         ANTIVENOM = "The contents should make a most useful antidote.",
+        ANTLER = "I do enjoy a good bird song.",
+        ANTLER_CORRUPTED = "One bird in particular does not seem to enjoy it.",
         ANTMAN = {
             DEAD = "It has ceased functioning.",
             GENERIC = "They've developed an entirely unique language.",
@@ -88,6 +90,7 @@ return {
         ANTMAN_WARRIOR = "A particularly aggressive colony defender.",
         ANTMAN_WARRIOR_EGG = "The offspring of an aggressive Formicidae humanoid.",
         ANTMASKHAT = "This may be slightly unethical.",
+        ANTQUEEN = "The gyne of these insectoids.",
         ANTQUEEN_CHAMBERS = "An excellent nest.",
         ANTQUEEN_THRONE = "I should like to examine that a little closer.",
         ANTSUIT = "A hollowed out arthropod.",
@@ -105,6 +108,7 @@ return {
         BANDITTREASURE = "What delightful surprises are in there?",
         BASEFAN = "Restorative.",
         BATHAT = "Rather clever use of echolocation.",
+        BAT_HIDE = "Absurd! This clearly came from a bat.",
         BILL = {
             DEAD = "It's deceased.",
             GENERIC = "Of the Ornithorhynchidae family I believe.",
@@ -263,6 +267,7 @@ return {
         },
         GASCLOUD = "A nimbus of contaminated air.",
         GASMASKHAT = "For investigating dangerous areas.",
+        GIANTGRUB = "I would hate to see that grub fully grown.",
         GLOWFLY = {
             DEAD = "Its existence has reached an end.",
             GENERIC = "A bioluminescent insecta.",
@@ -798,6 +803,7 @@ return {
             SLEEPING = "It is quite dormant.",
         },
         VAMPIREBATCAVE = "The natural habitat of a the Mammalian Hematophagous.",
+        VAMPIRE_BAT_WING = "Technically edible.",
         VENOMGLAND = "A useful substance for poison prevention.",
         VENUS_STALK = "Salvaged from that terrible creature.",
         VINE = "A common jungle vine.",

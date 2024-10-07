@@ -71,6 +71,9 @@ local actionhandlers = {
         return "crop_dust"
     end),
     ActionHandler(ACTIONS.SEARCH_MYSTERY, "dolongaction"),
+    ActionHandler(ACTIONS.BUILD_ROOM, "doshortaction"),
+    ActionHandler(ACTIONS.DEMOLISH_ROOM, "doshortaction"),
+    ActionHandler(ACTIONS.THROW, "throw"),
 }
 
 local eventhandlers = {
@@ -651,7 +654,7 @@ local states = {
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("charge_pre")
             inst.AnimState:PushAnimation("charge_grow")
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/charge_up_LP", "chargedup")
+            inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/charge_up_LP", "chargedup")
 
             inst.sg.statemem.ready_to_shoot = false
             inst.sg.statemem.should_shoot = false
@@ -681,7 +684,7 @@ local states = {
             TimeEvent(20 * FRAMES, function(inst)
                 inst.AnimState:PlayAnimation("charge_super_pre")
                 inst.AnimState:PushAnimation("charge_super_loop", true)
-                inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/iron_lord/electro")
+                inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro")
                 inst.sg.statemem.ready_to_shoot = false
             end),
             TimeEvent(25 * FRAMES, function(inst) inst.sg.statemem.ready_to_shoot = true end),
@@ -824,14 +827,14 @@ local states = {
             if inst:HasTag("_sailor") and inst:HasTag("sailing") then
                 inst.sg:AddStateTag("boating")
             end
-			local target = inst.replica.combat:GetTarget()
+            local target = inst.replica.combat:GetTarget()
             inst.sg.statemem.target = target
             inst.replica.combat:StartAttack()
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("speargun")
 
-			if target and target:IsValid() then
-				inst:FacePoint(target.Transform:GetWorldPosition())
+            if target and target:IsValid() then
+                inst:FacePoint(target.Transform:GetWorldPosition())
             end
         end,
 
@@ -992,7 +995,7 @@ AddStategraphPostInit("wilson_client", function(sg)
     end
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
-    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
+    sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, action, ...)
         if not inst.sg:HasStateTag("sneeze") then
             if inst:HasTag("ironlord") then
                 return "ironlord_attack"
@@ -1003,7 +1006,7 @@ AddStategraphPostInit("wilson_client", function(sg)
                     return "blunderbuss"
                 end
             end
-            return _attack_deststate and _attack_deststate(inst, ...)
+            return _attack_deststate and _attack_deststate(inst, action, ...)
         end
     end
 

@@ -22,15 +22,26 @@ end
 -- TODO; 注意: 在房屋/商店室内移动时会导致地图的漂移
 
 -- focus camera to exterior position (house)
-function MapScreen:OnEnterInterior(ent)
-    if ent ~= nil then
-        if ent:HasInteriorMinimap() then
-            FocusMapOnWorldPosition(self, 0, 0)
-            self.minimap:OnEnterInterior()
-        else
-            local pos = self.owner.replica.interiorvisitor:GetExteriorPos()
-            FocusMapOnWorldPosition(self, pos.x, pos.z)
-        end
+function MapScreen:ApplyInteriorMinimap(room_center)
+    if room_center:HasInteriorMinimap() then
+        FocusMapOnWorldPosition(self, 0, 0)
+        self.minimap:ApplyInteriorMinimap()
+    else
+        local pos = self.owner.replica.interiorvisitor:GetExteriorPos()
+        FocusMapOnWorldPosition(self, pos.x, pos.z)
+    end
+end
+
+function MapScreen:OnEnterInterior(center)
+    if center then
+        self:ApplyInteriorMinimap(center)
+    end
+end
+
+function MapScreen:RefreshInteriorMinimap()
+    local center = TheWorld.components.interiorspawner:GetInteriorCenter(self.owner:GetPosition())
+    if center then
+        self:ApplyInteriorMinimap(center)
     end
 end
 
@@ -38,6 +49,7 @@ end
 function MapScreen:OnLeaveInterior()
     self.inst:DoTaskInTime(0, function()
         self.minimap.minimap:ResetOffset()
+        self.minimap:ClearInteriorMinimap()
     end)
 end
 
@@ -53,4 +65,5 @@ AddClassPostConstruct("screens/mapscreen", function(self)
     self.inst:ListenForEvent("enterinterior_client", function(_, data) self:OnEnterInterior(data and data.to) end, self.owner)
     self.inst:ListenForEvent("leaveinterior_client", function() self:OnLeaveInterior() end, self.owner)
     self.inst:ListenForEvent("interiorvisitor.exterior_pos", function() self:OnEnterInterior() end, self.owner)
+    self.inst:ListenForEvent("refresh_interior_minimap", function() self:RefreshInteriorMinimap() end, self.owner)
 end)

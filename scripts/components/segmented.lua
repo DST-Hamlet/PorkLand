@@ -82,6 +82,7 @@ function Segmented:Start(angle, segtimeMax, advancetime)
     exit:AddTag("exithole")
     self.inst.exitpt = exit
     exit.startpt = self.inst
+    exit._other_body:set(self.inst)
     exit.host = self.inst.host
 
     self.state = STATES.MOVING
@@ -94,7 +95,7 @@ function Segmented:Start(angle, segtimeMax, advancetime)
             advancetime = advancetime - dt
         end
     end
-
+    --[[ -- 为了防止多判秒杀大蛇，暂时注释了这一段
     local redirect_ent
     local redirect_position
     for i = 1, 5 do
@@ -106,6 +107,7 @@ function Segmented:Start(angle, segtimeMax, advancetime)
         redirect_ent._body:set(self.inst)
         self.redirects[redirect_ent] = redirect_ent
     end
+    --]]
 end
 
 function Segmented:StartMove()

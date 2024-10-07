@@ -3,6 +3,7 @@ if not env.is_mim_enabled then
     FrontEndAssets = {
         Asset("IMAGE", "images/hud/customization_porkland.tex"),
         Asset("ATLAS", "images/hud/customization_porkland.xml"),
+        -- Asset("ANIM", "anim/generating_hamlet.zip"),
     }
     ReloadFrontEndAssets()
 
@@ -63,7 +64,7 @@ local pl_customize_table = {  -- we customize
     },
 }
 
-local custonsiz_items = {  -- add in dst custonsiz
+local customize_items = {  -- add in dst customize
     [LEVELCATEGORY.WORLDGEN] = {
         ["global"] = {  -- global is keywords
             porkland_season_start = {image = "season_start.tex", options_remap = {img = "blank_season_red.tex", atlas = worldgen_item_atlas}, desc = season_start_descriptions, master_controlled = true, order = 2}
@@ -96,11 +97,14 @@ local custonsiz_items = {  -- add in dst custonsiz
         monsters = {
             bill_setting = {image = "platypine.tex"},
             frog_poison_setting = {image = "poison_dart_frogs.tex"},
+            giantgrub_setting = {image = "giant_grubs.tex"},
             mosquito_setting = {image = "mosquitos.tex"},
             --adult_flytrap_setting = {image = "adult_flytraps.tex"},
             --mean_flytrap_setting = {image = "mean_flytraps.tex"},
+            roc_setting = {image = "roc.tex", desc = enable_descriptions},
             weevole_setting = {image = "weevole.tex"},
             --vampirebat = {image = "vampire_bats.tex"},
+            pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = frequency_descriptions},
         },
         animals = {
             dungbeetle_setting = {image = "dungbeetle.tex"},
@@ -122,13 +126,12 @@ local custonsiz_items = {  -- add in dst custonsiz
             poison = {desc = enable_descriptions},
             hayfever = {desc = enable_descriptions},
             pigbandit = {image = "pig_bandit.tex", desc = frequency_descriptions},
-            pugalisk_fountain = {image = "pugalisk_fountain.tex", desc = enable_descriptions},
             vampirebat = {image = "vampire_bats.tex", desc = frequency_descriptions},
         },
     }
 }
 
-local change_items = {  -- change dst custonsiz settings
+local change_items = {  -- change dst customize settings
     worldgen = {
         resources = {"rock", "sapling", "grass", "flowers", "reeds", "mushroom"},
         misc = {"task_set", "world_size", "boons"},
@@ -152,7 +155,7 @@ end
 
 local WORLDGEN_GROUP = ToolUtil.GetUpvalue(Customize.GetWorldGenOptions, "WORLDGEN_GROUP")
 local WORLDSETTINGS_GROUP = ToolUtil.GetUpvalue(Customize.GetWorldSettingsOptions, "WORLDSETTINGS_GROUP")
-for category, category_data in pairs(change_items) do  -- use dst custonsiz settings for porkland
+for category, category_data in pairs(change_items) do  -- use dst customize settings for porkland
     local GROUP = category == "worldgen" and WORLDGEN_GROUP or WORLDSETTINGS_GROUP
     for group, items in pairs(category_data) do
         for _, item in ipairs(items) do
@@ -161,7 +164,7 @@ for category, category_data in pairs(change_items) do  -- use dst custonsiz sett
     end
 end
 
-local delete_items = {  -- change dst custonsiz settings
+local delete_items = {  -- change dst customize settings
     worldgen = {
         global = {"season_start"}
     },
@@ -196,7 +199,7 @@ for name, data in pairs(pl_customize_table) do  -- add our customize
     add_group_and_item(data.category, name, data.text, data.desc, data.atlas, data.order, data.items)
 end
 
-for category, category_data in pairs(custonsiz_items) do  -- -- add to dst custonsiz
+for category, category_data in pairs(customize_items) do  -- -- add to dst customize
     for group, group_data in pairs(category_data) do
         for item, data in pairs(group_data) do
             local name = item

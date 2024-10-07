@@ -1,5 +1,13 @@
 GLOBAL.setfenv(1, GLOBAL)
 
+local _TempTile_HandleTileChange_Void = TempTile_HandleTileChange_Void
+function TempTile_HandleTileChange_Void(x, y, z)
+    if TheWorld and TheWorld:HasTag("porkland") then
+        return
+    end
+    return _TempTile_HandleTileChange_Void(x, y, z)
+end
+
 function GetWorldSetting(setting, default)
     local worldsettings = TheWorld and TheWorld.components.worldsettings
     if worldsettings then
@@ -138,7 +146,6 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
 
     targets_hit = targets_hit or {}
     targets_tossed = targets_tossed or {}
-    local pugalisk_parts = {}
 
     local areahit_was_disabled = inst.components.combat.areahitdisabled
     inst.components.combat:EnableAreaDamage(false)
@@ -170,12 +177,6 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
                             end
                         end
                     end
-                elseif v:HasTag("pugalisk") then -- don't insta kill pugalisk
-                    local body = v._body and v._body:value() or v
-                    if not body.invulnerable then -- only attack when it's vulnerable
-                        pugalisk_parts[v] = v
-                    end
-                    targets_hit[v] = true
                 elseif inst.components.combat:CanTarget(v) and CanPVPTarget(inst, v) then
                     targets_hit[v] = true
                     inst.components.combat:DoAttack(v)
@@ -184,14 +185,6 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
                     end
                 end
             end
-        end
-    end
-
-    local pugalisk = next(pugalisk_parts)
-    if pugalisk then
-        inst.components.combat:DoAttack(pugalisk)
-        if pugalisk:IsValid() then
-            ONATTACKEDFN(inst, pugalisk)
         end
     end
 
@@ -369,4 +362,14 @@ function HandleDugGround(dug_ground, x, y, z, ...)
     else
         return _HandleDugGround(dug_ground, x, y, z, ...)
     end
+end
+
+function IsPlayerInAntDisguise(player)
+    if not (player and player:IsValid()) then
+        return false
+    end
+
+    return (player.components.inventory and (player.components.inventory:EquipHasTag("antmask") and player.components.inventory:EquipHasTag("antsuit")))
+        or (player.replica.inventory and (player.replica.inventory:EquipHasTag("antmask") and player.replica.inventory:EquipHasTag("antsuit")))
+        or false
 end

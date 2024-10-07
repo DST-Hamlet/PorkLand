@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "The ant creatures live out their futile existence within.",
         ANTHILL = "Shall I descend into the earth?",
         ANTIVENOM = "A potion to stave off the sickness.",
+        ANTLER = "Do you enjoy the wistful sound of bird song, Abigail?",
+        ANTLER_CORRUPTED = "It has a most haunting sound.",
         ANTMAN = {
             DEAD = "Gone to a better place.",
             GENERIC = "A creature of dirt and purpose.",
@@ -83,6 +85,7 @@ return {
         ANTMAN_WARRIOR = "Looking to kill something.",
         ANTMAN_WARRIOR_EGG = "The oospore of an abomination.",
         ANTMASKHAT = "The mind that dwelt within is long gone.",
+        ANTQUEEN = "The empty life of an aristocrat has made her irate.",
         ANTQUEEN_CHAMBERS = "A gilded cage.",
         ANTQUEEN_THRONE = "There are mysteries hidden within there.",
         ANTSUIT = "As hollow as my heart.",
@@ -100,6 +103,7 @@ return {
         BANDITTREASURE = "Sigh. I suppose I should dig it up.",
         BASEFAN = "Alas the relief it brings is only temporary.",
         BATHAT = "Peers into the darkness.",
+        BAT_HIDE = "It doesn't matter if it's pig or bat skin, it's still dead.",
         BILL = {
             DEAD = "Death is inescapable.",
             GENERIC = "A horror.",
@@ -258,6 +262,7 @@ return {
         },
         GASCLOUD = "A cloud of death.",
         GASMASKHAT = "It filters air but not despair.",
+        GIANTGRUB = "It thinks only of destruction.",
         GLOWFLY = {
             DEAD = "Its light hath been extinguished forever.",
             GENERIC = "A small light in a dark world.",
@@ -794,6 +799,7 @@ return {
             SLEEPING = "I wish you nightmares.",
         },
         VAMPIREBATCAVE = "The maw of death itself.",
+        VAMPIRE_BAT_WING = "If only I could fly away.",
         VENOMGLAND = "Their dead drop the cure to their sickness.",
         VENUS_STALK = "Objects from a dead thing.",
         VINE = "Unruly life.",

@@ -96,12 +96,13 @@ return Class(function(self, inst)
 
     local POLLEN_PARTICLES = 1
 
+    -- 调高了降水速率, 以使得不会出现潮湿度增长速率为0.01的幽默情况. 当然, 繁茂季还是不会下雨
     local PEAK_PRECIPITATION_RANGES =
     {
-        temperate = {min = .1, max = .66},
+        temperate = {min = .2, max = .5},
         humid = {min = 1, max = 2},
-        lush = {min = .05, max = .15},
-        aporkalypse = {min = .1, max = .66},
+        lush = {min = 0.05, max = 0.15},
+        aporkalypse = {min = .2, max = .5},
     }
 
     --------------------------------------------------------------------------
@@ -245,7 +246,7 @@ return Class(function(self, inst)
             _rainsound = true
             _world.SoundEmitter:PlaySound("porkland_soundpackage/rain/islandrainAMB", "rain")
         end
-        _world.SoundEmitter:SetParameter("rain", "intensity", intensity * 3) -- 音效包里这个参数的范围是0——3
+        _world.SoundEmitter:SetParameter("rain", "intensity", intensity)
     end
 
     local function StopAmbientRainSound()

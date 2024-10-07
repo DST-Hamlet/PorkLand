@@ -52,8 +52,12 @@ if not rawget(_G, "HotReloading") then
 
         SHOP = Action({ distance = 2.5 }),
         RENOVATE = Action({}),
+        BUILD_ROOM = Action({}),
+        DEMOLISH_ROOM = Action({}),
 
         SEARCH_MYSTERY = Action({priority = -1, distance = 1}),
+
+        THROW = Action({priority = 0, instant = false, rmb = true, distance = 20, mount_valid = true}),
     }
 
     for name, ACTION in pairs(_G.PL_ACTIONS) do
@@ -149,7 +153,7 @@ ACTIONS.PANGOLDEN_POOP.fn = function(act)
 end
 
 ACTIONS.FISH.strfn = function(act)
-    if act.target and act.target:HasTag("sink") then
+    if act.target and (act.target:HasTag("sink") or act.target:HasTag("sunkencontainer")) then
         return "RETRIEVE"
     else
         return "GENERIC"
@@ -520,8 +524,10 @@ ACTIONS.SHOP.fn = function(act)
 end
 
 ACTIONS.GAS.fn = function(act)
-    if act.invobject and act.invobject.components.gasser then
-        local pos = (act.pos and act:GetActionPoint()) or (act.target and act.target:GetPosition())
+    if act.doer and act.invobject and act.invobject.components.gasser then
+        local pos = act:GetActionPoint() or (act.target and act.target:GetPosition())
+        local doer_pos = act.doer:GetPosition()
+        pos = doer_pos + (pos - doer_pos):Normalize() * act.action.distance
         act.invobject.components.gasser:Gas(pos)
         return true
     end
@@ -563,6 +569,32 @@ ACTIONS.RENOVATE.fn = function(act)
 
         act.invobject:Remove()
 
+        return true
+    end
+end
+
+ACTIONS.BUILD_ROOM.fn = function(act)
+    if act.invobject.components.roombuilder and act.target:HasTag("predoor") then
+        return act.invobject.components.roombuilder:BuildRoom(act.target, act.invobject)
+    end
+    return false
+end
+
+ACTIONS.DEMOLISH_ROOM.fn = function(act)
+    if act.invobject.components.roomdemolisher and act.target:HasTag("house_door") and act.target:HasTag("interior_door") then
+        return act.invobject.components.roomdemolisher:DemolishRoom(act.doer, act.target, act.invobject)
+    end
+    return false
+end
+
+ACTIONS.THROW.fn = function(act)
+    local thrown = act.invobject or act.doer.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+    if act.target and not act.pos then
+        act:SetActionPoint(act.target:GetPosition())
+    end
+    if thrown and thrown.components.throwable then
+        local pos = act.GetActionPoint and act:GetActionPoint() or act.pos or act.doer:GetPosition()  --act.doer:GetPosition() Prevent error from monkey when throwing  -jerry
+        thrown.components.throwable:Throw(pos, act.doer)
         return true
     end
 end
@@ -720,6 +752,17 @@ function ACTIONS.UNEQUIP.fn(act, ...)
     end
 end
 
+local _UNEQUIPstrfn = ACTIONS.UNEQUIP.strfn
+ACTIONS.UNEQUIP.strfn = function(act, ...)
+    return ((act.invobject ~= nil and
+        act.invobject:HasTag("trawlnet") or
+        GetGameModeProperty("non_item_equips") or
+        act.doer.replica.inventory:GetNumSlots() <= 0)
+        and "TRAWLNET") or _UNEQUIPstrfn(act, ...)
+end
+
+ACTIONS.STORE.priority = -1
+
 local _STORE_stroverridefn = ACTIONS.STORE.stroverridefn
 function ACTIONS.STORE.stroverridefn(act, ...)
     if act.target and act.target:HasTag("smelter") then
@@ -789,6 +832,26 @@ end
 
 ACTIONS.MANUALEXTINGUISH.validfn = function(act)
     return act.target and act.target:IsValid() and act.target.components.burnable and act.target.components.burnable:IsBurning()
+end
+
+local _UNWRAPstrfn = ACTIONS.UNWRAP.strfn
+function ACTIONS.UNWRAP.strfn(act, ...)
+    local tunacan = act.target or act.invobject
+    if tunacan ~= nil and tunacan:HasTag("tincan") then
+        return "OPENCAN"
+    end
+    return _UNWRAPstrfn and _UNWRAPstrfn(act, ...)
+end
+
+local _LIGHTfn = ACTIONS.LIGHT.fn
+function ACTIONS.LIGHT.fn(act, ...)
+    if act.invobject ~= nil and act.invobject:HasTag("magnifying_glass") and act.target then
+        local x, y, z = act.target.Transform:GetWorldPosition()
+        if TheSim:GetLightAtPoint(x, y, z) < TUNING.MAGNIFYING_GLASS_LIGHT then
+            return "TOODARK"
+        end
+    end
+    return _LIGHTfn(act, ...)
 end
 
 -- SCENE        using an object in the world
@@ -870,23 +933,61 @@ local PL_COMPONENT_ACTIONS =
                 table.insert(actions, ACTIONS.RENOVATE)
             end
         end,
+        roombuilder = function(inst, doer, target, actions, right)
+            if target:HasTag("predoor") then
+                table.insert(actions, ACTIONS.BUILD_ROOM)
+            end
+        end,
+        roomdemolisher = function(inst, doer, target, actions, right)
+            if target:HasTag("interior_door") and target:HasTag("house_door") then
+                table.insert(actions, ACTIONS.DEMOLISH_ROOM)
+            end
+        end,
     },
 
     POINT = { -- args: inst, doer, pos, actions, right, target
         gasser = function (inst, doer, pos, actions, right, target)
-            if right then
+            if right and doer ~= target then
                 table.insert(actions, ACTIONS.GAS)
             end
-        end
+        end,
+        throwable = function(inst, doer, pos, actions, right, target)
+            if right and not TheWorld.Map:IsGroundTargetBlocked(pos) and not (inst.replica.equippable and not inst.replica.equippable:IsEquipped()) then
+                table.insert(actions, ACTIONS.THROW)
+            end
+        end,
     },
 
     EQUIPPED = { -- args: inst, doer, target, actions, right
         -- ziwbi: added gasser to EQUIPPED. why wouldn't you just spray on gnats directly?
-        gasser = function (inst, doer, pos, actions, right, target)
-            if right then
+        gasser = function(inst, doer, target, actions, right)
+            if right and doer ~= target then
                 table.insert(actions, ACTIONS.GAS)
             end
-        end
+        end,
+        throwable = function(inst, doer, target, actions, right)
+            if right
+                and not (doer.components.playercontroller ~= nil
+                and doer.components.playercontroller.isclientcontrollerattached)
+                and not TheWorld.Map:IsGroundTargetBlocked(target:GetPosition())
+                and not (inst.replica.equippable and not inst.replica.equippable:IsEquipped())
+                and target ~= doer then
+
+                table.insert(actions, ACTIONS.THROW)
+            end
+        end,
+
+        investigater = function(inst, doer, target, actions, right)
+            if not right then
+                if target and (target:HasTag("mystery") or target:HasTag("secret_room")) then
+                    table.insert(actions, ACTIONS.SPY)
+                end
+            else
+                if target and target:HasTag("mystery") then
+                    table.insert(actions, ACTIONS.SEARCH_MYSTERY)
+                end
+            end
+        end,
     },
 
     INVENTORY = { -- args: inst, doer, actions, right
@@ -905,7 +1006,7 @@ local PL_COMPONENT_ACTIONS =
             end
         end,
         repairer = function(inst, doer, actions, right)
-            if doer and doer.replica.sailor and doer.replica.sailor:GetBoat() then
+            if doer and doer.replica.sailor and doer.replica.sailor:GetBoat() and inst and inst:HasTag("boat_repairer") then
                 local boat = doer.replica.sailor:GetBoat()
                 if boat:HasTag("repairable_boat") and boat.replica.boathealth and not boat.replica.boathealth:IsFull() then
                     table.insert(actions, ACTIONS.REPAIRBOAT)
@@ -924,12 +1025,6 @@ local PL_COMPONENT_ACTIONS =
         dislodgeable = function(inst, action, right)
             return action == ACTIONS.DISLODGE and inst:HasTag("DISLODGE_workable")
         end,
-        mystery = function(inst, action, right)
-            return action == ACTIONS.SPY and inst:HasTag("mystery")
-        end,
-        mystery_door = function(inst, action, right)
-            return action == ACTIONS.SPY and inst:HasTag("secret_room")
-        end,
     },
 }
 
@@ -943,7 +1038,7 @@ end
 local COMPONENT_ACTIONS = ToolUtil.GetUpvalue(EntityScript.CollectActions, "COMPONENT_ACTIONS")
 local SCENE = COMPONENT_ACTIONS.SCENE
 local USEITEM = COMPONENT_ACTIONS.USEITEM
--- local POINT = COMPONENT_ACTIONS.POINT
+local POINT = COMPONENT_ACTIONS.POINT
 local EQUIPPED = COMPONENT_ACTIONS.EQUIPPED
 local INVENTORY = COMPONENT_ACTIONS.INVENTORY
 
@@ -1084,6 +1179,62 @@ local _SCENE_pickable = SCENE.pickable
 function SCENE.pickable(inst, doer, actions, ...)
     if not inst:HasTag("unsuited") then
         return _SCENE_pickable(inst, doer, actions, ...)
+    end
+end
+
+local _USEITEM_weapon = USEITEM.weapon
+function USEITEM.weapon(inst, doer, target, actions, right, ...)
+    if target and target:HasTag("civilized") then
+        if right then
+            return _USEITEM_weapon(inst, doer, target, actions, false, ...)
+        else
+            return
+        end
+    end
+    return _USEITEM_weapon(inst, doer, target, actions, right, ...)
+end
+
+local _EQUIPPED_weapon = EQUIPPED.weapon
+function EQUIPPED.weapon(inst, doer, target, actions, right, ...)
+    if target and target:HasTag("civilized") then
+        if right then
+            return _EQUIPPED_weapon(inst, doer, target, actions, false, ...)
+        else
+            return
+        end
+    end
+    return _EQUIPPED_weapon(inst, doer, target, actions, right, ...)
+end
+
+local _USEITEM_healer = USEITEM.healer
+function USEITEM.healer(inst, doer, target, actions, right, ...)
+    if target and target:HasTag("trader") then
+        if right then
+            return _USEITEM_healer(inst, doer, target, actions, false, ...)
+        else
+            return
+        end
+    end
+    return _USEITEM_healer(inst, doer, target, actions, right, ...)
+end
+
+local _USEITEMlighter = USEITEM.lighter
+function USEITEM.lighter(inst, doer, target, actions, ...)
+    local wasLimbo = false
+    if target:HasTag("allowinventoryburning") and target:HasTag("INLIMBO") then
+        target:RemoveTag("INLIMBO")
+        wasLimbo = true
+    end
+    _USEITEMlighter(inst, doer, target, actions, ...)
+    if wasLimbo and target:IsValid() and target.inlimbo then
+        target:AddTag("INLIMBO")
+    end
+end
+
+local _POINTfishingrod = POINT.fishingrod
+function POINT.fishingrod(inst, doer, pos, actions, right, target, ...)
+    if TheWorld:HasTag("porkland") then
+        return
     end
 end
 

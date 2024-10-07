@@ -43,6 +43,16 @@ local pl_fx = {
         bank = "splash_water",
         build = "splash_water",
         anim = "idle",
+        sound = "dontstarve_DLC002/common/wave_break",
+        fn = TintOceantFx,
+    },
+    {
+        name = "splash_water_boost",
+        bank = "splash_water",
+        build = "splash_water",
+        anim = "idle",
+        sound = "dontstarve_DLC002/common/wave_break",
+        sound2 = "dontstarve_DLC002/common/wave_boost",
         fn = TintOceantFx,
     },
     {
@@ -231,6 +241,35 @@ local pl_fx = {
         bank = "vortex_cloak_fx",
         build = "vortex_cloak_fx",
         anim = "idle",
+    },
+    {
+        name = "int_ceiling_dust_fx",
+        bank = "int_ceiling_dust_fx",
+        build = "int_ceiling_dust_fx",
+        anim = "idle",
+    },
+    {
+        name = "explode_large",
+        bank = "explode_large",
+        build = "explode_large",
+        anim = "large",
+        bloom = true,
+        sound = "dontstarve/common/blackpowder_explo",
+        fn = function(inst)
+            inst.AnimState:SetLightOverride(1)
+        end,
+    },
+    {
+        name = "explodering_fx",
+        bank = "explode_ring_fx",
+        build = "explode_ring_fx",
+        anim = "idle",
+        fn = function(inst)
+            inst.AnimState:SetFinalOffset(-1)
+            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+            inst.AnimState:SetLayer(LAYER_BACKGROUND)
+            inst.AnimState:SetSortOrder( -3 )
+        end,
     },
 }
 

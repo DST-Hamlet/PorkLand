@@ -58,9 +58,12 @@ end
 function InventoryItem:OnHitCloud()
     local x, y, z = self.inst.Transform:GetWorldPosition()
     if self.inst:HasTag("irreplaceable") then
-        local sx, sy, sz = FindRandomPointOnShoreFromOcean(x, y, z)
+        local sx, _, sz = FindRandomPointOnShoreFromOcean(x, y, z)
         if sx then
-            self.inst.Transform:SetPosition(sx, sy, sz)
+            if self.inst.Physics then
+                self.inst.Physics:Stop()
+            end
+            self.inst.Transform:SetPosition(sx, 5, sz)
         else
             -- Our reasonable cases are out... so let's loop to find the portal and respawn there.
             for k, v in pairs(Ents) do
@@ -104,11 +107,15 @@ function InventoryItem:OnUpdate(dt, ...)
             end
             if y < -2 then
                 self:TryToSink()
-                self.inst:StopUpdatingComponent(self)
+                if not self.inst:HasTag("irreplaceable") then
+                    self.inst:StopUpdatingComponent(self)
+                end
             end
         else
             self:TryToSink()
-            self.inst:StopUpdatingComponent(self)
+            if not self.inst:HasTag("irreplaceable") then
+                self.inst:StopUpdatingComponent(self)
+            end
         end
     else
         return _OnUpdate(self, dt, ...)
@@ -134,6 +141,19 @@ function SinkEntity(entity, ...)
     local px, py, pz = 0, 0, 0
     if entity.Transform then
         px, py, pz = entity.Transform:GetWorldPosition()
+
+        if entity.persists
+            and entity.components.inventoryitem
+            and entity.components.inventoryitem.cangoincontainer
+            -- and TheWorld.Map:GetTileAtPoint(px, py, pz) ~= WORLD_TILES.OCEAN_DEEP then
+            and TheWorld.Map:ReverseIsVisualWaterAtPoint(px, py, pz) then
+
+            local sunkenprefab = SpawnPrefab("sunkenprefab")
+            sunkenprefab:Initialize(entity)
+            local fx = SpawnPrefab("splash_sink")
+            fx.Transform:SetPosition(px, py, pz)
+            return
+        end
     end
 
     if entity.components.inventory then
@@ -149,9 +169,12 @@ function SinkEntity(entity, ...)
 
     -- If the entity is irreplaceable, respawn it at the player
     if entity:HasTag("irreplaceable") then
-        local sx, sy, sz = FindRandomPointOnShoreFromOcean(px, py, pz)
+        local sx, _, sz = FindRandomPointOnShoreFromOcean(px, py, pz)
         if sx ~= nil then
-            entity.Transform:SetPosition(sx, sy, sz)
+            if entity.Physics then
+                entity.Physics:Stop()
+            end
+            entity.Transform:SetPosition(sx, 5, sz)
         else
             -- Our reasonable cases are out... so let's loop to find the portal and respawn there.
             for k, v in pairs(Ents) do

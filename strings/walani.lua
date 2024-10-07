@@ -76,6 +76,8 @@ return {
         ANTCOMBHOME = "Looks like a home for the bug-dudes.",
         ANTHILL = "I bet it took a ton of work to dig that.",
         ANTIVENOM = "This'll make the sickness go away.",
+        ANTLER = "Here birdy birdy.",
+        ANTLER_CORRUPTED = "Bye birdy birdy.",
         ANTMAN = {
             DEAD = "That bugs me.",
             GENERIC = "Hey, bug-dude!",
@@ -84,6 +86,7 @@ return {
         ANTMAN_WARRIOR = "Aggh! Leave me alone!",
         ANTMAN_WARRIOR_EGG = "Hope it stays in that egg.",
         ANTMASKHAT = "Sorry bug-dude.",
+        ANTQUEEN = "Yeesh. She really needs to chill-out.",
         ANTQUEEN_CHAMBERS = "Is there a bed in there?",
         ANTQUEEN_THRONE = "I think there's stuff stuck in there.",
         ANTSUIT = "Nice threads!",
@@ -101,6 +104,7 @@ return {
         BANDITTREASURE = "I found it!",
         BASEFAN = "A nice breeze.",
         BATHAT = "Kinda grody.",
+        BAT_HIDE = "Weird. It looks like pig skin.",
         BILL = {
             DEAD = "Aw...",
             GENERIC = "Hey little barbed dude.",
@@ -263,6 +267,7 @@ return {
         },
         GASCLOUD = "Harsh.",
         GASMASKHAT = "Out with the bad air, in with the good.",
+        GIANTGRUB = "Yeesh. That guy needs to chill out.",
         GLOWFLY = {
             DEAD = "I wish it hadn't died.",
             GENERIC = "I could lay down and watch them all night.",
@@ -813,6 +818,7 @@ return {
             SLEEPING = "It'd be great if you could just stay asleep.",
         },
         VAMPIREBATCAVE = "I don't get good vibes from that place.",
+        VAMPIRE_BAT_WING = "A couple more of these and I'll be flyin'!",
         VENOMGLAND = "What a terrible gland.",
         VENUS_STALK = "Gnarly.",
         VINE = "Good for lashing stuff down.",

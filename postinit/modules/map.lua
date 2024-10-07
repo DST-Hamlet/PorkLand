@@ -53,11 +53,14 @@ function Map:GetVisualTileAtPoint(x, y, z)
 end
 
 local _IsPassableAtPoint = Map.IsPassableAtPoint
-function Map:IsPassableAtPoint(x, y, z, ...)
+function Map:IsPassableAtPoint(x, y, z, allow_water, ...)
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
         return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
     end
-    return _IsPassableAtPoint(self, x, y, z, ...)
+    if not allow_water and self:ReverseIsVisualWaterAtPoint(x, y, z) then
+        return false
+    end
+    return _IsPassableAtPoint(self, x, y, z, allow_water, ...)
 end
 
 function Map:IsImpassableAtPoint(x, y, z, ...)
@@ -301,7 +304,7 @@ function Map:IsAboveGroundAtPoint(x, y, z, allow_water, ...)
     end
     if TheWorld.has_pl_ocean then
         local valid_water_tile = (allow_water == true) and self:ReverseIsVisualWaterAtPoint(x, y, z)
-        return valid_water_tile or self:IsVisualGroundAtPoint(x, y, z)
+        return valid_water_tile or _IsAboveGroundAtPoint(self, x, y, z, ...)
     end
     return _IsAboveGroundAtPoint(self, x, y, z, ...)
 end
@@ -384,7 +387,14 @@ function Map:GetTile(x, y, ...)
 end
 
 function Map:GetIslandTagAtPoint(x, y, z)
-    -- Note: If you care about the tile overlap then use FindVisualNodeAtPoint
+    local on_land = self:IsLandTileAtPoint(x, 0, z)
+    if not on_land then
+        local pt = Vector3(x, y, z)
+        local dest = FindNearbyLand(pt, 1)
+        if dest then
+            x, y, z = dest:Get()
+        end
+    end
     local node_index = self:GetNodeIdAtPoint(x, y, z)
     local node = TheWorld.topology.nodes[node_index]
     if node == nil or node.tags == nil then

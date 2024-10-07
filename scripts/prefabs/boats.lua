@@ -4,12 +4,14 @@ local raft_basic_assets = {
     Asset("ANIM", "anim/raft_basic.zip"),
     Asset("ANIM", "anim/raft_idles.zip"),
     Asset("ANIM", "anim/raft_paddle.zip"),
+    Asset("ANIM", "anim/raft_trawl.zip"),
 }
 
 local rowboat_basic_assets = {
     Asset("ANIM", "anim/rowboat_basic.zip"),
     Asset("ANIM", "anim/rowboat_idles.zip"),
     Asset("ANIM", "anim/rowboat_paddle.zip"),
+    Asset("ANIM", "anim/rowboat_trawl.zip"),
 }
 
 local lograft_assets = JoinArrays(raft_basic_assets, {
@@ -157,11 +159,11 @@ local function commonfn()
     inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
-    inst.Physics:SetCylinder(0.25, 2)
+    inst.Physics:SetCapsule(0.25, 1.5)
     inst.Transform:SetFourFaced()
     inst.MiniMapEntity:SetPriority(5)
 
-    inst.AnimState:SetFinalOffset(FINALOFFSET_MIN) -- TODO causes minor visual issues find something better
+    inst.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1) -- TODO causes minor visual issues find something better
 
     inst:AddTag("small_boat")
     inst:AddTag("sailable")
@@ -246,7 +248,7 @@ local function lograftfn()
 
     inst:AddTag("noslot")
 
-    inst.MiniMapEntity:SetIcon("raft.tex")
+    inst.MiniMapEntity:SetIcon("lograft.tex")
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
@@ -459,7 +461,7 @@ local function lograft_visual_common(inst)
     inst.visualchild.AnimState:SetBank("raft")
     inst.visualchild.AnimState:SetBuild("raft_log_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
-    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN)
+    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)
     inst.boat.replica.sailable:PlayRunAnims()
 end
 
@@ -467,7 +469,7 @@ local function rowboat_visual_common(inst)
     inst.visualchild.AnimState:SetBank("rowboat")
     inst.visualchild.AnimState:SetBuild("rowboat_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
-    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN)
+    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)
     inst.boat.replica.sailable:PlayRunAnims()
 end
 
@@ -475,7 +477,7 @@ local function cargo_visual_common(inst)
     inst.visualchild.AnimState:SetBank("rowboat")
     inst.visualchild.AnimState:SetBuild("rowboat_cargo_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
-    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN)
+    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)
     inst.boat.replica.sailable:PlayRunAnims()
 end
 
@@ -483,7 +485,7 @@ local function corkboat_visual_common(inst)
     inst.visualchild.AnimState:SetBank("rowboat")
     inst.visualchild.AnimState:SetBuild("coracle_boat_build")
     inst.visualchild.AnimState:PlayAnimation("idle_loop")
-    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN)
+    inst.visualchild.AnimState:SetFinalOffset(FINALOFFSET_MIN + 1)
     inst.boat.replica.sailable:PlayRunAnims()
 end
 

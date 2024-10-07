@@ -31,6 +31,8 @@ AddIngredientValues({"weevole_carapace"}, {inedible=1})
 
 AddIngredientValues({"radish", "aloe"}, {veggie=1}, true)
 
+AddIngredientValues({"coi", "coi_cooked"}, {meat=.5,fish=.5}, true)
+
 AddIngredientValues({"foliage"}, {veggie=1})
 
 AddIngredientValues({"cutnettle"}, {antihistamine=1})

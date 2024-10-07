@@ -118,7 +118,8 @@ local function ConnectInteriors(inst)
             anim = "south",
             background = true,
             is_exit = true,
-        }
+        },
+        addtags = {"door_south"}
     }
 
     local interior_door_replacement_def =

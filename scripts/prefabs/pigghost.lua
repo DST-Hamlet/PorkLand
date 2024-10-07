@@ -49,7 +49,17 @@ local function OnIsAporkalypse(inst, isaporkalypse)
     end
 
     if inst:HasTag("aporkalypse_cleanup") then
-        inst.sg:GoToState("dissipate")
+        if inst:IsAsleep() then
+            inst:Remove()
+        else
+            inst.sg:GoToState("dissipate")
+        end
+    end
+end
+
+local function OnEntitySleep(inst)
+    if inst:HasTag("aporkalypse_cleanup") and not TheWorld.state.isaporkalypse then
+        inst:Remove()
     end
 end
 
@@ -138,6 +148,8 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
+    inst.OnEntitySleep = OnEntitySleep
+
     inst:ListenForEvent("death", OnDeath)
     inst:ListenForEvent("attacked", OnAttacked)
     inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
@@ -145,15 +157,13 @@ local function fn()
     return inst
 end
 
-local function OnIsAporkalypse_Spawner(inst, isaporkalypse)
-    if isaporkalypse then
-        inst.components.childspawner:StartSpawning()
-    else
-        inst.components.childspawner:StopSpawning()
+local function OnEntityWake_Spawner(inst)
+    if TheWorld.state.isaporkalypse then
+        inst.components.childspawner:ReleaseAllChildren()
     end
 end
 
-local function OnChildSpaned(inst, child)
+local function OnChildSpawned(inst, child)
     child:AddTag("aporkalypse_cleanup")
 end
 
@@ -171,13 +181,15 @@ local function spawner_fn()
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "pigghost"
+    inst.components.childspawner.spawnradius = TUNING.ROOM_SMALL_DEPTH / 2
     inst.components.childspawner:SetRegenPeriod(TUNING.PIGGHOST_REGEN_TIME)
     inst.components.childspawner:SetSpawnPeriod(TUNING.PIGGHOST_RELEASE_TIME, TUNING.PIGGHOST_RELEASE_TIME)
     inst.components.childspawner:SetMaxChildren(TUNING.PIGGHOST_MAXCHILDREN)
-    inst.components.childspawner:SetSpawnedFn(OnChildSpaned)
+    inst.components.childspawner:SetSpawnedFn(OnChildSpawned)
+    inst.components.childspawner.canspawnfn = function() return TheWorld.state.isaporkalypse end
+    inst.components.childspawner:StartSpawning()
 
-    inst:WatchWorldState("isaporkalypse", OnIsAporkalypse_Spawner)
-    OnIsAporkalypse_Spawner(inst, TheWorld.state.isaporkalypse)
+    inst.OnEntityWake = OnEntityWake_Spawner
 
     return inst
 end

@@ -27,11 +27,18 @@ local function UpdateAnimations(inst)
     end
 end
 
+local function ExtraWorkDrop(inst)
+    inst.components.lootdropper:DropLoot()
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_stone")
+    inst.components.childspawner:ReleaseAllChildren()
+end
+
 local function OnWorkCallback(inst)
-    if inst.components.workable.workleft == 4 or inst.components.workable.workleft == 2 then
-        inst.components.lootdropper:DropLoot()
-        inst.SoundEmitter:PlaySound("dontstarve/common/destroy_stone")
-        inst.components.childspawner:ReleaseAllChildren()
+    for k, v in pairs(inst.stageloots) do
+        if inst.components.workable.workleft <= k and v then
+            inst.stageloots[k] = nil
+            ExtraWorkDrop(inst)
+        end
     end
 
     UpdateAnimations(inst)
@@ -39,6 +46,13 @@ end
 
 local function OnFinishedCallback(inst)
     inst.components.lootdropper:DropLoot()
+
+    for k, v in pairs(inst.stageloots) do
+        if inst.components.workable.workleft <= k and v then
+            inst.stageloots[k] = nil
+            ExtraWorkDrop(inst)
+        end
+    end
 
     local fx = SpawnPrefab("collapse_small")
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
@@ -65,6 +79,11 @@ end
 local function OnLoad(inst, data)
     if data and data.workleft then
         inst.components.workable.workleft = data.workleft
+        if inst.components.workable.workleft < 4 then
+            inst.stageloots[4] = nil
+        elseif inst.components.workable.workleft < 2 then
+            inst.stageloots[2] = nil
+        end
     end
     UpdateAnimations(inst)
 end
@@ -94,6 +113,11 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst.stageloots = {}
+
+    inst.stageloots[4] = true
+    inst.stageloots[2] = true
 
     inst:AddComponent("inspectable")
 

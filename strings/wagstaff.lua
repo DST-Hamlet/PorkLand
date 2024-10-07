@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "A pentagonal nursery for hexapod invertebrates.",
         ANTHILL = "Similar to the many hexapod invertebrate nests I've observed. But bigger.",
         ANTIVENOM = "A tincture of antibodies.",
+        ANTLER = "A bird whistle that appears to call an exceedingly large bird.",
+        ANTLER_CORRUPTED = "This model appears to deter the exceedingly large bird.",
         ANTMAN = {
             DEAD = "I wonder if they have funeral rites.",
             GENERIC = "Wonderful! A war-based society consisting of humanoid hexapod invertebrates!",
@@ -83,6 +85,7 @@ return {
         ANTMAN_WARRIOR = "Fascinating! An infantry class of humanoid hexapod invertebrates!",
         ANTMAN_WARRIOR_EGG = "Fascinating! They appear to hatch with a predisposition to violence.",
         ANTMASKHAT = "Evidently it masks my human scent as well.",
+        ANTQUEEN = "Fascinatingly vicious! She deserves more study.",
         ANTQUEEN_CHAMBERS = "Evidence would suggest it's a room of some importance.",
         ANTQUEEN_THRONE = "Theoretically, the queen would be sitting on a reserve of valuables.",
         ANTSUIT = "What a wonderful way to infiltrate a suspicious society.",
@@ -100,6 +103,7 @@ return {
         BANDITTREASURE = "Evidently, I've struck it rich!",
         BASEFAN = "Magnificent! What a marvel of engineering!",
         BATHAT = "Incredible. It's just like my goggles!",
+        BAT_HIDE = "Curious. It looks remarkably like a pig bottom.",
         BILL = {
             DEAD = "Dead. But rigor mortis has yet to set in.",
             GENERIC = "Incredible! It's spinning at subsonic speeds!",
@@ -263,6 +267,7 @@ return {
         },
         GASCLOUD = "A cloud of toxic chemicals. Intriguing!",
         GASMASKHAT = "It appears that those ocular plumes are great at air filtration.",
+        GIANTGRUB = "It appears to have a contentious relationship with the humanoid hexapod invertebrates.",
         GLOWFLY = {
             DEAD = "Cadaverous.",
             GENERIC = "The luminous oculus on this pterygota is inspiring!",
@@ -809,6 +814,7 @@ return {
             SLEEPING = "My curiosity is telling me I should poke it with a stick.",
         },
         VAMPIREBATCAVE = "Based on its depth and malodorous smell, I deduce this hole houses bats.",
+        VAMPIRE_BAT_WING = "Oddly heavy for a flying appendage.",
         VENOMGLAND = "Excellent! A sack of zootoxin.",
         VENUS_STALK = "Theoretically edible, but undoubtedly I'll find a better use for it.",
         VINE = "A ropey branch. I can think of nine good uses for it already.",

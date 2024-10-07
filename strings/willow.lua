@@ -75,6 +75,8 @@ return {
         ANTCOMBHOME = "Gross!",
         ANTHILL = "Ughh. I do  not want to go in there.",
         ANTIVENOM = "This'll help if I'm poisoned.",
+        ANTLER = "Here birdie birdie...",
+        ANTLER_CORRUPTED = "Seeya round big birdie. Or not.",
         ANTMAN = {
             DEAD = "Gross and dead.",
             GENERIC = "You're gross.",
@@ -83,6 +85,7 @@ return {
         ANTMAN_WARRIOR = "Yeesh. What are you so angry about?",
         ANTMAN_WARRIOR_EGG = "A baby jerk.",
         ANTMASKHAT = "This is the nastiest thing I've ever made.",
+        ANTQUEEN = "Ugh. Ugly.",
         ANTQUEEN_CHAMBERS = "Am I supposed to be impressed.",
         ANTQUEEN_THRONE = "There's stuff in there I can steal.",
         ANTSUIT = "This is the worst.",
@@ -100,6 +103,7 @@ return {
         BANDITTREASURE = "I should dig there.",
         BASEFAN = "Fan the flames.",
         BATHAT = "Ugh. I can still smell the jerkiness.",
+        BAT_HIDE = "Weird. Is it from a pig bat?",
         BILL = {
             DEAD = "That's what you get.",
             GENERIC = "You're weird.",
@@ -263,6 +267,7 @@ return {
         },
         GASCLOUD = "Ugh. That looks deadly. And not in a good way.",
         GASMASKHAT = "Cuts down on the coughing.",
+        GIANTGRUB = "Likes destroying things as much as I do.",
         GLOWFLY = {
             DEAD = "Squashed.",
             GENERIC = "Looks slimy.",
@@ -791,6 +796,7 @@ return {
             SLEEPING = "It must be tired from being such a jerk.",
         },
         VAMPIREBATCAVE = "Creepy things live there.",
+        VAMPIRE_BAT_WING = "Yuck!",
         VENOMGLAND = "Gross! I wish I had gloves.",
         VENUS_STALK = "Looks like kindling.",
         VINE = "I could use this for something. Or I could just burn it.",

@@ -206,7 +206,9 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
     end
 
     local function OnGustFall(inst)
-        inst.components.workable.onfinish(inst, TheWorld)
+        if inst.components.workable then
+            inst.components.workable.onfinish(inst, TheWorld)
+        end
     end
 
     inst:AddComponent("blowinwindgust")
@@ -380,6 +382,14 @@ function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_wat
     inst:AddComponent("amphibiouscreature")
     inst.components.amphibiouscreature:SetEnterWaterFn(OnEnterWater)
     inst.components.amphibiouscreature:SetExitWaterFn(OnExitWater)
+    inst.components.amphibiouscreature.RefreshBankFn = function(self)
+        local x, y, z = self.inst.Transform:GetWorldPosition()
+        if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+            self.inst.AnimState:SetBank(water_bank)
+        else
+            self.inst.AnimState:SetBank(land_bank)
+        end
+    end
 end
 
 function UpdateSailorPathcaps(inst, allowocean)
@@ -397,6 +407,15 @@ function MakeInventoryPhysics(inst, mass, rad, ...)
         physics:ClearCollidesWith(COLLISION.LIMITS)
         physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
     end
+    return physics
+end
+
+function MakeThrowablePhysics(inst, mass, rad, ...)
+    local physics = MakeInventoryPhysics(inst, mass, rad, ...)
+    inst.Physics:SetFriction(100)
+    inst.Physics:SetRestitution(0)
+    inst.Physics:SetDontRemoveOnSleep(true)
+
     return physics
 end
 

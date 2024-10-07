@@ -22,6 +22,7 @@ local function OnBuilt(inst)
     if room then
         if inst.face == FACE.FLOOR then
             room:SetInteriorFloorTexture(inst.texture)
+            room:SetFloorMinimapTex(inst.minimap_texture)
         elseif inst.face == FACE.WALL then
             room:SetInteriorWallsTexture(inst.texture)
         end
@@ -29,7 +30,7 @@ local function OnBuilt(inst)
     inst:Remove()
 end
 
-local function material(name, face, texture)
+local function material(name, face, texture, minimap_texture)
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -40,6 +41,7 @@ local function material(name, face, texture)
 
         inst.face = face
         inst.texture = texture
+        inst.minimap_texture = minimap_texture or "levels/textures/map_interior/mini_floor_wood.tex"
 
         inst:ListenForEvent("onbuilt", OnBuilt)
         inst:DoTaskInTime(0, inst.Remove)
@@ -49,12 +51,12 @@ local function material(name, face, texture)
     return Prefab(name, fn, assets)
 end
 
-return  material("interior_floor_marble", FACE.FLOOR, "levels/textures/interiors/shop_floor_marble.tex"),
-        material("interior_floor_check", FACE.FLOOR, "levels/textures/interiors/shop_floor_checker.tex"),
-        material("interior_floor_check2", FACE.FLOOR, "levels/textures/interiors/shop_floor_checkered.tex"),
-        material("interior_floor_plaid_tile", FACE.FLOOR, "levels/textures/interiors/floor_cityhall.tex"),
-        material("interior_floor_sheet_metal", FACE.FLOOR, "levels/textures/interiors/shop_floor_sheetmetal.tex"),
-        material("interior_floor_wood", FACE.FLOOR, "levels/textures/noise_woodfloor.tex"),
+return  material("interior_floor_marble", FACE.FLOOR, "levels/textures/interiors/shop_floor_marble.tex", "levels/textures/map_interior/mini_floor_marble.tex"),
+        material("interior_floor_check", FACE.FLOOR, "levels/textures/interiors/shop_floor_checker.tex", "levels/textures/map_interior/mini_floor_checker.tex"),
+        material("interior_floor_check2", FACE.FLOOR, "levels/textures/interiors/shop_floor_checkered.tex", "levels/textures/map_interior/mini_floor_checkered.tex"),
+        material("interior_floor_plaid_tile", FACE.FLOOR, "levels/textures/interiors/floor_cityhall.tex", "levels/textures/map_interior/mini_floor_cityhall.tex"),
+        material("interior_floor_sheet_metal", FACE.FLOOR, "levels/textures/interiors/shop_floor_sheetmetal.tex", "levels/textures/map_interior/mini_floor_sheetmetal.tex"),
+        material("interior_floor_wood", FACE.FLOOR, "levels/textures/noise_woodfloor.tex", "levels/textures/map_interior/mini_floor_wood.tex"),
 
         material("interior_wall_wood", FACE.WALL, "levels/textures/interiors/shop_wall_woodwall.tex"),
         material("interior_wall_checkered", FACE.WALL, "levels/textures/interiors/shop_wall_checkered_metal.tex"),
@@ -62,15 +64,15 @@ return  material("interior_floor_marble", FACE.FLOOR, "levels/textures/interiors
         material("interior_wall_sunflower", FACE.WALL, "levels/textures/interiors/shop_wall_sunflower.tex"),
         material("interior_wall_harlequin", FACE.WALL, "levels/textures/interiors/harlequin_panel.tex"),
 --
-        material("interior_floor_gardenstone", FACE.FLOOR, "levels/textures/interiors/floor_gardenstone.tex"),
-        material("interior_floor_geometrictiles", FACE.FLOOR, "levels/textures/interiors/floor_geometrictiles.tex"),
-        material("interior_floor_shag_carpet", FACE.FLOOR, "levels/textures/interiors/floor_shag_carpet.tex"),
-        material("interior_floor_transitional", FACE.FLOOR, "levels/textures/interiors/floor_transitional.tex"),
-        material("interior_floor_woodpanels", FACE.FLOOR, "levels/textures/interiors/floor_woodpanels.tex"),
-        material("interior_floor_herringbone", FACE.FLOOR, "levels/textures/interiors/shop_floor_herringbone.tex"),
-        material("interior_floor_hexagon", FACE.FLOOR, "levels/textures/interiors/shop_floor_hexagon.tex"),
-        material("interior_floor_hoof_curvy", FACE.FLOOR, "levels/textures/interiors/shop_floor_hoof_curvy.tex"),
-        material("interior_floor_octagon", FACE.FLOOR, "levels/textures/interiors/shop_floor_octagon.tex"),
+        material("interior_floor_gardenstone", FACE.FLOOR, "levels/textures/interiors/floor_gardenstone.tex"), -- TODO: 补全
+        material("interior_floor_geometrictiles", FACE.FLOOR, "levels/textures/interiors/floor_geometrictiles.tex", "levels/textures/map_interior/mini_floor_geometrictiles.tex"),
+        material("interior_floor_shag_carpet", FACE.FLOOR, "levels/textures/interiors/floor_shag_carpet.tex", "levels/textures/map_interior/mini_floor_shag_carpet.tex"),
+        material("interior_floor_transitional", FACE.FLOOR, "levels/textures/interiors/floor_transitional.tex", "levels/textures/map_interior/mini_floor_transitional.tex"),
+        material("interior_floor_woodpanels", FACE.FLOOR, "levels/textures/interiors/floor_woodpanels.tex", "levels/textures/map_interior/mini_floor_woodpanels.tex"),
+        material("interior_floor_herringbone", FACE.FLOOR, "levels/textures/interiors/shop_floor_herringbone.tex", "levels/textures/map_interior/mini_floor_herringbone.tex"),
+        material("interior_floor_hexagon", FACE.FLOOR, "levels/textures/interiors/shop_floor_hexagon.tex", "levels/textures/map_interior/mini_floor_hexagon.tex"),
+        material("interior_floor_hoof_curvy", FACE.FLOOR, "levels/textures/interiors/shop_floor_hoof_curvy.tex", "levels/textures/map_interior/mini_floor_hoof_curvy.tex"),
+        material("interior_floor_octagon", FACE.FLOOR, "levels/textures/interiors/shop_floor_octagon.tex", "levels/textures/map_interior/mini_floor_octagon.tex"),
 
         material("interior_wall_peagawk", FACE.WALL, "levels/textures/interiors/wall_peagawk.tex"),
         material("interior_wall_plain_ds", FACE.WALL, "levels/textures/interiors/wall_plain_DS.tex"),

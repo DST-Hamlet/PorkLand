@@ -79,6 +79,8 @@ return {
         ANTCOMBHOME = "Full of bundled up big baby bugs.",
         ANTHILL = "Can't get more adventurous then going into a giant insect nest.",
         ANTIVENOM = "A cure for too much adventure.",
+        ANTLER = "Maybe this bird whistle will convince a bird to fly me out of here.",
+        ANTLER_CORRUPTED = "This should make any giant birds steer clear.",
         ANTMAN = {
             DEAD = "I won't step on it out of respect.",
             GENERIC = "Travel. See the world. Meet some interesting insects.",
@@ -87,6 +89,7 @@ return {
         ANTMAN_WARRIOR = "Swell. This one's angry.",
         ANTMAN_WARRIOR_EGG = "Better get dodging, Wheeler.",
         ANTMASKHAT = "Swell. Now I know what it smells like to be an insect.",
+        ANTQUEEN = "Ma'am, this is no way to treat a guest!",
         ANTQUEEN_CHAMBERS = "I can never say no to an adventure.",
         ANTQUEEN_THRONE = "I bet she was guarding some kind of treasure.",
         ANTSUIT = "All dressed up and ready to cr'kit.",
@@ -104,6 +107,7 @@ return {
         BANDITTREASURE = "If you're going to hide a treasure, don't put a fancy feather on it.",
         BASEFAN = "A plane propeller would be better.",
         BATHAT = "Aw... It doesn't even let me fly.",
+        BAT_HIDE = "Hmmm... never noticed those bats had a springy tail.",
         BILL = {
             DEAD = "Spun himself to death.",
             GENERIC = "Excuse me while I avoid your quills.",
@@ -267,6 +271,7 @@ return {
         },
         GASCLOUD = "Not a cloud I'm fond of flying through.",
         GASMASKHAT = "Stylish. I'd wear this even if it didn't save my life.",
+        GIANTGRUB = "My guess is he's not too interested in making friends.",
         GLOWFLY = {
             DEAD = "I guess it can't fly me out of here now.",
             GENERIC = "A flyer and a glower. My new best friend.",
@@ -810,6 +815,7 @@ return {
             SLEEPING = "If I could only steal its wings while its asleep.",
         },
         VAMPIREBATCAVE = "Those bats are wasting their time in a cave when they should be outside flying.",
+        VAMPIRE_BAT_WING = "Maybe if I flapped it really fast I could get off the ground.",
         VENOMGLAND = "Swell. A sack of goop from an animal.",
         VENUS_STALK = "Hope this comes in handy. Otherwise that flytrap died for nothing.",
         VINE = "The kind of thing that would be more useful if I had a bunch of them.",

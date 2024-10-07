@@ -277,6 +277,9 @@ end
 
 local function CocoonExpire(inst)
     inst.expiretask, inst.expiretaskinfo = nil, nil
+    if not inst.components.health:IsDead() then
+        inst.components.health:Kill()
+    end
     inst.sg:GoToState("cocoon_expire")
 end
 

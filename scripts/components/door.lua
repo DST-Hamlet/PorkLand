@@ -1,23 +1,8 @@
-local function ondoorstatus(self)
-    local data = {
-        disabled = self.disabled,
-        hidden = self.hidden,
-        target_interior = self.target_interior,
-        current_interior = self.inst:GetCurrentInteriorID(),
-    }
-    TheWorld.components.interiorspawner:ForEachPlayerInRoom(data.current_interior, function(player)
-        SendModRPCToClient(GetClientModRPC("PorkLand", "interior_door"), player.userid, ZipAndEncodeString(data))
-    end)
-end
-
 local function ondisabled(self, value, old_value)
     if value then
         self.inst:AddTag("door_disabled")
     else
         self.inst:RemoveTag("door_disabled")
-    end
-    if value ~= old_value then
-        ondoorstatus(self)
     end
 end
 
@@ -26,9 +11,6 @@ local function onhidden(self, value, old_value)
         self.inst:AddTag("door_hidden")
     else
         self.inst:RemoveTag("door_hidden")
-    end
-    if value ~= old_value then
-        ondoorstatus(self)
     end
 end
 
@@ -185,17 +167,29 @@ function Door:SetDoorDisabled(status, cause)
     end
 end
 
+function Door:GetShadow()
+    if not self.shadow and self.inst:HasTag("door_south") then
+        local x, y, z = self.inst.Transform:GetWorldPosition()
+        local shadows = TheSim:FindEntities(x, y, z, 2, {"door_shadow"})
+        for i, v in ipairs(shadows) do
+            self.shadow = v
+            break
+        end
+    end
+    return self.shadow
+end
+
 function Door:UpdateDoorVis()
     if not self.inst:IsInLimbo() then
         if self.hidden then
             self.inst:Hide()
-            if self.inst.shadow then
-                self.inst.shadow:Hide()
+            if self:GetShadow() then
+                self:GetShadow():Hide()
             end
         else
             self.inst:Show()
-            if self.inst.shadow then
-                self.inst.shadow:Show()
+            if self:GetShadow() then
+                self:GetShadow():Show()
             end
         end
     end
@@ -203,6 +197,7 @@ end
 
 function Door:SetHidden(hidden)
     self.hidden = hidden
+    self:UpdateDoorVis()
 end
 
 function Door:OnSave()
@@ -291,7 +286,10 @@ function Door:OnLoad(data)
         target_interior = data.target_interior,
         target_exterior = data.target_exterior,
     }
-    TheWorld.components.interiorspawner:AddDoor(self.inst, door_definition)
+    if not self.inst:HasTag("predoor") then
+        TheWorld.components.interiorspawner:AddDoor(self.inst, door_definition)
+    end
+
     self:SetDoorDisabled()
 end
 

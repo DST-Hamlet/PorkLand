@@ -138,22 +138,16 @@ local function MakePillarPlacer(name, bank, build, anim)
     end)
 end
 
-local function CeilingLightPlaceTest(inst, pt)
-    if inst.parent then
-        local px, py, pz = inst.Transform:GetWorldPosition()
-        inst.parent:RemoveChild(inst)
-        inst.Transform:SetPosition(px,py,pz)
-    end
+local function CeilingLightPlaceTest(inst)
+    local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
 
     inst.Transform:SetTwoFaced()
     inst.Transform:SetRotation(-90)
 
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
-
-        local width = interiorSpawner.current_interior.width
-        local depth = interiorSpawner.current_interior.depth
-        local originpt = interiorSpawner:getSpawnOrigin()
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(ThePlayer:GetPosition())
+    if current_interior then
+        local originpt = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
 
         local dMax = originpt.x + depth/2
         local dMin = originpt.x - depth/2
@@ -169,10 +163,20 @@ local function CeilingLightPlaceTest(inst, pt)
         end
 
         if inbounds and #ents < 1 then
-            return true
+            inst.accept_placement = true
+            return
         end
     end
-    return false
+    inst.accept_placement = false
+end
+
+local function MakeCeilingLightPlacer(name, bank, build, anim)
+    return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, "two", function(inst)
+        inst.components.placer.onupdatetransform = CeilingLightPlaceTest
+        inst.components.placer.override_build_point_fn = placer_override_build_point
+        inst.components.placer.override_testfn = placer_override_testfn
+        inst.accept_placement = false
+    end)
 end
 
 local function WallPlaceTest(inst, distance)
@@ -485,35 +489,6 @@ local function RugPropPlacerAnim(inst)
     inst.AnimState:SetSortOrder(3)
 end
 
-local function RugPropPlaceTest(inst, pt, distance)
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
-
-        local width = interiorSpawner.current_interior.width
-        local depth = interiorSpawner.current_interior.depth
-        local originpt = interiorSpawner:getSpawnOrigin()
-
-        local dMax = originpt.x + depth/2
-        local dMin = originpt.x - depth/2
-
-        local wMax = originpt.z + width/2
-        local wMin = originpt.z - width/2
-
-        local dist = distance or 3
-
-        local inbounds = true
-
-        if pt.x < dMin+dist or pt.x > dMax -dist or pt.z < wMin+dist or pt.z > wMax-dist then
-            inbounds = false
-        end
-
-        if inbounds then
-            return true
-        end
-    end
-    return false
-end
-
 local function RugPlacerAnim(inst)
     inst.flipsrotate = true
     inst.Transform:SetRotation(90)
@@ -522,13 +497,13 @@ local function RugPlacerAnim(inst)
     inst.AnimState:SetSortOrder(3)
 end
 
-local function RugPlaceTestFn(inst, pt, distance)
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
+local function RugPlaceTestFn(inst, distance)
+    local pt = inst.components.placer.selected_pos or TheInput:GetWorldPosition()
 
-        local width = interiorSpawner.current_interior.width
-        local depth = interiorSpawner.current_interior.depth
-        local originpt = interiorSpawner:getSpawnOrigin()
+    local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(ThePlayer:GetPosition())
+    if current_interior then
+        local originpt = current_interior:GetPosition()
+        local width, depth = current_interior:GetSize()
 
         local dMax = originpt.x + depth/2
         local dMin = originpt.x - depth/2
@@ -547,36 +522,34 @@ local function RugPlaceTestFn(inst, pt, distance)
         end
 
         if inbounds then
-            return true
+            inst.accept_placement = true
+            return
         end
     end
-    return false
+    inst.accept_placement = false
 end
 
-local function Rug2PlaceTest(inst, pt)
-    return  RugPlaceTestFn(inst,pt,2)
+local function Rug2PlaceTest(inst)
+    return RugPlaceTestFn(inst, 2)
 end
 
-local function Rug28PlaceTest(inst, pt)
-    return  RugPlaceTestFn(inst,pt,2.8)
+local function Rug28PlaceTest(inst)
+    return RugPlaceTestFn(inst, 2.8)
 end
 
-local function modifypillarfn(inst)
-    local data = {}
-
-    data.prefab_suffix = "_beam"
-
-    local interiorSpawner = TheWorld.components.interiorspawner
-    if interiorSpawner.current_interior then
-        local originpt = interiorSpawner:getSpawnOrigin()
-        local pt = Point(inst.Transform:GetWorldPosition())
-
-        if pt.x <= originpt.x then
-            data.prefab_suffix = "_cornerbeam"
-        end
-    end
-
-    return data
+local function MakeRugPlacer(name, bank, build, anim, animation_postinit, on_update_transform)
+    return MakePlacer(name, bank, build, anim, nil, nil, nil, nil, nil, nil, function(inst)
+        inst.animdata = {
+            build = build,
+            anim = anim,
+            bank = bank,
+        }
+        animation_postinit(inst)
+        inst.components.placer.onupdatetransform = on_update_transform
+        inst.components.placer.override_build_point_fn = placer_override_build_point
+        inst.components.placer.override_testfn = placer_override_testfn
+        inst.accept_placement = false
+    end)
 end
 
 return  MakePillarPlacer("deco_wood_cornerbeam_placer",       "wall_decals",           "interior_wall_decals",             "4"),
@@ -617,18 +590,18 @@ return  MakePillarPlacer("deco_wood_cornerbeam_placer",       "wall_decals",    
         MakeShelfPlacer("shelf_pallet_placer",       "bookcase", "room_shelves", "pallet"),
 
         -- HANGING LIGHTS
-        MakePlacer("swinging_light_basic_bulb_placer",         "ceiling_lights", "ceiling_lights", "light_basic_bulb",             nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_floral_bloomer_placer",     "ceiling_lights", "ceiling_lights", "light_floral_bloomer",         nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_basic_metal_placer",        "ceiling_lights", "ceiling_lights", "light_basic_metal",            nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_chandalier_candles_placer", "ceiling_lights", "ceiling_lights", "light_chandelier_candles",     nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_rope_1_placer",             "ceiling_lights", "ceiling_lights", "light_rope1",                  nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_rope_2_placer",             "ceiling_lights", "ceiling_lights", "light_rope2",                  nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_floral_bulb_placer",        "ceiling_lights", "ceiling_lights", "light_floral_bulb",            nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_pendant_cherries_placer",   "ceiling_lights", "ceiling_lights", "light_pendant_cherries",       nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_floral_scallop_placer",     "ceiling_lights", "ceiling_lights", "light_floral_scallop",         nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_floral_bloomer_placer",     "ceiling_lights", "ceiling_lights", "light_floral_bloomer",         nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_tophat_placer",             "ceiling_lights", "ceiling_lights", "light_tophat",                 nil, nil, nil, nil, nil, "two"),
-        MakePlacer("swinging_light_derby_placer",              "ceiling_lights", "ceiling_lights", "light_derby",                  nil, nil, nil, nil, nil, "two"),
+        MakeCeilingLightPlacer("swinging_light_basic_bulb_placer",         "ceiling_lights", "ceiling_lights", "light_basic_bulb"),
+        MakeCeilingLightPlacer("swinging_light_floral_bloomer_placer",     "ceiling_lights", "ceiling_lights", "light_floral_bloomer"),
+        MakeCeilingLightPlacer("swinging_light_basic_metal_placer",        "ceiling_lights", "ceiling_lights", "light_basic_metal"),
+        MakeCeilingLightPlacer("swinging_light_chandalier_candles_placer", "ceiling_lights", "ceiling_lights", "light_chandelier_candles"),
+        MakeCeilingLightPlacer("swinging_light_rope_1_placer",             "ceiling_lights", "ceiling_lights", "light_rope1"),
+        MakeCeilingLightPlacer("swinging_light_rope_2_placer",             "ceiling_lights", "ceiling_lights", "light_rope2"),
+        MakeCeilingLightPlacer("swinging_light_floral_bulb_placer",        "ceiling_lights", "ceiling_lights", "light_floral_bulb"),
+        MakeCeilingLightPlacer("swinging_light_pendant_cherries_placer",   "ceiling_lights", "ceiling_lights", "light_pendant_cherries"),
+        MakeCeilingLightPlacer("swinging_light_floral_scallop_placer",     "ceiling_lights", "ceiling_lights", "light_floral_scallop"),
+        MakeCeilingLightPlacer("swinging_light_floral_bloomer_placer",     "ceiling_lights", "ceiling_lights", "light_floral_bloomer"),
+        MakeCeilingLightPlacer("swinging_light_tophat_placer",             "ceiling_lights", "ceiling_lights", "light_tophat"),
+        MakeCeilingLightPlacer("swinging_light_derby_placer",              "ceiling_lights", "ceiling_lights", "light_derby"),
 
         -- WINDOWS
         MakeWindowPlacer("window_round_curtains_nails_placer",  "interior_window", "interior_window", "day_loop",                             WindowPlacerAnim, WindowPlaceTest),
@@ -674,28 +647,28 @@ return  MakePillarPlacer("deco_wood_cornerbeam_placer",       "wall_decals",    
         MakePlacer("deco_table_chess_placer",        "interior_table", "interior_table", "table_chess",            nil, nil, nil, nil, nil, "two"),
 
         -- RUGS
-        MakePlacer("rug_round_placer",     "rugs", "rugs", "rug_round",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_square_placer",    "rugs", "rugs", "rug_square",     nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_oval_placer",      "rugs", "rugs", "rug_oval",       nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_rectangle_placer", "rugs", "rugs", "rug_rectangle",  nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_leather_placer",   "rugs", "rugs", "rug_leather",    nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_fur_placer",       "rugs", "rugs", "rug_fur",        nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_circle_placer",    "rugs", "rugs", "half_circle",    nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_hedgehog_placer",  "rugs", "rugs", "rug_hedgehog",   nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_porcupuss_placer", "rugs", "rugs", "rug_porcupuss",  nil, nil, nil, nil, nil, nil, RugPropPlacerAnim),
-        MakePlacer("rug_hoofprint_placer", "rugs", "rugs", "rug_hoofprints", nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_octagon_placer",   "rugs", "rugs", "rug_octagon",    nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_swirl_placer",     "rugs", "rugs", "rug_swirl",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_catcoon_placer",   "rugs", "rugs", "rug_catcoon",    nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_rubbermat_placer", "rugs", "rugs", "rug_rubbermat",  nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_web_placer",       "rugs", "rugs", "rug_web",        nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_metal_placer",     "rugs", "rugs", "rug_metal",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_wormhole_placer",  "rugs", "rugs", "rug_wormhole",   nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_braid_placer",     "rugs", "rugs", "rug_braid",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_beard_placer",     "rugs", "rugs", "rug_beard",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_nailbed_placer",   "rugs", "rugs", "rug_nailbed",    nil, nil, nil, nil, nil, nil, RugPropPlacerAnim),
-        MakePlacer("rug_crime_placer",     "rugs", "rugs", "rug_crime",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
-        MakePlacer("rug_tiles_placer",     "rugs", "rugs", "rug_tiles",      nil, nil, nil, nil, nil, nil, RugPlacerAnim),
+        MakeRugPlacer("rug_round_placer",     "rugs", "rugs", "rug_round",      RugPlacerAnim,      Rug2PlaceTest),
+        MakeRugPlacer("rug_square_placer",    "rugs", "rugs", "rug_square",     RugPlacerAnim,      Rug2PlaceTest),
+        MakeRugPlacer("rug_oval_placer",      "rugs", "rugs", "rug_oval",       RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_rectangle_placer", "rugs", "rugs", "rug_rectangle",  RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_leather_placer",   "rugs", "rugs", "rug_leather",    RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_fur_placer",       "rugs", "rugs", "rug_fur",        RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_circle_placer",    "rugs", "rugs", "half_circle",    RugPlacerAnim,      Rug2PlaceTest),
+        MakeRugPlacer("rug_hedgehog_placer",  "rugs", "rugs", "rug_hedgehog",   RugPlacerAnim,      Rug2PlaceTest),
+        MakeRugPlacer("rug_porcupuss_placer", "rugs", "rugs", "rug_porcupuss",  RugPropPlacerAnim,  RugPlaceTestFn),
+        MakeRugPlacer("rug_hoofprint_placer", "rugs", "rugs", "rug_hoofprints", RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_octagon_placer",   "rugs", "rugs", "rug_octagon",    RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_swirl_placer",     "rugs", "rugs", "rug_swirl",      RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_catcoon_placer",   "rugs", "rugs", "rug_catcoon",    RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_rubbermat_placer", "rugs", "rugs", "rug_rubbermat",  RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_web_placer",       "rugs", "rugs", "rug_web",        RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_metal_placer",     "rugs", "rugs", "rug_metal",      RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_wormhole_placer",  "rugs", "rugs", "rug_wormhole",   RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_braid_placer",     "rugs", "rugs", "rug_braid",      RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_beard_placer",     "rugs", "rugs", "rug_beard",      RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_nailbed_placer",   "rugs", "rugs", "rug_nailbed",    RugPropPlacerAnim,  RugPlaceTestFn),
+        MakeRugPlacer("rug_crime_placer",     "rugs", "rugs", "rug_crime",      RugPlacerAnim,      Rug28PlaceTest),
+        MakeRugPlacer("rug_tiles_placer",     "rugs", "rugs", "rug_tiles",      RugPlacerAnim,      Rug28PlaceTest),
 
         -- PLANTHOLDERS
         MakePlacer("deco_plantholder_basic_placer",          "interior_plant", "interior_plant", "plant_basic",        nil, nil, nil, nil, nil, "two"),

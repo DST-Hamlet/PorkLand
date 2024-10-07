@@ -77,6 +77,8 @@ local function fn()
     inst.components.workable:SetWorkLeft(TUNING.HONEY_LANTERN_MINE)
     inst.components.workable:SetOnWorkCallback(OnWorkCallback)
 
+    MakeHauntable(inst)
+
     inst:WatchWorldState("isaporkalypse", OnIsAporkalypse)
     OnIsAporkalypse(inst, TheWorld.state.isaporkalypse)
 

@@ -327,6 +327,13 @@ local tuning = {
     SAIL_SNAKESKIN_ACCEL_MULT = 0.25,
     SAIL_SNAKESKIN_PERISH_TIME = total_day_time * 4,
 
+    TRAWLNET_MAX_ITEMS = 9,
+    TRAWLNET_ITEM_DISTANCE = 100, --How far you have to travel to get another item
+    TRAWLING_SPEED_MULT = 0.25, --This is actually speed reduction (speed = 1 - speed_mult)
+    TRAWL_SINK_TIME = seg_time * 3,
+
+    SUNKENPREFAB_REMOVE_TIME = total_day_time * 2,
+
     MANDRAKEMAN_SPAWN_TIME = total_day_time,
     MANDRAKEMAN_ENABLED = true,
 
@@ -362,6 +369,7 @@ local tuning = {
     WALKING_STICK_SPEED_MULT = 1.3,
     WALKING_STICK_PERISHTIME = total_day_time * 3,
 
+    PUGALISK_RESPAWN = total_day_time * 15,
     PUGALISK_HEALTH = 3000,
     PUGALISK_ATTACK_PERIOD = 3,
     PUGALISK_MELEE_RANGE = 6,
@@ -470,6 +478,7 @@ local tuning = {
 
     MAGNIFYING_GLASS_DAMAGE = wilson_attack * 0.125,
     MAGNIFYING_GLASS_USES = 10,
+    MAGNIFYING_GLASS_LIGHT = 0.5,
 
     ROBOT_TARGET_DIST = 15,
     ROBOT_RIBS_DAMAGE = wilson_attack,
@@ -520,6 +529,8 @@ local tuning = {
 
     ANCIENT_HERALD_HEALTH = 2000,
     ANCIENT_HERALD_DAMAGE = 50,
+    ANCIENT_HERALD_SUMMON_COOLDOWN = 15,
+
     ARMORVORTEX = wilson_health*3,
     ARMORVORTEX_ABSORPTION = 1,
     ARMORVORTEX_DMG_AS_SANITY = 0.20,
@@ -632,8 +643,70 @@ local tuning = {
 
     SANITY_PLAYERHOUSE_GAIN = 100 / (day_time * 32),
 
+    ROC_SPEED = 20,
+    ROC_SPEED_LAND = 6,
+    ROC_SHADOWRANGE = 8,
+    ROC_ENABLED = true,
+
+    ROC_HEAD_SPEED = 10,
+    ROC_TAIL_SPEED = 8,
+
     CUTLASS_DAMAGE = wilson_attack * 2,
     CUTLASS_USES = 150,
+
+    GIANT_GRUB_WALK_SPEED = 2,
+    GIANT_GRUB_DAMAGE = 44,
+    GIANT_GRUB_HEALTH = 600,
+    GIANT_GRUB_ATTACK_PERIOD = 3,
+    GIANT_GRUB_ATTACK_RANGE = 3,
+    GIANT_GRUB_TARGET_DIST = 25,
+
+    ANTMAN_DAMAGE = wilson_attack * 2/3,
+    ANTMAN_HEALTH = 250,
+    ANTMAN_ATTACK_PERIOD = 3,
+    ANTMAN_TARGET_DIST = 16,
+    ANTMAN_LOYALTY_MAXTIME = 2.5 * total_day_time,
+    ANTMAN_LOYALTY_PER_HUNGER = total_day_time / 25,
+    ANTMAN_MIN_POOP_PERIOD = seg_time * 0.5,
+
+    ANTMAN_RUN_SPEED = 5,
+    ANTMAN_WALK_SPEED = 3,
+
+    ANTMAN_MIN = 3,
+    ANTMAN_MAX = 4,
+    ANTMAN_REGEN_TIME = seg_time * 4,
+    ANTMAN_RELEASE_TIME = seg_time,
+
+    ANTMAN_ATTACK_ON_SIGHT_DIST = 4,
+
+    ANTMAN_WARRIOR_DAMAGE = wilson_attack * 1.25,
+    ANTMAN_WARRIOR_HEALTH = 300,
+    ANTMAN_WARRIOR_ATTACK_PERIOD = 3,
+    ANTMAN_WARRIOR_TARGET_DIST = 16,
+
+    ANTMAN_WARRIOR_RUN_SPEED = 7,
+    ANTMAN_WARRIOR_WALK_SPEED = 3.5,
+
+    ANTMAN_WARRIOR_REGEN_TIME = seg_time,
+    ANTMAN_WARRIOR_RELEASE_TIME = seg_time,
+
+    ANTMAN_WARRIOR_ATTACK_ON_SIGHT_DIST = 8,
+
+    ANTQUEEN_HEALTH = 3500,
+
+    GIANT_GRUB_RESPAWN_TIME = total_day_time,
+    GIANT_GRUB_ENABLED = true,
+
+    CHARACTER_MAX_STUN_LOCKS = 5,
+    BOSS_HITREACT_COOLDOWN = 1,
+    BOSS_MAX_STUN_LOCKS = 1,
+
+    COCONADE_FUSE = 5,
+    COCONADE_DAMAGE = 250,
+    COCONADE_EXPLOSIONRANGE = 6,
+    COCONADE_BUILDINGDAMAGE = 10,
+
+    BIRDWHISLE_USES = 5,
 }
 
 

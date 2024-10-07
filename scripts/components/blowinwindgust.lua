@@ -25,7 +25,7 @@ local function UpdateTask(inst, dt)
     local self = inst.components.blowinwindgust
     local windspeed = TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetWindSpeed() or 0
     if self.state == 0 then
-        if windspeed > self.windspeedthreshold then
+        if windspeed > self.windspeedthreshold and not self.inst:GetIsInInterior() then
             if math.random() < self.destroychance and inst:IsNearPlayer(TUNING.WINDBLOWN_DESTROY_DIST) then
                 self:CallDestroyFn()
                 self:Stop()
@@ -36,7 +36,7 @@ local function UpdateTask(inst, dt)
             self:CallGustStartFn(windspeed)
             self.state = 1
         end
-    elseif self.state == 1 then
+    elseif self.state == 1 or self.inst:GetIsInInterior() then
         if windspeed < self.windspeedthreshold then
             self:CallGustEndFn(windspeed)
             self.state = 0

@@ -108,6 +108,488 @@ local function GetSpawnLocation(depth, width, widthrange, depthrange, fountain)
     end
 end
 
+--[[ Ant Hill ]]--
+
+-- The camera is setup in the interiors such that it looks along the x axis.
+-- Therefore, the x values are back to front, and the z values are side to side.
+
+local function GetOffsetX()
+    return (math.random() * 7) - (7 / 2)
+end
+
+local function GetOffsetBackX()
+    return (math.random(0, 0.3) * 7) - (7 / 2)
+end
+
+local function GetOffsetFrontX()
+    return (math.random(0.7, 1.0) * 7) - (7 / 2)
+end
+
+local function GetOffsetZ()
+    return (math.random() * 13) - (13 / 2)
+end
+
+local function GetOffsetLhsZ()
+    return (math.random(0, 0.3) * 13) - (13 / 2)
+end
+
+local function GetOffsetRhsZ()
+    return (math.random(0.7, 1.0) * 13) - (13 / 2)
+end
+
+-- These are the room quadrants for
+-- generating lanterns in the anthill.
+-- |-------|-------|
+-- |   1   |   2   |
+-- |-------|-------|
+-- |   3   |   4   |
+-- |-------|-------|
+
+local ROOM_QUADRANT_1 = 1
+local ROOM_QUADRANT_2 = 2
+local ROOM_QUADRANT_3 = 3
+local ROOM_QUADRANT_4 = 4
+
+local function GetOffsetConstrainedToQuadrant(room_quadrant)
+    local x = 0
+    local z = 0
+
+    if room_quadrant == ROOM_QUADRANT_1 then
+        x = GetOffsetBackX()
+        z = GetOffsetLhsZ()
+    end
+
+    if room_quadrant == ROOM_QUADRANT_2 then
+        x = GetOffsetBackX()
+        z = GetOffsetRhsZ()
+    end
+
+    if room_quadrant == ROOM_QUADRANT_3 then
+        x = GetOffsetFrontX()
+        z = GetOffsetLhsZ()
+    end
+
+    if room_quadrant == ROOM_QUADRANT_4 then
+        x = GetOffsetFrontX()
+        z = GetOffsetRhsZ()
+    end
+
+    return { x_offset = x, z_offset = z }
+end
+
+local function AddHoneyDrip(addprops, width, depth)
+    local choice = math.random(1, 4)
+    if choice == 1 then
+        addprops[#addprops + 1] = {name = "deco_cave_honey_drip_1", x_offset = -depth / 2, z_offset = GetPosToCenter(width * 0.65, 3, true), rotation = -90}
+    elseif choice == 2 then
+        addprops[#addprops + 1] = {name = "deco_cave_ceiling_drip_2", x_offset = -depth / 2, z_offset = GetPosToCenter(width * 0.65, 3, true), rotation = -90}
+    elseif choice == 3 then
+        if math.random() < 0.5 then
+            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_1", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset = -width / 2, rotation = -90}
+        else
+            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_1", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset =  width / 2, rotation = -90, flip = true}
+        end
+    elseif choice == 4 then
+        if math.random() < 0.5 then
+            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_2", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset = -width / 2, rotation = -90}
+        else
+            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_2", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset =  width / 2, rotation = -90, flip = true}
+        end
+    end
+end
+
+local function AddCommonDeco(addprops)
+
+    local width = TUNING.ROOM_LARGE_WIDTH
+    local depth = TUNING.ROOM_LARGE_DEPTH
+
+    table.insert(addprops, { name = "deco_hive_cornerbeam",  x_offset = -depth/2, z_offset = -width/2, rotation = -90 })
+    table.insert(addprops, { name = "deco_hive_cornerbeam",  x_offset = -depth/2, z_offset =  width/2, rotation = -90, flip = true })
+    table.insert(addprops, { name = "deco_hive_pillar_side", x_offset =  depth/2, z_offset = -width/2, rotation = -90 })
+    table.insert(addprops, { name = "deco_hive_pillar_side", x_offset =  depth/2, z_offset =  width/2, rotation = -90, flip = true })
+
+    table.insert(addprops, { name = "deco_hive_floor_trim", x_offset = depth/2, z_offset = -width/4, rotation = -90 })
+    table.insert(addprops, { name = "deco_hive_floor_trim", x_offset = depth/2, z_offset =        0, rotation = -90 })
+    table.insert(addprops, { name = "deco_hive_floor_trim", x_offset = depth/2, z_offset =  width/4, rotation = -90 })
+
+end
+
+local function AddChamberDeco(addprops, width, depth)
+    AddCommonDeco(addprops)
+
+    for i = 1, math.random(8, 16) do
+        addprops[#addprops + 1] = {name = "rock_antcave", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset = GetPosToCenter(width * 0.65, 3, true)}
+    end
+
+    addprops[#addprops + 1] = {name = "deco_hive_debris", x_offset = depth * 0.65 * math.random() - depth * 0.325, z_offset = width * 0.65 * math.random() - width * 0.325, chance = 0.3}
+    addprops[#addprops + 1] = {name = "deco_hive_debris", x_offset = depth * 0.65 * math.random() - depth * 0.325, z_offset = width * 0.65 * math.random() - width * 0.325, chance = 0.3}
+
+
+    local num_honey = math.random(0, 5)
+    for i = 1, num_honey do
+        AddHoneyDrip(addprops, width, depth)
+    end
+
+    return addprops
+end
+
+local function AddDeco(addprops, width, depth)
+    AddCommonDeco(addprops)
+
+
+    addprops[#addprops + 1] = {name = "rock_antcave", x_offset = -depth * 0.65 * math.random() / 2, z_offset = GetPosToCenter(width * 0.65, 3, true), chance = 0.5}
+    addprops[#addprops + 1] = {name = "rock_antcave", x_offset = -depth * 0.65 * math.random() / 2, z_offset = GetPosToCenter(width * 0.65, 3, true), chance = 0.5}
+    addprops[#addprops + 1] = {name = "rock_antcave", x_offset = -depth * 0.65 * math.random() / 2, z_offset = GetPosToCenter(width * 0.65, 3, true), chance = 0.5}
+
+    addprops[#addprops + 1] = {name = "deco_hive_debris", x_offset = depth * 0.65 * math.random() - depth * 0.65 / 2, z_offset = width * 0.65 * math.random() - width * 0.65 / 2, chance = 0.3}
+    addprops[#addprops + 1] = {name = "deco_hive_debris", x_offset = depth * 0.65 * math.random() - depth * 0.65 / 2, z_offset = width * 0.65 * math.random() - width * 0.65 / 2, chance = 0.3}
+
+    local num_honey = math.random(0, 5)
+    for i = 1, num_honey do
+        AddHoneyDrip(addprops, width, depth)
+    end
+
+    return addprops
+end
+
+local function AddLanternTables(addprops, min_lanterns, max_lanterns)
+    if min_lanterns <= 0 or min_lanterns >= max_lanterns then
+        return
+    end
+
+    local num_lanterns = math.random(min_lanterns, max_lanterns)
+    local quadrants = shuffleArray({ROOM_QUADRANT_1, ROOM_QUADRANT_2, ROOM_QUADRANT_3, ROOM_QUADRANT_4})
+
+    for i = 1, num_lanterns, 1 do
+        local offsets = GetOffsetConstrainedToQuadrant(quadrants[i])
+        addprops[#addprops + 1] = {name = "ant_cave_lantern", x_offset = offsets.x_offset, z_offset = offsets.z_offset}
+    end
+end
+
+local function AddItemTables(prefab, addprops, min_items, max_items)
+    if min_items <= 0 or min_items >= max_items then
+        return
+    end
+
+    local num_items = math.random(min_items, max_items)
+
+    for i = 1, num_items do
+        addprops[#addprops + 1] = {name = prefab, x_offset = GetOffsetX(), z_offset = GetOffsetZ()}
+    end
+end
+
+local MIN_LANTERNS = 1
+local MAX_LANTERNS = 3
+local NUM_ENTRANCES = 3
+local NUM_CHAMBER_ENTRANCES = 1
+local FROM_STRING = "ANTQUEEN_CHAMBERS_FROM_"
+local TO_STRING = "ANTQUEEN_CHAMBERS_TO_"
+
+local function buildFloorPlan()
+    local NUM_TILE_ROWS = 5
+    local NUM_TILE_COLS = 5
+
+    local tiles = {}
+
+    for i = 1, NUM_TILE_ROWS, 1 do
+        local tileRow = {}
+
+        for j = 1, NUM_TILE_COLS, 1 do
+            local tile = false
+            table.insert(tileRow, tile)
+        end
+
+        table.insert(tiles, tileRow)
+    end
+
+    return tiles
+end
+
+local function RandomisePosition(addprops, room)
+    if room.isChamberEntrance then
+        return
+    end
+
+    local floor_plan = buildFloorPlan()
+
+    for _, prop in pairs(addprops) do
+        local new_tile_found = false
+
+        while not new_tile_found do
+            local row_tile_index = math.random(1, #floor_plan)
+            local col_tile_index = math.random(1, #floor_plan[1])
+            new_tile_found = not floor_plan[row_tile_index][col_tile_index]
+
+            if new_tile_found then
+                floor_plan[row_tile_index][col_tile_index] = true
+
+                local rowFloorTilePos = row_tile_index / #floor_plan
+                local colFloorTilePos = col_tile_index / #floor_plan[1]
+
+                local offsetX = (rowFloorTilePos *  7) - ( 7 / 2)
+                local offsetZ = (colFloorTilePos * 13) - (13 / 2)
+
+                prop.x_offset = offsetX
+                prop.z_offset = offsetZ
+            end
+        end
+    end
+end
+
+PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPrefabs)
+    local addprops = {}
+    if room.is_entrance then
+        if doorway_count > NUM_ENTRANCES then
+            print("WARNING: Too many anthill entrances")
+
+            AddDeco(addprops, width, depth)
+            return addprops
+        end
+
+        addprops = {
+            {
+                name = "prop_door",
+                x_offset = -TUNING.ROOM_LARGE_DEPTH / 2,
+                z_offset = 0,
+                animdata = {
+                    minimapicon = "ant_cave_door.tex",
+                    bank = "ant_cave_door",
+                    build = "ant_cave_door",
+                    anim = "day_loop",
+                    light = true,
+                    background = true,
+                },
+                is_exit = true,
+                my_door_id = "ANTHILL_" .. doorway_count .. "_EXIT",
+                target_door_id = "ANTHILL_" .. doorway_count .. "_ENTRANCE",
+                rotation = -90,
+                angle = 0,
+                addtags = {
+                    "timechange_anims",
+                    "anthill_inside",
+                },
+            }
+        }
+
+        AddDeco(addprops, width, depth)
+    elseif room.isChamberEntrance then
+        local antqueen_chamber_pts = {
+            {x =  depth / 2 - 3.5, z =  width / 2 - 5.5},
+            {x = -depth / 2 + 3.5, z =  width / 2 - 5.5},
+            {x =  depth / 2 - 3.5, z = -width / 2 + 5.5},
+            {x = -depth / 2 + 3.5, z = -width / 2 + 5.5},
+        }
+
+        local spawn_pt = GetRandomItem(antqueen_chamber_pts)
+        addprops = {
+            {
+                name = "antqueen_chamber_entrance",
+                x_offset = spawn_pt.x,
+                z_offset = spawn_pt.z,
+                rotation = -90,
+            }
+        }
+
+        for i = 1, math.random(2, 4) do
+            addprops[#addprops + 1] = {name = "antman_warrior", x_offset = GetPosToCenter(depth * 0.65, 5, true), z_offset = GetPosToCenter(width * 0.65, 5, true)}
+        end
+
+        for i = 1, math.random(2, 4) do
+            addprops[#addprops + 1] = {name = "ant_cave_lantern", x_offset = GetPosToCenter(depth * 0.65, 5, true), z_offset = GetPosToCenter(width * 0.65, 5, true)}
+        end
+
+        AddCommonDeco(addprops)
+    else
+        AddDeco(addprops, width, depth)
+    end
+
+    return addprops
+end
+
+PROP_DEFS.anthill_empty = function(depth, width, room, doorway, doorwayPrefabs)
+    -- creating a seperate table here to not randomise addprops_common, don't want to move all the pillars and doors in it
+    local addprops = {}
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
+
+    AddLanternTables(addprops, MIN_LANTERNS, MAX_LANTERNS)
+    RandomisePosition(addprops, room)
+
+    return JoinArrays(addprops, addprops_common)
+end
+
+PROP_DEFS.anthill_ant_home = function(depth, width, room, doorway, doorwayPrefabs)
+    local addprops = {}
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
+
+    AddItemTables("antcombhome", addprops, 1, 2)
+    AddItemTables("antman", addprops, 3, 4)
+    AddLanternTables(addprops, MIN_LANTERNS, MAX_LANTERNS)
+
+    return JoinArrays(addprops, addprops_common)
+end
+
+PROP_DEFS.anthill_wandering_ant = function(depth, width, room, doorway, doorwayPrefabs)
+    local addprops = {}
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
+
+    AddItemTables("antman", addprops, 1, 3)
+    AddLanternTables(addprops, MIN_LANTERNS, MAX_LANTERNS)
+
+    return JoinArrays(addprops, addprops_common)
+end
+
+PROP_DEFS.anthill_treasure = function(depth, width, room, doorway, doorwayPrefabs)
+    local addprops = {}
+    local addprops_common = PROP_DEFS.anthill_common(depth, width, room, doorway, doorwayPrefabs)
+
+    AddItemTables("antcombhome", addprops, 1, 1)
+    AddItemTables("antman", addprops, 1, 2)
+    AddItemTables("antchest", addprops, 1, 2)
+    AddLanternTables(addprops, MIN_LANTERNS, MAX_LANTERNS)
+
+    return JoinArrays(addprops, addprops_common)
+end
+
+PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chamber_ids)
+    local addprops = {
+        {
+            name = "prop_door",
+            x_offset = -depth / 2,
+            z_offset = 0,
+            animdata = {
+                bank = "ant_cave_door",
+                build = "ant_cave_door",
+                anim = "north",
+                background = true,
+            },
+            my_door_id = FROM_STRING .. queen_chamber_ids[i], -- door connecting from chamber [i](this room) to chamber [i + 1](next room)
+            target_door_id = TO_STRING .. queen_chamber_ids[i + 1],
+            target_interior = queen_chamber_ids[i + 1],
+            rotation = -90,
+            angle = 0,
+            addtags = {"door_north",},
+        },
+    }
+
+    local is_first_room = i == 1
+    if is_first_room then
+        local door_to_exterior = {
+            my_door_id = "ANTQUEEN_CHAMBERS_EXIT",
+            target_door_id = "ANTQUEEN_CHAMBERS_ENTRANCE",
+            target_interior = nil,
+        }
+
+        table.insert(addprops, {
+            name = "prop_door",
+            x_offset = depth/2,
+            z_offset = 0,
+            animdata = {
+                minimapicon = "ant_cave_door.tex",
+                bank = "ant_cave_door",
+                build = "ant_cave_door",
+                anim = "south",
+            },
+            is_exit = true,
+            my_door_id = door_to_exterior.my_door_id,
+            target_door_id = door_to_exterior.target_door_id,
+            target_interior = door_to_exterior.target_interior,
+            rotation = -90,
+            angle = 0,
+            addtags = {"door_south"},
+        })
+    else
+        table.insert(addprops, {
+            name = "prop_door",
+            x_offset = depth / 2,
+            z_offset = 0,
+            animdata = {
+                bank = "ant_cave_door",
+                build = "ant_cave_door",
+                anim = "south",
+            },
+            my_door_id = TO_STRING .. queen_chamber_ids[i], -- door connecting from chamber [i - 1](previous_room) to chamber [i](this room)
+            target_door_id = FROM_STRING .. queen_chamber_ids[i - 1],
+            target_interior = queen_chamber_ids[i - 1],
+            rotation = -90,
+            angle = 0,
+            addtags = {"door_south",},
+        })
+    end
+
+    AddChamberDeco(addprops, width, depth)
+
+    for ii = 1, math.random(2, 5) do
+        addprops[#addprops + 1] = {name = "antman_warrior", x_offset = GetPosToCenter(depth * 0.65, 5, true), z_offset = GetPosToCenter(width * 0.65, 5, true)}
+    end
+
+    return addprops
+end
+
+PROP_DEFS.anthill_queen_chamber = function(depth, width, i, queen_chamber_ids)
+    local addprops = {
+        {name = "antqueen", x_offset = 0, z_offset = 0},
+
+        {name = "ant_cave_lantern", x_offset = -depth/2, z_offset = 0}, -- Behind the queen, placed there for better lighting
+        {name = "ant_cave_lantern", x_offset = -depth/2, z_offset = (depth/2) - 2},
+        {name = "ant_cave_lantern", x_offset = -depth/2, z_offset = (-depth/2) + 2},
+        {name = "ant_cave_lantern", x_offset = 0,        z_offset = (depth/2) + 1},
+        {name = "ant_cave_lantern", x_offset = 0,        z_offset = (-depth/2) - 1},
+
+        {name = "throne_wall_large", x_offset = -2.5,     z_offset = -2.5},
+
+        {name = "throne_wall_large", x_offset = -3.5,     z_offset = -1.5},
+        {name = "throne_wall_large", x_offset = -3.5,     z_offset = -0.5},
+        {name = "throne_wall_large", x_offset = -3.5,     z_offset = 0.5},
+        {name = "throne_wall_large", x_offset = -3.5,     z_offset = 1.5},
+
+        {name = "throne_wall_large", x_offset = -2.5,     z_offset = 2.5},
+
+        {name = "throne_wall_large", x_offset = -1.5,     z_offset = -2.5},
+        {name = "throne_wall_large", x_offset = 1.5,     z_offset = -2.5},
+
+        {name = "throne_wall_large", x_offset = -1.5,     z_offset = 2.5},
+        {name = "throne_wall_large", x_offset = -0.5,     z_offset = 2.5},
+        {name = "throne_wall_large", x_offset = 1.5,     z_offset = 2.5},
+
+        {name = "throne_wall_large", x_offset = -1.5,     z_offset = -3.5},
+        {name = "throne_wall_large", x_offset = 1.5,     z_offset = -3.5},
+
+        {name = "throne_wall_large", x_offset = -1.5,     z_offset = 3.5},
+        {name = "throne_wall_large", x_offset = 1.5,     z_offset = 3.5},
+
+        {name = "throne_wall_large", x_offset = -0.5,     z_offset = -4.5},
+        {name = "throne_wall_large", x_offset = 0.5,     z_offset = -4.5},
+
+        {name = "throne_wall_large", x_offset = -0.5,     z_offset = 4.5},
+        {name = "throne_wall_large", x_offset = 0.5,     z_offset = 4.5},
+
+        {name = "throne_wall_large", x_offset = -0.5,     z_offset = -5.5},
+
+        {name = "throne_wall_large", x_offset = -0.5,     z_offset = 5.5},
+    }
+
+    AddCommonDeco(addprops)
+
+    table.insert(addprops, {
+        name = "prop_door",
+        x_offset = depth / 2,
+        z_offset = 0,
+        animdata = {
+            bank = "ant_cave_door",
+            build = "ant_cave_door",
+            anim = "south",
+        },
+        my_door_id = TO_STRING .. queen_chamber_ids[i], -- door connecting from chamber [i - 1](previous_room) to chamber [i](this room)
+        target_door_id = FROM_STRING .. queen_chamber_ids[i - 1],
+        target_interior = queen_chamber_ids[i - 1],
+        rotation = -90,
+        angle = 0,
+        addtags = {"door_south",},
+    })
+
+    return addprops
+end
+
 PROP_DEFS.roc_cave = function(depth, width, room, open_exits, exterior_door_def)
     local addprops = {
         {name = "deco_cave_cornerbeam", x_offset = -depth / 2, z_offset = -width / 2, rotation = -90},
@@ -2134,7 +2616,13 @@ PROP_DEFS.playerhouse_city = function(exterior_door_def)
             name = "prop_door",
             x_offset = 5,
             z_offset = 0,
-            animdata = {bank ="pig_shop_doormats", build ="pig_shop_doormats", anim="idle_old", background=true},
+            animdata = {
+                minimapicon = "player_frontdoor.tex",
+                bank ="pig_shop_doormats",
+                build ="pig_shop_doormats",
+                anim = "idle_old",
+                background = true,
+            },
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
             addtags={"guard_entrance"},
