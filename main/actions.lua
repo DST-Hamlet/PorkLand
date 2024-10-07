@@ -848,7 +848,7 @@ function ACTIONS.LIGHT.fn(act, ...)
     if act.invobject ~= nil and act.invobject:HasTag("magnifying_glass") and act.target then
         local x, y, z = act.target.Transform:GetWorldPosition()
         if TheSim:GetLightAtPoint(x, y, z) < TUNING.MAGNIFYING_GLASS_LIGHT then
-            return "TOODARK"
+            return false, "TOODARK"
         end
     end
     return _LIGHTfn(act, ...)
