@@ -251,7 +251,7 @@ local function SpawnBatsForPlayer(player)
         local interiorID = bat:GetCurrentInteriorID()
         if TheWorld.components.interiorspawner:IsAnyPlayerInRoom(interiorID) then
             local door_id = "vampirebatcave" .. interiorID .. "_exit"
-            local door = TheWorld.components.interiorspawner.doors[door_id]
+            local door = TheWorld.components.interiorspawner.doors[door_id].inst
 
             bat.persists = false
             bat._target_exterior = door.components.door.target_exterior
