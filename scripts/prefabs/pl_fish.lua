@@ -156,9 +156,13 @@ local function cookedfn(bank, build, nameoverride)
     return inst
 end
 
-local function makefish(bank, build, nameoverride)
+local function makefish(bank, build, nameoverride, data)
     local function makerawfn()
-        return rawfn(bank, build, nameoverride)
+        local raw = rawfn(bank, build, nameoverride)
+        if data.cookproduct then
+            raw.components.cookable.product = data.cookproduct
+        end
+        return raw
     end
 
     local function makecookedfn()
@@ -168,10 +172,10 @@ local function makefish(bank, build, nameoverride)
     return makerawfn, makecookedfn
 end
 
-local function fish(name, bank, build, nameoverride)
-    local raw, cooked = makefish(bank, build, nameoverride)
+local function fish(name, bank, build, nameoverride, data)
+    local raw, cooked = makefish(bank, build, nameoverride, data)
     return Prefab(name, raw, assets, prefabs),
         Prefab(name.."_cooked", cooked, assets)
 end
 
-return fish("coi", "coi", "coi", "fish")
+return fish("coi", "coi", "coi", "fish", {cookproduct = "coi_cooked"})
