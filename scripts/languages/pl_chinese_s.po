@@ -990,6 +990,16 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Heat definitely improved them."
 msgstr "加热确实让它们变得更好了。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.COI"
+msgid "Now I shall eat for a day."
+msgstr "我现在要吃上一整天。"
+
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.COI_COOKED"
+msgid "Grilled to perfection."
+msgstr "烤得恰到好处。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.CONSTRUCTION_PERMIT"
 msgid "My new lab awaits!"
@@ -3450,6 +3460,11 @@ msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.STONE_DOOR"
 msgid "That door rocks."
 msgstr "那是一扇石头门。"
 
+#. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SUNKEN_RELIC"
+msgid "It sleeps with the fishes."
+msgstr "它长眠与此与鱼作伴。"
+
 #. STRINGS.CHARACTERS.GENERIC.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.GENERIC.DESCRIBE.SWINGING_LIGHT1"
 msgid "Not very enlightening."
@@ -4409,6 +4424,16 @@ msgstr "我需要先把它烤一下，然后才能毫无不良反应地吃下去
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Has an ephemeral effect on my adrenal gland."
 msgstr "对我的肾上腺有短暂的影响。"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.COI"
+msgid "Look at that mass!"
+msgstr "看看它的质量！"
+
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.COI_COOKED"
+msgid "I shall endeavor to avoid the bones."
+msgstr "我会尽量不吃到鱼刺的。"
 
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -6845,6 +6870,11 @@ msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.STONE_DOOR"
 msgid "The doorway to expanding my horizons."
 msgstr "这是能扩展我眼界的大门。"
 
+#. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SUNKEN_RELIC"
+msgid "Based on observations and angles of refraction, there appears to be something down there."
+msgstr "根据我的观察和光线的折射，这下面似乎有什么东西。"
+
 #. STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WAGSTAFF.DESCRIBE.SWINGING_LIGHT1"
 msgid "Auroral."
@@ -7809,6 +7839,16 @@ msgstr "来妈妈这！"
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Peppy!"
 msgstr "劲头十足！"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.COI"
+msgid "Wow, that's a good fortune omen."
+msgstr "哇哦，吉兆啊。"
+
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.COI_COOKED"
+msgid "I take that fortune."
+msgstr "这份好运我收下了。"
 
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -10250,6 +10290,11 @@ msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.STONE_DOOR"
 msgid "A door. I should go through it."
 msgstr "一扇门。我应该仔细检查它一下。"
 
+#. STRINGS.CHARACTERS.WALANI.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SUNKEN_RELIC"
+msgid "How am I gonna fish that out?"
+msgstr "我怎么把它弄出来？"
+
 #. STRINGS.CHARACTERS.WALANI.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WALANI.DESCRIBE.SWINGING_LIGHT1"
 msgid "It's a light. I'll take it."
@@ -11074,6 +11119,16 @@ msgstr "我希望这些是可可豆。"
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Smells great!"
 msgstr "闻起来好极了！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.COI"
+msgid "The bird caught a fish for us!"
+msgstr "那鸟为我们送来一条鱼！"
+
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.COI_COOKED"
+msgid "Fish not catching by yourself doesn't feel like camping..."
+msgstr "不是自己捕的鱼总觉得缺点什么..."
 
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.CORK
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.CORK"
@@ -12075,6 +12130,11 @@ msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SPRINKLER"
 msgid "It will take care of our lawn!"
 msgstr "它会帮我们照顾好草坪的！"
 
+#. STRINGS.CHARACTERS.WALTER.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.SUNKEN_RELIC"
+msgid "Look, Warby! Is there something in the water?"
+msgstr "沃比快看！水里面是不是有东西！"
+
 #. STRINGS.CHARACTERS.WALTER.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WALTER.DESCRIBE.TEA"
 msgid "It's tea time now! Woby!"
@@ -12804,6 +12864,16 @@ msgstr "快速烘烤会让我喝到一些美味的东西。"
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "I could pop these in my mouth or take the time to boil them."
 msgstr "我可以把它们放进嘴里，或者花时间把它们煮沸。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.COI"
+msgid "That's a fish alright."
+msgstr "是条像样的鱼。"
+
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.COI_COOKED"
+msgid "If only I had a bit of vinegar to go with it."
+msgstr "要是我有一点醋就好了。"
 
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.CORK
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.CORK"
@@ -14580,6 +14650,11 @@ msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.STONE_DOOR"
 msgid "To another room."
 msgstr "通往另一个房间。"
 
+#. STRINGS.CHARACTERS.WANDA.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SUNKEN_RELIC"
+msgid "Trouble! I really don’t want to go into the water!"
+msgstr "麻烦呐！我真的不想下水！"
+
 #. STRINGS.CHARACTERS.WANDA.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WANDA.DESCRIBE.SWINGING_LIGHT1"
 msgid "Make sure there's no place for them to hide."
@@ -15504,6 +15579,16 @@ msgstr "棒极了！"
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Could use hot water...!"
 msgstr "需要热水...！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.COI"
+msgid "Poisson!"
+msgstr "鱼！"
+
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.COI_COOKED"
+msgid "Could use a squeeze of lemon..."
+msgstr "可以挤点柠檬汁..."
 
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -17925,6 +18010,11 @@ msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.STONE_DOOR"
 msgid "Like entering a traditional stone oven."
 msgstr "从这个门进去让我感觉像是进了一个传统的石制烤箱。"
 
+#. STRINGS.CHARACTERS.WARLY.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SUNKEN_RELIC"
+msgid "It's like the wonton in a soup."
+msgstr "就像汤里的馄饨。"
+
 #. STRINGS.CHARACTERS.WARLY.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WARLY.DESCRIBE.SWINGING_LIGHT1"
 msgid "Bland."
@@ -18884,6 +18974,16 @@ msgstr "我要黑色的。"
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "It smells energizing."
 msgstr "它闻起来十分提神。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COI"
+msgid "Vanquished by Huginn's hand."
+msgstr "福金的手下败将。"
+
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COI_COOKED"
+msgid "Tis barely a morsel!"
+msgstr "一小口都不够！"
 
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -21305,6 +21405,11 @@ msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.STONE_DOOR"
 msgid "Yonder lies another room!"
 msgstr "那边通向另一个房间！"
 
+#. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SUNKEN_RELIC"
+msgid "You cannot escape my grasp for long!"
+msgstr "你没法永远逃出我手心的！"
+
 #. STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SWINGING_LIGHT1"
 msgid "It shall light my conquests!"
@@ -22254,6 +22359,16 @@ msgstr "看到它们这个颜色真奇怪。"
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Better than raw, but perhaps there's a better way to prepare them?"
 msgstr "比生的好点，但可能有更好的方法处理它们？"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COI"
+msgid "Fresh from the murky depths."
+msgstr "刚刚脱离黑暗的深渊。"
+
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COI_COOKED"
+msgid "Bland... but acceptable."
+msgstr "乏味……但还算能接受。"
 
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -24685,6 +24800,11 @@ msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.STONE_DOOR"
 msgid "A door to another room."
 msgstr "通向另一个房间的门。"
 
+#. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SUNKEN_RELIC"
+msgid "How on earth will I fish that out?"
+msgstr "我该如何捞起它？"
+
 #. STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SWINGING_LIGHT1"
 msgid "A ceiling light."
@@ -25629,6 +25749,16 @@ msgstr "这些闻起来...像是大人喝的东西。"
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "These make me feel funny."
 msgstr "我觉得它们很有趣。"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.COI"
+msgid "Nice beard!"
+msgstr "胡须很漂亮！"
+
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.COI_COOKED"
+msgid "It's not as nice anymore."
+msgstr "再也没有漂亮的胡须了。"
 
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -28050,6 +28180,11 @@ msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.STONE_DOOR"
 msgid "That door rocks!"
 msgstr "那是一扇石头门！"
 
+#. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SUNKEN_RELIC"
+msgid "It's like the fishing pond game at the fair."
+msgstr "这就像在市集上的钓鱼游戏。"
+
 #. STRINGS.CHARACTERS.WEBBER.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WEBBER.DESCRIBE.SWINGING_LIGHT1"
 msgid "Good. We need a light."
@@ -28994,6 +29129,16 @@ msgstr "这些看起来使人兴奋。"
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Who knew the will to live came in bean form?"
 msgstr "谁知道生存的意愿会以豆子的形式体现？"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.COI"
+msgid "It's almost too pretty to eat. Almost."
+msgstr "这么漂亮几乎都不舍得吃了。几乎。"
+
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.COI_COOKED"
+msgid "Life forces us to hurt each other."
+msgstr "生活迫使我们彼此伤害。"
 
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -31420,6 +31565,11 @@ msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.STONE_DOOR"
 msgid "Only leads to disappointment."
 msgstr "穿过那扇门只会有失望罢了。"
 
+#. STRINGS.CHARACTERS.WENDY.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SUNKEN_RELIC"
+msgid "Like happiness, it lays out of reach."
+msgstr "像幸福一般，它遥不可及。"
+
 #. STRINGS.CHARACTERS.WENDY.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WENDY.DESCRIBE.SWINGING_LIGHT1"
 msgid "A futile attempt to battle the darkness."
@@ -32389,6 +32539,16 @@ msgstr "小到可以装进气枪喇叭里当子弹。"
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "I eat these all the time during overnight flights."
 msgstr "我一直都在深夜飞行时吃这个。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.COI"
+msgid "Ah, dead fish. The most unappetising of all smells."
+msgstr "啊哈，死鱼。所有气味中最难闻的。"
+
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.COI_COOKED"
+msgid "Bones included at no extra cost!"
+msgstr "这鱼多出来的刺是送的，不收钱！"
 
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -34820,6 +34980,11 @@ msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.STONE_DOOR"
 msgid "Keep the doorway up while I'm gone adventuring."
 msgstr "我出门去冒险了，你别给我塌了啊。"
 
+#. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SUNKEN_RELIC"
+msgid "I hope that's not a really big fish."
+msgstr "我希望钓上来的不是一条真的大鱼。"
+
 #. STRINGS.CHARACTERS.WHEELER.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WHEELER.DESCRIBE.SWINGING_LIGHT1"
 msgid "It's a light. Nothing else."
@@ -35779,6 +35944,16 @@ msgstr "富含咖啡因。"
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Ahh, that roast smells delightful."
 msgstr "啊，烤过的味道闻起来好香。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COI"
+msgid "Some fancy variety of gymnocypris waddellii."
+msgstr "一种漂亮的高原锦鲤变种。"
+
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COI_COOKED"
+msgid "Beautifully grilled."
+msgstr "烤得真好。"
 
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -38200,6 +38375,11 @@ msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.STONE_DOOR"
 msgid "What a lovely keystone."
 msgstr "多么棒的石拱门啊。"
 
+#. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SUNKEN_RELIC"
+msgid "I'll have to hook that somehow."
+msgstr "我得想办法把他勾起来。"
+
 #. STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SWINGING_LIGHT1"
 msgid "Necessary for night reading."
@@ -39149,6 +39329,16 @@ msgstr "令人振奋的豆子"
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "FWOOSH'DED BEANS O' ZOOMINGS"
 msgstr "煮熟的兴奋豆"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.COI"
+msgid "'TIS HONOUR FISH"
+msgstr "这是一尊贵的鱼"
+
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.COI_COOKED"
+msgid "'TIS A FWOOSHED FISHY"
+msgstr "这是一条烤熟的鱼"
 
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -41570,6 +41760,11 @@ msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.STONE_DOOR"
 msgid "AS COLDETH AS ANY STONE"
 msgstr "这门像石头一样冷"
 
+#. STRINGS.CHARACTERS.WILBA.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SUNKEN_RELIC"
+msgid "WILBA CAN'ST NAUGHT REACH-ETH"
+msgstr "薇尔芭够不着它"
+
 #. STRINGS.CHARACTERS.WILBA.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WILBA.DESCRIBE.SWINGING_LIGHT1"
 msgid "'TIS A BULB O' LIGHT"
@@ -42529,6 +42724,16 @@ msgstr "这些用得上火。"
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Ahhh, that aroma."
 msgstr "啊，太香了。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.COI"
+msgid "It's kind of pretty for something that lives in the water."
+msgstr "作为水里生活的东西，已经很漂亮了。"
+
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.COI_COOKED"
+msgid "Fire make it much prettier."
+msgstr "火让它变得更漂亮了。"
 
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -44915,6 +45120,11 @@ msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.STONE_DOOR"
 msgid "Not even burnable."
 msgstr "它甚至不会着火。"
 
+#. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SUNKEN_RELIC"
+msgid "Aw. It's way down there."
+msgstr "哇。它就在那里。"
+
 #. STRINGS.CHARACTERS.WILLOW.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WILLOW.DESCRIBE.SWINGING_LIGHT1"
 msgid "Sheesh. Someone doesn't care."
@@ -45744,6 +45954,16 @@ msgstr "我应该把它们扔到火上。"
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Ah, the smell of coffee beans in the morning!"
 msgstr "啊，早上的咖啡豆的香味！"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.COI"
+msgid "I'd rather eat for a day than not at all."
+msgstr "我宁愿一天吃到晚，也不愿意啥都没的吃。"
+
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.COI_COOKED"
+msgid "I hate picking bones outta my teeth."
+msgstr "我讨厌从牙缝里挑鱼刺。"
 
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.CORK
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.CORK"
@@ -46790,6 +47010,11 @@ msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.STONE_DOOR"
 msgid "Get through the wall."
 msgstr "打通这堵墙。"
 
+#. STRINGS.CHARACTERS.WINONA.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.SUNKEN_RELIC"
+msgid "Something sank down there."
+msgstr "有什么东西沉在那底下。"
+
 #. STRINGS.CHARACTERS.WINONA.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WINONA.DESCRIBE.TEA"
 msgid "A good pot of tea sets the spirit of the day."
@@ -47644,6 +47869,16 @@ msgstr "小豆子让沃尔夫冈有了力量！"
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Is bitter beans!"
 msgstr "苦味的豆子！"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COI"
+msgid "Fancy fish."
+msgstr "好看的鱼。"
+
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COI_COOKED"
+msgid "Wolfgang will swallow fancy fish!"
+msgstr "沃尔夫冈一口吞下好看的鱼！"
 
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -50065,6 +50300,11 @@ msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.STONE_DOOR"
 msgid "Mighty door for mighty room."
 msgstr "一个大房间的大门。"
 
+#. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SUNKEN_RELIC"
+msgid "How does Wolfgang get that?"
+msgstr "沃尔夫冈要怎么拿到它呢？"
+
 #. STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SWINGING_LIGHT1"
 msgid "Wolfgang not fancy."
@@ -51009,6 +51249,16 @@ msgstr "我应该把它们煮了。"
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Canadians love their coffee."
 msgstr "加拿大人热爱他们的咖啡。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.COI"
+msgid "Sorry bud, but your whiskers don't hold a candle to mine."
+msgstr "抱歉伙计，你那点胡子还是跟我的没法比。"
+
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.COI_COOKED"
+msgid "Good bye bud."
+msgstr "再见了伙计。"
 
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -53425,6 +53675,11 @@ msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.STONE_DOOR"
 msgid "That's a door, eh."
 msgstr "一扇门，嗯。"
 
+#. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SUNKEN_RELIC"
+msgid "Yeesh. That's really far down there, eh?"
+msgstr "是的。那真的很远，是吧?"
+
 #. STRINGS.CHARACTERS.WOODIE.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WOODIE.DESCRIBE.SWINGING_LIGHT1"
 msgid "We don't need a fancy light."
@@ -54369,6 +54624,16 @@ msgstr "加水就行。"
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "No hot water?"
 msgstr "不用开水冲泡？"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.COI"
+msgid "Fish! One o'me favorites."
+msgstr "鱼肉！那可是俺最喜欢的食物之一。"
+
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.COI_COOKED"
+msgid "Th'fish roasted up good."
+msgstr "这鱼烤得真好。"
 
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -56790,6 +57055,11 @@ msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.STONE_DOOR"
 msgid "Heavier than m'anchor."
 msgstr "它比俺的船锚还要重。"
 
+#. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SUNKEN_RELIC"
+msgid "Aye! Sunk'n treasure."
+msgstr "是的！沉没的宝藏。"
+
 #. STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WOODLEGS.DESCRIBE.SWINGING_LIGHT1"
 msgid "F'ncy pants lantern."
@@ -57749,6 +58019,16 @@ msgstr "嗡嗡浆果！"
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "Smells good"
 msgstr "闻起来不错"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COI"
+msgid "Golden Glub Glub"
+msgstr "金色的噗噜噗噜"
+
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COI_COOKED"
+msgid "Watch for bones"
+msgstr "小心骨头"
 
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -60195,6 +60475,11 @@ msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.STONE_DOOR"
 msgid "Another room"
 msgstr "通向另一个房间"
 
+#. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SUNKEN_RELIC"
+msgid "Swimming?"
+msgstr "在游泳吗?"
+
 #. STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.SWINGING_LIGHT1"
 msgid "Light!"
@@ -61019,6 +61304,16 @@ msgstr "我们从火热的灌木丛中采摘的豆子。"
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "The fire brings out the magic within."
 msgstr "火会激发出内在的魔力。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.COI"
+msgid "You are quite fragrant."
+msgstr "你身上好香。"
+
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.COI_COOKED"
+msgid "At least it isn't suffering anymore."
+msgstr "至少它不再受苦了。"
 
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.CORK
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.CORK"
@@ -61990,6 +62285,11 @@ msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.STONE_DOOR"
 msgid "The stone chamber is decorated with stone temples."
 msgstr "石室饰石寺。"
 
+#. STRINGS.CHARACTERS.WORTOX.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.SUNKEN_RELIC"
+msgid "Look at my reflection! Wait, that's not..."
+msgstr "快看我的倒影！等等，那不是..."
+
 #. STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WORTOX.DESCRIBE.TEA"
 msgid "Mortal's drink."
@@ -62719,6 +63019,16 @@ msgstr "美味的零食！"
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "No longer yummy, flort!"
 msgstr "不再好吃了，小花！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.COI"
+msgid "Awwww, it so cute!"
+msgstr "啊，太可爱了！"
+
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.COI_COOKED"
+msgid "Fish are friends, not food!"
+msgstr "鱼是朋友，不是食物！"
 
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.CORK
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.CORK"
@@ -63800,6 +64110,11 @@ msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SPRINKLER"
 msgid "Yeah! Rain!"
 msgstr "耶！下雨！"
 
+#. STRINGS.CHARACTERS.WURT.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.SUNKEN_RELIC"
+msgid "Something that can't swim."
+msgstr "不会游泳的东西。"
+
 #. STRINGS.CHARACTERS.WURT.DESCRIBE.TEA
 msgctxt "STRINGS.CHARACTERS.WURT.DESCRIBE.TEA"
 msgid "Leaf water."
@@ -64664,6 +64979,16 @@ msgstr "可饮用豆类"
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.COFFEEBEANS_COOKED"
 msgid "NARCOTIC BEAN HAS REACHED OPTIMUM ROAST LEVEL"
 msgstr "提神豆类已达到最优烘焙水平"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.COI
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.COI"
+msgid "THIS ORGANIC COULDN'T DECIDE ON A COLOR"
+msgstr "这个有机物对颜色犹豫不决"
+
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.COI_COOKED
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.COI_COOKED"
+msgid "MISSING ADDON... CHIPS"
+msgstr "缺少插件...薯条"
 
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.CONSTRUCTION_PERMIT"
@@ -67085,6 +67410,11 @@ msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.STONE_DOOR"
 msgid "EXTERNAL EXPANSION PORT"
 msgstr "外部扩展端口"
 
+#. STRINGS.CHARACTERS.WX78.DESCRIBE.SUNKEN_RELIC
+msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SUNKEN_RELIC"
+msgid "IT HAS CHOSEN TO SIDE WITH MY ENEMY"
+msgstr "它和我的敌人站的太近了"
+
 #. STRINGS.CHARACTERS.WX78.DESCRIBE.SWINGING_LIGHT1
 msgctxt "STRINGS.CHARACTERS.WX78.DESCRIBE.SWINGING_LIGHT1"
 msgid "IN NEED OF AN UPGRADE"
@@ -67457,117 +67787,117 @@ msgstr "伊丽莎白"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.10
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.10"
-msgid "Catherine"
+msgid "Alice"
 msgstr "凯瑟琳"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.11
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.11"
-msgid "Charlotte"
+msgid "Agnes"
 msgstr "夏洛特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.12
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.12"
-msgid "Della"
+msgid "Catherine"
 msgstr "德拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.13
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.13"
-msgid "Lilian"
+msgid "Ebba"
 msgstr "艾芭"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.14
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.14"
-msgid "Louise"
+msgid "Edith"
 msgstr "伊迪丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.15
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.15"
-msgid "Ottilie"
+msgid "Flora"
 msgstr "弗洛拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.16
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.16"
-msgid "Ophelia"
+msgid "Florence"
 msgstr "弗洛伦斯"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.17
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.17"
-msgid "Sophronia"
+msgid "Georgette"
 msgstr "乔吉特"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.18
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.18"
-msgid "Henrietta"
+msgid "Charlotte"
 msgstr "汉丽埃塔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.19
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.19"
-msgid "Luella"
+msgid "Della"
 msgstr "卢埃拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.2
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.2"
-msgid "Alexandrina"
+msgid "Henrietta"
 msgstr "亚历山德丽娜"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.20
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.20"
-msgid "Arabella"
+msgid "Lilian"
 msgstr "莉莉安"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.21
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.21"
-msgid "Belle"
+msgid "Louise"
 msgstr "露易丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.22
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.22"
-msgid "Beryl"
+msgid "Ottilie"
 msgstr "奥蒂莉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.23
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.23"
-msgid "Briar"
+msgid "Ophelia"
 msgstr "奥菲莉娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.24
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.24"
-msgid "Beatrice"
+msgid "Sophronia"
 msgstr "索夫罗尼娅"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.3
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.3"
-msgid "Alice"
+msgid "Luella"
 msgstr "爱丽丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.4
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.4"
-msgid "Agnes"
+msgid "Alexandrina"
 msgstr "艾格妮丝"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.5
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.5"
-msgid "Ebba"
+msgid "Arabella"
 msgstr "阿拉贝拉"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.6
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.6"
-msgid "Edith"
+msgid "Belle"
 msgstr "贝尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.7
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.7"
-msgid "Flora"
+msgid "Beryl"
 msgstr "贝丽尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.8
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.8"
-msgid "Florence"
+msgid "Briar"
 msgstr "布莱尔"
 
 #. STRINGS.CITYPIGNAMES.FEMALE.9
 msgctxt "STRINGS.CITYPIGNAMES.FEMALE.9"
-msgid "Georgette"
+msgid "Beatrice"
 msgstr "比阿特丽斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.1
@@ -67577,122 +67907,122 @@ msgstr "威廉"
 
 #. STRINGS.CITYPIGNAMES.MALE.10
 msgctxt "STRINGS.CITYPIGNAMES.MALE.10"
-msgid "Herbert"
+msgid "Arthur"
 msgstr "亚瑟"
 
 #. STRINGS.CITYPIGNAMES.MALE.11
 msgctxt "STRINGS.CITYPIGNAMES.MALE.11"
-msgid "Oliver"
+msgid "Ewart"
 msgstr "尤尔特"
 
 #. STRINGS.CITYPIGNAMES.MALE.12
 msgctxt "STRINGS.CITYPIGNAMES.MALE.12"
-msgid "Merritt"
+msgid "Herbert"
 msgstr "赫伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.13
 msgctxt "STRINGS.CITYPIGNAMES.MALE.13"
-msgid "Sterling"
+msgid "Henry"
 msgstr "亨利"
 
 #. STRINGS.CITYPIGNAMES.MALE.14
 msgctxt "STRINGS.CITYPIGNAMES.MALE.14"
-msgid "Tesla"
+msgid "Charley"
 msgstr "查瑞"
 
 #. STRINGS.CITYPIGNAMES.MALE.15
 msgctxt "STRINGS.CITYPIGNAMES.MALE.15"
-msgid "Thaddeus"
+msgid "Douglas"
 msgstr "道格拉斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.16
 msgctxt "STRINGS.CITYPIGNAMES.MALE.16"
-msgid "Wellington"
+msgid "Edison"
 msgstr "爱迪生"
 
 #. STRINGS.CITYPIGNAMES.MALE.17
 msgctxt "STRINGS.CITYPIGNAMES.MALE.17"
-msgid "Gulliver"
+msgid "Edmund"
 msgstr "埃德蒙"
 
 #. STRINGS.CITYPIGNAMES.MALE.18
 msgctxt "STRINGS.CITYPIGNAMES.MALE.18"
-msgid "Clarence"
+msgid "Larkin"
 msgstr "拉金"
 
 #. STRINGS.CITYPIGNAMES.MALE.19
 msgctxt "STRINGS.CITYPIGNAMES.MALE.19"
-msgid "Frederick"
+msgid "Oliver"
 msgstr "奥利弗"
 
 #. STRINGS.CITYPIGNAMES.MALE.2
 msgctxt "STRINGS.CITYPIGNAMES.MALE.2"
-msgid "Edward"
+msgid "Clarence"
 msgstr "克拉伦斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.20
 msgctxt "STRINGS.CITYPIGNAMES.MALE.20"
-msgid "George"
+msgid "Merritt"
 msgstr "梅里特"
 
 #. STRINGS.CITYPIGNAMES.MALE.21
 msgctxt "STRINGS.CITYPIGNAMES.MALE.21"
-msgid "Charles"
+msgid "Sterling"
 msgstr "斯特灵"
 
 #. STRINGS.CITYPIGNAMES.MALE.22
 msgctxt "STRINGS.CITYPIGNAMES.MALE.22"
-msgid "Leopold"
+msgid "Tesla"
 msgstr "特斯拉"
 
 #. STRINGS.CITYPIGNAMES.MALE.23
 msgctxt "STRINGS.CITYPIGNAMES.MALE.23"
-msgid "Albert"
+msgid "Thaddeus"
 msgstr "撒迪厄斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.24
 msgctxt "STRINGS.CITYPIGNAMES.MALE.24"
-msgid "Alfred"
+msgid "Wellington"
 msgstr "惠灵顿"
 
 #. STRINGS.CITYPIGNAMES.MALE.25
 msgctxt "STRINGS.CITYPIGNAMES.MALE.25"
-msgid "Arthur"
+msgid "Gulliver"
 msgstr "格利佛"
 
 #. STRINGS.CITYPIGNAMES.MALE.3
 msgctxt "STRINGS.CITYPIGNAMES.MALE.3"
-msgid "Ewart"
+msgid "Frederick"
 msgstr "弗雷德里克"
 
 #. STRINGS.CITYPIGNAMES.MALE.4
 msgctxt "STRINGS.CITYPIGNAMES.MALE.4"
-msgid "Henry"
+msgid "Edward"
 msgstr "爱德华"
 
 #. STRINGS.CITYPIGNAMES.MALE.5
 msgctxt "STRINGS.CITYPIGNAMES.MALE.5"
-msgid "Charley"
+msgid "George"
 msgstr "乔治"
 
 #. STRINGS.CITYPIGNAMES.MALE.6
 msgctxt "STRINGS.CITYPIGNAMES.MALE.6"
-msgid "Douglas"
+msgid "Charles"
 msgstr "查尔斯"
 
 #. STRINGS.CITYPIGNAMES.MALE.7
 msgctxt "STRINGS.CITYPIGNAMES.MALE.7"
-msgid "Edison"
+msgid "Leopold"
 msgstr "利奥博德"
 
 #. STRINGS.CITYPIGNAMES.MALE.8
 msgctxt "STRINGS.CITYPIGNAMES.MALE.8"
-msgid "Edmund"
+msgid "Albert"
 msgstr "阿尔伯特"
 
 #. STRINGS.CITYPIGNAMES.MALE.9
 msgctxt "STRINGS.CITYPIGNAMES.MALE.9"
-msgid "Larkin"
+msgid "Alfred"
 msgstr "阿尔弗雷德"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.1
@@ -67702,77 +68032,77 @@ msgstr "墨尔本"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.10
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.10"
-msgid "Stockton"
+msgid "Darlington"
 msgstr "格雷维尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.11
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.11"
-msgid "Darlington"
+msgid "Peel"
 msgstr "黑斯廷斯"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.12
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.12"
-msgid "Peel"
+msgid "Derby"
 msgstr "阿伯丁"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.13
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.13"
-msgid "Derby"
+msgid "Palmerston"
 msgstr "塔尔博特"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.14
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.14"
-msgid "Palmerston"
+msgid "Gladstone"
 msgstr "泰晤士"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.15
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.15"
-msgid "Gladstone"
+msgid "Disraeli"
 msgstr "斯托克顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.16
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.16"
-msgid "Disraeli"
+msgid "Salisbury"
 msgstr "达灵顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.2
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.2"
-msgid "Salisbury"
+msgid "Kensington"
 msgstr "皮尔"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.3
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.3"
-msgid "Kensington"
+msgid "Conroy"
 msgstr "德比"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.4
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.4"
-msgid "Conroy"
+msgid "Greville"
 msgstr "帕默斯顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.5
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.5"
-msgid "Greville"
+msgid "Hastings"
 msgstr "葛莱史东"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.6
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.6"
-msgid "Hastings"
+msgid "Aberdeen"
 msgstr "迪斯雷利"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.7
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.7"
-msgid "Aberdeen"
+msgid "Talbot"
 msgstr "索尔兹伯里"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.8
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.8"
-msgid "Talbot"
+msgid "Thames"
 msgstr "肯辛顿"
 
 #. STRINGS.CITYPIGNAMES.UNISEX.9
 msgctxt "STRINGS.CITYPIGNAMES.UNISEX.9"
-msgid "Thames"
+msgid "Stockton"
 msgstr "康罗伊"
 
 #. STRINGS.CITY_PIG_BANKER_TRADE
@@ -72840,6 +73170,16 @@ msgctxt "STRINGS.NAMES.COFFEEBEANS_COOKED"
 msgid "Roasted Coffee Beans"
 msgstr "烤咖啡豆"
 
+#. STRINGS.NAMES.COI
+msgctxt "STRINGS.NAMES.COI"
+msgid "Plateau Carp"
+msgstr "高原鲤鱼"
+
+#. STRINGS.NAMES.COI_COOKED
+msgctxt "STRINGS.NAMES.COI_COOKED"
+msgid "Cooked Plateau Carp"
+msgstr "熟高原鲤鱼"
+
 #. STRINGS.NAMES.CONSTRUCTION_PERMIT
 msgctxt "STRINGS.NAMES.CONSTRUCTION_PERMIT"
 msgid "House Expansion Permit"
@@ -74137,7 +74477,7 @@ msgstr "“猪圈”奇异商店"
 
 #. STRINGS.NAMES.PIG_SHOP_ARCANE
 msgctxt "STRINGS.NAMES.PIG_SHOP_ARCANE"
-msgid "The Flying Pig\nArcane Shop"
+msgid "The Flying Pig Arcane Shop"
 msgstr "飞猪神秘商店"
 
 #. STRINGS.NAMES.PIG_SHOP_BANK
@@ -74162,22 +74502,22 @@ msgstr "高纯度熟猪食店"
 
 #. STRINGS.NAMES.PIG_SHOP_FLORIST
 msgctxt "STRINGS.NAMES.PIG_SHOP_FLORIST"
-msgid "Miss Sow's\nFloral Arrangements"
+msgid "Miss Sow's Floral Arrangements"
 msgstr "母猪小姐的花香物语"
 
 #. STRINGS.NAMES.PIG_SHOP_GENERAL
 msgctxt "STRINGS.NAMES.PIG_SHOP_GENERAL"
-msgid "Pigg and Pigglet's\nGeneral Store"
+msgid "Pigg and Pigglet's General Store"
 msgstr "猪猪与居居的杂货店"
 
 #. STRINGS.NAMES.PIG_SHOP_HATSHOP
 msgctxt "STRINGS.NAMES.PIG_SHOP_HATSHOP"
-msgid "The Sow's Ear\nHat Shop"
+msgid "The Sow's Ear Hat Shop"
 msgstr "母猪耳朵帽子店"
 
 #. STRINGS.NAMES.PIG_SHOP_HOOFSPA
 msgctxt "STRINGS.NAMES.PIG_SHOP_HOOFSPA"
-msgid "Curly Tails\nMud Spa"
+msgid "Curly Tails Mud Spa"
 msgstr "卷尾巴的泥浆水疗店"
 
 #. STRINGS.NAMES.PIG_SHOP_PRODUCE
@@ -74192,7 +74532,7 @@ msgstr "小发明匠的塔楼"
 
 #. STRINGS.NAMES.PIG_SHOP_WEAPONS
 msgctxt "STRINGS.NAMES.PIG_SHOP_WEAPONS"
-msgid "The Boar's Tusk\nWeapon Shop"
+msgid "The Boar's Tusk Weapon Shop"
 msgstr "野猪獠牙武器店"
 
 #. STRINGS.NAMES.PIKO
