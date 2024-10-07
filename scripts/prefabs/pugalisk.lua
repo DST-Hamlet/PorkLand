@@ -320,7 +320,6 @@ local function bodyfn()
 
     MakeObstaclePhysics(inst, 1)
 
-    inst:AddTag("epic")
     inst:AddTag("monster")
     inst:AddTag("hostile")
     inst:AddTag("pugalisk")
@@ -455,7 +454,6 @@ local function tailfn()
     inst.name = STRINGS.NAMES.PUGALISK
 
     inst:AddTag("tail")
-    inst:AddTag("epic")
     inst:AddTag("monster")
     inst:AddTag("hostile")
     inst:AddTag("pugalisk")
