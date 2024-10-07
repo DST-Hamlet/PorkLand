@@ -22,8 +22,8 @@ local assets =
     Asset("IMAGE", "images/colour_cubes/pork_lush_dusk_test.tex"),
     Asset("IMAGE", "images/colour_cubes/pork_lush_day_test.tex"),
 
-    Asset("IMAGE", "images/could/fog_cloud.tex"),
-    Asset("IMAGE", "images/could/fog_cloud_interior.tex"),
+    Asset("IMAGE", "images/cloud/fog_cloud.tex"),
+    Asset("IMAGE", "images/cloud/fog_cloud_interior.tex"),
 }
 
 local prefabs =
@@ -87,7 +87,7 @@ local function common_postinit(inst)
     inst.WaveComponent:SetWaveParams(13.5, 2.5, -1)  -- wave texture u repeat, forward distance between waves
     inst.WaveComponent:SetWaveSize(80, 3.5)  -- wave mesh width and height
     inst.WaveComponent:SetWaveMotion(0.3, 0.5, 0.25)
-    inst.WaveComponent:SetWaveTexture(resolvefilepath("images/could/fog_cloud.tex"))
+    inst.WaveComponent:SetWaveTexture(resolvefilepath("images/cloud/fog_cloud.tex"))
     -- See source\game\components\WaveRegion.h
     inst.WaveComponent:SetWaveEffect("shaders/waves.ksh")
 
