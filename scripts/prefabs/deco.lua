@@ -29,7 +29,7 @@ local function on_window_built(inst)
             local animdata = shallowcopy(inst.components.rotatingbillboard.animdata)
             animdata.bank = inst.bank
             if DecoCreator:IsBuiltOnBackWall(inst) then
-                animdata.bank = inst.bank:sub(1, -6) -- Remove _side
+                animdata.bank = inst.bank
             end
 
             inst.animdata = animdata

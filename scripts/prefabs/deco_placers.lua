@@ -391,7 +391,7 @@ local function WindowWidePlaceTest(inst)
             canbuild = false
         end
 
-        ents = TheSim:FindEntities(newpt.x, 0, newpt.z, 5, {"wallsection"})
+        ents = TheSim:FindEntities(newpt.x, 0, newpt.z, 7, {"wallsection"})
 
         if #ents < 1 and canbuild then
             inst.accept_placement = true

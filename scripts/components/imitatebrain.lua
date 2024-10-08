@@ -9,26 +9,40 @@ local ImitateBrain = Class(function(self, inst)
     {
         ["idle"] = {}
     }
-    self.currentbehavior = "idle"
+    self.currentbehavior = nil
+
+    self.choosebrainfn = function(self, inst)
+        return "idle"
+    end
 
     self.currentbehaviordata = {}
 end)
 
 function ImitateBrain:Start()
     if not self.imitatetask then
-        self.imitatetask = self.inst:DoPeriodicTask(updatetime, function() self:UpdateBrain(updatetime) end, updatetime * math.random())
+        local updatetime = self.updatetime + self.updatetime * random()
+        self.imitatetask = self.inst:DoTaskInTime(updatetime, function() self:UpdateBrain(updatetime) end)
     end
 end
 
 function ImitateBrain:UpdateBrain(dt)
+    if self.currentbehavior == nil then
+        local newbehavior = self:choosebrainfn(inst)
+        self:GoToBehavior(newbehavior)
+    end
     if self.behaviors[self.currentbehavior] then
         if self.behaviors[self.currentbehavior].updatefn then
             self.behaviors[self.currentbehavior].updatefn(self.inst, dt, self.currentbehaviordata, self.currentbraindata)
         end
     else
         print("WARNING: ImitateBrain.currentbehavior is not valid", self.currentbehavior)
-        self.currentbehavior = "idle"
+        self.currentbehavior = nil
     end
+    if self.imitatetask then
+        self.imitatetask = nil
+    end
+    local updatetime = self.updatetime + self.updatetime * random()
+    self.imitatetask = self.inst:DoTaskInTime(updatetime, function() self:UpdateBrain(updatetime) end)
 end
 
 function ImitateBrain:GoToBehavior(behaviorname)
