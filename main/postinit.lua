@@ -26,6 +26,7 @@ local component_posts = {
     "colourcube",
     "combat",
     "crop",
+    "deployable",
     "dest",
     "drownable",
     "dryer",
