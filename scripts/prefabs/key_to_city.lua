@@ -3,15 +3,8 @@ local assets = {
 }
 
 local function OnActivate(inst)
-    -- inst.AnimState:PlayAnimation("use")
-    -- inst.AnimState:PushAnimation("idle")
-    -- inst.AnimState:PushAnimation("proximity_loop", true)
-    inst.SoundEmitter:PlaySound("dontstarve/common/researchmachine_lvl1_run", "sound")
-
-    inst:DoTaskInTime(1.5, function()
-        inst.SoundEmitter:KillSound("sound")
-        inst.SoundEmitter:PlaySound("dontstarve/common/researchmachine_lvl1_ding", "sound")
-    end)
+    inst.SoundEmitter:KillSound("sound")
+    inst.SoundEmitter:PlaySound("dontstarve/common/researchmachine_lvl1_ding", "sound")
 end
 
 local function fn()
@@ -27,6 +20,7 @@ local function fn()
     inst.AnimState:SetBank("keytocity")
     inst.AnimState:SetBuild("key_to_city")
     inst:AddTag("prototyper")
+    inst:AddTag("prototyper_ignore_inlimbo")
     inst:AddTag("no_interior_protoyping")
     inst:AddTag("irreplaceable")
 

@@ -45,10 +45,6 @@ local function OnItemGet(inst, data)
         end
         item:ListenForEvent("stacksizechange", item.oinc_sound_stackchange_listener)
     end
-
-    if item.prefab == "key_to_city" then
-        inst.components.builder.city_bonus = 2
-    end
 end
 
 local function OnItemLose(inst, data)
@@ -65,10 +61,6 @@ local function OnItemLose(inst, data)
             item:RemoveEventCallback("stacksizechange", item.oinc_sound_stackchange_listener)
             item.oinc_sound_stackchange_listener = nil
         end
-    end
-
-    if item.prefab == "key_to_city" and not activeitem then
-        inst.components.builder.city_bonus = 0
     end
 end
 
