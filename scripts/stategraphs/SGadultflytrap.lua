@@ -164,6 +164,10 @@ local states =
             TimeEvent(25 * FRAMES, function(inst)  inst.Transform:SetScale(inst.start_scale + (inst.inc_scale*5), inst.start_scale + (inst.inc_scale*5), inst.start_scale + (inst.inc_scale*5)) end),
         },
 
+        onexit = function(inst)
+            inst.Transform:SetScale(inst.start_scale + (inst.inc_scale*5), inst.start_scale + (inst.inc_scale*5), inst.start_scale + (inst.inc_scale*5))
+        end,
+
         events =
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("grow_pst") end),

@@ -254,6 +254,7 @@ local states=
 
         onexit = function(inst, target)
             inst.AnimState:SetBuild(inst.new_build)
+            inst.Transform:SetScale(inst.start_scale + (inst.inc_scale*5), inst.start_scale + (inst.inc_scale*5), inst.start_scale + (inst.inc_scale*5))
         end,
 
         events =
