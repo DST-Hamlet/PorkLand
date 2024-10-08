@@ -2,6 +2,23 @@ local assets = {
     Asset("ANIM", "anim/key_to_city.zip"),
 }
 
+local function OnActivate(inst)
+    inst:DoTaskInTime(0, function()
+        inst.SoundEmitter:KillSound("sound")
+        inst.SoundEmitter:PlaySound("dontstarve/common/researchmachine_lvl1_ding", "sound")
+
+        if inst.killsoundtask then
+            inst.killsoundtask:Cancel()
+            inst.killsoundtask = nil
+        end
+
+        inst.killsoundtask = inst:DoTaskInTime(2, function()
+            inst.SoundEmitter:KillSound("sound")
+            inst.killsoundtask = nil
+        end)
+    end)
+end
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -33,6 +50,7 @@ local function fn()
 
     inst:AddComponent("prototyper")
     inst.components.prototyper.trees = TUNING.PROTOTYPER_TREES.CITY
+    inst.components.prototyper.onactivate = OnActivate
 
     MakeHauntableLaunch(inst)
 
