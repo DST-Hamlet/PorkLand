@@ -190,7 +190,6 @@ end
 
 local function GetSpawnPointForPlayer(player)
     local pt = player:GetPosition()
-    local angle = math.random() * 2 * PI
     local radius = BAT_SPAWN_DIST
 
     local targetpt = FindNearbyLand(pt, math.random() * radius, 12)

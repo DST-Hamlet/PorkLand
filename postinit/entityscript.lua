@@ -253,7 +253,7 @@ function EntityScript:IsInSameIsland(target)
         return false
     end
 
-    local x, y, z = self.Transform:GetWorldPosition()
+    local x, _, z = self.Transform:GetWorldPosition()
     local tx, ty, tz = target.Transform:GetWorldPosition()
 
     local current_island = TheWorld.Map:GetIslandTagAtPoint(x, 0, z)

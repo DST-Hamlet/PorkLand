@@ -496,13 +496,13 @@ AddRecipe2("hedge_block_item", {Ingredient("clippings", 9), Ingredient("nitre", 
 AddRecipe2("hedge_cone_item", {Ingredient("clippings", 9), Ingredient("nitre", 1)}, TECH.CITY, {nounlock = true, numtogive = 3})
 AddRecipe2("hedge_layered_item", {Ingredient("clippings", 9), Ingredient("nitre", 1)}, TECH.CITY, {nounlock = true, numtogive = 3})
 
-AddRecipe2("lawnornament_1", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_1_placer", min_spacing=2, testfn = NotInInterior, canbuild = NotInInterior_canbuild})
-AddRecipe2("lawnornament_2", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_2_placer", min_spacing=2, testfn = NotInInterior, canbuild = NotInInterior_canbuild})
-AddRecipe2("lawnornament_3", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_3_placer", min_spacing=2, testfn = NotInInterior, canbuild = NotInInterior_canbuild})
-AddRecipe2("lawnornament_4", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_4_placer", min_spacing=2, testfn = NotInInterior, canbuild = NotInInterior_canbuild})
-AddRecipe2("lawnornament_5", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_5_placer", min_spacing=2, testfn = NotInInterior, canbuild = NotInInterior_canbuild})
-AddRecipe2("lawnornament_6", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_6_placer", min_spacing=2, testfn = NotInInterior, canbuild = NotInInterior_canbuild})
-AddRecipe2("lawnornament_7", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 1, placer = "lawnornament_7_placer", min_spacing=2, testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("lawnornament_1", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 2, placer = "lawnornament_1_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("lawnornament_2", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 2, placer = "lawnornament_2_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("lawnornament_3", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 2, placer = "lawnornament_3_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("lawnornament_4", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 2, placer = "lawnornament_4_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("lawnornament_5", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 2, placer = "lawnornament_5_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("lawnornament_6", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 2, placer = "lawnornament_6_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
+AddRecipe2("lawnornament_7", {Ingredient("oinc", 10)}, TECH.CITY, {nounlock = true, min_spacing = 2, placer = "lawnornament_7_placer", testfn = NotInInterior, canbuild = NotInInterior_canbuild})
 
 --- HOME ---
 AddRecipe2("player_house_cottage_craft", {Ingredient("oinc", 10)}, TECH.HOME, {nounlock = true}, {"HOME_MISC"})

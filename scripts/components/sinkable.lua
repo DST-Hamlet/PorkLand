@@ -52,7 +52,7 @@ function Sinkable:SetOnHitWaterfn(fn)
 end
 
 function Sinkable:OnHitWater()
-    local x, y, z = self.inst.Transform:GetWorldPosition()
+    local x, _, z = self.inst.Transform:GetWorldPosition()
     if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, 0, z) then
         self.sunken = true
         self.inst.AnimState:SetLayer(LAYER_BACKGROUND)

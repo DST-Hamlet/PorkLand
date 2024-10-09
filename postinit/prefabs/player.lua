@@ -55,7 +55,6 @@ local function OnItemGet(inst, data)
 end
 
 local function OnItemLose(inst, data)
-    local activeitem = data.activeitem
     local item = data.prev_item
     if not item then
         return

@@ -2,7 +2,7 @@ local SHADER = "shaders/anim_sunken.ksh"
 
 local assets =
 {
-	Asset("ANIM", "anim/bubbles_sunk.zip"),
+    Asset("ANIM", "anim/bubbles_sunk.zip"),
     Asset("ANIM", "anim/sunken_visual_slot.zip"),
     Asset("SHADER", SHADER),
 }
@@ -10,25 +10,25 @@ local assets =
 
 
 local function ontimerdone(inst, data)
-	if data.name == "destroy" then
-		inst:Remove()
-	end
+    if data.name == "destroy" then
+        inst:Remove()
+    end
 end
 
 local function dobubblefx(inst)
-	inst.AnimState:PlayAnimation("bubble_pre")
-	inst.AnimState:PushAnimation("bubble_loop")
-	inst.AnimState:PushAnimation("bubble_pst", false)
-	inst:DoTaskInTime((math.random() * 15 + 15), dobubblefx)
+    inst.AnimState:PlayAnimation("bubble_pre")
+    inst.AnimState:PushAnimation("bubble_loop")
+    inst.AnimState:PushAnimation("bubble_pst", false)
+    inst:DoTaskInTime((math.random() * 15 + 15), dobubblefx)
 end
 
 local function init(inst, item)
-	if not item then
+    if not item then
         inst:Remove()
         return
     end
 
-	inst.Transform:SetPosition(item.Transform:GetWorldPosition())
+    inst.Transform:SetPosition(item.Transform:GetWorldPosition())
 
     if item and (item.components.health or item.components.murderable) then
         if item.components.lootdropper then
@@ -56,13 +56,13 @@ local function init(inst, item)
 end
 
 local function fn()
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
-	inst.AnimState:SetBank("bubbles_sunk")
-	inst.AnimState:SetBuild("bubbles_sunk")
+    inst.AnimState:SetBank("bubbles_sunk")
+    inst.AnimState:SetBuild("bubbles_sunk")
 
     inst:AddTag("sunkencontainer")
     inst:AddTag("fishable")
@@ -77,17 +77,17 @@ local function fn()
     end
 
     inst:AddComponent("inspectable")
-    
+
     inst:SetPrefabNameOverride("SUNKEN_RELIC")
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("sunkenprefab")
     inst.components.container.canbeopened = false
 
-	inst:AddComponent("timer")
-	inst:ListenForEvent("timerdone", ontimerdone)
+    inst:AddComponent("timer")
+    inst:ListenForEvent("timerdone", ontimerdone)
 
-	inst:DoTaskInTime((math.random() * 15 + 15), dobubblefx)
+    inst:DoTaskInTime((math.random() * 15 + 15), dobubblefx)
 
     inst:ListenForEvent("itemget", function(inst, data)
         if not inst.visual then
@@ -98,9 +98,9 @@ local function fn()
         inst.visual:SetUp(inst, data.item)
     end)
 
-	inst.Initialize = init
+    inst.Initialize = init
 
-	return inst
+    return inst
 end
 
 local function SetUp(inst, parent, item)

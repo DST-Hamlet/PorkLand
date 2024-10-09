@@ -121,12 +121,12 @@ local pl_fx = {
         fn = BelowGroundFx,
     },
     {
-		name = "clouds_bombsplash",
-    	bank = "clouds_bombsplash",
-    	build = "clouds_bombsplash",
-    	anim = "splash",
+        name = "clouds_bombsplash",
+        bank = "clouds_bombsplash",
+        build = "clouds_bombsplash",
+        anim = "splash",
         fn = BelowGroundFx,
-	},
+    },
     {
         name = "circle_puff_fx",
         bank = "circle_puff_fx",
