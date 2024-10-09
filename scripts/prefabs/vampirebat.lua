@@ -101,7 +101,7 @@ local function OnSave(inst, data)
     if inst:HasTag("batfrenzy") then
         data.batfrenzy = true
     end
-    if inst.forcesleep then
+    if inst.components.sleeper.hibernate then
         data.forcesleep = true
     end
     if inst.sg:HasStateTag("flight") then
