@@ -108,7 +108,7 @@ local states =
         timeline =
         {
             TimeEvent(16 * FRAMES, function(inst)
-                LandFlyingCreature(inst)
+                PL_LandFlyingCreature(inst)
             end)
         }
     },
@@ -260,7 +260,7 @@ local states =
         onenter = function(inst)
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("sleep_loop", true)
-            LandFlyingCreature(inst)
+            PL_LandFlyingCreature(inst)
             inst:PerformBufferedAction()
         end,
 
@@ -271,10 +271,10 @@ local states =
             end),
         },
 
-        onexit = RaiseFlyingCreature,
+        onexit = PL_RaiseFlyingCreature,
     },
 }
 
-CommonStates.AddFrozenStates(states, LandFlyingCreature, RaiseFlyingCreature)
+CommonStates.AddFrozenStates(states, PL_LandFlyingCreature, PL_RaiseFlyingCreature)
 
 return StateGraph("gnat", states, events, "spawn", actionhandlers)

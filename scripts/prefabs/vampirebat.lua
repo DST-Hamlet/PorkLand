@@ -157,7 +157,7 @@ local function fn()
 
     inst.Transform:SetFourFaced()
 
-    MakeFlyingCharacterPhysics(inst, 1, 0.5)
+    MakeFlyingCharacterPhysics(inst, 50, 0.5)
     MakeInventoryFloatable(inst)
 
     inst:AddTag("vampirebat")

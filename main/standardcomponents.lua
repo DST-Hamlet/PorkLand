@@ -410,6 +410,16 @@ function MakeInventoryPhysics(inst, mass, rad, ...)
     return physics
 end
 
+local _ChangeToInventoryItemPhysics = ChangeToInventoryItemPhysics
+function ChangeToInventoryItemPhysics(inst, mass, rad, ...)
+    local physics = _ChangeToInventoryItemPhysics(inst, mass, rad, ...)
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
 function MakeThrowablePhysics(inst, mass, rad, ...)
     local physics = MakeInventoryPhysics(inst, mass, rad, ...)
     inst.Physics:SetFriction(100)
@@ -425,6 +435,46 @@ function MakeProjectilePhysics(inst, mass, rad, ...)
     if TheWorld:HasTag("porkland") then
         physics:ClearCollidesWith(COLLISION.LIMITS)
         physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
+function ChangeToFlyingCharacterPhysics(inst, mass, rad)
+    local phys = inst.Physics
+    if mass then
+        phys:SetMass(mass)
+        phys:SetFriction(0)
+    end
+    phys:SetCollisionGroup(COLLISION.FLYERS)
+    phys:ClearCollisionMask()
+    phys:CollidesWith((TheWorld:CanFlyingCrossBarriers() and COLLISION.GROUND) or COLLISION.WORLD)
+    phys:CollidesWith(COLLISION.FLYERS)
+    if rad then
+        phys:SetCapsule(rad, 1)
+    end
+    if mass then
+        phys:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return phys
+end
+
+local _ChangeToCharacterPhysics = ChangeToCharacterPhysics
+function ChangeToCharacterPhysics(inst, mass, rad, ...)
+    local physics = _ChangeToCharacterPhysics(inst, mass, rad, ...)
+    if mass then
+        physics:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return physics
+end
+
+local _MakeFlyingCharacterPhysics = MakeFlyingCharacterPhysics
+function MakeFlyingCharacterPhysics(inst, mass, rad, ...)
+    local physics = _MakeFlyingCharacterPhysics(inst, mass, rad, ...)
+    inst.OnLandPhysics = function(inst)
+        ChangeToCharacterPhysics(inst, mass, rad)
+    end
+    inst.OnRaisePhysics = function(inst)
+        ChangeToFlyingCharacterPhysics(inst, mass, rad)
     end
     return physics
 end

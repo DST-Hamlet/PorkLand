@@ -57,7 +57,7 @@ local states = {
 
         timeline =
         {
-            TimeEvent(23 * FRAMES, function(inst) LandFlyingCreature(inst) end),
+            TimeEvent(23 * FRAMES, function(inst) PL_LandFlyingCreature(inst) end),
         },
     },
 
@@ -154,7 +154,7 @@ local states = {
         timeline =
         {
             TimeEvent(16 * FRAMES, function(inst)
-                LandFlyingCreature(inst)
+                PL_LandFlyingCreature(inst)
             end)
         },
 
@@ -169,7 +169,7 @@ local states = {
             end),
         },
 
-        onexit = RaiseFlyingCreature,
+        onexit = PL_RaiseFlyingCreature,
     },
 }
 
@@ -178,32 +178,32 @@ CommonStates.AddSleepStates(states,
 {
     starttimeline =
     {
-        TimeEvent(24 * FRAMES, LandFlyingCreature),
+        TimeEvent(24 * FRAMES, PL_LandFlyingCreature),
     },
     waketimeline =
     {
-        TimeEvent(19 * FRAMES, RaiseFlyingCreature),
+        TimeEvent(19 * FRAMES, PL_RaiseFlyingCreature),
     },
 })
 
 
 CommonStates.AddExtraStateFn(states, "sleep",
 {
-    onexit = RaiseFlyingCreature
+    onexit = PL_RaiseFlyingCreature
 })
 
 CommonStates.AddExtraStateFn(states, "sleeping",
 {
-    onenter = LandFlyingCreature,
-    onexit = RaiseFlyingCreature
+    onenter = PL_LandFlyingCreature,
+    onexit = PL_RaiseFlyingCreature
 })
 
 CommonStates.AddExtraStateFn(states, "wake",
 {
-    onenter = LandFlyingCreature,
-    onexit = RaiseFlyingCreature
+    onenter = PL_LandFlyingCreature,
+    onexit = PL_RaiseFlyingCreature
 })
 
-CommonStates.AddFrozenStates(states, LandFlyingCreature, RaiseFlyingCreature)
+CommonStates.AddFrozenStates(states, PL_LandFlyingCreature, PL_RaiseFlyingCreature)
 
 return StateGraph("glowfly", states, events, "idle", actionhandlers)

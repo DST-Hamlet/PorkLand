@@ -364,17 +364,36 @@ function HandleDugGround(dug_ground, x, y, z, ...)
     end
 end
 
-local _LandFlyingCreature = LandFlyingCreature
-function LandFlyingCreature(creature, ...)
+function PL_LandFlyingCreature(creature)
     if creature:HasTag("flying") then
-        return _LandFlyingCreature(creature, ...)
+        creature:RemoveTag("flying")
+        creature:PushEvent("on_landed")
+        if creature.OnLandPhysics then
+            creature:OnLandPhysics()
+        end
     end
 end
 
-local _RaiseFlyingCreature = RaiseFlyingCreature
-function RaiseFlyingCreature(creature, ...)
+local NORAISE_state =
+{
+    ["sleep"] = true,
+    ["sleeping"] = true,
+    ["wake"] = true,
+    ["frozen"] = true,
+    ["thaw"] = true
+}
+
+function PL_RaiseFlyingCreature(creature, ...)
+    if creature.sg.nextstate and NORAISE_state[creature.sg.nextstate] then
+        return -- 保持落地状态的连续性
+    end
+
     if not creature:HasTag("flying") then
-        return _RaiseFlyingCreature(creature, ...)
+        creature:AddTag("flying")
+        creature:PushEvent("on_no_longer_landed")
+        if creature.OnRaisePhysics then
+            creature:OnRaisePhysics()
+        end
     end
 end
 
