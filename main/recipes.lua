@@ -234,6 +234,11 @@ AddRecipeFilter({
     home_prototyper = true,
 }, 1)
 
+AddPrototyperDef("hogusporkusator", {
+    icon_atlas = CRAFTING_ICONS_ATLAS,
+    icon_image = "station_arcane.tex",
+    is_crafting_station = false,
+})
 AddPrototyperDef("key_to_city", {
     icon_atlas = "images/hud/pl_crafting_menu_icons.xml",
     icon_image = "filter_city.tex",
