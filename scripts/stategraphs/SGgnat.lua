@@ -258,10 +258,10 @@ local states =
         tags = {"busy", "landing"},
 
         onenter = function(inst)
-            inst:PerformBufferedAction()
             inst.Physics:Stop()
             inst.AnimState:PlayAnimation("sleep_loop", true)
             LandFlyingCreature(inst)
+            inst:PerformBufferedAction()
         end,
 
         events =
