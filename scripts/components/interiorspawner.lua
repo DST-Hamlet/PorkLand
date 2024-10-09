@@ -831,6 +831,9 @@ function InteriorSpawner:SpawnInterior(interior)
 
                 if prefab.forcesleep then
                     object.components.sleeper:GoToSleep()
+                    if object.sg and object.sg:HasState("sleeping") then
+                        object.sg:GoToState("sleeping")
+                    end
                 end
 
                 if prefab.shelfitems then

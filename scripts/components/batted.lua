@@ -85,6 +85,7 @@ end
 local function hibernate(bat)
     bat.components.sleeper.hibernate = true
     bat.components.sleeper:GoToSleep()
+    bat.sg:GoToState("sleeping")
 end
 
 -- Spawns a bat in a random bat cave

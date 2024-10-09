@@ -129,6 +129,7 @@ local function OnLoad(inst, data)
     if data.hibernatesleep then
         inst.components.sleeper.hibernate = true
         inst.components.sleeper:GoToSleep()
+        inst.sg:GoToState("sleeping")
     end
 
     if data.flying then
