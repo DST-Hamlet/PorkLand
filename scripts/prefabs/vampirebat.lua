@@ -19,7 +19,7 @@ SetSharedLootTable("vampirebat",
 {
     {"monstermeat",      0.5},
     {"bat_hide",         0.5},
-    {"vampire_bat_wing", 0.1},
+    {"vampire_bat_wing", 0.25},
     -- {"batwing", 0.1},
 })
 

@@ -1,6 +1,6 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-require("components/sleeper")
+local Sleeper = require("components/sleeper")
 
 local _StandardSleepChecks = StandardSleepChecks
 function StandardSleepChecks(inst, ...)
@@ -21,4 +21,13 @@ function StandardWakeChecks(inst, ...)
         return true
     end
     return _StandardWakeChecks(inst, ...)
+end
+
+local _SetTest = Sleeper.SetTest
+function Sleeper:SetTest(fn, time, ...)
+    if self.testtask and self.testtask.fn == fn then
+        return
+    end
+
+    return _SetTest(self, fn, time, ...)
 end
