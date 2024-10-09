@@ -257,7 +257,7 @@ return Class(function(self, inst)
     end
 
     local function StartTreeRainSound(intensity)
-        if ThePlayer and ThePlayer:HasTag("inside_interior") then
+        if _activatedplayer and _activatedplayer:HasTag("inside_interior") then
             _treerainsound = false
             _world.SoundEmitter:KillSound("treerainsound")
             return
@@ -277,7 +277,7 @@ return Class(function(self, inst)
     end
 
     local function StartUmbrellaRainSound()
-        if ThePlayer and ThePlayer:HasTag("inside_interior") then
+        if _activatedplayer and _activatedplayer:HasTag("inside_interior") then
             _umbrellarainsound = false
             _world.SoundEmitter:KillSound("umbrellarainsound")
             return
@@ -854,6 +854,10 @@ return Class(function(self, inst)
             if _activatedplayer == nil then
                 StartTreeRainSound(0)
                 StopUmbrellaRainSound()
+            elseif _activatedplayer:HasTag("inside_interior") then
+                StopAmbientRainSound()
+                StopTreeRainSound()
+                StopUmbrellaRainSound()
             elseif _activatedplayer.replica.sheltered ~= nil and _activatedplayer.replica.sheltered:IsSheltered() then
                 StartTreeRainSound(preciprate_sound)
                 StopUmbrellaRainSound()
@@ -942,7 +946,7 @@ return Class(function(self, inst)
 
         -- Update pollen
         if _hasfx then
-            if _season ~= "lush" or (ThePlayer ~= nil and _world.components.sandstorms ~= nil and _world.components.sandstorms:IsInSandstorm(ThePlayer)) then
+            if _season ~= "lush" or (_activatedplayer ~= nil and _world.components.sandstorms ~= nil and _world.components.sandstorms:IsInSandstorm(_activatedplayer)) then
                 _pollenfx.particles_per_tick = 0
             elseif _seasonprogress < .2 then
                 local ramp = _seasonprogress / .2
