@@ -59,6 +59,20 @@ function SpawnUtil.IsSurroundedByLandTile(x, y, radius)
     return SpawnUtil.IsSurroundedByTile(x, y, radius, IsLandTile)
 end
 
+local CANOPYTILES = {
+    [WORLD_TILES.DEEPRAINFOREST] = true,
+    [WORLD_TILES.GASJUNGLE] = true,
+    [WORLD_TILES.PIGRUINS] = true, -- 需要注意的是, 只有世界第一次加载前的PIGRUINS必定算作阴影区域
+}
+
+local function IsCanopyTile(tile)
+    return CANOPYTILES[tile] == true
+end
+
+function SpawnUtil.IsSurroundedByCanopyTile(x, y, radius)
+    return SpawnUtil.IsSurroundedByTile(x, y, radius, IsCanopyTile)
+end
+
 function SpawnUtil.IsCloseToTile(x, y, radius, check)
     radius = radius or 1
     for i = -radius, radius do
