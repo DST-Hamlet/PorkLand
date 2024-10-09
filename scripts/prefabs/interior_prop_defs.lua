@@ -1367,13 +1367,13 @@ local no_general_decor = {dart_trap = true, spear_trap = true, treasure_rarereli
     treasure = true, treasure_secret = true, treasure_aporkalypse = true, treasure_endswell = true}
 local room_creatures  = {
     {
-        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), startstate = "forcesleep"  },
-        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), startstate = "forcesleep"  },
+        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), forcesleep = true },
+        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), forcesleep = true },
     },
     {
-        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), startstate = "forcesleep"  },
-        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), startstate = "forcesleep"  },
-        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), startstate = "forcesleep" },
+        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), forcesleep = true },
+        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), forcesleep = true },
+        {name = "vampirebat", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2), forcesleep = true },
     },
     {
         {name = "scorpion", x_offset = (math.random()*7) - (7/2), z_offset = (math.random()*13) - (13/2) },

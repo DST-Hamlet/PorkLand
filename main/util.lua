@@ -364,6 +364,20 @@ function HandleDugGround(dug_ground, x, y, z, ...)
     end
 end
 
+local _LandFlyingCreature = LandFlyingCreature
+function LandFlyingCreature(creature, ...)
+    if creature:HasTag("flying") then
+        return _LandFlyingCreature(creature, ...)
+    end
+end
+
+local _RaiseFlyingCreature = RaiseFlyingCreature
+function RaiseFlyingCreature(creature, ...)
+    if not creature:HasTag("flying") then
+        return _RaiseFlyingCreature(creature, ...)
+    end
+end
+
 function IsPlayerInAntDisguise(player)
     if not (player and player:IsValid()) then
         return false

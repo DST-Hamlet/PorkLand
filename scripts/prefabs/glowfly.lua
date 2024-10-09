@@ -92,6 +92,7 @@ local function commonfn()
     inst:AddTag("wildfireprotected")
 
     MakeTinyFlyingCharacterPhysics(inst, 1, .5)
+    MakeInventoryFloatable(inst)
 
     inst.Transform:SetSixFaced()
     inst.Transform:SetScale(0.6, 0.6, 0.6)

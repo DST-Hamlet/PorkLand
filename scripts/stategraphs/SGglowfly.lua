@@ -54,6 +54,11 @@ local states = {
                 inst.components.lootdropper:DropLoot()
             end
         end,
+
+        timeline =
+        {
+            TimeEvent(23 * FRAMES, function(inst) LandFlyingCreature(inst) end),
+        },
     },
 
     State{
@@ -146,6 +151,13 @@ local states = {
             inst.AnimState:PlayAnimation("cocoon_idle_pre")
         end,
 
+        timeline =
+        {
+            TimeEvent(16 * FRAMES, function(inst)
+                LandFlyingCreature(inst)
+            end)
+        },
+
         events = {
             EventHandler("animover", function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()
@@ -156,10 +168,42 @@ local states = {
                 cocoon.Transform:SetPosition(x, y, z)
             end),
         },
+
+        onexit = RaiseFlyingCreature,
     },
 }
 
-CommonStates.AddSleepStates(states)
-CommonStates.AddFrozenStates(states)
+
+CommonStates.AddSleepStates(states,
+{
+    starttimeline =
+    {
+        TimeEvent(24 * FRAMES, LandFlyingCreature),
+    },
+    waketimeline =
+    {
+        TimeEvent(19 * FRAMES, RaiseFlyingCreature),
+    },
+})
+
+
+CommonStates.AddExtraStateFn(states, "sleep",
+{
+    onexit = RaiseFlyingCreature
+})
+
+CommonStates.AddExtraStateFn(states, "sleeping",
+{
+    onenter = LandFlyingCreature,
+    onexit = RaiseFlyingCreature
+})
+
+CommonStates.AddExtraStateFn(states, "wake",
+{
+    onenter = LandFlyingCreature,
+    onexit = RaiseFlyingCreature
+})
+
+CommonStates.AddFrozenStates(states, LandFlyingCreature, RaiseFlyingCreature)
 
 return StateGraph("glowfly", states, events, "idle", actionhandlers)

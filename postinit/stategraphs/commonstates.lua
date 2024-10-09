@@ -58,3 +58,24 @@ function PlayMiningFX(inst, target, nosound, ...)
        _PlayMiningFX(inst, target, nosound, ...)
     end
 end
+
+CommonStates.AddExtraStateFn = function(states, name, fns)
+    local state = nil
+    for k, v in pairs(states) do
+        if v.name == name then
+            state = v
+        end
+    end
+
+    assert(state, string.format("Can't find state named: %s", name))
+
+    for fn_name, fn in pairs(fns) do
+        local _fn = state[fn_name]
+        state[fn_name] = function(...)
+            fn(...)
+            if _fn then
+                return _fn(...)
+            end
+        end
+    end
+end

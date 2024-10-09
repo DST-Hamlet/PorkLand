@@ -105,8 +105,12 @@ local states =
         timeline =
         {
             TimeEvent(3 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
-            TimeEvent(8 * FRAMES, function(inst) inst:PerformBufferedAction()
-            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/bite") end), --take food
+            TimeEvent(8 * FRAMES, function(inst)
+                inst:PerformBufferedAction()
+                inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/bite")
+                LandFlyingCreature(inst)
+            end), --take food
+            TimeEvent(10 * FRAMES, function(inst) RaiseFlyingCreature(inst) end),
             TimeEvent(14 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
         },
 
@@ -344,8 +348,26 @@ CommonStates.AddSleepStates(states, {
 
     endtimeline =
     {
+        TimeEvent(12 * FRAMES, function(inst) RaiseFlyingCreature(inst) end),
         TimeEvent(13 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
     },
+})
+
+CommonStates.AddExtraStateFn(states, "sleep",
+{
+    onexit = RaiseFlyingCreature
+})
+
+CommonStates.AddExtraStateFn(states, "sleeping",
+{
+    onenter = LandFlyingCreature,
+    onexit = RaiseFlyingCreature
+})
+
+CommonStates.AddExtraStateFn(states, "wake",
+{
+    onenter = LandFlyingCreature,
+    onexit = RaiseFlyingCreature
 })
 
 CommonStates.AddCombatStates(states, {
@@ -371,9 +393,10 @@ CommonStates.AddCombatStates(states, {
     {
         TimeEvent(1 * FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/death") end),
         TimeEvent(4 * FRAMES, function(inst) inst:PushEvent("wingdown") end),
+        TimeEvent(17 * FRAMES, function(inst) LandFlyingCreature(inst) end),
     },
 })
 
-CommonStates.AddFrozenStates(states)
+CommonStates.AddFrozenStates(states, LandFlyingCreature, RaiseFlyingCreature)
 
 return StateGraph("vampirebat", states, events, "idle", actionhandlers)
