@@ -5,7 +5,7 @@ local assets =
 
 local prefabs =
 {
-    "fish_med_cooked",
+    "fishmeat_cooked",
 }
 
 local function OnUnWrappedFn(inst, pos, doer)

@@ -160,9 +160,9 @@ local prefabs = {
     "rug_leather",
     "rug_fur",
 
-    "shelves_wood",
-    "shelves_marble",
-    "shelves_glass",
+    "shelf_wood",
+    "shelf_marble",
+    "shelf_glass",
 
     "deco_marble_cornerbeam",
     "deco_marble_beam",
