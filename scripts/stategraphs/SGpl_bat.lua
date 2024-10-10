@@ -353,6 +353,12 @@ CommonStates.AddExtraStateFn(states, "sleeping",
     onexit = PL_RaiseFlyingCreature
 })
 
+CommonStates.AddExtraStateFn(states, "wake",
+{
+    onenter = PL_LandFlyingCreature,
+    onexit = PL_RaiseFlyingCreature
+})
+
 CommonStates.AddCombatStates(states,
 {
     attacktimeline =
