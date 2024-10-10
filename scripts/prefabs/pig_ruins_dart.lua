@@ -32,7 +32,7 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    MakeCharacterPhysics(inst, 10, 0.5)
+    MakeCharacterPhysics(inst, 1, 0.5)
 
     inst.AnimState:SetBank("dart")
     inst.AnimState:SetBuild("ruins_blow_dart")

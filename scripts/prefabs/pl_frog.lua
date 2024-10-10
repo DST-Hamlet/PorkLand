@@ -87,7 +87,7 @@ local function fn()
     inst.entity:AddDynamicShadow()
     inst.entity:AddNetwork()
 
-    MakeAmphibiousCharacterPhysics(inst, 1, 0.3)
+    MakeAmphibiousCharacterPhysics(inst, 10, 0.3)
 
     inst.DynamicShadow:SetSize(1.5, 0.75)
     inst.Transform:SetFourFaced()

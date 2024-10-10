@@ -86,7 +86,7 @@ local function fn()
     inst:AddTag("amphibious")
     inst:AddTag("snake_amphibious")
 
-    MakeAmphibiousCharacterPhysics(inst, 1, 0.5)
+    MakeAmphibiousCharacterPhysics(inst, 10, 0.5)
 
     inst.entity:SetPristine()
 

@@ -132,7 +132,7 @@ local function fn()
 
     inst.Transform:SetFourFaced()
 
-    MakeCharacterPhysics(inst, 1, 0.5)
+    MakeCharacterPhysics(inst, 50, 0.5)
 
     inst.AnimState:SetBank("pog")
     inst.AnimState:SetBuild("pog_actions")

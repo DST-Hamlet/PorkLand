@@ -79,7 +79,7 @@ local function fn()
     inst.Transform:SetSixFaced()
     inst.DynamicShadow:SetSize(2, 1.5)
 
-    MakeCharacterPhysics(inst, 1, 0.5)
+    MakeCharacterPhysics(inst, 10, 0.5)
 
     inst:AddTag("smallcreature")
     inst:AddTag("hasdung")
