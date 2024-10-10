@@ -56,11 +56,14 @@ end
 
 local function shoot(inst, is_full_charge)
     local player = inst
+    local targetpos = inst.sg.mem.shootpos
+    if targetpos then
+        player:ForceFacePoint(targetpos)
+    end
     local rotation = player.Transform:GetRotation()
     local pt = Vector3(player.Transform:GetWorldPosition())
     local angle = rotation * DEGREES
-    local radius = 2.5
-    local offset = Vector3(radius * math.cos( angle ), 0, -radius * math.sin( angle ))
+    local offset = Vector3(0, 1, 0)
     local newpt = pt+offset
 
     if is_full_charge and inst.sg.mem.shootpos then
@@ -75,10 +78,7 @@ local function shoot(inst, is_full_charge)
         beam.owner = inst
     else
         local beam = SpawnPrefab("ancient_hulk_orb_small")
-        beam.Transform:SetPosition(newpt.x, 1, newpt.z)
-        beam.Transform:SetRotation(rotation)
-        beam.AnimState:PlayAnimation("spin_loop",true)
-        beam.components.combat.proxy = inst
+        beam.components.throwable:FlatThrow(rotation, player, Vector3(0, math.random() * 10, 0))
         beam.owner = player
     end
     inst:ClearBufferedAction()
@@ -2189,11 +2189,20 @@ local states = {
         name = "ironlord_attack",
         tags = {"attack", "abouttoattack"},
 
-        onenter = function(inst, target)
+        onenter = function(inst)
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("power_punch")
             inst.components.combat:StartAttack()
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction ~= nil and buffaction.target or nil
+            inst.components.combat:SetTarget(target)
             inst.sg.statemem.target = target
+
+            if target ~= nil and target:IsValid() then
+                inst:FacePoint(target.Transform:GetWorldPosition())
+                inst.sg.statemem.attacktarget = target
+                inst.sg.statemem.retarget = target
+            end
         end,
 
         timeline =
@@ -2213,6 +2222,96 @@ local states = {
             end),
         },
     },
+
+    State{
+        name = "ironlord_frozen",
+        tags = { "busy", "frozen", "nopredict", "nodangle" },
+
+        onenter = function(inst)
+            if inst.components.pinnable ~= nil and inst.components.pinnable:IsStuck() then
+                inst.components.pinnable:Unstick()
+            end
+
+            ForceStopHeavyLifting(inst)
+            inst.components.locomotor:Stop()
+            inst:ClearBufferedAction()
+
+            inst.AnimState:OverrideSymbol("swap_frozen", "frozen", "frozen")
+            inst.AnimState:PlayAnimation("frozen")
+            inst.SoundEmitter:PlaySound("dontstarve/common/freezecreature")
+
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(false)
+            end
+
+            --V2C: cuz... freezable component and SG need to match state,
+            --     but messages to SG are queued, so it is not great when
+            --     when freezable component tries to change state several
+            --     times within one frame...
+            if inst.components.freezable == nil then
+                inst.sg:GoToState("ironlord_hit", true)
+            elseif inst.components.freezable:IsThawing() then
+                inst.sg.statemem.isstillfrozen = true
+                inst.sg:GoToState("ironlord_thaw")
+            elseif not inst.components.freezable:IsFrozen() then
+                inst.sg:GoToState("ironlord_hit", true)
+            end
+        end,
+
+        events =
+        {
+            EventHandler("onthaw", function(inst)
+                inst.sg.statemem.isstillfrozen = true
+                inst.sg:GoToState("ironlord_thaw")
+            end),
+            EventHandler("unfreeze", function(inst)
+                inst.sg:GoToState("ironlord_hit", true)
+            end),
+        },
+
+        onexit = function(inst)
+            if not inst.sg.statemem.isstillfrozen then
+                if inst.components.playercontroller ~= nil then
+                    inst.components.playercontroller:Enable(true)
+                end
+            end
+            inst.AnimState:ClearOverrideSymbol("swap_frozen")
+        end,
+    },
+
+    State{
+        name = "ironlord_thaw",
+        tags = { "busy", "thawing", "nopredict", "nodangle" },
+
+        onenter = function(inst)
+            inst.components.locomotor:Stop()
+            inst:ClearBufferedAction()
+
+            inst.AnimState:OverrideSymbol("swap_frozen", "frozen", "frozen")
+            inst.AnimState:PlayAnimation("frozen_loop_pst", true)
+            inst.SoundEmitter:PlaySound("dontstarve/common/freezethaw", "thawing")
+
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(false)
+            end
+        end,
+
+        events =
+        {
+            EventHandler("unfreeze", function(inst)
+                inst.sg:GoToState("ironlord_idle", true)
+            end),
+        },
+
+        onexit = function(inst)
+            if inst.components.playercontroller ~= nil then
+                inst.components.playercontroller:Enable(true)
+            end
+            inst.SoundEmitter:KillSound("thawing")
+            inst.AnimState:ClearOverrideSymbol("swap_frozen")
+        end,
+    },
+
 
     State{
         name = "crop_dust",
@@ -2579,6 +2678,16 @@ AddStategraphPostInit("wilson", function(sg)
         end
     end
 
+    sg.events.freeze.fn = function(inst, data)
+        if inst.components.health ~= nil and not inst.components.health:IsDead() then
+            if inst:HasTag("ironlord") then
+                inst.sg:GoToState("ironlord_frozen")
+            else
+                inst.sg:GoToState("frozen")
+            end
+        end
+    end
+
     sg.events["boatattacked"] = EventHandler("boatattacked", sg.events.attacked.fn)
 
     -- Disembark properly and drop no skeleton
@@ -2857,6 +2966,7 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
+        print("ACTIONS.ATTACK")
         if inst:HasTag("ironlord") then
             return "ironlord_attack"
         end

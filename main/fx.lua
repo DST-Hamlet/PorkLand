@@ -191,7 +191,6 @@ local pl_fx = {
         bank = "laser_explosion",
         anim = "idle",
         fn = function(inst)
-            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
             inst.Transform:SetScale(0.85, 0.85, 0.85)
         end,
     },

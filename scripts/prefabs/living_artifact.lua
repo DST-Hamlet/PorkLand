@@ -71,7 +71,9 @@ local function BecomeIronLord(inst, instant)
         player.player_classified.isironlord:set(true)
     end)
 
-    player.components.combat:SetDefaultDamage(TUNING.IRON_LORD_DAMAGE)
+    player.components.combat.overridecalcdamagefn = function()
+        return TUNING.IRON_LORD_DAMAGE
+    end
 
     player.components.inventory:DropEverything(true, false)
 
@@ -173,7 +175,7 @@ local function Revert(inst)
     player.components.locomotor:Stop()
     player.components.locomotor.runspeed = TUNING.WILSON_RUN_SPEED
 
-    player.components.combat:SetDefaultDamage(TUNING.UNARMED_DAMAGE)
+    player.components.combat.overridecalcdamagefn = nil
 
     player.components.grogginess:SetEnableSpeedMod(true)
 

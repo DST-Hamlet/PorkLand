@@ -429,6 +429,26 @@ function MakeThrowablePhysics(inst, mass, rad, ...)
     return physics
 end
 
+function MakeCharacterThrowablePhysics(inst, mass, rad)
+    local phys = inst.entity:AddPhysics()
+    phys:SetMass(mass)
+    phys:SetFriction(100)
+    phys:SetRestitution(0)
+    phys:SetCollisionGroup(COLLISION.CHARACTERS)
+    phys:ClearCollisionMask()
+    phys:CollidesWith(COLLISION.WORLD)
+    phys:CollidesWith(COLLISION.OBSTACLES)
+    phys:CollidesWith(COLLISION.SMALLOBSTACLES)
+    phys:CollidesWith(COLLISION.CHARACTERS)
+    phys:CollidesWith(COLLISION.GIANTS)
+    phys:SetCapsule(rad, 1)
+    if TheWorld:HasTag("porkland") then
+        phys:ClearCollidesWith(COLLISION.LIMITS)
+        phys:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return phys
+end
+
 local _MakeProjectilePhysics = MakeProjectilePhysics
 function MakeProjectilePhysics(inst, mass, rad, ...)
     local physics = _MakeProjectilePhysics(inst, mass, rad, ...)
