@@ -425,13 +425,14 @@ local function orb_fn()
 end
 
 local function OnCollidesmall(inst, other)
-    DoCircularAOE(inst, 1)
+    DoCircularAOE(inst, 1.5)
 
-    local explosion = SpawnPrefab("laser_explosion")
+    local explosion = SpawnPrefab("laser_explosion_small")
     explosion.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    explosion.Transform:SetScale(0.3, 0.3, 0.3)
 
-    inst:Remove()
+    inst.AnimState:PlayAnimation("impact")
+
+    inst:DoTaskInTime(10 * FRAMES, inst.Remove)
 end
 
 local function orb_small_fn()

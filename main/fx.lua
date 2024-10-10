@@ -195,6 +195,15 @@ local pl_fx = {
         end,
     },
     {
+        name = "laser_explosion_small",
+        build = "laser_explosion",
+        bank = "laser_explosion",
+        anim = "idle",
+        fn = function(inst)
+            inst.Transform:SetScale(0.4, 0.4, 0.4)
+        end,
+    },
+    {
         name = "living_suit_explode_fx",
         bank = "living_suit_explode_fx",
         build = "living_suit_explode_fx",

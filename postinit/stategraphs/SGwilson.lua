@@ -75,7 +75,6 @@ local function shoot(inst, is_full_charge)
 
         beam.components.throwable:Throw(targetpos, player)
         beam.components.combat.proxy = inst
-        beam.owner = inst
     else
         local beam = SpawnPrefab("ancient_hulk_orb_small")
         beam.components.throwable:FlatThrow(rotation, player, Vector3(0, math.random() * 10, 0))
