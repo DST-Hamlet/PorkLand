@@ -61,10 +61,6 @@ local function shoot(inst, is_full_charge)
         player:ForceFacePoint(targetpos)
     end
     local rotation = player.Transform:GetRotation()
-    local pt = Vector3(player.Transform:GetWorldPosition())
-    local angle = rotation * DEGREES
-    local offset = Vector3(0, 1, 0)
-    local newpt = pt+offset
 
     if is_full_charge and inst.sg.mem.shootpos then
         local beam = SpawnPrefab("ancient_hulk_orb")
@@ -2965,7 +2961,6 @@ AddStategraphPostInit("wilson", function(sg)
 
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, ...)
-        print("ACTIONS.ATTACK")
         if inst:HasTag("ironlord") then
             return "ironlord_attack"
         end

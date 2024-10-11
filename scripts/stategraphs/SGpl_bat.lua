@@ -69,7 +69,7 @@ local states =
 
         timeline =
         {
-		    TimeEvent(7*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end ),
+            TimeEvent(7*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end ),
             TimeEvent(17*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end ),
         },
 
@@ -136,9 +136,9 @@ local states =
 
             inst.AnimState:PlayAnimation("fly_back_loop",true)
 
-            local x,y,z = inst.Transform:GetWorldPosition()
-            inst.Transform:SetPosition(x,15,z)
-            inst.Physics:SetMotorVel(0,-10+math.random()*2,0)
+            local x, _, z = inst.Transform:GetWorldPosition()
+            inst.Transform:SetPosition(x, 15, z)
+            inst.Physics:SetMotorVel(0, -10+math.random()*2, 0)
         end,
 
         onupdate= function(inst)
@@ -313,11 +313,11 @@ CommonStates.AddWalkStates(states,
         TimeEvent(17*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end ),
     },
 
-	walktimeline =
+    walktimeline =
     {
         TimeEvent(7*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end ),
         TimeEvent(17*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/bat/flap") end ),
-	},
+    },
 
     endtimeline =
     {
