@@ -155,6 +155,12 @@ function MakePickableBlowInWindGust(inst, wind_speed, destroy_chance)
     inst.components.blowinwindgust:Start()
 end
 
+local function remove_blowinwindgust(inst)
+    inst:RemoveComponent("blowinwindgust")
+    inst:RemoveEventCallback("onburnt", remove_blowinwindgust)
+    inst:RemoveEventCallback("workfinished", remove_blowinwindgust)
+end
+
 ---@param stages table The stage names in blown animation
 --- Note: Call this after defining inst:OnLoad since this overrides it
 function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
@@ -207,7 +213,7 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
 
     local function OnGustFall(inst)
         if inst.components.workable then
-            inst.components.workable.onfinish(inst, TheWorld)
+            inst.components.workable:Destroy(TheWorld)
         end
     end
 
@@ -227,19 +233,11 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
     end
 
     if inst.components.burnable then
-        local onburnt = inst.components.burnable.onburnt
-        inst.components.burnable:SetOnBurntFn(function(inst)
-            if onburnt then onburnt(inst) end
-            inst:RemoveComponent("blowinwindgust")
-        end)
+        inst:ListenForEvent("onburnt", remove_blowinwindgust)
     end
 
     if inst.components.workable then
-        local onfinish = inst.components.workable.onfinish
-        inst.components.workable:SetOnFinishCallback(function(inst, chopper)
-            if onfinish then onfinish(inst, chopper) end
-            inst:RemoveComponent("blowinwindgust")
-        end)
+        inst:ListenForEvent("workfinished", remove_blowinwindgust)
     end
 end
 
