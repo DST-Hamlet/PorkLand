@@ -226,13 +226,11 @@ local function OnActivate(inst, player, instant)
     inst.player = player
 
     inst.AnimState:PlayAnimation("activate")
-    inst:ListenForEvent("animover", function()
-        if inst.AnimState:IsCurrentAnimation("activate") then
-            inst:Hide()
-            inst.player.components.inventory.ignoresound = true -- hacky
-            inst.player.components.inventory:GiveItem(inst)
-            inst.player.components.inventory.ignoresound = false
-        end
+    inst:DoTaskInTime(inst.AnimState:GetCurrentAnimationLength(),function()
+        inst:Hide()
+        inst.player.components.inventory.ignoresound = true -- hacky
+        inst.player.components.inventory:GiveItem(inst)
+        inst.player.components.inventory.ignoresound = false
     end)
 
     inst:ListenForEvent("ironlord_morph_complete", function() BecomeIronLord_post(inst) end, player)

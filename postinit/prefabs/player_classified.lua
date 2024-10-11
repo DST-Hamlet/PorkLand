@@ -168,7 +168,6 @@ local function OnIronlordDirty(inst)
         player.HUD.controls.crafttabs:Hide()
         player.HUD.controls.inv:Hide()
         player.HUD.controls.status:Hide()
-        player.HUD.controls.mapcontrols.minimapBtn:Hide()
     else
         TheWorld:PushEvent("enabledynamicmusic", true)
         TheFocalPoint.SoundEmitter:KillSound("ironlordmusic")
@@ -188,7 +187,6 @@ local function OnIronlordDirty(inst)
         player.HUD.controls.crafttabs:Show()
         player.HUD.controls.inv:Show()
         player.HUD.controls.status:Show()
-        player.HUD.controls.mapcontrols.minimapBtn:Show()
     end
 end
 
