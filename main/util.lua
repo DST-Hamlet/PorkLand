@@ -166,8 +166,8 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
             if v:GetDistanceSqToPoint(x, 0, z) < actual_damage_range * actual_damage_range then
                 if is_valid_work_target(v) then
                     targets_hit[v] = true
-                    v.components.workable:Destroy(inst)
                     ONWORKEDFN(inst, v)
+                    v.components.workable:Destroy(inst)
                     if v:IsValid() and v:HasTag("stump") then
                         v:Remove()
                     end
