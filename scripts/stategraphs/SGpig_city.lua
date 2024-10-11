@@ -439,13 +439,9 @@ local states =
         {
             EventHandler("animover",
                 function(inst)
-                    inst:DoTaskInTime(4,
-                        function()
-                            inst.sg:GoToState("idle")
-                            inst.poop_tip = nil
-                            inst.tipping = false
-                        end
-                    )
+                    inst.sg:GoToState("idle")
+                    inst.poop_tip = nil
+                    inst.tipping = false
                 end
             ),
         },
