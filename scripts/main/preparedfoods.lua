@@ -112,19 +112,6 @@ local foods = {
         yotp = true,
     },
 
-    spicyvegstinger =
-    {
-        test = function(cooker, names, tags) return (names.asparagus or names.asparagus_cooked or names.radish or names.radish_cooked) and tags.veggie and tags.veggie > 2 and tags.frozen and not tags.meat end,
-        priority = 15,
-        foodtype = FOODTYPE.VEGGIE,
-        health = TUNING.HEALING_SMALL,
-        hunger = TUNING.CALORIES_MED,
-        perishtime = TUNING.PERISH_SLOW,
-        sanity = TUNING.SANITY_LARGE,
-        cooktime = 0.5,
-        yotp = true,
-    },
-
     steamedhamsandwich =
     {
         test = function(cooker, names, tags) return (names.meat or names.meat_cooked) and (tags.veggie and tags.veggie >= 2) and names.foliage end,
