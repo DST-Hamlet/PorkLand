@@ -712,6 +712,9 @@ local tuning = {
 
     SANITY_HOUSE = 0,
     SANITY_PLAYERHOUSE = 100/(seg_time*32),
+
+    ENTITY_WAKE_DIST = 64,
+    ENTITY_SLEEP_DIST = 64 * 1.2,
 }
 
 

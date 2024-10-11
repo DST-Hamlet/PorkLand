@@ -251,6 +251,8 @@ AddPlayerPostInit(function(inst)
     end})
     rawset(inst, "AnimState", AnimState)
 
+    inst.LightWatcher:EnableUpdate(true)
+
     if not TheWorld.ismastersim then
         return
     end
