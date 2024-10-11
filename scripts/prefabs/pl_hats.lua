@@ -310,11 +310,13 @@ local function MakeHat(name)
     local function thunder_equip(inst, owner)
         _onequip(inst, owner)
         owner:AddTag("lightningrod")
+        inst:ListenForEvent("lightningstrike", inst.lightningstrike, owner)
     end
 
     local function thunder_unequip(inst, owner)
         _onunequip(inst, owner)
         owner:RemoveTag("lightningrod")
+        inst:RemoveEventCallback("lightningstrike", inst.lightningstrike, owner)
     end
 
     fns.thunder = function()
@@ -324,19 +326,19 @@ local function MakeHat(name)
             return inst
         end
 
-        inst.components.equippable.dapperness = TUNING.DAPPERNESS_SMALL
-
         inst:AddComponent("fueled")
         inst.components.fueled.fueltype = FUELTYPE.USAGE
         inst.components.fueled:InitializeFuelLevel(TUNING.THUNDERHAT_PERISHTIME)
         inst.components.fueled:SetDepletedFn(inst.Remove)
 
+        inst.components.equippable.insulated = true
+        inst.components.equippable.dapperness = TUNING.DAPPERNESS_SMALL
         inst.components.equippable:SetOnEquip(thunder_equip)
         inst.components.equippable:SetOnUnequip(thunder_unequip)
 
-        inst:ListenForEvent("lightningstrike", function(inst, data)
+        inst.lightningstrike = function()
             inst.components.fueled:DoDelta(-inst.components.fueled.maxfuel * TUNING.THUNDERHAT_USAGE_PER_LIGHTINING_STRIKE)
-        end)
+        end
 
         return inst
     end
