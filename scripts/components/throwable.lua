@@ -50,10 +50,17 @@ local function ThrowableOnCollide(inst, other)
     end
 end
 
+-- Delay this by one frame
+-- because if we change anything about the physics in this callback here,
+-- it might crash the physics engine
+local function ThrowableOnCollidePhysics(inst, other)
+    inst:DoTaskInTime(0, ThrowableOnCollide, other)
+end
+
 function Throwable:SetOnHitFn(fn)
     self.onhitfn = fn
     if self.inst.Physics then
-        self.inst.Physics:SetCollisionCallback(ThrowableOnCollide)
+        self.inst.Physics:SetCollisionCallback(ThrowableOnCollidePhysics)
     end
 end
 
