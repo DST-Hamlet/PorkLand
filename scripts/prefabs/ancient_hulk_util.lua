@@ -41,7 +41,7 @@ local function DoSectorAOE(inst, radius, start_angle, end_angle)
 
     TheWorld:DoTaskInTime(0.3, function() SetFires(x, y, z, radius) end)
 
-    local destroyer = inst.owner
+    local destroyer = inst.owner or inst
 
     DoSectorAOEDamageAndDestroy(destroyer, {
         pos = Vector3(x, y, z),
