@@ -169,7 +169,7 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
                     ONWORKEDFN(inst, v)
                     v.components.workable:Destroy(inst)
                     if v:IsValid() and v:HasTag("stump") then
-                        -- v:Remove()
+                        v:Remove()
                     end
                 elseif v.components.pickable and v.components.pickable:CanBePicked() then
                     targets_hit[v] = true
