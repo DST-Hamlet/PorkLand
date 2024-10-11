@@ -45,6 +45,7 @@ local function Sparkle(inst)
     if target then
         local lifeplant_sparkle = SpawnPrefab("lifeplant_sparkle")
         lifeplant_sparkle.Transform:SetPosition(target.Transform:GetWorldPosition())
+        lifeplant_sparkle.owner = inst
     end
 end
 
@@ -382,25 +383,26 @@ local function fn()
 end
 
 local function TestForPlant(inst)
-    local ent = TheSim:FindFirstEntityWithTag("lifeplant")
+    local ent = inst.owner
 
-    if not ent or ent:GetDistanceSqToInst(inst) < 1 then
+    if not (ent and ent:IsValid())or ent:GetDistanceSqToInst(inst) < 1 then
         inst:Remove()
     end
 end
 
 local function OnSparkleSpawned(inst)
-    local ent = TheSim:FindFirstEntityWithTag("lifeplant") -- Assuming that there's only one lifeplant
-    if ent then
-        local x, y, z = ent.Transform:GetWorldPosition()
-        local angle = inst:GetAngleToPoint(x, y, z)
-        inst.Transform:SetRotation(angle)
+    local ent = inst.owner -- Assuming that there's only one lifeplant
 
-        inst.components.locomotor:WalkForward()
-        inst:DoPeriodicTask(0.1, TestForPlant)
-    else
+    if not (ent and ent:IsValid()) then
         inst:Remove()
     end
+
+    local x, y, z = ent.Transform:GetWorldPosition()
+    local angle = inst:GetAngleToPoint(x, y, z)
+    inst.Transform:SetRotation(angle)
+
+    inst.components.locomotor:WalkForward()
+    inst:DoPeriodicTask(0.1, TestForPlant)
 end
 
 local function sparklefn()
@@ -442,6 +444,8 @@ local function sparklefn()
     inst.components.locomotor:SetTriggersCreep(false)
 
     inst:DoTaskInTime(0, OnSparkleSpawned)
+
+    inst:DoTaskInTime(4, inst.Remove)
 
     inst.OnEntitySleep = inst.Remove
 

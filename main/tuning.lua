@@ -709,6 +709,9 @@ local tuning = {
     BIRDWHISLE_USES = 5,
 
     FENCE_FURNITURE_ROTATION = 180,
+
+    SANITY_HOUSE = 0,
+    SANITY_PLAYERHOUSE = 100/(seg_time*32),
 }
 
 
