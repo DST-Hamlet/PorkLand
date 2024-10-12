@@ -2031,12 +2031,19 @@ local states = {
             inst.sg.statemem.should_shoot = false
 
             inst.components.locomotor:StartStrafing()
+
+            inst.sg:SetTimeout(20 * FRAMES)
+        end,
+
+        ontimeout = function(inst)
+            inst.sg:GoToState("ironlord_charge_full", {should_shoot = inst.sg.statemem.should_shoot})
         end,
 
         onexit = function(inst)
             inst:ClearBufferedAction()
 
             inst.components.locomotor:StopStrafing()
+            inst.sg.statemem.should_shoot = nil
         end,
 
         onupdate = function(inst)
@@ -2050,7 +2057,6 @@ local states = {
         timeline =
         {
             TimeEvent(15 * FRAMES, function(inst) inst.sg.statemem.ready_to_shoot = true end),
-            TimeEvent(20 * FRAMES, function(inst) inst.sg:GoToState("ironlord_charge_full") end),
         },
     },
 
@@ -2058,14 +2064,14 @@ local states = {
         name = "ironlord_charge_full",
         tags = {"busy", "doing", "strafing", "charge"},
 
-        onenter = function(inst)
+        onenter = function(inst, data)
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("charge_super_pre")
             inst.AnimState:PushAnimation("charge_super_loop", true)
             inst.SoundEmitter:PlaySound("porkland_soundpackage/common/crafted/iron_lord/electro")
 
             inst.sg.statemem.ready_to_shoot = false
-            inst.sg.statemem.should_shoot = false
+            inst.sg.statemem.should_shoot = data.should_shoot or false
 
             inst.components.locomotor:StartStrafing()
         end,
@@ -2075,6 +2081,7 @@ local states = {
             inst.SoundEmitter:KillSound("chargedup")
 
             inst.components.locomotor:StopStrafing()
+            inst.sg.statemem.should_shoot = nil
         end,
 
         onupdate = function(inst)
