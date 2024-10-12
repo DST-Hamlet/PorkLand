@@ -261,3 +261,11 @@ function EntityScript:IsInSameIsland(target)
 
     return current_island == target_island
 end
+
+local on_remove = EntityScript.OnRemove
+function EntityScript:OnRemove(...)
+    if self.MiniMapEntity then
+        PorkLandOnMiniMapEntityRemove(self)
+    end
+    return on_remove(self, ...)
+end
