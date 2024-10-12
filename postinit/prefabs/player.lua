@@ -161,16 +161,6 @@ AddPlayerPostInit(function(inst)
         end)
     end
 
-    local _IsInLight = inst.IsInLight
-    function inst:IsInLight()
-        if inst:GetIsInInterior() then
-            local pos = inst:GetPosition()
-            return TheSim:GetLightAtPoint(pos.x, pos.y, pos.z, 0.1) > 0.1
-        else
-            return _IsInLight(self)
-        end
-    end
-
     inst._oinc_sound = net_byte(inst.GUID, "player._oincsoundpush", "oincsounddirty")
 
     if inst.components.hudindicatable then

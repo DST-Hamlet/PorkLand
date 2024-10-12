@@ -45,16 +45,27 @@ function Entity:AddLightWatcher(...)
     _lightwatcher.GetLightValue = function(self)
         local data = GetEngineHookData(self)
         local inst = data.inst
-        local x, y, z = inst.Transform:GetWorldPosition()
-        return TheSim:GetLightAtPoint(x, y, z)
+        local inst = data.inst
+        if inst:GetIsInInterior() then
+            local x, y, z = inst.Transform:GetWorldPosition()
+            return TheSim:GetLightAtPoint(x, y, z)
+        else
+            return old_GetLightValue(self)
+        end
     end
 
+    local old_IsInLight = _lightwatcher.IsInLight
     _lightwatcher.IsInLight = function(self)
         local data = GetEngineHookData(self)
-        if GetEngineHookData(self):IsUpdating() then
-            return data.inlight
+        local inst = data.inst
+        if inst:GetIsInInterior() then
+            if GetEngineHookData(self):IsUpdating() then
+                return data.inlight
+            else
+                return self:GetLightValue() >= data.darkthresh
+            end
         else
-            return self:GetLightValue() >= data.darkthresh
+            return old_IsInLight(self)
         end
     end
 
