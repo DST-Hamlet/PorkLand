@@ -2,10 +2,6 @@ GLOBAL.setfenv(1, GLOBAL)
 
 NewFrameEnts = {}
 
-EngineHook_Update_Datas = {}
-
-EngineHookDatas = {}
-
 local function GetLight(light, dist)
     -- thanks to HalfEnder776
     local A = math.log(light:GetIntensity())
@@ -117,48 +113,5 @@ function Update(dt, ...)
         NewFrameEnts[k] = nil
     end
 
-    for hashid, data in pairs(EngineHookDatas) do
-        local inst = data.inst
-        if not (inst and inst:IsValid()) then
-            EngineHookDatas[hashid] = nil
-            EngineHook_Update_Datas[hashid] = nil
-        end
-    end
-
-    for hashid, data in pairs(EngineHook_Update_Datas) do
-        data:OnUpdate(dt)
-    end
-
     NewFrameEnts = {}
-end
-
-function GetEngineHookData(hashid)
-    return EngineHookDatas[hashid]
-end
-
-function EngineHookData_Remove(data)
-    if data.onremove then
-        data:onremove()
-    end
-    EngineHookDatas[data.hashid] = nil
-    EngineHook_Update_Datas[data.hashid] = nil
-end
-
-function EngineHookData_EnableUpdate(data, enable)
-    EngineHook_Update_Datas[data.hashid] = enable and data or nil
-end
-
-function EngineHookData_IsUpdating(data)
-    return EngineHook_Update_Datas[data.hashid] ~= nil
-end
-
-function CreateEngineHookData(hashid, inst, fn)
-    local data = {}
-    EngineHookDatas[hashid] = data
-    data.hashid = hashid
-    data.Remove = EngineHookData_Remove
-    data.EnableUpdate = EngineHookData_EnableUpdate
-    data.IsUpdating = EngineHookData_IsUpdating
-    fn(data, inst)
-    return data
 end

@@ -1,86 +1,53 @@
 GLOBAL.setfenv(1, GLOBAL)
 
-local DEFAULT_DARK_THRESHOLD = 0.05
-local DEFAULT_LIGHT_THRESHOLD = 0.1
+local light_watcher_to_entity = {}
 
-local function LightWatcher_OnUpdate(data)
-    local inst = data.inst
-    if not (inst and inst:IsValid()) then
-        return
-    end
-
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local light_value = TheSim:GetLightAtPoint(x, y, z)
-    if data.inlight then
-        if light_value < data.darkthresh then
-            data.inlight = false
-        end
-    else
-        if light_value > data.lightthresh then
-            data.inlight = true
-        end
+local function clean_up_mapping(inst)
+    if inst.LightWatcher then
+        light_watcher_to_entity[inst.LightWatcher] = nil
     end
 end
 
-local function LightWatcher_fn(data, inst)
-    data.inst = inst
-    data.darkthresh = DEFAULT_DARK_THRESHOLD
-    data.lightthresh = DEFAULT_LIGHT_THRESHOLD
-    data.inlight = true
-    data.OnUpdate = LightWatcher_OnUpdate
-end
-
-_AddLightWatcher = Entity.AddLightWatcher
+local add_light_watcher = Entity.AddLightWatcher
 function Entity:AddLightWatcher(...)
-	local guid = self:GetGUID()
-	local inst = Ents[guid]
-    if not inst or not inst:IsValid() or inst.LightWatcher then return _AddLightWatcher(self, ...) end
+    local light_watcher = add_light_watcher(self, ...)
 
-	local lightwatcher = _AddLightWatcher(self, ...)
-    local _lightwatcher_engine_ent = CreateEngineHookData(lightwatcher, inst, LightWatcher_fn)
+    local guid = self:GetGUID()
+    local inst = Ents[guid]
+    inst:AddComponent("lightwatcherproxy")
+    light_watcher_to_entity[light_watcher] = inst
+    inst:ListenForEvent("onremove", clean_up_mapping)
 
-    local _lightwatcher = getmetatable(lightwatcher).__index
+    return light_watcher
+end
 
-    local old_GetLightValue = _lightwatcher.GetLightValue
-    _lightwatcher.GetLightValue = function(self)
-        local data = GetEngineHookData(self)
-        local inst = data.inst
-        local inst = data.inst
-        if inst:GetIsInInterior() then
-            local x, y, z = inst.Transform:GetWorldPosition()
-            return TheSim:GetLightAtPoint(x, y, z)
-        else
-            return old_GetLightValue(self)
-        end
+local get_light_value = LightWatcher.GetLightValue
+LightWatcher.GetLightValue = function(self)
+    local inst = light_watcher_to_entity[self]
+    if inst:GetIsInInterior() then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        return TheSim:GetLightAtPoint(x, y, z)
+    else
+        return get_light_value(self)
     end
+end
 
-    local old_IsInLight = _lightwatcher.IsInLight
-    _lightwatcher.IsInLight = function(self)
-        local data = GetEngineHookData(self)
-        local inst = data.inst
-        if inst:GetIsInInterior() then
-            if GetEngineHookData(self):IsUpdating() then
-                return data.inlight
-            else
-                return self:GetLightValue() >= data.darkthresh
-            end
-        else
-            return old_IsInLight(self)
-        end
+local is_in_light = LightWatcher.IsInLight
+LightWatcher.IsInLight = function(self)
+    local inst = light_watcher_to_entity[self]
+    if inst:GetIsInInterior() then
+        return inst.components.lightwatcherproxy:IsInLight()
+    else
+        return is_in_light(self)
     end
+end
 
-    _lightwatcher.SetDarkThresh = function(self, val)
-        local data = GetEngineHookData(self)
-        data.darkthresh = val
-    end
+LightWatcher.SetDarkThresh = function(self, val)
+    local inst = light_watcher_to_entity[self]
+    inst.components.lightwatcherproxy.darkthresh = val
+end
 
-    _lightwatcher.SetLightThresh = function(self, val)
-        local data = GetEngineHookData(self)
-        data.lightthresh = val
-    end
-
-    _lightwatcher.EnableUpdate = function(self, enable)
-        local data = GetEngineHookData(self)
-        data:EnableUpdate(enable)
-    end
+LightWatcher.SetLightThresh = function(self, val)
+    local inst = light_watcher_to_entity[self]
+    inst.components.lightwatcherproxy.lightthresh = val
 end

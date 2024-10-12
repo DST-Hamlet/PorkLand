@@ -241,7 +241,7 @@ AddPlayerPostInit(function(inst)
     end})
     rawset(inst, "AnimState", AnimState)
 
-    inst.LightWatcher:EnableUpdate(true)
+    inst.components.lightwatcherproxy:UseHighPrecision()
 
     if not TheWorld.ismastersim then
         return
