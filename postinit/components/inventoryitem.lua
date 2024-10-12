@@ -150,7 +150,7 @@ function SinkEntity(entity, ...)
 
             local sunkenprefab = SpawnPrefab("sunkenprefab")
             sunkenprefab:Initialize(entity)
-            local fx = SpawnPrefab("splash_sink")
+            local fx = SpawnPrefab("splash_water_sink")
             fx.Transform:SetPosition(px, py, pz)
             return
         end

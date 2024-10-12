@@ -74,7 +74,7 @@ local pl_fx = {
         bank = "splash_water_drop",
         build = "splash_water_drop",
         anim = "idle_sink",
-        sound = "dontstarve_DLC002/common/item_sink"
+        sound = "turnoftides/common/together/water/splash/small", -- "dontstarve_DLC002/common/item_sink"
     },
     {
         name = "boat_hit_fx_raft_log",

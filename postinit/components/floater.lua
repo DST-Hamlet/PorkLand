@@ -1,3 +1,4 @@
+local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local Floater = require("components/floater")
@@ -68,7 +69,7 @@ function Floater:PlaySplashFx()
     if self.splash and (not self.inst.components.inventoryitem or not self.inst.components.inventoryitem:IsHeld()) then
         -- The SW splash effect has a different and iconic sound
         local x, y, z = self.inst.Transform:GetWorldPosition()
-        local splash = SpawnPrefab(TheWorld.has_pl_ocean and "splash_water_drop" or "splash")
+        local splash = SpawnPrefab(TheWorld.has_pl_ocean and self.splashfx or "splash")
         splash.Transform:SetPosition(x, y, z)
     end
 end
@@ -134,3 +135,7 @@ function Floater:OnLandedClient(...)
         self.showing_effect = true
     end
 end
+
+AddComponentPostInit("floater", function(self)
+    self.splashfx = "splash_water_drop"
+end)
