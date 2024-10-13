@@ -398,6 +398,8 @@ local function orb_fn()
     inst:AddComponent("fader")
 
     inst:AddTag("ancient_hulk_orb")
+    inst:AddTag("projectile")
+    inst:AddTag("laser")
 
     inst.entity:SetPristine()
 
@@ -423,13 +425,14 @@ local function orb_fn()
 end
 
 local function OnCollidesmall(inst, other)
-    DoCircularAOE(inst, 1)
+    DoCircularAOE(inst, 1.5)
 
-    local explosion = SpawnPrefab("laser_explosion")
+    local explosion = SpawnPrefab("laser_explosion_small")
     explosion.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    explosion.Transform:SetScale(0.4, 0.4, 0.4)
 
-    inst:Remove()
+    inst.AnimState:PlayAnimation("impact")
+
+    inst:DoTaskInTime(10 * FRAMES, inst.Remove)
 end
 
 local function orb_small_fn()
@@ -441,14 +444,7 @@ local function orb_small_fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    MakeCharacterPhysics(inst, 1, 0.5)
-
-    -- Don"t collide with the land edge
-    inst.Physics:ClearCollisionMask()
-    inst.Physics:CollidesWith(COLLISION.OBSTACLES)
-    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-    --inst.Physics:CollidesWith(COLLISION.WAVES)
-    inst.Physics:CollidesWith(COLLISION.VOID_LIMITS)
+    MakeCharacterThrowablePhysics(inst, 1, 0.5)
 
     inst.AnimState:SetBank("metal_hulk_projectile")
     inst.AnimState:SetBuild("metal_hulk_projectile")
@@ -465,6 +461,7 @@ local function orb_small_fn()
     inst:AddComponent("fader")
 
     inst:AddTag("projectile")
+    inst:AddTag("laser")
 
     inst.entity:SetPristine()
 
@@ -480,9 +477,11 @@ local function orb_small_fn()
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE/3)
     inst.components.combat.playerdamagepercent = 0.5
 
-    inst.Physics:SetCollisionCallback(OnCollidesmall)
-
-    inst.Physics:SetMotorVelOverride(60, 0, 0)
+    inst:AddComponent("throwable")
+    inst.components.throwable:SetOnHitFn(OnCollidesmall)
+    inst.components.throwable.yOffset = 1.5
+    inst.components.throwable.xOffset = 1.5
+    inst.components.throwable.speed = 60
 
     inst:DoTaskInTime(2, inst.Remove)
 

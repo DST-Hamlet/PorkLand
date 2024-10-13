@@ -994,6 +994,18 @@ AddStategraphPostInit("wilson_client", function(sg)
         end
     end
 
+    local _start_sitting_onenter = sg.states["start_sitting"].onenter
+    sg.states["start_sitting"].onenter = function(inst, ...)
+        _start_sitting_onenter(inst, ...)
+        local buffaction = inst:GetBufferedAction()
+        local chair = buffaction ~= nil and buffaction.target or nil
+        if chair and chair:HasTag("limited_chair") then
+            if chair:HasTag("rotatableobject") then
+                inst.Transform:SetTwoFaced()
+            end
+        end
+    end
+
     local _attack_deststate = sg.actionhandlers[ACTIONS.ATTACK].deststate
     sg.actionhandlers[ACTIONS.ATTACK].deststate = function(inst, action, ...)
         if not inst.sg:HasStateTag("sneeze") then

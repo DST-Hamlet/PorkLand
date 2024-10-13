@@ -32,7 +32,7 @@ local function commonfn(bank, build, anim, loop, dryable, cookable)
 
     inst:AddTag("meat")
     inst:AddTag("catfood")
-	inst:AddTag("pondfish")
+    inst:AddTag("pondfish")
 
     if dryable then
         --dryable (from dryable component) added to pristine state for optimization
@@ -44,7 +44,7 @@ local function commonfn(bank, build, anim, loop, dryable, cookable)
         inst:AddTag("cookable")
     end
 
-    MakeInventoryFloatable(inst)
+    PorkLandMakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()
 
@@ -119,6 +119,7 @@ local function rawfn(bank, build, nameoverride)
     inst.components.edible.healthvalue = TUNING.HEALING_TINY
     inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
     inst.components.perishable:SetPerishTime(TUNING.PERISH_SUPERFAST)
+    inst.components.perishable.onperishreplacement = "spoiled_fish_small"
 
     inst:DoTaskInTime(5, stopkicking)
     inst.components.inventoryitem:SetOnPickupFn(stopkicking)
@@ -149,6 +150,7 @@ local function cookedfn(bank, build, nameoverride)
     inst.components.edible.healthvalue = TUNING.HEALING_TINY
     inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
     inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+    inst.components.perishable.onperishreplacement = "spoiled_fish_small"
 
     inst.components.floater:SetVerticalOffset(0.2)
     inst.components.floater:SetScale(0.75)
@@ -159,6 +161,9 @@ end
 local function makefish(bank, build, nameoverride, data)
     local function makerawfn()
         local raw = rawfn(bank, build, nameoverride)
+        if not TheWorld.ismastersim then
+            return raw
+        end
         if data.cookproduct then
             raw.components.cookable.product = data.cookproduct
         end
@@ -178,4 +183,4 @@ local function fish(name, bank, build, nameoverride, data)
         Prefab(name.."_cooked", cooked, assets)
 end
 
-return fish("coi", "coi", "coi", "fish", {cookproduct = "coi_cooked"})
+return fish("coi", "coi", "coi", nil, {cookproduct = "coi_cooked"})

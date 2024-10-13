@@ -30,6 +30,9 @@ local common_spawnfn = {
     grass_tall_bunche_patch = function(x, y, ents)
         return not SpawnUtil.IsCloseToWaterTile(x, y, 3)
     end,
+    lightrays_jungle = function(x, y, ents)
+        return SpawnUtil.IsSurroundedByCanopyTile(x, y, 2)
+    end,
     --hippopotamoose = function(x, y, ents)  --这一部分代码试图让河鹿生成位置离岸至少有1的距离。然而，这会导致countprefabs失效，，，
         --return not SpawnUtil.IsCloseToLandTile(x, y, 1)
     --end,

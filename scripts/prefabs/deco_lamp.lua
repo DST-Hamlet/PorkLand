@@ -3,7 +3,7 @@ local DecoCreator = require("prefabs/deco_util")
 local lights = DecoCreator:GetLights()
 local light_small = lights.SMALL
 local light_festive = lights.FESTIVETREE
-local tag = {"furniture"}
+local tag = {"furniture", "rotatableobject"}
 
 return  DecoCreator:Create("deco_lamp_fringe",                 "interior_floorlamp",   "interior_floorlamp",   "floorlamp_fringe",       {physics = "post_physics", light = light_small,   tags = tag, onbuilt = true}),
         DecoCreator:Create("deco_lamp_stainglass",             "interior_floorlamp",   "interior_floorlamp",   "floorlamp_stainglass",   {physics = "post_physics", light = light_small,   tags = tag, onbuilt = true}),

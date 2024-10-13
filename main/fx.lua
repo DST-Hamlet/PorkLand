@@ -74,7 +74,7 @@ local pl_fx = {
         bank = "splash_water_drop",
         build = "splash_water_drop",
         anim = "idle_sink",
-        sound = "dontstarve_DLC002/common/item_sink"
+        sound = "turnoftides/common/together/water/splash/small", -- "dontstarve_DLC002/common/item_sink"
     },
     {
         name = "boat_hit_fx_raft_log",
@@ -118,6 +118,13 @@ local pl_fx = {
         bank = "splash_clouds_drop",
         build = "splash_clouds_drop",
         anim = "idle_sink",
+        fn = BelowGroundFx,
+    },
+    {
+        name = "clouds_bombsplash",
+        bank = "clouds_bombsplash",
+        build = "clouds_bombsplash",
+        anim = "splash",
         fn = BelowGroundFx,
     },
     {
@@ -184,8 +191,16 @@ local pl_fx = {
         bank = "laser_explosion",
         anim = "idle",
         fn = function(inst)
-            inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
             inst.Transform:SetScale(0.85, 0.85, 0.85)
+        end,
+    },
+    {
+        name = "laser_explosion_small",
+        build = "laser_explosion",
+        bank = "laser_explosion",
+        anim = "idle",
+        fn = function(inst)
+            inst.Transform:SetScale(0.4, 0.4, 0.4)
         end,
     },
     {

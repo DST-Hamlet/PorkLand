@@ -30,7 +30,7 @@ local function IsClearPath(start_x, start_y, end_x, end_y, map, width, depth, ig
         local ix = math.floor(x + 0.5)
         local iy = math.floor(y + 0.5)
 
-        if not IsInBounds(ix, iy, map, width, depth) or (not ignorewalls and map[ix] and map[ix][iy] and map[ix][iy] == Blockers.Wall) then
+        if not IsInBounds(ix, iy, map, width, depth) or ((not ignorewalls) and map[ix] and map[ix][iy] and map[ix][iy] == Blockers.Wall) then
             -- print("point is not clear!!!!!", ix, iy)
             return false
         end

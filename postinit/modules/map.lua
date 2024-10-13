@@ -343,6 +343,33 @@ function Map:GetNearbyPlatformAtPoint(pos_x, pos_y, pos_z, extra_radius)
     return nil
 end
 
+local CANOPY_TILES = {
+    [WORLD_TILES.GASJUNGLE] = true,
+    [WORLD_TILES.DEEPRAINFOREST] = true,
+}
+
+function Map:IsVisualCanopyAtPoint(x, y, z, radius)
+    local testradius = radius or 1.5
+    local isclosetocanopy = TheWorld.Map:IsCloseToTile(x, y, z, testradius, function(_x, _y, _z)
+        local tile = TheWorld.Map:GetTileAtPoint(_x, _y, _z)
+
+        local clientundertile = TheWorld.components.clientundertile
+
+        local coords_x, coords_y = TheWorld.Map:GetTileCoordsAtPoint(_x, _y, _z)
+
+        if clientundertile then
+            local old_tile = clientundertile:GetTileUnderneath(coords_x, coords_y)
+            if old_tile then
+                tile = old_tile
+            end
+        end
+
+        return CANOPY_TILES[tile]
+    end)
+
+    return isclosetocanopy
+end
+
 local _GetTileCenterPoint = Map.GetTileCenterPoint
 function Map:GetTileCenterPoint(x, y, z, ...)
     if x and z and TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then

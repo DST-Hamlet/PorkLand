@@ -5,6 +5,13 @@ local icon_priority = {}
 local icon_can_use_cache = {}
 local icon_offset = {}
 
+function PorkLandOnMiniMapEntityRemove(inst)
+    icon_name[inst.MiniMapEntity] = nil
+    icon_priority[inst.MiniMapEntity] = nil
+    icon_can_use_cache[inst.MiniMapEntity] = nil
+    icon_offset[inst.MiniMapEntity] = nil
+end
+
 local _SetIcon = MiniMapEntity.SetIcon
 function MiniMapEntity:SetIcon(icon, ...)
     icon_name[self] = icon

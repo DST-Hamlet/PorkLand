@@ -22,7 +22,7 @@ local SPECIAL_CASE_PREFABS = LOOT_DEFS.SPECIAL_CASE_PREFABS
 
 
 local function gettrawlbuild(inst)
-	if not inst.components.inventory then return "swap_trawlnet" end
+    if not inst.components.inventory then return "swap_trawlnet" end
     local fullness = inst.components.inventory:NumItems()/inst.components.inventory.maxslots
     if fullness <= 0.33 then
         return "swap_trawlnet"
@@ -43,9 +43,9 @@ local function ontrawlpickup(inst, numitems, pickup)
             inst.visual.AnimState:SetBuild(gettrawlbuild(inst))
         end
         if sailor then
-			if pickup.components.weighable ~= nil then
-				pickup.components.weighable:SetPlayerAsOwner(sailor)
-			end
+            if pickup.components.weighable ~= nil then
+                pickup.components.weighable:SetPlayerAsOwner(sailor)
+            end
 
             sailor:PushEvent("trawlitem")
             inst.trawlitem:set_local(true)
@@ -281,7 +281,7 @@ local function onequip(inst, owner)
     inst:ListenForEvent("embarked", embarked, owner)
     inst:ListenForEvent("disembarked", disembarked, owner)
     updatespeedmult(inst)
-	starttrawling(inst)
+    starttrawling(inst)
 end
 
 local function onunequip(inst, owner)
@@ -297,19 +297,19 @@ local function onunequip(inst, owner)
     inst:RemoveEventCallback("embarked", embarked, owner)
     inst:RemoveEventCallback("disembarked", disembarked, owner)
     stoptrawling(inst)
-	--Only do the following if this entity is not in the process of getting removed already (fixes issue #246 - Duplication Bug)
-	if Ents[inst.GUID] then
-		droploot(inst, owner)
-		inst:DoTaskInTime(2*FRAMES, inst.Remove)
-	end
+    --Only do the following if this entity is not in the process of getting removed already (fixes issue #246 - Duplication Bug)
+    if Ents[inst.GUID] then
+        droploot(inst, owner)
+        inst:DoTaskInTime(2*FRAMES, inst.Remove)
+    end
 end
 
 local function net(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-	inst.entity:AddNetwork()
+    inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("trawlnet")
     inst.AnimState:SetBuild("swap_trawlnet")
@@ -328,14 +328,14 @@ local function net(Sim)
         end)
     end
 
-	MakeInventoryFloatable(inst)
-	inst.components.floater:UpdateAnimations("idle_water", "idle")
+    MakeInventoryFloatable(inst)
+    inst.components.floater:UpdateAnimations("idle_water", "idle")
 
-	inst.entity:SetPristine()
+    inst.entity:SetPristine()
 
-	if not TheWorld.ismastersim then
-		return inst
-	end
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
     inst:AddComponent("inspectable")
 
@@ -349,7 +349,7 @@ local function net(Sim)
     inst:AddComponent("inventory")
     inst.components.inventory.maxslots = TUNING.TRAWLNET_MAX_ITEMS
 
-	inst:AddComponent("equippable")
+    inst:AddComponent("equippable")
     inst.components.equippable.boatequipslot = BOATEQUIPSLOTS.BOAT_SAIL
     inst.components.equippable.equipslot = nil
     inst.components.equippable:SetOnEquip(onequip)
@@ -462,7 +462,7 @@ local function dropped_net()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-	inst.entity:AddNetwork()
+    inst.entity:AddNetwork()
 
     inst.Transform:SetTwoFaced()
 
@@ -477,11 +477,11 @@ local function dropped_net()
 
     MakeInventoryPhysics(inst)
 
-	inst.entity:SetPristine()
+    inst.entity:SetPristine()
 
-	if not TheWorld.ismastersim then
-		return inst
-	end
+    if not TheWorld.ismastersim then
+        return inst
+    end
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = getstatusfn
@@ -519,5 +519,5 @@ end
 return Prefab("trawlnet", net, net_assets),
     visualboatequip.MakeVisualBoatEquip("trawlnet", net_assets, nil, trawlnet_visual_common),
     visualboatequip.MakeVisualBoatEquipChild("trawlnet", net_assets, nil, trawlnet_visual_common),
-	Prefab("trawlnetdropped", dropped_net, dropped_assets)
+    Prefab("trawlnetdropped", dropped_net, dropped_assets)
 

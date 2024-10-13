@@ -4,9 +4,8 @@ GLOBAL.setfenv(1, GLOBAL)
 local function PlayOincSound(inst)
     local transaction_amount = inst._oinc_sound:value()
     if transaction_amount == 0 then
-        return
-    end
-    if transaction_amount == 1 then
+        TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/coins/1")
+    elseif transaction_amount == 1 then
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/coins/1")
     elseif transaction_amount == 2 then
         TheFocalPoint.SoundEmitter:PlaySound("dontstarve_DLC003/common/objects/coins/2")
@@ -19,11 +18,19 @@ local function ScheduleOincSoundEvent(inst, amount)
     if not inst.oinc_transaction then
         inst.oinc_transaction = 0
     end
+    if not inst.max_oinc_transaction then
+        inst.max_oinc_transaction = 0
+    end
     inst.oinc_transaction = inst.oinc_transaction + amount
+    if math.abs(inst.oinc_transaction) > inst.max_oinc_transaction then
+        inst.max_oinc_transaction = math.abs(inst.oinc_transaction)
+    end
+
     if not inst.oinc_transaction_task then
         inst.oinc_transaction_task = inst:DoTaskInTime(0, function()
             inst._oinc_sound:set_local(0)
-            inst._oinc_sound:set(inst.oinc_transaction)
+            inst._oinc_sound:set(inst.max_oinc_transaction)
+            inst.max_oinc_transaction = nil
             inst.oinc_transaction = nil
             inst.oinc_transaction_task = nil
         end)
@@ -40,35 +47,26 @@ local function OnItemGet(inst, data)
         ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
 
         item.oinc_sound_stackchange_listener = function(_, data)
-            local amount_changed = math.abs(data.stacksize - data.oldstacksize)
+            local amount_changed = data.stacksize - data.oldstacksize
             ScheduleOincSoundEvent(inst, amount_changed)
         end
         item:ListenForEvent("stacksizechange", item.oinc_sound_stackchange_listener)
     end
-
-    if item.prefab == "key_to_city" then
-        inst.components.builder.city_bonus = 2
-    end
 end
 
 local function OnItemLose(inst, data)
-    local activeitem = data.activeitem
     local item = data.prev_item
     if not item then
         return
     end
 
     if item:HasTag("oinc") then
-        ScheduleOincSoundEvent(inst, item.components.stackable and item.components.stackable:StackSize() or 1)
+        ScheduleOincSoundEvent(inst, item.components.stackable and (- item.components.stackable:StackSize()) or - 1)
 
         if item.oinc_sound_stackchange_listener then
             item:RemoveEventCallback("stacksizechange", item.oinc_sound_stackchange_listener)
             item.oinc_sound_stackchange_listener = nil
         end
-    end
-
-    if item.prefab == "key_to_city" and not activeitem then
-        inst.components.builder.city_bonus = 0
     end
 end
 
@@ -163,16 +161,6 @@ AddPlayerPostInit(function(inst)
         end)
     end
 
-    local _IsInLight = inst.IsInLight
-    function inst:IsInLight()
-        if inst:GetIsInInterior() then
-            local pos = inst:GetPosition()
-            return TheSim:GetLightAtPoint(pos.x, pos.y, pos.z, 0.1) > 0.1
-        else
-            return _IsInLight(self)
-        end
-    end
-
     inst._oinc_sound = net_byte(inst.GUID, "player._oincsoundpush", "oincsounddirty")
 
     if inst.components.hudindicatable then
@@ -252,6 +240,8 @@ AddPlayerPostInit(function(inst)
         end
     end})
     rawset(inst, "AnimState", AnimState)
+
+    inst.components.lightwatcherproxy:UseHighPrecision()
 
     if not TheWorld.ismastersim then
         return

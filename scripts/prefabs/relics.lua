@@ -81,6 +81,7 @@ local function MakeRelic(num)
 
         MakeInventoryPhysics(inst)
         PorkLandMakeInventoryFloatable(inst, tostring(num).."_water", tostring(num))
+        inst.components.floater.splashfx = "splash_water_sink"
 
         inst._name = net_string(inst.GUID, "_name", "namedirty")
 

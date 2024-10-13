@@ -276,6 +276,8 @@ PrefabFiles = {
     "coconade",
     "trawlnet",
     "sunkenprefab",
+
+    "pl_bat",
 }
 
 Assets = {

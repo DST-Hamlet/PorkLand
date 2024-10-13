@@ -97,8 +97,8 @@ AddClassPostConstruct("widgets/itemtile", function(widget)
 
     if widget.invspace then
         widget.inst:ListenForEvent("invspacechange", function(invitem, data)
-    		widget.invspace:GetAnimState():SetPercent("anim", data.percent)
-    	end, widget.item)
+            widget.invspace:GetAnimState():SetPercent("anim", data.percent)
+        end, widget.item)
     end
 
     if widget.fusebg then

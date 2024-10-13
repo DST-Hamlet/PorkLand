@@ -102,11 +102,19 @@ end
 
 local _CalcDamage = Combat.CalcDamage
 function Combat:CalcDamage(target, weapon, multiplier, ...)
+    if target:HasTag("alwaysblock") then
+        return 0
+    end
+
     local rets = {_CalcDamage(self, target, weapon, multiplier, ...)}
     local bonus = self.damagebonus or 0  -- not affected by multipliers
 
     local dmg = rets[1]
     dmg = (dmg - bonus) * self:GetDamageModifier() + bonus
+
+    if self.overridecalcdamagefn then
+        rets = {self.overridecalcdamagefn(self, target, weapon, multiplier, ...)}
+    end
     return unpack(rets)
 end
 

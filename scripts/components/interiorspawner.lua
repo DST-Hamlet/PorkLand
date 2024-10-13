@@ -827,10 +827,12 @@ function InteriorSpawner:SpawnInterior(interior)
                     end
 
                     object.sg:GoToState(prefab.startstate)
+                end
 
-                    if prefab.startstate == "forcesleep" then
-                        object.components.sleeper.hibernate = true
-                        object.components.sleeper:GoToSleep()
+                if prefab.forcesleep then
+                    object.components.sleeper:GoToSleep()
+                    if object.sg and object.sg:HasState("sleeping") then
+                        object.sg:GoToState("sleeping")
                     end
                 end
 

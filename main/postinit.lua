@@ -26,6 +26,8 @@ local component_posts = {
     "colourcube",
     "combat",
     "crop",
+    "deployable",
+    "dest",
     "drownable",
     "dryer",
     "edible",
@@ -62,9 +64,11 @@ local component_posts = {
     "resistance",
     "rider_replica",
     "rider",
+    "sanity",
     "seasons",
     "shard_clock",
     "shard_seasons",
+    "sheltered",
     "skinner",
     "sleeper",
     "spawner",
@@ -186,6 +190,7 @@ end
 modimport("postinit/recipe")
 modimport("postinit/equipslotutil")
 modimport("postinit/stategraph")
+modimport("postinit/minimapentity") -- Make sure this loads before entityscript for PorkLandOnMiniMapEntityRemove
 modimport("postinit/entityscript")
 modimport("postinit/bufferedaction")
 modimport("postinit/animstate")
@@ -193,7 +198,6 @@ modimport("postinit/stategraphs/commonstates")
 modimport("postinit/input")
 modimport("postinit/vector3")
 modimport("postinit/emittermanager")
-modimport("postinit/minimapentity")
 modimport("postinit/sim")
 modimport("postinit/pathfinder")
 modimport("postinit/groundcreep")
@@ -201,7 +205,7 @@ modimport("postinit/groundcreepentity")
 modimport("postinit/soundemitter")
 modimport("postinit/preparedfoods")
 modimport("postinit/skilltrees")
-
+modimport("postinit/lightwatcher")
 
 for _, file_name in ipairs(behaviour_posts) do
     modimport("postinit/behaviours/" .. file_name)

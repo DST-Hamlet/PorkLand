@@ -253,11 +253,19 @@ function EntityScript:IsInSameIsland(target)
         return false
     end
 
-    local x, y, z = self.Transform:GetWorldPosition()
+    local x, _, z = self.Transform:GetWorldPosition()
     local tx, ty, tz = target.Transform:GetWorldPosition()
 
     local current_island = TheWorld.Map:GetIslandTagAtPoint(x, 0, z)
     local target_island = TheWorld.Map:GetIslandTagAtPoint(tx, ty, tz)
 
     return current_island == target_island
+end
+
+local on_remove = EntityScript.OnRemove
+function EntityScript:OnRemove(...)
+    if self.MiniMapEntity then
+        PorkLandOnMiniMapEntityRemove(self)
+    end
+    return on_remove(self, ...)
 end

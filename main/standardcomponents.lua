@@ -155,6 +155,12 @@ function MakePickableBlowInWindGust(inst, wind_speed, destroy_chance)
     inst.components.blowinwindgust:Start()
 end
 
+local function remove_blowinwindgust(inst)
+    inst:RemoveComponent("blowinwindgust")
+    inst:RemoveEventCallback("onburnt", remove_blowinwindgust)
+    inst:RemoveEventCallback("workfinished", remove_blowinwindgust)
+end
+
 ---@param stages table The stage names in blown animation
 --- Note: Call this after defining inst:OnLoad since this overrides it
 function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
@@ -207,7 +213,7 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
 
     local function OnGustFall(inst)
         if inst.components.workable then
-            inst.components.workable.onfinish(inst, TheWorld)
+            inst.components.workable:Destroy(TheWorld)
         end
     end
 
@@ -227,19 +233,11 @@ function MakeTreeBlowInWindGust(inst, stages, threshold, destroy_chance)
     end
 
     if inst.components.burnable then
-        local onburnt = inst.components.burnable.onburnt
-        inst.components.burnable:SetOnBurntFn(function(inst)
-            if onburnt then onburnt(inst) end
-            inst:RemoveComponent("blowinwindgust")
-        end)
+        inst:ListenForEvent("onburnt", remove_blowinwindgust)
     end
 
     if inst.components.workable then
-        local onfinish = inst.components.workable.onfinish
-        inst.components.workable:SetOnFinishCallback(function(inst, chopper)
-            if onfinish then onfinish(inst, chopper) end
-            inst:RemoveComponent("blowinwindgust")
-        end)
+        inst:ListenForEvent("workfinished", remove_blowinwindgust)
     end
 end
 
@@ -410,6 +408,16 @@ function MakeInventoryPhysics(inst, mass, rad, ...)
     return physics
 end
 
+local _ChangeToInventoryItemPhysics = ChangeToInventoryItemPhysics
+function ChangeToInventoryItemPhysics(inst, mass, rad, ...)
+    local physics = _ChangeToInventoryItemPhysics(inst, mass, rad, ...)
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
+        physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
 function MakeThrowablePhysics(inst, mass, rad, ...)
     local physics = MakeInventoryPhysics(inst, mass, rad, ...)
     inst.Physics:SetFriction(100)
@@ -419,12 +427,72 @@ function MakeThrowablePhysics(inst, mass, rad, ...)
     return physics
 end
 
+function MakeCharacterThrowablePhysics(inst, mass, rad)
+    local phys = inst.entity:AddPhysics()
+    phys:SetMass(mass)
+    phys:SetFriction(100)
+    phys:SetRestitution(0)
+    phys:SetCollisionGroup(COLLISION.CHARACTERS)
+    phys:ClearCollisionMask()
+    phys:CollidesWith(COLLISION.WORLD)
+    phys:CollidesWith(COLLISION.OBSTACLES)
+    phys:CollidesWith(COLLISION.SMALLOBSTACLES)
+    phys:CollidesWith(COLLISION.CHARACTERS)
+    phys:CollidesWith(COLLISION.GIANTS)
+    phys:SetCapsule(rad, 1)
+    if TheWorld:HasTag("porkland") then
+        phys:ClearCollidesWith(COLLISION.LIMITS)
+        phys:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return phys
+end
+
 local _MakeProjectilePhysics = MakeProjectilePhysics
 function MakeProjectilePhysics(inst, mass, rad, ...)
     local physics = _MakeProjectilePhysics(inst, mass, rad, ...)
     if TheWorld:HasTag("porkland") then
         physics:ClearCollidesWith(COLLISION.LIMITS)
         physics:ClearCollidesWith(COLLISION.VOID_LIMITS)
+    end
+    return physics
+end
+
+function ChangeToFlyingCharacterPhysics(inst, mass, rad)
+    local phys = inst.Physics
+    if mass then
+        phys:SetMass(mass)
+        phys:SetFriction(0)
+    end
+    phys:SetCollisionGroup(COLLISION.FLYERS)
+    phys:ClearCollisionMask()
+    phys:CollidesWith((TheWorld:CanFlyingCrossBarriers() and COLLISION.GROUND) or COLLISION.WORLD)
+    phys:CollidesWith(COLLISION.FLYERS)
+    if rad then
+        phys:SetCapsule(rad, 1)
+    end
+    if mass then
+        phys:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return phys
+end
+
+local _ChangeToCharacterPhysics = ChangeToCharacterPhysics
+function ChangeToCharacterPhysics(inst, mass, rad, ...)
+    local physics = _ChangeToCharacterPhysics(inst, mass, rad, ...)
+    if mass then
+        physics:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return physics
+end
+
+local _MakeFlyingCharacterPhysics = MakeFlyingCharacterPhysics
+function MakeFlyingCharacterPhysics(inst, mass, rad, ...)
+    local physics = _MakeFlyingCharacterPhysics(inst, mass, rad, ...)
+    inst.OnLandPhysics = function(inst)
+        ChangeToCharacterPhysics(inst, mass, rad)
+    end
+    inst.OnRaisePhysics = function(inst)
+        ChangeToFlyingCharacterPhysics(inst, mass, rad)
     end
     return physics
 end

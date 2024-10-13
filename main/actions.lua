@@ -27,8 +27,8 @@ if not rawget(_G, "HotReloading") then
         DISARM = Action({priority = 1, distance = 1.5}),
         REARM = Action({priority = 1, distance = 1.5}),
         SPY = Action({distance = 2, mount_enabled = true}),
-        PUTONSHELF = Action({ distance = 2.5 }),
-        TAKEFROMSHELF = Action({ distance = 2.5, priority = 1 }),
+        PUTONSHELF = Action({ distance = 1.5 }),
+        TAKEFROMSHELF = Action({ distance = 1.5, priority = 1 }),
         ASSEMBLE_ROBOT = Action({}),
         CHARGE_UP = Action({priority = 2, rmb = true, distance = 36}),
         CHARGE_RELEASE = Action({priority = 2, rmb = true, distance = 36}),
@@ -50,7 +50,7 @@ if not rawget(_G, "HotReloading") then
         STOCK = Action({}),
         PIG_BANDIT_EXIT = Action({}),
 
-        SHOP = Action({ distance = 2.5 }),
+        SHOP = Action({ distance = 1.5 }),
         RENOVATE = Action({}),
         BUILD_ROOM = Action({}),
         DEMOLISH_ROOM = Action({}),
@@ -848,10 +848,25 @@ function ACTIONS.LIGHT.fn(act, ...)
     if act.invobject ~= nil and act.invobject:HasTag("magnifying_glass") and act.target then
         local x, y, z = act.target.Transform:GetWorldPosition()
         if TheSim:GetLightAtPoint(x, y, z) < TUNING.MAGNIFYING_GLASS_LIGHT then
-            return "TOODARK"
+            return false, "TOODARK"
         end
     end
     return _LIGHTfn(act, ...)
+end
+
+local _ROTATE_FENCEfn = ACTIONS.ROTATE_FENCE.fn
+ACTIONS.ROTATE_FENCE.fn = function(act)
+    if act.invobject ~= nil and act.target ~= nil and act.target:HasTag("furniture") then
+        if not (act.invobject.components.itemmimic and act.invobject.components.itemmimic.fail_as_invobject) then
+            local fencerotator = act.invobject.components.fencerotator
+            if fencerotator then
+                fencerotator:Rotate(act.target, TUNING.FENCE_FURNITURE_ROTATION)
+                return true
+            end
+        end
+    end
+
+    return _ROTATE_FENCEfn(act)
 end
 
 -- SCENE        using an object in the world

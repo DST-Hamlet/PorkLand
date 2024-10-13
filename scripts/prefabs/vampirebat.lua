@@ -19,7 +19,7 @@ SetSharedLootTable("vampirebat",
 {
     {"monstermeat",      0.5},
     {"bat_hide",         0.5},
-    {"vampire_bat_wing", 0.1},
+    {"vampire_bat_wing", 0.25},
     -- {"batwing", 0.1},
 })
 
@@ -53,14 +53,22 @@ local function KeepTarget(inst, target)
 end
 
 local RETARGET_DIST = 12
+local RETARGET_DIST_SLEEP = 3
 local RETARGET_CANT_TAGS = {"vampirebat"}
 local RETARGET_ONEOF_TAGS = {"character", "monster"}
 local function Retarget(inst)
     local ta = inst.components.teamattacker
 
-    local newtarget = FindEntity(inst, RETARGET_DIST, function(ent)
-        return inst.components.combat:CanTarget(ent)
-    end, nil, RETARGET_CANT_TAGS, RETARGET_ONEOF_TAGS)
+    local newtarget = nil
+    if not inst.components.sleeper:IsAsleep() then
+        newtarget = FindEntity(inst, RETARGET_DIST, function(ent)
+            return inst.components.combat:CanTarget(ent)
+        end, nil, RETARGET_CANT_TAGS, RETARGET_ONEOF_TAGS)
+    else
+        newtarget = FindEntity(inst, RETARGET_DIST_SLEEP, function(ent)
+            return inst.components.combat:CanTarget(ent)
+        end, nil, RETARGET_CANT_TAGS, RETARGET_ONEOF_TAGS)
+    end
 
     if newtarget and not ta.inteam and not ta:SearchForTeam() then
         MakeTeam(inst, newtarget)
@@ -94,15 +102,15 @@ local function OnAttackOther(inst, data)
 end
 
 local function OnWakeUp(inst)
-    inst.forcesleep = false
+
 end
 
 local function OnSave(inst, data)
     if inst:HasTag("batfrenzy") then
         data.batfrenzy = true
     end
-    if inst.forcesleep then
-        data.forcesleep = true
+    if inst.components.sleeper.hibernate then
+        data.hibernatesleep = true
     end
     if inst.sg:HasStateTag("flight") then
         data.flying = true
@@ -118,11 +126,10 @@ local function OnLoad(inst, data)
         inst:AddTag("batfrenzy")
     end
 
-    if data.forcesleep then
-        inst.forcesleep = true
-        inst.sg:GoToState("forcesleep")
+    if data.hibernatesleep then
         inst.components.sleeper.hibernate = true
         inst.components.sleeper:GoToSleep()
+        inst.sg:GoToState("sleeping")
     end
 
     if data.flying then
@@ -150,8 +157,8 @@ local function fn()
 
     inst.Transform:SetFourFaced()
 
-    MakeFlyingCharacterPhysics(inst, 1, 0.5)
-    PorkLandMakeInventoryFloatable(inst)
+    MakeFlyingCharacterPhysics(inst, 50, 0.5)
+    MakeInventoryFloatable(inst)
 
     inst:AddTag("vampirebat")
     inst:AddTag("scarytoprey")

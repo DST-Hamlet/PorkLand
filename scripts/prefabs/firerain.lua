@@ -11,11 +11,9 @@ local prefabs =
     "groundpound_fx",
     "groundpoundring_fx",
     "bombsplash",
-    "lava_bombsplash",
     "clouds_bombsplash",
     "firerainshadow",
     "meteor_impact",
-    "soundplayer"
 }
 
 local function DoStep(inst)
@@ -23,7 +21,7 @@ local function DoStep(inst)
 
     if TheWorld.Map:IsImpassableAtPoint(x, y, z) then
         local fx = SpawnPrefab("clouds_bombsplash")
-        fx.Transform:SetPosition(x, y, z)
+        fx.Transform:SetPosition(x, y - 1, z)
     elseif TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
         local fx = SpawnPrefab("bombsplash")
         fx.Transform:SetPosition(x, y, z)

@@ -13,7 +13,6 @@ local prefabs =
     "ro_bin_gizzard_stone",
     "die_fx",
     "chesterlight",
-    "sparklefx",
 }
 
 local function ShouldWakeUp(inst)

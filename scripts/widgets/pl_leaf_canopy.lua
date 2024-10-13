@@ -1,11 +1,6 @@
 local Widget = require("widgets/widget")
 local UIAnim = require("widgets/uianim")
 
-local CANOPY_TILES = {
-    [WORLD_TILES.GASJUNGLE] = true,
-    [WORLD_TILES.DEEPRAINFOREST] = true,
-}
-
 local LeavesOver = Class(Widget, function(self, owner)
     self.owner = owner
     Widget._ctor(self, "LeavesOver")
@@ -70,27 +65,7 @@ function LeavesOver:OnUpdate(dt)
     self.under_leaves = false
 
     local x, y ,z = self.owner.Transform:GetWorldPosition()
-    for k, v in pairs(CANOPY_TILES) do
-        if v and TheWorld.Map:IsCloseToTile(x, y, z, 1.5, function(_x, _y, _z)
-                local tile = TheWorld.Map:GetTileAtPoint(_x, _y, _z)
-
-                local clientundertile = TheWorld.components.clientundertile
-
-                local coords_x, coords_y = TheWorld.Map:GetTileCoordsAtPoint(_x, _y, _z)
-
-                if clientundertile then
-                    local old_tile = clientundertile:GetTileUnderneath(coords_x, coords_y)
-                    if old_tile then
-                        tile = old_tile
-                    end
-                end
-
-                return tile == k
-            end) then
-                self.under_leaves = true
-        end
-    end
-
+    self.under_leaves = TheWorld.Map:IsVisualCanopyAtPoint(x, y, z)
 
     if self.under_leaves then
         self.leavestop_intensity = math.min(1, self.leavestop_intensity + (1/30))

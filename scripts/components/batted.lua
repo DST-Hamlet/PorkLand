@@ -85,6 +85,7 @@ end
 local function hibernate(bat)
     bat.components.sleeper.hibernate = true
     bat.components.sleeper:GoToSleep()
+    bat.sg:GoToState("sleeping")
 end
 
 -- Spawns a bat in a random bat cave
@@ -190,7 +191,6 @@ end
 
 local function GetSpawnPointForPlayer(player)
     local pt = player:GetPosition()
-    local angle = math.random() * 2 * PI
     local radius = BAT_SPAWN_DIST
 
     local targetpt = FindNearbyLand(pt, math.random() * radius, 12)
@@ -251,7 +251,7 @@ local function SpawnBatsForPlayer(player)
         local interiorID = bat:GetCurrentInteriorID()
         if TheWorld.components.interiorspawner:IsAnyPlayerInRoom(interiorID) then
             local door_id = "vampirebatcave" .. interiorID .. "_exit"
-            local door = TheWorld.components.interiorspawner.doors[door_id]
+            local door = TheWorld.components.interiorspawner.doors[door_id].inst
 
             bat.persists = false
             bat._target_exterior = door.components.door.target_exterior

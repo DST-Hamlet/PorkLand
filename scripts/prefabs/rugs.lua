@@ -83,6 +83,7 @@ local function MakeRug(rug_type)
         inst:AddTag("OnFloor")
         inst:AddTag("NOCLICK")
         inst:AddTag("NOBLOCK")
+        inst:AddTag("rotatableobject")
 
         inst.entity:SetPristine()
 

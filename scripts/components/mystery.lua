@@ -95,8 +95,8 @@ function Mystery:OnLoad(data)
         self.reward = data.reward
     end
 
-    if data.reward then
-        self:AddReward(data.reward)
+    if data.ismystery then
+        self:AddReward(data.reward) -- data.reward可能为nil
     end
     if data.rolled then
         self.rolled = data.rolled
@@ -108,6 +108,10 @@ end
 
 function Mystery:OnSave()
     local data = {}
+
+    if self.inst:HasTag("mystery") then
+        data.ismystery = true
+    end
 
     if self.reward then
         data.reward = self.reward

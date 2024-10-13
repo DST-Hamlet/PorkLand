@@ -133,6 +133,10 @@ end
 ---@param targets_hit table|nil track entities hit with this table, not required
 ---@param targets_tossed table|nil track items tossed with this table, not required
 function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed)
+    if not inst then
+        print("WARNING: inst in DoCircularAOEDamageAndDestroy is nil")
+        return
+    end
     local damage_radius = params.damage_radius
     local launch_radius = params.launch_range or damage_radius
     local LAUNCH_SPEED = params.launch_speed or 0.2
@@ -152,14 +156,18 @@ function DoCircularAOEDamageAndDestroy(inst, params, targets_hit, targets_tossed
     inst.components.combat.ignorehitrange = true
 
     local x, _, z = inst.Transform:GetWorldPosition()
+    if params.pos then
+        x = params.pos.x
+        z = params.pos.z
+    end
     for _, v in ipairs(TheSim:FindEntities(x, 0, z, damage_radius + 3, nil, DAMAGE_CANT_TAGS, DAMAGE_ONEOF_TAGS)) do
         if not targets_hit[v] and v:IsValid() and VALIDFN(inst, v) and not (v.components.health and v.components.health:IsDead()) then
             local actual_damage_range = damage_radius + v:GetPhysicsRadius(0.5)
             if v:GetDistanceSqToPoint(x, 0, z) < actual_damage_range * actual_damage_range then
                 if is_valid_work_target(v) then
                     targets_hit[v] = true
-                    v.components.workable:Destroy(inst)
                     ONWORKEDFN(inst, v)
+                    v.components.workable:Destroy(inst)
                     if v:IsValid() and v:HasTag("stump") then
                         v:Remove()
                     end
@@ -361,6 +369,39 @@ function HandleDugGround(dug_ground, x, y, z, ...)
         end
     else
         return _HandleDugGround(dug_ground, x, y, z, ...)
+    end
+end
+
+function PL_LandFlyingCreature(creature)
+    if creature:HasTag("flying") then
+        creature:RemoveTag("flying")
+        creature:PushEvent("on_landed")
+        if creature.OnLandPhysics then
+            creature:OnLandPhysics()
+        end
+    end
+end
+
+local NORAISE_state =
+{
+    ["sleep"] = true,
+    ["sleeping"] = true,
+    ["wake"] = true,
+    ["frozen"] = true,
+    ["thaw"] = true
+}
+
+function PL_RaiseFlyingCreature(creature, ...)
+    if creature.sg.nextstate and NORAISE_state[creature.sg.nextstate] then
+        return -- 保持落地状态的连续性
+    end
+
+    if not creature:HasTag("flying") then
+        creature:AddTag("flying")
+        creature:PushEvent("on_no_longer_landed")
+        if creature.OnRaisePhysics then
+            creature:OnRaisePhysics()
+        end
     end
 end
 

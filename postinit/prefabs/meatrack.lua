@@ -6,7 +6,8 @@ local pl_buildfile = "meat_rack_food_pl"
 local meatrack_items = {
     venus_stalk = "venus_stalk",
     walkingstick = "walkingstick",
-    froglegs_poison = "froglegs_poison"
+    froglegs_poison = "froglegs_poison",
+    coi = "coi"
 }
 
 PLENV.AddPrefabPostInit("meatrack", function(inst)

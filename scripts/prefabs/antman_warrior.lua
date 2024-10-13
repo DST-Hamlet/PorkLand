@@ -46,13 +46,15 @@ local function OnAttacked(inst, data)
     local attacker = data.attacker
     inst:ClearBufferedAction()
 
-    if attacker.prefab == "deciduous_root" and attacker.owner then
-        OnAttackedByDecidRoot(inst, attacker.owner)
-    elseif attacker.prefab ~= "deciduous_root" then
-        inst.components.combat:SetTarget(attacker)
-        inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent)
-            return ent:HasTag("ant")
-        end, MAX_TARGET_SHARES)
+    if attacker then
+        if attacker.prefab == "deciduous_root" and attacker.owner then
+            OnAttackedByDecidRoot(inst, attacker.owner)
+        elseif attacker.prefab ~= "deciduous_root" then
+            inst.components.combat:SetTarget(attacker)
+            inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(ent)
+                return ent:HasTag("ant")
+            end, MAX_TARGET_SHARES)
+        end
     end
 end
 

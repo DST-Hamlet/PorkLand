@@ -53,6 +53,8 @@ local function CanBuildMoundAtPoint(x, y, z)
 end
 
 local function BuildHome(inst)
+    inst:PushEvent("takeoff")
+
     local x, y, z = inst.Transform:GetWorldPosition()
 
     if not inst.CanBuildMoundAtPoint(x, y, z) then
@@ -66,7 +68,6 @@ local function BuildHome(inst)
     home.components.childspawner.childreninside = home.components.childspawner.childreninside - 1
     home:UpdateAnimations()
 
-    inst:PushEvent("takeoff")
     inst.makehome = nil
     inst.components.timer:StopTimer("build_mount_cd", TUNING.TOTAL_DAY_TIME * (0.5 + math.random() * 0.5))
 

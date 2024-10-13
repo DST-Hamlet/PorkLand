@@ -1,3 +1,4 @@
+local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local Floater = require("components/floater")
@@ -21,9 +22,17 @@ function Floater:PlayWaterAnim()
             anim = self.wateranim(self.inst)
         end
 
+        local landanim = self.landanim
+        if type(self.landanim) == "function" then
+            landanim = self.landanim(self.inst)
+        end
+
         if not self.inst.AnimState:IsCurrentAnimation(anim) then
-            self.inst.AnimState:PlayAnimation(anim, true)
-            self.inst.AnimState:SetTime(math.random())
+            if self.inst.AnimState:IsCurrentAnimation(landanim) then
+                self.inst.AnimState:PlayAnimation(anim, true)
+            else
+                self.inst.AnimState:PushAnimation(anim, true)
+            end
         end
 
         self.inst.AnimState:OverrideSymbol("water_ripple", "ripple_build", "water_ripple")
@@ -38,8 +47,17 @@ function Floater:PlayLandAnim()
             anim = self.landanim(self.inst)
         end
 
+        local wateranim = self.wateranim
+        if type(self.wateranim) == "function" then
+            wateranim = self.wateranim(self.inst)
+        end
+
         if not self.inst.AnimState:IsCurrentAnimation(anim) then
-            self.inst.AnimState:PlayAnimation(anim, true)
+            if self.inst.AnimState:IsCurrentAnimation(wateranim) then
+                self.inst.AnimState:PlayAnimation(anim, true)
+            else
+                self.inst.AnimState:PushAnimation(anim, true)
+            end
         end
 
         self.inst.AnimState:OverrideSymbol("water_ripple", "ripple_build", "water_ripple")
@@ -51,7 +69,7 @@ function Floater:PlaySplashFx()
     if self.splash and (not self.inst.components.inventoryitem or not self.inst.components.inventoryitem:IsHeld()) then
         -- The SW splash effect has a different and iconic sound
         local x, y, z = self.inst.Transform:GetWorldPosition()
-        local splash = SpawnPrefab(TheWorld.has_pl_ocean and "splash_water_drop" or "splash")
+        local splash = SpawnPrefab(TheWorld.has_pl_ocean and self.splashfx or "splash")
         splash.Transform:SetPosition(x, y, z)
     end
 end
@@ -117,3 +135,7 @@ function Floater:OnLandedClient(...)
         self.showing_effect = true
     end
 end
+
+AddComponentPostInit("floater", function(self)
+    self.splashfx = "splash_water_drop"
+end)

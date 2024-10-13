@@ -1,5 +1,5 @@
 local function SetFires(x, y, z, rad)
-    for i, v in ipairs(TheSim:FindEntities(x, 0, z, rad, nil, { "laser", "DECOR", "INLIMBO" })) do
+    for i, v in ipairs(TheSim:FindEntities(x, 0, z, rad, nil, { "laser", "DECOR", "INLIMBO","FX" })) do
         if v.components.burnable then
             v.components.burnable:Ignite()
         end
@@ -36,20 +36,19 @@ local function OnAttacked(inst, v)
 end
 
 local function DoSectorAOE(inst, radius, start_angle, end_angle)
-    local function OnWorked(_, AOE_target)
-        local x, y, z = inst.Transform:GetWorldPosition()
-        AOE_target:DoTaskInTime(0.3, function() SetFires(x, y, z, radius) end)
-    end
-
     local x, y, z = inst.Transform:GetWorldPosition()
     SetFires(x, y, z, radius)
-    DoSectorAOEDamageAndDestroy(inst, {
+
+    TheWorld:DoTaskInTime(0.3, function() SetFires(x, y, z, radius) end)
+
+    local destroyer = inst.owner or inst
+
+    DoSectorAOEDamageAndDestroy(destroyer, {
+        pos = Vector3(x, y, z),
         damage_radius = radius,
         start_angle = start_angle,
         end_angle = end_angle,
         onattackedfn = OnAttacked,
-        onworkedfn = OnWorked,
-        onpickedfn = OnWorked,
         validfn = is_valid_target,
         use_world_picker = true
     })
@@ -85,7 +84,6 @@ local function UpdateHit(inst)
 end
 
 local function PowerGlow(inst)
-
     if inst.components.bloomer ~= nil then
         inst.components.bloomer:PushBloom(inst, "shaders/anim.ksh", -1)
     else

@@ -705,6 +705,11 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst.updateworkableart = true
         end
 
+        if data.cansit then
+            inst:AddComponent("sittable")
+            inst.AnimState:SetFinalOffset(-1)
+        end
+
         if prefabname == "pig_latin_1" then
             inst:AddTag("pig_writing_1")
             inst:ListenForEvent("entitywake", function(inst, data)
