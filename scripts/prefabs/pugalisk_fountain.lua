@@ -111,7 +111,7 @@ local function fn()
     inst.AnimState:SetBank("fountain")
     inst.AnimState:PlayAnimation("flow_loop", true)
 
-    inst.MiniMapEntity:SetIcon("pig_ruins_well.tex")
+    inst.MiniMapEntity:SetIcon("pugalisk_fountain.tex")
 
     MakeObstaclePhysics(inst, 2)
 
