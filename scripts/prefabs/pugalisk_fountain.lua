@@ -138,9 +138,10 @@ local function fn()
     inst.OnDeactivate = OnDeactivate
 
     inst:DoTaskInTime(0, function()
-        inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/fountain_LP", "burble")
         if inst.dry then
             inst:OnDeactivate()
+        else
+            inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/pugalisk/fountain_LP", "burble")
         end
     end)
 
