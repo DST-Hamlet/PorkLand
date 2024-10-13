@@ -17,6 +17,8 @@ local function fn()
     inst.AnimState:SetBuild("iron_ore")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "metal"
+
     inst:AddTag("molebait")
     inst:AddTag("smeltable")  -- Smelter
 

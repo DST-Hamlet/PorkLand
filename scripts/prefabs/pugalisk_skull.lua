@@ -14,6 +14,8 @@ local function fn()
     inst.AnimState:SetBuild("snake_skull")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "rock"
+
     MakeInventoryPhysics(inst)
     PorkLandMakeInventoryFloatable(inst)
 

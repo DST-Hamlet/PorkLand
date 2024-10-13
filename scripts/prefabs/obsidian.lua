@@ -20,6 +20,8 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
     inst.AnimState:SetRayTestOnBB(true)
 
+    inst.pickupsound = "rock"
+
     inst:AddTag("molebait")
     --waterproofer (from waterproofer component) added to pristine state for optimization
     inst:AddTag("waterproofer")

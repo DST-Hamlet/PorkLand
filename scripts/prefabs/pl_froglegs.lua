@@ -25,6 +25,8 @@ local function fn()
     inst.AnimState:SetBuild("frog_legs_tree")
     inst.AnimState:PlayAnimation("idle")
 
+    --inst.pickupsound = "squidgy"
+
     MakeInventoryPhysics(inst)
     PorkLandMakeInventoryFloatable(inst)
 
@@ -90,6 +92,8 @@ local function cookedfn()
     inst.AnimState:SetBank("frog_legs")
     inst.AnimState:SetBuild("frog_legs_tree")
     inst.AnimState:PlayAnimation("cooked")
+
+    --inst.pickupsound = "squidgy"
 
     inst:AddTag("poisonous")
     inst:AddTag("smallmeat")

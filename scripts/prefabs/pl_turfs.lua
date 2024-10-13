@@ -28,7 +28,7 @@ local function make_turf(tile, data)
 
         MakeInventoryPhysics(inst)
 
-        -- inst.pickupsound = data.pickupsound or nil
+        inst.pickupsound = data.pickupsound or nil
 
         inst.AnimState:SetBank("turf")
         inst.AnimState:SetBuild("turf_1")

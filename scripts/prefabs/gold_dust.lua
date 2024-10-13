@@ -36,6 +36,8 @@ local function fn()
     inst.AnimState:SetBuild("gold_dust")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "grainy"
+
     inst:AddTag("molebait")
     inst:AddTag("scarerbait")
 
