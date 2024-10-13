@@ -3,7 +3,6 @@ require("stategraphs/commonstates")
 local function OnWaterSound(inst)
     if inst.onwater then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/flap")
-        inst.components.locomotor:WalkForward()
     end
 end
 
@@ -235,7 +234,6 @@ starttimeline = {
     TimeEvent(1 * FRAMES, function(inst)
         if inst.onwater then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/flap")
-            inst.components.locomotor:WalkForward()
         end
     end),
 },
@@ -279,7 +277,6 @@ endtimeline =
     TimeEvent(1*FRAMES, function(inst)
         if inst.onwater then
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/ro_bin/flap")
-            inst.components.locomotor:WalkForward()
         end
     end),
 },

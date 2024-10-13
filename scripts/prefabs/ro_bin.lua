@@ -105,6 +105,7 @@ local function fn()
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = 5
     inst.components.locomotor.runspeed = 10 * 0.7
+    inst.components.locomotor.pathcaps = {allowocean = true}
 
     inst:AddComponent("follower")
 
