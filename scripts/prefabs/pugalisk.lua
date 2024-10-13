@@ -327,6 +327,7 @@ local function bodyfn()
     inst:AddTag("largecreature")
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
+    inst:AddTag("nokeeponpassable")
 
     inst.invulnerable = true
     inst.name = STRINGS.NAMES.PUGALISK
@@ -461,6 +462,7 @@ local function tailfn()
     inst:AddTag("largecreature")
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
+    inst:AddTag("nokeeponpassable")
 
     inst.entity:SetPristine()
 
