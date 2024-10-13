@@ -141,8 +141,6 @@ local function DetermineAction(inst)
             if inst.sg:HasStateTag("underground") then
                 local pos = inst:GetPosition()
                 inst.components.multibody:SpawnBody(inst.angle, 0, pos)
-            else
-                inst.wantstopremove = true
             end
         else
             inst:PushEvent("backup")

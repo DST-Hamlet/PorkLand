@@ -4,7 +4,7 @@ require("behaviours/standstill")
 local PugaliskUtil = require("prefabs/pugalisk_util")
 
 local function customLocomotionTest(inst)
-    if inst.sg:HasStateTag("underground") then
+    if inst.sg:HasStateTag("underground") or inst.sg:HasStateTag("backup") then
        return false
     end
 
@@ -30,7 +30,7 @@ function PugaliskHeadBrain:OnStart()
                     ChaseAndAttack(self.inst),
                     StandStill(self.inst)
                 }),
-        }, 1)
+        }, .25)
 
     self.bt = BT(self.inst, root)
 end

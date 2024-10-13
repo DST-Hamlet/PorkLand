@@ -198,8 +198,7 @@ local states =
                     inst.sg:GoToState("tongue")
                 end
 
-                if inst.wantstopremove then
-                    inst.wantstopremove = nil
+                if inst.movecommited then
                     inst:PushEvent("premove")
                 end
             end
@@ -446,6 +445,7 @@ local states =
             inst:Hide()
             inst.Physics:SetActive(false)
             inst.AnimState:PlayAnimation("head_idle_pre")
+            inst.movecommited = true
         end,
 
         onexit = function(inst)
@@ -497,11 +497,9 @@ local states =
                     end)
                 inst:DoTaskInTime(0.75, function()
                     PugaliskUtil.RecoverFromBadAngle(inst)
-                    inst.movecommited = false
                     dogroundpound(inst)
                     inst.sg:GoToState("emerge")
                 end)
-                inst.movecommited = true
                 inst.sg:GoToState("underground")
             end),
         },
