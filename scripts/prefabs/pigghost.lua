@@ -73,6 +73,10 @@ local function OnLoad(inst, data)
     end
 end
 
+local function OnRemove(inst)
+    inst.SoundEmitter:KillSound("howl")
+end
+
 local brain = require "brains/ghostbrain"
 
 local function fn()
@@ -98,7 +102,9 @@ local function fn()
     inst.Light:Enable(true)
     inst.Light:SetColour(180 / 255, 195 / 255, 225 / 255)
 
-    inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_howl_LP", "howl")
+    inst:DoTaskInTime(0, function()
+        inst.SoundEmitter:PlaySound("dontstarve/ghost/ghost_howl_LP", "howl")
+    end)
 
     inst:AddTag("monster")
     inst:AddTag("hostile")
@@ -147,6 +153,8 @@ local function fn()
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+
+    inst.OnRemove = OnRemove
 
     inst.OnEntitySleep = OnEntitySleep
 
