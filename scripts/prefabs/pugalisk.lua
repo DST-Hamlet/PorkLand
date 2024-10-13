@@ -592,6 +592,7 @@ local function fn()
     inst:AddTag("head")
     inst:AddTag("noflinch")
     inst:AddTag("noteleport")
+    inst:AddTag("nokeeponpassable")
 
     inst.name = STRINGS.NAMES.PUGALISK
 
