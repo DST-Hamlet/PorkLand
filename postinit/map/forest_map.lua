@@ -30,10 +30,10 @@ TRANSLATE_AND_OVERRIDE["jungle_border_vine"] = { "jungle_border_vine" }
 local function season_fn(friendly)
     return function(season, data)
         local seasons = data.seasons
-        seasons.seasonplateau = season
+        seasons.season = season
         seasons.elapseddaysinseason = 0
-        seasons.totaldaysinseasonplateau = friendly and TUNING.SEASON_VERYHARSH_DEFAULT * 2 or TUNING.SEASON_VERYHARSH_DEFAULT
-        seasons.remainingdaysinseasonplateau = TUNING.SEASON_VERYHARSH_DEFAULT
+        seasons.totaldaysinseason = friendly and TUNING.SEASON_VERYHARSH_DEFAULT * 2 or TUNING.SEASON_VERYHARSH_DEFAULT
+        seasons.remainingdaysinseason = TUNING.SEASON_VERYHARSH_DEFAULT
 
         return data
     end
