@@ -27,28 +27,21 @@ TRANSLATE_AND_OVERRIDE["deep_jungle_fern_noise"] = { "deep_jungle_fern_noise", "
 TRANSLATE_AND_OVERRIDE["jungle_border_vine"] = { "jungle_border_vine" }
 --TRANSLATE_TO_PREFABS["bermudatriangle"] =    {"bermudatriangle_MARKER"}
 
-local function season_fn(friendly)
-    return function(season, data)
-        local seasons = data.seasons
+local function season_fn(season, data)
+    local seasons = data.seasons
 
-        seasons.season = season
-        seasons.elapseddaysinseason = 0
-        seasons.totaldaysinseason = friendly and TUNING.SEASON_VERYHARSH_DEFAULT * 2 or TUNING.SEASON_VERYHARSH_DEFAULT
-        seasons.remainingdaysinseason = TUNING.SEASON_VERYHARSH_DEFAULT
+    seasons.seasonplateau = season
+    seasons.elapseddaysinseasonplateau = 0
+    seasons.totaldaysinseasonplateau = TUNING.SEASON_VERYHARSH_DEFAULT
+    seasons.remainingdaysinseasonplateau = TUNING.SEASON_VERYHARSH_DEFAULT
 
-        seasons.seasonplateau = season
-        seasons.elapseddaysinseasonplateau = 0
-        seasons.totaldaysinseasonplateau = friendly and TUNING.SEASON_VERYHARSH_DEFAULT * 2 or TUNING.SEASON_VERYHARSH_DEFAULT
-        seasons.remainingdaysinseasonplateau = TUNING.SEASON_VERYHARSH_DEFAULT
-
-        return data
-    end
+    return data
 end
 
 local SEASONS = forest_map.SEASONS
-SEASONS["temperate"] = season_fn(true)
-SEASONS["humid"] = season_fn(false)
-SEASONS["lush"] = season_fn(false)
+SEASONS["temperate"] = season_fn
+SEASONS["humid"] = season_fn
+SEASONS["lush"] = season_fn
 
 local function validate_ground_tile(tile)
     return WORLD_TILES.IMPASSABLE
