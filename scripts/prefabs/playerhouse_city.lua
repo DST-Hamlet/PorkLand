@@ -161,10 +161,6 @@ local function OnLoad(inst, data)
             TheWorld.components.interiorspawner:RegisterPlayerHouse(inst)
         end
     end
-
-    if not inst.build_by_player then
-        TheWorld.playerhouse = inst
-    end
 end
 
 local function CreatInterior(inst)
@@ -322,6 +318,11 @@ local function fn()
     inst.OnLoad = OnLoad
 
     inst.build_by_player = false
+    inst:DoTaskInTime(0, function()
+        if not inst.build_by_player then
+            TheWorld.playerhouse = inst
+        end
+    end)
     inst:ListenForEvent("onbuilt", onbuilt)
 
     inst.usesounds = {
