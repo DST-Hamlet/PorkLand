@@ -73,6 +73,7 @@ local function onhit(inst, worker)
 end
 
 local function onbuilt(inst)
+    inst.build_by_player = true
     inst.AnimState:PlayAnimation("place")
     inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/crafted/pighouse/wood_1")
     inst.AnimState:PushAnimation("idle")
@@ -111,10 +112,15 @@ local function OnSave(inst, data)
     data.interiorID = inst.interiorID
     data.prefabname = inst.prefabname
     data.minimapicon = inst.minimapicon
+    data.build_by_player = inst.build_by_player
 end
 
 local function OnLoad(inst, data)
     if data then
+        if data.build_by_player then
+            inst.build_by_player = data.build_by_player
+        end
+
         if data.interiorID then
             inst.interiorID = data.interiorID
         end
@@ -154,6 +160,10 @@ local function OnLoad(inst, data)
         if not TheWorld.components.interiorspawner:IsPlayerHouseRegistered(inst) then
             TheWorld.components.interiorspawner:RegisterPlayerHouse(inst)
         end
+    end
+
+    if not inst.build_by_player then
+        TheWorld.playerhouse = inst
     end
 end
 
@@ -311,6 +321,7 @@ local function fn()
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
 
+    inst.build_by_player = false
     inst:ListenForEvent("onbuilt", onbuilt)
 
     inst.usesounds = {
@@ -320,8 +331,6 @@ local function fn()
     inst:ListenForEvent("usedoor", UseDoor)
 
     inst.OnReconstructe = OnReconstructe
-
-    TheWorld.playerhouse = inst
 
     inst:ListenForEvent("onremove", function()
         TheWorld.components.interiorspawner:UnregisterPlayerHouse(inst)
