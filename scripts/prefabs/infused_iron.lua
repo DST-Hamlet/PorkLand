@@ -17,6 +17,8 @@ local function fn()
     inst.AnimState:SetBuild("infused_iron")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "metal"
+
     inst:AddTag("molebait")
     inst:AddTag("infused")
 

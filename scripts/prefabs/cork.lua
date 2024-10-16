@@ -17,6 +17,8 @@ local function fn()
     inst.AnimState:SetBank("cork")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "wood"
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

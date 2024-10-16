@@ -16,6 +16,8 @@ local function fn()
     inst.AnimState:SetBuild("bamboo")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "wood"
+
     PorkLandMakeInventoryFloatable(inst)
 
     inst.entity:SetPristine()

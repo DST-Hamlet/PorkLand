@@ -29,6 +29,8 @@ local function reset(inst)
     if inst.resettaskinfo then
         inst.resettaskinfo = nil
     end
+
+    inst.MiniMapEntity:SetIcon("pugalisk_fountain.tex")
 end
 
 local function OnActivate(inst, doer)
@@ -49,12 +51,16 @@ local function OnActivate(inst, doer)
     if ent then
         ent:PushEvent("activate")
     end
+
+    inst.MiniMapEntity:SetIcon("pugalisk_fountain_empty.tex")
 end
 
 local function OnDeactivate(inst)
     if not inst.resettask and TUNING.PUGALISK_ENABLED then
         inst.resettask, inst.resettaskinfo = inst:ResumeTask(TUNING.PUGALISK_RESPAWN, reset)
     end
+
+    inst.MiniMapEntity:SetIcon("pugalisk_fountain.tex")
 end
 
 local function OnSave(inst,data)
@@ -111,7 +117,7 @@ local function fn()
     inst.AnimState:SetBank("fountain")
     inst.AnimState:PlayAnimation("flow_loop", true)
 
-    inst.MiniMapEntity:SetIcon("pig_ruins_well.tex")
+    inst.MiniMapEntity:SetIcon("pugalisk_fountain.tex")
 
     MakeObstaclePhysics(inst, 2)
 

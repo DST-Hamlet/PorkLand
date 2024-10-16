@@ -85,7 +85,7 @@ local function MakeVeggie(name, has_seeds)
         inst.AnimState:SetBuild(name)
         inst.AnimState:PlayAnimation("idle")
 
-        -- inst.pickupsound = "vegetation_firm"
+        inst.pickupsound = "vegetation_firm"
 
         --cookable (from cookable component) added to pristine state for optimization
         inst:AddTag("cookable")
@@ -202,7 +202,7 @@ local function MakeVeggie(name, has_seeds)
         inst.AnimState:PlayAnimation(name)
         inst.AnimState:SetRayTestOnBB(true)
 
-        -- inst.pickupsound = "vegetation_firm"
+        inst.pickupsound = "vegetation_firm"
 
         --cookable (from cookable component) added to pristine state for optimization
         inst:AddTag("cookable")

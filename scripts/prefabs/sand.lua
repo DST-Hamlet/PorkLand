@@ -26,6 +26,8 @@ local function sandfn()
     inst.AnimState:SetBank("sandhill")
     inst.AnimState:PlayAnimation("idle")
 
+    inst.pickupsound = "grainy"
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
