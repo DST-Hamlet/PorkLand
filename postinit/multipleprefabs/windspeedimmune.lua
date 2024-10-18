@@ -2,16 +2,18 @@ local AddPrefabPostInit = AddPrefabPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local immune_to_wind = {
-    "crawlinghorror",
     "crawlingnightmare",
-    "ghost",
     "nightmarebeak",
-    "oceanhorror",
+    "crawlinghorror",
     "terrorbeak",
+    "oceanhorror",
+    "ghost",
 }
 
-for _, prefab in pairs(immune_to_wind) do
-    AddPrefabPostInit(prefab, function(inst)
-        inst:AddTag("windspeedimmune")
-    end)
+local function add_wind_speed_immune(inst)
+    inst:AddTag("windspeedimmune")
+end
+
+for _, prefab in ipairs(immune_to_wind) do
+    AddPrefabPostInit(prefab, add_wind_speed_immune)
 end

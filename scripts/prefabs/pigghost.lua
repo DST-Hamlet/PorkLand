@@ -109,6 +109,7 @@ local function fn()
     inst:AddTag("monster")
     inst:AddTag("hostile")
     inst:AddTag("ghost")
+    inst:AddTag("windspeedimmune")
     inst:AddTag("flying")
     inst:AddTag("noauradamage")
 
