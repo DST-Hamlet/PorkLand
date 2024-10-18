@@ -27,6 +27,10 @@ function Grogginess:OnRemoveFromEntity(...)
     self.foggygroggy = false
 
     _RemoveEventCallback(self, ...)
+
+    if self.inst:HasTag("groggy") then
+        self.inst:RemoveTag("groggy")
+    end
 end
 
 function Grogginess:HasOverHeatinggear()
