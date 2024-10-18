@@ -36,8 +36,7 @@ vec3 CalculateLightingContribution(vec2 pos)
 #else
 vec3 CalculateLightingContribution()
 {
-    vec3 position = vec3(PS_POS.x + PS_POS.y * 0.5, PS_POS.y, PS_POS.z); // 修正实际光照位置
-	vec2 uv = ( position.xz - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	vec2 uv = ( PS_POS.xz - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
 	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
 }
 
