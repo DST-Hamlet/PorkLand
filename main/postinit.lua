@@ -130,7 +130,6 @@ local multipleprefab_posts = {
     "stalagmite",
     "tradable",
     "visualvariant",
-    "windspeedimmune",
 }
 
 local scenario_posts = {

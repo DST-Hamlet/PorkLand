@@ -1,6 +1,15 @@
 local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
+local immune_to_wind_tags = {
+    "ghost",
+    "playerghost",
+    "shadow",
+    "shadowchesspiece",
+    "windspeedimmune",
+    "INLIMBO",
+}
+
 local function GetWindSpeed(self)
     local wind_speed = 1
 
@@ -10,7 +19,7 @@ local function GetWindSpeed(self)
 
     -- get a wind speed adjustment
     if TheWorld.net ~= nil and TheWorld.net.components.plateauwind and TheWorld.net.components.plateauwind:GetIsWindy()
-        and not self.inst:HasTag("windspeedimmune")
+        and not self.inst:HasOneOfTags(immune_to_wind_tags)
         and not self.inst:HasTag("playerghost") then
 
         local windangle = self.inst.Transform:GetRotation() - TheWorld.net.components.plateauwind:GetWindAngle()
