@@ -463,6 +463,22 @@ local sounds = {
     Asset("SOUNDPACKAGE", "sound/porkland_soundpackage.fev"),
 }
 
+local shade_anim_assets =
+{
+    {path = "images/shade_anim/roc_shadow/shadow/shadow-", length = 0},
+    {path = "images/shade_anim/roc_shadow/ground_pre/ground_pre-", length = 42},
+    {path = "images/shade_anim/roc_shadow/ground_loop/ground_loop-", length = 0},
+    {path = "images/shade_anim/roc_shadow/ground_pst/ground_pst-", length = 54},
+    {path = "images/shade_anim/roc_shadow/shadow_flap_loop/shadow_flap_loop-", length = 37},
+}
+for _, v in ipairs(shade_anim_assets) do
+    for i = 0, v.length do
+        local realframe = i + 1
+        local framepath = v.path..tostring(realframe)..".tex"
+        table.insert(Assets, Asset("IMAGE", framepath))
+    end
+end
+
 if not TheNet:IsDedicated() then
     for _, asset in ipairs(sounds) do
         table.insert(Assets, asset)

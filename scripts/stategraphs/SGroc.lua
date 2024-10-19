@@ -27,15 +27,8 @@ local states =
         tags = {"idle" },
 
         onenter = function(inst)
-            inst.AnimState:PlayAnimation("ground_loop")
+            inst.components.shadeanimstate:PlayAnimation("roc_shadow_ground_loop")
         end,
-
-        events =
-        {
-            EventHandler("animover", function(inst, data)
-                inst.sg:GoToState("idle")
-            end),
-        }
     },
 
     State{
@@ -44,7 +37,7 @@ local states =
 
         onenter = function(inst)
             inst.Physics:Stop()
-            inst.AnimState:PlayAnimation("ground_pre")
+            inst.components.shadeanimstate:PlayAnimation("roc_shadow_ground_pre")
         end,
 
         timeline =
@@ -60,14 +53,11 @@ local states =
                 inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/roc/porkland_soundpackage","flaps")
                 inst.SoundEmitter:SetParameter("flaps", "intensity", inst.sound_distance)
             end),
-        },
 
-        events =
-        {
-            EventHandler("animover", function(inst, data)
+            TimeEvent(42 * FRAMES, function(inst)
                 inst.sg:GoToState("idle")
             end),
-        }
+        },
     },
 
     State{
@@ -76,24 +66,18 @@ local states =
 
         onenter = function(inst)
             inst.Physics:Stop()
-            inst.AnimState:PlayAnimation("ground_pst")
+            inst.components.shadeanimstate:PlayAnimation("roc_shadow_ground_pst")
         end,
 
         timeline =
         {
             TimeEvent(15 * FRAMES, function(inst) inst.components.glidemotor:EnableMove(true) end),
+            TimeEvent(54 * FRAMES, function(inst) inst.sg:GoToState("fly") end),
         },
 
         onexit = function(inst)
             inst.components.glidemotor:EnableMove(false)
         end,
-
-        events =
-        {
-            EventHandler("animover", function(inst, data)
-                inst.sg:GoToState("fly")
-            end),
-        }
     },
 
     State{
@@ -103,7 +87,7 @@ local states =
         onenter = function(inst)
             inst.components.glidemotor:EnableMove(true)
             inst.sg:SetTimeout(1 + 2 * math.random())
-            inst.AnimState:PlayAnimation("shadow")
+            inst.components.shadeanimstate:PlayAnimation("roc_shadow_shadow")
         end,
 
         ontimeout=function(inst)
@@ -121,7 +105,7 @@ local states =
 
         onenter = function(inst)
             inst.components.glidemotor:EnableMove(true)
-            inst.AnimState:PlayAnimation("shadow_flap_loop")
+            inst.components.shadeanimstate:PlayAnimation("roc_shadow_shadow_flap_loop")
         end,
 
         timeline =
@@ -138,15 +122,8 @@ local states =
                 end
                 inst.SoundEmitter:SetParameter("calls", "intensity", inst.sound_distance)
             end),
-        },
 
-        onexit = function(inst)
-            inst.components.glidemotor:EnableMove(false)
-        end,
-
-        events =
-        {
-            EventHandler("animover", function(inst)
+            TimeEvent(37 * FRAMES, function(inst)
                 if not inst.flap then
                     inst.sg:GoToState("flap")
                     inst.flap = true
@@ -156,6 +133,10 @@ local states =
                 end
             end),
         },
+
+        onexit = function(inst)
+            inst.components.glidemotor:EnableMove(false)
+        end,
     },
 
     State{
@@ -166,7 +147,7 @@ local states =
             inst.sg:SetTimeout(3)
             inst.components.glidemotor:EnableMove(true)
             inst.components.glidemotor:TurnFast(1.2)
-            inst.AnimState:PlayAnimation("shadow_flap_loop")
+            inst.components.shadeanimstate:PlayAnimation("roc_shadow_shadow_flap_loop")
         end,
 
         timeline =

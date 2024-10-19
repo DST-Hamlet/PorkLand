@@ -715,6 +715,9 @@ local tuning = {
 
     ENTITY_WAKE_DIST = 64,
     ENTITY_SLEEP_DIST = 64 * 1.2,
+
+    ANIMSHADE_MIN_STRENGTH = 0.1429,           -- blend min strength - modulated with avg ambient
+    ANIMSHADE_MAX_STRENGTH = 0.5,           -- blend max strength - modulated with avg ambient
 }
 
 

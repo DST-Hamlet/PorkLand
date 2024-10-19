@@ -154,6 +154,8 @@ end
 
 function RocController:SetScale(scale)
     self.inst.Transform:SetScale(scale, scale, scale)
+    self.inst.components.shadeanimstate.scale = 40 * scale
+    self.inst.components.shadeanimstate._scale:set(40 * scale)
     if self.scalefn then
         self.scalefn(self.inst, scale)
     end
