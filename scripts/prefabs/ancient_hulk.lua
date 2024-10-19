@@ -346,6 +346,7 @@ local function mine_fn()
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.ANCIENT_HULK_MINE_DAMAGE)
+    inst.components.combat.playerdamagepercent = 0.5
 
     inst.OnSave = MineOnSave
     inst.OnLoad = MineOnLoad

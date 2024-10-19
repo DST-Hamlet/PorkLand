@@ -45,6 +45,14 @@ function ShadeAnimState:ClearCurrentFrame()
     end
 end
 
+function ShadeAnimState:OnRemoveFromEntity()
+    self:ClearCurrentFrame()
+end
+
+function ShadeAnimState:OnRemoveEntity()
+    self:ClearCurrentFrame()
+end
+
 function ShadeAnimState:SpawnNewFrame()
     self:ClearCurrentFrame()
     if self.currentanim then
