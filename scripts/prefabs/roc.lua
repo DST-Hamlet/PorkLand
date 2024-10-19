@@ -25,21 +25,10 @@ end
 
 local function scalefn(inst,scale)
     inst.components.locomotor.runspeed = TUNING.ROC_SPEED * scale
-    inst.components.shadowcaster:SetRange(TUNING.ROC_SHADOWRANGE * scale)
 end
 
 local function OnRemoved(inst)
     TheWorld.components.rocmanager:RemoveRoc(inst)
-end
-
-local function OnPhaseChange(inst, phase)
-    if phase == "day" then
-        if not inst.components.areaaware:CurrentlyInTag("Canopy") then
-            inst.components.colourtweener:StartTween({1, 1, 1, 0.5}, 3)
-        end
-    elseif phase == "night" then
-        inst.components.colourtweener:StartTween({1, 1, 1, 0}, 3)
-    end
 end
 
 local function fn()
@@ -51,14 +40,6 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
     inst.entity:SetCanSleep(false)
-
-    inst.AnimState:SetBank("roc")
-    inst.AnimState:SetBuild("roc_shadow")
-    inst.AnimState:PlayAnimation("ground_loop")
-    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    inst.AnimState:SetLayer(LAYER_BACKGROUND)
-    inst.AnimState:SetSortOrder(1)
-    inst.AnimState:SetMultColour(1, 1, 1, 0.5)
 
     inst.Physics:SetMass(10)
     inst.Physics:SetCapsule(1.5, 1)
@@ -78,6 +59,9 @@ local function fn()
     inst:AddTag("windspeedimmune")
     inst:AddTag("NOCLICK")
 
+    inst:AddComponent("shadeanimstate")
+    inst.components.shadeanimstate:PlayAnimation("roc_shadow_shadow")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -85,8 +69,6 @@ local function fn()
     end
 
     inst:AddComponent("knownlocations")
-
-    inst:AddComponent("shadowcaster")
 
     inst:AddComponent("areaaware")
 
@@ -103,19 +85,7 @@ local function fn()
     inst.components.roccontroller:Start()
     inst.components.roccontroller.scalefn = scalefn
 
-    inst:AddComponent("colourtweener")
-
     inst:ListenForEvent("onremove", OnRemoved)
-    inst:ListenForEvent("changearea", function()
-        if inst.components.areaaware:CurrentlyInTag("Canopy") then
-            inst.components.colourtweener:StartTween({1, 1, 1, 0}, 1)
-        elseif not TheWorld.state.isnight then
-            inst.components.colourtweener:StartTween({1, 1, 1, 0.5}, 1)
-        end
-    end)
-
-    inst:WatchWorldState("phase", OnPhaseChange)
-    OnPhaseChange(inst, TheWorld.state.phase)
 
     inst:SetStateGraph("SGroc")
 
