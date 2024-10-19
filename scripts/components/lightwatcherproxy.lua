@@ -18,7 +18,9 @@ function LightWatcherProxy:IsInLight()
     if self.using_high_precision then
         return self.inlight
     else
-        return self:GetLightValue() >= self.darkthresh
+        local x, y, z = self.inst.Transform:GetWorldPosition()
+        local light_value = TheSim:GetLightAtPoint(x, y, z)
+        return light_value >= self.darkthresh
     end
 end
 
