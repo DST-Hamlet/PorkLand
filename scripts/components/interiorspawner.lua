@@ -664,7 +664,7 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     -- This destroies the interior center
     -- and this can generate more inventoryitems,
     -- so we do another pass afterwards to push them to the exit position
-    local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS)
+    local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"_inventoryitem"})
     if #ents > 0 then
         print("WARNING: Find "..#ents.." entities around pt "..tostring(pos)
             .." [INDEX="..self:PositionToIndex(pos).."]")
@@ -694,10 +694,10 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
         end
     end
 
-    local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS)
+    local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"_inventoryitem"})
     for _, v in ipairs(ents) do
         if v.components.inventoryitem then
-            v:Remove()
+            v.Transform:SetPosition(exterior_pos:Get())
         elseif v:IsValid() then
             v:Remove()
         end
