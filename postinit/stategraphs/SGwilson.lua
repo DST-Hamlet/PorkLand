@@ -624,7 +624,6 @@ local states = {
                 if fishingrod ~= nil and fishingrod.target and fishingrod.target.components.inventoryitem then
                     local delta = inst:GetPosition() - fishingrod.target:GetPosition()
                     fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
-                    inst.sg.statemem.tool:PushEvent("fishingcollect")
                 elseif fishingrod ~= nil and fishingrod.target and fishingrod.target:HasTag("sunkencontainer") then
                     local item = fishingrod.target.components.container:RemoveItemBySlot(1)
                     item.Transform:SetPosition(fishingrod.target.Transform:GetWorldPosition())
@@ -632,7 +631,6 @@ local states = {
                     fishingrod.target = item
                     local delta = inst:GetPosition() - fishingrod.target:GetPosition()
                     fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
-                    inst.sg.statemem.tool:PushEvent("fishingcollect")
                 end
             end),
             TimeEvent(64*FRAMES, function(inst)

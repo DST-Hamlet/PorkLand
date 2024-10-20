@@ -25,5 +25,6 @@ function FishingRod:Retrieve()
         end
     end
     self.target = nil
+    self.inst:PushEvent("fishingcollect")
     self:StopFishing()
 end
