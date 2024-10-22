@@ -1,6 +1,8 @@
 local ShadeAnimState = Class(function(self, inst)
     self.inst = inst
 
+    self.enabled = true
+
     self.currentframe = 0
 
     self.currentshadeanimdata = nil
@@ -46,16 +48,18 @@ function ShadeAnimState:ClearCurrentFrame()
 end
 
 function ShadeAnimState:OnRemoveFromEntity()
+    self.enabled = false
     self:ClearCurrentFrame()
 end
 
 function ShadeAnimState:OnRemoveEntity()
+    self.enabled = false
     self:ClearCurrentFrame()
 end
 
 function ShadeAnimState:SpawnNewFrame()
     self:ClearCurrentFrame()
-    if self.currentanim then
+    if self.currentanim and self.enabled then
         local animation = AnimShadeRenderers[self.currentanim]
         if self.currentframe > animation.length then
             self.currentframe = 0

@@ -94,7 +94,7 @@ end
 
 
 function self:SpawnRocToPlayer(player)
-    if not _enable then
+    if not _enable or not TUNING.ROC_ENABLED then
         return false
     end
 
