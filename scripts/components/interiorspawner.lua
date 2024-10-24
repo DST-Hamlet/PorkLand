@@ -697,7 +697,11 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"_inventoryitem"})
     for _, v in ipairs(ents) do
         if v.components.inventoryitem then
-            v.Transform:SetPosition(exterior_pos:Get())
+            if exterior_pos then
+                v.Transform:SetPosition(exterior_pos:Get())
+            else
+                SinkEntity(v)
+            end
         elseif v:IsValid() then
             v:Remove()
         end
