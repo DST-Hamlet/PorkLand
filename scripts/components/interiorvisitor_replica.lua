@@ -190,7 +190,7 @@ end
 -- Receiving from remove_interior_map client RPC
 function InteriorVisitor:RemoveInteriorMapData(data)
     for _, id in ipairs(data) do
-        self.interior_map[id] = data
+        self.interior_map[id] = nil
     end
     self.inst:PushEvent("refresh_interior_minimap")
 end
