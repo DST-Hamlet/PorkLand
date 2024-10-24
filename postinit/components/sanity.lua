@@ -68,11 +68,12 @@ function Sanity:UpdateInteriorMode()
     if TheWorld.state.isday and not TheWorld:HasTag("cave") and drainstate == LIGHT_DRAIN_STATE.INTERIOR then
         local lightval = CanEntitySeeInDark(self.inst) and .9 or self.inst.LightWatcher:GetLightValue()
         local light_rate =
-            (lightval > TUNING.SANITY_HIGH_LIGHT and _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_LIGHT) or
+            ((lightval > TUNING.SANITY_HIGH_LIGHT and _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_LIGHT) or
             (lightval < TUNING.SANITY_LOW_LIGHT and _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_DARK) or
-            _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_DIM
+            _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_DIM) * self.night_drain_mult
 
         _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].DAY = light_rate
+        print("light_rate", light_rate)
     end
     debug.setupvalue(self.Recalc, i, _LIGHT_SANITY_DRAINS)
 end
