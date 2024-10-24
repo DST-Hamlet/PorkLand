@@ -73,7 +73,6 @@ function Sanity:UpdateInteriorMode()
             _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].NIGHT_DIM) * self.night_drain_mult
 
         _LIGHT_SANITY_DRAINS[SANITY_MODE_INSANITY].DAY = light_rate
-        print("light_rate", light_rate)
     end
     debug.setupvalue(self.Recalc, i, _LIGHT_SANITY_DRAINS)
 end

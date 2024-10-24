@@ -90,12 +90,20 @@ function PlayerHud:UpdateFogClouds(camera)
         local dist_percent = (camera.distance - camera.mindist) / (camera.maxdist - camera.mindist)
         local cutoff = TUNING.HUD_CLOUD_CUTOFF
         if dist_percent > cutoff then
+            camera.should_push_down = true
             local p = easing.outCubic(dist_percent - cutoff, 0, .5, 1 - cutoff)
             intensity = math.max(intensity, p)
-            self.clouds:Show()
-        elseif not (intensity > 0) then
-            self.clouds:Hide()
+            TheMixer:PushMix("high")
+        else
+            camera.should_push_down = false
+            TheMixer:PopMix("high")
         end
+    end
+
+    if intensity > 0 then
+        self.clouds:Show()
+    else
+        self.clouds:Hide()
     end
 
     self.clouds:GetAnimState():SetMultColour(1, 1, 1, intensity)
