@@ -1727,6 +1727,9 @@ local states = {
         {
             TimeEvent(2 * FRAMES, function(inst)
                 inst:ScreenFade(false, 0.4)
+                inst:DoStaticTaskInTime(0.6, function()
+                    inst:ScreenFade(true, 0.4)
+                end)
             end),
 
             TimeEvent(15 * FRAMES, function(inst)
@@ -1734,7 +1737,6 @@ local states = {
             end),
 
             TimeEvent(19 * FRAMES, function(inst)
-                inst:ScreenFade(true, 0.4)
                 if inst.components.playercontroller then
                     -- inst.components.playercontroller:EnableMapControls(true)
                     inst.components.playercontroller:Enable(true)
