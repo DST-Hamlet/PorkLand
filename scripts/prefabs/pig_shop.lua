@@ -505,6 +505,7 @@ local function OnLoad(inst, data)
     if data.interiorID then
         inst.interiorID = data.interiorID
     end
+    CreateInterior(inst)
 end
 
 local function UseDoor(inst, data)
@@ -696,7 +697,11 @@ local function MakeShop(name, build, bank, data)
         inst:WatchWorldState("isfiesta", OnIsFiesta)
         OnIsFiesta(inst, TheWorld.state.isfiesta)
 
-        inst:DoTaskInTime(0, CreateInterior)
+        inst:DoTaskInTime(0, function()
+            if inst.interiorID == nil then
+                CreateInterior(inst)
+            end
+        end)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad

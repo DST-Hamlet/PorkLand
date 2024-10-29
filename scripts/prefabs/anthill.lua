@@ -286,7 +286,6 @@ local function CreateRegularRooms(inst)
     local doorway_prefabs = {inst}
     for _, ent in pairs(Ents) do
         if ent:HasTag("ant_hill_exit") then
-            ent:RemoveTag("ant_hill_exit") -- todo tag
             table.insert(doorway_prefabs, ent)
         end
     end
@@ -478,6 +477,9 @@ local function OnLoad(inst, data)
         inst.doorway_index = data.doorway_index
         TheWorld.components.interiorspawner:AddExterior(inst)
     end
+    if inst:HasTag("ant_hill_entrance") then
+        CreateInterior(inst)
+    end
 
     if data.rooms then
         inst.rooms = data.rooms
@@ -553,7 +555,11 @@ local function makefn(is_entrance)
         inst.GenerateMaze = GenerateMaze
 
         if is_entrance then
-            inst:DoTaskInTime(0, CreateInterior)
+            inst:DoTaskInTime(0, function()
+                if inst.interiorID == nil then
+                    CreateInterior(inst)
+                end
+            end)
             inst:DoPeriodicTask(TUNING.TOTAL_DAY_TIME / 3, inst.GenerateMaze)
 
             TheWorld.anthill_entrance = inst

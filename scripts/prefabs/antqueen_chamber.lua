@@ -135,6 +135,7 @@ local function OnLoad(inst, data)
         inst.interiorID = data.interiorID
         TheWorld.components.interiorspawner:AddExterior(inst)
     end
+    CreateInterior(inst)
 
     if data.rooms then
         inst.rooms = data.rooms
@@ -192,7 +193,11 @@ local function makefn()
         inst:AddComponent("door")
         inst.components.door.outside = true
 
-        inst:DoTaskInTime(0, CreateInterior)
+        inst:DoTaskInTime(0, function()
+            if inst.interiorID == nil then
+                CreateInterior(inst)
+            end
+        end)
 
         MakeSnowCovered(inst, 0.01)
 

@@ -100,7 +100,7 @@ local function fn()
 
     MakeSnowCovered(inst)
 
-    --inst:DoTaskInTime(0, CreatInterior)
+    --inst:DoTaskInTime(0, CreateInterior)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
