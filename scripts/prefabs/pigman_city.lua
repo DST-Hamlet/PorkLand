@@ -842,7 +842,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
 
         inst.SayLine = SayLine
         inst.GetSpeechType = GetSpeechType
-        inst.talkertype = name:upper()
+        inst.talkertype = name
 
         inst:AddTag("character")
         inst:AddTag("pig")
