@@ -397,17 +397,11 @@ local function Earthquake(inst)
 end
 
 local function CreateInterior(inst)
-    if inst.maze_generated then
-        return
-    end
-
     BuildGrid(inst)
     CreateRegularRooms(inst)
     BuildWalls(inst)
     RefreshDoors(inst)
     TheWorld.components.interiorspawner:AddExterior(inst)
-
-    inst.maze_generated = true
 end
 
 local function GenerateMaze(inst)
@@ -441,7 +435,6 @@ local function GetStatus(inst)
 end
 
 local function OnSave(inst, data)
-    data.maze_generated = inst.maze_generated
     data.maze_reset_count = inst.maze_reset_count
     data.interiorID = inst.interiorID
     if inst.rooms then
@@ -464,10 +457,6 @@ local function OnLoad(inst, data)
         return
     end
 
-    if data.maze_generated then
-        inst.maze_generated = data.maze_generated
-    end
-
     if data.maze_reset_count then
         inst.maze_reset_count = data.maze_reset_count
     end
@@ -477,12 +466,17 @@ local function OnLoad(inst, data)
         inst.doorway_index = data.doorway_index
         TheWorld.components.interiorspawner:AddExterior(inst)
     end
-    if inst:HasTag("ant_hill_entrance") then
-        CreateInterior(inst)
-    end
 
     if data.rooms then
         inst.rooms = data.rooms
+    end
+end
+
+local function OnLoadPostPass(inst, data) -- 出口的连接写在 OnLoadPostPass 中，这样才能确定所有储存的实体已经添加进世界
+    if inst.is_entrance then
+        if inst.interiorID == nil then
+            CreateInterior(inst)
+        end
     end
 end
 
@@ -516,6 +510,7 @@ local function makefn(is_entrance)
         inst:AddTag("structure")
         inst:AddTag("client_forward_action_target")
         if is_entrance then
+            inst.is_entrance = true
             inst:AddTag("ant_hill_entrance")
         else
             inst:AddTag("ant_hill_exit")
@@ -552,6 +547,7 @@ local function makefn(is_entrance)
 
         inst.OnSave = OnSave
         inst.OnLoad = OnLoad
+        inst.OnLoadPostPass = OnLoadPostPass
         inst.GenerateMaze = GenerateMaze
 
         if is_entrance then
