@@ -40,8 +40,6 @@ local function OnTakeAmmo(inst, data)
 
     --Change ranges
     inst.components.weapon:SetRange(TUNING.BLUNDERBUSS_ATTACK_RANGE, TUNING.BLUNDERBUSS_HIT_RANGE)
-    local damage = TUNING.GUNPOWDER_DAMAGE
-    inst.components.weapon:SetDamage(damage)
 
     inst.override_bank = "swap_blunderbuss_loaded"
 
@@ -63,7 +61,6 @@ local function OnLoseAmmo(inst)
 
     --Change ranges back to melee
     inst.components.weapon:SetRange(nil, nil)
-    inst.components.weapon:SetDamage(TUNING.UNARMED_DAMAGE)
 
     --Change equip overrides
     inst.override_bank = "swap_blunderbuss"
@@ -77,7 +74,7 @@ local function OnLoseAmmo(inst)
     inst.components.inventoryitem:ChangeImageName("blunderbuss")
 end
 
-local function OnAttack(inst, attacker, target)
+local function OnProjectileLaunched(inst, attacker, target)
     local removed_item = inst.components.inventory.itemslots[1]
     inst.components.inventory:RemoveItem(removed_item, false)
 
@@ -126,6 +123,7 @@ local function fn()
 
     inst:AddComponent("weapon")
     inst.components.weapon.projectilelaunchsymbol = "swap_object"
+    inst.components.weapon:SetOnProjectileLaunched(OnProjectileLaunched)
 
     inst:AddComponent("inventoryitem")
 
@@ -144,8 +142,6 @@ local function fn()
 
     inst:ListenForEvent("trade", OnTakeAmmo)
 
-    inst.OnShoot = OnAttack
-
     inst.override_bank = "swap_blunderbuss"
 
     inst.OnSave = OnSave
@@ -162,10 +158,6 @@ local function OnHit(inst, attacker, target)
         fx:FacePoint(attacker.Transform:GetWorldPosition())
     end
 
-    if attacker and attacker:IsValid() then
-        OnAttack(attacker.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS), attacker, target)
-    end
-
     inst:Remove()
 end
 
@@ -176,7 +168,7 @@ local function projectile_fn()
     inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
-    MakeInventoryPhysics(inst)
+    MakeProjectilePhysics(inst)
 
     inst.AnimState:SetBank("amo01")
     inst.AnimState:SetBuild("blunderbuss_ammo")
@@ -190,7 +182,8 @@ local function projectile_fn()
         return inst
     end
 
-    inst:AddComponent("projectile")
+    inst:AddReplaceComponent("projectile_gun", "projectile")
+    inst.components.projectile.damage = TUNING.GUNPOWDER_DAMAGE
     inst.components.projectile:SetSpeed(50)
     inst.components.projectile:SetOnHitFn(OnHit)
 
