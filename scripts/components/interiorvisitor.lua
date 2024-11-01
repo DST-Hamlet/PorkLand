@@ -247,6 +247,11 @@ function InteriorVisitor:UpdateSurroundingDoorMaps(center_ent, last_center_ent, 
     end
 end
 
+function InteriorVisitor:CanRecordMap(room_id)
+    -- Can record if we're not ghost or if have previously visited this room
+    return not self.inst:HasTag("playerghost") or self.interior_map[room_id]
+end
+
 function InteriorVisitor:UpdateExteriorPos()
     local interior_spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
@@ -257,13 +262,13 @@ function InteriorVisitor:UpdateExteriorPos()
     self.last_center_ent = ent
 
     if last_center_ent ~= ent then
-        if ent then
+        if ent and self:CanRecordMap(ent.interiorID) then
             local map_data = ent:CollectMinimapData()
             self:UpdateSurroundingDoorMaps(ent, last_center_ent, map_data)
             self:RecordMap(ent.interiorID, map_data)
         end
         -- Record again and ignore non cacheable things once we're out of the last visited room
-        if last_center_ent and last_center_ent:IsValid() then
+        if last_center_ent and last_center_ent:IsValid() and self:CanRecordMap(last_center_ent.interiorID) then
             local map_data = last_center_ent:CollectMinimapData(true)
             self:UpdateSurroundingDoorMaps(last_center_ent, ent, map_data)
             self:RecordMap(last_center_ent.interiorID, map_data)
