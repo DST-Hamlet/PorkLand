@@ -698,9 +698,7 @@ local function MakeShop(name, build, bank, data)
         OnIsFiesta(inst, TheWorld.state.isfiesta)
 
         inst:DoTaskInTime(0, function()
-            if inst.interiorID == nil then
-                CreateInterior(inst)
-            end
+            CreateInterior(inst)
         end)
 
         inst.OnSave = OnSave

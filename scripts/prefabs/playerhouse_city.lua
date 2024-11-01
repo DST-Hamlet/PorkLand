@@ -313,9 +313,7 @@ local function fn()
 
     inst.interiors = {}
     inst:DoTaskInTime(0, function()
-        if inst.interiorID == nil then
-            CreateInterior(inst)
-        end
+        CreateInterior(inst)
     end)
 
     inst.OnSave = OnSave
