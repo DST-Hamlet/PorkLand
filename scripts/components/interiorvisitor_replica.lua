@@ -10,6 +10,8 @@ local InteriorVisitor = Class(function(self, inst)
     self.exterior_pos_x:set_local(0)
     self.exterior_pos_z = net_shortint(inst.GUID, "interiorvisitor.exterior_pos_z", "interiorvisitor.exterior_pos")
     self.exterior_pos_z:set_local(0)
+    self.exterior_icon = net_string(inst.GUID, "interiorvisitor.exterior_icon", "interiorvisitor.exterior_pos")
+    self.exterior_icon:set_local("")
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
     self.interior_map = {}
