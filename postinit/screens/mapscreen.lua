@@ -60,15 +60,17 @@ function MapScreen:OnLeaveInterior()
 end
 
 AddClassPostConstruct("screens/mapscreen", function(self)
-    self.interior_toggle_button = self.bottomright_root:AddChild(ImageButton(HUD_ATLAS, "map_button.tex", nil, nil, nil, nil, {1,1}, {0,0}))
-    self.interior_toggle_button:SetScale(0.5, 0.5, 0.5)
+    self.interior_toggle_button = self.bottomright_root:AddChild(ImageButton("images/hud/pl_mapscreen_widgets.xml", "map_outside.tex"))
+    self.interior_toggle_button:SetScale(.33, .33, .33)
     self.interior_toggle_button:SetPosition(-60, 150, 0)
     self.interior_toggle_button:SetOnClick(function()
         if self.minimap.interior_map_widgets then
             local pos = self.owner.replica.interiorvisitor:GetExteriorPos()
             FocusMapOnWorldPosition(self, pos.x, pos.z)
+            self.interior_toggle_button:SetTextures("images/hud/pl_mapscreen_widgets.xml", "map_interior.tex")
         else
             FocusMapOnWorldPosition(self, 0, 0)
+            self.interior_toggle_button:SetTextures("images/hud/pl_mapscreen_widgets.xml", "map_outside.tex")
         end
         self.minimap:ToggleInteriorMap()
     end)

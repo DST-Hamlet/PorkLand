@@ -299,6 +299,10 @@ Assets = {
     Asset("ATLAS", "images/hud/pl_minimaphud.xml"),
     Asset("IMAGE", "images/hud/pl_minimaphud.tex"),
 
+    -- interior map toggle button and arrows
+    Asset("ATLAS", "images/hud/pl_mapscreen_widgets.xml"),
+    Asset("IMAGE", "images/hud/pl_mapscreen_widgets.tex"),
+
     -- hud
     Asset("ATLAS", "images/overlays/fx3.xml"), -- poison, boat_over
     Asset("IMAGE", "images/overlays/fx3.tex"),

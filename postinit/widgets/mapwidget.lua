@@ -334,8 +334,8 @@ function MapWidget:ApplyExteriorDecorations()
     end
     local icon = self:AddChild(Image(atlas, icon))
     icon.position_offset = interiorvisitor:GetExteriorPos()
-    local arrow = self:AddChild(Image(HUD_ATLAS, "turnarrow_icon.tex"))
-    arrow.position_offset = icon.position_offset + Vector3(0, 0, -10)
+    local arrow = self:AddChild(Image("images/hud/pl_mapscreen_widgets.xml", "red_arrow.tex"))
+    arrow.position_offset = icon.position_offset + Vector3(-15, 0, 0)
     self.exterior_decorations = {icon, arrow}
     self:OnUpdate(0)
 end
