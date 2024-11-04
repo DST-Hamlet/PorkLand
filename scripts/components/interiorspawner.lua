@@ -459,6 +459,7 @@ function InteriorSpawner:CreateRoom(params)
     local zoom = params.zoom
     local forceInteriorMinimap = params.forceInteriorMinimap
 
+    CheckRoomSize(width, depth)
     assert(roomindex)
 
     local interior_def = {
