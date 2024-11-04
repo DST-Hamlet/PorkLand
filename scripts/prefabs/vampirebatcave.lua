@@ -49,10 +49,9 @@ local function CreateInterior(inst)
     end
 
     local addprops = GetPropDef("vampirebatcave", exterior_door_def, BAT_CAVE_DEPTH, BAT_CAVE_WIDTH)
-    local def = interior_spawner:CreateRoom(BAT_CAVE_NAME, BAT_CAVE_WIDTH, 10, BAT_CAVE_DEPTH, name, id, addprops, {},
+    interior_spawner:CreateRoom(BAT_CAVE_NAME, BAT_CAVE_WIDTH, 10, BAT_CAVE_DEPTH, name, id, addprops, {},
         BAT_CAVE_WALL_TEXTURE, BAT_CAVE_FLOOR_TEXTURE, BAT_CAVE_MINIMAP_TEXTURE, nil, BAT_CAVE_COULOUR_CUBE, true, nil,
         BAT_CAVE_REVERB, BAT_CAVE_AMBIENT, BAT_CAVE_GROUND_SOUND, nil, nil, true)
-    interior_spawner:SpawnInterior(def)
     inst:AddTag("spawned_cave")
 end
 

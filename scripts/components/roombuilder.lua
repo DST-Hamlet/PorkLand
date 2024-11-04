@@ -95,8 +95,7 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
     end
 
     -- Actually creates the room
-    local def = interior_spawner:CreateRoom("generic_interior", width, nil, depth, name, ID, addprops, room_exits, walltexture, floortexture, minimaptexture, nil, colorcube, nil, true, "inside", "HOUSE", WORLD_TILES.WOODFLOOR)
-    interior_spawner:SpawnInterior(def)
+    interior_spawner:CreateRoom("generic_interior", width, nil, depth, name, ID, addprops, room_exits, walltexture, floortexture, minimaptexture, nil, colorcube, nil, true, "inside", "HOUSE", WORLD_TILES.WOODFLOOR)
 
     local room = interior_spawner:GetInteriorCenter(ID)
     room:AddInteriorTags("home_prototyper")

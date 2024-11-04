@@ -133,8 +133,7 @@ local function CreateInterior(inst)
     local colorcube = "images/colour_cubes/pigshop_interior_cc.tex"
 
     local addprops = GetPropDef("playerhouse_city", exterior_door_def)
-    local def = interior_spawner:CreateRoom("generic_interior", 15, nil, 10, name, id, addprops, {}, walltexture, floortexture, minimaptexture, nil, colorcube, nil, true, "inside", "HOUSE", WORLD_TILES.WOODFLOOR)
-    interior_spawner:SpawnInterior(def)
+    interior_spawner:CreateRoom("generic_interior", 15, nil, 10, name, id, addprops, {}, walltexture, floortexture, minimaptexture, nil, colorcube, nil, true, "inside", "HOUSE", WORLD_TILES.WOODFLOOR)
 
     local room = interior_spawner:GetInteriorCenter(id)
     room:AddInteriorTags("home_prototyper")

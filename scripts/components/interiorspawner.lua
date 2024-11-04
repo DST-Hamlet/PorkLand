@@ -635,8 +635,7 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
     end
 
     self:AddInterior(interior_def)
-
-    return interior_def
+    self:SpawnInterior(interior_def)
 end
 
 function InteriorSpawner:AddInterior(def)
@@ -731,9 +730,6 @@ end
 
 function InteriorSpawner:SpawnInterior(interior)
     -- this function only gets run once per room when the room is first called.
-    -- if the room has a "prefabs" attribute, it means the prefabs have not yet been spawned.
-    -- if it does not have a prefab attribute, it means they have bene spawned and all the rooms
-    -- contents will now be in object_list
 
     local pt = self:IndexToPosition(interior.unique_name)
     self:ClearInteriorContents(pt)

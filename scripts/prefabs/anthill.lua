@@ -314,10 +314,9 @@ local function CreateRegularRooms(inst)
                 doorway_count = doorway_count + 1
             end
 
-            local def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, ANTHILL_DUNGEON_NAME, room.id, addprops,
+            interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, ANTHILL_DUNGEON_NAME, room.id, addprops,
                 room.exits, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil, ANT_CAVE_COLOUR_CUBE,
                 nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT)
-            interior_spawner:SpawnInterior(def)
         end
     end
 end
