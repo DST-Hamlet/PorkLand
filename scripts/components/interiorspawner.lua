@@ -41,11 +41,6 @@ local InteriorSpawner = Class(function(self, inst)
     self.reuse_interior_ids = {} -- 记录那些生成后被删掉的室内 ID，以重复利用其空间
     self.next_interior_id = 0
 
-    -- if value is redirected_id, then access twice
-    -- if value is table, that's it!
-    self.interior_layout_map = {} --{[id: interiorID]: MapData | redirected_id}
-    self.interior_layout_dirty_keys = {} -- {[K in keyof self.interior_layout_map]: true}
-
     self.player_houses = {}
 
     inst:DoTaskInTime(0, function()
