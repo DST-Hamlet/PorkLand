@@ -1,6 +1,5 @@
 local GetPropDef = require("prefabs/interior_prop_defs")
 
-local BAT_CAVE_NAME = "batcave"
 local BAT_CAVE_WIDTH = 26
 local BAT_CAVE_DEPTH = 18
 local BAT_CAVE_REVERB = "batcave"
@@ -49,9 +48,28 @@ local function CreateInterior(inst)
     end
 
     local addprops = GetPropDef("vampirebatcave", exterior_door_def, BAT_CAVE_DEPTH, BAT_CAVE_WIDTH)
-    interior_spawner:CreateRoom(BAT_CAVE_NAME, BAT_CAVE_WIDTH, 10, BAT_CAVE_DEPTH, name, id, addprops, {},
-        BAT_CAVE_WALL_TEXTURE, BAT_CAVE_FLOOR_TEXTURE, BAT_CAVE_MINIMAP_TEXTURE, nil, BAT_CAVE_COULOUR_CUBE, true, nil,
-        BAT_CAVE_REVERB, BAT_CAVE_AMBIENT, BAT_CAVE_GROUND_SOUND, nil, nil, true)
+    interior_spawner:CreateRoom({
+        width = BAT_CAVE_WIDTH,
+        height = 10,
+        depth = BAT_CAVE_DEPTH,
+        dungeon_name = name,
+        roomindex = id,
+        addprops = addprops,
+        exits = {},
+        walltexture = BAT_CAVE_WALL_TEXTURE,
+        floortexture = BAT_CAVE_FLOOR_TEXTURE,
+        minimaptexture = BAT_CAVE_MINIMAP_TEXTURE,
+        cityID = nil,
+        colour_cube = BAT_CAVE_COULOUR_CUBE,
+        batted = true,
+        playerroom = nil,
+        reverb = BAT_CAVE_REVERB,
+        ambient_sound = BAT_CAVE_AMBIENT,
+        footstep_tile = BAT_CAVE_GROUND_SOUND,
+        cameraoffset = nil,
+        zoom = nil,
+        forceInteriorMinimap = true
+    })
     inst:AddTag("spawned_cave")
 end
 

@@ -437,40 +437,38 @@ end
 
 -- roomindex here is used as the interiorID on all the interiors in the room,
 -- and also interior_name for the door component on prop_door prefab
-function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name, roomindex, addprops, exits, walltexture, floortexture, minimaptexture, cityID, colour_cube, batted, playerroom, reverb, ambient_sound, footstep_tile, cameraoffset, zoom, forceInteriorMinimap)
-    interior = interior or "generic_interior"
-    width = width or 15
-    depth = depth or 10
+function InteriorSpawner:CreateRoom(args)
+    local width = args.width or 15
+    local depth = args.depth or 10
     CheckRoomSize(width, depth)
-    assert(roomindex)
-    colour_cube = colour_cube or "images/colour_cubes/day05_cc.tex"
+    assert(args.roomindex)
+    local colour_cube = args.colour_cube or "images/colour_cubes/day05_cc.tex"
 
-    local interior_def =
-    {
-        unique_name = roomindex,
-        dungeon_name = dungeon_name,
+    local interior_def = {
+        unique_name = args.roomindex,
+        dungeon_name = args.dungeon_name,
         width = width,
-        height = height,
+        height = args.height,
         depth = depth,
         prefabs = {},
-        walltexture = walltexture,
-        floortexture = floortexture,
-        minimaptexture = minimaptexture,
-        cityID = cityID,
+        walltexture = args.walltexture,
+        floortexture = args.floortexture,
+        minimaptexture = args.minimaptexture,
+        cityID = args.cityID,
         cc = colour_cube,
         visited = false,
-        batted = batted,
-        playerroom = playerroom,
+        batted = args.batted,
+        playerroom = args.playerroom,
         enigma = false,
-        reverb = reverb, -- reverb preset for TheSim:SetReverbPreset
-        ambient_sound = ambient_sound, -- The index of ambient sound defined in pl_ambientsound.lua, e.g. WORLD_TILES.DIRT
-        footstep_tile = footstep_tile, -- The tile of the desired footstep sound, default to WORLD_TILES.DIRT in PlayFootstep function
-        cameraoffset = cameraoffset,
-        zoom = zoom,
-        forceInteriorMinimap = forceInteriorMinimap
+        reverb = args.reverb, -- reverb preset for TheSim:SetReverbPreset
+        ambient_sound = args.ambient_sound, -- The index of ambient sound defined in pl_ambientsound.lua, e.g. WORLD_TILES.DIRT
+        footstep_tile = args.footstep_tile, -- The tile of the desired footstep sound, default to WORLD_TILES.DIRT in PlayFootstep function
+        cameraoffset = args.cameraoffset,
+        zoom = args.zoom,
+        forceInteriorMinimap = args.forceInteriorMinimap
     }
 
-    for _, prefab in ipairs(addprops) do
+    for _, prefab in ipairs(args.addprops) do
         if not prefab.chance or math.random() < prefab.chance then
             interior_def.prefabs[#interior_def.prefabs + 1] = prefab
         end
@@ -478,18 +476,18 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
 
     local prefab = {}
 
-    for heading, exit in pairs(exits) do
+    for heading, exit in pairs(args.exits) do
         -- convert to number
         if type(exit.target_room) == "string" then
-            print("WARNING: target_room is a string:", dungeon_name, exit.target_room)
-            local index = assert(tonumber(select(3, exit.target_room:find("_(%d+)$"))), "Failed to convert to number: "..exit.target_room)
+            print("WARNING: target_room is a string:", args.dungeon_name, exit.target_room)
+            local index = assert(tonumber(select(3, exit.target_room:find("_(%d+)$"))), "Failed to convert to number: " .. exit.target_room)
             exit.target_room = index
         end
         if not exit.house_door then
             if heading == NORTH then
                 prefab = {
                     name = "prop_door",
-                    x_offset = -depth/2,
+                    x_offset = -depth / 2,
                     z_offset = 0,
                     sg_name = exit.sg_name,
                     startstate = exit.startstate,
@@ -500,8 +498,8 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                         anim = "north",
                         background = true
                     },
-                    my_door_id = roomindex.."_NORTH",
-                    target_door_id = exit.target_room.."_SOUTH",
+                    my_door_id = args.roomindex .. "_NORTH",
+                    target_door_id = exit.target_room .. "_SOUTH",
                     target_interior = exit.target_room,
                     rotation = -90,
                     hidden = false,
@@ -511,7 +509,7 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
             elseif heading == SOUTH then
                 prefab = {
                     name = "prop_door",
-                    x_offset = (depth/2),
+                    x_offset = depth / 2,
                     z_offset = 0,
                     sg_name = exit.sg_name,
                     startstate = exit.startstate,
@@ -522,7 +520,7 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                         anim = "south",
                         background = false
                     },
-                    my_door_id = roomindex .. "_SOUTH",
+                    my_door_id = args.roomindex .. "_SOUTH",
                     target_door_id = exit.target_room .. "_NORTH",
                     target_interior = exit.target_room,
                     rotation = -90,
@@ -534,13 +532,13 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                 if not exit.secret then
                     table.insert(interior_def.prefabs, {
                         name = "prop_door_shadow",
-                        x_offset = (depth / 2),
+                        x_offset = depth / 2,
                         z_offset = 0,
                         animdata = {
                             bank = exit.bank,
                             build = exit.build,
-                            anim = "south_floor",
-                        },
+                            anim = "south_floor"
+                        }
                     })
                 end
             elseif heading == EAST then
@@ -555,18 +553,15 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                         bank = exit.bank,
                         build = exit.build,
                         anim = "east",
-                        background = true,
+                        background = true
                     },
-                    my_door_id = roomindex .. "_EAST",
+                    my_door_id = args.roomindex .. "_EAST",
                     target_door_id = exit.target_room .. "_WEST",
                     target_interior = exit.target_room,
                     rotation = -90,
                     hidden = false,
                     angle = 90,
-                    addtags = {
-                        "lockable_door",
-                        "door_east",
-                    },
+                    addtags = {"lockable_door", "door_east"}
                 }
             elseif heading == WEST then
                 prefab = {
@@ -580,18 +575,15 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                         bank = exit.bank,
                         build = exit.build,
                         anim = "west",
-                        background = true,
+                        background = true
                     },
-                    my_door_id = roomindex .. "_WEST",
+                    my_door_id = args.roomindex .. "_WEST",
                     target_door_id = exit.target_room .. "_EAST",
                     target_interior = exit.target_room,
                     rotation = -90,
                     hidden = false,
                     angle = 270,
-                    addtags = {
-                        "lockable_door",
-                        "door_west",
-                    },
+                    addtags = {"lockable_door", "door_west"}
                 }
             end
         else
@@ -607,18 +599,15 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                     bank = exit.bank,
                     build = exit.build,
                     anim = exit.prefab_name .. "_open_" .. doordata.anim,
-                    background = doordata.background,
+                    background = doordata.background
                 },
-                my_door_id = roomindex .. doordata.my_door_id_dir,
+                my_door_id = args.roomindex .. doordata.my_door_id_dir,
                 target_door_id = exit.target_room .. doordata.target_door_id_dir,
                 target_interior = exit.target_room,
                 rotation = -90,
                 hidden = false,
                 angle = doordata.angle,
-                addtags = {
-                    "lockable_door",
-                    doordata.door_tag,
-                },
+                addtags = {"lockable_door", doordata.door_tag}
             }
         end
 

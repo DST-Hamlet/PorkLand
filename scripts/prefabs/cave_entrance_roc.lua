@@ -316,9 +316,28 @@ local function BuildMaze(inst, exterior_door_def)
         }
 
         local addprops = GenerateProps(ROC_CAVE_NAME, ROC_CAVE_DEPTH, ROC_CAVE_WIDTH, room, exits_open, exterior_door_def)
-        interior_spawner:CreateRoom(ROC_CAVE_NAME, ROC_CAVE_WIDTH, ROC_CAVE_HEIGHT, ROC_CAVE_DEPTH, ROC_CAVE_NAME, room.id, addprops, room.exits,
-            ROC_CAVE_WALL_TEXTURE, ROC_CAVE_FLOOR_TEXTURE, ROC_CAVE_MINIMAP_TEXTURE, nil, ROC_CAVE_COULOUR_CUBE, nil, nil,
-            ROC_CAVE_REVERB, ROC_CAVE_AMBIENT, ROC_CAVE_GROUND_SOUND)
+        interior_spawner:CreateRoom({
+            width = ROC_CAVE_WIDTH,
+            height = ROC_CAVE_HEIGHT,
+            depth = ROC_CAVE_DEPTH,
+            dungeon_name = ROC_CAVE_NAME,
+            roomindex = room.id,
+            addprops = addprops,
+            exits = room.exits,
+            walltexture = ROC_CAVE_WALL_TEXTURE,
+            floortexture = ROC_CAVE_FLOOR_TEXTURE,
+            minimaptexture = ROC_CAVE_MINIMAP_TEXTURE,
+            cityID = nil,
+            colour_cube = ROC_CAVE_COULOUR_CUBE,
+            batted = nil,
+            playerroom = nil,
+            reverb = ROC_CAVE_REVERB,
+            ambient_sound = ROC_CAVE_AMBIENT,
+            footstep_tile = ROC_CAVE_GROUND_SOUND,
+            cameraoffset = nil,
+            zoom = nil,
+            forceInteriorMinimap = nil
+        })
     end
 
     return rooms[1] -- entrance_room

@@ -314,9 +314,28 @@ local function CreateRegularRooms(inst)
                 doorway_count = doorway_count + 1
             end
 
-            interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, ANTHILL_DUNGEON_NAME, room.id, addprops,
-                room.exits, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil, ANT_CAVE_COLOUR_CUBE,
-                nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT)
+            interior_spawner:CreateRoom({
+                width = ANT_CAVE_WIDTH,
+                height = ANT_CAVE_HEIGHT,
+                depth = ANT_CAVE_DEPTH,
+                dungeon_name = ANTHILL_DUNGEON_NAME,
+                roomindex = room.id,
+                addprops = addprops,
+                exits = room.exits,
+                walltexture = ANT_CAVE_WALL_TEXTURE,
+                floortexture = ANT_CAVE_FLOOR_TEXTURE,
+                minimaptexture = ANT_CAVE_MINIMAP_TEXTURE,
+                cityID = nil,
+                colour_cube = ANT_CAVE_COLOUR_CUBE,
+                batted = nil,
+                playerroom = nil,
+                reverb = "anthill",
+                ambient_sound = "ANT_HIVE",
+                footstep_tile = WORLD_TILES.DIRT,
+                cameraoffset = nil,
+                zoom = nil,
+                forceInteriorMinimap = nil
+            })
         end
     end
 end

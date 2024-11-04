@@ -50,15 +50,53 @@ local function CreateQueenChambers(inst, room_count)
         if is_queen_chamber then
             local addprops = GenerateProps("anthill_queen_chamber", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids)
 
-            interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, "QUEEN_CHAMBERS_DUNGEON_" .. i,
-                queen_chamber_ids[i], addprops, {}, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil,
-                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT, -3.5, 40)
+            interior_spawner:CreateRoom({
+                width = ANT_CAVE_WIDTH,
+                height = ANT_CAVE_HEIGHT,
+                depth = ANT_CAVE_DEPTH,
+                dungeon_name = "QUEEN_CHAMBERS_DUNGEON_" .. i,
+                roomindex = queen_chamber_ids[i],
+                addprops = addprops,
+                exits = {},
+                walltexture = ANT_CAVE_WALL_TEXTURE,
+                floortexture = ANT_CAVE_FLOOR_TEXTURE,
+                minimaptexture = ANT_CAVE_MINIMAP_TEXTURE,
+                cityID = nil,
+                colour_cube = ANT_CAVE_COLOUR_CUBE,
+                batted = nil,
+                playerroom = nil,
+                reverb = "anthill",
+                ambient_sound = "ANT_HIVE",
+                footstep_tile = WORLD_TILES.DIRT,
+                cameraoffset = -3.5,
+                zoom = 40,
+                forceInteriorMinimap = nil
+            })
         else
             local addprops = GenerateProps("anthill_queen_chamber_hallway", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids)
 
-            interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, "QUEEN_CHAMBERS_DUNGEON_" .. i,
-                queen_chamber_ids[i], addprops, {}, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil,
-                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT)
+            interior_spawner:CreateRoom({
+                width = ANT_CAVE_WIDTH,
+                height = ANT_CAVE_HEIGHT,
+                depth = ANT_CAVE_DEPTH,
+                dungeon_name = "QUEEN_CHAMBERS_DUNGEON_" .. i,
+                roomindex = queen_chamber_ids[i],
+                addprops = addprops,
+                exits = {},
+                walltexture = ANT_CAVE_WALL_TEXTURE,
+                floortexture = ANT_CAVE_FLOOR_TEXTURE,
+                minimaptexture = ANT_CAVE_MINIMAP_TEXTURE,
+                cityID = nil,
+                colour_cube = ANT_CAVE_COLOUR_CUBE,
+                batted = nil,
+                playerroom = nil,
+                reverb = "anthill",
+                ambient_sound = "ANT_HIVE",
+                footstep_tile = WORLD_TILES.DIRT,
+                cameraoffset = nil,
+                zoom = nil,
+                forceInteriorMinimap = nil
+            })
         end
 
         if is_queen_chamber then
