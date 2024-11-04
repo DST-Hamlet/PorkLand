@@ -105,6 +105,32 @@ function InteriorSpawner:OnLoad(data)
     self:SetInteriorPos()
 end
 
+function InteriorSpawner:GenerateInteriorGroupsAndCoordinates()
+    local rooms_with_exit = {}
+    for id, center in pairs(self.interiors) do
+        if not center.group_id_set then
+            local door = center:GetDoorToExterior()
+            local exterior_id = door and door.components.door.interior_name
+            if exterior_id then
+                rooms_with_exit[center] = exterior_id
+            end
+        end
+    end
+
+    for center, exterior_id in pairs(rooms_with_exit) do
+        -- Can be set from the this iter when a single group has multiple exits, so check again
+        if not center.group_id_set then
+            center:SetGroupId(exterior_id)
+            center:SetCoordinates(0, 0)
+            -- TODO: Walk all connected rooms and generate the group ids and coordiantes
+        end
+    end
+end
+
+function InteriorSpawner:LoadPostPass(newents, data)
+    self:GenerateInteriorGroupsAndCoordinates()
+end
+
 -- WARNING: this mothod cannot be called before game load (interiorID is nil)
 function InteriorSpawner:GetCurrentMaxId()
     local index = 0
