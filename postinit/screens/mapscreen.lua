@@ -62,7 +62,7 @@ end
 AddClassPostConstruct("screens/mapscreen", function(self)
     self.interior_toggle_button = self.bottomright_root:AddChild(ImageButton("images/hud/pl_mapscreen_widgets.xml", "map_outside.tex"))
     self.interior_toggle_button:SetScale(.33, .33, .33)
-    self.interior_toggle_button:SetPosition(-60, 150, 0)
+    self.interior_toggle_button:SetPosition(-66, 150, 0)
     self.interior_toggle_button:SetOnClick(function()
         if self.minimap.interior_map_widgets then
             local pos = self.owner.replica.interiorvisitor:GetExteriorPos()
