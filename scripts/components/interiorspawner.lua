@@ -496,7 +496,7 @@ function InteriorSpawner:CreateRoom(params)
         -- convert to number
         if type(exit.target_room) == "string" then
             print("WARNING: target_room is a string:", dungeon_name, exit.target_room)
-            local index = assert(tonumber(select(3, exit.target_room:find("_(%d+)$"))), "Failed to convert to number: " .. exit.target_room)
+            local index = assert(tonumber(select(3, exit.target_room:find("_(%d+)$"))), "Failed to convert to number: "..exit.target_room)
             exit.target_room = index
         end
 
@@ -630,7 +630,6 @@ function InteriorSpawner:CreateRoom(params)
         end
         assert(door_def)
 
-        -- Set additional properties based on exit conditions
         if exit.vined then
             door_def.vined = true
         end

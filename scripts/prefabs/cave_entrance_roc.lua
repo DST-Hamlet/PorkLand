@@ -327,16 +327,12 @@ local function BuildMaze(inst, exterior_door_def)
             walltexture = ROC_CAVE_WALL_TEXTURE,
             floortexture = ROC_CAVE_FLOOR_TEXTURE,
             minimaptexture = ROC_CAVE_MINIMAP_TEXTURE,
-            cityID = nil,
             colour_cube = ROC_CAVE_COULOUR_CUBE,
-            batted = nil,
-            playerroom = nil,
             reverb = ROC_CAVE_REVERB,
             ambient_sound = ROC_CAVE_AMBIENT,
             footstep_tile = ROC_CAVE_GROUND_SOUND,
             cameraoffset = nil,
             zoom = nil,
-            forceInteriorMinimap = nil
         })
     end
 

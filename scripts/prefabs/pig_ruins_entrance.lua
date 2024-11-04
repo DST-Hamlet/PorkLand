@@ -483,16 +483,12 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
             walltexture = wall_texture,
             floortexture = floor_texture,
             minimaptexture = PIG_RUINS_MINIMAP_TEXTURE,
-            cityID = nil,
             colour_cube = PIG_RUINS_COLOUR_CUBE,
-            batted = nil,
-            playerroom = nil,
             reverb = PIG_RUINS_CAVE_REVERB,
             ambient_sound = PIG_RUINS_CAVE_AMBIENT,
             footstep_tile = PIG_RUINS_CAVE_GROUND_SOUND,
             cameraoffset = nil,
             zoom = nil,
-            forceInteriorMinimap = nil
         })
         -- def.room_type = room_type -- 获得更多调试信息
 

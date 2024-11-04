@@ -386,14 +386,11 @@ local function CreateInteriorPalace(inst, exterior_door_def)
         minimaptexture = minimap_texture,
         cityID = city_id,
         colour_cube = PIG_SHOP_COLOUR_CUBE,
-        batted = nil,
-        playerroom = nil,
         reverb = "palace",
         ambient_sound = "PALACE",
         footstep_tile = WORLD_TILES.DIRT,
         cameraoffset = nil,
         zoom = nil,
-        forceInteriorMinimap = nil
     })
     InitShopped(inst.interiorID)
 
@@ -430,14 +427,11 @@ local function CreateInteriorPalace(inst, exterior_door_def)
         minimaptexture = minimap_texture,
         cityID = city_id,
         colour_cube = PIG_SHOP_COLOUR_CUBE,
-        batted = nil,
-        playerroom = nil,
         reverb = "palace",
         ambient_sound = "PALACE",
         footstep_tile = WORLD_TILES.DIRT,
         cameraoffset = nil,
         zoom = nil,
-        forceInteriorMinimap = nil
     })
     InitShopped(gallery_id)
 
@@ -474,14 +468,11 @@ local function CreateInteriorPalace(inst, exterior_door_def)
         minimaptexture = minimap_texture,
         cityID = city_id,
         colour_cube = PIG_SHOP_COLOUR_CUBE,
-        batted = nil,
-        playerroom = nil,
         reverb = "palace",
         ambient_sound = "PALACE",
         footstep_tile = WORLD_TILES.DIRT,
         cameraoffset = nil,
         zoom = nil,
-        forceInteriorMinimap = nil
     })
     InitShopped(giftshop_id)
 end
@@ -546,14 +537,11 @@ local function CreateInterior(inst)
         minimaptexture = minimap_texture,
         cityID = cityID,
         colour_cube = PIG_SHOP_COLOUR_CUBE,
-        batted = nil,
-        playerroom = nil,
         reverb = PIG_SHOP_REVERB,
         ambient_sound = PIG_SHOP_AMBIENT_SOUND,
         footstep_tile = PIG_SHOP_FOOTSTEP,
         cameraoffset = nil,
         zoom = nil,
-        forceInteriorMinimap = nil
     })
 
     local center_ent = interior_spawner:GetInteriorCenter(id)

@@ -144,16 +144,13 @@ local function CreateInterior(inst)
         walltexture = walltexture,
         floortexture = floortexture,
         minimaptexture = minimaptexture,
-        cityID = nil,
         colour_cube = colorcube,
-        batted = nil,
         playerroom = true,
         reverb = "inside",
         ambient_sound = "HOUSE",
         footstep_tile = WORLD_TILES.WOODFLOOR,
         cameraoffset = nil,
         zoom = nil,
-        forceInteriorMinimap = nil
     })
 
     local room = interior_spawner:GetInteriorCenter(id)
