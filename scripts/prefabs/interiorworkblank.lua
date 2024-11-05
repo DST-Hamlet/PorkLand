@@ -611,9 +611,6 @@ local function fn()
     inst.interior_tags = {}
     inst.interior_tags_mask = net_ushortint(inst.GUID, "interior_tags_mask", "interior_tags_mask")
 
-    inst.major_id = net_ushortint(inst.GUID, "major_id", "major_id")
-    inst.minimap_coord_x = net_shortint(inst.GUID, "minimap_coord_x", "minimap_coord")
-    inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
     inst._floor_minimaptex = net_string(inst.GUID, "_floor_minimaptex", "_floor_minimaptex")
 
     inst.GetFloorMinimapTex = GetFloorMinimapTex
