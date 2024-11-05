@@ -159,10 +159,11 @@ function Hayfever:Disable(nosay)
     end
 end
 
-function Hayfever:OnHayFever(enabled, nosay)
+function Hayfever:OnHayFever(enabled, nosay, force)
     if enabled
-        and not self.inst.components.health:IsDead()
-        and not self.inst:HasTag("playerghost") then
+        and ((not self.inst.components.health:IsDead()
+        and not self.inst:HasTag("playerghost"))
+        or force) then
 
         self:Enable(nosay)
     else

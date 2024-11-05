@@ -77,7 +77,7 @@ local function OnDeath(inst, data)
     end
 
     if inst.components.hayfever ~= nil then
-        inst.components.hayfever:Disable()
+        inst.components.hayfever:Disable(true)
     end
 end
 
@@ -87,7 +87,7 @@ local function OnRespawnFromGhost(inst, data)
     end
 
     if inst.components.hayfever ~= nil then
-        inst.components.hayfever:OnHayFever(TheWorld.state.ishayfever)
+        inst.components.hayfever:OnHayFever(TheWorld.state.ishayfever, true, true)
     end
 end
 
