@@ -151,6 +151,9 @@ local function CreateInterior(inst)
         footstep_tile = WORLD_TILES.WOODFLOOR,
         cameraoffset = nil,
         zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = 0,
+        interior_coordinate_y = 0,
     })
 
     local room = interior_spawner:GetInteriorCenter(id)

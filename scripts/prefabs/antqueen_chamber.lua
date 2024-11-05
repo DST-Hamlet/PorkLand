@@ -29,7 +29,6 @@ local ANT_CAVE_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_antcave_floo
 local ANT_CAVE_COLOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
 
 local queen_chamber_ids = {}
-local queenchamber_placement_id = nil
 
 -- We generate these outside of the CreateQueenChambers function because we need the ids to link it to the regular anthill
 local function GenerateQueenChamberIDS(room_count)
@@ -67,6 +66,9 @@ local function CreateQueenChambers(inst, room_count)
                 footstep_tile = WORLD_TILES.DIRT,
                 cameraoffset = -3.5,
                 zoom = 40,
+                group_id = queen_chamber_ids[1],
+                interior_coordinate_x = 0,
+                interior_coordinate_y = i - 1,
             })
         else
             local addprops = GenerateProps("anthill_queen_chamber_hallway", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids)
@@ -88,6 +90,9 @@ local function CreateQueenChambers(inst, room_count)
                 footstep_tile = WORLD_TILES.DIRT,
                 cameraoffset = nil,
                 zoom = nil,
+                group_id = queen_chamber_ids[1],
+                interior_coordinate_x = 0,
+                interior_coordinate_y = i - 1,
             })
         end
 

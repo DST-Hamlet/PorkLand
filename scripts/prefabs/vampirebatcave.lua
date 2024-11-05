@@ -66,7 +66,10 @@ local function CreateInterior(inst)
         footstep_tile = BAT_CAVE_GROUND_SOUND,
         cameraoffset = nil,
         zoom = nil,
-        forceInteriorMinimap = true
+        forceInteriorMinimap = true,
+        group_id = inst.interiorID,
+        interior_coordinate_x = 0,
+        interior_coordinate_y = 0,
     })
     inst:AddTag("spawned_cave")
 end

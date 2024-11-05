@@ -333,6 +333,9 @@ local function BuildMaze(inst, exterior_door_def)
             footstep_tile = ROC_CAVE_GROUND_SOUND,
             cameraoffset = nil,
             zoom = nil,
+            group_id = inst.interiorID,
+            interior_coordinate_x = room.x,
+            interior_coordinate_y = room.y,
         })
     end
 

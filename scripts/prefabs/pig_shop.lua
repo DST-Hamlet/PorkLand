@@ -391,6 +391,9 @@ local function CreateInteriorPalace(inst, exterior_door_def)
         footstep_tile = WORLD_TILES.DIRT,
         cameraoffset = nil,
         zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = 0,
+        interior_coordinate_y = 0,
     })
     InitShopped(inst.interiorID)
 
@@ -432,6 +435,9 @@ local function CreateInteriorPalace(inst, exterior_door_def)
         footstep_tile = WORLD_TILES.DIRT,
         cameraoffset = nil,
         zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = -1,
+        interior_coordinate_y = 0,
     })
     InitShopped(gallery_id)
 
@@ -473,6 +479,9 @@ local function CreateInteriorPalace(inst, exterior_door_def)
         footstep_tile = WORLD_TILES.DIRT,
         cameraoffset = nil,
         zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = -2,
+        interior_coordinate_y = 0,
     })
     InitShopped(giftshop_id)
 end
@@ -542,6 +551,9 @@ local function CreateInterior(inst)
         footstep_tile = PIG_SHOP_FOOTSTEP,
         cameraoffset = nil,
         zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = 0,
+        interior_coordinate_y = 0,
     })
 
     local center_ent = interior_spawner:GetInteriorCenter(id)

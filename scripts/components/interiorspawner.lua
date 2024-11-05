@@ -109,18 +109,16 @@ function InteriorSpawner:GenerateInteriorGroupsAndCoordinates()
     local rooms_with_exit = {}
     for id, center in pairs(self.interiors) do
         if not center.group_id_set then
-            local door = center:GetDoorToExterior()
-            local exterior_id = door and door.components.door.interior_name
-            if exterior_id then
-                rooms_with_exit[center] = exterior_id
+            if center:GetDoorToExterior() then
+                table.insert(rooms_with_exit, center)
             end
         end
     end
 
-    for center, exterior_id in pairs(rooms_with_exit) do
+    for _, center in ipairs(rooms_with_exit) do
         -- Can be set from the this iter when a single group has multiple exits, so check again
         if not center.group_id_set then
-            center:SetGroupId(exterior_id)
+            center:SetGroupId(center.interiorID)
             center:SetCoordinates(0, 0)
             -- TODO: Walk all connected rooms and generate the group ids and coordiantes
         end
@@ -441,8 +439,11 @@ function InteriorSpawner:CreateRoom(params)
     local width = params.width or 15
     local height = params.height or 10
     local depth = params.depth or 10
+    local group_id = assert(params.group_id)
+    local interior_coordinate_x = assert(params.interior_coordinate_x)
+    local interior_coordinate_y = assert(params.interior_coordinate_y)
     local dungeon_name = params.dungeon_name
-    local roomindex = params.roomindex
+    local roomindex = assert(params.roomindex)
     local addprops = params.addprops
     local exits = params.exits or {}
     local walltexture = params.walltexture
@@ -460,7 +461,6 @@ function InteriorSpawner:CreateRoom(params)
     local forceInteriorMinimap = params.forceInteriorMinimap
 
     CheckRoomSize(width, depth)
-    assert(roomindex)
 
     local interior_def = {
         unique_name = roomindex,
@@ -483,7 +483,10 @@ function InteriorSpawner:CreateRoom(params)
         footstep_tile = footstep_tile,
         cameraoffset = cameraoffset,
         zoom = zoom,
-        forceInteriorMinimap = forceInteriorMinimap
+        forceInteriorMinimap = forceInteriorMinimap,
+        group_id = group_id,
+        interior_coordinate_x = interior_coordinate_x,
+        interior_coordinate_y = interior_coordinate_y,
     }
 
     for _, prefab in ipairs(addprops) do

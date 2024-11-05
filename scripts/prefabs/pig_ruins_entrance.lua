@@ -489,8 +489,10 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
             footstep_tile = PIG_RUINS_CAVE_GROUND_SOUND,
             cameraoffset = nil,
             zoom = nil,
+            group_id = inst.interiorID,
+            interior_coordinate_x = room.x,
+            interior_coordinate_y = room.y,
         })
-        -- def.room_type = room_type -- 获得更多调试信息
 
         local center_ent = interior_spawner:GetInteriorCenter(room.id)
         center_ent:AddInteriorTags("pig_ruins") -- need this for dynamic music

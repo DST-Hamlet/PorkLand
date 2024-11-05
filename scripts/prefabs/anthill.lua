@@ -331,6 +331,9 @@ local function CreateRegularRooms(inst)
                 footstep_tile = WORLD_TILES.DIRT,
                 cameraoffset = nil,
                 zoom = nil,
+                group_id = inst.rooms[1][1].id,
+                interior_coordinate_x = room.x,
+                interior_coordinate_y = -room.y,
             })
         end
     end
