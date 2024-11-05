@@ -29,7 +29,6 @@ local ANT_CAVE_MINIMAP_TEXTURE = "levels/textures/map_interior/mini_antcave_floo
 local ANT_CAVE_COLOUR_CUBE = "images/colour_cubes/pigshop_interior_cc.tex"
 
 local queen_chamber_ids = {}
-local queenchamber_placement_id = nil
 
 -- We generate these outside of the CreateQueenChambers function because we need the ids to link it to the regular anthill
 local function GenerateQueenChamberIDS(room_count)
@@ -47,22 +46,55 @@ local function CreateQueenChambers(inst, room_count)
     for i = 1, room_count do
         local is_queen_chamber = i == room_count -- last room is ant queen room
 
-        local addprops, def
         if is_queen_chamber then
-            addprops = GenerateProps("anthill_queen_chamber", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids)
+            local addprops = GenerateProps("anthill_queen_chamber", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids)
 
-            def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, "QUEEN_CHAMBERS_DUNGEON_" .. i,
-                queen_chamber_ids[i], addprops, {}, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil,
-                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT, -3.5, 40)
+            interior_spawner:CreateRoom({
+                width = ANT_CAVE_WIDTH,
+                height = ANT_CAVE_HEIGHT,
+                depth = ANT_CAVE_DEPTH,
+                dungeon_name = "QUEEN_CHAMBERS_DUNGEON_" .. i,
+                roomindex = queen_chamber_ids[i],
+                addprops = addprops,
+                exits = {},
+                walltexture = ANT_CAVE_WALL_TEXTURE,
+                floortexture = ANT_CAVE_FLOOR_TEXTURE,
+                minimaptexture = ANT_CAVE_MINIMAP_TEXTURE,
+                colour_cube = ANT_CAVE_COLOUR_CUBE,
+                reverb = "anthill",
+                ambient_sound = "ANT_HIVE",
+                footstep_tile = WORLD_TILES.DIRT,
+                cameraoffset = -3.5,
+                zoom = 40,
+                group_id = queen_chamber_ids[1],
+                interior_coordinate_x = 0,
+                interior_coordinate_y = i - 1,
+            })
         else
-            addprops = GenerateProps("anthill_queen_chamber_hallway", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids)
+            local addprops = GenerateProps("anthill_queen_chamber_hallway", ANT_CAVE_DEPTH, ANT_CAVE_WIDTH, i, queen_chamber_ids)
 
-            def = interior_spawner:CreateRoom("generic_interior", ANT_CAVE_WIDTH, ANT_CAVE_HEIGHT, ANT_CAVE_DEPTH, "QUEEN_CHAMBERS_DUNGEON_" .. i,
-                queen_chamber_ids[i], addprops, {}, ANT_CAVE_WALL_TEXTURE, ANT_CAVE_FLOOR_TEXTURE, ANT_CAVE_MINIMAP_TEXTURE, nil,
-                ANT_CAVE_COLOUR_CUBE, nil, nil, "anthill", "ANT_HIVE", WORLD_TILES.DIRT)
+            interior_spawner:CreateRoom({
+                width = ANT_CAVE_WIDTH,
+                height = ANT_CAVE_HEIGHT,
+                depth = ANT_CAVE_DEPTH,
+                dungeon_name = "QUEEN_CHAMBERS_DUNGEON_" .. i,
+                roomindex = queen_chamber_ids[i],
+                addprops = addprops,
+                exits = {},
+                walltexture = ANT_CAVE_WALL_TEXTURE,
+                floortexture = ANT_CAVE_FLOOR_TEXTURE,
+                minimaptexture = ANT_CAVE_MINIMAP_TEXTURE,
+                colour_cube = ANT_CAVE_COLOUR_CUBE,
+                reverb = "anthill",
+                ambient_sound = "ANT_HIVE",
+                footstep_tile = WORLD_TILES.DIRT,
+                cameraoffset = nil,
+                zoom = nil,
+                group_id = queen_chamber_ids[1],
+                interior_coordinate_x = 0,
+                interior_coordinate_y = i - 1,
+            })
         end
-
-        interior_spawner:SpawnInterior(def)
 
         if is_queen_chamber then
             local center_ent = interior_spawner:GetInteriorCenter(queen_chamber_ids[i])
