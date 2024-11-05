@@ -115,13 +115,37 @@ function InteriorSpawner:GenerateInteriorGroupsAndCoordinates()
         end
     end
 
-    for _, center in ipairs(rooms_with_exit) do
-        -- Can be set from the this iter when a single group has multiple exits, so check again
-        if not center.group_id_set then
-            center:SetGroupId(center.interiorID)
-            center:SetCoordinates(0, 0)
-            -- TODO: Walk all connected rooms and generate the group ids and coordiantes
+    local function WalkConnectedRooms(center, group_id, coord_x, coor_y)
+        if center.group_id_set then
+            return
         end
+
+        center:SetGroupId(group_id)
+        center:SetCoordinates(coord_x, coor_y)
+
+        local x, _, z = center.Transform:GetWorldPosition()
+        for _, door in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}, {"predoor"})) do
+            local target_interior = door.components.door.target_interior
+            if target_interior and target_interior ~= "EXTERIOR" then
+                local door_direction
+                for _, direction in ipairs(self:GetDir()) do
+                    if door:HasTag("door_"..direction.label) then
+                        door_direction = direction
+                        break
+                    end
+                end
+                if door_direction then
+                    local room = self:GetInteriorCenter(target_interior)
+                    WalkConnectedRooms(room, group_id, coord_x + door_direction.x, coor_y + door_direction.y)
+                else
+                    print("This door doesn't have a direction!", door)
+                end
+            end
+        end
+    end
+
+    for _, center in ipairs(rooms_with_exit) do
+        WalkConnectedRooms(center, center.interiorID, 0, 0)
     end
 end
 
