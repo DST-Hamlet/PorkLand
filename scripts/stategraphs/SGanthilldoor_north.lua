@@ -50,10 +50,13 @@ local states_north =
             inst.AnimState:PlayAnimation("north_shut", false)
         end,
 
+        onexit = function(inst)
+            inst.components.door:SetHidden(true)
+        end,
+
         events =
         {
             EventHandler("animover", function(inst)
-                inst.components.door:SetHidden(true)
                 inst.components.door:UpdateDoorVis()
                 inst.sg:GoToState("idle")
             end),

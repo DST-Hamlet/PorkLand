@@ -288,7 +288,7 @@ local function rowboatfn()
     --inst.AnimState:SetBank("rowboat")
     --inst.AnimState:SetBuild("rowboat_build")
 
-    inst.MiniMapEntity:SetIcon("boat_row.tex")
+    inst.MiniMapEntity:SetIcon("rowboat.tex")
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)
@@ -329,7 +329,7 @@ local function cargofn()
     --inst.AnimState:SetBank("rowboat")
     --inst.AnimState:SetBuild("rowboat_cargo_build")
 
-    inst.MiniMapEntity:SetIcon("boat_cargo.tex")
+    inst.MiniMapEntity:SetIcon("cargo.tex")
 
     if not TheWorld.ismastersim then
         function inst.OnEntityReplicated(inst)

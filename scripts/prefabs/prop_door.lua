@@ -415,21 +415,13 @@ local function GetMinimapIcon(inst)
 end
 
 local function OnEntitySleep(inst)
-    if inst.sg:HasStateTag("moving") then
-        door.components.door:SetHidden(false)
-        door.sg:GoToState("idle")
-    elseif inst.sg:HasStateTag("shut") then
-        door.components.door:SetHidden(true)
+    if inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut") then
         door.sg:GoToState("idle")
     end
 end
 
 local function OnEntityWake(inst)
-    if inst.sg:HasStateTag("moving") then
-        door.components.door:SetHidden(false)
-        door.sg:GoToState("idle")
-    elseif inst.sg:HasStateTag("shut") then
-        door.components.door:SetHidden(true)
+    if inst.sg:HasStateTag("moving") or inst.sg:HasStateTag("shut") then
         door.sg:GoToState("idle")
     end
 end

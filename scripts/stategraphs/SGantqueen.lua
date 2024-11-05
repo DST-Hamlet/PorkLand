@@ -273,7 +273,11 @@ CommonStates.AddSleepStates(states, {
 }, {
     -- The queen always taunts the player after waking up
     onwake = function(inst)
-        inst:DoTaskInTime(18 * FRAMES, function() inst.sg:GoToState("taunt") end)
+        inst:DoTaskInTime(18 * FRAMES, function()
+            if not inst.sg:HasStateTag("busy") then
+                inst.sg:GoToState("taunt")
+            end
+        end)
     end,
 })
 

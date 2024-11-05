@@ -133,13 +133,31 @@ local function CreateInterior(inst)
     local colorcube = "images/colour_cubes/pigshop_interior_cc.tex"
 
     local addprops = GetPropDef("playerhouse_city", exterior_door_def)
-    local def = interior_spawner:CreateRoom("generic_interior", 15, nil, 10, name, id, addprops, {}, walltexture, floortexture, minimaptexture, nil, colorcube, nil, true, "inside", "HOUSE", WORLD_TILES.WOODFLOOR)
-    interior_spawner:SpawnInterior(def)
+    interior_spawner:CreateRoom({
+        width = 15,
+        height = nil,
+        depth = 10,
+        dungeon_name = name,
+        roomindex = id,
+        addprops = addprops,
+        exits = {},
+        walltexture = walltexture,
+        floortexture = floortexture,
+        minimaptexture = minimaptexture,
+        colour_cube = colorcube,
+        playerroom = true,
+        reverb = "inside",
+        ambient_sound = "HOUSE",
+        footstep_tile = WORLD_TILES.WOODFLOOR,
+        cameraoffset = nil,
+        zoom = nil,
+        group_id = inst.interiorID,
+        interior_coordinate_x = 0,
+        interior_coordinate_y = 0,
+    })
 
     local room = interior_spawner:GetInteriorCenter(id)
     room:AddInteriorTags("home_prototyper")
-
-    interior_spawner:RegisterPlayerHouse(inst)
 end
 
 local function UseDoor(inst, data)
@@ -196,10 +214,6 @@ local function OnLoad(inst, data)
 
         if data.interiorID then
             inst.interiorID = data.interiorID
-            -- keep compatible with older saves
-            if not TheWorld.components.interiorspawner:IsPlayerHouseRegistered(inst) then
-                TheWorld.components.interiorspawner:RegisterPlayerHouse(inst)
-            end
         end
         CreateInterior(inst)
 
@@ -334,10 +348,6 @@ local function fn()
     inst:ListenForEvent("usedoor", UseDoor)
 
     inst.OnReconstructe = OnReconstructe
-
-    inst:ListenForEvent("onremove", function()
-        TheWorld.components.interiorspawner:UnregisterPlayerHouse(inst)
-    end)
 
     return inst
 end

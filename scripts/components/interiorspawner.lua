@@ -37,16 +37,10 @@ local InteriorSpawner = Class(function(self, inst)
     self.exteriors = {} -- {[exterior: string]: House}
     self.interiors = {} -- {[interior: string]: interiorworkblank}
     self.interior_defs = {} -- {[index: number]: InteriorDef}
+    self.interior_groups = {}  -- { [index: number]: { [string_from_coordinates: string]: interiorworkblank } }
     self.doors = {} -- {[index: string]: DoorDef}
     self.reuse_interior_ids = {} -- 记录那些生成后被删掉的室内 ID，以重复利用其空间
     self.next_interior_id = 0
-
-    -- if value is redirected_id, then access twice
-    -- if value is table, that's it!
-    self.interior_layout_map = {} --{[id: interiorID]: MapData | redirected_id}
-    self.interior_layout_dirty_keys = {} -- {[K in keyof self.interior_layout_map]: true}
-
-    self.player_houses = {}
 
     inst:DoTaskInTime(0, function()
         self:SetInteriorPos() -- 保证室内位于渲染范围内
@@ -86,7 +80,6 @@ function InteriorSpawner:OnSave()
         interiors = interior_defs,
         next_interior_id = self.next_interior_id,
         reuse_interior_ids = self.reuse_interior_ids,
-        player_houses = self.player_houses,
     }
 end
 
@@ -103,11 +96,58 @@ function InteriorSpawner:OnLoad(data)
         if data.reuse_interior_ids then
             self.reuse_interior_ids = data.reuse_interior_ids
         end
-        if data.player_houses then
-            self.player_houses = data.player_houses
-        end
     end
     self:SetInteriorPos()
+end
+
+function InteriorSpawner:GenerateInteriorGroupsAndCoordinates()
+    local rooms_with_exit = {}
+    for id, center in pairs(self.interiors) do
+        if not center.group_id_set then
+            if center:GetDoorToExterior() then
+                table.insert(rooms_with_exit, center)
+            end
+        end
+    end
+
+    local function WalkConnectedRooms(center, group_id, coord_x, coor_y)
+        if center.group_id_set then
+            return
+        end
+
+        center:SetGroupId(group_id)
+        center:SetCoordinates(coord_x, coor_y)
+        -- Re-register this interior center since we have a group id now
+        self:AddInteriorCenter(center)
+
+        local x, _, z = center.Transform:GetWorldPosition()
+        for _, door in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}, {"predoor"})) do
+            local target_interior = door.components.door.target_interior
+            if target_interior and target_interior ~= "EXTERIOR" then
+                local door_direction
+                for _, direction in ipairs(self:GetDir()) do
+                    if door:HasTag("door_"..direction.label) then
+                        door_direction = direction
+                        break
+                    end
+                end
+                if door_direction then
+                    local room = self:GetInteriorCenter(target_interior)
+                    WalkConnectedRooms(room, group_id, coord_x + door_direction.x, coor_y + door_direction.y)
+                else
+                    print("This door doesn't have a direction!", door)
+                end
+            end
+        end
+    end
+
+    for _, center in ipairs(rooms_with_exit) do
+        WalkConnectedRooms(center, center.interiorID, 0, 0)
+    end
+end
+
+function InteriorSpawner:LoadPostPass(newents, data)
+    self:GenerateInteriorGroupsAndCoordinates()
 end
 
 -- WARNING: this mothod cannot be called before game load (interiorID is nil)
@@ -386,14 +426,41 @@ function InteriorSpawner:SpawnObject(interiorID, prefab, offset)
     return object
 end
 
+function InteriorSpawner:CoordinatesToKey(x, y)
+    return tostring(x) .. "," .. tostring(y)
+end
+
+function InteriorSpawner:CenterCoordinatesToKey(center)
+    local x, y = center:GetCoordinates()
+    return self:CoordinatesToKey(x, y)
+end
+
 function InteriorSpawner:AddInteriorCenter(center)
     self.interiors[center.interiorID] = center
+
+    if center.group_id_set then
+        local group_id = center:GetGroupId()
+        if not self.interior_groups[group_id] then
+            self.interior_groups[group_id] = {}
+        end
+        self.interior_groups[group_id][self:CenterCoordinatesToKey(center)] = center
+    end
 end
 
 function InteriorSpawner:RemoveInteriorCenter(center)
     self.interiors[center.interiorID] = nil
     self.interior_defs[center.interiorID] = nil
     self.reuse_interior_ids[center.interiorID] = true
+
+    if center.group_id_set then
+        local group_id = center:GetGroupId()
+        if self.interior_groups[group_id] then
+            self.interior_groups[group_id][self:CenterCoordinatesToKey(center)] = nil
+        end
+        if IsTableEmpty(self.interior_groups[group_id]) then
+            self.interior_groups[group_id] = nil
+        end
+    end
 end
 
 local function CheckRoomSize(width, depth)
@@ -416,16 +483,34 @@ end
 
 -- roomindex here is used as the interiorID on all the interiors in the room,
 -- and also interior_name for the door component on prop_door prefab
-function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name, roomindex, addprops, exits, walltexture, floortexture, minimaptexture, cityID, colour_cube, batted, playerroom, reverb, ambient_sound, footstep_tile, cameraoffset, zoom, forceInteriorMinimap)
-    interior = interior or "generic_interior"
-    width = width or 15
-    depth = depth or 10
-    CheckRoomSize(width, depth)
-    assert(roomindex)
-    colour_cube = colour_cube or "images/colour_cubes/day05_cc.tex"
+function InteriorSpawner:CreateRoom(params)
+    local width = params.width or 15
+    local height = params.height or 10
+    local depth = params.depth or 10
+    local group_id = assert(params.group_id)
+    local interior_coordinate_x = assert(params.interior_coordinate_x)
+    local interior_coordinate_y = assert(params.interior_coordinate_y)
+    local dungeon_name = params.dungeon_name
+    local roomindex = assert(params.roomindex)
+    local addprops = params.addprops
+    local exits = params.exits or {}
+    local walltexture = params.walltexture
+    local floortexture = params.floortexture
+    local minimaptexture = params.minimaptexture
+    local cityID = params.cityID
+    local colour_cube = params.colour_cube or "images/colour_cubes/day05_cc.tex"
+    local batted = params.batted
+    local playerroom = params.playerroom
+    local reverb = params.reverb                            -- Reverb preset
+    local ambient_sound = params.ambient_sound              -- Ambient sound index
+    local footstep_tile = params.footstep_tile              -- Footstep sound tile
+    local cameraoffset = params.cameraoffset
+    local zoom = params.zoom
+    local forceInteriorMinimap = params.forceInteriorMinimap
 
-    local interior_def =
-    {
+    CheckRoomSize(width, depth)
+
+    local interior_def = {
         unique_name = roomindex,
         dungeon_name = dungeon_name,
         width = width,
@@ -441,12 +526,15 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
         batted = batted,
         playerroom = playerroom,
         enigma = false,
-        reverb = reverb, -- reverb preset for TheSim:SetReverbPreset
-        ambient_sound = ambient_sound, -- The index of ambient sound defined in pl_ambientsound.lua, e.g. WORLD_TILES.DIRT
-        footstep_tile = footstep_tile, -- The tile of the desired footstep sound, default to WORLD_TILES.DIRT in PlayFootstep function
+        reverb = reverb,
+        ambient_sound = ambient_sound,
+        footstep_tile = footstep_tile,
         cameraoffset = cameraoffset,
         zoom = zoom,
-        forceInteriorMinimap = forceInteriorMinimap
+        forceInteriorMinimap = forceInteriorMinimap,
+        group_id = group_id,
+        interior_coordinate_x = interior_coordinate_x,
+        interior_coordinate_y = interior_coordinate_y,
     }
 
     for _, prefab in ipairs(addprops) do
@@ -455,8 +543,6 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
         end
     end
 
-    local prefab = {}
-
     for heading, exit in pairs(exits) do
         -- convert to number
         if type(exit.target_room) == "string" then
@@ -464,118 +550,12 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
             local index = assert(tonumber(select(3, exit.target_room:find("_(%d+)$"))), "Failed to convert to number: "..exit.target_room)
             exit.target_room = index
         end
-        if not exit.house_door then
-            if heading == NORTH then
-                prefab = {
-                    name = "prop_door",
-                    x_offset = -depth/2,
-                    z_offset = 0,
-                    sg_name = exit.sg_name,
-                    startstate = exit.startstate,
-                    animdata = {
-                        minimapicon = exit.minimapicon,
-                        bank = exit.bank,
-                        build = exit.build,
-                        anim = "north",
-                        background = true
-                    },
-                    my_door_id = roomindex.."_NORTH",
-                    target_door_id = exit.target_room.."_SOUTH",
-                    target_interior = exit.target_room,
-                    rotation = -90,
-                    hidden = false,
-                    angle = 0,
-                    addtags = {"lockable_door", "door_north"}
-                }
-            elseif heading == SOUTH then
-                prefab = {
-                    name = "prop_door",
-                    x_offset = (depth/2),
-                    z_offset = 0,
-                    sg_name = exit.sg_name,
-                    startstate = exit.startstate,
-                    animdata = {
-                        minimapicon = exit.minimapicon,
-                        bank = exit.bank,
-                        build = exit.build,
-                        anim = "south",
-                        background = false
-                    },
-                    my_door_id = roomindex .. "_SOUTH",
-                    target_door_id = exit.target_room .. "_NORTH",
-                    target_interior = exit.target_room,
-                    rotation = -90,
-                    hidden = false,
-                    angle = 180,
-                    addtags = {"lockable_door", "door_south"}
-                }
 
-                if not exit.secret then
-                    table.insert(interior_def.prefabs, {
-                        name = "prop_door_shadow",
-                        x_offset = (depth / 2),
-                        z_offset = 0,
-                        animdata = {
-                            bank = exit.bank,
-                            build = exit.build,
-                            anim = "south_floor",
-                        },
-                    })
-                end
-            elseif heading == EAST then
-                prefab = {
-                    name = "prop_door",
-                    x_offset = 0,
-                    z_offset = width / 2,
-                    sg_name = exit.sg_name,
-                    startstate = exit.startstate,
-                    animdata = {
-                        minimapicon = exit.minimapicon,
-                        bank = exit.bank,
-                        build = exit.build,
-                        anim = "east",
-                        background = true,
-                    },
-                    my_door_id = roomindex .. "_EAST",
-                    target_door_id = exit.target_room .. "_WEST",
-                    target_interior = exit.target_room,
-                    rotation = -90,
-                    hidden = false,
-                    angle = 90,
-                    addtags = {
-                        "lockable_door",
-                        "door_east",
-                    },
-                }
-            elseif heading == WEST then
-                prefab = {
-                    name = "prop_door",
-                    x_offset = 0,
-                    z_offset = -width / 2,
-                    sg_name = exit.sg_name,
-                    startstate = exit.startstate,
-                    animdata = {
-                        minimapicon = exit.minimapicon,
-                        bank = exit.bank,
-                        build = exit.build,
-                        anim = "west",
-                        background = true,
-                    },
-                    my_door_id = roomindex .. "_WEST",
-                    target_door_id = exit.target_room .. "_EAST",
-                    target_interior = exit.target_room,
-                    rotation = -90,
-                    hidden = false,
-                    angle = 270,
-                    addtags = {
-                        "lockable_door",
-                        "door_west",
-                    },
-                }
-            end
-        else
+        -- Create door prefab based on the direction
+        local door_def = {}
+        if exit.house_door then
             local doordata = PLAYER_INTERIOR_EXIT_DIR_DATA[heading.label]
-            prefab = {
+            door_def = {
                 name = exit.prefab_name,
                 x_offset = doordata.x_offset,
                 z_offset = doordata.z_offset,
@@ -594,28 +574,127 @@ function InteriorSpawner:CreateRoom(interior, width, height, depth, dungeon_name
                 rotation = -90,
                 hidden = false,
                 angle = doordata.angle,
-                addtags = {
-                    "lockable_door",
-                    doordata.door_tag,
-                },
+                addtags = {"lockable_door", doordata.door_tag},
             }
+        else
+            if heading == NORTH then
+                door_def = {
+                    name = "prop_door",
+                    x_offset = -depth / 2,
+                    z_offset = 0,
+                    sg_name = exit.sg_name,
+                    startstate = exit.startstate,
+                    animdata = {
+                        minimapicon = exit.minimapicon,
+                        bank = exit.bank,
+                        build = exit.build,
+                        anim = "north",
+                        background = true
+                    },
+                    my_door_id = roomindex .. "_NORTH",
+                    target_door_id = exit.target_room .. "_SOUTH",
+                    target_interior = exit.target_room,
+                    rotation = -90,
+                    hidden = false,
+                    angle = 0,
+                    addtags = {"lockable_door", "door_north"}
+                }
+            elseif heading == SOUTH then
+                door_def = {
+                    name = "prop_door",
+                    x_offset = (depth / 2),
+                    z_offset = 0,
+                    sg_name = exit.sg_name,
+                    startstate = exit.startstate,
+                    animdata = {
+                        minimapicon = exit.minimapicon,
+                        bank = exit.bank,
+                        build = exit.build,
+                        anim = "south",
+                        background = false
+                    },
+                    my_door_id = roomindex .. "_SOUTH",
+                    target_door_id = exit.target_room .. "_NORTH",
+                    target_interior = exit.target_room,
+                    rotation = -90,
+                    hidden = false,
+                    angle = 180,
+                    addtags = {"lockable_door", "door_south"}
+                }
+                if not exit.secret then
+                    table.insert(interior_def.prefabs, {
+                        name = "prop_door_shadow",
+                        x_offset = (depth / 2),
+                        z_offset = 0,
+                        animdata = {
+                            bank = exit.bank,
+                            build = exit.build,
+                            anim = "south_floor",
+                        },
+                    })
+                end
+            elseif heading == EAST then
+                door_def = {
+                    name = "prop_door",
+                    x_offset = 0,
+                    z_offset = width / 2,
+                    sg_name = exit.sg_name,
+                    startstate = exit.startstate,
+                    animdata = {
+                        minimapicon = exit.minimapicon,
+                        bank = exit.bank,
+                        build = exit.build,
+                        anim = "east",
+                        background = true,
+                    },
+                    my_door_id = roomindex .. "_EAST",
+                    target_door_id = exit.target_room .. "_WEST",
+                    target_interior = exit.target_room,
+                    rotation = -90,
+                    hidden = false,
+                    angle = 90,
+                    addtags = {"lockable_door", "door_east"},
+                }
+            elseif heading == WEST then
+                door_def = {
+                    name = "prop_door",
+                    x_offset = 0,
+                    z_offset = -width / 2,
+                    sg_name = exit.sg_name,
+                    startstate = exit.startstate,
+                    animdata = {
+                        minimapicon = exit.minimapicon,
+                        bank = exit.bank,
+                        build = exit.build,
+                        anim = "west",
+                        background = true,
+                    },
+                    my_door_id = roomindex .. "_WEST",
+                    target_door_id = exit.target_room .. "_EAST",
+                    target_interior = exit.target_room,
+                    rotation = -90,
+                    hidden = false,
+                    angle = 270,
+                    addtags = {"lockable_door", "door_west"},
+                }
+            end
         end
+        assert(door_def)
 
         if exit.vined then
-            prefab.vined = true
+            door_def.vined = true
         end
 
         if exit.secret then
-            prefab.secret = true
-            prefab.hidden = true
+            door_def.secret = true
+            door_def.hidden = true
         end
 
-        table.insert(interior_def.prefabs, prefab)
+        table.insert(interior_def.prefabs, door_def)
     end
 
     self:AddInterior(interior_def)
-
-    return interior_def
+    self:SpawnInterior(interior_def)
 end
 
 function InteriorSpawner:AddInterior(def)
@@ -710,9 +789,6 @@ end
 
 function InteriorSpawner:SpawnInterior(interior)
     -- this function only gets run once per room when the room is first called.
-    -- if the room has a "prefabs" attribute, it means the prefabs have not yet been spawned.
-    -- if it does not have a prefab attribute, it means they have bene spawned and all the rooms
-    -- contents will now be in object_list
 
     local pt = self:IndexToPosition(interior.unique_name)
     self:ClearInteriorContents(pt)
@@ -946,117 +1022,32 @@ function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
     return false
 end
 
-function InteriorSpawner:IsPlayerHouseRegistered(house_entity)
-    if not house_entity or not house_entity.interiorID then
-        return false
+function InteriorSpawner:GetInteriorCenterByCoordinates(group_id, x, y)
+    local group = self.interior_groups[group_id]
+    if group then
+        return group[self:CoordinatesToKey(x, y)]
     end
-    return self.player_houses[house_entity.interiorID] ~= nil
-end
-
-function InteriorSpawner:RegisterPlayerHouse(house_entity)
-    local starting_room_interiorID = house_entity.interiorID
-    -- assume only 1 door leads to exterior
-    assert(self.player_houses[starting_room_interiorID] == nil, "THIS PLAYER ROOM ALREADY EXISTS: ".. starting_room_interiorID)
-
-    -- {[interiorID: number]: {x:number, y:number}}
-    -- in terms of direction: east is +x, west is -x, north is +y, south is -y
-    self.player_houses[starting_room_interiorID] = {[starting_room_interiorID] = {x = 0, y = 0}}
-end
-
-function InteriorSpawner:UnregisterPlayerHouse(house_entity)
-    self.player_houses[house_entity.interiorID] = nil
 end
 
 function InteriorSpawner:CanBuildMorePlayerRoom(house_id)
-    return GetTableSize(self.player_houses[house_id]) < MAX_PLAYER_ROOM_COUNT
+    return GetTableSize(self.interior_groups[house_id]) < MAX_PLAYER_ROOM_COUNT
 end
 
----@param house_id number house_entity.interiorID
-function InteriorSpawner:RegisterPlayerRoom(house_id, new_room_id, from_id, direction)
-    assert(self.player_houses[house_id] ~= nil, "Attempt to register player room without player house: " .. house_id)
-
-    local room_from =  self.player_houses[house_id][from_id]
-    local new_x = room_from.x + direction.x
-    local new_y = room_from.y + direction.y
-
-    self.player_houses[house_id][new_room_id] = {x = new_x, y = new_y}
-end
-
-function InteriorSpawner:UnregisterPlayerRoom(house_id, room_id)
-    if self.player_houses[house_id] then
-        self.player_houses[house_id][room_id] = nil
-    end
-end
-
----@return number|nil x
----@return number|nil y
-function InteriorSpawner:GetPlayerRoomIndexById(house_id, room_id)
-    if self.player_houses[house_id] then
-        local data = self.player_houses[house_id][room_id]
-        if data then
-            return data.x, data.y
-        end
-    end
-end
-
----@return integer|nil interiorID returns nil if room not found
-function InteriorSpawner:GetPlayerRoomIdByIndex(house_id, x, y)
-    for interiorID, data in pairs(self.player_houses[house_id]) do
-        if data.x == x and data.y == y then
-            return interiorID
-        end
-    end
-end
-
----@return integer|nil interiorID returns nil if room not found
-function InteriorSpawner:GetPlayerRoomInDirection(house_id, room_from_id, direction)
-    if not house_id then
-        house_id = self:GetPlayerHouseByRoomId(room_from_id)
-    end
-
-    if not house_id then
-        return
-    end
-
-    -- assuming interior <room_from_id> exists
-    local x, y = self:GetPlayerRoomIndexById(house_id, room_from_id)
-    return self:GetPlayerRoomIdByIndex(house_id, x + direction.x, y + direction.y)
-end
-
-function InteriorSpawner:GetPlayerHouseByRoomId(room_id)
-    for house_id, house_grid in pairs(self.player_houses) do
-        if house_grid[room_id] then
-            return house_id
-        end
-    end
+function InteriorSpawner:GetRoomInDirection(room, direction)
+    local x, y = room:GetCoordinates()
+    return self:GetInteriorCenterByCoordinates(room:GetGroupId(), x + direction.x, y + direction.y)
 end
 
 -- surrounding mean can be connected with a door, so each room has max 4 surrounding rooms
-function InteriorSpawner:GetSurroundingPlayerRooms(house_id, room_id)
+function InteriorSpawner:GetSurroundingRooms(group_id, x, y)
     local rooms = {}
-    local x, y = self:GetPlayerRoomIndexById(house_id, room_id)
-    if not x then
-        return rooms
-    end
-
-    for interiorID, data in pairs(self.player_houses[house_id]) do
-        local dir_x = 0
-        local dir_y = 0
-        if data.x == x then
-            if data.y == y - 1 then
-                dir_y = -1
-            elseif data.y == y + 1 then
-                dir_y = 1
-            end
-        elseif data.y == y then
-            if data.x == x - 1 then
-                dir_x = -1
-            elseif data.x == x + 1 then
-                dir_x = 1
-            end
-        end
-        if dir_x ~= dir_y then
-            table.insert(rooms, {id = interiorID, dir = {x = dir_x, y = dir_y}})
+    for _, direction in ipairs(self:GetDir()) do
+        local center = self:GetInteriorCenterByCoordinates(group_id, x + direction.x, y + direction.y)
+        if center then
+            table.insert(rooms, {
+                direction = direction,
+                interior = center,
+            })
         end
     end
     return rooms
@@ -1071,12 +1062,12 @@ function InteriorSpawner:GetConnectedSurroundingPlayerRooms(house_id, id, exclud
 
     local x, y, z = center.Transform:GetWorldPosition()
     local doors = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
-    local curr_x, curr_y = self:GetPlayerRoomIndexById(house_id, id)
+    local curr_x, curr_y = center:GetCoordinates()
 
     for _, door in pairs(doors) do
         if door.prefab ~= "prop_door" then
             local target_interior = door.components.door.target_interior
-            local target_x, target_y = self:GetPlayerRoomIndexById(house_id, target_interior)
+            local target_x, target_y = self:GetInteriorCenter(target_interior):GetCoordinates()
 
             if target_y > curr_y then -- North door
                 found_doors["north"] = target_interior
@@ -1150,8 +1141,10 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
 end
 
 -- function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, exclude_dir, exclude_room_id)
-function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior_id, exclude_dir, exclude_room_id)
-    local rooms = self.player_houses[house_id]
+function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(current_interior, exclude_dir, exclude_room_id)
+    local house_id = current_interior:GetGroupId()
+    local interior_id = current_interior.interiorID
+    local rooms = self.interior_groups[house_id]
     if not rooms then
         return false
     end
@@ -1181,8 +1174,8 @@ function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior
         checked_rooms[current_interior_id] = true
         reached_rooms = reached_rooms + 1
 
-        local index_x, index_y = self:GetPlayerRoomIndexById(house_id, current_interior_id)
-        if index_x == 0 and index_y == 0 then
+        local coord_x, coord_y = self:GetInteriorCenter(current_interior_id):GetCoordinates()
+        if coord_x == 0 and coord_y == 0 then
             connected_to_exit = true
         end
 
