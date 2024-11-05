@@ -20,18 +20,19 @@ end)
 
 ---@return boolean can_build
 ---@return string cause
-function RoomBuilder:CanBuildRoomAtDirection(house_id, current_room_id, direction)
+function RoomBuilder:CanBuildRoomAtDirection(house_id, current_interior, direction)
     if not TheWorld.components.interiorspawner:CanBuildMorePlayerRoom(house_id) then
         return false, "NO_SPACE"
     end
 
-    local target_room_id = TheWorld.components.interiorspawner:GetPlayerRoomInDirection(house_id, current_room_id, TheWorld.components.interiorspawner:GetDirByLabel(direction))
-    if target_room_id == house_id and direction == "north" then -- connecting to starting room's south door is not allowed, since that's the house exit
-        return false, "BLOCKED_EXIT"
-    end
-
-    if target_room_id then
-        return true, "CONNECTING"
+    local target_room = TheWorld.components.interiorspawner:GetRoomInDirection(current_interior, TheWorld.components.interiorspawner:GetDirByLabel(direction))
+    if target_room then
+        local x, y = target_room:GetCoordinates()
+        if x == 0 and y == 0 and direction == "north" then -- connecting to starting room's south door is not allowed, since that's the house exit
+            return false, "BLOCKED_EXIT"
+        else
+            return true, "CONNECTING"
+        end
     else
         return true, "CREATING"
     end
@@ -54,31 +55,16 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
         house_door = true,
     }
 
-    -- Adds the player room def to the interior_spawner so we can find the adjacent rooms
-    interior_spawner:RegisterPlayerRoom(house_id, id, current_interior.interiorID, interior_spawner:GetDirByLabel(dir))
-
     local doors_to_activate = {}
     -- Finds all the rooms surrounding the newly built room
-    local surrounding_rooms = interior_spawner:GetSurroundingPlayerRooms(house_id, id)
+    local surrounding_rooms = interior_spawner:GetSurroundingRooms(house_id, id)
     -- Goes through all the adjacent rooms, checks if they have a pre built door and adds them to doors_to_activate
     for _, room_data in pairs(surrounding_rooms) do
-        local direction
-        if room_data.dir.y == interior_spawner:GetNorth().y then
-            direction = "north"
-        elseif room_data.dir.y == interior_spawner:GetSouth().y then
-            direction = "south"
-        elseif room_data.dir.x == interior_spawner:GetEast().x then
-            direction = "east"
-        elseif room_data.dir.x == interior_spawner:GetWest().x then
-            direction = "west"
-        end
-
-        local room_id = room_data.id
-        local center = interior_spawner:GetInteriorCenter(room_id)
-        local x, y, z = center.Transform:GetWorldPosition()
+        local room_id = room_data.interior.interiorID
+        local x, y, z = room_data.interior.Transform:GetWorldPosition()
         local doors = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"predoor"})
         for _, obj in pairs(doors) do
-            local op_dir = direction and PLAYER_INTERIOR_EXIT_DIR_DATA[direction].op_dir
+            local op_dir = PLAYER_INTERIOR_EXIT_DIR_DATA[room_data.direction.label].op_dir
             if obj.baseanimname == op_dir then
                 room_exits[PLAYER_INTERIOR_EXIT_DIR_DATA[op_dir].opposing_exit_dir] = {
                     target_room = room_id,
@@ -178,14 +164,14 @@ function RoomBuilder:BuildRoom(door_frame, permit)
     local current_interior = interior_spawner:GetInteriorCenter(door_frame:GetPosition())
     local current_room_id = current_interior.interiorID
 
-    local house_id = interior_spawner:GetPlayerHouseByRoomId(current_room_id)
-    local can_build, cause = self:CanBuildRoomAtDirection(house_id, current_room_id, door_frame.baseanimname)
+    local house_id = current_interior:GetGroupId()
+    local can_build, cause = self:CanBuildRoomAtDirection(house_id, current_interior, door_frame.baseanimname)
     if not can_build then
         return false, cause
     end
 
     if cause == "CONNECTING" then -- change this logic?
-        local target_interior_id = interior_spawner:GetPlayerRoomInDirection(house_id, current_room_id, interior_spawner:GetDirByLabel(door_frame.baseanimname))
+        local target_interior_id = interior_spawner:GetRoomInDirection(current_interior, interior_spawner:GetDirByLabel(door_frame.baseanimname))
         ConnectRoom(door_frame, current_room_id, target_interior_id)
     else
         CreateNewRoom(door_frame, current_interior, house_id)

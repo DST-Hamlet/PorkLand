@@ -158,8 +158,6 @@ local function CreateInterior(inst)
 
     local room = interior_spawner:GetInteriorCenter(id)
     room:AddInteriorTags("home_prototyper")
-
-    interior_spawner:RegisterPlayerHouse(inst)
 end
 
 local function UseDoor(inst, data)
@@ -216,10 +214,6 @@ local function OnLoad(inst, data)
 
         if data.interiorID then
             inst.interiorID = data.interiorID
-            -- keep compatible with older saves
-            if not TheWorld.components.interiorspawner:IsPlayerHouseRegistered(inst) then
-                TheWorld.components.interiorspawner:RegisterPlayerHouse(inst)
-            end
         end
         CreateInterior(inst)
 
@@ -354,10 +348,6 @@ local function fn()
     inst:ListenForEvent("usedoor", UseDoor)
 
     inst.OnReconstructe = OnReconstructe
-
-    inst:ListenForEvent("onremove", function()
-        TheWorld.components.interiorspawner:UnregisterPlayerHouse(inst)
-    end)
 
     return inst
 end

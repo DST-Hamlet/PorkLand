@@ -37,11 +37,10 @@ local InteriorSpawner = Class(function(self, inst)
     self.exteriors = {} -- {[exterior: string]: House}
     self.interiors = {} -- {[interior: string]: interiorworkblank}
     self.interior_defs = {} -- {[index: number]: InteriorDef}
+    self.interior_groups = {}  -- { [index: number]: { [string_from_coordinates: string]: interiorworkblank } }
     self.doors = {} -- {[index: string]: DoorDef}
     self.reuse_interior_ids = {} -- 记录那些生成后被删掉的室内 ID，以重复利用其空间
     self.next_interior_id = 0
-
-    self.player_houses = {}
 
     inst:DoTaskInTime(0, function()
         self:SetInteriorPos() -- 保证室内位于渲染范围内
@@ -81,7 +80,6 @@ function InteriorSpawner:OnSave()
         interiors = interior_defs,
         next_interior_id = self.next_interior_id,
         reuse_interior_ids = self.reuse_interior_ids,
-        player_houses = self.player_houses,
     }
 end
 
@@ -97,9 +95,6 @@ function InteriorSpawner:OnLoad(data)
         end
         if data.reuse_interior_ids then
             self.reuse_interior_ids = data.reuse_interior_ids
-        end
-        if data.player_houses then
-            self.player_houses = data.player_houses
         end
     end
     self:SetInteriorPos()
@@ -122,6 +117,8 @@ function InteriorSpawner:GenerateInteriorGroupsAndCoordinates()
 
         center:SetGroupId(group_id)
         center:SetCoordinates(coord_x, coor_y)
+        -- Re-register this interior center since we have a group id now
+        self:AddInteriorCenter(center)
 
         local x, _, z = center.Transform:GetWorldPosition()
         for _, door in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"}, {"predoor"})) do
@@ -429,14 +426,41 @@ function InteriorSpawner:SpawnObject(interiorID, prefab, offset)
     return object
 end
 
+local function coordinates_to_key(x, y)
+    return tostring(x) .. "," .. tostring(y)
+end
+
+local function center_coordinates_to_key(center)
+    local x, y = center:GetCoordinates()
+    return coordinates_to_key(x, y)
+end
+
 function InteriorSpawner:AddInteriorCenter(center)
     self.interiors[center.interiorID] = center
+
+    if center.group_id_set then
+        local group_id = center:GetGroupId()
+        if not self.interior_groups[group_id] then
+            self.interior_groups[group_id] = {}
+        end
+        self.interior_groups[group_id][center_coordinates_to_key(center)] = center
+    end
 end
 
 function InteriorSpawner:RemoveInteriorCenter(center)
     self.interiors[center.interiorID] = nil
     self.interior_defs[center.interiorID] = nil
     self.reuse_interior_ids[center.interiorID] = true
+
+    if center.group_id_set then
+        local group_id = center:GetGroupId()
+        if self.interior_groups[group_id] then
+            self.interior_groups[group_id][center_coordinates_to_key(center)] = nil
+        end
+        if IsTableEmpty(self.interior_groups[group_id]) then
+            self.interior_groups[group_id] = nil
+        end
+    end
 end
 
 local function CheckRoomSize(width, depth)
@@ -998,117 +1022,32 @@ function InteriorSpawner:IsAnyPlayerInRoom(interiorID)
     return false
 end
 
-function InteriorSpawner:IsPlayerHouseRegistered(house_entity)
-    if not house_entity or not house_entity.interiorID then
-        return false
+function InteriorSpawner:GetInteriorCenterByCoordinates(group_id, x, y)
+    local group = self.interior_groups[group_id]
+    if group then
+        return group[coordinates_to_key(x, y)]
     end
-    return self.player_houses[house_entity.interiorID] ~= nil
-end
-
-function InteriorSpawner:RegisterPlayerHouse(house_entity)
-    local starting_room_interiorID = house_entity.interiorID
-    -- assume only 1 door leads to exterior
-    assert(self.player_houses[starting_room_interiorID] == nil, "THIS PLAYER ROOM ALREADY EXISTS: ".. starting_room_interiorID)
-
-    -- {[interiorID: number]: {x:number, y:number}}
-    -- in terms of direction: east is +x, west is -x, north is +y, south is -y
-    self.player_houses[starting_room_interiorID] = {[starting_room_interiorID] = {x = 0, y = 0}}
-end
-
-function InteriorSpawner:UnregisterPlayerHouse(house_entity)
-    self.player_houses[house_entity.interiorID] = nil
 end
 
 function InteriorSpawner:CanBuildMorePlayerRoom(house_id)
-    return GetTableSize(self.player_houses[house_id]) < MAX_PLAYER_ROOM_COUNT
+    return GetTableSize(self.interior_groups[house_id]) < MAX_PLAYER_ROOM_COUNT
 end
 
----@param house_id number house_entity.interiorID
-function InteriorSpawner:RegisterPlayerRoom(house_id, new_room_id, from_id, direction)
-    assert(self.player_houses[house_id] ~= nil, "Attempt to register player room without player house: " .. house_id)
-
-    local room_from =  self.player_houses[house_id][from_id]
-    local new_x = room_from.x + direction.x
-    local new_y = room_from.y + direction.y
-
-    self.player_houses[house_id][new_room_id] = {x = new_x, y = new_y}
-end
-
-function InteriorSpawner:UnregisterPlayerRoom(house_id, room_id)
-    if self.player_houses[house_id] then
-        self.player_houses[house_id][room_id] = nil
-    end
-end
-
----@return number|nil x
----@return number|nil y
-function InteriorSpawner:GetPlayerRoomIndexById(house_id, room_id)
-    if self.player_houses[house_id] then
-        local data = self.player_houses[house_id][room_id]
-        if data then
-            return data.x, data.y
-        end
-    end
-end
-
----@return integer|nil interiorID returns nil if room not found
-function InteriorSpawner:GetPlayerRoomIdByIndex(house_id, x, y)
-    for interiorID, data in pairs(self.player_houses[house_id]) do
-        if data.x == x and data.y == y then
-            return interiorID
-        end
-    end
-end
-
----@return integer|nil interiorID returns nil if room not found
-function InteriorSpawner:GetPlayerRoomInDirection(house_id, room_from_id, direction)
-    if not house_id then
-        house_id = self:GetPlayerHouseByRoomId(room_from_id)
-    end
-
-    if not house_id then
-        return
-    end
-
-    -- assuming interior <room_from_id> exists
-    local x, y = self:GetPlayerRoomIndexById(house_id, room_from_id)
-    return self:GetPlayerRoomIdByIndex(house_id, x + direction.x, y + direction.y)
-end
-
-function InteriorSpawner:GetPlayerHouseByRoomId(room_id)
-    for house_id, house_grid in pairs(self.player_houses) do
-        if house_grid[room_id] then
-            return house_id
-        end
-    end
+function InteriorSpawner:GetRoomInDirection(room, direction)
+    local x, y = room:GetCoordinates()
+    return self:GetInteriorCenterByCoordinates(room:GetGroupId(), x + direction.x, y + direction.y)
 end
 
 -- surrounding mean can be connected with a door, so each room has max 4 surrounding rooms
-function InteriorSpawner:GetSurroundingPlayerRooms(house_id, room_id)
+function InteriorSpawner:GetSurroundingRooms(group_id, x, y)
     local rooms = {}
-    local x, y = self:GetPlayerRoomIndexById(house_id, room_id)
-    if not x then
-        return rooms
-    end
-
-    for interiorID, data in pairs(self.player_houses[house_id]) do
-        local dir_x = 0
-        local dir_y = 0
-        if data.x == x then
-            if data.y == y - 1 then
-                dir_y = -1
-            elseif data.y == y + 1 then
-                dir_y = 1
-            end
-        elseif data.y == y then
-            if data.x == x - 1 then
-                dir_x = -1
-            elseif data.x == x + 1 then
-                dir_x = 1
-            end
-        end
-        if dir_x ~= dir_y then
-            table.insert(rooms, {id = interiorID, dir = {x = dir_x, y = dir_y}})
+    for _, direction in ipairs(self:GetDir()) do
+        local center = self:GetInteriorCenterByCoordinates(group_id, x + direction.x, y + direction.y)
+        if center then
+            table.insert(rooms, {
+                direction = direction,
+                interior = center,
+            })
         end
     end
     return rooms
@@ -1123,12 +1062,12 @@ function InteriorSpawner:GetConnectedSurroundingPlayerRooms(house_id, id, exclud
 
     local x, y, z = center.Transform:GetWorldPosition()
     local doors = TheSim:FindEntities(x, y, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"interior_door"})
-    local curr_x, curr_y = self:GetPlayerRoomIndexById(house_id, id)
+    local curr_x, curr_y = center:GetCoordinates()
 
     for _, door in pairs(doors) do
         if door.prefab ~= "prop_door" then
             local target_interior = door.components.door.target_interior
-            local target_x, target_y = self:GetPlayerRoomIndexById(house_id, target_interior)
+            local target_x, target_y = self:GetInteriorCenter(target_interior):GetCoordinates()
 
             if target_y > curr_y then -- North door
                 found_doors["north"] = target_interior
@@ -1202,8 +1141,10 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
 end
 
 -- function InteriorSpawner:IsPlayerRoomConnectedToExit(house_id, interior_id, exclude_dir, exclude_room_id)
-function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior_id, exclude_dir, exclude_room_id)
-    local rooms = self.player_houses[house_id]
+function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(current_interior, exclude_dir, exclude_room_id)
+    local house_id = current_interior:GetGroupId()
+    local interior_id = current_interior.interiorID
+    local rooms = self.interior_groups[house_id]
     if not rooms then
         return false
     end
@@ -1233,8 +1174,8 @@ function InteriorSpawner:ConnectedToExitAndNoUnreachableRooms(house_id, interior
         checked_rooms[current_interior_id] = true
         reached_rooms = reached_rooms + 1
 
-        local index_x, index_y = self:GetPlayerRoomIndexById(house_id, current_interior_id)
-        if index_x == 0 and index_y == 0 then
+        local coord_x, coord_y = self:GetInteriorCenter(current_interior_id):GetCoordinates()
+        if coord_x == 0 and coord_y == 0 then
             connected_to_exit = true
         end
 
