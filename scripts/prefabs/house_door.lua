@@ -361,8 +361,8 @@ local function OnBuilt(inst)
 
     if not replace_existing_door then
         local connecting_room = interior_spawner:GetRoomInDirection(current_interior, interior_spawner:GetDirByLabel(baseanimname))
-        local connecting_room_id = connecting_room.interiorID
-        if connecting_room_id then
+        if connecting_room then
+            local connecting_room_id = connecting_room.interiorID
             local interior_def = interior_spawner:GetInteriorDefine(connecting_room_id)
             ActivateSelf(inst, connecting_room_id, current_room_id)
 
