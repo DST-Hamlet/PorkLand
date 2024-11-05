@@ -426,13 +426,13 @@ function InteriorSpawner:SpawnObject(interiorID, prefab, offset)
     return object
 end
 
-local function coordinates_to_key(x, y)
+function InteriorSpawner:CoordinatesToKey(x, y)
     return tostring(x) .. "," .. tostring(y)
 end
 
-local function center_coordinates_to_key(center)
+function InteriorSpawner:CenterCoordinatesToKey(center)
     local x, y = center:GetCoordinates()
-    return coordinates_to_key(x, y)
+    return self:CoordinatesToKey(x, y)
 end
 
 function InteriorSpawner:AddInteriorCenter(center)
@@ -443,7 +443,7 @@ function InteriorSpawner:AddInteriorCenter(center)
         if not self.interior_groups[group_id] then
             self.interior_groups[group_id] = {}
         end
-        self.interior_groups[group_id][center_coordinates_to_key(center)] = center
+        self.interior_groups[group_id][self:CenterCoordinatesToKey(center)] = center
     end
 end
 
@@ -455,7 +455,7 @@ function InteriorSpawner:RemoveInteriorCenter(center)
     if center.group_id_set then
         local group_id = center:GetGroupId()
         if self.interior_groups[group_id] then
-            self.interior_groups[group_id][center_coordinates_to_key(center)] = nil
+            self.interior_groups[group_id][self:CenterCoordinatesToKey(center)] = nil
         end
         if IsTableEmpty(self.interior_groups[group_id]) then
             self.interior_groups[group_id] = nil
@@ -1025,7 +1025,7 @@ end
 function InteriorSpawner:GetInteriorCenterByCoordinates(group_id, x, y)
     local group = self.interior_groups[group_id]
     if group then
-        return group[coordinates_to_key(x, y)]
+        return group[self:CoordinatesToKey(x, y)]
     end
 end
 
