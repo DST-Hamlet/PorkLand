@@ -183,12 +183,18 @@ function InteriorVisitor:RecordAnthillDoorMapReset(no_send)
     end
 end
 
-function InteriorVisitor:ValidateMap()
+function InteriorVisitor:ValidateAndMigrateMapData()
     for id, map_data in pairs(self.interior_map) do
         local center = TheWorld.components.interiorspawner:GetInteriorCenter(id)
         if not center or (map_data.uuid and map_data.uuid ~= center.uuid) then
             self.interior_map[id] = nil
             self.anthill_visited_time[id] = nil
+        elseif not map_data.group_id then
+            local group_id = center:GetGroupId()
+            local x, y = center:GetCoordinates()
+            map_data.group_id = group_id
+            map_data.coord_x = x
+            map_data.coord_y = y
         end
     end
     self:RecordAnthillDoorMapReset(true)
@@ -357,8 +363,9 @@ function InteriorVisitor:OnLoad(data)
     end
 end
 
+-- This should be called after all entities loaded
 function InteriorVisitor:Init()
-    self:ValidateMap()
+    self:ValidateAndMigrateMapData()
     -- Don't quite understand why ThePlayer can be nil when the client receives this,
     -- from HandleClientRPC in networkclientrpc.lua, it shouldn't happen, but it does anyway,
     -- since this is not critical to the client on initial load, use a delay here to mitigate this

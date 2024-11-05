@@ -77,7 +77,12 @@ local function get_door_id(current_room_id, target_interior_id)
 end
 
 -- For data's structure, see scripts/prefabs/interiorworkblank.lua
+-- also note that interior_id is added from scripts/components/interiorvisitor_replica.lua when receiving the data from server
 -- {
+--     interior_id: number,
+--     group_id: number,
+--     coord_x = number,
+--     coord_y = number,
 --     width: number,
 --     depth: number,
 --     minimap_floor_texture: string,
@@ -250,52 +255,79 @@ end
 function MapWidget:ApplyInteriorMinimap()
     self:ClearInteriorMinimap()
 
-    local data = self.owner.replica.interiorvisitor.interior_map
-    local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(self.owner:GetPosition())
-    if data[current_room_id] then
-        -- {
-        --     rooms: {
-        --         [room_id: number]: {
-        --         tile: Image,
-        --         frame: Image,
-        --         icons: { widget: Image, id: number, priority: number }[],
-        --         offset: Vector3,
-        --         }
-        --     },
-        --     doors: {
-        --         [door_id: string]: Widget: {
-        --              lock: Image
-        --          }
-        --     },
-        -- }
-        self.interior_map_widgets = {
-            rooms = {},
-            doors = {},
-        }
-        BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, current_room_id, Vector3())
-        for _, room in pairs(self.interior_map_widgets.rooms) do
-            self:AddChild(room.tile)
-            self:AddChild(room.frame)
-        end
-        for _, door in pairs(self.interior_map_widgets.doors) do
-            self:AddChild(door)
-        end
-        for _, room in pairs(self.interior_map_widgets.rooms) do
-            for _, icon_data in ipairs(room.icons) do
-                self:AddChild(icon_data.widget)
-            end
-        end
-        -- Hide the normal minimap
-        self.img:Hide()
-        self.interior_frontend:MoveToFront()
+    local interiorvisitor = self.owner.replica.interiorvisitor
+    local data = interiorvisitor.interior_map
+    local position = self.owner:GetPosition()
+    local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(position)
+    -- {
+    --     rooms: {
+    --         [room_id: number]: {
+    --         tile: Image,
+    --         frame: Image,
+    --         icons: { widget: Image, id: number, priority: number }[],
+    --         offset: Vector3,
+    --         }
+    --     },
+    --     doors: {
+    --         [door_id: string]: Widget: {
+    --              lock: Image
+    --          }
+    --     },
+    -- }
+    self.interior_map_widgets = {
+        rooms = {},
+        doors = {},
+    }
 
-        local local_interior_map_override = self.owner.replica.interiorvisitor.local_interior_map_override[current_room_id]
-        if local_interior_map_override then
-            local_interior_map_override.applied = nil
+    -- This is so that it works on for ghost players
+    -- ghost players don't discover map data,
+    -- so we just show the existing map
+    local starting_room_id = current_room_id
+    local starting_offset = Vector3(0, 0, 0)
+    if not data[current_room_id] then
+        local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+        if not center then
+            return
         end
-
-        self:OnUpdate(0)
+        local group = interiorvisitor.interior_map_groups[center:GetGroupId()]
+        if not group then
+            return
+        end
+        local _, first_room_data = next(group)
+        starting_room_id = first_room_data.interior_id
+        local current_x, current_y = center:GetCoordinates()
+        -- Convert the grid coordinates to positions
+        -- as a compromise, we don't know the exact position,
+        -- just use the first room's size as an estimate
+        local offset_x = (first_room_data.coord_x - current_x) * (first_room_data.width + INTERIOR_MINIMAP_DOOR_SPACE * 2)
+        local offset_y = (first_room_data.coord_y - current_y) * (first_room_data.depth + INTERIOR_MINIMAP_DOOR_SPACE * 2)
+        starting_offset = Vector3(-offset_y, 0, offset_x)
     end
+
+    BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, starting_room_id, starting_offset)
+
+    for _, room in pairs(self.interior_map_widgets.rooms) do
+        self:AddChild(room.tile)
+        self:AddChild(room.frame)
+    end
+    for _, door in pairs(self.interior_map_widgets.doors) do
+        self:AddChild(door)
+    end
+    for _, room in pairs(self.interior_map_widgets.rooms) do
+        for _, icon_data in ipairs(room.icons) do
+            self:AddChild(icon_data.widget)
+        end
+    end
+    -- Hide the normal minimap
+    self.img:Hide()
+    self.interior_frontend:MoveToFront()
+
+    local local_interior_map_override = self.owner.replica.interiorvisitor.local_interior_map_override[current_room_id]
+    if local_interior_map_override then
+        local_interior_map_override.applied = nil
+    end
+
+    self:OnUpdate(0)
 end
 
 function MapWidget:ClearInteriorMinimap()
