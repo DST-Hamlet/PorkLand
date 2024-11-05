@@ -325,16 +325,12 @@ local function CreateRegularRooms(inst)
                 walltexture = ANT_CAVE_WALL_TEXTURE,
                 floortexture = ANT_CAVE_FLOOR_TEXTURE,
                 minimaptexture = ANT_CAVE_MINIMAP_TEXTURE,
-                cityID = nil,
                 colour_cube = ANT_CAVE_COLOUR_CUBE,
-                batted = nil,
-                playerroom = nil,
                 reverb = "anthill",
                 ambient_sound = "ANT_HIVE",
                 footstep_tile = WORLD_TILES.DIRT,
                 cameraoffset = nil,
                 zoom = nil,
-                forceInteriorMinimap = nil
             })
         end
     end
