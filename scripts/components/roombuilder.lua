@@ -57,7 +57,11 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
 
     local doors_to_activate = {}
     -- Finds all the rooms surrounding the newly built room
-    local surrounding_rooms = interior_spawner:GetSurroundingRooms(house_id, id)
+    local direction_coordinates = interior_spawner:GetDirByLabel(dir)
+    local current_x, current_y = current_interior:GetCoordinates()
+    local target_coordinate_x = current_x + direction_coordinates.x
+    local target_coordinate_y = current_y + direction_coordinates.y
+    local surrounding_rooms = interior_spawner:GetSurroundingRooms(house_id, target_coordinate_x, target_coordinate_y)
     -- Goes through all the adjacent rooms, checks if they have a pre built door and adds them to doors_to_activate
     for _, room_data in pairs(surrounding_rooms) do
         local room_id = room_data.interior.interiorID
@@ -80,9 +84,6 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
         end
     end
 
-    local current_x, current_y = current_interior:GetCoordinates()
-    local direction_coordinates = interior_spawner:GetDirByLabel(dir)
-
     -- Actually creates the room
     interior_spawner:CreateRoom({
         width = width,
@@ -103,8 +104,8 @@ local function CreateNewRoom(door_frame, current_interior, house_id)
         cameraoffset = nil,
         zoom = nil,
         group_id = house_id,
-        interior_coordinate_x = current_x + direction_coordinates.x,
-        interior_coordinate_y = current_y + direction_coordinates.y,
+        interior_coordinate_x = target_coordinate_x,
+        interior_coordinate_y = target_coordinate_y,
     })
 
     local room = interior_spawner:GetInteriorCenter(id)
