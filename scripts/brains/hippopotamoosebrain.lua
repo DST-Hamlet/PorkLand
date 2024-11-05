@@ -16,12 +16,20 @@ local MAX_CHASE_TIME = 6
 local MAX_WANDER_DIST = 96
 local FIND_WATER_DIST = 64
 local FIND_WATER_EXTRA_OFFSET = 4
-local WANDER_TIMES = {
+local WANDER_TIMES_DAY = {
     minwalktime = 3,
+    randwalktime = 1,
+    minwaittime = 3,
+    randwaittime = 1,
+}
+local WANDER_TIMES_DUSK = {
+    minwalktime = 1,
     randwalktime = 1,
     minwaittime = 5,
     randwaittime = 1,
 }
+local AVOID_HIPPO_DIST = 16
+local AVOID_HIPPO_STOP = 24
 
 local function not_land(position)
     local px, py, pz = position:Get()
@@ -109,6 +117,20 @@ local function ShouldLookForWater(inst)
     return not inst.components.amphibiouscreature.in_water
 end
 
+local HunterParams = {
+    tags = {"hippopotamoose"},
+}
+
+local function ShouldRunAway(hunter, inst)
+    local h_pt = hunter:GetPosition()
+    local pt = inst:GetPosition()
+    local offset = (pt - h_pt):Normalize() * 4
+    if TheWorld.Map:IsOceanTileAtPoint((pt + offset):Get()) then
+        return true
+    end
+    return false
+end
+
 local HippopotamooseBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
@@ -121,13 +143,14 @@ function HippopotamooseBrain:OnStart()
             WhileNode(function() return ShouldLookForWater(self.inst) end, "Looking For Water",
                 Leash(self.inst, GetWaterNearby, 0.5, 0.5)),
             FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
-            Wander(self.inst, GetWanderPosition, GetWanderDistance, WANDER_TIMES),
+            Wander(self.inst, GetWanderPosition, GetWanderDistance, WANDER_TIMES_DAY),
             StandStill(self.inst)
         }, 0.5)
 
     local dusk = WhileNode(function() return TheWorld.state.isdusk end, "IsDusk",
         PriorityNode{
-            Wander(self.inst, GetWanderPosition, GetWanderDistance),
+            RunAway(self.inst, HunterParams, AVOID_HIPPO_DIST, AVOID_HIPPO_STOP, ShouldRunAway),
+            Wander(self.inst, GetWanderPosition, GetWanderDistance, WANDER_TIMES_DUSK),
             StandStill(self.inst)
         }, 0.25)
 

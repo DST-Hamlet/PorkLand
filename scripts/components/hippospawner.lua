@@ -20,6 +20,7 @@ local SPAWN_HIPPO_RADIUS = 24
 local MIN_HIPPO_DISTANCE = 16
 local MIN_PLAYER_DISTANCE = 64 * 1.2 -- this is our "outer" sleep radius
 local HIPPO_TIMERNAME = "HIPPO_REPRODUCE_TIMER_"
+local MAX_HIPPO_NUM = 5
 
 --------------------------------------------------------------------------
 --[[ Public Member Variables ]]
@@ -47,6 +48,16 @@ local function OnHippoRemoved(hippo)
     _hippos[hippo] = nil
 end
 
+local function FindHippos(x, y, z, radius)
+    local hippos_in_range = {}
+    for _hippo in pairs(_hippos) do
+        if _hippo:GetDistanceSqToPoint(x, y, z) <= radius * radius then
+            table.insert(hippos_in_range, _hippo)
+        end
+    end
+    return hippos_in_range
+end
+
 local function CanSpawnNewHippo(hippo)
     if not hippo:IsValid() then
         return false, nil, nil
@@ -56,32 +67,41 @@ local function CanSpawnNewHippo(hippo)
         return false, nil, nil
     end
 
-    local hippos_in_range = 0
     local mate
+    local min_mate_distsq = FIND_HIPPO_MATE_RANGE * FIND_HIPPO_MATE_RANGE
     for _hippo in pairs(_hippos) do
         if _hippo ~= hippo then
-            if hippo:GetDistanceSqToInst(_hippo) <= FIND_HIPPO_MATE_RANGE * FIND_HIPPO_MATE_RANGE then
-                hippos_in_range = hippos_in_range + 1
-                if not mate and not _hippo.is_dummy_prefab and _worldsettingstimer:GetTimeLeft(GetTimerName(_hippo)) <= SPAWN_DELAY then
-                    mate = _hippo
-                end
-            elseif hippo:GetDistanceSqToInst(_hippo) <= FIND_HIPPO_MEMBER_RANGE * FIND_HIPPO_MEMBER_RANGE then
-                hippos_in_range = hippos_in_range + 1
+            local hippo_distsq = hippo:GetDistanceSqToInst(_hippo)
+            if hippo_distsq <= min_mate_distsq
+                and not _hippo.is_dummy_prefab
+                and _worldsettingstimer:GetTimeLeft(GetTimerName(_hippo)) <= SPAWN_DELAY then
+
+                mate = _hippo
             end
         end
-        if hippos_in_range >= 5 then
-            return false, nil, nil
-        end
+    end
+
+    local x, y, z = hippo.Transform:GetWorldPosition()
+    local ents = FindHippos(x, y, z, FIND_HIPPO_MEMBER_RANGE)
+    local hippos_num = MAX_HIPPO_NUM * TheWorld.Map:CalcPercentTilesAtPoint(x, y, z, FIND_HIPPO_MEMBER_RANGE,
+        function(_x, _y, _z, map)
+            return TheWorld.Map:GetTileAtPoint(_x, _y, _z) == WORLD_TILES.LILYPOND
+        end)
+    if #ents >= hippos_num then
+        return false, nil, nil
     end
 
     local function is_valid_spawn_point(point)
-        local ents = TheSim:FindEntities(point.x, point.y, point.z, MIN_HIPPO_DISTANCE, {"hippopotamoose"})
-        return not next(ents)
+        local close_ents = FindHippos(point.x, point.y, point.z, MIN_HIPPO_DISTANCE)
+        if next(close_ents) then
+            return false
+        end
+        return true
     end
-    local x, y, z = hippo.Transform:GetWorldPosition()
+
     local offset = FindSwimmableOffset(Vector3(x, y, z), math.random() * 2 * PI, SPAWN_HIPPO_RADIUS, 10, true, false, is_valid_spawn_point)
 
-    if mate ~= nil and hippos_in_range < 5 and offset ~= nil then
+    if mate ~= nil and offset ~= nil then
         return true, mate, offset
     else
         return false, nil, nil
@@ -137,6 +157,10 @@ function self:RemoveHippo(hippo, isdummy)
     if hippo:IsValid() then
         hippo:RemoveEventCallback("onremove", OnHippoRemoved)
     end
+end
+
+function self:FindHippos(x, y, z, radius)
+    return FindHippos(x, y, z, radius)
 end
 
 --------------------------------------------------------------------------
