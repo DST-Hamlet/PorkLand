@@ -91,7 +91,6 @@ self.inst = inst
 -- Private
 local _ismastersim = TheWorld.ismastersim
 local _world = TheWorld
-local _active_players = {}
 local _critters_per_quake = {} -- {[number]interiorID: [string]number of critters left to spawn in a room}
 local _debris_spawn_rates = {} -- {[number]inetiorID: [number]debris_per_second}
 local _debris_spawn_times = {} -- {[number]interiorID: [number]tiem to next debris spawn in a room}
@@ -336,7 +335,7 @@ local UpdateTask = _ismastersim and function(src, dt, interiorID)
     else
         _debris_spawn_times[interiorID] = _debris_spawn_times[interiorID] - dt
         if _debris_spawn_times[interiorID] <= 0 then
-            local debris = SpawnDebrisForRoom(interiorID)
+            SpawnDebrisForRoom(interiorID)
             _debris_spawn_times[interiorID] = GetTimeForNextDebris(interiorID)
         end
     end
@@ -364,6 +363,20 @@ local StartQuakeForRoom = _ismastersim and function(src, data)
     if room and room:IsValid() then
         room._isquaking:set(true)
         ShakeAllCamerasInRoom(interiorID, CAMERASHAKE.FULL, _quake_times[interiorID], 0.02, QUAKE_LEVELS[_isquaking[interiorID]].quake_intensity, room, 40)
+
+        -- Also quake surrounding rooms on PILLAR_DESTROYED level of quake
+        if quake_level == INTERIOR_QUAKE_LEVELS.PILLAR_DESTROYED and not data.from_nearby_room then
+            local group_id = room:GetGroupId()
+            local x, y = room:GetCoordinates()
+            local rooms = TheWorld.components.interiorspawner:GetSurroundingRooms(group_id, x, y)
+            for _, v in ipairs(rooms) do
+                TheWorld:PushEvent("interior_startquake", {
+                    quake_level = quake_level,
+                    interiorID = v.interior.interiorID,
+                    from_nearby_room = true,
+                })
+            end
+        end
     end
 
     StartUpdateTask(interiorID, FRAMES, UpdateTask)
