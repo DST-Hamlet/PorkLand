@@ -396,9 +396,13 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
     end
 
     local minimap_floor_texture = inst:GetFloorMinimapTex()
+    local x, y = inst:GetCoordinates()
 
     return {
         uuid = inst.uuid,
+        group_id = inst:GetGroupId(),
+        coord_x = x,
+        coord_y = y,
         width = width,
         depth = depth,
         minimap_floor_texture = basename(minimap_floor_texture),
@@ -407,6 +411,9 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
     }
     -- {
     --     uuid: string,
+    --     group_id: number,
+    --     coord_x = number,
+    --     coord_y = number,
     --     width: number,
     --     depth: number,
     --     minimap_floor_texture: string,
