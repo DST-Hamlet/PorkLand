@@ -79,7 +79,7 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
         return true
     end
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        return not TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+        return false
     end
 
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
