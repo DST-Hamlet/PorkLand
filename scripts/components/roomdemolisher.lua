@@ -9,7 +9,7 @@ function RoomDemolisher:DemolishRoom(doer, door_frame, permit)
 
     local interior_spawner = TheWorld.components.interiorspawner
     local target_interior = door_frame.components.door.target_interior
-    local coord_x, coord_y = target_interior:GetCoordinates()
+    local coord_x, coord_y = interior_spawner:GetInteriorCenter(target_interior):GetCoordinates()
 
     if door_frame:RoomCanBeRemoved() and not (coord_x == 0 and coord_y == 0) then
         interior_spawner:DemolishPlayerRoom(target_interior, door_frame:GetPosition())
