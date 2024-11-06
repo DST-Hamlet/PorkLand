@@ -38,6 +38,13 @@ local function init(inst)
     end
 end
 
+local function on_respawned_from_ghost(inst)
+    local interiorvisitor = inst.components.interiorvisitor
+    if interiorvisitor then
+        interiorvisitor:RecordMapOnEnteringNewRoom()
+    end
+end
+
 local InteriorVisitor = Class(function(self, inst)
     self.inst = inst
     self.exterior_pos_x = 0
@@ -62,6 +69,7 @@ local InteriorVisitor = Class(function(self, inst)
         self:RecordMap(data.id, nil)
     end
     self.inst:ListenForEvent("room_removed", self.record_map_on_room_removal, TheWorld)
+    self.inst:ListenForEvent("ms_respawnedfromghost", on_respawned_from_ghost)
 end, nil,
 {
     exterior_pos_x = on_x,
@@ -73,6 +81,7 @@ end, nil,
 
 function InteriorVisitor:OnRemoveFromEntity()
     self.inst:RemoveEventCallback("room_removed", self.record_map_on_room_removal, TheWorld)
+    self.inst:RemoveEventCallback("ms_respawnedfromghost", on_respawned_from_ghost)
 end
 
 function InteriorVisitor:SetExteriorPosition(x, z)
@@ -196,12 +205,18 @@ function InteriorVisitor:RecordAnthillDoorMapReset(no_send)
     end
 end
 
-function InteriorVisitor:ValidateMap()
+function InteriorVisitor:ValidateAndMigrateMapData()
     for id, map_data in pairs(self.interior_map) do
         local center = TheWorld.components.interiorspawner:GetInteriorCenter(id)
         if not center or (map_data.uuid and map_data.uuid ~= center.uuid) then
             self.interior_map[id] = nil
             self.anthill_visited_time[id] = nil
+        elseif not map_data.group_id then
+            local group_id = center:GetGroupId()
+            local x, y = center:GetCoordinates()
+            map_data.group_id = group_id
+            map_data.coord_x = x
+            map_data.coord_y = y
         end
     end
     self:RecordAnthillDoorMapReset(true)
@@ -260,6 +275,26 @@ function InteriorVisitor:UpdateSurroundingDoorMaps(center_ent, last_center_ent, 
     end
 end
 
+function InteriorVisitor:CanRecordMap(room_id)
+    -- Can record if we're not ghost or if have previously visited this room
+    return not self.inst:HasTag("playerghost") or self.interior_map[room_id]
+end
+
+function InteriorVisitor:RecordMapOnEnteringNewRoom(last_center)
+    local current_center = self.center_ent
+    if current_center and self:CanRecordMap(current_center.interiorID) then
+        local map_data = current_center:CollectMinimapData()
+        self:UpdateSurroundingDoorMaps(current_center, last_center, map_data)
+        self:RecordMap(current_center.interiorID, map_data)
+    end
+    -- Record again and ignore non cacheable things once we're out of the last visited room
+    if last_center and last_center ~= current_center and last_center:IsValid() and self:CanRecordMap(last_center.interiorID) then
+        local map_data = last_center:CollectMinimapData(true)
+        self:UpdateSurroundingDoorMaps(last_center, current_center, map_data)
+        self:RecordMap(last_center.interiorID, map_data)
+    end
+end
+
 local function GetExterior(center)
     local door = center:GetDoorToExterior()
     if door then
@@ -297,17 +332,7 @@ function InteriorVisitor:UpdateExteriorPos()
     self.last_center_ent = ent
 
     if last_center_ent ~= ent then
-        if ent then
-            local map_data = ent:CollectMinimapData()
-            self:UpdateSurroundingDoorMaps(ent, last_center_ent, map_data)
-            self:RecordMap(ent.interiorID, map_data)
-        end
-        -- Record again and ignore non cacheable things once we're out of the last visited room
-        if last_center_ent and last_center_ent:IsValid() then
-            local map_data = last_center_ent:CollectMinimapData(true)
-            self:UpdateSurroundingDoorMaps(last_center_ent, ent, map_data)
-            self:RecordMap(last_center_ent.interiorID, map_data)
-        end
+        self:RecordMapOnEnteringNewRoom(last_center_ent)
     end
 
     local grue = self.inst.components.grue or {}
@@ -399,8 +424,9 @@ function InteriorVisitor:OnLoad(data)
     end
 end
 
+-- This should be called after all entities loaded
 function InteriorVisitor:Init()
-    self:ValidateMap()
+    self:ValidateAndMigrateMapData()
     -- Don't quite understand why ThePlayer can be nil when the client receives this,
     -- from HandleClientRPC in networkclientrpc.lua, it shouldn't happen, but it does anyway,
     -- since this is not critical to the client on initial load, use a delay here to mitigate this

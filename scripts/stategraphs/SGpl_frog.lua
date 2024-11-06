@@ -436,15 +436,15 @@ local states=
 
         onenter = function(inst)
             inst.Physics:Stop()
-            inst.AnimState:PlayAnimation("atk_pre")
-            inst.AnimState:PushAnimation("atk", false)
+            inst.AnimState:PlayAnimation("eat_pre")
+            inst.AnimState:PushAnimation("eat_loop", false)
+            inst.AnimState:PushAnimation("eat_pst", false)
         end,
 
         timeline=
         {
             TimeEvent(17 * FRAMES, function(inst) inst:PerformBufferedAction() end),
-            TimeEvent(20 * FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.attack_spit) end),
-            TimeEvent(20 * FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.attack_voice) end),
+            TimeEvent(20 * FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.grunt) end),
         },
 
         events=

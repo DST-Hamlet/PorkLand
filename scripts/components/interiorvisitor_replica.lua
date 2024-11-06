@@ -15,6 +15,7 @@ local InteriorVisitor = Class(function(self, inst)
     self.interior_cc = net_smallbyte(inst.GUID, "interiorvisitor.interior_cc", "interiorvisitor.interior_cc")
 
     self.interior_map = {}
+    self.interior_map_groups = {}
     self.local_interior_map_override = {}
 
     self.ininterior = false
@@ -184,7 +185,13 @@ end
 -- Receiving from interior_map client RPC
 function InteriorVisitor:OnNewInteriorMapData(data)
     for id, data in pairs(data) do
+        data.interior_id = id
         self.interior_map[id] = data
+        if not self.interior_map_groups[data.group_id] then
+            self.interior_map_groups[data.group_id] = {}
+        end
+        local coord_key = TheWorld.components.interiorspawner:CoordinatesToKey(data.coord_x, data.coord_y)
+        self.interior_map_groups[data.group_id][coord_key] = data
     end
     self.inst:PushEvent("refresh_interior_minimap")
 end
@@ -192,6 +199,12 @@ end
 -- Receiving from remove_interior_map client RPC
 function InteriorVisitor:RemoveInteriorMapData(data)
     for _, id in ipairs(data) do
+        local map_data = self.interior_map[id]
+        local coord_key = TheWorld.components.interiorspawner:CoordinatesToKey(map_data.coord_x, map_data.coord_y)
+        self.interior_map_groups[map_data.group_id][coord_key] = nil
+        if IsTableEmpty(self.interior_map_groups[map_data.group_id]) then
+            self.interior_map_groups[map_data.group_id] = nil
+        end
         self.interior_map[id] = nil
     end
     self.inst:PushEvent("refresh_interior_minimap")

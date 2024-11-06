@@ -292,7 +292,7 @@ local function roottrunk_fn()
     inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
-    inst.MiniMapEntity:SetIcon("root_chest.tex")
+    inst.MiniMapEntity:SetIcon("root_chest_child.tex")
 
     inst:AddTag("structure")
     -- inst:AddTag("chest")

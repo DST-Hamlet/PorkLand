@@ -59,6 +59,14 @@ local function SetUp(inst, data)
     inst.walltexture = data.walltexture or inst.walltexture or "antcave_wall_rock"
     inst.floortexture = data.floortexture or inst.floortexture or "antcave_floor"
     inst.interiorID = data.interiorID or inst.interiorID
+
+    if data.group_id then
+        inst:SetGroupId(data.group_id)
+    end
+    if data.interior_coordinate_x and data.interior_coordinate_y then
+        inst:SetCoordinates(data.interior_coordinate_x, data.interior_coordinate_y)
+    end
+
     inst.footstep_tile = data.footstep_tile or inst.footstep_tile or WORLD_TILES.DIRT
     inst._footstep_tile:set(inst.footstep_tile or WORLD_TILES.DIRT)
     inst.reverb = data.reverb or inst.reverb or "default"
@@ -161,6 +169,24 @@ end
 local function SetSize(inst, width, depth)
     inst._width:set(width)
     inst._depth:set(depth)
+end
+
+local function SetGroupId(inst, id)
+    inst.group_id_set = true
+    inst.group_id:set(id)
+end
+
+local function GetGroupId(inst)
+    return inst.group_id:value()
+end
+
+local function SetCoordinates(inst, x, y)
+    inst._interior_coordinate_x:set(x)
+    inst._interior_coordinate_y:set(y)
+end
+
+local function GetCoordinates(inst)
+    return inst._interior_coordinate_x:value(), inst._interior_coordinate_y:value()
 end
 
 local function SetFloorMinimapTex(inst, texture)
@@ -370,9 +396,13 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
     end
 
     local minimap_floor_texture = inst:GetFloorMinimapTex()
+    local x, y = inst:GetCoordinates()
 
     return {
         uuid = inst.uuid,
+        group_id = inst:GetGroupId(),
+        coord_x = x,
+        coord_y = y,
         width = width,
         depth = depth,
         minimap_floor_texture = basename(minimap_floor_texture),
@@ -381,6 +411,9 @@ local function CollectMinimapData(inst, ignore_non_cacheable)
     }
     -- {
     --     uuid: string,
+    --     group_id: number,
+    --     coord_x = number,
+    --     coord_y = number,
     --     width: number,
     --     depth: number,
     --     minimap_floor_texture: string,
@@ -473,6 +506,12 @@ local function OnSave(inst, data)
     data.width = inst:GetWidth()
     data.depth = inst:GetDepth()
     data.height = inst.height
+
+    data.group_id = inst:GetGroupId()
+    local x, y = inst:GetCoordinates()
+    data.interior_coordinate_x = x
+    data.interior_coordinate_y = y
+
     data.walltexture = inst.walltexture
     data.floortexture = inst.floortexture
     data.interiorID = inst.interiorID
@@ -562,7 +601,14 @@ local function fn()
     inst.GetWidth = GetWidth
     inst.GetDepth = GetDepth
     inst.GetSize = GetSize
-    inst.SetSize = SetSize
+
+    -- AKA which set of connected rooms this interior center is in
+    inst.group_id = net_ushortint(inst.GUID, "interiorworkblank.group_id")
+    inst._interior_coordinate_x = net_shortint(inst.GUID, "interiorworkblank._interior_coordinate_x")
+    inst._interior_coordinate_y = net_shortint(inst.GUID, "interiorworkblank._interior_coordinate_y")
+
+    inst.GetGroupId = GetGroupId
+    inst.GetCoordinates = GetCoordinates
 
     inst._reverb = net_string(inst.GUID, "_reverb")
     inst._footstep_tile = net_int(inst.GUID, "_footstep_tile")
@@ -572,9 +618,6 @@ local function fn()
     inst.interior_tags = {}
     inst.interior_tags_mask = net_ushortint(inst.GUID, "interior_tags_mask", "interior_tags_mask")
 
-    inst.major_id = net_ushortint(inst.GUID, "major_id", "major_id")
-    inst.minimap_coord_x = net_shortint(inst.GUID, "minimap_coord_x", "minimap_coord")
-    inst.minimap_coord_z = net_shortint(inst.GUID, "minimap_coord_z", "minimap_coord")
     inst._floor_minimaptex = net_string(inst.GUID, "_floor_minimaptex", "_floor_minimaptex")
 
     inst.GetFloorMinimapTex = GetFloorMinimapTex
@@ -606,7 +649,12 @@ local function fn()
     -- Used for minimap data
     inst.uuid = generate_uuid(8)
 
+    inst.group_id_set = false
+
     inst.SetUp = SetUp
+    inst.SetSize = SetSize
+    inst.SetGroupId = SetGroupId
+    inst.SetCoordinates = SetCoordinates
     inst.CollectMinimapData = CollectMinimapData
 
     inst.walltexture = nil

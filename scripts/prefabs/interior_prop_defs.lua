@@ -53,18 +53,18 @@ end
 
 local function AddGoldStatue(addprops,x,z)
     if math.random() <0.5 then
-        addprops[#addprops + 1] = { name = "pig_ruins_pig", x_offset = x, z_offset =  z, rotation = -90 }
+        addprops[#addprops + 1] = { name = "pig_ruins_pig", x_offset = x, z_offset =  z }
     else
-        addprops[#addprops + 1] = { name = "pig_ruins_ant", x_offset = x, z_offset =  z, rotation = -90 }
+        addprops[#addprops + 1] = { name = "pig_ruins_ant", x_offset = x, z_offset =  z }
     end
     return addprops
 end
 
 local function AddRelicStatue(addprops,x,z, tags)
     if math.random() <0.5 then
-        addprops[#addprops + 1] = { name = "pig_ruins_idol", x_offset = x, z_offset =  z, rotation = -90, addtags = tags }
+        addprops[#addprops + 1] = { name = "pig_ruins_idol", x_offset = x, z_offset =  z, addtags = tags }
     else
-        addprops[#addprops + 1] = { name = "pig_ruins_plaque", x_offset = x, z_offset =  z, rotation = -90, addtags = tags }
+        addprops[#addprops + 1] = { name = "pig_ruins_plaque", x_offset = x, z_offset =  z, addtags = tags }
     end
     return addprops
 end
@@ -180,20 +180,20 @@ end
 local function AddHoneyDrip(addprops, width, depth)
     local choice = math.random(1, 4)
     if choice == 1 then
-        addprops[#addprops + 1] = {name = "deco_cave_honey_drip_1", x_offset = -depth / 2, z_offset = GetPosToCenter(width * 0.65, 3, true), rotation = -90}
+        addprops[#addprops + 1] = {name = "deco_cave_honey_drip_1", x_offset = -depth / 2, z_offset = GetPosToCenter(width * 0.65, 3, true)}
     elseif choice == 2 then
-        addprops[#addprops + 1] = {name = "deco_cave_ceiling_drip_2", x_offset = -depth / 2, z_offset = GetPosToCenter(width * 0.65, 3, true), rotation = -90}
+        addprops[#addprops + 1] = {name = "deco_cave_ceiling_drip_2", x_offset = -depth / 2, z_offset = GetPosToCenter(width * 0.65, 3, true)}
     elseif choice == 3 then
         if math.random() < 0.5 then
-            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_1", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset = -width / 2, rotation = -90}
+            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_1", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset = -width / 2}
         else
-            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_1", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset =  width / 2, rotation = -90, flip = true}
+            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_1", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset =  width / 2, flip = true}
         end
     elseif choice == 4 then
         if math.random() < 0.5 then
-            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_2", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset = -width / 2, rotation = -90}
+            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_2", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset = -width / 2}
         else
-            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_2", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset =  width / 2, rotation = -90, flip = true}
+            addprops[#addprops + 1] = {name = "deco_cave_honey_drip_side_2", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset =  width / 2, flip = true}
         end
     end
 end
@@ -203,14 +203,14 @@ local function AddCommonDeco(addprops)
     local width = TUNING.ROOM_LARGE_WIDTH
     local depth = TUNING.ROOM_LARGE_DEPTH
 
-    table.insert(addprops, { name = "deco_hive_cornerbeam",  x_offset = -depth/2, z_offset = -width/2, rotation = -90 })
-    table.insert(addprops, { name = "deco_hive_cornerbeam",  x_offset = -depth/2, z_offset =  width/2, rotation = -90, flip = true })
-    table.insert(addprops, { name = "deco_hive_pillar_side", x_offset =  depth/2, z_offset = -width/2, rotation = -90 })
-    table.insert(addprops, { name = "deco_hive_pillar_side", x_offset =  depth/2, z_offset =  width/2, rotation = -90, flip = true })
+    table.insert(addprops, { name = "deco_hive_cornerbeam",  x_offset = -depth/2, z_offset = -width/2 })
+    table.insert(addprops, { name = "deco_hive_cornerbeam",  x_offset = -depth/2, z_offset =  width/2, flip = true })
+    table.insert(addprops, { name = "deco_hive_pillar_side", x_offset =  depth/2, z_offset = -width/2 })
+    table.insert(addprops, { name = "deco_hive_pillar_side", x_offset =  depth/2, z_offset =  width/2, flip = true })
 
-    table.insert(addprops, { name = "deco_hive_floor_trim", x_offset = depth/2, z_offset = -width/4, rotation = -90 })
-    table.insert(addprops, { name = "deco_hive_floor_trim", x_offset = depth/2, z_offset =        0, rotation = -90 })
-    table.insert(addprops, { name = "deco_hive_floor_trim", x_offset = depth/2, z_offset =  width/4, rotation = -90 })
+    table.insert(addprops, { name = "deco_hive_floor_trim", x_offset = depth/2, z_offset = -width/4 })
+    table.insert(addprops, { name = "deco_hive_floor_trim", x_offset = depth/2, z_offset =        0 })
+    table.insert(addprops, { name = "deco_hive_floor_trim", x_offset = depth/2, z_offset =  width/4 })
 
 end
 
@@ -362,7 +362,7 @@ PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPr
                 is_exit = true,
                 my_door_id = "ANTHILL_" .. doorway_count .. "_EXIT",
                 target_door_id = "ANTHILL_" .. doorway_count .. "_ENTRANCE",
-                rotation = -90,
+
                 angle = 0,
                 addtags = {
                     "timechange_anims",
@@ -386,7 +386,7 @@ PROP_DEFS.anthill_common = function(depth, width, room, doorway_count, doorwayPr
                 name = "antqueen_chamber_entrance",
                 x_offset = spawn_pt.x,
                 z_offset = spawn_pt.z,
-                rotation = -90,
+
             }
         }
 
@@ -465,7 +465,7 @@ PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chambe
             my_door_id = FROM_STRING .. queen_chamber_ids[i], -- door connecting from chamber [i](this room) to chamber [i + 1](next room)
             target_door_id = TO_STRING .. queen_chamber_ids[i + 1],
             target_interior = queen_chamber_ids[i + 1],
-            rotation = -90,
+
             angle = 0,
             addtags = {"door_north",},
         },
@@ -493,7 +493,7 @@ PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chambe
             my_door_id = door_to_exterior.my_door_id,
             target_door_id = door_to_exterior.target_door_id,
             target_interior = door_to_exterior.target_interior,
-            rotation = -90,
+
             angle = 0,
             addtags = {"door_south"},
         })
@@ -510,7 +510,7 @@ PROP_DEFS.anthill_queen_chamber_hallway = function(depth, width, i, queen_chambe
             my_door_id = TO_STRING .. queen_chamber_ids[i], -- door connecting from chamber [i - 1](previous_room) to chamber [i](this room)
             target_door_id = FROM_STRING .. queen_chamber_ids[i - 1],
             target_interior = queen_chamber_ids[i - 1],
-            rotation = -90,
+
             angle = 0,
             addtags = {"door_south",},
         })
@@ -582,7 +582,7 @@ PROP_DEFS.anthill_queen_chamber = function(depth, width, i, queen_chamber_ids)
         my_door_id = TO_STRING .. queen_chamber_ids[i], -- door connecting from chamber [i - 1](previous_room) to chamber [i](this room)
         target_door_id = FROM_STRING .. queen_chamber_ids[i - 1],
         target_interior = queen_chamber_ids[i - 1],
-        rotation = -90,
+
         angle = 0,
         addtags = {"door_south",},
     })
@@ -592,16 +592,16 @@ end
 
 PROP_DEFS.roc_cave = function(depth, width, room, open_exits, exterior_door_def)
     local addprops = {
-        {name = "deco_cave_cornerbeam", x_offset = -depth / 2, z_offset = -width / 2, rotation = -90},
-        {name = "deco_cave_cornerbeam", x_offset = -depth / 2, z_offset = width / 2, rotation = -90, flip = true},
-        {name = "deco_cave_pillar_side", x_offset = depth / 2, z_offset = -width / 2, rotation = -90},
-        {name = "deco_cave_pillar_side", x_offset = depth / 2, z_offset = width / 2, rotation = -90, flip = true},
-        {name = "deco_cave_floor_trim_front", x_offset = depth / 2, z_offset = -width/4, rotation = -90},
-        {name = "deco_cave_floor_trim_front", x_offset = depth / 2, z_offset = width/4, rotation = -90},
-        {name = "deco_cave_ceiling_trim_2", x_offset = math.random() * depth * 0.5 - depth/2*0.5, z_offset = -width/2, rotation = -90, chance = 0.7},
-        {name = "deco_cave_ceiling_trim_2", x_offset = math.random() * depth * 0.5 - depth/2*0.5, z_offset = width/2, rotation = -90, flip = true, chance = 0.7},
-        {name = "deco_cave_beam_room", x_offset = math.random() * depth * 0.65 - depth * 0.325 , z_offset = GetPosToCenter(width * 0.65, 7, false, true), rotation = -90, chance = 0.5},
-        {name = "deco_cave_beam_room", x_offset = math.random() * depth * 0.65 - depth * 0.325 , z_offset = GetPosToCenter(width * 0.65, 7), rotation = -90, chance = 0.5},
+        {name = "deco_cave_cornerbeam", x_offset = -depth / 2, z_offset = -width / 2},
+        {name = "deco_cave_cornerbeam", x_offset = -depth / 2, z_offset = width / 2, flip = true},
+        {name = "deco_cave_pillar_side", x_offset = depth / 2, z_offset = -width / 2},
+        {name = "deco_cave_pillar_side", x_offset = depth / 2, z_offset = width / 2, flip = true},
+        {name = "deco_cave_floor_trim_front", x_offset = depth / 2, z_offset = -width/4},
+        {name = "deco_cave_floor_trim_front", x_offset = depth / 2, z_offset = width/4},
+        {name = "deco_cave_ceiling_trim_2", x_offset = math.random() * depth * 0.5 - depth/2*0.5, z_offset = -width/2, chance = 0.7},
+        {name = "deco_cave_ceiling_trim_2", x_offset = math.random() * depth * 0.5 - depth/2*0.5, z_offset = width/2, flip = true, chance = 0.7},
+        {name = "deco_cave_beam_room", x_offset = math.random() * depth * 0.65 - depth * 0.325 , z_offset = GetPosToCenter(width * 0.65, 7, false, true), chance = 0.5},
+        {name = "deco_cave_beam_room", x_offset = math.random() * depth * 0.65 - depth * 0.325 , z_offset = GetPosToCenter(width * 0.65, 7), chance = 0.5},
         {name = "flint", x_offset = GetPosToCenter(depth * 0.65, 3, true), z_offset = GetPosToCenter(width * 0.65, 3, true), chance = 0.5},
         {name = "deco_cave_stalactite", x_offset = math.random() * depth / 2 - depth / 4, z_offset = GetPosToCenter(width, 6, true), chance = 0.5},
         {name = "deco_cave_stalactite", x_offset = math.random() * depth / 2 - depth / 4, z_offset = GetPosToCenter(width, 6, true), chance = 0.5},
@@ -624,7 +624,7 @@ PROP_DEFS.roc_cave = function(depth, width, room, open_exits, exterior_door_def)
             },
             my_door_id =  exterior_door_def.target_door_id,
             target_exterior = exterior_door_def.target_exterior,
-            rotation = -90,
+
             angle = 0,
             is_exit = true
         }
@@ -643,15 +643,15 @@ PROP_DEFS.roc_cave = function(depth, width, room, open_exits, exterior_door_def)
     end
 
     if open_exits.south then
-        addprops[#addprops + 1] = {name = "deco_cave_floor_trim_front", x_offset = depth / 2, z_offset = 0, rotation = -90}
+        addprops[#addprops + 1] = {name = "deco_cave_floor_trim_front", x_offset = depth / 2, z_offset = 0}
     end
 
     if open_exits.west then
-        addprops[#addprops + 1] = {name = "deco_cave_floor_trim_2", x_offset = math.random() * depth / 2 - depth / 4, z_offset = -width / 2, rotation = -90, chance = 0.7}
+        addprops[#addprops + 1] = {name = "deco_cave_floor_trim_2", x_offset = math.random() * depth / 2 - depth / 4, z_offset = -width / 2, chance = 0.7}
     end
 
     if open_exits.east then
-        addprops[#addprops + 1] = {name = "deco_cave_floor_trim_2", x_offset = math.random() * depth / 2 - depth / 4, z_offset = width / 2, rotation = -90, flip = true, chance = 0.7}
+        addprops[#addprops + 1] = {name = "deco_cave_floor_trim_2", x_offset = math.random() * depth / 2 - depth / 4, z_offset = width / 2, flip = true, chance = 0.7}
     end
 
     if roomtype == "stalacmites" then
@@ -1421,7 +1421,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
-            rotation = -90,
+
             angle = 0,
             addtags = {
                 "timechange_anims",
@@ -1446,7 +1446,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             is_exit = true,
             my_door_id = dungeondef.name .. "_EXIT2",
             target_door_id = dungeondef.name .. "_ENTRANCE2",
-            rotation = -90,
+
             angle = 0,
             addtags = {
                 "timechange_anims",
@@ -1456,7 +1456,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
     end
 
     if room.endswell then
-        addprops[#addprops + 1] = {name = "deco_ruins_endswell", x_offset = 0, z_offset = 0, rotation = -90}
+        addprops[#addprops + 1] = {name = "deco_ruins_endswell", x_offset = 0, z_offset = 0}
         room.fountain = true
     end
 
@@ -1466,21 +1466,21 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
 
     -- GENERAL RUINS ROOM ART
     if math.random() < 0.8 or roomtype == "dart_trap" then  -- the wall torches get blocked by the big beams
-        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = -depth/2, z_offset =  -width/2, rotation = -90}
-        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = -depth/2, z_offset =  width/2, rotation = -90, flip = true}
-        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = depth/2, z_offset =  -width/2, rotation = -90}
-        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = depth/2, z_offset =  width/2, rotation = -90, flip = true}
+        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = -depth/2, z_offset =  -width/2}
+        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = -depth/2, z_offset =  width/2, flip = true}
+        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = depth/2, z_offset =  -width/2}
+        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam"..room.color, x_offset = depth/2, z_offset =  width/2, flip = true}
     else
-        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam_heavy"..room.color, x_offset = -depth/2, z_offset =  -width/2, rotation = -90}
-        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam_heavy"..room.color, x_offset = -depth/2, z_offset =  width/2, rotation = -90, flip = true}
-        addprops[#addprops + 1] = {name = "deco_ruins_beam_heavy"..room.color, x_offset = depth/2, z_offset =  -width/2, rotation = -90}
-        addprops[#addprops + 1] = {name = "deco_ruins_beam_heavy"..room.color, x_offset = depth/2, z_offset =  width/2, rotation = -90, flip = true}
+        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam_heavy"..room.color, x_offset = -depth/2, z_offset =  -width/2}
+        addprops[#addprops + 1] = {name = "deco_ruins_cornerbeam_heavy"..room.color, x_offset = -depth/2, z_offset =  width/2, flip = true}
+        addprops[#addprops + 1] = {name = "deco_ruins_beam_heavy"..room.color, x_offset = depth/2, z_offset =  -width/2}
+        addprops[#addprops + 1] = {name = "deco_ruins_beam_heavy"..room.color, x_offset = depth/2, z_offset =  width/2, flip = true}
     end
 
     local prop = "deco_ruins_beam" .. (math.random() < 0.2 and "_broken" or "") .. room.color
 
-    addprops[#addprops + 1] = {name = prop, x_offset = -depth / 2, z_offset =  -width / 6, rotation = -90}
-    addprops[#addprops + 1] = {name = prop, x_offset = -depth / 2, z_offset =  width / 6, rotation = -90}
+    addprops[#addprops + 1] = {name = prop, x_offset = -depth / 2, z_offset =  -width / 6}
+    addprops[#addprops + 1] = {name = prop, x_offset = -depth / 2, z_offset =  width / 6}
 
     -- Adds fake wall cracks
     if exits_open.north and math.random() < 0.10  then
@@ -1530,54 +1530,54 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
     if roomtype ~= "dart_trap" and roomtype ~= "spear_trap" then
         if math.random() < 0.6 then
             if math.random() < 0.8 then
-                addprops[#addprops + 1] = { name = "deco_ruins_pigman_relief"..math.random(3)..room.color, x_offset = -depth/2, z_offset =  -width/6*2, rotation = -90 }
+                addprops[#addprops + 1] = { name = "deco_ruins_pigman_relief"..math.random(3)..room.color, x_offset = -depth/2, z_offset =  -width/6*2 }
             else
-                addprops[#addprops + 1] = { name = "deco_ruins_crack_roots"..math.random(4), x_offset = -depth/2, z_offset =  -width/6*2, rotation = -90 }
+                addprops[#addprops + 1] = { name = "deco_ruins_crack_roots"..math.random(4), x_offset = -depth/2, z_offset =  -width/6*2 }
             end
 
             if exits_open.north then
                 if math.random()<0.8 then
                     if math.random()<0.1 then
-                        addprops[#addprops + 1] = { name = "deco_ruins_pigqueen_relief"..room.color, x_offset = -depth/2, z_offset =  -width/18, rotation = -90, }
-                        addprops[#addprops + 1] = { name = "deco_ruins_pigking_relief"..room.color, x_offset = -depth/2, z_offset =  width/18, rotation = -90, }
+                        addprops[#addprops + 1] = { name = "deco_ruins_pigqueen_relief"..room.color, x_offset = -depth/2, z_offset =  -width/18, }
+                        addprops[#addprops + 1] = { name = "deco_ruins_pigking_relief"..room.color, x_offset = -depth/2, z_offset =  width/18, }
                     else
-                        addprops[#addprops + 1] = { name = "deco_ruins_pigman_relief"..math.random(3)..room.color, x_offset = -depth/2, z_offset =  0, rotation = -90, }
+                        addprops[#addprops + 1] = { name = "deco_ruins_pigman_relief"..math.random(3)..room.color, x_offset = -depth/2, z_offset =  0, }
                     end
                 else
-                    addprops[#addprops + 1] = { name = "deco_ruins_crack_roots"..math.random(4), x_offset = -depth/2, z_offset =  0, rotation = -90, }
+                    addprops[#addprops + 1] = { name = "deco_ruins_crack_roots"..math.random(4), x_offset = -depth/2, z_offset =  0, }
                 end
             end
             if math.random()<0.8 then
-                addprops[#addprops + 1] = { name = "deco_ruins_pigman_relief"..math.random(3)..room.color, x_offset = -depth/2, z_offset =  width/6*2, rotation = -90, }
+                addprops[#addprops + 1] = { name = "deco_ruins_pigman_relief"..math.random(3)..room.color, x_offset = -depth/2, z_offset =  width/6*2, }
             else
-                addprops[#addprops + 1] = { name = "deco_ruins_crack_roots"..math.random(4), x_offset = -depth/2, z_offset =  width/6*2, rotation = -90, }
+                addprops[#addprops + 1] = { name = "deco_ruins_crack_roots"..math.random(4), x_offset = -depth/2, z_offset =  width/6*2, }
             end
         else
             if math.random()< 0.5 then
-                addprops[#addprops + 1] = { name = "pig_ruins_torch_wall"..room.color, x_offset = -depth/2, z_offset =  -width/6*2, rotation = -90 }
+                addprops[#addprops + 1] = { name = "pig_ruins_torch_wall"..room.color, x_offset = -depth/2, z_offset =  -width/6*2 }
                 if exits_open.north then
-                    addprops[#addprops + 1] = { name = "pig_ruins_torch_wall"..room.color, x_offset = -depth/2, z_offset =  0, rotation = -90, }
+                    addprops[#addprops + 1] = { name = "pig_ruins_torch_wall"..room.color, x_offset = -depth/2, z_offset =  0, }
                 end
-                addprops[#addprops + 1] = { name = "pig_ruins_torch_wall"..room.color, x_offset = -depth/2, z_offset =  width/6*2, rotation = -90, }
+                addprops[#addprops + 1] = { name = "pig_ruins_torch_wall"..room.color, x_offset = -depth/2, z_offset =  width/6*2, }
 
-                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = -depth/3-0.5, z_offset =  -width/2, rotation = -90 }
+                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = -depth/3-0.5, z_offset =  -width/2 }
                 if exits_open.west then
-                    addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = 0-0.5, z_offset =  -width/2, rotation = -90 }
+                    addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = 0-0.5, z_offset =  -width/2 }
                 end
-                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset =  depth/3-0.5, z_offset =  -width/2, rotation = -90 }
+                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset =  depth/3-0.5, z_offset =  -width/2 }
 
-                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = -depth/3-0.5, z_offset =  width/2, rotation = -90, flip=true }
+                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = -depth/3-0.5, z_offset =  width/2, flip=true }
                 if exits_open.east then
-                    addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = 0-0.5, z_offset =  width/2, rotation = -90, flip=true }
+                    addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset = 0-0.5, z_offset =  width/2, flip=true }
                 end
-                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset =  depth/3-0.5, z_offset =  width/2, rotation = -90, flip=true }
+                addprops[#addprops + 1] = { name = "pig_ruins_torch_sidewall"..room.color, x_offset =  depth/3-0.5, z_offset =  width/2, flip=true }
             end
         end
     end
 
     if math.random() < 0.1 and roomtype ~= "spear_trap" and not room.nocornertree then
         local flip = math.random() < 0.5 or nil
-        addprops[#addprops + 1] = { name = "deco_ruins_corner_tree", x_offset = -depth/2, z_offset = (flip and 1 or -1) * width/2, rotation = -90, flip = flip}
+        addprops[#addprops + 1] = { name = "deco_ruins_corner_tree", x_offset = -depth/2, z_offset = (flip and 1 or -1) * width/2, flip = flip}
     end
 
     --RANDOM POTS
@@ -1592,9 +1592,9 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
 
     local function addroomcolumn(x,z)
         if math.random() <0.2 then
-            addprops[#addprops + 1] = { name = "deco_ruins_beam_room_broken"..room.color, x_offset = x, z_offset =  z, rotation = -90 }
+            addprops[#addprops + 1] = { name = "deco_ruins_beam_room_broken"..room.color, x_offset = x, z_offset =  z }
         else
-            addprops[#addprops + 1] = { name = "deco_ruins_beam_room"..room.color, x_offset = x, z_offset =  z, rotation = -90 }
+            addprops[#addprops + 1] = { name = "deco_ruins_beam_room"..room.color, x_offset = x, z_offset =  z }
         end
     end
 
@@ -1609,7 +1609,7 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
             room.close_pillars = true
         elseif feature == 2 then
             if roomtype ~= "door_trap" and not room.pheromonestone then
-                addprops[#addprops + 1] = { name = "deco_ruins_fountain", x_offset = 0, z_offset =  0, rotation = -90 }
+                addprops[#addprops + 1] = { name = "deco_ruins_fountain", x_offset = 0, z_offset =  0 }
                 room.fountain = true
                 --fountain = true
             end
@@ -1651,9 +1651,9 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         end
 
         local roots_left = {
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12 + jostle(), rotation = -90,flip=flip() },
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12*2+ jostle(), rotation = -90,flip=flip() },
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12*3+ jostle(), rotation = -90,flip=flip() }
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12 + jostle(),flip=flip() },
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12*2+ jostle(),flip=flip() },
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  -width/6 - width/12*3+ jostle(),flip=flip() }
         }
 
         local num = math.random(#roots_left)
@@ -1665,9 +1665,9 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
 
         if exits_open.north then
             local roots_center = {
-                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 + width/12+ jostle(), rotation = -90,flip=flip() },
-                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 + jostle(), rotation = -90,flip=flip() },
-                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 - width/12+ jostle(), rotation = -90,flip=flip() }
+                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 + width/12+ jostle(),flip=flip() },
+                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 + jostle(),flip=flip() },
+                { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  0 - width/12+ jostle(),flip=flip() }
             }
 
             local num = math.random(#roots_center)
@@ -1679,9 +1679,9 @@ PROP_DEFS.pig_ruins_common = function(depth, width, exits_open, exits_vined, roo
         end
 
         local roots_right = {
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12+ jostle(), rotation = -90,flip=flip() },
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12*2+ jostle(), rotation = -90,flip=flip() },
-            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12*3+ jostle(), rotation = -90,flip=flip() }
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12+ jostle(),flip=flip() },
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12*2+ jostle(),flip=flip() },
+            { name = "deco_ruins_roots"..math.random(3), x_offset = -depth/2, z_offset =  width/6 + width/12*3+ jostle(),flip=flip() }
         }
 
         local num = math.random(#roots_right)
@@ -1875,21 +1875,21 @@ PROP_DEFS.pig_shop_weapons = function(depth, width, exterior_door_def)
         {name = "pigman_hunter_shopkeep", x_offset = -3,    z_offset =  0, startstate = "desk_pre" },
         {name = "shield_axes", x_offset = -width/2, z_offset =  0 },
 
-        {name = "rug_porcupuss", x_offset =  0, z_offset = -2, rotation = -90 },
+        {name = "rug_porcupuss", x_offset =  0, z_offset = -2 },
         {name = "rug_fur", x_offset =  2, z_offset =  4, rotation =  90 },
         {name = "rug_catcoon", x_offset = -2, z_offset =  4, rotation =  90 },
 
-        {name = "deco_weapon_beam1", x_offset = -5,   z_offset =  width/2, rotation = -90, flip=true },
-        {name = "deco_weapon_beam1", x_offset = -5,   z_offset = -width/2, rotation = -90 },
-        {name = "deco_weapon_beam2", x_offset =  4.7, z_offset =  width/2, rotation = -90, flip=true },
-        {name = "deco_weapon_beam2", x_offset =  4.7, z_offset = -width/2, rotation = -90 },
+        {name = "deco_weapon_beam1", x_offset = -5,   z_offset =  width/2, flip=true },
+        {name = "deco_weapon_beam1", x_offset = -5,   z_offset = -width/2 },
+        {name = "deco_weapon_beam2", x_offset =  4.7, z_offset =  width/2, flip=true },
+        {name = "deco_weapon_beam2", x_offset =  4.7, z_offset = -width/2 },
 
-        {name = "window_square_weapons", x_offset = 1,  z_offset = -width/2, rotation = -90  },
-        {name = "swinging_light_basic_metal", x_offset = -2, z_offset =  -4.5, rotation = -90 },
-        {name = "swinging_light_basic_metal", x_offset = -6, z_offset =  3, rotation = -90 },
-        {name = "swinging_light_basic_metal", x_offset = 3,  z_offset =  6.5, rotation = -90 },
+        {name = "window_square_weapons", x_offset = 1,  z_offset = -width/2  },
+        {name = "swinging_light_basic_metal", x_offset = -2, z_offset =  -4.5 },
+        {name = "swinging_light_basic_metal", x_offset = -6, z_offset =  3 },
+        {name = "swinging_light_basic_metal", x_offset = 3,  z_offset =  6.5 },
 
-        {name = "deco_antiquities_beefalo_side", x_offset = -2, z_offset = width/2,  rotation = -90, flip=true },
+        {name = "deco_antiquities_beefalo_side", x_offset = -2, z_offset = width/2,  flip=true },
         {name = "closed_chest", x_offset = 4.5, z_offset = (-width/2)+1.5},
         {name = "deco_displaycase", x_offset = -4,  z_offset = -5.5},
         {name = "deco_displaycase", x_offset = -4,  z_offset = -4},
@@ -1920,25 +1920,25 @@ PROP_DEFS.pig_shop_arcane = function (depth, width, exterior_door_def)
 
         { name = "pigman_erudite_shopkeep", x_offset = -3,   z_offset = 4, startstate = "desk_pre" },
         { name = "deco_roomglow",           x_offset = 0,    z_offset = 0 },
-        { name = "shelf_glass",           x_offset = -4.5, z_offset = -4, rotation=-90, shelfitems={{1,"trinket_1"},{5,"trinket_2"},{6,"trinket_3"}} },
+        { name = "shelf_glass",           x_offset = -4.5, z_offset = -4, shelfitems={{1,"trinket_1"},{5,"trinket_2"},{6,"trinket_3"}} },
         { name = "deco_arcane_bookshelf",   x_offset = -4.5, z_offset = 0},
 
         { name = "rug_round",  x_offset = 0, z_offset = 0},
         { name = "containers", x_offset = width/2 - 3, z_offset = -width/2 + 1.5},
 
-        { name = "deco_accademy_cornerbeam", x_offset =  4.7, z_offset =   width/2, rotation = -90, flip=true },
-        { name = "deco_accademy_cornerbeam", x_offset =  4.7, z_offset =  -width/2, rotation = -90 },
-        { name = "deco_accademy_beam",       x_offset = -5,   z_offset =   width/2, rotation = -90, flip=true },
-        { name = "deco_accademy_beam",       x_offset = -5,   z_offset =  -width/2, rotation = -90 },
-        { name = "swinging_light_rope_1",    x_offset = -3,   z_offset =   width/6, rotation = -90 },
+        { name = "deco_accademy_cornerbeam", x_offset =  4.7, z_offset =   width/2, flip=true },
+        { name = "deco_accademy_cornerbeam", x_offset =  4.7, z_offset =  -width/2 },
+        { name = "deco_accademy_beam",       x_offset = -5,   z_offset =   width/2, flip=true },
+        { name = "deco_accademy_beam",       x_offset = -5,   z_offset =  -width/2 },
+        { name = "swinging_light_rope_1",    x_offset = -3,   z_offset =   width/6 },
 
-        { name = "deco_antiquities_screamcatcher", x_offset =-2,    z_offset =  -6.5, rotation = -90 },
-        { name = "deco_antiquities_windchime",     x_offset = -2,   z_offset =   6.5, rotation = -90 },
+        { name = "deco_antiquities_screamcatcher", x_offset =-2,    z_offset =  -6.5 },
+        { name = "deco_antiquities_windchime",     x_offset = -2,   z_offset =   6.5 },
 
-        { name = "deco_antiquities_beefalo_side",  x_offset = 0,    z_offset =  width/2, rotation = -90, flip=true },
+        { name = "deco_antiquities_beefalo_side",  x_offset = 0,    z_offset =  width/2, flip=true },
 
-        { name = "window_round_arcane",            x_offset = 0,    z_offset = -width/2, rotation = -90  },
-        { name = "window_round_light",             x_offset = 0,    z_offset = -width/2, rotation = -90  },
+        { name = "window_round_arcane",            x_offset = 0,    z_offset = -width/2  },
+        { name = "window_round_light",             x_offset = 0,    z_offset = -width/2  },
 
         { name = "shop_buyer", x_offset = -0.5, z_offset =  2.5,  saveID = true, animation="idle_marble"},
         { name = "shop_buyer", x_offset = -0.5, z_offset = -2.5,  saveID = true, animation="idle_marblesilk"},
@@ -2005,7 +2005,7 @@ PROP_DEFS.pig_shop_hoofspa = function (depth, width, exterior_door_def)
         { name = "pigman_beautician_shopkeep", x_offset = -3, z_offset = 3, startstate = "desk_pre" },
         { name = "deco_roomglow",              x_offset = 0,  z_offset = 0 },
 
-        { name = "shelf_marble", x_offset = -4.5, z_offset = -3,  rotation=-90, shelfitems={{3,"petals"},{4,"petals"},{5,"petals"},{6,"petals"}}},
+        { name = "shelf_marble", x_offset = -4.5, z_offset = -3,  shelfitems={{3,"petals"},{4,"petals"},{5,"petals"},{6,"petals"}}},
 
         { name = "deco_marble_cornerbeam",  x_offset = -5,    z_offset = -width/2 },
         { name = "deco_marble_cornerbeam",  x_offset = -5,    z_offset =  width/2,         flip = true },
@@ -2139,7 +2139,7 @@ PROP_DEFS.pig_shop_deli = function (depth, width, exterior_door_def)
             usesounds={EXIT_SHOP_SOUND} },
 
         { name = "pigman_storeowner_shopkeep", x_offset = -1, z_offset = 4, startstate = "desk_pre" },
-        { name = "shelf_fridge", x_offset = -4.5, z_offset = -4, rotation=-90,  shelfitems={{1,"fishmeat_small"},{2,"fishmeat_small"},{3,"bird_egg"},{4,"bird_egg"},{5,"froglegs"},{6,"froglegs"}} },
+        { name = "shelf_fridge", x_offset = -4.5, z_offset = -4,  shelfitems={{1,"fishmeat_small"},{2,"fishmeat_small"},{3,"bird_egg"},{4,"bird_egg"},{5,"froglegs"},{6,"froglegs"}} },
 
         { name = "deco_general_hangingscale",     x_offset = -2, z_offset =  4.7 },
         { name = "deco_roomglow",                 x_offset =  0, z_offset =  0 },
@@ -2334,7 +2334,7 @@ PROP_DEFS.pig_shop_tinker = function (depth, width, exterior_door_def)
         { name = "shop_buyer", x_offset = -1.7,  z_offset = width/6 +0.5,     animation = "idle_metal" },
         { name = "shop_buyer", x_offset = -1.7,  z_offset = 0.5,            animation = "idle_metal" },
 
-        { name = "shelf_metal", x_offset = -4.0, z_offset = 4,  rotation=-90, shelfitems={{3,"charcoal"},{4,"nitre"},{5,"papyrus"},{6,"charcoal"}}},
+        { name = "shelf_metal", x_offset = -4.0, z_offset = 4,  shelfitems={{3,"charcoal"},{4,"nitre"},{5,"papyrus"},{6,"charcoal"}}},
 
         { name = "window_round_backwall",   x_offset = -depth/2, z_offset = 0 },
 
@@ -2363,7 +2363,7 @@ PROP_DEFS.pig_palace = function (depth, width, exterior_door_def, togallery_door
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
-            rotation = -90,
+
             addtags = {"guard_entrance"},
             usesounds = {EXIT_SHOP_SOUND},
         },
@@ -2432,8 +2432,8 @@ PROP_DEFS.pig_palace = function (depth, width, exterior_door_def, togallery_door
         { name = "deco_palace_plant", x_offset = -18/2 +0.3, z_offset = -26/6.5, rotation = 90, flip = true },
         { name = "deco_palace_plant", x_offset = -18/2 +0.3, z_offset =  26/6.5, rotation = 90 },
 
-        { name = "wall_mirror", x_offset =  18/3, z_offset = -26/2, rotation = -90 },
-        { name = "wall_mirror", x_offset = -18/3, z_offset = -26/2, rotation = -90 },
+        { name = "wall_mirror", x_offset =  18/3, z_offset = -26/2 },
+        { name = "wall_mirror", x_offset = -18/3, z_offset = -26/2 },
 
         -- { name = "wall_mirror", x_offset =  18/3, z_offset = 26/2, rotation = 90, flip=true },
         -- { name = "wall_mirror", x_offset = -18/3, z_offset = 26/2, rotation = 90, flip=true },
@@ -2452,15 +2452,15 @@ PROP_DEFS.pig_palace = function (depth, width, exterior_door_def, togallery_door
         { name = "rug_palace_corners", x_offset = -18/2, z_offset = -26/2, rotation = 0   },
 
         -- front wall floor lights
-        { name = "swinglightobject", x_offset = 18/2, z_offset = -26/3, rotation = -90 },
-        { name = "swinglightobject", x_offset = 18/2, z_offset =  26/3, rotation = -90 },
+        { name = "swinglightobject", x_offset = 18/2, z_offset = -26/3 },
+        { name = "swinglightobject", x_offset = 18/2, z_offset =  26/3 },
 
         -- back wall lights and floor lights
-        { name = "window_round_light_backwall", x_offset = -18/2, z_offset = -26/3, rotation = -90 },
+        { name = "window_round_light_backwall", x_offset = -18/2, z_offset = -26/3 },
         { name = "window_palace",               x_offset = -18/2, z_offset = -26/3, rotation =  90 },
-        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =  26/3, rotation = -90 },
+        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =  26/3 },
         { name = "window_palace",               x_offset = -18/2, z_offset =  26/3, rotation =  90 },
-        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =     0, rotation = -90 },
+        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =     0 },
         { name = "window_palace_stainglass",    x_offset = -18/2, z_offset =     0, rotation =  90 },
 
         -- aisle rug
@@ -2514,9 +2514,9 @@ PROP_DEFS.pig_palace_gallery = function (depth, width, togiftshop_door_def, topa
         { name = "rug_palace_corners", x_offset =  12/2, z_offset = -18/2, rotation = 270 },
         { name = "rug_palace_corners", x_offset = -12/2, z_offset = -18/2, rotation = 0   },
 
-        { name = "window_round_light_backwall", x_offset = -12/2, z_offset = -18/3, rotation = -90 },
+        { name = "window_round_light_backwall", x_offset = -12/2, z_offset = -18/3 },
         { name = "window_palace",               x_offset = -12/2, z_offset = -18/3, rotation =  90 },
-        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =  26/3, rotation = -90 },
+        { name = "window_round_light_backwall", x_offset = -18/2, z_offset =  26/3 },
         { name = "window_palace",               x_offset = -12/2, z_offset =  18/3, rotation =  90 },
 
         { name = "deco_palace_beam_room_tall_corner",       x_offset = -12/2, z_offset =  -18/2, rotation = 90, flip = true },
@@ -2565,7 +2565,7 @@ PROP_DEFS.pig_palace_giftshop = function (depth, width, toexit_door_def, togalle
             my_door_id = toexit_door_def.my_door_id,
             target_door_id = toexit_door_def.target_door_id,
             target_exterior = toexit_door_def.target_exterior,
-            rotation = -90,
+
             addtags = {"guard_entrance"},
             usesounds = {EXIT_SHOP_SOUND},
         },
@@ -2595,8 +2595,8 @@ PROP_DEFS.pig_palace_giftshop = function (depth, width, toexit_door_def, togalle
         { name = "deco_cityhall_picture2", x_offset = -10/5, z_offset = -15/2, rotation = 90, flip = true },
         { name = "deco_cityhall_picture1", x_offset =  10/5, z_offset = -15/2, rotation = 90, flip = true },
 
-        { name = "shelf_wood", x_offset = -10/2, z_offset = -15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{2,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
-        { name = "shelf_wood", x_offset = -10/2, z_offset =  15/5, rotation =- 90, shelfitems={{1,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{4,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
+        { name = "shelf_wood", x_offset = -10/2, z_offset = -15/5, shelfitems={{1,"trinket_giftshop_3"},{2,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
+        { name = "shelf_wood", x_offset = -10/2, z_offset =  15/5, shelfitems={{1,"trinket_giftshop_3"},{3,"trinket_giftshop_3"},{4,"trinket_giftshop_3"},{5,"trinket_giftshop_3"},{6,"trinket_giftshop_3"}} },
 
         { name = "swinging_light_floral_bloomer", x_offset = 0, z_offset = 0 },
 
@@ -2632,14 +2632,14 @@ PROP_DEFS.playerhouse_city = function(exterior_door_def)
 
         { name = "deco_roomglow", x_offset = 0, z_offset = 0 },
 
-        { name = "shelf_cinderblocks",      x_offset = -4.5, z_offset = -15/3.5, rotation= -90, addtags={"playercrafted"} },
+        { name = "shelf_cinderblocks",      x_offset = -4.5, z_offset = -15/3.5, addtags={"playercrafted"} },
         { name = "deco_antiquities_wallfish", x_offset = -5,   z_offset =  3.9,    rotation = 90, addtags={"playercrafted"} },
 
         { name = "deco_antiquities_cornerbeam",  x_offset = -5,  z_offset =  -15/2, rotation =  90, flip=true, addtags={"playercrafted"} },
         { name = "deco_antiquities_cornerbeam",  x_offset = -5,  z_offset =   15/2, rotation =  90,            addtags={"playercrafted"} },
         { name = "deco_antiquities_cornerbeam2", x_offset = 4.7, z_offset =  -15/2, rotation =  90, flip=true, addtags={"playercrafted"} },
         { name = "deco_antiquities_cornerbeam2", x_offset = 4.7, z_offset =   15/2, rotation =  90,            addtags={"playercrafted"} },
-        { name = "swinging_light_rope_1",        x_offset = -2,  z_offset =  0,     rotation = -90,            addtags={"playercrafted"} },
+        { name = "swinging_light_rope_1",        x_offset = -2,  z_offset =  0,                addtags={"playercrafted"} },
 
         { name = "charcoal", x_offset = -3, z_offset = -2 },
         { name = "charcoal", x_offset =  2, z_offset =  3 },
@@ -2665,31 +2665,31 @@ PROP_DEFS.vampirebatcave = function(exterior_door_def, height, width)
             is_exit = true,
             my_door_id = exterior_door_def.target_door_id,
             target_door_id = exterior_door_def.my_door_id,
-            rotation = -90,
+
             angle = 0,
             addtags = {"timechange_anims"},
         },
 
-        {name = "deco_cave_cornerbeam", x_offset = -height / 2, z_offset = -width / 2, rotation = -90},
-        {name = "deco_cave_cornerbeam", x_offset = -height / 2, z_offset = width / 2, rotation = -90, flip = true},
+        {name = "deco_cave_cornerbeam", x_offset = -height / 2, z_offset = -width / 2},
+        {name = "deco_cave_cornerbeam", x_offset = -height / 2, z_offset = width / 2, flip = true},
 
-        {name = "deco_cave_pillar_side", x_offset = height / 2, z_offset = -width / 2, rotation = -90},
-        {name = "deco_cave_pillar_side", x_offset = height / 2, z_offset = width / 2, rotation = -90, flip = true},
+        {name = "deco_cave_pillar_side", x_offset = height / 2, z_offset = -width / 2},
+        {name = "deco_cave_pillar_side", x_offset = height / 2, z_offset = width / 2, flip = true},
 
-        {name = "deco_cave_bat_burrow", x_offset = 0, z_offset = 0, rotation = -90},
+        {name = "deco_cave_bat_burrow", x_offset = 0, z_offset = 0},
 
-        {name = "deco_cave_floor_trim_front", x_offset = height/2, z_offset = -width / 4, rotation = -90},
-        {name = "deco_cave_floor_trim_front", x_offset = height/2, z_offset = 0, rotation= -90, addtags = {"roc_cave_delete_me"}, roc_cave_delete_me = true},
-        {name = "deco_cave_floor_trim_front", x_offset = height/2, z_offset = width / 4, rotation = -90},
+        {name = "deco_cave_floor_trim_front", x_offset = height/2, z_offset = -width / 4},
+        {name = "deco_cave_floor_trim_front", x_offset = height/2, z_offset = 0, addtags = {"roc_cave_delete_me"}, roc_cave_delete_me = true},
+        {name = "deco_cave_floor_trim_front", x_offset = height/2, z_offset = width / 4},
 
-        {name = "deco_cave_floor_trim_2", x_offset = math.random() * height / 2 - height / 4, z_offset = -width / 2, rotation = -90, chance = 0.7},
-        {name = "deco_cave_floor_trim_2", x_offset = math.random() * height / 2 - height / 4, z_offset = width / 2, rotation = -90, flip = true, chance = 0.7},
+        {name = "deco_cave_floor_trim_2", x_offset = math.random() * height / 2 - height / 4, z_offset = -width / 2, chance = 0.7},
+        {name = "deco_cave_floor_trim_2", x_offset = math.random() * height / 2 - height / 4, z_offset = width / 2, flip = true, chance = 0.7},
 
-        {name = "deco_cave_ceiling_trim_2", x_offset = math.random() * height / 2 - height / 4, z_offset = -width / 2, rotation = -90, chance = 0.7},
-        {name = "deco_cave_ceiling_trim_2", x_offset = math.random() * height / 2 - height / 4, z_offset = width / 2, rotation = -90, flip = true, chance = 0.7},
+        {name = "deco_cave_ceiling_trim_2", x_offset = math.random() * height / 2 - height / 4, z_offset = -width / 2, chance = 0.7},
+        {name = "deco_cave_ceiling_trim_2", x_offset = math.random() * height / 2 - height / 4, z_offset = width / 2, flip = true, chance = 0.7},
 
-        {name = "deco_cave_beam_room", x_offset = math.random() * height * 0.65 - 0.65 * height / 2, z_offset = GetPosToCenter(width * 0.65, 7, false, true), rotation = -90, chance = 0.5},
-        {name = "deco_cave_beam_room", x_offset = math.random() * height * 0.65 - 0.65 * height / 2, z_offset = GetPosToCenter(width * 0.65, 7), rotation = -90, chance = 0.5},
+        {name = "deco_cave_beam_room", x_offset = math.random() * height * 0.65 - 0.65 * height / 2, z_offset = GetPosToCenter(width * 0.65, 7, false, true), chance = 0.5},
+        {name = "deco_cave_beam_room", x_offset = math.random() * height * 0.65 - 0.65 * height / 2, z_offset = GetPosToCenter(width * 0.65, 7), chance = 0.5},
 
         {name = "flint", x_offset = GetPosToCenter(height * 0.65, 3, true), z_offset = GetPosToCenter(width * 0.65, 3, true)},
         {name = "flint", x_offset = GetPosToCenter(height * 0.65, 3, true), z_offset = GetPosToCenter(width * 0.65, 3, true), chance = 0.5},

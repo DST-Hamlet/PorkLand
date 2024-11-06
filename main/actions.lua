@@ -527,6 +527,7 @@ ACTIONS.GAS.fn = function(act)
     if act.doer and act.invobject and act.invobject.components.gasser then
         local pos = act:GetActionPoint() or (act.target and act.target:GetPosition())
         local doer_pos = act.doer:GetPosition()
+        pos.y = doer_pos.y
         pos = doer_pos + (pos - doer_pos):Normalize() * act.action.distance
         act.invobject.components.gasser:Gas(pos)
         return true

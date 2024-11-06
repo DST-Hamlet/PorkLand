@@ -725,16 +725,14 @@ local function CanBuildHouseDoor(recipe, builder, pt)
     if not interior_spawner:IsInInteriorRegion(pt.x, pt.z) then
         return false
     end
-    local room_id = interior_spawner:PositionToIndex(pt)
-    local house_id = interior_spawner:GetPlayerHouseByRoomId(room_id)
-    if not house_id then
-        return false
-    end
     -- Just test if it's pointing north and that room is the origin room for now
     if GetDoorDirection(pt) == "north" then
-        local id = interior_spawner:GetPlayerRoomInDirection(house_id, room_id, interior_spawner:GetNorth())
-        local x, y = interior_spawner:GetPlayerRoomIndexById(house_id, id)
-        return not (x == 0 and y == 0)
+        local current_room = interior_spawner:GetInteriorCenter(pt)
+        local target_room = interior_spawner:GetRoomInDirection(current_room, interior_spawner:GetNorth())
+        if target_room then
+            local x, y = target_room:GetCoordinates()
+            return not (x == 0 and y == 0)
+        end
     end
     return true
 end

@@ -472,11 +472,27 @@ local function BuildMaze(inst, dungeondef, exterior_door_def)
         local addprops = GenerateProps("pig_ruins_" .. room_type, PIG_RUINS_DEPTH, PIG_RUINS_WIDTH,
             exits_open, exits_vined, room, room_type, dungeondef, exterior_door_def)
 
-        local def = interior_spawner:CreateRoom("generic_interior", PIG_RUINS_WIDTH, 5, PIG_RUINS_DEPTH, dungeondef.name, room.id, addprops, room.exits,
-            wall_texture, floor_texture, PIG_RUINS_MINIMAP_TEXTURE, nil, PIG_RUINS_COLOUR_CUBE, nil, nil,
-            PIG_RUINS_CAVE_REVERB, PIG_RUINS_CAVE_AMBIENT, PIG_RUINS_CAVE_GROUND_SOUND)
-        def.room_type = room_type -- 获得更多调试信息
-        interior_spawner:SpawnInterior(def)
+        interior_spawner:CreateRoom({
+            width = PIG_RUINS_WIDTH,
+            height = 5,
+            depth = PIG_RUINS_DEPTH,
+            dungeon_name = dungeondef.name,
+            roomindex = room.id,
+            addprops = addprops,
+            exits = room.exits,
+            walltexture = wall_texture,
+            floortexture = floor_texture,
+            minimaptexture = PIG_RUINS_MINIMAP_TEXTURE,
+            colour_cube = PIG_RUINS_COLOUR_CUBE,
+            reverb = PIG_RUINS_CAVE_REVERB,
+            ambient_sound = PIG_RUINS_CAVE_AMBIENT,
+            footstep_tile = PIG_RUINS_CAVE_GROUND_SOUND,
+            cameraoffset = nil,
+            zoom = nil,
+            group_id = inst.interiorID,
+            interior_coordinate_x = room.x,
+            interior_coordinate_y = room.y,
+        })
 
         local center_ent = interior_spawner:GetInteriorCenter(room.id)
         center_ent:AddInteriorTags("pig_ruins") -- need this for dynamic music

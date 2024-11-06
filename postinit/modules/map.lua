@@ -79,7 +79,7 @@ function Map:ReverseIsVisualWaterAtPoint(x, y, z)
         return true
     end
     if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
-        return not TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+        return false
     end
 
     local center_x, _, center_z = self:GetTileCenterPoint(x, y, z)
@@ -479,4 +479,26 @@ end
 
 function Map:IsWater(tile) -- 给几何mod用的
     return TileGroupManager:IsOceanTile(tile)
+end
+
+function Map:CalcPercentTilesAtPoint(x, y, z, radius, typefn)
+    local coord_radius = (math.floor(radius / TILE_SCALE) + 1) * TILE_SCALE
+    local num_tiles = 0
+    local num_typetiles = 0
+    for i = - coord_radius, coord_radius, TILE_SCALE do
+        for j = - coord_radius, coord_radius, TILE_SCALE do
+            if i * i + j * j < radius * radius then
+                num_tiles = num_tiles + 1
+                if typefn(x + i, 0, z + j) then
+                    num_typetiles = num_typetiles + 1
+                end
+            end
+        end
+    end
+
+    if num_tiles > 0 then
+        return num_typetiles / num_tiles
+    else
+        return 0
+    end
 end
