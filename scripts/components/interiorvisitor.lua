@@ -32,6 +32,13 @@ local function init(inst)
     end
 end
 
+local function on_respawned_from_ghost(inst)
+    local interiorvisitor = inst.components.interiorvisitor
+    if interiorvisitor then
+        interiorvisitor:RecordMapOnEnteringNewRoom()
+    end
+end
+
 local InteriorVisitor = Class(function(self, inst)
     self.inst = inst
     self.exterior_pos_x = 0
@@ -55,6 +62,7 @@ local InteriorVisitor = Class(function(self, inst)
         self:RecordMap(data.id, nil)
     end
     self.inst:ListenForEvent("room_removed", self.record_map_on_room_removal, TheWorld)
+    self.inst:ListenForEvent("ms_respawnedfromghost", on_respawned_from_ghost)
 end, nil,
 {
     exterior_pos_x = on_x,
@@ -65,6 +73,7 @@ end, nil,
 
 function InteriorVisitor:OnRemoveFromEntity()
     self.inst:RemoveEventCallback("room_removed", self.record_map_on_room_removal, TheWorld)
+    self.inst:RemoveEventCallback("ms_respawnedfromghost", on_respawned_from_ghost)
 end
 
 local function BitAND(a,b)
@@ -258,6 +267,21 @@ function InteriorVisitor:CanRecordMap(room_id)
     return not self.inst:HasTag("playerghost") or self.interior_map[room_id]
 end
 
+function InteriorVisitor:RecordMapOnEnteringNewRoom(last_center)
+    local current_center = self.center_ent
+    if current_center and self:CanRecordMap(current_center.interiorID) then
+        local map_data = current_center:CollectMinimapData()
+        self:UpdateSurroundingDoorMaps(current_center, last_center, map_data)
+        self:RecordMap(current_center.interiorID, map_data)
+    end
+    -- Record again and ignore non cacheable things once we're out of the last visited room
+    if last_center and last_center ~= current_center and last_center:IsValid() and self:CanRecordMap(last_center.interiorID) then
+        local map_data = last_center:CollectMinimapData(true)
+        self:UpdateSurroundingDoorMaps(last_center, current_center, map_data)
+        self:RecordMap(last_center.interiorID, map_data)
+    end
+end
+
 function InteriorVisitor:UpdateExteriorPos()
     local interior_spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
@@ -268,17 +292,7 @@ function InteriorVisitor:UpdateExteriorPos()
     self.last_center_ent = ent
 
     if last_center_ent ~= ent then
-        if ent and self:CanRecordMap(ent.interiorID) then
-            local map_data = ent:CollectMinimapData()
-            self:UpdateSurroundingDoorMaps(ent, last_center_ent, map_data)
-            self:RecordMap(ent.interiorID, map_data)
-        end
-        -- Record again and ignore non cacheable things once we're out of the last visited room
-        if last_center_ent and last_center_ent:IsValid() and self:CanRecordMap(last_center_ent.interiorID) then
-            local map_data = last_center_ent:CollectMinimapData(true)
-            self:UpdateSurroundingDoorMaps(last_center_ent, ent, map_data)
-            self:RecordMap(last_center_ent.interiorID, map_data)
-        end
+        self:RecordMapOnEnteringNewRoom(last_center_ent)
     end
 
     local grue = self.inst.components.grue or {}
