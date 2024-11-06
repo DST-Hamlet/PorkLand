@@ -757,16 +757,18 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
                 end
             elseif v.components.workable and v.components.workable:GetWorkAction() == ACTIONS.HAMMER then
                 v.components.workable:Destroy(self.destroyer)
-            elseif v.components.health and v.components.combat then
-                if v:HasTag("epic") or v:HasTag("companion") then
+                if v:IsValid() then
                     if exterior_pos ~= nil then
                         v.Physics:Teleport(exterior_pos:Get())
-                    else
-                        SinkEntity(v)
                     end
-                else
-                    v.components.health:Kill()
                 end
+            elseif v.components.health and v.components.combat then
+                if exterior_pos ~= nil then
+                    v.Physics:Teleport(exterior_pos:Get())
+                else
+                    SinkEntity(v)
+                end
+                v.components.combat:GetAttacked(nil, 20, nil)
             elseif v:IsValid() then
                 v:Remove()
             end
@@ -780,6 +782,9 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
                 v.Transform:SetPosition(exterior_pos:Get())
             else
                 SinkEntity(v)
+            end
+            if v.components.health and v.components.combat then
+                v.components.combat:GetAttacked(nil, 20, nil)
             end
         elseif v:IsValid() then
             v:Remove()
