@@ -80,7 +80,7 @@ local function SetUp(inst, data)
     if data.minimaptexture then
         inst:SetFloorMinimapTex(data.minimaptexture or "mini_floor_wood.tex")
     else
-        local interior_def = TheWorld.components.interiorspawner:GetInteriorDefine(inst.interiorID) -- 将旧存档中的floor_texture转移到实体上
+        local interior_def = TheWorld.components.interiorspawner:GetInteriorDefinition(inst.interiorID) -- 将旧存档中的floor_texture转移到实体上
         local floor_texture = interior_def and interior_def.minimaptexture or "mini_floor_wood.tex"
         inst:SetFloorMinimapTex(floor_texture)
     end

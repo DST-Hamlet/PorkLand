@@ -363,7 +363,7 @@ local function OnBuilt(inst)
         local connecting_room = interior_spawner:GetRoomInDirection(current_interior, interior_spawner:GetDirByLabel(baseanimname))
         if connecting_room then
             local connecting_room_id = connecting_room.interiorID
-            local interior_def = interior_spawner:GetInteriorDefine(connecting_room_id)
+            local interior_def = interior_spawner:GetInteriorDefinition(connecting_room_id)
             ActivateSelf(inst, connecting_room_id, current_room_id)
 
             local opposing_exit = PLAYER_INTERIOR_EXIT_DIR_DATA[baseanimname].op_dir

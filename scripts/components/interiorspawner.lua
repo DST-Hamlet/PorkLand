@@ -248,8 +248,8 @@ function InteriorSpawner:PositionToIndex(pos)
     return z_index * x_size + x_index
 end
 
--- Get the interior define with position or index (interiorID)
-function InteriorSpawner:GetInteriorDefine(position_or_id)
+-- Get the interior definition with position or index (interiorID)
+function InteriorSpawner:GetInteriorDefinition(position_or_id)
     local id = type(position_or_id) == "number" and position_or_id or self:PositionToIndex(position_or_id)
     return self.interior_defs[id]
 end
