@@ -737,6 +737,11 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
 
     TheWorld:PushEvent("pl_clearinterior", {pos = pos})
 
+    local center = self:GetInteriorCenter(pos)
+    if center then
+        self:DeactivateHouseDoors(center)
+    end
+
     local ents = TheSim:FindEntities(pos.x, 0, pos.z, TUNING.ROOM_FINDENTITIES_RADIUS, {"player"})
     for _, v in ipairs(ents) do
         v:PushEvent("pl_clearfrominterior", {exterior_pos = exterior_pos})
@@ -1100,22 +1105,29 @@ function InteriorSpawner:GetConnectedSurroundingPlayerRooms(house_id, id, exclud
     return found_doors
 end
 
+function InteriorSpawner:DeactivateHouseDoors(center)
+    for _, door in ipairs(center.doors) do
+        if door.components.door.target_interior and door.components.door.target_door_id and door:HasTag("house_door") then
+            local connected_room = self:GetInteriorCenter(door.components.door.target_interior)
+            if connected_room then
+                for _, v in ipairs(connected_room.doors) do
+                    if v.components.door.door_id == door.components.door.target_door_id then
+                        v:DeactivateSelf()
+                    end
+                end
+            end
+            door:DeactivateSelf()
+        end
+    end
+end
+
 -- This also destroies the interior center
 function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
     assert(TheWorld.ismastersim)
 
     local center = self:GetInteriorCenter(room_id)
 
-    for _, door in ipairs(center.doors) do
-        local connected_room = self:GetInteriorCenter(door.components.door.target_interior)
-        if connected_room then
-            for _, v in ipairs(connected_room.doors) do
-                if v.components.door.target_interior == center.interiorID then
-                    v:DeactivateSelf()
-                end
-            end
-        end
-    end
+    self:DeactivateHouseDoors(center)
 
     local x, _, z = center.Transform:GetWorldPosition()
 
