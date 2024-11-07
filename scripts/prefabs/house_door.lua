@@ -243,7 +243,7 @@ local function OnFinishCallback(inst, worker)
 end
 
 local function WorkMultiplierFn(inst, worker, numworks)
-    if worker:HasTag("player") then -- only worked by the player
+    if worker:HasTag("player") or worker:HasTag("interior_destroyer") then -- only worked by the player
         return 1
     else
         return 0

@@ -47,6 +47,7 @@ local InteriorSpawner = Class(function(self, inst)
     end)
 
     self.destroyer = CreateEntity() -- for workable:Destroy()
+    self.destroyer:AddTag("interior_destroyer")
 end)
 
 function InteriorSpawner:SetInteriorPos()
@@ -722,6 +723,14 @@ end
 --     end
 -- end
 
+local function teleport(entity, position)
+    if entity.Physics then
+        entity.Physics:Teleport(position:Get())
+    else
+        entity.Transform:SetPosition(position:Get())
+    end
+end
+
 -- This also destroies the interior center
 function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     assert(TheWorld.ismastersim)
@@ -732,7 +741,7 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     for _, v in ipairs(ents) do
         v:PushEvent("pl_clearfrominterior", {exterior_pos = exterior_pos})
         if exterior_pos ~= nil then
-            v.Physics:Teleport(exterior_pos:Get())
+            teleport(v, exterior_pos)
             v:SnapCamera()
         else
             TheWorld.components.playerspawner:SpawnAtNextLocation(v)
@@ -751,7 +760,7 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
             v:PushEvent("pl_clearfrominterior", {exterior_pos = exterior_pos})
             if v:HasTag("irreplaceable") then
                 if exterior_pos ~= nil then
-                    v.Transform:SetPosition(exterior_pos:Get())
+                    teleport(v, exterior_pos)
                 else
                     SinkEntity(v)
                 end
@@ -759,12 +768,12 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
                 v.components.workable:Destroy(self.destroyer)
                 if v:IsValid() then
                     if exterior_pos ~= nil then
-                        v.Physics:Teleport(exterior_pos:Get())
+                       teleport(v, exterior_pos)
                     end
                 end
             elseif v.components.health and v.components.combat then
                 if exterior_pos ~= nil then
-                    v.Physics:Teleport(exterior_pos:Get())
+                   teleport(v, exterior_pos)
                 else
                     SinkEntity(v)
                 end
@@ -779,7 +788,7 @@ function InteriorSpawner:ClearInteriorContents(pos, exterior_pos)
     for _, v in ipairs(ents) do
         if v.components.inventoryitem then
             if exterior_pos then
-                v.Transform:SetPosition(exterior_pos:Get())
+                teleport(v, exterior_pos)
             else
                 SinkEntity(v)
             end
@@ -1112,7 +1121,7 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
 
     for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"player"})) do
         if exit_pos ~= nil then
-            v.Physics:Teleport(exit_pos:Get())
+            teleport(v, exit_pos)
             v:SnapCamera()
         else
             TheWorld.components.playerspawner:SpawnAtNextLocation(v)
@@ -1128,10 +1137,13 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
             SinkEntity(v)
         elseif v.components.workable then
             v.components.workable:Destroy(self.destroyer)
+            if v:IsValid() then
+                teleport(v, exit_pos)
+            end
         elseif v.components.health then
             if not v:HasTag("shadowcreature") then
                 v.components.health:DoDelta(-math.random(10, 50))
-                v.Transform:SetPosition(exit_pos:Get())
+                teleport(v, exit_pos)
             end
         elseif v:IsValid() then
             v:Remove()
@@ -1139,7 +1151,7 @@ function InteriorSpawner:DemolishPlayerRoom(room_id, exit_pos)
     end
 
     for _, v in ipairs(TheSim:FindEntities(x, 0, z, TUNING.ROOM_FINDENTITIES_RADIUS, {"_inventoryitem"})) do
-        v.Transform:SetPosition(exit_pos:Get())
+        teleport(v, exit_pos)
     end
 
     TheWorld:PushEvent("room_removed", {id = room_id})
