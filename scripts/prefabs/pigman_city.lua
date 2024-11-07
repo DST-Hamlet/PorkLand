@@ -133,7 +133,11 @@ local function separatedesk(inst, separatedesk)
         ChangeToObstaclePhysics(inst)
         if inst.desk then
             local x, y, z = inst.desk.Transform:GetWorldPosition()
-            inst.Transform:SetPosition(x, y, z)
+            if inst.Physics then
+                inst.Physics:Teleport(x, y, z)
+            else
+                inst.Transform:SetPosition(x, y, z)
+            end
         end
         spawndesk(inst, false)
         inst:AddTag("atdesk")
