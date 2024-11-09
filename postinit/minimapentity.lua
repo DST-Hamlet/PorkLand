@@ -62,12 +62,18 @@ end
 local set_draw_over_fog_of_war = MiniMapEntity.SetDrawOverFogOfWar
 function MiniMapEntity:SetDrawOverFogOfWar(can_draw_over, ...)
     icon_can_draw_over_fog[self] = can_draw_over
+    local entity = minimap_entity_to_entity[self]
+    if can_draw_over then
+        TheWorld.components.interiormaprevealer:TrackEntity(entity)
+    else
+        TheWorld.components.interiormaprevealer:UntrackEntity(entity)
+    end
     return set_draw_over_fog_of_war(self, can_draw_over, ...)
 end
 
-function MiniMapEntity:GetCanDrawOverFogOfWar()
-    return icon_can_draw_over_fog[self]
-end
+-- function MiniMapEntity:GetCanDrawOverFogOfWar()
+--     return icon_can_draw_over_fog[self]
+-- end
 
 function MiniMapEntity:SetIconOffset(x, y)
     icon_offset[self] = {x, y}

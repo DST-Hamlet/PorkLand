@@ -51,6 +51,7 @@ local InteriorVisitor = Class(function(self, inst)
         addition = {},
         deletion = {},
     }
+    self.always_shown_minimap_entities = {}
     self.anthill_visited_time = {}
 
     -- self.restore_physics_task = nil
@@ -339,6 +340,70 @@ function InteriorVisitor:UpdateExteriorPos()
 
     self.exterior_pos_x = 0
     self.exterior_pos_z = 0
+end
+
+function InteriorVisitor:RevealAlwaysShownMinimapEntities()
+    if not self.center_ent then
+        self.always_shown_minimap_entities = {}
+        return
+    end
+
+    local modified_entities = {}
+
+    for ent in pairs(self.always_shown_minimap_entities) do
+        if not TheWorld.components.interiormaprevealer.tracking_entities[ent] then
+            table.insert(modified_entities, {
+                action = "delete",
+                data = ent.Network:GetNetworkID(),
+            })
+            self.always_shown_minimap_entities[ent] = nil
+        end
+    end
+
+    local interior_group = self.center_ent:GetGroupId()
+
+    for ent in pairs(TheWorld.components.interiormaprevealer.tracking_entities) do
+        local pos = ent:GetPosition()
+        local center = TheWorld.components.interiorspawner:GetInteriorCenter(pos)
+        local current_data = self.always_shown_minimap_entities[ent]
+        if current_data then
+            if interior_group ~= center:GetGroupId() then
+                table.insert(modified_entities, {
+                    action = "delete",
+                    data = ent.Network:GetNetworkID(),
+                })
+                self.always_shown_minimap_entities[ent] = nil
+            else
+                local offset = pos - center:GetPosition()
+                if current_data.offset_x ~= offset.x or current_data.z ~= offset.z then
+                    current_data.offset_x = offset.x
+                    current_data.offset_z = offset.z
+                    table.insert(modified_entities, {
+                        action = "replace",
+                        data = current_data,
+                    })
+                end
+            end
+        else
+            local offset = pos - center:GetPosition()
+            local coord_x, coord_y = center:GetCoordinates()
+            current_data = {
+                coord_x = coord_x,
+                coord_y = coord_y,
+                offset_x = offset.x,
+                offset_z = offset.z,
+                icon = ent.MiniMapEntity:GetIcon(),
+                priority = ent.MiniMapEntity:GetPriority(),
+            }
+            self.always_shown_minimap_entities[ent] = current_data
+            table.insert(modified_entities, {
+                action = "replace",
+                data = current_data,
+            })
+        end
+    end
+
+    SendModRPCToClient(GetClientModRPC("PorkLand", "always_shown_interior_map"), self.inst.userid, ZipAndEncodeString(modified_entities))
 end
 
 function InteriorVisitor:OnSave()

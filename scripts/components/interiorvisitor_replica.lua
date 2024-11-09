@@ -210,6 +210,11 @@ function InteriorVisitor:RemoveInteriorMapData(data)
     self.inst:PushEvent("refresh_interior_minimap")
 end
 
+-- Receiving from always_shown_interior_map client RPC
+function InteriorVisitor:OnAlwaysShownInteriorMapData(data)
+    -- TODO: complete this
+end
+
 -- function InteriorVisitor:OnRemoveFromEntity()
 --     self:Deactivate()
 -- end
