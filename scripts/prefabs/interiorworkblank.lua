@@ -331,7 +331,7 @@ local function CollectMinimapIcons(inst, ignore_non_cacheable)
     for _, ent in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, nil, {"INLIMBO", "pl_interior_no_minimap"})) do
         -- prop_door sets the minimap entity after the creation,
         -- and will cause ghost icons if set on client, so use a netvar instead
-        if ent.prefab == "prop_door" or ent.MiniMapEntity and (not ignore_non_cacheable or ent.MiniMapEntity:GetCanUseCache()) then  -- see postinit/minimapentity.lua
+        if ent.prefab == "prop_door" or ent.MiniMapEntity and ent.Network and (not ignore_non_cacheable or ent.MiniMapEntity:GetCanUseCache()) then  -- see postinit/minimapentity.lua
             local pos = ent:GetPosition()
             local offset = pos - position
             -- check if entity is in room
