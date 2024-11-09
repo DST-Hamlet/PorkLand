@@ -193,11 +193,13 @@ local function LoadHoneyFirstTime(inst)
 end
 
 local function TryTransformToHoney(inst)
-    for index = 1, inst.components.container.numslots do
-        local item = inst.components.container.slots[index]
-        if item and item:IsValid() then
-            if item.prefab == "nectar_pod" and item.components.converter then
-                item.components.converter:DoDelta(10 / TUNING.TOTAL_DAY_TIME)
+    if inst.components.container then
+        for index = 1, inst.components.container.numslots do
+            local item = inst.components.container.slots[index]
+            if item and item:IsValid() then
+                if item.prefab == "nectar_pod" and item.components.converter then
+                    item.components.converter:DoDelta(10 / TUNING.TOTAL_DAY_TIME)
+                end
             end
         end
     end
@@ -345,7 +347,7 @@ local function roottrunk_fn()
     return inst
 end
 
-return MakeChest("antchest", "ant_chest", "ant_chest", false, ant_master_postinit, prefabs_ant, assets_ant, nil, false),
+return MakeChest("antchest", "ant_chest", "ant_chest", false, ant_master_postinit, prefabs_ant, assets_ant, nil, true),
        MakeChest("corkchest", "treasure_chest_cork", "treasure_chest_cork", false, cork_master_postinit, prefabs_cork, assets_cork, cork_common_postinit, false),
        Prefab("roottrunk", roottrunk_fn, assets_root, prefabs_root),
        MakePlacer("corkchest_placer", "chest", "treasure_chest_cork", "closed"),
