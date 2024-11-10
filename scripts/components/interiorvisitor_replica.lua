@@ -15,6 +15,7 @@ local InteriorVisitor = Class(function(self, inst)
     self.interior_map = {}
     self.interior_map_groups = {}
     self.local_interior_map_override = {}
+    self.always_shown_interior_map = {}
 
     self.ininterior = false
 
@@ -212,7 +213,15 @@ end
 
 -- Receiving from always_shown_interior_map client RPC
 function InteriorVisitor:OnAlwaysShownInteriorMapData(data)
-    -- TODO: complete this
+    for _, action in ipairs(data) do
+        if action.type == "delete" then
+            self.always_shown_interior_map[action.data] = nil
+        elseif action.type == "replace" then
+            self.always_shown_interior_map[action.data.id] = action.data
+        elseif action.type == "clear" then
+            self.always_shown_interior_map = {}
+        end
+    end
 end
 
 -- function InteriorVisitor:OnRemoveFromEntity()
