@@ -371,7 +371,7 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
     for ent in pairs(TheWorld.components.interiormaprevealer.tracking_entities) do
         local network_id = ent.Network and ent.Network:GetNetworkID()
         -- Some mods have entities with minimap icon but without network
-        if network_id then
+        if network_id and not (ent.prefab == "globalmapicon" and ent._target and ent._target.prefab == "interiorworkblank") then
             local pos = ent:GetPosition()
             local center = TheWorld.components.interiorspawner:GetInteriorCenter(pos)
             local current_data = self.always_shown_minimap_entities[ent]
