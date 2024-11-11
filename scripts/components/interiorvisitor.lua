@@ -396,14 +396,14 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
                     self.always_shown_minimap_entities[ent] = current_data
                     has_changes = true
                 elseif current_data.offset_x ~= offset.x
-                    or current_data.z ~= offset.z
+                    or current_data.offset_z ~= offset.z
                     or current_data.coord_x ~= coord_x
                     or current_data.coord_y ~= coord_y
                     or current_data.icon ~= icon
                     or current_data.priority ~= priority then
 
                     current_data.offset_x = offset.x
-                    current_data.z = offset.z
+                    current_data.offset_z = offset.z
                     current_data.coord_x = coord_x
                     current_data.coord_y = coord_y
                     current_data.icon = icon
