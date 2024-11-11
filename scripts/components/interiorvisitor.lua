@@ -375,41 +375,53 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
             local pos = ent:GetPosition()
             local center = TheWorld.components.interiorspawner:GetInteriorCenter(pos)
             local current_data = self.always_shown_minimap_entities[ent]
-            if current_data then
-                if interior_group ~= center:GetGroupId() then
-                    table.insert(sync_actions, {
-                        type = "delete",
-                        data = network_id,
-                    })
-                    self.always_shown_minimap_entities[ent] = nil
-                else
-                    local offset = pos - center:GetPosition()
-                    if current_data.offset_x ~= offset.x or current_data.z ~= offset.z then
-                        current_data.offset_x = offset.x
-                        current_data.offset_z = offset.z
-                        table.insert(sync_actions, {
-                            type = "replace",
-                            data = current_data,
-                        })
-                    end
-                end
-            elseif interior_group == center:GetGroupId() then
+            if center and interior_group == center:GetGroupId() then
                 local offset = pos - center:GetPosition()
+                local interior_id = center.interiorID
+                local icon = ent.MiniMapEntity:GetIcon()
+                local priority = ent.MiniMapEntity:GetPriority()
                 local coord_x, coord_y = center:GetCoordinates()
-                current_data = {
-                    id = network_id,
-                    coord_x = coord_x,
-                    coord_y = coord_y,
-                    offset_x = offset.x,
-                    offset_z = offset.z,
-                    icon = ent.MiniMapEntity:GetIcon(),
-                    priority = ent.MiniMapEntity:GetPriority(),
-                }
-                self.always_shown_minimap_entities[ent] = current_data
+                local has_changes = false
+                if not current_data then
+                    current_data = {
+                        id = network_id,
+                        interior_id = interior_id,
+                        coord_x = coord_x,
+                        coord_y = coord_y,
+                        offset_x = offset.x,
+                        offset_z = offset.z,
+                        icon = icon,
+                        priority = priority,
+                    }
+                    self.always_shown_minimap_entities[ent] = current_data
+                    has_changes = true
+                elseif current_data.offset_x ~= offset.x
+                    or current_data.z ~= offset.z
+                    or current_data.coord_x ~= coord_x
+                    or current_data.coord_y ~= coord_y
+                    or current_data.icon ~= icon
+                    or current_data.priority ~= priority then
+
+                    current_data.offset_x = offset.x
+                    current_data.z = offset.z
+                    current_data.coord_x = coord_x
+                    current_data.coord_y = coord_y
+                    current_data.icon = icon
+                    current_data.priority = priority
+                    has_changes = true
+                end
+                if has_changes then
+                    table.insert(sync_actions, {
+                        type = "replace",
+                        data = current_data,
+                    })
+                end
+            elseif current_data then
                 table.insert(sync_actions, {
-                    type = "replace",
-                    data = current_data,
+                    type = "delete",
+                    data = network_id,
                 })
+                self.always_shown_minimap_entities[ent] = nil
             end
         end
     end

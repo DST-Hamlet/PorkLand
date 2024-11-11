@@ -262,10 +262,10 @@ function MapWidget:ApplyInteriorMinimap()
     -- {
     --     rooms: {
     --         [room_id: number]: {
-    --         tile: Image,
-    --         frame: Image,
-    --         icons: { widget: Image, id: number, priority: number }[],
-    --         offset: Vector3,
+    --             tile: Image,
+    --             frame: Image,
+    --             icons: { widget: Image, id: number, priority: number }[],
+    --             offset: Vector3,
     --         }
     --     },
     --     doors: {
