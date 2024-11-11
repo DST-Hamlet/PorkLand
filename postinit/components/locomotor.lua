@@ -109,10 +109,19 @@ end
 
 local function RecalculateExternalSpeedMultiplier(self, sources)
     local m = 1
+    local speedmultipliers = {}
     for source, src_params in pairs(sources) do
         for k, v in pairs(src_params.multipliers) do
-            m = m + (v - 1)
+            if speedmultipliers[k] == nil then
+                speedmultipliers[k] = v
+            elseif speedmultipliers[k] < v then
+                speedmultipliers[k] = v
+            end
         end
+    end
+
+    for k, v in pairs(speedmultipliers) do
+        m = m + (v - 1)
     end
     return m
 end

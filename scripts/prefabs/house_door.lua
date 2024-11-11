@@ -243,7 +243,7 @@ local function OnFinishCallback(inst, worker)
 end
 
 local function WorkMultiplierFn(inst, worker, numworks)
-    if worker:HasTag("player") then -- only worked by the player
+    if worker:HasTag("player") or worker:HasTag("interior_destroyer") then -- only worked by the player
         return 1
     else
         return 0
@@ -363,7 +363,7 @@ local function OnBuilt(inst)
         local connecting_room = interior_spawner:GetRoomInDirection(current_interior, interior_spawner:GetDirByLabel(baseanimname))
         if connecting_room then
             local connecting_room_id = connecting_room.interiorID
-            local interior_def = interior_spawner:GetInteriorDefine(connecting_room_id)
+            local interior_def = interior_spawner:GetInteriorDefinition(connecting_room_id)
             ActivateSelf(inst, connecting_room_id, current_room_id)
 
             local opposing_exit = PLAYER_INTERIOR_EXIT_DIR_DATA[baseanimname].op_dir

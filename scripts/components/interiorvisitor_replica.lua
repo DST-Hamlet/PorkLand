@@ -200,12 +200,14 @@ end
 function InteriorVisitor:RemoveInteriorMapData(data)
     for _, id in ipairs(data) do
         local map_data = self.interior_map[id]
-        local coord_key = TheWorld.components.interiorspawner:CoordinatesToKey(map_data.coord_x, map_data.coord_y)
-        self.interior_map_groups[map_data.group_id][coord_key] = nil
-        if IsTableEmpty(self.interior_map_groups[map_data.group_id]) then
-            self.interior_map_groups[map_data.group_id] = nil
+        if map_data then
+            local coord_key = TheWorld.components.interiorspawner:CoordinatesToKey(map_data.coord_x, map_data.coord_y)
+            self.interior_map_groups[map_data.group_id][coord_key] = nil
+            if IsTableEmpty(self.interior_map_groups[map_data.group_id]) then
+                self.interior_map_groups[map_data.group_id] = nil
+            end
+            self.interior_map[id] = nil
         end
-        self.interior_map[id] = nil
     end
     self.inst:PushEvent("refresh_interior_minimap")
 end

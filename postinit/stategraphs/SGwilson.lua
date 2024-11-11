@@ -189,16 +189,18 @@ local eventhandlers = {
         end
     end),
     -- Happens when the Ant Queen uses her song attack
-    EventHandler("sanity_stun",
-    function(inst, data)
+    EventHandler("sanity_stun", function(inst, data)
         for k, v in pairs(inst.components.inventory.equipslots) do
             if v:HasTag("earmuff") then
                 return
             end
         end
-
-        inst.sg:GoToState("sanity_stun", data.duration)
-        inst.components.sanity:DoDelta(-TUNING.SANITY_LARGE)
+        if not (inst.components.health:IsDead() or
+                inst.sg:HasStateTag("sleeping") or
+                inst.sg:HasStateTag("frozen")) then
+            inst.sg:GoToState("sanity_stun", data.duration)
+            inst.components.sanity:DoDelta(-TUNING.SANITY_LARGE)
+        end
     end),
     EventHandler("cower", function(inst, data)
         --NOTE: cower DO knock you out of shell/bush hat

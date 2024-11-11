@@ -259,9 +259,9 @@ local function DoDive(inst)
         local bat = SpawnPrefab("vampirebat")
         local spawn_point = inst:GetPosition()
         if bat and spawn_point then
+            bat.sg:GoToState("glide")
             bat.Transform:SetPosition(spawn_point.x, spawn_point.y + 30, spawn_point.z)
             bat:FacePoint(player.Transform:GetWorldPosition())
-            bat.sg:GoToState("glide")
             bat:AddTag("batfrenzy")
 
             bat:DoTaskInTime(2, function()

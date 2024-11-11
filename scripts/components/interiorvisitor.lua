@@ -140,7 +140,7 @@ end
 
 local function is_anthill_room(id)
     local interior_spawner = TheWorld.components.interiorspawner
-    local interior_define = interior_spawner:GetInteriorDefine(id)
+    local interior_define = interior_spawner:GetInteriorDefinition(id)
     return interior_define and interior_define.dungeon_name == "ANTHILL1"
 end
 

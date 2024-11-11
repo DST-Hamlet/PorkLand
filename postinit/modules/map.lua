@@ -324,7 +324,41 @@ function Map:CanDeployRecipeAtPoint(pt, recipe, rot, player, ...)
         end
     end
 
+    local x, y, z = pt:Get()
+    if not self:ReverseIsVisualGroundAtPoint(x, y, z) then
+        return false
+    end
+
     return _CanDeployRecipeAtPoint(self, pt, recipe, rot, player, ...)
+end
+
+local _CanPlantAtPoint = Map.CanPlantAtPoint
+function Map:CanPlantAtPoint(x, y, z, ...)
+    if not self:ReverseIsVisualGroundAtPoint(x, y, z) then
+        return false
+    end
+
+    return _CanPlantAtPoint(self, x, y, z, ...)
+end
+
+local _CanDeployWallAtPoint = Map.CanDeployWallAtPoint
+function Map:CanDeployWallAtPoint(pt, ...)
+    local x, y, z = pt:Get()
+    if not self:ReverseIsVisualGroundAtPoint(x, y, z) then
+        return false
+    end
+
+    return _CanDeployWallAtPoint(self, pt, ...)
+end
+
+local _CanDeployAtPoint = Map.CanDeployAtPoint
+function Map:CanDeployAtPoint(pt, ...)
+    local x, y, z = pt:Get()
+    if not self:ReverseIsVisualGroundAtPoint(x, y, z) then
+        return false
+    end
+
+    return _CanDeployAtPoint(self, pt, ...)
 end
 
 -- Copy of IsPassableAtPointWithPlatformRadiusBias that only checks the platform

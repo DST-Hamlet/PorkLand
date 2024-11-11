@@ -128,7 +128,7 @@ local function UpdateInteriorSanity(inst, data)
 
     if data.to then -- still inside
         local interiorID = data.to.interiorID
-        if TheWorld.components.interiorspawner:GetInteriorDefine(interiorID).dungeon_name:find("playerhouse") then
+        if TheWorld.components.interiorspawner:GetInteriorDefinition(interiorID).dungeon_name:find("playerhouse") then
             inst.components.sanity.externalmodifiers:SetModifier(data.to, TUNING.SANITY_PLAYERHOUSE_GAIN, SANITY_MODIFIER_NAME)
         end
     end

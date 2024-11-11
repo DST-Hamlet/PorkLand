@@ -21,8 +21,6 @@ function RoomDemolisher:DemolishRoom(doer, door_frame, permit)
         if permit then
             permit:Remove()
         end
-
-        door_frame:DeactivateSelf()
     else
         doer.components.talker:Say(GetString(doer.prefab, "ANNOUNCE_ROOM_STUCK"))
     end

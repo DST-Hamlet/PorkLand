@@ -80,7 +80,7 @@ local function SetUp(inst, data)
     if data.minimaptexture then
         inst:SetFloorMinimapTex(data.minimaptexture or "mini_floor_wood.tex")
     else
-        local interior_def = TheWorld.components.interiorspawner:GetInteriorDefine(inst.interiorID) -- 将旧存档中的floor_texture转移到实体上
+        local interior_def = TheWorld.components.interiorspawner:GetInteriorDefinition(inst.interiorID) -- 将旧存档中的floor_texture转移到实体上
         local floor_texture = interior_def and interior_def.minimaptexture or "mini_floor_wood.tex"
         inst:SetFloorMinimapTex(floor_texture)
     end
@@ -331,7 +331,7 @@ local function CollectMinimapIcons(inst, ignore_non_cacheable)
     for _, ent in ipairs(TheSim:FindEntities(position.x, 0, position.z, radius, nil, {"INLIMBO", "pl_interior_no_minimap"})) do
         -- prop_door sets the minimap entity after the creation,
         -- and will cause ghost icons if set on client, so use a netvar instead
-        if ent.prefab == "prop_door" or ent.MiniMapEntity and (not ignore_non_cacheable or ent.MiniMapEntity:GetCanUseCache()) then  -- see postinit/minimapentity.lua
+        if ent.prefab == "prop_door" or ent.MiniMapEntity and ent.Network and (not ignore_non_cacheable or ent.MiniMapEntity:GetCanUseCache()) then  -- see postinit/minimapentity.lua
             local pos = ent:GetPosition()
             local offset = pos - position
             -- check if entity is in room
