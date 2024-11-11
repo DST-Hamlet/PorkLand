@@ -284,6 +284,8 @@ function InteriorVisitor:RecordMapOnEnteringNewRoom(last_center)
 end
 
 function InteriorVisitor:UpdateExteriorPos()
+    local exterior_pos_x = 0
+    local exterior_pos_z = 0
     local interior_spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
     local ent = interior_spawner:GetInteriorCenter(Vector3(x, 0, z))
@@ -320,9 +322,8 @@ function InteriorVisitor:UpdateExteriorPos()
                 local x, _, z = house.Transform:GetWorldPosition()
                 -- when opening minimap inside a single room,
                 -- focus on exterior house position
-                self.exterior_pos_x = x
-                self.exterior_pos_z = z
-                return
+                exterior_pos_x = x
+                exterior_pos_z = z
             end
         end
     else
@@ -338,8 +339,10 @@ function InteriorVisitor:UpdateExteriorPos()
         end
     end
 
-    self.exterior_pos_x = 0
-    self.exterior_pos_z = 0
+    self:RevealAlwaysShownMinimapEntities()
+
+    self.exterior_pos_x = exterior_pos_x
+    self.exterior_pos_z = exterior_pos_z
 end
 
 function InteriorVisitor:RevealAlwaysShownMinimapEntities()
