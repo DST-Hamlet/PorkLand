@@ -13,6 +13,12 @@ local function on_z(self, value)
     end
 end
 
+local function on_exterior_icon(self, value)
+    if self.inst.replica.interiorvisitor then
+        self.inst.replica.interiorvisitor.exterior_icon:set(value)
+    end
+end
+
 local function on_center_ent(self, value)
     if self.inst.replica.interiorvisitor then
         self.inst.replica.interiorvisitor.center_ent:set(value)
@@ -43,6 +49,7 @@ local InteriorVisitor = Class(function(self, inst)
     self.inst = inst
     self.exterior_pos_x = 0
     self.exterior_pos_z = 0
+    self.exterior_icon = ""
     self.interior_cc = "images/colour_cubes/day05_cc.tex"
     self.center_ent = nil
     self.last_center_ent = nil
@@ -68,6 +75,7 @@ end, nil,
 {
     exterior_pos_x = on_x,
     exterior_pos_z = on_z,
+    exterior_icon = on_exterior_icon,
     center_ent = on_center_ent,
     interior_cc = on_interior_cc,
 })
@@ -75,6 +83,11 @@ end, nil,
 function InteriorVisitor:OnRemoveFromEntity()
     self.inst:RemoveEventCallback("room_removed", self.record_map_on_room_removal, TheWorld)
     self.inst:RemoveEventCallback("ms_respawnedfromghost", on_respawned_from_ghost)
+end
+
+function InteriorVisitor:SetExteriorPosition(x, z)
+    self.exterior_pos_x = x
+    self.exterior_pos_z = z
 end
 
 local function BitAND(a,b)
@@ -283,9 +296,34 @@ function InteriorVisitor:RecordMapOnEnteringNewRoom(last_center)
     end
 end
 
+local function GetExterior(center)
+    local door = center:GetDoorToExterior()
+    if door then
+        local exterior = TheWorld.components.interiorspawner:GetExteriorById(door.components.door.interior_name)
+        if exterior then
+            return exterior
+        end
+    end
+end
+
+-- Get the current room's exterior or fallback to any of the exit exteriors from all connected rooms
+function InteriorVisitor:GetLastEnteredExterior()
+    local interior_spawner = TheWorld.components.interiorspawner
+    local exterior = GetExterior(self.center_ent)
+    if exterior then
+        return exterior
+    end
+    for room in pairs(interior_spawner:GetAllConnectedRooms(self.center_ent)) do
+        if self.interior_map[room.interiorID] then
+            local exterior = GetExterior(self.center_ent)
+            if exterior then
+                return exterior
+            end
+        end
+    end
+end
+
 function InteriorVisitor:UpdateExteriorPos()
-    local exterior_pos_x = 0
-    local exterior_pos_z = 0
     local interior_spawner = TheWorld.components.interiorspawner
     local x, _, z = self.inst.Transform:GetWorldPosition()
     local ent = interior_spawner:GetInteriorCenter(Vector3(x, 0, z))
@@ -315,15 +353,15 @@ function InteriorVisitor:UpdateExteriorPos()
         end
         self:UpdatePlayerAndCreaturePhysics(ent)
 
-        if ent:GetIsSingleRoom() then -- check if this room is single, if so, get the unique exit
-            local door = ent:GetDoorToExterior()
-            local house = interior_spawner:GetExteriorById(door.components.door.interior_name)
-            if house ~= nil then
-                local x, _, z = house.Transform:GetWorldPosition()
-                -- when opening minimap inside a single room,
-                -- focus on exterior house position
-                exterior_pos_x = x
-                exterior_pos_z = z
+        -- If we just entered a room from outside
+        if not last_center_ent then
+            local exterior = self:GetLastEnteredExterior()
+            if exterior then
+                local x, _, z = exterior.Transform:GetWorldPosition()
+                self:SetExteriorPosition(x, z)
+                if exterior.MiniMapEntity then
+                    self.exterior_icon = exterior.MiniMapEntity:GetIcon() or ""
+                end
             end
         end
     else
@@ -337,12 +375,10 @@ function InteriorVisitor:UpdateExteriorPos()
         if not interior_spawner:IsInInteriorRegion(x, z) then
             self.last_mainland_pos = {x = x, z = z}
         end
+        self.exterior_icon = ""
     end
 
     self:RevealAlwaysShownMinimapEntities()
-
-    self.exterior_pos_x = exterior_pos_x
-    self.exterior_pos_z = exterior_pos_z
 end
 
 function InteriorVisitor:RevealAlwaysShownMinimapEntities()
@@ -431,15 +467,25 @@ end
 
 function InteriorVisitor:OnSave()
     return {
+        -- The position of last exterior the player entered
+        last_exterior_pos = {x = self.exterior_pos_x, z = self.exterior_pos_z},
+        -- The position of the player before they entered a room
         last_mainland_pos = self.last_mainland_pos,
+        exterior_icon = self.exterior_icon,
         interior_map = self.interior_map,
         anthill_visited_time = self.anthill_visited_time,
     }
 end
 
 function InteriorVisitor:OnLoad(data)
+    if data.last_exterior_pos then
+        self:SetExteriorPosition(data.last_exterior_pos.x, data.last_exterior_pos.z)
+    end
     if data.last_mainland_pos then
         self.last_mainland_pos = data.last_mainland_pos
+    end
+    if data.exterior_icon then
+        self.exterior_icon = data.exterior_icon
     end
     if data.interior_map then
         self.interior_map = data.interior_map

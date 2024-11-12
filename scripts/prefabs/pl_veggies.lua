@@ -163,9 +163,6 @@ local function MakeVeggie(name, has_seeds)
 
         if name == "coffeebeans" then
             inst.components.edible:SetOnEatenFn(function(inst, eater)
-                eater:RemoveDebuff("buff_speed_coffee")
-                eater:RemoveDebuff("buff_speed_tea")
-                eater:RemoveDebuff("buff_speed_icedtea")
                 eater:AddDebuff("buff_speed_coffee_beans", "buff_speed_coffee_beans")
             end)
         end

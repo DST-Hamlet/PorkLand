@@ -170,6 +170,9 @@ local function fn()
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"bandithat"})
+    inst.components.lootdropper:AddRandomLoot("meat", 3)
+    inst.components.lootdropper:AddRandomLoot("pigskin", 1)
+    inst.components.lootdropper.numrandomloot = 1
 
     inst:AddComponent("sleeper")
     inst.components.sleeper.onlysleepsfromitems = true

@@ -241,9 +241,13 @@ local INTERIOR_BG_SCALE = 0.8
 local INTERIOR_DOOR_SCALE = 0.8
 local INTERIOR_TILE_SCALE = 2
 
-local function UpdateWidgetPositionScale(widget, scale)
+local function UpdateWidgetPositionScale(widget, scale, offset_scale)
     widget:SetScale(scale, scale, 1)
-    widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
+    widget:SetPosition(WorldPosToScreenPos(widget.position_offset * (offset_scale or 1)))
+end
+
+local function UpdateInteriorWidgetPositionScale(widget, scale)
+    UpdateWidgetPositionScale(widget, scale, INTERIOR_MINIMAP_POSITION_SCALE)
 end
 
 local function UpdateTileWidgetPositionScale(widget, scale)
@@ -254,6 +258,7 @@ end
 
 function MapWidget:ApplyInteriorMinimap()
     self:ClearInteriorMinimap()
+    self:ClearExteriorDecorations()
 
     local interiorvisitor = self.owner.replica.interiorvisitor
     local data = interiorvisitor.interior_map
@@ -349,6 +354,93 @@ function MapWidget:ClearInteriorMinimap()
     self.img:Show()
 end
 
+function MapWidget:ApplyExteriorDecorations()
+    self:ClearInteriorMinimap()
+    self:ClearExteriorDecorations()
+
+    local interiorvisitor = self.owner.replica.interiorvisitor
+    local icon = interiorvisitor.exterior_icon:value()
+    local atlas = get_minimap_atlas(icon)
+    if not atlas then
+        return
+    end
+    local icon = self:AddChild(Image(atlas, icon))
+    icon.position_offset = interiorvisitor:GetExteriorPos()
+    local arrow = self:AddChild(Image("images/hud/pl_mapscreen_widgets.xml", "red_arrow.tex"))
+    arrow.position_offset = icon.position_offset + Vector3(-9, 0, 0)
+    self.exterior_decorations = {icon, arrow}
+    self:OnUpdate(0)
+end
+
+function MapWidget:ClearExteriorDecorations()
+    if self.exterior_decorations then
+        for _, decoration in ipairs(self.exterior_decorations) do
+            decoration:Kill()
+        end
+    end
+    self.exterior_decorations = nil
+end
+
+function MapWidget:ToggleInteriorMap()
+    if self.interior_map_widgets then
+        self:ApplyExteriorDecorations()
+    else
+        self:ApplyInteriorMinimap()
+    end
+end
+
+function MapWidget:UpdateInteriorWidgets()
+    local owner_position = self.owner:GetPosition()
+    -- Try to compensate map shifts from player movements
+    -- This doesn't quite work, the map will be shaking
+    -- if self.owner_last_position then
+    --     self.minimap:Offset(owner_position.z - self.owner_last_position.z, self.owner_last_position.x - owner_position.x)
+    -- end
+    -- self.owner_last_position = owner_position
+
+    local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(owner_position)
+    local interiorvisitor = self.owner.replica.interiorvisitor
+    -- Checking self.interior_map_widgets.rooms[current_room_id] here
+    -- because we can get teleported out of the interior during debugging
+    local current_data = self.interior_map_widgets.rooms[current_room_id]
+    local local_interior_map_override = interiorvisitor.local_interior_map_override[current_room_id]
+    if current_data and local_interior_map_override and not local_interior_map_override.applied then
+        local new_icons, has_new_icons = DiffWidget(self, current_data, local_interior_map_override, current_room_id)
+        current_data.icons = new_icons
+        if has_new_icons then
+            for _, door in pairs(self.interior_map_widgets.doors) do
+                door:MoveToFront()
+            end
+            for _, room in pairs(self.interior_map_widgets.rooms) do
+                for _, icon_data in ipairs(room.icons) do
+                    icon_data.widget:MoveToFront()
+                end
+            end
+        end
+        local_interior_map_override.applied = true
+    end
+
+    local scale = 0.75 / self.minimap:GetZoom()
+    for _, rooms in pairs(self.interior_map_widgets.rooms) do
+        UpdateInteriorWidgetPositionScale(rooms.frame, scale * INTERIOR_BG_SCALE)
+        UpdateTileWidgetPositionScale(rooms.tile, scale * INTERIOR_BG_SCALE * INTERIOR_TILE_SCALE)
+
+        for _, icon_data in ipairs(rooms.icons) do
+            UpdateInteriorWidgetPositionScale(icon_data.widget, scale)
+        end
+    end
+    for door_id, door in pairs(self.interior_map_widgets.doors) do
+        UpdateInteriorWidgetPositionScale(door, scale * INTERIOR_DOOR_SCALE)
+    end
+end
+
+function MapWidget:UpdateExteriorWidgets()
+    local scale = 0.75 / self.minimap:GetZoom()
+    for _, decoration in ipairs(self.exterior_decorations) do
+        UpdateWidgetPositionScale(decoration, scale)
+    end
+end
+
 -- Delay a frame so this is loaded after Global Positions to OnUpdate compatible with it
 scheduler:ExecuteInTime(0, function()
     AddClassPostConstruct("widgets/mapwidget", function(self)
@@ -373,51 +465,14 @@ scheduler:ExecuteInTime(0, function()
         self.OnUpdate = function(self, ...)
             on_update(self, ...)
 
-            if not (self.interior_map_widgets and self.shown) then
+            if not self.shown then
                 return
             end
 
-            local owner_position = self.owner:GetPosition()
-            -- Try to compensate map shifts from player movements
-            -- This doesn't quite work, the map will be shaking
-            -- if self.owner_last_position then
-            --     self.minimap:Offset(owner_position.z - self.owner_last_position.z, self.owner_last_position.x - owner_position.x)
-            -- end
-            -- self.owner_last_position = owner_position
-
-            local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(owner_position)
-            local interiorvisitor = self.owner.replica.interiorvisitor
-            -- Checking self.interior_map_widgets.rooms[current_room_id] here
-            -- because we can get teleported out of the interior during debugging
-            local current_data = self.interior_map_widgets.rooms[current_room_id]
-            local local_interior_map_override = interiorvisitor.local_interior_map_override[current_room_id]
-            if current_data and local_interior_map_override and not local_interior_map_override.applied then
-                local new_icons, has_new_icons = DiffWidget(self, current_data, local_interior_map_override, current_room_id)
-                current_data.icons = new_icons
-                if has_new_icons then
-                    for _, door in pairs(self.interior_map_widgets.doors) do
-                        door:MoveToFront()
-                    end
-                    for _, room in pairs(self.interior_map_widgets.rooms) do
-                        for _, icon_data in ipairs(room.icons) do
-                            icon_data.widget:MoveToFront()
-                        end
-                    end
-                end
-                local_interior_map_override.applied = true
-            end
-
-            local scale = 0.75 / self.minimap:GetZoom()
-            for _, rooms in pairs(self.interior_map_widgets.rooms) do
-                UpdateWidgetPositionScale(rooms.frame, scale * INTERIOR_BG_SCALE)
-                UpdateTileWidgetPositionScale(rooms.tile, scale * INTERIOR_BG_SCALE * INTERIOR_TILE_SCALE)
-
-                for _, icon_data in ipairs(rooms.icons) do
-                    UpdateWidgetPositionScale(icon_data.widget, scale)
-                end
-            end
-            for door_id, door in pairs(self.interior_map_widgets.doors) do
-                UpdateWidgetPositionScale(door, scale * INTERIOR_DOOR_SCALE)
+            if self.interior_map_widgets then
+                self:UpdateInteriorWidgets()
+            elseif self.exterior_decorations then
+                self:UpdateExteriorWidgets()
             end
         end
         self.interior_frontend:MoveToFront()
