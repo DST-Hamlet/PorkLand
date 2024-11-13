@@ -27,6 +27,9 @@ local tuning = {
     APORKALYPSE_NEAR_TIME = 7 * total_day_time,
     APORKALYPSE_PERIOD_LENGTH = 60 * total_day_time,
 
+    PERISH_APORKALYPSE_MULT = 1.5,
+    PERISH_NORMAL_MULT = 1,
+
     MACHETE_DAMAGE = wilson_attack * .88,
     MACHETE_USES = 100,
 

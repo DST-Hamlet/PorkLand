@@ -88,6 +88,8 @@ return Class(function(self, inst)
             return
         end
 
+        TUNING.PERISH_GLOBAL_MULT = TUNING.PERISH_APORKALYPSE_MULT -- 大灾变腐烂加速, 很难找到更好的写法
+
         _activeaporkalypse = true
         _timeuntilaporkalypse:set(0)
 
@@ -111,6 +113,8 @@ return Class(function(self, inst)
         if not _activeaporkalypse then
             return
         end
+
+        TUNING.PERISH_GLOBAL_MULT = TUNING.PERISH_NORMAL_MULT
 
         _activeaporkalypse = false
         _firstaporkalypse = false
