@@ -280,13 +280,11 @@ local function DoDive(inst)
 end
 
 
-local function CircleOnIsNight(inst)
+local function UpdateColourTweener(inst)
     if inst.taskinfo ~= nil then
-        if TheWorld.state.isnight then
-            inst.components.colourtweener:StartTween({1,1,1,0}, 3)
-        else
-            inst.components.colourtweener:StartTween({1,1,1,1}, 3)
-        end
+        local r, g, b = TheSim:GetAmbientColour()
+        local colourstrength = ((r + g + b) / 3) / 255
+        inst.components.colourtweener:StartTween({1,1,1,math.min(1, colourstrength * 1.2)}, 3)
     end
 end
 
@@ -347,9 +345,8 @@ local function circlingbatfn()
     inst.components.circler.maxScale = 8
 
     inst:AddComponent("colourtweener")
-    if not TheWorld.state.isnight then
-        inst.components.colourtweener:StartTween({1,1,1,1}, 3)
-    end
+    UpdateColourTweener(inst)
+    inst:DoPeriodicTask(3, UpdateColourTweener, math.random() * 3)
 
     inst:ListenForEvent("wingdown", OnWingDownShadow)
     -- flap sound
@@ -360,9 +357,6 @@ local function circlingbatfn()
             inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/enemy/vampire_bat/distant_taunt")
         end
     end)
-
-    inst:WatchWorldState("isnight", CircleOnIsNight)
-    inst:WatchWorldState("isday", CircleOnIsNight)
 
     inst.task, inst.taskinfo = inst:ResumeTask(20 + math.random() * 2, DoDive)
 
