@@ -198,7 +198,7 @@ return  DecoCreator:Create("window_round",                 "interior_window", "i
         DecoCreator:Create("deco_ruins_cornerbeam", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_corner",          {decal=true, background=3, tags={"cornerpost"}}),
         DecoCreator:Create("deco_ruins_cornerbeam_heavy", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_corner_lg", {decal=true, background=3, tags={"cornerpost"}}),
 
-        DecoCreator:Create("deco_ruins_corner_tree", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "giant_roots",         {decal=true, background=3, physics="tree_physics"}),  -- , minimapicon="pig_ruins_tree_roots_int.tex"
+        DecoCreator:Create("deco_ruins_corner_tree", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "giant_roots",         {decal=true, background=3, finaloffset=5, physics="tree_physics"}),  -- , minimapicon="pig_ruins_tree_roots_int.tex"
         DecoCreator:Create("deco_ruins_beam_heavy", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_side_lg",       {decal=true, background=3}),
         DecoCreator:Create("deco_ruins_beam", "interior_wall_decals_ruins", "interior_wall_decals_ruins", "pillar_front",               {decal=true}),
 
