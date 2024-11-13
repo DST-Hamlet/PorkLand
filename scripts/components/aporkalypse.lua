@@ -258,7 +258,11 @@ return Class(function(self, inst)
 
             if _ismastershard then
                 if not _activeaporkalypse then
-                    BeginAporkalypse()
+                    if math.abs(self.rewind_mult) > 0.01 then
+                        _timeuntilaporkalypse:set(APORKALYPSE_PERIOD_LENGTH)
+                    else
+                        BeginAporkalypse()
+                    end
                 end
             else
                 -- Clients and secondary shards must wait server sync
