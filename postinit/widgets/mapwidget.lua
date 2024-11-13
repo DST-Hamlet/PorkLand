@@ -256,6 +256,15 @@ local function UpdateTileWidgetPositionScale(widget, scale)
     widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
 end
 
+local function CalculateOffset(starting_room_data, current_x, current_y)
+    -- Convert the grid coordinates to positions
+    -- as a compromise, we don't know the exact position,
+    -- just use the first room's size as an estimate
+    local offset_x = (starting_room_data.coord_x - current_x) * (starting_room_data.width + INTERIOR_MINIMAP_DOOR_SPACE * 2)
+    local offset_y = (starting_room_data.coord_y - current_y) * (starting_room_data.depth + INTERIOR_MINIMAP_DOOR_SPACE * 2)
+    return Vector3(-offset_y, 0, offset_x)
+end
+
 function MapWidget:ApplyInteriorMinimap()
     self:ClearInteriorMinimap()
     self:ClearExteriorDecorations()
@@ -264,6 +273,7 @@ function MapWidget:ApplyInteriorMinimap()
     local data = interiorvisitor.interior_map
     local position = self.owner:GetPosition()
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(position)
+
     -- {
     --     rooms: {
     --         [room_id: number]: {
@@ -275,21 +285,30 @@ function MapWidget:ApplyInteriorMinimap()
     --     },
     --     doors: {
     --         [door_id: string]: Widget: {
-    --              lock: Image
-    --          }
+    --             lock: Image
+    --         }
     --     },
+    --     always_shown_icons: {
+    --         [id: number]: {
+    --             widget: Image,
+    --             priority: number,
+    --             offset: Vector3,
+    --         }
+    --     },
+    --     starting_room: InteriorMapData // See the comment above BuildInteriorMinimapLayout
     -- }
     self.interior_map_widgets = {
         rooms = {},
         doors = {},
+        always_shown_icons = {},
+        staring_room = data[current_room_id],
     }
 
     -- This is so that it works on for ghost players
     -- ghost players don't discover map data,
     -- so we just show the existing map
-    local starting_room_id = current_room_id
     local starting_offset = Vector3(0, 0, 0)
-    if not data[current_room_id] then
+    if not self.interior_map_widgets.staring_room then
         local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
         if not center then
             return
@@ -299,17 +318,12 @@ function MapWidget:ApplyInteriorMinimap()
             return
         end
         local _, first_room_data = next(group)
-        starting_room_id = first_room_data.interior_id
+        self.interior_map_widgets.staring_room = first_room_data
         local current_x, current_y = center:GetCoordinates()
-        -- Convert the grid coordinates to positions
-        -- as a compromise, we don't know the exact position,
-        -- just use the first room's size as an estimate
-        local offset_x = (first_room_data.coord_x - current_x) * (first_room_data.width + INTERIOR_MINIMAP_DOOR_SPACE * 2)
-        local offset_y = (first_room_data.coord_y - current_y) * (first_room_data.depth + INTERIOR_MINIMAP_DOOR_SPACE * 2)
-        starting_offset = Vector3(-offset_y, 0, offset_x)
+        starting_offset = CalculateOffset(first_room_data, current_x, current_y)
     end
 
-    BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, starting_room_id, starting_offset)
+    BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, self.interior_map_widgets.staring_room.interior_id, starting_offset)
 
     for _, room in pairs(self.interior_map_widgets.rooms) do
         self:AddChild(room.tile)
@@ -323,6 +337,29 @@ function MapWidget:ApplyInteriorMinimap()
             self:AddChild(icon_data.widget)
         end
     end
+
+    local values = {}
+    for id, icon_data in pairs(interiorvisitor.always_shown_interior_map) do
+        local atlas = get_minimap_atlas(icon_data.icon)
+        if atlas then
+            local room_offset = CalculateOffset(self.interior_map_widgets.staring_room, icon_data.coord_x, icon_data.coord_y)
+            local offset = room_offset + Vector3(icon_data.offset_x, 0, icon_data.offset_z)
+            local icon = Image(atlas, icon_data.icon)
+            icon.position_offset = offset
+            local new_data = {
+                widget = icon,
+                offset = offset,
+                priority = icon_data.priority
+            }
+            table.insert(values, new_data)
+            self.interior_map_widgets.always_shown_icons[id] = new_data
+        end
+    end
+    table.sort(values, sort_priority)
+    for _, v in ipairs(values) do
+        v.widget = self:AddChild(v.widget)
+    end
+
     -- Hide the normal minimap
     self.img:Hide()
     self.interior_frontend:MoveToFront()
@@ -379,6 +416,14 @@ function MapWidget:ClearExteriorDecorations()
         end
     end
     self.exterior_decorations = nil
+end
+
+function MapWidget:RefreshAlwaysShownInteriorMinimap(actions)
+    if not self.interior_map_widgets then
+        return
+    end
+
+    -- TODO: complete this
 end
 
 function MapWidget:ToggleInteriorMap()

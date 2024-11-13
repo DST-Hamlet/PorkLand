@@ -413,7 +413,6 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
             local current_data = self.always_shown_minimap_entities[ent]
             if center and interior_group == center:GetGroupId() then
                 local offset = pos - center:GetPosition()
-                local interior_id = center.interiorID
                 local icon = ent.MiniMapEntity:GetIcon()
                 local priority = ent.MiniMapEntity:GetPriority()
                 local coord_x, coord_y = center:GetCoordinates()
@@ -421,7 +420,6 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
                 if not current_data then
                     current_data = {
                         id = network_id,
-                        interior_id = interior_id,
                         coord_x = coord_x,
                         coord_y = coord_y,
                         offset_x = offset.x,

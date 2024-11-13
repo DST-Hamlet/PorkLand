@@ -50,6 +50,10 @@ function MapScreen:RefreshInteriorMinimap()
     end
 end
 
+function MapScreen:RefreshAlwaysShownInteriorMinimap(data)
+    self.minimap:RefreshAlwaysShownInteriorMinimap(data.actions)
+end
+
 -- reset focus point
 function MapScreen:OnLeaveInterior()
     self.inst:DoTaskInTime(0, function()
@@ -88,4 +92,5 @@ AddClassPostConstruct("screens/mapscreen", function(self)
     self.inst:ListenForEvent("leaveinterior_client", function() self:OnLeaveInterior() end, self.owner)
     self.inst:ListenForEvent("interiorvisitor.exterior_pos", function() self:OnEnterInterior() end, self.owner)
     self.inst:ListenForEvent("refresh_interior_minimap", function() self:RefreshInteriorMinimap() end, self.owner)
+    self.inst:ListenForEvent("refresh_always_shown_interior_minimap", function(_, data) self:RefreshAlwaysShownInteriorMinimap(data) end, self.owner)
 end)

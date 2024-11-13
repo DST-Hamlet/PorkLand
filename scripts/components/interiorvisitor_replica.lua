@@ -224,6 +224,7 @@ function InteriorVisitor:OnAlwaysShownInteriorMapData(data)
             self.always_shown_interior_map = {}
         end
     end
+    self.inst:PushEvent("refresh_always_shown_interior_minimap", {actions = data})
 end
 
 -- function InteriorVisitor:OnRemoveFromEntity()
