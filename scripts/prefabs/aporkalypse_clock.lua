@@ -35,6 +35,7 @@ local function PlayClockAnimation(inst, anim)
 end
 
 local function OnRewindMultChange(inst, rewind_mult)
+    inst._rewind_mult:set(rewind_mult)
     if rewind_mult == 0 then  -- stop rewind
         inst.SoundEmitter:KillSound("rewind_sound")
         inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/base_LP", "base_sound")
@@ -59,6 +60,7 @@ local function OnAporkalypseClockTick(inst, data)
     end
 
     local timeuntilaporkalypse = math.max(data.timeuntilaporkalypse or 0, 0)
+    inst._timeuntilaporkalypse:set(data.timeuntilaporkalypse)
     for i, clock in ipairs(inst.clocks) do
         local angle = timeuntilaporkalypse / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[i]
         set_rotation(clock, angle)
@@ -139,6 +141,25 @@ local function DoPostInit(inst)
         inst.AnimState:PlayAnimation("idle_on")
         inst:PlayClockAnimation("on")
     end
+
+    inst._clock_spawndirty:push()
+end
+
+local function RegistClocks(inst)
+    for i, v in ipairs(clock_prefabs) do
+        local clock = TheSim:FindFirstEntityWithTag(v)
+        if clock then
+            inst._clocks[i] = clock
+        end
+    end
+end
+
+local function ClientPerdictRotation(inst, dt)
+    inst._timeuntilaporkalypse:set_local(inst._timeuntilaporkalypse:value() - dt - inst._rewind_mult:value() * 250 * dt)
+    for k, clock in pairs(inst._clocks) do
+        local angle = inst._timeuntilaporkalypse:value() / TUNING.APORKALYPSE_PERIOD_LENGTH * 360 * rotation_speeds[k]
+        set_rotation(clock, angle)
+    end
 end
 
 local function aporkalypse_clock_fn()
@@ -161,9 +182,25 @@ local function aporkalypse_clock_fn()
     inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
     inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/base_LP", "base_sound")
 
+    inst._rewind_mult = net_float(inst.GUID, "_rewind_mult", "rewind_mult_dirty")
+    inst._clock_spawndirty = net_event(inst.GUID, "_clock_spawndirty", "clock_spawndirty")
+    inst._timeuntilaporkalypse = net_float(inst.GUID, "_timeuntilaporkalypse")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
+        inst._clocks = {}
+        inst:ListenForEvent("clock_spawndirty", RegistClocks)
+        inst:DoTaskInTime(0, RegistClocks)
+
+        inst.oldtimeuntilaporkalypse = 0
+        inst:DoPeriodicTask(FRAMES, function(inst)
+            if inst.oldtimeuntilaporkalypse == inst._timeuntilaporkalypse:value() then
+                ClientPerdictRotation(inst, FRAMES, true)
+            end
+            inst.oldtimeuntilaporkalypse = inst._timeuntilaporkalypse:value()
+        end)
+
         return inst
     end
 
@@ -232,6 +269,7 @@ local function MakeClock(clock_num)
         inst.entity:AddNetwork()
 
         inst:AddTag("OnFloor")
+        inst:AddTag(name)
 
         inst.AnimState:SetBank(bank)
         inst.AnimState:SetBuild(build)
