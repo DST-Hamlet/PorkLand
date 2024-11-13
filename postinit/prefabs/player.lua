@@ -145,6 +145,9 @@ end
 local function OnInteriorChange(inst, data)
     UpdateInteriorSanity(inst, data)
     UpdateHomeTechBonus(inst, data)
+    if data.to == nil then
+        TheWorld.components.kramped:ForceOnNaughtyAction(inst)
+    end
 end
 
 AddPlayerPostInit(function(inst)

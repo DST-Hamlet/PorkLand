@@ -244,6 +244,10 @@ local function OnSave(inst, data)
         data.children_to_spawn = inst.children_to_spawn
     end
 
+    if inst.rotate_flip_fixed then
+        data.rotate_flip_fixed = true
+    end
+
     return references
 end
 
@@ -319,6 +323,9 @@ local function OnLoad(inst, data)
         inst.children_to_spawn = data.children_to_spawn
     end
 
+    if data.rotate_flip_fixed then
+        inst.rotate_flip_fixed = data.rotate_flip_fixed
+    end
 end
 
 local function OnLoadPostPass(inst,ents, data)
@@ -351,6 +358,19 @@ local function OnLoadPostPass(inst,ents, data)
     end
     if inst.updateworkableart then
         UpdateArtWorkable(inst,true)
+    end
+
+    -- 修复罕见的右侧柱翻转问题
+    if inst.decal and inst.components.rotatingbillboard and not inst.rotate_flip_fixed then
+        inst.rotate_flip_fixed = true
+        local position = inst:GetPosition()
+        local current_interior = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+        if current_interior then
+            local originpt = current_interior:GetPosition()
+            if position.z >= originpt.z then
+                inst.Transform:SetRotation(90)
+            end
+        end
     end
 end
 
@@ -450,6 +470,7 @@ local function MakeDeco(build, bank, animframe, data, name)
     local loopanim = data.loopanim
     local decal = data.decal
     local background = data.background
+    local finaloffset = data.finaloffset
     local light = data.light
     local followlight = data.followlight
     local scale = data.scale
@@ -480,6 +501,9 @@ local function MakeDeco(build, bank, animframe, data, name)
             inst.AnimState:SetLayer(LAYER_WORLD_BACKGROUND)
             inst.AnimState:SetSortOrder(background)
             inst.setbackground = background
+        end
+        if finaloffset then
+            inst.AnimState:SetFinalOffset(finaloffset)
         end
         if loopanim then
             inst.AnimState:SetTime(math.random() * inst.AnimState:GetCurrentAnimationLength())
@@ -592,6 +616,7 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         inst.Transform:SetRotation(-90)
         if decal then
+            inst.decal = true
             -- NOTE: only apply billborad render behavior on beam/pillar
             if name:find("_corner")
                 or name:find("_beam")
@@ -707,7 +732,9 @@ local function MakeDeco(build, bank, animframe, data, name)
 
         if data.cansit then
             inst:AddComponent("sittable")
-            inst.AnimState:SetFinalOffset(-1)
+            if not finaloffset then
+                inst.AnimState:SetFinalOffset(-1)
+            end
         end
 
         if prefabname == "pig_latin_1" then
