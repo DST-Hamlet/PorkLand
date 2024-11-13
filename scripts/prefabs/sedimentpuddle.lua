@@ -261,7 +261,6 @@ local function fn()
 
     inst:AddTag("sedimentpuddle")
     inst:AddTag("NOBLOCK")
-    inst:AddTag("OnFloor")
 
     inst.no_wet_prefix = true
     inst.CanMouseThrough = CanMouseThrough

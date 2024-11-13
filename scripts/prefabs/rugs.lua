@@ -80,7 +80,6 @@ local function MakeRug(rug_type)
         inst.AnimState:SetLayer(LAYER_BACKGROUND)
         inst.AnimState:SetSortOrder(3)
 
-        inst:AddTag("OnFloor")
         inst:AddTag("NOCLICK")
         inst:AddTag("NOBLOCK")
         inst:AddTag("rotatableobject")
@@ -117,7 +116,6 @@ local function porcupus()
     inst.AnimState:SetLayer(LAYER_BACKGROUND)
     inst.AnimState:SetSortOrder(3)
 
-    inst:AddTag("OnFloor")
     inst:AddTag("NOCLICK")
 
     inst.entity:SetPristine()

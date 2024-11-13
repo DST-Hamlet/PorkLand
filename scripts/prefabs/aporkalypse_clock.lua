@@ -234,6 +234,8 @@ local function aporkalypse_marker_fn()
     inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 
+    inst:AddTag("NOCLICK")
+
     inst.AnimState:SetBuild("aporkalypse_clock_marker")
     inst.AnimState:SetBank("clock_marker")
     inst.AnimState:PlayAnimation("idle")
@@ -268,7 +270,7 @@ local function MakeClock(clock_num)
         inst.entity:AddAnimState()
         inst.entity:AddNetwork()
 
-        inst:AddTag("OnFloor")
+        inst:AddTag("NOCLICK")
         inst:AddTag(name)
 
         inst.AnimState:SetBank(bank)

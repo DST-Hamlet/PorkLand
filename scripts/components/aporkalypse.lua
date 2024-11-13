@@ -115,6 +115,8 @@ return Class(function(self, inst)
             return
         end
 
+        local elapseddaysinaporkalypse = _world.state.elapseddaysinseason
+
         TUNING.PERISH_GLOBAL_MULT = TUNING.PERISH_NORMAL_MULT
 
         _activeaporkalypse = false
@@ -129,7 +131,7 @@ return Class(function(self, inst)
             _seasons:EndAporkalypse()
         end
 
-        if _isplateau then
+        if _isplateau and elapseddaysinaporkalypse >= 2 then
             BeginFiesta()
         end
 
