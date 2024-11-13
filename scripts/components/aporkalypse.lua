@@ -20,6 +20,7 @@ return Class(function(self, inst)
     -- Public
     self.inst = inst
     self.rewind_mult = 0
+    self.rewind_multiplier = {}
 
     local _world = TheWorld
 
@@ -160,11 +161,24 @@ return Class(function(self, inst)
         end
     end or nil
 
-    local SetRewindMult = _ismastersim and function(src, mult)
-        self.rewind_mult = self.rewind_mult + mult
+    local SetRewindMult = _ismastersim and function(inst, data)
+        if data.source then
+            self.rewind_multiplier[data.source] = data.mult
+            local new_mult = 0
+            for k, v in pairs(self.rewind_multiplier) do
+                if k and k:IsValid() then
+                    new_mult = new_mult + v
+                else
+                    self.rewind_multiplier[k] = nil
+                end
+            end
+            self.rewind_mult = new_mult
+        else
+            self.rewind_mult = data.mult
+        end
 
         if not _ismastershard then
-            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SetAporkalypseClockRewindMult"], 1, mult)
+            SendModRPCToShard(SHARD_MOD_RPC["Porkland"]["SetAporkalypseClockRewindMult"], 1, {mult = data.mult})
         end
     end or nil
 
