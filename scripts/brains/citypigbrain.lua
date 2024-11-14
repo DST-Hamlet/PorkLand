@@ -4,7 +4,6 @@ require "behaviours/faceentity"
 require "behaviours/chaseandattack"
 require "behaviours/runaway"
 require "behaviours/doaction"
---require "behaviours/choptree"
 require "behaviours/findlight"
 require "behaviours/panic"
 require "behaviours/chattynode"
@@ -34,8 +33,6 @@ local SEE_TREE_DIST = 15
 -- local SEE_TARGET_DIST = 20
 local SEE_FOOD_DIST = 10
 -- local SEE_MONEY_DIST = 6
-
-local KEEP_CHOPPING_DIST = 10
 
 local RUN_AWAY_DIST = 5
 local STOP_RUN_AWAY_DIST = 8
@@ -132,44 +129,6 @@ local function FindFoodAction(inst)
 
     if target then
         return BufferedAction(inst, target, ACTIONS.TAKEITEM)
-    end
-end
-
-local function KeepChoppingAction(inst)
-    local keep_chop = inst.components.follower.leader and inst.components.follower.leader:GetDistanceSqToInst(inst) <= KEEP_CHOPPING_DIST*KEEP_CHOPPING_DIST
-    local target = FindEntity(inst, SEE_TREE_DIST/3, function(item)
-        return item.prefab == "deciduoustree" and item.monster and item.components.workable and item.components.workable.action == ACTIONS.CHOP
-    end)
-    if inst.tree_target ~= nil then target = inst.tree_target end
-
-    return (keep_chop or target ~= nil)
-end
-
-local function StartChoppingCondition(inst)
-    local start_chop = inst.components.follower.leader and inst.components.follower.leader.sg and inst.components.follower.leader.sg:HasStateTag("chopping")
-    local target = FindEntity(inst, SEE_TREE_DIST/3, function(item)
-        return item.prefab == "deciduoustree" and item.monster and item.components.workable and item.components.workable.action == ACTIONS.CHOP
-    end)
-    if inst.tree_target ~= nil then target = inst.tree_target end
-
-    return (start_chop or target ~= nil)
-end
-
-
-local function FindTreeToChopAction(inst)
-    local target = FindEntity(inst, SEE_TREE_DIST, function(item) return item.components.workable and item.components.workable.action == ACTIONS.CHOP end)
-    if target then
-        local decid_monst_target = FindEntity(inst, SEE_TREE_DIST/3, function(item)
-            return item.prefab == "deciduoustree" and item.monster and item.components.workable and item.components.workable.action == ACTIONS.CHOP
-        end)
-        if decid_monst_target ~= nil then
-            target = decid_monst_target
-        end
-        if inst.tree_target then
-            target = inst.tree_target
-            inst.tree_target = nil
-        end
-        return BufferedAction(inst, target, ACTIONS.CHOP)
     end
 end
 
@@ -383,12 +342,6 @@ function CityPigBrain:OnStart()
 
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FIND_MEAT"),
                 DoAction(self.inst, FindFoodAction )),
-
-            IfNode(function() return StartChoppingCondition(self.inst) end, "chop",
-                WhileNode(function() return KeepChoppingAction(self.inst) end, "keep chopping",
-                    LoopNode{
-                        ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_HELP_CHOP_WOOD"),
-                            DoAction(self.inst, FindTreeToChopAction ))})),
 
             Leash(self.inst, GetNoLeaderHomePos, LEASH_MAX_DIST, LEASH_RETURN_DIST),
 

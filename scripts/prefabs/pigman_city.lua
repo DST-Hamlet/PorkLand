@@ -464,37 +464,6 @@ local function OnEat(inst, food)
     end
 end
 
-local function OnAttackedByDecidRoot(inst, attacker)
-    local fn = function(dude)
-        return dude:HasTag("pig") and not dude:HasTag("werepig") and not dude:HasTag("guard")
-    end
-
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = nil
-    if TheWorld.state.isspring then
-        ents = TheSim:FindEntities(x, y, z, (SHARE_TARGET_DIST * TUNING.SPRING_COMBAT_MOD) / 2)
-    else
-        ents = TheSim:FindEntities(x, y, z, SHARE_TARGET_DIST / 2)
-    end
-
-    if ents then
-        local num_helpers = 0
-        for _, v in ipairs(ents) do
-            if v ~= inst
-                and v.components.combat
-                and not (v.components.health and v.components.health:IsDead())
-                and fn(v) then
-
-                v:PushEvent("suggest_tree_target", {tree = attacker})
-                num_helpers = num_helpers + 1
-            end
-            if num_helpers >= MAX_TARGET_SHARES then
-                break
-            end
-        end
-    end
-end
-
 local function call_guards(inst, attacker)
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 30, {"guard_entrance"})
@@ -542,9 +511,7 @@ local function OnAttacked(inst, data)
     if attacker then
         inst:ClearBufferedAction()
 
-        if attacker.prefab == "deciduous_root" and attacker.owner then
-            OnAttackedByDecidRoot(inst, attacker.owner)
-        elseif attacker.prefab ~= "deciduous_root" then
+        if attacker.prefab ~= "deciduous_root" then
             inst.components.combat:SetTarget(attacker)
 
             if inst:HasTag("guard") then
@@ -637,7 +604,7 @@ local function SetNormalPig(inst, brain_id)
     inst.components.combat:SetRetargetFunction(3, NormalRetargetFn)
     inst.components.combat:SetTarget(nil)
     inst:ListenForEvent("suggest_tree_target", function(inst, data)
-        if data and data.tree and inst:GetBufferedAction() ~= ACTIONS.CHOP then
+        if data and data.tree and inst:GetBufferedAction().action ~= ACTIONS.CHOP then
             inst.tree_target = data.tree
         end
     end)
