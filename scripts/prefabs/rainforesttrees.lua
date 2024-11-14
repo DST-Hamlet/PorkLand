@@ -483,13 +483,6 @@ local function OnSave(inst, data)
         data.build = inst.build
     end
 
-    if inst.bloomtaskinfo then
-        data.bloomtask = inst:TimeRemainingInTask(inst.bloomtaskinfo)
-    end
-    if inst.unbloomtaskinfo then
-        data.unbloomtask = inst:TimeRemainingInTask(inst.unbloomtaskinfo)
-    end
-
     data.spider = inst:HasTag("has_spider")
 end
 
@@ -522,27 +515,6 @@ local function OnLoad(inst, data)
 
     if data.flushed then
         inst.flushed = data.flushed
-    end
-
-    if data.bloomtask then
-        if inst.bloomtask then inst.bloomtask:Cancel() inst.bloomtask = nil end
-        inst.bloomtaskinfo = nil
-        inst.bloomtask, inst.bloomtaskinfo = inst:ResumeTask(data.bloomtask, function()
-            if not inst:HasTag("rotten_tree") then
-                inst.build = "tree_rainforest_bloom_build"
-                inst.AnimState:SetBuild(inst.build)
-            end
-        end)
-    end
-    if data.unbloomtask then
-        if inst.unbloomtask then inst.unbloomtask:Cancel() inst.unbloomtask = nil end
-        inst.unbloomtaskinfo = nil
-        inst.unbloomtask, inst.unbloomtaskinfo = inst:ResumeTask(data.unbloomtask, function()
-            if not inst:HasTag("rotten_tree") then
-                inst.build = "tree_rainforest_build"
-                inst.AnimState:SetBuild(inst.build)
-            end
-        end)
     end
 
     if data.spider then
@@ -613,10 +585,16 @@ local function OnseasonChange(inst, season)
         return
     end
 
-    if season == SEASONS.LUSH and not bloomable:IsBlooming() then
-        bloomable:StartBloomTask()
-    elseif season ~= SEASONS.LUSH and bloomable:IsBlooming() then
-        bloomable:StartUnbloomTask()
+    if season == SEASONS.LUSH then
+        if not bloomable:IsBlooming() then
+            bloomable:StartBloomTask()
+        end
+    elseif season ~= SEASONS.LUSH then
+        if bloomable:IsBlooming() then
+            bloomable:StartUnbloomTask()
+        else
+            bloomable:StopBloom()
+        end
     end
 end
 
