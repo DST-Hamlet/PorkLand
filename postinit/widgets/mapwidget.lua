@@ -301,7 +301,6 @@ function MapWidget:ApplyInteriorMinimap()
     --             offset: Vector3,
     --         }
     --     },
-    --     starting_room: InteriorMapData // See the comment above BuildInteriorMinimapLayout
     -- }
     self.interior_map_widgets = {
         rooms = {},
@@ -464,6 +463,14 @@ function MapWidget:UpdateInteriorWidgets()
                 for _, icon_data in ipairs(room.icons) do
                     icon_data.widget:MoveToFront()
                 end
+            end
+            local values = {}
+            for _, v in ipairs(self.interior_map_widgets.always_shown_icons) do
+                table.insert(values, v)
+            end
+            table.sort(values, sort_priority)
+            for _, v in ipairs(values) do
+                v.widget:MoveToFront()
             end
         end
         local_interior_map_override.applied = true
