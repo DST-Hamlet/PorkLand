@@ -1,0 +1,190 @@
+#define UI_CC
+#if defined( GL_ES )
+precision mediump float;
+#endif
+
+#if defined( TRIPLE_ATLAS )
+	#define SAMPLER_COUNT 6
+#elif defined( UI_CC )
+	#define SAMPLER_COUNT 5
+#elif defined( UI_HOLO )
+	#define SAMPLER_COUNT 3
+#else
+	#define SAMPLER_COUNT 2
+#endif
+
+uniform sampler2D SAMPLER[SAMPLER_COUNT];
+
+varying vec3 PS_TEXCOORD;
+
+uniform mat4 COLOUR_XFORM;
+
+#if defined( UI_HOLO )
+    varying vec3 PS_TEXCOORD1;
+    
+    uniform vec3 EROSION_PARAMS;
+    
+    #define UI_HOLO_SAMPLER         SAMPLER[2]
+    #define HOLO_ERODE_INTENSITY    EROSION_PARAMS.x
+    #define HOLO_TIME               EROSION_PARAMS.y
+    #define NEGATIVE_HOLO_LERP      EROSION_PARAMS.z
+#endif
+
+#if defined( UI_CC )
+#ifndef LIGHTING_H
+#define LIGHTING_H
+
+#if !defined( UI_CC )
+// Lighting
+varying vec3 PS_POS;
+#endif
+
+// xy = min, zw = max
+uniform vec4 LIGHTMAP_WORLD_EXTENTS;
+
+#define LIGHTMAP_TEXTURE SAMPLER[3]
+
+#ifndef LIGHTMAP_TEXTURE
+	#error If you use lighting, you must #define the sampler that the lightmap belongs to
+#endif
+
+#if defined( UI_CC )
+vec3 CalculateLightingContribution(vec2 pos)
+{
+	vec2 uv = ( pos - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+#else
+vec3 CalculateLightingContribution()
+{
+	vec2 uv = ( PS_POS.xz - LIGHTMAP_WORLD_EXTENTS.xy ) * LIGHTMAP_WORLD_EXTENTS.zw;
+	return texture2D( LIGHTMAP_TEXTURE, uv.xy ).rgb;
+}
+
+vec3 CalculateLightingContribution( vec3 normal )
+{
+	return vec3( 1, 1, 1 );
+}
+#endif
+
+#endif //LIGHTING.h
+
+
+	uniform vec4 AMBIENTLIGHT;
+	uniform vec4 SCREEN_PARAMS;
+	uniform vec3 LIGHTMAPPOS;
+	uniform vec3 CAMERARIGHT;
+	uniform vec4 UI_LIGHTPARAMS;
+
+	#define SCREENMAPPING_X UI_LIGHTPARAMS.x
+	#define SCREENMAPPING_Y UI_LIGHTPARAMS.y
+	#define START_LIGHT_HIGHT UI_LIGHTPARAMS.z
+	#define MAX_LIGHT_HEIGHT_FALLOFF UI_LIGHTPARAMS.w
+
+	float quadIn_circularOut(float t) {
+		return mix(
+			+16.0 * pow(t, 5.0),
+			0.5 * (sqrt((3.0 - 2.0 * t) * (2.0 * t - 1.0)) + 1.0),
+			step(0.5, t));
+	}
+
+	#define COLOUR_CUBE SAMPLER[4]
+#ifndef COLOURCUBE_H
+#define COLOURCUBE_H
+
+#ifndef COLOUR_CUBE
+	#error If you use colourcube, you must #define the sampler that the colourcube belongs to
+#endif
+
+const float CUBE_DIMENSION = 32.0;
+const float CUBE_WIDTH = ( CUBE_DIMENSION * CUBE_DIMENSION );
+const float CUBE_HEIGHT =( CUBE_DIMENSION );
+const float ONE_OVER_CUBE_WIDTH =  1.0 / CUBE_WIDTH;
+const float ONE_OVER_CUBE_HEIGHT =  1.0 / CUBE_HEIGHT;
+
+//make sure to premultiply the alpha if its value isn't 1!
+vec3 ApplyColourCube(vec3 colour)
+{
+	vec3 intermediate = colour.rgb * vec3( CUBE_DIMENSION - 1.0, CUBE_DIMENSION - 1.0, CUBE_DIMENSION - 1.0 );
+
+	vec2 floor_uv = vec2( ( min( intermediate.r + 0.5, 31.0 ) + floor( intermediate.b ) * CUBE_DIMENSION ) * ONE_OVER_CUBE_WIDTH,1.0 - ( min( intermediate.g + 0.5, 31.0 ) * ONE_OVER_CUBE_HEIGHT ) );
+	vec2 ceil_uv = vec2( ( min( intermediate.r + 0.5, 31.0 ) + ceil( intermediate.b ) * CUBE_DIMENSION ) * ONE_OVER_CUBE_WIDTH,1.0 - ( min( intermediate.g + 0.5, 31.0 ) * ONE_OVER_CUBE_HEIGHT ) );
+	vec3 floor_col = texture2D( COLOUR_CUBE, floor_uv.xy ).rgb;
+	vec3 ceil_col = texture2D( COLOUR_CUBE, ceil_uv.xy ).rgb;
+	return mix(floor_col, ceil_col, intermediate.b - floor(intermediate.b) );	
+}
+
+#endif //COLOURCUBE.h
+
+#endif
+
+void main()
+{
+    vec4 colour;
+    
+#if defined( TRIPLE_ATLAS )
+    if( PS_TEXCOORD.z < 0.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
+    }
+    else if( PS_TEXCOORD.z < 1.5 )
+    {
+        colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
+    }
+    else
+    {
+        colour.rgba = texture2D( SAMPLER[5], PS_TEXCOORD.xy );
+    }
+#else
+    if( PS_TEXCOORD.z < 1.5 )
+    {
+        if( PS_TEXCOORD.z < 0.5 )
+		{
+			colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
+		}
+		else
+		{
+            colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
+        }
+    }
+#endif
+
+#if defined( UI_HOLO )
+    vec4 orig = colour;
+
+    vec2 effectUV = PS_TEXCOORD1.xy;
+
+    vec2 lineUV = vec2(effectUV.x * 1., HOLO_TIME * .16);
+    float rgbLines = smoothstep(1., .75, texture2D( UI_HOLO_SAMPLER, lineUV ).g);
+    float alphaLines = step(HOLO_ERODE_INTENSITY - .01, texture2D( UI_HOLO_SAMPLER, lineUV ).g);
+
+    float filmGrainTime = ceil(HOLO_TIME * 10.) * .1; // Grain runs on 1/10 framerate
+
+    float grain = texture2D( UI_HOLO_SAMPLER, effectUV.xy * 1. + mod(filmGrainTime * 192.7249753, 9e4)).b;
+    float mask = grain * rgbLines;
+    colour.rgb *= .35 + mask * .65;
+
+    // Color grading
+    colour.rgb = mix(colour.rgb, vec3(.85, .68, .57), .05);
+
+    // Fluctuating exposure
+    float exposureAdd = texture2D( UI_HOLO_SAMPLER, vec2(mod(HOLO_TIME, 1.), mod(floor(HOLO_TIME) / 256., 256.))).r;
+    colour.rgb += vec3(exposureAdd * .22);
+
+    float baseAlpha = colour.a;
+    float alpha = baseAlpha * alphaLines;
+    colour = mix(orig, vec4(colour.r * alpha, colour.g * alpha, colour.b * alpha, alpha), abs(NEGATIVE_HOLO_LERP));
+#endif
+
+	colour = colour.rgba * COLOUR_XFORM;
+	colour.rgb = min(colour.rgb, colour.a);
+
+#if defined( UI_CC )
+	colour.rgb *= AMBIENTLIGHT.rgb;
+
+    gl_FragColor = vec4(ApplyColourCube(colour.rgb) * colour.a, colour.a);
+#else
+	gl_FragColor = colour.rgba;
+#endif
+
+}
