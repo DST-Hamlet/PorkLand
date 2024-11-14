@@ -71,6 +71,9 @@ function Map:IsImpassableAtPoint(x, y, z, ...)
 end
 
 function Map:ReverseIsVisualGroundAtPoint(x, y, z)
+    if TheWorld.components.interiorspawner and TheWorld.components.interiorspawner:IsInInteriorRegion(x, z) then
+        return TheWorld.components.interiorspawner:IsInInteriorRoom(x, z)
+    end
     return self:_IsVisualGroundAtPoint(x, y, z) and not self:ReverseIsVisualWaterAtPoint(x, y, z)
 end
 

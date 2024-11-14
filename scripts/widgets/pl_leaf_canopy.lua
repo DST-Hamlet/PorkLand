@@ -35,12 +35,15 @@ function LeavesOver:OnUpdate(dt)
         self.leavestopmultiplycurrent = {r = 1, g = 1, b = 1}
     end
 
+    local r, g, b = TheSim:GetAmbientColour()
+    local colourstrength = math.min(1, ((r + g + b) / 3) / 255 + 0.1)
+
     if TheWorld.state.isdusk then
-        self:SetLeavesTopColorMult(0.6, 0.6, 0.6)
+        self:SetLeavesTopColorMult(colourstrength, colourstrength, colourstrength)
     elseif TheWorld.state.isnight then
-        self:SetLeavesTopColorMult(0.1, 0.1, 0.1)
+        self:SetLeavesTopColorMult(colourstrength, colourstrength, colourstrength)
     else
-        self:SetLeavesTopColorMult(1, 1, 1)
+        self:SetLeavesTopColorMult(colourstrength, colourstrength, colourstrength)
     end
 
     if not self.leavesTop then
