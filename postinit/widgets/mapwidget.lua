@@ -426,7 +426,52 @@ function MapWidget:RefreshAlwaysShownInteriorMinimap(actions)
         return
     end
 
-    -- TODO: complete this
+    local position = self.owner:GetPosition()
+    local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+    if not center then
+        return
+    end
+
+    local has_new_icons = false
+    for _, action in ipairs(actions) do
+        if action.type == "delete" then
+            if self.interior_map_widgets.always_shown_icons[action.data] then
+                self.interior_map_widgets.always_shown_icons[action.data].widget:Kill()
+                self.interior_map_widgets.always_shown_icons[action.data] = nil
+            end
+        elseif action.type == "replace" then
+            local icon_data = action.data
+            local atlas = get_minimap_atlas(icon_data.icon)
+            if atlas then
+                local room_offset = CalculateOffset(center, icon_data.coord_x, icon_data.coord_y)
+                local offset = room_offset + Vector3(icon_data.offset_x, 0, icon_data.offset_z)
+                if self.interior_map_widgets.always_shown_icons[action.data.id] then
+                    self.interior_map_widgets.always_shown_icons[action.data.id].widget:SetTexture(atlas, icon_data.icon)
+                    self.interior_map_widgets.always_shown_icons[action.data.id].widget.position_offset = offset
+                    self.interior_map_widgets.always_shown_icons[action.data.id].offset = offset
+                    self.interior_map_widgets.always_shown_icons[action.data.id].priority = icon_data.priority
+                else
+                    local icon = self:AddChild(Image(atlas, icon_data.icon))
+                    icon.position_offset = offset
+                    local new_data = {
+                        widget = icon,
+                        offset = offset,
+                        priority = icon_data.priority
+                    }
+                    has_new_icons = true
+                    self.interior_map_widgets.always_shown_icons[action.data.id] = new_data
+                end
+            end
+        elseif action.type == "clear" then
+            for _, icon_data in pairs(self.interior_map_widgets.always_shown_icons) do
+                icon_data.widget:Kill()
+            end
+            self.interior_map_widgets.always_shown_icons = {}
+        end
+    end
+    if has_new_icons then
+        self:UpdateInteriorMapIconPriorities()
+    end
 end
 
 function MapWidget:ToggleInteriorMap()
@@ -434,6 +479,25 @@ function MapWidget:ToggleInteriorMap()
         self:ApplyExteriorDecorations()
     else
         self:ApplyInteriorMinimap()
+    end
+end
+
+function MapWidget:UpdateInteriorMapIconPriorities()
+    for _, door in pairs(self.interior_map_widgets.doors) do
+        door:MoveToFront()
+    end
+    for _, room in pairs(self.interior_map_widgets.rooms) do
+        for _, icon_data in ipairs(room.icons) do
+            icon_data.widget:MoveToFront()
+        end
+    end
+    local values = {}
+    for _, v in ipairs(self.interior_map_widgets.always_shown_icons) do
+        table.insert(values, v)
+    end
+    table.sort(values, sort_priority)
+    for _, v in ipairs(values) do
+        v.widget:MoveToFront()
     end
 end
 
@@ -456,22 +520,7 @@ function MapWidget:UpdateInteriorWidgets()
         local new_icons, has_new_icons = DiffWidget(self, current_data, local_interior_map_override, current_room_id)
         current_data.icons = new_icons
         if has_new_icons then
-            for _, door in pairs(self.interior_map_widgets.doors) do
-                door:MoveToFront()
-            end
-            for _, room in pairs(self.interior_map_widgets.rooms) do
-                for _, icon_data in ipairs(room.icons) do
-                    icon_data.widget:MoveToFront()
-                end
-            end
-            local values = {}
-            for _, v in ipairs(self.interior_map_widgets.always_shown_icons) do
-                table.insert(values, v)
-            end
-            table.sort(values, sort_priority)
-            for _, v in ipairs(values) do
-                v.widget:MoveToFront()
-            end
+            self:UpdateInteriorMapIconPriorities()
         end
         local_interior_map_override.applied = true
     end
