@@ -52,7 +52,8 @@ end
 local function PickupAction(inst)
     local target = OincNearby(inst)
 
-    if target then
+    if target
+        and not (inst.components.combat.target and inst.components.combat.target:GetDistanceSqToInst(inst) < 4 * 4) then
         return BufferedAction(inst, target, ACTIONS.PICKUP)
     end
 end

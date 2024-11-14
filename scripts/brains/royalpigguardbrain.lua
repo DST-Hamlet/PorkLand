@@ -139,10 +139,6 @@ local function checknotangry(inst)
         return true
     end
 
-    if OincNearby(inst, CLOSE_ITEM_DIST) then
-        return true
-    end
-
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 4, {"_combat"}, {"FX", "NOCLICK", "DECOR", "INLIMBO"})
     for _, ent in ipairs(ents) do

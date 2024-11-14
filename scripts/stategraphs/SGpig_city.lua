@@ -393,7 +393,7 @@ local states =
     },
     State{
         name = "hit",
-        tags = {"busy"},
+        tags = {"busy", "hit"},
 
         onenter = function(inst)
 
