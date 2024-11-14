@@ -37,12 +37,20 @@ local events=
 
     EventHandler("behappy",
         function(inst, data)
-          inst.sg:GoToState("happy")
+            inst.sg:GoToState("happy")
         end),
     EventHandler("dance",
         function(inst, data)
             if not inst.sg:HasStateTag("busy") then
                 inst.sg:GoToState("dance")
+            end
+        end),
+    EventHandler("onalarmed",
+        function(inst, data)
+            if inst.components.health ~= nil and not inst.components.health:IsDead()
+                and not inst.sg:HasStateTag("busy") then
+
+                inst.sg:GoToState("hit")
             end
         end),
 }

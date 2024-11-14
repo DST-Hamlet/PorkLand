@@ -10,13 +10,14 @@ local MAX_CHASE_DIST = 30
 local RUN_AWAY_DIST = 5
 local STOP_RUN_AWAY_DIST = 8
 local SEE_STOLEN_ITEM_DIST = 10
+local CLOSE_ITEM_DIST = 1.5
 local MAX_WANDER_DIST = 20
 
 local PICKUP_OINC_MUST_TAGS = {"_inventoryitem", "oinc"}
 local PICKUP_OINC_NO_TAGS = {"INLIMBO", "outofreach", "trap"}
 
-local function OincNearby(inst)
-    return FindEntity(inst, SEE_STOLEN_ITEM_DIST, function(item)
+local function OincNearby(inst, dist)
+    return FindEntity(inst, dist or SEE_STOLEN_ITEM_DIST, function(item)
         return item.components.inventoryitem.canbepickedup and item:IsOnValidGround()
     end, PICKUP_OINC_MUST_TAGS, PICKUP_OINC_NO_TAGS)
 end
@@ -35,7 +36,9 @@ local function FindVanishPosition(inst)
 end
 
 local function ShouldVanish(inst)
-    return (inst.attacked or (inst.components.inventory:NumItems() > 1 and not OincNearby(inst))) and not inst.sg:HasStateTag("busy")
+    return (inst.attacked or (inst.components.inventory:HasItemWithTag("oinc", 1) and not OincNearby(inst)))
+        and not OincNearby(inst, CLOSE_ITEM_DIST)
+        and not inst.sg:HasStateTag("busy")
 end
 
 local function DoVanish(inst)

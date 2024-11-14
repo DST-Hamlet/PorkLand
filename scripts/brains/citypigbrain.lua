@@ -69,10 +69,6 @@ local function KeepFaceTargetFn(inst, target)
     return inst:IsNear(target, KEEP_FACE_DIST) and not target:HasTag("notarget")
 end
 
-local function ShouldRunAway(inst, target)
-    return not inst.components.trader:IsTryingToTradeWithMe(target)
-end
-
 local function GetTraderFn(inst)
     return FindEntity(inst, TRADE_DIST, function(target) return inst.components.trader:IsTryingToTradeWithMe(target) end, {"player"})
 end
@@ -407,9 +403,6 @@ function CityPigBrain:OnStart()
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FLEE"),
                 WhileNode(GoToIdleStateWrap(self.inst, function() return (self.inst.components.combat.target and not self.inst:HasTag("guard")) end), "Dodge",
                     RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST) )--[[, "alarmed"]]),
-
-            ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FLEE"),
-                RunAway(self.inst, GoToIdleStateWrap(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end), RUN_AWAY_DIST, STOP_RUN_AWAY_DIST )--[[, "alarmed"]]),
 
             WhileNode(function() return ReplaceStockCondition(self.inst) end, "replenish",
                 DoAction(self.inst, ReplenishStockAction, "restock", true)),
