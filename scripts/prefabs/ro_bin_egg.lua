@@ -27,6 +27,8 @@ local function Hatch(inst)
         local angle = math.atan2(down.z, down.x) + (math.random()*60-30) * DEGREES
         local speed = 3
         stone.Physics:SetVel(speed*math.cos(angle), GetRandomWithVariance(8, 4), speed*math.sin(angle))
+
+        stone:SpawnRoBin(pt)
     end)
 end
 
