@@ -411,7 +411,7 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
             local pos = ent:GetPosition()
             local center = TheWorld.components.interiorspawner:GetInteriorCenter(pos)
             local current_data = self.always_shown_minimap_entities[ent]
-            if center and interior_group == center:GetGroupId() then
+            if center and center ~= self.center_ent and interior_group == center:GetGroupId() then
                 local icon = ent.MiniMapEntity:GetIcon()
                 if icon ~= nil and icon ~= "" then
                     local offset = pos - center:GetPosition()
