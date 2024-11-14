@@ -4,7 +4,7 @@ local icon_name = {}
 local icon_priority = {}
 local icon_can_use_cache = {}
 local icon_offset = {}
-local icon_can_draw_over_fog = {}
+local icon_is_proxy = {}
 local minimap_entity_to_entity = {}
 
 local function cleanup_mapping(inst)
@@ -12,7 +12,7 @@ local function cleanup_mapping(inst)
     icon_priority[inst.MiniMapEntity] = nil
     icon_can_use_cache[inst.MiniMapEntity] = nil
     icon_offset[inst.MiniMapEntity] = nil
-    icon_can_draw_over_fog[inst.MiniMapEntity] = nil
+    icon_is_proxy[inst.MiniMapEntity] = nil
     minimap_entity_to_entity[inst.MiniMapEntity] = nil
 end
 
@@ -32,6 +32,12 @@ local _SetIcon = MiniMapEntity.SetIcon
 function MiniMapEntity:SetIcon(icon, ...)
     icon_name[self] = icon
     return _SetIcon(self, icon, ...)
+end
+
+local _CopyIcon = MiniMapEntity.CopyIcon
+function MiniMapEntity:CopyIcon(minimap_entity, ...)
+    icon_name[self] = minimap_entity:GetIcon()
+    return _CopyIcon(self, minimap_entity, ...)
 end
 
 function MiniMapEntity:GetIcon() -- TODO: compatible test
@@ -59,21 +65,21 @@ function MiniMapEntity:GetCanUseCache()
     return icon_can_use_cache[self] ~= false
 end
 
-local set_draw_over_fog_of_war = MiniMapEntity.SetDrawOverFogOfWar
-function MiniMapEntity:SetDrawOverFogOfWar(can_draw_over, ...)
-    icon_can_draw_over_fog[self] = can_draw_over
+local set_is_proxy = MiniMapEntity.SetIsProxy
+function MiniMapEntity:SetIsProxy(is_proxy, ...)
+    icon_is_proxy[self] = is_proxy
     local entity = minimap_entity_to_entity[self]
-    if can_draw_over then
+    if is_proxy then
         TheWorld.components.interiormaprevealer:TrackEntity(entity)
     else
         TheWorld.components.interiormaprevealer:UntrackEntity(entity)
     end
-    return set_draw_over_fog_of_war(self, can_draw_over, ...)
+    return set_is_proxy(self, is_proxy, ...)
 end
 
--- function MiniMapEntity:GetCanDrawOverFogOfWar()
---     return icon_can_draw_over_fog[self]
--- end
+function MiniMapEntity:GetIsProxy()
+    return icon_is_proxy[self]
+end
 
 function MiniMapEntity:SetIconOffset(x, y)
     icon_offset[self] = {x, y}
