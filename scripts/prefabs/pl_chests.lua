@@ -276,7 +276,7 @@ end
 local function cork_master_postinit(inst)
     inst.open_sound = "dontstarve_DLC003/common/crafted/cork_chest/open"
     inst.close_sound = "dontstarve_DLC003/common/crafted/cork_chest/close"
-    inst.plcae_sound = "dontstarve_DLC003/common/crafted/cork_chest/place"
+    inst.place_sound = "dontstarve_DLC003/common/crafted/cork_chest/place"
 end
 
 --[[ Root Trunk ]]--
