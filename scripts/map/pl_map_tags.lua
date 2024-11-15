@@ -13,9 +13,6 @@ local pl_maptags = {
         ["City2"] = function(tagdata)
             return "GLOBALTAG", "City2"
         end,
-        ["Bramble"] = function(tagdata)
-            return "GLOBALTAG", "Bramble"
-        end,
         ["Cultivated"] = function(tagdata)
             return "GLOBALTAG", "Cultivated"
         end,

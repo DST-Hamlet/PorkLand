@@ -2,7 +2,7 @@
 AddRoom("BG_rainforest_base", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.RAINFOREST,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .38,  -- .5
         distributeprefabs = {
@@ -30,7 +30,7 @@ AddRoom("BG_rainforest_base", {
 AddRoom("rainforest_ruins", {
     colour = {r = 0.0, g = 1, b = 0.3, a = 0.3},
     value = WORLD_TILES.RAINFOREST,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent =.35,  -- .5
         distributeprefabs = {
@@ -57,7 +57,7 @@ AddRoom("rainforest_ruins", {
 AddRoom("rainforest_lillypond", {
     colour = {r = 1.0, g = 0.3, b = 0.3, a = 0.3},
     value = WORLD_TILES.LILYPOND,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         countstaticlayouts = {
             ["lilypad2"]= math.random(1, 3),
@@ -84,7 +84,7 @@ AddRoom("rainforest_lillypond", {
 AddRoom("rainforest_pugalisk", {
     colour = {r = 0.0, g = 1, b = 0.3, a = 0.3},
     value = WORLD_TILES.RAINFOREST,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .15,  -- .3
         distributeprefabs = {
@@ -109,7 +109,7 @@ AddRoom("rainforest_pugalisk", {
 AddRoom("rainforest_base_nobatcave", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.RAINFOREST,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .38,  -- .5
         distributeprefabs = {
