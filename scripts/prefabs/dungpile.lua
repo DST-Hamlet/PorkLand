@@ -22,6 +22,19 @@ local loots = {
     {"twigs",       0.05},
 }
 
+local function UpdateAnim(inst)
+    if inst.components.pickable.cycles_left == 3 then
+        inst.AnimState:Show("high")
+        inst.AnimState:Show("med")
+    elseif inst.components.pickable.cycles_left == 2 then
+        inst.AnimState:Hide("high")
+        inst.AnimState:Show("med")
+    else
+        inst.AnimState:Hide("high")
+        inst.AnimState:Hide("med")
+    end
+end
+
 local function SpawnDungball(inst)
     local dungball = SpawnPrefab("dungball")
     dungball.Transform:SetPosition(inst.Transform:GetWorldPosition())
@@ -47,7 +60,10 @@ local function OnWorkCallback(inst)
 end
 
 local function OnPicked(inst, picker)
+    UpdateAnim(inst)
     inst.SoundEmitter:PlaySound("dontstarve/common/food_rot")
+    inst.AnimState:PlayAnimation("hit", false)
+    inst.AnimState:PushAnimation("idle_full")
     inst.components.lootdropper:DropLoot()
 
     if picker then
@@ -114,9 +130,6 @@ local function OnAnimOver(inst, data)
     if inst.AnimState:IsCurrentAnimation("idle_to_dead") then
         OnIdleToDead(inst)
     end
-    if inst.AnimState:IsCurrentAnimation("fall") then
-        inst.AnimState:PlayAnimation("idle")
-    end
 end
 
 local function OnBurn(inst)
@@ -128,6 +141,7 @@ end
 
 local function Fall(inst)
     inst.AnimState:PlayAnimation("fall")
+    inst.AnimState:PushAnimation("idle_full")
     inst:DoTaskInTime(10 / 30,function() inst.SoundEmitter:PlaySound("dontstarve_DLC003/creatures/boss/roc/dung_pile") end)
     inst:DoTaskInTime(15 / 30,function()
         ShakeAllCameras(CAMERASHAKE.VERTICAL, 0.3, 0.02, 0.5, inst, 40)
@@ -136,6 +150,10 @@ end
 
 local function OnPreLoad(inst, data)
     WorldSettings_ChildSpawner_PreLoad(inst, data, TUNING.DUNGBEETLE_RELEASE_TIME, TUNING.DUNGBEETLE_REGEN_TIME)
+end
+
+local function OnLoad(inst, data)
+    UpdateAnim(inst)
 end
 
 local function fn()
@@ -153,7 +171,7 @@ local function fn()
 
     inst.AnimState:SetBank("dung_pile")
     inst.AnimState:SetBuild("dung_pile")
-    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:PlayAnimation("idle_full")
 
     inst.entity:SetPristine()
 
@@ -210,6 +228,7 @@ local function fn()
 
     inst.Fall = Fall
     inst.OnPreLoad = OnPreLoad
+    inst.OnLoad = OnLoad
 
     inst:DoTaskInTime(0, Init)
 
