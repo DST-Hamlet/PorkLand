@@ -133,7 +133,7 @@ function AncientRobotBrain:OnStart()
         IfNode(function() return self.inst.wantstodeactivate or self.inst:HasTag("dormant") end, "Should deactivate",
             DoAction(self.inst, function() return Deactivate(self.inst) end, "Deactivate", true)),
 
-        WhileNode(function() return self.inst.components.timer:TimerExists("discharge") end, "Is activated",
+        WhileNode(function() return self.inst.components.timer:TimerExists("discharge") and not self.inst.sg:HasStateTag("leapattack") end, "Is activated and not jumping",
             PriorityNode(
             {
                 WhileNode(function() return ShouldAssemble(self.inst) end, "Should assemble",

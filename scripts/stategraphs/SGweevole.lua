@@ -392,7 +392,7 @@ local states =
 
     State{
         name = "leap_attack",
-        tags = {"attack", "canrotate", "busy", "jumping"},
+        tags = {"attack", "busy", "jumping"},
 
         onenter = function(inst, target)
             inst.Physics:Stop()

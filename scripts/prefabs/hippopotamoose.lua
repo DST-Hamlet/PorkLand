@@ -94,7 +94,7 @@ local function fn()
     inst.DynamicShadow:SetSize(3, 1.25)
     inst.Transform:SetFourFaced()
 
-    MakeAmphibiousCharacterPhysics(inst, 50, 1.5)
+    MakeAmphibiousCharacterPhysics(inst, 100, 1.5)
 
     inst:AddTag("animal")
     inst:AddTag("hippopotamoose")

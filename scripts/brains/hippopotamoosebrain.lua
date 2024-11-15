@@ -161,17 +161,20 @@ function HippopotamooseBrain:OnStart()
 
     local root = PriorityNode(
     {
-        BrainCommon.PanicTrigger(self.inst),
+        WhileNode( function() return not self.inst.sg:HasStateTag("leapattack") end, "not jumping",
+            PriorityNode{
+                BrainCommon.PanicTrigger(self.inst),
 
-        WhileNode(function() return ShouldJumpAttack(self.inst) end, "jumpattack", DoAction(self.inst, function() return DoJumpAttack(self.inst) end, "jump", true)),
+                WhileNode(function() return ShouldJumpAttack(self.inst) end, "jumpattack", DoAction(self.inst, function() return DoJumpAttack(self.inst) end, "jump", true)),
 
-        IfNode(function() return self.inst.components.combat.target ~= nil end, "hastarget", AttackWall(self.inst)),
+                IfNode(function() return self.inst.components.combat.target ~= nil end, "hastarget", AttackWall(self.inst)),
 
-        ChaseAndAttack(self.inst, MAX_CHASE_TIME),
+                ChaseAndAttack(self.inst, MAX_CHASE_TIME),
 
-        day,
-        dusk,
-        night,
+                day,
+                dusk,
+                night
+        }, 1)
     }, 0.25)
 
     self.bt = BT(self.inst, root)
