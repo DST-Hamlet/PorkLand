@@ -381,6 +381,11 @@ function InteriorVisitor:UpdateExteriorPos()
     self:RevealAlwaysShownMinimapEntities()
 end
 
+local function can_reveal_entity(player, entity)
+    local restriction = entity.MiniMapEntity:GetRestriction()
+    return not restriction or player:HasTag(restriction)
+end
+
 function InteriorVisitor:RevealAlwaysShownMinimapEntities()
     if not self.center_ent then
         if not IsTableEmpty(self.always_shown_minimap_entities) then
@@ -411,7 +416,7 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
             local pos = ent:GetPosition()
             local center = TheWorld.components.interiorspawner:GetInteriorCenter(pos)
             local current_data = self.always_shown_minimap_entities[ent]
-            if center and center ~= self.center_ent and interior_group == center:GetGroupId() then
+            if center and center ~= self.center_ent and interior_group == center:GetGroupId() and can_reveal_entity(self.inst, ent) then
                 local icon = ent.MiniMapEntity:GetIcon()
                 if icon ~= nil and icon ~= "" then
                     local offset = pos - center:GetPosition()

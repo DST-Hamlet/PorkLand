@@ -5,6 +5,7 @@ local icon_priority = {}
 local icon_can_use_cache = {}
 local icon_offset = {}
 local icon_is_proxy = {}
+local icon_restriction = {}
 local minimap_entity_to_entity = {}
 
 local function cleanup_mapping(inst)
@@ -79,6 +80,20 @@ end
 
 function MiniMapEntity:GetIsProxy()
     return icon_is_proxy[self]
+end
+
+local set_restriction = MiniMapEntity.SetRestriction
+function MiniMapEntity:SetRestriction(restriction, ...)
+    if restriction == "" then
+        icon_restriction[self] = nil
+    else
+        icon_restriction[self] = restriction
+    end
+    return set_restriction(self, restriction, ...)
+end
+
+function MiniMapEntity:GetRestriction()
+    return icon_restriction[self]
 end
 
 function MiniMapEntity:SetIconOffset(x, y)
