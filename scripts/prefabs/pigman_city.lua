@@ -302,22 +302,26 @@ local function ShouldAcceptItem(inst, item)
     return false
 end
 
-local function OnGetBribe(inst, item)
-    if not IsTableEmpty(inst.angry_at_players) then
-        if not inst.bribe_count then
-            inst.bribe_count = 0
+local function OnGetBribe(inst, giver, item)
+    if not inst:HasTag("guard") then
+        if inst.components.combat and inst.components.combat.target == giver then
+            inst.components.combat:GiveUp()
         end
-        inst.bribe_count = inst.bribe_count + item.oincvalue * item.components.stackable.stacksize
+        return
+    end
 
-        local bribe_threshold = inst:HasTag("guard") and 10 or 1
-        if inst.bribe_count >= bribe_threshold then
-            inst.angry_at_players = {}
+    if giver.components.uniqueidentity and inst.angry_at_criminals[giver.components.uniqueidentity:GetID()] then
+        local old_count = inst.angry_at_criminals[giver.components.uniqueidentity:GetID()]
+        inst.angry_at_criminals[giver.components.uniqueidentity:GetID()] = old_count - item.oincvalue * item.components.stackable.stacksize
 
-            if inst.components.combat and inst.components.combat.target and inst.components.combat.target:HasTag("player") then
+        if inst.angry_at_criminals[giver.components.uniqueidentity:GetID()] <= 0 then
+
+            if inst.components.combat and inst.components.combat.target == giver then
                 inst.components.combat:GiveUp()
             end
 
-            inst.bribe_count = 0
+            inst.angry_at_criminals[giver.components.uniqueidentity:GetID()] = nil
+
             inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_FORGIVE_PLAYER"))
         else
             inst:SayLine(inst:GetSpeechType("CITY_PIG_TALK_NOT_ENOUGH"))
@@ -434,7 +438,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
     end
 
     if item:HasTag("oinc") then
-        OnGetBribe(inst, item)
+        OnGetBribe(inst, giver, item)
     end
 end
 
@@ -461,37 +465,6 @@ local function OnEat(inst, food)
 
         poop.cityID = inst.components.citypossession.cityID
         TheWorld.components.periodicpoopmanager:OnPoop(poop.cityID, poop)
-    end
-end
-
-local function OnAttackedByDecidRoot(inst, attacker)
-    local fn = function(dude)
-        return dude:HasTag("pig") and not dude:HasTag("werepig") and not dude:HasTag("guard")
-    end
-
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = nil
-    if TheWorld.state.isspring then
-        ents = TheSim:FindEntities(x, y, z, (SHARE_TARGET_DIST * TUNING.SPRING_COMBAT_MOD) / 2)
-    else
-        ents = TheSim:FindEntities(x, y, z, SHARE_TARGET_DIST / 2)
-    end
-
-    if ents then
-        local num_helpers = 0
-        for _, v in ipairs(ents) do
-            if v ~= inst
-                and v.components.combat
-                and not (v.components.health and v.components.health:IsDead())
-                and fn(v) then
-
-                v:PushEvent("suggest_tree_target", {tree = attacker})
-                num_helpers = num_helpers + 1
-            end
-            if num_helpers >= MAX_TARGET_SHARES then
-                break
-            end
-        end
     end
 end
 
@@ -539,29 +512,9 @@ end
 
 local function OnAttacked(inst, data)
     local attacker = data.attacker
+    inst:ClearBufferedAction()
     if attacker then
-        inst:ClearBufferedAction()
-
-        if attacker.prefab == "deciduous_root" and attacker.owner then
-            OnAttackedByDecidRoot(inst, attacker.owner)
-        elseif attacker.prefab ~= "deciduous_root" then
-            inst.components.combat:SetTarget(attacker)
-
-            if inst:HasTag("guard") then
-                if attacker:HasTag("player") and attacker.userid then
-                    inst.angry_at_players[attacker] = attacker.userid
-                end
-                inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
-                    return dude:HasTag("pig") and (dude:HasTag("guard") or not attacker:HasTag("pig"))
-                end, MAX_TARGET_SHARES)
-            else
-                if not (attacker:HasTag("pig") and attacker:HasTag("guard")) then
-                    inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
-                        return dude:HasTag("pig")
-                    end, MAX_TARGET_SHARES)
-                end
-            end
-        end
+        inst.components.combat:SetTarget(attacker)
 
         if not inst:HasTag("guards_called") then
             inst:AddTag("guards_called")
@@ -572,13 +525,50 @@ local function OnAttacked(inst, data)
     end
 end
 
+local function OnNewTarget(inst, data)
+    local target = data.target
+    if target then
+
+        if inst:HasTag("guard") then
+            if target.components.uniqueidentity then
+                inst.angry_at_criminals[target.components.uniqueidentity:GetID()] = 10
+            end
+            inst.components.combat:ShareTarget(target, SHARE_TARGET_DIST, function(dude)
+                return dude:HasTag("pig") and (dude:HasTag("guard") or not target:HasTag("pig"))
+            end, MAX_TARGET_SHARES)
+        else
+            if not (target:HasTag("pig") and target:HasTag("guard")) then
+                inst.components.combat:ShareTarget(target, SHARE_TARGET_DIST, function(dude)
+                    return dude:HasTag("pig")
+                end, MAX_TARGET_SHARES)
+            end
+        end
+    end
+end
+
+local function OnAlarmed(inst, data)
+    local attacker = data.attacker
+    inst:ClearBufferedAction()
+    if attacker then
+        inst.components.combat:SetTarget(attacker)
+    end
+end
+
 local builds = {"pig_build", "pigspotted_build"}
 
 local function NormalRetargetFn(inst)
     return FindEntity(inst, TUNING.CITY_PIG_GUARD_TARGET_DIST, function(guy)
         if not guy.LightWatcher or guy.LightWatcher:IsInLight() then
 
-            if inst.angry_at_players[guy]
+            local angry_at_guy = false
+            if guy.components.uniqueidentity
+                and inst.angry_at_criminals[guy.components.uniqueidentity:GetID()]
+                and inst.angry_at_criminals[guy.components.uniqueidentity:GetID()] > 0 then
+
+                angry_at_guy = true
+            end
+
+            if angry_at_guy
                 and guy.components.health and not guy.components.health:IsDead()
                 and inst.components.combat:CanTarget(guy)
                 and not (inst.components.combat.target and inst.components.combat.target:HasTag("player")) then
@@ -586,7 +576,7 @@ local function NormalRetargetFn(inst)
                 inst:SayLine(inst:GetSpeechType("CITY_PIG_GUARD_TALK_ANGRY_PLAYER"))
             end
 
-            return (guy:HasTag("monster") or inst.angry_at_players[guy]) and
+            return (guy:HasTag("monster") or angry_at_guy) and
                        guy.components.health and not guy.components.health:IsDead() and
                        inst.components.combat:CanTarget(guy) and
                        not (inst.components.follower.leader ~= nil and guy:HasTag("abigail"))
@@ -595,9 +585,7 @@ local function NormalRetargetFn(inst)
 end
 
 local function NormalKeepTargetFn(inst, target)
-    -- give up on dead guys, or guys in the dark, or werepigs
-    return inst.components.combat:CanTarget(target) and (not target.LightWatcher or target.LightWatcher:IsInLight()) and
-               not (target.sg and target.sg:HasStateTag("transform"))
+    return inst.components.combat:CanTarget(target) and (not target.LightWatcher or target.LightWatcher:IsInLight())
 end
 
 local function NormalShouldSleep(inst)
@@ -632,19 +620,13 @@ local function SetNormalPig(inst, brain_id)
     inst.components.lootdropper:AddRandomLoot("pigskin", 1)
     inst.components.lootdropper.numrandomloot = 1
 
-    inst.angry_at_players = {}
+    inst.angry_at_criminals = {}
     inst.components.health:SetMaxHealth(TUNING.PIG_HEALTH)
     inst.components.combat:SetRetargetFunction(3, NormalRetargetFn)
     inst.components.combat:SetTarget(nil)
     inst:ListenForEvent("suggest_tree_target", function(inst, data)
-        if data and data.tree and inst:GetBufferedAction() ~= ACTIONS.CHOP then
+        if data and data.tree and inst:GetBufferedAction().action ~= ACTIONS.CHOP then
             inst.tree_target = data.tree
-        end
-    end)
-
-    inst:ListenForEvent("itemget", function(inst, data)
-        if data.item:HasTag("oinc") then
-            OnGetBribe(inst, data.item)
         end
     end)
 
@@ -704,17 +686,7 @@ local function OnSave(inst, data)
     end
     -- end shopkeeper stuff
 
-    local cached_angry_at_player_ids = inst.cached_angry_at_player_ids or {}
-    for player, id in pairs(inst.angry_at_players) do
-        if player:IsValid() then
-            cached_angry_at_player_ids[id] = true
-        else
-            inst.angry_at_players[player] = nil
-        end
-    end
-    if not IsTableEmpty(cached_angry_at_player_ids) then
-        data.cached_angry_at_player_ids = cached_angry_at_player_ids
-    end
+    data.angry_at_criminals = inst.angry_at_criminals
 
     data.equipped = inst.equipped
     data.recieved_trinket = inst:HasTag("recieved_trinket")
@@ -750,39 +722,8 @@ local function OnLoad(inst, data)
         -- inst.equiptask = nil
     end
 
-    if data.cached_angry_at_player_ids then
-        inst.cached_angry_at_player_ids = data.cached_angry_at_player_ids
-
-        local cached_player_join_fn
-        local cached_new_player_spawned_fn
-
-        local function clear_callbacks_when_done(player)
-            if inst.cached_angry_at_player_ids[player.userid] then
-                inst.cached_angry_at_player_ids[player.userid] = nil
-            end
-            if IsTableEmpty(inst.cached_angry_at_player_ids) then
-                inst:RemoveEventCallback("ms_playerjoined", cached_player_join_fn, TheWorld)
-                inst:RemoveEventCallback("ms_newplayerspawned", cached_new_player_spawned_fn, TheWorld)
-            end
-        end
-
-        cached_player_join_fn = function(_, player)
-            if inst.cached_angry_at_player_ids[player.userid] then
-                inst.angry_at_players[player] = true
-            end
-            clear_callbacks_when_done(player)
-        end
-
-        cached_new_player_spawned_fn = function(_, player)
-            clear_callbacks_when_done(player)
-        end
-
-        -- need to check existing players, same way some world components do when adding _activeplayers
-        for _, player in pairs(AllPlayers) do
-            cached_player_join_fn(nil, player)
-        end
-        inst:ListenForEvent("ms_playerjoined", cached_player_join_fn, TheWorld)
-        inst:ListenForEvent("ms_newplayerspawned", cached_new_player_spawned_fn, TheWorld)
+    if data.angry_at_criminals then
+        inst.angry_at_criminals = data.angry_at_criminals
     end
 
     if data.recieved_trinket then
@@ -919,6 +860,8 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst.components.inspectable.getstatus = GetStatus
         inst.components.inspectable.nameoverride = econprefab
 
+        inst:AddComponent("uniqueidentity")
+
         inst:AddComponent("trader")
         inst.components.trader:SetAcceptTest(ShouldAcceptItem)
         inst.components.trader.onaccept = OnGetItemFromPlayer
@@ -952,6 +895,8 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst.OnLoadPostPass = OnLoadPostPass
 
         inst:ListenForEvent("attacked", OnAttacked)
+        inst:ListenForEvent("newcombattarget", OnNewTarget)
+        inst:ListenForEvent("onalarmed", OnAlarmed)
 
         SetNormalPig(inst)
 

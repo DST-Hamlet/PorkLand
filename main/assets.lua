@@ -445,6 +445,7 @@ Assets = {
     Asset("IMAGE", "images/hud/pl_cook_pot_food_image.tex"),
 
     Asset("SHADER", "shaders/ui_fillmode.ksh"),
+    Asset("SHADER", "shaders/ui_anim_cc_nolight.ksh"),
 }
 
 for _, v in ipairs(require("main/interior_texture_defs").Assets) do

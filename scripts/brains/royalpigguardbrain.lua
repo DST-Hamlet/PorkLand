@@ -4,7 +4,6 @@ require "behaviours/faceentity"
 require "behaviours/chaseandattack"
 require "behaviours/runaway"
 require "behaviours/doaction"
---require "behaviours/choptree"
 -- require "behaviours/findlight"
 require "behaviours/panic"
 require "behaviours/chattynode"
@@ -35,8 +34,7 @@ local TRADE_DIST = 20
 local SEE_TREE_DIST = 15
 local SEE_FOOD_DIST = 10
 local SEE_MONEY_DIST = 6
-
-local KEEP_CHOPPING_DIST = 10
+local CLOSE_ITEM_DIST = 1.5
 
 local RUN_AWAY_DIST = 5
 local STOP_RUN_AWAY_DIST = 8
@@ -59,10 +57,6 @@ local function KeepFaceTargetFn(inst, target)
         return inst.components.follower.leader == target
     end
     return inst:IsNear(target, KEEP_FACE_DIST) and not target:HasTag("notarget")
-end
-
-local function ShouldRunAway(inst, target)
-    return not inst.components.trader:IsTryingToTradeWithMe(target)
 end
 
 local function GetTraderFn(inst)
@@ -123,16 +117,17 @@ local function FindFoodAction(inst)
     end
 end
 
+local PICKUP_OINC_MUST_TAGS = {"_inventoryitem", "oinc"}
+local PICKUP_OINC_NO_TAGS = {"INLIMBO", "outofreach", "trap"}
+
+local function OincNearby(inst, dist)
+    return FindEntity(inst, dist or SEE_MONEY_DIST, function(item)
+        return item.components.inventoryitem.canbepickedup and item:IsOnValidGround()
+    end, PICKUP_OINC_MUST_TAGS, PICKUP_OINC_NO_TAGS)
+end
+
 local function FindMoneyAction(inst)
-    local target = FindEntity(inst, SEE_MONEY_DIST, function(item)
-        if not item:IsOnValidGround() then
-            return false
-        end
-        -- local itempos = Vector3(item.Transform:GetWorldPosition())
-        -- local instpos = inst:GetPosition()
-        --and GetWorld().Pathfinder:IsClear(itempos.x, itempos.y, itempos.z, instpos.x, instpos.y, instpos.z,  {ignorewalls = false})
-        return true
-    end, {"oinc"}, {"INLIMBO"})
+    local target = OincNearby(inst)
 
     if target then
         return BufferedAction(inst, target, ACTIONS.PICKUP)
@@ -140,53 +135,20 @@ local function FindMoneyAction(inst)
 end
 
 local function checknotangry(inst)
-    if IsTableEmpty(inst.angry_at_players) then
+    if IsTableEmpty(inst.angry_at_criminals) then
         return true
     end
-    for _, player in ipairs(AllPlayers) do
-        if inst.angry_at_players[player] and inst:IsNear(player, 4) then
+
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, 4, {"_combat"}, {"FX", "NOCLICK", "DECOR", "INLIMBO"})
+    for _, ent in ipairs(ents) do
+        if ent.components.uniqueidentity
+            and inst.angry_at_criminals[ent.components.uniqueidentity:GetID()]
+            and inst.angry_at_criminals[ent.components.uniqueidentity:GetID()] > 0 then
             return false
         end
     end
     return true
-end
-
-local function KeepChoppingAction(inst)
-    local keep_chop = inst.components.follower.leader and inst.components.follower.leader:GetDistanceSqToInst(inst) <= KEEP_CHOPPING_DIST*KEEP_CHOPPING_DIST
-    local target = FindEntity(inst, SEE_TREE_DIST/3, function(item)
-        return item.prefab == "deciduoustree" and item.monster and item.components.workable and item.components.workable.action == ACTIONS.CHOP
-    end)
-    if inst.tree_target ~= nil then target = inst.tree_target end
-
-    return (keep_chop or target ~= nil)
-end
-
-local function StartChoppingCondition(inst)
-    local start_chop = inst.components.follower.leader and inst.components.follower.leader.sg and inst.components.follower.leader.sg:HasStateTag("chopping")
-    local target = FindEntity(inst, SEE_TREE_DIST/3, function(item)
-        return item.prefab == "deciduoustree" and item.monster and item.components.workable and item.components.workable.action == ACTIONS.CHOP
-    end)
-    if inst.tree_target ~= nil then target = inst.tree_target end
-
-    return (start_chop or target ~= nil)
-end
-
-
-local function FindTreeToChopAction(inst)
-    local target = FindEntity(inst, SEE_TREE_DIST, function(item) return item.components.workable and item.components.workable.action == ACTIONS.CHOP end)
-    if target then
-        local decid_monst_target = FindEntity(inst, SEE_TREE_DIST/3, function(item)
-            return item.prefab == "deciduoustree" and item.monster and item.components.workable and item.components.workable.action == ACTIONS.CHOP
-        end)
-        if decid_monst_target ~= nil then
-            target = decid_monst_target
-        end
-        if inst.tree_target then
-            target = inst.tree_target
-            inst.tree_target = nil
-        end
-        return BufferedAction(inst, target, ACTIONS.CHOP)
-    end
 end
 
 local function HasValidHome(inst)
@@ -326,11 +288,6 @@ function RoyalPigGuardBrain:OnStart()
 
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FIND_MEAT"),
                 DoAction(self.inst, FindFoodAction )),
-            IfNode(function() return StartChoppingCondition(self.inst) end, "chop",
-                WhileNode(function() return KeepChoppingAction(self.inst) end, "keep chopping",
-                    LoopNode{
-                        ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_HELP_CHOP_WOOD"),
-                            DoAction(self.inst, FindTreeToChopAction ))})),
 
             Leash(self.inst, GetNoLeaderHomePos, LEASH_MAX_DIST, LEASH_RETURN_DIST),
 
@@ -347,8 +304,6 @@ function RoyalPigGuardBrain:OnStart()
 
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FIND_MEAT"),
                 DoAction(self.inst, FindFoodAction )),
-            --RunAway(self.inst, "player", START_RUN_DIST, STOP_RUN_DIST, function(target) return ShouldRunAway(self.inst, target) end ),
-
             IfNode(function() return self.inst:HasTag("guard") end, "panic",
                 Wander(self.inst, GetNoLeaderHomePos, MAX_WANDER_DIST)),
         }, 1)
@@ -402,8 +357,6 @@ function RoyalPigGuardBrain:OnStart()
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_FLEE"),
                 WhileNode(function() return should_panic(self.inst)  end, "Threat Panic",
                     Panic(self.inst) )--[[, "alarmed"]]),
-
-            RunAway(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST ),
 
             ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_ATTEMPT_TRADE"),
                 FaceEntity(self.inst, GetTraderFn, KeepTraderFn)),
