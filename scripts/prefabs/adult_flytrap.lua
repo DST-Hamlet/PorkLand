@@ -89,7 +89,7 @@ local function OnTimerDone(inst, data)
     local radius = 15
     local offset = FindWalkableOffset(pt, math.random() * 2 * PI, radius, 20, true, true, function(position)
         local px, py, pz = position:Get()
-        return TheWorld.Map:CanPlantAtPoint(px, py, pz)
+        return TheWorld.Map:CanPlantAtPoint(px, py, pz) and TheWorld.Map:IsDeployPointClear(position, nil, DEPLOYSPACING_RADIUS[DEPLOYSPACING.DEFAULT])
     end)
 
     if offset then
