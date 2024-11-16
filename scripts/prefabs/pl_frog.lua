@@ -55,6 +55,12 @@ local function ShouldSleep(inst)
     return TheWorld.state.isnight
 end
 
+local function ShouldSilent(inst)
+    return (inst.components.freezable and inst.components.freezable:IsFrozen())
+        or (inst.components.sleeper and inst.components.sleeper:IsAsleep())
+        or inst.sg:HasStateTag("falling")
+end
+
 local function OnAttacked(inst, data)
     inst.components.combat:SetTarget(data.attacker)
     inst.components.combat:ShareTarget(data.attacker, 30, function(ent) return ent:HasTag("frog") and not ent.components.health:IsDead() end, 5)
@@ -117,6 +123,7 @@ local function fn()
     inst.components.locomotor.walkspeed = 4
     inst.components.locomotor.runspeed = 8
     inst.components.locomotor:SetAllowPlatformHopping(true)
+    inst.components.locomotor.pathcaps = {allowocean = true}
 
     -- -- boat hopping enable.
     -- inst.components.locomotor:SetAllowPlatformHopping(true)
@@ -148,7 +155,7 @@ local function fn()
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetSleepTest(ShouldSleep)
 
-    MakeAmphibious(inst, "frog", "frog_water")
+    MakeAmphibious(inst, "frog", "frog_water", ShouldSilent)
     inst:ListenForEvent("attacked", OnAttacked)
     inst:ListenForEvent("goinghome", OnGoingHome)
 

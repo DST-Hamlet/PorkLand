@@ -91,7 +91,7 @@ function AncientHeraldBrain:OnStart()
             ChaseAndAttack(self.inst, CHASE_TIME, CHASE_DIST)),
 
         Wander(self.inst, nil, MAX_WANDER_DIST),
-    }, 1)
+    }, 0.25)
 
     self.bt = BT(self.inst, root)
 end

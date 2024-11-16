@@ -32,7 +32,6 @@ local function DoStep(inst)
 
         inst.components.groundpounder.burner = false
         inst.components.groundpounder.groundpoundfx = nil
-        inst.components.groundpounder:GroundPound()
     else
         if IsSurroundedByLand(x, y, z, 2) then
             if math.random() < TUNING.VOLCANO_FIRERAIN_LAVA_CHANCE then

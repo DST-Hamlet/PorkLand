@@ -382,7 +382,9 @@ function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_wat
         end
 
         if inst.DynamicShadow then
-            inst.DynamicShadow:Enable(false)
+            if not (inst.sg and inst.sg:HasStateTag("falling")) then
+                inst.DynamicShadow:Enable(false)
+            end
         end
 
         if inst.components.burnable then
@@ -537,6 +539,16 @@ function MakeFlyingCharacterPhysics(inst, mass, rad, ...)
         local newmass = inst.Physics:GetMass()
         local newrad = inst.Physics:GetRadius()
         ChangeToFlyingCharacterPhysics(inst, newmass, newrad)
+    end
+    return physics
+end
+
+local _MakeGhostPhysics = MakeGhostPhysics
+function MakeGhostPhysics(inst, ...)
+    _MakeGhostPhysics(inst, ...)
+    local physics = inst.Physics
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
     end
     return physics
 end

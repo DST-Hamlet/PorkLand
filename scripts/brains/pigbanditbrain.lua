@@ -92,7 +92,7 @@ function PigBanditBrain:OnStart()
         RunAway(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST),
 
         Wander(self.inst, GetPlayerPos, MAX_WANDER_DIST)
-    }, 0.5)
+    }, 0.25)
 
     self.bt = BT(self.inst, root)
 end

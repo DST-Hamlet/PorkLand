@@ -132,7 +132,7 @@ local function fn()
     inst.components.sleeper:SetNocturnal(true)
 
     MakeAmphibious(inst, "snake", "snake_water")
-    MakeMediumFreezableCharacter(inst, "body")
+    MakeMediumFreezableCharacter(inst, nil, Vector3(0, 0, 0))
     MakeMediumBurnableCharacter(inst, nil, Vector3(0, 0, 0))
     MakeHauntablePanic(inst)
 

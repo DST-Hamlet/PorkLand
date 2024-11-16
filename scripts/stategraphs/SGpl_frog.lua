@@ -253,6 +253,7 @@ local states=
             local pt = Point(inst.Transform:GetWorldPosition())
             if pt.y < 2 then
                 inst.Physics:SetMotorVel(0,0,0)
+                inst.DynamicShadow:Enable(true)
             end
 
             if pt.y <= .1 then
@@ -261,9 +262,14 @@ local states=
                 inst.Physics:Stop()
                 inst.Physics:SetDamping(5)
                 inst.Physics:Teleport(pt.x,pt.y,pt.z)
-                inst.DynamicShadow:Enable(true)
                 inst.SoundEmitter:PlaySound(inst.sounds.splat)
-                inst.sg:GoToState("idle", "jump_pst")
+                if TheWorld.Map:ReverseIsVisualWaterAtPoint(pt.x,pt.y,pt.z) then
+                    inst.sg:GoToState("idle", "jumpin_pst")
+                    inst.DynamicShadow:Enable(false)
+                else
+                    inst.sg:GoToState("idle", "jump_pst")
+                    inst.DynamicShadow:Enable(true)
+                end
             end
         end,
 

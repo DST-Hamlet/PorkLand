@@ -121,6 +121,13 @@ local pl_fx = {
         fn = BelowGroundFx,
     },
     {
+        name = "bombsplash",
+    	bank = "bombsplash",
+    	build = "water_bombsplash",
+        fn = TintOceantFx,
+    	anim = "splash",
+	},
+    {
         name = "clouds_bombsplash",
         bank = "clouds_bombsplash",
         build = "clouds_bombsplash",

@@ -151,8 +151,8 @@ local function fn()
     MakeAmphibious(inst, "hippo", "hippo_water", ShouldSilent, OnEnterWater, OnExitWater)
     MakeHauntablePanic(inst)
     MakePoisonableCharacter(inst)
-    MakeLargeBurnableCharacter(inst, "innerds")
-    MakeMediumFreezableCharacter(inst, "innerds")
+    MakeLargeBurnableCharacter(inst, nil, Vector3(0, 0, 0))
+    MakeMediumFreezableCharacter(inst, nil, Vector3(0, 0, 0))
 
     return inst
 end

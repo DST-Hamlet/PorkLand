@@ -125,6 +125,7 @@ local function fn()
     inst.components.locomotor.walkspeed = TUNING.GHOST_SPEED
     inst.components.locomotor.runspeed = TUNING.GHOST_SPEED
     inst.components.locomotor.directdrive = true
+    inst.components.locomotor.pathcaps = {ignorewalls = true, ignorecreep = true, allowocean = true}
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED

@@ -1,6 +1,6 @@
 local function GetRandomOffset(pt, radius, offset_y)
     local theta = math.random() * TWOPI
-    local offset = FindWalkableOffset(pt, theta, radius, 12, true)
+    local offset = FindWalkableOffset(pt, theta, radius, 12, true, nil, nil, true)
 
     if offset then
         if offset_y then
