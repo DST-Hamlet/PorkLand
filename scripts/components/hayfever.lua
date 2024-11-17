@@ -190,15 +190,13 @@ function Hayfever:OnLoad(data)
     if data then
         self.sneezed = data.sneezed
         self.nextsneeze = data.nextsneeze or self:GetNextSneezTimeInitial()
-    end
 
-
-    if data.enabled then
-        if TheWorld.state.ishayfever then
-            self:Enable()
-        else
-            self.sneezed = false
-            self.nextsneeze = self:GetNextSneezTimeInitial()
+        if data.enabled then
+            if TheWorld.state.ishayfever then
+                self:Enable()
+            else
+                self.sneezed = false
+            end
         end
     end
 end
