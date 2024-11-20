@@ -335,21 +335,12 @@ function InteriorVisitor:UpdateExteriorPos()
         self:RecordMapOnEnteringNewRoom(last_center_ent)
     end
 
-    local grue = self.inst.components.grue or {}
-
     if ent then
         if not self.inst:HasTag("inside_interior") then
             self.inst:AddTag("inside_interior")
         end
         self.inst:PushEvent("enterinterior", {from = last_center_ent, to = ent})
         self.interior_cc = ent.interior_cc
-        grue.pl_no_light_interior = --[[ent:HasInteriorTag("NO_LIGHT") or]] true
-        if grue.pl_no_light_interior then
-            self.inst:AddTag("pl_no_light_interior")
-            grue:Start()
-        else
-            self.inst:RemoveTag("pl_no_light_interior")
-        end
         self:UpdatePlayerAndCreaturePhysics(ent)
 
         -- If we just entered a room from outside
@@ -368,8 +359,6 @@ function InteriorVisitor:UpdateExteriorPos()
             self.inst:RemoveTag("inside_interior")
             self.inst:PushEvent("leaveinterior", {from = last_center_ent, to = nil})
         end
-        grue.pl_no_light_interior = false
-        self.inst:RemoveTag("pl_no_light_interior")
 
         if not interior_spawner:IsInInteriorRegion(x, z) then
             self.last_mainland_pos = {x = x, z = z}

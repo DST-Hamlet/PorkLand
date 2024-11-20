@@ -19,7 +19,8 @@ local function GetLightDrainState(inst)
         return LIGHT_DRAIN_STATE.OUTSIDE
     end
 
-    local is_playerhouse = FindEntity(center, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"playerhouse_light"}, {"INLIMBO"}) ~= nil
+    local interiorID = inst:GetCurrentInteriorID()
+    local is_playerhouse = TheWorld.components.interiorspawner:GetInteriorDefinition(interiorID).dungeon_name:find("playerhouse")
     local is_house = FindEntity(center, TUNING.ROOM_FINDENTITIES_RADIUS, nil, {"safelight"}, {"INLIMBO"}) ~= nil
 
     if is_playerhouse then
