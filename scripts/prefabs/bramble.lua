@@ -143,6 +143,7 @@ local function spikefn()
     inst:AddTag("hostile")
     inst:AddTag("bramble")
     inst:AddTag("soulless")
+    inst:AddTag("veggie")
 
     inst.entity:SetPristine()
 
@@ -320,6 +321,7 @@ local function corefn()
     inst:AddTag("bramble")
     inst:AddTag("bramble_core")
     inst:AddTag("soulless")
+    inst:AddTag("veggie")
 
     inst.entity:SetPristine()
 
