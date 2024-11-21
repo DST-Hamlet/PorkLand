@@ -44,7 +44,7 @@ local function Retarget(inst)
     return FindEntity(inst, RETARGET_DIST, function(ent)
         if inst.components.combat:CanTarget(ent) and ent.components.inventory and (ent:HasTag("player") or ent.prefab == "pigman") then
             local oinks = FindOincs(ent)
-            return oinks
+            return #oinks > 0
         end
 
         return false
@@ -81,6 +81,11 @@ local function OnHitOther(inst, other, damage)
 
         oincs = FindOincs(other)
     end
+end
+
+local function OnStolenItem(inst, victim, item)
+    local vx, vy, vz = item.Physics:GetVelocity()
+    item.components.inventoryitem:Launch(Vector3(vx, vy, vz):GetNormalized() * (12 + math.random() * 3))
 end
 
 local function OnEntitySleep(inst)
@@ -127,6 +132,7 @@ local function fn()
     inst.components.talker.fontsize = 35
     inst.components.talker.font = TALKINGFONT
     inst.components.talker.offset = Vector3(0, -400, 0)
+    inst.components.talker:MakeChatter()
 
     inst:AddTag("character")
     inst:AddTag("pig")
@@ -161,7 +167,7 @@ local function fn()
     inst.components.combat.onhitotherfn = OnHitOther
 
     inst:AddComponent("thief")
-    -- inst.components.thief:SetDropDistance(10.0)
+    inst.components.thief:SetOnStolenFn(OnStolenItem)
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.PIG_HEALTH)

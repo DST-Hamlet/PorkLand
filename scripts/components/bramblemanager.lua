@@ -20,7 +20,7 @@ local VALID_TILES = {
     [WORLD_TILES.DIRT] = true,
 }
 
-local BRAMBLE_MIN_DISTANCE_SQ = 40 * 40
+local BRAMBLE_MIN_DISTANCE_SQ = 80 * 80
 
 --------------------------------------------------------------------------
 --[[ Public Member Variables ]]
@@ -48,7 +48,16 @@ local function SpawnBrambles()
 
     local selected = {}
     local options = deepcopy(_bramble_spots)
-    local num_options = GetTableSize(options) -- options will have holes(nil value)
+    local num_options = #options -- options will have holes(nil value)
+
+    for i = #options, 1, -1 do
+        local to_test = options[i]
+        local x, y, z = Vector3(to_test.x, 0, to_test.z):Get()
+        local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
+        if not VALID_TILES[tile] or not TheWorld.Map:ReverseIsVisualGroundAtPoint(x, y, z) then
+            table.remove(options, i)
+        end
+    end
 
     for i = 1, _bramble_to_spawn do
         -- reached max density, stop spawning more
@@ -59,10 +68,10 @@ local function SpawnBrambles()
         local choice = GetRandomItem(options)
         table.insert(selected, choice)
 
-        for ii = 1, num_options do
-            local to_test = options[i]
+        for ii = #options, 1, -1 do
+            local to_test = options[ii]
             if distsq(choice.x, choice.z, to_test.x, to_test.z) < BRAMBLE_MIN_DISTANCE_SQ then -- minimum distance between 2 brambles is 40
-                table.remove(options, i)
+                table.remove(options, ii)
             end
         end
     end
@@ -99,10 +108,7 @@ end
 
 function self:RegisterBramble(bramble)
     local x, y, z = bramble.Transform:GetWorldPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    if VALID_TILES[tile] and TheWorld.Map:ReverseIsVisualGroundAtPoint(x, y, z) then
-        table.insert(_bramble_spots, {x = x, z = z})
-    end
+    table.insert(_bramble_spots, {x = x, z = z})
     bramble:Remove()
 end
 

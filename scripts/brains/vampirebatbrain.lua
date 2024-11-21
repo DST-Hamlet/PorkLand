@@ -20,7 +20,7 @@ function VampireBatBrain:OnStart()
     local root = PriorityNode(
     {
         WhileNode(
-            function() return not self.inst.sg:HasStateTag("flight") end, "AttackAndWander",
+            function() return not self.inst.sg:HasStateTag("flight") end, "not Flight",
             PriorityNode(
             {
                 BrainCommon.PanicTrigger(self.inst),

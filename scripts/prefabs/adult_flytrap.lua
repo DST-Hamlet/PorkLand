@@ -87,10 +87,13 @@ end
 local function OnTimerDone(inst, data)
     local pt = inst:GetPosition()
     local radius = 15
-    local offset = FindWalkableOffset(pt, math.random() * 2 * PI, radius, 20, true, false) -- try avoiding walls
+    local offset = FindWalkableOffset(pt, math.random() * 2 * PI, radius, 20, true, true, function(position)
+        local px, py, pz = position:Get()
+        return TheWorld.Map:CanPlantAtPoint(px, py, pz) and TheWorld.Map:IsDeployPointClear(position, nil, DEPLOYSPACING_RADIUS[DEPLOYSPACING.DEFAULT])
+    end)
 
     if offset then
-        local ents = TheSim:FindEntities(pt.x, 0, pt.z, radius, {"flytrap"})
+        local ents = TheSim:FindEntities(pt.x, 0, pt.z, radius + 3, {"flytrap"})
         if #ents < 5 then
             local plant = SpawnPrefab("mean_flytrap")
             plant.Transform:SetPosition(pt.x + offset.x, 0, pt.z + offset.z)

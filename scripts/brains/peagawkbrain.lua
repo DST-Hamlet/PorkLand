@@ -44,7 +44,8 @@ end
 
 local function TransformAction(inst)
     if not inst.components.health:IsDead() then
-        if not inst.is_bush then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        if not inst.is_bush and TheWorld.Map:CanPlantAtPoint(x, y, z) then
             local hunter = FindEntity(inst, HIDE_PLAYER_DIST, nil, {'scarytoprey'}, {'notarget'})
             if hunter == nil then
                 return BufferedAction(inst, nil, ACTIONS.PEAGAWK_TRANSFORM)

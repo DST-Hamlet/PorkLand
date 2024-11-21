@@ -34,13 +34,6 @@ local function fn()
     return inst
 end
 
-local function fn_playerhouse()
-    local inst = fn()
-    inst:AddTag("playerhouse_light")
-
-    return inst
-end
-
 local function fn_large()
     local inst = CreateEntity()
 
@@ -69,5 +62,4 @@ local function fn_large()
 end
 
 return Prefab("deco_roomglow", fn, assets, prefabs),
-        Prefab("deco_roomglow_playerhouse", fn_playerhouse, assets, prefabs),
         Prefab("deco_roomglow_large", fn_large, assets, prefabs)

@@ -40,6 +40,14 @@ function Moisture:GetDryingRate(...)
     local x, y, z = self.inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 30, MUST_TAGS)
 
+    local x, y, z = ThePlayer.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, 5)
+    for _, v in pairs(ents) do
+        if v.prefab == "bramble" then
+            print(v)
+        end
+    end
+
     if #ents > 0  then
         rate = rate + TUNING.HYDRO_BONUS_COOL_RATE
     end

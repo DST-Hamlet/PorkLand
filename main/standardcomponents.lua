@@ -325,6 +325,46 @@ function MakeAmphibiousCharacterPhysics(inst, mass, radius)
     inst:AddTag("amphibious")
 end
 
+function ChangeToAmphibiousCharacterPhysics(inst, mass, rad)
+    local phys = inst.Physics
+    if mass then
+        phys:SetMass(mass)
+        phys:SetFriction(0)
+    end
+    inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith((TheWorld.has_ocean and COLLISION.GROUND) or COLLISION.WORLD)
+    inst.Physics:CollidesWith(COLLISION.OBSTACLES)
+    inst.Physics:CollidesWith(COLLISION.SMALLOBSTACLES)
+    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+    inst.Physics:CollidesWith(COLLISION.GIANTS)
+    inst.Physics:ClearCollidesWith(COLLISION.LAND_OCEAN_LIMITS)
+    if rad then
+        phys:SetCapsule(rad, 1)
+    end
+    if mass then
+        phys:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return phys
+end
+
+function ChangeToJunmpingPhysics(inst, mass, rad)
+    local phys = inst.Physics
+    if mass then
+        phys:SetMass(mass)
+        phys:SetFriction(0)
+    end
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith((TheWorld.has_ocean and COLLISION.GROUND) or COLLISION.WORLD)
+    if rad then
+        phys:SetCapsule(rad, 1)
+    end
+    if mass then
+        phys:SetDamping(5) -- 最后执行摩擦力, 否则会出问题. 例如联机版的鬼魂漂移bug
+    end
+    return phys
+end
+
 ---@param land_bank string
 ---@param water_bank string
 ---@param should_silent function|nil
@@ -342,7 +382,9 @@ function MakeAmphibious(inst, land_bank, water_bank, should_silent, on_enter_wat
         end
 
         if inst.DynamicShadow then
-            inst.DynamicShadow:Enable(false)
+            if not (inst.sg and inst.sg:HasStateTag("falling")) then
+                inst.DynamicShadow:Enable(false)
+            end
         end
 
         if inst.components.burnable then
@@ -489,10 +531,24 @@ local _MakeFlyingCharacterPhysics = MakeFlyingCharacterPhysics
 function MakeFlyingCharacterPhysics(inst, mass, rad, ...)
     local physics = _MakeFlyingCharacterPhysics(inst, mass, rad, ...)
     inst.OnLandPhysics = function(inst)
-        ChangeToCharacterPhysics(inst, mass, rad)
+        local newmass = inst.Physics:GetMass()
+        local newrad = inst.Physics:GetRadius()
+        ChangeToCharacterPhysics(inst, newmass, newrad)
     end
     inst.OnRaisePhysics = function(inst)
-        ChangeToFlyingCharacterPhysics(inst, mass, rad)
+        local newmass = inst.Physics:GetMass()
+        local newrad = inst.Physics:GetRadius()
+        ChangeToFlyingCharacterPhysics(inst, newmass, newrad)
+    end
+    return physics
+end
+
+local _MakeGhostPhysics = MakeGhostPhysics
+function MakeGhostPhysics(inst, ...)
+    _MakeGhostPhysics(inst, ...)
+    local physics = inst.Physics
+    if TheWorld:HasTag("porkland") then
+        physics:ClearCollidesWith(COLLISION.LIMITS)
     end
     return physics
 end

@@ -23,15 +23,16 @@ local function DoStep(inst)
         local fx = SpawnPrefab("clouds_bombsplash")
         fx.Transform:SetPosition(x, y - 1, z)
     elseif TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
-        local fx = SpawnPrefab("bombsplash")
-        fx.Transform:SetPosition(x, y, z)
-
-        SpawnWaves(inst, 8, 360, 6)
+        SpawnWaves(inst, 8, 360, 6, nil, nil, nil, true)
 
         inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/volcano/volcano_rock_splash")
 
+        inst.components.groundpounder.numRings = 3
+        inst.components.groundpounder.damageRings = 1
         inst.components.groundpounder.burner = false
-        inst.components.groundpounder.groundpoundfx = nil
+        inst.components.groundpounder.groundpoundfx = "splash_water_drop"
+        inst.components.groundpounder.groundpoundringfx = "bombsplash"
+
         inst.components.groundpounder:GroundPound()
     else
         if IsSurroundedByLand(x, y, z, 2) then

@@ -1,7 +1,7 @@
 AddRoom("BG_painted_base", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.PAINTED,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .15,  -- .26
         distributeprefabs = {
@@ -26,7 +26,7 @@ AddRoom("BG_painted_base", {
 AddRoom("painted_base_nobatcave", {
     colour = {r = 1.0, g = 1.0, b = 1.0, a = 0.3},
     value = WORLD_TILES.PAINTED,
-    tags = {"ExitPiece", "Bramble"},
+    tags = {"ExitPiece"},
     contents = {
         distributepercent = .15,  -- .26
         distributeprefabs = {

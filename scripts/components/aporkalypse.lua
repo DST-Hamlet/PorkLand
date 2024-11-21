@@ -344,6 +344,10 @@ return Class(function(self, inst)
         _world:PushEvent("aporkalypseclocktick", {timeuntilaporkalypse = _timeuntilaporkalypse:value()})
     end
 
+    function self:SpawnHeraldForPlayer(player)
+        SpawnHerald(player)
+    end
+
     --------------------------------------------------------------------------
     --[[ Save/Load ]]
     --------------------------------------------------------------------------

@@ -53,7 +53,7 @@ local function PickupAction(inst)
     local target = OincNearby(inst)
 
     if target
-        and not (inst.components.combat.target and inst.components.combat.target:GetDistanceSqToInst(inst) < 4 * 4) then
+        and not (inst.attacked and inst.components.combat.target and inst.components.combat.target:GetDistanceSqToInst(inst) < 4 * 4) then
         return BufferedAction(inst, target, ACTIONS.PICKUP)
     end
 end
@@ -92,7 +92,7 @@ function PigBanditBrain:OnStart()
         RunAway(self.inst, function(guy) return guy:HasTag("pig") and guy.components.combat and guy.components.combat.target == self.inst end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST),
 
         Wander(self.inst, GetPlayerPos, MAX_WANDER_DIST)
-    }, 0.5)
+    }, 0.25)
 
     self.bt = BT(self.inst, root)
 end

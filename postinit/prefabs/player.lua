@@ -121,19 +121,6 @@ end
 
 local SANITY_MODIFIER_NAME = "PLAYERHOUSE_SANITY"
 
-local function UpdateInteriorSanity(inst, data)
-    if data.from then
-        inst.components.sanity.externalmodifiers:RemoveModifier(data.from, SANITY_MODIFIER_NAME) -- remove sanity from whichever room we were
-    end
-
-    if data.to then -- still inside
-        local interiorID = data.to.interiorID
-        if TheWorld.components.interiorspawner:GetInteriorDefinition(interiorID).dungeon_name:find("playerhouse") then
-            inst.components.sanity.externalmodifiers:SetModifier(data.to, TUNING.SANITY_PLAYERHOUSE_GAIN, SANITY_MODIFIER_NAME)
-        end
-    end
-end
-
 local function UpdateHomeTechBonus(inst, data)
     if data.to and data.to:HasInteriorTag("home_prototyper") then
         inst.components.builder.home_bonus = 2
@@ -143,7 +130,6 @@ local function UpdateHomeTechBonus(inst, data)
 end
 
 local function OnInteriorChange(inst, data)
-    UpdateInteriorSanity(inst, data)
     UpdateHomeTechBonus(inst, data)
     if data.to == nil then
         TheWorld.components.kramped:ForceOnNaughtyAction(inst)

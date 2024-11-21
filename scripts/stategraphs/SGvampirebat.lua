@@ -166,7 +166,6 @@ local states =
         end,
 
         onupdate = function(inst)
-            inst.Physics:SetMotorVelOverride(0, -25, 0)
             local x, y, z = inst.Transform:GetWorldPosition()
             if y <= 0.1 or inst:IsAsleep() then
                 inst.Physics:ClearMotorVelOverride()

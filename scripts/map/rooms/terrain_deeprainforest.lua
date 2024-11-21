@@ -1,7 +1,7 @@
 AddRoom("BG_deeprainforest_base", {
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Canopy"},
     contents = {
         distributepercent = 0.5,
         distributeprefabs = {
@@ -35,7 +35,7 @@ AddRoom("BG_deeprainforest_base", {
 AddRoom("deeprainforest_spider_monkey_nest", {
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Canopy"},
     contents = {
         distributepercent = 0.25,  -- .3
         distributeprefabs = {
@@ -65,7 +65,7 @@ AddRoom("deeprainforest_spider_monkey_nest", {
 AddRoom("deeprainforest_flytrap_grove", {
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Canopy"},
     contents = {
         distributepercent = 0.25,  -- .3
         distributeprefabs = {
@@ -97,7 +97,7 @@ AddRoom("deeprainforest_flytrap_grove", {
 AddRoom("deeprainforest_fireflygrove", {
     colour = {r = 1, g = 1, b = 0.2, a = 0.3},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Canopy"},
     contents = {
         distributepercent = 0.25,  -- 0.25,  -- .3
         distributeprefabs = {
@@ -129,7 +129,7 @@ AddRoom("deeprainforest_fireflygrove", {
 AddRoom("deeprainforest_gas", {
     colour = {r = 1, g = 0.6, b = 0.2, a = 0.3},
     value = WORLD_TILES.GASJUNGLE,
-    tags = {"ExitPiece", "Bramble", "Canopy", "Gas_Jungle"},
+    tags = {"ExitPiece", "Canopy", "Gas_Jungle"},
     contents = {
         distributepercent = 0.45,
         distributeprefabs = {
@@ -154,7 +154,7 @@ AddRoom("deeprainforest_gas", {
 AddRoom("deeprainforest_gas_flytrap_grove", {
     colour = {r = 1, g = 0.6, b = 0.2, a = 0.3},
     value = WORLD_TILES.GASJUNGLE,
-    tags = {"ExitPiece", "Bramble", "Canopy", "Gas_Jungle"},
+    tags = {"ExitPiece", "Canopy", "Gas_Jungle"},
     contents = {
         distributepercent = 0.5,  -- .45
         distributeprefabs = {
@@ -184,7 +184,7 @@ AddRoom("deeprainforest_gas_flytrap_grove", {
 AddRoom("deeprainforest_ruins_entrance", {
     colour = {r = 1, g = 0.1, b = 0.2, a = 0.5},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Canopy"},
     contents = {
         distributepercent = 0.25,  -- .3
         distributeprefabs = {
@@ -215,7 +215,7 @@ AddRoom("deeprainforest_ruins_entrance", {
 AddRoom("deeprainforest_ruins_exit", {
     colour = {r = 0.2, g = 0.1, b = 1, a = 0.5},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Canopy"},
     contents = {
         distributepercent = 0.25,  -- .3
         distributeprefabs = {
@@ -246,7 +246,7 @@ AddRoom("deeprainforest_ruins_exit", {
 AddRoom("deeprainforest_anthill", {
     colour = {r = 1, g = 0, b = 1, a = 0.3},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Canopy"},
     contents = {
         distributepercent = 0.25,  -- .3
         distributeprefabs = {
@@ -277,7 +277,7 @@ AddRoom("deeprainforest_anthill", {
 AddRoom("deeprainforest_mandrakeman", {
     colour = {r = 1, g = 0, b = 1, a = 0.3},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Canopy"},
     contents = {
         distributepercent = 0.25,  -- .3
         distributeprefabs = {
@@ -336,7 +336,7 @@ AddRoom("deeprainforest_anthill_exit", {
 AddRoom("deeprainforest_base_nobatcave", {
     colour = {r = 0.2, g = 0.6, b = 0.2, a = 0.3},
     value = WORLD_TILES.DEEPRAINFOREST,
-    tags = {"ExitPiece", "Bramble", "Canopy"},
+    tags = {"ExitPiece", "Canopy"},
     contents = {
         distributepercent = 0.5,
         distributeprefabs = {
