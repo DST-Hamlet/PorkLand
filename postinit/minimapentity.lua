@@ -69,11 +69,13 @@ end
 local set_is_proxy = MiniMapEntity.SetIsProxy
 function MiniMapEntity:SetIsProxy(is_proxy, ...)
     icon_is_proxy[self] = is_proxy
-    local entity = minimap_entity_to_entity[self]
-    if is_proxy then
-        TheWorld.components.interiormaprevealer:TrackEntity(entity)
-    else
-        TheWorld.components.interiormaprevealer:UntrackEntity(entity)
+    if TheWorld.ismastersim then
+        local entity = minimap_entity_to_entity[self]
+        if is_proxy then
+            TheWorld.components.interiormaprevealer:TrackEntity(entity)
+        else
+            TheWorld.components.interiormaprevealer:UntrackEntity(entity)
+        end
     end
     return set_is_proxy(self, is_proxy, ...)
 end
