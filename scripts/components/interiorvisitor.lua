@@ -58,6 +58,7 @@ local InteriorVisitor = Class(function(self, inst)
         addition = {},
         deletion = {},
     }
+    self.always_shown_minimap_entities = {}
     self.anthill_visited_time = {}
 
     -- self.restore_physics_task = nil
@@ -365,6 +366,97 @@ function InteriorVisitor:UpdateExteriorPos()
         end
         self.exterior_icon = ""
     end
+
+    self:RevealAlwaysShownMinimapEntities()
+end
+
+local function can_reveal_entity(player, entity)
+    local restriction = entity.MiniMapEntity:GetRestriction()
+    return not restriction or player:HasTag(restriction)
+end
+
+function InteriorVisitor:RevealAlwaysShownMinimapEntities()
+    if not self.center_ent then
+        if not IsTableEmpty(self.always_shown_minimap_entities) then
+            self.always_shown_minimap_entities = {}
+            SendModRPCToClient(GetClientModRPC("PorkLand", "always_shown_interior_map"), self.inst.userid, ZipAndEncodeString({ { type = "clear" } }))
+        end
+        return
+    end
+
+    local sync_actions = {}
+
+    for ent in pairs(self.always_shown_minimap_entities) do
+        if not TheWorld.components.interiormaprevealer.tracking_entities[ent] then
+            table.insert(sync_actions, {
+                type = "delete",
+                data = self.always_shown_minimap_entities[ent].id,
+            })
+            self.always_shown_minimap_entities[ent] = nil
+        end
+    end
+
+    local interior_group = self.center_ent:GetGroupId()
+
+    for ent in pairs(TheWorld.components.interiormaprevealer.tracking_entities) do
+        local network_id = ent.Network and ent.Network:GetNetworkID()
+        -- Some mods have entities with minimap icon but without network
+        if network_id and not (ent.prefab == "globalmapicon" and ent._target and ent._target.prefab == "interiorworkblank") then
+            local pos = ent:GetPosition()
+            local center = TheWorld.components.interiorspawner:GetInteriorCenter(pos)
+            local current_data = self.always_shown_minimap_entities[ent]
+            if center and center ~= self.center_ent and interior_group == center:GetGroupId() and can_reveal_entity(self.inst, ent) then
+                local icon = ent.MiniMapEntity:GetIcon()
+                if icon ~= nil and icon ~= "" then
+                    local offset = pos - center:GetPosition()
+                    local priority = ent.MiniMapEntity:GetPriority() or 0
+                    local coord_x, coord_y = center:GetCoordinates()
+                    local has_changes = false
+                    if not current_data then
+                        current_data = {
+                            id = network_id,
+                            coord_x = coord_x,
+                            coord_y = coord_y,
+                            offset_x = offset.x,
+                            offset_z = offset.z,
+                            icon = icon,
+                            priority = priority,
+                        }
+                        self.always_shown_minimap_entities[ent] = current_data
+                        has_changes = true
+                    elseif current_data.offset_x ~= offset.x
+                        or current_data.offset_z ~= offset.z
+                        or current_data.coord_x ~= coord_x
+                        or current_data.coord_y ~= coord_y
+                        or current_data.icon ~= icon
+                        or current_data.priority ~= priority then
+
+                        current_data.offset_x = offset.x
+                        current_data.offset_z = offset.z
+                        current_data.coord_x = coord_x
+                        current_data.coord_y = coord_y
+                        current_data.icon = icon
+                        current_data.priority = priority
+                        has_changes = true
+                    end
+                    if has_changes then
+                        table.insert(sync_actions, {
+                            type = "replace",
+                            data = current_data,
+                        })
+                    end
+                end
+            elseif current_data then
+                table.insert(sync_actions, {
+                    type = "delete",
+                    data = network_id,
+                })
+                self.always_shown_minimap_entities[ent] = nil
+            end
+        end
+    end
+
+    SendModRPCToClient(GetClientModRPC("PorkLand", "always_shown_interior_map"), self.inst.userid, ZipAndEncodeString(sync_actions))
 end
 
 function InteriorVisitor:OnSave()

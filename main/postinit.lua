@@ -191,7 +191,7 @@ end
 modimport("postinit/recipe")
 modimport("postinit/equipslotutil")
 modimport("postinit/stategraph")
-modimport("postinit/minimapentity") -- Make sure this loads before entityscript for PorkLandOnMiniMapEntityRemove
+modimport("postinit/minimapentity")
 modimport("postinit/entityscript")
 modimport("postinit/bufferedaction")
 modimport("postinit/animstate")

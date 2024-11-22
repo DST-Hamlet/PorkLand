@@ -118,6 +118,7 @@ local function common_postinit(inst)
     inst:AddComponent("interiorquaker")
     inst:AddComponent("worldsoundmanager")
     inst:AddComponent("clientundertile")
+    inst:AddComponent("interiormaprevealer")
 end
 
 local function master_postinit(inst)

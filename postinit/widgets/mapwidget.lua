@@ -256,6 +256,17 @@ local function UpdateTileWidgetPositionScale(widget, scale)
     widget:SetPosition(WorldPosToScreenPos(widget.position_offset * INTERIOR_MINIMAP_POSITION_SCALE))
 end
 
+local function CalculateOffset(current_center, target_x, target_y)
+    -- Convert the grid coordinates to positions
+    -- as a compromise, we don't know the exact position,
+    -- just use the current room's size as an estimate
+    local current_x, current_y = current_center:GetCoordinates()
+    local width, depth = current_center:GetSize()
+    local offset_x = (target_x - current_x) * (width + INTERIOR_MINIMAP_DOOR_SPACE * 2)
+    local offset_y = (target_y - current_y) * (depth + INTERIOR_MINIMAP_DOOR_SPACE * 2)
+    return Vector3(-offset_y, 0, offset_x)
+end
+
 function MapWidget:ApplyInteriorMinimap()
     self:ClearInteriorMinimap()
     self:ClearExteriorDecorations()
@@ -263,25 +274,38 @@ function MapWidget:ApplyInteriorMinimap()
     local interiorvisitor = self.owner.replica.interiorvisitor
     local data = interiorvisitor.interior_map
     local position = self.owner:GetPosition()
+    local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+    if not center then
+        return
+    end
     local current_room_id = TheWorld.components.interiorspawner:PositionToIndex(position)
+
     -- {
     --     rooms: {
     --         [room_id: number]: {
-    --         tile: Image,
-    --         frame: Image,
-    --         icons: { widget: Image, id: number, priority: number }[],
-    --         offset: Vector3,
+    --             tile: Image,
+    --             frame: Image,
+    --             icons: { widget: Image, id: number, priority: number }[],
+    --             offset: Vector3,
     --         }
     --     },
     --     doors: {
     --         [door_id: string]: Widget: {
-    --              lock: Image
-    --          }
+    --             lock: Image
+    --         }
+    --     },
+    --     always_shown_icons: {
+    --         [id: number]: {
+    --             widget: Image,
+    --             priority: number,
+    --             offset: Vector3,
+    --         }
     --     },
     -- }
     self.interior_map_widgets = {
         rooms = {},
         doors = {},
+        always_shown_icons = {},
     }
 
     -- This is so that it works on for ghost players
@@ -290,23 +314,13 @@ function MapWidget:ApplyInteriorMinimap()
     local starting_room_id = current_room_id
     local starting_offset = Vector3(0, 0, 0)
     if not data[current_room_id] then
-        local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
-        if not center then
-            return
-        end
         local group = interiorvisitor.interior_map_groups[center:GetGroupId()]
         if not group then
             return
         end
         local _, first_room_data = next(group)
         starting_room_id = first_room_data.interior_id
-        local current_x, current_y = center:GetCoordinates()
-        -- Convert the grid coordinates to positions
-        -- as a compromise, we don't know the exact position,
-        -- just use the first room's size as an estimate
-        local offset_x = (first_room_data.coord_x - current_x) * (first_room_data.width + INTERIOR_MINIMAP_DOOR_SPACE * 2)
-        local offset_y = (first_room_data.coord_y - current_y) * (first_room_data.depth + INTERIOR_MINIMAP_DOOR_SPACE * 2)
-        starting_offset = Vector3(-offset_y, 0, offset_x)
+        starting_offset = CalculateOffset(center, first_room_data.coord_x, first_room_data.coord_y)
     end
 
     BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, starting_room_id, starting_offset)
@@ -323,6 +337,29 @@ function MapWidget:ApplyInteriorMinimap()
             self:AddChild(icon_data.widget)
         end
     end
+
+    local values = {}
+    for id, icon_data in pairs(interiorvisitor.always_shown_interior_map) do
+        local atlas = get_minimap_atlas(icon_data.icon)
+        if atlas then
+            local room_offset = CalculateOffset(center, icon_data.coord_x, icon_data.coord_y)
+            local offset = room_offset + Vector3(icon_data.offset_x, 0, icon_data.offset_z)
+            local icon = Image(atlas, icon_data.icon)
+            icon.position_offset = offset
+            local new_data = {
+                widget = icon,
+                offset = offset,
+                priority = icon_data.priority
+            }
+            table.insert(values, new_data)
+            self.interior_map_widgets.always_shown_icons[id] = new_data
+        end
+    end
+    table.sort(values, sort_priority)
+    for _, v in ipairs(values) do
+        v.widget = self:AddChild(v.widget)
+    end
+
     -- Hide the normal minimap
     self.img:Hide()
     self.interior_frontend:MoveToFront()
@@ -348,6 +385,9 @@ function MapWidget:ClearInteriorMinimap()
             for _, icon_data in ipairs(room.icons) do
                 icon_data.widget:Kill()
             end
+        end
+        for _, icon_data in pairs(self.interior_map_widgets.always_shown_icons) do
+            icon_data.widget:Kill()
         end
         self.interior_map_widgets = nil
     end
@@ -381,11 +421,83 @@ function MapWidget:ClearExteriorDecorations()
     self.exterior_decorations = nil
 end
 
+function MapWidget:RefreshAlwaysShownInteriorMinimap(actions)
+    if not self.interior_map_widgets then
+        return
+    end
+
+    local position = self.owner:GetPosition()
+    local center = TheWorld.components.interiorspawner:GetInteriorCenter(position)
+    if not center then
+        return
+    end
+
+    local has_new_icons = false
+    for _, action in ipairs(actions) do
+        if action.type == "delete" then
+            if self.interior_map_widgets.always_shown_icons[action.data] then
+                self.interior_map_widgets.always_shown_icons[action.data].widget:Kill()
+                self.interior_map_widgets.always_shown_icons[action.data] = nil
+            end
+        elseif action.type == "replace" then
+            local icon_data = action.data
+            local atlas = get_minimap_atlas(icon_data.icon)
+            if atlas then
+                local room_offset = CalculateOffset(center, icon_data.coord_x, icon_data.coord_y)
+                local offset = room_offset + Vector3(icon_data.offset_x, 0, icon_data.offset_z)
+                if self.interior_map_widgets.always_shown_icons[action.data.id] then
+                    self.interior_map_widgets.always_shown_icons[action.data.id].widget:SetTexture(atlas, icon_data.icon)
+                    self.interior_map_widgets.always_shown_icons[action.data.id].widget.position_offset = offset
+                    self.interior_map_widgets.always_shown_icons[action.data.id].offset = offset
+                    self.interior_map_widgets.always_shown_icons[action.data.id].priority = icon_data.priority
+                else
+                    local icon = self:AddChild(Image(atlas, icon_data.icon))
+                    icon.position_offset = offset
+                    local new_data = {
+                        widget = icon,
+                        offset = offset,
+                        priority = icon_data.priority
+                    }
+                    has_new_icons = true
+                    self.interior_map_widgets.always_shown_icons[action.data.id] = new_data
+                end
+            end
+        elseif action.type == "clear" then
+            for _, icon_data in pairs(self.interior_map_widgets.always_shown_icons) do
+                icon_data.widget:Kill()
+            end
+            self.interior_map_widgets.always_shown_icons = {}
+        end
+    end
+    if has_new_icons then
+        self:UpdateInteriorMapIconPriorities()
+    end
+end
+
 function MapWidget:ToggleInteriorMap()
     if self.interior_map_widgets then
         self:ApplyExteriorDecorations()
     else
         self:ApplyInteriorMinimap()
+    end
+end
+
+function MapWidget:UpdateInteriorMapIconPriorities()
+    for _, door in pairs(self.interior_map_widgets.doors) do
+        door:MoveToFront()
+    end
+    for _, room in pairs(self.interior_map_widgets.rooms) do
+        for _, icon_data in ipairs(room.icons) do
+            icon_data.widget:MoveToFront()
+        end
+    end
+    local values = {}
+    for _, v in ipairs(self.interior_map_widgets.always_shown_icons) do
+        table.insert(values, v)
+    end
+    table.sort(values, sort_priority)
+    for _, v in ipairs(values) do
+        v.widget:MoveToFront()
     end
 end
 
@@ -408,14 +520,7 @@ function MapWidget:UpdateInteriorWidgets()
         local new_icons, has_new_icons = DiffWidget(self, current_data, local_interior_map_override, current_room_id)
         current_data.icons = new_icons
         if has_new_icons then
-            for _, door in pairs(self.interior_map_widgets.doors) do
-                door:MoveToFront()
-            end
-            for _, room in pairs(self.interior_map_widgets.rooms) do
-                for _, icon_data in ipairs(room.icons) do
-                    icon_data.widget:MoveToFront()
-                end
-            end
+            self:UpdateInteriorMapIconPriorities()
         end
         local_interior_map_override.applied = true
     end
@@ -431,6 +536,10 @@ function MapWidget:UpdateInteriorWidgets()
     end
     for door_id, door in pairs(self.interior_map_widgets.doors) do
         UpdateInteriorWidgetPositionScale(door, scale * INTERIOR_DOOR_SCALE)
+    end
+
+    for id, icon_data in pairs(self.interior_map_widgets.always_shown_icons) do
+        UpdateInteriorWidgetPositionScale(icon_data.widget, scale)
     end
 end
 
