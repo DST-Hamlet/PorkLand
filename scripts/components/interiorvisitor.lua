@@ -59,7 +59,7 @@ local InteriorVisitor = Class(function(self, inst)
         deletion = {},
     }
     self.always_shown_minimap_entities = {}
-    self.anthill_visited_time = {}
+    self.room_visited_time = {}
 
     -- self.restore_physics_task = nil
 
