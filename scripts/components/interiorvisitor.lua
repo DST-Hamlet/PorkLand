@@ -219,7 +219,7 @@ function InteriorVisitor:ValidateAndMigrateMapData()
                 map_data.coord_y = y
             end
             if not self.room_visited_time[id] then
-                self.room_visited_time = TheWorld.components.worldtimetracker:GetTime()
+                self.room_visited_time[id] = TheWorld.components.worldtimetracker:GetTime()
             end
         end
     end
