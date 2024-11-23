@@ -427,8 +427,7 @@ local function GenerateMaze(inst)
     RefreshDoors(inst)
     Earthquake(inst)
 
-    inst.maze_reset_count = inst.maze_reset_count + 1
-
+    inst.maze_reset_time = TheWorld.components.worldtimetracker:GetTime()
     for _, player in ipairs(AllPlayers) do
         local interiorvisitor = player.components.interiorvisitor
         if interiorvisitor then
@@ -452,7 +451,7 @@ local function GetStatus(inst)
 end
 
 local function OnSave(inst, data)
-    data.maze_reset_count = inst.maze_reset_count
+    data.maze_reset_time = inst.maze_reset_time
     data.interiorID = inst.interiorID
     if inst.rooms then
         data.rooms = inst.rooms
@@ -474,8 +473,8 @@ local function OnLoad(inst, data)
         return
     end
 
-    if data.maze_reset_count then
-        inst.maze_reset_count = data.maze_reset_count
+    if data.maze_reset_time then
+        inst.maze_reset_time = data.maze_reset_time
     end
 
     if data.interiorID then
@@ -574,9 +573,8 @@ local function makefn(is_entrance)
                 end
             end)
             inst:DoPeriodicTask(TUNING.TOTAL_DAY_TIME / 3, inst.GenerateMaze)
-
             TheWorld.anthill_entrance = inst
-            inst.maze_reset_count = 0
+            inst.maze_reset_time = 0
         end
 
         return inst
