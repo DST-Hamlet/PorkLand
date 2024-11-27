@@ -141,6 +141,7 @@ local function fn()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
@@ -149,6 +150,9 @@ local function fn()
     inst.AnimState:SetBank("ro_bin_gem")
     inst.AnimState:SetBuild("ro_bin_gem")
     inst.AnimState:PlayAnimation("idle_loop", true)
+
+    inst.MiniMapEntity:SetPriority(5)
+    inst.MiniMapEntity:SetIcon("ro_bin_gem.tex")
 
     inst:AddTag("ro_bin_gizzard_stone")
     inst:AddTag("irreplaceable")
