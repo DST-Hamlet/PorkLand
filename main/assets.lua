@@ -278,6 +278,10 @@ PrefabFiles = {
     "sunkenprefab",
 
     "pl_bat",
+
+    "falloff_fx",
+    "cloud_fx",
+    "group_parent"
 }
 
 Assets = {
@@ -302,6 +306,10 @@ Assets = {
     -- interior map toggle button and arrows
     Asset("ATLAS", "images/hud/pl_mapscreen_widgets.xml"),
     Asset("IMAGE", "images/hud/pl_mapscreen_widgets.tex"),
+
+    -- falloff
+    Asset("IMAGE", "levels/tiles/black_falloff.tex"),
+    Asset("FILE", "levels/tiles/black_falloff.xml"),
 
     -- hud
     Asset("ATLAS", "images/overlays/fx3.xml"), -- poison, boat_over
@@ -398,6 +406,9 @@ Assets = {
     -- Waterfall
     Asset("SHADER", "shaders/anim_waterfall.ksh"),
     Asset("SHADER", "shaders/anim_waterfall_corner.ksh"),
+
+    -- Vertical
+    Asset("SHADER", "shaders/anim_vertical.ksh"),
 
     -- Interior MiniMap
     Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),

@@ -69,6 +69,36 @@ function FollowCamera:ApplyInteriorCamera()
     )
 end
 
+function FollowCamera:GetRealPos()
+    local pitch = self.pitch * DEGREES
+    local heading = self.heading * DEGREES
+    local cos_pitch = math.cos(pitch)
+    local cos_heading = math.cos(heading)
+    local sin_heading = math.sin(heading)
+    local dx = -cos_pitch * cos_heading
+    local dy = -math.sin(pitch)
+    local dz = -cos_pitch * sin_heading
+
+    --screen horizontal offset
+    local xoffs, zoffs = 0, 0
+    if self.currentscreenxoffset ~= 0 then
+        --FOV is relative to screen height
+        --hoffs is in units of screen heights
+        --convert hoffs to xoffs and zoffs in world space
+        local hoffs = 2 * self.currentscreenxoffset / RESOLUTION_Y
+        local magic_number = 1.03 -- plz... halp.. if u can figure out what this rly should be
+        local screen_heights = math.tan(self.fov * .5 * DEGREES) * self.distance * magic_number
+        xoffs = -hoffs * sin_heading * screen_heights
+        zoffs = hoffs * cos_heading * screen_heights
+    end
+
+    return Vector3(
+        self.currentpos.x - dx * self.distance + xoffs,
+        self.currentpos.y - dy * self.distance,
+        self.currentpos.z - dz * self.distance + zoffs
+    )
+end
+
 function FollowCamera:RestoreOutsideInteriorCamera()
     if self.pl_old_headingtarget then
         self.headingtarget = self.pl_old_headingtarget
@@ -83,7 +113,13 @@ function FollowCamera:Apply(...)
         self:ApplyInteriorCamera()
         return
     end
-    return _Apply(self, ...)
+    local ret = {_Apply(self, ...)}
+
+    if TheWorld and TheWorld.components.cloudmanager then
+        TheWorld.components.cloudmanager:UpdatePos()
+    end
+
+    return unpack(ret)
 end
 
 local _ZoomOut = FollowCamera.ZoomOut

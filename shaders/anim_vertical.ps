@@ -68,57 +68,39 @@ uniform vec4 OCEAN_WORLD_EXTENTS;
 
 void main()
 {
-    vec4 colour; //基础纹理
-    vec4 colour_2; //表层水流纹理
-
-    float tex_x = mod(PS_TEXCOORD.x - TIMEPARAMS.x * 0.125, 1.0); // 纹理平移
-    float tex_x_2 = mod(PS_TEXCOORD.x - TIMEPARAMS.x * 0.125 * 0.5, 1.0); // 表层水流纹理平移，速度更慢
-    float tex_y = PS_TEXCOORD.y;
-    vec3 new_texcoord = vec3(tex_x, tex_y, PS_TEXCOORD.z);
-    vec3 new_texcoord_2 = vec3(tex_x_2, tex_y, PS_TEXCOORD.z);
+    vec4 colour;
 
 #if defined( TRIPLE_ATLAS )
-    if( new_texcoord.z < 0.5 )
+    if( PS_TEXCOORD.z < 0.5 )
     {
-        colour.rgba = texture2D( SAMPLER[0], new_texcoord.xy );
-        colour_2.rgba = texture2D( SAMPLER[0], new_texcoord_2.xy );
+        colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
     }
-    else if( new_texcoord.z < 1.5 )
+    else if( PS_TEXCOORD.z < 1.5 )
     {
-        colour.rgba = texture2D( SAMPLER[1], new_texcoord.xy );
-        colour_2.rgba = texture2D( SAMPLER[1], new_texcoord_2.xy );
+        colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
     }
     else
     {
-        colour.rgba = texture2D( SAMPLER[5], new_texcoord.xy );
-        colour_2.rgba = texture2D( SAMPLER[5], new_texcoord_2.xy );
+        colour.rgba = texture2D( SAMPLER[5], PS_TEXCOORD.xy );
     }
 #else
-    if( new_texcoord.z < 0.5 )
+    if( PS_TEXCOORD.z < 0.5 )
     {
-        colour.rgba = texture2D( SAMPLER[0], new_texcoord.xy );
-        colour_2.rgba = texture2D( SAMPLER[0], new_texcoord_2.xy );
+        colour.rgba = texture2D( SAMPLER[0], PS_TEXCOORD.xy );
     }
     else
     {
-        colour.rgba = texture2D( SAMPLER[1], new_texcoord.xy );
-        colour_2.rgba = texture2D( SAMPLER[1], new_texcoord_2.xy );
+        colour.rgba = texture2D( SAMPLER[1], PS_TEXCOORD.xy );
     }
 #endif
 
-float alpha_val = 0.7; // 表层水流纹理透明度
-
-if (colour_2.a < 0.95)
-{
-    alpha_val = 0.35; // 降低表层水流半透明部分的权重影响
-}
-
-colour.rgb = colour_2.rgb * alpha_val + colour.rgb * (1.0 - alpha_val);
-
-if (colour.a < 0.95)
-{
-    colour.a = 1. + PS_POS.y * 0.5; // 世界坐标越低的纹理越偏白色
-}
+    // if(FLOAT_PARAMS.y > 0.0)
+    // {
+    // 	if(PS_POS.y < FLOAT_PARAMS.x)
+    // 	{
+    // 		discard;
+    // 	}
+    // }
 
 if (PS_POS.y < -4.)
 {
@@ -126,15 +108,6 @@ if (PS_POS.y < -4.)
     {
         colour.a *= 5. + PS_POS.y; // 世界坐标越低的纹理越透明
     }
-}
-
-if (colour.a > 1.0)
-{
-    colour.a = 1.0;
-}
-if (colour.a < 0.0)
-{
-    colour.a = 0.0;
 }
 
 #if defined ( FADE_OUT )

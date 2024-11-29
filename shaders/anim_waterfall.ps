@@ -120,12 +120,21 @@ if (colour.a < 0.95)
     colour.a = 1. + PS_POS.y * 0.5; // 世界坐标越低的纹理越偏白色
 }
 
-if (PS_POS.y < -2.)
+if (PS_POS.y < -4.)
 {
     if (colour.a > 0.)
     {
-        colour.a *= 3. + PS_POS.y; // 世界坐标越低的纹理越透明
+        colour.a *= 5. + PS_POS.y; // 世界坐标越低的纹理越透明
     }
+}
+
+if (colour.a > 1.0)
+{
+    colour.a = 1.0;
+}
+if (colour.a < 0.0)
+{
+    colour.a = 0.0;
 }
 
 #if defined ( FADE_OUT )
@@ -153,11 +162,11 @@ if (PS_POS.y < -2.)
 
         vec3 light = CalculateLightingContribution();
 
-        if (PS_POS.y < -2.)
+        if (PS_POS.y < -4.)
         {
-            light.r *= 3. + PS_POS.y; // 减少低坐标透明纹理的光照贴图的透明度
-            light.g *= 3. + PS_POS.y;
-            light.b *= 3. + PS_POS.y;
+            light.r *= 5. + PS_POS.y; // 减少低坐标透明纹理的光照贴图的透明度
+            light.g *= 5. + PS_POS.y;
+            light.b *= 5. + PS_POS.y;
         }
 
         gl_FragColor.rgb *= max( light.rgb, vec3( LIGHT_OVERRIDE, LIGHT_OVERRIDE, LIGHT_OVERRIDE ) );

@@ -137,7 +137,9 @@ function InteriorVisitor:OnUpdate()
                 ambientlighting:Pl_Refresh()
             end
 
-            TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/cloud/fog_cloud_interior.tex")) -- disable clouds
+            if TheWorld and TheWorld.components.cloudmanager then
+                TheWorld.components.cloudmanager:SetEnabled(false)
+            end
         end
 
         if room_center_ent:HasInteriorMinimap() then
@@ -162,7 +164,9 @@ function InteriorVisitor:OnUpdate()
                 ambientlighting:Pl_Refresh()
             end
 
-            TheWorld.WaveComponent:SetWaveTexture(resolvefilepath("images/cloud/fog_cloud.tex")) -- enable clouds again
+            if TheWorld and TheWorld.components.cloudmanager then
+                TheWorld.components.cloudmanager:SetEnabled(true)
+            end
         end
     end
 end

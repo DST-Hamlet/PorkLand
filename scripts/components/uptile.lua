@@ -3,8 +3,13 @@ local Uptile = Class(function(self, inst)
     self.tilesfixed =
     {
         pigruins = false,
-        lilypond = false,
+        lilypond_version_1 = false,
+        mud_falloff = false,
     }
+
+    self.inst:DoStaticTaskInTime(0, function()
+        self:FixAllTiles()
+    end)
 end)
 
 local adjacent = {
@@ -51,13 +56,13 @@ function Uptile:FixAllTiles(force) -- 请确保在世界第一次加载时执行
                     end
                 end
 
-                if not self.tilesfixed["lilypond"] then
+                if not self.tilesfixed["lilypond_version_1"] then
                     if tile == WORLD_TILES.LILYPOND then
                         for i, v in ipairs(adjacent) do
                             local neibor_tile = map:GetTile(x + v.x, y + v.z)
                             if neibor_tile and neibor_tile == WORLD_TILES.IMPASSABLE then
                                 local waterfall = SpawnPrefab("waterfall_lilypond")
-                                waterfall.Transform:SetPosition(tx + v.x * 2, _, tz + v.z * 2)
+                                waterfall.Transform:SetPosition(tx + v.x * 3.5, _, tz + v.z * 3.5)
                                 waterfall._paramrotation:set(-v.angle)
                             end
                         end
@@ -70,8 +75,21 @@ function Uptile:FixAllTiles(force) -- 请确保在世界第一次加载时执行
                                 and neibor_tile_z and neibor_tile_z ~= WORLD_TILES.LILYPOND then
 
                                 local waterfall = SpawnPrefab("waterfall_lilypond_corner")
-                                waterfall.Transform:SetPosition(tx + v.x * 2, _, tz + v.z * 2)
+                                waterfall.Transform:SetPosition(tx + v.x * 3.5, _, tz + v.z * 3.5)
                                 waterfall._paramrotation:set(- v.angle - 90)
+                            end
+                        end
+                    end
+                end
+
+                if not self.tilesfixed["mud_falloff"] then
+                    if TileGroupManager:IsLandTile(tile) then
+                        for i, v in ipairs(adjacent) do
+                            local neibor_tile = map:GetTile(x + v.x, y + v.z)
+                            if neibor_tile and not TileGroupManager:IsLandTile(neibor_tile) then
+                                local falloff = SpawnPrefab("falloff_fx")
+                                falloff.Transform:SetPosition(tx + v.x * 2, _, tz + v.z * 2)
+                                falloff._paramrotation:set(-v.angle + 90)
                             end
                         end
                     end
@@ -79,7 +97,8 @@ function Uptile:FixAllTiles(force) -- 请确保在世界第一次加载时执行
             end
         end
         self.tilesfixed["pigruins"] = true
-        self.tilesfixed["lilypond"] = true
+        self.tilesfixed["lilypond_version_1"] = true
+        self.tilesfixed["mud_falloff"] = true
     end
 end
 

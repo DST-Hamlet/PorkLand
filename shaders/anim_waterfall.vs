@@ -36,9 +36,9 @@ void init() // 猪咪手算顶点核心科技
 	UVOffset[3] = 3.016573; // 1
 	UVOffset[4] = 4.103293; // 1.25
 	UVOffset[5] = 6.436693; // 1.5
-	UVOffset[6] = 8.936693; // 2
+	UVOffset[6] = 9.936693; // 2
 	UVOffset[7] = 11.436693; // 2
-	UVOffset[6] = 13.936693; // 2
+	UVOffset[8] = 13.936693; // 2
 }
 
 void main()
@@ -68,6 +68,7 @@ void main()
 	int waterfall_index = int(offset.x * 0.25 + 0.1); // 根据顶点位置得到对应的顶点序号
 	float old_x = offset.x;
 	offset += WaterfallOffset[waterfall_index];
+	offset += vec3(- 1.5, 0., 0.);
 	offset -= vec3(old_x, 0., 0.);
 	
 	vec3 offset_trans_3 = offset * rot;
