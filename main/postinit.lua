@@ -50,6 +50,7 @@ local component_posts = {
     "lighter",
     "locomotor",
     "lootdropper",
+    "maprecorder",
     "moisture",
     "oceancolor",
     "oldager",

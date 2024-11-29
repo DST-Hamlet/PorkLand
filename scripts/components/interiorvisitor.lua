@@ -59,7 +59,7 @@ local InteriorVisitor = Class(function(self, inst)
         deletion = {},
     }
     self.always_shown_minimap_entities = {}
-    self.anthill_visited_time = {}
+    self.room_visited_time = {}
 
     -- self.restore_physics_task = nil
 
@@ -148,12 +148,10 @@ end
 function InteriorVisitor:RecordMap(id, data, no_send)
     self.interior_map[id] = data
 
-    if is_anthill_room(id) then
-        if data then
-            self.anthill_visited_time[id] = TheWorld.anthill_entrance.maze_reset_count
-        else
-            self.anthill_visited_time[id] = nil
-        end
+    if data then
+        self.room_visited_time[id] = TheWorld.components.worldtimetracker:GetTime()
+    else
+        self.room_visited_time[id] = nil
     end
 
     if no_send then
@@ -192,7 +190,7 @@ function InteriorVisitor:RecordAnthillDoorMapReset(no_send)
         if is_anthill_room(id) then
             if id == (self.center_ent and self.center_ent.interiorID) then
                 self:RecordMap(id, data, true)
-            elseif not (self.anthill_visited_time[id] and self.anthill_visited_time[id] >= TheWorld.anthill_entrance.maze_reset_count) then
+            elseif self.room_visited_time[id] < anthill_entrance.maze_reset_time then
                 for _, door in ipairs(data.doors) do
                     door.unknown = true
                     door.hidden = false
@@ -211,13 +209,18 @@ function InteriorVisitor:ValidateAndMigrateMapData()
         local center = TheWorld.components.interiorspawner:GetInteriorCenter(id)
         if not center or (map_data.uuid and map_data.uuid ~= center.uuid) then
             self.interior_map[id] = nil
-            self.anthill_visited_time[id] = nil
-        elseif not map_data.group_id then
-            local group_id = center:GetGroupId()
-            local x, y = center:GetCoordinates()
-            map_data.group_id = group_id
-            map_data.coord_x = x
-            map_data.coord_y = y
+            self.room_visited_time[id] = nil
+        else
+            if not map_data.group_id then
+                local group_id = center:GetGroupId()
+                local x, y = center:GetCoordinates()
+                map_data.group_id = group_id
+                map_data.coord_x = x
+                map_data.coord_y = y
+            end
+            if not self.room_visited_time[id] then
+                self.room_visited_time[id] = TheWorld.components.worldtimetracker:GetTime()
+            end
         end
     end
     self:RecordAnthillDoorMapReset(true)
@@ -467,7 +470,7 @@ function InteriorVisitor:OnSave()
         last_mainland_pos = self.last_mainland_pos,
         exterior_icon = self.exterior_icon,
         interior_map = self.interior_map,
-        anthill_visited_time = self.anthill_visited_time,
+        room_visited_time = self.room_visited_time,
     }
 end
 
@@ -484,8 +487,8 @@ function InteriorVisitor:OnLoad(data)
     if data.interior_map then
         self.interior_map = data.interior_map
     end
-    if data.anthill_visited_time then
-        self.anthill_visited_time = data.anthill_visited_time
+    if data.room_visited_time then
+        self.room_visited_time = data.room_visited_time
     end
 
     for id, map_data in pairs(self.interior_map) do -- 转换旧存档的数据格式
