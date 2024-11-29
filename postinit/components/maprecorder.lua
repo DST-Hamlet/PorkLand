@@ -1,3 +1,4 @@
+local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local MapRecorder = require("components/maprecorder")
@@ -53,3 +54,18 @@ function MapRecorder:OnLoad(data, ...)
     return on_load(self, data, ...)
 end
 
+AddComponentPostInit("maprecorder", function(self)
+    self.record_map_on_room_removal = function(_, data)
+        if self.interior_map_data then
+            self.interior_map_data.interior_map[data.id] = nil
+            self.interior_map_data.room_visited_time[data.id] = nil
+        end
+    end
+    self.inst:ListenForEvent("room_removed", self.record_map_on_room_removal, TheWorld)
+end)
+
+local on_remove_from_entity = MapRecorder.OnRemoveFromEntity or function() end
+function MapRecorder:OnRemoveFromEntity(...)
+    self.inst:RemoveEventCallback("room_removed", self.record_map_on_room_removal, TheWorld)
+    return on_remove_from_entity(self, ...)
+end
