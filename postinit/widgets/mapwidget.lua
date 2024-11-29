@@ -76,6 +76,8 @@ local function get_door_id(current_room_id, target_interior_id)
     end
 end
 
+local INACTIVE_TINT = GREY
+
 -- For data's structure, see scripts/prefabs/interiorworkblank.lua
 -- also note that interior_id is added from scripts/components/interiorvisitor_replica.lua when receiving the data from server
 -- {
@@ -89,9 +91,10 @@ end
 --     icons: { [id: number]: { icon: string, offset_x: number, offset_z: number, priority: number } }
 --     doors: { target_interior: interiorID, direction: keyof DIRECTION_NAMES }[]
 -- }
-local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_room_id, offset)
-    visited_rooms[current_room_id] = true
-    local room = data[current_room_id]
+local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, room_id, offset, current_room_id)
+    visited_rooms[room_id] = true
+    local room = data[room_id]
+    local is_current_room = room_id == current_room_id
 
     -- Fallback to mini_floor_wood
     local minimap_floor_texture = room.minimap_floor_texture == "" and "mini_floor_wood" or room.minimap_floor_texture
@@ -101,9 +104,15 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     room_tile.tile_scale_y = room.depth / INTERIOR_MINIMAP_TILE_SCALE
     room_tile.inst.ImageWidget:SetEffect(resolvefilepath("shaders/ui_fillmode.ksh"))
     room_tile:SetEffectParams(0, 0, 0, 0)
+    if not is_current_room then
+        room_tile:SetTint(unpack(INACTIVE_TINT))
+    end
 
     local room_frame = Image("interior_minimap/interior_minimap.xml", "pl_frame_" .. SizeToString(room.width, room.depth) .. ".tex")
     room_frame.position_offset = offset
+    if not is_current_room then
+        room_frame:SetTint(unpack(INACTIVE_TINT))
+    end
 
     local room_widgets = {
         tile = room_tile,
@@ -111,12 +120,15 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
         icons = {},
         offset = offset,
     }
-    widgets.rooms[current_room_id] = room_widgets
+    widgets.rooms[room_id] = room_widgets
 
     for id, icon_data in pairs(room.icons) do
         local atlas = get_minimap_atlas(icon_data.icon)
         if atlas then
             local icon = Image(atlas, icon_data.icon)
+            if not is_current_room then
+                icon:SetTint(unpack(INACTIVE_TINT))
+            end
             icon.position_offset = offset + Vector3(icon_data.offset_x, 0, icon_data.offset_z)
             table.insert(room_widgets.icons, {widget = icon, id = id, priority = icon_data.priority})
         end
@@ -126,30 +138,41 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
     for _, door_data in ipairs(room.doors) do
         local direction = DIRECTION_VECTORS[door_data.direction]
 
-        local door_id = get_door_id(current_room_id, door_data.target_interior)
+        local door_id = get_door_id(room_id, door_data.target_interior)
         if not widgets.doors[door_id] then
+            local connected_to_current_room = is_current_room or door_data.target_interior == current_room_id
             local door_icon_offset
             if direction.x ~= 0 then
                 door_icon_offset = direction * (room.depth / 2 + INTERIOR_MINIMAP_DOOR_SPACE)
             else
                 door_icon_offset = direction * (room.width / 2 + INTERIOR_MINIMAP_DOOR_SPACE)
             end
-            local door_icon = Widget("InteriorDoor")
-            door_icon:AddChild(Image("interior_minimap/interior_minimap.xml", direction.x ~= 0 and "pl_interior_passage4.tex" or "pl_interior_passage3.tex"))
-            door_icon.lock = door_icon:AddChild(Image("interior_minimap/interior_minimap.xml", "passage_blocked.tex"))
-            door_icon.lock:ScaleToSize(128, 128)
-            door_icon.position_offset = offset + door_icon_offset
+            local door_icon_container = Widget("InteriorDoor")
+            local door_icon = Image("interior_minimap/interior_minimap.xml", direction.x ~= 0 and "pl_interior_passage4.tex" or "pl_interior_passage3.tex")
+            if not connected_to_current_room then
+                door_icon:SetTint(unpack(INACTIVE_TINT))
+            end
+            door_icon_container:AddChild(door_icon)
+            door_icon_container.lock = door_icon_container:AddChild(Image("interior_minimap/interior_minimap.xml", "passage_blocked.tex"))
+            door_icon_container.lock:ScaleToSize(128, 128)
+            if not connected_to_current_room then
+                door_icon_container.lock:SetTint(unpack(INACTIVE_TINT))
+            end
+            door_icon_container.position_offset = offset + door_icon_offset
             if door_data.hidden then
-                door_icon:Hide()
+                door_icon_container:Hide()
             end
             if not door_data.disabled then
-                door_icon.lock:Hide()
+                door_icon_container.lock:Hide()
             end
             if door_data.unknown then
-                door_icon.unknown = door_icon:AddChild(Image("interior_minimap/interior_minimap.xml", "passage_unknown.tex"))
-                door_icon.unknown:ScaleToSize(128, 128)
+                door_icon_container.unknown = door_icon_container:AddChild(Image("interior_minimap/interior_minimap.xml", "passage_unknown.tex"))
+                door_icon_container.unknown:ScaleToSize(128, 128)
+                if not connected_to_current_room then
+                    door_icon_container.unknown:SetTint(unpack(INACTIVE_TINT))
+                end
             end
-            widgets.doors[door_id] = door_icon
+            widgets.doors[door_id] = door_icon_container
         end
 
         if not visited_rooms[door_data.target_interior] then
@@ -161,7 +184,7 @@ local function BuildInteriorMinimapLayout(widgets, data, visited_rooms, current_
                 else
                     target_interior_offset = direction * (room.width / 2 + target_room.width / 2 + INTERIOR_MINIMAP_DOOR_SPACE * 2)
                 end
-                BuildInteriorMinimapLayout(widgets, data, visited_rooms, door_data.target_interior, offset + target_interior_offset)
+                BuildInteriorMinimapLayout(widgets, data, visited_rooms, door_data.target_interior, offset + target_interior_offset, current_room_id)
             end
         end
     end
@@ -323,7 +346,7 @@ function MapWidget:ApplyInteriorMinimap()
         starting_offset = CalculateOffset(center, first_room_data.coord_x, first_room_data.coord_y)
     end
 
-    BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, starting_room_id, starting_offset)
+    BuildInteriorMinimapLayout(self.interior_map_widgets, data, {}, starting_room_id, starting_offset, current_room_id)
 
     for _, room in pairs(self.interior_map_widgets.rooms) do
         self:AddChild(room.tile)
