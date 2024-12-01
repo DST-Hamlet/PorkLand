@@ -58,25 +58,29 @@ function Uptile:FixAllTiles(force) -- 请确保在世界第一次加载时执行
 
                 if not self.tilesfixed["lilypond_version_1"] then
                     if tile == WORLD_TILES.LILYPOND then
+                        local has_adjacent_waterfall = false
                         for i, v in ipairs(adjacent) do
                             local neibor_tile = map:GetTile(x + v.x, y + v.z)
                             if neibor_tile and neibor_tile == WORLD_TILES.IMPASSABLE then
                                 local waterfall = SpawnPrefab("waterfall_lilypond")
                                 waterfall.Transform:SetPosition(tx + v.x * 3.5, _, tz + v.z * 3.5)
                                 waterfall._paramrotation:set(-v.angle)
+                                has_adjacent_waterfall = true
                             end
                         end
-                        for i, v in ipairs(diagonal) do
-                            local neibor_tile = map:GetTile(x + v.x, y + v.z)
-                            local neibor_tile_x = map:GetTile(x + v.x, y)
-                            local neibor_tile_z = map:GetTile(x, y + v.z)
-                            if neibor_tile and neibor_tile == WORLD_TILES.IMPASSABLE
-                                and neibor_tile_x and neibor_tile_x ~= WORLD_TILES.LILYPOND
-                                and neibor_tile_z and neibor_tile_z ~= WORLD_TILES.LILYPOND then
+                        if has_adjacent_waterfall then
+                            for i, v in ipairs(diagonal) do
+                                local neibor_tile = map:GetTile(x + v.x, y + v.z)
+                                local neibor_tile_x = map:GetTile(x + v.x, y)
+                                local neibor_tile_z = map:GetTile(x, y + v.z)
+                                if neibor_tile and neibor_tile == WORLD_TILES.IMPASSABLE
+                                    and neibor_tile_x and neibor_tile_x ~= WORLD_TILES.LILYPOND
+                                    and neibor_tile_z and neibor_tile_z ~= WORLD_TILES.LILYPOND then
 
-                                local waterfall = SpawnPrefab("waterfall_lilypond_corner")
-                                waterfall.Transform:SetPosition(tx + v.x * 3.5, _, tz + v.z * 3.5)
-                                waterfall._paramrotation:set(- v.angle - 90)
+                                    local waterfall = SpawnPrefab("waterfall_lilypond_corner")
+                                    waterfall.Transform:SetPosition(tx + v.x * 3.5, _, tz + v.z * 3.5)
+                                    waterfall._paramrotation:set(- v.angle - 90)
+                                end
                             end
                         end
                     end

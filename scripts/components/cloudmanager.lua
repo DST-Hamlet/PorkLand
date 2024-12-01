@@ -11,12 +11,14 @@ end)
 
 function CloudManager:Init()
     self.clouds_parent = SpawnPrefab("group_parent")
+    local random_offset_z = 0
     for i = 1, self.num do
         local cloud = SpawnPrefab("cloud_fx")
         self.clouds[i] = cloud
 
         cloud.entity:SetParent(self.clouds_parent.entity)
-        cloud.Transform:SetPosition((i - self.num / 2) * self.cloud_dist, 0, math.random() * 16 - 8)
+        random_offset_z = random_offset_z + 4 + math.random() * 8
+        cloud.Transform:SetPosition((i - self.num / 2) * self.cloud_dist, 0, random_offset_z)
     end
 end
 

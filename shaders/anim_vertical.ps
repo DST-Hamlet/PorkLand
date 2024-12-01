@@ -102,11 +102,11 @@ void main()
     // 	}
     // }
 
-if (PS_POS.y < -4.)
+if (PS_POS.y < -3.)
 {
     if (colour.a > 0.)
     {
-        colour.a *= 5. + PS_POS.y; // 世界坐标越低的纹理越透明
+        colour.a *= 4. + PS_POS.y; // 世界坐标越低的纹理越透明
     }
 }
 
@@ -135,11 +135,11 @@ if (PS_POS.y < -4.)
 
         vec3 light = CalculateLightingContribution();
 
-        if (PS_POS.y < -4.)
+        if (PS_POS.y < -3.)
         {
-            light.r *= 5. + PS_POS.y; // 减少低坐标透明纹理的光照贴图的透明度
-            light.g *= 5. + PS_POS.y;
-            light.b *= 5. + PS_POS.y;
+            light.r *= 4. + PS_POS.y; // 减少低坐标透明纹理的光照贴图的透明度
+            light.g *= 4. + PS_POS.y;
+            light.b *= 4. + PS_POS.y;
         }
 
         gl_FragColor.rgb *= max( light.rgb, vec3( LIGHT_OVERRIDE, LIGHT_OVERRIDE, LIGHT_OVERRIDE ) );
