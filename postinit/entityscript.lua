@@ -249,6 +249,14 @@ function EntityScript:GetAdjectivedName(...)
     return _GetAdjectivedName(self, ...)
 end
 
+local _Remove = EntityScript.Remove
+function EntityScript:Remove(...)
+    if self.SoundEmitter then
+        self.SoundEmitter:KillAllSounds()
+    end
+    return _Remove(self, ...)
+end
+
 function EntityScript:IsInSameIsland(target)
     if not (target and target:IsValid()) then
         return false

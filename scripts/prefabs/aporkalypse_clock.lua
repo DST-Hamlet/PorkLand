@@ -146,6 +146,9 @@ local function DoPostInit(inst)
 end
 
 local function RegistClocks(inst)
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
+    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/base_LP", "base_sound")
+
     for i, v in ipairs(clock_prefabs) do
         local clock = TheSim:FindFirstEntityWithTag(v)
         if clock then
@@ -178,9 +181,6 @@ local function aporkalypse_clock_fn()
     inst.AnimState:SetBank("totem")
     inst.AnimState:SetBuild("aporkalypse_totem")
     inst.AnimState:PlayAnimation("idle_loop", true)
-
-    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/totem_LP", "totem_sound")
-    inst.SoundEmitter:PlaySound("porkland_soundpackage/common/objects/aporkalypse_clock/base_LP", "base_sound")
 
     inst._rewind_mult = net_float(inst.GUID, "_rewind_mult", "rewind_mult_dirty")
     inst._clock_spawndirty = net_event(inst.GUID, "_clock_spawndirty", "clock_spawndirty")

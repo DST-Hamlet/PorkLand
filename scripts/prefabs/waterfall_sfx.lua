@@ -17,7 +17,9 @@ local function waterfall_sfx()
             local dist = math.sqrt(inst:GetDistanceSqToInst(ThePlayer))
             if dist > 40 then
                 inst.SoundEmitter:KillSound("waterfall")
-            elseif not inst.SoundEmitter:PlayingSound("waterfall") then
+            elseif not inst.SoundEmitter:PlayingSound("waterfall")
+                and inst.target_waterfall and inst.target_waterfall:IsValid() then
+
                 inst.SoundEmitter:PlaySound("porkland_soundpackage/common/waterfall/waterfall", "waterfall")
                 inst.SoundEmitter:SetVolume("waterfall", 0.3)
             end
