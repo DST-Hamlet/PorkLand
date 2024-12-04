@@ -15,6 +15,8 @@ local function fn()
 
     MakeObstaclePhysics(inst, 3, 24)
 
+    inst:SetDeployExtraSpacing(3.5)
+
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("tree_pillar.tex")
 
