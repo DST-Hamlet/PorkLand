@@ -14,9 +14,9 @@ assert(TheWorld.ismastersim, "HippoSpawner should not exist on client")
 --------------------------------------------------------------------------
 
 local SPAWN_DELAY = 60
-local FIND_HIPPO_MATE_RANGE = 32
-local FIND_HIPPO_MEMBER_RANGE = 40
-local SPAWN_HIPPO_RADIUS = 24
+local FIND_HIPPO_MATE_RANGE = 28
+local FIND_HIPPO_MEMBER_RANGE = 32
+local SPAWN_HIPPO_RADIUS = 20
 local MIN_HIPPO_DISTANCE = 16
 local MIN_PLAYER_DISTANCE = 64 * 1.2 -- this is our "outer" sleep radius
 local HIPPO_TIMERNAME = "HIPPO_REPRODUCE_TIMER_"

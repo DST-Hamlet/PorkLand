@@ -29,7 +29,7 @@ local WANDER_TIMES_DUSK = {
     randwaittime = 1,
 }
 local AVOID_HIPPO_DIST = 16
-local AVOID_HIPPO_STOP = 24
+local AVOID_HIPPO_STOP = 20
 
 local function not_land(position)
     local px, py, pz = position:Get()
