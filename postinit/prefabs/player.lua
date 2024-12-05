@@ -193,43 +193,6 @@ AddPlayerPostInit(function(inst)
         debug.setupvalue(_RegisterActivePlayerEventListeners, i, OnGotNewItem)
     end
 
-    local REPLACE_ANIMS =
-    {
-        -- ["atk_pre"] = "atk_pre_old",
-        -- ["atk_lag"] = "atk_lag_old",
-        -- ["atk"] = "atk_old",
-        ["hit"] = "hit_old",
-        ["hit_goo"] = "hit_goo_old",
-    }
-
-    local wilson_bank_hash = inst.AnimState:GetBankHash()
-
-    local _AnimState = inst.AnimState
-    local AnimState = setmetatable({}, {__index = function(t, k)
-        if k == "PlayAnimation" then
-            return function(t, animname, ...)
-                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
-                    return _AnimState:PlayAnimation(REPLACE_ANIMS[animname], ...)
-                else
-                    return _AnimState:PlayAnimation(animname, ...)
-                end
-            end
-        elseif k == "PushAnimation" then
-            return function(t, animname, ...)
-                if _AnimState:GetBankHash() == wilson_bank_hash and REPLACE_ANIMS[animname] then
-                    return _AnimState:PushAnimation(REPLACE_ANIMS[animname], ...)
-                else
-                    return _AnimState:PushAnimation(animname, ...)
-                end
-            end
-        end
-
-        return function(t, ...)
-            return _AnimState[k](_AnimState, ...)
-        end
-    end})
-    rawset(inst, "AnimState", AnimState)
-
     inst.components.lightwatcherproxy:UseHighPrecision()
 
     if not TheWorld.ismastersim then
