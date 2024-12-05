@@ -5,15 +5,6 @@ local assets =
     Asset("ANIM", "anim/ui_krampusbag_2x5.zip")
 }
 
-local RESISTANCES =
-{
-    "_combat",
-    "explosive",
-    "quakedebris",
-    "caveindebris",
-    "trapdamage",
-}
-
 local function SetSoundparam(inst)
     local param = Remap(inst.components.fueled.currentfuel, 0, inst.components.fueled.maxfuel, 0, 1)
     inst.SoundEmitter:SetParameter("vortex", "intensity", param)
@@ -151,9 +142,7 @@ local function fn()
     inst:AddComponent("resistance")
     inst.components.resistance:SetShouldResistFn(ShouldResistFn)
     inst.components.resistance:SetOnResistDamageFn(OnResistDamage)
-    for _, tag in pairs(RESISTANCES) do
-        inst.components.resistance:AddResistance(tag)
-    end
+    inst.components.resistance.alltype_tags = true
     inst.components.resistance:SetNoTags({"shadow"}) -- doesn't protect from shadow creatures
 
     inst:AddComponent("fueled")

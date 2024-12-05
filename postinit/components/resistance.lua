@@ -17,5 +17,8 @@ function Resistance:HasResistance(attacker, weapon)
         end
     end
 
+    if self.alltype_tags then
+        return true
+    end
     return _HasResistance(self, attacker, weapon)
 end

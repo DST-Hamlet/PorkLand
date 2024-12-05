@@ -263,6 +263,7 @@ local pl_fx = {
         bank = "vortex_cloak_fx",
         build = "vortex_cloak_fx",
         anim = "idle",
+        sound = "dontstarve/creatures/together/stalker/shield",
     },
     {
         name = "int_ceiling_dust_fx",
