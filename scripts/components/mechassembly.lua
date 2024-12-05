@@ -61,10 +61,10 @@ function MechAssembly:Dissemble()
         local part = SpawnPrefab(spawn_data.prefab)
         part.Transform:SetPosition(spawn_data.xpos, 0, spawn_data.zpos)
         part.Transform:SetRotation(spawn_data.rotation)
-        part.sg:GoToState("separate")
         part.spawned = true
+        part.sg:GoToState("separate")
 
-        part:DoTaskInTime(math.random() * 0.6,function()
+        part:DoTaskInTime(1 + math.random() * 0.6,function()
             part:ActiveRobot(20 * math.random() + 20)
         end)
     end

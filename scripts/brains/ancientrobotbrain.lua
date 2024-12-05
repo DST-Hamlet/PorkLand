@@ -12,10 +12,8 @@ local MERGE_SCAN = 10
 local ASSEMBLE_DIST = 15
 
 local function Deactivate(inst)
-    if not inst:HasTag("dormant") then
-        inst.components.combat.target = nil
-        inst:PushEvent("deactivate")
-    end
+    inst.components.combat.target = nil
+    inst:PushEvent("deactivate")
 end
 
 local function GetFaceTargetFn(inst)
@@ -84,36 +82,30 @@ local function ShouldAssemble(inst)
     local x, y, z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, ASSEMBLE_DIST, {'ancient_robot'})
     local mergetarget = nil
-    local dist = 9999
-    local hulk = nil
+    local targetdist = 9999
+    local mergetarget_hulk = nil
+    local targetdist_hulk = 9999
     for _, ent in ipairs(ents) do
         -- a valid merge target is when there is only one active bot. And a hulk should have priority
         if ent ~= inst and ent:IsValid() then
-            if ent:HasTag("ancient_robots_assembly") or (ent:HasTag("dormant") and not hulk) then
-                if ent:HasTag("ancient_robots_assembly") then
-                    if not hulk then
-                        mergetarget = nil
-                        dist = 9999
-                    end
-                    hulk = true
-                end
+            if ent:HasTag("ancient_robots_assembly") or (not ent.components.timer:TimerExists("discharge")) then
                 local testdist = inst:GetDistanceSqToInst(ent)
-                if ent:HasTag("ancient_robots_assembly") or testdist < MERGE_SCAN*MERGE_SCAN then
-                    if testdist < dist then
+                if ent:HasTag("ancient_robots_assembly") then
+                    if testdist < targetdist_hulk then
+                        mergetarget_hulk = ent
+                        targetdist_hulk = testdist
+                    end
+                elseif testdist < MERGE_SCAN*MERGE_SCAN then
+                    if testdist < targetdist then
                         mergetarget = ent
-                        dist = testdist
+                        targetdist = testdist
                     end
                 end
-            end
-            if not ent:HasTag("ancient_robots_assembly") and not ent:HasTag("dormant") then
-                -- abort the merge
-                inst.mergetarget = nil
-                return false
             end
         end
     end
 
-    inst.mergetarget = mergetarget
+    inst.mergetarget = mergetarget_hulk or mergetarget or nil
     if inst.mergetarget then
         return true
     end
@@ -130,7 +122,7 @@ end)
 function AncientRobotBrain:OnStart()
     local root = PriorityNode(
     {
-        IfNode(function() return self.inst.wantstodeactivate or self.inst:HasTag("dormant") end, "Should deactivate",
+        IfNode(function() return self.inst.wantstodeactivate or not self.inst.components.timer:TimerExists("discharge") end, "Should deactivate",
             DoAction(self.inst, function() return Deactivate(self.inst) end, "Deactivate", true)),
 
         WhileNode(function() return self.inst.components.timer:TimerExists("discharge") and not self.inst.sg:HasStateTag("leapattack") end, "Is activated and not jumping",

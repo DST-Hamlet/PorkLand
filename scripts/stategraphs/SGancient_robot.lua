@@ -55,7 +55,7 @@ AncientRobot.Events.OnAttacked = function()
             inst.components.lootdropper:SpawnLootPrefab("iron", Vector3(x, y, z))
             inst.hits = 0
 
-            if inst:HasTag("dormant") then
+            if inst.sg:HasStateTag("dormant") then
                 if math.random() < 0.6 then
                     inst:ActiveRobot(18 + math.random() * 4)
                 end
@@ -64,7 +64,7 @@ AncientRobot.Events.OnAttacked = function()
             end
         end
 
-        if inst:HasTag("dormant") and not inst.sg:HasStateTag("busy") then
+        if inst.sg:HasStateTag("dormant") and not inst.sg:HasStateTag("busy") then
             inst.sg:GoToState("hit_dormant")
         end
     end)
@@ -78,7 +78,9 @@ end
 
 AncientRobot.Events.OnDeactivate = function()
     return EventHandler("deactivate", function(inst, data)
-        if not inst:HasTag("dormant") then
+        if inst.sg:HasStateTag("busy") and not inst:IsAsleep() then
+            inst.wantstodeactivate = true
+        elseif not inst.sg:HasStateTag("dormant") then
             inst.sg:GoToState("deactivate")
         end
     end)
@@ -123,6 +125,8 @@ AncientRobot.States.AddIdle = function(states, is_leg)
             else
                 inst.AnimState:PlayAnimation("full")
             end
+
+            inst.wantstodeactivate = false
         end,
 
         timeline = idle_dormant_timeline,
@@ -275,7 +279,7 @@ end
 AncientRobot.States.AddDeactivate = function(states, timeline, onenter_sound)
     table.insert(states, State{
         name = "deactivate",
-        tags = {"busy", "deactivating"},
+        tags = {"busy", "deactivating", "dormant"},
 
         onenter = function(inst, pushanim)
             inst.components.locomotor:Stop()
@@ -283,12 +287,6 @@ AncientRobot.States.AddDeactivate = function(states, timeline, onenter_sound)
             inst.SoundEmitter:PlaySound(onenter_sound)
             inst:RemoveTag("hostile")
             inst:RemoveTag("monster")
-            inst:StopBrain()
-
-            if not inst:HasTag("dormant") then
-                inst.wantstodeactivate = nil
-                inst:AddTag("dormant")
-            end
         end,
 
         timeline = timeline,

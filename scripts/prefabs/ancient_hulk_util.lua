@@ -224,7 +224,6 @@ local function DropAncientRobots(inst)
         part_prop.spawntask:Cancel()
         part_prop.spawntask = nil
         part_prop.spawned = true
-        part_prop:AddTag("dormant")
         part_prop.sg:GoToState("idle_dormant")
 
         local target_pos = nil

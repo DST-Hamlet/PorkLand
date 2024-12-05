@@ -273,7 +273,6 @@ local states =
                     head.spawntask:Cancel()
                     head.spawntask = nil
                     head.spawned = true
-                    head:AddTag("dormant")
                     head.Transform:SetPosition(x, y + 8, z)
                     head.sg:GoToState("fall")
                 end)
