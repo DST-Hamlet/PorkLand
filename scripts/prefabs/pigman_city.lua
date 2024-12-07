@@ -42,6 +42,7 @@ local FEMALE = "FEMALE"
 
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 30
+local SPREAD_TARGET_DIST = 12
 
 local function GetSpeechType(inst, speech)
     return inst.talkertype and STRINGS[speech][inst.talkertype]
@@ -516,10 +517,15 @@ local function OnAttacked(inst, data)
     if attacker then
         inst.components.combat:SetTarget(attacker)
 
-        if not inst:HasTag("guards_called") then
-            inst:AddTag("guards_called")
-            if inst:HasTag("shopkeep") or inst:HasTag("pigqueen") then
-                spawn_guard_tasks(inst, data.attacker)
+        if inst:HasTag("guard") then
+            inst.components.combat:ShareTarget(attacker, SPREAD_TARGET_DIST, function(dude)
+                return dude:HasTag("pig") and (dude:HasTag("guard") or not attacker:HasTag("pig"))
+            end, MAX_TARGET_SHARES)
+        else
+            if not (attacker:HasTag("pig") and attacker:HasTag("guard")) then
+                inst.components.combat:ShareTarget(attacker, SPREAD_TARGET_DIST, function(dude)
+                    return dude:HasTag("pig")
+                end, MAX_TARGET_SHARES)
             end
         end
     end
@@ -528,19 +534,16 @@ end
 local function OnNewTarget(inst, data)
     local target = data.target
     if target then
-
         if inst:HasTag("guard") then
             if target.components.uniqueidentity then
                 inst.angry_at_criminals[target.components.uniqueidentity:GetID()] = 10
             end
-            inst.components.combat:ShareTarget(target, SHARE_TARGET_DIST, function(dude)
-                return dude:HasTag("pig") and (dude:HasTag("guard") or not target:HasTag("pig"))
-            end, MAX_TARGET_SHARES)
-        else
-            if not (target:HasTag("pig") and target:HasTag("guard")) then
-                inst.components.combat:ShareTarget(target, SHARE_TARGET_DIST, function(dude)
-                    return dude:HasTag("pig")
-                end, MAX_TARGET_SHARES)
+        end
+
+        if not inst:HasTag("guards_called") then
+            inst:AddTag("guards_called")
+            if inst:HasTag("shopkeep") or inst:HasTag("pigqueen") then
+                spawn_guard_tasks(inst, target)
             end
         end
     end
@@ -585,7 +588,23 @@ local function NormalRetargetFn(inst)
 end
 
 local function NormalKeepTargetFn(inst, target)
-    return inst.components.combat:CanTarget(target) and (not target.LightWatcher or target.LightWatcher:IsInLight())
+    local should_keep = inst.components.combat:CanTarget(target) and (not target.LightWatcher or target.LightWatcher:IsInLight())
+        and inst:GetDistanceSqToInst(target) < TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST * TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST
+
+    if should_keep then
+        inst.components.combat:ShareTarget(target, SPREAD_TARGET_DIST, function(dude)
+            return dude:HasTag("pig") and (dude:HasTag("guard") or not target:HasTag("pig"))
+        end, MAX_TARGET_SHARES)
+    end
+
+    return should_keep
+end
+
+local function ShouldAggro(inst, target)
+    if inst:GetDistanceSqToInst(target) < TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST * TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST then
+        return true
+    end
+    return false
 end
 
 local function NormalShouldSleep(inst)
@@ -609,6 +628,7 @@ local function SetNormalPig(inst, brain_id)
     inst.components.combat:SetDefaultDamage(TUNING.PIG_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.PIG_ATTACK_PERIOD)
     inst.components.combat:SetKeepTargetFunction(NormalKeepTargetFn)
+    inst.components.combat:SetShouldAggroFn(ShouldAggro)
     inst.components.locomotor.runspeed = TUNING.PIG_RUN_SPEED
     inst.components.locomotor.walkspeed = TUNING.PIG_WALK_SPEED
 
