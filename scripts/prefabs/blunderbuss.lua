@@ -112,6 +112,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("blunderbuss")
+    inst:AddTag("gun")
 
     inst.entity:SetPristine()
 

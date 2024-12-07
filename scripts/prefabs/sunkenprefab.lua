@@ -66,6 +66,7 @@ local function fn()
 
     inst:AddTag("sunkencontainer")
     inst:AddTag("fishable")
+    inst:AddTag("NOBLOCK")
 
     inst._sunkenvisual = net_entity(inst.GUID, "_sunkenvisual", "sunkenvisualdirty")
 

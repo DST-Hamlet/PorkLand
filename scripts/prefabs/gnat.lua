@@ -93,7 +93,7 @@ end
 
 local function CanBeAttack(inst, data)
     return inst.components.freezable:IsFrozen()
-        or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon", "blowdart", "blowpipe", "slingshot", "thrown"})))
+        or (data.weapon and (data.weapon:HasOneOfTags({"rangedweapon", "blowdart", "blowpipe", "slingshot", "thrown", "gun"})))
 end
 
 local function CanBeHit(inst, data)

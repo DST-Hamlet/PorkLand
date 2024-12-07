@@ -151,6 +151,7 @@ local function fn()
     inst.components.inventoryitem.canbepickedup = false
     inst.components.inventoryitem.canbepickedupalive = false
     inst.components.inventoryitem.nobounce = true
+    inst.components.inventoryitem:SetSinks(true)
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.RABID_BEETLE_DAMAGE)
