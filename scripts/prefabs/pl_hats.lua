@@ -243,7 +243,6 @@ local function MakeHat(name)
         inst:AddTag("bat_hat")
         inst:AddTag("clearfog")
         inst:AddTag("nightvision")
-        inst:AddTag("no_sewing")
         inst:AddTag("venting")
     end
 
