@@ -415,7 +415,7 @@ SortAfter("trawlnet", "fishingrod", "TOOLS")
 
 -- CHARACTER ---
 
-AddRecipe2("disguisehat", {Ingredient("twigs", 2), Ingredient("pigskin", 1), Ingredient("beardhair", 1)}, TECH.NONE, {builder_tag = "monster"}, {"CHARACTER", "CLOTHING"})
+AddRecipe2("disguisehat", {Ingredient("twigs", 2), Ingredient("pigskin", 1), Ingredient("beardhair", 1)}, TECH.NONE, {builder_tag = "playermonster"}, {"CHARACTER", "CLOTHING"})
 SortBefore("disguisehat", "spidereggsack", "CHARACTER")
 
 AddRecipe2("poisonbalm", {Ingredient("livinglog", 1), Ingredient("venomgland", 1)}, TECH.NONE, {builder_tag = "plantkin"}, {"CHARACTER", "RESTORATION"})
