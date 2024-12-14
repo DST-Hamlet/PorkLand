@@ -328,7 +328,7 @@ function Map:CanDeployRecipeAtPoint(pt, recipe, rot, player, ...)
     end
 
     local x, y, z = pt:Get()
-    if not self:ReverseIsVisualGroundAtPoint(x, y, z) then
+    if not self:ReverseIsVisualGroundAtPoint(x, y, z) or self:IsCloseToWater(x, y, z, 2.99) then
         return false
     end
 
