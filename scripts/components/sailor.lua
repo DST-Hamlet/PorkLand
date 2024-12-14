@@ -149,7 +149,7 @@ function Sailor:OnUpdate(dt)
         if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
             self.last_pos = pos
         elseif TheWorld.Map:ReverseIsVisualGroundAtPoint(x, y, z) then
-            local target_pos = Vector3(TheWorld.Map:GetTileCenterPoint(x, y, z))
+            local target_pos = Vector3(x, y, z)
             self:Disembark(target_pos, nil, true, self.last_pos)
         end
     else
