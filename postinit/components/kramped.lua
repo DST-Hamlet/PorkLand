@@ -26,4 +26,11 @@ AddComponentPostInit("kramped", function(self, inst)
             New_OnNaughtyAction(0, _activeplayers[player])
         end
     end
+
+    self.OnNaughtyAction = function(self, how_naughty, player)
+        local _activeplayers = ToolUtil.GetUpvalue(self.OnUpdate, "_activeplayers")
+        if _activeplayers[player] then
+            New_OnNaughtyAction(how_naughty, _activeplayers[player])
+        end
+    end
 end)
