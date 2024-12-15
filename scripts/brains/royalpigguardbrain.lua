@@ -147,6 +147,9 @@ local function checknotangry(inst)
             and inst.angry_at_criminals[ent.components.uniqueidentity:GetID()] > 0 then
             return false
         end
+        if ent:HasTag("sneaky") then
+            return false
+        end
     end
     return true
 end

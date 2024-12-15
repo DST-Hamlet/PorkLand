@@ -534,12 +534,6 @@ end
 local function OnNewTarget(inst, data)
     local target = data.target
     if target then
-        if inst:HasTag("guard") then
-            if target.components.uniqueidentity then
-                inst.angry_at_criminals[target.components.uniqueidentity:GetID()] = 10
-            end
-        end
-
         if not inst:HasTag("guards_called") then
             inst:AddTag("guards_called")
             if inst:HasTag("shopkeep") or inst:HasTag("pigqueen") then
@@ -579,7 +573,7 @@ local function NormalRetargetFn(inst)
                 inst:SayLine(inst:GetSpeechType("CITY_PIG_GUARD_TALK_ANGRY_PLAYER"))
             end
 
-            return (guy:HasTag("monster") or angry_at_guy) and
+            return (guy:HasTag("monster") or guy:HasTag("bandit") or angry_at_guy) and
                        guy.components.health and not guy.components.health:IsDead() and
                        inst.components.combat:CanTarget(guy) and
                        not (inst.components.follower.leader ~= nil and guy:HasTag("abigail"))
@@ -595,6 +589,12 @@ local function NormalKeepTargetFn(inst, target)
         inst.components.combat:ShareTarget(target, SPREAD_TARGET_DIST, function(dude)
             return dude:HasTag("pig") and (dude:HasTag("guard") or not target:HasTag("pig"))
         end, MAX_TARGET_SHARES)
+
+        if inst:HasTag("guard") then
+            if not target:HasTag("sneaky") and target.components.uniqueidentity then
+                inst.angry_at_criminals[target.components.uniqueidentity:GetID()] = 10
+            end
+        end
     end
 
     return should_keep

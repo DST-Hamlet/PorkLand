@@ -137,7 +137,7 @@ local function fn()
     inst:AddTag("character")
     inst:AddTag("pig")
     inst:AddTag("scarytoprey")
-    inst:AddTag("monster") -- this is a cheap way to get the pigs to attack on sight.
+    inst:AddTag("bandit")
     inst:AddTag("sneaky")
 
     inst.entity:SetPristine()
