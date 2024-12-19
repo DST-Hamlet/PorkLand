@@ -50,7 +50,7 @@ function KeepOnPassable:FallingTest(type)
         return
     end
 
-    if self.lastsavetime and GetTime() - self.lastsavetime < 1 then
+    if type ~= "squish" and self.lastsavetime and GetTime() - self.lastsavetime < 1 then
         local damage = self.inst.components.health.currenthealth * 10
         self.inst.components.health:DoDelta(-damage, nil, type, nil, nil, true)
     else
