@@ -47,7 +47,7 @@ function Uptile:FixAllTiles(force) -- 请确保在世界第一次加载时执行
                 local node = TheWorld.topology.nodes[node_index]
                 if node and node.tags then
                     if not self.tilesfixed["pigruins"] then
-                        if tile == WORLD_TILES.PIGRUINS and not tile_under then
+                        if not tile_under and table.contains(node.tags, "Canopy") then
                             local tilevalue = table.contains(node.tags, "Gas_Jungle") and WORLD_TILES.GASJUNGLE or WORLD_TILES.DEEPRAINFOREST
                             undertile:SetTileUnderneath(x, y, tilevalue)
                         elseif tile == WORLD_TILES.PIGRUINS_NOCANOPY then
@@ -109,11 +109,17 @@ end
 function Uptile:OnLoad(data)
     if data ~= nil then
         if data.tilesfixed ~= nil then
-            for k, v in pairs(tilesfixed) do
+            for k, v in pairs(data.tilesfixed) do
                 self.tilesfixed[k] = data.tilesfixed[k]
             end
         end
     end
+end
+
+function Uptile:OnSave()
+    return {
+        tilesfixed = self.tilesfixed
+    }
 end
 
 return Uptile

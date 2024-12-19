@@ -6,7 +6,7 @@ local assets =
 
 local function OnSave(inst, data)
     if inst._paramrotation then
-        data.paramrotation_version_1 = inst._paramrotation:value()
+        data.paramrotation_version_2 = inst._paramrotation:value()
     end
 end
 
@@ -16,8 +16,8 @@ local function OnLoad(inst, data)
         return
     end
 
-    if data.paramrotation_version_1 then
-        inst._paramrotation:set(data.paramrotation_version_1)
+    if data.paramrotation_version_2 then
+        inst._paramrotation:set(data.paramrotation_version_2)
     else
         inst:Remove()
     end

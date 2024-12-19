@@ -69,6 +69,9 @@ function KeepOnPassable:FallingTest(type)
             elseif self.inst.Physics ~= nil then
                 self.inst.Physics:Teleport(dest:Get())
             end
+        else
+            local damage = self.inst.components.health.currenthealth * 10
+            self.inst.components.health:DoDelta(-damage, nil, type, nil, nil, true)
         end
     end
 end

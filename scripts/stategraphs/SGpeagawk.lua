@@ -112,6 +112,7 @@ local states =
         tags = {"busy"},
 
         onenter = function(inst)
+            inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("hide_pre")
             inst.SoundEmitter:PlaySound("dontstarve_DLC001/creatures/mole/move","hide")
         end,
