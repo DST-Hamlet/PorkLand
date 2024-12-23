@@ -20,6 +20,7 @@ local LEASH_RETURN_DIST = 10
 local LEASH_MAX_DIST = 30
 
 local GO_HOME_DIST = 10
+local GO_HOME_COMBAT_DIST = 60
 
 local START_FACE_DIST = 4
 local KEEP_FACE_DIST = 8
@@ -169,8 +170,7 @@ local function GuardGoHomeAction(inst)
     end
 
     local homePos = inst.components.knownlocations:GetLocation("home")
-    if homePos and
-       not inst.components.combat.target then
+    if homePos then
         return BufferedAction(inst, nil, ACTIONS.WALKTO, nil, homePos)
     end
 end
@@ -227,11 +227,45 @@ local function ShouldGoHome(inst)
 
     -- eating food allows them to overide their home leash
     local action = inst:GetBufferedAction()
-    if action and action.action.id ==  "EAT" then
+    if action and action.action.id == "EAT" then
         homePos = nil
     end
 
     return (homePos and distsq(homePos, myPos) > GO_HOME_DIST*GO_HOME_DIST ) or (TheWorld.state.isaporkalypse and HasValidHome(inst))
+end
+
+local function ShouldGoHomeInCombat(inst)
+    local homePos = inst.components.knownlocations:GetLocation("home")
+    local myPos = inst:GetPosition()
+
+    -- eating food allows them to overide their home leash
+    local action = inst:GetBufferedAction()
+    if action and action.action.id == "EAT" then
+        homePos = nil
+    end
+
+    local target = inst.components.combat.target
+    local istargetnear = target and inst.components.combat:CanHitTarget(target)
+
+    return (TheWorld.state.isaporkalypse and HasValidHome(inst))
+        or (homePos and distsq(homePos, myPos) > GO_HOME_COMBAT_DIST*GO_HOME_COMBAT_DIST and not istargetnear and not GetLeader(inst) )
+end
+
+local function KeepGoHomeInCombat(inst)
+    local homePos = inst.components.knownlocations:GetLocation("home")
+    local myPos = inst:GetPosition()
+
+    -- eating food allows them to overide their home leash
+    local action = inst:GetBufferedAction()
+    if action and action.action.id == "EAT" then
+        homePos = nil
+    end
+
+    local target = inst.components.combat.target
+    local istargetnear = target and inst.components.combat:CanHitTarget(target)
+
+    return (TheWorld.state.isaporkalypse and HasValidHome(inst))
+        or (homePos and distsq(homePos, myPos) > GO_HOME_DIST*GO_HOME_DIST and not istargetnear and not GetLeader(inst) )
 end
 
 local function inCityLimits(inst)
@@ -322,6 +356,11 @@ function RoyalPigGuardBrain:OnStart()
             WhileNode(function() return self.inst.components.health.takingfiredamage end, "OnFire",
                 ChattyNode(self.inst, ChatterSay("CITY_PIG_TALK_PANICFIRE"),
                     Panic(self.inst))),
+
+            IfNode(function() return ShouldGoHomeInCombat(self.inst) end, "ShouldGoHomeInCombat",
+                WhileNode(function() return KeepGoHomeInCombat(self.inst) and self.inst:HasTag("guard") end, "KeepGoHomeInCombat",
+                    ChattyNode(self.inst, ChatterSay("CITY_PIG_GUARD_TALK_GOHOME"),
+                        DoAction(self.inst, GuardGoHomeAction, "Go Home", true )))),
 
             --AttackWall(self.inst),
             -- GUARD SECTION

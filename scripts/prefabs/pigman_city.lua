@@ -42,7 +42,8 @@ local FEMALE = "FEMALE"
 
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 30
-local SPREAD_TARGET_DIST = 12
+local SPREAD_SHARE_TARGET_DIST = 6
+local SPREAD_TARGET_DIST = SPREAD_SHARE_TARGET_DIST + 6
 
 local function GetSpeechType(inst, speech)
     return inst.talkertype and STRINGS[speech][inst.talkertype]
@@ -518,12 +519,12 @@ local function OnAttacked(inst, data)
         inst.components.combat:SetTarget(attacker)
 
         if inst:HasTag("guard") then
-            inst.components.combat:ShareTarget(attacker, SPREAD_TARGET_DIST, function(dude)
+            inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
                 return dude:HasTag("pig") and (dude:HasTag("guard") or not attacker:HasTag("pig"))
             end, MAX_TARGET_SHARES)
         else
             if not (attacker:HasTag("pig") and attacker:HasTag("guard")) then
-                inst.components.combat:ShareTarget(attacker, SPREAD_TARGET_DIST, function(dude)
+                inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
                     return dude:HasTag("pig")
                 end, MAX_TARGET_SHARES)
             end
@@ -586,12 +587,14 @@ local function NormalKeepTargetFn(inst, target)
         and inst:GetDistanceSqToInst(target) < TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST * TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST
 
     if should_keep then
-        inst.components.combat:ShareTarget(target, SPREAD_TARGET_DIST, function(dude)
+        inst.components.combat:ShareTarget(target, SPREAD_SHARE_TARGET_DIST, function(dude)
             return dude:HasTag("pig") and (dude:HasTag("guard") or not target:HasTag("pig"))
+            and dude:GetDistanceSqToInst(target) < SPREAD_TARGET_DIST * SPREAD_TARGET_DIST
         end, MAX_TARGET_SHARES)
 
         if inst:HasTag("guard") then
-            if not target:HasTag("sneaky") and target.components.uniqueidentity then
+            if not target:HasTag("sneaky") and target.components.uniqueidentity
+                and inst.angry_at_criminals[target.components.uniqueidentity:GetID()] == nil then
                 inst.angry_at_criminals[target.components.uniqueidentity:GetID()] = 10
             end
         end

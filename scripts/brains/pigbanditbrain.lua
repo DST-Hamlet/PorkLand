@@ -28,7 +28,12 @@ local function FindVanishPosition(inst)
     local theta = math.random() * 2 * PI
     local radius = 70
 
-    local offset = FindWalkableOffset(pt, theta, radius, 12, true)
+    local offset = FindWalkableOffset(pt, theta, radius, 18, nil, nil, function(vanish_pos)
+        local current_island = TheWorld.Map:GetIslandTagAtPoint(pt.x, 0, pt.z)
+        local target_island = TheWorld.Map:GetIslandTagAtPoint(vanish_pos.x, 0, vanish_pos.z)
+        local isposclear = TheWorld.Map:IsPhysicsClearAtPoint(vanish_pos)
+        return isposclear and (current_island == target_island)
+    end)
 
     if offset then
         return pt + offset
