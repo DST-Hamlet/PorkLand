@@ -7,10 +7,19 @@ function Story:GenerateIslandFromTask(task, randomize)
         return nil
     end
 
-    local task_node = Graph(task.id,
-        { parent = self.rootNode, default_bg = task.room_bg, colour = task.colour, background = task.background_room, random_set_pieces =
-        task.random_set_pieces, set_pieces = task.set_pieces, maze_tiles = task.maze_tiles, treasures = task.treasures, random_treasures =
-        task.random_treasures })
+    local task_node = Graph(task.id, {
+        parent = self.rootNode,
+        default_bg = task.room_bg,
+        colour = task.colour,
+        background = task.background_room,
+        random_set_pieces = task.random_set_pieces,
+        set_pieces = task.set_pieces,
+        maze_tiles = task.maze_tiles,
+        maze_tile_size = task.maze_tile_size,
+        room_tags = task.room_tags,
+        required_prefabs = task.required_prefabs
+    })
+
     task_node.substitutes = task.substitutes
 
     WorldSim:AddChild(self.rootNode.id, task.id, task.room_bg, task.colour.r, task.colour.g, task.colour.b, task.colour
@@ -61,7 +70,7 @@ function Story:GenerateIslandFromTask(task, randomize)
             local newNode = task_node:AddNode({
                 id = new_room.id,
                 data = {
-                    type = new_room.entrance and "blocker" or new_room.type,
+                    type = new_room.entrance and NODE_TYPE.Blocker or new_room.type,
                     colour = new_room.colour,
                     value = new_room.value,
                     internal_type = new_room.internal_type,
@@ -194,7 +203,7 @@ function Story:Pl_GenerateNodesFromTasks(linkFn)
             }
         }
     end
-
+    start_node_data.data.name = "START"
     start_node_data.data.colour = { r = 0, g = 1, b = 1, a = .80 }
 
     if self.gen_params.start_setpeice ~= nil then
@@ -241,7 +250,7 @@ function Story:Pl_AddBGNodes(min_count, max_count)
                 local blocker_blank_template = self:GetRoom(self.level.blocker_blank_room_name)
                 if blocker_blank_template == nil then
                     blocker_blank_template = {
-                        type = "blank",
+                        type = NODE_TYPE.BLANK,
                         tags = { "RoadPoison", "ForceDisconnected" },
                         colour = { r = 0.3, g = .8, b = .5, a = .50 },
                         value = self.impassible_value
@@ -267,7 +276,7 @@ function Story:Pl_AddBGNodes(min_count, max_count)
                         local newNode = task:AddNode({
                             id = new_room.id,
                             data = {
-                                type = "background",
+                                type = NODE_TYPE.BackgroundRoom,
                                 colour = new_room.colour,
                                 value = new_room.value,
                                 internal_type = new_room.internal_type,
@@ -537,8 +546,11 @@ local function RestrictNodesByKey(story, startParentNode, unusedTasks)
                 and currentNodeEntrance.data.entrance == false then
                     story:SeperateStoryByBlanks(lastNodeExit, currentNodeEntrance)
             else
-                story.rootNode:LockGraph(effectiveLastNode.id .. '->' .. currentNode.id, lastNodeExit, currentNodeEntrance,
-                    { type = "none", key = story.tasks[currentNode.id].locks, node = nil })
+                story.rootNode:LockGraph(effectiveLastNode.id .. '->' .. currentNode.id, lastNodeExit, currentNodeEntrance, {
+                    type = "none",
+                    key = story.tasks[currentNode.id].locks,
+                    node = nil
+                })
             end
 
             -- print_lockandkey_ex("\t\tAdding keys to keyring:")
