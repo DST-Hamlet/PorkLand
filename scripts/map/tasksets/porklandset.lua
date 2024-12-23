@@ -78,8 +78,7 @@ AddTaskSet("porkland", {
 
     numoptionaltasks = 0,
     numrandom_set_pieces = 0,
-    set_pieces = {},
-    -- set_pieces = {
+    set_pieces = {
     --     ["TeleportatoHamletBaseLayout"] = {count = 1, tasks = {
     --         "Deep_rainforest",
     --         "Deep_rainforest_2",
@@ -130,6 +129,18 @@ AddTaskSet("porkland", {
     --        "Other_edge_of_civilization",
     --     }},
     --     --]]
-    -- },
+    },
     required_prefabs = GLOBAL.PORKLAND_REQUIRED_PREFABS
+})
+
+AddTaskSet("porkland_test", {
+    name = "porkland_test",
+    location = "porkland",
+    tasks = {
+        "porkland_test"
+    },
+    numoptionaltasks = 0,
+    numrandom_set_pieces = 0,
+    set_pieces = {},
+    required_prefabs = {}
 })
