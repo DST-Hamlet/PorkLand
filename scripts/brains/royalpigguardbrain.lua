@@ -28,8 +28,8 @@ local KEEP_FACE_DIST = 8
 -- local START_RUN_DIST = 3
 -- local STOP_RUN_DIST = 5
 
-local MAX_CHASE_TIME = 10
-local MAX_CHASE_DIST = 30
+local MAX_CHASE_TIME = 100
+local MAX_CHASE_DIST = 300
 
 local TRADE_DIST = 20
 local SEE_TREE_DIST = 15
