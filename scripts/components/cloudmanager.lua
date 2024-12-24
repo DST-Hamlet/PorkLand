@@ -50,7 +50,7 @@ end
 function CloudManager:UpdatePos(dt)
     local newpos = TheCamera.currentpos
 
-    local lx, ly, lz = self.clouds_parent.entity:WorldToLocalSpace(newpos.x, newpos.y, newpos.z)
+    local lx, _, lz = self.clouds_parent.entity:WorldToLocalSpace(newpos.x, newpos.y, newpos.z)
     local angle_delta = (TheCamera.heading - self.oldheading)
     if angle_delta > 180 then
         angle_delta = angle_delta - 360
@@ -61,7 +61,6 @@ function CloudManager:UpdatePos(dt)
     self:Move(- lx, - lz)
     self.oldheading = TheCamera.heading
 
-    local x, y, z = self.clouds_parent.Transform:GetWorldPosition()
     self.clouds_parent.Transform:SetPosition(newpos.x, -4, newpos.z)
     self.clouds_parent.Transform:SetRotation(- TheCamera.heading)
 end

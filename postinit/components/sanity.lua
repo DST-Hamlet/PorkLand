@@ -1,4 +1,3 @@
-local AddComponentPostInit = AddComponentPostInit
 GLOBAL.setfenv(1, GLOBAL)
 
 local Sanity = require("components/sanity")
@@ -9,7 +8,6 @@ local LIGHT_DRAIN_STATE =
     INTERIOR = 1,
     HOUSE = 2,
     PLAYERHOUSE = 3,
-
 }
 
 local function GetLightDrainState(inst)

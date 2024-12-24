@@ -107,7 +107,7 @@ function self:Disable(disable)
 end
 
 function self:RegisterBramble(bramble)
-    local x, y, z = bramble.Transform:GetWorldPosition()
+    local x, _, z = bramble.Transform:GetWorldPosition()
     table.insert(_bramble_spots, {x = x, z = z})
     bramble:Remove()
 end

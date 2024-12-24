@@ -29,15 +29,15 @@ local Projectile = Class(function(self, inst)
 
     self.stimuli = nil
 
-	--self.has_damage_set = nil -- set to true if the projectile has its own damage set, instead of needed to get it from the launching weapon
+    --self.has_damage_set = nil -- set to true if the projectile has its own damage set, instead of needed to get it from the launching weapon
 
     --self.delaytask = nil
     --self.delayowner = nil
     --self.delaypos = nil
     self._ondelaycancel = function() inst:Remove() end
 
-	--self.overridestartpos = nil
-	--self.bounced = nil
+    --self.overridestartpos = nil
+    --self.bounced = nil
 
     --NOTE: projectile and complexprojectile components are mutually
     --      exclusive because they share this tag!
@@ -142,7 +142,7 @@ end
 function Projectile:Throw(owner, target, attacker)
     self.owner = owner
     self.target = target
-	self.start = self.overridestartpos or owner:GetPosition()
+    self.start = self.overridestartpos or owner:GetPosition()
     self.dest = target:GetPosition()
     self.inst.Physics:ClearCollidesWith(COLLISION.LIMITS)
 
@@ -227,7 +227,7 @@ end
 
 function Projectile:OnEntitySleep()
     if self.dozeOffTask == nil then
-   	    self.dozeOffTask = self.inst:DoTaskInTime(DOZE_OFF_TIME, DozeOff, self)
+        self.dozeOffTask = self.inst:DoTaskInTime(DOZE_OFF_TIME, DozeOff, self)
     end
 end
 
@@ -389,11 +389,11 @@ function Projectile:DelayVisibility(duration)
 end
 
 function Projectile:SetBounced(bounced)
-	self.bounced = bounced ~= false
+    self.bounced = bounced ~= false
 end
 
 function Projectile:IsBounced()
-	return self.bounced == true
+    return self.bounced == true
 end
 
 return Projectile

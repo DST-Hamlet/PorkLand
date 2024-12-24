@@ -3,26 +3,26 @@ FollowAndTest = Class(BehaviourNode, function(self, inst, target, min_dist, targ
     self.inst = inst
     self.target = target
 
-	if type(min_dist) == "function" then
-		self.min_dist_fn = min_dist
-		self.min_dist = nil
-	else
-	    self.min_dist = min_dist
-	end
+    if type(min_dist) == "function" then
+        self.min_dist_fn = min_dist
+        self.min_dist = nil
+    else
+        self.min_dist = min_dist
+    end
 
-	if type(max_dist) == "function" then
-		self.max_dist_fn = max_dist
-		self.max_dist = nil
-	else
-	    self.max_dist = max_dist
-	end
+    if type(max_dist) == "function" then
+        self.max_dist_fn = max_dist
+        self.max_dist = nil
+    else
+        self.max_dist = max_dist
+    end
 
-	if type(target_dist) == "function" then
-		self.target_dist_fn = target_dist
-		self.target_dist = nil
-	else
-	    self.target_dist = target_dist
-	end
+    if type(target_dist) == "function" then
+        self.target_dist_fn = target_dist
+        self.target_dist = nil
+    else
+        self.target_dist = target_dist
+    end
 
     self.canrun = canrun ~= false
     self.alwayseval = alwayseval ~= false
@@ -45,15 +45,15 @@ function FollowAndTest:GetTarget()
 end
 
 function FollowAndTest:EvaluateDistances() -- this is run once per follow target
-	if self.min_dist_fn ~= nil then
-		self.min_dist = self.min_dist_fn(self.inst)
-	end
-	if self.max_dist_fn ~= nil then
-		self.max_dist = self.max_dist_fn(self.inst)
-	end
-	if self.target_dist_fn ~= nil then
-		self.target_dist = self.target_dist_fn(self.inst)
-	end
+    if self.min_dist_fn ~= nil then
+        self.min_dist = self.min_dist_fn(self.inst)
+    end
+    if self.max_dist_fn ~= nil then
+        self.max_dist = self.max_dist_fn(self.inst)
+    end
+    if self.target_dist_fn ~= nil then
+        self.target_dist = self.target_dist_fn(self.inst)
+    end
 end
 
 function FollowAndTest:DBString()
@@ -86,14 +86,14 @@ function FollowAndTest:Visit()
     local dist_sq, target_pos
 
     if self.status == READY then
-		local prev_target = self.currenttarget
+        local prev_target = self.currenttarget
         self.currenttarget = self:GetTarget()
         if self.currenttarget ~= nil then
             dist_sq, target_pos = _distsq(self.inst, self.currenttarget)
 
-			if prev_target ~= self.currenttarget or self.alwayseval then
-				self:EvaluateDistances()
-			end
+            if prev_target ~= self.currenttarget or self.alwayseval then
+                self:EvaluateDistances()
+            end
 
             local on_different_platforms = self:AreDifferentPlatforms(self.inst, self.currenttarget)
 

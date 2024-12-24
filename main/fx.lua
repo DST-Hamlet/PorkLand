@@ -122,11 +122,11 @@ local pl_fx = {
     },
     {
         name = "bombsplash",
-    	bank = "bombsplash",
-    	build = "water_bombsplash",
+        bank = "bombsplash",
+        build = "water_bombsplash",
         fn = TintOceantFx,
-    	anim = "splash",
-	},
+        anim = "splash",
+    },
     {
         name = "clouds_bombsplash",
         bank = "clouds_bombsplash",
