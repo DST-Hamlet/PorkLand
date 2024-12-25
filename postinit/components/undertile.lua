@@ -11,7 +11,9 @@ function UnderTile:Get()
 end
 
 function UnderTile:NotifyUnderTileChanged()
-    self.inst.components.clientundertile:SyncUnderTiles()
+    if self.inst.components.clientundertile then
+        self.inst.components.clientundertile:SyncUnderTiles()
+    end
 end
 
 function UnderTile:CheckInSize(x, y)
@@ -57,6 +59,6 @@ AddComponentPostInit("undertile", function(self, inst)
         if not _underneath_tiles then
             print("WARNING: Can't get upvalue _underneath_tiles form UnderTile.OnLoad, client side shadows and canopies will not work!")
         end
-        self.inst.components.clientundertile:SyncUnderTiles()
+        self:NotifyUnderTileChanged()
     end)
 end)
