@@ -119,8 +119,6 @@ local function OnLoad(inst, data, ...)
     return unpack(rets)
 end
 
-local SANITY_MODIFIER_NAME = "PLAYERHOUSE_SANITY"
-
 local function UpdateHomeTechBonus(inst, data)
     if data.to and data.to:HasInteriorTag("home_prototyper") then
         inst.components.builder.home_bonus = 2

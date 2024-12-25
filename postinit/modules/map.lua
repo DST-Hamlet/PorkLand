@@ -539,3 +539,18 @@ function Map:CalcPercentTilesAtPoint(x, y, z, radius, typefn)
         return 0
     end
 end
+
+function Map:IsPhysicsClearAtPoint(pt, inst)
+    local CANT_TAGS = {"INLIMBO", "NOCLICK", "FX"}
+    local x, y, z = pt:Get()
+    local ents = TheSim:FindEntities(x, y, z, MAX_PHYSICS_RADIUS, nil, CANT_TAGS)
+    for _, ent in ipairs(ents) do
+        if not (inst and ent == inst) then
+            local radius = ent:GetPhysicsRadius(0)
+            if ent:GetDistanceSqToPoint(x, y, z) < radius * radius then
+                return false
+            end
+        end
+    end
+    return true
+end

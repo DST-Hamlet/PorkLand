@@ -118,12 +118,14 @@ local function OnSave(inst, data)
     -- For player house
     data.bought = inst.bought
 
-    if inst.spawner_data and inst.spawner_data.child and inst.spawner_data.child:IsValid() then
+    if inst.spawner_data then
         data.childname = inst.spawner_data.childname
-        data.child = inst.spawner_data.child.GUID
         data.delay = inst.spawner_data.delay
 
-        return { data.child }
+        if inst.spawner_data.child and inst.spawner_data.child:IsValid() then
+            data.child = inst.spawner_data.child.GUID
+            return { data.child }
+        end
     end
 end
 

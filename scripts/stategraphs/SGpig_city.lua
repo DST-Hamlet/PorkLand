@@ -45,7 +45,7 @@ local events=
                 inst.sg:GoToState("dance")
             end
         end),
-    EventHandler("onalarmed",
+    EventHandler("onsurprised",
         function(inst, data)
             if inst.components.health ~= nil and not inst.components.health:IsDead()
                 and not inst.sg:HasStateTag("busy") then

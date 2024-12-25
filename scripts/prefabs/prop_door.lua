@@ -6,7 +6,6 @@ local assets =
     Asset("ANIM", "anim/bat_cave_door.zip"),
     Asset("ANIM", "anim/ruins_stairs.zip"),
     Asset("ANIM", "anim/ant_cave_door.zip"),
-    Asset("ANIM", "anim/acorn.zip"),
     Asset("ANIM", "anim/pig_shop_doormats.zip"),
     Asset("ANIM", "anim/ant_hill_entrance.zip"),
     Asset("ANIM", "anim/ant_queen_entrance.zip"),
@@ -122,47 +121,6 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
 
     TheWorld.components.interiorspawner:AddDoor(inst, door_definition)
 
-    if prefab_definition.animdata then
-        inst.components.rotatingbillboard:SetAnimation_Server(prefab_definition.animdata)
-
-        if prefab_definition.animdata.bank then
-            inst.AnimState:SetBank(prefab_definition.animdata.bank)
-            inst.door_data_bank = prefab_definition.animdata.bank
-        end
-
-        if prefab_definition.animdata.build then
-            inst.AnimState:SetBuild(prefab_definition.animdata.build)
-            inst.door_data_build = prefab_definition.animdata.build
-        end
-
-        if prefab_definition.animdata.anim then
-            inst.AnimState:PlayAnimation(prefab_definition.animdata.anim, true)
-            inst.door_data_animstate = prefab_definition.animdata.anim
-            -- this is for finding the right open and closed door animation.
-            inst.baseanimname = inst.door_data_animstate
-        end
-
-        if prefab_definition.animdata.background then
-            inst.AnimState:SetLayer(LAYER_BACKGROUND)
-            inst.AnimState:SetSortOrder(3)
-            --inst.Transform:SetTwoFaced()
-            -- inst.Transform:SetRotation(90)
-
-            inst.door_data_background = prefab_definition.animdata.background
-        end
-
-        if prefab_definition.animdata.light then
-            MakeTimeChanger(inst)
-        end
-
-        if prefab_definition.animdata.minimapicon then
-            local minimap = inst.entity:AddMiniMapEntity()
-            minimap:SetIcon(prefab_definition.animdata.minimapicon)
-
-            inst:SetMinimapIcon(prefab_definition.animdata.minimapicon)
-        end
-    end
-
     if prefab_definition.scale then
         inst.Transform:SetScale(prefab_definition.scale, prefab_definition.scale, prefab_definition.scale)
     end
@@ -175,6 +133,46 @@ local function InitInteriorPrefab(inst, doer, prefab_definition, interior_defini
 
     if inst.components.door then
         inst.components.door:UpdateDoorVis()
+    end
+
+    local animdata = prefab_definition.animdata
+
+    if not animdata then
+        print("prefab_definition passed to InitInteriorPrefab is a nil value!", inst)
+        return
+    end
+
+    inst.components.rotatingbillboard:SetAnimation_Server(animdata)
+
+    inst.AnimState:SetBank(animdata.bank)
+    inst.door_data_bank = animdata.bank
+
+    inst.AnimState:SetBuild(animdata.build)
+    inst.door_data_build = animdata.build
+
+    inst.AnimState:PlayAnimation(animdata.anim, true)
+    inst.door_data_animstate = animdata.anim
+    -- this is for finding the right open and closed door animation.
+    inst.baseanimname = inst.door_data_animstate
+
+    if animdata.background then
+        inst.AnimState:SetLayer(LAYER_BACKGROUND)
+        inst.AnimState:SetSortOrder(3)
+        --inst.Transform:SetTwoFaced()
+        -- inst.Transform:SetRotation(90)
+
+        inst.door_data_background = animdata.background
+    end
+
+    if animdata.light then
+        MakeTimeChanger(inst)
+    end
+
+    if animdata.minimapicon then
+        local minimap = inst.entity:AddMiniMapEntity()
+        minimap:SetIcon(animdata.minimapicon)
+
+        inst:SetMinimapIcon(animdata.minimapicon)
     end
 end
 
@@ -437,10 +435,6 @@ local function fn()
 
     MakeObstaclePhysics(inst, 1)
 
-    inst.AnimState:SetBank("acorn")
-    inst.AnimState:SetBuild("acorn")
-    inst.AnimState:PlayAnimation("idle")
-
     inst.AnimState:SetSortOrder(4)
 
     inst.Light:Enable(false)
@@ -453,11 +447,6 @@ local function fn()
 
     inst.Transform:SetRotation(-90)
     inst:AddComponent("rotatingbillboard")
-    inst.components.rotatingbillboard.animdata = {
-        bank = "acorn",
-        build = "acorn",
-        anim = "idle"
-    }
 
     inst._minimap_name = net_string(inst.GUID, "prop_door._minimap_name")
     inst._minimap_name:set_local("")

@@ -41,8 +41,10 @@ local MALE = "MALE"
 local FEMALE = "FEMALE"
 
 local MAX_TARGET_SHARES = 5
-local SHARE_TARGET_DIST = 30
-local SPREAD_TARGET_DIST = 12
+local SHARE_TARGET_GUARD_DIST = 30
+local SHARE_TARGET_DIST = 16
+local SPREAD_SHARE_TARGET_DIST = 8
+local SPREAD_TARGET_DIST = 16
 
 local function GetSpeechType(inst, speech)
     return inst.talkertype and STRINGS[speech][inst.talkertype]
@@ -431,7 +433,9 @@ local function OnGetItemFromPlayer(inst, giver, item)
         end
     end
 
-    if inst:HasTag("guard") and item:HasTag("securitycontract") then
+    if inst:HasTag("guard") and item:HasTag("securitycontract")
+        and not (inst.components.combat and inst.components.combat.target == giver) then
+
         inst.SoundEmitter:PlaySound("dontstarve/common/makeFriend")
         giver.components.leader:AddFollower(inst)
         inst.components.follower:AddLoyaltyTime(TUNING.PIG_LOYALTY_MAXTIME)
@@ -514,17 +518,41 @@ end
 local function OnAttacked(inst, data)
     local attacker = data.attacker
     inst:ClearBufferedAction()
-    if attacker then
+    if attacker  then
         inst.components.combat:SetTarget(attacker)
 
         if inst:HasTag("guard") then
-            inst.components.combat:ShareTarget(attacker, SPREAD_TARGET_DIST, function(dude)
-                return dude:HasTag("pig") and (dude:HasTag("guard") or not attacker:HasTag("pig"))
+            inst.components.combat:ShareTarget(attacker, SHARE_TARGET_GUARD_DIST, function(dude) -- 守卫被非守卫打,大范围的守卫都会立刻注意
+                local canshare = dude:HasTag("civilizedpig") and dude:HasTag("guard") and not attacker:HasTag("guard")
+                if canshare then
+                    dude:PushEvent("onalarmed", {
+                        attacker = attacker,
+                    })
+                end
+                return canshare
+            end, MAX_TARGET_SHARES)
+
+            inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude) -- 守卫被非猪打,小范围的普通猪人都会立刻注意
+                local canshare = dude:HasTag("civilizedpig") and not dude:HasTag("guard") and not attacker:HasTag("civilizedpig")
+
+                return canshare
             end, MAX_TARGET_SHARES)
         else
-            if not (attacker:HasTag("pig") and attacker:HasTag("guard")) then
-                inst.components.combat:ShareTarget(attacker, SPREAD_TARGET_DIST, function(dude)
-                    return dude:HasTag("pig")
+            if not (attacker:HasTag("civilizedpig") and attacker:HasTag("guard")) then -- 普通猪人被守卫打,不会引起任何公民猪人的注意
+                inst.components.combat:ShareTarget(attacker, SHARE_TARGET_GUARD_DIST, function(dude) -- 普通猪人被打,大范围的守卫都会立刻注意
+                    local canshare = dude:HasTag("civilizedpig") and dude:HasTag("guard")
+                    if canshare then
+                        dude:PushEvent("onalarmed", {
+                            attacker = attacker,
+                        })
+                    end
+                    return canshare
+                end, MAX_TARGET_SHARES)
+
+                inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude) -- 普通猪人被打,小范围的普通猪人都会立刻注意
+                    local canshare = dude:HasTag("civilizedpig") and not dude:HasTag("guard")
+
+                    return canshare
                 end, MAX_TARGET_SHARES)
             end
         end
@@ -533,6 +561,7 @@ end
 
 local function OnNewTarget(inst, data)
     local target = data.target
+    local oldtarget = data.oldtarget
     if target then
         if not inst:HasTag("guards_called") then
             inst:AddTag("guards_called")
@@ -540,14 +569,30 @@ local function OnNewTarget(inst, data)
                 spawn_guard_tasks(inst, target)
             end
         end
+        if oldtarget == nil then
+            inst:ClearBufferedAction()
+            inst:PushEvent("onsurprised")
+        end
+    end
+end
+
+local function SuggestTargetFn(inst, data)
+    local target = data.target
+    if target and inst.components.follower.leader ~= target then
+        return true
     end
 end
 
 local function OnAlarmed(inst, data)
     local attacker = data.attacker
-    inst:ClearBufferedAction()
     if attacker then
-        inst.components.combat:SetTarget(attacker)
+        inst.components.combat:SuggestTarget(attacker)
+
+        if inst:HasTag("guard") and inst.components.follower.leader ~= attacker then
+            if not attacker:HasTag("sneaky") and attacker.components.uniqueidentity then
+                inst.angry_at_criminals[attacker.components.uniqueidentity:GetID()] = 10
+            end
+        end
     end
 end
 
@@ -586,13 +631,26 @@ local function NormalKeepTargetFn(inst, target)
         and inst:GetDistanceSqToInst(target) < TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST * TUNING.CITY_PIG_GUARD_KEEP_TARGET_DIST
 
     if should_keep then
-        inst.components.combat:ShareTarget(target, SPREAD_TARGET_DIST, function(dude)
-            return dude:HasTag("pig") and (dude:HasTag("guard") or not target:HasTag("pig"))
-        end, MAX_TARGET_SHARES)
-
-        if inst:HasTag("guard") then
-            if not target:HasTag("sneaky") and target.components.uniqueidentity then
-                inst.angry_at_criminals[target.components.uniqueidentity:GetID()] = 10
+        if inst:HasTag("guard") and not target:HasTag("guard") then -- 守卫只有仇恨着非守卫生物才会导致仇恨传递
+            if target:HasTag("civilizedpig") then -- 如果目标是普通猪,那么守卫只会向守卫传递仇恨
+                inst.components.combat:ShareTarget(target, SPREAD_SHARE_TARGET_DIST, function(dude)
+                    return dude:HasTag("civilizedpig")
+                        and dude:GetDistanceSqToInst(target) < SPREAD_TARGET_DIST * SPREAD_TARGET_DIST
+                end, MAX_TARGET_SHARES)
+            else -- 如果目标是非猪,那么守卫会向所有公民猪人传递仇恨
+                inst.components.combat:ShareTarget(target, SPREAD_SHARE_TARGET_DIST, function(dude)
+                    return dude:HasTag("civilizedpig")
+                        and dude:GetDistanceSqToInst(target) < SPREAD_TARGET_DIST * SPREAD_TARGET_DIST
+                end, MAX_TARGET_SHARES)
+            end
+        else
+            if not (target:HasTag("civilizedpig") and target:HasTag("guard")) then -- 普通猪人仇恨守卫不会导致的仇恨传递
+                if not target:HasTag("civilizedpig") then -- 如果仇恨了非猪,那么普通猪人会向所有公民猪人传递仇恨
+                    inst.components.combat:ShareTarget(target, SPREAD_SHARE_TARGET_DIST, function(dude)
+                        return dude:HasTag("civilizedpig")
+                            and dude:GetDistanceSqToInst(target) < SPREAD_TARGET_DIST * SPREAD_TARGET_DIST
+                    end, MAX_TARGET_SHARES)
+                end
             end
         end
     end
@@ -629,6 +687,8 @@ local function SetNormalPig(inst, brain_id)
     inst.components.combat:SetAttackPeriod(TUNING.PIG_ATTACK_PERIOD)
     inst.components.combat:SetKeepTargetFunction(NormalKeepTargetFn)
     inst.components.combat:SetShouldAggroFn(ShouldAggro)
+    inst.components.combat.suggesttargetfn = SuggestTargetFn
+
     inst.components.locomotor.runspeed = TUNING.PIG_RUN_SPEED
     inst.components.locomotor.walkspeed = TUNING.PIG_WALK_SPEED
 
@@ -812,6 +872,7 @@ local function MakeCityPigman(name, build, sex, tags, common_postinit, master_po
         inst:AddTag("character")
         inst:AddTag("pig")
         inst:AddTag("civilized")
+        inst:AddTag("civilizedpig")
         inst:AddTag("scarytoprey")
         inst:AddTag("firecrackerdance")
         inst:AddTag("city_pig")

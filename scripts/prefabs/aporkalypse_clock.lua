@@ -196,7 +196,7 @@ local function aporkalypse_clock_fn()
         inst.oldtimeuntilaporkalypse = 0
         inst:DoPeriodicTask(FRAMES, function(inst)
             if inst.oldtimeuntilaporkalypse == inst._timeuntilaporkalypse:value() then
-                ClientPerdictRotation(inst, FRAMES, true)
+                ClientPerdictRotation(inst, FRAMES)
             end
             inst.oldtimeuntilaporkalypse = inst._timeuntilaporkalypse:value()
         end)
