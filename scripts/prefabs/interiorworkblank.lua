@@ -123,28 +123,6 @@ local function SetUp(inst, data)
         wall_right = wall_right,
     }
 
-    local function wall(x, z)
-        local wall = SpawnPrefab("invisiblewall")
-        wall.persists = false
-        wall.Physics:SetActive(true)
-        wall.Physics:SetActive(false) -- use these wall for pathfinder only :p
-        wall.Physics:Teleport(x + pos.x, 0, z + pos.z)
-        -- wall:Debug()
-        table.insert(inst.boundaries, wall)
-    end
-
-    local half_width = width / 2
-    local half_depth = depth / 2
-    for i = -half_width - 1, half_width + 1 do
-        wall(half_depth, i)
-        wall(-half_depth, i)
-    end
-    for i = -half_depth - 1, half_depth + 1 do
-        wall(i, half_width)
-        wall(i, -half_width)
-    end
-
-    -- real wall
     local wall = SpawnPrefab("invisiblewall_long")
     wall.width:set(width + 0.2)
     wall.depth:set(depth + 0.2)
