@@ -96,7 +96,6 @@ PrefabFiles = {
     "tree_pillar",
     "tuber",
     "tubertrees",
-    "undertile_marker",
     "vampire_bat_wing",
     "vampirebat",
     "venomgland",
