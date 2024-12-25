@@ -130,7 +130,9 @@ end
 local function OnInteriorChange(inst, data)
     UpdateHomeTechBonus(inst, data)
     if data.to == nil then
-        TheWorld.components.kramped:ForceOnNaughtyAction(inst)
+        -- We store the naughty value when the player is inside an interior,
+        -- and triggers it once they go out
+        TheWorld.components.kramped:OnNaughtyAction(0, inst)
     end
 end
 
