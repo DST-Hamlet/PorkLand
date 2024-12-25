@@ -1,7 +1,7 @@
 
 local Pack = require("main/packer")
 
-local RegionGap = 0
+local RegionGap = 10
 
 local RegionData = {}
 
@@ -28,7 +28,7 @@ local function RecordMap(topology_save)
                     data.y_min = math.min(data.y_min or math.huge, y)
                     data.points_data[x] = data.points_data[x] or {}
                     data.points_data[x][y] = {
-                        tile = WorldSim:GetTile(x, y),
+                        tile = points_type[i],
                         node = node,
                     }
                 end
@@ -43,11 +43,11 @@ local function RecordMap(topology_save)
 
         local relative_points_data = {}
         for x, rows in pairs(region_data.points_data) do
-            local relative_x = x - region_data.x_min
+            local relative_x = x - region_data.x_min + RegionGap
             relative_points_data[relative_x] = relative_points_data[relative_x] or {}
 
             for y, data in pairs(rows) do
-                local relative_y = y - region_data.y_min
+                local relative_y = y - region_data.y_min + RegionGap
                 relative_points_data[relative_x][relative_y] = data
             end
         end

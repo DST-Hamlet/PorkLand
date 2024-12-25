@@ -140,8 +140,8 @@ local function InitMap(map_width, map_height, tasks, level, level_type)
             }
         else
             sizes = {
-                ["tiny"] = 250,
-                ["small"] = 350,
+                ["tiny"] = 1,
+                ["small"] = 50,
                 ["medium"] = 400,
                 ["default"] = 425, -- default == large, at the moment...
                 ["large"] = 425,
@@ -249,7 +249,7 @@ local function GeneratePorkland(prefab, map_width, map_height, tasks, level, lev
     print("Populating voronoi...")
 
     topology_save.root:GlobalPrePopulate(entities, map_width, map_height)
-    topology_save.root:ConvertGround(SpawnFunctions, entities, map_width, map_height)
+    -- topology_save.root:ConvertGround(SpawnFunctions, entities, map_width, map_height)
     WorldSim:ReplaceSingleNonLandTiles()
 
     if not story_gen_params.keep_disconnected_tiles then
@@ -271,7 +271,6 @@ local function GeneratePorkland(prefab, map_width, map_height, tasks, level, lev
     save.map.generated.densities = {}
 
     topology_save.root:PopulateVoronoi(SpawnFunctions, entities, map_width, map_height, translated_prefabs, save.map.generated.densities)
-
     topology_save.root:GlobalPostPopulate(entities, map_width, map_height)
 
     for k, ents in pairs(entities) do
@@ -346,8 +345,6 @@ local function GeneratePorkland(prefab, map_width, map_height, tasks, level, lev
         end
     end
 
-    build_map.RecordMap(topology_save)
-
     save.ents = entities
 
     save.map.tiles, save.map.tiledata, save.map.nav, save.map.adj, save.map.nodeidtilemap = WorldSim:GetEncodedMap(join_islands)
@@ -404,6 +401,8 @@ local function GeneratePorkland(prefab, map_width, map_height, tasks, level, lev
     save.map.roads = {}
 
     print("Done "..prefab.." map gen!")
+
+    build_map.RecordMap(topology_save)
 
     return save
 end
@@ -529,6 +528,7 @@ local function OptimizeMap(prefab, map_width, map_height, level_type)
 
     return save
 end
+
 local function TryGenerate(generate_fn, ...)
     local savedata, topology_save
     local try = 1
