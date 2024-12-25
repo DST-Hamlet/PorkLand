@@ -65,7 +65,7 @@ local function OnBuilt(inst)
     inst.onbuilt = true
 end
 
-local function MakeRug(rug_type)
+local function MakeRug(rug_type, animation)
     local function fn()
         local inst = CreateEntity()
 
@@ -75,7 +75,7 @@ local function MakeRug(rug_type)
 
         inst.AnimState:SetBuild("rugs")
         inst.AnimState:SetBank("rugs")
-        inst.AnimState:PlayAnimation(rug_type, true)
+        inst.AnimState:PlayAnimation(animation or rug_type, true)
         inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
         inst.AnimState:SetLayer(LAYER_BACKGROUND)
         inst.AnimState:SetSortOrder(3)
@@ -209,7 +209,7 @@ return MakeRug("rug_round"),
        MakeRug("rug_nailbed"),
        MakeRug("rug_crime"),
        MakeRug("rug_tiles"),
-       MakeRug("rug_palace_runner"),
+       MakeRug("rug_palace_runner", "rug_throneroom"),
 
        Prefab("rug_porcupuss", porcupus, assets, prefabs),
        Prefab("rug_cityhall_corners", cityhall_corners, assets, prefabs),
