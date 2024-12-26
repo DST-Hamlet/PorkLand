@@ -567,7 +567,6 @@ local function fn()
     inst.entity:AddNetwork()
     inst.entity:AddMiniMapEntity()
 
-    -- map:SetIcon("pl_black_bg.tex") -- TODO: use smaller one
     inst.MiniMapEntity:SetPriority(100)
 
     inst:AddTag("pl_interiorcenter")
