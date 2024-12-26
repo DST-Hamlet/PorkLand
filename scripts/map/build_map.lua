@@ -3,60 +3,117 @@ local Pack = require("main/packer")
 
 local RegionGap = 10
 
-local RegionData = {}
+local RegionDatas = {}
+
+local function RemoveNode(parent, node)
+    local removed = false
+    if parent.nodes then
+        for id, v in pairs(parent.nodes) do
+            if node == v then
+                parent.nodes[id] = nil
+                removed = true
+            end
+            if RemoveNode(v, node) then
+                removed = true
+            end
+        end
+    end
+
+    if parent.children then
+        for id, child in pairs(parent.children) do
+            if node == child then
+                print("Warning: Removing child node:", node.id)
+                parent:RemoveChild(id)
+                removed = true
+            end
+            if RemoveNode(child, node) then
+                removed = true
+            end
+        end
+    end
+
+    return removed
+end
 
 local function RecordMap(topology_save)
-    local regions_data = {
-        island_accademy = { points_data = {} },
-        island_royal = { points_data = {} },
-        island_pugalisk = { points_data = {} },
-        island_BFB = { points_data = {} },
-        island_ancient = { points_data = {} },
+    RegionDatas = {}
+
+    local region_datas = {
+        island_accademy = { node_datas = {} },
+        island_royal = { node_datas = {} },
+        island_pugalisk = { node_datas = {} },
+        island_BFB = { node_datas = {} },
+        island_ancient = { node_datas = {} },
     }
 
     local nodes = topology_save.root:GetNodes(true)
     for _, node in pairs(nodes) do
         for _, tag in pairs(node.data.tags) do
-            local data = regions_data[tag]
-            if data then
+            local region_data = region_datas[tag]
+            if region_data then
+                node.region = tag
                 local points_x, points_y, points_type = WorldSim:GetPointsForSite(node.id)
-                for i = 1, #points_x, 1 do
+                for i = 1, #points_x do
                     local x, y = points_x[i], points_y[i]
-                    data.x_max = math.max(data.x_max or 0, x)
-                    data.x_min = math.min(data.x_min or math.huge, x)
-                    data.y_max = math.max(data.y_max or 0, y)
-                    data.y_min = math.min(data.y_min or math.huge, y)
-                    data.points_data[x] = data.points_data[x] or {}
-                    data.points_data[x][y] = {
-                        tile = points_type[i],
-                        node = node,
-                    }
+                    region_data.x_max = math.max(region_data.x_max or 0, x)
+                    region_data.x_min = math.min(region_data.x_min or math.huge, x)
+                    region_data.y_max = math.max(region_data.y_max or 0, y)
+                    region_data.y_min = math.min(region_data.y_min or math.huge, y)
                 end
+                table.insert(region_data.node_datas, {
+                    node = node,
+                    points = { x = points_x, y = points_y, type = points_type },
+                })
                 break
             end
         end
+
+        if not node.region then
+            local removed = RemoveNode(topology_save.root, node)
+            assert(removed, "Node not found in topology")
+        end
     end
 
-    for name, region_data in pairs(regions_data) do
-        local width = region_data.x_max - region_data.x_min
-        local height = region_data.y_max - region_data.y_min
+    for name, region_data in pairs(region_datas) do
+        local width = region_data.x_max - region_data.x_min + RegionGap * 2
+        local height = region_data.y_max - region_data.y_min + RegionGap * 2
+        local region_x = region_data.x_min - math.floor(RegionGap / 2)
+        local region_y = region_data.y_min - math.floor(RegionGap / 2)
 
-        local relative_points_data = {}
-        for x, rows in pairs(region_data.points_data) do
-            local relative_x = x - region_data.x_min + RegionGap
-            relative_points_data[relative_x] = relative_points_data[relative_x] or {}
+        for _, node_data in ipairs(region_data.node_datas) do
+            local node = node_data.node
+            local area = WorldSim:GetSiteArea(node.id)
+            local site_x, site_y = WorldSim:GetSite(node.id)
+            local centroid_x, centroid_y = WorldSim:GetSiteCentroid(node.id)
+            local polygon_vertexs_x, polygon_vertexs_y = WorldSim:GetSitePolygon(node.id)
 
-            for y, data in pairs(rows) do
-                local relative_y = y - region_data.y_min + RegionGap
-                relative_points_data[relative_x][relative_y] = data
+            node_data.area = area
+            node_data.relative_site = { x = site_x - region_x, y = site_y - region_y }
+            node_data.relative_centroid = { x = centroid_x - region_x, y = centroid_y - region_y }
+            node_data.relative_polygon_vertexs = {}
+            node_data.relative_points = {}
+
+            for i = 1, #polygon_vertexs_x do
+                table.insert(node_data.relative_polygon_vertexs, {
+                    x = polygon_vertexs_x[i] - region_x,
+                    y = polygon_vertexs_y[i] - region_y,
+                })
+            end
+
+            for i = 1, #node_data.points.x do
+                table.insert(node_data.relative_points, {
+                    x = node_data.points.x[i] - region_x,
+                    y = node_data.points.y[i] - region_y,
+                    tile = node_data.points.type[i],
+                })
             end
         end
 
-        table.insert(RegionData, {
+        table.insert(RegionDatas, {
             name = name,
-            width = width + RegionGap * 2,
-            height = height + RegionGap * 2,
-            relative_points_data = relative_points_data,
+            width = width,
+            height = height,
+            node_datas = region_data.node_datas,
         })
     end
 end
@@ -70,20 +127,47 @@ local function ReBuildMap(map_width, map_height)
         end
     end
 
-    local packed_region_data = Pack(map_width, map_height, RegionData)
-    if not packed_region_data  then
+    local packed_region_datas = Pack(map_width, map_height, RegionDatas)
+    if not packed_region_datas  then
         return false
     end
 
-    for _, region_data in ipairs(packed_region_data) do
+    for _, region_data in ipairs(packed_region_datas) do
         local region_name = region_data.name
-        local insert_bbox = region_data.insert_bbox
+        local insert_bbox = {
+            x = math.floor(region_data.insert_bbox.x),
+            y = math.floor(region_data.insert_bbox.y),
+        }
 
-        for relative_x, rows in pairs(region_data.relative_points_data) do
-            for relative_y, data in pairs(rows) do
-                WorldSim:SetTile(insert_bbox.x + relative_x, insert_bbox.y + relative_y, data.tile)
-                -- WorldSim:SetTileNodeId(offest_x + start_x, offest_y + start_y, _data[2])
+        for _, node_data in ipairs(region_data.node_datas) do
+            local node = node_data.node
+            local site_x = node_data.relative_site.x + insert_bbox.x
+            local site_y = node_data.relative_site.y + insert_bbox.y
+            local centroid_x = node_data.relative_centroid.x + insert_bbox.x
+            local centroid_y = node_data.relative_centroid.y + insert_bbox.y
+
+            local data = {
+                area = node_data.area,
+                site = { x = site_x, y = site_y } ,
+                site_centroid = { x = centroid_x, y = centroid_y },
+                site_points = { x = {}, y = {}, tiles = {} },
+                polygon_vertexs = { x = {}, y = {} },
+            }
+
+            for _, relative_vertex in ipairs(node_data.relative_polygon_vertexs) do
+                table.insert(data.polygon_vertexs.x, relative_vertex.x + insert_bbox.x)
+                table.insert(data.polygon_vertexs.y, relative_vertex.y + insert_bbox.y)
             end
+
+            for _, relative_point in ipairs(node_data.relative_points) do
+                local x = insert_bbox.x + relative_point.x
+                local y = insert_bbox.y + relative_point.y
+                WorldSim:SetTile(x, y, relative_point.tile)
+                table.insert(data.site_points.x, x)
+                table.insert(data.site_points.y, y)
+                table.insert(data.site_points.tiles, relative_point.tile)
+            end
+            WorldSim:SetNodeData(node.id, data)
         end
     end
 

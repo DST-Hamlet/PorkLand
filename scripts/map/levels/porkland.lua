@@ -47,8 +47,8 @@ AddLevel(LEVELTYPE.SURVIVAL, {
         world_size = "tiny",
         start_location = "PorkLandStart",
         task_set = "porkland_test",
-
         pl_clocktype = "plateau",
+        keep_disconnected_tiles = true,
     },
 
     background_node_range = {0, 1},
