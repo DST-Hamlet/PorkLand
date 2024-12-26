@@ -568,12 +568,11 @@ forest_map.Generate = function(prefab, map_width, map_height, tasks, level, leve
         return nil
     end
 
-    local optimized_savedata, optimized_topology_save
-    if not optimized_savedata and level.id == "PORKLAND_DEFAULT" then
+    if not savedata and level.id == "PORKLAND_DEFAULT" then
         collectgarbage("collect")
         WorldSim:ResetAll()
-        optimized_savedata, optimized_topology_save = TryGenerate(OptimizeMap, prefab, map_width, map_height, level_type)
+        savedata = TryGenerate(OptimizeMap, prefab, map_width, map_height, level_type, topology_save)
     end
 
-    return optimized_savedata
+    return savedata
 end
