@@ -44,7 +44,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
     desc = "PORKLAND_TEST",
     location = "porkland",
     overrides = {
-        world_size = "tiny",
+        world_size = "small",
         start_location = "PorkLandStart",
         task_set = "porkland_test",
         pl_clocktype = "plateau",
