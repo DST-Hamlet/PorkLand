@@ -144,7 +144,7 @@ end
 
 local _SuggestTarget = Combat.SuggestTarget
 function Combat:SuggestTarget(target)
-    if not (self.suggesttargetfn and self.suggesttargetfn(self.inst, {target = target})) then
+    if self.suggesttargetfn and not self.suggesttargetfn(self.inst, {target = target}) then
         return false
     end
 

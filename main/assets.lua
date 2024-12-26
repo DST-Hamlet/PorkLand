@@ -96,7 +96,6 @@ PrefabFiles = {
     "tree_pillar",
     "tuber",
     "tubertrees",
-    "undertile_marker",
     "vampire_bat_wing",
     "vampirebat",
     "venomgland",
@@ -411,7 +410,6 @@ Assets = {
     Asset("SHADER", "shaders/anim_vertical.ksh"),
 
     -- Interior MiniMap
-    Asset("ATLAS", "levels/textures/map_interior/pl_black_bg.xml"),
     Asset("ATLAS", "interior_minimap/interior_minimap.xml"),
     Asset("ATLAS", "levels/textures/map_interior/mini_floor_marble_royal.xml"),
     Asset("IMAGE", "levels/textures/map_interior/mini_floor_marble_royal.tex"),
@@ -465,7 +463,6 @@ end
 
 ToolUtil.RegisterInventoryItemAtlas("images/hud/pl_inventoryimages.xml")
 AddMinimapAtlas("images/minimap/pl_minimap.xml")
-AddMinimapAtlas("levels/textures/map_interior/pl_black_bg.xml")
 AddMinimapAtlas("interior_minimap/interior_minimap.xml")
 
 local sounds = {

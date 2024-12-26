@@ -4,19 +4,15 @@ GLOBAL.setfenv(1, GLOBAL)
 ----------------------------------------------------------------------------------------
 local UnderTile = require("components/undertile")
 
-function UnderTile:SpawnMarkAtTile(x, y, tile)
-    self:ClearMarkAtTile(x, y)
-    if tile then
-        local mark = SpawnPrefab("undertile_marker")
-        mark.Transform:SetPosition(TheWorld.Map:GetPointAtTile(x, y))
-        mark._tile:set(tile)
-    end
+local _underneath_tiles
+
+function UnderTile:Get()
+    return _underneath_tiles
 end
 
-function UnderTile:ClearMarkAtTile(x, y)
-    local tx, _, tz = TheWorld.Map:GetPointAtTile(x, y)
-    for _, v in ipairs(TheSim:FindEntities(tx, 0, tz, 0.1, {"tilemarker"})) do
-        v:Remove()
+function UnderTile:NotifyUnderTileChanged()
+    if self.inst.components.clientundertile then
+        self.inst.components.clientundertile:SyncUnderTiles()
     end
 end
 
@@ -32,13 +28,12 @@ function UnderTile:CheckInSize(x, y)
 end
 
 AddComponentPostInit("undertile", function(self, inst)
-
     local _SetTileUnderneath = self.SetTileUnderneath
     self.SetTileUnderneath = function(self, x, y, tile, ...)
         if not self:CheckInSize(x, y) then
             return
         end
-        self:SpawnMarkAtTile(x, y, tile)
+        self:NotifyUnderTileChanged()
         return _SetTileUnderneath(self, x, y, tile, ...)
     end
 
@@ -47,7 +42,7 @@ AddComponentPostInit("undertile", function(self, inst)
         if not self:CheckInSize(x, y) then
             return
         end
-        self:ClearMarkAtTile(x, y)
+        self:NotifyUnderTileChanged()
         return _ClearTileUnderneath(self, x, y, ...)
     end
 
@@ -59,18 +54,11 @@ AddComponentPostInit("undertile", function(self, inst)
         return _GetTileUnderneath(self, x, y, ...)
     end
 
-    local _OnLoad = self.OnLoad
-    self.OnLoad = function(self, data, ...)
-        local decode_data = DecodeAndUnzipSaveData(data)
-        local rets = {_OnLoad(self, data, ...)}
-        local tile_id_conversion_map = TheWorld.tile_id_conversion_map
-        for k, v in pairs(decode_data.underneath_tiles) do
-            local tile = tile_id_conversion_map[v] or v
-            local width, height = TheWorld.Map:GetSize()
-            local _x = k % width
-            local _y = math.floor(k / width)
-            self:SpawnMarkAtTile(_x, _y, tile)
+    self.inst:DoStaticTaskInTime(0, function()
+        _underneath_tiles = ToolUtil.GetUpvalue(self.OnLoad, "_underneath_tiles")
+        if not _underneath_tiles then
+            print("WARNING: Can't get upvalue _underneath_tiles form UnderTile.OnLoad, client side shadows and canopies will not work!")
         end
-        return unpack(rets)
-    end
+        self:NotifyUnderTileChanged()
+    end)
 end)
