@@ -249,7 +249,7 @@ local function GeneratePorkland(prefab, map_width, map_height, tasks, level, lev
     print("Populating voronoi...")
 
     topology_save.root:GlobalPrePopulate(entities, map_width, map_height)
-    -- topology_save.root:ConvertGround(SpawnFunctions, entities, map_width, map_height)
+    topology_save.root:ConvertGround(SpawnFunctions, entities, map_width, map_height)
     WorldSim:ReplaceSingleNonLandTiles()
 
     if not story_gen_params.keep_disconnected_tiles then
