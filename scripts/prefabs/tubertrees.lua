@@ -193,7 +193,7 @@ local function OnBurntChanges(inst)
     inst:RemoveTag("shelter")
     inst:AddTag("burnt")
 
-    inst:RemoveComponent("pl_pickable")
+    inst:RemoveComponent("pickable")
     inst:RemoveComponent("growable")
     inst:RemoveComponent("burnable")
     inst:RemoveComponent("propagator")
@@ -277,7 +277,7 @@ local function StartBloom(inst)
     end
 
     inst.build = "blooming"
-    inst.components.pl_pickable:ChangeProduct("tuber_bloom_crop")
+    inst.components.pickable:ChangeProduct("tuber_bloom_crop")
     inst.AnimState:SetBuild("tuber_bloom_build")
 end
 
@@ -287,7 +287,7 @@ local function StopBloom(inst)
     end
 
     inst.build = "normal"
-    inst.components.pl_pickable:ChangeProduct("tuber_crop")
+    inst.components.pickable:ChangeProduct("tuber_crop")
     inst.AnimState:SetBuild("tuber_tree_build")
 end
 
@@ -438,9 +438,9 @@ local function MakeTree(name, build, stage, data)
         inst:AddComponent("inspectable")
         inst.components.inspectable.getstatus = GetStatus
 
-        inst:AddComponent("pl_pickable")
-        inst.components.pl_pickable:SetUp("tuber_crop", TUNING.VINE_REGROW_TIME)
-        inst.components.pl_pickable.onregenfn = OnRegen
+        inst:AddComponent("pickable")
+        inst.components.pickable:SetUp("tuber_crop", TUNING.VINE_REGROW_TIME)
+        inst.components.pickable.onregenfn = OnRegen
 
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HACK)
@@ -473,11 +473,11 @@ local function MakeTree(name, build, stage, data)
         MakeHauntableWork(inst)
         MakeTreeBlowInWindGust(inst, {"short", "tall"}, TUNING.JUNGLETREE_WINDBLOWN_SPEED, TUNING.JUNGLETREE_WINDBLOWN_FALL_CHANCE)
 
-        if data == "burnt"  then
+        if data == "burnt" then
             OnBurnt(inst)
         end
 
-        if data == "stump"  then
+        if data == "stump" then
             MakeStump(inst)
         end
 
