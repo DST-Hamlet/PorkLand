@@ -571,6 +571,7 @@ local function OnHacked(inst, hacker, hacksleft)
 
             if inst.stage == 0 then
                 inst.components.workable:SetWorkable(false)
+                inst.components.shearable:SetCanShear(false)
                 inst.components.door:SetDoorDisabled(false, "vines")
             else
                 inst.components.workable:SetWorkLeft(TUNING.RUINS_ENTRANCE_VINES_HACKS)
@@ -619,6 +620,7 @@ local function OnLoad(inst, data)
         end
         if data.canhack then
             inst.components.workable:SetWorkable(data.canhack)
+            inst.components.shearable:SetCanShear(data.canhack)
         end
         if data.top_ornament then
             inst:AddTag("top_ornament")
@@ -737,6 +739,7 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
             inst:AddTag(dungeon_name .. "_EXIT_TARGET")
             inst.stage = 0
             inst.components.workable:SetWorkable(false)
+            inst.components.shearable:SetCanShear(false)
             inst.components.door.disabled = nil
             RefreshBuild(inst)
         end
@@ -744,6 +747,7 @@ local function MakeEntrance(name, is_entrance, dungeon_name)
         if dungeon_name == "RUINS_SMALL" then
             inst.stage = 0
             inst.components.workable:SetWorkable(false)
+            inst.components.shearable:SetCanShear(false)
             inst.components.door.disabled = nil
             RefreshBuild(inst)
         end

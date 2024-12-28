@@ -48,6 +48,7 @@ local function Regrow(inst)
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/traps/vine_grow")
         inst.stage = 2
         inst.components.workable:SetWorkLeft(TUNING.RUINS_DOOR_VINES_HACKS)
+        inst.components.shearable:SetCanShear(true)
         inst:RemoveTag("NOCLICK")
         inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_pre", true)
         inst.AnimState:PushAnimation(GetAnimName(inst), true)
@@ -59,6 +60,7 @@ local function hackedopen(inst)
     -- this is just for viuals, it doesn't actually open the assotiated door.
     inst.stage = 0
     inst.components.workable:SetWorkable(false)
+    inst.components.shearable:SetCanShear(false)
     inst:AddTag("NOCLICK")
     inst.AnimState:PlayAnimation(GetAnimName(inst), true)
     inst.components.rotatingbillboard:SyncMaskAnimation()

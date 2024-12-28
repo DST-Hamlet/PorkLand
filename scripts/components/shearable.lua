@@ -1,39 +1,22 @@
-local function oncanbesheared(self, canbesheared)
-    if canbesheared then
-        self.inst:AddTag("SHEAR_workable")
-    else
-        self.inst:RemoveTag("SHEAR_workable")
-    end
-end
-
 local Shearable = Class(function(self, inst)
     self.inst = inst
 
     self.drop = false
     self.drop_height = 0
     self.product_num = 1
-    self.canbesheared = true
+    -- self.canbesheared = true
+    self:SetCanShear(true)
 
     self.product = nil
     self.onshearfn = nil
-
-    inst:DoTaskInTime(0, function()
-        if inst.components.hackable then
-            self.canbesheared = inst:HasTag("HACK_workable")
-        end
-    end)
-end,
-nil,
-{
-    canbesheared = oncanbesheared
-})
+end)
 
 function Shearable:OnRemoveFromEntity()
     self.inst:RemoveTag("SHEAR_workable")
 end
 
 function Shearable:SetUp(product, product_num, drop)
-    self.canbesheared = true
+    self:SetCanShear(true)
     self.product = product
     self.product_num = product_num or 2
     self.drop = drop or false
@@ -90,6 +73,15 @@ end
 
 function Shearable:CanShear()
     return self.canbesheared
+end
+
+function Shearable:SetCanShear(canbesheared)
+    self.canbesheared = canbesheared
+    if canbesheared then
+        self.inst:AddTag("SHEAR_workable")
+    else
+        self.inst:RemoveTag("SHEAR_workable")
+    end
 end
 
 function Shearable:SetOnShearFn(fn)

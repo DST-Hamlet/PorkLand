@@ -121,6 +121,7 @@ local GROWTH_STAGES = {
         fn = function(inst)
             inst.AnimState:PlayAnimation("picked", true)
             inst.components.hackable:SetWorkable(false)
+            inst.components.shearable:SetCanShear(false)
             inst.components.childspawner:StopSpawning()
             inst.components.growable:StartGrowing()
         end,
@@ -140,6 +141,7 @@ local GROWTH_STAGES = {
             inst.AnimState:PlayAnimation("grow")
             inst.AnimState:PushAnimation("idle", true)
             inst.components.hackable:SetWorkLeft(2.5)
+            inst.components.shearable:SetCanShear(true)
             WeevoleNestTest(inst)
         end,
     },
