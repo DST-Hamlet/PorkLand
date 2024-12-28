@@ -13,8 +13,7 @@ AddPrefabPostInit("grass", function(inst)
         if NUTRIENT_TILES[tile] then
             local cycles_left = inst.components.pickable.cycles_left
             local tallgrass = ReplacePrefab(inst, "grass_tall")
-            tallgrass.components.hackable.cycles_left = cycles_left
-            tallgrass.components.hackable.onregenfn(tallgrass)
+            -- tallgrass.components.hackable.onregenfn(tallgrass)
             return
         end
         _onregenfn(inst, ...)
@@ -27,7 +26,7 @@ AddPrefabPostInit("grass", function(inst)
         local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
         if NUTRIENT_TILES[tile] then
             local tallgrass = ReplacePrefab(inst, "grass_tall")
-            tallgrass.components.hackable:MakeEmpty()
+            -- tallgrass.components.hackable:MakeEmpty()
             return
         end
         _ontransplantfn(inst, ...)

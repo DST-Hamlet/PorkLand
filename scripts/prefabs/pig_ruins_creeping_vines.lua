@@ -47,8 +47,7 @@ local function Regrow(inst)
     if inst.stage ~= 2 then
         inst.SoundEmitter:PlaySound("dontstarve_DLC003/common/traps/vine_grow")
         inst.stage = 2
-        inst.components.hackable.canbehacked = true
-        inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
+        inst.components.workable:SetWorkLeft(TUNING.RUINS_DOOR_VINES_HACKS)
         inst:RemoveTag("NOCLICK")
         inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_pre", true)
         inst.AnimState:PushAnimation(GetAnimName(inst), true)
@@ -59,7 +58,7 @@ end
 local function hackedopen(inst)
     -- this is just for viuals, it doesn't actually open the assotiated door.
     inst.stage = 0
-    inst.components.hackable.canbehacked = false
+    inst.components.workable:SetWorkable(false)
     inst:AddTag("NOCLICK")
     inst.AnimState:PlayAnimation(GetAnimName(inst), true)
     inst.components.rotatingbillboard:SyncMaskAnimation()
@@ -78,7 +77,7 @@ local function OnHacked(inst, hacker, hacksleft)
             else
                 inst.AnimState:PlayAnimation(GetAnimName(inst) .. "_hit")
                 inst.AnimState:PushAnimation(GetAnimName(inst), true)
-                inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
+                inst.components.workable:SetWorkLeft(TUNING.RUINS_DOOR_VINES_HACKS)
             end
         end
     else
@@ -142,11 +141,12 @@ local function makefn()
         return inst
     end
 
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.HACK)
+    inst.components.workable:SetWorkLeft(TUNING.RUINS_DOOR_VINES_HACKS)
+    inst.components.workable:SetOnWorkCallback(OnHacked)
+
     inst:AddComponent("hackable")
-    inst.components.hackable:SetUp()
-    inst.components.hackable.onhackedfn = OnHacked
-    inst.components.hackable.hacksleft = TUNING.RUINS_DOOR_VINES_HACKS
-    inst.components.hackable.maxhacks = TUNING.RUINS_DOOR_VINES_HACKS
 
     inst:AddComponent("shearable")
 

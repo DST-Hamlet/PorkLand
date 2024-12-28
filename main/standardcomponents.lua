@@ -29,7 +29,7 @@ end
 function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
     inst.onblownpstdone = function(inst)
         if inst.components.hackable and
-            inst.components.hackable:CanBeHacked() and
+            inst.components.hackable:CanBeWorked() and
             (
                 inst.AnimState:IsCurrentAnimation("blown_pst") or
                 inst.AnimState:IsCurrentAnimation("blown_loop") or
@@ -42,7 +42,7 @@ function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
     end
 
     inst.ongustanimdone = function(inst)
-        if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+        if inst.components.hackable and inst.components.hackable:CanBeWorked() then
             if inst.components.blowinwindgust:IsGusting() then
                 local anim = math.random(1, 2)
                 inst.AnimState:PlayAnimation("blown_loop"..anim, false)
@@ -51,7 +51,7 @@ function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
                     inst:RemoveEventCallback("animover", inst.ongustanimdone)
 
                     -- This may not be true anymore
-                    if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+                    if inst.components.hackable and inst.components.hackable:CanBeWorked() then
                         inst.AnimState:PlayAnimation("blown_pst", false)
                         -- changed this from a push animation to an animover listen event so that it can be interrupted if necessary, and that a check can be made at the end to know if it should go to idle at that time.
                         --inst.AnimState:PushAnimation("idle", true)
@@ -66,17 +66,17 @@ function MakeHackableBlowInWindGust(inst, wind_speed, destroy_chance)
 
     inst.onguststart = function(inst, windspeed)
         inst:DoTaskInTime(math.random()/2, function(inst)
-            if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+            if inst.components.hackable and inst.components.hackable:CanBeWorked() then
                 inst.AnimState:PlayAnimation("blown_pre", false)
                 inst:ListenForEvent("animover", inst.ongustanimdone)
             end
         end)
     end
 
+    local destroyer = CreateEntity()
     inst.ongusthack = function(inst)
-        if inst.components.hackable and inst.components.hackable:CanBeHacked() then
-            inst.components.hackable:MakeEmpty()
-            inst.components.lootdropper:SpawnLootPrefab(inst.components.hackable.product)
+        if inst.components.hackable and inst.components.hackable:CanBeWorked() then
+            inst.components.hackable:Destroy(destroyer)
         end
     end
 
@@ -593,9 +593,9 @@ function MakeHauntableVineDoor(inst)
         if math.random() <= TUNING.HAUNT_CHANCE_OFTEN then
             if inst.components.vineable and inst.components.vineable.vines and
                 inst.components.vineable.vines.components.hackable and inst.components.vineable.vines.stage > 0 then
-                    inst.components.vineable.vines.components.hackable:Hack(player, 1)
+                    inst.components.vineable.vines.components.hackable:WorkedBy(player, 1)
             elseif inst.components.hackable and inst.stage > 0 then -- 内部门用vineable, 外部门用hackable...需要代码清理
-                inst.components.hackable:Hack(player, 1)
+                inst.components.hackable:WorkedBy(player, 1)
             end
         end
         return false

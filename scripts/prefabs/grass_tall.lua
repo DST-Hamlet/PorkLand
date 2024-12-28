@@ -13,12 +13,12 @@ local prefabs =
 
 local function GetStatus(inst, viewer)
     return not (inst.components.burnable and inst.components.burnable:IsBurning()) and
-            inst.components.hackable and not inst.components.hackable:CanBeHacked() and "PICKED"
+            inst.components.hackable and not inst.components.hackable:CanBeWorked() and "PICKED"
             or nil
 end
 
 local function DigUp(inst, target)
-    if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+    if inst.components.hackable and inst.components.hackable:CanBeWorked() then
         inst.components.lootdropper:SpawnLootPrefab("cutgrass")
     end
     if inst:HasTag("weevole_infested")then
@@ -30,7 +30,7 @@ local function DigUp(inst, target)
 end
 
 local function StartSpawning(inst, isdusk)
-    if inst.components.childspawner and inst.components.hackable:CanBeHacked() then
+    if inst.components.childspawner and inst.components.hackable:CanBeWorked() then
         local frozen = (inst.components.freezable and inst.components.freezable:IsFrozen())
         if not frozen and not TheWorld.state.isday then
             inst.components.childspawner:StartSpawning()
@@ -138,7 +138,7 @@ end
 
 local function OnSpawnWeevole(inst, weevole)
     if inst:IsValid() then
-        if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+        if inst.components.hackable and inst.components.hackable:CanBeWorked() then
             inst.AnimState:PlayAnimation("rustle", false)
             inst.AnimState:PushAnimation("idle", true)
         end
@@ -151,7 +151,7 @@ end
 
 local function OnNear(inst)
     if not inst.near then
-        if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+        if inst.components.hackable and inst.components.hackable:CanBeWorked() then
             inst.AnimState:PlayAnimation("rustle")
             inst.AnimState:PushAnimation("idle", true)
         end
@@ -215,16 +215,16 @@ local function grass_tall()
     inst.components.workable:SetOnFinishCallback(DigUp)
     inst.components.workable:SetWorkLeft(1)
 
-    inst:AddComponent("hackable")
-    inst.components.hackable.max_cycles = TUNING.GRASS_CYCLES
-    inst.components.hackable.cycles_left = TUNING.GRASS_CYCLES
-    inst.components.hackable.hacksleft = 2.5
-    inst.components.hackable.maxhacks = 2.5
-    inst.components.hackable:SetUp("cutgrass", TUNING.VINE_REGROW_TIME)
-    inst.components.hackable:SetOnHackedFn(OnHack)
-    inst.components.hackable:SetOnRegenFn(OnRegen)
-    inst.components.hackable:SetMakeBarrenFn(MakeBarren)
-    inst.components.hackable:SetMakeEmptyFn(MakeEmpty)
+    -- inst:AddComponent("hackable")
+    -- inst.components.hackable.max_cycles = TUNING.GRASS_CYCLES
+    -- inst.components.hackable.cycles_left = TUNING.GRASS_CYCLES
+    -- inst.components.hackable.hacksleft = 2.5
+    -- inst.components.hackable.maxhacks = 2.5
+    -- inst.components.hackable:SetUp("cutgrass", TUNING.VINE_REGROW_TIME)
+    -- inst.components.hackable:SetOnHackedFn(OnHack)
+    -- inst.components.hackable:SetOnRegenFn(OnRegen)
+    -- inst.components.hackable:SetMakeBarrenFn(MakeBarren)
+    -- inst.components.hackable:SetMakeEmptyFn(MakeEmpty)
 
     inst:AddComponent("shearable")
     inst.components.shearable:SetUp("cutgrass", 2)
