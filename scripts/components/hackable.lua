@@ -18,8 +18,8 @@ local Hackable = Class(function(self, inst)
     self.inst = inst
     self.onwork = nil
     self.onfinish = nil
-    self.workleft = 10
     self.action = ACTIONS.HACK
+    self.workleft = 10
     self.workable = true
 end,
 nil,
