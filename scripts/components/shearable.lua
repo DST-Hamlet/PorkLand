@@ -48,6 +48,9 @@ local function SpawnProduct(prefab)
 end
 
 function Shearable:Shear(shearer, numworks)
+    -- A hacky way for workable/hackable handlers to check if they're getting a shear, not a hack
+    self.shearing = true
+
     if self.inst.components.hackable then
         self.inst.components.hackable:Destroy(shearer)
     end
@@ -81,6 +84,8 @@ function Shearable:Shear(shearer, numworks)
     if self.onshearfn then
         self.onshearfn(self.inst, shearer)
     end
+
+    self.shearing = nil
 end
 
 function Shearable:CanShear()

@@ -7,7 +7,7 @@ local function onworkable(self)
     if self.inst.components.workable and self.inst.components.workable.action == self.action then
         return
     end
-    if self.workleft > 0 then
+    if self.workable and self.workleft > 0 then
         self.inst:AddTag(self.action.id.."_workable")
     else
         self.inst:RemoveTag(self.action.id.."_workable")
@@ -20,6 +20,7 @@ local Hackable = Class(function(self, inst)
     self.onfinish = nil
     self.workleft = 10
     self.action = ACTIONS.HACK
+    self.workable = true
 end,
 nil,
 {
@@ -40,7 +41,12 @@ function Hackable:Destroy(destroyer)
     end
 end
 
+function Hackable:SetWorkable(able)
+    self.workable = able
+end
+
 function Hackable:SetWorkLeft(work)
+    self.workable = true
     self.workleft = math.max(1, work or 10)
 end
 
@@ -48,14 +54,14 @@ function Hackable:GetWorkLeft()
     if self.inst.components.workable and self.inst.components.workable.action == self.action then
         return self.inst.components.workable:GetWorkLeft()
     end
-    return self.workleft or 0
+    return self.workable and self.workleft or 0
 end
 
 function Hackable:CanBeWorked()
     if self.inst.components.workable and self.inst.components.workable.action == self.action then
         return self.inst.components.workable:CanBeWorked()
     end
-    return self.workleft > 0
+    return self.workable and self.workleft > 0
 end
 
 function Hackable:SetOnWorkCallback(fn)
