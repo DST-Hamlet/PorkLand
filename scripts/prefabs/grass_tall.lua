@@ -96,6 +96,7 @@ local function OnHack(inst, worker, hacksleft)
             inst.components.childspawner:ReleaseAllChildren(worker)
             RemoveWeevoleden(inst)
         end
+        inst.components.growable:SetStage(1)
         inst.AnimState:PlayAnimation("fall")
         inst.AnimState:PushAnimation("picked", true)
         inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/vine_drop")
@@ -126,9 +127,7 @@ local GROWTH_STAGES = {
     },
     {
         name = "tall",
-        fn = function(inst)
-            inst.components.hackable:SetWorkLeft(2.5)
-        end,
+        time = function() return nil end,
         growfn = function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
             local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
@@ -140,6 +139,7 @@ local GROWTH_STAGES = {
             end
             inst.AnimState:PlayAnimation("grow")
             inst.AnimState:PushAnimation("idle", true)
+            inst.components.hackable:SetWorkLeft(2.5)
             WeevoleNestTest(inst)
         end,
     },
@@ -235,11 +235,9 @@ local function grass_tall()
 
     inst:AddComponent("growable")
     inst.components.growable.stages = GROWTH_STAGES
-    inst.components.growable:SetStage(2)
-    inst.components.growable.growonly = true
     inst.components.growable.magicgrowable = true
     inst.components.growable.springgrowth = true
-    inst.components.growable:StartGrowing()
+    inst.components.growable:SetStage(2)
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "weevole"
