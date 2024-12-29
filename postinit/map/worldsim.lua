@@ -147,15 +147,25 @@ function WorldSim__index:GetChildrenForSite(node_id)
     return _GetChildrenForSite(self, node_id)
 end
 
-local function GetSpcae(x, y, size, site_points)
+function WorldSim__index:GetSpcaePoint(start_x, start_y, size, fill_points, ignore_impassable, ignore_barren, ignore_reserved)
     local space = { x = {}, y = {} }
+    local start_tile = self:GetTile(start_x, start_y)
+    local start_reserved = self:IsTileReserved(start_x, start_y)
+
+    if (start_tile == WORLD_TILES.IMPASSABLE and not ignore_impassable)
+        or (start_reserved and not ignore_reserved) then
+            return
+    end
+
     for i = 0, size - 1 do
+        local x = start_x + i
         for j = 0, size - 1 do
-            if not site_points[x + i] or not site_points[x + i][y + j] then
+            local y = start_y + j
+            if not fill_points[x] or not fill_points[x][y] then
                 return
             end
-            table.insert(space.x, x + i)
-            table.insert(space.y, y + j)
+            table.insert(space.x, x)
+            table.insert(space.y, y)
         end
     end
 
@@ -164,43 +174,42 @@ end
 
 local _ReserveSpace = WorldSim__index.ReserveSpace
 function WorldSim__index:ReserveSpace(node_id, size, start_mask, fill_mask, layout_position, tiles)
-    local ignore_reserved = bit.band(fill_mask, PLACE_MASK.IGNORE_RESERVED) == PLACE_MASK.IGNORE_RESERVED
-
-    local points_x, points_y, points_type = self:GetPointsForSite(node_id, ignore_reserved)
-    if points_x then
-        local ignore_impassable = bit.band(fill_mask, PLACE_MASK.IGNORE_IMPASSABLE) == PLACE_MASK.IGNORE_IMPASSABLE
-        local ignore_barren = bit.band(fill_mask, PLACE_MASK.IGNORE_BARREN) == PLACE_MASK.IGNORE_BARREN
-
+    local node_data = NodeDatas[node_id]
+    if node_data then
         local start_ignore_impassable = bit.band(start_mask, PLACE_MASK.IGNORE_IMPASSABLE) == PLACE_MASK.IGNORE_IMPASSABLE
         local start_ignore_barren = bit.band(start_mask, PLACE_MASK.IGNORE_BARREN) == PLACE_MASK.IGNORE_BARREN
         local start_ignore_reserved = bit.band(start_mask, PLACE_MASK.IGNORE_RESERVED) == PLACE_MASK.IGNORE_RESERVED
 
+        local ignore_impassable = bit.band(fill_mask, PLACE_MASK.IGNORE_IMPASSABLE) == PLACE_MASK.IGNORE_IMPASSABLE
+        local ignore_barren = bit.band(fill_mask, PLACE_MASK.IGNORE_BARREN) == PLACE_MASK.IGNORE_BARREN
+        local ignore_reserved = bit.band(fill_mask, PLACE_MASK.IGNORE_RESERVED) == PLACE_MASK.IGNORE_RESERVED
+
+        local points_x, points_y, points_type = self:GetPointsForSite(node_id, ignore_reserved)
+
         local fill_points = {}
+        for i = 1, #points_x do
+            local x = points_x[i]
+            local y = points_y[i]
+            local tile = self:GetTile(x, y)
 
-        -- if layout_position == LAYOUT_POSITION.CENTER then
-        -- else
-            for i = 1, #points_x do
-                local x = points_x[i]
-                local y = points_y[i]
-                local tile = self:GetTile(x, y)
-
-                if (tile ~= WORLD_TILES.IMPASSABLE or ignore_impassable)
-                then
-                    fill_points[x] = fill_points[x] or {}
-                    fill_points[x][y] = { tile = tile }
-                end
+            if (tile ~= WORLD_TILES.IMPASSABLE or ignore_impassable)
+            then
+                fill_points[x] = fill_points[x] or {}
+                fill_points[x][y] = true
             end
-        -- end
+        end
 
         local spaces = {}
-        for x, cols in pairs(fill_points) do
-            for y, data in pairs(cols) do
-                local tile = data.tile
-                local reserved = self:IsTileReserved(x, y)
-                if (tile ~= WORLD_TILES.IMPASSABLE or start_ignore_impassable)
-                    and (not reserved or start_ignore_reserved)
-                then
-                    local space = GetSpcae(x, y, size * 2, fill_points)
+        if layout_position == LAYOUT_POSITION.CENTER then
+            local start_x, start_y = math.floor(node_data.site.x / TILE_SCALE) * TILE_SCALE, math.floor(node_data.site.y / TILE_SCALE) * TILE_SCALE
+            local space = self:GetSpcaePoint(start_x, start_y, size * 2, fill_points, start_ignore_impassable, start_ignore_barren, start_ignore_reserved)
+            if space then
+                table.insert(spaces, space)
+            end
+        else
+            for start_x, cols in pairs(fill_points) do
+                for start_y in pairs(cols) do
+                    local space = self:GetSpcaePoint(start_x, start_y, size * 2, fill_points, start_ignore_impassable, start_ignore_barren, start_ignore_reserved)
                     if space then
                         table.insert(spaces, space)
                     end
@@ -224,5 +233,6 @@ function WorldSim__index:ReserveSpace(node_id, size, start_mask, fill_mask, layo
 
         return space.x[1], space.y[1]
     end
+
     return _ReserveSpace(self, node_id, size, start_mask, fill_mask, layout_position, tiles)
 end
