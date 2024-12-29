@@ -145,11 +145,12 @@ local screens_posts = {
 
 local stategraph_posts = {
     "bird",
+    "multiplayerportal",
+    "shadowcreature",
     "wilson",
     "wilson_client",
     "wilsonghost",
     "wilsonghost_client",
-    "multiplayerportal",
 }
 
 local brain_posts = {

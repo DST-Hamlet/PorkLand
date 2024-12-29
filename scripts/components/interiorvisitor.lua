@@ -459,7 +459,9 @@ function InteriorVisitor:RevealAlwaysShownMinimapEntities()
         end
     end
 
-    SendModRPCToClient(GetClientModRPC("PorkLand", "always_shown_interior_map"), self.inst.userid, ZipAndEncodeString(sync_actions))
+    if not IsTableEmpty(sync_actions) then
+        SendModRPCToClient(GetClientModRPC("PorkLand", "always_shown_interior_map"), self.inst.userid, ZipAndEncodeString(sync_actions))
+    end
 end
 
 function InteriorVisitor:OnSave()
