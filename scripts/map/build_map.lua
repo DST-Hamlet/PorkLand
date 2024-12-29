@@ -22,7 +22,6 @@ local function RemoveNode(parent, node)
     if parent.children then
         for id, child in pairs(parent.children) do
             if node == child then
-                print("Warning: Removing child node:", node.id)
                 parent:RemoveChild(id)
                 removed = true
             end
