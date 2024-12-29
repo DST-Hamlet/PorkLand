@@ -51,7 +51,7 @@ local function RecordMap(topology_save)
             local region_data = region_datas[tag]
             if region_data then
                 node.region = tag
-                local points_x, points_y, points_type = WorldSim:GetPointsForSite(node.id)
+                local points_x, points_y, points_type = WorldSim:GetPointsForSite(node.id, true)
                 for i = 1, #points_x do
                     local x, y = points_x[i], points_y[i]
                     region_data.x_max = math.max(region_data.x_max or 0, x)
@@ -149,8 +149,9 @@ local function ReBuildMap(map_width, map_height)
                 area = node_data.area,
                 site = { x = site_x, y = site_y } ,
                 site_centroid = { x = centroid_x, y = centroid_y },
-                site_points = { x = {}, y = {}, tiles = {} },
+                site_points = { x = {}, y = {} },
                 polygon_vertexs = { x = {}, y = {} },
+                children = WorldSim:GetChildrenForSite(node.id)
             }
 
             for _, relative_vertex in ipairs(node_data.relative_polygon_vertexs) do
@@ -164,7 +165,6 @@ local function ReBuildMap(map_width, map_height)
                 WorldSim:SetTile(x, y, relative_point.tile)
                 table.insert(data.site_points.x, x)
                 table.insert(data.site_points.y, y)
-                table.insert(data.site_points.tiles, relative_point.tile)
             end
             WorldSim:SetNodeData(node.id, data)
         end

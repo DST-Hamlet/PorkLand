@@ -108,7 +108,7 @@ function obj_layout.PlaceWaterLayout(layout, prefabs, add_entity, checkFn, radiu
         local pos = math.random(1, #positions)
         local adj = 0.5 * (positions[pos].size - layoutsize)
         local x, y = positions[pos].x + adj, positions[pos].y + adj -- bottom-left
-        -- print(string.format("PlaceWaterLayout (%f, %f) from %d of %d", x, y, pos, #positions))
+        print(string.format("PlaceWaterLayout (%f, %f) from %d of %d", x, y, pos, #positions))
         obj_layout.ReserveAndPlaceLayout("POSITIONED", layout, prefabs, add_entity, {x, y})
 
         for yy = positions[pos].y, positions[pos].y2, 1 do
