@@ -3,7 +3,7 @@ local CloudManager = Class(function(self, inst)
 
     self.clouds = {}
 
-    self.num = 32
+    self.num = 48
     self.cloud_dist = 2.5
 
     self.oldheading = 0
