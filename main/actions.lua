@@ -1118,16 +1118,18 @@ end
 
 local _USEITEM_inventoryitem = USEITEM.inventoryitem
 function USEITEM.inventoryitem(inst, doer, target, actions, right, ...)
-    if not inst.replica.inventoryitem:CanOnlyGoInPocket() then
-        if target:HasTag("weighdownable") then
-            table.insert(actions, ACTIONS.WEIGHDOWN)
-            return
-        elseif target:HasTag("visual_slot") then
-            if target:HasTag("empty") then
-                local shelf = target.replica.visualslot:GetShelf()
-                if not (shelf and shelf.replica.shopped) then
-                    table.insert(actions, ACTIONS.PUTONSHELF)
-                    return
+    if inst.replica.inventoryitem ~= nil then
+        if not inst.replica.inventoryitem:CanOnlyGoInPocket() then
+            if target:HasTag("weighdownable") then
+                table.insert(actions, ACTIONS.WEIGHDOWN)
+                return
+            elseif target:HasTag("visual_slot") then
+                if target:HasTag("empty") then
+                    local shelf = target.replica.visualslot:GetShelf()
+                    if not (shelf and shelf.replica.shopped) then
+                        table.insert(actions, ACTIONS.PUTONSHELF)
+                        return
+                    end
                 end
             end
         end
