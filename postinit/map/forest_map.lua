@@ -51,7 +51,7 @@ local function validate_ground_tile(tile)
     return WORLD_TILES.IMPASSABLE
 end
 
-local SKIP_GEN_CHECKS = true
+local SKIP_GEN_CHECKS = false
 local _Generate = forest_map.Generate
 local GetTileForNoiseTile = ToolUtil.GetUpvalue(_Generate, "GetTileForNoiseTile")
 local TranslateWorldGenChoices = ToolUtil.GetUpvalue(_Generate, "TranslateWorldGenChoices")
@@ -252,7 +252,8 @@ local function GeneratePorkland(prefab, map_width, map_height, tasks, level, lev
         map_width, map_height = InitWorld("medium", join_islands, fake_topology_save)
 
         local result = build_map.ReBuildMap(map_width, map_height)
-        if not result or not SKIP_GEN_CHECKS then
+        if not result then
+            print("PANIC: Failed to generate map!")
             return nil
         end
 
@@ -324,9 +325,46 @@ local function GeneratePorkland(prefab, map_width, map_height, tasks, level, lev
         end
     end
 
-    -- BunchSpawnerInit(entities, map_width, map_height)
-    -- BunchSpawnerRun(WorldSim)
-    -- AncientArchivePass(entities, map_width, map_height, WorldSim)
+    BunchSpawnerInit(entities, map_width, map_height)
+    BunchSpawnerRun(WorldSim)
+    AncientArchivePass(entities, map_width, map_height, WorldSim)
+
+    build_porkland(entities, topology_save, map_width, map_height, current_gen_params)
+
+    local double_check = {}
+    for i, prefab in ipairs(level.required_prefabs or {}) do
+        if not translated_prefabs or translated_prefabs[prefab] ~= 0 then
+            if double_check[prefab] == nil then
+                double_check[prefab] = 1
+            else
+                double_check[prefab] = double_check[prefab] + 1
+            end
+        end
+    end
+    for prefab, count in pairs(topology_save.root:GetRequiredPrefabs()) do
+        if not translated_prefabs or translated_prefabs[prefab] ~= 0 then
+            if double_check[prefab] == nil then
+                double_check[prefab] = count
+            else
+                double_check[prefab] = double_check[prefab] + count
+            end
+        end
+    end
+
+    for prefab, count in pairs(double_check) do
+        print ("Checking Required Prefab " .. prefab .. " has at least " .. count .. " instances (" .. (entities[prefab] ~= nil and #entities[prefab] or 0) .. " found).")
+
+        if entities[prefab] == nil or #entities[prefab] < count then
+            if level.overrides[prefab] == "never" then
+                print(string.format(" - missing required prefab [%s] was disabled in the world generation options!", prefab))
+            else
+                print(string.format("PANIC: missing required prefab [%s]! Expected %d, got %d", prefab, count, entities[prefab] == nil and 0 or #entities[prefab]))
+                if SKIP_GEN_CHECKS == false then
+                    return nil
+                end
+            end
+        end
+    end
 
     save.map.tiles, save.map.tiledata, save.map.nav, save.map.adj, save.map.nodeidtilemap = WorldSim:GetEncodedMap(join_islands)
     save.map.world_tile_map = GetWorldTileMap()

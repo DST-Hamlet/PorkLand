@@ -5,6 +5,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
     id = "PORKLAND_DEFAULT",
     name = STRINGS.UI.CUSTOMIZATIONSCREEN.PRESETLEVELS.PORKLAND,
     desc = STRINGS.UI.CUSTOMIZATIONSCREEN.PRESETLEVELDESC.PORKLAND,
+    version = 2,
     location = "porkland",
     overrides = {
         task_set = "porkland",
@@ -42,6 +43,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
     id = "PORKLAND_TEST",
     name = "PORKLAND_TEST",
     desc = "PORKLAND_TEST",
+    version = 2,
     location = "porkland",
     overrides = {
         world_size = "small",

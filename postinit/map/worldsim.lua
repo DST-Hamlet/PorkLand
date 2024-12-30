@@ -32,8 +32,8 @@ local LAYOUT_POSITION = LAYOUT_POSITION or {
 ---@field area number
 ---@field site table{ x: number, y: number }
 ---@field site_centroid table{ x: number, y: number }
----@field site_points table{ x: number[], y: number[] }
----@field polygon_vertexs table{ x: number[], y: number[], tiles: number[] }
+---@field site_points table{ x: number[], y: number[], map: number[][] }
+---@field polygon_vertexs table{ x: number[], y: number[] }
 ---@type table<string, NodeData>
 local NodeDatas = {}
 
@@ -51,11 +51,22 @@ function WorldSim__index:SetNodeData(node_id, data)
     assert(data.site_centroid)
     assert(data.site_points)
     assert(data.polygon_vertexs)
+
+    data.site_points.map = {}
+    for i = 1, #data.site_points.x do
+        local x = data.site_points.x[i]
+        local y = data.site_points.y[i]
+        data.site_points.map[x] = data.site_points.map[x] or {}
+        data.site_points.map[x][y] = true
+    end
+
     NodeDatas[node_id] = data
 end
 
-function WorldSim__index:ClearNodeData()
+local _ResetAll = WorldSim__index.ResetAll
+function WorldSim__index:ResetAll(...)
     NodeDatas = {}
+    return _ResetAll(self, ...)
 end
 
 local _GetSiteArea = WorldSim__index.GetSiteArea
@@ -83,7 +94,7 @@ end
 
 local _GetSiteCentroid = WorldSim__index.GetSiteCentroid
 ---@param node_id string
----@return number[], number[]
+---@return number, number
 function WorldSim__index:GetSiteCentroid(node_id)
     local node_data = NodeDatas[node_id]
     if node_data then
@@ -128,15 +139,6 @@ function WorldSim__index:GetSitePolygon(node_id)
     return _GetSitePolygon(self, node_id)
 end
 
-local _PointInSite = WorldSim__index.PointInSite
----@param node_id string
----@param x number
----@param y number
----@return boolean
-function WorldSim__index:PointInSite(node_id, x, y)
-    return _PointInSite(self, node_id, x, y)
-end
-
 local _GetChildrenForSite = WorldSim__index.GetChildrenForSite
 ---@param node_id string
 function WorldSim__index:GetChildrenForSite(node_id)
@@ -147,13 +149,37 @@ function WorldSim__index:GetChildrenForSite(node_id)
     return _GetChildrenForSite(self, node_id)
 end
 
-function WorldSim__index:GetSpcaePoint(start_x, start_y, size, fill_points, ignore_impassable, ignore_barren, ignore_reserved)
+local _PointInSite = WorldSim__index.PointInSite
+---@param node_id string
+---@param x number
+---@param y number
+---@return boolean
+function WorldSim__index:PointInSite(node_id, x, y)
+    local node_data = NodeDatas[node_id]
+    if node_data then
+        x = math.floor(x / TILE_SCALE) * TILE_SCALE
+        y = math.floor(y / TILE_SCALE) * TILE_SCALE
+        return node_data.site_points.map[x] and node_data.site_points.map[x][y]
+    end
+
+    return _PointInSite(self, node_id, x, y)
+end
+
+function WorldSim__index:GetSpcaePoint(start_x, start_y, size, fill_points, start_mask, fill_mask)
+    local start_ignore_impassable = bit.band(start_mask, PLACE_MASK.IGNORE_IMPASSABLE) == PLACE_MASK.IGNORE_IMPASSABLE
+    local start_ignore_barren = bit.band(start_mask, PLACE_MASK.IGNORE_BARREN) == PLACE_MASK.IGNORE_BARREN
+    local start_ignore_reserved = bit.band(start_mask, PLACE_MASK.IGNORE_RESERVED) == PLACE_MASK.IGNORE_RESERVED
+
+    local ignore_impassable = bit.band(fill_mask, PLACE_MASK.IGNORE_IMPASSABLE) == PLACE_MASK.IGNORE_IMPASSABLE
+    local ignore_barren = bit.band(fill_mask, PLACE_MASK.IGNORE_BARREN) == PLACE_MASK.IGNORE_BARREN
+    local ignore_reserved = bit.band(fill_mask, PLACE_MASK.IGNORE_RESERVED) == PLACE_MASK.IGNORE_RESERVED
+
     local space = { x = {}, y = {} }
     local start_tile = self:GetTile(start_x, start_y)
     local start_reserved = self:IsTileReserved(start_x, start_y)
 
-    if (start_tile == WORLD_TILES.IMPASSABLE and not ignore_impassable)
-        or (start_reserved and not ignore_reserved) then
+    if (start_tile == WORLD_TILES.IMPASSABLE and not start_ignore_impassable)
+        or (start_reserved and not start_ignore_reserved) then
             return
     end
 
@@ -161,7 +187,9 @@ function WorldSim__index:GetSpcaePoint(start_x, start_y, size, fill_points, igno
         local x = start_x + i
         for j = 0, size - 1 do
             local y = start_y + j
-            if not fill_points[x] or not fill_points[x][y] then
+            if (self:GetTile(x, y) == WORLD_TILES.IMPASSABLE and not ignore_impassable)
+                or (self:IsTileReserved(x, y) and not ignore_reserved)
+            then
                 return
             end
             table.insert(space.x, x)
@@ -176,40 +204,20 @@ local _ReserveSpace = WorldSim__index.ReserveSpace
 function WorldSim__index:ReserveSpace(node_id, size, start_mask, fill_mask, layout_position, tiles)
     local node_data = NodeDatas[node_id]
     if node_data then
-        local start_ignore_impassable = bit.band(start_mask, PLACE_MASK.IGNORE_IMPASSABLE) == PLACE_MASK.IGNORE_IMPASSABLE
-        local start_ignore_barren = bit.band(start_mask, PLACE_MASK.IGNORE_BARREN) == PLACE_MASK.IGNORE_BARREN
-        local start_ignore_reserved = bit.band(start_mask, PLACE_MASK.IGNORE_RESERVED) == PLACE_MASK.IGNORE_RESERVED
-
-        local ignore_impassable = bit.band(fill_mask, PLACE_MASK.IGNORE_IMPASSABLE) == PLACE_MASK.IGNORE_IMPASSABLE
-        local ignore_barren = bit.band(fill_mask, PLACE_MASK.IGNORE_BARREN) == PLACE_MASK.IGNORE_BARREN
-        local ignore_reserved = bit.band(fill_mask, PLACE_MASK.IGNORE_RESERVED) == PLACE_MASK.IGNORE_RESERVED
-
-        local points_x, points_y, points_type = self:GetPointsForSite(node_id, ignore_reserved)
-
-        local fill_points = {}
-        for i = 1, #points_x do
-            local x = points_x[i]
-            local y = points_y[i]
-            local tile = self:GetTile(x, y)
-
-            if (tile ~= WORLD_TILES.IMPASSABLE or ignore_impassable)
-            then
-                fill_points[x] = fill_points[x] or {}
-                fill_points[x][y] = true
-            end
-        end
+        local fill_points = node_data.site_points.map
 
         local spaces = {}
         if layout_position == LAYOUT_POSITION.CENTER then
-            local start_x, start_y = math.floor(node_data.site.x / TILE_SCALE) * TILE_SCALE, math.floor(node_data.site.y / TILE_SCALE) * TILE_SCALE
-            local space = self:GetSpcaePoint(start_x, start_y, size * 2, fill_points, start_ignore_impassable, start_ignore_barren, start_ignore_reserved)
+            local start_x = math.floor(node_data.site.x / TILE_SCALE) * TILE_SCALE
+            local start_y = math.floor(node_data.site.y / TILE_SCALE) * TILE_SCALE
+            local space = self:GetSpcaePoint(start_x, start_y, size * 2, fill_points, start_mask, fill_mask)
             if space then
                 table.insert(spaces, space)
             end
         else
             for start_x, cols in pairs(fill_points) do
                 for start_y in pairs(cols) do
-                    local space = self:GetSpcaePoint(start_x, start_y, size * 2, fill_points, start_ignore_impassable, start_ignore_barren, start_ignore_reserved)
+                    local space = self:GetSpcaePoint(start_x, start_y, size * 2, fill_points, start_mask, fill_mask)
                     if space then
                         table.insert(spaces, space)
                     end

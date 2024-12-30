@@ -51,7 +51,7 @@ local function RecordMap(topology_save)
             local region_data = region_datas[tag]
             if region_data then
                 node.region = tag
-                local points_x, points_y, points_type = WorldSim:GetPointsForSite(node.id, true)
+                local points_x, points_y, points_type = WorldSim:GetPointsForSite(node.id)
                 for i = 1, #points_x do
                     local x, y = points_x[i], points_y[i]
                     region_data.x_max = math.max(region_data.x_max or 0, x)
@@ -127,7 +127,8 @@ local function ReBuildMap(map_width, map_height)
     end
 
     local packed_region_datas = Pack(map_width, map_height, RegionDatas)
-    if not packed_region_datas  then
+    if not packed_region_datas then
+        print("PANIC: Failed to pack regions")
         return false
     end
 
