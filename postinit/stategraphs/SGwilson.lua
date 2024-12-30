@@ -324,7 +324,7 @@ local states = {
                 inst.sg.statemem.action:IsValid() and
                 inst.sg.statemem.action.target ~= nil and
                 inst.sg.statemem.action.target.components.hackable ~= nil and
-                inst.sg.statemem.action.target.components.hackable:CanBeHacked() and
+                inst.sg.statemem.action.target.components.hackable:CanBeWorked() and
                 inst.sg.statemem.action.target:IsActionValid(inst.sg.statemem.action.action) and
                 CanEntitySeeTarget(inst, inst.sg.statemem.action.target) then
                     inst:ClearBufferedAction()

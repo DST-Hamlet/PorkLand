@@ -75,11 +75,11 @@ local function DoToolWork(act, workaction, ...)
         act.doer.player_classified._last_work_target:set(act.target)
         act.doer.player_classified:ClearLastTarget()
     end
-    if act.target.components.hackable ~= nil and act.target.components.hackable:CanBeHacked() and workaction == ACTIONS.HACK then
+    if workaction == ACTIONS.HACK and act.target.components.hackable ~= nil and act.target.components.hackable:CanBeWorked() then
         if act.invobject and act.invobject.components.obsidiantool then
             act.invobject.components.obsidiantool:Use(act.doer, act.target)
         end
-        act.target.components.hackable:Hack(act.doer,
+        act.target.components.hackable:WorkedBy(act.doer,
             (
                 (act.invobject ~= nil and act.invobject.components.tool ~= nil and act.invobject.components.tool:GetEffectiveness(workaction)) or
                 (act.doer ~= nil and act.doer.components.worker ~= nil and act.doer.components.worker:GetEffectiveness(workaction)) or
@@ -107,7 +107,7 @@ ACTIONS.HACK.fn = function(act)
 end
 
 ACTIONS.HACK.validfn = function(act) -- this fixes hacking a nonvalid target when holding the mouse
-    return (act.target.components.hackable and act.target.components.hackable:CanBeHacked())
+    return (act.target.components.hackable and act.target.components.hackable:CanBeWorked())
         or (act.target.components.workable and act.target.components.workable:CanBeWorked() and act.target.components.workable:GetWorkAction() == ACTIONS.HACK)
 end
 
@@ -596,21 +596,6 @@ ACTIONS.THROW.fn = function(act)
     if thrown and thrown.components.throwable then
         local pos = act.GetActionPoint and act:GetActionPoint() or act.pos or act.doer:GetPosition()  --act.doer:GetPosition() Prevent error from monkey when throwing  -jerry
         thrown.components.throwable:Throw(pos, act.doer)
-        return true
-    end
-end
-
--- Patch for hackable things
-local _FERTILIZE_fn = ACTIONS.FERTILIZE.fn
-function ACTIONS.FERTILIZE.fn(act, ...)
-    if _FERTILIZE_fn(act, ...) then
-        return true
-    end
-
-    if act.target.components.hackable and act.target.components.hackable:CanBeFertilized()
-        and act.invobject and act.invobject.components.fertilizer then
-
-        act.target.components.hackable:Fertilize(act.invobject, act.doer)
         return true
     end
 end

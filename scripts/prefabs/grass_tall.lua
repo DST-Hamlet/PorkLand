@@ -13,12 +13,12 @@ local prefabs =
 
 local function GetStatus(inst, viewer)
     return not (inst.components.burnable and inst.components.burnable:IsBurning()) and
-            inst.components.hackable and not inst.components.hackable:CanBeHacked() and "PICKED"
+            inst.components.hackable and not inst.components.hackable:CanBeWorked() and "PICKED"
             or nil
 end
 
 local function DigUp(inst, target)
-    if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+    if inst.components.hackable and inst.components.hackable:CanBeWorked() then
         inst.components.lootdropper:SpawnLootPrefab("cutgrass")
     end
     if inst:HasTag("weevole_infested")then
@@ -30,7 +30,7 @@ local function DigUp(inst, target)
 end
 
 local function StartSpawning(inst, isdusk)
-    if inst.components.childspawner and inst.components.hackable:CanBeHacked() then
+    if inst.components.childspawner and inst.components.hackable:CanBeWorked() then
         local frozen = (inst.components.freezable and inst.components.freezable:IsFrozen())
         if not frozen and not TheWorld.state.isday then
             inst.components.childspawner:StartSpawning()
@@ -80,23 +80,30 @@ local function SpawnWeevole(inst, target)
     end
 end
 
-local function OnHack(inst, target, hacksleft, from_shears)
+local function OnHack(inst, worker, hacksleft)
+    local from_shears = inst.components.shearable.shearing
+
     local fx = SpawnPrefab("hacking_tall_grass_fx")
     local x, y, z = inst.Transform:GetWorldPosition()
     fx.Transform:SetPosition(x, y + math.random() * 2, z)
 
     if inst:HasTag("weevole_infested") then
-        SpawnWeevole(inst, target)
+        SpawnWeevole(inst, worker)
     end
 
-    if inst.components.hackable and inst.components.hackable.hacksleft <= 0 then
-        if inst:HasTag("weevole_infested")then
-            inst.components.childspawner:ReleaseAllChildren(target)
+    if inst.components.hackable and inst.components.hackable:GetWorkLeft() <= 0 then
+        if inst:HasTag("weevole_infested") then
+            inst.components.childspawner:ReleaseAllChildren(worker)
             RemoveWeevoleden(inst)
         end
+        inst.components.growable:SetStage(1)
         inst.AnimState:PlayAnimation("fall")
         inst.AnimState:PushAnimation("picked", true)
         inst.SoundEmitter:PlaySound("dontstarve_DLC002/common/vine_drop")
+
+        if not from_shears then
+            inst.components.lootdropper:DropLoot()
+        end
     else
         inst.AnimState:PlayAnimation("chop")
         inst.AnimState:PushAnimation("idle", true)
@@ -107,38 +114,42 @@ local function OnHack(inst, target, hacksleft, from_shears)
     end
 end
 
-local function OnRegen(inst)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
-    if not NUTRIENT_TILES[tile] then
-        local cycles_left = inst.components.hackable.cycles_left
-        local shortgrass = ReplacePrefab(inst, "grass")
-        shortgrass.components.pickable.transplanted = true
-        shortgrass.components.pickable.cycles_left = cycles_left
-        shortgrass.components.pickable.onregenfn(shortgrass)
-        return
-    end
-    inst.AnimState:PlayAnimation("grow")
-    inst.AnimState:PushAnimation("idle", true)
-    inst.components.hackable.hacksleft = inst.components.hackable.maxhacks
-    WeevoleNestTest(inst)
-end
-
-local function MakeBarren(inst)
-    inst.AnimState:PlayAnimation("picked",true)
-    inst.components.hackable.hacksleft = 0
-    inst.components.childspawner:StopSpawning()
-end
-
-local function MakeEmpty(inst)
-    inst.AnimState:PlayAnimation("picked",true)
-    inst.components.hackable.hacksleft = 0
-    inst.components.childspawner:StopSpawning()
-end
+local GROWTH_STAGES = {
+    {
+        name = "short",
+        time = function() return TUNING.VINE_REGROW_TIME end,
+        fn = function(inst)
+            inst.AnimState:PlayAnimation("picked", true)
+            inst.components.hackable:SetWorkable(false)
+            inst.components.shearable:SetCanShear(false)
+            inst.components.childspawner:StopSpawning()
+            inst.components.growable:StartGrowing()
+        end,
+    },
+    {
+        name = "tall",
+        time = function() return nil end,
+        growfn = function(inst)
+            local x, y, z = inst.Transform:GetWorldPosition()
+            local tile = TheWorld.Map:GetTileAtPoint(x, y, z)
+            if not NUTRIENT_TILES[tile] then
+                local shortgrass = ReplacePrefab(inst, "grass")
+                shortgrass.components.pickable.transplanted = true
+                shortgrass.components.pickable.onregenfn(shortgrass)
+                return
+            end
+            inst.AnimState:PlayAnimation("grow")
+            inst.AnimState:PushAnimation("idle", true)
+            inst.components.hackable:SetWorkLeft(2.5)
+            inst.components.shearable:SetCanShear(true)
+            WeevoleNestTest(inst)
+        end,
+    },
+}
 
 local function OnSpawnWeevole(inst, weevole)
     if inst:IsValid() then
-        if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+        if inst.components.hackable and inst.components.hackable:CanBeWorked() then
             inst.AnimState:PlayAnimation("rustle", false)
             inst.AnimState:PushAnimation("idle", true)
         end
@@ -151,7 +162,7 @@ end
 
 local function OnNear(inst)
     if not inst.near then
-        if inst.components.hackable and inst.components.hackable:CanBeHacked() then
+        if inst.components.hackable and inst.components.hackable:CanBeWorked() then
             inst.AnimState:PlayAnimation("rustle")
             inst.AnimState:PushAnimation("idle", true)
         end
@@ -207,6 +218,8 @@ local function grass_tall()
     end
 
     inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot({"cutgrass"})
+
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
 
@@ -216,18 +229,17 @@ local function grass_tall()
     inst.components.workable:SetWorkLeft(1)
 
     inst:AddComponent("hackable")
-    inst.components.hackable.max_cycles = TUNING.GRASS_CYCLES
-    inst.components.hackable.cycles_left = TUNING.GRASS_CYCLES
-    inst.components.hackable.hacksleft = 2.5
-    inst.components.hackable.maxhacks = 2.5
-    inst.components.hackable:SetUp("cutgrass", TUNING.VINE_REGROW_TIME)
-    inst.components.hackable:SetOnHackedFn(OnHack)
-    inst.components.hackable:SetOnRegenFn(OnRegen)
-    inst.components.hackable:SetMakeBarrenFn(MakeBarren)
-    inst.components.hackable:SetMakeEmptyFn(MakeEmpty)
+    inst.components.hackable:SetWorkLeft(2.5)
+    inst.components.hackable:SetOnWorkCallback(OnHack)
 
     inst:AddComponent("shearable")
     inst.components.shearable:SetUp("cutgrass", 2)
+
+    inst:AddComponent("growable")
+    inst.components.growable.stages = GROWTH_STAGES
+    inst.components.growable.magicgrowable = true
+    inst.components.growable.springgrowth = true
+    inst.components.growable:SetStage(2)
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "weevole"
