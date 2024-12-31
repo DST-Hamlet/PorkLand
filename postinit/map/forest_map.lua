@@ -257,6 +257,8 @@ local function GeneratePorkland(prefab, map_width, map_height, tasks, level, lev
             return nil
         end
 
+        save.map.topology.node_datas = WorldSim:GetNodeDatas()
+
         WorldSim:CreateNodeIdTileMap()
         topology_save.root:SaveEncode({width = map_width, height = map_height}, save.map.topology)
     else
@@ -370,7 +372,7 @@ local function GeneratePorkland(prefab, map_width, map_height, tasks, level, lev
     save.map.world_tile_map = GetWorldTileMap()
 
     save.map.topology.overrides = deepcopy(current_gen_params)
-    save.map.topology.pl_worldgen_version = 1  -- Feel free to increase this version when making big changes
+    save.map.topology.pl_worldgen_version = 2 -- Feel free to increase this version when making big changes
 
     if save.map.topology.overrides == nil then
         save.map.topology.overrides = {}

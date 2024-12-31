@@ -30,6 +30,7 @@ local LAYOUT_POSITION = LAYOUT_POSITION or {
 --- room->node(cell)
 ---@class NodeData
 ---@field area number
+---@field children table
 ---@field site table{ x: number, y: number }
 ---@field site_centroid table{ x: number, y: number }
 ---@field site_points table{ x: number[], y: number[], map: number[][] }
@@ -61,6 +62,10 @@ function WorldSim__index:SetNodeData(node_id, data)
     end
 
     NodeDatas[node_id] = data
+end
+
+function WorldSim__index:GetNodeDatas()
+    return NodeDatas
 end
 
 local _ResetAll = WorldSim__index.ResetAll
