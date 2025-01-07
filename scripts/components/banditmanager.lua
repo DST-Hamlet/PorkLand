@@ -105,6 +105,10 @@ local function OnBanditDeath(src, data)
 end
 
 local function OnBanditEscaped(src, data)
+    if not (data and data.bandit and data.bandit:IsValid() and data.bandit == _bandit) then
+        return
+    end
+
     local oincs = _bandit.components.inventory:GetItemsWithTag("oinc")
     for _, oinc in pairs(oincs) do
         if _stolen_oincs[oinc.prefab] then
@@ -253,6 +257,11 @@ end
 --------------------------------------------------------------------------
 
 function self:SpawnBanditOnPlayer(player)
+    if _bandit then
+        print("already have a bandit in world!!!")
+        return
+    end
+
     local x, y, z = player.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x, y, z, 40, {"bandit_cover"})
 
