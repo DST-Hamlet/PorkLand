@@ -4,13 +4,21 @@ local events =
 {
     CommonHandlers.OnDeath(),
     CommonHandlers.OnFreeze(),
-    CommonHandlers.OnAttack(),
     CommonHandlers.OnAttacked(),
-    EventHandler("newcombattarget", function(inst, data)
-        if inst.sg:HasStateTag("idle") and data.target then
+    EventHandler("doattack", function (inst)
+        if inst.components.health ~= nil and not inst.components.health:IsDead()
+            and not inst.sg:HasStateTag("busy") then
+
             inst.sg:GoToState("attack")
         end
-    end)
+    end),
+    EventHandler("newcombattarget", function(inst, data)
+        if inst.sg:HasStateTag("idle") and data.target
+            and not inst.sg:HasStateTag("busy") then
+
+            inst.sg:GoToState("attack")
+        end
+    end),
 }
 
 local states =
@@ -20,6 +28,9 @@ local states =
         tags = {"idle"},
 
         onenter = function(inst)
+            if inst.components.combat.target then
+                inst:ForceFacePoint(inst.components.combat.target:GetPosition())
+            end
             inst.AnimState:PushAnimation("idle")
         end,
 
@@ -37,9 +48,12 @@ local states =
 
     State{
         name = "taunt",
-        tags = {"taunting"},
+        tags = {"taunting", "busy", "caninterrupt"},
 
         onenter = function(inst)
+            if inst.components.combat.target then
+                inst:ForceFacePoint(inst.components.combat.target:GetPosition())
+            end
             inst.AnimState:PlayAnimation("taunt")
         end,
 
@@ -51,11 +65,7 @@ local states =
         events =
         {
             EventHandler("animover", function(inst)
-                if inst.components.combat.target then
-                    inst.sg:GoToState("attack")
-                elseif inst.components.combat.target == nil then
-                    inst.sg:GoToState("idle")
-                end
+                inst.sg:GoToState("idle")
             end),
         },
     },
@@ -65,6 +75,9 @@ local states =
         tags = {"attack", "busy"},
 
         onenter = function(inst, target)
+            if target then
+                inst:ForceFacePoint(target:GetPosition())
+            end
             inst.sg.statemem.target = target
             inst.Physics:Stop()
             inst.components.combat:StartAttack()
@@ -98,10 +111,8 @@ local states =
         events =
         {
             EventHandler("animqueueover", function(inst)
-                if inst.components.combat.target and math.random() < 0.3 then
+                if inst.components.combat.target then
                     inst.sg:GoToState("taunt")
-                else
-                    inst.sg:GoToState("idle")
                 end
             end),
         },
