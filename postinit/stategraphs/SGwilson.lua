@@ -634,6 +634,10 @@ local states = {
                     local delta = inst:GetPosition() - fishingrod.target:GetPosition()
                     fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
                 end
+
+                if fishingrod then
+                    inst.sg.statemem.tool:PushEvent("fishingcollect") -- 耐久结算
+                end
             end),
             TimeEvent(64*FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishland", nil, nil, true)

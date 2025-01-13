@@ -173,6 +173,8 @@ local function fn()
         inst.components.perishable:SetPercent(inst.components.timer:GetTimeLeft("endlife") / (TUNING.TOTAL_DAY_TIME + TUNING.SEG_TIME))
     end)
 
+    inst.inventoryloot = "rabid_beetle_inventory"
+
     inst:SetStateGraph("SGrabid_beetle")
     inst:SetBrain(brain)
 
