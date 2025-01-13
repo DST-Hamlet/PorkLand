@@ -96,11 +96,10 @@ local function CornerPillarPlaceTest(inst)
             if distsq(subpt.coord.x, subpt.coord.z, pt.x, pt.z) < 2 then
                 inst.Transform:SetPosition(subpt.coord.x, subpt.coord.y, subpt.coord.z)
                 -- inst.Transform:SetRotation(subpt.rot)
-                inst.components.rotatingbillboard:SetRotation(-90)
                 if subpt.rot < 0 then
-                    inst.Transform:SetScale(1,1,1)
+                    inst.components.rotatingbillboard:SetRotation(-90)
                 else
-                    inst.Transform:SetScale(-1,1,1)
+                    inst.components.rotatingbillboard:SetRotation(90)
                 end
 
                 inst.accept_placement = true
