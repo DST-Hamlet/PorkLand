@@ -111,9 +111,7 @@ local states =
         events =
         {
             EventHandler("animqueueover", function(inst)
-                if inst.components.combat.target then
-                    inst.sg:GoToState("taunt")
-                end
+                inst.sg:GoToState("taunt")
             end),
         },
     },
