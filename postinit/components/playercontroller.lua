@@ -194,6 +194,8 @@ function PlayerController:GetMapActions(...)
     if self.inst:HasTag("inside_interior") then
         return nil
     end
+
+    return _GetMapActions(self, ...)
 end
 
 AddComponentPostInit("playercontroller", function(self)
