@@ -1717,7 +1717,7 @@ local states = {
 
     State{
         name = "usedoor",
-        tags = {"doing", "busy", "canrotate"},
+        tags = {"doing", "busy"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -1726,6 +1726,12 @@ local states = {
             if inst.components.playercontroller then
                 -- inst.components.playercontroller:EnableMapControls(false)
                 inst.components.playercontroller:Enable(false)
+            end
+
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction ~= nil and buffaction.target or nil
+            if target and target.components.door then
+                inst:ForceFacePoint((inst:GetPosition() - target.components.door:GetOffsetPos()):Get())
             end
         end,
 

@@ -94,6 +94,21 @@ local function DoTeleport(player, pos)
     end)
 end
 
+function Door:GetOffsetPos(doer)
+    local room = TheWorld.components.interiorspawner:GetInteriorCenter(self.inst:GetPosition())
+    if room then
+        -- don't throw player directly on door
+        -- instead, give a slight offset to room center
+        local door_pos = self.inst:GetPosition()
+        local room_pos = room:GetPosition()
+        local extra_dist = doer and doer.Physics and doer.Physics:GetRadius() or 0
+        local offset = (room_pos - door_pos):GetNormalized() * (0.5 + extra_dist)
+        return offset
+    end
+
+    return Vector3(0, 0, 0)
+end
+
 function Door:Activate(doer)
     if not self.target_interior then
         print("WARNING: this door gets activated but it doesn't have a target interior!", self.inst)
@@ -110,6 +125,7 @@ function Door:Activate(doer)
         local house = TheWorld.components.interiorspawner:GetExteriorById(id)
         if house then
             DoTeleport(doer, house:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0))
+            doer:ForceFacePoint((doer:GetPosition() + Vector3(house:GetPhysicsRadius(1), 0, 0)):Get())
             PlayDoorSound()
             doer:PushEvent("used_door", {door = self.inst, exterior = true})
             if house.components.hackable and house.stage > 0 then -- 内部门用 vineable, 外部门用 hackable... 需要代码清理
@@ -123,12 +139,10 @@ function Door:Activate(doer)
 
         local target_door = room and room:GetDoorById(self.target_door_id)
         if target_door then
-            -- don't throw player directly on door
-            -- instead, give a slight offset to room center
             local door_pos = target_door:GetPosition()
-            local room_pos = room:GetPosition()
-            local offset = (room_pos - door_pos):GetNormalized() * 1.0
+            local offset = target_door.components.door:GetOffsetPos(doer)
             DoTeleport(doer, door_pos + offset)
+            doer:ForceFacePoint((doer:GetPosition() + target_door.components.door:GetOffsetPos()):Get())
             PlayDoorSound()
             doer:PushEvent("used_door", {door = self.inst, exterior = false})
             if target_door.components.vineable
