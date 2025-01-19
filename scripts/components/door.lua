@@ -58,6 +58,10 @@ function Door:SetTargetOffset(x, y, z)
     dest.target_offset_z = z
 end
 
+function Door:IsLocked()
+    return self.disabled or self.hidden
+end
+
 local function DoTeleport(player, pos)
     player:StartThread(function()
         local x, y, z = pos:Get()
