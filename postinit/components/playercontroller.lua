@@ -189,6 +189,13 @@ function PlayerController:GetAttackTarget(force_attack, force_target, isretarget
     return target
 end
 
+local _GetMapActions = PlayerController.GetMapActions
+function PlayerController:GetMapActions(...)
+    if self.inst:HasTag("inside_interior") then
+        return nil
+    end
+end
+
 AddComponentPostInit("playercontroller", function(self)
     self.lasttick_controlpressed = {}
 end)
