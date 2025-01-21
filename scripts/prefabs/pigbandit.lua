@@ -93,7 +93,7 @@ local function OnEntitySleep(inst)
         inst.escapetask:Cancel()
         inst.escapetask = nil
     end
-    inst.escapetask = inst:DoTaskInTime(20, function() TheWorld:PushEvent("bandit_escaped") end)
+    inst.escapetask = inst:DoTaskInTime(20, function() TheWorld:PushEvent("bandit_escaped", {bandit = inst}) end)
 end
 
 local function OnEntityWake(inst)

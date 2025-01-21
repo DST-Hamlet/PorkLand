@@ -440,3 +440,18 @@ function IsPlayerInAntDisguise(player)
         or (player.replica.inventory and (player.replica.inventory:EquipHasTag("antmask") and player.replica.inventory:EquipHasTag("antsuit")))
         or false
 end
+
+function TagToDirect(inst)
+    if inst:HasTag("door_north") then
+        return 180
+    end
+    if inst:HasTag("door_east") then
+        return -90
+    end
+    if inst:HasTag("door_west") then
+        return 90
+    end
+    if inst:HasTag("door_south") then
+        return 0
+    end
+end

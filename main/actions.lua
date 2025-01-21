@@ -300,12 +300,12 @@ ACTIONS.SEARCH_MYSTERY.validfn = function(act)
     end
 end
 
-ACTIONS.USEDOOR.fn = function(act, forcesuccess)
+ACTIONS.USEDOOR.fn = function(act)
     local door = act.target
     if not door or not door.components.door then
         return false
     end
-    if not forcesuccess and (door.components.door.disabled or door.components.door.hidden) then
+    if door.components.door:IsLocked() then
         return false, "LOCKED"
     end
     return door.components.door:Activate(act.doer)

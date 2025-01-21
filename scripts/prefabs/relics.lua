@@ -74,6 +74,7 @@ local function MakeRelic(num)
         inst:AddTag("molebait")
         inst:AddTag("cattoy")
         inst:AddTag("relic")
+        inst:AddTag("quakedebris")
 
         inst.AnimState:SetBank("relic")
         inst.AnimState:SetBuild("relics")

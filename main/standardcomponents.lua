@@ -557,6 +557,9 @@ local _RemovePhysicsColliders = RemovePhysicsColliders
 function RemovePhysicsColliders(inst, ...)
     _RemovePhysicsColliders(inst, ...)
     local physics = inst.Physics
+    if not physics then
+        return
+    end
     if TheWorld:HasTag("porkland") and physics:GetMass() > 0 then
         physics:ClearCollidesWith(COLLISION.LIMITS)
         physics:ClearCollidesWith(COLLISION.VOID_LIMITS)

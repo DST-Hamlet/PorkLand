@@ -94,13 +94,6 @@ local function OnBuilt(inst)
     SetPlayerUncraftable(inst)
     inst.onbuilt = true
 
-    if inst:HasTag("rotate_fix") then
-        inst.Transform:SetRotation(-90)
-        if inst.components.rotatingbillboard then
-            inst.components.rotatingbillboard:OnUpdate()
-        end
-    end
-
     local x, y, z = inst.Transform:GetWorldPosition()
     if inst:HasTag("cornerpost") then
         local ents = TheSim:FindEntities(x, y, z, 1, {"cornerpost"})
@@ -694,8 +687,8 @@ local function MakeDeco(build, bank, animframe, data, name)
                     local child_prop = SpawnPrefab(child)
                     local x, y, z = inst.Transform:GetWorldPosition()
                     child_prop.Transform:SetPosition(x, y, z)
-                    if inst.components.rotatingbillboard then
-                        child_prop.AnimState:SetScale(inst.Transform:GetScale())
+                    if inst.components.rotatingbillboard and inst.components.rotatingbillboard.rotation_set then -- rotation_set属性用于判断rotatingbillboard组件是否完成初始化
+                        child_prop.Transform:SetRotation(inst.components.rotatingbillboard:GetRotation())
                     else
                         child_prop.Transform:SetRotation(inst.Transform:GetRotation())
                     end

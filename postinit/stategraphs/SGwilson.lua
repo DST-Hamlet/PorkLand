@@ -634,6 +634,10 @@ local states = {
                     local delta = inst:GetPosition() - fishingrod.target:GetPosition()
                     fishingrod.target.components.inventoryitem:Launch(Vector3(0,10,0) + delta * 2)
                 end
+
+                if fishingrod then
+                    inst.sg.statemem.tool:PushEvent("fishingcollect") -- 耐久结算
+                end
             end),
             TimeEvent(64*FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve/common/fishingpole_fishland", nil, nil, true)
@@ -1713,7 +1717,7 @@ local states = {
 
     State{
         name = "usedoor",
-        tags = {"doing", "busy", "canrotate"},
+        tags = {"doing", "busy"},
 
         onenter = function(inst)
             inst.components.locomotor:Stop()
@@ -1723,14 +1727,28 @@ local states = {
                 -- inst.components.playercontroller:EnableMapControls(false)
                 inst.components.playercontroller:Enable(false)
             end
+
+            local buffaction = inst:GetBufferedAction()
+            local target = buffaction ~= nil and buffaction.target or nil
+            if target and target.components.door then
+                inst:ForceFacePoint((inst:GetPosition() - target.components.door:GetOffsetPos()):Get())
+            end
         end,
 
         timeline =
         {
             TimeEvent(2 * FRAMES, function(inst)
-                inst:ScreenFade(false, 0.4)
+                local buffaction = inst:GetBufferedAction()
+                local target = buffaction ~= nil and buffaction.target or nil
+                if target and not target.components.door:IsLocked() then
+                    inst:ScreenFade(false, 0.4)
+                    inst.sg.mem.screenfaded = true
+                end
                 inst:DoStaticTaskInTime(0.6, function()
-                    inst:ScreenFade(true, 0.4)
+                    if inst.sg.mem.screenfaded then
+                        inst:ScreenFade(true, 0.4)
+                        inst.sg.mem.screenfaded = false
+                    end
                 end)
             end),
 
@@ -1756,7 +1774,10 @@ local states = {
                 inst.components.playercontroller:EnableMapControls(true)
                 inst.components.playercontroller:Enable(true)
             end
-            inst:ScreenFade(true, 0.4)
+            if inst.sg.mem.screenfaded then
+                inst:ScreenFade(true, 0.4)
+                inst.sg.mem.screenfaded = false
+            end
         end,
     },
 

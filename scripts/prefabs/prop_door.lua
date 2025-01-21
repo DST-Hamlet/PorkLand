@@ -433,7 +433,7 @@ local function fn()
     inst.entity:AddLight()
     inst.entity:AddNetwork()
 
-    MakeObstaclePhysics(inst, 1)
+    MakeObstaclePhysics(inst, 0.75)
 
     inst.AnimState:SetSortOrder(4)
 
