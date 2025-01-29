@@ -36,6 +36,7 @@ local _bramble_spots = {}
 local _bramble_to_spawn = 7
 local _bramble_spawned = false
 local _disabled = false
+local _last_spawn_time = 0
 
 --------------------------------------------------------------------------
 --[[ Private member functions ]]
@@ -90,8 +91,11 @@ local function OnseasonChange(src, season)
     end
 
     if season == SEASONS.LUSH then
-        if not _bramble_spawned then
+        if not _bramble_spawned and (TheWorld.state.cycles - _last_spawn_time > 5) then
+            -- 为了防止频繁转动日晷进入繁茂季导致卡顿, 所以两次荆棘生长之间有5天的冷却时间
+            print("SpawnBrambles", TheWorld.state.cycles, _last_spawn_time)
             SpawnBrambles()
+            _last_spawn_time = TheWorld.state.cycles
         end
     else
         _bramble_spawned = false
@@ -126,6 +130,7 @@ function self:OnSave()
     return {
         bramble_spawned = _bramble_spawned,
         bramble_spots = _bramble_spots,
+        _last_spawn_time = _last_spawn_time,
     }
 end
 
@@ -136,6 +141,7 @@ function self:OnLoad(data)
 
     _bramble_spawned = data.bramble_spawned
     _bramble_spots = data.bramble_spots or {}
+    _last_spawn_time = data._last_spawn_time or 0
 end
 
 --------------------------------------------------------------------------
