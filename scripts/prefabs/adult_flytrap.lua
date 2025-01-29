@@ -37,12 +37,7 @@ local function findfood(inst, target)
     end
 
     return target.components.inventory:FindItem(function(item)
-        if not item:IsValid() or not item.components.edible then
-            return false
-        end
-
-       return item.components.edible.foodtype == FOODTYPE.MEAT
-           or item.components.edible.secondaryfoodtype == FOODTYPE.MEAT
+        return inst.components.eater:CanEat(item)
     end)
 end
 
@@ -184,6 +179,12 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
+
+    inst:AddComponent("eater")
+    inst.components.eater:SetDiet({FOODTYPE.MEAT}, {FOODTYPE.MEAT})
+    inst.components.eater:SetCanEatHorrible()
+    inst.components.eater:SetCanEatRaw()
+    inst.components.eater:SetStrongStomach(true) -- can eat monster meat!
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.ADULT_FLYTRAP_HEALTH)
