@@ -318,7 +318,7 @@ function Sailor:Disembark(pos, boat_to_boat, no_state, boat_pos)
     end
     self.inst.Physics:Stop()
     self.inst.components.locomotor:StopMoving()
-    if no_state then
+    if no_state and pos then
         self.inst.Transform:SetPosition(pos.x, pos.y, pos.z)
     else
         self.inst.Transform:SetPosition(x, y, z)
