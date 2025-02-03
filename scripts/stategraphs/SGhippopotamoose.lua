@@ -176,26 +176,26 @@ local states=
                         inst:PushEvent("onmissother")
                     end
                 end)
+            else
+                SpawnWaves(inst, 12, 360, 4, nil, nil, nil, true)
+
+                local old_damageRings = inst.components.groundpounder.damageRings
+                local old_numRings = inst.components.groundpounder.numRings
+                local old_groundpoundfx = inst.components.groundpounder.groundpoundfx
+                local old_groundpoundringfx = inst.components.groundpounder.groundpoundringfx
+
+                inst.components.groundpounder.damageRings = 1
+                inst.components.groundpounder.numRings = 1
+                inst.components.groundpounder.groundpoundfx = "splash_water_drop"
+                inst.components.groundpounder.groundpoundringfx = "bombsplash"
+
+                inst.components.groundpounder:GroundPound()
+
+                inst.components.groundpounder.damageRings = old_damageRings
+                inst.components.groundpounder.numRings = old_numRings
+                inst.components.groundpounder.groundpoundfx = old_groundpoundfx
+                inst.components.groundpounder.groundpoundringfx = old_groundpoundringfx
             end
-
-            SpawnWaves(inst, 12, 360, 4, nil, nil, nil, true)
-
-            local old_damageRings = inst.components.groundpounder.damageRings
-            local old_numRings = inst.components.groundpounder.numRings
-            local old_groundpoundfx = inst.components.groundpounder.groundpoundfx
-            local old_groundpoundringfx = inst.components.groundpounder.groundpoundringfx
-
-            inst.components.groundpounder.damageRings = 1
-            inst.components.groundpounder.numRings = 1
-            inst.components.groundpounder.groundpoundfx = "splash_water_drop"
-            inst.components.groundpounder.groundpoundringfx = "bombsplash"
-
-            inst.components.groundpounder:GroundPound()
-
-            inst.components.groundpounder.damageRings = old_damageRings
-            inst.components.groundpounder.numRings = old_numRings
-            inst.components.groundpounder.groundpoundfx = old_groundpoundfx
-            inst.components.groundpounder.groundpoundringfx = old_groundpoundringfx
 
             inst.components.locomotor:Stop()
             inst.AnimState:PlayAnimation("jump_atk_pst")

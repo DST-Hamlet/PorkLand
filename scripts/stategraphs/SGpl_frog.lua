@@ -227,7 +227,7 @@ local states=
             TimeEvent(25 * FRAMES, function(inst) inst.components.combat:DoAttack() end),
             TimeEvent(38 * FRAMES, function(inst)
                 local x, y, z = inst.Transform:GetWorldPosition()
-                if not TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
+                if TheWorld.Map:ReverseIsVisualWaterAtPoint(x, y, z) then
                     inst.SoundEmitter:PlaySound("dontstarve_DLC003/movement/water/small_splash")
                 end
             end),
