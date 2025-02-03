@@ -18,19 +18,26 @@ local herald_summons_interior = {
 }
 
 local function SpawnHeraldSummons(inst)
-    local fn
-    if inst:GetCurrentInteriorID() ~= nil then
-        fn = GetRandomItem(herald_summons_interior)
-    else
-        fn = GetRandomItem(herald_summons)
-    end
-
     local x, y, z = inst.Transform:GetWorldPosition()
     local player
-    if inst.components.combat.target and inst.components.combat.target:HasTag("player") then
+    if inst.components.combat.target
+        and inst.components.combat.target:HasTag("player")
+        and inst.components.combat:CanTarget(inst.components.combat.target) then
+
         player = inst.components.combat.target
     else
         player = FindClosestPlayerInRange(x, y, z, 20, true)
+    end
+
+    if not player then
+        return
+    end
+
+    local fn
+    if player:GetCurrentInteriorID() ~= nil then
+        fn = GetRandomItem(herald_summons_interior)
+    else
+        fn = GetRandomItem(herald_summons)
     end
 
     fn(player, inst)
