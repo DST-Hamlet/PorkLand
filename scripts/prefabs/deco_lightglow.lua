@@ -12,7 +12,8 @@ local lighttypes = {
     natural = {
         day  = {rad = 3, intensity = 0.75, falloff = 0.5, color = {MULT, MULT, MULT}},
         dusk = {rad = 2, intensity = 0.75, falloff = 0.5, color = {MULT / 1.8, MULT/ 1.8, MULT / 1.8}},
-        full = {rad = 2, intensity = 0.75, falloff = 0.5, color = {MULT * 0.8 / 1.8, MULT * 0.8 / 1.8, MULT / 1.8}}
+        full = {rad = 2, intensity = 0.75, falloff = 0.5, color = {MULT * 0.8 / 1.8, MULT * 0.8 / 1.8, MULT / 1.8}},
+        aporkalypse = {rad = 2, intensity = 0.75, falloff = 0.5, color = {150/255, 40/255, 40/255}}
     },
     electric_1 = {
         day = {rad = 3, intensity = 0.9, falloff = 0.5, color = {197 / 255, 197 / 255, 50 / 255}},
@@ -47,7 +48,10 @@ local phase_functions =
 
     night = function(inst)
         local lights = lighttypes[inst.lighttype]
-        if TheWorld.state.moonphase == "full" then
+        if TheWorld.state.isaporkalypse then
+            inst.components.lighttweener:StartTween(nil, lights.aporkalypse.rad, lights.aporkalypse.intensity, lights.aporkalypse.falloff,
+            {lights.aporkalypse.color[1],lights.aporkalypse.color[2],lights.aporkalypse.color[3]}, 4)
+        elseif TheWorld.state.moonphase == "full" then
             inst.components.lighttweener:StartTween(nil, lights.full.rad, lights.full.intensity, lights.full.falloff,
                 {lights.full.color[1],lights.full.color[2],lights.full.color[3]}, 4)
         else
