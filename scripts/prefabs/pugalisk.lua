@@ -327,6 +327,7 @@ local function bodyfn()
     inst:AddTag("largecreature")
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
+    inst:AddTag("nokeeponpassable")
 
     inst.invulnerable = true
     inst.name = STRINGS.NAMES.PUGALISK
@@ -461,6 +462,7 @@ local function tailfn()
     inst:AddTag("largecreature")
     inst:AddTag("groundpoundimmune")
     inst:AddTag("noteleport")
+    inst:AddTag("nokeeponpassable")
 
     inst.entity:SetPristine()
 
@@ -582,6 +584,8 @@ local function fn()
 
     MakeObstaclePhysics(inst, 1)
 
+    inst.entity:SetCanSleep(false)
+
     inst:AddTag("epic")
     inst:AddTag("monster")
     inst:AddTag("hostile")
@@ -592,6 +596,7 @@ local function fn()
     inst:AddTag("head")
     inst:AddTag("noflinch")
     inst:AddTag("noteleport")
+    inst:AddTag("nokeeponpassable")
 
     inst.name = STRINGS.NAMES.PUGALISK
 
@@ -616,7 +621,7 @@ local function fn()
     inst.components.combat:SetRange(TUNING.PUGALISK_MELEE_RANGE, TUNING.PUGALISK_MELEE_RANGE)
     inst.components.combat.hiteffectsymbol = "hit_target"
     inst.components.combat:SetAttackPeriod(TUNING.PUGALISK_ATTACK_PERIOD)
-    inst.components.combat:SetRetargetFunction(0.5, RetargetFn)
+    inst.components.combat:SetRetargetFunction(0.25, RetargetFn)
     inst.components.combat.onhitfn = OnHit
 
     inst:AddComponent("lootdropper")

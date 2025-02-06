@@ -142,6 +142,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)
+    MakeInventoryFloatable(inst, "med", nil, 0.65)
 
     inst.AnimState:SetBank("ro_bin_gem")
     inst.AnimState:SetBuild("ro_bin_gem")
