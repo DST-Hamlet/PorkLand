@@ -12,9 +12,16 @@ local PopupDialogScreen = require("screens/redux/popupdialog")
 local ChooseWorldSreen = require("widgets/redux/chooseworldscreen")
 
 local world_locations = {
-    [1] = {FOREST = true, PORKLAND = true, CAVE = true},
-    [2] = {CAVE = true}
+    [1] = {PORKLAND = true},
 }
+
+local DEV = not modname:find("workshop-")
+if DEV then
+    world_locations = {
+        [1] = {FOREST = true, PORKLAND = true, CAVE = true},
+        [2] = {CAVE = true}
+    }
+end
 
 local function SetLevelLocations(servercreationscreen, location, i)
     local server_level_locations = {}
